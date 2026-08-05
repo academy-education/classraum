@@ -18,6 +18,7 @@
  * so it's cheap (~$0.005 per test) and fast.
  */
 
+import { splitSourceFromStem } from '@/lib/study/split-source-from-stem'
 import { generateObject } from 'ai'
 import { createOpenAI } from '@ai-sdk/openai'
 import { z } from 'zod'
@@ -463,13 +464,33 @@ export function sanitizeQuestion(q: RawQuestion): Question {
     return true
   })
   const preservesNewlines = q.type === 'writing_email' || q.type === 'writing_discussion'
+
+  /*
+   * Some generated items arrive with the whole PASSAGE inside `prompt`
+   * and `passage` empty — 46 of 709 distinct items (6.5%) when measured
+   * on 2026-08-05, one at 1,015 characters against a median stem of 88.
+   * The student meets the passage in the wrong place, and no
+   * answerability gate can judge the item, because the attack works by
+   * withholding a source that is now inside the stem.
+   *
+   * splitSourceFromStem repairs the clear cases and returns null for
+   * everything else, so an ambiguous item is left exactly as it was
+   * rather than silently truncated. Free-response types are excluded:
+   * their `prompt` legitimately carries long instructions.
+   */
+  const repaired = (!q.passage && q.type !== 'writing_email' && q.type !== 'writing_discussion')
+    ? splitSourceFromStem(q.prompt ?? '')
+    : null
+  const effectivePassage = repaired ? repaired.passage : q.passage
+  const effectivePrompt = repaired ? repaired.prompt : q.prompt
+
   return {
     ...q,
-    passage: q.passage
-      ? (preservesNewlines ? sanitizePreservingNewlines(q.passage) : sanitize(q.passage))
+    passage: effectivePassage
+      ? (preservesNewlines ? sanitizePreservingNewlines(effectivePassage) : sanitize(effectivePassage))
       : null,
     passageGroupId: q.passageGroupId ?? null,
-    prompt: sanitize(q.prompt),
+    prompt: sanitize(effectivePrompt),
     type: q.type ?? 'multiple_choice',
     choices,
     correct_answer: sanitize(q.correct_answer ?? ''),
@@ -502,7 +523,7 @@ export function sanitizeQuestion(q: RawQuestion): Question {
     topic_tag: q.topic_tag ? sanitize(q.topic_tag) : null,
     word_count: typeof q.word_count === 'number'
       ? q.word_count
-      : (q.passage ? q.passage.trim().split(/\s+/).filter(Boolean).length : null),
+      : (effectivePassage ? effectivePassage.trim().split(/\s+/).filter(Boolean).length : null),
     // TOEFL Listening task tag. Passed through verbatim when an author
     // supplies it (the hand-authored Choose-a-Response batches do) and
     // null otherwise — sanitize must never invent a task, because a

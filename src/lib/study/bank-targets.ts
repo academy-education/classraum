@@ -85,9 +85,29 @@ export const NOT_APPLICABLE = new Set([
   'Problem-Solving and Data Analysis',
 ])
 
-/** Maths items carrying a figure, which a future figure-blind attack
- *  COULD judge. Kept visible so "not applicable" does not quietly become
- *  "forgotten". Counts measured from the live bank, 2026-08-04. */
+/**
+ * Maths items carrying a figure. Counts measured 2026-08-04.
+ *
+ * ── MEASURED 2026-08-05. They fail. ──────────────────────────────────
+ * This used to say a figure-blind attack "does not exist yet". It does
+ * now — scripts/study-bank/attack-figure-blind.mjs — and 24 of these
+ * items scored 80.6% with the figure removed, against a 25.0% control.
+ *
+ * Read that the opposite way to every other score in this file: a HIGH
+ * figure-blind score means the FIGURE IS DECORATIVE, because the item
+ * was solvable without it. Geometry diagrams (`rawsvg`, 86 of the 132)
+ * scored 100% — the stems restate every length and angle the diagram
+ * carries. Data figures (bar, table) are the healthy ones at 17-58%.
+ *
+ * So these are no longer "unmeasured"; they are measured and failing,
+ * for a reason that has a cheap fix: delete from the stem whatever the
+ * figure already shows.
+ *
+ * UNDERCOUNT, recorded rather than silently corrected: this constant
+ * totals 132 MATHS items, but 164 live items carry a figure. The other
+ * 32 are `Information and Ideas` — a verbal cohort judged by the normal
+ * attack — and were never in scope here. See FIGURE-BLIND-RESULT.md.
+ */
 export const MATHS_WITH_GRAPHIC = {
   'Geometry and Trigonometry': 70,
   'Problem-Solving and Data Analysis': 46,
