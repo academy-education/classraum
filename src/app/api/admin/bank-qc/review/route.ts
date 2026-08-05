@@ -1,7 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { dbAdmin } from '@/lib/supabase-admin'
 import { requireAdmin } from '@/app/api/admin/_lib/admin-auth'
-import { dealSlots, dealItem, groupRuns, readRun, SLOTS, type Slot } from '@/lib/study/item-review'
+import {
+  dealSlots, dealItem, groupRuns, readRun, reviewerAgreement,
+  SLOTS, type Slot,
+} from '@/lib/study/item-review'
 
 /**
  * Human two-phase item review for /admin/bank-qc.
@@ -139,9 +142,34 @@ export async function GET(request: NextRequest) {
     .order('run_id', { ascending: false })
     .limit(1).maybeSingle()
 
+  /*
+   * Pairwise agreement, across reviewers, on the items they BOTH saw.
+   *
+   * This is what a second reviewer is for, and it is not extra sample
+   * size. Every human number in this project comes from one person —
+   * Choose a Response at 55.0% blind against a 25.0% control — and with
+   * one reader there is no way to tell a property of the ITEMS from a
+   * habit of that reader. Two readers on the same items decide it.
+   *
+   * Keyed on item, so it only reports where sittings actually overlap.
+   * An empty array is the honest state of the evidence today.
+   */
+  const agreement = reviewerAgreement(rowsAll
+    .filter(r => r.blind_at !== null)
+    .map(r => ({
+      itemId: r.item_id,
+      reviewerId: r.reviewer_id,
+      keySlot: r.key_slot as Slot,
+      blindPick: (r.blind_pick as Slot | null) ?? null,
+      answered: true,
+      verdict: r.verdict,
+      realism: r.realism,
+    }))).filter(p => p.shared > 0)
+
   return NextResponse.json({
     publishedMargin: PUBLISHED_MARGIN,
     runs,
+    agreement,
     openRun: (open as { run_id: string } | null)?.run_id ?? null,
   })
 }

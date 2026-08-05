@@ -1,4 +1,4 @@
-import { dealSlots, dealItem, scoreRun, readRun, groupRuns, SLOTS, type ReviewRow, type Slot } from '../item-review'
+import { dealSlots, dealItem, scoreRun, readRun, groupRuns, reviewerAgreement, pooledAcrossReviewers, SLOTS, type ReviewRow, type Slot, type Verdict } from '../item-review'
 
 /** Deterministic rand so a failure is reproducible. */
 function rng(seed: number) {
@@ -205,5 +205,143 @@ describe('human item review', () => {
     expect(s.unique).toBe(1)
     expect(s.broken).toBe(1)
     expect(s.artificial).toBe(1)
+  })
+})
+
+/*
+ * Reviewer agreement. Every human number in this project comes from one
+ * person, and with n=1 reviewer a 55% blind score cannot be told apart
+ * from that reader's own habit. These pin the three outcomes a second
+ * reviewer can produce.
+ */
+describe('reviewer agreement', () => {
+  const r = (itemId: string, reviewerId: string, keySlot: Slot, pick: Slot | null,
+             verdict: Verdict | null = null) => ({
+    itemId, reviewerId, keySlot, blindPick: pick, answered: true, verdict, realism: null,
+  })
+
+  it('separates converging on the KEY from converging on a WRONG option', () => {
+    // Both readers pick B every time. On items 1-4 B is the key; on 5-8
+    // it is a distractor. Accuracy says the second half is a total
+    // failure; agreement says the option set is pulling both readers to
+    // the same place, which is a defect either way.
+    const rows = [
+      ...['1', '2', '3', '4'].map(id => r(id, 'x', 'B', 'B')),
+      ...['1', '2', '3', '4'].map(id => r(id, 'y', 'B', 'B')),
+      ...['5', '6', '7', '8'].map(id => r(id, 'x', 'A', 'B')),
+      ...['5', '6', '7', '8'].map(id => r(id, 'y', 'A', 'B')),
+    ]
+    const [p] = reviewerAgreement(rows)
+    expect(p.shared).toBe(8)
+    expect(p.samePick).toBe(8)
+    expect(p.bothCorrect).toBe(4)
+    expect(p.sameWrongOption).toBe(4)   // <- the finding an accuracy score cannot report
+  })
+
+  it('does not credit agreement that both reviewers\' own habits predict', () => {
+    // Both pick C on everything. Raw agreement is 100%; they have shared
+    // no insight, and kappa says so. This is the case that makes raw
+    // agreement unreadable on its own.
+    const rows = [
+      ...['1', '2', '3', '4'].map(id => r(id, 'x', 'A', 'C')),
+      ...['1', '2', '3', '4'].map(id => r(id, 'y', 'A', 'C')),
+    ]
+    const [p] = reviewerAgreement(rows)
+    expect(p.pickAgreement).toBe(100)
+    expect(p.kappa).toBeNull()          // expected agreement is 1 — undefined, not 1.0
+  })
+
+  it('reports scatter, which is the result that would retire the finding', () => {
+    const rows = [
+      r('1', 'x', 'A', 'A'), r('2', 'x', 'B', 'B'), r('3', 'x', 'C', 'C'), r('4', 'x', 'D', 'D'),
+      r('1', 'y', 'A', 'B'), r('2', 'y', 'B', 'C'), r('3', 'y', 'C', 'D'), r('4', 'y', 'D', 'A'),
+    ]
+    const [p] = reviewerAgreement(rows)
+    expect(p.samePick).toBe(0)
+    expect(p.kappa).toBeLessThan(0)     // worse than their own marginals predict
+  })
+
+  it('excludes "can\'t tell" — two people declining to guess is not agreement', () => {
+    const rows = [
+      r('1', 'x', 'A', null), r('2', 'x', 'B', 'B'),
+      r('1', 'y', 'A', null), r('2', 'y', 'B', 'B'),
+    ]
+    const [p] = reviewerAgreement(rows)
+    expect(p.shared).toBe(1)
+    expect(p.samePick).toBe(1)
+  })
+
+  it('does not let a re-drawn item agree with itself, and keeps the LAST answer', () => {
+    /*
+     * A draw bug handing one reviewer the same item twice must not read
+     * as a second opinion. The two duplicate rows here DIFFER, so this
+     * pins which one survives — an earlier version used identical rows
+     * and passed under either policy, i.e. it verified the Map's own
+     * keying rather than anything this function decides.
+     *
+     * Last wins: if a reviewer somehow answered an item twice, the later
+     * answer is the one they stood behind.
+     */
+    const rows = [
+      r('1', 'x', 'A', 'A'), r('1', 'x', 'A', 'D'),   // x's final answer is D
+      r('1', 'y', 'A', 'D'),
+    ]
+    const [p] = reviewerAgreement(rows)
+    expect(p.shared).toBe(1)
+    expect(p.samePick).toBe(1)          // D vs D — the LAST of x's two
+    expect(p.bothCorrect).toBe(0)
+    expect(p.sameWrongOption).toBe(1)
+  })
+
+  it('agrees on phase-2 verdicts separately from blind picks', () => {
+    const rows = [
+      r('1', 'x', 'A', 'A', 'unique'), r('2', 'x', 'B', 'C', 'broken'),
+      r('1', 'y', 'A', 'D', 'unique'), r('2', 'y', 'B', 'A', 'alternative'),
+    ]
+    const [p] = reviewerAgreement(rows)
+    expect(p.samePick).toBe(0)          // blind picks disagree entirely
+    expect(p.verdictShared).toBe(2)
+    expect(p.verdictAgree).toBe(1)      // and the verdicts half-agree
+  })
+})
+
+describe('pooling across reviewers', () => {
+  const r = (itemId: string, reviewerId: string, keySlot: Slot, pick: Slot | null) => ({
+    itemId, reviewerId, keySlot, blindPick: pick, answered: true, verdict: null, realism: null,
+  })
+
+  /*
+   * Pooling overlapping work shrinks the error bar on evidence that was
+   * never independent. The overlap agreement NEEDS is exactly what
+   * pooling must drop, which is why these are two functions.
+   */
+  it('counts a doubly-reviewed item once, keeps the FIRST, and says how many it dropped', () => {
+    /*
+     * The overlap rows DIFFER (x got item 1 right, y got it wrong), so
+     * this pins the policy as well as the count. With identical rows the
+     * test passed whichever one survived — and whichever survives moves
+     * the score, so the policy is load-bearing.
+     *
+     * First wins: pooling is order-stable, so a later reviewer joining
+     * cannot retroactively change an already-published number.
+     */
+    const rows = [
+      r('1', 'x', 'A', 'A'), r('2', 'x', 'B', 'B'), r('3', 'x', 'C', 'D'),
+      r('1', 'y', 'A', 'C'), r('4', 'y', 'D', 'D'),   // item 1 is the overlap
+    ]
+    const { score, reviewers, duplicated } = pooledAcrossReviewers(rows)
+    expect(reviewers).toBe(2)
+    expect(duplicated).toBe(1)
+    expect(score.answered).toBe(4)      // NOT 5
+    expect(score.correct).toBe(3)       // x's correct 'A' on item 1, not y's 'C'
+  })
+
+  it('reports n honestly when every item was reviewed twice', () => {
+    // The failure this guards: two reviewers doing the same 20 items and
+    // the surface printing "40 answered".
+    const rows = ['1', '2', '3', '4'].flatMap(id => [r(id, 'x', 'A', 'A'), r(id, 'y', 'A', 'B')])
+    const { score, duplicated } = pooledAcrossReviewers(rows)
+    expect(score.answered).toBe(4)
+    expect(duplicated).toBe(4)
   })
 })

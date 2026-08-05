@@ -16,7 +16,21 @@
  * (scripts/calibrate-grader.ts). Label it as an estimate accordingly.
  *
  * Reading and Listening do not come through here. They are one point per
- * question, which already matches ETS exactly.
+ * question, which matches ETS's SCORING exactly.
+ *
+ * That is a claim about the arithmetic, not about the items, and as of
+ * 2026-08-06 the two come apart on Listening. Choose a Response is 14 of
+ * 48 delivered and 8 of 20 scored in Stage 1 (see BLUEPRINT in
+ * assemble.ts), and a human reviewer picked its keys from the options
+ * alone at 55.0% against a 25.0% control — +30.0, p<0.001, and
+ * reproduced by three model solvers. Official ETS reply items sit at
+ * +25.5 on the same measurement.
+ *
+ * So the Listening number runs OPTIMISTIC against a real form, by an
+ * amount nobody has measured. Deliberately not corrected here: a
+ * fudge factor with no student data behind it would replace a known
+ * bias with an invented one, which is the "silent wrong number" failure
+ * CLAUDE.md records twice. See scripts/study-bank/CHOOSE-A-RESPONSE-DECISION.md.
  */
 
 /** One scorable group within a section. */

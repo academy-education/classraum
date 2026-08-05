@@ -2,6 +2,10 @@ import { NextRequest, NextResponse } from 'next/server'
 import { dbAdmin } from '@/lib/supabase-admin'
 import { requireAdmin } from '@/app/api/admin/_lib/admin-auth'
 import { progressFor, overallProgress, type HumanEvidence } from '@/lib/study/bank-targets'
+import {
+  pooledAcrossReviewers, reviewerAgreement,
+  type AgreementPair, type Slot, type Verdict,
+} from '@/lib/study/item-review'
 
 /**
  * LIVE bank state for /admin/bank-qc — read from the database, every time.
@@ -170,35 +174,80 @@ export async function GET(request: NextRequest) {
      * disagreement between them is the signal.
      */
     const humanByDomain = new Map<string, HumanEvidence>()
+    const agreementByDomain = new Map<string, AgreementPair[]>()
     {
-      const { data: reviews } = await dbAdmin
-        .from('study_item_reviews')
-        .select('item_id, key_slot, blind_pick, blind_at')
-        .not('blind_at', 'is', null)
-        .limit(5000)
+      /*
+       * Paginated with .range(), NOT .limit(5000).
+       *
+       * PostgREST caps a response at 1000 rows and .limit() above that
+       * does not lift it — it silently returns 1000. A verifier in this
+       * repo already reported "0 problems" from a bank truncated that
+       * way, having never loaded the rows carrying the defect. There are
+       * 72 review rows today so the cap is not biting yet; the point of
+       * fixing it now is that it would start biting invisibly, on a
+       * number this dashboard presents as a verdict.
+       */
+      const reviews: Array<{
+        item_id: string; reviewer_id: string; key_slot: string
+        blind_pick: string | null; verdict: string | null
+      }> = []
+      for (let from = 0; ; from += 1000) {
+        const { data, error } = await dbAdmin
+          .from('study_item_reviews')
+          .select('item_id, reviewer_id, key_slot, blind_pick, verdict, blind_at')
+          .not('blind_at', 'is', null)
+          .order('item_id', { ascending: true })
+          .range(from, from + 999)
+        if (error || !data?.length) break
+        reviews.push(...data)
+        if (data.length < 1000) break
+      }
+
       const domainOf = new Map(live.map(i => [i.id, i.domain ?? '?']))
-      for (const r of reviews ?? []) {
+      const byDomainRows = new Map<string, typeof reviews>()
+      for (const r of reviews) {
         const d = domainOf.get(r.item_id)
         if (!d) continue
-        const e = humanByDomain.get(d) ?? { answered: 0, correct: 0, controlBest: 0 }
-        e.answered++
-        if (r.blind_pick && r.blind_pick === r.key_slot) e.correct++
-        humanByDomain.set(d, e)
+        if (!byDomainRows.has(d)) byDomainRows.set(d, [])
+        byDomainRows.get(d)!.push(r)
       }
-      // controlBest is the best fixed-SLOT strategy on the answered rows,
-      // computed per domain. Scoring a human against a flat 25% would
-      // credit or punish them for a shuffle they did not choose.
-      const slotCounts = new Map<string, Record<string, number>>()
-      for (const r of reviews ?? []) {
-        const d = domainOf.get(r.item_id)
-        if (!d) continue
-        const c = slotCounts.get(d) ?? { A: 0, B: 0, C: 0, D: 0 }
-        c[r.key_slot as 'A' | 'B' | 'C' | 'D']++
-        slotCounts.set(d, c)
-      }
-      for (const [d, c] of slotCounts) {
-        const e = humanByDomain.get(d)
-        if (e) e.controlBest = Math.max(c.A, c.B, c.C, c.D)
+
+      for (const [d, rows] of byDomainRows) {
+        /*
+         * Deduplicated by ITEM before scoring.
+         *
+         * Two reviewers on the same item is the design — it is how a
+         * one-person finding gets confirmed — but counting that item
+         * twice inflates `answered` and shrinks the apparent error bar
+         * on evidence that was never independent. With a single
+         * reviewer this was a no-op, so the defect could not show up
+         * until the moment the instrument actually scaled.
+         *
+         * The overlap is not discarded: it feeds the agreement figures
+         * below, which is the thing a second reviewer is FOR.
+         */
+        const shaped = rows.map(r => ({
+          itemId: r.item_id,
+          reviewerId: r.reviewer_id,
+          keySlot: r.key_slot as Slot,
+          blindPick: (r.blind_pick ?? null) as Slot | null,
+          answered: true,
+          verdict: (r.verdict ?? null) as Verdict | null,
+          realism: null,
+        }))
+        const { score } = pooledAcrossReviewers(shaped)
+        humanByDomain.set(d, {
+          answered: score.answered,
+          correct: score.correct,
+          // Best fixed-SLOT strategy over the same deduplicated rows.
+          // Scoring a human against a flat 25% would credit or punish
+          // them for a shuffle they did not choose.
+          controlBest: score.controlPct === null
+            ? 0
+            : Math.round((score.controlPct / 100) * score.answered),
+        })
+        const pairs = reviewerAgreement(shaped).filter(p => p.shared > 0)
+        if (pairs.length) agreementByDomain.set(d, pairs)
       }
     }
 
@@ -319,6 +368,11 @@ export async function GET(request: NextRequest) {
         unmeasured: live.filter(i => !latest.has(i.id)).length,
       },
       finish: { ...bar, total: overall.total, pct: overall.pct },
+      /* Per-cohort reviewer agreement. Empty until a second person
+       * reviews an item someone else already did — which is the point:
+       * an empty array here is the honest statement that every human
+       * number on this page rests on one reader. */
+      agreement: [...agreementByDomain.entries()].map(([domain, pairs]) => ({ domain, pairs })),
       cohorts,
       provenance,
       runs,

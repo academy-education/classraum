@@ -39,6 +39,16 @@ interface Reveal {
   wasCorrect: boolean
 }
 
+/** Pairwise reviewer agreement, as returned by the review GET. Mirrors
+ *  AgreementPair in src/lib/study/item-review.ts, where the reasoning
+ *  for each field lives. */
+interface AgreementPair {
+  a: string; b: string
+  shared: number; samePick: number; bothCorrect: number; sameWrongOption: number
+  pickAgreement: number | null; kappa: number | null
+  verdictShared: number; verdictAgree: number
+}
+
 interface RunResult {
   runId: string
   reviewerId: string
@@ -88,6 +98,7 @@ export function ReviewPanel({ domains }: { domains: string[] }) {
   const [verdict, setVerdict] = React.useState<Verdict | null>(null)
   const [realism, setRealism] = React.useState<Realism | null>(null)
   const [results, setResults] = React.useState<RunResult[]>([])
+  const [agreement, setAgreement] = React.useState<AgreementPair[]>([])
 
   /*
    * Resume on load. Without this the panel forgot the sitting on every
@@ -113,6 +124,7 @@ export function ReviewPanel({ domains }: { domains: string[] }) {
     try {
       const json = await authed('/api/admin/bank-qc/review')
       setResults(json.runs ?? [])
+      setAgreement(json.agreement ?? [])
       return json.openRun ?? null
     } catch (e) { setError((e as Error).message); return null }
   }
@@ -318,6 +330,65 @@ export function ReviewPanel({ domains }: { domains: string[] }) {
                 )}
               </div>
             ))}
+          </div>
+
+          {/*
+            * Agreement between reviewers.
+            *
+            * Shown even when empty, because empty is the current state
+            * of the evidence and hiding it would let a one-reader
+            * finding read as settled. The whole repair programme rests
+            * on one person scoring 55.0% blind against a 25.0% control;
+            * nothing yet says that is a property of the items rather
+            * than of that reader.
+            */}
+          <div className="mt-4 border-t border-gray-100 pt-3">
+            <p className="text-[11px] uppercase tracking-wide text-gray-500 mb-2">
+              Agreement between reviewers
+            </p>
+            {agreement.length === 0 ? (
+              <p className="text-[12px] text-gray-500">
+                No two reviewers have answered the same item yet, so every
+                number above rests on one reader. A second sitting that
+                overlaps an existing one is what turns a score into evidence.
+              </p>
+            ) : (
+              <div className="grid gap-2">
+                {agreement.map(p => (
+                  <div key={`${p.a}\t${p.b}`} className="rounded-xl ring-1 ring-gray-100 px-4 py-3">
+                    <div className="flex flex-wrap items-baseline gap-2 text-[12px] text-gray-500 tabular-nums">
+                      <span className="text-[13px] font-medium text-gray-900">
+                        {p.shared} item{p.shared === 1 ? '' : 's'} in common
+                      </span>
+                      <span>
+                        same pick {p.samePick}/{p.shared}
+                        {p.pickAgreement !== null && <> ({p.pickAgreement}%)</>}
+                        {p.kappa !== null && <> · kappa {p.kappa}</>}
+                      </span>
+                    </div>
+                    <p className="text-[12px] text-gray-500 mt-1">
+                      {p.bothCorrect > 0 && (
+                        <>Both found the key on <strong className="text-gray-900">{p.bothCorrect}</strong>. </>
+                      )}
+                      {p.sameWrongOption > 0 && (
+                        <>
+                          Both picked the same WRONG option on{' '}
+                          <strong className="text-gray-900">{p.sameWrongOption}</strong> — an
+                          option set pulling two readers to one place is a defect even
+                          though it scores as a miss.{' '}
+                        </>
+                      )}
+                      {p.samePick === 0 && (
+                        <>They agreed on nothing, which is the result that would retire the finding rather than confirm it. </>
+                      )}
+                      {p.verdictShared > 0 && (
+                        <>Judged the same item type {p.verdictAgree}/{p.verdictShared} the same way.</>
+                      )}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
         </div>
       )}

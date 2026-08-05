@@ -174,6 +174,156 @@ export function groupRuns<T extends ReviewRow & { runId: string; reviewerId: str
   })
 }
 
+/**
+ * What a SECOND reviewer buys, and it is not more items.
+ *
+ * As of 2026-08-06 every human number in this project comes from one
+ * person: Choose a Response at 55.0% blind against a 25.0% control,
+ * +30.0, p<0.001. That is the single result the whole repair programme
+ * is built on, and with n=1 reviewer it is unfalsifiable — there is no
+ * way to tell a property of the ITEMS from a habit of that reader.
+ *
+ * Two reviewers on the SAME items answer it, and the informative
+ * statistic is not "did they both get it right".
+ *
+ *   they converge on the KEY          the leak is real and shared
+ *   they converge on the SAME WRONG   the option set has structure
+ *     option                          pulling readers somewhere
+ *                                     specific — still a defect, and
+ *                                     invisible to an accuracy score
+ *   they scatter                      whatever the first reviewer was
+ *                                     using was personal, and the
+ *                                     margin does not generalise
+ *
+ * The middle row is the reason this function reports `sameWrongOption`
+ * separately. A cohort where two readers independently pick option C on
+ * the same item is leaking, even when C is not the key and both of them
+ * scored zero on it.
+ */
+export interface AgreementPair {
+  a: string
+  b: string
+  /** Items BOTH reviewers answered with an actual pick. "Can't tell"
+   *  (answered with a null pick) is excluded: it is a real and useful
+   *  response, but two people declining to guess is not agreement about
+   *  anything. */
+  shared: number
+  samePick: number
+  bothCorrect: number
+  /** Converged on one wrong option. The signal named above. */
+  sameWrongOption: number
+  /** samePick / shared. Null when they share no answered items. */
+  pickAgreement: number | null
+  /**
+   * Chance-corrected agreement (Cohen's kappa) over the four slots.
+   *
+   * Raw agreement is not readable on its own here: if both reviewers
+   * happen to favour slot C, they will agree often while sharing no
+   * insight. Kappa subtracts the agreement their own marginal habits
+   * predict. 0 = no better than their habits, 1 = perfect.
+   *
+   * Null when undefined — fewer than 2 shared items, or expected
+   * agreement of exactly 1 (both reviewers picked one slot every time),
+   * where the formula divides by zero.
+   */
+  kappa: number | null
+  /** Items both reached phase 2 on, and how often the verdict matched. */
+  verdictShared: number
+  verdictAgree: number
+}
+
+export function reviewerAgreement<T extends ReviewRow & { itemId: string; reviewerId: string }>(
+  rows: T[],
+): AgreementPair[] {
+  const byReviewer = new Map<string, Map<string, T>>()
+  for (const r of rows) {
+    if (!byReviewer.has(r.reviewerId)) byReviewer.set(r.reviewerId, new Map())
+    // Last write wins on a duplicate (item, reviewer). A reviewer seeing
+    // the same item twice is a draw bug, not a second opinion, and
+    // counting it twice would inflate agreement with itself.
+    byReviewer.get(r.reviewerId)!.set(r.itemId, r)
+  }
+
+  const who = [...byReviewer.keys()].sort()
+  const out: AgreementPair[] = []
+  for (let i = 0; i < who.length; i++) {
+    for (let j = i + 1; j < who.length; j++) {
+      const A = byReviewer.get(who[i])!, B = byReviewer.get(who[j])!
+      const ids = [...A.keys()].filter(id => B.has(id))
+
+      const picked = ids.filter(id => A.get(id)!.answered && B.get(id)!.answered &&
+        A.get(id)!.blindPick !== null && B.get(id)!.blindPick !== null)
+
+      let samePick = 0, bothCorrect = 0, sameWrong = 0
+      const marginA: Record<string, number> = {}, marginB: Record<string, number> = {}
+      for (const id of picked) {
+        const a = A.get(id)!, b = B.get(id)!
+        marginA[a.blindPick!] = (marginA[a.blindPick!] ?? 0) + 1
+        marginB[b.blindPick!] = (marginB[b.blindPick!] ?? 0) + 1
+        if (a.blindPick === b.blindPick) {
+          samePick++
+          if (a.blindPick === a.keySlot) bothCorrect++
+          else sameWrong++
+        }
+      }
+
+      const n = picked.length
+      const po = n ? samePick / n : null
+      let kappa: number | null = null
+      if (n >= 2 && po !== null) {
+        const pe = SLOTS.reduce((s, sl) => s + ((marginA[sl] ?? 0) / n) * ((marginB[sl] ?? 0) / n), 0)
+        kappa = pe >= 1 ? null : round3((po - pe) / (1 - pe))
+      }
+
+      const vShared = ids.filter(id => A.get(id)!.verdict !== null && B.get(id)!.verdict !== null)
+      out.push({
+        a: who[i], b: who[j],
+        shared: n,
+        samePick,
+        bothCorrect,
+        sameWrongOption: sameWrong,
+        pickAgreement: po === null ? null : round1(100 * po),
+        kappa,
+        verdictShared: vShared.length,
+        verdictAgree: vShared.filter(id => A.get(id)!.verdict === B.get(id)!.verdict).length,
+      })
+    }
+  }
+  return out
+}
+
+const round3 = (x: number) => Math.round(x * 1000) / 1000
+
+/**
+ * Combine several reviewers into one score — ONLY over items no two of
+ * them share.
+ *
+ * Pooling overlapping work double-counts an item and shrinks the
+ * apparent error bar on evidence that was never independent. So the
+ * overlap that `reviewerAgreement` needs is exactly what this must
+ * exclude, and the two functions are deliberately separate rather than
+ * one "combine everything" helper.
+ *
+ * `duplicated` is returned rather than silently dropped: a caller
+ * showing "n = 40" when 12 of those were reviewed twice is reporting a
+ * sample size it does not have.
+ */
+export function pooledAcrossReviewers<T extends ReviewRow & { itemId: string; reviewerId: string }>(
+  rows: T[],
+): { score: RunScore; reviewers: number; duplicated: number } {
+  const seen = new Map<string, T>()
+  let duplicated = 0
+  for (const r of rows) {
+    if (seen.has(r.itemId)) { duplicated++; continue }
+    seen.set(r.itemId, r)
+  }
+  return {
+    score: scoreRun([...seen.values()]),
+    reviewers: new Set(rows.map(r => r.reviewerId)).size,
+    duplicated,
+  }
+}
+
 export type RunReading = 'leaks' | 'clean' | 'inconclusive' | 'not-enough'
 
 export function readRun(s: RunScore, publishedMargin: number): { reading: RunReading; why: string } {
