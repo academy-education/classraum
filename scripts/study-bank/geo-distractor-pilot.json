@@ -1,0 +1,86 @@
+[
+  {
+    "id": "0088dae3-db19-4e4f-baeb-998e580c4850",
+    "key": "13",
+    "newDistractors": ["15", "11", "18"],
+    "keyRankWhenSorted": 2,
+    "why": "Plain length ladder around 13; none of 11/15/18 is the sum, difference, square, or sqrt-difference of legs 5 and 12, so the option set is consistent with many leg pairs."
+  },
+  {
+    "id": "032ee31e-7492-4adc-b6eb-9da3d2a9dd22",
+    "key": "4/5",
+    "newDistractors": ["5/8", "2/5", "7/10"],
+    "keyRankWhenSorted": 4,
+    "why": "All four are legal cosines in (0,1) so nothing is eliminable on sight, and none equals sin, tan, or a reciprocal of the 3-4-5 ratios."
+  },
+  {
+    "id": "038b0287-7264-4114-a3a2-5a821f32a5f4",
+    "key": "-6",
+    "newDistractors": ["-4", "3", "-1"],
+    "keyRankWhenSorted": 1,
+    "why": "No sign-flip (+6), no half/double, no vertex-y candidate; the four values are just plausible y-intercepts of an unknown downward parabola."
+  },
+  {
+    "id": "03932ff4-5dd4-4b0b-a66c-efc48f575afb",
+    "key": "50",
+    "newDistractors": ["45", "42", "55"],
+    "keyRankWhenSorted": 3,
+    "why": "Avoids 70 (30+40), 10, 35 (mean), 2500 and sqrt(40^2-30^2); the remaining spread is compatible with any leg pair whose hypotenuse is near 50."
+  },
+  {
+    "id": "045fd01e-dd18-449f-98f4-22f627d9a486",
+    "key": "5",
+    "newDistractors": ["6", "8", "11"],
+    "keyRankWhenSorted": 1,
+    "why": "Excludes every standard residue of legs 3 and 4 (7 sum, 1 difference, 25 unrooted, 12 product, 9/16 squares, 3.5 mean); the survivors are ordinary grid distances."
+  },
+  {
+    "id": "05fa09ea-c9c3-43da-8290-8c8932999bfc",
+    "key": "10",
+    "newDistractors": ["12", "9", "15"],
+    "keyRankWhenSorted": 2,
+    "why": "Drops 100 (unrooted), 7 (mean of 6 and 8) and sqrt(8^2-6^2); nothing left announces the legs, and no option is a multiple of the key."
+  },
+  {
+    "id": "06fe9356-fdc2-4d16-9b83-a7a0faba37a6",
+    "key": "-6",
+    "newDistractors": ["-5", "-10", "-7"],
+    "keyRankWhenSorted": 3,
+    "why": "No -12 (double / slope-doubling) and no sign flip; the neighbours are off-by-one grid misreads rather than functions of the slope and intercept."
+  },
+  {
+    "id": "1032e3e7-c60c-4d8d-9505-d2b0173b76cb",
+    "key": "5",
+    "newDistractors": ["8", "11", "7"],
+    "keyRankWhenSorted": 1,
+    "why": "Removes PB (9), PA+PB (13), PB-PT (3) and PT (6), so the options no longer form a solvable system in PT, PA, PB."
+  },
+  {
+    "id": "1362fc55-95bc-4edc-8ca6-ee2b0821a30b",
+    "key": "6",
+    "newDistractors": ["7", "10", "5"],
+    "keyRankWhenSorted": 2,
+    "why": "No arithmetic mean (7.5), no sum (15), no difference (9) and no segment value (3, 12), so the geometric-mean setup is not recoverable from the choices."
+  },
+  {
+    "id": "1666d768-751f-47cd-9c9e-879f71251be7",
+    "key": "13",
+    "newDistractors": ["9", "11", "8"],
+    "keyRankWhenSorted": 4,
+    "why": "Excludes 169 (unrooted), 17 (sum), 7 (difference), 26 and 6.5; the three distractors are shorter plausible distances with no relation to legs 5 and 12."
+  },
+  {
+    "id": "17d71023-5ab9-4579-9032-6686447cc846",
+    "key": "9",
+    "newDistractors": ["7", "11", "5"],
+    "keyRankWhenSorted": 3,
+    "why": "Kept as-is: an evenly spaced 5-7-9-11 ladder with no error structure, the one option set the measurement found non-disclosing."
+  },
+  {
+    "id": "17ffcbf3-1f14-4683-b07a-3d99f7a4e814",
+    "key": "12",
+    "newDistractors": ["9", "7", "11"],
+    "keyRankWhenSorted": 4,
+    "why": "Avoids 5 (half-chord), 10 (full chord), 13 (radius), 8 (r minus half-chord) and 144, so radius and chord cannot be back-solved from the options."
+  }
+]
