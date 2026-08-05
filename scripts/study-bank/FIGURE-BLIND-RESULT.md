@@ -70,12 +70,27 @@ problem with reshuffled options; 22/24 and 12/19 are clone pairs with
 one number changed. Solver A: *"the 15 solvable items are really about
 9 distinct problems."*
 
-Checked bank-wide in SQL rather than taken on trust:
+Checked bank-wide in SQL. **The first number I published was wrong**,
+and the correction is instructive:
 
-    848 maths items, 803 distinct normalised stems
-    => 45 duplicate stems (5.3%)
+    45 duplicate stems (5.3%)   <- WRONG, published in 1d53106
+    28 true duplicates (3.3%)   <- correct
 
-A student can meet the same question twice in one bank.
+The normalisation ran `regexp_replace(item->>'prompt','[^a-z0-9]+',...)`
+BEFORE `lower()`, so every capital letter was stripped. "What is sin A"
+and "What is sin B" collapsed to the same stem, and their different keys
+(3/5 and 4/5) looked like a mis-keyed pair when both are correct. Eight
+"conflicting key" groups were entirely this artefact.
+
+Fixing the case bug gives 42. Adding the FIGURE to the key gives 28: a
+further 14 are items sharing a generic stem — "What is the mean of the
+values in the table?" — over DIFFERENT tables. Those are legitimately
+distinct items, not duplicates, and archiving them would have destroyed
+real content.
+
+The 28 genuine duplicates (identical stem, identical figure, identical
+key) were archived on 2026-08-05, oldest of each group kept. Maths is
+848 -> 820 live, with zero true duplicates remaining.
 
 ## What this licenses
 

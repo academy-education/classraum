@@ -34,9 +34,16 @@ Every field above is required and the three constant ones — `prompt`,
 `listeningTask`, `type` — must be byte-identical to what is shown.
 `passageGroupId` is `null`: one utterance, one question.
 
-- **The stimulus** is ONE utterance, 12–28 words, inside `Transcript: "…"`.
+- **The stimulus** is ONE utterance, **5–14 words**, inside `Transcript: "…"`.
   It is spoken aloud by TTS, so write speech: contractions, hedges,
   self-interruption, the way people actually talk. No stage directions.
+
+  > **Corrected 2026-08-05 against the real exam.** This said 12–28
+  > words. All 30 official ETS TOEFL Essentials reply items run **5–12
+  > words (mean 8.2, median 8)** — so every item authored to the old
+  > spec was longer than the LONGEST real one. 14 is a small deliberate
+  > allowance over the official maximum, not a target. See
+  > `ets-reference-v1.json` (local, gitignored — ETS copyright).
 - **`correct_answer` must be byte-identical** to one entry in `choices`.
 - **`difficulty` is `"hard"`.** TOEFL is locked to the top band. The existing
   cohort is labelled easy/medium and sits below the bar; do not match it.
@@ -260,7 +267,24 @@ Check your own batch and fix what misses:
 1. `correct_answer` byte-identical to a member of `choices`, all 4 distinct,
    none empty.
 2. Key's length-rank distribution across the batch ≈ 25/25/25/25, none > 40%.
+   > **The real form does NOT do this.** Official key-length rank is
+   > 10/9/2/9 (rank 1 = longest) — skewed toward the longest option.
+   > Keep the flat rule anyway: it costs nothing and removes a tell the
+   > real exam happens to carry. But do not treat a batch that fails it
+   > as less realistic than ETS — it is stricter than ETS.
 3. Longest option ≤ 1.6× the shortest, per item.
+   > Official items reach **2.88×**. This cap is ours, not the exam's.
 4. No explanation matches `choice N` / `option B` / `(C)` / `the second option`.
-5. Stimulus 12–28 words, in `Transcript: "…"`.
+5. Stimulus 5–14 words, in `Transcript: "…"` (official: 5–12, mean 8.2).
 6. No two items share a scenario, and the keys are not all the same move.
+7. **Vary the speech act. Cap any one act at 3 items in a batch of 16.**
+   This is rule 6's real content and it is the one that has actually
+   failed. `nearmiss-v1` wrote 16 concessions ("X is fine, but Y") out of
+   16 and scored 91.7% blind — a candidate answers all 16 with "respond
+   to the second clause", never hearing the audio. The live bank carries
+   the same shape at **94.4%**.
+
+   **29 of the 30 official items are BARE QUESTIONS.** Not one is a
+   concession. If you are reaching for "but" or "though", you are
+   writing our tell, not their form. Check with
+   `check-batch-variety.mjs`, which the official corpus passes at 0.0%.
