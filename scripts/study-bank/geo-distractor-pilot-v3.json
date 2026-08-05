@@ -1,0 +1,98 @@
+[
+  {
+    "id": "0088dae3-db19-4e4f-baeb-998e580c4850",
+    "key": "13",
+    "newDistractors": ["15", "20", "29"],
+    "keyRankWhenSorted": 1,
+    "family": "All four are hypotenuses of integer right triangles: 13 (5-12-13), 15 (9-12-15), 20 (12-16-20), 29 (20-21-29). Asking 'which is the Pythagorean-looking number?' returns four.",
+    "tension": "Rule 6 fully satisfied, but at the cost of rule 5: the only triple hypotenuses BELOW 13 are 5 and 10, and both are barred by rule 2 (5 is a leg of the figure, 10 is double it). The key is forced to rank 1. Rules 2 and 6 are jointly satisfiable here; rules 2, 5 and 6 are not."
+  },
+  {
+    "id": "032ee31e-7492-4adc-b6eb-9da3d2a9dd22",
+    "key": "4/5",
+    "newDistractors": ["5/13", "15/17", "24/25"],
+    "keyRankWhenSorted": 2,
+    "family": "All four are leg-over-hypotenuse ratios of primitive Pythagorean triples, so each is a legitimate cosine of an integer-sided right triangle: 4/5 (3-4-5), 5/13 (5-12-13), 15/17 (8-15-17), 24/25 (7-24-25). All lie strictly in (0,1), so rule 3 holds — this fixes the round-1 defect where two options exceeded 1. No two options are the sine/cosine of the same angle (no complementary pair), which would itself have been a structural tell.",
+    "tension": null
+  },
+  {
+    "id": "038b0287-7264-4114-a3a2-5a821f32a5f4",
+    "key": "-6",
+    "newDistractors": ["-9", "-8", "-4"],
+    "keyRankWhenSorted": 3,
+    "family": "Small negative integers, i.e. clean y-intercepts of a parabola drawn on an integer grid. There is no 'famous value' axis for a y-intercept, so equal canonicality means equal integrality and equal magnitude — no option is a rounder number than another. Deliberately all the same sign: a lone positive among negatives would be eliminable from the parabola's visible position alone.",
+    "tension": null
+  },
+  {
+    "id": "03932ff4-5dd4-4b0b-a66c-efc48f575afb",
+    "key": "50",
+    "newDistractors": ["45", "55", "65"],
+    "keyRankWhenSorted": 2,
+    "family": "All four are hypotenuses of integer right triangles, three of them 3-4-5 scalings: 50 (30-40-50), 45 (27-36-45), 55 (33-44-55), 65 (39-52-65, also 16-63-65). This is the property that made the original #4 the one item neither attack cracked, applied deliberately rather than by accident.",
+    "tension": null
+  },
+  {
+    "id": "045fd01e-dd18-449f-98f4-22f627d9a486",
+    "key": "5",
+    "newDistractors": ["10", "13", "15"],
+    "keyRankWhenSorted": 1,
+    "family": "All four are integer lattice-point distances that arise from a Pythagorean triple: 5 (3-4), 10 (6-8), 13 (5-12), 15 (9-12). Chosen over larger triple hypotenuses so the magnitudes stay close enough that a sighted student cannot eliminate by eyeballing the plot.",
+    "tension": "Rule 5 sacrificed, not rule 2 or 6. Below 5 the only same-family values are 3 and 4 — the legs themselves, i.e. exactly the round-1 disclosure. The key cannot be moved off rank 1 without either leaking an operand or breaking the family."
+  },
+  {
+    "id": "05fa09ea-c9c3-43da-8290-8c8932999bfc",
+    "key": "10",
+    "newDistractors": ["13", "15", "17"],
+    "keyRankWhenSorted": 1,
+    "family": "All four are triple hypotenuses / integer lattice distances: 10 (6-8), 13 (5-12), 15 (9-12), 17 (8-15). None of 13, 15, 17 is reachable from 6 and 8 by sum (14), difference (2), product (48), square (36/64), half, double, or mean (7) — the four operations that leaked this item in round 1.",
+    "tension": "Rule 5 sacrificed. The only same-family value below 10 is 5, which is simultaneously half the key and sqrt-adjacent to the legs; using it would reinstate the round-1 leak. Rank 1 is forced."
+  },
+  {
+    "id": "06fe9356-fdc2-4d16-9b83-a7a0faba37a6",
+    "key": "-6",
+    "newDistractors": ["-11", "-9", "-8"],
+    "keyRankWhenSorted": 4,
+    "family": "Small negative integers of comparable size — every one of them is an equally clean y-value for a line read off an integer grid at x = 6. No option is a multiple, half or negation of another, so none stands out as 'the constructed one'. Deliberately a different set from the other -6 item so the two do not share an option signature.",
+    "tension": null
+  },
+  {
+    "id": "1032e3e7-c60c-4d8d-9505-d2b0173b76cb",
+    "key": "5",
+    "newDistractors": ["7", "11", "14"],
+    "keyRankWhenSorted": 1,
+    "family": "Plain small integers. Power-of-a-point items have no famous-value family — any integer AB is equally canonical — so equal recognisability is achieved by making no option arithmetically special. Every option excluded that touches the hidden lengths PT = 6, PA = 4, PB = 9: 3 (PB-PT), 9 (PB), 13 (PA+PB), 10 (PA+PT), 15 (PT+PB), 2 (PT-PA), 8 (2*PA), 12 (2*PT), 6 (PT).",
+    "tension": "Rule 5 sacrificed. Reaching rank 3 or 4 needs two or three options below 5, and of {1,2,3,4} every value except 1 is a difference or a copy of a hidden length; 1 alone would read as degenerate and be eliminable on sight. Rank 1 is the only rule-2-clean choice."
+  },
+  {
+    "id": "1362fc55-95bc-4edc-8ca6-ee2b0821a30b",
+    "key": "6",
+    "newDistractors": ["2", "5", "8"],
+    "keyRankWhenSorted": 3,
+    "family": "All four are integers that are the geometric mean of an integer pair, i.e. legitimate altitudes to a hypotenuse split into integer segments: 6 = sqrt(3*12), 2 = sqrt(1*4), 5 = sqrt(1*25), 8 = sqrt(4*16). Critically, no option is the ARITHMETIC mean of the same hidden pair (7.5) or their sum (15) — the round-1 leak — and none is 9 = 12-3, which round 2 left in.",
+    "tension": "Minor rule-2 note, not a sacrifice: 4 would have been the natural fourth same-family value but 4 = 12/3, a single quotient of the two hidden segments, so it was dropped in favour of 2."
+  },
+  {
+    "id": "1666d768-751f-47cd-9c9e-879f71251be7",
+    "key": "13",
+    "newDistractors": ["10", "15", "20"],
+    "keyRankWhenSorted": 2,
+    "family": "All four are triple hypotenuses / integer lattice distances: 13 (5-12), 10 (6-8), 15 (9-12), 20 (12-16).",
+    "tension": "Rule 2 partially sacrificed, deliberately, to buy rule 5. 10 = 2 * 5 is double one of the hidden legs. It was admitted because the alternative was a CROSS-ITEM tell: this item and item 0088dae3 share the key 13 and the same family, and if both put the key at rank 1 a solver learns 'the smallest triple hypotenuse is the answer' across the batch. The disclosure risk is low because 10 is a self-standing triple hypotenuse (6-8-10), not a recognisable mis-computation of 5-12-13 — round 1's leak worked because each distractor announced itself as a named error, and 'double one leg' is not an error a solver expects the author to have modelled."
+  },
+  {
+    "id": "17d71023-5ab9-4579-9032-6686447cc846",
+    "key": "9",
+    "newDistractors": ["5", "7", "14"],
+    "keyRankWhenSorted": 3,
+    "family": "Plain small positive integers, all equally clean readings of a line at x = 6 on an integer grid. Excluded 3 and 18 (half and double the key), 6 (the x-value in the stem, which would look like a slope-1 trap) and 12 (2*6).",
+    "tension": null
+  },
+  {
+    "id": "17ffcbf3-1f14-4683-b07a-3d99f7a4e814",
+    "key": "12",
+    "newDistractors": ["5", "8", "10"],
+    "keyRankWhenSorted": 4,
+    "family": "All four are legs of integer right triangles, which is exactly what a centre-to-chord distance is (leg of the right triangle radius / half-chord / distance): 12 (9-12-15), 5 (5-12-13), 8 (8-15-17), 10 (10-24-26). Excluded 9 and 15 (the half-chord and the radius themselves — round 2 left both in), 6 and 24 (half and double the key).",
+    "tension": null
+  }
+]

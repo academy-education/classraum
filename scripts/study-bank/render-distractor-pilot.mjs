@@ -17,7 +17,9 @@ import { readFileSync, writeFileSync, existsSync } from 'node:fs'
 const base = new URL('./', import.meta.url).pathname
 const key = JSON.parse(readFileSync(base + 'georepair.key.json', 'utf8'))
 const pilot = JSON.parse(readFileSync(base + 'geo-repair-pilot.json', 'utf8'))
-const rewritten = JSON.parse(readFileSync(base + 'geo-distractor-pilot.json', 'utf8'))
+const INPUT = process.argv[2] || 'geo-distractor-pilot.json'
+const OUTPUT = process.argv[3] || 'georepair.both.json'
+const rewritten = JSON.parse(readFileSync(base + INPUT, 'utf8'))
 const byId = Object.fromEntries(rewritten.map(r => [r.id, r]))
 const stemById = Object.fromEntries(pilot.map(p => [p.id, p.newStem]))
 const L = ['A', 'B', 'C', 'D']
@@ -50,7 +52,7 @@ for (const id of Object.keys(key)) {
              options: Object.fromEntries(opts.map((o, n) => [L[n], o])) })
 }
 
-const f = base + 'georepair.both.json'
+const f = base + OUTPUT
 if (existsSync(f) && !process.argv.includes('--force')) {
   console.error('REFUSING TO OVERWRITE an existing render.'); process.exit(1)
 }
