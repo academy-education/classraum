@@ -183,6 +183,41 @@ Note what this means for the length rule below: the key's length skew is a
 SYMPTOM of the class structure, not a separate defect. Flattening lengths
 without fixing the classes just hides it.
 
+### The four options must share a property — name it before you keep the item
+
+Added 2026-08-06, from the first human sitting. A reviewer who had never
+been told what to look for scored 61.5% on the items he left a note on,
+and seven of his eight notes describe ONE mechanism:
+
+> "the other three seem like a category and erosion is the only thing
+>  that stands out from that category"
+> "All the other answers had the name of a famous painter except for
+>  the answer"
+> "everything else mentions kind of a street... but the answer doesn't"
+> "Everything is negative except the answer"
+
+The distractors were authored as a matched SET — written off each other,
+sharing a topic, a tone or a lexical field — and the key was written off
+the UTTERANCE, so it sits outside that set. The odd one out is the
+answer, and finding it needs no audio at all.
+
+This is why the distractor-only rewrite of this cohort plateaued. It
+made each option individually plausible and left the set structure
+intact: the round-2 measurement recorded the residual signal as
+RELATIONAL, and the margin stopped falling at +40.4 against a +29.5
+ceiling.
+
+So for every item, write down the property all FOUR options share —
+same topic, same register, same length band, same degree of
+cooperativeness — and check that the key is not the only member of any
+category a reader could form. If you cannot state a property that covers
+all four, the key is the odd one out and the item is already solved.
+
+The instruction is the exact inverse of "make distractors plausible".
+Plausibility is per-option and this is per-SET; the geometry pilot found
+the same thing independently, where neutral distractors left the key as
+the only canonical-looking value and a solver scored 83% by picking it.
+
 ### Let the key sometimes BE the shape you use for distractors
 
 A grader that could not see the keys found five option shapes that were

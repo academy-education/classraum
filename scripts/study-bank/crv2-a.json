@@ -1,0 +1,61 @@
+{
+  "author": "a",
+  "items": [
+    {
+      "stimulus": "Transcript: \"Grey, library sticker on the front, that's what you told my colleague?\"",
+      "key": "That's the one, grey with the sticker on the front.",
+      "distractors": [
+        "Right, I filled that form in with him yesterday.",
+        "Could you check the back room as well?",
+        "I told him grey, so someone wrote it down wrong."
+      ],
+      "explanation": "The clerk is reading back a description the student herself supplied and asking her to confirm it, so the reply that answers the act simply confirms it: grey with the sticker on the front. Saying the form was filled in with him yesterday answers a question about paperwork that was never asked; asking him to check the back room treats a confirmation check as an opening for a new request; and claiming someone wrote it down wrong corrects a record that has just been read back correctly.",
+      "act": "plain agreement",
+      "setting": "front desk",
+      "sharedProperty": "All four are short, casual first-person replies from the student about the same missing grey bag, addressed to the same clerk, all in the same neutral-cooperative register with no formality markers and no hostility; three of the four name a concrete detail of the bag or its paperwork, and none of the four is uniquely positive, uniquely negative, or uniquely a question.",
+      "forcedBy": "The details in the utterance — colour plus the library sticker — are ones only the owner could have given, and the clerk attributes them to what she already told his colleague. There is nothing left for her to ask (the description is complete and specific), nothing to decline (no offer is on the table), and nothing to correct (he is repeating her own words back), so confirmation is the only move the utterance leaves open."
+    },
+    {
+      "stimulus": "Transcript: \"Hold the key till the third form's in?\"",
+      "key": "Which one are you still waiting on?",
+      "distractors": [
+        "Sure, hold it until everything's in.",
+        "How late is the office open for key pickup?",
+        "I can pick it up any afternoon this week."
+      ],
+      "explanation": "The question asks the student to make a decision that depends on a fact only the housing office holds — which of the three forms is outstanding — so the reply that answers the act is the one that asks which one is still outstanding. Agreeing to hold it until everything's in commits to a wait of unknown length; asking how late the office is open answers a timing question that was not the one on the table; and saying any afternoon this week works skips the condition the clerk attached to pickup entirely.",
+      "act": "a clarifying question asked back",
+      "setting": "housing office",
+      "sharedProperty": "All four are short, plain-spoken replies from the same student to the same clerk about the same key and forms; two are questions and two are statements, all four are cooperative and none is rude, formal, dismissive or emotional, and all four sit inside a 35-43 character band.",
+      "forcedBy": "The clerk names a count — the third form — and never names which form it is, while making the key contingent on that form. The student cannot choose to wait or not to wait, cannot say when she will collect, and cannot usefully ask about opening hours until the missing item is identified, so the only reply that moves the exchange forward asks which one it is."
+    },
+    {
+      "stimulus": "Transcript: \"I clock out at nine, should I wait while you eat?\"",
+      "key": "Go ahead and clock out, I'll box mine up.",
+      "distractors": [
+        "Stay if you don't mind, I've barely started this.",
+        "What time does the grill open in the morning?",
+        "Nine's earlier than I thought you shut."
+      ],
+      "explanation": "The offer is made by someone who has just said his shift ends now, so the act is a favour that costs the speaker his own time, and the competent reply releases him — clock out, and the food goes in a box. Telling him to stay because you've barely started takes the favour at his expense; asking when the grill opens in the morning answers a schedule question nobody raised; and remarking that nine is earlier than you thought treats an offer as a piece of trivia and leaves it hanging.",
+      "act": "a polite refusal",
+      "setting": "campus dining",
+      "sharedProperty": "All four are short, informal replies from the same diner to the same dining-hall worker about the same closing-time offer; every one of them refers to the shift, the meal or the kitchen's hours, all are friendly in register with no formality and no complaint, and all four fall within a 39-49 character band.",
+      "forcedBy": "The clock-out time is stated in the same breath as the offer, so accepting means keeping a worker past the end of his shift — a cost visible in the utterance rather than in the responder's private circumstances. Nothing needs clarifying (the time and the offer are both explicit), agreeing outright is the discourteous move, and there is no alternative to propose because the constraint is his hours, not the arrangement."
+    },
+    {
+      "stimulus": "Transcript: \"They go every half hour and take forty, so the 4:40 makes your five?\"",
+      "key": "Better put me on the 4:10 then, I can't turn up late.",
+      "distractors": [
+        "4:40 works, I'll be at the stop by half past.",
+        "Is the 4:40 the one that stops at the library?",
+        "Five-ten would be fine if that class ever started on time."
+      ],
+      "explanation": "The clerk's own arithmetic fails — forty minutes from 4:40 lands at 5:20, and the student needs to be there at five — while the half-hourly interval he mentions supplies the run that does work, so the reply that answers the act moves the booking to the 4:10. Saying 4:40 works and being at the stop by half past accepts the miscalculation; asking whether the 4:40 stops at the library engages with a route detail instead of the timing; and joking that five-ten would be fine if that class ever started on time waves away the deadline the whole exchange is built on.",
+      "act": "a counter-proposal",
+      "setting": "transit",
+      "sharedProperty": "All four are short, conversational replies from the same student to the same transit clerk, each one naming a specific clock time and each one taking a position on which departure to be on; all are equally cooperative in tone, none is formal or apologetic, and all four sit within a 45-58 character band.",
+      "forcedBy": "Every number needed is in the utterance: a forty-minute ride, a five o'clock arrival target, and departures every half hour. That arithmetic rules out agreeing to the 4:40, and because the half-hourly interval names the earlier run, an outright refusal or a request for more information would both discard information the speaker has already given. The alternative is derivable from the utterance alone, not from anything about the student's day."
+    }
+  ]
+}

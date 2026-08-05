@@ -28,6 +28,13 @@ const blindIx = argv.indexOf('--blind')
 let blindPath = null
 if (blindIx !== -1) { blindPath = argv[blindIx + 1]; argv.splice(blindIx, 2) }
 
+const ceilIx = argv.indexOf('--ceiling')
+let ceiling = null
+if (ceilIx !== -1) {
+  ceiling = Number(argv[ceilIx + 1]); argv.splice(ceilIx, 2)
+  if (!Number.isFinite(ceiling)) { console.error('--ceiling needs a number of points'); process.exit(2) }
+}
+
 const [keyPath, ...solverPaths] = argv
 if (!keyPath || !solverPaths.length) {
   console.error('usage: score-blind.mjs [--blind blind.json] <key.json> <solver.json...>')
@@ -127,21 +134,44 @@ if (incomplete.length) {
   process.exit(2)
 }
 
-const pass = mean <= ctl && !identical
-console.log(pass
-  ? 'PASS — at or below this cohort\'s own fixed-letter control, and solvers disagree.'
-  : mean <= ctl
-    ? 'FAIL — accuracy is at control BUT solvers agree exactly. Investigate before shipping.'
-    : `FAIL — beats its own control by ${(mean - ctl).toFixed(1)}pts.`)
+const margin = mean - ctl
+console.log(`margin ${margin.toFixed(1)}pts over this cohort's own fixed-letter control.`)
 
-// THE BAR ABOVE IS SUPERSEDED. "At or below the cohort's own control" is
-// unreachable: measured against 183 official items, published ETS and
-// College Board questions beat their own controls by +25.5 to +68.8. Judge a
-// batch against the published baseline FOR ITS FORMAT — ceilingFor() in
-// src/lib/study/bank-ledger.ts — not against this line.
+/*
+ * THE VERDICT.
+ *
+ * Pass --ceiling <pts> with the published baseline for THIS format and
+ * the line below is the real one. Without it the script prints no
+ * verdict at all, deliberately.
+ *
+ * The old default was `mean <= control`, and it is unreachable:
+ * measured against 183 official items, published ETS and College Board
+ * questions beat their own controls by +25.5 to +68.8. So that bar
+ * fails a batch as good as the real exam. It was left in place with a
+ * NOTE underneath explaining it was superseded — and a QC writeup then
+ * recorded reading PASS off it and having to discard the run. A
+ * verdict nobody should use should not be printed; the explanatory
+ * paragraph under it does not undo the word PASS.
+ *
+ * ceilingFor() in src/lib/study/bank-ledger.ts holds the per-format
+ * numbers. Choose a Response is +25.5 published, 29.5 with tolerance.
+ */
+if (ceiling === null) {
+  console.log('')
+  console.log('NO VERDICT — pass --ceiling <pts> with the published baseline for this')
+  console.log('  format to get one. See ceilingFor() in src/lib/study/bank-ledger.ts.')
+  console.log('  There is no format-independent bar: "at or below control" fails items')
+  console.log('  as good as the real exam, and 25% is not what published items score.')
+  process.exit(0)
+}
 console.log('')
-console.log('NOTE: the verdict above uses the SUPERSEDED absolute bar (mean <= control).')
-console.log('      Published ETS/College Board items score +25.5 to +68.8 over their own')
-console.log('      controls, so that bar fails healthy batches. Compare the margin below')
-console.log('      to the baseline for THIS format — see ceilingFor() in bank-ledger.ts.')
-console.log(`      margin = ${(mean - ctl).toFixed(1)}pts over this cohort's own control.`)
+if (identical) {
+  console.log(`FAIL — solvers produced an identical spread, so the margin is not the point.`)
+  process.exit(1)
+}
+if (margin <= ceiling) {
+  console.log(`PASS — ${margin.toFixed(1)}pts is within the ${ceiling}pt published ceiling for this format.`)
+} else {
+  console.log(`FAIL — ${margin.toFixed(1)}pts exceeds the ${ceiling}pt published ceiling by ${(margin - ceiling).toFixed(1)}.`)
+  process.exit(1)
+}

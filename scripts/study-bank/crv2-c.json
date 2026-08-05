@@ -1,0 +1,61 @@
+{
+  "author": "c",
+  "items": [
+    {
+      "stimulus": "Transcript: \"Can you email me that draft before I leave for Denver?\"",
+      "key": "When are you flying out? I'd rather not cut it close.",
+      "distractors": [
+        "I'll send it over sometime next week, once the data's cleaned up.",
+        "Sure, I'll email it Sunday night after I finish the last section.",
+        "Denver's supposed to be freezing. How long are you out there?"
+      ],
+      "explanation": "The request sets its deadline by an event whose date the speaker never gives, so the only reply that can actually meet it is the one asking when are you flying out. Sometime next week and Sunday night both commit blind to a date that may fall after the trip starts, and the reply about Denver being freezing takes up the trip as small talk instead of the deadline.",
+      "act": "clarifying question back",
+      "setting": "office hours",
+      "sharedProperty": "All four are the student's friendly, cooperative next turn to a professor; all four are 11-13 words, all mention either the trip or when the draft will land, none is formal or dismissive, and two of the four are questions, so the key is not the only question and not the only option that withholds a commitment.",
+      "forcedBy": "The deadline is 'before I leave for Denver' and no departure date is stated anywhere in the utterance, so any reply naming a send time is guessing; the format is already fixed by 'email me', so there is nothing else left to ask."
+    },
+    {
+      "stimulus": "Transcript: \"So it's one more semester of coursework, then applications in the fall.\"",
+      "key": "That's right, one more semester and then the applications go out.",
+      "distractors": [
+        "If you think that's the smarter route, I'll plan around that.",
+        "Would that be the fall deadlines or the spring ones?",
+        "I know it's taken me a while. I'll try to move quicker."
+      ],
+      "explanation": "The adviser is reading the plan back to check it, so the reply that simply confirms one more semester and then the applications go out is the one that answers the act. Planning around the smarter route treats a summary as a fresh proposal, asking whether it is fall or spring asks for the one detail the adviser just supplied, and promising to move quicker hears a neutral read-back as a complaint about pace.",
+      "act": "plain agreement",
+      "setting": "advising",
+      "sharedProperty": "All four are the student's cooperative reply to the adviser, all 10-12 words, all first person and all about the same timeline; three of the four accept the adviser's version of the plan rather than dispute it, so agreement is not a category that isolates the key.",
+      "forcedBy": "'So' plus a restatement marks the turn as a check on something already settled, and it supplies both the remaining coursework and the season, so there is nothing new to weigh, nothing left unspecified to ask about, and no evaluation of the student to answer."
+    },
+    {
+      "stimulus": "Transcript: \"Can I renew this until the twentieth? My presentation's on the twenty-second.\"",
+      "key": "Let's make it the twenty-third, so you've still got it that morning.",
+      "distractors": [
+        "Sure, the twentieth works. It'll be due back at six that evening, then.",
+        "Is this checked out under your name or a department account?",
+        "Good luck with it. Is the presentation for a class or a seminar?"
+      ],
+      "explanation": "The student asks for a date that runs out two days before the thing he needs the book for, so the desk reply that catches it and offers the twenty-third is the one that answers what he actually wants. Granting the twentieth takes the request at face value and leaves him without the book, the question about whose account it is answers a procedural point nobody raised, and the good-luck reply picks up the presentation as conversation rather than as the deadline.",
+      "act": "counter-proposal",
+      "setting": "library circulation",
+      "sharedProperty": "All four are the circulation clerk's easy, unbureaucratic next turn, all 11-13 words, all cooperative in tone, and all refer to the loan or the presentation the student just mentioned; two of the four name a date and two of the four are questions, so no shape splits the key off from the set.",
+      "forcedBy": "The two dates are in the utterance and they contradict each other: a loan ending on the twentieth cannot cover a presentation on the twenty-second. Nothing about the responder's situation is needed, only the arithmetic the speaker himself put on the desk."
+    },
+    {
+      "stimulus": "Transcript: \"It's ten-fifty now. Any chance someone could see me before eleven?\"",
+      "key": "Ten minutes isn't enough for a visit, I'm afraid.",
+      "distractors": [
+        "Take a seat, someone will be with you shortly.",
+        "Have you been seen here before, or is this your first visit?",
+        "I can't move you ahead of the people already waiting, sorry."
+      ],
+      "explanation": "The speaker gives the clock and the cutoff himself, so the reply that names the ten minutes as the obstacle is the one grounded in what he said. Telling him someone will be with him shortly proceeds as though the window were workable, asking whether he has been seen here before starts an intake the window cannot hold, and refusing on the grounds of the people already waiting turns him down for a queue the utterance never mentions.",
+      "act": "polite refusal",
+      "setting": "clinic reception",
+      "sharedProperty": "All four are the receptionist's service-register reply about fitting this visit in, all 9-12 words, none stiff or officious; two of the four decline and one asks a question, so neither declining nor questioning marks the key out, and the key is not the most accommodating option either.",
+      "forcedBy": "'It's ten-fifty now' and 'before eleven' fix the available window at ten minutes inside the utterance, which is what rules out seating him to wait and what makes the queue-based refusal the wrong reason; the timing, not the responder's schedule or the clinic's policy, decides it."
+    }
+  ]
+}

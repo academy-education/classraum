@@ -1,0 +1,61 @@
+{
+  "author": "b",
+  "items": [
+    {
+      "stimulus": "Transcript: \"Rent's twelve hundred three ways, so we owe six hundred each?\"",
+      "key": "Twelve hundred split three ways is four each, not six hundred.",
+      "distractors": [
+        "Sure, I'll transfer my six hundred before the first.",
+        "Does the six hundred include the ninety for internet?",
+        "That's not right — I pay less for the small room."
+      ],
+      "explanation": "The speaker states the total and the number of people and then draws the wrong figure from them, so the reply that has to come first is the one pointing out that twelve hundred over three is four each. Promising to transfer six hundred before the first and asking whether the ninety for internet is included both take the speaker's arithmetic as given, and objecting that the small room should pay less argues about a side deal the speaker never mentioned instead of the mistake in the two numbers the speaker did.",
+      "act": "premise correction",
+      "setting": "roommate",
+      "sharedProperty": "All four are casual same-flat replies about this month's rent share, each in the same peer register, each engaging with the figure rather than dodging it, and each roughly one spoken breath long (49-62 characters). Two of the four push back on the number rather than accept it, so 'the only one that disagrees' — the shape a premise-correction key normally gives itself away with — is not a category the key alone occupies.",
+      "forcedBy": "The arithmetic is inside the speaker's own turn: twelve hundred divided among three is four hundred, and the speaker says six. Nothing about the responder's finances, schedule or willingness is needed. Every other reply accepts six hundred as the share, which the speaker's own two numbers contradict."
+    },
+    {
+      "stimulus": "Transcript: \"Should we write up the results tonight, with the third trial running till ten?\"",
+      "key": "Sure, as long as we save the third trial's section for last.",
+      "distractors": [
+        "Yes, let's finish it tonight and send the professor the final draft.",
+        "Tonight's good if you can get all three trials plotted by eight.",
+        "Tonight works — I'll pull the third trial's numbers now."
+      ],
+      "explanation": "The speaker proposes tonight and in the same breath says one trial is still running until ten, so the only reply that fits is the one that agrees to tonight while holding that trial's section back. Asking for all three trials plotted by eight and offering to pull the third trial's numbers now both want data that will not exist until ten, and sending the professor a final draft tonight calls finished a write-up that is missing a third of its results.",
+      "act": "acceptance that adds a condition",
+      "setting": "lab partner",
+      "sharedProperty": "All four accept the plan to work tonight — none refuses, counter-proposes another day, or complains — and all four are peer-register lab shorthand naming the write-up and at least one trial or deliverable. Lengths run 56-68 characters. Two of the four attach an if-clause, so the clause-plus-rider signature that usually marks a conditional key does not single this one out.",
+      "forcedBy": "The clause 'running till ten' is in the utterance, so the third trial's numbers are unavailable for the whole session the speaker is proposing. That single fact, not the responder's schedule or ability, is what makes an unconditional yes impossible and rules out any reply that treats the third trial's data as in hand or the draft as finishable tonight."
+    },
+    {
+      "stimulus": "Transcript: \"Could you add my name to Priya's slides from Monday?\"",
+      "key": "Priya's the one with the file — you'd have to ask her.",
+      "distractors": [
+        "Sam handles the title slide, I think — try him first.",
+        "Sure, I'll put your name on the deck tonight.",
+        "You were listed on Monday's version already, I'm pretty sure."
+      ],
+      "explanation": "The speaker asks for an edit to a file the same sentence hands to Priya, so the reply that works is the one sending the asker to Priya. Pointing at Sam sends the asker to the wrong person, promising to put the name on the deck tonight offers an edit nobody in this conversation can make, and saying the name was on Monday's version answers whether the job is already done rather than who can do it.",
+      "act": "redirection to the right person",
+      "setting": "group project",
+      "sharedProperty": "All four are short peer replies about who has the deck and whose name is on it; each names either a person (Priya, Sam) or the version, and each is offered helpfully rather than as a refusal. Lengths run 44-60 characters. Crucially two of the four hand the task to someone else, so 'the one that redirects' is not a category the key alone occupies.",
+      "forcedBy": "The possessive in 'Priya's slides from Monday' locates the file with Priya, which is what makes her and not Sam the right destination and what makes an offer to edit it tonight empty. The listener has to catch a detail buried in the request itself; no fact about the responder's own access is required."
+    },
+    {
+      "stimulus": "Transcript: \"Your treadmill by the window keeps cutting out.\"",
+      "key": "I'll swap the safety key on it — two minutes, tops.",
+      "distractors": [
+        "The mirror row's free right now if you'd rather move.",
+        "They all cut out when the belt warms up; that one's old.",
+        "That whole row was serviced last week, so it should be fine."
+      ],
+      "explanation": "It sounds like an observation but it is a fault report aimed at the person who looks after the equipment, so the reply that answers it is the one that goes and changes the safety key. Sending the member to the free mirror row treats a broken machine as a busy one, saying they all cut out when the belt warms up reads a repeated fault as normal behaviour, and citing last week's service disputes a problem the member has just said keeps happening.",
+      "act": "fix offered",
+      "setting": "gym",
+      "sharedProperty": "All four are floor-staff replies to a member about the same machine and the same row, in the same easy spoken register, and each one does something for the member — fixes it, moves them, explains it, or reassures them. Lengths run 50-60 characters. Two of the four propose an action, so 'the only option that offers to do something' is not a category that isolates the key.",
+      "forcedBy": "'Your treadmill' addresses the responder as the one who owns the equipment, and 'keeps cutting out' makes it repeated rather than a one-off. Together those rule out the reply that calls it normal, the reply that says the row was serviced so it should be fine, and the offer of a different row, none of which touches a recurring fault on a machine the responder is answerable for."
+    }
+  ]
+}

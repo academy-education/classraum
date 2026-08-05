@@ -1,0 +1,61 @@
+{
+  "author": "d",
+  "items": [
+    {
+      "stimulus": "Transcript: \"Can I keep the laptop overnight? We wipe and reinstall everything on it.\"",
+      "key": "That's fine, once I've copied my files off the desktop.",
+      "distractors": [
+        "Sure, I'll pick it up first thing tomorrow morning.",
+        "Go ahead, everything important is on there anyway.",
+        "Overnight's fine, my roommate has a spare."
+      ],
+      "explanation": "The technician is asking permission while mentioning, in passing, that the machine gets wiped and reinstalled — so handing it over unconditionally means losing whatever is on it. Agreeing only once the files are copied off the desktop is the reply that takes the wipe into account. Picking it up first thing tomorrow settles the timing and ignores the wipe; saying everything important is on there treats the wipe as a reassurance when it is the opposite; and mentioning a roommate's spare answers only the inconvenience of being without a laptop.",
+      "act": "conditional acceptance",
+      "setting": "IT desk",
+      "sharedProperty": "All four grant the request. Each is a casual student-to-staff yes of 42-55 characters that hands the laptop over overnight; none refuses, none negotiates the time, and every one of them mentions something the speaker would have to deal with as a result. The key is not the only cooperative, engaged or file-aware member of the set — two of the wrong replies are more accommodating than it is.",
+      "forcedBy": "\"We wipe and reinstall everything on it\" is stated in the technician's own turn. Once the laptop is wiped, anything on it is gone, so a plain yes, an arrangement about pickup time, and a remark about borrowing another machine all leave the speaker's own stated consequence unaddressed. The condition is the only thing in the utterance that the responder can act on, and nothing about the responder's personal situation is needed to see it."
+    },
+    {
+      "stimulus": "Transcript: \"So that's twelve hours for you this week — two fives and a four?\"",
+      "key": "That comes to fourteen, not twelve.",
+      "distractors": [
+        "I picked up one of those shifts from Dana.",
+        "Twelve sounds right, thanks for checking.",
+        "Could you make it two sixes next week?"
+      ],
+      "explanation": "The supervisor states a total and then reads out the shifts that make it up, and the shifts do not add to the total — five and five and four is fourteen. Saying that it comes to fourteen rather than twelve corrects the arithmetic the speaker just performed out loud. Confirming that twelve sounds right accepts the error; explaining that one shift came from Dana answers where the shifts came from rather than what they add up to; and asking for two sixes next week moves on to future scheduling without touching this week's number.",
+      "act": "premise correction",
+      "setting": "part-time shift",
+      "sharedProperty": "All four are short, flat, unceremonious coworker replies of 35-42 characters about this week's timesheet, and each contains or turns on a number of hours or shifts. None apologises, none elaborates, none offers to do anything. The key is the shortest and bluntest of the four rather than the most engaged one, and it is not the only reply that disagrees with the supervisor — asking for two sixes pushes back too.",
+      "forcedBy": "The defect is inside the speaker's own turn: the itemisation \"two fives and a four\" contradicts the total \"twelve\". No outside fact is required — the listener only has to add. Because the speaker asked for confirmation of a number that is demonstrably wrong, agreeing with it, redirecting to who owns which shift, and negotiating next week all leave a stated falsehood on the record."
+    },
+    {
+      "stimulus": "Transcript: \"Is there another copy? The access code in this one's been used.\"",
+      "key": "I'll swap it for a new one from the back.",
+      "distractors": [
+        "Yeah, the codes are usually gone on the used ones.",
+        "I can knock the price down if you want to keep it.",
+        "You can buy the code by itself online."
+      ],
+      "explanation": "The customer asks a direct question and gives the reason in the same breath: the code has already been redeemed, so a copy with an unused code is what is wanted. Swapping it for a new one from the back is the reply that both answers the question and gets the code problem solved. Remarking that codes are usually gone on used copies confirms the problem instead of fixing it; knocking the price down trades money for the thing that was actually needed; and buying the code separately online puts the cost and the errand back on the customer.",
+      "act": "fix offered",
+      "setting": "bookstore",
+      "sharedProperty": "All four are relaxed staff-side replies of 38-50 characters, all about this specific book and its access code, and all cooperative — every one of them gives the customer something, whether a swap, a discount, an explanation or a route to the code. None is formal, none is dismissive, and the key offers no more elaboration or accommodation than the discount does.",
+      "forcedBy": "\"The access code in this one's been used\" is given as a passing reason, not as a demand, but it fixes what would count as an answer: only a copy whose code has not been redeemed helps. That rules out confirming that used copies behave this way, rules out a discount on the same defective copy, and rules out paying separately for the code, since the customer already paid for one. The question asked — whether another copy exists — also rules out any reply that never addresses stock."
+    },
+    {
+      "stimulus": "Transcript: \"Can you sign my late-add form? The instructor has to approve it.\"",
+      "key": "That signature has to be your instructor's, not mine.",
+      "distractors": [
+        "Leave it here and I'll get the approval sorted for you.",
+        "The late-add form is the yellow one, not the blue.",
+        "Sure, I'll sign it and put it through today."
+      ],
+      "explanation": "The student names the person whose approval the form needs and then asks the desk to sign it, so the request has come to the wrong window. Pointing out that the signature has to be the instructor's sends the student where the student's own sentence says the approval lives. Offering to get the approval sorted takes on something the desk cannot grant; signing it and putting it through today ignores the approval requirement the student just stated; and correcting which colour form it is answers a question about paperwork that nobody asked.",
+      "act": "redirection to the right person",
+      "setting": "registrar",
+      "sharedProperty": "All four are registrar-desk replies of 44-55 characters about this one form, all in the same clipped counter-service register, and each tells the student what happens to the form next. Every one of them engages with the request rather than deflecting it in general terms. The key is not the only reply that mentions the instructor's role, and it is markedly less accommodating than the offer to get the approval sorted.",
+      "forcedBy": "The contradiction sits in the student's own turn: the instructor has to approve it, and the person being asked to sign is not the instructor. Nothing about the clerk's authority has to be assumed — the student supplies it. A signature from the desk, an undertaking to obtain the approval, and a remark about which form is the right colour each ignore the requirement the student has just named out loud."
+    }
+  ]
+}
