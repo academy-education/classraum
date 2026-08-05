@@ -168,9 +168,52 @@ export const TARGETS: Record<string, Target> = {
  *  and not a verdict — see the asymmetry note in bank-readiness-status. */
 export const MEANINGFUL_COVERAGE = 0.2
 
+/**
+ * ── Why a model's blind score is not on its own a verdict ────────────
+ * Established 2026-08-06 by four human sittings, 72 items:
+ *
+ *   cohort              model    human    control
+ *   Announcement        100%     15.0%     25.0%
+ *   Daily Life          100%     25.0%     25.0%
+ *   Academic Passage    100%     41.7%     25.0%   (n=12, thin)
+ *   Choose a Response   100%     55.0%     25.0%   3.1 sd, p<0.001
+ *
+ * The model attack is trustworthy where a cohort's tell is STRUCTURAL —
+ * options authored from the key, a shape shared across stimuli — and it
+ * is INFLATED where the item carries a passage or transcript the model
+ * happens to know something about. It answers those from its own world
+ * knowledge, which a student does not have.
+ *
+ * We cannot yet predict which cohorts fall on which side; the four
+ * measured do not support a clean taxonomy. So the honest thing is not
+ * to guess the mechanism but to report what is actually established:
+ * a model-only "too easy" is a SUSPICION, and only a human sitting
+ * turns it into a verdict — or clears it.
+ */
+export interface HumanEvidence {
+  /** Blind picks recorded, including explicit "can't tell". */
+  answered: number
+  correct: number
+  /** The sample's own best fixed-slot strategy, as a count. */
+  controlBest: number
+}
+
+/** A human sitting under this many answered items cannot settle
+ *  anything — the control swamps the signal. Matches the run-reading
+ *  rule in item-review.ts. */
+export const HUMAN_VERDICT_MIN = 20
+
+/** Human margin at or above which a model's "too guessable" is treated
+ *  as CONFIRMED. Deliberately well under the +25.5 that official ETS
+ *  items score, so we do not need a human to reproduce the model's
+ *  exact number — only to show the effect is real and large. */
+export const HUMAN_CONFIRM_MARGIN = 15
+
 export type CohortState =
   | 'done'          // measured enough AND inside the band
-  | 'too-easy'      // above the band — the defect
+  | 'too-easy'      // above the band, and a human CONFIRMED it
+  | 'unconfirmed'   // model says too easy; no human sitting big enough to judge
+  | 'human-cleared' // a human sitting contradicts the model's too-easy
   | 'too-hard'      // below the band — arbitrary options
   | 'spot-checked'  // inside the band but not enough measured to claim it
   | 'unmeasured'
@@ -196,6 +239,7 @@ export function progressFor(
   items: number,
   measured: number,
   blindPct: number | null,
+  human?: HumanEvidence | null,
 ): CohortProgress {
   if (NOT_APPLICABLE.has(domain)) {
     return { state: 'not-applicable', target: null, remaining: '' }
@@ -212,9 +256,36 @@ export function progressFor(
   }
   if (blindPct > target.max) {
     const gap = Math.round((blindPct - target.max) * 10) / 10
+
+    /*
+     * A model saying "too guessable" is where the investigation STARTS,
+     * not where it ends. Three cohorts rated 100% by every solver were
+     * then scored at or below chance by a person. Reporting those as
+     * failing put 1,746 items in a red bar on evidence that did not
+     * support it.
+     */
+    if (!human || human.answered < HUMAN_VERDICT_MIN) {
+      const need = HUMAN_VERDICT_MIN - (human?.answered ?? 0)
+      return {
+        state: 'unconfirmed', target,
+        remaining: `Model solvers score ${blindPct}%, ${gap}pts over the band — but no human sitting has confirmed it. Review ${need} more item${need === 1 ? '' : 's'} by hand before rewriting anything.`,
+      }
+    }
+
+    const humanPct = (100 * human.correct) / human.answered
+    const humanControl = (100 * human.controlBest) / human.answered
+    const humanMargin = Math.round((humanPct - humanControl) * 10) / 10
+
+    if (humanMargin < HUMAN_CONFIRM_MARGIN) {
+      return {
+        state: 'human-cleared', target,
+        remaining: `Model solvers score ${blindPct}%, but a human scored ${humanPct.toFixed(1)}% against a ${humanControl.toFixed(1)}% control across ${human.answered} items (${humanMargin >= 0 ? '+' : ''}${humanMargin}pts). The model number reflects its own world knowledge, not a leak. No rewrite justified on this evidence.`,
+      }
+    }
+
     return {
       state: 'too-easy', target,
-      remaining: `${gap}pts too guessable. Rewrite distractors so the score falls to ${target.min}-${target.max}%.`,
+      remaining: `${gap}pts too guessable, CONFIRMED by hand: a human scored ${humanPct.toFixed(1)}% vs a ${humanControl.toFixed(1)}% control (${humanMargin >= 0 ? '+' : ''}${humanMargin}pts) over ${human.answered} items. Rewrite distractors so the score falls to ${target.min}-${target.max}%.`,
     }
   }
   if (blindPct < target.min) {
@@ -238,14 +309,18 @@ export function progressFor(
  *  Not-applicable cohorts are excluded from both — counting them as
  *  outstanding would mean the bar could never reach 100%. */
 export function overallProgress(
-  cohorts: Array<{ domain: string; items: number; measured: number; blindPct: number | null }>,
+  cohorts: Array<{ domain: string; items: number; measured: number; blindPct: number | null; human?: HumanEvidence | null }>,
 ): { done: number; total: number; pct: number } {
   let done = 0, total = 0
   for (const c of cohorts) {
-    const p = progressFor(c.domain, c.items, c.measured, c.blindPct)
+    const p = progressFor(c.domain, c.items, c.measured, c.blindPct, c.human)
     if (p.state === 'not-applicable') continue
     total += c.items
-    if (p.state === 'done') done += c.items
+    // `human-cleared` counts as finished: a person could not beat the
+    // control, which is the property the band exists to secure. Leaving
+    // it outstanding would keep demanding a rewrite the evidence says
+    // is not needed.
+    if (p.state === 'done' || p.state === 'human-cleared') done += c.items
   }
   return { done, total, pct: total === 0 ? 0 : Math.round((100 * done) / total) }
 }

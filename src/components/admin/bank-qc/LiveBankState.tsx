@@ -53,10 +53,11 @@ interface CohortRow {
   everySolverGotIt: number; status: Status
   progress: Progress; target: Target | null; remaining: string
 }
-type Progress = 'done' | 'too-easy' | 'too-hard' | 'spot-checked' | 'unmeasured' | 'not-applicable'
+type Progress = 'done' | 'too-easy' | 'unconfirmed' | 'human-cleared' | 'too-hard' | 'spot-checked' | 'unmeasured' | 'not-applicable'
 interface Target { min: number; max: number; published: number | null; note: string }
 interface Finish {
-  done: number; tooEasy: number; tooHard: number; spotChecked: number
+  done: number; tooEasy: number; unconfirmed: number; humanCleared: number
+  tooHard: number; spotChecked: number
   unmeasured: number; total: number; pct: number
 }
 interface ProvenanceRow {
@@ -80,6 +81,23 @@ interface Live {
 
 /**
  * The finish bar.
+ *
+ * ── The correction of 2026-08-06 ─────────────────────────────────────
+ * This bar showed "1,746 too guessable, 0% done" — every measured item
+ * in one red segment — on the strength of MODEL solve rates alone.
+ *
+ * Four human sittings (72 items) then showed the model attack is
+ * trustworthy where a cohort's tell is structural and inflated where the
+ * item carries a passage it happens to know about:
+ *
+ *   Announcement       model 100%   human 15.0%  vs a 25% control
+ *   Daily Life         model 100%   human 25.0%
+ *   Choose a Response  model 100%   human 55.0%   3.1 sd, p<0.001
+ *
+ * So a model-only "too guessable" is a SUSPICION and gets its own amber
+ * segment. Red now means a person reproduced the effect; green includes
+ * cohorts a person actively CLEARED. The bar was telling the reader the
+ * whole bank was broken on evidence that did not support it.
  *
  * ── What "finished" means, and why it is not one number ──────────────
  * An item is finished when its cohort's BLIND SCORE — how often solvers
@@ -111,19 +129,28 @@ const SEGMENTS: Array<{
 }> = [
   { key: 'done', state: 'done', label: 'Finished', bar: 'bg-emerald-500', dot: 'bg-emerald-500',
     blurb: 'Blind score inside the band for its task type, over at least 20% of the cohort.' },
+  { key: 'humanCleared', state: 'human-cleared', label: 'Cleared by hand', bar: 'bg-emerald-400', dot: 'bg-emerald-400',
+    blurb: 'AI solvers flagged it, but a person could not beat the control across 20+ items — the model score reflected its own world knowledge, not a leak. No rewrite justified on this evidence.' },
   { key: 'spotChecked', state: 'spot-checked', label: 'In band, needs more measuring', bar: 'bg-sky-400', dot: 'bg-sky-400',
     blurb: 'Scoring well, but on too small a sample to claim the cohort. Cheap to close — just attack more items.' },
   { key: 'unmeasured', state: 'unmeasured', label: 'Not measured', bar: 'bg-violet-300', dot: 'bg-violet-300',
     blurb: 'Unknown, not passing. Needs an attack run before anything can be said about it.' },
   { key: 'tooHard', state: 'too-hard', label: 'Below the band', bar: 'bg-orange-400', dot: 'bg-orange-400',
     blurb: 'Harder to guess than intended — distractors may be arbitrary rather than plausible. Needs review.' },
-  { key: 'tooEasy', state: 'too-easy', label: 'Too guessable', bar: 'bg-red-500', dot: 'bg-red-500',
-    blurb: 'Answerable without the passage or audio. The real defect: distractors must be rewritten, per item.' },
+  { key: 'unconfirmed', state: 'unconfirmed', label: 'Model says guessable — unconfirmed', bar: 'bg-amber-400', dot: 'bg-amber-400',
+    blurb: 'AI solvers beat the band, but no human sitting has checked it. Three cohorts rated 100% by every solver were then scored at or below chance by a person — so this is a suspicion, not a verdict. 20 items reviewed by hand settles it either way.' },
+  { key: 'tooEasy', state: 'too-easy', label: 'Too guessable — confirmed by hand', bar: 'bg-red-500', dot: 'bg-red-500',
+    blurb: 'A person reproduced the effect: they picked the key from the options alone, well above that sample\'s own control. The real defect — distractors must be rewritten, per item.' },
 ]
 
 function FinishBar({ finish, cohorts }: { finish: Finish; cohorts: CohortRow[] }) {
   const [open, setOpen] = React.useState<Progress | null>(null)
   const pctOf = (n: number) => (finish.total === 0 ? 0 : (100 * n) / finish.total)
+  /* The headline count must agree with the percentage beside it, and
+   * `pct` comes from overallProgress(), which counts human-cleared as
+   * finished. Printing bar.done alone rendered "18% — 0 of 1,449", two
+   * numbers describing the same thing and disagreeing. */
+  const finished = finish.done + finish.humanCleared
 
   return (
     <div className={`${CARD} p-5`}>
@@ -131,7 +158,7 @@ function FinishBar({ finish, cohorts }: { finish: Finish; cohorts: CohortRow[] }
         <h2 className="text-[15px] font-semibold text-gray-900">Bank optimization — how far in</h2>
         <span className="text-[13px] tabular-nums text-gray-500">
           <strong className="text-[19px] text-gray-900 mr-1">{finish.pct}%</strong>
-          {finish.done.toLocaleString()} of {finish.total.toLocaleString()} attackable items finished
+          {finished.toLocaleString()} of {finish.total.toLocaleString()} attackable items finished
         </span>
       </div>
 

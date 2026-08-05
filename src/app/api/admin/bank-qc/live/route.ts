@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { dbAdmin } from '@/lib/supabase-admin'
 import { requireAdmin } from '@/app/api/admin/_lib/admin-auth'
-import { progressFor, overallProgress } from '@/lib/study/bank-targets'
+import { progressFor, overallProgress, type HumanEvidence } from '@/lib/study/bank-targets'
 
 /**
  * LIVE bank state for /admin/bank-qc — read from the database, every time.
@@ -153,6 +153,55 @@ export async function GET(request: NextRequest) {
       return m
     }
 
+    /*
+     * HUMAN evidence, per domain.
+     *
+     * A model's blind score is where the investigation starts. Four
+     * sittings on 2026-08-06 showed the model attack is trustworthy
+     * where a cohort's tell is structural and inflated where the item
+     * carries a passage it happens to know about — Announcement was
+     * rated 100% by every solver and a person scored 15%. Until this
+     * landed, the bar put 1,746 items in a red "too guessable" segment
+     * on model evidence alone.
+     *
+     * Aggregated across runs and reviewers deliberately: two people
+     * reviewing the same cohort is more evidence, not less. Per-reviewer
+     * scores stay separate in the review panel itself, where
+     * disagreement between them is the signal.
+     */
+    const humanByDomain = new Map<string, HumanEvidence>()
+    {
+      const { data: reviews } = await dbAdmin
+        .from('study_item_reviews')
+        .select('item_id, key_slot, blind_pick, blind_at')
+        .not('blind_at', 'is', null)
+        .limit(5000)
+      const domainOf = new Map(live.map(i => [i.id, i.domain ?? '?']))
+      for (const r of reviews ?? []) {
+        const d = domainOf.get(r.item_id)
+        if (!d) continue
+        const e = humanByDomain.get(d) ?? { answered: 0, correct: 0, controlBest: 0 }
+        e.answered++
+        if (r.blind_pick && r.blind_pick === r.key_slot) e.correct++
+        humanByDomain.set(d, e)
+      }
+      // controlBest is the best fixed-SLOT strategy on the answered rows,
+      // computed per domain. Scoring a human against a flat 25% would
+      // credit or punish them for a shuffle they did not choose.
+      const slotCounts = new Map<string, Record<string, number>>()
+      for (const r of reviews ?? []) {
+        const d = domainOf.get(r.item_id)
+        if (!d) continue
+        const c = slotCounts.get(d) ?? { A: 0, B: 0, C: 0, D: 0 }
+        c[r.key_slot as 'A' | 'B' | 'C' | 'D']++
+        slotCounts.set(d, c)
+      }
+      for (const [d, c] of slotCounts) {
+        const e = humanByDomain.get(d)
+        if (e) e.controlBest = Math.max(c.A, c.B, c.C, c.D)
+      }
+    }
+
     const byDomain = agg(i => `${i.family ?? '?'}|${i.domain ?? '?'}`)
     const cohorts = [...byDomain.entries()].map(([k, e]) => {
       const [family, domain] = k.split('|')
@@ -164,9 +213,10 @@ export async function GET(request: NextRequest) {
        * it is out of scope, and counting it as unfinished would park
        * the finish bar permanently below 100%.
        */
+      const human = humanByDomain.get(domain) ?? null
       const prog = e.mc === 0
         ? { state: 'not-applicable' as const, target: null, remaining: '' }
-        : progressFor(domain, e.mc, e.measured, blindPct)
+        : progressFor(domain, e.mc, e.measured, blindPct, human)
       return {
         family, domain,
         items: e.items,
@@ -191,6 +241,7 @@ export async function GET(request: NextRequest) {
          * the title.
          */
         judgeable: prog.state !== 'not-applicable',
+        human,
         everySolverGotIt: e.allSolversGotIt,
         // A cohort with no MC items cannot be attacked at all; say so
         // rather than showing it as work outstanding forever.
@@ -211,17 +262,19 @@ export async function GET(request: NextRequest) {
      * failing: we do not know those items are bad, and claiming we do
      * would be the same overreach in the opposite direction.
      */
-    const bar = { done: 0, tooEasy: 0, tooHard: 0, spotChecked: 0, unmeasured: 0 }
+    const bar = { done: 0, tooEasy: 0, unconfirmed: 0, humanCleared: 0, tooHard: 0, spotChecked: 0, unmeasured: 0 }
     for (const c of cohorts) {
       if (c.progress === 'not-applicable') continue
       if (c.progress === 'done') bar.done += c.multipleChoice
       else if (c.progress === 'too-easy') bar.tooEasy += c.multipleChoice
+      else if (c.progress === 'unconfirmed') bar.unconfirmed += c.multipleChoice
+      else if (c.progress === 'human-cleared') bar.humanCleared += c.multipleChoice
       else if (c.progress === 'too-hard') bar.tooHard += c.multipleChoice
       else if (c.progress === 'spot-checked') bar.spotChecked += c.multipleChoice
       else bar.unmeasured += c.multipleChoice
     }
     const overall = overallProgress(
-      cohorts.map(c => ({ domain: c.domain, items: c.multipleChoice, measured: c.measured, blindPct: c.blindPct })),
+      cohorts.map(c => ({ domain: c.domain, items: c.multipleChoice, measured: c.measured, blindPct: c.blindPct, human: c.human })),
     )
 
     const byCohort = agg(i => i.cohort ?? '(none)')

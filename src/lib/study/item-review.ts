@@ -177,6 +177,11 @@ export function groupRuns<T extends ReviewRow & { runId: string; reviewerId: str
 export type RunReading = 'leaks' | 'clean' | 'inconclusive' | 'not-enough'
 
 export function readRun(s: RunScore, publishedMargin: number): { reading: RunReading; why: string } {
+  /* A margin can be NEGATIVE — the reviewer scoring below their own
+   * control is the ordinary shape of a clean cohort, and Announcement
+   * came in at -10. Hard-coding a "+" printed "+-10pts". */
+  const signed = (n: number) => `${n >= 0 ? '+' : ''}${n}pts`
+
   if (s.answered < 8) {
     return { reading: 'not-enough', why: `${s.answered} answered. Under 8 the control swamps the signal.` }
   }
@@ -185,17 +190,17 @@ export function readRun(s: RunScore, publishedMargin: number): { reading: RunRea
   if (s.margin >= publishedMargin) {
     return {
       reading: 'leaks',
-      why: `+${s.margin}pts over this sample's own control, at or above the ${publishedMargin}pt margin real published items achieve. A person is picking the key without the stimulus.`,
+      why: `${signed(s.margin)} over this sample's own control, at or above the ${publishedMargin}pt margin real published items achieve. A person is picking the key without the stimulus.`,
     }
   }
   if (s.answered < 20) {
     return {
       reading: 'inconclusive',
-      why: `+${s.margin}pts, below the ${publishedMargin}pt published margin — but only ${s.answered} answered. Promising, not yet a verdict.`,
+      why: `${signed(s.margin)}, below the ${publishedMargin}pt published margin — but only ${s.answered} answered. Promising, not yet a verdict.`,
     }
   }
   return {
     reading: 'clean',
-    why: `+${s.margin}pts over control across ${s.answered} items, under the ${publishedMargin}pt published margin.`,
+    why: `${signed(s.margin)} over control across ${s.answered} items, under the ${publishedMargin}pt published margin.`,
   }
 }

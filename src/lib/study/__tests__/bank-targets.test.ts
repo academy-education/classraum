@@ -1,6 +1,6 @@
 import {
   TARGETS, NOT_APPLICABLE, progressFor, overallProgress, MEANINGFUL_COVERAGE,
-  MATHS_WITH_GRAPHIC,
+  MATHS_WITH_GRAPHIC, HUMAN_VERDICT_MIN,
 } from '../bank-targets'
 
 /**
@@ -27,11 +27,16 @@ describe('bank targets', () => {
     const reading = progressFor('Craft and Structure', 211, 60, 88)
 
     expect(lecture.state).toBe('done')
-    expect(reading.state).toBe('too-easy')
+    // 88% is inside the lecture band and OVER the reading band, so the
+    // two task types must reach different verdicts on the same score.
+    // Since 2026-08-06 an over-band score with no human sitting behind
+    // it reads `unconfirmed` rather than `too-easy` — the contrast this
+    // test protects is unchanged, only the name of the failing state.
+    expect(reading.state).toBe('unconfirmed')
 
-    // And our real lecture number (100%) still fails — being closer to
-    // standard is not being at standard.
-    expect(progressFor('Academic Talk', 274, 12, 100).state).toBe('too-easy')
+    // And our real lecture number (100%) still does not pass — being
+    // closer to standard is not being at standard.
+    expect(progressFor('Academic Talk', 274, 12, 100).state).not.toBe('done')
   })
 
   it('treats a score below the band as a failure, not a triumph', () => {
@@ -46,8 +51,17 @@ describe('bank targets', () => {
   })
 
   it('keeps the asymmetry: a bad sample is a verdict, a good one is not', () => {
-    // 12 of 211 measured. Failing → say so now.
-    expect(progressFor('Craft and Structure', 211, 12, 97.4).state).toBe('too-easy')
+    /*
+     * The asymmetry is unchanged — a bad score at thin coverage is still
+     * acted on immediately, while a good one waits for volume. What
+     * changed on 2026-08-06 is the EVIDENCE required: a bad MODEL score
+     * alone now reads `unconfirmed`, because three cohorts rated 100% by
+     * every solver were then scored at or below chance by a person.
+     * With a human sitting behind it, 12 measured items still convict.
+     */
+    expect(progressFor('Craft and Structure', 211, 12, 97.4).state).toBe('unconfirmed')
+    expect(progressFor('Craft and Structure', 211, 12, 97.4,
+      { answered: 20, correct: 12, controlBest: 5 }).state).toBe('too-easy')
     // 12 of 211 measured. In band → not enough to claim the cohort.
     const thin = progressFor('Craft and Structure', 211, 12, 55)
     expect(thin.state).toBe('spot-checked')
@@ -147,5 +161,81 @@ describe('bank targets', () => {
     const p = progressFor('Some New Task Type', 50, 20, 40)
     expect(p.state).toBe('unmeasured')
     expect(p.remaining).toContain('No target set')
+  })
+
+  /*
+   * ── The correction of 2026-08-06 ───────────────────────────────────
+   * The bar reported "1,746 too guessable, 0% done" on model solve
+   * rates alone. Four human sittings (72 items) then showed the model
+   * is trustworthy where a cohort's tell is STRUCTURAL and inflated
+   * where the item carries a passage it happens to know about:
+   *
+   *   Announcement       model 100%   human 15.0%  vs 25% control
+   *   Daily Life         model 100%   human 25.0%  vs 25%
+   *   Choose a Response  model 100%   human 55.0%  vs 25%   p<0.001
+   *
+   * A model-only "too easy" is a suspicion. Only a human turns it into
+   * a verdict — or clears it.
+   */
+  it('will not call a cohort too-easy on model evidence alone', () => {
+    // Announcement's real numbers: model says 100%, nobody has looked.
+    const p = progressFor('Announcement', 121, 12, 100, null)
+    expect(p.state).toBe('unconfirmed')
+    expect(p.remaining).toContain('no human sitting has confirmed it')
+    expect(p.remaining).toContain('20')
+  })
+
+  it('a thin human sitting does not settle it either', () => {
+    // Academic Passage: 12 answered, +16.7 — suggestive, under the bar.
+    const p = progressFor('Academic Passage', 433, 12, 100,
+      { answered: 12, correct: 5, controlBest: 3 })
+    expect(p.state).toBe('unconfirmed')
+    expect(p.remaining).toContain('Review 8 more items')
+    expect(HUMAN_VERDICT_MIN).toBe(20)
+  })
+
+  it('CONFIRMS when a human reproduces the effect', () => {
+    // Choose a Response, the real sitting: 11/20 against a 5/20 control.
+    const p = progressFor('Choose a Response', 72, 12, 91.7,
+      { answered: 20, correct: 11, controlBest: 5 })
+    expect(p.state).toBe('too-easy')
+    expect(p.remaining).toContain('CONFIRMED by hand')
+    expect(p.remaining).toContain('55.0%')
+    expect(p.remaining).toContain('+30')
+  })
+
+  it('CLEARS a cohort when the human contradicts the model', () => {
+    // Announcement, the real sitting: 3/20 against a 5/20 control —
+    // BELOW chance, against a model score of 100%.
+    const p = progressFor('Announcement', 121, 12, 100,
+      { answered: 20, correct: 3, controlBest: 5 })
+    expect(p.state).toBe('human-cleared')
+    expect(p.remaining).toContain('world knowledge')
+    expect(p.remaining).toContain('No rewrite justified')
+  })
+
+  it('stops the bar claiming 1,746 items are failing on model evidence', () => {
+    // The four cohorts as they actually stand today.
+    const cohorts = [
+      { domain: 'Academic Passage', items: 433, measured: 12, blindPct: 100,
+        human: { answered: 12, correct: 5, controlBest: 3 } },      // thin
+      { domain: 'Announcement', items: 121, measured: 12, blindPct: 100,
+        human: { answered: 20, correct: 3, controlBest: 5 } },      // cleared
+      { domain: 'Daily Life', items: 133, measured: 12, blindPct: 100,
+        human: { answered: 20, correct: 5, controlBest: 5 } },      // cleared
+      { domain: 'Choose a Response', items: 72, measured: 12, blindPct: 91.7,
+        human: { answered: 20, correct: 11, controlBest: 5 } },     // confirmed
+    ]
+    const { done, total, pct } = overallProgress(cohorts)
+
+    // 254 of 759 items are now positively accounted for by a human,
+    // where the old bar counted all 759 as failing.
+    expect(total).toBe(759)
+    expect(done).toBe(121 + 133)
+    expect(pct).toBe(33)
+
+    // And the one cohort a human confirmed is still failing.
+    expect(progressFor('Choose a Response', 72, 12, 91.7, cohorts[3].human).state)
+      .toBe('too-easy')
   })
 })

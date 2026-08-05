@@ -132,6 +132,26 @@ describe('human item review', () => {
   })
 
   /*
+   * The Announcement sitting scored 15% against a 25% control — BELOW
+   * chance, which is the ordinary shape of a clean cohort and not an
+   * error. The sentence rendered "+-10pts over control" on the live
+   * dashboard, because the "+" was hard-coded into the template.
+   */
+  it('renders a negative margin without a stray plus', () => {
+    // Every answer wrong, so the margin is the control's own -25.
+    const below = scoreRun(SLOTS.flatMap(s => Array(6).fill(0).map(() => (
+      row(s, s === 'A' ? 'B' : 'A')
+    ))))
+    expect(below.answered).toBe(24)
+    expect(below.margin).toBeLessThan(0)
+
+    const read = readRun(below, 25.5)
+    expect(read.reading).toBe('clean')
+    expect(read.why).not.toMatch(/\+-/)
+    expect(read.why).toMatch(new RegExp(`^${below.margin}pts over control`))
+  })
+
+  /*
    * Two reviewers on one sample is the design, not an edge case. The
    * route originally grouped by run id alone, which averaged them into
    * a score neither person produced and erased the disagreement — the
