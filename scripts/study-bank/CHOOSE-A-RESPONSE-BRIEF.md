@@ -218,6 +218,63 @@ Plausibility is per-option and this is per-SET; the geometry pilot found
 the same thing independently, where neutral distractors left the key as
 the only canonical-looking value and a solver scored 83% by picking it.
 
+### Three prohibitions added 2026-08-06, each installed BY the last fix
+
+The crv2 pilot cleared the blind gate (+14.6 against a +29.5 ceiling,
+down from +55.9) and its blind solvers immediately named three new
+tells. Every one is a direct consequence of an instruction written to
+kill the previous tell. Read them as a warning about repairs, not just
+as rules.
+
+1. **No two options may perform the same speech act.** Authors doubled
+   an act on purpose — "a second redirect among the distractors so the
+   key isn't the only one" — to defeat odd-one-out. A solver's most
+   powerful attack was exactly that: in a single-key item, two options
+   doing the same thing means NEITHER can be the key, so it eliminates
+   two at once with no content knowledge at all. Distinguish the four
+   options by which utterance they presuppose, not by doubling.
+
+2. **No distractor may be the key's own scenario with the polarity
+   flipped or the logic broken.** "Go ahead, everything important is on
+   there anyway" is the key's concern with the negation inverted. A
+   solver called this the corrupted twin and answered four items on it:
+   where two options are near-identical and one is incoherent, the
+   coherent one is the key.
+
+3. **At most ONE item per 16 may turn on the speaker's arithmetic.**
+   Three of the pilot's sixteen were "the numbers don't add up and the
+   key is the correction". Both with-source readers found it
+   independently. It is what the plant-a-defect rule above produces
+   when followed mechanically, because arithmetic is the most
+   mechanical defect available. The other planted defects must be
+   non-numeric: a contradiction, a wrong inference, a false
+   presupposition.
+
+### Engaging a detail is not the same as ruling the alternative out
+
+This is the reason the pilot FAILED its answerability gate — 6 of 16
+items had a second defensible answer, worse than the cohort it
+replaced. The reader who found it stated the mechanism exactly:
+
+> the stimulus is a request or offer with a detail attached, and the
+> authors treated "engages the detail" as the discriminator. But
+> engaging the detail makes an option BETTER, not the alternative
+> WRONG.
+
+Accept-vs-decline, grant-as-asked vs improve-on-asked, fix-it vs
+reroute — where the runner-up is a complete cooperative speech act on
+its own, nothing is doing eliminating work and the item has two
+answers.
+
+So the per-item check is no longer "what forces the key". It is:
+
+> **Take the SECOND-best option. Quote the words in the stimulus that
+> make it wrong. If you cannot quote anything, the item has two
+> answers — fix it or throw it away.**
+
+Quote, not paraphrase. The pilot's authors all believed their items
+were forced, and half of them were not.
+
 ### Let the key sometimes BE the shape you use for distractors
 
 A grader that could not see the keys found five option shapes that were
