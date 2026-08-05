@@ -1,0 +1,18 @@
+{
+  "1":  {"A":"bare-acceptance","B":"bare-acceptance","C":"bare-acceptance","D":"hedged-acceptance"},
+  "2":  {"A":"bare-acceptance","B":"premise-correction","C":"bare-acceptance","D":"counter-proposal"},
+  "3":  {"A":"bare-acceptance","B":"information-request","C":"counter-proposal","D":"generalising-remark"},
+  "4":  {"A":"counter-proposal","B":"generalising-remark","C":"concrete-fix","D":"concrete-fix"},
+  "5":  {"A":"bare-acceptance","B":"clarifying-question","C":"concrete-fix","D":"information-request"},
+  "6":  {"A":"counter-proposal","B":"premise-correction","C":"generalising-remark","D":"concrete-fix"},
+  "7":  {"A":"hedged-acceptance","B":"counter-proposal","C":"bare-acceptance","D":"clarifying-question"},
+  "8":  {"A":"clarifying-question","B":"counter-proposal","C":"information-request","D":"bare-acceptance"},
+  "9":  {"A":"third-party-deflection","B":"third-party-deflection","C":"premise-correction","D":"bare-acceptance"},
+  "10": {"A":"bare-acceptance","B":"clarifying-question","C":"bare-acceptance","D":"hedged-acceptance"},
+  "11": {"A":"counter-proposal","B":"premise-correction","C":"other","D":"bare-acceptance"},
+  "12": {"A":"bare-acceptance","B":"hedged-acceptance","C":"clarifying-question","D":"information-request"},
+  "13": {"A":"refusal","B":"clarifying-question","C":"concrete-fix","D":"refusal"},
+  "14": {"A":"bare-acceptance","B":"concrete-fix","C":"concrete-fix","D":"hedged-acceptance"},
+  "15": {"A":"concrete-fix","B":"bare-acceptance","C":"third-party-deflection","D":"premise-correction"},
+  "16": {"A":"generalising-remark","B":"clarifying-question","C":"premise-correction","D":"bare-acceptance"}
+}
