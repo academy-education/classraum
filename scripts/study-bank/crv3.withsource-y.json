@@ -1,0 +1,290 @@
+{
+  "1": {
+    "pick": "B",
+    "verdict": "two-defensible",
+    "second": "D",
+    "ruledOutBy": null,
+    "killType": "none",
+    "difficulty": "medium",
+    "why": "The request asks the listener to leave their own seminar early, so the counter-offer B is the responsive move. But nothing in the utterance forbids leaving early, so plain acceptance D ('waiting by the ticket window') is a perfectly competent reply to the same request."
+  },
+  "2": {
+    "pick": "C",
+    "verdict": "single-defensible",
+    "second": "B",
+    "ruledOutBy": "if my professor okayed it",
+    "killType": "norm",
+    "difficulty": "medium",
+    "why": "The conditional marks the approval as the student's own report, not evidence in hand; office convention is that the waiver comes from the professor. B is not contradicted by any word — only blocked by institutional practice, and its 'now that you've told me' is oddly credulous."
+  },
+  "3": {
+    "pick": "D",
+    "verdict": "single-defensible",
+    "second": "C",
+    "ruledOutBy": "choir has me Tuesdays and Thursdays",
+    "killType": "inference",
+    "difficulty": "medium",
+    "why": "C proposes Thursday, a day the speaker just named as blocked; you only get there by inferring that a named-blocked day is a bad counter-proposal (Thursday mornings could in fact be free). D grants the actual request and adds a live condition."
+  },
+  "4": {
+    "pick": "A",
+    "verdict": "single-defensible",
+    "second": "B",
+    "ruledOutBy": "It has to be reimaged today",
+    "killType": "contradiction",
+    "difficulty": "easy",
+    "why": "B asks to postpone what the speaker's own words declare non-postponable. Clean lexical kill; A is the only reply that both accepts the constraint and saves the folder."
+  },
+  "5": {
+    "pick": "A",
+    "verdict": "two-defensible",
+    "second": "C",
+    "ruledOutBy": null,
+    "killType": "none",
+    "difficulty": "hard",
+    "why": "A is the intended 'that order is impossible' reply, but the utterance never says the upstairs keys are the till keys — A supplies that fact rather than recovering it. With the dependency unstated, C (unlock tills, then go up) is exactly what the request asks for."
+  },
+  "6": {
+    "pick": "A",
+    "verdict": "single-defensible",
+    "second": "B",
+    "ruledOutBy": "I've moved you to the Tuesday lab",
+    "killType": "norm",
+    "difficulty": "easy",
+    "why": "D is flatly contradicted by 'Thursday's section was cancelled', so the real competitor is B, which is factually consistent (their Thursday is free) but ignores a change made to the listener's own schedule. Uptake convention, not words, is what makes A better."
+  },
+  "7": {
+    "pick": "B",
+    "verdict": "two-defensible",
+    "second": "C",
+    "ruledOutBy": null,
+    "killType": "none",
+    "difficulty": "medium",
+    "why": "A contradicts 'Elm Street' (that is the destination) and D contradicts 'single' (one bed), leaving B and C. 'Before check-in Sunday' states a deadline, but counter-proposing a later move is ordinary negotiation, so C is a live reply."
+  },
+  "8": {
+    "pick": "D",
+    "verdict": "single-defensible",
+    "second": "C",
+    "ruledOutBy": "just the one we waived",
+    "killType": "inference",
+    "difficulty": "medium",
+    "why": "The office has already waived one of these on the student's behalf, so the tickets have been handled as theirs — 'neither was mine' would have surfaced long before. D is the only option that reacts to the waiver the student evidently never heard about; A pays to appeal an already-waived ticket."
+  },
+  "9": {
+    "pick": "B",
+    "verdict": "single-defensible",
+    "second": "D",
+    "ruledOutBy": "the folding table",
+    "killType": "inference",
+    "difficulty": "medium",
+    "why": "The definite singular fixes the referent, so D's window-vs-sinks clarification is off — but that is an inference from the article, not a contradiction, and two folding tables are imaginable. B is the standard 'ask the person who knows' deflection."
+  },
+  "10": {
+    "pick": "C",
+    "verdict": "two-defensible",
+    "second": "D",
+    "ruledOutBy": null,
+    "killType": "none",
+    "difficulty": "medium",
+    "why": "The speaker asserts the cancellation as fact and literally asks why Marcus would do it; D answers that question with a character explanation and is fully natural. C resolves the contradiction the speaker themselves flagged, which is better, but nothing in the words forces the reinterpretation."
+  },
+  "11": {
+    "pick": "C",
+    "verdict": "single-defensible",
+    "second": "D",
+    "ruledOutBy": "Is anything happening with the treadmill I reported twice last week",
+    "killType": "off-target",
+    "difficulty": "easy",
+    "why": "B ('log it at the front desk') is cleanly contradicted by 'reported twice', so the surviving competitor is D, which explains the fault and suggests a workaround instead of giving the status a twice-reported complaint is asking for. Not false, just answering a different question."
+  },
+  "12": {
+    "pick": "A",
+    "verdict": "single-defensible",
+    "second": "C",
+    "ruledOutBy": "the file I emailed from my phone",
+    "killType": "inference",
+    "difficulty": "medium",
+    "why": "An emailed file never passed through a scanner, so C's glass-cleaning fix accepts a false premise — but only via the domain inference that email bypasses scanning. C and D also both introduce a 'poster' the stimulus never mentions."
+  },
+  "13": {
+    "pick": "B",
+    "verdict": "single-defensible",
+    "second": "D",
+    "ruledOutBy": "Why does that corner machine log me out",
+    "killType": "off-target",
+    "difficulty": "medium",
+    "why": "A is contradicted ('wipe what I've typed' is not a screen lock). D is sound advice but supplies no cause for a 'why' question and abandons the already-lost draft. C is a decent peer reply and is the item's soft spot, since the utterance never establishes that the addressee is staff."
+  },
+  "14": {
+    "pick": "B",
+    "verdict": "single-defensible",
+    "second": "A",
+    "ruledOutBy": "when I'm buying it",
+    "killType": "off-target",
+    "difficulty": "easy",
+    "why": "The customer states the intent explicitly, so A's pitch for renting engages the wrong thing rather than being false — a clerk really could say it. B is the only option that fixes the transaction."
+  },
+  "15": {
+    "pick": "C",
+    "verdict": "single-defensible",
+    "second": "D",
+    "ruledOutBy": "for your Friday paper, once the annex reopens Monday",
+    "killType": "inference",
+    "difficulty": "medium",
+    "why": "The kill is one arithmetic step: Monday is after Friday, so the order cannot serve the paper. D is otherwise a completely idiomatic acceptance, which is exactly why the item works only if the candidate does the date comparison."
+  },
+  "16": {
+    "pick": "C",
+    "verdict": "single-defensible",
+    "second": "B",
+    "ruledOutBy": "so I can edit the methods",
+    "killType": "off-target",
+    "difficulty": "medium",
+    "why": "B takes over the writing the requester explicitly wants to do themselves; it is a helpful offer, not an impossible one. C's kill on B is intent-based, and C's own premise (owner controls sharing) is an inference from 'the doc Priya made'."
+  },
+  "17": {
+    "pick": "A",
+    "verdict": "two-defensible",
+    "second": "C",
+    "ruledOutBy": null,
+    "killType": "none",
+    "difficulty": "medium",
+    "why": "D is killed outright by 'no stops between', but C ('Does it still reach Hale before six?') is an entirely natural passenger follow-up — 'still' even keys off the long loop the driver just described. Nothing in the utterance rules it out; A is merely the more cooperative uptake."
+  },
+  "18": {
+    "pick": "C",
+    "verdict": "two-defensible",
+    "second": "A",
+    "ruledOutBy": null,
+    "killType": "none",
+    "difficulty": "medium",
+    "why": "D is contradicted — the utterance just said where overflow goes. But the remark is generic ('everyone's… once their box fills up') and plainly implies the listener's box filled, so A's apologetic 'I'll empty mine out' is as natural as C's request to look behind the counter."
+  },
+  "19": {
+    "pick": "B",
+    "verdict": "single-defensible",
+    "second": "C",
+    "ruledOutBy": "when the others take it",
+    "killType": "contradiction",
+    "difficulty": "easy",
+    "why": "The card works at other registers, which kills A and D (card-side fixes) and C ('these readers all act up') alike. B is the only reader-specific explanation. The cleanest item in the set."
+  },
+  "20": {
+    "pick": "A",
+    "verdict": "two-defensible",
+    "second": "B",
+    "ruledOutBy": null,
+    "killType": "none",
+    "difficulty": "hard",
+    "why": "Whether holding past an aid deadline is a mistake depends on facts the utterance never gives; the staffer proposing it implies a reason, and accepting an official's proposal is normal. A is better only if you import the assumption that this application feeds the aid decision."
+  },
+  "21": {
+    "pick": "D",
+    "verdict": "two-defensible",
+    "second": "A",
+    "ruledOutBy": "write the new thesis statement in on your graded draft",
+    "killType": "norm",
+    "difficulty": "medium",
+    "why": "The only thing wrong with A is that a tutor should not author the student's thesis — an academic-integrity convention, not anything in the words. Accepting an offer that was freely made cannot be unnatural, so A stands."
+  },
+  "22": {
+    "pick": "B",
+    "verdict": "single-defensible",
+    "second": "A",
+    "ruledOutBy": "How soon can you type the readings",
+    "killType": "off-target",
+    "difficulty": "easy",
+    "why": "A direct 'how soon' demands a time; A offers a legibility caveat and C asks something the utterance already answered ('type the readings', 'keep your paper log'). B is the only option that answers."
+  },
+  "23": {
+    "pick": "B",
+    "verdict": "single-defensible",
+    "second": "A",
+    "ruledOutBy": "the one your specialist needs back",
+    "killType": "contradiction",
+    "difficulty": "easy",
+    "why": "The asker concedes in their own relative clause that the slip must be returned, so A's 'hang onto it as long as you need' contradicts the request's own premise. C is odd but not impossible — it denies knowledge of what the asker just asserted."
+  },
+  "24": {
+    "pick": "D",
+    "verdict": "single-defensible",
+    "second": "B",
+    "ruledOutBy": "Tuesday's counts are still on my clipboard",
+    "killType": "inference",
+    "difficulty": "medium",
+    "why": "The blocker is that the data is on paper, so handing the job to Marco's script does not unblock anything — one inference step, not a contradiction. D is the only reply that names the actual dependency."
+  },
+  "25": {
+    "pick": "A",
+    "verdict": "single-defensible",
+    "second": "B",
+    "ruledOutBy": "maintenance is up there now",
+    "killType": "contradiction",
+    "difficulty": "easy",
+    "why": "D ('has anyone told maintenance') and B ('nobody's touched it') are both contradicted by the present tense of 'maintenance is up there now'. C swaps radiator for water pressure. A is the only fit."
+  },
+  "26": {
+    "pick": "D",
+    "verdict": "two-defensible",
+    "second": "A",
+    "ruledOutBy": "before the cashier comes back",
+    "killType": "norm",
+    "difficulty": "medium",
+    "why": "The 'before the cashier comes back' framing marks the request as an evasion, which motivates a refusal — but lending your own meal card to a friend is your call, and 'Take it, just put it back in my bag' is an entirely natural reply. Nothing makes acceptance impossible."
+  },
+  "27": {
+    "pick": "D",
+    "verdict": "two-defensible",
+    "second": "A",
+    "ruledOutBy": null,
+    "killType": "none",
+    "difficulty": "medium",
+    "why": "B is neatly killed by 'since you're pre-law' — the speaker already has the major right, so 'you've got me down wrong' contradicts them. But A ('practice is practice') accepts a mismatched-but-deliberate booking, which is a real thing students say; D is preferable, not forced."
+  },
+  "28": {
+    "pick": "C",
+    "verdict": "two-defensible",
+    "second": "A",
+    "ruledOutBy": null,
+    "killType": "none",
+    "difficulty": "hard",
+    "why": "D is killed by 'while you're at your clinical'. C works only because 'all day' adds information the asker apparently lacked — otherwise it just repeats the asker's own clause. A objects to the same plan from the plumber's side and is equally competent."
+  },
+  "29": {
+    "pick": "A",
+    "verdict": "single-defensible",
+    "second": "D",
+    "ruledOutBy": "how do I get Thursday?",
+    "killType": "off-target",
+    "difficulty": "medium",
+    "why": "B repeats the method that already failed three times, so the surviving competitor is D — true, sympathetic, and it supplies no route in answer to a question that asks for one. A gives the alternative channel."
+  },
+  "30": {
+    "pick": "D",
+    "verdict": "single-defensible",
+    "second": "A",
+    "ruledOutBy": "your roommate's consent form",
+    "killType": "norm",
+    "difficulty": "easy",
+    "why": "A is signing another person's consent form in her name — blocked by a strong convention rather than by any word, but strong enough that a competent speaker will not do it. C is contradicted by the blank form being physically present."
+  },
+  "31": {
+    "pick": "D",
+    "verdict": "two-defensible",
+    "second": "A",
+    "ruledOutBy": "the day we close early this week",
+    "killType": "under-determination",
+    "difficulty": "medium",
+    "why": "The definite description without a named day invites the clarification, so D is safest. But that same phrasing presupposes shared knowledge, so a listener who already knows the schedule can answer 'Thursday afternoon' — the utterance never establishes that they don't."
+  },
+  "32": {
+    "pick": "C",
+    "verdict": "single-defensible",
+    "second": "B",
+    "ruledOutBy": "Want me to run your posters on the recycled stock we've got left?",
+    "killType": "off-target",
+    "difficulty": "medium",
+    "why": "'We've got left' flags a possible shortfall, which C's condition addresses. B endorses the stock and implicates a yes without answering the offer or noticing the quantity hedge; A deflects to Nadia though the offer came from the person holding the paper."
+  }
+}

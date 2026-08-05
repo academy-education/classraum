@@ -90,16 +90,44 @@ items.forEach((it, i) => {
     problems.push(`item ${n}: explanation names an option by position`)
   }
 
-  // THE NEW GATE. See the header.
-  const quote = norm(it.secondBestKilledBy)
-  if (!quote) {
+  /*
+   * THE NEW GATE. See the header.
+   *
+   * The field is prose containing a quote, not a bare quote: authors
+   * write `"while you're at your clinical" — the speaker's own clause
+   * has the responder elsewhere`. A first version required the WHOLE
+   * field to be a substring of the stimulus and refused all 32 items.
+   * That is a check failing on format while reading as a verdict on
+   * substance — precisely the failure this repo keeps recording, and
+   * it would have condemned a batch it had not examined.
+   *
+   * So: pull every quoted span out of the field and require at least
+   * one of them to appear verbatim in the stimulus. If the author
+   * quoted nothing, fall back to matching the whole field, which is
+   * the bare-quote case.
+   */
+  const field = it.secondBestKilledBy
+  const spans = [...(field ?? '').matchAll(/[""]([^""]{2,})[""]/g)].map(m => m[1])
+  const candidates = spans.length ? spans : [field]
+  /* An elided quote — `"Why's this ringing up ... when I'm buying it"` —
+   * is honest quoting, so split on the ellipsis and require EVERY
+   * fragment to appear. That verifies the same property (the words came
+   * from the utterance) without failing the author for shortening. */
+  const stim = norm(it.stimulus)
+  const present = q => {
+    const parts = q.split(/\s*(?:\.\.\.|…)\s*/).map(x => x.trim()).filter(Boolean)
+    return parts.length > 0 && parts.every(x => stim.includes(x))
+  }
+  const hit = candidates.map(norm).filter(Boolean).find(present)
+
+  if (!field?.trim()) {
     problems.push(`item ${n}: no secondBestKilledBy — the runner-up was never checked`)
-  } else if (!norm(it.stimulus).includes(quote)) {
-    problems.push(`item ${n}: secondBestKilledBy is not quoted from the stimulus\n` +
-      `      claimed: "${it.secondBestKilledBy}"\n` +
+  } else if (!hit) {
+    problems.push(`item ${n}: secondBestKilledBy quotes nothing that appears in the stimulus\n` +
+      `      claimed: ${field}\n` +
       `      stimulus: ${it.stimulus}`)
-  } else if (quote.split(' ').length < 2) {
-    problems.push(`item ${n}: secondBestKilledBy is a single word — quote the phrase that does the work`)
+  } else if (hit.split(' ').length < 2) {
+    problems.push(`item ${n}: secondBestKilledBy quotes a single word — quote the phrase that does the work`)
   }
   // The runner-up must actually be one of the distractors, not a
   // paraphrase of one the author wrote from memory.
@@ -148,6 +176,42 @@ if (pivots > 6) problems.push(`${pivots}/32 stimuli carry a concessive pivot —
  */
 const numeric = items.filter(it => (it.stimulus.match(/\d|\b(one|two|three|four|five|six|seven|eight|nine|ten|twelve|twenty|hundred)\b/gi) ?? []).length >= 2)
 if (numeric.length > 6) warn.push(`${numeric.length}/32 stimuli carry two or more number words — check the arithmetic template by hand`)
+
+/*
+ * TYPOGRAPHIC ASYMMETRY between key and distractors.
+ *
+ * Added mid-round, on an author's report. It rewrote two of its own
+ * keys after noticing that three of its four carried a SEMICOLON and
+ * none of its distractors did — a tell no rule in the brief names and
+ * nothing else here would have seen. Length rank has been guarded since
+ * the 74.3%-longest audit of 2026-07-29; every other surface feature
+ * was unguarded, and "the key is the one with the dash" is the same
+ * defect wearing different punctuation.
+ *
+ * Only the author who happened to look caught it. The point of putting
+ * it here is that the next batch does not depend on someone looking.
+ */
+const FEATURES = [
+  ['semicolon', s => s.includes(';')],
+  ['em dash', s => /[—–]|( - )/.test(s)],
+  ['question mark', s => s.includes('?')],
+  ['two or more commas', s => (s.match(/,/g) ?? []).length >= 2],
+  ['ellipsis', s => s.includes('...') || s.includes('…')],
+  ['exclamation', s => s.includes('!')],
+]
+for (const [name, has] of FEATURES) {
+  const keyRate = items.filter(it => has(it.key)).length / items.length
+  const dis = items.flatMap(it => it.distractors)
+  const disRate = dis.filter(has).length / dis.length
+  // A feature carried by many keys and almost no distractors — or the
+  // reverse — is a free rule. Direction matters: "never the key" is as
+  // exploitable as "always the key", and a blind grader already found
+  // five shapes that were never correct across one 26-item batch.
+  const skewed = (keyRate >= 0.35 && disRate <= 0.08) || (disRate >= 0.35 && keyRate <= 0.08)
+  const line = `${name}: keys ${(100 * keyRate).toFixed(0)}%  distractors ${(100 * disRate).toFixed(0)}%`
+  if (skewed) problems.push(`typographic tell — ${line}`)
+  else if (Math.abs(keyRate - disRate) > 0.25) warn.push(`typographic skew — ${line}`)
+}
 
 const ranks = items.map(it => {
   const sorted = [it.key, ...it.distractors].sort((a, b) => b.length - a.length)

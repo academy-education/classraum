@@ -1,0 +1,69 @@
+{
+  "author": "c",
+  "items": [
+    {
+      "stimulus": "Transcript: \"How soon can you type the readings if I keep your paper log?\"",
+      "key": "Do you need the log itself, or just the readings out of it?",
+      "distractors": [
+        "I could get them to you by tomorrow afternoon.",
+        "Any chance you could check my graphs too?",
+        "The last few pages are in pencil, if that matters."
+      ],
+      "explanation": "The professor asks for a typed write-up while announcing he will be holding the paper log the readings live in, so no delivery time can be promised until that conflict is settled; the reply asking whether he needs the log itself or just the readings out of it settles it. Naming tomorrow afternoon commits to typing from a source he has just said he is keeping, asking him to check the graphs treats his request as an offer to read the log, and warning that the last few pages are in pencil answers a question about legibility he never asked.",
+      "act": "clarifying question back",
+      "setting": "office hours",
+      "sharedProperty": "All four are the student's own next turn to her professor, all refer to the paper log or the readings inside it, all are cooperative and none refuses; two are questions and two are statements, so neither shape marks the key.",
+      "forcedBy": "The utterance requests the typed readings and, in the same breath, states the condition that removes the student's access to them (\"if I keep your paper log\"). The request cannot be costed, let alone met, until the student establishes which of the two the professor actually needs — the physical log, or the data on it.",
+      "secondBest": "I could get them to you by tomorrow afternoon.",
+      "secondBestKilledBy": "\"if I keep your paper log\" — the readings to be typed are the ones in the log, and the professor's question sets the condition that he is the one holding it, so a delivery time presupposes access the utterance has just withdrawn."
+    },
+    {
+      "stimulus": "Transcript: \"I've moved you to the Tuesday lab — Thursday's section was cancelled this morning.\"",
+      "key": "Tuesday works for me — thanks for sorting it.",
+      "distractors": [
+        "Is there any way to keep me in the Thursday one?",
+        "I'll email the department about how late that decision came.",
+        "I'll move my study group to Thursdays now that it's free."
+      ],
+      "explanation": "The adviser is reporting a move she has already made and giving the reason it was unavoidable, so the only thing left for the student to do is accept it, which the reply that says Tuesday works and thanks her for sorting it does. Asking to keep the Thursday one requests a section that no longer exists, emailing the department about how late the decision came treats a routine reroute as a grievance, and shifting the study group answers the calendar rather than the adviser.",
+      "act": "plain agreement",
+      "setting": "advising",
+      "sharedProperty": "All four are the student's reply to the same announcement, all turn on the Tuesday/Thursday move, all are student-to-adviser register and none is hostile or formal; three name a day and the key does too.",
+      "forcedBy": "The move is reported as done (\"I've moved you\"), and the reason given removes the alternative outright rather than merely disfavouring it (\"Thursday's section was cancelled this morning\"). With nothing to negotiate and nothing to fix, acceptance is the whole of the remaining turn.",
+      "secondBest": "Is there any way to keep me in the Thursday one?",
+      "secondBestKilledBy": "\"Thursday's section was cancelled this morning\" — the request asks to be kept in a section the utterance has just said no longer runs, so there is nothing to be kept in and no waitlist to join."
+    },
+    {
+      "stimulus": "Transcript: \"Should I order it in for your Friday paper, once the annex reopens Monday?\"",
+      "key": "Let's try an interlibrary scan instead — Monday's too late for me.",
+      "distractors": [
+        "Yes, please put the order in — I'll watch for the email.",
+        "Do you happen to know who has the copy out right now?",
+        "Somebody should really rethink closing the annex over the whole break."
+      ],
+      "explanation": "The desk staffer offers a route whose own stated timing lands after the deadline she names in the same sentence, so the useful reply names a different route, which the answer proposing an interlibrary scan because Monday is too late does. Accepting the order takes delivery after the paper is due, asking who has the copy out treats a book sitting in a closed annex as one that is checked out, and grumbling about the annex closing over the break leaves the student with no book at all.",
+      "act": "counter-proposal",
+      "setting": "library circulation",
+      "sharedProperty": "All four are the student's reply to the same offer at the desk, all concern getting hold of that one book or the annex that holds it, and all are casual student-to-staff register; none is formal and none is a refusal of help as such.",
+      "forcedBy": "The offer is self-defeating on the speaker's own words: the purpose is stated as the Friday paper and the earliest the route can deliver is stated as Monday. That is a defect in the speaker's turn, not a fact about the student, so the counter-proposal is forced without depending on the student's schedule.",
+      "secondBest": "Yes, please put the order in — I'll watch for the email.",
+      "secondBestKilledBy": "\"for your Friday paper, once the annex reopens Monday\" — accepting the order buys a book that cannot arrive before the annex reopens, which the utterance places after the paper it is meant for."
+    },
+    {
+      "stimulus": "Transcript: \"Can you just sign your roommate's consent form where she left it blank?\"",
+      "key": "That's really hers to sign — I'd rather not do it.",
+      "distractors": [
+        "Sure, I'll fill in her name and pass it back.",
+        "She said she'd already handed everything in yesterday.",
+        "The form really should say who's allowed to sign it."
+      ],
+      "explanation": "The receptionist asks the student to complete a consent form belonging to someone else, and the reply that it is really the roommate's to sign declines without making a scene. Filling in her name signs a consent the utterance has just attributed to another patient, saying she already handed everything in disputes a premise the request does not rest on, and remarking that the form should say who may sign it comments on the paperwork instead of answering the request.",
+      "act": "polite refusal",
+      "setting": "clinic reception",
+      "sharedProperty": "All four are the student's reply across the reception desk about the same blank form, all stay polite and none scolds the receptionist, and each treats the form rather than the roommate as the thing at issue.",
+      "forcedBy": "The utterance itself supplies both facts that make compliance impossible: the form is identified as the roommate's, and the type of form is one only its subject can complete. Nothing about the student's own situation is needed, so the refusal does not turn on an unsupplied fact.",
+      "secondBest": "Sure, I'll fill in her name and pass it back.",
+      "secondBestKilledBy": "\"your roommate's consent form where she left it blank\" — the form is assigned to the roommate and the blank is the one she left, so the signature being asked for is a consent the student is not the person to give."
+    }
+  ]
+}

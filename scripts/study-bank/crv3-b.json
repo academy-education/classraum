@@ -1,0 +1,69 @@
+{
+  "author": "b",
+  "items": [
+    {
+      "stimulus": "Transcript: \"Can you let the plumber in Friday while you're at your clinical?\"",
+      "key": "That's the Friday I'm at my clinical all day.",
+      "distractors": [
+        "The landlord should be meeting him Friday, not us.",
+        "Sure, tell him to buzz twice when he gets here.",
+        "He'll need someone in there the whole time."
+      ],
+      "explanation": "The speaker asks for something his own words rule out: he places the responder at a clinical placement on the very day he wants him home, so the request rests on a premise the speaker has already contradicted, and the reply that names Friday as the clinical day is the one that answers it. The reply telling the plumber to buzz twice on arrival accepts being home that day; the reply about the plumber needing someone in there the whole time treats the plan as workable and adds a detail; the remark that the landlord should be meeting him answers a grievance the speaker never raised.",
+      "act": "premise correction",
+      "setting": "roommate",
+      "sharedProperty": "All four are casual peer replies about Friday's plumber visit, each naming a concrete party or moment in that visit (the clinical, the landlord, his arrival, his time in the flat); none is polite-formulaic, none is an outright refusal, and all sit in a 43-50 character band.",
+      "forcedBy": "The subordinate clause \"while you're at your clinical\" puts the addressee somewhere else for the whole of the requested window, so no reply that assumes he is home can stand.",
+      "secondBest": "Sure, tell him to buzz twice when he gets here.",
+      "secondBestKilledBy": "\"while you're at your clinical\" — the speaker's own clause has the responder at his clinical during the visit, so there is nobody at the door to be buzzed."
+    },
+    {
+      "stimulus": "Transcript: \"Could you plot the growth curves tonight? Tuesday's counts are still on my clipboard.\"",
+      "key": "I can do them tonight if you drop the clipboard off first.",
+      "distractors": [
+        "Marco set up the plotting script — get him to run it.",
+        "Tuesday's counts came off the incubator that was acting up.",
+        "I'll get the poster template ready while you enter those."
+      ],
+      "explanation": "The request comes with the reason it cannot be met as asked attached to it — the data for one day has never left the speaker's clipboard — so the reply that agrees and makes the handover of that clipboard the condition is the one that fits. The reply sending the job to the person who set up the plotting script leaves the missing counts exactly where they are; the remark that those counts came off a misbehaving incubator disputes the data instead of answering the request; the offer to prepare the poster template substitutes a different favour for the one asked.",
+      "act": "acceptance that adds a condition",
+      "setting": "lab partner",
+      "sharedProperty": "All four are lab-partner replies that pick up a named piece of tonight's plotting job — the clipboard, the plotting script, Tuesday's counts, the poster — in the same flat peer register, all of them cooperative rather than refusing, and all within 51-60 characters.",
+      "forcedBy": "\"Tuesday's counts are still on my clipboard\" means one day of data is not in any file the responder can reach, so agreement is only possible once that clipboard changes hands.",
+      "secondBest": "Marco set up the plotting script — get him to run it.",
+      "secondBestKilledBy": "\"Tuesday's counts are still on my clipboard\" — the obstacle is data the responder does not have, not skill with the script, so Marco is stopped by the same thing and the handover still has to happen."
+    },
+    {
+      "stimulus": "Transcript: \"Can you unlock the doc Priya made so I can edit the methods?\"",
+      "key": "Priya set that doc up, so she's the one who can share it.",
+      "distractors": [
+        "Editing the methods now will clash with what she wrote.",
+        "Priya's version reads better than what we had anyway.",
+        "I'll rewrite the methods and send you the text."
+      ],
+      "explanation": "The speaker asks for editing rights on a document she names as somebody else's, and permissions travel with whoever made it, so the reply pointing her at the person who set it up is the one that gets her what she asked for. The warning that editing now will clash with what Priya wrote argues against the request instead of answering it; the remark that Priya's version reads better ignores the request altogether; the offer to rewrite the methods and send the text hands over prose rather than the access she asked for.",
+      "act": "redirection to the right person",
+      "setting": "group project",
+      "sharedProperty": "All four are group-mate replies about Priya's shared document and the methods section in it, two of them naming Priya, all in the same unbuttoned register, none apologetic and none formulaic, all within 46-57 characters.",
+      "forcedBy": "\"the doc Priya made\" locates ownership, and therefore sharing rights, with a third party rather than with either speaker.",
+      "secondBest": "I'll rewrite the methods and send you the text.",
+      "secondBestKilledBy": "\"so I can edit the methods\" — she asked to be able to edit, and receiving text she still cannot put into the document leaves her without the thing she asked for; \"the doc Priya made\" also puts that thing outside the responder's gift."
+    },
+    {
+      "stimulus": "Transcript: \"Is anything happening with the treadmill I reported twice last week?\"",
+      "key": "I'll take it off the floor and call the tech now.",
+      "distractors": [
+        "It cuts out when the belt overheats — rest it between runs.",
+        "Log it at the front desk and they'll pass it along.",
+        "Which one is it, the treadmill nearest the window?"
+      ],
+      "explanation": "The member is not reporting a fault; he is chasing one he has already reported more than once, so the reply that removes the machine and calls the technician is the only one that changes his situation. Telling him to log it at the front desk sends him back down the road he has already walked twice; the explanation about the belt overheating turns a fault into the user's technique; asking which treadmill he means acts as though nothing had been filed before.",
+      "act": "fix offered",
+      "setting": "gym",
+      "sharedProperty": "All four are staff replies about the same faulty treadmill, each proposing or referring to a way the gym handles a broken machine, all in the same brisk service register with no apology or formality, all within 48-59 characters.",
+      "forcedBy": "\"I reported twice last week\" establishes that the ordinary reporting route has already been used and has produced nothing, so only a reply that acts on the machine answers him.",
+      "secondBest": "Log it at the front desk and they'll pass it along.",
+      "secondBestKilledBy": "\"I reported twice last week\" — the front-desk report is the step he has already taken twice, so directing him to it is directing him to the thing that has already failed."
+    }
+  ]
+}

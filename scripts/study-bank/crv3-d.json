@@ -1,0 +1,69 @@
+{
+  "author": "d",
+  "items": [
+    {
+      "stimulus": "Transcript: \"It has to be reimaged today — that clears your thesis folder.\"",
+      "key": "Fine, let me copy the thesis folder off first.",
+      "distractors": [
+        "Then let's put it off until my thesis is in.",
+        "How long has it been sitting in the repair queue?",
+        "I'll clear the downloads folder out myself tonight."
+      ],
+      "explanation": "The technician is not asking a question; he is announcing an unavoidable job and warning that it destroys something of the owner's, which leaves the owner one move — agree, on the condition that the folder is saved first, which is what the reply that copies the thesis folder off before the work starts does. Putting it off until the thesis is in refuses a job the speaker says cannot wait; asking how long it has sat in the repair queue answers a question about backlog that was never raised; clearing out the downloads folder treats the machine as short of space rather than about to be wiped.",
+      "act": "conditional acceptance",
+      "setting": "IT desk",
+      "sharedProperty": "All four are the laptop's owner replying to the technician about the same machine within the next day, in the same casual first-person register, and each names one concrete thing on or around it (the thesis folder, the thesis, the repair queue, the downloads folder). None is evaluative, none is more polite than the others, and none is a refusal.",
+      "forcedBy": "\"has to be reimaged today\" removes the option of delay, and \"that clears your thesis folder\" names a loss the owner must act on before it happens, so the only coherent move is agreement with a rescue attached.",
+      "secondBest": "Then let's put it off until my thesis is in.",
+      "secondBestKilledBy": "\"It has to be reimaged today\" — the speaker states the job as compulsory and dated, so a reply that reschedules it to after the thesis is submitted contradicts the utterance rather than responding to it."
+    },
+    {
+      "stimulus": "Transcript: \"Can you unlock the tills before fetching the keys upstairs?\"",
+      "key": "The keys upstairs are what unlock them.",
+      "distractors": [
+        "Sure, I'll have them open before I head up.",
+        "I'll swap the receipt roll before we open.",
+        "Priya's the one who handles anything upstairs."
+      ],
+      "explanation": "The supervisor's request asks for the tills to be opened before the thing that opens them is in hand, so the reply that does the work is the flat statement that the keys upstairs are what unlock them — it corrects the order the request assumes rather than agreeing to it. Agreeing to have them open before heading up promises exactly what the request makes impossible; swapping the receipt roll offers a different pre-opening task nobody asked about; naming Priya as the person who handles anything upstairs sends the request to someone else when it was the keys, not a person, that the utterance put upstairs.",
+      "act": "correction of the speaker's premise",
+      "setting": "part-time shift",
+      "sharedProperty": "All four are the same staff member's reply about the opening routine of the same shop this morning, each referring to a physical part of that routine (the tills, the keys upstairs, the receipt roll, the upstairs office), all in the same flat co-worker register with no apology and no evaluation.",
+      "forcedBy": "The request itself is self-defeating — it orders the unlocking before the keys are fetched — so the only reply that fits is one that points at the impossibility; nothing about the responder's own situation is needed.",
+      "secondBest": "Sure, I'll have them open before I head up.",
+      "secondBestKilledBy": "\"unlock the tills before fetching the keys upstairs\" — the utterance itself places the keys upstairs and unfetched at the moment the tills are to be opened, so a promise to have them open before heading up asserts an unlocking performed with the thing that unlocks them still in another room."
+    },
+    {
+      "stimulus": "Transcript: \"Why's this ringing up as a rental when I'm buying it?\"",
+      "key": "Let me void that and ring it through as a purchase instead.",
+      "distractors": [
+        "You'll need the receipt at the service desk downstairs.",
+        "Rental works out cheaper if you don't need to keep it.",
+        "Is it the used copy you wanted instead of the new one?"
+      ],
+      "explanation": "The customer is not asking for the cause; the question is a complaint about a transaction happening at that moment on the clerk's own register, so the reply that voids the line and rings it through as a purchase is the one that answers it. Sending the customer to the service desk with a receipt assumes a completed sale there is none of; recommending the rental as cheaper argues with a decision the customer has already stated; asking whether the used copy was wanted instead of the new one repairs a mix-up the customer never described.",
+      "act": "a fix offered",
+      "setting": "bookstore",
+      "sharedProperty": "All four are the clerk's reply at the till about this one book in this one transaction, each naming a way the store can classify it (purchase, return, rental, used or new), all in the same service register, all second- or first-person and none of them formal.",
+      "forcedBy": "\"ringing up\" places the fault in the register the responder is operating, and \"I'm buying it\" states the intended category outright, so the correction is available to the responder on the spot and no other party is implicated.",
+      "secondBest": "You'll need the receipt at the service desk downstairs.",
+      "secondBestKilledBy": "\"Why's this ringing up ... when I'm buying it\" — both halves are present tense: the sale is still on the screen and has not gone through, so there is no receipt to carry anywhere and nothing yet to return, and the error sits in the register in front of the responder."
+    },
+    {
+      "stimulus": "Transcript: \"Can you take the late penalty off if my professor okayed it?\"",
+      "key": "That has to come from him in writing to us.",
+      "distractors": [
+        "I'll clear the penalty now that you've told me.",
+        "That penalty hardly moves your final mark.",
+        "Was the deadline the one on the syllabus?"
+      ],
+      "explanation": "The student is asking the counter to act on a permission he is only reporting, and the reply that says it has to come from the professor in writing routes the request to the one person whose word can carry it — the right move, not a brush-off. Clearing the penalty on the strength of what the student says treats a relayed remark as authorisation; saying the penalty hardly moves the final mark answers a worry about the grade rather than the request; asking whether the deadline was the one on the syllabus reopens whether the penalty was earned, which the student never disputed.",
+      "act": "redirection to the right person",
+      "setting": "registrar",
+      "sharedProperty": "All four are the registrar clerk's reply across the same counter about the same late penalty on the same record, each treating it as a live administrative item, in the same neutral service register, none apologetic and none refusing outright.",
+      "forcedBy": "The request is conditional on an approval the utterance attributes to an absent third party and supplies only as the student's own report, so the reply that names how that approval reaches the office is the one the utterance calls for.",
+      "secondBest": "I'll clear the penalty now that you've told me.",
+      "secondBestKilledBy": "\"if my professor okayed it\" — the approval is offered as the student's report of someone else's word and is framed as a condition, not a fact in evidence, so acting on \"you've told me\" grants the request on the strength of the very thing the utterance leaves unestablished."
+    }
+  ]
+}

@@ -1,0 +1,69 @@
+{
+  "author": "a",
+  "items": [
+    {
+      "stimulus": "Transcript: \"You're the fourth one down about that radiator, maintenance is up there now.\"",
+      "key": "Good, I'll leave it with them, then.",
+      "distractors": [
+        "Has anyone actually told maintenance about it?",
+        "Nice, so the water pressure should be back tonight.",
+        "Nobody's touched it since the weekend, honestly."
+      ],
+      "explanation": "The clerk is closing the matter rather than opening one: she reports that others have already raised the same radiator and that maintenance is working on it, so the natural reply just accepts that and leaves it with them. Asking whether anyone has told maintenance requests information the clerk has just given; expecting the water pressure back tonight misreads a heating complaint as plumbing; and saying nobody has touched it since the weekend contradicts what she just said.",
+      "act": "plain agreement",
+      "setting": "front desk",
+      "sharedProperty": "All four are one-line informal replies from the student standing at the desk, all about this radiator report, all first person or about the repair, none formal, none longer than 1.42x the shortest. Two go along with the clerk (the reply that leaves it with them, the reply about the water pressure), one is neutral (the question about maintenance being told), one pushes back (the reply that nobody has touched it), so the key is not the only cooperative or the only satisfied option.",
+      "forcedBy": "The clerk supplies both facts a follow-up would ask for: others have reported it, and repair is in progress. With nothing left to request, report or dispute, acceptance is the only move the utterance leaves open.",
+      "secondBest": "Has anyone actually told maintenance about it?",
+      "secondBestKilledBy": "\"maintenance is up there now\""
+    },
+    {
+      "stimulus": "Transcript: \"Can you swap into the Elm Street single before check-in Sunday?\"",
+      "key": "Is that for the whole year, or only through the fall?",
+      "distractors": [
+        "Could I move over the week after classes start?",
+        "Sure, if I can choose who takes the other bed.",
+        "I'd rather stay on Elm than move over there."
+      ],
+      "explanation": "The housing officer offers one named room by one named date, and says nothing about how long the assignment runs, so asking whether it covers the year or only the fall is what a student needs settled before answering. Asking to move the week after classes start ignores the Sunday deadline the offer is tied to; choosing who takes the other bed misses that the room on offer is a single; and preferring to stay on Elm reverses the direction of the swap, which would move the student to Elm.",
+      "act": "a clarifying question asked back",
+      "setting": "housing office",
+      "sharedProperty": "All four are the student's reply to the same offer, all in casual student-to-staff register, all reference the move or the room, all within 1.18x of each other in length, and two of the four are interrogative, so the key is not the only question. All four are also willing in principle to engage the swap rather than dismiss it.",
+      "forcedBy": "Each alternative asserts something the offer already contradicts: a later date, a second bed, or a move away from Elm. The term of the assignment is the one thing the utterance genuinely does not state, so the only reply that neither contradicts the offer nor commits blind is the one that asks for it.",
+      "secondBest": "Sure, if I can choose who takes the other bed.",
+      "secondBestKilledBy": "\"the Elm Street single\""
+    },
+    {
+      "stimulus": "Transcript: \"Could I borrow your meal card before the cashier comes back?\"",
+      "key": "Sorry, I'd rather not risk losing the card.",
+      "distractors": [
+        "Nobody at that register ever checks the photo.",
+        "You always do this right before payday.",
+        "Take it, just put it back in my bag."
+      ],
+      "explanation": "Timing the request to the cashier's absence makes it a request to help misuse the card rather than an ordinary favour, so a polite decline is the reply that answers what is actually being asked. Handing the card over to be returned later goes along with it; saying that register never checks photos endorses the same reasoning; and the remark about payday answers a request for help as if it were a habit worth teasing.",
+      "act": "a polite refusal",
+      "setting": "campus dining",
+      "sharedProperty": "All four are casual peer replies about the speaker's card and this moment at the register, all short and unrehearsed, none formal, longest within 1.28x the shortest. Two go along with the request, one is a gripe and one declines, so no single stance separates the key from the set.",
+      "forcedBy": "The request is scheduled around the cashier's absence rather than around the responder's convenience, which marks the card use as something that must not be seen. Once the speaker has framed it that way, going along with it is complicity, and the only reply that answers the request as framed is one that declines it.",
+      "secondBest": "Take it, just put it back in my bag.",
+      "secondBestKilledBy": "\"before the cashier comes back\""
+    },
+    {
+      "stimulus": "Transcript: \"Can you meet me at the bus depot before your seminar ends?\"",
+      "key": "Right after the seminar works better for me.",
+      "distractors": [
+        "The depot's only a short walk from your building.",
+        "Sure, I'll be waiting by the ticket window then.",
+        "Do you mean the depot over on Marsh Street?"
+      ],
+      "explanation": "The request asks for a meeting at a time when the speaker himself places the listener still sitting in a seminar, so the reply that works is the one that moves the meeting to after it ends. Promising to be waiting by the ticket window agrees to a time the listener cannot make; the remark about the short walk treats distance as the obstacle when the obstacle is the hour; and asking which depot is meant picks up a detail that was never in question.",
+      "act": "a counter-proposal",
+      "setting": "transit",
+      "sharedProperty": "All four are casual replies to the same meet-up request, all reference the depot or the seminar, all cooperative rather than dismissive, none formal, longest within 1.14x the shortest. Three of the four accept that the meeting will happen and differ only in what they do about the time, so the key is not the only willing option.",
+      "forcedBy": "The speaker's own question sets the meeting inside a period he states the listener is in class, so the plan as proposed cannot be carried out. Nothing in the utterance blocks meeting later, so correcting the hour rather than declining outright is what the slip calls for.",
+      "secondBest": "Sure, I'll be waiting by the ticket window then.",
+      "secondBestKilledBy": "\"before your seminar ends\""
+    }
+  ]
+}

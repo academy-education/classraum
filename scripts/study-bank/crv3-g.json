@@ -1,0 +1,69 @@
+{
+  "author": "g",
+  "items": [
+    {
+      "stimulus": "Transcript: \"Should I hold your application until the aid deadline passes on Friday?\"",
+      "key": "Let's send it through before Friday and amend the file after.",
+      "distractors": [
+        "Sure, holding it till after Friday makes sense to me.",
+        "Which deadline is Friday, the aid one or the housing one?",
+        "Thanks, I'll ask the registrar to hold their copy too."
+      ],
+      "explanation": "The aid officer proposes a plan that defeats its own purpose: an application held until the deadline has passed cannot be considered. The reply that sends it through before Friday and amends the file after supplies the workable alternative. Agreeing that holding it till after Friday makes sense adopts the officer's error; asking which deadline Friday is treats as open something the speaker already named as the aid deadline; sending the registrar to hold a copy answers a different office about a document nobody mentioned.",
+      "act": "counter-proposal",
+      "setting": "financial aid",
+      "sharedProperty": "All four are the student's reply to a staff member about what happens to this one application in the days around Friday: same student-to-staff register, each names a time or an office, each treats the file as still in play, and all sit in a 53-61 character band.",
+      "forcedBy": "The speaker's own turn contains the defect: the action offered (holding the application) and the moment offered (after the deadline passes) cannot both serve the student, so no reply that leaves the plan intact works, and the responder needs no fact of their own to see it.",
+      "secondBest": "Sure, holding it till after Friday makes sense to me.",
+      "secondBestKilledBy": "\"until the aid deadline passes on Friday\" - the speaker states the holding period ends only once the deadline has gone by, so agreeing to the hold is agreeing to file after the aid deadline. The wrongness is in the stimulus's own words, not in anything about the responder."
+    },
+    {
+      "stimulus": "Transcript: \"Can I keep the original slip, the one your specialist needs back?\"",
+      "key": "I'd better keep that one for the specialist, sorry.",
+      "distractors": [
+        "Of course, hang onto it as long as you need.",
+        "Which slip do you mean, the one from the health centre?",
+        "Nobody mentioned the specialist wanted paperwork sent back."
+      ],
+      "explanation": "The pharmacy staffer asks to keep a document and, in the same breath, identifies it as the one the specialist needs back, so the request cannot be granted; the reply that keeps it for the specialist and apologises is the refusal the utterance requires. Telling the staffer to hang onto it as long as they need hands over the very slip the speaker said must go back; asking which slip is meant treats as unidentified a slip the speaker has just identified; complaining that nobody mentioned the specialist wanted paperwork back turns a request into a grievance about being informed.",
+      "act": "polite refusal",
+      "setting": "health centre pharmacy",
+      "sharedProperty": "All four are the student's reply to counter staff about the physical slip in front of them: same one-sentence spoken register, each refers to the slip or to the specialist's claim on it, each is cooperative in tone rather than hostile, and all sit in a 44-59 character band.",
+      "forcedBy": "The speaker attaches to their own request the fact that defeats it - the slip is owed back to the specialist - so keeping it is ruled out by the asker's own description, and the responder does not have to supply any preference or circumstance of their own.",
+      "secondBest": "Of course, hang onto it as long as you need.",
+      "secondBestKilledBy": "\"the one your specialist needs back\" - granting an open-ended hold is incompatible with the speaker's own statement that the specialist needs the slip returned. \"as long as you need\" and \"needs back\" cannot both be satisfied."
+    },
+    {
+      "stimulus": "Transcript: \"Can you swing by on the day we close early this week?\"",
+      "key": "Which day are you closing early this week?",
+      "distractors": [
+        "Sure, I'll come by Thursday afternoon for the wheel.",
+        "I'll just leave the payment at the front desk.",
+        "I already picked the bike up yesterday evening."
+      ],
+      "explanation": "The shop names the visit day only by a property - the day they close early - that the listener has not been given, so the reply that asks which day that is, is the only one that can be made without inventing the appointment. Promising Thursday afternoon fixes a day the speaker never identified; leaving the payment at the front desk answers a request about money that was not made; saying the bike was already collected corrects a premise the speaker did not assert.",
+      "act": "clarifying question asked back",
+      "setting": "bike repair",
+      "sharedProperty": "All four are the customer's reply to the shop about this week's visit: same casual peer-to-staff register, each concerns when or whether the customer turns up or settles the job, none is hostile, and all sit in a 42-52 character band.",
+      "forcedBy": "The utterance specifies the appointment by a description the speaker alone can resolve, so any reply that commits, pays or corrects has to assume a day the speaker withheld. Asking for the referent is the only move the utterance leaves available.",
+      "secondBest": "Sure, I'll come by Thursday afternoon for the wheel.",
+      "secondBestKilledBy": "\"on the day we close early this week\" - the requested visit is tied to one particular day, and the speaker identifies that day only as the early-closing one. Naming Thursday asserts an identification the stimulus never makes."
+    },
+    {
+      "stimulus": "Transcript: \"On Sundays we loop the long way to Hale, no stops between.\"",
+      "key": "Hale's the one I want, so the loop's fine by me.",
+      "distractors": [
+        "Could you drop me at the science corner on the way?",
+        "Does it still reach Hale before six?",
+        "Thanks, I'll use the weekday route instead."
+      ],
+      "explanation": "The driver sounds like he is announcing a problem, but what he actually reports is that this shuttle reaches the rider's stop; nothing is being refused, delayed past use or asked of the rider, so the reply that says Hale is where the rider is going and the loop is fine is the whole of what is called for. Asking to be dropped at the science corner requests something the driver has just excluded; asking whether it still reaches Hale before six raises a time limit that was never mentioned; announcing a switch to the weekday route abandons a service that does what the rider needs.",
+      "act": "plain agreement",
+      "setting": "campus shuttle",
+      "sharedProperty": "All four are the rider's reply to the driver about this Sunday trip, each takes the driver's description as true and states what the rider will do with it, each names a stop or a route, and all sit in a 36-51 character band.",
+      "forcedBy": "The utterance is an informative statement with no request, no error and no complaint in it, and its final clause forecloses the alternatives a careless listener reaches for. The long route still ends at the rider's stop, so agreement is not merely polite, it is the only move with anything to attach to.",
+      "secondBest": "Could you drop me at the science corner on the way?",
+      "secondBestKilledBy": "\"no stops between\" - the speaker states there is no stop before Hale, so asking to be let off partway asks for something the same sentence has already ruled out."
+    }
+  ]
+}

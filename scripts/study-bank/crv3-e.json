@@ -1,0 +1,69 @@
+{
+  "author": "e",
+  "items": [
+    {
+      "stimulus": "Transcript: \"Want me to write the new thesis statement in on your graded draft?\"",
+      "key": "I'd rather write it myself and have you flag where it drifts.",
+      "distractors": [
+        "Go ahead — your wording always lands better than mine.",
+        "Which paragraph is my thesis actually doing its work in?",
+        "My professor sets the thesis wording in her office hours."
+      ],
+      "explanation": "The tutor is offering to author a sentence on a draft that will be graded, so the cooperative reply declines the authorship and keeps the tutor's help in a form that is allowed: the reply that keeps the writing with the student and asks the tutor to flag where it drifts. The reply that tells the tutor to go ahead because the tutor's wording lands better accepts authorship of graded work. The reply asking which paragraph the thesis is doing its work in answers a diagnostic question the tutor did not ask. The reply sending thesis wording to the professor's office hours moves the same disallowed request to a different person.",
+      "act": "polite refusal",
+      "setting": "writing centre",
+      "sharedProperty": "All four are casual student-to-tutor replies about who supplies the thesis wording on this draft, each naming a specific locus for it — me, you, a paragraph, my professor — in the same first-person spoken register and the same 54-61 character band.",
+      "forcedBy": "The offer is not a bare offer: the speaker's own turn states what accepting costs — the writing would be the tutor's on a draft the student submits for a grade (\"write the new thesis statement in on your graded draft\").",
+      "secondBest": "Go ahead — your wording always lands better than mine.",
+      "secondBestKilledBy": "\"on your graded draft\" — the tutor is not offering to help with practice text; the sentence would go in on work being submitted for a grade, so handing the wording over is the one thing the utterance rules out."
+    },
+    {
+      "stimulus": "Transcript: \"Should I book your mock interview with the engineering advisor, since you're pre-law?\"",
+      "key": "Any chance the law advisor's free instead?",
+      "distractors": [
+        "Sure, engineering's fine — practice is practice.",
+        "You've got me down wrong; I'm not in engineering.",
+        "Which engineering firms does he usually prep people for?"
+      ],
+      "explanation": "The staffer proposes a pairing that her own reason defeats — she names the student as pre-law while offering the engineering advisor — so the reply that does the work is the one asking for the law advisor instead, keeping the appointment and changing only the mismatched part. The reply that says engineering is fine because practice is practice accepts the mismatch the speaker herself flagged. The reply telling her she has the student down wrong corrects a record she has already read correctly. The reply asking which engineering firms he preps people for treats engineering employers as the goal.",
+      "act": "counter-proposal",
+      "setting": "career services",
+      "sharedProperty": "All four are the student's spoken reply about which advisor should run the mock interview, each naming the field or the advisor, all cooperative in tone, all 42-56 characters.",
+      "forcedBy": "The speaker states the disqualifying fact in her own turn (\"since you're pre-law\") while proposing the engineering advisor, so the pairing is wrong on information she already has; the only move left is to keep the booking and swap the advisor.",
+      "secondBest": "You've got me down wrong; I'm not in engineering.",
+      "secondBestKilledBy": "\"since you're pre-law\" — the speaker has already stated the student's field correctly, so there is no record error to correct; the same words also block the reply asking which engineering firms he preps people for."
+    },
+    {
+      "stimulus": "Transcript: \"Everyone's parcels end up behind the counter once their box fills up.\"",
+      "key": "Makes sense — those boxes barely hold an envelope.",
+      "distractors": [
+        "Sorry, I'll empty mine out before it overflows again.",
+        "Where do the overflow parcels get put?",
+        "Could you check behind the counter for mine?"
+      ],
+      "explanation": "The clerk is describing how the mailroom generally works, not reporting a problem with this student's box and not making a request, so the reply that simply agrees with the observation and adds why the boxes fill is the natural one. The reply apologising and promising to empty mine out reads a general remark as a complaint about the listener. The reply asking where the overflow parcels get put asks for the fact the remark just supplied. The reply asking the clerk to check behind the counter assumes the listener's own box is among the full ones.",
+      "act": "plain agreement",
+      "setting": "mailroom",
+      "sharedProperty": "All four are short spoken replies about where parcels sit when a mailbox fills, in the same neutral student-to-staff register, each referring to the boxes, the counter or the parcels, and all 38-53 characters.",
+      "forcedBy": "The utterance is generic — \"Everyone's parcels\", \"their box\" — and it already states the destination, so there is nothing addressed to the listener to act on and nothing left to ask; agreeing is the only move it invites.",
+      "secondBest": "Could you check behind the counter for mine?",
+      "secondBestKilledBy": "\"Everyone's parcels end up behind the counter once their box fills up\" — the speaker says \"their box\", never that the listener's box has filled, so the request presupposes a fact the utterance withholds; \"end up behind the counter\" likewise answers the reply that asks where the overflow parcels get put."
+    },
+    {
+      "stimulus": "Transcript: \"Are you appealing both tickets, or just the one we waived?\"",
+      "key": "Which one got waived? Nothing came to me about that.",
+      "distractors": [
+        "Both of them, please — I'll pay whatever the appeal costs.",
+        "Neither one was mine; that car sold in the spring.",
+        "I'll bring both tickets over after my afternoon class."
+      ],
+      "explanation": "The clerk's question contains something that cannot be true as offered — she invites an appeal of a ticket she says the office already waived, and she never identifies which ticket that is — so the reply that asks which one got waived is the only one that can be given without guessing. The reply asking for both and offering to pay whatever the appeal costs commits to appealing a ticket that has already been dropped. The reply saying neither was mine because the car sold in the spring answers a question about ownership that was not asked. The reply promising to bring both tickets over after class treats a question about scope as a request for paperwork.",
+      "act": "clarifying question asked back",
+      "setting": "parking office",
+      "sharedProperty": "All four are the student's spoken reply to a parking clerk about the scope of an appeal, each referring to the tickets by number or ownership, all cooperative rather than hostile, all 50-58 characters.",
+      "forcedBy": "The speaker's own turn breaks: \"the one we waived\" is offered as an appealable option, and the utterance never says which of the two it is, so no direct answer is available to the listener.",
+      "secondBest": "Both of them, please — I'll pay whatever the appeal costs.",
+      "secondBestKilledBy": "\"just the one we waived\" — the office has already dropped one of the two, so \"both\" pays to appeal a charge the speaker has just said is gone, and the utterance names no ticket, so the listener cannot know which one that commitment covers."
+    }
+  ]
+}

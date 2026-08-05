@@ -1,0 +1,69 @@
+{
+  "author": "h",
+  "items": [
+    {
+      "stimulus": "Transcript: \"Sorry, why does this register decline my card when the others take it?\"",
+      "key": "That reader's been flaky since Monday, so let me ring you up at the far till.",
+      "distractors": [
+        "The ID office in the union basement reissues cards while you wait.",
+        "That card of yours most likely needs its chip re-encoded.",
+        "These readers all act up in the ten minutes before lunch rush."
+      ],
+      "explanation": "The student is not asking for a diagnosis of the card; they have already established that every other till accepts it, so the complaint locates the fault in this one machine and the cashier's own equipment is what has to be worked around. Ringing the sale up at the far till answers that. Sending the student to the union basement for a reissued card treats a card that demonstrably works as the broken part; telling the student their chip needs re-encoding blames a card that is being accepted on the neighbouring tills right now; and saying the readers act up before lunch rush concedes the fault without doing anything about the sale in progress.",
+      "act": "fix offered",
+      "setting": "cafeteria checkout",
+      "sharedProperty": "All four are the cashier's own reply, in the same flat unapologetic staff register, and each one names a concrete piece of the dining hall or campus - the far till, the union basement ID office, the chip in the card, the readers before lunch rush. None is more formal, more cooperative or more elaborate than the others, and each treats the decline as routine rather than as an incident.",
+      "forcedBy": "\"when the others take it\" places the card and the student's technique outside suspicion and leaves only this register, which belongs to the person replying - so the reply has to be something that person does with their own equipment, now, while the student is still standing there holding a tray.",
+      "secondBest": "The ID office in the union basement reissues cards while you wait.",
+      "secondBestKilledBy": "\"when the others take it\" - the card is working, at this moment, on the other registers in the same room, so a reissued card replaces the one component the speaker has just proved is fine."
+    },
+    {
+      "stimulus": "Transcript: \"Three voicemails on the booking line, so how do I get Thursday?\"",
+      "key": "Alvarez keeps the court sheet himself; he's in the pool office till six.",
+      "distractors": [
+        "Were those voicemails about the morning courts or the whole evening block?",
+        "I'll put another message through on the booking line for you this afternoon.",
+        "Nobody clears that line during exam week, so you'll be waiting."
+      ],
+      "explanation": "The speaker is not reporting a problem with voicemail; they are asking for a route to a Thursday court after the advertised route has already failed three times, which makes the useful reply the name of the person who actually controls the sheet and where to find him. Offering to leave a fourth message on the booking line repeats the channel that has already produced nothing; asking which courts the voicemails were about seeks a detail that cannot change the answer; and saying nobody clears the line during exam week explains the silence while leaving the speaker with no Thursday.",
+      "act": "redirection to the right person",
+      "setting": "sports centre booking",
+      "sharedProperty": "All four are replies from someone who knows how the sports centre actually runs, each pinned to a specific person, place, or stretch of time - Alvarez and the pool office, the morning courts and the evening block, this afternoon, exam week. All four take the speaker's account of the three voicemails at face value, and none of them apologises or offers sympathy.",
+      "forcedBy": "\"Three voicemails on the booking line\" establishes that the official channel has been used, repeatedly, without result, so any reply that routes the speaker back through it is answering a request that has already been refused three times. What is left unresolved is who holds Thursday, and only the reply naming the sheet's keeper supplies it.",
+      "secondBest": "I'll put another message through on the booking line for you this afternoon.",
+      "secondBestKilledBy": "\"Three voicemails on the booking line\" - the line has already taken three messages about this and returned nothing, so a fourth message is the same failed action with a different sender."
+    },
+    {
+      "stimulus": "Transcript: \"Can we start Korean at eight, since choir has me Tuesdays and Thursdays?\"",
+      "key": "Eight works, as long as you text me when choir runs over.",
+      "distractors": [
+        "No problem, we can drop Korean altogether while choir season's on.",
+        "Choir season always swallows your evenings once term gets going.",
+        "Let's just move Korean hour to Thursday mornings from now on."
+      ],
+      "explanation": "The speaker is asking to shift the start time of a standing session, and the reason they give - a rehearsal commitment on two fixed nights - is exactly what makes an unqualified yes unsafe, since a rehearsal that overruns lands on the new eight o'clock start. Agreeing to eight while asking to be told when choir overruns accepts the request and covers the risk the speaker themselves introduced. Moving the hour to Thursday mornings puts it on a day choir already owns; remarking that choir season swallows the evenings commiserates without saying whether eight o'clock is agreed; and offering to drop Korean for the season answers a request to cancel that nobody made.",
+      "act": "acceptance that adds a condition",
+      "setting": "language exchange",
+      "sharedProperty": "All four are a peer's reply about the scheduling of the same standing Korean hour, all in the same easy first-name register with no titles or apologies, and every one of them accepts the choir commitment as fixed and unquestioned rather than arguing with it.",
+      "forcedBy": "\"choir has me Tuesdays and Thursdays\" is stated as a standing claim on two named nights, so those nights are closed to any counter-proposal and the schedule is already on the table; what the speaker has not settled is what happens when a rehearsal on one of those nights runs past eight, and only the reply that ties the yes to being told about it settles it.",
+      "secondBest": "Let's just move Korean hour to Thursday mornings from now on.",
+      "secondBestKilledBy": "\"choir has me Tuesdays and Thursdays\" - Thursday is one of the two days the speaker has just said is spoken for, so the counter-proposal relocates the session onto the conflict it was meant to avoid."
+    },
+    {
+      "stimulus": "Transcript: \"Why does your scanner blur the file I emailed from my phone?\"",
+      "key": "Nothing you email touches a scanner, and phone files come in soft.",
+      "distractors": [
+        "Posters blown up to that size always look rough when you're standing close.",
+        "I'll clean the scanner glass and run your poster again.",
+        "Which of our machines did you actually watch it come off?"
+      ],
+      "explanation": "The question is built on an attribution the speaker's own words defeat: a file that arrived by email never passes through scanning hardware at all, so the shop cannot have blurred it and the honest reply corrects where the softness came from. Cleaning the scanner glass accepts a premise the emailed file rules out; asking which machine the poster came off chases equipment that is not in the chain either; and saying large posters always look rough up close excuses the result without touching the claim that the shop's scanner caused it.",
+      "act": "correction of the speaker's premise",
+      "setting": "poster printing",
+      "sharedProperty": "All four are the print shop worker's reply, all faintly defensive and none of them apologetic or formal, and each one is about this shop's own kit or its own output quality - the scanner, the glass, our machines, posters at that size. Every one of them stays on the blur the customer is complaining about rather than changing the subject.",
+      "forcedBy": "\"the file I emailed from my phone\" names the delivery route, and that route bypasses scanning entirely, so the speaker has supplied the fact that unmakes their own question. With the scanner out of the chain the only remaining source of the softness is the phone file itself, which is what the correcting reply says.",
+      "secondBest": "I'll clean the scanner glass and run your poster again.",
+      "secondBestKilledBy": "\"the file I emailed from my phone\" - an emailed file is never laid on the glass, so cleaning the glass acts on a surface the customer's poster never touched."
+    }
+  ]
+}

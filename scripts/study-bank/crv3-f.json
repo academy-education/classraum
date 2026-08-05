@@ -1,0 +1,69 @@
+{
+  "author": "f",
+  "items": [
+    {
+      "stimulus": "Transcript: \"Do you know how long Priya booked the folding table for tomorrow?\"",
+      "key": "Priya's in the lounge right now — she'd know her own booking.",
+      "distractors": [
+        "Which table — the long one by the window or the one near the sinks?",
+        "I'll shift my baskets off the counter so you can spread out there.",
+        "Priya booking a shared table a day ahead seems like a lot."
+      ],
+      "explanation": "The speaker asks for a fact about someone else's reservation, and the utterance names whose reservation it is, so sending them to Priya, who is in the lounge and would know her own booking, is the only reply that can supply it. Clearing baskets off the counter offers space now for a question about tomorrow; asking which table is the long one or the one near the sinks re-opens a table the speaker has already identified; calling a day-ahead booking a lot judges Priya instead of answering how long.",
+      "act": "redirection to the right person",
+      "setting": "dorm laundry",
+      "sharedProperty": "All four are casual same-floor replies about the shared folding table and Priya's hold on it; two of the four name Priya, two carry a dash, and none is more or less polite than the others.",
+      "forcedBy": "The question is 'how long Priya booked' — the duration is a fact held by exactly one person, who is named in the utterance and is on the premises. The listener is not asked for space, for a judgement, or for the table's identity.",
+      "secondBest": "I'll shift my baskets off the counter so you can spread out there.",
+      "secondBestKilledBy": "\"for tomorrow\" and \"how long Priya booked\" — the speaker asks for the end of a booking on another day, so clearing counter space right now answers neither 'how long' nor 'tomorrow'."
+    },
+    {
+      "stimulus": "Transcript: \"Why does that corner machine log me out and wipe what I've typed?\"",
+      "key": "The corner one's dying — move to the window desk and I'll restore your draft.",
+      "distractors": [
+        "That's just the screen lock — your session's still open underneath.",
+        "Mine's been doing that all week — I'll flag it when I leave.",
+        "Turn autosave on before you type anything else in there."
+      ],
+      "explanation": "The question reports live damage — being logged out and having typed work wiped — so the reply that treats the corner machine as failed, moves the speaker to the window desk and recovers the draft is the one that meets it. Saying it is only the screen lock with the session open underneath denies a loss the speaker just described; promising to flag it on the way out leaves both the machine and the lost text as they are; telling them to turn autosave on before typing anything else does nothing about what is already gone.",
+      "act": "a fix offered",
+      "setting": "computer lab",
+      "sharedProperty": "All four are peer replies about one failing lab machine, all four treat the report as something to be explained or handled rather than dismissed, two commit the speaker to an action with 'I'll', and two carry a dash.",
+      "forcedBy": "The utterance states two effects together — logged out AND typed work wiped — which rules out a benign explanation, and states them as happening now, which rules out deferral or a change of habit. Recovery plus a working machine is the only response that covers both effects.",
+      "secondBest": "That's just the screen lock — your session's still open underneath.",
+      "secondBestKilledBy": "\"wipe what I've typed\" — a screen lock leaves typed text intact, so this reply contradicts the loss the speaker reports; \"log me out and wipe\" names two effects, and the lock produces neither."
+    },
+    {
+      "stimulus": "Transcript: \"Why would Marcus cancel our union room? The email says he booked it.\"",
+      "key": "That's the booking confirmation, so nothing's cancelled.",
+      "distractors": [
+        "Which room does the email say it was, the one by the games hall?",
+        "I'll book the small room upstairs before anyone else grabs it.",
+        "He's been unreliable about club stuff all semester, honestly."
+      ],
+      "explanation": "The speaker asserts a cancellation while citing an email that records a booking, so the reply that identifies the message as the booking confirmation and denies any cancellation is the one that repairs the mistake the speaker has just made out loud. Booking the small room upstairs acts on a cancellation the quoted email denies; asking which room the email says it was queries a room the speaker has already called ours; calling Marcus unreliable all semester accepts the cancellation on evidence that shows the opposite.",
+      "act": "correction of the speaker's premise",
+      "setting": "student union",
+      "sharedProperty": "All four are club-mate replies about the union room and Marcus's part in it; two refer to the email, all four accept that the speaker has received a message about the room, and all sit in the same casual register.",
+      "forcedBy": "The speaker supplies his own evidence — an email that says Marcus booked it — and draws the opposite conclusion from it inside one turn. Nothing outside the utterance is needed to see that a booking record is not a cancellation.",
+      "secondBest": "I'll book the small room upstairs before anyone else grabs it.",
+      "secondBestKilledBy": "\"The email says he booked it\" — the speaker's only stated evidence records the room being booked, so replacing it acts on a cancellation that the quoted email denies; and \"Why would Marcus cancel\" leaves the cancellation itself still in question."
+    },
+    {
+      "stimulus": "Transcript: \"Want me to run your posters on the recycled stock we've got left?\"",
+      "key": "Yes, if there's enough left to do the whole set on one stock.",
+      "distractors": [
+        "The recycled always takes ink better than the coated stuff, honestly.",
+        "Ask Nadia about the paper if she's still in the back.",
+        "Could you hold one back for the noticeboard too?"
+      ],
+      "explanation": "The offer is to use what remains of one stock on a whole poster set, so agreeing on condition that the remainder covers the set is the reply that takes the offer and protects against a half-and-half run. Praising how recycled takes ink better than the coated stuff never answers the offer; sending the printer to Nadia hands off a decision about the speaker's own posters; asking for one to be held back for the noticeboard adds an errand instead of settling the stock.",
+      "act": "acceptance that adds a condition",
+      "setting": "print shop",
+      "sharedProperty": "All four are counter-level replies about which paper this poster job runs on, all four take the printer's offer to do the work as given, two contain an if- or conditional clause, and none refuses.",
+      "forcedBy": "\"the recycled stock we've got left\" is a remainder of unknown size against a full poster set, so the quantity is the one thing the offer leaves open; the utterance also says \"your posters\", which puts the decision with the addressee.",
+      "secondBest": "Ask Nadia about the paper if she's still in the back.",
+      "secondBestKilledBy": "\"Want me to run your posters\" — the printer is asking the addressee to decide about the addressee's own job, and \"we've got left\" makes the paper stock already in the shop's hands, so there is nothing here for a third person to authorise."
+    }
+  ]
+}
