@@ -1,0 +1,462 @@
+[
+  {
+    "id": "1b3333e6-41b8-4caa-9a5c-2903e04e9b3c",
+    "oldStem": "In right triangle ABC, the right angle is at B, the hypotenuse AC = 5, and leg BC = 4. What is the length of leg AB?",
+    "newStem": "In the triangle shown, what is the length of AB?",
+    "removed": [
+      "right angle is at B — explicit right-angle square at vertex B: <path d=\"M70.0,185.0 h15.0 v-15.0\">",
+      "hypotenuse AC = 5 — <text x=\"165\" y=\"116\">5</text> on segment AC",
+      "leg BC = 4 — <text x=\"157\" y=\"205\">4</text> on segment BC",
+      "the leg/hypotenuse designations — supplied by the right-angle square at B"
+    ],
+    "key": "3",
+    "newDistractors": [
+      "21",
+      "24",
+      "33"
+    ],
+    "keyRankWhenSorted": 1,
+    "family": "3 (3-4-5), 21 (20-21-29), 24 (7-24-25), 33 (33-44-55): four primitive-triple LEGS, none of them a sum, difference, product, half, double, square or unrooted value of the 4 and 5 in the figure",
+    "tension": "Two rules sacrificed, both forced by the figure's numbers. (1) Key rank is 1: the only canonical values below 3 are 1 and 2, which are exactly 5-4 and 4/2 — round 1's disclosure. (2) The distractors exceed the hypotenuse of 5 shown in the figure, so a SIGHTED solver can eliminate them by range. Keeping every option under 5 would leave 3 as the only triple member and restore round 2's recognisability tell. This is the pilot's small-triple case: the real fix is to change the figure's numbers (route b)."
+  },
+  {
+    "id": "1bee59ff-a5b2-49d2-97f2-463da9fce7b1",
+    "oldStem": "The line shown passes through the points (0, -3) and (4, 5). What is the y-coordinate of the point on the line where x = 6?",
+    "newStem": "For the line shown, what is the y-coordinate of the point on the line where x = 6?",
+    "removed": [
+      "passes through (0, -3) — <text>(0, -3)</text> beside the plotted point at that grid position",
+      "passes through (4, 5) — <text>(4, 5)</text> beside the plotted point at that grid position"
+    ],
+    "key": "9",
+    "newDistractors": [
+      "1",
+      "11",
+      "16"
+    ],
+    "keyRankWhenSorted": 2,
+    "family": "four plain integer y-values in the same magnitude band; for a y-coordinate no value is more canonical than another, so there is no \"nice one\" to pick. None is slope×x (12), the sign-flipped 2·6+3 (15), the rise (8) or the run (4), the value at the wrong x (7), a slope (2), an intercept (±3) or a plotted coordinate",
+    "tension": "Key rank 2 rather than 3: the only clean values below the key are 1 and negatives, and a set with two implausibly small y-values would have made the two large options the obvious pair. 394d3860 takes the rank-3 slot instead to keep the batch at 6/6/6/6."
+  },
+  {
+    "id": "1df2745f-40e1-4dee-861d-9dc2c881f22c",
+    "oldStem": "In right triangle ABC shown, the right angle is at B, AB = 3, BC = 4, and AC = 5. What is the value of sin(A)?",
+    "newStem": "In the triangle shown, what is the value of sin(A)?",
+    "removed": [
+      "right angle is at B — explicit right-angle square at vertex B: <path d=\"M70.0,185.0 h15.0 v-15.0\">",
+      "AB = 3 — <text x=\"52\" y=\"125\">3</text> on segment AB",
+      "BC = 4 — <text x=\"157\" y=\"205\">4</text> on segment BC",
+      "AC = 5 — <text x=\"165\" y=\"116\">5</text> on segment AC"
+    ],
+    "key": "4/5",
+    "newDistractors": [
+      "12/13",
+      "8/17",
+      "20/29"
+    ],
+    "keyRankWhenSorted": 3,
+    "family": "every option is the sine of an acute angle in a primitive Pythagorean triangle (4/5, 12/13, 8/17, 20/29): all ≤ 1, all equally \"textbook\". Crucially none is built from 3, 4, 5 — 3/5, 3/4, 4/3, 5/4, 5/3 would each disclose the whole triangle",
+    "tension": null
+  },
+  {
+    "id": "1fff8d96-fa82-4794-bf7a-7ad9fd58e631",
+    "oldStem": "The line shown passes through the points (1, 1) and (3, 7). What is the y-coordinate of the point on the line where x = 5?",
+    "newStem": "For the line shown, what is the y-coordinate of the point on the line where x = 5?",
+    "removed": [
+      "passes through (1, 1) — <text>(1, 1)</text> beside the plotted point",
+      "passes through (3, 7) — <text>(3, 7)</text> beside the plotted point"
+    ],
+    "key": "13",
+    "newDistractors": [
+      "11",
+      "12",
+      "20"
+    ],
+    "keyRankWhenSorted": 3,
+    "family": "four plain integer y-values of the same magnitude; no canonicity contrast. None is slope×x (15), the sign-flipped 3·5+2 (17), key±slope (10, 16), the rise (6) or run (2), a square of the slope (9), or a plotted coordinate",
+    "tension": null
+  },
+  {
+    "id": "202a2b82-9c2e-4d0f-8fa5-8562b31f4751",
+    "oldStem": "In right triangle ABC shown, the right angle is at B, AB = 6, BC = 8, and AC = 10. What is the value of sin(C)?",
+    "newStem": "In the triangle shown, what is the value of sin(C)?",
+    "removed": [
+      "right angle is at B — explicit right-angle square at vertex B: <path d=\"M70.0,185.0 h15.0 v-15.0\">",
+      "AB = 6 — <text x=\"52\" y=\"125\">6</text> on segment AB",
+      "BC = 8 — <text x=\"157\" y=\"205\">8</text> on segment BC",
+      "AC = 10 — <text x=\"165\" y=\"116\">10</text> on segment AC"
+    ],
+    "key": "3/5",
+    "newDistractors": [
+      "5/13",
+      "21/29",
+      "15/17"
+    ],
+    "keyRankWhenSorted": 2,
+    "family": "all four are sines of acute angles of primitive triples (3/5, 5/13, 21/29, 15/17), all ≤ 1, same format. Deliberately a DIFFERENT pool from item 1df2745f (which uses 12/13, 8/17, 20/29) so the two sine items cannot be reasoned across. None is derived from 6, 8, 10 — 4/5, 3/4, 4/3, 5/3, 5/4 would all disclose the legs",
+    "tension": null
+  },
+  {
+    "id": "20ce156d-6f30-4839-96b1-1d9e2779e749",
+    "oldStem": "In right triangle ABC, the right angle is at B, leg AB = 20, and leg BC = 48. What is the length of the hypotenuse AC?",
+    "newStem": "In the triangle shown, what is the length of AC?",
+    "removed": [
+      "right angle is at B — explicit right-angle square at vertex B: <path d=\"M70.0,185.0 h15.0 v-15.0\">",
+      "leg AB = 20 — <text x=\"52\" y=\"125\">20</text> on segment AB",
+      "leg BC = 48 — <text x=\"157\" y=\"205\">48</text> on segment BC",
+      "the leg/hypotenuse designations — supplied by the right-angle square at B"
+    ],
+    "key": "52",
+    "newDistractors": [
+      "50",
+      "61",
+      "73"
+    ],
+    "keyRankWhenSorted": 2,
+    "family": "52 (20-48-52), 50 (30-40-50), 61 (11-60-61), 73 (48-55-73): four triple HYPOTENUSES, all greater than the longer leg so all four are geometrically possible. None is 20+48=68, 48-20=28, the mean 34, the geometric mean ≈31, a double or a square",
+    "tension": null
+  },
+  {
+    "id": "269fd42d-dbcc-448c-b135-19ce2430f081",
+    "oldStem": "In right triangle ABC, the right angle is at B, the hypotenuse AC = 17, and leg BC = 15. What is the length of leg AB?",
+    "newStem": "In the triangle shown, what is the length of AB?",
+    "removed": [
+      "right angle is at B — explicit right-angle square at vertex B: <path d=\"M70.0,185.0 h15.0 v-15.0\">",
+      "hypotenuse AC = 17 — <text x=\"165\" y=\"116\">17</text> on segment AC",
+      "leg BC = 15 — <text x=\"157\" y=\"205\">15</text> on segment BC",
+      "the leg/hypotenuse designations — supplied by the right-angle square at B"
+    ],
+    "key": "8",
+    "newDistractors": [
+      "3",
+      "5",
+      "11"
+    ],
+    "keyRankWhenSorted": 3,
+    "family": "8 (8-15-17), 3 (3-4-5), 5 (5-12-13), 11 (11-60-61): four primitive-triple legs, every one of them shorter than the hypotenuse in the figure, so all four survive a range check. None is 17-15=2, 17+15=32, the mean 16, 2×8 or 8/2",
+    "tension": null
+  },
+  {
+    "id": "2739e126-ba2a-46a7-ad9c-121b30e7c9b8",
+    "oldStem": "In right triangle ABC, the right angle is at B, leg AB = 8, and leg BC = 15. What is the length of the hypotenuse AC?",
+    "newStem": "In the triangle shown, what is the length of AC?",
+    "removed": [
+      "right angle is at B — explicit right-angle square at vertex B: <path d=\"M70.0,190.0 h16.0 v-16.0\">",
+      "leg AB = 8 — <text x=\"50\" y=\"128\">8</text> on segment AB",
+      "leg BC = 15 — <text x=\"160\" y=\"208\">15</text> on segment BC",
+      "the leg/hypotenuse designations — supplied by the right-angle square at B"
+    ],
+    "key": "17",
+    "newDistractors": [
+      "26",
+      "37",
+      "41"
+    ],
+    "keyRankWhenSorted": 1,
+    "family": "17 (8-15-17), 26 (10-24-26), 37 (12-35-37), 41 (9-40-41): four triple hypotenuses. √161 (=√(15²-8²)) and 23 (=8+15) are gone — between them they pinned the legs exactly",
+    "tension": "Key rank forced to 1, and the distractors sit outside the figure's feasible range (with legs 8 and 15 the hypotenuse must lie strictly between 15 and 23, and the only canonical value in that window is 20, which is already item 438377e5's option set). Family parity was kept at the cost of range plausibility for a sighted solver."
+  },
+  {
+    "id": "290a8af4-41ea-49a9-a1cd-70fca2857204",
+    "oldStem": "In the xy-plane shown, what is the distance between the points (3, 4) and (18, 24)?",
+    "newStem": "In the xy-plane shown, what is the distance between the two plotted points?",
+    "removed": [
+      "the point (3, 4) — <text>(3, 4)</text> beside the plotted point at that grid position",
+      "the point (18, 24) — <text>(18, 24)</text> beside the plotted point at that grid position"
+    ],
+    "key": "25",
+    "newDistractors": [
+      "29",
+      "41",
+      "53"
+    ],
+    "keyRankWhenSorted": 1,
+    "family": "25 (15-20-25), 29 (20-21-29), 41 (9-40-41), 53 (28-45-53): four triple hypotenuses, all exceeding the larger coordinate gap so all are possible distances. The old set gave the game away — 5 = 20-15, 625 = d², 17.5 = the arithmetic mean of 15 and 20",
+    "tension": "Key rank forced to 1: the distance must exceed the vertical gap of 20, and there is no canonical triple hypotenuse strictly between 20 and 25."
+  },
+  {
+    "id": "29d88e12-bfef-4750-94dc-632a534766ed",
+    "oldStem": "In right triangle ABC the right angle is at B, and altitude BD is drawn to hypotenuse AC. If AD = 4 and DC = 9, what is the length of AB?",
+    "newStem": "In the figure shown, what is the length of AB?",
+    "removed": [
+      "right angle is at B — angle mark drawn at B: <path d=\"M108.0,128.0 L101.9,137.2 L111.1,143.3 L117.2,134.1\">",
+      "altitude BD is drawn to hypotenuse AC — dashed segment from B(108,128) to D(108,212) on AC, plus the right-angle square at D: <path d=\"M108.0,212.0 L117.0,212.0 L117.0,203.0 L108.0,203.0\">",
+      "AD = 4 — <text x=\"80\" y=\"230\">4</text> under segment AD",
+      "DC = 9 — <text x=\"171\" y=\"230\">9</text> under segment DC"
+    ],
+    "key": "2√13",
+    "newDistractors": [
+      "5√2",
+      "3√5",
+      "2√11"
+    ],
+    "keyRankWhenSorted": 4,
+    "family": "all four are simplified surds k√n lying between 6.6 and 7.3, so no option is arithmetically \"tidier\" than the key and all sit plausibly between AD=4 and AC=13. The two disclosing options are gone: 6 was the geometric mean of 4 and 9 (i.e. BD), √117 = 3√13 was BC, and 13 was 4+9",
+    "tension": null
+  },
+  {
+    "id": "2a4b8835-79c8-466f-aee9-9ced01b0f12d",
+    "oldStem": "The line shown passes through (0, -4) and is tangent to the parabola y = x² at a point in the first quadrant. What is the slope of the line?",
+    "newStem": "The line shown is tangent to the parabola y = x². What is the slope of the line?",
+    "removed": [
+      "passes through (0, -4) — <text>(0, -4)</text> beside the plotted point on the y-axis",
+      "tangent at a point in the first quadrant — the point of tangency is plotted and labelled <text>(2, 4)</text> in quadrant I"
+    ],
+    "key": "4",
+    "newDistractors": [
+      "1",
+      "3",
+      "9"
+    ],
+    "keyRankWhenSorted": 3,
+    "family": "four plain integer slopes; a slope has no canonical value, so none of the four is the \"nice\" one. None is 2 (the x-coordinate of tangency, i.e. half the key), 8, 16 (the key squared) or 6 (2+4)",
+    "tension": "The SVG shows LESS than expected here: the parabola is an unlabelled <polyline> and there is no <text> giving its equation anywhere in the figure. \"y = x²\" therefore had to stay in the stem — deleting it would have made the curve unidentifiable and the item unanswerable."
+  },
+  {
+    "id": "2ca0efba-f05c-48a4-afbf-80482cb6d34a",
+    "oldStem": "In the circle with center O, central angle AOB measures 80°. Point P lies on the major arc AB. What is the measure of inscribed angle APB?",
+    "newStem": "In the circle with center O shown, what is the measure of inscribed angle APB?",
+    "removed": [
+      "central angle AOB measures 80° — <text x=\"148\" y=\"106\">80°</text> sitting inside the angle between radii OA and OB",
+      "point P lies on the major arc AB — P is plotted on the circle at (210.1,169.7) with chords PA and PB drawn"
+    ],
+    "key": "40°",
+    "newDistractors": [
+      "15°",
+      "30°",
+      "35°"
+    ],
+    "keyRankWhenSorted": 4,
+    "family": "four multiples of 5° in the plausible inscribed-angle range, one of which (30°) is a \"special\" angle, so the key is not the only recognisable measure. 20° (=80/4), 160° (=2×80), 100° and 140° (=180-x) are all excluded as one-step derivations of the hidden 80°",
+    "tension": null
+  },
+  {
+    "id": "30060a3f-e60b-416e-be39-aa206ed61c2b",
+    "oldStem": "In the circle with center O, central angle AOB measures 120°. Point P lies on the major arc AB. What is the measure of inscribed angle APB?",
+    "newStem": "In the circle with center O shown, what is the measure of inscribed angle APB?",
+    "removed": [
+      "central angle AOB measures 120° — <text x=\"148\" y=\"106\">120°</text> sitting inside the angle between radii OA and OB",
+      "point P lies on the major arc AB — P is plotted on the circle at (210.1,169.7) with chords PA and PB drawn"
+    ],
+    "key": "60°",
+    "newDistractors": [
+      "45°",
+      "50°",
+      "90°"
+    ],
+    "keyRankWhenSorted": 3,
+    "family": "45° and 90° are as \"special\" as the 60° key (90° would simply mean AB is a diameter), so picking the textbook-looking angle returns three. A different pool from the other inscribed-angle item so the two cannot be solved against each other. 30° (=120/4), 240° and 120° itself are excluded as one-step derivations",
+    "tension": null
+  },
+  {
+    "id": "3010278d-f88c-4f56-9832-3bfab3c38023",
+    "oldStem": "In right triangle ABC, the right angle is at B, the hypotenuse AC = 17, and leg BC = 8. What is the length of leg AB?",
+    "newStem": "In the triangle shown, what is the length of AB?",
+    "removed": [
+      "right angle is at B — explicit right-angle square at vertex B: <path d=\"M70.0,185.0 h15.0 v-15.0\">",
+      "hypotenuse AC = 17 — <text x=\"165\" y=\"116\">17</text> on segment AC",
+      "leg BC = 8 — <text x=\"157\" y=\"205\">8</text> on segment BC",
+      "the leg/hypotenuse designations — supplied by the right-angle square at B"
+    ],
+    "key": "15",
+    "newDistractors": [
+      "7",
+      "11",
+      "12"
+    ],
+    "keyRankWhenSorted": 4,
+    "family": "15 (8-15-17), 7 (7-24-25), 11 (11-60-61), 12 (5-12-13): four primitive-triple legs, all shorter than the hypotenuse in the figure. The old set was pure disclosure: 9 = 17-8, 25 = 17+8, 16 = 2×8",
+    "tension": "Key rank is forced to 4: the answer must be under 17, and the only canonical integer between 15 and 17 is 16, which is exactly 2×8 (round 1's failure). Shares two values (12, and the key 15) with the chord item 328085c8 — the sub-17 canonical pool has only about six members and three items here draw from it."
+  },
+  {
+    "id": "328085c8-9211-485a-8d85-156bea9e319d",
+    "oldStem": "A chord of length 16 is drawn in a circle of radius 17. What is the distance from the center of the circle to the chord?",
+    "newStem": "In the circle with center O shown, what is the distance from the center to the chord?",
+    "removed": [
+      "chord length 16 — <text>chord = 16</text> under the chord",
+      "radius 17 — <text x=\"173.3\" y=\"104.2\">17</text> on the drawn radius from O to the chord's endpoint",
+      "(the perpendicular foot is also marked: <path d=\"M150.0,144.4 h9.0 v-9.0\">)"
+    ],
+    "key": "15",
+    "newDistractors": [
+      "5",
+      "12",
+      "13"
+    ],
+    "keyRankWhenSorted": 4,
+    "family": "15, 5, 12, 13 are all triple members and all shorter than the 17 radius, so every option is a possible distance and none is the uniquely \"nice\" one. The disclosing values are gone: 8 was the half-chord, 9 was 17-8, 2 was 17-15",
+    "tension": "Key rank forced to 4 — the distance must be under the radius 17 and the only canonical value between 15 and 17 is 16, which is the chord itself. Shares 5/12/13 membership with the leg item 3010278d for the same reason given there: the pool of canonical integers below 17 is nearly exhausted by three items."
+  },
+  {
+    "id": "34e7916e-5b77-4def-8658-54bdc5e13d74",
+    "oldStem": "A chord of length 8 is drawn in a circle of radius 5. What is the distance from the center of the circle to the chord?",
+    "newStem": "In the circle with center O shown, what is the distance from the center to the chord?",
+    "removed": [
+      "chord length 8 — <text>chord = 8</text> under the chord",
+      "radius 5 — <text x=\"186.8\" y=\"92.6\">5</text> on the drawn radius from O to the chord's endpoint",
+      "(the perpendicular foot is also marked: <path d=\"M150.0,121.2 h9.0 v-9.0\">)"
+    ],
+    "key": "3",
+    "newDistractors": [
+      "11",
+      "17",
+      "28"
+    ],
+    "keyRankWhenSorted": 1,
+    "family": "3 (3-4-5), 11 (11-60-61), 17 (8-15-17), 28 (21-28-35 / 28-45-53): four triple members, so the key is not the only value that looks like it came out of a clean radical",
+    "tension": "Same forced trade as the other small-key item. Every canonical value below the radius 5 is a one-step derivation of the hidden numbers — 4 is the half-chord, 1 is 5-4, 2 is half of 4 — so the key can only sit at rank 1, and the three distractors exceed the radius shown in the figure. Under-5 options would leave 3 as the only triple member and hand the item back to round 2's \"pick the Pythagorean-looking number\" heuristic. The genuine fix is a larger radius in the figure."
+  },
+  {
+    "id": "384a1cd7-18a1-42a6-8990-98b0b245bee0",
+    "oldStem": "In the xy-plane shown, what is the distance between the points (-1, -2) and (6, 22)?",
+    "newStem": "In the xy-plane shown, what is the distance between the two plotted points?",
+    "removed": [
+      "the point (-1, -2) — <text>(-1, -2)</text> beside the plotted point at that grid position",
+      "the point (6, 22) — <text>(6, 22)</text> beside the plotted point at that grid position"
+    ],
+    "key": "25",
+    "newDistractors": [
+      "34",
+      "45",
+      "65"
+    ],
+    "keyRankWhenSorted": 1,
+    "family": "25 (7-24-25), 34 (16-30-34), 45 (27-36-45), 65 (16-63-65): four triple hypotenuses, all above the 24-unit vertical gap so all are possible. A different pool from the other distance item (29/41/53) so the two cannot be cross-read. The old options 31 (=7+24), 17 (=24-7) and 625 (=d²) each disclosed a coordinate gap",
+    "tension": "Key rank forced to 1: the distance must exceed the vertical gap of 24 and there is no canonical value between 24 and 25."
+  },
+  {
+    "id": "394d3860-ee80-43d1-842e-b299d62fde24",
+    "oldStem": "In right triangle ABC, the right angle is at B, the hypotenuse AC = 30, and leg BC = 24. What is the length of leg AB?",
+    "newStem": "In the triangle shown, what is the length of AB?",
+    "removed": [
+      "right angle is at B — explicit right-angle square at vertex B: <path d=\"M70.0,185.0 h15.0 v-15.0\">",
+      "hypotenuse AC = 30 — <text x=\"165\" y=\"116\">30</text> on segment AC",
+      "leg BC = 24 — <text x=\"157\" y=\"205\">24</text> on segment BC",
+      "the leg/hypotenuse designations — supplied by the right-angle square at B"
+    ],
+    "key": "18",
+    "newDistractors": [
+      "7",
+      "11",
+      "21"
+    ],
+    "keyRankWhenSorted": 3,
+    "family": "18 (18-24-30), 7 (7-24-25), 11 (11-60-61), 21 (20-21-29): four triple legs, all under the 30 hypotenuse. Removes 6 (=30-24), 12 (=24/2), 15 (=30/2) and 20 — the old trio fixed 24 and 30 between them",
+    "tension": null
+  },
+  {
+    "id": "3b254007-385c-44ed-9679-72b30d82984a",
+    "oldStem": "The graph of a quadratic function f is shown, with vertex (-1, -4) and x-intercepts at x = -3 and x = 1. What is the value of f(0)?",
+    "newStem": "The graph of a quadratic function f is shown. What is the value of f(0)?",
+    "removed": [
+      "vertex (-1, -4) — <text>(-1, -4)</text> beside the plotted vertex at (160,232.3)",
+      "x-intercepts at x = -3 and x = 1 — both are plotted as filled points on the x-axis (cx=97 and cx=223, cy=145) directly above the axis labels -3 and 1"
+    ],
+    "key": "-3",
+    "newDistractors": [
+      "-6",
+      "2",
+      "5"
+    ],
+    "keyRankWhenSorted": 2,
+    "family": "four ordinary integers, all inside the graph's visible y-range of -6 to 6 so none can be eliminated by looking at the axes, and none is more canonical than another. Excludes -4 and -1 (the vertex coordinates) and -5 (= -4 + -1)",
+    "tension": null
+  },
+  {
+    "id": "3f260c1e-ca64-4e77-b234-c34fc915cc87",
+    "oldStem": "In right triangle ABC, the right angle is at B, leg AB = 24, and leg BC = 45. What is the length of the hypotenuse AC?",
+    "newStem": "In the triangle shown, what is the length of AC?",
+    "removed": [
+      "right angle is at B — explicit right-angle square at vertex B: <path d=\"M70.0,185.0 h15.0 v-15.0\">",
+      "leg AB = 24 — <text x=\"52\" y=\"125\">24</text> on segment AB",
+      "leg BC = 45 — <text x=\"157\" y=\"205\">45</text> on segment BC",
+      "the leg/hypotenuse designations — supplied by the right-angle square at B"
+    ],
+    "key": "51",
+    "newDistractors": [
+      "55",
+      "58",
+      "75"
+    ],
+    "keyRankWhenSorted": 1,
+    "family": "51 (24-45-51), 55 (33-44-55), 58 (40-42-58), 75 (21-72-75): four triple hypotenuses, all longer than the 45 leg. The old set was a disclosure system — 69 = 24+45, 49 and 52 bracket it by ± small errors",
+    "tension": "Rank 1 rather than 2 by choice, not by force: 50 is a canonical hypotenuse in the 45-51 window, but it is already the distractor doing the rank-2 work in item 20ce156d, and reusing it there would start exactly the shared-stock-list regularity the pilot flagged."
+  },
+  {
+    "id": "3f3c63b7-fb6e-4aea-bf54-6b501843bfb7",
+    "oldStem": "In right triangle ABC, the right angle is at B, leg AB = 21, and leg BC = 28. What is the length of the hypotenuse AC?",
+    "newStem": "In the triangle shown, what is the length of AC?",
+    "removed": [
+      "right angle is at B — explicit right-angle square at vertex B: <path d=\"M70.0,185.0 h15.0 v-15.0\">",
+      "leg AB = 21 — <text x=\"52\" y=\"125\">21</text> on segment AB",
+      "leg BC = 28 — <text x=\"157\" y=\"205\">28</text> on segment BC",
+      "the leg/hypotenuse designations — supplied by the right-angle square at B"
+    ],
+    "key": "35",
+    "newDistractors": [
+      "29",
+      "30",
+      "34"
+    ],
+    "keyRankWhenSorted": 4,
+    "family": "35 (21-28-35), 29 (20-21-29), 30 (18-24-30), 34 (16-30-34): four triple hypotenuses, every one of them longer than the 28 leg, so the whole set survives a range check and all four are equally canonical. Removes 49 (=21+28) and 7 (=28-21), which together fixed both legs",
+    "tension": null
+  },
+  {
+    "id": "42576702-0874-4fed-92b1-ccd1a04c3efc",
+    "oldStem": "The line shown passes through the points (1, 2) and (4, 11). What is the y-coordinate of the point on the line where x = 6?",
+    "newStem": "For the line shown, what is the y-coordinate of the point on the line where x = 6?",
+    "removed": [
+      "passes through (1, 2) — <text>(1, 2)</text> beside the plotted point",
+      "passes through (4, 11) — <text>(4, 11)</text> beside the plotted point"
+    ],
+    "key": "17",
+    "newDistractors": [
+      "7",
+      "10",
+      "12"
+    ],
+    "keyRankWhenSorted": 4,
+    "family": "four plain integers with irregular spacing, so there is neither a canonical value nor an arithmetic ladder to read the key off. Excludes 18 (=slope×6), 20 and 14 (=key±slope, which would expose the slope), 9 (the rise), 3 (the run), 5 and 13 (the sums of the like coordinates), and every plotted coordinate",
+    "tension": "Weakest same-family claim in the batch: with four small raw coordinates in the figure, almost any small integer is SOME arithmetic combination of them. The three distractors avoid every combination a solver would actually name (rise, run, slope×x, evaluating at the wrong x, sum of the y-values), but this item relies on \"no named wrong method lands here\" rather than on a closed value family."
+  },
+  {
+    "id": "438377e5-b7dd-4b11-a5c5-f3ecc9c6f2f7",
+    "oldStem": "In right triangle ABC, the right angle is at B, leg AB = 12, and leg BC = 16. What is the length of the hypotenuse AC?",
+    "newStem": "In the triangle shown, what is the length of AC?",
+    "removed": [
+      "right angle is at B — explicit right-angle square at vertex B: <path d=\"M70.0,185.0 h15.0 v-15.0\">",
+      "leg AB = 12 — <text x=\"52\" y=\"125\">12</text> on segment AB",
+      "leg BC = 16 — <text x=\"157\" y=\"205\">16</text> on segment BC",
+      "the leg/hypotenuse designations — supplied by the right-angle square at B"
+    ],
+    "key": "20",
+    "newDistractors": [
+      "17",
+      "25",
+      "26"
+    ],
+    "keyRankWhenSorted": 2,
+    "family": "20 (12-16-20), 17 (8-15-17), 25 (7-24-25), 26 (10-24-26): four triple hypotenuses and — unusually for this batch — all four lie inside the figure's feasible window (strictly between 16 and 28), so the set is clean on family parity AND on range. Removes 28 (=12+16), 4 (=16-12) and 14 (the mean)",
+    "tension": null
+  },
+  {
+    "id": "43b91b81-6d76-4605-8b9f-006d4bb35536",
+    "oldStem": "In right triangle ABC shown, the right angle is at B, AB = 3, BC = 4, and AC = 5. What is the value of tan(A)?",
+    "newStem": "In the triangle shown, what is the value of tan(A)?",
+    "removed": [
+      "right angle is at B — explicit right-angle square at vertex B: <path d=\"M70.0,185.0 h15.0 v-15.0\">",
+      "AB = 3 — <text x=\"52\" y=\"125\">3</text> on segment AB",
+      "BC = 4 — <text x=\"157\" y=\"205\">4</text> on segment BC",
+      "AC = 5 — <text x=\"165\" y=\"116\">5</text> on segment AC"
+    ],
+    "key": "4/3",
+    "newDistractors": [
+      "21/20",
+      "15/8",
+      "12/5"
+    ],
+    "keyRankWhenSorted": 2,
+    "family": "every option is the tangent of an acute angle of a primitive triple (4/3, 21/20, 15/8, 12/5), all greater than 1, same fraction format. None is built from 3, 4, 5 — 3/4 (the reciprocal), 4/5, 3/5, 5/3 and 5/4 would each hand over the triangle, which is what the original set did",
+    "tension": null
+  }
+]
