@@ -28,11 +28,26 @@
  * only written when absent, so a second run cannot overwrite the backup
  * with the repaired values.
  *
- * Usage: node scripts/study-bank/apply-math-hub-repair.mjs [--dry]
+ * Usage:
+ *   node apply-math-hub-repair.mjs --file <path> [--dry]
+ *   node apply-math-hub-repair.mjs [--dry]     # the original four batches
+ *
+ * `--file` was added for round 2 (math-hub-r2-proposed.json, 41 items).
+ * It also fixes a hazard the round-2 files created: this script used to
+ * glob every `math-hub-*.json` in the directory, so the moment new files
+ * were named `math-hub-r2-*.json` they were silently pulled into a run
+ * that was never meant to include them. They carry a different schema so
+ * validation aborted rather than writing anything — but a loader whose
+ * input set is "whatever is in the folder" is one filename away from
+ * doing real damage. The no-argument path now names its four files.
+ *
+ * Both schemas are accepted:
+ *   legacy  { id, correct_answer, choices, repaired_choices }
+ *   round 2 { id, key, before, after }
  */
 import { createClient } from '@supabase/supabase-js'
 import { createHash } from 'node:crypto'
-import { readFileSync, readdirSync } from 'node:fs'
+import { readFileSync } from 'node:fs'
 
 const DRY = process.argv.includes('--dry')
 const DIR = 'scripts/study-bank'
@@ -52,13 +67,37 @@ const hashOf = (prompt, choices) => createHash('md5')
   .update([normHash(prompt), (choices || []).map(normHash).join('|')].join('~~'))
   .digest('hex')
 
+/** Accept either schema, and normalise to the legacy field names. */
+const normalise = e => ('repaired_choices' in e ? e : {
+  id: e.id,
+  prompt: e.prompt,
+  correct_answer: e.key,
+  choices: e.before,
+  repaired_choices: e.after,
+})
+
+const fileArg = (() => {
+  const i = process.argv.indexOf('--file')
+  return i >= 0 ? process.argv[i + 1] : null
+})()
+
+/* The original four batches, named explicitly. See the header for why
+ * this is no longer a directory glob. */
+const LEGACY = [
+  'math-hub-algebra.json', 'math-hub-advanced-math.json',
+  'math-hub-geometry-and-trigonometry.json',
+  'math-hub-problem-solving-and-data-analysis.json',
+]
+
+const sources = fileArg ? [fileArg] : LEGACY.map(f => `${DIR}/${f}`)
 const rows = []
-for (const f of readdirSync(DIR)) {
-  if (f.startsWith('math-hub-') && f.endsWith('.json')) {
-    rows.push(...JSON.parse(readFileSync(`${DIR}/${f}`, 'utf8')))
-  }
+for (const path of sources) {
+  const parsed = JSON.parse(readFileSync(path, 'utf8'))
+  if (!Array.isArray(parsed)) throw new Error(`${path}: expected an array`)
+  rows.push(...parsed.map(normalise))
 }
-console.log(`loaded ${rows.length} repaired item(s)`)
+console.log(`loaded ${rows.length} repaired item(s) from:`)
+for (const s of sources) console.log('  ' + s)
 
 const problems = []
 const seen = new Set()
