@@ -70,8 +70,21 @@ export function RegisterPanel() {
                   {OWNER[w.owner].label}
                 </span>
                 <span className="text-[12px] text-gray-500 tabular-nums">{w.size}</span>
+                {/* A blocker has to read as a STATE, not as a sentence in
+                    the last paragraph — "blocked on B1" sat in A3's note
+                    for the life of this file and still got missed. */}
+                {w.dependsOn?.length ? (
+                  <span className="rounded-full px-2 py-0.5 text-[11px] font-semibold ring-1 bg-amber-50 text-amber-800 ring-amber-200">
+                    blocked by {w.dependsOn.join(', ')}
+                  </span>
+                ) : null}
               </div>
               <p className="text-[12px] text-gray-600 mt-1 leading-relaxed">{w.why}</p>
+              {w.whoSpecifically && (
+                <p className="text-[12px] text-gray-700 mt-1.5 leading-relaxed rounded-lg bg-gray-50 px-2.5 py-1.5">
+                  <span className="font-semibold">Who: </span>{w.whoSpecifically}
+                </p>
+              )}
               {w.note && (
                 <p className="text-[12px] text-gray-500 mt-1 leading-relaxed italic">{w.note}</p>
               )}

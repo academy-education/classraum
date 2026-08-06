@@ -41,6 +41,28 @@ export interface WorkItem {
   note?: string
   /** Result document, if one exists. */
   doc?: string
+  /**
+   * Ids of work that must land BEFORE this can start.
+   *
+   * Prose was carrying this and prose does not survive a skim: A3's
+   * note has said "blocked on B1" since the register was written, and
+   * it still had to be re-explained out loud twice. A field renders as
+   * a column in both surfaces and can be checked by a test.
+   *
+   * A dependency is not "would be nice to have first" — it is work
+   * whose OUTCOME changes whether this item happens at all.
+   */
+  dependsOn?: string[]
+  /**
+   * Who specifically, where the item is not interchangeable between
+   * people. Only meaningful for owner: 'you'.
+   *
+   * B1 is the reason this exists. Every human number in the project
+   * comes from one reviewer, so a second sitting BY THAT SAME READER
+   * measures their memory of items they have already answered, not the
+   * items. It would read as agreement and mean nothing.
+   */
+  whoSpecifically?: string
 }
 
 /**
@@ -58,6 +80,7 @@ export const WORK: WorkItem[] = [
     size: '~20 minutes',
     why: 'Every human number in the project rests on one person. A second reader on the SAME items decides whether the Choose a Response finding is a property of the items or a habit of that reader.',
     owner: 'you',
+    whoSpecifically: 'Your co-founder, NOT you. Every existing sitting — Choose a Response, Daily Life, Announcement — is yours. Sitting it again means re-reading items you have already answered, which measures your memory rather than the items, and would read as agreement while meaning nothing. That is the exact failure this item exists to rule out.',
     state: 'open',
     note: 'Unblocks everything. If the two readers scatter, A3 is cancelled rather than started.',
   },
@@ -98,6 +121,7 @@ export const WORK: WorkItem[] = [
     why: 'Roughly 486 items currently sit as "the model says guessable, nobody checked".',
     owner: 'you',
     state: 'open',
+    whoSpecifically: 'Either of you. Unlike B1 these cohorts have never been read by anyone, so there is no contamination risk from the reader who did the earlier sittings.',
     note: 'Daily Life and Announcement both came back clean under a human, so these plausibly are too.',
   },
   {
@@ -147,7 +171,8 @@ export const WORK: WorkItem[] = [
     why: 'The only cohort where the model attack and a human agree it is broken: 55.0% blind against a 25.0% control, p<0.001, plus 4 of 20 with a second defensible answer.',
     owner: 'claude',
     state: 'open',
-    note: 'Three rounds have failed. Start from the four crv2 items that passed both gates (1, 4, 10, 14), and measure with the held-out panel, which has never been spent.',
+    dependsOn: ['B1'],
+    note: 'BLOCKED ON B1, and the dependency can CANCEL this rather than merely delay it: if the two readers scatter, the 55% finding is a habit of one reader and there is nothing to rebuild. Three rounds have already failed. If it does go ahead, start from the four crv2 items that passed both gates (1, 4, 10, 14), and measure with the held-out panel, which has never been spent.',
     doc: 'scripts/study-bank/CRV3-RESULT.md',
   },
   {

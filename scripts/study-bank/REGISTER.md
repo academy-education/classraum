@@ -43,20 +43,25 @@ and on both cohorts checked so far the model was the one that was wrong.
 | SAT | Expression of Ideas | 66 | 100% | — | **unconfirmed** — model only |
 | TOEFL | Interview | 48 | — | — | never measured — the attack does not apply |
 
+### Dependencies — read this before picking anything up
+
+**B1 → A3**  
+B1 is *One overlapping sitting by a second reviewer* (~20 minutes, yours). Until it lands, **A3** (Rebuild Choose a Response, 72 items) cannot start.
+
 ## 2. Open work — mine, no approval needed
 
-| id | what | size | why |
-|---|---|---|---|
-| A3 | Rebuild Choose a Response | 72 items | The only cohort where the model attack and a human agree it is broken: 55.0% blind against a 25.0% control, p<0.001, plus 4 of 20 with a second defensible answer. _Three rounds have failed. Start from the four crv2 items that passed both gates (1, 4, 10, 14), and measure with the held-out panel, which has never been spent._ |
-| A5 | Deepen the Daily Life reading pool | 32 drawable sets (not 35) — no repeat until a student's 7th form | Too few source texts means repetition across forms — but MEASURED on 2026-08-06, and the urgency was overstated. The draw ranks unseen-first per student via orderGroups against study_item_exposures, and both full-test paths record into it, so a student sees no repeated Daily Life set until form 7. The pool-size-only argument implies 79.2% at TWO forms; that model is memoryless and is not this app. _DELIBERATELY NOT STARTED, and the measurement is why. The only remaining fix is authoring — no free deepening exists: all 69 single-question texts are distinct passages with no near-duplicate pair at 0.60, so nothing can be merged into a 2-question set the way A12 was thinned. And authoring here is the historically-failed path: the 2026-07-28 repair batch scored 95% with the passages DELETED and was discarded rather than banked. Doing it properly means a briefed batch gated by a blind attack (<35%), which is the same shape as A3 and should be commissioned deliberately, not slipped in. Run scripts/study-bank/check-daily-life-pool.mjs before deciding._ |
+| id | what | size | blocked by | why |
+|---|---|---|---|---|
+| A3 | Rebuild Choose a Response | 72 items | **B1** | The only cohort where the model attack and a human agree it is broken: 55.0% blind against a 25.0% control, p<0.001, plus 4 of 20 with a second defensible answer. _BLOCKED ON B1, and the dependency can CANCEL this rather than merely delay it: if the two readers scatter, the 55% finding is a habit of one reader and there is nothing to rebuild. Three rounds have already failed. If it does go ahead, start from the four crv2 items that passed both gates (1, 4, 10, 14), and measure with the held-out panel, which has never been spent._ |
+| A5 | Deepen the Daily Life reading pool | 32 drawable sets (not 35) — no repeat until a student's 7th form | — | Too few source texts means repetition across forms — but MEASURED on 2026-08-06, and the urgency was overstated. The draw ranks unseen-first per student via orderGroups against study_item_exposures, and both full-test paths record into it, so a student sees no repeated Daily Life set until form 7. The pool-size-only argument implies 79.2% at TWO forms; that model is memoryless and is not this app. _DELIBERATELY NOT STARTED, and the measurement is why. The only remaining fix is authoring — no free deepening exists: all 69 single-question texts are distinct passages with no near-duplicate pair at 0.60, so nothing can be merged into a 2-question set the way A12 was thinned. And authoring here is the historically-failed path: the 2026-07-28 repair batch scored 95% with the passages DELETED and was discarded rather than banked. Doing it properly means a briefed batch gated by a blind attack (<35%), which is the same shape as A3 and should be commissioned deliberately, not slipped in. Run scripts/study-bank/check-daily-life-pool.mjs before deciding._ |
 
 ## 3. Open work — needs you
 
-| id | what | cost | why |
-|---|---|---|---|
-| B1 | One overlapping sitting by a second reviewer | ~20 minutes | Every human number in the project rests on one person. A second reader on the SAME items decides whether the Choose a Response finding is a property of the items or a habit of that reader. _Unblocks everything. If the two readers scatter, A3 is cancelled rather than started._ |
-| B2 | Sittings on Academic Talk and Craft and Structure | ~20 minutes each | Roughly 486 items currently sit as "the model says guessable, nobody checked". _Daily Life and Announcement both came back clean under a human, so these plausibly are too._ |
-| B3 | TestFlight device pass, iOS 1.0.4 | — | Unrelated to the bank, still open. |
+| id | what | cost | who | why |
+|---|---|---|---|---|
+| B1 | One overlapping sitting by a second reviewer | ~20 minutes | Your co-founder, NOT you. Every existing sitting — Choose a Response, Daily Life, Announcement — is yours. Sitting it again means re-reading items you have already answered, which measures your memory rather than the items, and would read as agreement while meaning nothing. That is the exact failure this item exists to rule out. | Every human number in the project rests on one person. A second reader on the SAME items decides whether the Choose a Response finding is a property of the items or a habit of that reader. _Unblocks everything. If the two readers scatter, A3 is cancelled rather than started._ |
+| B2 | Sittings on Academic Talk and Craft and Structure | ~20 minutes each | Either of you. Unlike B1 these cohorts have never been read by anyone, so there is no contamination risk from the reader who did the earlier sittings. | Roughly 486 items currently sit as "the model says guessable, nobody checked". _Daily Life and Announcement both came back clean under a human, so these plausibly are too._ |
+| B3 | TestFlight device pass, iOS 1.0.4 | — | Either of you. | Unrelated to the bank, still open. |
 
 ## 4. Settled — do not redo
 

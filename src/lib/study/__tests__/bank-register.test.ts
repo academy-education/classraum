@@ -56,6 +56,39 @@ describe('bank register', () => {
     }
   })
 
+  it('points every dependency at a real work item, never at itself', () => {
+    const ids = new Set(WORK.map(w => w.id))
+    for (const w of WORK) {
+      for (const dep of w.dependsOn ?? []) {
+        expect(ids.has(dep)).toBe(true)
+        expect(dep).not.toBe(w.id)
+      }
+    }
+  })
+
+  it('does not leave an open item blocked by something already done', () => {
+    /*
+     * The failure this catches is silent and expensive: B1 lands, A3 is
+     * now startable, and nothing says so because the blocker is prose.
+     * A stale dependency makes work look blocked when it is free.
+     */
+    const state = new Map(WORK.map(w => [w.id, w.state]))
+    const stale = WORK
+      .filter(w => w.state !== 'done')
+      .flatMap(w => (w.dependsOn ?? []).map(dep => ({ id: w.id, dep, depState: state.get(dep) })))
+      .filter(d => d.depState === 'done')
+    expect(stale).toEqual([])
+  })
+
+  it('says who specifically only where the person is not interchangeable', () => {
+    // whoSpecifically exists for B1, where the reader who did every
+    // prior sitting must NOT be the one who does this one. It is
+    // meaningless on work I do, so it must not appear there.
+    for (const w of WORK) {
+      if (w.whoSpecifically) expect(w.owner).toBe('you')
+    }
+  })
+
   it('keeps settled findings pointed at their evidence', () => {
     // A closed question with no document is an assertion, and assertions
     // are what get re-litigated. The grader-calibration entry is the one

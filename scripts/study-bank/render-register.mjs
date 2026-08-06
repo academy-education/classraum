@@ -146,17 +146,43 @@ and on both cohorts checked so far the model was the one that was wrong.
 |---|---|---|---|---|---|
 ${rows.map(r => `| ${r.family.toUpperCase()} | ${r.domain} | ${r.items} | ${r.blind === null ? '—' : r.blind + '%'} | ${r.human ? `${r.human.pct}% (n=${r.human.n})` : '—'} | ${verdict(r.blind, r.human)} |`).join('\n')}
 
+${(() => {
+  /*
+   * Dependency summary, first, because it is the thing a skim misses.
+   * "Blocked on B1" lived in A3's note for the life of this file and
+   * still had to be said out loud twice — a prose sentence in the last
+   * column of a wide table is not visible.
+   */
+  const blocked = open.filter(w => w.dependsOn?.length)
+  if (!blocked.length) return '### Dependencies\n\nNothing is blocked — every open item can start today.'
+  const byBlocker = new Map()
+  for (const w of blocked) {
+    for (const dep of w.dependsOn) {
+      if (!byBlocker.has(dep)) byBlocker.set(dep, [])
+      byBlocker.get(dep).push(w)
+    }
+  }
+  return `### Dependencies — read this before picking anything up
+
+${[...byBlocker].map(([dep, waiting]) => {
+    const blocker = WORK.find(w => w.id === dep)
+    return `**${dep} → ${waiting.map(w => w.id).join(', ')}**  \n`
+      + `${dep} is *${blocker?.title ?? 'unknown'}* (${blocker?.size ?? '?'}, ${blocker?.owner === 'you' ? 'yours' : 'mine'}). `
+      + `Until it lands, ${waiting.map(w => `**${w.id}** (${w.title}, ${w.size})`).join(' and ')} cannot start.`
+  }).join('\n\n')}`
+})()}
+
 ## 2. Open work — mine, no approval needed
 
-| id | what | size | why |
-|---|---|---|---|
-${open.filter(w => w.owner === 'claude').map(w => `| ${w.id} | ${w.title} | ${w.size} | ${w.why}${w.note ? ` _${w.note}_` : ''} |`).join('\n')}
+| id | what | size | blocked by | why |
+|---|---|---|---|---|
+${open.filter(w => w.owner === 'claude').map(w => `| ${w.id} | ${w.title} | ${w.size} | ${w.dependsOn?.length ? `**${w.dependsOn.join(', ')}**` : '—'} | ${w.why}${w.note ? ` _${w.note}_` : ''} |`).join('\n')}
 
 ## 3. Open work — needs you
 
-| id | what | cost | why |
-|---|---|---|---|
-${open.filter(w => w.owner === 'you').map(w => `| ${w.id} | ${w.title} | ${w.size} | ${w.why}${w.note ? ` _${w.note}_` : ''} |`).join('\n')}
+| id | what | cost | who | why |
+|---|---|---|---|---|
+${open.filter(w => w.owner === 'you').map(w => `| ${w.id} | ${w.title} | ${w.size} | ${w.whoSpecifically ?? 'Either of you.'} | ${w.why}${w.note ? ` _${w.note}_` : ''} |`).join('\n')}
 
 ## 4. Settled — do not redo
 
