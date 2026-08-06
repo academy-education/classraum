@@ -1,0 +1,32 @@
+-- APPLIED 2026-08-06. Fixes a bug shipped in 077.
+--
+-- 077 shipped a dedup key that was not order-insensitive.
+--
+-- string_agg(expr, '|' order by 1) — inside an AGGREGATE order-by the
+-- literal 1 is a CONSTANT expression, not a positional reference as it
+-- would be at query level. So it sorted by a constant, i.e. not at all,
+-- and preserved the stored option order.
+--
+-- The unique index therefore reported 3,341 distinct keys over 3,341
+-- live rows and looked like proof there were no duplicates. Both known
+-- duplicate pairs — same text, shuffled options, exactly the case this
+-- column exists to catch — passed straight through it.
+--
+-- A gate that passes vacuously is worse than no gate. This was one
+-- verification step away from being recorded as "A9 fixed".
+--
+-- See the applied SQL in supabase migration `fix_dedup_key_ordering`:
+-- drops the index and column, redefines study_item_dedup_key() to
+-- `order by n` over the normalised text, re-adds the generated column,
+-- archives the duplicates it now finds, and recreates the unique index.
+--
+-- Self-test asserts three properties rather than inserting a row (a
+-- first draft did insert, and failed on a NOT NULL column it forgot —
+-- a test failing for a reason unrelated to what it tests):
+--   * dedup_key is unchanged by reversing the option order
+--   * dedup_key still differs when the prompt differs
+--   * content_sha DOES change on a reshuffle, since that changes what a
+--     solver saw and must invalidate the measurement
+--
+-- Result: 3,341 -> 3,339 live items, 2 archived as duplicates, 3,339
+-- distinct keys.

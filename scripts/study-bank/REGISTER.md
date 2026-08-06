@@ -8,8 +8,8 @@
 renders on /admin/bank-qc, from the same source, so the two cannot
 disagree.
 
-Generated 2026-08-06. Live items: 3,341.
-Open work: 10 — 7 mine, 3 need you.
+Generated 2026-08-06. Live items: 3,339.
+Open work: 8 — 5 mine, 3 need you.
 
 ---
 
@@ -22,7 +22,7 @@ and on both cohorts checked so far the model was the one that was wrong.
 
 | test | cohort | items | blind | human | state |
 |---|---|---|---|---|---|
-| TOEFL | Academic Passage | 435 | 100% | 41.7% (n=12) | human says maybe — needs more |
+| TOEFL | Academic Passage | 434 | 100% | 41.7% (n=12) | human says maybe — needs more |
 | TOEFL | Academic Talk | 275 | 100% | — | **unconfirmed** — model only |
 | SAT | Information and Ideas | 240 | 100% | — | **unconfirmed** — model only |
 | SAT | Standard English Conventions | 234 | 52.8% | — | in band, spot-checked only |
@@ -34,7 +34,7 @@ and on both cohorts checked so far the model was the one that was wrong.
 | SAT | Advanced Math | 191 | 100% | — | **unconfirmed** — model only |
 | TOEFL | Daily Life | 133 | 100% | 21.4% (n=14) | human says maybe — needs more |
 | TOEFL | Announcement | 121 | 100% | 15% (n=20) | **cleared by hand** — the model was wrong |
-| TOEFL | Build a Sentence | 119 | — | — | never measured — the attack does not apply |
+| TOEFL | Build a Sentence | 118 | — | — | never measured — the attack does not apply |
 | TOEFL | Listen and Repeat | 97 | — | — | never measured — the attack does not apply |
 | TOEFL | Complete the Words | 93 | — | — | never measured — the attack does not apply |
 | TOEFL | Email | 92 | — | — | never measured — the attack does not apply |
@@ -51,8 +51,6 @@ and on both cohorts checked so far the model was the one that was wrong.
 | A11 | 10 Email items are graded on a task they never state | 10 of 92 | 82 carry the ETS situation plus three bullets; these 10 state no task, while the task_fulfillment criterion grades "Task coverage" of points that were never given. |
 | A12 | Build a Sentence repeats its opening chips across items | 28 of 119, plus 1 exact duplicate pair | Four items begin "The book | that was recommended | by my professor". The cross-item tell this project keeps finding, in countable form for once. |
 | A3 | Rebuild Choose a Response | 72 items | The only cohort where the model attack and a human agree it is broken: 55.0% blind against a 25.0% control, p<0.001, plus 4 of 20 with a second defensible answer. _Three rounds have failed. Start from the four crv2 items that passed both gates (1, 4, 10, 14), and measure with the held-out panel, which has never been spent._ |
-| A8 | Attack measurements are not bound to the content they measured | 5 items now stale, more whenever an item is edited | Migration 076 bound REVIEWS to item content. study_item_attacks got no such binding, so the 5 repointed items still carry a blind score describing the question they no longer ask — and the dashboard reads the latest attack per item. _Same shape as 076 and the same fix: hash the content at attack time, expose a fresh view, read scores from it. Until then repointed items carry `repointed_at` in verify_meta as a manual marker._ |
-| A9 | The duplicate guard does not guard against duplicates | 1 index, whole bank | The unique partial index on content_hash reads as a uniqueness guarantee. A re-harvest computes a hash under a different definition, so it misses both the in-memory seen set AND the index, and the duplicate inserts cleanly. This has already happened once — migration 062 records "28 items, 14 distinct prompts". _Fix is known and cheap: study_item_content_sha() from migration 076 is already deployed and reproduces exactly in JS, so make it a generated column with an index — no writer can forget it. Dedup needs a SECOND order-insensitive column rather than overloading one field with two jobs._ |
 | A5 | Deepen the Daily Life reading pool | pool is 35 texts | Too few source texts means repetition across forms. |
 
 ## 3. Open work — needs you
@@ -77,6 +75,7 @@ and on both cohorts checked so far the model was the one that was wrong.
 Appended in the same commit as the work that surfaced it. A finding
 recorded only in a commit message is a finding nobody reads.
 
+- **2026-08-06** — string_agg(expr, '|' order by 1) sorts by a CONSTANT, not by position — aggregate ORDER BY does not take positional references. The "order-insensitive" dedup key was order-sensitive and its unique index passed on 3,341 distinct keys over 3,341 rows, missing both known duplicates. _(fixed on the spot)_
 - **2026-08-06** — The "541 never measured" figure was wrong: Listen and Repeat (97) and Interview (48) already had passing verifiers. 396 items were genuinely unchecked, and every finding landed in those. → **A4**
 - **2026-08-06** — Whether a Build-a-Sentence item has a SECOND grammatical ordering — its defining defect — is not decidable and remains unchecked on 118 items. Recorded rather than papered over with a proxy. → **A12**
 - **2026-08-06** — Nine scripts rewrite item content and leave content_hash stale; only apply-math-hub-repair recomputes it. And updated_at is useless as a mutation signal — there is no trigger, so 751 repaired rows read as "never updated". → **A9**

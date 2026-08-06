@@ -65,7 +65,12 @@ async function readAttacks() {
   const out: AttackRow[] = []
   for (let from = 0; ; from += 1000) {
     const { data, error } = await dbAdmin
-      .from('study_item_attacks')
+      /* FRESH only (migration 077): an attack whose item has changed
+       * since measured different text. Five items were repointed today
+       * — their question was replaced — and without this the dashboard
+       * would keep showing a blind score for a question the item no
+       * longer asks. Same reasoning as 076 for reviews. */
+      .from('study_item_attacks_fresh')
       .select('item_id, run_id, solvers, correct, attacked_at')
       .range(from, from + 999)
     if (error) throw new Error(`study_item_attacks: ${error.message}`)

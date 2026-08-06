@@ -151,11 +151,12 @@ export const WORK: WorkItem[] = [
   {
     id: 'A8',
     title: 'Attack measurements are not bound to the content they measured',
-    size: '5 items now stale, more whenever an item is edited',
+    size: 'fixed — migration 077',
     why: 'Migration 076 bound REVIEWS to item content. study_item_attacks got no such binding, so the 5 repointed items still carry a blind score describing the question they no longer ask — and the dashboard reads the latest attack per item.',
     owner: 'claude',
-    state: 'open',
-    note: 'Same shape as 076 and the same fix: hash the content at attack time, expose a fresh view, read scores from it. Until then repointed items carry `repointed_at` in verify_meta as a manual marker.',
+    state: 'done',
+    note: 'study_item_attacks.item_sha + trigger + study_item_attacks_fresh, and the live route now reads the view. The 5 repointed items were deliberately left unbound so they read as unmeasured rather than measured-and-passing.',
+    doc: 'database/migrations/077_bind_measurements_to_content.sql',
   },
   {
     id: 'A7',
@@ -170,12 +171,12 @@ export const WORK: WorkItem[] = [
   {
     id: 'A9',
     title: 'The duplicate guard does not guard against duplicates',
-    size: '1 index, whole bank',
+    size: 'fixed — migrations 077 + 078',
     why: 'The unique partial index on content_hash reads as a uniqueness guarantee. A re-harvest computes a hash under a different definition, so it misses both the in-memory seen set AND the index, and the duplicate inserts cleanly. This has already happened once — migration 062 records "28 items, 14 distinct prompts".',
     owner: 'claude',
-    state: 'open',
-    note: 'Fix is known and cheap: study_item_content_sha() from migration 076 is already deployed and reproduces exactly in JS, so make it a generated column with an index — no writer can forget it. Dedup needs a SECOND order-insensitive column rather than overloading one field with two jobs.',
-    doc: 'scripts/study-bank/CONTENT-HASH-FINDING.md',
+    state: 'done',
+    note: 'Two GENERATED ALWAYS columns, because nine scripts rewrite items and one remembers to update a hash: content_sha (exact, for measurement binding) and dedup_key (order-insensitive, for duplicates), plus a unique index. 077 shipped dedup_key ordering by the literal 1 — a constant inside an aggregate ORDER BY, not a position — so it was order-SENSITIVE and passed vacuously on 3,341 distinct keys. 078 fixed it and the 2 real duplicates archived.',
+    doc: 'database/migrations/078_fix_dedup_key_ordering.sql',
   },
   {
     id: 'A5',
@@ -255,6 +256,11 @@ export interface Found {
 }
 
 export const FOUND_WHILE_FIXING: Found[] = [
+  {
+    date: '2026-08-06',
+    what: 'string_agg(expr, \'|\' order by 1) sorts by a CONSTANT, not by position — aggregate ORDER BY does not take positional references. The "order-insensitive" dedup key was order-sensitive and its unique index passed on 3,341 distinct keys over 3,341 rows, missing both known duplicates.',
+    landedAs: 'fixed',
+  },
   {
     date: '2026-08-06',
     what: 'The "541 never measured" figure was wrong: Listen and Repeat (97) and Interview (48) already had passing verifiers. 396 items were genuinely unchecked, and every finding landed in those.',

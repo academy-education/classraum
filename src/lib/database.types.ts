@@ -3244,6 +3244,7 @@ export type Database = {
           correct: number
           id: string
           item_id: string
+          item_sha: string | null
           run_id: string
           solvers: number
         }
@@ -3252,6 +3253,7 @@ export type Database = {
           correct: number
           id?: string
           item_id: string
+          item_sha?: string | null
           run_id: string
           solvers: number
         }
@@ -3260,6 +3262,7 @@ export type Database = {
           correct?: number
           id?: string
           item_id?: string
+          item_sha?: string | null
           run_id?: string
           solvers?: number
         }
@@ -3285,7 +3288,9 @@ export type Database = {
           archived: boolean
           cohort: string | null
           content_hash: string | null
+          content_sha: string | null
           created_at: string
+          dedup_key: string | null
           difficulty: string
           domain: string
           family: string
@@ -3307,7 +3312,9 @@ export type Database = {
           archived?: boolean
           cohort?: string | null
           content_hash?: string | null
+          content_sha?: string | null
           created_at?: string
+          dedup_key?: string | null
           difficulty?: string
           domain: string
           family?: string
@@ -3329,7 +3336,9 @@ export type Database = {
           archived?: boolean
           cohort?: string | null
           content_hash?: string | null
+          content_sha?: string | null
           created_at?: string
+          dedup_key?: string | null
           difficulty?: string
           domain?: string
           family?: string
@@ -5221,6 +5230,33 @@ export type Database = {
         }
         Relationships: []
       }
+      study_item_attacks_fresh: {
+        Row: {
+          attacked_at: string | null
+          correct: number | null
+          id: string | null
+          item_id: string | null
+          item_sha: string | null
+          run_id: string | null
+          solvers: number | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "study_item_attacks_item_id_fkey"
+            columns: ["item_id"]
+            isOneToOne: false
+            referencedRelation: "study_item_bank"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "study_item_attacks_item_id_fkey"
+            columns: ["item_id"]
+            isOneToOne: false
+            referencedRelation: "study_item_calibration"
+            referencedColumns: ["item_id"]
+          },
+        ]
+      }
       study_item_calibration: {
         Row: {
           attempts: number | null
@@ -5778,6 +5814,7 @@ export type Database = {
         Returns: boolean
       }
       study_item_content_sha: { Args: { p_item: Json }; Returns: string }
+      study_item_dedup_key: { Args: { p_item: Json }; Returns: string }
       teaches_classroom: {
         Args: { target_classroom_id: string; teacher_user_id: string }
         Returns: boolean
