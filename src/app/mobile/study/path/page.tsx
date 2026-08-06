@@ -18,7 +18,7 @@ import { PathMascot } from '../_shared/PathMascot'
 import { ModalPortal } from '@/components/ui/modal-portal'
 import { CreditConfirmSheet, NoCreditsSheet } from '../_shared/CreditConfirmSheet'
 import {
-  annotatePath, getPathTemplate, PATH_REPEAT_CREDITS,
+  annotatePath, getPathTemplate, getPathsForTarget, getPathById, PATH_REPEAT_CREDITS,
   type PathNodeProgress, type PathNodeWithState, type StudyPathTemplate,
 } from '@/lib/study-path'
 
@@ -127,9 +127,15 @@ function StudyPathInner() {
         return
       }
 
-      // Topic ids for the slugs the template exercises — needed to
-      // create sessions directly when a node is launched.
-      const slugs = Array.from(new Set(tpl.nodes.map(n => n.subtopicSlug)))
+      /*
+       * Topic ids for every slug this TARGET touches, not just the
+       * section currently on screen. Switching section is local state
+       * with no refetch, so a slug missing from this map would leave
+       * the other section's nodes unable to create a session.
+       */
+      const slugs = Array.from(new Set(
+        getPathsForTarget(target).flatMap(p => p.nodes.map(n => n.subtopicSlug)),
+      ))
       const [{ data: topics }, { data: sessionRows }] = await Promise.all([
         db
           .from('study_topics')
@@ -298,6 +304,15 @@ function StudyPathInner() {
     setPickerOpen(false)
   }
 
+  /** Swap the section (path) shown for the current target. Local
+   *  state only — which section you are looking at is not a
+   *  preference worth persisting, and `target_tests` deliberately
+   *  keeps meaning "which exams am I preparing for". */
+  const switchSection = (id: string) => {
+    const next = getPathById(id)
+    if (next) setTemplate(next)
+  }
+
   /** Swap the currently-focused target without adding/removing any.
    *  Used by the chip strip when the student already has 2+ targets. */
   const switchTarget = async (next: string) => {
@@ -399,7 +414,12 @@ function StudyPathInner() {
 
   return (
     <div className="flex flex-col h-full bg-gray-50">
-      {header}
+      {/* shrink-0: this column now has THREE fixed bars (header, target
+          chips, section tabs). Without it flex compresses the header,
+          whose content then spills over the chip strip and shaves the
+          chips in half — which is exactly what happened when the
+          section tabs were added. */}
+      <div className="flex-shrink-0">{header}</div>
       {showChipStrip && (
         <TargetChipStrip
           targets={activeTargets}
@@ -408,6 +428,11 @@ function StudyPathInner() {
           onRemove={removeTarget}
         />
       )}
+      <SectionTabs
+        paths={getPathsForTarget(currentTarget)}
+        currentId={template.id}
+        onSwitch={switchSection}
+      />
       <StudyPageTransition>
         <PathList
           nodes={annotated}
@@ -463,6 +488,50 @@ function StudyPathInner() {
           />
         </div>
       )}
+    </div>
+  )
+}
+
+/** Section tabs — one per path within the current target test.
+ *
+ *  Deliberately a SECOND row rather than more chips in the target
+ *  strip. `target_tests` is a persisted statement about which exams a
+ *  student is preparing for; it drives onboarding and the goal gate.
+ *  Folding sections into it would conflate "which exam" with "which
+ *  part am I looking at right now", which is view state and belongs in
+ *  the component. */
+function SectionTabs({
+  paths, currentId, onSwitch,
+}: {
+  paths: { id: string; sectionEn: string; sectionKo: string }[]
+  currentId: string | null
+  onSwitch: (id: string) => void
+}) {
+  const { language } = useTranslation()
+  const ko = language === 'korean'
+  if (paths.length < 2) return null
+  return (
+    <div className="flex-shrink-0 bg-white border-b border-gray-100 px-5">
+      <div className="max-w-3xl mx-auto flex items-center gap-1 overflow-x-auto scrollbar-none">
+        {paths.map(p => {
+          const isCurrent = p.id === currentId
+          return (
+            <button
+              key={p.id}
+              type="button"
+              onClick={() => onSwitch(p.id)}
+              aria-pressed={isCurrent}
+              className={`flex-shrink-0 h-9 px-3 text-[12.5px] font-semibold tracking-tight border-b-2 transition-colors ${
+                isCurrent
+                  ? 'border-primary text-primary'
+                  : 'border-transparent text-gray-500 hover:text-gray-800'
+              }`}
+            >
+              {ko ? p.sectionKo : p.sectionEn}
+            </button>
+          )
+        })}
+      </div>
     </div>
   )
 }

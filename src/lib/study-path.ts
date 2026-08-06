@@ -65,9 +65,16 @@ export interface StudyPathNode {
 }
 
 export interface StudyPathTemplate {
+  /** Stable path id — one per SECTION, e.g. 'sat-math'. */
+  id: string
   testSlug: string
+  /** Target test this path belongs to, as stored in prefs ('SAT'). */
+  targetTest: string
   titleEn: string
   titleKo: string
+  /** Short section name for the in-page switcher. */
+  sectionEn: string
+  sectionKo: string
   nodes: StudyPathNode[]
 }
 
@@ -88,11 +95,7 @@ export const PRACTICE_SESSION_QUESTION_COUNT = 5
 const RW = 'sat-reading-writing'
 const MATH = 'sat-math'
 
-const SAT_PATH: StudyPathTemplate = {
-  testSlug: 'test-sat',
-  titleEn: 'Your SAT Path',
-  titleKo: 'SAT 학습 경로',
-  nodes: [
+const SAT_NODES: StudyPathNode[] = [
     {
       id: 'sat-diagnostic',
       kind: 'diagnostic',
@@ -322,14 +325,9 @@ const SAT_PATH: StudyPathTemplate = {
       questionCount: 22,
       milestone: true,
     },
-  ],
-}
+]
 
-const TOEFL_PATH: StudyPathTemplate = {
-  testSlug: 'test-toefl',
-  titleEn: 'Your TOEFL Path',
-  titleKo: 'TOEFL 학습 경로',
-  nodes: [
+const TOEFL_NODES: StudyPathNode[] = [
     {
       id: 'toefl-reading-practice',
       kind: 'practice',
@@ -375,6 +373,27 @@ const TOEFL_PATH: StudyPathTemplate = {
       milestone: true,
     },
     {
+      /*
+       * Speaking and Writing had NO practice at all — a student's first
+       * Speaking activity was the full section. These two warmups fix
+       * that, and they run as SHORT SECTION RUNS rather than practice
+       * sessions: /api/study/practice/generate filters
+       * item_type = 'multiple_choice', so a practice draw over Listen
+       * and Repeat / Interview / Build a Sentence / Email would return
+       * nothing at all. launchMode 'full_test' reuses the machinery
+       * that already renders and grades these types.
+       */
+      id: 'toefl-speaking-practice',
+      kind: 'practice',
+      labelEn: 'Speaking · Warmup',
+      labelKo: '말하기 · 워밍업',
+      detailEn: 'Two short speaking tasks with recording and AI feedback.',
+      detailKo: '녹음과 AI 피드백으로 짧은 말하기 과제 2개를 풀어요.',
+      subtopicSlug: 'toefl-speaking',
+      launchMode: 'full_test',
+      questionCount: 2,
+    },
+    {
       id: 'toefl-speaking',
       kind: 'section_test',
       labelEn: 'Speaking Section',
@@ -384,6 +403,17 @@ const TOEFL_PATH: StudyPathTemplate = {
       subtopicSlug: 'toefl-speaking',
       launchMode: 'full_test',
       milestone: true,
+    },
+    {
+      id: 'toefl-writing-practice',
+      kind: 'practice',
+      labelEn: 'Writing · Warmup',
+      labelKo: '쓰기 · 워밍업',
+      detailEn: 'Sentence building and a short email before the full section.',
+      detailKo: '전체 섹션 전에 문장 배열과 짧은 이메일을 연습해요.',
+      subtopicSlug: 'toefl-writing',
+      launchMode: 'full_test',
+      questionCount: 2,
     },
     {
       id: 'toefl-writing',
@@ -396,12 +426,124 @@ const TOEFL_PATH: StudyPathTemplate = {
       launchMode: 'full_test',
       milestone: true,
     },
-  ],
+]
+
+
+/*
+ * ── One path per SECTION, not per test ────────────────────────────────
+ *
+ * SAT used to be a single 18-stop path ending in two mocks, and TOEFL a
+ * single 6-stop path. A student grinding Math had to scroll past every
+ * Reading stop to reach it, and the two mocks sat behind all 16 other
+ * nodes. Each section is now its own path with its own finish line.
+ *
+ * Node ids are UNCHANGED by the split. Progress is keyed on
+ * session.config.pathNode, so every completed stop stays completed —
+ * that is the whole reason the paths are assembled by picking ids out
+ * of one list rather than being retyped as six literals.
+ *
+ * TOEFL sections double as their own mock. A TOEFL "section test" IS
+ * the full 35-minute section; the real exam is four of them back to
+ * back. Adding a separate mock after each would be the same test twice.
+ */
+function pick(all: StudyPathNode[], ids: string[], owner: string): StudyPathNode[] {
+  return ids.map(id => {
+    const node = all.find(n => n.id === id)
+    // Loud, not silent: a typo here would quietly shorten a path and
+    // strand whatever stop went missing.
+    if (!node) throw new Error(`study-path: ${owner} references unknown node "${id}"`)
+    return node
+  })
 }
 
-const TEMPLATES: Record<string, StudyPathTemplate> = {
-  SAT: SAT_PATH,
-  TOEFL: TOEFL_PATH,
+export const PATHS: StudyPathTemplate[] = [
+  {
+    id: 'sat-rw',
+    testSlug: 'test-sat',
+    targetTest: 'SAT',
+    titleEn: 'SAT · Reading & Writing',
+    titleKo: 'SAT · 읽기와 쓰기',
+    sectionEn: 'Reading & Writing',
+    sectionKo: '읽기·쓰기',
+    nodes: pick(SAT_NODES, [
+      'sat-diagnostic',
+      'sat-rw-info-1', 'sat-rw-info-2',
+      'sat-rw-craft-1', 'sat-rw-craft-2',
+      'sat-rw-conventions-1', 'sat-rw-conventions-2',
+      'sat-rw-expression',
+      'sat-rw-section',
+      'sat-final-rw',
+    ], 'sat-rw'),
+  },
+  {
+    id: 'sat-math',
+    testSlug: 'test-sat',
+    targetTest: 'SAT',
+    titleEn: 'SAT · Math',
+    titleKo: 'SAT · 수학',
+    sectionEn: 'Math',
+    sectionKo: '수학',
+    nodes: pick(SAT_NODES, [
+      'sat-math-algebra-1', 'sat-math-algebra-2',
+      'sat-math-advanced-1', 'sat-math-advanced-2',
+      'sat-math-data', 'sat-math-geometry',
+      'sat-math-section',
+      'sat-final-math',
+    ], 'sat-math'),
+  },
+  {
+    id: 'toefl-reading',
+    testSlug: 'test-toefl',
+    targetTest: 'TOEFL',
+    titleEn: 'TOEFL · Reading',
+    titleKo: 'TOEFL · 읽기',
+    sectionEn: 'Reading',
+    sectionKo: '읽기',
+    nodes: pick(TOEFL_NODES, ['toefl-reading-practice', 'toefl-reading-section'], 'toefl-reading'),
+  },
+  {
+    id: 'toefl-listening',
+    testSlug: 'test-toefl',
+    targetTest: 'TOEFL',
+    titleEn: 'TOEFL · Listening',
+    titleKo: 'TOEFL · 듣기',
+    sectionEn: 'Listening',
+    sectionKo: '듣기',
+    nodes: pick(TOEFL_NODES, ['toefl-listening-practice', 'toefl-listening-section'], 'toefl-listening'),
+  },
+  {
+    id: 'toefl-speaking',
+    testSlug: 'test-toefl',
+    targetTest: 'TOEFL',
+    titleEn: 'TOEFL · Speaking',
+    titleKo: 'TOEFL · 말하기',
+    sectionEn: 'Speaking',
+    sectionKo: '말하기',
+    nodes: pick(TOEFL_NODES, ['toefl-speaking-practice', 'toefl-speaking'], 'toefl-speaking'),
+  },
+  {
+    id: 'toefl-writing',
+    testSlug: 'test-toefl',
+    targetTest: 'TOEFL',
+    titleEn: 'TOEFL · Writing',
+    titleKo: 'TOEFL · 쓰기',
+    sectionEn: 'Writing',
+    sectionKo: '쓰기',
+    nodes: pick(TOEFL_NODES, ['toefl-writing-practice', 'toefl-writing'], 'toefl-writing'),
+  },
+]
+
+/** Every path for a target test, in study order. */
+export function getPathsForTarget(targetTest: string | null | undefined): StudyPathTemplate[] {
+  if (!targetTest) return []
+  const key = targetTest.toUpperCase()
+  return PATHS.filter(p => p.targetTest === key)
+}
+
+/** A single path by its id. */
+export function getPathById(id: string | null | undefined): StudyPathTemplate | null {
+  if (!id) return null
+  return PATHS.find(p => p.id === id) ?? null
 }
 
 /**
@@ -411,8 +553,7 @@ const TEMPLATES: Record<string, StudyPathTemplate> = {
  * onboarding-style "pick a target test to build your path" empty state.
  */
 export function getPathTemplate(targetTest: string | null | undefined): StudyPathTemplate | null {
-  if (!targetTest) return null
-  return TEMPLATES[targetTest.toUpperCase()] ?? null
+  return getPathsForTarget(targetTest)[0] ?? null
 }
 
 /** Node id → bilingual label, across every template. Used by surfaces
@@ -420,7 +561,7 @@ export function getPathTemplate(targetTest: string | null | undefined): StudyPat
  *  show "Info & Ideas I" instead of a generic topic name. */
 export function getPathNodeLabel(nodeId: string | null | undefined, ko: boolean): string | null {
   if (!nodeId) return null
-  for (const tpl of Object.values(TEMPLATES)) {
+  for (const tpl of PATHS) {
     const node = tpl.nodes.find(n => n.id === nodeId)
     if (node) return ko ? node.labelKo : node.labelEn
   }
