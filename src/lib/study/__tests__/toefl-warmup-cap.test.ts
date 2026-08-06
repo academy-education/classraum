@@ -43,7 +43,7 @@ describe('TOEFL warmup cap', () => {
     expect(applyCap(full, 'speaking')).toHaveLength(20)
   })
 
-  it('every Speaking/Writing warmup node actually carries a count', () => {
+  it('every Speaking/Writing drill actually carries a count', () => {
     /*
      * The node-side half of the contract. Without questionCount the
      * route sends no `count`, no cap is applied, and the warmup
@@ -54,7 +54,9 @@ describe('TOEFL warmup cap', () => {
       .filter(p => p.id === 'toefl-speaking' || p.id === 'toefl-writing')
       .flatMap(p => p.nodes.filter(n => n.kind === 'practice'))
 
-    expect(warmups).toHaveLength(2)
+    // One drill per question type — 2 Speaking, 3 Writing today. The
+    // assertion is that EVERY one is capped, not that there are N.
+    expect(warmups.length).toBeGreaterThanOrEqual(2)
     for (const n of warmups) {
       expect(n.questionCount).toBeGreaterThan(0)
       // ...and it must be genuinely shorter than the section it warms

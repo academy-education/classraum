@@ -767,6 +767,9 @@ function PathList({
           section,
           count: node.questionCount ?? 22,
           pathNode: node.id,
+          // Per-question-type drills restrict the draw to one bank
+          // domain. Absent on section tests, which draw the full mix.
+          ...(node.domain ? { domain: node.domain } : {}),
         }),
       })
       if (!res.ok) throw new Error('assemble failed')

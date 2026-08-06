@@ -75,7 +75,7 @@ export async function POST(req: NextRequest) {
   )
   if (blocked) return blocked
 
-  let body: { family?: string; section?: string; count?: number; pathNode?: string; adaptive?: boolean; creditSource?: 'pass' | 'regular' }
+  let body: { family?: string; section?: string; count?: number; pathNode?: string; adaptive?: boolean; creditSource?: 'pass' | 'regular'; domain?: string }
   try { body = await req.json() } catch { return NextResponse.json({ error: 'bad json' }, { status: 400 }) }
 
   // Family drives everything downstream: which sections are valid, which
@@ -246,6 +246,8 @@ export async function POST(req: NextRequest) {
              * Writing warmups depend on this.
              */
             ...(body.count ? { maxItems: Number(body.count) } : {}),
+            // Single-domain drill (path per-question-type stops).
+            ...(body.domain ? { domain: String(body.domain) } : {}),
           },
           sess.id,
         )

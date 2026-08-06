@@ -813,6 +813,17 @@ export async function assembleToeflFromBank(
      * and then hide half of its questions.
      */
     maxItems?: number
+    /**
+     * Restrict the draw to ONE bank domain — 'Build a Sentence',
+     * 'Conversation', 'Complete the Words' and so on.
+     *
+     * This is the per-question-type DRILL the path uses before a
+     * section test. It deliberately BYPASSES the ETS blueprint: a
+     * blueprint apportions quotas across the section's task mix, and
+     * over a single-domain pool every other quota finds nothing, so the
+     * shape it produces is meaningless. A drill is not a small test.
+     */
+    domain?: string
     /** Two-stage adaptive draw (Reading + Listening only). Omit to draw
      *  the WHOLE section exactly as before — Writing/Speaking and every
      *  non-adaptive caller depend on that path being untouched.
@@ -835,13 +846,17 @@ export async function assembleToeflFromBank(
   seed = 'bank',
 ): Promise<AssembledTest> {
   const meta = TOEFL_META[p.section]
-  const query = dbAdmin
+  let query = dbAdmin
     .from('study_item_bank')
     .select('id, item_type, item, difficulty')
     .eq('family', 'toefl')
     .eq('section', p.section)
     .eq('verified', true)
     .eq('archived', false)
+  // Single-domain drill: filter in SQL rather than after the fetch, so
+  // an empty domain fails on its own row count instead of quietly
+  // producing a short test.
+  if (p.domain) query = query.eq('domain', p.domain)
   // Difficulty banding is a MODULE-2 concept (module 1 is the fixed
   // mixed-difficulty form everyone takes), and it is applied below as a
   // PREFERENCE, not a filter.
@@ -875,6 +890,43 @@ export async function assembleToeflFromBank(
   if (rows.length === 0) throw new Error(`no verified items for toefl/${p.section}`)
 
   const exposures = p.studentId ? await loadExposures(p.studentId) : new Map<string, string>()
+
+  /*
+   * ── Single-domain drill ────────────────────────────────────────────
+   * One question type, unseen-first, capped. Returns before the
+   * blueprint runs, for the reason given on `domain` above.
+   *
+   * Passage sets are kept whole: Reading and Listening items arrive in
+   * groups sharing a passageGroupId, and cutting mid-group would show a
+   * student a passage and then hide half its questions — the same rule
+   * capWarmupItems enforces for the section draw.
+   */
+  if (p.domain) {
+    // rows is already domain-filtered by the query above.
+    const ordered = unseenFirst(rows, exposures, seed + p.domain)
+    const want = p.maxItems ?? 3
+    const picked: typeof ordered = []
+    for (const row of ordered) {
+      if (picked.length >= want) {
+        // Only stop on a group boundary — never split a passage set.
+        const gid = (row.item as { passageGroupId?: string | null }).passageGroupId
+        const prevGid = (picked[picked.length - 1]?.item as { passageGroupId?: string | null })?.passageGroupId
+        if (!gid || gid !== prevGid) break
+      }
+      picked.push(row)
+    }
+    if (p.studentId) {
+      await recordExposures(p.studentId, picked.map(r => r.id), 'full_test', seed)
+    }
+    return {
+      title: `${meta.title} · ${p.domain}`,
+      timeLimitMinutes: Math.max(3, Math.round(meta.minutes * picked.length / 20)),
+      section: meta.label,
+      family: 'toefl',
+      questions: shuffleDrawnChoices(picked, seed).map(r => r.item),
+      composition: { [p.domain]: picked.length },
+    }
+  }
   type Row = { id: string; item: Question; difficulty: string | null }
   // Bucket key. Every section but Listening keys on item_type, exactly as
   // before. Listening ALSO keys on the ETS task, because all four of its
