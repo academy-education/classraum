@@ -133,10 +133,11 @@ export const WORK: WorkItem[] = [
   {
     id: 'A12',
     title: 'Build a Sentence repeats its opening chips across items',
-    size: '28 of 119, plus 1 exact duplicate pair',
+    size: '18 of 118 in 8 families — 10 archived, pool 118 to 108',
     why: 'Four items begin "The book | that was recommended | by my professor". The cross-item tell this project keeps finding, in countable form for once.',
     owner: 'claude',
-    state: 'open',
+    state: 'done',
+    note: 'FIXED 2026-08-06 by scripts/study-bank/apply-a12-fix.mjs. The stated size was wrong twice over: the "exact duplicate pair" had already gone in migration 078, and the gate\'s first-three-chips measure both over- and under-counted — it splits survey/experiment versions of one sentence into separate groups while missing that SIX items are all "the results were analyzed by the research team using advanced software". Measured by content-word family instead: 18 items in 8 families at Jaccard 0.60, of which one survivor each is kept. Now 0 items in any family at 0.60. THINNED, NOT RE-AUTHORED, on the SAT Math lesson that the rewrite is itself the risk. The 0.50 band (14 items, largest family 4) is deliberately left: it holds genuine minimal pairs such as students/principal against professor/students, which is what this task type is for. The gate still WARNs 8 first-chip collisions, and that is expected rather than unfinished: those items share an opening but are not near-duplicates overall.',
     doc: 'scripts/study-bank/PRODUCTION-GATE.md',
   },
   {
@@ -257,6 +258,21 @@ export interface Found {
 }
 
 export const FOUND_WHILE_FIXING: Found[] = [
+  {
+    date: '2026-08-06',
+    what: 'Third exact-match measure in two days to miss a paraphrase. The Build a Sentence gate counts items sharing their first three chips, so it filed "collected during the SURVEY" and "collected during the EXPERIMENT" as two separate groups while missing that six items are one sentence. Pattern across A11 and A12: an exact or n-gram measure finds the tell it was written for and nothing adjacent to it. Content-word families found both.',
+    landedAs: 'fixed',
+  },
+  {
+    date: '2026-08-06',
+    what: 'The obvious survivor rule for de-duplication — keep the item with the most chips — silently strips the EASY end of a pool, because longer sentences were authored harder. On this bank it removed 5 of 25 easy items and 0 of 39 hard. Measured both ways before shipping; preferring the scarcest difficulty costs 1 easy item instead of 5. Any future thinning of any cohort should check which end its tie-break eats.',
+    landedAs: 'fixed',
+  },
+  {
+    date: '2026-08-06',
+    what: 'Build a Sentence draws from a narrow lexical world — proposal/committee, results/research team, conference/experts, novel/critics recur across the pool. Thinning removed the near-identical items but not the narrowness: 30 of 108 still sit in a family at Jaccard 0.40. That is a commissioning note for the next batch, not a defect to patch, and re-authoring to fix it would risk the tell it is meant to remove.',
+    landedAs: 'A12',
+  },
   {
     date: '2026-08-06',
     what: 'The production gate reported 0 near-duplicate Email scenarios because it compared 4-GRAM overlap. Two pairs in the cohort are the same scenario with the professor renamed and clauses reordered — 4.2% 4-gram overlap, 0.43 content-word Jaccard. An n-gram measure cannot see a paraphrase, and both pairs sat inside the 10 items A11 was about. check-email-cohort.mjs now measures content-word overlap instead.',

@@ -8,8 +8,8 @@
 renders on /admin/bank-qc, from the same source, so the two cannot
 disagree.
 
-Generated 2026-08-06. Live items: 3,337.
-Open work: 6 — 3 mine, 3 need you.
+Generated 2026-08-06. Live items: 3,327.
+Open work: 5 — 2 mine, 3 need you.
 
 ---
 
@@ -34,7 +34,7 @@ and on both cohorts checked so far the model was the one that was wrong.
 | SAT | Advanced Math | 191 | 100% | — | **unconfirmed** — model only |
 | TOEFL | Daily Life | 133 | 100% | 21.4% (n=14) | human says maybe — needs more |
 | TOEFL | Announcement | 121 | 100% | 15% (n=20) | **cleared by hand** — the model was wrong |
-| TOEFL | Build a Sentence | 118 | — | — | never measured — the attack does not apply |
+| TOEFL | Build a Sentence | 108 | — | — | never measured — the attack does not apply |
 | TOEFL | Listen and Repeat | 97 | — | — | never measured — the attack does not apply |
 | TOEFL | Complete the Words | 93 | — | — | never measured — the attack does not apply |
 | TOEFL | Academic Discussion | 92 | — | — | never measured — the attack does not apply |
@@ -47,7 +47,6 @@ and on both cohorts checked so far the model was the one that was wrong.
 
 | id | what | size | why |
 |---|---|---|---|
-| A12 | Build a Sentence repeats its opening chips across items | 28 of 119, plus 1 exact duplicate pair | Four items begin "The book | that was recommended | by my professor". The cross-item tell this project keeps finding, in countable form for once. |
 | A3 | Rebuild Choose a Response | 72 items | The only cohort where the model attack and a human agree it is broken: 55.0% blind against a 25.0% control, p<0.001, plus 4 of 20 with a second defensible answer. _Three rounds have failed. Start from the four crv2 items that passed both gates (1, 4, 10, 14), and measure with the held-out panel, which has never been spent._ |
 | A5 | Deepen the Daily Life reading pool | pool is 35 texts | Too few source texts means repetition across forms. |
 
@@ -73,6 +72,9 @@ and on both cohorts checked so far the model was the one that was wrong.
 Appended in the same commit as the work that surfaced it. A finding
 recorded only in a commit message is a finding nobody reads.
 
+- **2026-08-06** — Third exact-match measure in two days to miss a paraphrase. The Build a Sentence gate counts items sharing their first three chips, so it filed "collected during the SURVEY" and "collected during the EXPERIMENT" as two separate groups while missing that six items are one sentence. Pattern across A11 and A12: an exact or n-gram measure finds the tell it was written for and nothing adjacent to it. Content-word families found both. _(fixed on the spot)_
+- **2026-08-06** — The obvious survivor rule for de-duplication — keep the item with the most chips — silently strips the EASY end of a pool, because longer sentences were authored harder. On this bank it removed 5 of 25 easy items and 0 of 39 hard. Measured both ways before shipping; preferring the scarcest difficulty costs 1 easy item instead of 5. Any future thinning of any cohort should check which end its tie-break eats. _(fixed on the spot)_
+- **2026-08-06** — Build a Sentence draws from a narrow lexical world — proposal/committee, results/research team, conference/experts, novel/critics recur across the pool. Thinning removed the near-identical items but not the narrowness: 30 of 108 still sit in a family at Jaccard 0.40. That is a commissioning note for the next batch, not a defect to patch, and re-authoring to fix it would risk the tell it is meant to remove. → **A12**
 - **2026-08-06** — The production gate reported 0 near-duplicate Email scenarios because it compared 4-GRAM overlap. Two pairs in the cohort are the same scenario with the professor renamed and clauses reordered — 4.2% 4-gram overlap, 0.43 content-word Jaccard. An n-gram measure cannot see a paraphrase, and both pairs sat inside the 10 items A11 was about. check-email-cohort.mjs now measures content-word overlap instead. _(fixed on the spot)_
 - **2026-08-06** — The 10 defective Email items are one authoring batch, not a spread: they hold BOTH near-duplicate pairs and ALL five From:/To:/Subject: stimuli, while the other 82 have neither. Worth knowing before the next Email commission — the defect travelled with the brief, not with the cohort. _(fixed on the spot)_
 - **2026-08-06** — apply-a11-fix.mjs asserts renderer parity using a COPY of WritingPanels.tsx's intro regex, since the component is TSX in a Next route. A copy that drifts turns that assertion into decoration. email-renderer-parity.test.ts now pins the two literals together and fails if either moves. _(fixed on the spot)_
