@@ -9,7 +9,7 @@ renders on /admin/bank-qc, from the same source, so the two cannot
 disagree.
 
 Generated 2026-08-06. Live items: 3,339.
-Open work: 8 — 5 mine, 3 need you.
+Open work: 7 — 4 mine, 3 need you.
 
 ---
 
@@ -47,7 +47,6 @@ and on both cohorts checked so far the model was the one that was wrong.
 
 | id | what | size | why |
 |---|---|---|---|
-| A10 | 12 items cannot be graded correctly — students marked wrong for right answers | 1 Build a Sentence + 11 blanks across 8 Complete the Words | A Build-a-Sentence key ends in a full stop no chip carries, and grading folds only case and whitespace, so NO tap order scores correct. Eight cloze items spell misspellings — futuure, dioxxide, acttion, framewwork — with the wrong number of letter boxes. _Student-facing and unambiguous. Highest priority of anything open; needs no measurement, only repair._ |
 | A11 | 10 Email items are graded on a task they never state | 10 of 92 | 82 carry the ETS situation plus three bullets; these 10 state no task, while the task_fulfillment criterion grades "Task coverage" of points that were never given. |
 | A12 | Build a Sentence repeats its opening chips across items | 28 of 119, plus 1 exact duplicate pair | Four items begin "The book | that was recommended | by my professor". The cross-item tell this project keeps finding, in countable form for once. |
 | A3 | Rebuild Choose a Response | 72 items | The only cohort where the model attack and a human agree it is broken: 55.0% blind against a 25.0% control, p<0.001, plus 4 of 20 with a second defensible answer. _Three rounds have failed. Start from the four crv2 items that passed both gates (1, 4, 10, 14), and measure with the held-out panel, which has never been spent._ |
@@ -75,6 +74,8 @@ and on both cohorts checked so far the model was the one that was wrong.
 Appended in the same commit as the work that surfaced it. A finding
 recorded only in a commit message is a finding nobody reads.
 
+- **2026-08-06** — The A10 repair script asserts its trim lands on the intended word — but it CANNOT catch a word that is wrong yet reachable. A break test that changed the target from "framework" to "framwork" was accepted, because trimming two characters lands there exactly. Correctness of the 12 repairs rests on the target words having been read off the passages by hand, not on the assertion. _(fixed on the spot)_
+- **2026-08-06** — Build-a-Sentence keys capitalise the first word where the chip does not ("Students" vs "students"). Harmless — gradeAnswer folds case — but it means a permutation check over key and chips must fold case too, or it reports a defect that is not there. It did, on the first run. _(fixed on the spot)_
 - **2026-08-06** — string_agg(expr, '|' order by 1) sorts by a CONSTANT, not by position — aggregate ORDER BY does not take positional references. The "order-insensitive" dedup key was order-sensitive and its unique index passed on 3,341 distinct keys over 3,341 rows, missing both known duplicates. _(fixed on the spot)_
 - **2026-08-06** — The "541 never measured" figure was wrong: Listen and Repeat (97) and Interview (48) already had passing verifiers. 396 items were genuinely unchecked, and every finding landed in those. → **A4**
 - **2026-08-06** — Whether a Build-a-Sentence item has a SECOND grammatical ordering — its defining defect — is not decidable and remains unchecked on 118 items. Recorded rather than papered over with a proxy. → **A12**

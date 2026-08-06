@@ -116,8 +116,8 @@ export const WORK: WorkItem[] = [
     size: '1 Build a Sentence + 11 blanks across 8 Complete the Words',
     why: 'A Build-a-Sentence key ends in a full stop no chip carries, and grading folds only case and whitespace, so NO tap order scores correct. Eight cloze items spell misspellings — futuure, dioxxide, acttion, framewwork — with the wrong number of letter boxes.',
     owner: 'claude',
-    state: 'open',
-    note: 'Student-facing and unambiguous. Highest priority of anything open; needs no measurement, only repair.',
+    state: 'done',
+    note: 'FIXED 2026-08-06 by scripts/study-bank/apply-a10-fix.mjs — 9 items, 12 defects. The gate now reports 0 FATAL, and reverting one blank in the live bank makes it report exactly 1 again. Repaired from an EXPLICIT TABLE, not a rule: the "duplicated letter across the join" heuristic flags 27 blanks and most are real words (commissioned, planning, pollution). The item the gate proposed retiring, a1d20b7c, was repaired instead — all four of its defects are the same deterministic suffix duplication and each repair is checked against the intended word.',
     doc: 'scripts/study-bank/PRODUCTION-GATE.md',
   },
   {
@@ -256,6 +256,16 @@ export interface Found {
 }
 
 export const FOUND_WHILE_FIXING: Found[] = [
+  {
+    date: '2026-08-06',
+    what: 'The A10 repair script asserts its trim lands on the intended word — but it CANNOT catch a word that is wrong yet reachable. A break test that changed the target from "framework" to "framwork" was accepted, because trimming two characters lands there exactly. Correctness of the 12 repairs rests on the target words having been read off the passages by hand, not on the assertion.',
+    landedAs: 'fixed',
+  },
+  {
+    date: '2026-08-06',
+    what: 'Build-a-Sentence keys capitalise the first word where the chip does not ("Students" vs "students"). Harmless — gradeAnswer folds case — but it means a permutation check over key and chips must fold case too, or it reports a defect that is not there. It did, on the first run.',
+    landedAs: 'fixed',
+  },
   {
     date: '2026-08-06',
     what: 'string_agg(expr, \'|\' order by 1) sorts by a CONSTANT, not by position — aggregate ORDER BY does not take positional references. The "order-insensitive" dedup key was order-sensitive and its unique index passed on 3,341 distinct keys over 3,341 rows, missing both known duplicates.',
