@@ -98,7 +98,7 @@ export const WORK: WorkItem[] = [
     whoSpecifically: 'Your co-founder, on andy.manager@gmail.com — NOT on support@classraum.com. Checked 2026-08-06: all 72 existing reviews were sat on support@, so that account IS the first reviewer. A second sitting there would carry the same reviewer_id, reviewerAgreement would see one reviewer, and B1 would return nothing while looking like it had run. Both accounts are already super_admin, so nothing needs creating. In the app: Bank QC → Review → "Or sit someone else\'s run, item for item" → choose-a-response-2026-08-05. The route refuses a same-account mirror.',
     state: 'open',
     note: 'Unblocks everything. If the two readers scatter, A3 is cancelled rather than started. The brief to hand over is scripts/study-bank/B1-REVIEWER-BRIEF.md — send it as-is, and DELETE its top block first: it deliberately withholds what the first sitting found, because a reviewer told "we think these are guessable" will guess harder, and that spends the instrument.',
-    doc: 'scripts/study-bank/B1-REVIEWER-BRIEF.md',
+    doc: 'scripts/study-bank/B1-PREREGISTERED.md (decision rule) + B1-REVIEWER-BRIEF.md (send to the reviewer)',
   },
   {
     id: 'A1',
@@ -189,7 +189,7 @@ export const WORK: WorkItem[] = [
     owner: 'claude',
     state: 'open',
     dependsOn: ['B1'],
-    note: 'BLOCKED ON B1, and the dependency can CANCEL this rather than merely delay it: if the two readers scatter, the 55% finding is a habit of one reader and there is nothing to rebuild. Three rounds have already failed. If it does go ahead, start from the four crv2 items that passed both gates (1, 4, 10, 14), and measure with the held-out panel, which has never been spent.',
+    note: 'BLOCKED ON B1, and the branch that fires is pre-registered in scripts/study-bank/B1-PREREGISTERED.md — reviewer 2 at >=45% with kappa >=0.4 starts this work, <=35% CANCELS it outright, anything between keeps it blocked pending a third reader. The dependency can CANCEL this rather than merely delay it: if the two readers scatter, the 55% finding is a habit of one reader and there is nothing to rebuild. Three rounds have already failed. If it does go ahead, start from the four crv2 items that passed both gates (1, 4, 10, 14), and measure with the held-out panel, which has never been spent.',
     doc: 'scripts/study-bank/CRV3-RESULT.md',
   },
   {
