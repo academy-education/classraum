@@ -31,6 +31,19 @@ const PUBLISHED_MARGIN = 25.5
 
 const reviews = () => dbAdmin.from('study_item_reviews')
 
+/*
+ * Reviews that still describe their item — migration 076.
+ *
+ * SCORING reads this; the draw and resume paths read the table. The
+ * split is deliberate. `item_sha` is stamped when a row is INSERTED,
+ * i.e. when the sample is drawn, so an item edited between the draw and
+ * the answer makes that row stale. Freshness should decide whether a
+ * review counts as EVIDENCE, not whether a reviewer can find the
+ * sitting they are halfway through — routing resume through the view
+ * would strand them mid-sample with no way back.
+ */
+const freshReviews = () => dbAdmin.from('study_item_reviews_fresh')
+
 interface ReviewRecord {
   run_id: string
   reviewer_id: string
@@ -87,14 +100,28 @@ export async function GET(request: NextRequest) {
     })
   }
 
-  const q = reviews()
-    .select('run_id, reviewer_id, item_id, key_slot, blind_pick, blind_at, verdict, realism, note, reviewed_at')
-    .order('run_id', { ascending: false })
-    .limit(5000)   // explicit: PostgREST silently caps at 1000
-  const { data, error } = runId ? await q.eq('run_id', runId) : await q
-  if (error) return NextResponse.json({ error: error.message }, { status: 500 })
-
-  const rowsAll = (data ?? []) as ReviewRecord[]
+  /*
+   * Paginated with .range(). The previous `.limit(5000)` carried a
+   * comment claiming it defeated PostgREST's cap — it does not. The cap
+   * is 1000 and .limit() above it returns 1000 silently, so the comment
+   * asserted the opposite of what the line did. There are 72 rows today;
+   * this would have started truncating scores without any error.
+   *
+   * Reads the FRESH view, so a review whose item has been edited since
+   * stops counting toward any score on this page.
+   */
+  const rowsAll: ReviewRecord[] = []
+  for (let from = 0; ; from += 1000) {
+    const q = freshReviews()
+      .select('run_id, reviewer_id, item_id, key_slot, blind_pick, blind_at, verdict, realism, note, reviewed_at')
+      .order('run_id', { ascending: false })
+      .range(from, from + 999)
+    const { data, error } = runId ? await q.eq('run_id', runId) : await q
+    if (error) return NextResponse.json({ error: error.message }, { status: 500 })
+    if (!data?.length) break
+    rowsAll.push(...(data as ReviewRecord[]))
+    if (data.length < 1000) break
+  }
 
   /*
    * Grouped by run AND reviewer, not by run alone.

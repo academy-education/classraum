@@ -3263,7 +3263,22 @@ export type Database = {
           run_id?: string
           solvers?: number
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "study_item_attacks_item_id_fkey"
+            columns: ["item_id"]
+            isOneToOne: false
+            referencedRelation: "study_item_bank"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "study_item_attacks_item_id_fkey"
+            columns: ["item_id"]
+            isOneToOne: false
+            referencedRelation: "study_item_calibration"
+            referencedColumns: ["item_id"]
+          },
+        ]
       }
       study_item_bank: {
         Row: {
@@ -3281,6 +3296,7 @@ export type Database = {
           section: string
           source: string
           subskill: string | null
+          task: string
           topic_tag: string | null
           updated_at: string
           verified: boolean
@@ -3302,6 +3318,7 @@ export type Database = {
           section: string
           source?: string
           subskill?: string | null
+          task: string
           topic_tag?: string | null
           updated_at?: string
           verified?: boolean
@@ -3323,56 +3340,12 @@ export type Database = {
           section?: string
           source?: string
           subskill?: string | null
+          task?: string
           topic_tag?: string | null
           updated_at?: string
           verified?: boolean
           verify_meta?: Json | null
           word_count?: number | null
-        }
-        Relationships: []
-      }
-      study_item_reviews: {
-        Row: {
-          blind_at: string | null
-          blind_pick: string | null
-          id: string
-          item_id: string
-          key_slot: string
-          note: string | null
-          realism: string | null
-          reviewed_at: string | null
-          reviewer_id: string
-          run_id: string
-          shown_order: Json
-          verdict: string | null
-        }
-        Insert: {
-          blind_at?: string | null
-          blind_pick?: string | null
-          id?: string
-          item_id: string
-          key_slot: string
-          note?: string | null
-          realism?: string | null
-          reviewed_at?: string | null
-          reviewer_id: string
-          run_id: string
-          shown_order: Json
-          verdict?: string | null
-        }
-        Update: {
-          blind_at?: string | null
-          blind_pick?: string | null
-          id?: string
-          item_id?: string
-          key_slot?: string
-          note?: string | null
-          realism?: string | null
-          reviewed_at?: string | null
-          reviewer_id?: string
-          run_id?: string
-          shown_order?: Json
-          verdict?: string | null
         }
         Relationships: []
       }
@@ -3411,6 +3384,69 @@ export type Database = {
           },
           {
             foreignKeyName: "study_item_exposures_item_id_fkey"
+            columns: ["item_id"]
+            isOneToOne: false
+            referencedRelation: "study_item_calibration"
+            referencedColumns: ["item_id"]
+          },
+        ]
+      }
+      study_item_reviews: {
+        Row: {
+          blind_at: string | null
+          blind_pick: string | null
+          id: string
+          item_id: string
+          item_sha: string | null
+          key_slot: string
+          note: string | null
+          realism: string | null
+          reviewed_at: string | null
+          reviewer_id: string
+          run_id: string
+          shown_order: Json
+          verdict: string | null
+        }
+        Insert: {
+          blind_at?: string | null
+          blind_pick?: string | null
+          id?: string
+          item_id: string
+          item_sha?: string | null
+          key_slot: string
+          note?: string | null
+          realism?: string | null
+          reviewed_at?: string | null
+          reviewer_id: string
+          run_id: string
+          shown_order: Json
+          verdict?: string | null
+        }
+        Update: {
+          blind_at?: string | null
+          blind_pick?: string | null
+          id?: string
+          item_id?: string
+          item_sha?: string | null
+          key_slot?: string
+          note?: string | null
+          realism?: string | null
+          reviewed_at?: string | null
+          reviewer_id?: string
+          run_id?: string
+          shown_order?: Json
+          verdict?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "study_item_reviews_item_id_fkey"
+            columns: ["item_id"]
+            isOneToOne: false
+            referencedRelation: "study_item_bank"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "study_item_reviews_item_id_fkey"
             columns: ["item_id"]
             isOneToOne: false
             referencedRelation: "study_item_calibration"
@@ -4303,6 +4339,7 @@ export type Database = {
       }
       study_user_prefs: {
         Row: {
+          avatar_config: Json | null
           avatar_id: string | null
           created_at: string
           daily_goal_minutes: number | null
@@ -4322,6 +4359,7 @@ export type Database = {
           updated_at: string
         }
         Insert: {
+          avatar_config?: Json | null
           avatar_id?: string | null
           created_at?: string
           daily_goal_minutes?: number | null
@@ -4341,6 +4379,7 @@ export type Database = {
           updated_at?: string
         }
         Update: {
+          avatar_config?: Json | null
           avatar_id?: string | null
           created_at?: string
           daily_goal_minutes?: number | null
@@ -5170,6 +5209,18 @@ export type Database = {
         }
         Relationships: []
       }
+      study_item_attack_coverage: {
+        Row: {
+          attacked: number | null
+          blind_score_pct: number | null
+          domain: string | null
+          every_solver_got_it: number | null
+          family: string | null
+          items: number | null
+          unmeasured: number | null
+        }
+        Relationships: []
+      }
       study_item_calibration: {
         Row: {
           attempts: number | null
@@ -5187,6 +5238,57 @@ export type Database = {
           section: string | null
         }
         Relationships: []
+      }
+      study_item_review_results: {
+        Row: {
+          blind_answered: number | null
+          blind_cant_tell: number | null
+          blind_correct: number | null
+          control_best_slot: number | null
+          domain: string | null
+          drawn: number | null
+          reads_artificial: number | null
+          reviewed: number | null
+          reviewer_id: string | null
+          run_id: string | null
+          verdict_alternative: number | null
+          verdict_broken: number | null
+          verdict_unique: number | null
+        }
+        Relationships: []
+      }
+      study_item_reviews_fresh: {
+        Row: {
+          blind_at: string | null
+          blind_pick: string | null
+          id: string | null
+          item_id: string | null
+          item_sha: string | null
+          key_slot: string | null
+          note: string | null
+          realism: string | null
+          reviewed_at: string | null
+          reviewer_id: string | null
+          run_id: string | null
+          shown_order: Json | null
+          verdict: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "study_item_reviews_item_id_fkey"
+            columns: ["item_id"]
+            isOneToOne: false
+            referencedRelation: "study_item_bank"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "study_item_reviews_item_id_fkey"
+            columns: ["item_id"]
+            isOneToOne: false
+            referencedRelation: "study_item_calibration"
+            referencedColumns: ["item_id"]
+          },
+        ]
       }
     }
     Functions: {
@@ -5675,6 +5777,7 @@ export type Database = {
         Args: { student_user_id: string; target_classroom_id: string }
         Returns: boolean
       }
+      study_item_content_sha: { Args: { p_item: Json }; Returns: string }
       teaches_classroom: {
         Args: { target_classroom_id: string; teacher_user_id: string }
         Returns: boolean

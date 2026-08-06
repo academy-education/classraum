@@ -191,16 +191,45 @@ export async function GET(request: NextRequest) {
         item_id: string; reviewer_id: string; key_slot: string
         blind_pick: string | null; verdict: string | null
       }> = []
+      let droppedRows = 0
       for (let from = 0; ; from += 1000) {
         const { data, error } = await dbAdmin
-          .from('study_item_reviews')
+          /* The FRESH view (migration 076): a review whose item has been
+           * edited since no longer describes that item, and must not be
+           * counted as human evidence. Stale rows stay in the table as
+           * history — they are what you read to ask whether a repair
+           * changed anything — but they are not evidence about today. */
+          .from('study_item_reviews_fresh')
           .select('item_id, reviewer_id, key_slot, blind_pick, verdict, blind_at')
           .not('blind_at', 'is', null)
           .order('item_id', { ascending: true })
           .range(from, from + 999)
         if (error || !data?.length) break
-        reviews.push(...data)
+        /*
+         * A VIEW types every column nullable, because Postgres cannot
+         * promise otherwise. Narrowing rather than casting: a row
+         * missing an id, a reviewer or a key slot cannot be scored, and
+         * coercing it would put a `null` reviewer into the agreement
+         * pairing where it would silently become its own "reviewer".
+         *
+         * `dropped` is counted and logged rather than ignored — it
+         * should always be 0, and if it ever is not, that is a schema
+         * problem worth seeing rather than a row worth skipping.
+         */
+        for (const r of data) {
+          if (!r.item_id || !r.reviewer_id || !r.key_slot) { droppedRows++; continue }
+          reviews.push({
+            item_id: r.item_id,
+            reviewer_id: r.reviewer_id,
+            key_slot: r.key_slot,
+            blind_pick: r.blind_pick,
+            verdict: r.verdict,
+          })
+        }
         if (data.length < 1000) break
+      }
+      if (droppedRows > 0) {
+        console.warn(`[bank-qc] ${droppedRows} review row(s) missing item_id/reviewer_id/key_slot — not scored`)
       }
 
       const domainOf = new Map(live.map(i => [i.id, i.domain ?? '?']))
