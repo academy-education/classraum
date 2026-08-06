@@ -129,12 +129,23 @@ export const WORK: WorkItem[] = [
   },
   {
     id: 'A7',
-    title: 'content_hash does not match any definition we have',
-    size: '163 of 200 sampled rows',
-    why: 'Two scripts in this repo compute it differently (one includes the passage, one does not) and neither reproduces the live values. Dedup on future harvests depends on this column.',
+    title: 'content_hash is not reproducible — answered',
+    size: '2,681 of 4,838 rows match nothing',
+    why: 'Five live definitions, not two, selected by cohort; no SQL writer at all; and 36% of the bank was written by a harvest script that git log cannot find in any commit. ~22,000 candidate definitions were tried against those 1,761 rows with zero matches.',
+    owner: 'claude',
+    state: 'done',
+    note: 'Do NOT backfill — for 55% the input is gone, so a repair would be invention. Leave the column alone, as this session\'s edits did.',
+    doc: 'scripts/study-bank/CONTENT-HASH-FINDING.md',
+  },
+  {
+    id: 'A9',
+    title: 'The duplicate guard does not guard against duplicates',
+    size: '1 index, whole bank',
+    why: 'The unique partial index on content_hash reads as a uniqueness guarantee. A re-harvest computes a hash under a different definition, so it misses both the in-memory seen set AND the index, and the duplicate inserts cleanly. This has already happened once — migration 062 records "28 items, 14 distinct prompts".',
     owner: 'claude',
     state: 'open',
-    note: 'Until it is understood, edits deliberately leave the column untouched rather than write a guessed value.',
+    note: 'Fix is known and cheap: study_item_content_sha() from migration 076 is already deployed and reproduces exactly in JS, so make it a generated column with an index — no writer can forget it. Dedup needs a SECOND order-insensitive column rather than overloading one field with two jobs.',
+    doc: 'scripts/study-bank/CONTENT-HASH-FINDING.md',
   },
   {
     id: 'A5',
@@ -214,6 +225,11 @@ export interface Found {
 }
 
 export const FOUND_WHILE_FIXING: Found[] = [
+  {
+    date: '2026-08-06',
+    what: 'Nine scripts rewrite item content and leave content_hash stale; only apply-math-hub-repair recomputes it. And updated_at is useless as a mutation signal — there is no trigger, so 751 repaired rows read as "never updated".',
+    landedAs: 'A9',
+  },
   {
     date: '2026-08-06',
     what: 'A Biology 102 item was keyed backwards — "there may be no waitlist if the class is too full", when a waitlist exists BECAUSE a class fills. Found while repairing the phrase, not by any gate.',
