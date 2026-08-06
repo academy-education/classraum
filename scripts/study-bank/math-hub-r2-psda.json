@@ -1,0 +1,37 @@
+[
+  {
+    "id": "35c25711-b648-4ef9-b779-c653460dc27f",
+    "key": "4",
+    "choices": ["1", "3", "4", "7"],
+    "reasoning": "Answer: 0.8^1=.8, ^2=.64, ^3=.512, ^4=.4096, so year 4 is the first below 0.5. KEPT the original '3' (minus-one) because it is the genuine error on this problem: 0.8^3 = 0.512 is so close to 0.5 that a student who rounds, or who stops at the first value that 'looks like about half', answers 3; it is also the floor of the exact log solution ln0.5/ln0.8 = 3.106. Dropped '2' (halve) and '5' (plus one). NEW '1': a student who reads 'multiplied by 0.8' as 'reduced BY 80%', i.e. multiplied by 0.2 — 0.2 of the initial amount is already below half after the first year. (Same value comes from inverting the log ratio: log0.8/log0.5 = 0.32, rounded up to 1.) NEW '7': the decimal/place-value path — starting from 100 units and subtracting 8 per year instead of 20% of the running amount: 100 - 8n < 50 gives n > 6.25, so n = 7. Relations remaining in the set: only 3<->4 (plus one).",
+    "unchanged": false
+  },
+  {
+    "id": "4d49a026-38f5-412a-a3ab-d59162251974",
+    "key": "3",
+    "choices": ["4", "3", "15", "17"],
+    "reasoning": "The prompt is truncated at the stated mean, but the mean must be 6.4: with f sixes the mean is (78+6f)/(12+f), and 6.4 is the only tidy value that yields the given key (f=3 -> 96/15 = 6.4; f=2 -> 6.4286, f=4 -> 6.375). KEPT the original '4' (plus one), because it is reachable by a real path and not only by the slip: if a student attaches the unknown frequency to the wrong score — f students at 5 and the 4 students at 6 — then (5f+24+42+16)/(12+f) = 6.4 gives 5.2 = 1.4f, f = 3.71, which rounds to 4. Dropped '2' (minus one) and '6' (double). NEW '15': the student who solves for the TOTAL number of students N instead of f — 6.4N = 78 + 6(N-12) -> 0.4N = 6 -> N = 15 — and reports that. NEW '17': the deviation/balance method with the score-5 group left out: deviations from 6.4 are +0.6 x 6 (the sevens) + 1.6 x 2 (the eights) = 6.8, balanced against -0.4 per six, so f = 6.8/0.4 = 17. Relations remaining: only 3<->4 (plus one).",
+    "unchanged": false
+  },
+  {
+    "id": "8c978451-376f-44a3-9842-d36c90b86c6b",
+    "key": "48",
+    "choices": ["48", "50", "24", "52"],
+    "reasoning": "Answer: 240 miles total in 3 + 2 = 5 hours = 48 mph. KEPT the original '24' (halve) because on this problem it is the single most common real error, arriving two ways: dividing only ONE leg's 120 miles by the total 5 hours, and using the harmonic-mean formula without the factor 2 (40x60/(40+60) = 24). Dropped '96' (double) and '100' (sum of the two speeds). NEW '50': the naive arithmetic mean (40+60)/2 — the error the whole item is built to punish, and a value the original set was missing. NEW '52': weighting the speeds by the times but attaching each time to the wrong leg — 3 hours at 60 and 2 hours at 40 gives (180+80)/5 = 52 mph. Relations remaining: only 24<->48 (halve); 50 and 52 are unrelated to everything (50's double, 100, is gone).",
+    "unchanged": false
+  },
+  {
+    "id": "98ebd15b-12b3-460c-acb0-9ec4177209f8",
+    "key": "800",
+    "choices": ["1600", "640", "800", "12800"],
+    "reasoning": "Answer: 11:00 p.m. to 9:00 a.m. is 10 hours = two 5-hour doublings backward, so 3,200 / 4 = 800. KEPT the original '1600' (double) — the student who correctly works backward but applies only one doubling period instead of two. KEPT the original '640', which was never slip-derived: it is 3,200 / 5, dividing by the number of hours in a period rather than by 2 per period. Dropped '400' (halve, i.e. three doublings). NEW '12800': the direction reversal — the student who counts the two 5-hour periods correctly but multiplies forward instead of backward, 3,200 x 4 = 12,800, treating the earlier time as the later one. Relations remaining: only 800<->1600 (double); 640 and 12800 are unrelated to any pair (640's x10 = 6,400 and half = 320 are absent; 12,800 is 8x/16x/20x the others, none of which are listed operations).",
+    "unchanged": false
+  },
+  {
+    "id": "c85f3f57-c33f-4e1d-ae45-ec62f20b234e",
+    "key": "4000",
+    "choices": ["2000", "4500", "1500", "4000"],
+    "reasoning": "Answer: noon to 6 a.m. the next day is 18 hours = three 6-hour doublings, 500 x 8 = 4,000. KEPT the original '2000' (halve) — the student who miscounts the elapsed time as 12 hours (noon to midnight, or 'half a day') and applies two doublings. KEPT the original '4500', which was not slip-derived and now has a clean story: 500 x 2^3 = 4,000 plus the original 500 added back in. Dropped '8000' (double, the fencepost error of counting four doublings). NEW '1500': linear instead of exponential growth — 18/6 = 3 periods, so the population is multiplied by 3 rather than by 2^3, giving 500 x 3 = 1,500. Relations remaining: only 2000<->4000 (halve); 1,500 and 4,500 are 3x values, which is not a listed operation.",
+    "unchanged": false
+  }
+]

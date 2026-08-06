@@ -1,0 +1,963 @@
+[
+  {
+    "id": "0d1c620e-d473-4baa-bebd-9c1845966ad2",
+    "domain": "Algebra",
+    "previouslyRepaired": false,
+    "key": "2",
+    "before": [
+      "3",
+      "2",
+      "4",
+      "-2"
+    ],
+    "after": [
+      "3",
+      "2",
+      "7",
+      "-1.14"
+    ],
+    "wasDerivedBy": [
+      "plus one=3",
+      "double=4",
+      "negate=-2"
+    ],
+    "reasoning": "5x+4y=22, 3x+8y=30 -> 2*(eq1)=10x+8y=44, minus eq2 -> 7x=14, x=2 (y=3). KEPT '3': it is y, the wrong-variable answer (it is also plus-one of the key, the single relation left in the set). NEW '7': substitution slip - y=(22-5x)/4 into eq2 gives 3x+2(22-5x)=30; distributing the 2 only to the 22 gives 3x+44-5x=30 -> -2x=-14 -> x=7. NEW '-1.14': doubling eq1 but forgetting to double the constant (10x+8y=22), then subtracting eq2 -> 7x=-8 -> x=-8/7=-1.14. DROPPED double=4 and negate=-2."
+  },
+  {
+    "id": "3a040f12-43cb-4539-aea8-842379809ffe",
+    "domain": "Algebra",
+    "previouslyRepaired": false,
+    "key": "3",
+    "before": [
+      "3",
+      "-3",
+      "9",
+      "1/3"
+    ],
+    "after": [
+      "3",
+      "-3",
+      "11",
+      "-2.25"
+    ],
+    "wasDerivedBy": [
+      "negate=-3",
+      "square=9",
+      "reciprocal=0.3333333333333333"
+    ],
+    "reasoning": "y=4x-7 into ay-12x=-21 gives x(4a-12)=7a-21; infinitely many needs 4a-12=0 and 7a-21=0 -> a=3. KEPT '-3': cross-multiplying the coefficient proportion in the wrong direction (4a=-12) - the classic sign error here; the one remaining relation (negate). NEW '11': substituting the point (1,-3) and moving the -12 with the wrong sign: -3a-12=-21 read as -3a=-21-12=-33 -> a=11. NEW '-2.25': setting the x-coefficient condition but carrying the constant into it, 4a-12=-21 -> 4a=-9 -> a=-2.25. DROPPED square=9 and reciprocal=1/3."
+  },
+  {
+    "id": "3ddc5ea3-add8-464f-a4cb-589542316705",
+    "domain": "Algebra",
+    "previouslyRepaired": false,
+    "key": "3",
+    "before": [
+      "-3",
+      "4",
+      "3",
+      "2"
+    ],
+    "after": [
+      "7",
+      "4",
+      "3",
+      "0"
+    ],
+    "wasDerivedBy": [
+      "negate=-3",
+      "plus one=4",
+      "minus one=2"
+    ],
+    "reasoning": "5-2x>-3 -> -2x>-8 -> x<4; 4x+1>=-11 -> x>=-3. So -3<=x<4, greatest integer 3. KEPT '4': treating x<4 as x<=4 - the error the item is actually about (plus-one of the key, the single relation left). NEW '7': forgetting to divide by 2 when flipping, -2x>-8 -> x<8, greatest integer 7. NEW '0': misreading the first inequality's right side as +3, 5-2x>3 -> -2x>-2 -> x<1, greatest integer 0 (still within x>=-3). DROPPED negate=-3 (which was also just the lower bound) and minus-one=2. NOTE: my first attempt used -2 (sign slip on the 5); the relation checker rejected it because (-2)^2=4 would have added a second relation."
+  },
+  {
+    "id": "55f6b2ac-40f0-449a-8c5a-3fd640da0f3c",
+    "domain": "Algebra",
+    "previouslyRepaired": false,
+    "key": "3",
+    "before": [
+      "−2",
+      "9",
+      "3",
+      "6"
+    ],
+    "after": [
+      "−2",
+      "2.95",
+      "3",
+      "7"
+    ],
+    "wasDerivedBy": [
+      "minus one=2",
+      "square=9",
+      "double=6"
+    ],
+    "reasoning": "sqrt(x+6)=x -> x+6=x^2 -> x^2-x-6=0 -> x=3 or x=-2; -2 is extraneous. KEPT '−2': the extraneous root, the whole point of the item. NEW '2.95': completing the square on x^2-x=6 and forgetting to add 1/4 to the right side: (x-0.5)^2=6 -> x=0.5+2.449=2.95. NEW '7': misusing zero-product on the un-factored form x(x-1)=6, reading off 'x-1=6' -> x=7. DROPPED square=9 and double=6. This set has zero remaining derivation relations."
+  },
+  {
+    "id": "9152eace-e7ae-4743-831c-3a21766c1c93",
+    "domain": "Algebra",
+    "previouslyRepaired": false,
+    "key": "2",
+    "before": [
+      "1/2",
+      "2",
+      "3",
+      "4"
+    ],
+    "after": [
+      "1/2",
+      "2",
+      "-1",
+      "1/3"
+    ],
+    "wasDerivedBy": [
+      "reciprocal=0.5",
+      "plus one=3",
+      "double=4"
+    ],
+    "reasoning": "(a+b)/(a-b)=3 -> a+b=3a-3b -> 4b=2a -> a/b=2. KEPT '1/2': b/a, i.e. solving for the reciprocal ratio - the most common miss here; the single relation left in the set. NEW '-1': failing to distribute the minus, a+b=3a+3b -> -2b=2a -> a/b=-1. NEW '1/3': reporting the reciprocal of the GIVEN ratio, i.e. answering (a-b)/(a+b)=1/3 instead of a/b. DROPPED plus-one=3 and double=4. Note this stem has a small space of honest wrong values (1, -2, 3, 4 all collide with the key by a listed operation), which is why the two replacements are the ones above."
+  },
+  {
+    "id": "ae096f06-d984-41a4-ae33-6274d64f2a31",
+    "domain": "Algebra",
+    "previouslyRepaired": false,
+    "key": "4",
+    "before": [
+      "4",
+      "2",
+      "8",
+      "16"
+    ],
+    "after": [
+      "4",
+      "2.25",
+      "11.2",
+      "16"
+    ],
+    "wasDerivedBy": [
+      "halve=2",
+      "double=8",
+      "square=16"
+    ],
+    "reasoning": "No solution needs 3/6=k/8 (and constants not matching): k=4. KEPT '16': inverting the proportion, k/8=6/3 -> k=16 - the single relation left (square). NEW '11.2': using the constants' ratio instead, 7/5=k/8 -> k=56/5=11.2; the same value falls out of substitution, y=(5-6x)/8 into eq1 gives x(24-6k)=56-5k and solving 56-5k=0 instead of 24-6k=0. NEW '2.25': writing eq1's slope upside down, -k/3=-3/4 -> k=9/4=2.25. DROPPED halve=2 and double=8."
+  },
+  {
+    "id": "fa8f887c-d727-4cf8-b7bd-f1b764b7c36a",
+    "domain": "Algebra",
+    "previouslyRepaired": false,
+    "key": "4",
+    "before": [
+      "2",
+      "3",
+      "-4",
+      "4"
+    ],
+    "after": [
+      "2",
+      "1.5",
+      "1.69",
+      "4"
+    ],
+    "wasDerivedBy": [
+      "halve=2",
+      "minus one=3",
+      "negate=-4"
+    ],
+    "reasoning": "9^x*3^(2x-1)=3^(4x-1); 27^(x+1)=3^(3x+3); 4x-1=3x+3 -> x=4. KEPT '2': failing to distribute the 3 on the right, 27^(x+1)->3^(3x+1), so 4x-1=3x+1 -> x=2; the single relation left (halve). NEW '1.5': reading 27 as 3^2, 4x-1=2x+2 -> x=1.5. NEW '1.69': multiplying exponents instead of adding when multiplying the powers, 2x(2x-1)=3x+3 -> 4x^2-5x-3=0 -> x=(5+sqrt(73))/8=1.69. DROPPED minus-one=3 and negate=-4."
+  },
+  {
+    "id": "1709f2a3-7042-4850-bb21-43dded155670",
+    "domain": "Algebra",
+    "previouslyRepaired": true,
+    "key": "3",
+    "before": [
+      "3",
+      "9",
+      "4",
+      "3.5"
+    ],
+    "after": [
+      "3",
+      "9",
+      "3.16",
+      "3.5"
+    ],
+    "wasDerivedBy": [
+      "square=9",
+      "plus one=4"
+    ],
+    "reasoning": "f(g(a))=2(a^2+1)-3=2a^2-1=17 -> a^2=9 -> a=3. KEPT '9': stopping at a^2=9 and reporting it; the single relation left (square). KEPT '3.5' (never slip-derived): it is g(f(a))=17, (2a-3)^2+1=17 -> 2a-3=4 -> a=3.5, the composition-order error. NEW '3.16': dropping the +1 inside g, 2a^2-3=17 -> a^2=10 -> a=sqrt(10)=3.16. DROPPED plus-one=4."
+  },
+  {
+    "id": "7f63e837-38be-4ffa-8d7e-c49eaf1a3fc0",
+    "domain": "Algebra",
+    "previouslyRepaired": true,
+    "key": "7",
+    "before": [
+      "4.5",
+      "-7",
+      "7",
+      "14"
+    ],
+    "after": [
+      "4.5",
+      "2",
+      "7",
+      "14"
+    ],
+    "wasDerivedBy": [
+      "negate=-7",
+      "double=14"
+    ],
+    "reasoning": "Subtracting, (5x+3y)-(3x+5y)=15-1 -> 2x-2y=14 -> x-y=7. KEPT '14': stopping at 2x-2y=14 and forgetting to divide by 2; the single relation left (double). KEPT '4.5' (never slip-derived): it is x itself (adding gives x+y=2, so x=4.5, y=-2.5) - the wrong-quantity answer. NEW '2': adding instead of subtracting, 8x+8y=16 -> x+y=2. DROPPED negate=-7."
+  },
+  {
+    "id": "b91531df-435a-48e4-aad9-5392672aecbc",
+    "domain": "Algebra",
+    "previouslyRepaired": true,
+    "key": "4",
+    "before": [
+      "8",
+      "6",
+      "4",
+      "-4"
+    ],
+    "after": [
+      "8",
+      "6",
+      "4",
+      "6.25"
+    ],
+    "wasDerivedBy": [
+      "double=8",
+      "negate=-4"
+    ],
+    "reasoning": "(x+y)^2=x^2+2xy+y^2 -> 25=17+2xy -> xy=4. KEPT '8': stopping at 2xy=8; the single relation left (double). KEPT '6' (never slip-derived): guessing the integers 3 and 2 that sum to 5 without checking x^2+y^2. NEW '6.25': assuming x=y=2.5 from x+y=5 and multiplying, 2.5*2.5=6.25. DROPPED negate=-4 (which is also the value you get from the natural sign slip 2xy=17-25, so it is doubly unusable)."
+  },
+  {
+    "id": "c0eb62d7-1bd0-49a3-ac8f-dcaaf942af75",
+    "domain": "Algebra",
+    "previouslyRepaired": true,
+    "key": "14",
+    "before": [
+      "14",
+      "7",
+      "28",
+      "61"
+    ],
+    "after": [
+      "14",
+      "7",
+      "18",
+      "61"
+    ],
+    "wasDerivedBy": [
+      "halve=7",
+      "double=28"
+    ],
+    "reasoning": "r+s=6, rs=k/2; r^2+s^2=36-k=22 -> k=14. KEPT '7': the product rs=7, i.e. forgetting that k=2rs; the single relation left (halve). KEPT '61' (never slip-derived): not dividing by the leading 2 at all - sum 12, product k, 144-2k=22 -> k=61. NEW '18': solving the wrong condition, the discriminant 144-8k=0 -> k=18. DROPPED double=28."
+  },
+  {
+    "id": "5c63a863-2394-4bc1-a320-30672e0561f7",
+    "domain": "Advanced Math",
+    "previouslyRepaired": false,
+    "key": "6",
+    "before": [
+      "-6",
+      "36",
+      "6",
+      "3"
+    ],
+    "after": [
+      "36",
+      "6",
+      "10",
+      "4.24"
+    ],
+    "wasDerivedBy": [
+      "negate=-6",
+      "square=36",
+      "halve=3"
+    ],
+    "reasoning": "Solution: discriminant k^2-4(1)(9)=0 -> k^2=36 -> k=6. KEPT the original 36 (square slip) because it is the genuine error of solving k^2=36 and reporting k^2 instead of k. Dropped -6 (sign) and 3 (halve). NEW 10: student ignores the one-solution condition and just factors 9 over the integers as 9*1, giving sum of roots 9+1=10=k. NEW 4.24: completing the square as (x+k/2)^2 + 9 - k^2/2 (using k^2/2 instead of k^2/4) gives k^2=18, k=sqrt(18)=4.24. Remaining relations: 36=6^2 only."
+  },
+  {
+    "id": "67999643-237d-4b81-ba55-61823ea2a24f",
+    "domain": "Advanced Math",
+    "previouslyRepaired": false,
+    "key": "4",
+    "before": [
+      "4",
+      "8",
+      "2",
+      "16"
+    ],
+    "after": [
+      "192",
+      "4",
+      "64",
+      "3"
+    ],
+    "wasDerivedBy": [
+      "double=8",
+      "halve=2",
+      "square=16"
+    ],
+    "reasoning": "Solution: a^(b+1)/a^b = a = 256/64 = 4. Dropped ALL three slip distractors (8 double, 2 halve, 16 square) because 8 and 16 chain into each other (8^2=64 would have created a second relation once 64 was added). NEW 3: solving for the wrong variable — with a=4, 4^b=64 gives b=3, and a student who finds b and stops reports 3. NEW 192: treating a^(b+1) as a^b + a, so 256 = 64 + a -> a = 192. NEW 64: reporting the given value a^b as if it were a. Remaining relations: 3 -> 4 (plus one) only."
+  },
+  {
+    "id": "79be58aa-974f-4814-907f-7d935a50f5aa",
+    "domain": "Advanced Math",
+    "previouslyRepaired": false,
+    "key": "2",
+    "before": [
+      "1",
+      "4",
+      "3",
+      "2"
+    ],
+    "after": [
+      "1",
+      "2",
+      "0.67",
+      "1.71"
+    ],
+    "wasDerivedBy": [
+      "halve=1",
+      "double=4",
+      "plus one=3"
+    ],
+    "reasoning": "Solution: 2^(3x) = 2^(2x+2) -> 3x = 2x+2 -> x = 2. KEPT the original 1 (halve) because it is exactly what a student gets by failing to distribute the exponent over (x+1): 3x = 2x+1 -> x=1. Dropped 4 (double) and 3 (plus one). NEW 0.67: taking logs and dividing rather than solving the linear equation, x = log4/log8 = 0.6021/0.9031 = 0.67. NEW 1.71: substituting the exponents for the bases (3^x = 2^(x+1)), giving x = log2/(log3-log2) = 0.3010/0.1761 = 1.71. Remaining relations: 1 -> 2 (double) only."
+  },
+  {
+    "id": "8eea18c1-5d66-4fa9-9c7e-c85221fd0b31",
+    "domain": "Advanced Math",
+    "previouslyRepaired": false,
+    "key": "8",
+    "before": [
+      "4",
+      "8",
+      "-8",
+      "16"
+    ],
+    "after": [
+      "4",
+      "8",
+      "17",
+      "5.66"
+    ],
+    "wasDerivedBy": [
+      "halve=4",
+      "negate=-8",
+      "double=16"
+    ],
+    "reasoning": "Solution: k^2 - 4(1)(16) = 0 -> k^2 = 64 -> k = 8. KEPT the original 4 (halve) because it is the classic dropped-coefficient error: setting k^2 = 16 instead of k^2 = 4*16 gives k = 4. Dropped -8 (sign) and 16 (double); 16 was also excluded because sqrt(16)=4 would have added a second relation. NEW 17: ignoring the one-solution condition and factoring 16 as 16*1, so k = 16+1 = 17. NEW 5.66: completing the square with 16 - k^2/2 = 0 instead of 16 - k^2/4 = 0, giving k = sqrt(32) = 5.66. Remaining relations: 4 -> 8 (double) only."
+  },
+  {
+    "id": "d217ca38-f5f8-4fa1-b4db-3639eaac94c5",
+    "domain": "Advanced Math",
+    "previouslyRepaired": false,
+    "key": "3",
+    "before": [
+      "2",
+      "4",
+      "-3",
+      "3"
+    ],
+    "after": [
+      "2",
+      "3",
+      "12",
+      "0"
+    ],
+    "wasDerivedBy": [
+      "minus one=2",
+      "plus one=4",
+      "negate=-3"
+    ],
+    "reasoning": "Solution: multiply by (x-2): x + 3(x-2) = 6 -> 4x - 6 = 6 -> x = 3. KEPT the original 2 (minus one) because it is the distribution error: x + 3x - 2 = 6 -> 4x = 8 -> x = 2 (and it doubles as the excluded value, a real trap here). Dropped 4 (plus one) and -3 (negate). NEW 12: stopping one step early at 4x = 12 and reporting 12. NEW 0: sign error moving the -6 across, x + 3x + 6 = 6 -> 4x = 0 -> x = 0. Remaining relations: 2 -> 3 (plus one) only."
+  },
+  {
+    "id": "dbd18b60-3bd6-4d35-909d-71b7a390288a",
+    "domain": "Advanced Math",
+    "previouslyRepaired": false,
+    "key": "3",
+    "before": [
+      "2",
+      "4",
+      "3",
+      "9"
+    ],
+    "after": [
+      "9",
+      "3",
+      "3.5",
+      "2.45"
+    ],
+    "wasDerivedBy": [
+      "minus one=2",
+      "plus one=4",
+      "square=9"
+    ],
+    "reasoning": "Solution: f(g(a)) = 2(a^2+1) - 3 = 2a^2 - 1 = 17 -> a^2 = 9 -> a = 3. KEPT the original 9 (square) because it is the standard forgot-to-take-the-square-root answer at a^2 = 9. Dropped 2 (minus one) and 4 (plus one). NEW 3.5: composing in the wrong order, g(f(a)) = (2a-3)^2 + 1 = 17 -> (2a-3)^2 = 16 -> 2a-3 = 4 -> a = 3.5. NEW 2.45: subtracting the 3 on the wrong side, 2(a^2+1) = 17-3 = 14 -> a^2 = 6 -> a = 2.45. Remaining relations: 9 = 3^2 only."
+  },
+  {
+    "id": "2804a6ed-826d-4314-833a-a47c8e1470e2",
+    "domain": "Advanced Math",
+    "previouslyRepaired": true,
+    "key": "10",
+    "before": [
+      "5",
+      "20",
+      "10",
+      "3"
+    ],
+    "after": [
+      "20",
+      "10",
+      "3",
+      "14.5"
+    ],
+    "wasDerivedBy": [
+      "halve=5",
+      "double=20"
+    ],
+    "reasoning": "Solution: (x+y)^2 = 49 = x^2+y^2+2xy = 29 + 2xy -> 2xy = 20 -> xy = 10. KEPT the original 20 (double) because it is the stop-one-step-early answer: reporting 2xy. Dropped 5 (halve). KEPT 3, which was not slip-derived and is a real alternate quantity: (x-y)^2 = 2(29) - 49 = 9 -> x-y = 3, i.e. answering the difference. NEW 14.5: assuming x = y, so x^2 = y^2 = 29/2 = 14.5 and hence xy = 14.5. Remaining relations: 10 -> 20 (double) only."
+  },
+  {
+    "id": "2a4b8835-79c8-466f-aee9-9ced01b0f12d",
+    "domain": "Advanced Math",
+    "previouslyRepaired": true,
+    "key": "4",
+    "before": [
+      "2",
+      "4",
+      "16",
+      "4.33"
+    ],
+    "after": [
+      "16",
+      "4",
+      "4.33",
+      "2.83"
+    ],
+    "wasDerivedBy": [
+      "halve=2",
+      "square=16"
+    ],
+    "reasoning": "Solution: y = mx - 4 meets y = x^2 once -> x^2 - mx + 4 = 0 with m^2 - 16 = 0 -> m = 4 (positive branch, first quadrant). KEPT the original 16 (square) because it is the forgot-the-square-root answer at m^2 = 16. Dropped 2 (halve), which was also the tangency x-coordinate and so doubly tempting as a hub. KEPT 4.33, which was not slip-derived: it is the secant slope from (0,-4) to a guessed contact point (3,9), (9+4)/3 = 4.33. NEW 2.83: mis-deriving the tangent line at (a,a^2) as y = 2ax - 2a^2, so 2a^2 = 4, a = 1.414, m = 2a = 2.83. Remaining relations: 16 = 4^2 only."
+  },
+  {
+    "id": "5534c23c-c2a5-4c4a-a1e4-c22d236a5a58",
+    "domain": "Advanced Math",
+    "previouslyRepaired": true,
+    "key": "32",
+    "before": [
+      "32",
+      "36",
+      "16",
+      "64"
+    ],
+    "after": [
+      "36",
+      "32",
+      "128",
+      "4"
+    ],
+    "wasDerivedBy": [
+      "halve=16",
+      "double=64"
+    ],
+    "reasoning": "Solution: roots r and 2r, sum 3r = 12 -> r = 4, product k = r(2r) = 2(16) = 32. KEPT the original 36, which was not slip-derived and is the best error here: reading 'one solution is twice the other' as a double root, x = 6, k = 36. Dropped 16 (halve) and 64 (double). NEW 128: using the root-difference/discriminant route, (r)^2 = 144 - 4k, but dropping the 4: 16 = 144 - k -> k = 128. NEW 4: solving for the wrong quantity and reporting the smaller root r = 4 instead of k. Remaining relations: none."
+  },
+  {
+    "id": "ad54e038-1513-4fe9-9132-825d9f69e181",
+    "domain": "Advanced Math",
+    "previouslyRepaired": true,
+    "key": "36",
+    "before": [
+      "6",
+      "-36",
+      "0",
+      "36"
+    ],
+    "after": [
+      "6",
+      "36",
+      "0",
+      "-12"
+    ],
+    "wasDerivedBy": [
+      "sqrt=6",
+      "negate=-36"
+    ],
+    "reasoning": "Solution: x^2 = 4 or 9 -> x = 2,-2,3,-3 -> product = (2)(-2)(3)(-3) = 36. KEPT the original 6 (sqrt) because it is the real error of multiplying only the positive roots, 2*3 = 6. Dropped -36 (negate). KEPT 0, which was not slip-derived: it is the sum of the four roots, i.e. answering the wrong operation (also what a student gets if they think x = 0 is a solution). NEW -12: missing one root and multiplying (2)(-2)(3) = -12. Remaining relations: 6 = sqrt(36) only."
+  },
+  {
+    "id": "22eee0db-1636-45da-9202-14089d59cdfb",
+    "domain": "Geometry and Trigonometry",
+    "previouslyRepaired": false,
+    "key": "5",
+    "before": [
+      "5",
+      "10",
+      "25",
+      "√50"
+    ],
+    "after": [
+      "5",
+      "10",
+      "7",
+      "3"
+    ],
+    "wasDerivedBy": [
+      "double=10",
+      "square=25",
+      "times ten=50"
+    ],
+    "reasoning": "A(1,2)->B(7,10): dx=6, dy=8, diameter=10, radius=5. Kept the original '10' (computed the diameter and stopped there) as the single remaining relation - it is the error nearly every student makes on this item. Dropped 25 (square) and 50 (times ten). New: 7 = half of the taxicab distance |6|+|8|=14 (added the legs instead of using Pythagoras, then halved). New: 3 = half of the horizontal run 6 alone (used only the x-difference as the diameter). Remaining relation count: 1 (10 = 2*5)."
+  },
+  {
+    "id": "2e5f98da-d500-477a-bc91-cca0a406b1fe",
+    "domain": "Geometry and Trigonometry",
+    "previouslyRepaired": false,
+    "key": "5",
+    "before": [
+      "10",
+      "50",
+      "5",
+      "25"
+    ],
+    "after": [
+      "10",
+      "7",
+      "5",
+      "3"
+    ],
+    "wasDerivedBy": [
+      "double=10",
+      "times ten=50",
+      "square=25"
+    ],
+    "reasoning": "(2,3)->(8,11): dx=6, dy=8, diameter=10, radius=5. Kept '10' (diameter reported as the radius). Dropped 50 (times ten) and 25 (square). New: 7 = (6+8)/2, added the legs instead of squaring, then halved. New: 3 = 6/2, used only the horizontal difference as the diameter. Remaining relation count: 1 (10 = 2*5)."
+  },
+  {
+    "id": "825707e2-b9b0-4cb2-8219-b04e8379996b",
+    "domain": "Geometry and Trigonometry",
+    "previouslyRepaired": false,
+    "key": "50°",
+    "before": [
+      "100°",
+      "130°",
+      "25°",
+      "50°"
+    ],
+    "after": [
+      "100°",
+      "260°",
+      "65°",
+      "50°"
+    ],
+    "wasDerivedBy": [
+      "double=100",
+      "complement to 180=130",
+      "halve=25"
+    ],
+    "reasoning": "Central angle 100 -> inscribed angle 50. Kept '100°' (read the central angle as the answer, the classic no-halving error) as the single relation. Dropped 130 (=180-50) and 25 (=50/2); note 130 and 25 also relate to the replacement values, so both had to go. New: 65° - if P is on the major arc, arcs AP and PB total 360-100=260, so each is 130 and the inscribed angle at A (angle PAB) is 65; a student who finds the wrong vertex of triangle APB gets this. New: 260° - the measure of the major arc P lies on, given by a student who confuses the intercepted arc with the angle (the stem names the major arc, which is what invites it). Remaining relation count: 1 (100 = 2*50)."
+  },
+  {
+    "id": "290a8af4-41ea-49a9-a1cd-70fca2857204",
+    "domain": "Geometry and Trigonometry",
+    "previouslyRepaired": true,
+    "key": "25",
+    "before": [
+      "17.5",
+      "25",
+      "5",
+      "625"
+    ],
+    "after": [
+      "17.5",
+      "25",
+      "13.23",
+      "625"
+    ],
+    "wasDerivedBy": [
+      "sqrt=5",
+      "square=625"
+    ],
+    "reasoning": "dx=15, dy=20, distance=25. Kept '625' (computed 15^2+20^2=625 and forgot the square root) as the single relation - the most common slip on distance problems. Dropped '5' (sqrt of the key). '17.5' was already not slip-derived (it is (15+20)/2) and is retained. New: 13.23 = sqrt(20^2-15^2)=sqrt(175), subtracting the squares instead of adding them. Remaining relation count: 1 (625 = 25^2)."
+  },
+  {
+    "id": "2ca0efba-f05c-48a4-afbf-80482cb6d34a",
+    "domain": "Geometry and Trigonometry",
+    "previouslyRepaired": false,
+    "key": "40°",
+    "before": [
+      "80°",
+      "50°",
+      "30°",
+      "40°"
+    ],
+    "after": [
+      "80°",
+      "70°",
+      "30°",
+      "40°"
+    ],
+    "wasDerivedBy": [
+      "double=80",
+      "complement to 90=50"
+    ],
+    "reasoning": "Central angle 80 -> inscribed angle 40. Kept '80°' (central angle used directly) as the single relation. Dropped '50°' (=90-40; it is also the base angle of isosceles triangle AOB, but it is the exact complement slip the rule targets). Retained '30°', which was not slip-derived. New: 70° - arcs AP and PB together measure 360-80=280, so each is 140 and the inscribed angle at A (angle PAB) is 70; a student who computes the angle at the wrong vertex of triangle APB lands here. Remaining relation count: 1 (80 = 2*40)."
+  },
+  {
+    "id": "4d23b134-c7c4-4205-9d53-5e93cea13b7f",
+    "domain": "Geometry and Trigonometry",
+    "previouslyRepaired": false,
+    "key": "39",
+    "before": [
+      "39",
+      "51",
+      "40",
+      "37"
+    ],
+    "after": [
+      "39",
+      "51",
+      "45",
+      "32.73"
+    ],
+    "wasDerivedBy": [
+      "complement to 90=51",
+      "plus one=40"
+    ],
+    "reasoning": "Legs 15 and 36 -> hypotenuse sqrt(225+1296)=sqrt(1521)=39. Kept '51' - it is flagged as 90-39, but its real source is 15+36=51, adding the legs instead of using Pythagoras, which is the error a real student makes here. Dropped '40' (plus one) and '37'. New: 32.73 = sqrt(36^2-15^2)=sqrt(1071), subtracting the squares instead of adding. New: 45 = assuming a 3-4-5 family from the 36 (36/4=9, so 9*5=45, i.e. reading the triangle as 27-36-45). Remaining relation count: 1 (51 = 90-39)."
+  },
+  {
+    "id": "5be69aff-a190-4544-802a-f0a4dd919aa5",
+    "domain": "Geometry and Trigonometry",
+    "previouslyRepaired": false,
+    "key": "6",
+    "before": [
+      "5",
+      "6",
+      "36",
+      "√11"
+    ],
+    "after": [
+      "√14",
+      "6",
+      "36",
+      "√11"
+    ],
+    "wasDerivedBy": [
+      "minus one=5",
+      "square=36"
+    ],
+    "reasoning": "x^2+y^2-6x+8y-11=0 -> (x-3)^2+(y+4)^2 = 11+9+16 = 36, r=6. Kept '36' (stopped at r^2, forgot the square root) as the single relation. Retained '√11' (read the constant term as r^2), which was not slip-derived. Dropped '5' (minus one). New: √14 - sign error while completing the square, r^2 = 9+16-11 = 14 (subtracting the constant instead of moving it across). Remaining relation count: 1 (36 = 6^2)."
+  },
+  {
+    "id": "5d709c99-81c7-4d74-a79e-e0864171080a",
+    "domain": "Geometry and Trigonometry",
+    "previouslyRepaired": false,
+    "key": "40",
+    "before": [
+      "32",
+      "50",
+      "41",
+      "40"
+    ],
+    "after": [
+      "32",
+      "50",
+      "41.98",
+      "40"
+    ],
+    "wasDerivedBy": [
+      "complement to 90=50",
+      "plus one=41"
+    ],
+    "reasoning": "Hypotenuse 41, leg 9 -> AB = sqrt(1681-81) = sqrt(1600) = 40. Kept '50' - flagged as 90-40, but its real source is 41+9=50, adding the two given lengths. Retained '32' (=41-9, subtracting lengths instead of squares), which is not slip-derived. Dropped '41' (plus one / copying the hypotenuse). New: 41.98 = sqrt(41^2+9^2)=sqrt(1762), adding the squares instead of subtracting - i.e. treating AC as a leg. Remaining relation count: 1 (50 = 90-40)."
+  },
+  {
+    "id": "781c8fd8-4208-4cb9-8a32-41941ad4363f",
+    "domain": "Geometry and Trigonometry",
+    "previouslyRepaired": false,
+    "key": "40",
+    "before": [
+      "√1762",
+      "40",
+      "50",
+      "41"
+    ],
+    "after": [
+      "√1762",
+      "40",
+      "50",
+      "32"
+    ],
+    "wasDerivedBy": [
+      "complement to 90=50",
+      "plus one=41"
+    ],
+    "reasoning": "Tangent: PT = sqrt(41^2-9^2) = sqrt(1600) = 40. Kept '50' - flagged as 90-40, but really 41+9, adding the radius to the centre distance. Retained '√1762' (=sqrt(41^2+9^2), adding the squares), not slip-derived. Dropped '41' (plus one / copying the given distance). New: 32 = 41-9, subtracting the lengths rather than the squares. Remaining relation count: 1 (50 = 90-40)."
+  },
+  {
+    "id": "80723f79-cd18-48f0-baef-1c565b304e1d",
+    "domain": "Geometry and Trigonometry",
+    "previouslyRepaired": true,
+    "key": "4",
+    "before": [
+      "5.83",
+      "5",
+      "4",
+      "16"
+    ],
+    "after": [
+      "5.83",
+      "9.54",
+      "4",
+      "16"
+    ],
+    "wasDerivedBy": [
+      "plus one=5",
+      "square=16"
+    ],
+    "reasoning": "x^2+y^2-6x+8y+9=0 -> (x-3)^2+(y+4)^2 = -9+9+16 = 16, r=4. Kept '16' (stopped at r^2) as the single relation. Retained '5.83' (=sqrt(34), sign error giving r^2 = 9+16+9), not slip-derived. Dropped '5' (plus one). New: 9.54 = sqrt(91) - forgot to halve the linear coefficients, giving (x-6)^2+(y+8)^2 and r^2 = 36+64-9 = 91. Remaining relation count: 1 (16 = 4^2)."
+  },
+  {
+    "id": "9737e933-3a0a-44ae-878e-afd9146b0e2a",
+    "domain": "Geometry and Trigonometry",
+    "previouslyRepaired": true,
+    "key": "13",
+    "before": [
+      "26",
+      "13",
+      "6.5",
+      "9.23"
+    ],
+    "after": [
+      "26",
+      "13",
+      "17",
+      "9.23"
+    ],
+    "wasDerivedBy": [
+      "double=26",
+      "halve=6.5"
+    ],
+    "reasoning": "Legs 10 and 24 -> hypotenuse 26; the median from the right angle is half the hypotenuse = 13. Kept '26' (gave the hypotenuse itself, the error the item is built to catch). Retained '9.23' (=10*24/26, the altitude to the hypotenuse rather than the median), not slip-derived. Dropped '6.5' (halve). New: 17 = (10+24)/2, averaging the legs instead of halving the hypotenuse. Remaining relation count: 1 (26 = 2*13)."
+  },
+  {
+    "id": "a1507c38-c04c-4dbd-9383-2654b2064f01",
+    "domain": "Geometry and Trigonometry",
+    "previouslyRepaired": false,
+    "key": "4",
+    "before": [
+      "5",
+      "16",
+      "4",
+      "√34"
+    ],
+    "after": [
+      "√91",
+      "16",
+      "4",
+      "√34"
+    ],
+    "wasDerivedBy": [
+      "plus one=5",
+      "square=16"
+    ],
+    "reasoning": "Same circle: r^2 = -9+9+16 = 16, r=4. Kept '16' (stopped at r^2). Retained '√34' (sign error, r^2 = 9+16+9), not slip-derived. Dropped '5' (plus one). New: √91 - did not halve the linear coefficients, so r^2 = 36+64-9 = 91. Remaining relation count: 1 (16 = 4^2)."
+  },
+  {
+    "id": "d1e00f06-5313-412c-927b-c310c54cc2eb",
+    "domain": "Geometry and Trigonometry",
+    "previouslyRepaired": false,
+    "key": "12",
+    "before": [
+      "6",
+      "12",
+      "√306",
+      "24"
+    ],
+    "after": [
+      "6",
+      "12",
+      "√306",
+      "7.2"
+    ],
+    "wasDerivedBy": [
+      "halve=6",
+      "double=24"
+    ],
+    "reasoning": "Tangent: PT = sqrt(15^2-9^2) = sqrt(144) = 12. Kept '6' - flagged as halve, but its real source is 15-9=6, subtracting the lengths instead of the squares, which is the error students actually make. Retained '√306' (=sqrt(15^2+9^2), added the squares), not slip-derived. Dropped '24' (double / 15+9). New: 7.2 = 9*12/15, the altitude from T to OP - the value a student gets after drawing the perpendicular from the point of tangency and stopping one step early. Remaining relation count: 1 (6 = 12/2)."
+  },
+  {
+    "id": "e4854b0d-5c61-49a3-87c2-c9020ccf6f6f",
+    "domain": "Geometry and Trigonometry",
+    "previouslyRepaired": false,
+    "key": "4",
+    "before": [
+      "16",
+      "5",
+      "4",
+      "√34"
+    ],
+    "after": [
+      "16",
+      "√43",
+      "4",
+      "√34"
+    ],
+    "wasDerivedBy": [
+      "square=16",
+      "plus one=5"
+    ],
+    "reasoning": "Same circle: r^2 = -9+9+16 = 16, r=4. Kept '16' (stopped at r^2). Retained '√34' (sign error, r^2 = 9+16+9), not slip-derived. Dropped '5' (plus one). New: √43 - halved only the y-coefficient, giving (x-6)^2+(y+4)^2 and r^2 = 36+16-9 = 43. Remaining relation count: 1 (16 = 4^2)."
+  },
+  {
+    "id": "ee800731-1430-4308-b3b6-595a7a526991",
+    "domain": "Geometry and Trigonometry",
+    "previouslyRepaired": false,
+    "key": "50°",
+    "before": [
+      "50°",
+      "100°",
+      "60°",
+      "40°"
+    ],
+    "after": [
+      "50°",
+      "100°",
+      "60°",
+      "65°"
+    ],
+    "wasDerivedBy": [
+      "double=100",
+      "complement to 90=40"
+    ],
+    "reasoning": "Central angle 100 -> inscribed angle 50. Kept '100°' (central angle used directly) as the single relation. Retained '60°', which was not slip-derived. Dropped '40°' (=90-50). New: 65° - arcs AP and PB total 360-100=260, so each is 130 and the inscribed angle at A (angle PAB) is 65; the answer of a student who solves for the wrong vertex of triangle APB. Remaining relation count: 1 (100 = 2*50)."
+  },
+  {
+    "id": "35c25711-b648-4ef9-b779-c653460dc27f",
+    "domain": "Problem-Solving and Data Analysis",
+    "previouslyRepaired": false,
+    "key": "4",
+    "before": [
+      "2",
+      "3",
+      "4",
+      "5"
+    ],
+    "after": [
+      "1",
+      "3",
+      "4",
+      "7"
+    ],
+    "wasDerivedBy": [
+      "halve=2",
+      "minus one=3",
+      "plus one=5"
+    ],
+    "reasoning": "Answer: 0.8^1=.8, ^2=.64, ^3=.512, ^4=.4096, so year 4 is the first below 0.5. KEPT the original '3' (minus-one) because it is the genuine error on this problem: 0.8^3 = 0.512 is so close to 0.5 that a student who rounds, or who stops at the first value that 'looks like about half', answers 3; it is also the floor of the exact log solution ln0.5/ln0.8 = 3.106. Dropped '2' (halve) and '5' (plus one). NEW '1': a student who reads 'multiplied by 0.8' as 'reduced BY 80%', i.e. multiplied by 0.2 — 0.2 of the initial amount is already below half after the first year. (Same value comes from inverting the log ratio: log0.8/log0.5 = 0.32, rounded up to 1.) NEW '7': the decimal/place-value path — starting from 100 units and subtracting 8 per year instead of 20% of the running amount: 100 - 8n < 50 gives n > 6.25, so n = 7. Relations remaining in the set: only 3<->4 (plus one)."
+  },
+  {
+    "id": "4d49a026-38f5-412a-a3ab-d59162251974",
+    "domain": "Problem-Solving and Data Analysis",
+    "previouslyRepaired": false,
+    "key": "3",
+    "before": [
+      "3",
+      "2",
+      "4",
+      "6"
+    ],
+    "after": [
+      "4",
+      "3",
+      "15",
+      "17"
+    ],
+    "wasDerivedBy": [
+      "minus one=2",
+      "plus one=4",
+      "double=6"
+    ],
+    "reasoning": "The prompt is truncated at the stated mean, but the mean must be 6.4: with f sixes the mean is (78+6f)/(12+f), and 6.4 is the only tidy value that yields the given key (f=3 -> 96/15 = 6.4; f=2 -> 6.4286, f=4 -> 6.375). KEPT the original '4' (plus one), because it is reachable by a real path and not only by the slip: if a student attaches the unknown frequency to the wrong score — f students at 5 and the 4 students at 6 — then (5f+24+42+16)/(12+f) = 6.4 gives 5.2 = 1.4f, f = 3.71, which rounds to 4. Dropped '2' (minus one) and '6' (double). NEW '15': the student who solves for the TOTAL number of students N instead of f — 6.4N = 78 + 6(N-12) -> 0.4N = 6 -> N = 15 — and reports that. NEW '17': the deviation/balance method with the score-5 group left out: deviations from 6.4 are +0.6 x 6 (the sevens) + 1.6 x 2 (the eights) = 6.8, balanced against -0.4 per six, so f = 6.8/0.4 = 17. Relations remaining: only 3<->4 (plus one)."
+  },
+  {
+    "id": "8c978451-376f-44a3-9842-d36c90b86c6b",
+    "domain": "Problem-Solving and Data Analysis",
+    "previouslyRepaired": true,
+    "key": "48",
+    "before": [
+      "48",
+      "100",
+      "96",
+      "24"
+    ],
+    "after": [
+      "48",
+      "50",
+      "24",
+      "52"
+    ],
+    "wasDerivedBy": [
+      "double=96",
+      "halve=24"
+    ],
+    "reasoning": "Answer: 240 miles total in 3 + 2 = 5 hours = 48 mph. KEPT the original '24' (halve) because on this problem it is the single most common real error, arriving two ways: dividing only ONE leg's 120 miles by the total 5 hours, and using the harmonic-mean formula without the factor 2 (40x60/(40+60) = 24). Dropped '96' (double) and '100' (sum of the two speeds). NEW '50': the naive arithmetic mean (40+60)/2 — the error the whole item is built to punish, and a value the original set was missing. NEW '52': weighting the speeds by the times but attaching each time to the wrong leg — 3 hours at 60 and 2 hours at 40 gives (180+80)/5 = 52 mph. Relations remaining: only 24<->48 (halve); 50 and 52 are unrelated to everything (50's double, 100, is gone)."
+  },
+  {
+    "id": "98ebd15b-12b3-460c-acb0-9ec4177209f8",
+    "domain": "Problem-Solving and Data Analysis",
+    "previouslyRepaired": true,
+    "key": "800",
+    "before": [
+      "1600",
+      "640",
+      "800",
+      "400"
+    ],
+    "after": [
+      "1600",
+      "640",
+      "800",
+      "12800"
+    ],
+    "wasDerivedBy": [
+      "double=1600",
+      "halve=400"
+    ],
+    "reasoning": "Answer: 11:00 p.m. to 9:00 a.m. is 10 hours = two 5-hour doublings backward, so 3,200 / 4 = 800. KEPT the original '1600' (double) — the student who correctly works backward but applies only one doubling period instead of two. KEPT the original '640', which was never slip-derived: it is 3,200 / 5, dividing by the number of hours in a period rather than by 2 per period. Dropped '400' (halve, i.e. three doublings). NEW '12800': the direction reversal — the student who counts the two 5-hour periods correctly but multiplies forward instead of backward, 3,200 x 4 = 12,800, treating the earlier time as the later one. Relations remaining: only 800<->1600 (double); 640 and 12800 are unrelated to any pair (640's x10 = 6,400 and half = 320 are absent; 12,800 is 8x/16x/20x the others, none of which are listed operations)."
+  },
+  {
+    "id": "c85f3f57-c33f-4e1d-ae45-ec62f20b234e",
+    "domain": "Problem-Solving and Data Analysis",
+    "previouslyRepaired": true,
+    "key": "4000",
+    "before": [
+      "2000",
+      "4000",
+      "8000",
+      "4500"
+    ],
+    "after": [
+      "2000",
+      "4500",
+      "1500",
+      "4000"
+    ],
+    "wasDerivedBy": [
+      "halve=2000",
+      "double=8000"
+    ],
+    "reasoning": "Answer: noon to 6 a.m. the next day is 18 hours = three 6-hour doublings, 500 x 8 = 4,000. KEPT the original '2000' (halve) — the student who miscounts the elapsed time as 12 hours (noon to midnight, or 'half a day') and applies two doublings. KEPT the original '4500', which was not slip-derived and now has a clean story: 500 x 2^3 = 4,000 plus the original 500 added back in. Dropped '8000' (double, the fencepost error of counting four doublings). NEW '1500': linear instead of exponential growth — 18/6 = 3 periods, so the population is multiplied by 3 rather than by 2^3, giving 500 x 3 = 1,500. Relations remaining: only 2000<->4000 (halve); 1,500 and 4,500 are 3x values, which is not a listed operation."
+  }
+]

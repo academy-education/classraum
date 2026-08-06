@@ -1,0 +1,134 @@
+[
+ {
+  "id": "0d1c620e-d473-4baa-bebd-9c1845966ad2",
+  "key": "2",
+  "choices": [
+   "3",
+   "2",
+   "7",
+   "-1.14"
+  ],
+  "reasoning": "5x+4y=22, 3x+8y=30 -> 2*(eq1)=10x+8y=44, minus eq2 -> 7x=14, x=2 (y=3). KEPT '3': it is y, the wrong-variable answer (it is also plus-one of the key, the single relation left in the set). NEW '7': substitution slip - y=(22-5x)/4 into eq2 gives 3x+2(22-5x)=30; distributing the 2 only to the 22 gives 3x+44-5x=30 -> -2x=-14 -> x=7. NEW '-1.14': doubling eq1 but forgetting to double the constant (10x+8y=22), then subtracting eq2 -> 7x=-8 -> x=-8/7=-1.14. DROPPED double=4 and negate=-2.",
+  "unchanged": false
+ },
+ {
+  "id": "3a040f12-43cb-4539-aea8-842379809ffe",
+  "key": "3",
+  "choices": [
+   "3",
+   "-3",
+   "11",
+   "-2.25"
+  ],
+  "reasoning": "y=4x-7 into ay-12x=-21 gives x(4a-12)=7a-21; infinitely many needs 4a-12=0 and 7a-21=0 -> a=3. KEPT '-3': cross-multiplying the coefficient proportion in the wrong direction (4a=-12) - the classic sign error here; the one remaining relation (negate). NEW '11': substituting the point (1,-3) and moving the -12 with the wrong sign: -3a-12=-21 read as -3a=-21-12=-33 -> a=11. NEW '-2.25': setting the x-coefficient condition but carrying the constant into it, 4a-12=-21 -> 4a=-9 -> a=-2.25. DROPPED square=9 and reciprocal=1/3.",
+  "unchanged": false
+ },
+ {
+  "id": "3ddc5ea3-add8-464f-a4cb-589542316705",
+  "key": "3",
+  "choices": [
+   "7",
+   "4",
+   "3",
+   "0"
+  ],
+  "reasoning": "5-2x>-3 -> -2x>-8 -> x<4; 4x+1>=-11 -> x>=-3. So -3<=x<4, greatest integer 3. KEPT '4': treating x<4 as x<=4 - the error the item is actually about (plus-one of the key, the single relation left). NEW '7': forgetting to divide by 2 when flipping, -2x>-8 -> x<8, greatest integer 7. NEW '0': misreading the first inequality's right side as +3, 5-2x>3 -> -2x>-2 -> x<1, greatest integer 0 (still within x>=-3). DROPPED negate=-3 (which was also just the lower bound) and minus-one=2. NOTE: my first attempt used -2 (sign slip on the 5); the relation checker rejected it because (-2)^2=4 would have added a second relation.",
+  "unchanged": false
+ },
+ {
+  "id": "55f6b2ac-40f0-449a-8c5a-3fd640da0f3c",
+  "key": "3",
+  "choices": [
+   "−2",
+   "2.95",
+   "3",
+   "7"
+  ],
+  "reasoning": "sqrt(x+6)=x -> x+6=x^2 -> x^2-x-6=0 -> x=3 or x=-2; -2 is extraneous. KEPT '−2': the extraneous root, the whole point of the item. NEW '2.95': completing the square on x^2-x=6 and forgetting to add 1/4 to the right side: (x-0.5)^2=6 -> x=0.5+2.449=2.95. NEW '7': misusing zero-product on the un-factored form x(x-1)=6, reading off 'x-1=6' -> x=7. DROPPED square=9 and double=6. This set has zero remaining derivation relations.",
+  "unchanged": false
+ },
+ {
+  "id": "9152eace-e7ae-4743-831c-3a21766c1c93",
+  "key": "2",
+  "choices": [
+   "1/2",
+   "2",
+   "-1",
+   "1/3"
+  ],
+  "reasoning": "(a+b)/(a-b)=3 -> a+b=3a-3b -> 4b=2a -> a/b=2. KEPT '1/2': b/a, i.e. solving for the reciprocal ratio - the most common miss here; the single relation left in the set. NEW '-1': failing to distribute the minus, a+b=3a+3b -> -2b=2a -> a/b=-1. NEW '1/3': reporting the reciprocal of the GIVEN ratio, i.e. answering (a-b)/(a+b)=1/3 instead of a/b. DROPPED plus-one=3 and double=4. Note this stem has a small space of honest wrong values (1, -2, 3, 4 all collide with the key by a listed operation), which is why the two replacements are the ones above.",
+  "unchanged": false
+ },
+ {
+  "id": "ae096f06-d984-41a4-ae33-6274d64f2a31",
+  "key": "4",
+  "choices": [
+   "4",
+   "2.25",
+   "11.2",
+   "16"
+  ],
+  "reasoning": "No solution needs 3/6=k/8 (and constants not matching): k=4. KEPT '16': inverting the proportion, k/8=6/3 -> k=16 - the single relation left (square). NEW '11.2': using the constants' ratio instead, 7/5=k/8 -> k=56/5=11.2; the same value falls out of substitution, y=(5-6x)/8 into eq1 gives x(24-6k)=56-5k and solving 56-5k=0 instead of 24-6k=0. NEW '2.25': writing eq1's slope upside down, -k/3=-3/4 -> k=9/4=2.25. DROPPED halve=2 and double=8.",
+  "unchanged": false
+ },
+ {
+  "id": "fa8f887c-d727-4cf8-b7bd-f1b764b7c36a",
+  "key": "4",
+  "choices": [
+   "2",
+   "1.5",
+   "1.69",
+   "4"
+  ],
+  "reasoning": "9^x*3^(2x-1)=3^(4x-1); 27^(x+1)=3^(3x+3); 4x-1=3x+3 -> x=4. KEPT '2': failing to distribute the 3 on the right, 27^(x+1)->3^(3x+1), so 4x-1=3x+1 -> x=2; the single relation left (halve). NEW '1.5': reading 27 as 3^2, 4x-1=2x+2 -> x=1.5. NEW '1.69': multiplying exponents instead of adding when multiplying the powers, 2x(2x-1)=3x+3 -> 4x^2-5x-3=0 -> x=(5+sqrt(73))/8=1.69. DROPPED minus-one=3 and negate=-4.",
+  "unchanged": false
+ },
+ {
+  "id": "1709f2a3-7042-4850-bb21-43dded155670",
+  "key": "3",
+  "choices": [
+   "3",
+   "9",
+   "3.16",
+   "3.5"
+  ],
+  "reasoning": "f(g(a))=2(a^2+1)-3=2a^2-1=17 -> a^2=9 -> a=3. KEPT '9': stopping at a^2=9 and reporting it; the single relation left (square). KEPT '3.5' (never slip-derived): it is g(f(a))=17, (2a-3)^2+1=17 -> 2a-3=4 -> a=3.5, the composition-order error. NEW '3.16': dropping the +1 inside g, 2a^2-3=17 -> a^2=10 -> a=sqrt(10)=3.16. DROPPED plus-one=4.",
+  "unchanged": false
+ },
+ {
+  "id": "7f63e837-38be-4ffa-8d7e-c49eaf1a3fc0",
+  "key": "7",
+  "choices": [
+   "4.5",
+   "2",
+   "7",
+   "14"
+  ],
+  "reasoning": "Subtracting, (5x+3y)-(3x+5y)=15-1 -> 2x-2y=14 -> x-y=7. KEPT '14': stopping at 2x-2y=14 and forgetting to divide by 2; the single relation left (double). KEPT '4.5' (never slip-derived): it is x itself (adding gives x+y=2, so x=4.5, y=-2.5) - the wrong-quantity answer. NEW '2': adding instead of subtracting, 8x+8y=16 -> x+y=2. DROPPED negate=-7.",
+  "unchanged": false
+ },
+ {
+  "id": "b91531df-435a-48e4-aad9-5392672aecbc",
+  "key": "4",
+  "choices": [
+   "8",
+   "6",
+   "4",
+   "6.25"
+  ],
+  "reasoning": "(x+y)^2=x^2+2xy+y^2 -> 25=17+2xy -> xy=4. KEPT '8': stopping at 2xy=8; the single relation left (double). KEPT '6' (never slip-derived): guessing the integers 3 and 2 that sum to 5 without checking x^2+y^2. NEW '6.25': assuming x=y=2.5 from x+y=5 and multiplying, 2.5*2.5=6.25. DROPPED negate=-4 (which is also the value you get from the natural sign slip 2xy=17-25, so it is doubly unusable).",
+  "unchanged": false
+ },
+ {
+  "id": "c0eb62d7-1bd0-49a3-ac8f-dcaaf942af75",
+  "key": "14",
+  "choices": [
+   "14",
+   "7",
+   "18",
+   "61"
+  ],
+  "reasoning": "r+s=6, rs=k/2; r^2+s^2=36-k=22 -> k=14. KEPT '7': the product rs=7, i.e. forgetting that k=2rs; the single relation left (halve). KEPT '61' (never slip-derived): not dividing by the leading 2 at all - sum 12, product k, 144-2k=22 -> k=61. NEW '18': solving the wrong condition, the discriminant 144-8k=0 -> k=18. DROPPED double=28.",
+  "unchanged": false
+ }
+]

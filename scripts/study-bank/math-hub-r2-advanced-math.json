@@ -1,0 +1,72 @@
+[
+  {
+    "id": "5c63a863-2394-4bc1-a320-30672e0561f7",
+    "key": "6",
+    "choices": ["36", "6", "10", "4.24"],
+    "reasoning": "Solution: discriminant k^2-4(1)(9)=0 -> k^2=36 -> k=6. KEPT the original 36 (square slip) because it is the genuine error of solving k^2=36 and reporting k^2 instead of k. Dropped -6 (sign) and 3 (halve). NEW 10: student ignores the one-solution condition and just factors 9 over the integers as 9*1, giving sum of roots 9+1=10=k. NEW 4.24: completing the square as (x+k/2)^2 + 9 - k^2/2 (using k^2/2 instead of k^2/4) gives k^2=18, k=sqrt(18)=4.24. Remaining relations: 36=6^2 only.",
+    "unchanged": false
+  },
+  {
+    "id": "67999643-237d-4b81-ba55-61823ea2a24f",
+    "key": "4",
+    "choices": ["192", "4", "64", "3"],
+    "reasoning": "Solution: a^(b+1)/a^b = a = 256/64 = 4. Dropped ALL three slip distractors (8 double, 2 halve, 16 square) because 8 and 16 chain into each other (8^2=64 would have created a second relation once 64 was added). NEW 3: solving for the wrong variable — with a=4, 4^b=64 gives b=3, and a student who finds b and stops reports 3. NEW 192: treating a^(b+1) as a^b + a, so 256 = 64 + a -> a = 192. NEW 64: reporting the given value a^b as if it were a. Remaining relations: 3 -> 4 (plus one) only.",
+    "unchanged": false
+  },
+  {
+    "id": "79be58aa-974f-4814-907f-7d935a50f5aa",
+    "key": "2",
+    "choices": ["1", "2", "0.67", "1.71"],
+    "reasoning": "Solution: 2^(3x) = 2^(2x+2) -> 3x = 2x+2 -> x = 2. KEPT the original 1 (halve) because it is exactly what a student gets by failing to distribute the exponent over (x+1): 3x = 2x+1 -> x=1. Dropped 4 (double) and 3 (plus one). NEW 0.67: taking logs and dividing rather than solving the linear equation, x = log4/log8 = 0.6021/0.9031 = 0.67. NEW 1.71: substituting the exponents for the bases (3^x = 2^(x+1)), giving x = log2/(log3-log2) = 0.3010/0.1761 = 1.71. Remaining relations: 1 -> 2 (double) only.",
+    "unchanged": false
+  },
+  {
+    "id": "8eea18c1-5d66-4fa9-9c7e-c85221fd0b31",
+    "key": "8",
+    "choices": ["4", "8", "17", "5.66"],
+    "reasoning": "Solution: k^2 - 4(1)(16) = 0 -> k^2 = 64 -> k = 8. KEPT the original 4 (halve) because it is the classic dropped-coefficient error: setting k^2 = 16 instead of k^2 = 4*16 gives k = 4. Dropped -8 (sign) and 16 (double); 16 was also excluded because sqrt(16)=4 would have added a second relation. NEW 17: ignoring the one-solution condition and factoring 16 as 16*1, so k = 16+1 = 17. NEW 5.66: completing the square with 16 - k^2/2 = 0 instead of 16 - k^2/4 = 0, giving k = sqrt(32) = 5.66. Remaining relations: 4 -> 8 (double) only.",
+    "unchanged": false
+  },
+  {
+    "id": "d217ca38-f5f8-4fa1-b4db-3639eaac94c5",
+    "key": "3",
+    "choices": ["2", "3", "12", "0"],
+    "reasoning": "Solution: multiply by (x-2): x + 3(x-2) = 6 -> 4x - 6 = 6 -> x = 3. KEPT the original 2 (minus one) because it is the distribution error: x + 3x - 2 = 6 -> 4x = 8 -> x = 2 (and it doubles as the excluded value, a real trap here). Dropped 4 (plus one) and -3 (negate). NEW 12: stopping one step early at 4x = 12 and reporting 12. NEW 0: sign error moving the -6 across, x + 3x + 6 = 6 -> 4x = 0 -> x = 0. Remaining relations: 2 -> 3 (plus one) only.",
+    "unchanged": false
+  },
+  {
+    "id": "dbd18b60-3bd6-4d35-909d-71b7a390288a",
+    "key": "3",
+    "choices": ["9", "3", "3.5", "2.45"],
+    "reasoning": "Solution: f(g(a)) = 2(a^2+1) - 3 = 2a^2 - 1 = 17 -> a^2 = 9 -> a = 3. KEPT the original 9 (square) because it is the standard forgot-to-take-the-square-root answer at a^2 = 9. Dropped 2 (minus one) and 4 (plus one). NEW 3.5: composing in the wrong order, g(f(a)) = (2a-3)^2 + 1 = 17 -> (2a-3)^2 = 16 -> 2a-3 = 4 -> a = 3.5. NEW 2.45: subtracting the 3 on the wrong side, 2(a^2+1) = 17-3 = 14 -> a^2 = 6 -> a = 2.45. Remaining relations: 9 = 3^2 only.",
+    "unchanged": false
+  },
+  {
+    "id": "2804a6ed-826d-4314-833a-a47c8e1470e2",
+    "key": "10",
+    "choices": ["20", "10", "3", "14.5"],
+    "reasoning": "Solution: (x+y)^2 = 49 = x^2+y^2+2xy = 29 + 2xy -> 2xy = 20 -> xy = 10. KEPT the original 20 (double) because it is the stop-one-step-early answer: reporting 2xy. Dropped 5 (halve). KEPT 3, which was not slip-derived and is a real alternate quantity: (x-y)^2 = 2(29) - 49 = 9 -> x-y = 3, i.e. answering the difference. NEW 14.5: assuming x = y, so x^2 = y^2 = 29/2 = 14.5 and hence xy = 14.5. Remaining relations: 10 -> 20 (double) only.",
+    "unchanged": false
+  },
+  {
+    "id": "2a4b8835-79c8-466f-aee9-9ced01b0f12d",
+    "key": "4",
+    "choices": ["16", "4", "4.33", "2.83"],
+    "reasoning": "Solution: y = mx - 4 meets y = x^2 once -> x^2 - mx + 4 = 0 with m^2 - 16 = 0 -> m = 4 (positive branch, first quadrant). KEPT the original 16 (square) because it is the forgot-the-square-root answer at m^2 = 16. Dropped 2 (halve), which was also the tangency x-coordinate and so doubly tempting as a hub. KEPT 4.33, which was not slip-derived: it is the secant slope from (0,-4) to a guessed contact point (3,9), (9+4)/3 = 4.33. NEW 2.83: mis-deriving the tangent line at (a,a^2) as y = 2ax - 2a^2, so 2a^2 = 4, a = 1.414, m = 2a = 2.83. Remaining relations: 16 = 4^2 only.",
+    "unchanged": false
+  },
+  {
+    "id": "5534c23c-c2a5-4c4a-a1e4-c22d236a5a58",
+    "key": "32",
+    "choices": ["36", "32", "128", "4"],
+    "reasoning": "Solution: roots r and 2r, sum 3r = 12 -> r = 4, product k = r(2r) = 2(16) = 32. KEPT the original 36, which was not slip-derived and is the best error here: reading 'one solution is twice the other' as a double root, x = 6, k = 36. Dropped 16 (halve) and 64 (double). NEW 128: using the root-difference/discriminant route, (r)^2 = 144 - 4k, but dropping the 4: 16 = 144 - k -> k = 128. NEW 4: solving for the wrong quantity and reporting the smaller root r = 4 instead of k. Remaining relations: none.",
+    "unchanged": false
+  },
+  {
+    "id": "ad54e038-1513-4fe9-9132-825d9f69e181",
+    "key": "36",
+    "choices": ["6", "36", "0", "-12"],
+    "reasoning": "Solution: x^2 = 4 or 9 -> x = 2,-2,3,-3 -> product = (2)(-2)(3)(-3) = 36. KEPT the original 6 (sqrt) because it is the real error of multiplying only the positive roots, 2*3 = 6. Dropped -36 (negate). KEPT 0, which was not slip-derived: it is the sum of the four roots, i.e. answering the wrong operation (also what a student gets if they think x = 0 is a solution). NEW -12: missing one root and multiplying (2)(-2)(3) = -12. Remaining relations: 6 = sqrt(36) only.",
+    "unchanged": false
+  }
+]

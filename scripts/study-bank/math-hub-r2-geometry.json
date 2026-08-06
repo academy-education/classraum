@@ -1,0 +1,107 @@
+[
+  {
+    "id": "22eee0db-1636-45da-9202-14089d59cdfb",
+    "key": "5",
+    "choices": ["5", "10", "7", "3"],
+    "reasoning": "A(1,2)->B(7,10): dx=6, dy=8, diameter=10, radius=5. Kept the original '10' (computed the diameter and stopped there) as the single remaining relation - it is the error nearly every student makes on this item. Dropped 25 (square) and 50 (times ten). New: 7 = half of the taxicab distance |6|+|8|=14 (added the legs instead of using Pythagoras, then halved). New: 3 = half of the horizontal run 6 alone (used only the x-difference as the diameter). Remaining relation count: 1 (10 = 2*5).",
+    "unchanged": false
+  },
+  {
+    "id": "2e5f98da-d500-477a-bc91-cca0a406b1fe",
+    "key": "5",
+    "choices": ["10", "7", "5", "3"],
+    "reasoning": "(2,3)->(8,11): dx=6, dy=8, diameter=10, radius=5. Kept '10' (diameter reported as the radius). Dropped 50 (times ten) and 25 (square). New: 7 = (6+8)/2, added the legs instead of squaring, then halved. New: 3 = 6/2, used only the horizontal difference as the diameter. Remaining relation count: 1 (10 = 2*5).",
+    "unchanged": false
+  },
+  {
+    "id": "825707e2-b9b0-4cb2-8219-b04e8379996b",
+    "key": "50°",
+    "choices": ["100°", "260°", "65°", "50°"],
+    "reasoning": "Central angle 100 -> inscribed angle 50. Kept '100°' (read the central angle as the answer, the classic no-halving error) as the single relation. Dropped 130 (=180-50) and 25 (=50/2); note 130 and 25 also relate to the replacement values, so both had to go. New: 65° - if P is on the major arc, arcs AP and PB total 360-100=260, so each is 130 and the inscribed angle at A (angle PAB) is 65; a student who finds the wrong vertex of triangle APB gets this. New: 260° - the measure of the major arc P lies on, given by a student who confuses the intercepted arc with the angle (the stem names the major arc, which is what invites it). Remaining relation count: 1 (100 = 2*50).",
+    "unchanged": false
+  },
+  {
+    "id": "290a8af4-41ea-49a9-a1cd-70fca2857204",
+    "key": "25",
+    "choices": ["17.5", "25", "13.23", "625"],
+    "reasoning": "dx=15, dy=20, distance=25. Kept '625' (computed 15^2+20^2=625 and forgot the square root) as the single relation - the most common slip on distance problems. Dropped '5' (sqrt of the key). '17.5' was already not slip-derived (it is (15+20)/2) and is retained. New: 13.23 = sqrt(20^2-15^2)=sqrt(175), subtracting the squares instead of adding them. Remaining relation count: 1 (625 = 25^2).",
+    "unchanged": false
+  },
+  {
+    "id": "2ca0efba-f05c-48a4-afbf-80482cb6d34a",
+    "key": "40°",
+    "choices": ["80°", "70°", "30°", "40°"],
+    "reasoning": "Central angle 80 -> inscribed angle 40. Kept '80°' (central angle used directly) as the single relation. Dropped '50°' (=90-40; it is also the base angle of isosceles triangle AOB, but it is the exact complement slip the rule targets). Retained '30°', which was not slip-derived. New: 70° - arcs AP and PB together measure 360-80=280, so each is 140 and the inscribed angle at A (angle PAB) is 70; a student who computes the angle at the wrong vertex of triangle APB lands here. Remaining relation count: 1 (80 = 2*40).",
+    "unchanged": false
+  },
+  {
+    "id": "4d23b134-c7c4-4205-9d53-5e93cea13b7f",
+    "key": "39",
+    "choices": ["39", "51", "45", "32.73"],
+    "reasoning": "Legs 15 and 36 -> hypotenuse sqrt(225+1296)=sqrt(1521)=39. Kept '51' - it is flagged as 90-39, but its real source is 15+36=51, adding the legs instead of using Pythagoras, which is the error a real student makes here. Dropped '40' (plus one) and '37'. New: 32.73 = sqrt(36^2-15^2)=sqrt(1071), subtracting the squares instead of adding. New: 45 = assuming a 3-4-5 family from the 36 (36/4=9, so 9*5=45, i.e. reading the triangle as 27-36-45). Remaining relation count: 1 (51 = 90-39).",
+    "unchanged": false
+  },
+  {
+    "id": "5be69aff-a190-4544-802a-f0a4dd919aa5",
+    "key": "6",
+    "choices": ["√14", "6", "36", "√11"],
+    "reasoning": "x^2+y^2-6x+8y-11=0 -> (x-3)^2+(y+4)^2 = 11+9+16 = 36, r=6. Kept '36' (stopped at r^2, forgot the square root) as the single relation. Retained '√11' (read the constant term as r^2), which was not slip-derived. Dropped '5' (minus one). New: √14 - sign error while completing the square, r^2 = 9+16-11 = 14 (subtracting the constant instead of moving it across). Remaining relation count: 1 (36 = 6^2).",
+    "unchanged": false
+  },
+  {
+    "id": "5d709c99-81c7-4d74-a79e-e0864171080a",
+    "key": "40",
+    "choices": ["32", "50", "41.98", "40"],
+    "reasoning": "Hypotenuse 41, leg 9 -> AB = sqrt(1681-81) = sqrt(1600) = 40. Kept '50' - flagged as 90-40, but its real source is 41+9=50, adding the two given lengths. Retained '32' (=41-9, subtracting lengths instead of squares), which is not slip-derived. Dropped '41' (plus one / copying the hypotenuse). New: 41.98 = sqrt(41^2+9^2)=sqrt(1762), adding the squares instead of subtracting - i.e. treating AC as a leg. Remaining relation count: 1 (50 = 90-40).",
+    "unchanged": false
+  },
+  {
+    "id": "781c8fd8-4208-4cb9-8a32-41941ad4363f",
+    "key": "40",
+    "choices": ["√1762", "40", "50", "32"],
+    "reasoning": "Tangent: PT = sqrt(41^2-9^2) = sqrt(1600) = 40. Kept '50' - flagged as 90-40, but really 41+9, adding the radius to the centre distance. Retained '√1762' (=sqrt(41^2+9^2), adding the squares), not slip-derived. Dropped '41' (plus one / copying the given distance). New: 32 = 41-9, subtracting the lengths rather than the squares. Remaining relation count: 1 (50 = 90-40).",
+    "unchanged": false
+  },
+  {
+    "id": "80723f79-cd18-48f0-baef-1c565b304e1d",
+    "key": "4",
+    "choices": ["5.83", "9.54", "4", "16"],
+    "reasoning": "x^2+y^2-6x+8y+9=0 -> (x-3)^2+(y+4)^2 = -9+9+16 = 16, r=4. Kept '16' (stopped at r^2) as the single relation. Retained '5.83' (=sqrt(34), sign error giving r^2 = 9+16+9), not slip-derived. Dropped '5' (plus one). New: 9.54 = sqrt(91) - forgot to halve the linear coefficients, giving (x-6)^2+(y+8)^2 and r^2 = 36+64-9 = 91. Remaining relation count: 1 (16 = 4^2).",
+    "unchanged": false
+  },
+  {
+    "id": "9737e933-3a0a-44ae-878e-afd9146b0e2a",
+    "key": "13",
+    "choices": ["26", "13", "17", "9.23"],
+    "reasoning": "Legs 10 and 24 -> hypotenuse 26; the median from the right angle is half the hypotenuse = 13. Kept '26' (gave the hypotenuse itself, the error the item is built to catch). Retained '9.23' (=10*24/26, the altitude to the hypotenuse rather than the median), not slip-derived. Dropped '6.5' (halve). New: 17 = (10+24)/2, averaging the legs instead of halving the hypotenuse. Remaining relation count: 1 (26 = 2*13).",
+    "unchanged": false
+  },
+  {
+    "id": "a1507c38-c04c-4dbd-9383-2654b2064f01",
+    "key": "4",
+    "choices": ["√91", "16", "4", "√34"],
+    "reasoning": "Same circle: r^2 = -9+9+16 = 16, r=4. Kept '16' (stopped at r^2). Retained '√34' (sign error, r^2 = 9+16+9), not slip-derived. Dropped '5' (plus one). New: √91 - did not halve the linear coefficients, so r^2 = 36+64-9 = 91. Remaining relation count: 1 (16 = 4^2).",
+    "unchanged": false
+  },
+  {
+    "id": "d1e00f06-5313-412c-927b-c310c54cc2eb",
+    "key": "12",
+    "choices": ["6", "12", "√306", "7.2"],
+    "reasoning": "Tangent: PT = sqrt(15^2-9^2) = sqrt(144) = 12. Kept '6' - flagged as halve, but its real source is 15-9=6, subtracting the lengths instead of the squares, which is the error students actually make. Retained '√306' (=sqrt(15^2+9^2), added the squares), not slip-derived. Dropped '24' (double / 15+9). New: 7.2 = 9*12/15, the altitude from T to OP - the value a student gets after drawing the perpendicular from the point of tangency and stopping one step early. Remaining relation count: 1 (6 = 12/2).",
+    "unchanged": false
+  },
+  {
+    "id": "e4854b0d-5c61-49a3-87c2-c9020ccf6f6f",
+    "key": "4",
+    "choices": ["16", "√43", "4", "√34"],
+    "reasoning": "Same circle: r^2 = -9+9+16 = 16, r=4. Kept '16' (stopped at r^2). Retained '√34' (sign error, r^2 = 9+16+9), not slip-derived. Dropped '5' (plus one). New: √43 - halved only the y-coefficient, giving (x-6)^2+(y+4)^2 and r^2 = 36+16-9 = 43. Remaining relation count: 1 (16 = 4^2).",
+    "unchanged": false
+  },
+  {
+    "id": "ee800731-1430-4308-b3b6-595a7a526991",
+    "key": "50°",
+    "choices": ["50°", "100°", "60°", "65°"],
+    "reasoning": "Central angle 100 -> inscribed angle 50. Kept '100°' (central angle used directly) as the single relation. Retained '60°', which was not slip-derived. Dropped '40°' (=90-50). New: 65° - arcs AP and PB total 360-100=260, so each is 130 and the inscribed angle at A (angle PAB) is 65; the answer of a student who solves for the wrong vertex of triangle APB. Remaining relation count: 1 (100 = 2*50).",
+    "unchanged": false
+  }
+]

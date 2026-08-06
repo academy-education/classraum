@@ -1,0 +1,758 @@
+[
+  {
+    "id": "5c63a863-2394-4bc1-a320-30672e0561f7",
+    "domain": "Advanced Math",
+    "previouslyRepaired": false,
+    "prompt": "The equation x^2 + kx + 9 = 0 has exactly one real solution, and k is positive. What is the value of k?",
+    "choices": [
+      "-6",
+      "36",
+      "6",
+      "3"
+    ],
+    "key": "6",
+    "derives": [
+      "negate=-6",
+      "square=36",
+      "halve=3"
+    ],
+    "best": 3
+  },
+  {
+    "id": "67999643-237d-4b81-ba55-61823ea2a24f",
+    "domain": "Advanced Math",
+    "previouslyRepaired": false,
+    "prompt": "If a and b are positive numbers with a^b = 64 and a^(b+1) = 256, what is the value of a?",
+    "choices": [
+      "4",
+      "8",
+      "2",
+      "16"
+    ],
+    "key": "4",
+    "derives": [
+      "double=8",
+      "halve=2",
+      "square=16"
+    ],
+    "best": 3
+  },
+  {
+    "id": "79be58aa-974f-4814-907f-7d935a50f5aa",
+    "domain": "Advanced Math",
+    "previouslyRepaired": false,
+    "prompt": "If 8^x = 4^(x + 1), what is the value of x?",
+    "choices": [
+      "1",
+      "4",
+      "3",
+      "2"
+    ],
+    "key": "2",
+    "derives": [
+      "halve=1",
+      "double=4",
+      "plus one=3"
+    ],
+    "best": 3
+  },
+  {
+    "id": "8eea18c1-5d66-4fa9-9c7e-c85221fd0b31",
+    "domain": "Advanced Math",
+    "previouslyRepaired": false,
+    "prompt": "In the equation x^2 + kx + 16 = 0, k is a positive constant. If the equation has exactly one real solution, what is the value of k?",
+    "choices": [
+      "4",
+      "8",
+      "-8",
+      "16"
+    ],
+    "key": "8",
+    "derives": [
+      "halve=4",
+      "negate=-8",
+      "double=16"
+    ],
+    "best": 3
+  },
+  {
+    "id": "d217ca38-f5f8-4fa1-b4db-3639eaac94c5",
+    "domain": "Advanced Math",
+    "previouslyRepaired": false,
+    "prompt": "If x/(x-2) + 3 = 6/(x-2) and x != 2, what is the value of x?",
+    "choices": [
+      "2",
+      "4",
+      "-3",
+      "3"
+    ],
+    "key": "3",
+    "derives": [
+      "minus one=2",
+      "plus one=4",
+      "negate=-3"
+    ],
+    "best": 3
+  },
+  {
+    "id": "dbd18b60-3bd6-4d35-909d-71b7a390288a",
+    "domain": "Advanced Math",
+    "previouslyRepaired": false,
+    "prompt": "The functions f and g are defined by f(x) = 2x - 3 and g(x) = x^2 + 1. If f(g(a)) = 17 and a is positive, what is the value of a?",
+    "choices": [
+      "2",
+      "4",
+      "3",
+      "9"
+    ],
+    "key": "3",
+    "derives": [
+      "minus one=2",
+      "plus one=4",
+      "square=9"
+    ],
+    "best": 3
+  },
+  {
+    "id": "0d1c620e-d473-4baa-bebd-9c1845966ad2",
+    "domain": "Algebra",
+    "previouslyRepaired": false,
+    "prompt": "If 5x + 4y = 22 and 3x + 8y = 30, what is the value of x ?",
+    "choices": [
+      "3",
+      "2",
+      "4",
+      "-2"
+    ],
+    "key": "2",
+    "derives": [
+      "plus one=3",
+      "double=4",
+      "negate=-2"
+    ],
+    "best": 3
+  },
+  {
+    "id": "3a040f12-43cb-4539-aea8-842379809ffe",
+    "domain": "Algebra",
+    "previouslyRepaired": false,
+    "prompt": "The system y = 4x − 7 and ay − 12x = −21 has infinitely many solutions. What is the value of a?",
+    "choices": [
+      "3",
+      "-3",
+      "9",
+      "1/3"
+    ],
+    "key": "3",
+    "derives": [
+      "negate=-3",
+      "square=9",
+      "reciprocal=0.3333333333333333"
+    ],
+    "best": 3
+  },
+  {
+    "id": "3ddc5ea3-add8-464f-a4cb-589542316705",
+    "domain": "Algebra",
+    "previouslyRepaired": false,
+    "prompt": "If 5 − 2x > −3 and 4x + 1 ≥ −11, what is the greatest integer value of x that satisfies both inequalities?",
+    "choices": [
+      "-3",
+      "4",
+      "3",
+      "2"
+    ],
+    "key": "3",
+    "derives": [
+      "negate=-3",
+      "plus one=4",
+      "minus one=2"
+    ],
+    "best": 3
+  },
+  {
+    "id": "55f6b2ac-40f0-449a-8c5a-3fd640da0f3c",
+    "domain": "Algebra",
+    "previouslyRepaired": false,
+    "prompt": "What is the only real value of x that satisfies √(x + 6) = x ?",
+    "choices": [
+      "−2",
+      "9",
+      "3",
+      "6"
+    ],
+    "key": "3",
+    "derives": [
+      "minus one=2",
+      "square=9",
+      "double=6"
+    ],
+    "best": 3
+  },
+  {
+    "id": "9152eace-e7ae-4743-831c-3a21766c1c93",
+    "domain": "Algebra",
+    "previouslyRepaired": false,
+    "prompt": "If (a + b)/(a − b) = 3, what is the value of a/b?",
+    "choices": [
+      "1/2",
+      "2",
+      "3",
+      "4"
+    ],
+    "key": "2",
+    "derives": [
+      "reciprocal=0.5",
+      "plus one=3",
+      "double=4"
+    ],
+    "best": 3
+  },
+  {
+    "id": "ae096f06-d984-41a4-ae33-6274d64f2a31",
+    "domain": "Algebra",
+    "previouslyRepaired": false,
+    "prompt": "In the system of equations 3x + ky = 7 and 6x + 8y = 5, k is a constant. If the system has no solution, what is the value of k?",
+    "choices": [
+      "4",
+      "2",
+      "8",
+      "16"
+    ],
+    "key": "4",
+    "derives": [
+      "halve=2",
+      "double=8",
+      "square=16"
+    ],
+    "best": 3
+  },
+  {
+    "id": "fa8f887c-d727-4cf8-b7bd-f1b764b7c36a",
+    "domain": "Algebra",
+    "previouslyRepaired": false,
+    "prompt": "If 9^x times 3^(2x - 1) equals 27^(x + 1), what is the value of x?",
+    "choices": [
+      "2",
+      "3",
+      "-4",
+      "4"
+    ],
+    "key": "4",
+    "derives": [
+      "halve=2",
+      "minus one=3",
+      "negate=-4"
+    ],
+    "best": 3
+  },
+  {
+    "id": "22eee0db-1636-45da-9202-14089d59cdfb",
+    "domain": "Geometry and Trigonometry",
+    "previouslyRepaired": false,
+    "prompt": "In the xy-plane, points A(1, 2) and B(7, 10) are the endpoints of a diameter of a circle. What is the radius of the circle?",
+    "choices": [
+      "5",
+      "10",
+      "25",
+      "√50"
+    ],
+    "key": "5",
+    "derives": [
+      "double=10",
+      "square=25",
+      "times ten=50"
+    ],
+    "best": 3
+  },
+  {
+    "id": "2e5f98da-d500-477a-bc91-cca0a406b1fe",
+    "domain": "Geometry and Trigonometry",
+    "previouslyRepaired": false,
+    "prompt": "In the xy-plane, the points (2, 3) and (8, 11) are the endpoints of a diameter of a circle. What is the radius of the circle?",
+    "choices": [
+      "10",
+      "50",
+      "5",
+      "25"
+    ],
+    "key": "5",
+    "derives": [
+      "double=10",
+      "times ten=50",
+      "square=25"
+    ],
+    "best": 3
+  },
+  {
+    "id": "825707e2-b9b0-4cb2-8219-b04e8379996b",
+    "domain": "Geometry and Trigonometry",
+    "previouslyRepaired": false,
+    "prompt": "In the circle with center O, central angle AOB measures 100°. Point P lies on the major arc AB. What is the measure of inscribed angle APB?",
+    "choices": [
+      "100°",
+      "130°",
+      "25°",
+      "50°"
+    ],
+    "key": "50°",
+    "derives": [
+      "double=100",
+      "complement to 180=130",
+      "halve=25"
+    ],
+    "best": 3
+  },
+  {
+    "id": "35c25711-b648-4ef9-b779-c653460dc27f",
+    "domain": "Problem-Solving and Data Analysis",
+    "previouslyRepaired": false,
+    "prompt": "Each year, the amount of a certain chemical remaining in a tank is multiplied by 0.8. After how many whole years will the amount first drop below half of its initial value?",
+    "choices": [
+      "2",
+      "3",
+      "4",
+      "5"
+    ],
+    "key": "4",
+    "derives": [
+      "halve=2",
+      "minus one=3",
+      "plus one=5"
+    ],
+    "best": 3
+  },
+  {
+    "id": "4d49a026-38f5-412a-a3ab-d59162251974",
+    "domain": "Problem-Solving and Data Analysis",
+    "previouslyRepaired": false,
+    "prompt": "A quiz was scored 5, 6, 7, or 8 points. A score of 5 was earned by 4 students, a score of 7 by 6 students, and a score of 8 by 2 students. An unknown number of students, f, earned a 6. If the mean score of all the studen",
+    "choices": [
+      "3",
+      "2",
+      "4",
+      "6"
+    ],
+    "key": "3",
+    "derives": [
+      "minus one=2",
+      "plus one=4",
+      "double=6"
+    ],
+    "best": 3
+  },
+  {
+    "id": "2804a6ed-826d-4314-833a-a47c8e1470e2",
+    "domain": "Advanced Math",
+    "previouslyRepaired": true,
+    "prompt": "The real numbers x and y satisfy x + y = 7 and x^2 + y^2 = 29. What is the value of xy?",
+    "choices": [
+      "5",
+      "20",
+      "10",
+      "3"
+    ],
+    "key": "10",
+    "derives": [
+      "halve=5",
+      "double=20"
+    ],
+    "best": 2
+  },
+  {
+    "id": "2a4b8835-79c8-466f-aee9-9ced01b0f12d",
+    "domain": "Advanced Math",
+    "previouslyRepaired": true,
+    "prompt": "The line shown passes through (0, -4) and is tangent to the parabola y = x² at a point in the first quadrant. What is the slope of the line?",
+    "choices": [
+      "2",
+      "4",
+      "16",
+      "4.33"
+    ],
+    "key": "4",
+    "derives": [
+      "halve=2",
+      "square=16"
+    ],
+    "best": 2
+  },
+  {
+    "id": "5534c23c-c2a5-4c4a-a1e4-c22d236a5a58",
+    "domain": "Advanced Math",
+    "previouslyRepaired": true,
+    "prompt": "In the equation x² − 12x + k = 0, one solution is exactly twice the other. What is the value of k?",
+    "choices": [
+      "32",
+      "36",
+      "16",
+      "64"
+    ],
+    "key": "32",
+    "derives": [
+      "halve=16",
+      "double=64"
+    ],
+    "best": 2
+  },
+  {
+    "id": "ad54e038-1513-4fe9-9132-825d9f69e181",
+    "domain": "Advanced Math",
+    "previouslyRepaired": true,
+    "prompt": "What is the product of all real solutions to the equation x^4 - 13x^2 + 36 = 0?",
+    "choices": [
+      "6",
+      "-36",
+      "0",
+      "36"
+    ],
+    "key": "36",
+    "derives": [
+      "sqrt=6",
+      "negate=-36"
+    ],
+    "best": 2
+  },
+  {
+    "id": "1709f2a3-7042-4850-bb21-43dded155670",
+    "domain": "Algebra",
+    "previouslyRepaired": true,
+    "prompt": "The functions f and g are defined by f(x) = 2x - 3 and g(x) = x^2 + 1. If f(g(a)) = 17, what is the positive value of a?",
+    "choices": [
+      "3",
+      "9",
+      "4",
+      "3.5"
+    ],
+    "key": "3",
+    "derives": [
+      "square=9",
+      "plus one=4"
+    ],
+    "best": 2
+  },
+  {
+    "id": "7f63e837-38be-4ffa-8d7e-c49eaf1a3fc0",
+    "domain": "Algebra",
+    "previouslyRepaired": true,
+    "prompt": "If 3x + 5y = 1 and 5x + 3y = 15, what is the value of x − y?",
+    "choices": [
+      "4.5",
+      "-7",
+      "7",
+      "14"
+    ],
+    "key": "7",
+    "derives": [
+      "negate=-7",
+      "double=14"
+    ],
+    "best": 2
+  },
+  {
+    "id": "b91531df-435a-48e4-aad9-5392672aecbc",
+    "domain": "Algebra",
+    "previouslyRepaired": true,
+    "prompt": "Real numbers x and y satisfy x + y = 5 and x² + y² = 17. What is the value of xy?",
+    "choices": [
+      "8",
+      "6",
+      "4",
+      "-4"
+    ],
+    "key": "4",
+    "derives": [
+      "double=8",
+      "negate=-4"
+    ],
+    "best": 2
+  },
+  {
+    "id": "c0eb62d7-1bd0-49a3-ac8f-dcaaf942af75",
+    "domain": "Algebra",
+    "previouslyRepaired": true,
+    "prompt": "The equation 2x^2 - 12x + k = 0 has roots r and s. If r^2 + s^2 = 22, what is the value of k?",
+    "choices": [
+      "14",
+      "7",
+      "28",
+      "61"
+    ],
+    "key": "14",
+    "derives": [
+      "halve=7",
+      "double=28"
+    ],
+    "best": 2
+  },
+  {
+    "id": "290a8af4-41ea-49a9-a1cd-70fca2857204",
+    "domain": "Geometry and Trigonometry",
+    "previouslyRepaired": true,
+    "prompt": "In the xy-plane shown, what is the distance between the points (3, 4) and (18, 24)?",
+    "choices": [
+      "17.5",
+      "25",
+      "5",
+      "625"
+    ],
+    "key": "25",
+    "derives": [
+      "sqrt=5",
+      "square=625"
+    ],
+    "best": 2
+  },
+  {
+    "id": "2ca0efba-f05c-48a4-afbf-80482cb6d34a",
+    "domain": "Geometry and Trigonometry",
+    "previouslyRepaired": false,
+    "prompt": "In the circle with center O, central angle AOB measures 80°. Point P lies on the major arc AB. What is the measure of inscribed angle APB?",
+    "choices": [
+      "80°",
+      "50°",
+      "30°",
+      "40°"
+    ],
+    "key": "40°",
+    "derives": [
+      "double=80",
+      "complement to 90=50"
+    ],
+    "best": 2
+  },
+  {
+    "id": "4d23b134-c7c4-4205-9d53-5e93cea13b7f",
+    "domain": "Geometry and Trigonometry",
+    "previouslyRepaired": false,
+    "prompt": "In right triangle ABC, the right angle is at B, leg AB = 15, and leg BC = 36. What is the length of the hypotenuse AC?",
+    "choices": [
+      "39",
+      "51",
+      "40",
+      "37"
+    ],
+    "key": "39",
+    "derives": [
+      "complement to 90=51",
+      "plus one=40"
+    ],
+    "best": 2
+  },
+  {
+    "id": "5be69aff-a190-4544-802a-f0a4dd919aa5",
+    "domain": "Geometry and Trigonometry",
+    "previouslyRepaired": false,
+    "prompt": "The equation of a circle in the xy-plane is x^2 + y^2 - 6x + 8y - 11 = 0. What is the radius of the circle?",
+    "choices": [
+      "5",
+      "6",
+      "36",
+      "√11"
+    ],
+    "key": "6",
+    "derives": [
+      "minus one=5",
+      "square=36"
+    ],
+    "best": 2
+  },
+  {
+    "id": "5d709c99-81c7-4d74-a79e-e0864171080a",
+    "domain": "Geometry and Trigonometry",
+    "previouslyRepaired": false,
+    "prompt": "In right triangle ABC, the right angle is at B, the hypotenuse AC = 41, and leg BC = 9. What is the length of leg AB?",
+    "choices": [
+      "32",
+      "50",
+      "41",
+      "40"
+    ],
+    "key": "40",
+    "derives": [
+      "complement to 90=50",
+      "plus one=41"
+    ],
+    "best": 2
+  },
+  {
+    "id": "781c8fd8-4208-4cb9-8a32-41941ad4363f",
+    "domain": "Geometry and Trigonometry",
+    "previouslyRepaired": false,
+    "prompt": "A line segment from an external point P is tangent to a circle of radius 9 at point T. If the distance from P to the center of the circle is 41, what is the length of segment PT?",
+    "choices": [
+      "√1762",
+      "40",
+      "50",
+      "41"
+    ],
+    "key": "40",
+    "derives": [
+      "complement to 90=50",
+      "plus one=41"
+    ],
+    "best": 2
+  },
+  {
+    "id": "80723f79-cd18-48f0-baef-1c565b304e1d",
+    "domain": "Geometry and Trigonometry",
+    "previouslyRepaired": true,
+    "prompt": "A circle in the xy-plane has equation x² + y² − 6x + 8y + 9 = 0. What is the radius of the circle?",
+    "choices": [
+      "5.83",
+      "5",
+      "4",
+      "16"
+    ],
+    "key": "4",
+    "derives": [
+      "plus one=5",
+      "square=16"
+    ],
+    "best": 2
+  },
+  {
+    "id": "9737e933-3a0a-44ae-878e-afd9146b0e2a",
+    "domain": "Geometry and Trigonometry",
+    "previouslyRepaired": true,
+    "prompt": "A right triangle has legs of length 10 and 24. What is the length of the median drawn from the right angle to the hypotenuse?",
+    "choices": [
+      "26",
+      "13",
+      "6.5",
+      "9.23"
+    ],
+    "key": "13",
+    "derives": [
+      "double=26",
+      "halve=6.5"
+    ],
+    "best": 2
+  },
+  {
+    "id": "a1507c38-c04c-4dbd-9383-2654b2064f01",
+    "domain": "Geometry and Trigonometry",
+    "previouslyRepaired": false,
+    "prompt": "The graph of x^2 + y^2 − 6x + 8y + 9 = 0 is a circle. What is the radius of the circle?",
+    "choices": [
+      "5",
+      "16",
+      "4",
+      "√34"
+    ],
+    "key": "4",
+    "derives": [
+      "plus one=5",
+      "square=16"
+    ],
+    "best": 2
+  },
+  {
+    "id": "d1e00f06-5313-412c-927b-c310c54cc2eb",
+    "domain": "Geometry and Trigonometry",
+    "previouslyRepaired": false,
+    "prompt": "A circle has center O and radius 9. A point P is located 15 units from O. A tangent line from P touches the circle at point T. What is the length of the tangent segment PT?",
+    "choices": [
+      "6",
+      "12",
+      "√306",
+      "24"
+    ],
+    "key": "12",
+    "derives": [
+      "halve=6",
+      "double=24"
+    ],
+    "best": 2
+  },
+  {
+    "id": "e4854b0d-5c61-49a3-87c2-c9020ccf6f6f",
+    "domain": "Geometry and Trigonometry",
+    "previouslyRepaired": false,
+    "prompt": "The equation x^2 + y^2 - 6x + 8y + 9 = 0 defines a circle in the xy-plane. What is the radius of the circle?",
+    "choices": [
+      "16",
+      "5",
+      "4",
+      "√34"
+    ],
+    "key": "4",
+    "derives": [
+      "square=16",
+      "plus one=5"
+    ],
+    "best": 2
+  },
+  {
+    "id": "ee800731-1430-4308-b3b6-595a7a526991",
+    "domain": "Geometry and Trigonometry",
+    "previouslyRepaired": false,
+    "prompt": "In the circle with center O, central angle AOB measures 100°. Point P lies on the major arc AB. What is the measure of inscribed angle APB?",
+    "choices": [
+      "50°",
+      "100°",
+      "60°",
+      "40°"
+    ],
+    "key": "50°",
+    "derives": [
+      "double=100",
+      "complement to 90=40"
+    ],
+    "best": 2
+  },
+  {
+    "id": "8c978451-376f-44a3-9842-d36c90b86c6b",
+    "domain": "Problem-Solving and Data Analysis",
+    "previouslyRepaired": true,
+    "prompt": "A cyclist rides 120 miles from town A to town B at an average speed of 40 miles per hour, then returns along the same 120-mile route at an average speed of 60 miles per hour. What is the cyclist's average speed, in miles",
+    "choices": [
+      "48",
+      "100",
+      "96",
+      "24"
+    ],
+    "key": "48",
+    "derives": [
+      "double=96",
+      "halve=24"
+    ],
+    "best": 2
+  },
+  {
+    "id": "98ebd15b-12b3-460c-acb0-9ec4177209f8",
+    "domain": "Problem-Solving and Data Analysis",
+    "previouslyRepaired": true,
+    "prompt": "A bacterial culture doubles in population every 5 hours and grows according to this pattern at all times. At 9:00 a.m. the culture contains 3,200 cells. How many cells did the culture contain at 11:00 p.m. on the previou",
+    "choices": [
+      "1600",
+      "640",
+      "800",
+      "400"
+    ],
+    "key": "800",
+    "derives": [
+      "double=1600",
+      "halve=400"
+    ],
+    "best": 2
+  },
+  {
+    "id": "c85f3f57-c33f-4e1d-ae45-ec62f20b234e",
+    "domain": "Problem-Solving and Data Analysis",
+    "previouslyRepaired": true,
+    "prompt": "A colony of bacteria doubles in number every 6 hours. If there are 500 bacteria at noon, how many bacteria will there be at 6 a.m. the following day, assuming the growth continues at this rate?",
+    "choices": [
+      "2000",
+      "4000",
+      "8000",
+      "4500"
+    ],
+    "key": "4000",
+    "derives": [
+      "halve=2000",
+      "double=8000"
+    ],
+    "best": 2
+  }
+]
