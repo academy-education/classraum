@@ -53,7 +53,36 @@ figure was measured on a sample drawn from the affected cohort, or the
 affected cohort has since been fully repaired — either way the premise
 "730 items need rewriting" is false.
 
-## What is actually left
+## APPLIED, 2026-08-06 — and the result
+
+41 items repaired and written (`apply-math-hub-repair.mjs --file
+math-hub-r2-proposed.json`). 41 updated, 0 missing, 0 failed.
+
+    cohort                        structured   hub-is-key   control   margin
+    unrepaired remainder (703)     141 / 645       19.2%     25.0%     -5.8
+    repaired cohort (117)            8 / 117       12.5%     25.0%    -12.5
+
+**Both cohorts now sit BELOW chance.** The key is the derivational
+centre of its own option set less often than a random option would be,
+which is what the absence of the defect looks like — not 25% exactly,
+because removing a deliberate hub tends to leave the key slightly
+peripheral.
+
+Post-write verification, on the live rows rather than the proposal file:
+
+    written as proposed                    41/41
+    key present and unchanged              41/41
+    no key-hub remains                     41/41
+    structured items in the remainder     168 -> 141
+    full hubs (key derives all three)      18 -> 0
+
+And the property that mattered for the 14 items being repaired a SECOND
+time: `legacy_choices` still holds the TRUE original, not the round-1
+overlay, on 14 of 14. The apply script only writes the backup when
+absent, so a re-repair cannot destroy the record of what the item
+originally was.
+
+## What was left before the apply
 
 - **22 of the 90 repaired items still have the key as hub** (+10.6 over
   their control). The repair reduced them rather than clearing them.
