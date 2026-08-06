@@ -354,3 +354,68 @@ export function readRun(s: RunScore, publishedMargin: number): { reading: RunRea
     why: `${signed(s.margin)} over control across ${s.answered} items, under the ${publishedMargin}pt published margin.`,
   }
 }
+
+/* ── provenance smell ─────────────────────────────────────────────────
+ *
+ * On 2026-08-06 forty reviews were entered through the human UI with a
+ * model answering. Nothing objected. The number reached the register,
+ * turned SAT Craft and Structure into "CONFIRMED BROKEN — both
+ * instruments agree", and would have condemned 211 items had it not been
+ * disclosed.
+ *
+ * The data was screaming: 20/20 with the "Can't tell" button never
+ * pressed, against a hand-done population that has never exceeded 55%.
+ * Nobody was watching, because "that looks too good for a human" lived
+ * in a person's head rather than in the code.
+ *
+ * This is deliberately a SMELL, not a rejection. A genuinely leaky
+ * cohort can produce a high human score — that is the finding we are
+ * hunting. What it says is "confirm who sat this before you believe
+ * it", which costs one question and would have saved today.
+ */
+export interface ProvenanceSmell {
+  suspicious: boolean
+  reasons: string[]
+}
+
+/**
+ * Deliberately absolute, with no reference to the other sittings.
+ *
+ * The first version compared each run against the best of the OTHERS,
+ * which fires on whichever run is highest BY CONSTRUCTION — the maximum
+ * always exceeds the maximum of the rest. Wired up, it flagged
+ * choose-a-response (55%), this project's strongest genuine finding,
+ * and would have done so on every render forever. A check that cries
+ * wolf on the best result is worse than no check.
+ *
+ * The unit test missed it because it passed a hand-picked ceiling and
+ * never reproduced the real call site. CLAUDE.md, again: a passing
+ * check is evidence only if it would have failed.
+ *
+ * KNOWN LIMIT, stated rather than tuned away: this catches the flagrant
+ * case (100%) and NOT the subtle one. The 65% model-assisted run on
+ * 2026-08-06 would slip through, because 65% is a plausible human score
+ * and the only way to catch it would be to fit thresholds to two data
+ * points. Provenance is ultimately a question you ask, not a number you
+ * compute; this only shouts when the number is impossible.
+ */
+export function provenanceSmell(s: RunScore): ProvenanceSmell {
+  const reasons: string[] = []
+  if (s.answered < 10 || s.pct === null) return { suspicious: false, reasons: [] }
+
+  if (s.pct >= 90) {
+    reasons.push(`${s.pct}% correct on a BLIND sitting — the source was withheld`)
+  }
+
+  /*
+   * Corroborator, not a trigger. All four genuine human sittings here
+   * had zero or one abstention, so "never pressed can't tell" is NOT on
+   * its own a human/model discriminator — it only means anything
+   * alongside a score no human has approached.
+   */
+  if (s.cantTell === 0 && s.answered >= 20 && s.pct >= 75) {
+    reasons.push(`never once answered "can't tell" across ${s.answered} items`)
+  }
+
+  return { suspicious: reasons.length > 0, reasons }
+}

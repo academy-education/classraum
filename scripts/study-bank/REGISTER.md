@@ -43,6 +43,8 @@ and on both cohorts checked so far the model was the one that was wrong.
 | SAT | Expression of Ideas | 66 | 100% | — | **unconfirmed** — model only |
 | TOEFL | Interview | 48 | — | — | never measured — the attack does not apply |
 
+
+
 ### Excluded from the human column — model-assisted
 
 40 reviews were entered through the human UI with a model

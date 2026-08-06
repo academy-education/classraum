@@ -41,6 +41,13 @@ const js = execFileSync('npx', ['esbuild', TS, '--format=esm', '--platform=node'
 const { WORK, SETTLED, FOUND_WHILE_FIXING, registerSummary } =
   await import('data:text/javascript;base64,' + Buffer.from(js).toString('base64'))
 
+/* Same trick for the review maths — imported, never re-implemented. */
+const IR = new URL('../../src/lib/study/item-review.ts', import.meta.url).pathname
+const irJs = execFileSync('npx', ['esbuild', IR, '--format=esm', '--platform=node', '--loader:.ts=ts'],
+  { encoding: 'utf8', maxBuffer: 8 << 20 })
+const { scoreRun, provenanceSmell } =
+  await import('data:text/javascript;base64,' + Buffer.from(irJs).toString('base64'))
+
 const env = Object.fromEntries(readFileSync(process.cwd() + '/.env.local', 'utf8').split('\n')
   .filter(l => l.includes('=') && !l.startsWith('#'))
   .map(l => [l.slice(0, l.indexOf('=')), l.slice(l.indexOf('=') + 1).trim()]))
@@ -68,7 +75,7 @@ const attacks = await all('study_item_attacks', 'item_id, correct, solvers, atta
  * model-produced row in the human column collapses the two into one and
  * every verdict becomes a model agreeing with itself. See migration 079.
  */
-const reviews = await all('study_item_reviews_fresh', 'item_id, blind_pick, key_slot, blind_at',
+const reviews = await all('study_item_reviews_fresh', 'item_id, run_id, blind_pick, key_slot, blind_at',
   q => q.not('blind_at', 'is', null).eq('reviewer_kind', 'human'))
 const assisted = await all('study_item_reviews_fresh', 'item_id, run_id, blind_pick, key_slot',
   q => q.not('blind_at', 'is', null).eq('reviewer_kind', 'model_assisted'))
@@ -153,6 +160,48 @@ and on both cohorts checked so far the model was the one that was wrong.
 | test | cohort | items | blind | human | state |
 |---|---|---|---|---|---|
 ${rows.map(r => `| ${r.family.toUpperCase()} | ${r.domain} | ${r.items} | ${r.blind === null ? '—' : r.blind + '%'} | ${r.human ? `${r.human.pct}% (n=${r.human.n})` : '—'} | ${verdict(r.blind, r.human)} |`).join('\n')}
+
+${(() => {
+  /*
+   * Provenance tripwire.
+   *
+   * On 2026-08-06 a model-answered sitting reached this table and turned
+   * a cohort into "CONFIRMED BROKEN". Nothing objected, because "that
+   * looks too good for a human" lived in a person's head. It lives here
+   * now.
+   *
+   * The check is ABSOLUTE — it does not compare runs to each other. The
+   * first version did, against the best of the others, and that fires on
+   * whichever run is highest by construction: wired up, it flagged
+   * choose-a-response, this project's strongest genuine finding. See
+   * provenanceSmell for the full account.
+   */
+  const byRun = new Map()
+  for (const r of reviews) {
+    if (!byRun.has(r.run_id)) byRun.set(r.run_id, [])
+    byRun.get(r.run_id).push({
+      keySlot: r.key_slot, blindPick: r.blind_pick,
+      answered: r.blind_at != null, verdict: null, realism: null,
+    })
+  }
+  const flagged = [...byRun]
+    .map(([run, rows]) => { const s = scoreRun(rows); return { run, s, smell: provenanceSmell(s) } })
+    .filter(f => f.smell.suspicious)
+
+  if (!flagged.length) return ''
+  return `### ⚠ Check who sat these
+
+${flagged.map(f => `- \`${f.run}\` (${f.s.pct}%, ${f.s.answered} answered) — ${f.smell.reasons.join('; ')}`).join('\n')}
+
+A flagged run is not wrong, it is UNVERIFIED PROVENANCE. A genuinely
+leaky cohort produces a high human score, and that is the finding we are
+hunting — so this asks one question rather than rejecting anything:
+*was this sat by a person, unaided?* Answering it costs a moment and
+would have saved 2026-08-06, when a model-answered run rendered as
+CONFIRMED BROKEN over 211 items.
+
+`
+})()}
 
 ${(() => {
   /*
