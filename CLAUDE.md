@@ -267,3 +267,73 @@ zero. The harshness in that run came entirely from the duplicate call;
 with one writer the same two essays scored 5 and 4, not 3 and 3. The
 passage is now passed because a grader should see the task it scores —
 not because it changed a number. Do not credit it with one.
+
+### Corollary: measure the population before believing the backlog
+
+A task read "SAT Math derivational hub CONFIRMED bank-wide (64.4%)" and
+sat there long enough to be treated as settled. On 2026-08-06 it was
+measured for the first time:
+
+    the 90 already repaired, BEFORE   98.3%   control 25.0%
+    the other 730, untouched           8.0%   control  6.3%
+
+The defect was catastrophic in one authoring cohort and essentially
+absent everywhere else. "Bank-wide" described a sample drawn from the
+affected cohort. Acting on the backlog entry would have rewritten ~690
+sound items — an expensive, plausible, entirely wasted programme, and
+the rewrite itself would have been the risk, since every touched item is
+a chance to introduce a new tell.
+
+The measurement cost one script and no model calls, because this
+particular defect is arithmetic and therefore decidable. That is the
+tell to look for: **when a defect can be checked exactly, check the
+whole population rather than sampling it, and do that before believing
+any number attached to it — including your own from last week.**
+
+Two errors were made while building that checker and both pushed the
+same way, toward condemning more of the bank:
+
+- a `+1` between consecutive integers counted as a derivational
+  relation, so `12, 13, 17, 19` read as a hub. Caught by a self-test
+  fixture, not by the bank.
+- a conditional rate (68.2%, over items that still had structure) was
+  compared against a population rate (23.6%) and reported as a
+  validation failure. Different denominators, not a contradiction.
+
+Both were caught because the checker was run against data whose answer
+was already known. A detector that cannot reproduce a known number on
+known data has no business being pointed at unknown data.
+
+### Corollary: every structural proxy has been too coarse
+
+Five have now been built to catch "the answer is guessable without the
+source", each aimed at the tell that had just been found:
+
+    key letter spread          the key sat in slot A 73% of the time
+    key length rank            the key was longest in 74.3%
+    punctuation asymmetry      semicolons appeared only in keys
+    concessive-pivot rate      94.4% of stimuli shared one shape
+    option-family balance      the key's speech act was unique in its set
+
+Every one caught its own tell. Not one caught the next. The fifth was
+measured against three batches with known blind margins spanning +14.6
+to +40.4 and predicted a 2.7-point spread — it does not work, and the
+negative is recorded in `scripts/study-bank/OPTION-BALANCE-RESULT.md`
+so nobody builds a sixth.
+
+The reason is consistent: the tells that decide these batches are
+SEMANTIC and item-specific, and a cheap proxy for them does not exist.
+The blind attack — three solvers reading the actual option text — is
+the only instrument that has ranked batches correctly, and it costs a
+handful of agents per batch.
+
+So: **the attack is the gate. The structural checks are pre-flight.**
+Keep them, because each is nearly free and `render-crv3.mjs` did catch a
+real typographic tell an author had spotted by hand. Never let one stand
+in for the attack, and never report a batch as clean because the cheap
+checks passed.
+
+One exception, and it proves the rule: where a defect is arithmetic
+rather than semantic (the SAT Math hub), an exact checker over the whole
+population beats any sampling attack. Ask which kind you have before
+choosing an instrument.
