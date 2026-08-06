@@ -9,7 +9,7 @@ renders on /admin/bank-qc, from the same source, so the two cannot
 disagree.
 
 Generated 2026-08-06. Live items: 3,341.
-Open work: 8 — 5 mine, 3 need you.
+Open work: 10 — 7 mine, 3 need you.
 
 ---
 
@@ -47,7 +47,9 @@ and on both cohorts checked so far the model was the one that was wrong.
 
 | id | what | size | why |
 |---|---|---|---|
-| A4 | A gate for the 541 items nothing can currently test | 6 cohorts | Build a Sentence, Listen and Repeat, Complete the Words, Email, Academic Discussion and Interview have no options to withhold, so the blind attack does not apply. They have never been checked by anything. |
+| A10 | 12 items cannot be graded correctly — students marked wrong for right answers | 1 Build a Sentence + 11 blanks across 8 Complete the Words | A Build-a-Sentence key ends in a full stop no chip carries, and grading folds only case and whitespace, so NO tap order scores correct. Eight cloze items spell misspellings — futuure, dioxxide, acttion, framewwork — with the wrong number of letter boxes. _Student-facing and unambiguous. Highest priority of anything open; needs no measurement, only repair._ |
+| A11 | 10 Email items are graded on a task they never state | 10 of 92 | 82 carry the ETS situation plus three bullets; these 10 state no task, while the task_fulfillment criterion grades "Task coverage" of points that were never given. |
+| A12 | Build a Sentence repeats its opening chips across items | 28 of 119, plus 1 exact duplicate pair | Four items begin "The book | that was recommended | by my professor". The cross-item tell this project keeps finding, in countable form for once. |
 | A3 | Rebuild Choose a Response | 72 items | The only cohort where the model attack and a human agree it is broken: 55.0% blind against a 25.0% control, p<0.001, plus 4 of 20 with a second defensible answer. _Three rounds have failed. Start from the four crv2 items that passed both gates (1, 4, 10, 14), and measure with the held-out panel, which has never been spent._ |
 | A8 | Attack measurements are not bound to the content they measured | 5 items now stale, more whenever an item is edited | Migration 076 bound REVIEWS to item content. study_item_attacks got no such binding, so the 5 repointed items still carry a blind score describing the question they no longer ask — and the dashboard reads the latest attack per item. _Same shape as 076 and the same fix: hash the content at attack time, expose a fresh view, read scores from it. Until then repointed items carry `repointed_at` in verify_meta as a manual marker._ |
 | A9 | The duplicate guard does not guard against duplicates | 1 index, whole bank | The unique partial index on content_hash reads as a uniqueness guarantee. A re-harvest computes a hash under a different definition, so it misses both the in-memory seen set AND the index, and the duplicate inserts cleanly. This has already happened once — migration 062 records "28 items, 14 distinct prompts". _Fix is known and cheap: study_item_content_sha() from migration 076 is already deployed and reproduces exactly in JS, so make it a generated column with an index — no writer can forget it. Dedup needs a SECOND order-insensitive column rather than overloading one field with two jobs._ |
@@ -75,6 +77,8 @@ and on both cohorts checked so far the model was the one that was wrong.
 Appended in the same commit as the work that surfaced it. A finding
 recorded only in a commit message is a finding nobody reads.
 
+- **2026-08-06** — The "541 never measured" figure was wrong: Listen and Repeat (97) and Interview (48) already had passing verifiers. 396 items were genuinely unchecked, and every finding landed in those. → **A4**
+- **2026-08-06** — Whether a Build-a-Sentence item has a SECOND grammatical ordering — its defining defect — is not decidable and remains unchecked on 118 items. Recorded rather than papered over with a proxy. → **A12**
 - **2026-08-06** — Nine scripts rewrite item content and leave content_hash stale; only apply-math-hub-repair recomputes it. And updated_at is useless as a mutation signal — there is no trigger, so 751 repaired rows read as "never updated". → **A9**
 - **2026-08-06** — A Biology 102 item was keyed backwards — "there may be no waitlist if the class is too full", when a waitlist exists BECAUSE a class fills. Found while repairing the phrase, not by any gate. _(fixed on the spot)_
 - **2026-08-06** — A clean-up flyer item had the key as the only supplies-related option, so it was pickable from the stem without the passage. In a cohort that passed its human sitting. _(fixed on the spot)_

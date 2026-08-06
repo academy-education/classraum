@@ -102,11 +102,41 @@ export const WORK: WorkItem[] = [
   },
   {
     id: 'A4',
-    title: 'A gate for the 541 items nothing can currently test',
-    size: '6 cohorts',
-    why: 'Build a Sentence, Listen and Repeat, Complete the Words, Email, Academic Discussion and Interview have no options to withhold, so the blind attack does not apply. They have never been checked by anything.',
+    title: 'A gate for the production/cloze cohorts',
+    size: '396 items genuinely unchecked, not 541',
+    why: 'These have no options to withhold, so the blind attack does not apply. 12 detectors now replay the real code paths — gradeAnswer(), the TestSession chip pool, parseDiscussionSpeakers() — so a finding is a fact about the product rather than an opinion about the writing.',
+    owner: 'claude',
+    state: 'done',
+    note: 'Corrected the premise: Listen and Repeat and Interview already had passing verifiers, so 2 of the 6 cohorts were covered. Deliberately REJECTED a Complete-the-Words ambiguity check that fired on 42% of blanks rather than ship a sixth structural proxy.',
+    doc: 'scripts/study-bank/PRODUCTION-GATE.md',
+  },
+  {
+    id: 'A10',
+    title: '12 items cannot be graded correctly — students marked wrong for right answers',
+    size: '1 Build a Sentence + 11 blanks across 8 Complete the Words',
+    why: 'A Build-a-Sentence key ends in a full stop no chip carries, and grading folds only case and whitespace, so NO tap order scores correct. Eight cloze items spell misspellings — futuure, dioxxide, acttion, framewwork — with the wrong number of letter boxes.',
     owner: 'claude',
     state: 'open',
+    note: 'Student-facing and unambiguous. Highest priority of anything open; needs no measurement, only repair.',
+    doc: 'scripts/study-bank/PRODUCTION-GATE.md',
+  },
+  {
+    id: 'A11',
+    title: '10 Email items are graded on a task they never state',
+    size: '10 of 92',
+    why: '82 carry the ETS situation plus three bullets; these 10 state no task, while the task_fulfillment criterion grades "Task coverage" of points that were never given.',
+    owner: 'claude',
+    state: 'open',
+    doc: 'scripts/study-bank/PRODUCTION-GATE.md',
+  },
+  {
+    id: 'A12',
+    title: 'Build a Sentence repeats its opening chips across items',
+    size: '28 of 119, plus 1 exact duplicate pair',
+    why: 'Four items begin "The book | that was recommended | by my professor". The cross-item tell this project keeps finding, in countable form for once.',
+    owner: 'claude',
+    state: 'open',
+    doc: 'scripts/study-bank/PRODUCTION-GATE.md',
   },
   {
     id: 'A3',
@@ -225,6 +255,16 @@ export interface Found {
 }
 
 export const FOUND_WHILE_FIXING: Found[] = [
+  {
+    date: '2026-08-06',
+    what: 'The "541 never measured" figure was wrong: Listen and Repeat (97) and Interview (48) already had passing verifiers. 396 items were genuinely unchecked, and every finding landed in those.',
+    landedAs: 'A4',
+  },
+  {
+    date: '2026-08-06',
+    what: 'Whether a Build-a-Sentence item has a SECOND grammatical ordering — its defining defect — is not decidable and remains unchecked on 118 items. Recorded rather than papered over with a proxy.',
+    landedAs: 'A12',
+  },
   {
     date: '2026-08-06',
     what: 'Nine scripts rewrite item content and leave content_hash stale; only apply-math-hub-repair recomputes it. And updated_at is useless as a mutation signal — there is no trigger, so 751 repaired rows read as "never updated".',
