@@ -32,7 +32,7 @@ and on both cohorts checked so far the model was the one that was wrong.
 | SAT | Algebra | 199 | 100% | — | **unconfirmed** — model only |
 | TOEFL | Conversation | 193 | 83.3% | — | **unconfirmed** — model only |
 | SAT | Advanced Math | 191 | 100% | — | **unconfirmed** — model only |
-| TOEFL | Daily Life | 133 | 100% | 25% (n=20) | **cleared by hand** — the model was wrong |
+| TOEFL | Daily Life | 133 | 100% | 26.3% (n=19) | human says maybe — needs more |
 | TOEFL | Announcement | 121 | 100% | 15% (n=20) | **cleared by hand** — the model was wrong |
 | TOEFL | Build a Sentence | 119 | — | — | never measured — the attack does not apply |
 | TOEFL | Listen and Repeat | 97 | — | — | never measured — the attack does not apply |
@@ -47,10 +47,10 @@ and on both cohorts checked so far the model was the one that was wrong.
 
 | id | what | size | why |
 |---|---|---|---|
-| A1 | "space permitting" is misused across Daily Life | 36 items / 25 passages | Used as a generic hedge where the sense is not spatial — "available three days a week, space permitting". One phrase doing the work of five; "time permitting" appears zero times. _English quality, NOT a leak — this cohort was cleared by hand. Pair with A2 so Daily Life is edited once; every edit invalidates a review._ |
-| A2 | Ambiguous pronoun in the "roommate" item | 1 option | "their roommate" can be read as either party's. That ambiguity — not a wrong key — is what the reviewer objected to. _Explicitly NOT a re-key. The key is defensible; re-keying on a pronoun misreading would be the wrong correction made confidently._ |
+| A6 | Items whose QUESTION is about the misused phrase | 15 items / 10 passages | Stems like "What does 'space permitting' mean in the context of this job ad?" — where the ad says "available at least three nights a week, space permitting", which is not English. The item asks a student to interpret a phrase that is being used wrongly. _NOT a phrase swap. Changing the passage orphans the stem; changing both is an item rewrite. These should probably be re-authored or retired rather than patched._ |
 | A4 | A gate for the 541 items nothing can currently test | 6 cohorts | Build a Sentence, Listen and Repeat, Complete the Words, Email, Academic Discussion and Interview have no options to withhold, so the blind attack does not apply. They have never been checked by anything. |
 | A3 | Rebuild Choose a Response | 72 items | The only cohort where the model attack and a human agree it is broken: 55.0% blind against a 25.0% control, p<0.001, plus 4 of 20 with a second defensible answer. _Three rounds have failed. Start from the four crv2 items that passed both gates (1, 4, 10, 14), and measure with the held-out panel, which has never been spent._ |
+| A7 | content_hash does not match any definition we have | 163 of 200 sampled rows | Two scripts in this repo compute it differently (one includes the passage, one does not) and neither reproduces the live values. Dedup on future harvests depends on this column. _Until it is understood, edits deliberately leave the column untouched rather than write a guessed value._ |
 | A5 | Deepen the Daily Life reading pool | pool is 35 texts | Too few source texts means repetition across forms. |
 
 ## 3. Open work — needs you
@@ -75,6 +75,8 @@ and on both cohorts checked so far the model was the one that was wrong.
 Appended in the same commit as the work that surfaced it. A finding
 recorded only in a commit message is a finding nobody reads.
 
+- **2026-08-06** — 15 of the 36 "space permitting" items have the phrase in their PROMPT or EXPLANATION — the question is about the phrase. Changing the passage would orphan the stem, so those are an item rewrite rather than a text fix. → **A6**
+- **2026-08-06** — content_hash matches NEITHER hash definition in this repo on 163 of 200 sampled rows. Any recomputation would be a guess, so passage edits deliberately leave it alone. → **A7**
 - **2026-08-06** — "space permitting" was reported on 3 items. It is on 36, across 25 passages — 27% of the Daily Life cohort. → **A1**
 - **2026-08-06** — The reported mis-key is not one. The objection turns on an ambiguous pronoun, not a wrong answer. → **A2**
 - **2026-08-06** — The near-duplicate pair lives in choose-response-repair-v1, the REJECTED repair, which was never inserted. → **A3**

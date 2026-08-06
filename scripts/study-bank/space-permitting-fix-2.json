@@ -1,0 +1,127 @@
+[
+  {
+    "n": 14,
+    "itemIds": [
+      "5fe56e5a-4fcc-4a99-b497-3a2c3bb143ab",
+      "f7a0ba4c-0801-4ecf-a812-7d3fce416f29"
+    ],
+    "before": "Email from Professor Lin: Dear Jamie, Thank you for your interest in my research group. At this time, we do not have any open positions, but if you can wait until next semester, there may be opportunities, space permitting. Please feel free to check in again in December. Best regards, Professor Lin",
+    "after": "Email from Professor Lin: Dear Jamie, Thank you for your interest in my research group. At this time, we do not have any open positions, but if you can wait until next semester, there may be opportunities, space permitting. Please feel free to check in again in December. Best regards, Professor Lin",
+    "change": "no change — 'space permitting' is correct here",
+    "why": "The constraint is genuinely capacity: whether the research group has an open slot for another member, which is exactly what the passage's first clause establishes."
+  },
+  {
+    "n": 15,
+    "itemIds": [
+      "6a81a4ad-3fac-4ca7-a488-c2c260f47ecd",
+      "75d34c8c-2c3e-49df-a859-15c67c9ef992"
+    ],
+    "before": "Campus Notice: The West Hall laundry room will be closed for repairs starting Monday, if the parts arrive on time. Students are encouraged to use the North Hall facilities during this period. Please note that the North Hall laundry is smaller and may be crowded, especially in the evenings. We apologize for any inconvenience and appreciate your patience. The West Hall laundry will reopen as soon as possible, space permitting.",
+    "after": "Campus Notice: The West Hall laundry room will be closed for repairs starting Monday, if the parts arrive on time. Students are encouraged to use the North Hall facilities during this period. Please note that the North Hall laundry is smaller and may be crowded, especially in the evenings. We apologize for any inconvenience and appreciate your patience. The West Hall laundry will reopen as soon as possible.",
+    "change": "space permitting -> deleted",
+    "why": "The reopening depends on repairs and parts, not on space; the uncertainty is already carried by 'if the parts arrive on time' and 'as soon as possible', so nothing is lost."
+  },
+  {
+    "n": 16,
+    "itemIds": [
+      "6ead2164-1d20-43bb-89ae-f0dc192d8116",
+      "8a6ff55f-c6d2-45fc-8f40-409f6cb6bdb9"
+    ],
+    "before": "From: Professor Lin Subject: Meeting Request Hi Alex, Thank you for your email. I’m afraid I can’t meet this week due to conference travel. If you can, please send your questions by email and I’ll reply as soon as possible. Otherwise, I’m available for in-person meetings next Wednesday afternoon, space permitting. Let me know what works best for you. Best, Professor Lin",
+    "after": "From: Professor Lin Subject: Meeting Request Hi Alex, Thank you for your email. I’m afraid I can’t meet this week due to conference travel. If you can, please send your questions by email and I’ll reply as soon as possible. Otherwise, I’m available for in-person meetings next Wednesday afternoon, time permitting. Let me know what works best for you. Best, Professor Lin",
+    "change": "space permitting -> time permitting",
+    "why": "The professor is constrained by conference travel and how much time she has, not by any room; the hedge still makes the Wednesday offer uncertain."
+  },
+  {
+    "n": 17,
+    "itemIds": [
+      "766c2af6-f024-4b54-aa92-ac1d9b2c44b1",
+      "f9cf25a6-bc83-4815-844b-2d04d161f80e"
+    ],
+    "before": "Subject: Study Room Reservations Update Hi everyone, Due to increased demand, the library will only accept study room bookings from groups of three or more, space permitting. If you can’t meet this requirement, please consider using the open seating areas. Bookings are not guaranteed and may be canceled if rooms are needed for library events. Thank you for your understanding. Best, Library Team",
+    "after": "Subject: Study Room Reservations Update Hi everyone, Due to increased demand, the library will only accept study room bookings from groups of three or more, space permitting. If you can’t meet this requirement, please consider using the open seating areas. Bookings are not guaranteed and may be canceled if rooms are needed for library events. Thank you for your understanding. Best, Library Team",
+    "change": "no change — 'space permitting' is correct here",
+    "why": "The constraint is literally room availability under high demand, which the rest of the notice (open seating, bookings not guaranteed) confirms."
+  },
+  {
+    "n": 18,
+    "itemIds": [
+      "7815d4c0-aa00-474f-a8ed-1f0e65f2ed30"
+    ],
+    "before": "From: Professor Lin To: All Students in History 202 Subject: Office Hours Update Dear students, Due to a scheduling conflict, my office hours this week will be by appointment only. If you can’t make it during the usual time, please email me to arrange a different meeting slot. I apologize for any inconvenience and appreciate your flexibility. Regular office hours will resume next week, space permitting.",
+    "after": "From: Professor Lin To: All Students in History 202 Subject: Office Hours Update Dear students, Due to a scheduling conflict, my office hours this week will be by appointment only. If you can’t make it during the usual time, please email me to arrange a different meeting slot. I apologize for any inconvenience and appreciate your flexibility. Regular office hours will resume next week, schedule permitting.",
+    "change": "space permitting -> schedule permitting",
+    "why": "The passage names the constraint itself — a scheduling conflict — and the hedge keeps next week's resumption tentative, which is what the question about the phrase turns on."
+  },
+  {
+    "n": 19,
+    "itemIds": [
+      "7ab46289-4b20-46f4-8abc-c1f6cde7c9c5"
+    ],
+    "before": "From: Housing Services To: Residents Subject: Laundry Room Update Dear Residents, If you can, please avoid using the laundry room between 2 and 4 p.m. on Wednesday, as maintenance will be working on the machines. If you must do laundry during that time, only one machine will be available, space permitting. Thank you for your cooperation.",
+    "after": "From: Housing Services To: Residents Subject: Laundry Room Update Dear Residents, If you can, please avoid using the laundry room between 2 and 4 p.m. on Wednesday, as maintenance will be working on the machines. If you must do laundry during that time, only one machine may be available. Thank you for your cooperation.",
+    "change": "space permitting -> deleted, hedge folded into 'may be available'",
+    "why": "The constraint is maintenance work on the machines, not space; 'may' preserves the same uncertainty without the awkward 'available ... subject to availability'."
+  },
+  {
+    "n": 20,
+    "itemIds": [
+      "7dc5f1a4-2d6b-4550-a6c8-485182f82e81",
+      "b758f018-9e66-440d-9c87-7b51419c0c15"
+    ],
+    "before": "Subject: Study Room Reservations Dear Students, Due to high demand, study rooms can be reserved for up to two hours per day, space permitting. If you do not arrive within 15 minutes of your reservation, the room may be given to another student. Please cancel if you no longer need your slot. Thank you for your cooperation. Library Services",
+    "after": "Subject: Study Room Reservations Dear Students, Due to high demand, study rooms can be reserved for up to two hours per day, space permitting. If you do not arrive within 15 minutes of your reservation, the room may be given to another student. Please cancel if you no longer need your slot. Thank you for your cooperation. Library Services",
+    "change": "no change — 'space permitting' is correct here",
+    "why": "The limit exists because rooms themselves are scarce under high demand, so the constraint is genuinely physical capacity."
+  },
+  {
+    "n": 21,
+    "itemIds": [
+      "81b6a781-b258-4618-8421-c5de513663ad"
+    ],
+    "before": "Student Government Social Media Post We’re planning a movie night next Friday, space permitting. If you’d like to suggest a film, comment below by Wednesday. We’ll choose a movie based on popularity, but please note, we may not be able to accommodate all requests. Final details will be posted Thursday, assuming the event goes ahead.",
+    "after": "Student Government Social Media Post We’re planning a movie night next Friday, if we can fit it in. If you’d like to suggest a film, comment below by Wednesday. We’ll choose a movie based on popularity, but please note, we may not be able to accommodate all requests. Final details will be posted Thursday, assuming the event goes ahead.",
+    "change": "space permitting -> if we can fit it in",
+    "why": "Nothing about a room is mentioned; the doubt is whether the event can be slotted in at all, which is what 'assuming the event goes ahead' later echoes, so a hedge of equal strength is retained."
+  },
+  {
+    "n": 22,
+    "itemIds": [
+      "a17a4876-69ab-49bf-879f-9c69b46b06b1"
+    ],
+    "before": "Course Registration Page: Registration for Spring courses opens Monday at 9am. Priority is given to seniors and juniors, space permitting. If you are a sophomore or freshman, you may register starting Wednesday. Waitlists are available for full classes. Please check your student email for updates. Registration closes Friday at 5pm.",
+    "after": "Course Registration Page: Registration for Spring courses opens Monday at 9am. Priority is given to seniors and juniors, space permitting. If you are a sophomore or freshman, you may register starting Wednesday. Waitlists are available for full classes. Please check your student email for updates. Registration closes Friday at 5pm.",
+    "change": "no change — 'space permitting' is correct here",
+    "why": "Priority is bounded by the number of seats in each course, which the mention of waitlists for full classes confirms as a capacity constraint."
+  },
+  {
+    "n": 23,
+    "itemIds": [
+      "ca6c8ec4-9676-490b-8a87-228ae0f9fef9"
+    ],
+    "before": "Hey everyone! The Student Art Club is planning a mural painting event next Saturday, but we’ll only go ahead if the weather is dry. If you can, please RSVP by Thursday so we can buy enough supplies. We might have to limit spots if too many people sign up, so early replies are appreciated. Snacks will be provided, space permitting. Hope to see you there! — Art Club Officers",
+    "after": "Hey everyone! The Student Art Club is planning a mural painting event next Saturday, but we’ll only go ahead if the weather is dry. If you can, please RSVP by Thursday so we can buy enough supplies. We might have to limit spots if too many people sign up, so early replies are appreciated. Snacks will be provided. Hope to see you there! — Art Club Officers",
+    "change": "space permitting -> deleted",
+    "why": "Snacks depend on supplies and headcount, not on space, and the flyer already carries three separate hedges (weather, RSVP-driven supplies, limited spots) so no uncertainty is lost."
+  },
+  {
+    "n": 24,
+    "itemIds": [
+      "d4da3f30-f99d-4205-aebc-6f484bf999d0"
+    ],
+    "before": "Course Registration Page: Registration for Biology 102 opens Monday at 9am. If you can, register early, as seats are limited and enrollment is on a first-come, first-served basis. Waitlist will be available, space permitting. Students who do not meet prerequisites will be dropped.",
+    "after": "Course Registration Page: Registration for Biology 102 opens Monday at 9am. If you can, register early, as seats are limited and enrollment is on a first-come, first-served basis. Waitlist will be available, subject to availability. Students who do not meet prerequisites will be dropped.",
+    "change": "space permitting -> subject to availability",
+    "why": "The question turns on the waitlist not being guaranteed, so the hedge is load-bearing and is replaced with one of identical strength rather than deleted."
+  },
+  {
+    "n": 25,
+    "itemIds": [
+      "f1b3a307-d2e0-4d15-a3e0-2e202aa1f50f"
+    ],
+    "before": "Course Registration Reminder: Registration for spring courses will close at midnight on Friday, space permitting. If you can’t register by then, you may be able to join a waitlist. Please note that some courses may fill before the deadline. Register early to secure your spot.",
+    "after": "Course Registration Reminder: Registration for spring courses will close at midnight on Friday. If you can’t register by then, you may be able to join a waitlist, space permitting. Please note that some courses may fill before the deadline. Register early to secure your spot.",
+    "change": "space permitting -> moved from the deadline to the waitlist clause",
+    "why": "A fixed midnight deadline cannot be constrained by space, but waitlist places genuinely can, so the phrase is kept in the passage and attached to the clause it actually describes."
+  }
+]

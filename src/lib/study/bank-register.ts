@@ -64,11 +64,21 @@ export const WORK: WorkItem[] = [
   {
     id: 'A1',
     title: '"space permitting" is misused across Daily Life',
-    size: '36 items / 25 passages',
-    why: 'Used as a generic hedge where the sense is not spatial — "available three days a week, space permitting". One phrase doing the work of five; "time permitting" appears zero times.',
+    size: '10 of 36 items repaired',
+    why: 'Used as a generic hedge where the sense is not spatial — "available three days a week, space permitting". One phrase doing the work of five.',
+    owner: 'claude',
+    state: 'done',
+    note: 'Repaired where the phrase was only in the passage. The other 26 items are A6 — a different job, because their QUESTION is about the phrase.',
+    doc: 'scripts/study-bank/DAILY-LIFE-DEFECTS.md',
+  },
+  {
+    id: 'A6',
+    title: 'Items whose QUESTION is about the misused phrase',
+    size: '15 items / 10 passages',
+    why: 'Stems like "What does \'space permitting\' mean in the context of this job ad?" — where the ad says "available at least three nights a week, space permitting", which is not English. The item asks a student to interpret a phrase that is being used wrongly.',
     owner: 'claude',
     state: 'open',
-    note: 'English quality, NOT a leak — this cohort was cleared by hand. Pair with A2 so Daily Life is edited once; every edit invalidates a review.',
+    note: 'NOT a phrase swap. Changing the passage orphans the stem; changing both is an item rewrite. These should probably be re-authored or retired rather than patched.',
     doc: 'scripts/study-bank/DAILY-LIFE-DEFECTS.md',
   },
   {
@@ -77,7 +87,7 @@ export const WORK: WorkItem[] = [
     size: '1 option',
     why: '"their roommate" can be read as either party\'s. That ambiguity — not a wrong key — is what the reviewer objected to.',
     owner: 'claude',
-    state: 'open',
+    state: 'done',
     note: 'Explicitly NOT a re-key. The key is defensible; re-keying on a pronoun misreading would be the wrong correction made confidently.',
     doc: 'scripts/study-bank/DAILY-LIFE-DEFECTS.md',
   },
@@ -107,6 +117,15 @@ export const WORK: WorkItem[] = [
     state: 'open',
     note: 'Three rounds have failed. Start from the four crv2 items that passed both gates (1, 4, 10, 14), and measure with the held-out panel, which has never been spent.',
     doc: 'scripts/study-bank/CRV3-RESULT.md',
+  },
+  {
+    id: 'A7',
+    title: 'content_hash does not match any definition we have',
+    size: '163 of 200 sampled rows',
+    why: 'Two scripts in this repo compute it differently (one includes the passage, one does not) and neither reproduces the live values. Dedup on future harvests depends on this column.',
+    owner: 'claude',
+    state: 'open',
+    note: 'Until it is understood, edits deliberately leave the column untouched rather than write a guessed value.',
   },
   {
     id: 'A5',
@@ -186,6 +205,16 @@ export interface Found {
 }
 
 export const FOUND_WHILE_FIXING: Found[] = [
+  {
+    date: '2026-08-06',
+    what: '15 of the 36 "space permitting" items have the phrase in their PROMPT or EXPLANATION — the question is about the phrase. Changing the passage would orphan the stem, so those are an item rewrite rather than a text fix.',
+    landedAs: 'A6',
+  },
+  {
+    date: '2026-08-06',
+    what: 'content_hash matches NEITHER hash definition in this repo on 163 of 200 sampled rows. Any recomputation would be a guess, so passage edits deliberately leave it alone.',
+    landedAs: 'A7',
+  },
   {
     date: '2026-08-06',
     what: '"space permitting" was reported on 3 items. It is on 36, across 25 passages — 27% of the Daily Life cohort.',

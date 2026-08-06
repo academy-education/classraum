@@ -1,0 +1,138 @@
+[
+  {
+    "n": 1,
+    "itemIds": [
+      "0237ba73-6444-4ba0-9166-25a3178e1618"
+    ],
+    "before": "@CampusEvents (Social Media Post) Heads up! The outdoor movie night is planned for Friday, but we’ll have to cancel if it rains. If you can, bring your own blanket or chair. We’ll provide popcorn, space permitting. Check our page Friday afternoon for updates. Hope to see you there, weather permitting!",
+    "after": "@CampusEvents (Social Media Post) Heads up! The outdoor movie night is planned for Friday, but we’ll have to cancel if it rains. If you can, bring your own blanket or chair. We’ll provide popcorn. Check our page Friday afternoon for updates. Hope to see you there, weather permitting!",
+    "change": "space permitting -> deleted",
+    "why": "The popcorn is not limited by space, and the passage's real uncertainty (rain) is already carried by 'cancel if it rains' and the closing 'weather permitting'."
+  },
+  {
+    "n": 2,
+    "itemIds": [
+      "0a941e76-556b-48db-a5f5-dde6087e28ea",
+      "56a3abee-7d47-4441-830a-19cd946c36dc"
+    ],
+    "before": "From: Prof. Li To: Jamie Subject: Office Hours Hi Jamie, Thanks for your message. I’m afraid I can’t meet during my usual office hours this week due to a conference. If you can be flexible, I could see you briefly after class on Thursday, space permitting. Otherwise, let’s arrange a time for next week. Let me know what works for you. Best, Prof. Li",
+    "after": "From: Prof. Li To: Jamie Subject: Office Hours Hi Jamie, Thanks for your message. I’m afraid I can’t meet during my usual office hours this week due to a conference. If you can be flexible, I could see you briefly after class on Thursday, time permitting. Otherwise, let’s arrange a time for next week. Let me know what works for you. Best, Prof. Li",
+    "change": "space permitting -> time permitting",
+    "why": "The constraint is the professor's conference-shortened availability after class, not any physical room."
+  },
+  {
+    "n": 3,
+    "itemIds": [
+      "0a9c919e-b239-4a36-bca5-9e980660d736"
+    ],
+    "before": "From: Housing Office To: All Residents Subject: Laundry Room Access Dear Residents, We are updating the laundry room schedule to allow more access during peak times, space permitting. If you can, please avoid doing laundry between 6-8pm to help reduce crowding. Access may be temporarily restricted if the room reaches capacity. Thank you for your cooperation.",
+    "after": "From: Housing Office To: All Residents Subject: Laundry Room Access Dear Residents, We are updating the laundry room schedule to allow more access during peak times. If you can, please avoid doing laundry between 6-8pm to help reduce crowding. Access may be temporarily restricted if the room reaches capacity. Thank you for your cooperation.",
+    "change": "space permitting -> deleted",
+    "why": "The hedge attached to a schedule update rather than to access itself; the capacity limit it was gesturing at is stated explicitly in the next-but-one sentence, so nothing is lost."
+  },
+  {
+    "n": 4,
+    "itemIds": [
+      "0bded2c2-dc55-4cd8-a214-65095210ff5a"
+    ],
+    "before": "Subject: Roommate Needed (Spring Semester) Hi all, I’m looking for a roommate for my two-bedroom apartment starting in January. Rent is $650/month, utilities not included. The place is a 10-minute walk from campus. I’d prefer someone who doesn’t smoke and is tidy, but I’m flexible if you’re respectful. If you can move in before January 10th, that would be ideal, but later is possible space permitting. Please email me if interested. Thanks! – Jamie",
+    "after": "Subject: Roommate Needed (Spring Semester) Hi all, I’m looking for a roommate for my two-bedroom apartment starting in January. Rent is $650/month, utilities not included. The place is a 10-minute walk from campus. I’d prefer someone who doesn’t smoke and is tidy, but I’m flexible if you’re respectful. If you can move in before January 10th, that would be ideal, but later is possible, schedule permitting. Please email me if interested. Thanks! – Jamie",
+    "change": "space permitting -> schedule permitting",
+    "why": "The room is already reserved for the roommate; what is uncertain is whether a later move-in date fits Jamie's timetable."
+  },
+  {
+    "n": 5,
+    "itemIds": [
+      "0f49321e-3cbd-4cb0-8108-b89771c3ac47",
+      "66b3a889-b178-4bb4-b859-9cb7b589466b"
+    ],
+    "before": "Social Media Post Looking to join a club? The Outdoor Adventure Club is accepting new members, space permitting. If you’re interested, send us a message by Sunday. We’ll confirm your spot if there’s room. Please note, priority will be given to students who have not participated before. Hope to see some new faces this semester!",
+    "after": "Social Media Post Looking to join a club? The Outdoor Adventure Club is accepting new members, space permitting. If you’re interested, send us a message by Sunday. We’ll confirm your spot if there’s room. Please note, priority will be given to students who have not participated before. Hope to see some new faces this semester!",
+    "change": "space permitting -> unchanged (genuinely spatial)",
+    "why": "Membership capacity is the actual constraint and the passage confirms it with 'we'll confirm your spot if there's room'."
+  },
+  {
+    "n": 6,
+    "itemIds": [
+      "14da8ef7-03e6-4b27-ac7e-5b63680e7b3a"
+    ],
+    "before": "Job Posting: Library Assistant The campus library is seeking a part-time assistant for weekday afternoons. Applicants should be available at least three days a week, space permitting. If you have prior library experience, please mention it in your application. Only shortlisted candidates will be contacted. The position will remain open until filled, assuming sufficient interest.",
+    "after": "Job Posting: Library Assistant The campus library is seeking a part-time assistant for weekday afternoons. Applicants should be available at least three days a week. If you have prior library experience, please mention it in your application. Only shortlisted candidates will be contacted. The position will remain open until filled, assuming sufficient interest.",
+    "change": "space permitting -> deleted",
+    "why": "A minimum availability requirement is not conditional at all — hedging it contradicts 'should be available at least three days a week'."
+  },
+  {
+    "n": 7,
+    "itemIds": [
+      "1e644ca6-09bd-40fe-b883-8e8d501a86c4"
+    ],
+    "before": "Subject: Group Project Update Hi everyone, Just a quick note: if you haven’t yet sent your part of the report, please do so by Friday evening, space permitting. I’ll start compiling everything over the weekend, assuming everyone’s sections are in. If you’re running late, let me know and I’ll try to adjust, but I can’t guarantee your part will be included if it’s much after Friday. Thanks for your efforts! Best, Maya",
+    "after": "Subject: Group Project Update Hi everyone, Just a quick note: if you haven’t yet sent your part of the report, please do so by Friday evening. I’ll start compiling everything over the weekend, assuming everyone’s sections are in. If you’re running late, let me know and I’ll try to adjust, but I can’t guarantee your part will be included if it’s much after Friday. Thanks for your efforts! Best, Maya",
+    "change": "space permitting -> deleted",
+    "why": "Nothing about a deadline request is space-constrained, and Maya's flexible-but-not-guaranteeing stance is stated outright in the following sentence, so the inference question is unaffected."
+  },
+  {
+    "n": 8,
+    "itemIds": [
+      "23d32542-4a34-4078-a034-e7a690e9679b"
+    ],
+    "before": "Job Opportunity: Library Assistant The campus library is hiring part-time assistants for the evening shift. Applicants must be available at least three nights a week, space permitting. Duties include shelving books, helping patrons, and basic desk work. If you can, submit your application by Friday for priority consideration. Positions may fill quickly, so early applications are encouraged. Only shortlisted candidates will be contacted.",
+    "after": "Job Opportunity: Library Assistant The campus library is hiring part-time assistants for the evening shift. Applicants must be available at least three nights a week, schedule permitting. Duties include shelving books, helping patrons, and basic desk work. If you can, submit your application by Friday for priority consideration. Positions may fill quickly, so early applications are encouraged. Only shortlisted candidates will be contacted.",
+    "change": "space permitting -> schedule permitting",
+    "why": "The condition is whether an applicant's own timetable allows three evening shifts; a hedge is retained here because a question is keyed to the phrase."
+  },
+  {
+    "n": 9,
+    "itemIds": [
+      "2b8a405f-f1b2-4c9c-ae0b-c72c196d637d",
+      "ee40fd82-1423-4fe6-b466-6f1a29187a5e"
+    ],
+    "before": "Club Flyer: The Green Earth Club invites you to our Spring Clean-Up event this Saturday. If you can spare an hour, join us at the campus lake at 10am. Supplies will be provided, space permitting. Please RSVP so we can plan accordingly. Volunteers may receive a small thank-you gift, assuming supplies last.",
+    "after": "Club Flyer: The Green Earth Club invites you to our Spring Clean-Up event this Saturday. If you can spare an hour, join us at the campus lake at 10am. Supplies will be provided, subject to availability. Please RSVP so we can plan accordingly. Volunteers may receive a small thank-you gift, assuming supplies last.",
+    "change": "space permitting -> subject to availability",
+    "why": "Supplies at an outdoor lakeside clean-up are limited by stock, not by room; the hedge is kept at the same strength because a question asks why the provision is not guaranteed."
+  },
+  {
+    "n": 10,
+    "itemIds": [
+      "2c20dede-3747-4950-964d-ab92577fa1dc"
+    ],
+    "before": "Hey everyone! The Film Club is planning a movie marathon this Friday night in the Student Lounge. We’ll start at 7pm and go until midnight, space permitting. If the lounge fills up, we’ll have to turn people away, so come early if you can. Snacks will be provided, but feel free to bring your own. Hope to see you there!",
+    "after": "Hey everyone! The Film Club is planning a movie marathon this Friday night in the Student Lounge. We’ll start at 7pm and go until midnight, time permitting. If the lounge fills up, we’ll have to turn people away, so come early if you can. Snacks will be provided, but feel free to bring your own. Hope to see you there!",
+    "change": "space permitting -> time permitting",
+    "why": "The hedge modifies how late the marathon can run, which is a clock constraint; the lounge's spatial limit is handled separately by the next sentence."
+  },
+  {
+    "n": 11,
+    "itemIds": [
+      "32dda6bb-8f7c-40a3-8a83-bf048f984430",
+      "f833ae9a-94ee-4098-b490-5a0bf10a5236"
+    ],
+    "before": "Campus Recreation Center Notice Due to ongoing repairs, the basketball courts will be open only to students with a current gym membership, space permitting. If you do not have a membership, please check back next week. We apologize for any inconvenience and appreciate your understanding.",
+    "after": "Campus Recreation Center Notice Due to ongoing repairs, the basketball courts will be open only to students with a current gym membership, space permitting. If you do not have a membership, please check back next week. We apologize for any inconvenience and appreciate your understanding.",
+    "change": "space permitting -> unchanged (genuinely spatial)",
+    "why": "Repairs have physically reduced usable court space, so even members may not get on — the phrase is literally correct and a question is keyed to it."
+  },
+  {
+    "n": 12,
+    "itemIds": [
+      "4bc339e3-c81b-4d0a-9705-506ce2cbef4a",
+      "99a6e172-cffb-4b54-8ce6-7ccb400afbda"
+    ],
+    "before": "Hey everyone! The Film Club is planning a movie night next Friday, assuming enough people sign up. If you’re interested, please RSVP by Tuesday so we can book the screening room. We may have to postpone if we don’t reach the minimum number. Snacks provided (space permitting). Hope to see you there! – Film Club Officers",
+    "after": "Hey everyone! The Film Club is planning a movie night next Friday, assuming enough people sign up. If you’re interested, please RSVP by Tuesday so we can book the screening room. We may have to postpone if we don’t reach the minimum number. Snacks provided (subject to availability). Hope to see you there! – Film Club Officers",
+    "change": "space permitting -> subject to availability",
+    "why": "Snacks are limited by what the club can supply, not by room in the screening room; the hedge stays because a question asks why snacks are not promised outright."
+  },
+  {
+    "n": 13,
+    "itemIds": [
+      "5b59b12d-faee-4def-b7da-50294f3fbf44",
+      "caa70a59-d0a1-4ea8-8977-4fe6d72449d9"
+    ],
+    "before": "From: Registrar’s Office Subject: Course Registration Update Dear Students, Registration for Spring courses opens Monday. If you have a registration hold, please resolve it before attempting to enroll. Some courses may fill quickly, so early registration is recommended, space permitting. Waitlists will be available for full classes. If you have questions, contact our office. Thank you for your understanding. Registrar’s Office",
+    "after": "From: Registrar’s Office Subject: Course Registration Update Dear Students, Registration for Spring courses opens Monday. If you have a registration hold, please resolve it before attempting to enroll. Some courses may fill quickly, so early registration is recommended. Waitlists will be available for full classes. If you have questions, contact our office. Thank you for your understanding. Registrar’s Office",
+    "change": "space permitting -> deleted",
+    "why": "The hedge was attached to the recommendation itself, which is unconditional; the seat scarcity it hinted at is already stated by 'some courses may fill quickly' and the waitlist sentence."
+  }
+]
