@@ -17,6 +17,7 @@ import {
   readinessForRow, readinessTotals, READINESS_LABEL, READINESS_BLURB, type Readiness,
   type Health, type Coverage,
 } from '@/lib/study/bank-ledger'
+import { RegisterPanel } from './RegisterPanel'
 import { LiveBankState } from './LiveBankState'
 import { TASK_PIPELINES, type TaskPipeline } from '@/lib/study/task-pipelines'
 import { FAMILY_STAGES, type ItemFamily } from '@/lib/study/bank-qc'
@@ -375,6 +376,7 @@ export function BankQcDashboard() {
           in the bank). Putting history above state is what made this
           page unreadable. */}
       <LiveBankState />
+      <RegisterPanel />
 
       <div className="pt-2 border-t border-gray-100">
         <h2 className="text-[15px] font-semibold text-gray-900">Historical QC runs</h2>
