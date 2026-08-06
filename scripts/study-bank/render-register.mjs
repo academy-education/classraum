@@ -182,7 +182,7 @@ ${open.filter(w => w.owner === 'claude').map(w => `| ${w.id} | ${w.title} | ${w.
 
 | id | what | cost | who | why |
 |---|---|---|---|---|
-${open.filter(w => w.owner === 'you').map(w => `| ${w.id} | ${w.title} | ${w.size} | ${w.whoSpecifically ?? 'Either of you.'} | ${w.why}${w.note ? ` _${w.note}_` : ''} |`).join('\n')}
+${open.filter(w => w.owner === 'you').map(w => `| ${w.id} | ${w.title} | ${w.size} | ${w.account ? `**${w.account}**<br>` : ''}${w.whoSpecifically ?? 'Either of you.'} | ${w.why}${w.note ? ` _${w.note}_` : ''} |`).join('\n')}
 
 ## 4. Settled — do not redo
 

@@ -80,6 +80,13 @@ export function RegisterPanel() {
                 ) : null}
               </div>
               <p className="text-[12px] text-gray-600 mt-1 leading-relaxed">{w.why}</p>
+              {w.account && (
+                <p className="text-[12px] mt-1.5">
+                  <span className="rounded-md bg-gray-900 text-white px-2 py-0.5 font-mono text-[11px]">
+                    {w.account}
+                  </span>
+                </p>
+              )}
               {w.whoSpecifically && (
                 <p className="text-[12px] text-gray-700 mt-1.5 leading-relaxed rounded-lg bg-gray-50 px-2.5 py-1.5">
                   <span className="font-semibold">Who: </span>{w.whoSpecifically}

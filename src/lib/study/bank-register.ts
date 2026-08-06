@@ -63,6 +63,20 @@ export interface WorkItem {
    * items. It would read as agreement and mean nothing.
    */
   whoSpecifically?: string
+  /**
+   * The login the sitting must be done under.
+   *
+   * Separate from `whoSpecifically` because prose cannot be checked, and
+   * this exact mistake was made while writing that prose: B1 and B2 were
+   * both pointed at andy.manager@ for a few minutes, which would have
+   * merged two people into ONE reviewer_id — the precise failure B1
+   * exists to detect. A field makes it a test.
+   *
+   * Reviewer identity IS the account: study_item_reviews keys on the
+   * logged-in user, so an account shared by two humans stops being one
+   * reviewer and no agreement number from it can be trusted again.
+   */
+  account?: string
 }
 
 /**
@@ -80,9 +94,11 @@ export const WORK: WorkItem[] = [
     size: '~20 minutes',
     why: 'Every human number in the project rests on one person. A second reader on the SAME items decides whether the Choose a Response finding is a property of the items or a habit of that reader.',
     owner: 'you',
+    account: 'andy.manager@gmail.com',
     whoSpecifically: 'Your co-founder, on andy.manager@gmail.com — NOT on support@classraum.com. Checked 2026-08-06: all 72 existing reviews were sat on support@, so that account IS the first reviewer. A second sitting there would carry the same reviewer_id, reviewerAgreement would see one reviewer, and B1 would return nothing while looking like it had run. Both accounts are already super_admin, so nothing needs creating. In the app: Bank QC → Review → "Or sit someone else\'s run, item for item" → choose-a-response-2026-08-05. The route refuses a same-account mirror.',
     state: 'open',
-    note: 'Unblocks everything. If the two readers scatter, A3 is cancelled rather than started.',
+    note: 'Unblocks everything. If the two readers scatter, A3 is cancelled rather than started. The brief to hand over is scripts/study-bank/B1-REVIEWER-BRIEF.md — send it as-is, and DELETE its top block first: it deliberately withholds what the first sitting found, because a reviewer told "we think these are guessable" will guess harder, and that spends the instrument.',
+    doc: 'scripts/study-bank/B1-REVIEWER-BRIEF.md',
   },
   {
     id: 'A1',
@@ -121,7 +137,8 @@ export const WORK: WorkItem[] = [
     why: 'Roughly 486 items currently sit as "the model says guessable, nobody checked".',
     owner: 'you',
     state: 'open',
-    whoSpecifically: 'You, on andy.manager@gmail.com. Unlike B1 these cohorts have never been read by anyone, so there is no contamination risk. Use the normal "Start a sitting" draw, not a mirror. NOTE: one human must keep one account for good — reviewer identity IS the account, so if you and your co-founder ever share andy.manager@ its review history stops being one person and no future agreement number from it can be trusted.',
+    account: 'support@classraum.com',
+    whoSpecifically: 'You, on support@classraum.com — the account your 72 existing reviews are already under. NOT andy.manager@: that one is now your co-founder\'s for B1, and two people sharing one login would merge into a single reviewer_id, which is the precise failure B1 exists to detect. Unlike B1 these cohorts have never been read by anyone, so there is no contamination risk in the ITEMS; the constraint here is purely that one human keeps one account for good, because reviewer identity IS the account. Use the normal "Start a sitting" draw, not a mirror.',
     note: 'Daily Life and Announcement both came back clean under a human, so these plausibly are too.',
   },
   {

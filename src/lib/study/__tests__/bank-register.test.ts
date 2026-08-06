@@ -80,6 +80,32 @@ describe('bank register', () => {
     expect(stale).toEqual([])
   })
 
+  it('never assigns one login to two different work items', () => {
+    /*
+     * Reviewer identity IS the account — study_item_reviews keys on the
+     * logged-in user. Two people sharing a login merge into one
+     * reviewer_id, which is exactly the failure B1 exists to detect, and
+     * it would be invisible: the sitting would complete and report
+     * nothing wrong.
+     *
+     * This was a real slip, not a hypothetical: B1 and B2 were both
+     * pointed at andy.manager@ while the prose was being written.
+     */
+    const seen = new Map<string, string>()
+    for (const w of WORK) {
+      if (!w.account) continue
+      const prior = seen.get(w.account)
+      expect(prior === undefined || prior === w.id).toBe(true)
+      seen.set(w.account, w.id)
+    }
+  })
+
+  it('gives an account only to work a person does', () => {
+    for (const w of WORK) {
+      if (w.account) expect(w.owner).toBe('you')
+    }
+  })
+
   it('says who specifically only where the person is not interchangeable', () => {
     // whoSpecifically exists for B1, where the reader who did every
     // prior sitting must NOT be the one who does this one. It is
