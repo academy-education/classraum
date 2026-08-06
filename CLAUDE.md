@@ -268,6 +268,19 @@ with one writer the same two essays scored 5 and 4, not 3 and 3. The
 passage is now passed because a grader should see the task it scores —
 not because it changed a number. Do not credit it with one.
 
+### The bank register is the one list
+
+`scripts/study-bank/REGISTER.md` holds every outstanding item on the
+question bank: cohort-by-cohort state, open work split by who is
+blocked, and what is already settled so it does not get redone.
+
+**When a fix uncovers something new, append it to §5 of that file in the
+SAME commit as the fix.** A finding recorded only in a commit message is
+a finding nobody reads — this session generated a dozen of them faster
+than they could be absorbed, which is how "three small data defects"
+turned out to be one 36-item problem, one disagreement with the
+reviewer, and one non-issue that nobody had reconciled.
+
 ### Corollary: measure the population before believing the backlog
 
 A task read "SAT Math derivational hub CONFIRMED bank-wide (64.4%)" and
