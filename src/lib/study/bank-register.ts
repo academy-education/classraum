@@ -123,10 +123,11 @@ export const WORK: WorkItem[] = [
   {
     id: 'A11',
     title: '10 Email items are graded on a task they never state',
-    size: '10 of 92',
+    size: '10 of 92 — 8 repaired, 2 archived as duplicates',
     why: '82 carry the ETS situation plus three bullets; these 10 state no task, while the task_fulfillment criterion grades "Task coverage" of points that were never given.',
     owner: 'claude',
-    state: 'open',
+    state: 'done',
+    note: 'FIXED 2026-08-06 by scripts/study-bank/apply-a11-fix.mjs. Reading them changed the job three times over: two of the ten DO state their task, pasted inside the professor\'s email after the sign-off, where the student reads test instructions in a character\'s voice; four are two near-duplicate PAIRS, so one of each is archived rather than given a task list; five use a From:/To:/Subject: header that appears in none of the 82 sound items and that WritingPanels.tsx explicitly excludes from the modern format. The cohort now reads 90/90 on the ETS shape with no near-duplicate pair above 0.35.',
     doc: 'scripts/study-bank/PRODUCTION-GATE.md',
   },
   {
@@ -256,6 +257,21 @@ export interface Found {
 }
 
 export const FOUND_WHILE_FIXING: Found[] = [
+  {
+    date: '2026-08-06',
+    what: 'The production gate reported 0 near-duplicate Email scenarios because it compared 4-GRAM overlap. Two pairs in the cohort are the same scenario with the professor renamed and clauses reordered — 4.2% 4-gram overlap, 0.43 content-word Jaccard. An n-gram measure cannot see a paraphrase, and both pairs sat inside the 10 items A11 was about. check-email-cohort.mjs now measures content-word overlap instead.',
+    landedAs: 'fixed',
+  },
+  {
+    date: '2026-08-06',
+    what: 'The 10 defective Email items are one authoring batch, not a spread: they hold BOTH near-duplicate pairs and ALL five From:/To:/Subject: stimuli, while the other 82 have neither. Worth knowing before the next Email commission — the defect travelled with the brief, not with the cohort.',
+    landedAs: 'fixed',
+  },
+  {
+    date: '2026-08-06',
+    what: 'apply-a11-fix.mjs asserts renderer parity using a COPY of WritingPanels.tsx\'s intro regex, since the component is TSX in a Next route. A copy that drifts turns that assertion into decoration. email-renderer-parity.test.ts now pins the two literals together and fails if either moves.',
+    landedAs: 'fixed',
+  },
   {
     date: '2026-08-06',
     what: 'The A10 repair script asserts its trim lands on the intended word — but it CANNOT catch a word that is wrong yet reachable. A break test that changed the target from "framework" to "framwork" was accepted, because trimming two characters lands there exactly. Correctness of the 12 repairs rests on the target words having been read off the passages by hand, not on the assertion.',

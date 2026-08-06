@@ -8,8 +8,8 @@
 renders on /admin/bank-qc, from the same source, so the two cannot
 disagree.
 
-Generated 2026-08-06. Live items: 3,339.
-Open work: 7 — 4 mine, 3 need you.
+Generated 2026-08-06. Live items: 3,337.
+Open work: 6 — 3 mine, 3 need you.
 
 ---
 
@@ -37,8 +37,8 @@ and on both cohorts checked so far the model was the one that was wrong.
 | TOEFL | Build a Sentence | 118 | — | — | never measured — the attack does not apply |
 | TOEFL | Listen and Repeat | 97 | — | — | never measured — the attack does not apply |
 | TOEFL | Complete the Words | 93 | — | — | never measured — the attack does not apply |
-| TOEFL | Email | 92 | — | — | never measured — the attack does not apply |
 | TOEFL | Academic Discussion | 92 | — | — | never measured — the attack does not apply |
+| TOEFL | Email | 90 | — | — | never measured — the attack does not apply |
 | TOEFL | Choose a Response | 72 | 92.3% | 55% (n=20) | **CONFIRMED BROKEN** — both instruments agree |
 | SAT | Expression of Ideas | 66 | 100% | — | **unconfirmed** — model only |
 | TOEFL | Interview | 48 | — | — | never measured — the attack does not apply |
@@ -47,7 +47,6 @@ and on both cohorts checked so far the model was the one that was wrong.
 
 | id | what | size | why |
 |---|---|---|---|
-| A11 | 10 Email items are graded on a task they never state | 10 of 92 | 82 carry the ETS situation plus three bullets; these 10 state no task, while the task_fulfillment criterion grades "Task coverage" of points that were never given. |
 | A12 | Build a Sentence repeats its opening chips across items | 28 of 119, plus 1 exact duplicate pair | Four items begin "The book | that was recommended | by my professor". The cross-item tell this project keeps finding, in countable form for once. |
 | A3 | Rebuild Choose a Response | 72 items | The only cohort where the model attack and a human agree it is broken: 55.0% blind against a 25.0% control, p<0.001, plus 4 of 20 with a second defensible answer. _Three rounds have failed. Start from the four crv2 items that passed both gates (1, 4, 10, 14), and measure with the held-out panel, which has never been spent._ |
 | A5 | Deepen the Daily Life reading pool | pool is 35 texts | Too few source texts means repetition across forms. |
@@ -74,6 +73,9 @@ and on both cohorts checked so far the model was the one that was wrong.
 Appended in the same commit as the work that surfaced it. A finding
 recorded only in a commit message is a finding nobody reads.
 
+- **2026-08-06** — The production gate reported 0 near-duplicate Email scenarios because it compared 4-GRAM overlap. Two pairs in the cohort are the same scenario with the professor renamed and clauses reordered — 4.2% 4-gram overlap, 0.43 content-word Jaccard. An n-gram measure cannot see a paraphrase, and both pairs sat inside the 10 items A11 was about. check-email-cohort.mjs now measures content-word overlap instead. _(fixed on the spot)_
+- **2026-08-06** — The 10 defective Email items are one authoring batch, not a spread: they hold BOTH near-duplicate pairs and ALL five From:/To:/Subject: stimuli, while the other 82 have neither. Worth knowing before the next Email commission — the defect travelled with the brief, not with the cohort. _(fixed on the spot)_
+- **2026-08-06** — apply-a11-fix.mjs asserts renderer parity using a COPY of WritingPanels.tsx's intro regex, since the component is TSX in a Next route. A copy that drifts turns that assertion into decoration. email-renderer-parity.test.ts now pins the two literals together and fails if either moves. _(fixed on the spot)_
 - **2026-08-06** — The A10 repair script asserts its trim lands on the intended word — but it CANNOT catch a word that is wrong yet reachable. A break test that changed the target from "framework" to "framwork" was accepted, because trimming two characters lands there exactly. Correctness of the 12 repairs rests on the target words having been read off the passages by hand, not on the assertion. _(fixed on the spot)_
 - **2026-08-06** — Build-a-Sentence keys capitalise the first word where the chip does not ("Students" vs "students"). Harmless — gradeAnswer folds case — but it means a permutation check over key and chips must fold case too, or it reports a defect that is not there. It did, on the first run. _(fixed on the spot)_
 - **2026-08-06** — string_agg(expr, '|' order by 1) sorts by a CONSTANT, not by position — aggregate ORDER BY does not take positional references. The "order-insensitive" dedup key was order-sensitive and its unique index passed on 3,341 distinct keys over 3,341 rows, missing both known duplicates. _(fixed on the spot)_
