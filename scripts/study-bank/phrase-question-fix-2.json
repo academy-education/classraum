@@ -1,0 +1,114 @@
+[
+  {
+    "n": 9,
+    "id": "7dc5f1a4-2d6b-4550-a6c8-485182f82e81",
+    "action": "repair",
+    "passage": "Subject: Study Room Reservations Dear Students, Due to high demand, study rooms can be reserved for up to two hours per day, space permitting. If you do not arrive within 15 minutes of your reservation, the room may be given to another student. Please cancel if you no longer need your slot. Thank you for your cooperation. Library Services",
+    "prompt": "[Daily Life \u2014 Campus Notice] Why does the notice include 'space permitting' in the reservation policy?",
+    "choices": [
+      "To make clear that a room cannot always be promised.",
+      "To explain that longer bookings are allowed when demand is low.",
+      "To indicate that some study rooms are set aside for particular groups.",
+      "To warn that a room can be given away if a student arrives late."
+    ],
+    "key": "To make clear that a room cannot always be promised.",
+    "explanation": "Here the constraint really is physical: rooms are scarce under high demand, so 'space permitting' hedges the booking itself \u2014 the notice is making clear that a room cannot always be promised. Losing a room after arriving late is a separate rule stated in its own sentence, and nothing in the notice allows longer bookings when demand is low or sets rooms aside for particular groups.",
+    "why": "The passage is one of the few in the cohort where the hedge is genuinely spatial \u2014 study rooms under high demand \u2014 so the phrase and the key answer stand; only the distractors were rebuilt, since the old 'charged for unused reservations' option had no foothold in the text."
+  },
+  {
+    "n": 10,
+    "id": "8a6ff55f-c6d2-45fc-8f40-409f6cb6bdb9",
+    "action": "repair",
+    "passage": "From: Professor Lin Subject: Meeting Request Hi Alex, Thank you for your email. I\u2019m afraid I can\u2019t meet this week due to conference travel. If you can, please send your questions by email and I\u2019ll reply as soon as possible. Otherwise, I\u2019m available for in-person meetings next Wednesday afternoon, time permitting. Let me know what works best for you. Best, Professor Lin",
+    "prompt": "[Daily Life \u2014 Email] Why does Professor Lin add 'time permitting' to her offer for next Wednesday?",
+    "choices": [
+      "To indicate her schedule may already be full that afternoon.",
+      "To warn that she may have to travel again that week.",
+      "To show that meetings are only for certain students.",
+      "To suggest that any meeting will have to be short."
+    ],
+    "key": "To indicate her schedule may already be full that afternoon.",
+    "explanation": "What limits Professor Lin is her calendar, not a room, so 'time permitting' signals that she may already have other appointments that afternoon. She names conference travel as this week's problem only, she says nothing about which students may meet her, and she does not put a limit on the length of a meeting \u2014 only on whether one can happen at all.",
+    "why": "A meeting offer is constrained by the professor's schedule, so 'time permitting' is the right hedge and keeps the original answer exactly; the old option about reserving a meeting room only made sense under the spatial reading and was replaced."
+  },
+  {
+    "n": 11,
+    "id": "a17a4876-69ab-49bf-879f-9c69b46b06b1",
+    "action": "repair",
+    "passage": "Course Registration Page: Registration for Spring courses opens Monday at 9am. Priority is given to seniors and juniors, space permitting. If you are a sophomore or freshman, you may register starting Wednesday. Waitlists are available for full classes. Please check your student email for updates. Registration closes Friday at 5pm.",
+    "prompt": "[Daily Life \u2014 course-registration page] What is implied by 'space permitting' in this context?",
+    "choices": [
+      "Not all seniors and juniors are guaranteed a spot",
+      "Seniors and juniors may take more courses than other students",
+      "Registration is open to everyone at the same time",
+      "Waitlists are offered only to sophomores and freshmen"
+    ],
+    "key": "Not all seniors and juniors are guaranteed a spot",
+    "explanation": "Seats in a course are a real capacity limit, and the mention of waitlists for full classes confirms that classes do fill; 'space permitting' therefore means the earlier registration date helps seniors and juniors but does not guarantee any of them a spot. The page sets no course limit by year, it gives sophomores and freshmen a later date rather than the same one, and it offers waitlists for any full class.",
+    "why": "Course seats are a genuine capacity constraint, so the hedge and the key survive; two distractors that were unpickable ('courses are free', 'only freshmen can join waitlists') were replaced with misreadings of the priority rule and the waitlist sentence."
+  },
+  {
+    "n": 12,
+    "id": "d4da3f30-f99d-4205-aebc-6f484bf999d0",
+    "action": "repoint",
+    "passage": "Course Registration Page: Registration for Biology 102 opens Monday at 9am. If you can, register early, as seats are limited and enrollment is on a first-come, first-served basis. A waitlist may be available. Students who do not meet prerequisites will be dropped.",
+    "prompt": "[Daily Life \u2014 course-registration page] What does the page say will happen to a student who enrolls in Biology 102 without the prerequisites?",
+    "choices": [
+      "The student will be removed from the course.",
+      "The student will be moved onto the waitlist instead.",
+      "The student may keep the seat by registering on Monday morning.",
+      "The student must get the instructor's approval before Monday."
+    ],
+    "key": "The student will be removed from the course.",
+    "explanation": "The page ends by stating that students who do not meet prerequisites will be dropped, so such a student is removed from the course. Being put on the waitlist is not offered as an alternative, registering the moment enrollment opens protects a seat only against other students rather than against the prerequisite rule, and no approval process is described anywhere on the page.",
+    "why": "The old key ('there may be no waitlist if the class is too full') was backwards \u2014 a waitlist exists because a class fills \u2014 and the hedge could not be repaired without writing 'a waitlist will be available, subject to availability', so the hedge became a plain 'may be available' and the question was repointed to the prerequisite rule the page states outright."
+  },
+  {
+    "n": 13,
+    "id": "ee40fd82-1423-4fe6-b466-6f1a29187a5e",
+    "action": "repair",
+    "passage": "Club Flyer: The Green Earth Club invites you to our Spring Clean-Up event this Saturday. If you can spare an hour, join us at the campus lake at 10am. Supplies will be provided, subject to availability. Please RSVP so we can plan accordingly. Volunteers may receive a small thank-you gift, assuming supplies last.",
+    "prompt": "[Daily Life \u2014 club flyer] Why does the flyer say supplies will be provided 'subject to availability'?",
+    "choices": [
+      "There may not be enough supplies for everyone.",
+      "Supplies will be given out only to volunteers who RSVP.",
+      "Volunteers are expected to bring their own gloves and bags.",
+      "Supplies can be picked up at the campus lake from 10am."
+    ],
+    "key": "There may not be enough supplies for everyone.",
+    "explanation": "What is limited at a lakeside clean-up is stock, not room, and the flyer repeats the point at the end with 'assuming supplies last', so the hedge warns that there may not be enough supplies for everyone. The RSVP is asked for so the club can plan, not as a condition for receiving supplies; the flyer never asks volunteers to bring their own equipment; and it gives the lake at 10am as the meeting place, not as a collection point.",
+    "why": "Supplies are limited by stock, so 'subject to availability' is the correct hedge and the original answer is unchanged; the distractors were rebuilt so that all four are about the supplies \u2014 previously the key was the only option that mentioned them, which made it pickable from the stem alone."
+  },
+  {
+    "n": 14,
+    "id": "f1b3a307-d2e0-4d15-a3e0-2e202aa1f50f",
+    "action": "repoint",
+    "passage": "Course Registration Reminder: Registration for spring courses will close at midnight on Friday. If you can\u2019t register by then, you may be able to join a waitlist, space permitting. Please note that some courses may fill before the deadline. Register early to secure your spot.",
+    "prompt": "[Daily Life \u2014 course-registration page] What does the reminder suggest about joining a waitlist after Friday?",
+    "choices": [
+      "A place on a waitlist is not guaranteed to become a seat.",
+      "A waitlist place will become a seat as soon as another student drops the course.",
+      "A waitlist is opened for any course that fills before the deadline.",
+      "Students must have tried to register before Friday to be put on a waitlist."
+    ],
+    "key": "A place on a waitlist is not guaranteed to become a seat.",
+    "explanation": "The reminder says only that a student who misses the deadline 'may be able' to join a waitlist, and 'space permitting' now attaches to that clause, so a place on a waitlist is not guaranteed. Nothing promises that a waitlist place converts into a seat when someone drops, that every course which fills gets a waitlist, or that an earlier attempt to register is a condition for joining one.",
+    "why": "A midnight deadline cannot be constrained by space, but waitlist places can, so the phrase moved to the clause it actually describes \u2014 which meant the old key about registration deadlines could no longer be the answer, so the question was repointed to the waitlist."
+  },
+  {
+    "n": 15,
+    "id": "f7a0ba4c-0801-4ecf-a812-7d3fce416f29",
+    "action": "repair",
+    "passage": "Email from Professor Lin: Dear Jamie, Thank you for your interest in my research group. At this time, we do not have any open positions, but if you can wait until next semester, there may be opportunities, space permitting. Please feel free to check in again in December. Best regards, Professor Lin",
+    "prompt": "[Daily Life \u2014 email] What does Professor Lin's use of 'space permitting' suggest?",
+    "choices": [
+      "There is no guarantee of a position next semester.",
+      "Jamie has been put on a list and will be contacted in December.",
+      "The group expects to take on new members in December.",
+      "Jamie should approach a different research group instead."
+    ],
+    "key": "There is no guarantee of a position next semester.",
+    "explanation": "The group's limit is the number of places it can hold, which the opening sentence about having no open positions establishes, so 'space permitting' leaves next semester's openings conditional and there is no guarantee of a position. Professor Lin asks Jamie to check in again rather than promising to make contact, December is given as the time to ask rather than the time new members are taken on, and she does not send Jamie elsewhere.",
+    "why": "'Space permitting' is defensible here because a research group really does have a limited number of places, so the phrase and the answer stand; the two dead options ('already accepted', 'moving to a new location') were replaced with misreadings of the December sentence."
+  }
+]

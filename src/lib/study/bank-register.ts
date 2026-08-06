@@ -74,11 +74,11 @@ export const WORK: WorkItem[] = [
   {
     id: 'A6',
     title: 'Items whose QUESTION is about the misused phrase',
-    size: '15 items / 10 passages',
+    size: '15 items — 10 repaired, 5 repointed',
     why: 'Stems like "What does \'space permitting\' mean in the context of this job ad?" — where the ad says "available at least three nights a week, space permitting", which is not English. The item asks a student to interpret a phrase that is being used wrongly.',
     owner: 'claude',
-    state: 'open',
-    note: 'NOT a phrase swap. Changing the passage orphans the stem; changing both is an item rewrite. These should probably be re-authored or retired rather than patched.',
+    state: 'done',
+    note: 'Repaired where a correct hedge fit and the stem could requote it; repointed to a different question where none did. Two real defects found in passing: one key was backwards (a waitlist exists BECAUSE a class fills), and one key was the only supplies-related option, so it was pickable from the stem alone.',
     doc: 'scripts/study-bank/DAILY-LIFE-DEFECTS.md',
   },
   {
@@ -117,6 +117,15 @@ export const WORK: WorkItem[] = [
     state: 'open',
     note: 'Three rounds have failed. Start from the four crv2 items that passed both gates (1, 4, 10, 14), and measure with the held-out panel, which has never been spent.',
     doc: 'scripts/study-bank/CRV3-RESULT.md',
+  },
+  {
+    id: 'A8',
+    title: 'Attack measurements are not bound to the content they measured',
+    size: '5 items now stale, more whenever an item is edited',
+    why: 'Migration 076 bound REVIEWS to item content. study_item_attacks got no such binding, so the 5 repointed items still carry a blind score describing the question they no longer ask — and the dashboard reads the latest attack per item.',
+    owner: 'claude',
+    state: 'open',
+    note: 'Same shape as 076 and the same fix: hash the content at attack time, expose a fresh view, read scores from it. Until then repointed items carry `repointed_at` in verify_meta as a manual marker.',
   },
   {
     id: 'A7',
@@ -205,6 +214,21 @@ export interface Found {
 }
 
 export const FOUND_WHILE_FIXING: Found[] = [
+  {
+    date: '2026-08-06',
+    what: 'A Biology 102 item was keyed backwards — "there may be no waitlist if the class is too full", when a waitlist exists BECAUSE a class fills. Found while repairing the phrase, not by any gate.',
+    landedAs: 'fixed',
+  },
+  {
+    date: '2026-08-06',
+    what: 'A clean-up flyer item had the key as the only supplies-related option, so it was pickable from the stem without the passage. In a cohort that passed its human sitting.',
+    landedAs: 'fixed',
+  },
+  {
+    date: '2026-08-06',
+    what: 'Repointing an item leaves its old attack score attached to a question it no longer asks. Reviews are content-bound since 076; attacks are not.',
+    landedAs: 'A8',
+  },
   {
     date: '2026-08-06',
     what: '15 of the 36 "space permitting" items have the phrase in their PROMPT or EXPLANATION — the question is about the phrase. Changing the passage would orphan the stem, so those are an item rewrite rather than a text fix.',

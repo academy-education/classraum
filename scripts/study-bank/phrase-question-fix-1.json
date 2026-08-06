@@ -1,0 +1,130 @@
+[
+  {
+    "n": 1,
+    "id": "0a941e76-556b-48db-a5f5-dde6087e28ea",
+    "action": "repair",
+    "passage": "From: Prof. Li To: Jamie Subject: Office Hours Hi Jamie, Thanks for your message. I’m afraid I can’t meet during my usual office hours this week due to a conference. If you can be flexible, I could see you briefly after class on Thursday, time permitting. Otherwise, let’s arrange a time for next week. Let me know what works for you. Best, Prof. Li",
+    "prompt": "[Daily Life — email from professor] What is Prof. Li implying by saying 'time permitting'?",
+    "choices": [
+      "She may not have enough time after class on Thursday to meet Jamie",
+      "She is certain that she will be able to meet Jamie after class on Thursday",
+      "The Thursday meeting will take place in her office at the usual hour",
+      "Jamie should skip Thursday and propose a time for the following week"
+    ],
+    "key": "She may not have enough time after class on Thursday to meet Jamie",
+    "explanation": "Prof. Li offers to see Jamie 'briefly after class on Thursday, time permitting'. The hedge makes the offer conditional on her having time to spare, so 'She may not have enough time after class on Thursday to meet Jamie' is correct. She says she is at a conference and can only meet 'briefly', which rules out any certainty that the meeting will happen and rules out her usual office. Arranging a time for the following week is what she offers 'otherwise' — it is a separate option, not the meaning of the hedge.",
+    "why": "The constraint here is her schedule, not room, so 'time permitting' is the right hedge; the same answer (the meeting is not guaranteed) survives, with the stray 'or room' dropped and the two now-impossible distractors replaced by passage-plausible ones."
+  },
+  {
+    "n": 2,
+    "id": "0bded2c2-dc55-4cd8-a214-65095210ff5a",
+    "action": "repoint",
+    "passage": "Subject: Roommate Needed (Spring Semester) Hi all, I’m looking for a roommate for my two-bedroom apartment starting in January. Rent is $650/month, utilities not included. The place is a 10-minute walk from campus. I’d prefer someone who doesn’t smoke and is tidy, but I’m flexible if you’re respectful. If you can move in before January 10th, that would be ideal, but later is possible if the room is still open. Please email me if interested. Thanks! – Jamie",
+    "prompt": "[Daily Life — email] What does the post suggest about the kind of roommate Jamie is looking for?",
+    "choices": [
+      "Jamie prefers a tidy non-smoker but will consider others who are respectful",
+      "Jamie will not consider anyone who smokes or who is untidy",
+      "Jamie will reduce the rent for a roommate who keeps the apartment clean",
+      "Jamie treats an early move-in date as more important than a roommate's habits"
+    ],
+    "key": "Jamie prefers a tidy non-smoker but will consider others who are respectful",
+    "explanation": "Jamie writes 'I’d prefer someone who doesn’t smoke and is tidy, but I’m flexible if you’re respectful', which states a preference and then softens it — so 'Jamie prefers a tidy non-smoker but will consider others who are respectful' matches. That same 'but I’m flexible' clause is what rules out treating smoking and untidiness as disqualifying. The rent is given as a fixed $650/month with no mention of a discount, and while an early move-in 'would be ideal', it is offered as a preference alongside the habits, not above them.",
+    "why": "No hedge fits an apartment room that is simply taken or not, so the passage now says 'if the room is still open' and the question moves to an inference the passage genuinely supports — Jamie's stated-then-softened roommate preferences."
+  },
+  {
+    "n": 3,
+    "id": "23d32542-4a34-4078-a034-e7a690e9679b",
+    "action": "repoint",
+    "passage": "Job Opportunity: Library Assistant The campus library is hiring part-time assistants for the evening shift. Applicants must be available at least three nights a week. Duties include shelving books, helping patrons, and basic desk work. If you can, submit your application by Friday for priority consideration. Positions may fill quickly, so early applications are encouraged. Only shortlisted candidates will be contacted.",
+    "prompt": "[Daily Life — job ad] What does the ad suggest about an application submitted after Friday?",
+    "choices": [
+      "It may still be considered, but it will not receive priority",
+      "It will not be accepted, because Friday is the closing date",
+      "It will be held until the next hiring round in the following term",
+      "It will be considered first, since most applicants apply early"
+    ],
+    "key": "It may still be considered, but it will not receive priority",
+    "explanation": "The ad asks applicants to submit 'by Friday for priority consideration' — Friday is tied to priority, not to acceptance, and the ad adds that 'positions may fill quickly', which only matters if late applications are still read. So 'It may still be considered, but it will not receive priority' fits. Nothing in the ad closes applications on Friday, mentions a later hiring round, or reverses the advantage the ad gives to applying early.",
+    "why": "'Space permitting' modified an availability requirement, which is not English and cannot be hedged into sense, so the phrase is deleted; the deadline sentence supports a real inference question about priority versus closing."
+  },
+  {
+    "n": 4,
+    "id": "32dda6bb-8f7c-40a3-8a83-bf048f984430",
+    "action": "repair",
+    "passage": "Campus Recreation Center Notice Due to ongoing repairs, the basketball courts will be open only to students with a current gym membership, space permitting. If you do not have a membership, please check back next week. We apologize for any inconvenience and appreciate your understanding.",
+    "prompt": "[Daily Life — campus notice] What does 'space permitting' imply about access to the basketball courts?",
+    "choices": [
+      "Some students with memberships may not be able to play if the courts are full",
+      "Every student with a current membership is guaranteed a place on the courts",
+      "Students without a membership may play once the current repairs are finished",
+      "Students may use the courts only during the hours reserved for members"
+    ],
+    "key": "Some students with memberships may not be able to play if the courts are full",
+    "explanation": "The notice limits the courts to members 'space permitting', so membership is necessary but not sufficient — 'Some students with memberships may not be able to play if the courts are full' is correct. That hedge is exactly what blocks any guarantee for members. The notice tells non-members to 'check back next week' without promising the repairs will be done, and it says nothing about reserved hours.",
+    "why": "This is the one item in the set where the sense really is spatial — a court has capacity — so the passage stands; I only replaced the two distractors that were contradicted outright by the notice with plausible misreadings of it."
+  },
+  {
+    "n": 5,
+    "id": "4bc339e3-c81b-4d0a-9705-506ce2cbef4a",
+    "action": "repair",
+    "passage": "Hey everyone! The Film Club is planning a movie night next Friday, assuming enough people sign up. If you’re interested, please RSVP by Tuesday so we can book the screening room. We may have to postpone if we don’t reach the minimum number. Snacks provided (budget permitting). Hope to see you there! – Film Club Officers",
+    "prompt": "[Daily Life — club flyer] Why does the flyer say 'snacks provided (budget permitting)'?",
+    "choices": [
+      "To warn that snacks may not be provided if the club cannot afford them",
+      "To suggest that the free snacks are the main reason to attend the movie night",
+      "To explain that the cost of the snacks will be split among the people who come",
+      "To encourage members to bring their own snacks to share with others"
+    ],
+    "key": "To warn that snacks may not be provided if the club cannot afford them",
+    "explanation": "The flyer promises snacks and then immediately qualifies the promise, so 'To warn that snacks may not be provided if the club cannot afford them' is correct. Snacks appear as a closing aside after the RSVP deadline and the minimum-numbers warning, not as the draw of the event. The flyer never asks attendees to pay for or to bring anything — the only thing it asks of them is to RSVP by Tuesday.",
+    "why": "Snacks are limited by money, not by room, so 'budget permitting' is the honest hedge; the answer stays the same (snacks are not guaranteed) and only the spatially-worded distractor had to be replaced."
+  },
+  {
+    "n": 6,
+    "id": "5b59b12d-faee-4def-b7da-50294f3fbf44",
+    "action": "repoint",
+    "passage": "From: Registrar’s Office Subject: Course Registration Update Dear Students, Registration for Spring courses opens Monday. If you have a registration hold, please resolve it before attempting to enroll. Some courses may fill quickly, so early registration is recommended. Waitlists will be available for full classes. If you have questions, contact our office. Thank you for your understanding. Registrar’s Office",
+    "prompt": "[Daily Life — Course Registration Page] What does the email imply about a student who still has a registration hold on Monday?",
+    "choices": [
+      "The student will be unable to enroll until the hold has been cleared",
+      "The student will be added automatically to a waitlist for each full course",
+      "The student may enroll on Monday but must contact the office afterwards",
+      "The student will be given a later registration date once the hold is cleared"
+    ],
+    "key": "The student will be unable to enroll until the hold has been cleared",
+    "explanation": "The office asks students to resolve a hold 'before attempting to enroll', which only makes sense if the attempt would otherwise fail — so 'The student will be unable to enroll until the hold has been cleared' is what the email implies. Waitlists are offered for 'full classes', a different problem from a hold, and nothing is described as automatic. The email gives one opening date for everyone and never mentions a rescheduled or later registration time.",
+    "why": "The hedge was attached to a recommendation rather than to any capacity, and replacing it with a plain 'seats are limited' would have made the old question answer itself, so the phrase is deleted and the question moves to the hold, which the email genuinely supports."
+  },
+  {
+    "n": 7,
+    "id": "66b3a889-b178-4bb4-b859-9cb7b589466b",
+    "action": "repair",
+    "passage": "Social Media Post Looking to join a club? The Outdoor Adventure Club is accepting new members, space permitting. If you’re interested, send us a message by Sunday. We’ll confirm your spot if there’s room. Please note, priority will be given to students who have not participated before. Hope to see some new faces this semester!",
+    "prompt": "[Daily Life — Social Media Post] Why does the club say 'space permitting'?",
+    "choices": [
+      "Because there may not be enough room for everyone who wants to join",
+      "Because only students who have never taken part before may join",
+      "Because places will be given out in the order the messages arrive",
+      "Because the club is moving to a smaller room across campus this term"
+    ],
+    "key": "Because there may not be enough room for everyone who wants to join",
+    "explanation": "The post follows the hedge with 'We’ll confirm your spot if there’s room', which spells out that places are limited — so 'Because there may not be enough room for everyone who wants to join' is correct. Students who have not participated before get priority, which is a rule for choosing among applicants rather than a bar on the rest. The post sets a Sunday deadline but never says places go in the order messages arrive, and it never mentions changing rooms.",
+    "why": "Club membership really is a capacity limit and the next sentence confirms it, so the phrase stands; I replaced the distractor that merely restated the club's activity with a first-come-first-served misreading a student could plausibly choose."
+  },
+  {
+    "n": 8,
+    "id": "7815d4c0-aa00-474f-a8ed-1f0e65f2ed30",
+    "action": "repair",
+    "passage": "From: Professor Lin To: All Students in History 202 Subject: Office Hours Update Dear students, Due to a scheduling conflict, my office hours this week will be by appointment only. If you can’t make it during the usual time, please email me to arrange a different meeting slot. I apologize for any inconvenience and appreciate your flexibility. Regular office hours will resume next week, schedule permitting.",
+    "prompt": "[Daily Life — Email] What does Professor Lin mean by 'schedule permitting'?",
+    "choices": [
+      "Regular office hours will resume next week only if her schedule allows it",
+      "Regular office hours are certain to return to their usual time next week",
+      "Students will have to book an appointment in advance in order to attend",
+      "Office hours will be extended next week to make up for the lost time"
+    ],
+    "key": "Regular office hours will resume next week only if her schedule allows it",
+    "explanation": "Professor Lin has already lost this week's office hours to 'a scheduling conflict', and she hedges the return in the same terms, so 'Regular office hours will resume next week only if her schedule allows it' is correct — and that hedge is exactly what makes the return uncertain rather than certain. Appointments are what she asks for this week, while office hours are 'by appointment only'; she does not extend that arrangement to next week, and she offers nothing to make up the lost time.",
+    "why": "What blocks the professor is her calendar, not room, so 'schedule permitting' is the right hedge and the answer stays the same conditional; the distractor about moving rooms no longer had anything to attach to and became the 'ignore the hedge' option."
+  }
+]
