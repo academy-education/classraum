@@ -239,6 +239,13 @@ export async function POST(req: NextRequest) {
             // Module 1 only for the two adaptive sections; Writing and
             // Speaking keep the whole-section draw.
             ...(adaptive ? { module: 1 as const } : {}),
+            /*
+             * `count` was accepted from the body but only ever reached
+             * the SAT branch, so a TOEFL caller asking for a short run
+             * got a full section and no error. The path's Speaking and
+             * Writing warmups depend on this.
+             */
+            ...(body.count ? { maxItems: Number(body.count) } : {}),
           },
           sess.id,
         )

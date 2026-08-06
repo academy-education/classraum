@@ -686,6 +686,7 @@ function PathList({
   const [launchingId, setLaunchingId] = useState<string | null>(null)
   // Completed node the student tapped — shows a results callout
   // (score + view submission + restart) instead of relaunching.
+  const [openLockedId, setOpenLockedId] = useState<string | null>(null)
   const [openCompletedId, setOpenCompletedId] = useState<string | null>(null)
   const activeIdx = nodes.findIndex(n => n.state.status === 'active')
   const activeRef = useRef<HTMLDivElement | null>(null)
@@ -747,26 +748,30 @@ function PathList({
         router.push(`/mobile/study/session/${data.id}`)
         return
       }
-      if (testSlug === 'test-sat') {
-        // Timed section test assembled from the bank — instant + free.
-        const headers = await authHeaders()
-        const res = await fetch('/api/study/test/assemble', {
-          method: 'POST',
-          headers,
-          body: JSON.stringify({
-            section: node.subtopicSlug === 'sat-math' ? 'math' : 'reading_writing',
-            count: node.questionCount ?? 22,
-            pathNode: node.id,
-          }),
-        })
-        if (!res.ok) throw new Error('assemble failed')
-        const json = await res.json() as { sessionId: string }
-        router.push(`/mobile/study/session/${json.sessionId}`)
-        return
-      }
-      // Non-SAT test nodes (TOEFL sections) still go through the topic
-      // page — their tests are AI-generated, not bank-assembled.
-      router.push(`/mobile/study/topic/${node.subtopicSlug}?from=path&mode=${node.launchMode}`)
+      /*
+       * Both tests assemble from the bank now. The old code sent TOEFL
+       * nodes to the topic page on the grounds that "their tests are
+       * AI-generated" — that comment outlived the change to
+       * assembleToeflFromBank, so tapping a TOEFL stop dumped the
+       * student on "pick how you want to study", contradicting the
+       * path's own promise to pick the next step for them.
+       */
+      const section = testSlug === 'test-sat'
+        ? (node.subtopicSlug === 'sat-math' ? 'math' : 'reading_writing')
+        : node.subtopicSlug.replace('toefl-', '')
+      const headers = await authHeaders()
+      const res = await fetch('/api/study/test/assemble', {
+        method: 'POST',
+        headers,
+        body: JSON.stringify({
+          section,
+          count: node.questionCount ?? 22,
+          pathNode: node.id,
+        }),
+      })
+      if (!res.ok) throw new Error('assemble failed')
+      const json = await res.json() as { sessionId: string }
+      router.push(`/mobile/study/session/${json.sessionId}`)
     } catch {
       // Fallback: land on the topic page rather than stranding the tap.
       router.push(`/mobile/study/topic/${node.subtopicSlug}?from=path&mode=${node.launchMode}`)
@@ -866,7 +871,10 @@ function PathList({
                 <PathNode
                   node={node}
                   onClick={() => {
-                    if (isLocked) return
+                    if (isLocked) {
+                      setOpenLockedId(prev => (prev === node.id ? null : node.id))
+                      return
+                    }
                     // ANY node with a finished submission opens the results
                     // callout (view-only) — completed stops are terminal, a
                     // tap never redoes OR resumes the section. Branch on
@@ -890,6 +898,9 @@ function PathList({
                     onLaunch={() => void handleLaunch(node)}
                     launching={launchingId === node.id}
                   />
+                )}
+                {isLocked && openLockedId === node.id && (
+                  <LockedCallout node={node} stepsAway={i - activeIdx} />
                 )}
                 {!!node.state.completedSessionId && openCompletedId === node.id && (
                   <CompletedCallout node={node} />
@@ -1001,7 +1012,9 @@ function PathNode({
   onClick: () => void
   pulsing?: boolean
 }) {
-  const { t, language } = useTranslation()
+  // `t` is gone: the circle now renders the node's own name rather
+  // than a translated kind word.
+  const { language } = useTranslation()
   const ko = language === 'korean'
   const status = node.state.status
   const label = ko ? node.labelKo : node.labelEn
@@ -1034,7 +1047,6 @@ function PathNode({
         ? 'shadow-[0_8px_20px_-6px_rgba(16,185,129,0.55)]'
         : 'shadow-none'
 
-  const disabled = status === 'locked'
   const iconSize = node.milestone ? 'w-10 h-10' : 'w-8 h-8'
 
   return (
@@ -1050,12 +1062,13 @@ function PathNode({
       <button
         type="button"
         onClick={onClick}
-        disabled={disabled}
-        className={`relative ${size} rounded-full p-1 bg-gradient-to-br ${outerRing} ${shadow} flex items-center justify-center transition-all disabled:cursor-not-allowed ${
-          !disabled ? 'hover:scale-105 active:scale-95' : ''
-        }`}
+        /* Locked nodes are TAPPABLE on purpose. A dead circle tells a
+           student nothing; tapping one now explains what it is and why
+           it is not open yet. Still aria-disabled so assistive tech
+           reports it as unavailable. */
+        className={`relative ${size} rounded-full p-1 bg-gradient-to-br ${outerRing} ${shadow} flex items-center justify-center transition-all hover:scale-105 active:scale-95`}
         aria-label={label}
-        aria-disabled={disabled}
+        aria-disabled={status === 'locked'}
       >
         <div className={`w-full h-full rounded-full ${innerBg} flex flex-col items-center justify-center relative overflow-hidden`}>
           {/* Glossy top highlight — subtle inner light on the top
@@ -1076,10 +1089,15 @@ function PathNode({
           ) : (
             <Play className={iconSize} strokeWidth={2.5} />
           )}
-          <span className={`mt-1 text-[10px] font-bold tracking-tight leading-none px-1 text-center ${
+          {/* The node's OWN name, not its kind. Eighteen circles all
+              reading "Practice" told a student nothing about what any
+              of them covered — and the real name was already there, in
+              aria-label, visible only to screen readers. The kind is
+              carried by the icon above. */}
+          <span className={`mt-1 text-[9.5px] font-bold tracking-tight leading-[1.15] px-1.5 text-center line-clamp-2 ${
             status === 'locked' ? 'text-gray-400' : ''
           }`}>
-            {String(t(`study.path.kind.${node.kind}`))}
+            {label}
           </span>
         </div>
       </button>
@@ -1150,6 +1168,49 @@ function ActiveCallout({
  *  — no per-stop restart exists (repeating is whole-path only, for
  *  credits). The student sees their saved score and can open the full
  *  submission (summary page). */
+/** Tapping a LOCKED node opens this: Raumi says what the stop is and
+ *  why it is not open yet.
+ *
+ *  Replaces a dead circle. A disabled node gives a student no way to
+ *  find out what is ahead of them, so they either guess or stop
+ *  scrolling — and the node's real content was already written
+ *  (labelEn/detailEn), just never shown. The order rule is stated
+ *  plainly rather than implied by the padlock. */
+function LockedCallout({
+  node, stepsAway,
+}: {
+  node: PathNodeWithState
+  stepsAway: number
+}) {
+  const { language } = useTranslation()
+  const ko = language === 'korean'
+  const label = ko ? node.labelKo : node.labelEn
+  const detail = ko ? node.detailKo : node.detailEn
+  const steps = Math.max(1, stepsAway)
+  return (
+    <div className="mt-3 w-full max-w-[19rem] animate-in fade-in slide-in-from-top-1 duration-200">
+      <div className="rounded-2xl bg-white ring-1 ring-gray-200 shadow-[0_8px_24px_-10px_rgba(0,0,0,0.18)] px-4 py-3.5">
+        <div className="flex items-start gap-3">
+          <div className="flex-shrink-0 -mt-1">
+            <PathMascot state="idle" size={48} />
+          </div>
+          <div className="min-w-0">
+            <p className="text-[13.5px] font-bold text-gray-900 leading-tight">{label}</p>
+            <p className="text-[12px] text-gray-600 mt-1 leading-relaxed">{detail}</p>
+          </div>
+        </div>
+        <p className="mt-2.5 text-[12px] text-gray-500 leading-relaxed border-t border-gray-100 pt-2.5">
+          {ko
+            ? `아직 잠겨 있어요. 순서대로 ${steps}단계만 더 지나면 열려요.`
+            : steps === 1
+              ? 'Not open yet — finish the step before it and this unlocks.'
+              : `Not open yet — ${steps} steps to go. They unlock in order.`}
+        </p>
+      </div>
+    </div>
+  )
+}
+
 function CompletedCallout({
   node,
 }: {

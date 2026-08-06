@@ -1,6 +1,7 @@
 import { dbAdmin } from '@/lib/supabase-admin'
 import type { Question, QuestionType } from '@/lib/test-verify'
 import { shuffleChoices } from '@/lib/test-verify'
+import { capWarmupItems } from '@/lib/study/toefl-warmup'
 
 /**
  * Randomise choice order AT DRAW TIME, for every bank-assembled test.
@@ -796,6 +797,22 @@ export async function assembleToeflFromBank(
   p: {
     section: ToeflSection
     studentId?: string
+    /**
+     * Cap the drawn items — used by the path's Speaking/Writing WARMUP
+     * stops, which are short runs of the same task types rather than a
+     * whole section.
+     *
+     * Exists because a caller could not previously ask for a shorter
+     * TOEFL run at all: the assemble route accepts `count` for SAT and
+     * this function had no equivalent, so a path node carrying
+     * questionCount: 2 silently drew the FULL section. A warmup
+     * identical to the section it warms up for is worse than none.
+     *
+     * SPEAKING AND WRITING ONLY. Reading and Listening draw whole
+     * passage sets; truncating mid-set would show a student a passage
+     * and then hide half of its questions.
+     */
+    maxItems?: number
     /** Two-stage adaptive draw (Reading + Listening only). Omit to draw
      *  the WHOLE section exactly as before — Writing/Speaking and every
      *  non-adaptive caller depend on that path being untouched.
@@ -1259,8 +1276,12 @@ export async function assembleToeflFromBank(
     }
   }
 
+  // Warmup cap, applied AFTER the blueprint draw so composition logic
+  // is untouched. See capWarmupItems for why it is section-guarded.
+  const capped = capWarmupItems(picked, p.section, p.maxItems)
+
   if (p.studentId) {
-    await recordExposures(p.studentId, picked.map(r => r.id), 'full_test', seed)
+    await recordExposures(p.studentId, capped.map(r => r.id), 'full_test', seed)
   }
 
   return {
@@ -1268,7 +1289,7 @@ export async function assembleToeflFromBank(
     timeLimitMinutes: meta.minutes,
     section: meta.label,
     family: 'toefl',
-    questions: shuffleDrawnChoices(picked, seed).map(r => r.item),
+    questions: shuffleDrawnChoices(capped, seed).map(r => r.item),
     composition,
     ...(moduleBreakIdx != null ? { moduleBreakIdx } : {}),
   }
