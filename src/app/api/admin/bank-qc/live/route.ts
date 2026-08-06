@@ -207,6 +207,15 @@ export async function GET(request: NextRequest) {
           .from('study_item_reviews_fresh')
           .select('item_id, reviewer_id, key_slot, blind_pick, verdict, blind_at')
           .not('blind_at', 'is', null)
+          /*
+           * HUMAN ONLY. On 2026-08-06 forty reviews were entered with
+           * ChatGPT answering, and the human column is worth exactly one
+           * thing: being the number a model did NOT produce. Unfiltered,
+           * SAT Craft and Structure rendered "CONFIRMED BROKEN — both
+           * instruments agree" off blind 97.4% + "human" 100%, which is a
+           * model agreeing with itself about 211 items.
+           */
+          .eq('reviewer_kind', 'human')
           .order('item_id', { ascending: true })
           .range(from, from + 999)
         if (error || !data?.length) break

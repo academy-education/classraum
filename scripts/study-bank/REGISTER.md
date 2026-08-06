@@ -43,6 +43,26 @@ and on both cohorts checked so far the model was the one that was wrong.
 | SAT | Expression of Ideas | 66 | 100% | — | **unconfirmed** — model only |
 | TOEFL | Interview | 48 | — | — | never measured — the attack does not apply |
 
+### Excluded from the human column — model-assisted
+
+40 reviews were entered through the human UI with a model
+doing the answering. They are kept as data and marked `model_assisted`
+(migration 079); they do NOT feed the `human` column above, because that
+column is worth exactly one thing — being the number a model did not
+produce.
+
+- `craft-and-structure-2026-08-06` — 20/20 (100.0%)
+- `academic-passage-2026-08-06` — 13/20 (65.0%)
+
+**82.5% assisted vs 33.3% by hand.** That gap is
+the point: a model reading four options scores far above a person doing
+the same, which is exactly why one of the two instruments has to stay
+human. Unfiltered, SAT Craft and Structure read *CONFIRMED BROKEN — both
+instruments agree* on blind 97.4% + "human" 100%, condemning 211 items on
+a model agreeing with itself.
+
+
+
 ### Dependencies — read this before picking anything up
 
 **B1 → A3**  
@@ -77,6 +97,9 @@ B1 is *One overlapping sitting by a second reviewer* (~20 minutes, yours). Until
 Appended in the same commit as the work that surfaced it. A finding
 recorded only in a commit message is a finding nobody reads.
 
+- **2026-08-06** — 40 reviews were entered through the human UI with ChatGPT doing the answering — in good faith, on the reasoning that it analyses better than a person. It does, and that is the disqualification: the human column is worth exactly one thing, being the number a model did NOT produce. Unfiltered it rendered SAT Craft and Structure as "CONFIRMED BROKEN — both instruments agree" off blind 97.4% + "human" 100%, condemning 211 items on a model agreeing with itself. Migration 079 adds reviewer_kind; both consumers now filter to human. _(fixed on the spot)_
+- **2026-08-06** — The data flagged its own provenance and nobody was watching for it. Model-assisted rows scored 82.5% against 33.3% by hand, and Craft and Structure was 20/20 with "Can't tell" never pressed — no human has cleared 55% on this instrument. A human sitting at >=90%, or one with zero abstentions at n>=20, should be treated as a provenance smell before it is treated as a finding. _(fixed on the spot)_
+- **2026-08-06** — Academic Passage was reported at 56.3% (n=32) while the assisted rows were mixed in with the real ones. Removing them restores the genuine 41.7% (n=12). Two sittings of different provenance under one account average into a number that describes neither — which is why provenance had to be a column rather than a memory. _(fixed on the spot)_
 - **2026-08-06** — B1 was not startable at all. The review draw shuffles the cohort and takes a RANDOM slice, so two reviewers overlap only by luck — there was no way to produce the "overlapping sitting" B1 asks for. Added mirrorOf to the run POST: it copies item_id, shown_order and key_slot from an existing run for a different reviewer. shown_order is copied rather than re-dealt because reviewerAgreement compares slot LETTERS, so two different shuffles would make "both picked B" mean two different options. _(fixed on the spot)_
 - **2026-08-06** — All 72 human reviews were sat on support@classraum.com, so that account IS the first reviewer. The intuitive plan — have the second person use support@ because it is the "shared" account — would have produced rows with the same reviewer_id, collapsing to one reviewer in reviewerAgreement and returning nothing while appearing to have run. The route now refuses a same-account mirror in code. Reviewer identity is the ACCOUNT: one human must keep one account permanently, or its history stops being one person. _(fixed on the spot)_
 - **2026-08-06** — I measured Daily Life repetition with the WRONG MODEL first and got an alarming number — 79.2% chance of a repeated set by the second form. That assumes the draw has no memory. assemble.ts has ranked unseen-first at SET level since orderGroups landed, and both full-test paths write study_item_exposures, so the real answer is no repeat until form 7. The bad number would have justified an authoring programme. Both models are kept side by side in the script so the gap stays visible. _(fixed on the spot)_

@@ -62,8 +62,16 @@ async function all(table, cols, tweak = q => q) {
 
 const bank = (await all('study_item_bank', 'id, family, domain, item, archived')).filter(r => !r.archived)
 const attacks = await all('study_item_attacks', 'item_id, correct, solvers, attacked_at')
+/*
+ * reviewer_kind = 'human' is NOT optional here. The whole table below
+ * turns on `blind` being a model and `human` not being one; a
+ * model-produced row in the human column collapses the two into one and
+ * every verdict becomes a model agreeing with itself. See migration 079.
+ */
 const reviews = await all('study_item_reviews_fresh', 'item_id, blind_pick, key_slot, blind_at',
-  q => q.not('blind_at', 'is', null))
+  q => q.not('blind_at', 'is', null).eq('reviewer_kind', 'human'))
+const assisted = await all('study_item_reviews_fresh', 'item_id, run_id, blind_pick, key_slot',
+  q => q.not('blind_at', 'is', null).eq('reviewer_kind', 'model_assisted'))
 
 const latest = new Map()
 for (const a of attacks) {
@@ -145,6 +153,45 @@ and on both cohorts checked so far the model was the one that was wrong.
 | test | cohort | items | blind | human | state |
 |---|---|---|---|---|---|
 ${rows.map(r => `| ${r.family.toUpperCase()} | ${r.domain} | ${r.items} | ${r.blind === null ? '—' : r.blind + '%'} | ${r.human ? `${r.human.pct}% (n=${r.human.n})` : '—'} | ${verdict(r.blind, r.human)} |`).join('\n')}
+
+${(() => {
+  /*
+   * Quarantined rows, shown rather than hidden. A number that has been
+   * excluded is more dangerous invisible than visible: the next person
+   * to run a sitting needs to know this failure mode exists, and the
+   * 82.5%-vs-33.3% gap is the clearest evidence in the project that the
+   * two instruments measure different things.
+   */
+  if (!assisted.length) return ''
+  const byRun = new Map()
+  for (const r of assisted) {
+    const e = byRun.get(r.run_id) ?? { n: 0, c: 0 }
+    e.n++; if (r.blind_pick && r.blind_pick === r.key_slot) e.c++
+    byRun.set(r.run_id, e)
+  }
+  const humanPct = reviews.length
+    ? (100 * reviews.filter(r => r.blind_pick && r.blind_pick === r.key_slot).length / reviews.length)
+    : 0
+  const aPct = 100 * assisted.filter(r => r.blind_pick && r.blind_pick === r.key_slot).length / assisted.length
+  return `### Excluded from the human column — model-assisted
+
+${assisted.length} reviews were entered through the human UI with a model
+doing the answering. They are kept as data and marked \`model_assisted\`
+(migration 079); they do NOT feed the \`human\` column above, because that
+column is worth exactly one thing — being the number a model did not
+produce.
+
+${[...byRun].map(([run, e]) => `- \`${run}\` — ${e.c}/${e.n} (${(100 * e.c / e.n).toFixed(1)}%)`).join('\n')}
+
+**${aPct.toFixed(1)}% assisted vs ${humanPct.toFixed(1)}% by hand.** That gap is
+the point: a model reading four options scores far above a person doing
+the same, which is exactly why one of the two instruments has to stay
+human. Unfiltered, SAT Craft and Structure read *CONFIRMED BROKEN — both
+instruments agree* on blind 97.4% + "human" 100%, condemning 211 items on
+a model agreeing with itself.
+
+`
+})()}
 
 ${(() => {
   /*

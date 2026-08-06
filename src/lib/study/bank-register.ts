@@ -304,6 +304,21 @@ export interface Found {
 export const FOUND_WHILE_FIXING: Found[] = [
   {
     date: '2026-08-06',
+    what: '40 reviews were entered through the human UI with ChatGPT doing the answering — in good faith, on the reasoning that it analyses better than a person. It does, and that is the disqualification: the human column is worth exactly one thing, being the number a model did NOT produce. Unfiltered it rendered SAT Craft and Structure as "CONFIRMED BROKEN — both instruments agree" off blind 97.4% + "human" 100%, condemning 211 items on a model agreeing with itself. Migration 079 adds reviewer_kind; both consumers now filter to human.',
+    landedAs: 'fixed',
+  },
+  {
+    date: '2026-08-06',
+    what: 'The data flagged its own provenance and nobody was watching for it. Model-assisted rows scored 82.5% against 33.3% by hand, and Craft and Structure was 20/20 with "Can\'t tell" never pressed — no human has cleared 55% on this instrument. A human sitting at >=90%, or one with zero abstentions at n>=20, should be treated as a provenance smell before it is treated as a finding.',
+    landedAs: 'fixed',
+  },
+  {
+    date: '2026-08-06',
+    what: 'Academic Passage was reported at 56.3% (n=32) while the assisted rows were mixed in with the real ones. Removing them restores the genuine 41.7% (n=12). Two sittings of different provenance under one account average into a number that describes neither — which is why provenance had to be a column rather than a memory.',
+    landedAs: 'fixed',
+  },
+  {
+    date: '2026-08-06',
     what: 'B1 was not startable at all. The review draw shuffles the cohort and takes a RANDOM slice, so two reviewers overlap only by luck — there was no way to produce the "overlapping sitting" B1 asks for. Added mirrorOf to the run POST: it copies item_id, shown_order and key_slot from an existing run for a different reviewer. shown_order is copied rather than re-dealt because reviewerAgreement compares slot LETTERS, so two different shuffles would make "both picked B" mean two different options.',
     landedAs: 'fixed',
   },
