@@ -183,10 +183,12 @@ export const WORK: WorkItem[] = [
   {
     id: 'A5',
     title: 'Deepen the Daily Life reading pool',
-    size: 'pool is 35 texts',
-    why: 'Too few source texts means repetition across forms.',
+    size: '32 drawable sets (not 35) — no repeat until a student\'s 7th form',
+    why: 'Too few source texts means repetition across forms — but MEASURED on 2026-08-06, and the urgency was overstated. The draw ranks unseen-first per student via orderGroups against study_item_exposures, and both full-test paths record into it, so a student sees no repeated Daily Life set until form 7. The pool-size-only argument implies 79.2% at TWO forms; that model is memoryless and is not this app.',
     owner: 'claude',
     state: 'open',
+    note: 'DELIBERATELY NOT STARTED, and the measurement is why. The only remaining fix is authoring — no free deepening exists: all 69 single-question texts are distinct passages with no near-duplicate pair at 0.60, so nothing can be merged into a 2-question set the way A12 was thinned. And authoring here is the historically-failed path: the 2026-07-28 repair batch scored 95% with the passages DELETED and was discarded rather than banked. Doing it properly means a briefed batch gated by a blind attack (<35%), which is the same shape as A3 and should be commissioned deliberately, not slipped in. Run scripts/study-bank/check-daily-life-pool.mjs before deciding.',
+    doc: 'scripts/study-bank/check-daily-life-pool.mjs',
   },
   {
     id: 'B3',
@@ -258,6 +260,21 @@ export interface Found {
 }
 
 export const FOUND_WHILE_FIXING: Found[] = [
+  {
+    date: '2026-08-06',
+    what: 'I measured Daily Life repetition with the WRONG MODEL first and got an alarming number — 79.2% chance of a repeated set by the second form. That assumes the draw has no memory. assemble.ts has ranked unseen-first at SET level since orderGroups landed, and both full-test paths write study_item_exposures, so the real answer is no repeat until form 7. The bad number would have justified an authoring programme. Both models are kept side by side in the script so the gap stays visible.',
+    landedAs: 'fixed',
+  },
+  {
+    date: '2026-08-06',
+    what: 'A5 said "pool is 35 texts". It is 32 drawable sets — 133 live items, 69 of them single-question texts the draw excludes. Small, but the kind of number that gets quoted for months without anyone re-running it.',
+    landedAs: 'A5',
+  },
+  {
+    date: '2026-08-06',
+    what: 'The A12 move does not transfer to Daily Life: all 69 single-question texts are distinct passages, with no exact passage match and no pair at Jaccard 0.60. There is no free deepening here — the pool can only grow by authoring, which is the path that produced a 95%-blind batch in July.',
+    landedAs: 'A5',
+  },
   {
     date: '2026-08-06',
     what: 'Third exact-match measure in two days to miss a paraphrase. The Build a Sentence gate counts items sharing their first three chips, so it filed "collected during the SURVEY" and "collected during the EXPERIMENT" as two separate groups while missing that six items are one sentence. Pattern across A11 and A12: an exact or n-gram measure finds the tell it was written for and nothing adjacent to it. Content-word families found both.',
