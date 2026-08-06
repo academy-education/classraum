@@ -214,6 +214,95 @@ export async function POST(request: NextRequest) {
   if (!admin) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
 
   const body = await request.json().catch(() => ({}))
+
+  /*
+   * ── mirrorOf: sit SOMEONE ELSE'S run, item for item ─────────────────
+   *
+   * Register item B1 is "one OVERLAPPING sitting by a second reviewer",
+   * and until this existed the route could not produce one: the normal
+   * path shuffles the cohort and takes a fresh random slice, so two
+   * reviewers drawing the same domain overlap only by luck. A second
+   * sitting on DIFFERENT items cannot answer B1's question, which is
+   * whether the 55% is a property of the items or a habit of the reader.
+   *
+   * The mirror copies item_id, shown_order AND key_slot unchanged.
+   * Re-dealing would be worse, not fairer: reviewerAgreement compares
+   * `a.blindPick === b.blindPick`, which are SLOT letters, so under two
+   * different shuffles "both picked B" would mean two different options
+   * and every agreement number would be noise. Identical presentation
+   * holds everything constant except the person, which is the one
+   * variable B1 is trying to isolate.
+   */
+  if (body.mirrorOf) {
+    const source = String(body.mirrorOf)
+
+    const { data: srcRows, error: srcErr } = await reviews()
+      .select('item_id, reviewer_id, shown_order, key_slot, blind_at')
+      .eq('run_id', source)
+    if (srcErr) return NextResponse.json({ error: srcErr.message }, { status: 500 })
+    if (!srcRows?.length) {
+      return NextResponse.json({ error: `No run called "${source}".` }, { status: 404 })
+    }
+
+    /*
+     * THE GUARD THAT MATTERS. All 72 reviews on this project were sat by
+     * one account, and the obvious move — "let the second person use the
+     * account that already has the reviews" — produces a run whose rows
+     * carry the SAME reviewer_id. reviewerAgreement groups by reviewer,
+     * so it would see one reviewer, compute no pair, and B1 would return
+     * nothing while looking like it had run. Refuse it in code rather
+     * than in a document nobody reads at the keyboard.
+     */
+    const owners = new Set(srcRows.map(r => r.reviewer_id as string))
+    if (owners.has(admin.userId)) {
+      return NextResponse.json({
+        error: `You already sat "${source}". A mirror has to be a DIFFERENT person — `
+          + `same account means one reviewer_id, and agreement between a reviewer and `
+          + `themselves is not a measurement. Sign in as the second reviewer.`,
+      }, { status: 409 })
+    }
+
+    // Mirroring a half-finished run silently shrinks the overlap.
+    const unanswered = srcRows.filter(r => !r.blind_at).length
+    if (unanswered && !body.force) {
+      return NextResponse.json({
+        error: `"${source}" is only ${srcRows.length - unanswered}/${srcRows.length} answered. `
+          + `Mirroring it now would compare against a partial sitting. Pass force to do it anyway.`,
+      }, { status: 409 })
+    }
+
+    // Same rule the normal path applies: an abandoned half-run reports a
+    // denominator nobody actually sat.
+    const { data: myOpen } = await reviews()
+      .select('run_id').eq('reviewer_id', admin.userId).is('blind_at', null)
+      .order('run_id', { ascending: false }).limit(1).maybeSingle()
+    if (myOpen && !body.force) {
+      return NextResponse.json({
+        error: `"${(myOpen as { run_id: string }).run_id}" is still open — finish it before starting a mirror.`,
+        openRun: (myOpen as { run_id: string }).run_id,
+      }, { status: 409 })
+    }
+
+    const runId = String(body.runId || `${source}-mirror`)
+    const rows = srcRows.map(r => ({
+      item_id: r.item_id,
+      run_id: runId,
+      reviewer_id: admin.userId,
+      shown_order: r.shown_order,
+      key_slot: r.key_slot,
+    }))
+
+    const { error: insErr } = await reviews().insert(rows)
+    if (insErr) {
+      if (insErr.code === '23505') {
+        return NextResponse.json(
+          { error: `"${runId}" has already been drawn for you.` }, { status: 409 })
+      }
+      return NextResponse.json({ error: insErr.message }, { status: 500 })
+    }
+    return NextResponse.json({ runId, drawn: rows.length, mirrorOf: source })
+  }
+
   const domain = String(body.domain ?? '')
   const size = Math.min(50, Math.max(4, Number(body.size) || 12))
   if (!domain) return NextResponse.json({ error: 'domain is required' }, { status: 400 })

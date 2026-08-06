@@ -80,7 +80,7 @@ export const WORK: WorkItem[] = [
     size: '~20 minutes',
     why: 'Every human number in the project rests on one person. A second reader on the SAME items decides whether the Choose a Response finding is a property of the items or a habit of that reader.',
     owner: 'you',
-    whoSpecifically: 'Your co-founder, NOT you. Every existing sitting — Choose a Response, Daily Life, Announcement — is yours. Sitting it again means re-reading items you have already answered, which measures your memory rather than the items, and would read as agreement while meaning nothing. That is the exact failure this item exists to rule out.',
+    whoSpecifically: 'Your co-founder, on andy.manager@gmail.com — NOT on support@classraum.com. Checked 2026-08-06: all 72 existing reviews were sat on support@, so that account IS the first reviewer. A second sitting there would carry the same reviewer_id, reviewerAgreement would see one reviewer, and B1 would return nothing while looking like it had run. Both accounts are already super_admin, so nothing needs creating. In the app: Bank QC → Review → "Or sit someone else\'s run, item for item" → choose-a-response-2026-08-05. The route refuses a same-account mirror.',
     state: 'open',
     note: 'Unblocks everything. If the two readers scatter, A3 is cancelled rather than started.',
   },
@@ -121,7 +121,7 @@ export const WORK: WorkItem[] = [
     why: 'Roughly 486 items currently sit as "the model says guessable, nobody checked".',
     owner: 'you',
     state: 'open',
-    whoSpecifically: 'Either of you. Unlike B1 these cohorts have never been read by anyone, so there is no contamination risk from the reader who did the earlier sittings.',
+    whoSpecifically: 'You, on andy.manager@gmail.com. Unlike B1 these cohorts have never been read by anyone, so there is no contamination risk. Use the normal "Start a sitting" draw, not a mirror. NOTE: one human must keep one account for good — reviewer identity IS the account, so if you and your co-founder ever share andy.manager@ its review history stops being one person and no future agreement number from it can be trusted.',
     note: 'Daily Life and Announcement both came back clean under a human, so these plausibly are too.',
   },
   {
@@ -285,6 +285,16 @@ export interface Found {
 }
 
 export const FOUND_WHILE_FIXING: Found[] = [
+  {
+    date: '2026-08-06',
+    what: 'B1 was not startable at all. The review draw shuffles the cohort and takes a RANDOM slice, so two reviewers overlap only by luck — there was no way to produce the "overlapping sitting" B1 asks for. Added mirrorOf to the run POST: it copies item_id, shown_order and key_slot from an existing run for a different reviewer. shown_order is copied rather than re-dealt because reviewerAgreement compares slot LETTERS, so two different shuffles would make "both picked B" mean two different options.',
+    landedAs: 'fixed',
+  },
+  {
+    date: '2026-08-06',
+    what: 'All 72 human reviews were sat on support@classraum.com, so that account IS the first reviewer. The intuitive plan — have the second person use support@ because it is the "shared" account — would have produced rows with the same reviewer_id, collapsing to one reviewer in reviewerAgreement and returning nothing while appearing to have run. The route now refuses a same-account mirror in code. Reviewer identity is the ACCOUNT: one human must keep one account permanently, or its history stops being one person.',
+    landedAs: 'fixed',
+  },
   {
     date: '2026-08-06',
     what: 'I measured Daily Life repetition with the WRONG MODEL first and got an alarming number — 79.2% chance of a repeated set by the second form. That assumes the draw has no memory. assemble.ts has ranked unseen-first at SET level since orderGroups landed, and both full-test paths write study_item_exposures, so the real answer is no repeat until form 7. The bad number would have justified an authoring programme. Both models are kept side by side in the script so the gap stays visible.',

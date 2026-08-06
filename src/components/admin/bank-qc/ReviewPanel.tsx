@@ -87,6 +87,7 @@ async function authed(url: string, init?: RequestInit) {
 export function ReviewPanel({ domains }: { domains: string[] }) {
   const [domain, setDomain] = React.useState(domains[0] ?? '')
   const [size, setSize] = React.useState(12)
+  const [mirrorOf, setMirrorOf] = React.useState('')
   const [runId, setRunId] = React.useState<string | null>(null)
   const [busy, setBusy] = React.useState(false)
   const [error, setError] = React.useState<string | null>(null)
@@ -141,6 +142,22 @@ export function ReviewPanel({ domains }: { domains: string[] }) {
     try {
       const json = await authed('/api/admin/bank-qc/review', {
         method: 'POST', body: JSON.stringify({ domain, size }),
+      })
+      setRunId(json.runId)
+      await nextItem(json.runId)
+    } catch (e) { setError((e as Error).message) } finally { setBusy(false) }
+  }
+
+  /* Sit someone else's run item-for-item. See the mirrorOf branch in the
+   * route: the normal draw is random, so two reviewers overlap only by
+   * luck, and a second sitting on different items cannot answer whether
+   * a score belongs to the items or to the reader. */
+  async function startMirror() {
+    if (!mirrorOf.trim()) return
+    setBusy(true); setError(null)
+    try {
+      const json = await authed('/api/admin/bank-qc/review', {
+        method: 'POST', body: JSON.stringify({ mirrorOf: mirrorOf.trim() }),
       })
       setRunId(json.runId)
       await nextItem(json.runId)
@@ -213,6 +230,31 @@ export function ReviewPanel({ domains }: { domains: string[] }) {
             The sample is drawn and recorded before you see anything, so skipped items stay
             in the denominator. 20+ is needed before a good result counts as a verdict.
           </p>
+
+          {/* Second reviewer, SAME items. A fresh draw is random, so two
+              readers overlap only by luck — and a second sitting on
+              different items cannot tell whether a score belongs to the
+              items or to the reader. */}
+          <div className="basis-full border-t border-gray-100 pt-3 mt-1">
+            <label htmlFor="review-mirror" className={LABEL}>
+              Or sit someone else&apos;s run, item for item
+            </label>
+            <div className="flex flex-wrap items-center gap-2">
+              <input
+                id="review-mirror" value={mirrorOf} onChange={e => setMirrorOf(e.target.value)}
+                placeholder="choose-a-response-2026-08-05"
+                className={FIELD + ' max-w-[320px]'}
+              />
+              <Button variant="outline" onClick={startMirror} disabled={busy || !mirrorOf.trim()}>
+                {busy ? <Loader2 className="w-4 h-4 animate-spin" /> : 'Mirror this run'}
+              </Button>
+            </div>
+            <p className="text-[11.5px] text-gray-400 mt-1.5">
+              Must be a DIFFERENT account from the one that sat the original — same account
+              means one reviewer id, and a reviewer agreeing with themselves is not a
+              measurement. The route refuses it.
+            </p>
+          </div>
         </div>
       )}
 
