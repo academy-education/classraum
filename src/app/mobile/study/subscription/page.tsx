@@ -161,6 +161,10 @@ export default function SubscriptionPage() {
    * costs nothing, already had a confirm step; taking money did not.
    */
   const [confirmingChange, setConfirmingChange] = useState<string | null>(null)
+  /** Plan id whose raw checkout URL is on screen — the no-plugin escape
+   *  hatch for when the native browser hand-off silently does nothing. */
+  const [showLinkFor, setShowLinkFor] = useState<string | null>(null)
+  const [copied, setCopied] = useState(false)
   useEffect(() => { setIsNative(Capacitor.isNativePlatform()) }, [])
 
   // True while a GET of /api/study/subscription is outstanding — read by
@@ -907,24 +911,79 @@ export default function SubscriptionPage() {
                   </div>
                 ) : isNative ? (
                   !isCurrent && (
-                    <button
-                      type="button"
-                      onClick={() => {
-                        setError(null)
-                        void openExternalUrl(subscribeOnWebUrl(plan.id)).then(ok => {
-                          // A hand-off that fails must not look like a
-                          // hand-off that worked. This button used to be a
-                          // silent no-op whenever the OS refused the URL.
-                          if (!ok) setError(ko
-                            ? '브라우저를 열지 못했어요. app.classraum.com 에서 결제를 진행해 주세요.'
-                            : 'Could not open a browser. Please go to app.classraum.com to subscribe.')
-                        })
-                      }}
-                      className={studyButtonClass({ variant: 'secondary' })}
-                    >
-                      <ExternalLink className="w-4 h-4" />
-                      {t('study.subscription.subscribeOnWeb')}
-                    </button>
+                    <div className="flex flex-col gap-2">
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setError(null)
+                          void openExternalUrl(subscribeOnWebUrl(plan.id)).then(ok => {
+                            // A hand-off that fails must not look like a
+                            // hand-off that worked. This button used to be a
+                            // silent no-op whenever the OS refused the URL.
+                            if (!ok) { setShowLinkFor(plan.id); setError(ko
+                              ? '브라우저를 열지 못했어요. 아래 주소를 복사해 브라우저에서 열어 주세요.'
+                              : 'Could not open a browser. Copy the address below and open it in one.') }
+                          })
+                        }}
+                        className={studyButtonClass({ variant: 'secondary' })}
+                      >
+                        <ExternalLink className="w-4 h-4" />
+                        {t('study.subscription.subscribeOnWeb')}
+                      </button>
+                      {/* ESCAPE HATCH, deliberately always visible.
+                          Everything above depends on the native hand-off
+                          working, and when it does not it fails silently —
+                          the tap is indistinguishable from a tap that
+                          worked. This path touches no plugin at all, so it
+                          cannot fail the same way, and unlike a manifest
+                          change it ships in the web bundle rather than
+                          waiting on a store release. */}
+                      <button
+                        type="button"
+                        onClick={() => setShowLinkFor(showLinkFor === plan.id ? null : plan.id)}
+                        className="text-[12px] text-gray-400 underline underline-offset-2 py-1"
+                      >
+                        {ko ? '열리지 않나요? 주소 복사' : "Didn't open? Copy the link"}
+                      </button>
+                      {showLinkFor === plan.id && (
+                        <div className="rounded-xl bg-gray-50 ring-1 ring-gray-200/70 p-3 space-y-2">
+                          <p className="text-[11.5px] text-gray-500 leading-relaxed">
+                            {ko
+                              ? '이 주소를 휴대폰이나 컴퓨터의 브라우저에 붙여넣어 결제를 진행하세요.'
+                              : 'Paste this into a browser — on this phone or any computer — to finish checkout.'}
+                          </p>
+                          <p
+                            className="text-[11px] font-mono text-gray-700 break-all select-all bg-white rounded-lg p-2 ring-1 ring-gray-200/70"
+                            onClick={e => {
+                              // select-all handles the long-press copy that
+                              // works even where the Clipboard API does not.
+                              const r = document.createRange()
+                              r.selectNodeContents(e.currentTarget)
+                              const s = window.getSelection()
+                              s?.removeAllRanges(); s?.addRange(r)
+                            }}
+                          >
+                            {subscribeOnWebUrl(plan.id)}
+                          </p>
+                          <button
+                            type="button"
+                            onClick={() => {
+                              const url = subscribeOnWebUrl(plan.id)
+                              // Clipboard API needs a secure context and is
+                              // not guaranteed inside a WebView; the
+                              // select-all text above is the fallback, so a
+                              // rejection here is not an error worth showing.
+                              navigator.clipboard?.writeText(url)
+                                .then(() => setCopied(true))
+                                .catch(() => {})
+                            }}
+                            className="w-full h-9 rounded-full bg-white ring-1 ring-gray-200/70 text-gray-700 text-[12px] font-semibold"
+                          >
+                            {copied ? (ko ? '복사했어요' : 'Copied') : (ko ? '주소 복사' : 'Copy address')}
+                          </button>
+                        </div>
+                      )}
+                    </div>
                   )
                 ) : isCurrent ? (
                   sub?.pending_plan ? (
