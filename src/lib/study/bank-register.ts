@@ -96,9 +96,9 @@ export const WORK: WorkItem[] = [
     owner: 'you',
     account: 'andy.manager@gmail.com',
     whoSpecifically: 'Your co-founder, on andy.manager@gmail.com — NOT on support@classraum.com. Checked 2026-08-06: all 72 existing reviews were sat on support@, so that account IS the first reviewer. A second sitting there would carry the same reviewer_id, reviewerAgreement would see one reviewer, and B1 would return nothing while looking like it had run. Both accounts are already super_admin, so nothing needs creating. In the app: Bank QC → Review → "Or sit someone else\'s run, item for item" → choose-a-response-2026-08-05. The route refuses a same-account mirror.',
-    state: 'open',
-    note: 'Unblocks everything. If the two readers scatter, A3 is cancelled rather than started. The brief to hand over is scripts/study-bank/B1-REVIEWER-BRIEF.md — send it as-is, and DELETE its top block first: it deliberately withholds what the first sitting found, because a reviewer told "we think these are guessable" will guess harder, and that spends the instrument.',
-    doc: 'scripts/study-bank/B1-PREREGISTERED.md (decision rule) + B1-REVIEWER-BRIEF.md (send to the reviewer)',
+    state: 'done',
+    note: 'DONE 2026-08-06 — and the pre-registration does NOT get to claim the result. Reviewer 2 scored 3/20 = 15.0% with 17 "can\'t tell"; reviewer 1 scored 11/20 = 55.0% with none. That fires the pre-registered "<=35% -> CANCEL A3" branch, but the branch\'s stated reasoning is "reviewer 1 was reading something idiosyncratic", and on all 3 items reviewer 2 committed to, both readers picked the SAME option, both were right, and reviewer 2 annotated two of them "Too obvious." The two numbers measure different things: the B1 brief was written on 08-06, AFTER reviewer 1 sat on 08-05, and it pushes hard on using "Can\'t tell". The instrument changed between the two sittings, so the pre-registration is VOID rather than decisive. A3 was neither started nor cancelled on this — it was decided by a fresh blind attack instead, which is recorded on A3.',
+    doc: 'scripts/study-bank/B1-PREREGISTERED.md (decision rule) + B1-REVIEWER-BRIEF.md (sent to the reviewer)',
   },
   {
     id: 'A1',
@@ -185,12 +185,29 @@ export const WORK: WorkItem[] = [
     id: 'A3',
     title: 'Rebuild Choose a Response',
     size: '72 items',
-    why: 'The only cohort where the model attack and a human agree it is broken: 55.0% blind against a 25.0% control, p<0.001, plus 4 of 20 with a second defensible answer.',
+    why: 'Re-measured 2026-08-06 after a targeted repair: 74.4% blind against a 29.2% control, +45.1pts, with 40 of 65 items solved by all three solvers independently. Accuracy when a solver COMMITS to an answer is ~92%, with no audio. These are not listening questions.',
     owner: 'claude',
     state: 'open',
-    dependsOn: ['B1'],
-    note: 'BLOCKED ON B1, and the branch that fires is pre-registered in scripts/study-bank/B1-PREREGISTERED.md — reviewer 2 at >=45% with kappa >=0.4 starts this work, <=35% CANCELS it outright, anything between keeps it blocked pending a third reader. The dependency can CANCEL this rather than merely delay it: if the two readers scatter, the 55% finding is a habit of one reader and there is nothing to rebuild. Three rounds have already failed. If it does go ahead, start from the four crv2 items that passed both gates (1, 4, 10, 14), and measure with the held-out panel, which has never been spent.',
-    doc: 'scripts/study-bank/CRV3-RESULT.md',
+    note: 'UNBLOCKED, and the cheap version has been TRIED AND REFUTED. The narrow repair — rewrite only the defective distractors rather than rebuild — removed the one exactly-checkable defect (a "wrong register" option that is a slot in the cr-v1 authoring brief: 24/56 cr-v1, 0/14 cr-v2, 0/2 harvest-v1) and moved the blind score by ~3 points: repaired items 72.2%, untouched 75.6%. I predicted 28.4% beforehand and was wrong by 46 points. cr-v2 is NOT a template to author toward — it scores lower only because solvers abstain more, and its committed accuracy is identical at 92.0%. CAUSE: the four-slot distractor brief — one accept-and-act key plus a parodic over-formal option, a rude/escalating one, a dismissive minimiser and a topic-shifting question. All three solvers described it unprompted. Removing one slot leaves three and the key is still the option that is none of them. THE REBUILD NEEDS: (1) a new brief whose load-bearing property is that EVERY option must be a natural reply to SOME plausible prompt, so the question is which fits the line actually spoken — and which must NOT specify a new fixed roster of distractor types, because a fixed roster is what produced this tell; (2) the blind attack run DURING authoring on a held-out slice, not after the batch, since re-authoring this task type produced a 95%-blind batch in July and three rounds have already failed; (3) care that a distractor is not wrong in a way visible WITHOUT the prompt — one of the 24 replacements written today was self-contradictory and solvers cracked it on that alone. Three further register items found by a solver and not repaired (25eca95b, 17d5acca, 012fc0d9); moot if cr-v1 is re-authored. Note the items are STILL SERVED to students today.',
+    doc: 'scripts/study-bank/CR-POSTREPAIR-RESULT.md (the refutation) + CRV3-RESULT.md (the earlier failed round)',
+  },
+  {
+    id: 'A14',
+    title: 'The authoring gates are documented more thoroughly than they are wired',
+    size: '4 findings, 249 items with no reproducible insert path',
+    why: 'Four separate gaps between what the runbooks say the authoring pipeline does and what the scripts actually execute. None was caught by a test, because the tests cover the functions rather than whether the functions are called.',
+    owner: 'claude',
+    state: 'open',
+    note: 'FOUR THINGS, in the order I would fix them. (1) shuffleInPlace is dead in both SAT helpers — defined, never called — while its own comment and the adjacent REJECT message both claim choices are shuffled at insert. Measured before acting: key position is SAT v2 30/27/23/20, nothing near the 40% line, so no damage has been done and authors complied by hand. Wiring it changes what gets banked, so it is a decision. (2) accepts() carries two carve-outs the runbook never mentions: Standard English Conventions is a full bypass requiring unanimous 3/3, and Expression of Ideas / Rhetorical Synthesis returns ok before the distractor and passage checks. (3) fill_in_blanks, speaking_interview and arrange_words have NO insert command, yet 249 such items are live — they entered by a path that no longer exists, and new ones have nowhere to go. (4) The TOEFL ledger gate is called from insertListening only; insertRepeat and insertWriting bypass it entirely. Fixed on the spot alongside these: the positional-explanation REJECT branch threw a ReferenceError every time it fired, killing the whole insert run.',
+  },
+  {
+    id: 'A13',
+    title: 'Explanations cite option positions that do not match the stored order',
+    size: 'MEASURED 2026-08-07 — 63 live items provably wrong, 131 at risk',
+    why: 'Student-facing. Explanations refer to options by ordinal ("the second ignores the qualifier") and the ordinals are the order at AUTHORING time, not the order in item.choices. Options have been reshuffled since (see migration 078), so a student reading why they got an item wrong is told the wrong thing about which option was which.',
+    owner: 'claude',
+    state: 'open',
+    note: 'MEASURED, per the Math-hub rule, before deciding anything — `scripts/study-bank/check-explanation-ordinals.mjs`, no model calls. Of 3,327 live items, 131 cite a position at all and 63 (1.9% of the bank) are PROVABLY wrong: the cited position holds the KEY while the sentence describes a distractor. By cohort: v2 37, cr-v1 16, orphan-v1 5, v3-claude 3, talk-c1 1, talk-c2 1 — two cohorts hold 84%, so this is NOT bank-wide and a blanket rewrite would be the Math-hub mistake again. 63 is a LOWER BOUND: a distractor cited as a different distractor is equally wrong and not decidable this way, so the true figure is between 63 and 131. CORRECTION to what this entry said before: the claim that "the 24 cr-v1 repairs written 2026-08-06 quote the option instead of numbering it and are already correct" is FALSE — 10 of those 24 still number options, and 8bcce6b3, one of the repaired items, is still wrong (key at position three, yet "the third" is described as a distractor). The repair fixed the register tell it was aimed at and left this one untouched, which is why it needs its own check rather than an assumption. The detector self-tests on 4 fixtures and refuses to run if any fail.',
   },
   {
     id: 'A8',
@@ -302,6 +319,76 @@ export interface Found {
 }
 
 export const FOUND_WHILE_FIXING: Found[] = [
+  {
+    date: '2026-08-06',
+    what: 'bank-helper.mjs REJECT branch for positional explanations threw a ReferenceError every time it fired — `id` is not in scope (the variable is `label`) and `rejected` was never declared, so under strict mode it killed the whole insert run rather than skipping one item. That is why it survived: the check had evidently never fired on a real batch. Fixed and break-tested with an item whose explanation says "Choice 2" — it now prints REJECT, continues, and exits 0.',
+    landedAs: 'fixed',
+  },
+  {
+    date: '2026-08-06',
+    what: 'shuffleInPlace is DEAD CODE in both SAT helpers. It is defined in bank-helper.mjs and math-bank-helper.mjs and called from neither, so SAT items are banked in the order they were authored — while a 20-line comment above it, and the REJECT message beside it, both assert "choices are shuffled at insert". The TOEFL helper does call it (lines 207 and 313), so this is SAT-only. MEASURED before believing it mattered: key position across live 4-choice items is SAT v2 30/27/23/20, TOEFL cr-v1 25/16/25/34, nothing at or near the 40% failure line. So the guard is absent and the outcome is currently fine — authors complied with the spec by hand. Enforcement is missing, not broken; a future batch that clusters would not be caught. Wiring it up changes what gets banked, so it is left as a decision rather than done silently.',
+    landedAs: 'A14',
+  },
+  {
+    date: '2026-08-06',
+    what: 'The SAT accept rule in code does not match the runbook prose. RUNBOOK.md says "key_votes >= 2 AND difficulty AND distractors AND (passage_needed OR domain is Standard English Conventions)". accepts() actually makes Conventions a FULL BYPASS requiring UNANIMOUS 3/3 and skipping the difficulty and distractor grades entirely, and adds a second bypass the runbook never mentions — Expression of Ideas / Rhetorical Synthesis returns ok before the distractor and passage checks. Two undocumented carve-outs in the one gate that decides what enters the SAT bank. Document the code, not the prose.',
+    landedAs: 'A14',
+  },
+  {
+    date: '2026-08-06',
+    what: 'Three TOEFL item types have NO insert path in toefl-bank-helper.mjs — fill_in_blanks, speaking_interview and arrange_words have no insert-<type> command, and listeningShapeOk requires multiple_choice with 4 choices so they cannot go through insert-listening. Yet Complete the Words (93), Interview (48) and Build a Sentence (108) all sit in the live bank: 249 items entered through a path that is not the documented one and cannot be reproduced today. Anything authored for those types now has nowhere to go.',
+    landedAs: 'A14',
+  },
+  {
+    date: '2026-08-06',
+    what: 'The TOEFL ledger gate runs on ONE of three insert paths. gateBatch() is called from insertListening only; insertRepeat and insertWriting never call it, so speaking_repeat, writing_email and writing_discussion enter the bank with no gate check at all. gate.mjs exists on the reasoning that "a documented gate nobody runs is an instruction, and this project\'s whole thesis is that instructions do not hold and gates do" — and it is wired into a third of the paths it was written for.',
+    landedAs: 'A14',
+  },
+  {
+    date: '2026-08-06',
+    what: 'The narrowed A3 — repair the defective distractors rather than rebuild — is REFUTED by measurement. Post-repair blind attack (65 items, 3 solvers): 74.4% against a 29.2% control, +45.1pts, 40/65 solved by all three. I predicted 28.4% beforehand and was wrong by 46 points, in the direction that flattered the work. Repaired items 72.2%, untouched 75.6% — the repair bought ~3 points. The decisive column is accuracy on COMMITTED picks: ~92%, in both cohorts, repaired and not. cr-v2 looks better on blind only because solvers abstained more; identical committed accuracy, so it is not a template to author toward. Full write-up in scripts/study-bank/CR-POSTREPAIR-RESULT.md.',
+    landedAs: 'A3',
+  },
+  {
+    date: '2026-08-06',
+    what: 'Why the repair could not have worked: all three solvers independently and unprompted described the same four-slot structure — one accept-and-act reply plus a parodic over-formal option, a rude/escalating one, a dismissive minimiser and a topic-shifting question. Removing ONE slot leaves three, and the key is still the option that is none of them. A symptom of the brief was treated as the defect. The missing brief property: every option must be a natural reply to SOME plausible prompt, so the question is which fits the line actually spoken — and the fix cannot specify a new fixed roster of distractor types, because a fixed roster is what produced the tell.',
+    landedAs: 'A3',
+  },
+  {
+    date: '2026-08-06',
+    what: 'Fourth exact/proxy measure in two days to miss its adjacent cases. The explanation-based detector found 24 register distractors in cr-v1; a blind solver quoted three more it had missed (25eca95b, 17d5acca, 012fc0d9), all the same designed slot, missed because their authors wrote "consent-form language no patient would speak aloud" and "absurdly formal for a moment\'s favour" rather than the vocabulary the regex carried. The detector was reading the author\'s PROSE as a proxy for the author\'s ITEM, and prose varies. After Email 4-grams, Build-a-Sentence first-3-chips and the SAT Math hub: treat any measure over authoring metadata as pre-flight only.',
+    landedAs: 'fixed',
+  },
+  {
+    date: '2026-08-06',
+    what: 'Two tells the solvers found for free, neither measured. (a) A stray em dash in a position natural prose would not use ("...notified — of the theft", "...been acting up — for a couple of weeks now"), which solver B reports was never the plausible reply — exactly checkable. (b) Items decidable with NO prompt at all by eliminating an internally incoherent option. (b) is a caution about repair work itself: one of the 24 replacements written today ("so the sealed copy comes through by email as well, then?") is self-contradictory and was solved on that basis. Writing a distractor that is "cooperative but wrong" risks making it wrong in a way visible without the prompt.',
+    landedAs: 'A3',
+  },
+  {
+    date: '2026-08-06',
+    what: 'The "wrong register" distractor in Choose a Response is a SLOT IN ONE AUTHORING BRIEF, not a property of the bank: 24/56 cr-v1 (42.9%), 0/14 cr-v2, 0/2 harvest-v1. Same shape as the SAT Math hub — a defect that reads bank-wide and is one cohort. All 24 were repaired with replacements natural in register, cooperative in tone and wrong on content, failure modes deliberately varied; both detectors then read 0/72. It removed a real, provable defect and did not fix the cohort, which is recorded separately.',
+    landedAs: 'A3',
+  },
+  {
+    date: '2026-08-06',
+    what: 'attack-cohort.mjs `prepare` built its "already measured" set from the RAW study_item_attacks table rather than study_item_attacks_fresh. Migration 077 binds attacks to content_sha for exactly this reason, and the view\'s own comment says a blind score presented as evidence must come from it. Effect: once an item was repaired, its old blind score — over option text that had just been deleted — counted as coverage FOREVER, and prepare would never offer that item again. 6 items bank-wide when found; it grows with every repair. Break-tested: 65 items offered with the fix, 59 without.',
+    landedAs: 'fixed',
+  },
+  {
+    date: '2026-08-06',
+    what: 'Explanations cite options by POSITION ("the fourth is far too formal") and the positions do not match the stored choice order — in 8bcce6b3 the explanation\'s "fourth" is option A. Options have been reshuffled since authoring (see migration 078), so a student reading why they got an item wrong is told the wrong thing about which option was which. Student-facing, scope unmeasured, exactly checkable — measure the whole population before acting, per the Math-hub lesson. The 24 repairs written today quote the option text instead of numbering it.',
+    landedAs: 'A13',
+  },
+  {
+    date: '2026-08-07',
+    what: 'A13 measured, and the entry recording it was itself wrong. `check-explanation-ordinals.mjs` (no model calls, self-tests on 4 fixtures first): 131 of 3,327 live items cite an option by position, and 63 are PROVABLY wrong — the cited position holds the key while the sentence describes a distractor. Concentrated in v2 (37) and cr-v1 (16); 84% in two cohorts, so a bank-wide rewrite would repeat the Math-hub mistake. 63 is a lower bound, since a distractor cited as a different distractor is equally wrong and not decidable this way. THE CORRECTION: A13 asserted "the 24 cr-v1 repairs written 2026-08-06 quote the option instead of numbering it and are already correct". 10 of those 24 still number options, and 8bcce6b3 — the item A13 used as its own illustration — is STILL WRONG after being repaired. Its key sits at position three and the explanation calls "the third" a distractor. The repair fixed the register tell it targeted and never looked at the ordinals, and the register then recorded the untested assumption as fact. Found only because the claim was checked against the live row instead of re-read.',
+    landedAs: 'A13',
+  },
+  {
+    date: '2026-08-06',
+    what: 'B1 landed at 15.0% and the pre-registration does NOT get to claim it. Reviewer 2 scored 3/20 with 17 abstentions against reviewer 1\'s 11/20 with none, firing the "<=35% -> CANCEL A3" branch — but that branch\'s stated reasoning is "reviewer 1 was reading something idiosyncratic", and on all 3 items reviewer 2 committed to, both readers picked the same option, both were right, and reviewer 2 wrote "Too obvious." The B1 brief was written AFTER reviewer 1 sat and pushes hard on using "Can\'t tell", so the instrument changed between the two sittings. A pre-registration only binds if the instrument is held still; this one was not, so it is void rather than decisive. Recorded because the tempting move was to bank a number that happened to fire a clean branch.',
+    landedAs: 'A3',
+  },
   {
     date: '2026-08-06',
     what: '40 reviews were entered through the human UI with ChatGPT doing the answering — in good faith, on the reasoning that it analyses better than a person. It does, and that is the disqualification: the human column is worth exactly one thing, being the number a model did NOT produce. Unfiltered it rendered SAT Craft and Structure as "CONFIRMED BROKEN — both instruments agree" off blind 97.4% + "human" 100%, condemning 211 items on a model agreeing with itself. Migration 079 adds reviewer_kind; both consumers now filter to human.',

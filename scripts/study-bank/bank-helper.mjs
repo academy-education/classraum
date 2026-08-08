@@ -201,8 +201,19 @@ async function main() {
     const label = `id${raw.id} [${raw.domain} / ${raw.subskill}]`
     if (!shapeOk(raw)) { console.log(`SKIP ${label} — bad shape (need 4 distinct choices incl. key)`); continue }
     if (!explanationIsOrderSafe(raw)) {
-      console.log(`REJECT ${id} — explanation names an option by position; choices are shuffled at insert, so quote the option instead of numbering it`)
-      rejected++; continue
+      /*
+       * This branch threw a ReferenceError until 2026-08-06 — `id` is not
+       * in scope (the variable is `label`) and `rejected` was never
+       * declared. Under a module's implicit strict mode that killed the
+       * whole insert run instead of skipping one item, which is how it
+       * survived: the check has evidently never fired on a real batch.
+       *
+       * The old message also claimed "choices are shuffled at insert".
+       * They are not — shuffleInPlace is defined in this file and called
+       * nowhere. SAT items are banked in the order they were authored.
+       */
+      console.log(`REJECT ${label} — explanation names an option by position; quote the option instead of numbering it`)
+      continue
     }
     const verdict = accepts(q, raw.domain, raw.subskill)
     if (!verdict.ok) { console.log(`REJECT ${label} — ${verdict.why}`); continue }

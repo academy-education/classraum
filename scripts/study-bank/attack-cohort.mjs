@@ -74,9 +74,22 @@ async function prepare() {
   // Same 1000-row cap applies here, and under-reading it would re-attack
   // items already measured — the exact repetition this script exists to
   // stop.
+  //
+  // study_item_attacks_FRESH, not the raw table. An attack row records
+  // the text that was solved, and migration 077 binds it to the item's
+  // content_sha for exactly this reason: once an item is repaired, the
+  // old blind score describes options that no longer exist.
+  //
+  // Reading the raw table made a repaired item permanently invisible to
+  // re-attack — it counted as covered forever, on the strength of a
+  // measurement of the text we had just deleted. Found on 2026-08-06
+  // after repairing 24 Choose a Response items, 6 of which had prior
+  // attack rows and none of which prepare would offer back. The view's
+  // own comment already said a blind score presented as evidence must
+  // come from here; the script simply was not reading it.
   const seen = new Set()
   for (let from = 0; ; from += 1000) {
-    const { data, error } = await db.from('study_item_attacks').select('item_id').range(from, from + 999)
+    const { data, error } = await db.from('study_item_attacks_fresh').select('item_id').range(from, from + 999)
     if (error) { console.error('could not read prior attacks:', error.message); process.exit(1) }
     for (const r of data ?? []) seen.add(r.item_id)
     if (!data || data.length < 1000) break

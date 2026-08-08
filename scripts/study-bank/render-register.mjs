@@ -75,7 +75,7 @@ const attacks = await all('study_item_attacks', 'item_id, correct, solvers, atta
  * model-produced row in the human column collapses the two into one and
  * every verdict becomes a model agreeing with itself. See migration 079.
  */
-const reviews = await all('study_item_reviews_fresh', 'item_id, run_id, blind_pick, key_slot, blind_at',
+const reviews = await all('study_item_reviews_fresh', 'item_id, run_id, reviewer_id, blind_pick, key_slot, blind_at',
   q => q.not('blind_at', 'is', null).eq('reviewer_kind', 'human'))
 const assisted = await all('study_item_reviews_fresh', 'item_id, run_id, blind_pick, key_slot',
   q => q.not('blind_at', 'is', null).eq('reviewer_kind', 'model_assisted'))
@@ -86,14 +86,56 @@ for (const a of attacks) {
   if (!p || a.attacked_at > p.attacked_at) latest.set(a.item_id, a)
 }
 const domainOf = new Map(bank.map(r => [r.id, r.domain ?? '?']))
+/*
+ * PER REVIEWER, then take the BEST — never a pooled average.
+ *
+ * This column answers one question: can a person find the answer with
+ * the source withheld? If ONE careful reader can, the items leak. A
+ * second reader who could not does not undo that, and averaging the two
+ * describes neither of them.
+ *
+ * Found 2026-08-06, after it had already produced a wrong verdict.
+ * Choose a Response had reviewer 1 at 55.0% (n=20, no abstentions) and
+ * reviewer 2 at 15.0% (n=20, seventeen "can't tell"). Pooled that is
+ * 30%, under the CONFIRMED-BROKEN threshold and over the n>=20 floor,
+ * so the table rendered "cleared by hand — the model was wrong" about a
+ * cohort a fresh blind attack had just scored 74.4% against a 29.2%
+ * control. The two readers had also been given DIFFERENT instructions
+ * about using "can't tell", so pooling them was meaningless as well as
+ * wrong.
+ *
+ * Exactly the error migration 079 fixed for provenance — two sittings
+ * of different character averaged into one number that describes
+ * neither — repeated one level down, between two humans rather than
+ * between a human and a model.
+ */
 const humanBy = new Map()
 for (const r of reviews) {
   const d = domainOf.get(r.item_id)
   if (!d) continue
-  const e = humanBy.get(d) ?? { n: 0, c: 0 }
+  const byRev = humanBy.get(d) ?? new Map()
+  const e = byRev.get(r.reviewer_id) ?? { n: 0, c: 0 }
   e.n++
   if (r.blind_pick && r.blind_pick === r.key_slot) e.c++
-  humanBy.set(d, e)
+  byRev.set(r.reviewer_id, e)
+  humanBy.set(d, byRev)
+}
+
+/**
+ * The strongest human sitting on a cohort, plus how many readers sat it.
+ * Sittings under 10 items are ignored for the verdict — at that size a
+ * high score is luck — but still counted in `readers`, so a thin sitting
+ * cannot masquerade as no sitting at all.
+ */
+function bestHuman(domain) {
+  const byRev = humanBy.get(domain)
+  if (!byRev || !byRev.size) return null
+  const sittings = [...byRev.values()]
+    .map(e => ({ pct: Math.round((1000 * e.c) / e.n) / 10, n: e.n }))
+    .sort((a, b) => b.pct - a.pct)
+  const usable = sittings.filter(s => s.n >= 10)
+  if (!usable.length) return null
+  return { ...usable[0], readers: sittings.length, all: sittings }
 }
 
 const cohorts = new Map()
@@ -126,9 +168,7 @@ function verdict(blind, human) {
 const rows = [...cohorts.entries()].map(([k, e]) => {
   const [family, domain] = k.split('|')
   const blind = e.picks ? Math.round((1000 * e.correct) / e.picks) / 10 : null
-  const h = humanBy.get(domain)
-  const human = h && h.n ? { pct: Math.round((1000 * h.c) / h.n) / 10, n: h.n } : null
-  return { family, domain, items: e.items, blind, human }
+  return { family, domain, items: e.items, blind, human: bestHuman(domain) }
 }).sort((a, b) => b.items - a.items)
 
 const s = registerSummary(WORK)
@@ -154,12 +194,22 @@ Open work: ${s.open} — ${s.mine} mine, ${s.yours} need you.
 
 \`blind\` is 3 AI solvers with the source withheld, against a 25%
 control. \`human\` is a real reviewer under the same protocol. **Where
-the two disagree the human wins** — that is the finding of 2026-08-06,
-and on both cohorts checked so far the model was the one that was wrong.
+the two disagree the human wins** — the finding of 2026-08-06, and on
+Announcement and Daily Life the model was indeed the one that was wrong.
+
+Two qualifications, both learned the hard way:
+
+- \`human\` is the **best single reader**, never a pooled average. The
+  question is whether a person *can* shortcut these items, and one
+  reader who can settles it. Pooling a diligent reader with a cautious
+  one produced "cleared by hand" for a cohort scoring 74.4% blind.
+- The human winning does not mean the model was noise. Where a reader
+  also clears the control by a wide margin, the two AGREE and the cohort
+  is confirmed broken — which is what happened to Choose a Response.
 
 | test | cohort | items | blind | human | state |
 |---|---|---|---|---|---|
-${rows.map(r => `| ${r.family.toUpperCase()} | ${r.domain} | ${r.items} | ${r.blind === null ? '—' : r.blind + '%'} | ${r.human ? `${r.human.pct}% (n=${r.human.n})` : '—'} | ${verdict(r.blind, r.human)} |`).join('\n')}
+${rows.map(r => `| ${r.family.toUpperCase()} | ${r.domain} | ${r.items} | ${r.blind === null ? '—' : r.blind + '%'} | ${r.human ? `${r.human.pct}% (n=${r.human.n})${r.human.readers > 1 ? ` — best of ${r.human.readers}: ${r.human.all.map(s => `${s.pct}%`).join(' / ')}` : ''}` : '—'} | ${verdict(r.blind, r.human)} |`).join('\n')}
 
 ${(() => {
   /*
