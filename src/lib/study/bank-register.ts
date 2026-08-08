@@ -203,11 +203,11 @@ export const WORK: WorkItem[] = [
   {
     id: 'A13',
     title: 'Explanations cite option positions that do not match the stored order',
-    size: 'MEASURED 2026-08-07 — 63 live items provably wrong, 131 at risk',
+    size: 'FIXED 2026-08-09 — 20 repaired; the 63 was a detector artefact',
     why: 'Student-facing. Explanations refer to options by ordinal ("the second ignores the qualifier") and the ordinals are the order at AUTHORING time, not the order in item.choices. Options have been reshuffled since (see migration 078), so a student reading why they got an item wrong is told the wrong thing about which option was which.',
     owner: 'claude',
     state: 'open',
-    note: 'MEASURED, per the Math-hub rule, before deciding anything — `scripts/study-bank/check-explanation-ordinals.mjs`, no model calls. Of 3,327 live items, 131 cite a position at all and 63 (1.9% of the bank) are PROVABLY wrong: the cited position holds the KEY while the sentence describes a distractor. By cohort: v2 37, cr-v1 16, orphan-v1 5, v3-claude 3, talk-c1 1, talk-c2 1 — two cohorts hold 84%, so this is NOT bank-wide and a blanket rewrite would be the Math-hub mistake again. 63 is a LOWER BOUND: a distractor cited as a different distractor is equally wrong and not decidable this way, so the true figure is between 63 and 131. CORRECTION to what this entry said before: the claim that "the 24 cr-v1 repairs written 2026-08-06 quote the option instead of numbering it and are already correct" is FALSE — 10 of those 24 still number options, and 8bcce6b3, one of the repaired items, is still wrong (key at position three, yet "the third" is described as a distractor). The repair fixed the register tell it was aimed at and left this one untouched, which is why it needs its own check rather than an assumption. The detector self-tests on 4 fixtures and refuses to run if any fail.',
+    note: 'FIXED. 20 explanations repaired by `apply-ordinal-fix.mjs`; the detector now reports 0 real. THE SCOPE NUMBER WAS WRONG THREE TIMES AND EACH ERROR INFLATED IT. First 63, from a detector that flagged any ordinal whose index matched the key — but most ordinals count CONTENT, not options: "the second equation is a multiple of the first", "the first two infinitives", "the third element must also be a gerund", "in the first place". A noun test cut it to 31; sentence-scoped ellipsis (the bare "the first" elides "equation" from earlier in the same sentence) to 26; excluding worked arithmetic to 22; and two of those are still false ("the second only counts as justification once the first has ruled out" = two claims, and "only the second concerns boundaries" = the second trio of terms). 20 real: 15 Choose a Response, 5 SAT verbal. Every SAT Math hit was a false positive. An unvalidated detector tripled its own finding — the SAT Math hub lesson, committed by the script written to honour it, one day later. The confirmed set is pinned as an explicit table in the repair script rather than re-derived, and the two known-false ids are listed with reasons. Repairs name each distractor by its content, so a future reshuffle cannot re-break them.',
   },
   {
     id: 'A8',
@@ -378,6 +378,11 @@ export const FOUND_WHILE_FIXING: Found[] = [
     date: '2026-08-06',
     what: 'Explanations cite options by POSITION ("the fourth is far too formal") and the positions do not match the stored choice order — in 8bcce6b3 the explanation\'s "fourth" is option A. Options have been reshuffled since authoring (see migration 078), so a student reading why they got an item wrong is told the wrong thing about which option was which. Student-facing, scope unmeasured, exactly checkable — measure the whole population before acting, per the Math-hub lesson. The 24 repairs written today quote the option text instead of numbering it.',
     landedAs: 'A13',
+  },
+  {
+    date: '2026-08-09',
+    what: 'A13 fixed — 20 explanations repaired — and the headline number was an artefact of my own detector. It reported 63; hand review of all 63 found most were ordinals counting CONTENT ("the second equation", "the first two infinitives", "in the first place"), not options. Three refinements later it reports 22, two of which are still false. 20 real. Every SAT Math hit was spurious, so the "SAT 37" in the earlier entry was almost entirely noise. The lesson is the one already written in CLAUDE.md about the SAT Math hub — a defect that can be checked exactly must be checked against data whose answer is known BEFORE its count is quoted — and this time the violation was in the checker built to honour that rule. Second finding, same session: the repair script first reported "no live row" for 15 of 20 targets because the read was unpaginated and PostgREST silently caps at 1000. That looked exactly like the rows having been archived.',
+    landedAs: 'fixed',
   },
   {
     date: '2026-08-07',
