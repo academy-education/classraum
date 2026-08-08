@@ -66,6 +66,15 @@
                 <data android:scheme="https" android:host="app.classraum.com" android:pathPrefix="/mobile/profile" />
                 <data android:scheme="https" android:host="app.classraum.com" android:pathPrefix="/mobile/reports" />
                 <data android:scheme="https" android:host="app.classraum.com" android:pathPrefix="/mobile/invoices" />
+                <!-- The PG's return leg. Android now checks out IN-APP, and
+                     PortOne's redirect flow (the only one that works in a
+                     WebView) sends the student to a bank app and back to
+                     BILLING_REDIRECT_PATH. That return must re-enter the
+                     app: unclaimed, it opens in a browser and strands a
+                     student who has already paid. Claimed narrowly — the
+                     rest of /mobile/study stays out, so iOS's web hand-off
+                     is unaffected. -->
+                <data android:scheme="https" android:host="app.classraum.com" android:pathPrefix="/mobile/study/billing-redirect" />
             </intent-filter>
 
         </activity>

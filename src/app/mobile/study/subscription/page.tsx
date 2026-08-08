@@ -161,11 +161,29 @@ export default function SubscriptionPage() {
    * costs nothing, already had a confirm step; taking money did not.
    */
   const [confirmingChange, setConfirmingChange] = useState<string | null>(null)
-  /** Plan id whose raw checkout URL is on screen — the no-plugin escape
-   *  hatch for when the native browser hand-off silently does nothing. */
-  const [showLinkFor, setShowLinkFor] = useState<string | null>(null)
-  const [copied, setCopied] = useState(false)
-  useEffect(() => { setIsNative(Capacitor.isNativePlatform()) }, [])
+  /**
+   * PURCHASE SURFACES ARE GATED ON iOS, NOT ON "NATIVE".
+   *
+   * Every money control on this page used to be hidden behind `isNative`,
+   * with the reason stated in the comments as "App Store IAP rules". That
+   * is an APPLE rule, and `isNative` is true on Android too — so Android
+   * inherited a restriction written for a different store and lost a
+   * checkout that already worked, in exchange for a "Subscribe on web"
+   * button that hands the URL to the OS and (with app links verified)
+   * gets it handed straight back.
+   *
+   * Korea's Telecommunications Business Act amendment and the Epic v.
+   * Google injunction both cut against Play forcing a single payment
+   * method, and the redirect flow in purchase-credits.ts was written for
+   * this exact WebView. So Android checks out in-app; iOS keeps the
+   * external hand-off, because Apple's rule really does apply there.
+   */
+  const [isIOS, setIsIOS] = useState(false)
+  useEffect(() => {
+    const native = Capacitor.isNativePlatform()
+    setIsNative(native)
+    setIsIOS(native && Capacitor.getPlatform() === 'ios')
+  }, [])
 
   // True while a GET of /api/study/subscription is outstanding — read by
   // the resume refresh so a return that lands mid-load doesn't race a
@@ -311,7 +329,7 @@ export default function SubscriptionPage() {
   // plan overwrote the shared plan row. Exclude the one already shown by the
   // active-pass banner (the pure-pass case) so it isn't listed twice.
   const heldPasses = (data?.heldPasses ?? []).filter(hp => hp.passId !== activePass?.id)
-  const passOffers = isNative ? [] : passes.filter(p => p.offer)
+  const passOffers = isIOS ? [] : passes.filter(p => p.offer)
   // Anyone not on a live paid subscription goes through checkout to
   // start one — free users, lapsed subscribers, legacy trials, and
   // pass holders (a pass isn't a recurring plan, so starting one is a
@@ -674,8 +692,9 @@ export default function SubscriptionPage() {
         {/* Buy credits — its own card so it's always visible on web, even
             for users with no subscription row yet. Open to everyone (free &
             General included; card-less buyers register a card in the flow).
-            Native app hides in-app purchases (App Store IAP rules). */}
-        {!isNative && (
+            iOS hides in-app purchases (App Store IAP rules); Android
+            checks out in-app — see the isIOS note above. */}
+        {!isIOS && (
           <div className="rounded-2xl bg-white ring-1 ring-gray-200/70 p-5 shadow-[0_1px_2px_rgba(0,0,0,0.03)]">
             <div className="flex items-center justify-between mb-1">
               <div className="flex items-center gap-2.5">
@@ -909,7 +928,7 @@ export default function SubscriptionPage() {
                   <div className="h-11 rounded-full bg-gray-50 ring-1 ring-gray-200/50 text-gray-400 text-[12.5px] font-medium inline-flex items-center justify-center text-center px-3">
                     {ko ? '유료 플랜이 없을 때 자동 적용돼요' : 'Applied automatically without a paid plan'}
                   </div>
-                ) : isNative ? (
+                ) : isIOS ? (
                   !isCurrent && (
                     <div className="flex flex-col gap-2">
                       <button
@@ -920,9 +939,9 @@ export default function SubscriptionPage() {
                             // A hand-off that fails must not look like a
                             // hand-off that worked. This button used to be a
                             // silent no-op whenever the OS refused the URL.
-                            if (!ok) { setShowLinkFor(plan.id); setError(ko
-                              ? '브라우저를 열지 못했어요. 아래 주소를 복사해 브라우저에서 열어 주세요.'
-                              : 'Could not open a browser. Copy the address below and open it in one.') }
+                            if (!ok) setError(ko
+                              ? '브라우저를 열지 못했어요. app.classraum.com 에서 결제를 진행해 주세요.'
+                              : 'Could not open a browser. Please go to app.classraum.com to subscribe.')
                           })
                         }}
                         className={studyButtonClass({ variant: 'secondary' })}
@@ -930,60 +949,7 @@ export default function SubscriptionPage() {
                         <ExternalLink className="w-4 h-4" />
                         {t('study.subscription.subscribeOnWeb')}
                       </button>
-                      {/* ESCAPE HATCH, deliberately always visible.
-                          Everything above depends on the native hand-off
-                          working, and when it does not it fails silently —
-                          the tap is indistinguishable from a tap that
-                          worked. This path touches no plugin at all, so it
-                          cannot fail the same way, and unlike a manifest
-                          change it ships in the web bundle rather than
-                          waiting on a store release. */}
-                      <button
-                        type="button"
-                        onClick={() => setShowLinkFor(showLinkFor === plan.id ? null : plan.id)}
-                        className="text-[12px] text-gray-400 underline underline-offset-2 py-1"
-                      >
-                        {ko ? '열리지 않나요? 주소 복사' : "Didn't open? Copy the link"}
-                      </button>
-                      {showLinkFor === plan.id && (
-                        <div className="rounded-xl bg-gray-50 ring-1 ring-gray-200/70 p-3 space-y-2">
-                          <p className="text-[11.5px] text-gray-500 leading-relaxed">
-                            {ko
-                              ? '이 주소를 휴대폰이나 컴퓨터의 브라우저에 붙여넣어 결제를 진행하세요.'
-                              : 'Paste this into a browser — on this phone or any computer — to finish checkout.'}
-                          </p>
-                          <p
-                            className="text-[11px] font-mono text-gray-700 break-all select-all bg-white rounded-lg p-2 ring-1 ring-gray-200/70"
-                            onClick={e => {
-                              // select-all handles the long-press copy that
-                              // works even where the Clipboard API does not.
-                              const r = document.createRange()
-                              r.selectNodeContents(e.currentTarget)
-                              const s = window.getSelection()
-                              s?.removeAllRanges(); s?.addRange(r)
-                            }}
-                          >
-                            {subscribeOnWebUrl(plan.id)}
-                          </p>
-                          <button
-                            type="button"
-                            onClick={() => {
-                              const url = subscribeOnWebUrl(plan.id)
-                              // Clipboard API needs a secure context and is
-                              // not guaranteed inside a WebView; the
-                              // select-all text above is the fallback, so a
-                              // rejection here is not an error worth showing.
-                              navigator.clipboard?.writeText(url)
-                                .then(() => setCopied(true))
-                                .catch(() => {})
-                            }}
-                            className="w-full h-9 rounded-full bg-white ring-1 ring-gray-200/70 text-gray-700 text-[12px] font-semibold"
-                          >
-                            {copied ? (ko ? '복사했어요' : 'Copied') : (ko ? '주소 복사' : 'Copy address')}
-                          </button>
-                        </div>
-                      )}
-                    </div>
+                      </div>
                   )
                 ) : isCurrent ? (
                   sub?.pending_plan ? (
@@ -1082,7 +1048,7 @@ export default function SubscriptionPage() {
                     </div>
                   </div>
                 )}
-                {!isNative && !isCurrent && isActive && !onPass && (
+                {!isIOS && !isCurrent && isActive && !onPass && (
                   <p className="text-[11.5px] text-gray-400 -mt-2 text-center leading-snug">
                     {isUpgrade
                       ? plan.intervalDays === 365
