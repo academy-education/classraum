@@ -149,6 +149,18 @@ export default function SubscriptionPage() {
   const [successMessage, setSuccessMessage] = useState<string | null>(null)
   const [isNative, setIsNative] = useState(false)
   const [confirmingCancel, setConfirmingCancel] = useState(false)
+  /**
+   * Plan id awaiting an explicit "yes, charge me" — see the confirm card
+   * below the plan buttons.
+   *
+   * An UPGRADE is charged IMMEDIATELY against the stored billing key
+   * (api/study/subscription/change-plan: "UPGRADE — immediate charge, fresh
+   * period, fresh grant"). Until now a single tap on "Upgrade to Premium"
+   * moved real money with nothing between the tap and the charge — no
+   * amount shown at the moment of decision, no way back. Cancelling, which
+   * costs nothing, already had a confirm step; taking money did not.
+   */
+  const [confirmingChange, setConfirmingChange] = useState<string | null>(null)
   useEffect(() => { setIsNative(Capacitor.isNativePlatform()) }, [])
 
   // True while a GET of /api/study/subscription is outstanding — read by
@@ -471,6 +483,7 @@ export default function SubscriptionPage() {
   const changePlan = useCallback(async (planId: string) => {
     if (acting !== null) return
     setActing(`change:${planId}`)
+    setConfirmingChange(null)
     setError(null)
     setSuccessMessage(null)
     try {
@@ -896,7 +909,17 @@ export default function SubscriptionPage() {
                   !isCurrent && (
                     <button
                       type="button"
-                      onClick={() => void openExternalUrl(subscribeOnWebUrl(plan.id))}
+                      onClick={() => {
+                        setError(null)
+                        void openExternalUrl(subscribeOnWebUrl(plan.id)).then(ok => {
+                          // A hand-off that fails must not look like a
+                          // hand-off that worked. This button used to be a
+                          // silent no-op whenever the OS refused the URL.
+                          if (!ok) setError(ko
+                            ? '브라우저를 열지 못했어요. app.classraum.com 에서 결제를 진행해 주세요.'
+                            : 'Could not open a browser. Please go to app.classraum.com to subscribe.')
+                        })
+                      }}
                       className={studyButtonClass({ variant: 'secondary' })}
                     >
                       <ExternalLink className="w-4 h-4" />
@@ -939,7 +962,15 @@ export default function SubscriptionPage() {
                 ) : (
                   <button
                     type="button"
-                    onClick={() => void changePlan(plan.id)}
+                    onClick={() => {
+                      // Upgrades take money now, so they ask first.
+                      // Downgrades only schedule a change at renewal and
+                      // are freely reversible, so they still go straight
+                      // through — a confirm on a free, undoable action is
+                      // noise that teaches people to tap past confirms.
+                      if (isUpgrade) { setError(null); setSuccessMessage(null); setConfirmingChange(plan.id) }
+                      else void changePlan(plan.id)
+                    }}
                     disabled={acting !== null}
                     className={`h-11 rounded-full text-[13px] font-semibold inline-flex items-center justify-center gap-1.5 active:scale-[0.98] disabled:opacity-60 transition-all ${
                       isUpgrade
@@ -956,6 +987,41 @@ export default function SubscriptionPage() {
                         : (ko ? '이 플랜으로 업그레이드' : 'Upgrade to this plan')
                       : (ko ? '갱신일에 변경' : 'Switch at renewal')}
                   </button>
+                )}
+                {confirmingChange === plan.id && (
+                  <div className="rounded-2xl bg-white ring-1 ring-primary/25 p-4 space-y-3 shadow-[0_1px_2px_rgba(0,0,0,0.03)]">
+                    <p className="text-[13.5px] text-gray-700 leading-relaxed">
+                      {ko
+                        ? `등록된 카드로 지금 ${formatWon(plan.priceWon)}이 결제되고, 오늘부터 새 ${plan.intervalDays === 365 ? '1년' : '30일'} 기간이 시작돼요.`
+                        : `Your saved card will be charged ${formatWon(plan.priceWon)} now, and a fresh ${plan.intervalDays === 365 ? '1-year' : '30-day'} period starts today.`}
+                    </p>
+                    <p className="text-[12px] text-gray-400 leading-relaxed">
+                      {ko ? '남은 기간은 일할 계산되지 않아요. ' : 'Time left on your current period is not pro-rated. '}
+                      <Link href="/mobile/study/refund-policy" className="text-primary underline underline-offset-2">
+                        {ko ? '환불 정책 보기' : 'View refund policy'}
+                      </Link>
+                    </p>
+                    <div className="flex gap-2.5">
+                      <button
+                        type="button"
+                        onClick={() => setConfirmingChange(null)}
+                        disabled={acting !== null}
+                        className="flex-1 h-11 rounded-full bg-white ring-1 ring-gray-200/70 text-gray-700 text-[13px] font-semibold hover:ring-gray-300 disabled:opacity-60"
+                      >
+                        {ko ? '취소' : 'Cancel'}
+                      </button>
+                      <StudyButton
+                        type="button"
+                        variant="primary"
+                        onClick={() => void changePlan(plan.id)}
+                        disabled={acting !== null}
+                        className="flex-1"
+                      >
+                        {busy ? <Loader2 className="w-4 h-4 animate-spin" /> : null}
+                        {ko ? `${formatWon(plan.priceWon)} 결제하기` : `Pay ${formatWon(plan.priceWon)}`}
+                      </StudyButton>
+                    </div>
+                  </div>
                 )}
                 {!isNative && !isCurrent && isActive && !onPass && (
                   <p className="text-[11.5px] text-gray-400 -mt-2 text-center leading-snug">

@@ -31,12 +31,41 @@
                 <data android:scheme="classraum" />
             </intent-filter>
 
-            <!-- Deep Linking: Universal Links (https://app.classraum.com) -->
+            <!-- Deep Linking: Universal Links (https://app.classraum.com)
+                 CLAIM PATHS, NEVER THE WHOLE HOST. This filter used to be a
+                 bare host match, which made the app the verified handler for
+                 EVERY app.classraum.com URL — including the ones we hand to
+                 the OS on purpose. "Subscribe on web" opens
+                 /auth?next=/mobile/study/subscription in a Chrome Custom Tab;
+                 Custom Tabs honour verified app links, so Android handed the
+                 URL straight back to MainActivity (launchMode=singleTask
+                 fronts the existing task) and the student landed back on the
+                 same screen having paid nothing, with no error to show.
+                 iOS was unaffected because SFSafariViewController deliberately
+                 does NOT fire universal links back into the presenting app —
+                 which is exactly why this read as Android-only.
+                 The same trap applied to /auth/callback: an OAuth return
+                 inside the Custom Tab would bounce into the app mid-login.
+                 So: list only paths that are real deep-link destinations
+                 (see mobilePaths in src/hooks/useNativeApp.ts). /auth and
+                 /mobile/study/** are deliberately NOT claimed — the whole
+                 web-checkout flow lives there and must stay in the browser.
+                 Push notifications route via the classraum:// scheme above,
+                 not https, so nothing here depends on a blanket claim. -->
             <intent-filter android:autoVerify="true">
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
-                <data android:scheme="https" android:host="app.classraum.com" />
+                <data android:scheme="https" android:host="app.classraum.com" android:pathPrefix="/dashboard" />
+                <data android:scheme="https" android:host="app.classraum.com" android:pathPrefix="/invite/" />
+                <data android:scheme="https" android:host="app.classraum.com" android:pathPrefix="/mobile/session" />
+                <data android:scheme="https" android:host="app.classraum.com" android:pathPrefix="/mobile/assignment" />
+                <data android:scheme="https" android:host="app.classraum.com" android:pathPrefix="/mobile/schedule" />
+                <data android:scheme="https" android:host="app.classraum.com" android:pathPrefix="/mobile/messages" />
+                <data android:scheme="https" android:host="app.classraum.com" android:pathPrefix="/mobile/notifications" />
+                <data android:scheme="https" android:host="app.classraum.com" android:pathPrefix="/mobile/profile" />
+                <data android:scheme="https" android:host="app.classraum.com" android:pathPrefix="/mobile/reports" />
+                <data android:scheme="https" android:host="app.classraum.com" android:pathPrefix="/mobile/invoices" />
             </intent-filter>
 
         </activity>
@@ -51,6 +80,20 @@
                 android:resource="@xml/file_paths"></meta-data>
         </provider>
     </application>
+
+    <!-- Chrome Custom Tabs needs to SEE a browser to hand a URL to.
+         targetSdk is 35, and from API 30 package visibility is filtered:
+         without this <queries> block CustomTabsClient cannot resolve any
+         browser package, so Browser.open() fails. openExternalUrl() is the
+         only way out of the WebView (Android's WebView silently discards
+         target="_blank"), so a failure there is a dead end for every
+         external link — web checkout, gift redemption, the policy pages. -->
+    <queries>
+        <intent>
+            <action android:name="android.intent.action.VIEW" />
+            <data android:scheme="https" />
+        </intent>
+    </queries>
 
     <!-- Permissions -->
     <uses-permission android:name="android.permission.INTERNET" />

@@ -31,18 +31,29 @@ export function isNativeApp(): boolean {
  * The Browser plugin bypasses `shouldOverrideUrlLoading` entirely and hands the URL to
  * the OS: Chrome Custom Tabs on Android, SFSafariViewController on iOS.
  */
-export async function openExternalUrl(url: string): Promise<void> {
+/**
+ * Returns false when the URL could not be handed off, so a caller whose
+ * whole screen depends on the hand-off (web checkout) can say so.
+ *
+ * It used to swallow the failure and return void: if Browser.open threw —
+ * which it does when no browser package is resolvable, the exact failure
+ * the <queries> block in AndroidManifest.xml now prevents — the tap became
+ * an indistinguishable no-op. A dead button and a working button looked
+ * the same, which is why this went unnoticed through a release.
+ */
+export async function openExternalUrl(url: string): Promise<boolean> {
   if (isNativeApp()) {
     try {
       await Browser.open({ url })
-      return
+      return true
     } catch (error) {
       console.error('Error opening external URL:', error)
-      return
+      return false
     }
   }
 
-  window.open(url, '_blank', 'noopener,noreferrer')
+  // Popup blockers return null rather than throwing.
+  return window.open(url, '_blank', 'noopener,noreferrer') !== null
 }
 
 // Get the current platform
