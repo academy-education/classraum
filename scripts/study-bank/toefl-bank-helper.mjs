@@ -341,6 +341,7 @@ async function insertListening(keepPath, files) {
  */
 async function insertRepeat(files) {
   const tagged = loadTagged(files)
+  if (!refuseUnlessGated({ task: 'listen_and_repeat', section: 'speaking', files, count: tagged.length })) return
   const db = admin()
   const { data: existing } = await db.from('study_item_bank')
     .select('content_hash').eq('family', 'toefl').eq('section', 'speaking')
@@ -382,6 +383,7 @@ async function insertRepeat(files) {
 async function insertWriting(flaggedPath, files) {
   const flagged = new Set((JSON.parse(readFileSync(flaggedPath, 'utf8')).archive) || [])
   const tagged = loadTagged(files)
+  if (!refuseUnlessGated({ task: tagged[0]?.it?.type, section: 'writing', files, count: tagged.length })) return
   const db = admin()
   const { data: existing } = await db.from('study_item_bank').select('content_hash').eq('family', 'toefl').eq('section', 'writing')
   const seen = new Set((existing || []).map(r => r.content_hash))
@@ -405,13 +407,106 @@ async function insertWriting(flaggedPath, files) {
   console.log(`\nWriting: inserted ${inserted}, skipped ${skipped}`)
 }
 
+
+/**
+ * The ledger gate, for every insert path.
+ *
+ * It was called from insertListening ONLY. insertRepeat and insertWriting
+ * reached study_item_bank without it, so two of three paths could bank a
+ * batch that had never been recorded as gated — the gate was documented
+ * as the pipeline's floor and enforced on a third of it.
+ */
+function refuseUnlessGated({ task, section, files, count }) {
+  const verdict = gateBatch({ task, family: 'toefl', section, itemFiles: files })
+  const override = overrideReason()
+  if (verdict.canInsert || override) {
+    if (override) console.warn(`\n!! GATE OVERRIDDEN: ${override}`)
+    return true
+  }
+  console.error(`\nREFUSED — ${count} item(s) not inserted.`)
+  console.error(`  batch family : ${verdict.family}`)
+  console.error(`  content hash : ${verdict.sha.slice(0, 16)}`)
+  console.error(`  reason       : ${verdict.reason}`)
+  process.exitCode = 1
+  return false
+}
+
+import { checkFillInBlanks, checkArrangeWords, checkSpeakingInterview } from './frozen-shapes.mjs'
+
+const FROZEN = {
+  'fill-in-blanks': {
+    type: 'fill_in_blanks', section: 'reading', domain: 'Complete the Words',
+    check: checkFillInBlanks, task: 'complete_the_words',
+    difficulty: it => it.difficulty || 'hard',
+    hash: it => createHash('md5').update(norm(it.passage)).digest('hex'),
+    words: it => String(it.passage).split(/\s+/).filter(Boolean).length,
+  },
+  'arrange-words': {
+    type: 'arrange_words', section: 'writing', domain: 'Build a Sentence',
+    check: checkArrangeWords, task: 'build_a_sentence',
+    difficulty: it => it.difficulty || 'medium',
+    hash: it => createHash('md5').update(norm(it.correct_answer)).digest('hex'),
+    words: it => (it.choices || []).join(' ').split(/\s+/).filter(Boolean).length,
+  },
+  'interview': {
+    type: 'speaking_interview', section: 'speaking', domain: 'Interview',
+    check: checkSpeakingInterview, task: 'interview',
+    difficulty: it => it.difficulty || 'hard',
+    hash: it => createHash('md5').update(norm(it.prompt) + '|' + norm(it.passage)).digest('hex'),
+    words: it => String(it.passage).split(/\s+/).filter(Boolean).length,
+  },
+}
+
+/**
+ * The three frozen types. 249 such items are live and, until now, none of
+ * them had an insert command — they entered by a path that no longer
+ * exists, so the bank could serve them and could not grow them.
+ */
+async function insertFrozen(kind, files) {
+  const spec = FROZEN[kind]
+  const tagged = loadTagged(files)
+  if (!tagged.length) { console.error('no items'); process.exitCode = 1; return }
+  if (!refuseUnlessGated({ task: spec.task, section: spec.section, files, count: tagged.length })) return
+
+  const db = admin()
+  const { data: existing } = await db.from('study_item_bank')
+    .select('content_hash').eq('family', 'toefl').eq('item_type', spec.type)
+  const seen = new Set((existing || []).map(r => r.content_hash))
+
+  let inserted = 0, rejected = 0
+  for (const { id, it } of tagged) {
+    const why = spec.check(it)
+    if (why) { console.log(`REJECT ${id} — ${why}`); rejected++; continue }
+    const content_hash = spec.hash(it)
+    if (seen.has(content_hash)) { console.log(`DUP ${id}`); continue }
+    const { error } = await db.from('study_item_bank').insert({
+      family: 'toefl', section: spec.section, domain: spec.domain,
+      difficulty: spec.difficulty(it), item_type: spec.type, task: spec.task,
+      item: it, content_hash, word_count: spec.words(it),
+      verified: true, archived: false, source: 'hand', cohort: COHORT,
+      verify_meta: { method: 'claude-authored+shape-rule-check', shape: spec.type },
+    })
+    if (error) { console.log(`ERR ${id}: ${error.message}`); rejected++; continue }
+    seen.add(content_hash); inserted++
+  }
+  console.log(`\n${spec.domain}: inserted ${inserted}, rejected ${rejected}`)
+}
+
 async function main() {
   const [cmd, ...rest] = process.argv.slice(2)
   if (cmd === 'blind-listening') { process.stdout.write(renderBlindListening(loadTagged(rest))); return }
   if (cmd === 'insert-listening') { await insertListening(rest[0], rest.slice(1)); return }
   if (cmd === 'insert-repeat') { await insertRepeat(rest); return }
   if (cmd === 'insert-writing') { await insertWriting(rest[0], rest.slice(1)); return }
-  console.error('usage:\n  toefl-bank-helper.mjs blind-listening <file...>\n  toefl-bank-helper.mjs insert-listening <votes.json> <file...>\n  toefl-bank-helper.mjs insert-repeat <file...>\n  toefl-bank-helper.mjs insert-writing <flagged.json> <file...>')
+  if (cmd === 'insert-fill-in-blanks') { await insertFrozen('fill-in-blanks', rest); return }
+  if (cmd === 'insert-arrange-words') { await insertFrozen('arrange-words', rest); return }
+  if (cmd === 'insert-interview') { await insertFrozen('interview', rest); return }
+  console.error('usage:\n  toefl-bank-helper.mjs blind-listening <file...>\n  toefl-bank-helper.mjs insert-listening <votes.json> <file...>\n  toefl-bank-helper.mjs insert-repeat <file...>\n  toefl-bank-helper.mjs insert-writing <flagged.json> <file...>\n  toefl-bank-helper.mjs insert-fill-in-blanks <file...>\n  toefl-bank-helper.mjs insert-arrange-words <file...>\n  toefl-bank-helper.mjs insert-interview <file...>')
   process.exit(1)
 }
-main().catch(e => { console.error(e); process.exit(1) })
+// Only run as a CLI. The shape validators are exported so they can be
+// tested and pointed at the live bank; importing the module used to print
+// usage and exit(1), which made them untestable.
+if (process.argv[1] && process.argv[1].endsWith('toefl-bank-helper.mjs')) {
+  main().catch(e => { console.error(e); process.exit(1) })
+}
