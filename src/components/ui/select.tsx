@@ -5,6 +5,7 @@ import * as SelectPrimitive from "@radix-ui/react-select"
 import { CheckIcon, ChevronDownIcon, ChevronUpIcon } from "lucide-react"
 
 import { cn } from "@/lib/utils"
+import { hapticTap } from "@/lib/nativeHaptics"
 
 function Select({
   ...props
@@ -107,13 +108,22 @@ function SelectLabel({
   )
 }
 
+/**
+ * Choosing an option is a decision, so it presses back — the same reason
+ * a button does. Radix owns the pointer handling here, so the haptic
+ * hangs off onSelect rather than onClick: onClick would miss a keyboard
+ * or assistive-tech selection, which is the case least likely to be
+ * noticed as missing.
+ */
 function SelectItem({
   className,
   children,
+  onSelect,
   ...props
 }: React.ComponentProps<typeof SelectPrimitive.Item>) {
   return (
     <SelectPrimitive.Item
+      onSelect={(e) => { hapticTap(); onSelect?.(e) }}
       data-slot="select-item"
       className={cn(
         "focus:bg-accent focus:text-accent-foreground [&_svg:not([class*='text-'])]:text-muted-foreground relative flex w-full cursor-default items-center gap-2 rounded-sm py-1.5 pr-8 pl-2 text-sm outline-hidden select-none data-[disabled]:pointer-events-none data-[disabled]:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 *:[span]:last:flex *:[span]:last:items-center *:[span]:last:gap-2 data-[state=checked]:bg-blue-50 data-[state=checked]:text-blue-600",

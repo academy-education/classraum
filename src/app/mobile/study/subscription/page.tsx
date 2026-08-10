@@ -705,7 +705,10 @@ export default function SubscriptionPage() {
               </p>
             )}
             <p className="text-[11.5px] text-gray-400 mt-1.5">
-              {ko ? '생성에 실패하면 크레딧은 자동으로 환불돼요.' : 'Failed generations are refunded automatically.'}
+              {/* What the routes actually do: credits are reserved at
+                  start and refunded on every failure path (assemble /
+                  generate → refundTestCredits). */}
+              {ko ? '테스트를 시작하지 못하면 크레딧은 자동으로 환불돼요.' : 'If a test fails to start, its credits are refunded automatically.'}
             </p>
 
             {/* Renewal / cancel date — surfaced on the top card so the next
@@ -829,10 +832,15 @@ export default function SubscriptionPage() {
                 </div>
               </div>
             </div>
+            {/* Both live passes are ROLLING (durationDays: 90) — there is
+                no exam date to run "through", so don't claim one. And a
+                pass entitlement is test-SCOPED (grantTestEntitlement /
+                canAccessTest): a SAT pass does not unlock TOEFL, so
+                "full Premium access" was too broad. */}
             <p className="text-[12.5px] text-gray-500 mt-3 leading-relaxed">
               {ko
-                ? `시험일(${formatDate(sub.current_period_end, ko)})까지 모든 프리미엄 기능을 이용할 수 있어요. 이후 자동으로 무료 플랜으로 전환됩니다.`
-                : `Full Premium access through your exam day (${formatDate(sub.current_period_end, ko)}). You'll move to the free plan automatically after that.`}
+                ? `${formatDate(sub.current_period_end, ko)}까지 프리미엄 기능과 ${passTestLabel(activePass.id, ko)} 시험을 이용할 수 있어요. 이후 자동으로 무료 플랜으로 전환됩니다.`
+                : `Premium features and ${passTestLabel(activePass.id, ko)} tests until ${formatDate(sub.current_period_end, ko)}. You'll move to the free plan automatically after that.`}
             </p>
           </div>
         )}
@@ -898,7 +906,8 @@ export default function SubscriptionPage() {
         )}
 
         {/* Plan cards — visible even while on a pass, so a pass holder can
-            upgrade to a recurring plan that unlocks every test. */}
+            upgrade to a recurring plan, which unlocks every SHIPPED test
+            (SAT + TOEFL) rather than only the pass's own family. */}
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {displayedPlans.map(plan => {
             const isCurrent = currentPlanId === plan.id
@@ -958,25 +967,45 @@ export default function SubscriptionPage() {
                 <ul className="space-y-2 text-[13px] text-gray-600 flex-1">
                   <Feature ok>
                     {isFreePlan
-                      ? (ko ? `가입 시 AI 테스트 크레딧 ${FREE_CREDITS}개 (1회)` : `${FREE_CREDITS} AI test credits at signup (one-time)`)
+                      // "AI test credits" overstated it — shipped mock
+                      // tests are assembled from a verified bank with no
+                      // model call at request time.
+                      ? (ko ? `가입 시 테스트 크레딧 ${FREE_CREDITS}개 (1회)` : `${FREE_CREDITS} test credits at signup (one-time)`)
                       : (ko ? `매달 테스트 크레딧 ${plan.monthlyCredits}개` : `${plan.monthlyCredits} test credits every month`)}
                   </Feature>
+                  {/* Only SAT and TOEFL have a shipped item bank — every
+                      other family is locked (SHIPPED_TEST_FAMILIES in
+                      lib/study/shipped-tests.ts, enforced by
+                      /api/study/test/assemble). Name them rather than
+                      implying a full catalog. */}
                   <Feature ok>
-                    {ko ? '문제 연습 · 플래시카드 무제한' : 'Unlimited practice & flashcards'}
+                    {ko ? 'SAT · TOEFL 모의고사' : 'SAT & TOEFL mock tests'}
+                  </Feature>
+                  {/* Practice/flashcard sets are NOT unlimited: each fresh
+                      set spends 1 energy (spendEnergy in
+                      lib/study/practice-quota.ts). Free = cap 3, +1 / 8h;
+                      any paid plan or pass = cap 8, +1 / 3h. Numbers
+                      mirror FREE/PAID_ENERGY_CAP and *_REFILL_HOURS —
+                      that module is server-only, so it can't be imported
+                      into this client component. */}
+                  <Feature ok>
+                    {isFreePlan
+                      ? (ko ? '문제 연습 · 플래시카드 (에너지 3, 8시간마다 1 충전)' : 'Practice & flashcards (energy 3, +1 every 8h)')
+                      : (ko ? '문제 연습 · 플래시카드 (에너지 8, 3시간마다 1 충전)' : 'Practice & flashcards (energy 8, +1 every 3h)')}
                   </Feature>
                   <Feature ok={premium}>
                     {ko ? '스피킹 음성 채점 (TOEFL)' : 'Audio Speaking grading (TOEFL)'}
                   </Feature>
                   <Feature ok={premium}>
-                    {premium
-                      ? (ko ? '스냅 풀이 무제한' : 'Unlimited snap-to-solve')
-                      : (ko ? '스냅 풀이 하루 5회' : 'Snap-to-solve 5/day')}
-                  </Feature>
-                  <Feature ok={premium}>
                     {ko ? '점수 추이 + 상세 분석' : 'Score trend + analytics'}
                   </Feature>
-                  <Feature ok={!isFreePlan}>
-                    {ko ? '크레딧 추가 구매 가능' : 'Buy extra credit packs'}
+                  {/* Packs are open to EVERY tier, free included — the
+                      purchase-pack route is status-agnostic and this page
+                      renders the buy-credits card unconditionally. The old
+                      X on the free card claimed a restriction that does
+                      not exist. */}
+                  <Feature ok>
+                    {ko ? '크레딧 추가 구매 (만료 없음)' : 'Buy extra credit packs (never expire)'}
                   </Feature>
                 </ul>
 
@@ -1251,6 +1280,17 @@ function formatWon(won: number): string {
   return `₩${won.toLocaleString()}`
 }
 
+/** The test family a pass unlocks, for copy that must name the scope.
+ *  Mirrors STUDY_PASSES[].test — kept as a local map because the payload
+ *  the page receives carries the pass id but not the family. */
+const PASS_TEST_LABEL: Record<string, string> = {
+  sat_pass_v1: 'SAT',
+  toefl_pass_v1: 'TOEFL',
+}
+function passTestLabel(passId: string, ko: boolean): string {
+  return PASS_TEST_LABEL[passId] ?? (ko ? '해당 시험' : 'your test')
+}
+
 /** Short "<Test> Pass" label for the scoped-credit chips. */
 /** Per-price unit suffix (/ month, / 3M, / yr). */
 function durationUnit(days: number, ko: boolean, t: (k: string) => unknown): string {
@@ -1309,10 +1349,13 @@ function PassCard({ p, ko, acting, onBuy }: {
         ) : null}
       </div>
       <div className="mt-2 text-2xl font-bold tracking-tight">{formatWon(p.priceWon)}</div>
+      {/* Pass credits land in a test-SCOPED bucket (study_pass_credits,
+          spendable only on that family — see reserveTestCredits), so the
+          card says which test they work on rather than "test credits". */}
       <p className={`text-[13px] ${theme.bodyText} mt-1.5 leading-relaxed flex-1`}>
         {ko
-          ? `${p.blurb_ko} + 테스트 크레딧 ${p.credits}개. 한 번 결제로 끝.`
-          : `${p.blurb_en} + ${p.credits} test credits. One payment, done.`}
+          ? `${p.blurb_ko} + ${passTestLabel(p.id, ko)} 전용 테스트 크레딧 ${p.credits}개. 한 번 결제로 끝.`
+          : `${p.blurb_en} + ${p.credits} ${passTestLabel(p.id, ko)}-only test credits. One payment, done.`}
       </p>
       <button
         type="button"

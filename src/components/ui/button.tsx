@@ -3,6 +3,7 @@ import { Slot } from "@radix-ui/react-slot"
 import { cva, type VariantProps } from "class-variance-authority"
 
 import { cn } from "@/lib/utils"
+import { hapticTap } from "@/lib/nativeHaptics"
 
 const buttonVariants = cva(
   "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive",
@@ -38,21 +39,59 @@ const buttonVariants = cva(
 export type ButtonProps = React.ComponentProps<"button"> &
   VariantProps<typeof buttonVariants> & {
     asChild?: boolean
+    /**
+     * Opt OUT of the press haptic. Default is on.
+     *
+     * Off is right for a control that fires many times in quick
+     * succession (a stepper held down, a repeat/seek control): a buzz per
+     * repeat stops reading as feedback and starts reading as a fault.
+     */
+    haptic?: boolean
   }
 
+/**
+ * HAPTICS LIVE HERE, NOT IN EVERY onClick.
+ *
+ * The app had haptics in seventeen files. StudyButton had them; this —
+ * the base button behind auth, the dashboard, every dialog and every
+ * form — did not, so whether a press felt like anything depended on
+ * which component the author happened to reach for.
+ *
+ * Wrapping onClick once covers all of them and cannot be forgotten by
+ * the next person adding a button. The alternative, dropping hapticTap()
+ * into hundreds of handlers, is the same decision made hundreds of times
+ * and drifts on the first one somebody misses.
+ *
+ * Fires only on a real press: `disabled` is checked because Slot
+ * (asChild) renders whatever child it is given and will happily forward
+ * a click that the styling merely LOOKS inert for. hapticTap itself is
+ * fire-and-forget and a silent no-op off-native, so this costs the web
+ * nothing.
+ */
 function Button({
   className,
   variant,
   size,
   asChild = false,
+  haptic = true,
+  onClick,
   ...props
 }: ButtonProps) {
   const Comp = asChild ? Slot : "button"
+
+  const handleClick = React.useCallback(
+    (e: React.MouseEvent<HTMLButtonElement>) => {
+      if (haptic && !props.disabled) hapticTap()
+      onClick?.(e)
+    },
+    [haptic, onClick, props.disabled],
+  )
 
   return (
     <Comp
       data-slot="button"
       className={cn(buttonVariants({ variant, size, className }))}
+      onClick={handleClick}
       {...props}
     />
   )

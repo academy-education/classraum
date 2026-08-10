@@ -35,6 +35,7 @@ import { DailyChallengeCard } from './_shared/DailyChallengeCard'
 import { useStudyErrorToast, startFailedMessage } from './_shared/useStudyErrorToast'
 import { OnboardingWizard } from './OnboardingWizard'
 import { useOnboardingGate } from './useOnboardingGate'
+import { PullToRefresh } from './_shared/usePullToRefresh'
 import { LandingDataProvider, useLandingData } from './LandingDataProvider'
 import { SocialPresenceCard } from './SocialPresenceCard'
 import { SkeletonTestGrid, SkeletonBlock, SkeletonCard } from './skeletons'
@@ -392,15 +393,21 @@ function StudyLandingInner() {
 
   useEffect(() => { void loadTopics() }, [loadTopics])
 
-  // Native pull-to-refresh: the shared app layout fires this event on a
-  // mobile pull-down. Reload the topic grid + the bundled landing data
-  // (streak / progress / prefs) so the gesture actually refreshes content
-  // rather than just spinning the indicator.
+  /*
+   * Pull-to-refresh — reloads the topic grid plus the bundled landing
+   * data (streak / progress / prefs).
+   *
+   * This used to be a `dashboardPullRefresh` window listener, which
+   * never fired here: that event is dispatched only by
+   * src/app/(app)/layout.tsx, and /mobile/** is NOT inside the (app)
+   * route group. The landing page therefore had no working pull-to-
+   * refresh at all despite appearing to handle one. It now uses the
+   * shared <PullToRefresh> like every other study surface, and awaits
+   * both reloads so the spinner holds until the data lands.
+   */
   const refetchLanding = landingData?.refetch
-  useEffect(() => {
-    const onRefresh = () => { void loadTopics(); void refetchLanding?.() }
-    window.addEventListener('dashboardPullRefresh', onRefresh)
-    return () => window.removeEventListener('dashboardPullRefresh', onRefresh)
+  const refresh = useCallback(async () => {
+    await Promise.all([loadTopics(), refetchLanding?.()])
   }, [loadTopics, refetchLanding])
 
   // target_test now flows in via LandingDataProvider — one bundled
@@ -495,7 +502,11 @@ function StudyLandingInner() {
   }
 
   return (
-    <div className="relative">
+    // Own scroll context (h-full > flex-1 overflow-y-auto), the same
+    // shape StudyScrollShell establishes for the sub-pages, so the pull
+    // gesture has a container to read scrollTop from.
+    <div className="flex flex-col h-full">
+    <PullToRefresh onRefresh={refresh} className="flex-1 overflow-y-auto relative">
       {errorToast}
       {/* Decorative ambient gradient — sits behind everything, very subtle. */}
       <div
@@ -894,6 +905,7 @@ function StudyLandingInner() {
           re-appears after the wizard finishes (or is skipped). */}
       {needsOnboarding && <OnboardingWizard onComplete={markComplete} />}
 
+    </PullToRefresh>
     </div>
   )
 }

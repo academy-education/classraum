@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useMemo, useRef, useState } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import {
@@ -12,6 +12,7 @@ import { authHeaders } from '@/lib/auth-headers'
 import { useTranslation } from '@/hooks/useTranslation'
 import { usePersistentMobileAuth } from '@/contexts/PersistentMobileAuth'
 import { StudyPageHeader, StudyPageTransition } from '../_shared/primitives'
+import { PullToRefresh } from '../_shared/usePullToRefresh'
 import { studyButtonClass } from '../_shared/StudyButton'
 import { SkeletonBlock, SkeletonStickyHeader } from '../skeletons'
 import { PathMascot } from '../_shared/PathMascot'
@@ -92,11 +93,17 @@ function StudyPathInner() {
   const [noCreditsOpen, setNoCreditsOpen] = useState(false)
   const [repeating, setRepeating] = useState(false)
 
-  useEffect(() => {
+  // Extracted from the mount effect so pull-to-refresh can AWAIT the
+  // reload. The old `cancelled` flag guarded one in-flight mount; a
+  // refresh can now race a mount, so the guard is a sequence number —
+  // only the newest run is allowed to write state.
+  const loadSeq = useRef(0)
+  const load = useCallback(async () => {
     if (!user?.userId) return
-    let cancelled = false
+    const seq = ++loadSeq.current
+    const cancelled = () => seq !== loadSeq.current
 
-    void (async () => {
+    {
       // Prefs first — target_test drives which template we resolve.
       // Subscription tier rides along to gate the page for free users.
       let target: string | null = null
@@ -109,21 +116,21 @@ function StudyPathInner() {
         if (res.ok) {
           const json = await res.json() as { prefs?: Prefs }
           target = json.prefs?.target_test ?? null
-          if (!cancelled) setPrefs(json.prefs ?? null)
+          if (!cancelled()) setPrefs(json.prefs ?? null)
         }
-        if (!cancelled) {
+        if (!cancelled()) {
           const sub = subRes.ok ? await subRes.json() : null
           const tier = (sub?.tier as string | undefined) ?? 'free'
           const status = sub?.subscription?.status as string | undefined
           setPaid(tier !== 'free' && (status === 'active' || status === 'trial'))
           if (typeof sub?.credits?.total === 'number') setCreditBalance(sub.credits.total)
         }
-      } catch { if (!cancelled) setPaid(false) }
+      } catch { if (!cancelled()) setPaid(false) }
 
       const tpl = getPathTemplate(target)
-      if (!cancelled) setTemplate(tpl)
+      if (!cancelled()) setTemplate(tpl)
       if (!tpl) {
-        if (!cancelled) setLoading(false)
+        if (!cancelled()) setLoading(false)
         return
       }
 
@@ -180,15 +187,15 @@ function StudyPathInner() {
         progress[nodeId] = p
       }
 
-      if (!cancelled) {
+      if (!cancelled()) {
         setTopicIdBySlug(bySlug)
         setProgressByNode(progress)
         setLoading(false)
       }
-    })()
-
-    return () => { cancelled = true }
+    }
   }, [user?.userId])
+
+  useEffect(() => { void load() }, [load])
 
   const annotated = useMemo(() => {
     if (!template) return []
@@ -439,6 +446,7 @@ function StudyPathInner() {
           testSlug={template.testSlug}
           topicIdBySlug={topicIdBySlug}
           onRepeatRequest={requestRepeat}
+          onRefresh={load}
         />
       </StudyPageTransition>
       <CreditConfirmSheet
@@ -670,7 +678,7 @@ function RemoveConfirmSheet({
 }
 
 function PathList({
-  nodes, testSlug, topicIdBySlug, onRepeatRequest,
+  nodes, testSlug, topicIdBySlug, onRepeatRequest, onRefresh,
 }: {
   nodes: PathNodeWithState[]
   testSlug: string
@@ -678,6 +686,10 @@ function PathList({
   /** Opens the 2-credit whole-path repeat flow (confirm sheet lives in
    *  the parent). Only reachable once every stop is completed. */
   onRepeatRequest: () => void
+  /** Pull-to-refresh: re-reads path progress. This list owns the scroll
+   *  container, so the gesture has to be attached here rather than in
+   *  the parent. */
+  onRefresh: () => void | Promise<void>
 }) {
   const { language } = useTranslation()
   const ko = language === 'korean'
@@ -784,7 +796,7 @@ function PathList({
   }
 
   return (
-    <div className="flex-1 overflow-y-auto">
+    <PullToRefresh onRefresh={onRefresh} className="flex-1 overflow-y-auto relative">
       {/* Hero-style progress banner — gradient card with mascot inline,
           big % display, sub-metric. Replaces the plain white card. */}
       <div className="max-w-md mx-auto px-5 pt-4 pb-2">
@@ -948,7 +960,7 @@ function PathList({
 
         <span data-test-slug={testSlug} className="hidden" aria-hidden />
       </div>
-    </div>
+    </PullToRefresh>
   )
 }
 

@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useMemo, useState } from 'react'
+import { useCallback, useEffect, useMemo, useState } from 'react'
 import Link from 'next/link'
 import { MessageCircle, ChevronRight, ListChecks, Layers, ClipboardList, Mic, History as HistoryIcon, Search, X, Flame } from '@/app/mobile/study/_shared/icons'
 import { StudyPageHeader, StudyScrollShell, StudyEmptyState, StudyPager } from '../_shared/primitives'
@@ -77,29 +77,29 @@ function HistoryInner() {
   const [modeFilter, setModeFilter] = useState<FilterKey>('all')
   const [page, setPage] = useState(0)
 
-  useEffect(() => {
+  // Extracted from the mount effect so pull-to-refresh can await it —
+  // a session finished on another device should appear on a pull, and
+  // the spinner must hold until the rows are actually back.
+  const load = useCallback(async () => {
     if (!user?.userId) return
-    let cancelled = false
-    void (async () => {
-      const { data, error } = await db
-        .from('study_sessions')
-        .select(`
-          id, mode, language, title, status, score, config, last_active_at, topic_freeform,
-          topic:study_topics ( slug, name_en, name_ko )
-        `)
-        .eq('student_id', user.userId)
-        .eq('archived', false)
-        .order('last_active_at', { ascending: false })
-        .limit(200)
-      if (cancelled) return
-      // Query failure must not render the "start studying" empty state
-      // to a student with hundreds of sessions.
-      if (error) setLoadFailed(true)
-      else setRows((data ?? []) as unknown as Row[])
-      setLoading(false)
-    })()
-    return () => { cancelled = true }
+    const { data, error } = await db
+      .from('study_sessions')
+      .select(`
+        id, mode, language, title, status, score, config, last_active_at, topic_freeform,
+        topic:study_topics ( slug, name_en, name_ko )
+      `)
+      .eq('student_id', user.userId)
+      .eq('archived', false)
+      .order('last_active_at', { ascending: false })
+      .limit(200)
+    // Query failure must not render the "start studying" empty state
+    // to a student with hundreds of sessions.
+    if (error) setLoadFailed(true)
+    else { setLoadFailed(false); setRows((data ?? []) as unknown as Row[]) }
+    setLoading(false)
   }, [user?.userId])
+
+  useEffect(() => { void load() }, [load])
 
   // Counts per mode — powers the filter chip badges (over the whole
   // fetched window, not the query-narrowed set, so the badges are stable
@@ -140,6 +140,7 @@ function HistoryInner() {
 
   return (
     <StudyScrollShell
+      onRefresh={load}
       header={
         <StudyPageHeader
           backHref="/mobile/study"

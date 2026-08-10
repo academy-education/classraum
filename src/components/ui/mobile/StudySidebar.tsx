@@ -3,6 +3,7 @@
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 import { cn } from '@/lib/utils'
+import { hapticTap } from '@/lib/nativeHaptics'
 import { useMobileNav } from './useMobileNav'
 
 /**
@@ -38,7 +39,11 @@ export function StudySidebar() {
           <button
             key={item.href}
             type="button"
-            onClick={() => { if (!active) router.push(item.href) }}
+            // Only on a real navigation. Tapping the tab you are already
+            // on should feel like nothing, because nothing happens —
+            // buzzing there teaches the buzz means "pressed", not
+            // "went somewhere", and it stops carrying information.
+            onClick={() => { if (!active) { hapticTap(); router.push(item.href) } }}
             aria-current={active ? 'page' : undefined}
             className={cn(
               'group flex items-center gap-3 rounded-xl px-3 h-11 text-[14px] font-medium transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/40',

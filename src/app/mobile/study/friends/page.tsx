@@ -121,7 +121,10 @@ function FriendsInner() {
   }
 
   return (
-    <StudyScrollShell header={header}>
+    // Friends and the leaderboard are the most obviously stale-able data
+    // on the surface — someone else's XP changes without you doing
+    // anything — so this is exactly where a pull belongs.
+    <StudyScrollShell header={header} onRefresh={load}>
       <StudyPageTransition>
         <div className="space-y-6">
           <ViewLeaderboardButton ko={ko} count={data.friends.length} />

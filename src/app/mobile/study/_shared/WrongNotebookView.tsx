@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
+import { Capacitor } from '@capacitor/core'
 import { BookOpen, Printer, CheckCircle2, XCircle, Pencil, Sparkles, ChevronRight, ChevronLeft, BookmarkCheck, Image as ImageIcon, Search, X, AlertCircle } from '@/app/mobile/study/_shared/icons'
 import { useTranslation } from '@/hooks/useTranslation'
 import {
@@ -93,6 +94,24 @@ export function WrongNotebookInner({ asTab = false }: { asTab?: boolean } = {}) 
   const [query, setQuery] = useState('')
   const [page, setPage] = useState(0)
   const [reviewedPage, setReviewedPage] = useState(0)
+
+  /**
+   * Printing has no meaningful target inside a Capacitor WebView: there is
+   * no print dialog, no "Save as PDF" destination, and no file system the
+   * student can reach afterwards. The control is a dead end on iOS and
+   * Android, so the ENTRY POINT is hidden there. On the web it works and
+   * must stay.
+   *
+   * The /mobile/study/wrong-notebook/print ROUTE is deliberately left
+   * alone — it still renders if reached by URL. Only the affordance that
+   * advertises it is gated.
+   *
+   * Read in an effect, not at module scope: isNativePlatform() must not
+   * run during SSR, and starting at `false` keeps the server and first
+   * client render identical (same pattern as study/subscription/page.tsx).
+   */
+  const [isNative, setIsNative] = useState(false)
+  useEffect(() => { setIsNative(Capacitor.isNativePlatform()) }, [])
 
   // Reset both paginators when filters change so students never land on a
   // now-empty page after tightening a filter.
@@ -216,6 +235,7 @@ export function WrongNotebookInner({ asTab = false }: { asTab?: boolean } = {}) 
 
   return (
     <StudyScrollShell
+      onRefresh={load}
       header={
         <StudyPageHeader
           backHref={asTab ? undefined : '/mobile/study'}
@@ -227,7 +247,11 @@ export function WrongNotebookInner({ asTab = false }: { asTab?: boolean } = {}) 
           subtitle={ko
             ? `틀린 문제 ${entries.length}개를 다시 풀어보고 메모를 남겨보세요.`
             : `Revisit ${entries.length} wrong answers and jot down what tripped you up.`}
-          rightSlot={
+          rightSlot={isNative ? undefined : (
+            /* Web only — a Capacitor WebView has no print dialog and no
+               reachable file system, so this button would go nowhere on
+               native. Hidden, not disabled: a greyed-out button still
+               tells the student the feature exists and is broken. */
             <Link
               href={(() => {
                 // Forward every filter the student has set on the page so
@@ -247,7 +271,7 @@ export function WrongNotebookInner({ asTab = false }: { asTab?: boolean } = {}) 
             >
               <Printer className="w-3.5 h-3.5" />{t('study.wrongNotebook.print')}
             </Link>
-          }
+          )}
         />
       }
     >

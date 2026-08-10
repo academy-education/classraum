@@ -1,11 +1,11 @@
 "use client"
 
-import { useEffect, useState, useRef } from 'react'
+import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { db } from '@/lib/supabase'
 import { Capacitor } from '@capacitor/core'
 import { performLogout } from '@/lib/logout'
-import { hapticTap, hapticImpact } from '@/lib/nativeHaptics'
+import { hapticTap } from '@/lib/nativeHaptics'
 import { useTranslation } from '@/hooks/useTranslation'
 import { useLanguage } from '@/contexts/LanguageContext'
 import { usePersistentMobileAuth } from '@/contexts/PersistentMobileAuth'
@@ -45,7 +45,6 @@ import {
   ChevronRight,
   School,
   GraduationCap,
-  RefreshCw,
   UserCheck,
   Trash2,
   AlertTriangle,
@@ -58,7 +57,7 @@ import {
 import Link from 'next/link'
 import { useSelectedStudentStore, useSelectedStudentHydrated } from '@/stores/selectedStudentStore'
 import { StudentSelectorModal } from '@/components/ui/student-selector-modal'
-import { MOBILE_FEATURES } from '@/config/mobileFeatures'
+import { PullToRefresh } from '@/app/mobile/study/_shared/usePullToRefresh'
 
 /**
  * Which of the app's two top-level modes a section belongs to.
@@ -202,12 +201,6 @@ function MobileProfilePageContent() {
     }
   }, [showLogoutConfirm, showDeleteConfirm])
 
-  // Pull-to-refresh states
-  const [isRefreshing, setIsRefreshing] = useState(false)
-  const [pullDistance, setPullDistance] = useState(0)
-  const startY = useRef(0)
-  const scrollRef = useRef<HTMLDivElement>(null)
-
   // Cache invalidation: clear cache when userId changes (parent switching students)
   useEffect(() => {
     if (typeof window !== 'undefined' && user?.userId) {
@@ -343,43 +336,16 @@ function MobileProfilePageContent() {
     await updatePreferences({ language: newLanguage })
   }
 
-  // Pull-to-refresh handlers
+  // Pull-to-refresh. The gesture itself (threshold, damping, haptic,
+  // spinner) lives in <PullToRefresh> — this page used to hand-roll its
+  // own, which is why it felt different from the study pages. All this
+  // owes it now is the reload; it awaits, so the spinner holds until the
+  // profile data has actually landed.
   const handleRefresh = async () => {
-    setIsRefreshing(true)
-    setPullDistance(0)
-
     try {
       await refetchProfile()
     } catch (error) {
       console.error('Error refreshing data:', error)
-    } finally {
-      setIsRefreshing(false)
-    }
-  }
-
-  const handleTouchStart = (e: React.TouchEvent) => {
-    if (scrollRef.current?.scrollTop === 0) {
-      startY.current = e.touches[0].clientY
-    }
-  }
-
-  const handleTouchMove = (e: React.TouchEvent) => {
-    if (scrollRef.current?.scrollTop === 0 && !isRefreshing) {
-      const currentY = e.touches[0].clientY
-      const diff = currentY - startY.current
-      
-      if (diff > 0) {
-        setPullDistance(Math.min(diff, 100))
-      }
-    }
-  }
-
-  const handleTouchEnd = () => {
-    if (pullDistance > 80 && !isRefreshing) {
-      hapticImpact('medium')
-      handleRefresh()
-    } else {
-      setPullDistance(0)
     }
   }
 
@@ -434,37 +400,13 @@ function MobileProfilePageContent() {
 
   return (
     <>
-    <div
-      ref={scrollRef}
+    {/* Pull-to-refresh: the same gesture, spinner and thresholds as every
+        study page — see _shared/usePullToRefresh.tsx. */}
+    <PullToRefresh
+      onRefresh={handleRefresh}
       className="px-5 lg:px-8 pt-6 pb-14 relative overflow-y-auto"
-      style={{ touchAction: MOBILE_FEATURES.ENABLE_PULL_TO_REFRESH && pullDistance > 0 ? 'none' : 'auto' }}
-      {...(MOBILE_FEATURES.ENABLE_PULL_TO_REFRESH && {
-        onTouchStart: handleTouchStart,
-        onTouchMove: handleTouchMove,
-        onTouchEnd: handleTouchEnd
-      })}
+      contentClassName="max-w-3xl lg:max-w-6xl 2xl:max-w-[1600px] mx-auto w-full"
     >
-      {/* Pull-to-refresh indicator */}
-      {MOBILE_FEATURES.ENABLE_PULL_TO_REFRESH && (pullDistance > 0 || isRefreshing) && (
-        <div
-          className="absolute top-0 left-0 right-0 flex items-center justify-center transition-all duration-300 z-10"
-          style={{
-            height: `${pullDistance}px`,
-            opacity: pullDistance > 80 ? 1 : pullDistance / 80
-          }}
-        >
-          <div className="flex items-center gap-2">
-            <RefreshCw
-              className={`w-5 h-5 text-primary ${isRefreshing ? 'animate-spin' : ''}`}
-            />
-            <span className="text-sm text-primary font-medium">
-              {isRefreshing ? t('common.refreshing') : t('common.pullToRefresh')}
-            </span>
-          </div>
-        </div>
-      )}
-
-      <div style={{ transform: MOBILE_FEATURES.ENABLE_PULL_TO_REFRESH ? `translateY(${pullDistance}px)` : 'none' }} className="transition-transform max-w-3xl lg:max-w-6xl 2xl:max-w-[1600px] mx-auto w-full">
       {/* Page header — same typography-led eyebrow + title + subtitle as
           the study sub-pages (stats, preferences, etc.) so the account
           page reads as part of the same app. No back button: it's a
@@ -959,8 +901,7 @@ function MobileProfilePageContent() {
         </Card>
       </div>
 
-      </div>
-    </div>
+    </PullToRefresh>
 
     {/* Logout Confirmation Modal */}
     {showLogoutConfirm && (

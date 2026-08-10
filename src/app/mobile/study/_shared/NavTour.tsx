@@ -57,8 +57,14 @@ const STEPS: Step[] = [
     icon: BookOpen,
     iconBg: 'from-rose-500 to-red-600',
     titleKo: '오답노트', titleEn: 'Wrong-answer notebook',
-    bodyKo: '틀린 문제와 사진 풀이를 한곳에 모아 복습하고 PDF로 인쇄하세요.',
-    bodyEn: 'All your wrong answers + bookmarked snaps in one notebook — print as PDF.',
+    // No printing promised here. The print link is hidden inside the
+    // app (a WebView has no print dialog and no reachable file system —
+    // see WrongNotebookView), so an onboarding tour that advertises
+    // "print as PDF" sends a native user looking for a control that is
+    // not there. The web still has it; the tour just stops being the
+    // thing that promises it.
+    bodyKo: '틀린 문제와 사진 풀이를 한곳에 모아 복습하세요.',
+    bodyEn: 'All your wrong answers + bookmarked snaps in one notebook to review.',
   },
 ]
 

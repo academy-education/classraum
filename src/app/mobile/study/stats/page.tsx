@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import Link from 'next/link'
 import { Trophy, AlertTriangle, Target, Clock, CheckCircle2, ListChecks, Award, Lock, Sparkles, Flame, ArrowRight, BarChart3 } from '@/app/mobile/study/_shared/icons'
 import { authHeaders } from '@/lib/auth-headers'
@@ -74,42 +74,39 @@ function StatsInner() {
   const [retryKey, setRetryKey] = useState(0)
 
   // Streak + freeze state (separate lightweight endpoint) — powers the
-  // best-streak / freeze card.
-  useEffect(() => {
-    let cancelled = false
-    void (async () => {
-      try {
-        const headers = await authHeaders()
-        const res = await fetch('/api/study/streak', { headers })
-        if (!res.ok) return
-        const json = await res.json() as { streak: number; freezes?: number; maxStreak?: number }
-        if (!cancelled) setStreakInfo({ streak: json.streak, freezes: json.freezes ?? 0, maxStreak: json.maxStreak ?? json.streak })
-      } catch { /* silent */ }
-    })()
-    return () => { cancelled = true }
-  }, [retryKey])
+  // best-streak / freeze card. Extracted from the mount effect so
+  // pull-to-refresh can AWAIT it; the spinner has to hold until the
+  // numbers have actually changed, not until the gesture ends.
+  const loadStreak = useCallback(async () => {
+    try {
+      const headers = await authHeaders()
+      const res = await fetch('/api/study/streak', { headers })
+      if (!res.ok) return
+      const json = await res.json() as { streak: number; freezes?: number; maxStreak?: number }
+      setStreakInfo({ streak: json.streak, freezes: json.freezes ?? 0, maxStreak: json.maxStreak ?? json.streak })
+    } catch { /* silent */ }
+  }, [])
 
-  useEffect(() => {
-    let cancelled = false
+  const loadStats = useCallback(async () => {
     setFailed(false)
-    void (async () => {
-      try {
-        const headers = await authHeaders()
-        const res = await fetch('/api/study/stats', { headers })
-        // Without an error state a failed fetch left the skeleton up
-        // FOREVER — surface it and offer a retry instead.
-        if (!res.ok) {
-          if (!cancelled) setFailed(true)
-          return
-        }
-        const json = await res.json()
-        if (!cancelled) setStats(json)
-      } catch {
-        if (!cancelled) setFailed(true)
-      }
-    })()
-    return () => { cancelled = true }
-  }, [retryKey])
+    try {
+      const headers = await authHeaders()
+      const res = await fetch('/api/study/stats', { headers })
+      // Without an error state a failed fetch left the skeleton up
+      // FOREVER — surface it and offer a retry instead.
+      if (!res.ok) { setFailed(true); return }
+      const json = await res.json()
+      setStats(json)
+    } catch {
+      setFailed(true)
+    }
+  }, [])
+
+  const refresh = useCallback(async () => {
+    await Promise.all([loadStreak(), loadStats()])
+  }, [loadStreak, loadStats])
+
+  useEffect(() => { void refresh() }, [refresh, retryKey])
 
   if (failed && !stats) {
     return (
@@ -167,7 +164,7 @@ function StatsInner() {
   const name = (n: { name_en: string; name_ko: string }) => ko ? n.name_ko : n.name_en
 
   return (
-    <StudyScrollShell header={header}>
+    <StudyScrollShell header={header} onRefresh={refresh}>
 
       {/* This week — XP + active days + league rank. Visible only
           when the student has done something this week. */}

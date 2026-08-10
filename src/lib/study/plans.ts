@@ -144,16 +144,24 @@ export const STUDY_PLANS: Record<string, StudyPlan> = {
   // NEVER charges a renewal. Guard rails (isPassPlan) keep them out of the
   // renewal/reactivate paths. One STUDY_PLANS entry per pass so tier /
   // feature resolution works; the sale terms live in STUDY_PASSES below.
-  sunung_pass_v1: {
-    id: 'sunung_pass_v1',
-    tier: 'premium',
-    priceWon: 39000,
-    monthlyCredits: 0, // pass credits are a one-time purchased-bucket grant
-    intervalDays: 3650, // never "due" for a renewal charge; expiry is date-driven
-    orderName: 'Classraum Study — 수능 대비 패스',
-    name_en: 'Exam Prep Pass',
-    name_ko: '수능 대비 패스',
-  },
+  // sunung_pass_v1 REMOVED 2026-08-11, and the STUDY_PLANS half had to go
+  // too — deleting it only from STUDY_PASSES left a loaded gun.
+  //
+  // isPassPlan() resolves against STUDY_PASSES, so once the sale entry was
+  // gone `isPassPlan('sunung_pass_v1')` returned FALSE. That flips two
+  // things at once: the id starts shipping inside catalog.plans from
+  // api/study/subscription (invisible only by luck — the grid filters
+  // intervalDays === 30 and this was 3650), and RECURRING_PREMIUM in
+  // entitlements.ts, which is `active && plan !== 'free_v1' && !isPassPlan`,
+  // starts returning { all: true } for it. A pass that unlocked one exam
+  // would have silently become an all-access subscription that never
+  // renews and never expires.
+  //
+  // Nobody holds one (0 rows in study_subscriptions, 0 in study_payments,
+  // checked before removal), so this is a cleanup rather than a fix. It is
+  // written down because the dangerous direction was ADDING access, and a
+  // half-removal that grants more than the full removal would is the kind
+  // of thing that reads as harmless in a diff.
   sat_pass_v1: {
     id: 'sat_pass_v1',
     tier: 'premium',
@@ -335,12 +343,22 @@ export function resolvePlan(planId: string | null | undefined): StudyPlan {
 export function planFeatures(tier: StudyTier) {
   return {
     audioSpeakingGrading: tier === 'premium',
+    // NOT ADVERTISED. Snap-to-solve is switched off for everyone
+    // (SNAP_ENABLED = false in mobile/study/snap/page.tsx renders a
+    // "coming soon" lock), so neither this flag nor snapDailyLimit
+    // describes anything a buyer can use today. The subscription page
+    // no longer lists snap as a plan feature; the flags stay because
+    // /api/study/snap/solve still reads them for the day the tool is
+    // turned back on.
     unlimitedSnap: tier === 'premium',
     scoreAnalytics: tier === 'premium',
-    // Credit top-ups are open to any paid/trial tier (General runs out
-    // of its 8 monthly credits fast — refusing their money was a leak).
+    // Credit top-ups are open to EVERY tier, free and lapsed included —
+    // /api/study/subscription/purchase-pack is status-agnostic.
+    // (Basic's 10 monthly credits run out fast; refusing their money
+    // was a leak.)
     creditPacks: true,
-    /** Daily snap-to-solve cap for non-premium users. */
+    /** Daily snap-to-solve cap for non-premium users — dormant while
+     *  SNAP_ENABLED is false. */
     snapDailyLimit: tier === 'premium' ? Infinity : 5,
   }
 }

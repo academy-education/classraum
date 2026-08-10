@@ -21,6 +21,13 @@ import { useTranslation } from '@/hooks/useTranslation'
  *   - Hides the on-screen "Print" button when @media print
  *   - Page-break-inside avoid on each entry
  *   - Black-on-white only, no gradients
+ *
+ * NATIVE (iOS/Android Capacitor): this route is intentionally NOT gated.
+ * A Capacitor WebView has no print dialog and no reachable file system,
+ * so printing is a dead end there — but the fix is to hide the ENTRY
+ * POINTS, which is done in _shared/WrongNotebookView.tsx. The route
+ * itself stays reachable by URL and keeps rendering, so an old link or a
+ * deep link degrades to a readable page rather than a 404 or a blank.
  */
 
 interface Entry {
