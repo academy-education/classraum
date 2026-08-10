@@ -134,7 +134,7 @@ export const WORK: WorkItem[] = [
     id: 'B2',
     title: 'Sittings on Academic Talk and Craft and Structure',
     size: '~20 minutes each',
-    why: 'Roughly 486 items currently sit as "the model says guessable, nobody checked".',
+    why: 'Roughly 486 items sit as "the model says guessable, nobody checked". NOT STARTED as of 2026-08-10: the 08-10 sitting went to Academic Passage (40 items), not to either B2 cohort, so both targets remain unmeasured. Sit them under the CORRECTED brief — the version before 2026-08-10 pushed abstention and produced 90%+ Can\'t-tell rates that measure nothing.',
     owner: 'you',
     doc: 'scripts/study-bank/B2-PREREGISTERED.md (the decision rule, fixed 2026-08-09 BEFORE any sitting) + B2-REVIEWER-BRIEF.md (hand to the reviewer as-is; the instrument wording is identical to B1 so sittings stay comparable)',
     state: 'open',
@@ -380,6 +380,11 @@ export const FOUND_WHILE_FIXING: Found[] = [
     date: '2026-08-06',
     what: 'Explanations cite options by POSITION ("the fourth is far too formal") and the positions do not match the stored choice order — in 8bcce6b3 the explanation\'s "fourth" is option A. Options have been reshuffled since authoring (see migration 078), so a student reading why they got an item wrong is told the wrong thing about which option was which. Student-facing, scope unmeasured, exactly checkable — measure the whole population before acting, per the Math-hub lesson. The 24 repairs written today quote the option text instead of numbering it.',
     landedAs: 'A13',
+  },
+  {
+    date: '2026-08-10',
+    what: 'THE REVIEWER BRIEF IS AN INSTRUMENT, AND I BROKE IT. Abstention across every human sitting: 0/12, 0/20, 0/20, 0/20 before the B1 brief existed; 17/20 and 37/40 after it. The B1 wording said "Please use it" of the Can\'t-tell button and called guessing "the single thing that would most distort this measurement" — it named one failure mode and not the other. The same reviewer read Academic Passage twice: 41.7% with 1 abstention on 08-04, and 2.5% with 37 abstentions on 08-10. Nothing about the items changed. At 90%+ abstention a sitting cannot separate a broken cohort from a sound one, so the number is not a measurement of anything. I carried B1\'s wording into the B2 brief DELIBERATELY, reasoning that holding the instrument constant preserves comparability — but the constant I preserved was the altered instrument, the exact thing that had already voided B1. Rewritten 2026-08-10 to name both failure modes and push neither. CONSEQUENCE FOR THE PRE-REGISTRATION: B2-PREREGISTERED.md bands assume a reviewer who commits, and that assumption is now known false for any sitting run under the old wording. The rule still says CLEARED for academic-passage-2026-08-10 (2.5%, well under 35%) and that verdict is NOT being quietly overridden — it is escalated to Andy as a choice between accepting it, voiding the sitting as B1 was voided, or re-running under the corrected brief. Recorded because the tempting move was to bank a 2.5% as a clean result.',
+    landedAs: 'A3',
   },
   {
     date: '2026-08-09',

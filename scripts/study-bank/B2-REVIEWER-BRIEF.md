@@ -2,13 +2,25 @@
 
 > ## NOTE TO ANDY — delete this block before sending
 >
-> **What changed from B1, and why.** B1's brief was written *after*
-> reviewer 1 had already sat, and it pushed hard on using "Can't tell".
-> The instrument moved between the two sittings, which is why that
-> pre-registration came out void rather than decisive. This brief keeps
-> the wording of the B1 instrument deliberately unchanged so future
-> sittings stay comparable. Do not edit the "Each item has two steps"
-> section — that is the instrument.
+>  **The abstention wording was REWRITTEN 2026-08-10, and this is the
+> important part of the file.** The earlier version — inherited from B1 —
+> said "**Please use it**" of the Can't-tell button and called guessing
+> "the single thing that would most distort this measurement". It named
+> one failure mode and not the other, and the effect is in the data:
+>
+> ```
+>   before that wording   0/12, 0/20, 0/20, 0/20 abstentions   scores 15-55%
+>   after  that wording   17/20 and 37/40 abstentions          scores 15% and 2.5%
+> ```
+>
+> Same reviewer read Academic Passage twice: 41.7% with 1 abstention on
+> 08-04, then 2.5% with 37 abstentions on 08-10. At 90%+ abstention the
+> sitting cannot tell a broken cohort from a sound one, so it measures
+> nothing. The rewrite names BOTH failure modes and pushes neither.
+>
+> I had kept B1's wording on purpose, to hold the instrument constant.
+> What that actually preserved was the *altered* instrument — the very
+> thing that voided B1.
 >
 >  **Account — settled 2026-08-09.** He uses `support@classraum.com`;
 > that account is his and is already super_admin. Confirmed against the
@@ -79,10 +91,17 @@ it away. So:
 
 - If something about the options points to one of them, pick it.
 - If nothing does, press **"Can't tell — a real answer, not a skip"**.
-  That is a genuine answer and is recorded as one. **Please use it.**
-  Guessing when you have nothing to go on is the single thing that would
-  most distort this measurement, and there is no penalty for saying you
-  cannot tell.
+  It is recorded as a real answer, not a skip.
+
+Both mistakes cost us the same amount, so please do neither:
+
+- **Guessing when nothing points anywhere** makes the questions look
+  worse than they are.
+- **Pressing "Can't tell" when something does point at an option** makes
+  them look better than they are.
+
+Answer the way you actually read it. There is no target number, and
+neither answer is the safe one.
 
 ### Step 2 — revealed
 
