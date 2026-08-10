@@ -147,7 +147,6 @@ export default function SubscriptionPage() {
   const [acting, setActing] = useState<Acting>(null)
   const [error, setError] = useState<string | null>(null)
   const [successMessage, setSuccessMessage] = useState<string | null>(null)
-  const [isNative, setIsNative] = useState(false)
   const [confirmingCancel, setConfirmingCancel] = useState(false)
   /**
    * Plan id awaiting an explicit "yes, charge me" — see the confirm card
@@ -162,28 +161,55 @@ export default function SubscriptionPage() {
    */
   const [confirmingChange, setConfirmingChange] = useState<string | null>(null)
   /**
-   * PURCHASE SURFACES ARE GATED ON iOS, NOT ON "NATIVE".
+   * EVERY PURCHASE HANDS OFF TO THE WEB ON BOTH NATIVE PLATFORMS.
    *
-   * Every money control on this page used to be hidden behind `isNative`,
-   * with the reason stated in the comments as "App Store IAP rules". That
-   * is an APPLE rule, and `isNative` is true on Android too — so Android
-   * inherited a restriction written for a different store and lost a
-   * checkout that already worked, in exchange for a "Subscribe on web"
-   * button that hands the URL to the OS and (with app links verified)
-   * gets it handed straight back.
+   * This replaced an `isIOS` gate that let Android check out INSIDE the
+   * app. That gate was justified in this comment by Korea's
+   * Telecommunications Business Act and the Epic v. Google injunction,
+   * as if they settled that Play permits an in-app third-party checkout.
+   * THEY DO NOT, and the claim is withdrawn: the Korean law entitles a
+   * developer to OFFER an alternative billing system, it does not remove
+   * Google's requirement to enrol in their program and pay the fee.
+   * "Apple's rule doesn't apply to Google" was true; "therefore Google
+   * permits this" did not follow, and it was written into the code as
+   * settled fact where the next reader would inherit it.
    *
-   * Korea's Telecommunications Business Act amendment and the Epic v.
-   * Google injunction both cut against Play forcing a single payment
-   * method, and the redirect flow in purchase-credits.ts was written for
-   * this exact WebView. So Android checks out in-app; iOS keeps the
-   * external hand-off, because Apple's rule really does apply there.
+   * So the gate is `isNative` again — but the FAILURE that produced the
+   * iOS-only gate is fixed rather than reintroduced. Nothing is hidden
+   * any more: credits and exam passes render on every platform, and on
+   * native their CTA opens the web checkout instead of vanishing. A
+   * missing price list taught students the product had no paid tier.
+   *
+   * Known risk, stated plainly: the Android hand-off has NOT been
+   * verified end-to-end on a shipped build, and the manifest work that
+   * makes it reliable rides the next store release. Hence handoffToWeb
+   * below surfaces a failure and offers the URL, rather than leaving a
+   * button that silently does nothing — which is exactly how this broke
+   * the first time.
    */
-  const [isIOS, setIsIOS] = useState(false)
-  useEffect(() => {
-    const native = Capacitor.isNativePlatform()
-    setIsNative(native)
-    setIsIOS(native && Capacitor.getPlatform() === 'ios')
-  }, [])
+  const [isNative, setIsNative] = useState(false)
+  useEffect(() => { setIsNative(Capacitor.isNativePlatform()) }, [])
+
+  /** The URL a native purchase hands off to. */
+  const [handoffUrl, setHandoffUrl] = useState<string | null>(null)
+
+  /**
+   * Send a purchase to the browser. Never silently no-ops: a hand-off
+   * the OS refuses sets an error AND exposes the URL, so a student is
+   * never left tapping a dead control.
+   */
+  const handoffToWeb = useCallback(async (planId: string) => {
+    setError(null)
+    setHandoffUrl(null)
+    const url = subscribeOnWebUrl(planId)
+    const ok = await openExternalUrl(url)
+    if (!ok) {
+      setHandoffUrl(url)
+      setError(ko
+        ? '브라우저를 열지 못했어요. 아래 주소에서 결제를 진행해 주세요.'
+        : 'Could not open a browser. Please use the address below to pay.')
+    }
+  }, [ko])
 
   // True while a GET of /api/study/subscription is outstanding — read by
   // the resume refresh so a return that lands mid-load doesn't race a
@@ -329,7 +355,7 @@ export default function SubscriptionPage() {
   // plan overwrote the shared plan row. Exclude the one already shown by the
   // active-pass banner (the pure-pass case) so it isn't listed twice.
   const heldPasses = (data?.heldPasses ?? []).filter(hp => hp.passId !== activePass?.id)
-  const passOffers = isIOS ? [] : passes.filter(p => p.offer)
+  const passOffers = passes.filter(p => p.offer)
   // Anyone not on a live paid subscription goes through checkout to
   // start one — free users, lapsed subscribers, legacy trials, and
   // pass holders (a pass isn't a recurring plan, so starting one is a
@@ -451,7 +477,8 @@ export default function SubscriptionPage() {
   }, [acting, load, plans, t, user])
 
   /**
-   * 수능 대비 패스 purchase — same PortOne billing-key overlay as a new
+   * Exam pass purchase (SAT / TOEFL) — same PortOne billing-key overlay
+   * as a new
    * subscription, but the server charges once and writes a seasonal
    * Premium pass (no recurring renewal).
    */
@@ -602,7 +629,21 @@ export default function SubscriptionPage() {
             error ? 'bg-rose-50/80 ring-rose-200/60 text-rose-700' : 'bg-emerald-50/80 ring-emerald-200/60 text-emerald-700'
           }`}>
             {error ? <AlertCircle className="w-4 h-4 mt-0.5 flex-shrink-0" /> : <CheckCircle2 className="w-4 h-4 mt-0.5 flex-shrink-0" />}
-            <span className="leading-relaxed">{error ?? successMessage}</span>
+            <div className="leading-relaxed min-w-0">
+              <span>{error ?? successMessage}</span>
+              {/* The escape hatch. If the OS refused the hand-off there is
+                  no other way for this student to reach checkout from
+                  inside the app, and a purchase that cannot be completed
+                  is worse than one that never appeared. Selectable text
+                  rather than a copy button: clipboard access is another
+                  thing that can silently fail in a WebView, and reading
+                  the URL aloud to a friend still works. */}
+              {handoffUrl && (
+                <p className="mt-1.5 font-mono text-[11.5px] break-all select-all text-rose-800/90">
+                  {handoffUrl}
+                </p>
+              )}
+            </div>
           </div>
         )}
 
@@ -692,9 +733,9 @@ export default function SubscriptionPage() {
         {/* Buy credits — its own card so it's always visible on web, even
             for users with no subscription row yet. Open to everyone (free &
             General included; card-less buyers register a card in the flow).
-            iOS hides in-app purchases (App Store IAP rules); Android
-            checks out in-app — see the isIOS note above. */}
-        {!isIOS && (
+            Visible on every platform; on native the packs hand off to the
+            web rather than disappearing — see the isNative note above. */}
+        {(
           <div className="rounded-2xl bg-white ring-1 ring-gray-200/70 p-5 shadow-[0_1px_2px_rgba(0,0,0,0.03)]">
             <div className="flex items-center justify-between mb-1">
               <div className="flex items-center gap-2.5">
@@ -732,7 +773,7 @@ export default function SubscriptionPage() {
                   <button
                     key={p.id}
                     type="button"
-                    onClick={() => void buyPack(p.id, p.credits)}
+                    onClick={() => isNative ? void handoffToWeb(p.id) : void buyPack(p.id, p.credits)}
                     disabled={acting !== null}
                     className={`relative flex flex-col items-center justify-center gap-0.5 h-[86px] rounded-xl overflow-hidden active:scale-[0.98] disabled:opacity-60 transition-all ${
                       best
@@ -760,6 +801,15 @@ export default function SubscriptionPage() {
                 )
               })}
             </div>
+            {/* Say where the money is taken. The tiles show a price, and a
+                price that opens a browser instead of a card sheet is a
+                surprise unless it is labelled. */}
+            {isNative && (
+              <p className="mt-2.5 inline-flex items-center gap-1.5 text-[11.5px] text-gray-500">
+                <ExternalLink className="w-3.5 h-3.5" />
+                {t('study.subscription.payOnWeb')}
+              </p>
+            )}
           </div>
         )}
 
@@ -836,8 +886,14 @@ export default function SubscriptionPage() {
               passes={passOffers}
               ko={ko}
               acting={acting}
-              onBuy={(id, name) => void buyPass(id, name)}
+              onBuy={(id, name) => isNative ? void handoffToWeb(id) : void buyPass(id, name)}
             />
+            {isNative && (
+              <p className="inline-flex items-center gap-1.5 px-1 text-[11.5px] text-gray-500">
+                <ExternalLink className="w-3.5 h-3.5" />
+                {t('study.subscription.payOnWeb')}
+              </p>
+            )}
           </div>
         )}
 
@@ -928,22 +984,12 @@ export default function SubscriptionPage() {
                   <div className="h-11 rounded-full bg-gray-50 ring-1 ring-gray-200/50 text-gray-400 text-[12.5px] font-medium inline-flex items-center justify-center text-center px-3">
                     {ko ? '유료 플랜이 없을 때 자동 적용돼요' : 'Applied automatically without a paid plan'}
                   </div>
-                ) : isIOS ? (
+                ) : isNative ? (
                   !isCurrent && (
                     <div className="flex flex-col gap-2">
                       <button
                         type="button"
-                        onClick={() => {
-                          setError(null)
-                          void openExternalUrl(subscribeOnWebUrl(plan.id)).then(ok => {
-                            // A hand-off that fails must not look like a
-                            // hand-off that worked. This button used to be a
-                            // silent no-op whenever the OS refused the URL.
-                            if (!ok) setError(ko
-                              ? '브라우저를 열지 못했어요. app.classraum.com 에서 결제를 진행해 주세요.'
-                              : 'Could not open a browser. Please go to app.classraum.com to subscribe.')
-                          })
-                        }}
+                        onClick={() => void handoffToWeb(plan.id)}
                         className={studyButtonClass({ variant: 'secondary' })}
                       >
                         <ExternalLink className="w-4 h-4" />
@@ -1048,7 +1094,7 @@ export default function SubscriptionPage() {
                     </div>
                   </div>
                 )}
-                {!isIOS && !isCurrent && isActive && !onPass && (
+                {!isNative && !isCurrent && isActive && !onPass && (
                   <p className="text-[11.5px] text-gray-400 -mt-2 text-center leading-snug">
                     {isUpgrade
                       ? plan.intervalDays === 365
@@ -1221,7 +1267,9 @@ function formatDate(iso: string, ko: boolean): string {
 }
 
 /** Per-pass identity colors — each exam pass gets its own gradient so
- *  SAT / TOEFL / 수능 read as distinct products, not three rose clones. */
+ *  SAT and TOEFL read as distinct products rather than rose clones. The
+ *  sunung entry stays as PASS_THEME_FALLBACK — it is now only a default
+ *  palette for an unrecognised pass id, not a pass we sell. */
 const PASS_THEMES: Record<string, { gradient: string; shadow: string; buttonText: string; bodyText: string; labelText: string }> = {
   sat_pass_v1: {
     gradient: 'from-indigo-500 to-blue-600',

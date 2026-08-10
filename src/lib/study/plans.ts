@@ -208,20 +208,25 @@ export interface StudyPass {
   blurb_en: string
   blurb_ko: string
 }
+/*
+ * REMOVED 2026-08-11: `sunung_pass_v1` (수능 대비 패스, ₩39,000, all
+ * tests, anchored to the 2027학년도 수능).
+ *
+ * The KSAT content is not ready, so the pass was selling a promise the
+ * bank cannot keep — every locked test in the catalog except SAT and
+ * TOEFL, and this pass unlocked `test: '*'`.
+ *
+ * Deleted outright rather than flagged hidden because it was checked
+ * first: zero holders in study_subscriptions and zero matching rows in
+ * study_payments, so nothing is being taken away from anyone. Had there
+ * been a single holder this would have needed a hidden flag instead —
+ * resolvePass() feeds the feature gates, and removing an id somebody
+ * owns revokes what they paid for.
+ *
+ * To bring it back, restore the entry and re-anchor examDate to that
+ * year's 수능 — but only once KSAT actually ships.
+ */
 export const STUDY_PASSES: StudyPass[] = [
-  {
-    id: 'sunung_pass_v1',
-    priceWon: 39000,
-    credits: 30,
-    test: '*',
-    // Date-anchored to the 2027학년도 수능 — Thursday, 19 Nov 2026.
-    examDate: '2026-11-19',
-    windowDays: 120,
-    name_en: 'Exam Prep Pass',
-    name_ko: '수능 대비 패스',
-    blurb_en: 'Every Premium feature through 수능 day',
-    blurb_ko: '수능일까지 프리미엄 전 기능',
-  },
   {
     id: 'sat_pass_v1',
     priceWon: 29000,

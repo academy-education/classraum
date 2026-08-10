@@ -46,7 +46,10 @@ describe('POST /api/study/subscription/purchase-pass', () => {
 
   afterEach(() => { ;(console.error as jest.Mock).mockRestore() })
 
-  it('charges ₩39,000 once and grants 30 credits for a free user', async () => {
+  // The no-passId request falls back to STUDY_PASSES[0], which is now the
+  // SAT pass — sunung_pass_v1 was removed on 2026-08-11 because the KSAT
+  // content is not ready. These numbers track that entry, not a constant.
+  it('charges ₩29,000 once and grants 20 credits for a free user', async () => {
     enqueue('study_subscriptions', { data: { status: 'free', plan: 'free_v1' } }) // sub lookup
     enqueue('study_subscriptions', { error: null }) // upsert
     enqueue('study_credit_ledger', { error: null })
@@ -54,13 +57,14 @@ describe('POST /api/study/subscription/purchase-pass', () => {
     const res = await POST(withKey())
     expect(res.status).toBe(200)
     const body = await res.json()
-    expect(body).toMatchObject({ success: true, creditsAdded: 30 })
-    expect(chargeMock).toHaveBeenCalledWith(expect.objectContaining({ amount: 39000 }))
+    expect(body).toMatchObject({ success: true, creditsAdded: 20 })
+    expect(chargeMock).toHaveBeenCalledWith(expect.objectContaining({ amount: 29000 }))
     // Pass credits land in their own per-test bucket (study_pass_credits),
-    // NOT the general purchased bucket — hence a dedicated RPC. '*' means the
-    // pass is not restricted to a single test.
+    // NOT the general purchased bucket — hence a dedicated RPC. The bucket
+    // is keyed by the pass's `test`, so SAT pass credits are spendable on
+    // SAT only. (A '*' pass would be unrestricted; there is no longer one.)
     expect(rpcMock).toHaveBeenCalledWith('increment_study_pass_credits', {
-      p_student: 'student-1', p_test: '*', p_delta: 30,
+      p_student: 'student-1', p_test: 'sat', p_delta: 20,
     })
   })
 
@@ -73,7 +77,7 @@ describe('POST /api/study/subscription/purchase-pass', () => {
   })
 
   it('refuses when a pass is already active', async () => {
-    enqueue('study_subscriptions', { data: { status: 'active', plan: 'sunung_pass_v1' } })
+    enqueue('study_subscriptions', { data: { status: 'active', plan: 'sat_pass_v1' } })
     const res = await POST(withKey())
     expect(res.status).toBe(409)
     expect((await res.json()).code).toBe('pass_active')
