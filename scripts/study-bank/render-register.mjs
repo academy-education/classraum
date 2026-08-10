@@ -114,9 +114,13 @@ for (const r of reviews) {
   const d = domainOf.get(r.item_id)
   if (!d) continue
   const byRev = humanBy.get(d) ?? new Map()
-  const e = byRev.get(r.reviewer_id) ?? { n: 0, c: 0 }
+  const e = byRev.get(r.reviewer_id) ?? { n: 0, c: 0, abst: 0 }
   e.n++
-  if (r.blind_pick && r.blind_pick === r.key_slot) e.c++
+  // An abstention ("Can't tell") is scored as not-correct, which is
+  // right for the SCORE and catastrophic for the VERDICT — see
+  // bestHuman below.
+  if (!r.blind_pick || String(r.blind_pick).trim() === '') e.abst++
+  else if (r.blind_pick === r.key_slot) e.c++
   byRev.set(r.reviewer_id, e)
   humanBy.set(d, byRev)
 }
@@ -127,14 +131,46 @@ for (const r of reviews) {
  * high score is luck — but still counted in `readers`, so a thin sitting
  * cannot masquerade as no sitting at all.
  */
+/**
+ * A sitting where the reader abstained on most items measures nothing.
+ *
+ * 2026-08-11, and this is the second time the same shape of bug has
+ * reached this function. Abstentions score as not-correct, so a reader
+ * who presses "Can't tell" on 19 of 20 items produces 0.0% — which
+ * sails under every CONFIRMED threshold and rendered as "cleared by
+ * hand: Academic Talk". The cohort had not been cleared; it had not
+ * been measured. A low score from a reader who committed and a low
+ * score from a reader who abstained look identical in the number and
+ * mean opposite things.
+ *
+ * 50% is the line because below it the majority of items still carry a
+ * real answer, and above it the score is mostly a count of how often
+ * the reader declined. The reviewer notes on the Academic Talk run put
+ * it beyond doubt — one reads "this was guessable but I just didn't
+ * click it" — but the guard deliberately does NOT depend on reading
+ * notes, because the next high-abstention run may not come with one.
+ */
+const ABSTENTION_CEILING = 0.5
+
 function bestHuman(domain) {
   const byRev = humanBy.get(domain)
   if (!byRev || !byRev.size) return null
   const sittings = [...byRev.values()]
-    .map(e => ({ pct: Math.round((1000 * e.c) / e.n) / 10, n: e.n }))
+    .map(e => ({
+      pct: Math.round((1000 * e.c) / e.n) / 10,
+      n: e.n,
+      abst: e.abst,
+      abstRate: e.abst / e.n,
+    }))
     .sort((a, b) => b.pct - a.pct)
-  const usable = sittings.filter(s => s.n >= 10)
-  if (!usable.length) return null
+  // Under 10 items a high score is luck; over the abstention ceiling the
+  // score is not about the items at all. Both are excluded from the
+  // verdict and both stay visible in `all`, so a discarded sitting can
+  // never look like no sitting.
+  const usable = sittings.filter(s => s.n >= 10 && s.abstRate <= ABSTENTION_CEILING)
+  if (!usable.length) {
+    return { none: true, readers: sittings.length, all: sittings }
+  }
   return { ...usable[0], readers: sittings.length, all: sittings }
 }
 
@@ -156,6 +192,9 @@ for (const r of bank) {
  */
 function verdict(blind, human) {
   if (blind === null) return 'never measured — the attack does not apply'
+  if (human && human.none) {
+    return '**sitting not interpretable** — the reader abstained on most of it'
+  }
   if (human) {
     const margin = human.pct - 25
     if (margin >= 25.5) return '**CONFIRMED BROKEN** — both instruments agree'
@@ -163,6 +202,21 @@ function verdict(blind, human) {
     return 'human says maybe — needs more'
   }
   return blind >= 60 ? '**unconfirmed** — model only' : 'in band, spot-checked only'
+}
+
+/**
+ * The human column. Always shows the abstention count next to the score,
+ * because the two numbers are only meaningful together — 0% with 19
+ * abstentions and 0% with none are different findings.
+ */
+function humanCell(human) {
+  if (!human) return '—'
+  const fmt = s => `${s.pct}%${s.abst ? ` (${s.abst}/${s.n} abstained)` : ''}`
+  if (human.none) return `no usable sitting — ${human.all.map(fmt).join(' / ')}`
+  const rest = human.readers > 1
+    ? ` — best of ${human.readers}: ${human.all.map(fmt).join(' / ')}`
+    : human.abst ? ` — ${human.abst} abstained` : ''
+  return `${human.pct}% (n=${human.n})${rest}`
 }
 
 const rows = [...cohorts.entries()].map(([k, e]) => {
@@ -209,7 +263,7 @@ Two qualifications, both learned the hard way:
 
 | test | cohort | items | blind | human | state |
 |---|---|---|---|---|---|
-${rows.map(r => `| ${r.family.toUpperCase()} | ${r.domain} | ${r.items} | ${r.blind === null ? '—' : r.blind + '%'} | ${r.human ? `${r.human.pct}% (n=${r.human.n})${r.human.readers > 1 ? ` — best of ${r.human.readers}: ${r.human.all.map(s => `${s.pct}%`).join(' / ')}` : ''}` : '—'} | ${verdict(r.blind, r.human)} |`).join('\n')}
+${rows.map(r => `| ${r.family.toUpperCase()} | ${r.domain} | ${r.items} | ${r.blind === null ? '—' : r.blind + '%'} | ${humanCell(r.human)} | ${verdict(r.blind, r.human)} |`).join('\n')}
 
 ${(() => {
   /*

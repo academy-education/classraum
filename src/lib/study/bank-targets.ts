@@ -196,12 +196,36 @@ export interface HumanEvidence {
   correct: number
   /** The sample's own best fixed-slot strategy, as a count. */
   controlBest: number
+  /**
+   * How many of `answered` were explicit "can't tell".
+   *
+   * Load-bearing, not decorative. An abstention scores as not-correct,
+   * so a reader who abstains throughout produces a very LOW percentage —
+   * which lands in exactly the same place as a reader who committed and
+   * genuinely could not beat the control, and means the opposite thing.
+   * On 2026-08-10 a sitting with 19 "can't tell" out of 20 scored 0.0%
+   * and was about to be reported as human-cleared.
+   *
+   * Optional so existing callers keep compiling; absent is treated as
+   * "not known", which cannot trigger the guard. Any caller that HAS
+   * the number should pass it.
+   */
+  cantTell?: number
 }
 
 /** A human sitting under this many answered items cannot settle
  *  anything — the control swamps the signal. Matches the run-reading
  *  rule in item-review.ts. */
 export const HUMAN_VERDICT_MIN = 20
+
+/**
+ * Above this share of "can't tell", a sitting is not evidence either way.
+ *
+ * Below the line most items still carry a real answer; above it the
+ * score is mostly a count of how often the reader declined to answer,
+ * and a cohort cannot be cleared by a reader who did not read it.
+ */
+export const ABSTENTION_CEILING = 0.5
 
 /** Human margin at or above which a model's "too guessable" is treated
  *  as CONFIRMED. Deliberately well under the +25.5 that official ETS
@@ -269,6 +293,22 @@ export function progressFor(
       return {
         state: 'unconfirmed', target,
         remaining: `Model solvers score ${blindPct}%, ${gap}pts over the band — but no human sitting has confirmed it. Review ${need} more item${need === 1 ? '' : 's'} by hand before rewriting anything.`,
+      }
+    }
+
+    /*
+     * A sitting the reader abstained through measures nothing, and the
+     * dangerous direction is CLEARANCE: the resulting near-zero score
+     * sails under HUMAN_CONFIRM_MARGIN and reads as "a human tried and
+     * could not do it". Report it as still unconfirmed — which is the
+     * truth — rather than as cleared.
+     */
+    if (human.cantTell !== undefined &&
+        human.cantTell > human.answered * ABSTENTION_CEILING) {
+      const pctAbst = Math.round((100 * human.cantTell) / human.answered)
+      return {
+        state: 'unconfirmed', target,
+        remaining: `Model solvers score ${blindPct}%, ${gap}pts over the band. A human sat ${human.answered} items but pressed "can't tell" on ${human.cantTell} of them (${pctAbst}%), so that sitting cannot separate a sound cohort from a broken one — it is not a clearance. Re-run the sitting before rewriting anything.`,
       }
     }
 

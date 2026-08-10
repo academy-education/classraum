@@ -32,8 +32,8 @@ Two qualifications, both learned the hard way:
 
 | test | cohort | items | blind | human | state |
 |---|---|---|---|---|---|
-| TOEFL | Academic Passage | 434 | 100% | 11.5% (n=52) | **cleared by hand** — the model was wrong |
-| TOEFL | Academic Talk | 275 | 100% | 0% (n=20) | **cleared by hand** — the model was wrong |
+| TOEFL | Academic Passage | 434 | 100% | no usable sitting — 11.5% (38/52 abstained) | **sitting not interpretable** — the reader abstained on most of it |
+| TOEFL | Academic Talk | 275 | 100% | no usable sitting — 0% (19/20 abstained) | **sitting not interpretable** — the reader abstained on most of it |
 | SAT | Information and Ideas | 240 | 100% | — | **unconfirmed** — model only |
 | SAT | Standard English Conventions | 234 | 52.8% | — | in band, spot-checked only |
 | SAT | Geometry and Trigonometry | 219 | 100% | — | **unconfirmed** — model only |
@@ -49,7 +49,7 @@ Two qualifications, both learned the hard way:
 | TOEFL | Complete the Words | 93 | — | — | never measured — the attack does not apply |
 | TOEFL | Academic Discussion | 92 | — | — | never measured — the attack does not apply |
 | TOEFL | Email | 90 | — | — | never measured — the attack does not apply |
-| TOEFL | Choose a Response | 72 | 76.9% | 53.3% (n=15) — best of 2: 53.3% / 6.7% | **CONFIRMED BROKEN** — both instruments agree |
+| TOEFL | Choose a Response | 72 | 76.9% | 53.3% (n=15) — best of 2: 53.3% / 6.7% (14/15 abstained) | **CONFIRMED BROKEN** — both instruments agree |
 | SAT | Expression of Ideas | 66 | 100% | — | **unconfirmed** — model only |
 | TOEFL | Interview | 48 | — | — | never measured — the attack does not apply |
 

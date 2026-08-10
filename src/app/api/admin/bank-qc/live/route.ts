@@ -282,6 +282,9 @@ export async function GET(request: NextRequest) {
         humanByDomain.set(d, {
           answered: score.answered,
           correct: score.correct,
+          // Passed so progressFor can refuse to CLEAR a cohort on a
+          // sitting the reader abstained through — see ABSTENTION_CEILING.
+          cantTell: score.cantTell,
           // Best fixed-SLOT strategy over the same deduplicated rows.
           // Scoring a human against a flat 25% would credit or punish
           // them for a shuffle they did not choose.
