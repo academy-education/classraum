@@ -21,8 +21,28 @@ type HapticNotificationType = 'success' | 'warning' | 'error'
 
 const isNative = (): boolean => Capacitor.isNativePlatform()
 
+/**
+ * Two sources can legitimately ask for the same tap.
+ *
+ * A delegated document listener fires for every interactive element (see
+ * lib/haptic-targets.ts), and some components ALSO call hapticTap in
+ * their own handler — StudyButton, the bottom nav, the base Button.
+ * Removing the component calls would work until someone added one back;
+ * coalescing here fixes it once, for every current and future caller.
+ *
+ * 60ms is comfortably longer than the gap between React's onClick and a
+ * document-level listener for the same click, and far shorter than any
+ * human double-tap. Nothing legitimate needs two distinct taps inside
+ * one frame-and-a-half.
+ */
+const COALESCE_MS = 60
+let lastTapAt = 0
+
 /** Light tap — for buttons, toggles, tab switches. */
 export function hapticTap(): void {
+  const now = Date.now()
+  if (now - lastTapAt < COALESCE_MS) return
+  lastTapAt = now
   if (isNative()) {
     Haptics.impact({ style: ImpactStyle.Light }).catch(() => { /* ignore */ })
     return

@@ -5,6 +5,7 @@ import { LanguageWrapper } from './language-wrapper'
 import { CommandPaletteProvider } from '@/contexts/CommandPaletteContext'
 import { AuthProvider } from '@/contexts/AuthContext'
 import { ToastProvider } from '@/components/ui/ToastProvider'
+import { GlobalHaptics } from '@/components/GlobalHaptics'
 import { SupportedLanguage } from '@/locales'
 
 const montserrat = Montserrat({
@@ -110,6 +111,9 @@ export default function RootLayout({
             <CommandPaletteProvider>
               {children}
               <ToastProvider />
+              {/* One delegated listener for every button in the app —
+                  see components/GlobalHaptics.tsx. Renders nothing. */}
+              <GlobalHaptics />
             </CommandPaletteProvider>
           </LanguageWrapper>
         </AuthProvider>
