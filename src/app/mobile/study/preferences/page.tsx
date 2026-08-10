@@ -9,6 +9,7 @@ import { SkeletonBlock, SkeletonCard, SkeletonSettingsGroup } from '../skeletons
 import { StudyPageHeader, StudyScrollShell } from '../_shared/primitives'
 import { StudyButton } from '../_shared/StudyButton'
 import { SegmentedTabs } from '../_shared/SegmentedTabs'
+import { GOAL_SCALES, goalTestsFor } from '@/lib/study/goal-scales'
 
 interface Prefs {
   target_test: string | null
@@ -49,10 +50,6 @@ const GOAL_PRESETS = [15, 30, 45, 60, 90]
 // Per-test goal-score scales. Keyed by lowercased test family (matching
 // study_user_prefs.goal_scores keys). Only tests with a scale here show
 // a goal row; others (locked) don't feed the predicted-score engine yet.
-const GOAL_SCALES: Record<string, number[]> = {
-  sat: [1200, 1300, 1400, 1500, 1600],
-  toefl: [80, 90, 100, 105, 110, 120],
-}
 
 /**
  * Study preferences page — surfaces every knob the onboarding
@@ -276,14 +273,7 @@ function PreferencesInner() {
           mirrors SAT down to the legacy goal_score the predicted-score
           engine reads. */}
       {(() => {
-        // Unique target tests (case-insensitive), preserving order, that
-        // have a goal scale defined.
-        const seen = new Set<string>()
-        const goalTests: string[] = []
-        for (const raw of [...(prefs.target_tests ?? []), prefs.target_test ?? '']) {
-          const key = raw.toLowerCase()
-          if (key && GOAL_SCALES[key] && !seen.has(key)) { seen.add(key); goalTests.push(key) }
-        }
+        const goalTests = goalTestsFor(prefs.target_tests, prefs.target_test)
         const multi = goalTests.length > 1
         return goalTests.map(test => {
           const scale = GOAL_SCALES[test]

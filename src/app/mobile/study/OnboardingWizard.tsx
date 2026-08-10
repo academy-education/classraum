@@ -11,19 +11,35 @@ import { StudyButton } from '@/app/mobile/study/_shared/StudyButton'
 import { PersonAvatar, STUDY_AVATARS } from '@/app/mobile/study/_shared/avatars'
 import { STUDY_AVATAR_IDS } from '@/lib/study/avatars'
 import { useKeyboardInset } from '@/hooks/useKeyboardInset'
+import { GOAL_SCALES, goalTestsFor } from '@/lib/study/goal-scales'
 
 type Difficulty = 'warmup' | 'balanced' | 'challenge'
-interface Step1 { targetTest: string | null; goalScore: number | null }
+/**
+ * Step 1 mirrors the target-test section of study preferences, which is
+ * multi-select: a student can prep for SAT *and* TOEFL.
+ *
+ * `targetTests` is the set; `targetTest` is the FOCUS pointer within it
+ * — the one that drives the StudyPath and the predicted score. Both are
+ * kept because the prefs route keeps the two columns in lockstep and
+ * every downstream reader expects a single focus.
+ *
+ * `goalScores` replaces the old single `goalScore`, which was SAT-only:
+ * a student who picked TOEFL during onboarding was never asked for a
+ * goal at all, even though preferences has offered a TOEFL goal for
+ * weeks. Keyed by lowercase test id, same shape the route stores.
+ */
+interface Step1 { targetTests: string[]; targetTest: string | null; goalScores: Record<string, number> }
 interface Step2 { gradeLevel: string | null }
 interface Step3 { dailyGoalMinutes: number }
 interface Step4 { defaultLanguage: 'en' | 'ko'; defaultDifficulty: Difficulty }
 
 const TOTAL_STEPS = 5
 
-// SAT goal-score presets (mirror the preferences page). Captured up
-// front so the predicted-score card shows the motivating "X to go" gap
-// from day one instead of "Set a goal score".
-const SCORE_PRESETS = [1200, 1300, 1400, 1500, 1600]
+// Goal-score presets come from the SHARED table so onboarding and
+// preferences cannot drift — they did, and the drift was silent: this
+// file had a SAT-only array while preferences offered SAT and TOEFL.
+// Captured up front so the predicted-score card shows the motivating
+// "X to go" gap from day one instead of "Set a goal score".
 
 // `available` mirrors the landing-grid lock: only the SAT is open for
 // now; the rest render dimmed with a "Soon" chip so new students can't
@@ -67,7 +83,7 @@ export function OnboardingWizard({ onComplete }: { onComplete: () => void }) {
   const ko = language === 'korean'
 
   const [step, setStep] = useState<1 | 2 | 3 | 4 | 5>(1)
-  const [s1, setS1] = useState<Step1>({ targetTest: null, goalScore: null })
+  const [s1, setS1] = useState<Step1>({ targetTests: [], targetTest: null, goalScores: {} })
   const [s2, setS2] = useState<Step2>({ gradeLevel: null })
   const [s3, setS3] = useState<Step3>({ dailyGoalMinutes: 30 })
   const [s4, setS4] = useState<Step4>({ defaultLanguage: ko ? 'ko' : 'en', defaultDifficulty: 'balanced' })
@@ -119,8 +135,12 @@ export function OnboardingWizard({ onComplete }: { onComplete: () => void }) {
         headers: { ...headers, 'Content-Type': 'application/json' },
         body: JSON.stringify({
           ...(skipped ? {} : {
+            target_tests: s1.targetTests,
+            // The focus pointer. The route keeps the two columns in
+            // lockstep, but sending it explicitly means the student's
+            // chosen focus survives rather than defaulting to list[0].
             target_test: s1.targetTest,
-            goal_score: s1.goalScore,
+            goal_scores: s1.goalScores,
             grade_level: s2.gradeLevel,
             daily_goal_minutes: s3.dailyGoalMinutes,
             default_language: s4.defaultLanguage,
@@ -216,63 +236,128 @@ export function OnboardingWizard({ onComplete }: { onComplete: () => void }) {
               <p className="text-[13.5px] text-gray-500 mt-1.5 leading-relaxed">
                 {String(t('study.onboarding.step1Subtitle'))}
               </p>
+              {/* Target test — MULTI-SELECT, identical in behaviour to the
+                  target-test group in study preferences. Tapping an
+                  unselected chip adds it and makes it the focus; tapping
+                  a selected-but-unfocused chip promotes it to focus;
+                  tapping the focused chip does nothing. Removal is a
+                  deliberate ✕, never a second tap — a tap that silently
+                  deselects reads as an accidental cancel, which is why
+                  preferences settled on this shape. */}
               <div className="grid grid-cols-2 gap-2 mt-5">
                 {TESTS.map(test => {
-                  const selected = s1.targetTest === test.value
+                  const selected = s1.targetTests.includes(test.value)
+                  const focused = s1.targetTest === test.value
+                  // A locked test stays tappable if it is somehow already
+                  // selected, so a student can always remove one.
+                  const locked = !test.available && !selected
                   return (
-                    <button
-                      key={test.value}
-                      type="button"
-                      disabled={!test.available}
-                      onClick={() => setS1(prev => ({ ...prev, targetTest: selected ? null : test.value }))}
-                      className={`group relative h-12 rounded-2xl text-[14px] font-semibold transition-all ${
-                        selected
-                          ? 'bg-gradient-to-b from-primary to-primary/90 text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_4px_12px_-4px_rgba(40,133,232,0.4)] ring-1 ring-primary/30'
-                          : test.available
-                            ? 'bg-white text-gray-700 ring-1 ring-gray-200/70 hover:ring-primary/30 active:scale-[0.98]'
-                            : 'bg-gray-50 text-gray-400 ring-1 ring-gray-200/60 cursor-not-allowed'
-                      }`}
-                    >
-                      {ko ? test.label_ko : test.label_en}
-                      {selected && <Check className="absolute top-1.5 right-1.5 w-3.5 h-3.5" />}
-                      {!test.available && (
-                        <span className="absolute top-1.5 right-1.5 rounded-full bg-gray-200/80 px-1.5 py-0.5 text-[8.5px] font-bold tracking-[0.08em] uppercase text-gray-500">
-                          {ko ? '준비 중' : 'Soon'}
-                        </span>
+                    <div key={test.value} className="relative">
+                      <button
+                        type="button"
+                        disabled={locked}
+                        onClick={() => setS1(prev => {
+                          if (selected) {
+                            return focused ? prev : { ...prev, targetTest: test.value }
+                          }
+                          return {
+                            ...prev,
+                            targetTests: [...prev.targetTests, test.value],
+                            targetTest: test.value,
+                          }
+                        })}
+                        className={`relative w-full h-12 rounded-2xl text-[14px] font-semibold transition-all ${
+                          selected
+                            ? focused
+                              ? 'bg-gradient-to-b from-primary to-primary/90 text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_4px_12px_-4px_rgba(40,133,232,0.4)] ring-1 ring-primary/30'
+                              : 'bg-primary/10 text-primary ring-1 ring-primary/25 active:scale-[0.98]'
+                            : locked
+                              ? 'bg-gray-50 text-gray-400 ring-1 ring-gray-200/60 cursor-not-allowed'
+                              : 'bg-white text-gray-700 ring-1 ring-gray-200/70 hover:ring-primary/30 active:scale-[0.98]'
+                        }`}
+                      >
+                        {ko ? test.label_ko : test.label_en}
+                        {focused && (
+                          <span className="absolute bottom-1 left-1/2 -translate-x-1/2 text-[8px] font-bold uppercase tracking-[0.1em] text-white/80">
+                            {ko ? '주력' : 'Focus'}
+                          </span>
+                        )}
+                        {locked && (
+                          <span className="absolute top-1.5 right-1.5 rounded-full bg-gray-200/80 px-1.5 py-0.5 text-[8.5px] font-bold tracking-[0.08em] uppercase text-gray-500">
+                            {ko ? '준비 중' : 'Soon'}
+                          </span>
+                        )}
+                      </button>
+                      {selected && (
+                        <button
+                          type="button"
+                          aria-label={ko ? `${test.label_ko} 제거` : `Remove ${test.label_en}`}
+                          onClick={() => setS1(prev => {
+                            const next = prev.targetTests.filter(v => v !== test.value)
+                            // Dropping the focused test hands focus to
+                            // whatever is left, so the wizard can never
+                            // finish with targets but no focus — which
+                            // would leave the StudyPath with nothing to
+                            // build against.
+                            const nextFocus = prev.targetTest === test.value
+                              ? (next[0] ?? null)
+                              : prev.targetTest
+                            // Drop the goal too; a goal for a test you
+                            // are not preparing for is a stale number
+                            // nobody would think to clear.
+                            const goals = { ...prev.goalScores }
+                            delete goals[test.value.toLowerCase()]
+                            return { targetTests: next, targetTest: nextFocus, goalScores: goals }
+                          })}
+                          className={`absolute -top-1.5 -right-1.5 w-5 h-5 rounded-full flex items-center justify-center shadow-sm ring-1 transition-transform active:scale-90 ${
+                            focused ? 'bg-white text-primary ring-primary/20' : 'bg-white text-gray-500 ring-gray-200'
+                          }`}
+                        >
+                          <X className="w-3 h-3" />
+                        </button>
                       )}
-                    </button>
+                    </div>
                   )
                 })}
               </div>
 
-              {/* Goal score — appears once SAT is chosen. Lights up the
-                  predicted-score gap ("X points to go") from the start. */}
-              {s1.targetTest === 'sat' && (
-                <div className="mt-5">
+              {/* Goal score — one row per selected test that has a known
+                  scale, exactly as preferences renders it. Labelled with
+                  the test name only when there are two, so the common
+                  single-target case stays uncluttered. */}
+              {goalTestsFor(s1.targetTests, s1.targetTest).map((test, _i, all) => (
+                <div key={test} className="mt-5">
                   <p className="text-[12px] font-semibold uppercase tracking-[0.10em] text-gray-400 mb-2">
-                    {ko ? '목표 점수' : 'Goal score'}
+                    {all.length > 1
+                      ? `${test.toUpperCase()} ${ko ? '목표 점수' : 'goal'}`
+                      : (ko ? '목표 점수' : 'Goal score')}
                   </p>
-                  <div className="grid grid-cols-5 gap-2">
-                    {SCORE_PRESETS.map(s => {
-                      const selected = s1.goalScore === s
+                  <div className={`grid gap-2 ${GOAL_SCALES[test].length >= 6 ? 'grid-cols-6' : 'grid-cols-5'}`}>
+                    {GOAL_SCALES[test].map(score => {
+                      const selected = s1.goalScores[test] === score
                       return (
                         <button
-                          key={s}
+                          key={score}
                           type="button"
-                          onClick={() => setS1(prev => ({ ...prev, goalScore: selected ? null : s }))}
+                          onClick={() => setS1(prev => {
+                            const goals = { ...prev.goalScores }
+                            if (selected) delete goals[test]
+                            else goals[test] = score
+                            return { ...prev, goalScores: goals }
+                          })}
                           className={`h-11 rounded-xl text-[13px] font-semibold tabular-nums transition-all ${
                             selected
                               ? 'bg-gradient-to-b from-primary to-primary/90 text-white ring-1 ring-primary/30'
                               : 'bg-white text-gray-700 ring-1 ring-gray-200/70 hover:ring-primary/30 active:scale-[0.98]'
                           }`}
                         >
-                          {s}
+                          {score}
                         </button>
                       )
                     })}
                   </div>
                 </div>
-              )}
+              ))}
             </div>
           )}
 
