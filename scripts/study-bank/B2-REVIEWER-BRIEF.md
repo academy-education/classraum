@@ -10,11 +10,12 @@
 > sittings stay comparable. Do not edit the "Each item has two steps"
 > section — that is the instrument.
 >
-> **Account.** The register said `support@classraum.com` because it
-> assumed you would sit it. If your co-founder sits it, they must use
-> **their own** login. Reviewer identity IS the account: two people
-> sharing one login merge into one reviewer and no agreement number from
-> it can be trusted again.
+>  **Account — settled 2026-08-09.** He uses `support@classraum.com`;
+> that account is his and is already super_admin. Confirmed against the
+> data: support@ holds the 72 original human reviews, andy.manager@ (Andy)
+> holds the 20-item mirror. Same-person is NOT a problem for B2, because
+> neither cohort has any prior human review — this is a first measurement,
+> not an agreement test.
 >
 > **Do not tell them the blind scores** (Academic Talk 100%, Craft and
 > Structure 97.4%) or that we suspect these are guessable. A reviewer who
@@ -44,11 +45,11 @@ not ask anyone what they answered.
 
 ## Sign in
 
-Use **your own account** — the one you used last time.
+Use **support@classraum.com** — your usual account.
 
-Not Andy's. The system identifies a reviewer by their login, so a
-sitting from his account would be recorded as *him* reading, not you,
-and the comparison would be worthless.
+Please do NOT use Andy's login this time. The system records a reviewer
+by their login, so a sitting from his account is filed as *him* reading.
+That already happened once and it cost us a measurement.
 
 ## Start — do this twice
 
