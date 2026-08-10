@@ -40,37 +40,31 @@ const hashOf = ({ passage, prompt, choices }) => createHash('md5').update(
   [norm(passage), norm(prompt), (choices || []).map(norm).join('|')].join('~~'),
 ).digest('hex')
 
-/**
- * Deterministic choice shuffle applied at INSERT.
+/*
+ * INSERT-TIME SHUFFLE: DELETED 2026-08-09, deliberately not wired.
  *
- * Nothing downstream reorders a banked item's choices: shuffleChoices() in
- * src/lib/test-verify.ts is called ONLY by the AI generation route, so the
- * bank draw (assembleFromBank / assembleToeflFromBank / drawBankPractice)
- * serves choices in exactly the order they were authored.
+ * A `shuffleInPlace` lived here, was never called, and its own comment
+ * plus the adjacent REJECT message both claimed it ran. Two options were
+ * on the table — wire it, or remove it. Removed, on evidence:
  *
- * That is fine for generated cohorts, which were shuffled before banking.
- * It is not fine for hand-authored ones: an author writing the key first
- * every time produces a bank where "always pick A" scores ~100%. The
- * TOEFL cr-v1 batch landed at 73% key-at-A and was caught by a blind
- * grader, not by any test.
+ *   1. Choice order is randomised at DRAW time, seeded per session, on
+ *      every path that serves an item (shuffleDrawnChoices, assemble.ts
+ *      496/926/1344/1438). A student never sees stored order, so an
+ *      insert-time shuffle changes nothing they experience.
+ *   2. Wiring it would COST QC coverage. Migration 078's self-test pins
+ *      that content_sha changes on a reshuffle, and attack measurements
+ *      are bound to content_sha (077). Reordering at insert would
+ *      invalidate measurements to buy a property the draw already
+ *      guarantees.
+ *   3. Measured before deciding: SAT v2 key position is 30/27/23/20 over
+ *      1,571 items — nowhere near the 45% gate. Authors complied by hand,
+ *      so nothing is being papered over.
  *
- * Seeded by the content hash so it is stable — re-running an insert
- * produces the same order, and the same item never shuffles two ways.
+ * assemble.ts already argues the general case: enforcing this at N write
+ * sites and zero read sites means any future writer reintroduces the
+ * defect silently. The draw is the read site. This is that decision,
+ * recorded rather than left as dead code.
  */
-function shuffleInPlace(it, seedHex) {
-  if (!Array.isArray(it.choices) || it.choices.length < 2) return it
-  if (!it.choices.includes(it.correct_answer)) return it   // caller validates
-  let s = parseInt(seedHex.slice(0, 8), 16) >>> 0
-  const rnd = () => ((s = (s * 1664525 + 1013904223) >>> 0) / 4294967296)
-  const out = it.choices.slice()
-  for (let i = out.length - 1; i > 0; i--) {
-    const j = Math.floor(rnd() * (i + 1))
-    ;[out[i], out[j]] = [out[j], out[i]]
-  }
-  // correct_answer is matched by VALUE, so it needs no remapping — but the
-  // per-choice rationales are keyed by text and must survive untouched.
-  return { ...it, choices: out }
-}
 
 function loadEnv() {
   const raw = readFileSync(process.cwd() + '/.env.local', 'utf8')
@@ -125,33 +119,8 @@ function explanationIsOrderSafe(it) {
   return !namesAPosition(String(it.explanation || ''))
 }
 
-function accepts(qc, domain, subskill) {
-  if (!qc) return { ok: false, why: 'no qc row' }
-  const kv = Number(qc.key_votes)
-  // Standard English Conventions carve-out: difficulty/distractor graders
-  // systematically under-rate these (the options are punctuation marks, so
-  // they always read as "easy/mechanical"), so those grades are not
-  // meaningful here. A conventions item is sound iff it tests a real rule
-  // with exactly one defensible answer — which UNANIMOUS blind agreement
-  // (3/3) confirms. Author judgment guards against trivial rules upstream.
-  if (domain === 'Standard English Conventions') {
-    if (!(kv >= 3)) return { ok: false, why: `conventions needs unanimous key (got ${kv}/3)` }
-    return { ok: true }
-  }
-  if (!(kv >= 2)) return { ok: false, why: `key_votes ${kv}<2 (contested/mis-keyed)` }
-  if (!['hard', 'medium'].includes(qc.difficulty)) return { ok: false, why: `difficulty ${qc.difficulty}` }
-  // Rhetorical Synthesis carve-out: by design its distractors are TRUE
-  // statements drawn from the notes that fail the stated rhetorical goal,
-  // so graders systematically score them "weak" even when they are good
-  // traps. The distractor-quality lens doesn't fit this item type; gate on
-  // difficulty (already checked, not easy) + key agreement instead.
-  if (domain === 'Expression of Ideas' && subskill === 'Rhetorical Synthesis') {
-    return { ok: true }
-  }
-  if (!['plausible', 'strong'].includes(qc.distractor_quality)) return { ok: false, why: `distractors ${qc.distractor_quality}` }
-  if (qc.passage_needed !== true) return { ok: false, why: 'not passage-dependent' }
-  return { ok: true }
-}
+import { accepts } from './accepts.mjs'
+
 
 function toItem(raw, difficulty) {
   return {
@@ -209,8 +178,9 @@ async function main() {
        * survived: the check has evidently never fired on a real batch.
        *
        * The old message also claimed "choices are shuffled at insert".
-       * They are not — shuffleInPlace is defined in this file and called
-       * nowhere. SAT items are banked in the order they were authored.
+       * They are not, and deliberately are not: SAT items are banked in
+       * authored order and shuffled at DRAW time instead (see the note
+       * at the top of this file).
        */
       console.log(`REJECT ${label} — explanation names an option by position; quote the option instead of numbering it`)
       continue

@@ -16,10 +16,14 @@ import { capWarmupItems } from '@/lib/study/toefl-warmup'
  *   - cr-v1 put the key in slot A on 73% of items
  *   - v3-claude made each 4-question set a COMPLETE ABCD permutation on 78%
  *     of sets, so three confident answers forced the fourth
- * Both were repaired in the data, and the three bank helpers now shuffle on
- * insert. But that leaves the invariant enforced at N WRITE sites and zero
- * READ sites: any future writer — a new script, a restored backup, a manual
- * insert — reintroduces it silently.
+ * Both were repaired in the data. The TOEFL helper shuffles on insert; the
+ * two SAT helpers never did — they carried a shuffleInPlace that was
+ * defined and called nowhere, which is exactly the failure mode this
+ * paragraph warns about, sitting undetected in the repo while the comment
+ * claimed otherwise. It was deleted on 2026-08-09 rather than wired,
+ * because a write-site guard is the weaker half: enforcing this at N WRITE
+ * sites and zero READ sites means any future writer — a new script, a
+ * restored backup, a manual insert — reintroduces the defect silently.
  *
  * Shuffling on the way OUT makes it structurally impossible instead of
  * conventionally avoided. It also varies the order per session, so a
