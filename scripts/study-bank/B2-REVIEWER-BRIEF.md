@@ -22,6 +22,23 @@
 > What that actually preserved was the *altered* instrument — the very
 > thing that voided B1.
 >
+> **Update 2026-08-11 — the rewrite has still never been used, and the
+> wording is not the whole cause.** The Academic Talk sitting ran
+> 23:14–00:17 KST on 08-10; the rewrite above landed at 23:56, *during*
+> it. It came back 19/20 "Can't tell". One of his own notes reads:
+>
+> > *"this was guessable but I just didn't click it. The other answers
+> > are too obviously wrong so D is the only plausible answer."*
+>
+> He abstained on an item he had solved. The button means "I'm not
+> confident" to him and "nothing points anywhere" to the brief, and no
+> amount of even-handed phrasing fixes a definitional mismatch. Hence
+> the new **"What 'Can't tell' means here, exactly"** paragraph in step
+> 1 — that is the load-bearing addition, not the balance rewrite.
+>
+> **Say it out loud when you send this**, in your own words: *"unsure is
+> normal, press Can't tell only if all four look equally possible."*
+>
 >  **Account — settled 2026-08-09.** He uses `support@classraum.com`;
 > that account is his and is already super_admin. Confirmed against the
 > data: support@ holds the 72 original human reviews, andy.manager@ (Andy)
@@ -92,6 +109,22 @@ it away. So:
 - If something about the options points to one of them, pick it.
 - If nothing does, press **"Can't tell — a real answer, not a skip"**.
   It is recorded as a real answer, not a skip.
+
+**What "Can't tell" means here, exactly.** It does **not** mean "I am not
+sure". You will never be sure — the source is hidden, so being unsure is
+the normal state and is not a reason to press it. It means the narrower
+thing: *nothing in these four options points anywhere.*
+
+So if you find yourself thinking any of these, **pick the option**:
+
+- "Three of these are obviously wrong, so it must be the fourth."
+- "This one is longer / more careful / more hedged than the others."
+- "This one sounds like the sort of thing a test wants."
+
+All three are the measurement working. A hunch you cannot justify is
+still a hunch the options gave you, and that is precisely what we are
+counting. Press "Can't tell" only when all four options look equally
+possible to you and you would be picking at random.
 
 Both mistakes cost us the same amount, so please do neither:
 
