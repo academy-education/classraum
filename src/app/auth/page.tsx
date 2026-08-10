@@ -1335,7 +1335,20 @@ export default function AuthPage() {
                     <Input
                       type="text"
                       value={referralCode}
-                      onChange={(e) => setReferralCode(e.target.value.toUpperCase())}
+                      // Store what was typed; do NOT uppercase here.
+                      //
+                      // Rewriting a controlled input's value inside onChange
+                      // is what breaks an IME: the composing text is replaced
+                      // mid-composition and the buffer resets. It happens to
+                      // be harmless for Hangul (toUpperCase is identity) but
+                      // it is the general shape of the bug, and referral
+                      // codes are exactly the field someone pastes or types
+                      // in a non-Latin keyboard layout by mistake.
+                      //
+                      // The field already LOOKS uppercase — `uppercase` in
+                      // the className below — and the value is uppercased
+                      // once at submit, where no composition is in flight.
+                      onChange={(e) => setReferralCode(e.target.value)}
                       placeholder={String(t('auth.form.placeholders.referralCode'))}
                       autoCapitalize="characters"
                       autoCorrect="off"

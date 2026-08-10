@@ -1,20 +1,33 @@
 /** @jest-environment node */
 /**
- * The study weekly-recap cron used to read NO preference at all: it
- * selected every onboarded row of study_user_prefs, looked up the
- * address, and sent. A student who had switched every email toggle off
- * still got it every Monday.
+ * The weekly recap EMAIL is switched off (RECAP_EMAIL_ENABLED in the
+ * route). These tests pin that, and pin the two things that must survive
+ * being switched off.
  *
- * These tests are written against the ROUTE, not against
- * isStudyRecapOptedOut, on purpose. A unit test of the predicate stays
- * green if the cron simply stops calling it — which is precisely the bug
- * that existed. What has to be pinned is that the send is gated.
+ * ── What changed, and why the old tests had to go ────────────────────
  *
- * Both directions matter and the second is the dangerous one:
- *   · study_recap === false  → no email
- *   · anything else (key absent, {}, no user_preferences row at all)
- *     → email still sent. Nobody has this key today, so a key-absent
- *     read of "off" would unsubscribe the entire user base on deploy.
+ * This file used to assert the opposite: that the cron DID email, in
+ * every case except an explicit `study_recap === false`. Those
+ * assertions were correct then and are wrong now, and when the kill
+ * switch landed seven of them failed — which is the only reason this
+ * file is worth having. A suite that had merely checked "the route
+ * returns 200" would have stayed green through a change that stops
+ * every email in production.
+ *
+ * The old contract is NOT deleted, it is inverted and kept: each case
+ * that used to prove an email was sent now proves the switch beats that
+ * case. When the email is re-enabled, flipping these expectations back
+ * restores the original coverage — including the dangerous one, that a
+ * MISSING preference key must never read as "unsubscribed", which would
+ * silently unsubscribe the whole user base on deploy.
+ *
+ * ── What must survive the switch ─────────────────────────────────────
+ *
+ *   · the in-app inbox row — a student who taps the bell still gets
+ *     their recap. Killing the email was the request; killing the
+ *     in-app recap was not, and deleting the cron would have done both.
+ *   · every student's stored study_recap value — untouched, so
+ *     re-enabling restores their choice rather than opting everyone in.
  */
 import { GET } from '@/app/api/cron/study-weekly-recap/route'
 import { dbAdmin } from '@/lib/supabase-admin'
@@ -67,7 +80,7 @@ function seedOneActiveStudent(
   enqueue('study_mastery', { data: [] })
 }
 
-describe('GET /api/cron/study-weekly-recap — study_recap opt-out', () => {
+describe('GET /api/cron/study-weekly-recap — the email is off', () => {
   let enqueue: ReturnType<typeof tableRouter>
 
   beforeEach(() => {
@@ -77,7 +90,7 @@ describe('GET /api/cron/study-weekly-recap — study_recap opt-out', () => {
     notifyMock.mockResolvedValue(undefined)
   })
 
-  it('does NOT email a student who set study_recap = false', async () => {
+  it('sends nothing to a student who explicitly opted out', async () => {
     seedOneActiveStudent(enqueue, [
       { user_id: 'u1', email_notifications: { study_recap: false } },
     ])
@@ -88,43 +101,32 @@ describe('GET /api/cron/study-weekly-recap — study_recap opt-out', () => {
     expect(body).toMatchObject({ sent: 0, optedOut: 1 })
   })
 
-  it('still emails when other categories are off but study_recap is not', async () => {
-    // The shape a student who muted every ACADEMY email has. The recap
-    // is a study email and those four toggles must not reach it.
-    seedOneActiveStudent(enqueue, [{
+  it.each([
+    ['other categories are off but study_recap is not', [{
       user_id: 'u1',
       email_notifications: {
         assignments: false, grades: false, announcements: false, reminders: false,
       },
-    }])
-
-    const body = await (await GET(cronRequest())).json()
-
-    expect(sendMock).toHaveBeenCalledTimes(1)
-    expect(body).toMatchObject({ sent: 1, optedOut: 0 })
-  })
-
-  it.each([
-    ['the key absent', [{ user_id: 'u1', email_notifications: { assignments: true } }]],
+    }]],
+    ['the key is absent', [{ user_id: 'u1', email_notifications: { assignments: true } }]],
     ['an empty object', [{ user_id: 'u1', email_notifications: {} }]],
     ['a null column', [{ user_id: 'u1', email_notifications: null }]],
     ['a non-object column', [{ user_id: 'u1', email_notifications: 'yes' }]],
     ['no user_preferences row at all', []],
-  ])('STILL emails when %s — absent must never read as off', async (_label, rows) => {
+  ])('sends nothing even when %s — every one of these used to send', async (_label, rows) => {
     seedOneActiveStudent(enqueue, rows)
 
     const body = await (await GET(cronRequest())).json()
 
-    expect(sendMock).toHaveBeenCalledTimes(1)
-    expect(body).toMatchObject({ sent: 1, optedOut: 0 })
+    expect(sendMock).not.toHaveBeenCalled()
+    expect(body).toMatchObject({ sent: 0, optedOut: 1 })
   })
 
-  it('still emails when the preferences read itself FAILS', async () => {
-    // A transient error must not be indistinguishable from "everyone
-    // unsubscribed" — that would be a silent zero-send week.
-    seedOneActiveStudent(enqueue, [])
-    jest.clearAllMocks()
-    enqueue = tableRouter(fromMock)
+  it('sends nothing when the preferences read itself FAILS', async () => {
+    // This case used to send, deliberately: a transient error must not
+    // be indistinguishable from "everyone unsubscribed". With the switch
+    // off it no longer matters what the read returned, and the route
+    // must not throw on the error path either.
     enqueue('study_user_prefs', { data: [{ student_id: 'u1' }] })
     enqueue('user_preferences', { error: { code: '57014', message: 'canceling statement' } })
     enqueue('study_attempts', {
@@ -136,22 +138,42 @@ describe('GET /api/cron/study-weekly-recap — study_recap opt-out', () => {
 
     const body = await (await GET(cronRequest())).json()
 
-    expect(sendMock).toHaveBeenCalledTimes(1)
-    expect(body).toMatchObject({ sent: 1 })
+    expect(sendMock).not.toHaveBeenCalled()
+    expect(body).toMatchObject({ sent: 0 })
     warn.mockRestore()
   })
+})
 
-  it('leaves the IN-APP recap alone for an opted-out student', async () => {
-    // The toggle lives under "email notifications". Muting an inbox is
-    // not a request to stop seeing the recap inside the app, so the
-    // notify call must survive the gate.
+describe('what the kill switch must NOT take with it', () => {
+  let enqueue: ReturnType<typeof tableRouter>
+
+  beforeEach(() => {
+    jest.clearAllMocks()
+    enqueue = tableRouter(fromMock)
+    sendMock.mockResolvedValue({ sent: true })
+    notifyMock.mockResolvedValue(undefined)
+  })
+
+  it('still posts the in-app recap to the inbox', async () => {
+    // The ask was to stop the EMAIL. Deleting the cron would have been
+    // the easy version and would have silently removed this too.
+    seedOneActiveStudent(enqueue, [{ user_id: 'u1', email_notifications: {} }])
+
+    await GET(cronRequest())
+
+    expect(sendMock).not.toHaveBeenCalled()
+    expect(notifyMock).toHaveBeenCalledWith(
+      expect.objectContaining({ studentId: 'u1', kind: 'study_weekly_recap' }),
+    )
+  })
+
+  it('still posts the in-app recap to a student who opted out of the email', async () => {
     seedOneActiveStudent(enqueue, [
       { user_id: 'u1', email_notifications: { study_recap: false } },
     ])
 
     await GET(cronRequest())
 
-    expect(sendMock).not.toHaveBeenCalled()
     expect(notifyMock).toHaveBeenCalledWith(
       expect.objectContaining({ studentId: 'u1', kind: 'study_weekly_recap' }),
     )

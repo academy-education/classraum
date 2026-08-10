@@ -9,11 +9,44 @@
  * the 80px floor and "does not mistake collapsing browser chrome for a
  * keyboard" fails with 60 instead of 0.
  *
- * NOT covered: the native path, which comes from the Capacitor plugin
- * and is a reported height rather than a computed one. There is nothing
- * to get wrong there that a unit test could see.
+ * There is no longer a native path to cover — see the first describe
+ * block for why the one that existed was removed.
  */
+import { readFileSync } from 'node:fs'
+import { join } from 'node:path'
+
 import { keyboardInsetFromViewport } from '../useKeyboardInset'
+
+describe('the inset has exactly one source', () => {
+  /*
+   * REGRESSION GUARD, and it is guarding a bug that shipped.
+   *
+   * The first version asked the Capacitor Keyboard plugin for the height
+   * on native and used visualViewport only on the web. Android's WebView
+   * resizes for the keyboard by itself, so 100dvh was ALREADY reduced;
+   * subtracting the plugin's ~300px again left the auth form in a ~125px
+   * strip above a dead gap. Users saw it before any check did.
+   *
+   * The defect is not arithmetic, so no assertion on the numbers can
+   * catch it — it is the presence of a second, ABSOLUTE source that
+   * cannot know whether the layout already applied it. visualViewport is
+   * a DIFFERENCE and therefore self-correcting on both platforms. This
+   * test pins that structural property.
+   */
+  const src = readFileSync(join(__dirname, '..', 'useKeyboardInset.ts'), 'utf8')
+
+  it('never reads the keyboard height from the Capacitor plugin', () => {
+    expect(src).not.toContain('@capacitor/keyboard')
+    expect(src).not.toContain('keyboardWillShow')
+    expect(src).not.toContain('keyboardDidShow')
+  })
+
+  it('does not branch on platform', () => {
+    // A platform branch is how the two sources got in last time.
+    expect(src).not.toContain('isNativePlatform')
+    expect(src).not.toContain('@capacitor/core')
+  })
+})
 
 describe('keyboardInsetFromViewport', () => {
   it('is 0 when the visual and layout viewports agree — no keyboard', () => {

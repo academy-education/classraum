@@ -708,58 +708,22 @@ function MobileProfilePageContent() {
             </Link>
           </div>
 
-          {/* Study emails — the ONE study-mode member of
-              user_preferences.email_notifications. It sits here and not
-              in the academy block above because that block is gated on
-              `academyIds.length > 0`: a study-only account has no
-              academy, never rendered that card, and therefore had no
-              way to switch ANY email off — while /api/cron/
-              study-weekly-recap mailed them every Monday regardless.
+          {/* Study emails card REMOVED 2026-08-11.
 
-              Opt-OUT semantics all the way down: an absent
-              `study_recap` key reads as ON (see defaultPreferences and
-              the `!== false` parse in useMobileProfile), so nobody who
-              wants the email loses it the moment this ships. */}
-          <div className="mb-6">
-            <Eyebrow as="h3" className="mb-2 px-1 text-[12px] tracking-[0.10em] text-gray-600">
-              {t('mobile.profile.studyEmails')}
-            </Eyebrow>
-            <Card className="p-4">
-              <div className="flex items-center gap-3">
-                <div className="w-9 h-9 rounded-xl bg-violet-500/10 flex items-center justify-center flex-shrink-0">
-                  <Mail className="w-4 h-4 text-violet-600" strokeWidth={1.75} />
-                </div>
-                <div className="flex-1 min-w-0">
-                  <p className="text-sm font-medium text-gray-900">{t('mobile.profile.studyRecapEmail')}</p>
-                  <p className="text-xs text-gray-500">{t('mobile.profile.studyRecapEmailDesc')}</p>
-                </div>
-                <button
-                  onClick={() => {
-                    hapticTap()
-                    updatePreferences({
-                      email_notifications: {
-                        ...preferences.email_notifications,
-                        study_recap: !preferences.email_notifications.study_recap,
-                      },
-                    })
-                  }}
-                  disabled={preferencesLoading}
-                  role="switch"
-                  aria-checked={preferences.email_notifications.study_recap}
-                  aria-label={String(t('mobile.profile.studyRecapEmail'))}
-                  className={`relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full transition-colors duration-200 ease-in-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-offset-2 ${
-                    preferences.email_notifications.study_recap ? 'bg-primary' : 'bg-gray-200'
-                  } ${preferencesLoading ? 'opacity-50 cursor-not-allowed' : ''}`}
-                >
-                  <span
-                    className={`pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow-[0_1px_2px_rgba(0,0,0,0.15)] transition duration-200 ease-in-out mt-0.5 ${
-                      preferences.email_notifications.study_recap ? 'translate-x-[22px]' : 'translate-x-0.5'
-                    }`}
-                  />
-                </button>
-              </div>
-            </Card>
-          </div>
+              The weekly recap email is switched off at the source
+              (RECAP_EMAIL_ENABLED in api/cron/study-weekly-recap), and it
+              was the only study-mode email that existed — every other
+              sendPostmarkEmail caller is an operator alert or
+              account-deletion notice. So this toggle now controlled
+              nothing, which is worse than absent: a setting that appears
+              to do something and does not reads as a bug.
+
+              Deliberately NOT removed: the underlying
+              user_preferences.email_notifications.study_recap value, the
+              helpers in lib/study/emailPrefs.ts, or the in-app inbox row
+              the same cron still posts. Each student's stored choice
+              survives, so restoring the email restores their preference
+              rather than opting everyone back in. */}
         </>
       )}
 

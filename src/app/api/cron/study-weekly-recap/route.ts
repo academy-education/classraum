@@ -43,6 +43,36 @@ export async function GET(req: NextRequest) {
   return NextResponse.json(summary)
 }
 
+/**
+ * The weekly recap EMAIL is off. 2026-08-11, by request.
+ *
+ * A constant rather than a deleted code path, and rather than a deleted
+ * cron, because three different things live in this job and only one of
+ * them was being switched off:
+ *
+ *   the EMAIL          — off, here
+ *   the in-app inbox   — UNTOUCHED. A student who taps the bell still
+ *                        gets their recap. Nobody asked to remove it,
+ *                        and deleting the cron would have taken it out
+ *                        silently along with the email.
+ *   the opt-out data   — untouched. user_preferences.email_notifications
+ *                        .study_recap still holds whatever each student
+ *                        chose, so turning this back on restores their
+ *                        settings rather than resetting everyone to on.
+ *
+ * Suppressed sends are counted as `optedOut` in the run summary, which
+ * is honest: from the job's point of view every student is now opted
+ * out. The count staying non-zero while `sent` sits at 0 is the signal
+ * that the switch is doing something, rather than the job silently
+ * finding nobody to mail.
+ *
+ * To restore: flip this to true. The profile toggle that used to control
+ * it was removed at the same time — a switch that changes nothing reads
+ * as a bug — so put that back too (see the git history of
+ * src/app/mobile/profile/page.tsx).
+ */
+const RECAP_EMAIL_ENABLED = false
+
 async function runRecap() {
   const sevenDaysAgo = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString()
 
@@ -141,7 +171,7 @@ async function runRecap() {
     // muted their inbox did not ask to stop seeing the recap in the
     // app. Counted separately from `skipped` (quiet week / no address):
     // an opt-out is a choice, and a rise in it is a signal.
-    if (optedOut.has(studentId)) {
+    if (RECAP_EMAIL_ENABLED === false || optedOut.has(studentId)) {
       optedOutCount++
     } else {
       const result = await sendPostmarkEmail({

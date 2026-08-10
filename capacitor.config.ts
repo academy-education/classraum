@@ -39,7 +39,31 @@ const config: CapacitorConfig = {
   // Android specific configuration
   android: {
     allowMixedContent: false,
-    captureInput: true,
+    /*
+     * captureInput MUST stay false — it breaks Korean input.
+     *
+     * When true, CapacitorWebView.onCreateInputConnection returns
+     * `new BaseInputConnection(this, false)` instead of the WebView's own
+     * connection. That second argument is `fullEditor`, and with it false
+     * the connection has no Editable to compose into: the IME's
+     * setComposingText calls go nowhere, so a Hangul syllable is INVISIBLE
+     * until it is committed. Users typing 강 saw nothing for ㄱ, 가 — the
+     * character only appeared once finished. Verified by reading
+     * node_modules/@capacitor/android/.../CapacitorWebView.java:24-41,
+     * not inferred from the symptom.
+     *
+     * The paired dispatchKeyEvent hack in the same file is the other half
+     * of this legacy path: on ACTION_MULTIPLE it string-concatenates the
+     * characters straight into document.activeElement.value via
+     * evaluateJavascript, which mangles composition and is an injection
+     * shape besides.
+     *
+     * This file is COMPILED INTO THE NATIVE SHELL (it lands in
+     * android/app/src/main/assets/capacitor.config.json via `cap sync`),
+     * so unlike the web-layer fixes this one only reaches users through a
+     * new store build. Nothing here ships on a Vercel deploy.
+     */
+    captureInput: false,
     webContentsDebuggingEnabled: false, // Set to true for debugging
     // overScrollMode is accepted by the Android shell at runtime but not
     // declared in @capacitor/cli's CapacitorConfig type yet. Cast keeps

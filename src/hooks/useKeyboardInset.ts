@@ -1,6 +1,4 @@
 import { useEffect, useState } from 'react'
-import { Capacitor } from '@capacitor/core'
-import { Keyboard } from '@capacitor/keyboard'
 
 /**
  * How many CSS pixels the on-screen keyboard is currently covering.
@@ -16,27 +14,19 @@ import { Keyboard } from '@capacitor/keyboard'
  *       top: 0; left: 0; right: 0; bottom: 0;
  *     }
  *
- * `position: fixed` with all four insets re-stretches body to the full
- * screen the instant the plugin shrinks it, and `overflow: hidden` means
- * nothing can scroll out from under the keyboard either. So the platform
- * mechanism is present, configured, and inert.
+ * `position: fixed` with all four insets re-stretches body the instant
+ * the plugin shrinks it, and `overflow: hidden` means nothing can scroll
+ * out from under the keyboard either. So the platform mechanism is
+ * present, configured, and inert.
  *
  * Fixing it in capacitor.config.ts is NOT an option: that file is
  * compiled into the native shell, so a change there reaches nobody who
  * has already installed the app. Everything here is web-layer, and the
  * app loads from `server.url` (app.classraum.com), so it ships on deploy.
  *
- * ── Why two sources ──────────────────────────────────────────────────
- *
- * Native gives an exact height via the Keyboard plugin. The browser (and
- * Android Chrome, and the desktop preview) gives nothing of the sort, so
- * we derive it from visualViewport, which DOES shrink for the keyboard
- * even when the layout viewport does not. Both paths converge on one
- * number so callers never branch on platform.
- *
  * Returns 0 whenever the keyboard is closed, on the server, and on any
- * platform where neither source is available — a component reading this
- * should degrade to exactly its old layout at 0, never to a broken one.
+ * platform without visualViewport — a component reading this should
+ * degrade to exactly its old layout at 0, never to a broken one.
  */
 /**
  * The occluded strip, from viewport geometry alone.
@@ -68,41 +58,35 @@ export function useKeyboardInset(): number {
   const [inset, setInset] = useState(0)
 
   useEffect(() => {
-    // ── Native: the plugin reports an exact height ──
-    if (Capacitor.isNativePlatform()) {
-      const removers: Array<() => void> = []
-      let cancelled = false
-
-      // The listener promise resolves asynchronously; if the component
-      // unmounted first, remove it immediately rather than leaking it
-      // until the next keyboard event.
-      const keep = (p: Promise<{ remove: () => Promise<void> }>) => {
-        void p.then(l => {
-          if (cancelled) void l.remove()
-          else removers.push(() => void l.remove())
-        })
-      }
-
-      // BOTH will- and did-show, deliberately. iOS fires `will` early
-      // enough to move with the keyboard; Android's `will` is less
-      // dependable across OEM keyboards, and `did` always lands. Taking
-      // whichever arrives means one is redundant, not that one is wrong
-      // — they carry the same height.
-      const show = (info: { keyboardHeight: number }) => setInset(info.keyboardHeight)
-      keep(Keyboard.addListener('keyboardWillShow', show))
-      keep(Keyboard.addListener('keyboardDidShow', show))
-
-      const hide = () => setInset(0)
-      keep(Keyboard.addListener('keyboardWillHide', hide))
-      keep(Keyboard.addListener('keyboardDidHide', hide))
-
-      return () => {
-        cancelled = true
-        removers.forEach(r => r())
-      }
-    }
-
-    // ── Web: infer from visualViewport ──
+    /*
+     * ONE source, on every platform: visualViewport.
+     *
+     * The first version of this hook asked the Capacitor Keyboard plugin
+     * for the height on native and used visualViewport only on the web.
+     * That SHIPPED AND BROKE ANDROID: the plugin reports the raw
+     * keyboard height whether or not the layout has already accounted
+     * for it, and on Android the WebView resizes for the keyboard by
+     * itself. So `100dvh` was already the reduced height, subtracting the
+     * plugin's ~600px again left the auth form in a ~230px strip with a
+     * dead gap above the keys.
+     *
+     * visualViewport cannot make that mistake, because it is a
+     * DIFFERENCE rather than an absolute:
+     *
+     *   Android, layout viewport already shrank
+     *     innerHeight ~= vv.height  ->  inset ~= 0, and 100dvh is
+     *     already correct. Nothing is subtracted twice.
+     *
+     *   iOS, layout viewport does NOT shrink
+     *     innerHeight - vv.height = the keyboard, which is exactly the
+     *     amount 100dvh over-reports. Subtracting it is right.
+     *
+     * The number self-corrects per platform, which the plugin's absolute
+     * height can never do. The lesson worth keeping: an absolute
+     * measurement and a layout that may or may not have already applied
+     * it cannot be combined without knowing which happened — and a
+     * difference sidesteps the question entirely.
+     */
     const vv = typeof window !== 'undefined' ? window.visualViewport : undefined
     if (!vv) return
 
