@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Korean names for the notification channels.
+
+  These are the only strings in the app that Android renders OUTSIDE it —
+  they appear in Settings > Apps > Classraum > Notifications, next to the
+  per-channel switches. Leaving them English put the app's primary
+  audience in front of an English settings screen at exactly the moment
+  they were deciding what to mute.
+
+  Only the channel strings are translated here. default_notification_channel_id
+  is an ID, not copy, and MUST NOT be localised — a translated id would
+  point Firebase at a channel that does not exist, and Android drops
+  notifications for unknown channels on API 26+.
+-->
+<resources>
+    <string name="notification_channel_reminders_name">학습 알림</string>
+    <string name="notification_channel_reminders_description">연속 학습 알림과 오늘의 챌린지입니다.</string>
+
+    <string name="notification_channel_progress_name">학습 진행</string>
+    <string name="notification_channel_progress_description">시험 채점 결과와 주간 리포트입니다.</string>
+
+    <string name="notification_channel_social_name">리그와 대결</string>
+    <string name="notification_channel_social_description">리그 승급·강등과 대결 알림입니다.</string>
+
+    <string name="notification_channel_account_name">계정 및 결제</string>
+    <string name="notification_channel_account_description">결제 실패와 구독 변경 안내입니다. 켜 두시는 것을 권장합니다.</string>
+
+    <string name="notification_channel_general_name">일반</string>
+    <string name="notification_channel_general_description">다른 항목에 속하지 않는 알림입니다.</string>
+</resources>

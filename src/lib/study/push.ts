@@ -1,4 +1,5 @@
 import { dbAdmin } from '@/lib/supabase-admin'
+import { pushCategoryAllowed, type PushCategory, type PushPrefsRow } from '@/lib/study/push-categories'
 
 /**
  * Push notification dispatcher for study reminders.
@@ -38,12 +39,59 @@ interface PushSendResult {
   reason?: string
 }
 
+/**
+ * THE PREFERENCE GATE LIVES HERE, NOT AT THE CALL SITES.
+ *
+ * Before 2026-08-11 there was no gate at all: this function selected
+ * device_tokens and sent. `user_preferences.push_notifications` was
+ * written by the profile toggle and read by nobody, so a student who
+ * switched notifications off kept receiving them.
+ *
+ * One gate in the single function every push goes through cannot be
+ * forgotten by the next caller — which is exactly how it went missing.
+ *
+ * FAILS OPEN. A read error returns undefined, pushCategoryAllowed treats
+ * that as "send", and the push goes out. Suppressing on error would mean
+ * one bad query silently mutes the whole product, and nobody reports a
+ * notification they did not receive.
+ */
+async function readPushPrefs(studentId: string): Promise<PushPrefsRow | undefined> {
+  const { data, error } = await dbAdmin
+    .from('user_preferences')
+    .select('push_notifications, push_categories')
+    .eq('user_id', studentId)
+    .maybeSingle()
+  if (error) {
+    console.warn('[push] preference read failed, sending anyway', error.message)
+    return undefined
+  }
+  return (data as PushPrefsRow | null) ?? undefined
+}
+
 export async function sendPushToStudent(
   studentId: string,
   payload: PushPayload,
+  opts?: {
+    /**
+     * Which switch on the settings screen governs this push.
+     *
+     * Omit only when genuinely uncategorised — an omitted category is
+     * treated as "send" and so escapes every per-category switch. Prefer
+     * passing one; `categoryForKind` maps a StudyNotificationKind, and
+     * callers outside that union (the reminder cron) pass theirs directly.
+     */
+    category?: PushCategory | null
+  },
 ): Promise<PushSendResult> {
   if (!process.env.FCM_SERVICE_ACCOUNT_JSON || !process.env.FCM_PROJECT_ID) {
     return { sent: 0, failed: 0, skipped: true, reason: 'fcm_not_configured' }
+  }
+
+  // Checked BEFORE the token query: an opted-out student should cost us
+  // neither a lookup nor an FCM call.
+  const prefs = await readPushPrefs(studentId)
+  if (!pushCategoryAllowed(opts?.category ?? null, prefs)) {
+    return { sent: 0, failed: 0, skipped: true, reason: 'opted_out' }
   }
 
   const { data: tokens } = await dbAdmin
@@ -75,6 +123,21 @@ export async function sendPushToStudent(
           ...(payload.data ?? {}),
           ...(payload.url ? { url: payload.url } : {}),
         },
+        // Route to the Android channel that matches the settings switch.
+        //
+        // Without this the channels created in the native shell exist but
+        // nothing reaches them: every push falls to the manifest default
+        // and lands in one bucket, so a student who wanted to silence
+        // streak nudges could only silence billing along with them.
+        //
+        // Only sent when we know the category. An unset channel_id falls
+        // back to the manifest default ('general'), which is a real
+        // channel with a real name — better than inventing an id here
+        // that the shell has never created, since Android drops
+        // notifications for unknown channels on API 26+.
+        ...(opts?.category
+          ? { android: { notification: { channel_id: opts.category } } }
+          : {}),
         apns: {
           payload: { aps: { sound: 'default' } },
         },

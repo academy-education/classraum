@@ -79,6 +79,28 @@
 
         </activity>
 
+        <!-- Fallback channel for FCM messages that arrive without an
+             explicit android.notification.channel_id.
+
+             Without this, the Firebase SDK posts such a notification to a
+             channel it invents itself ("Miscellaneous"), which the user
+             cannot meaningfully reason about and which is separate from
+             the four real categories. The sender in src/lib/study/push.ts
+             currently sets no channel_id at all, so TODAY this tag is what
+             every Android push actually uses.
+
+             It points at "general" rather than "reminders" on purpose: an
+             un-tagged payment failure filed under Reminders would be
+             muted by a user who only wanted to stop streak nudges.
+
+             The channel itself is created in NotificationChannels.java —
+             this tag only names an id. If the id does not exist at post
+             time the notification silently falls back to the SDK's own
+             default, so the two must stay in step. -->
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_channel_id"
+            android:value="@string/default_notification_channel_id" />
+
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="${applicationId}.fileprovider"

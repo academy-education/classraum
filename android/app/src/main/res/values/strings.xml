@@ -4,4 +4,30 @@
     <string name="title_activity_main">Classraum</string>
     <string name="package_name">com.classraum.app</string>
     <string name="custom_url_scheme">com.classraum.app</string>
+
+    <!-- Notification channel names and descriptions. These are the labels
+         a user reads in Settings > Apps > Classraum > Notifications, so
+         they must stay here and be translatable — never hardcoded in
+         NotificationChannels.java. The ids they belong to are NOT
+         translatable and live in that class. -->
+    <string name="notification_channel_reminders_name">Study reminders</string>
+    <string name="notification_channel_reminders_description">Streak reminders and the daily challenge.</string>
+
+    <string name="notification_channel_progress_name">Progress</string>
+    <string name="notification_channel_progress_description">Test results and your weekly recap.</string>
+
+    <string name="notification_channel_social_name">Leagues and duels</string>
+    <string name="notification_channel_social_description">League movement and duel invitations.</string>
+
+    <string name="notification_channel_account_name">Account and billing</string>
+    <string name="notification_channel_account_description">Payment failures and subscription changes. We recommend leaving these on.</string>
+
+    <!-- Read by the Firebase Messaging SDK via the meta-data tag in
+         AndroidManifest.xml. This is a channel ID, not a label: it is
+         never shown to a user and must never be translated. It must
+         equal NotificationChannels.GENERAL. -->
+    <string name="default_notification_channel_id" translatable="false">general</string>
+
+    <string name="notification_channel_general_name">General</string>
+    <string name="notification_channel_general_description">Notifications that do not fit the other categories.</string>
 </resources>

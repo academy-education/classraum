@@ -114,10 +114,14 @@ async function runReminders() {
       .lte('due_at', nowIso)
     if ((dueCount ?? 0) > 0) {
       const due = dueCount ?? 0
+      // 'srsDue' and 'idleNudge' are push-copy keys, not
+      // StudyNotificationKinds, so they have no kind to map from — the
+      // category is stated here instead. Both are nudges to come back
+      // and study, which is exactly what the "reminders" switch means.
       const result = await sendPushToStudent(studentId, {
         ...renderStudyPush(lang, 'srsDue', { due }),
         url: '/mobile/study/review',
-      })
+      }, { category: 'reminders' })
       if (result.skipped) skipped++
       else if (result.sent > 0) sent++
       else failed++
@@ -146,7 +150,7 @@ async function runReminders() {
           url: '/mobile/study',
         }
 
-    const result = await sendPushToStudent(studentId, payload)
+    const result = await sendPushToStudent(studentId, payload, { category: 'reminders' })
     if (result.skipped) skipped++
     else if (result.sent > 0) sent++
     else failed++

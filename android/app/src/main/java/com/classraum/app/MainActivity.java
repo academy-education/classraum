@@ -19,6 +19,12 @@ public class MainActivity extends BridgeActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        // Register the notification channels before anything can post a
+        // notification. Cheap and idempotent, so running it on every
+        // launch is fine — see NotificationChannels for why re-running it
+        // does NOT push new settings onto existing installs.
+        NotificationChannels.createAll(this);
+
         // Enable edge-to-edge display
         WindowCompat.setDecorFitsSystemWindows(getWindow(), false);
 

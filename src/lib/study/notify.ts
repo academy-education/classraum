@@ -1,5 +1,6 @@
 import { dbAdmin } from '@/lib/supabase-admin'
 import { sendPushToStudent } from '@/lib/study/push'
+import { categoryForKind } from '@/lib/study/push-categories'
 import { safeNotificationPath } from '@/lib/study/notification-link'
 import {
   STUDY_NOTIFICATION_COPY,
@@ -146,7 +147,14 @@ export async function notifyStudent<K extends StudyNotificationKind>({
   }
   if (push) {
     try {
-      await sendPushToStudent(studentId, { title, body: message, url: safeLink ?? undefined })
+      // The kind decides which settings switch governs this push. The
+      // in-app inbox row above is NOT gated — muting a push is not a
+      // request to stop seeing the item when you open the app.
+      await sendPushToStudent(
+        studentId,
+        { title, body: message, url: safeLink ?? undefined },
+        { category: categoryForKind(kind) },
+      )
     } catch (e) {
       console.error('[notify] push failed', e)
     }

@@ -47,8 +47,36 @@ export interface UserPreferences {
     reminders: boolean
     study_recap: boolean
   }
+  /**
+   * Per-category PUSH opt-outs, stored in `user_preferences.push_categories`
+   * (jsonb, migration 080). Gated by `push_notifications` above it: master
+   * off means nothing sends, whatever these say.
+   *
+   *   reminders  streak at risk/saved/milestone, daily challenge
+   *   progress   response graded, weekly recap
+   *   social     league promoted/demoted, duel won/lost
+   *
+   * There is a fourth conceptual group — `account` (payment failed,
+   * subscription expired) — which is deliberately NOT here and has no
+   * key in the column: those are service messages a paying customer
+   * needs, and the migration's CHECK constraint rejects the key outright.
+   *
+   * Opt-OUT, exactly like email_notifications: an absent key means ON.
+   * The column defaults to `{}` for all 420 existing rows, so "absent"
+   * is the common case — reading it as "off" would mute everybody on
+   * deploy, and nobody reports a notification they did not receive.
+   */
+  push_categories: {
+    reminders: boolean
+    progress: boolean
+    social: boolean
+  }
   language: string
 }
+
+/** The switchable push categories, in the order the profile page shows them. */
+export const PUSH_CATEGORY_KEYS = ['reminders', 'progress', 'social'] as const
+export type PushCategoryKey = (typeof PUSH_CATEGORY_KEYS)[number]
 
 interface CachedProfileData {
   profile: UserProfile
@@ -78,6 +106,11 @@ const defaultPreferences: UserPreferences = {
     reminders: true,
     study_recap: true
   },
+  push_categories: {
+    reminders: true,
+    progress: true,
+    social: true
+  },
   language: 'english'
 }
 
@@ -101,6 +134,13 @@ function withPreferenceDefaults(cached: CachedProfileData | null): CachedProfile
   const stored = (cached.preferences?.email_notifications ?? {}) as Partial<
     UserPreferences['email_notifications']
   >
+  // Same problem, same rule, for push: a cache written before
+  // push_categories existed has no such key, and `undefined` bound to a
+  // switch renders OFF — telling the student they had opted out of
+  // notifications they are in fact still receiving.
+  const storedPush = (cached.preferences?.push_categories ?? {}) as Partial<
+    UserPreferences['push_categories']
+  >
   return {
     ...cached,
     preferences: {
@@ -112,6 +152,11 @@ function withPreferenceDefaults(cached: CachedProfileData | null): CachedProfile
         announcements: stored.announcements !== false,
         reminders: stored.reminders !== false,
         study_recap: stored.study_recap !== false,
+      },
+      push_categories: {
+        reminders: storedPush.reminders !== false,
+        progress: storedPush.progress !== false,
+        social: storedPush.social !== false,
       },
     },
   }
@@ -325,6 +370,15 @@ export const useMobileProfile = (
           rawEmailNotifs && typeof rawEmailNotifs === 'object' && !Array.isArray(rawEmailNotifs)
             ? rawEmailNotifs
             : {}
+        // Same narrowing for push_categories (migration 080). The cast is
+        // because database.types.ts has not been regenerated since that
+        // migration; the column is `jsonb NOT NULL DEFAULT '{}'`, and a
+        // row written before it existed still reads as `{}`.
+        const rawPushCats = (preferencesResult.data as { push_categories?: Json | null }).push_categories
+        const pushCats: Record<string, Json | undefined> =
+          rawPushCats && typeof rawPushCats === 'object' && !Array.isArray(rawPushCats)
+            ? rawPushCats
+            : {}
         preferencesData = {
           push_notifications: preferencesResult.data.push_notifications || false,
           email_notifications: {
@@ -337,6 +391,15 @@ export const useMobileProfile = (
             // study_recap key at all, and must keep receiving the recap
             // they already receive today.
             study_recap: emailNotifs.study_recap !== false
+          },
+          // FAIL OPEN. `!== false` and not `=== true`: `{}` — which is
+          // what every one of the 420 existing rows holds — must read as
+          // all three ENABLED. Flipping this comparison mutes the whole
+          // user base on deploy, silently.
+          push_categories: {
+            reminders: pushCats.reminders !== false,
+            progress: pushCats.progress !== false,
+            social: pushCats.social !== false
           },
           language: preferencesResult.data.language || 'english'
         }
@@ -384,6 +447,11 @@ export const useMobileProfile = (
       email_notifications: {
         ...data.preferences.email_notifications,
         ...(updates.email_notifications || {})
+      },
+      // Merged, not replaced: callers send one flipped category.
+      push_categories: {
+        ...data.preferences.push_categories,
+        ...(updates.push_categories || {})
       }
     }
 
@@ -396,14 +464,25 @@ export const useMobileProfile = (
     setPreferencesLoading(true)
 
     try {
+      // Built as a variable rather than inline so the extra
+      // `push_categories` key survives: database.types.ts predates
+      // migration 080, and an object LITERAL would be excess-property
+      // checked against the stale Insert type.
+      //
+      // The key must be in this payload. A category that renders,
+      // toggles and optimistically updates state but never reaches the
+      // upsert is the exact bug this feature exists to fix — the setting
+      // appears to save and does nothing.
+      const upsertPayload = {
+        user_id: userId,
+        push_notifications: newPreferences.push_notifications,
+        email_notifications: newPreferences.email_notifications,
+        push_categories: newPreferences.push_categories,
+        language: newPreferences.language
+      }
       const { error } = await db
         .from('user_preferences')
-        .upsert({
-          user_id: userId,
-          push_notifications: newPreferences.push_notifications,
-          email_notifications: newPreferences.email_notifications,
-          language: newPreferences.language
-        })
+        .upsert(upsertPayload)
 
       if (error) {
         console.error('[useMobileProfile] Error updating preferences:', error)

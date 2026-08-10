@@ -22,7 +22,7 @@ import { StatusPill } from '@/components/ui/status-pill'
 import { StudySubPageHeader } from '@/app/mobile/study/_shared/primitives'
 import { SegmentedTabs } from '@/app/mobile/study/_shared/SegmentedTabs'
 import { User as UserIcon } from 'lucide-react'
-import { useMobileProfile } from './hooks/useMobileProfile'
+import { useMobileProfile, PUSH_CATEGORY_KEYS } from './hooks/useMobileProfile'
 import { StudyNicknameCard } from './StudyNicknameCard'
 import { StudyAvatarCard } from './StudyAvatarCard'
 import { PersonAvatar } from '@/app/mobile/study/_shared/avatars'
@@ -52,7 +52,11 @@ import {
   Megaphone,
   Clock,
   Pencil,
-  Users
+  Users,
+  Flame,
+  TrendingUp,
+  Swords,
+  CreditCard
 } from 'lucide-react'
 import Link from 'next/link'
 import { useSelectedStudentStore, useSelectedStudentHydrated } from '@/stores/selectedStudentStore'
@@ -833,8 +837,18 @@ function MobileProfilePageContent() {
           {t('mobile.profile.notificationSettings')}
         </Eyebrow>
 
-        <Card className="p-4">
-          <div className="flex items-center gap-3">
+        {/* Master switch on top, the three switchable categories under it.
+            The categories are stored in `user_preferences.push_categories`
+            (migration 080) and are OPT-OUT — an absent key is ON, which is
+            what every pre-080 row holds. See the hook for the `!== false`
+            reads that make that true.
+
+            When the master is off the category switches render DISABLED
+            and dimmed, not hidden: nothing sends anyway, so an enabled
+            switch would be a lie — but a control that vanishes reads as a
+            bug, and the student loses the map of what the app can send. */}
+        <Card className="overflow-hidden py-0 gap-0">
+          <div className="p-4 flex items-center gap-3 border-b border-gray-100">
             <div className="w-9 h-9 rounded-xl bg-amber-500/10 flex items-center justify-center flex-shrink-0">
               <Bell className="w-4 h-4 text-amber-600" strokeWidth={1.75} />
             </div>
@@ -861,6 +875,68 @@ function MobileProfilePageContent() {
                 }`}
               />
             </button>
+          </div>
+
+          <div className="divide-y divide-gray-100">
+            {PUSH_CATEGORY_KEYS.map((key) => {
+              const Icon = key === 'reminders' ? Flame : key === 'progress' ? TrendingUp : Swords
+              const checked = preferences.push_categories[key]
+              const masterOff = !preferences.push_notifications
+              const disabled = masterOff || preferencesLoading
+              const label = `mobile.profile.pushCategory.${key}`
+              return (
+                <div key={key} className={`px-4 py-3 flex items-center gap-3 ${masterOff ? 'opacity-50' : ''}`}>
+                  <Icon className="w-4 h-4 text-gray-500 flex-shrink-0 mt-0.5 self-start" strokeWidth={1.75} />
+                  <div className="flex-1 min-w-0">
+                    <p className="text-sm text-gray-700">{t(label)}</p>
+                    <p className="text-xs text-gray-500">{t(`${label}Desc`)}</p>
+                  </div>
+                  <button
+                    onClick={() => {
+                      hapticTap()
+                      updatePreferences({
+                        push_categories: {
+                          ...preferences.push_categories,
+                          [key]: !checked
+                        }
+                      })
+                    }}
+                    disabled={disabled}
+                    role="switch"
+                    aria-checked={checked}
+                    aria-label={String(t(label))}
+                    className={`relative inline-flex h-5 w-9 flex-shrink-0 cursor-pointer rounded-full transition-colors duration-200 ease-in-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-offset-2 ${
+                      checked ? 'bg-primary' : 'bg-gray-200'
+                    } ${disabled ? 'opacity-50 cursor-not-allowed' : ''}`}
+                  >
+                    <span
+                      className={`pointer-events-none inline-block h-4 w-4 transform rounded-full bg-white shadow-[0_1px_2px_rgba(0,0,0,0.15)] transition duration-200 ease-in-out mt-0.5 ${
+                        checked ? 'translate-x-[18px]' : 'translate-x-0.5'
+                      }`}
+                    />
+                  </button>
+                </div>
+              )
+            })}
+
+            {/* Account & billing — deliberately STATIC, with no switch and
+                no key in push_categories (the migration's CHECK rejects
+                one). "Your payment failed" is a service message: silently
+                suppressing it because a toggle was flipped months ago
+                turns a settings choice into a billing surprise. It is
+                shown rather than omitted so a student who has muted
+                everything else still understands why billing gets
+                through. */}
+            <div className="px-4 py-3 flex items-center gap-3">
+              <CreditCard className="w-4 h-4 text-gray-500 flex-shrink-0 mt-0.5 self-start" strokeWidth={1.75} />
+              <div className="flex-1 min-w-0">
+                <p className="text-sm text-gray-700">{t('mobile.profile.pushCategory.account')}</p>
+                <p className="text-xs text-gray-500">{t('mobile.profile.pushCategory.accountDesc')}</p>
+              </div>
+              <span className="flex-shrink-0 text-[11px] font-medium text-gray-400 uppercase tracking-wide">
+                {t('mobile.profile.pushAlwaysOn')}
+              </span>
+            </div>
           </div>
         </Card>
       </div>
