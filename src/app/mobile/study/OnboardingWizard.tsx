@@ -10,6 +10,7 @@ import { validateNickname, normalizeNickname } from '@/lib/study/nickname'
 import { StudyButton } from '@/app/mobile/study/_shared/StudyButton'
 import { PersonAvatar, STUDY_AVATARS } from '@/app/mobile/study/_shared/avatars'
 import { STUDY_AVATAR_IDS } from '@/lib/study/avatars'
+import { useKeyboardInset } from '@/hooks/useKeyboardInset'
 
 type Difficulty = 'warmup' | 'balanced' | 'challenge'
 interface Step1 { targetTest: string | null; goalScore: number | null }
@@ -58,6 +59,10 @@ const GOAL_PRESETS = [15, 30, 60, 90]
  * apply to the unset fields.
  */
 export function OnboardingWizard({ onComplete }: { onComplete: () => void }) {
+  // Step 5's nickname field is the only text input in the wizard, and
+  // the sheet is bottom-anchored, so without this it opens straight
+  // under the keyboard.
+  const keyboardInset = useKeyboardInset()
   const { t, language } = useTranslation()
   const ko = language === 'korean'
 
@@ -161,8 +166,24 @@ export function OnboardingWizard({ onComplete }: { onComplete: () => void }) {
         // tab bar covers the wizard's Skip/Next action bar and users
         // can't advance past step 1. Safe-area padding keeps the
         // action bar clear of the iOS home indicator too.
-        className="fixed inset-x-0 bottom-0 z-[121] max-h-[92vh] overflow-y-auto rounded-t-3xl bg-white shadow-[0_-8px_32px_-8px_rgba(0,0,0,0.18)] animate-slide-up"
-        style={{ paddingBottom: 'env(safe-area-inset-bottom)' }}
+        className="fixed inset-x-0 bottom-0 z-[121] overflow-y-auto rounded-t-3xl bg-white shadow-[0_-8px_32px_-8px_rgba(0,0,0,0.18)] animate-slide-up"
+        style={{
+          // Lift the whole sheet off the keyboard, and shrink it by the
+          // same amount so the sticky action bar at the bottom stays
+          // reachable instead of being pushed off the top.
+          //
+          // `bottom-0` alone resolves against the LAYOUT viewport, which
+          // does not shrink for the keyboard — so the sheet stayed
+          // welded to the physical bottom of the screen and the nickname
+          // field on step 5 sat behind the keys. env(safe-area-inset-*)
+          // does not help: it tracks the home indicator, not the
+          // keyboard.
+          bottom: keyboardInset,
+          maxHeight: `calc(92vh - ${keyboardInset}px)`,
+          // The home indicator is only there when the keyboard is not.
+          paddingBottom: keyboardInset ? 0 : 'env(safe-area-inset-bottom)',
+          transition: 'bottom 180ms ease-out, max-height 180ms ease-out',
+        }}
       >
         <div className="pt-2.5 pb-1.5 flex justify-center">
           <div className="w-10 h-1 rounded-full bg-gray-200" />

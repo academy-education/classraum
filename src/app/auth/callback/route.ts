@@ -79,8 +79,26 @@ export async function GET(request: Request) {
       }
     }
 
-    // If we reach here, something went wrong
-    return NextResponse.redirect(`${origin}/auth?error=invalid_reset_link`)
+    // PKCE recovery: the link carries `code`, not token_hash/token.
+    //
+    // This case fell straight through to invalid_reset_link below, so
+    // whether a reset worked depended on which link format the project
+    // happened to emit. Supabase sends `code` whenever the PKCE flow is
+    // in use, which is the default for the JS client that requested the
+    // reset — so this was the LIKELY branch, not an exotic one.
+    if (code) {
+      const { data, error } = await supabase.auth.exchangeCodeForSession(code)
+      if (!error && data.session) {
+        const { access_token, refresh_token } = data.session
+        return NextResponse.redirect(
+          `${normalizedOrigin}/auth?type=reset&access_token=${access_token}&refresh_token=${refresh_token}`,
+        )
+      }
+      return NextResponse.redirect(`${normalizedOrigin}/auth?error=invalid_reset_link`)
+    }
+
+    // No code, no token, no tokens — nothing to exchange.
+    return NextResponse.redirect(`${normalizedOrigin}/auth?error=invalid_reset_link`)
   }
 
   // Handle email confirmation flow (existing flow)

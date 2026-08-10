@@ -411,10 +411,27 @@ function HomeContent() {
     const code = searchParams.get("code")
     const type = searchParams.get("type")
 
-    if (code && type === "recovery") {
-      // For password recovery, just redirect to auth page with the reset type
-      // Don't exchange the code here - Supabase will handle it differently for password reset
-      router.push("/auth?type=reset")
+    if (type === "recovery") {
+      // Hand the WHOLE query to /auth/callback and let it do the exchange.
+      //
+      // This used to be `router.push("/auth?type=reset")`, dropping the
+      // code entirely, under a comment claiming "Supabase will handle it
+      // differently for password reset". It does not. The reset form
+      // opens with no session and handlePasswordReset bails with
+      // "Session expired", so a recovery link that lands on the MAIN
+      // domain — which is what it does whenever Supabase's Site URL is
+      // classraum.com — could never complete a reset.
+      //
+      // The exchange deliberately does NOT happen here. This component
+      // runs on the marketing origin; a session established client-side
+      // would set its cookies on classraum.com, and the very next hop is
+      // middleware sending /auth to app.classraum.com, where those
+      // cookies do not exist. The callback route runs server-side after
+      // that redirect and sets them on the right origin.
+      //
+      // window.location, not router.push, so the middleware subdomain
+      // redirect actually runs — a client-side push would stay put.
+      window.location.replace(`/auth/callback?${searchParams.toString()}`)
     } else if (code) {
       // Exchange code for session for other auth flows
       db.auth.exchangeCodeForSession(code).then(({ error }) => {

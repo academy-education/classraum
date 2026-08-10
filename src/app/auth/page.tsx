@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect, useMemo } from "react"
+import { useState, useEffect, useMemo, useRef } from "react"
 import { useRouter } from "next/navigation"
 import { useAuth } from "@/contexts/AuthContext"
 import { db } from "@/lib/supabase"
@@ -19,6 +19,7 @@ import { readStoredMode } from "@/lib/study/currentMode"
 import { authHeaders } from "@/lib/auth-headers"
 import { savePendingReferral, clearPendingReferral } from "@/lib/study/pending-referral"
 import { safeNotificationPath } from "@/lib/study/notification-link"
+import { useKeyboardInset } from '@/hooks/useKeyboardInset'
 
 /**
  * POST the referral code to the redeem endpoint using the current session.
@@ -46,6 +47,11 @@ async function redeemReferralCode(code: string): Promise<void> {
 
 export default function AuthPage() {
   const router = useRouter()
+  // How much of the screen the on-screen keyboard is eating. 0 on
+  // desktop and whenever the keyboard is closed, so the layout below is
+  // byte-for-byte the old one in that case.
+  const keyboardInset = useKeyboardInset()
+  const mainRef = useRef<HTMLElement>(null)
   const { t, language } = useTranslation()
   const { toast } = useToast()
   const { user, isLoading: authLoading, isInitialized } = useAuth()
@@ -83,6 +89,29 @@ export default function AuthPage() {
   const [showConfirmPassword, setShowConfirmPassword] = useState(false)
   const [showNewPassword, setShowNewPassword] = useState(false)
   const [showResetConfirmPassword, setShowResetConfirmPassword] = useState(false)
+
+  // Bring the focused field into the visible strip once the keyboard has
+  // finished opening.
+  //
+  // Shrinking <main> above is what makes this POSSIBLE — it gives the
+  // container something to scroll — but it does not by itself move an
+  // already-focused input that the keyboard has just covered. The two
+  // together are the fix; either alone leaves a case broken.
+  //
+  // The delay is not a guess at animation length: the inset arrives from
+  // `keyboardWillShow`, before the layout has reflowed to the new height,
+  // so scrolling on the same frame would scroll the OLD geometry. One
+  // frame after paint is enough, and 'nearest' means a field already in
+  // view does not jump.
+  useEffect(() => {
+    if (!keyboardInset) return
+    const el = document.activeElement
+    if (!(el instanceof HTMLInputElement || el instanceof HTMLTextAreaElement)) return
+    const id = window.setTimeout(() => {
+      el.scrollIntoView({ block: 'nearest', behavior: 'smooth' })
+    }, 100)
+    return () => window.clearTimeout(id)
+  }, [keyboardInset])
 
   // Handle URL parameters immediately on component mount
   useEffect(() => {
@@ -1055,13 +1084,25 @@ export default function AuthPage() {
   // Render with error boundary for hydration safety
   try {
     return (
-    // h-[100dvh] + overflow-y-auto makes <main> its OWN scroll container so
-    // the form scrolls even inside the Capacitor mobile shell (where the
-    // body itself doesn't scroll). `my-auto` on the child centers it when it
+    // overflow-y-auto makes <main> its OWN scroll container so the form
+    // scrolls even inside the Capacitor mobile shell (where the body
+    // itself doesn't scroll). `my-auto` on the child centers it when it
     // fits and collapses to top-aligned + scrollable when it's taller than
     // the viewport (e.g. the long sign-up form) — plain justify-center would
     // clip the overflowing top/bottom with no way to reach it.
-    <main className="relative flex h-[100dvh] w-full flex-col items-center overflow-y-auto bg-background sm:px-4">
+    //
+    // The height is 100dvh MINUS the keyboard. dvh tracks browser chrome
+    // but NOT the on-screen keyboard, so on a phone this container kept
+    // its full height while the keyboard covered the bottom third of it
+    // — and because the container never overflowed, there was nothing to
+    // scroll and the focused input simply sat behind the keys.
+    // Subtracting the inset makes the visible area the real one, at
+    // which point the existing my-auto/overflow behaviour does the rest.
+    <main
+      ref={mainRef}
+      className="relative flex w-full flex-col items-center overflow-y-auto bg-background sm:px-4"
+      style={{ height: `calc(100dvh - ${keyboardInset}px)` }}
+    >
       <Squares
         direction="diagonal"
         speed={0.2}

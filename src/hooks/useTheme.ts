@@ -4,10 +4,29 @@ import { useGlobalStore } from '@/stores/useGlobalStore'
 
 export type Theme = 'light' | 'dark' | 'system'
 
-/** Dark mode is scoped to the /mobile app surfaces — marketing pages
- *  and the dashboard always render light (they haven't had a dark
- *  visual pass). Keep in sync with the boot script in app/layout.tsx. */
-const darkAllowed = (pathname: string | null) => !!pathname?.startsWith('/mobile')
+/**
+ * Dark mode is OFF everywhere. 2026-08-11.
+ *
+ * It used to be allowed on /mobile only. The ask was to disable it on
+ * the auth page and across study mode and to hide the only control that
+ * set it — the picker on /mobile/profile. Those three together leave no
+ * coherent middle ground: /mobile/profile IS the sole mobile switch, and
+ * the dashboard's Appearance select (settings-page.tsx) writes
+ * user_preferences.theme but nothing ever applies it, because useTheme
+ * is mounted only under /mobile. So a partial disable would strand any
+ * account already persisted to 'dark' on the remaining non-study mobile
+ * pages with no way to get back out. Off everywhere is the honest
+ * version of what was asked for.
+ *
+ * Kept as a predicate rather than deleted so re-enabling is one line
+ * here plus one in the boot script in app/layout.tsx — the two MUST
+ * stay in sync, or a hard load paints dark before React removes it.
+ *
+ * The `.dark` styling itself is untouched: globals.css still carries the
+ * token overrides and the ~85-rule utility remap. Nothing renders them
+ * while this returns false.
+ */
+const darkAllowed = (_pathname: string | null) => false
 
 export function useTheme() {
   const { theme, setTheme } = useGlobalStore()

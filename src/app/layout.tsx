@@ -86,16 +86,20 @@ export default function RootLayout({
             __html: `(function(){try{if(window.Capacitor&&window.Capacitor.isNativePlatform&&window.Capacitor.isNativePlatform()){document.documentElement.classList.add('native-app')}}catch(e){}})();`,
           }}
         />
-        {/* Apply the persisted theme BEFORE first paint so dark-mode
-            users never see a white flash. Reads the same zustand
-            persist blob useTheme writes ('global-store'). Scoped to
-            the /mobile app surfaces — marketing pages and the
-            dashboard always render light. */}
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `(function(){try{if(!location.pathname.startsWith('/mobile'))return;var t='system';var raw=localStorage.getItem('global-store');if(raw){var s=JSON.parse(raw);if(s&&s.state&&s.state.theme)t=s.state.theme}var dark=t==='dark'||(t==='system'&&window.matchMedia('(prefers-color-scheme: dark)').matches);if(dark)document.documentElement.classList.add('dark')}catch(e){}})();`,
-          }}
-        />
+        {/* Pre-paint theme script — REMOVED 2026-08-11, dark mode is off
+            everywhere (see darkAllowed in hooks/useTheme.ts, which must
+            stay in sync with this).
+
+            This used to add `.dark` before first paint for /mobile so
+            dark users saw no white flash. With dark disabled it would do
+            the exact opposite: paint dark for anyone whose persisted
+            theme is still 'dark' (or whose OS is dark and theme is
+            'system'), and then React would strip the class on mount —
+            a dark flash on every cold load, on the surfaces we were
+            asked to make light. The stale localStorage value is
+            deliberately left alone rather than migrated; nothing reads
+            it while dark is off, and clearing it would log users out of
+            a preference we may restore. */}
       </head>
       <body
         className={`${montserrat.variable} ${notoSansKR.variable} ${montserrat.className}`}

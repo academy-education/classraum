@@ -8,8 +8,6 @@ import { performLogout } from '@/lib/logout'
 import { hapticTap, hapticImpact } from '@/lib/nativeHaptics'
 import { useTranslation } from '@/hooks/useTranslation'
 import { useLanguage } from '@/contexts/LanguageContext'
-import { useTheme } from '@/hooks/useTheme'
-import { saveThemeToAccount } from '@/lib/theme-account'
 import { usePersistentMobileAuth } from '@/contexts/PersistentMobileAuth'
 import { useEffectiveUserId } from '@/hooks/useEffectiveUserId'
 import { readStoredMode } from '@/lib/study/currentMode'
@@ -42,7 +40,6 @@ import {
   Mail,
   Phone,
   Globe,
-  Moon,
   Bell,
   LogOut,
   ChevronRight,
@@ -75,7 +72,6 @@ function MobileProfilePageContent() {
   const { t } = useTranslation()
   const { toast } = useToast()
   const { language, setLanguage } = useLanguage()
-  const { theme, setTheme } = useTheme()
   const { user } = usePersistentMobileAuth()
   const { effectiveUserId, isReady, isLoading: authLoading, academyIds } = useEffectiveUserId()
   const { selectedStudent, availableStudents, setSelectedStudent } = useSelectedStudentStore()
@@ -897,38 +893,17 @@ function MobileProfilePageContent() {
             </SelectContent>
           </Select>
 
-          {/* Appearance — light / dark / system. Applies instantly via the
-              .dark class, caches in the global store for pre-paint, and
-              persists to the account so it survives relaunch + syncs across
-              devices. */}
-          <Select value={theme} onValueChange={(value) => {
-            hapticTap()
-            const next = value as 'light' | 'dark' | 'system'
-            setTheme(next)
-            if (user?.userId) void saveThemeToAccount(user.userId, next)
-          }}>
-            <SelectTrigger className="w-full h-auto p-4 border-0 shadow-none bg-transparent rounded-none hover:bg-gray-50 transition-colors [&>svg]:hidden">
-              <div className="flex items-center gap-3 w-full">
-                <div className="w-9 h-9 rounded-xl bg-indigo-500/10 flex items-center justify-center flex-shrink-0">
-                  <Moon className="w-4 h-4 text-indigo-600" strokeWidth={1.75} />
-                </div>
-                <div className="flex-1 min-w-0 text-left">
-                  <span className="text-sm font-medium text-gray-900">
-                    {language === 'korean' ? '화면 테마' : 'Appearance'}
-                  </span>
-                </div>
-                <span className="text-sm text-gray-500 mr-1">
-                  <SelectValue />
-                </span>
-                <ChevronRight className="w-4 h-4 text-gray-300 flex-shrink-0" strokeWidth={2} />
-              </div>
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="light">{language === 'korean' ? '라이트' : 'Light'}</SelectItem>
-              <SelectItem value="dark">{language === 'korean' ? '다크' : 'Dark'}</SelectItem>
-              <SelectItem value="system">{language === 'korean' ? '시스템 설정' : 'System'}</SelectItem>
-            </SelectContent>
-          </Select>
+          {/* Appearance picker REMOVED 2026-08-11.
+
+              Dark mode is off app-wide (darkAllowed in hooks/useTheme.ts),
+              so this control would have set a preference that changes
+              nothing visible — worse than absent, because a setting that
+              appears to do nothing reads as a bug.
+
+              Deliberately deleted rather than hidden behind a flag: the
+              store field, the account column (user_preferences.theme) and
+              the whole .dark stylesheet all still exist, so restoring the
+              feature means restoring this block, not rebuilding it. */}
         </Card>
       </div>
 
