@@ -11,6 +11,7 @@ import {
 import { useTranslation } from '@/hooks/useTranslation'
 import { useAuth } from '@/contexts/AuthContext'
 import { buyCreditPack } from '@/lib/study/purchase-credits'
+import { lcFirst, ucFirst, endPunctuation } from '@/lib/study/chip-display'
 import { CREDIT_PACKS, MICRO_PACK } from '@/lib/study/plans'
 import { authHeaders } from '@/lib/auth-headers'
 import { OPEN_RESPONSE_TYPES } from '@/lib/study/openResponse'
@@ -1867,15 +1868,15 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
                 return out
               })
             }
-            const lcFirst = (s: string) => s ? s.charAt(0).toLowerCase() + s.slice(1) : s
-            const ucFirst = (s: string) => s ? s.charAt(0).toUpperCase() + s.slice(1) : s
+            // lcFirst/ucFirst and the punctuation rule live in
+            // @/lib/study/chip-display, pinned by chip-display.test.ts.
+            // The pool-lowercase is the ONLY thing hiding a positional
+            // tell that 44 of 108 live items carry (measured 2026-08-09),
+            // and inline it had no test.
             const complete = current.length === q.choices.length && q.choices.length > 0
             // Infer ending punctuation from the correct answer. If the
             // model didn't emit one, default to a period.
-            const endPunct = (() => {
-              const last = (q.correct_answer ?? '').trim().slice(-1)
-              return /[.?!]/.test(last) ? last : '.'
-            })()
+            const endPunct = endPunctuation(q.correct_answer)
             return (
               <div className="space-y-4">
                 <p className="text-[12px] uppercase tracking-[0.10em] text-gray-500">
