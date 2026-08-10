@@ -1,6 +1,6 @@
 "use client"
 
-import React, { use, useEffect, useRef, useState } from 'react'
+import React, { use, useCallback, useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { useStudyErrorToast, startFailedMessage } from '../../_shared/useStudyErrorToast'
@@ -191,9 +191,34 @@ function TopicInner({ slug }: { slug: string }) {
   const effectiveTopic = selectedChildId
     ? children.find(c => c.id === selectedChildId) ?? topic
     : topic
+  // Loader deps: the slug/id are stable strings, whereas `effectiveTopic`
+  // is a fresh object on every reload of the topic rows — depending on the
+  // object would make each refresh re-fire the dependent loaders again.
+  const effectiveTopicSlug = effectiveTopic?.slug
+  const effectiveTopicId = effectiveTopic?.id
 
-  useEffect(() => {
-    let cancelled = false
+  /*
+   * The four data loads below were inline effect bodies with a
+   * `let cancelled = false` + cleanup guard. That guards ONE MOUNT: once
+   * pull-to-refresh can fire the same loader while a mount-triggered run
+   * is still in flight, a boolean cannot tell the two apart and a stale
+   * response can overwrite fresher data.
+   *
+   * Each is now a useCallback returning a promise (so `onRefresh` can
+   * AWAIT them and the spinner holds until the data actually lands),
+   * guarded by a per-loader SEQUENCE NUMBER: every call takes the next
+   * ticket, and only the holder of the current ticket may setState.
+   *
+   * The guard is a function called `stale()`, deliberately NOT a
+   * converted `cancelled` boolean — an identical refactor elsewhere left
+   * `!cancelled` reads pointing at a function object (always truthy), so
+   * every guard silently became a no-op while still type-checking.
+   */
+
+  const prefsSeq = useRef(0)
+  const loadPrefsAndTopic = useCallback(async () => {
+    const seq = ++prefsSeq.current
+    const stale = () => seq !== prefsSeq.current
     // Kick off the prefs fetch immediately so target_test is resolved
     // by the time the page skeleton clears — the path + diagnostic
     // cards then render with the rest of the page, not after it.
@@ -206,23 +231,24 @@ function TopicInner({ slug }: { slug: string }) {
         ])
         const json = res.ok ? await res.json() : null
         const sub = subRes.ok ? await subRes.json() : null
-        if (!cancelled && typeof sub?.credits?.total === 'number') setCreditBalance(sub.credits.total)
-        if (!cancelled && sub?.credits) setRegularBalance((sub.credits.grant ?? 0) + (sub.credits.purchased ?? 0))
-        if (!cancelled && sub?.access && typeof sub.access.all === 'boolean') setAccess(sub.access)
+        if (!stale() && typeof sub?.credits?.total === 'number') setCreditBalance(sub.credits.total)
+        if (!stale() && sub?.credits) setRegularBalance((sub.credits.grant ?? 0) + (sub.credits.purchased ?? 0))
+        if (!stale() && sub?.access && typeof sub.access.all === 'boolean') setAccess(sub.access)
         return {
           target: (json?.prefs?.target_test as string | null) ?? null,
           targets: (json?.prefs?.target_tests as string[] | undefined) ?? [],
         }
       } catch { return { target: null, targets: [] as string[] } }
     })()
-    void (async () => {
+    {
       const { data: row } = await db
         .from('study_topics')
         .select('id, parent_id, slug, name_en, name_ko, level, category')
         .eq('slug', slug)
         .maybeSingle()
 
-      if (cancelled || !row) {
+      if (stale()) return
+      if (!row) {
         setLoading(false)
         return
       }
@@ -251,7 +277,7 @@ function TopicInner({ slug }: { slug: string }) {
               .order('sort_order')
           : Promise.resolve({ data: [] }),
       ])
-      if (cancelled) return
+      if (stale()) return
       // Hide subtopics that aren't ready for users yet. Currently
       // sat-essay — the Digital SAT discontinued the essay in March
       // 2023 so there's no active demand, and we haven't built the
@@ -269,21 +295,29 @@ function TopicInner({ slug }: { slug: string }) {
       setChildren(kids)
       // Default-select the first child so the mode picker has a real
       // target on first paint (no "you haven't chosen a category" state).
-      if (kids.length > 0) setSelectedChildId(kids[0].id)
+      // On a REFRESH this must not yank the student back to the first
+      // section, so an existing selection that still exists is kept.
+      if (kids.length > 0) {
+        setSelectedChildId(prev => (prev && kids.some(k => k.id === prev) ? prev : kids[0].id))
+      }
       const { target, targets } = await prefsPromise
-      if (cancelled) return
+      if (stale()) return
       setTargetTest(target)
       setTargetTests(targets)
       setLoading(false)
-    })()
-    return () => { cancelled = true }
+    }
   }, [slug])
+
+  useEffect(() => { void loadPrefsAndTopic() }, [loadPrefsAndTopic])
 
   // Practice-question + flashcard counts for the selected section (SAT
   // banks only) — shown on the mode cards. Refetches when the section
   // (category picker) changes.
-  useEffect(() => {
-    const s = effectiveTopic?.slug
+  const bankSeq = useRef(0)
+  const loadBankCounts = useCallback(async () => {
+    const seq = ++bankSeq.current
+    const stale = () => seq !== bankSeq.current
+    const s = effectiveTopicSlug
     const parsed = s ? parseTestSlug(s) : { family: null, section: null }
     // Practice banks: SAT (math + reading_writing) and TOEFL Reading.
     let family: string | null = null
@@ -296,30 +330,30 @@ function TopicInner({ slug }: { slug: string }) {
       section = 'reading'
     }
     if (!family || !section) { setBankCounts(null); return }
-    let cancelled = false
-    void (async () => {
-      try {
-        const headers = await authHeaders()
-        const res = await fetch(`/api/study/bank-counts?family=${family}&section=${section}`, { headers })
-        const json = res.ok ? await res.json() : null
-        if (!cancelled && json) setBankCounts({ practice: json.practice ?? 0, flashcards: json.flashcards ?? 0 })
-      } catch { if (!cancelled) setBankCounts(null) }
-    })()
-    return () => { cancelled = true }
-  }, [effectiveTopic?.slug])
+    try {
+      const headers = await authHeaders()
+      const res = await fetch(`/api/study/bank-counts?family=${family}&section=${section}`, { headers })
+      const json = res.ok ? await res.json() : null
+      if (!stale() && json) setBankCounts({ practice: json.practice ?? 0, flashcards: json.flashcards ?? 0 })
+    } catch { if (!stale()) setBankCounts(null) }
+  }, [effectiveTopicSlug])
+
+  useEffect(() => { void loadBankCounts() }, [loadBankCounts])
 
   // Per-topic progress: mastery score + session count + last activity.
   // Refetches whenever effectiveTopic changes (category picker moves).
-  useEffect(() => {
-    if (!user?.userId || !effectiveTopic) return
-    let cancelled = false
-    void (async () => {
+  const progressSeq = useRef(0)
+  const loadProgress = useCallback(async () => {
+    if (!user?.userId || !effectiveTopicId) return
+    const seq = ++progressSeq.current
+    const stale = () => seq !== progressSeq.current
+    {
       const [{ data: mastery }, countRes, { data: sessions }] = await Promise.all([
         db
           .from('study_mastery')
           .select('score')
           .eq('student_id', user.userId)
-          .eq('topic_id', effectiveTopic.id)
+          .eq('topic_id', effectiveTopicId)
           .maybeSingle(),
         db
           // head:true + count:'exact' asks Postgres for the count and no
@@ -335,17 +369,17 @@ function TopicInner({ slug }: { slug: string }) {
           .from('study_sessions')
           .select('id', { count: 'exact', head: true })
           .eq('student_id', user.userId)
-          .eq('topic_id', effectiveTopic.id)
+          .eq('topic_id', effectiveTopicId)
           .eq('status', 'completed'),
         db
           .from('study_sessions')
           .select('last_active_at')
           .eq('student_id', user.userId)
-          .eq('topic_id', effectiveTopic.id)
+          .eq('topic_id', effectiveTopicId)
           .order('last_active_at', { ascending: false })
           .limit(1),
       ])
-      if (cancelled) return
+      if (stale()) return
       const sessionCount = countRes.count ?? 0
       const lastRow = (sessions as { last_active_at: string }[] | null)?.[0] ?? null
       setProgress({
@@ -353,26 +387,49 @@ function TopicInner({ slug }: { slug: string }) {
         sessions: sessionCount,
         lastActive: lastRow?.last_active_at ?? null,
       })
-    })()
-    return () => { cancelled = true }
-  }, [user?.userId, effectiveTopic])
+    }
+  }, [user?.userId, effectiveTopicId])
+
+  useEffect(() => { void loadProgress() }, [loadProgress])
 
   // Pass credits the student holds for this test family (+ the all-access
   // '*' pass) — when > 0, the credit-spend confirm offers Pass vs Regular.
-  useEffect(() => {
-    const fam = effectiveTopic ? parseTestSlug(effectiveTopic.slug).family : null
+  const passSeq = useRef(0)
+  const loadPassCredits = useCallback(async () => {
+    const fam = effectiveTopicSlug ? parseTestSlug(effectiveTopicSlug).family : null
     if (!user?.userId || !fam) { setFamilyPassCredits(0); return }
-    let cancelled = false
-    void (async () => {
-      const { data } = await db
-        .from('study_pass_credits')
-        .select('remaining')
-        .eq('student_id', user.userId)
-        .in('test', [fam, '*'])
-      if (!cancelled) setFamilyPassCredits((data ?? []).reduce((s, r) => s + ((r.remaining as number | undefined) ?? 0), 0))
-    })()
-    return () => { cancelled = true }
-  }, [user?.userId, effectiveTopic])
+    const seq = ++passSeq.current
+    const stale = () => seq !== passSeq.current
+    const { data } = await db
+      .from('study_pass_credits')
+      .select('remaining')
+      .eq('student_id', user.userId)
+      .in('test', [fam, '*'])
+    if (!stale()) setFamilyPassCredits((data ?? []).reduce((s, r) => s + ((r.remaining as number | undefined) ?? 0), 0))
+  }, [user?.userId, effectiveTopicSlug])
+
+  useEffect(() => { void loadPassCredits() }, [loadPassCredits])
+
+  /**
+   * Pull-to-refresh. AWAITS all four loaders, so the spinner holds until
+   * the data has actually landed — dropping the await here would make the
+   * spinner lie about when the page is fresh.
+   *
+   * `loadPrefsAndTopic` is IN the set: a pull is exactly how a student
+   * comes back after buying credits or a pass, and credit balance /
+   * access / target-test all ride on that call. It cannot flash the
+   * skeleton (it only ever sets `loading` false) and it no longer resets
+   * the category picker — the default-select keeps an existing, still-
+   * valid selection.
+   */
+  const refreshAll = useCallback(async () => {
+    await Promise.all([
+      loadPrefsAndTopic(),
+      loadBankCounts(),
+      loadProgress(),
+      loadPassCredits(),
+    ])
+  }, [loadPrefsAndTopic, loadBankCounts, loadProgress, loadPassCredits])
 
   // Credit cost of the bank test for the currently-selected section.
   const bankCreditCost = () => {
@@ -705,6 +762,7 @@ function TopicInner({ slug }: { slug: string }) {
 
   return (
     <StudyScrollShell
+      onRefresh={refreshAll}
       header={
         <StudyPageHeader
           backHref="/mobile/study"
