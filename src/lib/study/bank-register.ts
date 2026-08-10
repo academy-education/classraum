@@ -136,7 +136,7 @@ export const WORK: WorkItem[] = [
     size: '~20 minutes each',
     why: 'Roughly 486 items currently sit as "the model says guessable, nobody checked".',
     owner: 'you',
-    doc: 'scripts/study-bank/B2-REVIEWER-BRIEF.md — hand to the reviewer as-is; the instrument wording is deliberately identical to B1 so sittings stay comparable',
+    doc: 'scripts/study-bank/B2-PREREGISTERED.md (the decision rule, fixed 2026-08-09 BEFORE any sitting) + B2-REVIEWER-BRIEF.md (hand to the reviewer as-is; the instrument wording is identical to B1 so sittings stay comparable)',
     state: 'open',
     account: 'support@classraum.com — the co-founder\'s own account, confirmed 2026-08-09 (it holds the 72 original human reviews). Already super_admin; nothing to create. Same-person reuse is fine HERE because neither cohort has a prior human review, so this is a first measurement rather than an agreement test — unlike B1, where identity was the whole point.',
     whoSpecifically: 'You, on support@classraum.com — the account your 72 existing reviews are already under. NOT andy.manager@: that one is now your co-founder\'s for B1, and two people sharing one login would merge into a single reviewer_id, which is the precise failure B1 exists to detect. Unlike B1 these cohorts have never been read by anyone, so there is no contamination risk in the ITEMS; the constraint here is purely that one human keeps one account for good, because reviewer identity IS the account. Use the normal "Start a sitting" draw, not a mirror.',
@@ -380,6 +380,11 @@ export const FOUND_WHILE_FIXING: Found[] = [
     date: '2026-08-06',
     what: 'Explanations cite options by POSITION ("the fourth is far too formal") and the positions do not match the stored choice order — in 8bcce6b3 the explanation\'s "fourth" is option A. Options have been reshuffled since authoring (see migration 078), so a student reading why they got an item wrong is told the wrong thing about which option was which. Student-facing, scope unmeasured, exactly checkable — measure the whole population before acting, per the Math-hub lesson. The 24 repairs written today quote the option text instead of numbering it.',
     landedAs: 'A13',
+  },
+  {
+    date: '2026-08-09',
+    what: 'Complete the Words checked for answer-frequency guessability — MEASURED, NOT A DEFECT, recorded so it is not re-opened. 930 blanks across 93 items resolve to 417 distinct answers; the commonest ("tion") is 5.5% of all blanks, the top five 14.7%, the top twenty 28.0%. That curve is English morphology (-tion, -ing, -ment, -ity are simply the commonest suffixes), not an authoring tell, and unlike a multiple-choice item there are no options to eliminate — knowing "tion" is frequent does not say WHICH blank takes it. Guessing the single commonest answer everywhere scores 5.5%. One quality note, not a security one: 46 of 93 items repeat an answer within the same passage (67 blanks), so three "tions" in one passage tests one morpheme repeatedly instead of range. Low priority, logged rather than fixed. Written down because the previous audit of a never-attacked cohort (Build a Sentence) DID find something, and the risk after a hit is finding a pattern in the next place you look.',
+    landedAs: 'fixed',
   },
   {
     date: '2026-08-09',
