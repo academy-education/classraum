@@ -9,7 +9,7 @@ renders on /admin/bank-qc, from the same source, so the two cannot
 disagree.
 
 Generated 2026-08-10. Live items: 3,327.
-Open work: 3 — 1 mine, 2 need you.
+Open work: 4 — 1 mine, 3 need you.
 
 ---
 
@@ -75,9 +75,10 @@ a model agreeing with itself.
 
 
 
-### Dependencies
+### Dependencies — read this before picking anything up
 
-Nothing is blocked — every open item can start today.
+**B4 → B2**  
+B4 is *Calibrate the reviewer before spending another cohort* (~20 minutes — one sitting, already drawn, yours). Until it lands, **B2** (Sittings on Academic Talk and Craft and Structure, ~20 minutes each) cannot start.
 
 ## 2. Open work — mine, no approval needed
 
@@ -89,6 +90,7 @@ Nothing is blocked — every open item can start today.
 
 | id | what | cost | who | why |
 |---|---|---|---|---|
+| B4 | Calibrate the reviewer before spending another cohort | ~20 minutes — one sitting, already drawn | **support@classraum.com — the run is ALREADY DRAWN as calibration-2026-08-11, so he does not touch the cohort dropdown; Bank QC -> Review resumes it automatically. That is deliberate: the dropdown has now misdirected three sittings.**<br>Your co-founder, on support@. Do NOT tell him it is a calibration or that half the items are model-solved — a reviewer who knows that looks harder at them and the run stops measuring what it is for. The one thing to say out loud, in your own words, is what "can't tell" means; a paragraph in the brief has already failed to fix that once. | Three human sittings in a row produced no usable number, each failing differently: wrong reviewer identity (B1), wrong cohort drawn (Academic Passage, 08-10), and a reviewer who pressed "can't tell" on 19 of 20 items including one his own note says he had solved. The reviewer is the instrument every bank verdict rests on, and nothing has ever checked that it works. This is CLAUDE.md's own rule applied to a person rather than a script: a detector that cannot reproduce a known number on known data has no business being pointed at unknown data. Until it passes, another real cohort is 20 minutes of a co-founder's time and one more chance to burn a cohort's first measurement. _20 items by SELECTION, not fabrication — nothing inserted into study_item_bank. 10 the blind attack solved 3/3, 10 it solved 0/3, interleaved, flat 25% control. The measurement that matters is ABSTENTION, which is confound-free: back in the 0-15% range the early sittings produced means the instrument is repaired. The guessable-vs-opaque GAP is explicitly NOT the verdict here — only 2 cohorts overlap between the halves (5 matched items) at current attack coverage, so a gap could be cohort rather than discrimination, and the scorer refuses to read it under 6 matched items. Strengthening it means attacking more items in Choose a Response / SEC / Conversation, which is mine and cheap._ |
 | B2 | Sittings on Academic Talk and Craft and Structure | ~20 minutes each | **support@classraum.com — the co-founder's own account, confirmed 2026-08-09 (it holds the 72 original human reviews). Already super_admin; nothing to create. Same-person reuse is fine HERE because neither cohort has a prior human review, so this is a first measurement rather than an agreement test — unlike B1, where identity was the whole point.**<br>You, on support@classraum.com — the account your 72 existing reviews are already under. NOT andy.manager@: that one is now your co-founder's for B1, and two people sharing one login would merge into a single reviewer_id, which is the precise failure B1 exists to detect. Unlike B1 these cohorts have never been read by anyone, so there is no contamination risk in the ITEMS; the constraint here is purely that one human keeps one account for good, because reviewer identity IS the account. Use the normal "Start a sitting" draw, not a mirror. | Roughly 486 items sit as "the model says guessable, nobody checked". HALF-ATTEMPTED and NOT USABLE as of 2026-08-11. Academic Talk WAS sat on 2026-08-10 (run academic-talk-2026-08-10, support@, 20 items, all four cohort tags correct, 0 stale shas) — and it came back 19/20 "Can't tell", 0% correct. Under the pre-registered rule 0% is CLEARED; it is not being read that way, and the reason is in the run itself rather than in a judgement call after the fact. The sitting ran 23:14-00:17 KST; the corrected brief was committed 23:56 KST, i.e. DURING it. Both 08-10 sittings were therefore taken under the OLD abstention wording, which has never been un-tested. One of his own notes reads "this was guessable but I just didn't click it. The other answers are too obviously wrong so D is the only plausible answer" — a reviewer stating outright that he abstained on an item he had solved. That is not caution, it is the button meaning something different to him than to the brief, and it turns the 0% into a measurement of the instrument. He was not rushing: 40-70s per item on the blind step, 20-30s on the reveal, full step-2 judgements on all 20. Craft and Structure has still never been sat. NEXT: re-run Academic Talk under the corrected brief, and say in the covering message what "Can't tell" is for. _Daily Life and Announcement both came back clean under a human, so these plausibly are too._ |
 | B3 | TestFlight device pass, iOS 1.0.4 | — | Either of you. | Unrelated to the bank, still open. |
 
