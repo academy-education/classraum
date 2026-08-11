@@ -1,0 +1,239 @@
+{
+  "cohort": "cr-v5",
+  "stage": 1,
+  "sameBriefAs": "cr-v4",
+  "authoredBy": "claude",
+  "note": "NOT BANKED. Fresh 12 — NOT repaired cr-v4 items. cr-v4 came in at +22.2, inside the pre-registration's 20-30 inconclusive band at n=12. This slice exists to leave that band with a clear number in either direction. The brief's load-bearing property is UNCHANGED and not under test: vary the stimulus, generate distractors as replies to near-miss lines.",
+  "oneNewRule": "BAN the incredulous restatement with an intensifier — 'X at all?', 'outright', 'all week', 'in one go', 'Nothing ...?' — from EVERY option. Solver 2 named it unprompted on cr-v4: it appeared only in distractors and was a near-perfect negative marker. Banned outright rather than balanced, because putting it in keys at the same rate would make its ABSENCE the marker instead. This is a brief-level rule, not a repair of the attacked items, so it is not tuning against the attack.",
+  "secondDiscipline": "Every option carries the two-move shape the solvers keep describing — echo the premise, then commit to an action or ask a narrow follow-up. In cr-v4 that was already true, which is why the heuristic failed them. Held here deliberately.",
+  "items": [
+    {
+      "localId": "cr5-01",
+      "stimulusKind": "an offer of help",
+      "keyStance": "accepts, adds a condition",
+      "keySlot": "B",
+      "line": "I can pick the samples up from the freezer room on my way in — I'm passing at about eight.",
+      "choices": [
+        "Noon works, they'll have thawed by then anyway. Shall I bag them up?",
+        "Eight is ideal, they must stay below minus twenty. I'll leave the box labelled.",
+        "I can go myself at eight, yes. Which shelf did you leave them on?",
+        "The forms can wait a day, honestly. It's the samples I'd worry about."
+      ],
+      "nearMiss": [
+        "the offer is to collect them at noon",
+        null,
+        "the speaker is asking whether YOU can go",
+        "the offer is to collect the paperwork, not the samples"
+      ]
+    },
+    {
+      "localId": "cr5-02",
+      "stimulusKind": "a constraint",
+      "keyStance": "abandons the plan",
+      "keySlot": "D",
+      "line": "The archive shuts at four on Fridays, and a reader's ticket takes a fortnight to come through.",
+      "choices": [
+        "A fortnight is quicker than I feared. Is the form online?",
+        "Four is late enough for me. I'll go straight after the seminar.",
+        "They open Saturdays now, I gather. I'll check before I book the train.",
+        "Then this trip is too soon either way. I'll aim for after reading week."
+      ],
+      "nearMiss": [
+        "the ticket comes through quickly",
+        "the closing time is the only obstacle",
+        "the archive opens on Saturdays",
+        null
+      ]
+    },
+    {
+      "localId": "cr5-03",
+      "stimulusKind": "good news",
+      "keyStance": "pleased, plans the work",
+      "keySlot": "A",
+      "line": "They've taken the paper with only typographical corrections, and they want it for the March issue.",
+      "choices": [
+        "March gives us six weeks. I'll do the proofs over the weekend.",
+        "Major revisions will take longer than that. How long did they give?",
+        "September is a wait, but it's a good issue to be in.",
+        "A rejection this late is hard. I'll look at where else might take it."
+      ],
+      "nearMiss": [
+        null,
+        "accepted subject to major revisions",
+        "accepted for a much later issue",
+        "the paper was rejected"
+      ]
+    },
+    {
+      "localId": "cr5-04",
+      "stimulusKind": "a question to the listener",
+      "keyStance": "answers plainly, acts",
+      "keySlot": "C",
+      "line": "Has the Thursday group been told the room changed, or only the Tuesday one?",
+      "choices": [
+        "It changed on the Monday. Did the porters move the chairs across?",
+        "Neither has heard yet. I'll put a notice on the old door.",
+        "Only Tuesday. I'll email Thursday's list this afternoon.",
+        "Registry moved it, apparently, to free up the lecture theatre."
+      ],
+      "nearMiss": [
+        "asking when the room changed",
+        "asking whether anyone has been told",
+        null,
+        "asking who moved it"
+      ]
+    },
+    {
+      "localId": "cr5-05",
+      "stimulusKind": "a correction",
+      "keyStance": "concedes, offers two remedies",
+      "keySlot": "B",
+      "line": "That figure isn't from the 2021 survey — it's from the pilot, and the sample was much smaller.",
+      "choices": [
+        "The pilot is the better source here, given the response rate.",
+        "I'll flag the sample size where I quote it, or use the survey instead.",
+        "Both come from the same survey, I thought. Shall I check the appendix?",
+        "A larger sample would only strengthen it. I'll ask for the full set."
+      ],
+      "nearMiss": [
+        "the pilot is the preferable source",
+        null,
+        "the two figures share a source",
+        "the pilot sample was the larger one"
+      ]
+    },
+    {
+      "localId": "cr5-06",
+      "stimulusKind": "a suggestion",
+      "keyStance": "counter-proposes rather than agreeing",
+      "keySlot": "A",
+      "line": "Shall we put the poster session before lunch, so people aren't drifting off afterwards?",
+      "choices": [
+        "Before lunch means setting up at eight, though. Would ten suit instead?",
+        "Afterwards does tend to empty out. I'll move it to the morning.",
+        "Dropping the poster session would free an hour. Is that worth doing?",
+        "Two sessions would spread the load. I'll ask for a second room."
+      ],
+      "nearMiss": [
+        null,
+        "the suggestion is to move it after lunch",
+        "the suggestion is to drop it",
+        "the suggestion is to split it in two"
+      ]
+    },
+    {
+      "localId": "cr5-07",
+      "stimulusKind": "a request",
+      "keyStance": "accepts, names the reason",
+      "keySlot": "D",
+      "line": "Could you look over the ethics form before I submit it? There's a section on data retention I'm unsure of.",
+      "choices": [
+        "I'd start with the consent wording, it's usually that one.",
+        "I sent mine off last week. Have you had the acknowledgement yet?",
+        "The committee sits on the twelfth, so there's time yet.",
+        "Send it over tonight. Retention is the part they query most."
+      ],
+      "nearMiss": [
+        "the uncertainty is about the consent wording",
+        "asking whether you have submitted yours",
+        "asking when the deadline falls",
+        null
+      ]
+    },
+    {
+      "localId": "cr5-08",
+      "stimulusKind": "an apology",
+      "keyStance": "waves it away, would have agreed",
+      "keySlot": "C",
+      "line": "I'm sorry — I gave the organisers your name without asking. They needed a chair at short notice.",
+      "choices": [
+        "I'd rather not chair, but I'll come along and take notes.",
+        "They've not been in touch, so perhaps it lapsed on its own.",
+        "That's fine, I'd have said yes anyway. When is it?",
+        "I'll speak to them and put it right. Who was it they meant?"
+      ],
+      "nearMiss": [
+        "you were volunteered for something you would decline",
+        "your name was given but nobody followed up",
+        null,
+        "the wrong person's name was given"
+      ]
+    },
+    {
+      "localId": "cr5-09",
+      "stimulusKind": "neutral information",
+      "keyStance": "notes the consequence, acts",
+      "keySlot": "A",
+      "line": "The department's moved to the new expenses system, and receipts have to go in within thirty days now.",
+      "choices": [
+        "Thirty days is tighter than before. I'll clear last month's tonight.",
+        "The old system suited me better, but I'll manage with paper copies.",
+        "Ninety days is generous. Do the conference ones count as well?",
+        "Not needing receipts makes the whole thing far simpler."
+      ],
+      "nearMiss": [
+        null,
+        "the department stayed on the old system",
+        "the window is ninety days",
+        "receipts are no longer required"
+      ]
+    },
+    {
+      "localId": "cr5-10",
+      "stimulusKind": "an invitation",
+      "keyStance": "declines with regret, asks for a substitute",
+      "keySlot": "D",
+      "line": "We're running a reading group on the new translation, Wednesday evenings, starting next week.",
+      "choices": [
+        "Mornings suit me far better, but I'll come along when I can.",
+        "The original is worth doing alongside. Does anyone here read German?",
+        "Starting in January gives me time to get hold of a copy.",
+        "Wednesdays are my teaching night, sadly. Will there be notes?"
+      ],
+      "nearMiss": [
+        "the group meets in the mornings",
+        "the group is reading the original",
+        "the group starts in January",
+        null
+      ]
+    },
+    {
+      "localId": "cr5-11",
+      "stimulusKind": "a warning",
+      "keyStance": "acts on it, protects others",
+      "keySlot": "B",
+      "line": "Be careful with the centrifuge on the left — the lid catch is worn and it can pop mid-run.",
+      "choices": [
+        "The right-hand one has the same fault, I gather. Shall I book both in?",
+        "I'll use the other one and put a note on this lid meanwhile.",
+        "A worn belt only slows it down, so I'll allow extra time.",
+        "It was serviced on the Monday, so it should be sound now."
+      ],
+      "nearMiss": [
+        "both machines have the fault",
+        null,
+        "the worn part is the belt, not the catch",
+        "the machine has already been repaired"
+      ]
+    },
+    {
+      "localId": "cr5-12",
+      "stimulusKind": "a refusal with an alternative",
+      "keyStance": "accepts the second best, checks a detail",
+      "keySlot": "C",
+      "line": "I can't get you into the Tuesday lab, it's full — but I could put you in the Friday one.",
+      "choices": [
+        "Tuesday suits me better. Could you put me down for that one?",
+        "Neither has room, then. I'll wait for next term's allocation.",
+        "Friday means missing the seminar, but I'll take it. Same room?",
+        "I'm down for Friday already, I think. Could you check the list?"
+      ],
+      "nearMiss": [
+        "Tuesday turned out to be available",
+        "neither lab has room",
+        null,
+        "you are already enrolled on the Friday"
+      ]
+    }
+  ]
+}
