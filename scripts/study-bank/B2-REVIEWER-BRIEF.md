@@ -107,7 +107,7 @@ source is hidden. You are being asked whether the options **alone** give
 it away. So:
 
 - If something about the options points to one of them, pick it.
-- If nothing does, press **"Can't tell — a real answer, not a skip"**.
+- If nothing does, press **"Can't tell — all four look equal to me"**.
   It is recorded as a real answer, not a skip.
 
 **What "Can't tell" means here, exactly.** It does **not** mean "I am not

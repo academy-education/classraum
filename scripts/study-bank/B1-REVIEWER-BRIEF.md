@@ -1,3 +1,16 @@
+> **HISTORICAL — DO NOT SEND. This is the broken instrument, kept intact.**
+>
+> The wording below produced 85-95% abstention in BOTH reviewers, against
+> 0-8% before it existed. It says "**Please use it**" of the Can't-tell
+> button and calls guessing "the single thing that would most distort this
+> measurement" — naming one failure mode and not the other.
+>
+> It is deliberately NOT corrected. This file is the evidence for the
+> 2026-08-11 finding in `bank-register.ts`; rewriting it would leave the
+> register asserting a defect whose artefact no longer shows it.
+>
+> The live brief is `B2-REVIEWER-BRIEF.md`.
+
 # Second-reviewer sitting — brief
 
 **Send this to the second reviewer as-is.** It is written to be handed

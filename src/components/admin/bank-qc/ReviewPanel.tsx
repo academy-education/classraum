@@ -274,12 +274,39 @@ export function ReviewPanel({ domains }: { domains: string[] }) {
               </button>
             ))}
           </div>
+          {/* The label carries the DEFINITION, because this is where the
+              decision is made — 20 times a sitting, against a brief read
+              once at the start.
+
+              It used to read "a real answer, not a skip". That was written
+              to stop people treating abstention as skipping, and it
+              overshot: it reassures the reader that pressing it is fine,
+              at the exact moment they are deciding whether to. Abstention
+              went 0-8% before that framing existed to 85-95% after it, in
+              BOTH reviewers — see the 2026-08-11 finding in
+              bank-register.ts. A reviewer note from the 08-10 sitting
+              reads "this was guessable but I just didn't click it", which
+              is the button meaning "not confident" to him and "nothing
+              points anywhere" to us.
+
+              So the label now states the narrow condition instead of
+              blessing the press, and the line under it names the case
+              that was being mis-filed. Neither pushes: guessing when
+              nothing points and abstaining when something does are both
+              named as errors. */}
           <Button
             variant="outline" size="sm" disabled={busy}
             onClick={() => void answerBlind(null)} className="mt-2"
           >
-            <HelpCircle className="w-4 h-4" /> Can&apos;t tell — a real answer, not a skip
+            <HelpCircle className="w-4 h-4" /> Can&apos;t tell — all four look equal to me
           </Button>
+          <p className="mt-2 text-[11.5px] leading-relaxed text-gray-500">
+            Being unsure is normal — the source is hidden, so you are meant to be
+            unsure. If three look obviously wrong, or one looks longer, more hedged
+            or more test-like, <strong className="text-gray-700">pick it</strong>:
+            that hunch is the thing being measured. Press this only when nothing
+            points anywhere and you would be choosing at random.
+          </p>
         </div>
       )}
 
