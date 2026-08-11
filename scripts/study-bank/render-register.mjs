@@ -109,19 +109,44 @@ const domainOf = new Map(bank.map(r => [r.id, r.domain ?? '?']))
  * neither — repeated one level down, between two humans rather than
  * between a human and a model.
  */
+/*
+ * KEYED BY RUN, NOT BY REVIEWER — fixed 2026-08-11.
+ *
+ * This was keyed by reviewer_id, so every sitting one person ever did on
+ * a cohort was averaged into a single number. The comment directly above
+ * warns against exactly that ("two sittings of different character
+ * averaged into one number that describes neither") and the code then
+ * did it one level up.
+ *
+ * What it produced: the co-founder sat Choose a Response on 08-05
+ * (11/20, no abstentions) and again inside the 08-11 calibration (2/9,
+ * six abstentions). Pooled, that rendered as 41.7% and the verdict column
+ * printed "cleared by hand — the model was wrong" — for the cohort cut
+ * from 14 delivered to 6 that same morning as CONFIRMED BROKEN by both
+ * instruments. It also buried the clean forced-choice TOEFL sweep inside
+ * the abstention-wrecked runs that preceded it, so three cohorts that had
+ * just been cleared still read "not interpretable".
+ *
+ * A sitting is a RUN: one sample, one instrument, one occasion. Pooling
+ * across runs mixes samples taken under different instruments, which is
+ * the same error the register records as having once cleared a cohort
+ * scoring 74.4% blind.
+ */
 const humanBy = new Map()
+const runReviewer = new Map()
 for (const r of reviews) {
   const d = domainOf.get(r.item_id)
   if (!d) continue
+  runReviewer.set(r.run_id, r.reviewer_id)
   const byRev = humanBy.get(d) ?? new Map()
-  const e = byRev.get(r.reviewer_id) ?? { n: 0, c: 0, abst: 0 }
+  const e = byRev.get(r.run_id) ?? { n: 0, c: 0, abst: 0, run: r.run_id }
   e.n++
   // An abstention ("Can't tell") is scored as not-correct, which is
   // right for the SCORE and catastrophic for the VERDICT — see
   // bestHuman below.
   if (!r.blind_pick || String(r.blind_pick).trim() === '') e.abst++
   else if (r.blind_pick === r.key_slot) e.c++
-  byRev.set(r.reviewer_id, e)
+  byRev.set(r.run_id, e)
   humanBy.set(d, byRev)
 }
 
@@ -150,7 +175,16 @@ for (const r of reviews) {
  * click it" — but the guard deliberately does NOT depend on reading
  * notes, because the next high-abstention run may not come with one.
  */
-const ABSTENTION_CEILING = 0.5
+/* 0.20, not 0.50 — aligned 2026-08-11 with score-sweep-run.mjs, which
+ * had been written to a stricter line. Two thresholds for one concept is
+ * itself a defect; whichever is right, they cannot disagree.
+ *
+ * 0.20 is the defensible one. Abstentions score as not-correct, so a run
+ * with 30% abstention understates its own score by up to 30 points —
+ * more than enough to move a cohort from "leaks" to "clean". The old 0.5
+ * only caught runs that were mostly declines; it let through exactly the
+ * middling ones where the deflation does its damage. */
+const ABSTENTION_CEILING = 0.2
 
 function bestHuman(domain) {
   const byRev = humanBy.get(domain)
@@ -161,6 +195,7 @@ function bestHuman(domain) {
       n: e.n,
       abst: e.abst,
       abstRate: e.abst / e.n,
+      run: e.run,
     }))
     .sort((a, b) => b.pct - a.pct)
   // Under 10 items a high score is luck; over the abstention ceiling the
@@ -169,9 +204,14 @@ function bestHuman(domain) {
   // never look like no sitting.
   const usable = sittings.filter(s => s.n >= 10 && s.abstRate <= ABSTENTION_CEILING)
   if (!usable.length) {
-    return { none: true, readers: sittings.length, all: sittings }
+    const people = new Set(sittings.map(s => runReviewer.get(s.run)).filter(Boolean))
+    return { none: true, readers: people.size || sittings.length, all: sittings }
   }
-  return { ...usable[0], readers: sittings.length, all: sittings }
+  /* `readers` counts distinct PEOPLE, not sittings — one reader who sat
+   * a cohort three times is still one reader, and the agreement question
+   * is about people. */
+  const people = new Set(sittings.map(s => runReviewer.get(s.run)).filter(Boolean))
+  return { ...usable[0], readers: people.size || sittings.length, all: sittings }
 }
 
 const cohorts = new Map()

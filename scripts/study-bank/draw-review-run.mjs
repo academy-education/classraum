@@ -82,11 +82,29 @@ for (const domain of domains) {
   sample.push(...sh(usable).slice(0, size))
 }
 
-/* Key letters flat ACROSS THE WHOLE RUN and, because each cohort is a
- * whole multiple of 4 here, flat within each cohort too. The control is
- * computed per cohort at scoring time, so a run-wide flat spread that
- * hid a lumpy per-cohort one would misreport it. */
-const slots = sh(sample.map((_, i) => L[i % 4]))
+/* Key letters flat WITHIN EACH COHORT, not merely across the run.
+ *
+ * The first version shuffled one flat sequence over the whole sample and
+ * the comment here claimed that made each cohort flat too. It does not,
+ * and the 2026-08-11 TOEFL sweep proved it: 60 items came out flat
+ * run-wide while Daily Life landed 3/7/3/2 and Conversation 6/2/4/3.
+ * Since scoring takes each cohort's control from its OWN spread, those
+ * became 46.7% and 40.0% controls instead of 25%.
+ *
+ * A high control makes a cohort look CLEANER than it is — margin is
+ * score minus control, so the bar for "leaks" rose from 50% to 71.7% on
+ * Daily Life. That sweep's verdicts survived a recheck at a flat 25%,
+ * but only by luck of the scores; the instrument was quietly less
+ * sensitive than the procedure claims.
+ *
+ * Per-cohort flatness is the fix, and the comment that asserted it is
+ * exactly the kind this repo keeps catching: a claimed invariant nobody
+ * had measured. */
+const slots = []
+for (const [ci] of domains.entries()) {
+  const seg = sample.slice(ci * size, (ci + 1) * size)
+  slots.push(...sh(seg.map((_, i) => L[i % 4])))
+}
 
 const runId = runIdArg || `${domains[0].toLowerCase().replace(/\s+/g, '-')}-${new Date().toISOString().slice(0, 10)}`
 const rows = sample.map((r, i) => {
@@ -103,6 +121,12 @@ const rows = sample.map((r, i) => {
 const { error } = await db.from('study_item_reviews').insert(rows)
 if (error) { console.error('insert failed:', error.message, error.code ?? ''); process.exit(1) }
 
+domains.forEach((d, ci) => {
+  const seg = rows.slice(ci * size, (ci + 1) * size)
+  const c = L.map(x => seg.filter(r => r.key_slot === x).length)
+  const ctrl = (100 * Math.max(...c)) / seg.length
+  console.log(`  ${d}: keys ${c.join('/')} -> control ${ctrl.toFixed(1)}%`)
+})
 const counts = L.map(x => rows.filter(r => r.key_slot === x).length)
 console.log(`drawn ${rows.length} into run "${runId}" across ${domains.length} cohort(s), in this order:`)
 domains.forEach((d, i) => console.log(`  ${i + 1}. ${d}  (${size} items)`))
