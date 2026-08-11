@@ -1,0 +1,182 @@
+{
+  "cohort": "cr-v3",
+  "stage": 1,
+  "authoredBy": "claude",
+  "brief": "scripts/study-bank/CR-V3-BRIEF.md",
+  "preregistration": "scripts/study-bank/A3-STAGE1-PREREGISTERED.md",
+  "note": "NOT BANKED. Stage-1 test slice, authored to be attacked. Per the pre-registration a failed slice is discarded, never banked, and never tuned item-by-item against its own attack. Each distractor records the near-miss line it is the correct reply to; that field is authoring provenance and must never enter study_item_bank.item.",
+  "revision": "Second pass. The first was rejected by its own pre-flight: the key was the longest option in 11/12 and carried a question mark in 11/12 against 53% for distractors. Cause: the keys engaged a two-part constraint while the near-miss lines were simple, so their replies ran short and flat. Fixed by giving each near-miss line its own complication and by letting the key state rather than ask in 5 of 12.",
+  "items": [
+    {
+      "localId": "cr3-01",
+      "keySlot": "A",
+      "line": "The reading list went up last night, but the library only has the second edition and the seminar's on the third.",
+      "choices": [
+        "The numbering won't match, then. I'll use the library copy and check page references later.",
+        "Then buying one is the only way. Does the campus shop keep it, or would it be an order?",
+        "I'll watch for it going up — they usually post the list a fortnight ahead, don't they?",
+        "I hadn't heard it had been moved at all. Is the new time on the department page, or by email?"
+      ],
+      "nearMiss": [null,
+        "the library doesn't have the book at all",
+        "the reading list hasn't gone up yet",
+        "the seminar has been rescheduled"]
+    },
+    {
+      "localId": "cr3-02",
+      "keySlot": "B",
+      "line": "I've got the studio booked for Thursday, but it's the small one, so there isn't room for the whole ensemble.",
+      "choices": [
+        "Thursday's awkward for me this week. Is the Friday slot still going spare?",
+        "We'd have to split the rehearsal across two sessions, then. Strings first, or winds?",
+        "None of them free at all? We could ask about the chapel, though it's cold.",
+        "That's ample for the six of us, surely. Shall I tell the others Thursday?"
+      ],
+      "nearMiss": ["the studio is booked but on a different day", null,
+        "no studio could be booked at all",
+        "the ensemble is a small one"]
+    },
+    {
+      "localId": "cr3-03",
+      "keySlot": "C",
+      "line": "Professor Nadel's office hours have moved to Monday, though she's away at a conference all next week.",
+      "choices": [
+        "Monday suits me better anyway. I'll go along at the usual time and hope it's quiet.",
+        "I'll wait until she's back from it. Her hours are normally Thursdays, aren't they?",
+        "The first Monday I could catch her is the week after, then. I'll email instead.",
+        "She's back in time for the Monday, then? I'll try to catch her first thing that morning."
+      ],
+      "nearMiss": ["the hours moved and she is around",
+        "she is away and the hours are unchanged", null,
+        "the conference is this week rather than next"]
+    },
+    {
+      "localId": "cr3-04",
+      "keySlot": "D",
+      "line": "The grant covers travel but not accommodation, and the conference hotel is the only one within an hour.",
+      "choices": [
+        "Then it's the fare I need to budget for. Do they reimburse advance tickets?",
+        "That's better than I'd expected, then. I'll get the hotel booked today and claim it back.",
+        "I'll look at somewhere further out. How far is reasonable to commute each morning?",
+        "We're out of pocket either way, then. Any chance of sharing a room to halve it?"
+      ],
+      "nearMiss": ["the grant covers accommodation but not travel",
+        "the grant covers both",
+        "there are other hotels nearby", null]
+    },
+    {
+      "localId": "cr3-05",
+      "keySlot": "B",
+      "line": "They've put the submission deadline back a week, but the marking still has to be in by the same date.",
+      "choices": [
+        "That takes the pressure off both ends, then. I'll stop worrying about the schedule.",
+        "So the turnaround gets shorter, not longer. Does that mean briefer comments?",
+        "Do we know yet whether the marking date shifts as well, or is that still open?",
+        "A week earlier than planned? That's going to be very tight for the final chapter."
+      ],
+      "nearMiss": ["both the deadline and the marking date moved", null,
+        "the deadline moved and the marking date was not mentioned",
+        "the deadline was brought forward"]
+    },
+    {
+      "localId": "cr3-06",
+      "keySlot": "D",
+      "line": "The rail replacement bus runs on the hour, and the last one goes before the lecture finishes.",
+      "choices": [
+        "Then I've a comfortable margin after all. I'll take the one at ten.",
+        "Nothing running at all this weekend? I'd better see about sharing a taxi back.",
+        "It finishes at eight, doesn't it? That should just about work, then.",
+        "It's leave early or find another way back, then. I'll look at the trains."
+      ],
+      "nearMiss": ["the last bus goes after the lecture finishes",
+        "there is no replacement service",
+        "the lecture finishes earlier than stated", null]
+    },
+    {
+      "localId": "cr3-07",
+      "keySlot": "A",
+      "line": "I can mark your draft this week, but only if it's the full chapter — I can't judge the argument from one section.",
+      "choices": [
+        "I'll hold it back till Friday and send the whole chapter rather than half of it now.",
+        "I'll send what I've got tonight and the rest once it's finished.",
+        "Next week is fine by me. Shall I aim for the Monday?",
+        "I'll pull out the middle section, then — that's the part I'm least sure of."
+      ],
+      "nearMiss": [null,
+        "any portion is welcome",
+        "this week is not possible",
+        "a single section is what is wanted"]
+    },
+    {
+      "localId": "cr3-08",
+      "keySlot": "C",
+      "line": "The department will pay for the licence, but it's charged per machine, and you work on both the lab desktop and your laptop.",
+      "choices": [
+        "Simple enough, then. I'll put it on both and get on with the analysis.",
+        "I'll see whether there's a student rate before I give up on it entirely.",
+        "It's two licences or one machine, then. Which comes cheaper for them?",
+        "I'll do that work in the lab, then, and leave the laptop out of it."
+      ],
+      "nearMiss": ["the licence is charged per user",
+        "the department will not pay", null,
+        "only lab machines are covered"]
+    },
+    {
+      "localId": "cr3-09",
+      "keySlot": "D",
+      "line": "Your supervisor has signed the form, but the graduate office wants a second signature, and the head of department is away till Monday.",
+      "choices": [
+        "I'll catch him tomorrow, then, and get it in with time to spare.",
+        "I'll chase her for the signature first and worry about the rest afterwards.",
+        "No rush on it at all, then. I'll sort it out once he's back.",
+        "It can't go in before Friday unless someone deputises. Is anyone acting?"
+      ],
+      "nearMiss": ["the head of department is available",
+        "the supervisor has not signed yet",
+        "there is no deadline on the form", null]
+    },
+    {
+      "localId": "cr3-10",
+      "keySlot": "A",
+      "line": "The archive will let you photograph the loose letters but not the bound volumes, and most of what you're after is bound.",
+      "choices": [
+        "It's transcribing by hand for the bulk of it, then. I'll allow extra days.",
+        "That'll save me days of work. I'll bring the camera along on Tuesday.",
+        "Not even the loose material, then? It's notebooks the whole way through, in that case.",
+        "Then I can photograph nearly all of it. That's a considerable relief."
+      ],
+      "nearMiss": [null,
+        "photography is allowed throughout",
+        "no photography is allowed at all",
+        "most of the material is loose"]
+    },
+    {
+      "localId": "cr3-11",
+      "keySlot": "C",
+      "line": "I've put you down for the Tuesday tutorial, though you'd said Thursdays were better — Tuesday was the only one with a space.",
+      "choices": [
+        "Thursday, then, if it's going spare. That fits round the lab far better.",
+        "Nothing at all this term? I'll ask about sitting in unofficially.",
+        "I'll take it rather than lose the place. Is there a list if someone drops out?",
+        "Tuesday's ideal, thanks. That's the one I'd have picked myself."
+      ],
+      "nearMiss": ["both days had spaces",
+        "neither day had a space", null,
+        "Tuesday was the stated preference"]
+    },
+    {
+      "localId": "cr3-12",
+      "keySlot": "B",
+      "line": "The results came back consistent, but the control ran at a different temperature, so we can't publish them as they stand.",
+      "choices": [
+        "Then we can start writing up. Shall I draft the methods section?",
+        "It's a rerun of the control, not the whole set. How long would that take?",
+        "Inconsistent how — between replicates, or against the earlier run?",
+        "Then the whole batch is compromised and we'd have to start again from scratch."
+      ],
+      "nearMiss": ["everything ran as intended", null,
+        "the results came back inconsistent",
+        "the samples, not the control, ran at the wrong temperature"]
+    }
+  ]
+}
