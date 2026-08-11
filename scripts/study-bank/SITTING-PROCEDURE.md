@@ -75,6 +75,23 @@ fails:
    the content they judged (migration 076); an edited item invalidates
    its review rather than silently keeping it.
 
+## 4b. Score it — one command
+
+    node scripts/study-bank/score-sweep-run.mjs <runId>
+
+Per cohort, never blended. `scoreRun()` in lib/study/item-review.ts
+returns ONE verdict per RUN, which was fine when a run was one cohort and
+became wrong the moment runs spanned four: a blended number can read
+clean while one cohort inside it leaks.
+
+It prints the §4 validity block first, refuses to read a cohort whose
+abstention rate is over 20% (a score deflated by abstention looks like a
+clean one — the confusion that nearly cleared 275 Academic Talk items),
+and self-tests against six fixtures plus three completed runs whose
+numbers are already in the register:
+
+    node scripts/study-bank/score-sweep-run.mjs --selftest
+
 ## 5. The decision rule, fixed before the sitting
 
 Per cohort, against **the best single fixed letter over that cohort's
