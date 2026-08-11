@@ -1,0 +1,211 @@
+{
+  "cohort": "cr-v6",
+  "stage": 1,
+  "sameBriefAs": "cr-v4 — UNCHANGED",
+  "authoredBy": "claude",
+  "note": "NOT BANKED. Attempt #5. cr-v4 scored +22.2, the best of five, and was never re-tested unchanged: cr-v5 differed from it by a ban rule PLUS my own drift, and the drift is measurably what failed (hedge words in 6/36 distractors and 0/12 keys, absent from cr-v4 entirely). This slice re-runs cr-v4's brief with nothing added and nothing removed, on fresh scenarios.",
+  "rulesHeldEXACTLY": [
+    "Vary the STIMULUS across items — good news, a request, a question, an offer, neutral information, a correction, an invitation, a complaint, a suggestion, an apology, a warning, a refusal-with-alternative. This is cr-v4's load-bearing change and the one measured to work.",
+    "Distractors are the correct reply to a NEAR-MISS version of the spoken line, one fact changed. No roster of distractor TYPES.",
+    "The key is relieved, accepting, factual, advisory or neutral about as often as it is rueful. 'The inconvenienced reply' must be a losing heuristic.",
+    "NO BAN LIST. cr-v5 added one and the repair it forced is what broke the batch."
+  ],
+  "whatIsNotBeingDone": "Pre-flight is run and REPORTED, but it will NOT drive rewriting. That is the cr-v5 lesson: the structural check found a real surface asymmetry, and correcting it by hand introduced a semantic tell worth 25 points. Pre-flight gates; it does not author.",
+  "items": [
+    {
+      "localId": "cr6-01",
+      "stimulusKind": "good news",
+      "keyStance": "pleased, acts",
+      "keySlot": "D",
+      "line": "The visa came through this morning, and they've backdated it to cover the whole placement.",
+      "choices": [
+        "Then the first fortnight is unpaid, which I can live with. I'll tell the lab.",
+        "A refusal at this stage is awkward. I'll ask what grounds they gave.",
+        "Still nothing? I'll chase the consulate again on Monday.",
+        "Backdated as well — that solves the March problem. I'll book the flights."
+      ],
+      "nearMiss": ["it came through but is not backdated",
+        "the visa was refused",
+        "there is still no decision", null]
+    },
+    {
+      "localId": "cr6-02",
+      "stimulusKind": "a warning",
+      "keyStance": "acts on it, protects others",
+      "keySlot": "B",
+      "line": "Don't leave the side door on the latch — the alarm arms itself at seven whether it's shut or not.",
+      "choices": [
+        "The front one is the same, I think. I'll use the fire exit instead.",
+        "I'll pull it to behind me, then, and warn the evening group.",
+        "Seven is later than I thought. That gives me an hour spare.",
+        "It was disabled last term, so there's nothing to trip now."
+      ],
+      "nearMiss": ["the warning is about the front door", null,
+        "the alarm arms later than expected",
+        "the alarm has been disabled"]
+    },
+    {
+      "localId": "cr6-03",
+      "stimulusKind": "a request",
+      "keyStance": "accepts, sets a condition",
+      "keySlot": "A",
+      "line": "Could I borrow your recorder for the interviews next week? Mine's gone in for repair.",
+      "choices": [
+        "Take it, as long as it's back by the Friday seminar.",
+        "Mine's away too, unfortunately. The media desk lends them out.",
+        "I'd use the app instead — the quality is fine for transcription.",
+        "Repairs take about a fortnight, in my experience. Worth chasing them."
+      ],
+      "nearMiss": [null,
+        "the speaker's own recorder is also unavailable",
+        "the speaker is asking what to record WITH",
+        "the speaker is asking how long repairs take"]
+    },
+    {
+      "localId": "cr6-04",
+      "stimulusKind": "a complaint",
+      "keyStance": "advises, no stake of their own",
+      "keySlot": "C",
+      "line": "The printer in the annexe has eaten my card twice this week and nobody will refund it.",
+      "choices": [
+        "Mine jammed as well, so it may be the batch. I'd swap cards.",
+        "They refunded me within the day, so it's worth asking again.",
+        "Take it to the porters with the receipt — they process those directly.",
+        "Once is bad luck. I'd give it one more go before complaining."
+      ],
+      "nearMiss": ["the problem is a jam rather than a lost card",
+        "refunds are being given promptly", null,
+        "it has happened only once"]
+    },
+    {
+      "localId": "cr6-05",
+      "stimulusKind": "neutral information",
+      "keyStance": "neutral, notes what follows",
+      "keySlot": "A",
+      "line": "The reading room keeps the same hours over the vacation, but the issue desk closes at one.",
+      "choices": [
+        "So anything I need to borrow has to be done before lunch.",
+        "Shorter hours will make the mornings tight. I'll go earlier.",
+        "Closed the whole vacation, then. I'll take what I need out now.",
+        "The desk staying open is the useful part. Renewals can wait."
+      ],
+      "nearMiss": [null,
+        "the reading room's hours are reduced",
+        "the reading room closes entirely",
+        "the issue desk keeps full hours"]
+    },
+    {
+      "localId": "cr6-06",
+      "stimulusKind": "a correction",
+      "keyStance": "concedes, corrects the record",
+      "keySlot": "C",
+      "line": "That's not the final version you're quoting — the committee cut the third recommendation.",
+      "choices": [
+        "The draft is the one on the shared drive, then. I'll swap them over.",
+        "All three stand, in that case. I'll leave the paragraph as it is.",
+        "I'll drop that recommendation from the summary, then. Is the rest intact?",
+        "They added one, did they? I'll need to read it before Thursday."
+      ],
+      "nearMiss": ["the version quoted is a draft, not a cut version",
+        "nothing was cut", null,
+        "a recommendation was added rather than cut"]
+    },
+    {
+      "localId": "cr6-07",
+      "stimulusKind": "an offer",
+      "keyStance": "declines warmly",
+      "keySlot": "B",
+      "line": "I'm driving up on the Sunday if you want a lift — there's room for you and the poster tube.",
+      "choices": [
+        "The tube is the problem, so a lift would solve it. What time?",
+        "That's kind, but I'm going up Saturday for the workshop. Thank you though.",
+        "Saturday would suit me better, if you're going then anyway.",
+        "I'll bring my own car, then, and see you at the venue."
+      ],
+      "nearMiss": ["the offer is a lift with no room for luggage", null,
+        "the offer is for Saturday",
+        "the speaker says they cannot give a lift"]
+    },
+    {
+      "localId": "cr6-08",
+      "stimulusKind": "a question to the listener",
+      "keyStance": "answers plainly",
+      "keySlot": "D",
+      "line": "Did you send the abstract to the panel, or just to Professor Iqbal?",
+      "choices": [
+        "By email, the same day the call went out.",
+        "Neither yet — I wanted your view on the title first.",
+        "It was Dr Shah who asked for it, not Professor Iqbal.",
+        "Just to him. I'll copy the panel in this afternoon."
+      ],
+      "nearMiss": ["asking HOW it was sent",
+        "asking whether it was sent at all",
+        "asking WHO asked for it", null]
+    },
+    {
+      "localId": "cr6-09",
+      "stimulusKind": "a suggestion",
+      "keyStance": "counter-proposes",
+      "keySlot": "A",
+      "line": "Why don't we run the two workshops back to back, so people only travel once?",
+      "choices": [
+        "Back to back makes it a six-hour day, though. Could we split at lunch?",
+        "Separate weeks does mean two journeys. I'll see who can manage both.",
+        "Cancelling the second would certainly simplify the budget.",
+        "One long session suits the visiting speakers better, I agree."
+      ],
+      "nearMiss": [null,
+        "the suggestion is to hold them in separate weeks",
+        "the suggestion is to cancel one",
+        "the suggestion is to merge them into a single session"]
+    },
+    {
+      "localId": "cr6-10",
+      "stimulusKind": "an apology",
+      "keyStance": "waves it away",
+      "keySlot": "B",
+      "line": "Sorry, I'm late — the bus was diverted and I couldn't get a message to you.",
+      "choices": [
+        "No trouble, I only arrived myself. Shall we start with the figures?",
+        "Not at all, I'd have waited longer. Did you get anything to eat?",
+        "The message came through fine, so I knew to expect you.",
+        "It's the roadworks, isn't it. They finish next month, apparently."
+      ],
+      "nearMiss": ["the apology is for missing the meeting entirely", null,
+        "a message did get through",
+        "the speaker is complaining about roadworks, not apologising"]
+    },
+    {
+      "localId": "cr6-11",
+      "stimulusKind": "an announcement of change",
+      "keyStance": "neutral, checks a consequence",
+      "keySlot": "C",
+      "line": "Marking moves to the online system from January, and handwritten scripts get scanned centrally.",
+      "choices": [
+        "Scanning them ourselves would take the whole reading week.",
+        "Typed submissions only, then. The students will need telling.",
+        "So we mark on screen but they still write by hand. Does the annotation carry over?",
+        "January is sooner than I expected for a pilot. Is ours in the first wave?"
+      ],
+      "nearMiss": ["markers must scan the scripts themselves",
+        "handwritten scripts are no longer accepted", null,
+        "the change is a pilot rather than general"]
+    },
+    {
+      "localId": "cr6-12",
+      "stimulusKind": "a refusal with an alternative",
+      "keyStance": "accepts second best, mild",
+      "keySlot": "D",
+      "line": "I can't sign it off as a field trip, but I could put it through as a research visit.",
+      "choices": [
+        "A field trip is simpler for the insurance, so let's do that.",
+        "Neither category fits, then. I'll fund it myself and claim later.",
+        "You can sign it after all? That's a relief — here's the form.",
+        "A research visit is fine by me. Does that change the insurance?"
+      ],
+      "nearMiss": ["the field trip category is available",
+        "neither category is available",
+        "the sign-off is being given as asked", null]
+    }
+  ]
+}
