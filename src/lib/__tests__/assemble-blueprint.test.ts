@@ -361,18 +361,23 @@ describe('assembleToeflFromBank two-module adaptive draw', () => {
   })
 
   it('module 2 exhausts the routed band before falling back', async () => {
-    // 5 in-band items and plenty out-of-band: all 5 must appear, so the
+    // 2 in-band items and plenty out-of-band: both must appear, so the
     // fallback tops up rather than replacing the adaptive intent.
-    const inBand = toeflRows('multiple_choice', 5, 'medium', 'choose_response')
+    //
+    // Was 5 until 2026-08-11. The module-2 choose_response quota fell from
+    // 8 to 3 when the task was cut, so five in-band items would fill the
+    // quota outright and the test would go green having exercised no
+    // fallback at all. 2 in-band + 1 topped up still proves the behaviour.
+    const inBand = toeflRows('multiple_choice', 2, 'medium', 'choose_response')
       .map((r, i) => ({ ...r, id: `ib-${i}`, item: { ...r.item, prompt: `ib Q${i}` } }))
     enqueue('study_item_bank', { data: [...listeningBank({ deep: true }), ...inBand] })
     const m2 = await assembleToeflFromBank(
       { section: 'listening', module: 2, difficulties: ['medium'], path: 'lower' }, 'seed-f')
     const prompts = m2.questions.map(q => q.prompt)
     expect(m2.questions).toHaveLength(21)
-    // All 5 in-band items appear: the fallback TOPS UP the routed band, it
-    // does not replace it. (Module 2's choose_response quota is 8, so 5
-    // in-band + 4 out-of-band is the expected shape.)
+    // Both in-band items appear: the fallback TOPS UP the routed band, it
+    // does not replace it. (Module 2's choose_response quota is 3, so
+    // 2 in-band + 1 out-of-band is the expected shape.)
     for (const r of inBand) expect(prompts).toContain(r.item.prompt)
   })
 
@@ -513,10 +518,10 @@ describe('assembleToeflFromBank two-module adaptive draw', () => {
     // Module 1 uses the blueprint's EXPLICIT m1 shares, not Math.ceil(n/2)
     // — see the `m1` note in TOEFL_META.listening.
     expect(m1.composition).toEqual({
-      'multiple_choice:choose_response': 11,
-      'multiple_choice:conversation': 6,
+      'multiple_choice:choose_response': 3,
+      'multiple_choice:conversation': 8,
       'multiple_choice:announcement': 6,
-      'multiple_choice:academic_talk': 4,
+      'multiple_choice:academic_talk': 10,
     })
     // Stage 2 INVERTS: the lower module serves no Academic Talk, the upper
     // module serves no Announcement. ETS Table 1. This is the part the old
@@ -525,8 +530,8 @@ describe('assembleToeflFromBank two-module adaptive draw', () => {
     const lower = await assembleToeflFromBank(
       { section: 'listening', module: 2, path: 'lower' }, 'seed-mix2l')
     expect(lower.composition).toEqual({
-      'multiple_choice:choose_response': 9,
-      'multiple_choice:conversation': 6,
+      'multiple_choice:choose_response': 3,
+      'multiple_choice:conversation': 12,
       'multiple_choice:announcement': 6,
     })
     enqueue('study_item_bank', { data: listeningBank({ deep: true }) })
@@ -537,6 +542,9 @@ describe('assembleToeflFromBank two-module adaptive draw', () => {
       'multiple_choice:conversation': 6,
       'multiple_choice:academic_talk': 12,
     })
+    // Absent keys matter as much as present ones: no academic_talk on the
+    // lower path, no announcement on the upper. toEqual (not toMatchObject)
+    // is what makes that an assertion rather than a hope.
     const sum = (c: Record<string, number>) => Object.values(c).reduce((a, b) => a + b, 0)
     expect(sum(m1.composition) + sum(lower.composition)).toBe(48)
     expect(sum(m1.composition) + sum(upper.composition)).toBe(48)
@@ -567,17 +575,24 @@ describe('assembleToeflFromBank two-module adaptive draw', () => {
     enqueue('study_item_bank', { data: [...orphans, ...listeningBank({ deep: true })] })
     const m1 = await assembleToeflFromBank({ section: 'listening', module: 1 }, 'seed-orphan')
     for (const q of m1.questions) expect(q.passageGroupId ?? '').not.toMatch(/^orphan-/)
-    expect(m1.composition['multiple_choice:conversation']).toBe(6)
+    // 8, not 6: the module-1 conversation quota rose when Choose a Response
+    // was cut from 14 delivered to 6 on 2026-08-11.
+    expect(m1.composition['multiple_choice:conversation']).toBe(8)
   })
 
   it('comes up SHORT rather than serving a fragment of an audio', async () => {
-    // Conversation quota is 5 per module; every conversation here is a
-    // 4-question set, so one fits and no whole set fills the last slot.
+    // Conversation quota is 8 per module and the bank here holds ONE
+    // 4-question set, so no combination of whole sets reaches the quota.
     // Truncating would play a full conversation and ask 1 of its 4
     // questions. A 4-item task is the better failure.
+    //
+    // The fixture was starved from 6 sets to 1 on 2026-08-11: at the new
+    // quota of 8, two 4-sets fit EXACTLY, so the old fixture would have
+    // gone green while exercising nothing. A short-draw test whose quota
+    // is reachable is not a short-draw test.
     const bank = [
       ...toeflRows('multiple_choice', 40, 'hard', 'choose_response'),
-      ...groupedRows('multiple_choice', { groups: 6, size: 4, prefix: 'c4', listeningTask: 'conversation' }),
+      ...groupedRows('multiple_choice', { groups: 1, size: 4, prefix: 'c4', listeningTask: 'conversation' }),
       ...groupedRows('multiple_choice', { groups: 6, size: 4, prefix: 'ann', listeningTask: 'announcement' }),
       ...groupedRows('multiple_choice', { groups: 6, size: 3, prefix: 'talk', listeningTask: 'academic_talk' }),
     ]
@@ -604,14 +619,19 @@ describe('assembleToeflFromBank two-module adaptive draw', () => {
     expect(m1.questions.length + m2.questions.length).toBe(48)
     expect(scoredQ([...m1.questions, ...m2.questions])).toBe(35)
 
-    // And the scored subset is ETS's hard-path row, task by task.
+    // And the scored subset, task by task, on the hard path.
+    //
+    // These four numbers moved on 2026-08-11 when Choose a Response was cut
+    // from 14 delivered to 6. The TOTAL is still 35 and is asserted above,
+    // which is what keeps band scores comparable; the per-task split is a
+    // deliberate, documented deviation from ETS Table 1's mix.
     const byTask: Record<string, number> = {}
     for (const q of [...m1.questions, ...m2.questions]) {
       if (q.scored === false) continue
       byTask[q.listeningTask!] = (byTask[q.listeningTask!] ?? 0) + 1
     }
     expect(byTask).toEqual({
-      choose_response: 11, conversation: 8, announcement: 4, academic_talk: 12,
+      choose_response: 4, conversation: 10, announcement: 4, academic_talk: 17,
     })
   })
 
