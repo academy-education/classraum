@@ -16,14 +16,29 @@
  * same usability filter, same FLAT key-slot deal (a free shuffle once
  * produced a 56.3% control, at which a reviewer's score means nothing).
  *
- * usage: draw-review-run.mjs <domain> <size> <reviewerId> [runId]
+ * usage: draw-review-run.mjs <domain[,domain2,...]> <size> <reviewerId> [runId]
+ *
+ * MULTIPLE DOMAINS IN ONE RUN, added 2026-08-11. `size` is then PER
+ * DOMAIN, so "A,B,C" with size 20 draws 60 items into one run.
+ *
+ * Why: the reviewer can only have one run open at a time (see the
+ * REFUSING guard below, which exists so two half-finished samples cannot
+ * both be "the sitting"). With one domain per run that guard forced one
+ * cohort per ask — and five separate 20-minute asks is exactly the drip
+ * that spent four sittings and produced one usable number. One run over
+ * several cohorts is one sitting, and scoring splits by domain
+ * afterwards because every row carries it.
  */
 import { createClient } from '@supabase/supabase-js'
 import { readFileSync } from 'node:fs'
 
-const [domain, sizeArg, reviewerId, runIdArg] = process.argv.slice(2)
-if (!domain || !sizeArg || !reviewerId) {
-  console.error('usage: draw-review-run.mjs <domain> <size> <reviewerId> [runId]'); process.exit(1)
+const [domainArg, sizeArg, reviewerId, runIdArg] = process.argv.slice(2)
+/* Cohorts are drawn in the order given, and that order IS the sitting's
+ * order — front-load the cohort whose answer matters most, so a reviewer
+ * who stops halfway has still answered the question worth asking. */
+const domains = (domainArg || '').split(',').map(d => d.trim()).filter(Boolean)
+if (!domains.length || !sizeArg || !reviewerId) {
+  console.error('usage: draw-review-run.mjs <domain[,domain2,...]> <size> <reviewerId> [runId]'); process.exit(1)
 }
 const size = Number(sizeArg)
 const L = ['A', 'B', 'C', 'D']
@@ -39,28 +54,41 @@ const { data: open } = await db.from('study_item_reviews')
   .select('run_id').eq('reviewer_id', reviewerId).is('blind_at', null).limit(1).maybeSingle()
 if (open) { console.error(`REFUSING: "${open.run_id}" is still open for this reviewer.`); process.exit(1) }
 
-const pool = []
-for (let f = 0; ; f += 1000) {
-  const { data, error } = await db.from('study_item_bank').select('id, item')
-    .eq('domain', domain).neq('archived', true).order('id', { ascending: true }).range(f, f + 999)
-  if (error) throw new Error(error.message)
-  pool.push(...data); if (data.length < 1000) break
-}
-const usable = pool.filter(r => {
-  const it = r.item
-  return Array.isArray(it?.choices) && it.choices.length === 4
-    && typeof it.correct_answer === 'string' && it.choices.indexOf(it.correct_answer) >= 0
-    && new Set(it.choices.map(c => String(c).trim())).size === 4
-})
-console.log(`${domain}: ${pool.length} live, ${usable.length} reviewable`)
-if (usable.length < size) { console.error(`only ${usable.length} reviewable, need ${size}`); process.exit(1) }
-
 const rand = Math.random
 const sh = a => { a = [...a]; for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(rand() * (i + 1)); [a[i], a[j]] = [a[j], a[i]] } return a }
-const sample = sh(usable).slice(0, size)
-const slots = sh(sample.map((_, i) => L[i % 4]))          // FLAT
 
-const runId = runIdArg || `${domain.toLowerCase().replace(/\s+/g, '-')}-${new Date().toISOString().slice(0, 10)}`
+/* Sample each cohort independently, then CONCATENATE in the order the
+ * cohorts were given. Deliberately not interleaved: the sitting should
+ * finish a cohort before starting the next, so a reviewer who stops
+ * partway leaves complete cohorts behind rather than four fragments,
+ * none of which can be scored. */
+const sample = []
+for (const domain of domains) {
+  const pool = []
+  for (let f = 0; ; f += 1000) {
+    const { data, error } = await db.from('study_item_bank').select('id, item')
+      .eq('domain', domain).neq('archived', true).order('id', { ascending: true }).range(f, f + 999)
+    if (error) throw new Error(error.message)
+    pool.push(...data); if (data.length < 1000) break
+  }
+  const usable = pool.filter(r => {
+    const it = r.item
+    return Array.isArray(it?.choices) && it.choices.length === 4
+      && typeof it.correct_answer === 'string' && it.choices.indexOf(it.correct_answer) >= 0
+      && new Set(it.choices.map(c => String(c).trim())).size === 4
+  })
+  console.log(`${domain}: ${pool.length} live, ${usable.length} reviewable`)
+  if (usable.length < size) { console.error(`only ${usable.length} reviewable in "${domain}", need ${size}`); process.exit(1) }
+  sample.push(...sh(usable).slice(0, size))
+}
+
+/* Key letters flat ACROSS THE WHOLE RUN and, because each cohort is a
+ * whole multiple of 4 here, flat within each cohort too. The control is
+ * computed per cohort at scoring time, so a run-wide flat spread that
+ * hid a lumpy per-cohort one would misreport it. */
+const slots = sh(sample.map((_, i) => L[i % 4]))
+
+const runId = runIdArg || `${domains[0].toLowerCase().replace(/\s+/g, '-')}-${new Date().toISOString().slice(0, 10)}`
 const rows = sample.map((r, i) => {
   const ki = r.item.choices.indexOf(r.item.correct_answer)
   const others = sh([0, 1, 2, 3].filter(x => x !== ki))
@@ -76,5 +104,6 @@ const { error } = await db.from('study_item_reviews').insert(rows)
 if (error) { console.error('insert failed:', error.message, error.code ?? ''); process.exit(1) }
 
 const counts = L.map(x => rows.filter(r => r.key_slot === x).length)
-console.log(`drawn ${rows.length} into run "${runId}"`)
+console.log(`drawn ${rows.length} into run "${runId}" across ${domains.length} cohort(s), in this order:`)
+domains.forEach((d, i) => console.log(`  ${i + 1}. ${d}  (${size} items)`))
 console.log(`key letters ${L.map((x, i) => `${x}:${counts[i]}`).join(' ')}  ->  control ${(100 * Math.max(...counts) / rows.length).toFixed(1)}%`)

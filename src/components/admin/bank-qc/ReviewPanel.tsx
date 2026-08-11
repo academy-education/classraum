@@ -274,38 +274,37 @@ export function ReviewPanel({ domains }: { domains: string[] }) {
               </button>
             ))}
           </div>
-          {/* The label carries the DEFINITION, because this is where the
-              decision is made — 20 times a sitting, against a brief read
-              once at the start.
+          {/* ── NO ABSTAIN BUTTON. Deleted 2026-08-11. ──────────────
+              There was one here, and it destroyed four consecutive
+              sittings: abstention ran 0-8% before the button was
+              emphasised, then 85%, 92.5%, 95% and 70%. Three separate
+              rewordings — the brief twice, then the button label itself
+              — each produced another unusable run.
 
-              It used to read "a real answer, not a skip". That was written
-              to stop people treating abstention as skipping, and it
-              overshot: it reassures the reader that pressing it is fine,
-              at the exact moment they are deciding whether to. Abstention
-              went 0-8% before that framing existed to 85-95% after it, in
-              BOTH reviewers — see the 2026-08-11 finding in
-              bank-register.ts. A reviewer note from the 08-10 sitting
-              reads "this was guessable but I just didn't click it", which
-              is the button meaning "not confident" to him and "nothing
-              points anywhere" to us.
+              It was never needed. This instrument asks ONE question:
+              can a person pick the key without the source, better than
+              chance? The CONTROL already prices guessing at 25%. A
+              reviewer forced to choose scores about 25% on items with no
+              signal and above it on items that leak, so the margin over
+              control survives forced choice completely intact.
 
-              So the label now states the narrow condition instead of
-              blessing the press, and the line under it names the case
-              that was being mis-filed. Neither pushes: guessing when
-              nothing points and abstaining when something does are both
-              named as errors. */}
-          <Button
-            variant="outline" size="sm" disabled={busy}
-            onClick={() => void answerBlind(null)} className="mt-2"
-          >
-            <HelpCircle className="w-4 h-4" /> Can&apos;t tell — all four look equal to me
-          </Button>
-          <p className="mt-2 text-[11.5px] leading-relaxed text-gray-500">
-            Being unsure is normal — the source is hidden, so you are meant to be
-            unsure. If three look obviously wrong, or one looks longer, more hedged
-            or more test-like, <strong className="text-gray-700">pick it</strong>:
-            that hunch is the thing being measured. Press this only when nothing
-            points anywhere and you would be choosing at random.
+              Abstention only buys the ability to separate "no signal"
+              from "wrong signal", and no verdict in this project has
+              ever needed that distinction. It cost four sittings and
+              roughly 80 minutes of a co-founder's time and bought
+              nothing.
+
+              Historic rows keep their NULL blind_pick; item-review.ts
+              and the scorers still handle them, and score-*.mjs now
+              treats any abstention in a NEW run as a validity failure
+              rather than a datum. */}
+          <p className="mt-3 text-[11.5px] leading-relaxed text-gray-500">
+            Pick the one you think is intended, even when you are unsure — being
+            unsure is the normal state here, because the source is hidden. If three
+            look wrong, or one looks longer, more hedged or more test-like,{' '}
+            <strong className="text-gray-700">that is the answer to pick</strong>:
+            the hunch is exactly what is being measured. If nothing points anywhere,
+            choose at random and move on — random is what the 25% baseline is for.
           </p>
         </div>
       )}
