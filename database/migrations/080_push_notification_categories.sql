@@ -68,14 +68,31 @@ COMMENT ON COLUMN user_preferences.push_categories IS
 ALTER TABLE user_preferences
   DROP CONSTRAINT IF EXISTS user_preferences_push_categories_keys;
 
+-- NO SUBQUERY. The first draft of this used
+--   NOT EXISTS (SELECT 1 FROM jsonb_each(push_categories) ...)
+-- which Postgres rejects outright: "cannot use subquery in check
+-- constraint" (0A000). It had been reviewed and described as ready
+-- while being SQL that could never run — a reminder that reading a
+-- migration is not the same as executing it.
+--
+-- The set-difference form is equivalent and subquery-free: deleting the
+-- three known keys must leave nothing behind, and no value may be
+-- anything but a boolean (jsonpath, so it is safe on any jsonb).
+--
+-- CASE rather than AND: a CHECK is not guaranteed to evaluate its
+-- conjuncts left to right, and `jsonb - text[]` RAISES on a non-object
+-- instead of returning false. CASE makes the object test a real guard.
+--
+-- Verified against 12 cases before being applied — including
+-- {"account":false} (rejected: account must not be disablable),
+-- {"reminders":null} (rejected: null is not a boolean), and a bare
+-- array (rejected without raising).
 ALTER TABLE user_preferences
   ADD CONSTRAINT user_preferences_push_categories_keys CHECK (
-    jsonb_typeof(push_categories) = 'object'
-    AND NOT EXISTS (
-      SELECT 1 FROM jsonb_each(push_categories) AS kv(k, v)
-      WHERE k NOT IN ('reminders', 'progress', 'social')
-         OR jsonb_typeof(v) <> 'boolean'
-    )
+    CASE WHEN jsonb_typeof(push_categories) = 'object'
+         THEN push_categories - ARRAY['reminders', 'progress', 'social'] = '{}'::jsonb
+              AND NOT jsonb_path_exists(push_categories, '$.* ? (@.type() != "boolean")')
+         ELSE false END
   );
 
 -- No backfill. Every existing row keeps '{}', which reads as all
