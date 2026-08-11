@@ -13,6 +13,49 @@ Open work: 4 — 1 mine, 3 need you.
 
 ---
 
+## 0. What is actually wrong — read this first
+
+Two facts carry the whole bank, and for weeks neither was stated
+anywhere plainly. The register listed OPEN WORK and the findings log
+recorded every twist of the debugging, so the surface grew by one entry
+per discovery while never once giving the position. **Reporting the
+process is not reporting the position.**
+
+| | items | what is true |
+|---|---|---|
+| **Choose a Response** | 72 | **Known broken.** Solvable without the audio, on two independent instruments. **Live to students right now.** |
+| Everything else | 3,255 | **Not known to be broken** — never read by a person |
+
+2.2% is a quality problem. The rest is a scheduling
+problem, and it is blocked on one 20-minute task: **B4 — the calibration sitting, support@classraum.com**.
+
+Every cohort a human has actually read came back clean. None has ever failed a human check except Choose a Response.
+
+### Every attempt to fix Choose a Response
+
+`blind` is how often three AI solvers pick the right answer with the
+audio withheld. `control` is the best a fixed-letter guesser could do.
+**A gap near zero is the goal.** Nothing has reached it.
+
+| attempt | changed | blind | control | gap | verdict |
+|---|---|---|---|---|---|
+| **cr-v1 — original authoring** | The batch as first written. | 76.9% | — | *not recorded* | FAILED |
+| **narrow repair** | Rewrote only the 24 options with the clearest defect, rather than rebuilding. | 74.4% | 29.2% | **+45.2** | REFUTED |
+| **cr-v3** | New method: distractors written as the correct reply to a near-miss version of the spoken line. | 77.8% | 25% | **+52.8** | FAILED |
+| **cr-v4** | Varied the spoken line: good news, a request, an offer, a correction, an apology, an announcement. | 47.2% | 25% | **+22.2** | INCONCLUSIVE |
+| **cr-v5** | cr-v4 plus a ban on one give-away phrase the solvers named. | 72.2% | 25% | **+47.2** | FAILED |
+
+The shape of that table is the finding: **each attempt removes the
+previous tell and introduces a new one.** Why each failed:
+
+- **cr-v1 — original authoring** — The brief fixed four kinds of wrong answer — over-formal, rude, dismissive, topic-shifting. The key is then simply the option that is none of them, and all three solvers named the roster unprompted.
+- **narrow repair** — Removing one of four slots leaves three, and the key is still the option that is none of them. Moved the score ~3 points; I predicted 28.4% beforehand and was wrong by 46.
+- **cr-v3** — The method was sound but every spoken line was the same kind of line — two-part bad news — so the key was always rueful acceptance and the distractors always relief or disbelief. The roster moved from the answers up to the questions and got stronger.
+- **cr-v4** — BEST RESULT. Solvers stayed confident, used the same heuristic, and got worse — the signature of a tell actually removed. Inside the pre-registered 20-30 band at n=12, so not a pass, and never re-tested unchanged.
+- **cr-v5** — The ban stripped questions out of the wrong answers, so pre-flight flagged an imbalance, and repairing THAT by hand made every wrong answer sound hedgy — "I thought", "I gather" — in 6 of 36 distractors and 0 of 12 keys. I reintroduced a roster while fixing a cosmetic check.
+
+---
+
 ## 1. Where every cohort actually stands — MEASURED
 
 `blind` is 3 AI solvers with the source withheld, against a 25%

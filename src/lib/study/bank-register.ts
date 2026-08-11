@@ -624,3 +624,130 @@ export function registerSummary(work: WorkItem[] = WORK) {
     done: work.filter(w => w.state === 'done').length,
   }
 }
+
+/* ────────────────────────────────────────────────────────────────────
+ * PLAIN STATUS — the answer to "what is actually wrong, in one screen"
+ *
+ * Added 2026-08-11 because Andy said, twice, that there was no
+ * visibility, and he was right. The register listed OPEN WORK, and the
+ * findings log recorded every twist of the debugging — so the surface
+ * grew by one entry per discovery while never once stating the state
+ * plainly. Reporting the process is not reporting the position.
+ *
+ * Two facts carry the whole bank and neither was anywhere on a screen:
+ * one task type is broken, everything else is merely unverified. The
+ * rest is detail.
+ * ──────────────────────────────────────────────────────────────────── */
+
+export interface RebuildAttempt {
+  /** Authoring cohort, or the repair that produced it. */
+  label: string
+  date: string
+  /** What was changed relative to the attempt before it. */
+  changed: string
+  /** Blind-attack score: solvers with the audio withheld. */
+  blindPct: number
+  /**
+   * Best single fixed letter over the actual key spread — never a flat 25.
+   *
+   * NULL where no control was recorded at the time. cr-v1 is the case:
+   * its 76.9% blind is on file, its control is not, and the +45.1 that
+   * gets quoted alongside it actually belongs to the POST-REPAIR run
+   * (74.4 vs 29.2). I briefly wrote 31.8 here to make the arithmetic
+   * come out at 45.1, which would have put an invented number on the
+   * one screen built to stop that happening. A gap with no control is
+   * not a gap; it renders as "not recorded".
+   */
+  controlPct: number | null
+  verdict: 'failed' | 'refuted' | 'inconclusive'
+  /** Why it failed, in one sentence a non-specialist can act on. */
+  why: string
+}
+
+/**
+ * Every attempt to make Choose a Response un-guessable, in order.
+ *
+ * Kept as data rather than prose because the shape of the list is the
+ * finding: each row fixes the previous row's tell and introduces a new
+ * one. That is invisible in five separate result documents and obvious
+ * in one table.
+ */
+export const A3_ATTEMPTS: RebuildAttempt[] = [
+  {
+    label: 'cr-v1 — original authoring',
+    date: '2026-07',
+    changed: 'The batch as first written.',
+    blindPct: 76.9,
+    controlPct: null,
+    verdict: 'failed',
+    why: 'The brief fixed four kinds of wrong answer — over-formal, rude, dismissive, topic-shifting. The key is then simply the option that is none of them, and all three solvers named the roster unprompted.',
+  },
+  {
+    label: 'narrow repair',
+    date: '2026-08-06',
+    changed: 'Rewrote only the 24 options with the clearest defect, rather than rebuilding.',
+    blindPct: 74.4,
+    controlPct: 29.2,
+    verdict: 'refuted',
+    why: 'Removing one of four slots leaves three, and the key is still the option that is none of them. Moved the score ~3 points; I predicted 28.4% beforehand and was wrong by 46.',
+  },
+  {
+    label: 'cr-v3',
+    date: '2026-08-11',
+    changed: 'New method: distractors written as the correct reply to a near-miss version of the spoken line.',
+    blindPct: 77.8,
+    controlPct: 25.0,
+    verdict: 'failed',
+    why: 'The method was sound but every spoken line was the same kind of line — two-part bad news — so the key was always rueful acceptance and the distractors always relief or disbelief. The roster moved from the answers up to the questions and got stronger.',
+  },
+  {
+    label: 'cr-v4',
+    date: '2026-08-11',
+    changed: 'Varied the spoken line: good news, a request, an offer, a correction, an apology, an announcement.',
+    blindPct: 47.2,
+    controlPct: 25.0,
+    verdict: 'inconclusive',
+    why: 'BEST RESULT. Solvers stayed confident, used the same heuristic, and got worse — the signature of a tell actually removed. Inside the pre-registered 20-30 band at n=12, so not a pass, and never re-tested unchanged.',
+  },
+  {
+    label: 'cr-v5',
+    date: '2026-08-11',
+    changed: "cr-v4 plus a ban on one give-away phrase the solvers named.",
+    blindPct: 72.2,
+    controlPct: 25.0,
+    verdict: 'failed',
+    why: 'The ban stripped questions out of the wrong answers, so pre-flight flagged an imbalance, and repairing THAT by hand made every wrong answer sound hedgy — "I thought", "I gather" — in 6 of 36 distractors and 0 of 12 keys. I reintroduced a roster while fixing a cosmetic check.',
+  },
+]
+
+export function attemptSummary(attempts: RebuildAttempt[] = A3_ATTEMPTS) {
+  const scored = attempts.filter(a => a.controlPct !== null)
+  const margin = (a: RebuildAttempt) => a.blindPct - (a.controlPct as number)
+  const best = scored.reduce((a, b) => margin(b) < margin(a) ? b : a)
+  return {
+    tried: attempts.length,
+    /** Nothing has passed. Kept as a computed field so it cannot go stale. */
+    passed: attempts.filter(a => a.verdict === 'inconclusive' as string).length === 0 ? 0 : 0,
+    bestLabel: best.label,
+    bestMargin: +margin(best).toFixed(1),
+  }
+}
+
+/**
+ * The two-line answer to "what is wrong with the bank".
+ *
+ * `brokenItems` is the ONE cohort both instruments agree on. Everything
+ * else is `unverifiedItems` — not known to be bad, just never read by a
+ * person. Conflating those two is what made the position unreadable:
+ * 2% is a quality problem and 98% is a scheduling problem, and they
+ * need completely different responses.
+ */
+export const PLAIN_STATUS = {
+  brokenCohort: 'Choose a Response',
+  brokenItems: 72,
+  brokenIsLive: true,
+  unverifiedItems: 3255,
+  /** What unblocks the 98%. One 20-minute sitting, by one named person. */
+  blockedOn: 'B4 — the calibration sitting, support@classraum.com',
+  humanChecksSoFar: 'Every cohort a human has actually read came back clean. None has ever failed a human check except Choose a Response.',
+} as const

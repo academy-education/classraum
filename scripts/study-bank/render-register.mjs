@@ -38,7 +38,7 @@ const OUT = new URL('./REGISTER.md', import.meta.url).pathname
 const TS = new URL('../../src/lib/study/bank-register.ts', import.meta.url).pathname
 const js = execFileSync('npx', ['esbuild', TS, '--format=esm', '--platform=node', '--loader:.ts=ts'],
   { encoding: 'utf8', maxBuffer: 8 << 20 })
-const { WORK, SETTLED, FOUND_WHILE_FIXING, registerSummary } =
+const { WORK, SETTLED, FOUND_WHILE_FIXING, registerSummary, A3_ATTEMPTS, PLAIN_STATUS } =
   await import('data:text/javascript;base64,' + Buffer.from(js).toString('base64'))
 
 /* Same trick for the review maths — imported, never re-implemented. */
@@ -241,6 +241,41 @@ disagree.
 
 Generated ${today}. Live items: ${bank.length.toLocaleString()}.
 Open work: ${s.open} — ${s.mine} mine, ${s.yours} need you.
+
+---
+
+## 0. What is actually wrong — read this first
+
+Two facts carry the whole bank, and for weeks neither was stated
+anywhere plainly. The register listed OPEN WORK and the findings log
+recorded every twist of the debugging, so the surface grew by one entry
+per discovery while never once giving the position. **Reporting the
+process is not reporting the position.**
+
+| | items | what is true |
+|---|---|---|
+| **${PLAIN_STATUS.brokenCohort}** | ${PLAIN_STATUS.brokenItems} | **Known broken.** Solvable without the audio, on two independent instruments.${PLAIN_STATUS.brokenIsLive ? ' **Live to students right now.**' : ''} |
+| Everything else | ${PLAIN_STATUS.unverifiedItems.toLocaleString()} | **Not known to be broken** — never read by a person |
+
+${((PLAIN_STATUS.brokenItems / (PLAIN_STATUS.brokenItems + PLAIN_STATUS.unverifiedItems)) * 100).toFixed(1)}% is a quality problem. The rest is a scheduling
+problem, and it is blocked on one 20-minute task: **${PLAIN_STATUS.blockedOn}**.
+
+${PLAIN_STATUS.humanChecksSoFar}
+
+### Every attempt to fix ${PLAIN_STATUS.brokenCohort}
+
+\`blind\` is how often three AI solvers pick the right answer with the
+audio withheld. \`control\` is the best a fixed-letter guesser could do.
+**A gap near zero is the goal.** Nothing has reached it.
+
+| attempt | changed | blind | control | gap | verdict |
+|---|---|---|---|---|---|
+${A3_ATTEMPTS.map(a => `| **${a.label}** | ${a.changed} | ${a.blindPct}% | ${a.controlPct === null ? '—' : a.controlPct + '%'} | ${a.controlPct === null ? '*not recorded*' : '**+' + (a.blindPct - a.controlPct).toFixed(1) + '**'} | ${a.verdict.toUpperCase()} |`).join('\n')}
+
+The shape of that table is the finding: **each attempt removes the
+previous tell and introduces a new one.** Why each failed:
+
+${A3_ATTEMPTS.map(a => `- **${a.label}** — ${a.why}`).join('\n')}
 
 ---
 

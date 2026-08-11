@@ -18,6 +18,7 @@ import {
   type Health, type Coverage,
 } from '@/lib/study/bank-ledger'
 import { RegisterPanel } from './RegisterPanel'
+import { A3_ATTEMPTS, PLAIN_STATUS } from '@/lib/study/bank-register'
 import { LiveBankState } from './LiveBankState'
 import { TASK_PIPELINES, type TaskPipeline } from '@/lib/study/task-pipelines'
 import { FAMILY_STAGES, type ItemFamily } from '@/lib/study/bank-qc'
@@ -369,6 +370,110 @@ export function BankQcDashboard() {
           coached student may exploit them more, not less. Unverified either way.
         </p>
       </header>
+
+      {/* ── WHAT IS ACTUALLY WRONG ────────────────────────────────────
+          Added 2026-08-11. Andy said twice that there was no visibility
+          and he was right: this page led with per-cohort readiness and
+          the register led with open work, so a reader could scroll both
+          and still not learn that ONE cohort is broken and the rest is
+          merely unread. 2% is a quality problem; 98% is a scheduling
+          problem; they need opposite responses and were being reported
+          as one thing.
+
+          Same source as REGISTER.md (lib/study/bank-register.ts), so
+          the page and the file cannot drift — the failure that created
+          this register in the first place. */}
+      <section className="mt-6 rounded-2xl ring-1 ring-gray-200 bg-white p-5">
+        <h2 className="text-sm font-semibold text-gray-900">What is actually wrong</h2>
+
+        <div className="mt-3 grid gap-3 sm:grid-cols-2">
+          <div className="rounded-xl bg-red-50/70 ring-1 ring-red-100 p-4">
+            <div className="text-2xl font-semibold text-red-900 tabular-nums">
+              {PLAIN_STATUS.brokenItems}
+            </div>
+            <div className="text-[12px] font-medium text-red-900 mt-0.5">
+              {PLAIN_STATUS.brokenCohort} — known broken
+            </div>
+            <p className="text-[11px] text-red-800/90 mt-1.5 leading-snug">
+              Solvable without the audio, agreed by two independent instruments.
+              {PLAIN_STATUS.brokenIsLive && <strong> Live to students right now.</strong>}
+            </p>
+          </div>
+          <div className="rounded-xl bg-gray-50 ring-1 ring-gray-200 p-4">
+            <div className="text-2xl font-semibold text-gray-900 tabular-nums">
+              {PLAIN_STATUS.unverifiedItems.toLocaleString()}
+            </div>
+            <div className="text-[12px] font-medium text-gray-900 mt-0.5">
+              Everything else — unverified
+            </div>
+            <p className="text-[11px] text-gray-600 mt-1.5 leading-snug">
+              Not known to be broken. Never read by a person. Blocked on{' '}
+              <strong className="text-gray-800">{PLAIN_STATUS.blockedOn}</strong>.
+            </p>
+          </div>
+        </div>
+
+        <p className="text-[11px] text-gray-600 mt-3 leading-snug max-w-3xl">
+          {PLAIN_STATUS.humanChecksSoFar}
+        </p>
+
+        <h3 className="text-[12px] font-semibold text-gray-900 mt-5">
+          Every attempt to fix {PLAIN_STATUS.brokenCohort}
+        </h3>
+        <p className="text-[11px] text-gray-500 mt-1 max-w-3xl leading-snug">
+          <span className="font-medium text-gray-700">blind</span> is how often three AI solvers
+          pick the right answer with the audio withheld;{' '}
+          <span className="font-medium text-gray-700">control</span> is the best a fixed-letter
+          guesser could do. A gap near zero is the goal — nothing has reached it. The shape of
+          this list is the finding: each attempt removes the previous tell and introduces a new one.
+        </p>
+
+        <div className="mt-3 overflow-x-auto">
+          <table className="w-full text-[11.5px] border-collapse">
+            <thead>
+              <tr className="text-left text-gray-500">
+                <th className="py-1.5 pr-3 font-medium">attempt</th>
+                <th className="py-1.5 pr-3 font-medium">blind</th>
+                <th className="py-1.5 pr-3 font-medium">control</th>
+                <th className="py-1.5 pr-3 font-medium">gap</th>
+                <th className="py-1.5 font-medium">verdict</th>
+              </tr>
+            </thead>
+            <tbody>
+              {A3_ATTEMPTS.map(a => {
+                const gap = a.controlPct === null ? null : a.blindPct - a.controlPct
+                return (
+                  <tr key={a.label} className="border-t border-gray-100 align-top">
+                    <td className="py-2 pr-3">
+                      <div className="font-medium text-gray-900">{a.label}</div>
+                      <div className="text-[11px] text-gray-500 leading-snug mt-0.5">{a.why}</div>
+                    </td>
+                    <td className="py-2 pr-3 tabular-nums text-gray-800 whitespace-nowrap">{a.blindPct}%</td>
+                    <td className="py-2 pr-3 tabular-nums text-gray-800 whitespace-nowrap">
+                      {a.controlPct === null ? '—' : `${a.controlPct}%`}
+                    </td>
+                    <td className="py-2 pr-3 tabular-nums whitespace-nowrap">
+                      {gap === null
+                        ? <span className="text-gray-400 italic">not recorded</span>
+                        : <span className={gap > 25 ? 'text-red-700 font-semibold' : 'text-amber-700 font-semibold'}>
+                            +{gap.toFixed(1)}
+                          </span>}
+                    </td>
+                    <td className="py-2 whitespace-nowrap">
+                      <span className={`rounded-full px-2 py-0.5 text-[10px] ring-1 ${
+                        a.verdict === 'inconclusive'
+                          ? 'bg-amber-50 text-amber-800 ring-amber-200'
+                          : 'bg-red-50 text-red-700 ring-red-200'}`}>
+                        {a.verdict}
+                      </span>
+                    </td>
+                  </tr>
+                )
+              })}
+            </tbody>
+          </table>
+        </div>
+      </section>
 
       {/* LIVE — the database, read on every load. Placed FIRST because
           everything below it is the checked-in ledger file, and the
