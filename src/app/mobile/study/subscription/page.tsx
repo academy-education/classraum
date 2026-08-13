@@ -106,11 +106,18 @@ interface SubPayload {
  * ?next= is validated on arrival by safeNotificationPath (see auth/page.tsx),
  * so a crafted link cannot turn this into an open redirect.
  */
-function subscribeOnWebUrl(planId: string): string {
+function payOnWebUrl(kind: 'plan' | 'pass' | 'pack', id: string): string {
   // /pay/subscribe, NOT /mobile/study/subscription: `/mobile/*` is a
   // claimed Universal Link, so the post-login forward was handing the
   // buyer straight back to the app. /pay/* is unclaimed.
-  return `https://app.classraum.com/pay/subscribe?plan=${encodeURIComponent(planId)}`
+  //
+  // The KIND is in the param name, not assumed. This used to emit
+  // `?plan=` for everything, so the packs grid and the pass card — which
+  // both hand off through here — sent a pack/pass id to be looked up in
+  // STUDY_PLANS. It missed, and the buyer got "unknown plan". Passes and
+  // packs are one-time payments; billing them as a plan would have
+  // registered a recurring card for something that never renews.
+  return `https://app.classraum.com/pay/subscribe?${kind}=${encodeURIComponent(id)}`
 }
 
 type Acting = 'cancel' | 'reactivate' | 'pack' | 'pass' | `checkout:${string}` | `change:${string}` | null
@@ -200,10 +207,10 @@ export default function SubscriptionPage() {
    * the OS refuses sets an error AND exposes the URL, so a student is
    * never left tapping a dead control.
    */
-  const handoffToWeb = useCallback(async (planId: string) => {
+  const handoffToWeb = useCallback(async (kind: 'plan' | 'pass' | 'pack', id: string) => {
     setError(null)
     setHandoffUrl(null)
-    const url = subscribeOnWebUrl(planId)
+    const url = payOnWebUrl(kind, id)
     const ok = await openExternalUrl(url)
     if (!ok) {
       setHandoffUrl(url)
@@ -778,7 +785,7 @@ export default function SubscriptionPage() {
                   <button
                     key={p.id}
                     type="button"
-                    onClick={() => isNative ? void handoffToWeb(p.id) : void buyPack(p.id, p.credits)}
+                    onClick={() => isNative ? void handoffToWeb('pack', p.id) : void buyPack(p.id, p.credits)}
                     disabled={acting !== null}
                     className={`relative flex flex-col items-center justify-center gap-0.5 h-[86px] rounded-xl overflow-hidden active:scale-[0.98] disabled:opacity-60 transition-all ${
                       best
@@ -896,7 +903,7 @@ export default function SubscriptionPage() {
               passes={passOffers}
               ko={ko}
               acting={acting}
-              onBuy={(id, name) => isNative ? void handoffToWeb(id) : void buyPass(id, name)}
+              onBuy={(id, name) => isNative ? void handoffToWeb('pass', id) : void buyPass(id, name)}
             />
             {isNative && (
               <p className="inline-flex items-center gap-1.5 px-1 text-[11.5px] text-gray-500">
@@ -1020,7 +1027,7 @@ export default function SubscriptionPage() {
                     <div className="flex flex-col gap-2">
                       <button
                         type="button"
-                        onClick={() => void handoffToWeb(plan.id)}
+                        onClick={() => void handoffToWeb('plan', plan.id)}
                         className={studyButtonClass({ variant: 'secondary' })}
                       >
                         <ExternalLink className="w-4 h-4" />
