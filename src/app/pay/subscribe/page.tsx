@@ -27,7 +27,7 @@
  * duplicating them would mean two copies of the same money logic drifting
  * apart. This does one thing: charge the plan the app asked for.
  */
-import { useCallback, useEffect, useState } from 'react'
+import { Suspense, useCallback, useEffect, useState } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { db } from '@/lib/supabase'
 import { authHeaders } from '@/lib/auth-headers'
@@ -41,7 +41,30 @@ import {
 
 const PATH = '/pay/subscribe'
 
+/**
+ * useSearchParams() forces a client-side bailout, and Next FAILS THE BUILD
+ * for a page that does it outside a Suspense boundary:
+ *
+ *   ⨯ useSearchParams() should be wrapped in a suspense boundary at page
+ *     "/pay/subscribe"
+ *   Export encountered an error on /pay/subscribe/page, exiting the build
+ *
+ * That is not a warning — `npm run build` exits 1, Vercel marks the
+ * deployment Error, and NOTHING ships. ac4f381 failed exactly this way
+ * and I did not notice, because `tsc --noEmit` and the 1602-test jest
+ * suite both passed: neither runs a production build, so neither can see
+ * a prerender error. The fix sat in GitHub looking merged while
+ * production kept serving the broken flow.
+ */
 export default function PaySubscribePage() {
+  return (
+    <Suspense fallback={<Shell><p className="text-[13px] text-gray-500">···</p></Shell>}>
+      <PaySubscribe />
+    </Suspense>
+  )
+}
+
+function PaySubscribe() {
   const router = useRouter()
   const params = useSearchParams()
   const planId = params.get('plan') ?? ''
