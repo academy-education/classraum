@@ -144,6 +144,15 @@ export function checkoutContext(): Record<string, unknown> {
   const ua = navigator.userAgent ?? ''
   return {
     ua: ua.slice(0, 300),
+    // WHICH URL this is running on. Added 2026-08-14 after an Android
+    // return landed in the app WebView (native:true, UA "; wv)") even
+    // though /pay/ is NOT claimed in AndroidManifest.xml — unlike iOS,
+    // where the claim explained it exactly. Without the path there is no
+    // way to tell whether the PG returned to /pay/return or to the old
+    // /mobile/study/billing-redirect (which IS claimed on Android, for
+    // the in-app checkout era), and guessing between those two is how
+    // three wrong theories got shipped tonight.
+    path: window.location.pathname.slice(0, 120),
     native: Boolean((window as { Capacitor?: { isNativePlatform?: () => boolean } })
       .Capacitor?.isNativePlatform?.()),
     standalone: Boolean((navigator as { standalone?: boolean }).standalone)
