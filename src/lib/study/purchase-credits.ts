@@ -99,6 +99,57 @@ export function takeBillingIntent(): BillingIntent | null {
   }
 }
 
+/**
+ * Device/browser context for checkout events.
+ *
+ * Added 2026-08-14 after a buyer failed SIX times across two hours and
+ * every attempt produced the same three-field event, so the only way to
+ * reason about her device was guesswork — three hypotheses were proposed
+ * and refuted by inspection, none of which could have been settled from
+ * the data we actually stored. `checkout_started` recorded the plan name
+ * and nothing else.
+ *
+ * The load-bearing fields:
+ *   native/standalone/inApp  where the checkout is running. An in-app
+ *                            browser sheet (KakaoTalk, Instagram) or the
+ *                            Capacitor WebView presents the PG window in
+ *                            an SFSafariViewController, which both breaks
+ *                            PG scripts and returns in a fresh context.
+ *   ls/ss                    whether each storage actually WORKS. The
+ *                            intent fix depends on localStorage being
+ *                            writable; iOS private browsing and some
+ *                            in-app browsers deny it, and stashBilling-
+ *                            Intent swallows that failure by design.
+ *
+ * No PII: no name, email, phone or id — the row already carries
+ * student_id from the authed session.
+ */
+export function checkoutContext(): Record<string, unknown> {
+  if (typeof window === 'undefined') return {}
+  const write = (s: Storage | undefined) => {
+    try {
+      if (!s) return false
+      s.setItem('__probe', '1')
+      s.removeItem('__probe')
+      return true
+    } catch { return false }
+  }
+  const ua = navigator.userAgent ?? ''
+  return {
+    ua: ua.slice(0, 300),
+    native: Boolean((window as { Capacitor?: { isNativePlatform?: () => boolean } })
+      .Capacitor?.isNativePlatform?.()),
+    standalone: Boolean((navigator as { standalone?: boolean }).standalone)
+      || window.matchMedia?.('(display-mode: standalone)').matches === true,
+    // Korean in-app browsers are the ones that matter here; each stamps
+    // its own token into the UA.
+    inApp: /KAKAOTALK|Instagram|FBAN|FBAV|NAVER|Line\/|DaumApps|everytimeApp/i.test(ua),
+    w: window.innerWidth,
+    ls: write(window.localStorage),
+    ss: write(window.sessionStorage),
+  }
+}
+
 export function billingRedirectUrl(): string {
   return `${window.location.origin}${BILLING_REDIRECT_PATH}`
 }

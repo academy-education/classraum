@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { authHeaders } from '@/lib/auth-headers'
-import { takeBillingIntent } from '@/lib/study/purchase-credits'
+import { takeBillingIntent, checkoutContext } from '@/lib/study/purchase-credits'
 import { track } from '@/lib/study/track-client'
 
 /**
@@ -84,6 +84,11 @@ export default function BillingRedirectPage() {
         kind: intent?.kind,
         hasPaymentId: Boolean(paymentId),
         hasBillingKey: Boolean(billingKey),
+        // Same context as checkout_started, so the two rows can be
+        // compared: if `ss` flipped between them the return landed in a
+        // different tab, and if `ls` is false the intent could never
+        // have been stored in the first place.
+        ...checkoutContext(),
       })
       if (!intent) {
         // The PG approved (card registered / money taken) but we cannot
@@ -103,6 +108,7 @@ export default function BillingRedirectPage() {
         track('checkout_result', {
           step: 'redeem', ok: false, reason: 'no_intent',
           hasPaymentId: Boolean(paymentId), hasBillingKey: Boolean(billingKey),
+          ...checkoutContext(),
         })
         setError(isKo
           ? '카드는 등록됐지만 결제를 마치지 못했어요. 요금은 청구되지 않았어요 — 다시 시도해 주세요.'

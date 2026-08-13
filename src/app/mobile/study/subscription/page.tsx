@@ -15,7 +15,7 @@ import { StudyButton, studyButtonClass } from '../_shared/StudyButton'
 import { authHeaders } from '@/lib/auth-headers'
 import { openExternalUrl } from '@/lib/nativeApp'
 import { FREE_CREDITS, creditCostForTest, isPassPlan } from '@/lib/study/plans'
-import { buyCreditPack, billingCustomer, missingPhoneMessage, stashBillingIntent, billingRedirectUrl, billingIssueId, billingWindowType, offerPeriodFor, requestOneTimePayment } from '@/lib/study/purchase-credits'
+import { buyCreditPack, billingCustomer, missingPhoneMessage, stashBillingIntent, billingRedirectUrl, billingIssueId, billingWindowType, offerPeriodFor, requestOneTimePayment, checkoutContext } from '@/lib/study/purchase-credits'
 import { track } from '@/lib/study/track-client'
 import { isAppReturnedEvent, type AppLifecycleEvent, type ExitPlatform } from '@/lib/study/test-exit-guard'
 import { PortOne } from '@/lib/portone-browser'
@@ -415,7 +415,7 @@ export default function SubscriptionPage() {
     setActing(`checkout:${planId}`)
     setError(null)
     setSuccessMessage(null)
-    track('checkout_started', { kind: 'subscription', plan: planId })
+    track('checkout_started', { kind: 'subscription', plan: planId, ...checkoutContext() })
     try {
       const storeId = process.env.NEXT_PUBLIC_PORTONE_STORE_ID
       const channelKey = process.env.NEXT_PUBLIC_PORTONE_CHANNEL_KEY_BILLING_LIVE

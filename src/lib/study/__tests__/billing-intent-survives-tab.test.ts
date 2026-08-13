@@ -31,7 +31,7 @@ jest.mock('@/lib/auth-headers', () => ({ authHeaders: async () => ({}) }))
 jest.mock('@/lib/supabase', () => ({ db: {}, supabase: {} }))
 jest.mock('@portone/browser-sdk/v2', () => ({}), { virtual: true })
 
-import { stashBillingIntent, takeBillingIntent } from '../purchase-credits'
+import { stashBillingIntent, takeBillingIntent, checkoutContext } from '../purchase-credits'
 
 /** What iOS does to a tab's storage between leaving and coming back. */
 function returnInANewTab() {
@@ -87,5 +87,54 @@ describe('billing intent survives the PG round-trip', () => {
       returnInANewTab()
       expect(takeBillingIntent()?.kind).toBe(intent.kind)
     }
+  })
+})
+
+/**
+ * The context helper only earns its place if it can detect the BAD case.
+ * A probe that reports ls:true unconditionally would look identical on a
+ * healthy device and on the one device where the fix cannot work — iOS
+ * private browsing / an in-app browser that denies localStorage, where
+ * stashBillingIntent swallows the throw by design and the buyer silently
+ * lands in the no-intent branch again.
+ */
+describe('checkoutContext', () => {
+  it('reports storage as UNAVAILABLE when writes throw', () => {
+    const real = Storage.prototype.setItem
+    try {
+      Storage.prototype.setItem = () => { throw new DOMException('QuotaExceededError') }
+      const ctx = checkoutContext()
+      expect(ctx.ls).toBe(false)
+      expect(ctx.ss).toBe(false)
+    } finally {
+      Storage.prototype.setItem = real
+    }
+  })
+
+  it('reports storage as available on a healthy device, and leaves no probe behind', () => {
+    const ctx = checkoutContext()
+    expect(ctx.ls).toBe(true)
+    expect(ctx.ss).toBe(true)
+    expect(localStorage.getItem('__probe')).toBeNull()
+  })
+
+  it('flags Korean in-app browsers, which present the PG in a sheet', () => {
+    const real = navigator.userAgent
+    const set = (ua: string) =>
+      Object.defineProperty(navigator, 'userAgent', { value: ua, configurable: true })
+    try {
+      set('Mozilla/5.0 (iPhone) AppleWebKit KAKAOTALK 10.4.5')
+      expect(checkoutContext().inApp).toBe(true)
+      set('Mozilla/5.0 (iPhone) AppleWebKit Version/17.0 Mobile/15E148 Safari/604.1')
+      expect(checkoutContext().inApp).toBe(false)
+    } finally {
+      set(real)
+    }
+  })
+
+  it('carries no personal data', () => {
+    const ctx = checkoutContext()
+    for (const k of ['email', 'phone', 'phoneNumber', 'name', 'fullName', 'customerId'])
+      expect(ctx[k]).toBeUndefined()
   })
 })
