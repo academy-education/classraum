@@ -86,9 +86,27 @@ export default function BillingRedirectPage() {
         hasBillingKey: Boolean(billingKey),
       })
       if (!intent) {
-        // Stale/unknown redirect (e.g. reopened from history) — nothing
-        // safe to charge. Send them home.
-        router.replace('/mobile/study/subscription')
+        // The PG approved (card registered / money taken) but we cannot
+        // tell WHICH purchase this was, so there is nothing safe to
+        // charge. This used to `router.replace` in silence — no event,
+        // no message — which is exactly what a real buyer hit on
+        // 2026-08-13: she landed back on a page still reading "Free"
+        // and had no idea the purchase had failed. Say so, and leave a
+        // trace so the next occurrence is diagnosable.
+        //
+        // Deliberately NOT the `pending` screen: that promises "payment
+        // complete, it'll appear shortly", and without an intent we
+        // cannot keep that promise — the only thing that could is the
+        // server-side BillingKey.Issued backstop, which did NOT complete
+        // her subscription. Do not tell a buyer they have paid until
+        // something has actually charged them.
+        track('checkout_result', {
+          step: 'redeem', ok: false, reason: 'no_intent',
+          hasPaymentId: Boolean(paymentId), hasBillingKey: Boolean(billingKey),
+        })
+        setError(isKo
+          ? '카드는 등록됐지만 결제를 마치지 못했어요. 요금은 청구되지 않았어요 — 다시 시도해 주세요.'
+          : "Your card was registered but the purchase didn't complete. You have not been charged — please try again.")
         return
       }
 

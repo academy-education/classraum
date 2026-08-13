@@ -58,17 +58,38 @@ export interface BillingIntent {
 
 const INTENT_KEY = 'study-billing-intent'
 
+/**
+ * localStorage, NOT sessionStorage — sessionStorage is scoped per TAB.
+ *
+ * Measured on a real buyer 2026-08-13 (three attempts, 22:16–22:19 KST).
+ * Her three `checkout_result` rows carry `step:'redirect-return'`,
+ * `ok:true`, `hasBillingKey:true` — and NO `kind` key at all, while every
+ * successful buyer's row carries `kind:'plan'`. `kind: intent?.kind`
+ * serialising to undefined is direct proof the intent was null on return.
+ *
+ * Her session survived the same round-trip (the analytics rows are
+ * stamped with her student_id, so authHeaders() had a Bearer token), and
+ * Supabase keeps its session in localStorage. Same origin, same browser,
+ * localStorage intact, sessionStorage empty — that is a return in a NEW
+ * TAB, which is what iOS does when the card app hands control back. The
+ * card was registered and she was never charged: the redirect page took
+ * the `!intent` branch and bounced her to a page still reading "Free".
+ *
+ * Deliberately NOT fixed by encoding the intent in redirectUrl: PortOne
+ * does not document whether it preserves a query string it did not
+ * write, so that fix could not be verified and would fail silently.
+ */
 export function stashBillingIntent(intent: Omit<BillingIntent, 'ts'>): void {
   try {
-    sessionStorage.setItem(INTENT_KEY, JSON.stringify({ ...intent, ts: Date.now() }))
+    localStorage.setItem(INTENT_KEY, JSON.stringify({ ...intent, ts: Date.now() }))
   } catch { /* storage unavailable → PC Promise flow still works */ }
 }
 
 /** Read-and-clear. Returns null when absent or older than 30 minutes. */
 export function takeBillingIntent(): BillingIntent | null {
   try {
-    const raw = sessionStorage.getItem(INTENT_KEY)
-    sessionStorage.removeItem(INTENT_KEY)
+    const raw = localStorage.getItem(INTENT_KEY)
+    localStorage.removeItem(INTENT_KEY)
     if (!raw) return null
     const intent = JSON.parse(raw) as BillingIntent
     if (!intent.kind || Date.now() - (intent.ts ?? 0) > 30 * 60_000) return null
