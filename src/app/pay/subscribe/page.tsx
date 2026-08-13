@@ -88,12 +88,24 @@ function PaySubscribe() {
 
   // Signed out → /auth, coming back HERE with the WHOLE query preserved
   // (?pass= and ?pack= would be dropped by a plan-only round-trip).
+  //
+  // NO ?intent=study, deliberately. That param means "this came from a
+  // marketing link, open the SIGN UP door" — auth/page.tsx switches the
+  // tab on it. Everyone arriving here already has an account: they were
+  // signed in inside the app a moment ago and only left because iOS and
+  // Android will not let the app take the payment. Landing them on
+  // "Create an account" mid-purchase asks them to spot the small "Log in"
+  // link, in the one flow where losing them costs money.
+  //
+  // Dropping the param is enough — activeTab defaults to "signin", and
+  // signupIntent still defaults to 'study' for anyone who does need to
+  // register.
   useEffect(() => {
     void (async () => {
       const { data } = await db.auth.getUser()
       if (!data?.user) {
         const next = `${PATH}?${params.toString()}`
-        router.replace(`/auth?intent=study&next=${encodeURIComponent(next)}`)
+        router.replace(`/auth?next=${encodeURIComponent(next)}`)
         return
       }
       setUser({ id: data.user.id, email: data.user.email ?? undefined })
