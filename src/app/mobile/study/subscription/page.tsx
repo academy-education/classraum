@@ -107,8 +107,10 @@ interface SubPayload {
  * so a crafted link cannot turn this into an open redirect.
  */
 function subscribeOnWebUrl(planId: string): string {
-  const next = `/mobile/study/subscription?plan=${encodeURIComponent(planId)}`
-  return `https://app.classraum.com/auth?intent=study&next=${encodeURIComponent(next)}`
+  // /pay/subscribe, NOT /mobile/study/subscription: `/mobile/*` is a
+  // claimed Universal Link, so the post-login forward was handing the
+  // buyer straight back to the app. /pay/* is unclaimed.
+  return `https://app.classraum.com/pay/subscribe?plan=${encodeURIComponent(planId)}`
 }
 
 type Acting = 'cancel' | 'reactivate' | 'pack' | 'pass' | `checkout:${string}` | `change:${string}` | null

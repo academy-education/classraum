@@ -43,7 +43,7 @@ export function missingPhoneMessage(ko: boolean): string {
  * purchase intent in sessionStorage, and /mobile/study/billing-redirect
  * finishes the purchase after the round-trip.
  */
-export const BILLING_REDIRECT_PATH = '/mobile/study/billing-redirect'
+export const BILLING_REDIRECT_PATH = '/pay/return'
 
 export interface BillingIntent {
   kind: 'plan' | 'pass' | 'pack' | 'gift'
@@ -67,13 +67,20 @@ const INTENT_KEY = 'study-billing-intent'
  * successful buyer's row carries `kind:'plan'`. `kind: intent?.kind`
  * serialising to undefined is direct proof the intent was null on return.
  *
- * Her session survived the same round-trip (the analytics rows are
- * stamped with her student_id, so authHeaders() had a Bearer token), and
- * Supabase keeps its session in localStorage. Same origin, same browser,
- * localStorage intact, sessionStorage empty — that is a return in a NEW
- * TAB, which is what iOS does when the card app hands control back. The
- * card was registered and she was never charged: the redirect page took
- * the `!intent` branch and bounced her to a page still reading "Free".
+ * THIS ALONE DOES NOT FIX HER CASE, and the first version of this comment
+ * claimed it did. It concluded "a return in a NEW TAB" from the fact that
+ * her Supabase session survived (localStorage) while the intent did not
+ * (sessionStorage). That inference was too weak: a different tab explains
+ * the evidence, and so does a different WEBVIEW — and the real cause is
+ * the second one. `/mobile/*` was claimed as a Universal Link, so iOS
+ * handed the PG's return to the Capacitor app instead of the
+ * SFSafariViewController that started it. Two WebViews do not share
+ * localStorage either, so moving jars changed nothing on its own.
+ *
+ * The fix is the PATH — see /pay/return/page.tsx. This stays because it
+ * is still correct for the ordinary same-context tab change, and because
+ * a per-tab store has no business holding something that must outlive a
+ * redirect. It is no longer what is holding the flow up.
  *
  * Deliberately NOT fixed by encoding the intent in redirectUrl: PortOne
  * does not document whether it preserves a query string it did not
