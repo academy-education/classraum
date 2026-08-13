@@ -34,6 +34,8 @@ import { authHeaders } from '@/lib/auth-headers'
 import { track } from '@/lib/study/track-client'
 import { PortOne } from '@/lib/portone-browser'
 import { STUDY_PLANS } from '@/lib/study/plans'
+import { StudyButton } from '@/app/mobile/study/_shared/StudyButton'
+import { cn } from '@/lib/utils'
 import {
   billingCustomer, missingPhoneMessage, stashBillingIntent, billingRedirectUrl,
   billingIssueId, billingWindowType, offerPeriodFor, checkoutContext,
@@ -149,12 +151,23 @@ function PaySubscribe() {
     }
   }, [busy, plan, user, ko])
 
+  const period = plan
+    ? plan.intervalDays === 365 ? (ko ? '1년' : 'year')
+      : plan.intervalDays === 30 ? (ko ? '월' : 'month')
+      : `${plan.intervalDays}${ko ? '일' : ' days'}`
+    : ''
+
   if (!plan) {
     return (
       <Shell>
-        <p className="text-[15px] font-semibold text-gray-900">
-          {ko ? '알 수 없는 플랜이에요' : 'Unknown plan'}
-        </p>
+        <Card>
+          <p className="text-[15px] font-semibold text-gray-900">
+            {ko ? '알 수 없는 플랜이에요' : 'Unknown plan'}
+          </p>
+          <p className="text-[13px] text-gray-500 mt-1">
+            {ko ? '앱에서 다시 시도해 주세요.' : 'Please start again from the app.'}
+          </p>
+        </Card>
       </Shell>
     )
   }
@@ -162,42 +175,101 @@ function PaySubscribe() {
   if (done) {
     return (
       <Shell>
-        <p className="text-[15px] font-semibold text-gray-900">
-          {ko ? '결제가 완료되었어요' : 'Payment complete'}
-        </p>
-        <p className="text-[13px] text-gray-500 max-w-[300px]">
-          {ko ? '앱으로 돌아가시면 바로 이용할 수 있어요.' : 'Head back to the app — it is ready now.'}
-        </p>
+        <Card>
+          <div className="w-14 h-14 mx-auto rounded-full bg-primary/10 flex items-center justify-center">
+            <svg className="w-7 h-7 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+            </svg>
+          </div>
+          <p className="mt-4 text-[17px] font-bold text-gray-900">
+            {ko ? '결제가 완료되었어요' : 'Payment complete'}
+          </p>
+          <p className="mt-1.5 text-[13px] text-gray-500 leading-relaxed">
+            {ko ? '앱으로 돌아가시면 바로 이용할 수 있어요.' : 'Head back to the app — it is ready now.'}
+          </p>
+        </Card>
       </Shell>
     )
   }
 
   return (
     <Shell>
-      <p className="text-[13px] text-gray-500">{ko ? '구독 결제' : 'Subscription'}</p>
-      <p className="text-[19px] font-bold text-gray-900">{ko ? plan.name_ko : plan.name_en}</p>
-      <p className="text-[15px] text-gray-700 tabular-nums">
-        ₩{plan.priceWon.toLocaleString()}
-        <span className="text-gray-400 text-[13px]">
-          {' / '}{plan.intervalDays === 365 ? (ko ? '년' : 'year') : `${plan.intervalDays}${ko ? '일' : ' days'}`}
-        </span>
-      </p>
-      {error && <p className="text-[13px] text-red-600 max-w-[320px]">{error}</p>}
-      <button
-        type="button"
-        onClick={pay}
-        disabled={!ready || busy}
-        className="mt-2 w-full max-w-[320px] rounded-xl bg-gray-900 text-white text-[15px] font-semibold py-3.5 disabled:opacity-50"
-      >
-        {busy ? (ko ? '진행 중…' : 'Working…') : ko ? '카드 등록하고 결제하기' : 'Add card and pay'}
-      </button>
+      <Card padded={false}>
+        {/* Brand header — the one place colour is spent, so the price
+            reads as the subject of the page. */}
+        <div className="rounded-t-2xl bg-gradient-to-br from-primary to-primary/85 px-6 pt-5 pb-6 text-left">
+          <p className="text-[12px] font-semibold tracking-wide text-white/70 uppercase">
+            {ko ? '구독 결제' : 'Subscription'}
+          </p>
+          <p className="mt-1 text-[20px] font-bold text-white">{ko ? plan.name_ko : plan.name_en}</p>
+          <p className="mt-3 text-white tabular-nums">
+            <span className="text-[28px] font-bold tracking-tight">₩{plan.priceWon.toLocaleString()}</span>
+            <span className="text-[13px] text-white/70"> / {period}</span>
+          </p>
+        </div>
+
+        <div className="px-6 pt-5 pb-6 text-left">
+          <div className="flex items-baseline justify-between">
+            <span className="text-[13px] text-gray-500">{ko ? '매달 받는 크레딧' : 'Monthly credits'}</span>
+            <span className="text-[14px] font-semibold text-gray-900 tabular-nums">
+              {plan.monthlyCredits}
+            </span>
+          </div>
+
+          {error && (
+            <p className="mt-4 rounded-xl bg-red-50 px-3.5 py-2.5 text-[13px] leading-relaxed text-red-600">
+              {error}
+            </p>
+          )}
+
+          <StudyButton
+            type="button"
+            variant="primary"
+            size="lg"
+            fullWidth
+            className="mt-5"
+            loading={busy}
+            disabled={!ready || busy}
+            onClick={pay}
+          >
+            {ko ? '카드 등록하고 결제하기' : 'Add card and pay'}
+          </StudyButton>
+
+          <p className="mt-3 text-center text-[11.5px] leading-relaxed text-gray-400">
+            {ko
+              ? '결제가 끝나면 앱으로 돌아가 주세요.'
+              : 'Return to the app once payment is done.'}
+          </p>
+        </div>
+      </Card>
     </Shell>
   )
 }
 
 function Shell({ children }: { children: React.ReactNode }) {
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col items-center justify-center px-6 text-center gap-2.5">
+    <div className="min-h-screen bg-gray-50 flex flex-col items-center justify-center px-5 py-10">
+      {children}
+    </div>
+  )
+}
+
+/**
+ * Same surface treatment the study subscription screen uses — white,
+ * rounded-2xl, hairline ring, barely-there shadow. Matched deliberately:
+ * this page is reached by leaving the app mid-purchase, and the buyer
+ * needs to recognise where she has landed. `padded={false}` lets the
+ * brand header bleed to the card's edges.
+ */
+function Card({ children, padded = true }: { children: React.ReactNode; padded?: boolean }) {
+  return (
+    <div
+      className={cn(
+        'w-full max-w-[380px] overflow-hidden rounded-2xl bg-white ring-1 ring-gray-200/70',
+        'shadow-[0_1px_2px_rgba(0,0,0,0.03),0_8px_24px_-12px_rgba(40,133,232,0.18)]',
+        padded && 'p-6 text-center',
+      )}
+    >
       {children}
     </div>
   )
