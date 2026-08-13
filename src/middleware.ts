@@ -90,6 +90,29 @@ export function middleware(request: NextRequest) {
   const isAccountRecoveryRoute =
     url.pathname === '/account/goodbye' || url.pathname === '/account/reactivate'
 
+  // Checkout hand-off + PG return (/pay/*). MUST be listed, for the same
+  // reason /invite/ and /account-deletion are: the app-subdomain branch
+  // below falls through to "redirect unknown routes to /auth", and a 307
+  // here destroys a payment.
+  //
+  // These paths exist precisely BECAUSE they are outside the app's
+  // Universal Link claim (/invite/*, /mobile/*, /dashboard/*, /auth/*) —
+  // see /pay/return/page.tsx. Being unclaimed is what keeps the buyer in
+  // the browser that started the purchase; it also means nothing else in
+  // this file had ever heard of them.
+  //
+  // Verified against production, not assumed: /pay/return and
+  // /pay/subscribe both answered 307 -> /auth on the first deploy. The
+  // return leg carries the issued billingKey in its query string, and the
+  // redirect drops it — so the card would be registered at Inicis and the
+  // key thrown away on the doorstep, which is the exact failure the /pay
+  // move was made to end.
+  //
+  // No auth check here on purpose: /pay/subscribe sends a signed-out buyer
+  // to /auth itself with ?next= back into /pay/*, and /pay/return must run
+  // for whoever the PG hands back before it can know who that is.
+  const isPayRoute = url.pathname.startsWith('/pay/')
+
   // Internal preview routes (sandbox; remove with the route files when done)
   const isDesignPreviewRoute =
     url.pathname.startsWith('/design-preview') ||
@@ -155,6 +178,12 @@ export function middleware(request: NextRequest) {
     // Allow the deletion aftermath pages (no auth by design — the account is
     // banned, so a session is impossible; see isAccountRecoveryRoute above)
     if (isAccountRecoveryRoute) {
+      return NextResponse.next()
+    }
+
+    // Allow the checkout hand-off and the PG return (see isPayRoute above —
+    // a 307 here drops the issued billingKey off the query string)
+    if (isPayRoute) {
       return NextResponse.next()
     }
 
