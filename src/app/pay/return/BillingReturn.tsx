@@ -39,6 +39,8 @@ export function BillingReturn() {
   // The server webhook backstop completes it, so we show a reassuring
   // success screen — NOT the failure screen.
   const [pending, setPending] = useState(false)
+  /** Purchase finished by the server after the client's intent was lost. */
+  const [recovered, setRecovered] = useState(false)
   const [returnTo, setReturnTo] = useState('/mobile/study/subscription')
   const [ko, setKo] = useState(true)
   const ran = useRef(false)
@@ -110,6 +112,48 @@ export function BillingReturn() {
           hasPaymentId: Boolean(paymentId), hasBillingKey: Boolean(billingKey),
           ...checkoutContext(),
         })
+
+        // ASK THE SERVER WHAT THIS WAS. The intent is gone, but the PG
+        // still holds the customData we stamped at issuance (kind, plan
+        // /pass/pack, student_id), and /recover reads it back and
+        // finishes the purchase. That is what makes this survivable on
+        // Android, where the return is pulled into the app's WebView and
+        // the claim list that causes it is compiled into the APK — so
+        // unlike iOS it cannot be corrected by a deploy.
+        //
+        // The server re-verifies ownership against the authed user, so
+        // this is not "trust whatever is in the URL".
+        const headers = await waitForAuthHeaders()
+        if (headers) {
+          try {
+            const res = await fetch('/api/study/subscription/recover', {
+              method: 'POST',
+              headers: { ...headers, 'Content-Type': 'application/json' },
+              body: JSON.stringify(billingKey ? { billingKey } : { paymentId }),
+            })
+            const body = await res.json().catch(() => ({} as Record<string, unknown>))
+            if (res.ok) {
+              track('checkout_result', {
+                step: 'redeem', ok: true, reason: 'recovered',
+                kind: body.kind, applied: body.applied,
+              })
+              setRecovered(true)
+              return
+            }
+            // 503 = we could not reach PortOne, or the write failed. The
+            // card IS registered, so the webhook backstop may still land
+            // it — pending, not failure.
+            if (res.status === 503) { setPending(true); return }
+            track('checkout_result', {
+              step: 'redeem', ok: false, reason: 'recover_failed',
+              status: res.status, code: body.error,
+            })
+          } catch {
+            setPending(true)
+            return
+          }
+        }
+
         setError(isKo
           ? '카드는 등록됐지만 결제를 마치지 못했어요. 요금은 청구되지 않았어요 — 다시 시도해 주세요.'
           : "Your card was registered but the purchase didn't complete. You have not been charged — please try again.")
@@ -192,6 +236,31 @@ export function BillingReturn() {
   }, [router])
 
   const showPaymentLoader = useMascotGate(true)
+
+  if (recovered) {
+    // The server recovered the purchase from the PG's own record. This is
+    // a genuine completion, not the "we think it'll land shortly" pending
+    // screen — say so plainly.
+    return (
+      <div className="flex flex-col h-full bg-gray-50 items-center justify-center px-6 text-center gap-4">
+        <div className="w-14 h-14 rounded-full bg-emerald-100 flex items-center justify-center">
+          <svg className="w-7 h-7 text-emerald-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+          </svg>
+        </div>
+        <p className="text-[15px] font-semibold text-gray-900">
+          {ko ? '결제가 완료되었어요' : 'Payment complete'}
+        </p>
+        <p className="text-[13px] text-gray-500 leading-relaxed max-w-[300px]">
+          {ko ? '앱으로 돌아가시면 바로 이용할 수 있어요.' : 'Head back to the app — it is ready now.'}
+        </p>
+        <StudyButton type="button" variant="primary" onClick={() => router.replace(returnTo)}>
+          {ko ? '돌아가기' : 'Go back'}
+        </StudyButton>
+      </div>
+    )
+  }
+
 
   if (pending) {
     // Payment succeeded at the PG; the server is finalizing it (webhook
