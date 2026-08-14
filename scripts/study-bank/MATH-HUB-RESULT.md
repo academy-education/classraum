@@ -125,3 +125,46 @@ decidable, and the whole 820-item population was measured exactly for
 the cost of one script. Every other tell in this project needed a model
 because it was semantic — this is the exception, and it is the only one
 where measuring the full population was possible rather than sampling.
+
+---
+
+# Bank-wide confirmation, all four Math cohorts (2026-08-14)
+
+SAT-PLAN.md Phase 1 item 2. Run over the whole live population, not a
+sample. Self-test run first and passed — the detector finds a planted
+hub, refuses to credit a non-hub key, and its control comes out at
+exactly 25.0% by construction.
+
+| cohort | structured | hub-is-key | control | margin | full hubs |
+|---|---|---|---|---|---|
+| Algebra | 38 | 20.8% | 25.0% | **−4.2** | 0 |
+| Advanced Math | 50 | 18.3% | 25.0% | **−6.7** | 0 |
+| Problem-Solving and Data Analysis | 24 | 19.4% | 25.0% | **−5.6** | 0 |
+| Geometry and Trigonometry | 29 | 18.4% | 25.0% | **−6.6** | 0 |
+
+**Every cohort is below its own control, and no item anywhere is a full
+hub** (key derives all three distractors with no tie). The defect that
+was measured at 64.4% on a sample of one authoring cohort does not exist
+in the current live Math bank.
+
+## Coverage — the number that stops this being oversold
+
+645 Math items were scanned; **141 carry parseable numeric options** and
+are the ones the check can actually decide. The rest are grid-in items
+with no options at all, or options that are expressions/words rather
+than numbers, where "is B derivable from A" has no arithmetic meaning.
+
+So the honest claim is: **the derivational hub is cleared wherever it
+could exist.** It is not "all 820 Math items are clean" — 504 of them
+are outside this instrument's reach and remain unmeasured by it.
+
+## What this does and does not settle
+
+- **Settles:** SAT-PLAN Phase 1 item 2. No repair work is needed, and
+  the earlier warning holds — acting on the 64.4% sample figure would
+  have rewritten hundreds of sound items.
+- **Does not settle:** answer computability, distractor derivability for
+  non-numeric options, or near-duplicate stems. Those are Phase 1 items
+  1, 3 and 4 and are still open.
+- **Cost:** one script, no model calls, no human. Which is the whole
+  argument for doing Math this way.
