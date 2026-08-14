@@ -1,7 +1,7 @@
 "use client"
 
 import { Button } from "@/components/ui/button"
-import { Sparkles, Clock, GraduationCap, Heart, Check, ArrowRight } from "lucide-react"
+import { Sparkles, Clock, GraduationCap, Heart, Check, ArrowRight, AlertTriangle } from "lucide-react"
 import { useState, useEffect } from "react"
 import Link from "next/link"
 import Header from "@/components/shared/Header"
@@ -9,7 +9,7 @@ import Footer from "@/components/shared/Footer"
 import { useTranslation } from "@/hooks/useTranslation"
 import { languages } from "@/locales"
 import { LogoMark, BrowserShell, MiniReports, MiniCalendar, MiniComms, MiniMockTest, MiniNotebook, MiniProgress } from "@/components/marketing/ProductMocks"
-import { WRAP, ts, useReveal } from "@/components/marketing/ui"
+import { CARD, CARD_HOVER, WRAP, ts, useReveal } from "@/components/marketing/ui"
 
 type TFunc = ReturnType<typeof useTranslation>["t"]
 
@@ -126,7 +126,7 @@ function WeekBar({ t, variant }: { t: TFunc; variant: "before" | "after" }) {
           {ts(t, `landing.aboutExtras.week.${before ? "admin" : "auto"}`)}
         </span>
       </div>
-      <div className="flex h-3.5 rounded-full overflow-hidden bg-white/70 ring-1 ring-black/[0.06]">
+      <div className="flex h-3.5 rounded-full overflow-hidden bg-gray-100 ring-1 ring-black/[0.04]">
         <span
           className="hv-grow-x h-full"
           style={{ width: `${100 - admin}%`, background: "linear-gradient(90deg,#2885e8,#00D0AE)" }}
@@ -194,50 +194,81 @@ export default function AboutPage() {
       </header>
 
       <main className={WRAP}>
-        {/* ── The problem, then the answer. Deliberately asymmetric: the
-             problem sits back — grey ground, muted type, dashes — and the
-             answer carries the colour. Two matching cards gave a complaint
-             and its fix the same weight, which is the wrong story for the
-             page that exists to argue one replaced the other. One shared
-             frame, split by a hairline, so they read as a single before/
-             after rather than two unrelated tiles. ──────────────────── */}
+        {/* ── The problem, then the answer.
+
+             Rebuilt AGAIN, because the previous version was consistent
+             with nothing. It was a single two-tone slab — one rounded
+             frame split by a hairline, each half flooded with a tinted
+             gradient — and every other section on this site, and on
+             /features and the landing page, is built from the SAME
+             primitive: a white CARD with a hairline ring, a soft shadow,
+             an icon chip and a heading. A flat coloured block sitting
+             under the hero read as a foreign element, which is what
+             "still looks weird" meant.
+
+             It also had no section header. Every other section opens
+             with a centred eyebrow + h2; this one began abruptly after
+             the hero paragraph, so the page seemed to start twice.
+
+             The semantic colour survives where it carries meaning — the
+             chip, the list markers, the week bar — but the GROUND is
+             white, like everywhere else. Colour marks the content; it no
+             longer replaces the container. ─────────────────────────── */}
         <section className="mb-20 md:mb-24">
-          <div className="hv4-fade grid lg:grid-cols-2 gap-px bg-gray-200/70 rounded-2xl overflow-hidden border border-gray-200/70">
-            <div className="bg-gradient-to-br from-rose-50/80 to-orange-50/50 p-7 sm:p-9">
-              <span className="inline-flex items-center gap-2 text-[11.5px] font-bold tracking-[0.09em] uppercase text-rose-600">
-                <span className="w-1.5 h-1.5 rounded-full bg-rose-500" />
-                {ts(t, 'about.problemSolution.problem.title')}
-              </span>
-              <p className="text-[15px] font-medium text-[#7c2d3a] leading-[1.7] mt-3 mb-5">
+          <div className="text-center max-w-[640px] mx-auto mb-10">
+            <span className="hv4-fade block text-[12.5px] font-semibold tracking-[0.08em] text-primary mb-3">
+              {ts(t, 'about.problemSolution.eyebrow')}
+            </span>
+            <h2 className="hv4-fade text-[clamp(26px,3.2vw,36px)] font-bold text-[#163e64] leading-[1.16] tracking-tight">
+              {ts(t, 'about.problemSolution.sectionTitle')}
+            </h2>
+          </div>
+
+          <div className="grid lg:grid-cols-2 gap-4 sm:gap-5">
+            <div className={`${CARD} ${CARD_HOVER} hv4-fade p-7 sm:p-8 flex flex-col`}>
+              <div className="flex items-center gap-3 mb-4">
+                <span className="w-10 h-10 rounded-xl bg-rose-50 text-rose-500 flex items-center justify-center shrink-0">
+                  <AlertTriangle size={18} strokeWidth={2.2} />
+                </span>
+                <h3 className="text-[17px] font-bold text-[#163e64]">
+                  {ts(t, 'about.problemSolution.problem.title')}
+                </h3>
+              </div>
+              <p className="text-[14.5px] font-medium text-gray-700 leading-[1.7] mb-4">
                 {ts(t, 'about.problemSolution.problem.description')}
               </p>
-              <ul className="space-y-3">
+              <ul className="space-y-2.5">
                 {problemIssues.map((issue, i) => (
-                  <li key={i} className="hv4-fade flex items-start gap-3 text-[14px] text-gray-700" style={{ transitionDelay: `${i * 70}ms` }}>
-                    <span className="w-4 h-px bg-rose-300 shrink-0 mt-[11px]" />
+                  <li key={i} className="hv4-fade flex items-start gap-3 text-[14px] text-gray-600" style={{ transitionDelay: `${i * 70}ms` }}>
+                    <span className="w-1.5 h-1.5 rounded-full bg-rose-300 shrink-0 mt-[7px]" />
                     {issue}
                   </li>
                 ))}
               </ul>
-              <WeekBar t={t} variant="before" />
+              <div className="mt-auto"><WeekBar t={t} variant="before" /></div>
             </div>
-            <div className="bg-gradient-to-br from-[#00D0AE]/[0.09] to-blue-50/50 p-7 sm:p-9">
-              <span className="inline-flex items-center gap-2 text-[11.5px] font-bold tracking-[0.09em] uppercase text-[#00806c]">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#00D0AE]" />
-                {ts(t, 'about.problemSolution.solution.title')}
-              </span>
-              <p className="text-[15px] font-medium text-[#163e64] leading-[1.7] mt-3 mb-5">
+
+            <div className={`${CARD} ${CARD_HOVER} hv4-fade p-7 sm:p-8 flex flex-col`}>
+              <div className="flex items-center gap-3 mb-4">
+                <span className="w-10 h-10 rounded-xl bg-[#00D0AE]/15 text-[#00806c] flex items-center justify-center shrink-0">
+                  <Sparkles size={18} strokeWidth={2.2} />
+                </span>
+                <h3 className="text-[17px] font-bold text-[#163e64]">
+                  {ts(t, 'about.problemSolution.solution.title')}
+                </h3>
+              </div>
+              <p className="text-[14.5px] font-medium text-gray-700 leading-[1.7] mb-4">
                 {ts(t, 'about.problemSolution.solution.description')}
               </p>
-              <ul className="space-y-3">
+              <ul className="space-y-2.5">
                 {solutionBenefits.map((benefit, i) => (
-                  <li key={i} className="hv4-fade flex items-start gap-3 text-[14px] font-medium text-gray-800" style={{ transitionDelay: `${i * 70}ms` }}>
-                    <Check className="w-4 h-4 text-[#00a98d] shrink-0 mt-[3px]" strokeWidth={2.6} />
+                  <li key={i} className="hv4-fade flex items-start gap-3 text-[14px] text-gray-700" style={{ transitionDelay: `${i * 70}ms` }}>
+                    <Check className="w-4 h-4 text-[#00a98d] shrink-0 mt-0.5" strokeWidth={2.6} />
                     {benefit}
                   </li>
                 ))}
               </ul>
-              <WeekBar t={t} variant="after" />
+              <div className="mt-auto"><WeekBar t={t} variant="after" /></div>
             </div>
           </div>
         </section>
