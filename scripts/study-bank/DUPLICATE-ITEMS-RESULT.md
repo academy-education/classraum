@@ -1,4 +1,47 @@
-# 20% of the live SAT bank is the same question twice
+# SAT duplicates: 8% are real, not the 20% first reported
+
+**CORRECTED 2026-08-14, before anything was archived.** The first version
+of this file said 19.6% of the live SAT bank was duplicated and
+recommended archiving 228 items. That number conflated two different
+things and the recommendation would have destroyed ~100 sound items.
+The original analysis is kept below the correction because the mistake
+is the useful part.
+
+## The correction
+
+Splitting the 895 flagged pairs by whether the ANSWER also matches:
+
+| | pairs | what it is |
+|---|---|---|
+| same question **and same answer** | **106** | true duplicate — a leak |
+| same template, **different answer** | **789** | practice variety — not a leak |
+
+**128 items** sit in a same-answer pair, not 308.
+
+The stated harm was "a student who has seen one gets the other free".
+That is true of the SEC triplet (all keyed `is`) and the cos(C)/sin(A)
+pair (both 4/5). It is FALSE of the largest cluster — 32 "right triangle
+ABC, right angle at B" items with different legs (20/21, 5/12, 15/36,
+41/9, 17/8 …). Same skill, different arithmetic, different answer. A
+student still has to compute. That is a curriculum question about how
+much drill one template deserves, not a defect.
+
+Same-answer pairs per cohort: Geometry 53, Advanced Math 21, Algebra 18,
+SEC 11, PSDA 3.
+
+**This is the MATH-HUB-RESULT mistake, caught one step earlier.** There,
+a real defect measured on one authoring cohort was nearly generalised to
+690 sound items. Here a real defect (106 pairs) was nearly generalised to
+789 pairs that share only a shape. The checker was right; the harm story
+attached to its output was not, and the harm story is what licenses a
+destructive fix.
+
+**Nothing has been archived.** `dedupe-cluster.mjs` remains dry-run; it
+must be re-scoped to the same-answer subset before `--apply` is used.
+
+---
+
+# Original analysis (the 19.6% figure — superseded above)
 
 SAT-PLAN.md Phase 1 item 4. Run 2026-08-14, whole live population,
 no model calls, no human. `check-duplicate-items.mjs`.
