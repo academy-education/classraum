@@ -22,7 +22,7 @@
 import { useState } from "react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import { Check, ArrowRight, ArrowDown, ArrowLeft, Plus, Calendar, BookOpen, FileText, BarChart3, Target, ClipboardList, Sparkles, Users, School, Bot, TrendingUp, Zap, GraduationCap, Rocket, ShieldCheck, Timer, PieChart } from "lucide-react"
+import { Check, ArrowRight, ArrowDown, ArrowLeft, Plus, Calendar, BookOpen, FileText, BarChart3, Target, Send, MessageSquare, CheckCircle2, ClipboardList, Sparkles, Users, School, Bot, TrendingUp, Zap, GraduationCap, Rocket, ShieldCheck, Timer, PieChart } from "lucide-react"
 import Header from "@/components/shared/Header"
 import Footer from "@/components/shared/Footer"
 import { useTranslation } from "@/hooks/useTranslation"
@@ -242,10 +242,16 @@ export default function CampPage() {
               3→4 across the bottom — the same Z the reading order takes,
               drawn instead of implied. */}
           <div className="relative grid sm:grid-cols-2 gap-4">
-            <FlowJoin dir="right" className="hidden sm:flex left-1/2 top-[24%]" />
-            <FlowJoin dir="down"  className="hidden sm:flex left-1/2 top-1/2 sm:left-auto sm:right-[24%]" />
-            <FlowJoin dir="left"  className="hidden sm:flex left-1/2 top-[76%]" />
-            {steps.map((s, i) => (
+            <FlowJoin dir="right" className="hidden sm:flex left-1/2 top-[25%]" />
+            <FlowJoin dir="down"  className="hidden sm:flex left-auto right-[25%] translate-x-1/2 top-1/2" />
+            <FlowJoin dir="left"  className="hidden sm:flex left-1/2 top-[75%]" />
+            {/* Grid order [0,1,3,2]: the arrows draw an S (across, down
+                the right edge, back across), so the bottom row must run
+                right-to-left — stage 3 under stage 2, stage 4 under
+                stage 1. The first version left the cards in Z order and
+                the arrows pointed from Practice into Improve. The
+                numbered chips keep the true sequence readable. */}
+            {[0, 1, 3, 2].map(i => { const s = steps[i]; return (
               <div key={s.t} className={`${CARD} ${CARD_HOVER} camp-in p-6 flex flex-col border-t-4 ${STAGE_TONE[i].border}`} style={{ animationDelay: `${i * 60}ms` }}>
                 <div className="flex items-center gap-3 mb-3">
                   <span className={`w-8 h-8 rounded-lg text-white text-[13px] font-bold flex items-center justify-center shrink-0 ${STAGE_TONE[i].chip}`}>
@@ -272,7 +278,7 @@ export default function CampPage() {
                     <MiniReports key="3" t={t} label={s.t} />][i]}
                 </div>
               </div>
-            ))}
+            )})}
           </div>
 
           <FlowCycle t={t} steps={loop} />
@@ -662,42 +668,8 @@ export default function CampPage() {
           </div>
           <Statement t={t} k={C + "model.quote"} />
 
-          <h3 className="camp-in text-[17px] font-bold text-[#163e64] mt-12 mb-6">{ts(t, C + "model.stepsTitle")}</h3>
-          {/* An S-flow, as asked: 1 → 2 across the top row, down, then
-              3 → 4 read right-to-left along the bottom. Descriptions are
-              gone — the step name, its glyph and the artefact it leaves
-              behind carry it. Grid order [0,1,3,2] is what makes row two
-              run backwards while the DOM stays in reading order. */}
-          <div className="camp-in relative grid sm:grid-cols-2 gap-4 max-w-[720px] mx-auto">
-            <FlowJoin dir="right" className="hidden sm:flex left-1/2 top-[25%]" />
-            <FlowJoin dir="down"  className="hidden sm:flex right-[-2px] left-auto translate-x-1/2 top-1/2" />
-            <FlowJoin dir="left"  className="hidden sm:flex left-1/2 top-[75%]" />
-            {[0, 1, 3, 2].map(i => {
-              const st = implSteps[i]
-              const glyph = [
-                <Calendar key="0" size={22} strokeWidth={2} />,
-                <Users key="1" size={22} strokeWidth={2} />,
-                <GraduationCap key="2" size={22} strokeWidth={2} />,
-                <Rocket key="3" size={22} strokeWidth={2} />][i]
-              return (
-                <div key={st.t} className={`${CARD} p-5 flex items-center gap-4`}>
-                  <span className="relative w-14 h-14 rounded-2xl bg-gradient-to-br from-blue-50 to-[#00D0AE]/15 text-primary flex items-center justify-center shrink-0">
-                    {glyph}
-                    <span className="absolute -top-1.5 -right-1.5 w-6 h-6 rounded-full bg-gradient-to-br from-[#2885e8] to-[#00D0AE] text-white text-[11px] font-bold flex items-center justify-center ring-2 ring-white">
-                      {i + 1}
-                    </span>
-                  </span>
-                  <span className="min-w-0">
-                    <h4 className="text-[14.5px] font-bold text-[#163e64] mb-1 truncate">{st.t}</h4>
-                    <span className="inline-flex items-center gap-1.5 text-[11.5px] font-medium text-[#00806c] bg-[#00D0AE]/10 rounded-full px-2.5 py-1 max-w-full">
-                      <Check size={11} strokeWidth={3} className="shrink-0" />
-                      <span className="truncate">{STEP_ARTEFACT[i]}</span>
-                    </span>
-                  </span>
-                </div>
-              )
-            })}
-          </div>
+          <h3 className="camp-in text-[17px] font-bold text-[#163e64] mt-12 mb-6 text-center">{ts(t, C + "model.stepsTitle")}</h3>
+          <WorkflowDiamond steps={implSteps} artefacts={STEP_ARTEFACT} />
         </section>
 
         {/* ── CTA ─────────────────────────────────────────────────────
@@ -769,6 +741,61 @@ function FlowJoin({ dir, className = "" }: { dir: "right" | "down" | "left"; cla
     <span aria-hidden className={`absolute z-[2] -translate-x-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-white ring-1 ring-blue-100 shadow-[0_4px_12px_-4px_rgba(22,62,100,0.25)] items-center justify-center text-primary ${className}`}>
       <Icon size={15} strokeWidth={2.4} />
     </span>
+  )
+}
+
+/* ── The implementation workflow as a diamond rotation ───────────────
+ * Four stations on a rotated square, clockwise from the top, curved
+ * arrows carrying the eye around. No numbers — the arrows ARE the
+ * order. Each station is the step name over the artefact it leaves
+ * behind. Falls back to a plain vertical list under sm, where a diamond
+ * would collapse into overlap. */
+function WorkflowDiamond({ steps, artefacts }: { steps: Tile[]; artefacts: string[] }) {
+  const GLYPHS = [Calendar, Users, GraduationCap, Rocket]
+  // top, right, bottom, left — clockwise
+  const POS = [
+    "left-1/2 top-0 -translate-x-1/2",
+    "right-0 top-1/2 -translate-y-1/2",
+    "left-1/2 bottom-0 -translate-x-1/2",
+    "left-0 top-1/2 -translate-y-1/2",
+  ]
+  const node = (i: number, extra = "") => {
+    const Icon = GLYPHS[i]
+    return (
+      <div key={i} className={`${CARD} px-4 py-3 flex items-center gap-3 ${extra}`}>
+        <span className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-50 to-[#00D0AE]/15 text-primary flex items-center justify-center shrink-0">
+          <Icon size={19} strokeWidth={2} />
+        </span>
+        <span className="min-w-0">
+          <b className="block text-[13.5px] font-bold text-[#163e64] leading-tight">{steps[i].t}</b>
+          <span className="block text-[11px] text-[#00806c] font-medium truncate">{artefacts[i]}</span>
+        </span>
+      </div>
+    )
+  }
+  return (
+    <div className="camp-in">
+      {/* diamond, sm and up */}
+      <div className="hidden sm:block relative max-w-[560px] h-[340px] mx-auto">
+        <svg viewBox="0 0 560 340" className="absolute inset-0 w-full h-full" aria-hidden>
+          <defs>
+            <marker id="wfArrow" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto">
+              <path d="M0,0 L10,5 L0,10 z" fill="#2885e8" opacity="0.55" />
+            </marker>
+          </defs>
+          {/* four arcs, clockwise: top→right→bottom→left→top */}
+          <path d="M356 62 Q470 88 486 138"  fill="none" stroke="#b9cfe6" strokeWidth="1.5" markerEnd="url(#wfArrow)" />
+          <path d="M486 202 Q470 252 356 278" fill="none" stroke="#b9cfe6" strokeWidth="1.5" markerEnd="url(#wfArrow)" />
+          <path d="M204 278 Q90 252 74 202"   fill="none" stroke="#b9cfe6" strokeWidth="1.5" markerEnd="url(#wfArrow)" />
+          <path d="M74 138 Q90 88 204 62"     fill="none" stroke="#b9cfe6" strokeWidth="1.5" markerEnd="url(#wfArrow)" />
+        </svg>
+        {POS.map((pos, i) => (
+          <div key={i} className={`absolute ${pos} w-[220px]`}>{node(i)}</div>
+        ))}
+      </div>
+      {/* stacked fallback under sm */}
+      <div className="sm:hidden space-y-3">{steps.map((_, i) => node(i))}</div>
+    </div>
   )
 }
 
@@ -940,15 +967,19 @@ function FlowCycle({ t, steps }: { t: TFunc; steps: string[] }) {
 function Converge({ t, tools }: { t: TFunc; tools: string[] }) {
   return (
     <div className={`${CARD} camp-in mt-10 p-6 sm:p-8`}>
-      <b className="block text-[14px] font-bold text-[#163e64] mb-6 text-center">
+      <b className="block text-[clamp(17px,2.2vw,22px)] font-bold text-[#163e64] mb-7 text-center tracking-tight">
         {ts(t, C + "provides.oneTitle")}
       </b>
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 max-w-[620px] mx-auto">
-        {tools.map(x => (
-          <span key={x} className="text-[12px] font-medium text-gray-500 bg-[#f8fafc] ring-1 ring-gray-200/80 rounded-lg px-2.5 py-2.5 text-center truncate">
-            {x}
-          </span>
-        ))}
+        {tools.map((x, i) => {
+          const Icon = [BookOpen, ClipboardList, FileText, Send, CheckCircle2, MessageSquare, BarChart3, Users][i] ?? FileText
+          return (
+            <span key={x} className="flex flex-col items-center gap-1.5 text-[12px] font-medium text-gray-500 bg-[#f8fafc] ring-1 ring-gray-200/80 rounded-xl px-2.5 py-3 text-center">
+              <Icon size={16} strokeWidth={2} className="text-gray-400" />
+              <span className="truncate max-w-full">{x}</span>
+            </span>
+          )
+        })}
       </div>
       <svg viewBox="0 0 620 56" className="w-full max-w-[620px] mx-auto block h-[56px]" aria-hidden>
         {[77, 232, 388, 543].map((x, i) => (
@@ -967,96 +998,75 @@ function Converge({ t, tools }: { t: TFunc; tools: string[] }) {
 }
 
 /* ── Tiny data pictures for "From data to action" ────────────────────
- * Each draws the situation that fires the action: one bar sagging below
- * the rest, one wrong option towering over the others, a checklist with
- * a hole in it, a line that has earned a steeper target. 56x44 inline
- * SVG — no library, no icon font. */
+ * Second pass, for cleanliness: one idea per picture, uniform 2px
+ * geometry, two colours only (slate track + one signal colour), no
+ * baselines, no axis labels. The picture is the trigger, nothing else. */
 function ActionVignette({ kind }: { kind: number }) {
-  if (kind === 0) return ( // low skill score — the third bar dips
+  if (kind === 0) return ( // low skill score — one bar sags
     <svg viewBox="0 0 56 44" className="w-12 h-9" aria-hidden>
-      {[[6, 16], [17, 12], [28, 26], [39, 14]].map(([x, drop], i) => (
-        <rect key={x} x={x} y={8 + drop} width="8" height={30 - drop} rx="2"
-              fill={i === 2 ? "#fb7185" : "#c7d6e8"} />
-      ))}
-      <line x1="4" y1="38" x2="52" y2="38" stroke="#e5eaf1" strokeWidth="1.5" />
-    </svg>)
-  if (kind === 1) return ( // common wrong answer — B towers
-    <svg viewBox="0 0 56 44" className="w-12 h-9" aria-hidden>
-      {[["A", 10, 8], ["B", 22, 24], ["C", 34, 6], ["D", 46, 5]].map(([l, x, h]) => (
-        <g key={l as string}>
-          <rect x={Number(x) - 4} y={30 - Number(h)} width="8" height={h as number} rx="2"
-                fill={l === "B" ? "#f59e0b" : "#c7d6e8"} />
-          <text x={x as number} y="40" textAnchor="middle" style={{ fontSize: 7, fontWeight: 700, fill: "#8aa0b5" }}>{l}</text>
-        </g>
+      {[[8, 18, "#cbd9e8"], [20, 24, "#cbd9e8"], [32, 9, "#fb7185"], [44, 21, "#cbd9e8"]].map(([x, h, c]) => (
+        <rect key={x as number} x={(x as number) - 3} y={36 - (h as number)} width="7" height={h as number} rx="3.5" fill={c as string} />
       ))}
     </svg>)
-  if (kind === 2) return ( // missing assignment — the gap in the list
+  if (kind === 1) return ( // common wrong answer — one option towers
     <svg viewBox="0 0 56 44" className="w-12 h-9" aria-hidden>
-      {[8, 20, 32].map((y, i) => (
-        <g key={y}>
-          <circle cx="10" cy={y + 3} r="4" fill="none"
-                  stroke={i === 1 ? "#fb7185" : "#34d399"} strokeWidth="1.8"
-                  strokeDasharray={i === 1 ? "2.5 2.5" : "0"} />
-          {i !== 1 && <path d="M8 3 l1.6 1.8 3-3.4" transform={`translate(0 ${y - 1})`}
-                            stroke="#34d399" strokeWidth="1.6" fill="none" strokeLinecap="round" />}
-          <rect x="20" y={y} width={i === 1 ? 18 : 28} height="5.5" rx="2.5"
-                fill={i === 1 ? "#fde5e7" : "#dbe6f2"} />
-        </g>
+      {[[8, 10, "#cbd9e8"], [20, 26, "#f59e0b"], [32, 8, "#cbd9e8"], [44, 6, "#cbd9e8"]].map(([x, h, c]) => (
+        <rect key={x as number} x={(x as number) - 3} y={36 - (h as number)} width="7" height={h as number} rx="3.5" fill={c as string} />
       ))}
     </svg>)
-  return ( // strong score — line breaks above its old ceiling
+  if (kind === 2) return ( // missing assignment — the row that is not there
     <svg viewBox="0 0 56 44" className="w-12 h-9" aria-hidden>
-      <line x1="4" y1="14" x2="52" y2="14" stroke="#c7d6e8" strokeWidth="1.2" strokeDasharray="3 3" />
-      <path d="M5 34 L19 28 L33 22 L47 9" fill="none" stroke="#10b981" strokeWidth="2.2"
+      <rect x="10" y="8"  width="36" height="7" rx="3.5" fill="#cbd9e8" />
+      <rect x="10" y="18.5" width="36" height="7" rx="3.5" fill="none" stroke="#fb7185" strokeWidth="1.6" strokeDasharray="3 3" />
+      <rect x="10" y="29" width="36" height="7" rx="3.5" fill="#cbd9e8" />
+    </svg>)
+  return ( // strong score — the line clears its ceiling
+    <svg viewBox="0 0 56 44" className="w-12 h-9" aria-hidden>
+      <path d="M8 32 L22 27 L34 20 L47 10" fill="none" stroke="#10b981" strokeWidth="2.4"
             strokeLinecap="round" strokeLinejoin="round" />
-      <circle cx="47" cy="9" r="3" fill="#fff" stroke="#10b981" strokeWidth="2" />
+      <circle cx="47" cy="10" r="3" fill="#fff" stroke="#10b981" strokeWidth="2.2" />
     </svg>)
 }
 
 /* ── Glyphs for "Why schools use Classraum" ──────────────────────────
- * Five small drawings in the brand ramp instead of five lucide icons —
- * the icon set was the part that read as template. Each is the claim,
- * pictured: a course launching, admin folding into one sheet, a beam
- * narrowing onto one topic, an answer coming straight back, a staircase
- * of scores. */
+ * Second pass. The first set was hand-drawn and it showed — tick marks,
+ * uneven stems. These are geometric: every glyph is built from at most
+ * three primitives on the same 2.4px round-capped stroke, one gradient. */
 function WhyGlyph({ kind }: { kind: number }) {
+  const id = `wg${kind}`
   const g = (
     <defs>
-      <linearGradient id={`whyg${kind}`} x1="0" y1="0" x2="1" y2="1">
+      <linearGradient id={id} x1="0" y1="0" x2="1" y2="1">
         <stop offset="0%" stopColor="#2885e8" /><stop offset="100%" stopColor="#00D0AE" />
       </linearGradient>
     </defs>
   )
-  const stroke = `url(#whyg${kind})`
-  if (kind === 0) return ( // launch faster: ramp + rising path
+  const P = { fill: "none", stroke: `url(#${id})`, strokeWidth: 2.4,
+              strokeLinecap: "round" as const, strokeLinejoin: "round" as const }
+  if (kind === 0) return ( // launch faster: one clean ascent
     <svg viewBox="0 0 44 40" className="w-10 h-9" aria-hidden>{g}
-      <path d="M4 34 H26" stroke="#dbe4ee" strokeWidth="2" strokeLinecap="round" />
-      <path d="M8 32 C18 30 26 24 34 10" fill="none" stroke={stroke} strokeWidth="2.4" strokeLinecap="round" />
-      <path d="M34 10 l-7 1.5 M34 10 l-1 7" stroke={stroke} strokeWidth="2.4" strokeLinecap="round" />
+      <path d="M7 32 C17 32 25 26 33 12" {...P} />
+      <path d="M25 11 H34 V20" {...P} />
     </svg>)
-  if (kind === 1) return ( // reduce admin: three sheets become one
+  if (kind === 1) return ( // reduce admin: three streams, one line out
     <svg viewBox="0 0 44 40" className="w-10 h-9" aria-hidden>{g}
-      <rect x="6" y="6" width="16" height="20" rx="2.5" fill="none" stroke="#c7d6e8" strokeWidth="1.8" />
-      <rect x="11" y="10" width="16" height="20" rx="2.5" fill="#fff" stroke="#c7d6e8" strokeWidth="1.8" />
-      <rect x="16" y="14" width="16" height="20" rx="2.5" fill="#fff" stroke={stroke} strokeWidth="2.2" />
-      <path d="M20 22 h8 M20 27 h8" stroke={stroke} strokeWidth="1.8" strokeLinecap="round" />
+      <path d="M6 10 H16 C24 10 24 20 30 20" {...P} strokeWidth={2} stroke="#c7d6e8" />
+      <path d="M6 30 H16 C24 30 24 20 30 20" {...P} strokeWidth={2} stroke="#c7d6e8" />
+      <path d="M6 20 H38" {...P} />
     </svg>)
-  if (kind === 2) return ( // target instruction: beam narrowing to a point
+  if (kind === 2) return ( // target instruction: concentric focus
     <svg viewBox="0 0 44 40" className="w-10 h-9" aria-hidden>{g}
-      <path d="M5 8 L34 18 L5 30 Z" fill="none" stroke="#c7d6e8" strokeWidth="1.8" strokeLinejoin="round" />
-      <circle cx="36" cy="19" r="4.5" fill="none" stroke={stroke} strokeWidth="2.2" />
-      <circle cx="36" cy="19" r="1.6" fill={stroke} />
+      <circle cx="22" cy="20" r="12" {...P} strokeWidth={2} stroke="#c7d6e8" />
+      <circle cx="22" cy="20" r="6.5" {...P} />
+      <circle cx="22" cy="20" r="1.8" fill={`url(#${id})`} stroke="none" />
     </svg>)
-  if (kind === 3) return ( // fast feedback: prompt out, answer straight back
+  if (kind === 3) return ( // fast feedback: out and straight back
     <svg viewBox="0 0 44 40" className="w-10 h-9" aria-hidden>{g}
-      <path d="M6 14 H30 a4 4 0 0 1 0 8 H14" fill="none" stroke="#c7d6e8" strokeWidth="1.8" strokeLinecap="round" />
-      <path d="M14 22 l4 -3.5 M14 22 l4 3.5" stroke={stroke} strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
-      <path d="M33 8 l2.2 4.4 4.8 .7 -3.5 3.4 .8 4.8 -4.3 -2.2" fill="none" stroke={stroke} strokeWidth="1.7" strokeLinejoin="round" />
+      <path d="M8 14 H28 A6 6 0 0 1 28 26 H14" {...P} />
+      <path d="M19 21 L14 26 L19 31" {...P} />
     </svg>)
-  return ( // measure progress: a staircase of results
+  return ( // measure progress: the staircase up
     <svg viewBox="0 0 44 40" className="w-10 h-9" aria-hidden>{g}
-      <path d="M5 33 h9 v-7 h9 v-8 h9 v-8 h7" fill="none" stroke={stroke} strokeWidth="2.4" strokeLinejoin="round" strokeLinecap="round" />
-      <circle cx="14" cy="33" r="1.7" fill="#c7d6e8" /><circle cx="23" cy="26" r="1.7" fill="#c7d6e8" />
-      <circle cx="32" cy="18" r="1.7" fill="#c7d6e8" />
+      <path d="M6 32 H16 V23 H26 V14 H36 V8" {...P} />
     </svg>)
 }
