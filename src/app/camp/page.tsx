@@ -286,7 +286,8 @@ export default function CampPage() {
             )})}
           </div>
 
-          <FlowCycle t={t} steps={loop} />
+          <FlowCycle t={t} steps={loop}
+            label={ts(t, isToefl ? C + "toefl.hero.titleAccent" : C + "hero.titleAccent")} />
           <Statement t={t} k={C + "cycle.quote"} />
         </div>
         </section>
@@ -411,10 +412,10 @@ export default function CampPage() {
               session component for that task. No tabs — a school
               skimming this page should see the whole exam without
               clicking. */}
-          <div className={`${CARD} camp-in overflow-hidden ${isToefl ? "border-t-4 border-t-[#2885e8]" : ""}`}>
+          <div className={`${CARD} camp-in overflow-hidden`}>
             {isToefl && (
               <div className="flex items-center gap-2 px-5 py-3 border-b border-gray-100 bg-[#f8fafc]">
-                <span className="w-6 h-6 rounded-lg bg-blue-50 text-primary flex items-center justify-center shrink-0"><BookOpen size={13} /></span>
+                <BookOpen size={14} className="text-gray-400 shrink-0" strokeWidth={2} />
                 <span className="text-[12px] font-bold text-[#163e64]">{g<string[]>("toefl.skillsDemo.tabs")[0]}</span>
               </div>
             )}
@@ -926,24 +927,27 @@ function WorkflowDiamond({ steps, artefacts }: { steps: Tile[]; artefacts: strin
  * dot, mono timer), and each panel's content is a live bank row. */
 function ToeflSkillPanel({ t, kind, listenOpts }: { t: TFunc; kind: number; listenOpts: string[] }) {
   const K = C + "toefl.skillsDemo."
-  // Each section wears its own colour so the four-skill spread reads as
-  // four different surfaces, not four copies of the SAT card.
-  const head = (label: string, Icon: typeof Headphones, chip: string) => (
+  // One flat, neutral header for every skill — round one gave each panel
+  // its own hue (violet/rose/emerald borders + tinted chips) on top of a
+  // section that already carries the answer-review greens and reds, and
+  // Andy called it "too much". The skill is named by its icon and label;
+  // color stays reserved for meaning (correct/incorrect/recording).
+  const head = (label: string, Icon: typeof Headphones) => (
     <div className="flex items-center gap-2 px-5 py-3 border-b border-gray-100 bg-[#f8fafc]">
-      <span className={`w-6 h-6 rounded-lg flex items-center justify-center shrink-0 ${chip}`}><Icon size={13} /></span>
+      <Icon size={14} className="text-gray-400 shrink-0" strokeWidth={2} />
       <span className="text-[12px] font-bold text-[#163e64]">{label}</span>
     </div>
   )
   if (kind === 1) return ( // ── Listening ─────────────────────────────
-    <div className={`${CARD} camp-in overflow-hidden h-full border-t-4 border-t-[#7a5af8]`}>
-      {head(ts(t, K + "listening.label"), Headphones, "bg-violet-50 text-violet-600")}
+    <div className={`${CARD} camp-in overflow-hidden h-full`}>
+      {head(ts(t, K + "listening.label"), Headphones)}
       <div className="p-5 sm:p-6">
         <div className="flex items-center gap-3 rounded-xl bg-[#0b2138] px-4 py-3.5 mb-2 text-white">
           <span className="w-10 h-10 rounded-full bg-white/15 flex items-center justify-center shrink-0">
             <Play size={16} fill="currentColor" />
           </span>
           <span className="flex-1 h-1.5 rounded-full bg-white/20 overflow-hidden">
-            <span className="block h-full w-[60%] rounded-full bg-gradient-to-r from-[#2885e8] to-[#00D0AE]" />
+            <span className="block h-full w-[60%] rounded-full bg-[#2885e8]" />
           </span>
           <span className="text-[11.5px] font-mono tabular-nums opacity-90 shrink-0">{ts(t, K + "listening.time")}</span>
         </div>
@@ -962,8 +966,8 @@ function ToeflSkillPanel({ t, kind, listenOpts }: { t: TFunc; kind: number; list
     </div>
   )
   if (kind === 2) return ( // ── Speaking ──────────────────────────────
-    <div className={`${CARD} camp-in overflow-hidden h-full border-t-4 border-t-rose-500`}>
-      {head(ts(t, K + "speaking.label"), Mic, "bg-rose-50 text-rose-600")}
+    <div className={`${CARD} camp-in overflow-hidden h-full`}>
+      {head(ts(t, K + "speaking.label"), Mic)}
       <div className="p-5 sm:p-6">
         <div className="rounded-xl bg-[#f8fafc] ring-1 ring-gray-100 px-4 py-3.5 mb-4">
           <p className="text-[14px] text-[#163e64] font-medium leading-[1.7]">“{ts(t, K + "speaking.sentence")}”</p>
@@ -980,7 +984,7 @@ function ToeflSkillPanel({ t, kind, listenOpts }: { t: TFunc; kind: number; list
         <p className="text-center text-[11.5px] text-gray-400 mb-4">{ts(t, K + "speaking.stop")}</p>
         <div className="flex items-center justify-between gap-3 rounded-xl bg-white ring-1 ring-gray-100 px-4 py-3">
           <p className="text-[12.5px] text-gray-600 leading-[1.6] flex-1">{ts(t, K + "speaking.result")}</p>
-          <span className="text-[11.5px] font-bold text-[#00806c] bg-[#00D0AE]/15 rounded-full px-2.5 py-1 whitespace-nowrap shrink-0">
+          <span className="text-[11.5px] font-bold text-primary bg-blue-50 rounded-full px-2.5 py-1 whitespace-nowrap shrink-0">
             {ts(t, K + "speaking.band")}
           </span>
         </div>
@@ -988,11 +992,11 @@ function ToeflSkillPanel({ t, kind, listenOpts }: { t: TFunc; kind: number; list
     </div>
   )
   return ( // ── Writing ───────────────────────────────────────────────
-    <div className={`${CARD} camp-in overflow-hidden h-full border-t-4 border-t-emerald-500`}>
-      {head(ts(t, K + "writing.label"), PenLine, "bg-emerald-50 text-emerald-600")}
+    <div className={`${CARD} camp-in overflow-hidden h-full`}>
+      {head(ts(t, K + "writing.label"), PenLine)}
       <div className="p-5 sm:p-6">
-        <div className="rounded-xl bg-amber-50/60 ring-1 ring-amber-100 px-4 py-3 mb-4">
-          <p className="text-[12.5px] text-amber-900 leading-[1.7]">{ts(t, K + "writing.brief")}</p>
+        <div className="rounded-xl bg-[#f8fafc] ring-1 ring-gray-100 px-4 py-3 mb-4">
+          <p className="text-[12.5px] text-gray-600 leading-[1.7]">{ts(t, K + "writing.brief")}</p>
         </div>
         <div className="rounded-xl ring-1 ring-gray-200 bg-white px-4 py-3.5 min-h-[108px] mb-2">
           <p className="text-[13.5px] text-gray-700 leading-[1.8]">
@@ -1095,7 +1099,7 @@ function Statement({ t, k }: { t: TFunc; k: string }) {
  *
  * viewBox is 560x400 with r=150 about (280,190): outer edge sits at
  * y=12 and y=368, inside the box with room to spare. */
-function FlowCycle({ t, steps }: { t: TFunc; steps: string[] }) {
+function FlowCycle({ t, steps, label }: { t: TFunc; steps: string[]; label: string }) {
   const N = steps.length
   const R = 150, CX = 280, CY = 190, NODE_W = 110, NODE_H = 48
   const pos = (i: number) => {
@@ -1139,7 +1143,7 @@ function FlowCycle({ t, steps }: { t: TFunc; steps: string[] }) {
             CLASSRAUM
           </text>
           <text x={CX} y={CY + 12} textAnchor="middle" style={{ fontSize: 11.5, fontWeight: 600, fill: "#8aa0b5" }}>
-            {"\u0053AT Camp"}
+            {label}
           </text>
 
           {/* stages */}
@@ -1210,33 +1214,36 @@ function Converge({ t, tools }: { t: TFunc; tools: string[] }) {
 }
 
 /* ── Tiny data pictures for "From data to action" ────────────────────
- * Second pass, for cleanliness: one idea per picture, uniform 2px
- * geometry, two colours only (slate track + one signal colour), no
- * baselines, no axis labels. The picture is the trigger, nothing else. */
+ * Third pass, flat: one idea per picture, and the entire family shares
+ * ONE signal colour (brand blue) on a slate track. Round two gave each
+ * tile its own semantic hue (rose/amber/emerald) and Andy read the
+ * section as over-coloured — the highlighted element already says
+ * which bar matters, so the hue was carrying nothing. */
 function ActionVignette({ kind }: { kind: number }) {
+  const TRACK = "#cbd9e8", SIGNAL = "#2885e8"
   if (kind === 0) return ( // low skill score — one bar sags
     <svg viewBox="0 0 56 44" className="w-12 h-9" aria-hidden>
-      {[[8, 18, "#cbd9e8"], [20, 24, "#cbd9e8"], [32, 9, "#fb7185"], [44, 21, "#cbd9e8"]].map(([x, h, c]) => (
-        <rect key={x as number} x={(x as number) - 3} y={36 - (h as number)} width="7" height={h as number} rx="3.5" fill={c as string} />
+      {[[8, 18, TRACK], [20, 24, TRACK], [32, 9, SIGNAL], [44, 21, TRACK]].map(([x, h, c]) => (
+        <rect key={x as number} x={(x as number) - 3} y={36 - (h as number)} width="7" height={h as number} rx="2" fill={c as string} />
       ))}
     </svg>)
   if (kind === 1) return ( // common wrong answer — one option towers
     <svg viewBox="0 0 56 44" className="w-12 h-9" aria-hidden>
-      {[[8, 10, "#cbd9e8"], [20, 26, "#f59e0b"], [32, 8, "#cbd9e8"], [44, 6, "#cbd9e8"]].map(([x, h, c]) => (
-        <rect key={x as number} x={(x as number) - 3} y={36 - (h as number)} width="7" height={h as number} rx="3.5" fill={c as string} />
+      {[[8, 10, TRACK], [20, 26, SIGNAL], [32, 8, TRACK], [44, 6, TRACK]].map(([x, h, c]) => (
+        <rect key={x as number} x={(x as number) - 3} y={36 - (h as number)} width="7" height={h as number} rx="2" fill={c as string} />
       ))}
     </svg>)
   if (kind === 2) return ( // missing assignment — the row that is not there
     <svg viewBox="0 0 56 44" className="w-12 h-9" aria-hidden>
-      <rect x="10" y="8"  width="36" height="7" rx="3.5" fill="#cbd9e8" />
-      <rect x="10" y="18.5" width="36" height="7" rx="3.5" fill="none" stroke="#fb7185" strokeWidth="1.6" strokeDasharray="3 3" />
-      <rect x="10" y="29" width="36" height="7" rx="3.5" fill="#cbd9e8" />
+      <rect x="10" y="8"  width="36" height="7" rx="2" fill={TRACK} />
+      <rect x="10" y="18.5" width="36" height="7" rx="2" fill="none" stroke={SIGNAL} strokeWidth="1.6" strokeDasharray="3 3" />
+      <rect x="10" y="29" width="36" height="7" rx="2" fill={TRACK} />
     </svg>)
   return ( // strong score — the line clears its ceiling
     <svg viewBox="0 0 56 44" className="w-12 h-9" aria-hidden>
-      <path d="M8 32 L22 27 L34 20 L47 10" fill="none" stroke="#10b981" strokeWidth="2.4"
+      <path d="M8 32 L22 27 L34 20 L47 10" fill="none" stroke={SIGNAL} strokeWidth="2.4"
             strokeLinecap="round" strokeLinejoin="round" />
-      <circle cx="47" cy="10" r="3" fill="#fff" stroke="#10b981" strokeWidth="2.2" />
+      <circle cx="47" cy="10" r="3" fill={SIGNAL} />
     </svg>)
 }
 

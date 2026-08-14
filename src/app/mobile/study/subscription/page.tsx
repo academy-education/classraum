@@ -364,7 +364,12 @@ export default function SubscriptionPage() {
   // plan overwrote the shared plan row. Exclude the one already shown by the
   // active-pass banner (the pure-pass case) so it isn't listed twice.
   const heldPasses = (data?.heldPasses ?? []).filter(hp => hp.passId !== activePass?.id)
-  const passOffers = passes.filter(p => p.offer)
+  // 3-month passes are HIDDEN from sale (2026-08-15, Andy's call) — not
+  // removed from plans.ts, because resolvePass()/isPassPlan() still have
+  // to honour every pass already sold. Held/active passes render above;
+  // only the purchase offers are suppressed. Restore by reinstating the
+  // `passes.filter(p => p.offer)` expression.
+  const passOffers: typeof passes = []
   // Anyone not on a live paid subscription goes through checkout to
   // start one — free users, lapsed subscribers, legacy trials, and
   // pass holders (a pass isn't a recurring plan, so starting one is a
