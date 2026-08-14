@@ -148,6 +148,36 @@ B4 is *Calibrate the reviewer before spending another cohort* (~20 minutes — o
 
 ## 5. Found while fixing
 
+### Answer computability — built, run, found nothing (2026-08-14)
+
+`check-answer-computability.py` over all 820 SAT Math items. 37 checked
+(4.5%), **0 wrong**. Full write-up in ANSWER-COMPUTABILITY-RESULT.md.
+
+The load-bearing part is NOT the zero. The checker reported defects
+twice — 9 items, then 5 — and **all 14 were false positives**, caught
+only by working the algebra by hand:
+
+  - expression targets (`value of x - y`) solved as a single variable
+  - `f(3) = 11` parsed as f*3 by implicit multiplication
+  - degree-mode trig solved in radians
+
+All 14 are pinned as regression fixtures; the self-test is 25 cases and
+the bank run aborts unless it passes.
+
+Coverage by cohort: Algebra 18/199, Advanced Math 19/191, Geometry
+0/219, PSDA 0/211. The last two need a figure or table and will not
+yield to this instrument.
+
+Open:
+- 783 Math items remain unmeasured. Do NOT read 0-wrong as clean.
+- +96 items (~12%) available if function notation and degree trig are
+  supported — but those are precisely the families that produced false
+  positives, so fixtures come first.
+- The 83 numeric dedup pairs still wait on this: deciding them needs
+  items shown to reduce to the same computation, and at 4.5% coverage
+  this checker cannot do it yet.
+
+
 ### Dedup round 2 — tightened, still not applied (2026-08-14)
 
 `dedupe-cluster.mjs` now requires the stored ANSWER to match, not just
