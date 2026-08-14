@@ -148,6 +148,35 @@ B4 is *Calibrate the reviewer before spending another cohort* (~20 minutes — o
 
 ## 5. Found while fixing
 
+### Dedup applied + checker widened (2026-08-14)
+
+**APPLIED: 10 items archived.** SAT bank 1571 -> 1561, count verified.
+All 10 Standard English Conventions, from 8 clusters read in full first
+— each the same sentence with one word swapped and the same key
+("collection of manuscripts ... housed/stored", "By the time the
+firefighters arrived ... barn/top floor").
+
+A bug in my own split nearly archived 19 more. `--answers textual` used
+`/^-?\d+(\.\d+)?$/`, so fractional keys like "4/3" and "9/14" counted
+as TEXTUAL and four trigonometry clusters entered the "safe" set — one
+of them 5 items across scaled 3-4-5 triangles mixing cos(C) and sin(A),
+which are equal by the cofunction identity and were already recorded as
+ARGUABLE. isNumericKey now covers fractions and the normalised "4 3"
+form.
+
+**Checker widened: 37 -> 42 checked (4.5% -> 5.1%), still 0 wrong.**
+The "+96 items" estimate was wrong by an order of magnitude — see
+ANSWER-COMPUTABILITY-RESULT.md. Skip-reason counts are an upper bound
+on what fixing a reason yields, not an estimate of it.
+
+Still open:
+- 778 Math items unmeasured.
+- The 83 numeric dedup pairs still blocked; 5.1% coverage cannot decide
+  whether two items reduce to the same computation.
+- Geometry 1/219 and PSDA 1/211. These need the figure or the table and
+  will not yield to this instrument.
+
+
 ### Answer computability — built, run, found nothing (2026-08-14)
 
 `check-answer-computability.py` over all 820 SAT Math items. 37 checked

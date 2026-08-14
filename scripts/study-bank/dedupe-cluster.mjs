@@ -47,6 +47,42 @@ const APPLY = process.argv.includes('--apply')
 const famArg = process.argv.indexOf('--family')
 const family = famArg > -1 ? process.argv[famArg + 1] : 'sat'
 
+/* --answers textual|numeric|all
+ *
+ * Split added 2026-08-14 after reading the 112 pairs the same-answer
+ * rule proposed. They are not one population:
+ *
+ *   textual  29   an SEC item matching another on passage, stem AND key
+ *                 TEXT is one item twice. Safe.
+ *   numeric  83   small integers collide constantly. Two different
+ *                 parabolas, both tangent-line problems, both answer 6,
+ *                 zero shared work. NOT safe — deciding these needs the
+ *                 items shown to reduce to the same computation, which
+ *                 is check-answer-computability.py, and that instrument
+ *                 is at 4.5% coverage.
+ *
+ * Default is textual, because the default should be the safe one. */
+const ansArg = process.argv.indexOf('--answers')
+const answerMode = ansArg > -1 ? process.argv[ansArg + 1] : 'textual'
+if (!['textual', 'numeric', 'all'].includes(answerMode)) throw new Error(`--answers must be textual|numeric|all`)
+/* A FRACTION IS A NUMBER. The first version of this split tested
+ * /^-?\d+(\.\d+)?$/ , so keys like "4/3" and "9/14" were classed as
+ * textual and swept into the "safe" set. That put four trigonometry
+ * clusters — 19 of the 20 proposed archives — into a bucket explicitly
+ * defined to exclude numeric coincidence. One of them was 5 items
+ * across scaled 3-4-5 triangles mixing cos(C) and sin(A), which are the
+ * same value by the cofunction identity: exactly the case recorded as
+ * ARGUABLE and left alone.
+ *
+ * Note the keys arrive here already normalised, so "4/3" reads as
+ * "4 3" — the check has to cover both forms. */
+const isNumericKey = k => {
+  const s = String(k ?? '').trim()
+  return /^-?\d+(\.\d+)?$/.test(s)          // 7, -3, 2.5
+    || /^-?\d+\s*\/\s*\d+$/.test(s)         // 4/3
+    || /^-?\d+\s+\d+$/.test(s)              // "4 3", post-normalisation
+}
+
 const env = Object.fromEntries(readFileSync(process.cwd() + '/.env.local', 'utf8').split('\n')
   .filter(l => l.includes('=') && !l.startsWith('#'))
   .map(l => [l.slice(0, l.indexOf('=')), l.slice(l.indexOf('=') + 1).trim()]))
@@ -93,26 +129,34 @@ function jaccard(a, b) {
  * a missed duplicate costs a student a repeated question, an archived
  * variant costs the bank an item nobody can get back without a restore.
  */
+function keyOf(it) {
+  const raw = it?.correct_answer
+  if (raw == null) return null
+  // choices may be strings or {text}; compare the TEXT, never the
+  // index — several cohorts store the key as a letter and the option
+  // order is not stable across items.
+  const ch = Array.isArray(it?.choices)
+    ? it.choices.map(c => (typeof c === 'string' ? c : c?.text ?? '')) : []
+  if (typeof raw === 'number') return norm(ch[raw] ?? '')
+  const s = String(raw).trim()
+  const asLetter = /^[A-Da-d]$/.test(s) ? ch['ABCD'.indexOf(s.toUpperCase())] : null
+  return norm(asLetter ?? s)
+}
+
 function sameAnswer(a, b) {
-  const key = it => {
-    const raw = it?.correct_answer
-    if (raw == null) return null
-    // choices may be strings or {text}; compare the TEXT, never the
-    // index — several cohorts store the key as a letter and the option
-    // order is not stable across items.
-    const ch = Array.isArray(it?.choices)
-      ? it.choices.map(c => (typeof c === 'string' ? c : c?.text ?? '')) : []
-    if (typeof raw === 'number') return norm(ch[raw] ?? '')
-    const s = String(raw).trim()
-    const asLetter = /^[A-Da-d]$/.test(s) ? ch['ABCD'.indexOf(s.toUpperCase())] : null
-    return norm(asLetter ?? s)
-  }
-  const ka = key(a), kb = key(b)
+  const ka = keyOf(a), kb = keyOf(b)
   return ka != null && kb != null && ka !== '' && ka === kb
+}
+
+function answerAllowed(item) {
+  if (answerMode === 'all') return true
+  const k = keyOf(item)
+  return answerMode === 'numeric' ? isNumericKey(k) : !isNumericKey(k)
 }
 
 function isDup(a, b, t = THRESHOLD) {
   if (jaccard(a.q, b.q) < t) return false
+  if (!answerAllowed(a.item) || !answerAllowed(b.item)) return false
   if (!a.p.size && !b.p.size) return sameAnswer(a.item, b.item)
   if (jaccard(a.p, b.p) < t) return false
   return sameAnswer(a.item, b.item)
@@ -181,7 +225,7 @@ for (const c of multi) {
   }
 }
 
-console.log(`\n${family} dedupe — ${APPLY ? 'APPLYING' : 'DRY RUN'}, threshold ${THRESHOLD}\n`)
+console.log(`\n${family} dedupe — ${APPLY ? 'APPLYING' : 'DRY RUN'}, threshold ${THRESHOLD}, answers=${answerMode}\n`)
 console.log(`  live items          ${rows.length}`)
 console.log(`  clusters of 2+      ${multi.length}`)
 console.log(`  items involved      ${multi.reduce((n, c) => n + c.length, 0)}`)

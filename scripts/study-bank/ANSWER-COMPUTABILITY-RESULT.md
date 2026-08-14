@@ -91,3 +91,61 @@ figure or a table, so almost nothing is decidable from stem text.
   both are exactly the families that produced false positives, so
   neither should be added without fixtures first.
 - Geometry and PSDA will not yield to this instrument at all.
+
+
+---
+
+# Update — function notation + degree trig (2026-08-14, same day)
+
+Added the two families the checker used to refuse. **Coverage 37 -> 42.
+Still zero defects.**
+
+    CHECKED   42/820   5.1%   (was 37, 4.5%)
+    WRONG      0
+
+## The estimate was wrong: +5 items, not the ~96 predicted
+
+The earlier note said supporting these two families was worth "roughly
+96 more items (12%)". That counted every item the checker had SKIPPED
+for those reasons. It is not what they are worth, because both families
+are only safe in a narrow form:
+
+    function notation   67 skipped  ->  58 still skipped, 9 gained
+    trigonometry        29 skipped  ->  31 still skipped, ~0 gained
+
+**Linear functions** are only decidable when the stem SAYS the function
+is linear and gives exactly two points. Two points do not determine a
+function otherwise, and assuming linearity where the stem does not
+state it is precisely how a checker invents a finding. 58 items use
+f(x) in some other way.
+
+**Trigonometry** gained essentially nothing. Only the cofunction stem —
+sin(x) = cos(x + k), in degrees — is exact without a solver. The other
+31 need a figure, and the degree/radian trap that produced the original
+false positive is still there for anything else.
+
+The lesson is small but repeatable: **"items the checker skipped for
+reason X" is an upper bound on what fixing X yields, and a bad
+estimate of it.** The skip reason says why one instrument stopped, not
+whether the item is decidable at all.
+
+## New guards
+
+Six fixtures added, four of them abstentions the new code MUST make:
+a function not stated linear, a "linear" f with three points, trig
+without degrees stated, trig with the same function on both sides. Plus
+two corrupted keys in the new families that must come back WRONG — a
+family that can only ever answer OK is not checking anything.
+
+Two regex bugs found by the self-test while wiring this up, both of
+which would have silently disabled a family:
+
+- `\b(?!sin|cos|...)([a-zA-Z])\s*\(` does not exclude `sin(`. The engine
+  retries at the next letter, matches `n(`, and calls it a function
+  named n. Anchored on "no letter immediately before" instead.
+- `([a-zA-Z])\s*\(` matched "acute angle x (in degrees)" — a variable
+  followed by a parenthetical. That sent the whole trig family down the
+  linear-function path and out as UNPARSEABLE. Real stems write f(3),
+  never f (3), so the space is gone.
+
+Self-test is now 31 cases.

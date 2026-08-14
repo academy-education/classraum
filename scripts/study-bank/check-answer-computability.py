@@ -38,7 +38,7 @@ import signal
 import sys
 from fractions import Fraction
 
-from sympy import Eq, S, nsimplify, simplify, solve, symbols
+from sympy import Eq, S, Function, nsimplify, pi, simplify, solve, symbols
 from sympy.parsing.sympy_parser import (
     convert_xor,
     implicit_multiplication_application,
@@ -246,12 +246,115 @@ def key_text(item):
 # four linear-function items as broken on exactly this: "f is linear,
 # f(3)=11 and f(7)=27, find f(12)" has answer 47, and the checker said
 # 324/7. Refuse the family rather than half-support it.
-FUNC_CALL = re.compile(r"\b(?!" + "|".join(FUNCS) + r")([a-zA-Z])\s*\(", re.I)
+# `\b(?!sin|cos|...)([a-zA-Z])\s*\(` does NOT exclude sin( — the engine
+# simply retries at the next letter, matches "n(" and calls it a
+# function call named n. Anchor on "no letter immediately before" so a
+# single-letter name is the only thing that can match.
+# No space before the paren, either: "acute angle x (in degrees)" is a
+# variable followed by a parenthetical, not a call, and \s* let it match
+# — which sent the whole trigonometry family down the linear-function
+# path and out as UNPARSEABLE. Real stems write f(3), never f (3).
+FUNC_CALL = re.compile(r"(?<![A-Za-z])([a-zA-Z])\(")
 
 # DEGREES. sympy's trig is in radians. "For an acute angle x in degrees,
 # sin(x) = cos(x + 20)" has answer 35 by the cofunction identity; solved
 # in radians it returns a nest of atan() that matches nothing.
 TRIG = re.compile(r"\b(?:sin|cos|tan|sec|csc|cot)\b", re.I)
+
+
+# ── The two families the checker used to refuse ──────────────────────
+#
+# Both are handled NARROWLY and on the stem's own terms, because both
+# produced false positives when handled generally. Anything outside the
+# narrow form still abstains.
+
+LINEAR_DECL = re.compile(r"\b(?:function\s+([a-zA-Z])\s+is\s+linear|linear function\s+([a-zA-Z])\b)", re.I)
+FN_POINT = re.compile(r"\b([a-zA-Z])\s*\(\s*(-?\d+(?:\.\d+)?)\s*\)\s*=\s*(-?\d+(?:\.\d+)?)")
+FN_TARGET = re.compile(r"value of\s+(.+?)\s*[?.]", re.I | re.S)
+FN_CALL_IN_TARGET = re.compile(r"\b([a-zA-Z])\s*\(\s*(-?\d+(?:\.\d+)?)\s*\)")
+
+
+def linear_function(prompt):
+    """Handle ONLY "f is linear, f(a)=p, f(b)=q, what is <expr in f(.)>".
+
+    The stem must SAY the function is linear. Two points do not
+    determine a function otherwise, and assuming linearity where the
+    stem does not state it is how a checker invents a finding.
+    """
+    m = LINEAR_DECL.search(prompt)
+    if not m:
+        return None
+    fname = (m.group(1) or m.group(2)).lower()
+    pts = [(float(a), float(v)) for f, a, v in FN_POINT.findall(prompt) if f.lower() == fname]
+    # dedupe, keep order
+    seen, uniq = set(), []
+    for a, v in pts:
+        if a not in seen:
+            seen.add(a)
+            uniq.append((a, v))
+    if len(uniq) != 2:
+        return None
+    (x1, y1), (x2, y2) = uniq
+    if x1 == x2:
+        return None
+    slope = S(nsimplify(y2 - y1, rational=True)) / S(nsimplify(x2 - x1, rational=True))
+    intercept = S(nsimplify(y1, rational=True)) - slope * S(nsimplify(x1, rational=True))
+
+    tm = FN_TARGET.search(prompt)
+    if not tm:
+        return None
+    expr = tm.group(1)
+    calls = FN_CALL_IN_TARGET.findall(expr)
+    if not calls or any(f.lower() != fname for f, _ in calls):
+        return None
+    # substitute each f(k) with its value, then evaluate what remains
+    for f, arg in calls:
+        val = slope * S(nsimplify(float(arg), rational=True)) + intercept
+        expr = expr.replace(f"{f}({arg})", f"({val})")
+    if re.search(r"[a-zA-Z]", expr):
+        return None  # something other than the f(.) calls survived
+    try:
+        return nsimplify(parse_expr(expr, transformations=TRANSFORMS), rational=True)
+    except Exception:
+        return None
+
+
+COFUNCTION = re.compile(
+    r"(sin|cos)\s*\(?\s*([a-zA-Z])\s*\)?\s*=\s*(sin|cos)\s*\(?\s*"
+    r"([a-zA-Z])\s*([+-])\s*(\d+)\s*\)?", re.I)
+
+
+def degree_trig(prompt):
+    """Handle ONLY the cofunction stem: sin(x) = cos(x + k) in DEGREES.
+
+    sympy works in radians, and solving this numerically returned a nest
+    of atan() that matched nothing — a sound item reported wrong. The
+    identity is exact and needs no solver: sin(A) = cos(B) iff A + B =
+    90 for acute angles, so x + (x + k) = 90.
+    """
+    if not re.search(r"\bdegree", prompt, re.I):
+        return None
+    m = COFUNCTION.search(prompt)
+    if not m:
+        return None
+    f1, v1, f2, v2, sign, k = m.groups()
+    if f1.lower() == f2.lower() or v1.lower() != v2.lower():
+        return None  # same function, or two different variables
+    off = int(k) * (1 if sign == "+" else -1)
+    x = symbols(v1.lower())
+    sol = solve(Eq(x + (x + off), 90), x)
+    return nsimplify(sol[0], rational=True) if sol else None
+
+
+def compare(value, stated, label):
+    if value == stated:
+        return "OK", f"{label} = {stated}"
+    try:
+        if simplify(value - stated) == 0:
+            return "OK", f"{label} = {stated}"
+    except Exception:
+        pass
+    return "WRONG", f"stem gives {value}; key says {stated}"
 
 
 class Timeout(Exception):
@@ -282,9 +385,15 @@ def check(item):
         return "UNPARSEABLE", "key is not numeric"
 
     if FUNC_CALL.search(prompt):
-        return "UNPARSEABLE", "function notation f(x) — not supported"
+        got = linear_function(prompt)
+        if got is None:
+            return "UNPARSEABLE", "function notation, not a stated-linear f"
+        return compare(got, stated, "f")
     if TRIG.search(prompt):
-        return "UNPARSEABLE", "trigonometry — degree/radian ambiguity"
+        got = degree_trig(prompt)
+        if got is None:
+            return "UNPARSEABLE", "trigonometry — not a cofunction stem"
+        return compare(got, stated, "angle")
 
     target_src = find_target(prompt)
     if not target_src:
@@ -449,23 +558,49 @@ FIXTURES = [
     # ---- REGRESSION: the five the SECOND bank run "proved" wrong ------
     # Sound, every one, and hand-worked before being pinned. The checker
     # must ABSTAIN on these families, not guess at them.
-    ("linear function notation — abstain (real answer 47)",
+    # Now DECIDABLE. Pinned as OK — the item's true verdict. They stayed
+    # as abstentions only while the checker could not read f(x).
+    ("linear function notation (real answer 47)",
      {"prompt": "The function f is linear. If f(3) = 11 and f(7) = 27, "
                 "what is the value of f(12)?",
-      "choices": ["47"], "correct_answer": "47"}, "UNPARSEABLE"),
-    ("linear function, expression target — abstain (real answer 34)",
+      "choices": ["47"], "correct_answer": "47"}, "OK"),
+    ("linear function, expression target (real answer 34)",
      {"prompt": "The function f is linear. If f(3) = 11 and f(7) = 23, "
                 "what is the value of f(0) + f(10)?",
-      "choices": ["34"], "correct_answer": "34"}, "UNPARSEABLE"),
-    ("linear function, rate wording — abstain (real answer 37)",
+      "choices": ["34"], "correct_answer": "34"}, "OK"),
+    ("linear function, rate wording (real answer 37)",
      {"prompt": "A linear function f satisfies f(2) = 5 and f(6) = 21. "
                 "Assuming f continues at the same constant rate of change, "
                 "what is the value of f(10)?",
-      "choices": ["37"], "correct_answer": "37"}, "UNPARSEABLE"),
-    ("trig in DEGREES — abstain (real answer 35)",
+      "choices": ["37"], "correct_answer": "37"}, "OK"),
+    ("trig in DEGREES, cofunction (real answer 35)",
      {"prompt": "For an acute angle x (in degrees), sin(x) = cos(x + 20). "
                 "What is the value of x?",
+      "choices": ["35"], "correct_answer": "35"}, "OK"),
+
+    # ---- guards on the two NEW families -----------------------------
+    ("function NOT stated linear — must abstain",
+     {"prompt": "If g(2) = 4 and g(4) = 16, what is the value of g(3)?",
+      "choices": ["9"], "correct_answer": "9"}, "UNPARSEABLE"),
+    ("linear f but three points — must abstain",
+     {"prompt": "The function f is linear. If f(1) = 2, f(2) = 4 and "
+                "f(3) = 7, what is the value of f(4)?",
+      "choices": ["9"], "correct_answer": "9"}, "UNPARSEABLE"),
+    ("trig WITHOUT degrees stated — must abstain",
+     {"prompt": "If sin(x) = cos(x + 20), what is the value of x?",
       "choices": ["35"], "correct_answer": "35"}, "UNPARSEABLE"),
+    ("trig, same function both sides — must abstain",
+     {"prompt": "For an acute angle x (in degrees), sin(x) = sin(x + 20). "
+                "What is the value of x?",
+      "choices": ["35"], "correct_answer": "35"}, "UNPARSEABLE"),
+    ("linear f, CORRUPTED key",
+     {"prompt": "The function f is linear. If f(3) = 11 and f(7) = 27, "
+                "what is the value of f(12)?",
+      "choices": ["48"], "correct_answer": "48"}, "WRONG"),
+    ("degree cofunction, CORRUPTED key",
+     {"prompt": "For an acute angle x (in degrees), sin(x) = cos(x + 20). "
+                "What is the value of x?",
+      "choices": ["40"], "correct_answer": "40"}, "WRONG"),
 
     ("inverse variation word problem — abstain",
      {"prompt": "The quantity y varies inversely as the square of x. "
