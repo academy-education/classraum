@@ -66,15 +66,37 @@
                 <data android:scheme="https" android:host="app.classraum.com" android:pathPrefix="/mobile/profile" />
                 <data android:scheme="https" android:host="app.classraum.com" android:pathPrefix="/mobile/reports" />
                 <data android:scheme="https" android:host="app.classraum.com" android:pathPrefix="/mobile/invoices" />
-                <!-- The PG's return leg. Android now checks out IN-APP, and
-                     PortOne's redirect flow (the only one that works in a
-                     WebView) sends the student to a bank app and back to
-                     BILLING_REDIRECT_PATH. That return must re-enter the
-                     app: unclaimed, it opens in a browser and strands a
-                     student who has already paid. Claimed narrowly — the
-                     rest of /mobile/study stays out, so iOS's web hand-off
-                     is unaffected. -->
-                <data android:scheme="https" android:host="app.classraum.com" android:pathPrefix="/mobile/study/billing-redirect" />
+                <!-- NO PAYMENT PATHS HERE. DO NOT RE-ADD.
+                     ================================================
+                     This used to claim /mobile/study/billing-redirect,
+                     on the reasoning that "Android now checks out
+                     IN-APP … that return must re-enter the app;
+                     unclaimed, it opens in a browser and strands a
+                     student who has already paid."
+
+                     That premise died on 2026-08-10, when 3705b26 moved
+                     BOTH native platforms to the web hand-off. Android
+                     has not checked out in-app since. The claim stayed,
+                     and inverted: the buyer now starts in an external
+                     browser, so pulling the return INTO the app is what
+                     strands them — the purchase begins in one storage
+                     context and ends in another, the intent is lost, and
+                     the card is registered with nobody charged. That is
+                     exactly what kim@ hit on 2026-08-13 (redirect-return
+                     with native=true and a "; wv)" WebView user agent).
+
+                     The return leg now lives at /pay/return, which is
+                     deliberately outside every prefix in this filter and
+                     outside iOS's apple-app-site-association. Both
+                     platforms have since completed real payments through
+                     it, each with native=false on the return.
+
+                     If a payment path is ever claimed here again, it will
+                     break checkout in a way no test in this repo can see:
+                     this file is compiled into the APK, so the damage
+                     ships to the store and cannot be undone by a deploy.
+                     Deep links for notifications (session, assignment,
+                     schedule, …) stay — those SHOULD open the app. -->
             </intent-filter>
 
         </activity>

@@ -72,3 +72,41 @@ describe('payment paths are outside the Universal Link claim', () => {
     expect(claimed('/mobile/study/subscription')).toBe(true)
   })
 })
+
+/**
+ * The Android half of the same rule, read straight from the manifest.
+ *
+ * Android's claim list is not served from our code — it is compiled into
+ * the APK. So unlike the iOS association, a mistake here CANNOT be undone
+ * by a deploy: it ships to the Play Store and stays broken until the next
+ * release. That asymmetry is why this is asserted rather than left to the
+ * comment in the manifest.
+ *
+ * The claim it removes was defensible when written ("Android checks out
+ * in-app, the return must re-enter the app") and became actively harmful
+ * on 2026-08-10 when both native platforms moved to the web hand-off —
+ * the buyer now starts in an external browser, so pulling the return into
+ * the app is what loses the purchase.
+ */
+import { readFileSync } from 'node:fs'
+import { join } from 'node:path'
+
+describe('AndroidManifest claims no payment path', () => {
+  const manifest = readFileSync(
+    join(process.cwd(), 'android/app/src/main/AndroidManifest.xml'), 'utf8')
+  const prefixes = [...manifest.matchAll(/pathPrefix="([^"]+)"/g)].map(m => m[1])
+
+  it('does not claim /pay/*', () => {
+    expect(prefixes.filter(p => p.startsWith('/pay'))).toEqual([])
+  })
+
+  it('does not claim the old billing-redirect path, or anything under /mobile/study', () => {
+    expect(prefixes.filter(p => p.startsWith('/mobile/study'))).toEqual([])
+  })
+
+  it('CONTROL: notification deep links are still claimed', () => {
+    // Without this the assertions above would pass on an empty/renamed
+    // file, and stripping every deep link would look like a fix.
+    expect(prefixes).toEqual(expect.arrayContaining(['/mobile/session', '/invite/']))
+  })
+})
