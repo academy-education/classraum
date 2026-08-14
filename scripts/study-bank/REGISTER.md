@@ -187,8 +187,17 @@ every note is "X is also plausible", the same defect class the
 Choose a Response teardown found, now appearing in SEC/Conversation
 items at low rate.
 
-B2 (Academic Talk re-run + Craft and Structure) is now unblocked and
-is the next human task.
+B2 (Academic Talk re-run + Craft and Structure) is now unblocked —
+and EXPANDED into one sitting so the co-founder is asked once, not
+five times: **run `b2-all-cohorts-2026-08-15`, 100 items, drawn
+2026-08-15** over Academic Talk, Craft and Structure, Information and
+Ideas, SEC, Expression of Ideas (that order — most important first;
+cohorts are sequential, so stopping partway leaves complete cohorts
+scoreable). Keys flat 5/5/5/5 per cohort. Bank QC → Review resumes
+it. `draw-review-run.mjs` now also excludes items the reviewer has
+already seen (it did not — a SEC/Conversation redraw after the
+calibration would have re-served familiar items, the B1 defect).
+Score with `score-sweep-run.mjs b2-all-cohorts-2026-08-15`.
 
 ### B4 was sat BEFORE the message existed — burned, redrawn as calibration-2026-08-15 (2026-08-15)
 

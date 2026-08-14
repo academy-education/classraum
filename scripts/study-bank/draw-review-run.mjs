@@ -57,6 +57,21 @@ if (open) { console.error(`REFUSING: "${open.run_id}" is still open for this rev
 const rand = Math.random
 const sh = a => { a = [...a]; for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(rand() * (i + 1)); [a[i], a[j]] = [a[j], a[i]] } return a }
 
+// Anything this reviewer has EVER seen is excluded — same rule as the
+// calibration draw, which this script was missing. A second pass over a
+// familiar item measures memory, not the item (the defect that voided
+// B1), and after calibration-2026-08-15 the reviewer has seen items in
+// SEC, Conversation and Choose a Response that a fresh cohort draw
+// could otherwise re-serve. Paginated for the PostgREST 1000-row cap.
+const seen = new Set()
+for (let f = 0; ; f += 1000) {
+  const { data, error } = await db.from('study_item_reviews')
+    .select('item_id').eq('reviewer_id', reviewerId).range(f, f + 999)
+  if (error) { console.error('could not read prior reviews:', error.message); process.exit(1) }
+  for (const r of data ?? []) seen.add(r.item_id)
+  if (!data || data.length < 1000) break
+}
+
 /* Sample each cohort independently, then CONCATENATE in the order the
  * cohorts were given. Deliberately not interleaved: the sitting should
  * finish a cohort before starting the next, so a reviewer who stops
@@ -73,11 +88,12 @@ for (const domain of domains) {
   }
   const usable = pool.filter(r => {
     const it = r.item
-    return Array.isArray(it?.choices) && it.choices.length === 4
+    return !seen.has(r.id)
+      && Array.isArray(it?.choices) && it.choices.length === 4
       && typeof it.correct_answer === 'string' && it.choices.indexOf(it.correct_answer) >= 0
       && new Set(it.choices.map(c => String(c).trim())).size === 4
   })
-  console.log(`${domain}: ${pool.length} live, ${usable.length} reviewable`)
+  console.log(`${domain}: ${pool.length} live, ${usable.length} reviewable (unseen)`)
   if (usable.length < size) { console.error(`only ${usable.length} reviewable in "${domain}", need ${size}`); process.exit(1) }
   sample.push(...sh(usable).slice(0, size))
 }
