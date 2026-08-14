@@ -148,6 +148,31 @@ B4 is *Calibrate the reviewer before spending another cohort* (~20 minutes — o
 
 ## 5. Found while fixing
 
+### Dedup round 2 — tightened, still not applied (2026-08-14)
+
+`dedupe-cluster.mjs` now requires the stored ANSWER to match, not just
+near-identical prose. Proposal fell 228 -> 79 archives and the bogus
+32-item Pythagorean cluster disappeared (largest is now 5).
+
+Still NOT applied. Reading the 112 surviving pairs splits them:
+
+    numeric answer   83   unreliable — small integers collide. Two
+                          different parabolas, both tangent-line
+                          problems, both answer 6, zero shared work.
+    textual answer   29   defensible — an SEC item matching another on
+                          passage, stem AND key text is one item twice.
+
+Open work, in order:
+1. archive the 29 textual-answer pairs (safe, no model needed)
+2. the 83 numeric pairs wait on the answer-computability checker —
+   deciding them needs the items shown to reduce to the same
+   computation, which a string comparison cannot do
+
+Note for whoever picks this up: answers must be compared by option
+TEXT. Comparing by index or letter repeats the `key_slot` error from
+the calibration run — option order is not stable across items.
+
+
 Appended in the same commit as the work that surfaced it. A finding
 recorded only in a commit message is a finding nobody reads.
 

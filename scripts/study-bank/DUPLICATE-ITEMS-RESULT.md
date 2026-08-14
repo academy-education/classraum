@@ -138,3 +138,77 @@ each, archive the rest. Geometry alone should recover most of the 119.
 This is mechanical and needs no human judgement beyond picking which of
 a set of near-identical items to keep — and even that can default to the
 most recently authored.
+
+---
+
+# Round 2 — the same-answer requirement, and why it is still not enough
+
+Run 2026-08-14. `dedupe-cluster.mjs` (rule tightened) +
+`inspect-duplicate-pairs.mjs` (new).
+
+## What changed
+
+Round 1 proposed archiving 228 items and was WRONG — the largest
+cluster (32 items) was Pythagorean-triple problems that share nearly
+all their prose and have DIFFERENT answers. Different answers means
+different work, which is variety, not duplication.
+
+`isDup` now also requires the stored answer to match. Answers are
+compared by option TEXT, never by index or letter: several cohorts
+store the key as a letter and option order is not stable across items,
+so an index comparison would have been the `key_slot` mistake again.
+
+    proposed archives   228  ->  79
+    largest cluster      32  ->   5
+
+## But the proposal is still not safe, and this is the point
+
+112 pairs survive the rule. Reading them splits three ways:
+
+**REAL — archive.** Same question, restated.
+
+    A: altitude to the hypotenuse is 6, one segment is 4, find the area
+    B: the altitude divides the hypotenuse into 4 and 9, find the area
+    (6^2/4 = 9 — the same triangle, described from a different given)
+
+**FALSE POSITIVE — coincidence.** Small integers collide constantly.
+
+    A: y = 3x + k tangent to y = x^2 + 5x + 7,  find k    -> 6
+    B: y = 6x + c tangent to y = x^2 - 2x + 10, find c    -> 6
+
+    Different parabolas, different lines, no shared work. Solving one
+    tells you nothing about the other. Same answer purely by chance.
+
+**ARGUABLE — leave alone.** 
+
+    A: right triangle, AB=9 BC=12 AC=15, find cos(C)
+    B: right triangle, AB=9 BC=12 AC=15, find sin(A)
+
+    cos(C) = sin(A) is the cofunction identity, so these are one
+    computation — but a pair that makes the identity visible is a
+    legitimate thing for a bank to contain.
+
+Split by answer type:
+
+    numeric answer     83 of 112     same-answer is WEAK evidence
+    textual answer     29 of 112     same-answer is STRONG evidence
+
+## Therefore: NOT APPLIED
+
+Nothing archived, for the second round running. The action splits:
+
+- **the 29 textual-answer pairs** are defensible now — an SEC item
+  whose passage, stem and key text all match another is one item twice
+- **the 83 numeric-answer pairs** need the items to be shown to reduce
+  to the same computation, which is the answer-computability checker,
+  not a string comparison
+
+## The lesson, which is the same one as MATH-HUB-RESULT.md
+
+A cheap proxy tightened until it stops producing obvious nonsense still
+produces non-obvious nonsense. Round 1 failed on prose alone; round 2
+adds the answer and fails on coincidence. Both dry runs printed a
+plausible number and a tidy per-cohort table, and both were caught only
+by reading the items.
+
+Numbers from a proxy are a reason to LOOK, never a reason to WRITE.

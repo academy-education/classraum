@@ -72,10 +72,50 @@ function jaccard(a, b) {
   for (const x of a) if (b.has(x)) inter++
   return inter / (a.size + b.size - inter)
 }
+/* ── The same-answer requirement, added 2026-08-14 ───────────────────
+ * The first dry run proposed archiving 228 items. Reading the largest
+ * cluster (32 items) showed the proposal was WRONG: they were
+ * Pythagorean-triple problems that share almost all their prose and
+ * have DIFFERENT answers. That is not duplication, it is the practice
+ * variety the bank is supposed to have — a student who does five of
+ * them does five different pieces of work.
+ *
+ * Scoring the 895 live pairs by whether the stored answer matches:
+ *
+ *     same answer        106 pairs   genuinely one question twice
+ *     different answer   789 pairs   constants swapped on purpose
+ *
+ * So near-identical PROSE is necessary but nowhere near sufficient. A
+ * pair only collapses if solving one tells you the answer to the other,
+ * which requires the answer to be the same.
+ *
+ * This is deliberately conservative in the one direction that matters:
+ * a missed duplicate costs a student a repeated question, an archived
+ * variant costs the bank an item nobody can get back without a restore.
+ */
+function sameAnswer(a, b) {
+  const key = it => {
+    const raw = it?.correct_answer
+    if (raw == null) return null
+    // choices may be strings or {text}; compare the TEXT, never the
+    // index — several cohorts store the key as a letter and the option
+    // order is not stable across items.
+    const ch = Array.isArray(it?.choices)
+      ? it.choices.map(c => (typeof c === 'string' ? c : c?.text ?? '')) : []
+    if (typeof raw === 'number') return norm(ch[raw] ?? '')
+    const s = String(raw).trim()
+    const asLetter = /^[A-Da-d]$/.test(s) ? ch['ABCD'.indexOf(s.toUpperCase())] : null
+    return norm(asLetter ?? s)
+  }
+  const ka = key(a), kb = key(b)
+  return ka != null && kb != null && ka !== '' && ka === kb
+}
+
 function isDup(a, b, t = THRESHOLD) {
   if (jaccard(a.q, b.q) < t) return false
-  if (!a.p.size && !b.p.size) return true
-  return jaccard(a.p, b.p) >= t
+  if (!a.p.size && !b.p.size) return sameAnswer(a.item, b.item)
+  if (jaccard(a.p, b.p) < t) return false
+  return sameAnswer(a.item, b.item)
 }
 
 const rows = []
