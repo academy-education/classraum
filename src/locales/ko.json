@@ -8599,6 +8599,62 @@
             "말하기 집중",
             "쓰기 집중"
           ]
+        },
+        "dash": {
+          "overview": "여름 TOEFL 캠프 현황",
+          "stats": [
+            {
+              "l": "학생",
+              "v": "48",
+              "s": "참여 중"
+            },
+            {
+              "l": "완료율",
+              "v": "91%",
+              "s": "이번 기간"
+            },
+            {
+              "l": "최근 평균",
+              "v": "92",
+              "s": "120점 만점 · 예시"
+            },
+            {
+              "l": "복습 필요 영역",
+              "v": "4",
+              "s": "확인 요망"
+            }
+          ],
+          "rows": [
+            {
+              "t": "듣기: 중심 내용 문항",
+              "g": "듣기"
+            },
+            {
+              "t": "학술 토론 글 구조",
+              "g": "쓰기"
+            },
+            {
+              "t": "말하기: 추가 질문 대응",
+              "g": "말하기"
+            }
+          ]
+        },
+        "q": {
+          "meta": "읽기 · 학술 지문",
+          "num": "6번",
+          "difficulty": "고난도",
+          "timer": "0:58",
+          "prompt": "지문에서 \"rationalize\"와 가장 가까운 뜻은?",
+          "passage": "Cognitive dissonance, a psychological theory developed by Leon Festinger, describes the discomfort experienced when holding conflicting beliefs or behaviors. This tension often leads individuals to change their attitudes or rationalize their actions to restore internal consistency.",
+          "opts": [
+            "Condemn",
+            "Ignore",
+            "Justify",
+            "Celebrate"
+          ],
+          "explTitle": "왜 \"Justify\"인가",
+          "expl": "이 문맥에서 \"rationalize\"는 자신의 행동을 정당화한다는 뜻입니다. 지문은 내적 일관성을 되찾기 위해 행동을 합리화한다고 말합니다.",
+          "trap": "\"Ignore\"가 함정입니다. 합리화는 갈등을 설명해 내는 것이지, 머릿속에서 지워 버리는 것이 아닙니다."
         }
       }
     }

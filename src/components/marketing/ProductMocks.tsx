@@ -100,10 +100,17 @@ export function PhoneShell({
   )
 }
 
+/* The actual brand bell — the same path Header.tsx draws in the top
+ * bar, at the same 125% bleed. This used to be lucide's Bell, which is
+ * a DIFFERENT bell (round clapper, no flare), and the mismatch was
+ * visible the moment the two sat on one page. One path, one source. */
+const BRAND_BELL_PATH =
+  "M2965.11,2503v108a24.006,24.006,0,0,1-24,24H1156a24.006,24.006,0,0,1-24-24V2503c0.03-16.46-1.04-28.43,10-57,9.72-25.17,27.02-50.86,59-82,26.39-25.7,56.22-57.8,87-88,36.79-36.1,63.51-70.77,82-107,7.18-14.06,15.16-37.52,21.88-71.02,3.11-15.53,5.02-35.6,6.12-56.78V1785h0.01c0-309.87,216.8-569.09,506.99-634.27V1110h0a142.367,142.367,0,0,1,142.37-142h0.01a142.367,142.367,0,0,1,142.37,142h0v40.4c290.91,64.65,508.43,324.22,508.43,634.6h0.01v231.42c0.71,29.84,2.73,60.05,7.04,81.56,6.72,33.5,14.7,56.96,21.88,71.02,18.49,36.23,45.21,70.9,82,107,30.78,30.2,60.61,62.3,87,88,31.98,31.14,49.28,56.83,59,82C2966.15,2474.57,2965.08,2486.54,2965.11,2503Zm-600.48,242c0.89,9.72,1.37,19.55,1.37,29.5,0,175.9-142.6,318.5-318.5,318.5S1729,2950.4,1729,2774.5c0-9.95.48-19.78,1.37-29.5h634.26Z"
+
 export function LogoMark({ size = 22, radius = 7 }: { size?: number; radius?: number }) {
   return (
     <span
-      className="inline-flex items-center justify-center shrink-0 text-white"
+      className="relative inline-block shrink-0 overflow-hidden text-white"
       style={{
         width: size,
         height: size,
@@ -111,7 +118,9 @@ export function LogoMark({ size = 22, radius = 7 }: { size?: number; radius?: nu
         background: "linear-gradient(135deg,#2C6EF1 0%,#16ADD4 50%,#00D0AE 100%)",
       }}
     >
-      <Bell size={size * 0.55} strokeWidth={2.5} fill="currentColor" />
+      <svg width="125%" height="125%" viewBox="0 0 4096 4096" className="absolute -top-[12.5%] -left-[12.5%]">
+        <path d={BRAND_BELL_PATH} fill="currentColor" fillRule="evenodd" />
+      </svg>
     </span>
   )
 }

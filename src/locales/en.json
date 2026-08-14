@@ -8197,7 +8197,7 @@
         "title": "See the entire camp in one place",
         "sub": "Assignments, participation, scores, class weaknesses — one interface.",
         "mockLabel": "Illustrative mockup",
-        "overview": "Summer SAT camp overview",
+        "overview": "Summer SAT Camp Overview",
         "stats": [
           {
             "l": "Students",
@@ -8599,6 +8599,62 @@
             "Speaking intensive",
             "Writing intensive"
           ]
+        },
+        "dash": {
+          "overview": "Summer TOEFL Camp Overview",
+          "stats": [
+            {
+              "l": "Students",
+              "v": "48",
+              "s": "Active participants"
+            },
+            {
+              "l": "Completion",
+              "v": "91%",
+              "s": "Current period"
+            },
+            {
+              "l": "Latest average",
+              "v": "92",
+              "s": "of 120 · sample data"
+            },
+            {
+              "l": "Skills to review",
+              "v": "4",
+              "s": "Teacher attention"
+            }
+          ],
+          "rows": [
+            {
+              "t": "Listening: main-idea questions",
+              "g": "Listening"
+            },
+            {
+              "t": "Academic Discussion structure",
+              "g": "Writing"
+            },
+            {
+              "t": "Speaking: interview follow-ups",
+              "g": "Speaking"
+            }
+          ]
+        },
+        "q": {
+          "meta": "Reading · Academic Passage",
+          "num": "Question 6",
+          "difficulty": "Hard",
+          "timer": "0:58",
+          "prompt": "In the passage, what does the word \"rationalize\" most closely mean?",
+          "passage": "Cognitive dissonance, a psychological theory developed by Leon Festinger, describes the discomfort experienced when holding conflicting beliefs or behaviors. This tension often leads individuals to change their attitudes or rationalize their actions to restore internal consistency.",
+          "opts": [
+            "Condemn",
+            "Ignore",
+            "Justify",
+            "Celebrate"
+          ],
+          "explTitle": "Why \"Justify\" is correct",
+          "expl": "In this context, \"rationalize\" means to justify or make excuses for one's behavior — the passage says people rationalize their actions to restore internal consistency.",
+          "trap": "\"Ignore\" is the trap: rationalizing constructs an explanation for the conflict, it does not push the conflict out of mind."
         }
       }
     }
