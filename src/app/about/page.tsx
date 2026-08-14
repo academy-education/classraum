@@ -8,7 +8,7 @@ import Header from "@/components/shared/Header"
 import Footer from "@/components/shared/Footer"
 import { useTranslation } from "@/hooks/useTranslation"
 import { languages } from "@/locales"
-import { LogoMark, BrowserShell, PhoneShell, MiniReports, MiniCalendar, MiniComms, StudyPhoneMock } from "@/components/marketing/ProductMocks"
+import { LogoMark, BrowserShell, MiniReports, MiniCalendar, MiniComms, MiniMockTest, MiniNotebook, MiniProgress } from "@/components/marketing/ProductMocks"
 import { WRAP, ts, useReveal } from "@/components/marketing/ui"
 
 type TFunc = ReturnType<typeof useTranslation>["t"]
@@ -21,54 +21,130 @@ const VALUE_ICONS = [GraduationCap, Sparkles, Clock, Heart]
  * static image. The pills are real controls, not decoration — clicking
  * one stops the auto-advance for good, because a person who has chosen
  * a screen has said what they want to look at. */
-function ScreenCycler({ t }: { t: TFunc }) {
-  const SCREENS = [
-    { key: "reports", Mock: MiniReports },
-    { key: "schedule", Mock: MiniCalendar },
-    { key: "messages", Mock: MiniComms },
-  ] as const
+type Screen = { key: string; Mock: (p: { t: TFunc; label: string }) => React.ReactElement }
+
+/* Auto-advancing preview, used by BOTH product cards. Pausing on hover
+ * and honouring prefers-reduced-motion are both required: this sits in a
+ * page people read, and a panel that swaps itself every three seconds
+ * under a reader is worse than a static image. The pills are real
+ * controls — clicking one stops the auto-advance for good, because
+ * someone who picked a screen has said what they want to look at.
+ *
+ * The two cards are given different periods (3.2s / 3.9s) so they do not
+ * flip in lockstep, which reads as one animation rather than two
+ * independent products. */
+function ScreenCycler({ t, screens, url, period, accent }: {
+  t: TFunc; screens: readonly Screen[]; url: string; period: number; accent: "blue" | "teal"
+}) {
   const [i, setI] = useState(0)
   const [auto, setAuto] = useState(true)
   const [hover, setHover] = useState(false)
+  const n = screens.length
 
   useEffect(() => {
     if (!auto || hover) return
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return
-    const id = setInterval(() => setI((n) => (n + 1) % SCREENS.length), 3200)
+    const id = setInterval(() => setI((v) => (v + 1) % n), period)
     return () => clearInterval(id)
-  }, [auto, hover, SCREENS.length])
+  }, [auto, hover, n, period])
+
+  const on = accent === "teal"
+    ? "bg-[#00806c] text-white"
+    : "bg-primary text-white"
 
   return (
     <div onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)}>
-      <BrowserShell url="app.classraum.com" label={ts(t, "landing.aboutExtras.screens.live")}>
+      <BrowserShell url={url} label={ts(t, "landing.aboutExtras.screens.live")}>
         <div className="relative h-[150px]">
-          {SCREENS.map((s, n) => (
+          {screens.map((sc, k) => (
             <div
-              key={s.key}
-              aria-hidden={n !== i}
+              key={sc.key}
+              aria-hidden={k !== i}
               className={`absolute inset-0 transition-all duration-500 ease-out ${
-                n === i ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2 pointer-events-none"
+                k === i ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2 pointer-events-none"
               }`}
             >
-              <s.Mock t={t} label={ts(t, `landing.aboutExtras.screens.${s.key}`)} />
+              <sc.Mock t={t} label={ts(t, `landing.aboutExtras.screens.${sc.key}`)} />
             </div>
           ))}
         </div>
       </BrowserShell>
       <div className="flex flex-wrap gap-1.5 mt-3">
-        {SCREENS.map((s, n) => (
+        {screens.map((sc, k) => (
           <button
-            key={s.key}
+            key={sc.key}
             type="button"
-            onClick={() => { setI(n); setAuto(false) }}
-            aria-pressed={n === i}
+            onClick={() => { setI(k); setAuto(false) }}
+            aria-pressed={k === i}
             className={`text-[11.5px] font-semibold rounded-full px-2.5 py-1 transition-colors duration-200 ${
-              n === i ? "bg-primary text-white" : "bg-white text-gray-500 ring-1 ring-gray-200 hover:text-primary hover:ring-primary/40"
+              k === i ? on : "bg-white text-gray-500 ring-1 ring-gray-200 hover:text-primary hover:ring-primary/40"
             }`}
           >
-            {ts(t, `landing.aboutExtras.screens.${s.key}`)}
+            {ts(t, `landing.aboutExtras.screens.${sc.key}`)}
           </button>
         ))}
+      </div>
+    </div>
+  )
+}
+
+const ACADEMY_SCREENS = [
+  { key: "reports", Mock: MiniReports },
+  { key: "schedule", Mock: MiniCalendar },
+  { key: "messages", Mock: MiniComms },
+] as const
+const STUDY_SCREENS = [
+  { key: "test", Mock: MiniMockTest },
+  { key: "notebook", Mock: MiniNotebook },
+  { key: "progress", Mock: MiniProgress },
+] as const
+
+/* The one number on the page, drawn rather than asserted. The 30-50%
+ * figure is the page's own claim; the bar shows what it MEANS to a week,
+ * which a sentence does not.
+ *
+ * No JS state. The first version animated `width` from 0 via a timer,
+ * which meant a throttled or dropped timer left the bar at zero width —
+ * the graphic simply absent. Segments are now always laid out at their
+ * true width and scaled in by a CSS keyframe, so the worst case is an
+ * un-animated bar rather than a missing one.
+ *
+ * The "after" bar carries no percentage. Shrinking the admin block is
+ * already a claim; putting a number on it would be inventing one, and
+ * nothing here measures a real customer's week. */
+function WeekBar({ t, variant }: { t: TFunc; variant: "before" | "after" }) {
+  const before = variant === "before"
+  const admin = before ? 42 : 9
+  const dot = before ? "bg-rose-400" : "bg-rose-200"
+  return (
+    <div className="mt-6">
+      <div className="flex items-center justify-between mb-2">
+        <span className="text-[10.5px] font-bold uppercase tracking-[0.08em] text-gray-500">
+          {ts(t, `landing.aboutExtras.week.${before ? "today" : "after"}`)}
+        </span>
+        <span className={`text-[10.5px] font-bold ${before ? "text-rose-600" : "text-[#00806c]"}`}>
+          {ts(t, `landing.aboutExtras.week.${before ? "admin" : "auto"}`)}
+        </span>
+      </div>
+      <div className="flex h-3.5 rounded-full overflow-hidden bg-white/70 ring-1 ring-black/[0.06]">
+        <span
+          className="hv-grow-x h-full"
+          style={{ width: `${100 - admin}%`, background: "linear-gradient(90deg,#2885e8,#00D0AE)" }}
+        />
+        <span
+          className={`hv-grow-x h-full ${before ? "bg-rose-400" : "bg-rose-200"}`}
+          style={{ width: `${admin}%`, animationDelay: "140ms" }}
+        />
+      </div>
+      <div className="flex items-center gap-3.5 mt-2 text-[10.5px] font-medium text-gray-500">
+        <span className="inline-flex items-center gap-1.5">
+          <span className="w-2 h-2 rounded-full" style={{ background: "linear-gradient(90deg,#2885e8,#00D0AE)" }} />
+          {ts(t, "landing.aboutExtras.week.teaching")}
+        </span>
+        <span className="inline-flex items-center gap-1.5">
+          <span className={`w-2 h-2 rounded-full ${dot}`} />
+          {ts(t, "landing.aboutExtras.week.admin")}
+        </span>
       </div>
     </div>
   )
@@ -137,12 +213,13 @@ export default function AboutPage() {
               </p>
               <ul className="space-y-3">
                 {problemIssues.map((issue, i) => (
-                  <li key={i} className="flex items-start gap-3 text-[14px] text-gray-700">
+                  <li key={i} className="hv4-fade flex items-start gap-3 text-[14px] text-gray-700" style={{ transitionDelay: `${i * 70}ms` }}>
                     <span className="w-4 h-px bg-rose-300 shrink-0 mt-[11px]" />
                     {issue}
                   </li>
                 ))}
               </ul>
+              <WeekBar t={t} variant="before" />
             </div>
             <div className="bg-gradient-to-br from-[#00D0AE]/[0.09] to-blue-50/50 p-7 sm:p-9">
               <span className="inline-flex items-center gap-2 text-[11.5px] font-bold tracking-[0.09em] uppercase text-[#00806c]">
@@ -154,12 +231,13 @@ export default function AboutPage() {
               </p>
               <ul className="space-y-3">
                 {solutionBenefits.map((benefit, i) => (
-                  <li key={i} className="flex items-start gap-3 text-[14px] font-medium text-gray-800">
+                  <li key={i} className="hv4-fade flex items-start gap-3 text-[14px] font-medium text-gray-800" style={{ transitionDelay: `${i * 70}ms` }}>
                     <Check className="w-4 h-4 text-[#00a98d] shrink-0 mt-[3px]" strokeWidth={2.6} />
                     {benefit}
                   </li>
                 ))}
               </ul>
+              <WeekBar t={t} variant="after" />
             </div>
           </div>
         </section>
@@ -208,16 +286,17 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* ── Two products, one system. The section used to be two text
-             cards with an icon — it ASSERTED there were two products and
-             showed neither. Now the academy side runs a live preview
-             that cycles its three surfaces, and the study side shows the
-             real phone UI. The claim is demonstrated instead of stated.
+        {/* ── Two products, one system. Both sides now run the SAME live
+             preview treatment, which is the only way the section makes
+             its own point: one system, two faces of it.
 
-             Only the academy side cycles: there is exactly one study
-             mock in ProductMocks, so a second study screen would have to
-             be invented, and an invented screen on an About page is a
-             lie with a rounded corner. ─────────────────────────────── */}
+             The study side used to be a 124px phone. At that width the
+             UI was a grey smudge — Andy's word was "not seeable", and he
+             was right; nothing in it was legible. Three study screens
+             were built for ProductMocks instead (mock test, mistake
+             notebook, daily progress), each a DOM replica of a surface
+             that SHIPS. Snap is deliberately not among them: it is still
+             behind the coming-soon lock. ──────────────────────────── */}
         <section className="mb-24">
           <div className="text-center max-w-[640px] mx-auto mb-10">
             <h2 className="hv4-fade text-[clamp(24px,2.8vw,32px)] font-bold text-[#163e64] leading-[1.16] tracking-tight">
@@ -226,7 +305,7 @@ export default function AboutPage() {
           </div>
           <div className="grid md:grid-cols-2 gap-5">
             <div className="hv4-fade rounded-2xl bg-gradient-to-b from-blue-50/70 to-white ring-1 ring-blue-100/80 p-5 sm:p-6">
-              <ScreenCycler t={t} />
+              <ScreenCycler t={t} screens={ACADEMY_SCREENS} url="app.classraum.com" period={3200} accent="blue" />
               <h3 className="text-[16px] font-bold text-[#163e64] mt-5 mb-1.5">{ts(t, 'landing.aboutExtras.prod1t')}</h3>
               <p className="text-[13.5px] text-gray-600 leading-[1.7] mb-4">{ts(t, 'landing.aboutExtras.prod1b')}</p>
               <Link href="/features" className="group inline-flex items-center gap-1.5 text-[13.5px] font-semibold text-primary">
@@ -236,11 +315,7 @@ export default function AboutPage() {
             </div>
 
             <div className="hv4-fade rounded-2xl bg-gradient-to-b from-[#00D0AE]/[0.09] to-white ring-1 ring-[#00D0AE]/25 p-5 sm:p-6">
-              <div className="h-[196px] flex items-center justify-center overflow-hidden">
-                <PhoneShell label={ts(t, 'landing.aboutExtras.prod2t')} className="w-[124px] shrink-0 translate-y-3">
-                  <StudyPhoneMock t={t} label={ts(t, 'landing.aboutExtras.prod2t')} />
-                </PhoneShell>
-              </div>
+              <ScreenCycler t={t} screens={STUDY_SCREENS} url="app.classraum.com/study" period={3900} accent="teal" />
               <h3 className="text-[16px] font-bold text-[#163e64] mt-5 mb-1.5">{ts(t, 'landing.aboutExtras.prod2t')}</h3>
               <p className="text-[13.5px] text-gray-600 leading-[1.7] mb-4">{ts(t, 'landing.aboutExtras.prod2b')}</p>
               <Link href="/study" className="group inline-flex items-center gap-1.5 text-[13.5px] font-semibold text-[#00806c]">

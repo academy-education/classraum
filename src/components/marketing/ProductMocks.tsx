@@ -605,6 +605,97 @@ export function InvoicePhoneMock({ t, label, className }: { t: TFunc; label: str
 // ---------------------------------------------------------------------------
 // Mini mocks — headers for the three feature cards
 // ---------------------------------------------------------------------------
+const SM = "landing.aboutExtras.studyMock."
+
+/* ── Study screens, in the same house style as the academy minis ─────
+ * Built because the About page was showing Classraum Study as a 124px
+ * phone that nobody could read. These are DOM replicas of surfaces that
+ * SHIP — the timed mock test, the mistake notebook, the daily progress
+ * header. Nothing here depicts a feature that does not exist; Snap is
+ * deliberately absent because it is still behind the coming-soon lock.
+ */
+export function MiniMockTest({ t, label }: { t: TFunc; label: string }) {
+  const opts = [0, 1, 2, 3]
+  return (
+    <div role="img" aria-label={label} className="h-full bg-[#f8fafc] p-3.5 flex flex-col justify-center text-left">
+      <div className="bg-white ring-1 ring-gray-100 rounded-lg p-3 shadow-[0_1px_2px_rgba(16,24,40,0.03)]">
+        <div className="flex items-center justify-between mb-2">
+          <span className="text-[8.5px] font-semibold text-gray-400 uppercase tracking-wider">{t(SM + "sec")}</span>
+          <span className="inline-flex items-center gap-1 text-[8.5px] font-bold text-primary bg-blue-50 rounded-full px-2 py-0.5 tabular-nums">
+            <Clock size={9} />
+            {t(SM + "timer")}
+          </span>
+        </div>
+        <p className="text-[10.5px] font-semibold leading-snug mb-2" style={{ color: NAVY }}>{t(SM + "q")}</p>
+        <div className="grid grid-cols-2 gap-1.5">
+          {opts.map((i) => (
+            <span
+              key={i}
+              className={`flex items-center gap-1.5 rounded-md px-2 py-1.5 text-[9.5px] font-medium ring-1 ${
+                i === 1 ? "bg-primary/10 ring-primary/40 text-primary" : "bg-white ring-gray-100 text-gray-600"
+              }`}
+            >
+              <b className="w-3 h-3 rounded-full bg-gray-100 text-[7px] flex items-center justify-center text-gray-500 font-bold">
+                {"ABCD"[i]}
+              </b>
+              {t(SM + "opts." + i)}
+            </span>
+          ))}
+        </div>
+      </div>
+    </div>
+  )
+}
+
+export function MiniNotebook({ t, label }: { t: TFunc; label: string }) {
+  const rows = [t(SM + "wrong1"), t(SM + "wrong2")]
+  return (
+    <div role="img" aria-label={label} className="h-full bg-[#f8fafc] p-3.5 flex flex-col justify-center gap-2 text-left">
+      {rows.map((name) => (
+        <div key={name} className="bg-white ring-1 ring-gray-100 rounded-lg px-3 py-2.5 flex items-center gap-2.5 shadow-[0_1px_2px_rgba(16,24,40,0.03)]">
+          <span className="w-5 h-5 rounded-md bg-rose-50 text-rose-500 flex items-center justify-center shrink-0">
+            <X size={10} strokeWidth={2.6} />
+          </span>
+          <span className="text-[10.5px] font-medium text-gray-800 truncate flex-1">{name}</span>
+          <span className="inline-flex items-center gap-1 text-[8.5px] font-semibold text-[#00806c] bg-[#00D0AE]/15 rounded-full px-2 py-0.5 whitespace-nowrap">
+            <RefreshCw size={9} />
+            {t(SM + "due")}
+          </span>
+        </div>
+      ))}
+      <div className="bg-white ring-1 ring-gray-100 rounded-lg px-3 py-2.5 shadow-[0_1px_2px_rgba(16,24,40,0.03)]">
+        <span className="block h-[7px] w-[70%] rounded-full bg-gradient-to-r from-[#00D0AE]/60 to-gray-100 mb-1.5" />
+        <span className="block h-[7px] w-[45%] rounded-full bg-gray-100" />
+      </div>
+    </div>
+  )
+}
+
+export function MiniProgress({ t, label }: { t: TFunc; label: string }) {
+  return (
+    <div role="img" aria-label={label} className="h-full bg-[#f8fafc] p-3.5 flex flex-col justify-center gap-2 text-left">
+      <div className="rounded-xl px-3 py-2.5 text-white shadow-[0_8px_16px_-8px_rgba(22,62,100,0.4)]" style={{ background: NAVY }}>
+        <div className="flex items-center justify-between">
+          <span className="inline-flex items-center gap-1.5 text-[10px] font-bold">
+            <Flame size={11} strokeWidth={2.6} />
+            {t(SM + "streak")}
+          </span>
+          <span className="text-[9px] font-semibold opacity-80 tabular-nums">{t(SM + "xp")}</span>
+        </div>
+      </div>
+      <div className="bg-white ring-1 ring-gray-100 rounded-xl px-3 py-2.5 shadow-[0_1px_2px_rgba(16,24,40,0.03)]">
+        <div className="flex items-center justify-between mb-1.5">
+          <span className="text-[9.5px] font-semibold text-gray-500">{t(SM + "goal")}</span>
+          <span className="text-[9.5px] font-bold text-primary tabular-nums">3/4</span>
+        </div>
+        <span className="block h-1.5 rounded-full bg-gray-100 overflow-hidden">
+          <span className="block h-full w-[75%] rounded-full bg-gradient-to-r from-[#2885e8] to-[#00D0AE]" />
+        </span>
+      </div>
+    </div>
+  )
+}
+
 export function MiniReports({ t, label }: { t: TFunc; label: string }) {
   const rows = [{ name: t("landing.home.m4.uiTitle") }, { name: t(M + "rpt2") }]
   return (

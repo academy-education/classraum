@@ -7716,7 +7716,34 @@
         "reports": "Report cards",
         "schedule": "Scheduling",
         "messages": "Parent messages",
-        "live": "Live preview"
+        "live": "Live preview",
+        "test": "Mock test",
+        "notebook": "Mistake notebook",
+        "progress": "Daily progress"
+      },
+      "studyMock": {
+        "q": "If 3x + 7 = 22, what is the value of x?",
+        "opts": [
+          "3",
+          "5",
+          "7",
+          "15"
+        ],
+        "timer": "12:04",
+        "sec": "Algebra",
+        "wrong1": "Linear equations",
+        "wrong2": "Circle theorems",
+        "due": "Due today",
+        "streak": "12-day streak",
+        "goal": "Daily goal",
+        "xp": "480 XP"
+      },
+      "week": {
+        "today": "A teaching week today",
+        "after": "With Classraum",
+        "teaching": "Teaching",
+        "admin": "Admin",
+        "auto": "Automated"
       }
     },
     "pricingExtras": {

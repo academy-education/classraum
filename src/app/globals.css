@@ -649,3 +649,14 @@
 .dark .fill-gray-700 { fill: #d1d5db; }
 .dark .via-white\/30 { --tw-gradient-via: rgb(255 255 255 / 0.05); }
 .dark .via-white\/40 { --tw-gradient-via: rgb(255 255 255 / 0.06); }
+
+/* Bar-grow for the About page's week graphic. Deliberately a CSS
+   animation rather than a JS width transition: the JS version started at
+   width 0 and only reached its real size once a timer fired, so a
+   dropped or throttled timer left the bar INVISIBLE rather than merely
+   un-animated. Here the element is always laid out at its true width and
+   the animation only scales it in, so the failure mode is "no animation"
+   instead of "no graphic". */
+@keyframes hv-grow-x { from { transform: scaleX(0) } to { transform: scaleX(1) } }
+.hv-grow-x { transform-origin: left center; animation: hv-grow-x 1.05s cubic-bezier(0.22, 1, 0.36, 1) both }
+@media (prefers-reduced-motion: reduce) { .hv-grow-x { animation: none } }
