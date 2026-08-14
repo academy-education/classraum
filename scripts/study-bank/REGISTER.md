@@ -148,6 +148,40 @@ B4 is *Calibrate the reviewer before spending another cohort* (~20 minutes — o
 
 ## 5. Found while fixing
 
+### Distractor derivability — NEGATIVE, and SAT Phase 1 is closed (2026-08-14)
+
+Last unstarted Phase 1 check. All 820 Math items, 652 scored (79.5%).
+
+    LEAK RATE 13.9% vs 25.0% control    margin -11.1 points
+
+Below chance in three cohorts of four. Full write-up in
+DISTRACTOR-DERIVABILITY-RESULT.md.
+
+**Do not read sub-chance as evidence of quality.** The key is the
+answer and takes several steps; the op set applies one, which is what
+distractors are built from. The null is not really 25%, and a test
+whose null cannot be stated is not measuring what it claimed.
+
+The 22 flagged items are mostly the op set marking its own solution
+methods: a 20-21-29 triangle flags because `sqrt(a²+b²)` is in the slip
+set, but Pythagoras is the item's METHOD, not a slip. An operation set
+containing an item type's solution method cannot measure that item type.
+
+Sixth failed structural proxy. Kept because it is free and abstains
+honestly, but it must never be cited as evidence a cohort is clean.
+
+**SAT Phase 1 (Math, no human needed) is now CLOSED:**
+
+    derivational hub        done — 98.3% one cohort, 8.0% elsewhere
+    near-duplicate stems    done — 10 archived, 83 numeric pairs deferred
+    answer computability    done — 42/820, 0 wrong
+    distractor derivability done — below chance, negative
+
+Every Math instrument that does not require a person has now been
+built and run. **Nothing found a defect.** The remaining SAT work is
+entirely human: B4, then the four R&W sittings.
+
+
 ### A3 is SETTLED, not open — and the task list said otherwise (2026-08-14)
 
 Andy asked me to start A3 and I agreed before reading
