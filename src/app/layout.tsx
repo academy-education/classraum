@@ -80,6 +80,11 @@ export default function RootLayout({
       <head>
         {/* Explicit viewport meta for Capacitor/iOS WebView - ensures safe-area-inset-* CSS env variables work */}
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
+        {/* Colour scheme, stated before the stylesheet is fetched. Without
+            it a dark-OS viewer sees the UA's dark canvas until our CSS
+            lands — the "sometimes loads in dark mode" flash. Must stay in
+            sync with :root{color-scheme} in globals.css. */}
+        <meta name="color-scheme" content="light" />
         {/* Add .native-app class to <html> when running in Capacitor so viewport-locking
             CSS in globals.css applies on iOS/Android but not on the web. */}
         <script

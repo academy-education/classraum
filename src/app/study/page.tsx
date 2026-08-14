@@ -151,9 +151,11 @@ export default function StudyLandingPage() {
         </section>
       </div>
 
-      {/* ── Motivation: the one place a coloured chip earns its keep, so
-           it keeps the per-item colours the old version had — but paired
-           with the real phone UI instead of floating in a grid. ────── */}
+      {/* ── Motivation. Same icon treatment as section 01 — one accent,
+           not a different colour per item. The per-item amber/purple/
+           emerald chips were the only place on this page using colours
+           the rest of the site never uses, which is exactly what made
+           the section read as bolted on. ──────────────────────────── */}
       <section className="py-24">
         <div className={`${WRAP} grid md:grid-cols-[130px_1fr] gap-9`}>
           <div className="md:text-right hv4-fade">
@@ -167,12 +169,12 @@ export default function StudyLandingPage() {
             <div className="grid md:grid-cols-[1fr_240px] gap-8 items-center">
               <div className="space-y-5">
                 {[
-                  { key: "streaks", Icon: Flame, chip: "bg-amber-50 text-amber-500" },
-                  { key: "xp", Icon: Zap, chip: "bg-purple-50 text-purple-500" },
-                  { key: "league", Icon: Trophy, chip: "bg-emerald-50 text-emerald-600" },
-                ].map(({ key, Icon, chip }) => (
+                  { key: "streaks", Icon: Flame },
+                  { key: "xp", Icon: Zap },
+                  { key: "league", Icon: Trophy },
+                ].map(({ key, Icon }) => (
                   <div key={key} className="hv4-fade flex gap-3.5">
-                    <span className={`w-9 h-9 shrink-0 rounded-lg flex items-center justify-center ${chip}`}>
+                    <span className="w-9 h-9 shrink-0 rounded-lg bg-primary/10 text-primary flex items-center justify-center">
                       <Icon size={17} strokeWidth={2.2} />
                     </span>
                     <div className="min-w-0">

@@ -39,6 +39,7 @@ import {
   ArrowLeft,
   Send,
   RefreshCw,
+  Flame,
 } from "lucide-react"
 
 // High-fidelity, presentational replicas of the real app UI for the marketing
@@ -427,7 +428,8 @@ export function StudyPhoneMock({ t, label, className }: { t: TFunc; label: strin
         <p className="text-[8.5px] opacity-75 mb-0.5">{t(M + "date")}</p>
         <div className="flex items-start justify-between gap-2">
           <b className="text-[12.5px] font-bold leading-snug">{t(M + "greeting")}</b>
-          <span className="text-[8px] font-semibold bg-white/20 rounded-full px-2 py-0.5 whitespace-nowrap mt-0.5">
+          <span className="text-[8px] font-semibold bg-white/20 rounded-full px-2 py-0.5 whitespace-nowrap mt-0.5 inline-flex items-center gap-1">
+            <Flame size={8} strokeWidth={2.6} className="shrink-0" />
             {t("landing.home.m2.streak")}
           </span>
         </div>
