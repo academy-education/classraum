@@ -75,7 +75,7 @@ const attacks = await all('study_item_attacks', 'item_id, correct, solvers, atta
  * model-produced row in the human column collapses the two into one and
  * every verdict becomes a model agreeing with itself. See migration 079.
  */
-const reviews = await all('study_item_reviews_fresh', 'item_id, run_id, reviewer_id, blind_pick, key_slot, blind_at',
+const reviews = await all('study_item_reviews_fresh', 'item_id, run_id, reviewer_id, blind_pick, key_slot, blind_at, reviewed_at',
   q => q.not('blind_at', 'is', null).eq('reviewer_kind', 'human'))
 const assisted = await all('study_item_reviews_fresh', 'item_id, run_id, blind_pick, key_slot',
   q => q.not('blind_at', 'is', null).eq('reviewer_kind', 'model_assisted'))
@@ -139,7 +139,15 @@ for (const r of reviews) {
   if (!d) continue
   runReviewer.set(r.run_id, r.reviewer_id)
   const byRev = humanBy.get(d) ?? new Map()
-  const e = byRev.get(r.run_id) ?? { n: 0, c: 0, abst: 0, run: r.run_id }
+  const e = byRev.get(r.run_id) ?? { n: 0, c: 0, abst: 0, run: r.run_id, first: null, last: null }
+  /* Wall-clock span, to tell a SITTING from a window. See the span guard
+   * below — this is the third validity rule the procedure had and the
+   * renderer did not. */
+  const t = Date.parse(r.blind_at)
+  if (!Number.isNaN(t)) {
+    e.first = e.first === null ? t : Math.min(e.first, t)
+    e.last  = e.last  === null ? t : Math.max(e.last,  t)
+  }
   e.n++
   // An abstention ("Can't tell") is scored as not-correct, which is
   // right for the SCORE and catastrophic for the VERDICT — see
@@ -186,6 +194,23 @@ for (const r of reviews) {
  * middling ones where the deflation does its damage. */
 const ABSTENTION_CEILING = 0.2
 
+/* A run spread over more than four hours is not a sitting.
+ *
+ * 2026-08-11. Academic Passage had two human readings that disagreed —
+ * 41.7% (n=12, 04 Aug) and 13.3% (n=15, today) — and bestHuman took the
+ * HIGHER one, because "best" means "the strongest a person managed",
+ * which is right when both are sittings. The 04 Aug run spans 1,505
+ * minutes: over 25 hours, 125 minutes per item. That is not a person
+ * sitting down with hidden options; it is a window, and in a window the
+ * source can be looked up, the items can be thought about overnight, and
+ * the blind condition is simply not in force.
+ *
+ * So the disagreement was never about the items. One reading is a
+ * measurement and the other is not, and the register was quoting the one
+ * that is not. Four hours is generous — the longest genuine sitting on
+ * record is 52 minutes for 60 items. */
+const SITTING_SPAN_MS = 4 * 60 * 60 * 1000
+
 function bestHuman(domain) {
   const byRev = humanBy.get(domain)
   if (!byRev || !byRev.size) return null
@@ -196,13 +221,15 @@ function bestHuman(domain) {
       abst: e.abst,
       abstRate: e.abst / e.n,
       run: e.run,
+      spanMs: e.first !== null && e.last !== null ? e.last - e.first : 0,
     }))
     .sort((a, b) => b.pct - a.pct)
   // Under 10 items a high score is luck; over the abstention ceiling the
   // score is not about the items at all. Both are excluded from the
   // verdict and both stay visible in `all`, so a discarded sitting can
   // never look like no sitting.
-  const usable = sittings.filter(s => s.n >= 10 && s.abstRate <= ABSTENTION_CEILING)
+  const usable = sittings.filter(s =>
+    s.n >= 10 && s.abstRate <= ABSTENTION_CEILING && s.spanMs <= SITTING_SPAN_MS)
   if (!usable.length) {
     const people = new Set(sittings.map(s => runReviewer.get(s.run)).filter(Boolean))
     return { none: true, readers: people.size || sittings.length, all: sittings }
