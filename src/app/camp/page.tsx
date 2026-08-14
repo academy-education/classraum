@@ -67,8 +67,6 @@ const WHY_TONE = [
 export default function CampPage() {
   const { t, language } = useTranslation()
   const [tab, setTab] = useState<"sat" | "toefl">("sat")
-  // TOEFL is four skills; the demo lets a school flip through them.
-  const [skill, setSkill] = useState(0)
 
   // Arrays come straight off the locale object — t() flattens them.
   const L = languages[language] as unknown as Record<string, never>
@@ -87,7 +85,6 @@ export default function CampPage() {
    * the dashboard, the partnership model — stays identical, because
    * pretending otherwise would be marketing invention. */
   const isToefl = tab === "toefl"
-  useEffect(() => { setSkill(0) }, [tab])
   const o = <T,>(path: string): T => (isToefl ? (g<T>("toefl." + path) ?? g<T>(path)) : g<T>(path))
 
   const heroChips = o<string[]>("hero.chips")
@@ -114,7 +111,6 @@ export default function CampPage() {
   const keyIdx = isToefl ? 2 : 1
   const pickIdx = isToefl ? 1 : 2
   const QK = isToefl ? C + "toefl.q." : C + "q."
-  const toeflTabs = g<string[]>("toefl.skillsDemo.tabs")
   const qSteps = g<string[]>("q.steps")
 
   return (
@@ -125,7 +121,7 @@ export default function CampPage() {
       <header className="relative pt-16 pb-14">
         <div
           className="absolute inset-0 pointer-events-none"
-          style={{ background: "radial-gradient(620px 300px at 50% -60px, rgba(40,133,232,.07), transparent 70%)" }}
+          style={{ background: `radial-gradient(620px 300px at 50% -60px, ${isToefl ? "rgba(122,90,248,.08)" : "rgba(40,133,232,.07)"}, transparent 70%)` }}
         />
         <div className={`relative ${WRAP}`}>
           {/* programme tabs */}
@@ -160,7 +156,7 @@ export default function CampPage() {
             </span>
             <h1 className="camp-in text-[clamp(32px,4.4vw,52px)] font-bold text-[#163e64] leading-[1.14] tracking-[-0.022em]">
               {ts(t, C + "hero.title1")}{" "}
-              <span className="whitespace-nowrap bg-gradient-to-r from-[#2885e8] to-[#00D0AE] bg-clip-text text-transparent">
+              <span className={`whitespace-nowrap bg-gradient-to-r bg-clip-text text-transparent ${isToefl ? "from-[#7a5af8] to-[#2885e8]" : "from-[#2885e8] to-[#00D0AE]"}`}>
                 {isToefl ? ts(t, C + "toefl.hero.titleAccent") : ts(t, C + "hero.titleAccent")}
               </span>{" "}
               {ts(t, C + "hero.title2")}
@@ -216,7 +212,9 @@ export default function CampPage() {
             <span className="hidden md:flex w-9 h-9 rounded-full bg-[#00D0AE]/15 text-[#00806c] items-center justify-center shrink-0">
               <Plus size={17} strokeWidth={2.6} />
             </span>
-            <div className="camp-in rounded-2xl p-7 sm:p-8 text-white bg-gradient-to-br from-[#2885e8] to-[#00b89c] shadow-[0_20px_44px_-24px_rgba(40,133,232,0.9)]">
+            <div className={`camp-in rounded-2xl p-7 sm:p-8 text-white bg-gradient-to-br ${isToefl
+              ? "from-[#7a5af8] to-[#2885e8] shadow-[0_20px_44px_-24px_rgba(122,90,248,0.9)]"
+              : "from-[#2885e8] to-[#00b89c] shadow-[0_20px_44px_-24px_rgba(40,133,232,0.9)]"}`}>
               <div className="flex items-center gap-2.5 mb-5">
                 <span className="shrink-0"><LogoMark size={36} radius={11} /></span>
                 <h3 className="text-[15px] font-bold">{ts(t, C + "hero.usTitle")}</h3>
@@ -250,14 +248,16 @@ export default function CampPage() {
             <FlowJoin dir="right" className="hidden sm:flex left-1/2 top-[25%]" />
             <FlowJoin dir="down"  className="hidden sm:flex left-auto right-[25%] translate-x-1/2 top-1/2" />
             <FlowJoin dir="left"  className="hidden sm:flex left-1/2 top-[75%]" />
-            {/* Grid order [0,1,3,2]: the arrows draw an S (across, down
-                the right edge, back across), so the bottom row must run
-                right-to-left — stage 3 under stage 2, stage 4 under
-                stage 1. The first version left the cards in Z order and
-                the arrows pointed from Practice into Improve. The
-                numbered chips keep the true sequence readable. */}
-            {[0, 1, 3, 2].map(i => { const s = steps[i]; return (
-              <div key={s.t} className={`${CARD} ${CARD_HOVER} camp-in p-6 flex flex-col border-t-4 ${STAGE_TONE[i].border}`} style={{ animationDelay: `${i * 60}ms` }}>
+            {/* The arrows draw an S (across, down the right edge, back
+                across), so at sm+ the bottom row must run right-to-left —
+                stage 3 under stage 2, stage 4 under stage 1. That
+                reordering belongs to the TWO-COLUMN grid only: done in
+                the DOM it survived into the single-column stack, where
+                there are no arrows, and mobile read 1, 2, 4, 3. So the
+                DOM stays in true sequence and `sm:order-*` moves the
+                cards only where the S exists. */}
+            {[0, 1, 2, 3].map(i => { const s = steps[i]; return (
+              <div key={s.t} className={`${CARD} ${CARD_HOVER} camp-in p-6 flex flex-col border-t-4 ${STAGE_TONE[i].border} ${["sm:order-1", "sm:order-2", "sm:order-4", "sm:order-3"][i]}`} style={{ animationDelay: `${i * 60}ms` }}>
                 <div className="flex items-center gap-3 mb-3">
                   <span className={`w-8 h-8 rounded-lg text-white text-[13px] font-bold flex items-center justify-center shrink-0 ${STAGE_TONE[i].chip}`}>
                     {i + 1}
@@ -403,30 +403,21 @@ export default function CampPage() {
               row 1032e3e7 — a hard tangent-secant question, not "3x + 5
               = 20". Andy asked for a harder, real one and for this to
               look like the actual session. */}
-          {/* TOEFL is not one question type. The skill bar flips the demo
-              between the four sections a real TOEFL sitting has — reading
-              with a passage, listening behind an audio player, speaking
-              into a microphone, writing into an editor. Each panel is
-              built from a real bank row (ids in the footer) and mirrors
-              the session component for that task. */}
-          {isToefl && (
-            <div className="camp-in flex flex-wrap gap-2 mb-4">
-              {toeflTabs.map((label, i) => {
-                const Icon = [BookOpen, Headphones, Mic, PenLine][i]
-                return (
-                  <button key={label} type="button" onClick={() => setSkill(i)} aria-pressed={skill === i}
-                    className={`inline-flex items-center gap-1.5 text-[12.5px] font-semibold rounded-full px-3.5 py-1.5 transition-colors ${
-                      skill === i ? "bg-[#163e64] text-white" : "bg-white text-gray-500 ring-1 ring-gray-200 hover:text-primary"}`}>
-                    <Icon size={13} /> {label}
-                  </button>
-                )
-              })}
-            </div>
-          )}
-          {isToefl && skill > 0 ? (
-            <ToeflSkillPanel t={t} kind={skill} listenOpts={g<string[]>("toefl.skillsDemo.listening.opts")} />
-          ) : (
-          <div className={`${CARD} camp-in overflow-hidden`}>
+          {/* TOEFL is not one question type — a real sitting has four
+              sections, so all four are ON the page at once: reading with
+              a passage, listening behind an audio player, speaking into
+              a microphone, writing into an editor. Each panel is built
+              from a real bank row (ids in the footer) and mirrors the
+              session component for that task. No tabs — a school
+              skimming this page should see the whole exam without
+              clicking. */}
+          <div className={`${CARD} camp-in overflow-hidden ${isToefl ? "border-t-4 border-t-[#2885e8]" : ""}`}>
+            {isToefl && (
+              <div className="flex items-center gap-2 px-5 py-3 border-b border-gray-100 bg-[#f8fafc]">
+                <span className="w-6 h-6 rounded-lg bg-blue-50 text-primary flex items-center justify-center shrink-0"><BookOpen size={13} /></span>
+                <span className="text-[12px] font-bold text-[#163e64]">{g<string[]>("toefl.skillsDemo.tabs")[0]}</span>
+              </div>
+            )}
             <div className="flex items-center justify-between gap-3 px-5 py-3 border-b border-gray-100 bg-[#f8fafc]">
               <span className="flex items-center gap-2.5 min-w-0">
                 <span className="text-[12px] font-bold text-[#163e64] whitespace-nowrap">{ts(t, QK + "num")}</span>
@@ -520,9 +511,21 @@ export default function CampPage() {
               </div>
             </div>
           </div>
+
+          {/* the other three sections, stacked below Reading: Listening
+              and Speaking side by side, Writing full width — an editor
+              deserves the width */}
+          {isToefl && (
+            <div className="grid lg:grid-cols-2 gap-4 mt-4">
+              <ToeflSkillPanel t={t} kind={1} listenOpts={g<string[]>("toefl.skillsDemo.listening.opts")} />
+              <ToeflSkillPanel t={t} kind={2} listenOpts={[]} />
+              <div className="lg:col-span-2">
+                <ToeflSkillPanel t={t} kind={3} listenOpts={[]} />
+              </div>
+            </div>
           )}
           <p className="camp-in text-[12px] text-gray-400 mt-3">
-            {ts(t, C + "raumi.fromBank")} · {isToefl ? ["6a165b4f", "21f53cc4", "c46869d1", "f6fb9a64"][skill] : SAT_SAMPLES[0].id.slice(0, 8)}
+            {ts(t, C + "raumi.fromBank")} · {isToefl ? "6a165b4f · 21f53cc4 · c46869d1 · f6fb9a64" : SAT_SAMPLES[0].id.slice(0, 8)}
           </p>
 
           <div className="grid lg:grid-cols-2 gap-4 mt-6">
@@ -923,11 +926,17 @@ function WorkflowDiamond({ steps, artefacts }: { steps: Tile[]; artefacts: strin
  * dot, mono timer), and each panel's content is a live bank row. */
 function ToeflSkillPanel({ t, kind, listenOpts }: { t: TFunc; kind: number; listenOpts: string[] }) {
   const K = C + "toefl.skillsDemo."
+  // Each section wears its own colour so the four-skill spread reads as
+  // four different surfaces, not four copies of the SAT card.
+  const head = (label: string, Icon: typeof Headphones, chip: string) => (
+    <div className="flex items-center gap-2 px-5 py-3 border-b border-gray-100 bg-[#f8fafc]">
+      <span className={`w-6 h-6 rounded-lg flex items-center justify-center shrink-0 ${chip}`}><Icon size={13} /></span>
+      <span className="text-[12px] font-bold text-[#163e64]">{label}</span>
+    </div>
+  )
   if (kind === 1) return ( // ── Listening ─────────────────────────────
-    <div className={`${CARD} camp-in overflow-hidden`}>
-      <div className="px-5 py-3 border-b border-gray-100 bg-[#f8fafc] text-[12px] font-bold text-[#163e64]">
-        {ts(t, K + "listening.label")}
-      </div>
+    <div className={`${CARD} camp-in overflow-hidden h-full border-t-4 border-t-[#7a5af8]`}>
+      {head(ts(t, K + "listening.label"), Headphones, "bg-violet-50 text-violet-600")}
       <div className="p-5 sm:p-6">
         <div className="flex items-center gap-3 rounded-xl bg-[#0b2138] px-4 py-3.5 mb-2 text-white">
           <span className="w-10 h-10 rounded-full bg-white/15 flex items-center justify-center shrink-0">
@@ -953,11 +962,9 @@ function ToeflSkillPanel({ t, kind, listenOpts }: { t: TFunc; kind: number; list
     </div>
   )
   if (kind === 2) return ( // ── Speaking ──────────────────────────────
-    <div className={`${CARD} camp-in overflow-hidden`}>
-      <div className="px-5 py-3 border-b border-gray-100 bg-[#f8fafc] text-[12px] font-bold text-[#163e64]">
-        {ts(t, K + "speaking.label")}
-      </div>
-      <div className="p-5 sm:p-6 max-w-[560px]">
+    <div className={`${CARD} camp-in overflow-hidden h-full border-t-4 border-t-rose-500`}>
+      {head(ts(t, K + "speaking.label"), Mic, "bg-rose-50 text-rose-600")}
+      <div className="p-5 sm:p-6">
         <div className="rounded-xl bg-[#f8fafc] ring-1 ring-gray-100 px-4 py-3.5 mb-4">
           <p className="text-[14px] text-[#163e64] font-medium leading-[1.7]">“{ts(t, K + "speaking.sentence")}”</p>
         </div>
@@ -981,10 +988,8 @@ function ToeflSkillPanel({ t, kind, listenOpts }: { t: TFunc; kind: number; list
     </div>
   )
   return ( // ── Writing ───────────────────────────────────────────────
-    <div className={`${CARD} camp-in overflow-hidden`}>
-      <div className="px-5 py-3 border-b border-gray-100 bg-[#f8fafc] text-[12px] font-bold text-[#163e64]">
-        {ts(t, K + "writing.label")}
-      </div>
+    <div className={`${CARD} camp-in overflow-hidden h-full border-t-4 border-t-emerald-500`}>
+      {head(ts(t, K + "writing.label"), PenLine, "bg-emerald-50 text-emerald-600")}
       <div className="p-5 sm:p-6">
         <div className="rounded-xl bg-amber-50/60 ring-1 ring-amber-100 px-4 py-3 mb-4">
           <p className="text-[12.5px] text-amber-900 leading-[1.7]">{ts(t, K + "writing.brief")}</p>
@@ -1252,12 +1257,23 @@ function WhyGlyph({ kind }: { kind: number }) {
   )
   const grad = `url(#${id})`
   const disc = <circle cx="24" cy="22" r="19" fill={grad} opacity="0.09" />
-  if (kind === 0) return ( // launch faster — rocket mid-flight
+  if (kind === 0) return ( // launch faster — an unmistakable rocket, 45° up-right
     <svg viewBox="0 0 48 44" className="w-11 h-10" aria-hidden>{g}{disc}
-      <path d="M10 36 L16 30 M8 30 L12 26" stroke="#c7d6e8" strokeWidth="2.2" strokeLinecap="round" />
-      <path d="M27 8 C33 10 37 16 37 22 L31 28 C25 28 19 24 17 18 Z" fill={grad} opacity="0.92" />
-      <circle cx="28.5" cy="16.5" r="3" fill="#fff" />
-      <path d="M18 27 L14 31 L21 30 Z" fill={grad} opacity="0.55" />
+      <g transform="rotate(45 24 22)">
+        {/* fins */}
+        <path d="M19 26 L14 33 L21 31 Z" fill={grad} opacity="0.6" />
+        <path d="M29 26 L34 33 L27 31 Z" fill={grad} opacity="0.6" />
+        {/* body with nose cone */}
+        <path d="M24 4 C29 8.5 30.5 14 30.5 20 C30.5 25 29 28.5 28 30 H20 C19 28.5 17.5 25 17.5 20 C17.5 14 19 8.5 24 4 Z" fill={grad} opacity="0.92" />
+        {/* window */}
+        <circle cx="24" cy="15.5" r="3.4" fill="#fff" />
+        <circle cx="24" cy="15.5" r="1.7" fill={grad} opacity="0.35" />
+        {/* flame */}
+        <path d="M21.5 31 C21.5 34.5 23 37 24 39.5 C25 37 26.5 34.5 26.5 31 Z" fill="#f79009" />
+        <path d="M23 31 C23 33 23.6 34.6 24 36 C24.4 34.6 25 33 25 31 Z" fill="#fbbf24" />
+      </g>
+      {/* speed lines trailing behind */}
+      <path d="M9 34 L14 29 M6 28 L10 24" stroke="#c7d6e8" strokeWidth="2.2" strokeLinecap="round" />
     </svg>)
   if (kind === 1) return ( // reduce admin — the stack, signed off
     <svg viewBox="0 0 48 44" className="w-11 h-10" aria-hidden>{g}{disc}
