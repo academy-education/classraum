@@ -1,7 +1,7 @@
 "use client"
 
 import { Button } from "@/components/ui/button"
-import { AlertTriangle, Sparkles, Target, Eye, Clock, GraduationCap, Heart, Check, ArrowRight, School, BookOpen } from "lucide-react"
+import { Sparkles, Clock, GraduationCap, Heart, Check, ArrowRight, School, BookOpen } from "lucide-react"
 import { useState, useEffect } from "react"
 import Link from "next/link"
 import Header from "@/components/shared/Header"
@@ -12,13 +12,6 @@ import { LogoMark } from "@/components/marketing/ProductMocks"
 import { CARD, CARD_HOVER, WRAP, ts, useReveal } from "@/components/marketing/ui"
 
 const VALUE_ICONS = [GraduationCap, Sparkles, Clock, Heart]
-const VALUE_CHIPS = [
-  "bg-blue-50 text-primary",
-  "bg-purple-50 text-purple-500",
-  "bg-amber-50 text-amber-500",
-  "bg-rose-50 text-rose-500",
-]
-
 export default function AboutPage() {
   const { t, language } = useTranslation()
   const [appUrl, setAppUrl] = useState("https://app.classraum.com")
@@ -63,42 +56,42 @@ export default function AboutPage() {
       </header>
 
       <main className={WRAP}>
-        {/* Problem & Solution */}
-        <section className="mb-20">
-          <div className="grid lg:grid-cols-2 gap-4">
-            <div className={`${CARD} ${CARD_HOVER} hv4-fade group p-7 flex flex-col`}>
-              <div className="flex items-center gap-3 mb-4">
-                <span className="w-10 h-10 rounded-xl bg-rose-50 text-rose-500 flex items-center justify-center transition-transform duration-300 group-hover:scale-110 group-hover:-rotate-6">
-                  <AlertTriangle size={18} strokeWidth={2.2} />
-                </span>
-                <h2 className="text-[19px] font-bold text-[#163e64]">{ts(t, 'about.problemSolution.problem.title')}</h2>
-              </div>
-              <p className="text-[14px] text-gray-500 leading-relaxed mb-4">
+        {/* ── The problem, then the answer. Deliberately asymmetric: the
+             problem sits back — grey ground, muted type, dashes — and the
+             answer carries the colour. Two matching cards gave a complaint
+             and its fix the same weight, which is the wrong story for the
+             page that exists to argue one replaced the other. One shared
+             frame, split by a hairline, so they read as a single before/
+             after rather than two unrelated tiles. ──────────────────── */}
+        <section className="mb-20 md:mb-24">
+          <div className="hv4-fade grid lg:grid-cols-2 gap-px bg-gray-200/70 rounded-2xl overflow-hidden border border-gray-200/70">
+            <div className="bg-gray-50/70 p-7 sm:p-9">
+              <span className="text-[11.5px] font-semibold tracking-[0.09em] uppercase text-gray-400">
+                {ts(t, 'about.problemSolution.problem.title')}
+              </span>
+              <p className="text-[15px] text-gray-500 leading-[1.75] mt-3 mb-5">
                 {ts(t, 'about.problemSolution.problem.description')}
               </p>
-              <ul className="space-y-2.5">
+              <ul className="space-y-3">
                 {problemIssues.map((issue, i) => (
-                  <li key={i} className="flex items-start gap-2.5 text-[13.5px] text-gray-600">
-                    <s className="w-1.5 h-1.5 rounded-full bg-rose-300 no-underline shrink-0 mt-[7px]" />
+                  <li key={i} className="flex items-start gap-3 text-[14px] text-gray-500">
+                    <span className="w-4 h-px bg-gray-300 shrink-0 mt-[11px]" />
                     {issue}
                   </li>
                 ))}
               </ul>
             </div>
-            <div className={`${CARD} ${CARD_HOVER} hv4-fade group p-7 flex flex-col`}>
-              <div className="flex items-center gap-3 mb-4">
-                <span className="w-10 h-10 rounded-xl bg-primary/10 text-primary flex items-center justify-center transition-transform duration-300 group-hover:scale-110 group-hover:-rotate-6">
-                  <Sparkles size={18} strokeWidth={2.2} />
-                </span>
-                <h2 className="text-[19px] font-bold text-[#163e64]">{ts(t, 'about.problemSolution.solution.title')}</h2>
-              </div>
-              <p className="text-[14px] text-gray-500 leading-relaxed mb-4">
+            <div className="bg-white p-7 sm:p-9">
+              <span className="text-[11.5px] font-semibold tracking-[0.09em] uppercase text-primary">
+                {ts(t, 'about.problemSolution.solution.title')}
+              </span>
+              <p className="text-[15px] text-gray-600 leading-[1.75] mt-3 mb-5">
                 {ts(t, 'about.problemSolution.solution.description')}
               </p>
-              <ul className="space-y-2.5">
+              <ul className="space-y-3">
                 {solutionBenefits.map((benefit, i) => (
-                  <li key={i} className="flex items-start gap-2.5 text-[13.5px] text-gray-600">
-                    <Check className="w-3.5 h-3.5 text-[#00a98d] shrink-0 mt-0.5" strokeWidth={2.6} />
+                  <li key={i} className="flex items-start gap-3 text-[14px] text-gray-700">
+                    <Check className="w-4 h-4 text-[#00a98d] shrink-0 mt-[3px]" strokeWidth={2.6} />
                     {benefit}
                   </li>
                 ))}
@@ -107,23 +100,23 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* Mission & Vision */}
-        <section className="mb-20">
-          <div className="grid lg:grid-cols-2 gap-4">
-            {([
-              { key: "mission", Icon: Target, chip: "bg-primary/10 text-primary" },
-              { key: "vision", Icon: Eye, chip: "bg-[#00D0AE]/10 text-[#00a98d]" },
-            ] as const).map(({ key, Icon, chip }) => (
-              <div key={key} className={`${CARD} ${CARD_HOVER} hv4-fade group p-7`}>
-                <div className="flex items-center gap-3 mb-3">
-                  <span className={`w-10 h-10 rounded-xl flex items-center justify-center transition-transform duration-300 group-hover:scale-110 group-hover:-rotate-6 ${chip}`}>
-                    <Icon size={18} strokeWidth={2.2} />
+        {/* ── The one dark section. Mission and vision are the only part
+             of this page that is a claim rather than a list, so they get
+             the landing page's night band instead of two more cards. */}
+        <section className="mb-20 md:mb-24">
+          <div className="hv4-fade rounded-3xl bg-gradient-to-b from-[#0b2138] to-[#0e2846] text-white p-8 sm:p-12">
+            <div className="grid lg:grid-cols-2 gap-10 lg:gap-14">
+              {(["mission", "vision"] as const).map((key) => (
+                <div key={key}>
+                  <span className="text-[11.5px] font-semibold tracking-[0.09em] uppercase text-[#00D0AE]">
+                    {ts(t, `about.missionVision.${key}.title`)}
                   </span>
-                  <h2 className="text-[19px] font-bold text-[#163e64]">{ts(t, `about.missionVision.${key}.title`)}</h2>
+                  <p className="text-[16px] sm:text-[17px] text-white/80 leading-[1.85] mt-3">
+                    {ts(t, `about.missionVision.${key}.description`)}
+                  </p>
                 </div>
-                <p className="text-[14px] text-gray-500 leading-[1.8]">{ts(t, `about.missionVision.${key}.description`)}</p>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </section>
 
@@ -135,17 +128,16 @@ export default function AboutPage() {
             </h2>
             <p className="hv4-fade text-gray-500 leading-[1.75]">{ts(t, 'about.values.subtitle')}</p>
           </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-10">
             {values.map((value, i) => {
               const Icon = VALUE_ICONS[i % VALUE_ICONS.length]
-              const chip = VALUE_CHIPS[i % VALUE_CHIPS.length]
               return (
-                <div key={i} className={`${CARD} ${CARD_HOVER} hv4-fade group p-6`}>
-                  <span className={`w-11 h-11 rounded-xl flex items-center justify-center mb-4 transition-transform duration-300 group-hover:scale-110 group-hover:-rotate-6 ${chip}`}>
-                    <Icon size={20} strokeWidth={2.2} />
+                <div key={i} className="hv4-fade">
+                  <span className="w-10 h-10 rounded-xl bg-primary/10 text-primary flex items-center justify-center mb-4">
+                    <Icon size={19} strokeWidth={2.2} />
                   </span>
-                  <h3 className="text-[15px] font-semibold text-gray-900 mb-1.5">{value.title}</h3>
-                  <p className="text-[13px] text-gray-500 leading-relaxed">{value.description}</p>
+                  <h3 className="text-[15px] font-semibold text-[#163e64] mb-1.5">{value.title}</h3>
+                  <p className="text-[13.5px] text-gray-500 leading-[1.7]">{value.description}</p>
                 </div>
               )
             })}
