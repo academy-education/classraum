@@ -148,6 +148,40 @@ B4 is *Calibrate the reviewer before spending another cohort* (~20 minutes — o
 
 ## 5. Found while fixing
 
+### CLOSED — "explanations cite option positions" is a non-issue (2026-08-14)
+
+Measured over the whole live bank (3,317 items), not sampled.
+
+    explanations that cite an option LETTER at all     0
+    mismatches a student could see                     0
+
+Explanations in this bank refer to options by CONTENT — "the 3 option",
+"the 'unstable households' option", "the dashes-versus-sprung-rhythm
+option". That is immune to shuffling by construction, which is why the
+defect does not exist. The backlog entry can be closed.
+
+**The first version of the checker reported 6 mismatches and all 6 were
+false positives** — a case-insensitive letter class matching ordinary
+English:
+
+    "answer a formatting question that was never asked"   -> "answer a"
+    "option (a methodological limit on generalizability)" -> "option (a"
+    "The 7 option is a root of the equation"              -> "option is a"
+    "assumes the angle is right"                          -> "e is right"
+
+Third instrument this week to produce a 100%-false finding on its first
+run. The article "a" is not the letter "A"; the letter must be
+uppercase and standalone.
+
+Second suspicion also cleared: 108 items whose stored key matches no
+choice are ALL toefl/Build a Sentence, where the key is a
+pipe-separated ordering of the choices rather than one of them. By
+design, not a grading bug. The other 420 unresolvable keys are
+free-response items with no choices at all.
+
+`check-explanation-option-refs.mjs` kept — it is cheap and now correct.
+
+
 ### Dedup applied + checker widened (2026-08-14)
 
 **APPLIED: 10 items archived.** SAT bank 1571 -> 1561, count verified.
