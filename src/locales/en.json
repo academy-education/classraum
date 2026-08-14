@@ -7182,7 +7182,7 @@
     "problemSolution": {
       "problem": {
         "title": "The Problem We Solve",
-        "description": "Educators spend 30–50% of their time on non-teaching administrative work:",
+        "description": "Educators lose 30–50% of the working week to work that is not teaching:",
         "issues": [
           "Manual report card creation and grading",
           "Juggling 5-10 different platforms daily",
@@ -7192,7 +7192,7 @@
       },
       "solution": {
         "title": "Our AI-Powered Solution",
-        "description": "CLASSRAUM is a centralized platform powered by AI that makes school operations smoother, faster, and smarter:",
+        "description": "One system, with AI doing the repetitive part:",
         "benefits": [
           "AI-generated personalized report cards in seconds",
           "Unified dashboard for all school operations",
@@ -7204,11 +7204,11 @@
     "missionVision": {
       "mission": {
         "title": "Our Mission",
-        "description": "By automating time-consuming tasks like report generation, lesson scheduling, attendance tracking, and communication, CLASSRAUM gives educators back their most valuable asset: time. Our platform turns fragmented, manual workflows into a unified, intelligent, real-time system."
+        "description": "We automate the reporting, scheduling, attendance and messaging that eat the day — turning scattered manual work into one real-time system."
       },
       "vision": {
         "title": "Our Vision",
-        "description": "A world where educators can focus on what they do best—teaching and nurturing students—while AI handles the administrative burden that currently consumes 30-50% of their time."
+        "description": "Educators doing the work only they can do. AI carries the admin that currently takes a third of their week."
       }
     },
     "values": {
@@ -7217,19 +7217,19 @@
       "valuesList": [
         {
           "title": "Educator-First Design",
-          "description": "Every feature is designed by educators, for educators. We understand the real challenges teachers face because we've been there."
+          "description": "Built by people who have taught. We have run into these problems ourselves."
         },
         {
           "title": "AI-Powered Efficiency",
-          "description": "We leverage cutting-edge AI to automate repetitive tasks, giving educators back their most valuable asset: time."
+          "description": "The repetitive work runs on its own, so nobody loses an evening to it."
         },
         {
           "title": "Time is Sacred",
-          "description": "We believe educator time should be spent on teaching, not paperwork. Our AI gives time back to educators."
+          "description": "An hour on paperwork is an hour not spent with a student."
         },
         {
           "title": "Institutional Excellence",
-          "description": "We help educational institutions operate more efficiently while maintaining the highest standards."
+          "description": "Run leaner without lowering the standard you are known for."
         }
       ]
     },
@@ -7710,8 +7710,14 @@
       "prod1b": "Attendance, AI report cards, billing, and parent communication for directors and teachers.",
       "prod1cta": "See the features",
       "prod2t": "Classraum Study, for students",
-      "prod2b": "AI mock tests, the Snap photo solver, and a mistake notebook that plans review.",
-      "prod2cta": "Explore Study"
+      "prod2b": "AI mock tests, a mistake notebook that plans your review, and daily practice that adapts.",
+      "prod2cta": "Explore Study",
+      "screens": {
+        "reports": "Report cards",
+        "schedule": "Scheduling",
+        "messages": "Parent messages",
+        "live": "Live preview"
+      }
     },
     "pricingExtras": {
       "freeTitle": "Start free — no card required",
