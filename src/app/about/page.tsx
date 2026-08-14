@@ -1,7 +1,7 @@
 "use client"
 
 import { Button } from "@/components/ui/button"
-import { Sparkles, Clock, GraduationCap, Heart, Check, ArrowRight, AlertTriangle } from "lucide-react"
+import { Sparkles, Clock, GraduationCap, Heart, Check, ArrowRight } from "lucide-react"
 import { useState, useEffect } from "react"
 import Link from "next/link"
 import Header from "@/components/shared/Header"
@@ -226,14 +226,9 @@ export default function AboutPage() {
 
           <div className="grid lg:grid-cols-2 gap-4 sm:gap-5">
             <div className={`${CARD} ${CARD_HOVER} hv4-fade p-7 sm:p-8 flex flex-col`}>
-              <div className="flex items-center gap-3 mb-4">
-                <span className="w-10 h-10 rounded-xl bg-rose-50 text-rose-500 flex items-center justify-center shrink-0">
-                  <AlertTriangle size={18} strokeWidth={2.2} />
-                </span>
-                <h3 className="text-[17px] font-bold text-[#163e64]">
-                  {ts(t, 'about.problemSolution.problem.title')}
-                </h3>
-              </div>
+              <h3 className="text-[17px] font-bold text-[#163e64] mb-4">
+                {ts(t, 'about.problemSolution.problem.title')}
+              </h3>
               <p className="text-[14.5px] font-medium text-gray-700 leading-[1.7] mb-4">
                 {ts(t, 'about.problemSolution.problem.description')}
               </p>
@@ -249,14 +244,9 @@ export default function AboutPage() {
             </div>
 
             <div className={`${CARD} ${CARD_HOVER} hv4-fade p-7 sm:p-8 flex flex-col`}>
-              <div className="flex items-center gap-3 mb-4">
-                <span className="w-10 h-10 rounded-xl bg-[#00D0AE]/15 text-[#00806c] flex items-center justify-center shrink-0">
-                  <Sparkles size={18} strokeWidth={2.2} />
-                </span>
-                <h3 className="text-[17px] font-bold text-[#163e64]">
-                  {ts(t, 'about.problemSolution.solution.title')}
-                </h3>
-              </div>
+              <h3 className="text-[17px] font-bold text-[#163e64] mb-4">
+                {ts(t, 'about.problemSolution.solution.title')}
+              </h3>
               <p className="text-[14.5px] font-medium text-gray-700 leading-[1.7] mb-4">
                 {ts(t, 'about.problemSolution.solution.description')}
               </p>
