@@ -7,7 +7,7 @@ import { useState, useEffect } from "react"
 import { useTranslation } from "@/hooks/useTranslation"
 
 interface HeaderProps {
-  currentPage?: 'home' | 'about' | 'pricing' | 'faqs' | 'features' | 'study'
+  currentPage?: 'home' | 'about' | 'pricing' | 'faqs' | 'features' | 'study' | 'camp'
 }
 
 // Nav model shared by the desktop row and the mobile panel so the two
@@ -15,6 +15,7 @@ interface HeaderProps {
 // is the landing.header.* locale key.
 const NAV: Array<{ href: string; page: NonNullable<HeaderProps['currentPage']>; tKey: string }> = [
   { href: "/features", page: "features", tKey: "features" },
+  { href: "/camp", page: "camp", tKey: "camp" },
   { href: "/pricing", page: "pricing", tKey: "pricing" },
   { href: "/about", page: "about", tKey: "about" },
   { href: "/faqs", page: "faqs", tKey: "faqs" },

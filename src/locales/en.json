@@ -7374,7 +7374,8 @@
           "description": "Built for trust, engineered for safety"
         }
       },
-      "forStudents": "For Students"
+      "forStudents": "For Students",
+      "camp": "Camp"
     },
     "hero": {
       "badge": "AI-Powered Academy Management",
@@ -8109,6 +8110,361 @@
         "ctaStart": "Start for free",
         "ctaInquiry": "Talk to sales",
         "ctaKakao": "Ask on KakaoTalk"
+      }
+    },
+    "camp": {
+      "tabs": {
+        "sat": "SAT Camp",
+        "toefl": "TOEFL Camp",
+        "soon": "Coming soon"
+      },
+      "hero": {
+        "eyebrow": "SUMMER · WINTER · ONGOING",
+        "title1": "Launch a complete",
+        "titleAccent": "SAT Camp",
+        "title2": "at your school",
+        "sub": "Turn your school vacation into a structured, measurable SAT preparation program — without building the curriculum, testing system, or administrative infrastructure from scratch.",
+        "chips": [
+          "Teaching materials",
+          "Mock tests",
+          "Automated grading",
+          "Progress analytics",
+          "AI explanations"
+        ],
+        "schoolTitle": "Your school provides",
+        "schoolBody": "Qualified teachers, students, facilities, and the camp schedule.",
+        "usTitle": "Classraum provides",
+        "usBody": "Materials, testing, homework, grading, analytics, and AI support.",
+        "quote": "Your teachers teach. Classraum powers the program.",
+        "cta": "Talk to us about a camp",
+        "ctaAlt": "See the platform"
+      },
+      "cycle": {
+        "eyebrow": "From classroom to homework",
+        "title": "A complete SAT camp, connected from start to finish",
+        "sub": "Classraum lets a school deliver one structured experience, from the first teacher-led lesson to the final practice test.",
+        "steps": [
+          {
+            "t": "Teach",
+            "d": "Teachers receive ready-to-use SAT materials and questions for camp sessions.",
+            "b": [
+              "Reading, Writing and Math",
+              "Review difficult questions",
+              "Identify common weaknesses"
+            ]
+          },
+          {
+            "t": "Practice",
+            "d": "Assign mock tests, homework, and targeted practice through the platform.",
+            "b": [
+              "Digital assignments",
+              "Online completion and submission",
+              "Individual or class practice"
+            ]
+          },
+          {
+            "t": "Analyze",
+            "d": "Students review their performance and incorrect answers immediately.",
+            "b": [
+              "Scores and grades",
+              "Question-level explanations",
+              "AI-powered learning support"
+            ]
+          },
+          {
+            "t": "Improve",
+            "d": "Teachers use performance data to plan targeted instruction.",
+            "b": [
+              "Review difficult concepts",
+              "Address shared misconceptions",
+              "Measure progress over time"
+            ]
+          }
+        ],
+        "loopTitle": "The continuous improvement cycle",
+        "loop": [
+          "Teach",
+          "Practice",
+          "Test",
+          "Analyze",
+          "Review",
+          "Improve"
+        ],
+        "quote": "Students are not simply taking mock tests. Every mistake becomes part of the learning process."
+      },
+      "dash": {
+        "eyebrow": "Teacher and administrator view",
+        "title": "See the entire camp in one place",
+        "sub": "Monitor assignments, participation, scores, class weaknesses, and the questions that need a teacher's attention — from one interface.",
+        "mockLabel": "Illustrative mockup",
+        "overview": "Summer SAT camp overview",
+        "stats": [
+          {
+            "l": "Students",
+            "v": "48",
+            "s": "Active participants"
+          },
+          {
+            "l": "Completion",
+            "v": "91%",
+            "s": "Current period"
+          },
+          {
+            "l": "Latest average",
+            "v": "1,240",
+            "s": "Sample data"
+          },
+          {
+            "l": "Skills to review",
+            "v": "5",
+            "s": "Teacher attention"
+          }
+        ],
+        "trend": "Average practice score",
+        "trendTag": "Camp trend",
+        "status": "Assignment status",
+        "legend": [
+          {
+            "l": "Completed",
+            "v": "82%"
+          },
+          {
+            "l": "Late",
+            "v": "11%"
+          },
+          {
+            "l": "Missing",
+            "v": "7%"
+          }
+        ],
+        "review": "Suggested topics for teacher review",
+        "reviewTag": "Sample class analysis",
+        "rows": [
+          {
+            "t": "Transitions and sentence structure",
+            "g": "Reading & Writing"
+          },
+          {
+            "t": "Advanced Math: nonlinear equations",
+            "g": "Math"
+          },
+          {
+            "t": "Problem-Solving and Data Analysis",
+            "g": "Math"
+          }
+        ],
+        "disclaimer": "Illustrative interface with sample data, not results from a real camp.",
+        "tiles": [
+          {
+            "t": "Participation",
+            "d": "Monitor active students and camp engagement."
+          },
+          {
+            "t": "Completion",
+            "d": "Track completed, late, and missing work."
+          },
+          {
+            "t": "Performance",
+            "d": "Review tests and skill-level results."
+          },
+          {
+            "t": "Next steps",
+            "d": "Identify the concepts that need instruction."
+          }
+        ]
+      },
+      "student": {
+        "eyebrow": "Immediate question-level feedback",
+        "title": "Help students understand every mistake",
+        "sub": "Students review incorrect answers, read a full explanation, see which skills are weak, and get AI support on the spot.",
+        "qTag": "Question review",
+        "qMeta": "Math · Algebra · Question 8",
+        "q": "If 3x + 5 = 20, what is the value of x?",
+        "opts": [
+          "3",
+          "4",
+          "5",
+          "6"
+        ],
+        "yours": "Your answer",
+        "correct": "Correct answer",
+        "explTitle": "Explanation",
+        "expl": "Subtract 5 from both sides to isolate 3x, then divide by 3.",
+        "explNote": "Choosing 4 usually means the subtraction or the division went wrong.",
+        "qDisclaimer": "Original demonstration question and illustrative interface. Not an actual SAT question.",
+        "skillTitle": "Illustrative skill analysis",
+        "skills": [
+          [
+            "Algebra",
+            84
+          ],
+          [
+            "Information and Ideas",
+            78
+          ],
+          [
+            "Geometry and Trigonometry",
+            74
+          ],
+          [
+            "Advanced Math",
+            71
+          ],
+          [
+            "Craft and Structure",
+            68
+          ],
+          [
+            "Expression of Ideas",
+            64
+          ]
+        ],
+        "skillNote": "Sample data, for design demonstration only.",
+        "actionTitle": "From data to action",
+        "actions": [
+          {
+            "t": "Low skill score",
+            "d": "Deliver a targeted classroom mini-lesson."
+          },
+          {
+            "t": "Common wrong answer",
+            "d": "Review a shared class misconception."
+          },
+          {
+            "t": "Missing assignment",
+            "d": "Follow up with the individual student."
+          },
+          {
+            "t": "Strong skill score",
+            "d": "Move the student to advanced practice."
+          }
+        ]
+      },
+      "provides": {
+        "eyebrow": "What Classraum provides",
+        "title": "A complete program without disconnected systems",
+        "sub": "The school provides the people and the learning environment. Classraum provides the instructional, testing, and management system.",
+        "schoolHead": "Your school provides",
+        "school": [
+          "Qualified SAT teachers",
+          "Classroom or learning space",
+          "Camp schedule",
+          "Student enrollment",
+          "Teacher-led instruction"
+        ],
+        "usHead": "Classraum provides",
+        "us": [
+          "SAT mock tests",
+          "SAT teaching materials",
+          "Homework assignments",
+          "Digital submission system",
+          "Automated grading",
+          "Student score reports",
+          "Question-by-question review",
+          "AI-powered explanations",
+          "Class and student performance management",
+          "Integrated camp management platform"
+        ],
+        "quote": "Everything is connected in one platform.",
+        "whyTitle": "Why schools use Classraum",
+        "why": [
+          {
+            "t": "Launch faster",
+            "d": "Avoid months of building curriculum, tests, and systems."
+          },
+          {
+            "t": "Reduce administration",
+            "d": "Manage assignments, submissions, scores, and grading."
+          },
+          {
+            "t": "Target instruction",
+            "d": "Use student data to decide what should be reviewed."
+          },
+          {
+            "t": "Give fast feedback",
+            "d": "Let students review mistakes and explanations immediately."
+          },
+          {
+            "t": "Measure progress",
+            "d": "Monitor participation, completion, scores, and improvement."
+          }
+        ],
+        "oneTitle": "One platform instead of multiple tools",
+        "one": [
+          "Curriculum",
+          "Assignments",
+          "Tests",
+          "Submissions",
+          "Grading",
+          "Feedback",
+          "Analytics",
+          "Student management"
+        ]
+      },
+      "model": {
+        "eyebrow": "The partnership model",
+        "title": "Your teachers teach. Classraum powers the program.",
+        "sub": "Designed for international schools, independent schools, academies, and educational organizations.",
+        "formatsTitle": "Built for flexible SAT programs",
+        "formats": [
+          {
+            "t": "Summer SAT camp",
+            "d": "A multi-week vacation preparation program."
+          },
+          {
+            "t": "Winter SAT camp",
+            "d": "Focused preparation during the winter break."
+          },
+          {
+            "t": "Intensive program",
+            "d": "Concentrated teaching, testing, and review."
+          },
+          {
+            "t": "Ongoing SAT course",
+            "d": "Weekly preparation through the academic term."
+          },
+          {
+            "t": "School enrichment",
+            "d": "SAT support delivered as an after-school program."
+          },
+          {
+            "t": "Mock-test program",
+            "d": "Testing, analysis, and targeted instruction."
+          }
+        ],
+        "quote": "Classraum supplies the infrastructure so your school can focus on delivering a high-quality student experience.",
+        "stepsTitle": "A simple implementation workflow",
+        "steps": [
+          {
+            "t": "Plan",
+            "d": "Set camp dates, schedule, and format."
+          },
+          {
+            "t": "Configure",
+            "d": "Add teachers, students, and classes."
+          },
+          {
+            "t": "Onboard",
+            "d": "Introduce users to the platform."
+          },
+          {
+            "t": "Launch",
+            "d": "Begin teaching, testing, and measuring."
+          }
+        ]
+      },
+      "cta": {
+        "title": "The complete digital infrastructure for your SAT camp",
+        "sub": "Launch a structured, connected, measurable preparation program without building every component from scratch.",
+        "chips": [
+          "Summer SAT camp",
+          "Winter SAT camp",
+          "Intensive programs",
+          "Ongoing courses"
+        ],
+        "tagline": "Teach. Test. Analyze. Improve.",
+        "button": "Start a conversation",
+        "alt": "See pricing"
       }
     }
   },
