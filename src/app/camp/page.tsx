@@ -412,13 +412,14 @@ export default function CampPage() {
               session component for that task. No tabs — a school
               skimming this page should see the whole exam without
               clicking. */}
+          {/* On TOEFL each of the four exam sections gets a NUMBERED
+              eyebrow OUTSIDE its card — number, icon, uppercase name, and
+              a rule running to the edge. The in-card header rows were too
+              quiet: four near-identical white cards read as one blob. The
+              eyebrow says "Section n of 4" the way the exam itself does,
+              without reintroducing the per-skill colours. */}
+          {isToefl && <SkillEyebrow n={1} label={g<string[]>("toefl.skillsDemo.tabs")[0]} Icon={BookOpen} />}
           <div className={`${CARD} camp-in overflow-hidden`}>
-            {isToefl && (
-              <div className="flex items-center gap-2 px-5 py-3 border-b border-gray-100 bg-[#f8fafc]">
-                <BookOpen size={14} className="text-gray-400 shrink-0" strokeWidth={2} />
-                <span className="text-[12px] font-bold text-[#163e64]">{g<string[]>("toefl.skillsDemo.tabs")[0]}</span>
-              </div>
-            )}
             <div className="flex items-center justify-between gap-3 px-5 py-3 border-b border-gray-100 bg-[#f8fafc]">
               <span className="flex items-center gap-2.5 min-w-0">
                 <span className="text-[12px] font-bold text-[#163e64] whitespace-nowrap">{ts(t, QK + "num")}</span>
@@ -513,18 +514,28 @@ export default function CampPage() {
             </div>
           </div>
 
-          {/* the other three sections, stacked below Reading: Listening
-              and Speaking side by side, Writing full width — an editor
-              deserves the width */}
-          {isToefl && (
-            <div className="grid lg:grid-cols-2 gap-4 mt-4">
-              <ToeflSkillPanel t={t} kind={1} listenOpts={g<string[]>("toefl.skillsDemo.listening.opts")} />
-              <ToeflSkillPanel t={t} kind={2} listenOpts={[]} />
-              <div className="lg:col-span-2">
-                <ToeflSkillPanel t={t} kind={3} listenOpts={[]} />
+          {/* the other three sections, each under its own numbered
+              eyebrow: Listening and Speaking side by side, Writing full
+              width — an editor deserves the width */}
+          {isToefl && (() => {
+            const tabs = g<string[]>("toefl.skillsDemo.tabs")
+            return (
+              <div className="grid lg:grid-cols-2 gap-x-4 gap-y-8 mt-8">
+                <div className="flex flex-col">
+                  <SkillEyebrow n={2} label={tabs[1]} Icon={Headphones} />
+                  <div className="flex-1"><ToeflSkillPanel t={t} kind={1} listenOpts={g<string[]>("toefl.skillsDemo.listening.opts")} /></div>
+                </div>
+                <div className="flex flex-col">
+                  <SkillEyebrow n={3} label={tabs[2]} Icon={Mic} />
+                  <div className="flex-1"><ToeflSkillPanel t={t} kind={2} listenOpts={[]} /></div>
+                </div>
+                <div className="lg:col-span-2">
+                  <SkillEyebrow n={4} label={tabs[3]} Icon={PenLine} />
+                  <ToeflSkillPanel t={t} kind={3} listenOpts={[]} />
+                </div>
               </div>
-            </div>
-          )}
+            )
+          })()}
           <p className="camp-in text-[12px] text-gray-400 mt-3">
             {ts(t, C + "raumi.fromBank")} · {isToefl ? "6a165b4f · 21f53cc4 · c46869d1 · f6fb9a64" : SAT_SAMPLES[0].id.slice(0, 8)}
           </p>
@@ -652,17 +663,20 @@ export default function CampPage() {
               </ul>
             </div>
 
-            <div className="camp-in rounded-2xl bg-gradient-to-b from-blue-50/80 to-white ring-1 ring-blue-100 p-6">
-              <div className="flex items-center gap-2.5 mb-4 pb-4 border-b border-blue-100">
-                <span className="w-9 h-9 rounded-xl bg-gradient-to-br from-[#2885e8] to-[#00D0AE] text-white flex items-center justify-center shrink-0">
-                  <Zap size={17} strokeWidth={2.4} />
-                </span>
-                <h4 className="text-[15px] font-bold text-[#163e64]">{ts(t, C + "provides.usHead")}</h4>
+            {/* Same card as the hero's "Classraum provides": brand
+                gradient (per tab), white text, the real LogoMark — not a
+                second, lighter interpretation of the same idea. */}
+            <div className={`camp-in rounded-2xl p-6 sm:p-7 text-white bg-gradient-to-br ${isToefl
+              ? "from-[#7a5af8] to-[#2885e8] shadow-[0_20px_44px_-24px_rgba(122,90,248,0.9)]"
+              : "from-[#2885e8] to-[#00b89c] shadow-[0_20px_44px_-24px_rgba(40,133,232,0.9)]"}`}>
+              <div className="flex items-center gap-2.5 mb-4 pb-4 border-b border-white/20">
+                <span className="shrink-0"><LogoMark size={36} radius={11} /></span>
+                <h4 className="text-[15px] font-bold">{ts(t, C + "provides.usHead")}</h4>
               </div>
               <ul className="grid sm:grid-cols-2 gap-x-4 gap-y-2.5">
                 {usList.map(x => (
-                  <li key={x} className="flex items-start gap-2.5 text-[13px] text-gray-700">
-                    <Check size={14} strokeWidth={3} className="text-[#00806c] shrink-0 mt-[3px]" />
+                  <li key={x} className="flex items-start gap-2.5 text-[13px] text-white/95">
+                    <Check size={14} strokeWidth={3} className="text-white shrink-0 mt-[3px]" />
                     <span className="min-w-0">{x}</span>
                   </li>
                 ))}
@@ -925,22 +939,29 @@ function WorkflowDiamond({ steps, artefacts }: { steps: Tile[]; artefacts: strin
  * because that is how the session actually delivers them. The speaking
  * record button is a copy of VoiceRecorder's live state (rose, ping
  * dot, mono timer), and each panel's content is a live bank row. */
-function ToeflSkillPanel({ t, kind, listenOpts }: { t: TFunc; kind: number; listenOpts: string[] }) {
-  const K = C + "toefl.skillsDemo."
-  // One flat, neutral header for every skill — round one gave each panel
-  // its own hue (violet/rose/emerald borders + tinted chips) on top of a
-  // section that already carries the answer-review greens and reds, and
-  // Andy called it "too much". The skill is named by its icon and label;
-  // color stays reserved for meaning (correct/incorrect/recording).
-  const head = (label: string, Icon: typeof Headphones) => (
-    <div className="flex items-center gap-2 px-5 py-3 border-b border-gray-100 bg-[#f8fafc]">
-      <Icon size={14} className="text-gray-400 shrink-0" strokeWidth={2} />
-      <span className="text-[12px] font-bold text-[#163e64]">{label}</span>
+/* Numbered section header OUTSIDE each TOEFL demo card: number chip,
+ * icon, uppercase name, and a hairline rule to the edge — the way the
+ * exam itself announces "Section 2 of 4". Monochrome on purpose. */
+function SkillEyebrow({ n, label, Icon }: { n: number; label: string; Icon: typeof Headphones }) {
+  return (
+    <div className="camp-in flex items-center gap-2.5 mb-3">
+      <span className="w-5 h-5 rounded-md bg-[#163e64] text-white text-[10.5px] font-bold flex items-center justify-center shrink-0">{n}</span>
+      <Icon size={13} className="text-gray-400 shrink-0" strokeWidth={2.2} />
+      <span className="text-[11.5px] font-bold uppercase tracking-[0.12em] text-[#163e64] whitespace-nowrap">{label}</span>
+      <span className="flex-1 h-px bg-gray-200" />
     </div>
   )
+}
+
+function ToeflSkillPanel({ t, kind, listenOpts }: { t: TFunc; kind: number; listenOpts: string[] }) {
+  const K = C + "toefl.skillsDemo."
+  // The skill's name lives in the SkillEyebrow OUTSIDE the card (page
+  // level), not in an in-card header — the in-card rows were too quiet
+  // to separate four near-identical white cards, and the earlier
+  // per-skill colour scheme was "too much". So the panels themselves
+  // are headerless.
   if (kind === 1) return ( // ── Listening ─────────────────────────────
     <div className={`${CARD} camp-in overflow-hidden h-full`}>
-      {head(ts(t, K + "listening.label"), Headphones)}
       <div className="p-5 sm:p-6">
         <div className="flex items-center gap-3 rounded-xl bg-[#0b2138] px-4 py-3.5 mb-2 text-white">
           <span className="w-10 h-10 rounded-full bg-white/15 flex items-center justify-center shrink-0">
@@ -967,7 +988,6 @@ function ToeflSkillPanel({ t, kind, listenOpts }: { t: TFunc; kind: number; list
   )
   if (kind === 2) return ( // ── Speaking ──────────────────────────────
     <div className={`${CARD} camp-in overflow-hidden h-full`}>
-      {head(ts(t, K + "speaking.label"), Mic)}
       <div className="p-5 sm:p-6">
         <div className="rounded-xl bg-[#f8fafc] ring-1 ring-gray-100 px-4 py-3.5 mb-4">
           <p className="text-[14px] text-[#163e64] font-medium leading-[1.7]">“{ts(t, K + "speaking.sentence")}”</p>
@@ -993,7 +1013,6 @@ function ToeflSkillPanel({ t, kind, listenOpts }: { t: TFunc; kind: number; list
   )
   return ( // ── Writing ───────────────────────────────────────────────
     <div className={`${CARD} camp-in overflow-hidden h-full`}>
-      {head(ts(t, K + "writing.label"), PenLine)}
       <div className="p-5 sm:p-6">
         <div className="rounded-xl bg-[#f8fafc] ring-1 ring-gray-100 px-4 py-3 mb-4">
           <p className="text-[12.5px] text-gray-600 leading-[1.7]">{ts(t, K + "writing.brief")}</p>
@@ -1186,12 +1205,18 @@ function Converge({ t, tools }: { t: TFunc; tools: string[] }) {
       <b className="block text-[clamp(17px,2.2vw,22px)] font-bold text-[#163e64] mb-7 text-center tracking-tight">
         {ts(t, C + "provides.oneTitle")}
       </b>
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 max-w-[620px] mx-auto">
+      {/* Hover story instead of spectacle: point at one tool and the
+          other seven step back — the section's argument ("they all live
+          in one place") acted out, not decorated. The earlier light
+          sweep + glow-shadow combination read as flashy and said
+          nothing. group/tools dims every tile on container hover; the
+          hovered one opts back to full strength. */}
+      <div className="group/tools grid grid-cols-2 sm:grid-cols-4 gap-2.5 max-w-[620px] mx-auto">
         {tools.map((x, i) => {
           const Icon = [BookOpen, ClipboardList, FileText, Send, CheckCircle2, MessageSquare, BarChart3, Users][i] ?? FileText
           return (
-            <span key={x} className="camp-shine group flex flex-col items-center gap-1.5 text-[12px] font-medium text-gray-500 bg-[#f8fafc] ring-1 ring-gray-200/80 rounded-xl px-2.5 py-3 text-center transition-all duration-300 hover:-translate-y-1 hover:bg-white hover:ring-primary/30 hover:shadow-[0_14px_28px_-16px_rgba(40,133,232,0.5)] cursor-default">
-              <Icon size={16} strokeWidth={2} className="text-gray-400 transition-colors duration-300 group-hover:text-primary" />
+            <span key={x} className="group flex flex-col items-center gap-1.5 text-[12px] font-medium text-gray-500 bg-[#f8fafc] ring-1 ring-gray-200/80 rounded-xl px-2.5 py-3 text-center transition-all duration-300 cursor-default group-hover/tools:opacity-40 hover:!opacity-100 hover:-translate-y-0.5 hover:bg-white hover:ring-primary/40">
+              <Icon size={16} strokeWidth={2} className="text-gray-400 transition-transform duration-300 group-hover:text-primary group-hover:-rotate-6 group-hover:scale-110" />
               <span className="truncate max-w-full transition-colors duration-300 group-hover:text-[#163e64]">{x}</span>
             </span>
           )
@@ -1201,7 +1226,7 @@ function Converge({ t, tools }: { t: TFunc; tools: string[] }) {
         {[77, 232, 388, 543].map((x, i) => (
           <path key={i} d={`M${x},0 C${x},30 310,22 310,56`} fill="none" stroke="#d5e2ef" strokeWidth="1.25" />
         ))}
-        <circle cx="310" cy="52" r="3" fill="#00D0AE" />
+        <circle cx="310" cy="52" r="3" fill="#00D0AE" className="camp-dot-breathe" />
       </svg>
       <div className="max-w-[620px] mx-auto rounded-xl px-5 py-4 flex flex-wrap items-center justify-center gap-3 text-white bg-gradient-to-r from-[#2C6EF1] via-[#16ADD4] to-[#00D0AE] shadow-[0_18px_36px_-18px_rgba(40,133,232,0.8)]">
         <LogoMark size={30} radius={9} />
