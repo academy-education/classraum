@@ -8451,6 +8451,12 @@
             "t": "Launch",
             "d": "Begin teaching, testing, and measuring."
           }
+        ],
+        "artefacts": [
+          "Camp dates and format set",
+          "Teachers and classes loaded",
+          "Students onboarded",
+          "First mock test live"
         ]
       },
       "cta": {
@@ -8496,7 +8502,8 @@
           "AB = PB − PA = 9 − 4 = 5"
         ],
         "trap": "Choosing 9 stops at PB and forgets to subtract PA.",
-        "askAi": "Ask Raumi about this step"
+        "askAi": "Ask Raumi about this step",
+        "whyWrong": "Why wrong:"
       },
       "skill": {
         "title": "Skill analysis",
@@ -8512,6 +8519,87 @@
       "flow": {
         "title": "The continuous improvement cycle",
         "sub": "Each stage feeds the next. Nothing is a dead end."
+      },
+      "toefl": {
+        "hero": {
+          "titleAccent": "TOEFL Camp",
+          "sub": "Turn a school vacation into a structured, measurable TOEFL programme — Reading, Listening, Speaking and Writing, all scored.",
+          "chips": [
+            "Four-skill mock tests",
+            "AI speaking grading",
+            "AI writing feedback",
+            "Band + 0–120 scoring",
+            "Adaptive modules"
+          ],
+          "usBody": "Materials, four-skill testing, AI grading of speech and essays, analytics and support."
+        },
+        "cycle": {
+          "sub": "One connected experience across all four TOEFL skills."
+        },
+        "student": {
+          "sub": "Students hear the audio, answer, then see the transcript, the band and the reason."
+        },
+        "skills": [
+          [
+            "Reading",
+            82
+          ],
+          [
+            "Listening",
+            76
+          ],
+          [
+            "Writing",
+            71
+          ],
+          [
+            "Speaking",
+            68
+          ],
+          [
+            "Vocabulary in context",
+            74
+          ],
+          [
+            "Note-taking",
+            65
+          ]
+        ],
+        "formats": [
+          {
+            "t": "Summer TOEFL camp",
+            "d": "A multi-week vacation preparation programme."
+          },
+          {
+            "t": "Winter TOEFL camp",
+            "d": "Focused preparation during the winter break."
+          },
+          {
+            "t": "Speaking intensive",
+            "d": "Recorded responses with AI grading every session."
+          },
+          {
+            "t": "Writing intensive",
+            "d": "Email and academic-discussion tasks, graded to the ETS rubric."
+          },
+          {
+            "t": "Ongoing TOEFL course",
+            "d": "Weekly preparation through the academic term."
+          },
+          {
+            "t": "Mock-test programme",
+            "d": "Full four-section tests, analysis, targeted instruction."
+          }
+        ],
+        "cta": {
+          "title": "The complete digital infrastructure for your TOEFL camp",
+          "chips": [
+            "Summer TOEFL camp",
+            "Winter TOEFL camp",
+            "Speaking intensive",
+            "Writing intensive"
+          ]
+        }
       }
     }
   },
