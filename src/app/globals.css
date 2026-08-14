@@ -667,6 +667,30 @@
    the timer was throttled, rendered at zero width — the graphic simply
    absent. Declarative keyframes fail to "no animation", never to "no
    element". All are disabled under prefers-reduced-motion. */
+/* ── The entrance, and why it is NOT hv4-fade ────────────────────────
+   hv4-fade sets opacity:0 and waits for useReveal's IntersectionObserver
+   to add .hv4-in. On /camp that left the entire page invisible below the
+   fold — Andy's report was "there is nothing below A complete SAT camp".
+   39 source usages become 74 rendered elements, many NESTED, and a child
+   inside a parent still at opacity:0 has no intersection area, so its
+   observer can never fire. The content was in the DOM the whole time.
+
+   camp-in is a plain keyframe with fill-mode both: it runs on load and
+   ends visible no matter what. Worst case is "no animation", never "no
+   content" — the same correction the About page's week bar needed. */
+   REVISION, same day: the first camp-in still animated OPACITY from 0
+   with fill-mode both. A paused animation holds its `from` state, so a
+   backgrounded tab — or any environment that throttles animations —
+   parked the whole page at opacity 0 again. Different mechanism,
+   identical symptom.
+
+   So camp-in animates TRANSFORM ONLY. Content is opaque at all times
+   and the entrance is a slide. If the animation never runs, the page is
+   simply static and fully readable. There is now no state in which this
+   page is invisible. */
+@keyframes camp-in { from { transform: translateY(14px) } to { transform: none } }
+.camp-in { animation: camp-in 0.55s ease both }
+
 @keyframes camp-float { 0%, 100% { transform: translateY(0) } 50% { transform: translateY(-7px) } }
 .camp-float { animation: camp-float 4.5s ease-in-out infinite }
 
@@ -686,4 +710,5 @@
 
 @media (prefers-reduced-motion: reduce) {
   .camp-float, .camp-loop-step, .camp-grow-x { animation: none }
+  .camp-in { animation: none; opacity: 1; transform: none }
 }
