@@ -8473,6 +8473,45 @@
         "figuresSub": "Not mock-ups. These three are live items, rendered by the same component the test session uses.",
         "answer": "Answer",
         "fromBank": "From the SAT bank"
+      },
+      "q": {
+        "tag": "Question review",
+        "meta": "Math · Geometry and Trigonometry",
+        "num": "Question 14",
+        "difficulty": "Hard",
+        "timer": "1:12",
+        "prompt": "In the figure, PT is tangent to the circle at T, and the secant from P passes through the circle at A and then B (so PA < PB). If PT = 6 and PA = 4, what is the length of AB?",
+        "opts": [
+          "3",
+          "5",
+          "9",
+          "13"
+        ],
+        "yours": "Your answer",
+        "correct": "Correct",
+        "explTitle": "Why 5 is correct",
+        "steps": [
+          "Tangent-secant: PT² = PA · PB",
+          "36 = 4 · PB, so PB = 9",
+          "AB = PB − PA = 9 − 4 = 5"
+        ],
+        "trap": "Choosing 9 stops at PB and forgets to subtract PA.",
+        "askAi": "Ask Raumi about this step"
+      },
+      "skill": {
+        "title": "Skill analysis",
+        "sub": "Where this class actually stands",
+        "strong": "Strong",
+        "watch": "Watch",
+        "weak": "Needs work"
+      },
+      "action": {
+        "title": "From data to action",
+        "sub": "What a teacher does next"
+      },
+      "flow": {
+        "title": "The continuous improvement cycle",
+        "sub": "Each stage feeds the next. Nothing is a dead end."
       }
     }
   },
