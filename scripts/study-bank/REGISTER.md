@@ -148,6 +148,36 @@ B4 is *Calibrate the reviewer before spending another cohort* (~20 minutes — o
 
 ## 5. Found while fixing
 
+### A3 is SETTLED, not open — and the task list said otherwise (2026-08-14)
+
+Andy asked me to start A3 and I agreed before reading
+CR-V6-STAGE1-RESULT.md, which ends "Not banked. Not repaired. No sixth
+attempt." I pitched it off a stale task-list entry.
+
+Five attempts, and the one encouraging number did not replicate:
+
+    cr-v1  original                       +45.1
+    cr-v3  near-miss distractors          +52.8
+    cr-v4  + varied stimulus              +22.2
+    cr-v5  cr-v4 + one ban rule           +47.2
+    cr-v6  cr-v4 held EXACTLY, fresh items +47.2
+
+A sixth attempt is the specific thing that pre-registration decided
+against. What reopens A3 is a human sitting under a calibrated
+reviewer — i.e. B4, then a Choose a Response sitting. Not more
+authoring.
+
+**Verified the mitigation actually holds** rather than trusting the
+green: reverted choose_response m1/upper so the task delivers 14 again,
+and `listening-blueprint.test.ts` failed 3 assertions including "holds
+Choose a Response at the reduced count until a rebuild passes".
+Restored, 8/8. The reduction is genuinely pinned.
+
+First attempt at that check flipped a pattern that did not exist in the
+file, and the suite passed — a green that proved nothing because
+nothing had changed. Confirm the edit landed before reading the result.
+
+
 ### CLOSED — "explanations cite option positions" is a non-issue (2026-08-14)
 
 Measured over the whole live bank (3,317 items), not sampled.
