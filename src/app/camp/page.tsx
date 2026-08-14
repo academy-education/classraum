@@ -28,6 +28,9 @@ import Footer from "@/components/shared/Footer"
 import { useTranslation } from "@/hooks/useTranslation"
 import { languages } from "@/locales"
 import { CARD, CARD_HOVER, WRAP, ts, useReveal } from "@/components/marketing/ui"
+import { PathMascot } from "@/app/mobile/study/_shared/PathMascot"
+import { QuestionGraphicView } from "@/app/mobile/study/session/[id]/test/QuestionGraphicView"
+import { SAT_SAMPLES } from "@/components/marketing/satSamples"
 
 const C = "landing.camp."
 
@@ -124,6 +127,18 @@ export default function CampPage() {
                 </span>
               ))}
             </div>
+            {/* Raumi, as in the deck. The real mascot component the app
+                ships — Rive-backed with an SVG fallback — not a picture
+                of one. `celebrate` is the state the deck's pose reads as. */}
+            <div className="hv4-fade flex items-center justify-center gap-3 mt-9">
+              <span className="camp-float shrink-0">
+                <PathMascot state="celebrate" size={76} />
+              </span>
+              <span className="text-left text-[13.5px] font-semibold text-[#163e64] bg-white ring-1 ring-gray-200 rounded-2xl rounded-bl-sm px-4 py-3 max-w-[260px] shadow-[0_8px_20px_-14px_rgba(22,62,100,0.5)]">
+                {ts(t, C + "raumi.meet")}
+              </span>
+            </div>
+
             <div className="hv4-fade flex flex-wrap justify-center gap-3 mt-8">
               <a href={INQUIRY_URL}><Button size="lg" className="text-sm sm:text-base px-6">{ts(t, C + "hero.cta")}</Button></a>
               <Link href="/features"><Button size="lg" variant="outline" className="text-sm sm:text-base px-6">{ts(t, C + "hero.ctaAlt")}</Button></Link>
@@ -179,7 +194,8 @@ export default function CampPage() {
           <h3 className="hv4-fade text-[15px] font-bold text-[#163e64] mt-9 mb-3">{ts(t, C + "cycle.loopTitle")}</h3>
           <div className="hv4-fade flex flex-wrap gap-2">
             {loop.map((l, i) => (
-              <span key={l} className="inline-flex items-center gap-2 text-[12.5px] font-bold uppercase tracking-[0.06em] text-[#163e64] bg-blue-50/70 ring-1 ring-blue-100 rounded-full px-3.5 py-2">
+              <span key={l} className="camp-loop-step inline-flex items-center gap-2 text-[12.5px] font-bold uppercase tracking-[0.06em] text-[#163e64] ring-1 ring-blue-100 rounded-full px-3.5 py-2"
+                    style={{ animationDelay: `${i * 0.8}s` }}>
                 {l}
                 {i < loop.length - 1 && <ArrowRight size={12} className="text-primary/50" />}
               </span>
@@ -314,11 +330,12 @@ export default function CampPage() {
             <div className={`${CARD} hv4-fade p-6`}>
               <h4 className="text-[15px] font-bold text-[#163e64] mb-4">{ts(t, C + "student.skillTitle")}</h4>
               <ul className="space-y-3">
-                {skills.map(([name, pct]) => (
+                {skills.map(([name, pct], i) => (
                   <li key={name} className="flex items-center gap-3">
                     <span className="text-[13px] text-gray-700 flex-1 min-w-0 truncate">{name}</span>
                     <span className="w-24 sm:w-32 h-2 rounded-full bg-gray-100 overflow-hidden shrink-0">
-                      <span className="block h-full rounded-full bg-gradient-to-r from-[#2885e8] to-[#00D0AE]" style={{ width: `${pct}%` }} />
+                      <span className="camp-grow-x block h-full rounded-full bg-gradient-to-r from-[#2885e8] to-[#00D0AE]"
+                            style={{ width: `${pct}%`, animationDelay: `${i * 90}ms` }} />
                     </span>
                     <b className="text-[12.5px] font-bold text-[#163e64] tabular-nums w-9 text-right shrink-0">{pct}%</b>
                   </li>
@@ -337,6 +354,43 @@ export default function CampPage() {
                 ))}
               </div>
             </div>
+          </div>
+        </section>
+
+        {/* ── Real figures from the bank ─────────────────────────────
+             Andy: "put some actual graphics from sat math". These are
+             three LIVE study_item_bank rows (ids in satSamples.ts),
+             drawn by QuestionGraphicView — the same component the test
+             session uses. A school looking at this is looking at what a
+             student gets, which is the only version of this section
+             worth shipping. ──────────────────────────────────────── */}
+        <section className="mb-20 md:mb-24">
+          <div className="text-center max-w-[640px] mx-auto mb-9">
+            <span className="hv4-fade block text-[12.5px] font-semibold tracking-[0.08em] text-primary mb-3">
+              {ts(t, C + "raumi.fromBank")}
+            </span>
+            <h2 className="hv4-fade text-[clamp(24px,3vw,34px)] font-bold text-[#163e64] leading-[1.16] tracking-tight">
+              {ts(t, C + "raumi.figuresTitle")}
+            </h2>
+            <p className="hv4-fade text-gray-500 leading-[1.75] mt-3">{ts(t, C + "raumi.figuresSub")}</p>
+          </div>
+          <div className="grid md:grid-cols-3 gap-4">
+            {SAT_SAMPLES.map((q, i) => (
+              <div key={q.id} className={`${CARD} ${CARD_HOVER} hv4-fade p-4 flex flex-col`} style={{ transitionDelay: `${i * 80}ms` }}>
+                <span className="text-[10.5px] font-bold uppercase tracking-[0.07em] text-primary bg-blue-50 rounded-full px-2.5 py-1 self-start mb-3">
+                  {q.domain}
+                </span>
+                <div className="rounded-xl bg-[#f8fafc] ring-1 ring-gray-100 p-3 mb-3 overflow-x-auto">
+                  <QuestionGraphicView graphic={q.graphic} />
+                </div>
+                <p className="text-[13px] text-gray-700 leading-[1.65] flex-1">
+                  {q.prompt.length > 130 ? q.prompt.slice(0, 130) + "…" : q.prompt}
+                </p>
+                <p className="text-[12px] font-semibold text-[#00806c] mt-3">
+                  {ts(t, C + "raumi.answer")} · {q.correct}
+                </p>
+              </div>
+            ))}
           </div>
         </section>
 
@@ -431,6 +485,10 @@ export default function CampPage() {
               {ctaChips.map(c => (
                 <span key={c} className="text-[12.5px] font-semibold text-primary bg-blue-50 rounded-full px-3.5 py-1.5">{c}</span>
               ))}
+            </div>
+            <div className="flex flex-col items-center gap-2 mb-7">
+              <span className="camp-float"><PathMascot state="idle" size={84} /></span>
+              <p className="text-[13px] font-semibold text-[#00806c]">{ts(t, C + "raumi.learn")}</p>
             </div>
             <p className="text-[15px] font-bold text-[#163e64] mb-7">{ts(t, C + "cta.tagline")}</p>
             <div className="flex flex-wrap justify-center gap-3">
