@@ -19,10 +19,10 @@
  * places. They must not be quietly promoted to "results".
  */
 
-import { useState } from "react"
+import { useState, useRef, useEffect } from "react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import { Check, ArrowRight, ArrowDown, ArrowLeft, Plus, Calendar, BookOpen, FileText, BarChart3, Target, Send, MessageSquare, CheckCircle2, ClipboardList, Sparkles, Users, School, Bot, TrendingUp, Zap, GraduationCap, Rocket, ShieldCheck, Timer, PieChart } from "lucide-react"
+import { Check, ArrowRight, ArrowDown, ArrowLeft, Plus, Calendar, BookOpen, FileText, BarChart3, Target, Send, MessageSquare, CheckCircle2, Play, Mic, Headphones, PenLine, ClipboardList, Sparkles, Users, School, Bot, TrendingUp, Zap, GraduationCap, Rocket, ShieldCheck, Timer, PieChart } from "lucide-react"
 import Header from "@/components/shared/Header"
 import Footer from "@/components/shared/Footer"
 import { useTranslation } from "@/hooks/useTranslation"
@@ -67,6 +67,8 @@ const WHY_TONE = [
 export default function CampPage() {
   const { t, language } = useTranslation()
   const [tab, setTab] = useState<"sat" | "toefl">("sat")
+  // TOEFL is four skills; the demo lets a school flip through them.
+  const [skill, setSkill] = useState(0)
 
   // Arrays come straight off the locale object — t() flattens them.
   const L = languages[language] as unknown as Record<string, never>
@@ -85,6 +87,7 @@ export default function CampPage() {
    * the dashboard, the partnership model — stays identical, because
    * pretending otherwise would be marketing invention. */
   const isToefl = tab === "toefl"
+  useEffect(() => { setSkill(0) }, [tab])
   const o = <T,>(path: string): T => (isToefl ? (g<T>("toefl." + path) ?? g<T>(path)) : g<T>(path))
 
   const heroChips = o<string[]>("hero.chips")
@@ -111,6 +114,7 @@ export default function CampPage() {
   const keyIdx = isToefl ? 2 : 1
   const pickIdx = isToefl ? 1 : 2
   const QK = isToefl ? C + "toefl.q." : C + "q."
+  const toeflTabs = g<string[]>("toefl.skillsDemo.tabs")
   const qSteps = g<string[]>("q.steps")
 
   return (
@@ -233,9 +237,10 @@ export default function CampPage() {
         </div>
       </header>
 
-      <main className={WRAP}>
+      <main>
         {/* ── The cycle ──────────────────────────────────────────── */}
-        <section className="mb-28 md:mb-36">
+        <section className="py-14 sm:py-20 border-t border-gray-100 bg-white">
+        <div className={WRAP}>
           <SectionHead t={t} eyebrow={C + "cycle.eyebrow"} title={C + "cycle.title"} sub={C + "cycle.sub"} />
           {/* The four stages carry their own colour and are physically
               CONNECTED: 1→2 across the top, 2→3 down the right edge,
@@ -283,10 +288,12 @@ export default function CampPage() {
 
           <FlowCycle t={t} steps={loop} />
           <Statement t={t} k={C + "cycle.quote"} />
+        </div>
         </section>
 
         {/* ── Admin dashboard ────────────────────────────────────── */}
-        <section className="mb-28 md:mb-36">
+        <section className="py-14 sm:py-20 border-t border-gray-100 bg-[#f8fafc] border-y border-gray-100">
+        <div className={WRAP}>
           <SectionHead t={t} eyebrow={C + "dash.eyebrow"} title={C + "dash.title"} sub={C + "dash.sub"} />
           <div className={`${CARD} camp-in overflow-hidden`}>
             <div className="flex items-center gap-1.5 px-4 py-2.5 border-b border-gray-100 bg-[#f8fafc]">
@@ -384,16 +391,41 @@ export default function CampPage() {
               )
             })}
           </div>
+        </div>
         </section>
 
         {/* ── Student experience ─────────────────────────────────── */}
-        <section className="mb-28 md:mb-36">
+        <section className="py-14 sm:py-20 border-t border-gray-100 bg-white">
+        <div className={WRAP}>
           <SectionHead t={t} eyebrow={C + "student.eyebrow"} title={C + "student.title"} sub={C + "student.sub"} />
           {/* The real test surface: the geometry item's own figure, its own
               four options, its own worked explanation. The stem is bank
               row 1032e3e7 — a hard tangent-secant question, not "3x + 5
               = 20". Andy asked for a harder, real one and for this to
               look like the actual session. */}
+          {/* TOEFL is not one question type. The skill bar flips the demo
+              between the four sections a real TOEFL sitting has — reading
+              with a passage, listening behind an audio player, speaking
+              into a microphone, writing into an editor. Each panel is
+              built from a real bank row (ids in the footer) and mirrors
+              the session component for that task. */}
+          {isToefl && (
+            <div className="camp-in flex flex-wrap gap-2 mb-4">
+              {toeflTabs.map((label, i) => {
+                const Icon = [BookOpen, Headphones, Mic, PenLine][i]
+                return (
+                  <button key={label} type="button" onClick={() => setSkill(i)} aria-pressed={skill === i}
+                    className={`inline-flex items-center gap-1.5 text-[12.5px] font-semibold rounded-full px-3.5 py-1.5 transition-colors ${
+                      skill === i ? "bg-[#163e64] text-white" : "bg-white text-gray-500 ring-1 ring-gray-200 hover:text-primary"}`}>
+                    <Icon size={13} /> {label}
+                  </button>
+                )
+              })}
+            </div>
+          )}
+          {isToefl && skill > 0 ? (
+            <ToeflSkillPanel t={t} kind={skill} listenOpts={g<string[]>("toefl.skillsDemo.listening.opts")} />
+          ) : (
           <div className={`${CARD} camp-in overflow-hidden`}>
             <div className="flex items-center justify-between gap-3 px-5 py-3 border-b border-gray-100 bg-[#f8fafc]">
               <span className="flex items-center gap-2.5 min-w-0">
@@ -484,14 +516,13 @@ export default function CampPage() {
                 <div className="rounded-xl bg-amber-50 ring-1 ring-amber-200 px-3.5 py-3 mb-4">
                   <p className="text-[12.5px] text-amber-900 leading-[1.6]">{ts(t, QK + "trap")}</p>
                 </div>
-                <span className="inline-flex items-center gap-2 text-[12.5px] font-semibold text-primary bg-blue-50 rounded-full px-3.5 py-2">
-                  <Sparkles size={13} /> {ts(t, C + "q.askAi")}
-                </span>
+                <RaumiAsk t={t} answerKey={isToefl ? C + "toefl.q.raumiAnswer" : C + "q.raumiAnswer"} />
               </div>
             </div>
           </div>
+          )}
           <p className="camp-in text-[12px] text-gray-400 mt-3">
-            {ts(t, C + "raumi.fromBank")} · {isToefl ? "6a165b4f" : SAT_SAMPLES[0].id.slice(0, 8)}
+            {ts(t, C + "raumi.fromBank")} · {isToefl ? ["6a165b4f", "21f53cc4", "c46869d1", "f6fb9a64"][skill] : SAT_SAMPLES[0].id.slice(0, 8)}
           </p>
 
           <div className="grid lg:grid-cols-2 gap-4 mt-6">
@@ -546,6 +577,7 @@ export default function CampPage() {
               </div>
             </div>
           </div>
+        </div>
         </section>
 
         {/* ── Real figures from the bank ─────────────────────────────
@@ -555,12 +587,13 @@ export default function CampPage() {
              session uses. A school looking at this is looking at what a
              student gets, which is the only version of this section
              worth shipping. ──────────────────────────────────────── */}
-        {!isToefl && <section className="mb-28 md:mb-36">
+        {!isToefl && <section className="py-14 sm:py-20 border-t border-gray-100 bg-[#f8fafc] border-y border-gray-100">
+        <div className={WRAP}>
           <div className="text-center max-w-[640px] mx-auto mb-9">
             <span className="camp-in block text-[12.5px] font-semibold tracking-[0.08em] text-primary mb-3">
               {ts(t, C + "raumi.fromBank")}
             </span>
-            <h2 className="camp-in text-[clamp(24px,3vw,34px)] font-bold text-[#163e64] leading-[1.16] tracking-tight">
+            <h2 className="camp-in text-[clamp(24px,2.8vw,32px)] font-bold text-[#163e64] leading-[1.16] tracking-tight">
               {ts(t, C + "raumi.figuresTitle")}
             </h2>
             <p className="camp-in text-gray-500 leading-[1.75] mt-3">{ts(t, C + "raumi.figuresSub")}</p>
@@ -583,10 +616,12 @@ export default function CampPage() {
               </div>
             ))}
           </div>
+        </div>
         </section>}
 
         {/* ── What we provide — the night band ───────────────────── */}
-        <section className="mb-28 md:mb-36">
+        <section className="py-14 sm:py-20 border-t border-gray-100 bg-white">
+        <div className={WRAP}>
           <SectionHead t={t} eyebrow={C + "provides.eyebrow"} title={C + "provides.title"} sub={C + "provides.sub"} />
           {/* Was white/85 text on a dark band — Andy: "horrible
               visibility". A ten-item checklist is a READING task, and
@@ -631,7 +666,7 @@ export default function CampPage() {
             </div>
           </div>
 
-          <h3 className="camp-in text-[17px] font-bold text-[#163e64] mt-10 mb-4">{ts(t, C + "provides.whyTitle")}</h3>
+          <h3 className="camp-in text-[clamp(18px,2vw,22px)] font-bold text-[#163e64] mt-12 mb-5">{ts(t, C + "provides.whyTitle")}</h3>
           <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-3">
             {why.map((w, i) => (
               <div key={w.t} className={`${CARD} ${CARD_HOVER} camp-in p-5 relative overflow-hidden`} style={{ animationDelay: `${i * 50}ms` }}>
@@ -646,10 +681,12 @@ export default function CampPage() {
           </div>
 
           <Converge t={t} tools={onePlatform} />
+        </div>
         </section>
 
         {/* ── Partnership model ──────────────────────────────────── */}
-        <section className="mb-28 md:mb-36">
+        <section className="py-14 sm:py-20 border-t border-gray-100 bg-[#f8fafc] border-y border-gray-100">
+        <div className={WRAP}>
           <SectionHead t={t} eyebrow={C + "model.eyebrow"} title={C + "model.title"} sub={C + "model.sub"} />
           <h3 className="camp-in text-[17px] font-bold text-[#163e64] mb-4">{ts(t, C + "model.formatsTitle")}</h3>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -668,8 +705,9 @@ export default function CampPage() {
           </div>
           <Statement t={t} k={C + "model.quote"} />
 
-          <h3 className="camp-in text-[17px] font-bold text-[#163e64] mt-12 mb-6 text-center">{ts(t, C + "model.stepsTitle")}</h3>
+          <h3 className="camp-in text-[clamp(18px,2vw,22px)] font-bold text-[#163e64] mt-14 mb-7 text-center">{ts(t, C + "model.stepsTitle")}</h3>
           <WorkflowDiamond steps={implSteps} artefacts={STEP_ARTEFACT} />
+        </div>
         </section>
 
         {/* ── CTA ─────────────────────────────────────────────────────
@@ -678,7 +716,8 @@ export default function CampPage() {
              panel: the night band earns its place at the END of a long
              white page, Raumi anchors the left, and the ask sits alone
              on the right with the formats as quiet supporting chips. */}
-        <section className="pb-24">
+        <section className="py-16 sm:py-20 border-t border-gray-100">
+        <div className={WRAP}>
           {/* The glow blobs had hard radial edges and the three-stop
               gradient banded through #10315a. One smooth two-stop ramp,
               and the blobs are bigger, dimmer, blurred and pushed
@@ -723,6 +762,7 @@ export default function CampPage() {
               </div>
             </div>
           </div>
+        </div>
         </section>
       </main>
 
@@ -735,6 +775,80 @@ export default function CampPage() {
  * marketing section on this site uses. */
 /* A small circled arrow that sits on the seam between two cycle cards.
  * Positioned by the caller; purely decorative, hidden from readers. */
+/* ── The figure follows the mouse in 3D ──────────────────────────────
+ * perspective + rotateX/rotateY from the cursor position, capped at
+ * ±7°, eased back on leave. Mouse-only by construction (mousemove does
+ * not fire on touch), and nothing is hidden if it never runs — the
+ * figure just sits flat. */
+function Tilt({ className = "", children }: { className?: string; children: React.ReactNode }) {
+  const ref = useRef<HTMLDivElement>(null)
+  const onMove = (e: React.MouseEvent) => {
+    const el = ref.current
+    if (!el) return
+    const r = el.getBoundingClientRect()
+    const px = (e.clientX - r.left) / r.width - 0.5
+    const py = (e.clientY - r.top) / r.height - 0.5
+    el.style.transform = `perspective(900px) rotateX(${(-py * 7).toFixed(2)}deg) rotateY(${(px * 7).toFixed(2)}deg)`
+  }
+  const onLeave = () => { if (ref.current) ref.current.style.transform = "perspective(900px)" }
+  return (
+    <div ref={ref} onMouseMove={onMove} onMouseLeave={onLeave}
+         className={`transition-transform duration-200 ease-out will-change-transform ${className}`}
+         style={{ transform: "perspective(900px)" }}>
+      {children}
+    </div>
+  )
+}
+
+/* ── "Ask Raumi about this step" ─────────────────────────────────────
+ * A demo of the interaction, not a model call: clicking types out a
+ * pre-written explanation of THIS item's first step, with a short
+ * typing indicator first. The text is a correct explanation of a real
+ * bank item, authored ahead of time — the page never pretends to run
+ * inference it is not running. */
+function RaumiAsk({ t, answerKey }: { t: TFunc; answerKey: string }) {
+  const [phase, setPhase] = useState<"idle" | "typing" | "answer">("idle")
+  const [shown, setShown] = useState(0)
+  const full = ts(t, answerKey)
+  useEffect(() => {
+    if (phase !== "answer") return
+    if (shown >= full.length) return
+    const id = setInterval(() => setShown(n => Math.min(n + 3, full.length)), 24)
+    return () => clearInterval(id)
+  }, [phase, shown, full.length])
+  // a tab switch swaps the answer text — reset so the reveal restarts
+  useEffect(() => { setPhase("idle"); setShown(0) }, [answerKey])
+  if (phase === "idle") return (
+    <button type="button"
+      onClick={() => { setPhase("typing"); setTimeout(() => setPhase("answer"), 700) }}
+      className="inline-flex items-center gap-2 text-[12.5px] font-semibold text-primary bg-blue-50 hover:bg-blue-100 transition-colors rounded-full px-3.5 py-2">
+      <Sparkles size={13} /> {ts(t, C + "q.askAi")}
+    </button>
+  )
+  return (
+    <div className="flex items-start gap-2.5">
+      <span className="shrink-0 mt-0.5"><PathMascot state={phase === "typing" ? "thinking" : "idle"} size={32} /></span>
+      <div className="flex-1 min-w-0 rounded-2xl rounded-tl-sm bg-blue-50/70 ring-1 ring-blue-100 px-3.5 py-2.5">
+        {phase === "typing" ? (
+          <span className="inline-flex items-center gap-1.5 text-[12px] text-gray-500">
+            {ts(t, C + "q.typing")}
+            <span className="inline-flex gap-0.5">
+              {[0, 1, 2].map(i => (
+                <span key={i} className="w-1 h-1 rounded-full bg-primary/60 animate-bounce" style={{ animationDelay: `${i * 150}ms` }} />
+              ))}
+            </span>
+          </span>
+        ) : (
+          <p className="text-[13px] text-gray-700 leading-[1.75]">
+            {full.slice(0, shown)}
+            {shown < full.length && <span className="inline-block w-0.5 h-3.5 bg-primary/70 align-middle ml-0.5 animate-pulse" />}
+          </p>
+        )}
+      </div>
+    </div>
+  )
+}
+
 function FlowJoin({ dir, className = "" }: { dir: "right" | "down" | "left"; className?: string }) {
   const Icon = dir === "right" ? ArrowRight : dir === "down" ? ArrowDown : ArrowLeft
   return (
@@ -777,7 +891,9 @@ function WorkflowDiamond({ steps, artefacts }: { steps: Tile[]; artefacts: strin
     <div className="camp-in">
       {/* diamond, sm and up */}
       <div className="hidden sm:block relative max-w-[560px] h-[340px] mx-auto">
-        <svg viewBox="0 0 560 340" className="absolute inset-0 w-full h-full" aria-hidden>
+        {/* z-[2] + pointer-events-none: the arcs ride OVER the cards so
+            the rotation is never clipped by a card edge. */}
+        <svg viewBox="0 0 560 340" className="absolute inset-0 w-full h-full z-[2] pointer-events-none" aria-hidden>
           <defs>
             <marker id="wfArrow" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto">
               <path d="M0,0 L10,5 L0,10 z" fill="#2885e8" opacity="0.55" />
@@ -799,11 +915,102 @@ function WorkflowDiamond({ steps, artefacts }: { steps: Tile[]; artefacts: strin
   )
 }
 
+/* ── The other three TOEFL skills, demoed on their own terms ─────────
+ * Listening hides its transcript behind a player, Speaking records
+ * into a microphone, Writing goes into an editor with a word count —
+ * because that is how the session actually delivers them. The speaking
+ * record button is a copy of VoiceRecorder's live state (rose, ping
+ * dot, mono timer), and each panel's content is a live bank row. */
+function ToeflSkillPanel({ t, kind, listenOpts }: { t: TFunc; kind: number; listenOpts: string[] }) {
+  const K = C + "toefl.skillsDemo."
+  if (kind === 1) return ( // ── Listening ─────────────────────────────
+    <div className={`${CARD} camp-in overflow-hidden`}>
+      <div className="px-5 py-3 border-b border-gray-100 bg-[#f8fafc] text-[12px] font-bold text-[#163e64]">
+        {ts(t, K + "listening.label")}
+      </div>
+      <div className="p-5 sm:p-6">
+        <div className="flex items-center gap-3 rounded-xl bg-[#0b2138] px-4 py-3.5 mb-2 text-white">
+          <span className="w-10 h-10 rounded-full bg-white/15 flex items-center justify-center shrink-0">
+            <Play size={16} fill="currentColor" />
+          </span>
+          <span className="flex-1 h-1.5 rounded-full bg-white/20 overflow-hidden">
+            <span className="block h-full w-[60%] rounded-full bg-gradient-to-r from-[#2885e8] to-[#00D0AE]" />
+          </span>
+          <span className="text-[11.5px] font-mono tabular-nums opacity-90 shrink-0">{ts(t, K + "listening.time")}</span>
+        </div>
+        <p className="text-[11.5px] text-gray-400 mb-4">{ts(t, K + "listening.note")}</p>
+        <p className="text-[14px] font-semibold text-[#163e64] leading-[1.6] mb-3">{ts(t, K + "listening.prompt")}</p>
+        <div className="space-y-1.5">
+          {listenOpts.map((o, i) => (
+            <div key={i} className={`px-3 py-2 rounded-xl text-xs ring-1 ${
+              i === 1 ? "bg-emerald-50 text-emerald-900 ring-emerald-200/70" : "bg-gray-50 text-gray-700 ring-gray-200/50"}`}>
+              <b className="font-bold mr-1.5">{"ABCD"[i]}.</b>{o}
+              {i === 1 && <span className="ml-2 font-semibold">{ts(t, C + "q.correct")}</span>}
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  )
+  if (kind === 2) return ( // ── Speaking ──────────────────────────────
+    <div className={`${CARD} camp-in overflow-hidden`}>
+      <div className="px-5 py-3 border-b border-gray-100 bg-[#f8fafc] text-[12px] font-bold text-[#163e64]">
+        {ts(t, K + "speaking.label")}
+      </div>
+      <div className="p-5 sm:p-6 max-w-[560px]">
+        <div className="rounded-xl bg-[#f8fafc] ring-1 ring-gray-100 px-4 py-3.5 mb-4">
+          <p className="text-[14px] text-[#163e64] font-medium leading-[1.7]">“{ts(t, K + "speaking.sentence")}”</p>
+        </div>
+        {/* VoiceRecorder's live state, verbatim styling */}
+        <div className="w-full h-14 rounded-2xl bg-rose-600 text-white inline-flex items-center justify-center gap-3 shadow-[0_2px_6px_-2px_rgba(220,38,38,0.35)] mb-1.5">
+          <span className="relative inline-flex w-3 h-3">
+            <span className="absolute inset-0 rounded-full bg-white/70 animate-ping" />
+            <span className="relative inline-flex w-3 h-3 rounded-full bg-white" />
+          </span>
+          <span className="text-[15px] font-semibold">{ts(t, K + "speaking.recording")}</span>
+          <span className="text-[14px] font-mono tabular-nums opacity-90">{ts(t, K + "speaking.timer")}</span>
+        </div>
+        <p className="text-center text-[11.5px] text-gray-400 mb-4">{ts(t, K + "speaking.stop")}</p>
+        <div className="flex items-center justify-between gap-3 rounded-xl bg-white ring-1 ring-gray-100 px-4 py-3">
+          <p className="text-[12.5px] text-gray-600 leading-[1.6] flex-1">{ts(t, K + "speaking.result")}</p>
+          <span className="text-[11.5px] font-bold text-[#00806c] bg-[#00D0AE]/15 rounded-full px-2.5 py-1 whitespace-nowrap shrink-0">
+            {ts(t, K + "speaking.band")}
+          </span>
+        </div>
+      </div>
+    </div>
+  )
+  return ( // ── Writing ───────────────────────────────────────────────
+    <div className={`${CARD} camp-in overflow-hidden`}>
+      <div className="px-5 py-3 border-b border-gray-100 bg-[#f8fafc] text-[12px] font-bold text-[#163e64]">
+        {ts(t, K + "writing.label")}
+      </div>
+      <div className="p-5 sm:p-6">
+        <div className="rounded-xl bg-amber-50/60 ring-1 ring-amber-100 px-4 py-3 mb-4">
+          <p className="text-[12.5px] text-amber-900 leading-[1.7]">{ts(t, K + "writing.brief")}</p>
+        </div>
+        <div className="rounded-xl ring-1 ring-gray-200 bg-white px-4 py-3.5 min-h-[108px] mb-2">
+          <p className="text-[13.5px] text-gray-700 leading-[1.8]">
+            {ts(t, K + "writing.draft")}
+            <span className="inline-block w-0.5 h-4 bg-primary/70 align-middle ml-0.5 animate-pulse" />
+          </p>
+        </div>
+        <div className="flex items-center justify-between gap-3">
+          <span className="text-[11.5px] text-gray-400 tabular-nums">{ts(t, K + "writing.words")}</span>
+          <span className="inline-flex items-center gap-1.5 text-[11.5px] font-semibold text-primary bg-blue-50 rounded-full px-3 py-1.5">
+            <Sparkles size={12} /> {ts(t, K + "writing.feedback")}
+          </span>
+        </div>
+      </div>
+    </div>
+  )
+}
+
 function SectionHead({ t, eyebrow, title, sub }: { t: TFunc; eyebrow: string; title: string; sub: string }) {
   return (
     <div className="text-center max-w-[680px] mx-auto mb-9">
       <span className="camp-in block text-[12.5px] font-semibold tracking-[0.08em] text-primary mb-3">{ts(t, eyebrow)}</span>
-      <h2 className="camp-in text-[clamp(24px,3vw,34px)] font-bold text-[#163e64] leading-[1.16] tracking-tight">{ts(t, title)}</h2>
+      <h2 className="camp-in text-[clamp(24px,2.8vw,32px)] font-bold text-[#163e64] leading-[1.16] tracking-tight">{ts(t, title)}</h2>
       <p className="camp-in text-gray-500 leading-[1.75] mt-3">{ts(t, sub)}</p>
     </div>
   )
@@ -885,18 +1092,18 @@ function Statement({ t, k }: { t: TFunc; k: string }) {
  * y=12 and y=368, inside the box with room to spare. */
 function FlowCycle({ t, steps }: { t: TFunc; steps: string[] }) {
   const N = steps.length
-  const R = 150, CX = 280, CY = 190, NODE_W = 92, NODE_H = 42
+  const R = 150, CX = 280, CY = 190, NODE_W = 110, NODE_H = 48
   const pos = (i: number) => {
     const a = (i / N) * 2 * Math.PI - Math.PI / 2
     return { x: CX + R * Math.cos(a), y: CY + R * Math.sin(a) }
   }
   return (
     <div className="camp-in mt-12">
-      <div className="text-center mb-7">
-        <h3 className="text-[17px] font-bold text-[#163e64]">{ts(t, C + "flow.title")}</h3>
-        <p className="text-[13.5px] text-gray-500 mt-1.5">{ts(t, C + "flow.sub")}</p>
+      <div className="text-center mb-8">
+        <h3 className="text-[clamp(20px,2.4vw,28px)] font-bold text-[#163e64] tracking-tight">{ts(t, C + "flow.title")}</h3>
+        <p className="text-[15px] text-gray-500 mt-2">{ts(t, C + "flow.sub")}</p>
       </div>
-      <div className="mx-auto max-w-[560px]">
+      <Tilt className="mx-auto max-w-[560px]">
         <svg viewBox="0 0 560 400" className="w-full" role="img"
              aria-label={ts(t, C + "flow.title") + ": " + steps.join(" → ")}>
           <defs>
@@ -923,10 +1130,10 @@ function FlowCycle({ t, steps }: { t: TFunc; steps: string[] }) {
             <rect x={CX - 62} y={CY - 32} width="124" height="64" rx="16" fill="#fff" stroke="#e6edf5" />
           </g>
           <text x={CX} y={CY - 6} textAnchor="middle"
-                style={{ fontSize: 11.5, fontWeight: 800, letterSpacing: "0.06em", fill: "#163e64" }}>
+                style={{ fontSize: 14, fontWeight: 800, letterSpacing: "0.06em", fill: "#163e64" }}>
             CLASSRAUM
           </text>
-          <text x={CX} y={CY + 12} textAnchor="middle" style={{ fontSize: 10, fontWeight: 600, fill: "#8aa0b5" }}>
+          <text x={CX} y={CY + 12} textAnchor="middle" style={{ fontSize: 11.5, fontWeight: 600, fill: "#8aa0b5" }}>
             {"\u0053AT Camp"}
           </text>
 
@@ -939,20 +1146,20 @@ function FlowCycle({ t, steps }: { t: TFunc; steps: string[] }) {
                   <rect x={x - NODE_W / 2} y={y - NODE_H / 2} width={NODE_W} height={NODE_H}
                         rx="12" fill="#fff" stroke="#e6edf5" />
                 </g>
-                <circle cx={x - NODE_W / 2 + 17} cy={y} r="10" fill="url(#campRing)" opacity="0.14" />
-                <text x={x - NODE_W / 2 + 17} y={y + 3.5} textAnchor="middle"
-                      style={{ fontSize: 9, fontWeight: 800, fill: "#2885e8" }}>
+                <circle cx={x - NODE_W / 2 + 19} cy={y} r="11" fill="url(#campRing)" opacity="0.14" />
+                <text x={x - NODE_W / 2 + 19} y={y + 4} textAnchor="middle"
+                      style={{ fontSize: 10.5, fontWeight: 800, fill: "#2885e8" }}>
                   {i + 1}
                 </text>
-                <text x={x + 6} y={y + 4} textAnchor="middle"
-                      style={{ fontSize: 11, fontWeight: 700, fill: "#163e64" }}>
+                <text x={x + 8} y={y + 4.5} textAnchor="middle"
+                      style={{ fontSize: 13, fontWeight: 700, fill: "#163e64" }}>
                   {label}
                 </text>
               </g>
             )
           })}
         </svg>
-      </div>
+      </Tilt>
     </div>
   )
 }
@@ -974,9 +1181,9 @@ function Converge({ t, tools }: { t: TFunc; tools: string[] }) {
         {tools.map((x, i) => {
           const Icon = [BookOpen, ClipboardList, FileText, Send, CheckCircle2, MessageSquare, BarChart3, Users][i] ?? FileText
           return (
-            <span key={x} className="flex flex-col items-center gap-1.5 text-[12px] font-medium text-gray-500 bg-[#f8fafc] ring-1 ring-gray-200/80 rounded-xl px-2.5 py-3 text-center">
-              <Icon size={16} strokeWidth={2} className="text-gray-400" />
-              <span className="truncate max-w-full">{x}</span>
+            <span key={x} className="camp-shine group flex flex-col items-center gap-1.5 text-[12px] font-medium text-gray-500 bg-[#f8fafc] ring-1 ring-gray-200/80 rounded-xl px-2.5 py-3 text-center transition-all duration-300 hover:-translate-y-1 hover:bg-white hover:ring-primary/30 hover:shadow-[0_14px_28px_-16px_rgba(40,133,232,0.5)] cursor-default">
+              <Icon size={16} strokeWidth={2} className="text-gray-400 transition-colors duration-300 group-hover:text-primary" />
+              <span className="truncate max-w-full transition-colors duration-300 group-hover:text-[#163e64]">{x}</span>
             </span>
           )
         })}
@@ -1028,10 +1235,12 @@ function ActionVignette({ kind }: { kind: number }) {
     </svg>)
 }
 
-/* ── Glyphs for "Why schools use Classraum" ──────────────────────────
- * Second pass. The first set was hand-drawn and it showed — tick marks,
- * uneven stems. These are geometric: every glyph is built from at most
- * three primitives on the same 2.4px round-capped stroke, one gradient. */
+/* ── Glyphs for "Why schools use Classraum", third pass ──────────────
+ * "Too basic." Each is now a small two-layer illustration: a soft
+ * tinted disc for depth, a slate secondary shape for context, and the
+ * brand-gradient subject on top — a rocket mid-launch, a stack signed
+ * off, an arrow in the bull's-eye, a bubble answering with a bolt, a
+ * chart climbing past its flag. Still SVG, still no icon font. */
 function WhyGlyph({ kind }: { kind: number }) {
   const id = `wg${kind}`
   const g = (
@@ -1041,32 +1250,41 @@ function WhyGlyph({ kind }: { kind: number }) {
       </linearGradient>
     </defs>
   )
-  const P = { fill: "none", stroke: `url(#${id})`, strokeWidth: 2.4,
-              strokeLinecap: "round" as const, strokeLinejoin: "round" as const }
-  if (kind === 0) return ( // launch faster: one clean ascent
-    <svg viewBox="0 0 44 40" className="w-10 h-9" aria-hidden>{g}
-      <path d="M7 32 C17 32 25 26 33 12" {...P} />
-      <path d="M25 11 H34 V20" {...P} />
+  const grad = `url(#${id})`
+  const disc = <circle cx="24" cy="22" r="19" fill={grad} opacity="0.09" />
+  if (kind === 0) return ( // launch faster — rocket mid-flight
+    <svg viewBox="0 0 48 44" className="w-11 h-10" aria-hidden>{g}{disc}
+      <path d="M10 36 L16 30 M8 30 L12 26" stroke="#c7d6e8" strokeWidth="2.2" strokeLinecap="round" />
+      <path d="M27 8 C33 10 37 16 37 22 L31 28 C25 28 19 24 17 18 Z" fill={grad} opacity="0.92" />
+      <circle cx="28.5" cy="16.5" r="3" fill="#fff" />
+      <path d="M18 27 L14 31 L21 30 Z" fill={grad} opacity="0.55" />
     </svg>)
-  if (kind === 1) return ( // reduce admin: three streams, one line out
-    <svg viewBox="0 0 44 40" className="w-10 h-9" aria-hidden>{g}
-      <path d="M6 10 H16 C24 10 24 20 30 20" {...P} strokeWidth={2} stroke="#c7d6e8" />
-      <path d="M6 30 H16 C24 30 24 20 30 20" {...P} strokeWidth={2} stroke="#c7d6e8" />
-      <path d="M6 20 H38" {...P} />
+  if (kind === 1) return ( // reduce admin — the stack, signed off
+    <svg viewBox="0 0 48 44" className="w-11 h-10" aria-hidden>{g}{disc}
+      <rect x="11" y="9" width="20" height="26" rx="3" fill="#fff" stroke="#c7d6e8" strokeWidth="1.8" />
+      <rect x="15" y="6" width="20" height="26" rx="3" fill="#fff" stroke="#c7d6e8" strokeWidth="1.8" />
+      <path d="M20 14 h10 M20 19 h10 M20 24 h6" stroke="#dbe4ee" strokeWidth="1.8" strokeLinecap="round" />
+      <circle cx="33" cy="30" r="7.5" fill={grad} />
+      <path d="M29.5 30 l2.4 2.6 4.6-5.2" stroke="#fff" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" />
     </svg>)
-  if (kind === 2) return ( // target instruction: concentric focus
-    <svg viewBox="0 0 44 40" className="w-10 h-9" aria-hidden>{g}
-      <circle cx="22" cy="20" r="12" {...P} strokeWidth={2} stroke="#c7d6e8" />
-      <circle cx="22" cy="20" r="6.5" {...P} />
-      <circle cx="22" cy="20" r="1.8" fill={`url(#${id})`} stroke="none" />
+  if (kind === 2) return ( // target instruction — arrow in the bull's-eye
+    <svg viewBox="0 0 48 44" className="w-11 h-10" aria-hidden>{g}{disc}
+      <circle cx="22" cy="24" r="12" fill="#fff" stroke="#c7d6e8" strokeWidth="2" />
+      <circle cx="22" cy="24" r="6.5" fill="none" stroke={grad} strokeWidth="2.2" />
+      <circle cx="22" cy="24" r="2" fill={grad} />
+      <path d="M22 24 L36 10 M32 10 h4 v4" stroke={grad} strokeWidth="2.2" fill="none" strokeLinecap="round" strokeLinejoin="round" />
     </svg>)
-  if (kind === 3) return ( // fast feedback: out and straight back
-    <svg viewBox="0 0 44 40" className="w-10 h-9" aria-hidden>{g}
-      <path d="M8 14 H28 A6 6 0 0 1 28 26 H14" {...P} />
-      <path d="M19 21 L14 26 L19 31" {...P} />
+  if (kind === 3) return ( // fast feedback — the bubble answers with a bolt
+    <svg viewBox="0 0 48 44" className="w-11 h-10" aria-hidden>{g}{disc}
+      <path d="M10 12 a5 5 0 0 1 5-5 h18 a5 5 0 0 1 5 5 v13 a5 5 0 0 1-5 5 H22 l-7 6 v-6 h0 a5 5 0 0 1-5-5 Z" fill="#fff" stroke="#c7d6e8" strokeWidth="1.8" />
+      <path d="M26 10 L20 20 h4.5 L22.5 28 L30 17.5 h-4.5 Z" fill={grad} />
     </svg>)
-  return ( // measure progress: the staircase up
-    <svg viewBox="0 0 44 40" className="w-10 h-9" aria-hidden>{g}
-      <path d="M6 32 H16 V23 H26 V14 H36 V8" {...P} />
+  return ( // measure progress — bars past the flagged target
+    <svg viewBox="0 0 48 44" className="w-11 h-10" aria-hidden>{g}{disc}
+      <path d="M8 14 H40" stroke="#c7d6e8" strokeWidth="1.6" strokeDasharray="3 3" />
+      <rect x="11" y="28" width="7" height="8" rx="2.5" fill="#c7d6e8" />
+      <rect x="21" y="22" width="7" height="14" rx="2.5" fill={grad} opacity="0.55" />
+      <rect x="31" y="10" width="7" height="26" rx="2.5" fill={grad} />
+      <circle cx="34.5" cy="10" r="2.6" fill="#fff" stroke={grad} strokeWidth="1.8" />
     </svg>)
 }

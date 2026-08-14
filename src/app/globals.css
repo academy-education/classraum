@@ -712,3 +712,14 @@
   .camp-float, .camp-loop-step, .camp-grow-x { animation: none }
   .camp-in { animation: none; opacity: 1; transform: none }
 }
+
+/* Shine sweep for the /camp tool tiles — a light band crosses on hover.
+   Pure CSS pseudo-element; nothing is hidden when it never runs. */
+.camp-shine { position: relative; overflow: hidden }
+.camp-shine::after {
+  content: ""; position: absolute; top: 0; bottom: 0; left: -75%; width: 50%;
+  background: linear-gradient(105deg, transparent, rgba(255,255,255,0.75), transparent);
+  transform: skewX(-20deg); transition: left 0.55s ease; pointer-events: none;
+}
+.camp-shine:hover::after { left: 125% }
+@media (prefers-reduced-motion: reduce) { .camp-shine::after { display: none } }

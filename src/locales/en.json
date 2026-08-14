@@ -8503,7 +8503,9 @@
         ],
         "trap": "Choosing 9 stops at PB and forgets to subtract PA.",
         "askAi": "Ask Raumi about this step",
-        "whyWrong": "Why wrong:"
+        "whyWrong": "Why wrong:",
+        "raumiAnswer": "Sure! Step 1 is the tangent–secant relationship: because PT touches the circle at exactly one point, PT² = PA × PB. Plug in what we know — 36 = 4 × PB — so PB = 9. And AB is just the part of the secant inside the circle: PB − PA = 9 − 4 = 5.",
+        "typing": "Raumi is typing…"
       },
       "skill": {
         "title": "Skill analysis",
@@ -8539,32 +8541,6 @@
         "student": {
           "sub": "Students hear the audio, answer, then see the transcript, the band and the reason."
         },
-        "skills": [
-          [
-            "Reading",
-            82
-          ],
-          [
-            "Listening",
-            76
-          ],
-          [
-            "Writing",
-            71
-          ],
-          [
-            "Speaking",
-            68
-          ],
-          [
-            "Vocabulary in context",
-            74
-          ],
-          [
-            "Note-taking",
-            65
-          ]
-        ],
         "formats": [
           {
             "t": "Summer TOEFL camp",
@@ -8654,8 +8630,75 @@
           ],
           "explTitle": "Why \"Justify\" is correct",
           "expl": "In this context, \"rationalize\" means to justify or make excuses for one's behavior — the passage says people rationalize their actions to restore internal consistency.",
-          "trap": "\"Ignore\" is the trap: rationalizing constructs an explanation for the conflict, it does not push the conflict out of mind."
-        }
+          "trap": "\"Ignore\" is the trap: rationalizing constructs an explanation for the conflict, it does not push the conflict out of mind.",
+          "raumiAnswer": "Look at what the sentence does with the word: people \"rationalize their actions to restore internal consistency.\" That's constructing a justification after the fact — which is exactly what \"justify\" means. \"Ignore\" fails because rationalizing engages with the conflict instead of pushing it away."
+        },
+        "skillsDemo": {
+          "tabs": [
+            "Reading",
+            "Listening",
+            "Speaking",
+            "Writing"
+          ],
+          "listening": {
+            "id": "21f53cc4",
+            "label": "Announcement · audio question",
+            "time": "0:42 / 1:10",
+            "prompt": "Why does the announcement tell students to bring their student ID cards?",
+            "opts": [
+              "Because an ID number is required in order to schedule the advance interviews through the portal",
+              "Because students who want the fair to count toward service hours must check in with them",
+              "Because the Student Union Ballroom is open only to students who are currently enrolled at the university",
+              "Because the elevator near the east entrance can only be operated by scanning a student ID card"
+            ],
+            "keyIdx": 1,
+            "note": "Students hear the announcement read aloud — the transcript stays hidden until review."
+          },
+          "speaking": {
+            "id": "c46869d1",
+            "label": "Listen and Repeat · mic response",
+            "sentence": "The new gym opens at six every morning except Sunday.",
+            "recording": "Recording",
+            "timer": "0:07",
+            "stop": "Tap to stop",
+            "result": "AI transcription and pronunciation scoring run the moment the recording stops.",
+            "band": "Band 4.5 / 6"
+          },
+          "writing": {
+            "id": "f6fb9a64",
+            "label": "Email · written response",
+            "brief": "Your manager is short-staffed next Friday, 2–6 p.m. You have class until 3 p.m. Reply: respond to the request, explain the limit, propose a solution.",
+            "draft": "Hi Ms. Park, thanks for reaching out. I have class until 3 p.m. that Friday, so I can't take the full shift — but I could cover 3:30 to 6 if that helps. I'll confirm with…",
+            "words": "112 words",
+            "feedback": "Graded to the ETS email rubric: task fulfillment, organization, language use."
+          }
+        },
+        "skills": [
+          [
+            "Reading",
+            82
+          ],
+          [
+            "Listening",
+            76
+          ],
+          [
+            "Writing",
+            71
+          ],
+          [
+            "Speaking",
+            68
+          ],
+          [
+            "Vocabulary in context",
+            74
+          ],
+          [
+            "Note-taking",
+            65
+          ]
+        ]
       }
     }
   },
