@@ -8,7 +8,7 @@
 renders on /admin/bank-qc, from the same source, so the two cannot
 disagree.
 
-Generated 2026-08-12. Live items: 3,327.
+Generated 2026-08-14. Live items: 3,327.
 Open work: 4 — 1 mine, 3 need you.
 
 ---
@@ -76,7 +76,7 @@ Two qualifications, both learned the hard way:
 | test | cohort | items | blind | human | state |
 |---|---|---|---|---|---|
 | TOEFL | Academic Passage | 434 | 100% | 13.3% (n=15) | human says maybe — needs more |
-| TOEFL | Academic Talk | 275 | 100% | 26.7% (n=15) | human says maybe — needs more |
+| TOEFL | Academic Talk | 275 | 100% | no usable sitting — 26.7% / 0% (19/20 abstained) | **sitting not interpretable** — the reader abstained on most of it |
 | SAT | Information and Ideas | 240 | 100% | — | **unconfirmed** — model only |
 | SAT | Standard English Conventions | 234 | 52.8% | no usable sitting — 0% (3/3 abstained) | **sitting not interpretable** — the reader abstained on most of it |
 | SAT | Geometry and Trigonometry | 219 | 100% | — | **unconfirmed** — model only |

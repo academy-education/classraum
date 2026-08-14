@@ -211,6 +211,26 @@ const ABSTENTION_CEILING = 0.2
  * record is 52 minutes for 60 items. */
 const SITTING_SPAN_MS = 4 * 60 * 60 * 1000
 
+/* Under ~10 seconds per item is clicking, not reading.
+ *
+ * The FOURTH validity rule, and the second one the scorer had while this
+ * renderer did not. SITTING-PROCEDURE.md §4 has said since it was written
+ * that "30-90 seconds per blind item is the observed band for an engaged
+ * reader. Under ~10s per item across the run means clicking", and
+ * score-sweep-run.mjs refuses to score below it. The register did not
+ * check, and so published Academic Talk at 26.7% (n=15) as that cohort's
+ * human number — from a run spanning TWO MINUTES. Eight seconds an item,
+ * across fifteen items, with zero abstentions.
+ *
+ * Same shape as the 25-hour window above: a run that satisfies every rule
+ * the renderer knew about and fails one it did not. A cohort of 275 items
+ * has been carrying "a human read this and scored 26.7%" on the strength
+ * of it.
+ *
+ * Measured over the gaps, so it is (span / n-1) — a 15-item run has 14
+ * intervals, and dividing by n understates the pace. */
+const MIN_SEC_PER_ITEM = 10
+
 function bestHuman(domain) {
   const byRev = humanBy.get(domain)
   if (!byRev || !byRev.size) return null
@@ -222,6 +242,8 @@ function bestHuman(domain) {
       abstRate: e.abst / e.n,
       run: e.run,
       spanMs: e.first !== null && e.last !== null ? e.last - e.first : 0,
+      secPerItem: e.n > 1 && e.first !== null && e.last !== null
+        ? (e.last - e.first) / 1000 / (e.n - 1) : null,
     }))
     .sort((a, b) => b.pct - a.pct)
   // Under 10 items a high score is luck; over the abstention ceiling the
@@ -229,7 +251,8 @@ function bestHuman(domain) {
   // verdict and both stay visible in `all`, so a discarded sitting can
   // never look like no sitting.
   const usable = sittings.filter(s =>
-    s.n >= 10 && s.abstRate <= ABSTENTION_CEILING && s.spanMs <= SITTING_SPAN_MS)
+    s.n >= 10 && s.abstRate <= ABSTENTION_CEILING && s.spanMs <= SITTING_SPAN_MS
+    && (s.secPerItem === null || s.secPerItem >= MIN_SEC_PER_ITEM))
   if (!usable.length) {
     const people = new Set(sittings.map(s => runReviewer.get(s.run)).filter(Boolean))
     return { none: true, readers: people.size || sittings.length, all: sittings }
