@@ -150,6 +150,44 @@ B4 is *Calibrate the reviewer before spending another cohort* (~20 minutes — o
 
 ## 5. Found while fixing
 
+### The 15 calibration-flagged items: 9 archived, 5 repaired, 1 cleared (2026-08-15)
+
+Every item the co-founder flagged across both calibration runs,
+resolved individually. His letters were decoded through each row's
+shown_order — the notes name HIS shuffled letters, not stored
+positions, and acting on them raw would have "fixed" the wrong option.
+
+ARCHIVED 9 (defect confirmed, not worth authoring around):
+- 8 Choose a Response (0b280141, 04cbf5ea, b6fd4436, 5e14bf29,
+  2f404ae1, 3dabde66, 4730ad1c, 670f8291) — two-defensible-answers or
+  solved blind by a structural tell. The cohort is slated for wholesale
+  rebuild (A3) and item-level tinkering there is the refuted path;
+  archiving shrinks live CR to 64, draw depth still ~10.7 sittings at
+  6/test.
+- 1 Craft and Structure (f3135e0d): he is right — "a resolve he had to
+  harden against the temptation" is the idiomatic collocation, the key
+  "restrain against" is not. Rewriting needs the passage rewritten.
+
+REPAIRED 5 (content_sha regenerates, stale attack rows detach):
+- 9d05d1c7 SEC: "-- was"/"-- were" ASCII artifact → real "— was"/"— were".
+- 63f9ae8a SEC: distractor "continued" was grammatical under the
+  shaped-and-continued parse → "continue" (agrees with nothing).
+- 666d5ae1 SEC: "it drew visitors" was grammatically defensible →
+  classic possessive dangler "the enormous mural's colors drew…".
+- 5347615f Conversation: key asserted "locked inside", never stated →
+  "cannot show a photo ID because it is inside the laptop's case".
+- e72fafb9 Conversation: key was the lone abstract option among three
+  concrete ones — he named the odd-one-out tell unprompted and solved
+  it blind → key reworded to the same concrete register.
+
+CLEARED 1: 4b1a8044 Conversation — the distractor he noted is
+attractive but describes something never discussed; that is what a
+distractor is for. No change.
+
+Also confirmed while doing this: §6 (reduce Choose a Response) needs no
+new work — assemble.ts already cut it 14→6 delivered on 2026-08-11 and
+listening-blueprint.test.ts pins the arithmetic (8/8 green today).
+
 ### B4 PASSED — the reviewer works, and blind margins are hereby demoted (2026-08-15)
 
 `calibration-2026-08-15`, sat by the co-founder under the corrected
