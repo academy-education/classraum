@@ -1,5 +1,7 @@
 # The human sitting cannot be replaced by a handicapped solver
 
+**Tested on TWO model families. Both fail. The question is closed.**
+
 **Result: FAILS, on both pre-registered criteria, by a wide margin.**
 Recorded so this is not rebuilt — it is the sixth proxy attempt and the
 sixth to fail, and the shape of the failure is more useful than the fact
@@ -49,6 +51,55 @@ phi              -0.129
 ```
 
 Both criteria fail, and not narrowly.
+
+## Second run: Claude, via subagents (2026-08-14)
+
+Re-run at Andy's request after he asked that GPT not be used. Same 94
+items, same pre-registered rule, solvers run as independent subagents
+because the repo has no Anthropic key.
+
+|  | solver right | solver wrong |
+|---|---|---|
+| **human right** | 21 | 3 |
+| **human wrong** | 64 | 6 |
+
+```
+human accuracy    25.5%
+solver accuracy   90.4%     gap +64.9
+phi              -0.058
+```
+
+**Worse than GPT, in the same direction.** Claude fails the rule by a
+wider margin (+64.9 vs +46.8) with the same slightly negative sign.
+
+Per cohort, which is the clearest statement of the problem in this file:
+
+| cohort | human | Claude |
+|---|---|---|
+| Academic Passage | 13.3% | **100%** |
+| Daily Life | 27.6% | 96.6% |
+| Conversation | 20.0% | 86.7% |
+| Announcement | 15.0% | 85.0% |
+| **Choose a Response** | **53.3%** | **80.0%** |
+
+The solver's LOWEST cohort is the only cohort a human has ever cracked.
+Ranked by the model, Academic Passage is the worst item set in the bank;
+ranked by a person it is the cleanest. **Never use the attack to rank
+cohorts.** It answers "can a model crack this", which is a different
+question from the one the bank cares about.
+
+### A methodological finding, and it applies to the existing attack
+
+Three subagents were launched with the same prompt on the same file.
+**B and C returned byte-identical answers and A differed at exactly one
+item of 94.** Same model plus same prompt is near-deterministic, so
+"three solvers agreed" was one solver counted three times — no variance
+estimate, no independence.
+
+This matters beyond this experiment: the standing blind attack is also
+described as three solvers. If those are the same model and prompt,
+its agreement figure carries the same illusion. Worth checking before
+any future claim rests on solvers agreeing.
 
 ## What the failure says
 
