@@ -1,0 +1,57 @@
+{
+  "runId": "calibration-2026-08-15",
+  "reviewerId": "6ca6edaf-4044-4eed-84e0-137ebd79a81d",
+  "drawnAt": "2026-08-14T16:09:14.593Z",
+  "note": "Which half each item came from. Read by score-calibration-run.mjs. NOT in the database on purpose — see the header of draw-calibration-run.mjs.",
+  "guessable": [
+    "666d5ae1-4beb-48d5-b984-3d08233e24f8",
+    "96ab13f4-a5d2-48a3-93a5-de23b39cc84d",
+    "4b1a8044-3adb-4b93-8cef-aa24f4cc7bdb",
+    "cea29150-6869-43ff-a6bc-5cd4c283f2dd",
+    "3dabde66-bd21-4e5b-ab7f-995f8accb34c",
+    "26e1e99b-07b8-4d7a-bd56-fa63ae29346e",
+    "bbd5c7ab-092b-4097-ae4f-a3095b1df1e9",
+    "e72fafb9-a472-401c-b24b-1c2f6434d9be",
+    "505fa09f-82d4-485f-b737-cdc81607eae3",
+    "4a1731ab-a6fe-4a25-b313-d84d908c4d6e"
+  ],
+  "opaque": [
+    "5347615f-8069-4aaf-bd78-9fe2a6235bc9",
+    "afde9b44-db2f-46d8-aef6-c1b0d6c28cff",
+    "797b2219-9ad6-4ade-8703-f2aade01ff29",
+    "13ad31c6-3ee5-4f93-a002-4ce8060b64cf",
+    "7ff0d11a-8f72-4f9c-8998-cd38667e1366",
+    "2c2e8ac9-05fb-48c3-ae62-37014ddfa44d",
+    "670f8291-49f2-4605-b7e7-5c5c7c8a39de",
+    "33bea8be-a555-464e-8a07-bfd49e0f7a6b",
+    "236febac-8715-4df3-9f95-93986d9394a3",
+    "4730ad1c-afb6-4658-ac7a-7e7f469ba4f9"
+  ],
+  "domains": {
+    "236febac-8715-4df3-9f95-93986d9394a3": "Conversation",
+    "670f8291-49f2-4605-b7e7-5c5c7c8a39de": "Choose a Response",
+    "13ad31c6-3ee5-4f93-a002-4ce8060b64cf": "Standard English Conventions",
+    "4b1a8044-3adb-4b93-8cef-aa24f4cc7bdb": "Conversation",
+    "4a1731ab-a6fe-4a25-b313-d84d908c4d6e": "Conversation",
+    "2c2e8ac9-05fb-48c3-ae62-37014ddfa44d": "Standard English Conventions",
+    "33bea8be-a555-464e-8a07-bfd49e0f7a6b": "Standard English Conventions",
+    "666d5ae1-4beb-48d5-b984-3d08233e24f8": "Standard English Conventions",
+    "5347615f-8069-4aaf-bd78-9fe2a6235bc9": "Conversation",
+    "afde9b44-db2f-46d8-aef6-c1b0d6c28cff": "Standard English Conventions",
+    "797b2219-9ad6-4ade-8703-f2aade01ff29": "Standard English Conventions",
+    "4730ad1c-afb6-4658-ac7a-7e7f469ba4f9": "Choose a Response",
+    "96ab13f4-a5d2-48a3-93a5-de23b39cc84d": "Standard English Conventions",
+    "e72fafb9-a472-401c-b24b-1c2f6434d9be": "Conversation",
+    "26e1e99b-07b8-4d7a-bd56-fa63ae29346e": "Standard English Conventions",
+    "bbd5c7ab-092b-4097-ae4f-a3095b1df1e9": "Standard English Conventions",
+    "7ff0d11a-8f72-4f9c-8998-cd38667e1366": "Standard English Conventions",
+    "cea29150-6869-43ff-a6bc-5cd4c283f2dd": "Conversation",
+    "3dabde66-bd21-4e5b-ab7f-995f8accb34c": "Choose a Response",
+    "505fa09f-82d4-485f-b737-cdc81607eae3": "Conversation"
+  },
+  "overlapCohorts": [
+    "Conversation",
+    "Standard English Conventions",
+    "Choose a Response"
+  ]
+}

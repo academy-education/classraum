@@ -133,7 +133,7 @@ B4 is *Calibrate the reviewer before spending another cohort* (~20 minutes — o
 
 | id | what | cost | who | why |
 |---|---|---|---|---|
-| B4 | Calibrate the reviewer before spending another cohort | ~20 minutes — one sitting, already drawn | **support@classraum.com — the run is ALREADY DRAWN as calibration-2026-08-11, so he does not touch the cohort dropdown; Bank QC -> Review resumes it automatically. That is deliberate: the dropdown has now misdirected three sittings.**<br>Your co-founder, on support@. Do NOT tell him it is a calibration or that half the items are model-solved — a reviewer who knows that looks harder at them and the run stops measuring what it is for. The one thing to say out loud, in your own words, is what "can't tell" means; a paragraph in the brief has already failed to fix that once. | Three human sittings in a row produced no usable number, each failing differently: wrong reviewer identity (B1), wrong cohort drawn (Academic Passage, 08-10), and a reviewer who pressed "can't tell" on 19 of 20 items including one his own note says he had solved. The reviewer is the instrument every bank verdict rests on, and nothing has ever checked that it works. This is CLAUDE.md's own rule applied to a person rather than a script: a detector that cannot reproduce a known number on known data has no business being pointed at unknown data. Until it passes, another real cohort is 20 minutes of a co-founder's time and one more chance to burn a cohort's first measurement. _20 items by SELECTION, not fabrication — nothing inserted into study_item_bank. 10 the blind attack solved 3/3, 10 it solved 0/3, interleaved, flat 25% control. The measurement that matters is ABSTENTION, which is confound-free: back in the 0-15% range the early sittings produced means the instrument is repaired. The guessable-vs-opaque GAP is explicitly NOT the verdict here — only 2 cohorts overlap between the halves (5 matched items) at current attack coverage, so a gap could be cohort rather than discrimination, and the scorer refuses to read it under 6 matched items. Strengthening it means attacking more items in Choose a Response / SEC / Conversation, which is mine and cheap._ |
+| B4 | Calibrate the reviewer before spending another cohort | ~20 minutes — one sitting, already drawn | **support@classraum.com — the run is now calibration-2026-08-15 (calibration-2026-08-11 was sat cold on Aug 11 before the message went out and came back 70% abstention — BURNED, see §5 2026-08-15); Bank QC -> Review resumes the new one automatically. The dropdown stays out of the loop, but the draw-before-message order is what burned the first run: message first, then draw.**<br>Your co-founder, on support@. Do NOT tell him it is a calibration or that half the items are model-solved — a reviewer who knows that looks harder at them and the run stops measuring what it is for. The one thing to say out loud, in your own words, is what "can't tell" means; a paragraph in the brief has already failed to fix that once. | Three human sittings in a row produced no usable number, each failing differently: wrong reviewer identity (B1), wrong cohort drawn (Academic Passage, 08-10), and a reviewer who pressed "can't tell" on 19 of 20 items including one his own note says he had solved. The reviewer is the instrument every bank verdict rests on, and nothing has ever checked that it works. This is CLAUDE.md's own rule applied to a person rather than a script: a detector that cannot reproduce a known number on known data has no business being pointed at unknown data. Until it passes, another real cohort is 20 minutes of a co-founder's time and one more chance to burn a cohort's first measurement. _20 items by SELECTION, not fabrication — nothing inserted into study_item_bank. 10 the blind attack solved 3/3, 10 it solved 0/3, interleaved, flat 25% control. The measurement that matters is ABSTENTION, which is confound-free: back in the 0-15% range the early sittings produced means the instrument is repaired. The guessable-vs-opaque GAP is explicitly NOT the verdict here — only 2 cohorts overlap between the halves (5 matched items) at current attack coverage, so a gap could be cohort rather than discrimination, and the scorer refuses to read it under 6 matched items. Strengthening it means attacking more items in Choose a Response / SEC / Conversation, which is mine and cheap._ |
 | B2 | Sittings on Academic Talk and Craft and Structure | ~20 minutes each | **support@classraum.com — the co-founder's own account, confirmed 2026-08-09 (it holds the 72 original human reviews). Already super_admin; nothing to create. Same-person reuse is fine HERE because neither cohort has a prior human review, so this is a first measurement rather than an agreement test — unlike B1, where identity was the whole point.**<br>Your CO-FOUNDER, on support@classraum.com — his own account, which holds all 8 real sittings (192 reviews, 2026-08-04 to 08-10). NOT you: andy.manager@gmail.com is YOURS and holds exactly one run, the B1 mirror. THIS ENTRY SAID THE OPPOSITE until 2026-08-11 — "You, on support@" — while the account note directly above it said support@ was the co-founder's. Following the prose would have put a second human behind the reviewer_id that carries every cohort measurement the bank has, and the damage would have been RETROACTIVE: not just the new sitting but all 192 prior reviews would become "one of two people", with no column to separate them. That is the precise failure B1 exists to detect, sitting in the instruction telling you how to avoid it. Unlike B1 these cohorts have never been read by anyone, so there is no contamination risk in the ITEMS; the constraint is that one human keeps one account for good, because reviewer identity IS the account. Use the normal "Start a sitting" draw, not a mirror. | Roughly 486 items sit as "the model says guessable, nobody checked". HALF-ATTEMPTED and NOT USABLE as of 2026-08-11. Academic Talk WAS sat on 2026-08-10 (run academic-talk-2026-08-10, support@, 20 items, all four cohort tags correct, 0 stale shas) — and it came back 19/20 "Can't tell", 0% correct. Under the pre-registered rule 0% is CLEARED; it is not being read that way, and the reason is in the run itself rather than in a judgement call after the fact. The sitting ran 23:14-00:17 KST; the corrected brief was committed 23:56 KST, i.e. DURING it. Both 08-10 sittings were therefore taken under the OLD abstention wording, which has never been un-tested. One of his own notes reads "this was guessable but I just didn't click it. The other answers are too obviously wrong so D is the only plausible answer" — a reviewer stating outright that he abstained on an item he had solved. That is not caution, it is the button meaning something different to him than to the brief, and it turns the 0% into a measurement of the instrument. He was not rushing: 40-70s per item on the blind step, 20-30s on the reveal, full step-2 judgements on all 20. Craft and Structure has still never been sat. NEXT: re-run Academic Talk under the corrected brief, and say in the covering message what "Can't tell" is for. _Daily Life and Announcement both came back clean under a human, so these plausibly are too._ |
 | B3 | TestFlight device pass, iOS 1.0.4 | — | Either of you. | Unrelated to the bank, still open. |
 
@@ -147,6 +147,47 @@ B4 is *Calibrate the reviewer before spending another cohort* (~20 minutes — o
 - **The grader is not calibrated, and cannot be from public data.** Only two scored ETS samples exist for our task types. Do not tune prompts against them — two items cannot support fitting.
 
 ## 5. Found while fixing
+
+### B4 was sat BEFORE the message existed — burned, redrawn as calibration-2026-08-15 (2026-08-15)
+
+The co-founder reported "no questions to do" on support@. The reason:
+`calibration-2026-08-11` was **already complete** — all 20 verdicts
+entered 15:46–16:19 KST on Aug 11, the same afternoon it was drawn and
+days before Andy's covering message was sent. The auto-resume design
+(chosen so the cohort dropdown could not misdirect a fourth sitting)
+put the run live in the support@ queue the moment the draw script
+finished, and whoever opened Bank QC → Review that afternoon sat it
+cold. The design fixed one failure mode and installed another: **a
+pre-drawn run is an armed instrument, and drawing it before the
+covering conversation happens means the sitting races the message.**
+Draw order from now on: message first, confirm it was read, THEN draw.
+
+Scored anyway (the scorer is pre-registered):
+
+    guessable half 1/10, opaque half 1/10, gap +0.0 (matched -6.7 over 16)
+    ABSTENTION 14/20 = 70%  →  INSTRUMENT BROKEN
+
+Exactly what the 2026-08-11 B4 entry predicted an uncovered sitting
+would return — it re-measured the old "can't tell" wording, which is
+now measured at 0-8% (early runs), 85-95% (post-brief), 70% (this).
+Nothing learned about the bank; the 5 step-2 flags and 8 notes are
+real item findings and stand.
+
+Identity caveat, per the standing lesson: the DB says support@ /
+reviewer_kind human, which identifies an account, not a person. Andy
+is asking the co-founder to confirm out loud that he sat it before it
+is attributed.
+
+The redraw exhausted the opaque pool (6 unseen 0/3 items left), so two
+attack runs were ingested to mint more: `sec-2026-08-15` (48 SEC items,
+blind 68.1% vs 39.6% control) and `conversation-2026-08-15` (36 items,
+blind 88.0% vs 30.6% — Conversation is emphatically not clean, noted
+for the cohort table). That raised opaque-unseen to 21, and
+**`calibration-2026-08-15` is drawn**: 10+10, key spread 5/5/5/5,
+control flat 25.0%, and 7 matched items across 3 overlapping cohorts —
+above the scorer's 6-item minimum, so this run's gap is readable where
+the burned run's was not. The co-founder has now read the covering
+message, so the run is finally armed under the conditions B4 specified.
 
 ### Distractor derivability — NEGATIVE, and SAT Phase 1 is closed (2026-08-14)
 
