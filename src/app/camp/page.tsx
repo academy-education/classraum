@@ -770,10 +770,9 @@ export default function CampPage() {
                       {ts(t, C + "cta.button")}
                     </Button>
                   </a>
-                  <Link href="/pricing" className="text-[13.5px] font-semibold text-white/80 hover:text-white inline-flex items-center gap-1.5">
-                    {ts(t, C + "cta.alt")}
-                    <ArrowRight size={14} />
-                  </Link>
+                  {/* "See pricing" hidden 2026-08-15 (Andy) — camp pricing
+                      is quoted per school for now. Restore the /pricing
+                      Link + cta.alt label when a public price exists. */}
                   <span className="w-px h-5 bg-white/15 hidden sm:block" />
                   <span className="text-[13px] font-bold text-white/90">{ts(t, C + "cta.tagline")}</span>
                 </div>
@@ -893,9 +892,13 @@ function WorkflowDiamond({ steps, artefacts }: { steps: Tile[]; artefacts: strin
   ]
   const node = (i: number, extra = "") => {
     const Icon = GLYPHS[i]
+    // Each station wakes up when pointed at: the card lifts with a tiny
+    // tilt (direction alternates around the diamond) and the icon does
+    // one wiggle — the rocket rocks on its pad, the calendar shakes its
+    // dates. One shot per hover, no loops, no glow.
     return (
-      <div key={i} className={`${CARD} px-4 py-3 flex items-center gap-3 ${extra}`}>
-        <span className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-50 to-[#00D0AE]/15 text-primary flex items-center justify-center shrink-0">
+      <div key={i} className={`${CARD} group px-4 py-3 flex items-center gap-3 transition-all duration-300 cursor-default hover:-translate-y-1.5 hover:ring-primary/30 hover:shadow-[0_16px_30px_-18px_rgba(22,62,100,0.35)] ${i % 2 ? "hover:-rotate-[1.2deg]" : "hover:rotate-[1.2deg]"} ${extra}`}>
+        <span className="camp-wiggle w-10 h-10 rounded-xl bg-gradient-to-br from-blue-50 to-[#00D0AE]/15 text-primary flex items-center justify-center shrink-0">
           <Icon size={19} strokeWidth={2} />
         </span>
         <span className="min-w-0">

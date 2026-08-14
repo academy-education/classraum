@@ -27,7 +27,9 @@ process is not reporting the position.**
 | Everything else | 3,255 | **Not known to be broken** — never read by a person |
 
 2.2% is a quality problem. The rest is a scheduling
-problem, and it is blocked on one 20-minute task: **B4 — the calibration sitting, support@classraum.com**.
+problem — and it is UNBLOCKED: **B4 PASSED on 2026-08-15**
+(calibration-2026-08-15: 0% abstention, no shortcut either half; see §5).
+Next human work is B2, the two never-read cohorts.
 
 Every cohort a human has actually read came back clean. None has ever failed a human check except Choose a Response.
 
@@ -147,6 +149,46 @@ B4 is *Calibrate the reviewer before spending another cohort* (~20 minutes — o
 - **The grader is not calibrated, and cannot be from public data.** Only two scored ETS samples exist for our task types. Do not tune prompts against them — two items cannot support fitting.
 
 ## 5. Found while fixing
+
+### B4 PASSED — the reviewer works, and blind margins are hereby demoted (2026-08-15)
+
+`calibration-2026-08-15`, sat by the co-founder under the corrected
+brief, scored by the pre-registered scorer:
+
+    model-guessable half  2/10   (0 abstained)
+    model-opaque half     2/10   (0 abstained)
+    gap                   +0.0   (matched, all 20 items — 3 shared cohorts)
+    ABSTENTION            0/20   0.0%   ← was 70-95% across the three failed sittings
+
+    VERDICT: INSTRUMENT WORKS, MODEL DOES NOT
+
+Both findings matter, and the second is the bigger one:
+
+1. **The abstention pathology is fixed.** 0% under the corrected
+   wording, from the same reviewer who produced 92.5%, 95% and 70%
+   under the old one. The instrument every bank verdict rests on is
+   calibrated for THIS reviewer. (Still per-reviewer: if Andy ever
+   sits, his sitting needs its own calibration on a third account.)
+2. **A human cannot exploit what the blind attack exploits.** The
+   reviewer scored chance on BOTH halves — items the model solved 3/3
+   blind were no more solvable to him than items it solved 0/3. So the
+   model's blind 100% on the guessable half reflects model-side world
+   knowledge, not a tell a student can use. CONSEQUENCE: blind-attack
+   ABSOLUTE scores stop being findings on their own (yesterday's
+   "Conversation 88% blind — emphatically not clean" is hereby
+   downgraded to "unmeasured by a human"). The attack remains the
+   RANKING instrument between batches and the regression gate for
+   repairs, where it has a track record; cohort verdicts belong to
+   human sittings.
+
+His step-2 flags are the usual real yield: 6 items where the key is
+not the only defensible answer, logged item-level. Note the shape —
+every note is "X is also plausible", the same defect class the
+Choose a Response teardown found, now appearing in SEC/Conversation
+items at low rate.
+
+B2 (Academic Talk re-run + Craft and Structure) is now unblocked and
+is the next human task.
 
 ### B4 was sat BEFORE the message existed — burned, redrawn as calibration-2026-08-15 (2026-08-15)
 

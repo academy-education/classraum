@@ -14,12 +14,15 @@ interface HeaderProps {
 // can never drift apart. `page` matches the currentPage prop; `tKey`
 // is the landing.header.* locale key.
 const NAV: Array<{ href: string; page: NonNullable<HeaderProps['currentPage']>; tKey: string }> = [
+  // Order + labels set 2026-08-15: Academy, Camp, For Students, Pricing,
+  // About, FAQs. "Academy" is the features page renamed — the audience
+  // buys an academy platform, not a feature list.
   { href: "/features", page: "features", tKey: "features" },
   { href: "/camp", page: "camp", tKey: "camp" },
+  { href: "/study", page: "study", tKey: "forStudents" },
   { href: "/pricing", page: "pricing", tKey: "pricing" },
   { href: "/about", page: "about", tKey: "about" },
   { href: "/faqs", page: "faqs", tKey: "faqs" },
-  { href: "/study", page: "study", tKey: "forStudents" },
 ]
 
 export default function Header({ currentPage = 'home' }: HeaderProps) {

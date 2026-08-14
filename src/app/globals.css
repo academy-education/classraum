@@ -715,6 +715,16 @@
 
 /* The convergence dot on the /camp one-platform figure breathes slowly.
    Opacity only — content is never hidden if the animation never runs. */
+/* One-shot wiggle for the /camp workflow station icons on card hover. */
+@keyframes camp-wiggle {
+  0%, 100% { transform: rotate(0) scale(1) }
+  25% { transform: rotate(-9deg) scale(1.14) }
+  55% { transform: rotate(7deg) scale(1.14) }
+  80% { transform: rotate(-3deg) scale(1.06) }
+}
+.group:hover > .camp-wiggle { animation: camp-wiggle 0.55s ease-in-out }
+@media (prefers-reduced-motion: reduce) { .group:hover > .camp-wiggle { animation: none } }
+
 @keyframes camp-dot-breathe { 0%, 100% { opacity: 1 } 50% { opacity: 0.35 } }
 .camp-dot-breathe { animation: camp-dot-breathe 2.6s ease-in-out infinite }
 @media (prefers-reduced-motion: reduce) { .camp-dot-breathe { animation: none } }
