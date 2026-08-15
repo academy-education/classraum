@@ -7,10 +7,11 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { ModalShell } from '@/components/ui/common/ModalShell'
+import { CampClassroomDashboard } from '@/components/ui/camp/CampClassroomDashboard'
 import { authHeaders } from '@/lib/auth-headers'
 import { useTranslation } from '@/hooks/useTranslation'
 import { showSuccessToast, showErrorToast } from '@/stores'
-import { Loader2, Plus, School, Tent, ClipboardList } from 'lucide-react'
+import { Loader2, Plus, School, Tent, ClipboardList, ChevronDown, ChevronUp } from 'lucide-react'
 
 /**
  * Camp dashboard — quota meter, camp classrooms, and the assignment
@@ -91,6 +92,9 @@ export function CampPage({ academyId }: CampPageProps) {
   const [program, setProgram] = useState<CampProgram | null>(null)
   const [classrooms, setClassrooms] = useState<CampClassroom[]>([])
   const [assignments, setAssignments] = useState<Record<string, CampAssignment[]>>({})
+
+  /** Classrooms whose tracking panel (P2 dashboard) is expanded. */
+  const [openDashboards, setOpenDashboards] = useState<Record<string, boolean>>({})
 
   const [showModal, setShowModal] = useState(false)
   const [submitting, setSubmitting] = useState(false)
@@ -312,6 +316,20 @@ export function CampPage({ academyId }: CampPageProps) {
                   <span className="text-xs text-gray-400">
                     {t('camp.assignmentCount', { count: rows.length })}
                   </span>
+                  <button
+                    type="button"
+                    onClick={() =>
+                      setOpenDashboards(prev => ({ ...prev, [room.id]: !prev[room.id] }))
+                    }
+                    className="ml-auto flex items-center gap-1 text-xs font-medium text-primary hover:text-primary/80"
+                  >
+                    {openDashboards[room.id]
+                      ? t('camp.dashboard.hideProgress')
+                      : t('camp.dashboard.viewProgress')}
+                    {openDashboards[room.id]
+                      ? <ChevronUp className="w-3.5 h-3.5" />
+                      : <ChevronDown className="w-3.5 h-3.5" />}
+                  </button>
                 </div>
                 {rows.length === 0 ? (
                   <p className="text-sm text-gray-400 py-2">{t('camp.noAssignments')}</p>
@@ -340,6 +358,9 @@ export function CampPage({ academyId }: CampPageProps) {
                       </div>
                     ))}
                   </div>
+                )}
+                {openDashboards[room.id] && (
+                  <CampClassroomDashboard classroomId={room.id} testFamily={program.test_family} />
                 )}
               </Card>
             )

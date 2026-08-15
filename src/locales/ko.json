@@ -2506,6 +2506,26 @@
       "quotaExceeded": "쿼터가 부족합니다 — 남은 문항이 {remaining}개뿐입니다.",
       "notEnoughItems": "이 조건에 맞는 문항이 {available}개뿐입니다. 문항 수를 줄이거나 조건을 넓혀 주세요.",
       "createFailed": "과제 생성에 실패했습니다. 다시 시도해 주세요."
+    },
+    "dashboard": {
+      "viewProgress": "진도 보기",
+      "hideProgress": "진도 접기",
+      "loadFailed": "클래스룸 진도를 불러오지 못했습니다.",
+      "noStudents": "아직 이 클래스룸에 등록된 학생이 없습니다.",
+      "student": "학생",
+      "completionLabel": "{done}/{total} 완료",
+      "state": {
+        "not_started": "시작 전",
+        "in_progress": "진행 중",
+        "done": "완료"
+      },
+      "accuracyBySkill": "스킬별 정답률",
+      "noResultsYet": "아직 채점된 결과가 없습니다.",
+      "skillsToReview": "복습이 필요한 스킬",
+      "skillsToReviewHint": "학급 오답률 순 (스킬당 최소 {min}개 답변 기준).",
+      "notEnoughAnswers": "아직 순위를 매길 만큼 답변이 충분하지 않습니다.",
+      "wrongRateLabel": "오답률 {rate}%",
+      "answersLabel": "n={n}"
     }
   },
   "attendance": {

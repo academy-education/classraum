@@ -2506,6 +2506,26 @@
       "quotaExceeded": "Not enough quota — only {remaining} questions remaining.",
       "notEnoughItems": "Only {available} questions match this filter. Pick a smaller count or a broader filter.",
       "createFailed": "Failed to create the assignment. Please try again."
+    },
+    "dashboard": {
+      "viewProgress": "View progress",
+      "hideProgress": "Hide progress",
+      "loadFailed": "Failed to load classroom progress.",
+      "noStudents": "No students are enrolled in this classroom yet.",
+      "student": "Student",
+      "completionLabel": "{done}/{total} done",
+      "state": {
+        "not_started": "Not started",
+        "in_progress": "In progress",
+        "done": "Done"
+      },
+      "accuracyBySkill": "Accuracy by skill",
+      "noResultsYet": "No graded results yet.",
+      "skillsToReview": "Skills to review",
+      "skillsToReviewHint": "Ranked by the class's wrong-answer rate (at least {min} answers per skill).",
+      "notEnoughAnswers": "Not enough answers yet to rank skills.",
+      "wrongRateLabel": "{rate}% wrong",
+      "answersLabel": "n={n}"
     }
   },
   "attendance": {
