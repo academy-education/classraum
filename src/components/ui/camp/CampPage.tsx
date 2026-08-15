@@ -8,10 +8,12 @@ import { Label } from '@/components/ui/label'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { ModalShell } from '@/components/ui/common/ModalShell'
 import { CampClassroomDashboard } from '@/components/ui/camp/CampClassroomDashboard'
+import { CampReviewPresenter } from '@/components/ui/camp/CampReviewPresenter'
+import type { Question } from '@/app/mobile/study/session/[id]/test/types'
 import { authHeaders } from '@/lib/auth-headers'
 import { useTranslation } from '@/hooks/useTranslation'
 import { showSuccessToast, showErrorToast } from '@/stores'
-import { Loader2, Plus, School, Tent, ClipboardList, ChevronDown, ChevronUp } from 'lucide-react'
+import { Loader2, Plus, School, Tent, ClipboardList, ChevronDown, ChevronUp, Presentation } from 'lucide-react'
 
 /**
  * Camp dashboard — quota meter, camp classrooms, and the assignment
@@ -108,6 +110,15 @@ export function CampPage({ academyId }: CampPageProps) {
     dueDate: '',
   })
 
+  /* Camp P3 — class review presenter. The modal creates a review set
+   * (POST /api/camp/review-set, same quota pool), fetches its full items
+   * (GET, teacher-only) and opens the full-screen presenter. */
+  const [reviewClassroomId, setReviewClassroomId] = useState<string | null>(null)
+  const [reviewForm, setReviewForm] = useState({ section: '', domain: '', count: '10' })
+  const [reviewSubmitting, setReviewSubmitting] = useState(false)
+  const [reviewError, setReviewError] = useState<string | null>(null)
+  const [presenter, setPresenter] = useState<{ title: string; testFamily: string; questions: Question[] } | null>(null)
+
   const fetchAssignments = useCallback(async (classroomIds: string[]) => {
     const headers = await authHeaders()
     const results = await Promise.all(
@@ -185,6 +196,77 @@ export function CampPage({ academyId }: CampPageProps) {
     })
     setFormError(null)
     setShowModal(true)
+  }
+
+  const openReviewModal = (classroomId: string) => {
+    setReviewClassroomId(classroomId)
+    setReviewForm({ section: '', domain: '', count: '10' })
+    setReviewError(null)
+  }
+
+  const reviewDomains = program && reviewForm.section
+    ? (SECTION_DOMAINS[`${program.test_family}:${reviewForm.section}`] ?? [])
+    : []
+
+  const isReviewFormValid = useMemo(() => {
+    const count = Number(reviewForm.count)
+    return Number.isInteger(count) && count >= 1 && count <= MAX_COUNT
+  }, [reviewForm])
+
+  const handleReviewSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    if (!program || !reviewClassroomId || !isReviewFormValid || reviewSubmitting) return
+    setReviewSubmitting(true)
+    setReviewError(null)
+    try {
+      const headers = await authHeaders()
+      const count = Number(reviewForm.count)
+      const createRes = await fetch('/api/camp/review-set', {
+        method: 'POST',
+        headers,
+        body: JSON.stringify({
+          classroomId: reviewClassroomId,
+          section: reviewForm.section || undefined,
+          domain: reviewForm.domain || undefined,
+          count,
+        }),
+      })
+      const created = await createRes.json().catch(() => ({}))
+      if (!createRes.ok) {
+        if (created.code === 'quota_exceeded') {
+          setReviewError(String(t('camp.errors.quotaExceeded', { remaining: created.remaining ?? 0 })))
+        } else if (created.code === 'not_enough_items') {
+          setReviewError(String(t('camp.errors.notEnoughItems', { available: created.available ?? 0 })))
+        } else {
+          setReviewError(created.error || String(t('camp.review.errors.createFailed')))
+        }
+        return
+      }
+      const setId = created.reviewSet?.id as string | undefined
+      if (!setId) { setReviewError(String(t('camp.review.errors.createFailed'))); return }
+
+      const itemsRes = await fetch(`/api/camp/review-set?id=${setId}`, { headers })
+      const items = await itemsRes.json().catch(() => ({}))
+      if (!itemsRes.ok || !Array.isArray(items.questions) || items.questions.length === 0) {
+        setReviewError(String(t('camp.review.errors.loadFailed')))
+        return
+      }
+
+      // Quota moved server-side; mirror it locally WITHOUT fetchAll(),
+      // whose loading state would unmount the presenter we open next.
+      setProgram(prev => prev ? { ...prev, questions_used: prev.questions_used + count } : prev)
+      setReviewClassroomId(null)
+      setPresenter({
+        title: (items.reviewSet?.title as string) ?? String(t('camp.review.title')),
+        testFamily: (items.reviewSet?.testFamily as string) ?? program.test_family,
+        questions: items.questions as Question[],
+      })
+    } catch (error) {
+      console.error('[camp] create review set failed:', error)
+      showErrorToast(String(t('camp.review.errors.createFailed')))
+    } finally {
+      setReviewSubmitting(false)
+    }
   }
 
   const isFormValid = useMemo(() => {
@@ -318,10 +400,18 @@ export function CampPage({ academyId }: CampPageProps) {
                   </span>
                   <button
                     type="button"
+                    onClick={() => openReviewModal(room.id)}
+                    className="ml-auto flex items-center gap-1.5 text-xs font-medium text-primary hover:text-primary/80"
+                  >
+                    <Presentation className="w-3.5 h-3.5" />
+                    {t('camp.review.classReview')}
+                  </button>
+                  <button
+                    type="button"
                     onClick={() =>
                       setOpenDashboards(prev => ({ ...prev, [room.id]: !prev[room.id] }))
                     }
-                    className="ml-auto flex items-center gap-1 text-xs font-medium text-primary hover:text-primary/80"
+                    className="flex items-center gap-1 text-xs font-medium text-primary hover:text-primary/80"
                   >
                     {openDashboards[room.id]
                       ? t('camp.dashboard.hideProgress')
@@ -509,6 +599,112 @@ export function CampPage({ academyId }: CampPageProps) {
           )}
         </form>
       </ModalShell>
+
+      {/* Class review modal (P3) — type/count picker, then presenter */}
+      <ModalShell
+        isOpen={reviewClassroomId !== null}
+        onClose={() => { if (!reviewSubmitting) setReviewClassroomId(null) }}
+        size="md"
+        title={String(t('camp.review.title'))}
+        subtitle={String(t('camp.review.subtitle', { remaining: quotaRemaining }))}
+        closeDisabled={reviewSubmitting}
+        footer={
+          <ModalShell.Footer split>
+            <Button variant="outline" onClick={() => setReviewClassroomId(null)} disabled={reviewSubmitting}>
+              {t('common.cancel')}
+            </Button>
+            <Button
+              type="submit"
+              form="camp-review-form"
+              disabled={!isReviewFormValid || reviewSubmitting}
+              className={!isReviewFormValid || reviewSubmitting ? 'opacity-50 cursor-not-allowed' : ''}
+            >
+              {reviewSubmitting && <Loader2 className="w-4 h-4 mr-2 animate-spin" />}
+              {reviewSubmitting ? t('common.creating') : t('camp.review.start')}
+            </Button>
+          </ModalShell.Footer>
+        }
+      >
+        <form id="camp-review-form" onSubmit={handleReviewSubmit} className="space-y-5">
+          <div className="grid grid-cols-2 gap-4">
+            <div className="space-y-2">
+              <Label className="text-sm font-medium text-foreground/80">{t('camp.form.section')}</Label>
+              <Select
+                value={reviewForm.section || 'all'}
+                onValueChange={value =>
+                  setReviewForm(prev => ({ ...prev, section: value === 'all' ? '' : value, domain: '' }))
+                }
+              >
+                <SelectTrigger className="h-10 bg-white border border-border focus:border-primary focus-visible:border-primary focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=open]:border-primary">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent className="z-[210]">
+                  <SelectItem value="all">{t('camp.form.allSections')}</SelectItem>
+                  {sections.map(section => (
+                    <SelectItem key={section} value={section}>{sectionLabel(section)}</SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
+
+            <div className="space-y-2">
+              <Label className="text-sm font-medium text-foreground/80">{t('camp.form.domain')}</Label>
+              <Select
+                value={reviewForm.domain || 'all'}
+                onValueChange={value =>
+                  setReviewForm(prev => ({ ...prev, domain: value === 'all' ? '' : value }))
+                }
+                disabled={!reviewForm.section}
+              >
+                <SelectTrigger className="h-10 bg-white border border-border focus:border-primary focus-visible:border-primary focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=open]:border-primary">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent className="z-[210]">
+                  <SelectItem value="all">{t('camp.form.allDomains')}</SelectItem>
+                  {reviewDomains.map(domain => (
+                    <SelectItem key={domain} value={domain}>
+                      {domainLabel(program.test_family, domain)}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
+          </div>
+
+          <div className="space-y-2">
+            <Label className="text-sm font-medium text-foreground/80">
+              {t('camp.form.questionCount')} <span className="text-rose-500">*</span>
+            </Label>
+            <Input
+              type="number"
+              required
+              min={1}
+              max={MAX_COUNT}
+              value={reviewForm.count}
+              onChange={e => setReviewForm(prev => ({ ...prev, count: e.target.value }))}
+              className="h-10"
+            />
+            <p className="text-xs text-gray-400">
+              {t('camp.review.countHint', { max: MAX_COUNT })}
+            </p>
+          </div>
+
+          {reviewError && (
+            <div className="rounded-lg bg-rose-50 border border-rose-200 px-3 py-2 text-sm text-rose-700">
+              {reviewError}
+            </div>
+          )}
+        </form>
+      </ModalShell>
+
+      {presenter && (
+        <CampReviewPresenter
+          title={presenter.title}
+          testFamily={presenter.testFamily}
+          questions={presenter.questions}
+          onClose={() => setPresenter(null)}
+        />
+      )}
     </div>
   )
 }

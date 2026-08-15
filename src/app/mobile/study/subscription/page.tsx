@@ -1,6 +1,6 @@
 "use client"
 
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { Capacitor } from '@capacitor/core'
 import { App } from '@capacitor/app'
 import Link from 'next/link'
@@ -14,7 +14,8 @@ import { StudyPageHeader, StudyScrollShell } from '../_shared/primitives'
 import { StudyButton, studyButtonClass } from '../_shared/StudyButton'
 import { authHeaders } from '@/lib/auth-headers'
 import { openExternalUrl } from '@/lib/nativeApp'
-import { FREE_CREDITS, creditCostForTest, isPassPlan } from '@/lib/study/plans'
+import { FREE_CREDITS, creditCostForTest } from '@/lib/study/plans'
+import { deriveSubscriptionUiState } from '@/lib/study/subscription-state'
 import { buyCreditPack, billingCustomer, missingPhoneMessage, stashBillingIntent, billingRedirectUrl, billingIssueId, billingWindowType, offerPeriodFor, requestOneTimePayment, checkoutContext } from '@/lib/study/purchase-credits'
 import { track } from '@/lib/study/track-client'
 import { isAppReturnedEvent, type AppLifecycleEvent, type ExitPlatform } from '@/lib/study/test-exit-guard'
@@ -342,11 +343,11 @@ export default function SubscriptionPage() {
   const sub = data?.subscription ?? null
   // Fallback catalog so the page still renders plan cards if the API
   // payload predates the tier era (e.g. cached response).
-  const plans: CatalogPlan[] = data?.catalog?.plans ?? [
+  const plans: CatalogPlan[] = useMemo(() => data?.catalog?.plans ?? [
     { id: 'general_v1', tier: 'general', priceWon: 9900, monthlyCredits: 10, intervalDays: 30, name_en: 'Basic', name_ko: '베이직' },
     { id: 'premium_v1', tier: 'premium', priceWon: 18900, monthlyCredits: 20, intervalDays: 30, name_en: 'Premium', name_ko: '프리미엄' },
     { id: 'premium_plus_v1', tier: 'premium', priceWon: 26900, monthlyCredits: 30, intervalDays: 30, name_en: 'Premium Plus', name_ko: '프리미엄 플러스' },
-  ]
+  ], [data])
   const pack = data?.catalog?.pack ?? { id: 'pack1_v1', credits: 1, priceWon: 1900 }
   const packs = data?.catalog?.packs ?? [pack]
 
@@ -360,6 +361,16 @@ export default function SubscriptionPage() {
   const passes = data?.passes ?? []
   const activePass = passes.find(p => p.onPass) ?? null
   const onPass = activePass !== null
+  /**
+   * ONE state model (lib/study/subscription-state) drives the pill, the
+   * plan-card buttons, and the credit-row status line. The states are
+   * exclusive: a scheduled switch is 'pendingSwitch' and must never
+   * read as "Cancelling"; a real cancellation is 'cancelling' and
+   * locks plan changes (server rejects them too) until reactivation.
+   */
+  const uiState = deriveSubscriptionUiState(sub, onPass)
+  const cancelling = uiState === 'cancelling'
+  const pendingSwitch = uiState === 'pendingSwitch' ? sub?.pending_plan ?? null : null
   // Passes the student holds (from entitlements), shown even when a recurring
   // plan overwrote the shared plan row. Exclude the one already shown by the
   // active-pass banner (the pure-pass case) so it isn't listed twice.
@@ -488,7 +499,7 @@ export default function SubscriptionPage() {
     } finally {
       setActing(null)
     }
-  }, [acting, load, plans, t, user])
+  }, [acting, ko, load, plans, t, user])
 
   /**
    * Exam pass purchase (SAT / TOEFL) — same PortOne billing-key overlay
@@ -558,6 +569,14 @@ export default function SubscriptionPage() {
       })
       const body = await res.json().catch(() => ({}))
       if (!res.ok) {
+        // Server guard: plan changes are rejected while a cancellation
+        // is scheduled (code 'cancelling'). The UI hides those buttons,
+        // but a stale tab can still hit it — localize the reason.
+        if (body.code === 'cancelling') {
+          throw new Error(ko
+            ? '해지가 예약된 상태에서는 플랜을 변경할 수 없어요. 먼저 구독을 다시 활성화해 주세요.'
+            : 'Plan changes are unavailable while your cancellation is scheduled. Reactivate your subscription first.')
+        }
         throw new Error(typeof body.message === 'string' ? body.message : (ko ? '플랜 변경에 실패했어요.' : 'Plan change failed.'))
       }
       await load()
@@ -679,9 +698,18 @@ export default function SubscriptionPage() {
                   </div>
                 </div>
               </div>
-              {/* A pass is modelled with cancel_at_period_end=true (it ends at
-                  the exam date, never renews) — don't mislabel it "Cancelling". */}
-              <StatusPill status={sub.status} cancelling={sub.cancel_at_period_end && !onPass && !isPassPlan(sub.plan)} />
+              {/* uiState keeps the exclusive states straight: a pass is
+                  modelled with cancel_at_period_end=true (never renews) and
+                  a scheduled switch is pending_plan — neither may be
+                  mislabelled "Cancelling". */}
+              <StatusPill
+                status={sub.status}
+                state={uiState}
+                switching={pendingSwitch ? {
+                  plan: planName(plans, pendingSwitch, ko),
+                  date: formatDate(sub.current_period_end, ko),
+                } : null}
+              />
             </div>
 
             {/* Breakdown — monthly grant vs never-expiring purchased. */}
@@ -731,14 +759,18 @@ export default function SubscriptionPage() {
               <div className="mt-4 pt-3.5 border-t border-amber-200/40 flex items-start gap-2.5 text-[13px] text-gray-600">
                 <Calendar className="w-4 h-4 mt-0.5 flex-shrink-0 text-gray-400" />
                 <div className="leading-relaxed">
-                  {sub.cancel_at_period_end
+                  {/* Derived from uiState so this line can never disagree
+                      with the pill: cancelling → end date, pendingSwitch →
+                      the switch (with date), otherwise plain renewal. */}
+                  {cancelling
                     ? t('study.subscription.cancelsOn', { date: formatDate(sub.current_period_end, ko) })
                     : t('study.subscription.renewsOn', { date: formatDate(sub.current_period_end, ko) })}
-                  {sub.pending_plan && (
+                  {pendingSwitch && (
                     <span className="block text-amber-700 mt-0.5">
-                      {ko
-                        ? `다음 갱신일에 ${planName(plans, sub.pending_plan, ko)} 플랜으로 변경돼요.`
-                        : `Switching to the ${planName(plans, sub.pending_plan, ko)} plan at your next renewal.`}
+                      {t('study.subscription.statusSwitching', {
+                        plan: planName(plans, pendingSwitch, ko),
+                        date: formatDate(sub.current_period_end, ko),
+                      })}
                     </span>
                   )}
                 </div>
@@ -925,7 +957,7 @@ export default function SubscriptionPage() {
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {displayedPlans.map(plan => {
             const isCurrent = currentPlanId === plan.id
-            const isPending = isActive && sub?.pending_plan === plan.id
+            const isPending = pendingSwitch === plan.id
             const premium = plan.tier === 'premium'
             const isFreePlan = plan.id === 'free_v1'
             const isUpgrade = isActive && !isCurrent && plan.priceWon > currentPrice
@@ -1041,7 +1073,9 @@ export default function SubscriptionPage() {
                       </div>
                   )
                 ) : isCurrent ? (
-                  sub?.pending_plan ? (
+                  pendingSwitch ? (
+                    // One-tap undo of the scheduled switch: sending the
+                    // CURRENT plan id makes the server clear pending_plan.
                     <StudyButton
                       type="button"
                       variant="secondary"
@@ -1051,7 +1085,7 @@ export default function SubscriptionPage() {
                       loading={busy}
                       leftIcon={<RotateCcw className="w-4 h-4" />}
                     >
-                      {ko ? '플랜 변경 취소' : 'Keep this plan'}
+                      {ko ? '현재 플랜 유지하기' : 'Keep current plan'}
                     </StudyButton>
                   ) : (
                     <div className="h-11 rounded-full bg-gray-50 ring-1 ring-gray-200/50 text-gray-400 text-[13px] font-medium inline-flex items-center justify-center gap-1.5">
@@ -1073,17 +1107,20 @@ export default function SubscriptionPage() {
                     {busy ? <Loader2 className="w-4 h-4 animate-spin" /> : <CreditCard className="w-4 h-4" />}
                     {ko ? `${plan.name_ko} 시작하기` : `Start ${plan.name_en}`}
                   </button>
+                ) : cancelling ? (
+                  // CANCELLED STATE IS EXCLUSIVE: while the cancellation is
+                  // scheduled the server rejects plan changes, so no
+                  // change buttons render — only Reactivate (below).
+                  null
                 ) : (
                   <button
                     type="button"
                     onClick={() => {
-                      // Upgrades take money now, so they ask first.
-                      // Downgrades only schedule a change at renewal and
-                      // are freely reversible, so they still go straight
-                      // through — a confirm on a free, undoable action is
-                      // noise that teaches people to tap past confirms.
-                      if (isUpgrade) { setError(null); setSuccessMessage(null); setConfirmingChange(plan.id) }
-                      else void changePlan(plan.id)
+                      // Both directions confirm first: upgrades take money
+                      // now; downgrades reduce next period's credits and
+                      // can drop premium features, which deserves an
+                      // explicit heads-up before it's scheduled.
+                      setError(null); setSuccessMessage(null); setConfirmingChange(plan.id)
                     }}
                     disabled={acting !== null}
                     className={`h-11 rounded-full text-[13px] font-semibold inline-flex items-center justify-center gap-1.5 active:scale-[0.98] disabled:opacity-60 transition-all ${
@@ -1102,19 +1139,41 @@ export default function SubscriptionPage() {
                       : (ko ? '갱신일에 변경' : 'Switch at renewal')}
                   </button>
                 )}
-                {confirmingChange === plan.id && (
-                  <div className="rounded-2xl bg-white ring-1 ring-primary/25 p-4 space-y-3 shadow-[0_1px_2px_rgba(0,0,0,0.03)]">
-                    <p className="text-[13.5px] text-gray-700 leading-relaxed">
-                      {ko
-                        ? `등록된 카드로 지금 ${formatWon(plan.priceWon)}이 결제되고, 오늘부터 새 ${plan.intervalDays === 365 ? '1년' : '30일'} 기간이 시작돼요.`
-                        : `Your saved card will be charged ${formatWon(plan.priceWon)} now, and a fresh ${plan.intervalDays === 365 ? '1-year' : '30-day'} period starts today.`}
-                    </p>
-                    <p className="text-[12px] text-gray-400 leading-relaxed">
-                      {ko ? '남은 기간은 일할 계산되지 않아요. ' : 'Time left on your current period is not pro-rated. '}
-                      <Link href="/mobile/study/refund-policy" className="text-primary underline underline-offset-2">
-                        {ko ? '환불 정책 보기' : 'View refund policy'}
-                      </Link>
-                    </p>
+                {confirmingChange === plan.id && (() => {
+                  // DOWNGRADE WARNING mirrors the upgrade confirm card:
+                  // the credit drop ({X} → {Y}) comes from the plans
+                  // catalog and the feature delta from the same tier gate
+                  // that renders the plan cards' feature lists.
+                  const cur = plans.find(p => p.id === currentPlanId)
+                  const renewDate = sub ? formatDate(sub.current_period_end, ko) : ''
+                  const lostFeatures = cur?.tier === 'premium' && plan.tier === 'general'
+                    ? (ko
+                      ? ['스피킹 음성 채점 (TOEFL)', '점수 추이 + 상세 분석']
+                      : ['Audio Speaking grading (TOEFL)', 'Score trend + analytics'])
+                    : []
+                  return (
+                  <div className={`rounded-2xl bg-white ring-1 p-4 space-y-3 shadow-[0_1px_2px_rgba(0,0,0,0.03)] ${isUpgrade ? 'ring-primary/25' : 'ring-amber-300/60'}`}>
+                    {isUpgrade ? (
+                      <p className="text-[13.5px] text-gray-700 leading-relaxed">
+                        {ko
+                          ? `등록된 카드로 지금 ${formatWon(plan.priceWon)}이 결제되고, 오늘부터 새 ${plan.intervalDays === 365 ? '1년' : '30일'} 기간이 시작돼요.`
+                          : `Your saved card will be charged ${formatWon(plan.priceWon)} now, and a fresh ${plan.intervalDays === 365 ? '1-year' : '30-day'} period starts today.`}
+                      </p>
+                    ) : (
+                      <p className="text-[13.5px] text-gray-700 leading-relaxed">
+                        {ko
+                          ? `${renewDate}부터 매달 크레딧이 ${cur?.monthlyCredits ?? 0}개에서 ${plan.monthlyCredits}개로 줄어요${lostFeatures.length > 0 ? `, 그리고 ${lostFeatures.join(', ')} 기능을 잃게 돼요` : ''}. 그 전까지는 현재 플랜이 그대로 유지돼요.`
+                          : `From ${renewDate}, you'll get ${plan.monthlyCredits} monthly credits instead of ${cur?.monthlyCredits ?? 0}${lostFeatures.length > 0 ? `, and you'll lose ${lostFeatures.join(' and ')}` : ''}. Your current plan stays until then.`}
+                      </p>
+                    )}
+                    {isUpgrade && (
+                      <p className="text-[12px] text-gray-400 leading-relaxed">
+                        {ko ? '남은 기간은 일할 계산되지 않아요. ' : 'Time left on your current period is not pro-rated. '}
+                        <Link href="/mobile/study/refund-policy" className="text-primary underline underline-offset-2">
+                          {ko ? '환불 정책 보기' : 'View refund policy'}
+                        </Link>
+                      </p>
+                    )}
                     <div className="flex gap-2.5">
                       <button
                         type="button"
@@ -1132,12 +1191,15 @@ export default function SubscriptionPage() {
                         className="flex-1"
                       >
                         {busy ? <Loader2 className="w-4 h-4 animate-spin" /> : null}
-                        {ko ? `${formatWon(plan.priceWon)} 결제하기` : `Pay ${formatWon(plan.priceWon)}`}
+                        {isUpgrade
+                          ? (ko ? `${formatWon(plan.priceWon)} 결제하기` : `Pay ${formatWon(plan.priceWon)}`)
+                          : (ko ? '갱신일에 변경하기' : 'Switch at renewal')}
                       </StudyButton>
                     </div>
                   </div>
-                )}
-                {!isNative && !isCurrent && isActive && !onPass && (
+                  )
+                })()}
+                {!isNative && !isCurrent && isActive && !onPass && !cancelling && (
                   <p className="text-[11.5px] text-gray-400 -mt-2 text-center leading-snug">
                     {isUpgrade
                       ? plan.intervalDays === 365
@@ -1225,18 +1287,27 @@ export default function SubscriptionPage() {
           )}
 
           {sub?.cancel_at_period_end && (
-            <StudyButton
-              type="button"
-              variant="primary"
-              size="lg"
-              fullWidth
-              onClick={() => void act('reactivate')}
-              disabled={acting !== null}
-              loading={acting === 'reactivate'}
-              leftIcon={<RotateCcw className="w-4 h-4" />}
-            >
-              {t('study.subscription.reactivate')}
-            </StudyButton>
+            <>
+              <StudyButton
+                type="button"
+                variant="primary"
+                size="lg"
+                fullWidth
+                onClick={() => void act('reactivate')}
+                disabled={acting !== null}
+                loading={acting === 'reactivate'}
+                leftIcon={<RotateCcw className="w-4 h-4" />}
+              >
+                {t('study.subscription.reactivate')}
+              </StudyButton>
+              {cancelling && (
+                <p className="text-[12px] text-gray-400 text-center leading-relaxed px-2">
+                  {ko
+                    ? `해지가 예약된 동안에는 플랜을 변경할 수 없어요. 지금 다시 활성화하거나, ${formatDate(sub.current_period_end, ko)}에 이용이 끝난 뒤 새로 가입할 수 있어요.`
+                    : `Plan changes are paused while your cancellation is scheduled. Reactivate now, or subscribe again after your access ends on ${formatDate(sub.current_period_end, ko)}.`}
+                </p>
+              )}
+            </>
           )}
         </div>
         )}
@@ -1267,10 +1338,24 @@ function Feature({ ok, children }: { ok: boolean; children: React.ReactNode }) {
   )
 }
 
-function StatusPill({ status, cancelling }: { status: Subscription['status']; cancelling: boolean }) {
+function StatusPill({ status, state, switching }: {
+  status: Subscription['status']
+  state: 'free' | 'onPass' | 'cancelling' | 'pendingSwitch' | 'active'
+  switching: { plan: string; date: string } | null
+}) {
   const { t } = useTranslation()
-  if (cancelling) {
+  // 'cancelling' is exclusively a REAL cancellation. A scheduled plan
+  // switch is its own state with its own pill — it used to fall through
+  // to "Cancelling" whenever the row (wrongly) carried both flags.
+  if (state === 'cancelling') {
     return <span className="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold bg-amber-50 text-amber-700 ring-1 ring-amber-200">{t('study.subscription.statusCancelling')}</span>
+  }
+  if (state === 'pendingSwitch' && switching) {
+    return (
+      <span className="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold bg-amber-50 text-amber-700 ring-1 ring-amber-200 text-right">
+        {t('study.subscription.statusSwitching', switching)}
+      </span>
+    )
   }
   const map: Record<Subscription['status'], { cls: string; label: string }> = {
     free:      { cls: 'bg-gray-100 text-gray-700 ring-gray-200',         label: t('study.subscription.statusFree') as string },

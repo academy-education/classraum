@@ -447,7 +447,7 @@
       "payStatusUnknown": "알 수 없음",
       "refund": "환불",
       "refundTitle": "결제 환불",
-      "refundBody": "이 {kind}({amount}) 결제를 PortOne을 통해 전액 환불하시겠습니까? 되돌릴 수 없습니다. 크레딧은 자동으로 회수되지 않습니다.",
+      "refundBody": "이 {kind}({amount}) 결제를 PortOne을 통해 환불하시겠습니까? 잔액 한도 내에서 부분 환불이 가능합니다. 되돌릴 수 없습니다. 크레딧은 자동으로 회수되지 않습니다.",
       "refundReason": "사유",
       "refundReasonPlaceholder": "예: 고객 요청",
       "refundConfirm": "환불하기",
@@ -502,7 +502,18 @@
       "fldDays": "{n}일",
       "notOnboarded": "온보딩을 완료하지 않았습니다.",
       "noGoals": "설정된 목표가 없습니다.",
-      "noStreakYet": "연속 학습 기록이 없습니다."
+      "noStreakYet": "연속 학습 기록이 없습니다.",
+      "testBadge": "테스트",
+      "markTest": "테스트 사용자로 표시",
+      "unmarkTest": "테스트 표시 해제",
+      "lookupShowing": "{total}명 중 {shown}명 표시",
+      "refundRemaining": "환불 가능 잔액",
+      "refundAmountLabel": "환불 금액 (원)",
+      "refundAmountInvalid": "1 이상 {remaining} 이하의 정수를 입력하세요.",
+      "refundHistory": "환불 내역",
+      "refundPresetButton": "미사용 크레딧 환불",
+      "refundPresetMath": "{amount} × 미사용 {unused}/{granted} = {result}",
+      "refundPresetUnavailable": "미사용 크레딧 프리셋을 사용할 수 없습니다 — 이 결제가 지급한 크레딧을 명확히 특정할 수 없습니다."
     },
     "common": {
       "save": "저장",
@@ -2526,6 +2537,25 @@
       "notEnoughAnswers": "아직 순위를 매길 만큼 답변이 충분하지 않습니다.",
       "wrongRateLabel": "오답률 {rate}%",
       "answersLabel": "n={n}"
+    },
+    "review": {
+      "classReview": "수업 리뷰",
+      "title": "수업 리뷰",
+      "subtitle": "문제은행에서 문항을 뽑아 함께 풀어 보세요 — 쿼터 잔여 {remaining}문항",
+      "start": "리뷰 시작",
+      "countHint": "최대 {max}문항",
+      "questionOf": "문제 {current} / {total}",
+      "keyboardHint": "← → 이동 · Space 정답 보기 · Esc 닫기",
+      "previous": "이전",
+      "next": "다음",
+      "revealAnswer": "정답 보기",
+      "hideAnswer": "정답 숨기기",
+      "explanation": "해설",
+      "jumpTo": "{n}번 문제로 이동",
+      "errors": {
+        "createFailed": "리뷰 세트 생성에 실패했습니다. 다시 시도해 주세요.",
+        "loadFailed": "리뷰 세트는 생성되었지만 문항을 불러오지 못했습니다. 다시 시도해 주세요."
+      }
     }
   },
   "attendance": {
@@ -4856,6 +4886,7 @@
       "statusCancelled": "취소됨",
       "statusExpired": "만료됨",
       "statusCancelling": "취소 예정",
+      "statusSwitching": "{date}에 {plan} 플랜으로 변경 예정",
       "statusFree": "무료"
     },
     "landing": {

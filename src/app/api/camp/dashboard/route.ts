@@ -105,11 +105,15 @@ export async function GET(req: NextRequest) {
         .from('classroom_students')
         .select('student_id')
         .eq('classroom_id', classroomId),
+      // Review sets (kind='review', migration 083) are teacher presenter
+      // decks with no student sessions — excluded so they never show as
+      // a 0%-complete column.
       dbAdmin
         .from('camp_assignments')
         .select('id, title, section, domain, question_count, due_at, created_at')
         .eq('classroom_id', classroomId)
         .is('deleted_at', null)
+        .or('kind.neq.review,kind.is.null')
         .order('created_at', { ascending: false }),
     ])
   if (membersError || assignmentsError) {

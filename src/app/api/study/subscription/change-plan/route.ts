@@ -2,7 +2,8 @@ import { NextRequest, NextResponse } from 'next/server'
 import { dbAdmin } from '@/lib/supabase-admin'
 import { chargeBillingKey } from '@/lib/portone-charge'
 import { recordSubscriptionPayment } from '@/lib/study/record-subscription-payment'
-import { STUDY_PLANS, resolvePlan, GRANT_INTERVAL_DAYS } from '@/lib/study/plans'
+import { GRANT_INTERVAL_DAYS } from '@/lib/study/plans'
+import { decidePlanChange } from '@/lib/study/subscription-state'
 import { requireStudyUser } from '@/lib/study/auth'
 
 /**
@@ -19,6 +20,10 @@ import { requireStudyUser } from '@/lib/study/auth'
  *     period boundary. Premium perks stay until then.
  *   - Cancelling a scheduled downgrade: send the current plan id and
  *     pending_plan clears.
+ *   - While cancel_at_period_end is true (a real cancellation) EVERY
+ *     plan change is refused with code 'cancelling' — there is no
+ *     renewal for a switch to attach to, and accepting one used to
+ *     leave rows with both flags set (see lib/study/subscription-state).
  */
 
 export const dynamic = 'force-dynamic'
@@ -30,21 +35,21 @@ export async function POST(req: NextRequest) {
 
   let body: { plan?: string }
   try { body = await req.json() } catch { return NextResponse.json({ error: 'bad json' }, { status: 400 }) }
-  const target = body.plan ? STUDY_PLANS[body.plan] : undefined
-  if (!target) return NextResponse.json({ error: 'unknown plan' }, { status: 400 })
 
   const { data: sub } = await dbAdmin
     .from('study_subscriptions')
-    .select('status, plan, pending_plan, portone_subscription_id, purchased_credits_remaining')
+    .select('status, plan, pending_plan, cancel_at_period_end, portone_subscription_id, purchased_credits_remaining')
     .eq('student_id', user.id)
     .maybeSingle()
-  if (!sub || sub.status !== 'active') {
-    return NextResponse.json({ error: 'active subscription required' }, { status: 403 })
+
+  const decision = decidePlanChange(sub, body.plan)
+  if (!decision.ok) {
+    return NextResponse.json(decision.body, { status: decision.status })
   }
-  const current = resolvePlan(sub.plan)
+  const { target, current } = decision
 
   // Same plan → treat as "cancel scheduled change".
-  if (target.id === current.id) {
+  if (decision.action === 'clear_pending') {
     // pending_plan IS the scheduled change. Reporting success on a failed
     // write told the student their downgrade was cancelled while the cron
     // still applied it at the period boundary.
@@ -60,7 +65,7 @@ export async function POST(req: NextRequest) {
   }
 
   // DOWNGRADE — schedule for the period boundary.
-  if (target.priceWon < current.priceWon) {
+  if (decision.action === 'schedule_downgrade') {
     // Same: a lost write means the UI shows a scheduled downgrade that the
     // renewal cron will never see, and the student keeps paying the old price.
     const { error } = await dbAdmin
@@ -75,7 +80,9 @@ export async function POST(req: NextRequest) {
   }
 
   // UPGRADE — immediate charge, fresh period, fresh grant.
-  if (!sub.portone_subscription_id) {
+  // (decidePlanChange already guaranteed a non-null active row; the
+  // optional chain is only for the type-narrowing.)
+  if (!sub?.portone_subscription_id) {
     return NextResponse.json({ error: 'no payment method on file' }, { status: 402 })
   }
   const paymentId = `study-sub-upgrade-${user.id}-${Date.now()}`

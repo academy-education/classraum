@@ -447,7 +447,7 @@
       "payStatusUnknown": "Unknown",
       "refund": "Refund",
       "refundTitle": "Refund payment",
-      "refundBody": "Fully refund this {kind} of {amount} through PortOne? This cannot be undone. Credits are not automatically revoked.",
+      "refundBody": "Refund this {kind} ({amount}) through PortOne? Up to the remaining balance can be refunded, in parts. This cannot be undone. Credits are not automatically revoked.",
       "refundReason": "Reason",
       "refundReasonPlaceholder": "e.g. Customer request",
       "refundConfirm": "Refund",
@@ -502,7 +502,18 @@
       "fldDays": "{n} days",
       "notOnboarded": "Has not completed onboarding.",
       "noGoals": "No goals set yet.",
-      "noStreakYet": "No streak activity yet."
+      "noStreakYet": "No streak activity yet.",
+      "testBadge": "TEST",
+      "markTest": "Mark as test user",
+      "unmarkTest": "Unmark test user",
+      "lookupShowing": "{shown} of {total} users",
+      "refundRemaining": "Remaining refundable",
+      "refundAmountLabel": "Refund amount (KRW)",
+      "refundAmountInvalid": "Enter a whole number between 1 and {remaining}.",
+      "refundHistory": "Refund history",
+      "refundPresetButton": "Refund unused credits",
+      "refundPresetMath": "{amount} × {unused}/{granted} unused = {result}",
+      "refundPresetUnavailable": "Unused-credit preset unavailable — this payment's credit grant can't be determined unambiguously."
     },
     "common": {
       "save": "Save",
@@ -2526,6 +2537,25 @@
       "notEnoughAnswers": "Not enough answers yet to rank skills.",
       "wrongRateLabel": "{rate}% wrong",
       "answersLabel": "n={n}"
+    },
+    "review": {
+      "classReview": "Class review",
+      "title": "Class review",
+      "subtitle": "Pull questions from the bank to walk through together — {remaining} questions remaining in your quota",
+      "start": "Start review",
+      "countHint": "Up to {max} questions",
+      "questionOf": "Question {current} of {total}",
+      "keyboardHint": "← → navigate · Space reveals · Esc closes",
+      "previous": "Previous",
+      "next": "Next",
+      "revealAnswer": "Reveal answer",
+      "hideAnswer": "Hide answer",
+      "explanation": "Explanation",
+      "jumpTo": "Go to question {n}",
+      "errors": {
+        "createFailed": "Failed to create the review set. Please try again.",
+        "loadFailed": "The review set was created but its questions could not be loaded. Please try again."
+      }
     }
   },
   "attendance": {
@@ -4856,6 +4886,7 @@
       "statusCancelled": "Canceled",
       "statusExpired": "Expired",
       "statusCancelling": "Cancelling",
+      "statusSwitching": "Switching to {plan} on {date}",
       "statusFree": "Free"
     },
     "landing": {

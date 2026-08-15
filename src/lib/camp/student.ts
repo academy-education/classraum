@@ -38,11 +38,16 @@ export async function loadStudentCampAssignments(studentId: string): Promise<Stu
   const classroomIds = [...new Set((memberships ?? []).map(m => m.classroom_id as string))]
   if (classroomIds.length === 0) return []
 
+  // kind='review' rows are teacher-only presenter decks (migration 083)
+  // and must never reach the shelf. `.neq` alone would ALSO drop NULL
+  // kind (SQL null comparison), which is the right direction here, but
+  // the explicit or() keeps pre-083 NULLs visible as assignments.
   const { data: assignments } = await dbAdmin
     .from('camp_assignments')
     .select('id, camp_program_id, classroom_id, title, question_count, due_at, created_at')
     .in('classroom_id', classroomIds)
     .is('deleted_at', null)
+    .or('kind.neq.review,kind.is.null')
     .order('created_at', { ascending: false })
   if (!assignments || assignments.length === 0) return []
 

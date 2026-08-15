@@ -37,6 +37,16 @@ import ko from '../ko.json'
  */
 const LEGITIMATELY_IDENTICAL: readonly { prefix: string; reason: string }[] = [
   {
+    prefix: 'landing.camp.toefl.q.',
+    reason:
+      'Demo content on the marketing camp page: a real TOEFL Reading item (passage + four options) from the live bank. TOEFL is an English exam — showing the material in Korean would misrepresent the product a school is evaluating.',
+  },
+  {
+    prefix: 'landing.camp.toefl.skillsDemo.',
+    reason:
+      'Same page, same rule: the listening options, the speaking sentence a student repeats, and the writing draft are the actual English exam materials the product delivers. Only the surrounding labels are localised, and they are.',
+  },
+  {
     prefix: 'settings.languageRegion.languages.',
     reason:
       'A language is named in its OWN language in a language picker — English, Español, Français. Translating these into Korean would make the picker unusable for the very person looking for their language.',

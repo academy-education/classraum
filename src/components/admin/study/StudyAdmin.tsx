@@ -1,8 +1,9 @@
 'use client'
 
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useMemo, useState } from 'react'
 import { CreditCard, Layers, Target, Trophy, ReceiptText, Flag, CalendarClock, Search, Inbox, Download, UserRound, Settings2 } from 'lucide-react'
 import { useAdminFetch } from '@/components/admin/useAdminFetch'
+import { filterSortStudyUsers, type DirectoryUser } from '@/lib/study/admin-user-search'
 import { AdminPageHeader } from '@/components/admin/AdminPageHeader'
 import { AdminEmptyState } from '@/components/admin/AdminEmptyState'
 import { DashboardCard } from '@/components/admin/DashboardCard'
@@ -71,28 +72,49 @@ export function StudyAdmin() {
 
 /* ─────────────────────────── User lookup ─────────────────────────── */
 
-interface SearchRow { id: string; name: string | null; email: string | null; role: string }
+/** Small "TEST" pill shown wherever a flagged user appears. */
+function TestBadge() {
+  const { t } = useTranslation()
+  return (
+    <span className="inline-flex items-center h-4 px-1.5 rounded-full bg-amber-50 text-amber-700 text-[10px] font-bold ring-1 ring-amber-200/70 uppercase tracking-wide flex-shrink-0">
+      {String(t('admin.studyConsole.testBadge'))}
+    </span>
+  )
+}
+
+/** How many directory rows to render at once — filtering is over ALL users,
+ *  this only caps the DOM. */
+const LOOKUP_RENDER_CAP = 100
 
 function UserLookup() {
   const { t } = useTranslation()
   const adminFetch = useAdminFetch()
   const [q, setQ] = useState('')
-  const [results, setResults] = useState<SearchRow[]>([])
+  const [debouncedQ, setDebouncedQ] = useState('')
+  const [all, setAll] = useState<DirectoryUser[]>([])
+  const [dirLoading, setDirLoading] = useState(true)
   const [detail, setDetail] = useState<Record<string, unknown> | null>(null)
   const [selectedId, setSelectedId] = useState<string | null>(null)
   const [loading, setLoading] = useState(false)
 
+  // The full directory loads once; the search bar filters + ranks in memory.
   useEffect(() => {
-    if (q.trim().length < 2) { setResults([]); return }
-    const h = setTimeout(async () => {
+    let cancelled = false
+    ;(async () => {
       try {
-        const res = await adminFetch(`/api/admin/study/user?q=${encodeURIComponent(q.trim())}`)
+        const res = await adminFetch('/api/admin/study/user?list=all')
         const json = await res.json()
-        setResults(json.results ?? [])
-      } catch { setResults([]) }
-    }, 250)
-    return () => clearTimeout(h)
-  }, [q, adminFetch])
+        if (!cancelled) setAll(json.users ?? [])
+      } catch { if (!cancelled) setAll([]) }
+      finally { if (!cancelled) setDirLoading(false) }
+    })()
+    return () => { cancelled = true }
+  }, [adminFetch])
+
+  useEffect(() => { const h = setTimeout(() => setDebouncedQ(q), 150); return () => clearTimeout(h) }, [q])
+
+  const filtered = useMemo(() => filterSortStudyUsers(all, debouncedQ), [all, debouncedQ])
+  const visible = filtered.slice(0, LOOKUP_RENDER_CAP)
 
   const openUser = useCallback(async (id: string) => {
     setLoading(true); setDetail(null); setSelectedId(id)
@@ -100,6 +122,18 @@ function UserLookup() {
       const res = await adminFetch(`/api/admin/study/user?id=${id}`)
       setDetail(await res.json())
     } catch { setDetail(null) } finally { setLoading(false) }
+  }, [adminFetch])
+
+  // Toggle the TEST flag for the currently open user; keeps the directory
+  // list and the open detail in sync without a full reload.
+  const toggleTest = useCallback(async (studentId: string, next: boolean) => {
+    const res = await adminFetch('/api/admin/study/user', {
+      method: 'PATCH',
+      body: JSON.stringify({ studentId, isTestUser: next }),
+    })
+    if (!res.ok) return
+    setAll(prev => prev.map(u => (u.id === studentId ? { ...u, isTestUser: next } : u)))
+    setDetail(prev => (prev ? { ...prev, isTestUser: next } : prev))
   }, [adminFetch])
 
   return (
@@ -114,18 +148,27 @@ function UserLookup() {
             className="pl-9"
           />
         </div>
-        <div className="mt-2 divide-y divide-gray-100 rounded-lg ring-1 ring-gray-100/80 overflow-hidden">
-          {results.map(r => (
+        <div className="mt-1.5 px-1 text-[11px] text-gray-400">
+          {dirLoading
+            ? String(t('admin.studyConsole.loading'))
+            : String(t('admin.studyConsole.lookupShowing', { shown: visible.length, total: filtered.length }))}
+        </div>
+        <div className="mt-1.5 divide-y divide-gray-100 rounded-lg ring-1 ring-gray-100/80 overflow-hidden max-h-[70vh] overflow-y-auto">
+          {visible.map(r => (
             <button
               key={r.id}
               onClick={() => openUser(r.id)}
-              className="block w-full text-left px-3 py-2 hover:bg-gray-50"
+              className={`block w-full text-left px-3 py-2 hover:bg-gray-50 ${r.id === selectedId ? 'bg-gray-50' : ''}`}
             >
-              <div className="text-sm font-medium text-gray-900 truncate">{r.name || t('admin.studyConsole.noName')}</div>
+              <div className="flex items-center gap-1.5 min-w-0">
+                <span className="text-sm font-medium text-gray-900 truncate">{r.name || t('admin.studyConsole.noName')}</span>
+                {r.nickname && <span className="text-xs text-gray-400 truncate">@{r.nickname}</span>}
+                {r.isTestUser && <TestBadge />}
+              </div>
               <div className="text-xs text-gray-500 truncate">{r.email}</div>
             </button>
           ))}
-          {q.trim().length >= 2 && results.length === 0 && (
+          {!dirLoading && filtered.length === 0 && (
             <div className="px-3 py-2 text-xs text-gray-400">{t('admin.studyConsole.noMatches')}</div>
           )}
         </div>
@@ -134,7 +177,7 @@ function UserLookup() {
       <div>
         {loading && <div className="text-sm text-gray-400">{t('admin.studyConsole.loading')}</div>}
         {!loading && !detail && <div className="text-sm text-gray-400">{t('admin.studyConsole.pickPrompt')}</div>}
-        {!loading && detail && <UserDetail data={detail} studentId={selectedId} />}
+        {!loading && detail && <UserDetail data={detail} studentId={selectedId} onToggleTest={toggleTest} />}
       </div>
     </div>
   )
@@ -194,8 +237,14 @@ function Field({ label, children }: { label: string; children: React.ReactNode }
   )
 }
 
-function UserDetail({ data, studentId }: { data: Record<string, unknown>; studentId: string | null }) {
+function UserDetail({ data, studentId, onToggleTest }: {
+  data: Record<string, unknown>
+  studentId: string | null
+  onToggleTest: (studentId: string, next: boolean) => Promise<void>
+}) {
   const { t, language } = useTranslation()
+  const [flagBusy, setFlagBusy] = useState(false)
+  const isTestUser = !!data.isTestUser
   const locale = getDateLocale(language)
   const user = data.user as { name?: string; email?: string; role?: string } | null
   const sub = data.subscription as Record<string, unknown> | null
@@ -221,9 +270,26 @@ function UserDetail({ data, studentId }: { data: Record<string, unknown>; studen
           {initial}
         </div>
         <div className="min-w-0">
-          <div className="text-base font-semibold text-gray-900 truncate">{user?.name || t('admin.studyConsole.noName')}</div>
+          <div className="flex items-center gap-2 min-w-0">
+            <span className="text-base font-semibold text-gray-900 truncate">{user?.name || t('admin.studyConsole.noName')}</span>
+            {isTestUser && <TestBadge />}
+          </div>
           <div className="text-xs text-gray-500 truncate">{user?.email} · {user?.role}</div>
         </div>
+        {studentId && (
+          <Button
+            size="sm"
+            variant="outline"
+            className="ml-auto flex-shrink-0"
+            disabled={flagBusy}
+            onClick={async () => {
+              setFlagBusy(true)
+              try { await onToggleTest(studentId, !isTestUser) } finally { setFlagBusy(false) }
+            }}
+          >
+            {String(t(isTestUser ? 'admin.studyConsole.unmarkTest' : 'admin.studyConsole.markTest'))}
+          </Button>
+        )}
       </div>
 
       {/* Headline stats — same primitive as the manager dashboard */}
@@ -377,17 +443,40 @@ function UserDetail({ data, studentId }: { data: Record<string, unknown>; studen
   )
 }
 
+interface RefundRecord {
+  id: string
+  amountWon: number
+  reason: string | null
+  createdAt: string
+}
+
+/** Server-computed "refund unused credits" preset; null when the payment's
+ *  credit grant could not be attributed unambiguously (no guessing). */
+interface CreditPreset {
+  grantedCredits: number
+  unusedCredits: number
+  presetWon: number
+}
+
 interface PaymentRow {
   paymentId: string
   studentId?: string
   studentName?: string | null
   studentEmail?: string | null
+  isTestUser?: boolean
   kind: string
   amountWon: number | null
   createdAt: string | null
   refunded: boolean
   refundedAt: string | null
+  refundedWon: number
+  remainingWon: number
+  refunds: RefundRecord[]
+  creditPreset: CreditPreset | null
 }
+
+// A payment stays refundable while anything remains.
+function isRefundable(p: PaymentRow) { return !p.refunded && p.remainingWon > 0 }
 
 // Shared payment helpers (used by the per-student panel and the global list).
 function usePaymentFormatters(locale: string) {
@@ -397,9 +486,11 @@ function usePaymentFormatters(locale: string) {
     if (kind === 'study_subscription') return String(t('admin.studyConsole.paymentKindSubscription'))
     return String(t('admin.studyConsole.paymentKindPack'))
   }
-  const statusMeta = (refunded: boolean) => refunded
-    ? { label: String(t('admin.studyConsole.payStatusCancelled')), cls: 'bg-gray-100 text-gray-600 ring-gray-200/70' }
-    : { label: String(t('admin.studyConsole.payStatusPaid')), cls: 'bg-emerald-50 text-emerald-700 ring-emerald-200/60' }
+  const statusMeta = (p: PaymentRow) => {
+    if (p.refunded) return { label: String(t('admin.studyConsole.payStatusCancelled')), cls: 'bg-gray-100 text-gray-600 ring-gray-200/70' }
+    if (p.refundedWon > 0) return { label: String(t('admin.studyConsole.payStatusPartial')), cls: 'bg-amber-50 text-amber-700 ring-amber-200/60' }
+    return { label: String(t('admin.studyConsole.payStatusPaid')), cls: 'bg-emerald-50 text-emerald-700 ring-emerald-200/60' }
+  }
   const won = (n: number | null) => (typeof n === 'number' ? `₩${n.toLocaleString(locale)}` : '—')
   return { kindLabel, statusMeta, won }
 }
@@ -447,7 +538,7 @@ function PaymentsPanel({ studentId, locale }: { studentId: string; locale: strin
               dashboard's DataTable makes. */}
           <div className="md:hidden -mx-4 border-t border-gray-100 divide-y divide-gray-100">
             {rows.map((p) => {
-              const meta = statusMeta(p.refunded)
+              const meta = statusMeta(p)
               return (
                 <AdminMobileRow
                   key={p.paymentId}
@@ -459,7 +550,7 @@ function PaymentsPanel({ studentId, locale }: { studentId: string; locale: strin
                     { label: String(t('admin.studyConsole.colAmount')), value: <span className="tabular-nums">{won(p.amountWon)}</span> },
                     { label: String(t('admin.studyConsole.colDate')), value: p.createdAt ? new Date(p.createdAt).toLocaleString(locale) : '—' },
                   ]}
-                  actions={!p.refunded ? (
+                  actions={isRefundable(p) ? (
                     <Button size="sm" variant="outline" onClick={() => setRefundTarget(p)}>
                       {String(t('admin.studyConsole.refund'))}
                     </Button>
@@ -473,7 +564,7 @@ function PaymentsPanel({ studentId, locale }: { studentId: string; locale: strin
             <table className="w-full text-sm">
               <tbody className="divide-y divide-gray-100">
                 {rows.map((p) => {
-                  const meta = statusMeta(p.refunded)
+                  const meta = statusMeta(p)
                   return (
                     <tr key={p.paymentId}>
                       <td className="py-2 pr-3 text-gray-700 whitespace-nowrap">{kindLabel(p.kind)}</td>
@@ -483,7 +574,7 @@ function PaymentsPanel({ studentId, locale }: { studentId: string; locale: strin
                       </td>
                       <td className="py-2 pr-3 text-gray-400 text-xs whitespace-nowrap">{p.createdAt ? new Date(p.createdAt).toLocaleString(locale) : '—'}</td>
                       <td className="py-2 text-right whitespace-nowrap">
-                        {!p.refunded && (
+                        {isRefundable(p) && (
                           <Button size="sm" variant="outline" onClick={() => setRefundTarget(p)}>
                             {String(t('admin.studyConsole.refund'))}
                           </Button>
@@ -518,18 +609,25 @@ function RefundDialog({ payment, kindLabel, amountLabel, onClose, onDone }: {
   onClose: () => void
   onDone: () => void
 }) {
-  const { t } = useTranslation()
+  const { t, language } = useTranslation()
+  const locale = getDateLocale(language)
   const adminFetch = useAdminFetch()
+  const remaining = payment.remainingWon
+  const [amountStr, setAmountStr] = useState(String(remaining))
   const [reason, setReason] = useState('')
   const [busy, setBusy] = useState(false)
   const [error, setError] = useState<string | null>(null)
+
+  const wonFmt = (n: number) => `₩${n.toLocaleString(locale)}`
+  const amount = /^\d+$/.test(amountStr.trim()) ? parseInt(amountStr.trim(), 10) : NaN
+  const amountValid = Number.isInteger(amount) && amount > 0 && amount <= remaining
 
   const submit = async () => {
     setBusy(true); setError(null)
     try {
       const res = await adminFetch('/api/admin/study/payments', {
         method: 'POST',
-        body: JSON.stringify({ paymentId: payment.paymentId, reason: reason.trim() }),
+        body: JSON.stringify({ paymentId: payment.paymentId, reason: reason.trim(), amountWon: amount }),
       })
       const json = await res.json().catch(() => ({}))
       if (!res.ok) { setError(String(t('admin.studyConsole.refundFailed', { message: json.error ?? res.status }))); return }
@@ -546,14 +644,78 @@ function RefundDialog({ payment, kindLabel, amountLabel, onClose, onDone }: {
         <p className="mt-2 text-sm text-gray-600">
           {String(t('admin.studyConsole.refundBody', { kind: kindLabel, amount: amountLabel }))}
         </p>
+
+        {/* Remaining refundable — the number the amount is validated against. */}
+        <div className="mt-3 rounded-lg bg-gray-50 px-3 py-2 flex items-center justify-between">
+          <span className="text-xs font-medium text-gray-500">{String(t('admin.studyConsole.refundRemaining'))}</span>
+          <span className="text-sm font-semibold text-gray-900 tabular-nums">{wonFmt(remaining)}</span>
+        </div>
+
+        {/* Prior refunds on this payment. */}
+        {payment.refunds.length > 0 && (
+          <div className="mt-3">
+            <div className="text-xs font-medium text-gray-500">{String(t('admin.studyConsole.refundHistory'))}</div>
+            <ul className="mt-1 divide-y divide-gray-100 rounded-lg ring-1 ring-gray-100/80 overflow-hidden">
+              {payment.refunds.map(r => (
+                <li key={r.id} className="px-3 py-1.5 flex items-center justify-between gap-2 text-xs">
+                  <span className="text-gray-600 truncate">{r.reason || '—'}</span>
+                  <span className="text-gray-400 whitespace-nowrap">{new Date(r.createdAt).toLocaleDateString(locale)}</span>
+                  <span className="font-semibold text-rose-700 tabular-nums whitespace-nowrap">−{wonFmt(r.amountWon)}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+
+        {/* "Refund unused credits" preset — server-attributed; the button
+            only fills the amount field, so the result passes through exactly
+            the same remaining-amount validation as a typed value. */}
+        {payment.creditPreset ? (
+          <div className="mt-3 rounded-lg ring-1 ring-gray-100/80 px-3 py-2">
+            <div className="flex items-center justify-between gap-2">
+              <span className="text-xs text-gray-600">
+                {String(t('admin.studyConsole.refundPresetMath', {
+                  amount: wonFmt(payment.amountWon ?? 0),
+                  unused: payment.creditPreset.unusedCredits,
+                  granted: payment.creditPreset.grantedCredits,
+                  result: wonFmt(payment.creditPreset.presetWon),
+                }))}
+              </span>
+              <Button
+                size="sm"
+                variant="outline"
+                disabled={busy || payment.creditPreset.presetWon <= 0}
+                onClick={() => setAmountStr(String(payment.creditPreset!.presetWon))}
+              >
+                {String(t('admin.studyConsole.refundPresetButton'))}
+              </Button>
+            </div>
+          </div>
+        ) : (
+          <p className="mt-3 text-[11px] text-gray-400">{String(t('admin.studyConsole.refundPresetUnavailable'))}</p>
+        )}
+
         <label className="block mt-4">
+          <span className="text-xs font-medium text-gray-500">{String(t('admin.studyConsole.refundAmountLabel'))}</span>
+          <Input
+            value={amountStr}
+            onChange={e => setAmountStr(e.target.value)}
+            inputMode="numeric"
+            className="mt-1 tabular-nums"
+            autoFocus
+          />
+          {!amountValid && amountStr.trim() !== '' && (
+            <span className="mt-1 block text-xs text-rose-600">{String(t('admin.studyConsole.refundAmountInvalid', { remaining: wonFmt(remaining) }))}</span>
+          )}
+        </label>
+        <label className="block mt-3">
           <span className="text-xs font-medium text-gray-500">{String(t('admin.studyConsole.refundReason'))}</span>
-          <Input value={reason} onChange={e => setReason(e.target.value)} placeholder={String(t('admin.studyConsole.refundReasonPlaceholder'))} className="mt-1" autoFocus />
+          <Input value={reason} onChange={e => setReason(e.target.value)} placeholder={String(t('admin.studyConsole.refundReasonPlaceholder'))} className="mt-1" />
         </label>
         {error && <p className="mt-2 text-xs text-rose-600">{error}</p>}
         <div className="mt-5 flex flex-wrap justify-end gap-2">
           <Button variant="outline" onClick={onClose} disabled={busy}>{String(t('admin.studyConsole.refundCancel'))}</Button>
-          <Button variant="destructive" onClick={submit} disabled={busy || reason.trim().length === 0}>
+          <Button variant="destructive" onClick={submit} disabled={busy || reason.trim().length === 0 || !amountValid}>
             {busy ? String(t('admin.studyConsole.refundProcessing')) : String(t('admin.studyConsole.refundConfirm'))}
           </Button>
         </div>
@@ -621,14 +783,19 @@ function ReportsQueue() {
     } finally { setBusy(null) }
   }, [adminFetch, load])
 
+  // Capitalized at the render layer (the locale strings stay lowercase and
+  // the data is never mutated). No-op for Korean, which has no case.
   const statusLabel = (s: string) => {
-    switch (s) {
-      case 'open': return t('admin.studyConsole.statusOpen')
-      case 'reviewing': return t('admin.studyConsole.statusReviewing')
-      case 'resolved': return t('admin.studyConsole.statusResolved')
-      case 'dismissed': return t('admin.studyConsole.statusDismissed')
-      default: return t('admin.studyConsole.reportsAll')
-    }
+    const label = (() => {
+      switch (s) {
+        case 'open': return String(t('admin.studyConsole.statusOpen'))
+        case 'reviewing': return String(t('admin.studyConsole.statusReviewing'))
+        case 'resolved': return String(t('admin.studyConsole.statusResolved'))
+        case 'dismissed': return String(t('admin.studyConsole.statusDismissed'))
+        default: return String(t('admin.studyConsole.reportsAll'))
+      }
+    })()
+    return label.charAt(0).toUpperCase() + label.slice(1)
   }
 
   return (
@@ -694,6 +861,7 @@ interface SubListRow {
   studentId: string
   studentName: string | null
   studentEmail: string | null
+  isTestUser: boolean
   status: string
   plan: string
   priceWon: number | null
@@ -742,8 +910,23 @@ function SubscriptionsList() {
   const [rows, setRows] = useState<SubListRow[]>([])
   const [total, setTotal] = useState(0)
   const [loading, setLoading] = useState(true)
+  const [flagBusy, setFlagBusy] = useState<string | null>(null)
 
   useEffect(() => { const h = setTimeout(() => { setDebouncedQ(q); setPage(1) }, 300); return () => clearTimeout(h) }, [q])
+
+  // Mark/unmark a student as a TEST USER straight from the list.
+  const toggleTest = useCallback(async (r: SubListRow) => {
+    setFlagBusy(r.studentId)
+    try {
+      const res = await adminFetch('/api/admin/study/user', {
+        method: 'PATCH',
+        body: JSON.stringify({ studentId: r.studentId, isTestUser: !r.isTestUser }),
+      })
+      if (res.ok) {
+        setRows(prev => prev.map(x => (x.studentId === r.studentId ? { ...x, isTestUser: !r.isTestUser } : x)))
+      }
+    } finally { setFlagBusy(null) }
+  }, [adminFetch])
 
   const query = useCallback((pg: number) => {
     const p = new URLSearchParams({ status, plan, page: String(pg) })
@@ -804,10 +987,20 @@ function SubscriptionsList() {
         mobile={!loading && rows.length > 0 ? rows.map((r) => (
           <AdminMobileRow
             key={r.studentId}
-            title={r.studentName || String(t('admin.studyConsole.noName'))}
+            title={
+              <span className="inline-flex items-center gap-1.5 min-w-0">
+                <span className="truncate">{r.studentName || String(t('admin.studyConsole.noName'))}</span>
+                {r.isTestUser && <TestBadge />}
+              </span>
+            }
             subtitle={r.studentEmail}
             badge={
               <span className={`inline-flex items-center h-5 px-2 rounded-full text-[11px] font-semibold ring-1 ${subStatusMeta(r.status)}`}>{statusLabel(r.status)}</span>
+            }
+            actions={
+              <Button size="sm" variant="outline" disabled={flagBusy === r.studentId} onClick={() => toggleTest(r)}>
+                {String(t(r.isTestUser ? 'admin.studyConsole.unmarkTest' : 'admin.studyConsole.markTest'))}
+              </Button>
             }
             meta={[
               {
@@ -844,13 +1037,17 @@ function SubscriptionsList() {
                   <th className="px-4 py-3 text-left">{String(t('admin.studyConsole.colStatus'))}</th>
                   <th className="px-4 py-3 text-right">{String(t('admin.studyConsole.colCredits'))}</th>
                   <th className="px-4 py-3 text-left">{String(t('admin.studyConsole.colRenews'))}</th>
+                  <th className="px-4 py-3"></th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-100">
                 {rows.map((r) => (
                   <tr key={r.studentId} className="hover:bg-gray-50/60">
                     <td className="px-4 py-3">
-                      <div className="font-medium text-gray-900 truncate max-w-[220px]">{r.studentName || t('admin.studyConsole.noName')}</div>
+                      <div className="flex items-center gap-1.5 max-w-[220px]">
+                        <span className="font-medium text-gray-900 truncate">{r.studentName || t('admin.studyConsole.noName')}</span>
+                        {r.isTestUser && <TestBadge />}
+                      </div>
                       <div className="text-xs text-gray-500 truncate max-w-[220px]">{r.studentEmail}</div>
                     </td>
                     <td className="px-4 py-3 text-gray-700 whitespace-nowrap">{r.plan}{r.pendingPlan ? ` → ${r.pendingPlan}` : ''}</td>
@@ -860,6 +1057,11 @@ function SubscriptionsList() {
                     </td>
                     <td className="px-4 py-3 text-right tabular-nums text-gray-700">{r.creditsTotal.toLocaleString(locale)}</td>
                     <td className="px-4 py-3 text-gray-500 whitespace-nowrap">{when(r.currentPeriodEnd)}</td>
+                    <td className="px-4 py-3 text-right whitespace-nowrap">
+                      <Button size="sm" variant="outline" disabled={flagBusy === r.studentId} onClick={() => toggleTest(r)}>
+                        {String(t(r.isTestUser ? 'admin.studyConsole.unmarkTest' : 'admin.studyConsole.markTest'))}
+                      </Button>
+                    </td>
                   </tr>
                 ))}
               </tbody>
@@ -949,11 +1151,16 @@ function PaymentsList() {
 
       <AdminTableShell
         mobile={!loading && rows.length > 0 ? rows.map((p) => {
-          const meta = statusMeta(p.refunded)
+          const meta = statusMeta(p)
           return (
             <AdminMobileRow
               key={p.paymentId}
-              title={p.studentName || String(t('admin.studyConsole.noName'))}
+              title={
+                <span className="inline-flex items-center gap-1.5 min-w-0">
+                  <span className="truncate">{p.studentName || String(t('admin.studyConsole.noName'))}</span>
+                  {p.isTestUser && <TestBadge />}
+                </span>
+              }
               subtitle={p.studentEmail}
               badge={
                 <span className={`inline-flex items-center h-5 px-2 rounded-full text-[11px] font-semibold ring-1 ${meta.cls}`}>{meta.label}</span>
@@ -963,7 +1170,7 @@ function PaymentsList() {
                 { label: String(t('admin.studyConsole.colAmount')), value: <span className="tabular-nums">{won(p.amountWon)}</span> },
                 { label: String(t('admin.studyConsole.colDate')), value: p.createdAt ? new Date(p.createdAt).toLocaleString(locale) : '—' },
               ]}
-              actions={!p.refunded ? (
+              actions={isRefundable(p) ? (
                 <Button size="sm" variant="outline" onClick={() => setRefundTarget(p)}>{String(t('admin.studyConsole.refund'))}</Button>
               ) : undefined}
             />
@@ -988,11 +1195,14 @@ function PaymentsList() {
               </thead>
               <tbody className="divide-y divide-gray-100">
                 {rows.map((p) => {
-                  const meta = statusMeta(p.refunded)
+                  const meta = statusMeta(p)
                   return (
                     <tr key={p.paymentId} className="hover:bg-gray-50/60">
                       <td className="px-4 py-3">
-                        <div className="font-medium text-gray-900 truncate max-w-[220px]">{p.studentName || t('admin.studyConsole.noName')}</div>
+                        <div className="flex items-center gap-1.5 max-w-[220px]">
+                          <span className="font-medium text-gray-900 truncate">{p.studentName || t('admin.studyConsole.noName')}</span>
+                          {p.isTestUser && <TestBadge />}
+                        </div>
                         <div className="text-xs text-gray-500 truncate max-w-[220px]">{p.studentEmail}</div>
                       </td>
                       <td className="px-4 py-3 text-gray-700 whitespace-nowrap">{kindLabel(p.kind)}</td>
@@ -1002,7 +1212,7 @@ function PaymentsList() {
                       </td>
                       <td className="px-4 py-3 text-gray-500 text-xs whitespace-nowrap">{p.createdAt ? new Date(p.createdAt).toLocaleString(locale) : '—'}</td>
                       <td className="px-4 py-3 text-right whitespace-nowrap">
-                        {!p.refunded && (
+                        {isRefundable(p) && (
                           <Button size="sm" variant="outline" onClick={() => setRefundTarget(p)}>{String(t('admin.studyConsole.refund'))}</Button>
                         )}
                       </td>

@@ -4,6 +4,8 @@ import { dbAdmin } from '@/lib/supabase-admin';
 import { requireAdminAuth, logAdminActivity } from '@/lib/admin-auth';
 import { cancelPayment } from '@/lib/portone-charge';
 import { raiseAlert } from '@/lib/ops/alert';
+import { creditPresetWon, remainingWon, validateRefundAmount } from '@/lib/study/refund-math';
+import { attributePaymentCredits } from '@/lib/study/refund-credit-preset';
 
 /**
  * Admin view of study-system income (the PortOne side) + refunds.
@@ -16,8 +18,11 @@ import { raiseAlert } from '@/lib/ops/alert';
  *   per-row live PortOne call. (A refund issued directly in the PortOne console,
  *   outside this tool, won't be reflected here.)
  *
- * POST /api/admin/study/payments   { paymentId, reason }
- *   → full refund via PortOne (operator-initiated only) + stamp refunded_at.
+ * POST /api/admin/study/payments   { paymentId, reason, amountWon? }
+ *   → refund via PortOne (operator-initiated only). amountWon omitted refunds
+ *     the full remaining balance; otherwise a partial cancel for that amount.
+ *     Each refund is recorded in study_payment_refunds; refunded_at is only
+ *     stamped once the remaining balance hits 0 (= fully refunded).
  *
  * Admin-only; study data is minors' billing info so access is gated.
  */
@@ -36,28 +41,135 @@ interface PayRow {
   refunded_at: string | null;
 }
 
-function toDto(r: PayRow, student?: { name: string | null; email: string | null }) {
+interface RefundDto { id: string; amountWon: number; reason: string | null; createdAt: string }
+
+/** "Refund unused credits" preset — null whenever attribution is ambiguous
+ *  (the dialog then prefills nothing rather than guessing). */
+interface CreditPresetDto { grantedCredits: number; unusedCredits: number; presetWon: number }
+
+/**
+ * Compute the unused-credit preset for each payment on the page.
+ * granted comes from the plans.ts catalog (via price attribution);
+ * unused comes from the bucket that payment filled:
+ *   grant bucket     → study_subscriptions.grant_credits_remaining
+ *   purchased bucket → study_subscriptions.purchased_credits_remaining
+ *   pass             → study_pass_credits.remaining for the pass's test
+ * unused is clamped to granted inside creditPresetWon.
+ */
+async function fetchCreditPresets(rows: PayRow[]): Promise<Map<string, CreditPresetDto | null>> {
+  const out = new Map<string, CreditPresetDto | null>();
+  const candidates = rows.filter((r) => !r.refunded_at);
+  const studentIds = Array.from(new Set(candidates.map((r) => r.student_id)));
+  if (studentIds.length === 0) {
+    for (const r of rows) out.set(r.payment_id, null);
+    return out;
+  }
+  const [{ data: subs }, { data: passes }] = await Promise.all([
+    dbAdmin.from('study_subscriptions')
+      .select('student_id, grant_credits_remaining, purchased_credits_remaining')
+      .in('student_id', studentIds),
+    dbAdmin.from('study_pass_credits')
+      .select('student_id, test, remaining')
+      .in('student_id', studentIds),
+  ]);
+  const subMap = new Map((subs ?? []).map((s) => [s.student_id, s]));
+  const passMap = new Map<string, Array<{ test: string; remaining: number }>>();
+  for (const p of passes ?? []) {
+    const list = passMap.get(p.student_id) ?? [];
+    list.push({ test: p.test, remaining: p.remaining });
+    passMap.set(p.student_id, list);
+  }
+
+  for (const r of rows) {
+    if (r.refunded_at) { out.set(r.payment_id, null); continue; }
+    const attr = attributePaymentCredits(r.kind, r.amount_won);
+    if (!attr.ok) { out.set(r.payment_id, null); continue; }
+
+    let unused: number | null = null;
+    if (attr.bucket === 'grant') {
+      unused = subMap.get(r.student_id)?.grant_credits_remaining ?? 0;
+    } else if (attr.bucket === 'purchased') {
+      unused = subMap.get(r.student_id)?.purchased_credits_remaining ?? 0;
+    } else {
+      // Pass bucket: the price can match several passes (they differ only by
+      // test), so use the student's pass-credit rows to disambiguate. More
+      // than one matching row → cannot tell which pass this payment was.
+      const rowsForTests = (passMap.get(r.student_id) ?? []).filter((p) => (attr.passTests ?? []).includes(p.test));
+      if (rowsForTests.length > 1) { out.set(r.payment_id, null); continue; }
+      unused = rowsForTests[0]?.remaining ?? 0;
+    }
+
+    const presetWon = creditPresetWon(r.amount_won, unused, attr.grantedCredits);
+    out.set(r.payment_id, presetWon === null ? null : {
+      grantedCredits: attr.grantedCredits,
+      unusedCredits: Math.min(Math.max(0, unused), attr.grantedCredits),
+      presetWon,
+    });
+  }
+  return out;
+}
+
+function toDto(
+  r: PayRow,
+  refunds: RefundDto[],
+  creditPreset: CreditPresetDto | null,
+  student?: { name: string | null; email: string | null; isTestUser?: boolean },
+) {
+  const refundedWon = refunds.reduce((s, x) => s + x.amountWon, 0);
   return {
     paymentId: r.payment_id,
     studentId: r.student_id,
     studentName: student?.name ?? null,
     studentEmail: student?.email ?? null,
+    isTestUser: student?.isTestUser ?? false,
     kind: r.kind,
     amountWon: r.amount_won ?? null,
     createdAt: r.created_at,
     refunded: !!r.refunded_at,
     refundedAt: r.refunded_at,
+    refundedWon,
+    remainingWon: remainingWon(r.amount_won, refunds),
+    refunds,
+    creditPreset,
   };
+}
+
+/** Refund history for a page of payments — one query, grouped in JS. */
+async function fetchRefundMap(paymentIds: string[]): Promise<Map<string, RefundDto[]>> {
+  const map = new Map<string, RefundDto[]>();
+  if (paymentIds.length === 0) return map;
+  const { data } = await dbAdmin
+    .from('study_payment_refunds')
+    .select('id, payment_id, amount_won, reason, created_at')
+    .in('payment_id', paymentIds)
+    .order('created_at', { ascending: true });
+  for (const r of data ?? []) {
+    const list = map.get(r.payment_id) ?? [];
+    list.push({ id: r.id, amountWon: r.amount_won, reason: r.reason, createdAt: r.created_at });
+    map.set(r.payment_id, list);
+  }
+  return map;
 }
 
 async function attachStudents(rows: PayRow[]) {
   const ids = Array.from(new Set(rows.map((r) => r.student_id)));
-  const map = new Map<string, { name: string | null; email: string | null }>();
+  const map = new Map<string, { name: string | null; email: string | null; isTestUser?: boolean }>();
   if (ids.length > 0) {
-    const { data: users } = await dbAdmin.from('users').select('id, name, email').in('id', ids);
-    for (const u of users ?? []) map.set(u.id as string, { name: u.name as string | null, email: u.email as string | null });
+    const [{ data: users }, { data: prefs }] = await Promise.all([
+      dbAdmin.from('users').select('id, name, email').in('id', ids),
+      dbAdmin.from('study_user_prefs').select('student_id, is_test_user').in('student_id', ids),
+    ]);
+    for (const u of users ?? []) map.set(u.id, { name: u.name, email: u.email });
+    for (const p of prefs ?? []) {
+      const entry = map.get(p.student_id);
+      if (entry) entry.isTestUser = p.is_test_user;
+    }
   }
-  return rows.map((r) => toDto(r, map.get(r.student_id)));
+  const [refundMap, presetMap] = await Promise.all([
+    fetchRefundMap(rows.map((r) => r.payment_id)),
+    fetchCreditPresets(rows),
+  ]);
+  return rows.map((r) => toDto(r, refundMap.get(r.payment_id) ?? [], presetMap.get(r.payment_id) ?? null, map.get(r.student_id)));
 }
 
 /**
@@ -104,8 +216,15 @@ export async function GET(req: NextRequest) {
     const rows = (data ?? []) as PayRow[];
     // Revenue comes from the DB, not the fetched page, so a student with more
     // than 100 payments still shows a correct total.
-    const { grossWon } = await fetchTotals(null, [studentId]);
-    return NextResponse.json({ payments: rows.map((r) => toDto(r)), grossWon });
+    const [{ grossWon }, refundMap, presetMap] = await Promise.all([
+      fetchTotals(null, [studentId]),
+      fetchRefundMap(rows.map((r) => r.payment_id)),
+      fetchCreditPresets(rows),
+    ]);
+    return NextResponse.json({
+      payments: rows.map((r) => toDto(r, refundMap.get(r.payment_id) ?? [], presetMap.get(r.payment_id) ?? null)),
+      grossWon,
+    });
   }
 
   // ── Global list ────────────────────────────────────────────────────────
@@ -156,6 +275,10 @@ export async function GET(req: NextRequest) {
 const RefundSchema = z.object({
   paymentId: z.string().min(1),
   reason: z.string().trim().min(1).max(200),
+  // Omitted → refund the full remaining balance. Must be a positive integer
+  // number of won not exceeding remaining (checked here AND atomically in
+  // admin_insert_study_refund under a row lock).
+  amountWon: z.number().int().positive().optional(),
 });
 
 export async function POST(req: NextRequest) {
@@ -164,7 +287,7 @@ export async function POST(req: NextRequest) {
 
   const parsed = RefundSchema.safeParse(await req.json().catch(() => null));
   if (!parsed.success) return NextResponse.json({ error: 'bad body' }, { status: 400 });
-  const { paymentId, reason } = parsed.data;
+  const { paymentId, reason, amountWon } = parsed.data;
 
   // Only refund payments that are ours (a study_payments row).
   const { data: row } = await dbAdmin
@@ -175,18 +298,99 @@ export async function POST(req: NextRequest) {
   if (!row) return NextResponse.json({ error: 'payment not found' }, { status: 404 });
   if (row.refunded_at) return NextResponse.json({ error: 'already refunded' }, { status: 409 });
 
-  const result = await cancelPayment({ paymentId, reason });
+  // Remaining = payment − prior refunds. Reject anything exceeding it (the
+  // non-redundancy guard: partial refunds must never sum past the payment).
+  const { data: prior, error: priorError } = await dbAdmin
+    .from('study_payment_refunds')
+    .select('amount_won')
+    .eq('payment_id', paymentId);
+  if (priorError) {
+    console.error('[admin/study/payments] prior refunds', priorError);
+    return NextResponse.json({ error: 'refund lookup failed' }, { status: 500 });
+  }
+  const remaining = remainingWon(row.amount_won, (prior ?? []).map((r) => ({ amountWon: r.amount_won })));
+  const validated = validateRefundAmount(amountWon, remaining);
+  if (!validated.ok) {
+    const status = validated.error === 'invalid_amount' ? 400 : 409;
+    return NextResponse.json({ error: validated.error, remainingWon: remaining }, { status });
+  }
+  const refundAmount = validated.amountWon;
+
+  // Reserve the ledger row FIRST via the atomic DB guard (row lock +
+  // remaining re-check), so two concurrent operators cannot both pass the
+  // read above and double-cancel at PortOne. If PortOne then fails, the
+  // reservation is compensated (deleted) below. A crash between the two
+  // leaves the ledger OVER-stating refunds — the safe direction: it blocks
+  // further refunds instead of enabling a double one.
+  const { data: reserved, error: reserveError } = await dbAdmin.rpc('admin_insert_study_refund', {
+    p_payment_id: paymentId,
+    p_amount: refundAmount,
+    p_reason: reason,
+    p_created_by: auth.user.id,
+  });
+  if (reserveError) {
+    const conflict = /exceeds remaining/i.test(reserveError.message);
+    return NextResponse.json(
+      { error: conflict ? 'exceeds_remaining' : 'refund reservation failed' },
+      { status: conflict ? 409 : 500 },
+    );
+  }
+  const reservation = (Array.isArray(reserved) ? reserved[0] : reserved) as
+    | { refund_id: string; remaining_after: number }
+    | undefined;
+  if (!reservation) return NextResponse.json({ error: 'refund reservation failed' }, { status: 500 });
+
+  // PortOne partial cancel: passing `amount` cancels exactly that much; when
+  // it equals the full remaining balance PortOne treats it as the final
+  // (full) cancellation of the payment.
+  const result = await cancelPayment({ paymentId, reason, amountWon: refundAmount });
   if (!result.ok) {
+    // Compensate the reservation — no money moved.
+    const { error: undoError } = await dbAdmin
+      .from('study_payment_refunds')
+      .delete()
+      .eq('id', reservation.refund_id);
+    if (undoError) {
+      await raiseAlert({
+        severity: 'critical',
+        title: 'Study refund reservation could not be rolled back',
+        message:
+          `PortOne cancel FAILED for payment ${paymentId} (${refundAmount} KRW) but the study_payment_refunds ` +
+          `reservation ${reservation.refund_id} could not be deleted. The ledger now overstates refunds for this ` +
+          `payment (blocks future refunds — no double-refund risk). Delete the row to reconcile.`,
+        dedupeKey: `study-refund-orphan-reservation:${reservation.refund_id}`,
+        error: undoError,
+        context: { paymentId, refundId: reservation.refund_id, amountWon: refundAmount, adminUserId: auth.user.id },
+      });
+    }
     return NextResponse.json({ error: result.message ?? 'refund failed' }, { status: 502 });
   }
 
-  // Stamp the local refund so the lists reflect it without a PortOne round-trip.
+  const fullyRefunded = reservation.remaining_after === 0;
+  if (!fullyRefunded) {
+    await logAdminActivity({
+      adminUserId: auth.user.id,
+      action: 'STUDY_PAYMENT_REFUND',
+      description: `Partially refunded study payment ${paymentId} (${row.kind}): ${refundAmount} of ${row.amount_won ?? '?'} KRW, ${reservation.remaining_after} KRW remaining — ${reason}`,
+    });
+    return NextResponse.json({
+      ok: true,
+      status: result.status ?? 'PARTIAL_CANCELLED',
+      cancelledAmount: result.cancelledAmount ?? refundAmount,
+      remainingWon: reservation.remaining_after,
+      fullyRefunded: false,
+    });
+  }
+
+  // Remaining hit 0 → stamp refunded_at (the "fully refunded" marker). The
+  // reason of this FINAL refund is kept on the payment row; earlier partial
+  // reasons live in study_payment_refunds.
   //
-  // This write is the ONLY thing backing the "already refunded" 409 guard
-  // above. If it silently fails, the guard never trips and an operator can
-  // press Refund again — cancelling the same payment twice at PortOne and
-  // sending real money out twice. So it must be checked, and a failure has
-  // to be reported as "refunded but NOT recorded", never as "refund failed".
+  // This stamp backs the "already refunded" 409 guard above. If it silently
+  // fails the payment still shows a Refund button, so it must be checked,
+  // and a failure has to be reported as "refunded but NOT recorded", never
+  // as "refund failed". (The ledger row above DID commit, so the remaining-
+  // amount guard still blocks an over-refund — but the UI state would lie.)
   const { error: stampError } = await dbAdmin
     .from('study_payments')
     .update({ refunded_at: new Date().toISOString(), refund_reason: reason })
@@ -236,8 +440,14 @@ export async function POST(req: NextRequest) {
   await logAdminActivity({
     adminUserId: auth.user.id,
     action: 'STUDY_PAYMENT_REFUND',
-    description: `Refunded study payment ${paymentId} (${row.kind}, ${row.amount_won ?? '?'} KRW) — ${reason}`,
+    description: `Refunded study payment ${paymentId} (${row.kind}): final ${refundAmount} KRW of ${row.amount_won ?? '?'} KRW — ${reason}`,
   });
 
-  return NextResponse.json({ ok: true, status: result.status ?? 'CANCELLED', cancelledAmount: result.cancelledAmount ?? null });
+  return NextResponse.json({
+    ok: true,
+    status: result.status ?? 'CANCELLED',
+    cancelledAmount: result.cancelledAmount ?? refundAmount,
+    remainingWon: 0,
+    fullyRefunded: true,
+  });
 }

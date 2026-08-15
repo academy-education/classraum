@@ -1058,6 +1058,7 @@ export type Database = {
           due_at: string | null
           id: string
           item_ids: Json
+          kind: string | null
           question_count: number
           section: string | null
           teacher_id: string
@@ -1072,6 +1073,7 @@ export type Database = {
           due_at?: string | null
           id?: string
           item_ids: Json
+          kind?: string | null
           question_count: number
           section?: string | null
           teacher_id: string
@@ -1086,6 +1088,7 @@ export type Database = {
           due_at?: string | null
           id?: string
           item_ids?: Json
+          kind?: string | null
           question_count?: number
           section?: string | null
           teacher_id?: string
@@ -3806,6 +3809,41 @@ export type Database = {
         }
         Relationships: []
       }
+      study_payment_refunds: {
+        Row: {
+          amount_won: number
+          created_at: string
+          created_by: string | null
+          id: string
+          payment_id: string
+          reason: string | null
+        }
+        Insert: {
+          amount_won: number
+          created_at?: string
+          created_by?: string | null
+          id?: string
+          payment_id: string
+          reason?: string | null
+        }
+        Update: {
+          amount_won?: number
+          created_at?: string
+          created_by?: string | null
+          id?: string
+          payment_id?: string
+          reason?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "study_payment_refunds_payment_id_fkey"
+            columns: ["payment_id"]
+            isOneToOne: false
+            referencedRelation: "study_payments"
+            referencedColumns: ["payment_id"]
+          },
+        ]
+      }
       study_payments: {
         Row: {
           amount_won: number
@@ -4477,6 +4515,7 @@ export type Database = {
           goal_score: number | null
           goal_scores: Json
           grade_level: string | null
+          is_test_user: boolean
           nav_tour_seen_at: string | null
           nickname: string | null
           nickname_changed: boolean
@@ -4497,6 +4536,7 @@ export type Database = {
           goal_score?: number | null
           goal_scores?: Json
           grade_level?: string | null
+          is_test_user?: boolean
           nav_tour_seen_at?: string | null
           nickname?: string | null
           nickname_changed?: boolean
@@ -4517,6 +4557,7 @@ export type Database = {
           goal_score?: number | null
           goal_scores?: Json
           grade_level?: string | null
+          is_test_user?: boolean
           nav_tour_seen_at?: string | null
           nickname?: string | null
           nickname_changed?: boolean
@@ -5470,6 +5511,18 @@ export type Database = {
           service_name: string
         }[]
       }
+      admin_insert_study_refund: {
+        Args: {
+          p_amount: number
+          p_created_by?: string
+          p_payment_id: string
+          p_reason: string
+        }
+        Returns: {
+          refund_id: string
+          remaining_after: number
+        }[]
+      }
       admin_invoice_revenue_by_cycle: {
         Args: { p_end: string; p_start: string }
         Returns: {
@@ -5504,6 +5557,13 @@ export type Database = {
         Returns: {
           cnt: number
           event: string
+        }[]
+      }
+      admin_study_last_activity: {
+        Args: never
+        Returns: {
+          last_active: string
+          student_id: string
         }[]
       }
       admin_study_payment_totals: {

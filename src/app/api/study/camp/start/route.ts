@@ -46,10 +46,16 @@ export async function POST(req: NextRequest) {
 
   const { data: assignment } = await dbAdmin
     .from('camp_assignments')
-    .select('id, camp_program_id, classroom_id, title, section, question_count, item_ids, deleted_at')
+    .select('id, camp_program_id, classroom_id, title, section, question_count, item_ids, kind, deleted_at')
     .eq('id', assignmentId)
     .maybeSingle()
   if (!assignment || assignment.deleted_at !== null) {
+    return NextResponse.json({ error: 'assignment not found' }, { status: 404 })
+  }
+  // kind='review' rows are teacher presenter decks (migration 083) — a
+  // student who learns the id must not be able to mint a session (and
+  // thereby the answer key cache) from one.
+  if (assignment.kind === 'review') {
     return NextResponse.json({ error: 'assignment not found' }, { status: 404 })
   }
 

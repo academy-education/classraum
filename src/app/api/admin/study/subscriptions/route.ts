@@ -84,12 +84,17 @@ export async function GET(req: NextRequest) {
   }
   const pageRows = (data ?? []) as SubRow[];
 
-  // Attach student name/email for the page.
+  // Attach student name/email + test-user flag for the page.
   const ids = Array.from(new Set(pageRows.map((r) => r.student_id)));
   const nameMap = new Map<string, { name: string | null; email: string | null }>();
+  const testMap = new Map<string, boolean>();
   if (ids.length > 0) {
-    const { data: users } = await dbAdmin.from('users').select('id, name, email').in('id', ids);
-    for (const u of users ?? []) nameMap.set(u.id as string, { name: u.name as string | null, email: u.email as string | null });
+    const [{ data: users }, { data: prefs }] = await Promise.all([
+      dbAdmin.from('users').select('id, name, email').in('id', ids),
+      dbAdmin.from('study_user_prefs').select('student_id, is_test_user').in('student_id', ids),
+    ]);
+    for (const u of users ?? []) nameMap.set(u.id, { name: u.name, email: u.email });
+    for (const p of prefs ?? []) testMap.set(p.student_id, p.is_test_user);
   }
 
   // Per-status counts for the filter (whole table, ignoring the status
@@ -104,6 +109,7 @@ export async function GET(req: NextRequest) {
     studentId: r.student_id,
     studentName: nameMap.get(r.student_id)?.name ?? null,
     studentEmail: nameMap.get(r.student_id)?.email ?? null,
+    isTestUser: testMap.get(r.student_id) ?? false,
     status: r.status,
     plan: r.plan,
     priceWon: typeof r.price_cents === 'number' ? Math.round(r.price_cents / 100) : null,
