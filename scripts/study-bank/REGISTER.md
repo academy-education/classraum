@@ -150,6 +150,50 @@ B4 is *Calibrate the reviewer before spending another cohort* (~20 minutes — o
 
 ## 5. Found while fixing
 
+### B2 sat in full — 100/100, zero abstentions, and the reviewer found a LENGTH TELL (2026-08-16)
+
+`b2-all-cohorts-2026-08-15`, all five cohorts, 5.4 min/item over ~9
+hours. The instrument held: 0 abstentions, full step-2 judgements,
+25 notes.
+
+    Academic Talk                 7/20  +10.0   clean
+    Craft and Structure           8/20  +15.0   inconclusive
+    Information and Ideas         8/20  +15.0   inconclusive
+    Standard English Conventions  3/20  -10.0   clean
+    Expression of Ideas           2/20  -15.0   clean
+
+THE FINDING IS IN THE NOTES, not the margins: ~17 notes say some form
+of "longest answer choice — happens too often". He named the heuristic
+unprompted and rode it. Population check (exact, whole bank, same
+query pattern as the hub check — key-is-strictly-longest vs 25%
+chance):
+
+    Information and Ideas   36.7%  (240 items)   ← elevated
+    Craft and Structure     30.5%  (210)         ← elevated
+    Academic Talk           21.8%  (275)         at chance
+    Expression of Ideas     21.2%  (66)          at chance
+    SEC                      9.8%  (224)         below (short options)
+
+His 40% hit rates in I&I / C&S match the population rates almost
+exactly — the sitting measured the tell, and the tell is REAL but
+moderate: longest-answer buys a student ~+12 points over chance in
+I&I. This is the same defect class as the 74.3% key-length cohort
+caught in July, at lower intensity, in cohorts that batch's guard
+never covered. His refinement matters for the repair: "if there is a
+longer answer that's UNIQUELY long, I keep choosing that" — the tell
+is the length OUTLIER, not rank alone.
+
+NEXT: rebalance option lengths in I&I and C&S (repair brief: lengthen
+one distractor per affected item rather than shortening keys — keys
+carry content), then re-attack a sample and re-sit 20. EoI, SEC,
+Academic Talk and (from earlier sittings) Daily Life, Announcement,
+Conversation-adjacent cohorts are now human-cleared at n=15-20 each.
+Choose a Response remains the only human-confirmed BROKEN cohort.
+
+3 step-2 flags (9efbd702 C&S, 7d3c8f8b + 1fe0cdfa EoI) queue for
+item-level resolution like the calibration 15.
+
+
 ### The 15 calibration-flagged items: 9 archived, 5 repaired, 1 cleared (2026-08-15)
 
 Every item the co-founder flagged across both calibration runs,
