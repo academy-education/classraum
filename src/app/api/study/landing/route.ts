@@ -4,6 +4,7 @@ import { enforceRateLimit } from '@/lib/rate-limit'
 import { computeDailyChallenge } from '@/lib/study/daily-challenge'
 import { requireStudyUser } from '@/lib/study/auth'
 import { evaluateStreak } from '@/lib/study/streak'
+import { loadStudentCampAssignments } from '@/lib/camp/student'
 
 /**
  * GET /api/study/landing — batched landing-page summary.
@@ -74,6 +75,7 @@ export async function GET(req: NextRequest) {
     { data: xpRows },
     dailyChallenge,
     { count: completedTestCount },
+    campAssignments,
   ] = await Promise.all([
     // Streak + freeze: derives the count, auto-consumes freezes to bridge a
     // missed day, grants milestone freezes, and persists study_streak_state.
@@ -136,6 +138,13 @@ export async function GET(req: NextRequest) {
       .eq('student_id', user.id)
       .eq('mode', 'full_test')
       .eq('status', 'completed'),
+    // Camp shelf ("From your teacher") — teacher assignments delivered
+    // into Study mode. Non-fatal: a camp query failure must not take the
+    // whole landing down with it.
+    loadStudentCampAssignments(user.id).catch(e => {
+      console.error('[study/landing] camp assignments load failed', e)
+      return []
+    }),
   ])
 
   // Streak + freeze state (evaluated + persisted by evaluateStreak above).
@@ -198,5 +207,7 @@ export async function GET(req: NextRequest) {
     // Batched so the landing's Today band paints in one frame instead
     // of the challenge card popping in after its own fetch.
     dailyChallenge,
+    // "From your teacher" shelf (empty for students in no camp classroom).
+    campAssignments,
   })
 }

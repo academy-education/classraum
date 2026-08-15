@@ -1418,6 +1418,99 @@ export async function assembleToeflFromBank(
   }
 }
 
+/**
+ * Assemble a test from an EXPLICIT list of bank row ids — the camp-mode
+ * assembler. A camp assignment carries the exact, shared item set the
+ * teacher drew (camp_assignments.item_ids), so unlike assembleFromBank /
+ * assembleToeflFromBank there is no blueprint, no unseen-first ranking
+ * and no backfill: the caller's list IS the test, in the caller's order.
+ *
+ * Returns the same AssembledTest shape the other two assemblers emit —
+ * the camp start route writes it as the same `[full-test-v1]` cache row,
+ * which submit/route.ts grades as authoritative, so nothing downstream
+ * can tell a camp session from any other bank-assembled full test.
+ *
+ * Deliberate differences from the drawing assemblers:
+ *   - No verified/archived filter on the read: the items were verified
+ *     at draw time and the assignment is the contract with the class —
+ *     an item archived AFTER assignment must not silently shrink one
+ *     student's test relative to classmates who started earlier.
+ *   - Missing/malformed rows are skipped with a loud log (same rule as
+ *     every other bank reader) — the composition count exposes it.
+ *   - Exposures are still recorded so later personal draws de-prioritise
+ *     items the student already met in class.
+ */
+export async function assembleFromItemIds(
+  p: {
+    itemIds: string[]
+    /** Session/card title — the teacher's assignment title. */
+    title: string
+    family: string
+    /** Enables exposure recording (see recordExposures). */
+    studentId?: string
+  },
+  seed = 'bank',
+): Promise<AssembledTest> {
+  if (p.itemIds.length === 0) throw new Error('assignment has no items')
+
+  const { data, error } = await dbAdmin
+    .from('study_item_bank')
+    .select('id, section, item')
+    .in('id', p.itemIds)
+  if (error) throw new Error(`item-id assemble query failed: ${error.message}`)
+
+  // Re-establish the caller's order — `.in()` returns rows in table
+  // order, and the assignment's sequence is part of the shared set.
+  const byId = new Map((data ?? []).map(row => [row.id as string, row]))
+  const rows: Array<{ id: string; section: string | null; item: Question }> = []
+  for (const id of p.itemIds) {
+    const row = byId.get(id)
+    if (!row) {
+      console.error('[assemble] camp item missing from bank', id)
+      continue
+    }
+    const item = readBankItem(row.item)
+    if (!item) {
+      console.error('[assemble] skipping malformed study_item_bank row', id)
+      continue
+    }
+    rows.push({ id, section: row.section as string | null, item })
+  }
+  if (rows.length === 0) throw new Error('no usable items for this assignment')
+
+  if (p.studentId) {
+    await recordExposures(p.studentId, rows.map(r => r.id), 'full_test', seed)
+  }
+
+  // Timing: per-question budget by section where we have one (SAT's
+  // SECTION_META), a flat TOEFL-ish budget otherwise. Camp sets are
+  // small teacher-scoped drills, not blueprint sections, so this is a
+  // reasonable envelope rather than an ETS number.
+  const minutes = rows.reduce((sum, r) => {
+    const meta = r.section ? SECTION_META[r.section] : undefined
+    return sum + (meta ? meta.minutesPerQ : 1.2)
+  }, 0)
+
+  const composition: Record<string, number> = {}
+  for (const r of rows) {
+    const key = r.section ?? 'unknown'
+    composition[key] = (composition[key] ?? 0) + 1
+  }
+  const sections = Object.keys(composition)
+  const sectionLabel = sections.length === 1
+    ? (SECTION_META[sections[0]!]?.label ?? sections[0]!)
+    : null
+
+  return {
+    title: p.title,
+    timeLimitMinutes: Math.max(5, Math.round(minutes)),
+    section: sectionLabel,
+    family: p.family,
+    questions: shuffleDrawnChoices(rows, seed).map(r => r.item),
+    composition,
+  }
+}
+
 export async function assembleFromBank(p: AssembleParams, seed = 'bank'): Promise<AssembledTest> {
   const family = p.family ?? 'sat'
   let query = dbAdmin

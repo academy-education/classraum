@@ -22,6 +22,7 @@ import { SHIPPED_TEST_SLUGS } from '@/lib/study/shipped-tests'
 import { passCreditLabel } from './_shared/pass-label'
 import { StudyTodayCard } from './_shared/primitives'
 import { ResumableShelf } from './ResumableShelf'
+import { CampAssignmentsShelf } from './CampAssignmentsShelf'
 import { GeneratingTestsChip } from './GeneratingTestsChip'
 import { StudyHero } from './StudyHero'
 import { WeeklyQuestsButton } from './_shared/WeeklyQuestsButton'
@@ -623,6 +624,12 @@ function StudyLandingInner() {
             vertical noise for a feature students can't use. When
             subjects ship, restore a real grid; until then the tests
             grid below IS the browse surface. */}
+
+        {/* From your teacher — camp assignments delivered into Study
+            mode. Above Recent sessions: teacher-set work with a due
+            date outranks self-directed resumes. Self-hides for
+            students outside a camp classroom. */}
+        <CampAssignmentsShelf />
 
         {/* Recent sessions — pick up where you left off. Sits ABOVE Test
             prep so resuming in-flight work is the first browse action.

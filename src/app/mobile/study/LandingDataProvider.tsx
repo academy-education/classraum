@@ -2,6 +2,7 @@
 
 import { createContext, useCallback, useContext, useEffect, useState, type ReactNode } from 'react'
 import { authHeaders } from '@/lib/auth-headers'
+import type { StudentCampAssignment } from '@/lib/camp/student'
 
 /**
  * Provider that fetches the batched /api/study/landing payload once
@@ -63,6 +64,10 @@ export interface LandingData {
     topic: { id: string; slug: string; name_en: string; name_ko: string } | null
     weak: boolean
   } | null
+  /** Camp assignments from the student's teacher(s) — the "From your
+   *  teacher" shelf. Empty array when the student is in no camp
+   *  classroom; null until loaded. */
+  campAssignments: StudentCampAssignment[] | null
   loading: boolean
   refetch: () => Promise<void>
 }
@@ -80,6 +85,7 @@ export function LandingDataProvider({ children }: { children: ReactNode }) {
   const [xpToday, setXpToday] = useState<number | null>(null)
   const [firstTestPending, setFirstTestPending] = useState<boolean | null>(null)
   const [dailyChallenge, setDailyChallenge] = useState<LandingData['dailyChallenge']>(null)
+  const [campAssignments, setCampAssignments] = useState<StudentCampAssignment[] | null>(null)
   const [loading, setLoading] = useState(true)
 
   const fetchOnce = useCallback(async () => {
@@ -98,6 +104,7 @@ export function LandingDataProvider({ children }: { children: ReactNode }) {
         xpToday?: number
         firstTestPending?: boolean
         dailyChallenge?: LandingData['dailyChallenge']
+        campAssignments?: StudentCampAssignment[]
       }
       setProgress(json.progress ?? null)
       setStreak(json.streak ?? 0)
@@ -109,6 +116,7 @@ export function LandingDataProvider({ children }: { children: ReactNode }) {
       setXpToday(json.xpToday ?? 0)
       setFirstTestPending(json.firstTestPending ?? null)
       setDailyChallenge(json.dailyChallenge ?? null)
+      setCampAssignments(json.campAssignments ?? [])
     } catch {
       // Soft-fail: consumers using the fallback fetch will still work.
     } finally {
@@ -121,7 +129,7 @@ export function LandingDataProvider({ children }: { children: ReactNode }) {
   }, [fetchOnce])
 
   return (
-    <Ctx.Provider value={{ progress, streak, freezes, streakSaved, maxStreak, prefs, subscriptionStatus, xpToday, firstTestPending, dailyChallenge, loading, refetch: fetchOnce }}>
+    <Ctx.Provider value={{ progress, streak, freezes, streakSaved, maxStreak, prefs, subscriptionStatus, xpToday, firstTestPending, dailyChallenge, campAssignments, loading, refetch: fetchOnce }}>
       {children}
     </Ctx.Provider>
   )

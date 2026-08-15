@@ -11,6 +11,7 @@ import { assessCoverage, itemsShortBy } from '@/lib/study/bank-coverage'
 import { reserveTestCredits, refundTestCredits } from '@/lib/study/credits'
 import { canAccessTest } from '@/lib/study/entitlements'
 import { isShippedTestFamily } from '@/lib/study/shipped-tests'
+import { SECTION_TOPIC } from '@/lib/study/section-topics'
 
 /**
  * POST /api/study/test/assemble — build a full-test session from the
@@ -44,21 +45,8 @@ export const dynamic = 'force-dynamic'
 
 const CACHED_TEST_MARKER = '[full-test-v1]'
 
-// family → section → seed topic row (so the session attaches to the
-// right topic). Section keys match the bank's `section` column and the
-// SECTION_CREDIT_COST keys in plans.ts.
-const SECTION_TOPIC: Record<string, Record<string, string>> = {
-  sat: {
-    math: '6cf0bc6a-a430-4fe5-b03c-db031df8a691',            // sat-math
-    reading_writing: 'fc784bfb-e3bd-48ea-a794-7da1fe219ba4',  // sat-reading-writing
-  },
-  toefl: {
-    reading:   '33af1b61-bd97-4bd3-9cbf-843f9bb8a2a9',  // toefl-reading
-    listening: '1ac8d73b-1e16-4a18-9e79-7fe2f012a202',  // toefl-listening
-    writing:   'b6712354-2de8-4b7d-8b74-64cc7a520bba',  // toefl-writing
-    speaking:  '0c729add-5617-4fbe-8a35-2af9f521757d',  // toefl-speaking
-  },
-}
+// family → section → seed topic map now lives in
+// src/lib/study/section-topics.ts (shared with the camp start route).
 
 const TOEFL_SECTIONS: ToeflSection[] = ['reading', 'listening', 'writing', 'speaking']
 

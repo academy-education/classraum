@@ -92,17 +92,25 @@ async function resolveAccess(studentId: string): Promise<AccessResult> {
   const nowIso = new Date().toISOString()
   const { data: rows } = await dbAdmin
     .from('study_entitlements')
-    .select('test, expires_at')
+    .select('test, expires_at, source')
     .eq('student_id', studentId)
     .or(`expires_at.is.null,expires_at.gt.${nowIso}`)
 
-  const active = (rows ?? []) as { test: string }[]
+  const active = (rows ?? []) as { test: string; source: string | null }[]
+  // CAMP grants are ADD-ONLY (see docs/CAMP-MODE-PLAN.md). Zero
+  // entitlement rows means a free user sees ALL tests, so treating a
+  // camp row like a pass would NARROW a free camp student from
+  // everything down to one family. Scoping therefore keys on PASS rows
+  // alone: camp rows never subtract, they only widen a pass holder's
+  // list.
+  const passes = active.filter(r => r.source !== 'camp')
   // No active pass entitlements → free/trial: everything is open (limited by
-  // free credits, not by test).
-  if (active.length === 0) return { all: true, tests: [] }
+  // free credits, not by test) — whether or not camp grants exist.
+  if (passes.length === 0) return { all: true, tests: [] }
   // Holds a pass → scoped. An all-access pass ('*') opens everything.
-  if (active.some(r => r.test === '*')) return { all: true, tests: [] }
-  return { all: false, tests: active.map(r => r.test) }
+  if (passes.some(r => r.test === '*')) return { all: true, tests: [] }
+  // Pass-scoped, widened by any camp grants the student also holds.
+  return { all: false, tests: [...new Set(active.map(r => r.test))] }
 }
 
 /** Can this student access the given test family? */
