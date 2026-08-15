@@ -38,7 +38,8 @@
     "getHelp": "Get Help",
     "upgradeNow": "Upgrade Now",
     "contacts": "Contacts",
-    "pages": "Pages"
+    "pages": "Pages",
+    "camp": "Camp"
   },
   "eyebrows": {
     "dashboard": "Overview",
@@ -2456,6 +2457,55 @@
       "assignments": " assignments",
       "previous": "Previous",
       "next": "Next"
+    }
+  },
+  "camp": {
+    "noProgramTitle": "No camp program",
+    "noProgramDescription": "Your academy does not have an active camp program. Camp programs are set up by Classraum when a school partnership begins.",
+    "subtitle": "{family} camp program",
+    "questionQuota": "Question quota",
+    "quotaUsage": "{used} / {total} questions used",
+    "quotaRemaining": "{remaining} questions remaining",
+    "noClassrooms": "No classrooms are attached to this camp program yet.",
+    "assignmentCount": "{count} assignments",
+    "noAssignments": "No assignments yet",
+    "newAssignment": "New Assignment",
+    "newAssignmentSubtitle": "{remaining} questions remaining in your quota",
+    "createAssignment": "Create Assignment",
+    "createdSuccessfully": "Assignment created",
+    "questionCountLabel": "{count} questions",
+    "dueDateLabel": "Due {date}",
+    "form": {
+      "classroom": "Classroom",
+      "selectClassroom": "Select a classroom",
+      "title": "Title",
+      "titlePlaceholder": "e.g. Week 2 — Algebra review",
+      "section": "Section",
+      "allSections": "All sections",
+      "domain": "Question type",
+      "allDomains": "All types",
+      "questionCount": "Questions",
+      "countHint": "Between {min} and {max}",
+      "dueDate": "Due date"
+    },
+    "sections": {
+      "reading_writing": "Reading & Writing",
+      "math": "Math",
+      "reading": "Reading",
+      "listening": "Listening"
+    },
+    "tasks": {
+      "daily_life": "Daily Life",
+      "academic_passage": "Academic Passage",
+      "choose_response": "Choose a Response",
+      "conversation": "Conversation",
+      "announcement": "Announcement",
+      "academic_talk": "Academic Talk"
+    },
+    "errors": {
+      "quotaExceeded": "Not enough quota — only {remaining} questions remaining.",
+      "notEnoughItems": "Only {available} questions match this filter. Pick a smaller count or a broader filter.",
+      "createFailed": "Failed to create the assignment. Please try again."
     }
   },
   "attendance": {

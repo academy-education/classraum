@@ -1048,6 +1048,116 @@ export type Database = {
           },
         ]
       }
+      camp_assignments: {
+        Row: {
+          camp_program_id: string
+          classroom_id: string
+          created_at: string
+          deleted_at: string | null
+          domain: string | null
+          due_at: string | null
+          id: string
+          item_ids: Json
+          question_count: number
+          section: string | null
+          teacher_id: string
+          title: string
+        }
+        Insert: {
+          camp_program_id: string
+          classroom_id: string
+          created_at?: string
+          deleted_at?: string | null
+          domain?: string | null
+          due_at?: string | null
+          id?: string
+          item_ids: Json
+          question_count: number
+          section?: string | null
+          teacher_id: string
+          title: string
+        }
+        Update: {
+          camp_program_id?: string
+          classroom_id?: string
+          created_at?: string
+          deleted_at?: string | null
+          domain?: string | null
+          due_at?: string | null
+          id?: string
+          item_ids?: Json
+          question_count?: number
+          section?: string | null
+          teacher_id?: string
+          title?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "camp_assignments_camp_program_id_fkey"
+            columns: ["camp_program_id"]
+            isOneToOne: false
+            referencedRelation: "camp_programs"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "camp_assignments_classroom_id_fkey"
+            columns: ["classroom_id"]
+            isOneToOne: false
+            referencedRelation: "classrooms"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      camp_programs: {
+        Row: {
+          academy_id: string
+          created_at: string
+          deleted_at: string | null
+          ends_on: string | null
+          id: string
+          name: string
+          question_quota: number
+          questions_used: number
+          starts_on: string | null
+          student_cap: number
+          test_family: string
+        }
+        Insert: {
+          academy_id: string
+          created_at?: string
+          deleted_at?: string | null
+          ends_on?: string | null
+          id?: string
+          name: string
+          question_quota?: number
+          questions_used?: number
+          starts_on?: string | null
+          student_cap?: number
+          test_family: string
+        }
+        Update: {
+          academy_id?: string
+          created_at?: string
+          deleted_at?: string | null
+          ends_on?: string | null
+          id?: string
+          name?: string
+          question_quota?: number
+          questions_used?: number
+          starts_on?: string | null
+          student_cap?: number
+          test_family?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "camp_programs_academy_id_fkey"
+            columns: ["academy_id"]
+            isOneToOne: false
+            referencedRelation: "academies"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       chat_conversations: {
         Row: {
           academy_id: string | null
@@ -1345,6 +1455,7 @@ export type Database = {
       classrooms: {
         Row: {
           academy_id: string
+          camp_program_id: string | null
           color: string | null
           created_at: string | null
           deleted_at: string | null
@@ -1360,6 +1471,7 @@ export type Database = {
         }
         Insert: {
           academy_id: string
+          camp_program_id?: string | null
           color?: string | null
           created_at?: string | null
           deleted_at?: string | null
@@ -1375,6 +1487,7 @@ export type Database = {
         }
         Update: {
           academy_id?: string
+          camp_program_id?: string | null
           color?: string | null
           created_at?: string | null
           deleted_at?: string | null
@@ -1408,6 +1521,13 @@ export type Database = {
             columns: ["academy_id"]
             isOneToOne: false
             referencedRelation: "admin_academy_usage"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "classrooms_camp_program_id_fkey"
+            columns: ["camp_program_id"]
+            isOneToOne: false
+            referencedRelation: "camp_programs"
             referencedColumns: ["id"]
           },
           {

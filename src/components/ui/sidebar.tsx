@@ -27,7 +27,8 @@ import {
   Megaphone,
   FileQuestion,
   MessageSquare,
-  Bell
+  Bell,
+  Tent
 } from "lucide-react"
 
 interface SidebarProps {
@@ -77,7 +78,8 @@ export function Sidebar({ activeItem, userName, onHelpClick, academyLogo }: Side
   const [userRole, setUserRole] = useState<string | null>(null)
   const [expandedMenu, setExpandedMenu] = useState<string | null>(null)
   const { t } = useTranslation()
-  const { user } = useAuth()
+  const { user, academyId } = useAuth()
+  const [hasCampProgram, setHasCampProgram] = useState(false)
 
   // Fetch user role
   useEffect(() => {
@@ -109,11 +111,44 @@ export function Sidebar({ activeItem, userName, onHelpClick, academyLogo }: Side
     fetchUserRole()
   }, [user])
 
+  // Camp is a paid, manually-granted program (migration 081/082) — the
+  // nav entry only exists for academies that hold an active one. RLS
+  // lets the academy's managers and teachers read camp_programs, so a
+  // plain client query answers "is this a camp academy" directly.
+  useEffect(() => {
+    let cancelled = false
+    const checkCampProgram = async () => {
+      if (!academyId) {
+        setHasCampProgram(false)
+        return
+      }
+      const { data, error } = await db
+        .from('camp_programs')
+        .select('id')
+        .eq('academy_id', academyId)
+        .is('deleted_at', null)
+        .limit(1)
+      if (!cancelled) setHasCampProgram(!error && (data?.length ?? 0) > 0)
+    }
+    checkCampProgram()
+    return () => { cancelled = true }
+  }, [academyId])
+
   // Determine active item from pathname if not provided
   const currentActiveItem = activeItem || pathname.split('/')[1] || 'dashboard'
 
   // Filter navigation items based on user role
   const allNavigationItems = getNavigationItems(t)
+  // Camp sits right after Assignments — it is the camp flavour of the
+  // same job (teacher hands work to a classroom).
+  if (hasCampProgram) {
+    const afterIdx = allNavigationItems.findIndex(item => item.id === 'assignments')
+    allNavigationItems.splice(afterIdx + 1, 0, {
+      id: 'camp-program',
+      label: String(t('navigation.camp')),
+      icon: Tent,
+    })
+  }
   const navigationItems = allNavigationItems.filter(item => {
     // While loading, don't show items that might be hidden for teachers to prevent flash
     if (userRole === null) {

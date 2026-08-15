@@ -38,7 +38,8 @@
     "getHelp": "도움 받기",
     "upgradeNow": "구독 플랜 보기",
     "contacts": "연락처",
-    "pages": "페이지"
+    "pages": "페이지",
+    "camp": "캠프"
   },
   "eyebrows": {
     "dashboard": "개요",
@@ -2456,6 +2457,55 @@
       "assignments": "개 과제",
       "previous": "이전",
       "next": "다음"
+    }
+  },
+  "camp": {
+    "noProgramTitle": "캠프 프로그램 없음",
+    "noProgramDescription": "이 학원에는 진행 중인 캠프 프로그램이 없습니다. 캠프 프로그램은 학교 제휴 시 클래스라움에서 개설해 드립니다.",
+    "subtitle": "{family} 캠프 프로그램",
+    "questionQuota": "문항 쿼터",
+    "quotaUsage": "{used} / {total} 문항 사용",
+    "quotaRemaining": "남은 문항 {remaining}개",
+    "noClassrooms": "이 캠프 프로그램에 연결된 클래스룸이 아직 없습니다.",
+    "assignmentCount": "과제 {count}개",
+    "noAssignments": "아직 과제가 없습니다",
+    "newAssignment": "새 과제",
+    "newAssignmentSubtitle": "쿼터에 남은 문항 {remaining}개",
+    "createAssignment": "과제 만들기",
+    "createdSuccessfully": "과제가 생성되었습니다",
+    "questionCountLabel": "{count}문항",
+    "dueDateLabel": "마감 {date}",
+    "form": {
+      "classroom": "클래스룸",
+      "selectClassroom": "클래스룸 선택",
+      "title": "제목",
+      "titlePlaceholder": "예: 2주차 — 대수 복습",
+      "section": "섹션",
+      "allSections": "전체 섹션",
+      "domain": "문항 유형",
+      "allDomains": "전체 유형",
+      "questionCount": "문항 수",
+      "countHint": "{min}–{max} 사이",
+      "dueDate": "마감일"
+    },
+    "sections": {
+      "reading_writing": "읽기 및 쓰기",
+      "math": "수학",
+      "reading": "읽기",
+      "listening": "듣기"
+    },
+    "tasks": {
+      "daily_life": "일상 생활",
+      "academic_passage": "학술 지문",
+      "choose_response": "응답 고르기",
+      "conversation": "대화",
+      "announcement": "안내 방송",
+      "academic_talk": "학술 강연"
+    },
+    "errors": {
+      "quotaExceeded": "쿼터가 부족합니다 — 남은 문항이 {remaining}개뿐입니다.",
+      "notEnoughItems": "이 조건에 맞는 문항이 {available}개뿐입니다. 문항 수를 줄이거나 조건을 넓혀 주세요.",
+      "createFailed": "과제 생성에 실패했습니다. 다시 시도해 주세요."
     }
   },
   "attendance": {
