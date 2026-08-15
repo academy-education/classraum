@@ -150,6 +150,32 @@ B4 is *Calibrate the reviewer before spending another cohort* (~20 minutes — o
 
 ## 5. Found while fixing
 
+### Length tell REPAIRED — 96 distractors lengthened in I&I / C&S, forward rule dead (2026-08-16)
+
+The repair the entry below called for. `rebalance-length.mjs`
+(selftest-gated measure → export → guarded apply) found 96 items where
+the key was strictly longest AND >=15% longer than the runner-up — the
+reviewer's "uniquely long" case — 52 in Information and Ideas, 44 in
+Craft and Structure. Five subagent batches lengthened exactly one
+distractor per item with passage-grounded still-wrong detail (no key
+touched, no template reuse); 96/96 applied, 0 refusals, 10/10 spot-
+checks pass. Population, whole-bank, exact:
+
+    key-strictly-longest        I&I 34.2% → 15.0%    C&S 29.5% → 10.5%
+    outlier targets             I&I   52  →  0       C&S   44  →  0
+    pick-longest attacker            16.9%                11.7%   (was the +12 rule)
+    avoid-longest attacker           27.6%                29.8%   (vs 25% — SEC-profile, SEC is human-clean at 9.8%)
+
+Key-longest overshot BELOW 25% because lengthened distractors often
+ended longer than the key; the inverse edge was measured before being
+dismissed (+2.6/+4.8, an order weaker than what was removed, same shape
+as a human-clean cohort). content_sha regenerated on all 96, so their
+stale attack rows detached. Full tables, spot-check verdicts and edit
+files: LENGTH-REBALANCE-RESULT.md. NEXT (not done): blind-attack
+regression on ~24 repaired items, then re-sit 20 with the co-founder —
+per B4, the sitting is the verdict, the attack is the screen. Nothing
+committed.
+
 ### B2 sat in full — 100/100, zero abstentions, and the reviewer found a LENGTH TELL (2026-08-16)
 
 `b2-all-cohorts-2026-08-15`, all five cohorts, 5.4 min/item over ~9

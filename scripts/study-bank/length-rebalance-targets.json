@@ -1,0 +1,1538 @@
+[
+  {
+    "id": "034f9147-c1fa-4cf7-8233-eb60f2d4ffd9",
+    "domain": "Craft and Structure",
+    "passage": "The Impressionists cultivated an air of the instantaneous—the sense that a canvas had seized a single, fleeting moment of perception before it dissolved. Monet's series paintings, with their haystacks and cathedral facades melting in shifting light, seem the very record of a glance. Yet the archival evidence undercuts the myth of spontaneity. Monet worked on several canvases at once, turning to each only when the light matched, and reworked many in the studio months later, long after the moment they purport to preserve had passed. The appearance of immediacy was not the residue of haste but its opposite: a laborious effect, engineered through repetition and revision. The 'impression,' in other words, was a rhetoric—a claim the paintings advanced about themselves rather than a fact about how they were made.",
+    "prompt": "Which choice best describes the main purpose of the passage?",
+    "choices": [
+      "To explain the techniques Monet used to capture fleeting effects of natural light quickly",
+      "To argue that Monet's studio revisions diminished the artistic value of his series paintings",
+      "To expose a gap between the immediacy Impressionist paintings project and the deliberate process behind them",
+      "To trace the development of the series format across the whole of Monet's career"
+    ],
+    "correct_answer": "To expose a gap between the immediacy Impressionist paintings project and the deliberate process behind them",
+    "explanation": "The passage contrasts the projected 'air of the instantaneous' with archival evidence of slow, revised composition, calling immediacy a 'rhetoric.' The trap ('techniques to capture light quickly') accepts the spontaneity myth the passage dismantles. 'Diminished the artistic value' introduces an evaluative claim the passage never makes, and 'trace the development... across his career' misdescribes a passage that offers no chronological account.",
+    "key_len": 108,
+    "runner_up_len": 92
+  },
+  {
+    "id": "0350db33-6f61-443c-8f53-951ffc9661e5",
+    "domain": "Information and Ideas",
+    "passage": "Conventional accounts credit the printing press with rapidly standardizing spelling across Europe. Historian Lena Whitfield argues the opposite occurred first. Early printers, paid by the completed line, freely varied spellings to justify their margins, adding or dropping letters to make a line fill the column neatly. Only decades later, once printing houses adopted fixed layouts and salaried compositors, did consistency emerge. Whitfield contends that standardization was a consequence of changing labor practices within the print shop, not an inherent property of the press itself.",
+    "prompt": "Which choice best captures Whitfield's central argument?",
+    "choices": [
+      "Spelling became standardized because of shifts in how print-shop labor was organized, not because of the press alone.",
+      "The printing press had no effect whatsoever on the standardization of European spelling.",
+      "Early printers deliberately introduced spelling errors to sabotage their competitors.",
+      "Salaried compositors were less skilled than the line-paid printers who preceded them."
+    ],
+    "correct_answer": "Spelling became standardized because of shifts in how print-shop labor was organized, not because of the press alone.",
+    "explanation": "Whitfield attributes standardization to changing labor practices (fixed layouts, salaried compositors) rather than to the press as such.",
+    "key_len": 117,
+    "runner_up_len": 88
+  },
+  {
+    "id": "083f5a6e-7c6d-47ef-8eeb-d931c26bcdf5",
+    "domain": "Information and Ideas",
+    "passage": "Tree-ring widths are a standard proxy for past summer temperatures: in cold-limited forests, warmer summers produce wider rings. Since the mid-twentieth century, however, ring widths at many high-latitude sites have stopped tracking the rising temperatures recorded by instruments—a puzzle known as the 'divergence problem.' One hypothesis holds that the trees are responding not to temperature but to a decline in available sunlight caused by increasing atmospheric haze, which would suppress growth even as temperatures climb.",
+    "prompt": "Which finding, if true, would most strongly support the haze hypothesis?",
+    "choices": [
+      "Before 1950, ring widths at the affected sites closely tracked instrument-measured temperatures.",
+      "Some low-latitude forests show no divergence between ring widths and measured temperature.",
+      "Atmospheric haze increased across much of the globe over the twentieth century.",
+      "At sites where measured surface sunlight declined most sharply after 1950, the gap between ring-inferred and instrument temperatures was largest."
+    ],
+    "correct_answer": "At sites where measured surface sunlight declined most sharply after 1950, the gap between ring-inferred and instrument temperatures was largest.",
+    "explanation": "The haze hypothesis says the trees stopped tracking temperature because declining sunlight suppressed growth. The finding that 'at sites where measured surface sunlight declined most sharply after 1950, the gap between ring-inferred and instrument temperatures was largest' is a dose-response match: more of the proposed cause, more of the observed effect, site by site. The finding that before 1950 ring widths 'closely tracked instrument-measured temperatures' establishes only that the proxy once worked, which every explanation of the divergence already assumes. The finding that 'some low-latitude forests show no divergence' is consistent with many causes and singles out none. And the finding that 'atmospheric haze increased across much of the globe' supplies necessary background but never links the haze to where and when the rings diverged.",
+    "key_len": 145,
+    "runner_up_len": 96
+  },
+  {
+    "id": "0e815978-143a-49fd-a7bb-5b63569bfa37",
+    "domain": "Craft and Structure",
+    "passage": "Consider the humble paperclip. It has no inventor we can name with confidence, no patent that clearly launched it, no single moment of creation. It emerged instead from decades of small refinements by anonymous hands, each bending the wire a little differently until a shape settled that no one could improve. The paperclip is a reminder that some of our most enduring designs arrive not by invention but by slow, collective winnowing.",
+    "prompt": "Which choice best describes the main purpose of the text?",
+    "choices": [
+      "To use a familiar object to illustrate how some designs evolve gradually rather than being invented outright.",
+      "To argue that the paperclip should be credited to a specific overlooked inventor.",
+      "To explain the manufacturing process by which modern paperclips are produced.",
+      "To criticize the patent system for failing to reward anonymous designers."
+    ],
+    "correct_answer": "To use a familiar object to illustrate how some designs evolve gradually rather than being invented outright.",
+    "explanation": "The paperclip exemplifies design by gradual winnowing; the second contradicts the 'no inventor' premise, the others address unpursued topics.",
+    "key_len": 109,
+    "runner_up_len": 81
+  },
+  {
+    "id": "113c4ae2-e4d1-4c8c-b97d-931269c6b685",
+    "domain": "Craft and Structure",
+    "passage": "A staple of epidemic modeling is the herd-immunity threshold: once a calculable fraction of a population is immune, each case generates fewer than one further case on average, and the outbreak recedes. The standard formula assumes a homogeneous population in which everyone mixes at the same rate. Real populations are not like this. Because highly connected individuals both catch and transmit infection sooner, they are removed from the susceptible pool first; the epidemic thus depletes its own most efficient spreaders early. The upshot is that the effective threshold in a heterogeneous population is lower than the homogeneous formula predicts—immunity concentrated among the most connected does disproportionate work. Modelers who apply the textbook figure to a structured population will therefore tend to overestimate how much immunity a population needs.",
+    "prompt": "Which finding, if true, would most strengthen the passage's central claim about heterogeneous populations?",
+    "choices": [
+      "In a community where everyone mixed at nearly identical rates, the outbreak receded exactly at the homogeneous threshold.",
+      "The most highly connected individuals were also the most likely to be vaccinated first.",
+      "Highly connected individuals suffered more severe symptoms once infected.",
+      "In a community where contact rates varied widely, transmission fell below one case per case at an immune fraction well under the homogeneous formula's value."
+    ],
+    "correct_answer": "In a community where contact rates varied widely, transmission fell below one case per case at an immune fraction well under the homogeneous formula's value.",
+    "explanation": "The claim is that in heterogeneous populations the true threshold is lower than the homogeneous formula. A community with wide contact-rate variation reaching sub-one transmission below the formula's value directly confirms this. The 'identical rates' option is the tempting 'it confirms the model' choice, but it tests the homogeneous baseline, not the heterogeneity claim. The 'vaccinated first' option introduces an intervention distinct from the passage's natural early-depletion mechanism, and the 'severe symptoms' option is irrelevant to the threshold.",
+    "key_len": 157,
+    "runner_up_len": 121
+  },
+  {
+    "id": "146d9dec-493e-48eb-b0f1-587b00ee2303",
+    "domain": "Information and Ideas",
+    "passage": "Textbooks often describe glass as a slow-flowing liquid, citing old cathedral windows that are thicker at the bottom. Materials scientist Priya Nair dismantles this claim. She notes that the atoms in glass are locked in place too rigidly to migrate perceptibly over mere centuries; calculations show any flow would take longer than the age of the universe. The uneven windows, she explains, are thicker at the base simply because medieval glassmakers produced panes of varying thickness and installed them heavy-side down for stability.",
+    "prompt": "Which choice best states the main idea of the passage?",
+    "choices": [
+      "Glass is best understood as an extremely slow-flowing liquid over long time spans.",
+      "The uneven thickness of old windows reflects manufacturing and installation, not the slow flow of glass.",
+      "Medieval glassmakers were unable to produce panes of uniform thickness.",
+      "The atoms in glass migrate measurably only over spans longer than the universe's age."
+    ],
+    "correct_answer": "The uneven thickness of old windows reflects manufacturing and installation, not the slow flow of glass.",
+    "explanation": "Nair refutes the flowing-glass claim and attributes thicker bottoms to variable panes installed heavy-side down, making manufacturing the explanation.",
+    "key_len": 104,
+    "runner_up_len": 85
+  },
+  {
+    "id": "15755f7c-9c1c-4344-88a5-d00438fb81b4",
+    "domain": "Information and Ideas",
+    "passage": "Sociable weaver birds of the Kalahari construct enormous communal nests, thatched masses that shelter dozens of breeding pairs for generations. Biologists long assumed these structures endure because cooperation benefits every resident more or less equally, each bird gaining warmth and safety from the collective. A recent model complicates that picture. It proposes that the colony is held together not by mutual benefit but by asymmetric coercion: dominant pairs monopolize the thermally stable central chambers and tolerate subordinates on the exposed periphery only because those peripheral birds absorb the brunt of predation and weather, effectively shielding the core. Cooperation, on this account, is a byproduct of exploitation rather than its foundation—an arrangement that looks communal from the outside but is sustained by the inability of the weak to claim the better rooms.",
+    "prompt": "Which finding, if true, would most strengthen the recent model's claim?",
+    "choices": [
+      "Subordinate birds gain measurable warmth from the collective mass of the nest during cold nights.",
+      "Peripheral birds that attempt to move toward the central chambers are aggressively driven back by dominant pairs.",
+      "Central and peripheral chambers experience nearly identical rates of predation.",
+      "Colonies with more residents fledge more chicks overall than smaller colonies do."
+    ],
+    "correct_answer": "Peripheral birds that attempt to move toward the central chambers are aggressively driven back by dominant pairs.",
+    "explanation": "B directly evidences the 'asymmetric coercion' the model posits: subordinates are confined to worse positions by force. A supports the rival mutual-benefit view the model rejects. C would weaken the model by erasing the shielding advantage that motivates the coercion. D is true-but-irrelevant to whether the arrangement is coercive or mutually beneficial.",
+    "key_len": 113,
+    "runner_up_len": 97
+  },
+  {
+    "id": "1620dba3-0714-4d99-a852-0c4b4ec1c837",
+    "domain": "Craft and Structure",
+    "passage": "The metronome is often blamed for imposing a mechanical rigidity on modern performance, as though earlier musicians played with a freedom that steady timekeeping later suppressed. Yet the historical evidence points the other way. Before the metronome, tempo terms like allegro named a character or affect, not a fixed speed, and treatises show wide disagreement about how fast such music should go. What the metronome introduced was not rigidity but a shared reference against which expressive deviation could be measured and, crucially, heard as deviation. Rubato—the expressive stretching of time—depends on an implied steady pulse to depart from; without a felt regularity, flexibility is merely vagueness. The device that supposedly mechanized music may instead have made a certain kind of expressive freedom legible for the first time.",
+    "prompt": "Which statement is best supported by the passage?",
+    "choices": [
+      "The metronome suppressed an expressive freedom that pre-metronome musicians had enjoyed.",
+      "Expressive timing depends on a sense of steady pulse, so a shared measure of tempo can enable rather than restrict flexibility.",
+      "Before the metronome, musicians agreed closely on the correct speed for a given tempo marking.",
+      "Rubato was invented only after the metronome made steady tempo possible."
+    ],
+    "correct_answer": "Expressive timing depends on a sense of steady pulse, so a shared measure of tempo can enable rather than restrict flexibility.",
+    "explanation": "The passage argues that rubato 'depends on an implied steady pulse to depart from' and that without felt regularity 'flexibility is merely vagueness,' so a shared tempo reference enables expression instead of stifling it. The claim that 'the metronome suppressed an expressive freedom that pre-metronome musicians had enjoyed' is the popular story the passage says the historical evidence contradicts. The claim that before the metronome 'musicians agreed closely on the correct speed for a given tempo marking' is refuted by the treatises showing wide disagreement, with terms like allegro naming a character rather than a speed. And the claim that 'rubato was invented only after the metronome made steady tempo possible' overstates a subtler point: the device made expressive deviation legible and hearable as deviation, not possible for the first time.",
+    "key_len": 127,
+    "runner_up_len": 94
+  },
+  {
+    "id": "19a4c2bd-eeb8-4c58-bcc3-33aaf0a68ba6",
+    "domain": "Craft and Structure",
+    "passage": "A team studying urban 'heat islands' set out to explain why painting rooftops white cools a city. The obvious mechanism is direct: pale surfaces reflect sunlight back toward space instead of absorbing it, and reflective roofs do measurably lower the temperature of the surfaces beneath them. Yet the team's model assigns most of the citywide cooling to a less obvious, secondary pathway. Cooler roofs, it argues, release less of the convective heat that would otherwise rise through the afternoon and suppress the formation of clouds; with that heat removed, more clouds develop, and the added clouds shade the entire city through the hottest hours. The direct reflection off any single roof, on this account, is a minor contributor next to the broad cloud feedback that cooler roofs collectively trigger. The team concludes that a city's response to reflective roofing is governed less by optics than by atmosphere.",
+    "prompt": "Which finding, if true, would most directly weaken the team's central claim about how white roofs cool a city?",
+    "choices": [
+      "In several cities, white roofs lowered air temperatures by just as much on days when no additional afternoon clouds formed as on days when extra clouds did form.",
+      "Reflective white roofs were confirmed to send substantially more sunlight back toward space than conventional dark roofs do.",
+      "Cities that had converted a larger share of their roofs to white showed greater afternoon cloud cover than cities that had converted fewer.",
+      "On the hottest days of the year, white roofs produced both the largest drops in temperature and the greatest increases in cloud cover."
+    ],
+    "correct_answer": "In several cities, white roofs lowered air temperatures by just as much on days when no additional afternoon clouds formed as on days when extra clouds did form.",
+    "explanation": "The team's central claim is that the cloud feedback, not direct reflection, does most of the citywide cooling. The finding that white roofs lowered air temperatures 'by just as much on days when no additional afternoon clouds formed' as on days when extra clouds did form removes the clouds from the causal chain: if the cooling appears without the clouds, the clouds cannot be producing it. That is why it is the answer. The finding that reflective roofs 'send substantially more sunlight back toward space' than conventional dark roofs is the intuitive pick, but the team already grants that direct reflection is real and merely minor, so confirming it leaves the cloud claim untouched. The observation that cities converting 'a larger share of their roofs to white' showed 'greater afternoon cloud cover' is the roof-to-cloud link the model asserts, so it strengthens the account. And the finding that on the hottest days white roofs produced 'the largest drops in temperature and the greatest increases in cloud cover' pairs more cooling with more clouds, which again supports the feedback rather than weakening it.",
+    "key_len": 161,
+    "runner_up_len": 139
+  },
+  {
+    "id": "1b4549aa-b244-4276-b900-5f50ccda0d6e",
+    "domain": "Information and Ideas",
+    "passage": "When a coral reef bleaches, the coral expels the symbiotic algae that give it both color and most of its food. For years this was treated as a straightforward death sentence. Yet surveys of reefs that bleached and later recovered reveal a subtler pattern: some corals reacquire algal strains more tolerant of warm water than the ones they lost. The reef that returns is therefore not simply the reef that was damaged, but a slightly different community, reassembled under new thermal conditions.",
+    "prompt": "Which choice best states the main idea of the text?",
+    "choices": [
+      "Coral bleaching invariably results in the death of the affected coral colonies.",
+      "Reefs that recover from bleaching may reassemble with more heat-tolerant algal partners than before.",
+      "Symbiotic algae supply corals with color and the majority of their nutrition.",
+      "Warming ocean temperatures are the principal cause of coral bleaching worldwide."
+    ],
+    "correct_answer": "Reefs that recover from bleaching may reassemble with more heat-tolerant algal partners than before.",
+    "explanation": "The core point is that recovered reefs differ because they acquire more tolerant algae; the traps contradict the recovery finding, restate a detail, or add an unstated cause.",
+    "key_len": 100,
+    "runner_up_len": 80
+  },
+  {
+    "id": "1ca3d6a7-719d-4c01-8511-b951b6717d27",
+    "domain": "Craft and Structure",
+    "passage": "Text 1: Longer school days are the surest remedy for learning gaps. Studies find that low-income students lose ground over summer and slow afternoons, and every additional hour of instruction, the data show, narrows the distance between them and their wealthier peers.\n\nText 2: The same studies deserve a closer look. The extra hours helped only where they were staffed by strong teachers and filled with focused work; where they were not, students merely sat longer for the same result. Time is not the ingredient that matters, but a container for whatever we choose to put in it.",
+    "prompt": "Based on the texts, how would the author of Text 2 most likely respond to the conclusion drawn in Text 1?",
+    "choices": [
+      "By denying that low-income students lose any ground over the summer",
+      "By agreeing that every additional hour reliably narrows the learning gap",
+      "By arguing that the benefit depends on the quality of instruction within the added time, not the added time itself",
+      "By insisting that school days should instead be made shorter"
+    ],
+    "correct_answer": "By arguing that the benefit depends on the quality of instruction within the added time, not the added time itself",
+    "explanation": "Text 2 reinterprets the same studies to argue that added time helps only when well used, challenging Text 1's claim that hours alone close the gap.",
+    "key_len": 114,
+    "runner_up_len": 72
+  },
+  {
+    "id": "2379673c-9e0b-4460-ad4a-57c298a5a076",
+    "domain": "Craft and Structure",
+    "passage": "Economists have long assumed that offering people more choices makes them better off, since anyone free to ignore an unwanted option loses nothing by its presence. Field experiments in retirement planning suggest otherwise. When employees were offered dozens of investment funds rather than a handful, enrollment dropped: overwhelmed by comparison, many put off deciding altogether and saved nothing. The extra options did not merely go unused; they imposed a cost of their own, paralyzing the very people they were meant to empower.",
+    "prompt": "What is the main purpose of the text?",
+    "choices": [
+      "To recommend that retirement plans offer as many investment funds as possible",
+      "To explain the mathematical methods economists use to compare investment funds",
+      "To challenge an assumption by presenting evidence that added choices can carry a hidden cost",
+      "To argue that employees should never be permitted to manage their own savings"
+    ],
+    "correct_answer": "To challenge an assumption by presenting evidence that added choices can carry a hidden cost",
+    "explanation": "The text names the economists' assumption that more choice cannot hurt, then uses the enrollment findings to overturn it by showing choices impose a paralyzing cost.",
+    "key_len": 92,
+    "runner_up_len": 78
+  },
+  {
+    "id": "2a13d4b8-b015-4690-9d48-9cf21974e3e3",
+    "domain": "Information and Ideas",
+    "passage": "The novelist wrote her early drafts in longhand, filling notebooks with crossed-out lines and marginal alternatives. Only when a chapter felt settled did she type it, and she claimed the very slowness of the pen forced her to weigh each word. Critics who examined her surviving notebooks found that passages she most heavily revised in ink became, in the published book, among her most admired for their economy and precision.",
+    "prompt": "Which choice best states the main idea of the text?",
+    "choices": [
+      "The novelist disliked typewriters and refused to use them for any purpose.",
+      "The novelist's laborious handwritten revision contributed to the polished quality of her published prose.",
+      "Critics were unable to read the novelist's handwriting in her notebooks.",
+      "The novelist wrote more quickly by hand than she could by typing."
+    ],
+    "correct_answer": "The novelist's laborious handwritten revision contributed to the polished quality of her published prose.",
+    "explanation": "The passage links the slowness of longhand revision to the economy and precision critics later admired in the published work.",
+    "key_len": 105,
+    "runner_up_len": 74
+  },
+  {
+    "id": "2a7f682a-e508-4448-afec-879ff73de781",
+    "domain": "Craft and Structure",
+    "passage": "Text 1: Requiring students to wear uniforms, administrators argue, reduces the daily friction of comparison. When a hoodie no longer signals a family's income, the reasoning goes, poorer students are spared a source of shame, and everyone's attention returns to the lesson rather than the label.\n\nText 2: Uniforms do not erase status distinctions; they relocate them. Denied clothing as a canvas, students read wealth in the newness of a backpack, the model of a phone, the brand of shoes the dress code leaves unregulated. The impulse to rank one another simply migrates to whatever the rules forget to cover.",
+    "prompt": "Based on the texts, how would the author of Text 2 most likely respond to the reasoning presented in Text 1?",
+    "choices": [
+      "By contending that the comparison uniforms are meant to suppress reappears through items the dress code does not govern",
+      "By agreeing that uniforms spare poorer students shame but adding that they are costly to purchase",
+      "By asserting that students never compare one another regardless of what they wear",
+      "By arguing that clothing has no connection to a family's income"
+    ],
+    "correct_answer": "By contending that the comparison uniforms are meant to suppress reappears through items the dress code does not govern",
+    "explanation": "Text 2 argues status comparison merely migrates to unregulated items, directly countering Text 1's claim that uniforms remove the source of comparison.",
+    "key_len": 119,
+    "runner_up_len": 97
+  },
+  {
+    "id": "2c5a93ff-4432-41c2-b2c8-12f2e526846a",
+    "domain": "Information and Ideas",
+    "passage": "A team of ecologists studied how tree canopy cover affects the density of ferns on a forest floor. They concluded that ferns grow most densely where canopy cover is intermediate rather than very low or very high.",
+    "prompt": "Which choice most effectively uses data from the table to support the ecologists' claim?",
+    "choices": [
+      "Fern density rose steadily as canopy cover increased across all four plots.",
+      "The plot with 20% canopy cover had a higher fern density than the plot with 70% canopy cover.",
+      "The plots with 50% and 70% canopy cover had fern densities of 27 and 24 plants/m2, higher than the densities at both the 20% and 95% plots.",
+      "The plot with the highest canopy cover, 95%, had the highest fern density at 27 plants/m2."
+    ],
+    "correct_answer": "The plots with 50% and 70% canopy cover had fern densities of 27 and 24 plants/m2, higher than the densities at both the 20% and 95% plots.",
+    "explanation": "The claim is that ferns are densest at intermediate canopy cover, and the key notes that the two middle-cover plots (50%, 70%) had the highest densities (27, 24) versus the low- and high-cover plots (8, 6). The choice about 95% cover having the highest density misreads the data, since 95% cover had the lowest density (6). The 'rose steadily' choice is contradicted because density falls at 95%. The choice comparing the 20% and 70% plots reverses the data: the 20% plot (8) was lower than the 70% plot (24).",
+    "key_len": 139,
+    "runner_up_len": 93
+  },
+  {
+    "id": "2c66348c-9154-4f6f-85d4-6f28b38a825a",
+    "domain": "Craft and Structure",
+    "passage": "Text 1: Requiring open access to publicly funded research is plainly just. Taxpayers financed the work; they should not pay a second time, through subscription journals, to read what they already bought. Free access simply returns knowledge to those who paid for its creation.\n\nText 2: The principle is appealing, but someone must still fund peer review, editing, and archiving. When journals cannot charge readers, they charge authors instead—fees that wealthy labs pay easily and poorer ones cannot. Open access can quietly shift the barrier from readers to writers, narrowing who gets published.",
+    "prompt": "How would the author of Text 2 most likely characterize the argument in Text 1?",
+    "choices": [
+      "As correct in concluding that open access imposes no new costs on anyone.",
+      "As wrong to claim that taxpayers funded the underlying research.",
+      "As too cautious about extending free access to all published research.",
+      "As overlooking that free access can relocate rather than remove financial barriers, disadvantaging less-funded authors."
+    ],
+    "correct_answer": "As overlooking that free access can relocate rather than remove financial barriers, disadvantaging less-funded authors.",
+    "explanation": "Text 2 grants the principle's appeal but warns it \"can quietly shift the barrier from readers to writers,\" so it would fault Text 1 for missing a relocated cost, not deny taxpayer funding or call Text 1 too cautious.",
+    "key_len": 119,
+    "runner_up_len": 73
+  },
+  {
+    "id": "2c67f590-8c5e-48a9-b078-57218f4e790e",
+    "domain": "Information and Ideas",
+    "passage": "The 'resource curse'—the observation that nations rich in oil or minerals often grow more slowly than resource-poor peers—is frequently taken to show that natural wealth is economically corrosive in itself. Some economists argue the correlation is misattributed. In their account, resource windfalls do not degrade otherwise sound institutions; rather, they tend to arrive in countries whose institutions were already weak, and merely make the consequences of that weakness more visible and better funded. Where accountable institutions predate a discovery, they find, windfalls are managed without any subsequent decline in growth. The curse, on this view, is not a property of the resource but a preexisting condition the resource exposes. What looks like wealth causing dysfunction is dysfunction determining how wealth is used.",
+    "prompt": "Which finding, if true, would most strengthen the argument advanced in the text?",
+    "choices": [
+      "In several countries, growth rates fell sharply in the years immediately following a major mineral discovery.",
+      "A nation whose institutions were rated weak before an oil discovery continued to grow slowly even after the oil was depleted and the windfall had ended.",
+      "Countries with strong institutions tend to have more diversified economies than countries dependent on a single export.",
+      "Resource windfalls have been shown to weaken the institutions of countries that were well governed before a discovery."
+    ],
+    "correct_answer": "A nation whose institutions were rated weak before an oil discovery continued to grow slowly even after the oil was depleted and the windfall had ended.",
+    "explanation": "The argument holds that weak institutions, not the resource, cause slow growth. Persistent slow growth after the resource is gone shows the dysfunction is independent of the windfall, supporting that thesis. A restates the raw correlation the passage reinterprets and fits the naive 'resource is corrosive' view it rejects. C is true but irrelevant to the causal claim. D directly contradicts the argument's premise that windfalls 'do not degrade otherwise sound institutions,' so it would weaken, not strengthen.",
+    "key_len": 152,
+    "runner_up_len": 119
+  },
+  {
+    "id": "31720524-f917-424b-835d-e5da36bfec0d",
+    "domain": "Craft and Structure",
+    "passage": "Popper taught that a scientific theory earns its status by forbidding things: the more a theory rules out, the more it risks, and the more it is worth. It is tempting to conclude that a good scientist, on meeting a stubborn anomaly, should abandon the theory it violates. But Popper himself resisted this. A lone anomaly rarely confronts a bare hypothesis; it confronts the hypothesis together with a thicket of auxiliary assumptions—about instruments, background conditions, the absence of interfering causes. The anomaly tells us that something in the bundle is false, not which thing. Rational scientists may therefore hold onto a central theory and revise a peripheral assumption instead, and history shows they often should have. Falsifiability marks what makes a claim scientific; it does not license the naive rule that a single contrary result must sink the theory it seems to strike.",
+    "prompt": "Which choice is most strongly supported by the text?",
+    "choices": [
+      "A scientific theory should be discarded as soon as a single observation contradicts it.",
+      "Theories that forbid very little are the most scientifically valuable.",
+      "Auxiliary assumptions about instruments are always the component that turns out to be false.",
+      "Because an anomaly implicates a whole bundle of assumptions, it need not require rejecting the central theory it appears to contradict."
+    ],
+    "correct_answer": "Because an anomaly implicates a whole bundle of assumptions, it need not require rejecting the central theory it appears to contradict.",
+    "explanation": "The passage says an anomaly confronts a hypothesis 'together with a thicket of auxiliary assumptions' and tells us 'that something in the bundle is false, not which thing,' so scientists may rationally keep the core theory and revise a peripheral assumption, which is the answer's exact claim. Saying 'a scientific theory should be discarded as soon as a single observation contradicts it' is the naive rule the closing sentence explicitly refuses to license. Saying 'theories that forbid very little are the most scientifically valuable' inverts Popper's opening principle that the more a theory rules out, the more it risks and the more it is worth. And saying 'auxiliary assumptions about instruments are always the component that turns out to be false' pushes past what the text allows, since its whole point is that the anomaly does not identify the guilty element, so nothing can be blamed by default.",
+    "key_len": 135,
+    "runner_up_len": 92
+  },
+  {
+    "id": "3537c297-db07-4802-a824-88b7036dc3f7",
+    "domain": "Craft and Structure",
+    "passage": "Ecologists once assumed that a forest's resistance to drought would scale neatly with its species diversity: the more kinds of trees a stand contained, the more independent ways it had to weather a dry year. A decade of monitoring in mixed temperate stands has complicated that expectation. Diversity did buffer the average plot against moderate drought, much as the theory predicted. But in the most severe droughts on record, the diverse plots lost as much living biomass as neighboring monocultures did—and in some cases lost more. The reason is unsettling: the fast-growing, competitive species that diversity tends to favor are precisely the ones least tolerant of extreme water stress, so a diverse canopy can concentrate vulnerability just where the theory promised safety. Diversity, on this evidence, hedges a stand against ordinary year-to-year variation while leaving it exposed to the rare catastrophe.",
+    "prompt": "Which statement is most strongly supported by the text?",
+    "choices": [
+      "Greater species diversity reliably increases a forest stand's resistance to drought regardless of the drought's severity.",
+      "During moderate droughts, monoculture stands generally lose less biomass than diverse stands of comparable size.",
+      "Species diversity can improve a stand's performance under typical dry conditions while failing to protect it under the most severe droughts, and in some cases worsening its outcome.",
+      "The fast-growing species that diversity favors are the trees most tolerant of extreme water stress — the last to wilt."
+    ],
+    "correct_answer": "Species diversity can improve a stand's performance under typical dry conditions while failing to protect it under the most severe droughts, and in some cases worsening its outcome.",
+    "explanation": "The passage credits diversity with buffering against 'moderate drought' yet reports that in the 'most severe droughts' diverse plots lost 'as much... and in some cases more' than monocultures—exactly the split C describes ('hedges against ordinary variation while leaving it exposed to the rare catastrophe'). A is the old assumption the data 'complicated'—the tempting misreading. B reverses the moderate-drought finding: diversity, not monoculture, buffered the average plot there. D reverses the causal detail: the favored fast-growing species are 'least tolerant' of extreme stress, not most.",
+    "key_len": 181,
+    "runner_up_len": 121
+  },
+  {
+    "id": "381a0e45-609f-46e5-8781-56834d02688b",
+    "domain": "Craft and Structure",
+    "passage": "Gene drives—engineered genetic elements that force themselves into nearly all of an organism's offspring—promise to spread a trait through a wild population far faster than ordinary inheritance allows, raising hopes of suppressing malaria mosquitoes within a few seasons. The mechanism works as advertised in the laboratory. In the wild, however, the very ruthlessness that makes a drive powerful also selects against it. Any mutation rendering an individual resistant to the drive confers an enormous advantage, since resistant individuals reproduce while the drive sterilizes their neighbors. Such resistance arises readily, and once it does, it sweeps through the population as relentlessly as the drive it defeats. The technology is therefore not so much a permanent fix as a race against the evolutionary response it provokes. Its designers increasingly speak not of eradication but of buying time—a more modest ambition than the headlines suggest.",
+    "prompt": "It can most reasonably be inferred that the author considers the eradication of disease vectors by gene drives to be",
+    "choices": [
+      "unlikely to be permanent, because resistance to the drive tends to evolve and spread",
+      "already achieved under real-world field conditions",
+      "impossible to bring about even under controlled laboratory conditions",
+      "limited mainly by the high financial cost of engineering the drives"
+    ],
+    "correct_answer": "unlikely to be permanent, because resistance to the drive tends to evolve and spread",
+    "explanation": "The passage grants that drives work in the laboratory and then argues that in the wild, resistance \"arises readily\" and \"sweeps through the population as relentlessly as the drive it defeats,\" which is why designers now speak of buying time rather than eradication. The reasonable inference is that eradication is unlikely to last, because resistance evolves and spreads. The option calling it \"already achieved under real-world field conditions\" contradicts that retreat; no wild population is reported eliminated. The option calling eradication \"impossible to bring about even under controlled laboratory conditions\" contradicts the explicit concession that the mechanism works as advertised in the lab - the failure is evolutionary, not technical. And the option that the effort is \"limited mainly by the high financial cost\" of engineering the drives substitutes an obstacle the passage never raises for the one it spends most of its length describing.",
+    "key_len": 84,
+    "runner_up_len": 69
+  },
+  {
+    "id": "383a253e-7d84-4d56-81f1-3ec2c3464b95",
+    "domain": "Information and Ideas",
+    "passage": "Text 1\n\nCritics of foreign aid dwell on waste and corruption, but the ledger of lives is decisive. Targeted health interventions—bed nets, vaccines, oral rehydration—cost little and save millions; child mortality in aid-receiving regions has fallen steeply. Whatever aid's imperfections, withholding proven, low-cost interventions to punish bad governance means letting children die for a principle. The moral arithmetic favors giving.\n\nText 2\n\nThe lives saved by health aid are real, and no honest critic denies them. But aid's costs are institutional and slow to appear. A government financed by outside donors rather than by its own taxpayers answers to the donors, not the governed; the ordinary pressure that builds accountable states—citizens demanding services in exchange for taxes—slackens. Aid may thus purchase short-term survival at the price of the long-term capacity for self-government, a trade whose full cost no mortality statistic captures.",
+    "prompt": "On which of the following points would the authors of the two texts most likely disagree?",
+    "choices": [
+      "Whether aid's life-saving benefits are worth its effect on the development of accountable institutions",
+      "Whether inexpensive health interventions save large numbers of lives",
+      "Whether waste and corruption occur in the administration of aid",
+      "Whether governments that receive substantial aid come to depend on donor funding"
+    ],
+    "correct_answer": "Whether aid's life-saving benefits are worth its effect on the development of accountable institutions",
+    "explanation": "The dispute is over the trade, not the facts. Text 1 says the \"moral arithmetic favors giving\"; Text 2 says aid may purchase short-term survival \"at the price of the long-term capacity for self-government.\" Whether the lives saved are worth that institutional cost is the one point on which they genuinely part company. The option asking \"Whether inexpensive health interventions save large numbers of lives\" is common ground, since Text 2 opens by granting that the lives saved are real and that no honest critic denies them. The option asking \"Whether waste and corruption occur\" in the administration of aid is shared as well - Text 1 concedes aid's imperfections rather than denying them. And the option about \"governments that receive substantial aid\" coming to depend on donor funding is asserted by Text 2 and simply not addressed by Text 1, so there is no clash on the page.",
+    "key_len": 102,
+    "runner_up_len": 80
+  },
+  {
+    "id": "3b63c595-248e-4a45-86c6-b877dfafff3b",
+    "domain": "Craft and Structure",
+    "passage": "Text 1: The Romantic image of the lone genius still shapes how we picture creativity: the poet in the garret, the scientist alone at the bench. Psychologist Elena Voss endorses this view. Breakthroughs, she argues, demand uninterrupted solitude, the freedom to follow a strange idea without a colleague's skepticism cutting it short before it can mature.\n\nText 2: Historian Marcus Bell is skeptical of the solitary genius. Examining the notebooks behind famous discoveries, he finds them crowded with borrowed problems, overheard remarks, and objections raised by rivals. The lone thinker, he concludes, is usually a convenient story told afterward; the real work was steeped in conversation.",
+    "prompt": "Based on the texts, how would Bell (Text 2) most likely respond to Voss's argument in Text 1?",
+    "choices": [
+      "By agreeing that solitude is essential but insisting it must be entirely voluntary.",
+      "By contending that creative breakthroughs typically depend on exchanges with others rather than on solitude.",
+      "By arguing that Voss overstates how many genuine breakthroughs have occurred in history.",
+      "By suggesting that skepticism from colleagues always strengthens a strange new idea."
+    ],
+    "correct_answer": "By contending that creative breakthroughs typically depend on exchanges with others rather than on solitude.",
+    "explanation": "Bell's evidence locates the work in conversation, opposing Voss; the second has him agreeing, the third misstates his target, the fourth overreaches to 'always.'",
+    "key_len": 108,
+    "runner_up_len": 88
+  },
+  {
+    "id": "448202f6-a12a-4033-acdd-fc17384cf2b4",
+    "domain": "Craft and Structure",
+    "passage": "Historians once praised the medieval guild as a triumph of craftsmanship, a body that guaranteed quality by policing its members. Recent scholarship complicates this portrait. The same rules that ensured fine workmanship also fixed prices, capped output, and barred outsiders from the trade. What looks, from the perspective of the consumer, like a defense of excellence appears, from the perspective of the ambitious apprentice locked out of mastership, like an instrument of exclusion. The guild was not one thing; it was quality and cartel at once.",
+    "prompt": "Which choice best describes the overall structure of the text?",
+    "choices": [
+      "It presents a traditional judgment, then reframes the same facts to show the judgment was incomplete.",
+      "It surveys competing theories and endorses the one with the most evidence.",
+      "It traces a gradual historical change in how guilds actually operated.",
+      "It defends the medieval guild against an unfair modern criticism."
+    ],
+    "correct_answer": "It presents a traditional judgment, then reframes the same facts to show the judgment was incomplete.",
+    "explanation": "The text states a familiar praise, then shows the identical rules also served exclusion, complicating rather than replacing the original view.",
+    "key_len": 101,
+    "runner_up_len": 74
+  },
+  {
+    "id": "450d36b7-162b-40c9-8551-42d673b5c61f",
+    "domain": "Information and Ideas",
+    "passage": "The hygiene hypothesis proposes that rising rates of allergy and asthma reflect childhoods too clean—immune systems, deprived of the microbial sparring partners that once trained them, turning instead against harmless targets. The intuitive fix, less washing, misreads the claim. What correlates with protection is not dirt but exposure to a rich diversity of microbes, the kind delivered by farm animals, older siblings, and unpasteurized environments—not by neglecting hygiene, which still guards against genuine pathogens. Indeed, interventions that simply reduce cleanliness fail to lower allergy rates, while early, varied microbial contact does. The hypothesis, better named, concerns not the absence of filth but the presence of biodiversity. To recommend a dirtier childhood is to confuse the mechanism with its crudest proxy.",
+    "prompt": "Which finding, if true, would most strengthen the passage's central claim?",
+    "choices": [
+      "Children in households that washed less frequently had lower allergy rates than others.",
+      "Children raised on farms with varied animal contact had lower allergy rates than urban children with comparable hygiene practices.",
+      "Improved sanitation over the past century coincided with rising rates of allergy.",
+      "Exposure to a single common bacterium in infancy prevented most allergies."
+    ],
+    "correct_answer": "Children raised on farms with varied animal contact had lower allergy rates than urban children with comparable hygiene practices.",
+    "explanation": "The passage's refined claim is that microbial diversity, not the absence of washing, is protective. Comparing children raised on farms with varied animal contact against urban children with comparable hygiene practices holds cleanliness fixed while varying exposure, isolating diversity as the operative factor. The finding that children in households that washed less frequently had lower allergy rates supports the dirt-is-protective misreading the passage calls the mechanism's 'crudest proxy.' The observation that improved sanitation over the past century coincided with rising rates of allergy restates the broad correlation without separating cleanliness from microbial variety. And exposure to a single common bacterium preventing most allergies cuts against the emphasis on 'a rich diversity of microbes' by pinning protection on one organism.",
+    "key_len": 130,
+    "runner_up_len": 87
+  },
+  {
+    "id": "457210fc-4266-4ca3-9456-da15d86b2492",
+    "domain": "Information and Ideas",
+    "passage": "A psychologist tested whether short daytime naps improve memory recall. She concluded that participants who napped longer tended to recall more words on a later test.",
+    "prompt": "Which choice most effectively uses data from the table to support the psychologist's claim?",
+    "choices": [
+      "Groups B and C recalled the same number of words.",
+      "The group with the longest nap recalled the fewest words.",
+      "As nap length increased from 0 to 60 minutes, words recalled rose from 19 to 33.",
+      "Group A, which did not nap, recalled 19 of 40 words."
+    ],
+    "correct_answer": "As nap length increased from 0 to 60 minutes, words recalled rose from 19 to 33.",
+    "explanation": "The claim is that longer naps go with more recall, and the key shows recall rising from 19 to 33 as nap length increased. The Group A choice reports one group without a trend. The choice claiming Groups B and C recalled the same number is false (24 vs 29). The choice about the longest nap reverses the pattern, since the 60-minute nap produced the most recall (33), not the fewest.",
+    "key_len": 80,
+    "runner_up_len": 57
+  },
+  {
+    "id": "4831d8bc-364e-4232-b9a4-bdd6c7a88244",
+    "domain": "Information and Ideas",
+    "passage": "Historians once credited the seventeenth-century \"scientific revolution\" to the sudden triumph of experiment over ancient authority. Recent scholarship complicates this picture. Figures such as Robert Boyle did champion experiment, but they also leaned heavily on the testimony of credible witnesses—gentlemen whose social standing, not any repeatable procedure, vouched for what they reported. The novelty of the age, then, lay less in a rejection of authority than in a redefinition of whose authority counted. The learned commentator on Aristotle was displaced not by the anonymous fact but by the trustworthy observer, a figure whose reliability was itself a social construction. What looks in retrospect like the birth of impersonal objectivity was in practice the substitution of one hierarchy of credibility for another—a shift real enough, but far more modest than the heroic narrative of liberated reason suggests.",
+    "prompt": "Which choice best describes the overall structure of the passage?",
+    "choices": [
+      "It presents a traditional interpretation, then replaces it with a more qualified account that reframes rather than reverses that interpretation.",
+      "It surveys competing theories and concludes that the evidence cannot decide between them.",
+      "It defends a heroic narrative of scientific progress against a recent revisionist challenge.",
+      "It traces a single thinker's intellectual development to illustrate a broader cultural change."
+    ],
+    "correct_answer": "It presents a traditional interpretation, then replaces it with a more qualified account that reframes rather than reverses that interpretation.",
+    "explanation": "The passage opens with the traditional view (\"experiment over ancient authority\"), then says recent scholarship \"complicates\" it, arguing the change was a redefinition of whose authority counted—\"real enough, but far more modest.\" That is reframing, not reversal. The tempting wrong answer claims the passage 'reverses' or defends the heroic narrative; in fact the passage explicitly calls that narrative overstated while still conceding the shift was 'real.' 'Cannot decide between them' misreads the passage, which does commit to a view. 'Single thinker's development' overweights the Boyle example, which is illustrative, not the organizing frame.",
+    "key_len": 144,
+    "runner_up_len": 94
+  },
+  {
+    "id": "4af66cbd-c0d5-4960-8c93-68140d65e36f",
+    "domain": "Information and Ideas",
+    "passage": "A materials scientist tested how the carbon content of a steel alloy affects its hardness. She concluded that hardness increases as carbon content rises.",
+    "prompt": "Which choice most effectively uses data from the table to support the scientist's claim?",
+    "choices": [
+      "Sample 1 had the highest hardness despite the lowest carbon content.",
+      "Hardness stayed constant as carbon content increased.",
+      "Sample 4, with 0.8% carbon, had a hardness of 61 HRC, the highest of the four samples and the highest carbon content.",
+      "Sample 2 and Sample 3 had equal hardness values."
+    ],
+    "correct_answer": "Sample 4, with 0.8% carbon, had a hardness of 61 HRC, the highest of the four samples and the highest carbon content.",
+    "explanation": "The claim is that hardness rises with carbon content, and the key pairs the highest carbon (0.8%) with the highest hardness (61 HRC). The Sample 1 choice is false and reversed, since Sample 1 had the lowest carbon (0.2%) and lowest hardness (25). The 'stayed constant' choice contradicts the increasing trend. The choice claiming Sample 2 and Sample 3 had equal hardness is false (38 vs 50).",
+    "key_len": 117,
+    "runner_up_len": 68
+  },
+  {
+    "id": "4d92f808-7e1e-4b5d-83e5-b9b10d9f2aa3",
+    "domain": "Information and Ideas",
+    "passage": "Roman concrete has become a byword for lost genius: seawalls that have stood two millennia while modern harbor concrete crumbles in decades. Recent chemistry has identified a mechanism—lime clasts that, when cracks admit seawater, dissolve and re-precipitate to seal the breach, a kind of self-healing. The story flatters the Romans, and it is largely true, but it invites a false lesson. The durability owes as much to what the Romans did not demand of their concrete: they built massive, lightly loaded, unreinforced structures, whereas modern concrete is cast thin around steel that rusts and splits it from within. Match the two for reinforcement and load, and the gap narrows sharply. Roman concrete endures partly by its chemistry and partly by never being asked to do the strenuous work we require of ours. The marvel is real; the reproach it seems to cast on modern engineering is not.",
+    "prompt": "Which statement is best supported by the passage?",
+    "choices": [
+      "Roman concrete's longevity stems partly from the undemanding conditions under which it was used.",
+      "Modern engineers could match Roman durability simply by adopting the Roman recipe.",
+      "The self-healing mechanism in Roman concrete has been shown to be a myth.",
+      "Modern reinforced concrete is superior to Roman concrete in every respect."
+    ],
+    "correct_answer": "Roman concrete's longevity stems partly from the undemanding conditions under which it was used.",
+    "explanation": "The passage credits the lime-clast self-healing chemistry and then adds the other half of the explanation: the Romans built \"massive, lightly loaded, unreinforced structures,\" so their concrete endures partly \"by never being asked to do the strenuous work we require of ours\" - durability owed in part to undemanding conditions of use. The option that engineers \"could match Roman durability simply by adopting the Roman recipe\" ignores that second half; matched for load and reinforcement, the passage says, the gap narrows sharply, so the recipe alone is not the whole story. The option that the self-healing mechanism \"has been shown to be a myth\" contradicts the text, which calls the story largely true and describes the sealing chemistry in detail. And the option that modern reinforced concrete \"is superior to Roman concrete in every respect\" claims far more than the passage, whose point is only that the reproach against modern engineering is unwarranted.",
+    "key_len": 96,
+    "runner_up_len": 82
+  },
+  {
+    "id": "509e9515-d94e-4b0c-87e3-5ed2b3813251",
+    "domain": "Craft and Structure",
+    "passage": "Historians once told the discovery of anesthesia as a straightforward gift to humanity: surgery had been agony, ether ended it, gratitude followed. Recent scholarship complicates the gratitude. Anesthesia's arrival coincided with, and arguably enabled, a sharp rise in the volume and invasiveness of surgery; operations once deemed too cruel to attempt became routine, and mortality from surgical infection climbed before antisepsis caught up. Pain, moreover, had served as a rough limit on how far a surgeon would go and how long a patient would tolerate the knife. Removing that limit did not simply subtract suffering; it redrew the boundaries of what surgery was for. The point is not that anesthesia was a curse—few would trade it away—but that its benefits arrived entangled with consequences the triumphal story omits.",
+    "prompt": "The last sentence primarily serves to",
+    "choices": [
+      "reverse the passage's argument by conceding that anesthesia was, on balance, harmful.",
+      "qualify the passage's critique, clarifying that it complicates rather than condemns the benefit of anesthesia.",
+      "introduce a new claim that antisepsis, not anesthesia, deserves the credit historians give.",
+      "summarize evidence that surgical mortality fell steadily after anesthesia's introduction."
+    ],
+    "correct_answer": "qualify the passage's critique, clarifying that it complicates rather than condemns the benefit of anesthesia.",
+    "explanation": "The closing sentence is a guardrail: the point is \"not that anesthesia was a curse - few would trade it away - but that its benefits arrived entangled with consequences the triumphal story omits.\" It keeps the critique from tipping over into condemnation, which is what the key says. The option that has the sentence \"reverse the passage's argument\" by conceding anesthesia was on balance harmful misreads that guardrail as a capitulation, and it is the trap, since the sentence expressly refuses the curse verdict. The option claiming antisepsis \"deserves the credit historians give\" assigns credit the sentence never reallocates; antisepsis appears earlier only as something that arrived too late to prevent the rise in infection deaths. And the option summarizing evidence that \"surgical mortality fell steadily\" after anesthesia's introduction contradicts the passage outright, which reports that mortality from surgical infection climbed.",
+    "key_len": 110,
+    "runner_up_len": 91
+  },
+  {
+    "id": "576b8a5e-ffbf-4e0b-87e9-cc3263c24e96",
+    "domain": "Information and Ideas",
+    "passage": "Botanists comparing two populations of the same alpine flower found that plants on the windward slope bloomed nearly three weeks later than those on the sheltered slope, though both experienced the same date of final frost. Transplant experiments ruled out genetic differences: seedlings moved from one slope to the other soon matched their new neighbors' timing. The delay, the botanists concluded, tracked not the calendar of frost but something the windward plants encountered that the sheltered ones did not.",
+    "prompt": "Which choice best describes what the transplant experiments allow the botanists to conclude?",
+    "choices": [
+      "The windward and sheltered populations belonged to genetically distinct varieties.",
+      "The difference in bloom timing arose from local growing conditions rather than from inherited traits.",
+      "The date of final frost was the primary factor determining when each plant bloomed.",
+      "Seedlings moved between slopes failed to survive in their new locations."
+    ],
+    "correct_answer": "The difference in bloom timing arose from local growing conditions rather than from inherited traits.",
+    "explanation": "Because transplanted seedlings adopted their new slope's timing, the botanists infer environment, not genetics, drives the bloom difference.",
+    "key_len": 101,
+    "runner_up_len": 83
+  },
+  {
+    "id": "58abd38a-f9d5-48bf-b405-31e4a8b9f18f",
+    "domain": "Information and Ideas",
+    "passage": "Text 1\nGalaxies rotate too rapidly to be held together by the gravity of their visible matter alone; their outermost stars ought to fly off into space, yet they remain bound. The dominant explanation posits vast halos of unseen 'dark matter,' whose additional gravity supplies the missing pull. Though never detected directly, dark matter coheres with a remarkably wide range of independent cosmological observations.\n\nText 2\nAn alternative dispenses with dark matter altogether. Modified Newtonian Dynamics, or MOND, proposes that gravity itself behaves differently at very low accelerations, growing stronger than Newton's law predicts. With a single adjusted parameter, MOND reproduces the rotation curves of individual galaxies with striking accuracy—frequently outperforming dark-matter models. It falters, however, at larger scales, struggling to account for the behavior of galaxy clusters and for conditions in the early universe.",
+    "prompt": "Based on the texts, a proponent of the Text 1 explanation could best counter Text 2 by emphasizing which point?",
+    "choices": [
+      "Text 2's account, though successful for individual galaxies, fails to explain the larger-scale phenomena that dark matter accommodates.",
+      "MOND cannot reproduce the rotation curves of individual galaxies as accurately as dark-matter models can.",
+      "Dark matter has been directly observed, whereas MOND's proposed modification has not.",
+      "MOND requires far more adjustable parameters than the dark-matter hypothesis does."
+    ],
+    "correct_answer": "Text 2's account, though successful for individual galaxies, fails to explain the larger-scale phenomena that dark matter accommodates.",
+    "explanation": "Text 2 itself concedes that MOND falters at galaxy clusters and in the early universe, while Text 1 stresses dark matter's fit with a wide range of independent observations — so the strongest counter is the point that MOND, 'though successful for individual galaxies, fails to explain the larger-scale phenomena that dark matter accommodates.' The counter that MOND 'cannot reproduce the rotation curves of individual galaxies as accurately' is contradicted by Text 2, which says it frequently outperforms dark-matter models there. The counter that 'dark matter has been directly observed' is false on Text 1's own terms, since Text 1 calls it never detected directly. And the counter that MOND 'requires far more adjustable parameters' is contradicted by Text 2's single adjusted parameter.",
+    "key_len": 135,
+    "runner_up_len": 105
+  },
+  {
+    "id": "58bdb74c-e47c-4406-8a21-d9ba7e87767a",
+    "domain": "Craft and Structure",
+    "passage": "Critics have long praised Elizabeth Gaskell's industrial novels for their documentary fidelity, treating the factory scenes as near-transcriptions of conditions she had personally observed in Manchester. The assumption is flattering but misleading. The very features that read as unmediated reportage—the clipped Lancashire dialect, the unhurried catalogues of machinery—are, the manuscript evidence shows, the most heavily reworked passages in the novels, revised far more often than the melodramatic subplots that supposedly compromise her realism. What presents itself as fidelity to fact is therefore an achieved effect: a style laboriously constructed to efface the labor of its own construction. To call Gaskell a mere recorder of what she saw is thus to mistake her rarest technical accomplishment for an absence of technique. Her descriptive authority, the passage implies, derives less from the accident of having witnessed the mills than from her success in persuading readers that she had only reported, never composed.",
+    "prompt": "Which choice best describes the overall structure of the text?",
+    "choices": [
+      "It presents a conventional critical judgment and then reinterprets the evidence behind that judgment to reach an opposing conclusion.",
+      "It defends a novelist against critics who have dismissed her factory scenes as mere melodrama.",
+      "It traces the process by which a novelist gathered raw material for her industrial novels.",
+      "It compares two novelists' approaches to realism in order to determine which is more authentic."
+    ],
+    "correct_answer": "It presents a conventional critical judgment and then reinterprets the evidence behind that judgment to reach an opposing conclusion.",
+    "explanation": "The text opens with the received judgment - critics praise Gaskell's factory scenes as near-transcription - and then turns the manuscript evidence against it: the passages that read as unmediated reportage are the most heavily revised, so her realism is an achieved effect rather than a record. A conventional judgment whose own evidence is reinterpreted into the opposite conclusion is what the key describes. The option saying the text \"defends a novelist against critics\" who dismissed her scenes as mere melodrama inverts the situation twice over: the critics praised her, and it is the melodramatic subplots that were revised least. The option describing a text that \"traces the process by which a novelist gathered raw material\" restates the witnessing account the passage argues against, which makes it the intuitive misreading. And the option that compares two novelists \"in order to determine which is more authentic\" invents a second novelist who never appears in the text.",
+    "key_len": 133,
+    "runner_up_len": 95
+  },
+  {
+    "id": "5a869d0c-255d-4aab-92c3-83c781fe5aaa",
+    "domain": "Information and Ideas",
+    "passage": "In a greenhouse trial, researchers grew a plant species at four soil-moisture levels and recorded the mean plant height, shown in the table. They concluded that this species grows tallest at a moderate soil-moisture level.",
+    "prompt": "Which choice best uses data from the table to support the researchers' conclusion?",
+    "choices": [
+      "Plants grown at 20% moisture were taller, on average, than plants grown at either 10% or 40% moisture.",
+      "Mean plant height increased continuously as soil moisture rose from 10% to 40%.",
+      "Plants grown at 40% moisture were the tallest of the four groups.",
+      "Plants grown at 10% moisture were taller, on average, than plants grown at 30% moisture."
+    ],
+    "correct_answer": "Plants grown at 20% moisture were taller, on average, than plants grown at either 10% or 40% moisture.",
+    "explanation": "A moderate-moisture optimum means height peaks in the middle. Plants at 20% reached 26 cm, taller than at 10% (14 cm) and 40% (18 cm). The distractors misread the table (height does not rise continuously — it falls after 20%; 40% is not the tallest; 14 < 25, so 10% is not taller than 30%).",
+    "key_len": 102,
+    "runner_up_len": 88
+  },
+  {
+    "id": "5c4a300a-d54b-4fb0-8f6b-e07bdade1172",
+    "domain": "Information and Ideas",
+    "passage": "A linguist proposed that a language's whistled form—used by shepherds to communicate across valleys—preserves the melodic contours of spoken speech rather than its consonants and vowels. If correct, listeners fluent in the spoken language but untrained in whistling should still grasp the general meaning of whistled sentences whose intonation mirrors ordinary speech, even without recognizing individual words.",
+    "prompt": "Which finding, if true, would most strongly support the linguist's proposal?",
+    "choices": [
+      "Trained whistlers could reproduce any spoken sentence in whistled form.",
+      "Untrained but fluent listeners correctly identified whether whistled sentences were questions or statements.",
+      "Whistled communication carried across greater distances than shouting.",
+      "Listeners unfamiliar with the spoken language could not interpret the whistles at all."
+    ],
+    "correct_answer": "Untrained but fluent listeners correctly identified whether whistled sentences were questions or statements.",
+    "explanation": "Distinguishing questions from statements depends on intonation contour, so success without training supports the melodic-preservation claim.",
+    "key_len": 108,
+    "runner_up_len": 86
+  },
+  {
+    "id": "5ec465e1-433d-4111-b691-f092f6519dc3",
+    "domain": "Craft and Structure",
+    "passage": "Since the popularization of 'nudges'—small changes to how choices are presented—policymakers have embraced them as a low-cost alternative to regulation. The appeal is understandable, and the best-documented nudges, such as automatic enrollment in retirement plans, produce large and durable effects. But a growing body of replications suggests that such headline successes are exceptional rather than typical. Averaged across the many nudges now trialed, the effect sizes are modest, and they shrink further when interventions move from controlled experiments into the messier settings of actual administration. Worse, nudges that succeed in one population often fail in another, for reasons theory struggles to predict in advance. None of this makes nudging useless; it makes nudging a tool whose reach has been systematically overstated. The prudent conclusion is not that architects of choice can reliably steer behavior, but that they can sometimes do so, under conditions not yet well understood.",
+    "prompt": "Which choice best describes the overall structure of the text?",
+    "choices": [
+      "It surveys competing theories of behavior and endorses the one with the most experimental support.",
+      "It defends nudging against critics by showing that its failures stem mainly from poor implementation.",
+      "It presents a policy tool, acknowledges a celebrated success, and then argues that such successes are unrepresentative of its typical impact.",
+      "It traces the historical development of nudging from laboratory origins to widespread policy adoption."
+    ],
+    "correct_answer": "It presents a policy tool, acknowledges a celebrated success, and then argues that such successes are unrepresentative of its typical impact.",
+    "explanation": "The passage introduces nudges, concedes a large and durable success in automatic enrollment, then argues that averaged effects are modest and that headline wins are exceptional rather than typical. That concede-then-undercut shape is the structure that 'presents a policy tool, acknowledges a celebrated success, and then argues that such successes are unrepresentative of its typical impact.' The structure that 'defends nudging against critics' by blaming poor implementation reverses the author's stance: the author is the skeptic, and the field-versus-lab shrinkage is offered as evidence of overstatement, not as an excuse. The structure that 'surveys competing theories of behavior' is wrong because no rival theories are presented or endorsed. And the structure that 'traces the historical development of nudging' mistakes an argument for a chronology; the lab-to-field contrast serves the critique, not a narrative.",
+    "key_len": 141,
+    "runner_up_len": 102
+  },
+  {
+    "id": "602bb721-1616-4047-8fd4-2b1163b07582",
+    "domain": "Craft and Structure",
+    "passage": "Critics have long praised Virginia Woolf for abandoning plot, treating Mrs. Dalloway as proof that the modern novel could dispense with event entirely in favor of consciousness. Yet Woolf's essays complicate this tidy narrative. She objected not to plot as such but to the Edwardian convention of subordinating character to external incident—the cataloguing of houses, incomes, and marriages that, she felt, described a life without rendering it. Her own novels retain events, sometimes violent ones, but demote them to the margins of attention, where they register as tremors within a mind rather than as links in a causal chain. To read her as an enemy of story is thus to mistake a shift in emphasis for an act of abolition. What she pruned was not incident but the assumption that incident, faithfully enumerated, could substitute for the harder labor of representing how a self meets the world.",
+    "prompt": "What is the main rhetorical purpose of the passage?",
+    "choices": [
+      "To correct a common critical characterization by distinguishing Woolf's actual objection from the one usually attributed to her",
+      "To argue that Woolf eliminated plot entirely in order to concentrate the novel on consciousness",
+      "To claim that Edwardian novelists failed as artists because their works contained too much external detail",
+      "To trace how Woolf's views on fiction evolved over the course of her essays"
+    ],
+    "correct_answer": "To correct a common critical characterization by distinguishing Woolf's actual objection from the one usually attributed to her",
+    "explanation": "The passage sets up the standard reading (Woolf 'abandoned plot') and then dismantles it, arguing she objected to a particular use of incident, not to event itself. The tempting wrong answer restates exactly the view the passage calls a mistake. The Edwardian option overgeneralizes a supporting detail into the thesis, and the 'evolution of her essays' option describes a structure the passage never adopts.",
+    "key_len": 127,
+    "runner_up_len": 106
+  },
+  {
+    "id": "60eb37ad-134e-4d96-af62-16d881f8e856",
+    "domain": "Information and Ideas",
+    "passage": "The strong claim that language determines thought—that speakers of a language lacking a word for a concept cannot conceive it—has been discredited for decades. Yet its wholesale rejection may have been hasty. Careful experiments suggest a weaker but real effect. Russian, which has separate basic terms for lighter and darker blue, does not enable its speakers to see colors English speakers cannot; both perceive the full spectrum. But Russian speakers discriminate between shades straddling that lexical boundary slightly faster than English speakers do, and the advantage vanishes when a verbal distractor occupies the language faculty. Language, it appears, does not fence off the unthinkable; it nudges habitual attention, making some distinctions marginally quicker to draw. The effect is modest and easily overridden—nothing like linguistic determinism—but it is not nothing, and it survives the experimental scrutiny that demolished the stronger claim.",
+    "prompt": "Which statement about the relationship between language and thought is best supported by the passage?",
+    "choices": [
+      "Speakers of a language that lacks a term for a concept are unable to perceive that concept.",
+      "The differences between Russian and English speakers' color discrimination disappear under all experimental conditions.",
+      "Russian speakers are able to perceive a wider range of colors than English speakers are.",
+      "Language can measurably influence how quickly speakers draw certain perceptual distinctions without limiting which distinctions they can make."
+    ],
+    "correct_answer": "Language can measurably influence how quickly speakers draw certain perceptual distinctions without limiting which distinctions they can make.",
+    "explanation": "The passage endorses a weak effect: Russian speakers discriminate shades across their lexical boundary 'slightly faster,' while 'both perceive the full spectrum.' That is the answer that language can measurably influence how quickly speakers draw certain perceptual distinctions without limiting which distinctions they can make. The answer that speakers of a language that lacks a term for a concept are unable to perceive that concept is the strong determinism the passage calls discredited. The answer that the differences between Russian and English speakers' color discrimination disappear under all experimental conditions overstates: the advantage vanishes specifically when a verbal distractor occupies the language faculty, which is the very result showing the effect is linguistic. And the answer that Russian speakers are able to perceive a wider range of colors contradicts the text - the difference lies in speed, not in what can be seen.",
+    "key_len": 142,
+    "runner_up_len": 119
+  },
+  {
+    "id": "63109287-df21-4301-94de-213c1388b2af",
+    "domain": "Information and Ideas",
+    "passage": "Landscape architects call them desire paths: the worn dirt tracks that cut across lawns where pavement fails to go. Cynics dismiss them as vandalism, but a growing number of designers treat them as data. A desire path, they argue, is a record of thousands of independent decisions about the shortest sensible route. Some universities now delay paving new campus walkways for a year, letting foot traffic wear its own lines into the grass, and only then laying concrete where the paths reveal people actually want to walk.",
+    "prompt": "Which choice is best supported by the text?",
+    "choices": [
+      "Designers who delay paving trust pedestrians' collective choices over their own predictions about routes.",
+      "Desire paths form only on university campuses.",
+      "Most pedestrians prefer walking on grass rather than on concrete.",
+      "Landscape architects agree that desire paths damage public lawns."
+    ],
+    "correct_answer": "Designers who delay paving trust pedestrians' collective choices over their own predictions about routes.",
+    "explanation": "Waiting to see where people walk implies faith in observed behavior; restricting desire paths to university campuses overgeneralizes, the claim that pedestrians prefer grass confuses route-seeking with a grass preference, and the claim that architects agree they damage lawns contradicts the split.",
+    "key_len": 105,
+    "runner_up_len": 65
+  },
+  {
+    "id": "69da91e5-97a2-4ae8-81ca-44b43aa0a80d",
+    "domain": "Craft and Structure",
+    "passage": "Text 1: Automation will not produce lasting unemployment. History reassures us: mechanized looms and tractors destroyed particular jobs, yet each wave of technology created new kinds of work that no one had foreseen. Displaced laborers were absorbed, over time, into occupations the old economy could not have named.\n\nText 2: The historical comfort assumes displaced workers can move into the new jobs. But past transitions swapped one kind of manual labor for another. If machines now master the cognitive tasks that once absorbed the displaced, the escape route those earlier workers took may be the very thing being closed.",
+    "prompt": "How does Text 2 respond to the reasoning in Text 1?",
+    "choices": [
+      "It agrees that new technologies always generate enough new jobs to absorb displaced workers.",
+      "It questions whether the historical pattern will hold when machines take over the cognitive work that once absorbed displaced labor.",
+      "It denies that earlier technologies such as looms and tractors destroyed any jobs.",
+      "It claims that automation has already caused permanent mass unemployment."
+    ],
+    "correct_answer": "It questions whether the historical pattern will hold when machines take over the cognitive work that once absorbed displaced labor.",
+    "explanation": "Text 2 targets Text 1's assumption by noting that if machines master cognitive tasks, \"the escape route those earlier workers took may be...closed,\" challenging the analogy rather than affirming it, denying past disruption, or asserting present mass unemployment.",
+    "key_len": 132,
+    "runner_up_len": 92
+  },
+  {
+    "id": "6f3d286a-8011-40f8-bc65-8fdb30e40757",
+    "domain": "Craft and Structure",
+    "passage": "The marshmallow test became a parable of character: children who resisted a treat for a larger later reward grew into more successful adults, proving that self-control is destiny. A reconsideration complicates the moral. When researchers accounted for the children's family circumstances, much of the association between waiting and later success shrank. A child who has learned that promised rewards seldom materialize behaves rationally in grabbing the sure thing; the 'failure' of self-control may instead reflect an accurate read of an unreliable environment. On this account, the test measures not a fixed trait of willpower but a calibrated expectation about whether adults keep their word. What looked like a window onto character may be, in part, a window onto circumstance.",
+    "prompt": "Which finding, if true, would most weaken the passage's reinterpretation of the marshmallow test?",
+    "choices": [
+      "Children from unstable households were less likely to wait for the second marshmallow.",
+      "Children who waited longer reported enjoying marshmallows less than those who did not.",
+      "The original study drew its participants from a single university community.",
+      "Children who waited longer still succeeded more as adults even after family background and environmental reliability were fully controlled for."
+    ],
+    "correct_answer": "Children who waited longer still succeeded more as adults even after family background and environmental reliability were fully controlled for.",
+    "explanation": "The reinterpretation says the waiting-success link is largely an artifact of circumstance. If the link persists after fully controlling for background and environmental reliability, the circumstance explanation fails and a trait account is restored. The 'unstable households' option supports the reinterpretation. The 'single university community' option (a methodological limit on generalizability) is the tempting trap but does not address the trait-versus-circumstance mechanism, and the 'enjoyed less' option is irrelevant to later success.",
+    "key_len": 143,
+    "runner_up_len": 86
+  },
+  {
+    "id": "76330c59-793d-4c1d-8231-fb7ed0a89a80",
+    "domain": "Craft and Structure",
+    "passage": "Text 1: The poet's obscurity is a discipline demanded of the reader. Difficulty slows us down, forcing the attention that a quick, transparent line would never earn. What resists easy paraphrase rewards the labor of rereading; the poem's guardedness is precisely what makes its eventual meaning feel earned.\n\nText 2: Difficulty can be a discipline, but it can also be a bluff. A line that resists paraphrase may hide not depth but the absence of any settled thought. The reader who works hardest sometimes supplies the meaning entirely, mistaking her own effort for a richness the poem never contained.",
+    "prompt": "Which choice best describes the central difference between the two texts?",
+    "choices": [
+      "Text 1 treats poetic difficulty as reliably meaningful, whereas Text 2 warns that difficulty can mask an absence of meaning.",
+      "Text 1 and Text 2 agree that obscure poetry should generally be avoided.",
+      "Text 2 denies that difficult poetry requires any effort from the reader.",
+      "Text 1 argues that poems should be transparent while Text 2 defends obscurity."
+    ],
+    "correct_answer": "Text 1 treats poetic difficulty as reliably meaningful, whereas Text 2 warns that difficulty can mask an absence of meaning.",
+    "explanation": "Text 1 calls difficulty a rewarding \"discipline,\" while Text 2 allows it can also be \"a bluff\" hiding \"the absence of any settled thought,\" so they split over whether difficulty guarantees meaning—not over avoiding poetry or reversing their stances.",
+    "key_len": 124,
+    "runner_up_len": 78
+  },
+  {
+    "id": "766e85de-726c-4bb0-88d4-ba29fa174070",
+    "domain": "Craft and Structure",
+    "passage": "Standard narratives attribute Japan's swift industrialization after 1868 to the Meiji government's importation of Western machinery and foreign advisers. The hardware mattered, but it does not explain why Japan absorbed what other nineteenth-century states could not. Long before Commodore Perry, Tokugawa Japan possessed high literacy, a dense commercial network, sophisticated rural proto-industry, and merchant houses skilled in double-entry accounting and futures trading. These endowments meant that imported technology met a workforce and a managerial class already primed to deploy it. Foreign experts were, tellingly, dismissed as soon as Japanese personnel could replace them—often within a decade. The Meiji reformers' genuine innovation lay less in acquiring foreign techniques than in redirecting indigenous capacities toward national ends. Where historians once read the period as a story of borrowing, the more defensible reading treats borrowing as the visible surface of a deeper continuity, one that the drama of Westernization has tended to obscure.",
+    "prompt": "Which finding, if true, would most strengthen the author's central claim?",
+    "choices": [
+      "A neighboring state that imported identical Western machinery but lacked comparable commercial institutions failed to industrialize at a similar pace.",
+      "The Meiji government spent more on foreign machinery than any other contemporaneous Asian state.",
+      "Foreign advisers in Japan were paid substantially higher salaries than they had earned at home.",
+      "Tokugawa-era literacy rates were significantly lower in rural regions than in major cities."
+    ],
+    "correct_answer": "A neighboring state that imported identical Western machinery but lacked comparable commercial institutions failed to industrialize at a similar pace.",
+    "explanation": "The thesis is that Japan absorbed Western technology because of indigenous endowments - high literacy, dense commercial networks, rural proto-industry, merchant houses skilled in accounting - rather than because of the imports themselves. A neighboring state that \"imported identical Western machinery but lacked comparable commercial institutions\" and still failed to industrialize holds the hardware constant while varying the institutions, isolating them as the decisive factor. The option that the Meiji government \"spent more on foreign machinery than any other\" contemporaneous Asian state measures the borrowing the author is demoting and says nothing about domestic capacity. The detail that advisers \"were paid substantially higher salaries\" than at home is true but idle here; what matters to the argument is how fast they were dismissed, not what they cost. And the finding that \"literacy rates were significantly lower in rural regions\" would chip away at the sophisticated rural proto-industry the author leans on, weakening the claim rather than strengthening it.",
+    "key_len": 150,
+    "runner_up_len": 96
+  },
+  {
+    "id": "77766937-c8a7-42ba-8394-7ef581a91a0a",
+    "domain": "Information and Ideas",
+    "passage": "That a warming planet might make part of Europe colder sounds contradictory, yet it follows from the physics of ocean circulation. The Atlantic conveyor that carries tropical heat northward is driven partly by the sinking of cold, salty water in the far North Atlantic. As Greenland's ice melts, it floods that region with fresh water, which is less dense and sinks less readily; the circulation slows, and less tropical heat reaches northwestern Europe. The claim is carefully hedged. Researchers do not predict a new ice age, nor that regional cooling would offset global warming overall—the planet keeps warming. They argue only that a global mean temperature can conceal opposing regional trends, and that a warming world is compatible with, and could even produce, a cooler northwestern Europe.",
+    "prompt": "Which observation would most support the mechanism described in the text?",
+    "choices": [
+      "Average temperatures across Europe fell even as global average temperatures rose.",
+      "As freshwater flowing into the North Atlantic increased, the sinking of deep water slowed and the northward transport of heat weakened.",
+      "Greenland's ice sheet lost mass more rapidly during warmer years.",
+      "Tropical ocean temperatures rose in step with the global average temperature."
+    ],
+    "correct_answer": "As freshwater flowing into the North Atlantic increased, the sinking of deep water slowed and the northward transport of heat weakened.",
+    "explanation": "The mechanism in the text is a three-link chain: meltwater freshens the far North Atlantic, fresher water sinks less readily, and the conveyor delivers less tropical heat northward. The observation that as freshwater inflow increased 'the sinking of deep water slowed and the northward transport of heat weakened' traces that chain link by link, which is why it is the strongest support. The observation that 'average temperatures across Europe fell even as global average temperatures rose' overstates a claim the passage carefully hedges, since the cooling is specific to northwestern Europe and the researchers deny that regional cooling offsets global warming. That 'Greenland's ice sheet lost mass more rapidly during warmer years' confirms the warming premise that starts the chain but says nothing about circulation. And that 'tropical ocean temperatures rose in step with the global average temperature' concerns the heat's source, not whether the conveyor still carries it north.",
+    "key_len": 135,
+    "runner_up_len": 81
+  },
+  {
+    "id": "7998722a-f872-4919-a838-28bddd40f6ba",
+    "domain": "Information and Ideas",
+    "passage": "The 'broken windows' thesis holds that visible disorder—graffiti, litter, shattered glass left unrepaired—breeds serious crime, by broadcasting that a neighborhood's norms go unenforced and its residents will not intervene. As an empirical matter, neighborhoods high in disorder do tend to suffer more crime, and the correlation is robust. But correlation is exactly the difficulty. Critics argue that disorder and crime may be joint products of a deeper condition—concentrated poverty and its attendant disinvestment—rather than one causing the other. If that is right, then scrubbing away the graffiti and boarding the windows, while leaving the underlying disadvantage untouched, should do little or nothing to the crime rate. The visible disorder would be a symptom mistaken for a cause, and treating the symptom would leave the disease essentially where it was.",
+    "prompt": "Which finding, if true, would most strengthen the critics' claim that disorder and crime share a common cause rather than one producing the other?",
+    "choices": [
+      "Neighborhoods with more graffiti reliably report higher rates of serious crime.",
+      "Residents of neighborhoods high in disorder report feeling markedly less safe.",
+      "Affluent neighborhoods tend to have both less visible disorder and less crime.",
+      "After researchers cleared visible disorder from high-poverty blocks, crime there did not decline."
+    ],
+    "correct_answer": "After researchers cleared visible disorder from high-poverty blocks, crime there did not decline.",
+    "explanation": "The critics predict that removing disorder while leaving concentrated poverty untouched will do nothing to the crime rate. The finding that after researchers cleared visible disorder from high-poverty blocks, crime there did not decline is that prediction tested and confirmed, and it is the only answer that separates the common-cause account from the disorder-causes-crime account. The observation that neighborhoods with more graffiti reliably report higher rates of serious crime is the robust correlation both sides already accept, which makes it the tempting non-answer. The finding that residents of neighborhoods high in disorder report feeling markedly less safe concerns perceived safety rather than the direction of causation. And the fact that affluent neighborhoods tend to have both less visible disorder and less crime is equally predicted by either account, so it distinguishes nothing.",
+    "key_len": 97,
+    "runner_up_len": 79
+  },
+  {
+    "id": "7d6602a9-9a7d-4118-a5e3-7b5089a0b5e6",
+    "domain": "Craft and Structure",
+    "passage": "Tycho Brahe is often filed among the losers of the Copernican revolution, a stubborn traditionalist who rejected a moving Earth. The label flatters our hindsight more than it describes his science. Tycho's hybrid system—the planets circling the Sun, the Sun circling a stationary Earth—was not reflexive conservatism but a reasoned response to a genuine empirical problem: if the Earth truly moved, the fixed stars should exhibit annual parallax, and none was observable to even his superb instruments. His compromise preserved the geometric elegance Copernicus had exposed while honoring the evidence his own eyes could gather. That those same instruments later furnished Kepler the data to vindicate a moving Earth is an irony, not a refutation: Tycho's caution was the very discipline that made the data trustworthy in the first place. To fault him for not leaping ahead of his evidence is to mistake rigor for timidity.",
+    "prompt": "What is the main rhetorical purpose of the passage?",
+    "choices": [
+      "To argue that Tycho's hybrid model was ultimately proven more accurate than Copernicus's.",
+      "To trace the sequence of instruments that made Kepler's discoveries possible.",
+      "To correct a dismissive characterization by recasting an apparent failing as a defensible commitment to evidence.",
+      "To explain why annual parallax could not be detected by early telescopes."
+    ],
+    "correct_answer": "To correct a dismissive characterization by recasting an apparent failing as a defensible commitment to evidence.",
+    "explanation": "The passage opens with the dismissive “loser/traditionalist” label, declares it “flatters our hindsight,” and then reframes Tycho's caution as evidence-driven rigor—exactly the corrective purpose the key names. The “more accurate than Copernicus” option contradicts the text, which says Kepler used Tycho's data to vindicate a moving Earth. The “sequence of instruments” and “parallax” choices seize on supporting details (the instruments, the parallax problem) and mistake them for the passage's overall aim.",
+    "key_len": 113,
+    "runner_up_len": 89
+  },
+  {
+    "id": "8044cf23-9e0d-4e79-87c6-851eb6a072e9",
+    "domain": "Craft and Structure",
+    "passage": "Economists praised the ride-hailing app for creating flexible work: drivers could log on whenever they chose. Yet the flexibility ran one direction. The app decided which requests each driver saw, adjusted pay without notice, and deactivated accounts by algorithm. Drivers were free to choose their hours but not their fares, their routes, or their standing. What looked like independence was a narrow liberty nested inside a control the drivers never negotiated.",
+    "prompt": "Which choice best describes the overall structure of the text?",
+    "choices": [
+      "It compares two ride-hailing apps and judges one more flexible than the other.",
+      "It acknowledges a form of freedom and then qualifies it by exposing the constraints surrounding it.",
+      "It defends the app against economists who had criticized its treatment of drivers.",
+      "It predicts that drivers will soon gain full control over their fares and routes."
+    ],
+    "correct_answer": "It acknowledges a form of freedom and then qualifies it by exposing the constraints surrounding it.",
+    "explanation": "The text grants that drivers chose their hours, then details what they could not control, framing the freedom as \"nested inside a control\"—a concession-then-complication, not a comparison, defense, or prediction.",
+    "key_len": 99,
+    "runner_up_len": 82
+  },
+  {
+    "id": "804f8624-0cb7-4c86-bd98-bece9a6b189b",
+    "domain": "Information and Ideas",
+    "passage": "A musicologist proposed that a composer's late string quartets were shaped more by the acoustics of the small salons where they premiered than by concert-hall conventions. She argued that music written for intimate rooms would favor delicate dynamic shadings audible only up close, rather than the broad contrasts needed to carry across a large hall.",
+    "prompt": "Which finding, if true, would most directly support the musicologist's proposal?",
+    "choices": [
+      "The composer's earlier works were performed in large concert halls.",
+      "The late quartets were the composer's most technically demanding pieces.",
+      "Salon audiences were generally smaller than concert-hall audiences.",
+      "The late quartets contain frequent subtle dynamic markings that lose their effect at a distance."
+    ],
+    "correct_answer": "The late quartets contain frequent subtle dynamic markings that lose their effect at a distance.",
+    "explanation": "Subtle dynamics suited to close listening match the claim that salon acoustics, not concert halls, shaped the music.",
+    "key_len": 96,
+    "runner_up_len": 72
+  },
+  {
+    "id": "836ccdb1-eb8f-4935-8479-2a06e24a684f",
+    "domain": "Information and Ideas",
+    "passage": "A geologist hypothesized that a particular layer of iridium-rich clay found at many sites worldwide was deposited by debris from a single large asteroid impact, rather than by prolonged volcanic activity. Volcanic and impact sources can both raise iridium levels, so distinguishing them requires additional evidence about how the material was distributed and deposited.",
+    "prompt": "Which finding, if true, would most directly support the geologist's hypothesis that the clay layer came from a single asteroid impact rather than prolonged volcanism?",
+    "choices": [
+      "The clay layer contains higher concentrations of iridium than the rock layers above and below it.",
+      "Volcanic eruptions elsewhere in Earth's history have also released measurable amounts of iridium.",
+      "The clay layer contains shocked quartz grains, which form only under the instantaneous pressures of an impact, deposited in a single thin band worldwide.",
+      "The clay layer is thicker at sites located near regions of known ancient volcanic activity."
+    ],
+    "correct_answer": "The clay layer contains shocked quartz grains, which form only under the instantaneous pressures of an impact, deposited in a single thin band worldwide.",
+    "explanation": "Shocked quartz forms only from an instantaneous impact and its worldwide single-band deposition points to one sudden event, directly supporting the impact hypothesis over gradual volcanism.",
+    "key_len": 153,
+    "runner_up_len": 97
+  },
+  {
+    "id": "83c33b9a-0901-4fb5-a5c4-f3f0960e95dc",
+    "domain": "Information and Ideas",
+    "passage": "A historian argued that a medieval kingdom's sudden expansion of coin production was driven by trade demand rather than by the crown financing a war. She reasoned that war-driven minting would concentrate coins near military garrisons and battlefields, whereas trade-driven minting would spread coins broadly along commercial routes and market towns.",
+    "prompt": "Which finding, if true, would most strongly support the historian's argument?",
+    "choices": [
+      "The expansion in minting coincided exactly with the start of a major war.",
+      "Coins from the period are concentrated in caches near fortified military camps.",
+      "The kingdom's total coin production remained constant throughout the period.",
+      "Coins from the expansion period are found distributed widely across market towns far from any garrison."
+    ],
+    "correct_answer": "Coins from the expansion period are found distributed widely across market towns far from any garrison.",
+    "explanation": "Wide distribution along market towns matches the trade-driven prediction and contradicts the war-driven concentration near garrisons.",
+    "key_len": 103,
+    "runner_up_len": 79
+  },
+  {
+    "id": "8498a5a4-6a67-4cad-b092-88ca42af7e0e",
+    "domain": "Craft and Structure",
+    "passage": "Critics frequently assume that a narrator caught in unreliability forfeits our trust, and with it our sympathy: once we know we are being misled, we hold the storyteller at arm's length. The novels themselves rarely behave so obediently. When a narrator's self-deceptions are laid bare gradually, through details the speaker reports without grasping their meaning, the reader is not pushed away but recruited—made into a collaborator who sees around the narrator, and who feels, in that superior vantage, a peculiar intimacy with a mind he has learned to read better than it reads itself. The distance the technique creates is thus not the whole story; it can coexist with, even generate, a deepened closeness. What unreliability withdraws in the way of confidence it may return in the form of understanding, so that the reader ends by knowing the narrator not less but differently, and often more thoroughly, than a reliable account would allow.",
+    "prompt": "What is the main purpose of the passage?",
+    "choices": [
+      "To qualify a common assumption by arguing that an effect thought to distance the reader can also draw the reader closer",
+      "To argue that unreliable narrators forfeit the reader's trust and, with it, sympathy",
+      "To claim that unreliable narration always produces greater intimacy than reliable narration does",
+      "To explain the techniques by which writers signal that a narrator is unreliable"
+    ],
+    "correct_answer": "To qualify a common assumption by arguing that an effect thought to distance the reader can also draw the reader closer",
+    "explanation": "The passage grants that unreliability creates distance but argues it can also generate closeness—a qualification, not a reversal. Option two states the very assumption the passage complicates. Option three overshoots with 'always'; the passage says distance 'can' coexist with closeness, hedged throughout. Option four names a topic the passage only gestures at ('details the speaker reports without grasping'), not its purpose.",
+    "key_len": 119,
+    "runner_up_len": 96
+  },
+  {
+    "id": "8d3c97f5-faab-4a50-8800-4d95e2e64aad",
+    "domain": "Craft and Structure",
+    "passage": "It is a commonplace that the printing press caused the Reformation: Luther's theses, set in movable type, swept across Europe faster than any scribe could copy them. The chronology is not in doubt, and the volume of print was staggering. Still, presses had been turning for over half a century before 1517 without igniting a schism, and they turned just as busily in regions that stayed Catholic. The press did not supply the grievances, the princes willing to shelter reformers, or the theology that gave the grievances a voice. What it supplied was speed and scale—an accelerant, not a spark. To call print the cause of the Reformation is to confuse the medium that spread a movement with the forces that made one possible.",
+    "prompt": "Which choice best states the main purpose of the text?",
+    "choices": [
+      "To argue that the printing press was the single decisive cause of the Reformation.",
+      "To prove that the printing press had no meaningful effect on the spread of the Reformation.",
+      "To qualify a familiar causal claim by distinguishing what the printing press did from what it did not do.",
+      "To explain how movable type was invented and refined in the decades before 1517."
+    ],
+    "correct_answer": "To qualify a familiar causal claim by distinguishing what the printing press did from what it did not do.",
+    "explanation": "The passage grants the press real work - 'speed and scale,' an 'accelerant' - while denying that it supplied the grievances, the sheltering princes, or the theology, and notes that presses ran for half a century before 1517 and ran busily in regions that stayed Catholic. That is the answer that qualifies a familiar causal claim by distinguishing what the printing press did from what it did not do. The answer that the printing press was the single decisive cause of the Reformation is the commonplace the text sets out to qualify. The answer that it had no meaningful effect on the spread of the Reformation overshoots in the opposite direction; print is called an accelerant, which is a real effect. And the answer about explaining how movable type was invented and refined mistakes a supporting fact for an argumentative purpose.",
+    "key_len": 105,
+    "runner_up_len": 91
+  },
+  {
+    "id": "8f51893a-5419-4342-ab71-90c49c8333e5",
+    "domain": "Craft and Structure",
+    "passage": "She began the lecture not with a definition but with a failure: the story of an experiment that had collapsed, its instruments misread, its conclusions withdrawn. Only after the audience had felt the full weight of the mistake did she reveal that the botched trial had, decades later, pointed another team toward the correct result. The wrong turn, she suggested, had been a necessary part of the map.",
+    "prompt": "What is the main rhetorical purpose of the text's opening with a failed experiment?",
+    "choices": [
+      "To set up a reversal in which an apparent failure is recast as productive",
+      "To warn the audience against trusting experimental instruments",
+      "To provide a historical timeline of a scientific discovery",
+      "To demonstrate that most experiments end in failure"
+    ],
+    "correct_answer": "To set up a reversal in which an apparent failure is recast as productive",
+    "explanation": "The opening failure is later revealed to have guided a correct result, a deliberate reversal; the traps read it as a warning, a timeline, or a general claim about failure.",
+    "key_len": 73,
+    "runner_up_len": 62
+  },
+  {
+    "id": "9208efcc-1d60-4ff0-b4a8-1f8546f7792c",
+    "domain": "Information and Ideas",
+    "passage": "Forgetting is usually imagined as decay—memories fading like untended gardens. A growing body of work reframes it as an active process: specialized mechanisms appear to dismantle memory traces on purpose. Yet the strongest studies stop short of the sweeping claim that all forgetting is engineered. In animals, silencing a particular set of neurons preserves memories that would otherwise vanish, showing that at least some loss is imposed rather than suffered. But the same experiments leave much forgetting untouched, implying that passive degradation persists alongside the active machinery. The reframing is thus a correction, not a replacement: forgetting is partly a feature the brain executes and partly a wearing-away it fails to prevent. What the evidence overturns is the assumption that loss is always passive—not the possibility that some of it still is.",
+    "prompt": "Which finding, if true, would most WEAKEN the passage's position?",
+    "choices": [
+      "Blocking the memory-dismantling neurons prevented essentially all forgetting in the animals tested.",
+      "Some memories faded even when the dismantling neurons remained fully active.",
+      "The dismantling mechanism was found to operate only during periods of sleep.",
+      "Humans and animals were found to forget at markedly different rates."
+    ],
+    "correct_answer": "Blocking the memory-dismantling neurons prevented essentially all forgetting in the animals tested.",
+    "explanation": "The passage's position is that forgetting is partly active and partly passive. The finding that blocking the dismantling neurons 'prevented essentially all forgetting in the animals tested' would leave no passive component to speak of, collapsing the passage's careful both-and into the sweeping claim it refuses. The finding that 'some memories faded even when the dismantling neurons remained fully active' is the trap: it looks like counter-evidence but in fact confirms the passage's insistence that passive degradation persists alongside the machinery. The finding that the mechanism operates 'only during periods of sleep' adds a timing detail that leaves the active-passive division intact. And the finding that humans and animals 'forget at markedly different rates' concerns cross-species comparison, not the mixture of mechanisms at issue.",
+    "key_len": 99,
+    "runner_up_len": 76
+  },
+  {
+    "id": "95fb8d9f-a01d-49aa-bd12-92c6d4f72909",
+    "domain": "Information and Ideas",
+    "passage": "The archaeologist Elena Rivera contends that the sudden abandonment of an ancient hilltop settlement was driven by a prolonged regional drought rather than by the enemy raids that earlier scholars had blamed. Her case rests largely on timing: layers of wind-blown sediment and a marked scarcity of the water-hungry crops the inhabitants had once cultivated both appear in the settlement's final occupation phase. Rivera concedes that drought and warfare can leave overlapping traces in the archaeological record, and that a besieged community might abandon its home for reasons having nothing to do with climate. She maintains, nonetheless, that the environmental evidence points more economically to thirst and crop failure than to armed conflict as the settlement's undoing.",
+    "prompt": "Which finding, if true, would most directly weaken Rivera's argument?",
+    "choices": [
+      "Tree-ring data from the surrounding region record a decades-long dry period that coincides with the settlement's final phase.",
+      "Skeletal remains from the settlement's final phase show widespread injuries consistent with combat, and the community's granaries were found still full of grain.",
+      "Neighboring settlements that drew on the same water sources were abandoned during the same period.",
+      "Pollen records indicate a sharp decline in cultivated crops in the years just before the abandonment."
+    ],
+    "correct_answer": "Skeletal remains from the settlement's final phase show widespread injuries consistent with combat, and the community's granaries were found still full of grain.",
+    "explanation": "B undercuts Rivera on two fronts: combat injuries point to the warfare explanation she rejects, and full granaries argue against the thirst-and-crop-failure story at the heart of her case. A, C, and D all reinforce the drought hypothesis (independent dryness evidence, regionally shared abandonment tied to water, and declining crops), so none weakens her argument.",
+    "key_len": 161,
+    "runner_up_len": 125
+  },
+  {
+    "id": "98d186c5-a38c-4221-af05-bdf7327240bf",
+    "domain": "Information and Ideas",
+    "passage": "A biologist tested whether a soil fungus helps seedlings survive drought. She grew seedlings with and without the fungus and recorded survival. She concluded that seedlings grown with the fungus survived drought more often than those grown without it.",
+    "prompt": "Which choice most effectively uses data from the table to support the biologist's claim?",
+    "choices": [
+      "Of the 100 seedlings with the fungus, 68 survived, compared with 41 of the 100 grown without it.",
+      "More seedlings grown without the fungus survived than those grown with it.",
+      "Of the seedlings grown with the fungus, 32 died.",
+      "The same number of seedlings survived in both groups."
+    ],
+    "correct_answer": "Of the 100 seedlings with the fungus, 68 survived, compared with 41 of the 100 grown without it.",
+    "explanation": "The claim is that fungus-treated seedlings survived more often, and the key compares 68 of 100 with the fungus surviving with 41 of 100 without. The 'more without fungus survived' choice reverses the data, since more survived with the fungus (68 vs 41). The 32-died choice reports one cell with no comparison of survival. The 'same number' choice is false (68 vs 41).",
+    "key_len": 96,
+    "runner_up_len": 74
+  },
+  {
+    "id": "9a49f42a-4389-4eef-b4ff-47f312eb779a",
+    "domain": "Information and Ideas",
+    "passage": "The historian notes that in the port city's tax ledgers, merchants who dealt in perishable goods were recorded far more frequently than those trading durable metals, even though the metal trade moved greater total value. She points out that perishables were taxed each time they changed hands, while a shipment of copper was assessed once and then moved freely. The ledgers, she cautions, therefore register not the true weight of each trade in the economy but the rhythm at which the tax collector's pen was called into use.",
+    "prompt": "Which choice best expresses what the historian implies about the tax ledgers?",
+    "choices": [
+      "The frequency of entries reflects how often goods were taxed rather than their overall economic importance.",
+      "The metal trade was economically insignificant compared with the trade in perishables.",
+      "Tax collectors deliberately overlooked the copper trade to favor certain merchants.",
+      "Perishable goods generated more total revenue for the city than durable metals did."
+    ],
+    "correct_answer": "The frequency of entries reflects how often goods were taxed rather than their overall economic importance.",
+    "explanation": "Her warning that ledgers register the rhythm of taxation, not each trade's weight, implies entry frequency tracks taxing occasions, not economic value.",
+    "key_len": 107,
+    "runner_up_len": 86
+  },
+  {
+    "id": "a0de1ee5-3e72-4ef6-a05b-7c3d5cda0c04",
+    "domain": "Craft and Structure",
+    "passage": "Advocates of open-plan offices promised that removing walls would multiply the casual encounters from which good ideas supposedly spring. A study tracking employees before and after such a redesign recorded the opposite: face-to-face conversation fell by roughly seventy percent, while email traffic rose. Freed from the obligation of a shared room, workers seem to have retreated into headphones and screens. The very transparency meant to invite conversation instead made people work harder to manufacture the privacy the walls had once supplied.",
+    "prompt": "Which choice best states the function of the last sentence?",
+    "choices": [
+      "It recommends a specific alternative office layout for future workplaces.",
+      "It concedes that the study's measurements were probably unreliable.",
+      "It offers an interpretation that explains why the redesign produced results opposite to those intended.",
+      "It restates the advocates' original promise without qualification."
+    ],
+    "correct_answer": "It offers an interpretation that explains why the redesign produced results opposite to those intended.",
+    "explanation": "The final sentence interprets the paradoxical data, explaining that removing walls drove workers to recreate the privacy they lost, accounting for the reversal.",
+    "key_len": 103,
+    "runner_up_len": 73
+  },
+  {
+    "id": "a794e246-b4d4-4f42-9ed9-d98583a5a247",
+    "domain": "Information and Ideas",
+    "passage": "The economist observed that during the currency shortage, a remote town's shopkeepers began recording purchases in small notebooks, settling balances only when coins occasionally circulated. When the mint finally resumed supplying coins, many shopkeepers kept their notebooks anyway. The ledgers, the economist noted, had revealed something the coins never could: a running picture of who reliably paid and who did not. What began as a substitute for money had become a tool the merchants were unwilling to surrender.",
+    "prompt": "Which choice best describes what the economist implies about the notebooks?",
+    "choices": [
+      "They persisted because they offered information about customers that money alone did not provide.",
+      "They were abandoned as soon as the mint resumed supplying coins to the town.",
+      "They were less accurate than coins at recording the value of each purchase.",
+      "They caused the currency shortage that first made them necessary."
+    ],
+    "correct_answer": "They persisted because they offered information about customers that money alone did not provide.",
+    "explanation": "The economist notes the ledgers revealed who reliably paid, implying merchants kept them for that information rather than as a mere money substitute.",
+    "key_len": 97,
+    "runner_up_len": 76
+  },
+  {
+    "id": "a8647d7f-0707-4dd2-a431-df165f1ecf25",
+    "domain": "Information and Ideas",
+    "passage": "A team studying medieval trade examined coins buried in a Baltic hoard. They noticed that silver coins minted in distant Samarkand appeared alongside locally struck imitations, crude copies made by Baltic smiths. The team wants to argue that Samarkand silver was not merely hoarded as bullion in the region but was actively valued as a recognizable form of currency, one whose appearance local people deliberately reproduced.",
+    "prompt": "Which observation, if true, would most strongly support the team's argument?",
+    "choices": [
+      "The Samarkand coins contained a higher proportion of pure silver than the imitations did.",
+      "The hoard was buried near a river that was used for regional trade.",
+      "The local imitations reproduced the Arabic inscriptions of the Samarkand coins even though Baltic smiths could not read them.",
+      "Samarkand lay thousands of miles from the Baltic coast."
+    ],
+    "correct_answer": "The local imitations reproduced the Arabic inscriptions of the Samarkand coins even though Baltic smiths could not read them.",
+    "explanation": "Copying an unreadable inscription shows the recognizable look mattered, supporting the currency claim; the silver-purity choice supports the bullion reading, the rest are background.",
+    "key_len": 125,
+    "runner_up_len": 89
+  },
+  {
+    "id": "a9ed4caf-2fc4-480a-a621-c0940502b392",
+    "domain": "Information and Ideas",
+    "passage": "The early-music movement built its authority on a promise: to perform Baroque works as their composers heard them, using period instruments and forgotten conventions. The promise contains a paradox its advocates increasingly acknowledge. We can reconstruct the instruments and even the tuning, but not the ears. A modern listener arrives having heard music the eighteenth century never imagined—Romantic harmony, jazz, film scores—and cannot un-hear it; a dissonance that unsettled a 1720 audience may strike us as merely quaint. The 'authentic' performance thus recreates the acoustic signal while leaving untouched the trained perception that once gave it meaning. What such performances actually offer, then, is not the past's experience of its music but our experience of the past's sounds—a distinctly modern taste for historical texture, presented in the vocabulary of fidelity.",
+    "prompt": "Which choice is most strongly supported by the text?",
+    "choices": [
+      "Using period instruments and tunings lets modern listeners hear Baroque works as their first audiences did.",
+      "An authentic-instrument performance can reproduce a work's original sounds without reproducing how its original audiences perceived them.",
+      "Because listeners' perceptions have changed, Baroque music can no longer produce any effect on modern audiences.",
+      "The main obstacle to authentic performance is the difficulty of reconstructing period instruments and tunings."
+    ],
+    "correct_answer": "An authentic-instrument performance can reproduce a work's original sounds without reproducing how its original audiences perceived them.",
+    "explanation": "The passage says an authentic performance recreates 'the acoustic signal while leaving untouched the trained perception,' offering our experience of the past's sounds rather than the past's experience of them. That is the statement that such a performance 'can reproduce a work's original sounds without reproducing how its original audiences perceived them.' The statement that period instruments and tunings let listeners 'hear Baroque works as their first audiences did' is the movement's promise, which the passage presents as the paradox to be exposed. The statement that Baroque music 'can no longer produce any effect' overgeneralizes: the passage says these performances do produce something, a modern taste for historical texture. And the statement that the main obstacle is 'the difficulty of reconstructing period instruments' reverses the argument, since the passage grants that instruments and tuning can be reconstructed and locates the obstacle in perception.",
+    "key_len": 137,
+    "runner_up_len": 112
+  },
+  {
+    "id": "abef1719-e3cf-4554-a84d-6f609745fbce",
+    "domain": "Information and Ideas",
+    "passage": "The peacock's extravagant tail is the textbook illustration of runaway sexual selection: peahens are said to prefer ever larger and showier trains, so the ornament inflates over generations until the sheer cost of growing and hauling it finally checks the trait. Yet a patient long-term study of one population raised a serious doubt. Across seven breeding seasons, females displayed no measurable preference for males with larger trains, and train size did not predict which males succeeded in mating at all. The researchers proposed a startling possibility: that the ornament may be a signal whose meaning has decayed—once genuinely informative to choosing females, but now a kind of evolutionary vestige, maintained by history and inertia rather than by any active preference still operating in the hens.",
+    "prompt": "Which finding, if true, would most undermine the researchers' proposal?",
+    "choices": [
+      "Peacocks with larger trains are more likely to be caught by predators.",
+      "Peahens in several other populations do show a preference for larger trains.",
+      "The train imposes a substantial metabolic cost on males during the breeding season.",
+      "Within the same studied population, females consistently mate with the males whose trains bear the most eyespots."
+    ],
+    "correct_answer": "Within the same studied population, females consistently mate with the males whose trains bear the most eyespots.",
+    "explanation": "D undermines the 'decayed signal, no active preference' proposal by showing females in this very population still actively choose based on a feature of the train. A and C describe survival costs, consistent with runaway selection but silent on whether female choice is still active. B concerns other populations and so cannot refute the decay claim about this one.",
+    "key_len": 113,
+    "runner_up_len": 83
+  },
+  {
+    "id": "af8f6328-2eea-47dd-bbbb-793a774dc0a8",
+    "domain": "Information and Ideas",
+    "passage": "The essayist wrote that she had come to distrust the tidy morals people drew from their own hardships. A difficult year, she noticed, was almost always narrated afterward as the year that taught some valuable lesson—patience, gratitude, resilience. Yet at the time, she recalled, the same months had felt merely bewildering, without shape or meaning. The lesson, she suspected, was not discovered within the experience but imposed on it later, a story told to make the disorder bearable in retrospect.",
+    "prompt": "Which choice best describes what the essayist suggests about the 'lessons' people draw from hardship?",
+    "choices": [
+      "Such lessons are usually false and should be dismissed as self-deception.",
+      "Such lessons are constructed afterward rather than genuinely contained in the experience itself.",
+      "Hardship teaches valuable lessons only to those patient enough to reflect on it.",
+      "People rarely remember their difficult years accurately once time has passed."
+    ],
+    "correct_answer": "Such lessons are constructed afterward rather than genuinely contained in the experience itself.",
+    "explanation": "The essayist suspects the lesson was imposed on the experience later as a story, not discovered within it, matching this inference.",
+    "key_len": 96,
+    "runner_up_len": 80
+  },
+  {
+    "id": "b711d59d-86cd-4664-956c-017f73512fb5",
+    "domain": "Information and Ideas",
+    "passage": "Common sense holds that our closest relationships are our most valuable resources, the people most willing and able to help us. In the domain of information, sociologists have found the opposite tendency. Close friends tend to move in the same circles we do and therefore know much of what we already know; their information is redundant. Acquaintances—'weak ties'—bridge otherwise separate social worlds, and precisely because they are not enmeshed in our circle, they are conduits for news that would not otherwise reach us, from job openings to unfamiliar ideas. The claim is carefully bounded. It does not hold that weak ties matter more than strong ones for support, trust, or sustained cooperation, where intimacy is decisive. It holds only that for the diffusion of novel information, the very looseness of a connection can be its strength.",
+    "prompt": "Which finding, if true, would most strengthen the specific claim the text defends?",
+    "choices": [
+      "People reported receiving more emotional support from acquaintances than from their close friends.",
+      "Individuals with a larger number of close friends reported higher overall life satisfaction.",
+      "People who heard about job openings from occasional acquaintances learned of positions that had not circulated among their close friends.",
+      "Close friends were more likely than acquaintances to help with demanding, time-consuming tasks."
+    ],
+    "correct_answer": "People who heard about job openings from occasional acquaintances learned of positions that had not circulated among their close friends.",
+    "explanation": "The bounded claim is strictly about the diffusion of novel information; acquaintances supplying job news that close friends did not have is that claim in action. The emotional-support finding is the overreach the passage explicitly rules out ('does not hold that weak ties matter more... for support'). The life-satisfaction result is irrelevant, and the last option supports the value of strong ties rather than the weak-tie information thesis.",
+    "key_len": 137,
+    "runner_up_len": 98
+  },
+  {
+    "id": "ba1f38ed-9ca0-4d11-b291-d4539b30b1e3",
+    "domain": "Craft and Structure",
+    "passage": "Text 1: The sudden abandonment of the desert settlement points to a drought. Tree rings from the region record a decades-long dry spell precisely when the houses emptied. When the wells failed, the people had no choice but to leave the place that could no longer sustain them.\n\nText 2: The same tree rings confirm the drought, yet neighboring settlements endured it and even grew. The difference was trade: those that abandoned their homes had specialized in a single crop and lost their partners' grain when exchange networks collapsed. The drought was the trigger, but dependence was the wound.",
+    "prompt": "Which choice best describes the relationship between the two texts?",
+    "choices": [
+      "Text 2 disputes Text 1's claim that a drought occurred during the settlement's decline.",
+      "Both conclude that trade networks were irrelevant to the settlement's fate.",
+      "Both accept the drought as real, but Text 2 treats it as a trigger acting on a deeper vulnerability that Text 1 overlooks.",
+      "Text 2 argues that the settlement was never actually abandoned."
+    ],
+    "correct_answer": "Both accept the drought as real, but Text 2 treats it as a trigger acting on a deeper vulnerability that Text 1 overlooks.",
+    "explanation": "Text 2 confirms the same drought yet reframes it as merely \"the trigger\" while \"dependence was the wound,\" adding a cause Text 1 ignores rather than disputing the drought or dismissing trade.",
+    "key_len": 122,
+    "runner_up_len": 87
+  },
+  {
+    "id": "bb6babf9-eec9-4165-b084-5ecc03f5d210",
+    "domain": "Information and Ideas",
+    "passage": "The 'marshmallow test'—in which a child who resists eating one treat now is promised two later—became famous for a startling claim: a preschooler's willpower predicts success decades on. A larger, more diverse replication tempered the story. Once family income and the mother's education were taken into account, the correlation between a child's waiting and her later achievement shrank dramatically. The finding suggests that the test may measure not an inborn trait of self-control but a child's circumstances: a child from a resource-scarce home has good reason to grab the sure treat, having learned that promised future rewards often fail to materialize. If so, then early 'willpower' and later success are not cause and effect but joint symptoms of a family's material conditions—correlated because each is shaped by the same background, not because one produces the other.",
+    "prompt": "Which finding would most strengthen the passage's proposed explanation of why the correlation weakened?",
+    "choices": [
+      "Adjusting for family income sharply reduced the tie between waiting and later achievement.",
+      "Children who waited longer went on to score higher on later achievement tests.",
+      "Children whose past promised rewards had frequently failed to appear waited less, whatever their measured self-control.",
+      "Training in later childhood can measurably improve a child's self-control."
+    ],
+    "correct_answer": "Children whose past promised rewards had frequently failed to appear waited less, whatever their measured self-control.",
+    "explanation": "The passage's specific explanation is that waiting reflects learned circumstance—children in resource-scarce homes have 'learned that promised future rewards often fail to materialize.' C directly supports that mechanism by tying waiting to prior experience of broken promises rather than to self-control. A merely restates the passage's given premise (confounding by income) without confirming the mechanism. B is the original correlation the reinterpretation must explain away, not support. D is irrelevant to whether the test measures a trait or circumstances.",
+    "key_len": 119,
+    "runner_up_len": 90
+  },
+  {
+    "id": "bee6a5cc-9765-41c3-88d1-fbf641338eda",
+    "domain": "Information and Ideas",
+    "passage": "The reintroduction of wolves to Yellowstone has become the textbook illustration of a trophic cascade: with wolves back, elk abandon the exposed streamside groves where they are easily ambushed, browsing pressure eases, and willows and aspen surge back along the banks. Recent fieldwork, however, has questioned how clean the story really is. Willow recovery across the park has proved distinctly patchy. It has been vigorous where beaver dams raise the water table and keep the banks wet, and feeble or absent where those conditions are lacking—even in places where wolves are plainly present and elk are plainly wary. The predators' return, this work suggests, may well be a necessary ingredient of the recovery credited to it, but it is just as plainly not a sufficient one.",
+    "prompt": "Which finding, if true, would most strengthen the revisionist claim that the return of the wolves was not sufficient to produce the vegetation recovery?",
+    "choices": [
+      "Elk populations fell sharply in the years immediately after wolves were reintroduced.",
+      "Beaver colonies increased across much of the park following the reintroduction of wolves.",
+      "Wolves hunted elk most successfully in the open bottoms of river valleys.",
+      "Willow stands failed to recover where water tables were low, despite a heavy and sustained wolf presence."
+    ],
+    "correct_answer": "Willow stands failed to recover where water tables were low, despite a heavy and sustained wolf presence.",
+    "explanation": "The revisionist point is that wolves are necessary but not sufficient — recovery also needs the right hydrology. The finding that 'willow stands failed to recover where water tables were low, despite a heavy and sustained wolf presence' is the direct demonstration: predation is at full strength and the vegetation still does not come back, so predation alone cannot be doing the work. The finding that 'elk populations fell sharply in the years immediately after wolves were reintroduced' is the tempting wrong answer, because it supports the classic cascade rather than the revisionist qualification of it. The finding that 'beaver colonies increased across much of the park' fits either story and so distinguishes neither. And the finding that wolves 'hunted elk most successfully in the open bottoms' of river valleys describes hunting behavior, which says nothing about whether predation suffices for willow recovery.",
+    "key_len": 105,
+    "runner_up_len": 89
+  },
+  {
+    "id": "c10ae2a2-4c42-4a5b-9137-1c194e4893fb",
+    "domain": "Craft and Structure",
+    "passage": "We like to imagine the gift as the pure opposite of the market: freely given, unencumbered by the calculation that rules commercial exchange. Anthropology has steadily dismantled the contrast. In the societies Marcel Mauss studied, a gift set in motion an unspoken but binding sequence—an obligation to receive and, in time, to reciprocate, often with interest—so that generosity operated as a system of debt no less exacting than any ledger. This does not reduce the gift to a disguised purchase; the timing, the show of spontaneity, and the personal bond it forges are not incidental decorations but the very things that distinguish it from a sale. The point is subtler: the gift is neither the market's opposite nor its secret twin, but a distinct institution that accomplishes through obligation what the market accomplishes through price. To celebrate it as freedom from exchange is to miss what it is.",
+    "prompt": "Which choice best describes the overall structure of the passage?",
+    "choices": [
+      "It defends the popular view that gifts are freely given against anthropological objections.",
+      "It rejects a familiar opposition, resists collapsing its two terms into one, and offers a third characterization.",
+      "It argues that gift-giving is simply a concealed form of market purchase.",
+      "It catalogs the ceremonial features that distinguish gift-giving across different societies."
+    ],
+    "correct_answer": "It rejects a familiar opposition, resists collapsing its two terms into one, and offers a third characterization.",
+    "explanation": "The passage moves in three steps: it denies that gift and market are opposites, then refuses the reduction ('This does not reduce the gift to a disguised purchase'), then defines the gift as a distinct institution that accomplishes through obligation what the market accomplishes through price. That is the answer describing a text that rejects a familiar opposition, resists collapsing its two terms into one, and offers a third characterization. The strongest trap is the answer that gift-giving is simply a concealed form of market purchase - exactly the reading the passage explicitly disavows. The answer that defends the popular view that gifts are freely given reverses the argument, since anthropology is credited with dismantling that contrast. And the answer that catalogs the ceremonial features of gift-giving mistakes supporting details - the timing, the show of spontaneity, the personal bond - for the passage's overall design.",
+    "key_len": 113,
+    "runner_up_len": 92
+  },
+  {
+    "id": "c1604c14-a3f1-450f-9c18-5376ee8807b1",
+    "domain": "Information and Ideas",
+    "passage": "Conservation orthodoxy treats introduced species as ecological villains to be eradicated on sight. A revisionist current questions the blanket condemnation—not by denying that some invaders devastate ecosystems, but by noting that others integrate benignly or even fill roles left vacant by extinctions. On certain islands, introduced birds now pollinate native plants whose original pollinators are gone; without the newcomers, those plants would fail to set seed. The revisionists do not claim that invaders are generally beneficial; they claim only that origin alone—native versus introduced—is a poor predictor of ecological harm, and that policy fixated on provenance may destroy functional relationships it fails to recognize.",
+    "prompt": "Which finding, if true, would most weaken the revisionists' argument as it is presented in the passage?",
+    "choices": [
+      "Most introduced species that have been studied were found to reduce native biodiversity.",
+      "On several islands, introduced birds have become the only remaining pollinators of certain native plants.",
+      "In a broad cross-ecosystem survey, whether a species was native or introduced reliably predicted whether it harmed its ecosystem.",
+      "Government campaigns to eradicate established invaders rarely succeed."
+    ],
+    "correct_answer": "In a broad cross-ecosystem survey, whether a species was native or introduced reliably predicted whether it harmed its ecosystem.",
+    "explanation": "The revisionists' thesis is narrow: origin alone 'is a poor predictor of ecological harm.' The survey finding that 'whether a species was native or introduced reliably predicted whether it harmed its ecosystem' contradicts that predictive claim head-on, so it is the weakener. The finding that 'most introduced species that have been studied' reduce native biodiversity is the trap: it rebuts the sweeping 'invaders are generally beneficial' position the revisionists explicitly disavow, while leaving their real claim standing, since a harmful majority is still compatible with origin being a poor guide case by case. The statement that 'introduced birds have become the only remaining pollinators' of certain native plants is the passage's own supporting example, so it strengthens the revisionists rather than weakening them. And the observation that government campaigns 'to eradicate established invaders rarely succeed' bears on whether eradication works, not on whether origin predicts harm.",
+    "key_len": 129,
+    "runner_up_len": 105
+  },
+  {
+    "id": "c3956344-2b87-4201-96e5-1af0877db408",
+    "domain": "Craft and Structure",
+    "passage": "When conservators removed the darkened varnish from a Renaissance altarpiece, critics anticipated a triumphant recovery of the artist's \"true\" colors. The cleaned panel did reveal luminous blues and greens long obscured. Yet the conservators themselves resisted the celebratory framing. The varnish, they noted, had not merely dimmed the pigments; over four centuries the painter's contemporaries and successors had come to see the work through that amber film, and generations of imitators had matched their own palettes to the muted original. To strip the varnish, then, was not to restore an authentic past state but to manufacture an appearance no living viewer, and perhaps not even the artist beyond his first months of work, had ever seen. The panel that emerged was thus simultaneously older and newer than the one taken down: closer to the pigments' first chemistry, further from any moment in the painting's actual history of being looked at.",
+    "prompt": "Which choice best describes the function of the final sentence in the passage?",
+    "choices": [
+      "It resolves the disagreement between the critics and the conservators by showing that both were partly correct about the panel's colors.",
+      "It concedes that the cleaning damaged the altarpiece in ways the conservators had failed to anticipate.",
+      "It restates the passage's central paradox by framing the cleaned panel as having recovered a physical origin while losing every state anyone had actually witnessed.",
+      "It shifts the passage's focus from the altarpiece toward the general practice of varnish removal in conservation."
+    ],
+    "correct_answer": "It restates the passage's central paradox by framing the cleaned panel as having recovered a physical origin while losing every state anyone had actually witnessed.",
+    "explanation": "The final sentence calls the panel 'simultaneously older and newer' than the one taken down, closer to the pigments' first chemistry and further from any moment in its history of being looked at, which restates the paradox the whole passage builds. Saying it 'resolves the disagreement between the critics and the conservators by showing that both were partly correct' invents a reconciliation: the sentence sharpens the tension rather than settling it. Saying it 'concedes that the cleaning damaged the altarpiece in ways the conservators had failed to anticipate' is the intuitive misreading of 'manufacture an appearance'; what is manufactured is a perceptual novelty, not physical harm, and the conservators are the ones raising the point, so nothing was unanticipated. And saying it 'shifts the passage's focus from the altarpiece toward the general practice of varnish removal' overgeneralizes, since the sentence stays fixed on this one panel.",
+    "key_len": 164,
+    "runner_up_len": 136
+  },
+  {
+    "id": "c4b5874d-2644-4820-898a-ce298c595685",
+    "domain": "Information and Ideas",
+    "passage": "A neuroscientist proposed that a songbird rehearses its song during sleep, replaying the neural sequence used in daytime singing. She predicted that if this were so, the pattern of neuron firing recorded while a bird sang a particular phrase should reappear, in the same order, in recordings taken while the bird slept.",
+    "prompt": "Which finding would most directly support the neuroscientist's proposal?",
+    "choices": [
+      "Birds deprived of sleep sang their phrases with more errors the following day.",
+      "Sleeping birds showed higher overall brain activity than birds that were awake.",
+      "Birds that sang more phrases during the day spent more total time asleep.",
+      "Sleeping birds showed neural firing sequences matching those recorded during daytime singing."
+    ],
+    "correct_answer": "Sleeping birds showed neural firing sequences matching those recorded during daytime singing.",
+    "explanation": "The proposal predicts the daytime singing sequence recurs in order during sleep, so matching firing patterns during sleep directly confirm the replay.",
+    "key_len": 93,
+    "runner_up_len": 79
+  },
+  {
+    "id": "cdbd103c-19c9-4b71-9283-9832de22f189",
+    "domain": "Craft and Structure",
+    "passage": "Critics have praised the novel's unreliable narrator as a triumph of psychological realism, arguing that his self-deceptions mirror the evasions of an ordinary guilty mind. This reading is not wrong, but it domesticates what the book does. The narrator's contradictions are too neatly arranged, his lapses too precisely timed to the reader's dawning suspicion, to be the organic slips of a plausible person. They are, rather, a structural device: the novel withholds and releases information according to the logic of a mystery, not the logic of a psyche. To call the narrator \"realistic\" is to credit to character what belongs to design—to mistake an author's calculated architecture of revelation for the messy inconsistency of a real remembering self.",
+    "prompt": "The passage is primarily concerned with",
+    "choices": [
+      "defending the common view that the narrator's contradictions reflect authentic psychological realism.",
+      "reinterpreting a feature usually attributed to character as instead the product of the novel's deliberate construction.",
+      "arguing that unreliable narrators are generally less effective than reliable ones.",
+      "praising the novel for accurately depicting the evasions of a guilty conscience."
+    ],
+    "correct_answer": "reinterpreting a feature usually attributed to character as instead the product of the novel's deliberate construction.",
+    "explanation": "The passage moves the narrator's contradictions out of psychology and into craft, calling them a structural device that follows 'the logic of a mystery, not the logic of a psyche' — hence the description of the passage as reinterpreting a feature usually attributed to character as 'the product of the novel's deliberate construction.' The description of the passage as 'defending the common view that the narrator's contradictions reflect authentic psychological realism' and the one praising the novel for 'accurately depicting the evasions of a guilty conscience' both restate the realist reading that the passage concedes is 'not wrong' and then overturns; they are the intuitive traps. The description about 'unreliable narrators are generally less effective' makes a general comparative claim the passage never advances, since its scope is this one novel's design.",
+    "key_len": 119,
+    "runner_up_len": 101
+  },
+  {
+    "id": "ce5c5a0f-3b9c-4fb5-832f-194772985e2b",
+    "domain": "Information and Ideas",
+    "passage": "Soil scientists studying abandoned farmland long treated the return of native plants as a simple matter of seeds arriving from nearby wild areas. A recent study of fields left fallow for varying lengths of time reframes the process. Native species reappeared not according to how close the nearest wild seed source lay, but according to how thoroughly decades of plowing had depleted the soil's fungal networks. Fields with intact fungal communities recovered quickly even when isolated; depleted fields lagged despite abundant nearby seed.",
+    "prompt": "Which choice best states the main idea of the passage?",
+    "choices": [
+      "Native plants cannot recolonize former farmland unless a wild seed source lies immediately adjacent.",
+      "Decades of plowing permanently prevent any native species from returning to a field.",
+      "Soil scientists have abandoned the study of how native plants recolonize farmland.",
+      "The recovery of native plants on fallow fields depended chiefly on the soil's fungal condition rather than on proximity to seed sources."
+    ],
+    "correct_answer": "The recovery of native plants on fallow fields depended chiefly on the soil's fungal condition rather than on proximity to seed sources.",
+    "explanation": "The study reframes recovery as governed by fungal-network health, since intact soils recovered even when isolated and depleted soils lagged despite nearby seed.",
+    "key_len": 136,
+    "runner_up_len": 100
+  },
+  {
+    "id": "cfb5fa8a-5bbe-4ce0-8168-b022559127ad",
+    "domain": "Information and Ideas",
+    "passage": "Ecologist Dr. Nadia Rahman hypothesizes that the rapid spread of a nonnative grass across a prairie is driven less by the plant's fast growth than by its effect on soil chemistry: she proposes that the grass releases compounds that suppress the native seedlings competing beside it. To test this, she plans to compare how native seedlings fare in soil where the grass has previously grown versus otherwise identical soil where it has not.",
+    "prompt": "Which finding, if true, would most directly support Rahman's hypothesis?",
+    "choices": [
+      "The nonnative grass grew taller and faster than any native prairie species.",
+      "Native seedlings grew more poorly in soil that had previously hosted the nonnative grass than in soil that had not.",
+      "The nonnative grass produced more seeds per plant than the native grasses did.",
+      "The nonnative grass and the native seedlings required similar amounts of water."
+    ],
+    "correct_answer": "Native seedlings grew more poorly in soil that had previously hosted the nonnative grass than in soil that had not.",
+    "explanation": "Her claim is about soil-altering suppression, tested by the soil comparison; the taller-and-faster growth and the higher seed count support the explanations she downplays, and the similar water requirement is irrelevant.",
+    "key_len": 115,
+    "runner_up_len": 79
+  },
+  {
+    "id": "d16b9b2a-5d19-4138-a864-87c40e5b2a51",
+    "domain": "Craft and Structure",
+    "passage": "Text 1\n\nThe doubling of English real wages after 1350 has a straightforward cause. The plague killed a third or more of the workforce, and with laborers suddenly scarce, survivors could command far higher pay. Wages rose because bodies were few and fields were many; the market did what markets do, translating scarcity into price.\n\nText 2\n\nScarcity alone cannot explain the gains. Parliament answered the labor shortage with the Statute of Labourers, freezing wages at pre-plague levels and criminalizing the movement of workers. That wages nonetheless climbed reveals not the frictionless operation of supply and demand but the failure of a determined effort to suppress it. The rise measures the limits of coercion as much as the arithmetic of scarcity; where lords enforced the statute effectively, wages stagnated for decades despite identical mortality.",
+    "prompt": "Based on Text 2, how would its author most likely respond to the explanation offered in Text 1?",
+    "choices": [
+      "By arguing that the plague had no meaningful effect on English wage levels.",
+      "By maintaining that the Statute of Labourers succeeded in holding wages at pre-plague levels.",
+      "By agreeing that scarcity pushed wages upward but adding that the actual outcome depended on whether legal efforts to restrain wages succeeded.",
+      "By concluding that market forces operate without friction once labor becomes scarce."
+    ],
+    "correct_answer": "By agreeing that scarcity pushed wages upward but adding that the actual outcome depended on whether legal efforts to restrain wages succeeded.",
+    "explanation": "Text 2 does not deny scarcity's role; it qualifies it, noting that where the statute was enforced wages stagnated despite identical mortality — so the outcome hinged on whether legal suppression succeeded. That is the response 'By agreeing that scarcity pushed wages upward but adding that the actual outcome depended on whether legal efforts to restrain wages succeeded.' The response that 'the plague had no meaningful effect on English wage levels' overstates Text 2 into flat denial. The response that the Statute 'succeeded in holding wages at pre-plague levels' contradicts Text 2, whose whole point is that wages climbed anyway, revealing the statute's failure. And the response that 'market forces operate without friction' once labor becomes scarce simply restates Text 1, the view Text 2 is arguing against.",
+    "key_len": 143,
+    "runner_up_len": 93
+  },
+  {
+    "id": "d1acbe4c-4ec8-42df-a979-9539d838e8cc",
+    "domain": "Craft and Structure",
+    "passage": "Text 1: Advocates of remote work point to productivity data showing that employees at home complete as many tasks as they did in offices, often in fewer hours. Freed from commutes and interruptions, workers report deeper focus and greater satisfaction.\n\nText 2: Sanchez does not dispute the productivity figures. She notes, however, that such measures capture individual output while missing what offices quietly provide: the unplanned hallway conversation, the overheard problem, the informal mentoring that rarely appears on any task list but shapes a company's long-term capacity.",
+    "prompt": "Based on the texts, how would Sanchez (Text 2) most likely respond to the advocates described in Text 1?",
+    "choices": [
+      "By arguing that the productivity data cited in Text 1 are inaccurate",
+      "By granting their evidence while contending it overlooks benefits that task metrics cannot capture",
+      "By agreeing fully that remote work is superior to office work",
+      "By insisting that commutes and interruptions actually improve focus"
+    ],
+    "correct_answer": "By granting their evidence while contending it overlooks benefits that task metrics cannot capture",
+    "explanation": "Sanchez accepts the figures but says they miss informal office benefits; the traps have her dispute the data, fully agree, or defend interruptions.",
+    "key_len": 98,
+    "runner_up_len": 68
+  },
+  {
+    "id": "d2381bf2-d31a-4d22-885b-7c68393fde47",
+    "domain": "Craft and Structure",
+    "passage": "The printing press is routinely credited with democratizing knowledge by making books cheap and abundant. In the long run it did. But in the decades immediately following its spread, its effect on the circulation of ideas was more ambiguous. Printing enormously amplified the output of already-dominant institutions—churches, states, and established universities, which alone could fund large print runs—so that the first great surge of printed matter consisted overwhelmingly of official texts, indulgences, and orthodox commentary. Heterodox works could be printed too, but they could also be identified, catalogued, and suppressed with a new efficiency once they existed in fixed, traceable editions. The press did not immediately loosen authority's grip on the written word; for a time it tightened it, handing the powerful a tool whose leveling potential would be realized only later.",
+    "prompt": "It can most reasonably be inferred from the passage that the author regards the printing press's early effect on the control of ideas as",
+    "choices": [
+      "an immediate and decisive weakening of established authority over the written word.",
+      "initially reinforcing the dominance of powerful institutions, with its democratizing effect emerging only afterward.",
+      "harmful on the whole, since printing was used mainly to suppress heterodox works.",
+      "negligible, because print runs remained too expensive for any institution to exploit."
+    ],
+    "correct_answer": "initially reinforcing the dominance of powerful institutions, with its democratizing effect emerging only afterward.",
+    "explanation": "The passage concedes that in the long run the press democratized knowledge but says that for a time it 'tightened' authority's grip, its leveling potential 'realized only later,' which is the two-stage view the answer captures. Describing the effect as 'an immediate and decisive weakening of established authority over the written word' is the popular story the passage postpones rather than endorses. Calling it 'harmful on the whole, since printing was used mainly to suppress heterodox works' converts a temporary, ambiguous phase into a net verdict the author never delivers, and misstates the mechanism: printing amplified official output and made heterodox works easier to trace, which is not the same as being used mainly for suppression. And calling the effect 'negligible, because print runs remained too expensive for any institution to exploit' contradicts the text outright, which says churches, states, and universities alone could fund large print runs, and did.",
+    "key_len": 116,
+    "runner_up_len": 85
+  },
+  {
+    "id": "d2dc5376-d066-424b-a767-ea00647794a2",
+    "domain": "Information and Ideas",
+    "passage": "In her memoir, the cartographer describes redrawing a coastline she had mapped decades earlier. The new survey instruments were far more precise, yet she found herself hesitating over each inlet. Her earlier map, she admits, had smoothed the shore into gentle curves that fishermen had come to rely on, memorizing them as landmarks. To publish the truer, jagged version would be to render obsolete the mental charts by which a generation navigated. Accuracy, she realized, was not always the same as usefulness.",
+    "prompt": "Which choice best describes the cartographer's dilemma?",
+    "choices": [
+      "The new instruments were too imprecise to justify redrawing the coastline at all.",
+      "The fishermen had begun demanding a more detailed and jagged version of the map.",
+      "A more accurate map risked discarding the familiar shapes that had become practical navigational tools.",
+      "Her earlier map had been intentionally falsified to mislead rival cartographers."
+    ],
+    "correct_answer": "A more accurate map risked discarding the familiar shapes that had become practical navigational tools.",
+    "explanation": "Her closing distinction between accuracy and usefulness implies the truer map would undermine the memorized landmarks fishermen depended on.",
+    "key_len": 103,
+    "runner_up_len": 81
+  },
+  {
+    "id": "d44ec872-c63c-4d7c-ae9f-1912ee4b0e96",
+    "domain": "Information and Ideas",
+    "passage": "In a study of glassblowing workshops, an anthropologist observed that master artisans rarely gave verbal instructions to apprentices. Instead, apprentices learned by standing close, watching the subtle timing of each gather and turn, and imitating the rhythm of the master's hands. Written manuals existed but were seldom consulted; the artisans regarded them as pale substitutes for the direct observation of skilled work in progress.",
+    "prompt": "Which choice best states an inference supported by the text?",
+    "choices": [
+      "Written manuals contained inaccurate information about glassblowing techniques.",
+      "In this craft, embodied skill is transmitted more effectively through observation than through written description.",
+      "Apprentices who read manuals became more skilled than those who did not.",
+      "Master artisans were unable to explain their techniques in words."
+    ],
+    "correct_answer": "In this craft, embodied skill is transmitted more effectively through observation than through written description.",
+    "explanation": "That apprentices learned by watching while manuals were dismissed as pale substitutes implies observation transmits the skill better than text.",
+    "key_len": 115,
+    "runner_up_len": 79
+  },
+  {
+    "id": "d6691e94-56c6-4c82-b6c9-627fc0a1c8cd",
+    "domain": "Information and Ideas",
+    "passage": "A team studying memory proposed that sleep strengthens newly learned motor skills specifically during deep slow-wave sleep, rather than through rest in general. Volunteers learned a finger-tapping sequence, then either slept normally or stayed awake, and were retested the next day.",
+    "prompt": "Which finding from the experiment would most strongly support the team's proposal?",
+    "choices": [
+      "Volunteers who slept and those who stayed awake both improved slightly on the retest.",
+      "Volunteers who slept reported feeling more rested than those who stayed awake.",
+      "Volunteers improved most when their sleep included abundant slow-wave sleep, and least when slow-wave sleep was suppressed but total sleep time held constant.",
+      "Volunteers who practiced the sequence longer before sleeping performed better overall."
+    ],
+    "correct_answer": "Volunteers improved most when their sleep included abundant slow-wave sleep, and least when slow-wave sleep was suppressed but total sleep time held constant.",
+    "explanation": "Isolating slow-wave sleep while holding total sleep constant targets the specific claim; the traps show no differentiation, measure subjective rest, or credit practice.",
+    "key_len": 158,
+    "runner_up_len": 86
+  },
+  {
+    "id": "d831f556-affe-46fa-91f6-f6c01a38b239",
+    "domain": "Craft and Structure",
+    "passage": "Text 1: Urban planners have championed the mixed-use neighborhood, where shops, offices, and homes share a block. Such density, advocates note, shortens commutes and keeps streets lively at all hours, making the city both efficient and safe.\n\nText 2: The mixed-use ideal photographs well, but ask who can afford its apartments. Once a district earns a reputation for vibrancy, rents climb, and the very shopkeepers and workers who animated the street are priced out. What remains is the look of a living neighborhood, occupied by those wealthy enough to buy the view.",
+    "prompt": "How would the author of Text 2 most likely respond to the claim in Text 1 about the benefits of mixed-use neighborhoods?",
+    "choices": [
+      "By arguing that those benefits tend to displace the residents who create them, leaving an exclusive imitation behind",
+      "By denying that mixed-use neighborhoods shorten commutes or improve safety",
+      "By agreeing fully and recommending that more such districts be built quickly",
+      "By claiming that planners have never actually managed to build mixed-use blocks"
+    ],
+    "correct_answer": "By arguing that those benefits tend to displace the residents who create them, leaving an exclusive imitation behind",
+    "explanation": "Text 2 does not dispute the vibrancy but warns it triggers rising rents that expel the workers and shopkeepers, a consequence Text 1 ignores.",
+    "key_len": 116,
+    "runner_up_len": 79
+  },
+  {
+    "id": "d92ee342-1527-4743-a768-ed53b959235a",
+    "domain": "Information and Ideas",
+    "passage": "Text 1\nThe standard model holds that cities arose from agricultural surplus. Once farming produced more food than growers needed, the surplus freed some people from cultivation, enabling the specialists, administrators, and elites whose coordination a dense settlement requires. Hierarchy, in this account, is the price of urban scale: complexity demands command.\n\nText 2\nExcavations at several early sites complicate that sequence. At settlements like Çatalhöyük, thousands lived together for centuries with little sign of centralized authority, monumental hierarchy, or even marked differences in wealth; households were strikingly uniform. Scale, these findings suggest, did not automatically summon rulers. Whether an early city became stratified appears to have depended on choices and institutions that some large settlements adopted and others, equally large, refused.",
+    "prompt": "Based on the two texts, how would the author of Text 2 most likely respond to Text 1's claim that \"hierarchy... is the price of urban scale\"?",
+    "choices": [
+      "By agreeing that a food surplus was necessary but denying that it was sufficient to sustain a city.",
+      "By maintaining that Çatalhöyük was too small to bear on claims about urban scale.",
+      "By concluding that agricultural surplus played no part in the rise of early cities.",
+      "By arguing that large settlements could persist without pronounced hierarchy, so scale by itself does not require it."
+    ],
+    "correct_answer": "By arguing that large settlements could persist without pronounced hierarchy, so scale by itself does not require it.",
+    "explanation": "Text 2 cites thousands living together for centuries with little sign of centralized authority in order to conclude that 'scale... did not automatically summon rulers.' That is exactly the response beginning 'By arguing that large settlements could persist without pronounced hierarchy' — it denies the necessity Text 1 asserts. The response that a food surplus was necessary but not 'sufficient to sustain a city' shifts the argument to the sufficiency of surplus, a question Text 2 never raises; its target is hierarchy, not food. The response calling that settlement 'too small to bear on claims about urban scale' contradicts Text 2, which stresses that thousands lived there together for centuries. And the response that surplus 'played no part in the rise' of early cities overgeneralizes into a denial Text 2 never makes.",
+    "key_len": 117,
+    "runner_up_len": 99
+  },
+  {
+    "id": "e0684a73-960f-4108-9f20-cf521dca257c",
+    "domain": "Information and Ideas",
+    "passage": "A food scientist tested how storage temperature affects the shelf life of a packaged bread and concluded that lower storage temperatures extended shelf life.",
+    "prompt": "Which choice most effectively uses data from the graph to support the scientist's claim?",
+    "choices": [
+      "Bread stored at 4 C, the lowest temperature, lasted 20 days, the longest of the four conditions.",
+      "Bread stored at the highest temperature lasted the longest.",
+      "Bread stored at 20 C and 10 C lasted the same number of days.",
+      "Bread stored at 30 C spoiled in 4 days."
+    ],
+    "correct_answer": "Bread stored at 4 C, the lowest temperature, lasted 20 days, the longest of the four conditions.",
+    "explanation": "The claim is that lower temperatures extended shelf life, and the key pairs the lowest temperature (4 C) with the longest shelf life (20 days). The 30 C choice reports one value with no comparison. The 'highest temperature lasted the longest' choice reverses the data, since 30 C gave the shortest life (4 days). The choice claiming 20 C and 10 C were equal is false (7 vs 12).",
+    "key_len": 96,
+    "runner_up_len": 61
+  },
+  {
+    "id": "e48b8c80-5f9e-4356-823a-4d25cbe47d9c",
+    "domain": "Information and Ideas",
+    "passage": "Researchers compared the average test scores of students using four different study methods, shown in the graph. They argue that spaced practice was more effective than the other three methods.",
+    "prompt": "Which choice most effectively uses data from the graph to support the researchers' argument?",
+    "choices": [
+      "Massed practice produced the lowest average score of the four methods.",
+      "Students who used spaced practice scored, on average, higher than students using any of the other three methods.",
+      "Students who used rereading scored higher on average than students who used massed practice.",
+      "Highlighting and massed practice produced equal average scores."
+    ],
+    "correct_answer": "Students who used spaced practice scored, on average, higher than students using any of the other three methods.",
+    "explanation": "Supporting 'spaced practice was most effective' requires showing its average tops the others. Spaced practice scored 88, above massed (72), rereading (70), and highlighting (66). The distractors misread the bars (rereading 70 < massed 72; highlighting 66 ≠ massed 72; the lowest is highlighting at 66, not massed).",
+    "key_len": 112,
+    "runner_up_len": 92
+  },
+  {
+    "id": "e6905116-a2f4-42c8-8b2d-2853bf931eee",
+    "domain": "Information and Ideas",
+    "passage": "It is commonly said that migratory songbirds inherit their routes fully formed, needing no instruction. Ornithologist Kwame Boateng qualifies this. His displacement experiments show that young birds flying south for the first time hold a fixed compass heading regardless of where they are released, even when this carries them far off course. Experienced adults, by contrast, correct for displacement and steer toward the actual destination. The inherited program, Boateng concludes, supplies only a direction; the ability to find a specific place is something the bird must acquire through its first complete journey.",
+    "prompt": "Which choice best states the main idea of the passage?",
+    "choices": [
+      "Migratory songbirds inherit their complete routes and require no learning at all.",
+      "Songbirds inherit a fixed heading but must learn through experience to navigate to a specific destination.",
+      "Adult songbirds navigate less accurately than juveniles on their first migration.",
+      "Displacement experiments have failed to reveal how songbirds find their way south."
+    ],
+    "correct_answer": "Songbirds inherit a fixed heading but must learn through experience to navigate to a specific destination.",
+    "explanation": "Boateng's contrast between direction-only juveniles and destination-correcting adults supports that inheritance gives heading while experience adds true navigation.",
+    "key_len": 106,
+    "runner_up_len": 82
+  },
+  {
+    "id": "e73e46f7-f7ca-4bb3-b810-61037b9688bf",
+    "domain": "Craft and Structure",
+    "passage": "Renaissance linear perspective is routinely praised as the moment painting learned to depict the world as the eye truly sees it. The claim confuses two things. Perspective encodes the view from a single, fixed, monocular point—an eye clamped in place and shut on one side—whereas ordinary human vision is binocular, mobile, and constantly saccading. What perspective reproduces is not seeing but a particular technology of seeing: the image a camera obscura throws on a wall. Its persuasiveness comes precisely from its artifice, from imposing a geometric rule that the messy physiology of the eye does not obey. To call the technique realistic is therefore to let its cultural authority stand in for its fidelity. Perspective did not hold a mirror to vision; it proposed a convention so internally consistent that generations mistook the convention for the mirror.",
+    "prompt": "What is the main purpose of the passage?",
+    "choices": [
+      "To argue that linear perspective should be replaced by methods truer to binocular vision.",
+      "To challenge a familiar characterization of a technique by distinguishing its persuasiveness from its accuracy.",
+      "To explain how the camera obscura was invented from the principles of perspective.",
+      "To show that Renaissance painters were unaware their technique distorted reality."
+    ],
+    "correct_answer": "To challenge a familiar characterization of a technique by distinguishing its persuasiveness from its accuracy.",
+    "explanation": "The passage disputes the 'realism' label by separating perspective's persuasive artifice from any fidelity to how the eye actually works. The intuitive trap is that the author rejects perspective outright and wants a replacement, but he critiques a description, not the technique's use. The camera-obscura option reverses the relationship (perspective is likened to the camera obscura's image, not derived from inventing it), and the 'painters unaware' option asserts an unsupported claim about painters' awareness.",
+    "key_len": 111,
+    "runner_up_len": 89
+  },
+  {
+    "id": "ec3c8bf9-895f-447c-8b6f-dd40c12c337e",
+    "domain": "Craft and Structure",
+    "passage": "It is tempting to credit the printing press with spreading literacy across Europe. Presses multiplied, books cheapened, and reading rose; the sequence seems to tell its own story. But the earliest presses printed chiefly for those who could already read Latin, and mass literacy climbed fastest centuries later, alongside compulsory schooling. The press supplied a means, not a motive. To treat the technology as the cause is to mistake the tool that made the change possible for the social will that made it happen.",
+    "prompt": "Which choice best states the main purpose of the text?",
+    "choices": [
+      "To argue that the printing press had little effect on European literacy",
+      "To identify compulsory schooling as the sole cause of rising literacy",
+      "To describe the technical improvements that made early presses affordable",
+      "To distinguish between enabling a change and actually causing it, cautioning against a tempting inference"
+    ],
+    "correct_answer": "To distinguish between enabling a change and actually causing it, cautioning against a tempting inference",
+    "explanation": "The passage grants the press \"supplied a means\" but insists it was not the \"motive,\" drawing a means/cause distinction to correct a seductive conclusion.",
+    "key_len": 105,
+    "runner_up_len": 73
+  },
+  {
+    "id": "ed10304a-6f1d-4672-bc74-f07101ccb7ab",
+    "domain": "Craft and Structure",
+    "passage": "Text 1\n\nBritain industrialized first because it sat on coal. Cheap, abundant energy near the surface made steam power economical there before anywhere else; where fuel was dear, machines that devoured it could never pay for themselves. Geology, not genius, gave Britain its head start—the revolution was, at bottom, a matter of what happened to lie underground.\n\nText 2\n\nCoal was necessary but cannot be the whole story, for other lands had coal and did not industrialize. What distinguished Britain was the price of labor: wages were unusually high relative to the cost of capital and fuel, so machines that replaced workers paid for themselves as they did nowhere else. Inventions existed elsewhere as ideas; only in Britain was it profitable to adopt them at scale. The decisive factor was less the coal in the ground than the wage in the pocket.",
+    "prompt": "How would the author of Text 2 most likely respond to the explanation offered in Text 1?",
+    "choices": [
+      "By denying that coal played any role at all in British industrialization.",
+      "By acknowledging coal's importance while arguing that high labor costs were what made mechanization profitable.",
+      "By agreeing that geology alone determined which nations industrialized first.",
+      "By claiming that the relevant inventions were simply unavailable outside Britain."
+    ],
+    "correct_answer": "By acknowledging coal's importance while arguing that high labor costs were what made mechanization profitable.",
+    "explanation": "Text 2 opens by granting that 'coal was necessary but cannot be the whole story' and then names high wages relative to capital and fuel as what made machines pay: an acknowledge-then-redirect response, which is what the answer describes. 'Denying that coal played any role at all in British industrialization' misstates that concession, since Text 2 calls coal necessary rather than irrelevant. 'Agreeing that geology alone determined which nations industrialized first' simply restates Text 1's position, the one Text 2 is written against, since its point is that other lands had coal and did not industrialize. And 'claiming that the relevant inventions were simply unavailable outside Britain' contradicts Text 2 directly, which says inventions 'existed elsewhere as ideas' and that only profitable adoption at scale was distinctively British.",
+    "key_len": 111,
+    "runner_up_len": 81
+  },
+  {
+    "id": "ed4cb72f-c526-4b08-96e9-39222e2b9994",
+    "domain": "Craft and Structure",
+    "passage": "Text 1: Cities should replace sprawling lawns with native meadows. Lawns are ecological deserts, demanding water and mowing while feeding almost nothing. Meadows of native wildflowers, by contrast, sustain the bees and butterflies whose decline threatens the crops we depend on.\n\nText 2: I share the goal of supporting pollinators, but a meadow left to itself in a city rarely becomes the picture on the seed packet. Aggressive weeds move in, neighbors complain, and the plot is mowed flat within a season. Without funded maintenance, the meadow's promise dies faster than the lawn it replaced.",
+    "prompt": "Which choice best describes the relationship between the two texts?",
+    "choices": [
+      "Text 2 endorses the aim of Text 1 while doubting that its proposal will succeed in practice.",
+      "Text 2 rejects the ecological goal that Text 1 sets out.",
+      "Text 2 argues that lawns are more valuable to pollinators than meadows.",
+      "Text 2 claims that pollinator decline poses no real threat to crops."
+    ],
+    "correct_answer": "Text 2 endorses the aim of Text 1 while doubting that its proposal will succeed in practice.",
+    "explanation": "Text 2 explicitly shares Text 1's pollinator goal but questions whether unmaintained urban meadows can deliver on it, an agree-with-caveat relationship.",
+    "key_len": 92,
+    "runner_up_len": 71
+  },
+  {
+    "id": "ed8d9457-62b4-4b66-a057-72ef6a16c553",
+    "domain": "Craft and Structure",
+    "passage": "Textbooks stage the chemical revolution as reason routing superstition: Lavoisier's oxygen dispelling the phantom of phlogiston, that supposed substance of fire. The morality tale flatters the winners. Phlogiston theory was neither foolish nor idle; it coherently unified combustion, calcination, and respiration under a single principle and guided real discoveries, including the isolation of several gases by its own adherents. Its defect was specific and technical—it could not accommodate the weight metals gain when they burn—not a general failure of rigor. To narrate its defeat as the triumph of evidence over dogma misdescribes both parties, since Lavoisier's system also outran its evidence and retained errors of its own. What replaced phlogiston was not truth simply displacing falsehood but one productive framework yielding, on a particular quantitative anomaly, to another.",
+    "prompt": "What is the main purpose of the text?",
+    "choices": [
+      "To argue that phlogiston theory was ultimately correct and ought not to have been abandoned.",
+      "To complicate a triumphalist narrative by showing the displaced theory was rigorous and failed only on a specific point.",
+      "To praise Lavoisier for an unblemished victory of evidence over dogma.",
+      "To explain the chemical process by which metals gain weight when they burn."
+    ],
+    "correct_answer": "To complicate a triumphalist narrative by showing the displaced theory was rigorous and failed only on a specific point.",
+    "explanation": "The passage attacks the textbook staging of 'reason routing superstition,' insisting phlogiston 'coherently unified combustion, calcination, and respiration' and failed on one technical point, the weight metals gain, while Lavoisier's system also 'outran its evidence.' That is precisely complicating a triumphalist narrative by showing the displaced theory was rigorous. Arguing 'that phlogiston theory was ultimately correct and ought not to have been abandoned' overshoots: the passage concedes the theory could not accommodate the weight anomaly and was rightly superseded. 'To praise Lavoisier for an unblemished victory of evidence over dogma' restates the very morality tale the author says 'flatters the winners.' And explaining 'the chemical process by which metals gain weight when they burn' mistakes a supporting detail, the anomaly that sank phlogiston, for the essay's purpose; the passage never explains that chemistry.",
+    "key_len": 120,
+    "runner_up_len": 92
+  },
+  {
+    "id": "edb9283a-a135-4790-bbca-54409803c923",
+    "domain": "Information and Ideas",
+    "passage": "A chemist measured how the concentration of a catalyst affects reaction rate and concluded that higher catalyst concentrations produced faster reactions.",
+    "prompt": "Which choice most effectively uses data from the graph to support the chemist's claim?",
+    "choices": [
+      "The reaction rate was slowest at the highest catalyst concentration.",
+      "The reaction rate was 1.5 mmol/L/s at a concentration of 2 mmol/L.",
+      "The rate stayed the same as concentration increased.",
+      "At a concentration of 8 mmol/L, the highest tested, the reaction rate was 5.6 mmol/L/s, the fastest of the four."
+    ],
+    "correct_answer": "At a concentration of 8 mmol/L, the highest tested, the reaction rate was 5.6 mmol/L/s, the fastest of the four.",
+    "explanation": "The claim is that higher catalyst concentration produced faster reactions, and the key pairs the highest concentration (8) with the fastest rate (5.6). The 'slowest at the highest' choice is reversed, since the highest concentration gave the fastest rate. The 2 mmol/L choice states a true value but shows no trend. The 'stayed the same' choice contradicts the increasing data.",
+    "key_len": 112,
+    "runner_up_len": 68
+  },
+  {
+    "id": "ef7588d9-266a-437f-93b3-e1c6d927b3df",
+    "domain": "Craft and Structure",
+    "passage": "Text 1: Crows that drop hard nuts onto roads and wait for cars to crack them are often celebrated as reasoners who grasp cause and effect. To time the drop and retrieve the meat, the argument runs, the bird must understand that a passing wheel does the work its beak cannot.\n\nText 2: One need not credit the crow with a theory of automobiles. A bird that happened to drop a nut near traffic, found it broken, and repeated what paid off would produce the same behavior through trial and reward. The performance is striking; the explanation need not be.",
+    "prompt": "Based on the texts, how would the author of Text 2 most likely respond to the interpretation offered in Text 1?",
+    "choices": [
+      "By denying that crows actually drop nuts onto roads",
+      "By agreeing that crows possess a full theory of how automobiles work",
+      "By arguing that the behavior is too rare to be worth explaining",
+      "By proposing that the same behavior can arise from learned reward rather than an understanding of cause and effect"
+    ],
+    "correct_answer": "By proposing that the same behavior can arise from learned reward rather than an understanding of cause and effect",
+    "explanation": "Text 2 offers a simpler trial-and-reward account for the identical behavior, resisting Text 1's inference that the crow understands causation.",
+    "key_len": 114,
+    "runner_up_len": 68
+  },
+  {
+    "id": "f28ce6de-021f-44ca-9dbe-1969791c473d",
+    "domain": "Information and Ideas",
+    "passage": "Conservationists routinely treat non-native species as agents of biodiversity loss, and many are. But a growing body of work complicates the blanket condemnation. On some oceanic islands and in certain disturbed habitats, the arrival of non-native plants has actually raised the total number of species present, as newcomers establish without driving residents extinct. Advocates of a more tolerant approach cite such cases to argue that 'invasive' should not be treated as a synonym for 'harmful.' Skeptics counter that these tallies measure only a snapshot: local species counts may rise for decades before delayed extinctions—'extinction debts' incurred but not yet paid—eventually bring them back down. The optimistic figures, on this view, record a transient state, not a stable gain. Whether non-natives enrich or impoverish depends heavily on the timescale over which one is willing to count.",
+    "prompt": "Which finding, if true, would most undermine the skeptics' response described in the passage?",
+    "choices": [
+      "Recently invaded habitats show higher species counts than comparable uninvaded ones.",
+      "On islands where non-natives arrived many centuries ago, elevated species counts have persisted without the later declines the skeptics predict.",
+      "Some non-native species have driven native species to extinction on continents.",
+      "Extinction debts have been documented in habitats fragmented by deforestation."
+    ],
+    "correct_answer": "On islands where non-natives arrived many centuries ago, elevated species counts have persisted without the later declines the skeptics predict.",
+    "explanation": "The skeptics' move is temporal: today's raised species counts are a snapshot, and delayed extinctions will eventually pull them back down. The finding that on islands where non-natives arrived \"many centuries ago\" the \"elevated species counts have persisted without the later declines the skeptics predict\" runs the clock out on that objection and finds the debt never paid. The option reporting that \"Recently invaded habitats show higher species counts\" than uninvaded ones is the trap - it is exactly the short-horizon evidence the skeptics have already discounted, so it cannot answer them. The option that some non-natives \"have driven native species to extinction\" on continents speaks to the general harm of invasives, which both sides grant, not to the timescale argument. And the documentation of extinction debts \"in habitats fragmented by deforestation\" shows the mechanism is real elsewhere, which if anything aids the skeptics.",
+    "key_len": 144,
+    "runner_up_len": 84
+  },
+  {
+    "id": "f60e2cb3-3659-4487-bc20-0824288b7f54",
+    "domain": "Information and Ideas",
+    "passage": "The transition to agriculture is conventionally cast as humanity's decisive step upward—the innovation that freed our ancestors from the precariousness of foraging. Skeletal evidence unsettles the story. Early farming populations, compared with the foragers who preceded them, were shorter, showed more signs of nutritional stress, and carried a heavier load of infectious disease, the predictable result of denser settlement and a narrower diet. Why, then, did agriculture spread? Not because it made individuals healthier but because it made populations larger: a field feeds more people per acre than a forest, even if it feeds each of them worse. Agriculture triumphed as a demographic strategy, not a nutritional one. The measure by which we call it progress—the sheer multiplication of human numbers—is precisely the measure under which its adopters, one by one, were often worse off.",
+    "prompt": "Which choice best describes the function of the question \"Why, then, did agriculture spread?\" in the text?",
+    "choices": [
+      "It introduces the author's concession that agriculture ultimately did improve human health despite early setbacks.",
+      "It signals that the author will now reject the skeletal evidence just presented as inconclusive.",
+      "It marks a turn from evidence that farming harmed individuals to an explanation of its spread that does not depend on individual benefit.",
+      "It invites readers to consider foraging societies as a model preferable to modern agriculture."
+    ],
+    "correct_answer": "It marks a turn from evidence that farming harmed individuals to an explanation of its spread that does not depend on individual benefit.",
+    "explanation": "The question falls immediately after the skeletal evidence that early farmers were shorter, more stressed and sicker, and it hands off to the answer that follows: agriculture spread \"not because it made individuals healthier but because it made populations larger.\" It therefore marks the turn from harm-to-individuals toward an explanation of the spread that does not run through individual benefit, which is the key. The option that has the author conceding \"agriculture ultimately did improve human health despite early setbacks\" is the tempting misread; no such concession is made, and the passage ends by saying adopters were \"often worse off.\" The option claiming the author \"will now reject the skeletal evidence\" as inconclusive gets the move backwards - that evidence is accepted and built upon. And the option in which the question \"invites readers to consider foraging societies\" as a preferable model imports a present-day value judgment the passage never makes its business.",
+    "key_len": 137,
+    "runner_up_len": 114
+  },
+  {
+    "id": "f7911509-6ca4-4f74-958f-75aa61749931",
+    "domain": "Craft and Structure",
+    "passage": "Public-health campaigns against smoking long relied on fear, plastering warnings and diseased lungs across every package. The approach worked, but unevenly: rates fell fastest among the affluent and slowest among the poor, widening a gap the campaigns never meant to open. Fear, researchers suspect, demands a sense of control over one's future to be motivating, and that sense is exactly what precarious lives lack. A message built to save everyone ended up helping most those who needed it least.",
+    "prompt": "What is the main purpose of the text?",
+    "choices": [
+      "To argue that anti-smoking campaigns should abandon health warnings entirely",
+      "To document the specific images used on cigarette packaging over time",
+      "To explain why an effective public-health strategy produced an unintended and uneven result",
+      "To claim that fear-based messaging has no effect on smoking rates"
+    ],
+    "correct_answer": "To explain why an effective public-health strategy produced an unintended and uneven result",
+    "explanation": "The text credits fear-based campaigns as effective but explains why they widened a class gap, since fear motivates only those who feel in control of their futures.",
+    "key_len": 91,
+    "runner_up_len": 76
+  },
+  {
+    "id": "faa2b8ea-cfa7-4df3-bfd2-a907fcfcdade",
+    "domain": "Craft and Structure",
+    "passage": "For decades the vast stretches of the genome that code for no protein were dismissed as 'junk,' evolutionary debris carried along inertly. The discovery that some of this material regulates when and how genes are expressed prompted a dramatic reversal: headlines announced that junk DNA was functional after all. The swing has gone too far. That a sequence is transcribed, or binds a protein, does not establish that it does anything the organism depends on; cells are chemically busy places, and incidental activity is cheap. The rigorous test of function is not biochemical activity but evolutionary conservation—whether natural selection has preserved a sequence against the steady drift of mutation. By that standard, a substantial fraction of non-coding DNA still shows no sign of being maintained, and is most parsimoniously read as nonfunctional. The correction to 'junk' was overdue; its wholesale reversal is not yet earned.",
+    "prompt": "Which finding, if true, would most strengthen the passage's central argument?",
+    "choices": [
+      "Evidence that certain non-coding sequences regulate the expression of nearby genes",
+      "A finding that most non-coding DNA is transcribed into RNA at some point",
+      "A study showing that non-coding regions which are biochemically active are usually not conserved across related species",
+      "Evidence that conserved non-coding sequences rarely display any biochemical activity"
+    ],
+    "correct_answer": "A study showing that non-coding regions which are biochemically active are usually not conserved across related species",
+    "explanation": "The central argument is that biochemical activity is not evidence of function and that conservation is the real test; showing active regions are typically not conserved supports exactly that decoupling. Option one supports the 'reversal' the passage warns against. Option two describes activity the passage explicitly says does not establish function—so it would be dismissed, not strengthening. Option four muddles the passage's own criterion by pitting conservation against activity in the wrong direction.",
+    "key_len": 119,
+    "runner_up_len": 84
+  },
+  {
+    "id": "fadff9e7-a5b4-4d43-a63b-3b31d716003b",
+    "domain": "Information and Ideas",
+    "passage": "Anthropologists once held up mobile foraging bands as living proof of primordial equality—societies without chiefs, hoarding, or command. The picture was a useful corrective to the assumption that hierarchy is natural and eternal. But it hardened into a myth of its own. Ethnography reveals that such 'equality' was not the absence of power but its active, effortful suppression: bands leveled would-be big men through ridicule, gossip, and the threat of desertion, techniques that presuppose the very impulses they check. Foragers were not innocent of hierarchy; they policed it. The revised view neither restores the old naturalness of rank nor preserves the romance of a hierarchy-free past. It relocates equality from a default state to an achievement—fragile, deliberate, and continually renewed.",
+    "prompt": "Which choice best describes the function of the sentence 'Foragers were not innocent of hierarchy; they policed it'?",
+    "choices": [
+      "It concedes that foraging societies were ultimately as hierarchical as later ones.",
+      "It restates the traditional claim that social hierarchy is natural and inevitable.",
+      "It crystallizes the passage's central revision: that equality was actively maintained rather than merely given.",
+      "It introduces evidence that undermines the reliability of ethnographic methods."
+    ],
+    "correct_answer": "It crystallizes the passage's central revision: that equality was actively maintained rather than merely given.",
+    "explanation": "The sentence lands directly after the description of leveling by 'ridicule, gossip, and the threat of desertion,' and it compresses the passage's revision: forager equality was 'not the absence of power but its active, effortful suppression.' Reading it as a concession 'that foraging societies were ultimately as hierarchical as later ones' overstates, since the passage relocates equality from a default to an achievement, not to rank. Reading it as a restatement of 'the traditional claim that social hierarchy is natural and inevitable' inverts the point: to police hierarchy is to suppress it, which is the opposite of endorsing its inevitability. And reading it as introducing 'evidence that undermines the reliability of ethnographic methods' is off-topic, since ethnography is the passage's source and never its target.",
+    "key_len": 111,
+    "runner_up_len": 82
+  }
+]
