@@ -80,6 +80,9 @@ export function Sidebar({ activeItem, userName, onHelpClick, academyLogo }: Side
   const { t } = useTranslation()
   const { user, academyId } = useAuth()
   const [hasCampProgram, setHasCampProgram] = useState(false)
+  /** Camp-only school (academies.camp_only, migration 087): the sidebar
+   *  collapses to Camp + Families + the bottom section. */
+  const [campOnly, setCampOnly] = useState(false)
 
   // Fetch user role
   useEffect(() => {
@@ -120,15 +123,29 @@ export function Sidebar({ activeItem, userName, onHelpClick, academyLogo }: Side
     const checkCampProgram = async () => {
       if (!academyId) {
         setHasCampProgram(false)
+        setCampOnly(false)
         return
       }
-      const { data, error } = await db
-        .from('camp_programs')
-        .select('id')
-        .eq('academy_id', academyId)
-        .is('deleted_at', null)
-        .limit(1)
-      if (!cancelled) setHasCampProgram(!error && (data?.length ?? 0) > 0)
+      // Same read path for both flags: RLS lets academy members read
+      // their own academies row (the app layout reads logo_url the same
+      // way) and camp_programs (081).
+      const [{ data, error }, { data: academyRow }] = await Promise.all([
+        db
+          .from('camp_programs')
+          .select('id')
+          .eq('academy_id', academyId)
+          .is('deleted_at', null)
+          .limit(1),
+        db
+          .from('academies')
+          .select('camp_only')
+          .eq('id', academyId)
+          .maybeSingle(),
+      ])
+      if (!cancelled) {
+        setHasCampProgram(!error && (data?.length ?? 0) > 0)
+        setCampOnly(academyRow?.camp_only === true)
+      }
     }
     checkCampProgram()
     return () => { cancelled = true }
@@ -140,8 +157,9 @@ export function Sidebar({ activeItem, userName, onHelpClick, academyLogo }: Side
   // Filter navigation items based on user role
   const allNavigationItems = getNavigationItems(t)
   // Camp sits right after Assignments — it is the camp flavour of the
-  // same job (teacher hands work to a classroom).
-  if (hasCampProgram) {
+  // same job (teacher hands work to a classroom). Camp-only academies
+  // always get the item, even if the program flag hasn't resolved yet.
+  if (hasCampProgram || campOnly) {
     const afterIdx = allNavigationItems.findIndex(item => item.id === 'assignments')
     allNavigationItems.splice(afterIdx + 1, 0, {
       id: 'camp-program',
@@ -150,6 +168,9 @@ export function Sidebar({ activeItem, userName, onHelpClick, academyLogo }: Side
     })
   }
   const navigationItems = allNavigationItems.filter(item => {
+    // Camp-only school: the main nav is just Camp — everything else the
+    // dashboard offers is about a curriculum the school doesn't run.
+    if (campOnly) return item.id === 'camp-program'
     // While loading, don't show items that might be hidden for teachers to prevent flash
     if (userRole === null) {
       // Optimistically hide items that would be hidden for teachers during loading
@@ -164,7 +185,12 @@ export function Sidebar({ activeItem, userName, onHelpClick, academyLogo }: Side
     return true
   })
 
-  const contactsItems = getContactsItems(t)
+  // Camp-only: of the contacts section only Families stays — camp parent
+  // reports travel over family links (P4), so managing families IS the
+  // camp school's contact job. (Andy's "contacts" item = Families.)
+  const contactsItems = campOnly
+    ? getContactsItems(t).filter(item => item.id === 'families')
+    : getContactsItems(t)
 
   // Filter bottom items based on role
   const allBottomItems = getBottomItems(t)
@@ -176,6 +202,11 @@ export function Sidebar({ activeItem, userName, onHelpClick, academyLogo }: Side
       }
       // Hide upgrade for teachers
       if (userRole === 'teacher' && item.id === 'upgrade') {
+        return false
+      }
+      // Camp billing is manual (quota grants), so Upgrade has nothing to
+      // sell a camp-only school. Settings/Archive/Help stay.
+      if (campOnly && item.id === 'upgrade') {
         return false
       }
       return true
@@ -211,7 +242,7 @@ export function Sidebar({ activeItem, userName, onHelpClick, academyLogo }: Side
       <div className="px-5 py-3 h-[57px] flex items-center border-b border-gray-100">
         <div
           className="flex items-center gap-3 cursor-pointer"
-          onClick={() => router.push(userRole === 'teacher' ? '/classrooms' : '/dashboard')}
+          onClick={() => router.push(campOnly ? '/camp-program' : userRole === 'teacher' ? '/classrooms' : '/dashboard')}
         >
           {academyLogo ? (
             <img

@@ -2607,7 +2607,33 @@
       "gradedSessions": "채점된 세션 {n}개",
       "noGradedSessions": "채점된 세션이 아직 없습니다",
       "skillsToReview": "복습할 스킬",
-      "skillsHint": "정확도 {threshold}% 미만"
+      "skillsHint": "정확도 {threshold}% 미만",
+      "trendTitle": "평균 점수 추이",
+      "trendEmpty": "아직 채점된 세션이 없습니다. 학생이 과제를 완료하면 추이가 표시됩니다.",
+      "assignmentStatus": "과제 현황",
+      "statusCompleted": "완료",
+      "statusLate": "지연",
+      "statusMissing": "미제출",
+      "statusOpen": "{n}건 마감 전",
+      "statusEmpty": "아직 상태가 확정된 과제가 없습니다.",
+      "suggestedTopics": "교사 복습 추천 주제",
+      "suggestedTopicsHint": "정답률 {threshold}% 미만",
+      "noTopics": "아직 발견된 취약 영역이 없습니다.",
+      "topicAccuracy": "정답률 {accuracy}%"
+    },
+    "tabs": {
+      "overview": "개요",
+      "students": "학생",
+      "classrooms": "강의실"
+    },
+    "students": {
+      "searchPlaceholder": "학생 검색…",
+      "classroom": "강의실",
+      "completion": "완료율",
+      "avgScore": "평균 점수",
+      "lastActive": "최근 활동",
+      "status": "상태",
+      "noMatches": "검색과 일치하는 학생이 없습니다."
     },
     "studentDetail": {
       "open": "학생 상세 보기",

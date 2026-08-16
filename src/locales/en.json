@@ -2607,7 +2607,33 @@
       "gradedSessions": "{n} graded sessions",
       "noGradedSessions": "no graded sessions yet",
       "skillsToReview": "Skills to review",
-      "skillsHint": "below {threshold}% accuracy"
+      "skillsHint": "below {threshold}% accuracy",
+      "trendTitle": "Average score trend",
+      "trendEmpty": "No graded sessions yet — the trend appears once students complete assignments.",
+      "assignmentStatus": "Assignment status",
+      "statusCompleted": "Completed",
+      "statusLate": "Late",
+      "statusMissing": "Missing",
+      "statusOpen": "{n} not yet due",
+      "statusEmpty": "No assignments with a settled status yet.",
+      "suggestedTopics": "Suggested topics for teacher review",
+      "suggestedTopicsHint": "cohort accuracy below {threshold}%",
+      "noTopics": "No weak areas detected yet.",
+      "topicAccuracy": "{accuracy}% correct"
+    },
+    "tabs": {
+      "overview": "Overview",
+      "students": "Students",
+      "classrooms": "Classrooms"
+    },
+    "students": {
+      "searchPlaceholder": "Search students…",
+      "classroom": "Classroom",
+      "completion": "Completion",
+      "avgScore": "Avg score",
+      "lastActive": "Last active",
+      "status": "Status",
+      "noMatches": "No students match your search."
     },
     "studentDetail": {
       "open": "View student details",

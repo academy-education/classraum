@@ -8,6 +8,11 @@
  *   - GET /api/camp/student per-student drill-down, cross-checked against
  *     both the P2 dashboard and a freshly generated P4 report (the three
  *     must agree — one shared implementation)
+ *   - GET /api/camp/students program-wide list (Students tab), row
+ *     cross-checked against the drill-down payload
+ *   - academies.camp_only (migration 087): readable through the
+ *     teacher's own RLS (the sidebar's read path) and TRUE for the E2E
+ *     academy, which is our standing camp-only test school
  *
  * Uses the data the last camp-e2e.mjs run left in place (accounts file in
  * the session scratchpad), then seeds a SECOND program (toefl) for the
@@ -249,19 +254,78 @@ async function main() {
     gen.status === 201 && rep.ok && !!rp && stripVolatile(rp) === stripVolatile(payload),
     `gen status ${gen.status}, equal=${!!rp && stripVolatile(rp) === stripVolatile(payload)}`)
 
+  // ── 3b. program-wide students list (Students tab) agrees with the
+  //        drill-down — same loader, so completion / avg score / states
+  //        must match the payload row-for-row. lastActive on the list is
+  //        camp-assignment completions only (mock tests are a drill-down
+  //        detail), so it's checked against the assignments' latest.
+  const list = await api(`/api/camp/students?programId=${SAT_PROGRAM_ID}`, { token: tTok })
+  record('V16 students list returns 200 with rows',
+    list.ok && Array.isArray(list.json?.students) && list.json.students.length > 0,
+    `status ${list.status}, rows=${list.json?.students?.length}`)
+  const row = (list.json?.students ?? []).find(
+    r => r.studentId === STUDENT_UID && r.classroomId === SAT_CLASSROOM_ID)
+  const latestAssignmentCompletion = payload.assignments
+    .map(a => a.completedAt).filter(Boolean).sort().at(-1) ?? null
+  record('V17 row matches the drill-down (completion, avg score, states, last active)',
+    !!row &&
+    row.completion.done === payload.completion.done &&
+    row.completion.total === payload.completion.total &&
+    row.avgScorePct === payload.cohort.studentAccuracy &&
+    row.states.done === payload.assignments.filter(a => a.state === 'done').length &&
+    row.states.inProgress === payload.assignments.filter(a => a.state === 'in_progress').length &&
+    row.states.notStarted === payload.assignments.filter(a => a.state === 'not_started').length &&
+    row.lastActive === latestAssignmentCompletion,
+    row
+      ? `completion=${row.completion.done}/${row.completion.total}, avg=${row.avgScorePct}, lastActive=${row.lastActive}`
+      : 'row missing')
+
+  // ── 3c. overview chart payloads are consistent with the stats ──
+  //        (trend sessions sum = scoredSessions; donut pairs sum =
+  //        expected; the one 20/20 session is a completed pair)
+  const trendSessions = (o.trend ?? []).reduce((n, b) => n + b.sessions, 0)
+  const st = o.assignmentStatus ?? {}
+  const pairSum = (st.completed ?? 0) + (st.late ?? 0) + (st.missing ?? 0) + (st.open ?? 0)
+  record('V18 overview trend/status agree with the stat row',
+    trendSessions === o.scoredSessions &&
+    pairSum === o.completion.expected &&
+    st.completed === o.completion.done &&
+    Array.isArray(o.reviewTopics) && o.reviewTopics.length === o.skillsToReview.count,
+    `trendSessions=${trendSessions}, pairs=${pairSum} (exp ${o.completion.expected}), completed=${st.completed}, topics=${o.reviewTopics?.length}`)
+
   // ── 4. auth negatives ──
   const progAsStudent = await api(`/api/camp/program?academyId=${ACADEMY_ID}`, { token: sTok })
   const ovAsStudent = await api(`/api/camp/overview?programId=${SAT_PROGRAM_ID}`, { token: sTok })
   const stuAsStudent = await api(
     `/api/camp/student?classroomId=${SAT_CLASSROOM_ID}&studentId=${STUDENT_UID}`, { token: sTok })
-  record('V16 student token rejected on program/overview/student (403)',
-    progAsStudent.status === 403 && ovAsStudent.status === 403 && stuAsStudent.status === 403,
-    `statuses ${progAsStudent.status}/${ovAsStudent.status}/${stuAsStudent.status}`)
+  const listAsStudent = await api(`/api/camp/students?programId=${SAT_PROGRAM_ID}`, { token: sTok })
+  record('V19 student token rejected on program/overview/student/students (403)',
+    progAsStudent.status === 403 && ovAsStudent.status === 403 &&
+    stuAsStudent.status === 403 && listAsStudent.status === 403,
+    `statuses ${progAsStudent.status}/${ovAsStudent.status}/${stuAsStudent.status}/${listAsStudent.status}`)
   const ovAnon = await api(`/api/camp/overview?programId=${SAT_PROGRAM_ID}`)
   const stuAnon = await api(`/api/camp/student?classroomId=${SAT_CLASSROOM_ID}&studentId=${STUDENT_UID}`)
-  record('V17 anonymous rejected (401)',
-    ovAnon.status === 401 && stuAnon.status === 401,
-    `statuses ${ovAnon.status}/${stuAnon.status}`)
+  const listAnon = await api(`/api/camp/students?programId=${SAT_PROGRAM_ID}`)
+  record('V20 anonymous rejected (401)',
+    ovAnon.status === 401 && stuAnon.status === 401 && listAnon.status === 401,
+    `statuses ${ovAnon.status}/${stuAnon.status}/${listAnon.status}`)
+
+  // ── 5. camp_only flag (087) — set manually on the E2E academy, and
+  //       readable through the teacher's OWN RLS session (exactly the
+  //       query the sidebar runs to collapse to camp-only nav).
+  const teacherDb = anon()
+  await teacherDb.auth.setSession({
+    access_token: tAuth.data.session.access_token,
+    refresh_token: tAuth.data.session.refresh_token,
+  })
+  const { data: academyRow, error: campOnlyErr } = await teacherDb
+    .from('academies')
+    .select('camp_only')
+    .eq('id', ACADEMY_ID)
+    .maybeSingle()
+  record('V21 academies.camp_only readable via teacher RLS and TRUE for the E2E academy',
+    !campOnlyErr && academyRow?.camp_only === true,
+    campOnlyErr ? campOnlyErr.message : `camp_only=${academyRow?.camp_only}`)
 
   finish()
 }

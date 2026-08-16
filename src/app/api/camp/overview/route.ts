@@ -18,6 +18,19 @@ import { loadClassroomCampData } from '@/lib/camp/reports'
  *   - skillsToReview: cohort domains below the accuracy threshold the
  *     dashboard UI treats as "good" (70%, its green band), counted only
  *     where the dashboard's min-answers rule is met
+ *   - reviewTopics: the domains behind that count (section, domain,
+ *     accuracy, n), weakest first — the "suggested topics for teacher
+ *     review" card
+ *   - trend: completed graded camp sessions bucketed by completion DAY
+ *     (UTC date of completed_at), average score per day, oldest first —
+ *     the average-score trend line
+ *   - assignmentStatus: (assignment × enrolled student) pairs classified
+ *     for the status donut. Definitions (see classify() below):
+ *       completed = the student's camp session for it is completed
+ *       late      = past due_at, a session exists but is not completed
+ *       missing   = past due_at, never started
+ *       open      = not completed but not past due (or no due date) —
+ *                   reported for the denominator note, outside the donut
  *
  * Reuses loadClassroomCampData (src/lib/camp/reports.ts) per classroom —
  * the same loader the dashboard-adjacent report builder uses, with the
@@ -74,7 +87,11 @@ export async function GET(req: NextRequest) {
   let doneSessions = 0
   let scoreSum = 0
   let scoredSessions = 0
-  const byDomain = new Map<string, { correct: number; total: number }>()
+  const byDomain = new Map<string, { section: string; domain: string; correct: number; total: number }>()
+  /** avg-score trend buckets: UTC day of completed_at → graded sums. */
+  const byDay = new Map<string, { sum: number; n: number }>()
+  const status = { completed: 0, late: 0, missing: 0, open: 0 }
+  const nowMs = Date.now()
 
   for (const room of classrooms ?? []) {
     const data = await loadClassroomCampData({
@@ -91,14 +108,39 @@ export async function GET(req: NextRequest) {
       if (s.status !== 'completed') continue
       doneSessions += 1
       if (s.correct_count !== null && s.total_count !== null && s.total_count > 0) {
-        scoreSum += (100 * s.correct_count) / s.total_count
+        const scorePct = (100 * s.correct_count) / s.total_count
+        scoreSum += scorePct
         scoredSessions += 1
+        if (s.completed_at) {
+          const day = s.completed_at.slice(0, 10)
+          const bucket = byDay.get(day) ?? { sum: 0, n: 0 }
+          bucket.sum += scorePct
+          bucket.n += 1
+          byDay.set(day, bucket)
+        }
+      }
+    }
+
+    // Assignment-status donut: classify every (assignment × enrolled
+    // student) pair. `late` and `missing` only exist once due_at has
+    // passed — before the deadline an unfinished pair is `open`.
+    for (const a of data.assignments) {
+      // Date-parse rather than string-compare: PostgREST may emit the
+      // offset as +00:00 while toISOString() uses Z.
+      const pastDue = a.due_at !== null && new Date(a.due_at).getTime() < nowMs
+      for (const studentId of data.studentIds) {
+        const s = data.sessionByKey.get(`${a.id}:${studentId}`)
+        if (s?.status === 'completed') status.completed += 1
+        else if (pastDue && s) status.late += 1
+        else if (pastDue) status.missing += 1
+        else status.open += 1
       }
     }
 
     for (const perDomain of data.skillsByStudent.values()) {
       for (const [key, agg] of perDomain) {
-        const merged = byDomain.get(key) ?? { correct: 0, total: 0 }
+        const merged = byDomain.get(key)
+          ?? { section: agg.section, domain: agg.domain, correct: 0, total: 0 }
         merged.correct += agg.correct
         merged.total += agg.total
         byDomain.set(key, merged)
@@ -106,10 +148,23 @@ export async function GET(req: NextRequest) {
     }
   }
 
-  const skillsToReview = [...byDomain.values()].filter(
-    d => d.total >= MIN_ANSWERS_FOR_RANKING &&
-      Math.round((100 * d.correct) / d.total) < REVIEW_ACCURACY_THRESHOLD,
-  ).length
+  // Weakest first; same eligibility rule as the count (min answers, and
+  // accuracy below the dashboard's green band).
+  const reviewTopics = [...byDomain.values()]
+    .filter(d => d.total >= MIN_ANSWERS_FOR_RANKING &&
+      Math.round((100 * d.correct) / d.total) < REVIEW_ACCURACY_THRESHOLD)
+    .map(d => ({
+      section: d.section,
+      domain: d.domain,
+      accuracy: Math.round((100 * d.correct) / d.total),
+      n: d.total,
+    }))
+    .sort((a, b) => a.accuracy - b.accuracy || b.n - a.n)
+  const skillsToReview = reviewTopics.length
+
+  const trend = [...byDay.entries()]
+    .map(([date, b]) => ({ date, avgPct: Math.round(b.sum / b.n), sessions: b.n }))
+    .sort((a, b) => a.date.localeCompare(b.date))
 
   return NextResponse.json({
     programId,
@@ -127,5 +182,8 @@ export async function GET(req: NextRequest) {
       accuracyThreshold: REVIEW_ACCURACY_THRESHOLD,
       minAnswers: MIN_ANSWERS_FOR_RANKING,
     },
+    reviewTopics,
+    trend,
+    assignmentStatus: status,
   })
 }

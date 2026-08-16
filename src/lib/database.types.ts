@@ -19,6 +19,7 @@ export type Database = {
           address: string | null
           bank_account: Json | null
           business_registration_number: string | null
+          camp_only: boolean
           closure_notice_sent_at: string | null
           created_at: string | null
           id: string
@@ -41,6 +42,7 @@ export type Database = {
           address?: string | null
           bank_account?: Json | null
           business_registration_number?: string | null
+          camp_only?: boolean
           closure_notice_sent_at?: string | null
           created_at?: string | null
           id?: string
@@ -63,6 +65,7 @@ export type Database = {
           address?: string | null
           bank_account?: Json | null
           business_registration_number?: string | null
+          camp_only?: boolean
           closure_notice_sent_at?: string | null
           created_at?: string | null
           id?: string

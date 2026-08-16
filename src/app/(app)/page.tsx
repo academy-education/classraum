@@ -72,13 +72,30 @@ export default function AppRootPage() {
           if (pathname !== target) {
             router.replace(target)
           }
-        } else if (userRole === 'manager') {
-          if (pathname !== '/dashboard') {
-            router.replace('/dashboard')
+        } else if (userRole === 'manager' || userRole === 'teacher') {
+          // Camp-only school (academies.camp_only, migration 087):
+          // managers and teachers land on Camp — the dashboard and
+          // classroom pages are about a curriculum they don't run.
+          const isCampOnly = async () => {
+            const { data: membership } = await db
+              .from(userRole === 'manager' ? 'managers' : 'teachers')
+              .select('academy_id')
+              .eq('user_id', user.id)
+              .limit(1)
+              .maybeSingle()
+            if (!membership?.academy_id) return false
+            const { data: academy } = await db
+              .from('academies')
+              .select('camp_only')
+              .eq('id', membership.academy_id)
+              .maybeSingle()
+            return academy?.camp_only === true
           }
-        } else if (userRole === 'teacher') {
-          if (pathname !== '/classrooms') {
-            router.replace('/classrooms')
+          const target = (await isCampOnly())
+            ? '/camp-program'
+            : userRole === 'manager' ? '/dashboard' : '/classrooms'
+          if (pathname !== target) {
+            router.replace(target)
           }
         } else if (userRole === 'admin' || userRole === 'super_admin') {
           if (pathname !== '/admin') {

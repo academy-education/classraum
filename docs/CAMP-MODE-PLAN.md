@@ -74,5 +74,27 @@ parents (family link, then Kakao/email). Tasks #319–#324.
   uses (one implementation, verified byte-equal modulo jsonb key order
   in camp-overview-verify V15), plus `lastActivity`. UI:
   `CampStudentDetail.tsx`, opened from the roster table.
-- Verifier: `scripts/camp-overview-verify.mjs` (17 checks; seeds a
+- Verifier: `scripts/camp-overview-verify.mjs` (21 checks; seeds a
   second toefl program per run into the E2E academy).
+
+## P6 additions (2026-08-17): camp UX overhaul
+
+- CampPage is now tabbed (Overview / Students / Classrooms) with a slim
+  quota bar above the tabs. Overview mirrors the marketing mock
+  (src/app/camp/page.tsx dashboard-window): 4 stat cards, recharts
+  average-score trend, assignment-status donut, suggested-topics card.
+  `/api/camp/overview` grew `trend`, `assignmentStatus`
+  (completed / late / missing / open — definitions in the route) and
+  `reviewTopics` for it.
+- `GET /api/camp/students?programId=` + `CampStudentsPanel.tsx`: the
+  Students tab — searchable per-program roster (one row per
+  classroom×student), row click opens CampStudentDetail.
+- Camp modals use the shared `DatePicker` (date-picker.tsx), not native
+  date inputs.
+- `academies.camp_only` (migration 087, set manually like program
+  grants): minimal sidebar (Camp, Families, Settings, Archive, Help,
+  Logout) and `/camp-program` landing for managers/teachers. 087 also
+  added a COLUMN-scoped `grant select (id, name, logo_url, camp_only)`
+  to `authenticated` — academies had NO client select grant at all, so
+  every client read (incl. the layout's logo_url) had been failing
+  silently. The E2E academy has camp_only=true (V21 guards it).

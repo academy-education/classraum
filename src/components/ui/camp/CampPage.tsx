@@ -7,12 +7,15 @@ import { Card } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
+import { DatePicker } from '@/components/ui/date-picker'
 import { ModalShell } from '@/components/ui/common/ModalShell'
 import { EmptyState } from '@/components/ui/common/EmptyState'
 import { StatusPill } from '@/components/ui/status-pill'
 import { CampClassroomDashboard } from '@/components/ui/camp/CampClassroomDashboard'
 import { CampReviewPresenter } from '@/components/ui/camp/CampReviewPresenter'
 import { CampReportsPanel } from '@/components/ui/camp/CampReportsPanel'
+import { CampStudentsPanel } from '@/components/ui/camp/CampStudentsPanel'
+import { LineChart, Line, ResponsiveContainer, XAxis, YAxis, Tooltip } from 'recharts'
 import type { Question } from '@/app/mobile/study/session/[id]/test/types'
 import { authHeaders } from '@/lib/auth-headers'
 import { useTranslation } from '@/hooks/useTranslation'
@@ -56,9 +59,9 @@ interface CampClassroom {
 /* Per-family identity — the marketing page's SAT blue / TOEFL violet,
  * reduced to a dot and a tinted badge (accents inside the dashboard
  * design system, not marketing gradients). */
-const FAMILY_ACCENT: Record<string, { dot: string; badge: string }> = {
-  sat: { dot: 'bg-[#2885e8]', badge: 'bg-[#2885e8]/10 text-[#2885e8]' },
-  toefl: { dot: 'bg-[#7a5af8]', badge: 'bg-[#7a5af8]/10 text-[#7a5af8]' },
+const FAMILY_ACCENT: Record<string, { dot: string; badge: string; hex: string }> = {
+  sat: { dot: 'bg-[#2885e8]', badge: 'bg-[#2885e8]/10 text-[#2885e8]', hex: '#2885e8' },
+  toefl: { dot: 'bg-[#7a5af8]', badge: 'bg-[#7a5af8]/10 text-[#7a5af8]', hex: '#7a5af8' },
 }
 const familyAccent = (family: string) => FAMILY_ACCENT[family] ?? FAMILY_ACCENT.sat!
 
@@ -69,7 +72,7 @@ interface ProgramGroup {
   classrooms: CampClassroom[]
 }
 
-/** GET /api/camp/overview — program-wide stats strip. */
+/** GET /api/camp/overview — program-wide stats + chart data. */
 interface ProgramOverview {
   programId: string
   studentsEnrolled: number
@@ -78,6 +81,13 @@ interface ProgramOverview {
   averageScorePct: number | null
   scoredSessions: number
   skillsToReview: { count: number; accuracyThreshold: number; minAnswers: number }
+  /** Weakest cohort domains (the count above, itemised) — the
+   *  "suggested topics for teacher review" card. */
+  reviewTopics: Array<{ section: string; domain: string; accuracy: number; n: number }>
+  /** Graded camp sessions bucketed by completion day, oldest first. */
+  trend: Array<{ date: string; avgPct: number; sessions: number }>
+  /** (assignment × student) pairs; definitions in the overview route. */
+  assignmentStatus: { completed: number; late: number; missing: number; open: number }
 }
 
 interface CampAssignment {
@@ -134,6 +144,9 @@ export function CampPage({ academyId }: CampPageProps) {
   const [assignments, setAssignments] = useState<Record<string, CampAssignment[]>>({})
   /** Overview stats per program id, fetched lazily per active tab. */
   const [overviews, setOverviews] = useState<Record<string, ProgramOverview>>({})
+  /** Which view of the program is showing — Overview (stats + charts),
+   *  Students (program-wide roster), Classrooms (assignments + tools). */
+  const [activeTab, setActiveTab] = useState<'overview' | 'students' | 'classrooms'>('overview')
 
   /** Classrooms whose tracking panel (P2 dashboard) is expanded. */
   const [openDashboards, setOpenDashboards] = useState<Record<string, boolean>>({})
@@ -432,9 +445,9 @@ export function CampPage({ academyId }: CampPageProps) {
           </Button>
         </div>
 
-        {/* Overview strip skeleton — matches the 5-card grid below */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4 mb-8">
-          {[...Array(5)].map((_, i) => (
+        {/* Overview stat-card skeleton — matches the 4-card grid below */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 mb-8">
+          {[...Array(4)].map((_, i) => (
             <Card key={i} className="p-5 animate-pulse">
               <div className="flex items-center gap-2 mb-3">
                 <div className="w-7 h-7 rounded-lg bg-gray-200" />
@@ -564,49 +577,86 @@ export function CampPage({ academyId }: CampPageProps) {
         </Button>
       </div>
 
-      {/* Overview strip — step 2: the program at a glance. Quota first
-          (the paid meter), then the four /api/camp/overview stats. All
-          five share the stat-card idiom; the family accent dot on each
-          label row ties the strip to the program selected above. */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4 mb-8">
-        <Card className="p-5">
-          <div className="flex items-center gap-2 mb-3">
+      {/* Quota meter — the paid resource, kept visible above every tab
+          as a slim full-width bar (the stat-card version crowded the
+          mock's 4-card row out of parity). */}
+      <Card className="p-4 sm:p-5 mb-6">
+        <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-5">
+          <div className="flex items-center gap-2 flex-shrink-0">
             <div className="w-7 h-7 rounded-lg bg-primary/10 flex items-center justify-center">
               <ClipboardList className="w-3.5 h-3.5 text-primary" strokeWidth={2.25} />
             </div>
             <p className="text-[11px] font-semibold uppercase tracking-[0.1em] text-gray-500">
               {t("camp.questionQuota")}
             </p>
-            <span aria-hidden className={`ml-auto w-1.5 h-1.5 rounded-full ${accent.dot}`} />
           </div>
-          <div className="flex items-baseline gap-2 mb-3">
-            <p className="text-4xl font-semibold tracking-tight text-gray-900 tabular-nums">
-              {quotaUsed}
+          <div className="flex-1 flex items-center gap-3 w-full">
+            <div className="flex-1 h-1.5 bg-gray-100 rounded-full overflow-hidden">
+              <div
+                className={`h-full rounded-full transition-all ${quotaPct >= 90 ? 'bg-rose-500' : 'bg-primary'}`}
+                style={{ width: `${quotaPct}%` }}
+              />
+            </div>
+            <p className="text-sm tabular-nums flex-shrink-0">
+              <span className="font-semibold text-gray-900">{quotaUsed}</span>
+              <span className="text-gray-400"> / {quotaTotal}</span>
             </p>
-            <p className="text-sm text-gray-400">/ {quotaTotal}</p>
           </div>
-          <div className="w-full h-1.5 bg-gray-100 rounded-full overflow-hidden mb-3">
-            <div
-              className={`h-full rounded-full transition-all ${quotaPct >= 90 ? 'bg-rose-500' : 'bg-primary'}`}
-              style={{ width: `${quotaPct}%` }}
-            />
-          </div>
-          <div className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-[11px] font-medium ${quotaPct >= 90 ? 'bg-rose-50 text-rose-700' : 'bg-primary/10 text-primary'}`}>
+          <div className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-[11px] font-medium flex-shrink-0 self-start sm:self-auto ${quotaPct >= 90 ? 'bg-rose-50 text-rose-700' : 'bg-primary/10 text-primary'}`}>
             {t('camp.quotaRemaining', { remaining: quotaRemaining })}
           </div>
-        </Card>
-        {overview === null ? (
-          [...Array(4)].map((_, i) => (
-            <Card key={i} className="p-5 animate-pulse">
-              <div className="flex items-center gap-2 mb-3">
-                <div className="w-7 h-7 rounded-lg bg-gray-200" />
-                <div className="h-3 bg-gray-200 rounded w-24" />
-              </div>
-              <div className="h-9 bg-gray-200 rounded w-20" />
-            </Card>
-          ))
-        ) : (
-          <>
+        </div>
+      </Card>
+
+      {/* View tabs — payments-page underline idiom. Students is a
+          first-class view (Andy: student-first visibility), not a
+          drill buried behind classroom → roster → click. */}
+      <div className="border-b border-gray-200 mb-6">
+        <nav className="flex space-x-8">
+          {(['overview', 'students', 'classrooms'] as const).map(tab => (
+            <button
+              key={tab}
+              onClick={() => setActiveTab(tab)}
+              className={`py-3 px-1 border-b-2 font-medium text-sm transition-colors ${
+                activeTab === tab
+                  ? 'border-primary text-primary'
+                  : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+              }`}
+            >
+              {t(`camp.tabs.${tab}`)}
+            </button>
+          ))}
+        </nav>
+      </div>
+
+      {/* ── Overview tab — the marketing mock's dashboard, with real
+            numbers: 4 stat cards, average-score trend line, assignment
+            status donut, suggested review topics. ── */}
+      {activeTab === 'overview' && (overview === null ? (
+        <div className="space-y-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4">
+            {[...Array(4)].map((_, i) => (
+              <Card key={i} className="p-5 animate-pulse">
+                <div className="flex items-center gap-2 mb-3">
+                  <div className="w-7 h-7 rounded-lg bg-gray-200" />
+                  <div className="h-3 bg-gray-200 rounded w-24" />
+                </div>
+                <div className="h-9 bg-gray-200 rounded w-20" />
+              </Card>
+            ))}
+          </div>
+          <div className="grid grid-cols-1 lg:grid-cols-[1.4fr_1fr] gap-4">
+            {[...Array(2)].map((_, i) => (
+              <Card key={i} className="p-5 animate-pulse">
+                <div className="h-3 bg-gray-200 rounded w-32 mb-4" />
+                <div className="h-40 bg-gray-100 rounded" />
+              </Card>
+            ))}
+          </div>
+        </div>
+      ) : (
+        <div className="space-y-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4">
             <Card className="p-5">
               <div className="flex items-center gap-2 mb-3">
                 <div className="w-7 h-7 rounded-lg bg-primary/10 flex items-center justify-center">
@@ -691,12 +741,125 @@ export function CampPage({ academyId }: CampPageProps) {
                 </p>
               </div>
             </Card>
-          </>
-        )}
-      </div>
+          </div>
 
-      {/* Classrooms + assignments — grouped-list idiom (session header + row cards) */}
-      {classrooms.length === 0 ? (
+          {/* Trend + status donut, the mock's middle row */}
+          <div className="grid grid-cols-1 lg:grid-cols-[1.4fr_1fr] gap-4">
+            <Card className="p-5">
+              <div className="flex items-center justify-between gap-3 mb-3">
+                <h3 className="text-sm font-semibold text-gray-900">{t('camp.overview.trendTitle')}</h3>
+                <span className="text-[11px] text-gray-400 whitespace-nowrap tabular-nums">
+                  {overview.scoredSessions > 0
+                    ? t('camp.overview.gradedSessions', { n: overview.scoredSessions })
+                    : t('camp.overview.noGradedSessions')}
+                </span>
+              </div>
+              {overview.trend.length === 0 ? (
+                <p className="text-sm text-gray-400 py-12 text-center">
+                  {t('camp.overview.trendEmpty')}
+                </p>
+              ) : (
+                <div className="h-[200px]">
+                  <ResponsiveContainer width="100%" height="100%">
+                    <LineChart data={overview.trend} margin={{ top: 8, right: 8, left: 0, bottom: 0 }}>
+                      <XAxis
+                        dataKey="date"
+                        axisLine={false}
+                        tickLine={false}
+                        tick={{ fontSize: 10, fill: '#9ca3af' }}
+                        tickFormatter={(d: string) =>
+                          new Date(`${d}T00:00:00`).toLocaleDateString(
+                            language === 'korean' ? 'ko-KR' : 'en-US',
+                            { month: 'short', day: 'numeric' },
+                          )}
+                      />
+                      <YAxis
+                        domain={[0, 100]}
+                        axisLine={false}
+                        tickLine={false}
+                        tick={{ fontSize: 10, fill: '#9ca3af' }}
+                        width={32}
+                        tickFormatter={(v: number) => `${v}%`}
+                      />
+                      <Tooltip
+                        contentStyle={{
+                          backgroundColor: 'white',
+                          border: '1px solid #E5E7EB',
+                          borderRadius: '0.5rem',
+                          fontSize: '12px',
+                        }}
+                        formatter={(value: number) => [`${value}%`, String(t('camp.overview.averageScore'))]}
+                        labelFormatter={(label: string) => formatDate(`${label}T00:00:00`)}
+                      />
+                      <Line
+                        type="monotone"
+                        dataKey="avgPct"
+                        stroke={accent.hex}
+                        strokeWidth={2.5}
+                        dot={{ fill: '#fff', stroke: accent.hex, strokeWidth: 2.5, r: 3.5 }}
+                        activeDot={{ r: 4.5 }}
+                      />
+                    </LineChart>
+                  </ResponsiveContainer>
+                </div>
+              )}
+            </Card>
+
+            <Card className="p-5">
+              <h3 className="text-sm font-semibold text-gray-900 mb-3">{t('camp.overview.assignmentStatus')}</h3>
+              <AssignmentStatusDonut
+                status={overview.assignmentStatus}
+                labels={{
+                  completed: String(t('camp.overview.statusCompleted')),
+                  late: String(t('camp.overview.statusLate')),
+                  missing: String(t('camp.overview.statusMissing')),
+                  open: String(t('camp.overview.statusOpen')),
+                  empty: String(t('camp.overview.statusEmpty')),
+                }}
+              />
+            </Card>
+          </div>
+
+          {/* Suggested topics for teacher review — the itemised
+              skills-to-review list, domain chips like the mock rows */}
+          <Card className="p-5">
+            <div className="flex items-center justify-between gap-3 mb-1">
+              <h3 className="text-sm font-semibold text-gray-900">{t('camp.overview.suggestedTopics')}</h3>
+              <span className="text-[11px] text-gray-400 whitespace-nowrap">
+                {t('camp.overview.suggestedTopicsHint', { threshold: overview.skillsToReview.accuracyThreshold })}
+              </span>
+            </div>
+            {overview.reviewTopics.length === 0 ? (
+              <p className="text-sm text-gray-400 pt-2">{t('camp.overview.noTopics')}</p>
+            ) : (
+              <ul className="divide-y divide-gray-100 mt-2">
+                {overview.reviewTopics.map(topic => (
+                  <li key={`${topic.section}:${topic.domain}`} className="flex items-center gap-3 py-2.5 text-sm">
+                    <StatusPill tone="sky" size="md">{sectionLabel(topic.section)}</StatusPill>
+                    <span className="flex-1 text-gray-700 truncate">
+                      {domainLabel(program.test_family, topic.domain)}
+                    </span>
+                    <span className={`text-xs font-medium ${topic.accuracy < 40 ? 'text-rose-600' : 'text-amber-600'}`}>
+                      {t('camp.overview.topicAccuracy', { accuracy: topic.accuracy })}
+                    </span>
+                    <span className="text-xs text-gray-300 w-16 text-right tabular-nums">
+                      {t('camp.dashboard.answersLabel', { n: topic.n })}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </Card>
+        </div>
+      ))}
+
+      {/* ── Students tab — program-wide searchable roster ── */}
+      {activeTab === 'students' && (
+        <CampStudentsPanel programId={program.id} testFamily={program.test_family} />
+      )}
+
+      {/* ── Classrooms tab — grouped-list idiom (classroom header + assignment row cards) ── */}
+      {activeTab === 'classrooms' && (classrooms.length === 0 ? (
         <Card>
           <EmptyState
             icon={School}
@@ -825,7 +988,7 @@ export function CampPage({ academyId }: CampPageProps) {
             )
           })}
         </div>
-      )}
+      ))}
 
       {/* New assignment modal */}
       <ModalShell
@@ -952,11 +1115,12 @@ export function CampPage({ academyId }: CampPageProps) {
 
             <div className="space-y-2">
               <Label className="text-sm font-medium text-foreground/80">{t('camp.form.dueDate')}</Label>
-              <Input
-                type="date"
+              {/* Same DatePicker the sessions/classrooms modals use —
+                  native date inputs were the odd one out (Andy: camp UX). */}
+              <DatePicker
                 value={form.dueDate}
-                onChange={e => setForm(prev => ({ ...prev, dueDate: e.target.value }))}
-                className="h-10"
+                onChange={value => setForm(prev => ({ ...prev, dueDate: value }))}
+                placeholder={String(t('camp.form.dueDate'))}
               />
             </div>
           </div>
@@ -1093,6 +1257,79 @@ export function CampPage({ academyId }: CampPageProps) {
  * closed card and the open list can never describe a program
  * differently.
  */
+/**
+ * Assignment-status donut — SVG stroke-dash segments like the marketing
+ * mock's Donut, but fed by /api/camp/overview.assignmentStatus. The ring
+ * covers only pairs with a settled fate (completed / late / missing);
+ * still-open pairs are a footnote, not a slice, so the donut never
+ * punishes an assignment that simply isn't due yet. Definitions live in
+ * the overview route.
+ */
+function AssignmentStatusDonut({ status, labels }: {
+  status: { completed: number; late: number; missing: number; open: number }
+  labels: { completed: string; late: string; missing: string; open: string; empty: string }
+}) {
+  const total = status.completed + status.late + status.missing
+  if (total === 0) {
+    return <p className="text-sm text-gray-400 py-8 text-center">{labels.empty}</p>
+  }
+  const R = 26
+  const CIRC = 2 * Math.PI * R
+  const completedPct = Math.round((100 * status.completed) / total)
+  const segments: Array<{ key: string; frac: number; color: string }> = [
+    { key: 'completed', frac: status.completed / total, color: '#10b981' },
+    { key: 'late', frac: status.late / total, color: '#fbbf24' },
+    { key: 'missing', frac: status.missing / total, color: '#e5e7eb' },
+  ]
+  let offset = 0
+  const rows: Array<{ label: string; value: number; dot: string }> = [
+    { label: labels.completed, value: status.completed, dot: 'bg-emerald-500' },
+    { label: labels.late, value: status.late, dot: 'bg-amber-400' },
+    { label: labels.missing, value: status.missing, dot: 'bg-gray-200' },
+  ]
+  return (
+    <div>
+      <div className="flex items-center gap-4">
+        <svg viewBox="0 0 72 72" className="w-[84px] h-[84px] flex-shrink-0" role="img" aria-label={labels.completed}>
+          {segments.map(seg => {
+            const el = (
+              <circle
+                key={seg.key}
+                cx="36" cy="36" r={R}
+                fill="none"
+                stroke={seg.color}
+                strokeWidth="10"
+                strokeDasharray={`${seg.frac * CIRC} ${CIRC}`}
+                strokeDashoffset={-offset}
+                transform="rotate(-90 36 36)"
+              />
+            )
+            offset += seg.frac * CIRC
+            return el
+          })}
+          <text x="36" y="40" textAnchor="middle" className="fill-gray-900" style={{ fontSize: 15, fontWeight: 600 }}>
+            {completedPct}%
+          </text>
+        </svg>
+        <ul className="space-y-1.5 flex-1 min-w-0">
+          {rows.map(row => (
+            <li key={row.label} className="flex items-center gap-2 text-xs text-gray-600">
+              <span aria-hidden className={`w-2 h-2 rounded-full flex-shrink-0 ${row.dot}`} />
+              <span className="flex-1 truncate">{row.label}</span>
+              <span className="font-semibold text-gray-900 tabular-nums">{row.value}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+      {status.open > 0 && (
+        <p className="text-[11px] text-gray-400 mt-3">
+          {labels.open.replace('{n}', String(status.open))}
+        </p>
+      )}
+    </div>
+  )
+}
+
 function ProgramSummary({ program, formatDate, quotaLabel, large = false }: {
   program: CampProgram
   formatDate: (iso: string) => string
