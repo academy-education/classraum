@@ -447,7 +447,7 @@
       "payStatusUnknown": "Unknown",
       "refund": "Refund",
       "refundTitle": "Refund payment",
-      "refundBody": "Refund this {kind} ({amount}) through PortOne? Up to the remaining balance can be refunded, in parts. This cannot be undone. Credits are not automatically revoked.",
+      "refundBody": "Refund this {kind} ({amount}) through PortOne? Up to the remaining balance can be refunded, in parts. This cannot be undone. Credits and access are only revoked if you select it below.",
       "refundReason": "Reason",
       "refundReasonPlaceholder": "e.g. Customer request",
       "refundConfirm": "Refund",
@@ -513,7 +513,18 @@
       "refundHistory": "Refund history",
       "refundPresetButton": "Refund unused credits",
       "refundPresetMath": "{amount} × {unused}/{granted} unused = {result}",
-      "refundPresetUnavailable": "Unused-credit preset unavailable — this payment's credit grant can't be determined unambiguously."
+      "refundPresetUnavailable": "Unused-credit preset unavailable — this payment's credit grant can't be determined unambiguously.",
+      "refundRevokeHeading": "Also revoke",
+      "refundRevokeCredits": "Revoke the remaining credits from this purchase ({n} credits)",
+      "refundRevokeCreditsUnavailable": "Unavailable — this payment's credit grant can't be attributed unambiguously.",
+      "refundRevokeAccessPass": "Revoke the pass (expire it and remove its test access)",
+      "refundRevokeAccessPlan": "Expire the subscription immediately",
+      "refundRevokeAccessNeedsFull": "Available only when this refund returns the entire remaining balance.",
+      "refundSummaryHeading": "This will",
+      "refundSummaryRefund": "Refund {amount} through PortOne",
+      "refundSummaryCredits": "Remove {n} remaining credits from the student",
+      "refundSummaryAccessPass": "Expire the exam pass and remove its test access",
+      "refundSummaryAccessPlan": "Set the subscription to expired immediately"
     },
     "common": {
       "save": "Save",
@@ -2479,6 +2490,7 @@
     "quotaRemaining": "{remaining} questions remaining",
     "noClassrooms": "No classrooms are attached to this camp program yet.",
     "assignmentCount": "{count} assignments",
+    "studentCount": "{count} students",
     "noAssignments": "No assignments yet",
     "newAssignment": "New Assignment",
     "newAssignmentSubtitle": "{remaining} questions remaining in your quota",
@@ -2605,6 +2617,25 @@
       "assignmentsDone": "Assignments done",
       "generateReport": "Generate report",
       "loadFailed": "Failed to load student details."
+    },
+    "selector": {
+      "switchProgram": "Switch camp program"
+    },
+    "studentSession": {
+      "title": "Answer review",
+      "open": "Review this student's answers",
+      "loadFailed": "Failed to load the answer review.",
+      "score": "Score",
+      "missed": "Missed",
+      "completedOn": "Completed",
+      "questionN": "Question {n} of {total}",
+      "correctMark": "Correct",
+      "studentPickMark": "Student's answer",
+      "whyWrong": "Why wrong:",
+      "correctAnswer": "Correct answer",
+      "studentAnswer": "Student's answer",
+      "leftBlank": "Left blank",
+      "explanation": "Explanation"
     }
   },
   "attendance": {

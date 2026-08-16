@@ -184,8 +184,6 @@ export function BillingReturn() {
           res = await post('/api/study/subscription/purchase-pass', { paymentId, passId: intent.passId })
         } else if (intent.kind === 'pack' && intent.packId && paymentId) {
           res = await post('/api/study/subscription/purchase-pack', { paymentId, packId: intent.packId })
-        } else if (intent.kind === 'gift' && billingKey) {
-          res = await post('/api/study/gift/purchase', { billingKey })
         } else {
           router.replace(back)
           return
@@ -210,11 +208,9 @@ export function BillingReturn() {
           return
         }
         track('checkout_result', { step: 'redeem', ok: true, kind: intent.kind })
-        // The gift page shows the issued code — hand it across the
-        // navigation the same way the intent came in.
-        if (intent.kind === 'gift' && body.code) {
-          try { sessionStorage.setItem('study-gift-issued', String(body.code)) } catch { /* shown on gift page best-effort */ }
-        }
+        // (The gift branch that lived here — POST /gift/purchase + the
+        // sessionStorage code handoff — was removed 2026-08-17 with the
+        // gift SKU; see /api/study/gift/purchase/route.ts.)
         // Pack/pass buyers land back with a success flag so the return
         // page can show its "credits added / pass active" banner — the
         // redirect flow otherwise ends with no feedback at all.

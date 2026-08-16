@@ -5,11 +5,12 @@ import { Button } from '@/components/ui/button'
 import { ModalShell } from '@/components/ui/common/ModalShell'
 import { StatusPill, type StatusPillTone } from '@/components/ui/status-pill'
 import { CampReportView } from '@/components/ui/camp/CampReportView'
+import { CampStudentSessionReview } from '@/components/ui/camp/CampStudentSessionReview'
 import type { CampReportPayload } from '@/lib/camp/report-types'
 import { authHeaders } from '@/lib/auth-headers'
 import { useTranslation } from '@/hooks/useTranslation'
 import { showErrorToast, showSuccessToast } from '@/stores'
-import { BarChart3, ClipboardList, FileText, Loader2, Printer } from 'lucide-react'
+import { BarChart3, ChevronRight, ClipboardList, FileText, Loader2, Printer } from 'lucide-react'
 
 /**
  * Per-student drill-down modal, opened from the classroom progress table
@@ -46,6 +47,8 @@ export function CampStudentDetail({ classroomId, studentId, studentName, testFam
   const [lastActivity, setLastActivity] = useState<string | null>(null)
   const [generating, setGenerating] = useState(false)
   const [reportPreview, setReportPreview] = useState<CampReportPayload | null>(null)
+  /** Completed-assignment answer review (GET /api/camp/student-session). */
+  const [sessionReview, setSessionReview] = useState<{ sessionId: string; title: string } | null>(null)
 
   const formatDate = useCallback((iso: string) => {
     const d = new Date(iso)
@@ -132,7 +135,7 @@ export function CampStudentDetail({ classroomId, studentId, studentName, testFam
   return (
     <>
       <ModalShell
-        isOpen={reportPreview === null}
+        isOpen={reportPreview === null && sessionReview === null}
         onClose={() => { if (!generating) onClose() }}
         size="lg"
         title={studentName}
@@ -213,31 +216,52 @@ export function CampStudentDetail({ classroomId, studentId, studentName, testFam
                 <p className="text-sm text-gray-400">{t('camp.noAssignments')}</p>
               ) : (
                 <div className="divide-y divide-gray-100 rounded-xl ring-1 ring-gray-100 overflow-hidden">
-                  {payload.assignments.map(a => (
-                    <div key={a.id} className="flex items-center gap-3 px-4 py-2.5 bg-white">
-                      <div className="flex-1 min-w-0">
-                        <p className="text-sm font-medium text-gray-900 truncate">{a.title}</p>
-                        <p className="text-xs text-gray-400">
-                          {a.completedAt
-                            ? formatDate(a.completedAt)
-                            : a.dueAt
-                              ? String(t('camp.dueDateLabel', { date: formatDate(a.dueAt) }))
-                              : formatDate(a.createdAt)}
-                        </p>
+                  {payload.assignments.map(a => {
+                    // A completed assignment row opens the question-by-
+                    // question answer review of the student's session.
+                    const reviewable = a.state === 'done' && !!a.sessionId
+                    const rowBody = (
+                      <>
+                        <div className="flex-1 min-w-0 text-left">
+                          <p className="text-sm font-medium text-gray-900 truncate">{a.title}</p>
+                          <p className="text-xs text-gray-400">
+                            {a.completedAt
+                              ? formatDate(a.completedAt)
+                              : a.dueAt
+                                ? String(t('camp.dueDateLabel', { date: formatDate(a.dueAt) }))
+                                : formatDate(a.createdAt)}
+                          </p>
+                        </div>
+                        {a.state === 'done' && a.correctCount !== null && a.totalCount !== null && (
+                          <span className="text-sm text-gray-600 tabular-nums flex-shrink-0">
+                            {a.correctCount}/{a.totalCount}
+                            {a.scorePct !== null && (
+                              <span className="text-gray-400 ml-1">({a.scorePct}%)</span>
+                            )}
+                          </span>
+                        )}
+                        <StatusPill tone={STATE_TONES[a.state]} size="md">
+                          {stateLabel(a.state)}
+                        </StatusPill>
+                      </>
+                    )
+                    return reviewable ? (
+                      <button
+                        key={a.id}
+                        type="button"
+                        onClick={() => setSessionReview({ sessionId: a.sessionId!, title: a.title })}
+                        title={String(t('camp.studentSession.open'))}
+                        className="w-full flex items-center gap-3 px-4 py-2.5 bg-white hover:bg-gray-50 focus-visible:outline-none focus-visible:bg-gray-50 transition-colors cursor-pointer group"
+                      >
+                        {rowBody}
+                        <ChevronRight className="w-4 h-4 text-gray-300 group-hover:text-gray-500 flex-shrink-0 transition-colors" />
+                      </button>
+                    ) : (
+                      <div key={a.id} className="flex items-center gap-3 px-4 py-2.5 bg-white">
+                        {rowBody}
                       </div>
-                      {a.state === 'done' && a.correctCount !== null && a.totalCount !== null && (
-                        <span className="text-sm text-gray-600 tabular-nums flex-shrink-0">
-                          {a.correctCount}/{a.totalCount}
-                          {a.scorePct !== null && (
-                            <span className="text-gray-400 ml-1">({a.scorePct}%)</span>
-                          )}
-                        </span>
-                      )}
-                      <StatusPill tone={STATE_TONES[a.state]} size="md">
-                        {stateLabel(a.state)}
-                      </StatusPill>
-                    </div>
-                  ))}
+                    )
+                  })}
                 </div>
               )}
             </div>
@@ -334,6 +358,16 @@ export function CampStudentDetail({ classroomId, studentId, studentName, testFam
           </div>
         )}
       </ModalShell>
+
+      {/* Question-by-question answer review for one completed session */}
+      {sessionReview && (
+        <CampStudentSessionReview
+          sessionId={sessionReview.sessionId}
+          studentName={studentName}
+          assignmentTitle={sessionReview.title}
+          onClose={() => setSessionReview(null)}
+        />
+      )}
     </>
   )
 }

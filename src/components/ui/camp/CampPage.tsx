@@ -1,6 +1,7 @@
 "use client"
 
 import { useCallback, useEffect, useMemo, useState } from 'react'
+import * as SelectPrimitive from '@radix-ui/react-select'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
@@ -48,7 +49,18 @@ interface CampClassroom {
   id: string
   name: string
   teacher_id: string | null
+  /** Enrolled-student count, computed by /api/camp/program. */
+  student_count?: number
 }
+
+/* Per-family identity — the marketing page's SAT blue / TOEFL violet,
+ * reduced to a dot and a tinted badge (accents inside the dashboard
+ * design system, not marketing gradients). */
+const FAMILY_ACCENT: Record<string, { dot: string; badge: string }> = {
+  sat: { dot: 'bg-[#2885e8]', badge: 'bg-[#2885e8]/10 text-[#2885e8]' },
+  toefl: { dot: 'bg-[#7a5af8]', badge: 'bg-[#7a5af8]/10 text-[#7a5af8]' },
+}
+const familyAccent = (family: string) => FAMILY_ACCENT[family] ?? FAMILY_ACCENT.sat!
 
 /** One tab's worth of data — /api/camp/program returns every active
  *  program with its own classrooms grouped under it. */
@@ -233,6 +245,17 @@ export function CampPage({ academyId }: CampPageProps) {
   const quotaRemaining = Math.max(0, quotaTotal - quotaUsed)
   const quotaPct = quotaTotal > 0 ? Math.min(100, Math.round((quotaUsed / quotaTotal) * 100)) : 0
 
+  /** Family accent (SAT blue / TOEFL violet) for the active program. */
+  const accent = familyAccent(program?.test_family ?? 'sat')
+  /** Quota-remaining chip text for a program row in the selector. */
+  const quotaChipLabel = useCallback(
+    (p: CampProgram) =>
+      String(t('camp.quotaRemaining', {
+        remaining: Math.max(0, p.question_quota - p.questions_used),
+      })),
+    [t],
+  )
+
   const sectionLabel = useCallback(
     (section: string) => String(t(`camp.sections.${section}`)),
     [t],
@@ -393,9 +416,15 @@ export function CampPage({ academyId }: CampPageProps) {
         {/* Header — eyebrow is static; the title/description are dynamic, so bars */}
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
           <div className="animate-pulse">
-            <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-primary mb-1.5">{t("navigation.camp")}</p>
-            <div className="h-8 bg-gray-200 rounded w-64 mb-2"></div>
-            <div className="h-4 bg-gray-200 rounded w-48"></div>
+            <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-primary mb-2">{t("navigation.camp")}</p>
+            {/* Program select-card skeleton */}
+            <div className="flex items-center gap-3 rounded-xl border border-gray-200 bg-white px-4 py-3 w-full sm:w-[26rem]">
+              <div className="w-2.5 h-2.5 rounded-full bg-gray-200 flex-shrink-0" />
+              <div className="flex-1">
+                <div className="h-6 bg-gray-200 rounded w-48 mb-2" />
+                <div className="h-4 bg-gray-200 rounded w-56" />
+              </div>
+            </div>
           </div>
           <Button className="self-start sm:self-auto flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm h-8 sm:h-9 px-2.5 sm:px-4">
             <Plus className="w-3 h-3 sm:w-4 sm:h-4" />
@@ -403,17 +432,17 @@ export function CampPage({ academyId }: CampPageProps) {
           </Button>
         </div>
 
-        {/* Stats Card Skeleton */}
-        <div className="mb-8">
-          <Card className="w-full sm:w-80 p-6 animate-pulse border-l-4 border-gray-300">
-            <div className="space-y-3">
-              <div className="h-4 bg-gray-300 rounded w-32"></div>
-              <div className="flex items-baseline gap-2">
-                <div className="h-10 bg-gray-300 rounded w-20"></div>
-                <div className="h-4 bg-gray-300 rounded w-16"></div>
+        {/* Overview strip skeleton — matches the 5-card grid below */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4 mb-8">
+          {[...Array(5)].map((_, i) => (
+            <Card key={i} className="p-5 animate-pulse">
+              <div className="flex items-center gap-2 mb-3">
+                <div className="w-7 h-7 rounded-lg bg-gray-200" />
+                <div className="h-3 bg-gray-200 rounded w-24" />
               </div>
-            </div>
-          </Card>
+              <div className="h-9 bg-gray-200 rounded w-20" />
+            </Card>
+          ))}
         </div>
 
         {/* Classroom group skeletons */}
@@ -478,57 +507,69 @@ export function CampPage({ academyId }: CampPageProps) {
 
   return (
     <div className="p-4">
-      {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
-        <div>
-          <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-primary mb-1.5">{t("navigation.camp")}</p>
-          <h1 className="text-2xl sm:text-3xl font-semibold tracking-tight text-gray-900">{program.name}</h1>
-          <p className="text-gray-500">
-            {t('camp.subtitle', { family: program.test_family.toUpperCase() })}
-            {program.starts_on && program.ends_on && (
-              <span className="ml-2 text-gray-400">
-                {formatDate(program.starts_on)} – {formatDate(program.ends_on)}
-              </span>
-            )}
-          </p>
+      {/* Header — step 1: program identity + primary action. The
+          select-card replaces both the h1 (program name) and the old
+          underline tabs: one prominent selector carries the active
+          program's identity (family dot + badge, dates, quota chip),
+          and opening it lists every program with the same summary.
+          Radix Select keeps it keyboard accessible; a single program
+          renders the same card, inert, without a chevron. */}
+      <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 mb-8">
+        <div className="min-w-0 flex-1">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-primary mb-2">{t("navigation.camp")}</p>
+          {programGroups.length > 1 ? (
+            <SelectPrimitive.Root value={program.id} onValueChange={setActiveProgramId}>
+              <SelectPrimitive.Trigger
+                aria-label={String(t('camp.selector.switchProgram'))}
+                className="group flex w-full sm:w-auto sm:min-w-[26rem] max-w-full items-center gap-3 rounded-xl border border-border bg-white px-4 py-3 text-left shadow-xs transition-colors hover:border-primary/40 focus-visible:outline-none focus-visible:border-primary data-[state=open]:border-primary"
+              >
+                <ProgramSummary
+                  program={program}
+                  formatDate={formatDate}
+                  quotaLabel={quotaChipLabel(program)}
+                  large
+                />
+                <ChevronDown className="w-4 h-4 text-gray-400 flex-shrink-0 transition-transform duration-200 group-data-[state=open]:-rotate-180" />
+              </SelectPrimitive.Trigger>
+              <SelectContent className="z-[210]">
+                {programGroups.map(g => (
+                  <SelectItem key={g.program.id} value={g.program.id} className="py-2.5">
+                    <ProgramSummary
+                      program={g.program}
+                      formatDate={formatDate}
+                      quotaLabel={quotaChipLabel(g.program)}
+                    />
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </SelectPrimitive.Root>
+          ) : (
+            <div className="flex w-full sm:w-auto sm:min-w-[26rem] max-w-full items-center gap-3 rounded-xl border border-border bg-white px-4 py-3 shadow-xs">
+              <ProgramSummary
+                program={program}
+                formatDate={formatDate}
+                quotaLabel={quotaChipLabel(program)}
+                large
+              />
+            </div>
+          )}
         </div>
         <Button
           onClick={openModal}
           disabled={classrooms.length === 0}
-          className="self-start sm:self-auto flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm h-8 sm:h-9 px-2.5 sm:px-4"
+          className="self-start lg:self-auto flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm h-8 sm:h-9 px-2.5 sm:px-4 flex-shrink-0"
         >
           <Plus className="w-3 h-3 sm:w-4 sm:h-4" />
           {t("camp.newAssignment")}
         </Button>
       </div>
 
-      {/* Program switcher — underline-tab idiom (PaymentTabNavigation);
-          only rendered when the academy runs more than one camp. */}
-      {programGroups.length > 1 && (
-        <div className="border-b mb-6">
-          <nav className="flex space-x-8 overflow-x-auto">
-            {programGroups.map(g => (
-              <button
-                key={g.program.id}
-                type="button"
-                onClick={() => setActiveProgramId(g.program.id)}
-                className={`flex items-center gap-2 py-4 px-1 border-b-2 font-medium text-sm whitespace-nowrap transition-colors ${
-                  g.program.id === program.id
-                    ? 'border-primary text-primary'
-                    : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
-                }`}
-              >
-                <Tent className="w-4 h-4" />
-                {g.program.name}
-              </button>
-            ))}
-          </nav>
-        </div>
-      )}
-
-      {/* Quota — stat-card idiom (hero number + icon chip + pill) */}
-      <div className="mb-8">
-        <Card className="w-full sm:w-80 p-5">
+      {/* Overview strip — step 2: the program at a glance. Quota first
+          (the paid meter), then the four /api/camp/overview stats. All
+          five share the stat-card idiom; the family accent dot on each
+          label row ties the strip to the program selected above. */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4 mb-8">
+        <Card className="p-5">
           <div className="flex items-center gap-2 mb-3">
             <div className="w-7 h-7 rounded-lg bg-primary/10 flex items-center justify-center">
               <ClipboardList className="w-3.5 h-3.5 text-primary" strokeWidth={2.25} />
@@ -536,9 +577,10 @@ export function CampPage({ academyId }: CampPageProps) {
             <p className="text-[11px] font-semibold uppercase tracking-[0.1em] text-gray-500">
               {t("camp.questionQuota")}
             </p>
+            <span aria-hidden className={`ml-auto w-1.5 h-1.5 rounded-full ${accent.dot}`} />
           </div>
           <div className="flex items-baseline gap-2 mb-3">
-            <p className="text-4xl sm:text-5xl font-semibold tracking-tight text-gray-900 tabular-nums">
+            <p className="text-4xl font-semibold tracking-tight text-gray-900 tabular-nums">
               {quotaUsed}
             </p>
             <p className="text-sm text-gray-400">/ {quotaTotal}</p>
@@ -553,12 +595,6 @@ export function CampPage({ academyId }: CampPageProps) {
             {t('camp.quotaRemaining', { remaining: quotaRemaining })}
           </div>
         </Card>
-      </div>
-
-      {/* Program overview — 4-card stat row (quota-card family), all
-          numbers from GET /api/camp/overview across the program's
-          classrooms. */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6 mb-8">
         {overview === null ? (
           [...Array(4)].map((_, i) => (
             <Card key={i} className="p-5 animate-pulse">
@@ -579,6 +615,7 @@ export function CampPage({ academyId }: CampPageProps) {
                 <p className="text-[11px] font-semibold uppercase tracking-[0.1em] text-gray-500">
                   {t('camp.overview.studentsEnrolled')}
                 </p>
+                <span aria-hidden className={`ml-auto w-1.5 h-1.5 rounded-full ${accent.dot}`} />
               </div>
               <div className="flex items-baseline gap-2">
                 <p className="text-4xl font-semibold tracking-tight text-gray-900 tabular-nums">
@@ -598,6 +635,7 @@ export function CampPage({ academyId }: CampPageProps) {
                 <p className="text-[11px] font-semibold uppercase tracking-[0.1em] text-gray-500">
                   {t('camp.overview.completion')}
                 </p>
+                <span aria-hidden className={`ml-auto w-1.5 h-1.5 rounded-full ${accent.dot}`} />
               </div>
               <div className="flex items-baseline gap-2">
                 <p className="text-4xl font-semibold tracking-tight text-gray-900 tabular-nums">
@@ -620,6 +658,7 @@ export function CampPage({ academyId }: CampPageProps) {
                 <p className="text-[11px] font-semibold uppercase tracking-[0.1em] text-gray-500">
                   {t('camp.overview.averageScore')}
                 </p>
+                <span aria-hidden className={`ml-auto w-1.5 h-1.5 rounded-full ${accent.dot}`} />
               </div>
               <div className="flex items-baseline gap-2">
                 <p className="text-4xl font-semibold tracking-tight text-gray-900 tabular-nums">
@@ -641,6 +680,7 @@ export function CampPage({ academyId }: CampPageProps) {
                 <p className="text-[11px] font-semibold uppercase tracking-[0.1em] text-gray-500">
                   {t('camp.overview.skillsToReview')}
                 </p>
+                <span aria-hidden className={`ml-auto w-1.5 h-1.5 rounded-full ${accent.dot}`} />
               </div>
               <div className="flex items-baseline gap-2">
                 <p className="text-4xl font-semibold tracking-tight text-gray-900 tabular-nums">
@@ -677,7 +717,9 @@ export function CampPage({ academyId }: CampPageProps) {
                     <h3 className="text-base sm:text-lg font-semibold text-gray-900 truncate">
                       {room.name}
                     </h3>
-                    <span className="text-xs sm:text-sm text-gray-500 flex-shrink-0">
+                    <span className="text-xs sm:text-sm text-gray-500 flex-shrink-0 tabular-nums">
+                      {t('camp.studentCount', { count: room.student_count ?? 0 })}
+                      <span className="mx-1.5 text-gray-300">·</span>
                       {t('camp.assignmentCount', { count: rows?.length ?? 0 })}
                     </span>
                   </div>
@@ -1040,6 +1082,47 @@ export function CampPage({ academyId }: CampPageProps) {
           onClose={() => setPresenter(null)}
         />
       )}
+    </div>
+  )
+}
+
+/**
+ * One program's identity, as the selector renders it — in the trigger
+ * (large) and in every dropdown row (compact): family dot + tinted
+ * badge, name, date range, quota-remaining chip. One component so the
+ * closed card and the open list can never describe a program
+ * differently.
+ */
+function ProgramSummary({ program, formatDate, quotaLabel, large = false }: {
+  program: CampProgram
+  formatDate: (iso: string) => string
+  quotaLabel: string
+  large?: boolean
+}) {
+  const accent = familyAccent(program.test_family)
+  return (
+    <div className="flex items-center gap-3 min-w-0 flex-1">
+      <span aria-hidden className={`w-2.5 h-2.5 rounded-full flex-shrink-0 ${accent.dot}`} />
+      <div className="min-w-0 flex-1">
+        <div className="flex items-center gap-2 min-w-0">
+          <span className={`${large ? 'text-xl sm:text-2xl tracking-tight' : 'text-sm'} font-semibold text-gray-900 truncate`}>
+            {program.name}
+          </span>
+          <span className={`inline-flex items-center rounded-md px-1.5 py-0.5 text-[10px] font-bold uppercase tracking-[0.06em] leading-none flex-shrink-0 ${accent.badge}`}>
+            {program.test_family.toUpperCase()}
+          </span>
+        </div>
+        <div className={`flex flex-wrap items-center gap-x-2 gap-y-1 ${large ? 'mt-1' : 'mt-0.5'} text-xs text-gray-500`}>
+          {program.starts_on && program.ends_on && (
+            <span className="tabular-nums">
+              {formatDate(program.starts_on)} – {formatDate(program.ends_on)}
+            </span>
+          )}
+          <span className="inline-flex items-center rounded-md bg-gray-100 px-1.5 py-0.5 text-[11px] font-medium text-gray-600 tabular-nums">
+            {quotaLabel}
+          </span>
+        </div>
+      </div>
     </div>
   )
 }

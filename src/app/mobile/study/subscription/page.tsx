@@ -6,7 +6,7 @@ import { App } from '@capacitor/app'
 import Link from 'next/link'
 import {
   CheckCircle2, AlertCircle, Loader2, CreditCard, Calendar, RotateCcw,
-  XCircle, ExternalLink, Check, Sparkles, Coins, GraduationCap, Gift, ChevronRight,
+  XCircle, ExternalLink, Check, Sparkles, Coins, GraduationCap,
 } from '@/app/mobile/study/_shared/icons'
 import { useTranslation } from '@/hooks/useTranslation'
 import { SkeletonBlock, SkeletonCard } from '../skeletons'
@@ -1213,24 +1213,9 @@ export default function SubscriptionPage() {
           })}
         </div>
 
-        {/* gift hidden for launch — referral moved to the preferences page */}
-        {false && (
-        <div className="space-y-2.5">
-          <Link
-            href="/mobile/study/gift"
-            className="flex items-center gap-2.5 rounded-2xl bg-white ring-1 ring-gray-200/70 p-3.5 shadow-[0_1px_2px_rgba(0,0,0,0.03)] hover:ring-gray-300 active:scale-[0.98] transition-all"
-          >
-            <span className="w-9 h-9 rounded-xl bg-violet-50 text-violet-600 flex items-center justify-center flex-shrink-0">
-              <Gift className="w-4 h-4" />
-            </span>
-            <span className="min-w-0">
-              <span className="block text-[13px] font-semibold text-gray-900 truncate">{ko ? '프리미엄 선물' : 'Gift Premium'}</span>
-              <span className="block text-[11.5px] text-gray-400 truncate">{ko ? '3개월 선물하기' : 'Give 3 months'}</span>
-            </span>
-            <ChevronRight className="w-4 h-4 text-gray-300 ml-auto flex-shrink-0" />
-          </Link>
-        </div>
-        )}
+        {/* Gift subscriptions REMOVED 2026-08-17 (was a {false &&} block
+            hidden for launch). Zero codes were ever sold — see
+            /api/study/gift/purchase/route.ts for the measurement. */}
 
         {/* Secondary actions */}
         {!onPass && (

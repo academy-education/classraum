@@ -274,6 +274,7 @@ export async function buildCampReportPayload(
       totalCount: done ? (s?.total_count ?? null) : null,
       scorePct: scored ? pct(s!.correct_count!, s!.total_count!) : null,
       completedAt: done ? (s?.completed_at ?? null) : null,
+      sessionId: s?.id ?? null,
     }
   })
 

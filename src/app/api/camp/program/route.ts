@@ -73,10 +73,41 @@ export async function GET(req: NextRequest) {
     return NextResponse.json({ error: classroomsError.message }, { status: 500 })
   }
 
-  const byProgram = new Map<string, Array<{ id: string; name: string; teacher_id: string | null }>>()
+  // Enrolled-student count per classroom, so the dashboard's classroom
+  // group headers can carry it without a per-room dashboard fetch. One
+  // paged read; classroom rosters are small but the cap is silent.
+  const classroomIds = (classroomRows ?? []).map(r => (r as ClassroomRow).id)
+  const studentCount = new Map<string, number>()
+  if (classroomIds.length > 0) {
+    const PAGE = 1000
+    for (let from = 0; ; from += PAGE) {
+      const { data: memberRows, error: membersError } = await dbAdmin
+        .from('classroom_students')
+        .select('classroom_id')
+        .in('classroom_id', classroomIds)
+        .order('classroom_id', { ascending: true })
+        .order('student_id', { ascending: true })
+        .range(from, from + PAGE - 1)
+      if (membersError) {
+        return NextResponse.json({ error: membersError.message }, { status: 500 })
+      }
+      for (const m of memberRows ?? []) {
+        const id = m.classroom_id as string
+        studentCount.set(id, (studentCount.get(id) ?? 0) + 1)
+      }
+      if (!memberRows || memberRows.length < PAGE) break
+    }
+  }
+
+  const byProgram = new Map<string, Array<{ id: string; name: string; teacher_id: string | null; student_count: number }>>()
   for (const row of (classroomRows ?? []) as ClassroomRow[]) {
     const list = byProgram.get(row.camp_program_id) ?? []
-    list.push({ id: row.id, name: row.name, teacher_id: row.teacher_id })
+    list.push({
+      id: row.id,
+      name: row.name,
+      teacher_id: row.teacher_id,
+      student_count: studentCount.get(row.id) ?? 0,
+    })
     byProgram.set(row.camp_program_id, list)
   }
 

@@ -81,7 +81,7 @@ describe('billing intent survives the PG round-trip', () => {
     for (const intent of [
       { kind: 'pass' as const, passId: 'toefl_pass_v1', returnTo: '/x', ko: true },
       { kind: 'pack' as const, packId: 'pack5_v2', returnTo: '/x', ko: false },
-      { kind: 'gift' as const, returnTo: '/x', ko: true },
+      // ('gift' was a kind here until 2026-08-17 — SKU removed, zero sold)
     ]) {
       stashBillingIntent(intent)
       returnInANewTab()

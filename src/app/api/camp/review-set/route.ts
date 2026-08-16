@@ -234,7 +234,10 @@ export async function POST(req: NextRequest) {
   }
 
   if (!charged) {
-    await dbAdmin.from('camp_assignments').delete().eq('id', reviewSet.id)
+    // Best-effort compensation, error intentionally ignored — same shape as
+  // the assignments route: a failed delete leaves an uncharged review set
+  // visible only to the teacher; the 402 is returned regardless.
+  await dbAdmin.from('camp_assignments').delete().eq('id', reviewSet.id)
     return NextResponse.json(
       { error: 'question quota exceeded', code: 'quota_exceeded', remaining: Math.max(0, quotaRemaining) },
       { status: 402 },

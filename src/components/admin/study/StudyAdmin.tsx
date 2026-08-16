@@ -4,6 +4,7 @@ import { useCallback, useEffect, useMemo, useState } from 'react'
 import { CreditCard, Layers, Target, Trophy, ReceiptText, Flag, CalendarClock, Search, Inbox, Download, UserRound, Settings2 } from 'lucide-react'
 import { useAdminFetch } from '@/components/admin/useAdminFetch'
 import { filterSortStudyUsers, type DirectoryUser } from '@/lib/study/admin-user-search'
+import { accessRevocationFor } from '@/lib/study/refund-revocation'
 import { AdminPageHeader } from '@/components/admin/AdminPageHeader'
 import { AdminEmptyState } from '@/components/admin/AdminEmptyState'
 import { DashboardCard } from '@/components/admin/DashboardCard'
@@ -617,17 +618,36 @@ function RefundDialog({ payment, kindLabel, amountLabel, onClose, onDone }: {
   const [reason, setReason] = useState('')
   const [busy, setBusy] = useState(false)
   const [error, setError] = useState<string | null>(null)
+  const [revokeCredits, setRevokeCredits] = useState(false)
+  const [revokeAccess, setRevokeAccess] = useState(false)
 
   const wonFmt = (n: number) => `₩${n.toLocaleString(locale)}`
   const amount = /^\d+$/.test(amountStr.trim()) ? parseInt(amountStr.trim(), 10) : NaN
   const amountValid = Number.isInteger(amount) && amount > 0 && amount <= remaining
+
+  // Revocation options — same rules the server enforces (refund-revocation.ts):
+  // credits only when the server attributed the grant unambiguously (the
+  // creditPreset doubles as that signal), access only for pass/plan payments
+  // and only when THIS refund returns the entire remaining balance.
+  const creditsAttributed = payment.creditPreset !== null
+  const accessKind = accessRevocationFor(payment.kind)
+  const fullRefundSelected = amountValid && amount === remaining
+  const creditsChecked = revokeCredits && creditsAttributed
+  const accessChecked = revokeAccess && accessKind !== null && fullRefundSelected
+  const revokableCount = payment.creditPreset?.unusedCredits ?? 0
 
   const submit = async () => {
     setBusy(true); setError(null)
     try {
       const res = await adminFetch('/api/admin/study/payments', {
         method: 'POST',
-        body: JSON.stringify({ paymentId: payment.paymentId, reason: reason.trim(), amountWon: amount }),
+        body: JSON.stringify({
+          paymentId: payment.paymentId,
+          reason: reason.trim(),
+          amountWon: amount,
+          revokeCredits: creditsChecked,
+          revokeAccess: accessChecked,
+        }),
       })
       const json = await res.json().catch(() => ({}))
       if (!res.ok) { setError(String(t('admin.studyConsole.refundFailed', { message: json.error ?? res.status }))); return }
@@ -712,6 +732,72 @@ function RefundDialog({ payment, kindLabel, amountLabel, onClose, onDone }: {
           <span className="text-xs font-medium text-gray-500">{String(t('admin.studyConsole.refundReason'))}</span>
           <Input value={reason} onChange={e => setReason(e.target.value)} placeholder={String(t('admin.studyConsole.refundReasonPlaceholder'))} className="mt-1" />
         </label>
+
+        {/* Revocation options — what this refund ALSO takes back. Mirrors
+            the server rules; the server re-validates both regardless. */}
+        <div className="mt-4">
+          <div className="text-xs font-medium text-gray-500">{String(t('admin.studyConsole.refundRevokeHeading'))}</div>
+          <div className="mt-1.5 space-y-2">
+            <label className={`flex items-start gap-2 ${creditsAttributed ? 'cursor-pointer' : 'opacity-60'}`}>
+              <input
+                type="checkbox"
+                className="mt-0.5"
+                checked={creditsChecked}
+                disabled={busy || !creditsAttributed}
+                onChange={e => setRevokeCredits(e.target.checked)}
+              />
+              <span className="text-xs text-gray-700">
+                {String(t('admin.studyConsole.refundRevokeCredits', { n: revokableCount }))}
+                {!creditsAttributed && (
+                  <span className="block text-[11px] text-gray-400 mt-0.5">
+                    {String(t('admin.studyConsole.refundRevokeCreditsUnavailable'))}
+                  </span>
+                )}
+              </span>
+            </label>
+            {accessKind && (
+              <label className={`flex items-start gap-2 ${fullRefundSelected ? 'cursor-pointer' : 'opacity-60'}`}>
+                <input
+                  type="checkbox"
+                  className="mt-0.5"
+                  checked={accessChecked}
+                  disabled={busy || !fullRefundSelected}
+                  onChange={e => setRevokeAccess(e.target.checked)}
+                />
+                <span className="text-xs text-gray-700">
+                  {String(t(accessKind === 'pass'
+                    ? 'admin.studyConsole.refundRevokeAccessPass'
+                    : 'admin.studyConsole.refundRevokeAccessPlan'))}
+                  {!fullRefundSelected && (
+                    <span className="block text-[11px] text-gray-400 mt-0.5">
+                      {String(t('admin.studyConsole.refundRevokeAccessNeedsFull'))}
+                    </span>
+                  )}
+                </span>
+              </label>
+            )}
+          </div>
+        </div>
+
+        {/* Plain-language statement of everything this action will do. */}
+        {amountValid && (
+          <div className="mt-4 rounded-lg bg-amber-50/70 ring-1 ring-amber-200/60 px-3 py-2">
+            <div className="text-[11px] font-semibold uppercase tracking-wide text-amber-700">
+              {String(t('admin.studyConsole.refundSummaryHeading'))}
+            </div>
+            <ul className="mt-1 text-xs text-amber-900 space-y-0.5 list-disc pl-4">
+              <li>{String(t('admin.studyConsole.refundSummaryRefund', { amount: wonFmt(amount) }))}</li>
+              {creditsChecked && (
+                <li>{String(t('admin.studyConsole.refundSummaryCredits', { n: revokableCount }))}</li>
+              )}
+              {accessChecked && (
+                <li>{String(t(accessKind === 'pass'
+                  ? 'admin.studyConsole.refundSummaryAccessPass'
+                  : 'admin.studyConsole.refundSummaryAccessPlan'))}</li>
+              )}
+            </ul>
+          </div>
+        )}
         {error && <p className="mt-2 text-xs text-rose-600">{error}</p>}
         <div className="mt-5 flex flex-wrap justify-end gap-2">
           <Button variant="outline" onClick={onClose} disabled={busy}>{String(t('admin.studyConsole.refundCancel'))}</Button>

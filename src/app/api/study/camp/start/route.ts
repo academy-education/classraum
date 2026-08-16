@@ -155,6 +155,10 @@ export async function POST(req: NextRequest) {
   } catch (e) {
     // Delete error intentionally ignored — an empty session row carries
     // no questions and is swept later (same as the assemble route).
+    // If the cache write failed and this delete also fails, an empty
+    // 'active' session remains; the next start finds it via the
+    // idempotency lookup and rewrites the cache, so nothing is stranded.
+    // Best-effort compensation — error intentionally ignored.
     await dbAdmin.from('study_sessions').delete().eq('id', sess.id)
     return NextResponse.json({ error: (e as Error).message, reason: 'bank_empty' }, { status: 409 })
   }
@@ -166,10 +170,15 @@ export async function POST(req: NextRequest) {
       content: CACHED_TEST_MARKER + JSON.stringify(test), model: 'bank-assembled',
     })
   if (cacheErr) {
+    // Best-effort compensation — error intentionally ignored: if this
+    // delete also fails, the empty 'active' session is found by the next
+    // start's idempotency lookup and its cache is rewritten there.
     await dbAdmin.from('study_sessions').delete().eq('id', sess.id)
     return NextResponse.json({ error: 'cache write failed' }, { status: 500 })
   }
   // Cosmetic — cached payload carries the authoritative title.
+  // Fire-and-forget cosmetic write: the title only labels history lists;
+  // losing it costs a default label, never correctness.
   await dbAdmin.from('study_sessions').update({ title: test.title }).eq('id', sess.id)
 
   void trackEvent(user.id, 'test_started', {

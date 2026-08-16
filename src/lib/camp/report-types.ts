@@ -31,6 +31,9 @@ export interface CampReportAssignment {
   totalCount: number | null
   scorePct: number | null
   completedAt: string | null
+  /** The student's camp session for this assignment, when one exists —
+   *  the key into GET /api/camp/student-session (teacher answer review). */
+  sessionId: string | null
 }
 
 export interface CampReportPayload {

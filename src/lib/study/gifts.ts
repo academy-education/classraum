@@ -1,6 +1,16 @@
 /**
  * Gift SKU catalog for Classraum Study.
  *
+ * ── REMOVED FROM SALE 2026-08-17 ─────────────────────────────────────
+ * Andy: "We do not need gift subscriptions at the moment. Get rid of it
+ * for now." Measured first (sunung_pass precedent in plans.ts): ZERO
+ * study_gift_codes rows ever existed — nothing sold, nothing unredeemed,
+ * no gift-sourced subscriptions or ledger rows — so the purchase AND
+ * redeem routes both return 410 and the /mobile/study/gift page was
+ * deleted. This catalog is kept so restoring the feature is a revert,
+ * not a rewrite. The study_gift_codes table was NOT dropped.
+ * ─────────────────────────────────────────────────────────────────────
+ *
  * A parent buys a one-time "gift" (no recurring charge, no card stored on
  * the student), receives a human-friendly redemption code, and hands it
  * to their student. The student redeems the code for a fixed window of

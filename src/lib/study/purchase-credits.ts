@@ -46,7 +46,10 @@ export function missingPhoneMessage(ko: boolean): string {
 export const BILLING_REDIRECT_PATH = '/pay/return'
 
 export interface BillingIntent {
-  kind: 'plan' | 'pass' | 'pack' | 'gift'
+  // 'gift' removed 2026-08-17 with the gift SKU (zero codes ever sold —
+  // see /api/study/gift/purchase/route.ts). A stale stashed gift intent
+  // falls through BillingReturn's else-branch and simply returns home.
+  kind: 'plan' | 'pass' | 'pack'
   planId?: string
   passId?: string
   packId?: string

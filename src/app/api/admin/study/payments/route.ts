@@ -6,6 +6,8 @@ import { cancelPayment } from '@/lib/portone-charge';
 import { raiseAlert } from '@/lib/ops/alert';
 import { creditPresetWon, remainingWon, validateRefundAmount } from '@/lib/study/refund-math';
 import { attributePaymentCredits } from '@/lib/study/refund-credit-preset';
+import { accessRevocationFor, revocableCredits, validateRevocationRequest } from '@/lib/study/refund-revocation';
+import { isPassPlan, resolvePass, STUDY_PASSES } from '@/lib/study/plans';
 
 /**
  * Admin view of study-system income (the PortOne side) + refunds.
@@ -18,11 +20,17 @@ import { attributePaymentCredits } from '@/lib/study/refund-credit-preset';
  *   per-row live PortOne call. (A refund issued directly in the PortOne console,
  *   outside this tool, won't be reflected here.)
  *
- * POST /api/admin/study/payments   { paymentId, reason, amountWon? }
+ * POST /api/admin/study/payments
+ *   { paymentId, reason, amountWon?, revokeCredits?, revokeAccess? }
  *   → refund via PortOne (operator-initiated only). amountWon omitted refunds
  *     the full remaining balance; otherwise a partial cancel for that amount.
  *     Each refund is recorded in study_payment_refunds; refunded_at is only
  *     stamped once the remaining balance hits 0 (= fully refunded).
+ *     revokeCredits claws back the remaining credits from the bucket this
+ *     payment filled (compensating study_credit_ledger row, kind 'refund');
+ *     revokeAccess expires the access it bought (pass: expire sub + delete
+ *     entitlement; plan: sub → expired) and is refused on partial refunds
+ *     unless this refund takes remaining to 0. Rules in refund-revocation.ts.
  *
  * Admin-only; study data is minors' billing info so access is gated.
  */
@@ -279,7 +287,97 @@ const RefundSchema = z.object({
   // number of won not exceeding remaining (checked here AND atomically in
   // admin_insert_study_refund under a row lock).
   amountWon: z.number().int().positive().optional(),
+  // Admin-picked revocations riding on the refund (see refund-revocation.ts):
+  //   revokeCredits — claw back the remaining credits from the bucket this
+  //                   payment filled (compensating ledger row, kind 'refund').
+  //   revokeAccess  — pass: expire the pass sub row + delete its entitlement;
+  //                   plan: set the subscription to expired at once.
+  //                   Refused unless THIS refund takes remaining to 0.
+  revokeCredits: z.boolean().optional().default(false),
+  revokeAccess: z.boolean().optional().default(false),
 });
+
+/** Subscription snapshot used by the revocation ops. */
+interface SubSnapshot {
+  plan: string | null;
+  status: string | null;
+  grant_credits_remaining: number | null;
+  purchased_credits_remaining: number | null;
+}
+
+/**
+ * Everything the revocation ops need, resolved with the SAME attribution
+ * standard as the credit preset (never guess):
+ *   credit  — bucket + granted count + current bucket balance, or null when
+ *             the payment's grant cannot be attributed unambiguously.
+ *   passTest — for pass payments, which test's credits/entitlement this
+ *             payment maps to: a single matching study_pass_credits row, or
+ *             (fallback) the pass plan currently on the subscription row.
+ */
+async function resolveRevocationContext(row: {
+  payment_id: string; student_id: string; kind: string; amount_won: number | null;
+}): Promise<{
+  sub: SubSnapshot | null;
+  credit: { bucket: 'grant' | 'purchased' | 'pass'; grantedCredits: number; bucketRemaining: number } | null;
+  passTest: string | null;
+}> {
+  const { data: sub } = await dbAdmin
+    .from('study_subscriptions')
+    .select('plan, status, grant_credits_remaining, purchased_credits_remaining')
+    .eq('student_id', row.student_id)
+    .maybeSingle();
+  const subSnap = (sub ?? null) as SubSnapshot | null;
+
+  const attr = attributePaymentCredits(row.kind, row.amount_won);
+  if (!attr.ok) {
+    // Access revocation for a pass can still resolve via the sub row's plan.
+    const subPass = isPassPlan(subSnap?.plan) ? resolvePass(subSnap?.plan) : null;
+    return { sub: subSnap, credit: null, passTest: subPass?.test ?? null };
+  }
+
+  if (attr.bucket === 'grant') {
+    return {
+      sub: subSnap,
+      credit: { bucket: 'grant', grantedCredits: attr.grantedCredits, bucketRemaining: subSnap?.grant_credits_remaining ?? 0 },
+      passTest: null,
+    };
+  }
+  if (attr.bucket === 'purchased') {
+    return {
+      sub: subSnap,
+      credit: { bucket: 'purchased', grantedCredits: attr.grantedCredits, bucketRemaining: subSnap?.purchased_credits_remaining ?? 0 },
+      passTest: null,
+    };
+  }
+
+  // Pass bucket: the price can match several passes (they differ only by
+  // test) — same disambiguation as fetchCreditPresets, with the sub row's
+  // pass plan as a fallback when the student holds no/many credit rows.
+  const tests = attr.passTests ?? [];
+  const { data: passRows } = await dbAdmin
+    .from('study_pass_credits')
+    .select('test, remaining')
+    .eq('student_id', row.student_id)
+    .in('test', tests);
+  const rows = (passRows ?? []) as Array<{ test: string; remaining: number }>;
+  let passTest: string | null = null;
+  if (rows.length === 1) {
+    passTest = rows[0].test;
+  } else {
+    const subPass = isPassPlan(subSnap?.plan) ? resolvePass(subSnap?.plan) : null;
+    if (subPass && tests.includes(subPass.test)) passTest = subPass.test;
+  }
+  if (!passTest) return { sub: subSnap, credit: null, passTest: null };
+  return {
+    sub: subSnap,
+    credit: {
+      bucket: 'pass',
+      grantedCredits: attr.grantedCredits,
+      bucketRemaining: rows.find((r) => r.test === passTest)?.remaining ?? 0,
+    },
+    passTest,
+  };
+}
 
 export async function POST(req: NextRequest) {
   const auth = await requireAdminAuth(req);
@@ -287,7 +385,7 @@ export async function POST(req: NextRequest) {
 
   const parsed = RefundSchema.safeParse(await req.json().catch(() => null));
   if (!parsed.success) return NextResponse.json({ error: 'bad body' }, { status: 400 });
-  const { paymentId, reason, amountWon } = parsed.data;
+  const { paymentId, reason, amountWon, revokeCredits, revokeAccess } = parsed.data;
 
   // Only refund payments that are ours (a study_payments row).
   const { data: row } = await dbAdmin
@@ -315,6 +413,33 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: validated.error, remainingWon: remaining }, { status });
   }
   const refundAmount = validated.amountWon;
+
+  // Revocation guards run BEFORE any money moves. The context resolves the
+  // credit bucket with the same no-guessing attribution as the preset; a
+  // revokeCredits request that cannot be attributed is refused, and
+  // revokeAccess is refused unless this refund zeroes the remaining balance.
+  const wantsRevocation = revokeCredits || revokeAccess;
+  const revCtx = wantsRevocation ? await resolveRevocationContext(row) : null;
+  if (wantsRevocation) {
+    const revCheck = validateRevocationRequest({
+      paymentKind: row.kind,
+      revokeCredits,
+      revokeAccess,
+      requestedWon: refundAmount,
+      remainingWon: remaining,
+      attributed: revCtx?.credit != null,
+    });
+    if (!revCheck.ok) {
+      const status = revCheck.error === 'revoke_access_not_applicable' ? 400 : 409;
+      return NextResponse.json({ error: revCheck.error, remainingWon: remaining }, { status });
+    }
+    // Pass access revocation needs to know WHICH test's entitlement to
+    // delete; when neither the credit rows nor the sub row disambiguate it,
+    // refuse rather than guess (mirror of the credit-attribution rule).
+    if (revokeAccess && accessRevocationFor(row.kind) === 'pass' && !revCtx?.passTest) {
+      return NextResponse.json({ error: 'revoke_access_unresolvable' }, { status: 409 });
+    }
+  }
 
   // Reserve the ledger row FIRST via the atomic DB guard (row lock +
   // remaining re-check), so two concurrent operators cannot both pass the
@@ -366,12 +491,143 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: result.message ?? 'refund failed' }, { status: 502 });
   }
 
+  // ── Revocations — money has moved; these compensate state ─────────────
+  // Same pattern as the ledger insert: service-role writes, and a failure
+  // AFTER the PortOne cancel can only be reported + alerted, never rolled
+  // back, so each op is checked and any failure pages a human.
+  let creditsRevoked: number | null = null;
+  let accessRevoked = false;
+  const revocationFailures: string[] = [];
+  if (wantsRevocation && revCtx) {
+    const nowIso = new Date().toISOString();
+
+    if (revokeCredits && revCtx.credit) {
+      const { bucket, grantedCredits, bucketRemaining } = revCtx.credit;
+      const revoke = revocableCredits(bucketRemaining, grantedCredits);
+      creditsRevoked = revoke;
+      if (revoke > 0) {
+        let clawErr: unknown = null;
+        if (bucket === 'purchased') {
+          ({ error: clawErr } = await dbAdmin.rpc('increment_study_purchased_credits', {
+            p_student_id: row.student_id, p_delta: -revoke,
+          }));
+        } else if (bucket === 'pass') {
+          // passTest is always resolved when the credit target is the pass
+          // bucket (resolveRevocationContext returns credit:null otherwise).
+          ({ error: clawErr } = await dbAdmin.rpc('increment_study_pass_credits', {
+            p_student: row.student_id, p_test: revCtx.passTest!, p_delta: -revoke,
+          }));
+        } else {
+          ({ error: clawErr } = await dbAdmin
+            .from('study_subscriptions')
+            .update({ grant_credits_remaining: Math.max(0, bucketRemaining - revoke), updated_at: nowIso })
+            .eq('student_id', row.student_id));
+        }
+        if (clawErr) {
+          creditsRevoked = 0;
+          revocationFailures.push(`credit clawback failed (${bucket})`);
+        } else {
+          // Compensating ledger row — same shape as the manual Stellar
+          // clawback (kind 'refund', negative delta, explicit note).
+          const passPlanId = bucket === 'pass'
+            ? (isPassPlan(revCtx.sub?.plan) ? revCtx.sub?.plan : null)
+              ?? STUDY_PASSES.find((p) => p.test === revCtx.passTest && p.priceWon === row.amount_won)?.id
+              ?? revCtx.passTest
+            : null;
+          const note = bucket === 'pass'
+            ? `pass refund clawback — ${passPlanId} (${paymentId}) refunded, credits revoked`
+            : `refund clawback — ${row.kind} (${paymentId}) refunded, credits revoked`;
+          const { error: ledgerErr } = await dbAdmin.from('study_credit_ledger').insert({
+            student_id: row.student_id,
+            delta: -revoke,
+            bucket: bucket === 'pass' ? `pass:${revCtx.passTest}` : bucket,
+            kind: 'refund',
+            note,
+          });
+          if (ledgerErr) {
+            // Balance already moved — audit-trail gap, not a reason to redo.
+            console.error('[admin/study/payments] clawback ledger row missing', {
+              paymentId, studentId: row.student_id, revoke, error: ledgerErr,
+            });
+          }
+        }
+      }
+    }
+
+    // Access is only revoked when the atomic reservation confirms remaining
+    // hit 0 (a concurrent refund could have changed the arithmetic between
+    // our pre-check and the row lock).
+    if (revokeAccess && reservation.remaining_after === 0) {
+      const accessKind = accessRevocationFor(row.kind);
+      if (accessKind === 'pass') {
+        // The Stellar closure ops: expire the pass subscription row, delete
+        // its entitlement (credits are the checkbox above).
+        if (revCtx.sub && isPassPlan(revCtx.sub.plan)) {
+          const { error: expireErr } = await dbAdmin
+            .from('study_subscriptions')
+            .update({ status: 'expired', cancel_at_period_end: true, pending_plan: null, next_grant_at: null, updated_at: nowIso })
+            .eq('student_id', row.student_id);
+          if (expireErr) revocationFailures.push('pass subscription expire failed');
+          else accessRevoked = true;
+        } else {
+          // Sub row no longer holds the pass (e.g. upgraded since) — leave
+          // it alone; deleting the entitlement is still correct.
+          accessRevoked = true;
+        }
+        const { error: entErr } = await dbAdmin
+          .from('study_entitlements')
+          .delete()
+          .eq('student_id', row.student_id)
+          // Guarded above: pass-access revocation 409s when passTest is null.
+          .eq('test', revCtx.passTest!)
+          .eq('source', 'pass');
+        if (entErr) {
+          accessRevoked = false;
+          revocationFailures.push('entitlement delete failed');
+        }
+      } else if (accessKind === 'plan') {
+        if (!revCtx.sub) {
+          revocationFailures.push('no subscription row to expire');
+        } else {
+          const { error: expireErr } = await dbAdmin
+            .from('study_subscriptions')
+            .update({ status: 'expired', cancel_at_period_end: true, pending_plan: null, next_grant_at: null, updated_at: nowIso })
+            .eq('student_id', row.student_id);
+          if (expireErr) revocationFailures.push('subscription expire failed');
+          else accessRevoked = true;
+        }
+      }
+    }
+
+    if (revocationFailures.length > 0) {
+      await raiseAlert({
+        severity: 'critical',
+        title: 'Study refund issued but revocation incomplete',
+        message:
+          `Payment ${paymentId} was refunded at PortOne, but the requested revocations did not all land: ` +
+          `${revocationFailures.join('; ')}. The student may retain credits/access that were meant to be ` +
+          `revoked — reconcile manually (see the Stellar closure ops: zero the bucket, expire the sub, ` +
+          `delete the entitlement).`,
+        dedupeKey: `study-refund-revocation-incomplete:${paymentId}`,
+        context: {
+          paymentId, studentId: row.student_id, kind: row.kind,
+          revokeCredits, revokeAccess, failures: revocationFailures, adminUserId: auth.user.id,
+        },
+      });
+    }
+  }
+
+  const revocationSummary =
+    (creditsRevoked !== null ? ` — revoked ${creditsRevoked} unused credits` : '') +
+    (accessRevoked ? ' — access revoked' : '') +
+    (revocationFailures.length > 0 ? ` — REVOCATION FAILURES: ${revocationFailures.join('; ')}` : '');
+
   const fullyRefunded = reservation.remaining_after === 0;
   if (!fullyRefunded) {
     await logAdminActivity({
       adminUserId: auth.user.id,
       action: 'STUDY_PAYMENT_REFUND',
-      description: `Partially refunded study payment ${paymentId} (${row.kind}): ${refundAmount} of ${row.amount_won ?? '?'} KRW, ${reservation.remaining_after} KRW remaining — ${reason}`,
+      description: `Partially refunded study payment ${paymentId} (${row.kind}): ${refundAmount} of ${row.amount_won ?? '?'} KRW, ${reservation.remaining_after} KRW remaining — ${reason}${revocationSummary}`,
     });
     return NextResponse.json({
       ok: true,
@@ -379,6 +635,9 @@ export async function POST(req: NextRequest) {
       cancelledAmount: result.cancelledAmount ?? refundAmount,
       remainingWon: reservation.remaining_after,
       fullyRefunded: false,
+      creditsRevoked,
+      accessRevoked,
+      ...(revocationFailures.length > 0 ? { revocationFailures } : {}),
     });
   }
 
@@ -440,7 +699,7 @@ export async function POST(req: NextRequest) {
   await logAdminActivity({
     adminUserId: auth.user.id,
     action: 'STUDY_PAYMENT_REFUND',
-    description: `Refunded study payment ${paymentId} (${row.kind}): final ${refundAmount} KRW of ${row.amount_won ?? '?'} KRW — ${reason}`,
+    description: `Refunded study payment ${paymentId} (${row.kind}): final ${refundAmount} KRW of ${row.amount_won ?? '?'} KRW — ${reason}${revocationSummary}`,
   });
 
   return NextResponse.json({
@@ -449,5 +708,8 @@ export async function POST(req: NextRequest) {
     cancelledAmount: result.cancelledAmount ?? refundAmount,
     remainingWon: 0,
     fullyRefunded: true,
+    creditsRevoked,
+    accessRevoked,
+    ...(revocationFailures.length > 0 ? { revocationFailures } : {}),
   });
 }

@@ -447,7 +447,7 @@
       "payStatusUnknown": "알 수 없음",
       "refund": "환불",
       "refundTitle": "결제 환불",
-      "refundBody": "이 {kind}({amount}) 결제를 PortOne을 통해 환불하시겠습니까? 잔액 한도 내에서 부분 환불이 가능합니다. 되돌릴 수 없습니다. 크레딧은 자동으로 회수되지 않습니다.",
+      "refundBody": "이 {kind}({amount}) 결제를 PortOne을 통해 환불하시겠습니까? 잔액 한도 내에서 부분 환불이 가능합니다. 되돌릴 수 없습니다. 크레딧과 이용 권한은 아래에서 선택한 경우에만 회수됩니다.",
       "refundReason": "사유",
       "refundReasonPlaceholder": "예: 고객 요청",
       "refundConfirm": "환불하기",
@@ -513,7 +513,18 @@
       "refundHistory": "환불 내역",
       "refundPresetButton": "미사용 크레딧 환불",
       "refundPresetMath": "{amount} × 미사용 {unused}/{granted} = {result}",
-      "refundPresetUnavailable": "미사용 크레딧 프리셋을 사용할 수 없습니다 — 이 결제가 지급한 크레딧을 명확히 특정할 수 없습니다."
+      "refundPresetUnavailable": "미사용 크레딧 프리셋을 사용할 수 없습니다 — 이 결제가 지급한 크레딧을 명확히 특정할 수 없습니다.",
+      "refundRevokeHeading": "함께 회수",
+      "refundRevokeCredits": "이 결제로 지급된 잔여 크레딧 회수 ({n}개)",
+      "refundRevokeCreditsUnavailable": "사용 불가 — 이 결제가 지급한 크레딧을 명확히 특정할 수 없습니다.",
+      "refundRevokeAccessPass": "패스 회수 (즉시 만료 및 시험 이용 권한 제거)",
+      "refundRevokeAccessPlan": "구독을 즉시 만료 처리",
+      "refundRevokeAccessNeedsFull": "잔여 금액 전액을 환불하는 경우에만 선택할 수 있습니다.",
+      "refundSummaryHeading": "실행 내용",
+      "refundSummaryRefund": "PortOne을 통해 {amount} 환불",
+      "refundSummaryCredits": "학생의 잔여 크레딧 {n}개 회수",
+      "refundSummaryAccessPass": "시험 패스 만료 및 시험 이용 권한 제거",
+      "refundSummaryAccessPlan": "구독을 즉시 만료 상태로 변경"
     },
     "common": {
       "save": "저장",
@@ -2479,6 +2490,7 @@
     "quotaRemaining": "남은 문항 {remaining}개",
     "noClassrooms": "이 캠프 프로그램에 연결된 클래스룸이 아직 없습니다.",
     "assignmentCount": "과제 {count}개",
+    "studentCount": "학생 {count}명",
     "noAssignments": "아직 과제가 없습니다",
     "newAssignment": "새 과제",
     "newAssignmentSubtitle": "쿼터에 남은 문항 {remaining}개",
@@ -2605,6 +2617,25 @@
       "assignmentsDone": "완료한 과제",
       "generateReport": "리포트 생성",
       "loadFailed": "학생 정보를 불러오지 못했습니다."
+    },
+    "selector": {
+      "switchProgram": "캠프 프로그램 전환"
+    },
+    "studentSession": {
+      "title": "답안 리뷰",
+      "open": "학생 답안 보기",
+      "loadFailed": "답안을 불러오지 못했습니다.",
+      "score": "점수",
+      "missed": "오답",
+      "completedOn": "완료일",
+      "questionN": "문항 {n} / {total}",
+      "correctMark": "정답",
+      "studentPickMark": "학생 답안",
+      "whyWrong": "오답 이유:",
+      "correctAnswer": "정답",
+      "studentAnswer": "학생 답안",
+      "leftBlank": "답하지 않음",
+      "explanation": "해설"
     }
   },
   "attendance": {

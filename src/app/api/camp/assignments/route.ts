@@ -204,7 +204,12 @@ export async function POST(req: NextRequest) {
   if (!charged) {
     // Quota race lost (or program vanished mid-flight): the assignment
     // must not exist un-paid-for. Hard delete — it was never visible.
-    await dbAdmin.from('camp_assignments').delete().eq('id', assignment.id)
+    // Best-effort compensation, error intentionally ignored: if this delete
+  // fails, an assignment row survives with NO quota charged behind it —
+  // visible in the teacher's list and harmless to students (shelf reads
+  // live rows either way); an admin can remove it. The caller already
+  // gets the 402 regardless.
+  await dbAdmin.from('camp_assignments').delete().eq('id', assignment.id)
     return NextResponse.json(
       { error: 'question quota exceeded', code: 'quota_exceeded', remaining: Math.max(0, quotaRemaining) },
       { status: 402 },
