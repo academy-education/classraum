@@ -2556,6 +2556,35 @@
         "createFailed": "Failed to create the review set. Please try again.",
         "loadFailed": "The review set was created but its questions could not be loaded. Please try again."
       }
+    },
+    "reports": {
+      "title": "Camp reports",
+      "reportTitle": "{family} Camp Report",
+      "previewTitle": "Report preview",
+      "generate": "Generate reports",
+      "generating": "Generating...",
+      "generatedSuccessfully": "Generated {count} reports",
+      "generateFailed": "Failed to generate reports. Please try again.",
+      "loadFailed": "Failed to load the report. Please try again.",
+      "noReports": "No reports yet",
+      "noReportsHint": "Generate reports to snapshot each student's camp progress. Parents see them in the mobile app.",
+      "generatedOn": "Generated {date}",
+      "print": "Print",
+      "overallAccuracy": "Overall accuracy",
+      "classStanding": "Class standing",
+      "percentile": "Ahead of {p}% of classmates",
+      "cohortSize": "among {n} students with results",
+      "completionTeacherOnly": "Assignment completion (visible to teachers only)",
+      "scoreTrend": "Score trend",
+      "noCompletedAssignments": "No completed assignments yet.",
+      "accuracyBySkill": "Accuracy by skill",
+      "noGradedAnswers": "No graded answers yet.",
+      "strengths": "Strengths",
+      "weaknesses": "Focus areas",
+      "notEnoughData": "Not enough answers yet.",
+      "mockTests": "Mock tests",
+      "mockTest": "Mock test",
+      "generatedAt": "Report generated {date}"
     }
   },
   "attendance": {
@@ -5942,6 +5971,14 @@
       "classStartingSoon": "{className} starts in {hours} hours",
       "classScheduledTomorrow": "{className} is scheduled for tomorrow",
       "upcomingClass": "{className} on {date}"
+    },
+    "campReports": {
+      "title": "Camp Reports",
+      "reportTitle": "Camp Report",
+      "untitled": "Camp report",
+      "noReports": "No camp reports",
+      "noReportsDesc": "Camp reports will appear here once your teacher generates them.",
+      "entryCount": "{count} reports from camp programs"
     }
   },
   "features": {

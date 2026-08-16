@@ -28,6 +28,8 @@ import { MOBILE_FEATURES } from '@/config/mobileFeatures'
 import { MobilePageErrorBoundary } from '@/components/error-boundaries/MobilePageErrorBoundary'
 import { simpleTabDetection } from '@/utils/simpleTabDetection'
 import { useStableCallback } from '@/hooks/useStableCallback'
+import { authHeaders } from '@/lib/auth-headers'
+import { Tent } from 'lucide-react'
 
 interface ReportData {
   id: string
@@ -73,6 +75,26 @@ function MobileReportsPageContent() {
   const [currentPage, setCurrentPage] = useState(1)
   const [totalCount, setTotalCount] = useState(0)
   const itemsPerPage = 10
+
+  // Camp P4 — entry to the camp-specific reports (distinct from these
+  // academy report cards). Self-hides when the student has none.
+  const [campReportCount, setCampReportCount] = useState(0)
+  useEffect(() => {
+    if (!effectiveUserId || !isReady) return
+    let cancelled = false
+    ;(async () => {
+      try {
+        const res = await fetch(`/api/camp/reports?studentId=${effectiveUserId}`, {
+          headers: await authHeaders(),
+        })
+        const json = await res.json().catch(() => ({}))
+        if (!cancelled) setCampReportCount(res.ok ? (json.reports ?? []).length : 0)
+      } catch {
+        if (!cancelled) setCampReportCount(0)
+      }
+    })()
+    return () => { cancelled = true }
+  }, [effectiveUserId, isReady])
 
   // Pull-to-refresh states
   const [isRefreshing, setIsRefreshing] = useState(false)
@@ -435,6 +457,27 @@ function MobileReportsPageContent() {
           </h1>
 
         </div>
+
+        {/* Camp reports entry — only when the selected student has any */}
+        {campReportCount > 0 && (
+          <Card
+            className="p-4 mb-4 cursor-pointer hover:bg-gray-50 transition-colors"
+            onClick={() => router.push('/mobile/camp-reports')}
+          >
+            <div className="flex items-center gap-3">
+              <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
+                <Tent className="w-4 h-4 text-primary" strokeWidth={1.75} />
+              </div>
+              <div className="flex-1 min-w-0">
+                <p className="text-sm font-semibold text-gray-900">{t('mobile.campReports.title')}</p>
+                <p className="text-xs text-gray-500">
+                  {t('mobile.campReports.entryCount', { count: campReportCount })}
+                </p>
+              </div>
+              <ChevronRight className="w-4 h-4 text-gray-300 flex-shrink-0" />
+            </div>
+          </Card>
+        )}
 
         {/* Search Input */}
         <div className="mb-4">

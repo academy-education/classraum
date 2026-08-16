@@ -1159,6 +1159,74 @@ export type Database = {
             referencedRelation: "academies"
             referencedColumns: ["id"]
           },
+          {
+            foreignKeyName: "camp_programs_academy_id_fkey"
+            columns: ["academy_id"]
+            isOneToOne: false
+            referencedRelation: "admin_academy_usage"
+            referencedColumns: ["academy_id"]
+          },
+          {
+            foreignKeyName: "camp_programs_academy_id_fkey"
+            columns: ["academy_id"]
+            isOneToOne: false
+            referencedRelation: "admin_academy_usage"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      camp_reports: {
+        Row: {
+          camp_program_id: string
+          classroom_id: string
+          created_at: string
+          created_by: string
+          deleted_at: string | null
+          id: string
+          payload: Json
+          period_end: string | null
+          period_start: string | null
+          student_id: string
+        }
+        Insert: {
+          camp_program_id: string
+          classroom_id: string
+          created_at?: string
+          created_by: string
+          deleted_at?: string | null
+          id?: string
+          payload: Json
+          period_end?: string | null
+          period_start?: string | null
+          student_id: string
+        }
+        Update: {
+          camp_program_id?: string
+          classroom_id?: string
+          created_at?: string
+          created_by?: string
+          deleted_at?: string | null
+          id?: string
+          payload?: Json
+          period_end?: string | null
+          period_start?: string | null
+          student_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "camp_reports_camp_program_id_fkey"
+            columns: ["camp_program_id"]
+            isOneToOne: false
+            referencedRelation: "camp_programs"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "camp_reports_classroom_id_fkey"
+            columns: ["classroom_id"]
+            isOneToOne: false
+            referencedRelation: "classrooms"
+            referencedColumns: ["id"]
+          },
         ]
       }
       chat_conversations: {
@@ -3535,6 +3603,7 @@ export type Database = {
           realism: string | null
           reviewed_at: string | null
           reviewer_id: string
+          reviewer_kind: string
           run_id: string
           shown_order: Json
           verdict: string | null
@@ -3550,6 +3619,7 @@ export type Database = {
           realism?: string | null
           reviewed_at?: string | null
           reviewer_id: string
+          reviewer_kind?: string
           run_id: string
           shown_order: Json
           verdict?: string | null
@@ -3565,6 +3635,7 @@ export type Database = {
           realism?: string | null
           reviewed_at?: string | null
           reviewer_id?: string
+          reviewer_kind?: string
           run_id?: string
           shown_order?: Json
           verdict?: string | null
@@ -5218,6 +5289,7 @@ export type Database = {
           email_notifications: Json | null
           language: string | null
           login_notifications: boolean | null
+          push_categories: Json
           push_notifications: boolean | null
           theme: string | null
           timezone: string | null
@@ -5236,6 +5308,7 @@ export type Database = {
           email_notifications?: Json | null
           language?: string | null
           login_notifications?: boolean | null
+          push_categories?: Json
           push_notifications?: boolean | null
           theme?: string | null
           timezone?: string | null
@@ -5254,6 +5327,7 @@ export type Database = {
           email_notifications?: Json | null
           language?: string | null
           login_notifications?: boolean | null
+          push_categories?: Json
           push_notifications?: boolean | null
           theme?: string | null
           timezone?: string | null
@@ -5466,6 +5540,7 @@ export type Database = {
           realism: string | null
           reviewed_at: string | null
           reviewer_id: string | null
+          reviewer_kind: string | null
           run_id: string | null
           shown_order: Json | null
           verdict: string | null

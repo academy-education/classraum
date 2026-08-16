@@ -9,11 +9,12 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { ModalShell } from '@/components/ui/common/ModalShell'
 import { CampClassroomDashboard } from '@/components/ui/camp/CampClassroomDashboard'
 import { CampReviewPresenter } from '@/components/ui/camp/CampReviewPresenter'
+import { CampReportsPanel } from '@/components/ui/camp/CampReportsPanel'
 import type { Question } from '@/app/mobile/study/session/[id]/test/types'
 import { authHeaders } from '@/lib/auth-headers'
 import { useTranslation } from '@/hooks/useTranslation'
 import { showSuccessToast, showErrorToast } from '@/stores'
-import { Loader2, Plus, School, Tent, ClipboardList, ChevronDown, ChevronUp, Presentation } from 'lucide-react'
+import { Loader2, Plus, School, Tent, ClipboardList, ChevronDown, ChevronUp, Presentation, FileText } from 'lucide-react'
 
 /**
  * Camp dashboard — quota meter, camp classrooms, and the assignment
@@ -114,6 +115,9 @@ export function CampPage({ academyId }: CampPageProps) {
    * (POST /api/camp/review-set, same quota pool), fetches its full items
    * (GET, teacher-only) and opens the full-screen presenter. */
   const [reviewClassroomId, setReviewClassroomId] = useState<string | null>(null)
+
+  /* Camp P4 — per-classroom reports modal (generate + preview). */
+  const [reportsClassroom, setReportsClassroom] = useState<{ id: string; name: string } | null>(null)
   const [reviewForm, setReviewForm] = useState({ section: '', domain: '', count: '10' })
   const [reviewSubmitting, setReviewSubmitting] = useState(false)
   const [reviewError, setReviewError] = useState<string | null>(null)
@@ -400,8 +404,16 @@ export function CampPage({ academyId }: CampPageProps) {
                   </span>
                   <button
                     type="button"
-                    onClick={() => openReviewModal(room.id)}
+                    onClick={() => setReportsClassroom({ id: room.id, name: room.name })}
                     className="ml-auto flex items-center gap-1.5 text-xs font-medium text-primary hover:text-primary/80"
+                  >
+                    <FileText className="w-3.5 h-3.5" />
+                    {t('camp.reports.title')}
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => openReviewModal(room.id)}
+                    className="flex items-center gap-1.5 text-xs font-medium text-primary hover:text-primary/80"
                   >
                     <Presentation className="w-3.5 h-3.5" />
                     {t('camp.review.classReview')}
@@ -696,6 +708,14 @@ export function CampPage({ academyId }: CampPageProps) {
           )}
         </form>
       </ModalShell>
+
+      {reportsClassroom && (
+        <CampReportsPanel
+          classroomId={reportsClassroom.id}
+          classroomName={reportsClassroom.name}
+          onClose={() => setReportsClassroom(null)}
+        />
+      )}
 
       {presenter && (
         <CampReviewPresenter
