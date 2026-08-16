@@ -2585,6 +2585,26 @@
       "mockTests": "Mock tests",
       "mockTest": "Mock test",
       "generatedAt": "Report generated {date}"
+    },
+    "overview": {
+      "studentsEnrolled": "Students enrolled",
+      "ofCap": "/ {cap} cap",
+      "completion": "Completion",
+      "sessionsLabel": "{done}/{expected} sessions",
+      "averageScore": "Average score",
+      "gradedSessions": "{n} graded sessions",
+      "noGradedSessions": "no graded sessions yet",
+      "skillsToReview": "Skills to review",
+      "skillsHint": "below {threshold}% accuracy"
+    },
+    "studentDetail": {
+      "open": "View student details",
+      "lastActivity": "Last activity {date}",
+      "noActivityYet": "No activity yet",
+      "assignments": "Assignments",
+      "assignmentsDone": "Assignments done",
+      "generateReport": "Generate report",
+      "loadFailed": "Failed to load student details."
     }
   },
   "attendance": {

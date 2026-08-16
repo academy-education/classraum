@@ -16,7 +16,7 @@ import type { Question } from '@/app/mobile/study/session/[id]/test/types'
 import { authHeaders } from '@/lib/auth-headers'
 import { useTranslation } from '@/hooks/useTranslation'
 import { showSuccessToast, showErrorToast } from '@/stores'
-import { Loader2, Plus, School, Tent, ClipboardList, ChevronDown, ChevronUp, Presentation, FileText, BookOpen, Clock } from 'lucide-react'
+import { Loader2, Plus, School, Tent, ClipboardList, ChevronDown, ChevronUp, Presentation, FileText, BookOpen, Clock, Users, CheckCircle2, Target, AlertTriangle } from 'lucide-react'
 
 /**
  * Camp dashboard — quota meter, camp classrooms, and the assignment
@@ -48,6 +48,24 @@ interface CampClassroom {
   id: string
   name: string
   teacher_id: string | null
+}
+
+/** One tab's worth of data — /api/camp/program returns every active
+ *  program with its own classrooms grouped under it. */
+interface ProgramGroup {
+  program: CampProgram
+  classrooms: CampClassroom[]
+}
+
+/** GET /api/camp/overview — program-wide stats strip. */
+interface ProgramOverview {
+  programId: string
+  studentsEnrolled: number
+  studentCap: number
+  completion: { done: number; expected: number; pct: number }
+  averageScorePct: number | null
+  scoredSessions: number
+  skillsToReview: { count: number; accuracyThreshold: number; minAnswers: number }
 }
 
 interface CampAssignment {
@@ -98,9 +116,12 @@ export function CampPage({ academyId }: CampPageProps) {
   const { t, language } = useTranslation()
 
   const [loading, setLoading] = useState(true)
-  const [program, setProgram] = useState<CampProgram | null>(null)
-  const [classrooms, setClassrooms] = useState<CampClassroom[]>([])
+  const [programGroups, setProgramGroups] = useState<ProgramGroup[]>([])
+  /** Which program tab is showing (only relevant when >1 program). */
+  const [activeProgramId, setActiveProgramId] = useState<string | null>(null)
   const [assignments, setAssignments] = useState<Record<string, CampAssignment[]>>({})
+  /** Overview stats per program id, fetched lazily per active tab. */
+  const [overviews, setOverviews] = useState<Record<string, ProgramOverview>>({})
 
   /** Classrooms whose tracking panel (P2 dashboard) is expanded. */
   const [openDashboards, setOpenDashboards] = useState<Record<string, boolean>>({})
@@ -149,24 +170,58 @@ export function CampPage({ academyId }: CampPageProps) {
       const headers = await authHeaders()
       const res = await fetch(`/api/camp/program?academyId=${academyId}`, { headers })
       if (!res.ok) {
-        setProgram(null)
-        setClassrooms([])
+        setProgramGroups([])
         return
       }
       const json = await res.json()
-      setProgram(json.program ?? null)
-      const rooms = (json.classrooms ?? []) as CampClassroom[]
-      setClassrooms(rooms)
-      if (rooms.length > 0) await fetchAssignments(rooms.map(r => r.id))
+      const groups = (json.programs ?? []) as ProgramGroup[]
+      setProgramGroups(groups)
+      setActiveProgramId(prev =>
+        groups.some(g => g.program.id === prev) ? prev : (groups[0]?.program.id ?? null),
+      )
+      // Overviews are recomputed per tab visit; clear so post-create
+      // numbers (completion denominator) are fresh.
+      setOverviews({})
     } catch (error) {
       console.error('[camp] failed to load program:', error)
-      setProgram(null)
+      setProgramGroups([])
     } finally {
       setLoading(false)
     }
-  }, [academyId, fetchAssignments])
+  }, [academyId])
 
   useEffect(() => { fetchAll() }, [fetchAll])
+
+  const activeGroup = programGroups.find(g => g.program.id === activeProgramId)
+    ?? programGroups[0] ?? null
+  const program = activeGroup?.program ?? null
+  const classrooms = useMemo(() => activeGroup?.classrooms ?? [], [activeGroup])
+  const overview = program ? (overviews[program.id] ?? null) : null
+
+  // Assignments for the ACTIVE program's classrooms (lazy per tab).
+  useEffect(() => {
+    if (classrooms.length > 0) fetchAssignments(classrooms.map(r => r.id))
+  }, [classrooms, fetchAssignments])
+
+  // Overview strip for the active program (lazy, cached until fetchAll).
+  useEffect(() => {
+    const pid = program?.id
+    if (!pid || overviews[pid]) return
+    let cancelled = false
+    ;(async () => {
+      try {
+        const res = await fetch(`/api/camp/overview?programId=${pid}`, {
+          headers: await authHeaders(),
+        })
+        if (!res.ok) return
+        const json = (await res.json()) as ProgramOverview
+        if (!cancelled) setOverviews(prev => ({ ...prev, [pid]: json }))
+      } catch (error) {
+        console.error('[camp] overview load failed:', error)
+      }
+    })()
+    return () => { cancelled = true }
+  }, [program?.id, overviews])
 
   const sections = program ? (FAMILY_SECTIONS[program.test_family] ?? []) : []
   const domains = program && form.section
@@ -264,7 +319,11 @@ export function CampPage({ academyId }: CampPageProps) {
 
       // Quota moved server-side; mirror it locally WITHOUT fetchAll(),
       // whose loading state would unmount the presenter we open next.
-      setProgram(prev => prev ? { ...prev, questions_used: prev.questions_used + count } : prev)
+      setProgramGroups(prev => prev.map(g =>
+        g.program.id === program.id
+          ? { ...g, program: { ...g.program, questions_used: g.program.questions_used + count } }
+          : g,
+      ))
       setReviewClassroomId(null)
       setPresenter({
         title: (items.reviewSet?.title as string) ?? String(t('camp.review.title')),
@@ -443,6 +502,30 @@ export function CampPage({ academyId }: CampPageProps) {
         </Button>
       </div>
 
+      {/* Program switcher — underline-tab idiom (PaymentTabNavigation);
+          only rendered when the academy runs more than one camp. */}
+      {programGroups.length > 1 && (
+        <div className="border-b mb-6">
+          <nav className="flex space-x-8 overflow-x-auto">
+            {programGroups.map(g => (
+              <button
+                key={g.program.id}
+                type="button"
+                onClick={() => setActiveProgramId(g.program.id)}
+                className={`flex items-center gap-2 py-4 px-1 border-b-2 font-medium text-sm whitespace-nowrap transition-colors ${
+                  g.program.id === program.id
+                    ? 'border-primary text-primary'
+                    : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                }`}
+              >
+                <Tent className="w-4 h-4" />
+                {g.program.name}
+              </button>
+            ))}
+          </nav>
+        </div>
+      )}
+
       {/* Quota — stat-card idiom (hero number + icon chip + pill) */}
       <div className="mb-8">
         <Card className="w-full sm:w-80 p-5">
@@ -472,6 +555,106 @@ export function CampPage({ academyId }: CampPageProps) {
         </Card>
       </div>
 
+      {/* Program overview — 4-card stat row (quota-card family), all
+          numbers from GET /api/camp/overview across the program's
+          classrooms. */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6 mb-8">
+        {overview === null ? (
+          [...Array(4)].map((_, i) => (
+            <Card key={i} className="p-5 animate-pulse">
+              <div className="flex items-center gap-2 mb-3">
+                <div className="w-7 h-7 rounded-lg bg-gray-200" />
+                <div className="h-3 bg-gray-200 rounded w-24" />
+              </div>
+              <div className="h-9 bg-gray-200 rounded w-20" />
+            </Card>
+          ))
+        ) : (
+          <>
+            <Card className="p-5">
+              <div className="flex items-center gap-2 mb-3">
+                <div className="w-7 h-7 rounded-lg bg-primary/10 flex items-center justify-center">
+                  <Users className="w-3.5 h-3.5 text-primary" strokeWidth={2.25} />
+                </div>
+                <p className="text-[11px] font-semibold uppercase tracking-[0.1em] text-gray-500">
+                  {t('camp.overview.studentsEnrolled')}
+                </p>
+              </div>
+              <div className="flex items-baseline gap-2">
+                <p className="text-4xl font-semibold tracking-tight text-gray-900 tabular-nums">
+                  {overview.studentsEnrolled}
+                </p>
+                <p className="text-sm text-gray-400">
+                  {t('camp.overview.ofCap', { cap: overview.studentCap })}
+                </p>
+              </div>
+            </Card>
+
+            <Card className="p-5">
+              <div className="flex items-center gap-2 mb-3">
+                <div className="w-7 h-7 rounded-lg bg-primary/10 flex items-center justify-center">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-primary" strokeWidth={2.25} />
+                </div>
+                <p className="text-[11px] font-semibold uppercase tracking-[0.1em] text-gray-500">
+                  {t('camp.overview.completion')}
+                </p>
+              </div>
+              <div className="flex items-baseline gap-2">
+                <p className="text-4xl font-semibold tracking-tight text-gray-900 tabular-nums">
+                  {overview.completion.pct}%
+                </p>
+                <p className="text-sm text-gray-400">
+                  {t('camp.overview.sessionsLabel', {
+                    done: overview.completion.done,
+                    expected: overview.completion.expected,
+                  })}
+                </p>
+              </div>
+            </Card>
+
+            <Card className="p-5">
+              <div className="flex items-center gap-2 mb-3">
+                <div className="w-7 h-7 rounded-lg bg-primary/10 flex items-center justify-center">
+                  <Target className="w-3.5 h-3.5 text-primary" strokeWidth={2.25} />
+                </div>
+                <p className="text-[11px] font-semibold uppercase tracking-[0.1em] text-gray-500">
+                  {t('camp.overview.averageScore')}
+                </p>
+              </div>
+              <div className="flex items-baseline gap-2">
+                <p className="text-4xl font-semibold tracking-tight text-gray-900 tabular-nums">
+                  {overview.averageScorePct !== null ? `${overview.averageScorePct}%` : '—'}
+                </p>
+                <p className="text-sm text-gray-400">
+                  {overview.scoredSessions > 0
+                    ? t('camp.overview.gradedSessions', { n: overview.scoredSessions })
+                    : t('camp.overview.noGradedSessions')}
+                </p>
+              </div>
+            </Card>
+
+            <Card className="p-5">
+              <div className="flex items-center gap-2 mb-3">
+                <div className="w-7 h-7 rounded-lg bg-primary/10 flex items-center justify-center">
+                  <AlertTriangle className="w-3.5 h-3.5 text-primary" strokeWidth={2.25} />
+                </div>
+                <p className="text-[11px] font-semibold uppercase tracking-[0.1em] text-gray-500">
+                  {t('camp.overview.skillsToReview')}
+                </p>
+              </div>
+              <div className="flex items-baseline gap-2">
+                <p className="text-4xl font-semibold tracking-tight text-gray-900 tabular-nums">
+                  {overview.skillsToReview.count}
+                </p>
+                <p className="text-sm text-gray-400">
+                  {t('camp.overview.skillsHint', { threshold: overview.skillsToReview.accuracyThreshold })}
+                </p>
+              </div>
+            </Card>
+          </>
+        )}
+      </div>
+
       {/* Classrooms + assignments — grouped-list idiom (session header + row cards) */}
       {classrooms.length === 0 ? (
         <Card>
@@ -483,7 +666,8 @@ export function CampPage({ academyId }: CampPageProps) {
       ) : (
         <div className="space-y-6">
           {classrooms.map(room => {
-            const rows = assignments[room.id] ?? []
+            // undefined = still fetching this tab's assignments
+            const rows = assignments[room.id]
             return (
               <div key={room.id} className="space-y-2 sm:space-y-3">
                 {/* Classroom header */}
@@ -494,7 +678,7 @@ export function CampPage({ academyId }: CampPageProps) {
                       {room.name}
                     </h3>
                     <span className="text-xs sm:text-sm text-gray-500 flex-shrink-0">
-                      {t('camp.assignmentCount', { count: rows.length })}
+                      {t('camp.assignmentCount', { count: rows?.length ?? 0 })}
                     </span>
                   </div>
                   <div className="flex flex-wrap items-center gap-2 ml-5 sm:ml-0">
@@ -535,7 +719,12 @@ export function CampPage({ academyId }: CampPageProps) {
                 </div>
 
                 {/* Assignments in this classroom */}
-                {rows.length === 0 ? (
+                {rows === undefined ? (
+                  <Card className="p-3 sm:p-4 ml-4 sm:ml-6 animate-pulse">
+                    <div className="h-5 bg-gray-200 rounded w-48 mb-2" />
+                    <div className="h-4 bg-gray-200 rounded w-32" />
+                  </Card>
+                ) : rows.length === 0 ? (
                   <Card className="ml-4 sm:ml-6">
                     <EmptyState
                       icon={ClipboardList}

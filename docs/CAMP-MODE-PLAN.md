@@ -57,3 +57,22 @@ parents (family link, then Kakao/email). Tasks #319–#324.
   2026-08-15 (file + remote in sync). `study_*` tables have no CREATE
   in this dir — `src/lib/database.types.ts` is their schema source of
   truth; regenerate types after 081.
+
+## P5 additions (2026-08-17): multi-program, overview, drill-down
+
+- `/api/camp/program` returns ALL active programs (`programs:
+  [{program, classrooms}]`, created_at asc); legacy `program`/
+  `classrooms` keys = the newest. CampPage shows underline tabs
+  (payments idiom) only when >1 program.
+- `GET /api/camp/overview?programId=` — 4-stat strip (enrolled vs cap,
+  done/expected completion, avg session score, skills <70% with n>=5).
+  Built on `loadClassroomCampData` per classroom, so it agrees with the
+  dashboard/report numbers by construction and inherits the review-set
+  exclusion.
+- `GET /api/camp/student?classroomId=&studentId=` — LIVE per-student
+  payload from the same `buildCampReportPayload` the report snapshot
+  uses (one implementation, verified byte-equal modulo jsonb key order
+  in camp-overview-verify V15), plus `lastActivity`. UI:
+  `CampStudentDetail.tsx`, opened from the roster table.
+- Verifier: `scripts/camp-overview-verify.mjs` (17 checks; seeds a
+  second toefl program per run into the E2E academy).

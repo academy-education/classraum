@@ -2585,6 +2585,26 @@
       "mockTests": "모의고사",
       "mockTest": "모의고사",
       "generatedAt": "{date} 생성된 리포트"
+    },
+    "overview": {
+      "studentsEnrolled": "등록 학생",
+      "ofCap": "/ 정원 {cap}명",
+      "completion": "완료율",
+      "sessionsLabel": "{done}/{expected} 세션",
+      "averageScore": "평균 점수",
+      "gradedSessions": "채점된 세션 {n}개",
+      "noGradedSessions": "채점된 세션이 아직 없습니다",
+      "skillsToReview": "복습할 스킬",
+      "skillsHint": "정확도 {threshold}% 미만"
+    },
+    "studentDetail": {
+      "open": "학생 상세 보기",
+      "lastActivity": "마지막 활동 {date}",
+      "noActivityYet": "아직 활동이 없습니다",
+      "assignments": "과제",
+      "assignmentsDone": "완료한 과제",
+      "generateReport": "리포트 생성",
+      "loadFailed": "학생 정보를 불러오지 못했습니다."
     }
   },
   "attendance": {

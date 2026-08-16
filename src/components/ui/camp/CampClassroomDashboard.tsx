@@ -4,6 +4,7 @@ import { useCallback, useEffect, useState } from 'react'
 import { Card } from '@/components/ui/card'
 import { EmptyState } from '@/components/ui/common/EmptyState'
 import { StatusPill, type StatusPillTone } from '@/components/ui/status-pill'
+import { CampStudentDetail } from '@/components/ui/camp/CampStudentDetail'
 import { authHeaders } from '@/lib/auth-headers'
 import { useTranslation } from '@/hooks/useTranslation'
 import { BarChart3, Users, ClipboardList } from 'lucide-react'
@@ -77,6 +78,9 @@ export function CampClassroomDashboard({ classroomId, testFamily }: CampClassroo
   const [loading, setLoading] = useState(true)
   const [data, setData] = useState<DashboardData | null>(null)
   const [error, setError] = useState(false)
+  /** Student drill-down modal (per-assignment history, per-domain
+   *  accuracy, report shortcut) — opened by clicking a roster row. */
+  const [detailStudent, setDetailStudent] = useState<{ id: string; name: string } | null>(null)
 
   const fetchDashboard = useCallback(async () => {
     setLoading(true)
@@ -199,8 +203,18 @@ export function CampClassroomDashboard({ classroomId, testFamily }: CampClassroo
               <tbody className="divide-y divide-gray-100">
                 {data.roster.map(student => (
                   <tr key={student.studentId} className="transition-colors hover:bg-gray-50">
-                    <td className="px-4 py-3 text-gray-900 font-medium whitespace-nowrap">
-                      {student.name ?? student.email ?? '—'}
+                    <td className="px-4 py-3 whitespace-nowrap">
+                      <button
+                        type="button"
+                        onClick={() => setDetailStudent({
+                          id: student.studentId,
+                          name: student.name ?? student.email ?? '—',
+                        })}
+                        className="text-gray-900 font-medium hover:text-primary hover:underline underline-offset-2 transition-colors"
+                        title={String(t('camp.studentDetail.open'))}
+                      >
+                        {student.name ?? student.email ?? '—'}
+                      </button>
                     </td>
                     {data.assignments.map(a => {
                       const status = a.students.find(s => s.studentId === student.studentId)
@@ -288,6 +302,17 @@ export function CampClassroomDashboard({ classroomId, testFamily }: CampClassroo
           </ol>
         )}
       </Card>
+
+      {/* Per-student drill-down (live, not a snapshot) */}
+      {detailStudent && (
+        <CampStudentDetail
+          classroomId={classroomId}
+          studentId={detailStudent.id}
+          studentName={detailStudent.name}
+          testFamily={testFamily}
+          onClose={() => setDetailStudent(null)}
+        />
+      )}
     </div>
   )
 }
