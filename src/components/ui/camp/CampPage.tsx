@@ -1307,7 +1307,7 @@ function AssignmentStatusDonut({ status, labels }: {
             offset += seg.frac * CIRC
             return el
           })}
-          <text x="36" y="40" textAnchor="middle" className="fill-gray-900" style={{ fontSize: 15, fontWeight: 600 }}>
+          <text x="36" y="39" textAnchor="middle" className="fill-gray-900" style={{ fontSize: 11, fontWeight: 600 }}>
             {completedPct}%
           </text>
         </svg>
