@@ -122,9 +122,10 @@ async function signIn(email, password) {
 
 async function main() {
   // ════ SEED: parents + stranger student (service role, idempotent) ════
-  const parentPassword = 'Pp1!' + randomBytes(12).toString('hex')
-  const parent2Password = 'Pp2!' + randomBytes(12).toString('hex')
-  const student2Password = 'Ss2!' + randomBytes(12).toString('hex')
+  // Stable for the same reason as camp-e2e.mjs (rotation locked Andy out).
+  const parentPassword = 'CampParent!2026'
+  const parent2Password = 'CampParent2!2026'
+  const student2Password = 'CampStudy2!2026'
 
   const parentUid = await ensureAuthUser(PARENT_EMAIL, parentPassword)
   const parent2Uid = await ensureAuthUser(PARENT2_EMAIL, parent2Password)

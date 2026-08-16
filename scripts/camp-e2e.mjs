@@ -98,8 +98,12 @@ async function api(path, { method = 'GET', token, body } = {}) {
 
 async function main() {
   // ════ 1. SEED ════
-  const teacherPassword = 'Tt1!' + randomBytes(12).toString('hex')
-  const studentPassword = 'Ss1!' + randomBytes(12).toString('hex')
+  // STABLE passwords (2026-08-16): the per-run rotation locked Andy out
+  // whenever a verifier ran between him reading the accounts file and
+  // logging in. ensureAuthUser still converges an existing account to
+  // this password, so a drifted account self-heals on the next run.
+  const teacherPassword = 'CampTeach!2026'
+  const studentPassword = 'CampStudy!2026'
 
   const teacherUid = await ensureAuthUser(TEACHER_EMAIL, teacherPassword)
   const studentUid = await ensureAuthUser(STUDENT_EMAIL, studentPassword)
