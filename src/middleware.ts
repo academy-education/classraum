@@ -8,6 +8,11 @@ export function middleware(request: NextRequest) {
   // Define routes that require authentication
   const protectedRoutes = [
     '/dashboard', '/students', '/classrooms', '/sessions', '/assignments',
+    // /camp-program: forgotten when camp mode shipped — the app-subdomain
+    // branch 307'd it to /auth as an unknown route, so the sidebar's Camp
+    // item bounced teachers to login and then their default page. The
+    // third route to hit this exact fallthrough (see /account/*, /pay/*).
+    '/camp-program',
     '/attendance', '/announcements', '/payments', '/reports', '/settings', '/teachers',
     '/families', '/parents', '/notifications', '/upgrade', '/mobile',
     '/archive', '/test-payment', '/order-summary', '/billing', '/messages', '/bank',
