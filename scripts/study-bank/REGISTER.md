@@ -150,6 +150,67 @@ B4 is *Calibrate the reviewer before spending another cohort* (~20 minutes — o
 
 ## 5. Found while fixing
 
+### B2 follow-ups: 3 flags repaired, length regression PASSED — and the solvers named the NEXT tell (2026-08-16)
+
+Two follow-ups from `b2-all-cohorts-2026-08-15`, both closed.
+
+**The 3 step-2 flags — all three repaired, none archived.** Letters
+decoded through shown_order per the calibration-15 procedure; in each
+case the reviewer's named alternative was genuinely defensible, and a
+minimal distractor edit (key untouched, explanation updated,
+distractor_rationales kept in sync, key-in-choices verified after
+apply) removed the second answer:
+
+- 9efbd702 C&S (his "B" = the apprentice-wage finding): higher wages
+  for guild-trained apprentices DOES strengthen the human-capital half
+  of the "revised view", so it was a weaker-but-real strengthener.
+  Edit appends a selection confound ("guilds typically admitted only
+  applicants from families already prosperous in the trade") — the
+  premium no longer evidences training value.
+- 7d3c8f8b EoI (his "A" = the 13%-calls study): a bare fact a skeptic
+  accepts, and its old tail ("the largest gain reported by any of the
+  studies") was itself a cross-study claim. New tail overreaches ("a
+  gain that can be expected to hold across most job types"), which the
+  notes contradict — fails both "cautious" and "skeptic would accept".
+- 1fe0cdfa EoI (his "B" = grogginess offset): "longer naps hurt
+  memory" IS counterintuitive to a lay reader — two defensible
+  answers. Fixed by marking the result as anticipated in BOTH the note
+  bullet and the choice ("As the researchers had predicted, …"), so it
+  can no longer be the most counterintuitive result.
+
+**Length regression (run `length-regress-2026-08-16`) — the repaired
+tell is dead, but the run's headline number is about something else.**
+24 of the 96 rebalanced items (12 I&I + 12 C&S, deterministic sample,
+live post-repair text; study_item_attacks_fresh confirmed 0 rows on
+all 96 first, so the sample is a true re-attack). Three Claude
+solvers, options only:
+
+    domain   blind      control (own spread)   margin    pick-longest attacker   solvers-picked-longest
+    I&I      91.7%      33.3%                  +58.3     16.7%                   25.0% (chance)
+    C&S     100.0%      41.7%                  +58.3      8.3%                    8.3%
+
+  LENGTH: regressed. Key was longest on 3/24; a pure longest-picker
+  now scores BELOW chance, and solver picks did not track length.
+  BLIND SCORE: 95.8% overall — but the cohort-level view already read
+  95.8/97.9% blind on I&I/C&S from PRE-repair rows, so the repaired
+  items score like their cohort, not worse. Per the B4 demotion,
+  absolute blind numbers are model-side, not student-side; the re-sit
+  remains the verdict instrument.
+
+**The finding is in the pattern reports, and all three solvers wrote
+the same one unprompted:** the key is the hedged / qualified /
+"complicates-rather-than-condemns" option while distractors carry
+absolutes ("invariably", "only", "no role at all"), and one solver
+counted ~9 of 24 items solvable on that cue alone after learning it
+once — the exact cross-item-brief defect CLAUDE.md's corollary
+predicts, now named for I&I/C&S. Secondary: ~7 stimuli are
+recognizable real findings (Yellowstone wolves, marshmallow-test
+reinterpretation, ENCODE…), so model world knowledge substitutes for
+the passage. Also recorded: the three solvers returned IDENTICAL
+24-letter strings — same-model solvers are one instrument sampled
+three times, not three instruments. Details appended to
+LENGTH-REBALANCE-RESULT.md. Nothing committed.
+
 ### Length tell REPAIRED — 96 distractors lengthened in I&I / C&S, forward rule dead (2026-08-16)
 
 The repair the entry below called for. `rebalance-length.mjs`
