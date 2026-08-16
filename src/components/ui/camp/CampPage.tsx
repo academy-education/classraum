@@ -7,6 +7,8 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { ModalShell } from '@/components/ui/common/ModalShell'
+import { EmptyState } from '@/components/ui/common/EmptyState'
+import { StatusPill } from '@/components/ui/status-pill'
 import { CampClassroomDashboard } from '@/components/ui/camp/CampClassroomDashboard'
 import { CampReviewPresenter } from '@/components/ui/camp/CampReviewPresenter'
 import { CampReportsPanel } from '@/components/ui/camp/CampReportsPanel'
@@ -14,7 +16,7 @@ import type { Question } from '@/app/mobile/study/session/[id]/test/types'
 import { authHeaders } from '@/lib/auth-headers'
 import { useTranslation } from '@/hooks/useTranslation'
 import { showSuccessToast, showErrorToast } from '@/stores'
-import { Loader2, Plus, School, Tent, ClipboardList, ChevronDown, ChevronUp, Presentation, FileText } from 'lucide-react'
+import { Loader2, Plus, School, Tent, ClipboardList, ChevronDown, ChevronUp, Presentation, FileText, BookOpen, Clock } from 'lucide-react'
 
 /**
  * Camp dashboard — quota meter, camp classrooms, and the assignment
@@ -24,6 +26,10 @@ import { Loader2, Plus, School, Tent, ClipboardList, ChevronDown, ChevronUp, Pre
  * Data comes exclusively from /api/camp/* (service-role reads), because
  * migration 082 made camp tables client-read-only and this page must
  * show the same truth the writes enforce.
+ *
+ * Presentation follows the dashboard design system: header/eyebrow and
+ * stat-card idioms from classrooms-page.tsx, the grouped list (session
+ * header + row cards) and skeleton idioms from assignments-page.tsx.
  */
 
 interface CampProgram {
@@ -324,33 +330,101 @@ export function CampPage({ academyId }: CampPageProps) {
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center min-h-[400px]">
-        <Loader2 className="w-6 h-6 animate-spin text-gray-400" />
+      <div className="p-4">
+        {/* Header — eyebrow is static; the title/description are dynamic, so bars */}
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
+          <div className="animate-pulse">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-primary mb-1.5">{t("navigation.camp")}</p>
+            <div className="h-8 bg-gray-200 rounded w-64 mb-2"></div>
+            <div className="h-4 bg-gray-200 rounded w-48"></div>
+          </div>
+          <Button className="self-start sm:self-auto flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm h-8 sm:h-9 px-2.5 sm:px-4">
+            <Plus className="w-3 h-3 sm:w-4 sm:h-4" />
+            {t("camp.newAssignment")}
+          </Button>
+        </div>
+
+        {/* Stats Card Skeleton */}
+        <div className="mb-8">
+          <Card className="w-full sm:w-80 p-6 animate-pulse border-l-4 border-gray-300">
+            <div className="space-y-3">
+              <div className="h-4 bg-gray-300 rounded w-32"></div>
+              <div className="flex items-baseline gap-2">
+                <div className="h-10 bg-gray-300 rounded w-20"></div>
+                <div className="h-4 bg-gray-300 rounded w-16"></div>
+              </div>
+            </div>
+          </Card>
+        </div>
+
+        {/* Classroom group skeletons */}
+        <div className="space-y-6">
+          {[...Array(2)].map((_, i) => (
+            <div key={i} className="space-y-2 sm:space-y-3 animate-pulse">
+              {/* Classroom header skeleton */}
+              <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3 pb-2 border-b border-gray-200">
+                <div className="flex items-center gap-2 sm:gap-3 flex-1">
+                  <div className="w-3 h-3 sm:w-4 sm:h-4 rounded-full bg-gray-200 flex-shrink-0" />
+                  <div className="h-5 bg-gray-200 rounded w-32" />
+                </div>
+                <div className="flex flex-wrap items-center gap-2 sm:gap-4 ml-5 sm:ml-0">
+                  <div className="h-4 bg-gray-200 rounded w-24" />
+                  <div className="h-4 bg-gray-200 rounded w-20" />
+                  <div className="h-4 bg-gray-200 rounded w-28" />
+                </div>
+              </div>
+              {/* Assignment row skeletons */}
+              {[...Array(2)].map((_, j) => (
+                <Card key={j} className="p-3 sm:p-4 ml-4 sm:ml-6">
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-0">
+                    <div className="flex-1">
+                      <div className="h-5 bg-gray-200 rounded w-48 mb-2" />
+                      <div className="flex flex-wrap items-center gap-2 sm:gap-4">
+                        <div className="h-4 bg-gray-200 rounded w-24" />
+                        <div className="h-4 bg-gray-200 rounded w-32" />
+                      </div>
+                    </div>
+                    <div className="h-6 bg-gray-200 rounded-full w-16" />
+                  </div>
+                </Card>
+              ))}
+            </div>
+          ))}
+        </div>
       </div>
     )
   }
 
   if (!program) {
     return (
-      <div className="p-6">
-        <Card className="p-12 flex flex-col items-center text-center gap-3">
-          <div className="w-14 h-14 rounded-full bg-gray-50 flex items-center justify-center">
-            <Tent className="w-7 h-7 text-gray-400" strokeWidth={1.5} />
+      <div className="p-4">
+        {/* Header */}
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
+          <div>
+            <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-primary mb-1.5">{t("navigation.camp")}</p>
+            <h1 className="text-2xl sm:text-3xl font-semibold tracking-tight text-gray-900">{t("navigation.camp")}</h1>
           </div>
-          <h2 className="text-lg font-semibold text-gray-900">{t('camp.noProgramTitle')}</h2>
-          <p className="text-sm text-gray-500 max-w-md">{t('camp.noProgramDescription')}</p>
+        </div>
+
+        <Card>
+          <EmptyState
+            icon={Tent}
+            title={String(t('camp.noProgramTitle'))}
+            description={String(t('camp.noProgramDescription'))}
+          />
         </Card>
       </div>
     )
   }
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-4">
       {/* Header */}
-      <div className="flex items-start justify-between gap-4">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">{program.name}</h1>
-          <p className="text-sm text-gray-500 mt-1">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-primary mb-1.5">{t("navigation.camp")}</p>
+          <h1 className="text-2xl sm:text-3xl font-semibold tracking-tight text-gray-900">{program.name}</h1>
+          <p className="text-gray-500">
             {t('camp.subtitle', { family: program.test_family.toUpperCase() })}
             {program.starts_on && program.ends_on && (
               <span className="ml-2 text-gray-400">
@@ -359,112 +433,164 @@ export function CampPage({ academyId }: CampPageProps) {
             )}
           </p>
         </div>
-        <Button onClick={openModal} disabled={classrooms.length === 0}>
-          <Plus className="w-4 h-4 mr-2" />
-          {t('camp.newAssignment')}
+        <Button
+          onClick={openModal}
+          disabled={classrooms.length === 0}
+          className="self-start sm:self-auto flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm h-8 sm:h-9 px-2.5 sm:px-4"
+        >
+          <Plus className="w-3 h-3 sm:w-4 sm:h-4" />
+          {t("camp.newAssignment")}
         </Button>
       </div>
 
-      {/* Quota */}
-      <Card className="p-5">
-        <div className="flex items-center justify-between mb-2">
-          <span className="text-sm font-medium text-gray-700">{t('camp.questionQuota')}</span>
-          <span className="text-sm text-gray-500">
-            {t('camp.quotaUsage', { used: quotaUsed, total: quotaTotal })}
-          </span>
-        </div>
-        <div className="w-full h-2.5 bg-gray-100 rounded-full overflow-hidden">
-          <div
-            className={`h-full rounded-full transition-all ${quotaPct >= 90 ? 'bg-rose-500' : 'bg-primary'}`}
-            style={{ width: `${quotaPct}%` }}
-          />
-        </div>
-        <p className="text-xs text-gray-400 mt-2">
-          {t('camp.quotaRemaining', { remaining: quotaRemaining })}
-        </p>
-      </Card>
+      {/* Quota — stat-card idiom (hero number + icon chip + pill) */}
+      <div className="mb-8">
+        <Card className="w-full sm:w-80 p-5">
+          <div className="flex items-center gap-2 mb-3">
+            <div className="w-7 h-7 rounded-lg bg-primary/10 flex items-center justify-center">
+              <ClipboardList className="w-3.5 h-3.5 text-primary" strokeWidth={2.25} />
+            </div>
+            <p className="text-[11px] font-semibold uppercase tracking-[0.1em] text-gray-500">
+              {t("camp.questionQuota")}
+            </p>
+          </div>
+          <div className="flex items-baseline gap-2 mb-3">
+            <p className="text-4xl sm:text-5xl font-semibold tracking-tight text-gray-900 tabular-nums">
+              {quotaUsed}
+            </p>
+            <p className="text-sm text-gray-400">/ {quotaTotal}</p>
+          </div>
+          <div className="w-full h-1.5 bg-gray-100 rounded-full overflow-hidden mb-3">
+            <div
+              className={`h-full rounded-full transition-all ${quotaPct >= 90 ? 'bg-rose-500' : 'bg-primary'}`}
+              style={{ width: `${quotaPct}%` }}
+            />
+          </div>
+          <div className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-[11px] font-medium ${quotaPct >= 90 ? 'bg-rose-50 text-rose-700' : 'bg-primary/10 text-primary'}`}>
+            {t('camp.quotaRemaining', { remaining: quotaRemaining })}
+          </div>
+        </Card>
+      </div>
 
-      {/* Classrooms + assignments */}
+      {/* Classrooms + assignments — grouped-list idiom (session header + row cards) */}
       {classrooms.length === 0 ? (
-        <Card className="p-8 flex flex-col items-center text-center gap-2">
-          <School className="w-6 h-6 text-gray-400" strokeWidth={1.5} />
-          <p className="text-sm text-gray-500">{t('camp.noClassrooms')}</p>
+        <Card>
+          <EmptyState
+            icon={School}
+            title={String(t('camp.noClassrooms'))}
+          />
         </Card>
       ) : (
-        <div className="space-y-4">
+        <div className="space-y-6">
           {classrooms.map(room => {
             const rows = assignments[room.id] ?? []
             return (
-              <Card key={room.id} className="p-5">
-                <div className="flex items-center gap-2 mb-3">
-                  <School className="w-4 h-4 text-gray-400" strokeWidth={1.75} />
-                  <h3 className="text-base font-semibold text-gray-900">{room.name}</h3>
-                  <span className="text-xs text-gray-400">
-                    {t('camp.assignmentCount', { count: rows.length })}
-                  </span>
-                  <button
-                    type="button"
-                    onClick={() => setReportsClassroom({ id: room.id, name: room.name })}
-                    className="ml-auto flex items-center gap-1.5 text-xs font-medium text-primary hover:text-primary/80"
-                  >
-                    <FileText className="w-3.5 h-3.5" />
-                    {t('camp.reports.title')}
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => openReviewModal(room.id)}
-                    className="flex items-center gap-1.5 text-xs font-medium text-primary hover:text-primary/80"
-                  >
-                    <Presentation className="w-3.5 h-3.5" />
-                    {t('camp.review.classReview')}
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() =>
-                      setOpenDashboards(prev => ({ ...prev, [room.id]: !prev[room.id] }))
-                    }
-                    className="flex items-center gap-1 text-xs font-medium text-primary hover:text-primary/80"
-                  >
-                    {openDashboards[room.id]
-                      ? t('camp.dashboard.hideProgress')
-                      : t('camp.dashboard.viewProgress')}
-                    {openDashboards[room.id]
-                      ? <ChevronUp className="w-3.5 h-3.5" />
-                      : <ChevronDown className="w-3.5 h-3.5" />}
-                  </button>
+              <div key={room.id} className="space-y-2 sm:space-y-3">
+                {/* Classroom header */}
+                <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3 pb-2 border-b border-gray-200">
+                  <div className="flex items-center gap-2 sm:gap-3 flex-1 min-w-0">
+                    <School className="w-3 h-3 sm:w-4 sm:h-4 text-gray-500 flex-shrink-0" strokeWidth={1.75} />
+                    <h3 className="text-base sm:text-lg font-semibold text-gray-900 truncate">
+                      {room.name}
+                    </h3>
+                    <span className="text-xs sm:text-sm text-gray-500 flex-shrink-0">
+                      {t('camp.assignmentCount', { count: rows.length })}
+                    </span>
+                  </div>
+                  <div className="flex flex-wrap items-center gap-2 ml-5 sm:ml-0">
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      className="flex items-center gap-1.5 text-xs h-8 px-2.5"
+                      onClick={() => setReportsClassroom({ id: room.id, name: room.name })}
+                    >
+                      <FileText className="w-3.5 h-3.5" />
+                      {t('camp.reports.title')}
+                    </Button>
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      className="flex items-center gap-1.5 text-xs h-8 px-2.5"
+                      onClick={() => openReviewModal(room.id)}
+                    >
+                      <Presentation className="w-3.5 h-3.5" />
+                      {t('camp.review.classReview')}
+                    </Button>
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      className="flex items-center gap-1 text-xs h-8 px-2.5 text-gray-600 hover:text-gray-900"
+                      onClick={() =>
+                        setOpenDashboards(prev => ({ ...prev, [room.id]: !prev[room.id] }))
+                      }
+                    >
+                      {openDashboards[room.id]
+                        ? t('camp.dashboard.hideProgress')
+                        : t('camp.dashboard.viewProgress')}
+                      {openDashboards[room.id]
+                        ? <ChevronUp className="w-3.5 h-3.5" />
+                        : <ChevronDown className="w-3.5 h-3.5" />}
+                    </Button>
+                  </div>
                 </div>
+
+                {/* Assignments in this classroom */}
                 {rows.length === 0 ? (
-                  <p className="text-sm text-gray-400 py-2">{t('camp.noAssignments')}</p>
+                  <Card className="ml-4 sm:ml-6">
+                    <EmptyState
+                      icon={ClipboardList}
+                      title={String(t('camp.noAssignments'))}
+                      size="sm"
+                      variant="subtle"
+                    />
+                  </Card>
                 ) : (
-                  <div className="divide-y divide-gray-100">
+                  <div className="space-y-2">
                     {rows.map(a => (
-                      <div key={a.id} className="py-3 flex items-center gap-3">
-                        <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
-                          <ClipboardList className="w-4 h-4 text-primary" strokeWidth={1.75} />
+                      <Card key={a.id} className="p-3 sm:p-4 hover:shadow-md transition-shadow ml-4 sm:ml-6">
+                        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-0">
+                          <div className="flex-1 min-w-0">
+                            <h4 className="text-sm sm:text-base font-semibold text-gray-900 truncate">{a.title}</h4>
+                            <div className="flex flex-wrap items-center gap-2 sm:gap-4 text-xs sm:text-sm text-gray-600 mt-1">
+                              {(a.section || a.domain) && (
+                                <div className="flex items-center gap-1">
+                                  <BookOpen className="w-3 h-3 sm:w-4 sm:h-4 text-gray-500" />
+                                  <span>
+                                    {[
+                                      a.section && sectionLabel(a.section),
+                                      a.domain && domainLabel(program.test_family, a.domain),
+                                    ].filter(Boolean).join(' · ')}
+                                  </span>
+                                </div>
+                              )}
+                              <div className="flex items-center gap-1">
+                                <Clock className="w-3 h-3 sm:w-4 sm:h-4 text-gray-500" />
+                                <span>
+                                  {a.due_at
+                                    ? t('camp.dueDateLabel', { date: formatDate(a.due_at) })
+                                    : formatDate(a.created_at)}
+                                </span>
+                              </div>
+                            </div>
+                          </div>
+                          <div className="flex items-center gap-2 text-xs sm:text-sm ml-0 sm:ml-4 flex-shrink-0">
+                            <StatusPill tone="sky" size="md">
+                              {t('camp.questionCountLabel', { count: a.question_count })}
+                            </StatusPill>
+                          </div>
                         </div>
-                        <div className="flex-1 min-w-0">
-                          <p className="text-sm font-medium text-gray-900 truncate">{a.title}</p>
-                          <p className="text-xs text-gray-500">
-                            {[
-                              a.section && sectionLabel(a.section),
-                              a.domain && domainLabel(program.test_family, a.domain),
-                              String(t('camp.questionCountLabel', { count: a.question_count })),
-                            ].filter(Boolean).join(' · ')}
-                          </p>
-                        </div>
-                        <div className="text-xs text-gray-400 flex-shrink-0">
-                          {a.due_at
-                            ? t('camp.dueDateLabel', { date: formatDate(a.due_at) })
-                            : formatDate(a.created_at)}
-                        </div>
-                      </div>
+                      </Card>
                     ))}
                   </div>
                 )}
+
+                {/* Expanded tracking panel (P2) */}
                 {openDashboards[room.id] && (
-                  <CampClassroomDashboard classroomId={room.id} testFamily={program.test_family} />
+                  <div className="ml-4 sm:ml-6">
+                    <CampClassroomDashboard classroomId={room.id} testFamily={program.test_family} />
+                  </div>
                 )}
-              </Card>
+              </div>
             )
           })}
         </div>

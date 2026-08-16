@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { ModalShell } from '@/components/ui/common/ModalShell'
+import { EmptyState } from '@/components/ui/common/EmptyState'
 import { CampReportView } from '@/components/ui/camp/CampReportView'
 import type { CampReportPayload } from '@/lib/camp/report-types'
 import { authHeaders } from '@/lib/auth-headers'
@@ -129,15 +130,24 @@ export function CampReportsPanel({ classroomId, classroomName, onClose }: CampRe
         }
       >
         {loading ? (
-          <div className="flex items-center justify-center py-10">
-            <Loader2 className="w-5 h-5 animate-spin text-gray-400" />
+          <div className="divide-y divide-gray-100 -my-2 animate-pulse">
+            {[...Array(3)].map((_, i) => (
+              <div key={i} className="py-3 flex items-center gap-3 px-2 -mx-2">
+                <div className="w-8 h-8 rounded-lg bg-gray-200 flex-shrink-0" />
+                <div className="flex-1 min-w-0">
+                  <div className="h-4 bg-gray-200 rounded w-40 mb-2" />
+                  <div className="h-3 bg-gray-200 rounded w-24" />
+                </div>
+              </div>
+            ))}
           </div>
         ) : reports.length === 0 ? (
-          <div className="flex flex-col items-center text-center gap-2 py-8">
-            <FileText className="w-6 h-6 text-gray-300" strokeWidth={1.5} />
-            <p className="text-sm text-gray-500">{t('camp.reports.noReports')}</p>
-            <p className="text-xs text-gray-400 max-w-sm">{t('camp.reports.noReportsHint')}</p>
-          </div>
+          <EmptyState
+            icon={FileText}
+            title={String(t('camp.reports.noReports'))}
+            description={String(t('camp.reports.noReportsHint'))}
+            size="sm"
+          />
         ) : (
           <div className="divide-y divide-gray-100 -my-2">
             {reports.map(r => (
