@@ -150,6 +150,30 @@ B4 is *Calibrate the reviewer before spending another cohort* (~20 minutes — o
 
 ## 5. Found while fixing
 
+### RE-SIT CLEAN — the length repair held, and SAT R&W is now fully human-cleared (2026-08-17)
+
+`resit-length-2026-08-16`, 20 items (10 I&I + 10 C&S, all unseen,
+post-repair pool), 0 abstentions, full step-2:
+
+    Information and Ideas   3/10  30.0%  control 30.0%  margin  +0.0   (was +15.0)
+    Craft and Structure     2/10  20.0%  control 30.0%  margin -10.0   (was +15.0)
+
+The +15 margins collapsed to chance. Four of his notes still say "the
+longest answer was correct here" — at step 2, AFTER the reveal, and at
+a ~15-25% key-longest population rate some keys ARE longest; his blind
+scores show the observation no longer converts to points. And the
+hedging-asymmetry candidate tell (named by all three machine solvers
+on 08-16) did NOT surface: no note describes qualified-vs-absolute,
+and his margins leave no room for it. It stays recorded as
+model-side, not human-exploitable — consistent with B4's finding.
+
+SAT STATUS: CLOSED. Math machine-verified population-wide; R&W all
+four cohorts human-clean (EoI -15, SEC -10, C&S -10, I&I 0.0). The
+recurring low-rate item class ("another option is also defensible")
+produced 2 new flags — 7bb71a23, bb6babf9, both I&I, queued for the
+standard repair-or-archive pass — item defects, not cohort defects.
+
+
 ### B2 follow-ups: 3 flags repaired, length regression PASSED — and the solvers named the NEXT tell (2026-08-16)
 
 Two follow-ups from `b2-all-cohorts-2026-08-15`, both closed.
