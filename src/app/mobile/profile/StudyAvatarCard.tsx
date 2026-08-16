@@ -638,8 +638,12 @@ function Faces<K extends keyof AvatarConfig, V extends AvatarConfig[K]>({
   )
 }
 
-/** A colour-only row. Eight 30px dots plus seven 8px gaps is 296 — the
- *  same 303px budget as TileGrid, from the other direction. */
+/** A colour-only row. FIXED 44px circles (`w-11 h-11`), matching the
+ *  44px avatar discs in the "Start from someone" row above, and
+ *  wrapping when they don't fit. The previous `grid grid-cols-8` +
+ *  `aspect-square` sized each dot to an eighth of the card, so on
+ *  anything wider than a phone the tone circles ballooned past the
+ *  preset circles they sit under. */
 function Dots<V extends string>({ name, values, colour, selected, onSelect }: {
   name: string
   values: readonly V[]
@@ -648,7 +652,7 @@ function Dots<V extends string>({ name, values, colour, selected, onSelect }: {
   onSelect: (v: V) => void
 }) {
   return (
-    <div className="grid grid-cols-8 gap-2">
+    <div className="flex flex-wrap gap-2">
       {values.map((value, i) => {
         const isSelected = selected === value
         return (
@@ -659,7 +663,7 @@ function Dots<V extends string>({ name, values, colour, selected, onSelect }: {
             aria-label={`${name} ${i + 1}`}
             title={`${name} ${i + 1}`}
             onClick={() => onSelect(value)}
-            className={`relative aspect-square rounded-full transition-all active:scale-[0.94] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 ${
+            className={`relative w-11 h-11 shrink-0 rounded-full transition-all active:scale-[0.94] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 ${
               isSelected ? 'ring-2 ring-primary ring-offset-2' : 'ring-1 ring-gray-300/70'
             }`}
             style={{ backgroundColor: colour(value) }}

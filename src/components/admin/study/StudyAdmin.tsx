@@ -83,9 +83,36 @@ function TestBadge() {
   )
 }
 
-/** How many directory rows to render at once — filtering is over ALL users,
- *  this only caps the DOM. */
+/** How many directory rows to render per "load more" click — filtering is
+ *  over ALL users, this only caps the DOM. */
 const LOOKUP_RENDER_CAP = 100
+
+/** All / Test / Real dropdown shared by the lookup + subscriptions tabs.
+ *  'real' is the default everywhere: day-to-day operating views should not
+ *  be polluted by flagged test accounts. */
+type TestFilter = 'all' | 'test' | 'real'
+const TEST_FILTER_OPTIONS: TestFilter[] = ['all', 'test', 'real']
+
+function TestFilterSelect({ value, onChange, className }: {
+  value: TestFilter
+  onChange: (v: TestFilter) => void
+  className?: string
+}) {
+  const { t } = useTranslation()
+  const label = (v: TestFilter) => String(t(
+    v === 'all' ? 'admin.studyConsole.testFilterAll'
+      : v === 'test' ? 'admin.studyConsole.testFilterTest'
+      : 'admin.studyConsole.testFilterReal'
+  ))
+  return (
+    <Select value={value} onValueChange={v => onChange(v as TestFilter)}>
+      <SelectTrigger className={className ?? 'w-[150px]'}><SelectValue /></SelectTrigger>
+      <SelectContent>
+        {TEST_FILTER_OPTIONS.map(v => <SelectItem key={v} value={v}>{label(v)}</SelectItem>)}
+      </SelectContent>
+    </Select>
+  )
+}
 
 function UserLookup() {
   const { t } = useTranslation()
@@ -97,6 +124,8 @@ function UserLookup() {
   const [detail, setDetail] = useState<Record<string, unknown> | null>(null)
   const [selectedId, setSelectedId] = useState<string | null>(null)
   const [loading, setLoading] = useState(false)
+  const [testFilter, setTestFilter] = useState<TestFilter>('real')
+  const [visibleCount, setVisibleCount] = useState(LOOKUP_RENDER_CAP)
 
   // The full directory loads once; the search bar filters + ranks in memory.
   useEffect(() => {
@@ -114,8 +143,16 @@ function UserLookup() {
 
   useEffect(() => { const h = setTimeout(() => setDebouncedQ(q), 150); return () => clearTimeout(h) }, [q])
 
-  const filtered = useMemo(() => filterSortStudyUsers(all, debouncedQ), [all, debouncedQ])
-  const visible = filtered.slice(0, LOOKUP_RENDER_CAP)
+  // Changing the query or the test filter re-collapses the list — "load
+  // more" progress is per result set, not global.
+  useEffect(() => { setVisibleCount(LOOKUP_RENDER_CAP) }, [debouncedQ, testFilter])
+
+  const pool = useMemo(
+    () => testFilter === 'all' ? all : all.filter(u => u.isTestUser === (testFilter === 'test')),
+    [all, testFilter]
+  )
+  const filtered = useMemo(() => filterSortStudyUsers(pool, debouncedQ), [pool, debouncedQ])
+  const visible = filtered.slice(0, visibleCount)
 
   const openUser = useCallback(async (id: string) => {
     setLoading(true); setDetail(null); setSelectedId(id)
@@ -149,6 +186,9 @@ function UserLookup() {
             className="pl-9"
           />
         </div>
+        <div className="mt-1.5">
+          <TestFilterSelect value={testFilter} onChange={setTestFilter} className="w-full" />
+        </div>
         <div className="mt-1.5 px-1 text-[11px] text-gray-400">
           {dirLoading
             ? String(t('admin.studyConsole.loading'))
@@ -171,6 +211,14 @@ function UserLookup() {
           ))}
           {!dirLoading && filtered.length === 0 && (
             <div className="px-3 py-2 text-xs text-gray-400">{t('admin.studyConsole.noMatches')}</div>
+          )}
+          {filtered.length > visible.length && (
+            <button
+              onClick={() => setVisibleCount(c => c + LOOKUP_RENDER_CAP)}
+              className="block w-full px-3 py-2.5 text-center text-xs font-medium text-primary hover:bg-gray-50"
+            >
+              {String(t('admin.studyConsole.loadMore', { remaining: filtered.length - visible.length }))}
+            </button>
           )}
         </div>
       </div>
@@ -990,6 +1038,8 @@ function SubscriptionsList() {
   const adminFetch = useAdminFetch()
   const [status, setStatus] = useState('all')
   const [plan, setPlan] = useState('all')
+  // Default REAL: test accounts stay out of the operating view unless asked for.
+  const [test, setTest] = useState<TestFilter>('real')
   const [q, setQ] = useState('')
   const [debouncedQ, setDebouncedQ] = useState('')
   const [page, setPage] = useState(1)
@@ -1015,10 +1065,10 @@ function SubscriptionsList() {
   }, [adminFetch])
 
   const query = useCallback((pg: number) => {
-    const p = new URLSearchParams({ status, plan, page: String(pg) })
+    const p = new URLSearchParams({ status, plan, test, page: String(pg) })
     if (debouncedQ) p.set('q', debouncedQ)
     return `/api/admin/study/subscriptions?${p.toString()}`
-  }, [status, plan, debouncedQ])
+  }, [status, plan, test, debouncedQ])
 
   const load = useCallback(async () => {
     setLoading(true)
@@ -1064,6 +1114,7 @@ function SubscriptionsList() {
           <SelectTrigger className="w-[190px]"><SelectValue /></SelectTrigger>
           <SelectContent>{SUB_PLAN_OPTIONS.map(p => <SelectItem key={p} value={p}>{p === 'all' ? String(t('admin.studyConsole.subAllPlans')) : p}</SelectItem>)}</SelectContent>
         </Select>
+        <TestFilterSelect value={test} onChange={v => { setTest(v); setPage(1) }} />
         <Button variant="outline" size="sm" onClick={exportCsv} disabled={total === 0}>
           <Download className="w-4 h-4 mr-1.5" />{String(t('admin.studyConsole.exportCsv'))}
         </Button>

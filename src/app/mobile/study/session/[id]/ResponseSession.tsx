@@ -1,7 +1,7 @@
 "use client"
 
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
-import { Mic, Square, RotateCcw, Sparkles, AlertCircle,
+import { Mic, RotateCcw, Sparkles, AlertCircle,
   ArrowRight, Clock, Pencil, Volume2, Award, ChevronRight, Info,
 } from '@/app/mobile/study/_shared/icons'
 import { db } from '@/lib/supabase'
@@ -477,8 +477,13 @@ function SpeakingCapture({
 
   return (
     <div className="space-y-4">
-      <div className="rounded-xl bg-indigo-50/60 ring-1 ring-indigo-100 p-3 text-[12px] text-gray-700 leading-relaxed">
-        <span className="font-medium text-indigo-700">{ko ? '과제' : 'Prompt'}: </span>{prompt}
+      {/* Prompt in a soft card — mirrors the Speaking presentation on the
+          test pages and the camp marketing panel: quiet gray card, the
+          prompt itself as the content. */}
+      <div className="rounded-xl bg-gray-50 ring-1 ring-gray-100 px-4 py-3.5">
+        <p className="text-[14px] text-gray-800 font-medium leading-[1.7]">
+          <span className="font-semibold text-gray-500">{ko ? '과제' : 'Prompt'}: </span>{prompt}
+        </p>
       </div>
 
       {state === 'prep' && (
@@ -497,16 +502,26 @@ function SpeakingCapture({
       )}
 
       {state === 'recording' && (
-        <div className="rounded-2xl bg-white ring-1 ring-gray-200/70 p-6 text-center">
-          <div className="inline-flex items-center gap-1.5 text-[11px] font-semibold tracking-[0.12em] uppercase text-rose-600 mb-2">
-            <span className="w-2 h-2 rounded-full bg-rose-500 animate-pulse" />
-            {ko ? '녹음 중' : 'Recording'}
-          </div>
-          <div className="text-5xl font-bold tabular-nums text-gray-900 leading-none">{recRemaining}s</div>
+        // Same recording composition as VoiceRecorderButton (TestSession)
+        // and the camp marketing Speaking panel: full-width h-14 rose
+        // pill with a pinging dot and a mono timer. Only the styling is
+        // shared — start/stop/upload logic is untouched.
+        <div>
           <button type="button" onClick={stopRecording}
-            className="mt-5 inline-flex items-center justify-center gap-1.5 h-11 px-5 rounded-xl bg-rose-600 text-white text-[14px] font-semibold hover:bg-rose-700 transition">
-            <Square className="w-4 h-4 fill-white" />{ko ? '녹음 종료' : 'Stop'}
+            aria-label={ko ? '녹음 중지' : 'Stop recording'}
+            className="w-full h-14 rounded-2xl bg-rose-600 text-white inline-flex items-center justify-center gap-3 shadow-[0_2px_6px_-2px_rgba(220,38,38,0.35)] active:scale-[0.99] transition">
+            <span className="relative inline-flex w-3 h-3">
+              <span className="absolute inset-0 rounded-full bg-white/70 animate-ping" />
+              <span className="relative inline-flex w-3 h-3 rounded-full bg-white" />
+            </span>
+            <span className="text-[15px] font-semibold">{ko ? '녹음 중지' : 'Stop recording'}</span>
+            <span className="text-[14px] font-mono tabular-nums opacity-90 min-w-[3.2ch] text-right">
+              {`${Math.floor(recRemaining / 60)}:${String(recRemaining % 60).padStart(2, '0')}`}
+            </span>
           </button>
+          <p className="mt-1.5 text-center text-[11.5px] text-gray-400">
+            {ko ? '탭하여 정지 · 시간이 끝나면 자동으로 종료됩니다.' : 'Tap to stop · ends on its own when time runs out.'}
+          </p>
         </div>
       )}
 

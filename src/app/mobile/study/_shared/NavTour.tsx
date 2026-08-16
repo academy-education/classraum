@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import { usePathname } from 'next/navigation'
-import { BookOpen, Camera, Shuffle, Trophy, X, ChevronRight, ChevronLeft } from '@/app/mobile/study/_shared/icons'
+import { BookOpen, Route, Shuffle, Trophy, X, ChevronRight, ChevronLeft } from '@/app/mobile/study/_shared/icons'
 import { useTranslation } from '@/hooks/useTranslation'
 import { authHeaders } from '@/lib/auth-headers'
 import { StudyButton } from './StudyButton'
@@ -16,8 +16,10 @@ import { StudyButton } from './StudyButton'
  * fast local cache so returning visitors don't pay a prefs round-trip
  * (and as the offline fallback if the PUT fails).
  *
- * Four steps — Snap / Review / League / Wrong-Answer Notebook (the
+ * Four steps — Path / Review / League / Wrong-Answer Notebook (the
  * Study tab itself is the current screen so we skip introducing it).
+ * Snap-to-solve is behind the coming-soon lock and has no nav tab, so
+ * the tour must not advertise it.
  */
 
 const STORAGE_KEY = 'study-nav-tour-seen-v1'
@@ -33,11 +35,11 @@ interface Step {
 
 const STEPS: Step[] = [
   {
-    icon: Camera,
+    icon: Route,
     iconBg: 'from-amber-400 to-orange-600',
-    titleKo: '사진으로 풀기', titleEn: 'Snap to solve',
-    bodyKo: '풀리지 않는 문제를 사진 한 장으로 — 단계별 풀이가 즉시 나옵니다.',
-    bodyEn: 'Stuck? Snap a photo and get a step-by-step solution in seconds.',
+    titleKo: '학습 경로', titleEn: 'Guided path',
+    bodyKo: '라우미와 함께 오늘 할 학습을 차례대로 — 매일 이어지는 나만의 학습 경로예요.',
+    bodyEn: "Follow Raumi down a guided path — today's lessons and practice, in order.",
   },
   {
     icon: Shuffle,
@@ -63,8 +65,8 @@ const STEPS: Step[] = [
     // "print as PDF" sends a native user looking for a control that is
     // not there. The web still has it; the tour just stops being the
     // thing that promises it.
-    bodyKo: '틀린 문제와 사진 풀이를 한곳에 모아 복습하세요.',
-    bodyEn: 'All your wrong answers + bookmarked snaps in one notebook to review.',
+    bodyKo: '틀린 문제를 한곳에 모아 복습하세요.',
+    bodyEn: 'All your wrong answers in one notebook, ready to review.',
   },
 ]
 

@@ -22,7 +22,7 @@
 import { useState, useRef, useEffect } from "react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import { Check, ArrowRight, ArrowDown, ArrowLeft, Plus, Calendar, BookOpen, FileText, BarChart3, Target, Send, MessageSquare, CheckCircle2, Play, Mic, Headphones, PenLine, ClipboardList, Sparkles, Users, School, Bot, TrendingUp, Zap, GraduationCap, Rocket, ShieldCheck, Timer, PieChart } from "lucide-react"
+import { Check, ArrowRight, ArrowDown, ArrowLeft, Plus, Calendar, BookOpen, FileText, BarChart3, Target, Send, MessageSquare, CheckCircle2, Volume2, Mic, Headphones, PenLine, ClipboardList, Sparkles, Users, School, Bot, TrendingUp, Zap, GraduationCap, Rocket, ShieldCheck, Timer, PieChart } from "lucide-react"
 import Header from "@/components/shared/Header"
 import Footer from "@/components/shared/Footer"
 import { useTranslation } from "@/hooks/useTranslation"
@@ -966,14 +966,21 @@ function ToeflSkillPanel({ t, kind, listenOpts }: { t: TFunc; kind: number; list
   if (kind === 1) return ( // ── Listening ─────────────────────────────
     <div className={`${CARD} camp-in overflow-hidden h-full`}>
       <div className="p-5 sm:p-6">
-        <div className="flex items-center gap-3 rounded-xl bg-[#0b2138] px-4 py-3.5 mb-2 text-white">
-          <span className="w-10 h-10 rounded-full bg-white/15 flex items-center justify-center shrink-0">
-            <Play size={16} fill="currentColor" />
-          </span>
-          <span className="flex-1 h-1.5 rounded-full bg-white/20 overflow-hidden">
-            <span className="block h-full w-[60%] rounded-full bg-[#2885e8]" />
-          </span>
-          <span className="text-[11.5px] font-mono tabular-nums opacity-90 shrink-0">{ts(t, K + "listening.time")}</span>
+        {/* ListeningAudioPlayer's real card, verbatim styling (test
+            pages) — marketing follows the product, not vice versa. */}
+        <div className="rounded-xl border border-primary/20 bg-gradient-to-br from-primary/[0.04] to-white px-4 py-3.5 mb-2">
+          <div className="flex items-center gap-3">
+            <span className="w-11 h-11 rounded-full bg-primary text-white flex items-center justify-center shadow-sm shrink-0">
+              <Volume2 size={18} className="animate-pulse" />
+            </span>
+            <div className="flex-1 min-w-0">
+              <div className="text-[13px] font-medium text-gray-900">{ts(t, "study.test.audioPlaying")}</div>
+              <div className="text-[11px] text-gray-500 mt-0.5 font-mono tabular-nums">{ts(t, K + "listening.time")}</div>
+              <div className="mt-1.5 h-1 rounded-full bg-primary/10 overflow-hidden">
+                <span className="block h-full w-[60%] bg-primary" />
+              </div>
+            </div>
+          </div>
         </div>
         <p className="text-[11.5px] text-gray-400 mb-4">{ts(t, K + "listening.note")}</p>
         <p className="text-[14px] font-semibold text-[#163e64] leading-[1.6] mb-3">{ts(t, K + "listening.prompt")}</p>

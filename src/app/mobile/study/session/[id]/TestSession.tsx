@@ -1,6 +1,6 @@
 "use client"
 
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import {
@@ -20,6 +20,10 @@ import { PathMascot } from '../../_shared/PathMascot'
 import { hapticSelection } from '@/lib/nativeHaptics'
 import type { Question, SpeechSignals, SubmitResult, TestPayload } from './test/types'
 import { moduleRemainingMs } from '@/lib/study/sat-adaptive'
+import {
+  splitWritingSections, writingSectionForIndex, writingSectionRemainingMs,
+  blankUnansweredInSection,
+} from '@/lib/study/writing-section-timing'
 import {
   normalizeDisplayText, choiceLabel, formatTime, passageGroupInfo, PassageParagraphs, PromptText,
 } from './test/helpers'
@@ -193,6 +197,32 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
   // Module 2 began. null while still in Module 1. Persisted so a
   // mid-Module-2 refresh keeps the module clock correct.
   const [module2StartMs, setModule2StartMs] = useState<number | null>(null)
+  // ── TOEFL Writing per-section timers ─────────────────────────────
+  // The Jan-2026 Writing section is three separately-timed task blocks
+  // (Build-a-Sentence 6 min, Email 7 min, Academic Discussion 10 min).
+  // Sections are derived from the DELIVERED question order, so a
+  // single-task warmup/drill returns null here and keeps the ordinary
+  // whole-test timer. Section start marks are stored in whole-test
+  // ACTIVE-elapsed terms (same clock the module-2 marker uses), keyed
+  // by section index and persisted so a mid-test refresh restores the
+  // CURRENT section's remaining time instead of resetting it. Section
+  // 0 implicitly starts at elapsed 0.
+  const wsStartKey = `study:test:${sessionId}:wsStartMs`
+  const [wsStartMs, setWsStartMs] = useState<Record<number, number>>(() => {
+    if (typeof window === 'undefined') return {}
+    try {
+      const raw = localStorage.getItem(`study:test:${sessionId}:wsStartMs`)
+      const parsed = raw ? JSON.parse(raw) as unknown : null
+      return parsed && typeof parsed === 'object' ? parsed as Record<number, number> : {}
+    } catch { return {} }
+  })
+  // One-shot per section — a section must hard-advance exactly once,
+  // even though the expiry effect re-runs every tick and on every
+  // state change (the double-advance race guard).
+  const sectionExpiryHandledRef = useRef<Record<number, boolean>>({})
+  // Brief non-blocking "time's up, moving on" notice after a hard
+  // advance. Auto-dismissed below.
+  const [sectionNotice, setSectionNotice] = useState(false)
   // Helper to compute the total elapsed at any moment. Cheap, no
   // state — called wherever we need the current elapsed value.
   const currentElapsedMs = useCallback(() => {
@@ -511,6 +541,41 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
     } catch { /* quota exceeded — resume loses audio links only */ }
   }, [phase, sessionId, answerAudioPaths, answerSpeechSignals])
 
+  // TOEFL Writing per-section timers: derive the task blocks from the
+  // delivered question order. Null for every other test (and for
+  // single-task Writing warmups/drills) — those keep the whole-test
+  // timer below.
+  const writingSections = useMemo(() => {
+    if (!test || test.family !== 'toefl') return null
+    if (!test.section || !/writing/i.test(test.section)) return null
+    return splitWritingSections(test.questions)
+  }, [test])
+  const currentWritingSectionIdx = writingSections
+    ? writingSectionForIndex(writingSections, currentIdx)
+    : null
+  // Record a section's start the first time the student lands in it
+  // (manual Next past the boundary, or the hard advance on expiry).
+  // Section 0 starts at elapsed 0 and needs no mark. Persisted so a
+  // refresh restores the section clock rather than resetting it.
+  useEffect(() => {
+    if (phase !== 'taking' || !writingSections || currentWritingSectionIdx == null) return
+    if (currentWritingSectionIdx === 0) return
+    if (wsStartMs[currentWritingSectionIdx] != null) return
+    const startAt = currentElapsedMs()
+    setWsStartMs(prev => {
+      if (prev[currentWritingSectionIdx] != null) return prev
+      const next = { ...prev, [currentWritingSectionIdx]: startAt }
+      try { localStorage.setItem(wsStartKey, JSON.stringify(next)) } catch { /* non-fatal */ }
+      return next
+    })
+  }, [phase, writingSections, currentWritingSectionIdx, wsStartMs, currentElapsedMs, wsStartKey])
+  // Auto-dismiss the section-advance notice.
+  useEffect(() => {
+    if (!sectionNotice) return
+    const id = window.setTimeout(() => setSectionNotice(false), 6000)
+    return () => window.clearTimeout(id)
+  }, [sectionNotice])
+
   // Bank two-module adaptive (SAT R&W / Math, TOEFL Reading /
   // Listening): the test loads with Module 1 only. When the student
   // finishes Module 1 they tap "Continue to Module 2", which grades M1
@@ -713,6 +778,10 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
    *  Submit, blocks the actual POST until they confirm. */
   const [confirmOpen, setConfirmOpen] = useState(false)
   const [module2ConfirmOpen, setModule2ConfirmOpen] = useState(false)
+  /** Confirm before a MANUAL advance out of a TOEFL Writing task block
+   *  that still has unanswered items — the boundary is one-way, same
+   *  precedent as the Module 1 → Module 2 confirm. */
+  const [sectionAdvanceConfirmOpen, setSectionAdvanceConfirmOpen] = useState(false)
   // ── Submission path (used by manual Submit + timer expiry) ─────
   const submit = useCallback(async () => {
     if (!test || phase !== 'taking') return
@@ -842,6 +911,7 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
         localStorage.removeItem(`study:test:${sessionId}:answers`)
         localStorage.removeItem(`study:test:${sessionId}:speech`)
         localStorage.removeItem(`study:test:${sessionId}:m2StartMs`)
+        localStorage.removeItem(`study:test:${sessionId}:wsStartMs`)
         // Cleared only now, on a SUCCESSFUL submit. While it exists, a
         // relaunch after the OS killed the app re-ends the test instead
         // of resuming it.
@@ -985,6 +1055,39 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
   const autoRouteAttemptedRef = useRef(false)
   useEffect(() => {
     if (phase !== 'taking' || !test) return
+    // TOEFL Writing: three separately-timed task blocks with a hard
+    // advance. When the CURRENT section's clock hits zero: pin its
+    // unanswered slots to null (the representation submit already
+    // grades as blank), then jump to the next section — or, on the
+    // last section, submit the whole test (mirrors the SAT Module 2
+    // expiry above/below). One-shot per section via the handled ref,
+    // so a failed submit or a re-render can't double-fire.
+    if (writingSections) {
+      const sIdx = writingSectionForIndex(writingSections, currentIdx)
+      const sec = writingSections[sIdx]!
+      const startMs = sIdx === 0 ? 0 : wsStartMs[sIdx]
+      // Start mark not recorded yet (one render after entering the
+      // section) — check again next tick.
+      if (startMs == null) return
+      if (sectionExpiryHandledRef.current[sIdx]) return
+      if (writingSectionRemainingMs(sec, startMs, currentElapsedMs()) > 0) return
+      sectionExpiryHandledRef.current[sIdx] = true
+      setAnswers(prev => blankUnansweredInSection(prev, sec))
+      if (sIdx === writingSections.length - 1) {
+        if (!autoSubmitAttemptedRef.current) {
+          autoSubmitAttemptedRef.current = true
+          void submit()
+        }
+      } else {
+        setCurrentIdx(writingSections[sIdx + 1]!.startIdx)
+        // The manual-advance confirm may be open for the section that
+        // just expired — the hard advance supersedes it. Left open it
+        // would target the NEW section's boundary.
+        setSectionAdvanceConfirmOpen(false)
+        setSectionNotice(true)
+      }
+      return
+    }
     const isAdaptive = !!test.adaptive && typeof test.moduleBreakIdx === 'number'
     if (isAdaptive) {
       // Per-module clock: each module gets its own budget.
@@ -1012,7 +1115,8 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
       autoSubmitAttemptedRef.current = true
       void submit()
     }
-  }, [now, phase, test, currentIdx, module2StartMs, module2Loading, submit, routeToModule2, currentElapsedMs])
+  }, [now, phase, test, currentIdx, module2StartMs, module2Loading, submit, routeToModule2,
+    currentElapsedMs, writingSections, wsStartMs])
 
   // ── Render branches ─────────────────────────────────────────────
   // Both pre-'generating' phases share the same shell so the test-
@@ -1222,14 +1326,24 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
   const isAdaptiveTest = !!test.adaptive && typeof test.moduleBreakIdx === 'number'
   const inModule2 = isAdaptiveTest && currentIdx >= test.moduleBreakIdx!
   // `now` in deps forces this to re-derive every tick.
-  const remainingMs = isAdaptiveTest
-    ? moduleRemainingMs({
-        perModuleMinutes: test.perModuleMinutes ?? Math.round(test.timeLimitMinutes / 2),
-        currentElapsedMs: currentElapsedMs(),
-        module2StartMs,
-        inModule2,
-      })
-    : Math.max(0, test.timeLimitMinutes * 60_000 - currentElapsedMs())
+  // TOEFL Writing shows the CURRENT task block's own countdown (6 / 7 /
+  // 10 min); the start-mark fallback covers the single render between
+  // entering a section and its mark committing (full budget, no flash
+  // of 0:00).
+  const remainingMs = writingSections && currentWritingSectionIdx != null
+    ? writingSectionRemainingMs(
+        writingSections[currentWritingSectionIdx]!,
+        currentWritingSectionIdx === 0 ? 0 : (wsStartMs[currentWritingSectionIdx] ?? currentElapsedMs()),
+        currentElapsedMs(),
+      )
+    : isAdaptiveTest
+      ? moduleRemainingMs({
+          perModuleMinutes: test.perModuleMinutes ?? Math.round(test.timeLimitMinutes / 2),
+          currentElapsedMs: currentElapsedMs(),
+          module2StartMs,
+          inModule2,
+        })
+      : Math.max(0, test.timeLimitMinutes * 60_000 - currentElapsedMs())
   void now
   // Answered detection — type-aware so partially-typed items don't
   // read as complete: fill_in_blanks needs EVERY blank filled; other
@@ -1282,6 +1396,18 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
   // irreversible "Continue to Module 2" (Module 1 locks after routing).
   const module1Unanswered = typeof test.moduleBreakIdx === 'number'
     ? Array.from({ length: test.moduleBreakIdx }, (_, i) => i).filter(i => !isItemAnswered(i)).length
+    : 0
+  // TOEFL Writing: the current task block + its unanswered count (for
+  // the one-way section-advance confirm), and the block's start index
+  // (the navigation floor — earlier blocks are locked once left).
+  const currentWritingSection = writingSections && currentWritingSectionIdx != null
+    ? writingSections[currentWritingSectionIdx]!
+    : null
+  const writingSectionUnanswered = currentWritingSection
+    ? Array.from(
+        { length: currentWritingSection.endIdx - currentWritingSection.startIdx },
+        (_, k) => currentWritingSection.startIdx + k,
+      ).filter(i => !isItemAnswered(i)).length
     : 0
   // Effective 1-indexed range each question occupies within the
   // weighted total: startAt[i] = position of first sub-question,
@@ -1397,12 +1523,17 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
               const anyRecording = Object.values(interviewRecordingActive).some(Boolean)
               // In Module 2, Module 1 cells are locked — no jumping back.
               const moduleLocked = inModule2 && i < test.moduleBreakIdx!
+              // TOEFL Writing task blocks: earlier blocks are one-way
+              // (their time is spent), later blocks' clocks haven't
+              // started — so only the CURRENT block is jumpable.
+              const sectionLocked = !!currentWritingSection
+                && (i < currentWritingSection.startIdx || i >= currentWritingSection.endIdx)
               return (
                 <button
                   key={i}
                   type="button"
-                  disabled={anyRecording || moduleLocked}
-                  onClick={() => { if (moduleLocked) return; setCurrentIdx(i); setGridOpen(false) }}
+                  disabled={anyRecording || moduleLocked || sectionLocked}
+                  onClick={() => { if (moduleLocked || sectionLocked) return; setCurrentIdx(i); setGridOpen(false) }}
                   className={`h-8 rounded-md text-xs font-medium transition-colors tabular-nums disabled:opacity-40 ${
                     isCurrent
                       ? 'bg-primary text-white'
@@ -1432,6 +1563,27 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
           * information — and a student mid-test cannot act on it anyway.
           * The module IS actionable: it tells you which half you are in
           * and whether Module 1 is still recoverable. */}
+        {/* TOEFL Writing task chip — which timed block the student is
+            in. Same visual idiom as the Module chip below (which never
+            renders for Writing: the section is linear, no moduleBreakIdx). */}
+        {currentWritingSection && writingSections && (
+          <div className="flex items-center gap-2 mb-3">
+            <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full ring-1 bg-primary/10 text-primary ring-primary/20">
+              {ko
+                ? `과제 ${(currentWritingSectionIdx ?? 0) + 1} / ${writingSections.length}`
+                : `Task ${(currentWritingSectionIdx ?? 0) + 1} of ${writingSections.length}`}
+            </span>
+            <span className="text-[11px] text-gray-500">
+              {currentWritingSection.kind === 'build_sentence'
+                ? (ko ? '문장 만들기' : 'Build a Sentence')
+                : currentWritingSection.kind === 'email'
+                  ? (ko ? '이메일 쓰기' : 'Write an Email')
+                  : (ko ? '학술 토론 글쓰기' : 'Academic Discussion')}
+              {' · '}
+              {currentWritingSection.minutes}{ko ? '분' : ' min'}
+            </span>
+          </div>
+        )}
         {(() => {
           // Adaptive sessions carry moduleBreakIdx. Pre-adaptive cached
           // TOEFL Reading/Listening tests do not, and derive the break.
@@ -2318,6 +2470,17 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
           && test.questions.length <= test.moduleBreakIdx
         const atModule1End = inModule1 && currentIdx === (test.moduleBreakIdx! - 1)
         const speakingKey = q.type === 'speaking_repeat' ? `repeat-${currentIdx}` : `interview-${currentIdx}`
+        // Navigation floor: TOEFL Writing locks earlier task blocks
+        // (one-way, same as the Module 2 floor); otherwise the module
+        // floor applies.
+        const navFloor = currentWritingSection
+          ? currentWritingSection.startIdx
+          : (inModule2 ? test.moduleBreakIdx! : 0)
+        // Last question of a Writing task block (but not of the test):
+        // Next crosses a one-way boundary, so confirm if items are
+        // still blank there.
+        const atWritingSectionEnd = !!currentWritingSection && !isLast
+          && currentIdx === currentWritingSection.endIdx - 1
         // Next button appears after the student's audio has been
         // PROCESSED — i.e., Whisper transcription completed. Set by
         // VoiceRecorderButton's `onDone` callback and by the safety
@@ -2332,8 +2495,8 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
                 // Once in Module 2 the floor is the module break — a
                 // student can't return to Module 1 (already graded +
                 // routed), matching the real section-adaptive exam.
-                onClick={() => setCurrentIdx(i => Math.max(inModule2 ? test.moduleBreakIdx! : 0, i - 1))}
-                disabled={currentIdx === (inModule2 ? test.moduleBreakIdx! : 0) || audioPlaying}
+                onClick={() => setCurrentIdx(i => Math.max(navFloor, i - 1))}
+                disabled={currentIdx === navFloor || audioPlaying}
                 className="h-11 w-11 rounded-full bg-white ring-1 ring-gray-200/70 text-gray-700 inline-flex items-center justify-center shadow-[0_1px_2px_rgba(0,0,0,0.03)] hover:ring-primary/40 active:scale-95 transition-all disabled:opacity-40 disabled:hover:ring-gray-200/70"
                 aria-label={String(t('study.test.previous'))}
               >
@@ -2393,7 +2556,15 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
             })() : (
               <button
                 type="button"
-                onClick={() => setCurrentIdx(i => Math.min(test.questions.length - 1, i + 1))}
+                onClick={() => {
+                  // Crossing a Writing task-block boundary is one-way:
+                  // warn first when the block still has blank items.
+                  if (atWritingSectionEnd && writingSectionUnanswered > 0) {
+                    setSectionAdvanceConfirmOpen(true)
+                    return
+                  }
+                  setCurrentIdx(i => Math.min(test.questions.length - 1, i + 1))
+                }}
                 disabled={audioPlaying}
                 className="flex-1 h-11 rounded-full bg-gradient-to-b from-primary to-primary/90 text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_2px_8px_rgba(40,133,232,0.28)] text-sm font-semibold inline-flex items-center justify-center gap-1.5 disabled:opacity-60"
               >
@@ -2407,6 +2578,18 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
       {audioPlaying && (
         <div className="absolute bottom-16 left-4 right-4 rounded-lg bg-primary/95 text-white text-[12px] px-3 py-2 shadow-lg pointer-events-none text-center">
           {t('study.test.audioLockedNav')}
+        </div>
+      )}
+      {/* TOEFL Writing hard-advance notice — a task block's clock hit
+          zero and the test moved on. Non-blocking (pointer-events-none,
+          auto-dismisses); the student can keep working immediately. */}
+      {sectionNotice && (
+        <div
+          role="status"
+          aria-live="polite"
+          className="absolute bottom-16 left-4 right-4 z-40 rounded-lg bg-amber-500/95 text-white text-[12px] px-3 py-2 shadow-lg pointer-events-none text-center"
+        >
+          {t('study.test.sectionTimeUp')}
         </div>
       )}
       {paused && (
@@ -2518,6 +2701,29 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
           confirmLabel={ko ? '계속하기' : 'Continue'}
           onCancel={() => setModule2ConfirmOpen(false)}
           onConfirm={() => { setModule2ConfirmOpen(false); void routeToModule2() }}
+        />
+      )}
+
+      {/* Confirm before a MANUAL advance out of a TOEFL Writing task
+          block with blank items — the boundary is one-way (the block's
+          clock doesn't pause), so this is a real choice point. Only
+          reachable when writingSectionUnanswered > 0 (the Next handler
+          advances directly otherwise). */}
+      {sectionAdvanceConfirmOpen && currentWritingSection && writingSections && (
+        <SubmitConfirmModal
+          unanswered={writingSectionUnanswered}
+          totalQuestions={currentWritingSection.endIdx - currentWritingSection.startIdx}
+          t={t}
+          title={ko ? '다음 과제로 넘어갈까요?' : 'Move to the next task?'}
+          body={ko
+            ? `이 과제에서 ${writingSectionUnanswered}문항을 아직 풀지 않았어요. 다음 과제로 넘어가면 이 과제로 돌아올 수 없어요.`
+            : `You have ${writingSectionUnanswered} unanswered question${writingSectionUnanswered === 1 ? '' : 's'} in this task. Once you continue you can't return to it.`}
+          confirmLabel={ko ? '계속하기' : 'Continue'}
+          onCancel={() => setSectionAdvanceConfirmOpen(false)}
+          onConfirm={() => {
+            setSectionAdvanceConfirmOpen(false)
+            setCurrentIdx(currentWritingSection.endIdx)
+          }}
         />
       )}
     </div>

@@ -5,9 +5,14 @@ import { requireAdminAuth } from '@/lib/admin-auth';
 /**
  * Admin browsable list of ALL study subscriptions.
  *
- * GET /api/admin/study/subscriptions?status=&plan=&q=&page=
+ * GET /api/admin/study/subscriptions?status=&plan=&q=&test=&page=
  *   → rows joined with the student name/email, filterable by status / plan /
- *     name-or-email search, paginated, with per-status counts for the filter.
+ *     name-or-email search / test-user flag, paginated, with per-status
+ *     counts for the filter.
+ *
+ *   test=test → only students flagged is_test_user; test=real → only
+ *   unflagged students; anything else (or absent) → everyone. The flag lives
+ *   in study_user_prefs, so both branches resolve the flagged id set first.
  *
  * Admin-only.
  */
@@ -39,7 +44,33 @@ export async function GET(req: NextRequest) {
   const status = sp.get('status');
   const plan = sp.get('plan');
   const q = sp.get('q')?.trim();
+  const test = sp.get('test'); // 'test' | 'real' | anything else = all
   const page = Math.max(1, parseInt(sp.get('page') ?? '1', 10) || 1);
+
+  // Test-user filter → the flagged student-id set. Paged past the PostgREST
+  // 1000-row cap so a large flagged cohort is never silently truncated.
+  let testIds: string[] | null = null;
+  if (test === 'test' || test === 'real') {
+    const ids: string[] = [];
+    for (let from = 0; ; from += 1000) {
+      const { data, error: tErr } = await dbAdmin
+        .from('study_user_prefs')
+        .select('student_id')
+        .eq('is_test_user', true)
+        .order('student_id')
+        .range(from, from + 999);
+      if (tErr) {
+        console.error('[admin/study/subscriptions] test ids', tErr);
+        return NextResponse.json({ error: 'list failed' }, { status: 500 });
+      }
+      ids.push(...(data ?? []).map((r) => r.student_id as string));
+      if ((data ?? []).length < 1000) break;
+    }
+    testIds = ids;
+    if (test === 'test' && testIds.length === 0) {
+      return NextResponse.json({ subscriptions: [], total: 0, page, pageSize: PAGE_SIZE, counts: {} });
+    }
+  }
 
   // Name/email search → matching student ids first.
   let studentFilter: string[] | null = null;
@@ -60,10 +91,15 @@ export async function GET(req: NextRequest) {
   // Exact total from Postgres (head:true fetches no rows), then only this
   // page's rows — so the count stays right as the table grows. Filters are
   // applied to both queries and MUST stay in sync.
+  // PostgREST `not in` filter value: (uuid1,uuid2,...)
+  const notInList = testIds && testIds.length > 0 ? `(${testIds.join(',')})` : null;
+
   let countQuery = dbAdmin.from('study_subscriptions').select('student_id', { count: 'exact', head: true });
   if (status && status !== 'all') countQuery = countQuery.eq('status', status);
   if (plan && plan !== 'all') countQuery = countQuery.eq('plan', plan);
   if (studentFilter) countQuery = countQuery.in('student_id', studentFilter);
+  if (test === 'test' && testIds) countQuery = countQuery.in('student_id', testIds);
+  if (test === 'real' && notInList) countQuery = countQuery.not('student_id', 'in', notInList);
   const { count } = await countQuery;
   const total = count ?? 0;
 
@@ -76,6 +112,8 @@ export async function GET(req: NextRequest) {
   if (status && status !== 'all') query = query.eq('status', status);
   if (plan && plan !== 'all') query = query.eq('plan', plan);
   if (studentFilter) query = query.in('student_id', studentFilter);
+  if (test === 'test' && testIds) query = query.in('student_id', testIds);
+  if (test === 'real' && notInList) query = query.not('student_id', 'in', notInList);
 
   const { data, error } = await query;
   if (error) {

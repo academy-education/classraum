@@ -5,6 +5,7 @@ import { TrendingUp, BarChart3, Calendar } from 'lucide-react';
 import { useAdminFetch } from './useAdminFetch';
 import { useTranslation } from '@/hooks/useTranslation';
 import { getMonthShort } from '@/utils/dateUtils';
+import { formatWonCompact, formatWonFull } from '@/lib/format-won';
 import {
   BarChart,
   Bar,
@@ -76,12 +77,6 @@ export function ChartOverview() {
     return data;
   };
 
-  const getMaxValue = (data: ChartData[], type: ChartType) => {
-    if (!data || data.length === 0) return 1;
-    const values = data.map(item => item[type]).filter(val => !isNaN(val) && val > 0);
-    return values.length > 0 ? Math.max(...values) : 1;
-  };
-
   const formatValue = (value: number, type: ChartType) => {
     // Handle NaN and invalid values
     if (!value || isNaN(value)) {
@@ -90,7 +85,8 @@ export function ChartOverview() {
     
     switch (type) {
       case 'revenue':
-        return `₩${(value / 1000000).toFixed(1)}M`;
+        // 만/억 units in Korean, K/M in English — "₩1.2M" is not a Korean number.
+        return formatWonCompact(value, language);
       case 'academies':
         return Math.floor(value).toString();
       case 'users':
@@ -121,7 +117,6 @@ export function ChartOverview() {
   };
 
   const displayData = getChartData();
-  const maxValue = getMaxValue(displayData, activeChart);
 
   const calculateGrowth = () => {
     if (displayData.length < 2) return 0;
@@ -247,7 +242,9 @@ export function ChartOverview() {
                 tickLine={false}
                 axisLine={false}
                 tickFormatter={(v) => formatValue(v as number, activeChart)}
-                width={50}
+                // Wide enough for "₩1,234.6만" — at 50 the ₩ was clipped off
+                // the left edge of the plot area.
+                width={activeChart === 'revenue' ? 74 : 50}
               />
               <Tooltip
                 cursor={{ fill: 'rgba(40, 133, 232, 0.06)' }}
@@ -261,7 +258,13 @@ export function ChartOverview() {
                 }}
                 labelStyle={{ color: '#9ca3af', fontWeight: 500, marginBottom: 2 }}
                 labelFormatter={(i) => monthLabels[i as number] ?? ''}
-                formatter={(value) => [formatValue(value as number, activeChart), getChartTitle(activeChart)]}
+                formatter={(value) => [
+                  // Tooltip gets the exact figure; the axis stays compact.
+                  activeChart === 'revenue'
+                    ? formatWonFull(value as number, language)
+                    : formatValue(value as number, activeChart),
+                  getChartTitle(activeChart),
+                ]}
               />
               <Bar
                 dataKey={activeChart}

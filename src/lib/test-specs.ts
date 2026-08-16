@@ -679,13 +679,14 @@ Passage: "She missed the lecture because her train was late this morning."
       {
         name_en: 'Writing',
         name_ko: '라이팅',
-        // ETS Jan 21, 2026 spec: 12 items in ~23 minutes; we allot 29
-        // to cover the full Email (7 min) + Academic Discussion (10 min)
-        // + 10 Build-a-Sentence at a realistic pace with a small
-        // per-task buffer. Split is 10 Build-a-Sentence + 1 Email +
+        // ETS Jan 21, 2026 spec: 12 items in ~23 minutes, timed PER
+        // TASK: Build-a-Sentence block 6 min + Email 7 min + Academic
+        // Discussion 10 min = 23. The session enforces the per-task
+        // clocks (see lib/study/writing-section-timing.ts, which pins
+        // this sum); the split is 10 Build-a-Sentence + 1 Email +
         // 1 Academic Discussion.
         questionsPerSection: 12,
-        minutesPerSection: 29,
+        minutesPerSection: 23,
         choiceCount: 4,
         patterns_en: 'JANUARY 2026 FORMAT — Writing has THREE task types. The legacy Integrated (read+listen+summarize) task is REMOVED. All three ship natively: Build-a-Sentence as arrange_words (drag chips), Email as writing_email (free response), Academic Discussion as writing_discussion (free response) — none are multiple choice.\n  • TASK A — "Write an Email" (7 min, ~100+ words): The prompt shows a short scenario (an email or notice the student received) plus 3 bullet points to address. Example scenario: "You received an email from your professor inviting you to a guest lecture next Friday at the time of your part-time job. Write a reply that: (1) thanks the professor, (2) explains the conflict, (3) asks if a recording will be available." Tag: "[Email — Professor / Classmate / Service]".\n  • TASK B — "Write for an Academic Discussion" (10 min, 100+ words, typical strong 150-200): A professor poses a discussion question; two students post brief replies (~40-70 words each). The student writes a contribution that stakes a clear position, engages with at least one classmate by name, gives one specific reason or example, and uses academic register. Tag: "[Academic Discussion]". Topics: civic life, education policy, technology, environment, work culture — accessible to a first-year undergraduate.\nEmail and Academic Discussion are FREE-RESPONSE items (type writing_email / writing_discussion) scored by the response-grading pipeline (see responseRubrics.ts: toefl_writing_email, toefl_writing_academic_discussion) — never emit them as multiple choice.',
         patterns_ko: '2026년 1월 형식 — 라이팅 과제 3유형. 기존 Integrated(읽기+듣기+요약)는 폐지. 세 유형 모두 기본 지원: 문장 만들기 = arrange_words(칩 드래그), 이메일 = writing_email(자유 응답), 학술 토론 = writing_discussion(자유 응답) — 객관식 아님.\n  • 과제 A — "이메일 쓰기" (7분, 100+단어): 학생이 받은 짧은 시나리오(이메일 또는 공지) + 답해야 할 3개 항목. 예: "교수가 다음 주 금요일 게스트 강의에 초대했는데 그 시간은 본인 아르바이트 시간. 답장: (1) 감사 표현, (2) 일정 충돌 설명, (3) 녹화본 가능 여부 문의." 태그: "[이메일 — 교수/동료/서비스]".\n  • 과제 B — "학술 토론 글쓰기" (10분, 100+단어, 강한 답안 150-200): 교수가 토론 주제 제시 + 두 학생이 짧은 답변(각 40-70단어). 학생은 명확한 입장 + 동료 한 명 이상 이름 언급하며 응답 + 구체적 근거/예시 1개 + 학술 어투로 작성. 태그: "[학술 토론]". 주제: 시민 생활·교육 정책·기술·환경·직장 문화 — 학부 1학년 수준.\n이메일과 학술 토론은 자유 응답 문항(writing_email / writing_discussion)이며 응답 채점 파이프라인으로 채점(responseRubrics.ts: toefl_writing_email, toefl_writing_academic_discussion) — 절대 객관식으로 내지 말 것.',

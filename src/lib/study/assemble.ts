@@ -568,7 +568,7 @@ const MULTI_QUESTION_TASKS: ReadonlySet<string> = new Set([
   'academic_passage',
 ])
 
-const TOEFL_META: Record<ToeflSection, {
+export const TOEFL_META: Record<ToeflSection, {
   title: string; minutes: number; label: string
   /** `type` selects on `study_item_bank.item_type`; `task` selects on
    *  item.listeningTask / item.readingTask for multiple_choice rows.
@@ -765,7 +765,13 @@ const TOEFL_META: Record<ToeflSection, {
       { type: 'speaking_repeat', n: 7, ramp: { easy: 3, medium: 3, hard: 1 } },
       { type: 'speaking_interview', n: 4 },
     ] },
-  writing:   { title: 'TOEFL iBT — Writing',   minutes: 29, label: 'Writing',
+  // Writing is timed PER TASK, not as one pool: the Build-a-Sentence
+  // block gets 6 minutes, the Email 7, the Academic Discussion 10 —
+  // 23 total. The client derives those per-section clocks from the
+  // delivered question order (see lib/study/writing-section-timing.ts);
+  // this `minutes` value is their sum and is what a single-timer
+  // fallback (short warmups, drills) uses.
+  writing:   { title: 'TOEFL iBT — Writing',   minutes: 23, label: 'Writing',
     mix: [{ type: 'arrange_words', n: 10 }, { type: 'writing_email', n: 1 }, { type: 'writing_discussion', n: 1 }] },
 }
 

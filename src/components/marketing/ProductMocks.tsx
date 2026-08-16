@@ -26,7 +26,7 @@ import {
   Target,
   ChevronRight,
   X,
-  Camera,
+  Route,
   Shuffle,
   Trophy,
   User,
@@ -422,7 +422,7 @@ export function PaymentsMock({ t, label }: { t: TFunc; label: string }) {
 export function StudyPhoneMock({ t, label, className }: { t: TFunc; label: string; className?: string }) {
   const tabs: { key: string; Icon: React.ElementType }[] = [
     { key: "tab1", Icon: BookOpen },
-    { key: "tab2", Icon: Camera },
+    { key: "tab2", Icon: Route },
     { key: "tab3", Icon: Shuffle },
     { key: "tab4", Icon: Trophy },
     { key: "tab5", Icon: User },

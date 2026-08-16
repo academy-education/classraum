@@ -108,7 +108,7 @@ export function SearchSheet({ open, onClose }: { open: boolean; onClose: () => v
               type="search"
               value={q}
               onChange={e => setQ(e.target.value)}
-              placeholder={ko ? '주제, 세션, 사진, 오답 검색…' : 'Search topics, sessions, snaps, mistakes…'}
+              placeholder={ko ? '주제, 세션, 오답 검색…' : 'Search topics, sessions, mistakes…'}
               className="flex-1 bg-transparent outline-none text-[14px] text-gray-900 placeholder:text-gray-400"
               autoComplete="off"
               spellCheck={false}
@@ -132,7 +132,7 @@ export function SearchSheet({ open, onClose }: { open: boolean; onClose: () => v
               {ko ? '무엇을 찾고 있나요?' : 'What are you looking for?'}
             </p>
             <p className="text-[12px] text-gray-500 mt-1.5 max-w-xs mx-auto leading-relaxed">
-              {ko ? '주제 이름, 세션 제목, 찍은 문제, 틀린 문제 모두 검색할 수 있어요.' : 'Search topics, recent sessions, snaps, and wrong-answer entries.'}
+              {ko ? '주제 이름, 세션 제목, 틀린 문제 모두 검색할 수 있어요.' : 'Search topics, recent sessions, and wrong-answer entries.'}
             </p>
           </div>
         )}

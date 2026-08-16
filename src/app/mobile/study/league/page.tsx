@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useState } from 'react'
 import Link from 'next/link'
-import { Trophy, Clock, Crown, Sparkles, Camera, ListChecks, Layers, Mic, BookOpen, TrendingUp, TrendingDown, Minus, Users, UserPlus, Award, Diamond, Shield, Confetti, Check, Lock } from '@/app/mobile/study/_shared/icons'
+import { Trophy, Clock, Crown, Sparkles, ListChecks, Layers, Mic, BookOpen, TrendingUp, TrendingDown, Minus, Users, UserPlus, Award, Diamond, Shield, Confetti, Check, Lock } from '@/app/mobile/study/_shared/icons'
 import { useTranslation } from '@/hooks/useTranslation'
 import { authHeaders } from '@/lib/auth-headers'
 import { validateNickname, NICKNAME_MAX } from '@/lib/study/nickname'
@@ -1036,7 +1036,9 @@ function EarnXpPanel({ ko }: { ko: boolean }) {
   // identical amber squares.
   const rows = [
     { Icon: ListChecks, xp: 10, label_en: 'Each correct practice answer', label_ko: '연습 문제 정답', href: '/mobile/study', tile: 'bg-gradient-to-br from-sky-400 to-blue-500 shadow-[0_3px_8px_-2px_rgba(56,189,248,0.4)]' },
-    { Icon: Camera, xp: 5, label_en: 'Solve a problem with Snap', label_ko: '사진으로 문제 풀이', href: '/mobile/study/snap', tile: 'bg-gradient-to-br from-amber-400 to-orange-500 shadow-[0_3px_8px_-2px_rgba(251,146,60,0.4)]' },
+    // Snap-to-solve is behind the coming-soon lock — its "+5 XP" row is
+    // removed rather than reworded, because it pointed students at a page
+    // where nothing can be earned. Restore it only when the feature ships.
     { Icon: Mic, xp: 20, label_en: 'Submit a speaking or writing response', label_ko: '말하기·작문 응답 제출', href: '/mobile/study', tile: 'bg-gradient-to-br from-rose-400 to-pink-600 shadow-[0_3px_8px_-2px_rgba(244,63,94,0.4)]' },
     { Icon: Layers, xp: 5, label_en: 'Easy flashcard review', label_ko: '플래시카드 쉬움', href: '/mobile/study/review', tile: 'bg-gradient-to-br from-violet-500 to-purple-600 shadow-[0_3px_8px_-2px_rgba(139,92,246,0.4)]' },
     { Icon: BookOpen, xp: 25, label_en: 'Complete a full study session', label_ko: '학습 세션 완료', href: '/mobile/study', tile: 'bg-gradient-to-br from-emerald-400 to-teal-500 shadow-[0_3px_8px_-2px_rgba(16,185,129,0.4)]' },
@@ -1071,7 +1073,7 @@ function NotJoinedState({ ko }: { ko: boolean }) {
       icon={Trophy}
       iconColorClass="text-amber-600 bg-amber-50"
       headline={ko ? '아직 리그에 참가하지 않았어요' : 'Not in a league yet'}
-      body={ko ? '문제를 풀거나 사진으로 풀이를 받으면 XP를 얻고 리그에 자동으로 참가됩니다.' : 'Solve a problem or snap one — you earn XP and join your first league automatically.'}
+      body={ko ? '문제를 풀면 XP를 얻고 리그에 자동으로 참가됩니다.' : 'Solve a problem — you earn XP and join your first league automatically.'}
       ctaHref="/mobile/study"
       ctaText={ko ? '공부 시작' : 'Start studying'}
     />

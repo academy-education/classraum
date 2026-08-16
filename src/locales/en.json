@@ -507,6 +507,10 @@
       "markTest": "Mark as test user",
       "unmarkTest": "Unmark test user",
       "lookupShowing": "{shown} of {total} users",
+      "testFilterAll": "All users",
+      "testFilterTest": "Test users",
+      "testFilterReal": "Real users",
+      "loadMore": "Load more ({remaining})",
       "refundRemaining": "Remaining refundable",
       "refundAmountLabel": "Refund amount (KRW)",
       "refundAmountInvalid": "Enter a whole number between 1 and {remaining}.",
@@ -5462,6 +5466,7 @@
       "previous": "Previous",
       "next": "Next",
       "audioLockedNav": "Navigation locked while audio is playing",
+      "sectionTimeUp": "Time's up for this task — unanswered questions were left blank. Moving to the next task.",
       "audioPlayCta": "Tap play to listen",
       "audioLoading": "Preparing audio…",
       "audioError": "Audio unavailable — tap to retry",
@@ -5577,7 +5582,7 @@
       "gradesLabel": "Grades",
       "gradesBlurb": "Sessions, assignments, attendance, reports.",
       "studyLabel": "Study",
-      "studyBlurb": "AI practice, photo solver, daily review, league."
+      "studyBlurb": "AI practice, guided path, daily review, league."
     },
     "shelf": {
       "dashboard": "Dashboard",
@@ -7552,7 +7557,7 @@
       {
         "id": 11,
         "question": "What is Classraum Study?",
-        "answer": "Classraum Study is our AI study app for students. It generates full mock tests for SAT, TOEFL, TOEIC, IELTS, and KSAT, solves photographed problems step by step (Snap), and turns every missed question into an automatic review plan. It has its own free trial — see the Study page for details."
+        "answer": "Classraum Study is our mobile study app for students — AI-powered SAT and TOEFL prep built on expert-verified question banks. It offers full timed mock tests that mirror the real exams (including TOEFL listening audio, speaking recording, and writing tasks), instant AI explanations for every mistake, a wrong-answer notebook, and flashcards with spaced repetition. A guided study path with Raumi the mascot — plus streaks, XP, and leagues with friends — keeps the habit going. Daily practice is free; Premium unlocks credits for full mock tests."
       }
     ],
     "support": {
@@ -7789,9 +7794,9 @@
       "eyebrow": "New — Classraum Study",
       "title": "Their academy runs on Classraum.",
       "titleHighlight": "Now their studying does too.",
-      "description": "Classraum Study is the AI study app for your students — full mock tests for SAT, TOEFL, TOEIC, IELTS, and KSAT, a photo problem solver, and a mistake notebook that plans their review automatically.",
+      "description": "Classraum Study is the AI study app for your students — full mock tests for SAT, TOEFL, TOEIC, IELTS, and KSAT, instant AI explanations for every mistake, and a mistake notebook that plans their review automatically.",
       "bullets": {
-        "snap": "Snap a photo of any problem and get a step-by-step solution",
+        "snap": "Miss a question and get an instant AI explanation of why",
         "tests": "AI-generated mock tests with real timing, sections, and scoring",
         "review": "Wrong-answer notebook and spaced review built from their mistakes"
       },
@@ -7803,7 +7808,7 @@
         "badge": "Classraum Study",
         "title": "Your AI study partner for",
         "titleHighlight": "every test that matters",
-        "subtitle": "Practice SAT, TOEFL, TOEIC, IELTS, and KSAT with AI-generated mock tests. Stuck on homework? Snap a photo and see it solved step by step. Every mistake you make becomes part of your review plan.",
+        "subtitle": "Practice SAT, TOEFL, TOEIC, IELTS, and KSAT with AI-generated mock tests. Miss a question? See exactly why, explained instantly by AI. Every mistake you make becomes part of your review plan.",
         "ctaPrimary": "Start studying free →",
         "features": {
           "freeTrial": "Free trial",
@@ -8017,7 +8022,7 @@
       },
       "study": {
         "title": "Classraum Study, included",
-        "sub": "The AI study app for every student in your academy — mock tests for five exam families, the Snap photo solver, and a mistake notebook that plans review."
+        "sub": "The AI study app for every student in your academy — mock tests for five exam families, instant AI explanations for every mistake, and a mistake notebook that plans review."
       },
       "privacy": {
         "title": "Private by design",
@@ -8142,7 +8147,7 @@
         "greeting": "Good afternoon, Raumi",
         "date": "Fri, Jul 3",
         "tab1": "Study",
-        "tab2": "Snap",
+        "tab2": "Path",
         "tab3": "Review",
         "tab4": "League",
         "tab5": "Profile",
@@ -8238,7 +8243,7 @@
         "when": "At home, studying",
         "title1": "Class ends.",
         "title2": "The studying doesn't.",
-        "sub": "Classraum Study is the AI study app included for every student in your academy. Photograph a problem for a step-by-step solution, practice with AI mock tests — and every mistake becomes a review plan.",
+        "sub": "Classraum Study is the AI study app included for every student in your academy. Practice with full AI mock tests, see every mistake explained the moment you make it — and each one becomes part of a review plan.",
         "uiTitle": "Study · Today",
         "streak": "12-day streak",
         "goalLabel": "Today's study",
@@ -8247,10 +8252,10 @@
         "item1cta": "Resume",
         "item2": "Daily challenge · 5 weak spots",
         "item2cta": "+50 XP",
-        "snapTitle": "Snap · solve by photo",
-        "snap1": "Photographed a quadratic equation problem",
-        "snap2": "AI recognized it — quadratic formula type",
-        "snap3": "3-step solution arrived · saved to mistake notebook"
+        "snapTitle": "AI explanation · missed question",
+        "snap1": "Missed a TOEFL Listening detail question",
+        "snap2": "AI explanation arrived — why B, not C",
+        "snap3": "Saved to mistake notebook · flashcard scheduled"
       },
       "m3": {
         "when": "Same evening",
@@ -8270,7 +8275,7 @@
         "title2": "Coffee, not a lost weekend.",
         "sub": "Grades and attendance are already in the system, so AI drafts each student's feedback. Teachers read, adjust, and send. Below is the real thing, in action.",
         "uiTitle": "Choi** · March report",
-        "typed": "Raumi kept 100% attendance through March and showed clear progress in quadratic equations. Raumi has become noticeably better at explaining their reasoning on applied problems. Ahead of the functions unit, we recommend reviewing the graph problems saved in their Snap mistake notebook.",
+        "typed": "Raumi kept 100% attendance through March and showed clear progress in quadratic equations. Raumi has become noticeably better at explaining their reasoning on applied problems. Ahead of the functions unit, we recommend reviewing the graph problems saved in their mistake notebook.",
         "stateWriting": "AI drafting…",
         "stateDone": "Draft done · 0.8s",
         "btnSend": "Send to parent",

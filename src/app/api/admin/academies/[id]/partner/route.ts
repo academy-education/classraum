@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createClient } from '@supabase/supabase-js';
+import { dbAdmin } from '@/lib/supabase-admin';
 import type { Database } from '@/lib/database.types';
 
 const PORTONE_API_SECRET = process.env.PORTONE_API_SECRET;
@@ -56,8 +57,11 @@ export async function GET(
 
     const { id: academyId } = await params;
 
-    // Get academy with partner info
-    const { data: academy, error } = await supabase
+    // Get academy with partner info — through the SERVICE-ROLE client.
+    // Admins are not members of the academy, so the caller-JWT client above
+    // is RLS-filtered to zero rows and every academy read "Academy not
+    // found". The JWT client is only for authenticating the caller.
+    const { data: academy, error } = await dbAdmin
       .from('academies')
       .select('portone_partner_id, portone_contract_id, bank_account, business_registration_number, tax_type')
       .eq('id', academyId)
@@ -151,8 +155,9 @@ export async function POST(
     const { id: academyId } = await params;
     const body = await request.json();
 
-    // Get academy info
-    const { data: academy, error: academyError } = await supabase
+    // Get academy info — service-role client; the caller-JWT client is
+    // RLS-filtered for admins (see GET above).
+    const { data: academy, error: academyError } = await dbAdmin
       .from('academies')
       .select('name, portone_partner_id')
       .eq('id', academyId)
@@ -208,8 +213,9 @@ export async function POST(
     const partnerData = await response.json();
     const partnerId = partnerData.partner.id;
 
-    // Update academy with partner info
-    const { error: updateError } = await supabase
+    // Update academy with partner info — service-role client (RLS would
+    // silently update zero rows for an admin caller).
+    const { error: updateError } = await dbAdmin
       .from('academies')
       .update({
         portone_partner_id: partnerId,

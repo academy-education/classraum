@@ -4,10 +4,11 @@ import React, { useState, useEffect } from 'react';
 import {
   Building2,
   CreditCard,
-  UserPlus,
+  Users,
+  Banknote,
+  Headphones,
+  ShieldCheck,
   AlertCircle,
-  CheckCircle,
-  XCircle,
   Clock
 } from 'lucide-react';
 import { useAdminFetch } from './useAdminFetch';
@@ -171,26 +172,27 @@ export function RecentActivity() {
     }
   };
 
-  const getActivityIcon = (type: ActivityItem['type'], status?: ActivityItem['status']) => {
-    const iconProps = { className: "h-5 w-5" };
-    
+  // Each activity type uses the SAME lucide icon as its entity's own admin
+  // tab (AdminSidebar): academies → Building2, subscriptions → CreditCard,
+  // users → Users, money/settlements → Banknote, support → Headphones,
+  // system → ShieldCheck. Severity is carried by the chip color, not by
+  // swapping in status glyphs.
+  const getActivityIcon = (type: ActivityItem['type']) => {
     switch (type) {
       case 'academy_created':
-        return <Building2 {...iconProps} className="h-5 w-5 text-primary" />;
+        return <Building2 className="h-5 w-5 text-primary" />;
       case 'subscription_created':
-        return <CreditCard {...iconProps} className="h-5 w-5 text-emerald-600" />;
+        return <CreditCard className="h-5 w-5 text-emerald-600" />;
       case 'user_added':
-        return <UserPlus {...iconProps} className="h-5 w-5 text-violet-600" />;
+        return <Users className="h-5 w-5 text-violet-600" />;
       case 'payment_failed':
-        return <XCircle {...iconProps} className="h-5 w-5 text-rose-600" />;
+        return <Banknote className="h-5 w-5 text-rose-600" />;
       case 'support_ticket':
-        return <AlertCircle {...iconProps} className="h-5 w-5 text-amber-600" />;
+        return <Headphones className="h-5 w-5 text-amber-600" />;
       case 'system_alert':
-        return status === 'success' 
-          ? <CheckCircle {...iconProps} className="h-5 w-5 text-emerald-600" />
-          : <AlertCircle {...iconProps} className="h-5 w-5 text-rose-600" />;
+        return <ShieldCheck className="h-5 w-5 text-gray-600" />;
       default:
-        return <Clock {...iconProps} className="h-5 w-5 text-gray-600" />;
+        return <Clock className="h-5 w-5 text-gray-600" />;
     }
   };
 
@@ -263,7 +265,7 @@ export function RecentActivity() {
           {activities.map((activity) => (
           <div key={activity.id} className="flex items-start space-x-3">
             <div className={`flex-shrink-0 p-2 rounded-full border ${getStatusColor(activity.status)}`}>
-              {getActivityIcon(activity.type, activity.status)}
+              {getActivityIcon(activity.type)}
             </div>
             
             <div className="flex-1 min-w-0">
