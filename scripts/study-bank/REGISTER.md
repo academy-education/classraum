@@ -150,6 +150,35 @@ B4 is *Calibrate the reviewer before spending another cohort* (~20 minutes — o
 
 ## 5. Found while fixing
 
+### The 2 resit flags: both repaired, none archived (2026-08-17)
+
+The two 'alternative' verdicts from `resit-length-2026-08-16`
+(7bb71a23, bb6babf9, both I&I Command of Evidence), resolved per the
+calibration-15 procedure — letters decoded through each row's
+shown_order, alternatives judged, minimal distractor edits with keys
+untouched, distractor_rationales synced, key-in-choices verified
+after apply. Both content_shas regenerated, so the run's two review
+rows correctly went stale.
+
+- 7bb71a23 (his "D" = stored choice 3, the single-value deer data
+  point): defensible — stated AS "the heaviest species" with the
+  lowest rate, it is a weaker-but-real support for the smaller-runs-
+  hotter claim, the same class as 9efbd702. Replaced with a range
+  statement ("rates spanned a wide range, from 0.4 … up to 7.4") that
+  uses the table accurately but never ties rate to body mass, so it
+  cannot support a comparative claim. Not one of the 96 rebalanced
+  items; the edit lengthens the distractor slightly (99→104 chars,
+  key 122).
+- bb6babf9 (his "B" = stored choice 1, the income-adjustment
+  finding): defensible — income confounding IS the passage's own
+  explanation, so a finding restating it arguably strengthens it; the
+  old explanation's "merely restates the premise" was carrying too
+  much. Edit swaps the confounder to the children's measured
+  intelligence — a competing trait-side account that does NOT
+  strengthen the circumstances mechanism. Item IS length-rebalanced;
+  edited distractor sits at 95% of key (113/119), above the 90%
+  floor.
+
 ### RE-SIT CLEAN — the length repair held, and SAT R&W is now fully human-cleared (2026-08-17)
 
 `resit-length-2026-08-16`, 20 items (10 I&I + 10 C&S, all unseen,
