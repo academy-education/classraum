@@ -1,0 +1,29 @@
+{
+  "answers": {
+    "1": {"pick": "C", "confidence": "guess"},
+    "2": {"pick": "D", "confidence": "guess"},
+    "3": {"pick": "B", "confidence": "guess"},
+    "4": {"pick": "B", "confidence": "guess"},
+    "5": {"pick": "B", "confidence": "guess"},
+    "6": {"pick": "C", "confidence": "confident"},
+    "7": {"pick": "C", "confidence": "guess"},
+    "8": {"pick": "B", "confidence": "guess"},
+    "9": {"pick": "A", "confidence": "guess"},
+    "10": {"pick": "C", "confidence": "guess"},
+    "11": {"pick": "A", "confidence": "guess"},
+    "12": {"pick": "A", "confidence": "guess"},
+    "13": {"pick": "D", "confidence": "confident"},
+    "14": {"pick": "D", "confidence": "guess"},
+    "15": {"pick": "C", "confidence": "guess"},
+    "16": {"pick": "A", "confidence": "confident"},
+    "17": {"pick": "C", "confidence": "guess"},
+    "18": {"pick": "D", "confidence": "guess"},
+    "19": {"pick": "C", "confidence": "guess"},
+    "20": {"pick": "D", "confidence": "guess"},
+    "21": {"pick": "B", "confidence": "guess"},
+    "22": {"pick": "B", "confidence": "guess"},
+    "23": {"pick": "A", "confidence": "guess"},
+    "24": {"pick": "C", "confidence": "guess"}
+  },
+  "patterns": "Heuristics used: (1) Reconstruct-the-line: for each option I inferred what spoken line it would answer, then picked the option whose implied line felt like the most canonical exam scenario (dryer out of order, room swap offer, half-funded grant, donation drop-off, defibrillator question, train cancellation). (2) Specificity/idiosyncrasy: options with concrete, situation-locked detail ('Just above them, nothing too severe', 'Only in training — never with a real casualty', 'Bring them through to the sorting room') read as keys because distractors tend to be generic acceptances or thanks; I avoided bland all-purpose replies like 'Thanks, that would really help me' (7A). (3) Acceptance-with-reason: replies that agree AND give a personal justification ('That suits me — my current corridor is noisy', 'Put me down for it — that day's quiet anyway') felt author-favoured. (4) Distractor-family reading: each set seemed built as four replies to four DIFFERENT plausible lines in the same setting, so no structural tell (length, punctuation, dash use) separated the key — dashes and em-dash asides appear across all slots. (5) No positional or length signal was detectable; my picks are effectively semantic-plausibility guesses, and only 3/24 rose to 'confident'. Weakness of the set from an attacker's view: a couple of items (6, 13, 16) have one option so scenario-specific that the intended line is guessable without audio; most others resisted."
+}

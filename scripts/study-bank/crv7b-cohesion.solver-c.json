@@ -1,0 +1,29 @@
+{
+  "answers": {
+    "1": {"pick": "A", "confidence": "guess"},
+    "2": {"pick": "D", "confidence": "guess"},
+    "3": {"pick": "B", "confidence": "confident"},
+    "4": {"pick": "B", "confidence": "guess"},
+    "5": {"pick": "B", "confidence": "guess"},
+    "6": {"pick": "C", "confidence": "confident"},
+    "7": {"pick": "C", "confidence": "guess"},
+    "8": {"pick": "D", "confidence": "guess"},
+    "9": {"pick": "A", "confidence": "guess"},
+    "10": {"pick": "B", "confidence": "guess"},
+    "11": {"pick": "A", "confidence": "confident"},
+    "12": {"pick": "D", "confidence": "guess"},
+    "13": {"pick": "D", "confidence": "confident"},
+    "14": {"pick": "B", "confidence": "guess"},
+    "15": {"pick": "C", "confidence": "confident"},
+    "16": {"pick": "A", "confidence": "confident"},
+    "17": {"pick": "C", "confidence": "confident"},
+    "18": {"pick": "D", "confidence": "guess"},
+    "19": {"pick": "A", "confidence": "guess"},
+    "20": {"pick": "D", "confidence": "guess"},
+    "21": {"pick": "B", "confidence": "confident"},
+    "22": {"pick": "A", "confidence": "confident"},
+    "23": {"pick": "A", "confidence": "guess"},
+    "24": {"pick": "C", "confidence": "confident"}
+  },
+  "patterns": "Main heuristic: reconstruct the unheard prompt from the option set itself. All four options in each item share one scenario (laundry room, room swap, advisor signature, haircut, charity shop, train delay...), so the union of options telegraphs the situation; I then picked the option that presupposes the most SPECIFIC and most plausible single spoken line, i.e. the one whose felicity conditions pin down a unique prompt (e.g. 6C 'Just above them, nothing too severe' requires a 'how short over the ears?' question; 15C 'so my post will follow me from today?' requires a redirection-confirmed line; 24C 'move my booking onto that one' requires an announced alternative train). Secondary signals: (a) options that answer a QUESTION with content (16A 'Only in training — never with a real casualty') stand out among three statement-replies, suggesting the prompt was a question; (b) 'then'-final consequence replies ('...then') often read as keyed cohesive follow-ons — many items have several of these, which dilutes that tell; (c) hedged/negative replies (22C 'might not fit', 15D 'Shame...') read like distractors since keys tend to be cooperative acceptances; (d) I found NO exploitable surface tells: option lengths are balanced, no punctuation asymmetry, no slot bias apparent, register is uniform. Where two options fit two different plausible prompts equally well (2, 8, 10, 12, 14, 19, 20, 23) I was genuinely split — those are coin flips between an 'offer accepted' reading and an 'info acknowledged' reading, which suggests the batch resists no-audio solving better than earlier cohorts unless my semantic-specificity picks turn out right."
+}

@@ -137,6 +137,75 @@ lucky draw: the RNG that picks the key never saw the text.
     reason, but a human should confirm the wrongness is felt, not just
     provable, on a sitting-sized sample.
 
+## Cohesion pass (2026-08-18, after both gates) — Andy's topical-distance feedback
+
+Product-owner finding after reading the set: some distractors are
+topically DISTANT from the audio line (line about where you ate,
+option about billing statements), so a student can eliminate by
+topic-matching without comprehending the line. This pass pulled those
+distractors into the line's conversational neighborhood.
+
+THIS PASS DELIBERATELY BREAKS the "never edit an option after
+selection" invariant, on distractors only. Keys, lines, letter
+positions and unflagged options are byte-identical to the frozen
+render (verified against a pre-edit backup: 0 keys changed, 0 lines
+changed, 0 key positions moved). Because the independence guarantee no
+longer holds by construction for the 39 edited items, the fresh blind
+attack below is now the evidence for them, not the construction.
+
+Scoring: 4 scorers over 33 items each flagged 23 items — but two
+scorers returned 0/33 next to 18% and 52% from the others, which fails
+the would-it-have-failed test. Both zero slices were re-probed with
+calibrated scorers (positive AND negative anchor examples): 11 and 6
+real flags. Consolidated and adjudicated: 39 items / 52 distractors
+flagged (1 scorer flag dropped as billing-sphere-adjacent, idx 126).
+The lesson repeats: a 0-flag scorer is a hypothesis about the scorer
+until a calibrated probe agrees.
+
+Edits: all 52 distractors rewritten in-topic by 2 editor batches, each
+replacement carrying a fresh kill-rationale quote-anchored to the
+spoken line. Machine checks after apply: 396/396 rationales anchor a
+2+-word verbatim span of their line; letters still 33/33/33/33; key
+length rank 28/29/33/42 (worst slot 31.8%, under the 40% bar); hedge
+0%/0% and intensifier 0%/0.3% keys vs distractors; no new near-dup
+pairs (the one J=0.60 pair, items 16/101, predates this pass).
+
+Exclusivity (the sacred constraint) got its own instrument, not just
+editor self-reports: one checker judged all 4 options of each edited
+item WITH the line, blind to the key. 36/39 clean; sole-acceptable
+option matched the key in all 36. Three defects:
+
+- idx 80 crv7-b4-12 — CAUSED BY THIS PASS ("I'll take my things out of
+  it tonight, then" is comply-by-avoidance to the labelling request).
+  Repaired after the attack (item was NOT in the attack sample):
+  replaced with a misread-as-ban reply, all checks re-run green.
+- idx 59 crv7-b3-20 — PRE-EXISTING: "There's a course next week — I'll
+  sign up for it" is a natural implicit-no to "Have you done a pool
+  rescue with a spinal board?", competing with the key. Original
+  untouched text; NOT edited (outside this pass's mandate). Human-gate
+  watch-item.
+- idx 60 crv7-b3-14 — PRE-EXISTING: "I'll tell the committee tonight"
+  is a fully natural relay-the-bad-news reply to the funding
+  rejection, competing with the key. Same disposition.
+
+## Re-attack after edits (crv7b-cohesion) — 24 items, 16 of them edited, letters 6/6/6/6
+
+    solver a   8/24 = 33.3%   confident 2/3    spread 5/6/8/5
+    solver b   7/24 = 29.2%   confident 2/4    spread 6/6/6/6
+    solver c   7/24 = 29.2%   confident 3/10   spread 7/6/5/6
+
+    MEAN 30.6%   control 25.0%   margin +5.6   CLEAR (kill bar +30)
+    edited subset 14/48 = 29.2%   unedited subset 8/24 = 33.3%
+
+The edited items are not the more guessable ones. The margin sits
+above S2's +1.4 but within noise at this n (per-solver SE ~9 pts); the
+by-construction 0 no longer applies to edited items, so a small
+positive here is expected drift, not tampering. Solver patterns: all
+three again converged on prompt-reconstruction ("infer the unheard
+line each option answers, pick the most canonical scenario") plus
+specificity/anaphora bias; all three explicitly reported NO length,
+punctuation, or slot tells. Confident picks went 7/17 overall.
+
 ## Files
 
     crv7-quads.json, crv7-b[1-6]-quads.json   four-world sources (7 authors)

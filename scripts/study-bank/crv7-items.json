@@ -8,16 +8,16 @@
    "I'll do the separation by hand this week, then.",
    "Mornings would help — I'd finish before my seminar.",
    "They're in the fridge — I'm running them tomorrow.",
-   "I'll switch the registration before the next session."
+   "Thanks for running them for me — I owe you one."
   ],
   "correct_answer": "They're in the fridge — I'm running them tomorrow.",
   "difficulty": "hard",
   "listeningTask": "choose_response",
-  "explanation": "The line asks directly whether the student's samples have been processed. The reply about samples in the fridge takes that up by reporting where they are and when they will go through. The reply about switching the registration answers a roster correction; the reply about separating by hand works around an instrument nobody has said is broken; and the reply that takes mornings accepts an offer of early access that was not made.",
+  "explanation": "The line asks directly whether the student's samples have been processed. The reply about samples in the fridge takes that up by reporting where they are and when they will go through. The reply thanking the speaker for running them credits a favor the question shows was never done; the reply about separating by hand works around an instrument nobody has said is broken; and the reply that takes mornings accepts an offer of early access that was not made.",
   "distractor_rationales": {
-   "I'll switch the registration before the next session.": "\"Did you get your samples run\" — a question about the student's own work is on the table, not anything about section listings.",
    "I'll do the separation by hand this week, then.": "\"or are they still waiting\" — the question assumes the work can be run, so no instrument has been reported unavailable.",
-   "Mornings would help — I'd finish before my seminar.": "\"Did you get your samples run\" — this asks for a progress report and offers no extra hours to accept."
+   "Mornings would help — I'd finish before my seminar.": "\"Did you get your samples run\" — this asks for a progress report and offers no extra hours to accept.",
+   "Thanks for running them for me — I owe you one.": "\"Did you get your samples run\" — the speaker is asking whether the work happened, not reporting having done it, so thanking them for running the samples credits a favor nobody performed."
   },
   "_crv7": {
    "localId": "cr7-04",
@@ -25,7 +25,8 @@
    "kind": "question",
    "keyAct": "reporting status",
    "setting": "chemistry teaching lab",
-   "batch": "pilot"
+   "batch": "pilot",
+   "cohesionEdited": true
   }
  },
  {
@@ -124,16 +125,16 @@
    "I'll come by after my Thursday seminar, then.",
    "I'll send you one by the end of next week.",
    "I'd still like comments on it, if that's possible.",
-   "I went with the migration one — the sources were easier."
+   "I'll drop by again once they start up next term."
   ],
   "correct_answer": "I'll come by after my Thursday seminar, then.",
   "difficulty": "hard",
   "listeningTask": "choose_response",
-  "explanation": "The line announces a standing change to when the instructor is available. The reply about coming by after a Thursday seminar takes that up by slotting the new day into the student's own week. The reply asking for comments without a grade responds to a marking decision that was never mentioned; the reply promising something by the end of next week accepts an offer nobody made; and the reply naming the migration topic answers a question that was not asked.",
+  "explanation": "The line announces a standing change to when the instructor is available. The reply about coming by after a Thursday seminar takes that up by slotting the new day into the student's own week. The reply asking for comments without a grade responds to a marking decision that was never mentioned; the reply promising something by the end of next week accepts an offer nobody made; and the reply about dropping by next term treats hours that are merely moving to a new day as suspended.",
   "distractor_rationales": {
    "I'd still like comments on it, if that's possible.": "\"moving office hours to Thursdays\" — the line concerns availability, so nothing has been said about grading or about any deadline being missed.",
    "I'll send you one by the end of next week.": "\"for the rest of term\" — the announcement is about a recurring time slot, not an invitation to send more work.",
-   "I went with the migration one — the sources were easier.": "\"moving office hours to Thursdays\" — no question has been put to the student, so volunteering a choice of topic answers nothing."
+   "I'll drop by again once they start up next term.": "\"moving office hours to Thursdays\" — the hours continue on a new day for the rest of term, so waiting to visit next term treats a moved slot as a suspended one."
   },
   "_crv7": {
    "localId": "cr7-03",
@@ -141,7 +142,8 @@
    "kind": "neutral info",
    "keyAct": "fitting a new schedule",
    "setting": "professor's office hours",
-   "batch": "pilot"
+   "batch": "pilot",
+   "cohesionEdited": true
   }
  },
  {
@@ -296,18 +298,18 @@
   "prompt": "[Choose a Response] Which is the most natural reply?",
   "choices": [
    "I'll take it — should I sign something today?",
-   "I'll look at places off campus for next term, then.",
+   "I'll bring the new one back once I've moved my things.",
    "It's on my desk — I'll drop it in this afternoon.",
    "That suits me — my current corridor is noisy."
   ],
   "correct_answer": "It's on my desk — I'll drop it in this afternoon.",
   "difficulty": "hard",
   "listeningTask": "choose_response",
-  "explanation": "The line makes collecting the new key conditional on returning the old one. The reply about the key on the desk takes that up by saying where it is and when it will arrive. The reply that accepts and asks about signing treats the room as still to be agreed; the reply about looking off campus assumes no room was found; and the reply about a noisy corridor answers a description of the room that was not given.",
+  "explanation": "The line makes collecting the new key conditional on returning the old one. The reply about the key on the desk takes that up by saying where it is and when it will arrive. The reply that accepts and asks about signing treats the room as still to be agreed; the reply about bringing the new key back runs the exchange in the wrong direction; and the reply about a noisy corridor answers a description of the room that was not given.",
   "distractor_rationales": {
    "I'll take it — should I sign something today?": "\"before you collect the new one\" — the room is already settled and what is pending is a key handover, not an agreement.",
-   "I'll look at places off campus for next term, then.": "\"before you collect the new one\" — the student plainly has a new room, so private lettings are beside the point.",
-   "That suits me — my current corridor is noisy.": "\"Bring your old key by\" — an instruction is being given, not a description of where the room sits."
+   "That suits me — my current corridor is noisy.": "\"Bring your old key by\" — an instruction is being given, not a description of where the room sits.",
+   "I'll bring the new one back once I've moved my things.": "\"before you collect the new one\" — the new key is still to be picked up, not handed in, so promising to bring it back runs the exchange in the wrong direction."
   },
   "_crv7": {
    "localId": "cr7-10",
@@ -315,7 +317,8 @@
    "kind": "request",
    "keyAct": "undertaking to return an item",
    "setting": "housing office",
-   "batch": "pilot"
+   "batch": "pilot",
+   "cohesionEdited": true
   }
  },
  {
@@ -325,18 +328,18 @@
   "prompt": "[Choose a Response] Which is the most natural reply?",
   "choices": [
    "I'll use my student ID here from now on.",
-   "Please do — my sister's visiting this weekend.",
+   "Sorry — I'll top it up at the machine first.",
    "I'm on the weekday one — I signed up after the deadline.",
    "I'll grab something from the shop before it shuts."
   ],
   "correct_answer": "I'll use my student ID here from now on.",
   "difficulty": "hard",
   "listeningTask": "choose_response",
-  "explanation": "The line points out that the card presented is valid somewhere else on campus. The reply about using the student ID from now on takes that up by switching to the credential this hall accepts. The reply about the shop before it shuts assumes no food is available; the reply about a sister visiting accepts an offer that was not made; and the reply about weekdays only answers a question about coverage that was not asked.",
+  "explanation": "The line points out that the card presented is valid somewhere else on campus. The reply about using the student ID from now on takes that up by switching to the credential this hall accepts. The reply about the shop before it shuts assumes no food is available; the reply about topping the card up treats the problem as an empty balance when the card is simply for another venue; and the reply about weekdays only answers a question about coverage that was not asked.",
   "distractor_rationales": {
    "I'll grab something from the shop before it shuts.": "\"not this dining hall\" — the student is being redirected to the right credential, not told the kitchen has stopped serving.",
-   "Please do — my sister's visiting this weekend.": "\"That card's for the cafe downstairs\" — a card is being identified, and nothing has been offered to add to any account.",
-   "I'm on the weekday one — I signed up after the deadline.": "\"not this dining hall\" — the student has been told which card works where, not asked what the plan covers."
+   "I'm on the weekday one — I signed up after the deadline.": "\"not this dining hall\" — the student has been told which card works where, not asked what the plan covers.",
+   "Sorry — I'll top it up at the machine first.": "\"for the cafe downstairs\" — the card works and simply belongs to another venue, so adding money at the machine fixes a balance that was never the problem."
   },
   "_crv7": {
    "localId": "cr7-09",
@@ -344,7 +347,8 @@
    "kind": "correction",
    "keyAct": "switching to the right credential",
    "setting": "dining hall entrance",
-   "batch": "pilot"
+   "batch": "pilot",
+   "cohesionEdited": true
   }
  },
  {
@@ -586,18 +590,18 @@
   "prompt": "[Choose a Response] Which is the most natural reply?",
   "choices": [
    "I'll do mine on my laptop and upload it.",
-   "Yes — I've been guessing at half its buttons.",
-   "I'll rename the ones I've already left there.",
+   "An extra hour in the evening is just what I needed.",
+   "Losing an hour on Fridays will really squeeze me.",
    "That's when I'll come — afternoons are always packed."
   ],
   "correct_answer": "That's when I'll come — afternoons are always packed.",
   "difficulty": "hard",
   "listeningTask": "choose_response",
-  "explanation": "The attendant reports a change to the lab's opening times. Choosing the newly available stretch and saying why the usual one is unattractive is a natural response to hearing about extra hours. The reply about recording on a laptop assumes the booths are unusable; the reply about renaming files answers an instruction that was not given; and the reply about guessing at buttons takes up an offer that was not made.",
+  "explanation": "The attendant reports a change to the lab's opening times. Choosing the newly available stretch and saying why the usual one is unattractive is a natural response to hearing about extra hours. The reply about recording on a laptop assumes the booths are unusable; the reply about losing an hour reads the longer Friday as a shorter one; and the reply welcoming an evening hour puts the extra time at the wrong end of the day.",
   "distractor_rationales": {
    "I'll do mine on my laptop and upload it.": "Nothing is broken — the lab simply \"opens an hour earlier\" than before.",
-   "I'll rename the ones I've already left there.": "No file convention appears in \"opens an hour earlier on Fridays\".",
-   "Yes — I've been guessing at half its buttons.": "No help was offered; the news is only about when the lab \"opens an hour earlier\"."
+   "An extra hour in the evening is just what I needed.": "\"opens an hour earlier\" — the added time comes at the start of the day, so welcoming an extra evening hour places the change at the wrong end.",
+   "Losing an hour on Fridays will really squeeze me.": "\"an hour earlier on Fridays\" — the lab is gaining time, not losing it, so complaining about a squeeze reads a longer day as a shorter one."
   },
   "_crv7": {
    "localId": "crv7-b1-07",
@@ -605,7 +609,8 @@
    "kind": "neutral info",
    "keyAct": "deciding when to come in",
    "setting": "language lab",
-   "batch": "b1"
+   "batch": "b1",
+   "cohesionEdited": true
   }
  },
  {
@@ -616,17 +621,17 @@
   "choices": [
    "I'll rebook myself for later in the week.",
    "Yes please — the introduction alone will take a while.",
-   "Is that the building behind the chapel?",
+   "I'll leave the draft at home next time, then.",
    "It's on the course site — I'll print it beforehand."
   ],
   "correct_answer": "It's on the course site — I'll print it beforehand.",
   "difficulty": "hard",
   "listeningTask": "choose_response",
-  "explanation": "The consultant asks the student to bring an extra document to the following session. Saying where the document lives and undertaking to print it in advance is direct compliance with the request. The reply about rebooking assumes a cancellation; the reply asking about a building assumes a change of room; and the reply accepting a full hour takes up an offer of time that was not made.",
+  "explanation": "The consultant asks the student to bring an extra document to the following session. Saying where the document lives and undertaking to print it in advance is direct compliance with the request. The reply about rebooking assumes a cancellation; the reply about leaving the draft at home drops a document the instruction still wants brought; and the reply accepting a full hour takes up an offer of time that was not made.",
   "distractor_rationales": {
    "I'll rebook myself for later in the week.": "Nothing is cancelled; the consultant is planning what to \"Bring\" to the \"next time\" they meet.",
-   "Is that the building behind the chapel?": "No room change is mentioned — the instruction is about what to bring \"next time\".",
-   "Yes please — the introduction alone will take a while.": "Nothing longer was offered; the ask is only for \"the assignment sheet\"."
+   "Yes please — the introduction alone will take a while.": "Nothing longer was offered; the ask is only for \"the assignment sheet\".",
+   "I'll leave the draft at home next time, then.": "The instruction \"not just the draft\" asks for both documents together, so leaving the draft at home drops the one the student was already bringing."
   },
   "_crv7": {
    "localId": "crv7-b1-05",
@@ -634,7 +639,8 @@
    "kind": "request",
    "keyAct": "confirming compliance and where the item comes from",
    "setting": "writing center reception",
-   "batch": "b1"
+   "batch": "b1",
+   "cohesionEdited": true
   }
  },
  {
@@ -964,17 +970,17 @@
   "choices": [
    "I'll leave my number, it might still turn up.",
    "Let me see it, mine has a pen mark on the cuff.",
-   "A transit card and a set of keys with a red tag.",
+   "So it's been claimed already, I'll keep looking elsewhere.",
    "I'll walk over there and ask at their desk instead."
   ],
   "correct_answer": "Let me see it, mine has a pen mark on the cuff.",
   "difficulty": "hard",
   "listeningTask": "choose_response",
-  "explanation": "The line reports that a jacket matching the description was handed in, so the reply asks to look and supplies a detail that would confirm ownership. The reply about leaving a number assumes nothing has arrived. The reply listing pocket contents answers a request that was not made, and the reply about walking to another desk sends the student away from the jacket.",
+  "explanation": "The line reports that a jacket matching the description was handed in, so the reply asks to look and supplies a detail that would confirm ownership. The reply about leaving a number assumes nothing has arrived. The reply treating the jacket as already claimed mistakes an item handed in for an item handed back, and the reply about walking to another desk sends the student away from the jacket.",
   "distractor_rationales": {
    "I'll leave my number, it might still turn up.": "The line says someone \"turned in a green jacket\", so the reply that leaves a number in case it turns up is waiting for something already in the building.",
-   "A transit card and a set of keys with a red tag.": "The line describes \"a green jacket like yours\" without asking anything, so the reply listing what was in the pockets answers a request that was never made.",
-   "I'll walk over there and ask at their desk instead.": "The line says \"Someone turned in a green jacket\" at this desk, so the reply that goes off to ask elsewhere leaves the item behind."
+   "I'll walk over there and ask at their desk instead.": "The line says \"Someone turned in a green jacket\" at this desk, so the reply that goes off to ask elsewhere leaves the item behind.",
+   "So it's been claimed already, I'll keep looking elsewhere.": "The line says someone \"turned in a green jacket\" at this window, so the reply treating it as already claimed reads a handover to the desk as a handover to an owner."
   },
   "_crv7": {
    "localId": "crv7-b2-08",
@@ -982,7 +988,8 @@
    "kind": "good news",
    "keyAct": "asks to inspect the item and gives an identifying mark",
    "setting": "lost and found window, attendant to student",
-   "batch": "b2"
+   "batch": "b2",
+   "cohesionEdited": true
   }
  },
  {
@@ -1023,16 +1030,16 @@
    "I'll cross the quad and look for the big glass entrance.",
    "I'll go around the back rather than trying these doors.",
    "I'd be glad of that, I've turned myself around here.",
-   "The recital, my friend's quartet is playing in it."
+   "I'll wait at these doors until someone opens them."
   ],
   "correct_answer": "I'll go around the back rather than trying these doors.",
   "difficulty": "hard",
   "listeningTask": "choose_response",
-  "explanation": "The line explains that the usable entrance is on the opposite side of the building, so the reply goes round instead of trying the nearest doors. The reply about crossing the quad assumes the venue changed. The reply accepting company takes an offer that was never made, and the reply naming the recital answers a question that was not asked.",
+  "explanation": "The line explains that the usable entrance is on the opposite side of the building, so the reply goes round instead of trying the nearest doors. The reply about crossing the quad assumes the venue changed. The reply accepting company takes an offer that was never made, and the reply about waiting at these doors stays at a side the line has ruled out.",
   "distractor_rationales": {
    "I'll cross the quad and look for the big glass entrance.": "The line says the entrance is \"on the far side, by the loading dock\" of the right building, so the reply crossing the quad to another building follows a change that was never announced.",
    "I'd be glad of that, I've turned myself around here.": "The line gives directions — \"That building's entrance is on the far side\" — and offers no company, so the reply accepting an escort takes up an offer never made.",
-   "The recital, my friend's quartet is playing in it.": "The line locates a door \"by the loading dock\" and asks nothing, so the reply naming a recital answers a question that was not put."
+   "I'll wait at these doors until someone opens them.": "The line places the way in \"on the far side, by the loading dock\", so the reply waiting at these doors stands at an entrance the line has just ruled out."
   },
   "_crv7": {
    "localId": "crv7-b2-17",
@@ -1040,7 +1047,8 @@
    "kind": "neutral info",
    "keyAct": "takes the working door rather than the one in front of them",
    "setting": "campus information kiosk, volunteer to visitor",
-   "batch": "b2"
+   "batch": "b2",
+   "cohesionEdited": true
   }
  },
  {
@@ -1254,17 +1262,17 @@
   "choices": [
    "I'll grab them and get out of everyone's way.",
    "My laptop, I joined the wireless queue this morning.",
-   "I will, the last person left their account open too.",
+   "I'll fix the margins, that must be what keeps failing.",
    "I'll cancel mine and send it to the lab upstairs."
   ],
   "correct_answer": "I'll cancel mine and send it to the lab upstairs.",
   "difficulty": "hard",
   "listeningTask": "choose_response",
-  "explanation": "The line reports that the job is trapped behind a large one that keeps erroring, so the reply pulls it and sends it to another lab. The reply about collecting pages assumes the job printed. The reply naming a laptop answers a question that was not asked, and the reply about logging out agrees to a request the line does not make.",
+  "explanation": "The line reports that the job is trapped behind a large one that keeps erroring, so the reply pulls it and sends it to another lab. The reply about collecting pages assumes the job printed. The reply naming a laptop answers a question that was not asked, and the reply about fixing margins repairs the student's own file when the failures belong to the job ahead.",
   "distractor_rationales": {
    "I'll grab them and get out of everyone's way.": "The line says \"Your job's stuck\", so the reply that goes to collect the pages picks up printing that never came out.",
    "My laptop, I joined the wireless queue this morning.": "The line reports a queue jammed \"behind a huge one that keeps failing\" and asks nothing, so the reply naming a laptop answers a question that was not put.",
-   "I will, the last person left their account open too.": "The line describes a job \"stuck behind a huge one\" and requests nothing, so the reply agreeing to log out complies with something never asked."
+   "I'll fix the margins, that must be what keeps failing.": "The line says the job is \"stuck behind a huge one that keeps failing\", so the failures belong to the job ahead, and fixing your own margins repairs the file that was never the problem."
   },
   "_crv7": {
    "localId": "crv7-b2-15",
@@ -1272,7 +1280,8 @@
    "kind": "bad news",
    "keyAct": "abandons the queue and moves the job elsewhere",
    "setting": "computer lab printing station, one student to another",
-   "batch": "b2"
+   "batch": "b2",
+   "cohesionEdited": true
   }
  },
  {
@@ -1281,7 +1290,7 @@
   "passageGroupId": null,
   "prompt": "[Choose a Response] Which is the most natural reply?",
   "choices": [
-   "Go ahead, I'll be in the reading room downstairs.",
+   "Good, then there's a slot free when I bring mine back.",
    "I'll walk over now before someone else claims it.",
    "I didn't know that, it'd help with my studio gear.",
    "I'll take the bus and try again in the morning."
@@ -1289,11 +1298,11 @@
   "correct_answer": "I'll walk over now before someone else claims it.",
   "difficulty": "hard",
   "listeningTask": "choose_response",
-  "explanation": "The line reports that a bike has been returned to a nearby rack, so the reply goes to take it before anyone else does. The reply about the bus assumes nothing is available. The reply about trailers responds to membership information that was not given, and the reply about the reading room accepts a waiting list that was never offered.",
+  "explanation": "The line reports that a bike has been returned to a nearby rack, so the reply goes to take it before anyone else does. The reply about the bus assumes nothing is available. The reply about trailers responds to membership information that was not given, and the reply counting on a freed slot reads a bike coming in as a dock opening up.",
   "distractor_rationales": {
    "I'll take the bus and try again in the morning.": "The line says \"A bike just came back in\", so the reply that takes the bus and tries again tomorrow gives up on a bike that is available now.",
    "I didn't know that, it'd help with my studio gear.": "The line reports a return \"at the gate rack\" and says nothing about what membership covers, so the reply about trailers answers information never given.",
-   "Go ahead, I'll be in the reading room downstairs.": "The line says a bike \"just came back in at the gate rack\", so the reply agreeing to wait in the reading room accepts a list that is not needed and was not offered."
+   "Good, then there's a slot free when I bring mine back.": "The line says a bike \"came back in at the gate rack\", so a dock there has just been filled, and the reply counting on a freed slot runs the return backwards."
   },
   "_crv7": {
    "localId": "crv7-b2-16",
@@ -1301,7 +1310,8 @@
    "kind": "good news",
    "keyAct": "moves quickly to claim the returned bike",
    "setting": "bike share desk, attendant to rider",
-   "batch": "b2"
+   "batch": "b2",
+   "cohesionEdited": true
   }
  },
  {
@@ -1313,16 +1323,16 @@
    "I'll email my group and move us to the study lounge.",
    "That would save me a lot of trouble, thank you.",
    "I'll go around the building and use that one, thanks.",
-   "Here you go, it's the one with the old photo."
+   "I'll come back once it's mopped up later tonight."
   ],
   "correct_answer": "I'll email my group and move us to the study lounge.",
   "difficulty": "hard",
   "listeningTask": "choose_response",
-  "explanation": "The line reports the wing is closed for the evening because of a leak, so the reply moves the meeting elsewhere and tells the others. The reply about going around to another door assumes some entrance still works. The reply handing over a card answers a request that was not made, and the reply thanking the guard accepts an escort into a wing nobody may enter.",
+  "explanation": "The line reports the wing is closed for the evening because of a leak, so the reply moves the meeting elsewhere and tells the others. The reply about going around to another door assumes some entrance still works. The reply about returning once the mopping is done plans to enter during the very night the guard has closed off, and the reply thanking the guard accepts an escort into a wing nobody may enter.",
   "distractor_rationales": {
    "I'll go around the building and use that one, thanks.": "The line says \"Nobody gets into that wing tonight\", so the reply that walks around to a different door is looking for an entrance that will not work either.",
-   "Here you go, it's the one with the old photo.": "The line explains the closure by saying \"there's a water leak\" and asks the student for nothing, so the reply handing over a card answers a request never made.",
-   "That would save me a lot of trouble, thank you.": "The line says \"Nobody gets into that wing\", so the reply thanking the guard for saving trouble accepts an escort the guard could not give."
+   "That would save me a lot of trouble, thank you.": "The line says \"Nobody gets into that wing\", so the reply thanking the guard for saving trouble accepts an escort the guard could not give.",
+   "I'll come back once it's mopped up later tonight.": "The line says \"Nobody gets into that wing tonight\", so the closure runs to the end of the night and coming back after the mopping still lands inside it."
   },
   "_crv7": {
    "localId": "crv7-b2-09",
@@ -1330,7 +1340,8 @@
    "kind": "bad news",
    "keyAct": "relocates the group to somewhere still open",
    "setting": "building security desk, guard to student",
-   "batch": "b2"
+   "batch": "b2",
+   "cohesionEdited": true
   }
  },
  {
@@ -1368,19 +1379,19 @@
   "passageGroupId": null,
   "prompt": "[Choose a Response] Which is the most natural reply?",
   "choices": [
-   "Good to know, I'll treat it as a conversation about fit.",
-   "I'll move my shift then, I had the wrong day saved.",
+   "I'll bring it back filled in at my next appointment.",
+   "I'll pick one up from the front office on my way out.",
    "Of course, I'll do it at the table by the window.",
    "I'd take that, my afternoon's clear after the lab."
   ],
   "correct_answer": "Of course, I'll do it at the table by the window.",
   "difficulty": "hard",
   "listeningTask": "choose_response",
-  "explanation": "The line asks the student to complete a form before waiting, so the reply agrees and names where it will be done. The reply about a conversation about fit responds to a description of the session that was not given. The reply taking an afternoon slot accepts an opening that was not offered, and the reply moving a shift corrects a day the line never mentions.",
+  "explanation": "The line asks the student to complete a form before waiting, so the reply agrees and names where it will be done. The reply about bringing it back at the next appointment treats an intake sheet wanted on the spot as take-home paperwork. The reply taking an afternoon slot accepts an opening that was not offered, and the reply about fetching a form from another office walks past the copy already being handed over.",
   "distractor_rationales": {
-   "Good to know, I'll treat it as a conversation about fit.": "The line asks \"Could you fill out this form\" and says nothing about who the session is with, so the reply about treating it as a conversation about fit answers a description never given.",
    "I'd take that, my afternoon's clear after the lab.": "The line says \"before you sit down\", which places the student in the waiting room now, so the reply accepting a newly free afternoon slot takes an opening that was never mentioned.",
-   "I'll move my shift then, I had the wrong day saved.": "The line asks \"Could you fill out this form\" and names no day, so the reply moving a shift corrects a scheduling error that was never raised."
+   "I'll bring it back filled in at my next appointment.": "The line asks for the form \"before you sit down\", so it is wanted on the spot, and bringing it back at the next appointment treats an intake sheet as take-home paperwork.",
+   "I'll pick one up from the front office on my way out.": "The line asks \"Could you fill out this form\" while handing it over, so going to fetch one from another office walks away from the copy already in hand."
   },
   "_crv7": {
    "localId": "crv7-b2-12",
@@ -1388,7 +1399,8 @@
    "kind": "request",
    "keyAct": "agrees to complete the paperwork and says where",
    "setting": "counseling center reception, receptionist to student",
-   "batch": "b2"
+   "batch": "b2",
+   "cohesionEdited": true
   }
  },
  {
@@ -1544,17 +1556,17 @@
   "choices": [
    "I'll get a cash float from the safe, then.",
    "I'll work down the list before the doors open.",
-   "I'd much rather stay behind the glass.",
+   "I'll run each card through twice, just in case.",
    "I'll get the pickup list out on the counter."
   ],
   "correct_answer": "I'll get a cash float from the safe, then.",
   "difficulty": "hard",
   "listeningTask": "choose_response",
-  "explanation": "The line reports that card payments are unavailable for the whole evening. Drawing cash so that money can still be taken and change given is the workaround. The reply about putting a pickup list on the counter assumes the house is sold out; the reply about working down a list accepts a calling task that was not assigned; and the reply preferring to stay behind glass accepts a division of duties that was not proposed.",
+  "explanation": "The line reports that card payments are unavailable for the whole evening. Drawing cash so that money can still be taken and change given is the workaround. The reply about putting a pickup list on the counter assumes the house is sold out; the reply about working down a list accepts a calling task that was not assigned; and the reply about running each card through twice treats a dead machine as a merely unreliable one.",
   "distractor_rationales": {
    "I'll get the pickup list out on the counter.": "\"The card reader's down\" is a payments fault, so laying out a pickup list assumes a sold-out house the line never mentions.",
    "I'll work down the list before the doors open.": "The line reports a fault lasting \"till morning\" and sets no calling task, so working down a list before doors open takes on an errand nobody gave.",
-   "I'd much rather stay behind the glass.": "\"The card reader's down\" describes equipment, not a share-out of duties, so choosing to stay behind glass accepts a split never proposed."
+   "I'll run each card through twice, just in case.": "\"The card reader's down\" means nothing goes through even once, so running each card twice treats a dead machine as a flaky one."
   },
   "_crv7": {
    "localId": "crv7-b3-19",
@@ -1562,7 +1574,8 @@
    "kind": "bad news",
    "keyAct": "arranges a workaround",
    "setting": "theatre box office booth",
-   "batch": "b3"
+   "batch": "b3",
+   "cohesionEdited": true
   }
  },
  {
@@ -1659,18 +1672,18 @@
   "prompt": "[Choose a Response] Which is the most natural reply?",
   "choices": [
    "I'll be there before the ovens go on.",
-   "I'll pick up hours somewhere else this week.",
+   "I'll start carrying the plates out to the marquee.",
    "I'll set the trolleys up indoors.",
-   "I'd rather be pouring than scrubbing."
+   "I'll have my meal in the hall with the guests."
   ],
   "correct_answer": "I'll set the trolleys up indoors.",
   "difficulty": "hard",
   "listeningTask": "choose_response",
-  "explanation": "The line reports that the meal has been relocated from the outdoor structure to the building. Staging the service equipment inside follows from the new venue. The reply about picking up hours elsewhere assumes the shift has been cancelled; the reply about arriving before the ovens go on accepts an earlier start that was not requested; and the reply preferring pouring drinks to scrubbing accepts a role swap that was not offered.",
+  "explanation": "The line reports that the meal has been relocated from the outdoor structure to the building. Staging the service equipment inside follows from the new venue. The reply about carrying plates out to the marquee sends the food to the venue just ruled out; the reply about arriving before the ovens go on accepts an earlier start that was not requested; and the reply about eating with the guests turns a service assignment into an invitation to the meal.",
   "distractor_rationales": {
-   "I'll pick up hours somewhere else this week.": "\"The guests are eating in the hall\" means service is going ahead, so looking for hours elsewhere responds to a cancellation that has not happened.",
    "I'll be there before the ovens go on.": "The line changes the venue — \"not the marquee\" — not the start time, so promising to arrive before the ovens go on accepts an earlier call never made.",
-   "I'd rather be pouring than scrubbing.": "\"eating in the hall, not the marquee\" says where service happens, not what job you do, so preferring to pour drinks rather than scrub accepts a swap never offered."
+   "I'll start carrying the plates out to the marquee.": "\"eating in the hall, not the marquee\" moves the meal indoors, so carrying plates out to the tent delivers food to the venue just ruled out.",
+   "I'll have my meal in the hall with the guests.": "\"The guests are eating in the hall\" says where the diners sit, not where the staff eat, so sitting down for your own meal among them turns a service assignment into an invitation."
   },
   "_crv7": {
    "localId": "crv7-b3-18",
@@ -1678,7 +1691,8 @@
    "kind": "neutral info",
    "keyAct": "adapts the setup",
    "setting": "event catering kitchen staging area",
-   "batch": "b3"
+   "batch": "b3",
+   "cohesionEdited": true
   }
  },
  {
@@ -1717,18 +1731,18 @@
   "prompt": "[Choose a Response] Which is the most natural reply?",
   "choices": [
    "Only in training — never with a real casualty.",
-   "I'll get on the rota — I've waited long enough.",
+   "The board's in the store room — I'll bring it out.",
    "I'll book another go — more lengths for me, then.",
    "There's a course next week — I'll sign up for it."
   ],
   "correct_answer": "Only in training — never with a real casualty.",
   "difficulty": "hard",
   "listeningTask": "choose_response",
-  "explanation": "The line asks about practical experience with a specific rescue technique. Distinguishing practice from live incidents answers honestly and precisely. The reply about getting on the rota assumes clearance that the question is still probing; the reply about booking another attempt assumes a failed assessment; and the reply about signing up for a course responds to a missing prerequisite that was not named.",
+  "explanation": "The line asks about practical experience with a specific rescue technique. Distinguishing practice from live incidents answers honestly and precisely. The reply about fetching the board treats a question about history as a request for equipment; the reply about booking another attempt assumes a failed assessment; and the reply about signing up for a course responds to a missing prerequisite that was not named.",
   "distractor_rationales": {
-   "I'll get on the rota — I've waited long enough.": "\"Have you done a pool rescue\" is a question about your background, so announcing you will get on the rota assumes an outcome nobody has given.",
    "I'll book another go — more lengths for me, then.": "The line asks about experience \"with a spinal board\" rather than reporting a result, so booking another go responds to a failure that was not announced.",
-   "There's a course next week — I'll sign up for it.": "\"Have you done a pool rescue with a spinal board?\" asks for information, so promising to enrol on a course answers a requirement the line does not state."
+   "There's a course next week — I'll sign up for it.": "\"Have you done a pool rescue with a spinal board?\" asks for information, so promising to enrol on a course answers a requirement the line does not state.",
+   "The board's in the store room — I'll bring it out.": "\"Have you done a pool rescue\" asks about the candidate's history, so fetching the board from the store room answers a request for equipment that was never made."
   },
   "_crv7": {
    "localId": "crv7-b3-20",
@@ -1736,7 +1750,8 @@
    "kind": "question",
    "keyAct": "qualifies their experience",
    "setting": "pool office, lifeguard certification desk",
-   "batch": "b3"
+   "batch": "b3",
+   "cohesionEdited": true
   }
  },
  {
@@ -1745,19 +1760,19 @@
   "passageGroupId": null,
   "prompt": "[Choose a Response] Which is the most natural reply?",
   "choices": [
-   "I'll dig them out of the office cupboard.",
+   "Half is better than nothing, I suppose.",
    "We'll try again in the spring.",
    "I'll tell the committee tonight.",
-   "Our secretary holds that role."
+   "I'll send the balance back today."
   ],
   "correct_answer": "We'll try again in the spring.",
   "difficulty": "hard",
   "listeningTask": "choose_response",
-  "explanation": "The line reports that the funding bid was refused on this occasion. Planning to submit again at the next opportunity is what a society does after an unsuccessful round. The reply about telling the committee that night assumes a success worth reporting; the reply naming a secretary answers a question about signatories that was not asked; and the reply about digging out receipts responds to a documents request that was not made.",
+  "explanation": "The line reports that the funding bid was refused on this occasion. Planning to submit again at the next opportunity is what a society does after an unsuccessful round. The reply about telling the committee that night assumes a success worth reporting; the reply about sending a balance back answers a repayment demand that was never made; and the reply settling for half treats a flat refusal as a reduced award.",
   "distractor_rationales": {
    "I'll tell the committee tonight.": "\"turned the film society down\" is a refusal, so promising to bring the committee the news treats a rejection as an award.",
-   "Our secretary holds that role.": "The line reports a decision — \"down this round\" — rather than asking about authority, so naming a secretary answers a question that was not asked.",
-   "I'll dig them out of the office cupboard.": "\"Finance turned the film society down\" means no money is being released, so promising to dig out receipts meets a condition attached to nothing."
+   "Half is better than nothing, I suppose.": "\"turned the film society down\" is a refusal, not a reduction, so settling for half counts money that was never awarded.",
+   "I'll send the balance back today.": "The line reports a refusal — \"down this round\" — and recalls nothing, so promising to send a balance back repays money the society was never holding."
   },
   "_crv7": {
    "localId": "crv7-b3-14",
@@ -1765,7 +1780,8 @@
    "kind": "bad news",
    "keyAct": "plans a fresh attempt",
    "setting": "student union treasurer's office",
-   "batch": "b3"
+   "batch": "b3",
+   "cohesionEdited": true
   }
  },
  {
@@ -1861,19 +1877,19 @@
   "passageGroupId": null,
   "prompt": "[Choose a Response] Which is the most natural reply?",
   "choices": [
-   "The credit union one — I'll write the number down for you.",
-   "I'll stop checking the balance now — that's been weeks.",
-   "Okay — I'll get my supervisor to authorize them and resubmit.",
+   "Oh good, I've been looking for that since Friday.",
+   "It's definitely me in the photo — you can look again.",
+   "I'd rather not leave it here overnight — I need it tomorrow.",
    "It's in my bag downstairs — give me a moment."
   ],
   "correct_answer": "It's in my bag downstairs — give me a moment.",
   "difficulty": "hard",
   "listeningTask": "choose_response",
-  "explanation": "The line makes an identity check a precondition before anything else happens. Saying the card is close by and asking for a moment is straightforward compliance. The reply that stops the daily balance-checking treats the matter as finished when a step is still outstanding; the reply about authorizing hours and resubmitting responds to a rejection that was not announced; and the reply naming a credit union account volunteers banking details when what was asked for was proof of identity.",
+  "explanation": "The line makes an identity check a precondition before anything else happens. Saying the card is close by and asking for a moment is straightforward compliance. The reply relieved that the card has turned up mishears an instruction to fetch it as news that it was found; the reply inviting a second look at the photo disputes an inspection that has not yet taken place; and the reply refusing to leave the card overnight declines a deposit that was never requested.",
   "distractor_rationales": {
-   "I'll stop checking the balance now — that's been weeks.": "The line makes verification a precondition — \"so I can verify you\" — so treating the matter as settled and dropping the balance checks skips the step being asked for.",
-   "Okay — I'll get my supervisor to authorize them and resubmit.": "\"Come back with your ID card\" is a request for a document, not news of a refusal, so promising a resubmission answers something the line never said.",
-   "The credit union one — I'll write the number down for you.": "\"so I can verify you\" is about proving who you are, so volunteering a bank account does not satisfy what the line asks for."
+   "Oh good, I've been looking for that since Friday.": "\"Come back with your ID card\" is an instruction to fetch the card, not news that it has been found, so relief at its turning up mishears the errand.",
+   "It's definitely me in the photo — you can look again.": "\"so I can verify you\" means the card has yet to be shown even once, so inviting a second look at the photo disputes an inspection that never happened.",
+   "I'd rather not leave it here overnight — I need it tomorrow.": "\"Come back with your ID card\" asks for the card to be shown, not surrendered, so refusing to leave it overnight declines a deposit nobody requested."
   },
   "_crv7": {
    "localId": "crv7-b3-01",
@@ -1881,7 +1897,8 @@
    "kind": "request",
    "keyAct": "explains a short delay in complying",
    "setting": "payroll office window",
-   "batch": "b3"
+   "batch": "b3",
+   "cohesionEdited": true
   }
  },
  {
@@ -2094,18 +2111,18 @@
   "prompt": "[Choose a Response] Which is the most natural reply?",
   "choices": [
    "I'll clear that corner out this evening.",
-   "Nobody I know of, going by last Thursday.",
+   "That's handy, my closet's been full for weeks.",
    "I'll take my reading down there tonight.",
    "We'll have to meet in someone's room instead."
   ],
   "correct_answer": "I'll clear that corner out this evening.",
   "difficulty": "hard",
   "listeningTask": "choose_response",
-  "explanation": "The line asks the student to remove his things from the shared space. The reply undertaking to clear that corner out this evening complies and puts a time on it. The reply about meeting in someone's room assumes a closure; the reply about taking reading down there ignores the request entirely; the reply about last Thursday answers a question about availability that was not asked.",
+  "explanation": "The line asks the student to remove his things from the shared space. The reply undertaking to clear that corner out this evening complies and puts a time on it. The reply about meeting in someone's room assumes a closure; the reply about taking reading down there ignores the request entirely; the reply welcoming the room as storage takes the request for the opposite offer.",
   "distractor_rationales": {
    "We'll have to meet in someone's room instead.": "'Could you take your gear out' presupposes an open room, so proposing to meet in someone's bedroom answers a closure that was not reported.",
    "I'll take my reading down there tonight.": "Being asked to 'take your gear out of the common room' is not news of new furniture, so settling in there tonight ignores what was asked.",
-   "Nobody I know of, going by last Thursday.": "'Could you take your gear out' asks for an action, not for Thursday's bookings, so an answer about last Thursday leaves the request unanswered."
+   "That's handy, my closet's been full for weeks.": "\"take your gear out\" asks for the room to be emptied of it, so welcoming the space as storage for a full closet takes the request for the opposite offer."
   },
   "_crv7": {
    "localId": "crv7-b4-08",
@@ -2113,7 +2130,8 @@
    "kind": "request",
    "keyAct": "agrees to clear his belongings out",
    "setting": "suite common room",
-   "batch": "b4"
+   "batch": "b4",
+   "cohesionEdited": true
   }
  },
  {
@@ -2325,19 +2343,19 @@
   "passageGroupId": null,
   "prompt": "[Choose a Response] Which is the most natural reply?",
   "choices": [
-   "I'll go back to the microwave for a while.",
+   "Fair enough — I didn't know we couldn't keep food in there.",
    "Will do — there's tape on the shelf, isn't there?",
    "I'll do my cooking in the evenings instead.",
-   "That's good news — I might do a roast Sunday."
+   "I haven't touched anyone else's food, I promise."
   ],
   "correct_answer": "Will do — there's tape on the shelf, isn't there?",
   "difficulty": "hard",
   "listeningTask": "choose_response",
-  "explanation": "The line asks the student to mark anything he leaves in the shared fridge. The reply agreeing and checking that the tape is on the shelf accepts the task and confirms the means of doing it. The reply about the microwave assumes the oven has gone; the reply about a roast assumes a new one has arrived; the reply about evening cooking responds to a cleaning schedule that was not mentioned.",
+  "explanation": "The line asks the student to mark anything he leaves in the shared fridge. The reply agreeing and checking that the tape is on the shelf accepts the task and confirms the means of doing it. The reply treating the request as a ban on keeping food misreads a labelling rule as a prohibition; the reply denying he has touched anyone's food answers an accusation that was not made; the reply about evening cooking responds to a cleaning schedule that was not mentioned.",
   "distractor_rationales": {
-   "I'll go back to the microwave for a while.": "'Could you label whatever you leave' is a request about the fridge and reports nothing about the oven, so retreating to the microwave answers a breakdown that was not mentioned.",
-   "That's good news — I might do a roast Sunday.": "Being asked to 'label whatever you leave in the fridge' is not news of a new appliance, so planning a roast responds to something that was not said.",
-   "I'll do my cooking in the evenings instead.": "'Could you label whatever you leave in the fridge' names no cleaning morning, so moving cooking to the evenings answers a schedule that was not given."
+   "I'll do my cooking in the evenings instead.": "'Could you label whatever you leave in the fridge' names no cleaning morning, so moving cooking to the evenings answers a schedule that was not given.",
+   "I haven't touched anyone else's food, I promise.": "\"Could you label whatever you leave\" is a request to mark your own food, not a complaint that food has gone missing, so denying any taking answers an accusation never made.",
+   "Fair enough — I didn't know we couldn't keep food in there.": "\"label whatever you leave in the fridge\" expects food to stay there so long as it carries a name, so hearing the request as a ban on keeping food misreads what was asked."
   },
   "_crv7": {
    "localId": "crv7-b4-12",
@@ -2345,7 +2363,8 @@
    "kind": "request",
    "keyAct": "agrees and checks that the labelling materials are where he thinks",
    "setting": "hall kitchen",
-   "batch": "b4"
+   "batch": "b4",
+   "cohesionEdited": true
   }
  },
  {
@@ -2386,16 +2405,16 @@
    "That'd save me a trip; I'll bring them down.",
    "Of course — I'll set an alarm for it.",
    "I'll start hanging things on my rack, then.",
-   "Is it back on the same card system?"
+   "Great, I'll run a full load of mine, then."
   ],
   "correct_answer": "That'd save me a trip; I'll bring them down.",
   "difficulty": "hard",
   "listeningTask": "choose_response",
-  "explanation": "The line offers the student space in a load that is already going in. The reply saying it saves a trip and undertaking to bring the towels down accepts the offer and does the one thing acceptance requires. The reply about a drying rack assumes the dryer is out; the reply asking about the card system responds to a repair report; the reply promising an alarm answers a request to clear a machine that was not made.",
+  "explanation": "The line offers the student space in a load that is already going in. The reply saying it saves a trip and undertaking to bring the towels down accepts the offer and does the one thing acceptance requires. The reply about a drying rack assumes the dryer is out; the reply planning a full load of his own turns space in a shared cycle into a free machine; the reply promising an alarm answers a request to clear a machine that was not made.",
   "distractor_rationales": {
    "I'll start hanging things on my rack, then.": "'You can put your towels in' presupposes a working machine, so falling back on a drying rack answers a breakdown that has not happened.",
-   "Is it back on the same card system?": "'in with my load' is an offer of space, not a report that the dryer was fixed, so asking about the card system responds to news nobody gave.",
-   "Of course — I'll set an alarm for it.": "Being told 'You can put your towels in with my load' is an offer, not a request to clear the machine, so promising an alarm answers the wrong thing."
+   "Of course — I'll set an alarm for it.": "Being told 'You can put your towels in with my load' is an offer, not a request to clear the machine, so promising an alarm answers the wrong thing.",
+   "Great, I'll run a full load of mine, then.": "\"in with my load\" offers space inside a wash the speaker is already running, so planning a full load of your own turns a shared cycle into a free machine."
   },
   "_crv7": {
    "localId": "crv7-b4-03",
@@ -2403,7 +2422,8 @@
    "kind": "offer",
    "keyAct": "accepts the offer of space in another load",
    "setting": "laundry room",
-   "batch": "b4"
+   "batch": "b4",
+   "cohesionEdited": true
   }
  },
  {
@@ -2415,16 +2435,16 @@
    "Then I'd better put my side of it in writing.",
    "I'd take you up on that; evenings suit us.",
    "Understood. I'll let my roommates know where we stand.",
-   "No, I got back late and it had already stopped."
+   "That talk you had with both rooms really helped."
   ],
   "correct_answer": "I'd take you up on that; evenings suit us.",
   "difficulty": "hard",
   "listeningTask": "choose_response",
-  "explanation": "The line offers to bring the two rooms together with the RA present. The reply accepting and saying evenings suit takes the offer and moves it towards a time, which is what an offer of a meeting needs. The reply undertaking to brief the roommates treats an offer as a verdict; the reply about putting a side of it in writing assumes a formal complaint exists; the reply about getting back late answers a question about presence that was not asked.",
+  "explanation": "The line offers to bring the two rooms together with the RA present. The reply accepting and saying evenings suit takes the offer and moves it towards a time, which is what an offer of a meeting needs. The reply undertaking to brief the roommates treats an offer as a verdict; the reply about putting a side of it in writing assumes a formal complaint exists; the reply praising a talk already held treats the offered meeting as one that has already happened.",
   "distractor_rationales": {
    "Understood. I'll let my roommates know where we stand.": "'I can sit down' offers something ahead, not a decision already recorded, so telling the roommates where things stand skips over the offer without answering it.",
    "Then I'd better put my side of it in writing.": "An offer to 'sit down with both rooms' is not a formal proceeding, so writing up one side of it responds to a process that does not exist here.",
-   "No, I got back late and it had already stopped.": "Offering to 'sit down with both rooms and mediate' asks nothing about who was in the room, so describing a late return leaves the offer hanging."
+   "That talk you had with both rooms really helped.": "The RA says \"I can sit down\" with both rooms, an offer of a meeting still to be arranged, so praising a talk the RA already had refers to a session that has not taken place."
   },
   "_crv7": {
    "localId": "crv7-b4-02",
@@ -2432,7 +2452,8 @@
    "kind": "offer",
    "keyAct": "accepts the offer of mediation and supplies availability",
    "setting": "RA corridor conversation",
-   "batch": "b4"
+   "batch": "b4",
+   "cohesionEdited": true
   }
  },
  {
@@ -2732,18 +2753,18 @@
   "prompt": "[Choose a Response] Which is the most natural reply?",
   "choices": [
    "We'll need to split them into groups.",
-   "I'll borrow one from the drama store.",
+   "We may have to cancel if nobody else joins.",
    "I'll head straight up there instead.",
    "That would free me up nicely."
   ],
   "correct_answer": "We'll need to split them into groups.",
   "difficulty": "hard",
   "listeningTask": "choose_response",
-  "explanation": "The line reports a strong turnout for the class. Splitting into groups is the teaching adjustment a large sign-up forces. The other replies do not fit: the one that accepts the offer of the warm-up accepts an offer to take the warm-up that was not made; the one that agrees to borrow a speaker supplies equipment that nobody has asked for; the one that goes to the corrected room relocates although the room has not changed.",
+  "explanation": "The line reports a strong turnout for the class. Splitting into groups is the teaching adjustment a large sign-up forces. The other replies do not fit: the one that accepts the offer of the warm-up accepts an offer to take the warm-up that was not made; the one that considers cancelling treats a packed session as one struggling to fill; the one that goes to the corrected room relocates although the room has not changed.",
   "distractor_rationales": {
    "That would free me up nicely.": "This line says \"signed up\", so the reply that accepts the offer of the warm-up is wrong here: it accepts an offer to take the warm-up that was not made.",
-   "I'll borrow one from the drama store.": "This line says \"Loads of people\", so the reply that agrees to borrow a speaker is wrong here: it supplies equipment that nobody has asked for.",
-   "I'll head straight up there instead.": "This line says \"the beginners' session\", so the reply that goes to the corrected room is wrong here: it relocates although the room has not changed."
+   "I'll head straight up there instead.": "This line says \"the beginners' session\", so the reply that goes to the corrected room is wrong here: it relocates although the room has not changed.",
+   "We may have to cancel if nobody else joins.": "This line says \"Loads of people\", so the reply that considers cancelling for lack of numbers is wrong here: it treats a packed session as one struggling to fill."
   },
   "_crv7": {
    "localId": "crv7-b5-11",
@@ -2751,7 +2772,8 @@
    "kind": "good news",
    "keyAct": "adapt the teaching plan",
    "setting": "dance workshop",
-   "batch": "b5"
+   "batch": "b5",
+   "cohesionEdited": true
   }
  },
  {
@@ -2850,16 +2872,16 @@
    "Thanks, that would really help me.",
    "Sure, I'll grab it before the warm-up.",
    "Right, I'll start on the balcony blocking then.",
-   "Well, I'll read her lines so we can block it."
+   "Fine, I'll put it back in the scene dock now."
   ],
   "correct_answer": "Sure, I'll grab it before the warm-up.",
   "difficulty": "hard",
   "listeningTask": "choose_response",
-  "explanation": "The line is a direct request for help moving a piece of kit. Agreeing and naming when it will happen is the cooperative answer to a request like this. The other replies do not fit: the one that says they will start on the balcony blocking announces a change of scene order in reply to a request; the one that offers to read the absent singer's lines covers for a singer nobody has said is unwell; the one that accepts the offer of extra rehearsal time accepts help when it is help that is being asked for.",
+  "explanation": "The line is a direct request for help moving a piece of kit. Agreeing and naming when it will happen is the cooperative answer to a request like this. The other replies do not fit: the one that says they will start on the balcony blocking announces a change of scene order in reply to a request; the one that puts the ladder back in the dock returns a ladder that has not yet been fetched; the one that accepts the offer of extra rehearsal time accepts help when it is help that is being asked for.",
   "distractor_rationales": {
    "Right, I'll start on the balcony blocking then.": "This line says \"bring the ladder\", so the reply that says they will start on the balcony blocking is wrong here: it announces a change of scene order in reply to a request.",
-   "Well, I'll read her lines so we can block it.": "This line says \"from the scene dock\", so the reply that offers to read the absent singer's lines is wrong here: it covers for a singer nobody has said is unwell.",
-   "Thanks, that would really help me.": "This line says \"Can you bring\", so the reply that accepts the offer of extra rehearsal time is wrong here: it accepts help when it is help that is being asked for."
+   "Thanks, that would really help me.": "This line says \"Can you bring\", so the reply that accepts the offer of extra rehearsal time is wrong here: it accepts help when it is help that is being asked for.",
+   "Fine, I'll put it back in the scene dock now.": "This line says \"from the scene dock\", so the reply that puts the ladder back in the dock is wrong here: it returns a ladder that is still down there waiting to be fetched."
   },
   "_crv7": {
    "localId": "crv7-b5-02",
@@ -2867,7 +2889,8 @@
    "kind": "request",
    "keyAct": "agree and give a time",
    "setting": "theater rehearsal",
-   "batch": "b5"
+   "batch": "b5",
+   "cohesionEdited": true
   }
  },
  {
@@ -2876,7 +2899,7 @@
   "passageGroupId": null,
   "prompt": "[Choose a Response] Which is the most natural reply?",
   "choices": [
-   "Right, I'll put a note on the door.",
+   "Good, so the print was in the right tray.",
    "Sure, I'll mix some after this print.",
    "Thanks — I'll start the sheet again.",
    "Great, they take ages on my own."
@@ -2884,11 +2907,11 @@
   "correct_answer": "Thanks — I'll start the sheet again.",
   "difficulty": "hard",
   "listeningTask": "choose_response",
-  "explanation": "The line points out that the wrong tray is being used. Starting the sheet again is what follows from a print that has gone through the wrong bath. The other replies do not fit: the one that agrees to mix developer after the print promises to mix chemistry that was not requested; the one that puts a warning note on the door warns people away when the equipment is working; the one that accepts help with hanging the prints accepts an offer to stay on that was not made.",
+  "explanation": "The line points out that the wrong tray is being used. Starting the sheet again is what follows from a print that has gone through the wrong bath. The other replies do not fit: the one that agrees to mix developer after the print promises to mix chemistry that was not requested; the one that concludes the print was in the right tray reverses the correction just given; the one that accepts help with hanging the prints accepts an offer to stay on that was not made.",
   "distractor_rationales": {
    "Sure, I'll mix some after this print.": "This line says \"the fixer tray\", so the reply that agrees to mix developer after the print is wrong here: it promises to mix chemistry that was not requested.",
-   "Right, I'll put a note on the door.": "This line says \"not the stop bath\", so the reply that puts a warning note on the door is wrong here: it warns people away when the equipment is working.",
-   "Great, they take ages on my own.": "This line says \"That's the fixer tray\", so the reply that accepts help with hanging the prints is wrong here: it accepts an offer to stay on that was not made."
+   "Great, they take ages on my own.": "This line says \"That's the fixer tray\", so the reply that accepts help with hanging the prints is wrong here: it accepts an offer to stay on that was not made.",
+   "Good, so the print was in the right tray.": "This line says \"not the stop bath\", so the reply that decides the print was in the right tray is wrong here: it turns a correction about a mixed-up tray into a confirmation."
   },
   "_crv7": {
    "localId": "crv7-b5-09",
@@ -2896,7 +2919,8 @@
    "kind": "correction",
    "keyAct": "take the correction and redo",
    "setting": "photography club darkroom",
-   "batch": "b5"
+   "batch": "b5",
+   "cohesionEdited": true
   }
  },
  {
@@ -2937,16 +2961,16 @@
    "We should practise on the test build.",
    "I'll set the capture up before we start.",
    "I'll book the practice room for the week.",
-   "I'll ask around the server for someone."
+   "At least it won't land until after our match."
   ],
   "correct_answer": "We should practise on the test build.",
   "difficulty": "hard",
   "listeningTask": "choose_response",
-  "explanation": "The line points out that the game updates just before the match. Practising on the test build is the sensible way to meet a last-minute patch. The other replies do not fit: the one that looks for a replacement player replaces a player although nobody has withdrawn; the one that books the practice room ahead treats the news as a result to prepare for; the one that sets up the capture before play arranges recording that nobody requested.",
+  "explanation": "The line points out that the game updates just before the match. Practising on the test build is the sensible way to meet a last-minute patch. The other replies do not fit: the one that expects the patch after the match puts the update on the wrong side of the game; the one that books the practice room ahead treats the news as a result to prepare for; the one that sets up the capture before play arranges recording that nobody requested.",
   "distractor_rationales": {
-   "I'll ask around the server for someone.": "This line says \"The patch drops\", so the reply that looks for a replacement player is wrong here: it replaces a player although nobody has withdrawn.",
    "I'll book the practice room for the week.": "This line says \"the night before we play\", so the reply that books the practice room ahead is wrong here: it treats the news as a result to prepare for.",
-   "I'll set the capture up before we start.": "This line says \"The patch drops the night before\", so the reply that sets up the capture before play is wrong here: it arranges recording that nobody requested."
+   "I'll set the capture up before we start.": "This line says \"The patch drops the night before\", so the reply that sets up the capture before play is wrong here: it arranges recording that nobody requested.",
+   "At least it won't land until after our match.": "This line says \"drops the night before\", so the reply that relaxes because the patch lands after the match is wrong here: it puts the update on the wrong side of the game."
   },
   "_crv7": {
    "localId": "crv7-b5-15",
@@ -2954,7 +2978,8 @@
    "kind": "neutral info",
    "keyAct": "adapt the practice plan",
    "setting": "e-sports team",
-   "batch": "b5"
+   "batch": "b5",
+   "cohesionEdited": true
   }
  },
  {
@@ -2993,18 +3018,18 @@
   "prompt": "[Choose a Response] Which is the most natural reply?",
   "choices": [
    "Then I'd better dust off my openings.",
-   "The wooden one still works fine.",
-   "I'll change the sign on our old door.",
+   "So we're hosting them here instead.",
+   "Well, the new date suits me better anyway.",
    "I'll tell the others not to travel."
   ],
   "correct_answer": "I'll tell the others not to travel.",
   "difficulty": "hard",
   "listeningTask": "choose_response",
-  "explanation": "The line reports that the fixture has been cancelled. Stopping the others travelling is the urgent consequence of a cancelled match. The other replies do not fit: the one that goes back to work on their openings prepares openings for a match that is not happening; the one that updates the sign on the old door changes a sign when the club room is not at issue; the one that identifies the clock that still works recommends a clock although nothing was asked about equipment.",
+  "explanation": "The line reports that the fixture has been cancelled. Stopping the others travelling is the urgent consequence of a cancelled match. The other replies do not fit: the one that goes back to work on their openings prepares openings for a match that is not happening; the one that welcomes a new date accepts a rearrangement nobody has announced; the one that expects to host the college instead turns a cancellation into a change of venue.",
   "distractor_rationales": {
    "Then I'd better dust off my openings.": "This line says \"is called off\", so the reply that goes back to work on their openings is wrong here: it prepares openings for a match that is not happening.",
-   "I'll change the sign on our old door.": "This line says \"Our match against the college\", so the reply that updates the sign on the old door is wrong here: it changes a sign when the club room is not at issue.",
-   "The wooden one still works fine.": "This line says \"against the college\", so the reply that identifies the clock that still works is wrong here: it recommends a clock although nothing was asked about equipment."
+   "So we're hosting them here instead.": "This line says \"is called off\", so the reply that expects to host the college instead is wrong here: it turns a cancellation into a change of venue.",
+   "Well, the new date suits me better anyway.": "This line says \"is called off\", with no new date given, so the reply that welcomes a new date is wrong here: it accepts a rearrangement nobody has announced."
   },
   "_crv7": {
    "localId": "crv7-b5-12",
@@ -3012,7 +3037,8 @@
    "kind": "bad news",
    "keyAct": "stop the others",
    "setting": "chess club",
-   "batch": "b5"
+   "batch": "b5",
+   "cohesionEdited": true
   }
  },
  {
@@ -3024,16 +3050,16 @@
    "Pushing it up now, give me a moment.",
    "I'll cue up the recording, we made one.",
    "Nice, that frees us up for the slides.",
-   "Sam's the calmest, so probably him."
+   "Happy to help chase down that login bug."
   ],
   "correct_answer": "Nice, that frees us up for the slides.",
   "difficulty": "hard",
   "listeningTask": "choose_response",
-  "explanation": "The line reports that a key feature is finished. Moving to the slides is what a team does once the build stops needing attention. The other replies do not fit: the one that switches to the recording the team made falls back on a recording although the demo works; the one that puts Sam forward to present picks a presenter when the question was not asked; the one that pushes the branch straight away pushes code in answer to a progress report.",
+  "explanation": "The line reports that a key feature is finished. Moving to the slides is what a team does once the build stops needing attention. The other replies do not fit: the one that switches to the recording the team made falls back on a recording although the demo works; the one that offers to chase a login bug hunts a fault in a flow just declared sound; the one that pushes the branch straight away pushes code in answer to a progress report.",
   "distractor_rationales": {
    "I'll cue up the recording, we made one.": "This line says \"working end to end\", so the reply that switches to the recording the team made is wrong here: it falls back on a recording although the demo works.",
-   "Sam's the calmest, so probably him.": "This line says \"The login flow's working\", so the reply that puts Sam forward to present is wrong here: it picks a presenter when the question was not asked.",
-   "Pushing it up now, give me a moment.": "This line says \"end to end now\", so the reply that pushes the branch straight away is wrong here: it pushes code in answer to a progress report."
+   "Pushing it up now, give me a moment.": "This line says \"end to end now\", so the reply that pushes the branch straight away is wrong here: it pushes code in answer to a progress report.",
+   "Happy to help chase down that login bug.": "This line says \"The login flow's working\", so the reply that offers to chase a login bug is wrong here: it hunts a fault in the very flow just declared sound."
   },
   "_crv7": {
    "localId": "crv7-b5-08",
@@ -3041,7 +3067,8 @@
    "kind": "good news",
    "keyAct": "move to the next task",
    "setting": "hackathon team",
-   "batch": "b5"
+   "batch": "b5",
+   "cohesionEdited": true
   }
  },
  {
@@ -3079,7 +3106,7 @@
   "passageGroupId": null,
   "prompt": "[Choose a Response] Which is the most natural reply?",
   "choices": [
-   "I can do that if you show me the faders.",
+   "So we'll have wrapped up before the news starts.",
    "I'll rewrite the intro to match.",
    "We can play the long session tracks then.",
    "I'll email them as soon as I can."
@@ -3087,11 +3114,11 @@
   "correct_answer": "I'll rewrite the intro to match.",
   "difficulty": "hard",
   "listeningTask": "choose_response",
-  "explanation": "The line corrects where the programme sits in the schedule. Rewriting the opening is what a presenter does when the slot moves. The other replies do not fit: the one that agrees to run the desk after a quick briefing asks for a desk briefing although nobody raised operating it; the one that proposes playing the long session tracks celebrates extra airtime when the slot has only moved; the one that undertakes to email the guest emails a guest who has not come up.",
+  "explanation": "The line corrects where the programme sits in the schedule. Rewriting the opening is what a presenter does when the slot moves. The other replies do not fit: the one that expects to wrap up before the news has the new running order backwards; the one that proposes playing the long session tracks celebrates extra airtime when the slot has only moved; the one that undertakes to email the guest emails a guest who has not come up.",
   "distractor_rationales": {
-   "I can do that if you show me the faders.": "This line says \"after the news now\", so the reply that agrees to run the desk after a quick briefing is wrong here: it asks for a desk briefing although nobody raised operating it.",
    "We can play the long session tracks then.": "This line says \"not before\", so the reply that proposes playing the long session tracks is wrong here: it celebrates extra airtime when the slot has only moved.",
-   "I'll email them as soon as I can.": "This line says \"The show's after the news\", so the reply that undertakes to email the guest is wrong here: it emails a guest who has not come up."
+   "I'll email them as soon as I can.": "This line says \"The show's after the news\", so the reply that undertakes to email the guest is wrong here: it emails a guest who has not come up.",
+   "So we'll have wrapped up before the news starts.": "This line says \"after the news now\", so the reply that expects the show to finish before the bulletin is wrong here: it has the new running order backwards."
   },
   "_crv7": {
    "localId": "crv7-b5-14",
@@ -3099,7 +3126,8 @@
    "kind": "correction",
    "keyAct": "rework the script",
    "setting": "radio station studio",
-   "batch": "b5"
+   "batch": "b5",
+   "cohesionEdited": true
   }
  },
  {
@@ -3138,18 +3166,18 @@
   "prompt": "[Choose a Response] Which is the most natural reply?",
   "choices": [
    "Ah, that's rough — is there a reserve list?",
-   "Great — I'll put the kit order through today.",
+   "Great — glad that's one position already sorted.",
    "Ravi has — he kept goal last season.",
-   "Good to know — I'll shift my work rota."
+   "Good to know — I'll pass that on to our keeper."
   ],
   "correct_answer": "Ravi has — he kept goal last season.",
   "difficulty": "hard",
   "listeningTask": "choose_response",
-  "explanation": "The line asks the group whether anyone can play in goal. Naming someone who has kept goal before answers the question with the evidence for it. The other replies do not fit: the one that commits to putting the kit order through orders kit in reply to a question about players; the one that asks whether there is a reserve list assumes the team has been excluded, which the question does not suggest; the one that says they will shift their work rota reacts to a change of day that has not been announced.",
+  "explanation": "The line asks the group whether anyone can play in goal. Naming someone who has kept goal before answers the question with the evidence for it. The other replies do not fit: the one that treats the position as already sorted hears a settled roster in an open question; the one that asks whether there is a reserve list assumes the team has been excluded, which the question does not suggest; the one that passes word to our keeper relies on the very player the captain is still trying to find.",
   "distractor_rationales": {
-   "Great — I'll put the kit order through today.": "This line says \"who can keep goal\", so the reply that commits to putting the kit order through is wrong here: it orders kit in reply to a question about players.",
    "Ah, that's rough — is there a reserve list?": "This line says \"Do we have anyone\", so the reply that asks whether there is a reserve list is wrong here: it assumes the team has been excluded, which the question does not suggest.",
-   "Good to know — I'll shift my work rota.": "This line says \"keep goal\", so the reply that says they will shift their work rota is wrong here: it reacts to a change of day that has not been announced."
+   "Great — glad that's one position already sorted.": "This line says \"Do we have anyone\", so the reply that treats the position as already sorted is wrong here: it hears a settled roster in what is an open question.",
+   "Good to know — I'll pass that on to our keeper.": "This line says \"who can keep goal\", so the reply that passes word to our keeper is wrong here: it relies on the very player the captain is still trying to find."
   },
   "_crv7": {
    "localId": "crv7-b5-01",
@@ -3157,7 +3185,8 @@
    "kind": "question",
    "keyAct": "name a candidate",
    "setting": "intramural team captain",
-   "batch": "b5"
+   "batch": "b5",
+   "cohesionEdited": true
   }
  },
  {
@@ -3225,18 +3254,18 @@
   "prompt": "[Choose a Response] Which is the most natural reply?",
   "choices": [
    "Good catch — I'll tell the rest of the section.",
-   "Sure — there's a spare one in my case.",
+   "Phew — I was dreading having to play it myself.",
    "Thanks — I'll start working on it tonight.",
    "That's a pity — it suited the strings well."
   ],
   "correct_answer": "Thanks — I'll start working on it tonight.",
   "difficulty": "hard",
   "listeningTask": "choose_response",
-  "explanation": "The line tells the player that a solo has been assigned to them. Turning to practice is what follows an assignment, and it takes the solo as settled. The other replies do not fit: the one that regrets losing a piece that suited the strings mourns a piece as lost when it is still being played; the one that undertakes to tell the rest of the section passes on a change of room that has not been announced; the one that lends the mute out of their case hands over a mute when nothing was asked for.",
+  "explanation": "The line tells the player that a solo has been assigned to them. Turning to practice is what follows an assignment, and it takes the solo as settled. The other replies do not fit: the one that regrets losing a piece that suited the strings mourns a piece as lost when it is still being played; the one that undertakes to tell the rest of the section passes on a change of room that has not been announced; the one that is relieved to escape the solo reads an assignment to the speaker as someone else's.",
   "distractor_rationales": {
    "That's a pity — it suited the strings well.": "This line says \"You've got the solo\", so the reply that regrets losing a piece that suited the strings is wrong here: it mourns a piece as lost when it is still being played.",
    "Good catch — I'll tell the rest of the section.": "This line says \"in the slow movement\", so the reply that undertakes to tell the rest of the section is wrong here: it passes on a change of room that has not been announced.",
-   "Sure — there's a spare one in my case.": "This line says \"the solo\", so the reply that lends the mute out of their case is wrong here: it hands over a mute when nothing was asked for."
+   "Phew — I was dreading having to play it myself.": "This line says \"got the solo\", so the reply that is relieved not to be playing it is wrong here: the solo has landed on the speaker, not on somebody else."
   },
   "_crv7": {
    "localId": "crv7-b5-03",
@@ -3244,7 +3273,8 @@
    "kind": "good news",
    "keyAct": "commit to preparation",
    "setting": "orchestra section",
-   "batch": "b5"
+   "batch": "b5",
+   "cohesionEdited": true
   }
  },
  {
@@ -3255,17 +3285,17 @@
   "choices": [
    "Put me down for that one, please.",
    "I'll wait indoors where the driver can see me.",
-   "I'll forward it tonight, once I'm home.",
+   "I'll just wait till the service starts up again.",
    "What would you suggest for getting there instead?"
   ],
   "correct_answer": "What would you suggest for getting there instead?",
   "difficulty": "hard",
   "listeningTask": "choose_response",
-  "explanation": "The line reports that the route no longer serves the traveller's address. Asking what else would work keeps the trip possible. The reply asking to be booked on assumes a seat is available; the reply about waiting indoors responds to a corrected boarding point; the reply about forwarding something complies with a request for documents.",
+  "explanation": "The line reports that the route no longer serves the traveller's address. Asking what else would work keeps the trip possible. The reply asking to be booked on assumes a seat is available; the reply about waiting indoors responds to a corrected boarding point; the reply about waiting for the service to start again takes a withdrawn route to be one that is coming back.",
   "distractor_rationales": {
    "Put me down for that one, please.": "The agent says the service \"doesn't run out to your area\", so the reply asking to be put down for it books a seat on a route that no longer exists.",
    "I'll wait indoors where the driver can see me.": "There is no boarding point to get right, since the route ended \"to your area anymore\", so the reply about waiting indoors where the driver can see responds to a correction that could not apply.",
-   "I'll forward it tonight, once I'm home.": "The agent reports that the service \"doesn't run out\" that way and asks for nothing, so the reply promising to forward it once home complies with a request never made."
+   "I'll just wait till the service starts up again.": "The agent says the shuttle \"doesn't run out to your area anymore\", a withdrawal rather than a pause, so the reply that waits for it to start up again counts on a resumption nobody has mentioned."
   },
   "_crv7": {
    "localId": "crv7-b6-17",
@@ -3273,7 +3303,8 @@
    "kind": "bad news",
    "keyAct": "asks for an alternative",
    "setting": "airport shuttle booking",
-   "batch": "b6"
+   "batch": "b6",
+   "cohesionEdited": true
   }
  },
  {
@@ -3370,18 +3401,18 @@
   "prompt": "[Choose a Response] Which is the most natural reply?",
   "choices": [
    "I'd rather not wait, whoever's free is fine.",
-   "That explains why you couldn't find me earlier.",
+   "You've gone shorter there than I asked for.",
    "Just above them, nothing too severe.",
    "Yes please, I've got time to spare now."
   ],
   "correct_answer": "Just above them, nothing too severe.",
   "difficulty": "hard",
   "listeningTask": "choose_response",
-  "explanation": "The line asks for an instruction about length in one area. Giving that instruction answers it. The reply about not waiting responds to an absence; the reply about having time to spare accepts a slot; the reply about the booking responds to a correction about the name.",
+  "explanation": "The line asks for an instruction about length in one area. Giving that instruction answers it. The reply about not waiting responds to an absence; the reply about having time to spare accepts a slot; the reply complaining the cut went too short objects to an instruction that has not yet been given.",
   "distractor_rationales": {
    "I'd rather not wait, whoever's free is fine.": "The barber is asking \"How short do you want it\", so the reply that would rather not wait and will see anyone free responds to an absence nobody reported.",
    "Yes please, I've got time to spare now.": "The cut is already under way \"round the ears\" and no gap was offered, so the reply that gladly takes a slot accepts an offer that was not made.",
-   "That explains why you couldn't find me earlier.": "The barber asks about length, not records, so the reply about why the booking could not be found responds to a correction \"How short do you want it\" does not contain."
+   "You've gone shorter there than I asked for.": "The barber is still asking \"How short do you want it\", so the reply that says it has gone shorter than asked complains about an instruction that has not yet been given."
   },
   "_crv7": {
    "localId": "crv7-b6-12",
@@ -3389,7 +3420,8 @@
    "kind": "question",
    "keyAct": "specifies the cut",
    "setting": "barber shop",
-   "batch": "b6"
+   "batch": "b6",
+   "cohesionEdited": true
   }
  },
  {
@@ -3427,7 +3459,7 @@
   "passageGroupId": null,
   "prompt": "[Choose a Response] Which is the most natural reply?",
   "choices": [
-   "Is there room to talk about that before I sign?",
+   "So what did it come to this time round?",
    "I'll do it after work and text you.",
    "I'll make sure someone's in to let him up.",
    "Then I'll stop worrying about the bill for it."
@@ -3435,11 +3467,11 @@
   "correct_answer": "I'll do it after work and text you.",
   "difficulty": "hard",
   "listeningTask": "choose_response",
-  "explanation": "The line asks the tenant to carry out a small task within a few days. Undertaking it after work and reporting back complies. The reply about letting a tradesman in responds to a booked visit; the reply about negotiating responds to a rent rise; the reply about the bill responds to a repair being covered.",
+  "explanation": "The line asks the tenant to carry out a small task within a few days. Undertaking it after work and reporting back complies. The reply about letting a tradesman in responds to a booked visit; the reply asking for the figure waits for a reading the tenant is being asked to take; the reply about the bill responds to a repair being covered.",
   "distractor_rationales": {
    "I'll make sure someone's in to let him up.": "The landlord asks the tenant to \"read me the meter\" and mentions no tradesman, so the reply that promises someone will be in to let him up admits a visitor nobody arranged.",
-   "Is there room to talk about that before I sign?": "The ask is a small job \"before the weekend\", not a change of terms, so the reply asking for room to negotiate before signing responds to a rent rise that was not announced.",
-   "Then I'll stop worrying about the bill for it.": "No repair or cost was mentioned, only a request to \"read me the meter\", so the reply that stops worrying about the bill answers a reassurance never given."
+   "Then I'll stop worrying about the bill for it.": "No repair or cost was mentioned, only a request to \"read me the meter\", so the reply that stops worrying about the bill answers a reassurance never given.",
+   "So what did it come to this time round?": "The landlord asks the tenant to \"read me the meter\", so the reply asking what it came to turns the request round and waits for a figure the tenant is being asked to supply."
   },
   "_crv7": {
    "localId": "crv7-b6-09",
@@ -3447,7 +3479,8 @@
    "kind": "request",
    "keyAct": "commits to the task",
    "setting": "landlord of an off-campus flat",
-   "batch": "b6"
+   "batch": "b6",
+   "cohesionEdited": true
   }
  },
  {
@@ -3516,17 +3549,17 @@
   "choices": [
    "That's one less thing to sort out.",
    "Could you pass me the right one, please?",
-   "There's a mug in there, nothing else.",
-   "Then a parcel it is, that's no trouble."
+   "So my post will follow me from today, then?",
+   "Shame, I'd hoped it would carry on past Monday."
   ],
   "correct_answer": "That's one less thing to sort out.",
   "difficulty": "hard",
   "listeningTask": "choose_response",
-  "explanation": "The line confirms that mail forwarding has been arranged and will start shortly. Treating the task as done is the natural close. The reply accepting parcel rates responds to a size problem; the reply describing a mug answers a question about contents; the reply asking for the right form responds to a paperwork error.",
+  "explanation": "The line confirms that mail forwarding has been arranged and will start shortly. Treating the task as done is the natural close. The reply expecting forwarding from today moves the start earlier than the clerk stated; the reply disappointed it will not run past Monday mistakes the start date for an end date; the reply asking for the right form responds to a paperwork error.",
   "distractor_rationales": {
-   "Then a parcel it is, that's no trouble.": "The clerk confirms that \"Your redirection is set up\", with no item on the scales, so the reply accepting parcel rates instead responds to a pricing problem that does not exist.",
-   "There's a mug in there, nothing else.": "Nothing was asked about contents, only that the service runs \"from Monday onward\", so the reply describing a mug answers a question never put.",
-   "Could you pass me the right one, please?": "The paperwork evidently went through, since the redirection \"is set up\", so the reply asking to be handed the right form corrects an error that did not occur."
+   "Could you pass me the right one, please?": "The paperwork evidently went through, since the redirection \"is set up\", so the reply asking to be handed the right form corrects an error that did not occur.",
+   "So my post will follow me from today, then?": "The clerk says the redirection runs \"from Monday onward\", so the reply expecting post to follow from today starts the service earlier than the clerk has just said.",
+   "Shame, I'd hoped it would carry on past Monday.": "The clerk confirms the service \"is set up from Monday\" as its start, not its finish, so the reply disappointed it will stop reads the start date as an end date."
   },
   "_crv7": {
    "localId": "crv7-b6-15",
@@ -3534,7 +3567,8 @@
    "kind": "good news",
    "keyAct": "closes the errand",
    "setting": "post office in town",
-   "batch": "b6"
+   "batch": "b6",
+   "cohesionEdited": true
   }
  },
  {
@@ -3572,19 +3606,19 @@
   "passageGroupId": null,
   "prompt": "[Choose a Response] Which is the most natural reply?",
   "choices": [
-   "There's one just before the lights, I'll pull in.",
-   "I'll take the next left and come round the back.",
-   "Should do, the traffic's light this time of day.",
+   "Bring it round and I'll load it into the boot.",
+   "We can turn round and go back for it, no bother.",
+   "It might not fit, my boot's pretty full today.",
    "I'll get out and lift it for you at the other end."
   ],
   "correct_answer": "I'll get out and lift it for you at the other end.",
   "difficulty": "hard",
   "listeningTask": "choose_response",
-  "explanation": "The line mentions heavy luggage stowed for the journey. Offering to lift it out on arrival is the courteous response to that. The reply naming a machine complies with a request for a stop; the reply about the traffic answers a question about arrival time; the reply about taking the next left responds to a corrected destination.",
+  "explanation": "The line mentions heavy luggage stowed for the journey. Offering to lift it out on arrival is the courteous response to that. The reply offering to load the case treats it as still to be stowed; the reply about turning back goes to fetch a case that is travelling with them; the reply doubting it will fit denies room to a case already inside.",
   "distractor_rationales": {
-   "There's one just before the lights, I'll pull in.": "The passenger mentions \"a big case\" and asks for no detour, so the reply that names a machine and pulls in adds a stop that was not requested.",
-   "Should do, the traffic's light this time of day.": "Nothing was asked about arrival time, only that the bag is \"in the boot\", so the reply reassuring her about the traffic answers a question that was not put.",
-   "I'll take the next left and come round the back.": "The passenger mentions \"a big case\", not an address, so the reply that takes the next left and comes round the back reroutes on a correction never made."
+   "Bring it round and I'll load it into the boot.": "The passenger says the case is already \"in the boot\", so the reply offering to load it stows a case that has been stowed.",
+   "We can turn round and go back for it, no bother.": "The passenger has \"a big case in the boot\" with them, so the reply about turning back goes to collect something that is already aboard.",
+   "It might not fit, my boot's pretty full today.": "The passenger says \"I've got a big case\" in the boot already, so the reply doubting it will fit denies space to a case that is already inside."
   },
   "_crv7": {
    "localId": "crv7-b6-16",
@@ -3592,7 +3626,8 @@
    "kind": "neutral info",
    "keyAct": "offers help with the bag",
    "setting": "taxi pickup",
-   "batch": "b6"
+   "batch": "b6",
+   "cohesionEdited": true
   }
  },
  {
@@ -3602,18 +3637,18 @@
   "prompt": "[Choose a Response] Which is the most natural reply?",
   "choices": [
    "Perfect, let's do that while I'm here.",
-   "Let me pull up the correct details and resend it.",
+   "Twelve charges a year would really add up, though.",
    "Just the checking, I'd like to keep the savings.",
    "Then I'll leave the account open after all."
   ],
   "correct_answer": "Then I'll leave the account open after all.",
   "difficulty": "hard",
   "listeningTask": "choose_response",
-  "explanation": "The line corrects a mistaken belief about how often a charge falls. Deciding to keep the account now that the charge is far smaller in effect follows straight from the correction. The reply that activates a card responds to an arrival; the reply resending transfer details responds to a failed payment; the reply choosing which account to close answers a question the teller never put.",
+  "explanation": "The line corrects a mistaken belief about how often a charge falls. Deciding to keep the account now that the charge is far smaller in effect follows straight from the correction. The reply that activates a card responds to an arrival; the reply adding up twelve charges a year keeps the monthly rate the teller has just corrected; the reply choosing which account to close answers a question the teller never put.",
   "distractor_rationales": {
    "Perfect, let's do that while I'm here.": "The teller is correcting a belief, saying it is \"not a monthly fee\", so the reply that agrees to have a card switched on today responds to an offer that was not made.",
-   "Let me pull up the correct details and resend it.": "The point is that the fee is \"charged once a year\", not that any payment bounced, so the reply that resends corrected details fixes an error nobody reported.",
-   "Just the checking, I'd like to keep the savings.": "The teller states a billing fact and asks nothing, so the reply that closes the checking and keeps the savings answers a question that \"It's not a monthly fee\" never posed."
+   "Just the checking, I'd like to keep the savings.": "The teller states a billing fact and asks nothing, so the reply that closes the checking and keeps the savings answers a question that \"It's not a monthly fee\" never posed.",
+   "Twelve charges a year would really add up, though.": "The point is that the fee is \"charged once a year\", so the reply adding up twelve charges keeps the monthly rate the teller has just corrected."
   },
   "_crv7": {
    "localId": "crv7-b6-02",
@@ -3621,7 +3656,8 @@
    "kind": "correction",
    "keyAct": "revises a decision",
    "setting": "bank branch",
-   "batch": "b6"
+   "batch": "b6",
+   "cohesionEdited": true
   }
  },
  {
@@ -3720,16 +3756,16 @@
    "I'll need to travel today instead, if that's possible.",
    "What's the next way to get there today?",
    "Could you move my booking onto that one?",
-   "Here's my driving licence, one moment."
+   "Roughly how long will it be held up for?"
   ],
   "correct_answer": "What's the next way to get there today?",
   "difficulty": "hard",
   "listeningTask": "choose_response",
-  "explanation": "The line kills the intended service outright and gives the cause. Asking what else will get the traveller there today is the standard recovery move. The reply asking to be moved onto the earlier service assumes seats exist; the reply that says travel must happen today instead responds to a date error; the reply handing over a driving licence answers a request for identification.",
+  "explanation": "The line kills the intended service outright and gives the cause. Asking what else will get the traveller there today is the standard recovery move. The reply asking to be moved onto the earlier service assumes seats exist; the reply that says travel must happen today instead responds to a date error; the reply asking how long the hold-up will last treats a cancelled train as a delayed one.",
   "distractor_rationales": {
    "Could you move my booking onto that one?": "The clerk says \"That train's cancelled\", so the reply that asks to be switched onto the other service is booking onto something that is not running.",
    "I'll need to travel today instead, if that's possible.": "The cause given is \"engineering work on the line\", not a wrong date, so the reply that says the journey needs to be today instead corrects a mistake nobody made.",
-   "Here's my driving licence, one moment.": "Nothing was asked of the traveller beyond hearing the news that \"That train's cancelled\", so the reply that produces a driving licence complies with a request that was never made."
+   "Roughly how long will it be held up for?": "The clerk says \"That train's cancelled\", so the reply asking how long it will be held up treats a train that is not running at all as one merely late."
   },
   "_crv7": {
    "localId": "crv7-b6-04",
@@ -3737,7 +3773,8 @@
    "kind": "bad news",
    "keyAct": "asks for another route",
    "setting": "train station counter",
-   "batch": "b6"
+   "batch": "b6",
+   "cohesionEdited": true
   }
  },
  {
@@ -3778,16 +3815,16 @@
    "That saves me buying one, I'll take it.",
    "I'll pick up a tin of that as well.",
    "It's in the car, I'll fetch it now.",
-   "I'll swap them for the right size then."
+   "Pity there's no way to hire one for a day."
   ],
   "correct_answer": "That saves me buying one, I'll take it.",
   "difficulty": "hard",
   "listeningTask": "choose_response",
-  "explanation": "The line offers a tool for hire rather than sale. Taking it and noting the saving accepts the offer. The reply about a tin responds to advice about paint; the reply about swapping for the right size responds to a fittings mismatch; the reply about fetching something from the car complies with a request.",
+  "explanation": "The line offers a tool for hire rather than sale. Taking it and noting the saving accepts the offer. The reply about a tin responds to advice about paint; the reply regretting there is no way to hire one denies the very arrangement being offered; the reply about fetching something from the car complies with a request.",
   "distractor_rationales": {
    "I'll pick up a tin of that as well.": "The assistant offers to \"hire out the sander\", so the reply that adds a tin to the order responds to advice about paint that was never given.",
-   "I'll swap them for the right size then.": "The offer concerns hiring \"by the day\", not sizing, so the reply that swaps them for the right size corrects a mismatch nobody found.",
-   "It's in the car, I'll fetch it now.": "The assistant makes an offer and asks for nothing, so the reply that goes to fetch something from the car complies with a request \"We hire out the sander\" never made."
+   "It's in the car, I'll fetch it now.": "The assistant makes an offer and asks for nothing, so the reply that goes to fetch something from the car complies with a request \"We hire out the sander\" never made.",
+   "Pity there's no way to hire one for a day.": "The assistant has just said \"We hire out the sander by the day\", so the reply regretting there is no way to hire one for a day denies word for word the offer being made."
   },
   "_crv7": {
    "localId": "crv7-b6-13",
@@ -3795,7 +3832,8 @@
    "kind": "offer",
    "keyAct": "accepts the hire",
    "setting": "hardware store",
-   "batch": "b6"
+   "batch": "b6",
+   "cohesionEdited": true
   }
  },
  {
@@ -3806,17 +3844,17 @@
   "choices": [
    "I'll finish my other shopping and swing back.",
    "Of course, I'll move it out of the way.",
-   "That'd help, as long as it's here by Friday.",
-   "Is there something similar you'd point me to?"
+   "Lovely, so I don't need to bring it back myself.",
+   "Sure, I'll park it over by the tills as usual."
   ],
   "correct_answer": "Of course, I'll move it out of the way.",
   "difficulty": "hard",
   "listeningTask": "choose_response",
-  "explanation": "The line asks the shopper to put the trolley somewhere else. Agreeing and shifting it complies. The reply asking for a similar product assumes an item has been dropped; the reply accepting a case order takes an offer that was not made; the reply about returning later assumes a shelf being refilled.",
+  "explanation": "The line asks the shopper to put the trolley somewhere else. Agreeing and shifting it complies. The reply relieved at not wheeling it back takes the request for an offer of a favour; the reply that parks it by the tills agrees to a spot the assistant did not name; the reply about returning later assumes a shelf being refilled.",
   "distractor_rationales": {
-   "Is there something similar you'd point me to?": "The assistant is asking about \"the trolley\", not about stock, so the reply that asks to be pointed at something similar answers a shortage nobody mentioned.",
-   "That'd help, as long as it's here by Friday.": "The assistant says \"Could you leave the trolley\" somewhere else and offers nothing, so the reply that accepts a case being ordered takes up an offer that does not exist.",
-   "I'll finish my other shopping and swing back.": "The request concerns leaving it \"by the door instead\", not restocking, so the reply that comes back after the rest of the shopping waits for goods nobody promised."
+   "I'll finish my other shopping and swing back.": "The request concerns leaving it \"by the door instead\", not restocking, so the reply that comes back after the rest of the shopping waits for goods nobody promised.",
+   "Lovely, so I don't need to bring it back myself.": "The assistant asks \"Could you leave the trolley\" somewhere, a request for the shopper to act, so the reply relieved at not wheeling it back accepts a favour that was never offered.",
+   "Sure, I'll park it over by the tills as usual.": "The assistant names the spot, \"by the door instead\", so the reply that agrees yet parks it by the tills complies with an instruction that was not given."
   },
   "_crv7": {
    "localId": "crv7-b6-07",
@@ -3824,7 +3862,8 @@
    "kind": "request",
    "keyAct": "complies with the request",
    "setting": "grocery store",
-   "batch": "b6"
+   "batch": "b6",
+   "cohesionEdited": true
   }
  }
 ]

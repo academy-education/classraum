@@ -1,0 +1,29 @@
+{
+  "answers": {
+    "1":  {"pick": "A", "confidence": "guess"},
+    "2":  {"pick": "D", "confidence": "guess"},
+    "3":  {"pick": "B", "confidence": "guess"},
+    "4":  {"pick": "B", "confidence": "guess"},
+    "5":  {"pick": "B", "confidence": "guess"},
+    "6":  {"pick": "C", "confidence": "confident"},
+    "7":  {"pick": "C", "confidence": "guess"},
+    "8":  {"pick": "D", "confidence": "guess"},
+    "9":  {"pick": "D", "confidence": "guess"},
+    "10": {"pick": "C", "confidence": "guess"},
+    "11": {"pick": "A", "confidence": "guess"},
+    "12": {"pick": "A", "confidence": "guess"},
+    "13": {"pick": "D", "confidence": "confident"},
+    "14": {"pick": "B", "confidence": "guess"},
+    "15": {"pick": "C", "confidence": "guess"},
+    "16": {"pick": "A", "confidence": "confident"},
+    "17": {"pick": "C", "confidence": "guess"},
+    "18": {"pick": "D", "confidence": "guess"},
+    "19": {"pick": "A", "confidence": "guess"},
+    "20": {"pick": "D", "confidence": "guess"},
+    "21": {"pick": "B", "confidence": "guess"},
+    "22": {"pick": "B", "confidence": "guess"},
+    "23": {"pick": "A", "confidence": "guess"},
+    "24": {"pick": "C", "confidence": "confident"}
+  },
+  "patterns": "Heuristics used, in rough priority order: (1) Scenario reconstruction — all four options in a set share one setting (laundry room, room swap, haircut, charity shop, cancelled bus/train, lab samples, catering, storage), so I inferred the most probable prompt line for that setting and picked the option that presupposes it; options usually partition into replies to 3-4 DIFFERENT plausible prompt lines, so the task reduces to guessing which prompt the author chose, and I assumed authors favor the 'announcement/offer of a change' prompt (something newly available, moved, cancelled, or offered). (2) Anaphora as a tell — options with unresolved plural/definite anaphora ('Just above them', 'give me a few minutes to clear them', 'move my booking onto that one') require the audio line to supply the antecedent, which makes them feel purpose-built as keys; I bet on these where present (items 6, 24). (3) Direct-answer-to-question shape — options that answer a wh- or have-you-ever question ('Only in training — never with a real casualty', 'A bike and a few boxes of books') read as keys when the other three are statements/reactions (item 16). (4) Cooperative-acceptance bias — I leaned toward polite acceptance of an offer ('Yes please', 'Put me down for that one', 'That'd save me a trip') over refusals or complaints, on the assumption keys are rarely uncooperative. (5) Concrete next-action bias — keys tend to state a specific follow-up action with a time/place ('sorting room at the back', 'set the trolleys up indoors') rather than a bare emotional reaction. I did NOT find usable surface tells: option lengths are well balanced within sets, punctuation (em-dashes, semicolons) is spread across slots, and no letter-position pattern was apparent, so nearly everything above is semantic guessing — my picks came out 6/6/6/6 across A-D, which itself suggests no positional signal leaked through."
+}

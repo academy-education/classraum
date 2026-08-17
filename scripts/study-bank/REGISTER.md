@@ -150,6 +150,43 @@ B4 is *Calibrate the reviewer before spending another cohort* (~20 minutes — o
 
 ## 5. Found while fixing
 
+### CR-V7 cohesion pass: 39 items' distractors pulled into the line's topic, re-attack +5.6 CLEAR; 2 pre-existing two-defensible items found and NOT forced (2026-08-18)
+
+Product-owner feedback on the cleared cr-v7 cohort: some distractors
+were topic-DISTANT from the audio line, so a student could eliminate
+by topic-matching without comprehension. 39 of 132 items (52
+distractors) were flagged and rewritten in-topic — keys, lines,
+letter positions and unflagged options byte-identical to the frozen
+render; every replacement carries a kill-rationale quote-anchored to
+the spoken line (396/396 machine-verified after apply). This
+deliberately breaks the "no post-selection edits" invariant on those
+39 items' distractors, so a fresh blind attack is now their evidence:
+crv7b-cohesion, 24 items weighted 16-edited, letters 6/6/6/6 —
+mean 30.6% vs control 25.0%, margin +5.6, CLEAR (kill bar +30);
+edited subset 29.2% vs unedited 33.3%, so the edits did not add a
+tell. Three process findings worth keeping:
+
+- Two of four cohesion scorers returned 0/33 next to 18% and 52% from
+  the others. Calibrated re-probes of both zero slices found 11 and 6
+  real flags. A 0-flag scorer is a claim about the scorer until a
+  calibrated probe agrees.
+- A dedicated exclusivity checker (all 4 options WITH the line, key
+  unmarked) over the 39 edited items caught 1 defect this pass
+  introduced (crv7-b4-12, repaired post-attack, item not in the
+  attack sample) — and the sole-acceptable option matched the key in
+  all 36 clean items.
+- Same checker surfaced 2 PRE-EXISTING two-defensible items in
+  ORIGINAL untouched text: crv7-b3-20 ("There's a course next week —
+  I'll sign up for it" is a natural implicit-no to "Have you done a
+  pool rescue with a spinal board?") and crv7-b3-14 ("I'll tell the
+  committee tonight" naturally relays the funding rejection). Both
+  left unedited per the do-not-force rule — they are watch-items for
+  the human sitting, which remains the verdict.
+
+Full numbers and solver pattern reports: CRV7-RESULT.md (cohesion
+section). Edit artifacts in the session scratchpad; nothing banked,
+blueprint untouched.
+
 ### CR-V7 CLEARED BOTH ATTACK GATES — pending the human sitting gate, nothing banked (2026-08-18)
 
 <!-- Hand-appended: this entry is NOT yet in bank-register.ts because the
