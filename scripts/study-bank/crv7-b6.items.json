@@ -1,0 +1,562 @@
+[
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"The shuttle doesn't run out to your area anymore.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Put me down for that one, please.",
+      "I'll wait indoors where the driver can see me.",
+      "I'll forward it tonight, once I'm home.",
+      "What would you suggest for getting there instead?"
+    ],
+    "correct_answer": "What would you suggest for getting there instead?",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The line reports that the route no longer serves the traveller's address. Asking what else would work keeps the trip possible. The reply asking to be booked on assumes a seat is available; the reply about waiting indoors responds to a corrected boarding point; the reply about forwarding something complies with a request for documents.",
+    "distractor_rationales": {
+      "Put me down for that one, please.": "The agent says the service \"doesn't run out to your area\", so the reply asking to be put down for it books a seat on a route that no longer exists.",
+      "I'll wait indoors where the driver can see me.": "There is no boarding point to get right, since the route ended \"to your area anymore\", so the reply about waiting indoors where the driver can see responds to a correction that could not apply.",
+      "I'll forward it tonight, once I'm home.": "The agent reports that the service \"doesn't run out\" that way and asks for nothing, so the reply promising to forward it once home complies with a request never made."
+    },
+    "_crv7": {
+      "localId": "crv7-b6-17",
+      "selectedWorld": 1,
+      "kind": "bad news",
+      "keyAct": "asks for an alternative",
+      "setting": "airport shuttle booking"
+    }
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Are these for eating now or for keeping?\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "I'll take some of the raspberries instead.",
+      "I'd like to, I've never had it before.",
+      "For tonight, I'm cooking for a few friends.",
+      "A bagful, please, they smell wonderful."
+    ],
+    "correct_answer": "For tonight, I'm cooking for a few friends.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The line asks whether the produce is for immediate use or storage, which affects what the stallholder picks out. Saying it is for a meal that evening answers it. The reply about taking another fruit responds to a shortage; the reply about buying a bagful responds to an arrival; the reply about never having tried it accepts a tasting.",
+    "distractor_rationales": {
+      "I'll take some of the raspberries instead.": "The stallholder asks whether they are \"for eating now\", which reports nothing sold out, so the reply that takes another fruit instead responds to a shortage that does not exist.",
+      "A bagful, please, they smell wonderful.": "The question is \"for eating now or for keeping\", not an announcement, so the reply that buys a bagful and praises the smell leaves the question unanswered.",
+      "I'd like to, I've never had it before.": "Nothing was held out to taste; the stallholder asks \"Are these for eating now\", so the reply that has never had it before accepts a sample that was not offered."
+    },
+    "_crv7": {
+      "localId": "crv7-b6-11",
+      "selectedWorld": 3,
+      "kind": "question",
+      "keyAct": "explains the intended use",
+      "setting": "farmers market stall"
+    }
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Your prescription hasn't changed since the last test.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Yes, they keep slipping down my nose.",
+      "Like this, or should I lift my chin?",
+      "I'll keep the lenses I've got, then.",
+      "Could you show me something close to it?"
+    ],
+    "correct_answer": "I'll keep the lenses I've got, then.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The line reports that no change in vision has been measured. Deciding to stay with the current lenses follows from that. The reply asking to be shown something close responds to a frame no longer available; the reply about them slipping accepts an adjustment; the reply asking about lifting the chin complies with an instruction during the examination.",
+    "distractor_rationales": {
+      "Could you show me something close to it?": "The optician reports that the \"prescription hasn't changed\" and rules nothing out, so the reply asking to be shown something close to it responds to a frame being withdrawn that was not.",
+      "Yes, they keep slipping down my nose.": "Nothing was offered, only a result \"since the last test\", so the reply saying they keep slipping down accepts an adjustment that was not proposed.",
+      "Like this, or should I lift my chin?": "The optician reports that the \"prescription hasn't changed\" and asks for nothing, so the reply asking whether the chin should come up complies with an instruction never given."
+    },
+    "_crv7": {
+      "localId": "crv7-b6-20",
+      "selectedWorld": 0,
+      "kind": "good news",
+      "keyAct": "decides to keep the existing lenses",
+      "setting": "optician"
+    }
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Your refill's ready, it's behind the counter now.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Is there another branch nearby that might have some?",
+      "I'll call the clinic this afternoon and ask them.",
+      "The generic's fine, whichever costs less.",
+      "Great, I'll take it now, I've got my card out."
+    ],
+    "correct_answer": "Great, I'll take it now, I've got my card out.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The line reports that the medicine has already been dispensed and is waiting to be handed over. The reply that takes it straight away and reaches for a card is the cooperative next move. The reply asking whether another branch has stock treats the medicine as unavailable; the reply promising to ring the clinic treats prescriber approval as still outstanding; the reply choosing the cheaper generic answers a choice that was never offered.",
+    "distractor_rationales": {
+      "Is there another branch nearby that might have some?": "The line says the refill is \"behind the counter\", so the reply that goes hunting for another branch with stock is looking for something that is already here.",
+      "I'll call the clinic this afternoon and ask them.": "Since \"Your refill's ready\", the reply that promises to call the clinic and chase an approval is chasing a step that has already been completed.",
+      "The generic's fine, whichever costs less.": "The line only reports that the \"refill's ready\"; the reply that picks the generic over the brand answers a question the pharmacist never asked."
+    },
+    "_crv7": {
+      "localId": "crv7-b6-01",
+      "selectedWorld": 0,
+      "kind": "good news",
+      "keyAct": "accepts and moves to pay",
+      "setting": "town pharmacy"
+    }
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"How short do you want it round the ears?\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "I'd rather not wait, whoever's free is fine.",
+      "That explains why you couldn't find me earlier.",
+      "Just above them, nothing too severe.",
+      "Yes please, I've got time to spare now."
+    ],
+    "correct_answer": "Just above them, nothing too severe.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The line asks for an instruction about length in one area. Giving that instruction answers it. The reply about not waiting responds to an absence; the reply about having time to spare accepts a slot; the reply about the booking responds to a correction about the name.",
+    "distractor_rationales": {
+      "I'd rather not wait, whoever's free is fine.": "The barber is asking \"How short do you want it\", so the reply that would rather not wait and will see anyone free responds to an absence nobody reported.",
+      "Yes please, I've got time to spare now.": "The cut is already under way \"round the ears\" and no gap was offered, so the reply that gladly takes a slot accepts an offer that was not made.",
+      "That explains why you couldn't find me earlier.": "The barber asks about length, not records, so the reply about why the booking could not be found responds to a correction \"How short do you want it\" does not contain."
+    },
+    "_crv7": {
+      "localId": "crv7-b6-12",
+      "selectedWorld": 1,
+      "kind": "question",
+      "keyAct": "specifies the cut",
+      "setting": "barber shop"
+    }
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"We can trim her claws while she's here.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Please, she never lets me do it.",
+      "She's been off her food since Tuesday.",
+      "So rest and short walks, nothing strenuous?",
+      "How soon can we get that booked in?"
+    ],
+    "correct_answer": "Please, she never lets me do it.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The line offers a small additional service during the visit. Accepting and saying why it is welcome takes it up. The reply about rest and short walks treats a diagnosis as given; the reply asking how soon it can be booked treats an operation as necessary; the reply about being off her food answers a question about appetite.",
+    "distractor_rationales": {
+      "So rest and short walks, nothing strenuous?": "The vet offers to \"trim her claws\" and gives no findings, so the reply proposing rest and short walks responds to a diagnosis that was never delivered.",
+      "How soon can we get that booked in?": "The offer is grooming \"while she's here\", not treatment, so the reply asking how soon it can be booked arranges an operation nobody proposed.",
+      "She's been off her food since Tuesday.": "The vet makes an offer and asks nothing, so the reply reporting that she has been off her food answers a question \"We can trim her claws\" does not contain."
+    },
+    "_crv7": {
+      "localId": "crv7-b6-18",
+      "selectedWorld": 2,
+      "kind": "offer",
+      "keyAct": "accepts the extra service",
+      "setting": "veterinary clinic"
+    }
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Could you read me the meter before the weekend?\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Is there room to talk about that before I sign?",
+      "I'll do it after work and text you.",
+      "I'll make sure someone's in to let him up.",
+      "Then I'll stop worrying about the bill for it."
+    ],
+    "correct_answer": "I'll do it after work and text you.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The line asks the tenant to carry out a small task within a few days. Undertaking it after work and reporting back complies. The reply about letting a tradesman in responds to a booked visit; the reply about negotiating responds to a rent rise; the reply about the bill responds to a repair being covered.",
+    "distractor_rationales": {
+      "I'll make sure someone's in to let him up.": "The landlord asks the tenant to \"read me the meter\" and mentions no tradesman, so the reply that promises someone will be in to let him up admits a visitor nobody arranged.",
+      "Is there room to talk about that before I sign?": "The ask is a small job \"before the weekend\", not a change of terms, so the reply asking for room to negotiate before signing responds to a rent rise that was not announced.",
+      "Then I'll stop worrying about the bill for it.": "No repair or cost was mentioned, only a request to \"read me the meter\", so the reply that stops worrying about the bill answers a reassurance never given."
+    },
+    "_crv7": {
+      "localId": "crv7-b6-09",
+      "selectedWorld": 3,
+      "kind": "request",
+      "keyAct": "commits to the task",
+      "setting": "landlord of an off-campus flat"
+    }
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"It was just the charging port, it's working again.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Can you at least get the photos off it?",
+      "Yes please, I'd be lost without one this week.",
+      "I'll plan on picking it up later in the week.",
+      "That's a relief, I'll pay at the counter."
+    ],
+    "correct_answer": "That's a relief, I'll pay at the counter.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The line reports a small fault, already repaired. Expressing relief and going to settle the bill is what follows a completed job. The reply asking to rescue the photos assumes the handset is lost; the reply taking a loaner assumes the phone stays behind; the reply about collecting later in the week assumes the work is still outstanding.",
+    "distractor_rationales": {
+      "Can you at least get the photos off it?": "The technician says \"it's working again\", so the reply that asks whether the photos can still be rescued treats a repaired phone as a write-off.",
+      "Yes please, I'd be lost without one this week.": "Since the fault was \"just the charging port\" and is dealt with, the reply that accepts a loaner handset for the week takes a substitute nobody needs.",
+      "I'll plan on picking it up later in the week.": "The phone is finished and \"working again\", so the reply that plans to collect it later in the week postpones a collection that can happen now."
+    },
+    "_crv7": {
+      "localId": "crv7-b6-03",
+      "selectedWorld": 1,
+      "kind": "good news",
+      "keyAct": "settles up and closes",
+      "setting": "phone repair shop"
+    }
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"It's ready Friday, not Wednesday, the machine broke.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "I'll rearrange and pick it up at the weekend.",
+      "Just the cleaning is fine for now.",
+      "I'll live with it, thanks for trying anyway.",
+      "Wonderful, I'll take it with me now."
+    ],
+    "correct_answer": "I'll rearrange and pick it up at the weekend.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The line corrects the promised date and gives the reason. Rearranging and collecting once the garment is actually ready fits that correction. The reply taking it away now assumes it is finished; the reply resigning itself to a mark assumes the cleaning failed; the reply declining a press answers a question about service.",
+    "distractor_rationales": {
+      "Wonderful, I'll take it with me now.": "The clerk says \"It's ready Friday\", so the reply that takes it away now carries off something still in the machine.",
+      "I'll live with it, thanks for trying anyway.": "The delay is because \"the machine broke\", not because the cleaning failed, so the reply that resigns itself to a mark accepts a bad result nobody reported.",
+      "Just the cleaning is fine for now.": "The clerk corrects a day, saying \"not Wednesday\", and asks nothing, so the reply that limits the order to cleaning answers a question never put."
+    },
+    "_crv7": {
+      "localId": "crv7-b6-06",
+      "selectedWorld": 3,
+      "kind": "correction",
+      "keyAct": "reschedules the collection",
+      "setting": "dry cleaner"
+    }
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Your redirection is set up from Monday onward.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "That's one less thing to sort out.",
+      "Could you pass me the right one, please?",
+      "There's a mug in there, nothing else.",
+      "Then a parcel it is, that's no trouble."
+    ],
+    "correct_answer": "That's one less thing to sort out.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The line confirms that mail forwarding has been arranged and will start shortly. Treating the task as done is the natural close. The reply accepting parcel rates responds to a size problem; the reply describing a mug answers a question about contents; the reply asking for the right form responds to a paperwork error.",
+    "distractor_rationales": {
+      "Then a parcel it is, that's no trouble.": "The clerk confirms that \"Your redirection is set up\", with no item on the scales, so the reply accepting parcel rates instead responds to a pricing problem that does not exist.",
+      "There's a mug in there, nothing else.": "Nothing was asked about contents, only that the service runs \"from Monday onward\", so the reply describing a mug answers a question never put.",
+      "Could you pass me the right one, please?": "The paperwork evidently went through, since the redirection \"is set up\", so the reply asking to be handed the right form corrects an error that did not occur."
+    },
+    "_crv7": {
+      "localId": "crv7-b6-15",
+      "selectedWorld": 3,
+      "kind": "good news",
+      "keyAct": "closes the errand",
+      "setting": "post office in town"
+    }
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"New heels take a couple of days to set.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "I'll go with whatever you'd use on them.",
+      "I'll leave them with you until midweek.",
+      "That's a shame, I'll look for a new pair.",
+      "Black, to match the rest of the pair."
+    ],
+    "correct_answer": "I'll leave them with you until midweek.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The line explains that the repair needs time before the shoes can be worn. Leaving them and collecting later fits that. The reply about looking for a new pair treats the shoes as beyond repair; the reply choosing black answers a question about colour; the reply deferring to the cobbler responds to a correction about the material.",
+    "distractor_rationales": {
+      "That's a shame, I'll look for a new pair.": "The cobbler is fitting \"New heels\", which is a repair going ahead, so the reply that starts looking for a new pair writes off shoes he is already mending.",
+      "Black, to match the rest of the pair.": "He explains only that the work takes \"a couple of days\", so the reply choosing black to match answers a question about colour that was never asked.",
+      "I'll go with whatever you'd use on them.": "Nothing was said about the material, only that the work needs \"a couple of days\", so the reply deferring to whatever he would use responds to a correction never made."
+    },
+    "_crv7": {
+      "localId": "crv7-b6-19",
+      "selectedWorld": 1,
+      "kind": "neutral info",
+      "keyAct": "leaves them for the work",
+      "setting": "shoe repair"
+    }
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"I've got a big case in the boot.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "There's one just before the lights, I'll pull in.",
+      "I'll take the next left and come round the back.",
+      "Should do, the traffic's light this time of day.",
+      "I'll get out and lift it for you at the other end."
+    ],
+    "correct_answer": "I'll get out and lift it for you at the other end.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The line mentions heavy luggage stowed for the journey. Offering to lift it out on arrival is the courteous response to that. The reply naming a machine complies with a request for a stop; the reply about the traffic answers a question about arrival time; the reply about taking the next left responds to a corrected destination.",
+    "distractor_rationales": {
+      "There's one just before the lights, I'll pull in.": "The passenger mentions \"a big case\" and asks for no detour, so the reply that names a machine and pulls in adds a stop that was not requested.",
+      "Should do, the traffic's light this time of day.": "Nothing was asked about arrival time, only that the bag is \"in the boot\", so the reply reassuring her about the traffic answers a question that was not put.",
+      "I'll take the next left and come round the back.": "The passenger mentions \"a big case\", not an address, so the reply that takes the next left and comes round the back reroutes on a correction never made."
+    },
+    "_crv7": {
+      "localId": "crv7-b6-16",
+      "selectedWorld": 2,
+      "kind": "neutral info",
+      "keyAct": "offers help with the bag",
+      "setting": "taxi pickup"
+    }
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"It's not a monthly fee, it's charged once a year.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Perfect, let's do that while I'm here.",
+      "Let me pull up the correct details and resend it.",
+      "Just the checking, I'd like to keep the savings.",
+      "Then I'll leave the account open after all."
+    ],
+    "correct_answer": "Then I'll leave the account open after all.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The line corrects a mistaken belief about how often a charge falls. Deciding to keep the account now that the charge is far smaller in effect follows straight from the correction. The reply that activates a card responds to an arrival; the reply resending transfer details responds to a failed payment; the reply choosing which account to close answers a question the teller never put.",
+    "distractor_rationales": {
+      "Perfect, let's do that while I'm here.": "The teller is correcting a belief, saying it is \"not a monthly fee\", so the reply that agrees to have a card switched on today responds to an offer that was not made.",
+      "Let me pull up the correct details and resend it.": "The point is that the fee is \"charged once a year\", not that any payment bounced, so the reply that resends corrected details fixes an error nobody reported.",
+      "Just the checking, I'd like to keep the savings.": "The teller states a billing fact and asks nothing, so the reply that closes the checking and keeps the savings answers a question that \"It's not a monthly fee\" never posed."
+    },
+    "_crv7": {
+      "localId": "crv7-b6-02",
+      "selectedWorld": 3,
+      "kind": "correction",
+      "keyAct": "revises a decision",
+      "setting": "bank branch"
+    }
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"The card machine's down, we're cash only right now.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Ah, good catch, I'd have walked off with that.",
+      "I'll find a cash point and come straight back.",
+      "I'll take a croissant with mine, then.",
+      "I'm staying, I've got some reading to do."
+    ],
+    "correct_answer": "I'll find a cash point and come straight back.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The line reports that only cash can be taken at the moment. Going to withdraw some and returning solves it. The reply about nearly taking the wrong cup responds to a mix-up; the reply asking for a croissant takes up a free offer; the reply about staying to read answers a seating question.",
+    "distractor_rationales": {
+      "Ah, good catch, I'd have walked off with that.": "The barista is reporting that \"The card machine's down\", not pointing at the wrong cup, so the reply that thanks her for catching a mix-up responds to something that did not happen.",
+      "I'll take a croissant with mine, then.": "The shop is \"cash only right now\" and nothing was offered free, so the reply asking for a croissant with it takes up an offer that does not exist.",
+      "I'm staying, I've got some reading to do.": "The barista raises payment, not seating, so the reply that says the customer is staying to read answers a question \"we're cash only\" never posed."
+    },
+    "_crv7": {
+      "localId": "crv7-b6-08",
+      "selectedWorld": 1,
+      "kind": "bad news",
+      "keyAct": "proposes a way to pay",
+      "setting": "coffee shop (as a customer)"
+    }
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Your account's in arrears from the winter billing period.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "I'd like that, most of my usage is late.",
+      "No, it's only ever been in my name.",
+      "Can I spread that over a few months?",
+      "Then I've been chasing the wrong company entirely."
+    ],
+    "correct_answer": "Can I spread that over a few months?",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The line reports an unpaid balance from an earlier period. Asking to pay it off in instalments is the standard way a customer handles that. The reply about chasing the wrong company responds to a correction about what the charge covers; the reply welcoming a tariff move takes an offer that was not made; the reply about the account being in one name answers a question about other names.",
+    "distractor_rationales": {
+      "Then I've been chasing the wrong company entirely.": "The agent says the account is \"in arrears\", not that the charge belongs to a different service, so the reply about having chased the wrong company responds to a correction never made.",
+      "I'd like that, most of my usage is late.": "Nothing was offered; the agent reports a balance \"from the winter billing period\", so the reply that welcomes a move onto a cheaper plan accepts something not proposed.",
+      "No, it's only ever been in my name.": "The agent states that \"Your account's in arrears\" and asks nothing, so the reply confirming the account is in one name only answers a question that was not put."
+    },
+    "_crv7": {
+      "localId": "crv7-b6-10",
+      "selectedWorld": 0,
+      "kind": "bad news",
+      "keyAct": "proposes staged payment",
+      "setting": "utility company call"
+    }
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"I could fit the winter tyres while it's up here.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Go ahead, I'd rather not do it myself.",
+      "That's a load off, I'll ride it home tonight.",
+      "You can throw it out, it's no use to me.",
+      "Who in town could weld it, or is it done for?"
+    ],
+    "correct_answer": "Go ahead, I'd rather not do it myself.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The line offers an additional job while the bike is already on the stand. Telling him to go ahead and saying why takes the offer up. The reply about riding it home tonight treats the work as finished; the reply asking who could weld it treats the frame as damaged; the reply about throwing a part out answers a disposal question that was not asked.",
+    "distractor_rationales": {
+      "That's a load off, I'll ride it home tonight.": "The bike is still \"up here\" with work proposed, so the reply that rides it home tonight leaves before the job the mechanic just offered.",
+      "Who in town could weld it, or is it done for?": "He is offering to \"fit the winter tyres\", not reporting damage, so the reply asking who in town could weld it invents a broken frame.",
+      "You can throw it out, it's no use to me.": "The offer concerns \"the winter tyres\" and nothing is being discarded, so the reply that tells him to throw it out disposes of a part he never mentioned."
+    },
+    "_crv7": {
+      "localId": "crv7-b6-05",
+      "selectedWorld": 2,
+      "kind": "offer",
+      "keyAct": "accepts the extra work",
+      "setting": "bike shop"
+    }
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"That train's cancelled, there's engineering work on the line.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "I'll need to travel today instead, if that's possible.",
+      "What's the next way to get there today?",
+      "Could you move my booking onto that one?",
+      "Here's my driving licence, one moment."
+    ],
+    "correct_answer": "What's the next way to get there today?",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The line kills the intended service outright and gives the cause. Asking what else will get the traveller there today is the standard recovery move. The reply asking to be moved onto the earlier service assumes seats exist; the reply that says travel must happen today instead responds to a date error; the reply handing over a driving licence answers a request for identification.",
+    "distractor_rationales": {
+      "Could you move my booking onto that one?": "The clerk says \"That train's cancelled\", so the reply that asks to be switched onto the other service is booking onto something that is not running.",
+      "I'll need to travel today instead, if that's possible.": "The cause given is \"engineering work on the line\", not a wrong date, so the reply that says the journey needs to be today instead corrects a mistake nobody made.",
+      "Here's my driving licence, one moment.": "Nothing was asked of the traveller beyond hearing the news that \"That train's cancelled\", so the reply that produces a driving licence complies with a request that was never made."
+    },
+    "_crv7": {
+      "localId": "crv7-b6-04",
+      "selectedWorld": 0,
+      "kind": "bad news",
+      "keyAct": "asks for another route",
+      "setting": "train station counter"
+    }
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"I'm buying this, I'm not dropping it off.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Books as well, they go on the shelves upstairs.",
+      "I can label it and keep it behind the counter.",
+      "Sorry about that, I'll ring it up now.",
+      "Bring them through to the sorting room at the back."
+    ],
+    "correct_answer": "Sorry about that, I'll ring it up now.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The line corrects the volunteer's assumption that the customer is donating. Apologising and putting the sale through is the repair. The reply directing someone to the sorting room repeats the mistaken assumption; the reply confirming books are taken answers a question about categories; the reply about labelling something agrees to hold it for later.",
+    "distractor_rationales": {
+      "Bring them through to the sorting room at the back.": "The customer has just said \"I'm buying this\", so the reply sending them to the sorting room repeats the very assumption that was corrected.",
+      "Books as well, they go on the shelves upstairs.": "The correction is \"not dropping it off\", not a question about categories, so the reply confirming that books are taken too answers something nobody asked.",
+      "I can label it and keep it behind the counter.": "The customer is paying now, since \"I'm buying this\", so the reply that labels it and keeps it behind the counter puts off a sale already going through."
+    },
+    "_crv7": {
+      "localId": "crv7-b6-14",
+      "selectedWorld": 3,
+      "kind": "correction",
+      "keyAct": "apologises and proceeds with the sale",
+      "setting": "thrift store"
+    }
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"We hire out the sander by the day here.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "That saves me buying one, I'll take it.",
+      "I'll pick up a tin of that as well.",
+      "It's in the car, I'll fetch it now.",
+      "I'll swap them for the right size then."
+    ],
+    "correct_answer": "That saves me buying one, I'll take it.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The line offers a tool for hire rather than sale. Taking it and noting the saving accepts the offer. The reply about a tin responds to advice about paint; the reply about swapping for the right size responds to a fittings mismatch; the reply about fetching something from the car complies with a request.",
+    "distractor_rationales": {
+      "I'll pick up a tin of that as well.": "The assistant offers to \"hire out the sander\", so the reply that adds a tin to the order responds to advice about paint that was never given.",
+      "I'll swap them for the right size then.": "The offer concerns hiring \"by the day\", not sizing, so the reply that swaps them for the right size corrects a mismatch nobody found.",
+      "It's in the car, I'll fetch it now.": "The assistant makes an offer and asks for nothing, so the reply that goes to fetch something from the car complies with a request \"We hire out the sander\" never made."
+    },
+    "_crv7": {
+      "localId": "crv7-b6-13",
+      "selectedWorld": 1,
+      "kind": "offer",
+      "keyAct": "accepts the hire",
+      "setting": "hardware store"
+    }
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Could you leave the trolley by the door instead?\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "I'll finish my other shopping and swing back.",
+      "Of course, I'll move it out of the way.",
+      "That'd help, as long as it's here by Friday.",
+      "Is there something similar you'd point me to?"
+    ],
+    "correct_answer": "Of course, I'll move it out of the way.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The line asks the shopper to put the trolley somewhere else. Agreeing and shifting it complies. The reply asking for a similar product assumes an item has been dropped; the reply accepting a case order takes an offer that was not made; the reply about returning later assumes a shelf being refilled.",
+    "distractor_rationales": {
+      "Is there something similar you'd point me to?": "The assistant is asking about \"the trolley\", not about stock, so the reply that asks to be pointed at something similar answers a shortage nobody mentioned.",
+      "That'd help, as long as it's here by Friday.": "The assistant says \"Could you leave the trolley\" somewhere else and offers nothing, so the reply that accepts a case being ordered takes up an offer that does not exist.",
+      "I'll finish my other shopping and swing back.": "The request concerns leaving it \"by the door instead\", not restocking, so the reply that comes back after the rest of the shopping waits for goods nobody promised."
+    },
+    "_crv7": {
+      "localId": "crv7-b6-07",
+      "selectedWorld": 3,
+      "kind": "request",
+      "keyAct": "complies with the request",
+      "setting": "grocery store"
+    }
+  }
+]

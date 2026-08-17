@@ -1,0 +1,562 @@
+[
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"It's the Hartley award you got, not the Beckett one.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Please do put my name forward for it.",
+      "I'll draft something tonight and bring it in.",
+      "Nothing's changed on that front.",
+      "I'll fix that on my resume straight away."
+    ],
+    "correct_answer": "I'll fix that on my resume straight away.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The line corrects which of two awards was actually granted. Undertaking to amend the place where the wrong name has been written is the obvious follow-up. The reply about drafting something that evening treats this as a writing request; the reply asking to be put forward accepts a nomination that was not offered; and the reply reporting that nothing has changed answers a question about future plans rather than the factual correction just made.",
+    "distractor_rationales": {
+      "I'll draft something tonight and bring it in.": "\"It's the Hartley award you got\" corrects a fact rather than setting a task, so promising a draft tonight answers a request the line does not make.",
+      "Please do put my name forward for it.": "The line distinguishes two existing awards — \"not the Beckett one\" — and offers nothing forward-looking, so asking to have your name put forward accepts an offer never made.",
+      "Nothing's changed on that front.": "\"It's the Hartley award\" is a statement of fact, not a question, so answering that nothing has changed leaves the correction unacknowledged."
+    },
+    "_crv7": {
+      "localId": "crv7-b3-04",
+      "selectedWorld": 2,
+      "kind": "correction",
+      "keyAct": "updates a record",
+      "setting": "scholarship office"
+    }
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"The card reader's down and the technician can't come till morning.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "I'll get a cash float from the safe, then.",
+      "I'll work down the list before the doors open.",
+      "I'd much rather stay behind the glass.",
+      "I'll get the pickup list out on the counter."
+    ],
+    "correct_answer": "I'll get a cash float from the safe, then.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The line reports that card payments are unavailable for the whole evening. Drawing cash so that money can still be taken and change given is the workaround. The reply about putting a pickup list on the counter assumes the house is sold out; the reply about working down a list accepts a calling task that was not assigned; and the reply preferring to stay behind glass accepts a division of duties that was not proposed.",
+    "distractor_rationales": {
+      "I'll get the pickup list out on the counter.": "\"The card reader's down\" is a payments fault, so laying out a pickup list assumes a sold-out house the line never mentions.",
+      "I'll work down the list before the doors open.": "The line reports a fault lasting \"till morning\" and sets no calling task, so working down a list before doors open takes on an errand nobody gave.",
+      "I'd much rather stay behind the glass.": "\"The card reader's down\" describes equipment, not a share-out of duties, so choosing to stay behind glass accepts a split never proposed."
+    },
+    "_crv7": {
+      "localId": "crv7-b3-19",
+      "selectedWorld": 1,
+      "kind": "bad news",
+      "keyAct": "arranges a workaround",
+      "setting": "theatre box office booth"
+    }
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Sorry, that hold's from the library, not the bursar.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Instalments would be far more manageable.",
+      "I'll walk over to the stacks and sort it out.",
+      "Then I'll go claim my seminar seat right now.",
+      "I'll pay the balance this afternoon then."
+    ],
+    "correct_answer": "I'll walk over to the stacks and sort it out.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The line corrects a mistaken assumption about which department placed the block. Going to the department that actually owns it is the sensible next move. The reply about paying the balance that afternoon keeps treating this as a money matter at this desk; the reply about claiming a seminar seat assumes the block has been lifted; and the reply calling instalments more manageable accepts payment terms that are irrelevant to a library block.",
+    "distractor_rationales": {
+      "I'll pay the balance this afternoon then.": "\"not the bursar\" says the block is not a payment matter at this window, so promising to pay the balance addresses the wrong department entirely.",
+      "Then I'll go claim my seminar seat right now.": "The line reassigns the block rather than removing it — \"that hold's from the library\" — so going to claim a seminar seat assumes a clearance nobody has given.",
+      "Instalments would be far more manageable.": "\"from the library, not the bursar\" places the block outside this office's payment terms, so calling instalments more manageable answers an offer that could not have been made."
+    },
+    "_crv7": {
+      "localId": "crv7-b3-02",
+      "selectedWorld": 2,
+      "kind": "correction",
+      "keyAct": "redirects to the right office",
+      "setting": "bursar's payment window"
+    }
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Did you eat anywhere off the main campus last term?\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "I'll come back with it after class.",
+      "I'll watch for it on the statement.",
+      "I'd like to be put back on the cheaper one.",
+      "Only at the sports pavilion cafe."
+    ],
+    "correct_answer": "Only at the sports pavilion cafe.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The line asks a factual question about where meals were taken, which bears on how the account was charged. Naming the one outlying place answers it precisely. The reply asking to be moved to a cheaper plan assumes a billing error has been established; the reply about watching a statement assumes a refund is on its way; and the reply about returning after class answers a request to bring a card that was not made.",
+    "distractor_rationales": {
+      "I'd like to be put back on the cheaper one.": "\"Did you eat anywhere off the main campus\" is still fact-finding, so asking to be moved onto a cheaper plan assumes a conclusion nobody has drawn.",
+      "I'll watch for it on the statement.": "The line asks about \"last term\" rather than reporting a decision, so watching for a credit on a statement assumes a refund that has not been mentioned.",
+      "I'll come back with it after class.": "\"Did you eat anywhere\" needs an answer now, so promising to come back later with a card leaves the question unanswered."
+    },
+    "_crv7": {
+      "localId": "crv7-b3-12",
+      "selectedWorld": 3,
+      "kind": "question",
+      "keyAct": "supplies the fact",
+      "setting": "meal plan billing office"
+    }
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Approved already; it's gone through to payroll.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "I'll leave you to it, then — one less thing for me.",
+      "She's in this evening — I'll catch her then.",
+      "I'll budget for the gap — thanks for the warning.",
+      "I'll recode it to outreach — then send it back through."
+    ],
+    "correct_answer": "I'll leave you to it, then — one less thing for me.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The line reports that the timesheet cleared and is now with payroll. Noting the relief and leaving the supervisor to their work is the natural close. The reply about recoding to outreach and resubmitting assumes an error still needs fixing; the reply about budgeting for a gap assumes payment has been pushed back; and the reply about catching a shift lead assumes a signature is still outstanding.",
+    "distractor_rationales": {
+      "I'll recode it to outreach — then send it back through.": "\"Approved already\" means the sheet is finished with, so promising to recode it and resubmit reopens something that has closed.",
+      "I'll budget for the gap — thanks for the warning.": "\"it's gone through to payroll\" means the money is in train, so budgeting for a gap assumes a delay the line rules out.",
+      "She's in this evening — I'll catch her then.": "\"Approved already\" means every signature is in, so arranging for a shift lead to countersign chases an approval that already exists."
+    },
+    "_crv7": {
+      "localId": "crv7-b3-07",
+      "selectedWorld": 3,
+      "kind": "good news",
+      "keyAct": "closes the conversation",
+      "setting": "supervisor's desk, timesheet approval"
+    }
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"The guests are eating in the hall, not the marquee.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "I'll be there before the ovens go on.",
+      "I'll pick up hours somewhere else this week.",
+      "I'll set the trolleys up indoors.",
+      "I'd rather be pouring than scrubbing."
+    ],
+    "correct_answer": "I'll set the trolleys up indoors.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The line reports that the meal has been relocated from the outdoor structure to the building. Staging the service equipment inside follows from the new venue. The reply about picking up hours elsewhere assumes the shift has been cancelled; the reply about arriving before the ovens go on accepts an earlier start that was not requested; and the reply preferring pouring drinks to scrubbing accepts a role swap that was not offered.",
+    "distractor_rationales": {
+      "I'll pick up hours somewhere else this week.": "\"The guests are eating in the hall\" means service is going ahead, so looking for hours elsewhere responds to a cancellation that has not happened.",
+      "I'll be there before the ovens go on.": "The line changes the venue — \"not the marquee\" — not the start time, so promising to arrive before the ovens go on accepts an earlier call never made.",
+      "I'd rather be pouring than scrubbing.": "\"eating in the hall, not the marquee\" says where service happens, not what job you do, so preferring to pour drinks rather than scrub accepts a swap never offered."
+    },
+    "_crv7": {
+      "localId": "crv7-b3-18",
+      "selectedWorld": 1,
+      "kind": "neutral info",
+      "keyAct": "adapts the setup",
+      "setting": "event catering kitchen staging area"
+    }
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Your award's been cut because your household income rose.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "I'll ask my mother to send it over this week.",
+      "I'll check back Friday then — no point calling before.",
+      "I'll look into a loan to cover the difference then.",
+      "I can drop one of my jobs now — that changes everything."
+    ],
+    "correct_answer": "I'll look into a loan to cover the difference then.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The line reports a reduction in support and gives the reason for it. Finding another way to cover the resulting gap is the practical response. The reply about checking back after a committee meeting treats the decision as still pending; the reply about dropping a job assumes more money has arrived rather than less; and the reply about a parent sending a tax transcript offers documentation when the income figures have plainly already been assessed.",
+    "distractor_rationales": {
+      "I'll check back Friday then — no point calling before.": "\"Your award's been cut\" is a decision already made, so proposing to check back after a meeting waits on something that has happened.",
+      "I can drop one of my jobs now — that changes everything.": "\"been cut\" means less money, not more, so announcing you can drop a job reads a reduction as a windfall.",
+      "I'll ask my mother to send it over this week.": "The line shows the income has already been assessed — \"because your household income rose\" — so offering to have a tax transcript sent supplies what the office evidently already has."
+    },
+    "_crv7": {
+      "localId": "crv7-b3-03",
+      "selectedWorld": 2,
+      "kind": "bad news",
+      "keyAct": "seeks alternative funding",
+      "setting": "financial aid office"
+    }
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Have you done a pool rescue with a spinal board?\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Only in training — never with a real casualty.",
+      "I'll get on the rota — I've waited long enough.",
+      "I'll book another go — more lengths for me, then.",
+      "There's a course next week — I'll sign up for it."
+    ],
+    "correct_answer": "Only in training — never with a real casualty.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The line asks about practical experience with a specific rescue technique. Distinguishing practice from live incidents answers honestly and precisely. The reply about getting on the rota assumes clearance that the question is still probing; the reply about booking another attempt assumes a failed assessment; and the reply about signing up for a course responds to a missing prerequisite that was not named.",
+    "distractor_rationales": {
+      "I'll get on the rota — I've waited long enough.": "\"Have you done a pool rescue\" is a question about your background, so announcing you will get on the rota assumes an outcome nobody has given.",
+      "I'll book another go — more lengths for me, then.": "The line asks about experience \"with a spinal board\" rather than reporting a result, so booking another go responds to a failure that was not announced.",
+      "There's a course next week — I'll sign up for it.": "\"Have you done a pool rescue with a spinal board?\" asks for information, so promising to enrol on a course answers a requirement the line does not state."
+    },
+    "_crv7": {
+      "localId": "crv7-b3-20",
+      "selectedWorld": 3,
+      "kind": "question",
+      "keyAct": "qualifies their experience",
+      "setting": "pool office, lifeguard certification desk"
+    }
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Finance turned the film society down this round.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "I'll dig them out of the office cupboard.",
+      "We'll try again in the spring.",
+      "I'll tell the committee tonight.",
+      "Our secretary holds that role."
+    ],
+    "correct_answer": "We'll try again in the spring.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The line reports that the funding bid was refused on this occasion. Planning to submit again at the next opportunity is what a society does after an unsuccessful round. The reply about telling the committee that night assumes a success worth reporting; the reply naming a secretary answers a question about signatories that was not asked; and the reply about digging out receipts responds to a documents request that was not made.",
+    "distractor_rationales": {
+      "I'll tell the committee tonight.": "\"turned the film society down\" is a refusal, so promising to bring the committee the news treats a rejection as an award.",
+      "Our secretary holds that role.": "The line reports a decision — \"down this round\" — rather than asking about authority, so naming a secretary answers a question that was not asked.",
+      "I'll dig them out of the office cupboard.": "\"Finance turned the film society down\" means no money is being released, so promising to dig out receipts meets a condition attached to nothing."
+    },
+    "_crv7": {
+      "localId": "crv7-b3-14",
+      "selectedWorld": 1,
+      "kind": "bad news",
+      "keyAct": "plans a fresh attempt",
+      "setting": "student union treasurer's office"
+    }
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"The archives placement is yours if you still want it.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Good to know — I'll stop chasing it for now.",
+      "That's a shame — I'll see what else is still posted.",
+      "I do — I'll email them about a start date.",
+      "Afternoons mostly — my mornings are all lectures."
+    ],
+    "correct_answer": "I do — I'll email them about a start date.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The line holds a place open and asks only whether the student still wants it. Confirming and moving straight to arranging a start is the natural uptake. The reply expressing disappointment and looking at other postings assumes the place has gone elsewhere; the reply about giving up chasing assumes nothing is decided yet; and the reply describing free afternoons answers a question about availability that was not asked.",
+    "distractor_rationales": {
+      "That's a shame — I'll see what else is still posted.": "\"is yours if you still want it\" means the place is being held open, so treating it as a shame and looking at other postings gives up something already won.",
+      "Good to know — I'll stop chasing it for now.": "The line is a decision, not a timetable — \"The archives placement is yours\" — so resolving to stop chasing it abandons an offer already on the table.",
+      "Afternoons mostly — my mornings are all lectures.": "\"if you still want it\" asks only whether you accept, so describing which parts of the day are free answers a question the line does not put."
+    },
+    "_crv7": {
+      "localId": "crv7-b3-05",
+      "selectedWorld": 0,
+      "kind": "good news",
+      "keyAct": "accepts and initiates",
+      "setting": "work-study placement office"
+    }
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"We'll need the original receipts, not the photographs.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "That's a relief — I'd more or less written it off.",
+      "They're in my folder at home — I'll bring them in.",
+      "That would help a lot — money's tight this month.",
+      "I'll swallow that one — I'll ask first next time."
+    ],
+    "correct_answer": "They're in my folder at home — I'll bring them in.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The line asks for a particular form of evidence before the claim can be processed. Saying where the originals are and undertaking to bring them in meets that requirement. The reply accepting a personal loss assumes an outright refusal; the reply expressing relief assumes the claim is approved; and the reply welcoming a same-day push accepts an expedited payment that has not been offered.",
+    "distractor_rationales": {
+      "I'll swallow that one — I'll ask first next time.": "\"We'll need the original receipts\" keeps the claim alive pending paperwork, so resolving to swallow the cost gives up on something not yet refused.",
+      "That's a relief — I'd more or less written it off.": "The line withholds a decision until documents arrive — \"not the photographs\" — so expressing relief at an approval claims an outcome that has not been reached.",
+      "That would help a lot — money's tight this month.": "\"We'll need the original receipts\" means nothing can be paid yet, so welcoming a same-day push accepts a payment the line has just made conditional."
+    },
+    "_crv7": {
+      "localId": "crv7-b3-11",
+      "selectedWorld": 2,
+      "kind": "request",
+      "keyAct": "promises the documents",
+      "setting": "expense reimbursement counter"
+    }
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"We need your supervisor's signature on the costing page.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "I'll send it over Friday — that'll help a lot.",
+      "Then I've filled in the wrong one — I'll start again.",
+      "He's back tomorrow — I'll catch him then.",
+      "I'll use the wait — the methods section could be tidier."
+    ],
+    "correct_answer": "He's back tomorrow — I'll catch him then.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The line names a missing authorisation on a specific page of the application. Saying when the supervisor is available and undertaking to see him then meets the requirement. The reply about using a wait to tidy a section assumes a scheduling delay; the reply about having filled in the wrong form assumes a correction about categories; and the reply promising to send the application over on Friday accepts an offer that was not made.",
+    "distractor_rationales": {
+      "I'll use the wait — the methods section could be tidier.": "\"We need your supervisor's signature\" is an outstanding action now, so planning to use a wait leaves the application blocked.",
+      "Then I've filled in the wrong one — I'll start again.": "The line accepts the form and asks only for an endorsement \"on the costing page\", so concluding you used the wrong one acts on a correction never given.",
+      "I'll send it over Friday — that'll help a lot.": "\"We need your supervisor's signature\" asks for an authorisation, not a read-through, so thanking someone for offering to read your draft accepts an offer nobody made."
+    },
+    "_crv7": {
+      "localId": "crv7-b3-15",
+      "selectedWorld": 3,
+      "kind": "request",
+      "keyAct": "arranges the signature",
+      "setting": "research grant paperwork office"
+    }
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Come back with your ID card so I can verify you.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "The credit union one — I'll write the number down for you.",
+      "I'll stop checking the balance now — that's been weeks.",
+      "Okay — I'll get my supervisor to authorize them and resubmit.",
+      "It's in my bag downstairs — give me a moment."
+    ],
+    "correct_answer": "It's in my bag downstairs — give me a moment.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The line makes an identity check a precondition before anything else happens. Saying the card is close by and asking for a moment is straightforward compliance. The reply that stops the daily balance-checking treats the matter as finished when a step is still outstanding; the reply about authorizing hours and resubmitting responds to a rejection that was not announced; and the reply naming a credit union account volunteers banking details when what was asked for was proof of identity.",
+    "distractor_rationales": {
+      "I'll stop checking the balance now — that's been weeks.": "The line makes verification a precondition — \"so I can verify you\" — so treating the matter as settled and dropping the balance checks skips the step being asked for.",
+      "Okay — I'll get my supervisor to authorize them and resubmit.": "\"Come back with your ID card\" is a request for a document, not news of a refusal, so promising a resubmission answers something the line never said.",
+      "The credit union one — I'll write the number down for you.": "\"so I can verify you\" is about proving who you are, so volunteering a bank account does not satisfy what the line asks for."
+    },
+    "_crv7": {
+      "localId": "crv7-b3-01",
+      "selectedWorld": 3,
+      "kind": "request",
+      "keyAct": "explains a short delay in complying",
+      "setting": "payroll office window"
+    }
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"I'll take the heavy cartons if you do the shelving.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "That's a fair split — I'll make a start now.",
+      "That's a different floor, then — I'll wheel them up now.",
+      "I'll prop the back door open — it's easier from there.",
+      "I'll match it off box by box — I'm not signing blind."
+    ],
+    "correct_answer": "That's a fair split — I'll make a start now.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The line proposes to divide the work between the two of them along a clear line. Calling the division fair and getting going accepts it. The reply about propping the back door open answers a change of delivery point that was not announced; the reply about wheeling the cartons to a different floor assumes a correction about the contents; and the reply about matching off box by box takes on a verification job that was not asked for.",
+    "distractor_rationales": {
+      "I'll prop the back door open — it's easier from there.": "\"I'll take the heavy cartons\" is an offer about who does what, so propping the back door open responds to a change of arrival point never mentioned.",
+      "That's a different floor, then — I'll wheel them up now.": "The line divides the work — \"if you do the shelving\" — and corrects nothing, so placing the cartons on a different floor acts on a correction nobody made.",
+      "I'll match it off box by box — I'm not signing blind.": "\"if you do the shelving\" assigns you shelving, not reconciliation, so promising to match it off box by box takes on a different task from the one offered."
+    },
+    "_crv7": {
+      "localId": "crv7-b3-09",
+      "selectedWorld": 3,
+      "kind": "offer",
+      "keyAct": "accepts the division of labour",
+      "setting": "bookstore stockroom"
+    }
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"They've cut the evening shelving shift for the rest of term.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "I'll ask about weekend work instead.",
+      "I'll keep an eye on the pile up front.",
+      "An earlier start would suit me much better.",
+      "I'll run it up to the top floor."
+    ],
+    "correct_answer": "I'll ask about weekend work instead.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The line reports that a regular block of paid hours has been withdrawn for the remainder of the term. Enquiring about work at another time is the practical way to replace the lost income. The reply about running a trolley upstairs responds to an errand that was not set; the reply preferring an earlier start accepts a swap that was not offered; and the reply about watching a pile at the front desk responds to news about a jammed chute that was not given.",
+    "distractor_rationales": {
+      "I'll run it up to the top floor.": "\"They've cut the evening shelving shift\" removes the shift itself, so promising to run a trolley up before clocking off treats a cancelled shift as a working one.",
+      "An earlier start would suit me much better.": "The line reports a cut \"for the rest of term\", not an offer to trade hours, so welcoming an earlier start accepts a swap that nobody put forward.",
+      "I'll keep an eye on the pile up front.": "\"cut the evening shelving shift\" is about your hours, so promising to keep an eye on a pile at the desk answers an operational problem never raised."
+    },
+    "_crv7": {
+      "localId": "crv7-b3-16",
+      "selectedWorld": 1,
+      "kind": "bad news",
+      "keyAct": "looks for other hours",
+      "setting": "library stacks shelving workroom"
+    }
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"What drew you to working in an office like this?\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "I'll send those across tonight.",
+      "I'll wait to hear from you then.",
+      "I like work where the day has shape.",
+      "I'd be very glad to take it on."
+    ],
+    "correct_answer": "I like work where the day has shape.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The line asks the candidate to explain their interest in this kind of work. Naming what appeals about a structured working day answers it plainly. The reply accepting the job assumes an offer that has not been made; the reply agreeing to wait treats a question as a dismissal; and the reply promising to send something across that evening answers a request for documents that was not made.",
+    "distractor_rationales": {
+      "I'd be very glad to take it on.": "\"What drew you to working\" is a question still being asked of a candidate, so accepting the job assumes a decision nobody has announced.",
+      "I'll wait to hear from you then.": "The line puts a question to you directly — \"What drew you\" — so saying you will wait to hear back leaves it unanswered.",
+      "I'll send those across tonight.": "\"working in an office like this\" asks about motivation, not paperwork, so promising to send something across tonight answers a different request."
+    },
+    "_crv7": {
+      "localId": "crv7-b3-06",
+      "selectedWorld": 2,
+      "kind": "question",
+      "keyAct": "gives a reason for interest",
+      "setting": "campus job interview room"
+    }
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Could you cover Priya's session while she's away?\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "I'd take the earlier slot, gladly.",
+      "I can certainly take that one on.",
+      "I'll meet her over there instead.",
+      "I'll free that slot up for someone else."
+    ],
+    "correct_answer": "I can certainly take that one on.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The line asks the tutor to stand in for an absent colleague. Agreeing to take the session is the cooperative answer. The reply freeing a slot for someone else assumes a tutee has withdrawn; the reply about meeting her at another venue assumes a room change; and the reply taking the earlier slot accepts a schedule change that was not proposed.",
+    "distractor_rationales": {
+      "I'll free that slot up for someone else.": "\"Could you cover Priya's session\" adds work rather than removing a student, so freeing a slot up for someone else responds to a withdrawal that has not happened.",
+      "I'll meet her over there instead.": "The line is about covering a colleague — \"while she's away\" — not about where you meet, so promising to meet her somewhere else answers a venue change nobody mentioned.",
+      "I'd take the earlier slot, gladly.": "\"Could you cover Priya's session\" is a request for help, not an offer to move your hours, so taking the earlier slot accepts something never proposed."
+    },
+    "_crv7": {
+      "localId": "crv7-b3-08",
+      "selectedWorld": 2,
+      "kind": "request",
+      "keyAct": "agrees to cover",
+      "setting": "tutoring centre scheduling desk"
+    }
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Your contract's been signed off by the department head.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "I'll keep my other shifts for now.",
+      "I'll plan my summer around that ending.",
+      "It's all with the HR office already.",
+      "I'll start logging hours from Monday."
+    ],
+    "correct_answer": "I'll start logging hours from Monday.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The line confirms the appointment has final approval. Beginning to record work from the start of the week follows from being cleared to begin. The reply about keeping other shifts assumes the post has stalled; the reply that the paperwork is with HR answers a question about documents that was not asked; and the reply about planning a summer around an end date responds to a correction about the contract's length that was not made.",
+    "distractor_rationales": {
+      "I'll keep my other shifts for now.": "\"been signed off\" means the post is live, so holding on to other shifts hedges against a freeze the line rules out.",
+      "It's all with the HR office already.": "The line reports an approval — \"by the department head\" — rather than asking about documents, so saying everything is with HR answers a question never put.",
+      "I'll plan my summer around that ending.": "\"Your contract's been signed off\" says nothing is wrong with its terms, so planning your summer around an ending responds to a correction that was not made."
+    },
+    "_crv7": {
+      "localId": "crv7-b3-10",
+      "selectedWorld": 0,
+      "kind": "good news",
+      "keyAct": "starts work",
+      "setting": "research assistant contract meeting"
+    }
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"We can spread the balance across the rest of term.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Give me a pen — I'll do it at the counter here.",
+      "I'd like that — the lump sum was never going to work.",
+      "I'd better set up a standing order — I can't risk that.",
+      "I'll shift my wages to land just before — that should hold."
+    ],
+    "correct_answer": "I'd like that — the lump sum was never going to work.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The line offers to break a single large payment into smaller ones over the remaining weeks. Accepting, and saying why paying it all at once was impossible, takes up the offer. The reply about setting up a standing order treats a warning about consequences as the point; the reply about timing wages to land before the dates responds to information about a fixed calendar; and the reply asking for a pen answers a request to sign something that was not made.",
+    "distractor_rationales": {
+      "I'd better set up a standing order — I can't risk that.": "\"We can spread the balance\" is an offer of terms, not a warning about consequences, so resolving to set up a standing order guards against a penalty nobody mentioned.",
+      "I'll shift my wages to land just before — that should hold.": "The line proposes something new — \"across the rest of term\" — rather than describing a fixed calendar, so promising to shift wages to land just before the dates answers information never given.",
+      "Give me a pen — I'll do it at the counter here.": "\"We can spread the balance\" invites a decision, not a signature, so asking for a pen responds to a document that has not been produced."
+    },
+    "_crv7": {
+      "localId": "crv7-b3-13",
+      "selectedWorld": 0,
+      "kind": "offer",
+      "keyAct": "accepts spreading the cost",
+      "setting": "tuition instalment desk"
+    }
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Cover the Sunday desk if nobody else picks it up.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "I'll change my alarm — I'd planned to be in early.",
+      "I'll bookmark it — the corkboard was never current.",
+      "I can finally go home — that's a weight off.",
+      "Put me down for it — that day's quiet anyway."
+    ],
+    "correct_answer": "Put me down for it — that day's quiet anyway.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The line asks the worker to take a shift that may otherwise go unfilled. Volunteering outright, and noting that the day is undemanding, meets the request generously. The reply about changing an alarm responds to a correction about which shift is held; the reply about finally going home responds to leave being granted; and the reply about bookmarking something responds to news that the rota has moved online.",
+    "distractor_rationales": {
+      "I'll change my alarm — I'd planned to be in early.": "\"Cover the Sunday desk\" adds a shift rather than correcting one, so resetting an alarm answers a correction that was never made.",
+      "I can finally go home — that's a weight off.": "The line asks you to work — \"if nobody else picks it up\" — so treating it as leave and going home reads a request for cover as time off.",
+      "I'll bookmark it — the corkboard was never current.": "\"Cover the Sunday desk\" asks for a commitment, not a note about where the rota lives, so promising to bookmark it leaves the request unanswered."
+    },
+    "_crv7": {
+      "localId": "crv7-b3-17",
+      "selectedWorld": 2,
+      "kind": "request",
+      "keyAct": "volunteers for the shift",
+      "setting": "IT student-worker rota board"
+    }
+  }
+]

@@ -184,6 +184,46 @@
           "verdict": "items in sub-batch 3 are missing the listeningTask field, so the draw would bucket them as unclassified and never serve them."
         }
       }
+    },
+    {
+      "id": "crv7-2026-08-18",
+      "createdAt": "2026-08-18",
+      "targetTest": "toefl",
+      "section": "listening",
+      "task": "choose_response",
+      "family": "mc_hidden_source",
+      "spec": {
+        "n": 132,
+        "authors": 7,
+        "method": "four symmetric worlds per item; seeded RNG picks the spoken world AFTER text freeze, so no author knows the key"
+      },
+      "contentSha": "2820a98df26fa6f312a253e10da7c96be5130e1e34be724aa4f4c9cb8da58580",
+      "status": "shipped",
+      "cohort": "cr-v7",
+      "note": "Evidence detail in CRV7-RESULT.md. The blind attacks ran at pre-edit shas; the deltas since are documented there: the cohesion pass (39 items, distractors only, re-attacked +5.6 CLEAR) and the 2026-08-18 pre-ship repair of the two pre-existing two-defensible items (idx 59 crv7-b3-20, idx 60 crv7-b3-14 — one distractor each, keys/lines/positions untouched, structural checks re-run green). Shipped on Andy's explicit approval 2026-08-18.",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "verdict": "132/132 items: 4 choices, key present among choices, listeningTask=choose_response on every item, letters dealt flat 33/33/33/33."
+        },
+        "withsource": {
+          "passed": true,
+          "verdict": "1,584 kill-quotes machine-verified at render (each world's line quotably kills the other three replies). Dedicated exclusivity checker (all 4 options WITH the line, key unmarked): sole-acceptable option matched the key 36/36 on clean items; the 3 defects it surfaced (crv7-b4-12, crv7-b3-20, crv7-b3-14) were all repaired — see note."
+        },
+        "nosource": {
+          "passed": true,
+          "n": 60,
+          "verdict": "Three pre-registered blind attacks, kill bar >= +30: S1 pilot 12 margin -16.7 CLEAR; S2 sample 24 margin +1.4 CLEAR; post-cohesion re-attack 24 margin +5.6 CLEAR. Key independent of text by construction (RNG never saw the text)."
+        },
+        "elimination": {
+          "passed": true,
+          "verdict": "Topical-distance elimination audited by 4 scorers + 2 calibrated re-probes: 52 topic-distant distractors across 39 items rewritten in-topic so topic-matching cannot eliminate; re-attack after the edits +5.6 CLEAR, edited subset (29.2%) no more guessable than unedited (33.3%)."
+        },
+        "tells": {
+          "passed": true,
+          "verdict": "Letters 33/33/33/33; key length rank worst slot 34.1% (<40% bar); hedge 0.8%/0.8% and intensifier 1.5%/0.3% keys vs distractors; no new near-dup pairs. The loudest solver heuristic (reaction-token) counted against the population: keys 5.3% vs distractors 8.3%, and where exactly one option carries it, it is the key 15.8% (chance 25%)."
+        }
+      }
     }
   ],
   "auditedCohorts": [

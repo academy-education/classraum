@@ -23,10 +23,10 @@ process is not reporting the position.**
 
 | | items | what is true |
 |---|---|---|
-| **Choose a Response** | 72 | **Known broken.** Solvable without the audio, on two independent instruments. **Live to students right now.** |
-| Everything else | 3,255 | **Not known to be broken** — never read by a person |
+| **Choose a Response (cr-v1/cr-v2/harvest-v1)** | 0 live | **Was the one known-broken cohort.** ARCHIVED 2026-08-18 — all 63 then-live rows. Replaced by cr-v7 (132 items), which cleared both blind-attack gates and shipped on Andy's explicit approval; the Listening blueprint is back to the ETS shape (14 delivered). |
+| Everything else | 3,387 | **Not known to be broken** — never read by a person (cr-v7 included: attack-cleared, human sitting still worth having) |
 
-2.2% is a quality problem. The rest is a scheduling
+The known quality problem is resolved; what remains is the scheduling
 problem — and it is UNBLOCKED: **B4 PASSED on 2026-08-15**
 (calibration-2026-08-15: 0% abstention, no shortcut either half; see §5).
 Next human work is B2, the two never-read cohorts.
@@ -37,7 +37,8 @@ Every cohort a human has actually read came back clean. None has ever failed a h
 
 `blind` is how often three AI solvers pick the right answer with the
 audio withheld. `control` is the best a fixed-letter guesser could do.
-**A gap near zero is the goal.** Nothing has reached it.
+**A gap near zero is the goal.** cr-v7 reached it — by changing the
+method, not the brief — and SHIPPED on 2026-08-18.
 
 | attempt | changed | blind | control | gap | verdict |
 |---|---|---|---|---|---|
@@ -46,15 +47,21 @@ audio withheld. `control` is the best a fixed-letter guesser could do.
 | **cr-v3** | New method: distractors written as the correct reply to a near-miss version of the spoken line. | 77.8% | 25% | **+52.8** | FAILED |
 | **cr-v4** | Varied the spoken line: good news, a request, an offer, a correction, an apology, an announcement. | 47.2% | 25% | **+22.2** | INCONCLUSIVE |
 | **cr-v5** | cr-v4 plus a ban on one give-away phrase the solvers named. | 72.2% | 25% | **+47.2** | FAILED |
+| **cr-v6** | cr-v4's brief held EXACTLY, fresh items — the replication test. | 72.2% | 25% | **+47.2** | FAILED |
+| **cr-v7** | New METHOD: four symmetric worlds per item, seeded RNG picks the key after text freeze — no author knows the key. | 26.4% | 25% | **+1.4** | CLEARED — SHIPPED 2026-08-18 |
 
-The shape of that table is the finding: **each attempt removes the
-previous tell and introduces a new one.** Why each failed:
+The shape of the first six rows is the finding: **each attempt removes
+the previous tell and introduces a new one** — until the seventh
+removed the authorship asymmetry itself. Why each failed (and why cr-v7
+did not):
 
 - **cr-v1 — original authoring** — The brief fixed four kinds of wrong answer — over-formal, rude, dismissive, topic-shifting. The key is then simply the option that is none of them, and all three solvers named the roster unprompted.
 - **narrow repair** — Removing one of four slots leaves three, and the key is still the option that is none of them. Moved the score ~3 points; I predicted 28.4% beforehand and was wrong by 46.
 - **cr-v3** — The method was sound but every spoken line was the same kind of line — two-part bad news — so the key was always rueful acceptance and the distractors always relief or disbelief. The roster moved from the answers up to the questions and got stronger.
 - **cr-v4** — BEST RESULT. Solvers stayed confident, used the same heuristic, and got worse — the signature of a tell actually removed. Inside the pre-registered 20-30 band at n=12, so not a pass, and never re-tested unchanged.
 - **cr-v5** — The ban stripped questions out of the wrong answers, so pre-flight flagged an imbalance, and repairing THAT by hand made every wrong answer sound hedgy — "I thought", "I gather" — in 6 of 36 distractors and 0 of 12 keys. I reintroduced a roster while fixing a cosmetic check.
+- **cr-v6** — cr-v4 held exactly, nothing added or removed, fresh scenarios: +47.2, indistinguishable from cr-v5 and from the original defect. cr-v4's +22.2 was a draw, not a method. This settled that no BRIEF fixes the task type.
+- **cr-v7** — CLEARED, because the key was never authored: each item is four mutually exclusive worlds written symmetrically (each with its own line AND reply, 1,584 kill-quotes machine-verified), and a seeded RNG picks the spoken world only after the text is frozen. The key is independent of every text feature by construction; solvers converged on a loud heuristic and it was COUNTED at 15.8% (chance 25%). S1 −16.7, S2 +1.4, post-cohesion re-attack +5.6 — all under the pre-registered +30 kill bar.
 
 ---
 
@@ -149,6 +156,52 @@ B4 is *Calibrate the reviewer before spending another cohort* (~20 minutes — o
 - **The grader is not calibrated, and cannot be from public data.** Only two scored ETS samples exist for our task types. Do not tune prompts against them — two items cannot support fitting.
 
 ## 5. Found while fixing
+
+### CR-V7 SHIPPED — banked, old cohort archived, ETS blueprint shape restored (2026-08-18)
+
+Shipped on Andy's explicit approval. The order of operations, each step
+verified before the next:
+
+1. **The 2 watch items repaired first.** idx 59 crv7-b3-20 ("There's a
+   course next week — I'll sign up for it" was a natural implicit-no to
+   the spinal-board question) and idx 60 crv7-b3-14 ("I'll tell the
+   committee tonight" naturally relayed the funding rejection). One
+   distractor rewritten in each — keys, lines, letter positions and the
+   other 130 items byte-identical — each replacement carrying a
+   quote-anchored kill rationale. Structural checks re-run over the full
+   cohort: 396/396 rationales anchor a verbatim 2+-word span, letters
+   33/33/33/33, key length rank worst slot 34.1% (<40%), no new
+   near-dups.
+2. **Banked 132** into study_item_bank (cohort `cr-v7`, verify_meta
+   `{source:'crv7', shipped:'2026-08-18'}`), via `bank-crv7.mjs` through
+   the ledger gate (`crv7-2026-08-18`). Deliberately NOT through
+   insert-listening: its insert-time shuffle would replace the flat-dealt
+   letters the attacks measured. 5 random rows re-read byte-identical to
+   the file.
+3. **Archived the old cohort**: all 63 then-live non-cr-v7 Choose a
+   Response rows (49 cr-v1, 13 cr-v2, 1 harvest-v1). Live unarchived CR
+   count == 132, verified by count query.
+4. **Blueprint restored** to the pre-2026-08-11 ETS shape, byte-for-byte
+   (diffed against git 51dfe1d^): choose_response 14/11/9/3 (scored
+   8/7/3), conversation 12/6/6/6 (4/4/4), announcement 6/6/6/0 (4/4/0),
+   academic_talk 16/4/0/12 (4/0/8). All invariants re-derived: 48
+   delivered both paths, scored 20/15/15, even counts, CR m1 odd,
+   stage-2 inversion. listening-blueprint.test.ts now pins EVERY number
+   of every row and was break-tested (mutated blueprint → 3 failures).
+   **Andy's standing rule, recorded in assemble.ts and the test:** the
+   delivered count returns to the real ETS shape and NEVER changes
+   again.
+5. **Live draw proof** as the camp test student via
+   POST /api/study/test/assemble: module 1 = 27 questions at 11/6/6/4;
+   whole-section = 48 at 14/12/6/16; every choose_response question
+   served matched a cr-v7 item on passage+key (11/11 and 14/14).
+   Fillability by count query: CR 132, conversation 193, announcement
+   121, academic_talk 274 live rows.
+
+The human sitting remains WORTH HAVING (watch items for it are listed in
+CRV7-RESULT.md) but is no longer a gate the ship waits on — Andy's
+approval was the verdict. A3 is closed; A3_ATTEMPTS in bank-register.ts
+carries the cr-v6 and cr-v7 rows.
 
 ### CR-V7 cohesion pass: 39 items' distractors pulled into the line's topic, re-attack +5.6 CLEAR; 2 pre-existing two-defensible items found and NOT forced (2026-08-18)
 

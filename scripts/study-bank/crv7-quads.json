@@ -1,0 +1,655 @@
+{
+  "cohort": "cr-v7",
+  "stage": 1,
+  "method": "symmetric four-world authoring, post-hoc seeded key selection",
+  "items": [
+    {
+      "localId": "cr7-01",
+      "setting": "library circulation desk",
+      "worlds": [
+        {
+          "kind": "good news",
+          "keyAct": "taking possession",
+          "line": "Your interlibrary loan came in, and it's checked out to you already.",
+          "reply": "I'll take it with me on my way out, then.",
+          "explanationIfSpoken": "The line reports that a requested book has arrived and been put on the student's record. The reply that walks out with the book takes that up by acting on a loan that already exists, without restating that it arrived. The reply that asks about another campus library hunts for a copy that is standing on the counter; the reply about sitting upstairs and copying pages assumes the volume cannot leave, which a completed checkout contradicts; and the reply that fetches something from a locker answers a condition the clerk never set.",
+          "kills": {
+            "1": "\"checked out to you already\" — the loan is complete and in the student's name, so asking whether some other campus might lend the title chases a book that has already been delivered.",
+            "2": "\"checked out to you already\" — a borrower with the volume on loan has no reason to plan a session upstairs photographing pages instead of taking it home.",
+            "3": "\"Your interlibrary loan came in\" — nothing is being withheld pending a return, so running off to fetch another book clears an obstacle that does not exist."
+          }
+        },
+        {
+          "kind": "bad news",
+          "keyAct": "seeking an alternative source",
+          "line": "The lending library turned us down, so that title isn't coming.",
+          "reply": "Is there another campus library that might lend it?",
+          "explanationIfSpoken": "The line reports that the request was refused and no copy will arrive. The reply that asks about another campus library takes that up by looking for a different supplier, which only makes sense once this route has closed. The reply that walks out with the book collects something that will never be there; the reply about sitting upstairs and copying pages assumes a physical copy in the building; and the reply that fetches something from a locker satisfies a condition nobody attached to a request that was refused outright.",
+          "kills": {
+            "0": "\"that title isn't coming\" — there is no volume at the desk, so leaving with it is impossible.",
+            "2": "\"turned us down\" — no copy reached this building, so there is nothing upstairs to sit with or photograph.",
+            "3": "\"that title isn't coming\" — no release is pending on anything the student returns, so producing an overdue book changes nothing."
+          }
+        },
+        {
+          "kind": "neutral info",
+          "keyAct": "adapting the plan to a constraint",
+          "line": "That title's here, but it's reference only, so no checkout.",
+          "reply": "I'll sit with it upstairs and copy the pages I need.",
+          "explanationIfSpoken": "The line states that the book is on site but restricted to in-building use. The reply about sitting upstairs and copying pages takes that up by planning around a copy that cannot leave, without repeating the restriction. The reply that walks out with the book does exactly what the line rules out; the reply that asks about another campus library searches elsewhere for something already on the premises; and the reply that fetches something from a locker treats the restriction as a debt that could be cleared.",
+          "kills": {
+            "0": "\"no checkout\" — the volume cannot be removed, so taking it out on the way is the one thing the line excludes.",
+            "1": "\"That title's here\" — the book is in this building, so asking which other campus might lend it looks past what is on the counter.",
+            "3": "\"it's reference only\" — the copy is not released to anyone under any condition, so there is no hold on the student to clear."
+          }
+        },
+        {
+          "kind": "request",
+          "keyAct": "complying with a condition",
+          "line": "Before I release it, I'll need that overdue book back.",
+          "reply": "It's in my locker — I'll run and get it.",
+          "explanationIfSpoken": "The line makes handing over the requested volume conditional on the student returning an overdue item. The reply that fetches something from a locker takes that up by going to satisfy the condition, treating the outstanding item as the thing standing in the way. The reply that walks out with the book ignores a handover that has not happened; the reply that asks about another campus library looks for a copy the clerk is holding; and the reply about sitting upstairs and copying pages answers a restriction on use that was never mentioned.",
+          "kills": {
+            "0": "\"Before I release it\" — the handover is conditional and has not happened, so nothing can be carried out of the building yet.",
+            "1": "\"Before I release it\" — the clerk has the copy in hand, which makes a search of other campuses beside the point.",
+            "2": "\"I'll need that overdue book back\" — what is being asked concerns an item the student holds, not any limit on how this one may be used."
+          }
+        }
+      ]
+    },
+    {
+      "localId": "cr7-02",
+      "setting": "shared apartment kitchen",
+      "worlds": [
+        {
+          "kind": "good news",
+          "keyAct": "resuming a suspended routine",
+          "line": "The repair guy swapped the fridge's compressor while you were out.",
+          "reply": "So I can move my groceries back in tonight.",
+          "explanationIfSpoken": "The line reports a completed repair to the appliance itself. The reply about moving groceries back in tonight takes that up by resuming normal use, which presupposes a working fridge. The reply about keeping the cooler going waits for something that has already happened; the reply that connects it to the microwave blames wiring the line has located in the appliance; and the reply about a noon class leaving mornings free agrees to be home for a visit that is already over.",
+          "kills": {
+            "1": "\"swapped the fridge's compressor\" — the existing unit was mended, so there is no replacement on its way to wait for.",
+            "2": "\"swapped the fridge's compressor\" — the fault was inside the appliance, so nothing else on that circuit was ever implicated.",
+            "3": "\"while you were out\" — the technician has already been and gone, so arranging to be home is arranging for a visit that happened."
+          }
+        },
+        {
+          "kind": "bad news",
+          "keyAct": "arranging an interim workaround",
+          "line": "They can't fix it — the new one comes Saturday instead.",
+          "reply": "I'll keep using the cooler until it turns up, then.",
+          "explanationIfSpoken": "The line reports that repair failed and a replacement is arriving later in the week. The reply about keeping the cooler going takes that up by covering the gap until the delivery, which presupposes days without a fridge. The reply about moving groceries back in tonight stores food in an appliance that does not work; the reply that connects it to the microwave locates the fault outside a unit the line has condemned; and the reply about a noon class leaving mornings free answers a plan for tomorrow that has been overtaken.",
+          "kills": {
+            "0": "\"the new one comes Saturday\" — nothing cold is available before the weekend, so food cannot go back in tonight.",
+            "2": "\"They can't fix it\" — the appliance itself has failed, which rules out the wiring as the culprit.",
+            "3": "\"the new one comes Saturday\" — what is scheduled is a delivery later in the week, so tomorrow morning has nothing attached to it."
+          }
+        },
+        {
+          "kind": "correction",
+          "keyAct": "drawing a further inference",
+          "line": "Turns out it wasn't the fridge — that whole outlet is dead.",
+          "reply": "That explains the microwave dying last week too.",
+          "explanationIfSpoken": "The line corrects the diagnosis: the appliance is sound and the power point is at fault. The reply that connects it to the microwave takes that up by extending the new diagnosis to another symptom, which only follows if the wiring is to blame. The reply about moving groceries back in tonight assumes power that is still off; the reply about keeping the cooler going waits for a replacement nobody has ordered; and the reply about a noon class leaving mornings free accepts an errand the line never asks for.",
+          "kills": {
+            "0": "\"that whole outlet is dead\" — there is still no power at that point, so nothing can be stored there tonight.",
+            "1": "\"it wasn't the fridge\" — the appliance is sound, so no replacement has been ordered to wait on.",
+            "3": "\"that whole outlet is dead\" — the line reports a finding and asks nothing of the listener, so agreeing to be home answers a request nobody made."
+          }
+        },
+        {
+          "kind": "request",
+          "keyAct": "committing to be present",
+          "line": "Can you stay in tomorrow morning so the technician can get in?",
+          "reply": "My class is at noon, so mornings are fine.",
+          "explanationIfSpoken": "The line asks the roommate to be home for an access visit. The reply about a noon class leaving mornings free takes that up by checking the request against a fixed commitment and agreeing. The reply about moving groceries back in tonight assumes a repair that has not begun; the reply about keeping the cooler going assumes a replacement rather than a visit; and the reply that connects it to the microwave draws a conclusion from a diagnosis nobody has made yet.",
+          "kills": {
+            "0": "\"tomorrow morning\" — nobody has even looked at the appliance yet, so it cannot be usable this evening.",
+            "1": "\"so the technician can get in\" — what is being arranged is a repair visit, not the arrival of a new unit.",
+            "2": "\"so the technician can get in\" — no one has inspected anything yet, so there is no finding to extend to other appliances."
+          }
+        }
+      ]
+    },
+    {
+      "localId": "cr7-03",
+      "setting": "professor's office hours",
+      "worlds": [
+        {
+          "kind": "neutral info",
+          "keyAct": "fitting a new schedule",
+          "line": "I'm moving office hours to Thursdays for the rest of term.",
+          "reply": "I'll come by after my Thursday seminar, then.",
+          "explanationIfSpoken": "The line announces a standing change to when the instructor is available. The reply about coming by after a Thursday seminar takes that up by slotting the new day into the student's own week. The reply asking for comments without a grade responds to a marking decision that was never mentioned; the reply promising something by the end of next week accepts an offer nobody made; and the reply naming the migration topic answers a question that was not asked.",
+          "kills": {
+            "1": "\"moving office hours to Thursdays\" — the line concerns availability, so nothing has been said about grading or about any deadline being missed.",
+            "2": "\"for the rest of term\" — the announcement is about a recurring time slot, not an invitation to send more work.",
+            "3": "\"moving office hours to Thursdays\" — no question has been put to the student, so volunteering a choice of topic answers nothing."
+          }
+        },
+        {
+          "kind": "bad news",
+          "keyAct": "salvaging what is still available",
+          "line": "Your draft came in after the cutoff, so it's ungraded.",
+          "reply": "I'd still like comments on it, if that's possible.",
+          "explanationIfSpoken": "The line reports that a late submission will carry no mark. The reply asking for comments without a grade takes that up by trying to keep the feedback once the mark is gone. The reply about coming by after a Thursday seminar answers a change of hours that was not announced; the reply promising something by the end of next week offers further work into a window the line says has closed; and the reply naming the migration topic settles a choice the finished draft has already settled.",
+          "kills": {
+            "0": "\"came in after the cutoff\" — the subject is a submission and its mark, and no meeting time has been proposed.",
+            "2": "\"so it's ungraded\" — the window has closed on this piece of work, so sending another version into it is beside the point.",
+            "3": "\"Your draft came in\" — the paper is written and handed in, so the choice of topic is long behind the conversation."
+          }
+        },
+        {
+          "kind": "offer",
+          "keyAct": "accepting with a commitment",
+          "line": "I'm happy to read a second draft before you submit.",
+          "reply": "I'll send you one by the end of next week.",
+          "explanationIfSpoken": "The line offers to look at another version ahead of the deadline. The reply promising something by the end of next week takes that up by accepting and naming when the work will arrive. The reply about coming by after a Thursday seminar answers a scheduling announcement; the reply asking for comments without a grade assumes a refusal that has not happened; and the reply naming the migration topic answers a question about direction that the mention of a second draft has already resolved.",
+          "kills": {
+            "0": "\"before you submit\" — the offer concerns the work itself, and nothing has been said about when the instructor is in.",
+            "1": "\"before you submit\" — the paper has not gone in yet, so nothing has been marked or refused a mark.",
+            "3": "\"read a second draft\" — a draft already exists, which means the topic is settled and not open to being announced."
+          }
+        },
+        {
+          "kind": "question",
+          "keyAct": "answering with a reason",
+          "line": "Which of the two topics did you decide to write on?",
+          "reply": "I went with the migration one — the sources were easier.",
+          "explanationIfSpoken": "The line asks the student which of two candidate topics was chosen. The reply naming the migration topic takes that up by answering and adding the reason behind the choice. The reply about coming by after a Thursday seminar responds to a schedule that was not announced; the reply asking for comments without a grade assumes work has been handed in and marked; and the reply promising something by the end of next week accepts an offer of feedback that was not extended.",
+          "kills": {
+            "0": "\"Which of the two topics\" — a direct question is on the table, and no change of office hours has been mentioned.",
+            "1": "\"did you decide to write on\" — the paper is still at the choosing stage, so nothing has been submitted or graded.",
+            "2": "\"Which of the two topics\" — no draft exists yet, so there is nothing to promise for next week and no offer to accept."
+          }
+        }
+      ]
+    },
+    {
+      "localId": "cr7-04",
+      "setting": "chemistry teaching lab",
+      "worlds": [
+        {
+          "kind": "correction",
+          "keyAct": "putting the record right",
+          "line": "Your name's down for Section B, not the one you've been attending.",
+          "reply": "I'll switch the registration before the next session.",
+          "explanationIfSpoken": "The line corrects a mismatch between the student's enrolment and the section actually attended. The reply about switching the registration takes that up by fixing the paperwork rather than the habit. The reply about separating by hand answers an equipment failure that was not reported; the reply that takes mornings accepts access nobody offered; and the reply about samples in the fridge answers a question about progress that was not asked.",
+          "kills": {
+            "1": "\"Your name's down for Section B\" — the issue raised is a roster entry, and no instrument has been said to be unavailable.",
+            "2": "\"not the one you've been attending\" — the line points out a clerical mismatch and extends no offer of extra access.",
+            "3": "\"Your name's down for Section B\" — nothing has been asked about the student's samples or how far the work has got."
+          }
+        },
+        {
+          "kind": "bad news",
+          "keyAct": "substituting a method",
+          "line": "The centrifuge is out of service until the parts arrive.",
+          "reply": "I'll do the separation by hand this week, then.",
+          "explanationIfSpoken": "The line reports that a key instrument is unavailable for an indefinite stretch. The reply about separating by hand takes that up by choosing a method that does not need the machine. The reply about switching the registration answers a roster problem that was not raised; the reply that takes mornings accepts extra bench time that would not help while the instrument is down; and the reply about samples in the fridge answers a question about progress that was never put.",
+          "kills": {
+            "0": "\"out of service\" — the obstacle is a broken instrument, and nothing has been said about which section the student belongs to.",
+            "2": "\"until the parts arrive\" — more hours at the bench are no use while the machine everyone needs is unavailable.",
+            "3": "\"The centrifuge is out of service\" — the line reports the state of the equipment and asks nothing about anyone's samples."
+          }
+        },
+        {
+          "kind": "offer",
+          "keyAct": "accepting and specifying",
+          "line": "I can open the lab early if you need extra bench time.",
+          "reply": "Mornings would help — I'd finish before my seminar.",
+          "explanationIfSpoken": "The line offers earlier access to the room. The reply that takes mornings accepts and explains what the extra hours would buy. The reply about switching the registration answers an enrolment error nobody mentioned; the reply about separating by hand works around a broken instrument the line does not report; and the reply about samples in the fridge answers a question about progress that was not asked.",
+          "kills": {
+            "0": "\"open the lab early\" — what is on the table is access to the room, not anything about which section the student is listed in.",
+            "1": "\"if you need extra bench time\" — the constraint being addressed is hours, which implies the equipment itself is available.",
+            "3": "\"I can open the lab early\" — this is an offer of access, not a question about whether any work has been done."
+          }
+        },
+        {
+          "kind": "question",
+          "keyAct": "reporting status",
+          "line": "Did you get your samples run, or are they still waiting?",
+          "reply": "They're in the fridge — I'm running them tomorrow.",
+          "explanationIfSpoken": "The line asks directly whether the student's samples have been processed. The reply about samples in the fridge takes that up by reporting where they are and when they will go through. The reply about switching the registration answers a roster correction; the reply about separating by hand works around an instrument nobody has said is broken; and the reply that takes mornings accepts an offer of early access that was not made.",
+          "kills": {
+            "0": "\"Did you get your samples run\" — a question about the student's own work is on the table, not anything about section listings.",
+            "1": "\"or are they still waiting\" — the question assumes the work can be run, so no instrument has been reported unavailable.",
+            "2": "\"Did you get your samples run\" — this asks for a progress report and offers no extra hours to accept."
+          }
+        }
+      ]
+    },
+    {
+      "localId": "cr7-05",
+      "setting": "academic advising office",
+      "worlds": [
+        {
+          "kind": "bad news",
+          "keyAct": "reclassifying what was lost",
+          "line": "The statistics course you took doesn't count toward the major.",
+          "reply": "So the statistics credit goes toward electives instead.",
+          "explanationIfSpoken": "The line reports that a completed course will not satisfy the major. The reply that reassigns the statistics credit to electives takes that up by working out where the finished work now lands. The reply about dropping a class being sat in on assumes a requirement has just been satisfied; the reply about having planned spring around the wrong requirement responds to a mix-up over which requirement is outstanding; and the reply about seeing her Wednesday with the form acts on an instruction the adviser did not give.",
+          "kills": {
+            "1": "\"doesn't count toward the major\" — a requirement has just become harder to meet, not easier, so nothing can be dropped on the strength of it.",
+            "2": "\"doesn't count toward the major\" — what is at issue is credit for a course already completed, not which requirement the student had been tracking.",
+            "3": "\"doesn't count toward the major\" — the adviser is reporting how a credit falls and has asked nothing of the student."
+          }
+        },
+        {
+          "kind": "good news",
+          "keyAct": "releasing a now-needless plan",
+          "line": "Your transfer credits came through, so the language requirement's done.",
+          "reply": "Then I can drop the class I was sitting in on.",
+          "explanationIfSpoken": "The line reports that transferred work has satisfied a requirement outright. The reply about dropping a class being sat in on takes that up by abandoning a course taken only as insurance. The reply that reassigns the statistics credit to electives responds to a course being refused; the reply about having planned spring around the wrong requirement responds to a misidentified requirement; and the reply about seeing her Wednesday with the form acts on a request the adviser did not make.",
+          "kills": {
+            "0": "\"the language requirement's done\" — a requirement has been satisfied, so no completed course has been refused or rerouted.",
+            "2": "\"came through\" — the requirement has been met as the student expected, so nothing was being tracked in error.",
+            "3": "\"the language requirement's done\" — nothing is outstanding and no signature has been asked for."
+          }
+        },
+        {
+          "kind": "correction",
+          "keyAct": "acknowledging a misdirected plan",
+          "line": "It's the lab science you're missing, not the writing seminar.",
+          "reply": "I'd been planning my spring around the wrong requirement.",
+          "explanationIfSpoken": "The line corrects which requirement is actually unmet. The reply about having planned spring around the wrong requirement takes that up by recognising that a term of planning has been aimed at the wrong gap. The reply that reassigns the statistics credit to electives responds to a course being disqualified; the reply about dropping a class being sat in on assumes a requirement has been cleared; and the reply about seeing her Wednesday with the form answers an instruction that was not given.",
+          "kills": {
+            "0": "\"It's the lab science you're missing\" — the correction concerns which requirement is outstanding, and no course has been refused credit.",
+            "1": "\"you're missing\" — something is still unmet, so dropping a course on the strength of this line runs the wrong way.",
+            "3": "\"not the writing seminar\" — the adviser is putting a record straight and has asked for nothing from the student."
+          }
+        },
+        {
+          "kind": "request",
+          "keyAct": "undertaking an errand",
+          "line": "I'll need your advisor's signature before I can clear the hold.",
+          "reply": "I'll see her Wednesday and bring the form back after.",
+          "explanationIfSpoken": "The line makes lifting an administrative hold conditional on getting a signature. The reply about seeing her Wednesday with the form takes that up by naming when the signature can be obtained and returned. The reply that reassigns the statistics credit to electives responds to a course being disqualified; the reply about dropping a class being sat in on assumes a requirement just cleared; and the reply about having planned spring around the wrong requirement answers a correction that was not made.",
+          "kills": {
+            "0": "\"your advisor's signature\" — what stands in the way is paperwork, and nothing has been said about how any course counts.",
+            "1": "\"before I can clear the hold\" — something is still outstanding, so no requirement has just been discharged.",
+            "2": "\"your advisor's signature\" — the obstacle named is a missing signature, not a requirement anyone had misidentified."
+          }
+        }
+      ]
+    },
+    {
+      "localId": "cr7-06",
+      "setting": "campus cafe staff room",
+      "worlds": [
+        {
+          "kind": "good news",
+          "keyAct": "closing the loop with a third party",
+          "line": "Dana said she'll take your Friday, so you're covered.",
+          "reply": "I'll let the manager know she's on instead of me.",
+          "explanationIfSpoken": "The line reports that a colleague has agreed to take the shift. The reply that has the manager told about the replacement takes that up by doing the one thing still outstanding once cover is arranged. The reply that moves the appointment assumes no cover was found; the reply that narrows it to the early part answers a question about how much cover is needed; and the reply about having nothing on Sundays accepts a trade of a different day.",
+          "kills": {
+            "1": "\"you're covered\" — the Friday problem is solved, so there is no reason to shift anything else in the diary.",
+            "2": "\"she'll take your Friday\" — the whole shift is settled and nobody has asked how much of it needs covering.",
+            "3": "\"take your Friday\" — the arrangement made is cover for that day, not an exchange involving another one."
+          }
+        },
+        {
+          "kind": "bad news",
+          "keyAct": "rearranging the other commitment",
+          "line": "Nobody's free Friday, so you're still on the schedule.",
+          "reply": "I'll move my appointment to the following week, then.",
+          "explanationIfSpoken": "The line reports that the search for cover has failed and the shift stands. The reply that moves the appointment takes that up by giving way on the other commitment instead. The reply that has the manager told about the replacement announces cover that does not exist; the reply that narrows it to the early part answers a question about scope; and the reply about having nothing on Sundays accepts a swap that was not offered.",
+          "kills": {
+            "0": "\"you're still on the schedule\" — no colleague has taken the shift, so there is no replacement to report to anyone.",
+            "2": "\"Nobody's free Friday\" — the search is over and nothing has been asked about how much cover is wanted.",
+            "3": "\"you're still on the schedule\" — no exchange of days has been put forward to accept."
+          }
+        },
+        {
+          "kind": "question",
+          "keyAct": "narrowing the request",
+          "line": "Are you after the whole shift covered, or just the opening?",
+          "reply": "I'd just need the early part — I can be there by mid-morning.",
+          "explanationIfSpoken": "The line asks how much of the shift actually needs covering. The reply that narrows it to the early part takes that up by choosing the narrower of the two and saying when the shift can be picked up. The reply that has the manager told about the replacement assumes cover is already settled; the reply that moves the appointment assumes the search has failed; and the reply about having nothing on Sundays accepts a trade of days that was not proposed.",
+          "kills": {
+            "0": "\"Are you after the whole shift covered\" — the arrangement is still being scoped, so nobody has yet agreed to take anything.",
+            "1": "\"or just the opening\" — help is actively being organised, which means nothing has been refused.",
+            "3": "\"Are you after the whole shift covered\" — the question concerns how much of Friday needs cover, not any other day."
+          }
+        },
+        {
+          "kind": "offer",
+          "keyAct": "accepting a trade",
+          "line": "I could swap you my Sunday if that helps any.",
+          "reply": "That works — I've got nothing on Sundays.",
+          "explanationIfSpoken": "The line offers an exchange of days. The reply about having nothing on Sundays takes that up by accepting and showing the proposed day is clear. The reply that has the manager told about the replacement treats cover as already fixed; the reply that moves the appointment gives up on cover altogether; and the reply that narrows it to the early part answers a question about scope that was not asked.",
+          "kills": {
+            "0": "\"I could swap you my Sunday\" — this is a proposal still open, so nothing has been settled with anyone to pass on.",
+            "1": "\"if that helps any\" — a workable solution has just been put on the table, so giving up the other commitment is premature.",
+            "2": "\"I could swap you my Sunday\" — an exchange is being offered, and no question has been asked about how much of the shift matters."
+          }
+        }
+      ]
+    },
+    {
+      "localId": "cr7-07",
+      "setting": "group project meeting",
+      "worlds": [
+        {
+          "kind": "neutral info",
+          "keyAct": "taking on a share of the work",
+          "line": "Priya's doing the intro slides, so we start from methods.",
+          "reply": "I'll draft the methods section tonight and share it.",
+          "explanationIfSpoken": "The line reports how the deck has been divided and where this pair's work begins. The reply that drafts methods tonight takes that up by picking up the part left to them. The reply that warns the others about waiting downstairs responds to a change of room; the reply that emails the department for access responds to material nobody can reach; and the reply that promises the script by Thursday accepts a trade of tasks that was not proposed.",
+          "kills": {
+            "1": "\"Priya's doing the intro slides\" — the line divides up the work, and no venue for the presentation has been mentioned.",
+            "2": "\"so we start from methods\" — the work is going ahead as planned, so nothing has been reported as inaccessible.",
+            "3": "\"Priya's doing the intro slides\" — the split described is who takes which section, not an exchange of deck for script."
+          }
+        },
+        {
+          "kind": "correction",
+          "keyAct": "passing word along",
+          "line": "The presentation's in the seminar room now, not the lecture hall.",
+          "reply": "I'll tell the others so nobody ends up waiting downstairs.",
+          "explanationIfSpoken": "The line corrects where the presentation will be held. The reply that warns the others about waiting downstairs takes that up by circulating the change so nobody goes to the old room. The reply that drafts methods tonight responds to a division of work; the reply that emails the department for access responds to locked material; and the reply that promises the script by Thursday accepts a swap of tasks that was not offered.",
+          "kills": {
+            "0": "\"in the seminar room now\" — what has changed is the room, and nothing has been said about who writes which section.",
+            "2": "\"not the lecture hall\" — the correction concerns a venue, so no material has been reported out of reach.",
+            "3": "\"in the seminar room now\" — a location is being put right, and no offer to build the deck has been made."
+          }
+        },
+        {
+          "kind": "bad news",
+          "keyAct": "escalating to a third party",
+          "line": "Our data's still in the survey tool, and it's locked.",
+          "reply": "I'll email the department for access first thing.",
+          "explanationIfSpoken": "The line reports that the group's results are inaccessible. The reply that emails the department for access takes that up by going to whoever can unlock the tool. The reply that drafts methods tonight assumes the work can proceed; the reply that warns the others about waiting downstairs responds to a room change; and the reply that promises the script by Thursday accepts a division of labour that was not offered.",
+          "kills": {
+            "0": "\"it's locked\" — nothing can be written up from results nobody in the group can open.",
+            "1": "\"still in the survey tool\" — the obstacle is access to material, and no room or venue has been mentioned.",
+            "3": "\"it's locked\" — the group is stuck on access, and no trade of writing tasks has been put forward."
+          }
+        },
+        {
+          "kind": "offer",
+          "keyAct": "accepting a division of labour",
+          "line": "I can put the whole deck together if you write the script.",
+          "reply": "That suits me — I'll have the script over by Thursday.",
+          "explanationIfSpoken": "The line proposes a straight split: one builds the slides, the other writes the talk. The reply that promises the script by Thursday takes that up by accepting the half offered and naming a date. The reply that drafts methods tonight answers a different division of sections; the reply that warns the others about waiting downstairs responds to a change of room; and the reply that emails the department for access responds to material nobody can open.",
+          "kills": {
+            "0": "\"if you write the script\" — the split on the table is deck for script, not a handover of particular sections.",
+            "1": "\"I can put the whole deck together\" — the offer concerns who assembles the slides, and no venue has come up.",
+            "2": "\"put the whole deck together\" — an offer to build the deck presupposes the material is in hand and usable."
+          }
+        }
+      ]
+    },
+    {
+      "localId": "cr7-08",
+      "setting": "campus shuttle stop",
+      "worlds": [
+        {
+          "kind": "bad news",
+          "keyAct": "falling back on foot",
+          "line": "The north route's suspended while they resurface the access road.",
+          "reply": "I'll walk up from the science building instead.",
+          "explanationIfSpoken": "The line reports that the service on this route is not running during roadworks. The reply about walking up from the science building takes that up by finding a way there without a bus. The reply about riding it round assumes a bus that is running; the reply that names the express answers a question about which service is wanted; and the reply that takes the van accepts a lift that was not offered.",
+          "kills": {
+            "1": "\"The north route's suspended\" — no bus is running on this route, so there is nothing to stay aboard for.",
+            "2": "\"suspended while they resurface\" — a closure is being announced, and no choice between services has been put to anyone.",
+            "3": "\"The north route's suspended\" — the line reports what is not running and mentions no alternative vehicle."
+          }
+        },
+        {
+          "kind": "neutral info",
+          "keyAct": "accepting the longer way",
+          "line": "This one goes to the medical campus before it loops back.",
+          "reply": "I'll ride it round — I'm not in a hurry.",
+          "explanationIfSpoken": "The line explains that this bus takes a detour before reaching the stop the rider wants. The reply about riding it round takes that up by accepting the extra distance. The reply about walking up from the science building assumes nothing is running; the reply that names the express answers a question that was not asked; and the reply that takes the van accepts an offer that was not made.",
+          "kills": {
+            "0": "\"before it loops back\" — the service is running and will get there, so setting off on foot abandons a working bus.",
+            "2": "\"This one goes to the medical campus\" — the driver is describing a route, not asking which service the rider wants.",
+            "3": "\"This one goes to the medical campus\" — one bus and its route are under discussion, and no other vehicle has been mentioned."
+          }
+        },
+        {
+          "kind": "question",
+          "keyAct": "stating a preference with a proviso",
+          "line": "Are you waiting for the express or the one that stops everywhere?",
+          "reply": "I'll wait for the express, if it's still due.",
+          "explanationIfSpoken": "The line asks which of two services the rider is waiting for. The reply that names the express takes that up by choosing one and checking it is still due. The reply about walking up from the science building assumes nothing is running; the reply about riding it round assumes a route description; and the reply that takes the van accepts an offer nobody made.",
+          "kills": {
+            "0": "\"Are you waiting for the express\" — services are running and the rider is being asked which one, so walking gives up a bus that is coming.",
+            "1": "\"or the one that stops everywhere\" — a choice has been put to the rider rather than a description of one bus's route.",
+            "3": "\"Are you waiting for the express\" — the question is about which scheduled service is wanted, and no van has come into it."
+          }
+        },
+        {
+          "kind": "offer",
+          "keyAct": "accepting a lift and asking where",
+          "line": "There's a van going that way now if you'd rather not wait.",
+          "reply": "I'll take the van — where do I catch it?",
+          "explanationIfSpoken": "The line offers an immediate alternative to waiting for the bus. The reply that takes the van takes that up by accepting and asking the one practical thing left. The reply about walking up from the science building assumes no transport at all; the reply about riding it round assumes a route description; and the reply that names the express answers a question about which service is wanted.",
+          "kills": {
+            "0": "\"There's a van going that way now\" — transport is available immediately, so setting out on foot turns down a ride that is leaving.",
+            "1": "\"if you'd rather not wait\" — an alternative is being offered, not the itinerary of the bus at the stop.",
+            "2": "\"There's a van going that way now\" — nobody has asked which scheduled service the rider wants."
+          }
+        }
+      ]
+    },
+    {
+      "localId": "cr7-09",
+      "setting": "dining hall entrance",
+      "worlds": [
+        {
+          "kind": "correction",
+          "keyAct": "switching to the right credential",
+          "line": "That card's for the cafe downstairs, not this dining hall.",
+          "reply": "I'll use my student ID here from now on.",
+          "explanationIfSpoken": "The line points out that the card presented is valid somewhere else on campus. The reply about using the student ID from now on takes that up by switching to the credential this hall accepts. The reply about the shop before it shuts assumes no food is available; the reply about a sister visiting accepts an offer that was not made; and the reply about weekdays only answers a question about coverage that was not asked.",
+          "kills": {
+            "1": "\"not this dining hall\" — the student is being redirected to the right credential, not told the kitchen has stopped serving.",
+            "2": "\"That card's for the cafe downstairs\" — a card is being identified, and nothing has been offered to add to any account.",
+            "3": "\"not this dining hall\" — the student has been told which card works where, not asked what the plan covers."
+          }
+        },
+        {
+          "kind": "bad news",
+          "keyAct": "finding food elsewhere",
+          "line": "Dinner service ended, so the kitchen's closed for the night.",
+          "reply": "I'll grab something from the shop before it shuts.",
+          "explanationIfSpoken": "The line reports that the hall has stopped serving for the day. The reply about the shop before it shuts takes that up by going somewhere still open. The reply about using the student ID from now on treats the problem as the wrong card; the reply about a sister visiting accepts an offer that was not made; and the reply about weekdays only answers a question about plan coverage.",
+          "kills": {
+            "0": "\"the kitchen's closed for the night\" — no card of any kind gets anyone fed here this evening.",
+            "2": "\"Dinner service ended\" — service is over for the day, so nothing is being added to anyone's account.",
+            "3": "\"closed for the night\" — the student is being told the hall has shut, not asked what the meal plan includes."
+          }
+        },
+        {
+          "kind": "offer",
+          "keyAct": "accepting with a reason",
+          "line": "I can add a guest meal to your account if you like.",
+          "reply": "Please do — my sister's visiting this weekend.",
+          "explanationIfSpoken": "The line offers to put a guest meal on the student's account. The reply about a sister visiting takes that up by accepting and giving the occasion it will be used for. The reply about using the student ID from now on treats the card as wrong; the reply about the shop before it shuts assumes the hall has closed; and the reply about weekdays only answers a question about coverage that was not asked.",
+          "kills": {
+            "0": "\"add a guest meal\" — the staff member is offering an addition, which means nothing is wrong with what the student presented.",
+            "1": "\"if you like\" — an optional extra is being offered, so the hall is plainly still serving.",
+            "3": "\"I can add a guest meal\" — this is an offer to act on the account, not a question about what the plan already covers."
+          }
+        },
+        {
+          "kind": "question",
+          "keyAct": "answering with an explanation",
+          "line": "Is your plan the one with weekend meals included?",
+          "reply": "I'm on the weekday one — I signed up after the deadline.",
+          "explanationIfSpoken": "The line asks whether the student's meal plan covers weekends. The reply about weekdays only takes that up by answering and explaining how the plan ended up that way. The reply about using the student ID from now on treats the card as the wrong one; the reply about the shop before it shuts assumes the hall has closed; and the reply about a sister visiting accepts an offer that was not extended.",
+          "kills": {
+            "0": "\"Is your plan the one\" — the question concerns what the plan covers, not whether the right card was presented.",
+            "1": "\"with weekend meals included\" — asking about coverage presupposes the hall is open and serving.",
+            "2": "\"Is your plan the one\" — a question has been asked about existing coverage, and nothing has been offered to add."
+          }
+        }
+      ]
+    },
+    {
+      "localId": "cr7-10",
+      "setting": "housing office",
+      "worlds": [
+        {
+          "kind": "good news",
+          "keyAct": "accepting and asking the next step",
+          "line": "A single opened up in the building you asked for.",
+          "reply": "I'll take it — should I sign something today?",
+          "explanationIfSpoken": "The line reports that a room the student wanted has become available. The reply that accepts and asks about signing takes that up by claiming the room and moving to the formalities. The reply about looking off campus assumes nothing is available; the reply about a noisy corridor responds to a placement already made; and the reply about the key on the desk answers an instruction that was not given.",
+          "kills": {
+            "1": "\"A single opened up\" — a room is available right now, so turning to private lettings walks away from it.",
+            "2": "\"A single opened up\" — nothing has been assigned yet, so there is no floor or corridor to react to.",
+            "3": "\"A single opened up\" — availability is being reported, and nothing has been asked of the student."
+          }
+        },
+        {
+          "kind": "bad news",
+          "keyAct": "turning to another market",
+          "line": "The waiting list closed before your form reached us.",
+          "reply": "I'll look at places off campus for next term, then.",
+          "explanationIfSpoken": "The line reports that the application arrived too late for the list. The reply about looking off campus takes that up by giving up on university housing for the coming term. The reply that accepts and asks about signing claims a room that is not on offer; the reply about a noisy corridor responds to a placement that was never made; and the reply about the key on the desk answers a request that was not made.",
+          "kills": {
+            "0": "\"closed before your form reached us\" — no room has been offered, so there is nothing to accept or sign for.",
+            "2": "\"The waiting list closed\" — the student never got onto the list, so no placement exists to be pleased about.",
+            "3": "\"before your form reached us\" — the application failed, so no key handover is in prospect."
+          }
+        },
+        {
+          "kind": "neutral info",
+          "keyAct": "welcoming the placement",
+          "line": "Your new room's on the quiet floor at the back.",
+          "reply": "That suits me — my current corridor is noisy.",
+          "explanationIfSpoken": "The line tells the student where the room they have been given actually sits. The reply about a noisy corridor takes that up by measuring the new placement against the old one. The reply that accepts and asks about signing treats an assignment as an open offer; the reply about looking off campus assumes no housing was found; and the reply about the key on the desk answers an instruction that was not given.",
+          "kills": {
+            "0": "\"Your new room's on the quiet floor\" — the assignment is settled, so there is nothing left to accept.",
+            "1": "\"Your new room's\" — the student has been housed, which makes a search of private lettings unnecessary.",
+            "3": "\"on the quiet floor at the back\" — the room is being described, and nothing has been asked of the student."
+          }
+        },
+        {
+          "kind": "request",
+          "keyAct": "undertaking to return an item",
+          "line": "Bring your old key by before you collect the new one.",
+          "reply": "It's on my desk — I'll drop it in this afternoon.",
+          "explanationIfSpoken": "The line makes collecting the new key conditional on returning the old one. The reply about the key on the desk takes that up by saying where it is and when it will arrive. The reply that accepts and asks about signing treats the room as still to be agreed; the reply about looking off campus assumes no room was found; and the reply about a noisy corridor answers a description of the room that was not given.",
+          "kills": {
+            "0": "\"before you collect the new one\" — the room is already settled and what is pending is a key handover, not an agreement.",
+            "1": "\"before you collect the new one\" — the student plainly has a new room, so private lettings are beside the point.",
+            "2": "\"Bring your old key by\" — an instruction is being given, not a description of where the room sits."
+          }
+        }
+      ]
+    },
+    {
+      "localId": "cr7-11",
+      "setting": "IT help desk",
+      "worlds": [
+        {
+          "kind": "correction",
+          "keyAct": "acting on the corrected diagnosis",
+          "line": "It's the wireless password that changed, not your account one.",
+          "reply": "I'll reconnect on the new one and leave my login alone.",
+          "explanationIfSpoken": "The line corrects which credential is at fault. The reply that reconnects and leaves the login alone takes that up by fixing the network side and touching nothing else. The reply that pulls the files down tonight responds to recovered data; the reply that promises a screenshot responds to a request for more information; and the reply about using the lab machines responds to hardware being ruled out.",
+          "kills": {
+            "1": "\"the wireless password that changed\" — the fault is a credential, and nothing has been said about files being lost or found.",
+            "2": "\"not your account one\" — the cause has already been identified, so no further information has been asked for.",
+            "3": "\"the wireless password that changed\" — the machine is not at fault, so replacing it addresses nothing."
+          }
+        },
+        {
+          "kind": "good news",
+          "keyAct": "resuming interrupted work",
+          "line": "Your files were on the backup, so nothing's actually lost.",
+          "reply": "I'll pull them down tonight and get back to writing.",
+          "explanationIfSpoken": "The line reports that the student's work survived on a backup. The reply that pulls the files down tonight takes that up by retrieving them and going back to the task they were blocking. The reply that reconnects and leaves the login alone responds to a credential problem; the reply that promises a screenshot responds to a request for more detail; and the reply about using the lab machines responds to a machine being written off.",
+          "kills": {
+            "0": "\"Your files were on the backup\" — the subject is recovered data, and no password of any kind has come up.",
+            "2": "\"so nothing's actually lost\" — the matter is closed, so nobody is waiting for further information.",
+            "3": "\"so nothing's actually lost\" — the outcome is about data, and the hardware has not been called into question."
+          }
+        },
+        {
+          "kind": "request",
+          "keyAct": "agreeing to supply evidence",
+          "line": "Send me the error message next time it comes up.",
+          "reply": "I'll screenshot it the moment it appears.",
+          "explanationIfSpoken": "The line asks the student to capture the error when it recurs. The reply that promises a screenshot takes that up by committing to the exact evidence asked for. The reply that reconnects and leaves the login alone assumes the cause is known; the reply that pulls the files down tonight assumes data has been recovered; and the reply about using the lab machines assumes the machine has been written off.",
+          "kills": {
+            "0": "\"Send me the error message\" — more information is still being gathered, so no cause has been identified to act on.",
+            "1": "\"next time it comes up\" — the fault is expected to recur, so nothing has been resolved or recovered.",
+            "3": "\"next time it comes up\" — the machine is expected to stay in use, so nobody has suggested giving up on it."
+          }
+        },
+        {
+          "kind": "bad news",
+          "keyAct": "arranging a stopgap",
+          "line": "That laptop's too old for the campus network now.",
+          "reply": "I'll use the machines in the lab until I can replace it.",
+          "explanationIfSpoken": "The line reports that the student's own machine can no longer connect. The reply about using the lab machines takes that up by finding a way to work while the hardware problem stands. The reply that reconnects and leaves the login alone treats it as a credential; the reply that pulls the files down tonight treats it as recovered data; and the reply that promises a screenshot treats it as an open investigation.",
+          "kills": {
+            "0": "\"too old for the campus network\" — the obstacle is the hardware itself, so no password would put it right.",
+            "1": "\"That laptop's too old\" — the verdict concerns the machine, and nothing has been said about files being safe.",
+            "2": "\"too old for the campus network\" — a diagnosis has been delivered, so nothing further has been asked for."
+          }
+        }
+      ]
+    },
+    {
+      "localId": "cr7-12",
+      "setting": "student health clinic",
+      "worlds": [
+        {
+          "kind": "neutral info",
+          "keyAct": "choosing between the options given",
+          "line": "The nurse sees walk-ins today; the doctor's here Thursday.",
+          "reply": "I'll wait for the nurse and come back if needed.",
+          "explanationIfSpoken": "The line lays out who is available today and who is available later in the week. The reply that waits for the nurse takes that up by choosing the sooner of the two and leaving the later one open. The reply that rebooks for when she's back assumes nobody is available; the reply that asks for a pen assumes paperwork was requested; and the reply about collecting it near campus assumes a prescription exists.",
+          "kills": {
+            "1": "\"The nurse sees walk-ins today\" — someone is seeing patients right now, so nothing has been cancelled to rebook.",
+            "2": "\"the doctor's here Thursday\" — the patient has been given the week's schedule, not asked to complete anything.",
+            "3": "\"The nurse sees walk-ins today\" — nobody has been seen yet, so no prescription exists to send anywhere."
+          }
+        },
+        {
+          "kind": "bad news",
+          "keyAct": "rebooking",
+          "line": "Doctor Reyes is out sick, so today's slots are cancelled.",
+          "reply": "I'll rebook for whenever she's back in.",
+          "explanationIfSpoken": "The line reports that the doctor is away and the day's appointments are off. The reply that rebooks for when she's back takes that up by moving the appointment to her return. The reply that waits for the nurse assumes someone is seeing patients today; the reply that asks for a pen assumes the patient is about to go through; and the reply about collecting it near campus assumes a consultation has happened.",
+          "kills": {
+            "0": "\"today's slots are cancelled\" — there is nobody seeing patients here today, so waiting achieves nothing.",
+            "2": "\"today's slots are cancelled\" — no one is going through to be seen, so no form needs completing first.",
+            "3": "\"Doctor Reyes is out sick\" — the appointment never happened, so nothing has been prescribed to send on."
+          }
+        },
+        {
+          "kind": "request",
+          "keyAct": "complying and asking for a tool",
+          "line": "Fill in the allergy section before you go through.",
+          "reply": "I'll finish it now — do you have a pen?",
+          "explanationIfSpoken": "The line asks the patient to complete a missing part of the form before being seen. The reply that asks for a pen takes that up by agreeing and sorting out the one thing needed to do it. The reply that waits for the nurse answers a choice between clinicians; the reply that rebooks for when she's back assumes the appointment is off; and the reply about collecting it near campus assumes a prescription has been written.",
+          "kills": {
+            "0": "\"before you go through\" — the patient is about to be seen, so no choice between today and later has been offered.",
+            "1": "\"before you go through\" — the appointment is going ahead, which leaves nothing to rebook.",
+            "3": "\"Fill in the allergy section\" — paperwork has been asked for, and nothing has been offered to send anywhere."
+          }
+        },
+        {
+          "kind": "offer",
+          "keyAct": "accepting and naming a location",
+          "line": "I can send your prescription straight to the pharmacy.",
+          "reply": "I'll pick it up from the one near campus.",
+          "explanationIfSpoken": "The line offers to forward the prescription electronically rather than hand it over. The reply about collecting it near campus takes that up by accepting and naming where it should go. The reply that waits for the nurse answers a choice between clinicians; the reply that rebooks for when she's back assumes the appointment is off; and the reply that asks for a pen assumes a form was requested.",
+          "kills": {
+            "0": "\"send your prescription\" — the patient has already been seen and treated, so choosing whom to wait for is behind the conversation.",
+            "1": "\"I can send your prescription\" — the consultation clearly happened, so nothing has been cancelled.",
+            "2": "\"straight to the pharmacy\" — an offer is being made about where medicine goes, not a form to complete."
+          }
+        }
+      ]
+    }
+  ]
+}

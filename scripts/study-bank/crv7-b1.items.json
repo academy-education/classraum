@@ -1,0 +1,562 @@
+[
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Wednesdays are gone — the linguistics seminar took the whole term.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "I'll put it in the reading group's calendar.",
+      "I'll send it once everyone's replied.",
+      "I'll see if the group can move to Mondays.",
+      "Please hold it while the group settles on a day."
+    ],
+    "correct_answer": "I'll see if the group can move to Mondays.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The booking office reports that the requested day is unavailable for the term. Undertaking to ask the group about a different day is the cooperative way to keep the meeting alive. The reply about entering a booking in the calendar assumes the room was granted; the reply about sending a list answers a request that was not made; and the reply asking for a slot to be held assumes an alternative was offered.",
+    "distractor_rationales": {
+      "I'll put it in the reading group's calendar.": "There is nothing to enter once \"Wednesdays are gone\".",
+      "I'll send it once everyone's replied.": "No list was asked for; the office reports that \"the linguistics seminar took the whole term\".",
+      "Please hold it while the group settles on a day.": "Nothing is on offer to hold open — \"Wednesdays are gone\"."
+    },
+    "_crv7": {
+      "localId": "crv7-b1-10",
+      "selectedWorld": 1,
+      "kind": "bad news",
+      "keyAct": "consulting the group about a different day",
+      "setting": "seminar room booking office"
+    }
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Nobody's free for statistics in your Tuesday slot.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "I could move to a morning if that opens anything.",
+      "Good — I won't have to explain where I got stuck.",
+      "I'll take it — Tuesdays are already clear for me.",
+      "I'll fill my whole week in before tonight."
+    ],
+    "correct_answer": "I could move to a morning if that opens anything.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The desk reports that no tutor can be matched at the time the student asked for. Offering to move to a different part of the day is the cooperative way to give the desk something to work with. The reply about not having to explain where they got stuck assumes a familiar tutor; the reply promising to fill in availability answers a request that was not made; and the reply taking a slot assumes an opening that was just denied.",
+    "distractor_rationales": {
+      "Good — I won't have to explain where I got stuck.": "\"Nobody's free for statistics\" means no tutor at all has been assigned, familiar or otherwise.",
+      "I'll fill my whole week in before tonight.": "The obstacle is not a missing form — it is that \"Nobody's free for statistics\".",
+      "I'll take it — Tuesdays are already clear for me.": "There is nothing to take, since \"Nobody's free\" at the hour in question."
+    },
+    "_crv7": {
+      "localId": "crv7-b1-04",
+      "selectedWorld": 1,
+      "kind": "bad news",
+      "keyAct": "offering flexibility to unblock the match",
+      "setting": "tutoring center intake desk"
+    }
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"It's a semester placement, not the full year.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Then I'll give up my lease from September.",
+      "I'll keep my spring courses on the timetable.",
+      "I'll bring it in as soon as results come out.",
+      "I'll look at what's still open for the spring."
+    ],
+    "correct_answer": "I'll keep my spring courses on the timetable.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The office corrects how long the placement runs. Keeping the home-campus courses for the half of the year spent back on campus follows from a placement that covers only part of it. The reply about giving up a lease assumes a full year away; the reply about looking for other openings assumes there is no place; and the reply about a certificate answers a request that was not made.",
+    "distractor_rationales": {
+      "Then I'll give up my lease from September.": "The student is back for the second half, since it is \"not the full year\".",
+      "I'll look at what's still open for the spring.": "A place does exist — it is \"a semester placement\".",
+      "I'll bring it in as soon as results come out.": "Nothing is outstanding; the correction concerns only that it is \"a semester placement\"."
+    },
+    "_crv7": {
+      "localId": "crv7-b1-16",
+      "selectedWorld": 2,
+      "kind": "correction",
+      "keyAct": "protecting the home-campus half of the year",
+      "setting": "study-abroad office"
+    }
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"There's a spare seat if your roommate wants to come.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "I'll use the weekend for the reading instead.",
+      "She'll jump at that — I'll ask her tonight.",
+      "Mine are at home, so I'll borrow a pair.",
+      "I'll pass that on to the people I'm riding with."
+    ],
+    "correct_answer": "She'll jump at that — I'll ask her tonight.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The organiser opens a place on the trip to someone outside the class. Predicting the invited person will want it and undertaking to ask is the natural uptake of an offer made on a third party's behalf. The reply about passing on a meeting point assumes a correction that was not made; the reply about using the weekend for reading assumes a cancellation; and the reply about borrowing boots answers a kit instruction that was not given.",
+    "distractor_rationales": {
+      "I'll pass that on to the people I'm riding with.": "No location is corrected — the line offers \"a spare seat\".",
+      "I'll use the weekend for the reading instead.": "The trip is plainly running, or there would be no \"spare seat\" to give away.",
+      "Mine are at home, so I'll borrow a pair.": "Nothing is required to bring; the offer is only \"if your roommate wants to come\"."
+    },
+    "_crv7": {
+      "localId": "crv7-b1-08",
+      "selectedWorld": 3,
+      "kind": "offer",
+      "keyAct": "accepting on someone else's behalf",
+      "setting": "field-trip briefing"
+    }
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Participants get their credit through the psychology portal now.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "I'll need the consent forms from you beforehand.",
+      "I'll put that in the debrief sheet.",
+      "I'll ask the intro course to advertise it again.",
+      "I'll book the room for all of next week."
+    ],
+    "correct_answer": "I'll put that in the debrief sheet.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The lab manager reports a change in how volunteers are compensated. Writing the new route into the sheet participants read at the end is what keeps the study's materials accurate. The reply about booking a room assumes a full sign-up; the reply about advertising again assumes a shortfall; and the reply about needing consent forms takes up a handover that was not proposed.",
+    "distractor_rationales": {
+      "I'll book the room for all of next week.": "Numbers are not mentioned; the change is that credit comes \"through the psychology portal\".",
+      "I'll ask the intro course to advertise it again.": "No shortfall is reported — only how \"Participants get their credit\".",
+      "I'll need the consent forms from you beforehand.": "Nobody is asked to take over a session; the line concerns \"their credit through the psychology portal\"."
+    },
+    "_crv7": {
+      "localId": "crv7-b1-14",
+      "selectedWorld": 3,
+      "kind": "neutral info",
+      "keyAct": "updating the study paperwork to match",
+      "setting": "research participant scheduling"
+    }
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"I can chair it if you'd rather just attend.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "I'll read her recent paper tonight.",
+      "I'll change the signs before people start arriving.",
+      "That would take a real weight off this week.",
+      "I'll tell the mailing list not to come."
+    ],
+    "correct_answer": "That would take a real weight off this week.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "A colleague offers to take on the chairing duty. Accepting by noting the pressure it removes is the natural uptake of an offer to absorb a task. The reply about changing signs assumes a venue correction; the reply telling the mailing list not to come assumes a cancellation; and the reply about reading a paper tonight assumes the role is still yours.",
+    "distractor_rationales": {
+      "I'll change the signs before people start arriving.": "Nothing is said about the room; the offer is to \"chair it\".",
+      "I'll tell the mailing list not to come.": "The event is going ahead — the offer is to \"chair it if you'd rather just attend\".",
+      "I'll read her recent paper tonight.": "You are being relieved of the role, not given it: \"if you'd rather just attend\"."
+    },
+    "_crv7": {
+      "localId": "crv7-b1-19",
+      "selectedWorld": 3,
+      "kind": "offer",
+      "keyAct": "accepting relief from the duty",
+      "setting": "departmental colloquium prep"
+    }
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"That form's for cameras; recorders go on the yellow one.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "I'll fill in the right one and hand it back.",
+      "I'll shift my interviews back a few days.",
+      "It's in my desk drawer — I'll bring it tomorrow.",
+      "That works — my first interview isn't till Tuesday."
+    ],
+    "correct_answer": "I'll fill in the right one and hand it back.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The desk points out that the wrong checkout form has been used. Completing the correct one and returning it is the obvious repair. The reply about shifting interviews assumes the equipment is unavailable; the reply about a charger in a drawer assumes something is owed; and the reply accepting a date takes up a reservation that was not offered.",
+    "distractor_rationales": {
+      "I'll shift my interviews back a few days.": "Nothing is said about availability — only that \"recorders go on the yellow one\".",
+      "It's in my desk drawer — I'll bring it tomorrow.": "No equipment is out with you; the issue is that \"That form's for cameras\".",
+      "That works — my first interview isn't till Tuesday.": "No date is offered; the correction is that \"recorders go on the yellow one\"."
+    },
+    "_crv7": {
+      "localId": "crv7-b1-13",
+      "selectedWorld": 3,
+      "kind": "correction",
+      "keyAct": "refiling on the correct form",
+      "setting": "media lab equipment checkout window"
+    }
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Your reimbursement cleared — it'll show up on next payroll.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "I'll walk it over there this afternoon, then.",
+      "Fair enough — I'll pull those receipts and resubmit.",
+      "Sure — do scans work, or does it have to be paper?",
+      "That's a relief; I'd been carrying it on my card."
+    ],
+    "correct_answer": "That's a relief; I'd been carrying it on my card.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The staff member reports that the claim has been approved and paid. The reply expressing relief and mentioning the card that had been carrying the cost fits a payment finally coming through. The reply asking whether scans are acceptable answers a request for documents that was never made; the reply promising to walk the form to another office assumes it was misdirected; and the reply about pulling receipts and resubmitting assumes a refusal that did not occur.",
+    "distractor_rationales": {
+      "Sure — do scans work, or does it have to be paper?": "The line says \"Your reimbursement cleared\", so no documents are outstanding and there is nothing to ask about submitting.",
+      "I'll walk it over there this afternoon, then.": "\"Your reimbursement cleared\" at this desk, so the claim is settled here and there is nothing to carry to another office.",
+      "Fair enough — I'll pull those receipts and resubmit.": "Since \"Your reimbursement cleared\", no part of the claim was refused and nothing needs resubmitting."
+    },
+    "_crv7": {
+      "localId": "crv7-b1-02",
+      "selectedWorld": 0,
+      "kind": "good news",
+      "keyAct": "expressing relief and disclosing the cost carried",
+      "setting": "department office front desk"
+    }
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"The lab opens an hour earlier on Fridays now.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "I'll do mine on my laptop and upload it.",
+      "Yes — I've been guessing at half its buttons.",
+      "I'll rename the ones I've already left there.",
+      "That's when I'll come — afternoons are always packed."
+    ],
+    "correct_answer": "That's when I'll come — afternoons are always packed.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The attendant reports a change to the lab's opening times. Choosing the newly available stretch and saying why the usual one is unattractive is a natural response to hearing about extra hours. The reply about recording on a laptop assumes the booths are unusable; the reply about renaming files answers an instruction that was not given; and the reply about guessing at buttons takes up an offer that was not made.",
+    "distractor_rationales": {
+      "I'll do mine on my laptop and upload it.": "Nothing is broken — the lab simply \"opens an hour earlier\" than before.",
+      "I'll rename the ones I've already left there.": "No file convention appears in \"opens an hour earlier on Fridays\".",
+      "Yes — I've been guessing at half its buttons.": "No help was offered; the news is only about when the lab \"opens an hour earlier\"."
+    },
+    "_crv7": {
+      "localId": "crv7-b1-07",
+      "selectedWorld": 1,
+      "kind": "neutral info",
+      "keyAct": "deciding when to come in",
+      "setting": "language lab"
+    }
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Bring the assignment sheet next time, not just the draft.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "I'll rebook myself for later in the week.",
+      "Yes please — the introduction alone will take a while.",
+      "Is that the building behind the chapel?",
+      "It's on the course site — I'll print it beforehand."
+    ],
+    "correct_answer": "It's on the course site — I'll print it beforehand.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The consultant asks the student to bring an extra document to the following session. Saying where the document lives and undertaking to print it in advance is direct compliance with the request. The reply about rebooking assumes a cancellation; the reply asking about a building assumes a change of room; and the reply accepting a full hour takes up an offer of time that was not made.",
+    "distractor_rationales": {
+      "I'll rebook myself for later in the week.": "Nothing is cancelled; the consultant is planning what to \"Bring\" to the \"next time\" they meet.",
+      "Is that the building behind the chapel?": "No room change is mentioned — the instruction is about what to bring \"next time\".",
+      "Yes please — the introduction alone will take a while.": "Nothing longer was offered; the ask is only for \"the assignment sheet\"."
+    },
+    "_crv7": {
+      "localId": "crv7-b1-05",
+      "selectedWorld": 2,
+      "kind": "request",
+      "keyAct": "confirming compliance and where the item comes from",
+      "setting": "writing center reception"
+    }
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"We can't process it — there's a hold on your account.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Great, I'll tell the program to watch for it this week.",
+      "No rush then — I'll check back on Friday.",
+      "Which office put the hold on? I'll go clear it.",
+      "That's my mistake, let me fill in the right one."
+    ],
+    "correct_answer": "Which office put the hold on? I'll go clear it.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The clerk reports a block that the student, not the office, has to remove. The reply that asks where the block came from and promises to go and clear it is what a cooperative person does when told an obstacle exists. The reply telling the program to expect the transcript would be false, since nothing was sent; the reply brushing off the delay and naming a day to check back assumes waiting will help when the student must act; and the reply about refilling a form assumes the wrong problem.",
+    "distractor_rationales": {
+      "Great, I'll tell the program to watch for it this week.": "The line says \"there's a hold on your account\" and that the office \"can't process it\", so nothing has been sent and nobody can be told to expect it.",
+      "No rush then — I'll check back on Friday.": "Waiting changes nothing here: the clerk says \"We can't process it\" until the student removes the block.",
+      "That's my mistake, let me fill in the right one.": "The obstacle named is \"a hold on your account\", not a form filled in wrongly."
+    },
+    "_crv7": {
+      "localId": "crv7-b1-01",
+      "selectedWorld": 1,
+      "kind": "bad news",
+      "keyAct": "asking where to go to clear an obstacle",
+      "setting": "registrar's counter"
+    }
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Your check-ins move to the sponsor's office from now on.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "I'll move the team onto the final report.",
+      "I'll go back through the meeting minutes.",
+      "I'll sort out travel for the whole team.",
+      "Could we build on the work we've already done?"
+    ],
+    "correct_answer": "I'll sort out travel for the whole team.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The supervisor reports that meetings will happen off campus from here on. Arranging how the team gets there is the practical consequence of a change of venue. The reply about moving to the final report assumes approval; the reply proposing to reuse existing work assumes the project collapsed; and the reply about meeting minutes answers a request that was not made.",
+    "distractor_rationales": {
+      "I'll move the team onto the final report.": "No approval is given; only the meeting place changes, \"to the sponsor's office\".",
+      "Could we build on the work we've already done?": "The client is still involved, since \"check-ins move to the sponsor's office\".",
+      "I'll go back through the meeting minutes.": "Nothing is asked to be written; the line concerns where \"Your check-ins move\"."
+    },
+    "_crv7": {
+      "localId": "crv7-b1-20",
+      "selectedWorld": 2,
+      "kind": "neutral info",
+      "keyAct": "arranging the logistics the change creates",
+      "setting": "capstone project check-in"
+    }
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Send us your supervisor's sign-off before the deadline.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "I'll ask whether this term's grades still count.",
+      "That would strengthen the comparative chapter a lot.",
+      "I'll catch her after Thursday's lecture.",
+      "I'll plan the last chapter around that."
+    ],
+    "correct_answer": "I'll catch her after Thursday's lecture.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The office asks for a signed authorisation from the supervisor. Naming a concrete moment to get hold of that person is direct compliance with a request for a signature. The reply about planning the last chapter answers a date that was not given; the reply asking whether grades still count assumes an eligibility problem; and the reply about a comparative chapter takes up an offer that was not made.",
+    "distractor_rationales": {
+      "I'll plan the last chapter around that.": "No schedule is described; the student is told to \"Send us your supervisor's sign-off\".",
+      "I'll ask whether this term's grades still count.": "No shortfall is named in \"Send us your supervisor's sign-off\".",
+      "That would strengthen the comparative chapter a lot.": "No extra reader is offered; the ask is for \"your supervisor's sign-off\"."
+    },
+    "_crv7": {
+      "localId": "crv7-b1-15",
+      "selectedWorld": 3,
+      "kind": "request",
+      "keyAct": "committing to obtain the signature",
+      "setting": "honors program office"
+    }
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"You're down for the Brahms this term, not the Schubert.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "I'll have it up to tempo by then.",
+      "I'll swap the music in my folder tonight.",
+      "I'll get rehearsal times sorted with them this week.",
+      "Then I can sit in on the earlier ones."
+    ],
+    "correct_answer": "I'll swap the music in my folder tonight.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The teacher corrects which piece the student is registered to perform. Undertaking to change the music carried in the folder follows from having the wrong score prepared. The reply about arranging rehearsal times assumes an accompanist has been found; the reply about getting something up to tempo answers a request to play that was not made; and the reply about sitting in on earlier juries assumes a running order was given.",
+    "distractor_rationales": {
+      "I'll get rehearsal times sorted with them this week.": "No accompanist is mentioned; the line only settles that the student is \"down for the Brahms\".",
+      "I'll have it up to tempo by then.": "Nothing was asked to be played on a date — the line assigns repertoire, \"the Brahms this term\".",
+      "Then I can sit in on the earlier ones.": "No running order is given by \"the Brahms this term, not the Schubert\"."
+    },
+    "_crv7": {
+      "localId": "crv7-b1-06",
+      "selectedWorld": 0,
+      "kind": "correction",
+      "keyAct": "swapping the wrong music out",
+      "setting": "studio music lesson"
+    }
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Could you confirm the enrolment before we order more?\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "I'll tell the class they can pick them up.",
+      "I'll put the first chapters on reserve instead.",
+      "I'll change it before anyone buys the wrong book.",
+      "I'll check once the add period closes."
+    ],
+    "correct_answer": "I'll check once the add period closes.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The bookstore asks for the class size to be verified before further copies are bought. Undertaking to check at the point when the class list stops changing is sensible compliance. The reply about putting chapters on reserve assumes a supply problem; the reply telling the class to collect copies assumes stock has arrived; and the reply about changing the order assumes the wrong item was chosen.",
+    "distractor_rationales": {
+      "I'll put the first chapters on reserve instead.": "Nothing is unavailable; the desk is only asking \"before we order more\".",
+      "I'll tell the class they can pick them up.": "Nothing has arrived — the question is whether to \"order more\" at all.",
+      "I'll change it before anyone buys the wrong book.": "No error is alleged; the ask is to \"confirm the enrolment\"."
+    },
+    "_crv7": {
+      "localId": "crv7-b1-11",
+      "selectedWorld": 3,
+      "kind": "request",
+      "keyAct": "committing to confirm the figure at the right moment",
+      "setting": "campus bookstore textbook orders desk"
+    }
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Students are appealing the midterm curve in your section.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "I'll start with his; anything I change I'll flag.",
+      "I'll pull their scripts and write up my reasoning.",
+      "Then I'll only need the rubric for mine.",
+      "That'd clear my weekend — I'll forward the folder."
+    ],
+    "correct_answer": "I'll pull their scripts and write up my reasoning.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The lead TA reports that marks are being formally challenged. Retrieving the papers and setting down the reasoning behind them is what a marker does when a decision has to be defended. The reply about needing only one rubric assumes a division of sections; the reply about starting with a colleague's marking assumes a regrade request; and the reply about forwarding a folder takes up an offer that was not made.",
+    "distractor_rationales": {
+      "Then I'll only need the rubric for mine.": "No allocation is described; the news is that \"Students are appealing\".",
+      "I'll start with his; anything I change I'll flag.": "Nobody asked for a colleague's marking to be redone — the issue is \"the midterm curve\".",
+      "That'd clear my weekend — I'll forward the folder.": "Nothing is offered; \"Students are appealing the midterm curve\" is a problem, not a favour."
+    },
+    "_crv7": {
+      "localId": "crv7-b1-09",
+      "selectedWorld": 2,
+      "kind": "bad news",
+      "keyAct": "preparing a documented defence",
+      "setting": "TA grading meeting"
+    }
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"The version I read was your October draft, not the new one.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Where does the argument break down for you?",
+      "Thursday's good — I'll bring a printout.",
+      "Then I'll spend this week on the conclusion instead.",
+      "That explains the notes — I'll resend the current file."
+    ],
+    "correct_answer": "That explains the notes — I'll resend the current file.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The supervisor realises the comments were made on an out-of-date draft. The reply that makes sense of the comments in that light and undertakes to send the current file is the obvious repair. The reply moving on to the conclusion assumes an approval that was not given; the reply asking where the argument breaks down treats stale comments as a verdict; and the reply accepting a Thursday session takes up an offer that was not made.",
+    "distractor_rationales": {
+      "Then I'll spend this week on the conclusion instead.": "Reading \"your October draft\" gives no verdict at all on the current chapter.",
+      "Where does the argument break down for you?": "The trouble is the file, which was \"not the new one\", rather than the argument.",
+      "Thursday's good — I'll bring a printout.": "No meeting is proposed; the line is only about which \"version I read\"."
+    },
+    "_crv7": {
+      "localId": "crv7-b1-03",
+      "selectedWorld": 3,
+      "kind": "correction",
+      "keyAct": "explaining the mismatch and resending the right file",
+      "setting": "thesis supervision meeting"
+    }
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Your partner dropped the course, so you're unpaired.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "I'll post on the forum for someone to swap with.",
+      "I'll finish them on the train home.",
+      "I'll ask for the sources before I read it.",
+      "A second read on the middle section would help."
+    ],
+    "correct_answer": "I'll post on the forum for someone to swap with.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The instructor reports that the student has been left without an exchange partner. Advertising for a replacement is the direct remedy. The reply about asking for sources assumes a draft to read; the reply about finishing comments on a train assumes a deadline and a partner; and the reply about a second read takes up an offer that was not made.",
+    "distractor_rationales": {
+      "I'll ask for the sources before I read it.": "There is no draft to prepare for once \"you're unpaired\".",
+      "I'll finish them on the train home.": "Nothing is owed to anyone — \"Your partner dropped the course\".",
+      "A second read on the middle section would help.": "Nobody is offering to read anything; the news is that \"Your partner dropped the course\"."
+    },
+    "_crv7": {
+      "localId": "crv7-b1-17",
+      "selectedWorld": 2,
+      "kind": "bad news",
+      "keyAct": "finding a replacement partner",
+      "setting": "peer review exchange in a writing seminar"
+    }
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Ask your classmates to stop sharing the links externally.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "I'll raise it at the class rep meeting.",
+      "I'll borrow notes from someone who was there.",
+      "I'll catch up on it before the seminar.",
+      "No wonder I kept coming up empty."
+    ],
+    "correct_answer": "I'll raise it at the class rep meeting.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The lecturer asks the student to pass a warning on to the rest of the class. Taking it to the forum where the class is formally represented is a sensible way to reach everyone. The reply about watching before the seminar assumes a new posting; the reply about borrowing notes assumes no recording exists; and the reply about searching in vain assumes the file is filed elsewhere.",
+    "distractor_rationales": {
+      "I'll catch up on it before the seminar.": "No new posting is announced; the student is asked to \"stop sharing the links externally\".",
+      "I'll borrow notes from someone who was there.": "Recordings plainly exist, since classmates are \"sharing the links externally\".",
+      "No wonder I kept coming up empty.": "Location is not the problem; the problem is classmates \"sharing the links externally\"."
+    },
+    "_crv7": {
+      "localId": "crv7-b1-18",
+      "selectedWorld": 2,
+      "kind": "request",
+      "keyAct": "undertaking to raise it with the class body",
+      "setting": "lecture recording access"
+    }
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Could you cover the Thursday morning sitting for me?\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "I can — as long as I'm free by lunch.",
+      "I'll go straight there on the day.",
+      "I'd better move my seminar cover, then.",
+      "Would you? That'd sort out my whole Thursday."
+    ],
+    "correct_answer": "I can — as long as I'm free by lunch.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "A colleague asks for the shift to be taken over. Agreeing while naming the limit on one's own time is the standard cooperative answer to a request for cover. The reply about going straight somewhere on the day answers a procedural note that was not given; the reply about moving a seminar assumes one's own assignment changed; and the reply thanking the speaker for sorting out the day treats a request for help as an offer of it.",
+    "distractor_rationales": {
+      "I'll go straight there on the day.": "No sign-in procedure is described; the colleague only asks you to \"cover the Thursday morning sitting\".",
+      "I'd better move my seminar cover, then.": "Nothing about your own listing changed — the line is a request to \"cover the Thursday morning sitting\".",
+      "Would you? That'd sort out my whole Thursday.": "The speaker is asking for help, not giving it: \"Could you cover\" the shift \"for me\"."
+    },
+    "_crv7": {
+      "localId": "crv7-b1-12",
+      "selectedWorld": 0,
+      "kind": "request",
+      "keyAct": "agreeing subject to a condition",
+      "setting": "exam invigilation roster"
+    }
+  }
+]

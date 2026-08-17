@@ -674,81 +674,60 @@ export const TOEFL_META: Record<ToeflSection, {
       // Scored counts are ETS Table 1 exactly (Stage 1 8/4/4/4 = 20;
       // lower 7/4/4/0 = 15; upper 3/4/0/8 = 15). Delivered minus scored is
       // 13 on either path, matching ETS's own scored-vs-delivered gap.
-      // ── DELIBERATE DEVIATION FROM THE ETS SHAPE, 2026-08-11 ─────────
+      // ── ETS SHAPE RESTORED, 2026-08-18 ──────────────────────────────
       //
-      // Choose a Response is cut from 14 delivered to 6, and the 8 slots
-      // go to Conversation and Academic Talk.
+      // From 2026-08-11 to 2026-08-18 Choose a Response was deliberately
+      // cut from 14 delivered to 6 (3/3/3) and the 8 freed slots went to
+      // Conversation (8/12/6) and Academic Talk (10/0/12), because the
+      // then-live cr-v1 cohort was answerable WITHOUT the audio: blind
+      // solvers ~75%, the one usable human sitting 53%, against 25%
+      // chance. That cut was exposure control, never a shape opinion.
       //
-      // WHY. Choose a Response is the one cohort BOTH instruments agree
-      // is broken: three blind solvers score ~75% with the audio
-      // withheld, and the one usable human sitting scored 53% — against
-      // 25% chance. Students can answer it without listening. At 14 of
-      // 48 it was the largest single task in the section, so 29% of
-      // every Listening test was not testing listening.
+      // cr-v7 fixed the items instead of hiding them: four symmetrically
+      // authored worlds per item, and a seeded RNG picks the spoken world
+      // only after the text is frozen, so the key is independent of every
+      // text feature by construction. It cleared both pre-registered
+      // blind-attack gates (S1 −16.7, S2 +1.4, post-cohesion re-attack
+      // +5.6; kill bar +30 — CRV7-RESULT.md) and shipped 2026-08-18 on
+      // Andy's explicit approval: the 132 cr-v7 items are live, the 63
+      // old rows (cr-v1/cr-v2/harvest-v1) are archived, and these rows
+      // are byte-for-byte the numbers they carried before 2026-08-11.
       //
-      // Four rebuild attempts have failed (see A3_ATTEMPTS in
-      // bank-register.ts). This change does NOT wait for a fifth: it
-      // stops the exposure now and is reverted in one line if a rebuild
-      // ever passes. Fixing the items and serving fewer of them are
-      // separate jobs on very different timelines, and coupling them
-      // kept bad questions live for the duration of the debugging.
+      // Andy's standing rule, quoted so the count is never "tuned" again:
+      // the delivered count returns to the real ETS shape and NEVER
+      // changes again. Fix items, archive cohorts, rebuild banks — the
+      // task mix below is the exam's shape, not a knob. Every number in
+      // these rows is pinned by listening-blueprint.test.ts.
       //
-      // WHAT IT COSTS, stated plainly rather than buried. This is a
-      // documented deviation from ETS Table 1's task mix — the real exam
-      // weights this task heavily and we now under-weight it. The
-      // SCORED totals are unchanged (20 / 15 / 15), so band scores stay
-      // comparable; only the delivered mix moves.
-      //
-      // AND WHERE THE QUESTIONS GO IS NOT RISK-FREE: Conversation and
-      // Academic Talk are UNVERIFIED, not proven clean — no human has
-      // read either. This trades a known defect for an unmeasured one,
-      // which is an improvement and not a fix. B2/B4 are what turn it
-      // into one.
-      //
-      // Side effect, and a real one: Choose a Response was also the
-      // thinnest pool in the section, repeating after 3.6 sittings. At 6
-      // per test that becomes 12.0, and the four tasks now sit at
-      // 10-12.5 sittings instead of 3.6-17.2.
-      //
-      // Arithmetic that must hold — checked before this was written and
-      // pinned by listening-blueprint.test.ts:
+      // Arithmetic that must hold — re-derived at restoration and pinned:
       //   delivered  m1 + lower = 48   m1 + upper = 48
       //   scored     sM1 20, sLower 15, sUpper 15
       //   scored <= delivered for every task on every path
       //   conversation and announcement counts EVEN (audio sets of 2/4)
-      //   academic_talk counts EVEN — reachable from 2- and 4-question
-      //     sets alone. The first draft used 9/3/13, on the reasoning that
-      //     every integer above 1 is a sum of 2s, 3s and 4s. That is true
-      //     and it still broke: assemble-blueprint.test.ts drew 26 of 27,
-      //     because its fixture supplies talks in 3-question sets only and
-      //     9 + 3 could not be made from whole sets there.
-      //     BE PRECISE ABOUT WHY, because the obvious explanation was
-      //     wrong and is quoted elsewhere in this file: the comment above
-      //     says "the only three 3-question talks in the bank". MEASURED
-      //     2026-08-11, the live bank holds 88 talk sets — 33 of size 2,
-      //     12 of size 3, 43 of size 4 — so 9/3 might well have drawn fine
-      //     in production. The failure was the FIXTURE, not the bank.
-      //     Even counts are kept anyway: they need only 2s and 4s, of
-      //     which both the bank and the fixture have many, so the
-      //     blueprint stops depending on which set sizes happen to exist.
-      //     Live fillability of every count here was checked against the
-      //     real bank before shipping, not inferred from the unit test.
-      //   choose_response m1 must stay ODD: conversation, announcement and
-      //     academic_talk are all even, and module 1 totals 27.
-      //   ETS's Stage 2 INVERSION is preserved — the lower module serves no
-      //     Academic Talk and the upper module no Announcement. An earlier
-      //     draft of this change put 4 Academic Talk into the lower path
-      //     because the arithmetic balanced; it also quietly deleted a real
-      //     property of the exam. The freed slots go to Conversation there
-      //     instead.
-      { type: 'multiple_choice', task: 'choose_response', n: 6,  m1: 3,  lower: 3,  upper: 3,
-        sM1: 2, sLower: 2, sUpper: 2 },
-      { type: 'multiple_choice', task: 'conversation',    n: 14, m1: 8,  lower: 12, upper: 6,
-        sM1: 6, sLower: 9, sUpper: 4 },
-      { type: 'multiple_choice', task: 'announcement',    n: 6,  m1: 6,  lower: 6,  upper: 0,
+      //   academic_talk counts EVEN — even counts need only 2s and 4s, so
+      //     the blueprint does not depend on which set sizes happen to
+      //     exist. (History: a 9/3/13 draft was arithmetically fine and
+      //     still broke the fixture-backed draw; and the "only three
+      //     3-question talks in the bank" note above is stale — measured
+      //     2026-08-11 and again 2026-08-18, the live bank holds talk
+      //     sets 33×2 / 12×3 / 43×4.)
+      //   choose_response m1 ODD: the other three tasks are all even and
+      //     module 1 totals 27.
+      //   ETS's Stage 2 INVERSION preserved — the lower module serves no
+      //     Academic Talk and the upper module no Announcement.
+      // Live fillability re-checked against the real bank 2026-08-18, by
+      // count queries, not inferred from the unit test: choose_response
+      // 132 live rows (sets of 1), conversation 193, announcement 121,
+      // academic_talk 274 — every count below is a reachable sum of
+      // whole sets in today's bank.
+      { type: 'multiple_choice', task: 'choose_response', n: 14, m1: 11, lower: 9, upper: 3,
+        sM1: 8, sLower: 7, sUpper: 3 },
+      { type: 'multiple_choice', task: 'conversation',    n: 12, m1: 6,  lower: 6, upper: 6,
+        sM1: 4, sLower: 4, sUpper: 4 },
+      { type: 'multiple_choice', task: 'announcement',    n: 6,  m1: 6,  lower: 6, upper: 0,
         sM1: 4, sLower: 4, sUpper: 0 },
-      { type: 'multiple_choice', task: 'academic_talk',   n: 22, m1: 10, lower: 0,  upper: 12,
-        sM1: 8, sLower: 0, sUpper: 9 },
+      { type: 'multiple_choice', task: 'academic_talk',   n: 16, m1: 4,  lower: 0, upper: 12,
+        sM1: 4, sLower: 0, sUpper: 8 },
     ] },
   // Speaking. Listen-and-Repeat draws a deliberate RAMP rather than 7 at
   // random.

@@ -424,8 +424,9 @@ export function BankQcDashboard() {
           <span className="font-medium text-gray-700">blind</span> is how often three AI solvers
           pick the right answer with the audio withheld;{' '}
           <span className="font-medium text-gray-700">control</span> is the best a fixed-letter
-          guesser could do. A gap near zero is the goal — nothing has reached it. The shape of
-          this list is the finding: each attempt removes the previous tell and introduces a new one.
+          guesser could do. A gap near zero is the goal — cr-v7 reached it (shipped
+          2026-08-18). The shape of the earlier rows is the finding: each attempt removed the
+          previous tell and introduced a new one, until cr-v7 removed the authorship asymmetry itself.
         </p>
 
         <div className="mt-3 overflow-x-auto">
@@ -461,9 +462,11 @@ export function BankQcDashboard() {
                     </td>
                     <td className="py-2 whitespace-nowrap">
                       <span className={`rounded-full px-2 py-0.5 text-[10px] ring-1 ${
-                        a.verdict === 'inconclusive'
-                          ? 'bg-amber-50 text-amber-800 ring-amber-200'
-                          : 'bg-red-50 text-red-700 ring-red-200'}`}>
+                        a.verdict === 'cleared'
+                          ? 'bg-emerald-50 text-emerald-700 ring-emerald-200'
+                          : a.verdict === 'inconclusive'
+                            ? 'bg-amber-50 text-amber-800 ring-amber-200'
+                            : 'bg-red-50 text-red-700 ring-red-200'}`}>
                         {a.verdict}
                       </span>
                     </td>

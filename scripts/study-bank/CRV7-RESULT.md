@@ -1,4 +1,4 @@
-# cr-v7 — sixth rebuild attempt of Choose a Response. Both attack gates CLEAR. NOT BANKED — pending the human sitting gate.
+# cr-v7 — sixth rebuild attempt of Choose a Response. Both attack gates CLEAR. **SHIPPED 2026-08-18** on Andy's explicit approval — see the Shipped section at the bottom.
 
 Run 2026-08-18. 132 items in `crv7-items.json` (12 pilot + 6 batches of
 20, six different authors). Nothing banked, blueprint untouched, the 72
@@ -214,7 +214,7 @@ punctuation, or slot tells. Confident picks went 7/17 overall.
     crv7-pilot.* / crv7-s2.*                   blind, key, solver files (both runs)
     crv7-items.json                            THE COHORT — 132 items, live JSON shape
 
-## Next (not done here, by design)
+## Next (as written before the ship — superseded)
 
 1. Human sitting on a drawn sample of crv7-items.json under the
    calibrated reviewer (B4 passed 2026-08-15; the main session draws
@@ -224,3 +224,57 @@ punctuation, or slot tells. Confident picks went 7/17 overall.
    listening-blueprint.test.ts pin), port the §5 entry and a cr-v7 row
    into A3_ATTEMPTS in src/lib/study/bank-register.ts and re-run
    render-register.mjs.
+
+## SHIPPED — 2026-08-18, on Andy's explicit approval
+
+Andy approved shipping without waiting on the human sitting; the
+sitting remains worth having (watch items above) but is no longer the
+gate. Order of operations, each step verified before the next:
+
+1. **The two exclusivity watch items repaired.** idx 59 crv7-b3-20:
+   "There's a course next week — I'll sign up for it" (implicit-no
+   risk) → "Tell them to keep his head still — I'm coming" (answers a
+   live emergency the question never reports). idx 60 crv7-b3-14:
+   "I'll tell the committee tonight" (natural relay of the bad news) →
+   "Great — that covers the projector hire" (celebrates an award the
+   refusal never made). One distractor each; keys, lines, letter
+   positions, explanations' other clauses and the other 130 items
+   byte-identical (checked against a pre-edit backup). Structural
+   checks re-run over the full 132: 396/396 kill rationales anchor a
+   verbatim 2+-word span of their line, letters 33/33/33/33, key
+   length rank worst slot 34.1% (bar 40%), hedge 0.8%/0.8%, no new
+   near-dup pairs.
+2. **Banked 132** as cohort `cr-v7` via `bank-crv7.mjs insert` through
+   the ledger gate (`crv7-2026-08-18`, bound to the file's sha256).
+   NOT via insert-listening: its insert-time shuffle would replace the
+   flat-dealt letters the attacks measured. verify_meta carries
+   `{source:'crv7', shipped:'2026-08-18', localId}`. Re-read check: 5
+   random rows byte-identical (canonical-JSON) to the file.
+3. **Archived 63** — every then-live non-cr-v7 Choose a Response row
+   (49 cr-v1, 13 cr-v2, 1 harvest-v1). Live unarchived CR == 132,
+   verified by count.
+4. **Blueprint restored** to the pre-2026-08-11 ETS shape,
+   byte-identical to git 51dfe1d^: choose_response n14 m1 11 / lower 9
+   / upper 3 (scored 8/7/3), conversation 12/6/6/6 (4/4/4),
+   announcement 6/6/6/0 (4/4/0), academic_talk 16/4/0/12 (4/0/8).
+   Invariants re-derived: 48 delivered both paths, scored 20/15/15,
+   conversation/announcement/talk even, CR m1 odd, stage-2 inversion
+   intact. listening-blueprint.test.ts now pins every number of every
+   row and was break-tested (one mutated number → 3 assertions fail).
+   Andy's standing rule is quoted in assemble.ts and in the test: the
+   delivered count returns to the real ETS shape and NEVER changes
+   again.
+5. **Live draw** as the camp test student through
+   POST /api/study/test/assemble on the running dev server: module 1
+   drew 27 questions at 11/6/6/4 and the whole-section draw 48 at
+   14/12/6/16; every choose_response question served matched a cr-v7
+   item on passage+key (11/11, 14/14). Full src/lib/study suite green
+   (57 suites / 752 tests), eslint clean on the touched files.
+
+Recorded in REGISTER.md §0/§attempts-table/§5, and in
+bank-register.ts: A3 closed, A3_ATTEMPTS gains the cr-v6 (failed,
++47.2) and cr-v7 (cleared, +1.4) rows, PLAIN_STATUS reads 0 broken
+live. The by-construction invariant still stands going forward: NEVER
+edit an option or re-pick a world after selection — a future blind
+attack on any slice should sit near 25%, and a large positive means
+tampering, not authoring drift.

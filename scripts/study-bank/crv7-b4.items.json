@@ -1,0 +1,562 @@
+[
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Could you take your gear out of the common room?\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "I'll clear that corner out this evening.",
+      "Nobody I know of, going by last Thursday.",
+      "I'll take my reading down there tonight.",
+      "We'll have to meet in someone's room instead."
+    ],
+    "correct_answer": "I'll clear that corner out this evening.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The line asks the student to remove his things from the shared space. The reply undertaking to clear that corner out this evening complies and puts a time on it. The reply about meeting in someone's room assumes a closure; the reply about taking reading down there ignores the request entirely; the reply about last Thursday answers a question about availability that was not asked.",
+    "distractor_rationales": {
+      "We'll have to meet in someone's room instead.": "'Could you take your gear out' presupposes an open room, so proposing to meet in someone's bedroom answers a closure that was not reported.",
+      "I'll take my reading down there tonight.": "Being asked to 'take your gear out of the common room' is not news of new furniture, so settling in there tonight ignores what was asked.",
+      "Nobody I know of, going by last Thursday.": "'Could you take your gear out' asks for an action, not for Thursday's bookings, so an answer about last Thursday leaves the request unanswered."
+    },
+    "_crv7": {
+      "localId": "crv7-b4-08",
+      "selectedWorld": 2,
+      "kind": "request",
+      "keyAct": "agrees to clear his belongings out",
+      "setting": "suite common room"
+    }
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"It's the weekends that changed, not the weeknights.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "So Saturday evenings are what I watch for now.",
+      "That'd help, if you don't mind doing it.",
+      "I'll move band practice to the afternoons.",
+      "Sure — headphones from now on, I promise."
+    ],
+    "correct_answer": "So Saturday evenings are what I watch for now.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The line corrects which part of the week the quiet-hours change actually covers. The reply naming Saturday evenings works the correction through to the days that now matter. The reply moving band practice to the afternoons acts as though weeknights were affected; the reply promising headphones answers a request about the bass that was not made; the reply accepting help with the room below takes up an offer nobody made.",
+    "distractor_rationales": {
+      "I'll move band practice to the afternoons.": "Since it is 'not the weeknights', shifting weeknight band practice to the afternoons solves a problem the correction has just removed.",
+      "Sure — headphones from now on, I promise.": "'It's the weekends that changed' corrects a fact rather than asking for anything, so promising headphones complies with a request nobody made.",
+      "That'd help, if you don't mind doing it.": "'the weekends that changed' says nothing about neighbours downstairs, so accepting help talking to them responds to an offer that was not made."
+    },
+    "_crv7": {
+      "localId": "crv7-b4-07",
+      "selectedWorld": 1,
+      "kind": "correction",
+      "keyAct": "restates the corrected scope as it applies to him",
+      "setting": "quiet-hours discussion"
+    }
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Whose name is the electricity account actually in?\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "I'll snap it when I get in from work.",
+      "So the direct debit should drop next month.",
+      "We should sit down and work out the split.",
+      "Mine, from when we moved in last autumn."
+    ],
+    "correct_answer": "Mine, from when we moved in last autumn.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The line asks which housemate the supply is registered to. The reply saying it is his, from when they moved in, answers the question and dates it. The reply about sitting down to split it assumes an overspend; the reply about the direct debit dropping assumes a refund; the reply about photographing the meter answers a request that was not made.",
+    "distractor_rationales": {
+      "We should sit down and work out the split.": "'Whose name is the electricity account' is a question about registration, not a report of an overspend, so proposing to divide a bill answers nothing raised.",
+      "So the direct debit should drop next month.": "Asking whose name the account is 'actually in' announces no refund, so expecting the direct debit to drop acts on money nobody said was coming.",
+      "I'll snap it when I get in from work.": "'Whose name is the electricity account actually in' asks for a name, not a meter reading, so promising a photograph answers the wrong question."
+    },
+    "_crv7": {
+      "localId": "crv7-b4-13",
+      "selectedWorld": 2,
+      "kind": "question",
+      "keyAct": "answers a question about whose name is on the account",
+      "setting": "utilities in an off-campus house"
+    }
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Do you remember which door you last used it on?\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "That's a relief. I'll pick it up before class.",
+      "Then I'd better pay for a replacement today.",
+      "Sure, pass one over and I'll do it here.",
+      "The side entrance by the bike racks, late morning."
+    ],
+    "correct_answer": "The side entrance by the bike racks, late morning.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The line asks the student to place the card's last known use. The reply naming the side entrance by the bike racks supplies exactly the location the question is fishing for. The reply about collecting the card before class assumes it has already been found; the reply resolving to pay for a replacement jumps past a search still in progress; the reply agreeing to fill in a slip if one is passed over responds to a request that was not made.",
+    "distractor_rationales": {
+      "That's a relief. I'll pick it up before class.": "'Do you remember which door' is a question about the search, not word that the card is waiting to be picked up before class.",
+      "Then I'd better pay for a replacement today.": "Asking 'which door you last used it on' means the search is still live, so paying for a replacement today abandons a question still being worked through.",
+      "Sure, pass one over and I'll do it here.": "'Do you remember which door' asks for information, not for a lost-property form to be completed."
+    },
+    "_crv7": {
+      "localId": "crv7-b4-01",
+      "selectedWorld": 2,
+      "kind": "question",
+      "keyAct": "answers a factual question about where the card was last used",
+      "setting": "residence hall front desk"
+    }
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"The sublet form needs your guarantor's signature too.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "I'll collect it on my way past this afternoon.",
+      "I'll have to tell her to look elsewhere.",
+      "Not until the paperwork's finished, we agreed.",
+      "I'll post it to my uncle in the morning."
+    ],
+    "correct_answer": "I'll post it to my uncle in the morning.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The line reports one more signature required before the form is complete. The reply about posting it to his uncle in the morning gets the form to the person whose signature is missing. The reply collecting it assumes the process is finished and approved; the reply telling her to look elsewhere assumes a refusal; the reply about waiting for the paperwork answers a question about moving in that was not asked.",
+    "distractor_rationales": {
+      "I'll collect it on my way past this afternoon.": "Because the form 'needs your guarantor's signature too', collecting it as a finished document skips the step just named.",
+      "I'll have to tell her to look elsewhere.": "'needs your guarantor's signature' describes an outstanding step, not a refusal, so telling her to look elsewhere abandons a live application.",
+      "Not until the paperwork's finished, we agreed.": "'The sublet form needs your guarantor's signature' is a requirement, not a question about who has moved in, so an answer about waiting addresses nothing."
+    },
+    "_crv7": {
+      "localId": "crv7-b4-14",
+      "selectedWorld": 2,
+      "kind": "neutral info",
+      "keyAct": "arranges to get the additional signature",
+      "setting": "subletting paperwork"
+    }
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Could you be out of the room this afternoon?\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "I'll empty that cupboard out before they start.",
+      "That's a weight off — I'll put the food back.",
+      "That's fine — I'll work in the library.",
+      "I'll tell the others to clear their shelves."
+    ],
+    "correct_answer": "That's fine — I'll work in the library.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The line asks the student to be elsewhere while the room is dealt with. The reply agreeing and naming the library complies and says where he will actually be. The reply about telling the others assumes a floor-wide scope; the reply about putting the food back assumes an all-clear; the reply about emptying a cupboard responds to a finding that was not reported.",
+    "distractor_rationales": {
+      "I'll tell the others to clear their shelves.": "'Could you be out of the room' asks about this room only, so telling the others to clear their shelves acts on a scope that was not stated.",
+      "That's a weight off — I'll put the food back.": "Being asked to 'be out of the room this afternoon' means work is still to come, so putting food back closes the matter too early.",
+      "I'll empty that cupboard out before they start.": "'Could you be out of the room' is a request about where to be, not a report of droppings, so emptying that cupboard acts on a finding nobody gave."
+    },
+    "_crv7": {
+      "localId": "crv7-b4-17",
+      "selectedWorld": 2,
+      "kind": "request",
+      "keyAct": "agrees to be out and names where he will be",
+      "setting": "pest control visit"
+    }
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Has anything else of yours arrived since Friday?\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Nothing that I've been told about since then.",
+      "I'll book a redelivery on their site tonight.",
+      "I'll ask her to come down with her ID.",
+      "I'll sign for it before the desk closes."
+    ],
+    "correct_answer": "Nothing that I've been told about since then.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The line asks whether further items have come in over the last few days. The reply saying nothing has been told about since then answers the span the question covers. The reply about the roommate coming down with ID responds to a name problem nobody raised; the reply about booking a redelivery assumes a parcel went back to a depot; the reply about signing before the desk closes claims an item nobody said was there.",
+    "distractor_rationales": {
+      "I'll ask her to come down with her ID.": "'Has anything else of yours arrived' asks a question and names no roommate, so sending her down with ID answers a problem that was not raised.",
+      "I'll book a redelivery on their site tonight.": "Asking whether anything 'arrived since Friday' says nothing about a parcel going back, so booking a redelivery responds to a return nobody reported.",
+      "I'll sign for it before the desk closes.": "'Has anything else of yours arrived' does not report an item waiting, so undertaking to sign for it before the desk closes claims something unmentioned."
+    },
+    "_crv7": {
+      "localId": "crv7-b4-04",
+      "selectedWorld": 3,
+      "kind": "question",
+      "keyAct": "answers a question about other deliveries",
+      "setting": "package room"
+    }
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"It's the guest rule she objected to, not the rota.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Then we can pin it up in the hallway.",
+      "I'll rewrite that section before we meet again.",
+      "Is the copy in the shared folder current?",
+      "I'll sketch a rota out and send it round."
+    ],
+    "correct_answer": "I'll rewrite that section before we meet again.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The line corrects which part of the agreement drew the objection. The reply undertaking to rewrite that section before the next meeting acts on the corrected target. The reply about sketching a rota works on the part the correction has just cleared; the reply about pinning it up assumes agreement; the reply asking which copy is current responds to a request to review a draft that was not made.",
+    "distractor_rationales": {
+      "I'll sketch a rota out and send it round.": "Since the objection was 'not the rota', drafting a rota and sending it round works on the part the correction has just cleared.",
+      "Then we can pin it up in the hallway.": "'It's the guest rule she objected to' means the document is contested, so pinning it up in the hallway publishes something not yet settled.",
+      "Is the copy in the shared folder current?": "'the guest rule she objected to' names a fault rather than asking for a read-through, so asking which copy is current answers a request nobody made."
+    },
+    "_crv7": {
+      "localId": "crv7-b4-11",
+      "selectedWorld": 2,
+      "kind": "correction",
+      "keyAct": "undertakes to revise the section actually objected to",
+      "setting": "roommate agreement"
+    }
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Could you label whatever you leave in the fridge?\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "I'll go back to the microwave for a while.",
+      "Will do — there's tape on the shelf, isn't there?",
+      "I'll do my cooking in the evenings instead.",
+      "That's good news — I might do a roast Sunday."
+    ],
+    "correct_answer": "Will do — there's tape on the shelf, isn't there?",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The line asks the student to mark anything he leaves in the shared fridge. The reply agreeing and checking that the tape is on the shelf accepts the task and confirms the means of doing it. The reply about the microwave assumes the oven has gone; the reply about a roast assumes a new one has arrived; the reply about evening cooking responds to a cleaning schedule that was not mentioned.",
+    "distractor_rationales": {
+      "I'll go back to the microwave for a while.": "'Could you label whatever you leave' is a request about the fridge and reports nothing about the oven, so retreating to the microwave answers a breakdown that was not mentioned.",
+      "That's good news — I might do a roast Sunday.": "Being asked to 'label whatever you leave in the fridge' is not news of a new appliance, so planning a roast responds to something that was not said.",
+      "I'll do my cooking in the evenings instead.": "'Could you label whatever you leave in the fridge' names no cleaning morning, so moving cooking to the evenings answers a schedule that was not given."
+    },
+    "_crv7": {
+      "localId": "crv7-b4-12",
+      "selectedWorld": 2,
+      "kind": "request",
+      "keyAct": "agrees and checks that the labelling materials are where he thinks",
+      "setting": "hall kitchen"
+    }
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Is your radiator warm at the top or the bottom?\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "I'll take the fan heater back downstairs.",
+      "I'll borrow another blanket from the desk.",
+      "Only along the bottom, the top stays cold.",
+      "That would get me through the night."
+    ],
+    "correct_answer": "Only along the bottom, the top stays cold.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The line asks the student to describe where the radiator is getting warm, which is the standard way of narrowing the fault. The reply saying only along the bottom, with the top cold, gives exactly the observation the question asks for. The reply about borrowing a blanket assumes the whole boiler is down; the reply about the fan heater assumes the heating is restored; the reply about getting through the night accepts a loan that was not offered.",
+    "distractor_rationales": {
+      "I'll borrow another blanket from the desk.": "'Is your radiator warm at the top' asks about one room's radiator, so borrowing a blanket answers a building-wide outage nobody reported.",
+      "I'll take the fan heater back downstairs.": "Asking whether it is warm 'at the top or the bottom' reports no restoration, so taking the fan heater back downstairs acts on news that was not given.",
+      "That would get me through the night.": "'Is your radiator warm at the top or the bottom' asks for an observation, not offers a heater, so accepting one leaves the question unanswered."
+    },
+    "_crv7": {
+      "localId": "crv7-b4-18",
+      "selectedWorld": 2,
+      "kind": "question",
+      "keyAct": "answers a diagnostic question about the radiator",
+      "setting": "heating issue"
+    }
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"You can put your towels in with my load.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "That'd save me a trip; I'll bring them down.",
+      "Of course — I'll set an alarm for it.",
+      "I'll start hanging things on my rack, then.",
+      "Is it back on the same card system?"
+    ],
+    "correct_answer": "That'd save me a trip; I'll bring them down.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The line offers the student space in a load that is already going in. The reply saying it saves a trip and undertaking to bring the towels down accepts the offer and does the one thing acceptance requires. The reply about a drying rack assumes the dryer is out; the reply asking about the card system responds to a repair report; the reply promising an alarm answers a request to clear a machine that was not made.",
+    "distractor_rationales": {
+      "I'll start hanging things on my rack, then.": "'You can put your towels in' presupposes a working machine, so falling back on a drying rack answers a breakdown that has not happened.",
+      "Is it back on the same card system?": "'in with my load' is an offer of space, not a report that the dryer was fixed, so asking about the card system responds to news nobody gave.",
+      "Of course — I'll set an alarm for it.": "Being told 'You can put your towels in with my load' is an offer, not a request to clear the machine, so promising an alarm answers the wrong thing."
+    },
+    "_crv7": {
+      "localId": "crv7-b4-03",
+      "selectedWorld": 3,
+      "kind": "offer",
+      "keyAct": "accepts the offer of space in another load",
+      "setting": "laundry room"
+    }
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"I can sit down with both rooms and mediate.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Then I'd better put my side of it in writing.",
+      "I'd take you up on that; evenings suit us.",
+      "Understood. I'll let my roommates know where we stand.",
+      "No, I got back late and it had already stopped."
+    ],
+    "correct_answer": "I'd take you up on that; evenings suit us.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The line offers to bring the two rooms together with the RA present. The reply accepting and saying evenings suit takes the offer and moves it towards a time, which is what an offer of a meeting needs. The reply undertaking to brief the roommates treats an offer as a verdict; the reply about putting a side of it in writing assumes a formal complaint exists; the reply about getting back late answers a question about presence that was not asked.",
+    "distractor_rationales": {
+      "Understood. I'll let my roommates know where we stand.": "'I can sit down' offers something ahead, not a decision already recorded, so telling the roommates where things stand skips over the offer without answering it.",
+      "Then I'd better put my side of it in writing.": "An offer to 'sit down with both rooms' is not a formal proceeding, so writing up one side of it responds to a process that does not exist here.",
+      "No, I got back late and it had already stopped.": "Offering to 'sit down with both rooms and mediate' asks nothing about who was in the room, so describing a late return leaves the offer hanging."
+    },
+    "_crv7": {
+      "localId": "crv7-b4-02",
+      "selectedWorld": 2,
+      "kind": "offer",
+      "keyAct": "accepts the offer of mediation and supplies availability",
+      "setting": "RA corridor conversation"
+    }
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"You've failed on the fire door being propped open.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Then the shelves can stay where they are.",
+      "Does taking the wedge out clear it on its own?",
+      "Tuesday it is — I'll have the room straight.",
+      "That's ours, and we'll move it back inside."
+    ],
+    "correct_answer": "Does taking the wedge out clear it on its own?",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The line reports a fail and names the single reason for it. The reply asking whether taking the wedge out clears it on its own goes straight to whether the named fault can be closed without more. The reply about being straight by Tuesday prepares for an inspection already carried out; the reply about the shelves staying put assumes a pass; the reply claiming the recycling answers a question about the corridor nobody asked.",
+    "distractor_rationales": {
+      "Tuesday it is — I'll have the room straight.": "'You've failed' reports a completed inspection, so getting the room straight for Tuesday prepares for a visit that has been and gone.",
+      "Then the shelves can stay where they are.": "Because 'You've failed on the fire door', leaving the shelves as they are acts on a clean result that was not given.",
+      "That's ours, and we'll move it back inside.": "'the fire door being propped open' is the fault named, not a question about recycling, so owning bags in the corridor addresses the wrong thing."
+    },
+    "_crv7": {
+      "localId": "crv7-b4-06",
+      "selectedWorld": 2,
+      "kind": "bad news",
+      "keyAct": "asks whether the named fix is sufficient on its own",
+      "setting": "room inspection"
+    }
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"There's a locker free in the basement corridor.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "A bike and a few boxes of books.",
+      "Please do — my number's on the tenancy form.",
+      "I'll ask around for somewhere else to store things.",
+      "I'll take it and move my boxes down tomorrow."
+    ],
+    "correct_answer": "I'll take it and move my boxes down tomorrow.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The line reports a locker currently available. The reply taking it and moving boxes down tomorrow claims the space and acts on it before it goes. The reply about asking around for somewhere else assumes none are free; the reply supplying a number for the tenancy form accepts a waiting-list offer that was not made; the reply describing a bike and boxes answers a question about volume that was not asked.",
+    "distractor_rationales": {
+      "I'll ask around for somewhere else to store things.": "'There's a locker free' means a space is available now, so asking around for somewhere else looks past the one on offer.",
+      "Please do — my number's on the tenancy form.": "'a locker free in the basement corridor' is an available unit, not an offer of a waiting list, so supplying a number for the list responds to nothing.",
+      "A bike and a few boxes of books.": "'There's a locker free' is an announcement rather than a question about volume, so describing a bike and boxes answers nobody."
+    },
+    "_crv7": {
+      "localId": "crv7-b4-10",
+      "selectedWorld": 0,
+      "kind": "good news",
+      "keyAct": "claims the available locker and sets a day to fill it",
+      "setting": "storage locker rental"
+    }
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Can you keep that tap off until I return?\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "No problem, I'll use the one down the hall.",
+      "Good, then I'll put everything back under the sink.",
+      "I'll clear the cupboard before you come back.",
+      "That explains the damp patch on that wall."
+    ],
+    "correct_answer": "No problem, I'll use the one down the hall.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The line asks the student not to run that tap until the technician is back. The reply agreeing and saying the one down the hall will be used shows how the request will actually be kept. The reply putting things back under the sink assumes the work is over; the reply clearing the cupboard responds to a diagnosis nobody gave; the reply about the damp patch treats the request as a finding about the radiator.",
+    "distractor_rationales": {
+      "Good, then I'll put everything back under the sink.": "'until I return' says the visit is not over, so restocking the cupboard under the sink acts on a completion that has not happened.",
+      "I'll clear the cupboard before you come back.": "'Can you keep that tap off' is a request, not a report that a part has failed, so emptying the cupboard responds to a diagnosis nobody gave.",
+      "That explains the damp patch on that wall.": "Being asked to 'keep that tap off' names no other source, so treating a damp wall patch as explained draws a conclusion the request does not offer."
+    },
+    "_crv7": {
+      "localId": "crv7-b4-05",
+      "selectedWorld": 2,
+      "kind": "request",
+      "keyAct": "agrees to leave the tap alone and names the alternative used meanwhile",
+      "setting": "dorm maintenance visit"
+    }
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"The porters agreed to move the desks for us.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Sure — give me a few minutes to clear them.",
+      "I'll put the desk back where it was.",
+      "Then we just need to be in when they come.",
+      "That'd make it much easier — after dinner?"
+    ],
+    "correct_answer": "Then we just need to be in when they come.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The line reports that staff have taken on the heavy work. The reply about needing to be in when they come identifies the only obligation left once someone else is carrying. The reply proposing after dinner accepts an offer of personal help that was not made; the reply about putting the desk back assumes the swap is barred; the reply about clearing the drawers answers a request that was not made.",
+    "distractor_rationales": {
+      "That'd make it much easier — after dinner?": "'The porters agreed to move the desks' means no personal carrying is on offer, so proposing a time to do it after dinner arranges the wrong labour.",
+      "I'll put the desk back where it was.": "Since 'The porters agreed to move the desks for us', putting the desk back where it was cancels a move that has been arranged.",
+      "Sure — give me a few minutes to clear them.": "'The porters agreed to move the desks' asks nothing about drawers, so promising to clear them answers a request that was not made."
+    },
+    "_crv7": {
+      "localId": "crv7-b4-15",
+      "selectedWorld": 1,
+      "kind": "good news",
+      "keyAct": "draws out what the arrangement now requires of them",
+      "setting": "furniture swap"
+    }
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"A new mattress is coming up to your room today.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "I'll check whether the slats have slipped.",
+      "I'll strip the bed before they get here.",
+      "I'll stand it against the wall outside.",
+      "I'll put a topper on it and manage."
+    ],
+    "correct_answer": "I'll strip the bed before they get here.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The line reports a replacement mattress on its way up today. The reply about stripping the bed before they get here does the preparation a delivery calls for. The reply about a topper assumes nothing is coming; the reply about standing it against the wall answers a request about the old one that was not made; the reply about the slats assumes the fault was traced to the frame.",
+    "distractor_rationales": {
+      "I'll put a topper on it and manage.": "'A new mattress is coming up' means a replacement is on its way, so making do with a topper solves a shortage that is being fixed today.",
+      "I'll stand it against the wall outside.": "'coming up to your room today' announces an arrival rather than asking for the old one to be put out, so standing it outside answers nothing.",
+      "I'll check whether the slats have slipped.": "'A new mattress is coming up' treats the mattress as the fault, so checking the slats looks somewhere the line does not point."
+    },
+    "_crv7": {
+      "localId": "crv7-b4-16",
+      "selectedWorld": 0,
+      "kind": "good news",
+      "keyAct": "prepares the bed for the delivery",
+      "setting": "mattress replacement"
+    }
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"They can't repair it, the whole unit needs replacing.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "I'll tape the crack over until then.",
+      "I'll air the room through the other one.",
+      "I can put my desk back under it now.",
+      "I'll ask about moving rooms while that happens."
+    ],
+    "correct_answer": "I'll ask about moving rooms while that happens.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The line reports the window beyond repair, with a full replacement required. The reply about asking to move rooms while that happens responds to work of a size that makes the room hard to live in. The reply about taping the crack treats it as a short wait; the reply about the desk assumes the job is done; the reply about airing through the other one answers a request that was not made.",
+    "distractor_rationales": {
+      "I'll tape the crack over until then.": "'the whole unit needs replacing' is more than a crack, so taping it over treats a replacement job as a small repair.",
+      "I can put my desk back under it now.": "Because 'They can't repair it', putting a desk back under the window acts on a completion that has not happened.",
+      "I'll air the room through the other one.": "'They can't repair it' reports a verdict, not a request to keep the window shut, so airing through the other one answers nothing asked."
+    },
+    "_crv7": {
+      "localId": "crv7-b4-19",
+      "selectedWorld": 2,
+      "kind": "bad news",
+      "keyAct": "asks about temporary accommodation elsewhere",
+      "setting": "window repair"
+    }
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Move-out's on the Saturday, keys back at the desk.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Sure, I'll leave the bag by the door.",
+      "That's a relief — I'll tell my parents tonight.",
+      "I'll book a van for that morning, then.",
+      "I'll start looking for somewhere to put my things."
+    ],
+    "correct_answer": "I'll book a van for that morning, then.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The line gives the day rooms must be emptied and where keys go. The reply booking a van for that morning turns the stated day into the logistics it requires. The reply about telling parents tonight assumes permission to stay; the reply about finding somewhere for his things assumes a refusal; the reply about leaving a bag by the door answers a request about linen that was not made.",
+    "distractor_rationales": {
+      "That's a relief — I'll tell my parents tonight.": "'Move-out's on the Saturday' is a deadline for everyone, not permission to remain, so passing good news to parents reports something that was not said.",
+      "I'll start looking for somewhere to put my things.": "Because 'Move-out's on the Saturday', nothing has been refused, so hunting for storage responds to a decision that was not announced.",
+      "Sure, I'll leave the bag by the door.": "'keys back at the desk' tells the student where keys go, not what to do with bedding, so leaving a bag by the door answers a request nobody made."
+    },
+    "_crv7": {
+      "localId": "crv7-b4-09",
+      "selectedWorld": 0,
+      "kind": "neutral info",
+      "keyAct": "arranges transport for the stated day",
+      "setting": "dorm move-out logistics"
+    }
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"The council voted your proposal down last night.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "I'll start pricing up the racks, then.",
+      "That would take a lot off my plate.",
+      "I'll find out what they objected to.",
+      "I'll write the laundry proposal up before then."
+    ],
+    "correct_answer": "I'll find out what they objected to.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The line reports the proposal rejected at the council's last sitting. The reply about finding out what they objected to seeks the grounds, which is the only useful move after a rejection. The reply about writing it up assumes it has yet to be submitted; the reply about pricing racks assumes approval; the reply about a weight off accepts an offer to present that was not made.",
+    "distractor_rationales": {
+      "I'll write the laundry proposal up before then.": "'voted your proposal down last night' means the meeting has been held, so preparing a write-up before then works to a deadline that has passed.",
+      "I'll start pricing up the racks, then.": "Because the council 'voted your proposal down', pricing up racks builds on an approval that was refused.",
+      "That would take a lot off my plate.": "'The council voted your proposal down' reports an outcome, not an offer to speak for him, so treating it as a load lifted answers nothing offered."
+    },
+    "_crv7": {
+      "localId": "crv7-b4-20",
+      "selectedWorld": 2,
+      "kind": "bad news",
+      "keyAct": "sets out to learn the grounds for the rejection",
+      "setting": "hall council meeting"
+    }
+  }
+]

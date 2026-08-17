@@ -3,10 +3,13 @@
  * saying so is not evidence that it does.
  *
  * On 2026-08-11 Choose a Response was cut from 14 delivered to 6 —
- * both instruments agree students answer it without the audio — and the
- * 8 freed slots went to Conversation and Academic Talk. That is nine
- * numbers changed across three tasks, each of which must keep the
- * per-path delivered total at 48 and the scored totals at 20/15/15.
+ * both instruments agreed students answered the then-live cr-v1 cohort
+ * without the audio — and the 8 freed slots went to Conversation and
+ * Academic Talk. On 2026-08-18 cr-v7 cleared both blind-attack gates,
+ * shipped on Andy's explicit approval, and the ETS shape was RESTORED.
+ * His standing rule, quoted: the delivered count returns to the real
+ * ETS shape and NEVER changes again — so this file pins every number
+ * of every row, not just the invariants.
  *
  * WHY THIS READS THE SOURCE TEXT rather than importing the table.
  * assemble.ts pulls in the Supabase admin client and the `ai` SDK at
@@ -102,13 +105,20 @@ describe('TOEFL Listening blueprint', () => {
     for (const v of [r.m1, r.lower, r.upper]) expect(v % 2).toBe(0)
   })
 
-  it('holds Choose a Response at the reduced count until a rebuild passes', () => {
-    // Pinned on purpose. Four rebuild attempts have failed (A3_ATTEMPTS in
-    // bank-register.ts). Restoring 14 would put questions answerable
-    // without listening back to 29% of the section, and that must be a
-    // decision, not the side effect of an unrelated edit.
-    const cr = by('choose_response')
-    expect(cr.m1 + cr.upper).toBeLessThanOrEqual(6)
-    expect(cr.m1 + cr.lower).toBeLessThanOrEqual(6)
+  it('pins the restored ETS shape exactly — Andy\'s rule: it NEVER changes again', () => {
+    // Restored 2026-08-18 after cr-v7 cleared both blind-attack gates and
+    // shipped on Andy's explicit approval (132 items live, cr-v1/cr-v2/
+    // harvest-v1 archived — CRV7-RESULT.md). These are the pre-2026-08-11
+    // numbers, byte-for-byte. His standing rule is quoted in assemble.ts:
+    // the delivered count returns to the real ETS shape and NEVER changes
+    // again. A red test here means someone is re-tuning the exam's shape;
+    // that needs Andy, not a pin update.
+    expect(rows.map(({ task, n, m1, lower, upper, sM1, sLower, sUpper }) =>
+      [task, n, m1, lower, upper, sM1, sLower, sUpper].join(','))).toEqual([
+      'choose_response,14,11,9,3,8,7,3',
+      'conversation,12,6,6,6,4,4,4',
+      'announcement,6,6,6,0,4,4,0',
+      'academic_talk,16,4,0,12,4,0,8',
+    ])
   })
 })

@@ -198,13 +198,13 @@ export const WORK: WorkItem[] = [
   {
     id: 'A3',
     title: 'Rebuild Choose a Response',
-    size: '72 items',
+    size: 'DONE — cr-v7 (132 items) shipped 2026-08-18; 63 old rows archived',
     why: 'Re-measured 2026-08-06 after a targeted repair: 74.4% blind against a 29.2% control, +45.1pts, with 40 of 65 items solved by all three solvers independently. Accuracy when a solver COMMITS to an answer is ~92%, with no audio. These are not listening questions.',
     owner: 'claude',
     doc: 'scripts/study-bank/A3-STAGE1-PREREGISTERED.md (the plan: stage-1 test, pass/fail line and the fallback, all fixed before authoring) + CR-POSTREPAIR-RESULT.md (the refutation) + CRV3-RESULT.md (the earlier failed round)',
 
-    state: 'open',
-    note: 'UNBLOCKED, and the cheap version has been TRIED AND REFUTED. The narrow repair — rewrite only the defective distractors rather than rebuild — removed the one exactly-checkable defect (a "wrong register" option that is a slot in the cr-v1 authoring brief: 24/56 cr-v1, 0/14 cr-v2, 0/2 harvest-v1) and moved the blind score by ~3 points: repaired items 72.2%, untouched 75.6%. I predicted 28.4% beforehand and was wrong by 46 points. cr-v2 is NOT a template to author toward — it scores lower only because solvers abstain more, and its committed accuracy is identical at 92.0%. CAUSE: the four-slot distractor brief — one accept-and-act key plus a parodic over-formal option, a rude/escalating one, a dismissive minimiser and a topic-shifting question. All three solvers described it unprompted. Removing one slot leaves three and the key is still the option that is none of them. THE REBUILD NEEDS: (1) a new brief whose load-bearing property is that EVERY option must be a natural reply to SOME plausible prompt, so the question is which fits the line actually spoken — and which must NOT specify a new fixed roster of distractor types, because a fixed roster is what produced this tell; (2) the blind attack run DURING authoring on a held-out slice, not after the batch, since re-authoring this task type produced a 95%-blind batch in July and three rounds have already failed; (3) care that a distractor is not wrong in a way visible WITHOUT the prompt — one of the 24 replacements written today was self-contradictory and solvers cracked it on that alone. Three further register items found by a solver and not repaired (25eca95b, 17d5acca, 012fc0d9); moot if cr-v1 is re-authored. Note the items are STILL SERVED to students today.',
+    state: 'done',
+    note: 'CLOSED 2026-08-18 — cr-v7 SHIPPED on Andy\'s explicit approval. The seventh attempt changed the METHOD instead of the brief: four symmetric worlds per item, seeded RNG picks the key after text freeze, so no author knows the key and the blind margin is ~0 by construction (S1 −16.7, S2 +1.4, post-cohesion +5.6, all CLEAR under the +30 kill bar; see A3_ATTEMPTS and CRV7-RESULT.md). 132 items live as cohort cr-v7, the 63 old rows archived, the Listening blueprint restored to the ETS shape — Andy\'s standing rule: the delivered count NEVER changes again. A human sitting on cr-v7 remains worth having (watch items in CRV7-RESULT.md) but the ship did not wait on it — his approval was the verdict. Original note follows for the record. UNBLOCKED, and the cheap version has been TRIED AND REFUTED. The narrow repair — rewrite only the defective distractors rather than rebuild — removed the one exactly-checkable defect (a "wrong register" option that is a slot in the cr-v1 authoring brief: 24/56 cr-v1, 0/14 cr-v2, 0/2 harvest-v1) and moved the blind score by ~3 points: repaired items 72.2%, untouched 75.6%. I predicted 28.4% beforehand and was wrong by 46 points. cr-v2 is NOT a template to author toward — it scores lower only because solvers abstain more, and its committed accuracy is identical at 92.0%. CAUSE: the four-slot distractor brief — one accept-and-act key plus a parodic over-formal option, a rude/escalating one, a dismissive minimiser and a topic-shifting question. All three solvers described it unprompted. Removing one slot leaves three and the key is still the option that is none of them. THE REBUILD NEEDS: (1) a new brief whose load-bearing property is that EVERY option must be a natural reply to SOME plausible prompt, so the question is which fits the line actually spoken — and which must NOT specify a new fixed roster of distractor types, because a fixed roster is what produced this tell; (2) the blind attack run DURING authoring on a held-out slice, not after the batch, since re-authoring this task type produced a 95%-blind batch in July and three rounds have already failed; (3) care that a distractor is not wrong in a way visible WITHOUT the prompt — one of the 24 replacements written today was self-contradictory and solvers cracked it on that alone. Three further register items found by a solver and not repaired (25eca95b, 17d5acca, 012fc0d9); moot if cr-v1 is re-authored. Note the items are STILL SERVED to students today.',
   },
   {
     id: 'A14',
@@ -632,6 +632,21 @@ export const FOUND_WHILE_FIXING: Found[] = [
     what: 'apply-math-hub-repair.mjs globbed math-hub-*.json, so any new file with that prefix was silently pulled into unrelated runs.',
     landedAs: 'fixed',
   },
+  {
+    date: '2026-08-18',
+    what: 'CR-V7 CLEARED BOTH BLIND-ATTACK GATES — the sixth rebuild changed the METHOD, not the brief. Four symmetrically-authored worlds per item (each with its own line AND reply, 1,584 kill-quotes machine-verified), seeded RNG picks the spoken world only AFTER text freeze, so no author ever knows the key and the key is independent of every text feature by construction. S1 pilot 12: 8.3% blind vs 25.0% control (−16.7). S2 sample 24 of 120: 26.4% vs 25.0% (+1.4). All six solvers converged on the same loud heuristic ("the key reacts to news") and it was COUNTED against the population: reaction-token options are keys at 5.3% vs distractors 8.3%; where exactly one option carries it, it is the key 15.8% of the time (chance 25). The invariant that keeps this true is procedural: never edit an option or re-pick a world after selection. Full numbers + verbatim solver reports: CRV7-RESULT.md.',
+    landedAs: 'A3',
+  },
+  {
+    date: '2026-08-18',
+    what: 'CR-V7 cohesion pass on Andy\'s topical-distance feedback: 52 topic-distant distractors across 39 items rewritten in-topic (keys, lines, letter positions byte-identical to the frozen render), deliberately breaking the no-post-selection-edits invariant on those distractors — so a FRESH blind attack is their evidence: crv7b-cohesion +5.6 CLEAR, edited subset no more guessable than unedited. Process findings: two of four cohesion scorers returned 0/33 next to 18% and 52% — calibrated re-probes found 11 and 6 real flags (a 0-flag scorer is a claim about the scorer); a dedicated exclusivity checker (all 4 options WITH the line, key unmarked) matched the key as sole-acceptable in 36/36 clean items and surfaced 1 pass-introduced defect (repaired) plus 2 pre-existing two-defensible items in original text (crv7-b3-20, crv7-b3-14).',
+    landedAs: 'A3',
+  },
+  {
+    date: '2026-08-18',
+    what: 'CR-V7 SHIPPED on Andy\'s explicit approval. The 2 pre-existing two-defensible watch items repaired first (one distractor each, quote-anchored kill rationales, keys/lines/positions untouched, structural checks re-run: 396/396 anchored, letters 33/33/33/33). 132 items banked as cohort cr-v7 via bank-crv7.mjs through the ledger gate (crv7-2026-08-18) — deliberately WITHOUT insert-time shuffle, because the flat-dealt letters are what the attacks measured. All 63 then-live old CR rows archived (49 cr-v1, 13 cr-v2, 1 harvest-v1); live unarchived CR == 132. Listening blueprint restored byte-for-byte to the pre-2026-08-11 ETS shape (choose_response 14/11/9/3 s8/7/3; conversation 12/6/6/6; announcement 6/6/6/0; academic_talk 16/4/0/12), verified against git and by a live API draw as the camp student: module 1 = 27 at 11/6/6/4, whole section = 48 at 14/12/6/16, every CR question served matched cr-v7 on passage+key. ANDY\'S STANDING RULE, quoted in assemble.ts and pinned by listening-blueprint.test.ts (every number of every row): the delivered count returns to the real ETS shape and NEVER changes again.',
+    landedAs: 'A3',
+  },
 ]
 
 /** Counts for the dashboard header. */
@@ -679,7 +694,7 @@ export interface RebuildAttempt {
    * not a gap; it renders as "not recorded".
    */
   controlPct: number | null
-  verdict: 'failed' | 'refuted' | 'inconclusive'
+  verdict: 'failed' | 'refuted' | 'inconclusive' | 'cleared'
   /** Why it failed, in one sentence a non-specialist can act on. */
   why: string
 }
@@ -738,6 +753,24 @@ export const A3_ATTEMPTS: RebuildAttempt[] = [
     verdict: 'failed',
     why: 'The ban stripped questions out of the wrong answers, so pre-flight flagged an imbalance, and repairing THAT by hand made every wrong answer sound hedgy — "I thought", "I gather" — in 6 of 36 distractors and 0 of 12 keys. I reintroduced a roster while fixing a cosmetic check.',
   },
+  {
+    label: 'cr-v6',
+    date: '2026-08-11',
+    changed: "cr-v4's brief held EXACTLY — nothing added, nothing removed, fresh scenarios. The replication test.",
+    blindPct: 72.2,
+    controlPct: 25.0,
+    verdict: 'failed',
+    why: "+47.2, indistinguishable from cr-v5 and from the original defect: cr-v4's +22.2 was a draw, not a method. This settled that no BRIEF fixes the task type — the authorship asymmetry (the key is the reply to the real line, the distractors are something else) survives every authoring rule.",
+  },
+  {
+    label: 'cr-v7',
+    date: '2026-08-18',
+    changed: 'New METHOD, not a new brief: four mutually exclusive worlds per item authored symmetrically (each world has its own line AND reply; 1,584 kill-quotes machine-verified), then a seeded RNG picks the spoken world AFTER the text is frozen — no author ever knows the key.',
+    blindPct: 26.4,
+    controlPct: 25.0,
+    verdict: 'cleared',
+    why: 'CLEARED AND SHIPPED 2026-08-18 on Andy\'s explicit approval. The key is statistically independent of every text feature by construction; the solvers\' loudest heuristic was counted against the population and points nowhere (15.8% where chance is 25%). S1 −16.7, S2 +1.4, post-cohesion re-attack +5.6, all under the pre-registered +30 kill bar. 132 items live as cohort cr-v7; the 63 old rows archived; the Listening blueprint restored to the ETS shape (14 delivered).',
+  },
 ]
 
 export function attemptSummary(attempts: RebuildAttempt[] = A3_ATTEMPTS) {
@@ -746,8 +779,8 @@ export function attemptSummary(attempts: RebuildAttempt[] = A3_ATTEMPTS) {
   const best = scored.reduce((a, b) => margin(b) < margin(a) ? b : a)
   return {
     tried: attempts.length,
-    /** Nothing has passed. Kept as a computed field so it cannot go stale. */
-    passed: attempts.filter(a => a.verdict === 'inconclusive' as string).length === 0 ? 0 : 0,
+    /** Computed, so it cannot go stale. cr-v7 is the first (and so far only) pass. */
+    passed: attempts.filter(a => a.verdict === 'cleared').length,
     bestLabel: best.label,
     bestMargin: +margin(best).toFixed(1),
   }
@@ -763,11 +796,16 @@ export function attemptSummary(attempts: RebuildAttempt[] = A3_ATTEMPTS) {
  * need completely different responses.
  */
 export const PLAIN_STATUS = {
-  brokenCohort: 'Choose a Response',
-  brokenItems: 72,
-  brokenIsLive: true,
-  unverifiedItems: 3255,
+  /** RESOLVED 2026-08-18: the broken cr-v1/cr-v2/harvest-v1 rows (63 live at
+   *  the time) were archived and replaced by the attack-cleared cr-v7 cohort
+   *  (132 items), shipped on Andy's explicit approval. Zero known-broken
+   *  items are live. */
+  brokenCohort: 'Choose a Response (cr-v1 — archived 2026-08-18)',
+  brokenItems: 0,
+  brokenIsLive: false,
+  /** Includes the 132 cr-v7 items: attack-cleared but not yet human-read. */
+  unverifiedItems: 3387,
   /** What unblocks the 98%. One 20-minute sitting, by one named person. */
-  blockedOn: 'B4 — the calibration sitting, support@classraum.com',
-  humanChecksSoFar: 'Every cohort a human has actually read came back clean. None has ever failed a human check except Choose a Response.',
+  blockedOn: 'B2 — the two never-read cohorts (B4 passed 2026-08-15)',
+  humanChecksSoFar: 'Every cohort a human has actually read came back clean. The one that failed a human check — Choose a Response cr-v1 — was archived on 2026-08-18 and replaced by cr-v7.',
 } as const

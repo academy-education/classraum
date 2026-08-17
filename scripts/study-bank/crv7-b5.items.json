@@ -1,0 +1,562 @@
+[
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"She's agreed to stay for a workshop afterwards.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "We should book a seminar room then.",
+      "Someone should meet her at the station.",
+      "I'll put a notice on the event page.",
+      "I'll write something short for that."
+    ],
+    "correct_answer": "We should book a seminar room then.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The line reports that the speaker will run an extra session. Booking a room is the first thing an added session needs. The other replies do not fit: the one that proposes meeting her at the station arranges a station pick-up although travel was not discussed; the one that posts a notice on the event page posts a cancellation when the speaker is doing more, not less; the one that agrees to write a short introduction drafts a stage introduction that nobody requested.",
+    "distractor_rationales": {
+      "Someone should meet her at the station.": "This line says \"stay for a workshop\", so the reply that proposes meeting her at the station is wrong here: it arranges a station pick-up although travel was not discussed.",
+      "I'll put a notice on the event page.": "This line says \"She's agreed to stay\", so the reply that posts a notice on the event page is wrong here: it posts a cancellation when the speaker is doing more, not less.",
+      "I'll write something short for that.": "This line says \"a workshop afterwards\", so the reply that agrees to write a short introduction is wrong here: it drafts a stage introduction that nobody requested."
+    },
+    "_crv7": {
+      "localId": "crv7-b5-17",
+      "selectedWorld": 3,
+      "kind": "good news",
+      "keyAct": "arrange what it needs",
+      "setting": "guest speaker logistics"
+    }
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Do we need to label everything for allergies?\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Right, I'll sort the table and the float.",
+      "I'll change the poster before it goes up.",
+      "We could buy things in from the market.",
+      "Yes, the union insists on it now."
+    ],
+    "correct_answer": "Yes, the union insists on it now.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The line asks whether allergy labelling is compulsory. A yes with the source of the rule settles the question being asked. The other replies do not fit: the one that takes on the table and the float divides up work when the question is about the rules; the one that proposes buying goods in from the market looks for goods to buy when nothing has been ruled out; the one that fixes the poster before it goes up changes a poster although no date has been mentioned.",
+    "distractor_rationales": {
+      "Right, I'll sort the table and the float.": "This line says \"label everything\", so the reply that takes on the table and the float is wrong here: it divides up work when the question is about the rules.",
+      "We could buy things in from the market.": "This line says \"Do we need\", so the reply that proposes buying goods in from the market is wrong here: it looks for goods to buy when nothing has been ruled out.",
+      "I'll change the poster before it goes up.": "This line says \"for allergies\", so the reply that fixes the poster before it goes up is wrong here: it changes a poster although no date has been mentioned."
+    },
+    "_crv7": {
+      "localId": "crv7-b5-16",
+      "selectedWorld": 2,
+      "kind": "question",
+      "keyAct": "confirm the rule",
+      "setting": "fundraising bake sale"
+    }
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Loads of people signed up for the beginners' session.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "We'll need to split them into groups.",
+      "I'll borrow one from the drama store.",
+      "I'll head straight up there instead.",
+      "That would free me up nicely."
+    ],
+    "correct_answer": "We'll need to split them into groups.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The line reports a strong turnout for the class. Splitting into groups is the teaching adjustment a large sign-up forces. The other replies do not fit: the one that accepts the offer of the warm-up accepts an offer to take the warm-up that was not made; the one that agrees to borrow a speaker supplies equipment that nobody has asked for; the one that goes to the corrected room relocates although the room has not changed.",
+    "distractor_rationales": {
+      "That would free me up nicely.": "This line says \"signed up\", so the reply that accepts the offer of the warm-up is wrong here: it accepts an offer to take the warm-up that was not made.",
+      "I'll borrow one from the drama store.": "This line says \"Loads of people\", so the reply that agrees to borrow a speaker is wrong here: it supplies equipment that nobody has asked for.",
+      "I'll head straight up there instead.": "This line says \"the beginners' session\", so the reply that goes to the corrected room is wrong here: it relocates although the room has not changed."
+    },
+    "_crv7": {
+      "localId": "crv7-b5-11",
+      "selectedWorld": 3,
+      "kind": "good news",
+      "keyAct": "adapt the teaching plan",
+      "setting": "dance workshop"
+    }
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Our gazebo's double-booked, so we've no cover.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Yes, fine — show me how it works first.",
+      "Awkward — I'll borrow one from the scouts.",
+      "Good to know — I'll change the map I printed.",
+      "Please do — ours is far too small."
+    ],
+    "correct_answer": "Awkward — I'll borrow one from the scouts.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The line reports that the stall has lost its shelter. Sourcing another gazebo answers the gap the line has just described. The other replies do not fit: the one that agrees to the till once shown how it works arranges a till shift that nobody has proposed; the one that accepts the loan of the bigger steamer accepts a loan of cooking gear that was not offered; the one that corrects the printed map changes a printed map when the pitch is not the problem.",
+    "distractor_rationales": {
+      "Yes, fine — show me how it works first.": "This line says \"no cover\", so the reply that agrees to the till once shown how it works is wrong here: it arranges a till shift that nobody has proposed.",
+      "Please do — ours is far too small.": "This line says \"Our gazebo's double-booked\", so the reply that accepts the loan of the bigger steamer is wrong here: it accepts a loan of cooking gear that was not offered.",
+      "Good to know — I'll change the map I printed.": "This line says \"so we've no cover\", so the reply that corrects the printed map is wrong here: it changes a printed map when the pitch is not the problem."
+    },
+    "_crv7": {
+      "localId": "crv7-b5-13",
+      "selectedWorld": 2,
+      "kind": "bad news",
+      "keyAct": "volunteer a remedy",
+      "setting": "cultural festival stall"
+    }
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Can you drop the key back before Friday?\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "I'll ask at the union desk tomorrow.",
+      "The dance group borrowed it on Tuesday.",
+      "I'll post it through the office door.",
+      "I'll keep the spare in my bag."
+    ],
+    "correct_answer": "I'll post it through the office door.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The line asks the listener to return the key by a deadline. Naming how they will get it back is the cooperative way to agree. The other replies do not fit: the one that takes it up with the union desk complains about locks when a working key is in hand; the one that offers to carry the spare key treats the request as news of a newly cut key; the one that names the dance group as the last borrower names another borrower when the speaker is asking this listener.",
+    "distractor_rationales": {
+      "I'll ask at the union desk tomorrow.": "This line says \"drop the key back\", so the reply that takes it up with the union desk is wrong here: it complains about locks when a working key is in hand.",
+      "I'll keep the spare in my bag.": "This line says \"Can you drop\", so the reply that offers to carry the spare key is wrong here: it treats the request as news of a newly cut key.",
+      "The dance group borrowed it on Tuesday.": "This line says \"before Friday\", so the reply that names the dance group as the last borrower is wrong here: it names another borrower when the speaker is asking this listener."
+    },
+    "_crv7": {
+      "localId": "crv7-b5-18",
+      "selectedWorld": 2,
+      "kind": "request",
+      "keyAct": "agree and say how",
+      "setting": "club room keys"
+    }
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"The care home can't take new volunteers this term.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Of course — where do I pick one up?",
+      "That's a shame — is there somewhere else going?",
+      "Ah, right — I'll email the garden people instead.",
+      "Great — I'll move my Friday afternoon lecture."
+    ],
+    "correct_answer": "That's a shame — is there somewhere else going?",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The coordinator reports that the placement the student wanted is closed. Asking what else is going treats that placement as closed and keeps the search alive. The other replies do not fit: the one that moves a lecture to free up the day clears a day for a placement that is not happening; the one that asks where to collect the form asks about paperwork that has not come up; the one that redirects and emails the garden writes to an organisation that has not been named.",
+    "distractor_rationales": {
+      "Great — I'll move my Friday afternoon lecture.": "This line says \"can't take new volunteers\", so the reply that moves a lecture to free up the day is wrong here: it clears a day for a placement that is not happening.",
+      "Of course — where do I pick one up?": "This line says \"this term\", so the reply that asks where to collect the form is wrong here: it asks about paperwork that has not come up.",
+      "Ah, right — I'll email the garden people instead.": "This line says \"The care home can't\", so the reply that redirects and emails the garden is wrong here: it writes to an organisation that has not been named."
+    },
+    "_crv7": {
+      "localId": "crv7-b5-06",
+      "selectedWorld": 1,
+      "kind": "bad news",
+      "keyAct": "ask for an alternative",
+      "setting": "volunteering coordinator"
+    }
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Can you bring the ladder up from the scene dock?\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Thanks, that would really help me.",
+      "Sure, I'll grab it before the warm-up.",
+      "Right, I'll start on the balcony blocking then.",
+      "Well, I'll read her lines so we can block it."
+    ],
+    "correct_answer": "Sure, I'll grab it before the warm-up.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The line is a direct request for help moving a piece of kit. Agreeing and naming when it will happen is the cooperative answer to a request like this. The other replies do not fit: the one that says they will start on the balcony blocking announces a change of scene order in reply to a request; the one that offers to read the absent singer's lines covers for a singer nobody has said is unwell; the one that accepts the offer of extra rehearsal time accepts help when it is help that is being asked for.",
+    "distractor_rationales": {
+      "Right, I'll start on the balcony blocking then.": "This line says \"bring the ladder\", so the reply that says they will start on the balcony blocking is wrong here: it announces a change of scene order in reply to a request.",
+      "Well, I'll read her lines so we can block it.": "This line says \"from the scene dock\", so the reply that offers to read the absent singer's lines is wrong here: it covers for a singer nobody has said is unwell.",
+      "Thanks, that would really help me.": "This line says \"Can you bring\", so the reply that accepts the offer of extra rehearsal time is wrong here: it accepts help when it is help that is being asked for."
+    },
+    "_crv7": {
+      "localId": "crv7-b5-02",
+      "selectedWorld": 2,
+      "kind": "request",
+      "keyAct": "agree and give a time",
+      "setting": "theater rehearsal"
+    }
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"That's the fixer tray, not the stop bath.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Right, I'll put a note on the door.",
+      "Sure, I'll mix some after this print.",
+      "Thanks — I'll start the sheet again.",
+      "Great, they take ages on my own."
+    ],
+    "correct_answer": "Thanks — I'll start the sheet again.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The line points out that the wrong tray is being used. Starting the sheet again is what follows from a print that has gone through the wrong bath. The other replies do not fit: the one that agrees to mix developer after the print promises to mix chemistry that was not requested; the one that puts a warning note on the door warns people away when the equipment is working; the one that accepts help with hanging the prints accepts an offer to stay on that was not made.",
+    "distractor_rationales": {
+      "Sure, I'll mix some after this print.": "This line says \"the fixer tray\", so the reply that agrees to mix developer after the print is wrong here: it promises to mix chemistry that was not requested.",
+      "Right, I'll put a note on the door.": "This line says \"not the stop bath\", so the reply that puts a warning note on the door is wrong here: it warns people away when the equipment is working.",
+      "Great, they take ages on my own.": "This line says \"That's the fixer tray\", so the reply that accepts help with hanging the prints is wrong here: it accepts an offer to stay on that was not made."
+    },
+    "_crv7": {
+      "localId": "crv7-b5-09",
+      "selectedWorld": 1,
+      "kind": "correction",
+      "keyAct": "take the correction and redo",
+      "setting": "photography club darkroom"
+    }
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"I can write the funding appeal if you like.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Right, I'll keep the trip provisional.",
+      "We'll have to fundraise for the trip ourselves.",
+      "Then I'll book the coach for the trip.",
+      "Yes, please take that one on for us."
+    ],
+    "correct_answer": "Yes, please take that one on for us.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The line offers to take on the drafting of an appeal. Handing the task over is the plain acceptance of that offer. The other replies do not fit: the one that books the coach for the trip books a coach although the money is still being appealed for; the one that proposes raising the money themselves treats an offer of help as a refusal to react to; the one that keeps the trip provisional waits on a timetable that has not been mentioned.",
+    "distractor_rationales": {
+      "Then I'll book the coach for the trip.": "This line says \"the funding appeal\", so the reply that books the coach for the trip is wrong here: it books a coach although the money is still being appealed for.",
+      "We'll have to fundraise for the trip ourselves.": "This line says \"I can write\", so the reply that proposes raising the money themselves is wrong here: it treats an offer of help as a refusal to react to.",
+      "Right, I'll keep the trip provisional.": "This line says \"if you like\", so the reply that keeps the trip provisional is wrong here: it waits on a timetable that has not been mentioned."
+    },
+    "_crv7": {
+      "localId": "crv7-b5-07",
+      "selectedWorld": 3,
+      "kind": "offer",
+      "keyAct": "hand the task over",
+      "setting": "club budget meeting"
+    }
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"The patch drops the night before we play.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "We should practise on the test build.",
+      "I'll set the capture up before we start.",
+      "I'll book the practice room for the week.",
+      "I'll ask around the server for someone."
+    ],
+    "correct_answer": "We should practise on the test build.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The line points out that the game updates just before the match. Practising on the test build is the sensible way to meet a last-minute patch. The other replies do not fit: the one that looks for a replacement player replaces a player although nobody has withdrawn; the one that books the practice room ahead treats the news as a result to prepare for; the one that sets up the capture before play arranges recording that nobody requested.",
+    "distractor_rationales": {
+      "I'll ask around the server for someone.": "This line says \"The patch drops\", so the reply that looks for a replacement player is wrong here: it replaces a player although nobody has withdrawn.",
+      "I'll book the practice room for the week.": "This line says \"the night before we play\", so the reply that books the practice room ahead is wrong here: it treats the news as a result to prepare for.",
+      "I'll set the capture up before we start.": "This line says \"The patch drops the night before\", so the reply that sets up the capture before play is wrong here: it arranges recording that nobody requested."
+    },
+    "_crv7": {
+      "localId": "crv7-b5-15",
+      "selectedWorld": 3,
+      "kind": "neutral info",
+      "keyAct": "adapt the practice plan",
+      "setting": "e-sports team"
+    }
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"The editor's spiked the piece for this issue.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "That would really help, please do.",
+      "Then I'll size the photo to fit that.",
+      "I'll take a pass at it right now.",
+      "I'll warn the writer before she files."
+    ],
+    "correct_answer": "I'll warn the writer before she files.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The line reports that the story has been killed for this issue. Warning the writer before she files spares her wasted work and treats the piece as dead. The other replies do not fit: the one that says they will size the photo to fit lays out a photo for a page the story no longer has; the one that agrees to take a pass at the copy edits copy that is not going to run; the one that accepts the offer of proofing help accepts an offer of help with other pages that was not made.",
+    "distractor_rationales": {
+      "Then I'll size the photo to fit that.": "This line says \"spiked the piece\", so the reply that says they will size the photo to fit is wrong here: it lays out a photo for a page the story no longer has.",
+      "I'll take a pass at it right now.": "This line says \"for this issue\", so the reply that agrees to take a pass at the copy is wrong here: it edits copy that is not going to run.",
+      "That would really help, please do.": "This line says \"The editor's spiked\", so the reply that accepts the offer of proofing help is wrong here: it accepts an offer of help with other pages that was not made."
+    },
+    "_crv7": {
+      "localId": "crv7-b5-04",
+      "selectedWorld": 2,
+      "kind": "bad news",
+      "keyAct": "warn the person affected",
+      "setting": "student newspaper desk"
+    }
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Our match against the college is called off.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Then I'd better dust off my openings.",
+      "The wooden one still works fine.",
+      "I'll change the sign on our old door.",
+      "I'll tell the others not to travel."
+    ],
+    "correct_answer": "I'll tell the others not to travel.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The line reports that the fixture has been cancelled. Stopping the others travelling is the urgent consequence of a cancelled match. The other replies do not fit: the one that goes back to work on their openings prepares openings for a match that is not happening; the one that updates the sign on the old door changes a sign when the club room is not at issue; the one that identifies the clock that still works recommends a clock although nothing was asked about equipment.",
+    "distractor_rationales": {
+      "Then I'd better dust off my openings.": "This line says \"is called off\", so the reply that goes back to work on their openings is wrong here: it prepares openings for a match that is not happening.",
+      "I'll change the sign on our old door.": "This line says \"Our match against the college\", so the reply that updates the sign on the old door is wrong here: it changes a sign when the club room is not at issue.",
+      "The wooden one still works fine.": "This line says \"against the college\", so the reply that identifies the clock that still works is wrong here: it recommends a clock although nothing was asked about equipment."
+    },
+    "_crv7": {
+      "localId": "crv7-b5-12",
+      "selectedWorld": 3,
+      "kind": "bad news",
+      "keyAct": "stop the others",
+      "setting": "chess club"
+    }
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"The login flow's working end to end now.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Pushing it up now, give me a moment.",
+      "I'll cue up the recording, we made one.",
+      "Nice, that frees us up for the slides.",
+      "Sam's the calmest, so probably him."
+    ],
+    "correct_answer": "Nice, that frees us up for the slides.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The line reports that a key feature is finished. Moving to the slides is what a team does once the build stops needing attention. The other replies do not fit: the one that switches to the recording the team made falls back on a recording although the demo works; the one that puts Sam forward to present picks a presenter when the question was not asked; the one that pushes the branch straight away pushes code in answer to a progress report.",
+    "distractor_rationales": {
+      "I'll cue up the recording, we made one.": "This line says \"working end to end\", so the reply that switches to the recording the team made is wrong here: it falls back on a recording although the demo works.",
+      "Sam's the calmest, so probably him.": "This line says \"The login flow's working\", so the reply that puts Sam forward to present is wrong here: it picks a presenter when the question was not asked.",
+      "Pushing it up now, give me a moment.": "This line says \"end to end now\", so the reply that pushes the branch straight away is wrong here: it pushes code in answer to a progress report."
+    },
+    "_crv7": {
+      "localId": "crv7-b5-08",
+      "selectedWorld": 1,
+      "kind": "good news",
+      "keyAct": "move to the next task",
+      "setting": "hackathon team"
+    }
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"We're on the opposition side, not proposition.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "I'll rewrite my opening to attack it, then.",
+      "I'll check it before I write anything.",
+      "Maya said she'd take it if nobody minds.",
+      "That gives us a whole week to prep."
+    ],
+    "correct_answer": "I'll rewrite my opening to attack it, then.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The line corrects which side of the motion the team is arguing. Rewriting the opening so that it attacks the motion is the work the change of side creates. The other replies do not fit: the one that notes the extra week of preparation plans around a longer run-up that nothing here mentions; the one that puts Maya forward for the summary speech names a summary speaker although nobody asked; the one that says they will wait for the motion before writing waits for a motion when the side, not the motion, is the news.",
+    "distractor_rationales": {
+      "That gives us a whole week to prep.": "This line says \"the opposition side\", so the reply that notes the extra week of preparation is wrong here: it plans around a longer run-up that nothing here mentions.",
+      "Maya said she'd take it if nobody minds.": "This line says \"not proposition\", so the reply that puts Maya forward for the summary speech is wrong here: it names a summary speaker although nobody asked.",
+      "I'll check it before I write anything.": "This line says \"We're on the opposition side\", so the reply that says they will wait for the motion before writing is wrong here: it waits for a motion when the side, not the motion, is the news."
+    },
+    "_crv7": {
+      "localId": "crv7-b5-05",
+      "selectedWorld": 0,
+      "kind": "correction",
+      "keyAct": "revise your own material",
+      "setting": "debate society"
+    }
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"The show's after the news now, not before.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "I can do that if you show me the faders.",
+      "I'll rewrite the intro to match.",
+      "We can play the long session tracks then.",
+      "I'll email them as soon as I can."
+    ],
+    "correct_answer": "I'll rewrite the intro to match.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The line corrects where the programme sits in the schedule. Rewriting the opening is what a presenter does when the slot moves. The other replies do not fit: the one that agrees to run the desk after a quick briefing asks for a desk briefing although nobody raised operating it; the one that proposes playing the long session tracks celebrates extra airtime when the slot has only moved; the one that undertakes to email the guest emails a guest who has not come up.",
+    "distractor_rationales": {
+      "I can do that if you show me the faders.": "This line says \"after the news now\", so the reply that agrees to run the desk after a quick briefing is wrong here: it asks for a desk briefing although nobody raised operating it.",
+      "We can play the long session tracks then.": "This line says \"not before\", so the reply that proposes playing the long session tracks is wrong here: it celebrates extra airtime when the slot has only moved.",
+      "I'll email them as soon as I can.": "This line says \"The show's after the news\", so the reply that undertakes to email the guest is wrong here: it emails a guest who has not come up."
+    },
+    "_crv7": {
+      "localId": "crv7-b5-14",
+      "selectedWorld": 1,
+      "kind": "correction",
+      "keyAct": "rework the script",
+      "setting": "radio station studio"
+    }
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"The high path's closed, so the ridge is out.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "The valley loop would still fill a day.",
+      "I have, it's fine in low water.",
+      "Then nobody needs to camp, thankfully.",
+      "I'll redo the lift list for that side."
+    ],
+    "correct_answer": "The valley loop would still fill a day.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The line reports that the planned route is unavailable. Offering the valley loop as a full day replaces the lost route without labouring the loss. The other replies do not fit: the one that redoes the lift list for the new start reworks lifts when the start point is not what changed; the one that reports first-hand experience of the crossing answers a question about the crossing that nobody asked; the one that notes that nobody has to camp settles sleeping arrangements that were not mentioned.",
+    "distractor_rationales": {
+      "I'll redo the lift list for that side.": "This line says \"the ridge is out\", so the reply that redoes the lift list for the new start is wrong here: it reworks lifts when the start point is not what changed.",
+      "I have, it's fine in low water.": "This line says \"The high path's closed\", so the reply that reports first-hand experience of the crossing is wrong here: it answers a question about the crossing that nobody asked.",
+      "Then nobody needs to camp, thankfully.": "This line says \"so the ridge is out\", so the reply that notes that nobody has to camp is wrong here: it settles sleeping arrangements that were not mentioned."
+    },
+    "_crv7": {
+      "localId": "crv7-b5-10",
+      "selectedWorld": 1,
+      "kind": "bad news",
+      "keyAct": "propose a substitute route",
+      "setting": "hiking club trip planning"
+    }
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Do we have anyone who can keep goal?\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Ah, that's rough — is there a reserve list?",
+      "Great — I'll put the kit order through today.",
+      "Ravi has — he kept goal last season.",
+      "Good to know — I'll shift my work rota."
+    ],
+    "correct_answer": "Ravi has — he kept goal last season.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The line asks the group whether anyone can play in goal. Naming someone who has kept goal before answers the question with the evidence for it. The other replies do not fit: the one that commits to putting the kit order through orders kit in reply to a question about players; the one that asks whether there is a reserve list assumes the team has been excluded, which the question does not suggest; the one that says they will shift their work rota reacts to a change of day that has not been announced.",
+    "distractor_rationales": {
+      "Great — I'll put the kit order through today.": "This line says \"who can keep goal\", so the reply that commits to putting the kit order through is wrong here: it orders kit in reply to a question about players.",
+      "Ah, that's rough — is there a reserve list?": "This line says \"Do we have anyone\", so the reply that asks whether there is a reserve list is wrong here: it assumes the team has been excluded, which the question does not suggest.",
+      "Good to know — I'll shift my work rota.": "This line says \"keep goal\", so the reply that says they will shift their work rota is wrong here: it reacts to a change of day that has not been announced."
+    },
+    "_crv7": {
+      "localId": "crv7-b5-01",
+      "selectedWorld": 3,
+      "kind": "question",
+      "keyAct": "name a candidate",
+      "setting": "intramural team captain"
+    }
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"It's the welfare office that signs these, not us.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "I'll get them run off this afternoon.",
+      "I'll take it across to them now.",
+      "I'll find something we own the rights to.",
+      "I'll drop that in and resend it."
+    ],
+    "correct_answer": "I'll take it across to them now.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The line corrects who has the authority to approve the poster. Carrying it to the office named is the direct consequence of that correction. The other replies do not fit: the one that sources a replacement image replaces an image although nothing was refused; the one that sends the poster to print prints copies although nobody here has approved it; the one that adds the line and resubmits edits the poster when no change was asked for.",
+    "distractor_rationales": {
+      "I'll find something we own the rights to.": "This line says \"that signs these\", so the reply that sources a replacement image is wrong here: it replaces an image although nothing was refused.",
+      "I'll get them run off this afternoon.": "This line says \"not us\", so the reply that sends the poster to print is wrong here: it prints copies although nobody here has approved it.",
+      "I'll drop that in and resend it.": "This line says \"It's the welfare office\", so the reply that adds the line and resubmits is wrong here: it edits the poster when no change was asked for."
+    },
+    "_crv7": {
+      "localId": "crv7-b5-19",
+      "selectedWorld": 0,
+      "kind": "correction",
+      "keyAct": "go to the right authority",
+      "setting": "poster approval"
+    }
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"How many are we catering for on the night?\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "That would take a job off me.",
+      "I'll ring round for quotes tomorrow.",
+      "I'll see what the sports centre has free.",
+      "About forty, going by the sign-up sheet."
+    ],
+    "correct_answer": "About forty, going by the sign-up sheet.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The line asks for the number the caterer should plan for. An estimate with its source is exactly what the question needs. The other replies do not fit: the one that accepts the offer to do the table plan accepts an offer of help that was not made; the one that rings round caterers for quotes chases caterers when the question was about numbers; the one that looks for another venue looks for another venue although none has been lost.",
+    "distractor_rationales": {
+      "That would take a job off me.": "This line says \"How many are we\", so the reply that accepts the offer to do the table plan is wrong here: it accepts an offer of help that was not made.",
+      "I'll ring round for quotes tomorrow.": "This line says \"catering for on the night\", so the reply that rings round caterers for quotes is wrong here: it chases caterers when the question was about numbers.",
+      "I'll see what the sports centre has free.": "This line says \"on the night\", so the reply that looks for another venue is wrong here: it looks for another venue although none has been lost."
+    },
+    "_crv7": {
+      "localId": "crv7-b5-20",
+      "selectedWorld": 0,
+      "kind": "question",
+      "keyAct": "give the figure and its source",
+      "setting": "banquet planning"
+    }
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"You've got the solo in the slow movement.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Good catch — I'll tell the rest of the section.",
+      "Sure — there's a spare one in my case.",
+      "Thanks — I'll start working on it tonight.",
+      "That's a pity — it suited the strings well."
+    ],
+    "correct_answer": "Thanks — I'll start working on it tonight.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The line tells the player that a solo has been assigned to them. Turning to practice is what follows an assignment, and it takes the solo as settled. The other replies do not fit: the one that regrets losing a piece that suited the strings mourns a piece as lost when it is still being played; the one that undertakes to tell the rest of the section passes on a change of room that has not been announced; the one that lends the mute out of their case hands over a mute when nothing was asked for.",
+    "distractor_rationales": {
+      "That's a pity — it suited the strings well.": "This line says \"You've got the solo\", so the reply that regrets losing a piece that suited the strings is wrong here: it mourns a piece as lost when it is still being played.",
+      "Good catch — I'll tell the rest of the section.": "This line says \"in the slow movement\", so the reply that undertakes to tell the rest of the section is wrong here: it passes on a change of room that has not been announced.",
+      "Sure — there's a spare one in my case.": "This line says \"the solo\", so the reply that lends the mute out of their case is wrong here: it hands over a mute when nothing was asked for."
+    },
+    "_crv7": {
+      "localId": "crv7-b5-03",
+      "selectedWorld": 0,
+      "kind": "good news",
+      "keyAct": "commit to preparation",
+      "setting": "orchestra section"
+    }
+  }
+]
