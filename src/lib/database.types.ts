@@ -5645,7 +5645,7 @@ export type Database = {
         }[]
       }
       admin_study_payment_totals: {
-        Args: { p_kind?: string; p_student_ids?: string[] }
+        Args: { p_kind?: string; p_pay_status?: string; p_student_ids?: string[] }
         Returns: {
           net_won: number
           total_count: number

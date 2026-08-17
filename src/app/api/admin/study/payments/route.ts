@@ -185,13 +185,14 @@ async function attachStudents(rows: PayRow[]) {
  * matter how many rows exist (a JS sum over one fetched page would silently
  * under-report). Filters MUST mirror the list query's filters.
  */
-async function fetchTotals(kind: string | null, studentIds: string[] | null) {
+async function fetchTotals(kind: string | null, studentIds: string[] | null, payStatus: string | null = null) {
   const { data, error } = await dbAdmin.rpc('admin_study_payment_totals', {
-    // Both args are `DEFAULT NULL` in Postgres, meaning "no filter"; omitting
+    // All args are `DEFAULT NULL` in Postgres, meaning "no filter"; omitting
     // the key is the same call as passing SQL NULL and matches the generated
     // (optional, non-nullable) arg types.
     ...(kind !== null ? { p_kind: kind } : {}),
     ...(studentIds !== null ? { p_student_ids: studentIds } : {}),
+    ...(payStatus !== null ? { p_pay_status: payStatus } : {}),
   });
   if (error) {
     console.error('[admin/study/payments] totals', error);
@@ -240,6 +241,7 @@ export async function GET(req: NextRequest) {
 
   const kind = sp.get('kind');
   const q = sp.get('q')?.trim();
+  const payStatus = sp.get('payStatus');
   const page = Math.max(1, parseInt(sp.get('page') ?? '1', 10) || 1);
 
   // Resolve a name/email search to the matching student ids first.
@@ -257,10 +259,38 @@ export async function GET(req: NextRequest) {
   }
 
   const kindFilter = kind && (KINDS as readonly string[]).includes(kind) ? kind : null;
+  const statusFilter = payStatus && ['paid', 'partial', 'refunded'].includes(payStatus) ? payStatus : null;
+
+  // Status derives from refunded_at (fully refunded stamp) + the refund
+  // ledger (partial). `paid`/`partial` need the set of payment ids with any
+  // ledger rows — resolved first, mirroring how the subscriptions route
+  // resolves the test-user id set. Paged past the PostgREST 1000-row cap.
+  let refundedIds: string[] | null = null;
+  if (statusFilter === 'paid' || statusFilter === 'partial') {
+    const ids = new Set<string>();
+    for (let from = 0; ; from += 1000) {
+      const { data: rIds, error: rErr } = await dbAdmin
+        .from('study_payment_refunds')
+        .select('payment_id')
+        .order('payment_id')
+        .range(from, from + 999);
+      if (rErr) {
+        console.error('[admin/study/payments] refund ids', rErr);
+        return NextResponse.json({ error: 'list failed' }, { status: 500 });
+      }
+      for (const r of rIds ?? []) ids.add(r.payment_id as string);
+      if ((rIds ?? []).length < 1000) break;
+    }
+    refundedIds = Array.from(ids);
+    if (statusFilter === 'partial' && refundedIds.length === 0) {
+      return NextResponse.json({ payments: [], total: 0, page, pageSize: PAGE_SIZE, grossWon: 0 });
+    }
+  }
 
   // Count + revenue from Postgres; only THIS page's rows are fetched. Keeps
-  // the numbers exact and the payload flat as the table grows.
-  const { total, grossWon } = await fetchTotals(kindFilter, studentFilter);
+  // the numbers exact and the payload flat as the table grows. The RPC's
+  // status predicate MUST mirror the page-query filters below.
+  const { total, grossWon } = await fetchTotals(kindFilter, studentFilter, statusFilter);
 
   const from = (page - 1) * PAGE_SIZE;
   let query = dbAdmin
@@ -270,6 +300,16 @@ export async function GET(req: NextRequest) {
     .range(from, from + PAGE_SIZE - 1);
   if (kindFilter) query = query.eq('kind', kindFilter);
   if (studentFilter) query = query.in('student_id', studentFilter);
+  if (statusFilter === 'refunded') query = query.not('refunded_at', 'is', null);
+  if (statusFilter === 'partial') query = query.is('refunded_at', null).in('payment_id', refundedIds!);
+  if (statusFilter === 'paid') {
+    query = query.is('refunded_at', null);
+    if (refundedIds && refundedIds.length > 0) {
+      // PostgREST `not in` filter value: ("id1","id2",...) — quoted, since
+      // payment ids are free-form text from PortOne.
+      query = query.not('payment_id', 'in', `(${refundedIds.map((id) => `"${id}"`).join(',')})`);
+    }
+  }
 
   const { data, error } = await query;
   if (error) {
