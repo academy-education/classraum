@@ -1,0 +1,1088 @@
+{
+  "cohort": "cr-v7",
+  "stage": 2,
+  "batch": "b3",
+  "method": "symmetric four-world authoring, post-hoc seeded key selection",
+  "items": [
+    {
+      "localId": "crv7-b3-01",
+      "setting": "payroll office window",
+      "worlds": [
+        {
+          "kind": "good news",
+          "keyAct": "stands down from monitoring",
+          "line": "Your back pay went through on last night's payroll run.",
+          "reply": "I'll stop checking the balance now — that's been weeks.",
+          "explanationIfSpoken": "The line reports that money already owed has now been paid. Standing down from the daily balance-watching is exactly what someone does when the payment they were waiting for has landed. The reply promising to get a supervisor to authorize the hours and resubmit treats a completed payment as a refused one; the reply nominating a credit union account answers a routing question nobody asked; and the reply apologizing for leaving an ID bag downstairs responds to an identity check the line never requests.",
+          "kills": {
+            "1": "The line says the money \"went through\" already, so promising to have the hours authorized and resubmitted treats a completed payment as a rejection.",
+            "2": "\"went through on last night's payroll run\" reports where the money has already landed, so naming an account to pay it into answers a question that was never posed.",
+            "3": "\"Your back pay\" is described as paid, not as held pending identification, so promising to fetch an ID from a bag downstairs meets a demand the line does not make."
+          }
+        },
+        {
+          "kind": "bad news",
+          "keyAct": "commits to fixing the blocker",
+          "line": "Payroll rejected the claim; your hours weren't authorized.",
+          "reply": "Okay — I'll get my supervisor to authorize them and resubmit.",
+          "explanationIfSpoken": "The line delivers a refusal and names its cause: the hours lacked authorization. Undertaking to obtain that authorization and send the claim again addresses precisely the stated obstacle. The reply announcing an end to balance-checking celebrates a deposit that did not happen; the reply naming a credit union account picks a destination for money that is not being paid; and the reply about an ID in a bag downstairs fixes the wrong blocker, since identity was never the problem.",
+          "kills": {
+            "0": "\"rejected the claim\" means nothing was deposited, so saying you will stop checking the balance treats a refusal as a payment.",
+            "2": "\"your hours weren't authorized\" is a reason for non-payment, so choosing which account should receive the money assumes a payment the line has just denied.",
+            "3": "The named obstacle is that \"your hours weren't authorized\", not that you are unidentified, so producing an ID card addresses something the line rules out."
+          }
+        },
+        {
+          "kind": "question",
+          "keyAct": "supplies the requested detail",
+          "line": "Which account do you want the missing week paid into?",
+          "reply": "The credit union one — I'll write the number down for you.",
+          "explanationIfSpoken": "The line asks the payee to choose a destination for a payment that is going ahead. Naming the account and offering to write the details out is the cooperative answer. The reply announcing an end to balance-checking leaves the clerk without the information just asked for; the reply about getting hours authorized and resubmitting contradicts the line's premise that the money is being paid; and the reply about an ID in a bag downstairs offers proof of identity when the question was about banking details.",
+          "kills": {
+            "0": "\"Which account do you want\" is a direct question, so replying that you will stop checking the balance leaves the clerk without the answer needed to pay you.",
+            "1": "The line takes for granted that \"the missing week\" is going to be paid, so proposing to get the hours authorized and resubmit contradicts its premise.",
+            "3": "\"Which account\" asks about a bank destination, so promising to fetch an ID card supplies the wrong kind of information entirely."
+          }
+        },
+        {
+          "kind": "request",
+          "keyAct": "explains a short delay in complying",
+          "line": "Come back with your ID card so I can verify you.",
+          "reply": "It's in my bag downstairs — give me a moment.",
+          "explanationIfSpoken": "The line makes an identity check a precondition before anything else happens. Saying the card is close by and asking for a moment is straightforward compliance. The reply that stops the daily balance-checking treats the matter as finished when a step is still outstanding; the reply about authorizing hours and resubmitting responds to a rejection that was not announced; and the reply naming a credit union account volunteers banking details when what was asked for was proof of identity.",
+          "kills": {
+            "0": "The line makes verification a precondition — \"so I can verify you\" — so treating the matter as settled and dropping the balance checks skips the step being asked for.",
+            "1": "\"Come back with your ID card\" is a request for a document, not news of a refusal, so promising a resubmission answers something the line never said.",
+            "2": "\"so I can verify you\" is about proving who you are, so volunteering a bank account does not satisfy what the line asks for."
+          }
+        }
+      ]
+    },
+    {
+      "localId": "crv7-b3-02",
+      "setting": "bursar's payment window",
+      "worlds": [
+        {
+          "kind": "bad news",
+          "keyAct": "commits to clearing the debt",
+          "line": "There's still a hold; you can't register until it clears.",
+          "reply": "I'll pay the balance this afternoon then.",
+          "explanationIfSpoken": "The line reports an unresolved block on the account that is stopping registration. Undertaking to settle the outstanding money the same day removes exactly that block. The reply about claiming a seminar seat right now assumes registration is already open; the reply about walking to the stacks sends the student to a different office than the one holding the block; and the reply calling instalments more manageable accepts an instalment offer that was never made.",
+          "kills": {
+            "1": "\"There's still a hold\" states the block is live, so going off to claim a seminar seat acts on a clearance the line denies.",
+            "2": "The line locates the problem at this window — \"you can't register until it clears\" — so walking over to the stacks answers a redirection that was not given.",
+            "3": "\"still a hold\" is a statement of a block, not an offer of terms, so calling instalments more manageable responds to something the line never proposes."
+          }
+        },
+        {
+          "kind": "good news",
+          "keyAct": "acts on the new clearance",
+          "line": "The hold came off this morning, so you're clear to register.",
+          "reply": "Then I'll go claim my seminar seat right now.",
+          "explanationIfSpoken": "The line announces that the obstacle to registration has been lifted. Heading straight off to secure a place is what a student does the moment registration opens to them. The reply promising to pay the balance that afternoon assumes money is still owed; the reply about the stacks assumes the block sits with another department; and the reply calling instalments more manageable takes up an instalment offer the line does not make.",
+          "kills": {
+            "0": "\"The hold came off this morning\" means nothing is outstanding, so promising to pay a balance that afternoon assumes a debt the line has just closed.",
+            "2": "The line reports the block resolved here — \"so you're clear to register\" — so heading to the stacks chases a problem that no longer exists anywhere.",
+            "3": "\"came off this morning\" reports a resolution, not terms on offer, so calling instalments more manageable replies to a proposal that was never put."
+          }
+        },
+        {
+          "kind": "correction",
+          "keyAct": "redirects to the right office",
+          "line": "Sorry, that hold's from the library, not the bursar.",
+          "reply": "I'll walk over to the stacks and sort it out.",
+          "explanationIfSpoken": "The line corrects a mistaken assumption about which department placed the block. Going to the department that actually owns it is the sensible next move. The reply about paying the balance that afternoon keeps treating this as a money matter at this desk; the reply about claiming a seminar seat assumes the block has been lifted; and the reply calling instalments more manageable accepts payment terms that are irrelevant to a library block.",
+          "kills": {
+            "0": "\"not the bursar\" says the block is not a payment matter at this window, so promising to pay the balance addresses the wrong department entirely.",
+            "1": "The line reassigns the block rather than removing it — \"that hold's from the library\" — so going to claim a seminar seat assumes a clearance nobody has given.",
+            "3": "\"from the library, not the bursar\" places the block outside this office's payment terms, so calling instalments more manageable answers an offer that could not have been made."
+          }
+        },
+        {
+          "kind": "offer",
+          "keyAct": "accepts the proposed terms",
+          "line": "I can waive the late fee if you set up a payment plan.",
+          "reply": "Instalments would be far more manageable.",
+          "explanationIfSpoken": "The line puts a conditional concession on the table in exchange for regular instalments. Saying that instalments suit better takes the offer up. The reply promising to pay the whole balance that afternoon declines the arrangement without saying so and forgoes the concession; the reply about claiming a seminar seat treats the conversation as a registration clearance; and the reply about the stacks sends the student to a department that has nothing to do with the offer.",
+          "kills": {
+            "0": "The line's condition is that you \"set up a payment plan\", so promising to pay the whole balance in one go that afternoon walks away from the very thing being offered.",
+            "1": "\"I can waive the late fee\" is an offer about money, not a statement that registration has opened, so going to claim a seminar seat acts on a clearance never mentioned.",
+            "2": "The offer comes from this desk — \"if you set up a payment plan\" — so walking over to the stacks abandons the person actually making it."
+          }
+        }
+      ]
+    },
+    {
+      "localId": "crv7-b3-03",
+      "setting": "financial aid office",
+      "worlds": [
+        {
+          "kind": "neutral info",
+          "keyAct": "schedules a later follow-up",
+          "line": "Your file's still with the committee; they meet Thursday.",
+          "reply": "I'll check back Friday then — no point calling before.",
+          "explanationIfSpoken": "The line reports that no decision exists yet and names when one might. Planning to make contact after that meeting, and not before, is the cooperative response to an open file. The reply about dropping a job assumes an award has been granted; the reply about looking into a loan assumes funding has been reduced; and the reply about a parent sending a tax transcript supplies a document the line does not ask for.",
+          "kills": {
+            "1": "\"still with the committee\" means no decision exists, so planning to drop a job acts on an award that has not been made.",
+            "2": "The line reports the file undecided — \"they meet Thursday\" is in the future — so seeking a loan to cover a shortfall assumes a cut that has not happened.",
+            "3": "\"Your file's still with the committee\" describes a complete file under review, so promising to have a tax transcript sent answers a request the line never makes."
+          }
+        },
+        {
+          "kind": "good news",
+          "keyAct": "revises life plans upward",
+          "line": "You've been awarded the full need grant for the year.",
+          "reply": "I can drop one of my jobs now — that changes everything.",
+          "explanationIfSpoken": "The line delivers a favourable decision covering the whole year. Shedding paid work is the natural consequence of no longer needing to earn the shortfall. The reply proposing to check back after a committee meeting assumes no decision has been reached; the reply about taking out a loan assumes the award fell short; and the reply about a parent sending a tax transcript treats the file as incomplete.",
+          "kills": {
+            "0": "\"You've been awarded\" reports a decision already taken, so planning to check back later waits for news that has just arrived.",
+            "2": "\"the full need grant\" leaves no gap to fund, so looking into a loan to cover a difference invents a shortfall the line rules out.",
+            "3": "The line announces a completed award \"for the year\", so promising to have a tax transcript sent treats a finished assessment as still waiting on paperwork."
+          }
+        },
+        {
+          "kind": "bad news",
+          "keyAct": "seeks alternative funding",
+          "line": "Your award's been cut because your household income rose.",
+          "reply": "I'll look into a loan to cover the difference then.",
+          "explanationIfSpoken": "The line reports a reduction in support and gives the reason for it. Finding another way to cover the resulting gap is the practical response. The reply about checking back after a committee meeting treats the decision as still pending; the reply about dropping a job assumes more money has arrived rather than less; and the reply about a parent sending a tax transcript offers documentation when the income figures have plainly already been assessed.",
+          "kills": {
+            "0": "\"Your award's been cut\" is a decision already made, so proposing to check back after a meeting waits on something that has happened.",
+            "1": "\"been cut\" means less money, not more, so announcing you can drop a job reads a reduction as a windfall.",
+            "3": "The line shows the income has already been assessed — \"because your household income rose\" — so offering to have a tax transcript sent supplies what the office evidently already has."
+          }
+        },
+        {
+          "kind": "request",
+          "keyAct": "arranges for the document",
+          "line": "We need last year's tax transcript before we can go further.",
+          "reply": "I'll ask my mother to send it over this week.",
+          "explanationIfSpoken": "The line names a missing document that is holding the assessment up. Arranging for the person who holds it to send it in is exactly what unblocks the file. The reply about checking back after a committee meeting ignores the outstanding action; the reply about dropping a job assumes an award has been granted; and the reply about a loan assumes a decision has already come back reduced.",
+          "kills": {
+            "0": "\"before we can go further\" makes the paperwork the blocker, so simply planning to check back later leaves the file exactly where it is.",
+            "1": "The line says the office cannot proceed at all — \"We need last year's tax transcript\" — so announcing you can drop a job acts on an award nobody has granted.",
+            "2": "\"before we can go further\" means no assessment has been made, so seeking a loan to cover a difference assumes a reduced decision that does not exist."
+          }
+        }
+      ]
+    },
+    {
+      "localId": "crv7-b3-04",
+      "setting": "scholarship office",
+      "worlds": [
+        {
+          "kind": "request",
+          "keyAct": "commits to producing the letter",
+          "line": "Write us a short thank-you letter for the donor by Monday.",
+          "reply": "I'll draft something tonight and bring it in.",
+          "explanationIfSpoken": "The line asks for a specific piece of writing on a deadline. Promising a draft that evening and delivery in person is plain compliance. The reply asking to be put forward accepts a nomination that was not offered; the reply about correcting a resume responds to a factual correction the line does not make; and the reply reporting that nothing has changed answers a yes-or-no question that was never asked.",
+          "kills": {
+            "1": "\"Write us a short thank-you letter\" is a task, not a nomination, so asking to have your name put forward accepts something never offered.",
+            "2": "The line asks for new writing \"by Monday\"; it corrects no record, so promising to fix a resume responds to a correction that was not made.",
+            "3": "\"Write us a short thank-you letter for the donor\" poses no question, so answering that nothing has changed leaves the actual request untouched."
+          }
+        },
+        {
+          "kind": "offer",
+          "keyAct": "accepts the nomination",
+          "line": "I can nominate you for next year's renewal if you want.",
+          "reply": "Please do put my name forward for it.",
+          "explanationIfSpoken": "The line offers to advance the student for continued funding, leaving it to them. Asking for the nomination to go ahead accepts the offer directly. The reply about drafting something that evening treats the exchange as a writing assignment; the reply about correcting a resume assumes a factual error has been pointed out; and the reply reporting that nothing has changed answers a question about plans that was not put.",
+          "kills": {
+            "0": "\"I can nominate you\" is an offer to act on your behalf, so promising to draft something tonight answers a writing task that was never set.",
+            "2": "The line names a future opportunity — \"for next year's renewal\" — and corrects nothing, so promising to fix a resume responds to an error nobody identified.",
+            "3": "\"if you want\" invites a yes or no about the nomination, so replying that nothing has changed sidesteps the choice being handed to you."
+          }
+        },
+        {
+          "kind": "correction",
+          "keyAct": "updates a record",
+          "line": "It's the Hartley award you got, not the Beckett one.",
+          "reply": "I'll fix that on my resume straight away.",
+          "explanationIfSpoken": "The line corrects which of two awards was actually granted. Undertaking to amend the place where the wrong name has been written is the obvious follow-up. The reply about drafting something that evening treats this as a writing request; the reply asking to be put forward accepts a nomination that was not offered; and the reply reporting that nothing has changed answers a question about future plans rather than the factual correction just made.",
+          "kills": {
+            "0": "\"It's the Hartley award you got\" corrects a fact rather than setting a task, so promising a draft tonight answers a request the line does not make.",
+            "1": "The line distinguishes two existing awards — \"not the Beckett one\" — and offers nothing forward-looking, so asking to have your name put forward accepts an offer never made.",
+            "3": "\"It's the Hartley award\" is a statement of fact, not a question, so answering that nothing has changed leaves the correction unacknowledged."
+          }
+        },
+        {
+          "kind": "question",
+          "keyAct": "confirms a stated intention",
+          "line": "Are you still planning to major in geology next year?",
+          "reply": "Nothing's changed on that front.",
+          "explanationIfSpoken": "The line checks whether a previously declared course of study still stands. Confirming that the plan is unchanged answers it directly. The reply about drafting something that evening treats a question as a task; the reply asking to be put forward accepts a nomination that was not offered; and the reply about fixing a resume responds to a factual correction the line does not contain.",
+          "kills": {
+            "0": "\"Are you still planning\" calls for an answer, so promising to draft something tonight takes on work in place of replying.",
+            "1": "The line asks about your intentions, not about advancing you — \"to major in geology next year\" — so asking to have your name put forward accepts an offer never made.",
+            "2": "\"Are you still planning to major in geology\" corrects no record, so promising to fix a resume answers an error the line never points out."
+          }
+        }
+      ]
+    },
+    {
+      "localId": "crv7-b3-05",
+      "setting": "work-study placement office",
+      "worlds": [
+        {
+          "kind": "good news",
+          "keyAct": "accepts and initiates",
+          "line": "The archives placement is yours if you still want it.",
+          "reply": "I do — I'll email them about a start date.",
+          "explanationIfSpoken": "The line holds a place open and asks only whether the student still wants it. Confirming and moving straight to arranging a start is the natural uptake. The reply expressing disappointment and looking at other postings assumes the place has gone elsewhere; the reply about giving up chasing assumes nothing is decided yet; and the reply describing free afternoons answers a question about availability that was not asked.",
+          "kills": {
+            "1": "\"is yours if you still want it\" means the place is being held open, so treating it as a shame and looking at other postings gives up something already won.",
+            "2": "The line is a decision, not a timetable — \"The archives placement is yours\" — so resolving to stop chasing it abandons an offer already on the table.",
+            "3": "\"if you still want it\" asks only whether you accept, so describing which parts of the day are free answers a question the line does not put."
+          }
+        },
+        {
+          "kind": "bad news",
+          "keyAct": "regroups after a loss",
+          "line": "The archives job went to a graduate student instead.",
+          "reply": "That's a shame — I'll see what else is still posted.",
+          "explanationIfSpoken": "The line reports that the position was given to someone else. Registering the disappointment and turning to remaining vacancies is what a candidate does next. The reply confirming acceptance and arranging a start assumes the place is still available; the reply about giving up chasing assumes the decision is still pending; and the reply describing free afternoons answers an availability question the line does not raise.",
+          "kills": {
+            "0": "\"went to a graduate student\" means the place is taken, so confirming acceptance and arranging a start claims a job that is gone.",
+            "2": "The line reports a completed decision — \"went to a graduate student instead\" — so treating the matter as still open and dropping the chase misreads a settled outcome.",
+            "3": "\"The archives job went\" reports an appointment, not a request for your schedule, so listing which parts of the day are free answers nothing that was asked."
+          }
+        },
+        {
+          "kind": "neutral info",
+          "keyAct": "suspends fruitless effort",
+          "line": "Placements aren't assigned until teaching's already underway.",
+          "reply": "Good to know — I'll stop chasing it for now.",
+          "explanationIfSpoken": "The line explains that assignments simply do not happen this early in the calendar. Accepting that and putting the pursuit down until the right time is the cooperative response. The reply confirming acceptance and arranging a start assumes an offer has been made; the reply about looking at other postings assumes a rejection; and the reply describing free afternoons answers a question about availability the line does not ask.",
+          "kills": {
+            "0": "\"aren't assigned until teaching's already underway\" means no offer exists yet, so accepting one and arranging a start claims a place nobody has given.",
+            "1": "The line describes timing, not an outcome — \"Placements aren't assigned\" yet — so treating it as a shame and hunting other postings reads a delay as a refusal.",
+            "3": "\"until teaching's already underway\" is information about the calendar, not a request for your schedule, so listing your free afternoons answers a question never asked."
+          }
+        },
+        {
+          "kind": "question",
+          "keyAct": "states availability",
+          "line": "How much time a week can you realistically commit?",
+          "reply": "Afternoons mostly — my mornings are all lectures.",
+          "explanationIfSpoken": "The line asks the student to be honest about how much of the week they can give. Naming the free part of the day and the reason the rest is blocked answers it. The reply confirming acceptance and arranging a start assumes an offer that has not been made; the reply about looking at other postings assumes a rejection; and the reply about giving up chasing treats a live question as a reason to disengage.",
+          "kills": {
+            "0": "\"How much time a week can you realistically commit\" is a question at the assessment stage, so confirming acceptance and arranging a start assumes an offer the line has not made.",
+            "1": "The line is still gathering information — \"can you realistically commit\" — so treating the outcome as a shame and moving on invents a rejection.",
+            "2": "\"How much time a week\" needs an answer now, so announcing you will stop chasing it leaves the question hanging."
+          }
+        }
+      ]
+    },
+    {
+      "localId": "crv7-b3-06",
+      "setting": "campus job interview room",
+      "worlds": [
+        {
+          "kind": "offer",
+          "keyAct": "accepts the position",
+          "line": "We'd like to take you on for the front-desk role.",
+          "reply": "I'd be very glad to take it on.",
+          "explanationIfSpoken": "The line makes a direct job offer at the close of an interview. Accepting warmly is the fitting response. The reply about waiting to hear assumes no decision has been reached; the reply describing a taste for structured days answers a motivation question that was not asked; and the reply promising to send something across that evening treats the offer as a request for further documents.",
+          "kills": {
+            "1": "\"We'd like to take you on\" is a decision, so saying you will wait to hear back postpones an answer the line is asking for now.",
+            "2": "The line names the job — \"for the front-desk role\" — rather than probing your reasons, so explaining what you like about office work answers a question nobody asked.",
+            "3": "\"We'd like to take you on\" asks for acceptance, not paperwork, so promising to send something across tonight replies to a request that was not made."
+          }
+        },
+        {
+          "kind": "neutral info",
+          "keyAct": "agrees to wait",
+          "line": "We're interviewing the rest of the shortlist this week.",
+          "reply": "I'll wait to hear from you then.",
+          "explanationIfSpoken": "The line explains that the process is still running and no decision is due yet. Agreeing to wait for contact is the cooperative thing to say. The reply accepting the job assumes an offer has been made; the reply about liking structured days answers a motivation question that was not put; and the reply promising to send something across that evening responds to a document request the line does not make.",
+          "kills": {
+            "0": "\"the rest of the shortlist\" is still to be seen, so accepting the job claims an offer that has not been made.",
+            "2": "The line reports process, not curiosity about you — \"We're interviewing the rest\" — so explaining what draws you to office work answers a question never asked.",
+            "3": "\"interviewing the rest of the shortlist this week\" asks nothing of you, so promising to send something across tonight invents an errand."
+          }
+        },
+        {
+          "kind": "question",
+          "keyAct": "gives a reason for interest",
+          "line": "What drew you to working in an office like this?",
+          "reply": "I like work where the day has shape.",
+          "explanationIfSpoken": "The line asks the candidate to explain their interest in this kind of work. Naming what appeals about a structured working day answers it plainly. The reply accepting the job assumes an offer that has not been made; the reply agreeing to wait treats a question as a dismissal; and the reply promising to send something across that evening answers a request for documents that was not made.",
+          "kills": {
+            "0": "\"What drew you to working\" is a question still being asked of a candidate, so accepting the job assumes a decision nobody has announced.",
+            "1": "The line puts a question to you directly — \"What drew you\" — so saying you will wait to hear back leaves it unanswered.",
+            "3": "\"working in an office like this\" asks about motivation, not paperwork, so promising to send something across tonight answers a different request."
+          }
+        },
+        {
+          "kind": "request",
+          "keyAct": "promises prompt delivery",
+          "line": "Could you send us the names of your referees this week?",
+          "reply": "I'll send those across tonight.",
+          "explanationIfSpoken": "The line asks for information the panel needs before it can decide. Promising to send it the same evening beats the deadline and closes the request. The reply accepting the job assumes an offer that has not yet been made; the reply agreeing to wait ignores an outstanding action; and the reply about liking structured days answers a motivation question rather than the request in front of it.",
+          "kills": {
+            "0": "\"before we decide\" is implied by asking for referees, and \"Could you send us\" is a request, so accepting a job assumes a decision that has not been taken.",
+            "1": "The line puts the next move on you — \"Could you send us the names\" — so saying you will wait to hear back leaves the request unmet.",
+            "2": "\"the names of your referees\" is a concrete errand, so explaining what appeals about office work supplies something other than what was asked for."
+          }
+        }
+      ]
+    },
+    {
+      "localId": "crv7-b3-07",
+      "setting": "supervisor's desk, timesheet approval",
+      "worlds": [
+        {
+          "kind": "correction",
+          "keyAct": "recodes and resubmits",
+          "line": "You logged Tuesday's shift under the wrong cost code.",
+          "reply": "I'll recode it to outreach — then send it back through.",
+          "explanationIfSpoken": "The line identifies a misallocated shift on a submitted timesheet. Reassigning it to the correct budget line and sending it again fixes exactly that. The reply about budgeting for a gap assumes payment has been pushed back; the reply about catching a shift lead in the evening responds to a countersignature request that was not made; and the reply thanking the supervisor and leaving assumes the sheet has already been approved.",
+          "kills": {
+            "1": "\"the wrong cost code\" is a fixable coding error, not a missed cut-off, so budgeting for a gap in pay assumes a delay the line never mentions.",
+            "2": "The line asks you to correct your own entry — \"You logged Tuesday's shift\" wrongly — so arranging for a shift lead to countersign addresses a requirement nobody stated.",
+            "3": "\"the wrong cost code\" means the sheet is not right yet, so treating it as done and leaving assumes an approval that has not happened."
+          }
+        },
+        {
+          "kind": "bad news",
+          "keyAct": "plans around delayed pay",
+          "line": "The deadline passed, so this goes on next month's run.",
+          "reply": "I'll budget for the gap — thanks for the warning.",
+          "explanationIfSpoken": "The line reports that a cut-off was missed and payment will be a cycle late. Planning finances around the delay and thanking the supervisor for the notice fits. The reply about recoding to outreach and resubmitting assumes a coding error; the reply about catching a shift lead answers a countersignature request that was not made; and the reply treating the matter as finished assumes approval and payment have already gone through.",
+          "kills": {
+            "0": "\"The deadline passed\" is a timing problem, not a miscoding, so promising to put the shift against outreach and resubmit fixes something the line does not fault.",
+            "2": "The line names a missed cut-off — \"so this goes on next month's run\" — not a missing signature, so arranging a countersignature addresses the wrong obstacle.",
+            "3": "\"next month's run\" means the money has not moved, so treating the matter as closed and leaving assumes a payment that is still a cycle away."
+          }
+        },
+        {
+          "kind": "request",
+          "keyAct": "arranges the signature",
+          "line": "Get your shift lead to countersign before you send it.",
+          "reply": "She's in this evening — I'll catch her then.",
+          "explanationIfSpoken": "The line adds a required approval step before the timesheet can be submitted. Naming when the shift lead will be available and undertaking to see her then meets that requirement. The reply about recoding to outreach assumes a coding error was found; the reply about budgeting for a gap assumes payment has slipped a cycle; and the reply treating the matter as finished assumes the sheet is already through.",
+          "kills": {
+            "0": "\"Get your shift lead to countersign\" concerns a missing signature, so promising to recode the shift and resubmit corrects a fault the line never alleges.",
+            "1": "The line still expects a submission — \"before you send it\" — so budgeting for delayed pay assumes a missed cut-off that has not been mentioned.",
+            "3": "\"before you send it\" means the sheet has not gone in, so treating the matter as done and leaving skips the step just imposed."
+          }
+        },
+        {
+          "kind": "good news",
+          "keyAct": "closes the conversation",
+          "line": "Approved already; it's gone through to payroll.",
+          "reply": "I'll leave you to it, then — one less thing for me.",
+          "explanationIfSpoken": "The line reports that the timesheet cleared and is now with payroll. Noting the relief and leaving the supervisor to their work is the natural close. The reply about recoding to outreach and resubmitting assumes an error still needs fixing; the reply about budgeting for a gap assumes payment has been pushed back; and the reply about catching a shift lead assumes a signature is still outstanding.",
+          "kills": {
+            "0": "\"Approved already\" means the sheet is finished with, so promising to recode it and resubmit reopens something that has closed.",
+            "1": "\"it's gone through to payroll\" means the money is in train, so budgeting for a gap assumes a delay the line rules out.",
+            "2": "\"Approved already\" means every signature is in, so arranging for a shift lead to countersign chases an approval that already exists."
+          }
+        }
+      ]
+    },
+    {
+      "localId": "crv7-b3-08",
+      "setting": "tutoring centre scheduling desk",
+      "worlds": [
+        {
+          "kind": "bad news",
+          "keyAct": "releases the vacated slot",
+          "line": "Your Thursday student's dropped the subject altogether.",
+          "reply": "I'll free that slot up for someone else.",
+          "explanationIfSpoken": "The line reports that a regular tutee has left the course, so the session no longer has anyone in it. Offering the emptied time to another student puts it back into use. The reply about meeting her elsewhere assumes the sessions continue in a new room; the reply taking on an extra session accepts cover that was not asked for; and the reply taking the earlier slot accepts a schedule change that was not offered.",
+          "kills": {
+            "1": "\"dropped the subject altogether\" means there is nobody to meet, so promising to meet her somewhere else keeps a session that has ceased to exist.",
+            "2": "The line concerns your own tutee — \"Your Thursday student's dropped\" — so agreeing to take on someone else's session answers a request that was not made.",
+            "3": "\"dropped the subject altogether\" is news about a student, not an offer about your hours, so taking the earlier slot responds to a proposal never put."
+          }
+        },
+        {
+          "kind": "neutral info",
+          "keyAct": "adjusts to a new venue",
+          "line": "Your Thursday student wants to switch to the library room.",
+          "reply": "I'll meet her over there instead.",
+          "explanationIfSpoken": "The line passes on a tutee's preference for a different meeting place, with the sessions otherwise unchanged. Agreeing to turn up at the new venue settles it. The reply freeing the slot for someone else assumes the student has gone; the reply taking on another session accepts cover that was not requested; and the reply taking the earlier slot accepts a schedule change that was not offered.",
+          "kills": {
+            "0": "\"wants to switch to the library room\" is a change of venue, not a departure, so releasing the slot to someone else discards a student who is still enrolled.",
+            "2": "The line is about your own tutee's preference — \"Your Thursday student wants\" — so taking on another tutor's session answers a request nobody made.",
+            "3": "\"switch to the library room\" changes where you meet, not when, so taking the earlier slot accepts a rescheduling that was never offered."
+          }
+        },
+        {
+          "kind": "request",
+          "keyAct": "agrees to cover",
+          "line": "Could you cover Priya's session while she's away?",
+          "reply": "I can certainly take that one on.",
+          "explanationIfSpoken": "The line asks the tutor to stand in for an absent colleague. Agreeing to take the session is the cooperative answer. The reply freeing a slot for someone else assumes a tutee has withdrawn; the reply about meeting her at another venue assumes a room change; and the reply taking the earlier slot accepts a schedule change that was not proposed.",
+          "kills": {
+            "0": "\"Could you cover Priya's session\" adds work rather than removing a student, so freeing a slot up for someone else responds to a withdrawal that has not happened.",
+            "1": "The line is about covering a colleague — \"while she's away\" — not about where you meet, so promising to meet her somewhere else answers a venue change nobody mentioned.",
+            "3": "\"Could you cover Priya's session\" is a request for help, not an offer to move your hours, so taking the earlier slot accepts something never proposed."
+          }
+        },
+        {
+          "kind": "offer",
+          "keyAct": "accepts a better time",
+          "line": "I can move you to mornings if evenings are hard.",
+          "reply": "I'd take the earlier slot, gladly.",
+          "explanationIfSpoken": "The line offers to shift the tutor's sessions to a time of day that may suit them better. Saying the earlier slot would genuinely be easier accepts the offer. The reply freeing a slot for someone else assumes a tutee has withdrawn; the reply about meeting her elsewhere assumes a change of room; and the reply agreeing to take on a session accepts cover that was not requested.",
+          "kills": {
+            "0": "\"I can move you to mornings\" keeps your students and changes the time, so releasing a slot to someone else responds to a withdrawal the line does not report.",
+            "1": "The line offers a change of hours — \"if evenings are hard\" — not a change of room, so promising to meet her over there answers a venue switch nobody mentioned.",
+            "2": "\"I can move you to mornings\" is an offer about your own schedule, so agreeing to take on another tutor's session accepts a request that was not made."
+          }
+        }
+      ]
+    },
+    {
+      "localId": "crv7-b3-09",
+      "setting": "bookstore stockroom",
+      "worlds": [
+        {
+          "kind": "neutral info",
+          "keyAct": "adapts the access route",
+          "line": "The textbook pallet's coming in on the loading dock instead.",
+          "reply": "I'll prop the back door open — it's easier from there.",
+          "explanationIfSpoken": "The line reports that the delivery is arriving at a different entrance from the usual one. Opening up the door nearest that entrance is the practical adjustment. The reply about wheeling the cartons to a different floor assumes the cartons hold something other than books; the reply about matching the shipment off box by box takes on a checking job that was not asked for; and the reply about a fair split accepts a division of labour that was not proposed.",
+          "kills": {
+            "1": "\"The textbook pallet's coming in\" identifies the contents as books, so placing them on a different floor and wheeling them up acts on a mistaken-contents correction nobody made.",
+            "2": "The line concerns where the delivery arrives — \"on the loading dock instead\" — not whether it matches the paperwork, so promising to match it off box by box takes on a task never assigned.",
+            "3": "\"coming in on the loading dock\" is information about the delivery point, not an offer to share the work, so calling it a fair split accepts a proposal that was not made."
+          }
+        },
+        {
+          "kind": "correction",
+          "keyAct": "redirects the goods",
+          "line": "Those are the art supplies, not the term's textbooks.",
+          "reply": "That's a different floor, then — I'll wheel them up now.",
+          "explanationIfSpoken": "The line corrects a mistaken assumption about what is actually in the cartons. Working out that they go to a different department and moving them there follows directly. The reply about propping the back door open responds to a change of arrival point that was not announced; the reply about matching off box by box takes on a verification job that was not asked for; and the reply about a fair split accepts a division of labour that was not proposed.",
+          "kills": {
+            "0": "\"Those are the art supplies\" corrects what is inside the cartons, not where they arrived, so propping the back door open responds to a delivery-point change never mentioned.",
+            "2": "The line already identifies the contents — \"not the term's textbooks\" — so promising to match it off box by box duplicates a check that has effectively been made.",
+            "3": "\"Those are the art supplies\" is a correction of fact, not an offer to share the lifting, so calling it a fair split accepts an arrangement never put forward."
+          }
+        },
+        {
+          "kind": "request",
+          "keyAct": "commits to verifying",
+          "line": "Can you check the packing list against what actually arrived?",
+          "reply": "I'll match it off box by box — I'm not signing blind.",
+          "explanationIfSpoken": "The line asks for the shipment to be reconciled with its paperwork before it is accepted. Promising a carton-by-carton check before signing is exactly that job. The reply about propping the back door open answers a change of arrival point that was not mentioned; the reply about wheeling the cartons to a different floor assumes a correction about the contents; and the reply about a fair split accepts a division of labour that was not proposed.",
+          "kills": {
+            "0": "\"Can you check the packing list\" is about paperwork, not about where the delivery pulls in, so propping the back door open answers a change nobody announced.",
+            "1": "The line asks you to establish what is there — \"against what actually arrived\" — so placing the cartons on a different floor assumes a correction that has not been given.",
+            "3": "\"Can you check the packing list\" hands you a task rather than offering to share one, so calling it a fair split accepts an arrangement that was not proposed."
+          }
+        },
+        {
+          "kind": "offer",
+          "keyAct": "accepts the division of labour",
+          "line": "I'll take the heavy cartons if you do the shelving.",
+          "reply": "That's a fair split — I'll make a start now.",
+          "explanationIfSpoken": "The line proposes to divide the work between the two of them along a clear line. Calling the division fair and getting going accepts it. The reply about propping the back door open answers a change of delivery point that was not announced; the reply about wheeling the cartons to a different floor assumes a correction about the contents; and the reply about matching off box by box takes on a verification job that was not asked for.",
+          "kills": {
+            "0": "\"I'll take the heavy cartons\" is an offer about who does what, so propping the back door open responds to a change of arrival point never mentioned.",
+            "1": "The line divides the work — \"if you do the shelving\" — and corrects nothing, so placing the cartons on a different floor acts on a correction nobody made.",
+            "2": "\"if you do the shelving\" assigns you shelving, not reconciliation, so promising to match it off box by box takes on a different task from the one offered."
+          }
+        }
+      ]
+    },
+    {
+      "localId": "crv7-b3-10",
+      "setting": "research assistant contract meeting",
+      "worlds": [
+        {
+          "kind": "good news",
+          "keyAct": "starts work",
+          "line": "Your contract's been signed off by the department head.",
+          "reply": "I'll start logging hours from Monday.",
+          "explanationIfSpoken": "The line confirms the appointment has final approval. Beginning to record work from the start of the week follows from being cleared to begin. The reply about keeping other shifts assumes the post has stalled; the reply that the paperwork is with HR answers a question about documents that was not asked; and the reply about planning a summer around an end date responds to a correction about the contract's length that was not made.",
+          "kills": {
+            "1": "\"been signed off\" means the post is live, so holding on to other shifts hedges against a freeze the line rules out.",
+            "2": "The line reports an approval — \"by the department head\" — rather than asking about documents, so saying everything is with HR answers a question never put.",
+            "3": "\"Your contract's been signed off\" says nothing is wrong with its terms, so planning your summer around an ending responds to a correction that was not made."
+          }
+        },
+        {
+          "kind": "bad news",
+          "keyAct": "retains a fallback",
+          "line": "The post's been frozen until the new budget lands.",
+          "reply": "I'll keep my other shifts for now.",
+          "explanationIfSpoken": "The line reports that the position is suspended pending funding. Holding on to existing paid work until that resolves is the prudent response. The reply about logging hours from Monday assumes the job is live; the reply that paperwork is with HR answers a documents question that was not asked; and the reply about planning a summer around an end date responds to a correction about contract length that was not made.",
+          "kills": {
+            "0": "\"The post's been frozen\" means there is no work to do yet, so promising to start logging hours claims a job that has not opened.",
+            "2": "The line reports a funding hold — \"until the new budget lands\" — not a paperwork query, so saying everything is with HR answers a question nobody asked.",
+            "3": "\"frozen until the new budget lands\" leaves the start date unknown, so planning your summer around a fixed ending assumes terms the line does not give."
+          }
+        },
+        {
+          "kind": "question",
+          "keyAct": "reports document status",
+          "line": "Have you sorted your right-to-work paperwork yet?",
+          "reply": "It's all with the HR office already.",
+          "explanationIfSpoken": "The line checks whether a required set of documents has been dealt with. Confirming that they are already lodged with the relevant office answers it. The reply about logging hours from Monday assumes clearance the question is still verifying; the reply about keeping other shifts assumes the post has stalled; and the reply about planning a summer around an end date responds to a correction about contract length that was not made.",
+          "kills": {
+            "0": "\"Have you sorted\" shows the checks are still being made, so announcing you will start logging hours assumes a clearance the question is testing.",
+            "1": "The line asks about your documents — \"your right-to-work paperwork\" — not about funding, so holding on to other shifts responds to a freeze nobody reported.",
+            "3": "\"Have you sorted your right-to-work paperwork yet?\" says nothing about duration, so planning your summer around an ending answers a term the line never states."
+          }
+        },
+        {
+          "kind": "correction",
+          "keyAct": "adjusts future planning",
+          "line": "It's a fixed-term contract, not an open-ended post.",
+          "reply": "I'll plan my summer around that ending.",
+          "explanationIfSpoken": "The line corrects an assumption that the job would continue indefinitely. Planning ahead for the point at which it stops is the sensible consequence. The reply about logging hours from Monday responds to news of a final approval that was not given; the reply about keeping other shifts assumes the post has been suspended; and the reply that paperwork sits with HR answers a documents question that was not asked.",
+          "kills": {
+            "0": "\"It's a fixed-term contract\" corrects the terms rather than announcing approval, so promising to start logging hours acts on a green light nobody gave.",
+            "1": "The line describes a live but limited post — \"not an open-ended post\" — so keeping other shifts hedges against a freeze that was not reported.",
+            "2": "\"It's a fixed-term contract\" concerns duration, not documents, so saying everything is with HR answers a question the line does not ask."
+          }
+        }
+      ]
+    },
+    {
+      "localId": "crv7-b3-11",
+      "setting": "expense reimbursement counter",
+      "worlds": [
+        {
+          "kind": "bad news",
+          "keyAct": "absorbs the loss",
+          "line": "We can't reimburse taxis without prior approval, I'm afraid.",
+          "reply": "I'll swallow that one — I'll ask first next time.",
+          "explanationIfSpoken": "The line refuses a specific expense and gives the rule behind the refusal. Accepting the cost personally and resolving to seek approval in advance is the graceful response. The reply expressing relief about a written-off claim assumes an approval; the reply about bringing a folder from home offers documents that would not change a rule-based refusal; and the reply welcoming a quick payment accepts an expedited transfer that has not been offered.",
+          "kills": {
+            "1": "\"We can't reimburse taxis\" is a refusal, so expressing relief that something you had written off is coming back reads a rejection as an approval.",
+            "2": "The line refuses on a rule — \"without prior approval\" — not on the format of your evidence, so promising to bring paperwork in would not change the outcome.",
+            "3": "\"We can't reimburse taxis\" means nothing is being paid, so welcoming a payment being pushed through accepts money the line has just declined."
+          }
+        },
+        {
+          "kind": "good news",
+          "keyAct": "expresses relief",
+          "line": "Your conference claim's approved; it'll land with your next pay.",
+          "reply": "That's a relief — I'd more or less written it off.",
+          "explanationIfSpoken": "The line reports an approval and tells the claimant when the money will arrive. Expressing relief at money you had stopped expecting fits an unexpectedly favourable outcome. The reply accepting a personal loss assumes a refusal; the reply about bringing a folder from home offers documents that are evidently no longer needed; and the reply welcoming a same-day push accepts an expedited payment when the timing has already been fixed.",
+          "kills": {
+            "0": "\"Your conference claim's approved\" means nothing has been refused, so resolving to swallow the cost accepts a loss that is not being imposed.",
+            "2": "The line reports the claim settled — \"it'll land with your next pay\" — so promising to bring original receipts in supplies evidence the decision no longer needs.",
+            "3": "\"it'll land with your next pay\" already fixes the timing, so welcoming a same-day push accepts an acceleration nobody has offered."
+          }
+        },
+        {
+          "kind": "request",
+          "keyAct": "promises the documents",
+          "line": "We'll need the original receipts, not the photographs.",
+          "reply": "They're in my folder at home — I'll bring them in.",
+          "explanationIfSpoken": "The line asks for a particular form of evidence before the claim can be processed. Saying where the originals are and undertaking to bring them in meets that requirement. The reply accepting a personal loss assumes an outright refusal; the reply expressing relief assumes the claim is approved; and the reply welcoming a same-day push accepts an expedited payment that has not been offered.",
+          "kills": {
+            "0": "\"We'll need the original receipts\" keeps the claim alive pending paperwork, so resolving to swallow the cost gives up on something not yet refused.",
+            "1": "The line withholds a decision until documents arrive — \"not the photographs\" — so expressing relief at an approval claims an outcome that has not been reached.",
+            "3": "\"We'll need the original receipts\" means nothing can be paid yet, so welcoming a same-day push accepts a payment the line has just made conditional."
+          }
+        },
+        {
+          "kind": "offer",
+          "keyAct": "accepts expedited help",
+          "line": "I can push it through today if you're short.",
+          "reply": "That would help a lot — money's tight this month.",
+          "explanationIfSpoken": "The line offers to accelerate a payment out of consideration for the claimant's cash flow. Accepting and naming the pressure that makes it welcome is the natural reply. The reply accepting a personal loss assumes a refusal; the reply expressing relief at a written-off claim treats a live offer as a finished decision; and the reply about bringing a folder from home supplies documents the line evidently does not require.",
+          "kills": {
+            "0": "\"I can push it through today\" is an offer to pay you sooner, so resolving to swallow the cost turns down money that is being offered.",
+            "1": "The line offers help rather than reporting an outcome — \"if you're short\" — so expressing relief at an approval answers news that was not given.",
+            "2": "\"I can push it through today\" shows the claim is ready to pay, so promising to bring receipts in supplies evidence the line no longer wants."
+          }
+        }
+      ]
+    },
+    {
+      "localId": "crv7-b3-12",
+      "setting": "meal plan billing office",
+      "worlds": [
+        {
+          "kind": "correction",
+          "keyAct": "asks to be switched back",
+          "line": "You've been billed for the unlimited plan, not the weekday one.",
+          "reply": "I'd like to be put back on the cheaper one.",
+          "explanationIfSpoken": "The line identifies that the wrong meal plan has been charged to the account. Asking to be returned to the plan that was actually wanted is the direct remedy. The reply about watching a statement assumes a refund is already in motion; the reply about coming back after class responds to a request for a document that was not made; and the reply naming a sports pavilion cafe answers a question about off-campus eating that was not asked.",
+          "kills": {
+            "1": "\"You've been billed for the unlimited plan\" reports an error still standing, so watching for it to show on a statement assumes a credit already issued.",
+            "2": "The line explains the charge — \"not the weekday one\" — and asks for nothing from you, so promising to come back with a card meets a request never made.",
+            "3": "\"You've been billed for the unlimited plan\" concerns which plan you hold, so naming where you ate answers a question the line does not ask."
+          }
+        },
+        {
+          "kind": "good news",
+          "keyAct": "agrees to monitor",
+          "line": "The overcharge is credited; it'll show by the weekend.",
+          "reply": "I'll watch for it on the statement.",
+          "explanationIfSpoken": "The line reports that a refund has been issued and will appear shortly. Agreeing to look out for it is what is left to do. The reply asking to be moved to a cheaper plan assumes the wrong plan is still in force; the reply about coming back after class answers a request for a document that was not made; and the reply naming a sports pavilion cafe answers a question about off-campus eating that was not asked.",
+          "kills": {
+            "0": "\"The overcharge is credited\" means the money is already coming back, so asking to be moved onto a cheaper plan treats a resolved billing error as unresolved.",
+            "2": "The line closes the matter — \"it'll show by the weekend\" — and asks nothing of you, so promising to return with a card meets a request that was not made.",
+            "3": "\"The overcharge is credited\" is about a refund, not about where you have eaten, so naming a cafe answers a question the line never asks."
+          }
+        },
+        {
+          "kind": "request",
+          "keyAct": "agrees to return with the card",
+          "line": "Bring your student card so we can pull the transactions.",
+          "reply": "I'll come back with it after class.",
+          "explanationIfSpoken": "The line asks the student to bring a card so the account history can be retrieved. Undertaking to return with it once teaching finishes meets the request. The reply asking to be moved to a cheaper plan assumes a correction has already been established; the reply about watching a statement assumes a refund has been issued; and the reply naming a sports pavilion cafe answers a question about off-campus eating that was not asked.",
+          "kills": {
+            "0": "\"so we can pull the transactions\" means nothing has been established yet, so asking to be moved onto a cheaper plan assumes a conclusion the office has not reached.",
+            "1": "The line is still gathering evidence — \"Bring your student card\" — so watching for a credit on a statement assumes a refund nobody has issued.",
+            "3": "\"Bring your student card\" asks for an object, so naming where you ate supplies something other than what was requested."
+          }
+        },
+        {
+          "kind": "question",
+          "keyAct": "supplies the fact",
+          "line": "Did you eat anywhere off the main campus last term?",
+          "reply": "Only at the sports pavilion cafe.",
+          "explanationIfSpoken": "The line asks a factual question about where meals were taken, which bears on how the account was charged. Naming the one outlying place answers it precisely. The reply asking to be moved to a cheaper plan assumes a billing error has been established; the reply about watching a statement assumes a refund is on its way; and the reply about returning after class answers a request to bring a card that was not made.",
+          "kills": {
+            "0": "\"Did you eat anywhere off the main campus\" is still fact-finding, so asking to be moved onto a cheaper plan assumes a conclusion nobody has drawn.",
+            "1": "The line asks about \"last term\" rather than reporting a decision, so watching for a credit on a statement assumes a refund that has not been mentioned.",
+            "2": "\"Did you eat anywhere\" needs an answer now, so promising to come back later with a card leaves the question unanswered."
+          }
+        }
+      ]
+    },
+    {
+      "localId": "crv7-b3-13",
+      "setting": "tuition instalment desk",
+      "worlds": [
+        {
+          "kind": "offer",
+          "keyAct": "accepts spreading the cost",
+          "line": "We can spread the balance across the rest of term.",
+          "reply": "I'd like that — the lump sum was never going to work.",
+          "explanationIfSpoken": "The line offers to break a single large payment into smaller ones over the remaining weeks. Accepting, and saying why paying it all at once was impossible, takes up the offer. The reply about setting up a standing order treats a warning about consequences as the point; the reply about timing wages to land before the dates responds to information about a fixed calendar; and the reply asking for a pen answers a request to sign something that was not made.",
+          "kills": {
+            "1": "\"We can spread the balance\" is an offer of terms, not a warning about consequences, so resolving to set up a standing order guards against a penalty nobody mentioned.",
+            "2": "The line proposes something new — \"across the rest of term\" — rather than describing a fixed calendar, so promising to shift wages to land just before the dates answers information never given.",
+            "3": "\"We can spread the balance\" invites a decision, not a signature, so asking for a pen responds to a document that has not been produced."
+          }
+        },
+        {
+          "kind": "bad news",
+          "keyAct": "takes a preventive measure",
+          "line": "Missing an instalment means the whole balance falls due.",
+          "reply": "I'd better set up a standing order — I can't risk that.",
+          "explanationIfSpoken": "The line warns of a severe consequence attached to any missed payment. Automating the payments so none can be missed is a direct guard against it. The reply saying a lump sum was never going to work treats a warning as an offer; the reply about timing wages to land before the dates responds to information about the calendar rather than the risk; and the reply asking for a pen answers a request to sign a document that was not made.",
+          "kills": {
+            "0": "\"Missing an instalment\" presupposes instalments already agreed, so welcoming the chance to spread the cost accepts an offer that has already been taken up.",
+            "2": "The line is about the consequence of a miss — \"the whole balance falls due\" — not about when payments fall, so promising to shift wages to land before the dates answers a different point.",
+            "3": "\"Missing an instalment means the whole balance falls due\" is a warning, not a document, so asking for a pen responds to a signature nobody requested."
+          }
+        },
+        {
+          "kind": "neutral info",
+          "keyAct": "coordinates timing",
+          "line": "Instalment dates always follow the start of each term.",
+          "reply": "I'll shift my wages to land just before — that should hold.",
+          "explanationIfSpoken": "The line explains that the payment calendar is fixed to the academic terms. Arranging one's own income to arrive in step with that calendar is the practical consequence. The reply saying a lump sum was never going to work treats a description of the calendar as a fresh offer; the reply about a standing order guards against a penalty that was not mentioned; and the reply asking for a pen answers a request to sign a document that was not made.",
+          "kills": {
+            "0": "\"Instalment dates always follow\" describes an existing arrangement, so welcoming the chance to spread the cost accepts an offer that is not being made.",
+            "1": "The line explains scheduling — \"the start of each term\" — and warns of nothing, so resolving to set up a standing order guards against a penalty never raised.",
+            "3": "\"Instalment dates always follow the start of each term\" is information, not a form, so asking for a pen answers a signature request that has not been made."
+          }
+        },
+        {
+          "kind": "request",
+          "keyAct": "complies on the spot",
+          "line": "Sign the direct debit mandate before you leave today.",
+          "reply": "Give me a pen — I'll do it at the counter here.",
+          "explanationIfSpoken": "The line asks for a form to be signed before the student goes. Asking for a pen and doing it there settles the request immediately. The reply saying a lump sum was never going to work responds to an offer of terms that is not what was said; the reply about a standing order guards against a consequence that was not raised; and the reply about timing wages to land before the dates responds to information about the calendar rather than the signature being asked for.",
+          "kills": {
+            "0": "\"Sign the direct debit mandate\" asks you to complete an arrangement, so welcoming the chance to spread the cost responds to an offer already past.",
+            "1": "The line asks for a signature \"before you leave today\" and warns of nothing, so resolving to set up a standing order guards against a penalty never mentioned.",
+            "2": "\"Sign the direct debit mandate\" is an instruction, not a description of dates, so promising to shift wages to land just before answers information not given."
+          }
+        }
+      ]
+    },
+    {
+      "localId": "crv7-b3-14",
+      "setting": "student union treasurer's office",
+      "worlds": [
+        {
+          "kind": "good news",
+          "keyAct": "undertakes to relay the news",
+          "line": "The society's grant went through at what you asked for.",
+          "reply": "I'll tell the committee tonight.",
+          "explanationIfSpoken": "The line reports that funding was granted in full. Carrying that news back to the people who will act on it is the obvious next move. The reply about trying again in the spring assumes a refusal; the reply naming a secretary answers a question about who signs that was not asked; and the reply about a cupboard full of receipts responds to a documents request that was not made.",
+          "kills": {
+            "1": "\"went through at what you asked for\" means the bid succeeded, so proposing to try again in the spring treats a full award as a refusal.",
+            "2": "The line reports an outcome — \"The society's grant went through\" — rather than asking who is authorised, so naming a secretary answers a question never put.",
+            "3": "\"went through at what you asked for\" means the money is released, so promising to dig out old receipts meets a condition the line does not impose."
+          }
+        },
+        {
+          "kind": "bad news",
+          "keyAct": "plans a fresh attempt",
+          "line": "Finance turned the film society down this round.",
+          "reply": "We'll try again in the spring.",
+          "explanationIfSpoken": "The line reports that the funding bid was refused on this occasion. Planning to submit again at the next opportunity is what a society does after an unsuccessful round. The reply about telling the committee that night assumes a success worth reporting; the reply naming a secretary answers a question about signatories that was not asked; and the reply about digging out receipts responds to a documents request that was not made.",
+          "kills": {
+            "0": "\"turned the film society down\" is a refusal, so promising to bring the committee the news treats a rejection as an award.",
+            "2": "The line reports a decision — \"down this round\" — rather than asking about authority, so naming a secretary answers a question that was not asked.",
+            "3": "\"Finance turned the film society down\" means no money is being released, so promising to dig out receipts meets a condition attached to nothing."
+          }
+        },
+        {
+          "kind": "question",
+          "keyAct": "identifies the person",
+          "line": "Who's the named signatory on the society account?",
+          "reply": "Our secretary holds that role.",
+          "explanationIfSpoken": "The line asks which officer is authorised on the society's account. Naming the post-holder answers it. The reply about telling the committee that night assumes news of a successful bid; the reply about trying again in the spring assumes a refusal; and the reply about digging out receipts responds to a documents request that was not made.",
+          "kills": {
+            "0": "\"Who's the named signatory\" is a question, not an outcome, so undertaking to bring the committee good news reports a decision nobody announced.",
+            "1": "The line asks about \"the society account\" rather than a funding decision, so proposing to try again in the spring answers a refusal that has not been given.",
+            "3": "\"Who's the named signatory\" asks for a name, so promising to dig out receipts supplies something other than what was asked for."
+          }
+        },
+        {
+          "kind": "request",
+          "keyAct": "undertakes to retrieve papers",
+          "line": "Get last term's receipts to me before I can release anything.",
+          "reply": "I'll dig them out of the office cupboard.",
+          "explanationIfSpoken": "The line makes older paperwork a precondition of any further money moving. Undertaking to retrieve those papers from where they are stored meets the condition. The reply about telling the committee that night assumes a successful outcome; the reply about trying again in the spring assumes a refusal; and the reply naming a secretary answers a question about signatories that was not asked.",
+          "kills": {
+            "0": "\"before I can release anything\" means nothing has been released, so bringing the committee good news reports an award that has not been made.",
+            "1": "The line sets a condition rather than refusing — \"Get last term's receipts to me\" — so proposing to try again in the spring abandons a bid still in play.",
+            "2": "\"last term's receipts\" is a request for documents, so naming a signatory answers a question the line does not ask."
+          }
+        }
+      ]
+    },
+    {
+      "localId": "crv7-b3-15",
+      "setting": "research grant paperwork office",
+      "worlds": [
+        {
+          "kind": "neutral info",
+          "keyAct": "repurposes the waiting time",
+          "line": "The panel reads applications over the summer, not before.",
+          "reply": "I'll use the wait — the methods section could be tidier.",
+          "explanationIfSpoken": "The line explains that assessment simply will not begin until a later season. Turning the delay into time for improving the application is the constructive response. The reply about having filled in the wrong form assumes a correction about which form applies; the reply promising to send the application over on Friday accepts an offer that was not made; and the reply about a supervisor returning tomorrow answers a signature request that was not made.",
+          "kills": {
+            "1": "\"The panel reads applications\" concerns timing, not which form you used, so concluding you filled in the wrong one acts on a correction never given.",
+            "2": "The line describes the schedule — \"over the summer, not before\" — and offers nothing, so promising to send the application over on Friday accepts an offer that was not made.",
+            "3": "\"over the summer, not before\" says nothing is missing from the application, so promising to catch a supervisor for a signature meets a requirement never stated."
+          }
+        },
+        {
+          "kind": "correction",
+          "keyAct": "abandons the wrong form",
+          "line": "That form's for equipment costs, not travel money.",
+          "reply": "Then I've filled in the wrong one — I'll start again.",
+          "explanationIfSpoken": "The line points out that the paperwork in hand covers a different category of spending. Recognising the mistake and starting the correct form is what follows. The reply about using the wait to tidy a methods section assumes a scheduling delay; the reply promising to send the application over on Friday accepts an offer that was not made; and the reply about a supervisor returning tomorrow answers a signature request that was not made.",
+          "kills": {
+            "0": "\"That form's for equipment costs\" is a correction about categories, not a timetable, so planning to use a wait assumes a delay nobody mentioned.",
+            "2": "The line corrects your paperwork — \"not travel money\" — rather than offering to look at it, so promising to send the application over on Friday accepts an offer never made.",
+            "3": "\"That form's for equipment costs\" says the form itself is wrong, so chasing a signature on it pursues an approval for the wrong document."
+          }
+        },
+        {
+          "kind": "offer",
+          "keyAct": "accepts a read-through",
+          "line": "I'm happy to read your draft before it goes in.",
+          "reply": "I'll send it over Friday — that'll help a lot.",
+          "explanationIfSpoken": "The line offers to review the application before submission. Undertaking to send it over on a named day takes the offer up. The reply about using a wait to tidy a section assumes a scheduling delay; the reply about having filled in the wrong form assumes a correction about categories; and the reply about a supervisor returning tomorrow answers a signature request that was not made.",
+          "kills": {
+            "0": "\"before it goes in\" implies a live submission rather than a long delay, so planning to use the wait answers a timetable the line does not give.",
+            "1": "The line offers help with what you have written — \"I'm happy to read your draft\" — and corrects nothing, so concluding you used the wrong form acts on a correction never made.",
+            "3": "\"I'm happy to read your draft\" is an offer of a read-through, not a demand for a signature, so arranging one answers a requirement nobody stated."
+          }
+        },
+        {
+          "kind": "request",
+          "keyAct": "arranges the signature",
+          "line": "We need your supervisor's signature on the costing page.",
+          "reply": "He's back tomorrow — I'll catch him then.",
+          "explanationIfSpoken": "The line names a missing authorisation on a specific page of the application. Saying when the supervisor is available and undertaking to see him then meets the requirement. The reply about using a wait to tidy a section assumes a scheduling delay; the reply about having filled in the wrong form assumes a correction about categories; and the reply promising to send the application over on Friday accepts an offer that was not made.",
+          "kills": {
+            "0": "\"We need your supervisor's signature\" is an outstanding action now, so planning to use a wait leaves the application blocked.",
+            "1": "The line accepts the form and asks only for an endorsement \"on the costing page\", so concluding you used the wrong one acts on a correction never given.",
+            "2": "\"We need your supervisor's signature\" asks for an authorisation, not a read-through, so thanking someone for offering to read your draft accepts an offer nobody made."
+          }
+        }
+      ]
+    },
+    {
+      "localId": "crv7-b3-16",
+      "setting": "library stacks shelving workroom",
+      "worlds": [
+        {
+          "kind": "request",
+          "keyAct": "commits to the errand",
+          "line": "Take the oversize trolley up before you clock off.",
+          "reply": "I'll run it up to the top floor.",
+          "explanationIfSpoken": "The line asks for a specific load to be moved upstairs before the end of the shift. Agreeing to take it up settles the request. The reply about asking after weekend work assumes shifts have been cut; the reply preferring an earlier start accepts a swap that was not offered; and the reply about watching a pile at the front desk responds to news about a jammed chute that was not given.",
+          "kills": {
+            "1": "\"before you clock off\" assumes your shift is running as normal, so asking about weekend work instead responds to a cut the line does not report.",
+            "2": "The line hands you a task — \"Take the oversize trolley up\" — rather than offering to trade hours, so welcoming an earlier start accepts a swap never proposed.",
+            "3": "\"Take the oversize trolley up\" concerns a load going upstairs, so promising to watch a pile at the front desk attends to something the line never mentions."
+          }
+        },
+        {
+          "kind": "bad news",
+          "keyAct": "looks for other hours",
+          "line": "They've cut the evening shelving shift for the rest of term.",
+          "reply": "I'll ask about weekend work instead.",
+          "explanationIfSpoken": "The line reports that a regular block of paid hours has been withdrawn for the remainder of the term. Enquiring about work at another time is the practical way to replace the lost income. The reply about running a trolley upstairs responds to an errand that was not set; the reply preferring an earlier start accepts a swap that was not offered; and the reply about watching a pile at the front desk responds to news about a jammed chute that was not given.",
+          "kills": {
+            "0": "\"They've cut the evening shelving shift\" removes the shift itself, so promising to run a trolley up before clocking off treats a cancelled shift as a working one.",
+            "2": "The line reports a cut \"for the rest of term\", not an offer to trade hours, so welcoming an earlier start accepts a swap that nobody put forward.",
+            "3": "\"cut the evening shelving shift\" is about your hours, so promising to keep an eye on a pile at the desk answers an operational problem never raised."
+          }
+        },
+        {
+          "kind": "offer",
+          "keyAct": "accepts the swap",
+          "line": "I can swap my morning for your evening if you like.",
+          "reply": "An earlier start would suit me much better.",
+          "explanationIfSpoken": "The line offers to trade shifts so that the other person works the earlier slot. Saying the earlier start suits better accepts the trade. The reply about running a trolley upstairs responds to an errand that was not set; the reply about asking after weekend work assumes shifts have been cut; and the reply about watching a pile at the front desk responds to news about a jammed chute that was not given.",
+          "kills": {
+            "0": "\"I can swap my morning\" is an offer about hours, so promising to run a trolley up before clocking off answers an errand that was never set.",
+            "1": "The line keeps both shifts in existence — \"swap my morning for your evening\" — so asking about weekend work instead responds to a cut that has not happened.",
+            "3": "\"if you like\" invites a yes or no about hours, so promising to watch a pile at the desk leaves the offer unanswered."
+          }
+        },
+        {
+          "kind": "neutral info",
+          "keyAct": "shifts where attention goes",
+          "line": "The returns chute is jammed, so everything's coming through the desk.",
+          "reply": "I'll keep an eye on the pile up front.",
+          "explanationIfSpoken": "The line reports a mechanical problem that has redirected all returned books to the counter. Watching the growing pile at the front is the sensible adjustment. The reply about running a trolley upstairs responds to an errand that was not set; the reply about asking after weekend work assumes shifts have been cut; and the reply preferring an earlier start accepts a swap that was not offered.",
+          "kills": {
+            "0": "\"The returns chute is jammed\" reports a fault rather than assigning a load, so promising to run a trolley up answers an errand nobody set.",
+            "1": "The line describes a jam — \"everything's coming through the desk\" — not a change to your hours, so asking about weekend work responds to a cut never announced.",
+            "2": "\"The returns chute is jammed\" offers no trade of hours, so welcoming an earlier start accepts a swap that was never proposed."
+          }
+        }
+      ]
+    },
+    {
+      "localId": "crv7-b3-17",
+      "setting": "IT student-worker rota board",
+      "worlds": [
+        {
+          "kind": "correction",
+          "keyAct": "adjusts a personal plan",
+          "line": "You're down for the late slot, not the opening one.",
+          "reply": "I'll change my alarm — I'd planned to be in early.",
+          "explanationIfSpoken": "The line corrects a mistaken belief about which shift the worker holds. Resetting the morning alarm, and saying what had been assumed, follows directly from the correction. The reply about finally going home responds to a leave request being granted; the reply volunteering for a quiet day accepts a cover request that was not made; and the reply about bookmarking something responds to news that the rota has moved online.",
+          "kills": {
+            "1": "\"You're down for the late slot\" assigns you a shift rather than releasing you, so treating it as leave and going home reads a rota entry as time off.",
+            "2": "The line tells you what you already hold — \"not the opening one\" — so volunteering to take a shift on answers a request for cover nobody made.",
+            "3": "\"You're down for the late slot\" corrects your timing, not where the rota lives, so promising to bookmark it responds to news that was not given."
+          }
+        },
+        {
+          "kind": "good news",
+          "keyAct": "expresses relief and plans travel",
+          "line": "You got the weekend you asked for off.",
+          "reply": "I can finally go home — that's a weight off.",
+          "explanationIfSpoken": "The line grants a leave request that had been outstanding. Relief and the ability to travel home are what that grant makes possible. The reply about changing an alarm responds to a correction about which shift is held; the reply volunteering for a quiet day accepts a cover request that was not made; and the reply about bookmarking something responds to news that the rota has moved online.",
+          "kills": {
+            "0": "\"You got the weekend you asked for off\" releases you from work rather than reassigning you, so resetting an alarm responds to a shift correction never made.",
+            "2": "The line grants time off — \"You got the weekend you asked for off\" — so volunteering to take on a shift undoes the leave it has just given you.",
+            "3": "\"the weekend you asked for off\" concerns your leave, not where the rota is posted, so promising to bookmark it answers news that was not given."
+          }
+        },
+        {
+          "kind": "request",
+          "keyAct": "volunteers for the shift",
+          "line": "Cover the Sunday desk if nobody else picks it up.",
+          "reply": "Put me down for it — that day's quiet anyway.",
+          "explanationIfSpoken": "The line asks the worker to take a shift that may otherwise go unfilled. Volunteering outright, and noting that the day is undemanding, meets the request generously. The reply about changing an alarm responds to a correction about which shift is held; the reply about finally going home responds to leave being granted; and the reply about bookmarking something responds to news that the rota has moved online.",
+          "kills": {
+            "0": "\"Cover the Sunday desk\" adds a shift rather than correcting one, so resetting an alarm answers a correction that was never made.",
+            "1": "The line asks you to work — \"if nobody else picks it up\" — so treating it as leave and going home reads a request for cover as time off.",
+            "3": "\"Cover the Sunday desk\" asks for a commitment, not a note about where the rota lives, so promising to bookmark it leaves the request unanswered."
+          }
+        },
+        {
+          "kind": "neutral info",
+          "keyAct": "changes a habit",
+          "line": "The rota goes up on the shared drive now.",
+          "reply": "I'll bookmark it — the corkboard was never current.",
+          "explanationIfSpoken": "The line reports that the schedule has moved from a physical board to an online location. Bookmarking the new place, and noting why the old one was unreliable, is the sensible adjustment. The reply about changing an alarm responds to a correction about which shift is held; the reply about finally going home responds to leave being granted; and the reply volunteering for a quiet day accepts a cover request that was not made.",
+          "kills": {
+            "0": "\"The rota goes up on the shared drive\" says where to look, not which shift you hold, so resetting an alarm answers a correction never made.",
+            "1": "The line reports a change of location — \"on the shared drive now\" — not a leave decision, so treating it as leave granted answers news that was not given.",
+            "2": "\"The rota goes up on the shared drive now\" asks nothing of you, so volunteering for a shift accepts a request that was never made."
+          }
+        }
+      ]
+    },
+    {
+      "localId": "crv7-b3-18",
+      "setting": "event catering kitchen staging area",
+      "worlds": [
+        {
+          "kind": "bad news",
+          "keyAct": "seeks replacement hours",
+          "line": "Tonight's dinner's cancelled, so the shift's off.",
+          "reply": "I'll pick up hours somewhere else this week.",
+          "explanationIfSpoken": "The line reports that the event and with it the paid shift have both fallen through. Looking for work elsewhere in the week replaces the lost hours. The reply about setting trolleys up indoors assumes the event is going ahead in a different room; the reply about arriving before the ovens go on accepts an earlier start that was not requested; and the reply preferring pouring drinks to scrubbing accepts a role swap that was not offered.",
+          "kills": {
+            "1": "\"Tonight's dinner's cancelled\" means no service at all, so setting trolleys up indoors prepares for an event that is not happening.",
+            "2": "The line removes the work — \"the shift's off\" — so promising to arrive before the ovens go on turns up for a shift that no longer exists.",
+            "3": "\"Tonight's dinner's cancelled\" leaves no duties to reassign, so preferring to pour drinks rather than scrub accepts a swap that could not have been offered."
+          }
+        },
+        {
+          "kind": "neutral info",
+          "keyAct": "adapts the setup",
+          "line": "The guests are eating in the hall, not the marquee.",
+          "reply": "I'll set the trolleys up indoors.",
+          "explanationIfSpoken": "The line reports that the meal has been relocated from the outdoor structure to the building. Staging the service equipment inside follows from the new venue. The reply about picking up hours elsewhere assumes the shift has been cancelled; the reply about arriving before the ovens go on accepts an earlier start that was not requested; and the reply preferring pouring drinks to scrubbing accepts a role swap that was not offered.",
+          "kills": {
+            "0": "\"The guests are eating in the hall\" means service is going ahead, so looking for hours elsewhere responds to a cancellation that has not happened.",
+            "2": "The line changes the venue — \"not the marquee\" — not the start time, so promising to arrive before the ovens go on accepts an earlier call never made.",
+            "3": "\"eating in the hall, not the marquee\" says where service happens, not what job you do, so preferring to pour drinks rather than scrub accepts a swap never offered."
+          }
+        },
+        {
+          "kind": "request",
+          "keyAct": "commits to an earlier arrival",
+          "line": "Come in early tomorrow to help with the plating.",
+          "reply": "I'll be there before the ovens go on.",
+          "explanationIfSpoken": "The line asks the worker to start ahead of the usual time to help get plates out. Promising to arrive before the kitchen even fires up meets that request comfortably. The reply about picking up hours elsewhere assumes the shift has been cancelled; the reply about setting trolleys up indoors assumes the venue has changed; and the reply preferring pouring drinks to scrubbing accepts a role swap that was not offered.",
+          "kills": {
+            "0": "\"Come in early tomorrow\" confirms the work is going ahead, so looking for hours elsewhere responds to a cancellation that has not occurred.",
+            "1": "The line asks about timing — \"to help with the plating\" — not about where guests will sit, so setting trolleys up indoors answers a venue change nobody announced.",
+            "3": "\"Come in early tomorrow\" asks you to arrive sooner, not to change duties, so preferring to pour drinks rather than scrub accepts a swap that was not offered."
+          }
+        },
+        {
+          "kind": "offer",
+          "keyAct": "accepts a different duty",
+          "line": "I can put you on drinks instead of washing up.",
+          "reply": "I'd rather be pouring than scrubbing.",
+          "explanationIfSpoken": "The line offers to move the worker off dishwashing and onto serving drinks. Welcoming the change accepts the offer. The reply about picking up hours elsewhere assumes the shift has been cancelled; the reply about setting trolleys up indoors assumes the venue has changed; and the reply about arriving before the ovens go on accepts an earlier start that was not requested.",
+          "kills": {
+            "0": "\"I can put you on drinks\" assumes the shift is running, so looking for hours elsewhere responds to a cancellation the line rules out.",
+            "1": "The line reassigns your job — \"instead of washing up\" — not the location of service, so setting trolleys up indoors answers a venue change never mentioned.",
+            "2": "\"I can put you on drinks\" changes your duties, not your start time, so promising to arrive before the ovens go on accepts an earlier call nobody made."
+          }
+        }
+      ]
+    },
+    {
+      "localId": "crv7-b3-19",
+      "setting": "theatre box office booth",
+      "worlds": [
+        {
+          "kind": "neutral info",
+          "keyAct": "prepares for collections",
+          "line": "The show's sold out, so it's collections only tonight.",
+          "reply": "I'll get the pickup list out on the counter.",
+          "explanationIfSpoken": "The line reports that no seats remain, so the evening's work is handing over tickets already bought. Putting the collection list where it can be worked from is the right preparation. The reply about a cash float assumes card payments have failed; the reply about working down a list before doors open accepts a calling task that was not assigned; and the reply preferring to stay behind glass accepts a division of duties that was not proposed.",
+          "kills": {
+            "1": "\"it's collections only tonight\" means nothing is being sold, so fetching a cash float prepares for takings that will not occur.",
+            "2": "The line reports the house full — \"The show's sold out\" — and sets no calling task, so working down a list before doors open takes on an errand nobody assigned.",
+            "3": "\"collections only tonight\" describes the evening's work, not a share-out of duties, so choosing to stay behind glass accepts a split that was not offered."
+          }
+        },
+        {
+          "kind": "bad news",
+          "keyAct": "arranges a workaround",
+          "line": "The card reader's down and the technician can't come till morning.",
+          "reply": "I'll get a cash float from the safe, then.",
+          "explanationIfSpoken": "The line reports that card payments are unavailable for the whole evening. Drawing cash so that money can still be taken and change given is the workaround. The reply about putting a pickup list on the counter assumes the house is sold out; the reply about working down a list accepts a calling task that was not assigned; and the reply preferring to stay behind glass accepts a division of duties that was not proposed.",
+          "kills": {
+            "0": "\"The card reader's down\" is a payments fault, so laying out a pickup list assumes a sold-out house the line never mentions.",
+            "2": "The line reports a fault lasting \"till morning\" and sets no calling task, so working down a list before doors open takes on an errand nobody gave.",
+            "3": "\"The card reader's down\" describes equipment, not a share-out of duties, so choosing to stay behind glass accepts a split never proposed."
+          }
+        },
+        {
+          "kind": "request",
+          "keyAct": "commits to the calls",
+          "line": "Ring the latecomers list and tell them the new time.",
+          "reply": "I'll work down the list before the doors open.",
+          "explanationIfSpoken": "The line asks for a set of ticket-holders to be telephoned about a changed start. Promising to get through the calls before the house opens meets the request. The reply about putting a pickup list on the counter assumes the house is sold out; the reply about a cash float assumes card payments have failed; and the reply preferring to stay behind glass accepts a division of duties that was not proposed.",
+          "kills": {
+            "0": "\"Ring the latecomers list\" is a calling task, so laying out a pickup list assumes a sold-out house that the line does not report.",
+            "1": "The line concerns telling people \"the new time\", not taking payment, so fetching a cash float responds to a card fault never mentioned.",
+            "3": "\"Ring the latecomers list\" assigns you the calls, so choosing to stay behind glass accepts a division of duties that was not offered."
+          }
+        },
+        {
+          "kind": "offer",
+          "keyAct": "accepts the allocation",
+          "line": "I'll do the interval bar if you take the window.",
+          "reply": "I'd much rather stay behind the glass.",
+          "explanationIfSpoken": "The line proposes to split the evening's duties, with one person serving drinks and the other on the counter. Saying you would rather have the counter accepts the split as offered. The reply about putting a pickup list out assumes the house is sold out; the reply about a cash float assumes card payments have failed; and the reply about working down a list accepts a calling task that was not assigned.",
+          "kills": {
+            "0": "\"I'll do the interval bar\" divides duties, so laying out a pickup list responds to a sold-out house the line never mentions.",
+            "1": "The line shares out the evening — \"if you take the window\" — and reports no fault, so fetching a cash float responds to a card problem never raised.",
+            "2": "\"if you take the window\" puts you on the counter, so promising to work down a calling list takes on a task the offer does not include."
+          }
+        }
+      ]
+    },
+    {
+      "localId": "crv7-b3-20",
+      "setting": "pool office, lifeguard certification desk",
+      "worlds": [
+        {
+          "kind": "good news",
+          "keyAct": "moves to scheduling",
+          "line": "Your certificate came through, so you can start on poolside.",
+          "reply": "I'll get on the rota — I've waited long enough.",
+          "explanationIfSpoken": "The line confirms that the qualification has arrived and the worker may now take shifts. Getting onto the schedule is what that clearance makes possible. The reply about booking another attempt assumes the assessment was failed; the reply about signing up for a course responds to a missing prerequisite that was not named; and the reply distinguishing training from real incidents answers a question about experience that was not asked.",
+          "kills": {
+            "1": "\"Your certificate came through\" means the assessment was passed, so booking another go repeats something already behind you.",
+            "2": "The line clears you to work — \"you can start on poolside\" — so signing up for a course answers a prerequisite the line says nothing about.",
+            "3": "\"Your certificate came through\" is an announcement, not a question about your background, so describing what you have and have not done answers nothing that was asked."
+          }
+        },
+        {
+          "kind": "bad news",
+          "keyAct": "books a second attempt",
+          "line": "You failed the timed swim, so it's a retake.",
+          "reply": "I'll book another go — more lengths for me, then.",
+          "explanationIfSpoken": "The line reports an unsuccessful assessment and that it must be attempted again. Arranging that attempt, with a wry nod at the training it implies, is the fitting response. The reply about getting on the rota assumes clearance to work; the reply about signing up for a course responds to a missing prerequisite that was not named; and the reply distinguishing training from real incidents answers a question about experience that was not asked.",
+          "kills": {
+            "0": "\"You failed the timed swim\" means you are not cleared, so getting your name on the rota claims a qualification you do not have.",
+            "2": "The line names a swimming assessment — \"so it's a retake\" — not a lapsed document, so signing up for a course answers a prerequisite nobody raised.",
+            "3": "\"You failed the timed swim\" reports a result rather than asking about your background, so describing your experience answers a question never put."
+          }
+        },
+        {
+          "kind": "request",
+          "keyAct": "arranges the prerequisite",
+          "line": "Renew your first-aid card before we can put you on.",
+          "reply": "There's a course next week — I'll sign up for it.",
+          "explanationIfSpoken": "The line makes an up-to-date first-aid qualification a condition of being rostered. Finding a course and undertaking to enrol meets that condition. The reply about getting on the rota assumes clearance that is expressly conditional; the reply about booking another attempt assumes a failed assessment; and the reply distinguishing training from real incidents answers a question about experience that was not asked.",
+          "kills": {
+            "0": "\"before we can put you on\" makes rostering conditional, so getting your name on the rota skips the condition just imposed.",
+            "1": "The line asks you to \"Renew your first-aid card\", not to sit an assessment again, so booking another go addresses a failure that was not reported.",
+            "3": "\"Renew your first-aid card\" asks for a document, so describing what you have done in training supplies something other than what was requested."
+          }
+        },
+        {
+          "kind": "question",
+          "keyAct": "qualifies their experience",
+          "line": "Have you done a pool rescue with a spinal board?",
+          "reply": "Only in training — never with a real casualty.",
+          "explanationIfSpoken": "The line asks about practical experience with a specific rescue technique. Distinguishing practice from live incidents answers honestly and precisely. The reply about getting on the rota assumes clearance that the question is still probing; the reply about booking another attempt assumes a failed assessment; and the reply about signing up for a course responds to a missing prerequisite that was not named.",
+          "kills": {
+            "0": "\"Have you done a pool rescue\" is a question about your background, so announcing you will get on the rota assumes an outcome nobody has given.",
+            "1": "The line asks about experience \"with a spinal board\" rather than reporting a result, so booking another go responds to a failure that was not announced.",
+            "2": "\"Have you done a pool rescue with a spinal board?\" asks for information, so promising to enrol on a course answers a requirement the line does not state."
+          }
+        }
+      ]
+    }
+  ]
+}

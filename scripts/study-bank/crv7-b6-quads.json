@@ -1,0 +1,1088 @@
+{
+  "cohort": "cr-v7",
+  "stage": 2,
+  "batch": "b6",
+  "method": "symmetric four-world authoring, post-hoc seeded key selection",
+  "items": [
+    {
+      "localId": "crv7-b6-01",
+      "setting": "town pharmacy",
+      "worlds": [
+        {
+          "kind": "good news",
+          "keyAct": "accepts and moves to pay",
+          "line": "Your refill's ready, it's behind the counter now.",
+          "reply": "Great, I'll take it now, I've got my card out.",
+          "explanationIfSpoken": "The line reports that the medicine has already been dispensed and is waiting to be handed over. The reply that takes it straight away and reaches for a card is the cooperative next move. The reply asking whether another branch has stock treats the medicine as unavailable; the reply promising to ring the clinic treats prescriber approval as still outstanding; the reply choosing the cheaper generic answers a choice that was never offered.",
+          "kills": {
+            "1": "The line says the refill is \"behind the counter\", so the reply that goes hunting for another branch with stock is looking for something that is already here.",
+            "2": "Since \"Your refill's ready\", the reply that promises to call the clinic and chase an approval is chasing a step that has already been completed.",
+            "3": "The line only reports that the \"refill's ready\"; the reply that picks the generic over the brand answers a question the pharmacist never asked."
+          }
+        },
+        {
+          "kind": "bad news",
+          "keyAct": "asks for another source",
+          "line": "We're out of stock, the supplier can't send more this week.",
+          "reply": "Is there another branch nearby that might have some?",
+          "explanationIfSpoken": "The line reports a supply failure with no fix available at this counter. Asking whether a nearby branch holds any is the natural way to keep the errand alive. The reply that takes the medicine now assumes there is something to hand over; the reply that promises to ring the clinic blames the prescriber rather than the supply chain; the reply choosing the generic assumes two versions are sitting on the shelf.",
+          "kills": {
+            "0": "The pharmacist says \"We're out of stock\", so the reply that takes the medicine now and produces a card is collecting something that is not there.",
+            "2": "The obstacle named is that \"the supplier can't send more\", so the reply that undertakes to call the clinic for approval is fixing the wrong problem.",
+            "3": "With the shelf \"out of stock\", the reply that opts for the generic over the brand chooses between two things that are equally unavailable."
+          }
+        },
+        {
+          "kind": "neutral info",
+          "keyAct": "commits to chase the prescriber",
+          "line": "The doctor has to approve the refill before I can fill it.",
+          "reply": "I'll call the clinic this afternoon and ask them.",
+          "explanationIfSpoken": "The line states a procedural precondition that the customer, not the pharmacist, is placed to clear. Undertaking to ring the clinic that afternoon addresses exactly that precondition. The reply that collects the medicine now assumes it has been dispensed; the reply hunting for another branch assumes a stock problem; the reply picking the generic assumes a choice of versions was on the table.",
+          "kills": {
+            "0": "The pharmacist says the approval is needed \"before I can fill it\", so the reply that takes it now and pays has nothing to carry away.",
+            "1": "Nothing was said about supply, only that \"The doctor has to approve\" it, so the reply that shops the prescription round other branches misreads the hold-up.",
+            "3": "Since \"The doctor has to approve\" it first, the reply that settles on the generic is choosing a version before anything can be dispensed at all."
+          }
+        },
+        {
+          "kind": "question",
+          "keyAct": "states a preference",
+          "line": "Do you want the generic version or the brand one?",
+          "reply": "The generic's fine, whichever costs less.",
+          "explanationIfSpoken": "The line puts a straightforward either-or choice to the customer. Naming the generic and giving cost as the reason settles the choice. The reply that takes the medicine now skips past a question still open; the reply asking about other branches assumes a shortage the question denies; the reply promising to ring the clinic assumes an approval problem nobody raised.",
+          "kills": {
+            "0": "The pharmacist asks \"Do you want\" one version or the other, so the reply that takes it now and pays walks off before answering a live question.",
+            "1": "Both versions are evidently in stock, since the choice offered is \"the generic version or the brand one\", so the reply that asks about another branch's supply is answering a shortage that does not exist.",
+            "2": "The counter is asking about \"the generic version\", not about paperwork, so the reply that promises to call the clinic for approval invents a hold-up."
+          }
+        }
+      ]
+    },
+    {
+      "localId": "crv7-b6-02",
+      "setting": "bank branch",
+      "worlds": [
+        {
+          "kind": "good news",
+          "keyAct": "agrees to complete the errand now",
+          "line": "Your new card came in, I can activate it here.",
+          "reply": "Perfect, let's do that while I'm here.",
+          "explanationIfSpoken": "The line reports an arrival and offers to finish the job at the desk. Agreeing to do it during this visit takes up exactly that. The reply that resends corrected transfer details treats a payment as having failed; the reply keeping the savings and closing the checking answers a question about closures; the reply about leaving the account open responds to a correction about how often a fee is charged.",
+          "kills": {
+            "1": "The teller says the card \"came in\" and can be switched on, so the reply that pulls up correct details and resends a payment addresses a failure nobody reported.",
+            "2": "The offer is \"I can activate it here\", not a question about shutting anything, so the reply that keeps the savings and closes the checking answers nothing that was asked.",
+            "3": "Nothing about billing was said, only that \"Your new card\" has arrived, so the reply that decides to leave the account open after all is reacting to a correction that never happened."
+          }
+        },
+        {
+          "kind": "bad news",
+          "keyAct": "proposes a remedy",
+          "line": "The transfer got rejected, the account number didn't match.",
+          "reply": "Let me pull up the correct details and resend it.",
+          "explanationIfSpoken": "The line reports a failed payment and names a data mismatch as the cause. Offering to fetch the right details and send it again fixes precisely that cause. The reply that activates a card now assumes an arrival was announced; the reply about closing the checking answers a question about accounts; the reply about leaving the account open responds to a fee correction.",
+          "kills": {
+            "0": "The teller says \"The transfer got rejected\", so the reply that agrees to switch on a card during this visit takes up an offer that was never made.",
+            "2": "The problem is that \"the account number didn't match\", not which account is being wound up, so the reply that closes the checking and keeps the savings is off the point.",
+            "3": "The news is that \"The transfer got rejected\", which says nothing about how often a fee falls, so the reply deciding to leave the account open after all answers a correction the teller did not make."
+          }
+        },
+        {
+          "kind": "question",
+          "keyAct": "specifies which account",
+          "line": "Are you closing the savings account or just the checking?",
+          "reply": "Just the checking, I'd like to keep the savings.",
+          "explanationIfSpoken": "The line asks which of two accounts is to be shut. Naming the checking and saying the savings stays answers it directly. The reply that activates a card treats an arrival as the news; the reply that resends transfer details treats a payment as failed; the reply that leaves the account open responds to a correction about billing frequency.",
+          "kills": {
+            "0": "The teller is asking \"Are you closing\" one account or the other, so the reply that agrees to have a card switched on today responds to an offer nobody made.",
+            "1": "The question concerns \"the savings account or just the checking\", not a payment, so the reply that resends corrected transfer details answers a failure that was never mentioned.",
+            "3": "Nothing was said about charges, only about closing \"just the checking\", so the reply about leaving the account open after all takes back a decision that was never explained."
+          }
+        },
+        {
+          "kind": "correction",
+          "keyAct": "revises a decision",
+          "line": "It's not a monthly fee, it's charged once a year.",
+          "reply": "Then I'll leave the account open after all.",
+          "explanationIfSpoken": "The line corrects a mistaken belief about how often a charge falls. Deciding to keep the account now that the charge is far smaller in effect follows straight from the correction. The reply that activates a card responds to an arrival; the reply resending transfer details responds to a failed payment; the reply choosing which account to close answers a question the teller never put.",
+          "kills": {
+            "0": "The teller is correcting a belief, saying it is \"not a monthly fee\", so the reply that agrees to have a card switched on today responds to an offer that was not made.",
+            "1": "The point is that the fee is \"charged once a year\", not that any payment bounced, so the reply that resends corrected details fixes an error nobody reported.",
+            "2": "The teller states a billing fact and asks nothing, so the reply that closes the checking and keeps the savings answers a question that \"It's not a monthly fee\" never posed."
+          }
+        }
+      ]
+    },
+    {
+      "localId": "crv7-b6-03",
+      "setting": "phone repair shop",
+      "worlds": [
+        {
+          "kind": "bad news",
+          "keyAct": "pivots to salvaging data",
+          "line": "The water damage reached the board, it's not fixable.",
+          "reply": "Can you at least get the photos off it?",
+          "explanationIfSpoken": "The line writes the handset off as beyond repair. Asking whether the pictures can still be recovered is the salvage move a customer makes on that news. The reply that pays and leaves assumes a working phone; the reply accepting a loaner assumes the phone is staying for work; the reply about collecting later in the week assumes a repair is pending on parts.",
+          "kills": {
+            "1": "The technician says \"it's not fixable\", so the reply that calls it a relief and goes to pay is settling up for a repair that never happened.",
+            "2": "Since \"The water damage reached the board\", the phone is not being kept for work, so the reply that gratefully accepts a loaner handset takes an offer that has no occasion.",
+            "3": "With the verdict \"not fixable\", the reply that plans to collect it later in the week is waiting on a repair that will not take place."
+          }
+        },
+        {
+          "kind": "good news",
+          "keyAct": "settles up and closes",
+          "line": "It was just the charging port, it's working again.",
+          "reply": "That's a relief, I'll pay at the counter.",
+          "explanationIfSpoken": "The line reports a small fault, already repaired. Expressing relief and going to settle the bill is what follows a completed job. The reply asking to rescue the photos assumes the handset is lost; the reply taking a loaner assumes the phone stays behind; the reply about collecting later in the week assumes the work is still outstanding.",
+          "kills": {
+            "0": "The technician says \"it's working again\", so the reply that asks whether the photos can still be rescued treats a repaired phone as a write-off.",
+            "2": "Since the fault was \"just the charging port\" and is dealt with, the reply that accepts a loaner handset for the week takes a substitute nobody needs.",
+            "3": "The phone is finished and \"working again\", so the reply that plans to collect it later in the week postpones a collection that can happen now."
+          }
+        },
+        {
+          "kind": "offer",
+          "keyAct": "accepts the loan",
+          "line": "We can lend you a handset while yours is here.",
+          "reply": "Yes please, I'd be lost without one this week.",
+          "explanationIfSpoken": "The line offers a temporary phone for the duration of the repair. Accepting and saying why one is needed takes the offer up. The reply asking to recover the photos treats the handset as written off; the reply that pays and leaves treats the job as finished; the reply about collecting later in the week responds to a stated timescale that was not given.",
+          "kills": {
+            "0": "No verdict has been reached, only an offer to lend a phone \"while yours is here\", so the reply asking whether the photos can be salvaged assumes a write-off nobody announced.",
+            "1": "The phone is still being worked on, since the loan runs \"while yours is here\", so the reply that calls it a relief and goes to pay closes a job that has not been done.",
+            "3": "The shop offers to \"lend you a handset\" and names no date, so the reply that fixes collection for later in the week answers a timescale nobody gave."
+          }
+        },
+        {
+          "kind": "neutral info",
+          "keyAct": "sets a return plan",
+          "line": "Parts for that model come in on Thursday.",
+          "reply": "I'll plan on picking it up later in the week.",
+          "explanationIfSpoken": "The line states when the components will arrive, which implies a wait of several days before the job can be done. Planning to collect towards the end of the week fits that wait. The reply asking about the photos treats the phone as unsalvageable; the reply that pays and goes treats the repair as complete; the reply accepting a loaner responds to an offer that was not made.",
+          "kills": {
+            "0": "The shop is simply waiting on \"Parts for that model\", so the reply that asks whether the photos can be rescued treats a routine order as a write-off.",
+            "1": "Nothing is repaired yet, since the parts only \"come in on Thursday\", so the reply that calls it a relief and goes to pay settles for work not yet done.",
+            "2": "The technician mentions only when parts \"come in\", so the reply that gratefully accepts a loaner handset accepts something never put on the table."
+          }
+        }
+      ]
+    },
+    {
+      "localId": "crv7-b6-04",
+      "setting": "train station counter",
+      "worlds": [
+        {
+          "kind": "bad news",
+          "keyAct": "asks for another route",
+          "line": "That train's cancelled, there's engineering work on the line.",
+          "reply": "What's the next way to get there today?",
+          "explanationIfSpoken": "The line kills the intended service outright and gives the cause. Asking what else will get the traveller there today is the standard recovery move. The reply asking to be moved onto the earlier service assumes seats exist; the reply that says travel must happen today instead responds to a date error; the reply handing over a driving licence answers a request for identification.",
+          "kills": {
+            "1": "The clerk says \"That train's cancelled\", so the reply that asks to be switched onto the other service is booking onto something that is not running.",
+            "2": "The cause given is \"engineering work on the line\", not a wrong date, so the reply that says the journey needs to be today instead corrects a mistake nobody made.",
+            "3": "Nothing was asked of the traveller beyond hearing the news that \"That train's cancelled\", so the reply that produces a driving licence complies with a request that was never made."
+          }
+        },
+        {
+          "kind": "good news",
+          "keyAct": "requests a booking change",
+          "line": "There are still seats on the earlier service.",
+          "reply": "Could you move my booking onto that one?",
+          "explanationIfSpoken": "The line reports availability on a service leaving sooner. Asking to have the booking moved across is the obvious use of that information. The reply asking for another way there today assumes the journey has collapsed; the reply insisting on travelling today responds to a date correction; the reply offering a driving licence answers a request for identification.",
+          "kills": {
+            "0": "There are \"still seats\" on a train that is running, so the reply that asks what else could get the traveller there today treats a working service as a dead end.",
+            "2": "The clerk mentions only \"the earlier service\", not which day the ticket is for, so the reply that insists on travelling today instead repairs a date error nobody found.",
+            "3": "The clerk states \"There are still seats\" and asks for nothing, so the reply that hands over a driving licence answers a request that was never made."
+          }
+        },
+        {
+          "kind": "correction",
+          "keyAct": "states a revised need",
+          "line": "That ticket's for tomorrow, not for today's departure.",
+          "reply": "I'll need to travel today instead, if that's possible.",
+          "explanationIfSpoken": "The line corrects the traveller about which day the ticket covers. Saying that the journey has to be today and asking whether that can be arranged responds directly to the mismatch. The reply asking for another route assumes a cancellation; the reply asking to be moved onto the earlier service assumes a seat offer; the reply producing a driving licence answers a request for identification.",
+          "kills": {
+            "0": "Nothing has been cancelled; the clerk says only that \"That ticket's for tomorrow\", so the reply that asks for another way there today treats a date slip as a service failure.",
+            "1": "The clerk points out the ticket is \"not for today's departure\" and offers no seats, so the reply that asks to be moved onto the earlier service takes up an offer that does not exist.",
+            "3": "The clerk corrects a date and requests nothing, so the reply that hands over a driving licence answers a request \"That ticket's for tomorrow\" never contained."
+          }
+        },
+        {
+          "kind": "request",
+          "keyAct": "complies with a document request",
+          "line": "I'll need to see some photo ID for this.",
+          "reply": "Here's my driving licence, one moment.",
+          "explanationIfSpoken": "The line asks the traveller to produce identification before the transaction proceeds. Handing over a licence complies. The reply asking for another route treats the service as cancelled; the reply asking to be switched to the earlier train assumes seats were offered; the reply about needing to travel today responds to a correction about the ticket's date.",
+          "kills": {
+            "0": "The clerk only needs to \"see some photo ID\", so the reply that asks what else could get the traveller there today invents a disruption.",
+            "1": "Nothing was said about availability, only that the clerk needs \"some photo ID\", so the reply asking to be moved onto the earlier service responds to an offer that was not made.",
+            "2": "The clerk asks for identification \"for this\" and says nothing about dates, so the reply insisting on travel today instead corrects an error nobody raised."
+          }
+        }
+      ]
+    },
+    {
+      "localId": "crv7-b6-05",
+      "setting": "bike shop",
+      "worlds": [
+        {
+          "kind": "neutral info",
+          "keyAct": "takes the bike away",
+          "line": "The wheel's true again, I just tightened the spokes.",
+          "reply": "That's a load off, I'll ride it home tonight.",
+          "explanationIfSpoken": "The line reports a small adjustment already made, leaving the bike rideable. Saying so and riding it home is the natural close. The reply asking who in town welds frames assumes the bike is written off; the reply telling the mechanic to go ahead accepts extra work that was not offered; the reply telling him to throw something out decides a question about a part that was never put.",
+          "kills": {
+            "1": "The mechanic says the \"wheel's true again\", so the reply that asks who in town could weld it treats a routine adjustment as structural damage.",
+            "2": "He has already \"tightened the spokes\" and proposed nothing further, so the reply that tells him to go ahead accepts work that was never offered.",
+            "3": "Nothing was put to the customer to decide, only that the wheel is \"true again\", so the reply that tells him to throw the old part out answers a question he did not ask."
+          }
+        },
+        {
+          "kind": "bad news",
+          "keyAct": "asks where else it could be fixed",
+          "line": "The frame's cracked near the weld, I can't repair that.",
+          "reply": "Who in town could weld it, or is it done for?",
+          "explanationIfSpoken": "The line reports structural damage this shop cannot handle. Asking who else could do the work, or whether the bike is finished, is the cooperative next step. The reply about riding it home tonight assumes the bike is sound; the reply telling him to go ahead accepts an offer that was not made; the reply telling him to throw a part out answers a question about disposal.",
+          "kills": {
+            "0": "The mechanic says \"The frame's cracked\" and cannot mend it, so the reply that rides the bike home tonight takes away a machine he has just declared unsafe.",
+            "2": "He has said \"I can't repair that\" and offered nothing, so the reply that tells him to go ahead accepts a job he has just refused.",
+            "3": "The damage is \"near the weld\" and no part was put up for a decision, so the reply that tells him to throw it out answers a question he never asked."
+          }
+        },
+        {
+          "kind": "offer",
+          "keyAct": "accepts the extra work",
+          "line": "I could fit the winter tyres while it's up here.",
+          "reply": "Go ahead, I'd rather not do it myself.",
+          "explanationIfSpoken": "The line offers an additional job while the bike is already on the stand. Telling him to go ahead and saying why takes the offer up. The reply about riding it home tonight treats the work as finished; the reply asking who could weld it treats the frame as damaged; the reply about throwing a part out answers a disposal question that was not asked.",
+          "kills": {
+            "0": "The bike is still \"up here\" with work proposed, so the reply that rides it home tonight leaves before the job the mechanic just offered.",
+            "1": "He is offering to \"fit the winter tyres\", not reporting damage, so the reply asking who in town could weld it invents a broken frame.",
+            "3": "The offer concerns \"the winter tyres\" and nothing is being discarded, so the reply that tells him to throw it out disposes of a part he never mentioned."
+          }
+        },
+        {
+          "kind": "question",
+          "keyAct": "instructs on disposal",
+          "line": "Do you want the old chain kept or thrown out?",
+          "reply": "You can throw it out, it's no use to me.",
+          "explanationIfSpoken": "The line asks the customer to decide what happens to a replaced component. Telling him to bin it and saying why settles the question. The reply about riding home tonight skips a live question; the reply asking who could weld the frame invents damage; the reply telling him to go ahead accepts an offer of work rather than answering a choice.",
+          "kills": {
+            "0": "The mechanic is still asking about \"the old chain\", so the reply that rides the bike home tonight leaves with a question hanging.",
+            "1": "A chain has evidently been swapped, since he asks whether it should be \"kept or thrown out\", so the reply asking who could weld the frame invents damage he never mentioned.",
+            "2": "He asks \"Do you want\" the part kept or binned, which is a decision and not a proposal, so the reply that tells him to go ahead accepts work he did not offer."
+          }
+        }
+      ]
+    },
+    {
+      "localId": "crv7-b6-06",
+      "setting": "dry cleaner",
+      "worlds": [
+        {
+          "kind": "good news",
+          "keyAct": "collects the garment",
+          "line": "The stain came out completely, it's on the rail.",
+          "reply": "Wonderful, I'll take it with me now.",
+          "explanationIfSpoken": "The line reports full success and that the item is hanging ready. Taking it away now is the natural close. The reply about living with it accepts a failure that did not occur; the reply declining extra pressing answers a question about service; the reply about rearranging and collecting at the weekend responds to a change of date.",
+          "kills": {
+            "1": "The stain \"came out completely\", so the reply that resigns itself to the mark and thanks the cleaner for trying accepts a failure that did not happen.",
+            "2": "The garment is finished and \"on the rail\", so the reply that says cleaning alone is fine for now answers a question about extra work that was never put.",
+            "3": "Nothing was postponed, since the coat is already \"on the rail\", so the reply that rearranges and collects at the weekend delays a collection that can happen now."
+          }
+        },
+        {
+          "kind": "bad news",
+          "keyAct": "accepts an imperfect result",
+          "line": "The stain's set, I couldn't shift it entirely.",
+          "reply": "I'll live with it, thanks for trying anyway.",
+          "explanationIfSpoken": "The line admits the mark has not fully come out. Accepting the garment as it is and thanking the cleaner is the gracious response. The reply taking it away delighted assumes a clean result; the reply declining a press answers a question about additional service; the reply about the weekend responds to a new ready date.",
+          "kills": {
+            "0": "The cleaner says \"The stain's set\", so the reply that calls the result wonderful and carries it off celebrates an outcome that did not happen.",
+            "2": "Nothing extra was offered, only the admission \"I couldn't shift it\", so the reply that says cleaning alone is fine for now declines a service never proposed.",
+            "3": "No new date was given, only that \"The stain's set\", so the reply that rearranges for the weekend responds to a delay nobody announced."
+          }
+        },
+        {
+          "kind": "question",
+          "keyAct": "declines the extra service",
+          "line": "Did you want the dress pressed as well?",
+          "reply": "Just the cleaning is fine for now.",
+          "explanationIfSpoken": "The line asks whether an additional service should be added. Limiting the order to cleaning answers it. The reply carrying the item off assumes it is finished; the reply resigning itself to a mark assumes a failed result; the reply rearranging for the weekend responds to a date change.",
+          "kills": {
+            "0": "The clerk is still asking \"Did you want the dress pressed\", so the reply that happily takes it away treats an open question as a finished job.",
+            "1": "Nothing has gone wrong; the question is only about pressing \"as well\", so the reply that resigns itself to a mark invents a failure.",
+            "3": "The clerk asks about \"the dress pressed\" and names no date, so the reply that rearranges for the weekend responds to a delay that was never mentioned."
+          }
+        },
+        {
+          "kind": "correction",
+          "keyAct": "reschedules the collection",
+          "line": "It's ready Friday, not Wednesday, the machine broke.",
+          "reply": "I'll rearrange and pick it up at the weekend.",
+          "explanationIfSpoken": "The line corrects the promised date and gives the reason. Rearranging and collecting once the garment is actually ready fits that correction. The reply taking it away now assumes it is finished; the reply resigning itself to a mark assumes the cleaning failed; the reply declining a press answers a question about service.",
+          "kills": {
+            "0": "The clerk says \"It's ready Friday\", so the reply that takes it away now carries off something still in the machine.",
+            "1": "The delay is because \"the machine broke\", not because the cleaning failed, so the reply that resigns itself to a mark accepts a bad result nobody reported.",
+            "2": "The clerk corrects a day, saying \"not Wednesday\", and asks nothing, so the reply that limits the order to cleaning answers a question never put."
+          }
+        }
+      ]
+    },
+    {
+      "localId": "crv7-b6-07",
+      "setting": "grocery store",
+      "worlds": [
+        {
+          "kind": "bad news",
+          "keyAct": "asks for a substitute",
+          "line": "We've stopped stocking that brand of oat milk.",
+          "reply": "Is there something similar you'd point me to?",
+          "explanationIfSpoken": "The line reports that a product has been dropped for good. Asking for a comparable alternative keeps the shopping trip going. The reply that accepts a case order takes an offer that was not made; the reply about finishing the shopping and returning assumes a temporary gap; the reply moving a trolley complies with a request about the aisle.",
+          "kills": {
+            "1": "The shop has \"stopped stocking\" the brand, so the reply that accepts a case being ordered in agrees to something the assistant never offered.",
+            "2": "The line is discontinued, not missing for an hour, since they have \"stopped stocking that brand\", so the reply that comes back after the rest of the shopping waits for a restock that will not come.",
+            "3": "Nothing was asked of the shopper, only reported that \"We've stopped stocking\" it, so the reply that agrees to move the trolley complies with a request nobody made."
+          }
+        },
+        {
+          "kind": "offer",
+          "keyAct": "accepts with a condition",
+          "line": "I can order you a case if you'd like.",
+          "reply": "That'd help, as long as it's here by Friday.",
+          "explanationIfSpoken": "The line offers to bring in a supply specially. Accepting and attaching a timing condition takes the offer up while keeping the errand realistic. The reply asking for a substitute assumes the item is gone for good; the reply about coming back later assumes a shelf being refilled; the reply moving the trolley complies with a request about the aisle.",
+          "kills": {
+            "0": "The assistant offers to \"order you a case\", so the reply that asks for something similar instead treats an available product as discontinued.",
+            "2": "The offer is a special order \"if you'd like\", not a restock happening now, so the reply that finishes the shopping and swings back expects the shelf to fill itself.",
+            "3": "The assistant asks for nothing and offers to \"order you a case\", so the reply that agrees to move the trolley complies with a request that was never made."
+          }
+        },
+        {
+          "kind": "neutral info",
+          "keyAct": "states an intention to wait",
+          "line": "That aisle's being restocked, it'll be out shortly.",
+          "reply": "I'll finish my other shopping and swing back.",
+          "explanationIfSpoken": "The line explains a short delay with the product arriving on the shelf soon. Doing the rest of the shopping and returning fits that short wait. The reply asking for a substitute assumes the product is gone; the reply accepting a case order takes an offer that was not made; the reply moving the trolley complies with a request about the aisle.",
+          "kills": {
+            "0": "The aisle is \"being restocked\", so the reply asking to be pointed at something similar treats a temporary gap as a discontinued line.",
+            "1": "The goods will \"be out shortly\" with no special order proposed, so the reply that accepts a case being ordered agrees to something the assistant did not offer.",
+            "3": "The assistant reports that \"That aisle's being restocked\" and asks nothing, so the reply that agrees to move the trolley complies with a request nobody made."
+          }
+        },
+        {
+          "kind": "request",
+          "keyAct": "complies with the request",
+          "line": "Could you leave the trolley by the door instead?",
+          "reply": "Of course, I'll move it out of the way.",
+          "explanationIfSpoken": "The line asks the shopper to put the trolley somewhere else. Agreeing and shifting it complies. The reply asking for a similar product assumes an item has been dropped; the reply accepting a case order takes an offer that was not made; the reply about returning later assumes a shelf being refilled.",
+          "kills": {
+            "0": "The assistant is asking about \"the trolley\", not about stock, so the reply that asks to be pointed at something similar answers a shortage nobody mentioned.",
+            "1": "The assistant says \"Could you leave the trolley\" somewhere else and offers nothing, so the reply that accepts a case being ordered takes up an offer that does not exist.",
+            "2": "The request concerns leaving it \"by the door instead\", not restocking, so the reply that comes back after the rest of the shopping waits for goods nobody promised."
+          }
+        }
+      ]
+    },
+    {
+      "localId": "crv7-b6-08",
+      "setting": "coffee shop (as a customer)",
+      "worlds": [
+        {
+          "kind": "correction",
+          "keyAct": "acknowledges the mix-up",
+          "line": "That's the decaf, yours is the one behind it.",
+          "reply": "Ah, good catch, I'd have walked off with that.",
+          "explanationIfSpoken": "The line stops the customer taking the wrong cup and points to the right one. Acknowledging the near miss is the natural uptake. The reply about finding a cash point responds to a payment problem; the reply asking for a croissant takes up an offer of something free; the reply about staying to read answers a question about seating.",
+          "kills": {
+            "1": "The barista is sorting out which cup is whose, saying \"That's the decaf\", so the reply that goes off to find a cash point invents a payment problem.",
+            "2": "Nothing was given away; the barista only says \"yours is the one behind it\", so the reply that asks for a croissant with it accepts an offer that was not made.",
+            "3": "The barista points out the right cup and asks nothing, so the reply that says the customer is staying to read answers a question \"That's the decaf\" never contained."
+          }
+        },
+        {
+          "kind": "bad news",
+          "keyAct": "proposes a way to pay",
+          "line": "The card machine's down, we're cash only right now.",
+          "reply": "I'll find a cash point and come straight back.",
+          "explanationIfSpoken": "The line reports that only cash can be taken at the moment. Going to withdraw some and returning solves it. The reply about nearly taking the wrong cup responds to a mix-up; the reply asking for a croissant takes up a free offer; the reply about staying to read answers a seating question.",
+          "kills": {
+            "0": "The barista is reporting that \"The card machine's down\", not pointing at the wrong cup, so the reply that thanks her for catching a mix-up responds to something that did not happen.",
+            "2": "The shop is \"cash only right now\" and nothing was offered free, so the reply asking for a croissant with it takes up an offer that does not exist.",
+            "3": "The barista raises payment, not seating, so the reply that says the customer is staying to read answers a question \"we're cash only\" never posed."
+          }
+        },
+        {
+          "kind": "offer",
+          "keyAct": "takes up the offer",
+          "line": "We've a free pastry with any large coffee today.",
+          "reply": "I'll take a croissant with mine, then.",
+          "explanationIfSpoken": "The line offers something extra at no charge with a large drink. Naming a pastry accepts it. The reply about the wrong cup responds to a mix-up; the reply about a cash point responds to a payment failure; the reply about staying to read answers a question about seating.",
+          "kills": {
+            "0": "The barista is advertising \"a free pastry\", not correcting a cup, so the reply that thanks her for the catch responds to a mix-up that never occurred.",
+            "1": "The offer runs \"with any large coffee\" and nothing was said about payment, so the reply that heads off to a cash point invents a problem.",
+            "3": "The barista announces \"a free pastry\" and asks nothing, so the reply that says the customer is staying to read answers a seating question that was not put."
+          }
+        },
+        {
+          "kind": "question",
+          "keyAct": "answers about seating",
+          "line": "Was that for here or are you taking it out?",
+          "reply": "I'm staying, I've got some reading to do.",
+          "explanationIfSpoken": "The line asks whether the drink is to be consumed in the shop. Saying so and giving a reason answers it. The reply about the wrong cup responds to a mix-up; the reply about a cash point responds to a payment failure; the reply asking for a croissant takes up a free offer.",
+          "kills": {
+            "0": "The barista asks \"Was that for here\", which is a question and not a correction, so the reply that thanks her for catching a mix-up responds to nothing.",
+            "1": "Nothing was said about payment, only whether the customer is \"taking it out\", so the reply that goes to find a cash point invents a broken card machine.",
+            "2": "The barista asks about seating and offers nothing, so the reply that asks for a croissant with it accepts a deal \"are you taking it out\" never mentioned."
+          }
+        }
+      ]
+    },
+    {
+      "localId": "crv7-b6-09",
+      "setting": "landlord of an off-campus flat",
+      "worlds": [
+        {
+          "kind": "good news",
+          "keyAct": "arranges access",
+          "line": "The plumber can come round on Saturday morning.",
+          "reply": "I'll make sure someone's in to let him up.",
+          "explanationIfSpoken": "The line names a time for a repair visit. Undertaking that somebody will be there to admit him is the tenant's part. The reply asking to negotiate responds to a rent rise; the reply about no longer worrying over the bill responds to a cost being covered; the reply about doing it after work complies with a task the tenant was asked to perform.",
+          "kills": {
+            "1": "The landlord is arranging for a plumber to \"come round on Saturday morning\", so the reply that asks for room to negotiate before signing responds to a rent change nobody raised.",
+            "2": "No cost came up at all, only that \"The plumber can come\", so the reply that stops worrying about the bill answers a reassurance never given.",
+            "3": "The landlord is offering a visit, not asking a favour, so the reply that promises to do it after work complies with a request \"The plumber can come round\" does not contain."
+          }
+        },
+        {
+          "kind": "bad news",
+          "keyAct": "opens a negotiation",
+          "line": "I'm putting the rent up when the lease renews.",
+          "reply": "Is there room to talk about that before I sign?",
+          "explanationIfSpoken": "The line announces an increase tied to renewal. Asking whether it is open to discussion before signing is the tenant's natural move. The reply about letting a tradesman in responds to a visit; the reply about the bill responds to a repair cost; the reply about doing it after work complies with a task request.",
+          "kills": {
+            "0": "The landlord is \"putting the rent up\", not booking anybody, so the reply that promises someone will be in to let him up admits a visitor who is not coming.",
+            "2": "The subject is what happens \"when the lease renews\", not a repair, so the reply that stops worrying about the bill answers a reassurance that was not offered.",
+            "3": "The landlord makes an announcement and asks for nothing, so the reply that promises to do it after work complies with a request \"I'm putting the rent up\" never made."
+          }
+        },
+        {
+          "kind": "neutral info",
+          "keyAct": "sets a worry aside",
+          "line": "The boiler's under warranty, so the repair costs nothing.",
+          "reply": "Then I'll stop worrying about the bill for it.",
+          "explanationIfSpoken": "The line explains that the repair will be covered and cost the tenant nothing. Letting go of the expense follows directly. The reply about letting a tradesman in responds to a booked visit; the reply about negotiating responds to a rent rise; the reply about doing it after work complies with a task request.",
+          "kills": {
+            "0": "The landlord explains that \"The boiler's under warranty\" without naming any appointment, so the reply that promises someone will be in to let him up admits a visitor who has not been booked.",
+            "1": "The point is that \"the repair costs nothing\", not that rent is moving, so the reply asking for room to negotiate before signing responds to an increase nobody announced.",
+            "3": "The landlord gives an explanation and asks for nothing, so the reply that promises to do it after work complies with a request that \"under warranty\" does not contain."
+          }
+        },
+        {
+          "kind": "request",
+          "keyAct": "commits to the task",
+          "line": "Could you read me the meter before the weekend?",
+          "reply": "I'll do it after work and text you.",
+          "explanationIfSpoken": "The line asks the tenant to carry out a small task within a few days. Undertaking it after work and reporting back complies. The reply about letting a tradesman in responds to a booked visit; the reply about negotiating responds to a rent rise; the reply about the bill responds to a repair being covered.",
+          "kills": {
+            "0": "The landlord asks the tenant to \"read me the meter\" and mentions no tradesman, so the reply that promises someone will be in to let him up admits a visitor nobody arranged.",
+            "1": "The ask is a small job \"before the weekend\", not a change of terms, so the reply asking for room to negotiate before signing responds to a rent rise that was not announced.",
+            "2": "No repair or cost was mentioned, only a request to \"read me the meter\", so the reply that stops worrying about the bill answers a reassurance never given."
+          }
+        }
+      ]
+    },
+    {
+      "localId": "crv7-b6-10",
+      "setting": "utility company call",
+      "worlds": [
+        {
+          "kind": "bad news",
+          "keyAct": "proposes staged payment",
+          "line": "Your account's in arrears from the winter billing period.",
+          "reply": "Can I spread that over a few months?",
+          "explanationIfSpoken": "The line reports an unpaid balance from an earlier period. Asking to pay it off in instalments is the standard way a customer handles that. The reply about chasing the wrong company responds to a correction about what the charge covers; the reply welcoming a tariff move takes an offer that was not made; the reply about the account being in one name answers a question about other names.",
+          "kills": {
+            "1": "The agent says the account is \"in arrears\", not that the charge belongs to a different service, so the reply about having chased the wrong company responds to a correction never made.",
+            "2": "Nothing was offered; the agent reports a balance \"from the winter billing period\", so the reply that welcomes a move onto a cheaper plan accepts something not proposed.",
+            "3": "The agent states that \"Your account's in arrears\" and asks nothing, so the reply confirming the account is in one name only answers a question that was not put."
+          }
+        },
+        {
+          "kind": "correction",
+          "keyAct": "redirects the enquiry",
+          "line": "That charge is for water, not for electricity.",
+          "reply": "Then I've been chasing the wrong company entirely.",
+          "explanationIfSpoken": "The line corrects which service the disputed charge belongs to. Realising the enquiry has been aimed at the wrong supplier follows from that. The reply about instalments responds to an overdue balance; the reply welcoming a tariff move takes an offer that was not made; the reply about the account being in one name answers a question about other names.",
+          "kills": {
+            "0": "The agent is explaining that \"That charge is for water\", not reporting a debt, so the reply asking to spread payments over a few months responds to arrears nobody mentioned.",
+            "2": "The correction is \"not for electricity\" and contains no proposal, so the reply that welcomes a move onto a cheaper plan accepts an offer that does not exist.",
+            "3": "The agent says only that \"That charge is for water\" and asks nothing, so the reply confirming the account is in one name only answers a question never asked."
+          }
+        },
+        {
+          "kind": "offer",
+          "keyAct": "accepts the switch",
+          "line": "We can move you onto a cheaper evening tariff.",
+          "reply": "I'd like that, most of my usage is late.",
+          "explanationIfSpoken": "The line offers a different pricing plan. Accepting and noting that usage falls in the evening takes it up. The reply about instalments responds to an overdue balance; the reply about the wrong company responds to a correction about the service; the reply about the account being in one name answers a question about other names.",
+          "kills": {
+            "0": "The agent offers to \"move you onto a cheaper evening tariff\", which is not a demand for money, so the reply asking to spread payments over months responds to arrears that were not reported.",
+            "1": "Nothing was misattributed; the agent proposes \"a cheaper evening tariff\", so the reply about having chased the wrong company responds to a correction that did not occur.",
+            "3": "The agent makes an offer and asks nothing about the account holders, so the reply confirming it is in one name only answers a question \"We can move you\" never posed."
+          }
+        },
+        {
+          "kind": "question",
+          "keyAct": "answers about account holders",
+          "line": "Is anyone else named on this account with you?",
+          "reply": "No, it's only ever been in my name.",
+          "explanationIfSpoken": "The line asks whether the account is shared. Saying it has always been held alone answers it. The reply about instalments responds to arrears; the reply about the wrong company responds to a correction about the service; the reply welcoming a tariff move takes an offer that was not made.",
+          "kills": {
+            "0": "The agent asks \"Is anyone else named\" on the account, so the reply asking to spread payments over a few months responds to a debt nobody mentioned.",
+            "1": "The question is about who is \"on this account\", not about which service a charge covers, so the reply about chasing the wrong company answers a correction never made.",
+            "2": "The agent asks \"Is anyone else named\" and proposes nothing, so the reply welcoming a cheaper plan accepts an offer that was not on the table."
+          }
+        }
+      ]
+    },
+    {
+      "localId": "crv7-b6-11",
+      "setting": "farmers market stall",
+      "worlds": [
+        {
+          "kind": "bad news",
+          "keyAct": "switches to another product",
+          "line": "The strawberries are finished for the season now.",
+          "reply": "I'll take some of the raspberries instead.",
+          "explanationIfSpoken": "The line reports that one crop is over for the year. Buying a different fruit is the shopper's straightforward adjustment. The reply about a bagful smelling wonderful responds to a fresh arrival; the reply about never having tried it accepts a tasting; the reply about cooking tonight answers a question about how the produce will be used.",
+          "kills": {
+            "1": "The stallholder says the fruit is \"finished for the season\", so the reply that buys a bagful and praises the smell celebrates an arrival that has not happened.",
+            "2": "Nothing was held out to taste, only the news that \"The strawberries are finished\", so the reply that has never had it before accepts a sample that was not offered.",
+            "3": "The stallholder reports that \"The strawberries are finished\" and asks nothing, so the reply explaining that it is for cooking tonight answers a question never put."
+          }
+        },
+        {
+          "kind": "good news",
+          "keyAct": "buys the new arrival",
+          "line": "The first sweetcorn came in this morning.",
+          "reply": "A bagful, please, they smell wonderful.",
+          "explanationIfSpoken": "The line announces that a crop has just arrived at the stall. Buying some on the spot is the natural response. The reply about taking a different fruit responds to something being sold out; the reply about never having tried it accepts a tasting; the reply about cooking tonight answers a question about intended use.",
+          "kills": {
+            "0": "The stallholder says the corn \"came in this morning\", so the reply that settles for something else instead treats a fresh arrival as a shortage.",
+            "2": "Nothing was held out to sample; the news is only that \"The first sweetcorn\" has arrived, so the reply that has never had it before accepts a tasting never offered.",
+            "3": "The stallholder announces that the corn \"came in this morning\" and asks nothing, so the reply explaining that it is for cooking tonight answers a question that was not asked."
+          }
+        },
+        {
+          "kind": "offer",
+          "keyAct": "accepts a tasting",
+          "line": "You can try the goat's cheese before you buy.",
+          "reply": "I'd like to, I've never had it before.",
+          "explanationIfSpoken": "The line invites the shopper to sample something before committing. Accepting and saying it is unfamiliar takes the invitation up. The reply about taking another fruit responds to a shortage; the reply about buying a bagful responds to a new arrival; the reply about cooking tonight answers a question about use.",
+          "kills": {
+            "0": "The stallholder says \"You can try\" it, which reports no shortage, so the reply that settles for another fruit instead responds to something being sold out that was not.",
+            "1": "The invitation is to taste \"before you buy\", not an announcement of a new crop, so the reply that buys a bagful and praises the smell skips past the offer entirely.",
+            "3": "The stallholder makes an offer and asks nothing, so the reply explaining that it is for cooking tonight answers a question \"You can try\" never contained."
+          }
+        },
+        {
+          "kind": "question",
+          "keyAct": "explains the intended use",
+          "line": "Are these for eating now or for keeping?",
+          "reply": "For tonight, I'm cooking for a few friends.",
+          "explanationIfSpoken": "The line asks whether the produce is for immediate use or storage, which affects what the stallholder picks out. Saying it is for a meal that evening answers it. The reply about taking another fruit responds to a shortage; the reply about buying a bagful responds to an arrival; the reply about never having tried it accepts a tasting.",
+          "kills": {
+            "0": "The stallholder asks whether they are \"for eating now\", which reports nothing sold out, so the reply that takes another fruit instead responds to a shortage that does not exist.",
+            "1": "The question is \"for eating now or for keeping\", not an announcement, so the reply that buys a bagful and praises the smell leaves the question unanswered.",
+            "2": "Nothing was held out to taste; the stallholder asks \"Are these for eating now\", so the reply that has never had it before accepts a sample that was not offered."
+          }
+        }
+      ]
+    },
+    {
+      "localId": "crv7-b6-12",
+      "setting": "barber shop",
+      "worlds": [
+        {
+          "kind": "bad news",
+          "keyAct": "chooses not to wait",
+          "line": "Your usual barber's off sick until next week.",
+          "reply": "I'd rather not wait, whoever's free is fine.",
+          "explanationIfSpoken": "The line reports that the customer's regular barber is unavailable for some days. Deciding to be seen by whoever is available rather than wait is the practical response. The reply about the length round the ears answers a styling question; the reply about having time to spare accepts a slot; the reply about the booking not being found responds to a correction about the name.",
+          "kills": {
+            "1": "The barber is \"off sick\" and nobody is cutting yet, so the reply specifying a length just above the ears answers a styling question that was not asked.",
+            "2": "The regular barber is away \"until next week\" and no gap was offered, so the reply that gladly takes a slot accepts an offer that does not exist.",
+            "3": "The news is that \"Your usual barber's off sick\", not a mix-up over records, so the reply about why the booking could not be found responds to a correction never made."
+          }
+        },
+        {
+          "kind": "question",
+          "keyAct": "specifies the cut",
+          "line": "How short do you want it round the ears?",
+          "reply": "Just above them, nothing too severe.",
+          "explanationIfSpoken": "The line asks for an instruction about length in one area. Giving that instruction answers it. The reply about not waiting responds to an absence; the reply about having time to spare accepts a slot; the reply about the booking responds to a correction about the name.",
+          "kills": {
+            "0": "The barber is asking \"How short do you want it\", so the reply that would rather not wait and will see anyone free responds to an absence nobody reported.",
+            "2": "The cut is already under way \"round the ears\" and no gap was offered, so the reply that gladly takes a slot accepts an offer that was not made.",
+            "3": "The barber asks about length, not records, so the reply about why the booking could not be found responds to a correction \"How short do you want it\" does not contain."
+          }
+        },
+        {
+          "kind": "offer",
+          "keyAct": "accepts an early slot",
+          "line": "I can squeeze you in before my next client.",
+          "reply": "Yes please, I've got time to spare now.",
+          "explanationIfSpoken": "The line offers to fit the customer in immediately. Accepting and confirming availability takes it up. The reply about not waiting responds to an absence; the reply about the length round the ears answers a styling question; the reply about the booking responds to a name correction.",
+          "kills": {
+            "0": "The barber offers to \"squeeze you in\", so the reply that would rather not wait for the usual barber responds to an absence that was not reported.",
+            "1": "The offer concerns timing \"before my next client\", not the cut, so the reply specifying a length just above the ears answers a question that was never asked.",
+            "3": "The barber offers a slot and corrects nothing, so the reply about why the booking could not be found responds to a mix-up \"I can squeeze you in\" never mentioned."
+          }
+        },
+        {
+          "kind": "correction",
+          "keyAct": "accounts for the confusion",
+          "line": "The booking's under your surname, not your first name.",
+          "reply": "That explains why you couldn't find me earlier.",
+          "explanationIfSpoken": "The line corrects which name the appointment was filed under. Recognising that this accounts for the earlier failed search follows directly. The reply about not waiting responds to an absence; the reply about the length round the ears answers a styling question; the reply about having time to spare accepts a slot.",
+          "kills": {
+            "0": "The reception is correcting the record, noting the booking is \"under your surname\", so the reply that would rather not wait responds to an absence nobody reported.",
+            "1": "The point is \"not your first name\", not how the hair should be cut, so the reply specifying a length just above the ears answers a question never asked.",
+            "2": "The booking already exists \"under your surname\" and no gap was offered, so the reply that gladly takes a slot accepts an offer that was not made."
+          }
+        }
+      ]
+    },
+    {
+      "localId": "crv7-b6-13",
+      "setting": "hardware store",
+      "worlds": [
+        {
+          "kind": "neutral info",
+          "keyAct": "adds to the purchase",
+          "line": "That paint needs a primer coat underneath first.",
+          "reply": "I'll pick up a tin of that as well.",
+          "explanationIfSpoken": "The line advises that another product is needed before the paint will work. Buying that product too follows from the advice. The reply about being saved a purchase accepts a hire offer; the reply about swapping for the right size responds to a mismatch in fittings; the reply about fetching something from the car complies with a request to bring an item in.",
+          "kills": {
+            "1": "The assistant is talking about \"a primer coat\", not lending anything, so the reply that is glad to be spared buying one takes up a hire offer that was never made.",
+            "2": "Nothing was found to be the wrong specification; the advice is only that \"That paint needs a primer\", so the reply that swaps them for the right size fixes a mismatch that does not exist.",
+            "3": "The assistant gives advice and asks for nothing, so the reply that goes to fetch something from the car complies with a request \"underneath first\" does not contain."
+          }
+        },
+        {
+          "kind": "offer",
+          "keyAct": "accepts the hire",
+          "line": "We hire out the sander by the day here.",
+          "reply": "That saves me buying one, I'll take it.",
+          "explanationIfSpoken": "The line offers a tool for hire rather than sale. Taking it and noting the saving accepts the offer. The reply about a tin responds to advice about paint; the reply about swapping for the right size responds to a fittings mismatch; the reply about fetching something from the car complies with a request.",
+          "kills": {
+            "0": "The assistant offers to \"hire out the sander\", so the reply that adds a tin to the order responds to advice about paint that was never given.",
+            "2": "The offer concerns hiring \"by the day\", not sizing, so the reply that swaps them for the right size corrects a mismatch nobody found.",
+            "3": "The assistant makes an offer and asks for nothing, so the reply that goes to fetch something from the car complies with a request \"We hire out the sander\" never made."
+          }
+        },
+        {
+          "kind": "correction",
+          "keyAct": "changes the selection",
+          "line": "Those screws are metric, your fitting takes imperial.",
+          "reply": "I'll swap them for the right size then.",
+          "explanationIfSpoken": "The line points out that the chosen parts will not fit the customer's hardware. Exchanging them for the correct specification is the direct fix. The reply about a tin responds to advice about paint; the reply about being saved a purchase accepts a hire offer; the reply about fetching something from the car complies with a request.",
+          "kills": {
+            "0": "The assistant is talking about screws, saying \"Those screws are metric\", so the reply that adds a tin of primer responds to advice about paint that was not given.",
+            "1": "Nothing was put up for hire; the point is that \"your fitting takes imperial\", so the reply glad to be spared buying a tool accepts an offer that does not exist.",
+            "3": "The assistant identifies a mismatch, that \"your fitting takes imperial\", and asks for nothing, so the reply that goes to fetch something from the car complies with a request never made."
+          }
+        },
+        {
+          "kind": "request",
+          "keyAct": "undertakes to fetch it",
+          "line": "Bring the broken part in so I can match it.",
+          "reply": "It's in the car, I'll fetch it now.",
+          "explanationIfSpoken": "The line asks the customer to produce the old component so a replacement can be identified. Saying where it is and going to get it complies. The reply about a tin responds to advice about paint; the reply about being saved a purchase accepts a hire offer; the reply about swapping for the right size responds to a mismatch already found.",
+          "kills": {
+            "0": "The assistant asks the customer to \"Bring the broken part\" in, so the reply that adds a tin of primer responds to advice about paint that was not given.",
+            "1": "Nothing was offered for hire; the assistant wants to \"match it\" against the original, so the reply glad to be spared buying a tool takes up an offer that does not exist.",
+            "2": "No mismatch has been identified yet, which is exactly why he asks for \"the broken part\", so the reply that swaps them for the right size fixes an error not yet found."
+          }
+        }
+      ]
+    },
+    {
+      "localId": "crv7-b6-14",
+      "setting": "thrift store",
+      "worlds": [
+        {
+          "kind": "neutral info",
+          "keyAct": "directs the donor",
+          "line": "I've brought a few things from my grandmother's house.",
+          "reply": "Bring them through to the sorting room at the back.",
+          "explanationIfSpoken": "The line tells the volunteer that a donation has arrived and where it came from. Directing the donor to where donations are handled is the helpful next step. The reply about books going upstairs answers a question about what is accepted; the reply about labelling an item agrees to reserve something; the reply apologising and ringing it up responds to a correction about buying.",
+          "kills": {
+            "1": "The visitor states plainly \"I've brought a few things\" and asks nothing, so the reply confirming that books are taken too answers a question that was not asked.",
+            "2": "The items come \"from my grandmother's house\" as a donation, so the reply that labels one and keeps it behind the counter reserves goods the visitor is giving away.",
+            "3": "The visitor is handing things over, not buying, so the reply that apologises and rings it up responds to a misunderstanding \"I've brought a few things\" never created."
+          }
+        },
+        {
+          "kind": "question",
+          "keyAct": "answers what is accepted",
+          "line": "Do you take books, or only clothes here?",
+          "reply": "Books as well, they go on the shelves upstairs.",
+          "explanationIfSpoken": "The line asks which categories of donation the shop will accept. Confirming books and saying where they end up answers it. The reply directing someone to the sorting room treats goods as already in hand; the reply about labelling an item agrees to hold something back; the reply apologising and ringing it up responds to a correction about buying.",
+          "kills": {
+            "0": "The visitor only asks \"Do you take books\" and has produced nothing, so the reply sending them through to the sorting room directs goods that are not there.",
+            "2": "The question is about categories, \"or only clothes here\", not about one item, so the reply that labels it and keeps it behind the counter reserves something never presented.",
+            "3": "Nothing is being purchased; the visitor only asks \"Do you take books\", so the reply that apologises and rings it up responds to a mix-up that has not occurred."
+          }
+        },
+        {
+          "kind": "request",
+          "keyAct": "agrees to reserve it",
+          "line": "Could you keep this aside till payday for me?",
+          "reply": "I can label it and keep it behind the counter.",
+          "explanationIfSpoken": "The line asks the volunteer to hold an item back until the customer can pay. Agreeing to label it and set it aside complies. The reply directing someone to the sorting room treats the item as a donation; the reply confirming books are taken answers a question about categories; the reply apologising and ringing it up treats the sale as happening now.",
+          "kills": {
+            "0": "The customer asks the shop to \"keep this aside\" for later, not to receive it, so the reply sending them to the sorting room treats a purchase as a donation.",
+            "1": "The request concerns a single item held \"till payday\", not what the shop accepts, so the reply confirming that books are taken too answers a question never asked.",
+            "3": "Payment is explicitly deferred \"till payday\", so the reply that apologises and rings it up now takes money the customer has just said she does not have yet."
+          }
+        },
+        {
+          "kind": "correction",
+          "keyAct": "apologises and proceeds with the sale",
+          "line": "I'm buying this, I'm not dropping it off.",
+          "reply": "Sorry about that, I'll ring it up now.",
+          "explanationIfSpoken": "The line corrects the volunteer's assumption that the customer is donating. Apologising and putting the sale through is the repair. The reply directing someone to the sorting room repeats the mistaken assumption; the reply confirming books are taken answers a question about categories; the reply about labelling something agrees to hold it for later.",
+          "kills": {
+            "0": "The customer has just said \"I'm buying this\", so the reply sending them to the sorting room repeats the very assumption that was corrected.",
+            "1": "The correction is \"not dropping it off\", not a question about categories, so the reply confirming that books are taken too answers something nobody asked.",
+            "2": "The customer is paying now, since \"I'm buying this\", so the reply that labels it and keeps it behind the counter puts off a sale already going through."
+          }
+        }
+      ]
+    },
+    {
+      "localId": "crv7-b6-15",
+      "setting": "post office in town",
+      "worlds": [
+        {
+          "kind": "bad news",
+          "keyAct": "accepts the dearer service",
+          "line": "That parcel's too big for the letter rate.",
+          "reply": "Then a parcel it is, that's no trouble.",
+          "explanationIfSpoken": "The line reports that the item will not qualify for the cheaper postage class. Accepting the more expensive service is the straightforward response. The reply describing a mug answers a question about contents; the reply asking for the right form responds to a paperwork error; the reply about one less thing to sort out responds to a redirection being arranged.",
+          "kills": {
+            "1": "The clerk is talking about size, saying it is \"too big\", so the reply describing a mug inside answers a question about contents that was not asked.",
+            "2": "Nothing about paperwork came up, only \"the letter rate\", so the reply asking to be handed the right one responds to a form error that does not exist.",
+            "3": "The clerk is pricing an item, since \"That parcel's too big\" for one class, so the reply about one less thing to sort out responds to a redirection nobody set up."
+          }
+        },
+        {
+          "kind": "question",
+          "keyAct": "declares the contents",
+          "line": "Does this contain anything fragile or liquid?",
+          "reply": "There's a mug in there, nothing else.",
+          "explanationIfSpoken": "The line asks a standard question about what is inside before the item can be sent. Declaring the contents answers it. The reply accepting parcel rates responds to a size problem; the reply asking for the right form responds to paperwork; the reply about one less thing to sort out responds to a redirection.",
+          "kills": {
+            "0": "The clerk asks whether it holds \"anything fragile or liquid\" and says nothing about size, so the reply accepting parcel rates instead responds to a pricing problem nobody raised.",
+            "2": "The question is about contents, not documents, so the reply asking to be handed the right form responds to a paperwork error \"Does this contain\" never mentioned.",
+            "3": "The clerk asks \"Does this contain\" anything of concern, so the reply about one less thing to sort out responds to a redirection that was not arranged."
+          }
+        },
+        {
+          "kind": "correction",
+          "keyAct": "asks for the right document",
+          "line": "This form's for overseas, you need the domestic one.",
+          "reply": "Could you pass me the right one, please?",
+          "explanationIfSpoken": "The line points out that the wrong paperwork has been filled in. Asking for the correct form is the direct fix. The reply accepting parcel rates responds to a size problem; the reply describing a mug answers a question about contents; the reply about one less thing to sort out responds to a redirection.",
+          "kills": {
+            "0": "The clerk is correcting paperwork, saying \"This form's for overseas\", so the reply accepting parcel rates instead responds to a size problem nobody raised.",
+            "1": "Nothing was asked about what is inside, only that \"you need the domestic one\", so the reply describing a mug answers a question that was not put.",
+            "3": "The clerk swaps a form and confirms nothing, so the reply about one less thing to sort out responds to a redirection \"This form's for overseas\" never mentioned."
+          }
+        },
+        {
+          "kind": "good news",
+          "keyAct": "closes the errand",
+          "line": "Your redirection is set up from Monday onward.",
+          "reply": "That's one less thing to sort out.",
+          "explanationIfSpoken": "The line confirms that mail forwarding has been arranged and will start shortly. Treating the task as done is the natural close. The reply accepting parcel rates responds to a size problem; the reply describing a mug answers a question about contents; the reply asking for the right form responds to a paperwork error.",
+          "kills": {
+            "0": "The clerk confirms that \"Your redirection is set up\", with no item on the scales, so the reply accepting parcel rates instead responds to a pricing problem that does not exist.",
+            "1": "Nothing was asked about contents, only that the service runs \"from Monday onward\", so the reply describing a mug answers a question never put.",
+            "2": "The paperwork evidently went through, since the redirection \"is set up\", so the reply asking to be handed the right form corrects an error that did not occur."
+          }
+        }
+      ]
+    },
+    {
+      "localId": "crv7-b6-16",
+      "setting": "taxi pickup",
+      "worlds": [
+        {
+          "kind": "request",
+          "keyAct": "agrees to make the stop",
+          "line": "Could you stop at the cash point on the way?",
+          "reply": "There's one just before the lights, I'll pull in.",
+          "explanationIfSpoken": "The line asks the driver to break the journey at a machine. Naming a convenient one and agreeing to pull in complies. The reply judging the traffic answers a question about arrival time; the reply about lifting something at the other end responds to luggage; the reply about taking the next left responds to a corrected destination.",
+          "kills": {
+            "1": "The passenger asks the driver to \"stop at the cash point\" and says nothing about timing, so the reply reassuring her about the traffic answers a question that was not asked.",
+            "2": "The request concerns a stop \"on the way\", not anything being carried, so the reply promising to lift it out at the other end responds to luggage nobody mentioned.",
+            "3": "No address was queried, only a stop requested, so the reply that takes the next left and comes round the back reroutes on a correction \"Could you stop\" never contained."
+          }
+        },
+        {
+          "kind": "question",
+          "keyAct": "assesses whether it can be done",
+          "line": "Will this get me there before the shops shut?",
+          "reply": "Should do, the traffic's light this time of day.",
+          "explanationIfSpoken": "The line asks whether the journey will beat a deadline. Judging it likely and giving the traffic as grounds answers it. The reply naming a machine to pull in at complies with a request for a stop; the reply about lifting something responds to luggage; the reply about taking the next left responds to a corrected destination.",
+          "kills": {
+            "0": "The passenger asks \"Will this get me there\" in time and requests no detour, so the reply that names a machine and pulls in adds a stop nobody asked for.",
+            "2": "The question is about arriving \"before the shops shut\", not about anything in the boot, so the reply promising to lift it out responds to luggage that was not mentioned.",
+            "3": "No destination was corrected; the passenger only asks \"Will this get me there\" in time, so the reply that takes the next left and comes round the back reroutes on nothing."
+          }
+        },
+        {
+          "kind": "neutral info",
+          "keyAct": "offers help with the bag",
+          "line": "I've got a big case in the boot.",
+          "reply": "I'll get out and lift it for you at the other end.",
+          "explanationIfSpoken": "The line mentions heavy luggage stowed for the journey. Offering to lift it out on arrival is the courteous response to that. The reply naming a machine complies with a request for a stop; the reply about the traffic answers a question about arrival time; the reply about taking the next left responds to a corrected destination.",
+          "kills": {
+            "0": "The passenger mentions \"a big case\" and asks for no detour, so the reply that names a machine and pulls in adds a stop that was not requested.",
+            "1": "Nothing was asked about arrival time, only that the bag is \"in the boot\", so the reply reassuring her about the traffic answers a question that was not put.",
+            "3": "The passenger mentions \"a big case\", not an address, so the reply that takes the next left and comes round the back reroutes on a correction never made."
+          }
+        },
+        {
+          "kind": "correction",
+          "keyAct": "adjusts the route",
+          "line": "It's the road behind the church, not the main one.",
+          "reply": "I'll take the next left and come round the back.",
+          "explanationIfSpoken": "The line corrects which street the destination is on. Adjusting the route to approach from behind follows directly. The reply naming a machine complies with a request for a stop; the reply about the traffic answers a question about arrival time; the reply about lifting something responds to luggage.",
+          "kills": {
+            "0": "The passenger is correcting the destination, saying it is \"behind the church\", so the reply that names a machine and pulls in adds a stop she never requested.",
+            "1": "The correction is \"not the main one\", which says nothing about timing, so the reply reassuring her about the traffic answers a question that was not asked.",
+            "2": "No luggage came up, only that it is \"the road behind the church\", so the reply promising to lift it out at the other end responds to a bag nobody mentioned."
+          }
+        }
+      ]
+    },
+    {
+      "localId": "crv7-b6-17",
+      "setting": "airport shuttle booking",
+      "worlds": [
+        {
+          "kind": "good news",
+          "keyAct": "asks to be booked on",
+          "line": "There's still room on the early shuttle tomorrow.",
+          "reply": "Put me down for that one, please.",
+          "explanationIfSpoken": "The line reports availability on a service the traveller can use. Asking to be booked onto it takes that up. The reply asking what else would work responds to the route being withdrawn; the reply about waiting indoors responds to a corrected boarding point; the reply about forwarding something complies with a request for documents.",
+          "kills": {
+            "1": "The agent says there is \"still room\" on a service that runs, so the reply asking what else would get the traveller there treats an available seat as a dead end.",
+            "2": "Nothing was said about where to stand, only about \"the early shuttle tomorrow\", so the reply about waiting indoors where the driver can see responds to a correction never made.",
+            "3": "The agent reports availability and asks for nothing, so the reply promising to forward it once home complies with a request \"There's still room\" does not contain."
+          }
+        },
+        {
+          "kind": "bad news",
+          "keyAct": "asks for an alternative",
+          "line": "The shuttle doesn't run out to your area anymore.",
+          "reply": "What would you suggest for getting there instead?",
+          "explanationIfSpoken": "The line reports that the route no longer serves the traveller's address. Asking what else would work keeps the trip possible. The reply asking to be booked on assumes a seat is available; the reply about waiting indoors responds to a corrected boarding point; the reply about forwarding something complies with a request for documents.",
+          "kills": {
+            "0": "The agent says the service \"doesn't run out to your area\", so the reply asking to be put down for it books a seat on a route that no longer exists.",
+            "2": "There is no boarding point to get right, since the route ended \"to your area anymore\", so the reply about waiting indoors where the driver can see responds to a correction that could not apply.",
+            "3": "The agent reports that the service \"doesn't run out\" that way and asks for nothing, so the reply promising to forward it once home complies with a request never made."
+          }
+        },
+        {
+          "kind": "correction",
+          "keyAct": "adjusts where to wait",
+          "line": "Pickups are from the hotel lobby, not the kerb.",
+          "reply": "I'll wait indoors where the driver can see me.",
+          "explanationIfSpoken": "The line corrects the traveller about where the vehicle collects passengers. Undertaking to wait inside instead follows directly. The reply asking to be booked on assumes availability was reported; the reply asking what else would work assumes the route is gone; the reply about forwarding something complies with a request for documents.",
+          "kills": {
+            "0": "The agent is explaining that \"Pickups are from the hotel lobby\", not reporting seats, so the reply asking to be put down for it books onto something never offered.",
+            "1": "The service plainly runs, since it collects passengers, and the only fix is \"not the kerb\", so the reply asking what else would get the traveller there abandons a working route.",
+            "3": "The agent corrects where to stand, saying \"not the kerb\", and asks for nothing, so the reply promising to forward it once home complies with a request that was not made."
+          }
+        },
+        {
+          "kind": "request",
+          "keyAct": "undertakes to send it",
+          "line": "Can you send me your itinerary by email today?",
+          "reply": "I'll forward it tonight, once I'm home.",
+          "explanationIfSpoken": "The line asks the traveller to supply documents so the booking can be completed. Promising to forward them shortly complies. The reply asking to be booked on assumes availability was reported; the reply asking what else would work assumes the route is gone; the reply about waiting indoors responds to a corrected boarding point.",
+          "kills": {
+            "0": "The agent still needs the traveller to \"send me your itinerary\", so the reply asking to be put down for a service treats an incomplete booking as confirmed.",
+            "1": "The agent is collecting details \"by email today\", which presupposes a service to book, so the reply asking what else would get the traveller there abandons a route that runs.",
+            "2": "Nothing was said about where to stand, only what to \"send me\", so the reply about waiting indoors where the driver can see responds to a correction never made."
+          }
+        }
+      ]
+    },
+    {
+      "localId": "crv7-b6-18",
+      "setting": "veterinary clinic",
+      "worlds": [
+        {
+          "kind": "good news",
+          "keyAct": "asks about home care",
+          "line": "The tests came back clear, it's just a strain.",
+          "reply": "So rest and short walks, nothing strenuous?",
+          "explanationIfSpoken": "The line reports a minor injury with nothing serious behind it. Checking what the recovery regime should be follows naturally. The reply asking how soon it can be booked treats an operation as necessary; the reply saying she never allows it accepts a grooming offer; the reply about being off her food answers a question about appetite.",
+          "kills": {
+            "1": "The vet says \"The tests came back clear\", so the reply asking how soon it can be booked in arranges an operation nobody proposed.",
+            "2": "The finding is \"just a strain\" and no extra service was mentioned, so the reply saying she never allows it accepts an offer that was not made.",
+            "3": "The vet is giving results and asks nothing, so the reply reporting that she has been off her food answers a question \"came back clear\" never contained."
+          }
+        },
+        {
+          "kind": "bad news",
+          "keyAct": "asks about scheduling treatment",
+          "line": "She'll need surgery on that leg, I'm afraid.",
+          "reply": "How soon can we get that booked in?",
+          "explanationIfSpoken": "The line delivers a diagnosis requiring an operation. Asking how quickly it can be scheduled is the owner's practical next question. The reply about rest and short walks treats it as minor; the reply saying she never allows it accepts a grooming offer; the reply about being off her food answers a question about appetite.",
+          "kills": {
+            "0": "The vet says the dog will \"need surgery\", so the reply proposing rest and short walks treats an operation as something that will settle on its own.",
+            "2": "The vet is delivering a diagnosis, softened with \"I'm afraid\", not offering grooming, so the reply saying she never allows it accepts an offer that was not made.",
+            "3": "The vet states that she will \"need surgery\" and asks nothing, so the reply reporting that she has been off her food answers a question that was not put."
+          }
+        },
+        {
+          "kind": "offer",
+          "keyAct": "accepts the extra service",
+          "line": "We can trim her claws while she's here.",
+          "reply": "Please, she never lets me do it.",
+          "explanationIfSpoken": "The line offers a small additional service during the visit. Accepting and saying why it is welcome takes it up. The reply about rest and short walks treats a diagnosis as given; the reply asking how soon it can be booked treats an operation as necessary; the reply about being off her food answers a question about appetite.",
+          "kills": {
+            "0": "The vet offers to \"trim her claws\" and gives no findings, so the reply proposing rest and short walks responds to a diagnosis that was never delivered.",
+            "1": "The offer is grooming \"while she's here\", not treatment, so the reply asking how soon it can be booked arranges an operation nobody proposed.",
+            "3": "The vet makes an offer and asks nothing, so the reply reporting that she has been off her food answers a question \"We can trim her claws\" does not contain."
+          }
+        },
+        {
+          "kind": "question",
+          "keyAct": "reports a change in appetite",
+          "line": "Has she been eating normally at home this week?",
+          "reply": "She's been off her food since Tuesday.",
+          "explanationIfSpoken": "The line asks the owner for information about the animal's recent eating. Reporting that she has gone off her food, and when, answers it. The reply about rest and short walks treats a diagnosis as given; the reply asking how soon it can be booked treats surgery as necessary; the reply saying she never allows it accepts a grooming offer.",
+          "kills": {
+            "0": "The vet is still gathering history, asking \"Has she been eating normally\", so the reply proposing rest and short walks responds to findings that have not been given.",
+            "1": "No treatment has been named; the vet asks about \"at home this week\", so the reply asking how soon it can be booked arranges an operation nobody proposed.",
+            "2": "The vet asks \"Has she been eating\" as she should and offers nothing, so the reply saying she never allows it accepts a service that was not put on the table."
+          }
+        }
+      ]
+    },
+    {
+      "localId": "crv7-b6-19",
+      "setting": "shoe repair",
+      "worlds": [
+        {
+          "kind": "bad news",
+          "keyAct": "turns to replacement",
+          "line": "The leather's cracked right through, stitching won't hold.",
+          "reply": "That's a shame, I'll look for a new pair.",
+          "explanationIfSpoken": "The line reports damage that cannot be mended by sewing. Accepting that and turning to a replacement follows. The reply about leaving them until midweek assumes work is under way; the reply choosing black answers a question about colour; the reply deferring to the cobbler's choice responds to a correction about the material.",
+          "kills": {
+            "1": "The cobbler says \"stitching won't hold\", so the reply that leaves them with him until midweek waits on a repair he has just ruled out.",
+            "2": "The leather is \"cracked right through\" and no options were put, so the reply choosing black to match answers a question about colour that was never asked.",
+            "3": "The problem is damage, not the kind of hide, so the reply deferring to whatever he would use responds to a correction \"The leather's cracked\" does not contain."
+          }
+        },
+        {
+          "kind": "neutral info",
+          "keyAct": "leaves them for the work",
+          "line": "New heels take a couple of days to set.",
+          "reply": "I'll leave them with you until midweek.",
+          "explanationIfSpoken": "The line explains that the repair needs time before the shoes can be worn. Leaving them and collecting later fits that. The reply about looking for a new pair treats the shoes as beyond repair; the reply choosing black answers a question about colour; the reply deferring to the cobbler responds to a correction about the material.",
+          "kills": {
+            "0": "The cobbler is fitting \"New heels\", which is a repair going ahead, so the reply that starts looking for a new pair writes off shoes he is already mending.",
+            "2": "He explains only that the work takes \"a couple of days\", so the reply choosing black to match answers a question about colour that was never asked.",
+            "3": "Nothing was said about the material, only that the work needs \"a couple of days\", so the reply deferring to whatever he would use responds to a correction never made."
+          }
+        },
+        {
+          "kind": "question",
+          "keyAct": "chooses the colour",
+          "line": "Do you want them in black or dark brown?",
+          "reply": "Black, to match the rest of the pair.",
+          "explanationIfSpoken": "The line asks the customer to pick between two finishes. Naming one and giving the reason answers it. The reply about looking for a new pair treats the shoes as beyond repair; the reply about leaving them until midweek responds to a stated drying time; the reply deferring to the cobbler responds to a correction about the material.",
+          "kills": {
+            "0": "The cobbler is asking \"Do you want them\" in one colour or the other, which presupposes a repair going ahead, so the reply that looks for a new pair abandons shoes he is about to mend.",
+            "1": "No timescale was given, only the choice of \"black or dark brown\", so the reply that leaves them until midweek answers a wait that was not mentioned.",
+            "3": "He offers a choice rather than correcting anything, so the reply deferring to whatever he would use ignores a question \"black or dark brown\" put directly to the customer."
+          }
+        },
+        {
+          "kind": "correction",
+          "keyAct": "defers to the cobbler's judgement",
+          "line": "These are suede, they need a different treatment.",
+          "reply": "I'll go with whatever you'd use on them.",
+          "explanationIfSpoken": "The line corrects an assumption about the material and says the usual approach will not do. Handing the choice of treatment to the cobbler follows from that. The reply about a new pair treats the shoes as beyond repair; the reply about midweek responds to a stated drying time; the reply choosing black answers a question about colour.",
+          "kills": {
+            "0": "The cobbler says only that \"These are suede\" and need handling differently, so the reply that looks for a new pair writes off shoes he intends to treat.",
+            "1": "No drying time was mentioned, only that they \"need a different treatment\", so the reply that leaves them until midweek answers a wait that was never stated.",
+            "2": "He is correcting the material rather than offering finishes, so the reply choosing black to match answers a colour question \"These are suede\" never posed."
+          }
+        }
+      ]
+    },
+    {
+      "localId": "crv7-b6-20",
+      "setting": "optician",
+      "worlds": [
+        {
+          "kind": "good news",
+          "keyAct": "decides to keep the existing lenses",
+          "line": "Your prescription hasn't changed since the last test.",
+          "reply": "I'll keep the lenses I've got, then.",
+          "explanationIfSpoken": "The line reports that no change in vision has been measured. Deciding to stay with the current lenses follows from that. The reply asking to be shown something close responds to a frame no longer available; the reply about them slipping accepts an adjustment; the reply asking about lifting the chin complies with an instruction during the examination.",
+          "kills": {
+            "1": "The optician reports that the \"prescription hasn't changed\" and rules nothing out, so the reply asking to be shown something close to it responds to a frame being withdrawn that was not.",
+            "2": "Nothing was offered, only a result \"since the last test\", so the reply saying they keep slipping down accepts an adjustment that was not proposed.",
+            "3": "The optician reports that the \"prescription hasn't changed\" and asks for nothing, so the reply asking whether the chin should come up complies with an instruction never given."
+          }
+        },
+        {
+          "kind": "bad news",
+          "keyAct": "asks to be shown similar frames",
+          "line": "That frame's discontinued, we can't order it again.",
+          "reply": "Could you show me something close to it?",
+          "explanationIfSpoken": "The line reports that a preferred frame can no longer be obtained. Asking to see comparable ones keeps the visit useful. The reply about keeping the lenses responds to an unchanged prescription; the reply about them slipping accepts an adjustment; the reply asking about lifting the chin complies with an examination instruction.",
+          "kills": {
+            "0": "The optician says \"That frame's discontinued\", not that any measurement was taken, so the reply that keeps the existing lenses responds to a result nobody gave.",
+            "2": "Nothing was offered to adjust; the point is that they \"can't order it again\", so the reply saying they keep slipping down accepts an offer that does not exist.",
+            "3": "The optician reports that \"That frame's discontinued\" and asks for nothing, so the reply asking whether the chin should come up complies with an instruction never given."
+          }
+        },
+        {
+          "kind": "offer",
+          "keyAct": "accepts the adjustment",
+          "line": "I can tighten those arms for you now.",
+          "reply": "Yes, they keep slipping down my nose.",
+          "explanationIfSpoken": "The line offers to adjust the glasses on the spot. Accepting and naming the problem takes the offer up. The reply about keeping the lenses responds to an unchanged prescription; the reply asking for something close responds to a discontinued frame; the reply asking about the chin complies with an examination instruction.",
+          "kills": {
+            "0": "The optician offers to \"tighten those arms\" and reports no measurement, so the reply that keeps the existing lenses responds to a test result that was not given.",
+            "1": "The glasses are in hand and are being adjusted \"for you now\", so the reply asking to be shown something close to it treats an available frame as withdrawn.",
+            "3": "The optician makes an offer rather than an instruction, so the reply asking whether the chin should come up complies with a direction \"I can tighten those arms\" does not contain."
+          }
+        },
+        {
+          "kind": "request",
+          "keyAct": "complies and checks the posture",
+          "line": "Could you look straight ahead and stay still?",
+          "reply": "Like this, or should I lift my chin?",
+          "explanationIfSpoken": "The line instructs the patient how to sit for the examination. Adopting the position and checking whether it is right complies. The reply about keeping the lenses responds to an unchanged prescription; the reply asking for something close responds to a discontinued frame; the reply about them slipping accepts an adjustment.",
+          "kills": {
+            "0": "The optician is still asking the patient to \"look straight ahead\", so the reply that keeps the existing lenses settles on a result the examination has not yet produced.",
+            "1": "No frame came up; the instruction is to \"stay still\", so the reply asking to be shown something close to it responds to a withdrawal that was not announced.",
+            "2": "The optician tells the patient to \"stay still\" and offers nothing, so the reply saying they keep slipping down accepts an adjustment that was not proposed."
+          }
+        }
+      ]
+    }
+  ]
+}

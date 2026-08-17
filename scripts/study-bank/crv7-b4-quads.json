@@ -1,0 +1,1088 @@
+{
+ "cohort": "cr-v7",
+ "stage": 2,
+ "batch": "b4",
+ "method": "symmetric four-world authoring, post-hoc seeded key selection",
+ "items": [
+  {
+   "localId": "crv7-b4-01",
+   "setting": "residence hall front desk",
+   "worlds": [
+    {
+     "kind": "good news",
+     "keyAct": "expresses relief and states when the card will be collected",
+     "line": "Someone handed your keycard in at the desk last night.",
+     "reply": "That's a relief. I'll pick it up before class.",
+     "explanationIfSpoken": "The line reports that the missing card has been recovered and is waiting at the desk. The reply that expresses relief and says the card will be collected before class treats it as retrievable, which is exactly what the report makes it. The reply that resolves to pay for a replacement assumes the card is still gone; the reply naming a side entrance answers a question about where the card was used that nobody asked; the reply agreeing to fill in a slip if one is passed over assumes a form has been offered.",
+     "kills": {
+      "1": "The desk says the card was 'handed your keycard in' last night, so buying a replacement today would be paying for something already sitting on the counter.",
+      "2": "Because the card was 'handed your keycard in at the desk', nothing has been asked about doors, and naming the side entrance responds to a question that was never put.",
+      "3": "'Someone handed your keycard in' is an announcement, not an offer of a lost-property form, so agreeing to fill one in has nothing to attach to."
+     }
+    },
+    {
+     "kind": "bad news",
+     "keyAct": "resolves to buy a replacement",
+     "line": "Nobody's turned your keycard in, I'm afraid.",
+     "reply": "Then I'd better pay for a replacement today.",
+     "explanationIfSpoken": "The line closes off the possibility that the card will come back on its own. The reply that resolves to pay for a replacement today takes the only route left once nothing has been handed in. The reply about collecting the card before class assumes there is something to collect; the reply naming a side entrance answers an unasked question about where it was used; the reply about filling in a slip if one is passed over assumes a form was offered rather than a dead end reported.",
+     "kills": {
+      "0": "Since 'Nobody's turned your keycard in', there is nothing at the desk to pick up before class.",
+      "2": "'Nobody's turned your keycard in' reports an outcome rather than asking anything, so naming the entrance where it was used answers nothing.",
+      "3": "With 'Nobody's turned' the card in, no lost-property form has been produced or requested, so agreeing to complete one on the spot comes out of nowhere."
+     }
+    },
+    {
+     "kind": "question",
+     "keyAct": "answers a factual question about where the card was last used",
+     "line": "Do you remember which door you last used it on?",
+     "reply": "The side entrance by the bike racks, late morning.",
+     "explanationIfSpoken": "The line asks the student to place the card's last known use. The reply naming the side entrance by the bike racks supplies exactly the location the question is fishing for. The reply about collecting the card before class assumes it has already been found; the reply resolving to pay for a replacement jumps past a search still in progress; the reply agreeing to fill in a slip if one is passed over responds to a request that was not made.",
+     "kills": {
+      "0": "'Do you remember which door' is a question about the search, not word that the card is waiting to be picked up before class.",
+      "1": "Asking 'which door you last used it on' means the search is still live, so paying for a replacement today abandons a question still being worked through.",
+      "3": "'Do you remember which door' asks for information, not for a lost-property form to be completed."
+     }
+    },
+    {
+     "kind": "request",
+     "keyAct": "agrees to complete the form and asks for it to be handed over",
+     "line": "Can you fill out a lost-property slip for me?",
+     "reply": "Sure, pass one over and I'll do it here.",
+     "explanationIfSpoken": "The line asks the student to complete a piece of paperwork. The reply agreeing and asking for the slip to be passed over does the task where the request placed it, at the desk. The reply about collecting the card before class assumes it has turned up; the reply resolving to pay for a replacement treats a paperwork request as a verdict; the reply naming the side entrance answers a question about doors that was never asked.",
+     "kills": {
+      "0": "Being asked to 'fill out a lost-property slip' means the card has not surfaced, so there is nothing to pick up before class.",
+      "1": "'Can you fill out' a form is a request for paperwork, not notice that a replacement must now be bought.",
+      "2": "A request for 'a lost-property slip for me' asks nothing about which door was used, so naming the side entrance leaves the request unanswered."
+     }
+    }
+   ]
+  },
+  {
+   "localId": "crv7-b4-02",
+   "setting": "RA corridor conversation",
+   "worlds": [
+    {
+     "kind": "neutral info",
+     "keyAct": "acknowledges the outcome and undertakes to brief the roommates",
+     "line": "I've logged it as an informal first warning.",
+     "reply": "Understood. I'll let my roommates know where we stand.",
+     "explanationIfSpoken": "The line states how the noise report has been recorded, at the lowest level and internally. The reply that acknowledges it and undertakes to brief the roommates fits an outcome that concerns the room but calls for no defence. The reply about putting a side of it in writing assumes something formal is under way; the reply accepting mediation and offering evenings takes up an offer that was not made; the reply about getting back late and the noise having stopped answers a question about presence that was never asked.",
+     "kills": {
+      "1": "Because it has been logged as 'an informal first warning', there is no formal process to submit a written account to.",
+      "2": "'I've logged it' reports an action already taken, not an offer to sit both rooms down, so accepting and naming evenings takes up something that was never offered.",
+      "3": "An 'informal first warning' being logged asks nothing about who was in the room, so describing a late return answers a question that was not put."
+     }
+    },
+    {
+     "kind": "bad news",
+     "keyAct": "resolves to submit a written account",
+     "line": "It's gone up to the housing coordinator as a formal complaint.",
+     "reply": "Then I'd better put my side of it in writing.",
+     "explanationIfSpoken": "The line reports that the matter has escalated out of the corridor and into an official channel. The reply resolving to put a side of it in writing meets a formal process with the kind of response a formal process takes. The reply undertaking to brief the roommates treats it as a private heads-up; the reply accepting mediation and naming evenings responds to an offer of help that was not made; the reply about getting back late answers an unasked question about who was present.",
+     "kills": {
+      "0": "Once it has 'gone up to the housing coordinator', telling the roommates where things stand understates a matter that is no longer being handled in the corridor.",
+      "2": "'As a formal complaint' is the opposite of a proposal to mediate, so accepting mediation and offering evenings responds to something that was not offered.",
+      "3": "A report that it has 'gone up to the housing coordinator' asks nothing, so an account of getting back late answers a question that was never asked."
+     }
+    },
+    {
+     "kind": "offer",
+     "keyAct": "accepts the offer of mediation and supplies availability",
+     "line": "I can sit down with both rooms and mediate.",
+     "reply": "I'd take you up on that; evenings suit us.",
+     "explanationIfSpoken": "The line offers to bring the two rooms together with the RA present. The reply accepting and saying evenings suit takes the offer and moves it towards a time, which is what an offer of a meeting needs. The reply undertaking to brief the roommates treats an offer as a verdict; the reply about putting a side of it in writing assumes a formal complaint exists; the reply about getting back late answers a question about presence that was not asked.",
+     "kills": {
+      "0": "'I can sit down' offers something ahead, not a decision already recorded, so telling the roommates where things stand skips over the offer without answering it.",
+      "1": "An offer to 'sit down with both rooms' is not a formal proceeding, so writing up one side of it responds to a process that does not exist here.",
+      "3": "Offering to 'sit down with both rooms and mediate' asks nothing about who was in the room, so describing a late return leaves the offer hanging."
+     }
+    },
+    {
+     "kind": "question",
+     "keyAct": "answers a question about whether the student was present",
+     "line": "Were you even in the room when it got loud?",
+     "reply": "No, I got back late and it had already stopped.",
+     "explanationIfSpoken": "The line asks whether the student was actually there while the noise was happening. The reply saying he got back late and it had already stopped answers the question directly and places him outside the window in question. The reply undertaking to brief the roommates treats a question as an outcome; the reply about putting a side in writing assumes a formal complaint; the reply accepting mediation and offering evenings takes up an offer that was not made.",
+     "kills": {
+      "0": "'Were you even in the room' is a question, not a decision about how the report was logged, so undertaking to tell the roommates where things stand answers nothing.",
+      "1": "Asking 'Were you even in the room' establishes no formal complaint, so resolving to put a written side together responds to a process nobody has started.",
+      "2": "'when it got loud' is asking about the night itself, not offering to sit the rooms down, so accepting mediation and naming evenings misses the question."
+     }
+    }
+   ]
+  },
+  {
+   "localId": "crv7-b4-03",
+   "setting": "laundry room",
+   "worlds": [
+    {
+     "kind": "bad news",
+     "keyAct": "states a drying workaround",
+     "line": "The dryer's out again and the parts haven't shipped.",
+     "reply": "I'll start hanging things on my rack, then.",
+     "explanationIfSpoken": "The line reports the dryer down with no repair in sight. The reply about hanging things on a rack adopts the only drying method left while the machine stays out. The reply asking about the card system assumes the dryer is running; the reply promising to set an alarm responds to a request to clear a load that was not made; the reply about bringing towels down takes up an offer of shared space that was not made.",
+     "kills": {
+      "1": "With 'The dryer's out again', asking whether it is back on the same card system assumes a machine that is not running.",
+      "2": "'the parts haven't shipped' is a report, not a request to clear a finished load, so promising an alarm answers a request nobody made.",
+      "3": "Since 'The dryer's out again', there is no load of anyone's for towels to go in with."
+     }
+    },
+    {
+     "kind": "good news",
+     "keyAct": "asks a follow-up question about how the machine is paid for",
+     "line": "They got the dryer running again this morning.",
+     "reply": "Is it back on the same card system?",
+     "explanationIfSpoken": "The line reports the dryer repaired and back in service. The reply asking whether it is back on the same card system is the practical next thing to know about a machine you are about to use again. The reply about hanging things on a rack assumes it is still broken; the reply promising an alarm answers a request to clear a load that was not made; the reply about bringing towels down accepts an offer of shared space that was not made.",
+     "kills": {
+      "0": "'They got the dryer running again' removes the reason to fall back on a drying rack.",
+      "2": "'running again this morning' is news about the machine, not a request to shift a finished load, so promising to set an alarm responds to nothing that was asked.",
+      "3": "Reporting that 'They got the dryer running' offers no share of anyone's load, so bringing towels down takes up an offer that was not made."
+     }
+    },
+    {
+     "kind": "request",
+     "keyAct": "agrees to clear the machine promptly",
+     "line": "Could you shift your load out when it finishes?",
+     "reply": "Of course — I'll set an alarm for it.",
+     "explanationIfSpoken": "The line asks the student to clear the machine as soon as the cycle ends. The reply agreeing and saying an alarm will be set solves the actual difficulty in that request, which is being there at the right moment. The reply about hanging things on a rack assumes the dryer is broken; the reply asking about the card system responds to news of a repair; the reply about bringing towels down accepts an offer of shared space that was not made.",
+     "kills": {
+      "0": "'Could you shift your load out' presupposes a machine that is working, so switching to a drying rack answers a breakdown that has not been reported.",
+      "1": "Being asked to move a load 'when it finishes' is not news of a repair, so asking whether it is back on the same card system responds to something unsaid.",
+      "3": "'Could you shift your load out' is a request to clear space, not an offer to share a load, so bringing towels down inverts what was asked."
+     }
+    },
+    {
+     "kind": "offer",
+     "keyAct": "accepts the offer of space in another load",
+     "line": "You can put your towels in with my load.",
+     "reply": "That'd save me a trip; I'll bring them down.",
+     "explanationIfSpoken": "The line offers the student space in a load that is already going in. The reply saying it saves a trip and undertaking to bring the towels down accepts the offer and does the one thing acceptance requires. The reply about a drying rack assumes the dryer is out; the reply asking about the card system responds to a repair report; the reply promising an alarm answers a request to clear a machine that was not made.",
+     "kills": {
+      "0": "'You can put your towels in' presupposes a working machine, so falling back on a drying rack answers a breakdown that has not happened.",
+      "1": "'in with my load' is an offer of space, not a report that the dryer was fixed, so asking about the card system responds to news nobody gave.",
+      "2": "Being told 'You can put your towels in with my load' is an offer, not a request to clear the machine, so promising an alarm answers the wrong thing."
+     }
+    }
+   ]
+  },
+  {
+   "localId": "crv7-b4-04",
+   "setting": "package room",
+   "worlds": [
+    {
+     "kind": "neutral info",
+     "keyAct": "arranges for the named recipient to come and claim it",
+     "line": "Your parcel's here but it's under your roommate's name.",
+     "reply": "I'll ask her to come down with her ID.",
+     "explanationIfSpoken": "The line reports the parcel present but addressed to someone else in the room. The reply about asking the roommate to come down with her ID solves precisely the mismatch between who is standing there and whose name is on the label. The reply about booking a redelivery assumes the parcel has left; the reply about signing before the desk closes assumes the student can claim it himself; the reply saying nothing has been told about since then answers a question about other deliveries that was not asked.",
+     "kills": {
+      "1": "'Your parcel's here' means it has not gone anywhere, so booking a redelivery online arranges the return of something already on the shelf.",
+      "2": "Because it is 'under your roommate's name', signing for it before the desk closes runs straight into the name problem the line raises.",
+      "3": "'Your parcel's here' is a statement about one item, not a question about what else has arrived, so reporting nothing since then answers nobody."
+     }
+    },
+    {
+     "kind": "bad news",
+     "keyAct": "arranges a redelivery",
+     "line": "The carrier took your parcel back to the depot.",
+     "reply": "I'll book a redelivery on their site tonight.",
+     "explanationIfSpoken": "The line reports that the parcel is no longer in the building and has gone back to the carrier. The reply about booking a redelivery on the carrier's site handles a parcel sitting at a depot, which is where the line puts it. The reply about the roommate coming down with ID assumes the parcel is on the shelf; the reply about signing before the desk closes assumes the same; the reply saying nothing has been told about since then answers an unasked question about other deliveries.",
+     "kills": {
+      "0": "Since 'The carrier took your parcel back', bringing the roommate down with ID would produce a name for a parcel that is not in the building.",
+      "2": "'back to the depot' means there is nothing at the desk to sign for before it closes.",
+      "3": "'The carrier took your parcel' reports what happened rather than asking what else has come, so reporting nothing since then answers no question."
+     }
+    },
+    {
+     "kind": "good news",
+     "keyAct": "commits to signing for it before the desk closes",
+     "line": "Your parcel came in on the early van today.",
+     "reply": "I'll sign for it before the desk closes.",
+     "explanationIfSpoken": "The line reports the parcel delivered and available now. The reply committing to sign for it before the desk closes claims a parcel that is sitting there under the student's own name. The reply about the roommate coming down with ID assumes a name mismatch nobody mentioned; the reply about booking a redelivery assumes the parcel has gone back; the reply saying nothing has been told about since then answers a question about other deliveries that was not asked.",
+     "kills": {
+      "0": "'Your parcel came in' names no one else, so fetching the roommate and her ID invents an ownership problem the line does not raise.",
+      "1": "Because it 'came in on the early van today', a redelivery would be booked for something that has already arrived.",
+      "3": "'Your parcel came in on the early van' is news of an arrival, not a question about what else has come, so reporting nothing since then answers nothing."
+     }
+    },
+    {
+     "kind": "question",
+     "keyAct": "answers a question about other deliveries",
+     "line": "Has anything else of yours arrived since Friday?",
+     "reply": "Nothing that I've been told about since then.",
+     "explanationIfSpoken": "The line asks whether further items have come in over the last few days. The reply saying nothing has been told about since then answers the span the question covers. The reply about the roommate coming down with ID responds to a name problem nobody raised; the reply about booking a redelivery assumes a parcel went back to a depot; the reply about signing before the desk closes claims an item nobody said was there.",
+     "kills": {
+      "0": "'Has anything else of yours arrived' asks a question and names no roommate, so sending her down with ID answers a problem that was not raised.",
+      "1": "Asking whether anything 'arrived since Friday' says nothing about a parcel going back, so booking a redelivery responds to a return nobody reported.",
+      "2": "'Has anything else of yours arrived' does not report an item waiting, so undertaking to sign for it before the desk closes claims something unmentioned."
+     }
+    }
+   ]
+  },
+  {
+   "localId": "crv7-b4-05",
+   "setting": "dorm maintenance visit",
+   "worlds": [
+    {
+     "kind": "good news",
+     "keyAct": "restores the cupboard now that the job is done",
+     "line": "It was just a loose washer, so it's sorted.",
+     "reply": "Good, then I'll put everything back under the sink.",
+     "explanationIfSpoken": "The line reports a small fault, already fixed, with no further work needed. The reply putting everything back under the sink is what you do when a job has finished and the space is yours again. The reply about clearing the cupboard before the technician returns assumes another visit; the reply about using the tap down the hall assumes this one must stay off; the reply about the damp patch assumes the leak was traced somewhere else entirely.",
+     "kills": {
+      "1": "'so it's sorted' means there is no return visit to clear the cupboard for.",
+      "2": "Since it was 'just a loose washer' and the job is done, there is no reason to walk down the hall for another tap.",
+      "3": "'It was just a loose washer' locates the fault at the sink itself, so treating a wall stain as explained points at a source the line rules out."
+     }
+    },
+    {
+     "kind": "bad news",
+     "keyAct": "prepares the space for the bigger job",
+     "line": "The pipework's corroded, the whole trap needs replacing.",
+     "reply": "I'll clear the cupboard before you come back.",
+     "explanationIfSpoken": "The line reports a fault too large to finish today and names the part that has to be swapped. The reply clearing the cupboard before the technician comes back prepares for the return visit that a trap replacement implies. The reply putting everything back under the sink assumes the job is finished; the reply about a tap down the hall answers a request that was not made; the reply about the damp patch assumes the source was found behind the wall.",
+     "kills": {
+      "0": "'the whole trap needs replacing' means the work is not finished, so restocking the cupboard now just has to be undone.",
+      "2": "'The pipework's corroded' reports a diagnosis, not a request to leave the tap alone, so going down the hall answers an instruction nobody gave.",
+      "3": "Since the fault is that 'The pipework's corroded' at the sink, treating a damp wall patch as explained points somewhere the line does not."
+     }
+    },
+    {
+     "kind": "request",
+     "keyAct": "agrees to leave the tap alone and names the alternative used meanwhile",
+     "line": "Can you keep that tap off until I return?",
+     "reply": "No problem, I'll use the one down the hall.",
+     "explanationIfSpoken": "The line asks the student not to run that tap until the technician is back. The reply agreeing and saying the one down the hall will be used shows how the request will actually be kept. The reply putting things back under the sink assumes the work is over; the reply clearing the cupboard responds to a diagnosis nobody gave; the reply about the damp patch treats the request as a finding about the radiator.",
+     "kills": {
+      "0": "'until I return' says the visit is not over, so restocking the cupboard under the sink acts on a completion that has not happened.",
+      "1": "'Can you keep that tap off' is a request, not a report that a part has failed, so emptying the cupboard responds to a diagnosis nobody gave.",
+      "3": "Being asked to 'keep that tap off' names no other source, so treating a damp wall patch as explained draws a conclusion the request does not offer."
+     }
+    },
+    {
+     "kind": "correction",
+     "keyAct": "connects the corrected diagnosis to something already noticed",
+     "line": "It's the radiator behind it leaking, not the sink.",
+     "reply": "That explains the damp patch on that wall.",
+     "explanationIfSpoken": "The line corrects the assumed source of the water, moving it from the sink to the radiator behind it. The reply about the damp patch on that wall follows the correction to something the student had already noticed and could not account for. The reply putting everything back under the sink treats the visit as closed; the reply clearing the cupboard prepares for sink work the line has just ruled out; the reply about the tap down the hall answers a request that was not made.",
+     "kills": {
+      "0": "'It's the radiator behind it leaking' announces a live fault, so putting everything back under the sink treats an unfinished problem as closed.",
+      "1": "Because it is 'not the sink', clearing the cupboard under it prepares for work the correction has just moved elsewhere.",
+      "2": "'It's the radiator behind it leaking' is a correction, not a request about the tap, so going down the hall complies with an instruction nobody gave."
+     }
+    }
+   ]
+  },
+  {
+   "localId": "crv7-b4-06",
+   "setting": "room inspection",
+   "worlds": [
+    {
+     "kind": "neutral info",
+     "keyAct": "fixes on the start day and undertakes to be ready",
+     "line": "Inspections run from Tuesday to the end of the week.",
+     "reply": "Tuesday it is — I'll have the room straight.",
+     "explanationIfSpoken": "The line gives the window during which rooms will be checked, without saying anything about this room's condition. The reply fixing on the start day and undertaking to have the room straight treats the earliest possible day as the one to be ready for. The reply about the shelves staying put assumes a pass has already been given; the reply asking whether removing the wedge is enough assumes a fail; the reply claiming the recycling answers a question about the corridor that was not asked.",
+     "kills": {
+      "1": "'Inspections run from Tuesday' is a schedule, not a result, so leaving the shelves as they are acts on an outcome that has not been given.",
+      "2": "Because inspections only 'run from Tuesday', nothing has been failed yet, so asking whether a fix clears it responds to a verdict nobody has issued.",
+      "3": "'to the end of the week' sets dates and asks nothing about the corridor, so owning the recycling answers a question that was not put."
+     }
+    },
+    {
+     "kind": "good news",
+     "keyAct": "declines to change anything, since nothing was flagged",
+     "line": "Your room passed with nothing for you to fix.",
+     "reply": "Then the shelves can stay where they are.",
+     "explanationIfSpoken": "The line reports a clean pass with no items raised. The reply that the shelves can stay where they are draws the natural consequence of nothing having been flagged. The reply undertaking to have the room straight by Tuesday prepares for a check that has already happened; the reply asking whether removing a wedge clears it assumes a fail; the reply claiming the recycling answers an unasked question about the corridor.",
+     "kills": {
+      "0": "'Your room passed' means the check is behind you, so getting the room straight for Tuesday prepares for something that has already happened.",
+      "2": "With 'nothing for you to fix', asking whether a wedge coming out clears the matter responds to a fail that was not given.",
+      "3": "'Your room passed' is a result, not a question about the corridor, so owning the recycling answers something nobody asked."
+     }
+    },
+    {
+     "kind": "bad news",
+     "keyAct": "asks whether the named fix is sufficient on its own",
+     "line": "You've failed on the fire door being propped open.",
+     "reply": "Does taking the wedge out clear it on its own?",
+     "explanationIfSpoken": "The line reports a fail and names the single reason for it. The reply asking whether taking the wedge out clears it on its own goes straight to whether the named fault can be closed without more. The reply about being straight by Tuesday prepares for an inspection already carried out; the reply about the shelves staying put assumes a pass; the reply claiming the recycling answers a question about the corridor nobody asked.",
+     "kills": {
+      "0": "'You've failed' reports a completed inspection, so getting the room straight for Tuesday prepares for a visit that has been and gone.",
+      "1": "Because 'You've failed on the fire door', leaving the shelves as they are acts on a clean result that was not given.",
+      "3": "'the fire door being propped open' is the fault named, not a question about recycling, so owning bags in the corridor addresses the wrong thing."
+     }
+    },
+    {
+     "kind": "question",
+     "keyAct": "claims responsibility and undertakes to move the items",
+     "line": "Who's been leaving recycling out in the corridor?",
+     "reply": "That's ours, and we'll move it back inside.",
+     "explanationIfSpoken": "The line asks who has been putting recycling in the corridor. The reply claiming it and undertaking to move it back inside answers the question and settles it in one go. The reply about being straight by Tuesday responds to a schedule nobody gave; the reply about the shelves assumes a pass; the reply asking whether removing a wedge clears it assumes a fail on the fire door.",
+     "kills": {
+      "0": "'Who's been leaving recycling' asks a question rather than setting dates, so committing to be straight by Tuesday answers a schedule that was not given.",
+      "1": "Asking 'Who's been leaving recycling out' issues no result, so leaving the shelves where they are acts on a pass nobody announced.",
+      "2": "'out in the corridor' concerns bags, not a propped fire door, so asking whether a wedge coming out clears it addresses a fault that was not named."
+     }
+    }
+   ]
+  },
+  {
+   "localId": "crv7-b4-07",
+   "setting": "quiet-hours discussion",
+   "worlds": [
+    {
+     "kind": "neutral info",
+     "keyAct": "moves a noisy activity into the unaffected part of the day",
+     "line": "Quiet hours start earlier on weeknights from next term.",
+     "reply": "I'll move band practice to the afternoons.",
+     "explanationIfSpoken": "The line reports a change to when quiet hours begin on weeknights. The reply moving band practice to the afternoons shifts the noisy activity out of the newly covered part of the evening. The reply about Saturday evenings assumes the change landed on weekends; the reply promising headphones answers a request about the bass that was not made; the reply accepting help with the room below takes up an offer that was not made.",
+     "kills": {
+      "1": "Because the change is 'on weeknights', treating Saturday evenings as the thing to watch moves the restriction to the wrong part of the week.",
+      "2": "'Quiet hours start earlier' is a policy report, not a request about the bass, so promising headphones answers a request nobody made.",
+      "3": "'from next term' announces a rule change and offers no help with neighbours, so accepting that help takes up an offer that was not made."
+     }
+    },
+    {
+     "kind": "correction",
+     "keyAct": "restates the corrected scope as it applies to him",
+     "line": "It's the weekends that changed, not the weeknights.",
+     "reply": "So Saturday evenings are what I watch for now.",
+     "explanationIfSpoken": "The line corrects which part of the week the quiet-hours change actually covers. The reply naming Saturday evenings works the correction through to the days that now matter. The reply moving band practice to the afternoons acts as though weeknights were affected; the reply promising headphones answers a request about the bass that was not made; the reply accepting help with the room below takes up an offer nobody made.",
+     "kills": {
+      "0": "Since it is 'not the weeknights', shifting weeknight band practice to the afternoons solves a problem the correction has just removed.",
+      "2": "'It's the weekends that changed' corrects a fact rather than asking for anything, so promising headphones complies with a request nobody made.",
+      "3": "'the weekends that changed' says nothing about neighbours downstairs, so accepting help talking to them responds to an offer that was not made."
+     }
+    },
+    {
+     "kind": "request",
+     "keyAct": "promises to use headphones from now on",
+     "line": "Could you keep the bass down late at night?",
+     "reply": "Sure — headphones from now on, I promise.",
+     "explanationIfSpoken": "The line asks the student to stop the low frequencies carrying late at night. The reply promising headphones from now on meets the request with the one measure that actually removes bass from the building. The reply moving band practice to afternoons responds to a rule change nobody announced; the reply about Saturday evenings assumes a correction about weekends; the reply accepting help with the room below takes up an offer that was not made.",
+     "kills": {
+      "0": "'Could you keep the bass down' is a request, not news of a rule change, so rescheduling band practice acts on a policy nobody announced.",
+      "1": "Asking to keep the bass down 'late at night' corrects nothing about which days changed, so singling out Saturday evenings answers a correction that was not made.",
+      "3": "'Could you keep the bass down' asks the student to do something, not offers to speak to anyone, so accepting that help inverts who is helping whom."
+     }
+    },
+    {
+     "kind": "offer",
+     "keyAct": "accepts an offer to intervene with the neighbours",
+     "line": "I can talk to the room below you about it.",
+     "reply": "That'd help, if you don't mind doing it.",
+     "explanationIfSpoken": "The line offers to take the matter to the neighbours downstairs on the student's behalf. The reply accepting and checking that it is not an imposition takes up the offer in the ordinary way. The reply moving band practice responds to a rule change nobody announced; the reply about Saturday evenings assumes a correction about weekends; the reply promising headphones treats an offer of help as a request to change behaviour.",
+     "kills": {
+      "0": "'I can talk to the room below you' offers help rather than announcing new hours, so rescheduling band practice acts on a rule change that was not reported.",
+      "1": "Offering to 'talk to the room below' corrects nothing about weekdays or weekends, so naming Saturday evenings answers a correction nobody made.",
+      "2": "'I can talk to the room below you about it' is an offer, not a request to quieten down, so promising headphones answers a request that was not put."
+     }
+    }
+   ]
+  },
+  {
+   "localId": "crv7-b4-08",
+   "setting": "suite common room",
+   "worlds": [
+    {
+     "kind": "bad news",
+     "keyAct": "proposes an alternative venue",
+     "line": "The common room's shut while they redo the flooring.",
+     "reply": "We'll have to meet in someone's room instead.",
+     "explanationIfSpoken": "The line reports the common room closed for the duration of the floor work. The reply proposing to meet in someone's room finds the substitute space that a closure forces. The reply about taking reading down there assumes it is open and improved; the reply about clearing a corner answers a request that was not made; the reply about last Thursday answers a question about availability that was not asked.",
+     "kills": {
+      "1": "Since 'The common room's shut', taking reading down there tonight walks into a closed room.",
+      "2": "'while they redo the flooring' reports a closure rather than asking anyone to move their things, so clearing a corner complies with a request nobody made.",
+      "3": "'The common room's shut' is news, not a question about Thursday night, so an answer about last Thursday responds to nothing."
+     }
+    },
+    {
+     "kind": "good news",
+     "keyAct": "plans to make use of the improved room",
+     "line": "They've put the new sofa in the common room.",
+     "reply": "I'll take my reading down there tonight.",
+     "explanationIfSpoken": "The line reports that the replacement furniture has arrived and the room is now worth sitting in. The reply about taking reading down there tonight uses the room the improvement has made usable. The reply about meeting in someone's room assumes a closure; the reply about clearing a corner answers a request nobody made; the reply about last Thursday answers an unasked question about availability.",
+     "kills": {
+      "0": "'They've put the new sofa in the common room' describes a room in use, so decamping to someone's bedroom assumes a closure that was not reported.",
+      "2": "'the new sofa' arriving is not a request to move anyone's belongings, so promising to clear a corner answers something nobody asked.",
+      "3": "'They've put the new sofa in' reports a delivery rather than asking about Thursday night, so an answer about last Thursday addresses no question."
+     }
+    },
+    {
+     "kind": "request",
+     "keyAct": "agrees to clear his belongings out",
+     "line": "Could you take your gear out of the common room?",
+     "reply": "I'll clear that corner out this evening.",
+     "explanationIfSpoken": "The line asks the student to remove his things from the shared space. The reply undertaking to clear that corner out this evening complies and puts a time on it. The reply about meeting in someone's room assumes a closure; the reply about taking reading down there ignores the request entirely; the reply about last Thursday answers a question about availability that was not asked.",
+     "kills": {
+      "0": "'Could you take your gear out' presupposes an open room, so proposing to meet in someone's bedroom answers a closure that was not reported.",
+      "1": "Being asked to 'take your gear out of the common room' is not news of new furniture, so settling in there tonight ignores what was asked.",
+      "3": "'Could you take your gear out' asks for an action, not for Thursday's bookings, so an answer about last Thursday leaves the request unanswered."
+     }
+    },
+    {
+     "kind": "question",
+     "keyAct": "answers a question about whether the room is free",
+     "line": "Is anyone using the common room on Thursday night?",
+     "reply": "Nobody I know of, going by last Thursday.",
+     "explanationIfSpoken": "The line asks whether the shared room is spoken for on a particular evening. The reply saying nobody as far as he knows, on the evidence of last Thursday, answers the availability question with the basis for the answer. The reply about meeting in someone's room assumes a closure; the reply about taking reading down there responds to news of new furniture; the reply about clearing a corner answers a request that was not made.",
+     "kills": {
+      "0": "'Is anyone using the common room' presupposes a room in service, so proposing to meet elsewhere answers a closure nobody reported.",
+      "1": "Asking about 'Thursday night' reports no new furniture, so announcing an evening of reading down there responds to news that was not given.",
+      "2": "'Is anyone using the common room' asks for information, not for belongings to be removed, so promising to clear a corner answers the wrong thing."
+     }
+    }
+   ]
+  },
+  {
+   "localId": "crv7-b4-09",
+   "setting": "dorm move-out logistics",
+   "worlds": [
+    {
+     "kind": "neutral info",
+     "keyAct": "arranges transport for the stated day",
+     "line": "Move-out's on the Saturday, keys back at the desk.",
+     "reply": "I'll book a van for that morning, then.",
+     "explanationIfSpoken": "The line gives the day rooms must be emptied and where keys go. The reply booking a van for that morning turns the stated day into the logistics it requires. The reply about telling parents tonight assumes permission to stay; the reply about finding somewhere for his things assumes a refusal; the reply about leaving a bag by the door answers a request about linen that was not made.",
+     "kills": {
+      "1": "'Move-out's on the Saturday' is a deadline for everyone, not permission to remain, so passing good news to parents reports something that was not said.",
+      "2": "Because 'Move-out's on the Saturday', nothing has been refused, so hunting for storage responds to a decision that was not announced.",
+      "3": "'keys back at the desk' tells the student where keys go, not what to do with bedding, so leaving a bag by the door answers a request nobody made."
+     }
+    },
+    {
+     "kind": "good news",
+     "keyAct": "passes the outcome on to family",
+     "line": "You've been approved to stay on over the break.",
+     "reply": "That's a relief — I'll tell my parents tonight.",
+     "explanationIfSpoken": "The line reports that the request to remain in hall over the break has been granted. The reply expressing relief and undertaking to tell his parents passes on a decision the family has been waiting on. The reply about booking a van treats it as a move-out date; the reply about finding somewhere for his things assumes a refusal; the reply about leaving a bag by the door answers a request about linen that was not made.",
+     "kills": {
+      "0": "'approved to stay on' removes the move, so booking a van for that morning arranges a departure that is not happening.",
+      "2": "Because he has been 'approved to stay on over the break', looking for somewhere to put his things solves a problem the approval has removed.",
+      "3": "'You've been approved to stay on' is a decision, not a request about bedding, so leaving a bag by the door complies with an instruction nobody gave."
+     }
+    },
+    {
+     "kind": "bad news",
+     "keyAct": "starts looking for somewhere to keep his belongings",
+     "line": "Your late-stay request was turned down, I'm sorry.",
+     "reply": "I'll start looking for somewhere to put my things.",
+     "explanationIfSpoken": "The line reports that permission to stay in hall over the break has been refused. The reply about starting to look for somewhere to put his things takes up the problem a refusal creates. The reply about booking a van responds to a stated move-out date; the reply about telling parents treats the outcome as good; the reply about leaving a bag by the door answers a request about linen that was not made.",
+     "kills": {
+      "0": "'Your late-stay request was turned down' names no date, so booking a van for that morning schedules against a day that was not given.",
+      "1": "Since the request 'was turned down', passing the news on as a relief reports the opposite of what was said.",
+      "3": "'turned down, I'm sorry' is a decision, not a request about bedding, so leaving a bag by the door answers an instruction nobody gave."
+     }
+    },
+    {
+     "kind": "request",
+     "keyAct": "agrees and says where the bag will be left",
+     "line": "Can you strip the bed and bag the linen?",
+     "reply": "Sure, I'll leave the bag by the door.",
+     "explanationIfSpoken": "The line asks the student to clear the bedding and bag it up. The reply agreeing and saying the bag will be left by the door complies and settles where the bag ends up. The reply about booking a van responds to a move-out date nobody gave; the reply about telling parents assumes an approval; the reply about finding somewhere for his things assumes a refusal.",
+     "kills": {
+      "0": "'Can you strip the bed' is a request, not a date for leaving, so booking a van for that morning schedules against a day that was not stated.",
+      "1": "Being asked to 'bag the linen' announces no decision about staying, so telling parents the good news reports something that was not said.",
+      "2": "'Can you strip the bed and bag the linen' refuses nothing, so setting off to find storage responds to a decision nobody gave."
+     }
+    }
+   ]
+  },
+  {
+   "localId": "crv7-b4-10",
+   "setting": "storage locker rental",
+   "worlds": [
+    {
+     "kind": "good news",
+     "keyAct": "claims the available locker and sets a day to fill it",
+     "line": "There's a locker free in the basement corridor.",
+     "reply": "I'll take it and move my boxes down tomorrow.",
+     "explanationIfSpoken": "The line reports a locker currently available. The reply taking it and moving boxes down tomorrow claims the space and acts on it before it goes. The reply about asking around for somewhere else assumes none are free; the reply supplying a number for the tenancy form accepts a waiting-list offer that was not made; the reply describing a bike and boxes answers a question about volume that was not asked.",
+     "kills": {
+      "1": "'There's a locker free' means a space is available now, so asking around for somewhere else looks past the one on offer.",
+      "2": "'a locker free in the basement corridor' is an available unit, not an offer of a waiting list, so supplying a number for the list responds to nothing.",
+      "3": "'There's a locker free' is an announcement rather than a question about volume, so describing a bike and boxes answers nobody."
+     }
+    },
+    {
+     "kind": "bad news",
+     "keyAct": "turns to alternatives outside the building",
+     "line": "Every locker's taken until the end of term.",
+     "reply": "I'll ask around for somewhere else to store things.",
+     "explanationIfSpoken": "The line reports that no storage is available in the building for the rest of term. The reply about asking around for somewhere else moves the search outside a system that is full. The reply taking a locker and moving boxes down assumes one is free; the reply supplying a number for the tenancy form accepts a waiting-list offer that was not made; the reply describing a bike and boxes answers a question about volume nobody asked.",
+     "kills": {
+      "0": "Since 'Every locker's taken', taking one and moving boxes down tomorrow claims a unit that does not exist.",
+      "2": "'Every locker's taken until the end of term' reports a shortage without offering a list, so leaving a number for one takes up an offer that was not made.",
+      "3": "'until the end of term' answers availability, not a question about how much is being stored, so describing a bike and boxes answers nothing."
+     }
+    },
+    {
+     "kind": "offer",
+     "keyAct": "accepts a place on the list and supplies contact details",
+     "line": "I can put your name on the waiting list.",
+     "reply": "Please do — my number's on the tenancy form.",
+     "explanationIfSpoken": "The line offers to add the student to the queue for storage. The reply accepting and pointing to the number already on the tenancy form takes the offer and supplies the one thing a waiting list needs. The reply taking a locker assumes one is free right now; the reply about asking around treats an offer of a place in the queue as a dead end; the reply describing a bike and boxes answers a question about volume that was not asked.",
+     "kills": {
+      "0": "'I can put your name on the waiting list' means nothing is free yet, so taking a locker and moving boxes down tomorrow claims a unit that has not come up.",
+      "1": "An offer to put a name 'on the waiting list' is a route forward, so setting off to ask around elsewhere abandons what was just offered.",
+      "3": "'I can put your name' offers a place in a queue and asks nothing about volume, so describing a bike and boxes answers a question that was not put."
+     }
+    },
+    {
+     "kind": "question",
+     "keyAct": "answers a question about how much is being stored",
+     "line": "How much are you actually planning to store?",
+     "reply": "A bike and a few boxes of books.",
+     "explanationIfSpoken": "The line asks the student to say how much will go into storage. The reply naming a bike and a few boxes of books gives the volume the question is after. The reply taking a locker assumes one has been offered; the reply about asking around assumes none are free; the reply supplying a number for the tenancy form accepts a waiting-list offer that was not made.",
+     "kills": {
+      "0": "'How much are you actually planning to store' offers no unit, so taking it and moving boxes down tomorrow claims a locker that was not mentioned.",
+      "1": "Asking 'How much are you actually planning' reports no shortage, so heading off to ask around elsewhere gives up on the wrong grounds.",
+      "2": "'planning to store' is a question about volume, not an offer of a waiting list, so leaving a number for the list responds to an offer that was not made."
+     }
+    }
+   ]
+  },
+  {
+   "localId": "crv7-b4-11",
+   "setting": "roommate agreement",
+   "worlds": [
+    {
+     "kind": "neutral info",
+     "keyAct": "undertakes to draft the missing section",
+     "line": "The agreement's signed but the cleaning rota's still blank.",
+     "reply": "I'll sketch a rota out and send it round.",
+     "explanationIfSpoken": "The line reports the agreement complete except for one empty section. The reply undertaking to sketch a rota and send it round fills the gap the line identifies. The reply about pinning it up assumes nothing is outstanding; the reply about rewriting a section assumes an objection was raised; the reply asking whether the shared-folder copy is current responds to a request to review a draft that was not made.",
+     "kills": {
+      "1": "Because 'the cleaning rota's still blank', pinning the agreement up in the hallway publishes a document with a hole in it.",
+      "2": "'The agreement's signed' records agreement rather than an objection, so rewriting a section responds to a complaint nobody made.",
+      "3": "'the cleaning rota's still blank' reports a gap, not a request to read a draft, so asking which copy is current answers nothing."
+     }
+    },
+    {
+     "kind": "good news",
+     "keyAct": "proposes putting the finished document on display",
+     "line": "Everyone's signed off on the agreement as it stands.",
+     "reply": "Then we can pin it up in the hallway.",
+     "explanationIfSpoken": "The line reports the document settled with all parties agreed. The reply proposing to pin it up in the hallway does what you do with a finished agreement, which is make it visible to everyone bound by it. The reply about sketching a rota assumes something is still empty; the reply about rewriting a section assumes an objection; the reply asking about the current copy responds to a request to review that was not made.",
+     "kills": {
+      "0": "'Everyone's signed off' leaves nothing unfinished, so drafting a rota and circulating it reopens a document that is closed.",
+      "2": "'as it stands' means the wording was accepted, so rewriting a section undoes what everyone has just agreed to.",
+      "3": "'Everyone's signed off on the agreement' reports completion, not a request to read a draft, so asking which copy is current addresses nothing."
+     }
+    },
+    {
+     "kind": "correction",
+     "keyAct": "undertakes to revise the section actually objected to",
+     "line": "It's the guest rule she objected to, not the rota.",
+     "reply": "I'll rewrite that section before we meet again.",
+     "explanationIfSpoken": "The line corrects which part of the agreement drew the objection. The reply undertaking to rewrite that section before the next meeting acts on the corrected target. The reply about sketching a rota works on the part the correction has just cleared; the reply about pinning it up assumes agreement; the reply asking which copy is current responds to a request to review a draft that was not made.",
+     "kills": {
+      "0": "Since the objection was 'not the rota', drafting a rota and sending it round works on the part the correction has just cleared.",
+      "1": "'It's the guest rule she objected to' means the document is contested, so pinning it up in the hallway publishes something not yet settled.",
+      "3": "'the guest rule she objected to' names a fault rather than asking for a read-through, so asking which copy is current answers a request nobody made."
+     }
+    },
+    {
+     "kind": "request",
+     "keyAct": "checks which version to read before doing it",
+     "line": "Could you go through the draft before Thursday?",
+     "reply": "Is the copy in the shared folder current?",
+     "explanationIfSpoken": "The line asks the student to read the draft ahead of a deadline. The reply asking whether the shared-folder copy is current settles the one thing that has to be right before reading starts. The reply about sketching a rota assumes a blank section was reported; the reply about pinning it up assumes the document is finished; the reply about rewriting a section assumes an objection has been raised.",
+     "kills": {
+      "0": "'Could you go through the draft' asks for a read, not a missing rota, so drafting one and circulating it does work nobody asked for.",
+      "1": "Being asked to read something 'before Thursday' means it is not final, so pinning it up in the hallway publishes an unfinished draft.",
+      "2": "'go through the draft' names no objection, so rewriting a section responds to a complaint that was not made."
+     }
+    }
+   ]
+  },
+  {
+   "localId": "crv7-b4-12",
+   "setting": "hall kitchen",
+   "worlds": [
+    {
+     "kind": "bad news",
+     "keyAct": "falls back on the remaining appliance",
+     "line": "The oven's been condemned, they're taking it out Friday.",
+     "reply": "I'll go back to the microwave for a while.",
+     "explanationIfSpoken": "The line reports the oven written off and due for removal. The reply falling back on the microwave for a while adopts the cooking the kitchen can still support. The reply about doing a roast assumes a working oven; the reply about tape and labelling answers a request about the fridge that was not made; the reply about cooking in the evenings responds to a cleaning schedule that was not mentioned.",
+     "kills": {
+      "1": "'The oven's been condemned' rules out roasting anything, so planning a roast for Sunday uses an appliance about to be removed.",
+      "2": "'they're taking it out Friday' concerns the oven, not the fridge, so promising to label food and asking about tape answers a request nobody made.",
+      "3": "'The oven's been condemned' says nothing about cleaning mornings, so moving cooking to the evenings responds to a schedule that was not given."
+     }
+    },
+    {
+     "kind": "good news",
+     "keyAct": "anticipates cooking that the new appliance makes possible",
+     "line": "They've put the new oven into the hall kitchen.",
+     "reply": "That's good news — I might do a roast Sunday.",
+     "explanationIfSpoken": "The line reports the replacement oven installed and available. The reply welcoming it and floating a roast on Sunday takes up the cooking the new appliance opens up. The reply about the microwave assumes the oven is gone; the reply about tape and labelling answers a request about the fridge that was not made; the reply about evening cooking responds to a cleaning schedule nobody gave.",
+     "kills": {
+      "0": "Since 'They've put the new oven' in, retreating to the microwave gives up an appliance that has just arrived.",
+      "2": "'the new oven into the hall kitchen' is news about cooking, not a request to label fridge contents, so promising to do so answers nothing asked.",
+      "3": "'They've put the new oven into the hall kitchen' mentions no cleaning morning, so shifting cooking to the evenings responds to a schedule nobody gave."
+     }
+    },
+    {
+     "kind": "request",
+     "keyAct": "agrees and checks that the labelling materials are where he thinks",
+     "line": "Could you label whatever you leave in the fridge?",
+     "reply": "Will do — there's tape on the shelf, isn't there?",
+     "explanationIfSpoken": "The line asks the student to mark anything he leaves in the shared fridge. The reply agreeing and checking that the tape is on the shelf accepts the task and confirms the means of doing it. The reply about the microwave assumes the oven has gone; the reply about a roast assumes a new one has arrived; the reply about evening cooking responds to a cleaning schedule that was not mentioned.",
+     "kills": {
+      "0": "'Could you label whatever you leave' is a request about the fridge and reports nothing about the oven, so retreating to the microwave answers a breakdown that was not mentioned.",
+      "1": "Being asked to 'label whatever you leave in the fridge' is not news of a new appliance, so planning a roast responds to something that was not said.",
+      "3": "'Could you label whatever you leave in the fridge' names no cleaning morning, so moving cooking to the evenings answers a schedule that was not given."
+     }
+    },
+    {
+     "kind": "neutral info",
+     "keyAct": "reschedules his cooking around the closure",
+     "line": "The kitchen's cleaned Wednesdays, so it's locked all morning.",
+     "reply": "I'll do my cooking in the evenings instead.",
+     "explanationIfSpoken": "The line reports a regular closure while the kitchen is cleaned. The reply moving cooking to the evenings works around the part of the day the kitchen is shut. The reply about the microwave assumes the oven has been condemned; the reply about a roast assumes a new oven; the reply about tape and labelling answers a request about the fridge that was not made.",
+     "kills": {
+      "0": "'The kitchen's cleaned Wednesdays' reports a cleaning routine, not a condemned appliance, so falling back on the microwave answers a breakdown nobody reported.",
+      "1": "Because 'it's locked all morning' for cleaning, nothing has been said about a new oven, so planning a roast responds to news that was not given.",
+      "2": "'so it's locked all morning' is information about access, not a request to label food, so promising to do so and asking about tape answers nothing."
+     }
+    }
+   ]
+  },
+  {
+   "localId": "crv7-b4-13",
+   "setting": "utilities in an off-campus house",
+   "worlds": [
+    {
+     "kind": "bad news",
+     "keyAct": "proposes sitting down together to divide the cost",
+     "line": "The electric bill came in well over what we budgeted.",
+     "reply": "We should sit down and work out the split.",
+     "explanationIfSpoken": "The line reports the electricity cost exceeding what the house had set aside. The reply proposing to sit down and work out the split takes up the shared problem an overshoot creates. The reply about the direct debit dropping assumes money is coming back; the reply naming whose account it is answers a question that was not asked; the reply about photographing the meter answers a request that was not made.",
+     "kills": {
+      "1": "'came in well over what we budgeted' is an overshoot, not money returning, so expecting the direct debit to drop reads the movement backwards.",
+      "2": "'The electric bill came in' reports an amount rather than asking whose account it is, so naming the account holder answers nothing.",
+      "3": "'well over what we budgeted' asks for no meter photograph, so promising to take one responds to a request that was not made."
+     }
+    },
+    {
+     "kind": "good news",
+     "keyAct": "draws the consequence for the monthly payment",
+     "line": "The provider's refunding us for the overcharge.",
+     "reply": "So the direct debit should drop next month.",
+     "explanationIfSpoken": "The line reports the supplier giving money back for having charged too much. The reply about the direct debit dropping follows a refund through to what the house will actually pay. The reply proposing to sit down and split it assumes a shortfall; the reply naming whose account it is answers a question that was not asked; the reply about photographing the meter answers a request nobody made.",
+     "kills": {
+      "0": "Because 'The provider's refunding us', there is no overspend to sit down and divide.",
+      "2": "'refunding us for the overcharge' reports a repayment, not a question about the account holder, so naming who it is in answers nothing.",
+      "3": "'The provider's refunding us' asks for nothing, so promising a meter photograph responds to a request that was not made."
+     }
+    },
+    {
+     "kind": "question",
+     "keyAct": "answers a question about whose name is on the account",
+     "line": "Whose name is the electricity account actually in?",
+     "reply": "Mine, from when we moved in last autumn.",
+     "explanationIfSpoken": "The line asks which housemate the supply is registered to. The reply saying it is his, from when they moved in, answers the question and dates it. The reply about sitting down to split it assumes an overspend; the reply about the direct debit dropping assumes a refund; the reply about photographing the meter answers a request that was not made.",
+     "kills": {
+      "0": "'Whose name is the electricity account' is a question about registration, not a report of an overspend, so proposing to divide a bill answers nothing raised.",
+      "1": "Asking whose name the account is 'actually in' announces no refund, so expecting the direct debit to drop acts on money nobody said was coming.",
+      "3": "'Whose name is the electricity account actually in' asks for a name, not a meter reading, so promising a photograph answers the wrong question."
+     }
+    },
+    {
+     "kind": "request",
+     "keyAct": "agrees to take the reading when he gets home",
+     "line": "Can you send me a meter reading photo tonight?",
+     "reply": "I'll snap it when I get in from work.",
+     "explanationIfSpoken": "The line asks the student for a photograph of the meter that evening. The reply undertaking to take it when he gets in from work agrees and says when it will happen. The reply about sitting down to split it assumes an overspend; the reply about the direct debit dropping assumes a refund; the reply naming whose account it is answers a question that was not asked.",
+     "kills": {
+      "0": "'Can you send me a meter reading photo' is a request, not a report of a bill overshooting, so proposing to divide the cost answers something unsaid.",
+      "1": "Asking for 'a meter reading photo tonight' announces no refund, so expecting the direct debit to drop acts on news that was not given.",
+      "2": "'Can you send me a meter reading photo' asks for a picture, not for the name on the account, so naming the account holder answers the wrong thing."
+     }
+    }
+   ]
+  },
+  {
+   "localId": "crv7-b4-14",
+   "setting": "subletting paperwork",
+   "worlds": [
+    {
+     "kind": "good news",
+     "keyAct": "arranges to collect the waiting document",
+     "line": "Your sublet's approved, the form's waiting at the office.",
+     "reply": "I'll collect it on my way past this afternoon.",
+     "explanationIfSpoken": "The line reports the sublet granted with the paperwork ready to be picked up. The reply collecting it on the way past this afternoon does the one outstanding thing an approval leaves. The reply telling the subtenant to look elsewhere assumes a refusal; the reply about posting it to an uncle assumes a guarantor signature is needed; the reply about waiting for the paperwork answers a question about moving in that was not asked.",
+     "kills": {
+      "1": "'Your sublet's approved' means nobody has to look elsewhere, so telling her to do so passes on the opposite decision.",
+      "2": "'the form's waiting at the office' says it is ready to collect, not that it needs sending to a guarantor first.",
+      "3": "'Your sublet's approved' is a decision, not a question about whether anyone has moved in, so an answer about waiting addresses nothing."
+     }
+    },
+    {
+     "kind": "bad news",
+     "keyAct": "passes the refusal on to the prospective subtenant",
+     "line": "They've refused the sublet because of your lease terms.",
+     "reply": "I'll have to tell her to look elsewhere.",
+     "explanationIfSpoken": "The line reports the sublet refused on the basis of what the lease allows. The reply about telling her to look elsewhere carries the refusal to the person waiting on it. The reply collecting a form assumes approval; the reply posting it to an uncle assumes a guarantor step remains; the reply about waiting for the paperwork answers a question about moving in that was not asked.",
+     "kills": {
+      "0": "Since 'They've refused the sublet', there is no approved form at the office to collect this afternoon.",
+      "2": "'because of your lease terms' closes the application, so posting a form for a guarantor's signature continues a process that has ended.",
+      "3": "'They've refused the sublet' is a decision, not a question about whether the room has been taken over, so an answer about waiting responds to nothing."
+     }
+    },
+    {
+     "kind": "neutral info",
+     "keyAct": "arranges to get the additional signature",
+     "line": "The sublet form needs your guarantor's signature too.",
+     "reply": "I'll post it to my uncle in the morning.",
+     "explanationIfSpoken": "The line reports one more signature required before the form is complete. The reply about posting it to his uncle in the morning gets the form to the person whose signature is missing. The reply collecting it assumes the process is finished and approved; the reply telling her to look elsewhere assumes a refusal; the reply about waiting for the paperwork answers a question about moving in that was not asked.",
+     "kills": {
+      "0": "Because the form 'needs your guarantor's signature too', collecting it as a finished document skips the step just named.",
+      "1": "'needs your guarantor's signature' describes an outstanding step, not a refusal, so telling her to look elsewhere abandons a live application.",
+      "3": "'The sublet form needs your guarantor's signature' is a requirement, not a question about who has moved in, so an answer about waiting addresses nothing."
+     }
+    },
+    {
+     "kind": "question",
+     "keyAct": "answers a question about whether the room has changed hands",
+     "line": "Has your subtenant moved into the room yet?",
+     "reply": "Not until the paperwork's finished, we agreed.",
+     "explanationIfSpoken": "The line asks whether the incoming tenant has already taken the room. The reply that it waits until the paperwork is finished answers the question and gives the arrangement behind the answer. The reply about collecting a form assumes an approval; the reply telling her to look elsewhere assumes a refusal; the reply about posting it to an uncle assumes a missing guarantor signature.",
+     "kills": {
+      "0": "'Has your subtenant moved into the room yet' is a question, not word of an approval, so collecting a waiting form acts on a decision nobody gave.",
+      "1": "Asking whether she 'moved into the room yet' refuses nothing, so telling her to look elsewhere passes on a decision that was not made.",
+      "2": "'Has your subtenant moved into the room' asks about occupancy, not a guarantor, so posting the form to an uncle answers a requirement nobody named."
+     }
+    }
+   ]
+  },
+  {
+   "localId": "crv7-b4-15",
+   "setting": "furniture swap",
+   "worlds": [
+    {
+     "kind": "offer",
+     "keyAct": "accepts the help and proposes a time",
+     "line": "I'll help you carry the desk up if you like.",
+     "reply": "That'd make it much easier — after dinner?",
+     "explanationIfSpoken": "The line offers a second pair of hands for carrying the desk upstairs. The reply saying it would be much easier and proposing after dinner accepts the offer and moves it to a time. The reply about being in when they come assumes porters are doing it; the reply about putting the desk back assumes the swap is barred; the reply about clearing the drawers answers a request that was not made.",
+     "kills": {
+      "1": "'I'll help you carry the desk up' is one person offering, not word that porters agreed, so waiting in for them expects staff nobody mentioned.",
+      "2": "Offering to 'help you carry the desk up' presupposes the move is happening, so returning the desk to where it was undoes a move that is going ahead.",
+      "3": "'if you like' offers help rather than asking for the drawers to be emptied, so promising to clear them answers a request nobody made."
+     }
+    },
+    {
+     "kind": "good news",
+     "keyAct": "draws out what the arrangement now requires of them",
+     "line": "The porters agreed to move the desks for us.",
+     "reply": "Then we just need to be in when they come.",
+     "explanationIfSpoken": "The line reports that staff have taken on the heavy work. The reply about needing to be in when they come identifies the only obligation left once someone else is carrying. The reply proposing after dinner accepts an offer of personal help that was not made; the reply about putting the desk back assumes the swap is barred; the reply about clearing the drawers answers a request that was not made.",
+     "kills": {
+      "0": "'The porters agreed to move the desks' means no personal carrying is on offer, so proposing a time to do it after dinner arranges the wrong labour.",
+      "2": "Since 'The porters agreed to move the desks for us', putting the desk back where it was cancels a move that has been arranged.",
+      "3": "'The porters agreed to move the desks' asks nothing about drawers, so promising to clear them answers a request that was not made."
+     }
+    },
+    {
+     "kind": "bad news",
+     "keyAct": "reverses the move already begun",
+     "line": "We're not allowed to move furniture between rooms.",
+     "reply": "I'll put the desk back where it was.",
+     "explanationIfSpoken": "The line reports that swapping furniture between rooms is not permitted. The reply about putting the desk back where it was undoes what the rule forbids. The reply proposing after dinner accepts an offer of help that was not made; the reply about being in when they come assumes porters are handling it; the reply about clearing the drawers answers a request that was not made.",
+     "kills": {
+      "0": "'We're not allowed to move furniture' rules the move out, so proposing to do it after dinner schedules something forbidden.",
+      "1": "Because 'We're not allowed to move furniture between rooms', waiting in for porters expects a service that cannot happen.",
+      "3": "'We're not allowed to move furniture' is a prohibition, not a request about drawers, so promising to empty them answers nothing asked."
+     }
+    },
+    {
+     "kind": "request",
+     "keyAct": "agrees and asks for a moment to do it",
+     "line": "Could you empty the drawers before we shift it?",
+     "reply": "Sure — give me a few minutes to clear them.",
+     "explanationIfSpoken": "The line asks the student to take the contents out before the desk is lifted. The reply agreeing and asking for a few minutes accepts the task and puts it in front of the lift. The reply proposing after dinner responds to an offer of help that was not made; the reply about being in when they come assumes porters; the reply about putting the desk back assumes the move is barred.",
+     "kills": {
+      "0": "'Could you empty the drawers' is a request made while the move is under way, so proposing to do it after dinner postpones something already in progress.",
+      "1": "Being asked to empty drawers 'before we shift it' shows the two of them are shifting it, so waiting in for porters expects staff nobody mentioned.",
+      "2": "'before we shift it' presupposes the move is going ahead, so putting the desk back where it was reverses a move nobody has blocked."
+     }
+    }
+   ]
+  },
+  {
+   "localId": "crv7-b4-16",
+   "setting": "mattress replacement",
+   "worlds": [
+    {
+     "kind": "good news",
+     "keyAct": "prepares the bed for the delivery",
+     "line": "A new mattress is coming up to your room today.",
+     "reply": "I'll strip the bed before they get here.",
+     "explanationIfSpoken": "The line reports a replacement mattress on its way up today. The reply about stripping the bed before they get here does the preparation a delivery calls for. The reply about a topper assumes nothing is coming; the reply about standing it against the wall answers a request about the old one that was not made; the reply about the slats assumes the fault was traced to the frame.",
+     "kills": {
+      "1": "'A new mattress is coming up' means a replacement is on its way, so making do with a topper solves a shortage that is being fixed today.",
+      "2": "'coming up to your room today' announces an arrival rather than asking for the old one to be put out, so standing it outside answers nothing.",
+      "3": "'A new mattress is coming up' treats the mattress as the fault, so checking the slats looks somewhere the line does not point."
+     }
+    },
+    {
+     "kind": "bad news",
+     "keyAct": "adopts a workaround for the rest of the term",
+     "line": "There's no spare mattress until the summer swap.",
+     "reply": "I'll put a topper on it and manage.",
+     "explanationIfSpoken": "The line reports that no replacement will be available for a long stretch. The reply about a topper takes the practical route through a wait of that length. The reply about stripping the bed assumes a delivery today; the reply about standing it against the wall answers a request that was not made; the reply about the slats assumes the fault was traced to the frame.",
+     "kills": {
+      "0": "Since 'There's no spare mattress', stripping the bed for anyone arriving prepares for a delivery that is not coming.",
+      "2": "'until the summer swap' reports a wait, not a request to put the old mattress out, so standing it against the wall answers an instruction nobody gave.",
+      "3": "'There's no spare mattress' treats the mattress as the problem, so investigating the slats looks at a part the line does not raise."
+     }
+    },
+    {
+     "kind": "request",
+     "keyAct": "agrees and says exactly where the old one will go",
+     "line": "Can you leave the old one out in the corridor?",
+     "reply": "I'll stand it against the wall outside.",
+     "explanationIfSpoken": "The line asks the student to put the old mattress out for collection. The reply about standing it against the wall outside complies and settles how it will be left. The reply about stripping the bed responds to a delivery that was not announced; the reply about a topper assumes nothing is coming; the reply about the slats assumes the fault lies with the frame.",
+     "kills": {
+      "0": "'Can you leave the old one out' is a request, not word of a delivery, so stripping the bed before anyone gets there prepares for an arrival nobody announced.",
+      "1": "Being asked to put 'the old one out in the corridor' implies it is being taken away, so settling for a topper on it contradicts what was asked.",
+      "3": "'Can you leave the old one out in the corridor' concerns the mattress, so checking the slats investigates a part that was not mentioned."
+     }
+    },
+    {
+     "kind": "correction",
+     "keyAct": "follows the corrected diagnosis to the part worth checking",
+     "line": "It's the bed frame sagging, not the mattress.",
+     "reply": "I'll check whether the slats have slipped.",
+     "explanationIfSpoken": "The line corrects where the sag is coming from, moving it from the mattress to the frame underneath. The reply about checking whether the slats have slipped follows the correction to the component that would actually cause it. The reply about stripping the bed responds to a delivery that was not announced; the reply about a topper treats the mattress as the fault; the reply about standing it against the wall answers a request that was not made.",
+     "kills": {
+      "0": "'It's the bed frame sagging' announces no delivery, so stripping the bed before anyone arrives prepares for something that was not said.",
+      "1": "Because the sag is 'not the mattress', laying a topper over it treats a part the correction has just cleared.",
+      "2": "'It's the bed frame sagging' is a correction, not a request to put anything in the corridor, so standing the old mattress outside answers nothing."
+     }
+    }
+   ]
+  },
+  {
+   "localId": "crv7-b4-17",
+   "setting": "pest control visit",
+   "worlds": [
+    {
+     "kind": "neutral info",
+     "keyAct": "undertakes to pass the scope on to the neighbours",
+     "line": "They're treating the whole floor, not just your room.",
+     "reply": "I'll tell the others to clear their shelves.",
+     "explanationIfSpoken": "The line reports that the treatment covers every room on the floor. The reply undertaking to tell the others to clear their shelves acts on a scope that reaches beyond this room. The reply about putting food back assumes an all-clear; the reply about working in the library answers a request to be out that was not made; the reply about emptying a cupboard responds to a finding that was not reported.",
+     "kills": {
+      "1": "'They're treating the whole floor' means treatment is going ahead, so putting food back treats the matter as closed.",
+      "2": "'not just your room' describes scope rather than asking anyone to be out, so decamping to the library complies with a request nobody made.",
+      "3": "'They're treating the whole floor' reports coverage, not a discovery behind the units, so singling out that cupboard acts on a finding that was not given."
+     }
+    },
+    {
+     "kind": "good news",
+     "keyAct": "expresses relief and restores the room to normal",
+     "line": "The traps came back empty, so you're clear.",
+     "reply": "That's a weight off — I'll put the food back.",
+     "explanationIfSpoken": "The line reports the traps showing nothing and the room signed off. The reply expressing relief and putting the food back reverses the precautions an all-clear makes unnecessary. The reply about telling the others assumes a floor-wide treatment; the reply about the library answers a request to be out that was not made; the reply about emptying a cupboard responds to a finding that was not reported.",
+     "kills": {
+      "0": "'The traps came back empty' concerns this room being clear, so sending word for the others to clear their shelves passes on a treatment nobody announced.",
+      "2": "Because 'you're clear', there is nothing to be out of the room for, so working in the library answers a request that was not made.",
+      "3": "'The traps came back empty' is the opposite of a discovery, so emptying a cupboard ahead of work acts on a finding that was not made."
+     }
+    },
+    {
+     "kind": "request",
+     "keyAct": "agrees to be out and names where he will be",
+     "line": "Could you be out of the room this afternoon?",
+     "reply": "That's fine — I'll work in the library.",
+     "explanationIfSpoken": "The line asks the student to be elsewhere while the room is dealt with. The reply agreeing and naming the library complies and says where he will actually be. The reply about telling the others assumes a floor-wide scope; the reply about putting the food back assumes an all-clear; the reply about emptying a cupboard responds to a finding that was not reported.",
+     "kills": {
+      "0": "'Could you be out of the room' asks about this room only, so telling the others to clear their shelves acts on a scope that was not stated.",
+      "1": "Being asked to 'be out of the room this afternoon' means work is still to come, so putting food back closes the matter too early.",
+      "3": "'Could you be out of the room' is a request about where to be, not a report of droppings, so emptying that cupboard acts on a finding nobody gave."
+     }
+    },
+    {
+     "kind": "bad news",
+     "keyAct": "clears the affected area before the work starts",
+     "line": "They found droppings behind the kitchen units.",
+     "reply": "I'll empty that cupboard out before they start.",
+     "explanationIfSpoken": "The line reports evidence found at a specific spot in the kitchen. The reply emptying that cupboard before they start prepares the exact place the evidence was found. The reply about telling the others assumes a floor-wide treatment; the reply about putting the food back assumes an all-clear; the reply about the library answers a request to be out that was not made.",
+     "kills": {
+      "0": "'They found droppings' reports a finding in this kitchen, not a floor-wide programme, so telling the others to clear their shelves passes on a scope nobody gave.",
+      "1": "Because 'They found droppings behind the kitchen units', putting food back into that area is the opposite of what the finding calls for.",
+      "2": "'behind the kitchen units' reports where evidence was found, not a request to be elsewhere, so working in the library answers a request nobody made."
+     }
+    }
+   ]
+  },
+  {
+   "localId": "crv7-b4-18",
+   "setting": "heating issue",
+   "worlds": [
+    {
+     "kind": "bad news",
+     "keyAct": "takes a step to get through a cold night",
+     "line": "The boiler's down for the whole block tonight.",
+     "reply": "I'll borrow another blanket from the desk.",
+     "explanationIfSpoken": "The line reports no heating anywhere in the building for the night. The reply about borrowing another blanket meets a cold night with the one thing the desk can supply. The reply about returning the fan heater assumes the heating is back; the reply about the bottom of the radiator answers a question that was not asked; the reply about getting through the night accepts a loan that was not offered.",
+     "kills": {
+      "1": "Since 'The boiler's down', taking the fan heater back downstairs gives up the only heat available.",
+      "2": "'for the whole block tonight' reports an outage rather than asking about one radiator, so describing where it is warm answers nothing.",
+      "3": "'The boiler's down for the whole block' is a report, not an offer of a heater, so accepting one takes up something that was not offered."
+     }
+    },
+    {
+     "kind": "good news",
+     "keyAct": "undoes the temporary measure",
+     "line": "The heating's back on across the building now.",
+     "reply": "I'll take the fan heater back downstairs.",
+     "explanationIfSpoken": "The line reports the heating restored throughout the building. The reply returning the fan heater downstairs puts back the stopgap that a working system makes unnecessary. The reply about borrowing a blanket assumes a cold night; the reply about the bottom of the radiator answers a question that was not asked; the reply about getting through the night accepts a loan that was not offered.",
+     "kills": {
+      "0": "'The heating's back on' removes the cold night, so borrowing another blanket from the desk prepares for a problem that has ended.",
+      "2": "'back on across the building' is news rather than a question about one radiator, so reporting a cold top answers nothing that was asked.",
+      "3": "'The heating's back on' offers no heater, so accepting the loan of one responds to an offer that was not made."
+     }
+    },
+    {
+     "kind": "question",
+     "keyAct": "answers a diagnostic question about the radiator",
+     "line": "Is your radiator warm at the top or the bottom?",
+     "reply": "Only along the bottom, the top stays cold.",
+     "explanationIfSpoken": "The line asks the student to describe where the radiator is getting warm, which is the standard way of narrowing the fault. The reply saying only along the bottom, with the top cold, gives exactly the observation the question asks for. The reply about borrowing a blanket assumes the whole boiler is down; the reply about the fan heater assumes the heating is restored; the reply about getting through the night accepts a loan that was not offered.",
+     "kills": {
+      "0": "'Is your radiator warm at the top' asks about one room's radiator, so borrowing a blanket answers a building-wide outage nobody reported.",
+      "1": "Asking whether it is warm 'at the top or the bottom' reports no restoration, so taking the fan heater back downstairs acts on news that was not given.",
+      "3": "'Is your radiator warm at the top or the bottom' asks for an observation, not offers a heater, so accepting one leaves the question unanswered."
+     }
+    },
+    {
+     "kind": "offer",
+     "keyAct": "accepts the loan of the heater",
+     "line": "I can lend you my electric heater tonight.",
+     "reply": "That would get me through the night.",
+     "explanationIfSpoken": "The line offers the student the loan of a heater for the evening. The reply that it would get him through the night accepts the offer and says what it does for him. The reply about borrowing a blanket bypasses the offer just made; the reply about the fan heater assumes the heating is restored; the reply about the bottom of the radiator answers a question that was not asked.",
+     "kills": {
+      "0": "'I can lend you my electric heater' puts a heater on the table, so going to the desk for a blanket ignores what was just offered.",
+      "1": "An offer to 'lend you my electric heater' means the cold is ongoing, so returning a fan heater downstairs acts as though the problem were over.",
+      "2": "'I can lend you my electric heater tonight' asks nothing about the radiator, so describing where it is warm answers a question that was not put."
+     }
+    }
+   ]
+  },
+  {
+   "localId": "crv7-b4-19",
+   "setting": "window repair",
+   "worlds": [
+    {
+     "kind": "neutral info",
+     "keyAct": "adopts a stopgap for the interval",
+     "line": "The glazier's booked, but he's not coming till next week.",
+     "reply": "I'll tape the crack over until then.",
+     "explanationIfSpoken": "The line reports the repair arranged but some way off. The reply about taping the crack over until then covers the gap between now and the visit. The reply about the desk assumes the window is finished; the reply about moving rooms assumes the repair was refused; the reply about airing through the other one answers a request that was not made.",
+     "kills": {
+      "1": "'he's not coming till next week' means the window is still broken, so putting a desk back under it acts as though the work were done.",
+      "2": "Because 'The glazier's booked', a repair is going ahead, so asking about moving rooms responds to a refusal that was not given.",
+      "3": "'The glazier's booked' is information about timing, not a request to keep the window shut, so switching to the other one answers nothing asked."
+     }
+    },
+    {
+     "kind": "good news",
+     "keyAct": "restores the room's layout now the work is done",
+     "line": "The window's fixed and the frame's been resealed.",
+     "reply": "I can put my desk back under it now.",
+     "explanationIfSpoken": "The line reports the window repaired and the frame made good. The reply putting the desk back under it returns the room to its normal arrangement once the work is finished. The reply about taping the crack assumes a wait; the reply about moving rooms assumes a refusal; the reply about airing through the other one answers a request that was not made.",
+     "kills": {
+      "0": "Since 'The window's fixed', taping a crack over covers damage that is no longer there.",
+      "2": "'the frame's been resealed' reports completed work, so asking about moving rooms responds to a job that was said to be impossible.",
+      "3": "'The window's fixed' is news of a repair, not a request to keep it closed, so airing through the other window answers a request nobody made."
+     }
+    },
+    {
+     "kind": "bad news",
+     "keyAct": "asks about temporary accommodation elsewhere",
+     "line": "They can't repair it, the whole unit needs replacing.",
+     "reply": "I'll ask about moving rooms while that happens.",
+     "explanationIfSpoken": "The line reports the window beyond repair, with a full replacement required. The reply about asking to move rooms while that happens responds to work of a size that makes the room hard to live in. The reply about taping the crack treats it as a short wait; the reply about the desk assumes the job is done; the reply about airing through the other one answers a request that was not made.",
+     "kills": {
+      "0": "'the whole unit needs replacing' is more than a crack, so taping it over treats a replacement job as a small repair.",
+      "1": "Because 'They can't repair it', putting a desk back under the window acts on a completion that has not happened.",
+      "3": "'They can't repair it' reports a verdict, not a request to keep the window shut, so airing through the other one answers nothing asked."
+     }
+    },
+    {
+     "kind": "request",
+     "keyAct": "agrees by naming how he will ventilate instead",
+     "line": "Could you keep that window shut in the meantime?",
+     "reply": "I'll air the room through the other one.",
+     "explanationIfSpoken": "The line asks the student to leave the damaged window closed until it is dealt with. The reply about airing the room through the other one complies while solving the ventilation the request costs him. The reply about taping the crack responds to a timing report nobody gave; the reply about the desk assumes the repair is finished; the reply about moving rooms assumes a refusal.",
+     "kills": {
+      "0": "'Could you keep that window shut' is a request, not a booking date, so taping the crack until then acts on a schedule nobody gave.",
+      "1": "Being asked to keep the window 'shut in the meantime' means the work is outstanding, so putting the desk back under it treats it as finished.",
+      "2": "'Could you keep that window shut in the meantime' anticipates a repair, so asking about moving rooms responds to a refusal that was not given."
+     }
+    }
+   ]
+  },
+  {
+   "localId": "crv7-b4-20",
+   "setting": "hall council meeting",
+   "worlds": [
+    {
+     "kind": "neutral info",
+     "keyAct": "undertakes to prepare a submission in time",
+     "line": "The council meets Thursday with the budget on the agenda.",
+     "reply": "I'll write the laundry proposal up before then.",
+     "explanationIfSpoken": "The line reports when the council sits and that money is being discussed. The reply undertaking to write the laundry proposal up before then gets a submission ready for the meeting that is coming. The reply about pricing racks assumes a proposal already passed; the reply about finding out the objections assumes it was voted down; the reply about a weight off accepts an offer to present that was not made.",
+     "kills": {
+      "1": "'The council meets Thursday' places the meeting ahead, so pricing up racks acts on a decision that has not been taken.",
+      "2": "Because the council only 'meets Thursday', nothing has been voted on, so asking what they objected to chases an outcome that does not exist.",
+      "3": "'with the budget on the agenda' announces a meeting rather than offering to speak for anyone, so treating it as a load lifted takes up an offer nobody made."
+     }
+    },
+    {
+     "kind": "good news",
+     "keyAct": "moves to the next practical step after approval",
+     "line": "Your bike-shed proposal got through the council.",
+     "reply": "I'll start pricing up the racks, then.",
+     "explanationIfSpoken": "The line reports the proposal approved by the council. The reply about starting to price up the racks moves an approved scheme towards being built. The reply about writing the proposal up assumes it has not been submitted; the reply about the objections assumes a rejection; the reply about a weight off accepts an offer to present that was not made.",
+     "kills": {
+      "0": "'got through the council' means the proposal has already been heard, so writing it up beforehand redoes work that is finished.",
+      "2": "Since it 'got through the council', asking what they objected to hunts for a rejection that did not happen.",
+      "3": "'Your bike-shed proposal got through' is a result, not an offer to present it, so treating it as a load lifted responds to an offer nobody made."
+     }
+    },
+    {
+     "kind": "bad news",
+     "keyAct": "sets out to learn the grounds for the rejection",
+     "line": "The council voted your proposal down last night.",
+     "reply": "I'll find out what they objected to.",
+     "explanationIfSpoken": "The line reports the proposal rejected at the council's last sitting. The reply about finding out what they objected to seeks the grounds, which is the only useful move after a rejection. The reply about writing it up assumes it has yet to be submitted; the reply about pricing racks assumes approval; the reply about a weight off accepts an offer to present that was not made.",
+     "kills": {
+      "0": "'voted your proposal down last night' means the meeting has been held, so preparing a write-up before then works to a deadline that has passed.",
+      "1": "Because the council 'voted your proposal down', pricing up racks builds on an approval that was refused.",
+      "3": "'The council voted your proposal down' reports an outcome, not an offer to speak for him, so treating it as a load lifted answers nothing offered."
+     }
+    },
+    {
+     "kind": "offer",
+     "keyAct": "accepts an offer to be represented at the meeting",
+     "line": "I could present the proposal for you on Thursday.",
+     "reply": "That would take a lot off my plate.",
+     "explanationIfSpoken": "The line offers to speak to the proposal at the meeting in the student's place. The reply that it would take a lot off his plate accepts the offer and says what it spares him. The reply about writing it up ignores an offer of help; the reply about pricing racks assumes approval; the reply about the objections assumes a rejection.",
+     "kills": {
+      "0": "'I could present the proposal for you' offers help with a document that exists, so undertaking to write it up first answers something that was not raised.",
+      "1": "An offer to present it 'on Thursday' means nothing has been decided, so pricing up racks acts on an approval that has not been given.",
+      "2": "'I could present the proposal for you on Thursday' looks ahead to the meeting, so asking what they objected to chases a rejection that has not happened."
+     }
+    }
+   ]
+  }
+ ]
+}

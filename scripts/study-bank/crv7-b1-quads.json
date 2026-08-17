@@ -1,0 +1,1088 @@
+{
+  "cohort": "cr-v7",
+  "stage": 2,
+  "batch": "b1",
+  "method": "symmetric four-world authoring, post-hoc seeded key selection",
+  "items": [
+    {
+      "localId": "crv7-b1-01",
+      "setting": "registrar's counter",
+      "worlds": [
+        {
+          "kind": "good news",
+          "keyAct": "relaying a completed dispatch to a third party",
+          "line": "Your transcript went out in yesterday's mail.",
+          "reply": "Great, I'll tell the program to watch for it this week.",
+          "explanationIfSpoken": "The clerk reports that the document has already been sent, which closes the request. The reply that tells the program to watch for it treats the matter as finished and passes the news on to the party waiting for it. The reply asking which office placed a hold invents an obstacle this line rules out; the reply brushing off the delay and naming a day to check back treats a completed request as still pending; and the reply owning a mistake and refilling a form assumes a paperwork error that was never mentioned.",
+          "kills": {
+            "1": "The line says the transcript \"went out in yesterday's mail\", so nothing is blocking it and there is no office to go and ask about a hold.",
+            "2": "Since it already \"went out in yesterday's mail\", there is nothing left in a queue and no reason to check back about it.",
+            "3": "The transcript \"went out\" as requested, so no form was wrong and there is nothing to fill in again."
+          }
+        },
+        {
+          "kind": "bad news",
+          "keyAct": "asking where to go to clear an obstacle",
+          "line": "We can't process it — there's a hold on your account.",
+          "reply": "Which office put the hold on? I'll go clear it.",
+          "explanationIfSpoken": "The clerk reports a block that the student, not the office, has to remove. The reply that asks where the block came from and promises to go and clear it is what a cooperative person does when told an obstacle exists. The reply telling the program to expect the transcript would be false, since nothing was sent; the reply brushing off the delay and naming a day to check back assumes waiting will help when the student must act; and the reply about refilling a form assumes the wrong problem.",
+          "kills": {
+            "0": "The line says \"there's a hold on your account\" and that the office \"can't process it\", so nothing has been sent and nobody can be told to expect it.",
+            "2": "Waiting changes nothing here: the clerk says \"We can't process it\" until the student removes the block.",
+            "3": "The obstacle named is \"a hold on your account\", not a form filled in wrongly."
+          }
+        },
+        {
+          "kind": "neutral info",
+          "keyAct": "committing to stop chasing and wait",
+          "line": "It's still sitting in the queue behind the summer backlog.",
+          "reply": "No rush then — I'll check back on Friday.",
+          "explanationIfSpoken": "The clerk reports an ordinary delay with nothing wrong and nothing for the student to do. The reply that shrugs off the delay and names a later day to check back accepts the wait without pressing, which is the cooperative response to a queue. The reply telling the program to expect the transcript would be premature; the reply hunting for an office that placed a hold assumes a block that was not mentioned; and the reply owning a filing mistake assumes an error the clerk did not report.",
+          "kills": {
+            "0": "It is \"still sitting in the queue\", so nothing has left the office and nobody can be told to watch for it.",
+            "1": "Nothing is blocked — the delay is only that it sits \"behind the summer backlog\".",
+            "3": "The request is intact and merely \"still sitting in the queue\", so no form needs redoing."
+          }
+        },
+        {
+          "kind": "correction",
+          "keyAct": "accepting the error and redoing the paperwork",
+          "line": "You filled in the graduate form, not the undergraduate one.",
+          "reply": "That's my mistake, let me fill in the right one.",
+          "explanationIfSpoken": "The clerk corrects which form was used, so the request cannot go forward as submitted. The reply that owns the error and starts the correct form is the natural repair. The reply telling the program to expect the transcript assumes a dispatch that has not happened; the reply asking which office placed a hold names a problem the clerk did not describe; and the reply brushing off the delay and naming a day to check back treats a rejected form as if it were queued.",
+          "kills": {
+            "0": "The student \"filled in the graduate form\", which was the wrong one, so nothing has been mailed.",
+            "1": "There is no account problem here — the trouble is only that the form was \"not the undergraduate one\".",
+            "2": "Nothing is waiting in line; the clerk says the student \"filled in the graduate form\" by mistake."
+          }
+        }
+      ]
+    },
+    {
+      "localId": "crv7-b1-02",
+      "setting": "department office front desk",
+      "worlds": [
+        {
+          "kind": "good news",
+          "keyAct": "expressing relief and disclosing the cost carried",
+          "line": "Your reimbursement cleared — it'll show up on next payroll.",
+          "reply": "That's a relief; I'd been carrying it on my card.",
+          "explanationIfSpoken": "The staff member reports that the claim has been approved and paid. The reply expressing relief and mentioning the card that had been carrying the cost fits a payment finally coming through. The reply asking whether scans are acceptable answers a request for documents that was never made; the reply promising to walk the form to another office assumes it was misdirected; and the reply about pulling receipts and resubmitting assumes a refusal that did not occur.",
+          "kills": {
+            "1": "The line says \"Your reimbursement cleared\", so no documents are outstanding and there is nothing to ask about submitting.",
+            "2": "\"Your reimbursement cleared\" at this desk, so the claim is settled here and there is nothing to carry to another office.",
+            "3": "Since \"Your reimbursement cleared\", no part of the claim was refused and nothing needs resubmitting."
+          }
+        },
+        {
+          "kind": "request",
+          "keyAct": "clarifying the acceptable format before complying",
+          "line": "Could you bring in the original boarding passes this week?",
+          "reply": "Sure — do scans work, or does it have to be paper?",
+          "explanationIfSpoken": "The staff member asks the student to supply supporting documents. The reply that agrees and checks what form the documents may take is exactly the cooperative next move when told to bring something in. The reply expressing relief about a card assumes money has arrived; the reply about walking a form to another office assumes it was misdirected; and the reply pulling receipts to resubmit assumes something was refused.",
+          "kills": {
+            "0": "This is a request to \"bring in the original boarding passes\", not a payment notice, so nothing has cleared yet.",
+            "2": "The desk wants documents brought here — \"bring in the original boarding passes\" — so nothing is being sent elsewhere.",
+            "3": "Nothing was refused; the office asks the student to add \"the original boarding passes\", not to remove anything."
+          }
+        },
+        {
+          "kind": "correction",
+          "keyAct": "committing to redirect the paperwork",
+          "line": "The travel form goes to the dean's office, not us.",
+          "reply": "I'll walk it over there this afternoon, then.",
+          "explanationIfSpoken": "The staff member corrects where the paperwork belongs. The reply that undertakes to carry it to the right place this afternoon is the obvious repair when told you are at the wrong counter. The reply expressing relief about money assumes a payment that has not been made; the reply asking whether scans are acceptable answers a request for documents that was not made; and the reply pulling receipts to resubmit assumes a decision that has not been taken.",
+          "kills": {
+            "0": "Nothing has been decided about money; the line only says the form \"goes to the dean's office\".",
+            "1": "No documents were asked for — the point is where the form \"goes to the dean's office\".",
+            "3": "Nothing was denied; the form simply \"goes to the dean's office\" instead of here."
+          }
+        },
+        {
+          "kind": "bad news",
+          "keyAct": "conceding the ruling and revising the claim",
+          "line": "We're not covering meals for a single-day trip.",
+          "reply": "Fair enough — I'll pull those receipts and resubmit.",
+          "explanationIfSpoken": "The staff member rules part of the claim ineligible. The reply that accepts the ruling and undertakes to strip out the disallowed items and submit again is the cooperative way to salvage the rest. The reply expressing relief about money assumes a payment; the reply asking whether scans are acceptable assumes a document request; and the reply about carrying the form elsewhere assumes it was at the wrong desk rather than partly refused.",
+          "kills": {
+            "0": "\"We're not covering meals\" is a refusal, not a payment, so there is no relief to express.",
+            "1": "No documents were requested; the issue is that the office is \"not covering meals\".",
+            "2": "This office is the one deciding — \"We're not covering meals\" — so the form is in the right place."
+          }
+        }
+      ]
+    },
+    {
+      "localId": "crv7-b1-03",
+      "setting": "thesis supervision meeting",
+      "worlds": [
+        {
+          "kind": "good news",
+          "keyAct": "redirecting effort to the next piece of work",
+          "line": "Chapter three works now — I'd send it to your committee.",
+          "reply": "Then I'll spend this week on the conclusion instead.",
+          "explanationIfSpoken": "The supervisor releases the chapter and advises sending it on. The reply that moves the week's work to a later part of the thesis follows from a chapter that no longer needs attention. The reply asking where the argument breaks down contradicts a positive verdict; the reply accepting a Thursday working session takes up an offer that was not made; and the reply about a stale file assumes the supervisor read the wrong draft.",
+          "kills": {
+            "1": "The supervisor says \"Chapter three works now\", so there is no breakdown to point to.",
+            "2": "No meeting was proposed; the advice is to \"send it to your committee\".",
+            "3": "The verdict is on the current chapter — it \"works now\" — so no wrong version was read."
+          }
+        },
+        {
+          "kind": "bad news",
+          "keyAct": "asking for a diagnosis of the failure",
+          "line": "The core argument in chapter three still doesn't hold.",
+          "reply": "Where does the argument break down for you?",
+          "explanationIfSpoken": "The supervisor delivers a substantive negative verdict without saying where the trouble lies. Asking where it breaks down is what a student needs to know in order to repair it. The reply moving on to the conclusion abandons a chapter that has just failed; the reply accepting a working session takes up an offer that was not made; and the reply about resending the current file assumes the wrong draft was read.",
+          "kills": {
+            "0": "The argument \"still doesn't hold\", so the week belongs to this chapter, not to a later one.",
+            "2": "No time was offered — the supervisor only reports that the argument \"doesn't hold\".",
+            "3": "The complaint is about \"The core argument\" itself, not about which file was opened."
+          }
+        },
+        {
+          "kind": "offer",
+          "keyAct": "accepting the working session and preparing for it",
+          "line": "I could sit with you Thursday and work through chapter three.",
+          "reply": "Thursday's good — I'll bring a printout.",
+          "explanationIfSpoken": "The supervisor offers time to work on the chapter together. Accepting the day and undertaking to bring something to work from is the natural uptake of an offer to sit down together. The reply shifting the week to the conclusion assumes the chapter is finished; the reply asking where the argument breaks down assumes a verdict that was not given; and the reply about resending a current file assumes a mix-up that was not mentioned.",
+          "kills": {
+            "0": "An offer to \"sit with you Thursday\" is not a release of the chapter, so the week cannot move on.",
+            "1": "No fault was named; the supervisor only proposes to \"work through chapter three\" together.",
+            "3": "Nothing suggests the wrong draft was read — the offer is simply to \"sit with you Thursday\"."
+          }
+        },
+        {
+          "kind": "correction",
+          "keyAct": "explaining the mismatch and resending the right file",
+          "line": "The version I read was your October draft, not the new one.",
+          "reply": "That explains the notes — I'll resend the current file.",
+          "explanationIfSpoken": "The supervisor realises the comments were made on an out-of-date draft. The reply that makes sense of the comments in that light and undertakes to send the current file is the obvious repair. The reply moving on to the conclusion assumes an approval that was not given; the reply asking where the argument breaks down treats stale comments as a verdict; and the reply accepting a Thursday session takes up an offer that was not made.",
+          "kills": {
+            "0": "Reading \"your October draft\" gives no verdict at all on the current chapter.",
+            "1": "The trouble is the file, which was \"not the new one\", rather than the argument.",
+            "2": "No meeting is proposed; the line is only about which \"version I read\"."
+          }
+        }
+      ]
+    },
+    {
+      "localId": "crv7-b1-04",
+      "setting": "tutoring center intake desk",
+      "worlds": [
+        {
+          "kind": "neutral info",
+          "keyAct": "noting the convenience of continuity",
+          "line": "Your tutor's the same one you had in the fall.",
+          "reply": "Good — I won't have to explain where I got stuck.",
+          "explanationIfSpoken": "The desk reports that the student has been matched with someone already familiar with their work. The reply noting that no back-story will need explaining follows directly from continuity with a previous tutor. The reply offering to move to a morning assumes nothing is available; the reply promising to fill in a week of availability answers a request that was not made; and the reply taking a newly opened slot assumes a fresh offer.",
+          "kills": {
+            "1": "The tutor is already assigned — \"the same one you had\" — so no time needs shifting to free something up.",
+            "2": "No availability was requested; the match is done with \"the same one you had in the fall\".",
+            "3": "A named tutor is already in place, \"the same one you had\", so there is no new opening to take."
+          }
+        },
+        {
+          "kind": "bad news",
+          "keyAct": "offering flexibility to unblock the match",
+          "line": "Nobody's free for statistics in your Tuesday slot.",
+          "reply": "I could move to a morning if that opens anything.",
+          "explanationIfSpoken": "The desk reports that no tutor can be matched at the time the student asked for. Offering to move to a different part of the day is the cooperative way to give the desk something to work with. The reply about not having to explain where they got stuck assumes a familiar tutor; the reply promising to fill in availability answers a request that was not made; and the reply taking a slot assumes an opening that was just denied.",
+          "kills": {
+            "0": "\"Nobody's free for statistics\" means no tutor at all has been assigned, familiar or otherwise.",
+            "2": "The obstacle is not a missing form — it is that \"Nobody's free for statistics\".",
+            "3": "There is nothing to take, since \"Nobody's free\" at the hour in question."
+          }
+        },
+        {
+          "kind": "request",
+          "keyAct": "committing to supply the missing information",
+          "line": "Could you fill in your availability before we match you?",
+          "reply": "I'll fill my whole week in before tonight.",
+          "explanationIfSpoken": "The desk asks for the student's schedule as a precondition for matching. Undertaking to enter a full week straight away is the direct compliance the request calls for. The reply about not having to explain where they got stuck assumes a tutor is already assigned; the reply offering to move to a morning assumes a refusal; and the reply taking a slot assumes an offer that has not been made.",
+          "kills": {
+            "0": "Nobody has been matched: the desk asks for availability \"before we match you\".",
+            "1": "Nothing has been refused — the desk only asks the student to \"fill in your availability\".",
+            "3": "There is no slot on the table yet; matching comes only \"before we match you\" is satisfied."
+          }
+        },
+        {
+          "kind": "offer",
+          "keyAct": "accepting the offered slot",
+          "line": "There's an opening with Ravi at your Tuesday time.",
+          "reply": "I'll take it — Tuesdays are already clear for me.",
+          "explanationIfSpoken": "The desk offers a specific tutor at the hour the student wanted. Accepting and confirming that the hour is free is the natural uptake. The reply about not having to explain where they got stuck assumes the tutor is a familiar one; the reply offering to move to a morning assumes the hour does not work; and the reply promising to fill in availability answers a request that was not made.",
+          "kills": {
+            "0": "\"There's an opening with Ravi\" introduces a tutor by name, not the one from a previous term.",
+            "1": "The hour asked for works — the opening is \"at your Tuesday time\" — so nothing needs moving.",
+            "2": "No form is needed once \"There's an opening\" has been offered outright."
+          }
+        }
+      ]
+    },
+    {
+      "localId": "crv7-b1-05",
+      "setting": "writing center reception",
+      "worlds": [
+        {
+          "kind": "bad news",
+          "keyAct": "committing to rebook the lost session",
+          "line": "Your consultant called in sick, so this hour's cancelled.",
+          "reply": "I'll rebook myself for later in the week.",
+          "explanationIfSpoken": "Reception reports that the appointment cannot go ahead at all. Undertaking to book another time later in the week is what a student does when a session falls through. The reply asking about a building assumes a change of room rather than a cancellation; the reply about printing a sheet beforehand answers an instruction that was not given; and the reply accepting a full hour takes up an offer of time that no longer exists.",
+          "kills": {
+            "1": "Nothing moved anywhere — the line says \"this hour's cancelled\".",
+            "2": "No future requirement was named; the news is only that the consultant \"called in sick\".",
+            "3": "There is no session left to lengthen once \"this hour's cancelled\"."
+          }
+        },
+        {
+          "kind": "neutral info",
+          "keyAct": "checking which building is meant",
+          "line": "We've moved to the annex — the main room's being painted.",
+          "reply": "Is that the building behind the chapel?",
+          "explanationIfSpoken": "Reception reports a temporary change of room, and the new location may not be obvious. Checking which building is meant is exactly what a student needs before walking over. The reply about rebooking assumes the session is off; the reply about printing a sheet beforehand answers an instruction that was not given; and the reply accepting a full hour takes up an offer that was not made.",
+          "kills": {
+            "0": "Nothing was cancelled — \"We've moved to the annex\" and the session still stands.",
+            "2": "No document was requested; the point is that \"the main room's being painted\".",
+            "3": "No extra time is on offer — only the room changed when \"We've moved to the annex\"."
+          }
+        },
+        {
+          "kind": "request",
+          "keyAct": "confirming compliance and where the item comes from",
+          "line": "Bring the assignment sheet next time, not just the draft.",
+          "reply": "It's on the course site — I'll print it beforehand.",
+          "explanationIfSpoken": "The consultant asks the student to bring an extra document to the following session. Saying where the document lives and undertaking to print it in advance is direct compliance with the request. The reply about rebooking assumes a cancellation; the reply asking about a building assumes a change of room; and the reply accepting a full hour takes up an offer of time that was not made.",
+          "kills": {
+            "0": "Nothing is cancelled; the consultant is planning what to \"Bring\" to the \"next time\" they meet.",
+            "1": "No room change is mentioned — the instruction is about what to bring \"next time\".",
+            "3": "Nothing longer was offered; the ask is only for \"the assignment sheet\"."
+          }
+        },
+        {
+          "kind": "offer",
+          "keyAct": "accepting the longer session and justifying the need",
+          "line": "I can give you the full hour if you want it.",
+          "reply": "Yes please — the introduction alone will take a while.",
+          "explanationIfSpoken": "The consultant offers to extend the session to its full length. Accepting and naming the part of the draft that will absorb the time is the natural uptake of an offer of more time. The reply about rebooking assumes a cancellation; the reply asking about a building assumes a change of room; and the reply about printing a sheet beforehand answers an instruction that was not given.",
+          "kills": {
+            "0": "An offer of \"the full hour\" is the opposite of a session falling through.",
+            "1": "There is nowhere else to go — the offer is to work here for \"the full hour\".",
+            "2": "No materials were asked for; the offer concerns \"the full hour if you want it\"."
+          }
+        }
+      ]
+    },
+    {
+      "localId": "crv7-b1-06",
+      "setting": "studio music lesson",
+      "worlds": [
+        {
+          "kind": "correction",
+          "keyAct": "swapping the wrong music out",
+          "line": "You're down for the Brahms this term, not the Schubert.",
+          "reply": "I'll swap the music in my folder tonight.",
+          "explanationIfSpoken": "The teacher corrects which piece the student is registered to perform. Undertaking to change the music carried in the folder follows from having the wrong score prepared. The reply about arranging rehearsal times assumes an accompanist has been found; the reply about getting something up to tempo answers a request to play that was not made; and the reply about sitting in on earlier juries assumes a running order was given.",
+          "kills": {
+            "1": "No accompanist is mentioned; the line only settles that the student is \"down for the Brahms\".",
+            "2": "Nothing was asked to be played on a date — the line assigns repertoire, \"the Brahms this term\".",
+            "3": "No running order is given by \"the Brahms this term, not the Schubert\"."
+          }
+        },
+        {
+          "kind": "good news",
+          "keyAct": "taking the initiative on rehearsals",
+          "line": "We've found you an accompanist for the recital.",
+          "reply": "I'll get rehearsal times sorted with them this week.",
+          "explanationIfSpoken": "The teacher reports that the missing player has been found. Moving straight to arranging rehearsal times is what follows once there is someone to rehearse with. The reply about swapping music in a folder assumes a change of piece; the reply about getting something up to tempo answers a request to play that was not made; and the reply about sitting in on earlier juries assumes a running order.",
+          "kills": {
+            "0": "No repertoire changes here — the news is only that \"We've found you an accompanist\".",
+            "2": "Nothing is requested for a class; the line reports that \"We've found you an accompanist\".",
+            "3": "An \"accompanist for the recital\" says nothing about the order of juries."
+          }
+        },
+        {
+          "kind": "request",
+          "keyAct": "committing to have the piece ready",
+          "line": "Play me the second movement at Friday's studio class.",
+          "reply": "I'll have it up to tempo by then.",
+          "explanationIfSpoken": "The teacher asks the student to perform a specific movement at an upcoming class. Undertaking to have it up to speed by that class is direct compliance. The reply about swapping music in a folder assumes a change of piece; the reply about rehearsal times assumes an accompanist has been found; and the reply about sitting in on earlier juries assumes a running order was announced.",
+          "kills": {
+            "0": "No wrong piece is named — the student is asked to \"Play me the second movement\".",
+            "1": "No accompanist is involved in \"Friday's studio class\".",
+            "3": "The line fixes a single task at \"Friday's studio class\", not a jury order."
+          }
+        },
+        {
+          "kind": "neutral info",
+          "keyAct": "drawing a plan from the running order",
+          "line": "Your jury's the last one on the Thursday list.",
+          "reply": "Then I can sit in on the earlier ones.",
+          "explanationIfSpoken": "The teacher reports where the student falls in the day's running order. Realising that everything else happens first, and planning to watch it, follows directly from being placed at the end. The reply about swapping music assumes a change of piece; the reply about rehearsal times assumes an accompanist; and the reply about being up to tempo answers a request to play that was not made.",
+          "kills": {
+            "0": "No piece is corrected — the line only places the student \"last one on the Thursday list\".",
+            "1": "Nobody is assigned to play alongside; the line concerns only \"the Thursday list\".",
+            "2": "Nothing is requested for a class; the jury is \"on the Thursday list\"."
+          }
+        }
+      ]
+    },
+    {
+      "localId": "crv7-b1-07",
+      "setting": "language lab",
+      "worlds": [
+        {
+          "kind": "bad news",
+          "keyAct": "proposing a workaround for the closure",
+          "line": "The recording booths are down until the software's reinstalled.",
+          "reply": "I'll do mine on my laptop and upload it.",
+          "explanationIfSpoken": "The lab attendant reports that the equipment cannot be used for now. Proposing to record elsewhere and upload the file is the practical way around a closure. The reply about coming at a particular time assumes the hours are the issue; the reply about renaming files answers a filing instruction that was not given; and the reply about guessing at buttons takes up an offer of help that was not made.",
+          "kills": {
+            "1": "Opening times are beside the point while \"The recording booths are down\".",
+            "2": "No naming rule was given; the news is that \"The recording booths are down\".",
+            "3": "Nothing can be demonstrated on equipment that is \"down until the software's reinstalled\"."
+          }
+        },
+        {
+          "kind": "neutral info",
+          "keyAct": "deciding when to come in",
+          "line": "The lab opens an hour earlier on Fridays now.",
+          "reply": "That's when I'll come — afternoons are always packed.",
+          "explanationIfSpoken": "The attendant reports a change to the lab's opening times. Choosing the newly available stretch and saying why the usual one is unattractive is a natural response to hearing about extra hours. The reply about recording on a laptop assumes the booths are unusable; the reply about renaming files answers an instruction that was not given; and the reply about guessing at buttons takes up an offer that was not made.",
+          "kills": {
+            "0": "Nothing is broken — the lab simply \"opens an hour earlier\" than before.",
+            "2": "No file convention appears in \"opens an hour earlier on Fridays\".",
+            "3": "No help was offered; the news is only about when the lab \"opens an hour earlier\"."
+          }
+        },
+        {
+          "kind": "request",
+          "keyAct": "committing to fix past filings as well",
+          "line": "Save your files under your student ID, not your name.",
+          "reply": "I'll rename the ones I've already left there.",
+          "explanationIfSpoken": "The attendant gives a filing rule for work stored in the lab. Undertaking to bring earlier files into line with the rule is thorough compliance with an instruction about naming. The reply about recording on a laptop assumes the booths are unusable; the reply about coming at a particular hour assumes the times changed; and the reply about guessing at buttons takes up an offer of help that was not made.",
+          "kills": {
+            "0": "Nothing stops the equipment being used — the student is told how to \"Save your files\".",
+            "1": "No hours appear in \"Save your files under your student ID\".",
+            "3": "No walkthrough is offered — only the instruction to \"Save your files under your student ID\"."
+          }
+        },
+        {
+          "kind": "offer",
+          "keyAct": "accepting the demonstration and admitting the gap",
+          "line": "I can walk you through the pronunciation tool now.",
+          "reply": "Yes — I've been guessing at half its buttons.",
+          "explanationIfSpoken": "The attendant offers to demonstrate a piece of software. Accepting and admitting to having muddled through it is the natural uptake of an offer to be shown how something works. The reply about recording on a laptop assumes the booths are unusable; the reply about coming at a particular hour assumes the times changed; and the reply about renaming files answers a filing instruction that was not given.",
+          "kills": {
+            "0": "The software is usable — the offer is to \"walk you through the pronunciation tool\" right away.",
+            "1": "No schedule change is stated; the offer concerns \"the pronunciation tool now\".",
+            "2": "No filing rule is given; the offer is to \"walk you through the pronunciation tool\"."
+          }
+        }
+      ]
+    },
+    {
+      "localId": "crv7-b1-08",
+      "setting": "field-trip briefing",
+      "worlds": [
+        {
+          "kind": "correction",
+          "keyAct": "passing the corrected detail on to others",
+          "line": "We leave from the north gate, not the science building.",
+          "reply": "I'll pass that on to the people I'm riding with.",
+          "explanationIfSpoken": "The organiser corrects the meeting point for departure. Undertaking to tell the others travelling together is what a student does with a detail their group would otherwise get wrong. The reply about using the weekend for reading assumes the trip is off; the reply about borrowing boots answers a kit instruction that was not given; and the reply about asking a roommate takes up a spare-seat offer that was not made.",
+          "kills": {
+            "1": "The trip is going ahead — \"We leave from the north gate\" as planned.",
+            "2": "No kit was requested; the line only fixes where \"We leave from\".",
+            "3": "No seat is offered; the line corrects the meeting point, \"not the science building\"."
+          }
+        },
+        {
+          "kind": "bad news",
+          "keyAct": "repurposing the freed time",
+          "line": "The coach company cancelled, so the trip's off this weekend.",
+          "reply": "I'll use the weekend for the reading instead.",
+          "explanationIfSpoken": "The organiser reports that the trip will not happen. Putting the freed days to another use is the natural response to a cancellation. The reply about passing on a meeting point assumes the trip is running; the reply about borrowing boots assumes a kit instruction; and the reply about asking a roommate takes up an offer of a seat that no longer exists.",
+          "kills": {
+            "0": "There is no meeting point worth relaying once \"the trip's off this weekend\".",
+            "2": "No boots are needed if \"the trip's off this weekend\".",
+            "3": "No spare seat exists — \"The coach company cancelled\"."
+          }
+        },
+        {
+          "kind": "request",
+          "keyAct": "flagging a gap and solving it",
+          "line": "Bring boots — the site path is mud after rain.",
+          "reply": "Mine are at home, so I'll borrow a pair.",
+          "explanationIfSpoken": "The organiser tells the group what footwear the ground demands. Admitting the item is not to hand and undertaking to borrow some is direct compliance with a kit instruction. The reply about passing on a meeting point assumes a correction to the departure arrangements; the reply about using the weekend for reading assumes a cancellation; and the reply about asking a roommate takes up an offer of a seat that was not made.",
+          "kills": {
+            "0": "No departure point is stated; the instruction is only to \"Bring boots\".",
+            "1": "The trip is clearly on, since \"the site path is mud after rain\" still matters.",
+            "3": "Nobody is invited along; the line only says to \"Bring boots\" for the ground underfoot."
+          }
+        },
+        {
+          "kind": "offer",
+          "keyAct": "accepting on someone else's behalf",
+          "line": "There's a spare seat if your roommate wants to come.",
+          "reply": "She'll jump at that — I'll ask her tonight.",
+          "explanationIfSpoken": "The organiser opens a place on the trip to someone outside the class. Predicting the invited person will want it and undertaking to ask is the natural uptake of an offer made on a third party's behalf. The reply about passing on a meeting point assumes a correction that was not made; the reply about using the weekend for reading assumes a cancellation; and the reply about borrowing boots answers a kit instruction that was not given.",
+          "kills": {
+            "0": "No location is corrected — the line offers \"a spare seat\".",
+            "1": "The trip is plainly running, or there would be no \"spare seat\" to give away.",
+            "2": "Nothing is required to bring; the offer is only \"if your roommate wants to come\"."
+          }
+        }
+      ]
+    },
+    {
+      "localId": "crv7-b1-09",
+      "setting": "TA grading meeting",
+      "worlds": [
+        {
+          "kind": "neutral info",
+          "keyAct": "drawing a consequence for what materials are needed",
+          "line": "We're each taking whole sections instead of splitting questions.",
+          "reply": "Then I'll only need the rubric for mine.",
+          "explanationIfSpoken": "The lead TA describes how the marking is being divided. Working out that only one section's rubric is now relevant follows directly from taking whole sections rather than shared questions. The reply about starting with a colleague's marking assumes a regrade was requested; the reply about pulling scripts and writing up reasoning assumes a complaint; and the reply about forwarding a folder takes up an offer that was not made.",
+          "kills": {
+            "1": "Nobody's marking is being revisited; the plan is simply \"taking whole sections\".",
+            "2": "No complaint is raised by a decision to work \"instead of splitting questions\".",
+            "3": "Nothing was taken off anyone — the arrangement is \"each taking whole sections\"."
+          }
+        },
+        {
+          "kind": "request",
+          "keyAct": "agreeing and proposing a way to track changes",
+          "line": "Could you regrade the essays that Daniel marked first?",
+          "reply": "I'll start with his; anything I change I'll flag.",
+          "explanationIfSpoken": "The lead TA asks for a colleague's marking to be gone over again. Agreeing to begin there and to mark up any alterations is careful compliance with a regrade request. The reply about needing only one rubric assumes a division of sections; the reply about pulling scripts and writing up reasoning assumes a complaint; and the reply about forwarding a folder takes up an offer that was not made.",
+          "kills": {
+            "0": "This is a task, not a split of labour — the ask is to \"regrade the essays\".",
+            "2": "No appeal is mentioned; the subject is \"the essays that Daniel marked\".",
+            "3": "Work is being added rather than removed by \"Could you regrade the essays\"."
+          }
+        },
+        {
+          "kind": "bad news",
+          "keyAct": "preparing a documented defence",
+          "line": "Students are appealing the midterm curve in your section.",
+          "reply": "I'll pull their scripts and write up my reasoning.",
+          "explanationIfSpoken": "The lead TA reports that marks are being formally challenged. Retrieving the papers and setting down the reasoning behind them is what a marker does when a decision has to be defended. The reply about needing only one rubric assumes a division of sections; the reply about starting with a colleague's marking assumes a regrade request; and the reply about forwarding a folder takes up an offer that was not made.",
+          "kills": {
+            "0": "No allocation is described; the news is that \"Students are appealing\".",
+            "1": "Nobody asked for a colleague's marking to be redone — the issue is \"the midterm curve\".",
+            "3": "Nothing is offered; \"Students are appealing the midterm curve\" is a problem, not a favour."
+          }
+        },
+        {
+          "kind": "offer",
+          "keyAct": "accepting the relief and handing the work over",
+          "line": "I'll take the late submissions off you this round.",
+          "reply": "That'd clear my weekend — I'll forward the folder.",
+          "explanationIfSpoken": "The lead TA offers to absorb one pile of marking. Noting the weekend it frees and undertaking to send the material across is the natural uptake of an offer to take work away. The reply about needing only one rubric assumes a division of sections; the reply about starting with a colleague's marking assumes a regrade request; and the reply about pulling scripts and writing up reasoning assumes a complaint.",
+          "kills": {
+            "0": "This moves one pile — \"the late submissions\" — rather than dividing the course by section.",
+            "1": "No regrading is asked for; the offer covers only \"the late submissions\".",
+            "2": "No dispute is raised by an offer to \"take the late submissions off you\"."
+          }
+        }
+      ]
+    },
+    {
+      "localId": "crv7-b1-10",
+      "setting": "seminar room booking office",
+      "worlds": [
+        {
+          "kind": "good news",
+          "keyAct": "recording the confirmed booking for the group",
+          "line": "The seminar room's yours for Wednesday afternoons this term.",
+          "reply": "I'll put it in the reading group's calendar.",
+          "explanationIfSpoken": "The booking office grants the room on a fixed weekly slot. Entering it in the group's calendar is what follows from a confirmed standing booking. The reply about moving to another day assumes the request was refused; the reply about sending a list once everyone replies answers a request that was not made; and the reply asking for a slot to be held assumes only a provisional offer.",
+          "kills": {
+            "1": "There is nothing to move — the room is \"yours for Wednesday afternoons\".",
+            "2": "Nothing was requested; the booking is already \"yours for Wednesday afternoons this term\".",
+            "3": "The day is fixed at \"Wednesday afternoons this term\", not held open pending a decision."
+          }
+        },
+        {
+          "kind": "bad news",
+          "keyAct": "consulting the group about a different day",
+          "line": "Wednesdays are gone — the linguistics seminar took the whole term.",
+          "reply": "I'll see if the group can move to Mondays.",
+          "explanationIfSpoken": "The booking office reports that the requested day is unavailable for the term. Undertaking to ask the group about a different day is the cooperative way to keep the meeting alive. The reply about entering a booking in the calendar assumes the room was granted; the reply about sending a list answers a request that was not made; and the reply asking for a slot to be held assumes an alternative was offered.",
+          "kills": {
+            "0": "There is nothing to enter once \"Wednesdays are gone\".",
+            "2": "No list was asked for; the office reports that \"the linguistics seminar took the whole term\".",
+            "3": "Nothing is on offer to hold open — \"Wednesdays are gone\"."
+          }
+        },
+        {
+          "kind": "request",
+          "keyAct": "committing to supply the document, with a condition on timing",
+          "line": "Could you email me the group's list before I confirm?",
+          "reply": "I'll send it once everyone's replied.",
+          "explanationIfSpoken": "The booking office asks for a membership list as a precondition of confirming. Undertaking to send it as soon as the members have answered is direct compliance with a timing caveat. The reply about entering a booking in the calendar assumes it was granted; the reply about moving to another day assumes a refusal; and the reply asking for a slot to be held assumes an alternative was offered.",
+          "kills": {
+            "0": "Nothing is settled yet — the list is wanted \"before I confirm\".",
+            "1": "No day has been refused; the ask is only to \"email me the group's list\".",
+            "3": "No alternative slot is on the table; the request is for \"the group's list\"."
+          }
+        },
+        {
+          "kind": "offer",
+          "keyAct": "asking that the provisional slot be kept open",
+          "line": "I can hold Thursday mornings for you as a backup.",
+          "reply": "Please hold it while the group settles on a day.",
+          "explanationIfSpoken": "The booking office offers to keep a second slot open provisionally. Asking for it to be kept while the group makes up its mind is the natural uptake of a provisional offer. The reply about entering a booking in the calendar assumes a firm grant; the reply about moving to a different day names the wrong alternative; and the reply about sending a list answers a request that was not made.",
+          "kills": {
+            "0": "Nothing is granted outright; \"Thursday mornings\" is offered only \"as a backup\".",
+            "1": "The alternative named here is \"Thursday mornings\", not any other day of the week.",
+            "2": "No paperwork is requested by an offer to \"hold Thursday mornings\"."
+          }
+        }
+      ]
+    },
+    {
+      "localId": "crv7-b1-11",
+      "setting": "campus bookstore textbook orders desk",
+      "worlds": [
+        {
+          "kind": "bad news",
+          "keyAct": "arranging a substitute for the missing book",
+          "line": "The publisher's out of stock until after term starts.",
+          "reply": "I'll put the first chapters on reserve instead.",
+          "explanationIfSpoken": "The bookstore reports that copies will not arrive before teaching begins. Putting the opening chapters on reserve is the standard way to keep a course running without the book. The reply telling the class to collect copies assumes they have arrived; the reply about changing the order assumes the wrong item was chosen; and the reply about checking enrolment answers a request that was not made.",
+          "kills": {
+            "1": "Nothing has arrived — the books are \"out of stock until after term starts\".",
+            "2": "No wrong item was ordered; the problem is simply being \"out of stock\".",
+            "3": "No fresh order can be placed while \"The publisher's out of stock\"."
+          }
+        },
+        {
+          "kind": "good news",
+          "keyAct": "relaying availability to the class",
+          "line": "Your order came in — it's on the shelf now.",
+          "reply": "I'll tell the class they can pick them up.",
+          "explanationIfSpoken": "The bookstore reports that the copies have arrived and are available. Telling the class they can collect them is what follows once stock is on the shelf. The reply about putting chapters on reserve assumes the book is unavailable; the reply about changing the order assumes the wrong item was chosen; and the reply about checking enrolment answers a request that was not made.",
+          "kills": {
+            "0": "No substitute is needed once \"it's on the shelf now\".",
+            "2": "Nothing is wrong with what was ordered — \"Your order came in\" as placed.",
+            "3": "The ordering is finished; \"Your order came in\" already."
+          }
+        },
+        {
+          "kind": "correction",
+          "keyAct": "correcting the order before copies are bought",
+          "line": "You ordered the paperback; the syllabus lists the annotated one.",
+          "reply": "I'll change it before anyone buys the wrong book.",
+          "explanationIfSpoken": "The bookstore points out that the copies ordered do not match what the course requires. Changing the order before students start buying is the obvious repair. The reply about putting chapters on reserve assumes a supply problem; the reply telling the class to collect copies assumes the right books have arrived; and the reply about checking enrolment answers a request that was not made.",
+          "kills": {
+            "0": "Stock is not the issue — the mismatch is that \"the syllabus lists the annotated one\".",
+            "1": "Nothing is ready to collect, because \"You ordered the paperback\" by mistake.",
+            "3": "No head count is in question; the trouble is that \"the syllabus lists the annotated one\"."
+          }
+        },
+        {
+          "kind": "request",
+          "keyAct": "committing to confirm the figure at the right moment",
+          "line": "Could you confirm the enrolment before we order more?",
+          "reply": "I'll check once the add period closes.",
+          "explanationIfSpoken": "The bookstore asks for the class size to be verified before further copies are bought. Undertaking to check at the point when the class list stops changing is sensible compliance. The reply about putting chapters on reserve assumes a supply problem; the reply telling the class to collect copies assumes stock has arrived; and the reply about changing the order assumes the wrong item was chosen.",
+          "kills": {
+            "0": "Nothing is unavailable; the desk is only asking \"before we order more\".",
+            "1": "Nothing has arrived — the question is whether to \"order more\" at all.",
+            "2": "No error is alleged; the ask is to \"confirm the enrolment\"."
+          }
+        }
+      ]
+    },
+    {
+      "localId": "crv7-b1-12",
+      "setting": "exam invigilation roster",
+      "worlds": [
+        {
+          "kind": "request",
+          "keyAct": "agreeing subject to a condition",
+          "line": "Could you cover the Thursday morning sitting for me?",
+          "reply": "I can — as long as I'm free by lunch.",
+          "explanationIfSpoken": "A colleague asks for the shift to be taken over. Agreeing while naming the limit on one's own time is the standard cooperative answer to a request for cover. The reply about going straight somewhere on the day answers a procedural note that was not given; the reply about moving a seminar assumes one's own assignment changed; and the reply thanking the speaker for sorting out the day treats a request for help as an offer of it.",
+          "kills": {
+            "1": "No sign-in procedure is described; the colleague only asks you to \"cover the Thursday morning sitting\".",
+            "2": "Nothing about your own listing changed — the line is a request to \"cover the Thursday morning sitting\".",
+            "3": "The speaker is asking for help, not giving it: \"Could you cover\" the shift \"for me\"."
+          }
+        },
+        {
+          "kind": "neutral info",
+          "keyAct": "committing to follow the procedure",
+          "line": "Invigilators sign in at the hall desk, not the office.",
+          "reply": "I'll go straight there on the day.",
+          "explanationIfSpoken": "The coordinator states where staff must register before an exam. Undertaking to go to that point directly is the plain uptake of a procedural instruction. The reply agreeing subject to being free by lunch answers a request for cover that was not made; the reply about moving a seminar assumes a change of assignment; and the reply thanking the speaker treats the note as an offer of relief.",
+          "kills": {
+            "0": "Nothing is asked of you personally; the line states where \"Invigilators sign in\".",
+            "2": "Your slot is untouched — the point is only where to \"sign in at the hall desk\".",
+            "3": "Nobody has offered to take anything; the line is about where to \"sign in\"."
+          }
+        },
+        {
+          "kind": "correction",
+          "keyAct": "adjusting a clashing commitment",
+          "line": "You're on the afternoon paper, not the morning one.",
+          "reply": "I'd better move my seminar cover, then.",
+          "explanationIfSpoken": "The coordinator corrects which sitting the invigilator is assigned to. Realising another commitment now clashes and undertaking to shift it is the natural consequence. The reply agreeing subject to being free by lunch answers a request for cover that was not made; the reply about signing in somewhere answers a procedural note that was not given; and the reply thanking the speaker treats a correction as an offer.",
+          "kills": {
+            "0": "No favour is asked; you are simply told you are \"on the afternoon paper\".",
+            "1": "No sign-in point is mentioned in \"the afternoon paper, not the morning one\".",
+            "3": "Nobody offers to replace you — \"You're on the afternoon paper\" regardless."
+          }
+        },
+        {
+          "kind": "offer",
+          "keyAct": "accepting the offered relief",
+          "line": "I can take your slot if the clash is awkward.",
+          "reply": "Would you? That'd sort out my whole Thursday.",
+          "explanationIfSpoken": "A colleague offers to take over the shift where it conflicts with something else. Checking they mean it and noting the relief is the natural uptake of an offer to absorb a clash. The reply agreeing subject to being free by lunch treats the offer as a request; the reply about signing in answers a procedural note that was not given; and the reply about moving a seminar assumes the assignment itself changed.",
+          "kills": {
+            "0": "The speaker offers rather than asks — \"I can take your slot\".",
+            "1": "No procedure is stated; the offer is simply to \"take your slot\".",
+            "2": "Nothing has been reassigned yet; the offer stands only \"if the clash is awkward\"."
+          }
+        }
+      ]
+    },
+    {
+      "localId": "crv7-b1-13",
+      "setting": "media lab equipment checkout window",
+      "worlds": [
+        {
+          "kind": "bad news",
+          "keyAct": "rescheduling one's own fieldwork",
+          "line": "Both recorders are out until the end of next week.",
+          "reply": "I'll shift my interviews back a few days.",
+          "explanationIfSpoken": "The desk reports that the equipment is unavailable for a stretch of time. Moving one's own appointments back is the practical response when the kit cannot be had. The reply about a charger in a drawer assumes something is owed; the reply accepting a date and mentioning a first interview takes up an offer that was not made; and the reply about filling in the right form assumes a paperwork error.",
+          "kills": {
+            "1": "Nothing of yours is outstanding; the news is that \"Both recorders are out\".",
+            "2": "Nothing is available to reserve — they are out \"until the end of next week\".",
+            "3": "No form is in question while \"Both recorders are out\"."
+          }
+        },
+        {
+          "kind": "request",
+          "keyAct": "explaining where the missing item is and promising its return",
+          "line": "Bring the charger back with it this time, please.",
+          "reply": "It's in my desk drawer — I'll bring it tomorrow.",
+          "explanationIfSpoken": "The desk asks for an accessory that was kept back last time. Saying where it is and naming when it will come back is direct compliance with the request. The reply about shifting interviews assumes the equipment is unavailable; the reply accepting a date takes up an offer that was not made; and the reply about filling in the right form assumes a paperwork error.",
+          "kills": {
+            "0": "Equipment is being issued rather than withheld — you are told to \"Bring the charger back\".",
+            "2": "No future reservation is offered; the ask is to \"Bring the charger back with it\".",
+            "3": "No paperwork error is named in \"Bring the charger back with it this time\"."
+          }
+        },
+        {
+          "kind": "offer",
+          "keyAct": "accepting the reservation and confirming it is soon enough",
+          "line": "I can hold one for you from Monday morning.",
+          "reply": "That works — my first interview isn't till Tuesday.",
+          "explanationIfSpoken": "The desk offers to reserve a unit from a particular day. Accepting and confirming the date comes early enough for one's own schedule is the natural uptake. The reply about shifting interviews assumes nothing is available; the reply about a charger in a drawer assumes something is owed; and the reply about filling in the right form assumes a paperwork error.",
+          "kills": {
+            "0": "One is available after all — the desk can \"hold one for you\".",
+            "1": "Nothing is owed; the line offers to \"hold one for you from Monday morning\".",
+            "3": "No form is wrong; the offer is simply to \"hold one for you\"."
+          }
+        },
+        {
+          "kind": "correction",
+          "keyAct": "refiling on the correct form",
+          "line": "That form's for cameras; recorders go on the yellow one.",
+          "reply": "I'll fill in the right one and hand it back.",
+          "explanationIfSpoken": "The desk points out that the wrong checkout form has been used. Completing the correct one and returning it is the obvious repair. The reply about shifting interviews assumes the equipment is unavailable; the reply about a charger in a drawer assumes something is owed; and the reply accepting a date takes up a reservation that was not offered.",
+          "kills": {
+            "0": "Nothing is said about availability — only that \"recorders go on the yellow one\".",
+            "1": "No equipment is out with you; the issue is that \"That form's for cameras\".",
+            "2": "No date is offered; the correction is that \"recorders go on the yellow one\"."
+          }
+        }
+      ]
+    },
+    {
+      "localId": "crv7-b1-14",
+      "setting": "research participant scheduling",
+      "worlds": [
+        {
+          "kind": "good news",
+          "keyAct": "booking the space the full sign-up needs",
+          "line": "The sign-up sheet filled up over the weekend.",
+          "reply": "I'll book the room for all of next week.",
+          "explanationIfSpoken": "The lab manager reports that recruitment has succeeded. Reserving the space for a full run of sessions is what follows from having a complete list of participants. The reply about asking a course to advertise assumes recruitment is short; the reply about needing consent forms takes up a handover that was not proposed; and the reply about a debrief sheet answers a procedural change that was not mentioned.",
+          "kills": {
+            "1": "No further recruiting is needed once the sheet \"filled up over the weekend\".",
+            "2": "Nobody has handed sessions over; the news is only that the sheet \"filled up\".",
+            "3": "No procedural detail is given by \"The sign-up sheet filled up\"."
+          }
+        },
+        {
+          "kind": "bad news",
+          "keyAct": "escalating recruitment",
+          "line": "Hardly anyone signed up, so we're short for the analysis.",
+          "reply": "I'll ask the intro course to advertise it again.",
+          "explanationIfSpoken": "The lab manager reports that too few people have volunteered for the results to be usable. Going back to a large course to recruit again is the direct remedy. The reply about booking a room for the week assumes a full list; the reply about needing consent forms takes up a handover that was not proposed; and the reply about a debrief sheet answers a procedural change that was not mentioned.",
+          "kills": {
+            "0": "There is nothing to schedule when \"Hardly anyone signed up\".",
+            "2": "No handover is proposed; the problem is that \"we're short for the analysis\".",
+            "3": "No credit procedure is mentioned in \"Hardly anyone signed up\"."
+          }
+        },
+        {
+          "kind": "request",
+          "keyAct": "agreeing while naming what is needed to do it",
+          "line": "Could you run the Saturday sessions instead of me?",
+          "reply": "I'll need the consent forms from you beforehand.",
+          "explanationIfSpoken": "A colleague asks for the weekend sessions to be taken over. Naming the paperwork that has to change hands first is the practical way to accept running someone else's sessions. The reply about booking a room assumes a full sign-up; the reply about advertising again assumes a shortfall; and the reply about a debrief sheet answers a procedural change that was not mentioned.",
+          "kills": {
+            "0": "Recruitment is not mentioned; the ask is to \"run the Saturday sessions\".",
+            "1": "Nothing is short; the only question is who will \"run the Saturday sessions instead of me\".",
+            "3": "No portal or credit is involved in \"run the Saturday sessions instead of me\"."
+          }
+        },
+        {
+          "kind": "neutral info",
+          "keyAct": "updating the study paperwork to match",
+          "line": "Participants get their credit through the psychology portal now.",
+          "reply": "I'll put that in the debrief sheet.",
+          "explanationIfSpoken": "The lab manager reports a change in how volunteers are compensated. Writing the new route into the sheet participants read at the end is what keeps the study's materials accurate. The reply about booking a room assumes a full sign-up; the reply about advertising again assumes a shortfall; and the reply about needing consent forms takes up a handover that was not proposed.",
+          "kills": {
+            "0": "Numbers are not mentioned; the change is that credit comes \"through the psychology portal\".",
+            "1": "No shortfall is reported — only how \"Participants get their credit\".",
+            "2": "Nobody is asked to take over a session; the line concerns \"their credit through the psychology portal\"."
+          }
+        }
+      ]
+    },
+    {
+      "localId": "crv7-b1-15",
+      "setting": "honors program office",
+      "worlds": [
+        {
+          "kind": "neutral info",
+          "keyAct": "planning the writing around the fixed date",
+          "line": "Honors students defend in April, the week after classes.",
+          "reply": "I'll plan the last chapter around that.",
+          "explanationIfSpoken": "The office states when the defence takes place. Building the remaining writing schedule around a fixed date is the natural response. The reply asking whether this term's grades still count assumes eligibility is in doubt; the reply about a comparative chapter takes up an offer of a reader that was not made; and the reply about catching a supervisor answers a request for a signature that was not made.",
+          "kills": {
+            "1": "Eligibility is not in question; the line only says when students \"defend in April\".",
+            "2": "No reader is proposed by \"the week after classes\".",
+            "3": "No signature is requested; the office states when honors students \"defend in April\"."
+          }
+        },
+        {
+          "kind": "bad news",
+          "keyAct": "probing whether the shortfall can still be made up",
+          "line": "Your average is sitting just under the honors cutoff.",
+          "reply": "I'll ask whether this term's grades still count.",
+          "explanationIfSpoken": "The office reports that the student falls short of the threshold for the program. Asking whether marks still to come can be counted is the obvious way to test whether the shortfall is final. The reply about planning the last chapter assumes admission; the reply about a comparative chapter takes up an offer that was not made; and the reply about catching a supervisor answers a request that was not made.",
+          "kills": {
+            "0": "No date is given; the issue is being \"just under the honors cutoff\".",
+            "2": "Nothing is offered — the office reports that \"Your average is sitting just under\" the line.",
+            "3": "No document is requested; the obstacle is the \"honors cutoff\" itself."
+          }
+        },
+        {
+          "kind": "offer",
+          "keyAct": "welcoming the offer on substantive grounds",
+          "line": "We could pair you with a second reader from history.",
+          "reply": "That would strengthen the comparative chapter a lot.",
+          "explanationIfSpoken": "The office offers to add an examiner from a neighbouring field. Welcoming it by naming the part of the thesis that would benefit is the natural uptake of an offer of expertise. The reply about planning the last chapter answers a date that was not given; the reply asking whether grades still count assumes an eligibility problem; and the reply about catching a supervisor answers a request for a signature that was not made.",
+          "kills": {
+            "0": "No calendar is mentioned; the offer is of \"a second reader from history\".",
+            "1": "Eligibility is not in doubt — the office proposes to \"pair you with a second reader\".",
+            "3": "Nothing is asked of the student; \"We could pair you\" is an offer, not a requirement."
+          }
+        },
+        {
+          "kind": "request",
+          "keyAct": "committing to obtain the signature",
+          "line": "Send us your supervisor's sign-off before the deadline.",
+          "reply": "I'll catch her after Thursday's lecture.",
+          "explanationIfSpoken": "The office asks for a signed authorisation from the supervisor. Naming a concrete moment to get hold of that person is direct compliance with a request for a signature. The reply about planning the last chapter answers a date that was not given; the reply asking whether grades still count assumes an eligibility problem; and the reply about a comparative chapter takes up an offer that was not made.",
+          "kills": {
+            "0": "No schedule is described; the student is told to \"Send us your supervisor's sign-off\".",
+            "1": "No shortfall is named in \"Send us your supervisor's sign-off\".",
+            "2": "No extra reader is offered; the ask is for \"your supervisor's sign-off\"."
+          }
+        }
+      ]
+    },
+    {
+      "localId": "crv7-b1-16",
+      "setting": "study-abroad office",
+      "worlds": [
+        {
+          "kind": "good news",
+          "keyAct": "acting on a year-long absence",
+          "line": "You got Bologna for the whole year — congratulations.",
+          "reply": "Then I'll give up my lease from September.",
+          "explanationIfSpoken": "The office reports a successful placement lasting the full academic year. Giving up the local tenancy from the start of that year follows from being away for all of it. The reply about looking for other openings assumes there is no place; the reply keeping local courses on the timetable assumes a return mid-year; and the reply about bringing a certificate answers a request that was not made.",
+          "kills": {
+            "1": "Nothing needs searching for — the student has a place \"for the whole year\".",
+            "2": "The student will be away all year, since the placement is \"for the whole year\".",
+            "3": "The decision is made — \"You got Bologna\" — so no document is outstanding."
+          }
+        },
+        {
+          "kind": "bad news",
+          "keyAct": "looking for a remaining alternative",
+          "line": "Bologna's full, and the waiting list closed yesterday.",
+          "reply": "I'll look at what's still open for the spring.",
+          "explanationIfSpoken": "The office reports that the requested destination is unavailable and that even the reserve route has shut. Turning to whatever places remain later in the year is the practical response. The reply about giving up a lease assumes a placement; the reply keeping local courses on the timetable assumes a partial placement; and the reply about a certificate answers a request that was not made.",
+          "kills": {
+            "0": "There is no placement to leave for — \"Bologna's full\".",
+            "2": "No placement of any length exists once \"the waiting list closed yesterday\".",
+            "3": "No document would help now that \"the waiting list closed yesterday\"."
+          }
+        },
+        {
+          "kind": "correction",
+          "keyAct": "protecting the home-campus half of the year",
+          "line": "It's a semester placement, not the full year.",
+          "reply": "I'll keep my spring courses on the timetable.",
+          "explanationIfSpoken": "The office corrects how long the placement runs. Keeping the home-campus courses for the half of the year spent back on campus follows from a placement that covers only part of it. The reply about giving up a lease assumes a full year away; the reply about looking for other openings assumes there is no place; and the reply about a certificate answers a request that was not made.",
+          "kills": {
+            "0": "The student is back for the second half, since it is \"not the full year\".",
+            "1": "A place does exist — it is \"a semester placement\".",
+            "3": "Nothing is outstanding; the correction concerns only that it is \"a semester placement\"."
+          }
+        },
+        {
+          "kind": "request",
+          "keyAct": "committing to supply the missing document",
+          "line": "We need your language certificate before the panel meets.",
+          "reply": "I'll bring it in as soon as results come out.",
+          "explanationIfSpoken": "The office asks for a document that must be in hand before the decision is taken. Undertaking to deliver it the moment it exists is direct compliance. The reply about giving up a lease assumes a placement has been granted; the reply about looking for other openings assumes a refusal; and the reply keeping local courses on the timetable assumes a partial placement.",
+          "kills": {
+            "0": "No decision has been taken — the document is wanted \"before the panel meets\".",
+            "1": "Nothing is closed; the office simply asks for \"your language certificate\".",
+            "2": "No placement of any length is described; the office only says \"We need your language certificate\"."
+          }
+        }
+      ]
+    },
+    {
+      "localId": "crv7-b1-17",
+      "setting": "peer review exchange in a writing seminar",
+      "worlds": [
+        {
+          "kind": "neutral info",
+          "keyAct": "preparing before reading the assigned draft",
+          "line": "You're reviewing Mina's draft; she's reviewing Tomas's.",
+          "reply": "I'll ask for the sources before I read it.",
+          "explanationIfSpoken": "The instructor states who is reviewing whom. Planning to get the supporting sources before starting on the assigned draft follows from having a partner and a text to read. The reply about finishing comments on a train answers a deadline that was not set; the reply about posting on a forum assumes no partner; and the reply about a second read takes up an offer that was not made.",
+          "kills": {
+            "1": "No deadline is set; the line only says who is \"reviewing Mina's draft\".",
+            "2": "The student is paired — \"You're reviewing Mina's draft\".",
+            "3": "Nobody offered to read anything extra; the line only assigns who is \"reviewing Mina's draft\"."
+          }
+        },
+        {
+          "kind": "request",
+          "keyAct": "committing to meet the deadline",
+          "line": "Could you send your comments back by Sunday night?",
+          "reply": "I'll finish them on the train home.",
+          "explanationIfSpoken": "The partner asks for the review to be returned by a particular time. Naming when the work will actually get done is the concrete way to accept a deadline. The reply about asking for sources first answers an assignment announcement rather than a deadline; the reply about posting on a forum assumes no partner; and the reply about a second read takes up an offer that was not made.",
+          "kills": {
+            "0": "The pairing is old news here; the ask is to \"send your comments back\".",
+            "2": "There is plainly a partner to \"send your comments back\" to.",
+            "3": "No extra reading is offered; the ask is to \"send your comments back by Sunday night\"."
+          }
+        },
+        {
+          "kind": "bad news",
+          "keyAct": "finding a replacement partner",
+          "line": "Your partner dropped the course, so you're unpaired.",
+          "reply": "I'll post on the forum for someone to swap with.",
+          "explanationIfSpoken": "The instructor reports that the student has been left without an exchange partner. Advertising for a replacement is the direct remedy. The reply about asking for sources assumes a draft to read; the reply about finishing comments on a train assumes a deadline and a partner; and the reply about a second read takes up an offer that was not made.",
+          "kills": {
+            "0": "There is no draft to prepare for once \"you're unpaired\".",
+            "1": "Nothing is owed to anyone — \"Your partner dropped the course\".",
+            "3": "Nobody is offering to read anything; the news is that \"Your partner dropped the course\"."
+          }
+        },
+        {
+          "kind": "offer",
+          "keyAct": "welcoming the extra reading and pointing it somewhere",
+          "line": "I'll read yours too if you want a second opinion.",
+          "reply": "A second read on the middle section would help.",
+          "explanationIfSpoken": "A classmate offers to look at the student's own draft as well. Welcoming it and steering it toward the weakest stretch is the natural uptake of an offer of extra feedback. The reply about asking for sources answers an assignment announcement; the reply about finishing comments on a train answers a deadline that was not set; and the reply about posting on a forum assumes no partner.",
+          "kills": {
+            "0": "No assignment is announced; this is an offer to \"read yours too\".",
+            "1": "No deadline is imposed by an offer made \"if you want a second opinion\".",
+            "2": "The student is plainly paired, since the classmate offers to read \"yours too\"."
+          }
+        }
+      ]
+    },
+    {
+      "localId": "crv7-b1-18",
+      "setting": "lecture recording access",
+      "worlds": [
+        {
+          "kind": "good news",
+          "keyAct": "planning to use the posted recording",
+          "line": "Last week's lecture is up on the course page.",
+          "reply": "I'll catch up on it before the seminar.",
+          "explanationIfSpoken": "The lecturer reports that the recording has been posted where students look for it. Planning to watch it in time for the seminar follows directly from its being available. The reply about borrowing notes assumes no recording exists; the reply about raising something with class reps answers a request that was not made; and the reply about searching in vain assumes the file was somewhere unexpected.",
+          "kills": {
+            "1": "No substitute is needed — the lecture \"is up on the course page\".",
+            "2": "Nothing is asked of the class; the news is that it is \"up on the course page\".",
+            "3": "It is exactly where a student would look, \"on the course page\"."
+          }
+        },
+        {
+          "kind": "bad news",
+          "keyAct": "arranging a substitute source",
+          "line": "The microphone failed, so there's no recording of it.",
+          "reply": "I'll borrow notes from someone who was there.",
+          "explanationIfSpoken": "The lecturer reports that the session was not captured at all. Getting notes from someone who attended is the standard fallback when no recording exists. The reply about watching before the seminar assumes a posted file; the reply about raising something with class reps answers a request that was not made; and the reply about searching in vain assumes the file is filed elsewhere.",
+          "kills": {
+            "0": "There is nothing to watch — \"there's no recording of it\".",
+            "2": "Nobody can misuse what does not exist, since \"The microphone failed\".",
+            "3": "It is not filed anywhere else; \"there's no recording of it\" at all."
+          }
+        },
+        {
+          "kind": "request",
+          "keyAct": "undertaking to raise it with the class body",
+          "line": "Ask your classmates to stop sharing the links externally.",
+          "reply": "I'll raise it at the class rep meeting.",
+          "explanationIfSpoken": "The lecturer asks the student to pass a warning on to the rest of the class. Taking it to the forum where the class is formally represented is a sensible way to reach everyone. The reply about watching before the seminar assumes a new posting; the reply about borrowing notes assumes no recording exists; and the reply about searching in vain assumes the file is filed elsewhere.",
+          "kills": {
+            "0": "No new posting is announced; the student is asked to \"stop sharing the links externally\".",
+            "1": "Recordings plainly exist, since classmates are \"sharing the links externally\".",
+            "3": "Location is not the problem; the problem is classmates \"sharing the links externally\"."
+          }
+        },
+        {
+          "kind": "correction",
+          "keyAct": "making sense of a failed search",
+          "line": "Recordings live in the media folder, not under Announcements.",
+          "reply": "No wonder I kept coming up empty.",
+          "explanationIfSpoken": "The lecturer corrects where the files are stored on the course site. Realising that this explains an unsuccessful search is the natural response to being told you were looking in the wrong place. The reply about watching before the seminar assumes a specific lecture was announced; the reply about borrowing notes assumes no recording exists; and the reply about raising something with class reps answers a request that was not made.",
+          "kills": {
+            "0": "No particular lecture is announced as posted; the line says where \"Recordings live\".",
+            "1": "Recordings do exist — they \"live in the media folder\".",
+            "2": "Nobody is misusing them; the point is only that they are \"not under Announcements\"."
+          }
+        }
+      ]
+    },
+    {
+      "localId": "crv7-b1-19",
+      "setting": "departmental colloquium prep",
+      "worlds": [
+        {
+          "kind": "correction",
+          "keyAct": "fixing the signage for the right venue",
+          "line": "The talk's in the old lecture theatre, not the new wing.",
+          "reply": "I'll change the signs before people start arriving.",
+          "explanationIfSpoken": "The organiser corrects which room the talk is in. Redoing the signage before the audience turns up is the practical consequence of a venue that was posted wrongly. The reply telling the mailing list not to come assumes a cancellation; the reply about reading a paper tonight assumes a speaking role was requested; and the reply about a weight off the week takes up an offer that was not made.",
+          "kills": {
+            "1": "The talk is going ahead, in \"the old lecture theatre\", so nobody should be told to stay away.",
+            "2": "You have no role in the event; the line only fixes the venue as \"the old lecture theatre\".",
+            "3": "Nothing was offered; the line simply corrects the room, \"not the new wing\"."
+          }
+        },
+        {
+          "kind": "bad news",
+          "keyAct": "notifying the audience of a cancellation",
+          "line": "Our speaker's flight was cancelled, so Friday's off.",
+          "reply": "I'll tell the mailing list not to come.",
+          "explanationIfSpoken": "The organiser reports that the event will not take place. Warning the people who were planning to attend is the immediate task after a cancellation. The reply about changing signs assumes the talk is going ahead; the reply about reading a paper tonight assumes a speaking role; and the reply about a weight off the week takes up an offer that was not made.",
+          "kills": {
+            "0": "There is nothing to sign-post once \"Friday's off\".",
+            "2": "No introduction is needed, since \"Our speaker's flight was cancelled\".",
+            "3": "Nobody offered to take over anything — \"Friday's off\" entirely."
+          }
+        },
+        {
+          "kind": "request",
+          "keyAct": "preparing for the role that was asked for",
+          "line": "Could you introduce her and handle the questions?",
+          "reply": "I'll read her recent paper tonight.",
+          "explanationIfSpoken": "The organiser asks the colleague to chair the session. Reading the speaker's current work in advance is what preparing to introduce someone and field questions requires. The reply about changing signs assumes a venue correction; the reply telling the mailing list not to come assumes a cancellation; and the reply about a weight off the week treats a request for work as an offer to remove it.",
+          "kills": {
+            "0": "No venue is mentioned; the ask is to \"introduce her and handle the questions\".",
+            "1": "The event is on, since somebody must \"introduce her\" on the day.",
+            "3": "You are being asked to do more, not less: \"Could you introduce her\"."
+          }
+        },
+        {
+          "kind": "offer",
+          "keyAct": "accepting relief from the duty",
+          "line": "I can chair it if you'd rather just attend.",
+          "reply": "That would take a real weight off this week.",
+          "explanationIfSpoken": "A colleague offers to take on the chairing duty. Accepting by noting the pressure it removes is the natural uptake of an offer to absorb a task. The reply about changing signs assumes a venue correction; the reply telling the mailing list not to come assumes a cancellation; and the reply about reading a paper tonight assumes the role is still yours.",
+          "kills": {
+            "0": "Nothing is said about the room; the offer is to \"chair it\".",
+            "1": "The event is going ahead — the offer is to \"chair it if you'd rather just attend\".",
+            "2": "You are being relieved of the role, not given it: \"if you'd rather just attend\"."
+          }
+        }
+      ]
+    },
+    {
+      "localId": "crv7-b1-20",
+      "setting": "capstone project check-in",
+      "worlds": [
+        {
+          "kind": "good news",
+          "keyAct": "moving the team on to the next deliverable",
+          "line": "The sponsor signed off on your prototype yesterday.",
+          "reply": "I'll move the team onto the final report.",
+          "explanationIfSpoken": "The supervisor reports that the client has approved the build. Redirecting the team to the write-up follows from a prototype that no longer needs work. The reply proposing to reuse existing work assumes the project collapsed; the reply about arranging travel assumes the meeting place changed; and the reply about meeting minutes answers a request that was not made.",
+          "kills": {
+            "1": "Nothing has collapsed — the sponsor \"signed off on your prototype\".",
+            "2": "No change of venue is mentioned in \"signed off on your prototype yesterday\".",
+            "3": "No write-up is requested; the line reports that the sponsor \"signed off\"."
+          }
+        },
+        {
+          "kind": "bad news",
+          "keyAct": "negotiating to salvage existing work",
+          "line": "The sponsor's pulled out, so you'll need a new brief.",
+          "reply": "Could we build on the work we've already done?",
+          "explanationIfSpoken": "The supervisor reports that the client has withdrawn and the project must be redefined. Asking whether the existing work can carry over is what a team wants to know when facing a fresh brief. The reply about moving to the final report assumes approval; the reply about arranging travel assumes a change of meeting place; and the reply about meeting minutes answers a request that was not made.",
+          "kills": {
+            "0": "There is no approved build to write up, since \"you'll need a new brief\".",
+            "2": "There is no client office to visit — \"The sponsor's pulled out\".",
+            "3": "No history of changes matters now that \"you'll need a new brief\"."
+          }
+        },
+        {
+          "kind": "neutral info",
+          "keyAct": "arranging the logistics the change creates",
+          "line": "Your check-ins move to the sponsor's office from now on.",
+          "reply": "I'll sort out travel for the whole team.",
+          "explanationIfSpoken": "The supervisor reports that meetings will happen off campus from here on. Arranging how the team gets there is the practical consequence of a change of venue. The reply about moving to the final report assumes approval; the reply proposing to reuse existing work assumes the project collapsed; and the reply about meeting minutes answers a request that was not made.",
+          "kills": {
+            "0": "No approval is given; only the meeting place changes, \"to the sponsor's office\".",
+            "1": "The client is still involved, since \"check-ins move to the sponsor's office\".",
+            "3": "Nothing is asked to be written; the line concerns where \"Your check-ins move\"."
+          }
+        },
+        {
+          "kind": "request",
+          "keyAct": "committing to reconstruct the record",
+          "line": "Write up what the sponsor changed since the first brief.",
+          "reply": "I'll go back through the meeting minutes.",
+          "explanationIfSpoken": "The supervisor asks for a documented account of how the requirements shifted. Going back through the record of meetings is how such an account gets assembled. The reply about moving to the final report assumes approval; the reply proposing to reuse existing work assumes the project collapsed; and the reply about arranging travel assumes a change of meeting place.",
+          "kills": {
+            "0": "Nothing is approved; the student is told to \"Write up what the sponsor changed\".",
+            "1": "The client is still engaged and has been changing things \"since the first brief\".",
+            "2": "No relocation is mentioned in \"Write up what the sponsor changed\"."
+          }
+        }
+      ]
+    }
+  ]
+}

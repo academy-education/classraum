@@ -1,0 +1,1088 @@
+{
+  "cohort": "cr-v7",
+  "stage": 2,
+  "batch": "b5",
+  "method": "symmetric four-world authoring, post-hoc seeded key selection",
+  "items": [
+    {
+      "localId": "crv7-b5-01",
+      "setting": "intramural team captain",
+      "worlds": [
+        {
+          "kind": "good news",
+          "keyAct": "commit to the next step",
+          "line": "We made the cut — we're in the Saturday league.",
+          "reply": "Great — I'll put the kit order through today.",
+          "explanationIfSpoken": "The line reports that the team has been accepted into the league. Committing to the kit order is what someone does once a place is confirmed, and it takes the acceptance as given rather than repeating it. The other replies do not fit: the one that asks whether there is a reserve list assumes the team missed out and needs a reserve list; the one that says they will shift their work rota assumes the playing day has changed and a work rota needs moving; the one that puts Ravi forward as a goalkeeper answers a question about who can keep goal that was never asked.",
+          "kills": {
+            "1": "This line says \"we're in the Saturday league\", so the reply that asks whether there is a reserve list is wrong here: it assumes the team missed out and needs a reserve list.",
+            "2": "This line says \"the Saturday league\", so the reply that says they will shift their work rota is wrong here: it assumes the playing day has changed and a work rota needs moving.",
+            "3": "This line says \"We made the cut\", so the reply that puts Ravi forward as a goalkeeper is wrong here: it answers a question about who can keep goal that was never asked."
+          }
+        },
+        {
+          "kind": "bad news",
+          "keyAct": "look for a way back in",
+          "line": "They filled the league before our form went in.",
+          "reply": "Ah, that's rough — is there a reserve list?",
+          "explanationIfSpoken": "The line reports that the team's entry arrived too late to get a place. Asking about a reserve list treats the place as lost and keeps a route open, without spelling the loss out. The other replies do not fit: the one that commits to putting the kit order through commits to a kit order for a place the team does not have; the one that says they will shift their work rota assumes the fixture day has moved, which nothing here says; the one that puts Ravi forward as a goalkeeper puts a goalkeeper forward when nobody has asked for one.",
+          "kills": {
+            "0": "This line says \"before our form went in\", so the reply that commits to putting the kit order through is wrong here: it commits to a kit order for a place the team does not have.",
+            "2": "This line says \"They filled the league\", so the reply that says they will shift their work rota is wrong here: it assumes the fixture day has moved, which nothing here says.",
+            "3": "This line says \"our form went in\", so the reply that puts Ravi forward as a goalkeeper is wrong here: it puts a goalkeeper forward when nobody has asked for one."
+          }
+        },
+        {
+          "kind": "neutral info",
+          "keyAct": "adapt a personal schedule",
+          "line": "The league's shifted to Sundays from now on.",
+          "reply": "Good to know — I'll shift my work rota.",
+          "explanationIfSpoken": "The line announces a permanent change to the day the league plays. Moving a work rota is the ordinary consequence of a new fixture day for someone who works weekends. The other replies do not fit: the one that commits to putting the kit order through treats the news as an acceptance into the league rather than a change of day; the one that asks whether there is a reserve list assumes the team was shut out, when it is still playing; the one that puts Ravi forward as a goalkeeper offers a goalkeeper although nobody raised the position.",
+          "kills": {
+            "0": "This line says \"shifted to Sundays\", so the reply that commits to putting the kit order through is wrong here: it treats the news as an acceptance into the league rather than a change of day.",
+            "1": "This line says \"The league's shifted\", so the reply that asks whether there is a reserve list is wrong here: it assumes the team was shut out, when it is still playing.",
+            "3": "This line says \"to Sundays from now on\", so the reply that puts Ravi forward as a goalkeeper is wrong here: it offers a goalkeeper although nobody raised the position."
+          }
+        },
+        {
+          "kind": "question",
+          "keyAct": "name a candidate",
+          "line": "Do we have anyone who can keep goal?",
+          "reply": "Ravi has — he kept goal last season.",
+          "explanationIfSpoken": "The line asks the group whether anyone can play in goal. Naming someone who has kept goal before answers the question with the evidence for it. The other replies do not fit: the one that commits to putting the kit order through orders kit in reply to a question about players; the one that asks whether there is a reserve list assumes the team has been excluded, which the question does not suggest; the one that says they will shift their work rota reacts to a change of day that has not been announced.",
+          "kills": {
+            "0": "This line says \"who can keep goal\", so the reply that commits to putting the kit order through is wrong here: it orders kit in reply to a question about players.",
+            "1": "This line says \"Do we have anyone\", so the reply that asks whether there is a reserve list is wrong here: it assumes the team has been excluded, which the question does not suggest.",
+            "2": "This line says \"keep goal\", so the reply that says they will shift their work rota is wrong here: it reacts to a change of day that has not been announced."
+          }
+        }
+      ]
+    },
+    {
+      "localId": "crv7-b5-02",
+      "setting": "theater rehearsal",
+      "worlds": [
+        {
+          "kind": "neutral info",
+          "keyAct": "turn to the right preparation",
+          "line": "We're running act two tonight, not act one.",
+          "reply": "Right, I'll start on the balcony blocking then.",
+          "explanationIfSpoken": "The line announces which act has been called for tonight's rehearsal. Turning straight to the blocking that belongs to that act is what a cast member does with the information. The other replies do not fit: the one that offers to read the absent singer's lines stands in for a singer when nobody has been reported unwell; the one that agrees to fetch the ladder before the warm-up agrees to fetch a ladder that was never asked for; the one that accepts the offer of extra rehearsal time accepts an offer of extra time that was never made.",
+          "kills": {
+            "1": "This line says \"running act two tonight\", so the reply that offers to read the absent singer's lines is wrong here: it stands in for a singer when nobody has been reported unwell.",
+            "2": "This line says \"not act one\", so the reply that agrees to fetch the ladder before the warm-up is wrong here: it agrees to fetch a ladder that was never asked for.",
+            "3": "This line says \"We're running act two\", so the reply that accepts the offer of extra rehearsal time is wrong here: it accepts an offer of extra time that was never made."
+          }
+        },
+        {
+          "kind": "bad news",
+          "keyAct": "offer to cover for someone",
+          "line": "Priya's lost her voice, so she can't sing tonight.",
+          "reply": "Well, I'll read her lines so we can block it.",
+          "explanationIfSpoken": "The line reports that a cast member cannot sing at this rehearsal. Offering to read her lines keeps the rehearsal moving and presupposes she is out of action. The other replies do not fit: the one that says they will start on the balcony blocking reorganises around which act is called, which is not what changed; the one that agrees to fetch the ladder before the warm-up treats the news as a request to carry something up; the one that accepts the offer of extra rehearsal time accepts an offer to stay late that nobody made.",
+          "kills": {
+            "0": "This line says \"lost her voice\", so the reply that says they will start on the balcony blocking is wrong here: it reorganises around which act is called, which is not what changed.",
+            "2": "This line says \"she can't sing tonight\", so the reply that agrees to fetch the ladder before the warm-up is wrong here: it treats the news as a request to carry something up.",
+            "3": "This line says \"Priya's lost her voice\", so the reply that accepts the offer of extra rehearsal time is wrong here: it accepts an offer to stay late that nobody made."
+          }
+        },
+        {
+          "kind": "request",
+          "keyAct": "agree and give a time",
+          "line": "Can you bring the ladder up from the scene dock?",
+          "reply": "Sure, I'll grab it before the warm-up.",
+          "explanationIfSpoken": "The line is a direct request for help moving a piece of kit. Agreeing and naming when it will happen is the cooperative answer to a request like this. The other replies do not fit: the one that says they will start on the balcony blocking announces a change of scene order in reply to a request; the one that offers to read the absent singer's lines covers for a singer nobody has said is unwell; the one that accepts the offer of extra rehearsal time accepts help when it is help that is being asked for.",
+          "kills": {
+            "0": "This line says \"bring the ladder\", so the reply that says they will start on the balcony blocking is wrong here: it announces a change of scene order in reply to a request.",
+            "1": "This line says \"from the scene dock\", so the reply that offers to read the absent singer's lines is wrong here: it covers for a singer nobody has said is unwell.",
+            "3": "This line says \"Can you bring\", so the reply that accepts the offer of extra rehearsal time is wrong here: it accepts help when it is help that is being asked for."
+          }
+        },
+        {
+          "kind": "offer",
+          "keyAct": "accept the offer",
+          "line": "I can stay late and run lines with you.",
+          "reply": "Thanks, that would really help me.",
+          "explanationIfSpoken": "The line offers the listener extra rehearsal time after the call. A warm acceptance is the natural uptake of an offer of someone's own evening. The other replies do not fit: the one that says they will start on the balcony blocking reports which act is called, which the offer says nothing about; the one that offers to read the absent singer's lines covers a missing singer when the offer concerns this listener; the one that agrees to fetch the ladder before the warm-up treats an offer of time as a request to fetch something.",
+          "kills": {
+            "0": "This line says \"stay late\", so the reply that says they will start on the balcony blocking is wrong here: it reports which act is called, which the offer says nothing about.",
+            "1": "This line says \"run lines with you\", so the reply that offers to read the absent singer's lines is wrong here: it covers a missing singer when the offer concerns this listener.",
+            "2": "This line says \"I can stay\", so the reply that agrees to fetch the ladder before the warm-up is wrong here: it treats an offer of time as a request to fetch something."
+          }
+        }
+      ]
+    },
+    {
+      "localId": "crv7-b5-03",
+      "setting": "orchestra section",
+      "worlds": [
+        {
+          "kind": "good news",
+          "keyAct": "commit to preparation",
+          "line": "You've got the solo in the slow movement.",
+          "reply": "Thanks — I'll start working on it tonight.",
+          "explanationIfSpoken": "The line tells the player that a solo has been assigned to them. Turning to practice is what follows an assignment, and it takes the solo as settled. The other replies do not fit: the one that regrets losing a piece that suited the strings mourns a piece as lost when it is still being played; the one that undertakes to tell the rest of the section passes on a change of room that has not been announced; the one that lends the mute out of their case hands over a mute when nothing was asked for.",
+          "kills": {
+            "1": "This line says \"You've got the solo\", so the reply that regrets losing a piece that suited the strings is wrong here: it mourns a piece as lost when it is still being played.",
+            "2": "This line says \"in the slow movement\", so the reply that undertakes to tell the rest of the section is wrong here: it passes on a change of room that has not been announced.",
+            "3": "This line says \"the solo\", so the reply that lends the mute out of their case is wrong here: it hands over a mute when nothing was asked for."
+          }
+        },
+        {
+          "kind": "bad news",
+          "keyAct": "register regret",
+          "line": "The slow movement's been cut from the programme.",
+          "reply": "That's a pity — it suited the strings well.",
+          "explanationIfSpoken": "The line reports that a piece has been dropped from the concert. A brief word of regret about the lost piece is the ordinary response to a cut. The other replies do not fit: the one that says they will start working on the solo sets out to prepare music that is no longer being performed; the one that undertakes to tell the rest of the section relays a venue change when the programme, not the room, changed; the one that lends the mute out of their case lends out a mute although nothing was requested.",
+          "kills": {
+            "0": "This line says \"been cut\", so the reply that says they will start working on the solo is wrong here: it sets out to prepare music that is no longer being performed.",
+            "2": "This line says \"cut from the programme\", so the reply that undertakes to tell the rest of the section is wrong here: it relays a venue change when the programme, not the room, changed.",
+            "3": "This line says \"The slow movement's\", so the reply that lends the mute out of their case is wrong here: it lends out a mute although nothing was requested."
+          }
+        },
+        {
+          "kind": "correction",
+          "keyAct": "pass the correction on",
+          "line": "Sorry, rehearsal's in the chapel, not the hall.",
+          "reply": "Good catch — I'll tell the rest of the section.",
+          "explanationIfSpoken": "The line corrects where the rehearsal is being held. Passing the correction on is what stops the other players going to the wrong room. The other replies do not fit: the one that says they will start working on the solo starts preparing a solo that has not been given to anyone; the one that regrets losing a piece that suited the strings laments a cut when the programme is untouched; the one that lends the mute out of their case offers a mute although nobody asked to borrow one.",
+          "kills": {
+            "0": "This line says \"rehearsal's in the chapel\", so the reply that says they will start working on the solo is wrong here: it starts preparing a solo that has not been given to anyone.",
+            "1": "This line says \"not the hall\", so the reply that regrets losing a piece that suited the strings is wrong here: it laments a cut when the programme is untouched.",
+            "3": "This line says \"in the chapel\", so the reply that lends the mute out of their case is wrong here: it offers a mute although nobody asked to borrow one."
+          }
+        },
+        {
+          "kind": "question",
+          "keyAct": "grant the loan",
+          "line": "Have you got a spare mute I could borrow?",
+          "reply": "Sure — there's a spare one in my case.",
+          "explanationIfSpoken": "The line asks to borrow a piece of equipment for the session. Pointing to the spare sitting in the case grants the request without ceremony. The other replies do not fit: the one that says they will start working on the solo takes up a solo that has not been mentioned; the one that regrets losing a piece that suited the strings regrets a cancellation when nothing has been cancelled; the one that undertakes to tell the rest of the section spreads news of a room change that has not happened.",
+          "kills": {
+            "0": "This line says \"a spare mute\", so the reply that says they will start working on the solo is wrong here: it takes up a solo that has not been mentioned.",
+            "1": "This line says \"Have you got\", so the reply that regrets losing a piece that suited the strings is wrong here: it regrets a cancellation when nothing has been cancelled.",
+            "2": "This line says \"I could borrow\", so the reply that undertakes to tell the rest of the section is wrong here: it spreads news of a room change that has not happened."
+          }
+        }
+      ]
+    },
+    {
+      "localId": "crv7-b5-04",
+      "setting": "student newspaper desk",
+      "worlds": [
+        {
+          "kind": "neutral info",
+          "keyAct": "adjust the layout job",
+          "line": "The interview piece is running on the inside spread.",
+          "reply": "Then I'll size the photo to fit that.",
+          "explanationIfSpoken": "The line reports where the story has been placed in the issue. Resizing the photo to the space it now has is the layout work that placement creates. The other replies do not fit: the one that agrees to take a pass at the copy cuts the copy when no cut has been asked for; the one that undertakes to warn the writer warns the writer off a piece that is going in; the one that accepts the offer of proofing help accepts help with the sports pages that was never offered.",
+          "kills": {
+            "1": "This line says \"running on the inside spread\", so the reply that agrees to take a pass at the copy is wrong here: it cuts the copy when no cut has been asked for.",
+            "2": "This line says \"The interview piece is running\", so the reply that undertakes to warn the writer is wrong here: it warns the writer off a piece that is going in.",
+            "3": "This line says \"on the inside spread\", so the reply that accepts the offer of proofing help is wrong here: it accepts help with the sports pages that was never offered."
+          }
+        },
+        {
+          "kind": "request",
+          "keyAct": "agree to the edit",
+          "line": "Could you trim the lead a bit tonight?",
+          "reply": "I'll take a pass at it right now.",
+          "explanationIfSpoken": "The line asks the listener to shorten the opening of a story. Agreeing to work on it straight away is the plain answer to a request from the desk. The other replies do not fit: the one that says they will size the photo to fit reports a placement decision in reply to a request for edits; the one that undertakes to warn the writer tells the writer the piece is dead when it is being edited to run; the one that accepts the offer of proofing help accepts an offer of help that was not made.",
+          "kills": {
+            "0": "This line says \"trim the lead\", so the reply that says they will size the photo to fit is wrong here: it reports a placement decision in reply to a request for edits.",
+            "2": "This line says \"Could you trim\", so the reply that undertakes to warn the writer is wrong here: it tells the writer the piece is dead when it is being edited to run.",
+            "3": "This line says \"a bit tonight\", so the reply that accepts the offer of proofing help is wrong here: it accepts an offer of help that was not made."
+          }
+        },
+        {
+          "kind": "bad news",
+          "keyAct": "warn the person affected",
+          "line": "The editor's spiked the piece for this issue.",
+          "reply": "I'll warn the writer before she files.",
+          "explanationIfSpoken": "The line reports that the story has been killed for this issue. Warning the writer before she files spares her wasted work and treats the piece as dead. The other replies do not fit: the one that says they will size the photo to fit lays out a photo for a page the story no longer has; the one that agrees to take a pass at the copy edits copy that is not going to run; the one that accepts the offer of proofing help accepts an offer of help with other pages that was not made.",
+          "kills": {
+            "0": "This line says \"spiked the piece\", so the reply that says they will size the photo to fit is wrong here: it lays out a photo for a page the story no longer has.",
+            "1": "This line says \"for this issue\", so the reply that agrees to take a pass at the copy is wrong here: it edits copy that is not going to run.",
+            "3": "This line says \"The editor's spiked\", so the reply that accepts the offer of proofing help is wrong here: it accepts an offer of help with other pages that was not made."
+          }
+        },
+        {
+          "kind": "offer",
+          "keyAct": "accept the help",
+          "line": "I can proof the sports pages if you're stuck.",
+          "reply": "That would really help, please do.",
+          "explanationIfSpoken": "The line offers to take a whole section off the listener's hands. A plain acceptance is what a busy desk says to an offer like this. The other replies do not fit: the one that says they will size the photo to fit announces a placement that the offer says nothing about; the one that agrees to take a pass at the copy treats an offer of help as an instruction to cut copy; the one that undertakes to warn the writer warns a writer off when nothing has been dropped.",
+          "kills": {
+            "0": "This line says \"proof the sports pages\", so the reply that says they will size the photo to fit is wrong here: it announces a placement that the offer says nothing about.",
+            "1": "This line says \"I can proof\", so the reply that agrees to take a pass at the copy is wrong here: it treats an offer of help as an instruction to cut copy.",
+            "2": "This line says \"if you're stuck\", so the reply that undertakes to warn the writer is wrong here: it warns a writer off when nothing has been dropped."
+          }
+        }
+      ]
+    },
+    {
+      "localId": "crv7-b5-05",
+      "setting": "debate society",
+      "worlds": [
+        {
+          "kind": "correction",
+          "keyAct": "revise your own material",
+          "line": "We're on the opposition side, not proposition.",
+          "reply": "I'll rewrite my opening to attack it, then.",
+          "explanationIfSpoken": "The line corrects which side of the motion the team is arguing. Rewriting the opening so that it attacks the motion is the work the change of side creates. The other replies do not fit: the one that notes the extra week of preparation plans around a longer run-up that nothing here mentions; the one that puts Maya forward for the summary speech names a summary speaker although nobody asked; the one that says they will wait for the motion before writing waits for a motion when the side, not the motion, is the news.",
+          "kills": {
+            "1": "This line says \"the opposition side\", so the reply that notes the extra week of preparation is wrong here: it plans around a longer run-up that nothing here mentions.",
+            "2": "This line says \"not proposition\", so the reply that puts Maya forward for the summary speech is wrong here: it names a summary speaker although nobody asked.",
+            "3": "This line says \"We're on the opposition side\", so the reply that says they will wait for the motion before writing is wrong here: it waits for a motion when the side, not the motion, is the news."
+          }
+        },
+        {
+          "kind": "good news",
+          "keyAct": "note the consequence",
+          "line": "We've been seeded straight into the quarter-finals.",
+          "reply": "That gives us a whole week to prep.",
+          "explanationIfSpoken": "The line reports that the team skips the early rounds of the competition. Counting the preparation time a bye creates takes the seeding as settled. The other replies do not fit: the one that says they will rewrite the opening as an attack argues a side that has not been allocated; the one that puts Maya forward for the summary speech fills a speaking role that nobody has raised; the one that says they will wait for the motion before writing waits on the motion when the draw is what changed.",
+          "kills": {
+            "0": "This line says \"seeded straight into\", so the reply that says they will rewrite the opening as an attack is wrong here: it argues a side that has not been allocated.",
+            "2": "This line says \"the quarter-finals\", so the reply that puts Maya forward for the summary speech is wrong here: it fills a speaking role that nobody has raised.",
+            "3": "This line says \"We've been seeded\", so the reply that says they will wait for the motion before writing is wrong here: it waits on the motion when the draw is what changed."
+          }
+        },
+        {
+          "kind": "question",
+          "keyAct": "nominate someone",
+          "line": "Who's doing the summary speech for us?",
+          "reply": "Maya said she'd take it if nobody minds.",
+          "explanationIfSpoken": "The line asks which team member is taking the closing speech. Naming Maya and noting she volunteered answers the question and leaves room for objection. The other replies do not fit: the one that says they will rewrite the opening as an attack rewrites an opening as though the side had changed; the one that notes the extra week of preparation celebrates a draw that has not been mentioned; the one that says they will wait for the motion before writing waits for a motion when the question is about people.",
+          "kills": {
+            "0": "This line says \"the summary speech\", so the reply that says they will rewrite the opening as an attack is wrong here: it rewrites an opening as though the side had changed.",
+            "1": "This line says \"Who's doing\", so the reply that notes the extra week of preparation is wrong here: it celebrates a draw that has not been mentioned.",
+            "3": "This line says \"for us\", so the reply that says they will wait for the motion before writing is wrong here: it waits for a motion when the question is about people."
+          }
+        },
+        {
+          "kind": "neutral info",
+          "keyAct": "set a condition on your own work",
+          "line": "The motion goes up on the board Thursday.",
+          "reply": "I'll check it before I write anything.",
+          "explanationIfSpoken": "The line says when the motion for the round will be published. Holding off writing until the motion appears is the sensible use of that timing. The other replies do not fit: the one that says they will rewrite the opening as an attack rewrites an opening for a side that has not been assigned; the one that notes the extra week of preparation treats the draw as decided when only a posting date was given; the one that puts Maya forward for the summary speech names a speaker although no role was discussed.",
+          "kills": {
+            "0": "This line says \"goes up on the board\", so the reply that says they will rewrite the opening as an attack is wrong here: it rewrites an opening for a side that has not been assigned.",
+            "1": "This line says \"The motion goes up\", so the reply that notes the extra week of preparation is wrong here: it treats the draw as decided when only a posting date was given.",
+            "2": "This line says \"on the board Thursday\", so the reply that puts Maya forward for the summary speech is wrong here: it names a speaker although no role was discussed."
+          }
+        }
+      ]
+    },
+    {
+      "localId": "crv7-b5-06",
+      "setting": "volunteering coordinator",
+      "worlds": [
+        {
+          "kind": "good news",
+          "keyAct": "clear the day",
+          "line": "The care home's happy to take you on Fridays.",
+          "reply": "Great — I'll move my Friday afternoon lecture.",
+          "explanationIfSpoken": "The coordinator confirms a placement and the day it runs. Clearing the teaching that clashes is what a student does once a regular slot is fixed. The other replies do not fit: the one that asks whether another placement is available asks for another organisation when one has just been secured; the one that asks where to collect the form asks where to collect a form that has not been mentioned; the one that redirects and emails the garden writes to a different organisation than the one named.",
+          "kills": {
+            "1": "This line says \"happy to take you\", so the reply that asks whether another placement is available is wrong here: it asks for another organisation when one has just been secured.",
+            "2": "This line says \"on Fridays\", so the reply that asks where to collect the form is wrong here: it asks where to collect a form that has not been mentioned.",
+            "3": "This line says \"The care home's happy\", so the reply that redirects and emails the garden is wrong here: it writes to a different organisation than the one named."
+          }
+        },
+        {
+          "kind": "bad news",
+          "keyAct": "ask for an alternative",
+          "line": "The care home can't take new volunteers this term.",
+          "reply": "That's a shame — is there somewhere else going?",
+          "explanationIfSpoken": "The coordinator reports that the placement the student wanted is closed. Asking what else is going treats that placement as closed and keeps the search alive. The other replies do not fit: the one that moves a lecture to free up the day clears a day for a placement that is not happening; the one that asks where to collect the form asks about paperwork that has not come up; the one that redirects and emails the garden writes to an organisation that has not been named.",
+          "kills": {
+            "0": "This line says \"can't take new volunteers\", so the reply that moves a lecture to free up the day is wrong here: it clears a day for a placement that is not happening.",
+            "2": "This line says \"this term\", so the reply that asks where to collect the form is wrong here: it asks about paperwork that has not come up.",
+            "3": "This line says \"The care home can't\", so the reply that redirects and emails the garden is wrong here: it writes to an organisation that has not been named."
+          }
+        },
+        {
+          "kind": "request",
+          "keyAct": "ask for the practical detail",
+          "line": "Could you fill in the safeguarding form first?",
+          "reply": "Of course — where do I pick one up?",
+          "explanationIfSpoken": "The coordinator sets a piece of paperwork as the next step. Agreeing and asking where the form lives is the practical response to that instruction. The other replies do not fit: the one that moves a lecture to free up the day frees up a day when no day has been agreed; the one that asks whether another placement is available hunts for an alternative when nothing has fallen through; the one that redirects and emails the garden contacts an organisation that has not been mentioned.",
+          "kills": {
+            "0": "This line says \"fill in the safeguarding form\", so the reply that moves a lecture to free up the day is wrong here: it frees up a day when no day has been agreed.",
+            "1": "This line says \"Could you fill\", so the reply that asks whether another placement is available is wrong here: it hunts for an alternative when nothing has fallen through.",
+            "3": "This line says \"form first\", so the reply that redirects and emails the garden is wrong here: it contacts an organisation that has not been mentioned."
+          }
+        },
+        {
+          "kind": "correction",
+          "keyAct": "redirect the contact",
+          "line": "It's the community garden, not the care home.",
+          "reply": "Ah, right — I'll email the garden people instead.",
+          "explanationIfSpoken": "The coordinator corrects which organisation the placement is with. Writing to the organisation actually named is the immediate consequence of the correction. The other replies do not fit: the one that moves a lecture to free up the day arranges a day when the news is about which place, not when; the one that asks whether another placement is available looks for a replacement when a placement still stands; the one that asks where to collect the form asks about a form that was never requested.",
+          "kills": {
+            "0": "This line says \"the community garden\", so the reply that moves a lecture to free up the day is wrong here: it arranges a day when the news is about which place, not when.",
+            "1": "This line says \"not the care home\", so the reply that asks whether another placement is available is wrong here: it looks for a replacement when a placement still stands.",
+            "2": "This line says \"It's the community garden\", so the reply that asks where to collect the form is wrong here: it asks about a form that was never requested."
+          }
+        }
+      ]
+    },
+    {
+      "localId": "crv7-b5-07",
+      "setting": "club budget meeting",
+      "worlds": [
+        {
+          "kind": "good news",
+          "keyAct": "commit the spend",
+          "line": "The union's approved our funding for the year.",
+          "reply": "Then I'll book the coach for the trip.",
+          "explanationIfSpoken": "The line reports that the club's funding has been granted. Booking the coach spends the money that has just been confirmed. The other replies do not fit: the one that proposes raising the money themselves falls back on fundraising although the money is granted; the one that keeps the trip provisional holds plans open when the decision has landed; the one that accepts the offer to write the appeal accepts an offer to draft an appeal that nobody made.",
+          "kills": {
+            "1": "This line says \"approved our funding\", so the reply that proposes raising the money themselves is wrong here: it falls back on fundraising although the money is granted.",
+            "2": "This line says \"for the year\", so the reply that keeps the trip provisional is wrong here: it holds plans open when the decision has landed.",
+            "3": "This line says \"The union's approved\", so the reply that accepts the offer to write the appeal is wrong here: it accepts an offer to draft an appeal that nobody made."
+          }
+        },
+        {
+          "kind": "bad news",
+          "keyAct": "propose the fallback",
+          "line": "They've knocked our funding request back.",
+          "reply": "We'll have to fundraise for the trip ourselves.",
+          "explanationIfSpoken": "The line reports that the funding application was refused. Turning to self-funding is the obvious fallback once the request has failed. The other replies do not fit: the one that books the coach for the trip spends on a coach with money the club was not given; the one that keeps the trip provisional waits for a decision that has already come; the one that accepts the offer to write the appeal accepts an offer of drafting help that was not made.",
+          "kills": {
+            "0": "This line says \"knocked our funding request back\", so the reply that books the coach for the trip is wrong here: it spends on a coach with money the club was not given.",
+            "2": "This line says \"They've knocked\", so the reply that keeps the trip provisional is wrong here: it waits for a decision that has already come.",
+            "3": "This line says \"our funding request\", so the reply that accepts the offer to write the appeal is wrong here: it accepts an offer of drafting help that was not made."
+          }
+        },
+        {
+          "kind": "neutral info",
+          "keyAct": "hold the plan open",
+          "line": "The decision won't come through until March.",
+          "reply": "Right, I'll keep the trip provisional.",
+          "explanationIfSpoken": "The line gives the date the funding decision is expected. Holding the trip provisional is exactly what an unresolved decision calls for. The other replies do not fit: the one that books the coach for the trip commits money that has not been awarded; the one that proposes raising the money themselves gives up on funding that has not been refused; the one that accepts the offer to write the appeal accepts an offer of writing help that was not made.",
+          "kills": {
+            "0": "This line says \"won't come through\", so the reply that books the coach for the trip is wrong here: it commits money that has not been awarded.",
+            "1": "This line says \"The decision won't come\", so the reply that proposes raising the money themselves is wrong here: it gives up on funding that has not been refused.",
+            "3": "This line says \"until March\", so the reply that accepts the offer to write the appeal is wrong here: it accepts an offer of writing help that was not made."
+          }
+        },
+        {
+          "kind": "offer",
+          "keyAct": "hand the task over",
+          "line": "I can write the funding appeal if you like.",
+          "reply": "Yes, please take that one on for us.",
+          "explanationIfSpoken": "The line offers to take on the drafting of an appeal. Handing the task over is the plain acceptance of that offer. The other replies do not fit: the one that books the coach for the trip books a coach although the money is still being appealed for; the one that proposes raising the money themselves treats an offer of help as a refusal to react to; the one that keeps the trip provisional waits on a timetable that has not been mentioned.",
+          "kills": {
+            "0": "This line says \"the funding appeal\", so the reply that books the coach for the trip is wrong here: it books a coach although the money is still being appealed for.",
+            "1": "This line says \"I can write\", so the reply that proposes raising the money themselves is wrong here: it treats an offer of help as a refusal to react to.",
+            "2": "This line says \"if you like\", so the reply that keeps the trip provisional is wrong here: it waits on a timetable that has not been mentioned."
+          }
+        }
+      ]
+    },
+    {
+      "localId": "crv7-b5-08",
+      "setting": "hackathon team",
+      "worlds": [
+        {
+          "kind": "bad news",
+          "keyAct": "switch to the fallback",
+          "line": "The API keys expired, so the demo won't run.",
+          "reply": "I'll cue up the recording, we made one.",
+          "explanationIfSpoken": "The line reports that the live demo is broken. Cueing the recording is the standard fallback when a live demo cannot run. The other replies do not fit: the one that moves the team on to the slides moves on to slides as though the build were working; the one that puts Sam forward to present names a presenter when nobody asked; the one that pushes the branch straight away pushes a branch although no merge was requested.",
+          "kills": {
+            "1": "This line says \"the demo won't run\", so the reply that moves the team on to the slides is wrong here: it moves on to slides as though the build were working.",
+            "2": "This line says \"The API keys expired\", so the reply that puts Sam forward to present is wrong here: it names a presenter when nobody asked.",
+            "3": "This line says \"so the demo won't run\", so the reply that pushes the branch straight away is wrong here: it pushes a branch although no merge was requested."
+          }
+        },
+        {
+          "kind": "good news",
+          "keyAct": "move to the next task",
+          "line": "The login flow's working end to end now.",
+          "reply": "Nice, that frees us up for the slides.",
+          "explanationIfSpoken": "The line reports that a key feature is finished. Moving to the slides is what a team does once the build stops needing attention. The other replies do not fit: the one that switches to the recording the team made falls back on a recording although the demo works; the one that puts Sam forward to present picks a presenter when the question was not asked; the one that pushes the branch straight away pushes code in answer to a progress report.",
+          "kills": {
+            "0": "This line says \"working end to end\", so the reply that switches to the recording the team made is wrong here: it falls back on a recording although the demo works.",
+            "2": "This line says \"The login flow's working\", so the reply that puts Sam forward to present is wrong here: it picks a presenter when the question was not asked.",
+            "3": "This line says \"end to end now\", so the reply that pushes the branch straight away is wrong here: it pushes code in answer to a progress report."
+          }
+        },
+        {
+          "kind": "question",
+          "keyAct": "nominate a presenter",
+          "line": "Who's actually presenting this to the judges?",
+          "reply": "Sam's the calmest, so probably him.",
+          "explanationIfSpoken": "The line asks who will speak to the judges. Naming the calmest member and saying why answers the question as asked. The other replies do not fit: the one that switches to the recording the team made reaches for a recording when nothing was said to be broken; the one that moves the team on to the slides reports progress on the build instead of answering; the one that pushes the branch straight away pushes a branch although no merge is in question.",
+          "kills": {
+            "0": "This line says \"presenting this to the judges\", so the reply that switches to the recording the team made is wrong here: it reaches for a recording when nothing was said to be broken.",
+            "1": "This line says \"Who's actually presenting\", so the reply that moves the team on to the slides is wrong here: it reports progress on the build instead of answering.",
+            "3": "This line says \"to the judges\", so the reply that pushes the branch straight away is wrong here: it pushes a branch although no merge is in question."
+          }
+        },
+        {
+          "kind": "request",
+          "keyAct": "comply immediately",
+          "line": "Can you push your branch before we merge?",
+          "reply": "Pushing it up now, give me a moment.",
+          "explanationIfSpoken": "The line asks the listener to push their work before a merge. Doing it immediately and asking for a moment is the cooperative reply to that request. The other replies do not fit: the one that switches to the recording the team made announces a broken demo in answer to a request; the one that moves the team on to the slides claims the work is finished when the merge has not happened; the one that puts Sam forward to present names a presenter although the request is about code.",
+          "kills": {
+            "0": "This line says \"push your branch\", so the reply that switches to the recording the team made is wrong here: it announces a broken demo in answer to a request.",
+            "1": "This line says \"before we merge\", so the reply that moves the team on to the slides is wrong here: it claims the work is finished when the merge has not happened.",
+            "2": "This line says \"Can you push\", so the reply that puts Sam forward to present is wrong here: it names a presenter although the request is about code."
+          }
+        }
+      ]
+    },
+    {
+      "localId": "crv7-b5-09",
+      "setting": "photography club darkroom",
+      "worlds": [
+        {
+          "kind": "request",
+          "keyAct": "agree with a time",
+          "line": "Could you mix fresh developer before you leave?",
+          "reply": "Sure, I'll mix some after this print.",
+          "explanationIfSpoken": "The line asks the listener to prepare chemistry before going. Agreeing and saying when fits the request in without abandoning the print in the tray. The other replies do not fit: the one that restarts the ruined sheet restarts a sheet as though a mistake had been pointed out; the one that puts a warning note on the door warns others off although nothing is broken; the one that accepts help with hanging the prints accepts help when it is help that is being asked for.",
+          "kills": {
+            "1": "This line says \"mix fresh developer\", so the reply that restarts the ruined sheet is wrong here: it restarts a sheet as though a mistake had been pointed out.",
+            "2": "This line says \"before you leave\", so the reply that puts a warning note on the door is wrong here: it warns others off although nothing is broken.",
+            "3": "This line says \"Could you mix\", so the reply that accepts help with hanging the prints is wrong here: it accepts help when it is help that is being asked for."
+          }
+        },
+        {
+          "kind": "correction",
+          "keyAct": "take the correction and redo",
+          "line": "That's the fixer tray, not the stop bath.",
+          "reply": "Thanks — I'll start the sheet again.",
+          "explanationIfSpoken": "The line points out that the wrong tray is being used. Starting the sheet again is what follows from a print that has gone through the wrong bath. The other replies do not fit: the one that agrees to mix developer after the print promises to mix chemistry that was not requested; the one that puts a warning note on the door warns people away when the equipment is working; the one that accepts help with hanging the prints accepts an offer to stay on that was not made.",
+          "kills": {
+            "0": "This line says \"the fixer tray\", so the reply that agrees to mix developer after the print is wrong here: it promises to mix chemistry that was not requested.",
+            "2": "This line says \"not the stop bath\", so the reply that puts a warning note on the door is wrong here: it warns people away when the equipment is working.",
+            "3": "This line says \"That's the fixer tray\", so the reply that accepts help with hanging the prints is wrong here: it accepts an offer to stay on that was not made."
+          }
+        },
+        {
+          "kind": "bad news",
+          "keyAct": "warn the next user",
+          "line": "The enlarger's bulb has gone, so we're stuck.",
+          "reply": "Right, I'll put a note on the door.",
+          "explanationIfSpoken": "The line reports that the darkroom is out of action. A note on the door saves the next person a wasted trip, which only makes sense if nothing can be printed. The other replies do not fit: the one that agrees to mix developer after the print mixes chemistry in reply to news of broken equipment; the one that restarts the ruined sheet reprints a sheet that cannot be printed at all; the one that accepts help with hanging the prints accepts help hanging prints that are not being made.",
+          "kills": {
+            "0": "This line says \"bulb has gone\", so the reply that agrees to mix developer after the print is wrong here: it mixes chemistry in reply to news of broken equipment.",
+            "1": "This line says \"so we're stuck\", so the reply that restarts the ruined sheet is wrong here: it reprints a sheet that cannot be printed at all.",
+            "3": "This line says \"The enlarger's bulb\", so the reply that accepts help with hanging the prints is wrong here: it accepts help hanging prints that are not being made."
+          }
+        },
+        {
+          "kind": "offer",
+          "keyAct": "accept and say why",
+          "line": "I'll stay and help you hang the prints.",
+          "reply": "Great, they take ages on my own.",
+          "explanationIfSpoken": "The line offers to stay behind and share a job. Accepting and noting how long the job takes alone is the natural uptake of that offer. The other replies do not fit: the one that agrees to mix developer after the print treats an offer as a request to mix chemistry; the one that restarts the ruined sheet redoes a sheet although no error was mentioned; the one that puts a warning note on the door warns people off although the work is going ahead.",
+          "kills": {
+            "0": "This line says \"help you hang\", so the reply that agrees to mix developer after the print is wrong here: it treats an offer as a request to mix chemistry.",
+            "1": "This line says \"I'll stay\", so the reply that restarts the ruined sheet is wrong here: it redoes a sheet although no error was mentioned.",
+            "2": "This line says \"hang the prints\", so the reply that puts a warning note on the door is wrong here: it warns people off although the work is going ahead."
+          }
+        }
+      ]
+    },
+    {
+      "localId": "crv7-b5-10",
+      "setting": "hiking club trip planning",
+      "worlds": [
+        {
+          "kind": "neutral info",
+          "keyAct": "redo the transport",
+          "line": "We're starting from the north car park this time.",
+          "reply": "I'll redo the lift list for that side.",
+          "explanationIfSpoken": "The line names a different starting point for the walk. Redoing the lift list is the transport consequence of setting off from the other side. The other replies do not fit: the one that proposes the valley loop instead substitutes a route although nothing has been closed; the one that reports first-hand experience of the crossing answers a question about the crossing that was not asked; the one that notes that nobody has to camp talks about beds when the news is about where the walk begins.",
+          "kills": {
+            "1": "This line says \"the north car park\", so the reply that proposes the valley loop instead is wrong here: it substitutes a route although nothing has been closed.",
+            "2": "This line says \"starting from the north\", so the reply that reports first-hand experience of the crossing is wrong here: it answers a question about the crossing that was not asked.",
+            "3": "This line says \"this time\", so the reply that notes that nobody has to camp is wrong here: it talks about beds when the news is about where the walk begins."
+          }
+        },
+        {
+          "kind": "bad news",
+          "keyAct": "propose a substitute route",
+          "line": "The high path's closed, so the ridge is out.",
+          "reply": "The valley loop would still fill a day.",
+          "explanationIfSpoken": "The line reports that the planned route is unavailable. Offering the valley loop as a full day replaces the lost route without labouring the loss. The other replies do not fit: the one that redoes the lift list for the new start reworks lifts when the start point is not what changed; the one that reports first-hand experience of the crossing answers a question about the crossing that nobody asked; the one that notes that nobody has to camp settles sleeping arrangements that were not mentioned.",
+          "kills": {
+            "0": "This line says \"the ridge is out\", so the reply that redoes the lift list for the new start is wrong here: it reworks lifts when the start point is not what changed.",
+            "2": "This line says \"The high path's closed\", so the reply that reports first-hand experience of the crossing is wrong here: it answers a question about the crossing that nobody asked.",
+            "3": "This line says \"so the ridge is out\", so the reply that notes that nobody has to camp is wrong here: it settles sleeping arrangements that were not mentioned."
+          }
+        },
+        {
+          "kind": "question",
+          "keyAct": "answer from experience",
+          "line": "Has anyone here done the river crossing before?",
+          "reply": "I have, it's fine in low water.",
+          "explanationIfSpoken": "The line asks the group for first-hand knowledge of a crossing. Answering yes with the condition that matters is exactly what the question is fishing for. The other replies do not fit: the one that redoes the lift list for the new start changes the lift list when no start point was given; the one that proposes the valley loop instead replaces a route although none has been ruled out; the one that notes that nobody has to camp talks about the bunkhouse when the question is about the route.",
+          "kills": {
+            "0": "This line says \"the river crossing\", so the reply that redoes the lift list for the new start is wrong here: it changes the lift list when no start point was given.",
+            "1": "This line says \"Has anyone here\", so the reply that proposes the valley loop instead is wrong here: it replaces a route although none has been ruled out.",
+            "3": "This line says \"done the river crossing\", so the reply that notes that nobody has to camp is wrong here: it talks about the bunkhouse when the question is about the route."
+          }
+        },
+        {
+          "kind": "good news",
+          "keyAct": "draw the practical consequence",
+          "line": "The bunkhouse can squeeze us all in Saturday.",
+          "reply": "Then nobody needs to camp, thankfully.",
+          "explanationIfSpoken": "The line reports that there is indoor space for the whole group. Dropping the camping plan is the direct consequence of everyone getting a bed. The other replies do not fit: the one that redoes the lift list for the new start reorganises lifts when the start point is unchanged; the one that proposes the valley loop instead substitutes a route although nothing has been closed; the one that reports first-hand experience of the crossing offers experience of a crossing that nobody asked about.",
+          "kills": {
+            "0": "This line says \"The bunkhouse can squeeze\", so the reply that redoes the lift list for the new start is wrong here: it reorganises lifts when the start point is unchanged.",
+            "1": "This line says \"us all in Saturday\", so the reply that proposes the valley loop instead is wrong here: it substitutes a route although nothing has been closed.",
+            "2": "This line says \"squeeze us all in\", so the reply that reports first-hand experience of the crossing is wrong here: it offers experience of a crossing that nobody asked about."
+          }
+        }
+      ]
+    },
+    {
+      "localId": "crv7-b5-11",
+      "setting": "dance workshop",
+      "worlds": [
+        {
+          "kind": "offer",
+          "keyAct": "accept the offer",
+          "line": "I could take the warm-up if you're teaching.",
+          "reply": "That would free me up nicely.",
+          "explanationIfSpoken": "The line offers to lead the first part of the class. Saying it frees them up accepts the offer and shows what it is worth. The other replies do not fit: the one that agrees to borrow a speaker fetches equipment that nobody has asked for; the one that goes to the corrected room moves to a different room when no room was named; the one that proposes splitting the class into groups reacts to a sign-up list that has not been mentioned.",
+          "kills": {
+            "1": "This line says \"take the warm-up\", so the reply that agrees to borrow a speaker is wrong here: it fetches equipment that nobody has asked for.",
+            "2": "This line says \"if you're teaching\", so the reply that goes to the corrected room is wrong here: it moves to a different room when no room was named.",
+            "3": "This line says \"I could take\", so the reply that proposes splitting the class into groups is wrong here: it reacts to a sign-up list that has not been mentioned."
+          }
+        },
+        {
+          "kind": "request",
+          "keyAct": "agree and say how",
+          "line": "Can you bring a speaker on Thursday?",
+          "reply": "I'll borrow one from the drama store.",
+          "explanationIfSpoken": "The line asks the listener to supply sound equipment for the class. Naming where they will get one both agrees to the request and shows how it will be met. The other replies do not fit: the one that accepts the offer of the warm-up accepts an offer of teaching help that was not made; the one that goes to the corrected room changes room although the venue is not in question; the one that proposes splitting the class into groups plans around a turnout that has not been reported.",
+          "kills": {
+            "0": "This line says \"Can you bring\", so the reply that accepts the offer of the warm-up is wrong here: it accepts an offer of teaching help that was not made.",
+            "2": "This line says \"on Thursday\", so the reply that goes to the corrected room is wrong here: it changes room although the venue is not in question.",
+            "3": "This line says \"bring a speaker\", so the reply that proposes splitting the class into groups is wrong here: it plans around a turnout that has not been reported."
+          }
+        },
+        {
+          "kind": "correction",
+          "keyAct": "go to the right place",
+          "line": "The workshop's in the mirror studio, not the gym.",
+          "reply": "I'll head straight up there instead.",
+          "explanationIfSpoken": "The line corrects where the workshop is being held. Going straight to the right room is the whole point of the correction. The other replies do not fit: the one that accepts the offer of the warm-up accepts an offer to lead a section that was not made; the one that agrees to borrow a speaker promises equipment that was not requested; the one that proposes splitting the class into groups splits a class whose size has not been mentioned.",
+          "kills": {
+            "0": "This line says \"in the mirror studio\", so the reply that accepts the offer of the warm-up is wrong here: it accepts an offer to lead a section that was not made.",
+            "1": "This line says \"not the gym\", so the reply that agrees to borrow a speaker is wrong here: it promises equipment that was not requested.",
+            "3": "This line says \"The workshop's in the mirror studio\", so the reply that proposes splitting the class into groups is wrong here: it splits a class whose size has not been mentioned."
+          }
+        },
+        {
+          "kind": "good news",
+          "keyAct": "adapt the teaching plan",
+          "line": "Loads of people signed up for the beginners' session.",
+          "reply": "We'll need to split them into groups.",
+          "explanationIfSpoken": "The line reports a strong turnout for the class. Splitting into groups is the teaching adjustment a large sign-up forces. The other replies do not fit: the one that accepts the offer of the warm-up accepts an offer to take the warm-up that was not made; the one that agrees to borrow a speaker supplies equipment that nobody has asked for; the one that goes to the corrected room relocates although the room has not changed.",
+          "kills": {
+            "0": "This line says \"signed up\", so the reply that accepts the offer of the warm-up is wrong here: it accepts an offer to take the warm-up that was not made.",
+            "1": "This line says \"Loads of people\", so the reply that agrees to borrow a speaker is wrong here: it supplies equipment that nobody has asked for.",
+            "2": "This line says \"the beginners' session\", so the reply that goes to the corrected room is wrong here: it relocates although the room has not changed."
+          }
+        }
+      ]
+    },
+    {
+      "localId": "crv7-b5-12",
+      "setting": "chess club",
+      "worlds": [
+        {
+          "kind": "good news",
+          "keyAct": "get back to preparation",
+          "line": "You've been picked for the county match team.",
+          "reply": "Then I'd better dust off my openings.",
+          "explanationIfSpoken": "The line tells the listener they have been selected for the team. Getting back to the openings is what selection immediately means for a player. The other replies do not fit: the one that updates the sign on the old door advertises a change of room that has not happened; the one that identifies the clock that still works talks about the clocks when the news is about selection; the one that warns the others not to travel tells people not to travel to a match that is on.",
+          "kills": {
+            "1": "This line says \"picked for the county match\", so the reply that updates the sign on the old door is wrong here: it advertises a change of room that has not happened.",
+            "2": "This line says \"You've been picked\", so the reply that identifies the clock that still works is wrong here: it talks about the clocks when the news is about selection.",
+            "3": "This line says \"the county match team\", so the reply that warns the others not to travel is wrong here: it tells people not to travel to a match that is on."
+          }
+        },
+        {
+          "kind": "neutral info",
+          "keyAct": "update the signage",
+          "line": "The club night moves to the common room now.",
+          "reply": "I'll change the sign on our old door.",
+          "explanationIfSpoken": "The line announces that the club's regular room has changed. Changing the sign is what stops members turning up at the room they know. The other replies do not fit: the one that goes back to work on their openings prepares for a selection that has not been made; the one that identifies the clock that still works answers a question about clocks that was not asked; the one that warns the others not to travel calls off travel although club night is going ahead.",
+          "kills": {
+            "0": "This line says \"moves to the common room\", so the reply that goes back to work on their openings is wrong here: it prepares for a selection that has not been made.",
+            "2": "This line says \"The club night moves\", so the reply that identifies the clock that still works is wrong here: it answers a question about clocks that was not asked.",
+            "3": "This line says \"the common room now\", so the reply that warns the others not to travel is wrong here: it calls off travel although club night is going ahead."
+          }
+        },
+        {
+          "kind": "question",
+          "keyAct": "answer with the detail",
+          "line": "Do we have a clock that still keeps time?",
+          "reply": "The wooden one still works fine.",
+          "explanationIfSpoken": "The line asks whether any of the club's clocks are usable. Naming the one that works answers the question with the detail that matters. The other replies do not fit: the one that goes back to work on their openings treats a question about equipment as news of selection; the one that updates the sign on the old door announces a room change that nobody mentioned; the one that warns the others not to travel stops people travelling although nothing is cancelled.",
+          "kills": {
+            "0": "This line says \"a clock that still keeps time\", so the reply that goes back to work on their openings is wrong here: it treats a question about equipment as news of selection.",
+            "1": "This line says \"Do we have\", so the reply that updates the sign on the old door is wrong here: it announces a room change that nobody mentioned.",
+            "3": "This line says \"still keeps time\", so the reply that warns the others not to travel is wrong here: it stops people travelling although nothing is cancelled."
+          }
+        },
+        {
+          "kind": "bad news",
+          "keyAct": "stop the others",
+          "line": "Our match against the college is called off.",
+          "reply": "I'll tell the others not to travel.",
+          "explanationIfSpoken": "The line reports that the fixture has been cancelled. Stopping the others travelling is the urgent consequence of a cancelled match. The other replies do not fit: the one that goes back to work on their openings prepares openings for a match that is not happening; the one that updates the sign on the old door changes a sign when the club room is not at issue; the one that identifies the clock that still works recommends a clock although nothing was asked about equipment.",
+          "kills": {
+            "0": "This line says \"is called off\", so the reply that goes back to work on their openings is wrong here: it prepares openings for a match that is not happening.",
+            "1": "This line says \"Our match against the college\", so the reply that updates the sign on the old door is wrong here: it changes a sign when the club room is not at issue.",
+            "2": "This line says \"against the college\", so the reply that identifies the clock that still works is wrong here: it recommends a clock although nothing was asked about equipment."
+          }
+        }
+      ]
+    },
+    {
+      "localId": "crv7-b5-13",
+      "setting": "cultural festival stall",
+      "worlds": [
+        {
+          "kind": "request",
+          "keyAct": "agree with a condition",
+          "line": "Could you take the till for the first hour?",
+          "reply": "Yes, fine — show me how it works first.",
+          "explanationIfSpoken": "The line asks the listener to handle the money for the opening stretch. Agreeing while asking for a quick demonstration is the practical answer from someone facing an unfamiliar till. The other replies do not fit: the one that accepts the loan of the bigger steamer accepts a loan of equipment that was not offered; the one that offers to borrow a gazebo from the scouts borrows shelter although nothing is missing; the one that corrects the printed map corrects a map when no pitch has been mentioned.",
+          "kills": {
+            "1": "This line says \"take the till\", so the reply that accepts the loan of the bigger steamer is wrong here: it accepts a loan of equipment that was not offered.",
+            "2": "This line says \"for the first hour\", so the reply that offers to borrow a gazebo from the scouts is wrong here: it borrows shelter although nothing is missing.",
+            "3": "This line says \"Could you take\", so the reply that corrects the printed map is wrong here: it corrects a map when no pitch has been mentioned."
+          }
+        },
+        {
+          "kind": "offer",
+          "keyAct": "accept the loan",
+          "line": "I can bring my mum's steamer for the dumplings.",
+          "reply": "Please do — ours is far too small.",
+          "explanationIfSpoken": "The line offers to bring cooking equipment from home. Accepting and saying why the club's own will not do takes the offer up warmly. The other replies do not fit: the one that agrees to the till once shown how it works asks for a till demonstration when no shift was requested; the one that offers to borrow a gazebo from the scouts replaces shelter although nothing has fallen through; the one that corrects the printed map reprints a map when the pitch has not been mentioned.",
+          "kills": {
+            "0": "This line says \"bring my mum's steamer\", so the reply that agrees to the till once shown how it works is wrong here: it asks for a till demonstration when no shift was requested.",
+            "2": "This line says \"for the dumplings\", so the reply that offers to borrow a gazebo from the scouts is wrong here: it replaces shelter although nothing has fallen through.",
+            "3": "This line says \"I can bring\", so the reply that corrects the printed map is wrong here: it reprints a map when the pitch has not been mentioned."
+          }
+        },
+        {
+          "kind": "bad news",
+          "keyAct": "volunteer a remedy",
+          "line": "Our gazebo's double-booked, so we've no cover.",
+          "reply": "Awkward — I'll borrow one from the scouts.",
+          "explanationIfSpoken": "The line reports that the stall has lost its shelter. Sourcing another gazebo answers the gap the line has just described. The other replies do not fit: the one that agrees to the till once shown how it works arranges a till shift that nobody has proposed; the one that accepts the loan of the bigger steamer accepts a loan of cooking gear that was not offered; the one that corrects the printed map changes a printed map when the pitch is not the problem.",
+          "kills": {
+            "0": "This line says \"no cover\", so the reply that agrees to the till once shown how it works is wrong here: it arranges a till shift that nobody has proposed.",
+            "1": "This line says \"Our gazebo's double-booked\", so the reply that accepts the loan of the bigger steamer is wrong here: it accepts a loan of cooking gear that was not offered.",
+            "3": "This line says \"so we've no cover\", so the reply that corrects the printed map is wrong here: it changes a printed map when the pitch is not the problem."
+          }
+        },
+        {
+          "kind": "neutral info",
+          "keyAct": "fix your own materials",
+          "line": "We're beside the music stage, not the entrance.",
+          "reply": "Good to know — I'll change the map I printed.",
+          "explanationIfSpoken": "The line says where the stall is actually pitched. Fixing the printed map is the immediate consequence of the pitch being somewhere else. The other replies do not fit: the one that agrees to the till once shown how it works takes on a till shift that was never requested; the one that accepts the loan of the bigger steamer accepts equipment that has not been offered; the one that offers to borrow a gazebo from the scouts hunts for shelter although the stall has its pitch.",
+          "kills": {
+            "0": "This line says \"beside the music stage\", so the reply that agrees to the till once shown how it works is wrong here: it takes on a till shift that was never requested.",
+            "1": "This line says \"not the entrance\", so the reply that accepts the loan of the bigger steamer is wrong here: it accepts equipment that has not been offered.",
+            "2": "This line says \"We're beside the music stage\", so the reply that offers to borrow a gazebo from the scouts is wrong here: it hunts for shelter although the stall has its pitch."
+          }
+        }
+      ]
+    },
+    {
+      "localId": "crv7-b5-14",
+      "setting": "radio station studio",
+      "worlds": [
+        {
+          "kind": "question",
+          "keyAct": "agree with one condition",
+          "line": "Are you happy to run the desk tonight?",
+          "reply": "I can do that if you show me the faders.",
+          "explanationIfSpoken": "The line checks whether the listener will operate the studio desk. Agreeing with one condition answers the question and flags the gap in their training. The other replies do not fit: the one that rewrites the introduction to fit the new slot rewrites an introduction although the running order is unchanged; the one that proposes playing the long session tracks plans for extra airtime that has not been granted; the one that undertakes to email the guest chases a guest who has not been mentioned.",
+          "kills": {
+            "1": "This line says \"run the desk\", so the reply that rewrites the introduction to fit the new slot is wrong here: it rewrites an introduction although the running order is unchanged.",
+            "2": "This line says \"Are you happy\", so the reply that proposes playing the long session tracks is wrong here: it plans for extra airtime that has not been granted.",
+            "3": "This line says \"the desk tonight\", so the reply that undertakes to email the guest is wrong here: it chases a guest who has not been mentioned."
+          }
+        },
+        {
+          "kind": "correction",
+          "keyAct": "rework the script",
+          "line": "The show's after the news now, not before.",
+          "reply": "I'll rewrite the intro to match.",
+          "explanationIfSpoken": "The line corrects where the programme sits in the schedule. Rewriting the opening is what a presenter does when the slot moves. The other replies do not fit: the one that agrees to run the desk after a quick briefing asks for a desk briefing although nobody raised operating it; the one that proposes playing the long session tracks celebrates extra airtime when the slot has only moved; the one that undertakes to email the guest emails a guest who has not come up.",
+          "kills": {
+            "0": "This line says \"after the news now\", so the reply that agrees to run the desk after a quick briefing is wrong here: it asks for a desk briefing although nobody raised operating it.",
+            "2": "This line says \"not before\", so the reply that proposes playing the long session tracks is wrong here: it celebrates extra airtime when the slot has only moved.",
+            "3": "This line says \"The show's after the news\", so the reply that undertakes to email the guest is wrong here: it emails a guest who has not come up."
+          }
+        },
+        {
+          "kind": "good news",
+          "keyAct": "propose a use for it",
+          "line": "They've given us the whole hour to ourselves.",
+          "reply": "We can play the long session tracks then.",
+          "explanationIfSpoken": "The line reports that the programme has been given a full slot of its own. Reaching for the long tracks is the use a presenter makes of extra airtime. The other replies do not fit: the one that agrees to run the desk after a quick briefing asks to be shown the desk when nobody raised operating it; the one that rewrites the introduction to fit the new slot rewrites an introduction although the slot has not moved; the one that undertakes to email the guest contacts a guest who is not part of this.",
+          "kills": {
+            "0": "This line says \"the whole hour\", so the reply that agrees to run the desk after a quick briefing is wrong here: it asks to be shown the desk when nobody raised operating it.",
+            "1": "This line says \"They've given us\", so the reply that rewrites the introduction to fit the new slot is wrong here: it rewrites an introduction although the slot has not moved.",
+            "3": "This line says \"to ourselves\", so the reply that undertakes to email the guest is wrong here: it contacts a guest who is not part of this."
+          }
+        },
+        {
+          "kind": "request",
+          "keyAct": "undertake the task",
+          "line": "Can you chase the guest for their pronunciation?",
+          "reply": "I'll email them as soon as I can.",
+          "explanationIfSpoken": "The line asks the listener to check something with the guest. Promising to write to them promptly is the plain acceptance of that task. The other replies do not fit: the one that agrees to run the desk after a quick briefing asks for desk training when the request is about a guest; the one that rewrites the introduction to fit the new slot rewrites an introduction although nothing has been rescheduled; the one that proposes playing the long session tracks plans for a longer slot that has not been granted.",
+          "kills": {
+            "0": "This line says \"chase the guest\", so the reply that agrees to run the desk after a quick briefing is wrong here: it asks for desk training when the request is about a guest.",
+            "1": "This line says \"Can you chase\", so the reply that rewrites the introduction to fit the new slot is wrong here: it rewrites an introduction although nothing has been rescheduled.",
+            "2": "This line says \"their pronunciation\", so the reply that proposes playing the long session tracks is wrong here: it plans for a longer slot that has not been granted."
+          }
+        }
+      ]
+    },
+    {
+      "localId": "crv7-b5-15",
+      "setting": "e-sports team",
+      "worlds": [
+        {
+          "kind": "bad news",
+          "keyAct": "look for a replacement",
+          "line": "Our sub's dropped out before the qualifier.",
+          "reply": "I'll ask around the server for someone.",
+          "explanationIfSpoken": "The line reports that the reserve player has withdrawn. Asking around for someone treats the roster as short without saying so outright. The other replies do not fit: the one that books the practice room ahead books practice for a result the team has not got; the one that sets up the capture before play sets up recording when nothing was asked to be captured; the one that proposes practising on the test build plans around a patch that has not been mentioned.",
+          "kills": {
+            "1": "This line says \"before the qualifier\", so the reply that books the practice room ahead is wrong here: it books practice for a result the team has not got.",
+            "2": "This line says \"Our sub's dropped out\", so the reply that sets up the capture before play is wrong here: it sets up recording when nothing was asked to be captured.",
+            "3": "This line says \"dropped out before the qualifier\", so the reply that proposes practising on the test build is wrong here: it plans around a patch that has not been mentioned."
+          }
+        },
+        {
+          "kind": "good news",
+          "keyAct": "book the preparation",
+          "line": "We've qualified for the regional finals.",
+          "reply": "I'll book the practice room for the week.",
+          "explanationIfSpoken": "The line reports that the team has come through to the finals. Booking practice time is what a qualified team arranges next. The other replies do not fit: the one that looks for a replacement player recruits a replacement although nobody has left; the one that sets up the capture before play starts recording when no request to capture was made; the one that proposes practising on the test build works around a patch that has not been announced.",
+          "kills": {
+            "0": "This line says \"We've qualified\", so the reply that looks for a replacement player is wrong here: it recruits a replacement although nobody has left.",
+            "2": "This line says \"the regional finals\", so the reply that sets up the capture before play is wrong here: it starts recording when no request to capture was made.",
+            "3": "This line says \"qualified for the regional\", so the reply that proposes practising on the test build is wrong here: it works around a patch that has not been announced."
+          }
+        },
+        {
+          "kind": "request",
+          "keyAct": "set it up in advance",
+          "line": "Can you record our scrims for review?",
+          "reply": "I'll set the capture up before we start.",
+          "explanationIfSpoken": "The line asks the listener to record the team's practice games. Setting the capture up beforehand is the straightforward way of agreeing. The other replies do not fit: the one that looks for a replacement player hunts for a player when nobody has dropped out; the one that books the practice room ahead celebrates a result that has not been reported; the one that proposes practising on the test build reacts to a patch that has not been mentioned.",
+          "kills": {
+            "0": "This line says \"record our scrims\", so the reply that looks for a replacement player is wrong here: it hunts for a player when nobody has dropped out.",
+            "1": "This line says \"Can you record\", so the reply that books the practice room ahead is wrong here: it celebrates a result that has not been reported.",
+            "3": "This line says \"for review\", so the reply that proposes practising on the test build is wrong here: it reacts to a patch that has not been mentioned."
+          }
+        },
+        {
+          "kind": "neutral info",
+          "keyAct": "adapt the practice plan",
+          "line": "The patch drops the night before we play.",
+          "reply": "We should practise on the test build.",
+          "explanationIfSpoken": "The line points out that the game updates just before the match. Practising on the test build is the sensible way to meet a last-minute patch. The other replies do not fit: the one that looks for a replacement player replaces a player although nobody has withdrawn; the one that books the practice room ahead treats the news as a result to prepare for; the one that sets up the capture before play arranges recording that nobody requested.",
+          "kills": {
+            "0": "This line says \"The patch drops\", so the reply that looks for a replacement player is wrong here: it replaces a player although nobody has withdrawn.",
+            "1": "This line says \"the night before we play\", so the reply that books the practice room ahead is wrong here: it treats the news as a result to prepare for.",
+            "2": "This line says \"The patch drops the night before\", so the reply that sets up the capture before play is wrong here: it arranges recording that nobody requested."
+          }
+        }
+      ]
+    },
+    {
+      "localId": "crv7-b5-16",
+      "setting": "fundraising bake sale",
+      "worlds": [
+        {
+          "kind": "offer",
+          "keyAct": "take the other half",
+          "line": "I'll do the baking if you handle the pitch.",
+          "reply": "Right, I'll sort the table and the float.",
+          "explanationIfSpoken": "The line proposes a split of the work and volunteers for one half of it. Taking the other half is the cooperative answer to a proposed division of labour. The other replies do not fit: the one that proposes buying goods in from the market buys goods in although the baking is covered; the one that confirms that labelling is required answers a labelling question that was not asked; the one that fixes the poster before it goes up changes a poster when no day or time has been given.",
+          "kills": {
+            "1": "This line says \"I'll do the baking\", so the reply that proposes buying goods in from the market is wrong here: it buys goods in although the baking is covered.",
+            "2": "This line says \"if you handle the pitch\", so the reply that confirms that labelling is required is wrong here: it answers a labelling question that was not asked.",
+            "3": "This line says \"do the baking\", so the reply that fixes the poster before it goes up is wrong here: it changes a poster when no day or time has been given."
+          }
+        },
+        {
+          "kind": "bad news",
+          "keyAct": "propose an alternative supply",
+          "line": "The kitchen's out of use, so no baking.",
+          "reply": "We could buy things in from the market.",
+          "explanationIfSpoken": "The line reports that the club cannot bake for the sale. Buying in is the obvious way to still have a stall with no kitchen. The other replies do not fit: the one that takes on the table and the float divides up baking work that cannot happen; the one that confirms that labelling is required answers a question about labelling that was not raised; the one that fixes the poster before it goes up reprints a poster although the timing has not changed.",
+          "kills": {
+            "0": "This line says \"so no baking\", so the reply that takes on the table and the float is wrong here: it divides up baking work that cannot happen.",
+            "2": "This line says \"The kitchen's out of use\", so the reply that confirms that labelling is required is wrong here: it answers a question about labelling that was not raised.",
+            "3": "This line says \"out of use\", so the reply that fixes the poster before it goes up is wrong here: it reprints a poster although the timing has not changed."
+          }
+        },
+        {
+          "kind": "question",
+          "keyAct": "confirm the rule",
+          "line": "Do we need to label everything for allergies?",
+          "reply": "Yes, the union insists on it now.",
+          "explanationIfSpoken": "The line asks whether allergy labelling is compulsory. A yes with the source of the rule settles the question being asked. The other replies do not fit: the one that takes on the table and the float divides up work when the question is about the rules; the one that proposes buying goods in from the market looks for goods to buy when nothing has been ruled out; the one that fixes the poster before it goes up changes a poster although no date has been mentioned.",
+          "kills": {
+            "0": "This line says \"label everything\", so the reply that takes on the table and the float is wrong here: it divides up work when the question is about the rules.",
+            "1": "This line says \"Do we need\", so the reply that proposes buying goods in from the market is wrong here: it looks for goods to buy when nothing has been ruled out.",
+            "3": "This line says \"for allergies\", so the reply that fixes the poster before it goes up is wrong here: it changes a poster although no date has been mentioned."
+          }
+        },
+        {
+          "kind": "correction",
+          "keyAct": "fix the publicity",
+          "line": "It's Saturday morning, not Friday afternoon.",
+          "reply": "I'll change the poster before it goes up.",
+          "explanationIfSpoken": "The line corrects when the sale is actually taking place. Fixing the poster before it is displayed follows straight from the corrected time. The other replies do not fit: the one that takes on the table and the float splits baking duties that were not under discussion; the one that proposes buying goods in from the market sources goods elsewhere although nothing has been cancelled; the one that confirms that labelling is required answers a labelling question that nobody asked.",
+          "kills": {
+            "0": "This line says \"Saturday morning\", so the reply that takes on the table and the float is wrong here: it splits baking duties that were not under discussion.",
+            "1": "This line says \"not Friday afternoon\", so the reply that proposes buying goods in from the market is wrong here: it sources goods elsewhere although nothing has been cancelled.",
+            "2": "This line says \"It's Saturday morning\", so the reply that confirms that labelling is required is wrong here: it answers a labelling question that nobody asked."
+          }
+        }
+      ]
+    },
+    {
+      "localId": "crv7-b5-17",
+      "setting": "guest speaker logistics",
+      "worlds": [
+        {
+          "kind": "neutral info",
+          "keyAct": "arrange the welcome",
+          "line": "She's coming by train, arriving mid-afternoon.",
+          "reply": "Someone should meet her at the station.",
+          "explanationIfSpoken": "The line gives the speaker's travel arrangements for the day. Arranging a welcome at the station is the hosting job those arrangements create. The other replies do not fit: the one that posts a notice on the event page posts a cancellation notice although the talk is on; the one that agrees to write a short introduction prepares an introduction that nobody has asked for; the one that proposes booking a seminar room books a room for a session that has not been proposed.",
+          "kills": {
+            "1": "This line says \"She's coming by train\", so the reply that posts a notice on the event page is wrong here: it posts a cancellation notice although the talk is on.",
+            "2": "This line says \"arriving mid-afternoon\", so the reply that agrees to write a short introduction is wrong here: it prepares an introduction that nobody has asked for.",
+            "3": "This line says \"coming by train\", so the reply that proposes booking a seminar room is wrong here: it books a room for a session that has not been proposed."
+          }
+        },
+        {
+          "kind": "bad news",
+          "keyAct": "get the word out",
+          "line": "She's pulled out, there's a family emergency.",
+          "reply": "I'll put a notice on the event page.",
+          "explanationIfSpoken": "The line reports that the speaker has withdrawn. Getting a notice up is what stops an audience turning up to nothing. The other replies do not fit: the one that proposes meeting her at the station organises a station welcome for someone who is not travelling; the one that agrees to write a short introduction writes an introduction for a talk that is not happening; the one that proposes booking a seminar room books a room for an extra session that is off.",
+          "kills": {
+            "0": "This line says \"She's pulled out\", so the reply that proposes meeting her at the station is wrong here: it organises a station welcome for someone who is not travelling.",
+            "2": "This line says \"a family emergency\", so the reply that agrees to write a short introduction is wrong here: it writes an introduction for a talk that is not happening.",
+            "3": "This line says \"there's a family emergency\", so the reply that proposes booking a seminar room is wrong here: it books a room for an extra session that is off."
+          }
+        },
+        {
+          "kind": "request",
+          "keyAct": "accept and scope it",
+          "line": "Could you introduce her when she goes on?",
+          "reply": "I'll write something short for that.",
+          "explanationIfSpoken": "The line asks the listener to introduce the speaker from the stage. Promising a short introduction accepts the job and sets its scale. The other replies do not fit: the one that proposes meeting her at the station arranges travel when the request concerns the stage; the one that posts a notice on the event page announces a cancellation although the event is going ahead; the one that proposes booking a seminar room books a room for a workshop that has not been mentioned.",
+          "kills": {
+            "0": "This line says \"when she goes on\", so the reply that proposes meeting her at the station is wrong here: it arranges travel when the request concerns the stage.",
+            "1": "This line says \"Could you introduce her\", so the reply that posts a notice on the event page is wrong here: it announces a cancellation although the event is going ahead.",
+            "3": "This line says \"introduce her\", so the reply that proposes booking a seminar room is wrong here: it books a room for a workshop that has not been mentioned."
+          }
+        },
+        {
+          "kind": "good news",
+          "keyAct": "arrange what it needs",
+          "line": "She's agreed to stay for a workshop afterwards.",
+          "reply": "We should book a seminar room then.",
+          "explanationIfSpoken": "The line reports that the speaker will run an extra session. Booking a room is the first thing an added session needs. The other replies do not fit: the one that proposes meeting her at the station arranges a station pick-up although travel was not discussed; the one that posts a notice on the event page posts a cancellation when the speaker is doing more, not less; the one that agrees to write a short introduction drafts a stage introduction that nobody requested.",
+          "kills": {
+            "0": "This line says \"stay for a workshop\", so the reply that proposes meeting her at the station is wrong here: it arranges a station pick-up although travel was not discussed.",
+            "1": "This line says \"She's agreed to stay\", so the reply that posts a notice on the event page is wrong here: it posts a cancellation when the speaker is doing more, not less.",
+            "2": "This line says \"a workshop afterwards\", so the reply that agrees to write a short introduction is wrong here: it drafts a stage introduction that nobody requested."
+          }
+        }
+      ]
+    },
+    {
+      "localId": "crv7-b5-18",
+      "setting": "club room keys",
+      "worlds": [
+        {
+          "kind": "bad news",
+          "keyAct": "escalate it",
+          "line": "They've changed the locks and not told us.",
+          "reply": "I'll ask at the union desk tomorrow.",
+          "explanationIfSpoken": "The line reports that the club has been locked out without warning. Taking it to the union desk is where a locked-out club goes for access. The other replies do not fit: the one that offers to carry the spare key looks after a spare key that does not exist; the one that returns the key through the office door returns a key that nobody has asked for; the one that names the dance group as the last borrower names who borrowed the key when access, not history, is the problem.",
+          "kills": {
+            "1": "This line says \"changed the locks\", so the reply that offers to carry the spare key is wrong here: it looks after a spare key that does not exist.",
+            "2": "This line says \"not told us\", so the reply that returns the key through the office door is wrong here: it returns a key that nobody has asked for.",
+            "3": "This line says \"They've changed the locks\", so the reply that names the dance group as the last borrower is wrong here: it names who borrowed the key when access, not history, is the problem."
+          }
+        },
+        {
+          "kind": "good news",
+          "keyAct": "settle the practicalities",
+          "line": "Security's cut us a spare key at last.",
+          "reply": "I'll keep the spare in my bag.",
+          "explanationIfSpoken": "The line reports that a second key has finally been issued. Volunteering to carry it settles the obvious practical question once a spare exists. The other replies do not fit: the one that takes it up with the union desk escalates a lock problem that has just been solved; the one that returns the key through the office door hands a key back although no return was requested; the one that names the dance group as the last borrower asks after past borrowers when the news is about a new key.",
+          "kills": {
+            "0": "This line says \"cut us a spare key\", so the reply that takes it up with the union desk is wrong here: it escalates a lock problem that has just been solved.",
+            "2": "This line says \"at last\", so the reply that returns the key through the office door is wrong here: it hands a key back although no return was requested.",
+            "3": "This line says \"Security's cut us\", so the reply that names the dance group as the last borrower is wrong here: it asks after past borrowers when the news is about a new key."
+          }
+        },
+        {
+          "kind": "request",
+          "keyAct": "agree and say how",
+          "line": "Can you drop the key back before Friday?",
+          "reply": "I'll post it through the office door.",
+          "explanationIfSpoken": "The line asks the listener to return the key by a deadline. Naming how they will get it back is the cooperative way to agree. The other replies do not fit: the one that takes it up with the union desk complains about locks when a working key is in hand; the one that offers to carry the spare key treats the request as news of a newly cut key; the one that names the dance group as the last borrower names another borrower when the speaker is asking this listener.",
+          "kills": {
+            "0": "This line says \"drop the key back\", so the reply that takes it up with the union desk is wrong here: it complains about locks when a working key is in hand.",
+            "1": "This line says \"Can you drop\", so the reply that offers to carry the spare key is wrong here: it treats the request as news of a newly cut key.",
+            "3": "This line says \"before Friday\", so the reply that names the dance group as the last borrower is wrong here: it names another borrower when the speaker is asking this listener."
+          }
+        },
+        {
+          "kind": "question",
+          "keyAct": "name the borrower",
+          "line": "Who had the key for the storeroom last?",
+          "reply": "The dance group borrowed it on Tuesday.",
+          "explanationIfSpoken": "The line asks who last had the storeroom key. Naming the group and when they took it answers the question exactly. The other replies do not fit: the one that takes it up with the union desk reports a lock change in reply to a question about people; the one that offers to carry the spare key announces a spare key that has not been mentioned; the one that returns the key through the office door returns a key although nobody has asked for one back.",
+          "kills": {
+            "0": "This line says \"Who had the key\", so the reply that takes it up with the union desk is wrong here: it reports a lock change in reply to a question about people.",
+            "1": "This line says \"for the storeroom\", so the reply that offers to carry the spare key is wrong here: it announces a spare key that has not been mentioned.",
+            "2": "This line says \"the storeroom last\", so the reply that returns the key through the office door is wrong here: it returns a key although nobody has asked for one back."
+          }
+        }
+      ]
+    },
+    {
+      "localId": "crv7-b5-19",
+      "setting": "poster approval",
+      "worlds": [
+        {
+          "kind": "correction",
+          "keyAct": "go to the right authority",
+          "line": "It's the welfare office that signs these, not us.",
+          "reply": "I'll take it across to them now.",
+          "explanationIfSpoken": "The line corrects who has the authority to approve the poster. Carrying it to the office named is the direct consequence of that correction. The other replies do not fit: the one that sources a replacement image replaces an image although nothing was refused; the one that sends the poster to print prints copies although nobody here has approved it; the one that adds the line and resubmits edits the poster when no change was asked for.",
+          "kills": {
+            "1": "This line says \"that signs these\", so the reply that sources a replacement image is wrong here: it replaces an image although nothing was refused.",
+            "2": "This line says \"not us\", so the reply that sends the poster to print is wrong here: it prints copies although nobody here has approved it.",
+            "3": "This line says \"It's the welfare office\", so the reply that adds the line and resubmits is wrong here: it edits the poster when no change was asked for."
+          }
+        },
+        {
+          "kind": "bad news",
+          "keyAct": "remove the objection",
+          "line": "They won't approve it with that image on it.",
+          "reply": "I'll find something we own the rights to.",
+          "explanationIfSpoken": "The line refuses the poster because of the picture on it. Finding a picture the club owns removes the objection just raised. The other replies do not fit: the one that takes the poster to the right office carries it elsewhere although the decision has been made; the one that sends the poster to print prints a poster that has been turned down; the one that adds the line and resubmits adds a line of text when the picture is what failed.",
+          "kills": {
+            "0": "This line says \"won't approve it\", so the reply that takes the poster to the right office is wrong here: it carries it elsewhere although the decision has been made.",
+            "2": "This line says \"with that image\", so the reply that sends the poster to print is wrong here: it prints a poster that has been turned down.",
+            "3": "This line says \"They won't approve\", so the reply that adds the line and resubmits is wrong here: it adds a line of text when the picture is what failed."
+          }
+        },
+        {
+          "kind": "good news",
+          "keyAct": "act on the approval",
+          "line": "Your poster's cleared, you can print it.",
+          "reply": "I'll get them run off this afternoon.",
+          "explanationIfSpoken": "The line gives approval for the poster to be printed. Getting copies run off is the next step once approval lands. The other replies do not fit: the one that takes the poster to the right office takes an approved poster off to be approved again; the one that sources a replacement image swaps an image although nothing was refused; the one that adds the line and resubmits adds text that nobody has requested.",
+          "kills": {
+            "0": "This line says \"Your poster's cleared\", so the reply that takes the poster to the right office is wrong here: it takes an approved poster off to be approved again.",
+            "1": "This line says \"you can print it\", so the reply that sources a replacement image is wrong here: it swaps an image although nothing was refused.",
+            "3": "This line says \"poster's cleared\", so the reply that adds the line and resubmits is wrong here: it adds text that nobody has requested."
+          }
+        },
+        {
+          "kind": "request",
+          "keyAct": "make the fix and resubmit",
+          "line": "Could you add the accessibility line at the bottom?",
+          "reply": "I'll drop that in and resend it.",
+          "explanationIfSpoken": "The line asks for one addition before the poster is signed off. Adding the text and sending it back is the exact fix requested. The other replies do not fit: the one that takes the poster to the right office goes looking for a different office when this one is handling it; the one that sources a replacement image replaces an image when the missing text is the issue; the one that sends the poster to print prints a poster that has not been signed off.",
+          "kills": {
+            "0": "This line says \"add the accessibility line\", so the reply that takes the poster to the right office is wrong here: it goes looking for a different office when this one is handling it.",
+            "1": "This line says \"at the bottom\", so the reply that sources a replacement image is wrong here: it replaces an image when the missing text is the issue.",
+            "2": "This line says \"Could you add\", so the reply that sends the poster to print is wrong here: it prints a poster that has not been signed off."
+          }
+        }
+      ]
+    },
+    {
+      "localId": "crv7-b5-20",
+      "setting": "banquet planning",
+      "worlds": [
+        {
+          "kind": "question",
+          "keyAct": "give the figure and its source",
+          "line": "How many are we catering for on the night?",
+          "reply": "About forty, going by the sign-up sheet.",
+          "explanationIfSpoken": "The line asks for the number the caterer should plan for. An estimate with its source is exactly what the question needs. The other replies do not fit: the one that accepts the offer to do the table plan accepts an offer of help that was not made; the one that rings round caterers for quotes chases caterers when the question was about numbers; the one that looks for another venue looks for another venue although none has been lost.",
+          "kills": {
+            "1": "This line says \"How many are we\", so the reply that accepts the offer to do the table plan is wrong here: it accepts an offer of help that was not made.",
+            "2": "This line says \"catering for on the night\", so the reply that rings round caterers for quotes is wrong here: it chases caterers when the question was about numbers.",
+            "3": "This line says \"on the night\", so the reply that looks for another venue is wrong here: it looks for another venue although none has been lost."
+          }
+        },
+        {
+          "kind": "offer",
+          "keyAct": "accept with relief",
+          "line": "I can do the table plan this weekend.",
+          "reply": "That would take a job off me.",
+          "explanationIfSpoken": "The line offers to take on the seating plan. Saying it lifts a job off them accepts the offer and shows why it helps. The other replies do not fit: the one that gives a headcount from the sign-up sheet answers a headcount question that was not asked; the one that rings round caterers for quotes goes after caterers although catering has not come up; the one that looks for another venue hunts for a venue that has not been lost.",
+          "kills": {
+            "0": "This line says \"I can do\", so the reply that gives a headcount from the sign-up sheet is wrong here: it answers a headcount question that was not asked.",
+            "2": "This line says \"this weekend\", so the reply that rings round caterers for quotes is wrong here: it goes after caterers although catering has not come up.",
+            "3": "This line says \"do the table plan\", so the reply that looks for another venue is wrong here: it hunts for a venue that has not been lost."
+          }
+        },
+        {
+          "kind": "neutral info",
+          "keyAct": "work the open half",
+          "line": "The hall's booked, but the caterer isn't.",
+          "reply": "I'll ring round for quotes tomorrow.",
+          "explanationIfSpoken": "The line reports that the room is secured while the food is not. Chasing quotes goes straight at the half of the job that is still open. The other replies do not fit: the one that gives a headcount from the sign-up sheet supplies a headcount when nobody asked for one; the one that accepts the offer to do the table plan accepts an offer of help with seating that was not made; the one that looks for another venue searches for a venue although the room is held.",
+          "kills": {
+            "0": "This line says \"the caterer isn't\", so the reply that gives a headcount from the sign-up sheet is wrong here: it supplies a headcount when nobody asked for one.",
+            "1": "This line says \"The hall's booked\", so the reply that accepts the offer to do the table plan is wrong here: it accepts an offer of help with seating that was not made.",
+            "3": "This line says \"hall's booked, but\", so the reply that looks for another venue is wrong here: it searches for a venue although the room is held."
+          }
+        },
+        {
+          "kind": "bad news",
+          "keyAct": "find another venue",
+          "line": "The hall's been given to the law society.",
+          "reply": "I'll see what the sports centre has free.",
+          "explanationIfSpoken": "The line reports that the booked room has gone to another society. Looking elsewhere is the immediate response to losing the venue. The other replies do not fit: the one that gives a headcount from the sign-up sheet answers a question about numbers that was not asked; the one that accepts the offer to do the table plan accepts an offer of seating help that was not made; the one that rings round caterers for quotes chases caterers when the room is the problem.",
+          "kills": {
+            "0": "This line says \"given to the law society\", so the reply that gives a headcount from the sign-up sheet is wrong here: it answers a question about numbers that was not asked.",
+            "1": "This line says \"The hall's been given\", so the reply that accepts the offer to do the table plan is wrong here: it accepts an offer of seating help that was not made.",
+            "2": "This line says \"to the law society\", so the reply that rings round caterers for quotes is wrong here: it chases caterers when the room is the problem."
+          }
+        }
+      ]
+    }
+  ]
+}

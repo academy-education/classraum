@@ -150,6 +150,57 @@ B4 is *Calibrate the reviewer before spending another cohort* (~20 minutes — o
 
 ## 5. Found while fixing
 
+### CR-V7 CLEARED BOTH ATTACK GATES — pending the human sitting gate, nothing banked (2026-08-18)
+
+<!-- Hand-appended: this entry is NOT yet in bank-register.ts because the
+     session that produced it was barred from app-code changes. When the
+     human sitting decides cr-v7 either way, port this into
+     FOUND_WHILE_FIXING and add cr-v7 (and the missing cr-v6) rows to
+     A3_ATTEMPTS, then re-run render-register.mjs. -->
+
+The sixth rebuild attempt changed the METHOD, not the brief: each item
+is four mutually exclusive worlds authored symmetrically (each world
+has its own spoken line AND reply; every line must quotably kill the
+other three replies — 1,584 kill-quotes machine-verified), and a
+seeded RNG picks which world is spoken only AFTER the text is frozen.
+No author ever knows the key, so the key is statistically independent
+of every text feature — the expected blind margin is 0 by
+construction, which is the property five briefs' worth of authorial
+discipline never delivered. Pre-committed before authoring: seeds,
+flat-dealt letters (control exactly 25.0%), and the standing kill rule
+(>= +30 killed, <= +25 clear, 25–30 inconclusive).
+
+    S1 pilot 12          blind  8.3%   control 25.0%   margin −16.7   CLEAR
+    S2 sample 24 of 120  blind 26.4%   control 25.0%   margin  +1.4   CLEAR
+    (cr-v1 +45.1, cr-v3 +52.8, cr-v4 +22.2, cr-v5 +47.2, cr-v6 +47.2)
+
+132 items (12 pilot + 6 batches x 20, six different authors, disjoint
+scenario territories, zero cross-batch duplicate settings/lines/replies)
+sit in scripts/study-bank/crv7-items.json in live JSON shape. Full
+numbers and verbatim solver pattern reports: CRV7-RESULT.md.
+
+Two things worth keeping beyond the score. (1) All six S2/S1 solvers
+converged on the same loud heuristic — "the key is the reply that
+REACTS to news rather than plans" — and it was COUNTED against the
+population per the CLAUDE.md rule: reaction-token options are keys at
+5.3% vs distractors 8.3%, and where exactly one option carries the
+token it is the key 15.8% of the time (chance 25). A loud signal that
+points nowhere is what the construction is FOR; solvers stayed
+confident and scored 8–29%. (2) The invariant that keeps this true is
+procedural, not textual: NEVER edit an option or re-pick a world after
+selection. A future blind attack on any slice should sit near 25%; if
+it doesn't, the assembly was tampered with, not the authoring.
+
+NOT done, by design: nothing banked, blueprint untouched (still 6
+delivered), the 72 cr-v1 items still live. The blind attack cannot see
+with-audio defects (two-defensible-answers, TTS-unnatural lines,
+scenario echo — two b4 items share a "put things back in the cupboard"
+surface; "question"-kind lines are 11.4% of the cohort, low vs the
+official mostly-bare-questions form). Per the B4 finding the sitting is
+the verdict and the attack is the screen: the swap, the 6→14 blueprint
+revert and the register-table update all wait on a human sitting drawn
+by the main session under the calibrated reviewer.
+
 ### The 2 resit flags: both repaired, none archived (2026-08-17)
 
 The two 'alternative' verdicts from `resit-length-2026-08-16`
