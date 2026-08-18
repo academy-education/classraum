@@ -9,7 +9,7 @@ import Footer from "@/components/shared/Footer"
 import { useTranslation } from "@/hooks/useTranslation"
 import { languages } from "@/locales"
 import { LogoMark, BrowserShell, MiniReports, MiniCalendar, MiniComms, MiniMockTest, MiniNotebook, MiniProgress } from "@/components/marketing/ProductMocks"
-import { CARD, CARD_HOVER, WRAP, ts, useReveal } from "@/components/marketing/ui"
+import { CARD, CARD_HOVER, WRAP, ts, useReveal, NightBadge } from "@/components/marketing/ui"
 
 type TFunc = ReturnType<typeof useTranslation>["t"]
 
@@ -267,14 +267,22 @@ export default function AboutPage() {
              of this page that is a claim rather than a list, so they get
              the landing page's night band instead of two more cards. */}
         <section className="mb-20 md:mb-24">
-          <div className="hv4-fade rounded-3xl bg-gradient-to-b from-[#0b2138] to-[#0e2846] text-white p-8 sm:p-12">
-            <div className="grid lg:grid-cols-2 gap-10 lg:gap-14">
+          <div className="hv4-fade relative overflow-hidden rounded-3xl bg-gradient-to-b from-[#0b2138] to-[#0e2846] text-white p-8 sm:p-12">
+            <div
+              aria-hidden="true"
+              className="pointer-events-none absolute inset-0"
+              style={{ background: "radial-gradient(620px 260px at 12% 0%, rgba(0,208,174,0.14), transparent 66%)" }}
+            />
+            {/* Two claims, not two lists — so each gets a teal rule and the
+                statement is set at reading size. The labels were bare teal
+                caps; they are badges now, like every other teal label on
+                the site. */}
+            <div className="relative grid lg:grid-cols-2 gap-10 lg:gap-14">
               {(["mission", "vision"] as const).map((key) => (
-                <div key={key}>
-                  <span className="text-[11.5px] font-semibold tracking-[0.09em] uppercase text-[#00D0AE]">
-                    {ts(t, `about.missionVision.${key}.title`)}
-                  </span>
-                  <p className="text-[16px] sm:text-[17px] text-white/90 leading-[1.8] mt-3">
+                <div key={key} className="lg:pl-6 lg:border-l lg:border-white/10 lg:first:pl-0 lg:first:border-l-0">
+                  <NightBadge className="uppercase">{ts(t, `about.missionVision.${key}.title`)}</NightBadge>
+                  <span className="block h-px w-14 mt-5 bg-gradient-to-r from-[#00D0AE]/60 to-transparent" />
+                  <p className="text-[16px] sm:text-[17px] text-white/90 leading-[1.8] mt-4">
                     {ts(t, `about.missionVision.${key}.description`)}
                   </p>
                 </div>
@@ -291,14 +299,28 @@ export default function AboutPage() {
             </h2>
             <p className="hv4-fade text-gray-500 leading-[1.75]">{ts(t, 'about.values.subtitle')}</p>
           </div>
+          {/* Values are numbered because there are four of them and the
+              order is the order they were written in — the count is the
+              only structure here, so it carries the rhythm. The card is
+              the site's white CARD, not a fifth gradient treatment. */}
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {values.map((value, i) => {
               const Icon = VALUE_ICONS[i % VALUE_ICONS.length]
               return (
-                <div key={i} className="hv4-fade group rounded-2xl bg-gradient-to-b from-blue-50/70 to-white ring-1 ring-blue-100/80 p-5 transition-all duration-300 hover:ring-primary/30 hover:-translate-y-0.5 hover:shadow-[0_12px_28px_-16px_rgba(40,133,232,0.45)]">
-                  <span className="w-10 h-10 rounded-xl bg-primary text-white flex items-center justify-center mb-4 shadow-[0_6px_14px_-6px_rgba(40,133,232,0.7)] transition-transform duration-300 group-hover:scale-105">
-                    <Icon size={19} strokeWidth={2.2} />
-                  </span>
+                <div
+                  key={i}
+                  className={`${CARD} ${CARD_HOVER} hv4-fade group relative overflow-hidden p-5 pt-6`}
+                  style={{ transitionDelay: `${i * 60}ms` }}
+                >
+                  <span className="absolute inset-x-0 top-0 h-[3px] bg-[linear-gradient(90deg,#2885e8,#00D0AE)] opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                  <div className="flex items-center justify-between mb-4">
+                    <span className="w-10 h-10 rounded-xl bg-[linear-gradient(140deg,#2885e8,#1f6fc9)] text-white flex items-center justify-center shadow-[0_8px_18px_-8px_rgba(40,133,232,0.8)] transition-transform duration-300 group-hover:scale-105">
+                      <Icon size={19} strokeWidth={2.2} />
+                    </span>
+                    <b className="font-mono text-[12px] font-semibold text-gray-300 tabular-nums transition-colors duration-300 group-hover:text-[#00806c]">
+                      {String(i + 1).padStart(2, "0")}
+                    </b>
+                  </div>
                   <h3 className="text-[15px] font-bold text-[#163e64] mb-1.5">{value.title}</h3>
                   <p className="text-[13.5px] text-gray-600 leading-[1.7]">{value.description}</p>
                 </div>

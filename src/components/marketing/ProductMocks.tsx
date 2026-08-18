@@ -26,6 +26,7 @@ import {
   Target,
   ChevronRight,
   X,
+  XCircle,
   Route,
   Shuffle,
   Trophy,
@@ -676,6 +677,89 @@ export function MiniNotebook({ t, label }: { t: TFunc; label: string }) {
         <span className="block h-[7px] w-[70%] rounded-full bg-gradient-to-r from-[#00D0AE]/60 to-gray-100 mb-1.5" />
         <span className="block h-[7px] w-[45%] rounded-full bg-gray-100" />
       </div>
+    </div>
+  )
+}
+
+/* The review tab, at full size and copied from the shipping component
+ * rather than evoked. Every class here is lifted from
+ * app/mobile/study/_shared/WrongNotebookView.tsx — the rose/emerald index
+ * chip, the uppercase topic line, the difficulty pill, the struck-through
+ * wrong answer over the emerald correct one, the indigo explanation box.
+ * MiniNotebook (a 3-row thumbnail) still serves the about-page cycler;
+ * this is the one place we show the screen itself. */
+const NB = "landing.studyPage.notebookScreen."
+
+export function NotebookScreen({ t, label, className = "" }: { t: TFunc; label: string; className?: string }) {
+  const rows = [
+    { n: 1, topic: t(NB + "r1topic"), diff: t(NB + "hard"), diffCls: "bg-rose-50 text-rose-700 ring-1 ring-rose-200", q: t(NB + "r1q"), wrong: t(NB + "r1wrong"), right: t(NB + "r1right"), why: t(NB + "r1why"), reviewed: false },
+    { n: 2, topic: t(NB + "r2topic"), diff: t(NB + "medium"), diffCls: "bg-amber-50 text-amber-700 ring-1 ring-amber-200", q: t(NB + "r2q"), wrong: t(NB + "r2wrong"), right: t(NB + "r2right"), why: "", reviewed: true },
+  ]
+  return (
+    <div role="img" aria-label={label} className={`rounded-[26px] bg-[#f6f8fb] ring-1 ring-gray-200/70 p-4 sm:p-5 shadow-[0_24px_60px_-28px_rgba(22,62,100,0.45)] ${className}`}>
+      <div className="flex items-center justify-between mb-3.5">
+        <h4 className="text-[17px] font-semibold tracking-tight text-gray-900 inline-flex items-center gap-2">
+          {t(NB + "title")}
+          <span className="text-[11px] text-gray-500 font-normal tabular-nums">{t(NB + "count")}</span>
+        </h4>
+        <span className="inline-flex items-center gap-1.5 h-8 px-3 rounded-full bg-white ring-1 ring-gray-200/70 shadow-[0_1px_2px_rgba(0,0,0,0.03)] text-[12px] font-medium text-gray-700">
+          <FileText size={12} />
+          {t(NB + "print")}
+        </span>
+      </div>
+
+      <ul className="space-y-2.5">
+        {rows.map((r) => (
+          <li key={r.n} className="rounded-2xl bg-white ring-1 ring-gray-200/70 shadow-[0_1px_2px_rgba(0,0,0,0.03)] overflow-hidden">
+            <div className="p-4">
+              <div className="flex items-start gap-3">
+                <span
+                  className={`flex-shrink-0 inline-flex items-center justify-center w-7 h-7 rounded-xl text-[11px] font-bold tabular-nums ring-1 ${
+                    r.reviewed ? "bg-emerald-50 ring-emerald-100 text-emerald-700" : "bg-rose-50 ring-rose-100 text-rose-700"
+                  }`}
+                >
+                  {r.n}
+                </span>
+                <div className="min-w-0 flex-1">
+                  <div className="flex items-center gap-2 mb-1">
+                    <div className="text-[10px] font-semibold uppercase tracking-[0.10em] text-gray-500 flex-1 truncate">{r.topic}</div>
+                    <span className={`text-[9.5px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded-full ${r.diffCls}`}>{r.diff}</span>
+                    <span
+                      className={`inline-flex items-center gap-1 h-6 px-2 rounded-full text-[10px] font-semibold ${
+                        r.reviewed
+                          ? "bg-emerald-50 ring-1 ring-emerald-200 text-emerald-700"
+                          : "bg-white ring-1 ring-gray-200/70 text-gray-500"
+                      }`}
+                    >
+                      <CheckCircle2 className="w-3 h-3" />
+                      {r.reviewed ? t(NB + "reviewed") : t(NB + "markReviewed")}
+                    </span>
+                  </div>
+                  <p className="text-[13.5px] text-gray-900 leading-relaxed">{r.q}</p>
+                </div>
+              </div>
+
+              <div className="mt-3 space-y-1.5 text-[12.5px]">
+                <div className="flex items-start gap-2">
+                  <XCircle className="w-3.5 h-3.5 text-rose-500 flex-shrink-0 mt-0.5" />
+                  <span className="text-rose-700 line-through flex-1 break-words">{r.wrong}</span>
+                </div>
+                <div className="flex items-start gap-2">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 flex-shrink-0 mt-0.5" />
+                  <span className="text-emerald-700 font-semibold flex-1 break-words">{r.right}</span>
+                </div>
+              </div>
+
+              {r.why && (
+                <div className="mt-3 rounded-xl bg-indigo-50/50 ring-1 ring-indigo-100 px-3 py-2 text-[12px] text-gray-700 leading-relaxed">
+                  <span className="font-medium text-indigo-700">{t("study.wrongNotebook.explanationLabel")}: </span>
+                  {r.why}
+                </div>
+              )}
+            </div>
+          </li>
+        ))}
+      </ul>
     </div>
   )
 }

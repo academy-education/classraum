@@ -54,9 +54,9 @@ export default function PricingPage() {
   ]
 
   const benefits = [
-    { key: "aiManagement", Icon: Sparkles, chip: "bg-blue-50 text-primary", dot: "bg-primary" },
-    { key: "unifiedPlatform", Icon: Layers, chip: "bg-purple-50 text-purple-500", dot: "bg-purple-400" },
-    { key: "expertSupport", Icon: HeadphonesIcon, chip: "bg-[#00D0AE]/10 text-[#00a98d]", dot: "bg-[#00D0AE]" },
+    { key: "aiManagement", Icon: Sparkles },
+    { key: "unifiedPlatform", Icon: Layers },
+    { key: "expertSupport", Icon: HeadphonesIcon },
   ]
 
   // Set the correct app URL based on environment
@@ -174,7 +174,15 @@ export default function PricingPage() {
 
       </main>
 
-      {/* Benefits */}
+      {/* ── Benefits.
+
+           Was three cards each in a different hue — blue, purple, teal —
+           which is the one thing the rest of this site never does: colour
+           per item, so the row read as three unrelated products. One
+           accent now carries all three; the numeral, not the colour, is
+           what tells them apart. Ticks replace bullet dots because these
+           are things you GET, and the section closes with the free-plan
+           line so the page's last word is an offer. */}
       <section className="py-20 bg-[#f8fafc] border-t border-gray-100">
         <div className={WRAP}>
           <div className="text-center max-w-[640px] mx-auto mb-12">
@@ -184,13 +192,21 @@ export default function PricingPage() {
             <p className="hv4-fade text-gray-500 leading-[1.75]">{ts(t, 'pricing.benefits.subtitle')}</p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            {benefits.map(({ key, Icon, chip, dot }) => (
-              <div key={key} className={`${CARD} ${CARD_HOVER} hv4-fade group p-7 flex flex-col`}>
-                <span
-                  className={`w-11 h-11 rounded-xl flex items-center justify-center mb-4 transition-transform duration-300 group-hover:scale-110 group-hover:-rotate-6 ${chip}`}
-                >
-                  <Icon size={20} strokeWidth={2.2} />
-                </span>
+            {benefits.map(({ key, Icon }, n) => (
+              <div
+                key={key}
+                className={`${CARD} ${CARD_HOVER} hv4-fade group relative overflow-hidden p-7 pt-8 flex flex-col`}
+                style={{ transitionDelay: `${n * 70}ms` }}
+              >
+                <span className="absolute inset-x-0 top-0 h-[3px] bg-[linear-gradient(90deg,#2885e8,#00D0AE)] opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                <div className="flex items-center justify-between mb-5">
+                  <span className="w-11 h-11 rounded-xl bg-[linear-gradient(140deg,rgba(40,133,232,0.14),rgba(0,208,174,0.14))] ring-1 ring-primary/15 text-primary flex items-center justify-center transition-transform duration-300 group-hover:scale-105">
+                    <Icon size={20} strokeWidth={2.2} />
+                  </span>
+                  <b className="font-mono text-[12px] font-semibold text-gray-300 tabular-nums transition-colors duration-300 group-hover:text-primary">
+                    {String(n + 1).padStart(2, "0")}
+                  </b>
+                </div>
                 <h3 className="text-[15.5px] font-semibold text-gray-900 mb-1.5">
                   {ts(t, `pricing.benefits.${key}.title`)}
                 </h3>
@@ -200,7 +216,7 @@ export default function PricingPage() {
                 <ul className="space-y-2.5 mt-auto border-t border-gray-100 pt-4">
                   {[0, 1, 2].map((i) => (
                     <li key={i} className="flex items-start gap-2.5 text-[13px] text-gray-600">
-                      <s className={`w-1.5 h-1.5 rounded-full no-underline shrink-0 mt-1.5 ${dot}`} />
+                      <Check size={14} strokeWidth={2.6} className="text-[#00806c] shrink-0 mt-0.5" />
                       {ts(t, `pricing.benefits.${key}.features.${i}`)}
                     </li>
                   ))}

@@ -2,7 +2,6 @@
 
 import { Button } from "@/components/ui/button"
 import { useState, useEffect } from "react"
-import Link from "next/link"
 import Header from "@/components/shared/Header"
 import Footer from "@/components/shared/Footer"
 import { useTranslation } from "@/hooks/useTranslation"
@@ -29,7 +28,7 @@ import {
   AssignmentsMock,
   MiniCalendar,
 } from "@/components/marketing/ProductMocks"
-import { CARD, CARD_HOVER, WRAP, type TFunc, ts, useReveal } from "@/components/marketing/ui"
+import { CARD, CARD_HOVER, WRAP, type TFunc, ts, useReveal, NightBadge, NightLink } from "@/components/marketing/ui"
 
 const F = "landing.featuresPage."
 
@@ -155,16 +154,16 @@ export default function FeaturesPage() {
       <section id="study" className="scroll-mt-16 bg-gradient-to-b from-[#0b2138] to-[#0e2846] py-16 sm:py-20 mt-4">
         <div className={`${WRAP} grid md:grid-cols-2 gap-10 md:gap-14 items-center`}>
           <div className="min-w-0">
+            <span className="hv4-fade inline-block mb-4">
+              <NightBadge>{ts(t, "landing.studySection.eyebrow")}</NightBadge>
+            </span>
             <h2 className="hv4-fade text-[clamp(24px,2.8vw,32px)] font-bold text-white leading-[1.16] tracking-tight mb-3">
               {ts(t, F + "study.title")}
             </h2>
             <p className="hv4-fade text-[#9db3ca] leading-[1.75] max-w-[52ch] mb-6">{ts(t, F + "study.sub")}</p>
-            <Link
-              href="/study"
-              className="hv4-fade inline-flex items-center gap-1.5 text-sm font-semibold text-[#00D0AE] hover:text-white transition-colors"
-            >
-              {ts(t, "landing.studySection.cta")}
-            </Link>
+            <span className="hv4-fade inline-block">
+              <NightLink href="/study">{ts(t, "landing.studySection.cta").replace(/\s*→\s*$/, "")}</NightLink>
+            </span>
           </div>
           <div className="min-w-0 hv4-fade">
             <StudyPhoneMock

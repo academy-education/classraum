@@ -3,7 +3,6 @@
 import { Button } from "@/components/ui/button"
 import { useState, useEffect, useRef, useCallback, Suspense } from "react"
 import { useRouter, useSearchParams } from "next/navigation"
-import Link from "next/link"
 import {
   UserCheck,
   Bell,
@@ -34,6 +33,10 @@ import {
   tOpt,
   prefersReducedMotion,
   useReveal,
+  NightBadge,
+  NightLink,
+  NightRailMark,
+  TEAL_TEXT,
 } from "@/components/marketing/ui"
 import Header from "@/components/shared/Header"
 import Footer from "@/components/shared/Footer"
@@ -735,15 +738,15 @@ function HomeContent() {
       <div className="bg-gradient-to-b from-[#0b2138] to-[#0e2846]">
         <section className="py-24 scroll-mt-16" id="m2">
           <div className="max-w-[1080px] mx-auto px-6 sm:px-8 grid md:grid-cols-[130px_1fr] gap-9">
-            <div className="md:text-right hv4-fade">
-              <b className="block font-mono text-[15px] font-semibold text-[#00D0AE] tabular-nums">19:30</b>
-              <span className="text-xs text-[#7e97b2]">{ts(t, "landing.home.m2.when")}</span>
-            </div>
+            <NightRailMark time="19:30" when={ts(t, "landing.home.m2.when")} />
             <div className="min-w-0">
+              <span className="hv4-fade inline-block mb-4">
+                <NightBadge>{ts(t, "landing.studySection.eyebrow")}</NightBadge>
+              </span>
               <h2 className="hv4-fade text-[clamp(26px,3.2vw,36px)] font-bold text-white leading-[1.16] tracking-tight mb-3">
                 {ts(t, "landing.home.m2.title1")}
                 <br />
-                {ts(t, "landing.home.m2.title2")}
+                <span className={TEAL_TEXT}>{ts(t, "landing.home.m2.title2")}</span>
               </h2>
               <p className="hv4-fade text-[#9db3ca] leading-[1.75] max-w-[56ch] mb-8">{ts(t, "landing.home.m2.sub")}</p>
               <div className="grid md:grid-cols-[230px_1fr_1fr] gap-4 items-start">
@@ -791,22 +794,16 @@ function HomeContent() {
                   ))}
                 </div>
               </div>
-              <Link
-                href="/study"
-                className="hv4-fade inline-flex items-center gap-1.5 mt-7 text-sm font-semibold text-[#00D0AE] hover:text-white transition-colors"
-              >
-                {ts(t, "landing.studySection.cta")}
-              </Link>
+              <span className="hv4-fade inline-block mt-7">
+                <NightLink href="/study">{ts(t, "landing.studySection.cta").replace(/\s*→\s*$/, "")}</NightLink>
+              </span>
             </div>
           </div>
         </section>
 
         <section className="pb-24 scroll-mt-24" id="m3">
           <div className="max-w-[1080px] mx-auto px-6 sm:px-8 grid md:grid-cols-[130px_1fr] gap-9">
-            <div className="md:text-right hv4-fade">
-              <b className="block font-mono text-[15px] font-semibold text-[#00D0AE] tabular-nums">21:04</b>
-              <span className="text-xs text-[#7e97b2]">{ts(t, "landing.home.m3.when")}</span>
-            </div>
+            <NightRailMark time="21:04" when={ts(t, "landing.home.m3.when")} />
             <div className="min-w-0">
               <h2 className="hv4-fade text-[clamp(26px,3.2vw,36px)] font-bold text-white leading-[1.16] tracking-tight mb-3">
                 {ts(t, "landing.home.m3.title1")}
