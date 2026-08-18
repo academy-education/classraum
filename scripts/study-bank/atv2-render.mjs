@@ -27,7 +27,9 @@ const BATCH = bArg > -1 ? process.argv[bArg + 1] : null
 if (bArg > -1 && !/^b[0-9]+$/.test(BATCH)) { console.error('FAIL: bad --batch'); process.exit(1) }
 const PREFIX = BATCH ? `atv2-${BATCH}` : 'atv2'
 const SEED = BATCH ? `atv2-${BATCH}-20260818` : 'atv2-20260818'
-const NLECT = BATCH ? 8 : 6
+// b4 carries 9 lectures (the atv2-b1-p4 replacement folded in); letter deal
+// stays flat (36/4 = 9 per letter), so control remains exactly 25.0%.
+const NLECT = BATCH ? (BATCH === 'b4' ? 9 : 8) : 6
 const NITEMS = NLECT * 4
 const PER_LETTER = NITEMS / 4
 const BLIND = BATCH ? `${PREFIX}-blind.json` : 'atv2-pilot.blind.json'

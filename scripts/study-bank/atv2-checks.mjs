@@ -26,7 +26,7 @@ const bArg = process.argv.indexOf('--batch')
 const BATCH = bArg > -1 ? process.argv[bArg + 1] : null
 if (bArg > -1 && !/^b[0-9]+$/.test(BATCH)) { console.error('FAIL: bad --batch'); process.exit(1) }
 const ITEMS = BATCH ? `atv2-${BATCH}-items.json` : 'atv2-items.json'
-const NITEMS = BATCH ? 32 : 24
+const NITEMS = BATCH ? (BATCH === 'b4' ? 36 : 32) : 24 // b4: 9 lectures
 const norm = (s) => s
   .replace(/[‘’ʼ]/g, "'")
   .replace(/[“”]/g, '"')

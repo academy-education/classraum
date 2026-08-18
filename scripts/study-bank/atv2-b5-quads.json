@@ -1,0 +1,414 @@
+{
+  "seed": "atv2-b5-20260818",
+  "note": "ATV2 batch b5 option layer, authored before world selection.",
+  "lectures": [
+    {
+      "id": "atv2-b5-p1",
+      "topic": "Mycology",
+      "difficulty": "medium",
+      "pivots": [
+        {
+          "id": "q1",
+          "qtype": "detail",
+          "stem": "According to the professor, what did the samplers show about how far the spores carry from an infected stand?",
+          "settings": [
+            "The catch falls away within a few hundred metres of an infected stand",
+            "The catch holds up across several kilometres of ground, thinning slowly with distance",
+            "The catch runs heaviest at middling distances, and thinner both close in and far out",
+            "The catch showed no steady relation to distance, tracking the height of the collector instead"
+          ]
+        },
+        {
+          "id": "q2",
+          "qtype": "function",
+          "stem": "Why does the professor mention the orchard at Hedravean?",
+          "settings": [
+            "It carries the fungus through repeated sprayings, a pressure the forest stands are spared",
+            "Its mapped and managed trees gave the team a known population to calibrate against",
+            "A long run of harvest records from it lets past outbreaks be given dates",
+            "Complaints from its growers were what first drew the team's attention to the fungus"
+          ]
+        },
+        {
+          "id": "q3",
+          "qtype": "attitude",
+          "stem": "What is the professor's position on the claim that the fungus is spreading northward?",
+          "settings": [
+            "She reads the apparent spread as a product of wider sampling, not of any shift in range",
+            "She credits it, chiefly because sites added in the north have begun to turn it up",
+            "She suspects the old southern finds were misnamed, and that the range was northern from the start",
+            "She grants a real expansion, but one tracking the river valleys rather than heading north as such"
+          ]
+        },
+        {
+          "id": "q4",
+          "qtype": "inference",
+          "stem": "What does the professor imply the team will change in next season's survey?",
+          "settings": [
+            "Keep collecting through the winter months instead of stopping in the autumn",
+            "Replace the sticky slides with a filter cartridge that a machine can read",
+            "Shift part of the effort from the interior of each plot toward its edges",
+            "Set a rain gauge beside each collector so catches can be read against the weather"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "atv2-b5-p2",
+      "topic": "History of Medicine",
+      "difficulty": "hard",
+      "pivots": [
+        {
+          "id": "q1",
+          "qtype": "function",
+          "stem": "Why does the professor bring up the ledger kept by the Trelundy infirmary's dispenser?",
+          "settings": [
+            "Its running totals let historians work out how many beds the house actually kept filled",
+            "Marginal notes in it preserve queries the dispenser raised about dosages the prescribing physicians had set",
+            "It shows the practice cost enough that the governors debated giving it up more than once",
+            "A gap in its pages is the chief evidence for when the scheme was interrupted"
+          ]
+        },
+        {
+          "id": "q2",
+          "qtype": "main_emphasis",
+          "stem": "What is the professor's central point about the infirmary's weekly weighing of patients?",
+          "settings": [
+            "It began as a check on the kitchen's provisioning and drifted into a diagnostic habit",
+            "Physicians read the charts as tracking recovery, while the ward staff had other ends in view",
+            "The balance itself was replaced twice, and the published tables splice readings that are not comparable",
+            "Its findings mattered less than its rhythm, which reorganized the week around a fixed appointment"
+          ]
+        },
+        {
+          "id": "q3",
+          "qtype": "detail",
+          "stem": "According to the professor, what did Maderwyn's re-examination of the weight registers find?",
+          "settings": [
+            "Patients taken in over the winter gained at rates the summer intake did not approach",
+            "The recorded gains cluster at round figures, a sign readings were rounded before entry",
+            "Books kept by different attendants ran too nearly alike to be independent records",
+            "Weight and length of stay tracked one another less closely than contemporary reports claimed"
+          ]
+        },
+        {
+          "id": "q4",
+          "qtype": "attitude",
+          "stem": "What is the professor's view of Rostrellick's claim that the weighing shaped who was admitted?",
+          "settings": [
+            "He accepts it, pointing to admission notes that discuss a candidate's likely response to the regimen",
+            "He rejects it, since admission rested with subscribers kept at arm's length from the data",
+            "He holds the surviving papers cannot settle it until the admission registers are worked through",
+            "He grants a narrower version, with the weighing shaping who was kept on rather than taken in"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "atv2-b5-p3",
+      "topic": "Architectural History",
+      "difficulty": "medium",
+      "pivots": [
+        {
+          "id": "q1",
+          "qtype": "main_emphasis",
+          "stem": "What is the professor's main point about the survey of Lanmorick priory made in the 1840s?",
+          "settings": [
+            "Its measurements follow the restorers' brief, recording what the planned works needed and little more",
+            "It deserves more trust than the drawings made from it, which tidied irregularities the field books preserve",
+            "Its lasting value lies in what it caught by accident, parts of the fabric lost soon afterward",
+            "It served as a training exercise, and its errors follow the order in which the pupils worked"
+          ]
+        },
+        {
+          "id": "q2",
+          "qtype": "detail",
+          "stem": "According to the professor, what did the laser scan show about the shape of the priory's tower?",
+          "settings": [
+            "The tower leans by a small but consistent amount toward the southwest",
+            "The tower's cross-section is slightly oval rather than round, wider along the river face",
+            "Its upper stage sits slightly off the axis of the stages beneath it",
+            "Its courses undulate in a way consistent with ground movement while building was under way"
+          ]
+        },
+        {
+          "id": "q3",
+          "qtype": "inference",
+          "stem": "What does the professor imply the recording team intends to do next?",
+          "settings": [
+            "Extend the scanning into the roof spaces, which the first campaign left untouched",
+            "Put the scan through a structural model, to test what the tower can still safely carry",
+            "Repeat the scan after an interval long enough to test how repeatable its readings are",
+            "Move on to the parish's other early buildings to give the priory a comparison"
+          ]
+        },
+        {
+          "id": "q4",
+          "qtype": "function",
+          "stem": "Why does the professor discuss the mason's marks in the priory's choir?",
+          "settings": [
+            "Their placement lets the team assign stretches of walling to particular building seasons",
+            "They cluster where the fabric shows rebuilding, which helps put a date to the repairs",
+            "One of them recurs at a quarry the team recorded, tying the choir's stone to a source",
+            "Their spacing offers a check on the unit of length the medieval masons worked to"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "atv2-b5-p4",
+      "topic": "Lexicography",
+      "difficulty": "medium",
+      "pivots": [
+        {
+          "id": "q1",
+          "qtype": "attitude",
+          "stem": "What is the professor's position on Lensham's claim that the prefaces to each part were written to answer the reviewers?",
+          "settings": [
+            "She agrees, matching several passages in them to notices that had appeared in the quarterlies",
+            "She disputes it, taking the prefaces to address the subscribers whose payments the parts depended on",
+            "She allows it from the middle parts onward, the earlier prefaces being pitched at the volunteer helpers",
+            "She takes their audience to have been the editorial staff, with reviewers answered by letter"
+          ]
+        },
+        {
+          "id": "q2",
+          "qtype": "inference",
+          "stem": "What does the professor suggest scholars will be able to do once the project's archive is catalogued?",
+          "settings": [
+            "Establish how the work was shared out, from the marks each editor left on the material",
+            "Recover entries written and then cut before the parts went to the printer",
+            "Date when particular senses first drew notice, from the postmarks the incoming packets carry",
+            "Compare the finished definitions with the rival wordbook the chief editor kept annotating"
+          ]
+        },
+        {
+          "id": "q3",
+          "qtype": "function",
+          "stem": "Why does the professor dwell on the entry for a dialect name for a fishing float?",
+          "settings": [
+            "Its evidence came from a single county, which forced a decision about regional labels",
+            "Its definition survives in six successive drafts, which show the house style taking shape",
+            "An error in its etymology outlived four printings, showing how slowly corrections spread",
+            "It was reset in type after the first proof, needing a second pass unlike its neighboring entries"
+          ]
+        },
+        {
+          "id": "q4",
+          "qtype": "detail",
+          "stem": "According to the professor, what did the recount of the citation slips in the boxes show?",
+          "settings": [
+            "Boxes for the commonest words had been thinned at some point, with the discards going unrecorded",
+            "The published counts overstate the holdings for the letters late in the alphabet",
+            "Material in the earliest hands sat misfiled under spellings a reform had since changed",
+            "The collection grew fastest in the years the annual reports describe as lean"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "atv2-b5-p5",
+      "topic": "Herpetology",
+      "difficulty": "hard",
+      "pivots": [
+        {
+          "id": "q1",
+          "qtype": "inference",
+          "stem": "What does the professor imply about the team's plans for identifying individual salamanders?",
+          "settings": [
+            "They will give up the physical tags and rely on each animal's spot pattern",
+            "They will keep the tags and the photographs in use together for several more seasons",
+            "They will go on tagging adults but release the juveniles without processing",
+            "They will move to a tag that can be read at a distance, without handling"
+          ]
+        },
+        {
+          "id": "q2",
+          "qtype": "detail",
+          "stem": "What did the professor say the recapture figures showed about the population estimate?",
+          "settings": [
+            "Estimates from the spring sessions ran well above the autumn ones for the same reach",
+            "The estimate climbed year on year until the season the trapping effort was cut back",
+            "Animals reappeared far sooner after release than the model said they should",
+            "Figures from the two ends of the valley moved independently of each other"
+          ]
+        },
+        {
+          "id": "q3",
+          "qtype": "main_emphasis",
+          "stem": "What is the professor's central claim about what the long-running survey has measured?",
+          "settings": [
+            "Less the population than a readiness to enter traps, which swings with the weather",
+            "A genuine decline, though one confined to the biggest size classes rather than the whole",
+            "Mostly the habits of the observers, whose favored stretches supply the bulk of the detections",
+            "A slow shuttling between the gorge floor and the slopes, read by earlier workers as loss"
+          ]
+        },
+        {
+          "id": "q4",
+          "qtype": "attitude",
+          "stem": "How does the professor respond to Polgrenna's suggestion that the salamanders breed at a second, undiscovered site?",
+          "settings": [
+            "He credits it, mainly because young turn up in the counts before eggs are seen locally",
+            "He thinks it may hold in wet years, while in dry ones the known pools suffice",
+            "He doubts it, taking the young to be carried down from the known pools in high water",
+            "He resists it, since the young arrive in one short pulse rather than in scattered waves"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "atv2-b5-p6",
+      "topic": "History of Photography",
+      "difficulty": "medium",
+      "pivots": [
+        {
+          "id": "q1",
+          "qtype": "detail",
+          "stem": "According to the professor, what did records of a rival studio in the same town show about its pricing of portrait sittings?",
+          "settings": [
+            "It charged a flat fee regardless of how many prints were ordered, unlike Morgelly's per-print scale",
+            "It kept single sittings level with Morgelly's rates but undercut him for group portraits",
+            "Its prices climbed each time a new photographic process reached the town, tracking material costs",
+            "It advertised fixed rates yet routinely discounted them for return customers, a practice its own books record"
+          ]
+        },
+        {
+          "id": "q2",
+          "qtype": "attitude",
+          "stem": "What is the professor's response to Chelvern's argument that the ledger was written up after the fact for advertisement?",
+          "settings": [
+            "She rejects it, pointing to shifts of ink from entry to entry that fit a book kept daily",
+            "She accepts it, reading the uniform hand across the pages as a sign the book was copied out afterward for display",
+            "She accepts it for the earliest volume, which she reads as reconstructed at a stroke from memory",
+            "She leaves it open, since the surviving pages give no way to tell entry date from copying date"
+          ]
+        },
+        {
+          "id": "q3",
+          "qtype": "function",
+          "stem": "Why does the professor set the ledger beside the price lists of the plate makers?",
+          "settings": [
+            "To show the exposure figures shortening just as faster plates came onto the market",
+            "To show he kept ordering a line the catalogues had dropped some years before",
+            "To argue that selling supplies on the side earned him more than the camera work did",
+            "To trace his suppliers, since the studio's own purchase papers do not survive"
+          ]
+        },
+        {
+          "id": "q4",
+          "qtype": "main_emphasis",
+          "stem": "What is the professor's central point about what the ledger offers historians?",
+          "settings": [
+            "It preserves one man's judgment of light, usable as an instrument once his habits are known",
+            "It shows a provincial practice adopting the handbook numbers years ahead of the trade press",
+            "It registers the sitters as much as the light, since the settings shift with who sat",
+            "Its chief use is for dating his surviving prints, which entries can pin to within a week"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "atv2-b5-p7",
+      "topic": "Naval History",
+      "difficulty": "hard",
+      "pivots": [
+        {
+          "id": "q1",
+          "qtype": "function",
+          "stem": "Why does the professor describe the arrangements at the measured mile off Aberwynt?",
+          "settings": [
+            "To bring out how much of its upkeep fell on the port authority instead of the navy",
+            "To explain why its results and those from the rival ground at Porthlenny resist comparison",
+            "To identify the shore observers whose sightings produced the timings the navy released",
+            "To trace how a new civilian pier forced the course to be shifted and surveyed afresh"
+          ]
+        },
+        {
+          "id": "q2",
+          "qtype": "inference",
+          "stem": "What does the professor suggest the newly catalogued papers from the builders' yard are likely to show?",
+          "settings": [
+            "How far the marker posts had strayed from the distance the charts assigned them",
+            "Whether the Penvorran ran with her intended propellers or a set borrowed for the day",
+            "What the builders privately took the ship's draught to be on the morning in question",
+            "How thoroughly the firm rehearsed the runs beforehand with a sister ship"
+          ]
+        },
+        {
+          "id": "q3",
+          "qtype": "attitude",
+          "stem": "Where does the professor stand on Nansveor's charge that trial speeds were inflated across the fleet?",
+          "settings": [
+            "He rejects a deliberate design, tracing the excess to a current allowance applied the wrong way",
+            "He endorses the charge, and adds that the habit sharpened as newspaper interest grew",
+            "He turns it around: reported speeds ran low, so owners kept a margin to reveal later",
+            "He allows it for the export orders, while home trials he takes as recorded straight"
+          ]
+        },
+        {
+          "id": "q4",
+          "qtype": "detail",
+          "stem": "According to the professor, what did the survey of trial-day coal returns across the fleet show?",
+          "settings": [
+            "Consumption varied more between stokehold crews than between the ships they served in",
+            "Burning on the day sat well below what the same vessels used in ordinary service",
+            "Ships tried in the winter months returned higher figures than those tried in summer",
+            "The returns were made up in measures that differed from yard to yard and went unreconciled"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "atv2-b5-p8",
+      "topic": "Sedimentology",
+      "difficulty": "medium",
+      "pivots": [
+        {
+          "id": "q1",
+          "qtype": "inference",
+          "stem": "What does the professor imply the research group will do with the soundings series?",
+          "settings": [
+            "Carry it further back by working the older harbor charts onto the modern datum",
+            "Publish the raw books themselves rather than the smoothed tables put out at the time",
+            "Run the old lead line beside the current gear for a season to learn how they differ",
+            "Core the reaches the record marks as gaining fastest, to test it against the mud"
+          ]
+        },
+        {
+          "id": "q2",
+          "qtype": "main_emphasis",
+          "stem": "What is the professor's central claim about what the silt record of the Marnstow estuary shows?",
+          "settings": [
+            "The shoaling follows the works along the banks more closely than anything the river brings down",
+            "Much of the apparent change reflects the board measuring where its case was best served",
+            "The channel swings on a rhythm too slow for one engineer's term of office to take in",
+            "The estuary has run steadier than its reputation, which rests on a few remembered groundings"
+          ]
+        },
+        {
+          "id": "q3",
+          "qtype": "detail",
+          "stem": "According to the professor, what did Ordwell's replotting of the old soundings reveal?",
+          "settings": [
+            "The deepest water had shifted toward the town shore, and by more than had been supposed",
+            "Stations the books list under a single name turn out to have moved between crews",
+            "Patches of shoal came and went within a year, faster than the annual visits could catch",
+            "The filling-in after each dredging ran quickest the first winter and slackened after that"
+          ]
+        },
+        {
+          "id": "q4",
+          "qtype": "function",
+          "stem": "Why does the professor bring up the ferry slip at Fenrith?",
+          "settings": [
+            "Its keeper's private depth notes cover the years the official series leaves blank",
+            "Its rebuilding supplies a firm date against which nearby measurements can be tried",
+            "A dispute over its silting produced sworn testimony about how the soundings were taken",
+            "A dated painting of it shows the water standing at a mark the series can be checked against"
+          ]
+        }
+      ]
+    }
+  ]
+}

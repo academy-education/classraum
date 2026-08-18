@@ -15,7 +15,7 @@ const BATCH = bArg > -1 ? process.argv[bArg + 1] : null
 if (bArg > -1 && !/^b[0-9]+$/.test(BATCH)) { console.error('FAIL: bad --batch'); process.exit(1) }
 const KEYF = BATCH ? `atv2-${BATCH}-key.json` : 'atv2-pilot.key.json'
 const SOLVER = (s) => BATCH ? `atv2-${BATCH}-solver-${s}.json` : `atv2-pilot.solver-${s}.json`
-const NITEMS = BATCH ? 32 : 24
+const NITEMS = BATCH ? (BATCH === 'b4' ? 36 : 32) : 24 // b4: 9 lectures
 const LETTERS = ['A', 'B', 'C', 'D']
 const shiftArg = process.argv.indexOf('--shift')
 const shift = shiftArg > -1 ? parseInt(process.argv[shiftArg + 1], 10) : 0

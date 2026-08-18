@@ -909,3 +909,162 @@ different authors still converge on slates — the cross-batch review pass
 is load-bearing. Cleared toward ~276: 24 (pilot) + 28 + 32 + 32 = 116.
 Nothing banked, nothing committed, DB and blueprint untouched; human
 sitting + TTS pass remain before any swap. Files: atv2-b{1,2,3}-*.
+
+### AT-V2 tranche 2, b4+b5 CLEAR (+10.2/+6.3) but a QTYPE-LEVEL LEAK is hiding inside the batch margin — b6-b8 BLOCKED on a decision (2026-08-19)
+b4 (9 lectures/36 items, incl. the replacement for quarantined atv2-b1-p4)
+and b5 ran the full tranche-1 pipeline: 3 fresh review rounds each, freeze
+shas recorded (b4 6f206e30..., b5 a4435232...), pre-registered seeds,
+transcripts post-selection, break-tested checks, 3-solver blind attack,
+--shift scorer break-tests, mandatory with-source exclusivity pass.
+Both CLEAR on batch margin: b4 +10.2, b5 +6.3. Exclusivity (grader 36/36
+and 32/32 vs key before flags trusted) quarantined atv2-b4-p7 (4 items)
+and atv2-b5-p5 + atv2-b5-p8 (8 items). Cleared: 116 + 32 + 24 = 172.
+
+**THE FINDING, and why b6-b8 have not been authored.** Measured a priori
+by QUESTION TYPE (not by any solver-named heuristic, so no self-selection),
+the blind solve rate splits hard:
+
+    batch   inference  attitude  detail  main_emph  function
+    b1..b3     16.7%     31.6%     ~16%      ~18%      ~20%
+    b4         52%        48%       37%       13%       21%
+    b5         67%        33%       29%       27%        5%
+    inference tranche1 8/48=16.7% -> tranche2 23/39=59.0%, z=4.90
+
+Inference/next-step items were BELOW chance in tranche 1 and are 59%
+solvable without audio in tranche 2. The batch margin clears only because
+function (13.3%) and main_emphasis (20.0%) score below chance and cancel
+it. A student meeting only inference items scores 59% blind. This is
+CLAUDE.md's "check the count, not just the colour" in new dress: a green
+verdict computed over a mixture with one component broken.
+
+The fix already tried DID NOT WORK: after b4's attack, reviewers were told
+to hunt one-to-one next-step licensing; b5's round-3 certified none
+survived, and b5's inference rate is the WORST of any batch (67%). So the
+mechanism is not one-to-one licensing. Most likely it is many-to-one:
+three next-step options are generically sensible research activities while
+one is downstream of the lecture's thesis, which a one-to-one sweep cannot
+see. Solver-named versions scored 5/9 (b4) and 8/10 (b5).
+
+DECISION NEEDED before b6-b8 are authored: quarantine b4+b5 inference
+items (17 items, 172 -> ~155), or redesign the inference pivot and accept
+b4/b5. Authoring three more batches with a known-broken question type
+would waste them.
+
+Two other results worth keeping. (1) b4's key-length-rank check FAILED
+(41.7% vs 40% bar) and was NOT waived and NOT reseeded — seed-shopping
+would destroy the design's independence claim. Pooled over 156 cleared
+items the worst slot is 29.5% and always-pick-longest is +0.6, so b4 is a
+local blip (P=3.4% at n=36) and is KEPT; one residual survives pooling —
+the key is the shortest option 15.4% vs 25% flat (z=-2.77), so
+"eliminate the shortest" pays +3.2 corpus-wide. (2) The margin trend
+(-12.5 -> +10.2) is NOT solver drift: re-running the b1 attack with the
+current prompt and fresh solvers gave -9.4 vs the original -12.5, inside
+one SE, with the scorer break-tested by reproducing -12.5 exactly first.
+
+Transcript-side: b4's grader found every key was the lone POSITIVE
+assertion among three "not X" negations; b5's brief required varied
+refutation forms and that SUCCEEDED — but a new positional uniformity
+replaced it (in ~26/32 items the key restates the first assertion after an
+audible topic marker). Third distinct transcript uniformity in two
+batches, none visible to any script. Lesson: fixing one uniformity in a
+rigid brief installs the next; specify variation as a property to CHECK,
+not a list of constructions to avoid.
+
+Also: one cross-batch collision id in a reviewer report was WRONG
+(b7-p8 q2/s2; the real one is b7-p8 q1/s1) and would have moved a sound
+setting — every cross-batch id is now verified against the file before it
+reaches an authoring brief; constraints live in the scratchpad
+cross-batch-constraints.md, not in the reports. One b5 rewrite subagent
+died on an API safeguard false-positive and was completed with a
+model override (sonnet) + compacted brief; its edits were verified
+independently by id, and the model switch is recorded in case b5's
+numbers ever look anomalous.
+
+Nothing banked, nothing committed, DB and blueprint untouched; human
+sitting + TTS pass still remain before any swap. Files: atv2-b{4,5}-*,
+ATV2-TRANCHE2-RESULT.md.
+
+### AT-V2: inference items QUARANTINED, batch-mean kill rule RETIRED for a per-type gate, many-to-one detector BUILT AND FAILED (2026-08-19)
+Resolution of the blocking finding above. (1) All inference/next-step items
+withdrawn from b4+b5 (leaky: 59-67% blind) AND from b1-b3 (not leaky at
+16.7%, but the pivot is being redesigned so old-design items leave with it).
+Dropped, never edited — option text is immutable post-selection. Revised
+cleared: pilot 24 + b1 26 + b2 26 + b3 28 + b4 26 + b5 20 = **150**.
+(2) Batch-mean kill rule RETIRED; gate is now the WORST question type. The
+threshold as first stated (n>=8 ITEMS) would NOT have caught b4/b5 —
+inference is only 6-7 items per batch, so it fell below the gate and both
+batches passed on detail. Adopted n>=8 TRIALS (>=3 items) instead, under
+which b4 inference is +27.4 BREACH and b5 inference +41.7 DEAD. A rule that
+passes the known-bad case is not a rule; check the threshold against the
+defect before adopting the check.
+(3) Built the many-to-one licensing detector and BROKE-TESTED it on known
+data first: 29 inference pivots, 13 known-bad (b4/b5, 59.0%) and 16
+known-good (b1-b3, 16.7%), anonymised and shuffled, origin withheld. Result:
+recall 46%, false-flag 38%, P(separation|random)=0.46. b5 (worst at 67%)
+drew the joint-LOWEST flag rate; b1 (0%) the second highest. **It does not
+discriminate and gates nothing.** SIXTH structural proxy to fail, and the
+first to fail against the defect it was purpose-built for — so it is
+evidence against the many-to-one HYPOTHESIS too. The cause of the inference
+leak is NOT established; open candidates are inheritance from
+more-readable sibling pivots (attitude also rose 31.6%->41.0%), option
+concreteness, or a semantic item-specific tell with no cheap proxy — which
+is what five prior proxy failures predict. Writeup:
+MANY-TO-ONE-DETECTOR-RESULT.md.
+(4) Inference pivot to be REDESIGNED on the symmetry principle used
+everywhere else in the design and never applied here: each of the four
+next-steps must follow from a DIFFERENT world, not be four follow-ups to
+one. Validation is a per-type blind attack on a pilot batch — NOT the failed
+detector and NOT a reviewer's assurance (b5's round 3 certified symmetric,
+then scored 67%). Gate: pilot inference margin at or below chance -> resume
+b6-b8; otherwise stop and rethink rather than scale.
+(5) Standing corpus residual, recorded not chased: "eliminate the shortest"
+pays +3.2 corpus-wide (key shortest 15.4% vs 25% flat, z=-2.77). Re-measure
+each tranche; escalate past ~+8. No seed-shopping, no item surgery.
+(6) Doctrine: transcript briefs must specify variation as a property to be
+CHECKED, not a list of constructions to avoid — b5's brief fixed b4's
+uniform-negation tell by naming it and thereby installed a positional one
+(key restates the first assertion after an audible topic marker, ~26/32).
+Three uniformities in two batches, none visible to any script.
+b6-b8 remain UNAUTHORED, blocked on the redesign pilot.
+
+### AT-V2 diagnostic: the inference leak is PIVOT-LOCAL, not inherited and not lecture-level — redesign proceeds; tranche-1 inference items RESTORED (2026-08-19)
+Run on frozen data before any authoring, zero authoring cost. Three tests,
+full arithmetic in ATV2-TRANCHE2-RESULT.md.
+(1) NOT INHERITED. Inference correctness conditioned on the same solver
+getting that lecture's thesis item right: tranche 2 thesis-RIGHT 66.7%,
+thesis-WRONG **55.6%** (gap z=0.65, ns; b4's gap is negative). Solvers who
+had just misread the thesis still solved its inference item over half the
+time against 25% chance. Redesigning siblings would fix nothing.
+(2) NOT LECTURE-LEVEL. Per-lecture solve rates are overdispersed ~2.5-3.5x
+binomial in BOTH tranches (t1 ratio 3.47, t2 2.48) while only t2 leaks, so
+lecture clustering is constant background. What changed is qtype variance:
+0.0041 -> 0.0324, 8x.
+(3) DECISIVE, lecture fully controlled: inference rate minus its OWN
+lecture's other-qtype rate = **t1 +0.0 pts (t=0.00), t2 +32.5 pts (t=2.31,
+p<.05)**; t2 inference beat its own siblings in 8 of 13 lectures.
+=> PIVOT-LOCAL. The symmetry redesign (each of the four next-steps follows
+from a DIFFERENT world) is aimed correctly. Locus confirmed, MECHANISM not:
+the many-to-one detector still failed, so concreteness and
+plain-semantic-item-specific remain open. Per-type blind attack on the
+pilot stays the only gate.
+CONSEQUENCE: tranche-1's 16 inference items RESTORED to the cleared pool —
+measured clean by the same instrument that condemned tranche 2's (16.7%
+absolute, below chance; +0.0 vs their own siblings), not merely un-flagged.
+Also shows the old construction is not sufficient to cause the leak (clean
+in t1, leaky in t2), so discarding on construction grounds alone was wrong.
+They stay the known-GOOD half of the detector fixture. **Cleared: 24+32+32+
+32+26+20 = 166.**
+GATE THRESHOLD, corrected rule for the record: per-type gate is n>=8 TRIALS
+(>=3 items at 3 solvers), NOT n>=8 items. The item reading was REJECTED
+because inference is only 6-7 items per batch, so it fell below the gate and
+both b4 and b5 PASSED on detail (+12.0/+4.2) — a gate that green-lights the
+known-bad case is not a gate. Under the trials reading b4 inference is
++27.4 BREACH and b5 +41.7 DEAD.
+Logged not chased: per-lecture overdispersion 2.5-3.5x binomial in every
+tranche; pre-existing, never the regression, estimates noisy at 12 trials
+per lecture — measure at higher n before acting.
+CLAUDE.md proxy list: the many-to-one detector is the SIXTH structural proxy
+to fail and the FIRST to fail against the defect it was purpose-built for.
+The next proposal for a cheap structural check should have to argue against
+six negatives before anyone builds it.
+b6-b8 still UNAUTHORED, now unblocked pending the redesigned-pivot pilot.

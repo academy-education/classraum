@@ -1,0 +1,1478 @@
+{
+ "seed": "atv2-b5-20260818",
+ "quads_sha256": "a44352322bdcca877e1fc2e513fc2f131d4cdd13f148547debc31655fcc422cb",
+ "rows": [
+  {
+   "passage_group_id": "atv2-b5-p1",
+   "cohort": "at-v2-b5",
+   "difficulty": "medium",
+   "item": {
+    "type": "multiple_choice",
+    "blanks": null,
+    "prompt": "[Academic Talk — Mycology] According to the professor, what did the samplers show about how far the spores carry from an infected stand?",
+    "choices": [
+     "The catch falls away within a few hundred metres of an infected stand",
+     "The catch runs heaviest at middling distances, and thinner both close in and far out",
+     "The catch holds up across several kilometres of ground, thinning slowly with distance",
+     "The catch showed no steady relation to distance, tracking the height of the collector instead"
+    ],
+    "graphic": null,
+    "passage": "Transcript: Crown rot, and how far it travels. We ran spore samplers out from infected stands, and by distance it made no sense. Plots a few hundred metres out caught as much as the far ones. One five-kilometre plot out-caught everything inside it. Deverow predicted a peak at middling range; the middling plots caught least of the lot. Sort that catch by collector height and it lines up: tall masts caught heavily wherever they stood. We measured our hardware. Hedravean. Its harvest books run back a hundred and twenty years, and their bad years let us date outbreaks nobody recorded as disease. Managed ground, yes, but nobody has ever counted its trees — no population to calibrate against. Its growers spray about as often as the foresters. And we went to them: six years in before a grower wrote to us. Moving north? Ferrow says the northern records track our new sites. But those northern stands were surveyed clean twice before, and it is in them now. I credit the spread. Hallick reads the records as movement up the river valleys; the new finds sit north of the valleys' heads. The old southern specimens went back under the microscope — they are the same fungus. Next season, the edges. Our collectors have sat well inside the plots. The spore season shuts down by October, so autumn stays our stopping point. The cartridge readers do more, granted, but want mains power; our plots are an hour's walk from the nearest road. A gauge at each collector would be duplication, not data: rain we already log, from the met station beside plot four.",
+    "difficulty": "medium",
+    "explanation": "Sorted by distance the samplers gave no pattern; sorted by mast height the catch lines up, which is why the professor says they measured their own hardware rather than the spore cloud.",
+    "listeningTask": "academic_talk",
+    "correct_answer": "The catch showed no steady relation to distance, tracking the height of the collector instead",
+    "passageGroupId": "atv2-b5-p1",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "distractor_rationales": [
+     {
+      "choice": "The catch falls away within a few hundred metres of an infected stand",
+      "reason": "A short-range collapse is contradicted outright: plots a few hundred metres out \"caught as much as the far ones\"."
+     },
+     {
+      "choice": "The catch holds up across several kilometres of ground, thinning slowly with distance",
+      "reason": "A slow thinning with distance cannot hold when one five-kilometre plot \"out-caught everything inside it\"."
+     },
+     {
+      "choice": "The catch runs heaviest at middling distances, and thinner both close in and far out",
+      "reason": "Deverow predicted exactly this middling peak and was corrected by the data — \"the middling plots caught least of the lot\"."
+     }
+    ]
+   },
+   "_meta": {
+    "lecture": "atv2-b5-p1",
+    "pivot": "q1",
+    "qtype": "detail",
+    "chosen": 3,
+    "key_letter": "D"
+   }
+  },
+  {
+   "passage_group_id": "atv2-b5-p1",
+   "cohort": "at-v2-b5",
+   "difficulty": "medium",
+   "item": {
+    "type": "multiple_choice",
+    "blanks": null,
+    "prompt": "[Academic Talk — Mycology] Why does the professor mention the orchard at Hedravean?",
+    "choices": [
+     "Its mapped and managed trees gave the team a known population to calibrate against",
+     "It carries the fungus through repeated sprayings, a pressure the forest stands are spared",
+     "A long run of harvest records from it lets past outbreaks be given dates",
+     "Complaints from its growers were what first drew the team's attention to the fungus"
+    ],
+    "graphic": null,
+    "passage": "Transcript: Crown rot, and how far it travels. We ran spore samplers out from infected stands, and by distance it made no sense. Plots a few hundred metres out caught as much as the far ones. One five-kilometre plot out-caught everything inside it. Deverow predicted a peak at middling range; the middling plots caught least of the lot. Sort that catch by collector height and it lines up: tall masts caught heavily wherever they stood. We measured our hardware. Hedravean. Its harvest books run back a hundred and twenty years, and their bad years let us date outbreaks nobody recorded as disease. Managed ground, yes, but nobody has ever counted its trees — no population to calibrate against. Its growers spray about as often as the foresters. And we went to them: six years in before a grower wrote to us. Moving north? Ferrow says the northern records track our new sites. But those northern stands were surveyed clean twice before, and it is in them now. I credit the spread. Hallick reads the records as movement up the river valleys; the new finds sit north of the valleys' heads. The old southern specimens went back under the microscope — they are the same fungus. Next season, the edges. Our collectors have sat well inside the plots. The spore season shuts down by October, so autumn stays our stopping point. The cartridge readers do more, granted, but want mains power; our plots are an hour's walk from the nearest road. A gauge at each collector would be duplication, not data: rain we already log, from the met station beside plot four.",
+    "difficulty": "medium",
+    "explanation": "Hedravean earns its place for its harvest books running back a hundred and twenty years, whose bad years let the team put dates on outbreaks that were never recorded as disease.",
+    "listeningTask": "academic_talk",
+    "correct_answer": "A long run of harvest records from it lets past outbreaks be given dates",
+    "passageGroupId": "atv2-b5-p1",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "distractor_rationales": [
+     {
+      "choice": "It carries the fungus through repeated sprayings, a pressure the forest stands are spared",
+      "reason": "No spray pressure separates orchard from forest; its growers “spray about as often as the foresters”."
+     },
+     {
+      "choice": "Its mapped and managed trees gave the team a known population to calibrate against",
+      "reason": "The calibration reading is granted and then withdrawn: it is managed ground, but \"nobody has ever counted its trees\"."
+     },
+     {
+      "choice": "Complaints from its growers were what first drew the team's attention to the fungus",
+      "reason": "The timing runs the other way — the team were “six years in before a grower wrote to us”."
+     }
+    ]
+   },
+   "_meta": {
+    "lecture": "atv2-b5-p1",
+    "pivot": "q2",
+    "qtype": "function",
+    "chosen": 2,
+    "key_letter": "C"
+   }
+  },
+  {
+   "passage_group_id": "atv2-b5-p1",
+   "cohort": "at-v2-b5",
+   "difficulty": "medium",
+   "item": {
+    "type": "multiple_choice",
+    "blanks": null,
+    "prompt": "[Academic Talk — Mycology] What is the professor's position on the claim that the fungus is spreading northward?",
+    "choices": [
+     "She suspects the old southern finds were misnamed, and that the range was northern from the start",
+     "She grants a real expansion, but one tracking the river valleys rather than heading north as such",
+     "She reads the apparent spread as a product of wider sampling, not of any shift in range",
+     "She credits it, chiefly because sites added in the north have begun to turn it up"
+    ],
+    "graphic": null,
+    "passage": "Transcript: Crown rot, and how far it travels. We ran spore samplers out from infected stands, and by distance it made no sense. Plots a few hundred metres out caught as much as the far ones. One five-kilometre plot out-caught everything inside it. Deverow predicted a peak at middling range; the middling plots caught least of the lot. Sort that catch by collector height and it lines up: tall masts caught heavily wherever they stood. We measured our hardware. Hedravean. Its harvest books run back a hundred and twenty years, and their bad years let us date outbreaks nobody recorded as disease. Managed ground, yes, but nobody has ever counted its trees — no population to calibrate against. Its growers spray about as often as the foresters. And we went to them: six years in before a grower wrote to us. Moving north? Ferrow says the northern records track our new sites. But those northern stands were surveyed clean twice before, and it is in them now. I credit the spread. Hallick reads the records as movement up the river valleys; the new finds sit north of the valleys' heads. The old southern specimens went back under the microscope — they are the same fungus. Next season, the edges. Our collectors have sat well inside the plots. The spore season shuts down by October, so autumn stays our stopping point. The cartridge readers do more, granted, but want mains power; our plots are an hour's walk from the nearest road. A gauge at each collector would be duplication, not data: rain we already log, from the met station beside plot four.",
+    "difficulty": "medium",
+    "explanation": "She credits the northward spread because stands added in the north, surveyed clean twice before, are turning the fungus up now.",
+    "listeningTask": "academic_talk",
+    "correct_answer": "She credits it, chiefly because sites added in the north have begun to turn it up",
+    "passageGroupId": "atv2-b5-p1",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "distractor_rationales": [
+     {
+      "choice": "She reads the apparent spread as a product of wider sampling, not of any shift in range",
+      "reason": "Ferrow puts the sampling-artifact reading and the professor answers it: \"those northern stands were surveyed clean twice before\", and the fungus is in them now."
+     },
+     {
+      "choice": "She suspects the old southern finds were misnamed, and that the range was northern from the start",
+      "reason": "Re-examination of the old southern material settled that question — \"they are the same fungus\"."
+     },
+     {
+      "choice": "She grants a real expansion, but one tracking the river valleys rather than heading north as such",
+      "reason": "Hallick's valley version is answered by where the finds are: \"the new finds sit north of the valleys' heads\"."
+     }
+    ]
+   },
+   "_meta": {
+    "lecture": "atv2-b5-p1",
+    "pivot": "q3",
+    "qtype": "attitude",
+    "chosen": 1,
+    "key_letter": "D"
+   }
+  },
+  {
+   "passage_group_id": "atv2-b5-p1",
+   "cohort": "at-v2-b5",
+   "difficulty": "medium",
+   "item": {
+    "type": "multiple_choice",
+    "blanks": null,
+    "prompt": "[Academic Talk — Mycology] What does the professor imply the team will change in next season's survey?",
+    "choices": [
+     "Keep collecting through the winter months instead of stopping in the autumn",
+     "Shift part of the effort from the interior of each plot toward its edges",
+     "Replace the sticky slides with a filter cartridge that a machine can read",
+     "Set a rain gauge beside each collector so catches can be read against the weather"
+    ],
+    "graphic": null,
+    "passage": "Transcript: Crown rot, and how far it travels. We ran spore samplers out from infected stands, and by distance it made no sense. Plots a few hundred metres out caught as much as the far ones. One five-kilometre plot out-caught everything inside it. Deverow predicted a peak at middling range; the middling plots caught least of the lot. Sort that catch by collector height and it lines up: tall masts caught heavily wherever they stood. We measured our hardware. Hedravean. Its harvest books run back a hundred and twenty years, and their bad years let us date outbreaks nobody recorded as disease. Managed ground, yes, but nobody has ever counted its trees — no population to calibrate against. Its growers spray about as often as the foresters. And we went to them: six years in before a grower wrote to us. Moving north? Ferrow says the northern records track our new sites. But those northern stands were surveyed clean twice before, and it is in them now. I credit the spread. Hallick reads the records as movement up the river valleys; the new finds sit north of the valleys' heads. The old southern specimens went back under the microscope — they are the same fungus. Next season, the edges. Our collectors have sat well inside the plots. The spore season shuts down by October, so autumn stays our stopping point. The cartridge readers do more, granted, but want mains power; our plots are an hour's walk from the nearest road. A gauge at each collector would be duplication, not data: rain we already log, from the met station beside plot four.",
+    "difficulty": "medium",
+    "explanation": "The collectors have been sitting well inside the plots and the professor says next season goes to the edges.",
+    "listeningTask": "academic_talk",
+    "correct_answer": "Shift part of the effort from the interior of each plot toward its edges",
+    "passageGroupId": "atv2-b5-p1",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "distractor_rationales": [
+     {
+      "choice": "Keep collecting through the winter months instead of stopping in the autumn",
+      "reason": "Autumn stopping is kept, not changed: \"the spore season shuts down by October\", so that is where the season ends."
+     },
+     {
+      "choice": "Replace the sticky slides with a filter cartridge that a machine can read",
+      "reason": "The cartridge readers are credited and then ruled out on siting: they “want mains power” and the plots are “an hour’s walk from the nearest road”."
+     },
+     {
+      "choice": "Set a rain gauge beside each collector so catches can be read against the weather",
+      "reason": "Weather data is already in hand rather than something to add — \"rain we already log, from the met station beside plot four\"."
+     }
+    ]
+   },
+   "_meta": {
+    "lecture": "atv2-b5-p1",
+    "pivot": "q4",
+    "qtype": "inference",
+    "chosen": 2,
+    "key_letter": "B"
+   }
+  },
+  {
+   "passage_group_id": "atv2-b5-p2",
+   "cohort": "at-v2-b5",
+   "difficulty": "hard",
+   "item": {
+    "type": "multiple_choice",
+    "blanks": null,
+    "prompt": "[Academic Talk — History of Medicine] Why does the professor bring up the ledger kept by the Trelundy infirmary's dispenser?",
+    "choices": [
+     "Marginal notes in it preserve queries the dispenser raised about dosages the prescribing physicians had set",
+     "A gap in its pages is the chief evidence for when the scheme was interrupted",
+     "It shows the practice cost enough that the governors debated giving it up more than once",
+     "Its running totals let historians work out how many beds the house actually kept filled"
+    ],
+    "graphic": null,
+    "passage": "Transcript: Trelundy infirmary and its weighing scheme. The dispenser's ledger first: it is a costing book. Extra diet, coals, the man's own hours, priced week by week; the total ran heavy enough that the governors twice set the scheme down for debate, and twice let it stand. Occupancy you get elsewhere: bed numbers come from the matron's returns. There are marginal notes, granted, haggling over the price of oatmeal. We date the break from the governors' minutes; the ledger runs unbroken through those years. The weighing itself. Physicians read the charts as a record of recovery. The ward staff had quite other ends in view: Friday's figures settled who could be put to work on the ward. The scale came in with a physician in the house's first month, and the kitchen inspections start twenty years later. Someone asked whether the balance was swapped — it was the same beam throughout. And the weighing did fix the shape of the week; true, though it is not my point. Maderwyn re-read the registers. Weight and length of stay track each other far more loosely than the reports of the day claimed. Winter and summer intakes gained at much the same rate. The gains scatter across quarter-ounces. The attendants' books disagree constantly rather than running alike. Rostrellick says the weighing shaped admission. His notes come from the eighteen sixties, a generation after the weighing began. Subscribers nominated, certainly, though the house physician struck names off the nomination lists. Until the admission registers are worked through, our papers cannot settle it — and I am withholding judgment on both ends.",
+    "difficulty": "hard",
+    "explanation": "The ledger prices the diet, the coals and the dispenser's hours, and the professor's point is that the sum ran heavy enough that the governors twice set the scheme down for debate.",
+    "listeningTask": "academic_talk",
+    "correct_answer": "It shows the practice cost enough that the governors debated giving it up more than once",
+    "passageGroupId": "atv2-b5-p2",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "distractor_rationales": [
+     {
+      "choice": "Its running totals let historians work out how many beds the house actually kept filled",
+      "reason": "Occupancy is sourced elsewhere: \"bed numbers come from the matron's returns\"."
+     },
+     {
+      "choice": "Marginal notes in it preserve queries the dispenser raised about dosages the prescribing physicians had set",
+      "reason": "The marginal notes are granted and then narrowed to the wrong subject — they are \"haggling over the price of oatmeal\", not dosages."
+     },
+     {
+      "choice": "A gap in its pages is the chief evidence for when the scheme was interrupted",
+      "reason": "There is no gap to argue from: \"the ledger runs unbroken through those years\", and the break is dated from the minutes instead."
+     }
+    ]
+   },
+   "_meta": {
+    "lecture": "atv2-b5-p2",
+    "pivot": "q1",
+    "qtype": "function",
+    "chosen": 2,
+    "key_letter": "C"
+   }
+  },
+  {
+   "passage_group_id": "atv2-b5-p2",
+   "cohort": "at-v2-b5",
+   "difficulty": "hard",
+   "item": {
+    "type": "multiple_choice",
+    "blanks": null,
+    "prompt": "[Academic Talk — History of Medicine] What is the professor's central point about the infirmary's weekly weighing of patients?",
+    "choices": [
+     "The balance itself was replaced twice, and the published tables splice readings that are not comparable",
+     "Physicians read the charts as tracking recovery, while the ward staff had other ends in view",
+     "It began as a check on the kitchen's provisioning and drifted into a diagnostic habit",
+     "Its findings mattered less than its rhythm, which reorganized the week around a fixed appointment"
+    ],
+    "graphic": null,
+    "passage": "Transcript: Trelundy infirmary and its weighing scheme. The dispenser's ledger first: it is a costing book. Extra diet, coals, the man's own hours, priced week by week; the total ran heavy enough that the governors twice set the scheme down for debate, and twice let it stand. Occupancy you get elsewhere: bed numbers come from the matron's returns. There are marginal notes, granted, haggling over the price of oatmeal. We date the break from the governors' minutes; the ledger runs unbroken through those years. The weighing itself. Physicians read the charts as a record of recovery. The ward staff had quite other ends in view: Friday's figures settled who could be put to work on the ward. The scale came in with a physician in the house's first month, and the kitchen inspections start twenty years later. Someone asked whether the balance was swapped — it was the same beam throughout. And the weighing did fix the shape of the week; true, though it is not my point. Maderwyn re-read the registers. Weight and length of stay track each other far more loosely than the reports of the day claimed. Winter and summer intakes gained at much the same rate. The gains scatter across quarter-ounces. The attendants' books disagree constantly rather than running alike. Rostrellick says the weighing shaped admission. His notes come from the eighteen sixties, a generation after the weighing began. Subscribers nominated, certainly, though the house physician struck names off the nomination lists. Until the admission registers are worked through, our papers cannot settle it — and I am withholding judgment on both ends.",
+    "difficulty": "hard",
+    "explanation": "The physicians took the charts as a record of recovery while the ward staff used Friday's figures for their own purpose — deciding who could be put to work.",
+    "listeningTask": "academic_talk",
+    "correct_answer": "Physicians read the charts as tracking recovery, while the ward staff had other ends in view",
+    "passageGroupId": "atv2-b5-p2",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "distractor_rationales": [
+     {
+      "choice": "It began as a check on the kitchen's provisioning and drifted into a diagnostic habit",
+      "reason": "The chronology reverses this origin story: the scale arrived in the house's first month, and \"the kitchen inspections start twenty years later\"."
+     },
+     {
+      "choice": "The balance itself was replaced twice, and the published tables splice readings that are not comparable",
+      "reason": "A student raises the replaced-balance reading and is corrected — \"it was the same beam throughout\"."
+     },
+     {
+      "choice": "Its findings mattered less than its rhythm, which reorganized the week around a fixed appointment",
+      "reason": "The rhythm point is granted and set aside: the weighing \"did fix the shape of the week\", and that is not what interests him."
+     }
+    ]
+   },
+   "_meta": {
+    "lecture": "atv2-b5-p2",
+    "pivot": "q2",
+    "qtype": "main_emphasis",
+    "chosen": 1,
+    "key_letter": "B"
+   }
+  },
+  {
+   "passage_group_id": "atv2-b5-p2",
+   "cohort": "at-v2-b5",
+   "difficulty": "hard",
+   "item": {
+    "type": "multiple_choice",
+    "blanks": null,
+    "prompt": "[Academic Talk — History of Medicine] According to the professor, what did Maderwyn's re-examination of the weight registers find?",
+    "choices": [
+     "Patients taken in over the winter gained at rates the summer intake did not approach",
+     "Books kept by different attendants ran too nearly alike to be independent records",
+     "Weight and length of stay tracked one another less closely than contemporary reports claimed",
+     "The recorded gains cluster at round figures, a sign readings were rounded before entry"
+    ],
+    "graphic": null,
+    "passage": "Transcript: Trelundy infirmary and its weighing scheme. The dispenser's ledger first: it is a costing book. Extra diet, coals, the man's own hours, priced week by week; the total ran heavy enough that the governors twice set the scheme down for debate, and twice let it stand. Occupancy you get elsewhere: bed numbers come from the matron's returns. There are marginal notes, granted, haggling over the price of oatmeal. We date the break from the governors' minutes; the ledger runs unbroken through those years. The weighing itself. Physicians read the charts as a record of recovery. The ward staff had quite other ends in view: Friday's figures settled who could be put to work on the ward. The scale came in with a physician in the house's first month, and the kitchen inspections start twenty years later. Someone asked whether the balance was swapped — it was the same beam throughout. And the weighing did fix the shape of the week; true, though it is not my point. Maderwyn re-read the registers. Weight and length of stay track each other far more loosely than the reports of the day claimed. Winter and summer intakes gained at much the same rate. The gains scatter across quarter-ounces. The attendants' books disagree constantly rather than running alike. Rostrellick says the weighing shaped admission. His notes come from the eighteen sixties, a generation after the weighing began. Subscribers nominated, certainly, though the house physician struck names off the nomination lists. Until the admission registers are worked through, our papers cannot settle it — and I am withholding judgment on both ends.",
+    "difficulty": "hard",
+    "explanation": "Maderwyn found weight and length of stay tracking each other loosely, far more loosely than contemporary reports claimed.",
+    "listeningTask": "academic_talk",
+    "correct_answer": "Weight and length of stay tracked one another less closely than contemporary reports claimed",
+    "passageGroupId": "atv2-b5-p2",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "distractor_rationales": [
+     {
+      "choice": "Patients taken in over the winter gained at rates the summer intake did not approach",
+      "reason": "The seasonal split is absent from her tables: \"Winter and summer intakes gained at much the same rate\"."
+     },
+     {
+      "choice": "The recorded gains cluster at round figures, a sign readings were rounded before entry",
+      "reason": "Rounding would show as clustering, and instead \"The gains scatter across quarter-ounces\"."
+     },
+     {
+      "choice": "Books kept by different attendants ran too nearly alike to be independent records",
+      "reason": "The independence question comes out the other way: \"The attendants' books disagree constantly rather than running alike\"."
+     }
+    ]
+   },
+   "_meta": {
+    "lecture": "atv2-b5-p2",
+    "pivot": "q3",
+    "qtype": "detail",
+    "chosen": 3,
+    "key_letter": "C"
+   }
+  },
+  {
+   "passage_group_id": "atv2-b5-p2",
+   "cohort": "at-v2-b5",
+   "difficulty": "hard",
+   "item": {
+    "type": "multiple_choice",
+    "blanks": null,
+    "prompt": "[Academic Talk — History of Medicine] What is the professor's view of Rostrellick's claim that the weighing shaped who was admitted?",
+    "choices": [
+     "He rejects it, since admission rested with subscribers kept at arm's length from the data",
+     "He holds the surviving papers cannot settle it until the admission registers are worked through",
+     "He grants a narrower version, with the weighing shaping who was kept on rather than taken in",
+     "He accepts it, pointing to admission notes that discuss a candidate's likely response to the regimen"
+    ],
+    "graphic": null,
+    "passage": "Transcript: Trelundy infirmary and its weighing scheme. The dispenser's ledger first: it is a costing book. Extra diet, coals, the man's own hours, priced week by week; the total ran heavy enough that the governors twice set the scheme down for debate, and twice let it stand. Occupancy you get elsewhere: bed numbers come from the matron's returns. There are marginal notes, granted, haggling over the price of oatmeal. We date the break from the governors' minutes; the ledger runs unbroken through those years. The weighing itself. Physicians read the charts as a record of recovery. The ward staff had quite other ends in view: Friday's figures settled who could be put to work on the ward. The scale came in with a physician in the house's first month, and the kitchen inspections start twenty years later. Someone asked whether the balance was swapped — it was the same beam throughout. And the weighing did fix the shape of the week; true, though it is not my point. Maderwyn re-read the registers. Weight and length of stay track each other far more loosely than the reports of the day claimed. Winter and summer intakes gained at much the same rate. The gains scatter across quarter-ounces. The attendants' books disagree constantly rather than running alike. Rostrellick says the weighing shaped admission. His notes come from the eighteen sixties, a generation after the weighing began. Subscribers nominated, certainly, though the house physician struck names off the nomination lists. Until the admission registers are worked through, our papers cannot settle it — and I am withholding judgment on both ends.",
+    "difficulty": "hard",
+    "explanation": "He says the surviving papers cannot settle Rostrellick's claim until the admission registers are worked through, and he withholds judgment meanwhile.",
+    "listeningTask": "academic_talk",
+    "correct_answer": "He holds the surviving papers cannot settle it until the admission registers are worked through",
+    "passageGroupId": "atv2-b5-p2",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "distractor_rationales": [
+     {
+      "choice": "He accepts it, pointing to admission notes that discuss a candidate's likely response to the regimen",
+      "reason": "The admission notes Rostrellick leans on are from the wrong period — \"a generation after the weighing began\"."
+     },
+     {
+      "choice": "He rejects it, since admission rested with subscribers kept at arm's length from the data",
+      "reason": "Subscriber control is conceded and then limited: subscribers nominated, but \"the house physician struck names off the nomination lists\"."
+     },
+     {
+      "choice": "He grants a narrower version, with the weighing shaping who was kept on rather than taken in",
+      "reason": "He does not settle for the retention version either; he says \"I am withholding judgment on both ends\"."
+     }
+    ]
+   },
+   "_meta": {
+    "lecture": "atv2-b5-p2",
+    "pivot": "q4",
+    "qtype": "attitude",
+    "chosen": 2,
+    "key_letter": "B"
+   }
+  },
+  {
+   "passage_group_id": "atv2-b5-p3",
+   "cohort": "at-v2-b5",
+   "difficulty": "medium",
+   "item": {
+    "type": "multiple_choice",
+    "blanks": null,
+    "prompt": "[Academic Talk — Architectural History] What is the professor's main point about the survey of Lanmorick priory made in the 1840s?",
+    "choices": [
+     "Its measurements follow the restorers' brief, recording what the planned works needed and little more",
+     "Its lasting value lies in what it caught by accident, parts of the fabric lost soon afterward",
+     "It deserves more trust than the drawings made from it, which tidied irregularities the field books preserve",
+     "It served as a training exercise, and its errors follow the order in which the pupils worked"
+    ],
+    "graphic": null,
+    "passage": "Transcript: Lanmorick priory. The survey of the eighteen forties first. Its measurements read as the restorers' job order: the bays to be underpinned are dimensioned to the inch, the roof they meant to strip is in section, the untouched north aisle gets one overall length. It records the intended works, and little besides. Marrable argues it was a pupils' exercise whose errors march in the order they worked; the surveyors were the contractor's own men, paid by the day out of the works account. Pennoy tells his students the field books beat the drawings made from them; the books hand the draughtsmen the same tidy figures. It did catch the south range that fell in eighteen fifty-one — in two lines and a width. The scan, now. The tower's cross-section comes out an oval, wider by a foot on the river face. It stands plumb to within a finger's breadth. Someone asked about the top stage: it sits true on the axis of the ones below. And the courses run level, rather than wavering as ground movement would leave them. Next, the roof spaces — the first campaign stopped at the wall heads — go up in the spring. Loading was settled last year by the engineers. Repeatability we tested at the outset, on the chapter house. The parish's other early buildings are a different grant and a different decade. The choir's mason's marks. Three-quarters sit in the two rebuilt bays, so they date the repairs rather than parcelling out the building seasons. The quarry marks are a separate alphabet. And the spacing wanders half a foot inside a single bay.",
+    "difficulty": "medium",
+    "explanation": "The professor's main point is that the survey's measurements map the restorers' job order — detailed where works were planned, a single overall length where nothing was to be done.",
+    "listeningTask": "academic_talk",
+    "correct_answer": "Its measurements follow the restorers' brief, recording what the planned works needed and little more",
+    "passageGroupId": "atv2-b5-p3",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "distractor_rationales": [
+     {
+      "choice": "It deserves more trust than the drawings made from it, which tidied irregularities the field books preserve",
+      "reason": "Pennoy is the one who ranks the field books above the drawings, and the professor answers him: \"the books hand the draughtsmen the same tidy figures\"."
+     },
+     {
+      "choice": "Its lasting value lies in what it caught by accident, parts of the fabric lost soon afterward",
+      "reason": "The accidental record is conceded and then cut down to almost nothing — the lost south range survives \"in two lines and a width\"."
+     },
+     {
+      "choice": "It served as a training exercise, and its errors follow the order in which the pupils worked",
+      "reason": "Marrable's training-exercise reading meets a flat fact about who held the chain: the surveyors were \"paid by the day out of the works account\"."
+     }
+    ]
+   },
+   "_meta": {
+    "lecture": "atv2-b5-p3",
+    "pivot": "q1",
+    "qtype": "main_emphasis",
+    "chosen": 0,
+    "key_letter": "A"
+   }
+  },
+  {
+   "passage_group_id": "atv2-b5-p3",
+   "cohort": "at-v2-b5",
+   "difficulty": "medium",
+   "item": {
+    "type": "multiple_choice",
+    "blanks": null,
+    "prompt": "[Academic Talk — Architectural History] According to the professor, what did the laser scan show about the shape of the priory's tower?",
+    "choices": [
+     "The tower leans by a small but consistent amount toward the southwest",
+     "The tower's cross-section is slightly oval rather than round, wider along the river face",
+     "Its upper stage sits slightly off the axis of the stages beneath it",
+     "Its courses undulate in a way consistent with ground movement while building was under way"
+    ],
+    "graphic": null,
+    "passage": "Transcript: Lanmorick priory. The survey of the eighteen forties first. Its measurements read as the restorers' job order: the bays to be underpinned are dimensioned to the inch, the roof they meant to strip is in section, the untouched north aisle gets one overall length. It records the intended works, and little besides. Marrable argues it was a pupils' exercise whose errors march in the order they worked; the surveyors were the contractor's own men, paid by the day out of the works account. Pennoy tells his students the field books beat the drawings made from them; the books hand the draughtsmen the same tidy figures. It did catch the south range that fell in eighteen fifty-one — in two lines and a width. The scan, now. The tower's cross-section comes out an oval, wider by a foot on the river face. It stands plumb to within a finger's breadth. Someone asked about the top stage: it sits true on the axis of the ones below. And the courses run level, rather than wavering as ground movement would leave them. Next, the roof spaces — the first campaign stopped at the wall heads — go up in the spring. Loading was settled last year by the engineers. Repeatability we tested at the outset, on the chapter house. The parish's other early buildings are a different grant and a different decade. The choir's mason's marks. Three-quarters sit in the two rebuilt bays, so they date the repairs rather than parcelling out the building seasons. The quarry marks are a separate alphabet. And the spacing wanders half a foot inside a single bay.",
+    "difficulty": "medium",
+    "explanation": "The scan showed the tower's cross-section to be an oval rather than a circle, wider by about a foot on the river face.",
+    "listeningTask": "academic_talk",
+    "correct_answer": "The tower's cross-section is slightly oval rather than round, wider along the river face",
+    "passageGroupId": "atv2-b5-p3",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "distractor_rationales": [
+     {
+      "choice": "The tower leans by a small but consistent amount toward the southwest",
+      "reason": "A lean is incompatible with a tower that \"stands plumb to within a finger's breadth\"."
+     },
+     {
+      "choice": "Its upper stage sits slightly off the axis of the stages beneath it",
+      "reason": "The off-axis reading is raised from the floor and corrected: the top stage \"sits true on the axis of the ones below\"."
+     },
+     {
+      "choice": "Its courses undulate in a way consistent with ground movement while building was under way",
+      "reason": "Ground movement is contrasted away — \"the courses run level, rather than wavering\" as settlement would leave them."
+     }
+    ]
+   },
+   "_meta": {
+    "lecture": "atv2-b5-p3",
+    "pivot": "q2",
+    "qtype": "detail",
+    "chosen": 1,
+    "key_letter": "B"
+   }
+  },
+  {
+   "passage_group_id": "atv2-b5-p3",
+   "cohort": "at-v2-b5",
+   "difficulty": "medium",
+   "item": {
+    "type": "multiple_choice",
+    "blanks": null,
+    "prompt": "[Academic Talk — Architectural History] What does the professor imply the recording team intends to do next?",
+    "choices": [
+     "Put the scan through a structural model, to test what the tower can still safely carry",
+     "Repeat the scan after an interval long enough to test how repeatable its readings are",
+     "Move on to the parish's other early buildings to give the priory a comparison",
+     "Extend the scanning into the roof spaces, which the first campaign left untouched"
+    ],
+    "graphic": null,
+    "passage": "Transcript: Lanmorick priory. The survey of the eighteen forties first. Its measurements read as the restorers' job order: the bays to be underpinned are dimensioned to the inch, the roof they meant to strip is in section, the untouched north aisle gets one overall length. It records the intended works, and little besides. Marrable argues it was a pupils' exercise whose errors march in the order they worked; the surveyors were the contractor's own men, paid by the day out of the works account. Pennoy tells his students the field books beat the drawings made from them; the books hand the draughtsmen the same tidy figures. It did catch the south range that fell in eighteen fifty-one — in two lines and a width. The scan, now. The tower's cross-section comes out an oval, wider by a foot on the river face. It stands plumb to within a finger's breadth. Someone asked about the top stage: it sits true on the axis of the ones below. And the courses run level, rather than wavering as ground movement would leave them. Next, the roof spaces — the first campaign stopped at the wall heads — go up in the spring. Loading was settled last year by the engineers. Repeatability we tested at the outset, on the chapter house. The parish's other early buildings are a different grant and a different decade. The choir's mason's marks. Three-quarters sit in the two rebuilt bays, so they date the repairs rather than parcelling out the building seasons. The quarry marks are a separate alphabet. And the spacing wanders half a foot inside a single bay.",
+    "difficulty": "medium",
+    "explanation": "The roof spaces, which the first campaign stopped short of at the wall heads, are what goes up in the spring.",
+    "listeningTask": "academic_talk",
+    "correct_answer": "Extend the scanning into the roof spaces, which the first campaign left untouched",
+    "passageGroupId": "atv2-b5-p3",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "distractor_rationales": [
+     {
+      "choice": "Put the scan through a structural model, to test what the tower can still safely carry",
+      "reason": "Structural work is done and behind them: \"Loading was settled last year by the engineers\"."
+     },
+     {
+      "choice": "Repeat the scan after an interval long enough to test how repeatable its readings are",
+      "reason": "Repeatability belongs to an earlier stage and a different building — \"Repeatability we tested at the outset, on the chapter house\"."
+     },
+     {
+      "choice": "Move on to the parish's other early buildings to give the priory a comparison",
+      "reason": "The comparison campaign is granted but pushed off: the other early buildings are \"a different grant and a different decade\"."
+     }
+    ]
+   },
+   "_meta": {
+    "lecture": "atv2-b5-p3",
+    "pivot": "q3",
+    "qtype": "inference",
+    "chosen": 0,
+    "key_letter": "D"
+   }
+  },
+  {
+   "passage_group_id": "atv2-b5-p3",
+   "cohort": "at-v2-b5",
+   "difficulty": "medium",
+   "item": {
+    "type": "multiple_choice",
+    "blanks": null,
+    "prompt": "[Academic Talk — Architectural History] Why does the professor discuss the mason's marks in the priory's choir?",
+    "choices": [
+     "Their placement lets the team assign stretches of walling to particular building seasons",
+     "Their spacing offers a check on the unit of length the medieval masons worked to",
+     "One of them recurs at a quarry the team recorded, tying the choir's stone to a source",
+     "They cluster where the fabric shows rebuilding, which helps put a date to the repairs"
+    ],
+    "graphic": null,
+    "passage": "Transcript: Lanmorick priory. The survey of the eighteen forties first. Its measurements read as the restorers' job order: the bays to be underpinned are dimensioned to the inch, the roof they meant to strip is in section, the untouched north aisle gets one overall length. It records the intended works, and little besides. Marrable argues it was a pupils' exercise whose errors march in the order they worked; the surveyors were the contractor's own men, paid by the day out of the works account. Pennoy tells his students the field books beat the drawings made from them; the books hand the draughtsmen the same tidy figures. It did catch the south range that fell in eighteen fifty-one — in two lines and a width. The scan, now. The tower's cross-section comes out an oval, wider by a foot on the river face. It stands plumb to within a finger's breadth. Someone asked about the top stage: it sits true on the axis of the ones below. And the courses run level, rather than wavering as ground movement would leave them. Next, the roof spaces — the first campaign stopped at the wall heads — go up in the spring. Loading was settled last year by the engineers. Repeatability we tested at the outset, on the chapter house. The parish's other early buildings are a different grant and a different decade. The choir's mason's marks. Three-quarters sit in the two rebuilt bays, so they date the repairs rather than parcelling out the building seasons. The quarry marks are a separate alphabet. And the spacing wanders half a foot inside a single bay.",
+    "difficulty": "medium",
+    "explanation": "Three-quarters of the marks sit in the two rebuilt bays, which is what lets the team put a date to the repairs.",
+    "listeningTask": "academic_talk",
+    "correct_answer": "They cluster where the fabric shows rebuilding, which helps put a date to the repairs",
+    "passageGroupId": "atv2-b5-p3",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "distractor_rationales": [
+     {
+      "choice": "Their placement lets the team assign stretches of walling to particular building seasons",
+      "reason": "The professor states the alternative explicitly: the marks \"date the repairs rather than parcelling out the building seasons\"."
+     },
+     {
+      "choice": "One of them recurs at a quarry the team recorded, tying the choir's stone to a source",
+      "reason": "The quarry link is raised and dismissed on the evidence — \"The quarry marks are a separate alphabet\"."
+     },
+     {
+      "choice": "Their spacing offers a check on the unit of length the medieval masons worked to",
+      "reason": "As a metrological check the marks are conceded useless: “the spacing wanders half a foot inside a single bay”."
+     }
+    ]
+   },
+   "_meta": {
+    "lecture": "atv2-b5-p3",
+    "pivot": "q4",
+    "qtype": "function",
+    "chosen": 1,
+    "key_letter": "D"
+   }
+  },
+  {
+   "passage_group_id": "atv2-b5-p4",
+   "cohort": "at-v2-b5",
+   "difficulty": "medium",
+   "item": {
+    "type": "multiple_choice",
+    "blanks": null,
+    "prompt": "[Academic Talk — Lexicography] What is the professor's position on Lensham's claim that the prefaces to each part were written to answer the reviewers?",
+    "choices": [
+     "She allows it from the middle parts onward, the earlier prefaces being pitched at the volunteer helpers",
+     "She agrees, matching several passages in them to notices that had appeared in the quarterlies",
+     "She disputes it, taking the prefaces to address the subscribers whose payments the parts depended on",
+     "She takes their audience to have been the editorial staff, with reviewers answered by letter"
+    ],
+    "graphic": null,
+    "passage": "Transcript: The Dunmere wordbook, issued in parts. Lensham reads the prefaces as replies to the reviewers. I part company with her. Beside the subscription lists they are aimed at the people paying: thanks for patience, promises about the next part, apologies for the price. The first preface already names its subscribers, forty of them, before any notice appeared. The passages Lensham matches were in print before the reviews she pairs them with. The staff, meanwhile, got their instructions on printed slips, weekly. The archive is being catalogued. When that is done we shall see how the labour was shared out: each editor marked the material in his own ink, and those marks are on the slips still. Cut entries went with the proofs, and the proofs were pulped. The packets were opened by a clerk who kept the slips and burned the wrappers. The chief editor's annotated rival sits in a private collection in Dunmere. One entry to dwell on: a dialect name for a fishing float. It went to proof, then was pulled and reset — a second pass its neighbours were spared. Its evidence came in from four counties. You will read that its definition survives in six drafts; one draft survives, and a fair copy. Its etymology was wrong, and corrected in the second printing. Last, the slip recount. The collection grew fastest in the very years the annual reports call lean. The boxes for the commonest words are the fattest in the run. For the late letters the published figures run under the true holdings. And the misfiled slips are from the last decade of collecting.",
+    "difficulty": "medium",
+    "explanation": "She disputes Lensham: read beside the subscription lists, the prefaces are aimed at the paying subscribers, thanking them for patience and apologising for the price.",
+    "listeningTask": "academic_talk",
+    "correct_answer": "She disputes it, taking the prefaces to address the subscribers whose payments the parts depended on",
+    "passageGroupId": "atv2-b5-p4",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "distractor_rationales": [
+     {
+      "choice": "She agrees, matching several passages in them to notices that had appeared in the quarterlies",
+      "reason": "The dating defeats the match: \"The passages Lensham matches were in print before the reviews she pairs them with\"."
+     },
+     {
+      "choice": "She allows it from the middle parts onward, the earlier prefaces being pitched at the volunteer helpers",
+      "reason": "There is no shift partway through — \"The first preface already names its subscribers\", before any notice had appeared."
+     },
+     {
+      "choice": "She takes their audience to have been the editorial staff, with reviewers answered by letter",
+      "reason": "The staff had their own channel: they \"got their instructions on printed slips, weekly\"."
+     }
+    ]
+   },
+   "_meta": {
+    "lecture": "atv2-b5-p4",
+    "pivot": "q1",
+    "qtype": "attitude",
+    "chosen": 1,
+    "key_letter": "C"
+   }
+  },
+  {
+   "passage_group_id": "atv2-b5-p4",
+   "cohort": "at-v2-b5",
+   "difficulty": "medium",
+   "item": {
+    "type": "multiple_choice",
+    "blanks": null,
+    "prompt": "[Academic Talk — Lexicography] What does the professor suggest scholars will be able to do once the project's archive is catalogued?",
+    "choices": [
+     "Establish how the work was shared out, from the marks each editor left on the material",
+     "Compare the finished definitions with the rival wordbook the chief editor kept annotating",
+     "Date when particular senses first drew notice, from the postmarks the incoming packets carry",
+     "Recover entries written and then cut before the parts went to the printer"
+    ],
+    "graphic": null,
+    "passage": "Transcript: The Dunmere wordbook, issued in parts. Lensham reads the prefaces as replies to the reviewers. I part company with her. Beside the subscription lists they are aimed at the people paying: thanks for patience, promises about the next part, apologies for the price. The first preface already names its subscribers, forty of them, before any notice appeared. The passages Lensham matches were in print before the reviews she pairs them with. The staff, meanwhile, got their instructions on printed slips, weekly. The archive is being catalogued. When that is done we shall see how the labour was shared out: each editor marked the material in his own ink, and those marks are on the slips still. Cut entries went with the proofs, and the proofs were pulped. The packets were opened by a clerk who kept the slips and burned the wrappers. The chief editor's annotated rival sits in a private collection in Dunmere. One entry to dwell on: a dialect name for a fishing float. It went to proof, then was pulled and reset — a second pass its neighbours were spared. Its evidence came in from four counties. You will read that its definition survives in six drafts; one draft survives, and a fair copy. Its etymology was wrong, and corrected in the second printing. Last, the slip recount. The collection grew fastest in the very years the annual reports call lean. The boxes for the commonest words are the fattest in the run. For the late letters the published figures run under the true holdings. And the misfiled slips are from the last decade of collecting.",
+    "difficulty": "medium",
+    "explanation": "Once the archive is catalogued, the personal marks each editor left on the slips will show how the labour was shared out.",
+    "listeningTask": "academic_talk",
+    "correct_answer": "Establish how the work was shared out, from the marks each editor left on the material",
+    "passageGroupId": "atv2-b5-p4",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "distractor_rationales": [
+     {
+      "choice": "Recover entries written and then cut before the parts went to the printer",
+      "reason": "The cut material did not survive to be recovered: \"Cut entries went with the proofs, and the proofs were pulped\"."
+     },
+     {
+      "choice": "Date when particular senses first drew notice, from the postmarks the incoming packets carry",
+      "reason": "The postmarks are gone — the clerk \"kept the slips and burned the wrappers\"."
+     },
+     {
+      "choice": "Compare the finished definitions with the rival wordbook the chief editor kept annotating",
+      "reason": "The annotated rival is granted to exist but sits outside this archive, \"in a private collection in Dunmere\"."
+     }
+    ]
+   },
+   "_meta": {
+    "lecture": "atv2-b5-p4",
+    "pivot": "q2",
+    "qtype": "inference",
+    "chosen": 0,
+    "key_letter": "A"
+   }
+  },
+  {
+   "passage_group_id": "atv2-b5-p4",
+   "cohort": "at-v2-b5",
+   "difficulty": "medium",
+   "item": {
+    "type": "multiple_choice",
+    "blanks": null,
+    "prompt": "[Academic Talk — Lexicography] Why does the professor dwell on the entry for a dialect name for a fishing float?",
+    "choices": [
+     "Its evidence came from a single county, which forced a decision about regional labels",
+     "It was reset in type after the first proof, needing a second pass unlike its neighboring entries",
+     "Its definition survives in six successive drafts, which show the house style taking shape",
+     "An error in its etymology outlived four printings, showing how slowly corrections spread"
+    ],
+    "graphic": null,
+    "passage": "Transcript: The Dunmere wordbook, issued in parts. Lensham reads the prefaces as replies to the reviewers. I part company with her. Beside the subscription lists they are aimed at the people paying: thanks for patience, promises about the next part, apologies for the price. The first preface already names its subscribers, forty of them, before any notice appeared. The passages Lensham matches were in print before the reviews she pairs them with. The staff, meanwhile, got their instructions on printed slips, weekly. The archive is being catalogued. When that is done we shall see how the labour was shared out: each editor marked the material in his own ink, and those marks are on the slips still. Cut entries went with the proofs, and the proofs were pulped. The packets were opened by a clerk who kept the slips and burned the wrappers. The chief editor's annotated rival sits in a private collection in Dunmere. One entry to dwell on: a dialect name for a fishing float. It went to proof, then was pulled and reset — a second pass its neighbours were spared. Its evidence came in from four counties. You will read that its definition survives in six drafts; one draft survives, and a fair copy. Its etymology was wrong, and corrected in the second printing. Last, the slip recount. The collection grew fastest in the very years the annual reports call lean. The boxes for the commonest words are the fattest in the run. For the late letters the published figures run under the true holdings. And the misfiled slips are from the last decade of collecting.",
+    "difficulty": "medium",
+    "explanation": "The float entry went to proof and was then pulled and reset, taking a second pass that its neighbours were spared.",
+    "listeningTask": "academic_talk",
+    "correct_answer": "It was reset in type after the first proof, needing a second pass unlike its neighboring entries",
+    "passageGroupId": "atv2-b5-p4",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "distractor_rationales": [
+     {
+      "choice": "Its evidence came from a single county, which forced a decision about regional labels",
+      "reason": "No single-county problem arises: \"Its evidence came in from four counties\"."
+     },
+     {
+      "choice": "Its definition survives in six successive drafts, which show the house style taking shape",
+      "reason": "The six-drafts claim is stated and corrected on the spot — \"one draft survives, and a fair copy\"."
+     },
+     {
+      "choice": "An error in its etymology outlived four printings, showing how slowly corrections spread",
+      "reason": "The etymological error was short-lived, \"corrected in the second printing\", not carried through four."
+     }
+    ]
+   },
+   "_meta": {
+    "lecture": "atv2-b5-p4",
+    "pivot": "q3",
+    "qtype": "function",
+    "chosen": 3,
+    "key_letter": "B"
+   }
+  },
+  {
+   "passage_group_id": "atv2-b5-p4",
+   "cohort": "at-v2-b5",
+   "difficulty": "medium",
+   "item": {
+    "type": "multiple_choice",
+    "blanks": null,
+    "prompt": "[Academic Talk — Lexicography] According to the professor, what did the recount of the citation slips in the boxes show?",
+    "choices": [
+     "The collection grew fastest in the years the annual reports describe as lean",
+     "The published counts overstate the holdings for the letters late in the alphabet",
+     "Boxes for the commonest words had been thinned at some point, with the discards going unrecorded",
+     "Material in the earliest hands sat misfiled under spellings a reform had since changed"
+    ],
+    "graphic": null,
+    "passage": "Transcript: The Dunmere wordbook, issued in parts. Lensham reads the prefaces as replies to the reviewers. I part company with her. Beside the subscription lists they are aimed at the people paying: thanks for patience, promises about the next part, apologies for the price. The first preface already names its subscribers, forty of them, before any notice appeared. The passages Lensham matches were in print before the reviews she pairs them with. The staff, meanwhile, got their instructions on printed slips, weekly. The archive is being catalogued. When that is done we shall see how the labour was shared out: each editor marked the material in his own ink, and those marks are on the slips still. Cut entries went with the proofs, and the proofs were pulped. The packets were opened by a clerk who kept the slips and burned the wrappers. The chief editor's annotated rival sits in a private collection in Dunmere. One entry to dwell on: a dialect name for a fishing float. It went to proof, then was pulled and reset — a second pass its neighbours were spared. Its evidence came in from four counties. You will read that its definition survives in six drafts; one draft survives, and a fair copy. Its etymology was wrong, and corrected in the second printing. Last, the slip recount. The collection grew fastest in the very years the annual reports call lean. The boxes for the commonest words are the fattest in the run. For the late letters the published figures run under the true holdings. And the misfiled slips are from the last decade of collecting.",
+    "difficulty": "medium",
+    "explanation": "The recount showed the collection growing fastest in the very years the annual reports describe as lean.",
+    "listeningTask": "academic_talk",
+    "correct_answer": "The collection grew fastest in the years the annual reports describe as lean",
+    "passageGroupId": "atv2-b5-p4",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "distractor_rationales": [
+     {
+      "choice": "Boxes for the commonest words had been thinned at some point, with the discards going unrecorded",
+      "reason": "Thinning would have left those boxes light, and \"The boxes for the commonest words are the fattest in the run\"."
+     },
+     {
+      "choice": "The published counts overstate the holdings for the letters late in the alphabet",
+      "reason": "The error runs the other way: \"the published figures run under the true holdings\" for the late letters."
+     },
+     {
+      "choice": "Material in the earliest hands sat misfiled under spellings a reform had since changed",
+      "reason": "The misfiling is granted but belongs to the wrong material — \"the misfiled slips are from the last decade of collecting\"."
+     }
+    ]
+   },
+   "_meta": {
+    "lecture": "atv2-b5-p4",
+    "pivot": "q4",
+    "qtype": "detail",
+    "chosen": 3,
+    "key_letter": "A"
+   }
+  },
+  {
+   "passage_group_id": "atv2-b5-p5",
+   "cohort": "at-v2-b5",
+   "difficulty": "hard",
+   "item": {
+    "type": "multiple_choice",
+    "blanks": null,
+    "prompt": "[Academic Talk — Herpetology] What does the professor imply about the team's plans for identifying individual salamanders?",
+    "choices": [
+     "They will keep the tags and the photographs in use together for several more seasons",
+     "They will go on tagging adults but release the juveniles without processing",
+     "They will move to a tag that can be read at a distance, without handling",
+     "They will give up the physical tags and rely on each animal's spot pattern"
+    ],
+    "graphic": null,
+    "passage": "Transcript: The Trevoggan gorge salamanders — eleven seasons, and what the survey has measured.\n\nIdentification first. We have tagged these animals since the start; the tags come out of the budget after this season. What replaces them is a photograph, taken in the hand and matched by software against the spot pattern. Someone asked whether the adults would still be tagged. They won't — the camera treats an adult and a first-year alike.\n\nThe recapture figures. Estimates from the spring sessions ran well above the autumn ones for the same reach. We have run the same forty trap-nights a session since the third year, and both ends of the valley rise and fall together. A dozen did reappear within days of release, sooner than the model allows; too few to move the model.\n\nSo what have we measured? Mostly ourselves. Three stretches near the road supply the bulk of the detections, and those are the stretches we like walking. Weather counts, I grant you — a warm wet night doubles what enters a trap — but that washes out across a season, and our footpaths do not. Sort the catch by size and the same proportions come back each year. Hanwolla, before me, wrote that the animals shuttle onto the slopes in dry years; the slope transects came back with a handful of animals whatever the weather.\n\nPolgrenna's second breeding site. Eggs turn up in the known pools a fortnight before the first young appear, in wet years and dry ones alike. The young come in one short pulse, ten days and done, and the pulse falls in the low-water weeks.",
+    "difficulty": "hard",
+    "explanation": "The tags are being dropped and identification moves to the spot pattern: \"the tags come out of the budget after this season\", and what replaces them is a photograph matched by software against each animal's markings.",
+    "listeningTask": "academic_talk",
+    "correct_answer": "They will give up the physical tags and rely on each animal's spot pattern",
+    "passageGroupId": "atv2-b5-p5",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "distractor_rationales": [
+     {
+      "choice": "They will keep the tags and the photographs in use together for several more seasons",
+      "reason": "Running tags and photographs on together is closed off by a positive statement of the budget: \"the tags come out of the budget after this season\"."
+     },
+     {
+      "choice": "They will go on tagging adults but release the juveniles without processing",
+      "reason": "A student raises exactly this option and is corrected — the adults go untagged too, since \"the camera treats an adult and a first-year alike\"."
+     },
+     {
+      "choice": "They will move to a tag that can be read at a distance, without handling",
+      "reason": "The replacement still involves handling, so a distance-read tag is not what is coming: the photograph is \"taken in the hand and matched by software\"."
+     }
+    ]
+   },
+   "_meta": {
+    "lecture": "atv2-b5-p5",
+    "pivot": "q1",
+    "qtype": "inference",
+    "chosen": 0,
+    "key_letter": "D"
+   }
+  },
+  {
+   "passage_group_id": "atv2-b5-p5",
+   "cohort": "at-v2-b5",
+   "difficulty": "hard",
+   "item": {
+    "type": "multiple_choice",
+    "blanks": null,
+    "prompt": "[Academic Talk — Herpetology] What did the professor say the recapture figures showed about the population estimate?",
+    "choices": [
+     "Estimates from the spring sessions ran well above the autumn ones for the same reach",
+     "The estimate climbed year on year until the season the trapping effort was cut back",
+     "Figures from the two ends of the valley moved independently of each other",
+     "Animals reappeared far sooner after release than the model said they should"
+    ],
+    "graphic": null,
+    "passage": "Transcript: The Trevoggan gorge salamanders — eleven seasons, and what the survey has measured.\n\nIdentification first. We have tagged these animals since the start; the tags come out of the budget after this season. What replaces them is a photograph, taken in the hand and matched by software against the spot pattern. Someone asked whether the adults would still be tagged. They won't — the camera treats an adult and a first-year alike.\n\nThe recapture figures. Estimates from the spring sessions ran well above the autumn ones for the same reach. We have run the same forty trap-nights a session since the third year, and both ends of the valley rise and fall together. A dozen did reappear within days of release, sooner than the model allows; too few to move the model.\n\nSo what have we measured? Mostly ourselves. Three stretches near the road supply the bulk of the detections, and those are the stretches we like walking. Weather counts, I grant you — a warm wet night doubles what enters a trap — but that washes out across a season, and our footpaths do not. Sort the catch by size and the same proportions come back each year. Hanwolla, before me, wrote that the animals shuttle onto the slopes in dry years; the slope transects came back with a handful of animals whatever the weather.\n\nPolgrenna's second breeding site. Eggs turn up in the known pools a fortnight before the first young appear, in wet years and dry ones alike. The young come in one short pulse, ten days and done, and the pulse falls in the low-water weeks.",
+    "difficulty": "hard",
+    "explanation": "The professor says estimates built from the spring sessions \"ran well above the autumn ones for the same reach\" — a within-year swing in the same stretch of water.",
+    "listeningTask": "academic_talk",
+    "correct_answer": "Estimates from the spring sessions ran well above the autumn ones for the same reach",
+    "passageGroupId": "atv2-b5-p5",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "distractor_rationales": [
+     {
+      "choice": "The estimate climbed year on year until the season the trapping effort was cut back",
+      "reason": "The premise of a cut in effort is false for this survey: \"the same forty trap-nights a session since the third year\"."
+     },
+     {
+      "choice": "Animals reappeared far sooner after release than the model said they should",
+      "reason": "Early reappearances are granted and then restricted to nothing: \"too few to move the model\"."
+     },
+     {
+      "choice": "Figures from the two ends of the valley moved independently of each other",
+      "reason": "The two ends are not independent — they \"rise and fall together\"."
+     }
+    ]
+   },
+   "_meta": {
+    "lecture": "atv2-b5-p5",
+    "pivot": "q2",
+    "qtype": "detail",
+    "chosen": 0,
+    "key_letter": "A"
+   }
+  },
+  {
+   "passage_group_id": "atv2-b5-p5",
+   "cohort": "at-v2-b5",
+   "difficulty": "hard",
+   "item": {
+    "type": "multiple_choice",
+    "blanks": null,
+    "prompt": "[Academic Talk — Herpetology] What is the professor's central claim about what the long-running survey has measured?",
+    "choices": [
+     "A genuine decline, though one confined to the biggest size classes rather than the whole",
+     "A slow shuttling between the gorge floor and the slopes, read by earlier workers as loss",
+     "Mostly the habits of the observers, whose favored stretches supply the bulk of the detections",
+     "Less the population than a readiness to enter traps, which swings with the weather"
+    ],
+    "graphic": null,
+    "passage": "Transcript: The Trevoggan gorge salamanders — eleven seasons, and what the survey has measured.\n\nIdentification first. We have tagged these animals since the start; the tags come out of the budget after this season. What replaces them is a photograph, taken in the hand and matched by software against the spot pattern. Someone asked whether the adults would still be tagged. They won't — the camera treats an adult and a first-year alike.\n\nThe recapture figures. Estimates from the spring sessions ran well above the autumn ones for the same reach. We have run the same forty trap-nights a session since the third year, and both ends of the valley rise and fall together. A dozen did reappear within days of release, sooner than the model allows; too few to move the model.\n\nSo what have we measured? Mostly ourselves. Three stretches near the road supply the bulk of the detections, and those are the stretches we like walking. Weather counts, I grant you — a warm wet night doubles what enters a trap — but that washes out across a season, and our footpaths do not. Sort the catch by size and the same proportions come back each year. Hanwolla, before me, wrote that the animals shuttle onto the slopes in dry years; the slope transects came back with a handful of animals whatever the weather.\n\nPolgrenna's second breeding site. Eggs turn up in the known pools a fortnight before the first young appear, in wet years and dry ones alike. The young come in one short pulse, ten days and done, and the pulse falls in the low-water weeks.",
+    "difficulty": "hard",
+    "explanation": "His central claim is that the survey has measured the observers: \"Three stretches near the road supply the bulk of the detections, and those are the stretches we like walking.\"",
+    "listeningTask": "academic_talk",
+    "correct_answer": "Mostly the habits of the observers, whose favored stretches supply the bulk of the detections",
+    "passageGroupId": "atv2-b5-p5",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "distractor_rationales": [
+     {
+      "choice": "Less the population than a readiness to enter traps, which swings with the weather",
+      "reason": "Trappability with weather is conceded and then narrowed out of the answer: a warm wet night doubles the catch, \"but that washes out across a season, and our footpaths do not\"."
+     },
+     {
+      "choice": "A genuine decline, though one confined to the biggest size classes rather than the whole",
+      "reason": "A decline in the large size classes would show as a change of composition, and there is none: \"Sort the catch by size and the same proportions come back each year.\""
+     },
+     {
+      "choice": "A slow shuttling between the gorge floor and the slopes, read by earlier workers as loss",
+      "reason": "This was Hanwolla's published reading and the professor corrects it: \"the slope transects came back with a handful of animals whatever the weather\"."
+     }
+    ]
+   },
+   "_meta": {
+    "lecture": "atv2-b5-p5",
+    "pivot": "q3",
+    "qtype": "main_emphasis",
+    "chosen": 2,
+    "key_letter": "C"
+   }
+  },
+  {
+   "passage_group_id": "atv2-b5-p5",
+   "cohort": "at-v2-b5",
+   "difficulty": "hard",
+   "item": {
+    "type": "multiple_choice",
+    "blanks": null,
+    "prompt": "[Academic Talk — Herpetology] How does the professor respond to Polgrenna's suggestion that the salamanders breed at a second, undiscovered site?",
+    "choices": [
+     "He doubts it, taking the young to be carried down from the known pools in high water",
+     "He thinks it may hold in wet years, while in dry ones the known pools suffice",
+     "He resists it, since the young arrive in one short pulse rather than in scattered waves",
+     "He credits it, mainly because young turn up in the counts before eggs are seen locally"
+    ],
+    "graphic": null,
+    "passage": "Transcript: The Trevoggan gorge salamanders — eleven seasons, and what the survey has measured.\n\nIdentification first. We have tagged these animals since the start; the tags come out of the budget after this season. What replaces them is a photograph, taken in the hand and matched by software against the spot pattern. Someone asked whether the adults would still be tagged. They won't — the camera treats an adult and a first-year alike.\n\nThe recapture figures. Estimates from the spring sessions ran well above the autumn ones for the same reach. We have run the same forty trap-nights a session since the third year, and both ends of the valley rise and fall together. A dozen did reappear within days of release, sooner than the model allows; too few to move the model.\n\nSo what have we measured? Mostly ourselves. Three stretches near the road supply the bulk of the detections, and those are the stretches we like walking. Weather counts, I grant you — a warm wet night doubles what enters a trap — but that washes out across a season, and our footpaths do not. Sort the catch by size and the same proportions come back each year. Hanwolla, before me, wrote that the animals shuttle onto the slopes in dry years; the slope transects came back with a handful of animals whatever the weather.\n\nPolgrenna's second breeding site. Eggs turn up in the known pools a fortnight before the first young appear, in wet years and dry ones alike. The young come in one short pulse, ten days and done, and the pulse falls in the low-water weeks.",
+    "difficulty": "hard",
+    "explanation": "He resists Polgrenna because the arrivals are concentrated: \"The young come in one short pulse, ten days and done\" — not the smeared arrival a second source would give.",
+    "listeningTask": "academic_talk",
+    "correct_answer": "He resists it, since the young arrive in one short pulse rather than in scattered waves",
+    "passageGroupId": "atv2-b5-p5",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "distractor_rationales": [
+     {
+      "choice": "He credits it, mainly because young turn up in the counts before eggs are seen locally",
+      "reason": "The order of appearance runs the other way — eggs \"turn up in the known pools a fortnight before the first young appear\"."
+     },
+     {
+      "choice": "He thinks it may hold in wet years, while in dry ones the known pools suffice",
+      "reason": "There is no wet-year/dry-year split to hang it on, since the same pattern holds \"in wet years and dry ones alike\"."
+     },
+     {
+      "choice": "He doubts it, taking the young to be carried down from the known pools in high water",
+      "reason": "Transport in a spate is incompatible with the timing he gives: \"the pulse falls in the low-water weeks\"."
+     }
+    ]
+   },
+   "_meta": {
+    "lecture": "atv2-b5-p5",
+    "pivot": "q4",
+    "qtype": "attitude",
+    "chosen": 3,
+    "key_letter": "C"
+   }
+  },
+  {
+   "passage_group_id": "atv2-b5-p6",
+   "cohort": "at-v2-b5",
+   "difficulty": "medium",
+   "item": {
+    "type": "multiple_choice",
+    "blanks": null,
+    "prompt": "[Academic Talk — History of Photography] According to the professor, what did records of a rival studio in the same town show about its pricing of portrait sittings?",
+    "choices": [
+     "It charged a flat fee regardless of how many prints were ordered, unlike Morgelly's per-print scale",
+     "It kept single sittings level with Morgelly's rates but undercut him for group portraits",
+     "Its prices climbed each time a new photographic process reached the town, tracking material costs",
+     "It advertised fixed rates yet routinely discounted them for return customers, a practice its own books record"
+    ],
+    "graphic": null,
+    "passage": "Transcript: Morgelly's studio ledger — Threlmoor, thirty years of sittings.\n\nPricing first. Across the square, Ivestead charged one fee for the sitting however many prints went out; Morgelly charged by the print. Ivestead's sitting stood a shilling below Morgelly's, and a group paid that same shilling again. His fee rose twice in twenty years, both times when he took larger premises. One of you had read that he discounted for regulars. His book gives the same figure for a stranger and for a man on his fourth sitting.\n\nChelvern says the ledger was written up afterwards, for show. I don't accept it. The ink shifts from entry to entry, the way a book kept daily will; the hand is his throughout, which tells us who wrote it, not when. The earliest volume shows the same ink shifts as the later ones. So: not an open question but a settled one — the ink changes at the entry.\n\nNow, the plate makers' price lists. His exposures hold at about the same length right through the change of plates, and his invoices are bound into the back of the same ledger. The interest is not what he bought but what he sold on: the counter trade in plates and chemicals brought him more than the camera work did.\n\nWhich leaves the light. The handbook figures reach his pages a good decade after the journals printed them. He opens up a stop for children; past that, the settings answer the sky. It won't date his prints — half the sittings go unnamed — but knowing his habits, it reads as an instrument.",
+    "difficulty": "medium",
+    "explanation": "The rival is used to make the contrast in pricing structure: Ivestead \"charged one fee for the sitting however many prints went out\", where Morgelly charged by the print.",
+    "listeningTask": "academic_talk",
+    "correct_answer": "It charged a flat fee regardless of how many prints were ordered, unlike Morgelly's per-print scale",
+    "passageGroupId": "atv2-b5-p6",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "distractor_rationales": [
+     {
+      "choice": "It kept single sittings level with Morgelly's rates but undercut him for group portraits",
+      "reason": "His group charge is stated as the same single fee, and his sitting fee is given as below Morgelly's rather than level with it: it \"stood a shilling below Morgelly's\"."
+     },
+     {
+      "choice": "Its prices climbed each time a new photographic process reached the town, tracking material costs",
+      "reason": "The rises are granted and then attributed elsewhere: his fee rose twice in twenty years, \"both times when he took larger premises\"."
+     },
+     {
+      "choice": "It advertised fixed rates yet routinely discounted them for return customers, a practice its own books record",
+      "reason": "A student reports the discounting story and the professor corrects it from the books, which give \"the same figure for a stranger and for a man on his fourth sitting\"."
+     }
+    ]
+   },
+   "_meta": {
+    "lecture": "atv2-b5-p6",
+    "pivot": "q1",
+    "qtype": "detail",
+    "chosen": 0,
+    "key_letter": "A"
+   }
+  },
+  {
+   "passage_group_id": "atv2-b5-p6",
+   "cohort": "at-v2-b5",
+   "difficulty": "medium",
+   "item": {
+    "type": "multiple_choice",
+    "blanks": null,
+    "prompt": "[Academic Talk — History of Photography] What is the professor's response to Chelvern's argument that the ledger was written up after the fact for advertisement?",
+    "choices": [
+     "She accepts it, reading the uniform hand across the pages as a sign the book was copied out afterward for display",
+     "She rejects it, pointing to shifts of ink from entry to entry that fit a book kept daily",
+     "She accepts it for the earliest volume, which she reads as reconstructed at a stroke from memory",
+     "She leaves it open, since the surviving pages give no way to tell entry date from copying date"
+    ],
+    "graphic": null,
+    "passage": "Transcript: Morgelly's studio ledger — Threlmoor, thirty years of sittings.\n\nPricing first. Across the square, Ivestead charged one fee for the sitting however many prints went out; Morgelly charged by the print. Ivestead's sitting stood a shilling below Morgelly's, and a group paid that same shilling again. His fee rose twice in twenty years, both times when he took larger premises. One of you had read that he discounted for regulars. His book gives the same figure for a stranger and for a man on his fourth sitting.\n\nChelvern says the ledger was written up afterwards, for show. I don't accept it. The ink shifts from entry to entry, the way a book kept daily will; the hand is his throughout, which tells us who wrote it, not when. The earliest volume shows the same ink shifts as the later ones. So: not an open question but a settled one — the ink changes at the entry.\n\nNow, the plate makers' price lists. His exposures hold at about the same length right through the change of plates, and his invoices are bound into the back of the same ledger. The interest is not what he bought but what he sold on: the counter trade in plates and chemicals brought him more than the camera work did.\n\nWhich leaves the light. The handbook figures reach his pages a good decade after the journals printed them. He opens up a stop for children; past that, the settings answer the sky. It won't date his prints — half the sittings go unnamed — but knowing his habits, it reads as an instrument.",
+    "difficulty": "medium",
+    "explanation": "She rejects Chelvern outright, and her evidence is the ink: \"The ink shifts from entry to entry, the way a book kept daily will.\"",
+    "listeningTask": "academic_talk",
+    "correct_answer": "She rejects it, pointing to shifts of ink from entry to entry that fit a book kept daily",
+    "passageGroupId": "atv2-b5-p6",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "distractor_rationales": [
+     {
+      "choice": "She accepts it, reading the uniform hand across the pages as a sign the book was copied out afterward for display",
+      "reason": "The uniform hand is granted and then restricted so it cannot carry the argument: it \"tells us who wrote it, not when\"."
+     },
+     {
+      "choice": "She accepts it for the earliest volume, which she reads as reconstructed at a stroke from memory",
+      "reason": "The earliest volume is covered by the same evidence as the rest — it \"shows the same ink shifts as the later ones\"."
+     },
+     {
+      "choice": "She leaves it open, since the surviving pages give no way to tell entry date from copying date",
+      "reason": "She treats the question as decided, \"not an open question but a settled one\"."
+     }
+    ]
+   },
+   "_meta": {
+    "lecture": "atv2-b5-p6",
+    "pivot": "q2",
+    "qtype": "attitude",
+    "chosen": 0,
+    "key_letter": "B"
+   }
+  },
+  {
+   "passage_group_id": "atv2-b5-p6",
+   "cohort": "at-v2-b5",
+   "difficulty": "medium",
+   "item": {
+    "type": "multiple_choice",
+    "blanks": null,
+    "prompt": "[Academic Talk — History of Photography] Why does the professor set the ledger beside the price lists of the plate makers?",
+    "choices": [
+     "To show the exposure figures shortening just as faster plates came onto the market",
+     "To trace his suppliers, since the studio's own purchase papers do not survive",
+     "To show he kept ordering a line the catalogues had dropped some years before",
+     "To argue that selling supplies on the side earned him more than the camera work did"
+    ],
+    "graphic": null,
+    "passage": "Transcript: Morgelly's studio ledger — Threlmoor, thirty years of sittings.\n\nPricing first. Across the square, Ivestead charged one fee for the sitting however many prints went out; Morgelly charged by the print. Ivestead's sitting stood a shilling below Morgelly's, and a group paid that same shilling again. His fee rose twice in twenty years, both times when he took larger premises. One of you had read that he discounted for regulars. His book gives the same figure for a stranger and for a man on his fourth sitting.\n\nChelvern says the ledger was written up afterwards, for show. I don't accept it. The ink shifts from entry to entry, the way a book kept daily will; the hand is his throughout, which tells us who wrote it, not when. The earliest volume shows the same ink shifts as the later ones. So: not an open question but a settled one — the ink changes at the entry.\n\nNow, the plate makers' price lists. His exposures hold at about the same length right through the change of plates, and his invoices are bound into the back of the same ledger. The interest is not what he bought but what he sold on: the counter trade in plates and chemicals brought him more than the camera work did.\n\nWhich leaves the light. The handbook figures reach his pages a good decade after the journals printed them. He opens up a stop for children; past that, the settings answer the sky. It won't date his prints — half the sittings go unnamed — but knowing his habits, it reads as an instrument.",
+    "difficulty": "medium",
+    "explanation": "The plate makers' lists let her price his side trade, and she concludes the \"counter trade in plates and chemicals brought him more than the camera work did\".",
+    "listeningTask": "academic_talk",
+    "correct_answer": "To argue that selling supplies on the side earned him more than the camera work did",
+    "passageGroupId": "atv2-b5-p6",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "distractor_rationales": [
+     {
+      "choice": "To show the exposure figures shortening just as faster plates came onto the market",
+      "reason": "Exposure times do not move with the plates: they \"hold at about the same length right through the change of plates\"."
+     },
+     {
+      "choice": "To show he kept ordering a line the catalogues had dropped some years before",
+      "reason": "The comparison is drawn on the selling side, not the buying side: \"The interest is not what he bought but what he sold on\"."
+     },
+     {
+      "choice": "To trace his suppliers, since the studio's own purchase papers do not survive",
+      "reason": "His purchase papers do survive — the \"invoices are bound into the back of the same ledger\"."
+     }
+    ]
+   },
+   "_meta": {
+    "lecture": "atv2-b5-p6",
+    "pivot": "q3",
+    "qtype": "function",
+    "chosen": 2,
+    "key_letter": "D"
+   }
+  },
+  {
+   "passage_group_id": "atv2-b5-p6",
+   "cohort": "at-v2-b5",
+   "difficulty": "medium",
+   "item": {
+    "type": "multiple_choice",
+    "blanks": null,
+    "prompt": "[Academic Talk — History of Photography] What is the professor's central point about what the ledger offers historians?",
+    "choices": [
+     "It registers the sitters as much as the light, since the settings shift with who sat",
+     "It preserves one man's judgment of light, usable as an instrument once his habits are known",
+     "Its chief use is for dating his surviving prints, which entries can pin to within a week",
+     "It shows a provincial practice adopting the handbook numbers years ahead of the trade press"
+    ],
+    "graphic": null,
+    "passage": "Transcript: Morgelly's studio ledger — Threlmoor, thirty years of sittings.\n\nPricing first. Across the square, Ivestead charged one fee for the sitting however many prints went out; Morgelly charged by the print. Ivestead's sitting stood a shilling below Morgelly's, and a group paid that same shilling again. His fee rose twice in twenty years, both times when he took larger premises. One of you had read that he discounted for regulars. His book gives the same figure for a stranger and for a man on his fourth sitting.\n\nChelvern says the ledger was written up afterwards, for show. I don't accept it. The ink shifts from entry to entry, the way a book kept daily will; the hand is his throughout, which tells us who wrote it, not when. The earliest volume shows the same ink shifts as the later ones. So: not an open question but a settled one — the ink changes at the entry.\n\nNow, the plate makers' price lists. His exposures hold at about the same length right through the change of plates, and his invoices are bound into the back of the same ledger. The interest is not what he bought but what he sold on: the counter trade in plates and chemicals brought him more than the camera work did.\n\nWhich leaves the light. The handbook figures reach his pages a good decade after the journals printed them. He opens up a stop for children; past that, the settings answer the sky. It won't date his prints — half the sittings go unnamed — but knowing his habits, it reads as an instrument.",
+    "difficulty": "medium",
+    "explanation": "Her central point is that the ledger records his own judgment of light and can be used as an instrument: \"once you know his habits, it reads as an instrument\".",
+    "listeningTask": "academic_talk",
+    "correct_answer": "It preserves one man's judgment of light, usable as an instrument once his habits are known",
+    "passageGroupId": "atv2-b5-p6",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "distractor_rationales": [
+     {
+      "choice": "It shows a provincial practice adopting the handbook numbers years ahead of the trade press",
+      "reason": "He is behind the press rather than ahead of it: the handbook figures reach his pages \"a good decade after the journals printed them\"."
+     },
+     {
+      "choice": "It registers the sitters as much as the light, since the settings shift with who sat",
+      "reason": "The sitter's effect is granted for children and then shut down: past that, \"the settings answer the sky\"."
+     },
+     {
+      "choice": "Its chief use is for dating his surviving prints, which entries can pin to within a week",
+      "reason": "It cannot serve as a dating tool, since \"half the sittings go unnamed\"."
+     }
+    ]
+   },
+   "_meta": {
+    "lecture": "atv2-b5-p6",
+    "pivot": "q4",
+    "qtype": "main_emphasis",
+    "chosen": 0,
+    "key_letter": "B"
+   }
+  },
+  {
+   "passage_group_id": "atv2-b5-p7",
+   "cohort": "at-v2-b5",
+   "difficulty": "hard",
+   "item": {
+    "type": "multiple_choice",
+    "blanks": null,
+    "prompt": "[Academic Talk — Naval History] Why does the professor describe the arrangements at the measured mile off Aberwynt?",
+    "choices": [
+     "To identify the shore observers whose sightings produced the timings the navy released",
+     "To explain why its results and those from the rival ground at Porthlenny resist comparison",
+     "To trace how a new civilian pier forced the course to be shifted and surveyed afresh",
+     "To bring out how much of its upkeep fell on the port authority instead of the navy"
+    ],
+    "graphic": null,
+    "passage": "Transcript: The measured mile off Aberwynt. In eighteen ninety-four a coal company put a pier across the sight line from the northern beacon, and the course had to be shifted a mile down the coast and surveyed afresh. The navy paid for the beacons and the navy paid to move them. Porthlenny's figures do sit a touch high, but the two grounds were surveyed to one standard and convert cleanly. And the timings came off the ship's own stopwatches, not from the shore huts.\n\nNow, the yard papers, catalogued last winter. What I expect from them is the post survey: how far the marker posts had drifted from the distance the charts gave them. The Penvorran's propellers are in her completion book — the pair she carried into service. Her draught was read off the marks that morning and both sides signed for it. And the sister ship was six months from launching.\n\nNansveor charges the fleet with inflating trial speeds. I go part way with him. The export figures run high, by a knot and a half, and that was not an error in the current allowance but a decision taken ashore. The home trials come out straight, year after year.\n\nCoal returns, finally. Ships tried in the winter months returned higher figures than those tried in summer. One of you suggested the stokers: sort the returns by stokehold and they scatter less than they do by ship. Trial-day burning sits above what the same ships used on passage. Two yards did return in bushels, and the clerk converted those before the tables were made up.",
+    "difficulty": "hard",
+    "explanation": "The mile is described to trace a forced relocation: a coal company's pier blocked the sight line, so \"the course had to be shifted a mile down the coast and surveyed afresh\".",
+    "listeningTask": "academic_talk",
+    "correct_answer": "To trace how a new civilian pier forced the course to be shifted and surveyed afresh",
+    "passageGroupId": "atv2-b5-p7",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "distractor_rationales": [
+     {
+      "choice": "To bring out how much of its upkeep fell on the port authority instead of the navy",
+      "reason": "Upkeep is placed with the service, not the port: \"The navy paid for the beacons and the navy paid to move them.\""
+     },
+     {
+      "choice": "To explain why its results and those from the rival ground at Porthlenny resist comparison",
+      "reason": "The comparison problem is conceded in part and then dismissed — the two grounds \"were surveyed to one standard and convert cleanly\"."
+     },
+     {
+      "choice": "To identify the shore observers whose sightings produced the timings the navy released",
+      "reason": "The timings have a different source altogether: they \"came off the ship's own stopwatches, not from the shore huts\"."
+     }
+    ]
+   },
+   "_meta": {
+    "lecture": "atv2-b5-p7",
+    "pivot": "q1",
+    "qtype": "function",
+    "chosen": 3,
+    "key_letter": "C"
+   }
+  },
+  {
+   "passage_group_id": "atv2-b5-p7",
+   "cohort": "at-v2-b5",
+   "difficulty": "hard",
+   "item": {
+    "type": "multiple_choice",
+    "blanks": null,
+    "prompt": "[Academic Talk — Naval History] What does the professor suggest the newly catalogued papers from the builders' yard are likely to show?",
+    "choices": [
+     "How far the marker posts had strayed from the distance the charts assigned them",
+     "How thoroughly the firm rehearsed the runs beforehand with a sister ship",
+     "Whether the Penvorran ran with her intended propellers or a set borrowed for the day",
+     "What the builders privately took the ship's draught to be on the morning in question"
+    ],
+    "graphic": null,
+    "passage": "Transcript: The measured mile off Aberwynt. In eighteen ninety-four a coal company put a pier across the sight line from the northern beacon, and the course had to be shifted a mile down the coast and surveyed afresh. The navy paid for the beacons and the navy paid to move them. Porthlenny's figures do sit a touch high, but the two grounds were surveyed to one standard and convert cleanly. And the timings came off the ship's own stopwatches, not from the shore huts.\n\nNow, the yard papers, catalogued last winter. What I expect from them is the post survey: how far the marker posts had drifted from the distance the charts gave them. The Penvorran's propellers are in her completion book — the pair she carried into service. Her draught was read off the marks that morning and both sides signed for it. And the sister ship was six months from launching.\n\nNansveor charges the fleet with inflating trial speeds. I go part way with him. The export figures run high, by a knot and a half, and that was not an error in the current allowance but a decision taken ashore. The home trials come out straight, year after year.\n\nCoal returns, finally. Ships tried in the winter months returned higher figures than those tried in summer. One of you suggested the stokers: sort the returns by stokehold and they scatter less than they do by ship. Trial-day burning sits above what the same ships used on passage. Two yards did return in bushels, and the clerk converted those before the tables were made up.",
+    "difficulty": "hard",
+    "explanation": "He expects the yard papers to settle the geometry of the course: \"how far the marker posts had drifted from the distance the charts gave them\".",
+    "listeningTask": "academic_talk",
+    "correct_answer": "How far the marker posts had strayed from the distance the charts assigned them",
+    "passageGroupId": "atv2-b5-p7",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "distractor_rationales": [
+     {
+      "choice": "Whether the Penvorran ran with her intended propellers or a set borrowed for the day",
+      "reason": "The propeller question is already answered elsewhere and the professor says so: her propellers are in her completion book, \"the pair she carried into service\"."
+     },
+     {
+      "choice": "What the builders privately took the ship's draught to be on the morning in question",
+      "reason": "Nothing private is left to recover about the draught, which \"was read off the marks that morning and both sides signed for it\"."
+     },
+     {
+      "choice": "How thoroughly the firm rehearsed the runs beforehand with a sister ship",
+      "reason": "A rehearsal with the sister ship was not available at that date — she \"was six months from launching\"."
+     }
+    ]
+   },
+   "_meta": {
+    "lecture": "atv2-b5-p7",
+    "pivot": "q2",
+    "qtype": "inference",
+    "chosen": 0,
+    "key_letter": "A"
+   }
+  },
+  {
+   "passage_group_id": "atv2-b5-p7",
+   "cohort": "at-v2-b5",
+   "difficulty": "hard",
+   "item": {
+    "type": "multiple_choice",
+    "blanks": null,
+    "prompt": "[Academic Talk — Naval History] Where does the professor stand on Nansveor's charge that trial speeds were inflated across the fleet?",
+    "choices": [
+     "He turns it around: reported speeds ran low, so owners kept a margin to reveal later",
+     "He endorses the charge, and adds that the habit sharpened as newspaper interest grew",
+     "He rejects a deliberate design, tracing the excess to a current allowance applied the wrong way",
+     "He allows it for the export orders, while home trials he takes as recorded straight"
+    ],
+    "graphic": null,
+    "passage": "Transcript: The measured mile off Aberwynt. In eighteen ninety-four a coal company put a pier across the sight line from the northern beacon, and the course had to be shifted a mile down the coast and surveyed afresh. The navy paid for the beacons and the navy paid to move them. Porthlenny's figures do sit a touch high, but the two grounds were surveyed to one standard and convert cleanly. And the timings came off the ship's own stopwatches, not from the shore huts.\n\nNow, the yard papers, catalogued last winter. What I expect from them is the post survey: how far the marker posts had drifted from the distance the charts gave them. The Penvorran's propellers are in her completion book — the pair she carried into service. Her draught was read off the marks that morning and both sides signed for it. And the sister ship was six months from launching.\n\nNansveor charges the fleet with inflating trial speeds. I go part way with him. The export figures run high, by a knot and a half, and that was not an error in the current allowance but a decision taken ashore. The home trials come out straight, year after year.\n\nCoal returns, finally. Ships tried in the winter months returned higher figures than those tried in summer. One of you suggested the stokers: sort the returns by stokehold and they scatter less than they do by ship. Trial-day burning sits above what the same ships used on passage. Two yards did return in bushels, and the clerk converted those before the tables were made up.",
+    "difficulty": "hard",
+    "explanation": "He splits the charge by market: \"The export figures run high\", while \"The home trials come out straight, year after year.\"",
+    "listeningTask": "academic_talk",
+    "correct_answer": "He allows it for the export orders, while home trials he takes as recorded straight",
+    "passageGroupId": "atv2-b5-p7",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "distractor_rationales": [
+     {
+      "choice": "He rejects a deliberate design, tracing the excess to a current allowance applied the wrong way",
+      "reason": "He locates the excess in intent rather than in arithmetic: it \"was not an error in the current allowance but a decision taken ashore\"."
+     },
+     {
+      "choice": "He endorses the charge, and adds that the habit sharpened as newspaper interest grew",
+      "reason": "The charge is limited to the export orders; the domestic runs stay clean over the period, since the home trials \"come out straight, year after year\"."
+     },
+     {
+      "choice": "He turns it around: reported speeds ran low, so owners kept a margin to reveal later",
+      "reason": "The direction of the error is upward: the export figures \"run high, by a knot and a half\"."
+     }
+    ]
+   },
+   "_meta": {
+    "lecture": "atv2-b5-p7",
+    "pivot": "q3",
+    "qtype": "attitude",
+    "chosen": 3,
+    "key_letter": "D"
+   }
+  },
+  {
+   "passage_group_id": "atv2-b5-p7",
+   "cohort": "at-v2-b5",
+   "difficulty": "hard",
+   "item": {
+    "type": "multiple_choice",
+    "blanks": null,
+    "prompt": "[Academic Talk — Naval History] According to the professor, what did the survey of trial-day coal returns across the fleet show?",
+    "choices": [
+     "Ships tried in the winter months returned higher figures than those tried in summer",
+     "Burning on the day sat well below what the same vessels used in ordinary service",
+     "The returns were made up in measures that differed from yard to yard and went unreconciled",
+     "Consumption varied more between stokehold crews than between the ships they served in"
+    ],
+    "graphic": null,
+    "passage": "Transcript: The measured mile off Aberwynt. In eighteen ninety-four a coal company put a pier across the sight line from the northern beacon, and the course had to be shifted a mile down the coast and surveyed afresh. The navy paid for the beacons and the navy paid to move them. Porthlenny's figures do sit a touch high, but the two grounds were surveyed to one standard and convert cleanly. And the timings came off the ship's own stopwatches, not from the shore huts.\n\nNow, the yard papers, catalogued last winter. What I expect from them is the post survey: how far the marker posts had drifted from the distance the charts gave them. The Penvorran's propellers are in her completion book — the pair she carried into service. Her draught was read off the marks that morning and both sides signed for it. And the sister ship was six months from launching.\n\nNansveor charges the fleet with inflating trial speeds. I go part way with him. The export figures run high, by a knot and a half, and that was not an error in the current allowance but a decision taken ashore. The home trials come out straight, year after year.\n\nCoal returns, finally. Ships tried in the winter months returned higher figures than those tried in summer. One of you suggested the stokers: sort the returns by stokehold and they scatter less than they do by ship. Trial-day burning sits above what the same ships used on passage. Two yards did return in bushels, and the clerk converted those before the tables were made up.",
+    "difficulty": "hard",
+    "explanation": "The survey showed a seasonal difference: \"Ships tried in the winter months returned higher figures than those tried in summer.\"",
+    "listeningTask": "academic_talk",
+    "correct_answer": "Ships tried in the winter months returned higher figures than those tried in summer",
+    "passageGroupId": "atv2-b5-p7",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "distractor_rationales": [
+     {
+      "choice": "Consumption varied more between stokehold crews than between the ships they served in",
+      "reason": "A student proposes the crews and the professor corrects it with the sort: \"sort the returns by stokehold and they scatter less than they do by ship\"."
+     },
+     {
+      "choice": "Burning on the day sat well below what the same vessels used in ordinary service",
+      "reason": "Trial-day burning is placed above ordinary steaming, not below: it \"sits above what the same ships used on passage\"."
+     },
+     {
+      "choice": "The returns were made up in measures that differed from yard to yard and went unreconciled",
+      "reason": "The measures were granted as different and then reconciled: \"the clerk converted those before the tables were made up\"."
+     }
+    ]
+   },
+   "_meta": {
+    "lecture": "atv2-b5-p7",
+    "pivot": "q4",
+    "qtype": "detail",
+    "chosen": 2,
+    "key_letter": "A"
+   }
+  },
+  {
+   "passage_group_id": "atv2-b5-p8",
+   "cohort": "at-v2-b5",
+   "difficulty": "medium",
+   "item": {
+    "type": "multiple_choice",
+    "blanks": null,
+    "prompt": "[Academic Talk — Sedimentology] What does the professor imply the research group will do with the soundings series?",
+    "choices": [
+     "Publish the raw books themselves rather than the smoothed tables put out at the time",
+     "Carry it further back by working the older harbor charts onto the modern datum",
+     "Core the reaches the record marks as gaining fastest, to test it against the mud",
+     "Run the old lead line beside the current gear for a season to learn how they differ"
+    ],
+    "graphic": null,
+    "passage": "Transcript: The Marnstow estuary: the silt record, and what we do next.\n\nHere is the claim: the shoaling follows the works along the banks far more closely than anything the river brings down. Each training wall shows in the soundings inside three years of being built, and the mean depth at the bar changed by six feet inside forty years. The board did add stations where it wanted a case, I grant that; drop those stations and the pattern stands.\n\nWhat next? We core the three reaches the series marks as gaining fastest, to see whether the mud agrees. Not further back into the paper — the older harbour charts can wait. The raw sounding books are already on the shelf at the record office. And the lead line was run beside modern gear in the seventies; they agree to a few inches.\n\nOrdwell's replotting. He expected the deep water to have crept toward the town shore, and said so in his first paper; his replot put it back where the charts had it. What he found instead: after each dredging the channel fills quickest through the first winter, then slackens off. Two stations had moved between crews, and Ordwell renamed them before plotting. The monthly gauge shows shoals sitting put for years at a time.\n\nWhy Fenrith? The ferry keeper's own depth notes cover the years the official series leaves blank. The slip was rebuilt at some point — the parish argued for years about which year. The silting suit came sixty years after the gap. And that painting in the town hall: the tide in it is anyone's guess.",
+    "difficulty": "medium",
+    "explanation": "He implies a coring campaign aimed at the fastest-shoaling reaches: they will \"core the three reaches the series marks as gaining fastest\".",
+    "listeningTask": "academic_talk",
+    "correct_answer": "Core the reaches the record marks as gaining fastest, to test it against the mud",
+    "passageGroupId": "atv2-b5-p8",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "distractor_rationales": [
+     {
+      "choice": "Carry it further back by working the older harbor charts onto the modern datum",
+      "reason": "The next move is explicitly toward the sediment rather than the archive: \"Not further back into the paper — the older harbour charts can wait.\""
+     },
+     {
+      "choice": "Publish the raw books themselves rather than the smoothed tables put out at the time",
+      "reason": "Publication is granted little point because the raw books \"are already on the shelf at the record office\"."
+     },
+     {
+      "choice": "Run the old lead line beside the current gear for a season to learn how they differ",
+      "reason": "That instrument comparison belongs to an earlier decade and is settled: run in the seventies, \"they agree to a few inches\"."
+     }
+    ]
+   },
+   "_meta": {
+    "lecture": "atv2-b5-p8",
+    "pivot": "q1",
+    "qtype": "inference",
+    "chosen": 3,
+    "key_letter": "C"
+   }
+  },
+  {
+   "passage_group_id": "atv2-b5-p8",
+   "cohort": "at-v2-b5",
+   "difficulty": "medium",
+   "item": {
+    "type": "multiple_choice",
+    "blanks": null,
+    "prompt": "[Academic Talk — Sedimentology] What is the professor's central claim about what the silt record of the Marnstow estuary shows?",
+    "choices": [
+     "The channel swings on a rhythm too slow for one engineer's term of office to take in",
+     "The estuary has run steadier than its reputation, which rests on a few remembered groundings",
+     "Much of the apparent change reflects the board measuring where its case was best served",
+     "The shoaling follows the works along the banks more closely than anything the river brings down"
+    ],
+    "graphic": null,
+    "passage": "Transcript: The Marnstow estuary: the silt record, and what we do next.\n\nHere is the claim: the shoaling follows the works along the banks far more closely than anything the river brings down. Each training wall shows in the soundings inside three years of being built, and the mean depth at the bar changed by six feet inside forty years. The board did add stations where it wanted a case, I grant that; drop those stations and the pattern stands.\n\nWhat next? We core the three reaches the series marks as gaining fastest, to see whether the mud agrees. Not further back into the paper — the older harbour charts can wait. The raw sounding books are already on the shelf at the record office. And the lead line was run beside modern gear in the seventies; they agree to a few inches.\n\nOrdwell's replotting. He expected the deep water to have crept toward the town shore, and said so in his first paper; his replot put it back where the charts had it. What he found instead: after each dredging the channel fills quickest through the first winter, then slackens off. Two stations had moved between crews, and Ordwell renamed them before plotting. The monthly gauge shows shoals sitting put for years at a time.\n\nWhy Fenrith? The ferry keeper's own depth notes cover the years the official series leaves blank. The slip was rebuilt at some point — the parish argued for years about which year. The silting suit came sixty years after the gap. And that painting in the town hall: the tide in it is anyone's guess.",
+    "difficulty": "medium",
+    "explanation": "His central claim ties the shoaling to the bank works: it \"follows the works along the banks far more closely than anything the river brings down\".",
+    "listeningTask": "academic_talk",
+    "correct_answer": "The shoaling follows the works along the banks more closely than anything the river brings down",
+    "passageGroupId": "atv2-b5-p8",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "distractor_rationales": [
+     {
+      "choice": "Much of the apparent change reflects the board measuring where its case was best served",
+      "reason": "The board's self-serving station choice is conceded and then neutralized: \"drop those stations and the pattern stands\"."
+     },
+     {
+      "choice": "The channel swings on a rhythm too slow for one engineer's term of office to take in",
+      "reason": "The response time is short enough for one engineer to see: each training wall shows \"inside three years of being built\"."
+     },
+     {
+      "choice": "The estuary has run steadier than its reputation, which rests on a few remembered groundings",
+      "reason": "A quiet estuary is incompatible with the figures given — the mean depth at the bar \"changed by six feet inside forty years\"."
+     }
+    ]
+   },
+   "_meta": {
+    "lecture": "atv2-b5-p8",
+    "pivot": "q2",
+    "qtype": "main_emphasis",
+    "chosen": 0,
+    "key_letter": "D"
+   }
+  },
+  {
+   "passage_group_id": "atv2-b5-p8",
+   "cohort": "at-v2-b5",
+   "difficulty": "medium",
+   "item": {
+    "type": "multiple_choice",
+    "blanks": null,
+    "prompt": "[Academic Talk — Sedimentology] According to the professor, what did Ordwell's replotting of the old soundings reveal?",
+    "choices": [
+     "The filling-in after each dredging ran quickest the first winter and slackened after that",
+     "Stations the books list under a single name turn out to have moved between crews",
+     "Patches of shoal came and went within a year, faster than the annual visits could catch",
+     "The deepest water had shifted toward the town shore, and by more than had been supposed"
+    ],
+    "graphic": null,
+    "passage": "Transcript: The Marnstow estuary: the silt record, and what we do next.\n\nHere is the claim: the shoaling follows the works along the banks far more closely than anything the river brings down. Each training wall shows in the soundings inside three years of being built, and the mean depth at the bar changed by six feet inside forty years. The board did add stations where it wanted a case, I grant that; drop those stations and the pattern stands.\n\nWhat next? We core the three reaches the series marks as gaining fastest, to see whether the mud agrees. Not further back into the paper — the older harbour charts can wait. The raw sounding books are already on the shelf at the record office. And the lead line was run beside modern gear in the seventies; they agree to a few inches.\n\nOrdwell's replotting. He expected the deep water to have crept toward the town shore, and said so in his first paper; his replot put it back where the charts had it. What he found instead: after each dredging the channel fills quickest through the first winter, then slackens off. Two stations had moved between crews, and Ordwell renamed them before plotting. The monthly gauge shows shoals sitting put for years at a time.\n\nWhy Fenrith? The ferry keeper's own depth notes cover the years the official series leaves blank. The slip was rebuilt at some point — the parish argued for years about which year. The silting suit came sixty years after the gap. And that painting in the town hall: the tide in it is anyone's guess.",
+    "difficulty": "medium",
+    "explanation": "Ordwell found a decay curve in the refilling: \"after each dredging the channel fills quickest through the first winter, then slackens off\".",
+    "listeningTask": "academic_talk",
+    "correct_answer": "The filling-in after each dredging ran quickest the first winter and slackened after that",
+    "passageGroupId": "atv2-b5-p8",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "distractor_rationales": [
+     {
+      "choice": "The deepest water had shifted toward the town shore, and by more than had been supposed",
+      "reason": "This was Ordwell's own expectation and his replot corrected it: it \"put it back where the charts had it\"."
+     },
+     {
+      "choice": "Stations the books list under a single name turn out to have moved between crews",
+      "reason": "The moved stations are granted and then handled, since \"Ordwell renamed them before plotting\"."
+     },
+     {
+      "choice": "Patches of shoal came and went within a year, faster than the annual visits could catch",
+      "reason": "Shoals are described as persistent rather than short-lived: the monthly gauge shows them \"sitting put for years at a time\"."
+     }
+    ]
+   },
+   "_meta": {
+    "lecture": "atv2-b5-p8",
+    "pivot": "q3",
+    "qtype": "detail",
+    "chosen": 3,
+    "key_letter": "A"
+   }
+  },
+  {
+   "passage_group_id": "atv2-b5-p8",
+   "cohort": "at-v2-b5",
+   "difficulty": "medium",
+   "item": {
+    "type": "multiple_choice",
+    "blanks": null,
+    "prompt": "[Academic Talk — Sedimentology] Why does the professor bring up the ferry slip at Fenrith?",
+    "choices": [
+     "Its rebuilding supplies a firm date against which nearby measurements can be tried",
+     "Its keeper's private depth notes cover the years the official series leaves blank",
+     "A dated painting of it shows the water standing at a mark the series can be checked against",
+     "A dispute over its silting produced sworn testimony about how the soundings were taken"
+    ],
+    "graphic": null,
+    "passage": "Transcript: The Marnstow estuary: the silt record, and what we do next.\n\nHere is the claim: the shoaling follows the works along the banks far more closely than anything the river brings down. Each training wall shows in the soundings inside three years of being built, and the mean depth at the bar changed by six feet inside forty years. The board did add stations where it wanted a case, I grant that; drop those stations and the pattern stands.\n\nWhat next? We core the three reaches the series marks as gaining fastest, to see whether the mud agrees. Not further back into the paper — the older harbour charts can wait. The raw sounding books are already on the shelf at the record office. And the lead line was run beside modern gear in the seventies; they agree to a few inches.\n\nOrdwell's replotting. He expected the deep water to have crept toward the town shore, and said so in his first paper; his replot put it back where the charts had it. What he found instead: after each dredging the channel fills quickest through the first winter, then slackens off. Two stations had moved between crews, and Ordwell renamed them before plotting. The monthly gauge shows shoals sitting put for years at a time.\n\nWhy Fenrith? The ferry keeper's own depth notes cover the years the official series leaves blank. The slip was rebuilt at some point — the parish argued for years about which year. The silting suit came sixty years after the gap. And that painting in the town hall: the tide in it is anyone's guess.",
+    "difficulty": "medium",
+    "explanation": "Fenrith matters for the keeper's private notes, which \"cover the years the official series leaves blank\".",
+    "listeningTask": "academic_talk",
+    "correct_answer": "Its keeper's private depth notes cover the years the official series leaves blank",
+    "passageGroupId": "atv2-b5-p8",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "distractor_rationales": [
+     {
+      "choice": "Its rebuilding supplies a firm date against which nearby measurements can be tried",
+      "reason": "The rebuilding supplies no firm date, since \"the parish argued for years about which year\"."
+     },
+     {
+      "choice": "A dispute over its silting produced sworn testimony about how the soundings were taken",
+      "reason": "The testimony falls outside the period at issue: \"The silting suit came sixty years after the gap.\""
+     },
+     {
+      "choice": "A dated painting of it shows the water standing at a mark the series can be checked against",
+      "reason": "The painting fails as a check on water level: \"the tide in it is anyone's guess\"."
+     }
+    ]
+   },
+   "_meta": {
+    "lecture": "atv2-b5-p8",
+    "pivot": "q4",
+    "qtype": "function",
+    "chosen": 0,
+    "key_letter": "B"
+   }
+  }
+ ]
+}
