@@ -24,9 +24,12 @@ const DIR = '/Users/andylee/Downloads/saas/classraum/scripts/study-bank'
 // Without --batch everything is byte-identical to the pilot pipeline.
 const bArg = process.argv.indexOf('--batch')
 const BATCH = bArg > -1 ? process.argv[bArg + 1] : null
-if (bArg > -1 && !/^b[0-9]+$/.test(BATCH)) { console.error('FAIL: bad --batch'); process.exit(1) }
+if (bArg > -1 && !/^[a-z][a-z0-9]*$/.test(BATCH)) { console.error('FAIL: bad --batch'); process.exit(1) }
 const PREFIX = BATCH ? `atv2-${BATCH}` : 'atv2'
-const SEED = BATCH ? `atv2-${BATCH}-20260818` : 'atv2-20260818'
+// 'inf' = the redesigned-inference-pivot pilot, pre-registered under its own
+// literal (ATV2-INFERENCE-PILOT-RESULT.md) rather than the bN-20260818 form.
+const SEED_OVERRIDE = { inf: 'atv2-inf-20260819', inf2: 'atv2-inf2-20260819' }
+const SEED = BATCH ? (SEED_OVERRIDE[BATCH] || `atv2-${BATCH}-20260818`) : 'atv2-20260818'
 // b4 carries 9 lectures (the atv2-b1-p4 replacement folded in); letter deal
 // stays flat (36/4 = 9 per letter), so control remains exactly 25.0%.
 const NLECT = BATCH ? (BATCH === 'b4' ? 9 : 8) : 6

@@ -12,7 +12,7 @@ const DIR = '/Users/andylee/Downloads/saas/classraum/scripts/study-bank'
 // --batch bN: score atv2-bN-key.json / atv2-bN-solver-{a,b,c}.json (32 items)
 const bArg = process.argv.indexOf('--batch')
 const BATCH = bArg > -1 ? process.argv[bArg + 1] : null
-if (bArg > -1 && !/^b[0-9]+$/.test(BATCH)) { console.error('FAIL: bad --batch'); process.exit(1) }
+if (bArg > -1 && !/^[a-z][a-z0-9]*$/.test(BATCH)) { console.error('FAIL: bad --batch'); process.exit(1) }
 const KEYF = BATCH ? `atv2-${BATCH}-key.json` : 'atv2-pilot.key.json'
 const SOLVER = (s) => BATCH ? `atv2-${BATCH}-solver-${s}.json` : `atv2-pilot.solver-${s}.json`
 const NITEMS = BATCH ? (BATCH === 'b4' ? 36 : 32) : 24 // b4: 9 lectures

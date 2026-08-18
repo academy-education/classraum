@@ -24,7 +24,7 @@ const DIR = '/Users/andylee/Downloads/saas/classraum/scripts/study-bank'
 // pilot atv2-items.json. All thresholds scale off the row count.
 const bArg = process.argv.indexOf('--batch')
 const BATCH = bArg > -1 ? process.argv[bArg + 1] : null
-if (bArg > -1 && !/^b[0-9]+$/.test(BATCH)) { console.error('FAIL: bad --batch'); process.exit(1) }
+if (bArg > -1 && !/^[a-z][a-z0-9]*$/.test(BATCH)) { console.error('FAIL: bad --batch'); process.exit(1) }
 const ITEMS = BATCH ? `atv2-${BATCH}-items.json` : 'atv2-items.json'
 const NITEMS = BATCH ? (BATCH === 'b4' ? 36 : 32) : 24 // b4: 9 lectures
 const norm = (s) => s
@@ -155,6 +155,10 @@ const WAIVED = [
   { lec: 'atv2-p2', gram: 'at the time', why: 'contentless temporal idiom (misread AT THE TIME / justified AT THE TIME); no content word shared' },
   { lec: 'atv2-p5', gram: 'the shift was', why: 'topic noun phrase, present in both stems; load-bearing predicates differ (complete-before-borrowing vs finished-by-1811), and neither option confirms the other pivot\'s key' },
   { lec: 'atv2-p5', gram: 'shift was already', why: 'same single overlap as above — the shared 4-gram "the shift was already" (complete WHEN BORROWED vs finished A CENTURY AGO); one adjudication, two 3-gram shadows' },
+  { lec: 'atv2-inf-p1', gram: "for the bell's", why: 'contentless possessive connector (q2 upkeep-payment vs q3 transport-cradle purpose); no shared content word, option text frozen post-selection' },
+  { lec: 'atv2-inf-p3', gram: 'plots on the', why: 'contentless locative connector (q1 shaded-edge plots vs q2 path plots); different specific locations, option text frozen post-selection' },
+  { lec: 'atv2-inf-p8', gram: "the stone's carving", why: 'shared domain noun only (q3 carving STYLE/departures-vs-deaths verdict vs q4 carving DEPTH/weathering-comparison action); no logical dependency between an attitude verdict and an unrelated next-step action, option text frozen post-selection' },
+  { lec: 'atv2-inf2-p3', gram: 'the printed atlas', why: 'shared reference to the lecture\'s own background object (q2: a private admission about crater-count accuracy in the printed atlas; q4: a scan-resolution action compared against the printed atlas) — no exclusive fact links one setting of q2 to one setting of q4, option text frozen post-selection' },
 ]
 const byLecture = {}
 for (const row of rows) (byLecture[row._meta.lecture] ??= []).push(row)

@@ -1,0 +1,250 @@
+{
+ "atv2-inf2-p1": {
+  "transcript": "Contrast three readings of the sediment-core toxin trend: one says it rose steadily with no year showing a decline, another says it stayed essentially flat with only minor year-to-year noise, a third says it declined for years before a recent sharp rise. None of those is what the cores show. What they show is a trend that spiked twice, a decade apart, and returned to baseline both times.\n\nYou might assume the cannery's shipping manifests matter because they show the cannery closed years before anyone suspected contamination -- it didn't close early, it ran continuously through the period in question. Or because they document a change in where the cannery sourced its catch -- the sourcing stayed the same throughout. Or because they list a fine for a discharge violation -- no such fine appears in these particular manifests. What they do record is a batch of fish rejected for an unusual smell.\n\nOn the new field bioassay kit: the team isn't handing kits to local anglers -- that idea was considered and dropped. They're not deploying it at two additional depths within the same station either -- one depth is enough for this kit's purpose. And they're not using it to screen three creeks the lab has never covered, not yet. What they are doing is running it alongside the lab assay for one season, to check the two agree.\n\nThere's something to the idea that a smaller natural source might compound the tailings explanation, but the testing simply doesn't support that reading here. It's also not that the two sources remain equally unresolved, since enough testing has now been done to rule one out. And the toxin's chemical signature does not match known tailings compounds, not closely. I doubt the tailings explanation -- the tailings pond drains a different sub-basin entirely, so it couldn't reach this stretch of the creek.",
+  "explanations": {
+   "q1": "The sediment cores show a trend that spiked twice, a decade apart, returning to baseline both times, not a steady rise, a flat trend, or a decline-then-rise.",
+   "q2": "The manifests record a batch of fish rejected for an unusual smell, not the cannery closing early, a change in catch source, or a discharge fine.",
+   "q3": "The team is running the new kit alongside the lab assay for one season to check the two agree, not distributing it to anglers, deploying at extra depths, or expanding to new creeks.",
+   "q4": "The professor doubts the tailings explanation because the tailings pond drains a different sub-basin, ruling out the accept, unresolved, and partial-reject readings."
+  },
+  "kills": {
+   "q1": {
+    "0": "The transcript rejects the reading that toxin \"rose steadily with no year showing a decline\"",
+    "2": "The transcript rejects the reading that it \"stayed essentially flat with only minor year-to-year noise\"",
+    "3": "The transcript rejects the reading that it \"declined for years before a recent sharp rise\""
+   },
+   "q2": {
+    "1": "The professor says \"it didn't close early, it ran continuously through the period in question\"",
+    "2": "The professor says \"the sourcing stayed the same throughout\"",
+    "3": "The professor says \"no such fine appears in these particular manifests\""
+   },
+   "q3": {
+    "1": "The professor says handing out kits \"was considered and dropped\"",
+    "2": "The professor says \"one depth is enough for this kit's purpose\"",
+    "3": "The professor says they're not \"using it to screen three creeks the lab has never covered,\" not yet"
+   },
+   "q4": {
+    "1": "The professor says \"the toxin's chemical signature does not match known tailings compounds\"",
+    "2": "The professor says it's not that \"the two sources remain equally unresolved\"",
+    "3": "The professor says \"the testing simply doesn't support that reading here\""
+   }
+  }
+ },
+ "atv2-inf2-p2": {
+  "transcript": "There's a case for X-raying the rod straightaway, looking for an internal seam -- a case, but the equipment isn't available on-site this month. There's also a case for comparing it against a rod from a neighbouring town's archive, though no such comparison rod has been located yet. And cutting a cross-section from the decorative end cap is destructive, so that's held back until every non-destructive option is exhausted. What the team will do first is measure the rod at three points along its length, to check for a consistent taper.\n\nContrast three readings of the ledger's short-measure complaints: one says they spiked in years when grain prices were highest, another says they were rare and mostly about cloth rather than grain, a third says they dropped sharply once the guild introduced a public checking table. None of those is right. What the ledger shows is that complaints came almost entirely from one trading family.\n\nYou might think the stamps matter because their wear pattern shows which merchants were checked most often -- the surviving stamps don't show any wear pattern worth reading. Or because one surviving stamp is undersized, suggesting it covered the busiest part of town -- no undersized stamp survives in this set. Or because they were applied to barrel staves rather than the rods themselves -- these particular stamps were never used on barrels. What matters is that their design changed once, marking a shift in who ran inspections.\n\nOn whether the rod shrank over the centuries: it's not that a repair later shortened it, since no repair is recorded anywhere on this rod. It's not that a slow contraction rate is documented in similar bronze rods either -- no such documented rate exists for this alloy. And it isn't undecidable for lack of a comparison rod -- the alloy's own properties settle it without one. I doubt it -- bronze rods of this alloy don't contract measurably at room temperature.",
+  "explanations": {
+   "q1": "The team will first measure the rod at three points for a consistent taper, not X-ray it, compare it to another rod, or cut a cross-section, all deferred for stated reasons.",
+   "q2": "Short-measure complaints came almost entirely from one trading family, not from grain-price spikes, cloth disputes, or the checking table's introduction.",
+   "q3": "The stamps matter because their design changed once, marking a shift in who ran inspections, not wear patterns, an undersized stamp, or barrel use.",
+   "q4": "The professor doubts shrinkage because bronze rods of this alloy don't contract measurably at room temperature, ruling out repair, documented contraction, and undecidability."
+  },
+  "kills": {
+   "q1": {
+    "0": "The professor says \"no such comparison rod has been located yet\"",
+    "1": "The professor says \"the equipment isn't available on-site this month\"",
+    "3": "The professor says cutting a cross-section \"that's held back until every non-destructive option is exhausted\""
+   },
+   "q2": {
+    "0": "The transcript rejects the reading that complaints \"spiked in years when grain prices were highest\"",
+    "1": "The transcript rejects the reading that they \"were rare and mostly about cloth rather than grain\"",
+    "3": "The transcript rejects the reading that they \"dropped sharply once the guild introduced a public checking table\""
+   },
+   "q3": {
+    "0": "The professor says the stamps \"don't show any wear pattern worth reading\"",
+    "2": "The professor says \"no undersized stamp survives in this set\"",
+    "3": "The professor says \"these particular stamps were never used on barrels\""
+   },
+   "q4": {
+    "0": "The professor says \"no repair is recorded anywhere on this rod\"",
+    "1": "The professor says \"no such documented rate exists for this alloy\"",
+    "3": "The professor says \"the alloy's own properties settle it without one\""
+   }
+  }
+ },
+ "atv2-inf2-p3": {
+  "transcript": "The nightly logs don't show a narrow productive window each autumn -- productive nights are spread across the year. Poor seeing wasn't blamed for a third of missed nights either -- missed nights are rare in this log. And the best results didn't come from a handful of exceptional winter nights -- no single stretch stands out that way. Conditions were logged as average on most nights, with few extremes either way.\n\nThere's a case that the correspondence records an early private admission the atlas undercounted a crater cluster -- a case, but no such admission appears anywhere in these letters. It's also plausible the rival reached the same crater count independently, though the letters never mention the rival's own count at all. And it's true the two observatories eventually shared plates, but no date for that agreement appears in this correspondence. What the letters do preserve is a disagreement over naming rights for one crater.\n\nContrast three readings of the wrong-position claim: one says it can't be settled since the plate for that region is lost -- but that plate survives just fine. Another accepts the deliberate-placement idea because it would have supported his published theory -- yet the direction of the offset argues against that theory, not for it. A third rejects deliberate placement but allows the maker rushed that one plate under deadline -- there's no evidence of any deadline pressure that season. I doubt deliberate placement -- the same small offset appears in three unrelated formations, suggesting a lens error.\n\nYou might expect the digitisation project to start by scanning at the highest possible resolution -- that comes later, once cataloguing is done. Or by photographing the plates' handwritten edge labels for an index -- the labels are too faded for that step to come first. Or by comparing plate glass thickness against the atlas's printed specifications -- that's a materials question for much later in the project. What comes first is cross-referencing the plate numbers against the maker's private notebook.",
+  "explanations": {
+   "q1": "The logs record average conditions on most nights with few extremes, not a narrow autumn window, frequent poor-seeing losses, or a handful of exceptional nights.",
+   "q2": "The rival correspondence preserves a naming-rights disagreement over one crater, not an undercounting admission, an independent count match, or a plate-sharing date.",
+   "q3": "The professor doubts deliberate placement because the same offset appears in three unrelated formations, pointing to a lens error over the lost-plate, theory-support, or deadline readings.",
+   "q4": "The digitisation project will first cross-reference plate numbers against the maker's private notebook, before scanning, label photography, or a materials comparison."
+  },
+  "kills": {
+   "q1": {
+    "0": "The professor says \"productive nights are spread across the year\"",
+    "1": "The professor says \"missed nights are rare in this log\"",
+    "2": "The professor says \"no single stretch stands out that way\""
+   },
+   "q2": {
+    "0": "The professor says \"no such admission appears anywhere in these letters\"",
+    "1": "The professor says \"the letters never mention the rival's own count at all\"",
+    "3": "The professor says \"no date for that agreement appears in this correspondence\""
+   },
+   "q3": {
+    "0": "The professor says \"that plate survives just fine\"",
+    "2": "The professor says \"the direction of the offset argues against that theory, not for it\"",
+    "3": "The professor says \"there's no evidence of any deadline pressure that season\""
+   },
+   "q4": {
+    "0": "The professor says high-resolution scanning \"comes later, once cataloguing is done\"",
+    "1": "The professor says \"the labels are too faded for that step to come first\"",
+    "3": "The professor says a materials comparison \"that's a materials question for much later in the project\""
+   }
+  }
+ },
+ "atv2-inf2-p4": {
+  "transcript": "You might expect the loggers to show an abrupt shift in one season that then held steady -- there's no such single-season jump in this record. Or a shift that only partly reverted in the last two seasons -- no reversion of any kind shows up here. Or a trend running later that reversed at the very end -- the direction never runs later at any point. What the loggers show is emergence growing steadily earlier across the whole study period.\n\nWith the rhythm data, the team isn't comparing it against a nearby unlit vole group -- no such comparison population has been located nearby. They're not sharing the raw logger data with a lab studying a related burrowing species either, not this season. And they're not re-running the analysis excluding the two failed loggers -- those loggers are already excluded in the standard pipeline. What they will do is cross-tabulate the rhythm data against moon-phase records for the same nights.\n\nThere's something to the idea that the ledger records emergence times decades before any logger existed -- something to it, but the ledger's dates are too vague to use as data points. It's also true the ledger mentions a vole population change, though not one the current team finds puzzling, since a known cold winter explains it. And it does note a predator, but that predator is still present on the site today, so that reading doesn't hold either. What the ledger actually fixes is the date the hollow was first cleared of undergrowth.\n\nContrast the positions on temperature versus light: one accepts temperature as the driver because burrow logs track the shift almost exactly -- but the correlation actually runs the other way, weaker in the warmest years. Another says the two explanations can't be separated with current equipment -- yet the calendar-date pattern alone already separates them. A third rejects temperature but allows it may set the pace within a season -- there's no within-season pacing effect in this data at all. I doubt the temperature explanation -- the shift happens on the same calendar date regardless of that year's weather.",
+  "explanations": {
+   "q1": "The loggers show emergence growing steadily earlier across the whole study, not an abrupt one-season jump, a partial reversion, or a later-then-reversed trend.",
+   "q2": "The team will cross-tabulate the rhythm data against moon-phase records, not compare to an unlit population, share raw data externally, or re-run excluding already-excluded loggers.",
+   "q3": "The 1970s trapping ledger fixes the date the hollow was first cleared of undergrowth, not earlier emergence data, an unexplained population crash, or a vanished predator.",
+   "q4": "The professor doubts temperature as the driver because the shift tracks the calendar date regardless of weather, ruling out the accept, unresolved, and partial-reject readings."
+  },
+  "kills": {
+   "q1": {
+    "1": "The professor says \"there's no such single-season jump in this record\"",
+    "2": "The professor says \"no reversion of any kind shows up here\"",
+    "3": "The professor says \"the direction never runs later at any point\""
+   },
+   "q2": {
+    "0": "The professor says \"no such comparison population has been located nearby\"",
+    "2": "The professor says they're not \"sharing the raw logger data with a lab studying a related burrowing species\"",
+    "3": "The professor says \"those loggers are already excluded in the standard pipeline\""
+   },
+   "q3": {
+    "0": "The professor says \"the ledger's dates are too vague to use as data points\"",
+    "1": "The professor says the population change is \"not one the current team finds puzzling, since a known cold winter explains it\"",
+    "2": "The professor says \"that predator is still present on the site today\""
+   },
+   "q4": {
+    "1": "The professor says \"the correlation actually runs the other way, weaker in the warmest years\"",
+    "2": "The professor says \"the calendar-date pattern alone already separates them\"",
+    "3": "The professor says \"there's no within-season pacing effect in this data at all\""
+   }
+  }
+ },
+ "atv2-inf2-p5": {
+  "transcript": "Contrast three plans for the newly identified ash layer: matching its chemistry to a known eruption to pin a date, searching two other regional fens for the same layer, and sending a sample to an independent lab to confirm composition. None of those comes first. What comes first is using the layer's depth to check whether the fen's sediment has compacted evenly.\n\nYou might expect the pollen record to show a sharp single-decade drop -- there's no single sharp drop like that here. Or a gradual decline spread across more than a century -- the change happens far faster than that. Or tree pollen barely changing while grass rose instead -- tree pollen changes a great deal in this record. What the counts show is tree pollen dropping, recovering, then dropping again within the event.\n\nThe peat-cutter's account isn't about the water level dropping enough to cut new ground -- water level goes unmentioned entirely. It doesn't preserve some old plant name either -- no plant names appear in it at all. And it doesn't note any old timber the team later cored -- no timber is mentioned anywhere in the account. What it describes is a buried layer of ash, though the account gives no indication of its thickness.\n\nThere's something to the idea that the timing matches a cooling signal recorded elsewhere in the hemisphere -- something to it, but that other signal turns out to be several decades off once redated. It's also fair to call it unresolved for lack of other sampled sites, except enough sites now exist at this resolution to say something. And a wider regional footprint than first thought is plausible in general, but the specific evidence for it here doesn't hold up. I doubt a hemispheric cause -- a fen on another continent shows no matching signal at all.",
+  "explanations": {
+   "q1": "The team will first use the ash layer's depth to check for even sediment compaction, before eruption-matching, cross-fen searches, or independent lab confirmation.",
+   "q2": "Pollen counts show tree pollen dropping, recovering, then dropping again within the cooling event, not a single sharp drop, a gradual century-long decline, or a barely-changed trend.",
+   "q3": "The peat-cutter's account describes a buried ash layer of unknown thickness, not a water-level drop, an old plant name, or old timber.",
+   "q4": "The professor doubts a hemispheric cause because a fen on another continent shows no matching signal, ruling out the accept, partial-reject, and unresolved readings."
+  },
+  "kills": {
+   "q1": {
+    "0": "The transcript lists but sets aside \"matching its chemistry to a known eruption to pin a date\" as not first",
+    "2": "The transcript lists but sets aside \"searching two other regional fens for the same layer\" as not first",
+    "3": "The transcript lists but sets aside \"sending a sample to an independent lab to confirm composition\" as not first"
+   },
+   "q2": {
+    "0": "The professor says \"there's no single sharp drop like that here\"",
+    "1": "The professor says \"the change happens far faster than that\"",
+    "2": "The professor says \"tree pollen changes a great deal in this record\""
+   },
+   "q3": {
+    "1": "The professor says of the water level, it \"goes unmentioned entirely\"",
+    "2": "The professor says \"no plant names appear in it at all\"",
+    "3": "The professor says \"no timber is mentioned anywhere in the account\""
+   },
+   "q4": {
+    "0": "The professor says the matching signal \"turns out to be several decades off once redated\"",
+    "1": "The professor says \"the specific evidence for it here doesn't hold up\"",
+    "2": "The professor says \"enough sites now exist at this resolution to say something\""
+   }
+  }
+ },
+ "atv2-inf2-p6": {
+  "transcript": "There's a clean story where the bloom date simply advanced by two weeks in a straight line over the record -- clean, but the year-to-year figures don't move in a straight line at all. It's also tempting to say it advanced gradually then accelerated in the final third -- tempting, but the final third looks no different from the middle of the record. And a sharp advance followed by a plateau is a real pattern in some records, just not this one -- this record never plateaus for long. What the volunteer record actually shows is an overall advance that comes in fits and starts, with the biggest jumps in drought years.\n\nContrast three reasons the diary might matter: a bloom failure the team can't explain, frost damage to that year's early flowers, a flower now missing from the site entirely. None of those is in the diary. What the diary gives is the earliest specific bloom date on record for the site.\n\nYou might expect the project to tabulate this year's submissions by postcode for geographic clustering -- that analysis is planned for a later stage, not this one. Or to map them against the new soil-temperature sensors -- those sensors aren't calibrated yet. Or to flag submissions from newer sites with under five years of coverage -- that flag already runs automatically and needs no special step this year. What they will do is weight submissions from more experienced volunteers more heavily in the final analysis.\n\nOn grazing versus warmth: it's not that ungrazed plots bloom earliest within the same spring -- ungrazed and grazed plots bloom within days of each other. It's not that grazing can be dismissed as the driver while granting it explains a few early years -- no such clean exception shows up. And it's not that the trend continues even in never-grazed plots -- every plot in the record has been grazed at some point. I think the two factors can't be cleanly separated with the plots currently monitored.",
+  "explanations": {
+   "q1": "The volunteer record shows an overall advance that comes in fits and starts, biggest in drought years, not a straight-line advance, an accelerating pattern, or a sharp-then-plateau shape.",
+   "q2": "The 1860s diary gives the earliest specific bloom date on record, not a bloom failure, frost damage, or an absent flower.",
+   "q3": "The project will weight submissions from more experienced volunteers more heavily, not tabulate by postcode, map against uncalibrated sensors, or flag newer sites, all deferred or automatic.",
+   "q4": "The professor thinks grazing and warmth can't be cleanly separated with current plots, ruling out the accept, partial-reject, and doubt readings."
+  },
+  "kills": {
+   "q1": {
+    "0": "The professor says \"the year-to-year figures don't move in a straight line at all\"",
+    "1": "The professor says \"the final third looks no different from the middle of the record\"",
+    "2": "The professor says \"this record never plateaus for long\""
+   },
+   "q2": {
+    "1": "The transcript lists but rejects \"a bloom failure the team can't explain\" as being in the diary",
+    "2": "The transcript lists but rejects \"frost damage to that year's early flowers\" as being in the diary",
+    "3": "The transcript lists but rejects \"a flower now missing from the site entirely\" as being in the diary"
+   },
+   "q3": {
+    "0": "The professor says the postcode analysis \"is planned for a later stage, not this one\"",
+    "1": "The professor says \"those sensors aren't calibrated yet\"",
+    "3": "The professor says the site-age flag \"already runs automatically and needs no special step this year\""
+   },
+   "q4": {
+    "0": "The professor says \"ungrazed and grazed plots bloom within days of each other\"",
+    "1": "The professor says \"no such clean exception shows up\"",
+    "2": "The professor says \"every plot in the record has been grazed at some point\""
+   }
+  }
+ },
+ "atv2-inf2-p7": {
+  "transcript": "The gauges below Coldrun Gap didn't show a sharp first-year drop followed by partial recovery -- there's no drop at all in the first year. They didn't show a gradual decline across both years with no recovery either -- the pattern isn't gradual. And flow didn't barely change in either year -- both years show real movement. Flow rose in the first year before dropping in the second.\n\nThere's a case for pulling satellite soil-moisture data across the watershed -- a case, but that data doesn't go back far enough to cover the years in question. It's also reasonable to ask the operator for gate-opening logs, though the operator has already said those logs are incomplete for the period. And installing a new gauge above the reservoir would help going forward, but it can't speak to what already happened. What the team will do is model what flow would have looked like without the reservoir, using rainfall records.\n\nContrast three readings of the 1890s water-rights record: that it sets a legal minimum flow the reservoir must maintain, that it records a historical flow larger than any modern gauge has seen, that it simply fixes the date the mill stopped operating. None of those is what the record contains. What it documents is a dispute over water rights between two now-vanished mills.\n\nYou might think the drought and reservoir opening happening the same year makes this unseparable -- it doesn't, the two effects have distinct signatures in the data. Or that releases have stayed below what the drought alone predicts -- releases have actually tracked close to that prediction. Or that a nearby stream with no reservoir shows nearly the same drop -- no comparably-sized nearby stream without a reservoir exists to check. I reject the reservoir explanation, but its releases have made a bad drought slightly worse.",
+  "explanations": {
+   "q1": "The gauges show flow rising in the first year before dropping in the second, not a first-year drop with recovery, a gradual two-year decline, or little change.",
+   "q2": "The team will model flow without the reservoir using rainfall records, not rely on satellite data too short in span, incomplete operator logs, or a forward-only new gauge.",
+   "q3": "The 1890s record documents a dispute over water rights between two now-vanished mills, not a legal minimum flow, a larger historical flow, or the mill's closing date.",
+   "q4": "The professor rejects the reservoir as the main explanation but allows its releases worsened a bad drought, ruling out the unresolved, accept, and doubt readings."
+  },
+  "kills": {
+   "q1": {
+    "0": "The professor says \"there's no drop at all in the first year\"",
+    "1": "The professor says \"the pattern isn't gradual\"",
+    "2": "The professor says \"both years show real movement\""
+   },
+   "q2": {
+    "0": "The professor says the satellite data \"doesn't go back far enough to cover the years in question\"",
+    "2": "The professor says \"the operator has already said those logs are incomplete for the period\"",
+    "3": "The professor says a new gauge \"can't speak to what already happened\""
+   },
+   "q3": {
+    "0": "The transcript lists but rejects that it \"sets a legal minimum flow the reservoir must maintain\"",
+    "1": "The transcript lists but rejects that it \"records a historical flow larger than any modern gauge has seen\"",
+    "3": "The transcript lists but rejects that it \"fixes the date the mill stopped operating\""
+   },
+   "q4": {
+    "0": "The professor says \"the two effects have distinct signatures in the data\"",
+    "1": "The professor says \"releases have actually tracked close to that prediction\"",
+    "2": "The professor says \"no comparably-sized nearby stream without a reservoir exists to check\""
+   }
+  }
+ },
+ "atv2-inf2-p8": {
+  "transcript": "You might expect the labels to show nearly all specimens from one small stretch of the marsh -- the collection sites are far more scattered than that. Or scattered across the whole marsh -- scattered, yes, but that's not the label's most notable feature. Or collection limited to just two recorded years -- specimens span many more years than that. What the labels record is that specimens came mostly from gardens, not the wild marsh population.\n\nThe missionary's journal isn't the earliest written record of medicinal use -- an earlier record exists in a different archive. It doesn't record a plague blamed on the marsh's water either -- no plague appears anywhere in this journal. And it doesn't preserve some old place name for the marsh -- the marsh is called by its modern name throughout. What it notes is trade goods passing through the area at the time.\n\nThere's something to the trading-partner match in preparation method -- something to it, but the match is far looser than the claim suggests once you look closely. It's also fair to call the question unresolved in principle, except this community's version is demonstrably older by generations. And it's true the practice uses a local plant part no trading-region method touches, but that alone doesn't rule out later local adaptation of an introduced idea. I reject outside introduction, but I allow that traders may have spread this community's own practice to nearby communities.\n\nContrast three uses for the oral history recordings: counting how many tellings mention the same secondary plant, comparing preparation methods across three generations of recordings, and noting which recordings mention harvesting only at a particular moon phase. None of those comes first. What comes first is time-stamping each recording against the community's own seasonal calendar.",
+  "explanations": {
+   "q1": "The herbarium labels show specimens came mostly from gardens rather than the wild marsh population, not a single small stretch, scattered wild sites, or a two-year span.",
+   "q2": "The missionary's journal notes trade goods passing through the area, not the earliest medicinal-use record, a blamed plague, or a preserved place name.",
+   "q3": "The professor rejects outside introduction but allows traders spread the community's own practice to nearby communities, ruling out the accept, unresolved, and doubt readings.",
+   "q4": "The team will first time-stamp each recording against the community's seasonal calendar, before secondary-plant counts, generational comparison, or moon-phase notes."
+  },
+  "kills": {
+   "q1": {
+    "0": "The professor says \"the collection sites are far more scattered than that\"",
+    "1": "The professor says scattered sites are \"not the label's most notable feature\"",
+    "3": "The professor says \"specimens span many more years than that\""
+   },
+   "q2": {
+    "0": "The professor says \"an earlier record exists in a different archive\"",
+    "1": "The professor says \"no plague appears anywhere in this journal\"",
+    "2": "The professor says \"the marsh is called by its modern name throughout\""
+   },
+   "q3": {
+    "1": "The professor says the trading-partner match \"is far looser than the claim suggests once you look closely\"",
+    "2": "The professor says \"this community's version is demonstrably older by generations\"",
+    "3": "The professor says the local plant part \"alone doesn't rule out later local adaptation of an introduced idea\""
+   },
+   "q4": {
+    "1": "The transcript lists but sets aside \"counting how many tellings mention the same secondary plant\" as not first",
+    "2": "The transcript lists but sets aside \"comparing preparation methods across three generations of recordings\" as not first",
+    "3": "The transcript lists but sets aside \"noting which recordings mention harvesting only at a particular moon phase\" as not first"
+   }
+  }
+ }
+}

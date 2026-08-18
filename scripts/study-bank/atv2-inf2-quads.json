@@ -1,0 +1,414 @@
+{
+ "seed": "atv2-inf2-20260819",
+ "note": "ATV2 inference-pivot redesign, PRE-REGISTERED EXTENSION batch (pools with atv2-inf per ATV2-INFERENCE-PILOT-RESULT.md addendum). Same frozen design spec as the pilot: symmetry-redesigned inference pivot, one per lecture, four next-step options each grounded in a DIFFERENT specific complication, comparably concrete/scoped, self-contained (no sibling-exclusive noun). Inference pivot POSITION varied across lectures (q1 x2, q2 x2, q3 x2, q4 x2) to avoid the fixed-slot mistake caught in-house before freeze. Fresh domains: Toxicology, Metrology, Selenography, Chronobiology, Paleoclimatology, Phenology, Hydrology, Ethnobotany -- none used in pilot, b1-b8 (incl. unfrozen b6-b8 drafts), or atv2-inf.",
+ "lectures": [
+  {
+   "id": "atv2-inf2-p1",
+   "topic": "Toxicology",
+   "difficulty": "medium",
+   "pivots": [
+    {
+     "id": "q1",
+     "qtype": "detail",
+     "stem": "What does the professor say the sediment cores from Ferrow Creek showed about toxin concentration over the last decade?",
+     "settings": [
+      "It rose steadily each year, with no year showing a decline",
+      "It spiked twice, a decade apart, then returned to baseline both times",
+      "It stayed essentially flat, with only minor year-to-year noise",
+      "It declined for years, then rose sharply in the most recent samples"
+     ]
+    },
+    {
+     "id": "q2",
+     "qtype": "function",
+     "stem": "Why does the professor mention the cannery's shipping manifests from the 1950s?",
+     "settings": [
+      "They record a batch of fish rejected for an unusual smell",
+      "They show the cannery closed years before anyone suspected contamination",
+      "They document a change in where the cannery sourced its catch",
+      "They list a fine the cannery paid for a discharge violation"
+     ]
+    },
+    {
+     "id": "q3",
+     "qtype": "inference",
+     "stem": "What does the professor imply the team will do with the new field bioassay kit?",
+     "settings": [
+      "Run it alongside the lab assay for one season to check the two agree",
+      "Deploy it at two additional depths within the same monitoring station",
+      "Use it to screen samples from three creeks the lab has never covered",
+      "Recalibrate it against a certified reference sample before the season starts"
+     ]
+    },
+    {
+     "id": "q4",
+     "qtype": "attitude",
+     "stem": "How does the professor respond to the claim that the toxin comes from upstream mine tailings rather than a natural algae bloom?",
+     "settings": [
+      "She doubts it -- the tailings pond drains a different sub-basin entirely",
+      "She accepts it, mainly because the toxin's chemical signature matches known tailings compounds",
+      "She thinks the question is still open, since neither source has been ruled out by testing so far",
+      "She rejects the tailings explanation but allows a smaller natural source may compound it"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "atv2-inf2-p2",
+   "topic": "Metrology",
+   "difficulty": "medium",
+   "pivots": [
+    {
+     "id": "q1",
+     "qtype": "inference",
+     "stem": "What does the professor imply the recalibration team will do with the recovered Harrow ell rod?",
+     "settings": [
+      "Compare it against a rod from a neighbouring town's guild archive",
+      "X-ray it for an internal seam that might explain its length",
+      "Measure it at three points along its length to check for a consistent taper",
+      "Cut a small cross-section from the rod's decorative end cap for material dating"
+     ]
+    },
+    {
+     "id": "q2",
+     "qtype": "detail",
+     "stem": "What does the professor say the guild's ledger recorded about disputes over short measure?",
+     "settings": [
+      "Complaints spiked in years when grain prices were highest",
+      "Complaints were rare, and mostly involved cloth rather than grain",
+      "Complaints came almost entirely from one trading family",
+      "Complaints dropped sharply after the guild introduced a public checking table"
+     ]
+    },
+    {
+     "id": "q3",
+     "qtype": "function",
+     "stem": "Why does the professor mention the guild's old inspection stamps?",
+     "settings": [
+      "Their wear pattern shows which merchants were checked most often",
+      "Their design changed once, marking a shift in who ran inspections",
+      "One surviving stamp shows heavier use than the others, suggesting it covered the busiest part of town",
+      "They were applied to barrel staves, not to the length rods themselves"
+     ]
+    },
+    {
+     "id": "q4",
+     "qtype": "attitude",
+     "stem": "How does the professor respond to the claim that the rod itself shrank over the centuries, rather than always having been slightly short?",
+     "settings": [
+      "She rejects shrinkage but allows a later repair may have shortened it slightly",
+      "She accepts it, pointing to a slow contraction rate documented in similar bronze rods",
+      "She doubts it -- bronze rods of this alloy don't contract measurably at room temperature",
+      "She thinks it's undecidable without a rod of known, unworn original length to compare"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "atv2-inf2-p3",
+   "topic": "Selenography",
+   "difficulty": "medium",
+   "pivots": [
+    {
+     "id": "q1",
+     "qtype": "detail",
+     "stem": "What does the professor say the observatory's nightly logs recorded about the atlas maker's viewing conditions?",
+     "settings": [
+      "Most productive nights came in a narrow window each autumn",
+      "Poor seeing was blamed for nearly a third of all missed nights",
+      "The best results came from a handful of exceptionally still winter nights",
+      "Conditions were logged as average on most nights, with few extremes either way"
+     ]
+    },
+    {
+     "id": "q2",
+     "qtype": "function",
+     "stem": "Why does the professor mention the correspondence with a rival observatory?",
+     "settings": [
+      "It records an early, private admission that the printed atlas undercounted a nearby cluster of small craters",
+      "It shows the rival reached the same crater count independently",
+      "It preserves a disagreement over naming rights for one crater",
+      "It dates when the two observatories agreed to share plates"
+     ]
+    },
+    {
+     "id": "q3",
+     "qtype": "attitude",
+     "stem": "How does the professor respond to the claim that a particular crater was drawn in the wrong position deliberately, to support the maker's own theory, rather than by honest error?",
+     "settings": [
+      "She accepts it, since the position change would have neatly supported his published theory",
+      "She doubts it -- the same small offset appears in three unrelated formations, suggesting a lens error",
+      "She thinks it can't be settled from the atlas alone, since the plate for that region is lost",
+      "She rejects deliberate placement but allows the maker rushed that plate under deadline"
+     ]
+    },
+    {
+     "id": "q4",
+     "qtype": "inference",
+     "stem": "What does the professor imply the digitisation project will do with the atlas's original glass plates?",
+     "settings": [
+      "Scan them at a resolution well beyond what the printed atlas ever showed",
+      "Photograph the plates' handwritten edge labels for a searchable index",
+      "Cross-reference the plate numbers against the maker's private notebook",
+      "Compare plate glass thickness against the atlas's own printed specifications"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "atv2-inf2-p4",
+   "topic": "Chronobiology",
+   "difficulty": "medium",
+   "pivots": [
+    {
+     "id": "q1",
+     "qtype": "detail",
+     "stem": "What does the professor say the activity loggers recorded about the voles' burrow-emergence times across the study?",
+     "settings": [
+      "Emergence grew steadily earlier across the whole study period",
+      "Emergence shifted abruptly in one season, then held steady after",
+      "Emergence shifted earlier for several years, then partly reverted in the two most recent seasons",
+      "Emergence grew steadily later, reversing only in the final season"
+     ]
+    },
+    {
+     "id": "q2",
+     "qtype": "inference",
+     "stem": "What does the professor imply the team will do with the rhythm data once this season ends?",
+     "settings": [
+      "Compare it against a nearby group of voles living without any artificial light nearby",
+      "Cross-tabulate the rhythm data against moon-phase records for the same nights",
+      "Share the raw logger data with a lab studying a related burrowing species",
+      "Re-run the analysis excluding the two loggers that failed mid-season"
+     ]
+    },
+    {
+     "id": "q3",
+     "qtype": "function",
+     "stem": "Why does the professor mention the trapping ledger kept by a local naturalist in the 1970s?",
+     "settings": [
+      "It records emergence times decades before any logger existed",
+      "It notes a vole population crash the current team can't otherwise explain",
+      "It documents a predator no longer found on the site",
+      "It fixes the date the hollow was first cleared of undergrowth"
+     ]
+    },
+    {
+     "id": "q4",
+     "qtype": "attitude",
+     "stem": "How does the professor respond to the claim that the rhythm shift tracks temperature rather than light exposure?",
+     "settings": [
+      "She doubts it -- the shift happens on the same calendar date regardless of that year's weather",
+      "She thinks the two explanations can't be separated with the equipment currently in use",
+      "She accepts it, mainly because burrow temperature logs track the shift almost exactly",
+      "She rejects temperature as the driver but allows it may set the pace within a season"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "atv2-inf2-p5",
+   "topic": "Paleoclimatology",
+   "difficulty": "medium",
+   "pivots": [
+    {
+     "id": "q1",
+     "qtype": "inference",
+     "stem": "What does the professor imply the team will do with the newly identified ash layer?",
+     "settings": [
+      "Match its chemistry to a known eruption to pin down an exact date",
+      "Use its depth to check whether the fen's sediment has compacted evenly",
+      "Search two other regional fens for the same layer",
+      "Send a sample for an independent lab to confirm the composition"
+     ]
+    },
+    {
+     "id": "q2",
+     "qtype": "detail",
+     "stem": "What does the professor say the pollen counts from Sedge Fen showed about tree cover during the cooling event?",
+     "settings": [
+      "Tree pollen dropped sharply within a single decade of sediment",
+      "Tree pollen declined gradually across more than a century",
+      "Tree pollen barely changed, while grass pollen rose instead",
+      "Tree pollen dropped, recovered, then dropped again within the event"
+     ]
+    },
+    {
+     "id": "q3",
+     "qtype": "function",
+     "stem": "Why does the professor mention the peat-cutter's account from the 1880s?",
+     "settings": [
+      "It describes a buried layer of ash, though the account gives no indication of its thickness",
+      "It records the fen's water level dropping enough to cut new ground",
+      "It preserves a plant name no longer used by botanists today",
+      "It notes finding old timber the team later cored for its own record"
+     ]
+    },
+    {
+     "id": "q4",
+     "qtype": "attitude",
+     "stem": "How does the professor respond to the claim that the cooling event was hemispheric rather than a purely regional effect?",
+     "settings": [
+      "She accepts it, mainly because the timing matches a known cooling signal recorded elsewhere in the hemisphere",
+      "She rejects a hemispheric cause but allows a wider regional footprint than first thought",
+      "She thinks it's unresolved, since too few other sites have been sampled at this resolution",
+      "She doubts it -- a fen on another continent shows no matching signal at all"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "atv2-inf2-p6",
+   "topic": "Phenology",
+   "difficulty": "hard",
+   "pivots": [
+    {
+     "id": "q1",
+     "qtype": "detail",
+     "stem": "What does the professor say the volunteer record showed about the bluebell's first-bloom date at Thorne Vale?",
+     "settings": [
+      "It has advanced by roughly two weeks over the record's length",
+      "It advanced gradually at first, then accelerated in the record's final third",
+      "It advanced sharply, then plateaued for the record's final third",
+      "It has advanced overall, but in fits and starts, with the biggest jumps in drought years"
+     ]
+    },
+    {
+     "id": "q2",
+     "qtype": "function",
+     "stem": "Why does the professor mention a Victorian diary entry from the 1860s?",
+     "settings": [
+      "It gives the earliest specific bloom date on record for the site",
+      "It records a bloom failure the current team can't otherwise explain",
+      "It notes a specific week when frost damaged that year's early flowers",
+      "It describes a flower now absent from the site entirely"
+     ]
+    },
+    {
+     "id": "q3",
+     "qtype": "inference",
+     "stem": "What does the professor imply the phenology project will do with this year's volunteer submissions?",
+     "settings": [
+      "Tabulate them by postcode to check for geographic clustering",
+      "Map them against soil-temperature sensors installed for the first time this year",
+      "Weight submissions from more experienced volunteers more heavily in the final analysis",
+      "Flag submissions from sites the record has covered for under five years"
+     ]
+    },
+    {
+     "id": "q4",
+     "qtype": "attitude",
+     "stem": "How does the professor respond to the claim that the earlier blooming is driven by reduced grazing rather than spring warmth?",
+     "settings": [
+      "She accepts it, pointing to ungrazed plots blooming earliest within the same spring",
+      "She rejects grazing as the driver but allows it may account for a few especially early years",
+      "She doubts it -- the trend continues even in plots that have never been grazed",
+      "She thinks the two factors can't be cleanly separated with the plots currently monitored"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "atv2-inf2-p7",
+   "topic": "Hydrology",
+   "difficulty": "hard",
+   "pivots": [
+    {
+     "id": "q1",
+     "qtype": "detail",
+     "stem": "What does the professor say the streamflow gauges below Coldrun Gap recorded in the two years after the reservoir opened?",
+     "settings": [
+      "Flow dropped sharply in the first year, then partly recovered in the second",
+      "Flow dropped gradually across both years, with no sign of recovery",
+      "Flow dropped in both years, but far less than the operator's own model predicted",
+      "Flow rose in the first year before dropping in the second"
+     ]
+    },
+    {
+     "id": "q2",
+     "qtype": "inference",
+     "stem": "What does the professor imply the streamflow team will do to separate the reservoir's effect from the drought's?",
+     "settings": [
+      "Pull satellite soil-moisture data for the whole watershed to check drought severity independently",
+      "Model what flow would have looked like without the reservoir, using rainfall records",
+      "Ask the reservoir operator for its gate-opening logs instead of relying on downstream gauges",
+      "Install a new gauge just above the reservoir to isolate its inflow"
+     ]
+    },
+    {
+     "id": "q3",
+     "qtype": "function",
+     "stem": "Why does the professor mention the old mill's water-rights record from the 1890s?",
+     "settings": [
+      "It sets a legal minimum flow the reservoir must maintain downstream",
+      "It records a much larger historical flow than any modern gauge has seen",
+      "It documents a dispute over water rights between two now-vanished mills",
+      "It fixes the date the mill itself stopped operating"
+     ]
+    },
+    {
+     "id": "q4",
+     "qtype": "attitude",
+     "stem": "How does the professor respond to the claim that the reservoir, not the drought, explains the drop in downstream flow?",
+     "settings": [
+      "She thinks it can't be separated yet, since the drought and the reservoir's opening happened in the same year",
+      "She accepts it, mainly because releases have stayed below the flow the drought alone would predict",
+      "She doubts it -- a nearby stream with no reservoir shows nearly the same drop",
+      "She rejects the reservoir explanation but allows its releases have made a bad drought slightly worse"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "atv2-inf2-p8",
+   "topic": "Ethnobotany",
+   "difficulty": "hard",
+   "pivots": [
+    {
+     "id": "q1",
+     "qtype": "detail",
+     "stem": "What does the professor say the herbarium specimen labels from the 1930s recorded about where the plant was collected?",
+     "settings": [
+      "Nearly all specimens came from a single, small stretch of the marsh",
+      "Specimens came from scattered sites across the whole marsh",
+      "Specimens came mostly from gardens, not the wild marsh population",
+      "Specimens were collected from the marsh in only two of the recorded years"
+     ]
+    },
+    {
+     "id": "q2",
+     "qtype": "function",
+     "stem": "Why does the professor mention an early missionary's journal from the 1750s?",
+     "settings": [
+      "It's the earliest written record of the community using the plant medicinally",
+      "It records a plague the missionary blamed on the marsh's water",
+      "It preserves a place name for the marsh no longer in local use",
+      "It notes trade goods passing through the area at the time"
+     ]
+    },
+    {
+     "id": "q3",
+     "qtype": "attitude",
+     "stem": "How does the professor respond to the claim that the plant-use practice was introduced by traders rather than developed locally?",
+     "settings": [
+      "She rejects outside introduction but allows traders may have spread the practice to nearby communities",
+      "She accepts it, mainly because the preparation method matches one documented in a trading-partner region",
+      "She thinks it's unresolved, since both regions could have developed similar methods independently",
+      "She doubts it -- the practice uses a local plant part no trading-region method touches at all"
+     ]
+    },
+    {
+     "id": "q4",
+     "qtype": "inference",
+     "stem": "What does the professor imply the ethnobotany team will do with the community's own oral history recordings?",
+     "settings": [
+      "Time-stamp each recording against the community's own seasonal calendar",
+      "Count how many independent tellings mention the same secondary plant used alongside it",
+      "Compare preparation methods described across three generations of recordings",
+      "Note which recordings mention harvesting the plant only at a particular moon phase"
+     ]
+    }
+   ]
+  }
+ ]
+}

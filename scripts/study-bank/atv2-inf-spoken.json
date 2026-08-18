@@ -1,0 +1,250 @@
+{
+ "atv2-inf-p1": {
+  "transcript": "Let's turn to the Ashcombe bell. The foundry's casting log rules out several things people assume happened on the first attempt: it wasn't a crack that had to be melted down within the week, it wasn't cast true but noticeably lighter than ordered, and it wasn't re-poured over an error in the founder's own inscription. What the log actually shows is that the bell was cast successfully but the pour itself was delayed a full season by a shortage of tin.\n\nNow, about the churchwarden's accounts from 1721 -- you might expect them to record a payment for the bell's general upkeep, or note that the tower needed strengthening before the new bell arrived, or settle some dispute over the delivery date. None of that is right; what they actually record is a smaller bell that the parish sold off to help pay for the new one.\n\nAs for the laser scan -- the team isn't using it to check the bell's pitch against a model, and they haven't drawn up any transport cradle from it, whatever some have suggested; a replica casting elsewhere isn't on the table either. Instead, they're sending the scan data to a neighbouring parish that's comparing bells cast by the same founder.\n\nOn the tone question: it's not that the pour left any unevenness worth pointing to -- the casting records for that year show nothing unusual -- so I won't grant that reading. And it's not simply an open question either; the evidence is clear enough to rule one way. Nor do I think the shape shifted as the bell aged; storage records show it's sat untouched since installation. There's something to the casting-flaw idea in general, but only if you can find a matching flaw in the foundry's other output from that year -- and you can't, since none of the founder's other bells from that year show anything like it.",
+  "explanations": {
+   "q1": "The casting log records a successful cast on the first attempt, delayed a full season only by a shortage of tin -- no crack, no light casting, no inscription error.",
+   "q2": "The 1721 accounts record the sale of a smaller bell to help fund the new one, not a routine payment, a tower repair, or a delivery dispute.",
+   "q3": "The team is sharing the scan data with a neighbouring parish comparing bells from the same founder, not using it for pitch modeling, transport planning, or replica casting.",
+   "q4": "The professor doubts the casting-flaw explanation because no matching flaw appears in any of the founder's other bells from that year."
+  },
+  "kills": {
+   "q1": {
+    "0": "The lecture states it \"wasn't a crack that had to be melted down within the week\"",
+    "1": "The lecture states it \"wasn't cast true but noticeably lighter than ordered\"",
+    "2": "The lecture states it \"wasn't re-poured over an error in the founder's own inscription\""
+   },
+   "q2": {
+    "0": "The professor says you \"might expect them to record a payment for the bell's general upkeep\" but that isn't right.",
+    "1": "The professor rules out that \"the tower needed strengthening before the new bell arrived\"",
+    "2": "The professor rules out \"some dispute over the delivery date\""
+   },
+   "q3": {
+    "0": "The transcript says the team \"isn't using it to check the bell's pitch against a model\"",
+    "1": "The transcript says they \"haven't drawn up any transport cradle from it\"",
+    "2": "The transcript says \"a replica casting elsewhere isn't on the table either\""
+   },
+   "q4": {
+    "1": "The professor says \"it's not that the pour left any unevenness worth pointing to\"",
+    "2": "The professor says \"it's not simply an open question either\"",
+    "3": "The professor says \"the shape shifted as the bell aged\" is not what he thinks"
+   }
+  }
+ },
+ "atv2-inf-p2": {
+  "transcript": "Some early write-ups on the Corvane darter claimed the run was set by day length, or that it used two separate spawning grounds, or that most mortality happened throughout the river rather than at any one place. None of that holds up against twenty years of data. What the data actually shows is that the run has shifted three weeks later over that period.\n\nNow the acoustic tags: night passages didn't take any longer to clear the culvert than daytime ones did, so set that aside. Night fish were somewhat more likely to drop out of the record than daytime fish were, though it's a small effect. And they didn't double back below the culvert at any higher rate than daytime fish. Where they really differ is condition: night fish cleared the culvert faster, but arrived at the spawning ground in noticeably poorer condition.\n\nAs for the mill records from the 1920s -- I bring them up because they fix the date the culvert was narrowed to its current width, which turns out to matter a great deal for what follows. They don't show the run predating the culvert, since the culvert has been there since before any written record begins. They don't preserve any flood we use to date a change in the channel -- that's a different set of records entirely. And the historical catch they document isn't dramatically larger than what we count today; the numbers are close.\n\nOn next season's plan for the culvert: they're not installing any kind of shelf inside the culvert -- engineering looked at it and ruled it out. They're not asking the mill's current owner for gate access either; that request was already refused years ago. And they're not fitting fish with any longer-range tag, since the existing tags already cover the distance needed. What they are doing is moving the acoustic receiver array further upstream, to catch fish the culvert currently hides from the record.",
+  "explanations": {
+   "q1": "Twenty years of data show the run's timing has shifted three weeks later, not that it's set by day length, split across two grounds, or that mortality is spread throughout the river.",
+   "q2": "Night-passage fish arrived at the spawning ground in poorer condition despite clearing the culvert faster; they didn't take longer, weren't equally likely to be lost, and didn't double back more often.",
+   "q3": "The mill records fix the date the culvert was narrowed to its current width, not the run predating the culvert, a flood dating a channel change, or a larger historical catch.",
+   "q4": "The team is moving the acoustic receiver array further upstream to catch fish the culvert currently hides, not building a shelf, requesting gate access, or fitting longer-range tags."
+  },
+  "kills": {
+   "q1": {
+    "0": "The lecture rules out that \"the run was set by day length\"",
+    "1": "The lecture rules out that \"it used two separate spawning grounds\"",
+    "3": "The lecture rules out that most mortality happened \"throughout the river rather than at any one place\""
+   },
+   "q2": {
+    "0": "The transcript says night passages \"didn't take any longer to clear the culvert than daytime ones did\"",
+    "1": "The transcript says night fish \"were somewhat more likely to drop out of the record than daytime fish were\"",
+    "2": "The transcript says they \"didn't double back below the culvert at any higher rate\""
+   },
+   "q3": {
+    "1": "The professor rules out that the records show \"the run predating the culvert\"",
+    "2": "The professor rules out that they \"preserve any flood we use to date a change in the channel\"",
+    "3": "The professor says the catch \"isn't dramatically larger than what we count today\""
+   },
+   "q4": {
+    "0": "The professor says they're \"not installing any kind of shelf inside the culvert\"",
+    "2": "The professor says they're \"not asking the mill's current owner for gate access\"",
+    "3": "The professor says they're \"not fitting fish with any longer-range tag\""
+   }
+  }
+ },
+ "atv2-inf-p3": {
+  "transcript": "Compare two plans for next year on Hallow Moss: one team wanted plots on the shaded, north-facing edge for comparison, another wanted to shift the growth measurement to a later date since this year's readings ran early, and a third wanted fresh plots along the eastern boundary where nobody's sampled before. We're doing none of those. What we're actually doing is fencing two plots to keep deer off them, to see whether growth recovers once browsing pressure is removed.\n\nThere's something to the idea that both drainage and trampling play a part, and to be fair that's not an unreasonable middle position -- but the pattern moves around too much year to year for that to hold as an explanation. Nor is it that drained plots far from any path show the same decline; drainage plots away from the path are fine. And it isn't that the decline stops abruptly at some fixed distance every year either -- that distance itself shifts too much. Plots right on the path show no decline at all, so I reject the trampling explanation outright.\n\nOn the water-table loggers: this year's minimum wasn't shallower and reached over a longer stretch of summer, and it wasn't a deeper minimum reached in about half the time, and autumn recovery wasn't especially fast compared with the drought year either. The two years line up closely -- almost the same minimum, reached at almost the same date.\n\nYou might think the herbarium samples matter because they let us check whether today's moss is even the same species -- it is, that's not in question. Or because their collection dates mark the last time the moss covered the whole bog -- the bog's extent hasn't actually changed that much. Or because they record some earlier botanist's survey of the site -- they don't, no second surveyor is named anywhere in the collection notes. What they do show is that the moss was already a paler shade than the field guides of the time describe, which tells us the discoloration isn't a recent thing.",
+  "explanations": {
+   "q1": "The team is fencing two plots against deer browsing to see whether growth recovers, not adding shaded-edge plots, shifting the measurement date, or adding eastern-boundary plots.",
+   "q2": "The professor rejects trampling outright because plots directly on the path show no decline at all, ruling out the accept, doubt, and hedge readings.",
+   "q3": "This year's water-table minimum was almost identical to the drought year five years ago, reached at almost the same date.",
+   "q4": "The herbarium samples show the moss was already a paler shade than period field guides describe, not that it confirms species identity, marks full bog coverage, or records an earlier survey."
+  },
+  "kills": {
+   "q1": {
+    "1": "The lecture describes but rejects \"plots on the shaded, north-facing edge for comparison\"",
+    "2": "The lecture describes but rejects the plan to \"shift the growth measurement to a later date since this year's readings ran early\"",
+    "3": "The lecture describes but rejects \"fresh plots along the eastern boundary where nobody's sampled before\""
+   },
+   "q2": {
+    "0": "The professor says the pattern \"moves around too much year to year for that to hold as an explanation\"",
+    "1": "The professor says \"drainage plots away from the path are fine\"",
+    "2": "The professor says the distance \"itself shifts too much\" for the abrupt-stop pattern to hold."
+   },
+   "q3": {
+    "0": "The transcript rules out that this year's minimum \"wasn't shallower and reached over a longer stretch of summer\"",
+    "1": "The transcript rules out \"a deeper minimum reached in about half the time\"",
+    "3": "The transcript rules out that \"autumn recovery wasn't especially fast compared with the drought year\""
+   },
+   "q4": {
+    "0": "The professor says checking species identity \"is, that's not in question\" -- already settled, not the reason for mentioning the samples.",
+    "1": "The professor says \"the bog's extent hasn't actually changed that much\"",
+    "2": "The professor says \"no second surveyor is named anywhere in the collection notes\""
+   }
+  }
+ },
+ "atv2-inf-p4": {
+  "transcript": "There's a case for saying the pilot-boat log matters because it records the original height of the harbor's signal mast -- and it's true the log mentions the mast, but the height entry turns out to be inaccurate, so it settles nothing about that. It isn't there because of any shipment of flags lost overboard either -- no such shipment appears in the log at all. And it isn't a toll record for the pilot steps -- that's a separate ledger entirely. What matters is a damaged page that lets us date a storm which later harbor accounts disagree about.\n\nWith the flag-maker's ledger, the project isn't matching its handwriting against the harbor's own accounts -- the ledger's authorship was never in question. They're not using its dye recipes to reproduce colors for any replica set, since the museum already has a color reference. And they're not cross-referencing its order dates against the light-keeper's diary -- the two sources don't overlap in date range. What they are doing is cataloguing the ledger's flag-repair entries, which the harbor's own records never separately tracked.\n\nIt's tempting to think the changeover was driven by a naval order rather than a local harbor decision, but there's no naval correspondence anywhere in the record -- this was entirely a Bruntsey decision. Nor were the old and new codes used together on purpose for some transition period; nobody planned an overlap. And confusion during the changeover causing a near-collision isn't in any account either -- no incident is recorded. What the record actually shows is that the changeover happened gradually, flag by flag, rather than on any single date.\n\nContrast the theories about Bruntsey's flagstaff design influencing the neighboring harbor's: one points to a shared carpenter named in both harbors' accounts, another says the question is simply open and unsettled by the surviving records, a third credits a shared merchant house rather than any direct copying. None of those hold up once you check dates -- the neighboring harbor's staff predates Bruntsey's by several years, so influence couldn't have run in that direction at all. I'm unconvinced.",
+  "explanations": {
+   "q1": "The professor mentions the log because a damaged page dates a disputed storm, not the mast height, a lost shipment, or a toll record.",
+   "q2": "The archive project is cataloguing the ledger's flag-repair entries, which the harbor's own records never tracked separately, not matching handwriting, reproducing dye colors, or cross-referencing the diary.",
+   "q3": "The main point is that the changeover happened gradually, flag by flag, not on a single date, driven by a naval order, or with a deliberate overlap.",
+   "q4": "The professor is unconvinced because the neighboring harbor's staff predates Bruntsey's by several years, ruling out the carpenter, open-question, and merchant-house readings."
+  },
+  "kills": {
+   "q1": {
+    "0": "The professor says the mast-height entry \"turns out to be inaccurate, so it settles nothing about that\"",
+    "1": "The professor says \"no such shipment appears in the log at all\"",
+    "3": "The professor says the toll record is \"a separate ledger entirely\""
+   },
+   "q2": {
+    "0": "The professor says \"the ledger's authorship was never in question\"",
+    "1": "The professor says \"the museum already has a color reference\"",
+    "3": "The professor says \"the two sources don't overlap in date range\""
+   },
+   "q3": {
+    "1": "The professor says \"there's no naval correspondence anywhere in the record\"",
+    "2": "The professor says \"nobody planned an overlap\"",
+    "3": "The professor says \"no incident is recorded\""
+   },
+   "q4": {
+    "0": "The transcript lists but rejects \"a shared carpenter named in both harbors' accounts\"",
+    "1": "The transcript lists but rejects the idea the question is \"simply open and unsettled by the surviving records\"",
+    "3": "The transcript lists but rejects crediting \"a shared merchant house rather than any direct copying\""
+   }
+  }
+ },
+ "atv2-inf-p5": {
+  "transcript": "The key sheets rule some things out: the table didn't change only when a courier reported one lost or compromised -- changes came whether or not anything went wrong. It didn't change monthly with a separate letter announcing it later -- there's no such second letter in the file. And it certainly didn't sit nearly unchanged across the whole run of years the sheets cover -- the substitutions turn over constantly. What the sheets show is a table that changed every week, on a schedule the clerks could predict in advance.\n\nContrast the positions on whether the rival company broke the Corvel cipher within its first year: one says the rival's own letters keep making decisions the cipher would have prevented, which would argue against it; another simply accepts it, on the strength of a rival clerk's boast in one surviving letter; a third rejects a full break but allows the rival broke a related, simpler cipher instead. None of that settles it for me -- it's unresolvable without letters from the rival's archive that no longer survive.\n\nYou might assume the ongoing archive survey is mainly about digitising the sheets before the ink fades -- that work is already done, actually, it finished last year. It isn't primarily about establishing which overseas office received sheets first either; the offices all received sheets on the same courier run. And it isn't about cross-checking paper stock against known suppliers to date the undated sheets -- the paper itself doesn't vary enough to tell suppliers apart. What the survey will actually let scholars do is fill the gap of substitution tables missing from the years the company fire affected.\n\nThere's a tempting story that one of the doodles turns out to be a partial key, copied down where it shouldn't be -- tempting, but the doodles never contain anything resembling cipher notation, so that reading doesn't hold. It's also not that they date the ledger to a specific quarter by referencing some known event; none of the doodles reference anything datable. And they're not simply unrelated asides either -- I mention them because they explain something. What they show is a clerk who was distracted, which is exactly what accounts for an error elsewhere in the same ledger.",
+  "explanations": {
+   "q1": "The substitution table changed every week on a predictable schedule, not only after a lost sheet, monthly with a delayed letter, or barely at all.",
+   "q2": "The professor considers the rival-broke-it claim unresolvable without letters the rival's archive no longer holds, not confirmed, doubted, or downgraded to a simpler cipher.",
+   "q3": "The archive survey will let scholars fill the gap of substitution tables missing from the years the fire affected, not primarily digitise, establish office order, or date sheets via paper stock.",
+   "q4": "The doodles show the clerk was distracted, explaining an error elsewhere, not a hidden key, a dating reference, or an unrelated aside."
+  },
+  "kills": {
+   "q1": {
+    "1": "The professor says changes \"came whether or not anything went wrong\" ruling out the loss-triggered reading.",
+    "2": "The professor says \"there's no such second letter in the file\"",
+    "3": "The professor says \"the substitutions turn over constantly\" ruling out a near-static table."
+   },
+   "q2": {
+    "1": "The transcript notes the rival's letters \"keep making decisions the cipher would have prevented\" which argues against a break.",
+    "2": "The transcript lists but sets aside the idea the rival \"broke a related, simpler cipher instead\"",
+    "3": "The transcript lists but sets aside \"a rival clerk's boast in one surviving letter\""
+   },
+   "q3": {
+    "0": "The professor says the digitising work \"is already done, actually, it finished last year\"",
+    "2": "The professor says \"the offices all received sheets on the same courier run\"",
+    "3": "The professor says \"the paper itself doesn't vary enough to tell suppliers apart\""
+   },
+   "q4": {
+    "0": "The professor says \"the doodles never contain anything resembling cipher notation\"",
+    "1": "The professor says \"none of the doodles reference anything datable\"",
+    "3": "The professor says \"they're not simply unrelated asides either\""
+   }
+  }
+ },
+ "atv2-inf-p6": {
+  "transcript": "You might think I'd reject the boat-traffic explanation outright and pin the whole decline on water quality instead -- I don't; boat wash on its own doesn't get you the full pattern here. It isn't that the decline began well before this stretch allowed any boats either -- the marina and the decline start together, not before. And it isn't a case where the study simply can't distinguish the two factors -- the timing is precise enough to distinguish them. I find the boat-traffic explanation convincing, since the sharpest drop follows the marina's opening almost to the month.\n\nThere's something to the idea that the filtration logs matter because of a chemical spill nowhere else documented -- the logs do mention a spill, but it's a minor, unrelated one two miles downstream. It isn't that they show the company monitored this species long before any formal survey did either; the logs never name the species at all. And they don't rule out a suspected upstream source of the runoff -- that question is still open. What the logs actually do is pin down the exact date a specific treatment change reached this stretch of the stream.\n\nContrast the growth-band readings: one reading you'll sometimes hear is that side-channel limpets grew faster most years but slower only in drought years -- that's not what the bands show. Another says the two groups tracked closely until recent shells diverged -- they don't track closely at any point in the record. A third claims main-current limpets outgrew side-channel ones only in shells collected before the current logging equipment was installed -- the equipment change doesn't line up with any growth difference at all. What the bands actually show is side-channel limpets growing steadily slower, year after year, across the whole record.\n\nTo build on the filtration evidence, we're not placing limpet cages below the outflow -- the outflow site is too disturbed for a clean season of monitoring. We're not sending shells for isotope testing either; the isotope signal there is too noisy to interpret on its own. And we're not simply asking the water company for daily readings instead of averages -- they've already told us daily data doesn't exist for that period. What we are doing is asking a neighbouring catchment's water company for its own filtration logs, to see whether the same pattern shows up there.",
+  "explanations": {
+   "q1": "The professor finds the boat-traffic explanation convincing because the sharpest decline follows the marina's opening closely, ruling out the reject, earlier-decline, and can't-distinguish readings.",
+   "q2": "The filtration logs pin down the date a specific treatment change reached the stretch, not a documented spill, prior monitoring, or ruling out an upstream source.",
+   "q3": "Side-channel limpets grew steadily slower every year across the whole record, not faster-then-slower, tracking closely, or an equipment-linked difference.",
+   "q4": "The team will ask a neighbouring catchment's water company for its own filtration logs, not cage limpets, run isotope testing, or request daily readings."
+  },
+  "kills": {
+   "q1": {
+    "0": "The professor says \"boat wash on its own doesn't get you the full pattern here\"",
+    "2": "The professor says \"the marina and the decline start together, not before\"",
+    "3": "The professor says \"the timing is precise enough to distinguish them\""
+   },
+   "q2": {
+    "1": "The professor says the spill is \"a minor, unrelated one two miles downstream\"",
+    "2": "The professor says \"the logs never name the species at all\"",
+    "3": "The professor says the upstream-source question \"is still open\""
+   },
+   "q3": {
+    "0": "The professor says of the faster-then-slower reading, \"that's not what the bands show\"",
+    "2": "The professor says the two groups \"don't track closely at any point in the record\"",
+    "3": "The professor says \"the equipment change doesn't line up with any growth difference at all\""
+   },
+   "q4": {
+    "0": "The professor says \"the outflow site is too disturbed for a clean season of monitoring\"",
+    "1": "The professor says \"the isotope signal there is too noisy to interpret on its own\"",
+    "2": "The professor says \"daily data doesn't exist for that period\""
+   }
+  }
+ },
+ "atv2-inf-p7": {
+  "transcript": "Contrast what the trust might do once the graft trial concludes: some expect scion wood to go straight out to other heritage orchards, others expect the trial block replanted using only rootstock from the orchard's own oldest tree, and some picture the weakest grafts retired to free up the block for a new generation of cuttings. None of those come first. What the trust will actually do is send wood samples from each surviving graft for a rootstock compatibility trial.\n\nYou might assume the Coleraine seedling was the first tree the trust ever fitted with a numbered tag -- it wasn't; tagging started years before this tree existed. It also wasn't the last tree planted before the boundary wall went up; the wall predates the tree by a generation. And it wasn't moved from a nursery row to its current spot either -- the ledger has no record of any move. What the ledger does record is a gift tree, planted a decade after the rest of the orchard.\n\nOn whether the Coleraine seedling is a lost cultivar rediscovered: its fruit chemistry doesn't clearly fail to match every cultivar in the regional record, so I won't rest a doubt on that. It also isn't grafted onto older rootstock in any way that would settle the question. And its leaf shape doesn't closely match any one archived cultivar either -- the resemblance people point to is pretty loose. I'd call it undecidable without the genetic testing the trust hasn't funded.\n\nThere's a reasonable case that the tree survived mainly because it stood apart from the blight that hit the rest of the orchard -- reasonable, but the blight came decades after the event that actually mattered here. It's also true that a caretaker's records preserved the tree's history, but that's not the same as explaining its physical survival. And the 1980s grubbing proposal is real, but the tree was already well past its riskiest point by then. What I want to establish is that it survived the 1962 frost that killed most of the orchard's other trees.",
+  "explanations": {
+   "q1": "The trust will send wood samples from each surviving graft for a rootstock compatibility trial, not release scion wood, replant with the oldest tree's rootstock, or retire the weakest grafts first.",
+   "q2": "The ledger records the Coleraine seedling as a gift tree planted a decade after the rest of the orchard, not the first tagged tree, the last before the wall, or one moved from a nursery row.",
+   "q3": "The professor calls the rediscovered-cultivar claim undecidable without genetic testing, since the chemistry, rootstock, and leaf-shape arguments each fall short of settling it.",
+   "q4": "The main point is that the tree survived the 1962 frost that killed most of the orchard's other trees, not the blight, the caretaker's records, or the 1980s grubbing proposal."
+  },
+  "kills": {
+   "q1": {
+    "0": "The lecture lists but rejects \"scion wood to go straight out to other heritage orchards\" as the first step.",
+    "2": "The lecture lists but rejects \"the trial block replanted using only rootstock from the orchard's own oldest tree\" as first.",
+    "3": "The lecture lists but rejects \"the weakest grafts retired to free up the block for a new generation of cuttings\" as first."
+   },
+   "q2": {
+    "0": "The professor says \"tagging started years before this tree existed\"",
+    "2": "The professor says \"the wall predates the tree by a generation\"",
+    "3": "The professor says \"the ledger has no record of any move\""
+   },
+   "q3": {
+    "0": "The professor says the chemistry \"doesn't clearly fail to match every cultivar in the regional record\"",
+    "1": "The professor says it \"isn't grafted onto older rootstock in any way that would settle the question\"",
+    "2": "The professor says the leaf shape \"doesn't closely match any one archived cultivar either\""
+   },
+   "q4": {
+    "1": "The professor says \"the blight came decades after the event that actually mattered here\"",
+    "2": "The professor says the caretaker's records are \"not the same as explaining its physical survival\"",
+    "3": "The professor says \"the tree was already well past its riskiest point by then\""
+   }
+  }
+ },
+ "atv2-inf-p8": {
+  "transcript": "There's a case that the farmer's 1911 account matters because it explains why the stone's base no longer matches its original socket -- there is some socket damage, but the account itself never mentions the socket at all, so that's not why it's cited. It's also the earliest record placing the stone at its present site, true, but not before 1950 -- earlier site records already exist. And it does touch on a churchyard clearance, but that clearance has nothing to do with this stone's plinth. What the account actually preserves is a detail about a second, smaller stone that's since been lost.\n\nContrast the readings of the stone's final line under the new raking-light photographs: one reading finds traces of a name where earlier readers saw only an ornamental border; another says the line was added later, in a different hand; a third takes what looked like damage for a deliberate erasure. None of those is what the new images show. What they show is a short phrase that matches a formula found on two other stones in the region.\n\nOn whether the stone commemorates a voyage rather than a death: I don't think the verb form settles it by matching every other memorial stone in the corpus -- plenty of verb forms are shared across different stone types. I don't think the text alone is simply unable to settle the question either -- there's enough here to reach a view. And the carving style doesn't match stones raised for departures rather than deaths -- Hollowmere's carving style is a poor match for that group. I reject the voyage reading, but I agree the named river points to an unusually well-traveled family.\n\nYou might expect the project, once the regional survey is complete, to go straight to a stonemasons' guild archive looking for apprentice records -- there's no guild archive covering this period, so that's not an option. It also won't be comparing carving depth against weathering-rate data from other markers at the site; weathering rates here are too uneven to compare directly. And it won't be sending a cast to an outside specialist for a second opinion either, not at this stage. What the project will do is cross-match the stone's line breaks against the region's known scribal training centres.",
+  "explanations": {
+   "q1": "The 1911 account is cited because it preserves a detail about a second, smaller stone since lost, not the socket mismatch, the pre-1950 site record, or the churchyard clearance.",
+   "q2": "The raking-light photographs show a short phrase matching a formula found on two other regional stones, not a newly read name, a later hand, or a deliberate erasure.",
+   "q3": "The professor rejects the voyage reading but agrees the named river points to an unusually well-traveled family, setting aside the verb-form, undecidable, and carving-style arguments.",
+   "q4": "The project will cross-match the stone's line breaks against the region's known scribal training centres, not consult a guild archive, compare weathering data, or send a cast for outside review."
+  },
+  "kills": {
+   "q1": {
+    "0": "The professor says \"the account itself never mentions the socket at all\"",
+    "1": "The professor says \"earlier site records already exist\"",
+    "3": "The professor says the clearance \"has nothing to do with this stone's plinth\""
+   },
+   "q2": {
+    "0": "The transcript lists but rejects \"traces of a name where earlier readers saw only an ornamental border\"",
+    "1": "The transcript lists but rejects the line being \"added later, in a different hand\"",
+    "2": "The transcript lists but rejects taking \"what looked like damage for a deliberate erasure\""
+   },
+   "q3": {
+    "1": "The professor says \"plenty of verb forms are shared across different stone types\"",
+    "2": "The professor says \"there's enough here to reach a view\"",
+    "3": "The professor says \"Hollowmere's carving style is a poor match for that group\""
+   },
+   "q4": {
+    "1": "The professor says \"there's no guild archive covering this period\"",
+    "2": "The professor says \"weathering rates here are too uneven to compare directly\"",
+    "3": "The professor says it won't be \"sending a cast to an outside specialist for a second opinion\""
+   }
+  }
+ }
+}

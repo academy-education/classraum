@@ -1100,3 +1100,91 @@ finds a defensible second answer in a quarter of them. That is the
 exclusivity axis, and the model-side exclusivity pass did not catch it at
 this rate. NOTE the decode trap before touching any item: his letters are
 HIS shuffled letters — decode via study_item_reviews.shown_order.
+
+### AT-V2 inference-pivot redesign pilot: INCONCLUSIVE against the stated gate, not confirmed, not refuted (2026-08-19)
+One pilot batch (atv2-inf, 8 lectures x 4 = 32 items) authored under the
+symmetry-redesigned inference pivot from the tranche-2 resolution. Seven
+rounds of fresh pre-freeze review (six found real cross-pivot leaks — an
+option sharing an exclusive noun with one specific sibling setting, e.g.
+"socket", "merchant house", a spliced attitude option — each round's fixes
+left something standing until round 7 came back clean), froze
+(sha `1cb1199e...5458d`, seed `atv2-inf-20260819`), machine checks green (3
+sibling 3-grams waived, contentless, option text immutable), 3-solver blind
+attack, exclusivity pass 32/32 agreement with 0 flags.
+Per-type margins (n>=8 trials gate): inference +12.5 (37.5% vs 25% chance,
+z=1.41, NOT significant), function +17.9, main_emphasis +19.4, attitude
++3.6, detail -15.5. Batch mean +6.3 (would CLEAR the retired rule).
+**Gate for this task was stricter than the standing +30 kill line: "inference
+at or below chance." 37.5% is above chance, so the literal gate is NOT met**,
+even though it is a large improvement over tranche 2's 59.0-67.0% (z=4.90)
+and every named solver heuristic (rejection+counter-fact shape, cross-sibling
+narrative coherence, confident picks) scored at or below chance when counted
+rigorously. Per instruction: did NOT author b6-b8, did NOT adjust the pivot
+and re-run against this read. Recommendation: extend n on the SAME frozen
+design (a second 8-lecture pilot batch, pooling to 48 inference trials)
+before deciding confirmed/refuted, per the pilot's own pre-registered
+"inconclusive -> extend n" playbook, applied to the inference type rather
+than the batch mean. Also recorded: transcripts overshot the 210-270 word
+band (318-396 words) — fine for this files-only validation, must tighten
+before any banking step (TTS duration budget). Tooling (atv2-render/checks/
+score.mjs) extended with a SEED_OVERRIDE map + widened --batch regex to
+support a non-bN batch id; all break-tests re-run and passed before use.
+Full writeup: ATV2-INFERENCE-PILOT-RESULT.md. b6-b8 remain UNAUTHORED.
+
+### AT-V2 inference redesign: CONFIRMED after a pre-registered extension batch and pooling (2026-08-19)
+Coordinator directed: (1) compute inference-vs-own-lecture-siblings on the
+pilot's frozen data first (free, most sensitive instrument), (2)
+pre-register an extension batch + binding decision rule BEFORE authoring,
+(3) carry forward the question of why function/main_emphasis read elevated
+in the pilot.
+(1) Pilot sibling delta: n=8 lectures, mean +8.3 pts, t=0.38 -- next to
+tranche 1's +0.0 (t=0.00), nothing like tranche 2's +32.5 (t=2.31, p<.05).
+Strongest evidence yet the pivot-local defect is gone; also matches the
+pilot's own per-type table where inference (+12.5) was NOT the worst type
+(function +17.9, main_emphasis +19.4 both higher) -- opposite of tranche
+2's signature.
+(2) Pre-registered BEFORE authoring: one extension batch (atv2-inf2, 8
+lectures, seed atv2-inf2-20260819 committed to atv2-render.mjs's
+SEED_OVERRIDE map first), pool with the pilot, single decision, no third
+bite. Rule: CONFIRMED if pooled sibling delta |t|<2 AND pooled inference
+margin's upper-95 bound <+30; REFUTED if pooled point margin >=+30;
+NOT DEMONSTRATED otherwise (= stop, not extend again).
+atv2-inf2 went through FIVE fresh review rounds (a new defect class found:
+a detail option asserting "no change/trend at all" while a sibling
+attitude pivot's STEM presupposes the change exists -- fixed in 3
+lectures; also a cyclic attitude-stance rotation with a proven
+mathematical floor, at 8 lectures x 4 stances only 6 rotation classes
+exist so >=2 lectures must collide no matter what -- reduced to that
+minimum and documented rather than chased to zero). Froze
+(sha b837eeca...7ed2cc), attacked: batch margin -7.3 (CLEAR alone),
+per-type this batch: inference +4.2, attitude -20.8, detail -4.2,
+function -8.3. Sibling delta this batch: n=8, mean +15.3, t=0.96.
+POOLED (16 lectures / 48 inference trials): sibling delta t=0.90 (within
+noise of zero); inference margin +8.3, upper-95 = +20.6 (<+30, point
+estimate nowhere near +30). **Both CONFIRMED conditions met -> CONFIRMED.**
+Also resolves the function/main_emphasis question: pooled, function drops
++17.9->+3.9 (45 trials) and attitude actually goes NEGATIVE (-9.4, 45
+trials) -- the pilot's elevated readings were small-n noise, not a
+displaced leak. main_emphasis stays unpowered (9 trials, inf2's qtype mix
+didn't include it) and is unread.
+Exclusivity pass run on atv2-inf2 in full (was going to be skipped as
+outside the decision rule, then run anyway since the pre-registration said
+"same pipeline"): grader vs key 32/32 but **7/32 flagged**, 4 lectures
+quarantined (p1,p4,p6,p8) -- vs the pilot's 0/32. Root cause: a
+"concession" transcript refutation form ("there's something to X, but...")
+used to satisfy the deliberate-variation doctrine was written too softly
+in six spots, hedging distractors instead of killing them with an
+incompatible assertion -- caught by the with-source pass, invisible to the
+kill-quote checker and the blind attack. Does NOT reopen the
+CONFIRMED verdict (that rests on the blind attack + sibling test only, and
+the flagged failure mode is "distractor not cleanly killed," not "item
+solvable without source") but means atv2-inf2 could not be banked as-is.
+**What this authorizes:** the redesigned inference-pivot CONSTRUCTION for
+b6-b8 going forward -- same per-batch pipeline still required every time
+(review, freeze, attack, exclusivity). Does NOT retroactively bank
+atv2-inf or atv2-inf2 (both remain files-only) and does NOT itself author
+b6-b8 -- per standing instruction the extension was a measurement, not
+production. Outstanding: both batches' transcripts overshoot the 210-270
+word band (296-396 words); tighten before any banking step. Full writeup
+in ATV2-INFERENCE-PILOT-RESULT.md addenda 1 and 2. b6-b8 remain
+UNAUTHORED, now unblocked as a future decision.
