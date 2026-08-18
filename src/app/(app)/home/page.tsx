@@ -7,6 +7,16 @@ import { LoadingScreen } from '@/components/ui/loading-screen'
 import { appInitTracker } from '@/utils/appInitializationTracker'
 import { readStoredMode } from '@/lib/study/currentMode'
 
+/* /home — the app's role-aware entry point.
+ *
+ * This component used to live at (app)/page.tsx, which resolves to "/" —
+ * the same path as the marketing landing page. Next served the marketing
+ * page there and the middleware sent the app subdomain's root straight to
+ * /dashboard, so this router NEVER RAN. That is why a super admin opening
+ * app.classraum.com landed on the manager dashboard: nothing was reading
+ * their role outside the login handler.
+ *
+ * It now has a path of its own and the middleware points at it. */
 export default function AppRootPage() {
   const router = useRouter()
   const pathname = usePathname()

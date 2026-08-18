@@ -501,8 +501,14 @@ export default function AppLayout({
   return (
     <LayoutErrorBoundary>
       <AuthWrapper>
+        {/* Platform admins are NOT academy staff. They used to be allowed
+            in here, which is how a super admin could sit on the manager
+            dashboard — and since ours also hold a managers row, it even
+            rendered real data. RoleBasedAuthWrapper already knows where
+            each role belongs, so dropping them from the allowlist sends
+            admin/super_admin to /admin instead of leaving them here. */}
         <RoleBasedAuthWrapper
-          allowedRoles={['manager', 'teacher', 'admin', 'super_admin']}
+          allowedRoles={['manager', 'teacher']}
           fallbackRedirect="/auth"
         >
           <ConfirmProvider>

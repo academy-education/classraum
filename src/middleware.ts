@@ -7,6 +7,11 @@ export function middleware(request: NextRequest) {
 
   // Define routes that require authentication
   const protectedRoutes = [
+    // /home is the role-aware entry point the app root redirects to; it
+    // must be listed here or the app-subdomain branch treats it as an
+    // unknown route and 307s it to /auth — the same fallthrough that bit
+    // /camp-program, /account/* and /pay/*.
+    '/home',
     '/dashboard', '/students', '/classrooms', '/sessions', '/assignments',
     // /camp-program: forgotten when camp mode shipped — the app-subdomain
     // branch 307'd it to /auth as an unknown route, so the sidebar's Camp
@@ -141,11 +146,16 @@ export function middleware(request: NextRequest) {
 
   // Handle app subdomain (app.domain.com or app.localhost)
   if (hostname?.startsWith('app.')) {
-    // Special handling for root path on app subdomain
+    // Special handling for root path on app subdomain.
+    //
+    // This used to redirect to /dashboard "which will then redirect based
+    // on auth/role" — but /dashboard is the MANAGER dashboard, not a
+    // router, so every role that entered through the app root landed
+    // there. A super admin got the manager dashboard, and because our
+    // super admins also hold a managers row it rendered real data rather
+    // than failing visibly. /home is the actual role-aware entry point.
     if (url.pathname === '/') {
-      // Redirect to dashboard (which will then redirect based on auth/role)
-      const dashboardUrl = new URL('/dashboard', url)
-      return NextResponse.redirect(dashboardUrl)
+      return NextResponse.redirect(new URL('/home', url))
     }
 
     // Redirect marketing routes to main domain (except root which we handle above)
