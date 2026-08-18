@@ -67,3 +67,6 @@ supabase/.temp/
 # Pushed once by accident (git add -A) in f60c07c; untracked immediately after.
 # Distributing ETS test content is a decision for a human, not a glob.
 scripts/study-bank/ets-reference-v1.json
+
+# Holds a Supabase personal access token — never commit
+.mcp.json
