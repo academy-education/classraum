@@ -7,6 +7,7 @@ import Header from "@/components/shared/Header"
 import Footer from "@/components/shared/Footer"
 import { useTranslation } from "@/hooks/useTranslation"
 import { CARD, CARD_HOVER, WRAP, ts, useReveal } from "@/components/marketing/ui"
+import { MiniReports, MiniCalendar, MiniComms } from "@/components/marketing/ProductMocks"
 
 export default function PricingPage() {
   const { t, tList, language } = useTranslation()
@@ -53,10 +54,13 @@ export default function PricingPage() {
     }
   ]
 
+  /* Each claim now carries the screen that backs it — the same DOM
+     replicas the homepage and /features use, so a director sees the
+     actual product rather than three icons and an adjective. */
   const benefits = [
-    { key: "aiManagement", Icon: Sparkles },
-    { key: "unifiedPlatform", Icon: Layers },
-    { key: "expertSupport", Icon: HeadphonesIcon },
+    { key: "aiManagement", Icon: Sparkles, Mock: MiniReports, shot: "landing.home.shots.reports" },
+    { key: "unifiedPlatform", Icon: Layers, Mock: MiniCalendar, shot: "landing.home.shots.sessions" },
+    { key: "expertSupport", Icon: HeadphonesIcon, Mock: MiniComms, shot: "landing.aboutExtras.screens.messages" },
   ]
 
   // Set the correct app URL based on environment
@@ -192,13 +196,16 @@ export default function PricingPage() {
             <p className="hv4-fade text-gray-500 leading-[1.75]">{ts(t, 'pricing.benefits.subtitle')}</p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            {benefits.map(({ key, Icon }, n) => (
+            {benefits.map(({ key, Icon, Mock, shot }, n) => (
               <div
                 key={key}
                 className={`${CARD} ${CARD_HOVER} hv4-fade group relative overflow-hidden p-7 pt-8 flex flex-col`}
                 style={{ transitionDelay: `${n * 70}ms` }}
               >
                 <span className="absolute inset-x-0 top-0 h-[3px] bg-[linear-gradient(90deg,#2885e8,#00D0AE)] opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                <div className="rounded-xl overflow-hidden ring-1 ring-gray-100 h-[172px] mb-5 transition-transform duration-300 group-hover:-translate-y-0.5">
+                  <Mock t={t} label={ts(t, shot)} />
+                </div>
                 <div className="flex items-center justify-between mb-5">
                   <span className="w-11 h-11 rounded-xl bg-[linear-gradient(140deg,rgba(40,133,232,0.14),rgba(0,208,174,0.14))] ring-1 ring-primary/15 text-primary flex items-center justify-center transition-transform duration-300 group-hover:scale-105">
                     <Icon size={20} strokeWidth={2.2} />

@@ -3,24 +3,31 @@
 import { Button } from "@/components/ui/button"
 import {
   CheckCircle, FileText, Headphones, Mic,
-  Target, NotebookPen, Repeat, CalendarCheck, Flame, Zap, Trophy, Building2,
-  Gift, MonitorSmartphone, CalendarX2
+  Target, NotebookPen, Repeat, CalendarCheck, Flame, Zap, Trophy, Building2
 } from "lucide-react"
 import { useState, useEffect } from "react"
 import Link from "next/link"
 import Header from "@/components/shared/Header"
 import Footer from "@/components/shared/Footer"
 import { useTranslation } from "@/hooks/useTranslation"
-import { StudyPhoneMock, NotebookScreen } from "@/components/marketing/ProductMocks"
+import { StudyPhoneMock, NotebookScreen, ReviewQueueScreen, DailyChallengeScreen } from "@/components/marketing/ProductMocks"
 import { CARD, CARD_HOVER, WRAP, ts, useReveal, NightBadge, NightRailMark, TEAL_TEXT } from "@/components/marketing/ui"
 import { STUDY_PLANS } from "@/lib/study/plans"
 
 const TEST_FAMILIES = ["SAT", "TOEFL", "TOEIC", "IELTS", "KSAT"]
 const P = "landing.studyPage."
 
+/* The three Review surfaces, paired with the card that selects them. */
+const REVIEW_SCREENS = [
+  { key: "notebook", Icon: NotebookPen, Screen: NotebookScreen },
+  { key: "srs", Icon: Repeat, Screen: ReviewQueueScreen },
+  { key: "daily", Icon: CalendarCheck, Screen: DailyChallengeScreen },
+] as const
+
 export default function StudyLandingPage() {
   const { t, language } = useTranslation()
   const [appUrl, setAppUrl] = useState("https://app.classraum.com")
+  const [shown, setShown] = useState<(typeof REVIEW_SCREENS)[number]["key"]>("notebook")
   useReveal()
 
   // Set the correct app URL based on environment
@@ -72,23 +79,9 @@ export default function StudyLandingPage() {
                 </Button>
               </a>
             </div>
-            {/* Three identical check marks said nothing the words didn't.
-                Each claim now carries its own glyph in a teal chip, so the
-                row reads as three distinct promises. */}
-            <div className="flex flex-col gap-3 mt-8 text-[13px] text-[#c3d5e6]">
-              {([
-                { k: "freeTrial", Icon: Gift },
-                { k: "anyDevice", Icon: MonitorSmartphone },
-                { k: "cancelAnytime", Icon: CalendarX2 },
-              ] as const).map(({ k, Icon }) => (
-                <span key={k} className="flex items-center gap-2.5">
-                  <span className="w-7 h-7 rounded-lg bg-[#00D0AE]/[0.13] ring-1 ring-[#00D0AE]/25 text-[#5FE9D0] flex items-center justify-center shrink-0">
-                    <Icon size={14} strokeWidth={2.2} />
-                  </span>
-                  {ts(t, `${P}hero.features.${k}`)}
-                </span>
-              ))}
-            </div>
+            {/* The free-trial / any-device / cancel-anytime row was
+                removed at Andy's request (2026-08-18). Its locale keys
+                (landing.studyPage.hero.features.*) are left in place. */}
           </div>
           <div className="min-w-0">
             <StudyPhoneMock t={t} label={ts(t, "landing.home.shots.study")} className="max-w-[260px] mx-auto" />
@@ -145,34 +138,72 @@ export default function StudyLandingPage() {
               </h2>
               <p className="hv4-fade text-[#9fb3c8] leading-[1.75] max-w-[56ch] mb-8">{ts(t, P + "review.description")}</p>
 
-              {/* The claim, then the screen that makes it. The notebook is
-                  the feature students actually come back for, so this
-                  section shows the shipping surface rather than a phone
-                  thumbnail too small to read. */}
+              {/* The claim, then the screen that makes it — and the three
+                  claims are selectable, so the section demonstrates the
+                  product instead of describing it. Each card is a real
+                  button (keyboard-reachable, aria-pressed); the panel
+                  cross-fades and lifts on change, and the whole exchange
+                  is inert under prefers-reduced-motion. */}
               <div className="grid lg:grid-cols-[1fr_400px] gap-6 lg:gap-8 items-start">
                 <div className="grid sm:grid-cols-3 lg:grid-cols-1 gap-4">
-                  {[
-                    { key: "notebook", Icon: NotebookPen },
-                    { key: "srs", Icon: Repeat },
-                    { key: "daily", Icon: CalendarCheck },
-                  ].map(({ key, Icon }) => (
-                    <div
-                      key={key}
-                      className="hv4-fade group rounded-2xl bg-white/[0.055] ring-1 ring-white/10 p-5 transition-colors duration-200 hover:bg-white/[0.08] hover:ring-[#00D0AE]/25"
-                    >
-                      <span className="relative w-11 h-11 rounded-xl bg-[linear-gradient(140deg,rgba(0,208,174,0.28),rgba(0,208,174,0.10))] ring-1 ring-[#00D0AE]/30 text-[#5FE9D0] flex items-center justify-center mb-3.5 shadow-[0_8px_20px_-10px_rgba(0,208,174,0.6)] transition-transform duration-300 group-hover:scale-105">
-                        <Icon size={19} strokeWidth={2.1} />
-                      </span>
-                      <h3 className="text-[14.5px] font-semibold text-white mb-1.5">{ts(t, `${P}review.items.${key}.title`)}</h3>
-                      <p className="text-[13px] text-[#9fb3c8] leading-relaxed">{ts(t, `${P}review.items.${key}.description`)}</p>
-                    </div>
-                  ))}
+                  {REVIEW_SCREENS.map(({ key, Icon }) => {
+                    const active = key === shown
+                    return (
+                      <button
+                        key={key}
+                        type="button"
+                        onClick={() => setShown(key)}
+                        aria-pressed={active}
+                        className={`hv4-fade group text-left rounded-2xl ring-1 p-5 transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00D0AE] ${
+                          active
+                            ? "bg-white/[0.10] ring-[#00D0AE]/45 shadow-[0_18px_40px_-24px_rgba(0,208,174,0.75)] lg:translate-x-1"
+                            : "bg-white/[0.045] ring-white/10 hover:bg-white/[0.08] hover:ring-[#00D0AE]/25"
+                        }`}
+                      >
+                        <span
+                          className={`relative w-11 h-11 rounded-xl ring-1 flex items-center justify-center mb-3.5 transition-all duration-300 ${
+                            active
+                              ? "bg-[linear-gradient(140deg,#3DE8CB,#00B39A)] ring-[#00D0AE]/50 text-[#06283f] shadow-[0_10px_24px_-10px_rgba(0,208,174,0.9)] scale-105"
+                              : "bg-[linear-gradient(140deg,rgba(0,208,174,0.22),rgba(0,208,174,0.08))] ring-[#00D0AE]/25 text-[#5FE9D0] group-hover:scale-105"
+                          }`}
+                        >
+                          <Icon size={19} strokeWidth={2.1} />
+                        </span>
+                        <h3 className="text-[14.5px] font-semibold text-white mb-1.5">{ts(t, `${P}review.items.${key}.title`)}</h3>
+                        <p className="text-[13px] text-[#9fb3c8] leading-relaxed">{ts(t, `${P}review.items.${key}.description`)}</p>
+                        <span
+                          className={`block h-px mt-4 bg-gradient-to-r from-[#00D0AE] to-transparent transition-all duration-500 ${
+                            active ? "w-full opacity-100" : "w-0 opacity-0"
+                          }`}
+                        />
+                      </button>
+                    )
+                  })}
                 </div>
-                <NotebookScreen
-                  t={t}
-                  label={ts(t, P + "review.items.notebook.title")}
-                  className="hv4-fade w-full max-lg:max-w-[440px] max-lg:mx-auto"
-                />
+
+                {/* All three panels occupy ONE grid cell, so the frame is
+                    as tall as the tallest screen and never jumps when the
+                    selection changes. The incoming panel waits 120ms so
+                    the outgoing one is nearly gone before it arrives —
+                    without that the two read as a smear mid-fade. */}
+                <div className="grid w-full max-lg:max-w-[440px] max-lg:mx-auto [&>*]:col-start-1 [&>*]:row-start-1">
+                  {REVIEW_SCREENS.map(({ key, Screen }) => {
+                    const active = key === shown
+                    return (
+                      <div
+                        key={key}
+                        aria-hidden={!active}
+                        className={`transition-all ease-out motion-reduce:transition-none ${
+                          active
+                            ? "opacity-100 translate-y-0 scale-100 duration-500 delay-[120ms]"
+                            : "opacity-0 translate-y-3 scale-[0.98] pointer-events-none duration-200"
+                        }`}
+                      >
+                        <Screen t={t} label={ts(t, `${P}review.items.${key}.title`)} className="hv4-fade w-full" />
+                      </div>
+                    )
+                  })}
+                </div>
               </div>
             </div>
           </div>

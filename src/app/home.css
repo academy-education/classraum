@@ -230,3 +230,88 @@
     animation: none;
   }
 }
+
+/* ── /features "everything else" grid ──────────────────────────────
+ * A drifting aurora behind the cards, and per-card glyphs that animate
+ * only while their own card is hovered. At rest nothing moves except
+ * the two aurora blobs, which are slow enough to read as light rather
+ * than motion. All of it stops under prefers-reduced-motion. */
+.ft-aurora {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(64px);
+  pointer-events: none;
+}
+.ft-aurora-a {
+  width: 460px;
+  height: 320px;
+  left: -120px;
+  top: 40px;
+  background: rgba(40, 133, 232, 0.13);
+  animation: ft-drift-a 22s ease-in-out infinite;
+}
+.ft-aurora-b {
+  width: 420px;
+  height: 300px;
+  right: -140px;
+  bottom: 0;
+  background: rgba(0, 208, 174, 0.12);
+  animation: ft-drift-b 26s ease-in-out infinite;
+}
+@keyframes ft-drift-a {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+  50% { transform: translate3d(60px, -30px, 0) scale(1.12); }
+}
+@keyframes ft-drift-b {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+  50% { transform: translate3d(-50px, -40px, 0) scale(1.08); }
+}
+
+.ft-thread { opacity: 0.55; }
+.group:hover .ft-thread { animation: ft-slide 1.5s ease-in-out infinite; }
+@keyframes ft-slide {
+  0%, 100% { transform: translateX(0); opacity: 0.55; }
+  50% { transform: translateX(7px); opacity: 1; }
+}
+
+.ft-wave { opacity: 0.4; }
+.group:hover .ft-wave { animation: ft-ping 1.9s ease-out infinite; }
+@keyframes ft-ping {
+  0% { opacity: 0.9; transform: scale(0.55); transform-origin: 34px 52px; }
+  70%, 100% { opacity: 0; transform: scale(1.15); transform-origin: 34px 52px; }
+}
+
+.group:hover .ft-orbit { animation: ft-rotate 9s linear infinite; }
+.group:hover .ft-spin { animation: ft-rotate 12s linear infinite; }
+@keyframes ft-rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.ft-lid { transition: transform 0.35s cubic-bezier(0.34, 1.4, 0.64, 1); }
+.group:hover .ft-lid { transform: translateY(-7px) rotate(-3deg); }
+
+.group:hover .ft-pulse { animation: ft-breathe 2.4s ease-in-out infinite; }
+@keyframes ft-breathe {
+  0%, 100% { transform: scale(1); opacity: 0.9; }
+  50% { transform: scale(1.09); opacity: 0.45; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ft-aurora,
+  .ft-thread,
+  .ft-wave,
+  .ft-orbit,
+  .ft-spin,
+  .ft-pulse,
+  .group:hover .ft-thread,
+  .group:hover .ft-wave,
+  .group:hover .ft-orbit,
+  .group:hover .ft-spin,
+  .group:hover .ft-pulse {
+    animation: none;
+  }
+  .ft-wave { opacity: 0.5; }
+  .ft-lid { transition: none; }
+  .group:hover .ft-lid { transform: none; }
+}

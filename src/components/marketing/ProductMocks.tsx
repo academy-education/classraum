@@ -764,6 +764,106 @@ export function NotebookScreen({ t, label, className = "" }: { t: TFunc; label: 
   )
 }
 
+/* The other two Review surfaces, at the same fidelity as NotebookScreen
+ * and sharing its frame, so switching between the three reads as one
+ * app rather than three illustrations. Copy comes from the app's own
+ * study.review.* keys wherever the real screen has a string for it. */
+export function ReviewQueueScreen({ t, label, className = "" }: { t: TFunc; label: string; className?: string }) {
+  return (
+    <div role="img" aria-label={label} className={`rounded-[26px] bg-[#f6f8fb] ring-1 ring-gray-200/70 p-4 sm:p-5 shadow-[0_24px_60px_-28px_rgba(22,62,100,0.45)] ${className}`}>
+      <div className="flex items-center justify-between mb-3.5">
+        <h4 className="text-[17px] font-semibold tracking-tight text-gray-900">{t("study.review.title")}</h4>
+        <span className="inline-flex items-center gap-1.5 h-8 px-3 rounded-full bg-indigo-50 ring-1 ring-indigo-100 text-[11.5px] font-semibold text-indigo-700">
+          <Shuffle size={12} />
+          {t(NB + "interleaved")}
+        </span>
+      </div>
+
+      <div className="rounded-2xl bg-white ring-1 ring-gray-200/70 shadow-[0_1px_2px_rgba(0,0,0,0.03)] px-4 py-5 text-center">
+        <span className="block text-[10px] font-semibold uppercase tracking-[0.10em] text-gray-400 mb-3">
+          {t(NB + "cardTopic")}
+        </span>
+        <p className="text-[15px] font-semibold text-gray-900 leading-snug mb-4">{t(NB + "cardFront")}</p>
+        <span className="inline-flex items-center gap-1.5 text-[11.5px] font-medium text-gray-400">
+          <RefreshCw size={11} />
+          {t("study.review.tapToFlip")}
+        </span>
+      </div>
+
+      <div className="flex items-center justify-between mt-3 mb-2 px-0.5">
+        <span className="text-[11px] font-semibold text-gray-500 tabular-nums">{t(NB + "queuePos")}</span>
+        <span className="text-[11px] font-semibold text-[#00806c] tabular-nums">{t(NB + "queueDue")}</span>
+      </div>
+      <span className="block h-1.5 rounded-full bg-gray-200/70 overflow-hidden">
+        <span className="block h-full w-[45%] rounded-full bg-gradient-to-r from-[#2885e8] to-[#00D0AE]" />
+      </span>
+
+      <div className="mt-3 rounded-xl bg-white ring-1 ring-gray-200/70 px-3 py-2.5 flex items-start gap-2">
+        <Clock size={13} className="text-gray-400 shrink-0 mt-0.5" />
+        <span className="text-[11.5px] text-gray-600 leading-relaxed">{t(NB + "whyBack")}</span>
+      </div>
+    </div>
+  )
+}
+
+export function DailyChallengeScreen({ t, label, className = "" }: { t: TFunc; label: string; className?: string }) {
+  const opts = [0, 1, 2, 3]
+  return (
+    <div role="img" aria-label={label} className={`rounded-[26px] bg-[#f6f8fb] ring-1 ring-gray-200/70 p-4 sm:p-5 shadow-[0_24px_60px_-28px_rgba(22,62,100,0.45)] ${className}`}>
+      <div className="flex items-center justify-between mb-3.5">
+        <h4 className="text-[17px] font-semibold tracking-tight text-gray-900">{t(NB + "dailyTitle")}</h4>
+        <span className="inline-flex items-center gap-1.5 h-8 px-3 rounded-full bg-amber-50 ring-1 ring-amber-200 text-[11.5px] font-bold text-amber-700">
+          <Zap size={12} />
+          {t(NB + "dailyXp")}
+        </span>
+      </div>
+
+      <div className="flex items-center gap-1.5 mb-3">
+        {[0, 1, 2, 3, 4].map((i) => (
+          <span
+            key={i}
+            className={`h-1.5 flex-1 rounded-full ${i < 2 ? "bg-[#00D0AE]" : i === 2 ? "bg-primary" : "bg-gray-200/80"}`}
+          />
+        ))}
+      </div>
+
+      <div className="rounded-2xl bg-white ring-1 ring-gray-200/70 shadow-[0_1px_2px_rgba(0,0,0,0.03)] p-4">
+        <div className="flex items-center justify-between mb-2.5">
+          <span className="text-[10px] font-semibold uppercase tracking-[0.10em] text-gray-500">{t(NB + "dailyTopic")}</span>
+          <span className="text-[10px] font-bold text-primary bg-blue-50 rounded-full px-2 py-0.5 tabular-nums">
+            {t(NB + "dailyPos")}
+          </span>
+        </div>
+        <p className="text-[13.5px] font-semibold text-gray-900 leading-snug mb-3">{t(NB + "dailyQ")}</p>
+        <div className="space-y-1.5">
+          {opts.map((i) => (
+            <span
+              key={i}
+              className={`flex items-center gap-2.5 rounded-xl px-3 py-2 text-[12.5px] font-medium ring-1 ${
+                i === 1 ? "bg-primary/[0.07] ring-primary/40 text-primary" : "bg-white ring-gray-200/70 text-gray-700"
+              }`}
+            >
+              <b
+                className={`w-4 h-4 rounded-full text-[9px] flex items-center justify-center font-bold ${
+                  i === 1 ? "bg-primary text-white" : "bg-gray-100 text-gray-500"
+                }`}
+              >
+                {"ABCD"[i]}
+              </b>
+              {t(NB + "dailyOpts." + i)}
+            </span>
+          ))}
+        </div>
+      </div>
+
+      <div className="mt-3 rounded-xl bg-white ring-1 ring-gray-200/70 px-3 py-2.5 flex items-center gap-2">
+        <Target size={13} className="text-[#00806c] shrink-0" />
+        <span className="text-[11.5px] text-gray-600">{t(NB + "dailyWhy")}</span>
+      </div>
+    </div>
+  )
+}
+
 export function MiniProgress({ t, label }: { t: TFunc; label: string }) {
   return (
     <div role="img" aria-label={label} className="h-full bg-[#f8fafc] p-3.5 flex flex-col justify-center gap-2 text-left">

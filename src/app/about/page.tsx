@@ -118,12 +118,12 @@ function WeekBar({ t, variant }: { t: TFunc; variant: "before" | "after" }) {
   const dot = before ? "bg-rose-400" : "bg-rose-200"
   return (
     <div className="mt-6">
-      <div className="flex items-center justify-between mb-2">
+      {/* The right-hand "Admin" / "Automated" tag was dropped at Andy's
+          request (2026-08-18) — the legend below the bar already names
+          both bands, so it was saying the same thing twice. */}
+      <div className="mb-2">
         <span className="text-[10.5px] font-bold uppercase tracking-[0.08em] text-gray-500">
           {ts(t, `landing.aboutExtras.week.${before ? "today" : "after"}`)}
-        </span>
-        <span className={`text-[10.5px] font-bold ${before ? "text-rose-600" : "text-[#00806c]"}`}>
-          {ts(t, `landing.aboutExtras.week.${before ? "admin" : "auto"}`)}
         </span>
       </div>
       <div className="flex h-3.5 rounded-full overflow-hidden bg-gray-100 ring-1 ring-black/[0.04]">
