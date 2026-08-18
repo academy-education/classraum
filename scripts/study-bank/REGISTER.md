@@ -856,3 +856,20 @@ punctuation asymmetry, concessive pivot, option-family balance — and
 each caught the tell it was built for while missing the next one. The
 blind attack is the gate, a human sitting is the confirmation, and the
 structural checks are pre-flight only. See CLAUDE.md.
+
+### MC blind re-attack, all five non-CR TOEFL MC types (2026-08-18)
+Fresh files-only blind attack (nothing written to study_item_attacks):
+Academic Passage 100.0%/+70.0, Academic Talk 99.2%/+70.0, Daily Life
+95.5%/+66.2, Conversation 93.1%/+63.1, Announcement 93.9%/+61.7 —
+controls 29-32%, scorer break-tested (shifted key → 23-28%). The
+2026-07-31 finding stands after all recent bank work; no cohort of any
+type is clean, including v3-claude. New structural finding: Announcement
+sibling items leak each other's answers (verbatim option echoes across
+items from the same announcement; solver estimate 30-40 of 121 items
+solvable by cross-reference alone). Rebuild order: Academic Talk first
+(Listening construct fully voided, every cohort ≥93%, keys are
+textbook-true facts), then Academic Passage (same defect, larger);
+Announcement leakage is separately mitigable by never seating siblings
+in one form. Artifacts: mcatk-*.{blind,key,sample,solver-*}.json,
+mcatk-prepare.mjs, mcatk-score.mjs, MC-ATTACK-2026-08-18.md. Human
+sitting remains the verdict instrument (B4).
