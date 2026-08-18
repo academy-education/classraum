@@ -1068,3 +1068,35 @@ to fail and the FIRST to fail against the defect it was purpose-built for.
 The next proposal for a cheap structural check should have to argue against
 six negatives before anyone builds it.
 b6-b8 still UNAUTHORED, now unblocked pending the redesigned-pivot pilot.
+
+### B5 — cofounder human sitting on cr-v7 (2026-08-18) — CLEAR, plus a 25% exclusivity flag rate
+Run `cr-v7-2026-08-18`, 40 items drawn from the 132 shipped cr-v7 items,
+keys dealt flat 10/10/10/10 so control is exactly 25.0%. support@ sat all
+40 blind then verdicted all 40, in 29 minutes.
+
+**Blind: 8/40 = 20.0% vs 25.0% control = margin -5.0. CLEAR.** A human
+reading only the options scored BELOW chance, which is the verdict
+instrument agreeing with the model-side attacks (pilot -16.7, sample
++1.4, cohesion +5.6). The shipped cohort is not guessable without the
+audio. This closes the question the CR-V7 rebuild was commissioned to
+answer.
+
+**His dash hypothesis is REFUTED — measured, not argued.** He noted
+twice that options containing "-" looked like the answer. Over the whole
+132-item population: key contains a dash 20.5%, distractors 20.7% —
+indistinguishable. "Pick a dashed option" applies to 49 items and scores
+27.0% against 25% chance (+2.0, negligible). Within his own 40 the
+direction is REVERSED (key 17.5%, distractors 24.2%), so even the local
+sample doesn't support it; it was a run of coincidences noticed twice.
+Recorded because a human reviewer's impression is a hypothesis, and this
+one cost one script to kill. Do not act on it.
+
+**The real finding is quality, not guessability: 10 of 40 (25%) were
+flagged non-unique** — 4 `broken`, 6 `alternative`, all `artificial`.
+His notes are consistent in kind: "the transcript is too underspecified
+to uniquely justify C", "A is also reasonable", "they are all sort of
+plausible". So the items resist the blind attack but a with-source human
+finds a defensible second answer in a quarter of them. That is the
+exclusivity axis, and the model-side exclusivity pass did not catch it at
+this rate. NOTE the decode trap before touching any item: his letters are
+HIS shuffled letters — decode via study_item_reviews.shown_order.
