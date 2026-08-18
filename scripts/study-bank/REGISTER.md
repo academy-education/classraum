@@ -888,3 +888,24 @@ lecture (TMR clone), a dodo-tree clone, two sibling leaks, and a
 slot-locked verdict template BEFORE freeze. Phase 2 = scale in 6-8 lecture
 batches, same pipeline + with-source exclusivity pass; human sitting
 before any swap. Files: ATV2-DESIGN.md, ATV2-PILOT-RESULT.md, atv2-*.
+
+### AT-V2 tranche 1 CLEARED — 3 batches, 96 items, margins -12.5/-5.2/+3.1; one lecture quarantined by the NEW exclusivity pass (2026-08-18)
+Phase 2 first tranche, full pipeline per batch (ATV2-TRANCHE1-RESULT.md):
+different authors per batch, fresh reviewers each round with CROSS-BATCH
+scope, freeze (shas recorded), pre-registered seeds atv2-b{1,2,3}-20260818,
+transcripts post-selection, checks break-tested in batch mode, 3-solver
+blind attack, --shift scorer break-tests. All three CLEAR (<= +25):
+b1 -12.5, b2 -5.2, b3 +3.1 (control 25.0 by flat 8/8/8/8 deals). Named
+heuristics counted: nuance-recipe 2/6, "world-knowledge-certain" b2 item 3
+wrong for all 3 solvers; only b3's draw-coincident road-narrative chain
+paid (2/3 each) — watch narrative coherence, not repaired (frozen, in
+margin). NEW with-source exclusivity pass (grader blind to key, 32/32
+key-agreement in all batches) caught what the blind attack cannot: one
+listener-defensible second answer -> lecture atv2-b1-p4 (Marine Biology,
+items 13-16) QUARANTINED whole, dropped not repaired. Reviewer rounds
+also killed a fresh Rothamsted paradigm-clone pivot (b2-p7 q1) and a
+cross-batch duplicated ink-chronology slate (b1-p1/q1 ~ b2-p4/q2):
+different authors still converge on slates — the cross-batch review pass
+is load-bearing. Cleared toward ~276: 24 (pilot) + 28 + 32 + 32 = 116.
+Nothing banked, nothing committed, DB and blueprint untouched; human
+sitting + TTS pass remain before any swap. Files: atv2-b{1,2,3}-*.

@@ -20,6 +20,13 @@
 import { readFileSync } from 'node:fs'
 
 const DIR = '/Users/andylee/Downloads/saas/classraum/scripts/study-bank'
+// --batch bN: check atv2-bN-items.json (8 lectures / 32 rows) instead of the
+// pilot atv2-items.json. All thresholds scale off the row count.
+const bArg = process.argv.indexOf('--batch')
+const BATCH = bArg > -1 ? process.argv[bArg + 1] : null
+if (bArg > -1 && !/^b[0-9]+$/.test(BATCH)) { console.error('FAIL: bad --batch'); process.exit(1) }
+const ITEMS = BATCH ? `atv2-${BATCH}-items.json` : 'atv2-items.json'
+const NITEMS = BATCH ? 32 : 24
 const norm = (s) => s
   .replace(/[‘’ʼ]/g, "'")
   .replace(/[“”]/g, '"')
@@ -87,9 +94,9 @@ if (process.argv.includes('--fixture')) {
   process.exit(1)
 }
 
-const bank = JSON.parse(readFileSync(`${DIR}/atv2-items.json`, 'utf8'))
+const bank = JSON.parse(readFileSync(`${DIR}/${ITEMS}`, 'utf8'))
 const rows = bank.rows
-if (rows.length !== 24) { console.error(`FAIL: expected 24 rows, got ${rows.length}`); process.exit(1) }
+if (rows.length !== NITEMS) { console.error(`FAIL: expected ${NITEMS} rows, got ${rows.length}`); process.exit(1) }
 let failed = false
 const flunk = (msg) => { console.error('FAIL: ' + msg); failed = true }
 
@@ -100,13 +107,13 @@ for (const row of rows) transcripts[row._meta.lecture] = row.item.passage
 // 1. kill quotes
 const kq = checkKillQuotes(rows, transcripts)
 if (kq.length) kq.forEach(flunk)
-else console.log(`kill quotes: 72/72 anchored (${rows.length} items x 3)`)
+else console.log(`kill quotes: ${rows.length*3}/${rows.length*3} anchored (${rows.length} items x 3)`)
 
 // 2. letter spread
 const spread = {}
 for (const row of rows) spread[row._meta.key_letter] = (spread[row._meta.key_letter] ?? 0) + 1
-if (!['A', 'B', 'C', 'D'].every(l => spread[l] === 6)) flunk(`letter spread not flat: ${JSON.stringify(spread)}`)
-else console.log('letter spread: 6/6/6/6')
+if (!['A', 'B', 'C', 'D'].every(l => spread[l] === NITEMS / 4)) flunk(`letter spread not flat: ${JSON.stringify(spread)}`)
+else console.log(`letter spread: ${['A','B','C','D'].map(l=>spread[l]).join('/')}`)
 
 // 3. key length rank
 const rankCount = [0, 0, 0, 0]
@@ -117,7 +124,7 @@ for (const row of rows) {
   rankCount[rank]++
 }
 console.log(`key length rank (longest..shortest): ${rankCount.join('/')}`)
-if (rankCount.some(c => c > 24 * 0.4)) flunk('a length-rank slot exceeds 40% of keys')
+if (rankCount.some(c => c > NITEMS * 0.4)) flunk('a length-rank slot exceeds 40% of keys')
 
 // 4. hedge / absolute balance
 const HEDGES = ['may ', 'might ', 'probably', 'perhaps', 'somewhat', 'largely', 'mostly', 'mainly', 'tends ', 'suggests', 'appears']

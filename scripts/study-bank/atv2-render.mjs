@@ -19,7 +19,20 @@ import { readFileSync, writeFileSync } from 'node:fs'
 import { createHash } from 'node:crypto'
 
 const DIR = '/Users/andylee/Downloads/saas/classraum/scripts/study-bank'
-const SEED = 'atv2-20260818'
+// --batch bN switches to Phase 2 batch mode: 8 lectures, per-batch seed
+// (pre-registered literals atv2-b1-20260818 etc.), per-batch file names.
+// Without --batch everything is byte-identical to the pilot pipeline.
+const bArg = process.argv.indexOf('--batch')
+const BATCH = bArg > -1 ? process.argv[bArg + 1] : null
+if (bArg > -1 && !/^b[0-9]+$/.test(BATCH)) { console.error('FAIL: bad --batch'); process.exit(1) }
+const PREFIX = BATCH ? `atv2-${BATCH}` : 'atv2'
+const SEED = BATCH ? `atv2-${BATCH}-20260818` : 'atv2-20260818'
+const NLECT = BATCH ? 8 : 6
+const NITEMS = NLECT * 4
+const PER_LETTER = NITEMS / 4
+const BLIND = BATCH ? `${PREFIX}-blind.json` : 'atv2-pilot.blind.json'
+const KEYF = BATCH ? `${PREFIX}-key.json` : 'atv2-pilot.key.json'
+const COHORT = BATCH ? `at-v2-${BATCH}` : 'at-v2-pilot'
 const LETTERS = ['A', 'B', 'C', 'D']
 
 function rng(seed) {
@@ -35,13 +48,13 @@ const shuffle = (arr, rand) => {
 }
 const sha256 = (buf) => createHash('sha256').update(buf).digest('hex')
 
-const quadsRaw = readFileSync(`${DIR}/atv2-quads.json`)
+const quadsRaw = readFileSync(`${DIR}/${PREFIX}-quads.json`)
 const quads = JSON.parse(quadsRaw)
 const quadsSha = sha256(quadsRaw)
 
 // ---- structural validation (always) ----
 if (quads.seed !== SEED) fail(`quads seed ${quads.seed} != pre-registered ${SEED}`)
-if (!Array.isArray(quads.lectures) || quads.lectures.length !== 6) fail('need exactly 6 lectures')
+if (!Array.isArray(quads.lectures) || quads.lectures.length !== NLECT) fail(`need exactly ${NLECT} lectures`)
 for (const lec of quads.lectures) {
   if (!lec.id || !lec.topic || !['easy', 'medium', 'hard'].includes(lec.difficulty)) fail(`${lec.id}: bad header`)
   if (!Array.isArray(lec.pivots) || lec.pivots.length !== 4) fail(`${lec.id}: need exactly 4 pivots`)
@@ -72,7 +85,7 @@ if (mode === 'select') {
   }
   // flat letter deal: multiset of 6 of each key letter, seeded shuffle,
   // assigned in canonical item order -> control is exactly 25%.
-  const deal = shuffle(LETTERS.flatMap(l => [l, l, l, l, l, l]), rng(`${SEED}:letters`))
+  const deal = shuffle(LETTERS.flatMap(l => Array(PER_LETTER).fill(l)), rng(`${SEED}:letters`))
   items.forEach((it, i) => {
     const pick = picks[it.lid][it.pid]
     pick.key_letter = deal[i]
@@ -84,7 +97,7 @@ if (mode === 'select') {
   })
   const spread = {}
   for (const it of items) { const l = picks[it.lid][it.pid].key_letter; spread[l] = (spread[l] ?? 0) + 1 }
-  writeFileSync(`${DIR}/atv2-selection.json`, JSON.stringify({
+  writeFileSync(`${DIR}/${PREFIX}-selection.json`, JSON.stringify({
     seed: SEED, quads_sha256: quadsSha, selected_at: '2026-08-18', picks,
   }, null, 1))
   console.log('selection written. key letter spread:', spread)
@@ -92,10 +105,10 @@ if (mode === 'select') {
     console.log(lec.id, lec.pivots.map(p => `${p.id}=s${picks[lec.id][p.id].chosen}(${picks[lec.id][p.id].key_letter})`).join('  '))
   }
 } else if (mode === 'assemble') {
-  const sel = JSON.parse(readFileSync(`${DIR}/atv2-selection.json`, 'utf8'))
+  const sel = JSON.parse(readFileSync(`${DIR}/${PREFIX}-selection.json`, 'utf8'))
   if (sel.quads_sha256 !== quadsSha) fail(`FREEZE VIOLATION: quads sha ${quadsSha.slice(0, 12)} != selection's ${sel.quads_sha256.slice(0, 12)} — option text was edited after selection`)
   if (sel.seed !== SEED) fail('selection seed mismatch')
-  const spoken = JSON.parse(readFileSync(`${DIR}/atv2-spoken.json`, 'utf8'))
+  const spoken = JSON.parse(readFileSync(`${DIR}/${PREFIX}-spoken.json`, 'utf8'))
   const rows = []
   for (const lec of quads.lectures) {
     const sp = spoken[lec.id]
@@ -116,7 +129,7 @@ if (mode === 'select') {
       }
       rows.push({
         passage_group_id: lec.id,
-        cohort: 'at-v2-pilot',
+        cohort: COHORT,
         difficulty: lec.difficulty,
         item: {
           type: 'multiple_choice',
@@ -138,12 +151,12 @@ if (mode === 'select') {
       })
     }
   }
-  if (rows.length !== 24) fail(`expected 24 rows, got ${rows.length}`)
-  writeFileSync(`${DIR}/atv2-items.json`, JSON.stringify({ seed: SEED, quads_sha256: quadsSha, rows }, null, 1))
-  console.log(`assembled ${rows.length} rows -> atv2-items.json`)
+  if (rows.length !== NITEMS) fail(`expected ${NITEMS} rows, got ${rows.length}`)
+  writeFileSync(`${DIR}/${PREFIX}-items.json`, JSON.stringify({ seed: SEED, quads_sha256: quadsSha, rows }, null, 1))
+  console.log(`assembled ${rows.length} rows -> ${PREFIX}-items.json`)
 } else if (mode === 'blind') {
-  const bank = JSON.parse(readFileSync(`${DIR}/atv2-items.json`, 'utf8'))
-  if (bank.rows.length !== 24) fail('items file must hold 24 rows')
+  const bank = JSON.parse(readFileSync(`${DIR}/${PREFIX}-items.json`, 'utf8'))
+  if (bank.rows.length !== NITEMS) fail(`items file must hold ${NITEMS} rows`)
   const order = shuffle(bank.rows, rng(`${SEED}:order`))
   const blind = {}, key = {}
   order.forEach((row, i) => {
@@ -155,9 +168,9 @@ if (mode === 'select') {
     key[n] = { letter: row._meta.key_letter, lecture: row._meta.lecture, pivot: row._meta.pivot, qtype: row._meta.qtype }
     if (row.item.choices[LETTERS.indexOf(row._meta.key_letter)] !== row.item.correct_answer) fail(`${n}: key letter does not point at correct_answer`)
   })
-  writeFileSync(`${DIR}/atv2-pilot.blind.json`, JSON.stringify(blind, null, 1))
-  writeFileSync(`${DIR}/atv2-pilot.key.json`, JSON.stringify(key, null, 1))
-  console.log('blind + key written (24 items)')
+  writeFileSync(`${DIR}/${BLIND}`, JSON.stringify(blind, null, 1))
+  writeFileSync(`${DIR}/${KEYF}`, JSON.stringify(key, null, 1))
+  console.log(`blind + key written (${NITEMS} items)`)
 } else {
   console.error('usage: atv2-render.mjs select|assemble|blind')
   process.exit(1)

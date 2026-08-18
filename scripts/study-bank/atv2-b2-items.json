@@ -1,0 +1,1478 @@
+{
+ "seed": "atv2-b2-20260818",
+ "quads_sha256": "6ee5a8efc8a513de7f3d96dee40b5b05e78bb925fd626ae852c98d5f384c230a",
+ "rows": [
+  {
+   "passage_group_id": "atv2-b2-p1",
+   "cohort": "at-v2-b2",
+   "difficulty": "medium",
+   "item": {
+    "type": "multiple_choice",
+    "blanks": null,
+    "prompt": "[Academic Talk — Materials Science] According to the professor, where did the fatigue tests show cracks in the coating first appearing?",
+    "choices": [
+     "Inside air pockets left behind while the coating cured",
+     "At the boundary between the coating and the metal beneath it",
+     "At spots where the coating had been laid on thickest",
+     "Along scratches picked up in handling before installation"
+    ],
+    "graphic": null,
+    "passage": "Transcript: Self-healing coatings — let's talk about where this field actually stands. Start with the fatigue tests. The crack mapping surprised people: failures showed up first wherever the applicators had laid the film on heaviest. The thick spots cracked first. The interface with the metal underneath held beautifully, the cured films came out essentially free of trapped air, and every panel was handled with lab gloves from oven to rig — so scratches never entered the picture. Thickness itself is the enemy. Now, Darex. You'll see that nineties coating cited in every new study, and here is the reason. It isn't chemistry — the new formulations share no polymer with it — and it isn't cautionary: Darex never failed in the field and sold well to the end. Nor am I here to draw a contrast between armoring and mending. The point is procedure: the new studies lifted their test protocols, salt-fog cycles and flex schedules, straight from the Darex program. Then the Marek group's report that healing fades after a few repair cycles. What I find telling is that their own follow-up trials couldn't reproduce the fading, and the group has quietly stopped citing it. Nobody else has seen it, their rig checked out fine, and it wasn't a moisture effect — humidity was controlled throughout. So where does this go first? Suspension bridges — the cables. Pipeline interiors need food-safe chemistry this resin will never pass, tower legs are cheap to repaint, and ship hulls face fouling problems this material doesn't address. Cables you cannot repaint without closing the bridge.",
+    "difficulty": "medium",
+    "explanation": "The crack mapping showed failures first wherever the film had been laid on heaviest — the thick spots cracked first.",
+    "listeningTask": "academic_talk",
+    "correct_answer": "At spots where the coating had been laid on thickest",
+    "passageGroupId": "atv2-b2-p1",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "distractor_rationales": [
+     {
+      "choice": "At the boundary between the coating and the metal beneath it",
+      "reason": "The boundary is exonerated: the interface \"with the metal underneath held beautifully\"."
+     },
+     {
+      "choice": "Inside air pockets left behind while the coating cured",
+      "reason": "No voids to crack from — the cured films came out \"essentially free of trapped air\"."
+     },
+     {
+      "choice": "Along scratches picked up in handling before installation",
+      "reason": "Every panel was \"handled with lab gloves\" from oven to rig, so pre-installation scratches never entered the picture."
+     }
+    ]
+   },
+   "_meta": {
+    "lecture": "atv2-b2-p1",
+    "pivot": "q1",
+    "qtype": "detail",
+    "chosen": 3,
+    "key_letter": "C"
+   }
+  },
+  {
+   "passage_group_id": "atv2-b2-p1",
+   "cohort": "at-v2-b2",
+   "difficulty": "medium",
+   "item": {
+    "type": "multiple_choice",
+    "blanks": null,
+    "prompt": "[Academic Talk — Materials Science] Why does the professor bring up Darex, a coating developed in the 1990s?",
+    "choices": [
+     "To describe a product whose failure left buyers wary of repair claims",
+     "To identify the coating whose test procedures the new studies borrowed",
+     "To contrast a coating built to resist damage with one built to mend it",
+     "To credit the source of the polymer the new coating builds on"
+    ],
+    "graphic": null,
+    "passage": "Transcript: Self-healing coatings — let's talk about where this field actually stands. Start with the fatigue tests. The crack mapping surprised people: failures showed up first wherever the applicators had laid the film on heaviest. The thick spots cracked first. The interface with the metal underneath held beautifully, the cured films came out essentially free of trapped air, and every panel was handled with lab gloves from oven to rig — so scratches never entered the picture. Thickness itself is the enemy. Now, Darex. You'll see that nineties coating cited in every new study, and here is the reason. It isn't chemistry — the new formulations share no polymer with it — and it isn't cautionary: Darex never failed in the field and sold well to the end. Nor am I here to draw a contrast between armoring and mending. The point is procedure: the new studies lifted their test protocols, salt-fog cycles and flex schedules, straight from the Darex program. Then the Marek group's report that healing fades after a few repair cycles. What I find telling is that their own follow-up trials couldn't reproduce the fading, and the group has quietly stopped citing it. Nobody else has seen it, their rig checked out fine, and it wasn't a moisture effect — humidity was controlled throughout. So where does this go first? Suspension bridges — the cables. Pipeline interiors need food-safe chemistry this resin will never pass, tower legs are cheap to repaint, and ship hulls face fouling problems this material doesn't address. Cables you cannot repaint without closing the bridge.",
+    "difficulty": "medium",
+    "explanation": "Darex is cited because the new studies lifted their test protocols straight from the Darex program.",
+    "listeningTask": "academic_talk",
+    "correct_answer": "To identify the coating whose test procedures the new studies borrowed",
+    "passageGroupId": "atv2-b2-p1",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "distractor_rationales": [
+     {
+      "choice": "To describe a product whose failure left buyers wary of repair claims",
+      "reason": "Darex was no cautionary tale — it \"never failed in the field\" and sold well to the end."
+     },
+     {
+      "choice": "To credit the source of the polymer the new coating builds on",
+      "reason": "Chemistry is ruled out: the new formulations \"share no polymer with it\"."
+     },
+     {
+      "choice": "To contrast a coating built to resist damage with one built to mend it",
+      "reason": "The professor disclaims the comparison outright — drawing \"a contrast between armoring and mending\" is exactly what he says he is not there to do."
+     }
+    ]
+   },
+   "_meta": {
+    "lecture": "atv2-b2-p1",
+    "pivot": "q2",
+    "qtype": "function",
+    "chosen": 0,
+    "key_letter": "B"
+   }
+  },
+  {
+   "passage_group_id": "atv2-b2-p1",
+   "cohort": "at-v2-b2",
+   "difficulty": "medium",
+   "item": {
+    "type": "multiple_choice",
+    "blanks": null,
+    "prompt": "[Academic Talk — Materials Science] What is the professor's view of the Marek group's report that the coating's healing ability fades after a few repair cycles?",
+    "choices": [
+     "He is convinced, since several labs have now observed the same fading",
+     "He thinks the fading is real but caused by moisture, not by the healing agent running out",
+     "He traces the finding to a fault in the Marek group's testing rig",
+     "He notes that the group's own later trials walked the claim back"
+    ],
+    "graphic": null,
+    "passage": "Transcript: Self-healing coatings — let's talk about where this field actually stands. Start with the fatigue tests. The crack mapping surprised people: failures showed up first wherever the applicators had laid the film on heaviest. The thick spots cracked first. The interface with the metal underneath held beautifully, the cured films came out essentially free of trapped air, and every panel was handled with lab gloves from oven to rig — so scratches never entered the picture. Thickness itself is the enemy. Now, Darex. You'll see that nineties coating cited in every new study, and here is the reason. It isn't chemistry — the new formulations share no polymer with it — and it isn't cautionary: Darex never failed in the field and sold well to the end. Nor am I here to draw a contrast between armoring and mending. The point is procedure: the new studies lifted their test protocols, salt-fog cycles and flex schedules, straight from the Darex program. Then the Marek group's report that healing fades after a few repair cycles. What I find telling is that their own follow-up trials couldn't reproduce the fading, and the group has quietly stopped citing it. Nobody else has seen it, their rig checked out fine, and it wasn't a moisture effect — humidity was controlled throughout. So where does this go first? Suspension bridges — the cables. Pipeline interiors need food-safe chemistry this resin will never pass, tower legs are cheap to repaint, and ship hulls face fouling problems this material doesn't address. Cables you cannot repaint without closing the bridge.",
+    "difficulty": "medium",
+    "explanation": "The professor finds it telling that the Marek group's own follow-up trials couldn't reproduce the fading and the group has quietly stopped citing it.",
+    "listeningTask": "academic_talk",
+    "correct_answer": "He notes that the group's own later trials walked the claim back",
+    "passageGroupId": "atv2-b2-p1",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "distractor_rationales": [
+     {
+      "choice": "He is convinced, since several labs have now observed the same fading",
+      "reason": "Far from multi-lab confirmation, \"Nobody else has seen it\"."
+     },
+     {
+      "choice": "He traces the finding to a fault in the Marek group's testing rig",
+      "reason": "The equipment explanation is closed off: \"their rig checked out fine\"."
+     },
+     {
+      "choice": "He thinks the fading is real but caused by moisture, not by the healing agent running out",
+      "reason": "Moisture is off the table — \"it wasn't a moisture effect\", since humidity was controlled throughout."
+     }
+    ]
+   },
+   "_meta": {
+    "lecture": "atv2-b2-p1",
+    "pivot": "q3",
+    "qtype": "attitude",
+    "chosen": 3,
+    "key_letter": "D"
+   }
+  },
+  {
+   "passage_group_id": "atv2-b2-p1",
+   "cohort": "at-v2-b2",
+   "difficulty": "medium",
+   "item": {
+    "type": "multiple_choice",
+    "blanks": null,
+    "prompt": "[Academic Talk — Materials Science] What does the professor suggest is likely to be the coating's first large-scale use?",
+    "choices": [
+     "The cables of suspension bridges",
+     "The legs of transmission towers",
+     "Ship hulls below the waterline",
+     "The interiors of water pipelines"
+    ],
+    "graphic": null,
+    "passage": "Transcript: Self-healing coatings — let's talk about where this field actually stands. Start with the fatigue tests. The crack mapping surprised people: failures showed up first wherever the applicators had laid the film on heaviest. The thick spots cracked first. The interface with the metal underneath held beautifully, the cured films came out essentially free of trapped air, and every panel was handled with lab gloves from oven to rig — so scratches never entered the picture. Thickness itself is the enemy. Now, Darex. You'll see that nineties coating cited in every new study, and here is the reason. It isn't chemistry — the new formulations share no polymer with it — and it isn't cautionary: Darex never failed in the field and sold well to the end. Nor am I here to draw a contrast between armoring and mending. The point is procedure: the new studies lifted their test protocols, salt-fog cycles and flex schedules, straight from the Darex program. Then the Marek group's report that healing fades after a few repair cycles. What I find telling is that their own follow-up trials couldn't reproduce the fading, and the group has quietly stopped citing it. Nobody else has seen it, their rig checked out fine, and it wasn't a moisture effect — humidity was controlled throughout. So where does this go first? Suspension bridges — the cables. Pipeline interiors need food-safe chemistry this resin will never pass, tower legs are cheap to repaint, and ship hulls face fouling problems this material doesn't address. Cables you cannot repaint without closing the bridge.",
+    "difficulty": "medium",
+    "explanation": "The professor picks suspension bridge cables, which cannot be repainted without closing the bridge.",
+    "listeningTask": "academic_talk",
+    "correct_answer": "The cables of suspension bridges",
+    "passageGroupId": "atv2-b2-p1",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "distractor_rationales": [
+     {
+      "choice": "The interiors of water pipelines",
+      "reason": "Pipelines are excluded on regulatory grounds: interiors \"need food-safe chemistry this resin will never pass\"."
+     },
+     {
+      "choice": "The legs of transmission towers",
+      "reason": "The economics rule towers out — \"tower legs are cheap to repaint\"."
+     },
+     {
+      "choice": "Ship hulls below the waterline",
+      "reason": "Hulls \"face fouling problems this material doesn't address\"."
+     }
+    ]
+   },
+   "_meta": {
+    "lecture": "atv2-b2-p1",
+    "pivot": "q4",
+    "qtype": "inference",
+    "chosen": 0,
+    "key_letter": "A"
+   }
+  },
+  {
+   "passage_group_id": "atv2-b2-p2",
+   "cohort": "at-v2-b2",
+   "difficulty": "hard",
+   "item": {
+    "type": "multiple_choice",
+    "blanks": null,
+    "prompt": "[Academic Talk — Medieval Literature] What does the professor say about the glosses in the margins of the Stavenow codex?",
+    "choices": [
+     "They were entered by two different hands working decades apart",
+     "They were copied from the exemplar together with the text itself",
+     "They are an early owner's finding aid rather than commentary",
+     "They were added by a reader correcting the scribe's dialect forms"
+    ],
+    "graphic": null,
+    "passage": "Transcript: The Lay of Ansfrid survives in one manuscript, the Stavenow codex, so start there. Those marginal glosses were long romanticized — generations of readers, layers of hands. The paleography says otherwise. One scribe, one ink, one sitting: the glosses were already in the exemplar, and the scribe copied margin and column together as a single package. They don't touch the dialect anywhere, and they are commentary proper, not any owner's index for finding passages. Now the famous lament. My point is blunt: the original poet didn't write it. The vocabulary shifts, the hero's byname changes form — a continuator supplied the whole section, probably within a generation. It matches no school exercise we can identify, it borrows from no chronicle — people have looked hard — and it plays the genre's conventions absolutely straight. Why do I keep citing Brandt's edition? Not her dating, which nobody builds on anymore, and hardly for access — few students ever read her; the translation went out of print decades ago. She worked from the Stavenow codex alone, to her credit. But she invented the stanza numbering, and every article you will ever cite still uses it. Finally: composed for performance? Yes — and the rhymes settle it for me. Those chime patterns only work aloud; on the page they read as errors. The addresses to the audience prove nothing — written poems fake those constantly — and this is no written imitation of performing style either: the sound was built in from the first line, not retrofitted after the poem had circulated in writing.",
+    "difficulty": "hard",
+    "explanation": "The scribe copied margin and column together as a single package — the glosses were already in the exemplar.",
+    "listeningTask": "academic_talk",
+    "correct_answer": "They were copied from the exemplar together with the text itself",
+    "passageGroupId": "atv2-b2-p2",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "distractor_rationales": [
+     {
+      "choice": "They were entered by two different hands working decades apart",
+      "reason": "\"One scribe, one ink, one sitting\" leaves no room for two hands working decades apart."
+     },
+     {
+      "choice": "They were added by a reader correcting the scribe's dialect forms",
+      "reason": "The glosses \"don't touch the dialect anywhere\", so no reader was correcting the scribe's dialect forms."
+     },
+     {
+      "choice": "They are an early owner's finding aid rather than commentary",
+      "reason": "They are commentary proper, \"not any owner's index for finding passages\"."
+     }
+    ]
+   },
+   "_meta": {
+    "lecture": "atv2-b2-p2",
+    "pivot": "q1",
+    "qtype": "detail",
+    "chosen": 1,
+    "key_letter": "B"
+   }
+  },
+  {
+   "passage_group_id": "atv2-b2-p2",
+   "cohort": "at-v2-b2",
+   "difficulty": "hard",
+   "item": {
+    "type": "multiple_choice",
+    "blanks": null,
+    "prompt": "[Academic Talk — Medieval Literature] What is the professor's main point about the lament section of the Lay of Ansfrid?",
+    "choices": [
+     "It was supplied by a later continuator, not the original poet",
+     "It exaggerates the genre's conventions in order to mock them",
+     "It reworks a passage from a chronicle the poet evidently knew",
+     "It follows a school exercise pattern taught throughout the period"
+    ],
+    "graphic": null,
+    "passage": "Transcript: The Lay of Ansfrid survives in one manuscript, the Stavenow codex, so start there. Those marginal glosses were long romanticized — generations of readers, layers of hands. The paleography says otherwise. One scribe, one ink, one sitting: the glosses were already in the exemplar, and the scribe copied margin and column together as a single package. They don't touch the dialect anywhere, and they are commentary proper, not any owner's index for finding passages. Now the famous lament. My point is blunt: the original poet didn't write it. The vocabulary shifts, the hero's byname changes form — a continuator supplied the whole section, probably within a generation. It matches no school exercise we can identify, it borrows from no chronicle — people have looked hard — and it plays the genre's conventions absolutely straight. Why do I keep citing Brandt's edition? Not her dating, which nobody builds on anymore, and hardly for access — few students ever read her; the translation went out of print decades ago. She worked from the Stavenow codex alone, to her credit. But she invented the stanza numbering, and every article you will ever cite still uses it. Finally: composed for performance? Yes — and the rhymes settle it for me. Those chime patterns only work aloud; on the page they read as errors. The addresses to the audience prove nothing — written poems fake those constantly — and this is no written imitation of performing style either: the sound was built in from the first line, not retrofitted after the poem had circulated in writing.",
+    "difficulty": "hard",
+    "explanation": "The professor states bluntly that the original poet didn't write the lament; a continuator supplied the whole section.",
+    "listeningTask": "academic_talk",
+    "correct_answer": "It was supplied by a later continuator, not the original poet",
+    "passageGroupId": "atv2-b2-p2",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "distractor_rationales": [
+     {
+      "choice": "It follows a school exercise pattern taught throughout the period",
+      "reason": "It \"matches no school exercise we can identify\"."
+     },
+     {
+      "choice": "It reworks a passage from a chronicle the poet evidently knew",
+      "reason": "The chronicle theory is dead — it \"borrows from no chronicle\", and people have looked hard."
+     },
+     {
+      "choice": "It exaggerates the genre's conventions in order to mock them",
+      "reason": "No mockery here: the lament \"plays the genre's conventions absolutely straight\"."
+     }
+    ]
+   },
+   "_meta": {
+    "lecture": "atv2-b2-p2",
+    "pivot": "q2",
+    "qtype": "main_emphasis",
+    "chosen": 2,
+    "key_letter": "A"
+   }
+  },
+  {
+   "passage_group_id": "atv2-b2-p2",
+   "cohort": "at-v2-b2",
+   "difficulty": "hard",
+   "item": {
+    "type": "multiple_choice",
+    "blanks": null,
+    "prompt": "[Academic Talk — Medieval Literature] Why does the professor spend time on Ilse Brandt's edition of the poem?",
+    "choices": [
+     "Her edition introduced the stanza numbering that current scholarship still cites",
+     "Her edition silently combined two manuscripts, and later readings inherit the mixture",
+     "Her dating of the poem is the assumption on which later arguments rest",
+     "Her translation is where most students first encounter the poem"
+    ],
+    "graphic": null,
+    "passage": "Transcript: The Lay of Ansfrid survives in one manuscript, the Stavenow codex, so start there. Those marginal glosses were long romanticized — generations of readers, layers of hands. The paleography says otherwise. One scribe, one ink, one sitting: the glosses were already in the exemplar, and the scribe copied margin and column together as a single package. They don't touch the dialect anywhere, and they are commentary proper, not any owner's index for finding passages. Now the famous lament. My point is blunt: the original poet didn't write it. The vocabulary shifts, the hero's byname changes form — a continuator supplied the whole section, probably within a generation. It matches no school exercise we can identify, it borrows from no chronicle — people have looked hard — and it plays the genre's conventions absolutely straight. Why do I keep citing Brandt's edition? Not her dating, which nobody builds on anymore, and hardly for access — few students ever read her; the translation went out of print decades ago. She worked from the Stavenow codex alone, to her credit. But she invented the stanza numbering, and every article you will ever cite still uses it. Finally: composed for performance? Yes — and the rhymes settle it for me. Those chime patterns only work aloud; on the page they read as errors. The addresses to the audience prove nothing — written poems fake those constantly — and this is no written imitation of performing style either: the sound was built in from the first line, not retrofitted after the poem had circulated in writing.",
+    "difficulty": "hard",
+    "explanation": "Brandt invented the stanza numbering that every article still uses — that is why the professor keeps citing her edition.",
+    "listeningTask": "academic_talk",
+    "correct_answer": "Her edition introduced the stanza numbering that current scholarship still cites",
+    "passageGroupId": "atv2-b2-p2",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "distractor_rationales": [
+     {
+      "choice": "Her edition silently combined two manuscripts, and later readings inherit the mixture",
+      "reason": "No silent conflation of witnesses: Brandt \"worked from the Stavenow codex alone\"."
+     },
+     {
+      "choice": "Her dating of the poem is the assumption on which later arguments rest",
+      "reason": "Her dating is the one thing the citations are not about — a dating \"which nobody builds on anymore\"."
+     },
+     {
+      "choice": "Her translation is where most students first encounter the poem",
+      "reason": "Access is not the reason either: \"few students ever read her\", and the translation is long out of print."
+     }
+    ]
+   },
+   "_meta": {
+    "lecture": "atv2-b2-p2",
+    "pivot": "q3",
+    "qtype": "function",
+    "chosen": 1,
+    "key_letter": "A"
+   }
+  },
+  {
+   "passage_group_id": "atv2-b2-p2",
+   "cohort": "at-v2-b2",
+   "difficulty": "hard",
+   "item": {
+    "type": "multiple_choice",
+    "blanks": null,
+    "prompt": "[Academic Talk — Medieval Literature] What is the professor's position on the claim that the Lay of Ansfrid was composed for oral performance?",
+    "choices": [
+     "He takes the oral features to be a written imitation of performance style",
+     "He finds the rhyme patterns decisive: they are built for the ear rather than the page",
+     "He is persuaded, but by the poem's direct addresses to listeners, not by its sound",
+     "He thinks the poem was reworked for performance after it had already circulated in writing"
+    ],
+    "graphic": null,
+    "passage": "Transcript: The Lay of Ansfrid survives in one manuscript, the Stavenow codex, so start there. Those marginal glosses were long romanticized — generations of readers, layers of hands. The paleography says otherwise. One scribe, one ink, one sitting: the glosses were already in the exemplar, and the scribe copied margin and column together as a single package. They don't touch the dialect anywhere, and they are commentary proper, not any owner's index for finding passages. Now the famous lament. My point is blunt: the original poet didn't write it. The vocabulary shifts, the hero's byname changes form — a continuator supplied the whole section, probably within a generation. It matches no school exercise we can identify, it borrows from no chronicle — people have looked hard — and it plays the genre's conventions absolutely straight. Why do I keep citing Brandt's edition? Not her dating, which nobody builds on anymore, and hardly for access — few students ever read her; the translation went out of print decades ago. She worked from the Stavenow codex alone, to her credit. But she invented the stanza numbering, and every article you will ever cite still uses it. Finally: composed for performance? Yes — and the rhymes settle it for me. Those chime patterns only work aloud; on the page they read as errors. The addresses to the audience prove nothing — written poems fake those constantly — and this is no written imitation of performing style either: the sound was built in from the first line, not retrofitted after the poem had circulated in writing.",
+    "difficulty": "hard",
+    "explanation": "The rhymes settle it for the professor: the chime patterns only work aloud and read as errors on the page.",
+    "listeningTask": "academic_talk",
+    "correct_answer": "He finds the rhyme patterns decisive: they are built for the ear rather than the page",
+    "passageGroupId": "atv2-b2-p2",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "distractor_rationales": [
+     {
+      "choice": "He is persuaded, but by the poem's direct addresses to listeners, not by its sound",
+      "reason": "The listener-address route is rejected: \"The addresses to the audience prove nothing\"."
+     },
+     {
+      "choice": "He takes the oral features to be a written imitation of performance style",
+      "reason": "The professor denies exactly this reading — \"no written imitation of performing style\"."
+     },
+     {
+      "choice": "He thinks the poem was reworked for performance after it had already circulated in writing",
+      "reason": "The sound was native to the poem, \"not retrofitted after the poem had circulated\" in writing."
+     }
+    ]
+   },
+   "_meta": {
+    "lecture": "atv2-b2-p2",
+    "pivot": "q4",
+    "qtype": "attitude",
+    "chosen": 0,
+    "key_letter": "B"
+   }
+  },
+  {
+   "passage_group_id": "atv2-b2-p3",
+   "cohort": "at-v2-b2",
+   "difficulty": "medium",
+   "item": {
+    "type": "multiple_choice",
+    "blanks": null,
+    "prompt": "[Academic Talk — Ornithology] Why does the professor mention the wren population on Charby Island?",
+    "choices": [
+     "A storm there removed most of its birds, creating an unplanned experiment",
+     "Its birds descend from a documented release, so their ancestry is known",
+     "It is where the species was first described, decades before the mainland work",
+     "Its birds were surveyed with the same methods, making them the comparison group"
+    ],
+    "graphic": null,
+    "passage": "Transcript: Twenty-two years of banding data on the scrub wren — let's see what it actually says. Why do I keep bringing up Charby Island? One reason. The Charby wrens all descend from a release in nineteen fifty-four that was written down bird by bird, so their ancestry is known completely — priceless for the genetic work. The island survey used different methods entirely, so it is no comparison group; the species was first described on the mainland; and no storm has ever knocked the Charby population down. Next, the recapture records on the older males. Their territories did not sit still, but they didn't wander toward the wetland either, and nobody swapped ground with a neighbor. The same males returned to the same centers, and each season the boundary drew in a little — slow, steady shrinkage, year over year. Third — students always ask — why so few females in the records? Not tag loss; the tags stay on females just as well. Trapping runs year-round, nesting months included, and the radio-tagged females almost never cross into the reserve next door. The real issue is placement: the trap lines follow the ridgetops, and females spend their days down in the gullies. Finally, Vasquez, who reads winter flocking as a response to predators. I'd say she has it inverted: the flocks assemble first, and the hawks find them — flocks by October, hawks by November, in her own data. Remember, the hawks were here before any record we have, the pattern is identical coastal and inland, and these counts come from open scrub with no feeders anywhere near.",
+    "difficulty": "medium",
+    "explanation": "Charby matters for one reason: its wrens descend from a documented nineteen fifty-four release written down bird by bird, so their ancestry is known completely.",
+    "listeningTask": "academic_talk",
+    "correct_answer": "Its birds descend from a documented release, so their ancestry is known",
+    "passageGroupId": "atv2-b2-p3",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "distractor_rationales": [
+     {
+      "choice": "Its birds were surveyed with the same methods, making them the comparison group",
+      "reason": "The island survey \"used different methods entirely\", so it cannot serve as the comparison group."
+     },
+     {
+      "choice": "It is where the species was first described, decades before the mainland work",
+      "reason": "The species was \"first described on the mainland\", not on Charby."
+     },
+     {
+      "choice": "A storm there removed most of its birds, creating an unplanned experiment",
+      "reason": "There was no unplanned experiment — \"no storm has ever\" knocked the Charby population down."
+     }
+    ]
+   },
+   "_meta": {
+    "lecture": "atv2-b2-p3",
+    "pivot": "q1",
+    "qtype": "function",
+    "chosen": 3,
+    "key_letter": "B"
+   }
+  },
+  {
+   "passage_group_id": "atv2-b2-p3",
+   "cohort": "at-v2-b2",
+   "difficulty": "medium",
+   "item": {
+    "type": "multiple_choice",
+    "blanks": null,
+    "prompt": "[Academic Talk — Ornithology] What did the recapture records show about the territories of the older males?",
+    "choices": [
+     "They shifted step by step toward the wetland edge",
+     "They stayed in place from one year to the next",
+     "They contracted a little with each season the birds returned",
+     "They were swapped among neighboring males between seasons"
+    ],
+    "graphic": null,
+    "passage": "Transcript: Twenty-two years of banding data on the scrub wren — let's see what it actually says. Why do I keep bringing up Charby Island? One reason. The Charby wrens all descend from a release in nineteen fifty-four that was written down bird by bird, so their ancestry is known completely — priceless for the genetic work. The island survey used different methods entirely, so it is no comparison group; the species was first described on the mainland; and no storm has ever knocked the Charby population down. Next, the recapture records on the older males. Their territories did not sit still, but they didn't wander toward the wetland either, and nobody swapped ground with a neighbor. The same males returned to the same centers, and each season the boundary drew in a little — slow, steady shrinkage, year over year. Third — students always ask — why so few females in the records? Not tag loss; the tags stay on females just as well. Trapping runs year-round, nesting months included, and the radio-tagged females almost never cross into the reserve next door. The real issue is placement: the trap lines follow the ridgetops, and females spend their days down in the gullies. Finally, Vasquez, who reads winter flocking as a response to predators. I'd say she has it inverted: the flocks assemble first, and the hawks find them — flocks by October, hawks by November, in her own data. Remember, the hawks were here before any record we have, the pattern is identical coastal and inland, and these counts come from open scrub with no feeders anywhere near.",
+    "difficulty": "medium",
+    "explanation": "Each season the boundary of the older males' territories drew in a little — slow, steady shrinkage, year over year.",
+    "listeningTask": "academic_talk",
+    "correct_answer": "They contracted a little with each season the birds returned",
+    "passageGroupId": "atv2-b2-p3",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "distractor_rationales": [
+     {
+      "choice": "They stayed in place from one year to the next",
+      "reason": "Their territories \"did not sit still\" from year to year."
+     },
+     {
+      "choice": "They shifted step by step toward the wetland edge",
+      "reason": "They \"didn't wander toward the wetland\" either."
+     },
+     {
+      "choice": "They were swapped among neighboring males between seasons",
+      "reason": "\"nobody swapped ground with a neighbor\"."
+     }
+    ]
+   },
+   "_meta": {
+    "lecture": "atv2-b2-p3",
+    "pivot": "q2",
+    "qtype": "detail",
+    "chosen": 1,
+    "key_letter": "C"
+   }
+  },
+  {
+   "passage_group_id": "atv2-b2-p3",
+   "cohort": "at-v2-b2",
+   "difficulty": "medium",
+   "item": {
+    "type": "multiple_choice",
+    "blanks": null,
+    "prompt": "[Academic Talk — Ornithology] What does the professor suggest about why females appear less often in the study's records?",
+    "choices": [
+     "Females lose their leg tags more often than the males do",
+     "Most trapping happens in months when females are sitting on nests",
+     "The trap lines run along ridgetops that females rarely visit",
+     "Females cross into the neighboring reserve, where trapping is not allowed"
+    ],
+    "graphic": null,
+    "passage": "Transcript: Twenty-two years of banding data on the scrub wren — let's see what it actually says. Why do I keep bringing up Charby Island? One reason. The Charby wrens all descend from a release in nineteen fifty-four that was written down bird by bird, so their ancestry is known completely — priceless for the genetic work. The island survey used different methods entirely, so it is no comparison group; the species was first described on the mainland; and no storm has ever knocked the Charby population down. Next, the recapture records on the older males. Their territories did not sit still, but they didn't wander toward the wetland either, and nobody swapped ground with a neighbor. The same males returned to the same centers, and each season the boundary drew in a little — slow, steady shrinkage, year over year. Third — students always ask — why so few females in the records? Not tag loss; the tags stay on females just as well. Trapping runs year-round, nesting months included, and the radio-tagged females almost never cross into the reserve next door. The real issue is placement: the trap lines follow the ridgetops, and females spend their days down in the gullies. Finally, Vasquez, who reads winter flocking as a response to predators. I'd say she has it inverted: the flocks assemble first, and the hawks find them — flocks by October, hawks by November, in her own data. Remember, the hawks were here before any record we have, the pattern is identical coastal and inland, and these counts come from open scrub with no feeders anywhere near.",
+    "difficulty": "medium",
+    "explanation": "The real issue is placement: the trap lines follow the ridgetops while females spend their days down in the gullies.",
+    "listeningTask": "academic_talk",
+    "correct_answer": "The trap lines run along ridgetops that females rarely visit",
+    "passageGroupId": "atv2-b2-p3",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "distractor_rationales": [
+     {
+      "choice": "Females cross into the neighboring reserve, where trapping is not allowed",
+      "reason": "The radio-tagged females \"almost never cross into the reserve\" next door."
+     },
+     {
+      "choice": "Females lose their leg tags more often than the males do",
+      "reason": "Tag loss is ruled out — \"the tags stay on females\" just as well."
+     },
+     {
+      "choice": "Most trapping happens in months when females are sitting on nests",
+      "reason": "\"Trapping runs year-round, nesting months included\", so the schedule cannot explain the gap."
+     }
+    ]
+   },
+   "_meta": {
+    "lecture": "atv2-b2-p3",
+    "pivot": "q3",
+    "qtype": "inference",
+    "chosen": 2,
+    "key_letter": "C"
+   }
+  },
+  {
+   "passage_group_id": "atv2-b2-p3",
+   "cohort": "at-v2-b2",
+   "difficulty": "medium",
+   "item": {
+    "type": "multiple_choice",
+    "blanks": null,
+    "prompt": "[Academic Talk — Ornithology] How does the professor respond to Dr. Vasquez's conclusion that the wrens' winter flocking is a response to predators?",
+    "choices": [
+     "She has the causation backward: the flocks form first and then draw predators in",
+     "The flocking appears in records made before the predator reached the region",
+     "The flocking she measured was an artifact of counting at winter feeders",
+     "Her account holds at the coastal sites but runs the other way inland"
+    ],
+    "graphic": null,
+    "passage": "Transcript: Twenty-two years of banding data on the scrub wren — let's see what it actually says. Why do I keep bringing up Charby Island? One reason. The Charby wrens all descend from a release in nineteen fifty-four that was written down bird by bird, so their ancestry is known completely — priceless for the genetic work. The island survey used different methods entirely, so it is no comparison group; the species was first described on the mainland; and no storm has ever knocked the Charby population down. Next, the recapture records on the older males. Their territories did not sit still, but they didn't wander toward the wetland either, and nobody swapped ground with a neighbor. The same males returned to the same centers, and each season the boundary drew in a little — slow, steady shrinkage, year over year. Third — students always ask — why so few females in the records? Not tag loss; the tags stay on females just as well. Trapping runs year-round, nesting months included, and the radio-tagged females almost never cross into the reserve next door. The real issue is placement: the trap lines follow the ridgetops, and females spend their days down in the gullies. Finally, Vasquez, who reads winter flocking as a response to predators. I'd say she has it inverted: the flocks assemble first, and the hawks find them — flocks by October, hawks by November, in her own data. Remember, the hawks were here before any record we have, the pattern is identical coastal and inland, and these counts come from open scrub with no feeders anywhere near.",
+    "difficulty": "medium",
+    "explanation": "The professor says Vasquez has it inverted: the flocks assemble first, and the hawks find them.",
+    "listeningTask": "academic_talk",
+    "correct_answer": "She has the causation backward: the flocks form first and then draw predators in",
+    "passageGroupId": "atv2-b2-p3",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "distractor_rationales": [
+     {
+      "choice": "The flocking appears in records made before the predator reached the region",
+      "reason": "No record can predate the predator: \"the hawks were here before any record we have\"."
+     },
+     {
+      "choice": "Her account holds at the coastal sites but runs the other way inland",
+      "reason": "There is no coastal-inland reversal — \"the pattern is identical coastal and inland\"."
+     },
+     {
+      "choice": "The flocking she measured was an artifact of counting at winter feeders",
+      "reason": "The counts come from open scrub \"with no feeders anywhere near\", so no feeder artifact."
+     }
+    ]
+   },
+   "_meta": {
+    "lecture": "atv2-b2-p3",
+    "pivot": "q4",
+    "qtype": "attitude",
+    "chosen": 0,
+    "key_letter": "A"
+   }
+  },
+  {
+   "passage_group_id": "atv2-b2-p4",
+   "cohort": "at-v2-b2",
+   "difficulty": "hard",
+   "item": {
+    "type": "multiple_choice",
+    "blanks": null,
+    "prompt": "[Academic Talk — History of Cartography] What is the professor's position on Perrin's argument that the Salvera chart was made for display rather than for use at sea?",
+    "choices": [
+     "He rejects it, pointing to wear along the folds from being carried and consulted",
+     "He argues it was a workshop pattern, kept for copying new charts from",
+     "He thinks it began as a working chart and was dressed up for show when it changed hands",
+     "He accepts it, since the pigments used would not have survived handling at sea"
+    ],
+    "graphic": null,
+    "passage": "Transcript: The Salvera chart. Perrin argued it was a display piece, never meant for the deck of a ship, and I have come around to his view. The pigments decide it for me: the greens and the shell-gold are so fugitive that one season of salt spray would have destroyed them. Look at the condition, too — no wear along the folds, no staining, nothing handled about it. It is not a workshop pattern — no copies descend from it — and there is no plain working stage under the ornament; the decoration is original, not a later dressing-up. Now the ink work on the northern coastline. The analysis settled it: that coast was drawn in one campaign, a single ink, no reworking — but the ink is a formulation from at least a generation later. Someone added the entire northern edge long after the maker was done; nothing else on the chart uses that ink batch. Why the Ferrandin atlas? Not for errors — it shares none of ours — its preface names nobody, and the harbor argument collapsed years ago; the silting cannot be dated. But the Ferrandin sits in its original dated binding: the one fixed point among all these undated charts. Last, the place-names in two languages. This is not a compiler splicing sources, and the second language was not added under new rulers — both sets are in the maker's own hand, first pass. The maker worked in a port where both tongues crossed the same counter, and the chart talks the way his harbor talked. Nothing rare is preserved; both dialects are documented elsewhere.",
+    "difficulty": "hard",
+    "explanation": "The professor has come around to Perrin's view because the fugitive pigments could not have survived a season of salt spray at sea.",
+    "listeningTask": "academic_talk",
+    "correct_answer": "He accepts it, since the pigments used would not have survived handling at sea",
+    "passageGroupId": "atv2-b2-p4",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "distractor_rationales": [
+     {
+      "choice": "He rejects it, pointing to wear along the folds from being carried and consulted",
+      "reason": "The vellum shows \"no wear along the folds\" — no trace of being carried and consulted."
+     },
+     {
+      "choice": "He argues it was a workshop pattern, kept for copying new charts from",
+      "reason": "A workshop pattern would have offspring, but \"no copies descend from it\"."
+     },
+     {
+      "choice": "He thinks it began as a working chart and was dressed up for show when it changed hands",
+      "reason": "The decoration is original, \"not a later dressing-up\" of a working chart."
+     }
+    ]
+   },
+   "_meta": {
+    "lecture": "atv2-b2-p4",
+    "pivot": "q1",
+    "qtype": "attitude",
+    "chosen": 0,
+    "key_letter": "D"
+   }
+  },
+  {
+   "passage_group_id": "atv2-b2-p4",
+   "cohort": "at-v2-b2",
+   "difficulty": "hard",
+   "item": {
+    "type": "multiple_choice",
+    "blanks": null,
+    "prompt": "[Academic Talk — History of Cartography] What did the ink analysis indicate about the coastline running along the chart's northern edge?",
+    "choices": [
+     "It was added at least a generation after the chart was made",
+     "It was drawn first, and the remainder of the chart was built around it",
+     "It was worked on twice, in two inks separated by some years",
+     "It was drawn with the same batch of ink as the rest of the chart"
+    ],
+    "graphic": null,
+    "passage": "Transcript: The Salvera chart. Perrin argued it was a display piece, never meant for the deck of a ship, and I have come around to his view. The pigments decide it for me: the greens and the shell-gold are so fugitive that one season of salt spray would have destroyed them. Look at the condition, too — no wear along the folds, no staining, nothing handled about it. It is not a workshop pattern — no copies descend from it — and there is no plain working stage under the ornament; the decoration is original, not a later dressing-up. Now the ink work on the northern coastline. The analysis settled it: that coast was drawn in one campaign, a single ink, no reworking — but the ink is a formulation from at least a generation later. Someone added the entire northern edge long after the maker was done; nothing else on the chart uses that ink batch. Why the Ferrandin atlas? Not for errors — it shares none of ours — its preface names nobody, and the harbor argument collapsed years ago; the silting cannot be dated. But the Ferrandin sits in its original dated binding: the one fixed point among all these undated charts. Last, the place-names in two languages. This is not a compiler splicing sources, and the second language was not added under new rulers — both sets are in the maker's own hand, first pass. The maker worked in a port where both tongues crossed the same counter, and the chart talks the way his harbor talked. Nothing rare is preserved; both dialects are documented elsewhere.",
+    "difficulty": "hard",
+    "explanation": "The northern coast's ink is a formulation from at least a generation later — someone added the entire edge long after the maker was done.",
+    "listeningTask": "academic_talk",
+    "correct_answer": "It was added at least a generation after the chart was made",
+    "passageGroupId": "atv2-b2-p4",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "distractor_rationales": [
+     {
+      "choice": "It was drawn with the same batch of ink as the rest of the chart",
+      "reason": "\"nothing else on the chart uses that ink batch\" — it is not the same ink as the rest."
+     },
+     {
+      "choice": "It was drawn first, and the remainder of the chart was built around it",
+      "reason": "The coast went in \"long after the maker was done\", so the chart cannot have been built around it."
+     },
+     {
+      "choice": "It was worked on twice, in two inks separated by some years",
+      "reason": "It was drawn in \"one campaign, a single ink, no reworking\" — not in two inks years apart."
+     }
+    ]
+   },
+   "_meta": {
+    "lecture": "atv2-b2-p4",
+    "pivot": "q2",
+    "qtype": "detail",
+    "chosen": 1,
+    "key_letter": "A"
+   }
+  },
+  {
+   "passage_group_id": "atv2-b2-p4",
+   "cohort": "at-v2-b2",
+   "difficulty": "hard",
+   "item": {
+    "type": "multiple_choice",
+    "blanks": null,
+    "prompt": "[Academic Talk — History of Cartography] Why does the professor discuss the Ferrandin atlas?",
+    "choices": [
+     "Its maker names the Salvera chartmaker in a preface, the sole written link between the two",
+     "It shows the coast after a harbor silted up, which brackets the chart's date",
+     "It copies the chart's mistakes, which settles which of the two came first",
+     "It survives in a dated binding, the one firm date in the whole group"
+    ],
+    "graphic": null,
+    "passage": "Transcript: The Salvera chart. Perrin argued it was a display piece, never meant for the deck of a ship, and I have come around to his view. The pigments decide it for me: the greens and the shell-gold are so fugitive that one season of salt spray would have destroyed them. Look at the condition, too — no wear along the folds, no staining, nothing handled about it. It is not a workshop pattern — no copies descend from it — and there is no plain working stage under the ornament; the decoration is original, not a later dressing-up. Now the ink work on the northern coastline. The analysis settled it: that coast was drawn in one campaign, a single ink, no reworking — but the ink is a formulation from at least a generation later. Someone added the entire northern edge long after the maker was done; nothing else on the chart uses that ink batch. Why the Ferrandin atlas? Not for errors — it shares none of ours — its preface names nobody, and the harbor argument collapsed years ago; the silting cannot be dated. But the Ferrandin sits in its original dated binding: the one fixed point among all these undated charts. Last, the place-names in two languages. This is not a compiler splicing sources, and the second language was not added under new rulers — both sets are in the maker's own hand, first pass. The maker worked in a port where both tongues crossed the same counter, and the chart talks the way his harbor talked. Nothing rare is preserved; both dialects are documented elsewhere.",
+    "difficulty": "hard",
+    "explanation": "The Ferrandin sits in its original dated binding, the one fixed point among all these undated charts.",
+    "listeningTask": "academic_talk",
+    "correct_answer": "It survives in a dated binding, the one firm date in the whole group",
+    "passageGroupId": "atv2-b2-p4",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "distractor_rationales": [
+     {
+      "choice": "It copies the chart's mistakes, which settles which of the two came first",
+      "reason": "Error-copying is out: \"it shares none of ours\"."
+     },
+     {
+      "choice": "Its maker names the Salvera chartmaker in a preface, the sole written link between the two",
+      "reason": "\"its preface names nobody\", so there is no written link between the two."
+     },
+     {
+      "choice": "It shows the coast after a harbor silted up, which brackets the chart's date",
+      "reason": "\"the harbor argument collapsed years ago\" — the silting cannot be dated."
+     }
+    ]
+   },
+   "_meta": {
+    "lecture": "atv2-b2-p4",
+    "pivot": "q3",
+    "qtype": "function",
+    "chosen": 1,
+    "key_letter": "D"
+   }
+  },
+  {
+   "passage_group_id": "atv2-b2-p4",
+   "cohort": "at-v2-b2",
+   "difficulty": "hard",
+   "item": {
+    "type": "multiple_choice",
+    "blanks": null,
+    "prompt": "[Academic Talk — History of Cartography] What is the professor's main point about the chart's place-names appearing in two languages?",
+    "choices": [
+     "The second set of names went in later, after the coast passed to new rulers",
+     "They reflect the mixed speech of the port where the maker worked",
+     "The maker compiled them from sources in two languages without reconciling them",
+     "They preserve a coastal dialect that no other document records"
+    ],
+    "graphic": null,
+    "passage": "Transcript: The Salvera chart. Perrin argued it was a display piece, never meant for the deck of a ship, and I have come around to his view. The pigments decide it for me: the greens and the shell-gold are so fugitive that one season of salt spray would have destroyed them. Look at the condition, too — no wear along the folds, no staining, nothing handled about it. It is not a workshop pattern — no copies descend from it — and there is no plain working stage under the ornament; the decoration is original, not a later dressing-up. Now the ink work on the northern coastline. The analysis settled it: that coast was drawn in one campaign, a single ink, no reworking — but the ink is a formulation from at least a generation later. Someone added the entire northern edge long after the maker was done; nothing else on the chart uses that ink batch. Why the Ferrandin atlas? Not for errors — it shares none of ours — its preface names nobody, and the harbor argument collapsed years ago; the silting cannot be dated. But the Ferrandin sits in its original dated binding: the one fixed point among all these undated charts. Last, the place-names in two languages. This is not a compiler splicing sources, and the second language was not added under new rulers — both sets are in the maker's own hand, first pass. The maker worked in a port where both tongues crossed the same counter, and the chart talks the way his harbor talked. Nothing rare is preserved; both dialects are documented elsewhere.",
+    "difficulty": "hard",
+    "explanation": "The maker worked in a port where both tongues crossed the same counter — the chart talks the way his harbor talked.",
+    "listeningTask": "academic_talk",
+    "correct_answer": "They reflect the mixed speech of the port where the maker worked",
+    "passageGroupId": "atv2-b2-p4",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "distractor_rationales": [
+     {
+      "choice": "The maker compiled them from sources in two languages without reconciling them",
+      "reason": "The professor rejects the compilation reading in so many words: \"not a compiler splicing sources\"."
+     },
+     {
+      "choice": "The second set of names went in later, after the coast passed to new rulers",
+      "reason": "Both name sets are \"in the maker's own hand, first pass\" — nothing went in under later rulers."
+     },
+     {
+      "choice": "They preserve a coastal dialect that no other document records",
+      "reason": "Nothing unique is preserved here: \"both dialects are documented elsewhere\"."
+     }
+    ]
+   },
+   "_meta": {
+    "lecture": "atv2-b2-p4",
+    "pivot": "q4",
+    "qtype": "main_emphasis",
+    "chosen": 1,
+    "key_letter": "B"
+   }
+  },
+  {
+   "passage_group_id": "atv2-b2-p5",
+   "cohort": "at-v2-b2",
+   "difficulty": "medium",
+   "item": {
+    "type": "multiple_choice",
+    "blanks": null,
+    "prompt": "[Academic Talk — Meteorology] Why does the professor single out the Corvale campaign's second winter?",
+    "choices": [
+     "It provided the clear-night cases the comparison depended on",
+     "The equipment was relocated that year, so its records are analyzed separately",
+     "A road project cut through the site partway through it, splitting the record",
+     "It was unusually foggy, and most of the published findings rest on it"
+    ],
+    "graphic": null,
+    "passage": "Transcript: The Corvale fog campaign — four winters of instruments in one valley. People treat the second winter as sacred. Why? It fogged in constantly, week after week, and roughly two thirds of the published case studies come from those months alone. The instruments never moved — same masts, same spots, all four years — no road ever cut through the site, and the clear nights wanted for contrast mostly came from winter three. Winter two mattered because winter two was fog. Now, the modeling group's six-hour forecast claim. I will grant them the average night. But run the verification by category: for the deep, persistent episodes — the ones anyone needs warned about — the skill simply evaporates. You cannot excuse it on inputs, because the model runs on standard observations any valley collects. And they are not underselling it — the published scores are, if anything, generous, and checked against the same winters it trained on, which flatters everything. What does the fog itself do? The mast profiles were unambiguous: it arrives already formed, sliding up-valley from the lake at the mouth. It does not build from the ground upward at the valley floor, it isn't a cloud deck lowering onto the terrain, and the irrigated fields contribute nothing — the patchy-onset picture never appears. Next phase? The team keeps gesturing at Rossell, the next valley over — narrower, deeper, differently oriented — and the grant text reads accordingly: same instruments, new valley. Dissipation studies keep being deferred, nobody is handing routine monitoring to the national service, and the aircraft money fell through two rounds ago.",
+    "difficulty": "medium",
+    "explanation": "The second winter fogged in constantly, and roughly two thirds of the published case studies come from those months alone.",
+    "listeningTask": "academic_talk",
+    "correct_answer": "It was unusually foggy, and most of the published findings rest on it",
+    "passageGroupId": "atv2-b2-p5",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "distractor_rationales": [
+     {
+      "choice": "The equipment was relocated that year, so its records are analyzed separately",
+      "reason": "\"The instruments never moved\" — same masts, same spots, all four years."
+     },
+     {
+      "choice": "It provided the clear-night cases the comparison depended on",
+      "reason": "The clear nights wanted for contrast \"mostly came from winter three\", not from the second winter."
+     },
+     {
+      "choice": "A road project cut through the site partway through it, splitting the record",
+      "reason": "\"no road ever cut through the site\"."
+     }
+    ]
+   },
+   "_meta": {
+    "lecture": "atv2-b2-p5",
+    "pivot": "q1",
+    "qtype": "function",
+    "chosen": 3,
+    "key_letter": "D"
+   }
+  },
+  {
+   "passage_group_id": "atv2-b2-p5",
+   "cohort": "at-v2-b2",
+   "difficulty": "medium",
+   "item": {
+    "type": "multiple_choice",
+    "blanks": null,
+    "prompt": "[Academic Talk — Meteorology] How does the professor assess the modeling group's claim that the valley's fog can be forecast six hours ahead?",
+    "choices": [
+     "The claim is too modest, since the model does better than its makers report",
+     "The forecasts succeed by drawing on instruments that few valleys have",
+     "The skill disappears for exactly the episodes that matter, the deep and long-lived ones",
+     "It holds up: the model was verified on a winter it had not been trained on"
+    ],
+    "graphic": null,
+    "passage": "Transcript: The Corvale fog campaign — four winters of instruments in one valley. People treat the second winter as sacred. Why? It fogged in constantly, week after week, and roughly two thirds of the published case studies come from those months alone. The instruments never moved — same masts, same spots, all four years — no road ever cut through the site, and the clear nights wanted for contrast mostly came from winter three. Winter two mattered because winter two was fog. Now, the modeling group's six-hour forecast claim. I will grant them the average night. But run the verification by category: for the deep, persistent episodes — the ones anyone needs warned about — the skill simply evaporates. You cannot excuse it on inputs, because the model runs on standard observations any valley collects. And they are not underselling it — the published scores are, if anything, generous, and checked against the same winters it trained on, which flatters everything. What does the fog itself do? The mast profiles were unambiguous: it arrives already formed, sliding up-valley from the lake at the mouth. It does not build from the ground upward at the valley floor, it isn't a cloud deck lowering onto the terrain, and the irrigated fields contribute nothing — the patchy-onset picture never appears. Next phase? The team keeps gesturing at Rossell, the next valley over — narrower, deeper, differently oriented — and the grant text reads accordingly: same instruments, new valley. Dissipation studies keep being deferred, nobody is handing routine monitoring to the national service, and the aircraft money fell through two rounds ago.",
+    "difficulty": "medium",
+    "explanation": "For the deep, persistent episodes — the ones anyone needs warned about — the model's skill simply evaporates.",
+    "listeningTask": "academic_talk",
+    "correct_answer": "The skill disappears for exactly the episodes that matter, the deep and long-lived ones",
+    "passageGroupId": "atv2-b2-p5",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "distractor_rationales": [
+     {
+      "choice": "It holds up: the model was verified on a winter it had not been trained on",
+      "reason": "The independent verification never happened — the model is checked against \"the same winters it trained on\"."
+     },
+     {
+      "choice": "The forecasts succeed by drawing on instruments that few valleys have",
+      "reason": "No exotic inputs: it \"runs on standard observations any valley collects\"."
+     },
+     {
+      "choice": "The claim is too modest, since the model does better than its makers report",
+      "reason": "Underselling is denied — the \"published scores are, if anything, generous\"."
+     }
+    ]
+   },
+   "_meta": {
+    "lecture": "atv2-b2-p5",
+    "pivot": "q2",
+    "qtype": "attitude",
+    "chosen": 1,
+    "key_letter": "C"
+   }
+  },
+  {
+   "passage_group_id": "atv2-b2-p5",
+   "cohort": "at-v2-b2",
+   "difficulty": "medium",
+   "item": {
+    "type": "multiple_choice",
+    "blanks": null,
+    "prompt": "[Academic Talk — Meteorology] What did the mast measurements show about how the fog typically develops?",
+    "choices": [
+     "It begins as a low cloud layer that gradually settles to the ground",
+     "It appears in patches over the irrigated fields and then merges",
+     "It gathers first at the valley floor and thickens upward",
+     "It drifts in already formed from the lake at the valley's mouth"
+    ],
+    "graphic": null,
+    "passage": "Transcript: The Corvale fog campaign — four winters of instruments in one valley. People treat the second winter as sacred. Why? It fogged in constantly, week after week, and roughly two thirds of the published case studies come from those months alone. The instruments never moved — same masts, same spots, all four years — no road ever cut through the site, and the clear nights wanted for contrast mostly came from winter three. Winter two mattered because winter two was fog. Now, the modeling group's six-hour forecast claim. I will grant them the average night. But run the verification by category: for the deep, persistent episodes — the ones anyone needs warned about — the skill simply evaporates. You cannot excuse it on inputs, because the model runs on standard observations any valley collects. And they are not underselling it — the published scores are, if anything, generous, and checked against the same winters it trained on, which flatters everything. What does the fog itself do? The mast profiles were unambiguous: it arrives already formed, sliding up-valley from the lake at the mouth. It does not build from the ground upward at the valley floor, it isn't a cloud deck lowering onto the terrain, and the irrigated fields contribute nothing — the patchy-onset picture never appears. Next phase? The team keeps gesturing at Rossell, the next valley over — narrower, deeper, differently oriented — and the grant text reads accordingly: same instruments, new valley. Dissipation studies keep being deferred, nobody is handing routine monitoring to the national service, and the aircraft money fell through two rounds ago.",
+    "difficulty": "medium",
+    "explanation": "The mast profiles show the fog arriving already formed, sliding up-valley from the lake at the mouth.",
+    "listeningTask": "academic_talk",
+    "correct_answer": "It drifts in already formed from the lake at the valley's mouth",
+    "passageGroupId": "atv2-b2-p5",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "distractor_rationales": [
+     {
+      "choice": "It gathers first at the valley floor and thickens upward",
+      "reason": "The fog \"does not build from the ground upward\" at the valley floor."
+     },
+     {
+      "choice": "It begins as a low cloud layer that gradually settles to the ground",
+      "reason": "It \"isn't a cloud deck lowering onto the terrain\"."
+     },
+     {
+      "choice": "It appears in patches over the irrigated fields and then merges",
+      "reason": "\"the irrigated fields contribute nothing\" — the patchy-onset picture never appears."
+     }
+    ]
+   },
+   "_meta": {
+    "lecture": "atv2-b2-p5",
+    "pivot": "q3",
+    "qtype": "detail",
+    "chosen": 2,
+    "key_letter": "D"
+   }
+  },
+  {
+   "passage_group_id": "atv2-b2-p5",
+   "cohort": "at-v2-b2",
+   "difficulty": "medium",
+   "item": {
+    "type": "multiple_choice",
+    "blanks": null,
+    "prompt": "[Academic Talk — Meteorology] What does the professor imply about the campaign's next phase?",
+    "choices": [
+     "Aircraft will sample the layer from above, which the earlier phases lacked",
+     "Routine monitoring will be handed over to the national weather service",
+     "It will be repeated in a neighboring valley chosen for its different shape",
+     "It will turn to how the episodes dissipate rather than how they begin"
+    ],
+    "graphic": null,
+    "passage": "Transcript: The Corvale fog campaign — four winters of instruments in one valley. People treat the second winter as sacred. Why? It fogged in constantly, week after week, and roughly two thirds of the published case studies come from those months alone. The instruments never moved — same masts, same spots, all four years — no road ever cut through the site, and the clear nights wanted for contrast mostly came from winter three. Winter two mattered because winter two was fog. Now, the modeling group's six-hour forecast claim. I will grant them the average night. But run the verification by category: for the deep, persistent episodes — the ones anyone needs warned about — the skill simply evaporates. You cannot excuse it on inputs, because the model runs on standard observations any valley collects. And they are not underselling it — the published scores are, if anything, generous, and checked against the same winters it trained on, which flatters everything. What does the fog itself do? The mast profiles were unambiguous: it arrives already formed, sliding up-valley from the lake at the mouth. It does not build from the ground upward at the valley floor, it isn't a cloud deck lowering onto the terrain, and the irrigated fields contribute nothing — the patchy-onset picture never appears. Next phase? The team keeps gesturing at Rossell, the next valley over — narrower, deeper, differently oriented — and the grant text reads accordingly: same instruments, new valley. Dissipation studies keep being deferred, nobody is handing routine monitoring to the national service, and the aircraft money fell through two rounds ago.",
+    "difficulty": "medium",
+    "explanation": "The team keeps gesturing at Rossell, the next valley over — narrower, deeper, differently oriented — and the grant text reads accordingly.",
+    "listeningTask": "academic_talk",
+    "correct_answer": "It will be repeated in a neighboring valley chosen for its different shape",
+    "passageGroupId": "atv2-b2-p5",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "distractor_rationales": [
+     {
+      "choice": "It will turn to how the episodes dissipate rather than how they begin",
+      "reason": "\"Dissipation studies keep being deferred\", so that is not the next phase."
+     },
+     {
+      "choice": "Routine monitoring will be handed over to the national weather service",
+      "reason": "\"nobody is handing routine monitoring\" to the national service."
+     },
+     {
+      "choice": "Aircraft will sample the layer from above, which the earlier phases lacked",
+      "reason": "\"the aircraft money fell through\" two rounds ago."
+     }
+    ]
+   },
+   "_meta": {
+    "lecture": "atv2-b2-p5",
+    "pivot": "q4",
+    "qtype": "inference",
+    "chosen": 1,
+    "key_letter": "C"
+   }
+  },
+  {
+   "passage_group_id": "atv2-b2-p6",
+   "cohort": "at-v2-b2",
+   "difficulty": "medium",
+   "item": {
+    "type": "multiple_choice",
+    "blanks": null,
+    "prompt": "[Academic Talk — Theater History] Why does the professor read out an entry from the company's expense ledger?",
+    "choices": [
+     "It fixes the date of a first performance that is otherwise unrecorded",
+     "It records a repair that reveals how the stage machinery worked",
+     "It shows rent still being paid on a playhouse the company had supposedly left",
+     "It names a partner who appears in no other document of the company"
+    ],
+    "graphic": null,
+    "passage": "Transcript: The Corvin company — a lesson in why account books beat playbills. I read you that expense ledger entry for one reason: it is dated, and it fixes the premiere of a play whose first performance appears in no other record. Every partner in it is documented elsewhere, the rent lines are unremarkable — exactly the playhouse we expect — and there are no repairs in it at all — nothing about machinery. Now, the plot summary of The Iron Garland. People call it a backstage plot. Look at the format: a fair hand, the oaths softened, every scene numbered for a reader who must approve rather than perform. This was drawn up for the licensing office — the censor's copy. Nothing in it would help anyone run a performance from the wings; as publicity it is useless — no date, no playhouse, no invitation — and it is far too orderly to be a spectator writing from memory. Then the lawsuit. The depositions' revelation was the shares: the bulk of them stood mortgaged to the landlord — the company had been pawning itself to pay rent. The eight actors held nothing like equal portions, the founder's widow had sold out years before, and the ownership record is perfectly clear. Which explains sixteen twenty-one. When the Signet lease ran out, no landlord would carry them, and the company simply dissolved. It did not carry on under a new patron — the patron outlived them by a decade — no touring circuit shows them after that date, and no rival's books ever absorb their debts or their stock.",
+    "difficulty": "medium",
+    "explanation": "The ledger entry is dated, and it fixes the premiere of a play whose first performance appears in no other record.",
+    "listeningTask": "academic_talk",
+    "correct_answer": "It fixes the date of a first performance that is otherwise unrecorded",
+    "passageGroupId": "atv2-b2-p6",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "distractor_rationales": [
+     {
+      "choice": "It names a partner who appears in no other document of the company",
+      "reason": "\"Every partner in it is documented\" elsewhere — the entry names no otherwise-unknown figure."
+     },
+     {
+      "choice": "It shows rent still being paid on a playhouse the company had supposedly left",
+      "reason": "The rent lines are unremarkable: \"exactly the playhouse we expect\"."
+     },
+     {
+      "choice": "It records a repair that reveals how the stage machinery worked",
+      "reason": "There are \"no repairs in it\" at all, so it reveals nothing about machinery."
+     }
+    ]
+   },
+   "_meta": {
+    "lecture": "atv2-b2-p6",
+    "pivot": "q1",
+    "qtype": "function",
+    "chosen": 0,
+    "key_letter": "A"
+   }
+  },
+  {
+   "passage_group_id": "atv2-b2-p6",
+   "cohort": "at-v2-b2",
+   "difficulty": "medium",
+   "item": {
+    "type": "multiple_choice",
+    "blanks": null,
+    "prompt": "[Academic Talk — Theater History] What is the professor's main point about the surviving plot summary of Corvin's lost play, The Iron Garland?",
+    "choices": [
+     "It was a working document, drawn up to run the performance from backstage",
+     "It is one spectator's account, written down from memory afterward",
+     "It was posted as an advertisement to draw an audience in",
+     "It was prepared for the censor's office to review before licensing"
+    ],
+    "graphic": null,
+    "passage": "Transcript: The Corvin company — a lesson in why account books beat playbills. I read you that expense ledger entry for one reason: it is dated, and it fixes the premiere of a play whose first performance appears in no other record. Every partner in it is documented elsewhere, the rent lines are unremarkable — exactly the playhouse we expect — and there are no repairs in it at all — nothing about machinery. Now, the plot summary of The Iron Garland. People call it a backstage plot. Look at the format: a fair hand, the oaths softened, every scene numbered for a reader who must approve rather than perform. This was drawn up for the licensing office — the censor's copy. Nothing in it would help anyone run a performance from the wings; as publicity it is useless — no date, no playhouse, no invitation — and it is far too orderly to be a spectator writing from memory. Then the lawsuit. The depositions' revelation was the shares: the bulk of them stood mortgaged to the landlord — the company had been pawning itself to pay rent. The eight actors held nothing like equal portions, the founder's widow had sold out years before, and the ownership record is perfectly clear. Which explains sixteen twenty-one. When the Signet lease ran out, no landlord would carry them, and the company simply dissolved. It did not carry on under a new patron — the patron outlived them by a decade — no touring circuit shows them after that date, and no rival's books ever absorb their debts or their stock.",
+    "difficulty": "medium",
+    "explanation": "The format — fair hand, softened oaths, scenes numbered for a reader who must approve rather than perform — marks it as the censor's copy.",
+    "listeningTask": "academic_talk",
+    "correct_answer": "It was prepared for the censor's office to review before licensing",
+    "passageGroupId": "atv2-b2-p6",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "distractor_rationales": [
+     {
+      "choice": "It was a working document, drawn up to run the performance from backstage",
+      "reason": "Nothing in it would help anyone \"run a performance from the wings\"."
+     },
+     {
+      "choice": "It was posted as an advertisement to draw an audience in",
+      "reason": "As publicity it is useless — \"no date, no playhouse\", no invitation to attend."
+     },
+     {
+      "choice": "It is one spectator's account, written down from memory afterward",
+      "reason": "It is \"far too orderly to be a spectator\" writing from memory."
+     }
+    ]
+   },
+   "_meta": {
+    "lecture": "atv2-b2-p6",
+    "pivot": "q2",
+    "qtype": "main_emphasis",
+    "chosen": 2,
+    "key_letter": "D"
+   }
+  },
+  {
+   "passage_group_id": "atv2-b2-p6",
+   "cohort": "at-v2-b2",
+   "difficulty": "medium",
+   "item": {
+    "type": "multiple_choice",
+    "blanks": null,
+    "prompt": "[Academic Talk — Theater History] What does the professor say the lawsuit records revealed about the company's shares?",
+    "choices": [
+     "They were held in equal portions by the eight principal actors",
+     "They changed hands so often that ownership could not be settled",
+     "A founder's widow held the largest single block of them",
+     "Most of them had been mortgaged to the landlord"
+    ],
+    "graphic": null,
+    "passage": "Transcript: The Corvin company — a lesson in why account books beat playbills. I read you that expense ledger entry for one reason: it is dated, and it fixes the premiere of a play whose first performance appears in no other record. Every partner in it is documented elsewhere, the rent lines are unremarkable — exactly the playhouse we expect — and there are no repairs in it at all — nothing about machinery. Now, the plot summary of The Iron Garland. People call it a backstage plot. Look at the format: a fair hand, the oaths softened, every scene numbered for a reader who must approve rather than perform. This was drawn up for the licensing office — the censor's copy. Nothing in it would help anyone run a performance from the wings; as publicity it is useless — no date, no playhouse, no invitation — and it is far too orderly to be a spectator writing from memory. Then the lawsuit. The depositions' revelation was the shares: the bulk of them stood mortgaged to the landlord — the company had been pawning itself to pay rent. The eight actors held nothing like equal portions, the founder's widow had sold out years before, and the ownership record is perfectly clear. Which explains sixteen twenty-one. When the Signet lease ran out, no landlord would carry them, and the company simply dissolved. It did not carry on under a new patron — the patron outlived them by a decade — no touring circuit shows them after that date, and no rival's books ever absorb their debts or their stock.",
+    "difficulty": "medium",
+    "explanation": "The depositions revealed that the bulk of the shares stood mortgaged to the landlord.",
+    "listeningTask": "academic_talk",
+    "correct_answer": "Most of them had been mortgaged to the landlord",
+    "passageGroupId": "atv2-b2-p6",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "distractor_rationales": [
+     {
+      "choice": "They were held in equal portions by the eight principal actors",
+      "reason": "The eight actors \"held nothing like equal portions\"."
+     },
+     {
+      "choice": "A founder's widow held the largest single block of them",
+      "reason": "The founder's \"widow had sold out years before\" the suit."
+     },
+     {
+      "choice": "They changed hands so often that ownership could not be settled",
+      "reason": "Unsettled ownership is contradicted flatly: \"the ownership record is perfectly clear\"."
+     }
+    ]
+   },
+   "_meta": {
+    "lecture": "atv2-b2-p6",
+    "pivot": "q3",
+    "qtype": "detail",
+    "chosen": 2,
+    "key_letter": "D"
+   }
+  },
+  {
+   "passage_group_id": "atv2-b2-p6",
+   "cohort": "at-v2-b2",
+   "difficulty": "medium",
+   "item": {
+    "type": "multiple_choice",
+    "blanks": null,
+    "prompt": "[Academic Talk — Theater History] What does the professor suggest happened to the company after it disappears from the records in 1621?",
+    "choices": [
+     "It was absorbed by a rival troupe and vanished into that company's accounts",
+     "It dissolved when the lease on the Signet expired without renewal",
+     "It shifted to touring towns whose records have not survived",
+     "It continued under a new patron's name after the old patron died"
+    ],
+    "graphic": null,
+    "passage": "Transcript: The Corvin company — a lesson in why account books beat playbills. I read you that expense ledger entry for one reason: it is dated, and it fixes the premiere of a play whose first performance appears in no other record. Every partner in it is documented elsewhere, the rent lines are unremarkable — exactly the playhouse we expect — and there are no repairs in it at all — nothing about machinery. Now, the plot summary of The Iron Garland. People call it a backstage plot. Look at the format: a fair hand, the oaths softened, every scene numbered for a reader who must approve rather than perform. This was drawn up for the licensing office — the censor's copy. Nothing in it would help anyone run a performance from the wings; as publicity it is useless — no date, no playhouse, no invitation — and it is far too orderly to be a spectator writing from memory. Then the lawsuit. The depositions' revelation was the shares: the bulk of them stood mortgaged to the landlord — the company had been pawning itself to pay rent. The eight actors held nothing like equal portions, the founder's widow had sold out years before, and the ownership record is perfectly clear. Which explains sixteen twenty-one. When the Signet lease ran out, no landlord would carry them, and the company simply dissolved. It did not carry on under a new patron — the patron outlived them by a decade — no touring circuit shows them after that date, and no rival's books ever absorb their debts or their stock.",
+    "difficulty": "medium",
+    "explanation": "When the Signet lease ran out, no landlord would carry them, and the company simply dissolved.",
+    "listeningTask": "academic_talk",
+    "correct_answer": "It dissolved when the lease on the Signet expired without renewal",
+    "passageGroupId": "atv2-b2-p6",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "distractor_rationales": [
+     {
+      "choice": "It continued under a new patron's name after the old patron died",
+      "reason": "\"It did not carry on under a new patron\" — and the patron outlived them by a decade."
+     },
+     {
+      "choice": "It shifted to touring towns whose records have not survived",
+      "reason": "\"no touring circuit shows them\" after that date."
+     },
+     {
+      "choice": "It was absorbed by a rival troupe and vanished into that company's accounts",
+      "reason": "No absorption either: no \"rival's books ever absorb\" their debts or their stock."
+     }
+    ]
+   },
+   "_meta": {
+    "lecture": "atv2-b2-p6",
+    "pivot": "q4",
+    "qtype": "inference",
+    "chosen": 0,
+    "key_letter": "B"
+   }
+  },
+  {
+   "passage_group_id": "atv2-b2-p7",
+   "cohort": "at-v2-b2",
+   "difficulty": "medium",
+   "item": {
+    "type": "multiple_choice",
+    "blanks": null,
+    "prompt": "[Academic Talk — Soil Science] What does the professor say the team concluded about what the early sample jars from the Ansdell plots actually contain?",
+    "choices": [
+     "Topsoil and subsoil mixed together in proportions no one recorded",
+     "Soil blended from points scattered across a whole plot",
+     "Soil from a single marked spot, returned to year after year",
+     "Soil taken mostly near the plot edges, where neighboring plots run together"
+    ],
+    "graphic": null,
+    "passage": "Transcript: The Ansdell plots — a hundred and forty years of continuous treatment. First, the early jars. The assumption was always composite sampling. The field notebooks answer plainly: each jar came from one marked stake, the same spot revisited every autumn. Not a blend from across the plot, not an edge grab — the stakes sit dead center — and depth was disciplined: topsoil only, never mixed with what lay below. Second, the Halvorsen and Iwu quarrel over whether any of this applies to working farms. I side with neither, and here is what both camps miss: wheat and beans — every claim on either side generalizes from the same two crops, and neither man ever says so. The site is not strange; the soils are ordinary loam, typical of the county. The commercial trials people invoke have gone both ways — no ranking has been reproduced — and the sister site planted the identical pair of crops, so it settles nothing. Third, the future. The letters going around are candid: the treatments themselves will be brought up to current practice, plot by plot. No new trial takes over the land, the sampling program continues at full strength — nobody is winding fieldwork down — and keeping the plots frozen won no support. Last, the weather diary. Its value is not the weather — the station record covers weather better. Ansdell kept it himself, daily, and its dates contradict his published papers in a dozen places; the diary is how we correct him. The official reports cover operations fine, and the flood it mentions changed no sampling schedule.",
+    "difficulty": "medium",
+    "explanation": "The field notebooks show each jar came from one marked stake, the same spot revisited every autumn.",
+    "listeningTask": "academic_talk",
+    "correct_answer": "Soil from a single marked spot, returned to year after year",
+    "passageGroupId": "atv2-b2-p7",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "distractor_rationales": [
+     {
+      "choice": "Soil blended from points scattered across a whole plot",
+      "reason": "Each jar is \"Not a blend from across the plot\"."
+     },
+     {
+      "choice": "Topsoil and subsoil mixed together in proportions no one recorded",
+      "reason": "Depth was disciplined — topsoil only, \"never mixed with what lay below\"."
+     },
+     {
+      "choice": "Soil taken mostly near the plot edges, where neighboring plots run together",
+      "reason": "No edge sampling: \"the stakes sit dead center\"."
+     }
+    ]
+   },
+   "_meta": {
+    "lecture": "atv2-b2-p7",
+    "pivot": "q1",
+    "qtype": "detail",
+    "chosen": 1,
+    "key_letter": "C"
+   }
+  },
+  {
+   "passage_group_id": "atv2-b2-p7",
+   "cohort": "at-v2-b2",
+   "difficulty": "medium",
+   "item": {
+    "type": "multiple_choice",
+    "blanks": null,
+    "prompt": "[Academic Talk — Soil Science] Where does the professor come down in the disagreement between Halvorsen and Iwu over whether the plots' findings apply to working farms?",
+    "choices": [
+     "With neither, since both generalize from the same two crops without saying so",
+     "With Halvorsen, since trials on commercial farms have reproduced the plots' rankings",
+     "With Halvorsen's conclusion but not his reasoning, crediting a sister site's trials instead",
+     "With Iwu, because the site's soils were unusual from the beginning"
+    ],
+    "graphic": null,
+    "passage": "Transcript: The Ansdell plots — a hundred and forty years of continuous treatment. First, the early jars. The assumption was always composite sampling. The field notebooks answer plainly: each jar came from one marked stake, the same spot revisited every autumn. Not a blend from across the plot, not an edge grab — the stakes sit dead center — and depth was disciplined: topsoil only, never mixed with what lay below. Second, the Halvorsen and Iwu quarrel over whether any of this applies to working farms. I side with neither, and here is what both camps miss: wheat and beans — every claim on either side generalizes from the same two crops, and neither man ever says so. The site is not strange; the soils are ordinary loam, typical of the county. The commercial trials people invoke have gone both ways — no ranking has been reproduced — and the sister site planted the identical pair of crops, so it settles nothing. Third, the future. The letters going around are candid: the treatments themselves will be brought up to current practice, plot by plot. No new trial takes over the land, the sampling program continues at full strength — nobody is winding fieldwork down — and keeping the plots frozen won no support. Last, the weather diary. Its value is not the weather — the station record covers weather better. Ansdell kept it himself, daily, and its dates contradict his published papers in a dozen places; the diary is how we correct him. The official reports cover operations fine, and the flood it mentions changed no sampling schedule.",
+    "difficulty": "medium",
+    "explanation": "The professor sides with neither: every claim on either side generalizes from the same two crops, and neither man ever says so.",
+    "listeningTask": "academic_talk",
+    "correct_answer": "With neither, since both generalize from the same two crops without saying so",
+    "passageGroupId": "atv2-b2-p7",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "distractor_rationales": [
+     {
+      "choice": "With Halvorsen, since trials on commercial farms have reproduced the plots' rankings",
+      "reason": "Halvorsen's evidence fails — the commercial trials have gone both ways and \"no ranking has been reproduced\"."
+     },
+     {
+      "choice": "With Iwu, because the site's soils were unusual from the beginning",
+      "reason": "Iwu's premise fails too: the soils are \"ordinary loam, typical of the county\"."
+     },
+     {
+      "choice": "With Halvorsen's conclusion but not his reasoning, crediting a sister site's trials instead",
+      "reason": "The sister site \"planted the identical pair of crops\", so crediting it settles nothing."
+     }
+    ]
+   },
+   "_meta": {
+    "lecture": "atv2-b2-p7",
+    "pivot": "q2",
+    "qtype": "attitude",
+    "chosen": 2,
+    "key_letter": "A"
+   }
+  },
+  {
+   "passage_group_id": "atv2-b2-p7",
+   "cohort": "at-v2-b2",
+   "difficulty": "medium",
+   "item": {
+    "type": "multiple_choice",
+    "blanks": null,
+    "prompt": "[Academic Talk — Soil Science] What does the professor suggest about the experiment's future?",
+    "choices": [
+     "The plots will be kept exactly as they are, since any change would break the record",
+     "Field operations will wind down while analysis of the archive continues",
+     "The treatments will be updated across the plots to reflect current practice",
+     "Part of the land will be turned over to a newly designed trial"
+    ],
+    "graphic": null,
+    "passage": "Transcript: The Ansdell plots — a hundred and forty years of continuous treatment. First, the early jars. The assumption was always composite sampling. The field notebooks answer plainly: each jar came from one marked stake, the same spot revisited every autumn. Not a blend from across the plot, not an edge grab — the stakes sit dead center — and depth was disciplined: topsoil only, never mixed with what lay below. Second, the Halvorsen and Iwu quarrel over whether any of this applies to working farms. I side with neither, and here is what both camps miss: wheat and beans — every claim on either side generalizes from the same two crops, and neither man ever says so. The site is not strange; the soils are ordinary loam, typical of the county. The commercial trials people invoke have gone both ways — no ranking has been reproduced — and the sister site planted the identical pair of crops, so it settles nothing. Third, the future. The letters going around are candid: the treatments themselves will be brought up to current practice, plot by plot. No new trial takes over the land, the sampling program continues at full strength — nobody is winding fieldwork down — and keeping the plots frozen won no support. Last, the weather diary. Its value is not the weather — the station record covers weather better. Ansdell kept it himself, daily, and its dates contradict his published papers in a dozen places; the diary is how we correct him. The official reports cover operations fine, and the flood it mentions changed no sampling schedule.",
+    "difficulty": "medium",
+    "explanation": "The letters are candid: the treatments themselves will be brought up to current practice, plot by plot.",
+    "listeningTask": "academic_talk",
+    "correct_answer": "The treatments will be updated across the plots to reflect current practice",
+    "passageGroupId": "atv2-b2-p7",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "distractor_rationales": [
+     {
+      "choice": "Part of the land will be turned over to a newly designed trial",
+      "reason": "\"No new trial takes over\" the land."
+     },
+     {
+      "choice": "Field operations will wind down while analysis of the archive continues",
+      "reason": "There is no wind-down: the sampling program \"continues at full strength\"."
+     },
+     {
+      "choice": "The plots will be kept exactly as they are, since any change would break the record",
+      "reason": "Keeping them frozen is off — the treatments will be \"brought up to current practice\"."
+     }
+    ]
+   },
+   "_meta": {
+    "lecture": "atv2-b2-p7",
+    "pivot": "q3",
+    "qtype": "inference",
+    "chosen": 3,
+    "key_letter": "C"
+   }
+  },
+  {
+   "passage_group_id": "atv2-b2-p7",
+   "cohort": "at-v2-b2",
+   "difficulty": "medium",
+   "item": {
+    "type": "multiple_choice",
+    "blanks": null,
+    "prompt": "[Academic Talk — Soil Science] Why does the professor mention the handwritten weather diary kept at the farm?",
+    "choices": [
+     "It notes a flood around which the sampling schedule was later arranged",
+     "It was kept by the founder, and it corrects dates in his published papers",
+     "It lets the team tell weather swings apart from the effects of the treatments",
+     "It records field operations that the official reports leave out"
+    ],
+    "graphic": null,
+    "passage": "Transcript: The Ansdell plots — a hundred and forty years of continuous treatment. First, the early jars. The assumption was always composite sampling. The field notebooks answer plainly: each jar came from one marked stake, the same spot revisited every autumn. Not a blend from across the plot, not an edge grab — the stakes sit dead center — and depth was disciplined: topsoil only, never mixed with what lay below. Second, the Halvorsen and Iwu quarrel over whether any of this applies to working farms. I side with neither, and here is what both camps miss: wheat and beans — every claim on either side generalizes from the same two crops, and neither man ever says so. The site is not strange; the soils are ordinary loam, typical of the county. The commercial trials people invoke have gone both ways — no ranking has been reproduced — and the sister site planted the identical pair of crops, so it settles nothing. Third, the future. The letters going around are candid: the treatments themselves will be brought up to current practice, plot by plot. No new trial takes over the land, the sampling program continues at full strength — nobody is winding fieldwork down — and keeping the plots frozen won no support. Last, the weather diary. Its value is not the weather — the station record covers weather better. Ansdell kept it himself, daily, and its dates contradict his published papers in a dozen places; the diary is how we correct him. The official reports cover operations fine, and the flood it mentions changed no sampling schedule.",
+    "difficulty": "medium",
+    "explanation": "Ansdell kept the diary himself, and its dates contradict his published papers in a dozen places — the diary is how he is corrected.",
+    "listeningTask": "academic_talk",
+    "correct_answer": "It was kept by the founder, and it corrects dates in his published papers",
+    "passageGroupId": "atv2-b2-p7",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "distractor_rationales": [
+     {
+      "choice": "It lets the team tell weather swings apart from the effects of the treatments",
+      "reason": "\"Its value is not the weather\" — the station record covers weather better."
+     },
+     {
+      "choice": "It records field operations that the official reports leave out",
+      "reason": "\"The official reports cover operations fine\" — nothing is left out for the diary to supply."
+     },
+     {
+      "choice": "It notes a flood around which the sampling schedule was later arranged",
+      "reason": "The flood it mentions \"changed no sampling schedule\"."
+     }
+    ]
+   },
+   "_meta": {
+    "lecture": "atv2-b2-p7",
+    "pivot": "q4",
+    "qtype": "function",
+    "chosen": 2,
+    "key_letter": "B"
+   }
+  },
+  {
+   "passage_group_id": "atv2-b2-p8",
+   "cohort": "at-v2-b2",
+   "difficulty": "hard",
+   "item": {
+    "type": "multiple_choice",
+    "blanks": null,
+    "prompt": "[Academic Talk — Numismatics] What does the professor suggest about why the Tarveny hoard contains no small denominations?",
+    "choices": [
+     "The finders pocketed the small change before the hoard was reported",
+     "The mint had recalled the small denominations in just those years",
+     "Small denominations rarely circulated that far inland, and few ever reached the site",
+     "The small coins were bronze, and the soil at the site corrodes bronze away"
+    ],
+    "graphic": null,
+    "passage": "Transcript: The Tarveny hoard — six hundred silver pieces and not one small denomination. The tempting stories fail. The find was excavated under supervision from the first spade, so nobody skimmed the change; the mint recalled nothing in those decades — the withdrawal lists survive and are empty — and small coins circulated freely in the region; site finds around Tarveny are full of them. No: the small stuff was bronze, and the Tarveny soil is aggressive — acid, waterlogged — and it eats bronze completely. The little coins were there; they dissolved. Now the die study. For the commonest type we expected a tight cluster. Instead the coins scatter across an enormous number of dies, and the dies almost never link. You cannot build a chain, so forget any minting order, and every die is official work — not one local imitation in the lot. Money gathered from wide circulation. The second hoard, across the river — I bring it up for the pot. It came out of the ground still in its jar, packing intact, the very context our hoard lost; mind you, its recovery was every bit as hurried as ours. Its latest coins run decades apart from ours, and its contents mirror the first hoard type for type. Finally, Teodorescu reads Tarveny as a soldier's pay. I do not buy it. Coins worn to slickness lying beside mint-fresh pieces are what a household accumulates across two generations; pay comes fresh. The total lands between every pay grade we know, the pieces show no sorting by weight, and the corrosion is uniform: one deposit, buried once.",
+    "difficulty": "hard",
+    "explanation": "The small denominations were bronze, and the aggressive Tarveny soil eats bronze completely — the little coins were there and dissolved.",
+    "listeningTask": "academic_talk",
+    "correct_answer": "The small coins were bronze, and the soil at the site corrodes bronze away",
+    "passageGroupId": "atv2-b2-p8",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "distractor_rationales": [
+     {
+      "choice": "Small denominations rarely circulated that far inland, and few ever reached the site",
+      "reason": "Small coins \"circulated freely in the region\" — site finds around Tarveny are full of them."
+     },
+     {
+      "choice": "The finders pocketed the small change before the hoard was reported",
+      "reason": "No skimming was possible: the find was excavated \"under supervision from the first\" spade."
+     },
+     {
+      "choice": "The mint had recalled the small denominations in just those years",
+      "reason": "\"the mint recalled nothing\" in those decades — the withdrawal lists survive and are empty."
+     }
+    ]
+   },
+   "_meta": {
+    "lecture": "atv2-b2-p8",
+    "pivot": "q1",
+    "qtype": "inference",
+    "chosen": 0,
+    "key_letter": "D"
+   }
+  },
+  {
+   "passage_group_id": "atv2-b2-p8",
+   "cohort": "at-v2-b2",
+   "difficulty": "hard",
+   "item": {
+    "type": "multiple_choice",
+    "blanks": null,
+    "prompt": "[Academic Talk — Numismatics] What did the die study show about the most common coin type in the hoard?",
+    "choices": [
+     "Most of the coins were struck from the same few dies",
+     "The coins spread across many dies with hardly any links between them",
+     "The die links form a chain that puts the coins in minting order",
+     "Many coins pair an official die on one face with a locally cut die on the other"
+    ],
+    "graphic": null,
+    "passage": "Transcript: The Tarveny hoard — six hundred silver pieces and not one small denomination. The tempting stories fail. The find was excavated under supervision from the first spade, so nobody skimmed the change; the mint recalled nothing in those decades — the withdrawal lists survive and are empty — and small coins circulated freely in the region; site finds around Tarveny are full of them. No: the small stuff was bronze, and the Tarveny soil is aggressive — acid, waterlogged — and it eats bronze completely. The little coins were there; they dissolved. Now the die study. For the commonest type we expected a tight cluster. Instead the coins scatter across an enormous number of dies, and the dies almost never link. You cannot build a chain, so forget any minting order, and every die is official work — not one local imitation in the lot. Money gathered from wide circulation. The second hoard, across the river — I bring it up for the pot. It came out of the ground still in its jar, packing intact, the very context our hoard lost; mind you, its recovery was every bit as hurried as ours. Its latest coins run decades apart from ours, and its contents mirror the first hoard type for type. Finally, Teodorescu reads Tarveny as a soldier's pay. I do not buy it. Coins worn to slickness lying beside mint-fresh pieces are what a household accumulates across two generations; pay comes fresh. The total lands between every pay grade we know, the pieces show no sorting by weight, and the corrosion is uniform: one deposit, buried once.",
+    "difficulty": "hard",
+    "explanation": "The commonest type scatters across an enormous number of dies, and the dies almost never link.",
+    "listeningTask": "academic_talk",
+    "correct_answer": "The coins spread across many dies with hardly any links between them",
+    "passageGroupId": "atv2-b2-p8",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "distractor_rationales": [
+     {
+      "choice": "Most of the coins were struck from the same few dies",
+      "reason": "Instead of a tight cluster, the coins scatter across \"an enormous number of dies\"."
+     },
+     {
+      "choice": "The die links form a chain that puts the coins in minting order",
+      "reason": "\"You cannot build a chain\", so no minting order emerges."
+     },
+     {
+      "choice": "Many coins pair an official die on one face with a locally cut die on the other",
+      "reason": "Every die is official work — \"not one local imitation\" in the lot."
+     }
+    ]
+   },
+   "_meta": {
+    "lecture": "atv2-b2-p8",
+    "pivot": "q2",
+    "qtype": "detail",
+    "chosen": 1,
+    "key_letter": "B"
+   }
+  },
+  {
+   "passage_group_id": "atv2-b2-p8",
+   "cohort": "at-v2-b2",
+   "difficulty": "hard",
+   "item": {
+    "type": "multiple_choice",
+    "blanks": null,
+    "prompt": "[Academic Talk — Numismatics] Why does the professor bring up the second hoard, found across the river?",
+    "choices": [
+     "It was found still in its container, preserving the context the first hoard lost",
+     "Its latest coin matches the first hoard's, suggesting the two were hidden at the same time",
+     "Its excavation was recorded layer by layer, which the first hoard's hurried recovery was not",
+     "It holds the types missing from the first hoard, pointing to different sources"
+    ],
+    "graphic": null,
+    "passage": "Transcript: The Tarveny hoard — six hundred silver pieces and not one small denomination. The tempting stories fail. The find was excavated under supervision from the first spade, so nobody skimmed the change; the mint recalled nothing in those decades — the withdrawal lists survive and are empty — and small coins circulated freely in the region; site finds around Tarveny are full of them. No: the small stuff was bronze, and the Tarveny soil is aggressive — acid, waterlogged — and it eats bronze completely. The little coins were there; they dissolved. Now the die study. For the commonest type we expected a tight cluster. Instead the coins scatter across an enormous number of dies, and the dies almost never link. You cannot build a chain, so forget any minting order, and every die is official work — not one local imitation in the lot. Money gathered from wide circulation. The second hoard, across the river — I bring it up for the pot. It came out of the ground still in its jar, packing intact, the very context our hoard lost; mind you, its recovery was every bit as hurried as ours. Its latest coins run decades apart from ours, and its contents mirror the first hoard type for type. Finally, Teodorescu reads Tarveny as a soldier's pay. I do not buy it. Coins worn to slickness lying beside mint-fresh pieces are what a household accumulates across two generations; pay comes fresh. The total lands between every pay grade we know, the pieces show no sorting by weight, and the corrosion is uniform: one deposit, buried once.",
+    "difficulty": "hard",
+    "explanation": "The second hoard came out of the ground still in its jar, packing intact — the very context the first hoard lost.",
+    "listeningTask": "academic_talk",
+    "correct_answer": "It was found still in its container, preserving the context the first hoard lost",
+    "passageGroupId": "atv2-b2-p8",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "distractor_rationales": [
+     {
+      "choice": "Its latest coin matches the first hoard's, suggesting the two were hidden at the same time",
+      "reason": "The dates diverge: \"Its latest coins run decades apart\" from ours."
+     },
+     {
+      "choice": "It holds the types missing from the first hoard, pointing to different sources",
+      "reason": "Far from holding the missing types, \"its contents mirror the first hoard\" type for type."
+     },
+     {
+      "choice": "Its excavation was recorded layer by layer, which the first hoard's hurried recovery was not",
+      "reason": "Its recovery was \"every bit as hurried as ours\" — no layer-by-layer record exists."
+     }
+    ]
+   },
+   "_meta": {
+    "lecture": "atv2-b2-p8",
+    "pivot": "q3",
+    "qtype": "function",
+    "chosen": 1,
+    "key_letter": "A"
+   }
+  },
+  {
+   "passage_group_id": "atv2-b2-p8",
+   "cohort": "at-v2-b2",
+   "difficulty": "hard",
+   "item": {
+    "type": "multiple_choice",
+    "blanks": null,
+    "prompt": "[Academic Talk — Numismatics] How does the professor respond to Teodorescu's argument that the hoard represents a soldier's pay?",
+    "choices": [
+     "He counters that it was a merchant's working stock, noting how the pieces were sorted by weight",
+     "He argues it is two separate deposits mixed together, which Teodorescu's reading cannot absorb",
+     "He rejects it: the mix of worn and fresh coins fits a family's savings, not military pay",
+     "He accepts it, since the total matches a cavalryman's annual pay too closely for coincidence"
+    ],
+    "graphic": null,
+    "passage": "Transcript: The Tarveny hoard — six hundred silver pieces and not one small denomination. The tempting stories fail. The find was excavated under supervision from the first spade, so nobody skimmed the change; the mint recalled nothing in those decades — the withdrawal lists survive and are empty — and small coins circulated freely in the region; site finds around Tarveny are full of them. No: the small stuff was bronze, and the Tarveny soil is aggressive — acid, waterlogged — and it eats bronze completely. The little coins were there; they dissolved. Now the die study. For the commonest type we expected a tight cluster. Instead the coins scatter across an enormous number of dies, and the dies almost never link. You cannot build a chain, so forget any minting order, and every die is official work — not one local imitation in the lot. Money gathered from wide circulation. The second hoard, across the river — I bring it up for the pot. It came out of the ground still in its jar, packing intact, the very context our hoard lost; mind you, its recovery was every bit as hurried as ours. Its latest coins run decades apart from ours, and its contents mirror the first hoard type for type. Finally, Teodorescu reads Tarveny as a soldier's pay. I do not buy it. Coins worn to slickness lying beside mint-fresh pieces are what a household accumulates across two generations; pay comes fresh. The total lands between every pay grade we know, the pieces show no sorting by weight, and the corrosion is uniform: one deposit, buried once.",
+    "difficulty": "hard",
+    "explanation": "The professor rejects it: worn and mint-fresh coins side by side are what a household accumulates across generations, while pay comes fresh.",
+    "listeningTask": "academic_talk",
+    "correct_answer": "He rejects it: the mix of worn and fresh coins fits a family's savings, not military pay",
+    "passageGroupId": "atv2-b2-p8",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "distractor_rationales": [
+     {
+      "choice": "He accepts it, since the total matches a cavalryman's annual pay too closely for coincidence",
+      "reason": "The pay-figure match fails — the total lands \"between every pay grade we know\"."
+     },
+     {
+      "choice": "He counters that it was a merchant's working stock, noting how the pieces were sorted by weight",
+      "reason": "The pieces show \"no sorting by weight\"."
+     },
+     {
+      "choice": "He argues it is two separate deposits mixed together, which Teodorescu's reading cannot absorb",
+      "reason": "The corrosion is uniform: \"one deposit, buried once\"."
+     }
+    ]
+   },
+   "_meta": {
+    "lecture": "atv2-b2-p8",
+    "pivot": "q4",
+    "qtype": "attitude",
+    "chosen": 0,
+    "key_letter": "C"
+   }
+  }
+ ]
+}
