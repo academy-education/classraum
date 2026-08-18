@@ -1,0 +1,312 @@
+{
+  "seed": "atv2-20260818",
+  "note": "ATV2 pilot option layer. Stems + 4 settings per pivot, authored symmetrically BEFORE world selection. All entities fictionalized. No edits after freeze (sha256 recorded in ATV2-PILOT-RESULT.md).",
+  "lectures": [
+    {
+      "id": "atv2-p1",
+      "topic": "Archaeology",
+      "difficulty": "medium",
+      "pivots": [
+        {
+          "id": "q1",
+          "qtype": "detail",
+          "stem": "What did the professor say the sediment cores indicated about rainfall in the settlement's final decades?",
+          "settings": [
+            "That rainfall declined gradually across those decades",
+            "That rainfall swung between unusually wet and unusually dry years",
+            "That rainfall stayed close to the region's long-term average",
+            "That rainfall rose noticeably compared with earlier centuries"
+          ]
+        },
+        {
+          "id": "q2",
+          "qtype": "detail",
+          "stem": "According to the professor, what did the residue analysis show the large storage jars had mostly held?",
+          "settings": [
+            "Barley grown in the fields around the settlement",
+            "Wine brought in from outside the region",
+            "Olive oil pressed at the settlement itself",
+            "Dried fish carried up from the coast"
+          ]
+        },
+        {
+          "id": "q3",
+          "qtype": "function",
+          "stem": "Why does the professor mention the neighboring settlement of Kessara?",
+          "settings": [
+            "It was abandoned around the same time, which points to a cause beyond a single site",
+            "It continued to function afterward, which complicates a region-wide explanation",
+            "Its tablets refer to Tell Arvani, which helps date the final occupation layer",
+            "Its excavation used newer methods that the professor wants applied at Tell Arvani"
+          ]
+        },
+        {
+          "id": "q4",
+          "qtype": "attitude",
+          "stem": "What is the professor's assessment of the earthquake explanation for the abandonment of Tell Arvani?",
+          "settings": [
+            "It rests on damage that turned out to reflect gradual decay rather than a single event",
+            "The collapsed walls support it, and it is currently the best-supported explanation",
+            "The damage pattern fits an earthquake, but one that struck centuries before the abandonment",
+            "It may account for some of the damage, but not for the abandonment by itself"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "atv2-p2",
+      "topic": "Volcanology",
+      "difficulty": "medium",
+      "pivots": [
+        {
+          "id": "q1",
+          "qtype": "detail",
+          "stem": "What does the professor say the ground-deformation measurements showed during the unrest episode at the Serrat caldera?",
+          "settings": [
+            "The uplift was centered under the caldera's western rim rather than its middle",
+            "The ground rose and then subsided again in a repeating cycle",
+            "The uplift went on steadily even after the earthquake swarms had stopped",
+            "The deformation covered a much smaller area than the first reports claimed"
+          ]
+        },
+        {
+          "id": "q2",
+          "qtype": "detail",
+          "stem": "According to the professor, what did the gas measurements suggest about the source of the unrest?",
+          "settings": [
+            "Fresh magma was rising and stalling beneath the caldera",
+            "Heated groundwater, rather than new magma, was driving the changes",
+            "Gas from an older, cooling intrusion was escaping along reopened faults",
+            "The gases carried the signature of magma and groundwater together, pointing to a mixed source"
+          ]
+        },
+        {
+          "id": "q3",
+          "qtype": "function",
+          "stem": "Why does the professor bring up the caldera's nineteenth-century episode?",
+          "settings": [
+            "Its opening phase resembled the recent unrest, which is why the recent episode drew such attention",
+            "It ended without an eruption, showing that unrest at this caldera does not always lead to one",
+            "It was misread by observers at the time in a way the professor thinks is being repeated",
+            "It left the deposits that let geologists map how far the hazard zone extends"
+          ]
+        },
+        {
+          "id": "q4",
+          "qtype": "attitude",
+          "stem": "What does the professor imply about the decision to raise the alert level partway through the episode?",
+          "settings": [
+            "It was driven more by public pressure than by the monitoring data",
+            "It was justified at the time, given what the instruments were then showing",
+            "It came later than the data warranted, in the professor's reading",
+            "It followed a fixed protocol that left the scientists themselves little say"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "atv2-p3",
+      "topic": "Art History",
+      "difficulty": "medium",
+      "pivots": [
+        {
+          "id": "q1",
+          "qtype": "detail",
+          "stem": "What did the professor say the pigment analysis revealed about the blue areas of the Verrine Hours?",
+          "settings": [
+            "Lapis lazuli was used throughout, even in the minor border decoration",
+            "A cheaper azurite base was covered with a thin layer of lapis lazuli",
+            "Azurite appears in the margins, while lapis lazuli was reserved for the central figures",
+            "The blue is mostly indigo, blended to imitate the look of lapis lazuli"
+          ]
+        },
+        {
+          "id": "q2",
+          "qtype": "main_emphasis",
+          "stem": "What is the main point the professor makes about the workshop that produced the Verrine Hours?",
+          "settings": [
+            "It reused compositions from an older model book for decades",
+            "Its choices of material followed each patron's budget more than any artistic rule",
+            "Its books have long been confused with the output of a rival workshop in Arden",
+            "It kept working in an older style long after painters elsewhere had moved on"
+          ]
+        },
+        {
+          "id": "q3",
+          "qtype": "function",
+          "stem": "Why does the professor bring up the workshop's surviving account books?",
+          "settings": [
+            "They record what the workshop paid for pigments, giving evidence independent of the analysis",
+            "They list the assistants by name, showing how many people worked on a single book",
+            "They narrow the book's production to a two-year window",
+            "They show the patron stopped paying partway through, which explains the unfinished pages"
+          ]
+        },
+        {
+          "id": "q4",
+          "qtype": "attitude",
+          "stem": "What does the professor conclude about attributing the Verrine Hours to Master Anselm himself?",
+          "settings": [
+            "He probably painted the faces, while assistants completed the rest",
+            "The strongest pages were painted after his documented death, so the attribution fails",
+            "The attribution holds, on the strength of the page layouts and borders rather than the figures",
+            "The attribution holds, because the underdrawing throughout is in his hand"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "atv2-p4",
+      "topic": "Ecology",
+      "difficulty": "hard",
+      "pivots": [
+        {
+          "id": "q1",
+          "qtype": "detail",
+          "stem": "What did the seedling survey conducted five years after the cyclone show?",
+          "settings": [
+            "Seedlings were coming up mainly beneath the surviving adult trees",
+            "Nearly all the new seedlings were clustered along the debris lines the cyclone left",
+            "Seedlings were scarce across the island despite a heavy fruit crop",
+            "Seedlings were plentiful at first, but few survived their first dry season"
+          ]
+        },
+        {
+          "id": "q2",
+          "qtype": "detail",
+          "stem": "According to the professor, what did the follow-up experiment indicate about why seed dispersal changed?",
+          "settings": [
+            "A vine that spread after the storm was covering the branches the pigeons feed from",
+            "The pigeon flocks had grown too small to take the fruit before it dropped and spoiled",
+            "Rats were removing most of the fallen fruit before the pigeons could reach it",
+            "The fruit was ripening out of step with the pigeons' breeding season, so fewer birds fed on it"
+          ]
+        },
+        {
+          "id": "q3",
+          "qtype": "function",
+          "stem": "Why does the professor refer to the kanari forests on the mainland?",
+          "settings": [
+            "To point out that the tree spreads there without pigeons, so other dispersers can do the job",
+            "To show that the change was confined to the atoll rather than affecting the species as a whole",
+            "To identify where replacement pigeons might eventually come from",
+            "To question whether conclusions drawn from mainland forests apply to an atoll at all"
+          ]
+        },
+        {
+          "id": "q4",
+          "qtype": "inference",
+          "stem": "What does the professor suggest about intervening to move seeds by hand?",
+          "settings": [
+            "A small trial of it is already underway on the island's two worst-hit stretches",
+            "Managers are holding off because pigeon numbers have begun to recover",
+            "The research team is against it, since it would obscure how the system recovers on its own",
+            "A proposal to bring pigeons from a neighboring atoll is being weighed instead"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "atv2-p5",
+      "topic": "Linguistics",
+      "difficulty": "hard",
+      "pivots": [
+        {
+          "id": "q1",
+          "qtype": "detail",
+          "stem": "What does the professor say the vocabulary shared by Taruic and Emel indicates about the vowel shift?",
+          "settings": [
+            "The shift was already complete when the words were borrowed",
+            "The shift happened after the borrowing, since Emel preserves the older vowels",
+            "The borrowing ran in the other direction, from Emel into Taruic",
+            "The words were borrowed twice, at two different stages of the shift"
+          ]
+        },
+        {
+          "id": "q2",
+          "qtype": "main_emphasis",
+          "stem": "What is the professor's central claim about how the vowel shift spread?",
+          "settings": [
+            "It moved through the vocabulary word by word rather than reaching all words at once",
+            "It traveled along the river trade routes rather than spreading outward from one center",
+            "It took hold first in careful, formal speech and reached casual speech later",
+            "It was carried by younger speakers whose parents never adopted the new vowels"
+          ]
+        },
+        {
+          "id": "q3",
+          "qtype": "function",
+          "stem": "Why does the professor discuss the 1911 field recordings?",
+          "settings": [
+            "They catch speakers in mid-shift, using the older and newer vowels side by side",
+            "They establish that the shift was already finished a century ago",
+            "They show why transcriptions from that period cannot be trusted on vowel quality",
+            "They preserve the speech of a village that the shift never reached"
+          ]
+        },
+        {
+          "id": "q4",
+          "qtype": "attitude",
+          "stem": "How does the professor evaluate the substrate explanation for the shift?",
+          "settings": [
+            "Appealing, but impossible to confirm without records of the earlier language",
+            "Unconvincing, because the shift's geography does not match where the substrate was spoken",
+            "Well supported, because loanwords show the earlier language had these same vowels",
+            "Recently revived, and in the professor's view it has earned a fresh hearing"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "atv2-p6",
+      "topic": "History of Science",
+      "difficulty": "medium",
+      "pivots": [
+        {
+          "id": "q1",
+          "qtype": "detail",
+          "stem": "According to the professor, why did the service's warnings improve in its second decade?",
+          "settings": [
+            "Telegraph lines finally connected the coastal observation stations",
+            "The service began paying fishing crews to report conditions from open water",
+            "It replaced its old seasonal rules of thumb with warnings based on barometer readings",
+            "It began pooling its observations with the rival Austrian service"
+          ]
+        },
+        {
+          "id": "q2",
+          "qtype": "function",
+          "stem": "Why does the professor describe the shipwreck of 1873?",
+          "settings": [
+            "It pushed the parliament into funding the warning network",
+            "It was wrongly blamed on the service and nearly ended the project",
+            "It occurred despite an accurate warning, showing that warnings were not reaching crews",
+            "It illustrates what storms were costing the coast before systematic warnings"
+          ]
+        },
+        {
+          "id": "q3",
+          "qtype": "inference",
+          "stem": "What does the professor imply about the service's barometer records today?",
+          "settings": [
+            "They have become a resource for reconstructing the region's past climate",
+            "Most of them did not survive, so claims about the service's accuracy cannot be checked",
+            "Recent recalibration work suggests their readings ran consistently low",
+            "They sit scattered in regional archives and remain largely unstudied"
+          ]
+        },
+        {
+          "id": "q4",
+          "qtype": "attitude",
+          "stem": "What is the professor's judgment of Marini, the service's founder?",
+          "settings": [
+            "A gifted promoter whose scientific claims ran ahead of his evidence",
+            "An undervalued figure whose statistical methods anticipated later practice",
+            "A man of ordinary ideas whose real achievement was the organization he built",
+            "A reckless forecaster whose premature warnings wore down public trust"
+          ]
+        }
+      ]
+    }
+  ]
+}

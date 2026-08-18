@@ -873,3 +873,18 @@ Announcement leakage is separately mitigable by never seating siblings
 in one form. Artifacts: mcatk-*.{blind,key,sample,solver-*}.json,
 mcatk-prepare.mjs, mcatk-score.mjs, MC-ATTACK-2026-08-18.md. Human
 sitting remains the verdict instrument (B4).
+
+### AT-V2 pilot CLEARED — Academic Talk rebuild design validated (2026-08-18)
+CR-V7 method adapted to 4-question lecture sets: 4 orthogonal pivots per
+lecture x 4 world-undecidable settings, all 256 combinations writable
+(kills sibling leakage structurally). Options frozen (sha256 e5b2b45d...),
+seeded selection (literal seed atv2-20260818), transcripts authored after,
+72/72 kill-quotes machine-anchored (checker break-tested; caught its own
+apostrophe bug on a fixture first). Pilot attack: solvers 20.8/25.0/16.7,
+mean 20.8% vs 25.0% control = -4.2 margin, CLEAR under the pre-registered
+rule (kill >= +30). Same-day live Academic Talk on the same instrument:
+99.2%, +70.0. Two pre-freeze review passes killed a paradigm-recognizable
+lecture (TMR clone), a dodo-tree clone, two sibling leaks, and a
+slot-locked verdict template BEFORE freeze. Phase 2 = scale in 6-8 lecture
+batches, same pipeline + with-source exclusivity pass; human sitting
+before any swap. Files: ATV2-DESIGN.md, ATV2-PILOT-RESULT.md, atv2-*.
