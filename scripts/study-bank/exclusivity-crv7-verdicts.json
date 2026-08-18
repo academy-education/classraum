@@ -1,0 +1,5135 @@
+[
+  {
+    "id": "x001",
+    "item_id": "020d679a-8c99-4a29-b478-e2781146e7d7",
+    "localId": "crv7-b4-11",
+    "content_sha": "8c37c5eeefc6dc381fb2ab21a2a2ec8b",
+    "cohesion_edited": false,
+    "stimulus": "\"It's the guest rule she objected to, not the rota.\"",
+    "key": "I'll rewrite that section before we meet again.",
+    "contested_votes": 0,
+    "flag_ge1": false,
+    "flag_ge2": false,
+    "human_reviewed": false,
+    "human_verdict": null,
+    "human_note": null,
+    "graders": {
+      "A": {
+        "verdict": "unique",
+        "best": "B",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only B acts on the thing named as the objection; D re-does the rota the line explicitly excludes, A treats the document as settled, and C asks about file currency without engaging the objection."
+      },
+      "B": {
+        "verdict": "unique",
+        "best": "B",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "The line corrects which document was objected to; D re-offers the rota the line just excluded, A's 'pin it up' and C's currency question both ignore the correction rather than acting on it."
+      },
+      "C": {
+        "verdict": "unique",
+        "best": "B",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "The line settles that the guest rule is the disputed text, so only rewriting that section responds; D revives the rota the line explicitly excluded, and A and C treat a settled dispute as a filing question."
+      }
+    }
+  },
+  {
+    "id": "x002",
+    "item_id": "05102ab7-4821-43b3-a367-a987141cef6f",
+    "localId": "cr7-07",
+    "content_sha": "9e068fca6ff22abaaec3ca9d55f8cb20",
+    "cohesion_edited": false,
+    "stimulus": "\"The presentation's in the seminar room now, not the lecture hall.\"",
+    "key": "I'll tell the others so nobody ends up waiting downstairs.",
+    "contested_votes": 2,
+    "flag_ge1": true,
+    "flag_ge2": true,
+    "human_reviewed": false,
+    "human_verdict": null,
+    "human_note": null,
+    "graders": {
+      "A": {
+        "verdict": "contested",
+        "best": "C",
+        "best_is_key": true,
+        "rival_options": [
+          "I'll email the department for access first thing."
+        ],
+        "reason": "B survives because the line states a new venue and nothing in it rules out needing to arrange access to that venue, so emailing the department is an ordinary uptake of the same change C responds to."
+      },
+      "B": {
+        "verdict": "contested",
+        "best": "C",
+        "best_is_key": true,
+        "rival_options": [
+          "I'll email the department for access first thing."
+        ],
+        "reason": "B accepts the relocation and acts on it — emailing the department for access to the new room contradicts nothing in the line, so a test-taker needs an unstated fact (that access is not an issue) to prefer C."
+      },
+      "C": {
+        "verdict": "unique",
+        "best": "C",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "A venue change calls for relaying it; B invents an access problem the line never raises, and A and D reply to a writing deadline that was not mentioned."
+      }
+    }
+  },
+  {
+    "id": "x003",
+    "item_id": "06721cbd-0c1e-46d1-994c-09bd37f24d7e",
+    "localId": "crv7-b5-01",
+    "content_sha": "4b823bc8e51ae20dcb144843e491a78b",
+    "cohesion_edited": true,
+    "stimulus": "\"Do we have anyone who can keep goal?\"",
+    "key": "Ravi has — he kept goal last season.",
+    "contested_votes": 0,
+    "flag_ge1": false,
+    "flag_ge2": false,
+    "human_reviewed": false,
+    "human_verdict": null,
+    "human_note": null,
+    "graders": {
+      "A": {
+        "verdict": "unique",
+        "best": "A",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "The line is a question about availability and only A answers it; B, C and D all reply as though they had been told something rather than asked."
+      },
+      "B": {
+        "verdict": "unique",
+        "best": "A",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "The line is a question; B, C and D all react to information as if they had been told something, so only A answers what was asked."
+      },
+      "C": {
+        "verdict": "unique",
+        "best": "A",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "The line is a question about availability and only A answers it; B, C and D all react as though they had been told something."
+      }
+    }
+  },
+  {
+    "id": "x004",
+    "item_id": "07595261-c3e9-4d0d-a66f-3ba7d6f7821e",
+    "localId": "crv7-b6-18",
+    "content_sha": "d613470b08a11f522a836f13d5e4c1b7",
+    "cohesion_edited": false,
+    "stimulus": "\"We can trim her claws while she's here.\"",
+    "key": "Please, she never lets me do it.",
+    "contested_votes": 0,
+    "flag_ge1": false,
+    "flag_ge2": false,
+    "human_reviewed": false,
+    "human_verdict": null,
+    "human_note": null,
+    "graders": {
+      "A": {
+        "verdict": "unique",
+        "best": "C",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only C takes up the offer; D asks to book what is offered for right now, B answers aftercare instructions never given, and A ignores the offer to report an unrelated symptom."
+      },
+      "B": {
+        "verdict": "unique",
+        "best": "C",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "The offer is to do it now, 'while she's here', which kills D's request to book it in; A and B reply to a symptom report and to advice that were never given."
+      },
+      "C": {
+        "verdict": "unique",
+        "best": "C",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "The line offers to do it now, so C accepts; D asks to book what is already on offer, B answers advice never given, and A ignores the offer entirely."
+      }
+    }
+  },
+  {
+    "id": "x005",
+    "item_id": "07bc5e44-169e-42bf-a6bb-e7eb3a580fb9",
+    "localId": "crv7-b5-15",
+    "content_sha": "ac4dcfd2f90d471c673960b5fbccc3c4",
+    "cohesion_edited": true,
+    "stimulus": "\"The patch drops the night before we play.\"",
+    "key": "We should practise on the test build.",
+    "contested_votes": 0,
+    "flag_ge1": false,
+    "flag_ge2": false,
+    "human_reviewed": true,
+    "human_verdict": "unique",
+    "human_note": null,
+    "graders": {
+      "A": {
+        "verdict": "unique",
+        "best": "C",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "D contradicts the stated timing outright, and A and B commit to arrangements with no connection to a patch landing the night before the match; only C responds to the problem the timing creates."
+      },
+      "B": {
+        "verdict": "unique",
+        "best": "C",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "D flatly contradicts the stated timing, and A and B act on the patch not at all; only C responds to the game changing before the match."
+      },
+      "C": {
+        "verdict": "unique",
+        "best": "C",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only C does something about the patch landing before the match; D contradicts the stated timing, and A and B respond to logistics the line never raises."
+      }
+    }
+  },
+  {
+    "id": "x006",
+    "item_id": "09a7e340-41b3-46f5-a781-7e262df5f109",
+    "localId": "crv7-b5-16",
+    "content_sha": "fb0c91b61631086ef599a0cd9724c2d0",
+    "cohesion_edited": false,
+    "stimulus": "\"Do we need to label everything for allergies?\"",
+    "key": "Yes, the union insists on it now.",
+    "contested_votes": 0,
+    "flag_ge1": false,
+    "flag_ge2": false,
+    "human_reviewed": false,
+    "human_verdict": null,
+    "human_note": null,
+    "graders": {
+      "A": {
+        "verdict": "unique",
+        "best": "D",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "The line asks a yes/no question and only D answers it; A, B and C reply to a different utterance about posters, supplies and floats."
+      },
+      "B": {
+        "verdict": "unique",
+        "best": "D",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "The line is a yes/no question about labelling and only D answers it; A, B and C all change the subject to posters, sourcing and the float."
+      },
+      "C": {
+        "verdict": "unique",
+        "best": "D",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "The line asks a yes/no question and only D answers it; the others reply to planning talk that was not the utterance given."
+      }
+    }
+  },
+  {
+    "id": "x007",
+    "item_id": "0f6a1bd7-ca5a-4f5c-8cd1-7955df13840a",
+    "localId": "crv7-b5-13",
+    "content_sha": "875cc01bef71ade9ac7841f9476f016c",
+    "cohesion_edited": false,
+    "stimulus": "\"Our gazebo's double-booked, so we've no cover.\"",
+    "key": "Awkward — I'll borrow one from the scouts.",
+    "contested_votes": 0,
+    "flag_ge1": false,
+    "flag_ge2": false,
+    "human_reviewed": false,
+    "human_verdict": null,
+    "human_note": null,
+    "graders": {
+      "A": {
+        "verdict": "unique",
+        "best": "B",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only B addresses the missing cover; D misreads a statement of a problem as an offer, A accepts something never offered, and C reacts with a map change that does nothing about the cover."
+      },
+      "B": {
+        "verdict": "unique",
+        "best": "B",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "The line reports a loss, not an offer, so A and D (accepting an offer) misread the speech act, and C's map change does not address the missing cover."
+      },
+      "C": {
+        "verdict": "unique",
+        "best": "B",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Losing cover invites sourcing another gazebo; D accepts an offer nobody made and assumes they have one, and A and C answer different utterances."
+      }
+    }
+  },
+  {
+    "id": "x008",
+    "item_id": "0f6c0b2f-6e12-4f32-a709-47f684f174ee",
+    "localId": "crv7-b4-14",
+    "content_sha": "77c5542d5e7043557fb149abbd77db71",
+    "cohesion_edited": false,
+    "stimulus": "\"The sublet form needs your guarantor's signature too.\"",
+    "key": "I'll post it to my uncle in the morning.",
+    "contested_votes": 3,
+    "flag_ge1": true,
+    "flag_ge2": true,
+    "human_reviewed": false,
+    "human_verdict": null,
+    "human_note": null,
+    "graders": {
+      "A": {
+        "verdict": "contested",
+        "best": "A",
+        "best_is_key": true,
+        "rival_options": [
+          "I'll collect it on my way past this afternoon."
+        ],
+        "reason": "C survives because the line never says where the guarantor is or how the signature will be obtained, so collecting it in person this afternoon is as consistent with the line as posting the form to a relative."
+      },
+      "B": {
+        "verdict": "contested",
+        "best": "A",
+        "best_is_key": true,
+        "rival_options": [
+          "I'll collect it on my way past this afternoon."
+        ],
+        "reason": "Both A and C are ordinary ways of getting the guarantor's signature — posting the form to the guarantor versus collecting it in person — and nothing in the line rules either out."
+      },
+      "C": {
+        "verdict": "contested",
+        "best": "A",
+        "best_is_key": true,
+        "rival_options": [
+          "I'll collect it on my way past this afternoon."
+        ],
+        "reason": "C survives because 'collect it on my way past' reads naturally as collecting the guarantor's signature in person, and the line no more states that the guarantor is postal than that he is the uncle in A."
+      }
+    }
+  },
+  {
+    "id": "x009",
+    "item_id": "10f72408-d167-444d-9a27-8aa23c26a190",
+    "localId": "crv7-b2-20",
+    "content_sha": "9e3ca426300c2604e95d3420adebb5e8",
+    "cohesion_edited": false,
+    "stimulus": "\"Anything going overseas has to have a customs form.\"",
+    "key": "I'll fill one in before I get in the line again.",
+    "contested_votes": 0,
+    "flag_ge1": false,
+    "flag_ge2": false,
+    "human_reviewed": false,
+    "human_verdict": null,
+    "human_note": null,
+    "graders": {
+      "A": {
+        "verdict": "unique",
+        "best": "C",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "The line states a requirement and only C meets it; A answers an unasked question about contents, B repacks without touching the requirement, and D treats it as an optional paid extra."
+      },
+      "B": {
+        "verdict": "unique",
+        "best": "C",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "The line states a requirement, so only C complies; A answers an unasked contents question, B's repacking ignores the form, D replies to an insurance offer."
+      },
+      "C": {
+        "verdict": "unique",
+        "best": "C",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "The line states a requirement and only C complies; A answers a contents question that was not asked, B ignores the form, and D reacts to a price the line never mentions."
+      }
+    }
+  },
+  {
+    "id": "x010",
+    "item_id": "119034bc-20e1-4ae9-be36-2b1e0bfd0171",
+    "localId": "cr7-05",
+    "content_sha": "09b16bc8d59526d451178fbc94c513a2",
+    "cohesion_edited": false,
+    "stimulus": "\"I'll need your advisor's signature before I can clear the hold.\"",
+    "key": "I'll see her Wednesday and bring the form back after.",
+    "contested_votes": 0,
+    "flag_ge1": false,
+    "flag_ge2": false,
+    "human_reviewed": false,
+    "human_verdict": null,
+    "human_note": null,
+    "graders": {
+      "A": {
+        "verdict": "unique",
+        "best": "C",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only C acts on the stated condition for clearing the hold; A, B and D respond to a conversation about requirements and credits that this line does not have."
+      },
+      "B": {
+        "verdict": "unique",
+        "best": "C",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "A, B and D all draw conclusions about classes, requirements and credits that the line says nothing about; only C acts on the signature demanded."
+      },
+      "C": {
+        "verdict": "unique",
+        "best": "C",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only C goes and gets the required signature; A, B and D react to advising content the line never supplies."
+      }
+    }
+  },
+  {
+    "id": "x011",
+    "item_id": "135de5c6-03df-4f8d-b171-0444f292050d",
+    "localId": "crv7-b4-10",
+    "content_sha": "05272434b7311182d6e4d55ba3d29f26",
+    "cohesion_edited": false,
+    "stimulus": "\"There's a locker free in the basement corridor.\"",
+    "key": "I'll take it and move my boxes down tomorrow.",
+    "contested_votes": 0,
+    "flag_ge1": false,
+    "flag_ge2": false,
+    "human_reviewed": false,
+    "human_verdict": null,
+    "human_note": null,
+    "graders": {
+      "A": {
+        "verdict": "unique",
+        "best": "C",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "D treats storage as still unsolved when the line has just settled it, A misreads the news as an offer to act, B answers an unasked question, leaving only C."
+      },
+      "B": {
+        "verdict": "unique",
+        "best": "C",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "The line settles that a locker is available, which refutes D's search elsewhere; A replies to an offer to be contacted and B answers an unasked question about contents."
+      },
+      "C": {
+        "verdict": "unique",
+        "best": "C",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "The line reports an available locker, so taking it is the reply; D looks elsewhere despite the vacancy, B answers an unasked question, and A accepts a contact offer never made."
+      }
+    }
+  },
+  {
+    "id": "x012",
+    "item_id": "173d4215-41fa-4825-b424-726490e7c286",
+    "localId": "crv7-b6-19",
+    "content_sha": "9db1d5607151620ffb1e5de3b4de64a0",
+    "cohesion_edited": false,
+    "stimulus": "\"New heels take a couple of days to set.\"",
+    "key": "I'll leave them with you until midweek.",
+    "contested_votes": 0,
+    "flag_ge1": false,
+    "flag_ge2": false,
+    "human_reviewed": true,
+    "human_verdict": "alternative",
+    "human_note": "B is also a plausible answer.",
+    "graders": {
+      "A": {
+        "verdict": "unique",
+        "best": "A",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only A accommodates the stated setting time; B and C answer questions about finish and colour that were not asked, and D abandons the repair over a delay the line presents as routine."
+      },
+      "B": {
+        "verdict": "unique",
+        "best": "A",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "B and C answer material and colour questions that were never asked, and D treats a two-day wait as grounds to abandon the repair, which needs urgency the line never supplies."
+      },
+      "C": {
+        "verdict": "unique",
+        "best": "A",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "A short setting period calls for leaving the shoes; D treats a routine two-day wait as a reason to abandon a repair already brought in, and B and C answer questions about materials or colour that were not asked."
+      }
+    }
+  },
+  {
+    "id": "x013",
+    "item_id": "180da5e8-d202-4ef0-ba89-785298f9c9bc",
+    "localId": "crv7-b3-11",
+    "content_sha": "e2ef1ec5448d3a2fabb0141cc6d853ae",
+    "cohesion_edited": false,
+    "stimulus": "\"We'll need the original receipts, not the photographs.\"",
+    "key": "They're in my folder at home — I'll bring them in.",
+    "contested_votes": 0,
+    "flag_ge1": false,
+    "flag_ge2": false,
+    "human_reviewed": false,
+    "human_verdict": null,
+    "human_note": null,
+    "graders": {
+      "A": {
+        "verdict": "unique",
+        "best": "C",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "The line is a requirement to produce originals and only C supplies them; B and D take it as an offer or a resolution, and A takes it as a refusal."
+      },
+      "B": {
+        "verdict": "unique",
+        "best": "C",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "The line is a documentation requirement; A, B and D react respectively to a rejection, an offer of money and good news, none of which is performed."
+      },
+      "C": {
+        "verdict": "unique",
+        "best": "C",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "The line asks for originals and only C supplies them; A treats a documentation requirement as a refusal, and B and D react to a decision about money that was never announced."
+      }
+    }
+  },
+  {
+    "id": "x014",
+    "item_id": "1b7ca7ad-016f-45a0-ae62-ff5b549d9100",
+    "localId": "crv7-b6-04",
+    "content_sha": "bdd33282d80a12cb9b2768cf34a4084b",
+    "cohesion_edited": true,
+    "stimulus": "\"That train's cancelled, there's engineering work on the line.\"",
+    "key": "What's the next way to get there today?",
+    "contested_votes": 1,
+    "flag_ge1": true,
+    "flag_ge2": false,
+    "human_reviewed": false,
+    "human_verdict": null,
+    "human_note": null,
+    "graders": {
+      "A": {
+        "verdict": "unique",
+        "best": "C",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "B asks to be moved onto the very train just cancelled and D asks how long a cancelled train will be delayed; A needs the cancelled train to be on some other day, which the line does not offer."
+      },
+      "B": {
+        "verdict": "unique",
+        "best": "C",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "B asks to be moved onto the very train just cancelled and D asks about a delay when the service is cancelled outright; A's 'today instead' presupposes a travel date the line does not give."
+      },
+      "C": {
+        "verdict": "contested",
+        "best": "C",
+        "best_is_key": true,
+        "rival_options": [
+          "I'll need to travel today instead, if that's possible."
+        ],
+        "reason": "A survives because the line never says the cancelled train was today's, so asking to travel today instead is an equally ordinary response to a cancellation as asking for another way today."
+      }
+    }
+  },
+  {
+    "id": "x015",
+    "item_id": "1e0d75ec-606f-4151-8231-6dbb728f766f",
+    "localId": "crv7-b5-09",
+    "content_sha": "a1d6455b738f5cb0035dfd67a249d500",
+    "cohesion_edited": true,
+    "stimulus": "\"That's the fixer tray, not the stop bath.\"",
+    "key": "Thanks — I'll start the sheet again.",
+    "contested_votes": 0,
+    "flag_ge1": false,
+    "flag_ge2": false,
+    "human_reviewed": false,
+    "human_verdict": null,
+    "human_note": null,
+    "graders": {
+      "A": {
+        "verdict": "unique",
+        "best": "B",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "D flatly contradicts the correction, A treats it as a request to mix chemistry and C as an offer of help; only B acts on having used the wrong tray."
+      },
+      "B": {
+        "verdict": "unique",
+        "best": "B",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "D reverses the correction, and A and C reply to a request to mix chemicals and an offer of help that the line never makes."
+      },
+      "C": {
+        "verdict": "unique",
+        "best": "B",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "The correction means the print is ruined, so restarting is the reply; D asserts the opposite of what was said, and A and C respond to a request and an offer that were not made."
+      }
+    }
+  },
+  {
+    "id": "x016",
+    "item_id": "1e7d5cf6-7124-49de-af88-5dfb940f23db",
+    "localId": "crv7-b3-06",
+    "content_sha": "893439b09aedad6b739b3f28016d2881",
+    "cohesion_edited": false,
+    "stimulus": "\"What drew you to working in an office like this?\"",
+    "key": "I like work where the day has shape.",
+    "contested_votes": 0,
+    "flag_ge1": false,
+    "flag_ge2": false,
+    "human_reviewed": true,
+    "human_verdict": "unique",
+    "human_note": null,
+    "graders": {
+      "A": {
+        "verdict": "unique",
+        "best": "A",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "The line asks about motivation and only A answers it; B, C and D reply to a closing exchange or a job offer rather than to the question asked."
+      },
+      "B": {
+        "verdict": "unique",
+        "best": "A",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only A answers the question asked; B, C and D are closing moves from a different point in an interview."
+      },
+      "C": {
+        "verdict": "unique",
+        "best": "A",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only A answers the interview question; B, C and D are closing-of-conversation moves that leave the question untouched."
+      }
+    }
+  },
+  {
+    "id": "x017",
+    "item_id": "20b63f9e-333f-4d6f-b8d9-8ce897b90e7c",
+    "localId": "crv7-b3-19",
+    "content_sha": "2bcd120731036471c6f54cf8d938e421",
+    "cohesion_edited": true,
+    "stimulus": "\"The card reader's down and the technician can't come till morning.\"",
+    "key": "I'll get a cash float from the safe, then.",
+    "contested_votes": 0,
+    "flag_ge1": false,
+    "flag_ge2": false,
+    "human_reviewed": false,
+    "human_verdict": null,
+    "human_note": null,
+    "graders": {
+      "A": {
+        "verdict": "unique",
+        "best": "B",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "D tries to use the reader the line says is down, A and C commit to unrelated tasks, and only B provides for taking payment without the reader."
+      },
+      "B": {
+        "verdict": "unique",
+        "best": "B",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "D proposes using the reader the line says is down; A and C act on lists that have nothing to do with taking payment without a card reader."
+      },
+      "C": {
+        "verdict": "unique",
+        "best": "B",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Cards being unusable overnight calls for cash; D proposes using the very reader the line says is down, and A and C address tasks unrelated to payment."
+      }
+    }
+  },
+  {
+    "id": "x018",
+    "item_id": "20cc4602-371c-4cc2-afed-9d0d978d5549",
+    "localId": "crv7-b2-13",
+    "content_sha": "0278731a5eb4641f49400d124ce94ce8",
+    "cohesion_edited": false,
+    "stimulus": "\"Admission's free for students, you just show your card.\"",
+    "key": "I'll dig my card out, I wasn't expecting to need it.",
+    "contested_votes": 3,
+    "flag_ge1": true,
+    "flag_ge2": true,
+    "human_reviewed": false,
+    "human_verdict": null,
+    "human_note": null,
+    "graders": {
+      "A": {
+        "verdict": "contested",
+        "best": "B",
+        "best_is_key": true,
+        "rival_options": [
+          "Then I'll go straight up before my afternoon class."
+        ],
+        "reason": "A survives because the line states admission is free, and deciding to go up straight away is an ordinary uptake of that; preferring B over it rests only on which half of the line the reply picks up."
+      },
+      "B": {
+        "verdict": "contested",
+        "best": "B",
+        "best_is_key": true,
+        "rival_options": [
+          "Then I'll go straight up before my afternoon class."
+        ],
+        "reason": "The line carries two pieces of news — free entry and the card requirement — and A takes up the first while B takes up the second; both are ordinary replies and the choice is a matter of emphasis only."
+      },
+      "C": {
+        "verdict": "contested",
+        "best": "B",
+        "best_is_key": true,
+        "rival_options": [
+          "Then I'll go straight up before my afternoon class."
+        ],
+        "reason": "A survives because free admission plainly licenses going straight up, and nothing in the line rules out the speaker already having the card in hand; B is preferred only on a shade of engagement with the final clause."
+      }
+    }
+  },
+  {
+    "id": "x019",
+    "item_id": "212b5f42-0a27-425a-80cb-885595083159",
+    "localId": "crv7-b2-15",
+    "content_sha": "9a2c689011a694d97c0ee6d3cd1827d8",
+    "cohesion_edited": true,
+    "stimulus": "\"Your job's stuck behind a huge one that keeps failing.\"",
+    "key": "I'll cancel mine and send it to the lab upstairs.",
+    "contested_votes": 0,
+    "flag_ge1": false,
+    "flag_ge2": false,
+    "human_reviewed": true,
+    "human_verdict": "broken",
+    "human_note": "The transcript is too underspecified to uniquely justify C.",
+    "graders": {
+      "A": {
+        "verdict": "unique",
+        "best": "A",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "The failing job is explicitly someone else's large one, which kills D; C assumes the prints are already out and B answers an unasked question, leaving only A."
+      },
+      "B": {
+        "verdict": "unique",
+        "best": "A",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "The failing job is explicitly someone else's huge one, which kills D; C assumes the printouts exist and B answers an unasked question."
+      },
+      "C": {
+        "verdict": "unique",
+        "best": "A",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "The blockage is someone else's job, so re-routing is the reply; D takes the failing job to be the speaker's own, C assumes the pages printed, and B answers an unasked question."
+      }
+    }
+  },
+  {
+    "id": "x020",
+    "item_id": "2164d209-9be1-4dea-a09d-c685392c3206",
+    "localId": "crv7-b3-10",
+    "content_sha": "2e1613114ec0332f60abed34d8ff0b16",
+    "cohesion_edited": false,
+    "stimulus": "\"Your contract's been signed off by the department head.\"",
+    "key": "I'll start logging hours from Monday.",
+    "contested_votes": 1,
+    "flag_ge1": true,
+    "flag_ge2": false,
+    "human_reviewed": false,
+    "human_verdict": null,
+    "human_note": null,
+    "graders": {
+      "A": {
+        "verdict": "unique",
+        "best": "D",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "A hedges as though the appointment were still uncertain, which the line settles; B invents an end date, C misreads it as a request for paperwork, so only D acts on the confirmation."
+      },
+      "B": {
+        "verdict": "unique",
+        "best": "D",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "B needs an end date the line never states and C answers a status question not asked; A hedges against an approval the line has already confirmed."
+      },
+      "C": {
+        "verdict": "contested",
+        "best": "D",
+        "best_is_key": true,
+        "rival_options": [
+          "I'll keep my other shifts for now."
+        ],
+        "reason": "A survives because a sign-off by the department head does not commit the speaker to giving up other work, and nothing in the line refutes keeping those shifts; D is preferred only as the more forward-looking reply."
+      }
+    }
+  },
+  {
+    "id": "x021",
+    "item_id": "21ba74ea-a2ea-4a79-b8df-eebfe1867da1",
+    "localId": "crv7-b3-05",
+    "content_sha": "fada2ff7871a75050213e91451c3cff1",
+    "cohesion_edited": false,
+    "stimulus": "\"The archives placement is yours if you still want it.\"",
+    "key": "I do — I'll email them about a start date.",
+    "contested_votes": 0,
+    "flag_ge1": false,
+    "flag_ge2": false,
+    "human_reviewed": true,
+    "human_verdict": "alternative",
+    "human_note": "C is also another natural response to this. ",
+    "graders": {
+      "A": {
+        "verdict": "unique",
+        "best": "C",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "A and B treat the placement as lost or still pending when the line says it is his, and D answers an availability question never asked."
+      },
+      "B": {
+        "verdict": "unique",
+        "best": "C",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "A and B treat the placement as lost when the line offers it, and D answers an availability question that was not put."
+      },
+      "C": {
+        "verdict": "unique",
+        "best": "C",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "'If you still want it' demands acceptance or refusal; A refuses an offer being granted, B treats a settled decision as still pending, and D answers an availability question that was not asked."
+      }
+    }
+  },
+  {
+    "id": "x022",
+    "item_id": "24fd0aa2-a95f-4fbd-acb3-ed48d4367d9a",
+    "localId": "crv7-b1-06",
+    "content_sha": "0215456522a6dca1022e05569903c4cc",
+    "cohesion_edited": false,
+    "stimulus": "\"You're down for the Brahms this term, not the Schubert.\"",
+    "key": "I'll swap the music in my folder tonight.",
+    "contested_votes": 1,
+    "flag_ge1": true,
+    "flag_ge2": false,
+    "human_reviewed": true,
+    "human_verdict": "alternative",
+    "human_note": "A is also reasonable.",
+    "graders": {
+      "A": {
+        "verdict": "contested",
+        "best": "B",
+        "best_is_key": true,
+        "rival_options": [
+          "I'll have it up to tempo by then."
+        ],
+        "reason": "C survives because being assigned the Brahms for the term makes 'I'll have it up to tempo by then' a straightforward acceptance, and nothing in the line refutes it; B is preferred only as the more pointed acknowledgment of the correction."
+      },
+      "B": {
+        "verdict": "unique",
+        "best": "B",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "A and D respond to scheduling matters the line does not raise, and C's 'by then' has no antecedent since the line gives no date; only B acts on the swap just announced."
+      },
+      "C": {
+        "verdict": "unique",
+        "best": "B",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "The correction is about which piece, so swapping the music answers it; C hangs on a deadline the line never gives, D arranges rehearsals with parties never mentioned, and A responds to a schedule statement not made."
+      }
+    }
+  },
+  {
+    "id": "x023",
+    "item_id": "276ff406-00b9-49d8-9a4b-0b933782e90e",
+    "localId": "crv7-b5-14",
+    "content_sha": "8322551e5773d214c6916a70c0aa6ed9",
+    "cohesion_edited": true,
+    "stimulus": "\"The show's after the news now, not before.\"",
+    "key": "I'll rewrite the intro to match.",
+    "contested_votes": 2,
+    "flag_ge1": true,
+    "flag_ge2": true,
+    "human_reviewed": false,
+    "human_verdict": null,
+    "human_note": null,
+    "graders": {
+      "A": {
+        "verdict": "contested",
+        "best": "B",
+        "best_is_key": true,
+        "rival_options": [
+          "We can play the long session tracks then."
+        ],
+        "reason": "A survives because moving the show to a later slot plainly licenses a consequence about what can be played then, so it does as much with the schedule change as rewriting the intro does."
+      },
+      "B": {
+        "verdict": "unique",
+        "best": "B",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "D reverses the stated order, C is contentless, and A treats the later slot as licensing longer tracks, a fact about the new slot the line never supplies."
+      },
+      "C": {
+        "verdict": "contested",
+        "best": "B",
+        "best_is_key": true,
+        "rival_options": [
+          "We can play the long session tracks then."
+        ],
+        "reason": "A survives because reacting to a moved slot by planning different content is an ordinary response, and the line says nothing that rules out the later slot allowing longer tracks."
+      }
+    }
+  },
+  {
+    "id": "x024",
+    "item_id": "2b996af8-a10a-4e27-bd57-115d1495778d",
+    "localId": "crv7-b4-13",
+    "content_sha": "aae6a7e5f00445dbae03226350feabfb",
+    "cohesion_edited": false,
+    "stimulus": "\"Whose name is the electricity account actually in?\"",
+    "key": "Mine, from when we moved in last autumn.",
+    "contested_votes": 0,
+    "flag_ge1": false,
+    "flag_ge2": false,
+    "human_reviewed": true,
+    "human_verdict": "unique",
+    "human_note": null,
+    "graders": {
+      "A": {
+        "verdict": "unique",
+        "best": "A",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "The line asks whose name the account is in and only A answers; B, C and D discuss photos, splits and debits without ever naming the holder."
+      },
+      "B": {
+        "verdict": "unique",
+        "best": "A",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "The line asks whose name is on the account and only A names someone; B, C and D respond to a meter reading, a cost split and an announcement instead."
+      },
+      "C": {
+        "verdict": "unique",
+        "best": "A",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "The line asks whose name is on the account and only A answers; B, C and D respond to bill-splitting talk that was not the question."
+      }
+    }
+  },
+  {
+    "id": "x025",
+    "item_id": "2f3b21d8-0d47-4a8e-ac65-706d7a949172",
+    "localId": "crv7-b4-16",
+    "content_sha": "47b1f47863fae93e8a5c2447b9c0e66b",
+    "cohesion_edited": false,
+    "stimulus": "\"A new mattress is coming up to your room today.\"",
+    "key": "I'll strip the bed before they get here.",
+    "contested_votes": 0,
+    "flag_ge1": false,
+    "flag_ge2": false,
+    "human_reviewed": false,
+    "human_verdict": null,
+    "human_note": null,
+    "graders": {
+      "A": {
+        "verdict": "unique",
+        "best": "C",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "D declines a replacement the line says is already coming, B inspects slats the delivery does not bear on, and A's 'it' most naturally names the incoming mattress, leaving only C."
+      },
+      "B": {
+        "verdict": "unique",
+        "best": "C",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "D's topper presupposes keeping the old mattress, B replies to a complaint about the frame, and A's 'it' has no clear referent given the new mattress is being delivered."
+      },
+      "C": {
+        "verdict": "unique",
+        "best": "C",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "A delivery today calls for clearing the bed; D makes do as though nothing were coming, A puts the arriving mattress outside the room, and B diagnoses a bed frame nobody mentioned."
+      }
+    }
+  },
+  {
+    "id": "x026",
+    "item_id": "2f7038eb-6813-4d2d-b488-7dd0821dffb6",
+    "localId": "crv7-b6-13",
+    "content_sha": "03c48ecd5d818c179400b707f04f5dda",
+    "cohesion_edited": true,
+    "stimulus": "\"We hire out the sander by the day here.\"",
+    "key": "That saves me buying one, I'll take it.",
+    "contested_votes": 0,
+    "flag_ge1": false,
+    "flag_ge2": false,
+    "human_reviewed": false,
+    "human_verdict": null,
+    "human_note": null,
+    "graders": {
+      "A": {
+        "verdict": "unique",
+        "best": "A",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "D denies exactly what the line has just offered, C treats it as a return, and B buys an unmentioned product; only A takes the hire."
+      },
+      "B": {
+        "verdict": "unique",
+        "best": "A",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "D denies exactly what the line has just offered, and B and C reply to a product mention and a return request that do not occur."
+      },
+      "C": {
+        "verdict": "unique",
+        "best": "A",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "The line states daily hire is available and A takes it; D denies exactly what was just said, and B and C reply to a purchase and a request that were not made."
+      }
+    }
+  },
+  {
+    "id": "x027",
+    "item_id": "3056b70d-fe3e-4dd9-bf84-57908ba31ae6",
+    "localId": "crv7-b1-03",
+    "content_sha": "cb7ce9e9e7132eeb74895bbfcc9c708a",
+    "cohesion_edited": false,
+    "stimulus": "\"The version I read was your October draft, not the new one.\"",
+    "key": "That explains the notes — I'll resend the current file.",
+    "contested_votes": 0,
+    "flag_ge1": false,
+    "flag_ge2": false,
+    "human_reviewed": false,
+    "human_verdict": null,
+    "human_note": null,
+    "graders": {
+      "A": {
+        "verdict": "unique",
+        "best": "C",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only C registers that the feedback was on a superseded draft; D presses on with comments the line has just invalidated, and A and B answer about scheduling and next steps instead."
+      },
+      "B": {
+        "verdict": "unique",
+        "best": "C",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "A and B respond to feedback and a meeting time not given, and D presses for detail on comments the line has just said were made on a superseded draft."
+      },
+      "C": {
+        "verdict": "unique",
+        "best": "C",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "The line says the feedback was on a superseded draft, so resending the current file responds; D presses on with feedback the line has just voided, and A and B reply to advice and scheduling never given."
+      }
+    }
+  },
+  {
+    "id": "x028",
+    "item_id": "33c17fe1-0a39-4181-8242-a26a7ffed259",
+    "localId": "cr7-08",
+    "content_sha": "97d686812b409b8f7624084cc2027664",
+    "cohesion_edited": false,
+    "stimulus": "\"The north route's suspended while they resurface the access road.\"",
+    "key": "I'll walk up from the science building instead.",
+    "contested_votes": 2,
+    "flag_ge1": true,
+    "flag_ge2": true,
+    "human_reviewed": true,
+    "human_verdict": "broken",
+    "human_note": "The context is too underspecified to make C uniquely defensible.",
+    "graders": {
+      "A": {
+        "verdict": "contested",
+        "best": "C",
+        "best_is_key": true,
+        "rival_options": [
+          "I'll wait for the express, if it's still due."
+        ],
+        "reason": "A survives because the line suspends only the north route, and waiting for a different service — hedged with 'if it's still due' — is as consistent with the suspension as walking is."
+      },
+      "B": {
+        "verdict": "unique",
+        "best": "C",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "B rides the route just suspended, while A's express and D's van are services the line never mentions; only C offers a route the line leaves open."
+      },
+      "C": {
+        "verdict": "contested",
+        "best": "C",
+        "best_is_key": true,
+        "rival_options": [
+          "I'll wait for the express, if it's still due.",
+          "I'll ride it round — I'm not in a hurry."
+        ],
+        "reason": "The line says only that one route is suspended and names no alternatives, so waiting for an express, going the long way round and walking up are all equally licensed; the key can be preferred only on facts about the network the line never states."
+      }
+    }
+  },
+  {
+    "id": "x029",
+    "item_id": "38be7af7-64a7-46f4-8096-dd33c2c90edf",
+    "localId": "crv7-b6-05",
+    "content_sha": "ac180d953c38c51e9eb8c5a8ce79d68d",
+    "cohesion_edited": false,
+    "stimulus": "\"I could fit the winter tyres while it's up here.\"",
+    "key": "Go ahead, I'd rather not do it myself.",
+    "contested_votes": 0,
+    "flag_ge1": false,
+    "flag_ge2": false,
+    "human_reviewed": false,
+    "human_verdict": null,
+    "human_note": null,
+    "graders": {
+      "A": {
+        "verdict": "unique",
+        "best": "D",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "The line offers to fit winter tyres while the vehicle is on the lift; A and B respond to a write-off verdict and C to a bicycle, so only D takes the offer."
+      },
+      "B": {
+        "verdict": "unique",
+        "best": "D",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "The line offers to fit tyres now; A and B answer a write-off diagnosis and C's 'ride it home' does not match a car on a lift."
+      },
+      "C": {
+        "verdict": "unique",
+        "best": "D",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "The line offers to fit tyres now and D accepts; C responds to completed work, and A and B reply to a write-off verdict the line does not deliver."
+      }
+    }
+  },
+  {
+    "id": "x030",
+    "item_id": "3a04df26-2a99-4d77-8428-da4c44082fe3",
+    "localId": "crv7-b2-11",
+    "content_sha": "56cdafc5dfb83183528e2e70c5c18bcf",
+    "cohesion_edited": false,
+    "stimulus": "\"I can book you a quiet testing room for finals.\"",
+    "key": "Please do, the main hall is impossible for me.",
+    "contested_votes": 1,
+    "flag_ge1": true,
+    "flag_ge2": false,
+    "human_reviewed": false,
+    "human_verdict": null,
+    "human_note": null,
+    "graders": {
+      "A": {
+        "verdict": "contested",
+        "best": "A",
+        "best_is_key": true,
+        "rival_options": [
+          "That's a load off — I'll stop chasing them individually."
+        ],
+        "reason": "D survives because it accepts the same offer with relief and nothing in the line rules out the arrangement having been handled piecemeal until now; A is preferred only for naming the reason more directly."
+      },
+      "B": {
+        "verdict": "unique",
+        "best": "A",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "B and D reason about a midterm and about individually chased arrangements that the line never mentions, and C introduces a third party from nowhere; only A takes up the offer."
+      },
+      "C": {
+        "verdict": "unique",
+        "best": "A",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "The offer of a quiet room invites acceptance with a reason tied to noise; D and B treat an offer as scope information about chasing or midterms, and C answers a documentation question never asked."
+      }
+    }
+  },
+  {
+    "id": "x031",
+    "item_id": "3abb5fd3-dfaf-4e1d-ae0b-6c69a833a030",
+    "localId": "crv7-b1-05",
+    "content_sha": "560b75368da94481dd3258c35c57a584",
+    "cohesion_edited": true,
+    "stimulus": "\"Bring the assignment sheet next time, not just the draft.\"",
+    "key": "It's on the course site — I'll print it beforehand.",
+    "contested_votes": 0,
+    "flag_ge1": false,
+    "flag_ge2": false,
+    "human_reviewed": false,
+    "human_verdict": null,
+    "human_note": null,
+    "graders": {
+      "A": {
+        "verdict": "unique",
+        "best": "D",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "C drops the draft the line says to keep bringing, B takes an instruction as an offer, A rebooks without addressing it; only D undertakes to bring the sheet."
+      },
+      "B": {
+        "verdict": "unique",
+        "best": "D",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "'Not just the draft' asks for both, which refutes C's leaving the draft at home; A and B reply to a rescheduling and an offer of help not made."
+      },
+      "C": {
+        "verdict": "unique",
+        "best": "D",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "'Not just the draft' asks for both, so getting the sheet responds; C drops the draft the line still wants, and A and B answer scheduling and offers never made."
+      }
+    }
+  },
+  {
+    "id": "x032",
+    "item_id": "3c7f5fb5-7fef-4caa-be20-71dee6d4741a",
+    "localId": "crv7-b5-12",
+    "content_sha": "13379dbfd76332170ce93645495d742b",
+    "cohesion_edited": true,
+    "stimulus": "\"Our match against the college is called off.\"",
+    "key": "I'll tell the others not to travel.",
+    "contested_votes": 0,
+    "flag_ge1": false,
+    "flag_ge2": false,
+    "human_reviewed": true,
+    "human_verdict": "alternative",
+    "human_note": "A or D both could be answers as well.",
+    "graders": {
+      "A": {
+        "verdict": "unique",
+        "best": "D",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "A, B and C all treat the fixture as still happening — rescheduled, relocated, or to be prepared for — which the cancellation settles."
+      },
+      "B": {
+        "verdict": "unique",
+        "best": "D",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "A, B and C all presuppose the fixture still happening — in preparation, on a new date, or relocated — against a line that says it is off."
+      },
+      "C": {
+        "verdict": "unique",
+        "best": "D",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "A cancellation calls for telling people not to travel; A prepares for a match that is off, B invents a new date, and C converts a cancellation into a venue swap."
+      }
+    }
+  },
+  {
+    "id": "x033",
+    "item_id": "3d9b3ebb-509f-498f-95b7-cdc6b29235bf",
+    "localId": "crv7-b4-19",
+    "content_sha": "dd2a71a423fe5fd320497ff09462f2b8",
+    "cohesion_edited": false,
+    "stimulus": "\"They can't repair it, the whole unit needs replacing.\"",
+    "key": "I'll ask about moving rooms while that happens.",
+    "contested_votes": 2,
+    "flag_ge1": true,
+    "flag_ge2": true,
+    "human_reviewed": false,
+    "human_verdict": null,
+    "human_note": null,
+    "graders": {
+      "A": {
+        "verdict": "contested",
+        "best": "D",
+        "best_is_key": true,
+        "rival_options": [
+          "I'll air the room through the other one."
+        ],
+        "reason": "The line never says what the unit is or how long replacement takes, so C's stopgap of using the other one is as available a reaction to the bad news as D's asking about moving rooms."
+      },
+      "B": {
+        "verdict": "unique",
+        "best": "D",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "A assumes the thing is fixed, while B and C invent a crack and a second unit the line does not describe; only D responds to a full replacement."
+      },
+      "C": {
+        "verdict": "contested",
+        "best": "D",
+        "best_is_key": true,
+        "rival_options": [
+          "I'll tape the crack over until then.",
+          "I'll air the room through the other one."
+        ],
+        "reason": "The line never says what the unit is, so taping over the fault and using the other one are interim coping replies as well licensed as asking to move rooms; only A, which assumes it is fixed, is refuted."
+      }
+    }
+  },
+  {
+    "id": "x034",
+    "item_id": "3f1bd8e2-3ed4-4600-90ec-2f9136158f1a",
+    "localId": "crv7-b2-17",
+    "content_sha": "841e83f5ba8791bc9ec1812e0f6748d2",
+    "cohesion_edited": true,
+    "stimulus": "\"That building's entrance is on the far side, by the loading dock.\"",
+    "key": "I'll go around the back rather than trying these doors.",
+    "contested_votes": 0,
+    "flag_ge1": false,
+    "flag_ge2": false,
+    "human_reviewed": false,
+    "human_verdict": null,
+    "human_note": null,
+    "graders": {
+      "A": {
+        "verdict": "unique",
+        "best": "A",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "B heads for a different entrance than the one named, C waits at doors the line has just ruled out, and D misreads directions as an offer to escort."
+      },
+      "B": {
+        "verdict": "unique",
+        "best": "A",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "B looks for a glass entrance on the wrong side and C waits at doors the line says are not the entrance; D accepts an escort that was not offered."
+      },
+      "C": {
+        "verdict": "unique",
+        "best": "A",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "The line locates the entrance at the far side and A goes there; B heads for a glass entrance the line rules out, C waits at doors that are not the entrance, and D thanks someone for an offer of escort never made."
+      }
+    }
+  },
+  {
+    "id": "x035",
+    "item_id": "3f27b92a-90b0-4661-a89f-123e17fde23c",
+    "localId": "crv7-b5-20",
+    "content_sha": "a6b52fd8b22203eb2912db811cb102b3",
+    "cohesion_edited": false,
+    "stimulus": "\"How many are we catering for on the night?\"",
+    "key": "About forty, going by the sign-up sheet.",
+    "contested_votes": 0,
+    "flag_ge1": false,
+    "flag_ge2": false,
+    "human_reviewed": false,
+    "human_verdict": null,
+    "human_note": null,
+    "graders": {
+      "A": {
+        "verdict": "unique",
+        "best": "A",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "The line asks for a number and only A gives one; B, C and D reply to offers and logistics rather than to the question."
+      },
+      "B": {
+        "verdict": "unique",
+        "best": "A",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only A gives a number; B, C and D answer questions about quotes, favours and venues that were not asked."
+      },
+      "C": {
+        "verdict": "unique",
+        "best": "A",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only A gives the number the question asks for; B, C and D reply to catering proposals rather than the count."
+      }
+    }
+  },
+  {
+    "id": "x036",
+    "item_id": "42d859d0-04b6-41c3-a48c-7afeb1ee06aa",
+    "localId": "cr7-01",
+    "content_sha": "7e6ddeff14160aed1f5f14eabf770ca2",
+    "cohesion_edited": false,
+    "stimulus": "\"The lending library turned us down, so that title isn't coming.\"",
+    "key": "Is there another campus library that might lend it?",
+    "contested_votes": 0,
+    "flag_ge1": false,
+    "flag_ge2": false,
+    "human_reviewed": false,
+    "human_verdict": null,
+    "human_note": null,
+    "graders": {
+      "A": {
+        "verdict": "unique",
+        "best": "B",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "A, C and D all handle a copy of the title in hand, which the line says is not coming; only B looks for another source."
+      },
+      "B": {
+        "verdict": "unique",
+        "best": "B",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "A, C and D all treat the book as in hand when the line says it is not coming; only B pursues another source."
+      },
+      "C": {
+        "verdict": "unique",
+        "best": "B",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "The title is not coming, so asking about another lender responds; A, C and D all handle a copy of the book that the line says will not arrive."
+      }
+    }
+  },
+  {
+    "id": "x037",
+    "item_id": "45ff6903-2c18-4f59-9a66-bffe3c9877aa",
+    "localId": "crv7-b1-10",
+    "content_sha": "470eb1d0a051f935fd45ff102b9a0924",
+    "cohesion_edited": false,
+    "stimulus": "\"Wednesdays are gone — the linguistics seminar took the whole term.\"",
+    "key": "I'll see if the group can move to Mondays.",
+    "contested_votes": 0,
+    "flag_ge1": false,
+    "flag_ge2": false,
+    "human_reviewed": false,
+    "human_verdict": null,
+    "human_note": null,
+    "graders": {
+      "A": {
+        "verdict": "unique",
+        "best": "A",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "C asks to hold what the line says is already taken for the term and D books it in as though confirmed; B is unconnected, leaving only A's move to another day."
+      },
+      "B": {
+        "verdict": "unique",
+        "best": "A",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "D books the Wednesday the line says is gone, B is contentless, and C's 'hold it' has no available slot to refer to."
+      },
+      "C": {
+        "verdict": "unique",
+        "best": "A",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Wednesdays being gone calls for proposing another day; C asks to hold the slot the line says is taken, D books it anyway, and B replies to a message-sending task never raised."
+      }
+    }
+  },
+  {
+    "id": "x038",
+    "item_id": "47a8b22b-8e5f-4a97-a757-bf11fd013ab0",
+    "localId": "crv7-b3-02",
+    "content_sha": "da2a0994b64480c3f21067aaa9dab4af",
+    "cohesion_edited": false,
+    "stimulus": "\"Sorry, that hold's from the library, not the bursar.\"",
+    "key": "I'll walk over to the stacks and sort it out.",
+    "contested_votes": 0,
+    "flag_ge1": false,
+    "flag_ge2": false,
+    "human_reviewed": false,
+    "human_verdict": null,
+    "human_note": null,
+    "graders": {
+      "A": {
+        "verdict": "unique",
+        "best": "C",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "B and D respond to the bursar the line has just excluded, and A treats the hold as lifted when the correction only relocates it."
+      },
+      "B": {
+        "verdict": "unique",
+        "best": "C",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "B and D respond to a bursar balance the line explicitly excludes, and A treats the hold as cleared when it has only been reattributed."
+      },
+      "C": {
+        "verdict": "unique",
+        "best": "C",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "The hold is the library's, so going to the library resolves it; B and D pay the bursar the line just excluded, and A treats the hold as cleared."
+      }
+    }
+  },
+  {
+    "id": "x039",
+    "item_id": "4d57f363-5e0c-4d9b-aa56-ab3878ad61b2",
+    "localId": "crv7-b2-08",
+    "content_sha": "eb97f31706377a18ddd2970057b89b1a",
+    "cohesion_edited": true,
+    "stimulus": "\"Someone turned in a green jacket like yours yesterday.\"",
+    "key": "Let me see it, mine has a pen mark on the cuff.",
+    "contested_votes": 0,
+    "flag_ge1": false,
+    "flag_ge2": false,
+    "human_reviewed": false,
+    "human_verdict": null,
+    "human_note": null,
+    "graders": {
+      "A": {
+        "verdict": "unique",
+        "best": "B",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "A, C and D all proceed as though nothing had been handed in here, which the line states outright; only B moves to identify the jacket."
+      },
+      "B": {
+        "verdict": "unique",
+        "best": "B",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "A treats nothing as having been handed in, C sends the speaker elsewhere when the jacket is here, and D claims it has been collected — all against the line."
+      },
+      "C": {
+        "verdict": "unique",
+        "best": "B",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "A candidate jacket is here, so asking to identify it responds; A and D behave as though nothing had been handed in or it had been claimed, and C goes elsewhere to ask."
+      }
+    }
+  },
+  {
+    "id": "x040",
+    "item_id": "4db99338-6dec-47e7-b99d-2b47093512b2",
+    "localId": "crv7-b2-01",
+    "content_sha": "56f02f852fa25d4629a5728970442e5e",
+    "cohesion_edited": false,
+    "stimulus": "\"Do you want the full-size one or the half-height?\"",
+    "key": "Half-height, please — I only bring shoes and a towel.",
+    "contested_votes": 0,
+    "flag_ge1": false,
+    "flag_ge2": false,
+    "human_reviewed": false,
+    "human_verdict": null,
+    "human_note": null,
+    "graders": {
+      "A": {
+        "verdict": "unique",
+        "best": "B",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "The line offers a choice between two sizes and only B chooses; A, C and D reply about payment, timing and giving up on a locker instead."
+      },
+      "B": {
+        "verdict": "unique",
+        "best": "B",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "The line is an either/or question and only B picks one; A, C and D reply to payment, access and refusal that are not on the table."
+      },
+      "C": {
+        "verdict": "unique",
+        "best": "B",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "The line offers a choice and only B chooses; A, C and D respond to payment, timing or refusal rather than the alternatives put."
+      }
+    }
+  },
+  {
+    "id": "x041",
+    "item_id": "4f265a8e-c86d-48d0-906a-22bf14f980e2",
+    "localId": "crv7-b1-19",
+    "content_sha": "667a8f616d94a1287356892fe7f6389e",
+    "cohesion_edited": false,
+    "stimulus": "\"I can chair it if you'd rather just attend.\"",
+    "key": "That would take a real weight off this week.",
+    "contested_votes": 0,
+    "flag_ge1": false,
+    "flag_ge2": false,
+    "human_reviewed": false,
+    "human_verdict": null,
+    "human_note": null,
+    "graders": {
+      "A": {
+        "verdict": "unique",
+        "best": "B",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "D cancels the event the offer presupposes will go ahead, A and C answer unrelated preparation, and only B responds to the offer to chair."
+      },
+      "B": {
+        "verdict": "unique",
+        "best": "B",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "D cancels an event the offer assumes will run, and A and C act on preparation unrelated to who chairs; only B answers the offer."
+      },
+      "C": {
+        "verdict": "unique",
+        "best": "B",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "An offer to take over the chairing invites relief and acceptance; A, C and D perform tasks that neither accept nor decline the offer."
+      }
+    }
+  },
+  {
+    "id": "x042",
+    "item_id": "520f0ddc-e1d2-4699-a122-9b75f6097678",
+    "localId": "crv7-b4-03",
+    "content_sha": "23eaa64ddb013b91be67caa1fc9dc701",
+    "cohesion_edited": true,
+    "stimulus": "\"You can put your towels in with my load.\"",
+    "key": "That'd save me a trip; I'll bring them down.",
+    "contested_votes": 0,
+    "flag_ge1": false,
+    "flag_ge2": false,
+    "human_reviewed": true,
+    "human_verdict": "unique",
+    "human_note": null,
+    "graders": {
+      "A": {
+        "verdict": "unique",
+        "best": "D",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "B runs a separate full load, defeating the point of the offer; A assumes the washing is done and C takes the offer as a request, leaving only D."
+      },
+      "B": {
+        "verdict": "unique",
+        "best": "D",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "B runs a separate full load, defeating the offer, A declines it obliquely with no reason, and C's 'of course' misreads an offer as a request."
+      },
+      "C": {
+        "verdict": "unique",
+        "best": "D",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "The offer saves a separate wash and D takes it; B runs its own full load, defeating the offer's point, C treats it as a request to mind the machine, and A responds to drying."
+      }
+    }
+  },
+  {
+    "id": "x043",
+    "item_id": "59421829-7d50-4fb5-bbf7-4f7f624e1788",
+    "localId": "crv7-b6-15",
+    "content_sha": "6d46e4cc043f77d91a7e70fa96fe64e7",
+    "cohesion_edited": true,
+    "stimulus": "\"Your redirection is set up from Monday onward.\"",
+    "key": "That's one less thing to sort out.",
+    "contested_votes": 0,
+    "flag_ge1": false,
+    "flag_ge2": false,
+    "human_reviewed": false,
+    "human_verdict": null,
+    "human_note": null,
+    "graders": {
+      "A": {
+        "verdict": "unique",
+        "best": "A",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "B and D both misstate the stated start date, C answers a different utterance entirely, so only A takes up the confirmation."
+      },
+      "B": {
+        "verdict": "unique",
+        "best": "A",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "B and D both misstate the stated timing — 'from Monday onward' is neither an ending nor effective today — and C replies to a handover of an object."
+      },
+      "C": {
+        "verdict": "unique",
+        "best": "A",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "The line confirms the redirection is arranged and A registers that; B and D both contradict the stated Monday start, and C answers a hand-me-that request never made."
+      }
+    }
+  },
+  {
+    "id": "x044",
+    "item_id": "5a3bc1ab-e6b6-4e33-befa-7f2e803fd838",
+    "localId": "crv7-b2-14",
+    "content_sha": "a14d21e7374c66388f56c3b7b1525ed3",
+    "cohesion_edited": false,
+    "stimulus": "\"That material isn't the acrylic, it's polycarbonate.\"",
+    "key": "Good catch, I'll swap it for a sheet from the acrylic bin.",
+    "contested_votes": 1,
+    "flag_ge1": true,
+    "flag_ge2": false,
+    "human_reviewed": false,
+    "human_verdict": null,
+    "human_note": null,
+    "graders": {
+      "A": {
+        "verdict": "contested",
+        "best": "D",
+        "best_is_key": true,
+        "rival_options": [
+          "I'll cut the panels by hand and finish the rest here."
+        ],
+        "reason": "B survives because learning the sheet is polycarbonate rather than acrylic warrants changing how it is worked as much as swapping the sheet does, and the line states nothing that excludes the first response."
+      },
+      "B": {
+        "verdict": "unique",
+        "best": "D",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "A and C reply to a deadline and an offer not made, and B's hand-cutting needs a property of polycarbonate the line never states; only D acts on the misidentification."
+      },
+      "C": {
+        "verdict": "unique",
+        "best": "D",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "The correction identifies the wrong sheet, so fetching acrylic responds; B's hand-cutting only makes sense with an elaborate machine-compatibility rationale the line never supplies, and A and C reply to a favour and a deadline not mentioned."
+      }
+    }
+  },
+  {
+    "id": "x045",
+    "item_id": "5baeb73f-ddc7-4ca4-b1cd-d74df3ac211d",
+    "localId": "crv7-b3-17",
+    "content_sha": "ac57d3323782a65b8d64a010309b8b9d",
+    "cohesion_edited": false,
+    "stimulus": "\"Cover the Sunday desk if nobody else picks it up.\"",
+    "key": "Put me down for it — that day's quiet anyway.",
+    "contested_votes": 0,
+    "flag_ge1": false,
+    "flag_ge2": false,
+    "human_reviewed": false,
+    "human_verdict": null,
+    "human_note": null,
+    "graders": {
+      "A": {
+        "verdict": "unique",
+        "best": "D",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only D responds to the conditional request to take the shift; B celebrates leaving, C is about a corkboard, and A's alarm change contradicts its own claim of already planning to be in early."
+      },
+      "B": {
+        "verdict": "unique",
+        "best": "D",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only D responds to the contingent request to take the shift; B treats added work as relief, C is off-topic, A neither accepts nor declines and replies to a change of arrival time that was never mentioned."
+      },
+      "C": {
+        "verdict": "unique",
+        "best": "D",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only D takes up the request; A's 'planned to be in early' fits no Sunday-cover uptake, B treats an added duty as relief, C is unrelated."
+      }
+    }
+  },
+  {
+    "id": "x046",
+    "item_id": "5cb6571f-1270-4bef-94f0-f3c247c28d15",
+    "localId": "crv7-b3-08",
+    "content_sha": "de6070a67f009f7bb35e807eedba1b83",
+    "cohesion_edited": false,
+    "stimulus": "\"Could you cover Priya's session while she's away?\"",
+    "key": "I can certainly take that one on.",
+    "contested_votes": 0,
+    "flag_ge1": false,
+    "flag_ge2": false,
+    "human_reviewed": false,
+    "human_verdict": null,
+    "human_note": null,
+    "graders": {
+      "A": {
+        "verdict": "unique",
+        "best": "C",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only C accepts the request; A answers a choice of slots that was never offered, B refuses by freeing the slot, and D proposes meeting the person the line says is away."
+      },
+      "B": {
+        "verdict": "unique",
+        "best": "C",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only C answers the yes/no request; A answers an unasked choice of slots, B vacates rather than covers, D contradicts 'while she's away'."
+      },
+      "C": {
+        "verdict": "unique",
+        "best": "C",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only C accepts the named session; A answers a slot choice never offered, B gives away a slot that is not the responder's, D contradicts 'while she's away'."
+      }
+    }
+  },
+  {
+    "id": "x047",
+    "item_id": "5f604185-7843-41e9-a8d3-395804a5bda3",
+    "localId": "crv7-b1-04",
+    "content_sha": "573945db3bca6bfd86977173254a047d",
+    "cohesion_edited": false,
+    "stimulus": "\"Nobody's free for statistics in your Tuesday slot.\"",
+    "key": "I could move to a morning if that opens anything.",
+    "contested_votes": 0,
+    "flag_ge1": false,
+    "flag_ge2": false,
+    "human_reviewed": true,
+    "human_verdict": "unique",
+    "human_note": null,
+    "graders": {
+      "A": {
+        "verdict": "unique",
+        "best": "A",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only A responds to the unavailability by offering flexibility; C claims to take a session the line says does not exist, B welcomes losing help nobody would have asked for, and D is unconnected."
+      },
+      "B": {
+        "verdict": "unique",
+        "best": "A",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only A engages with the stated unavailability by offering flexibility; C claims a slot the line says nobody can staff, B welcomes the loss of help with no basis in the line, D is unrelated."
+      },
+      "C": {
+        "verdict": "unique",
+        "best": "A",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only A responds to the unavailability by offering flexibility; C claims a slot the line says has nobody, B jokes away a problem the asker wanted solved, D is unrelated."
+      }
+    }
+  },
+  {
+    "id": "x048",
+    "item_id": "5f7deea3-6d17-48de-9fd9-90f2468d0f1d",
+    "localId": "crv7-b4-05",
+    "content_sha": "93f2b4c7b2c93c28b182bed5b5f21901",
+    "cohesion_edited": false,
+    "stimulus": "\"Can you keep that tap off until I return?\"",
+    "key": "No problem, I'll use the one down the hall.",
+    "contested_votes": 1,
+    "flag_ge1": true,
+    "flag_ge2": false,
+    "human_reviewed": false,
+    "human_verdict": null,
+    "human_note": null,
+    "graders": {
+      "A": {
+        "verdict": "unique",
+        "best": "C",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only C complies with the request to leave the tap alone; A reacts to an implicature instead of the request, B puts things away though the speaker is returning, and D commits to an unrequested action the line never raises."
+      },
+      "B": {
+        "verdict": "unique",
+        "best": "C",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only C complies with the request; B and D treat the work as finished or the task as clearing a cupboard, and A responds to an implied leak the line never states instead of the request."
+      },
+      "C": {
+        "verdict": "contested",
+        "best": "C",
+        "best_is_key": true,
+        "rival_options": [
+          "I'll clear the cupboard before you come back."
+        ],
+        "reason": "C directly complies, but 'until I return' sets up the plumber-going-away situation in which D's offer to clear the cupboard before they come back is an equally cooperative, unrefuted reply."
+      }
+    }
+  },
+  {
+    "id": "x049",
+    "item_id": "62f7311e-79ca-4959-976a-76c45a009ed0",
+    "localId": "crv7-b5-08",
+    "content_sha": "8976becc36880df9683d9013da838267",
+    "cohesion_edited": true,
+    "stimulus": "\"The login flow's working end to end now.\"",
+    "key": "Nice, that frees us up for the slides.",
+    "contested_votes": 0,
+    "flag_ge1": false,
+    "flag_ge2": false,
+    "human_reviewed": true,
+    "human_verdict": "unique",
+    "human_note": null,
+    "graders": {
+      "A": {
+        "verdict": "unique",
+        "best": "D",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only D treats the news as good and moves on; C offers to chase a bug the line says is fixed, A and B respond to tasks the line never mentions."
+      },
+      "B": {
+        "verdict": "unique",
+        "best": "D",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only D reacts to the news that the flow works; C offers to fix an already-fixed bug, A and B respond to utterances that were not made."
+      },
+      "C": {
+        "verdict": "unique",
+        "best": "D",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only D reacts to the completion; C offers help on a bug the line says is fixed, A and B respond to utterances that were not made."
+      }
+    }
+  },
+  {
+    "id": "x050",
+    "item_id": "63267970-3907-4051-a098-26713599d69f",
+    "localId": "crv7-b2-19",
+    "content_sha": "3f698996048b63ee408975517740bd80",
+    "cohesion_edited": false,
+    "stimulus": "\"Could you sign the damage waiver before you take it?\"",
+    "key": "Hand it over, I'll read it and sign at the counter.",
+    "contested_votes": 0,
+    "flag_ge1": false,
+    "flag_ge2": false,
+    "human_reviewed": true,
+    "human_verdict": "unique",
+    "human_note": null,
+    "graders": {
+      "A": {
+        "verdict": "unique",
+        "best": "B",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only B complies with the signing request; A takes the item without signing, C and D behave as though the item were unavailable rather than merely conditioned on a signature."
+      },
+      "B": {
+        "verdict": "unique",
+        "best": "B",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only B complies with the precondition; A ignores the condition it was told about, C and D assume an unavailability the line rules out by offering the item."
+      },
+      "C": {
+        "verdict": "unique",
+        "best": "B",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only B takes up the signing request; A skips the stated precondition, C and D presuppose the item is unavailable when the line says it is available on signature."
+      }
+    }
+  },
+  {
+    "id": "x051",
+    "item_id": "63401ceb-ec13-46f9-8ce2-72a55745bf18",
+    "localId": "crv7-b1-13",
+    "content_sha": "dc7c3c3240b5bd90953f324b5d481cc6",
+    "cohesion_edited": false,
+    "stimulus": "\"That form's for cameras; recorders go on the yellow one.\"",
+    "key": "I'll fill in the right one and hand it back.",
+    "contested_votes": 0,
+    "flag_ge1": false,
+    "flag_ge2": false,
+    "human_reviewed": false,
+    "human_verdict": null,
+    "human_note": null,
+    "graders": {
+      "A": {
+        "verdict": "unique",
+        "best": "B",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only B acts on the correction about which form to use; C and D treat the correction as a scheduling delay it never announces, and A refers to an item the line does not place elsewhere."
+      },
+      "B": {
+        "verdict": "unique",
+        "best": "B",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only B acts on the correction; A answers a request for an object, C and D read a delay or a schedule into a correction that mentions neither."
+      },
+      "C": {
+        "verdict": "unique",
+        "best": "B",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only B acts on the correction; C invents a delay the correction does not create, D reads a timing statement the line never makes, A answers a request to fetch something."
+      }
+    }
+  },
+  {
+    "id": "x052",
+    "item_id": "63d16a50-ed56-4391-87ee-23ef91c06a9c",
+    "localId": "crv7-b5-06",
+    "content_sha": "2c58ab4fe6be32b6479bb522d2054e98",
+    "cohesion_edited": false,
+    "stimulus": "\"The care home can't take new volunteers this term.\"",
+    "key": "That's a shame — is there somewhere else going?",
+    "contested_votes": 3,
+    "flag_ge1": true,
+    "flag_ge2": true,
+    "human_reviewed": false,
+    "human_verdict": null,
+    "human_note": null,
+    "graders": {
+      "A": {
+        "verdict": "contested",
+        "best": "A",
+        "best_is_key": false,
+        "rival_options": [
+          "Ah, right — I'll email the garden people instead."
+        ],
+        "reason": "D survives the line completely — expressing regret and asking whether another placement exists is exactly as natural a response to the refusal as A's naming an alternative, and nothing in the line prefers one."
+      },
+      "B": {
+        "verdict": "contested",
+        "best": "D",
+        "best_is_key": true,
+        "rival_options": [
+          "Ah, right — I'll email the garden people instead."
+        ],
+        "reason": "A ('I'll email the garden people instead') and D ('is there somewhere else going?') are both ordinary reactions to being told a placement is closed — the line says nothing that lets a test-taker prefer asking over already having an alternative in mind."
+      },
+      "C": {
+        "verdict": "contested",
+        "best": "D",
+        "best_is_key": true,
+        "rival_options": [
+          "Ah, right — I'll email the garden people instead."
+        ],
+        "reason": "The line is bare bad news, so both the reaction-plus-question (D) and the reaction-plus-own-alternative (A) are ordinary cooperative replies; nothing in the line prefers one."
+      }
+    }
+  },
+  {
+    "id": "x053",
+    "item_id": "65018626-295c-4411-990b-f3031e6f8823",
+    "localId": "crv7-b5-04",
+    "content_sha": "d5082be8f0b36702d95b89f4da653de3",
+    "cohesion_edited": false,
+    "stimulus": "\"The editor's spiked the piece for this issue.\"",
+    "key": "I'll warn the writer before she files.",
+    "contested_votes": 0,
+    "flag_ge1": false,
+    "flag_ge2": false,
+    "human_reviewed": false,
+    "human_verdict": null,
+    "human_note": null,
+    "graders": {
+      "A": {
+        "verdict": "unique",
+        "best": "C",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only C acts on the piece being killed; B sizes a photo for a spiked piece, D answers an offer never made, and A revises for an issue the line has already closed."
+      },
+      "B": {
+        "verdict": "unique",
+        "best": "C",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only C acts on the piece being killed; A and B continue producing it, D replies to an offer that was not made."
+      },
+      "C": {
+        "verdict": "unique",
+        "best": "C",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only C acts sensibly on a spiked piece; B needs the piece to still run, D replies to an offer, A revises 'right now' something the line says has no slot."
+      }
+    }
+  },
+  {
+    "id": "x054",
+    "item_id": "66b97294-1ed7-4d73-b357-16c396c54ade",
+    "localId": "crv7-b6-02",
+    "content_sha": "6e5fdd8faa65d50584c5688bd360b936",
+    "cohesion_edited": true,
+    "stimulus": "\"It's not a monthly fee, it's charged once a year.\"",
+    "key": "Then I'll leave the account open after all.",
+    "contested_votes": 0,
+    "flag_ge1": false,
+    "flag_ge2": false,
+    "human_reviewed": true,
+    "human_verdict": "unique",
+    "human_note": null,
+    "graders": {
+      "A": {
+        "verdict": "unique",
+        "best": "A",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only A responds to the correction about billing frequency; C restates the corrected belief, D answers a different question, and B refers to a proposal the line never makes."
+      },
+      "B": {
+        "verdict": "unique",
+        "best": "A",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only A reacts to the fee being cheaper than assumed; C repeats the monthly reading the line corrects, B answers a proposal and D an unasked question."
+      },
+      "C": {
+        "verdict": "unique",
+        "best": "A",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only A responds to the correction's import; C restates the very thing the line denies, B replies to a proposal and D to a question, neither of which was made."
+      }
+    }
+  },
+  {
+    "id": "x055",
+    "item_id": "682e1ac1-e2f4-4cf7-bb76-b95910058054",
+    "localId": "crv7-b1-15",
+    "content_sha": "92c019bb6874a199f775380913ae200f",
+    "cohesion_edited": false,
+    "stimulus": "\"Send us your supervisor's sign-off before the deadline.\"",
+    "key": "I'll catch her after Thursday's lecture.",
+    "contested_votes": 0,
+    "flag_ge1": false,
+    "flag_ge2": false,
+    "human_reviewed": false,
+    "human_verdict": null,
+    "human_note": null,
+    "graders": {
+      "A": {
+        "verdict": "unique",
+        "best": "B",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only B moves to get the sign-off; D answers an offer rather than an instruction, and A and C change the subject to grades and chapter planning."
+      },
+      "B": {
+        "verdict": "unique",
+        "best": "B",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only B moves toward obtaining the supervisor's sign-off; A and C are unrelated and D responds to an offer rather than an instruction."
+      },
+      "C": {
+        "verdict": "unique",
+        "best": "B",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only B plans to obtain the sign-off; D replies to a suggestion about content, A and C address matters the instruction never raises."
+      }
+    }
+  },
+  {
+    "id": "x056",
+    "item_id": "68e66289-1870-4e1c-9923-9c88508700d3",
+    "localId": "crv7-b2-18",
+    "content_sha": "4fe1de069799d381c4cb1c0f133119e6",
+    "cohesion_edited": false,
+    "stimulus": "\"Would you like the matinee or the evening performance?\"",
+    "key": "The matinee, I've got rehearsal later that day.",
+    "contested_votes": 0,
+    "flag_ge1": false,
+    "flag_ge2": false,
+    "human_reviewed": true,
+    "human_verdict": "unique",
+    "human_note": null,
+    "graders": {
+      "A": {
+        "verdict": "unique",
+        "best": "A",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only A picks one of the two performances offered; C answers about seating rather than the choice, D presumes a sell-out the line contradicts, and B is unrelated."
+      },
+      "B": {
+        "verdict": "unique",
+        "best": "A",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only A chooses between the two performances offered; C picks a seat rather than a time, D assumes a sell-out the offer rules out, B is unrelated."
+      },
+      "C": {
+        "verdict": "unique",
+        "best": "A",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only A answers the either/or; C answers a seating question, D presupposes sold-out tickets the offer contradicts, B is unrelated."
+      }
+    }
+  },
+  {
+    "id": "x057",
+    "item_id": "69a7f05c-18db-4925-8971-4412db01d217",
+    "localId": "cr7-10",
+    "content_sha": "5ca2cb57ae0bc365cc8ef06f243709f4",
+    "cohesion_edited": true,
+    "stimulus": "\"Bring your old key by before you collect the new one.\"",
+    "key": "It's on my desk — I'll drop it in this afternoon.",
+    "contested_votes": 0,
+    "flag_ge1": false,
+    "flag_ge2": false,
+    "human_reviewed": false,
+    "human_verdict": null,
+    "human_note": null,
+    "graders": {
+      "A": {
+        "verdict": "unique",
+        "best": "D",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only D returns the old key as instructed; B reverses old and new, C collects the new key while ignoring the precondition, and A comments on a corridor instead of the instruction."
+      },
+      "B": {
+        "verdict": "unique",
+        "best": "D",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only D returns the old key as asked; B returns the new one, C ignores the stated precondition, A answers a room offer."
+      },
+      "C": {
+        "verdict": "unique",
+        "best": "D",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only D produces the old key as instructed; B returns the new key, and A and C react to news of a room offer rather than to the instruction."
+      }
+    }
+  },
+  {
+    "id": "x058",
+    "item_id": "6ae391ff-c9c2-49c9-9530-029b763c4c32",
+    "localId": "cr7-09",
+    "content_sha": "cad38e322b4525d7c727d5edc2e4a12e",
+    "cohesion_edited": true,
+    "stimulus": "\"That card's for the cafe downstairs, not this dining hall.\"",
+    "key": "I'll use my student ID here from now on.",
+    "contested_votes": 3,
+    "flag_ge1": true,
+    "flag_ge2": true,
+    "human_reviewed": false,
+    "human_verdict": null,
+    "human_note": null,
+    "graders": {
+      "A": {
+        "verdict": "contested",
+        "best": "D",
+        "best_is_key": true,
+        "rival_options": [
+          "I'll grab something from the shop before it shuts."
+        ],
+        "reason": "B survives because the line only rules the card out here — going to the shop for food instead is an ordinary reaction, and nothing in the line makes switching to a student ID the required adaptation."
+      },
+      "B": {
+        "verdict": "contested",
+        "best": "D",
+        "best_is_key": true,
+        "rival_options": [
+          "I'll grab something from the shop before it shuts."
+        ],
+        "reason": "B (go buy food at the shop) survives the line as fully as D (pay another way here) — the line only says this card is wrong for this hall, and never states that any other means of paying here exists, so abandoning the hall is an equally available reply."
+      },
+      "C": {
+        "verdict": "contested",
+        "best": "D",
+        "best_is_key": true,
+        "rival_options": [
+          "I'll grab something from the shop before it shuts."
+        ],
+        "reason": "The line only rules the card out here, so besides switching payment method (D) simply going elsewhere to eat (B) is an ordinary unrefuted reaction; each supplies a fact the line omits."
+      }
+    }
+  },
+  {
+    "id": "x059",
+    "item_id": "6cb11e2e-b2fc-489c-ae40-489ea27c528a",
+    "localId": "crv7-b3-12",
+    "content_sha": "10e097e908113690892963dd93a85a3b",
+    "cohesion_edited": false,
+    "stimulus": "\"Did you eat anywhere off the main campus last term?\"",
+    "key": "Only at the sports pavilion cafe.",
+    "contested_votes": 0,
+    "flag_ge1": false,
+    "flag_ge2": false,
+    "human_reviewed": false,
+    "human_verdict": null,
+    "human_note": null,
+    "graders": {
+      "A": {
+        "verdict": "unique",
+        "best": "B",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only B answers the yes/no question asked; A, C and D reply to requests or offers the line does not make."
+      },
+      "B": {
+        "verdict": "unique",
+        "best": "B",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only B answers the yes/no question asked; A, C and D respond to requests or offers the line does not make."
+      },
+      "C": {
+        "verdict": "unique",
+        "best": "B",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only B answers the yes/no question about off-campus eating; A, C and D respond to requests or offers that were never made."
+      }
+    }
+  },
+  {
+    "id": "x060",
+    "item_id": "733333ea-cd4d-44c7-ae4b-87bd16f877ce",
+    "localId": "crv7-b6-16",
+    "content_sha": "7b1507b1e4ca776b82e5514b529a2c9d",
+    "cohesion_edited": true,
+    "stimulus": "\"I've got a big case in the boot.\"",
+    "key": "I'll get out and lift it for you at the other end.",
+    "contested_votes": 0,
+    "flag_ge1": false,
+    "flag_ge2": false,
+    "human_reviewed": false,
+    "human_verdict": null,
+    "human_note": null,
+    "graders": {
+      "A": {
+        "verdict": "unique",
+        "best": "B",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only B accepts that the case is already stowed and offers help with it; C and D both presuppose the case still needs loading, which the line rules out, and A sends them back for something already present."
+      },
+      "B": {
+        "verdict": "unique",
+        "best": "B",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "The line places the case already in the boot, which refutes A, C and D; only B responds to the load that is there."
+      },
+      "C": {
+        "verdict": "unique",
+        "best": "B",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only B fits a case already loaded in the boot; A goes back for it, C doubts it will fit, and D asks for it to be brought round, all contradicting 'in the boot'."
+      }
+    }
+  },
+  {
+    "id": "x061",
+    "item_id": "75d2b2cd-be77-42c0-a7ce-3fa13f97c40f",
+    "localId": "crv7-b5-05",
+    "content_sha": "6c4360d707eb4dc7c68bad4df81dc55f",
+    "cohesion_edited": false,
+    "stimulus": "\"We're on the opposition side, not proposition.\"",
+    "key": "I'll rewrite my opening to attack it, then.",
+    "contested_votes": 0,
+    "flag_ge1": false,
+    "flag_ge2": false,
+    "human_reviewed": false,
+    "human_verdict": null,
+    "human_note": null,
+    "graders": {
+      "A": {
+        "verdict": "unique",
+        "best": "B",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only B adapts the argument to the side named; D treats as open what the line settles, C draws a timing conclusion the line does not license, and A is unrelated."
+      },
+      "B": {
+        "verdict": "unique",
+        "best": "B",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only B acts on which side they are arguing; D treats as open what the line settles, A and C respond to matters the line never raises."
+      },
+      "C": {
+        "verdict": "unique",
+        "best": "B",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only B acts on being opposition; C makes side allocation a matter of time, D reopens what the line settles, A is unrelated."
+      }
+    }
+  },
+  {
+    "id": "x062",
+    "item_id": "767fb88f-abe5-45c3-b796-6159a2c301de",
+    "localId": "crv7-b2-02",
+    "content_sha": "7d9da4478ae858aa7845e12260af2dbe",
+    "cohesion_edited": false,
+    "stimulus": "\"Could you rinse off in the showers before you get in?\"",
+    "key": "Of course, I didn't see the sign on the way in.",
+    "contested_votes": 0,
+    "flag_ge1": false,
+    "flag_ge2": false,
+    "human_reviewed": false,
+    "human_verdict": null,
+    "human_note": null,
+    "graders": {
+      "A": {
+        "verdict": "unique",
+        "best": "D",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only D agrees to the request; A answers a question about swimming history that was not asked, and B and C announce plans instead of responding to the request."
+      },
+      "B": {
+        "verdict": "unique",
+        "best": "D",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only D agrees to the request; A answers an unasked question about experience, B and C respond to swimming plans rather than the rinse rule."
+      },
+      "C": {
+        "verdict": "unique",
+        "best": "D",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only D complies with the rinse request; A answers a question about experience, B and C respond to permissions or facilities the line never mentions."
+      }
+    }
+  },
+  {
+    "id": "x063",
+    "item_id": "76fc0924-54e3-437a-a456-4d584c7f1999",
+    "localId": "crv7-b3-04",
+    "content_sha": "f2b65429b369ad3ad629728dfafef286",
+    "cohesion_edited": false,
+    "stimulus": "\"It's the Hartley award you got, not the Beckett one.\"",
+    "key": "I'll fix that on my resume straight away.",
+    "contested_votes": 0,
+    "flag_ge1": false,
+    "flag_ge2": false,
+    "human_reviewed": false,
+    "human_verdict": null,
+    "human_note": null,
+    "graders": {
+      "A": {
+        "verdict": "unique",
+        "best": "C",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only C acts on the correction; D asks to be nominated for an award the line says is already won, and A and B respond to nothing in the line."
+      },
+      "B": {
+        "verdict": "unique",
+        "best": "C",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only C acts on the correction; D asks to be nominated for an award the line says was already received, A and B answer utterances not made."
+      },
+      "C": {
+        "verdict": "unique",
+        "best": "C",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only C acts on the correction of which award; D asks to be nominated for one already received, A and B answer different utterances."
+      }
+    }
+  },
+  {
+    "id": "x064",
+    "item_id": "780147dc-7129-465a-b5ed-b6ead4f3565d",
+    "localId": "crv7-b1-11",
+    "content_sha": "00fe79b8995886c4bc74babf4d16bbc5",
+    "cohesion_edited": false,
+    "stimulus": "\"Could you confirm the enrolment before we order more?\"",
+    "key": "I'll check once the add period closes.",
+    "contested_votes": 0,
+    "flag_ge1": false,
+    "flag_ge2": false,
+    "human_reviewed": false,
+    "human_verdict": null,
+    "human_note": null,
+    "graders": {
+      "A": {
+        "verdict": "unique",
+        "best": "C",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only C agrees to confirm the enrolment and says when; D treats the books as already ordered, B and A answer problems the line does not raise."
+      },
+      "B": {
+        "verdict": "unique",
+        "best": "C",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only C undertakes the confirmation asked for; A assumes a known error, B and D assume the order is cancelled or already delivered."
+      },
+      "C": {
+        "verdict": "unique",
+        "best": "C",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only C addresses confirming the enrolment; D has books already ordered, B declines an order nobody has ruled out, A changes an unnamed thing."
+      }
+    }
+  },
+  {
+    "id": "x065",
+    "item_id": "7dc39f22-0080-4196-8af0-71422a315a94",
+    "localId": "crv7-b4-08",
+    "content_sha": "de1c6b19b96ec4c33aa3e50b7a82a4d1",
+    "cohesion_edited": true,
+    "stimulus": "\"Could you take your gear out of the common room?\"",
+    "key": "I'll clear that corner out this evening.",
+    "contested_votes": 0,
+    "flag_ge1": false,
+    "flag_ge2": false,
+    "human_reviewed": true,
+    "human_verdict": "unique",
+    "human_note": null,
+    "graders": {
+      "A": {
+        "verdict": "unique",
+        "best": "D",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only D agrees to clear the gear; A welcomes as convenient a request that creates a storage problem, B treats the room as closed, and C is unrelated."
+      },
+      "B": {
+        "verdict": "unique",
+        "best": "D",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only D complies with the request to remove the gear; B over-reads the request as barring use of the room, A answers a storage offer, C is unrelated."
+      },
+      "C": {
+        "verdict": "unique",
+        "best": "D",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only D removes the gear; A treats a chore as a favour, B reads the request as closing the room, C is unrelated."
+      }
+    }
+  },
+  {
+    "id": "x066",
+    "item_id": "7f612915-b9de-4cc0-994c-8b47c78c4cd6",
+    "localId": "crv7-b3-15",
+    "content_sha": "a2ae9cf260f69fa2324633b81a5d5732",
+    "cohesion_edited": false,
+    "stimulus": "\"We need your supervisor's signature on the costing page.\"",
+    "key": "He's back tomorrow — I'll catch him then.",
+    "contested_votes": 0,
+    "flag_ge1": false,
+    "flag_ge2": false,
+    "human_reviewed": true,
+    "human_verdict": "unique",
+    "human_note": null,
+    "graders": {
+      "A": {
+        "verdict": "unique",
+        "best": "A",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only A moves to obtain the signature; B invents a wrong-form error, C thanks the speaker as if for an offer, and D relies on a wait the line never states."
+      },
+      "B": {
+        "verdict": "unique",
+        "best": "A",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only A moves to obtain the signature; B substitutes a wrong-form problem the line does not raise, C and D reply to an offer and to a wait that were never stated."
+      },
+      "C": {
+        "verdict": "unique",
+        "best": "A",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only A takes on getting the signature; B invents a wrong form, C replies to an offer, D presupposes a wait the line never establishes and never commits to the signature."
+      }
+    }
+  },
+  {
+    "id": "x067",
+    "item_id": "81bdac8c-d819-4495-82e2-285f98c020f9",
+    "localId": "crv7-b6-20",
+    "content_sha": "7566783be7b4638461a3c4211d5523d0",
+    "cohesion_edited": false,
+    "stimulus": "\"Your prescription hasn't changed since the last test.\"",
+    "key": "I'll keep the lenses I've got, then.",
+    "contested_votes": 0,
+    "flag_ge1": false,
+    "flag_ge2": false,
+    "human_reviewed": false,
+    "human_verdict": null,
+    "human_note": null,
+    "graders": {
+      "A": {
+        "verdict": "unique",
+        "best": "C",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only C draws the consequence of an unchanged prescription; B and A reply to remarks about fit and posture, and D asks to be shown an alternative the news makes unnecessary."
+      },
+      "B": {
+        "verdict": "unique",
+        "best": "C",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only C draws the consequence of an unchanged prescription; B and D answer about fit or alternatives that were not asked, A is unrelated."
+      },
+      "C": {
+        "verdict": "unique",
+        "best": "C",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only C draws the consequence of an unchanged prescription; A and B answer fitting questions, D asks to be shown something the line does not offer."
+      }
+    }
+  },
+  {
+    "id": "x068",
+    "item_id": "853200c8-99dc-4e09-8468-aec5604dc6eb",
+    "localId": "cr7-12",
+    "content_sha": "c9d14bacec4ba12cda5f6603e39f6c01",
+    "cohesion_edited": false,
+    "stimulus": "\"The nurse sees walk-ins today; the doctor's here Thursday.\"",
+    "key": "I'll wait for the nurse and come back if needed.",
+    "contested_votes": 0,
+    "flag_ge1": false,
+    "flag_ge2": false,
+    "human_reviewed": false,
+    "human_verdict": null,
+    "human_note": null,
+    "graders": {
+      "A": {
+        "verdict": "unique",
+        "best": "C",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only C chooses between the two options given; A treats the doctor's return as unknown though the line states it, and B and D respond to a pharmacy and a form."
+      },
+      "B": {
+        "verdict": "unique",
+        "best": "C",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only C acts on the two options given; A treats the doctor's availability as unknown when the line names Thursday, B and D respond to other business."
+      },
+      "C": {
+        "verdict": "unique",
+        "best": "C",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only C uses the availability the line states; A rebooks for someone the line says is in today, B and D respond to a pickup and a form never mentioned."
+      }
+    }
+  },
+  {
+    "id": "x069",
+    "item_id": "85f5ba2a-d2d3-4dc6-bbe0-996d5806820f",
+    "localId": "crv7-b1-18",
+    "content_sha": "7de7ed7f5cfc54cb8187d8296e4606fe",
+    "cohesion_edited": false,
+    "stimulus": "\"Ask your classmates to stop sharing the links externally.\"",
+    "key": "I'll raise it at the class rep meeting.",
+    "contested_votes": 0,
+    "flag_ge1": false,
+    "flag_ge2": false,
+    "human_reviewed": true,
+    "human_verdict": "unique",
+    "human_note": null,
+    "graders": {
+      "A": {
+        "verdict": "unique",
+        "best": "C",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only C takes up the request to pass the message on; A, B and D all respond as if the line were about missing material rather than a request to relay a rule."
+      },
+      "B": {
+        "verdict": "unique",
+        "best": "C",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only C undertakes to pass the request on to classmates; A, B and D respond to missing material rather than to a request about sharing."
+      },
+      "C": {
+        "verdict": "unique",
+        "best": "C",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only C acts on the request to pass a message to classmates; A, B and D react to missing access or missed content, which the line does not raise."
+      }
+    }
+  },
+  {
+    "id": "x070",
+    "item_id": "8665f51d-5a6d-481d-8c3a-35a0e834b927",
+    "localId": "crv7-b3-01",
+    "content_sha": "82202a2f9231cc975c4f6f9e37494cb3",
+    "cohesion_edited": true,
+    "stimulus": "\"Come back with your ID card so I can verify you.\"",
+    "key": "It's in my bag downstairs — give me a moment.",
+    "contested_votes": 0,
+    "flag_ge1": false,
+    "flag_ge2": false,
+    "human_reviewed": true,
+    "human_verdict": "unique",
+    "human_note": null,
+    "graders": {
+      "A": {
+        "verdict": "unique",
+        "best": "B",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only B goes to fetch the card; C argues from a photo the line implies is not present, A refuses to surrender a card nobody asked to keep, and D treats it as found property."
+      },
+      "B": {
+        "verdict": "unique",
+        "best": "B",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only B goes to fetch the card as asked; C assumes the card is already in hand, D treats it as lost and found, A answers a request to surrender it."
+      },
+      "C": {
+        "verdict": "unique",
+        "best": "B",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only B goes to fetch the card; C argues from a photo the line implies is not present, A refuses to surrender it, D treats it as a lost-property find."
+      }
+    }
+  },
+  {
+    "id": "x071",
+    "item_id": "867424ed-184f-472e-aca2-482399620476",
+    "localId": "crv7-b5-07",
+    "content_sha": "fc94b283a4efb302fb28589ada8e5552",
+    "cohesion_edited": false,
+    "stimulus": "\"I can write the funding appeal if you like.\"",
+    "key": "Yes, please take that one on for us.",
+    "contested_votes": 0,
+    "flag_ge1": false,
+    "flag_ge2": false,
+    "human_reviewed": false,
+    "human_verdict": null,
+    "human_note": null,
+    "graders": {
+      "A": {
+        "verdict": "unique",
+        "best": "C",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only C responds to the offer with an acceptance; A and D skip the offer and commit to consequences that presuppose an answer, and B denies the offer just made."
+      },
+      "B": {
+        "verdict": "unique",
+        "best": "C",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only C accepts the offer; A treats the funding as secured, B contradicts the offer being made, D neither accepts nor declines it."
+      },
+      "C": {
+        "verdict": "unique",
+        "best": "C",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only C answers the offer; A presupposes funding already won, B rejects the premise that an appeal is being made, D neither accepts nor declines."
+      }
+    }
+  },
+  {
+    "id": "x072",
+    "item_id": "87e54b6b-648a-4947-800a-83f2a8598ebc",
+    "localId": "crv7-b1-17",
+    "content_sha": "e55e6d7dc5bd18250a6c2b2f5a63cec0",
+    "cohesion_edited": false,
+    "stimulus": "\"Your partner dropped the course, so you're unpaired.\"",
+    "key": "I'll post on the forum for someone to swap with.",
+    "contested_votes": 0,
+    "flag_ge1": false,
+    "flag_ge2": false,
+    "human_reviewed": false,
+    "human_verdict": null,
+    "human_note": null,
+    "graders": {
+      "A": {
+        "verdict": "unique",
+        "best": "B",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only B addresses being unpaired; C answers an offer of help, and A and D respond to reading tasks the line does not mention."
+      },
+      "B": {
+        "verdict": "unique",
+        "best": "B",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only B addresses being unpaired; A, C and D respond to reading or feedback the line never raises."
+      },
+      "C": {
+        "verdict": "unique",
+        "best": "B",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only B addresses being unpaired; C asks a partner for a read after being told there is none, A and D are unrelated."
+      }
+    }
+  },
+  {
+    "id": "x073",
+    "item_id": "8cf03546-f807-4f49-af2b-87fb0ebf93cb",
+    "localId": "crv7-b2-12",
+    "content_sha": "130fa6a04ca6b35cc53ac4a41ac2b705",
+    "cohesion_edited": true,
+    "stimulus": "\"Could you fill out this form before you sit down?\"",
+    "key": "Of course, I'll do it at the table by the window.",
+    "contested_votes": 0,
+    "flag_ge1": false,
+    "flag_ge2": false,
+    "human_reviewed": false,
+    "human_verdict": null,
+    "human_note": null,
+    "graders": {
+      "A": {
+        "verdict": "unique",
+        "best": "D",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only D agrees to fill the form now; A and C defer or go elsewhere for a form the line hands over immediately, and B answers about a scheduling slot."
+      },
+      "B": {
+        "verdict": "unique",
+        "best": "D",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only D complies now as asked; A and C postpone or go elsewhere for a form that is being handed over before sitting down, B is unrelated."
+      },
+      "C": {
+        "verdict": "unique",
+        "best": "D",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only D fills the form now; A defers past 'before you sit down', C fetches a form the speaker is already holding out, B answers an offer."
+      }
+    }
+  },
+  {
+    "id": "x074",
+    "item_id": "8e5d2904-387c-4835-bf3c-859bab03bdd8",
+    "localId": "crv7-b6-14",
+    "content_sha": "6774c81feb19f1187f3645572a14beb6",
+    "cohesion_edited": false,
+    "stimulus": "\"I'm buying this, I'm not dropping it off.\"",
+    "key": "Sorry about that, I'll ring it up now.",
+    "contested_votes": 0,
+    "flag_ge1": false,
+    "flag_ge2": false,
+    "human_reviewed": false,
+    "human_verdict": null,
+    "human_note": null,
+    "graders": {
+      "A": {
+        "verdict": "unique",
+        "best": "B",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only B corrects course and rings the purchase up; A, C and D all continue treating the item as a donation, which the line explicitly denies."
+      },
+      "B": {
+        "verdict": "unique",
+        "best": "B",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only B treats the item as a purchase; A, C and D all continue to process it as a donation, which the line explicitly denies."
+      },
+      "C": {
+        "verdict": "unique",
+        "best": "B",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only B treats it as a sale; A, C and D all keep processing it as a donation, which the line explicitly denies."
+      }
+    }
+  },
+  {
+    "id": "x075",
+    "item_id": "8eb84909-5f0a-4ea1-840b-0d5534bce7ae",
+    "localId": "crv7-b4-04",
+    "content_sha": "04efb498d0a762f39754090e43109e55",
+    "cohesion_edited": false,
+    "stimulus": "\"Has anything else of yours arrived since Friday?\"",
+    "key": "Nothing that I've been told about since then.",
+    "contested_votes": 0,
+    "flag_ge1": false,
+    "flag_ge2": false,
+    "human_reviewed": true,
+    "human_verdict": "unique",
+    "human_note": null,
+    "graders": {
+      "A": {
+        "verdict": "unique",
+        "best": "C",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only C answers the question asked; A, B and D announce actions instead of saying whether anything else arrived."
+      },
+      "B": {
+        "verdict": "unique",
+        "best": "C",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only C answers the question asked; A, B and D announce actions instead of reporting whether anything arrived."
+      },
+      "C": {
+        "verdict": "unique",
+        "best": "C",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only C answers the question asked; A, B and D respond to collection or redelivery arrangements the line does not raise."
+      }
+    }
+  },
+  {
+    "id": "x076",
+    "item_id": "941e0fa4-264f-4d4f-90dc-463da024e34f",
+    "localId": "crv7-b2-16",
+    "content_sha": "df346774cbff751036671a2c776957f6",
+    "cohesion_edited": true,
+    "stimulus": "\"A bike just came back in at the gate rack.\"",
+    "key": "I'll walk over now before someone else claims it.",
+    "contested_votes": 0,
+    "flag_ge1": false,
+    "flag_ge2": false,
+    "human_reviewed": false,
+    "human_verdict": null,
+    "human_note": null,
+    "graders": {
+      "A": {
+        "verdict": "unique",
+        "best": "A",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only A acts on a bike being available now; B reads a returned bike as a free slot, C gives up on a bike the line says is there, and D treats a specific event as general news."
+      },
+      "B": {
+        "verdict": "unique",
+        "best": "A",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only A acts on a bike now being available; B treats a returned bike as a freed slot, C gives up despite the availability, D responds to general information rather than a one-off event."
+      },
+      "C": {
+        "verdict": "unique",
+        "best": "A",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only A acts on a bike now being available; B treats a returned bike as a freed slot, C assumes none available, D treats a just-now event as standing information."
+      }
+    }
+  },
+  {
+    "id": "x077",
+    "item_id": "945dc87e-823b-4ba3-aa13-7f98fd30dbe4",
+    "localId": "crv7-b3-14",
+    "content_sha": "443b1d330d987aa9d64fb7121ecd1669",
+    "cohesion_edited": true,
+    "stimulus": "\"Finance turned the film society down this round.\"",
+    "key": "We'll try again in the spring.",
+    "contested_votes": 0,
+    "flag_ge1": false,
+    "flag_ge2": false,
+    "human_reviewed": false,
+    "human_verdict": null,
+    "human_note": null,
+    "graders": {
+      "A": {
+        "verdict": "unique",
+        "best": "A",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only A responds to a refusal; B, C and D all presuppose money received in full or in part, which the line denies."
+      },
+      "B": {
+        "verdict": "unique",
+        "best": "A",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only A responds to a refusal 'this round'; C and D assume money was granted in full or in part, B assumes funds to return."
+      },
+      "C": {
+        "verdict": "unique",
+        "best": "A",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only A responds to a refusal; C and D assume money was granted in full or in part, B returns a balance that does not exist."
+      }
+    }
+  },
+  {
+    "id": "x078",
+    "item_id": "94c8d754-3fef-41fa-b9ae-06e700116e66",
+    "localId": "crv7-b5-11",
+    "content_sha": "5c084af0596b6aaff640cdde0c239bf0",
+    "cohesion_edited": true,
+    "stimulus": "\"Loads of people signed up for the beginners' session.\"",
+    "key": "We'll need to split them into groups.",
+    "contested_votes": 0,
+    "flag_ge1": false,
+    "flag_ge2": false,
+    "human_reviewed": false,
+    "human_verdict": null,
+    "human_note": null,
+    "graders": {
+      "A": {
+        "verdict": "unique",
+        "best": "C",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only C draws a consequence of high sign-up; A supposes nobody joined, and B and D respond to matters the line does not raise."
+      },
+      "B": {
+        "verdict": "unique",
+        "best": "C",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only C responds to a large sign-up; A assumes low numbers, B and D respond to matters the line does not raise."
+      },
+      "C": {
+        "verdict": "unique",
+        "best": "C",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only C draws a consequence of high sign-ups; A assumes too few, B and D respond to utterances the line does not make."
+      }
+    }
+  },
+  {
+    "id": "x079",
+    "item_id": "952e3854-346b-4852-8a71-0f62b0d88995",
+    "localId": "cr7-04",
+    "content_sha": "576d5963ca663c53af19e7a00afb0c51",
+    "cohesion_edited": true,
+    "stimulus": "\"Did you get your samples run, or are they still waiting?\"",
+    "key": "They're in the fridge — I'm running them tomorrow.",
+    "contested_votes": 0,
+    "flag_ge1": false,
+    "flag_ge2": false,
+    "human_reviewed": true,
+    "human_verdict": "unique",
+    "human_note": null,
+    "graders": {
+      "A": {
+        "verdict": "unique",
+        "best": "A",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only A answers the alternative question; C thanks the asker for work the question shows they know nothing about, and B and D reply to news or a scheduling offer."
+      },
+      "B": {
+        "verdict": "unique",
+        "best": "A",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only A answers the alternative question; C thanks the asker for doing what they just asked about, B and D reply to news or scheduling not given."
+      },
+      "C": {
+        "verdict": "unique",
+        "best": "A",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only A answers the either/or; C thanks the asker for doing what the question shows they do not know about, B and D reply to information not given."
+      }
+    }
+  },
+  {
+    "id": "x080",
+    "item_id": "988770cf-5f9d-4ee6-aa9f-46a8ecab5de6",
+    "localId": "crv7-b6-06",
+    "content_sha": "d1c69bbbe39d9350c1b5b9e1420d0a02",
+    "cohesion_edited": false,
+    "stimulus": "\"It's ready Friday, not Wednesday, the machine broke.\"",
+    "key": "I'll rearrange and pick it up at the weekend.",
+    "contested_votes": 0,
+    "flag_ge1": false,
+    "flag_ge2": false,
+    "human_reviewed": false,
+    "human_verdict": null,
+    "human_note": null,
+    "graders": {
+      "A": {
+        "verdict": "unique",
+        "best": "B",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only B adjusts to the new Friday date; D collects it immediately and A treats the job as abandoned, both of which the line contradicts, and C answers a service question."
+      },
+      "B": {
+        "verdict": "unique",
+        "best": "B",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only B adjusts to the later date; D takes it immediately and A treats it as never coming, both contradicting 'ready Friday', and C answers an unasked question about service."
+      },
+      "C": {
+        "verdict": "unique",
+        "best": "B",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only B accommodates the new Friday date; D takes it now and A gives it up, both against the stated outcome, C answers a service question."
+      }
+    }
+  },
+  {
+    "id": "x081",
+    "item_id": "9a75d102-603b-4c96-b3c8-ddd177044b02",
+    "localId": "crv7-b3-07",
+    "content_sha": "691f509d622ff8a8387c54d6313d359b",
+    "cohesion_edited": false,
+    "stimulus": "\"Approved already; it's gone through to payroll.\"",
+    "key": "I'll leave you to it, then — one less thing for me.",
+    "contested_votes": 0,
+    "flag_ge1": false,
+    "flag_ge2": false,
+    "human_reviewed": false,
+    "human_verdict": null,
+    "human_note": null,
+    "graders": {
+      "A": {
+        "verdict": "unique",
+        "best": "B",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only B accepts that the matter is finished; A sends back through something already gone to payroll, and C and D presuppose a shortfall or a pending approver the line rules out."
+      },
+      "B": {
+        "verdict": "unique",
+        "best": "B",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only B reacts to the matter being finished; A reopens what the line settles, C predicts a delay the line denies, D plans to chase someone about a completed item."
+      },
+      "C": {
+        "verdict": "unique",
+        "best": "B",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only B accepts that it is done; A reopens a settled submission, C invents a shortfall, D goes to chase an approval already given."
+      }
+    }
+  },
+  {
+    "id": "x082",
+    "item_id": "9e86eb3f-3d2d-46b9-bd63-bb84da17267d",
+    "localId": "crv7-b3-18",
+    "content_sha": "eb265870fad87ee2b94d873fca0f86eb",
+    "cohesion_edited": true,
+    "stimulus": "\"The guests are eating in the hall, not the marquee.\"",
+    "key": "I'll set the trolleys up indoors.",
+    "contested_votes": 0,
+    "flag_ge1": false,
+    "flag_ge2": false,
+    "human_reviewed": false,
+    "human_verdict": null,
+    "human_note": null,
+    "graders": {
+      "A": {
+        "verdict": "unique",
+        "best": "C",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only C acts on where the guests are eating; B heads to the marquee the line excludes, A answers about the speaker's own meal, and D gives a time instead."
+      },
+      "B": {
+        "verdict": "unique",
+        "best": "C",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only C adjusts the service setup to the hall; B still serves the marquee, A answers about the responder's own meal rather than the arrangement, D is unrelated."
+      },
+      "C": {
+        "verdict": "unique",
+        "best": "C",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only C redirects the service indoors; B still serves the marquee, A turns a service instruction into the responder's own meal, D is unrelated."
+      }
+    }
+  },
+  {
+    "id": "x083",
+    "item_id": "9fa2ef1d-2c96-4dac-a914-f207c683362a",
+    "localId": "crv7-b4-12",
+    "content_sha": "ddd1025e5b72d0940ddfee4c92b1ca0c",
+    "cohesion_edited": true,
+    "stimulus": "\"Could you label whatever you leave in the fridge?\"",
+    "key": "Will do — there's tape on the shelf, isn't there?",
+    "contested_votes": 0,
+    "flag_ge1": false,
+    "flag_ge2": false,
+    "human_reviewed": false,
+    "human_verdict": null,
+    "human_note": null,
+    "graders": {
+      "A": {
+        "verdict": "unique",
+        "best": "D",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only D agrees to label; A takes the request as a ban the line contradicts, B avoids the fridge entirely, and C defends against an accusation never made."
+      },
+      "B": {
+        "verdict": "unique",
+        "best": "D",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only D agrees to label; A infers a ban the line contradicts, C answers an accusation not made, B is unrelated."
+      },
+      "C": {
+        "verdict": "unique",
+        "best": "D",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only D agrees to label; A infers a ban the request contradicts, C answers an accusation of taking food, B avoids the fridge entirely rather than replying."
+      }
+    }
+  },
+  {
+    "id": "x084",
+    "item_id": "a1b6c38b-1c1c-45aa-9e84-386923fcba2a",
+    "localId": "crv7-b1-01",
+    "content_sha": "9a640122f1930e1fe6f2b9e9fc57eed3",
+    "cohesion_edited": false,
+    "stimulus": "\"We can't process it — there's a hold on your account.\"",
+    "key": "Which office put the hold on? I'll go clear it.",
+    "contested_votes": 0,
+    "flag_ge1": false,
+    "flag_ge2": false,
+    "human_reviewed": false,
+    "human_verdict": null,
+    "human_note": null,
+    "graders": {
+      "A": {
+        "verdict": "unique",
+        "best": "B",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only B addresses the hold that blocks processing; A supplies a wrong-form explanation the line contradicts, C proceeds as if processed, and D expects the hold to lapse on its own."
+      },
+      "B": {
+        "verdict": "unique",
+        "best": "B",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only B addresses the hold; D waits for something the hold blocks, A substitutes a form error, C treats the request as processed."
+      },
+      "C": {
+        "verdict": "unique",
+        "best": "B",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only B addresses the hold; D waits out a hold that will not lift itself, C assumes it went through, A blames the wrong form."
+      }
+    }
+  },
+  {
+    "id": "x085",
+    "item_id": "a2728c1c-1935-45ed-ac02-bd13b31c1507",
+    "localId": "cr7-03",
+    "content_sha": "0e1e4356c72bbd6e9ca4161d9054bd28",
+    "cohesion_edited": true,
+    "stimulus": "\"I'm moving office hours to Thursdays for the rest of term.\"",
+    "key": "I'll come by after my Thursday seminar, then.",
+    "contested_votes": 0,
+    "flag_ge1": false,
+    "flag_ge2": false,
+    "human_reviewed": true,
+    "human_verdict": "unique",
+    "human_note": null,
+    "graders": {
+      "A": {
+        "verdict": "unique",
+        "best": "A",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only A adapts to the new Thursday hours; C waits for next term though the line says the hours run this term, and B and D reply about written work."
+      },
+      "B": {
+        "verdict": "unique",
+        "best": "A",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only A takes up the new Thursday time; C waits for next term though the line says this term, B and D respond to feedback on written work not mentioned."
+      },
+      "C": {
+        "verdict": "unique",
+        "best": "A",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only A uses the new Thursday time; C waits for hours that are running now, B and D reply to feedback on written work the line does not mention."
+      }
+    }
+  },
+  {
+    "id": "x086",
+    "item_id": "a3b03853-adf0-4b4c-b2ad-66b9b059fe11",
+    "localId": "crv7-b5-17",
+    "content_sha": "52c3e799223af66426068ad1a5f54491",
+    "cohesion_edited": false,
+    "stimulus": "\"She's agreed to stay for a workshop afterwards.\"",
+    "key": "We should book a seminar room then.",
+    "contested_votes": 3,
+    "flag_ge1": true,
+    "flag_ge2": true,
+    "human_reviewed": false,
+    "human_verdict": null,
+    "human_note": null,
+    "graders": {
+      "A": {
+        "verdict": "contested",
+        "best": "C",
+        "best_is_key": true,
+        "rival_options": [
+          "I'll write something short for that.",
+          "I'll put a notice on the event page."
+        ],
+        "reason": "D survives the line entirely — announcing the added workshop on the event page follows from the news just as directly as booking a room, and A's short write-up is equally licensed; nothing in the line selects among them."
+      },
+      "B": {
+        "verdict": "contested",
+        "best": "C",
+        "best_is_key": true,
+        "rival_options": [
+          "I'll write something short for that.",
+          "I'll put a notice on the event page."
+        ],
+        "reason": "Booking a room (C), publicising the extra workshop (D) and writing a short announcement for it (A) are all ordinary planning responses to the same news, and nothing in the line prefers the room over the publicity."
+      },
+      "C": {
+        "verdict": "contested",
+        "best": "C",
+        "best_is_key": true,
+        "rival_options": [
+          "I'll put a notice on the event page."
+        ],
+        "reason": "News that she will run a workshop supports both arranging a room (C) and announcing it (D) equally; the line says nothing that settles which follow-up is due."
+      }
+    }
+  },
+  {
+    "id": "x087",
+    "item_id": "a4820863-aebc-4cd8-a4a2-5ce10b304eeb",
+    "localId": "crv7-b1-02",
+    "content_sha": "d574a07cc1de4c8387972fdc11fd497a",
+    "cohesion_edited": false,
+    "stimulus": "\"Your reimbursement cleared — it'll show up on next payroll.\"",
+    "key": "That's a relief; I'd been carrying it on my card.",
+    "contested_votes": 0,
+    "flag_ge1": false,
+    "flag_ge2": false,
+    "human_reviewed": true,
+    "human_verdict": "unique",
+    "human_note": null,
+    "graders": {
+      "A": {
+        "verdict": "unique",
+        "best": "C",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only C responds to the reimbursement having cleared; A, B and D all treat the claim as still to be submitted, which the line settles."
+      },
+      "B": {
+        "verdict": "unique",
+        "best": "C",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only C reacts to the reimbursement having cleared; A, B and D all continue submitting paperwork the line says is already through."
+      },
+      "C": {
+        "verdict": "unique",
+        "best": "C",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only C reacts to the money being cleared; A, B and D all continue submitting a claim the line says is already through."
+      }
+    }
+  },
+  {
+    "id": "x088",
+    "item_id": "a489eecb-f289-445c-8e60-6cb7de16ca23",
+    "localId": "crv7-b4-09",
+    "content_sha": "6cd8ca09ae920a7af487006d68bf90aa",
+    "cohesion_edited": false,
+    "stimulus": "\"Move-out's on the Saturday, keys back at the desk.\"",
+    "key": "I'll book a van for that morning, then.",
+    "contested_votes": 3,
+    "flag_ge1": true,
+    "flag_ge2": true,
+    "human_reviewed": true,
+    "human_verdict": "unique",
+    "human_note": null,
+    "graders": {
+      "A": {
+        "verdict": "contested",
+        "best": "D",
+        "best_is_key": true,
+        "rival_options": [
+          "I'll start looking for somewhere to put my things."
+        ],
+        "reason": "B survives because a fixed move-out date makes finding storage for one's things as ordinary a next step as booking a van, and the line states nothing that favours transport over storage."
+      },
+      "B": {
+        "verdict": "contested",
+        "best": "D",
+        "best_is_key": true,
+        "rival_options": [
+          "I'll start looking for somewhere to put my things."
+        ],
+        "reason": "B (start looking for somewhere to put my things) is as ordinary a response to a move-out date as D (book a van), and the line states nothing that rules out storage as the responder's concern."
+      },
+      "C": {
+        "verdict": "contested",
+        "best": "D",
+        "best_is_key": true,
+        "rival_options": [
+          "I'll start looking for somewhere to put my things."
+        ],
+        "reason": "The line just states a date, and planning storage for one's things (B) is as ordinary a reaction to being told to move out as booking a van (D); nothing in the line rules B out."
+      }
+    }
+  },
+  {
+    "id": "x089",
+    "item_id": "a6467a10-4cf6-44d0-8cbc-4cde416b9592",
+    "localId": "crv7-b5-02",
+    "content_sha": "68075bfaf531bed8341549c37d3f0009",
+    "cohesion_edited": true,
+    "stimulus": "\"Can you bring the ladder up from the scene dock?\"",
+    "key": "Sure, I'll grab it before the warm-up.",
+    "contested_votes": 0,
+    "flag_ge1": false,
+    "flag_ge2": false,
+    "human_reviewed": false,
+    "human_verdict": null,
+    "human_note": null,
+    "graders": {
+      "A": {
+        "verdict": "unique",
+        "best": "D",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only D complies with the request to fetch the ladder; B reverses the direction the line specifies, A ignores the request, C treats a request as an offer."
+      },
+      "B": {
+        "verdict": "unique",
+        "best": "D",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only D complies with the request; B reverses the direction of travel (the ladder is to come UP FROM the dock), C treats the request as an offer, A answers a different utterance."
+      },
+      "C": {
+        "verdict": "unique",
+        "best": "D",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only D complies with the request; A ignores it, B reverses the direction the line asks for (bring it UP FROM the dock), C answers as the requester."
+      }
+    }
+  },
+  {
+    "id": "x090",
+    "item_id": "acca0551-837b-4a30-8213-a9f50de07cf6",
+    "localId": "crv7-b6-03",
+    "content_sha": "2eca0ba0826d287d1efa64b05f486226",
+    "cohesion_edited": false,
+    "stimulus": "\"It was just the charging port, it's working again.\"",
+    "key": "That's a relief, I'll pay at the counter.",
+    "contested_votes": 3,
+    "flag_ge1": true,
+    "flag_ge2": true,
+    "human_reviewed": true,
+    "human_verdict": "broken",
+    "human_note": "D, C, or B could all work but there are some details missing that make them the true answer.",
+    "graders": {
+      "A": {
+        "verdict": "contested",
+        "best": "B",
+        "best_is_key": true,
+        "rival_options": [
+          "I'll plan on picking it up later in the week."
+        ],
+        "reason": "A survives because 'it's working again' equally licenses arranging a later pickup as it does settling up now, and nothing in the line says the speaker is at the counter."
+      },
+      "B": {
+        "verdict": "contested",
+        "best": "B",
+        "best_is_key": true,
+        "rival_options": [
+          "I'll plan on picking it up later in the week."
+        ],
+        "reason": "The line reports a completed repair but says nothing about when the device is collected or paid for, so arranging a later pickup (A) is as cooperative a reply as paying now (B)."
+      },
+      "C": {
+        "verdict": "contested",
+        "best": "B",
+        "best_is_key": true,
+        "rival_options": [
+          "I'll plan on picking it up later in the week."
+        ],
+        "reason": "A survives because the line says the device is fixed and says nothing about when it must be collected, so arranging a later pickup is a perfectly cooperative reply alongside B."
+      }
+    }
+  },
+  {
+    "id": "x091",
+    "item_id": "ad839672-656c-459b-bd59-b11634a75464",
+    "localId": "crv7-b4-18",
+    "content_sha": "ddd28fa54b7367d3d19d2c20c98f4658",
+    "cohesion_edited": false,
+    "stimulus": "\"Is your radiator warm at the top or the bottom?\"",
+    "key": "Only along the bottom, the top stays cold.",
+    "contested_votes": 0,
+    "flag_ge1": false,
+    "flag_ge2": false,
+    "human_reviewed": true,
+    "human_verdict": "unique",
+    "human_note": null,
+    "graders": {
+      "A": {
+        "verdict": "unique",
+        "best": "B",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "The line is a top-or-bottom question and only B answers it; A, C and D reply to some other utterance about heating."
+      },
+      "B": {
+        "verdict": "unique",
+        "best": "B",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only B answers the top-or-bottom alternative question; A, C and D all reply to some other utterance."
+      },
+      "C": {
+        "verdict": "unique",
+        "best": "B",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "The line is an alternative question and only B answers it; A, C and D reply to offers or complaints that were never made."
+      }
+    }
+  },
+  {
+    "id": "x092",
+    "item_id": "b4303f73-179e-4e0e-a436-e41e6dc16c69",
+    "localId": "crv7-b4-02",
+    "content_sha": "ca7d3400b785a6298b81f53a5276885a",
+    "cohesion_edited": true,
+    "stimulus": "\"I can sit down with both rooms and mediate.\"",
+    "key": "I'd take you up on that; evenings suit us.",
+    "contested_votes": 1,
+    "flag_ge1": true,
+    "flag_ge2": false,
+    "human_reviewed": false,
+    "human_verdict": null,
+    "human_note": null,
+    "graders": {
+      "A": {
+        "verdict": "unique",
+        "best": "C",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only C takes up the offer; D puts the mediation in the past the line places in the future, A treats an offer as a settled outcome, B answers a formal adjudication instead."
+      },
+      "B": {
+        "verdict": "contested",
+        "best": "C",
+        "best_is_key": true,
+        "rival_options": [
+          "Then I'd better put my side of it in writing."
+        ],
+        "reason": "B engages the same dispute the offer is about — preparing a written account of your side before or instead of a sit-down is an ordinary move, and nothing in the line rules it out."
+      },
+      "C": {
+        "verdict": "unique",
+        "best": "C",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only C takes up the offer; A treats an offer as a settled ruling, B substitutes a written procedure for the offered meeting, D puts the mediation in the past."
+      }
+    }
+  },
+  {
+    "id": "x093",
+    "item_id": "b4c8f283-dd92-4c11-b7d4-dd4315bac3f4",
+    "localId": "cr7-06",
+    "content_sha": "dc722eafd60998fb31be6682cd62a0e3",
+    "cohesion_edited": false,
+    "stimulus": "\"Nobody's free Friday, so you're still on the schedule.\"",
+    "key": "I'll move my appointment to the following week, then.",
+    "contested_votes": 1,
+    "flag_ge1": true,
+    "flag_ge2": false,
+    "human_reviewed": true,
+    "human_verdict": "unique",
+    "human_note": null,
+    "graders": {
+      "A": {
+        "verdict": "contested",
+        "best": "A",
+        "best_is_key": true,
+        "rival_options": [
+          "I'd just need the early part — I can be there by mid-morning."
+        ],
+        "reason": "D survives as an ordinary partial-availability counteroffer to being told you are still rostered, and the line never says the shift is all-or-nothing."
+      },
+      "B": {
+        "verdict": "unique",
+        "best": "A",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "The line settles that the speaker is working Friday, which kills B (Sundays), C (someone covering) and D (partial attendance as if newly negotiating cover)."
+      },
+      "C": {
+        "verdict": "unique",
+        "best": "A",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only A accepts being kept on Friday; B answers about Sundays, C contradicts 'you're still on', D negotiates a partial release the line has already refused."
+      }
+    }
+  },
+  {
+    "id": "x094",
+    "item_id": "b51380e3-e7a9-454b-a22a-136cc76b7924",
+    "localId": "crv7-b4-01",
+    "content_sha": "541c237c83d3589087bba4e2149f6464",
+    "cohesion_edited": false,
+    "stimulus": "\"Do you remember which door you last used it on?\"",
+    "key": "The side entrance by the bike racks, late morning.",
+    "contested_votes": 0,
+    "flag_ge1": false,
+    "flag_ge2": false,
+    "human_reviewed": false,
+    "human_verdict": null,
+    "human_note": null,
+    "graders": {
+      "A": {
+        "verdict": "unique",
+        "best": "A",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only A answers which door; the others reply to offers or conclusions the line does not contain."
+      },
+      "B": {
+        "verdict": "unique",
+        "best": "A",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only A answers the which-door question; B, C and D reply to a request, a loss and a recovery respectively."
+      },
+      "C": {
+        "verdict": "unique",
+        "best": "A",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only A answers the which-door question; B, C and D reply to a request, a loss decision and a recovery that the line never raises."
+      }
+    }
+  },
+  {
+    "id": "x095",
+    "item_id": "ba98151a-d53f-4c04-bea1-3a02f87ecfe8",
+    "localId": "crv7-b3-20",
+    "content_sha": "9440834070d0ea704a4784216bcb08d7",
+    "cohesion_edited": true,
+    "stimulus": "\"Have you done a pool rescue with a spinal board?\"",
+    "key": "Only in training — never with a real casualty.",
+    "contested_votes": 0,
+    "flag_ge1": false,
+    "flag_ge2": false,
+    "human_reviewed": true,
+    "human_verdict": "unique",
+    "human_note": null,
+    "graders": {
+      "A": {
+        "verdict": "unique",
+        "best": "C",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "The line asks about past experience and only C reports it; B, D and A answer a request, an emergency and a booking respectively."
+      },
+      "B": {
+        "verdict": "unique",
+        "best": "C",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only C answers the yes/no experience question; B treats it as a request for the board, D as an emergency report, A as an unrelated booking."
+      },
+      "C": {
+        "verdict": "unique",
+        "best": "C",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only C answers the yes/no experience question; B fetches equipment, D responds to an ongoing emergency, A to a booking."
+      }
+    }
+  },
+  {
+    "id": "x096",
+    "item_id": "bb788c0b-874b-4406-9675-24a0f8c02c3c",
+    "localId": "crv7-b2-07",
+    "content_sha": "d5af7e92b974fe71b755aea02e7dbbc0",
+    "cohesion_edited": false,
+    "stimulus": "\"A used copy just came in on trade.\"",
+    "key": "I'll take that one, my budget will thank me.",
+    "contested_votes": 0,
+    "flag_ge1": false,
+    "flag_ge2": false,
+    "human_reviewed": true,
+    "human_verdict": "unique",
+    "human_note": null,
+    "graders": {
+      "A": {
+        "verdict": "unique",
+        "best": "C",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only C responds to a used copy being available; D talks about buying new as if no used copy were on offer, A answers an ordering offer never made, B answers an unasked question."
+      },
+      "B": {
+        "verdict": "unique",
+        "best": "C",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "The line settles that a used copy is available now, which refutes A (ordering and waiting a week) and D (looking elsewhere before buying new); B answers an unasked question."
+      },
+      "C": {
+        "verdict": "unique",
+        "best": "C",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only C responds to a used copy being available now; A orders one anyway, D talks about buying new, B answers an unasked question about the course."
+      }
+    }
+  },
+  {
+    "id": "x097",
+    "item_id": "bc794a40-48ed-43fb-8f31-6b68db81bf9c",
+    "localId": "crv7-b3-09",
+    "content_sha": "875fa311a654d48bf28fcc7e0b15b735",
+    "cohesion_edited": false,
+    "stimulus": "\"I'll take the heavy cartons if you do the shelving.\"",
+    "key": "That's a fair split — I'll make a start now.",
+    "contested_votes": 0,
+    "flag_ge1": false,
+    "flag_ge2": false,
+    "human_reviewed": false,
+    "human_verdict": null,
+    "human_note": null,
+    "graders": {
+      "A": {
+        "verdict": "unique",
+        "best": "B",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only B accepts the proposed division of labour; C and A reassign the cartons the speaker has already claimed, and D never responds to the proposal at all."
+      },
+      "B": {
+        "verdict": "unique",
+        "best": "B",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only B responds to the proposed division of labour; C takes the cartons the speaker claimed, D and A do nothing with the proposal despite being topically close."
+      },
+      "C": {
+        "verdict": "unique",
+        "best": "B",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only B answers the proposed split; C takes on the cartons the speaker claimed, A replies to a delivery check, D leaves the proposal unanswered."
+      }
+    }
+  },
+  {
+    "id": "x098",
+    "item_id": "be8fdc37-e65a-445e-8068-aa9a56287afa",
+    "localId": "crv7-b2-06",
+    "content_sha": "7ec637986105b60cb638ddcc20215caa",
+    "cohesion_edited": false,
+    "stimulus": "\"Packages here go under your room number, not your name.\"",
+    "key": "That explains why nothing showed up when I searched.",
+    "contested_votes": 0,
+    "flag_ge1": false,
+    "flag_ge2": false,
+    "human_reviewed": false,
+    "human_verdict": null,
+    "human_note": null,
+    "graders": {
+      "A": {
+        "verdict": "unique",
+        "best": "A",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only A draws the consequence of the room-number filing rule; B, C and D presuppose a found, lost or notified package the line does not mention."
+      },
+      "B": {
+        "verdict": "unique",
+        "best": "A",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "The line explains a filing convention, not a lost or present parcel, so B (signing for it), C (reshipping) and D (a text offer never made) all fail."
+      },
+      "C": {
+        "verdict": "unique",
+        "best": "A",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only A does something with the room-number rule; B signs for a package not mentioned, C abandons a parcel the line implies is there, D replies to a notification offer."
+      }
+    }
+  },
+  {
+    "id": "x099",
+    "item_id": "c184656e-56f8-4af7-b855-b7ede99ba0db",
+    "localId": "crv7-b1-08",
+    "content_sha": "59a259b35a6bdb6e9e8aad4d7fba7902",
+    "cohesion_edited": false,
+    "stimulus": "\"There's a spare seat if your roommate wants to come.\"",
+    "key": "She'll jump at that — I'll ask her tonight.",
+    "contested_votes": 0,
+    "flag_ge1": false,
+    "flag_ge2": false,
+    "human_reviewed": true,
+    "human_verdict": "unique",
+    "human_note": null,
+    "graders": {
+      "A": {
+        "verdict": "unique",
+        "best": "C",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "The offer is specifically for the roommate and only C responds to it; B redirects it to other people, A and D answer unrelated lines."
+      },
+      "B": {
+        "verdict": "unique",
+        "best": "C",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "The offer is specifically for the roommate, so only C takes it up; B redirects it to other people and D declines something not offered to the speaker."
+      },
+      "C": {
+        "verdict": "unique",
+        "best": "C",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "The offer names the roommate specifically; only C acts on it, B redirects it to other people, A and D reply to unrelated matters."
+      }
+    }
+  },
+  {
+    "id": "x100",
+    "item_id": "c1b773b8-00a6-4ce9-800f-d27717dc5425",
+    "localId": "crv7-b1-12",
+    "content_sha": "603977ce651699f5a64f475392cc17cc",
+    "cohesion_edited": false,
+    "stimulus": "\"Could you cover the Thursday morning sitting for me?\"",
+    "key": "I can — as long as I'm free by lunch.",
+    "contested_votes": 3,
+    "flag_ge1": true,
+    "flag_ge2": true,
+    "human_reviewed": false,
+    "human_verdict": null,
+    "human_note": null,
+    "graders": {
+      "A": {
+        "verdict": "contested",
+        "best": "A",
+        "best_is_key": true,
+        "rival_options": [
+          "I'd better move my seminar cover, then."
+        ],
+        "reason": "C survives as implicit acceptance plus the consequence ('then' takes the request as antecedent), so preferring A's explicit 'I can' is a matter of shade rather than of anything the line settles."
+      },
+      "B": {
+        "verdict": "contested",
+        "best": "A",
+        "best_is_key": true,
+        "rival_options": [
+          "I'd better move my seminar cover, then.",
+          "I'll go straight there on the day."
+        ],
+        "reason": "C and D are ordinary implicit acceptances with a consequence — rescheduling a clashing cover, or going straight to the sitting on the day — and the line rules out neither."
+      },
+      "C": {
+        "verdict": "contested",
+        "best": "A",
+        "best_is_key": true,
+        "rival_options": [
+          "I'd better move my seminar cover, then."
+        ],
+        "reason": "C survives because nothing in the line rules out an existing Thursday-morning commitment, and 'I'd better move my seminar cover, then' is an ordinary implicit acceptance; A is preferred only for being the more explicit yes."
+      }
+    }
+  },
+  {
+    "id": "x101",
+    "item_id": "c3f639a8-6325-4f56-95be-c2e76402174f",
+    "localId": "crv7-b2-10",
+    "content_sha": "78b5c4a661fe262467a380c142143fbf",
+    "cohesion_edited": false,
+    "stimulus": "\"The counselor's booked solid through the end of term.\"",
+    "key": "I'll try the drop-in hours and hope for a gap.",
+    "contested_votes": 0,
+    "flag_ge1": false,
+    "flag_ge2": false,
+    "human_reviewed": false,
+    "human_verdict": null,
+    "human_note": null,
+    "graders": {
+      "A": {
+        "verdict": "unique",
+        "best": "B",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only B works around a fully booked counselor; D accepts a slot the line says does not exist, A and C reply to different utterances."
+      },
+      "B": {
+        "verdict": "unique",
+        "best": "B",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "The line settles that no appointment is available, killing C and D; A answers a reason question that was not asked."
+      },
+      "C": {
+        "verdict": "unique",
+        "best": "B",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only B works around a fully booked counselor; C and D assume an appointment the line rules out, A answers a question that was not asked."
+      }
+    }
+  },
+  {
+    "id": "x102",
+    "item_id": "c790ef27-74b3-4835-8b34-650565fc135e",
+    "localId": "crv7-b5-19",
+    "content_sha": "a6f8023e4f932b216855a053d3d82b0e",
+    "cohesion_edited": false,
+    "stimulus": "\"It's the welfare office that signs these, not us.\"",
+    "key": "I'll take it across to them now.",
+    "contested_votes": 0,
+    "flag_ge1": false,
+    "flag_ge2": false,
+    "human_reviewed": false,
+    "human_verdict": null,
+    "human_note": null,
+    "graders": {
+      "A": {
+        "verdict": "unique",
+        "best": "A",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only A acts on the redirection to the welfare office; B, C and D answer copyright, printing and attachment problems the line never raises."
+      },
+      "B": {
+        "verdict": "unique",
+        "best": "A",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only A acts on the redirection to the welfare office; B, C and D reply to rights, printing and attachment problems the line never raises."
+      },
+      "C": {
+        "verdict": "unique",
+        "best": "A",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only A acts on being redirected to the welfare office; B, C and D respond to rights, printing and a document fix that the line never mentions."
+      }
+    }
+  },
+  {
+    "id": "x103",
+    "item_id": "c8d108c0-a140-4d4f-b514-ea5beb4a0a32",
+    "localId": "crv7-b6-07",
+    "content_sha": "22f30c653cab6fe96a34cb953f800717",
+    "cohesion_edited": true,
+    "stimulus": "\"Could you leave the trolley by the door instead?\"",
+    "key": "Of course, I'll move it out of the way.",
+    "contested_votes": 2,
+    "flag_ge1": true,
+    "flag_ge2": true,
+    "human_reviewed": false,
+    "human_verdict": null,
+    "human_note": null,
+    "graders": {
+      "A": {
+        "verdict": "unique",
+        "best": "D",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only D complies with the request; B does the opposite of 'by the door instead', C ignores it, and A responds as though a request were an offer of permission."
+      },
+      "B": {
+        "verdict": "contested",
+        "best": "D",
+        "best_is_key": true,
+        "rival_options": [
+          "Lovely, so I don't need to bring it back myself."
+        ],
+        "reason": "The word 'instead' licenses A's reading that the speaker is being relieved of returning the trolley, so gratitude for the saved trip survives alongside plain compliance."
+      },
+      "C": {
+        "verdict": "contested",
+        "best": "D",
+        "best_is_key": true,
+        "rival_options": [
+          "Lovely, so I don't need to bring it back myself."
+        ],
+        "reason": "The word 'instead' presupposes the hearer would otherwise return the trolley, so A's relief at not having to bring it back is fully supported by the line and competes with D's plain compliance."
+      }
+    }
+  },
+  {
+    "id": "x104",
+    "item_id": "cb1fdf27-4e72-4f4f-a63a-b705352c640c",
+    "localId": "crv7-b4-17",
+    "content_sha": "bb592e5222a43ff63169b52e16974fa3",
+    "cohesion_edited": false,
+    "stimulus": "\"Could you be out of the room this afternoon?\"",
+    "key": "That's fine — I'll work in the library.",
+    "contested_votes": 0,
+    "flag_ge1": false,
+    "flag_ge2": false,
+    "human_reviewed": false,
+    "human_verdict": null,
+    "human_note": null,
+    "graders": {
+      "A": {
+        "verdict": "unique",
+        "best": "C",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only C answers whether the speaker can be out; D invents a 'they' and a cupboard job and replies to a different request, A and B to other utterances entirely."
+      },
+      "B": {
+        "verdict": "unique",
+        "best": "C",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only C responds to the request to vacate; D answers a request to clear a cupboard, B to a clear-out order, A to unrelated good news."
+      },
+      "C": {
+        "verdict": "unique",
+        "best": "C",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only C answers the request to be out; B and D redirect to clearing shelves and cupboards without answering, A reacts to good news the line does not give."
+      }
+    }
+  },
+  {
+    "id": "x105",
+    "item_id": "cc23ce8d-10b6-46da-b4c7-0842960f2ae5",
+    "localId": "crv7-b6-09",
+    "content_sha": "6b399dd03c2a3b548229a854ab067794",
+    "cohesion_edited": true,
+    "stimulus": "\"Could you read me the meter before the weekend?\"",
+    "key": "I'll do it after work and text you.",
+    "contested_votes": 0,
+    "flag_ge1": false,
+    "flag_ge2": false,
+    "human_reviewed": true,
+    "human_verdict": "unique",
+    "human_note": null,
+    "graders": {
+      "A": {
+        "verdict": "unique",
+        "best": "A",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only A agrees to take the reading; B answers a visit from a meter reader, C and D treat the reading as already done."
+      },
+      "B": {
+        "verdict": "unique",
+        "best": "A",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only A agrees to take the reading; B expects a meter reader to visit, D asks for the figure the speaker just requested, C reacts to reassurance never given."
+      },
+      "C": {
+        "verdict": "unique",
+        "best": "A",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only A agrees to take the reading; B replies to a visit announcement, C to reassurance, D asks for a figure the speaker has just asked the hearer to supply."
+      }
+    }
+  },
+  {
+    "id": "x106",
+    "item_id": "cfd1ba41-6795-4d57-8ca3-d47538564aa0",
+    "localId": "crv7-b3-13",
+    "content_sha": "c9a51ae3cb87e6222e3d90ef279130b5",
+    "cohesion_edited": false,
+    "stimulus": "\"We can spread the balance across the rest of term.\"",
+    "key": "I'd like that — the lump sum was never going to work.",
+    "contested_votes": 1,
+    "flag_ge1": true,
+    "flag_ge2": false,
+    "human_reviewed": false,
+    "human_verdict": null,
+    "human_note": null,
+    "graders": {
+      "A": {
+        "verdict": "unique",
+        "best": "D",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only D accepts the instalment offer; A and B respond to a warning and a single due date the line does not give, C to a form being signed."
+      },
+      "B": {
+        "verdict": "contested",
+        "best": "D",
+        "best_is_key": true,
+        "rival_options": [
+          "I'll shift my wages to land just before — that should hold."
+        ],
+        "reason": "B accepts the instalment plan implicitly and times wages against it — a direct, ordinary uptake of the same offer D accepts explicitly."
+      },
+      "C": {
+        "verdict": "unique",
+        "best": "D",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only D responds to the instalment offer; A's and B's 'that'/'just before' have no antecedent in the line, and C signs something never mentioned."
+      }
+    }
+  },
+  {
+    "id": "x107",
+    "item_id": "d335e9c5-3b83-4477-916a-a139d6d1463b",
+    "localId": "crv7-b1-16",
+    "content_sha": "e7d61b6f32fae59a5c618e480df53d8e",
+    "cohesion_edited": false,
+    "stimulus": "\"It's a semester placement, not the full year.\"",
+    "key": "I'll keep my spring courses on the timetable.",
+    "contested_votes": 3,
+    "flag_ge1": true,
+    "flag_ge2": true,
+    "human_reviewed": false,
+    "human_verdict": null,
+    "human_note": null,
+    "graders": {
+      "A": {
+        "verdict": "contested",
+        "best": "C",
+        "best_is_key": true,
+        "rival_options": [
+          "I'll look at what's still open for the spring."
+        ],
+        "reason": "B survives because 'a semester, not the full year' equally supports looking at what is still open for the free term as it does keeping the spring courses already scheduled; the line does not say which term the placement occupies."
+      },
+      "B": {
+        "verdict": "contested",
+        "best": "C",
+        "best_is_key": true,
+        "rival_options": [
+          "I'll look at what's still open for the spring."
+        ],
+        "reason": "The line only says one semester is taken, and never says which, so both filling the free semester with courses (C) and looking for spring options (B) follow equally."
+      },
+      "C": {
+        "verdict": "contested",
+        "best": "C",
+        "best_is_key": true,
+        "rival_options": [
+          "I'll look at what's still open for the spring."
+        ],
+        "reason": "B survives on the same reasoning as C — one semester leaves the other half to fill, whether by keeping the courses already timetabled or by looking at what is still open — and the line says nothing that favours either."
+      }
+    }
+  },
+  {
+    "id": "x108",
+    "item_id": "d3b1c252-5f72-4f92-b139-9ebbdcaf4ff9",
+    "localId": "crv7-b6-12",
+    "content_sha": "c64a46cc8dce2fafd1114fa4739ef724",
+    "cohesion_edited": true,
+    "stimulus": "\"How short do you want it round the ears?\"",
+    "key": "Just above them, nothing too severe.",
+    "contested_votes": 0,
+    "flag_ge1": false,
+    "flag_ge2": false,
+    "human_reviewed": false,
+    "human_verdict": null,
+    "human_note": null,
+    "graders": {
+      "A": {
+        "verdict": "unique",
+        "best": "B",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only B answers how short round the ears; C puts the cut in the past, A and D answer waiting-time questions."
+      },
+      "B": {
+        "verdict": "unique",
+        "best": "B",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only B answers the how-short question; C puts the cut in the past, A and D reply to a waiting-time question."
+      },
+      "C": {
+        "verdict": "unique",
+        "best": "B",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only B answers the how-short question; C puts the cut in the past, D gives a yes to a wh-question, A replies to a wait."
+      }
+    }
+  },
+  {
+    "id": "x109",
+    "item_id": "d5c5580b-af88-4f90-a742-2fa65cc1082e",
+    "localId": "crv7-b6-08",
+    "content_sha": "0d7e5933418bb63b0335b6ee19cee62f",
+    "cohesion_edited": false,
+    "stimulus": "\"The card machine's down, we're cash only right now.\"",
+    "key": "I'll find a cash point and come straight back.",
+    "contested_votes": 0,
+    "flag_ge1": false,
+    "flag_ge2": false,
+    "human_reviewed": false,
+    "human_verdict": null,
+    "human_note": null,
+    "graders": {
+      "A": {
+        "verdict": "unique",
+        "best": "C",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only C deals with the cash-only constraint; the others reply to an order, a for-here question and a forgotten item."
+      },
+      "B": {
+        "verdict": "unique",
+        "best": "C",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only C addresses the cash-only constraint; B answers an unasked for-here question, A and D ignore the payment problem entirely."
+      },
+      "C": {
+        "verdict": "unique",
+        "best": "C",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only C deals with having no cash; A and B carry on ordering as if the line had not been said, D replies to a forgotten item."
+      }
+    }
+  },
+  {
+    "id": "x110",
+    "item_id": "d63adea0-2a00-477e-aabd-25bb11f56601",
+    "localId": "crv7-b4-07",
+    "content_sha": "46cca8ebba16f4d1351163a70d221b74",
+    "cohesion_edited": false,
+    "stimulus": "\"It's the weekends that changed, not the weeknights.\"",
+    "key": "So Saturday evenings are what I watch for now.",
+    "contested_votes": 1,
+    "flag_ge1": true,
+    "flag_ge2": false,
+    "human_reviewed": false,
+    "human_verdict": null,
+    "human_note": null,
+    "graders": {
+      "A": {
+        "verdict": "unique",
+        "best": "B",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only B takes up the weekend/weeknight contrast the line draws; C, D and A answer scheduling, noise and an offer instead."
+      },
+      "B": {
+        "verdict": "unique",
+        "best": "B",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only B takes up the weekend/weeknight contrast the line draws; C and D shift to a time-of-day and a noise complaint the line never raises, and A answers an offer."
+      },
+      "C": {
+        "verdict": "contested",
+        "best": "B",
+        "best_is_key": true,
+        "rival_options": [
+          "I'll move band practice to the afternoons."
+        ],
+        "reason": "The line never says what about the weekends changed, so C's rescheduling of weekend practice fits the same tacit reading as B's watching Saturday evenings; the item is underspecified."
+      }
+    }
+  },
+  {
+    "id": "x111",
+    "item_id": "d74459f3-aab4-40ef-9f04-5c553b6d8f43",
+    "localId": "crv7-b4-06",
+    "content_sha": "c2947e5aac4cfacb51a7ea14e29fecdc",
+    "cohesion_edited": false,
+    "stimulus": "\"You've failed on the fire door being propped open.\"",
+    "key": "Does taking the wedge out clear it on its own?",
+    "contested_votes": 0,
+    "flag_ge1": false,
+    "flag_ge2": false,
+    "human_reviewed": true,
+    "human_verdict": "unique",
+    "human_note": null,
+    "graders": {
+      "A": {
+        "verdict": "unique",
+        "best": "D",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only D engages with the propped fire door as the failure; B refuses action the failure requires, A and C reply to an inspection booking and an obstruction elsewhere."
+      },
+      "B": {
+        "verdict": "unique",
+        "best": "D",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only D engages the cited fault; B requires an invented prior exchange about shelves, C treats the fault as a misplaced object, A as a scheduled revisit."
+      },
+      "C": {
+        "verdict": "unique",
+        "best": "D",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only D engages the fire-door failure; C's 'that's ours' has no referent, A replies to a re-inspection date and B to a shelving question."
+      }
+    }
+  },
+  {
+    "id": "x112",
+    "item_id": "d7c3eb67-35b4-454e-9e4b-1f45e65c16e3",
+    "localId": "crv7-b5-18",
+    "content_sha": "188c9f53d2a507199ad17b0cb4af4c85",
+    "cohesion_edited": false,
+    "stimulus": "\"Can you drop the key back before Friday?\"",
+    "key": "I'll post it through the office door.",
+    "contested_votes": 3,
+    "flag_ge1": true,
+    "flag_ge2": true,
+    "human_reviewed": true,
+    "human_verdict": "alternative",
+    "human_note": "D is also another answer.",
+    "graders": {
+      "A": {
+        "verdict": "contested",
+        "best": "B",
+        "best_is_key": true,
+        "rival_options": [
+          "The dance group borrowed it on Tuesday."
+        ],
+        "reason": "A survives as an ordinary non-compliance explanation — the speaker cannot return the key because the dance group has it — which the line neither rules out nor forecloses."
+      },
+      "B": {
+        "verdict": "contested",
+        "best": "B",
+        "best_is_key": true,
+        "rival_options": [
+          "The dance group borrowed it on Tuesday."
+        ],
+        "reason": "A is an ordinary explanation of why the speaker cannot return the key — it is about the very key requested and nothing in the line rules out its being lent on."
+      },
+      "C": {
+        "verdict": "contested",
+        "best": "B",
+        "best_is_key": true,
+        "rival_options": [
+          "The dance group borrowed it on Tuesday."
+        ],
+        "reason": "A survives because the line only presupposes (never states) that the hearer holds the key, and correcting that presupposition — the dance group took it Tuesday — is an ordinary reply to the request."
+      }
+    }
+  },
+  {
+    "id": "x113",
+    "item_id": "d80fd7a2-3895-4bc0-bf4b-fb5e02c7582a",
+    "localId": "crv7-b5-10",
+    "content_sha": "c38a603d04da4e93d19e43dbd6655c56",
+    "cohesion_edited": false,
+    "stimulus": "\"The high path's closed, so the ridge is out.\"",
+    "key": "The valley loop would still fill a day.",
+    "contested_votes": 2,
+    "flag_ge1": true,
+    "flag_ge2": true,
+    "human_reviewed": false,
+    "human_verdict": null,
+    "human_note": null,
+    "graders": {
+      "A": {
+        "verdict": "contested",
+        "best": "D",
+        "best_is_key": true,
+        "rival_options": [
+          "Then nobody needs to camp, thankfully."
+        ],
+        "reason": "B survives at listener level because a closed ridge route plausibly removes the overnight leg, and the line does not state whether camping was tied to the ridge."
+      },
+      "B": {
+        "verdict": "unique",
+        "best": "D",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only D proposes an alternative to the closed route; B depends on an unstated overnight plan, C answers a question not asked, A shifts to unrelated transport admin."
+      },
+      "C": {
+        "verdict": "contested",
+        "best": "D",
+        "best_is_key": true,
+        "rival_options": [
+          "Then nobody needs to camp, thankfully."
+        ],
+        "reason": "B survives as a plain consequence of the ridge being dropped for a walking party that had planned an overnight on it; the line neither states nor rules out that plan, so it is no more of a supplement than D's valley loop."
+      }
+    }
+  },
+  {
+    "id": "x114",
+    "item_id": "dbaed028-0c3f-4cb1-8391-ad4b8141717b",
+    "localId": "crv7-b6-11",
+    "content_sha": "345f8e91c8ff70eb3c69e6dec7038216",
+    "cohesion_edited": false,
+    "stimulus": "\"Are these for eating now or for keeping?\"",
+    "key": "For tonight, I'm cooking for a few friends.",
+    "contested_votes": 0,
+    "flag_ge1": false,
+    "flag_ge2": false,
+    "human_reviewed": false,
+    "human_verdict": null,
+    "human_note": null,
+    "graders": {
+      "A": {
+        "verdict": "unique",
+        "best": "A",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only A answers now-or-keeping; B answers quantity, C an invitation, D a different product choice."
+      },
+      "B": {
+        "verdict": "unique",
+        "best": "A",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only A answers the now-or-keeping alternative; B answers quantity, D changes the item, C responds to an offer to try something."
+      },
+      "C": {
+        "verdict": "unique",
+        "best": "A",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only A answers the now-or-keeping alternative; B answers quantity, D changes the item, C accepts an offer never made."
+      }
+    }
+  },
+  {
+    "id": "x115",
+    "item_id": "df9e0774-4bcd-4d3f-922f-7ea61ae877a0",
+    "localId": "crv7-b2-03",
+    "content_sha": "8ff3e0464acc15465096358e8f6a5c04",
+    "cohesion_edited": false,
+    "stimulus": "\"The card printer's down, so nothing's coming out today.\"",
+    "key": "I'll use my phone pass for the doors until it's fixed.",
+    "contested_votes": 0,
+    "flag_ge1": false,
+    "flag_ge2": false,
+    "human_reviewed": false,
+    "human_verdict": null,
+    "human_note": null,
+    "graders": {
+      "A": {
+        "verdict": "unique",
+        "best": "B",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only B works around a card that cannot be printed; C collects a card the line says does not exist, A accepts an unmade offer, D's redirection does not follow from a broken printer."
+      },
+      "B": {
+        "verdict": "unique",
+        "best": "B",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "The line settles that no card is issued today, refuting C; A answers an offer never made and D treats an equipment fault as a redirection to another office."
+      },
+      "C": {
+        "verdict": "unique",
+        "best": "B",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only B works around having no card today; C collects a card the line says does not exist, A accepts an unmade offer, D's dining office does not follow from a printer fault."
+      }
+    }
+  },
+  {
+    "id": "x116",
+    "item_id": "dffad341-a295-404b-a642-af0e1ddabc65",
+    "localId": "crv7-b4-15",
+    "content_sha": "804aad05043f6b4687c7a8e5458d8d9d",
+    "cohesion_edited": false,
+    "stimulus": "\"The porters agreed to move the desks for us.\"",
+    "key": "Then we just need to be in when they come.",
+    "contested_votes": 2,
+    "flag_ge1": true,
+    "flag_ge2": true,
+    "human_reviewed": true,
+    "human_verdict": "alternative",
+    "human_note": "B is also another answer here.",
+    "graders": {
+      "A": {
+        "verdict": "unique",
+        "best": "A",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only A treats the porters' help as agreed; C's conditional reopens what the line settles, B and D reply to a request and a reversal."
+      },
+      "B": {
+        "verdict": "contested",
+        "best": "A",
+        "best_is_key": true,
+        "rival_options": [
+          "That'd make it much easier — after dinner?"
+        ],
+        "reason": "C proposes a time for the move the porters agreed to, which the line leaves entirely open, so it is as good an uptake of the news as A."
+      },
+      "C": {
+        "verdict": "contested",
+        "best": "A",
+        "best_is_key": true,
+        "rival_options": [
+          "That'd make it much easier — after dinner?"
+        ],
+        "reason": "The porters' agreement leaves the timing open, so C's 'after dinner?' is a normal next move; only the conditional shade of 'that'd make it easier' favours A, which is a naturalness preference rather than a refutation."
+      }
+    }
+  },
+  {
+    "id": "x117",
+    "item_id": "e0e73ddc-9c4b-406b-bd97-bde30ab5e7fd",
+    "localId": "crv7-b3-03",
+    "content_sha": "e77e4e3fc9b51e0c921335489395de87",
+    "cohesion_edited": false,
+    "stimulus": "\"Your award's been cut because your household income rose.\"",
+    "key": "I'll look into a loan to cover the difference then.",
+    "contested_votes": 0,
+    "flag_ge1": false,
+    "flag_ge2": false,
+    "human_reviewed": true,
+    "human_verdict": "unique",
+    "human_note": null,
+    "graders": {
+      "A": {
+        "verdict": "unique",
+        "best": "A",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only A responds to less money; C infers more, D treats a decided outcome as pending, B answers a document request."
+      },
+      "B": {
+        "verdict": "unique",
+        "best": "A",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "The line settles that money is now shorter, killing C; D treats a decided outcome as pending and B replies to a request for a document."
+      },
+      "C": {
+        "verdict": "unique",
+        "best": "A",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only A addresses the shortfall; C treats a cut award as more money, D waits for a decision already made, B sends an item the line never mentions."
+      }
+    }
+  },
+  {
+    "id": "x118",
+    "item_id": "e2658e5b-7c42-41c7-bffd-e417b5169048",
+    "localId": "crv7-b2-04",
+    "content_sha": "6c557393c4d0bae2e4e52f3cb8179e60",
+    "cohesion_edited": false,
+    "stimulus": "\"They waived it — the sign really was covered by branches.\"",
+    "key": "I'd set the money aside already, so that's a windfall.",
+    "contested_votes": 0,
+    "flag_ge1": false,
+    "flag_ge2": false,
+    "human_reviewed": false,
+    "human_verdict": null,
+    "human_note": null,
+    "graders": {
+      "A": {
+        "verdict": "unique",
+        "best": "A",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only A responds to the fine being waived; D pays it anyway, C waits for a result already given, B answers a request for evidence."
+      },
+      "B": {
+        "verdict": "unique",
+        "best": "A",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "The waiver is settled, so B (sending evidence), C (still waiting to hear) and D (paying it) all treat as open what the line closes."
+      },
+      "C": {
+        "verdict": "unique",
+        "best": "A",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only A reacts to a waived charge; B still supplies evidence, C still waits for the outcome, D pays a fine the line cancelled."
+      }
+    }
+  },
+  {
+    "id": "x119",
+    "item_id": "e3c6e11c-2f8b-4952-ba17-21f85b680ee5",
+    "localId": "crv7-b5-03",
+    "content_sha": "a6929c16d6ab30431e9fb5a426c014e1",
+    "cohesion_edited": true,
+    "stimulus": "\"You've got the solo in the slow movement.\"",
+    "key": "Thanks — I'll start working on it tonight.",
+    "contested_votes": 0,
+    "flag_ge1": false,
+    "flag_ge2": false,
+    "human_reviewed": false,
+    "human_verdict": null,
+    "human_note": null,
+    "graders": {
+      "A": {
+        "verdict": "unique",
+        "best": "A",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only A accepts the solo; C denies having to play what the line assigns, B laments a loss the line does not describe, D replies to a correction."
+      },
+      "B": {
+        "verdict": "unique",
+        "best": "A",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "The line assigns the solo to the listener, refuting C (relief at not playing) and B (loss of it); D's 'good catch' replies to a correction."
+      },
+      "C": {
+        "verdict": "unique",
+        "best": "A",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only A accepts the solo; B and C both treat the hearer as not playing it, D replies to a correction rather than an assignment."
+      }
+    }
+  },
+  {
+    "id": "x120",
+    "item_id": "e813bf65-0605-4071-acaa-fc0b8c8a33b2",
+    "localId": "cr7-11",
+    "content_sha": "19b22e1362edaa69b210a63a2e498614",
+    "cohesion_edited": false,
+    "stimulus": "\"Send me the error message next time it comes up.\"",
+    "key": "I'll screenshot it the moment it appears.",
+    "contested_votes": 0,
+    "flag_ge1": false,
+    "flag_ge2": false,
+    "human_reviewed": false,
+    "human_verdict": null,
+    "human_note": null,
+    "graders": {
+      "A": {
+        "verdict": "unique",
+        "best": "B",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only B agrees to capture the error message; the others answer accounts, hardware replacement and a downloading task."
+      },
+      "B": {
+        "verdict": "unique",
+        "best": "B",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only B undertakes to capture the error next time; C, D and A respond to a broken machine, a download task and an account change."
+      },
+      "C": {
+        "verdict": "unique",
+        "best": "B",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only B undertakes to capture the error message; A, C and D respond to a broken machine or a writing task the line never raises."
+      }
+    }
+  },
+  {
+    "id": "x121",
+    "item_id": "eb443db0-0464-4882-ab73-c9f183769efb",
+    "localId": "crv7-b6-01",
+    "content_sha": "ab01b573a6040bb5bbeae3b4ffa9ea47",
+    "cohesion_edited": false,
+    "stimulus": "\"Your refill's ready, it's behind the counter now.\"",
+    "key": "Great, I'll take it now, I've got my card out.",
+    "contested_votes": 0,
+    "flag_ge1": false,
+    "flag_ge2": false,
+    "human_reviewed": false,
+    "human_verdict": null,
+    "human_note": null,
+    "graders": {
+      "A": {
+        "verdict": "unique",
+        "best": "A",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only A collects the ready refill; D and B treat it as unavailable or unauthorised, C answers a substitution question already settled by filling it."
+      },
+      "B": {
+        "verdict": "unique",
+        "best": "A",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "The refill is settled and in stock, so B (chasing the clinic), C (choosing generic) and D (another branch) all reopen what the line closes."
+      },
+      "C": {
+        "verdict": "unique",
+        "best": "A",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only A collects the ready refill; C chooses a formulation already dispensed, B and D treat the prescription as unfilled or out of stock."
+      }
+    }
+  },
+  {
+    "id": "x122",
+    "item_id": "ec3d4dee-1c7f-4ce0-82a2-44eb07206b2d",
+    "localId": "crv7-b4-20",
+    "content_sha": "d23c214ccaf08ae4f639d4ade43e9c50",
+    "cohesion_edited": false,
+    "stimulus": "\"The council voted your proposal down last night.\"",
+    "key": "I'll find out what they objected to.",
+    "contested_votes": 0,
+    "flag_ge1": false,
+    "flag_ge2": false,
+    "human_reviewed": false,
+    "human_verdict": null,
+    "human_note": null,
+    "graders": {
+      "A": {
+        "verdict": "unique",
+        "best": "D",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only D responds to a defeat; B and C proceed as if it had passed or not yet been submitted, A responds to being relieved of something."
+      },
+      "B": {
+        "verdict": "unique",
+        "best": "D",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "The proposal was defeated, refuting B and C which proceed as if it passed or was not yet written; A responds to an offer of relief."
+      },
+      "C": {
+        "verdict": "unique",
+        "best": "D",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only D responds to a defeat; B proceeds as if it passed, C writes a proposal already voted on, A reacts to relief the line does not offer."
+      }
+    }
+  },
+  {
+    "id": "x123",
+    "item_id": "ee05fe11-6824-4537-886e-89705ee7e382",
+    "localId": "crv7-b1-07",
+    "content_sha": "167754fa929c7c2cad62bb6e426197fb",
+    "cohesion_edited": true,
+    "stimulus": "\"The lab opens an hour earlier on Fridays now.\"",
+    "key": "That's when I'll come — afternoons are always packed.",
+    "contested_votes": 0,
+    "flag_ge1": false,
+    "flag_ge2": false,
+    "human_reviewed": true,
+    "human_verdict": "unique",
+    "human_note": "It seems like answer with \"-\" are correct. This is the second time this happened.",
+    "graders": {
+      "A": {
+        "verdict": "unique",
+        "best": "D",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only D uses the earlier Friday opening; A and C read it as an evening gain and an hour lost, B ignores the lab entirely."
+      },
+      "B": {
+        "verdict": "unique",
+        "best": "D",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "An earlier opening is a gain in the morning, which contradicts A (extra evening hour) and C (losing an hour); B ignores the lab entirely."
+      },
+      "C": {
+        "verdict": "unique",
+        "best": "D",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only D uses the earlier Friday opening; A and C read the change as evening time gained or an hour lost, B abandons the lab entirely."
+      }
+    }
+  },
+  {
+    "id": "x124",
+    "item_id": "ee8303c2-25b6-45c8-ad48-756897fc6161",
+    "localId": "crv7-b1-20",
+    "content_sha": "73578673ec97c7cdd7d25abfa7168947",
+    "cohesion_edited": false,
+    "stimulus": "\"Your check-ins move to the sponsor's office from now on.\"",
+    "key": "I'll sort out travel for the whole team.",
+    "contested_votes": 0,
+    "flag_ge1": false,
+    "flag_ge2": false,
+    "human_reviewed": true,
+    "human_verdict": "broken",
+    "human_note": "They are all sort of plausible.",
+    "graders": {
+      "A": {
+        "verdict": "unique",
+        "best": "A",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only A responds to the relocation of the check-ins; B, C and D answer questions about records, workload and scope that the line does not raise."
+      },
+      "B": {
+        "verdict": "unique",
+        "best": "A",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only A responds to the change of venue; B, C and D react to a records query, a project phase change and a scope change the line does not make."
+      },
+      "C": {
+        "verdict": "unique",
+        "best": "A",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only A acts on a change of venue; B, C and D respond to a records question, a project phase and a change of scope that the line does not announce."
+      }
+    }
+  },
+  {
+    "id": "x125",
+    "item_id": "ef6808b7-baf4-4861-b4b7-3debbf228e01",
+    "localId": "cr7-02",
+    "content_sha": "5fe518b16ce8115053c98a8b8cafaac2",
+    "cohesion_edited": false,
+    "stimulus": "\"The repair guy swapped the fridge's compressor while you were out.\"",
+    "key": "So I can move my groceries back in tonight.",
+    "contested_votes": 0,
+    "flag_ge1": false,
+    "flag_ge2": false,
+    "human_reviewed": false,
+    "human_verdict": null,
+    "human_note": null,
+    "graders": {
+      "A": {
+        "verdict": "unique",
+        "best": "C",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only C draws the consequence of a completed repair; D and B treat it as still pending or unscheduled, A asserts a link the line does not support."
+      },
+      "B": {
+        "verdict": "unique",
+        "best": "C",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "The fridge is already repaired, refuting D; B arranges a visit that has happened and A draws an unsupported inference about a different appliance."
+      },
+      "C": {
+        "verdict": "unique",
+        "best": "C",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only C follows from a repaired fridge; D still waits for a part, B schedules a visit already made, A draws a causal link the line does not support."
+      }
+    }
+  },
+  {
+    "id": "x126",
+    "item_id": "f03d3539-bdec-41cf-b70f-2cc69d4b4bbf",
+    "localId": "crv7-b2-05",
+    "content_sha": "3556aa68e9fc39cfd370b7fc801d09b1",
+    "cohesion_edited": false,
+    "stimulus": "\"Your poster's done and it looks sharp on the matte stock.\"",
+    "key": "Wonderful, I'll roll it up and take it to the hall now.",
+    "contested_votes": 0,
+    "flag_ge1": false,
+    "flag_ge2": false,
+    "human_reviewed": true,
+    "human_verdict": "unique",
+    "human_note": null,
+    "graders": {
+      "A": {
+        "verdict": "unique",
+        "best": "C",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only C accepts the finished poster; B and D reopen a file the line says is printed, A answers an unasked question about mounting."
+      },
+      "B": {
+        "verdict": "unique",
+        "best": "C",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "The poster is finished and good, refuting B and D which treat it as needing rework; A answers an unasked question about mounting."
+      },
+      "C": {
+        "verdict": "unique",
+        "best": "C",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only C takes the finished poster away; B and D re-edit a job the line says is done and looks good, A answers an unasked packaging question."
+      }
+    }
+  },
+  {
+    "id": "x127",
+    "item_id": "f3d2e447-e2de-4b22-aee3-a1a7f6db5085",
+    "localId": "crv7-b1-14",
+    "content_sha": "73a2e0386dec6c37e3a5dcd31d011954",
+    "cohesion_edited": false,
+    "stimulus": "\"Participants get their credit through the psychology portal now.\"",
+    "key": "I'll put that in the debrief sheet.",
+    "contested_votes": 0,
+    "flag_ge1": false,
+    "flag_ge2": false,
+    "human_reviewed": false,
+    "human_verdict": null,
+    "human_note": null,
+    "graders": {
+      "A": {
+        "verdict": "unique",
+        "best": "A",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only A acts on how participants now receive credit; the others answer room booking, recruitment and paperwork."
+      },
+      "B": {
+        "verdict": "unique",
+        "best": "A",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only A acts on the change in how credit is granted; B, C and D reply to room booking, recruitment and consent-form matters the line never raises."
+      },
+      "C": {
+        "verdict": "unique",
+        "best": "A",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only A acts on where participants now get credit; B, C and D address room booking, recruitment and consent forms, none of which the line touches."
+      }
+    }
+  },
+  {
+    "id": "x128",
+    "item_id": "f4b48eb2-ecaf-4507-8a21-38014809eb7a",
+    "localId": "crv7-b3-16",
+    "content_sha": "5c01d8e74c0b17ac21ac99699785b34d",
+    "cohesion_edited": false,
+    "stimulus": "\"They've cut the evening shelving shift for the rest of term.\"",
+    "key": "I'll ask about weekend work instead.",
+    "contested_votes": 2,
+    "flag_ge1": true,
+    "flag_ge2": true,
+    "human_reviewed": false,
+    "human_verdict": null,
+    "human_note": null,
+    "graders": {
+      "A": {
+        "verdict": "contested",
+        "best": "D",
+        "best_is_key": true,
+        "rival_options": [
+          "An earlier start would suit me much better."
+        ],
+        "reason": "A survives as a preference stated in response to losing the evening shift ('earlier would suit me better'), which the line neither contradicts nor settles."
+      },
+      "B": {
+        "verdict": "contested",
+        "best": "D",
+        "best_is_key": true,
+        "rival_options": [
+          "An earlier start would suit me much better."
+        ],
+        "reason": "With the evening shift gone, A's 'an earlier start would suit me much better' is an ordinary reaction about the same job, and the line does not rule out other shifts existing."
+      },
+      "C": {
+        "verdict": "unique",
+        "best": "D",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only D responds to losing the shift; A accepts an alternative shift the line never offers, B and C carry on with the work as if nothing was cut."
+      }
+    }
+  },
+  {
+    "id": "x129",
+    "item_id": "f5298ebc-0ad2-4051-ab05-e928091621e8",
+    "localId": "crv7-b6-17",
+    "content_sha": "1de9ce3ecf5e21eac33d95c2f574ce07",
+    "cohesion_edited": true,
+    "stimulus": "\"The shuttle doesn't run out to your area anymore.\"",
+    "key": "What would you suggest for getting there instead?",
+    "contested_votes": 0,
+    "flag_ge1": false,
+    "flag_ge2": false,
+    "human_reviewed": true,
+    "human_verdict": "unique",
+    "human_note": null,
+    "graders": {
+      "A": {
+        "verdict": "unique",
+        "best": "B",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only B seeks an alternative; C treats a withdrawn route as temporary, D still waits for the shuttle, A accepts an unoffered option."
+      },
+      "B": {
+        "verdict": "unique",
+        "best": "B",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "The route is withdrawn, refuting C (waiting for it to resume) and D (waiting for the driver); A takes up an offer never made."
+      },
+      "C": {
+        "verdict": "unique",
+        "best": "B",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only B seeks an alternative; C waits for a service the line says is discontinued, D waits for the shuttle anyway, A books something never mentioned."
+      }
+    }
+  },
+  {
+    "id": "x130",
+    "item_id": "f56cfb0b-f2db-459d-b811-31328920d83e",
+    "localId": "crv7-b6-10",
+    "content_sha": "8251e663cfcb812d6c90880bbb54f9b1",
+    "cohesion_edited": false,
+    "stimulus": "\"Your account's in arrears from the winter billing period.\"",
+    "key": "Can I spread that over a few months?",
+    "contested_votes": 0,
+    "flag_ge1": false,
+    "flag_ge2": false,
+    "human_reviewed": false,
+    "human_verdict": null,
+    "human_note": null,
+    "graders": {
+      "A": {
+        "verdict": "unique",
+        "best": "A",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only A responds to owing arrears; B and C answer an account-name question and a wrong-supplier claim, D accepts a tariff offer never made."
+      },
+      "B": {
+        "verdict": "unique",
+        "best": "A",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only A addresses the arrears; B answers an unasked name question, D takes up a tariff offer never made, and C does not follow from being told this account is in arrears."
+      },
+      "C": {
+        "verdict": "unique",
+        "best": "A",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only A addresses the arrears; B answers an unasked name question, D accepts an unmade tariff offer, C's wrong-company conclusion has no basis in the line."
+      }
+    }
+  },
+  {
+    "id": "x131",
+    "item_id": "f864d124-ac26-47ba-9386-1ab5c39a386f",
+    "localId": "crv7-b1-09",
+    "content_sha": "e0bec2ac8bf463db912c5a6a32c0fef1",
+    "cohesion_edited": false,
+    "stimulus": "\"Students are appealing the midterm curve in your section.\"",
+    "key": "I'll pull their scripts and write up my reasoning.",
+    "contested_votes": 0,
+    "flag_ge1": false,
+    "flag_ge2": false,
+    "human_reviewed": true,
+    "human_verdict": "unique",
+    "human_note": null,
+    "graders": {
+      "A": {
+        "verdict": "unique",
+        "best": "C",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only C responds to appeals against the speaker's own marking; A's 'his' has no antecedent, B and D reply to an offer of help and a narrowed workload."
+      },
+      "B": {
+        "verdict": "unique",
+        "best": "C",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only C responds to a plural appeal against the speaker's own marking; A presupposes a single unnamed student, B an offer of help, D a rubric request."
+      },
+      "C": {
+        "verdict": "unique",
+        "best": "C",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only C responds to appeals against the hearer's own marking; A's 'his' has no referent among plural students, B accepts unoffered help, D disclaims the section the line assigns."
+      }
+    }
+  },
+  {
+    "id": "x132",
+    "item_id": "ff696393-aa52-46c5-a613-f3fcdadbdcc2",
+    "localId": "crv7-b2-09",
+    "content_sha": "b215057bf0c9f28d0f1f1307e4ffd945",
+    "cohesion_edited": true,
+    "stimulus": "\"Nobody gets into that wing tonight, there's a water leak.\"",
+    "key": "I'll email my group and move us to the study lounge.",
+    "contested_votes": 0,
+    "flag_ge1": false,
+    "flag_ge2": false,
+    "human_reviewed": false,
+    "human_verdict": null,
+    "human_note": null,
+    "graders": {
+      "A": {
+        "verdict": "unique",
+        "best": "C",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only C relocates given a wing closed for the night; B returns the same night the line rules out, A refers to an alternative entrance never mentioned, D thanks the speaker for a favour."
+      },
+      "B": {
+        "verdict": "unique",
+        "best": "C",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "The wing is closed to everyone tonight, refuting A (another way in) and B (returning later tonight); D responds to a favour not given."
+      },
+      "C": {
+        "verdict": "unique",
+        "best": "C",
+        "best_is_key": true,
+        "rival_options": [],
+        "reason": "Only C relocates for the night; B returns tonight despite 'nobody tonight', A's 'that one' has no referent, D reacts as if the news helped."
+      }
+    }
+  }
+]

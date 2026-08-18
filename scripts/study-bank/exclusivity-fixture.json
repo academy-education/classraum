@@ -1,0 +1,1244 @@
+[
+  {
+    "id": "f01",
+    "item_id": "07bc5e44-169e-42bf-a6bb-e7eb3a580fb9",
+    "split": "dev",
+    "human_verdict": "unique",
+    "human_flag": false,
+    "human_note": null,
+    "human_realism": "authentic",
+    "human_blind_pick_stored": 1,
+    "human_blind_correct": false,
+    "note_letters_reviewer": [],
+    "note_options_decoded": [],
+    "stored_key_index": 0,
+    "grader_key_letter": "D",
+    "presentation": {
+      "A": "I'll book the practice room for the week.",
+      "B": "At least it won't land until after our match.",
+      "C": "I'll set the capture up before we start.",
+      "D": "We should practise on the test build."
+    },
+    "stimulus": "\"The patch drops the night before we play.\"",
+    "choices": [
+      "We should practise on the test build.",
+      "I'll set the capture up before we start.",
+      "I'll book the practice room for the week.",
+      "At least it won't land until after our match."
+    ],
+    "correct_answer": "We should practise on the test build.",
+    "content_sha": "ac4dcfd2f90d471c673960b5fbccc3c4"
+  },
+  {
+    "id": "f02",
+    "item_id": "173d4215-41fa-4825-b424-726490e7c286",
+    "split": "holdout",
+    "human_verdict": "alternative",
+    "human_flag": true,
+    "human_note": "B is also a plausible answer.",
+    "human_realism": "artificial",
+    "human_blind_pick_stored": 0,
+    "human_blind_correct": false,
+    "note_letters_reviewer": [
+      "B"
+    ],
+    "note_options_decoded": [
+      "I'll go with whatever you'd use on them."
+    ],
+    "stored_key_index": 1,
+    "grader_key_letter": "D",
+    "presentation": {
+      "A": "I'll go with whatever you'd use on them.",
+      "B": "That's a shame, I'll look for a new pair.",
+      "C": "Black, to match the rest of the pair.",
+      "D": "I'll leave them with you until midweek."
+    },
+    "stimulus": "\"New heels take a couple of days to set.\"",
+    "choices": [
+      "I'll go with whatever you'd use on them.",
+      "I'll leave them with you until midweek.",
+      "That's a shame, I'll look for a new pair.",
+      "Black, to match the rest of the pair."
+    ],
+    "correct_answer": "I'll leave them with you until midweek.",
+    "content_sha": "9db1d5607151620ffb1e5de3b4de64a0"
+  },
+  {
+    "id": "f03",
+    "item_id": "1e7d5cf6-7124-49de-af88-5dfb940f23db",
+    "split": "dev",
+    "human_verdict": "unique",
+    "human_flag": false,
+    "human_note": null,
+    "human_realism": "authentic",
+    "human_blind_pick_stored": 2,
+    "human_blind_correct": true,
+    "note_letters_reviewer": [],
+    "note_options_decoded": [],
+    "stored_key_index": 2,
+    "grader_key_letter": "D",
+    "presentation": {
+      "A": "I'll send those across tonight.",
+      "B": "I'd be very glad to take it on.",
+      "C": "I'll wait to hear from you then.",
+      "D": "I like work where the day has shape."
+    },
+    "stimulus": "\"What drew you to working in an office like this?\"",
+    "choices": [
+      "I'll send those across tonight.",
+      "I'll wait to hear from you then.",
+      "I like work where the day has shape.",
+      "I'd be very glad to take it on."
+    ],
+    "correct_answer": "I like work where the day has shape.",
+    "content_sha": "893439b09aedad6b739b3f28016d2881"
+  },
+  {
+    "id": "f04",
+    "item_id": "212b5f42-0a27-425a-80cb-885595083159",
+    "split": "holdout",
+    "human_verdict": "broken",
+    "human_flag": true,
+    "human_note": "The transcript is too underspecified to uniquely justify C.",
+    "human_realism": "artificial",
+    "human_blind_pick_stored": 2,
+    "human_blind_correct": false,
+    "note_letters_reviewer": [
+      "C"
+    ],
+    "note_options_decoded": [
+      "I'll cancel mine and send it to the lab upstairs."
+    ],
+    "stored_key_index": 3,
+    "grader_key_letter": "C",
+    "presentation": {
+      "A": "I'll fix the margins, that must be what keeps failing.",
+      "B": "I'll grab them and get out of everyone's way.",
+      "C": "I'll cancel mine and send it to the lab upstairs.",
+      "D": "My laptop, I joined the wireless queue this morning."
+    },
+    "stimulus": "\"Your job's stuck behind a huge one that keeps failing.\"",
+    "choices": [
+      "I'll grab them and get out of everyone's way.",
+      "My laptop, I joined the wireless queue this morning.",
+      "I'll fix the margins, that must be what keeps failing.",
+      "I'll cancel mine and send it to the lab upstairs."
+    ],
+    "correct_answer": "I'll cancel mine and send it to the lab upstairs.",
+    "content_sha": "9a2c689011a694d97c0ee6d3cd1827d8"
+  },
+  {
+    "id": "f05",
+    "item_id": "21ba74ea-a2ea-4a79-b8df-eebfe1867da1",
+    "split": "dev",
+    "human_verdict": "alternative",
+    "human_flag": true,
+    "human_note": "C is also another natural response to this. ",
+    "human_realism": "artificial",
+    "human_blind_pick_stored": 3,
+    "human_blind_correct": false,
+    "note_letters_reviewer": [
+      "C"
+    ],
+    "note_options_decoded": [
+      "Good to know — I'll stop chasing it for now."
+    ],
+    "stored_key_index": 2,
+    "grader_key_letter": "C",
+    "presentation": {
+      "A": "Good to know — I'll stop chasing it for now.",
+      "B": "Afternoons mostly — my mornings are all lectures.",
+      "C": "I do — I'll email them about a start date.",
+      "D": "That's a shame — I'll see what else is still posted."
+    },
+    "stimulus": "\"The archives placement is yours if you still want it.\"",
+    "choices": [
+      "Good to know — I'll stop chasing it for now.",
+      "That's a shame — I'll see what else is still posted.",
+      "I do — I'll email them about a start date.",
+      "Afternoons mostly — my mornings are all lectures."
+    ],
+    "correct_answer": "I do — I'll email them about a start date.",
+    "content_sha": "fada2ff7871a75050213e91451c3cff1"
+  },
+  {
+    "id": "f06",
+    "item_id": "24fd0aa2-a95f-4fbd-acb3-ed48d4367d9a",
+    "split": "holdout",
+    "human_verdict": "alternative",
+    "human_flag": true,
+    "human_note": "A is also reasonable.",
+    "human_realism": "artificial",
+    "human_blind_pick_stored": 2,
+    "human_blind_correct": false,
+    "note_letters_reviewer": [
+      "A"
+    ],
+    "note_options_decoded": [
+      "Then I can sit in on the earlier ones."
+    ],
+    "stored_key_index": 1,
+    "grader_key_letter": "C",
+    "presentation": {
+      "A": "I'll get rehearsal times sorted with them this week.",
+      "B": "I'll have it up to tempo by then.",
+      "C": "I'll swap the music in my folder tonight.",
+      "D": "Then I can sit in on the earlier ones."
+    },
+    "stimulus": "\"You're down for the Brahms this term, not the Schubert.\"",
+    "choices": [
+      "I'll have it up to tempo by then.",
+      "I'll swap the music in my folder tonight.",
+      "I'll get rehearsal times sorted with them this week.",
+      "Then I can sit in on the earlier ones."
+    ],
+    "correct_answer": "I'll swap the music in my folder tonight.",
+    "content_sha": "0215456522a6dca1022e05569903c4cc"
+  },
+  {
+    "id": "f07",
+    "item_id": "2b996af8-a10a-4e27-bd57-115d1495778d",
+    "split": "dev",
+    "human_verdict": "unique",
+    "human_flag": false,
+    "human_note": null,
+    "human_realism": "authentic",
+    "human_blind_pick_stored": 1,
+    "human_blind_correct": false,
+    "note_letters_reviewer": [],
+    "note_options_decoded": [],
+    "stored_key_index": 3,
+    "grader_key_letter": "A",
+    "presentation": {
+      "A": "Mine, from when we moved in last autumn.",
+      "B": "I'll snap it when I get in from work.",
+      "C": "We should sit down and work out the split.",
+      "D": "So the direct debit should drop next month."
+    },
+    "stimulus": "\"Whose name is the electricity account actually in?\"",
+    "choices": [
+      "I'll snap it when I get in from work.",
+      "So the direct debit should drop next month.",
+      "We should sit down and work out the split.",
+      "Mine, from when we moved in last autumn."
+    ],
+    "correct_answer": "Mine, from when we moved in last autumn.",
+    "content_sha": "aae6a7e5f00445dbae03226350feabfb"
+  },
+  {
+    "id": "f08",
+    "item_id": "33c17fe1-0a39-4181-8242-a26a7ffed259",
+    "split": "holdout",
+    "human_verdict": "broken",
+    "human_flag": true,
+    "human_note": "The context is too underspecified to make C uniquely defensible.",
+    "human_realism": "artificial",
+    "human_blind_pick_stored": 0,
+    "human_blind_correct": false,
+    "note_letters_reviewer": [
+      "C"
+    ],
+    "note_options_decoded": [
+      "I'll walk up from the science building instead."
+    ],
+    "stored_key_index": 3,
+    "grader_key_letter": "D",
+    "presentation": {
+      "A": "I'll take the van — where do I catch it?",
+      "B": "I'll ride it round — I'm not in a hurry.",
+      "C": "I'll wait for the express, if it's still due.",
+      "D": "I'll walk up from the science building instead."
+    },
+    "stimulus": "\"The north route's suspended while they resurface the access road.\"",
+    "choices": [
+      "I'll take the van — where do I catch it?",
+      "I'll wait for the express, if it's still due.",
+      "I'll ride it round — I'm not in a hurry.",
+      "I'll walk up from the science building instead."
+    ],
+    "correct_answer": "I'll walk up from the science building instead.",
+    "content_sha": "97d686812b409b8f7624084cc2027664"
+  },
+  {
+    "id": "f09",
+    "item_id": "3c7f5fb5-7fef-4caa-be20-71dee6d4741a",
+    "split": "dev",
+    "human_verdict": "alternative",
+    "human_flag": true,
+    "human_note": "A or D both could be answers as well.",
+    "human_realism": "artificial",
+    "human_blind_pick_stored": 1,
+    "human_blind_correct": false,
+    "note_letters_reviewer": [
+      "A",
+      "D"
+    ],
+    "note_options_decoded": [
+      "Well, the new date suits me better anyway.",
+      "So we're hosting them here instead."
+    ],
+    "stored_key_index": 3,
+    "grader_key_letter": "A",
+    "presentation": {
+      "A": "I'll tell the others not to travel.",
+      "B": "So we're hosting them here instead.",
+      "C": "Then I'd better dust off my openings.",
+      "D": "Well, the new date suits me better anyway."
+    },
+    "stimulus": "\"Our match against the college is called off.\"",
+    "choices": [
+      "Then I'd better dust off my openings.",
+      "So we're hosting them here instead.",
+      "Well, the new date suits me better anyway.",
+      "I'll tell the others not to travel."
+    ],
+    "correct_answer": "I'll tell the others not to travel.",
+    "content_sha": "13379dbfd76332170ce93645495d742b"
+  },
+  {
+    "id": "f10",
+    "item_id": "520f0ddc-e1d2-4699-a122-9b75f6097678",
+    "split": "holdout",
+    "human_verdict": "unique",
+    "human_flag": false,
+    "human_note": null,
+    "human_realism": "authentic",
+    "human_blind_pick_stored": 1,
+    "human_blind_correct": false,
+    "note_letters_reviewer": [],
+    "note_options_decoded": [],
+    "stored_key_index": 0,
+    "grader_key_letter": "D",
+    "presentation": {
+      "A": "Of course — I'll set an alarm for it.",
+      "B": "I'll start hanging things on my rack, then.",
+      "C": "Great, I'll run a full load of mine, then.",
+      "D": "That'd save me a trip; I'll bring them down."
+    },
+    "stimulus": "\"You can put your towels in with my load.\"",
+    "choices": [
+      "That'd save me a trip; I'll bring them down.",
+      "Of course — I'll set an alarm for it.",
+      "I'll start hanging things on my rack, then.",
+      "Great, I'll run a full load of mine, then."
+    ],
+    "correct_answer": "That'd save me a trip; I'll bring them down.",
+    "content_sha": "23eaa64ddb013b91be67caa1fc9dc701"
+  },
+  {
+    "id": "f11",
+    "item_id": "5f604185-7843-41e9-a8d3-395804a5bda3",
+    "split": "dev",
+    "human_verdict": "unique",
+    "human_flag": false,
+    "human_note": null,
+    "human_realism": "artificial",
+    "human_blind_pick_stored": 1,
+    "human_blind_correct": false,
+    "note_letters_reviewer": [],
+    "note_options_decoded": [],
+    "stored_key_index": 0,
+    "grader_key_letter": "D",
+    "presentation": {
+      "A": "I'll fill my whole week in before tonight.",
+      "B": "I'll take it — Tuesdays are already clear for me.",
+      "C": "Good — I won't have to explain where I got stuck.",
+      "D": "I could move to a morning if that opens anything."
+    },
+    "stimulus": "\"Nobody's free for statistics in your Tuesday slot.\"",
+    "choices": [
+      "I could move to a morning if that opens anything.",
+      "Good — I won't have to explain where I got stuck.",
+      "I'll take it — Tuesdays are already clear for me.",
+      "I'll fill my whole week in before tonight."
+    ],
+    "correct_answer": "I could move to a morning if that opens anything.",
+    "content_sha": "573945db3bca6bfd86977173254a047d"
+  },
+  {
+    "id": "f12",
+    "item_id": "62f7311e-79ca-4959-976a-76c45a009ed0",
+    "split": "holdout",
+    "human_verdict": "unique",
+    "human_flag": false,
+    "human_note": null,
+    "human_realism": "authentic",
+    "human_blind_pick_stored": 0,
+    "human_blind_correct": false,
+    "note_letters_reviewer": [],
+    "note_options_decoded": [],
+    "stored_key_index": 2,
+    "grader_key_letter": "A",
+    "presentation": {
+      "A": "Nice, that frees us up for the slides.",
+      "B": "I'll cue up the recording, we made one.",
+      "C": "Happy to help chase down that login bug.",
+      "D": "Pushing it up now, give me a moment."
+    },
+    "stimulus": "\"The login flow's working end to end now.\"",
+    "choices": [
+      "Pushing it up now, give me a moment.",
+      "I'll cue up the recording, we made one.",
+      "Nice, that frees us up for the slides.",
+      "Happy to help chase down that login bug."
+    ],
+    "correct_answer": "Nice, that frees us up for the slides.",
+    "content_sha": "8976becc36880df9683d9013da838267"
+  },
+  {
+    "id": "f13",
+    "item_id": "63267970-3907-4051-a098-26713599d69f",
+    "split": "dev",
+    "human_verdict": "unique",
+    "human_flag": false,
+    "human_note": null,
+    "human_realism": "authentic",
+    "human_blind_pick_stored": 1,
+    "human_blind_correct": false,
+    "note_letters_reviewer": [],
+    "note_options_decoded": [],
+    "stored_key_index": 2,
+    "grader_key_letter": "D",
+    "presentation": {
+      "A": "I'll borrow the older body and manage with that.",
+      "B": "I'll put in a second request for one, then.",
+      "C": "I'll take it now, my shoot's tomorrow at the theater.",
+      "D": "Hand it over, I'll read it and sign at the counter."
+    },
+    "stimulus": "\"Could you sign the damage waiver before you take it?\"",
+    "choices": [
+      "I'll borrow the older body and manage with that.",
+      "I'll take it now, my shoot's tomorrow at the theater.",
+      "Hand it over, I'll read it and sign at the counter.",
+      "I'll put in a second request for one, then."
+    ],
+    "correct_answer": "Hand it over, I'll read it and sign at the counter.",
+    "content_sha": "3f698996048b63ee408975517740bd80"
+  },
+  {
+    "id": "f14",
+    "item_id": "66b97294-1ed7-4d73-b357-16c396c54ade",
+    "split": "holdout",
+    "human_verdict": "unique",
+    "human_flag": false,
+    "human_note": null,
+    "human_realism": "authentic",
+    "human_blind_pick_stored": 1,
+    "human_blind_correct": false,
+    "note_letters_reviewer": [],
+    "note_options_decoded": [],
+    "stored_key_index": 3,
+    "grader_key_letter": "C",
+    "presentation": {
+      "A": "Twelve charges a year would really add up, though.",
+      "B": "Perfect, let's do that while I'm here.",
+      "C": "Then I'll leave the account open after all.",
+      "D": "Just the checking, I'd like to keep the savings."
+    },
+    "stimulus": "\"It's not a monthly fee, it's charged once a year.\"",
+    "choices": [
+      "Perfect, let's do that while I'm here.",
+      "Twelve charges a year would really add up, though.",
+      "Just the checking, I'd like to keep the savings.",
+      "Then I'll leave the account open after all."
+    ],
+    "correct_answer": "Then I'll leave the account open after all.",
+    "content_sha": "6e5fdd8faa65d50584c5688bd360b936"
+  },
+  {
+    "id": "f15",
+    "item_id": "68e66289-1870-4e1c-9923-9c88508700d3",
+    "split": "dev",
+    "human_verdict": "unique",
+    "human_flag": false,
+    "human_note": null,
+    "human_realism": "authentic",
+    "human_blind_pick_stored": 0,
+    "human_blind_correct": true,
+    "note_letters_reviewer": [],
+    "note_options_decoded": [],
+    "stored_key_index": 0,
+    "grader_key_letter": "C",
+    "presentation": {
+      "A": "I'll take a balcony seat while they're still there.",
+      "B": "I'll bring it, it lives in my coat pocket anyway.",
+      "C": "The matinee, I've got rehearsal later that day.",
+      "D": "I'll watch for returns and check back on the website."
+    },
+    "stimulus": "\"Would you like the matinee or the evening performance?\"",
+    "choices": [
+      "The matinee, I've got rehearsal later that day.",
+      "I'll take a balcony seat while they're still there.",
+      "I'll watch for returns and check back on the website.",
+      "I'll bring it, it lives in my coat pocket anyway."
+    ],
+    "correct_answer": "The matinee, I've got rehearsal later that day.",
+    "content_sha": "4fe1de069799d381c4cb1c0f133119e6"
+  },
+  {
+    "id": "f16",
+    "item_id": "7dc39f22-0080-4196-8af0-71422a315a94",
+    "split": "holdout",
+    "human_verdict": "unique",
+    "human_flag": false,
+    "human_note": null,
+    "human_realism": "artificial",
+    "human_blind_pick_stored": 2,
+    "human_blind_correct": false,
+    "note_letters_reviewer": [],
+    "note_options_decoded": [],
+    "stored_key_index": 0,
+    "grader_key_letter": "A",
+    "presentation": {
+      "A": "I'll clear that corner out this evening.",
+      "B": "That's handy, my closet's been full for weeks.",
+      "C": "We'll have to meet in someone's room instead.",
+      "D": "I'll take my reading down there tonight."
+    },
+    "stimulus": "\"Could you take your gear out of the common room?\"",
+    "choices": [
+      "I'll clear that corner out this evening.",
+      "That's handy, my closet's been full for weeks.",
+      "I'll take my reading down there tonight.",
+      "We'll have to meet in someone's room instead."
+    ],
+    "correct_answer": "I'll clear that corner out this evening.",
+    "content_sha": "de1c6b19b96ec4c33aa3e50b7a82a4d1"
+  },
+  {
+    "id": "f17",
+    "item_id": "7f612915-b9de-4cc0-994c-8b47c78c4cd6",
+    "split": "dev",
+    "human_verdict": "unique",
+    "human_flag": false,
+    "human_note": null,
+    "human_realism": "authentic",
+    "human_blind_pick_stored": 1,
+    "human_blind_correct": false,
+    "note_letters_reviewer": [],
+    "note_options_decoded": [],
+    "stored_key_index": 2,
+    "grader_key_letter": "A",
+    "presentation": {
+      "A": "He's back tomorrow — I'll catch him then.",
+      "B": "I'll use the wait — the methods section could be tidier.",
+      "C": "I'll send it over Friday — that'll help a lot.",
+      "D": "Then I've filled in the wrong one — I'll start again."
+    },
+    "stimulus": "\"We need your supervisor's signature on the costing page.\"",
+    "choices": [
+      "I'll send it over Friday — that'll help a lot.",
+      "Then I've filled in the wrong one — I'll start again.",
+      "He's back tomorrow — I'll catch him then.",
+      "I'll use the wait — the methods section could be tidier."
+    ],
+    "correct_answer": "He's back tomorrow — I'll catch him then.",
+    "content_sha": "a2ae9cf260f69fa2324633b81a5d5732"
+  },
+  {
+    "id": "f18",
+    "item_id": "85f5ba2a-d2d3-4dc6-bbe0-996d5806820f",
+    "split": "holdout",
+    "human_verdict": "unique",
+    "human_flag": false,
+    "human_note": null,
+    "human_realism": "artificial",
+    "human_blind_pick_stored": 1,
+    "human_blind_correct": false,
+    "note_letters_reviewer": [],
+    "note_options_decoded": [],
+    "stored_key_index": 0,
+    "grader_key_letter": "C",
+    "presentation": {
+      "A": "I'll borrow notes from someone who was there.",
+      "B": "I'll catch up on it before the seminar.",
+      "C": "I'll raise it at the class rep meeting.",
+      "D": "No wonder I kept coming up empty."
+    },
+    "stimulus": "\"Ask your classmates to stop sharing the links externally.\"",
+    "choices": [
+      "I'll raise it at the class rep meeting.",
+      "I'll borrow notes from someone who was there.",
+      "I'll catch up on it before the seminar.",
+      "No wonder I kept coming up empty."
+    ],
+    "correct_answer": "I'll raise it at the class rep meeting.",
+    "content_sha": "7de7ed7f5cfc54cb8187d8296e4606fe"
+  },
+  {
+    "id": "f19",
+    "item_id": "8665f51d-5a6d-481d-8c3a-35a0e834b927",
+    "split": "dev",
+    "human_verdict": "unique",
+    "human_flag": false,
+    "human_note": null,
+    "human_realism": "authentic",
+    "human_blind_pick_stored": 3,
+    "human_blind_correct": true,
+    "note_letters_reviewer": [],
+    "note_options_decoded": [],
+    "stored_key_index": 3,
+    "grader_key_letter": "B",
+    "presentation": {
+      "A": "It's definitely me in the photo — you can look again.",
+      "B": "It's in my bag downstairs — give me a moment.",
+      "C": "Oh good, I've been looking for that since Friday.",
+      "D": "I'd rather not leave it here overnight — I need it tomorrow."
+    },
+    "stimulus": "\"Come back with your ID card so I can verify you.\"",
+    "choices": [
+      "Oh good, I've been looking for that since Friday.",
+      "It's definitely me in the photo — you can look again.",
+      "I'd rather not leave it here overnight — I need it tomorrow.",
+      "It's in my bag downstairs — give me a moment."
+    ],
+    "correct_answer": "It's in my bag downstairs — give me a moment.",
+    "content_sha": "82202a2f9231cc975c4f6f9e37494cb3"
+  },
+  {
+    "id": "f20",
+    "item_id": "8eb84909-5f0a-4ea1-840b-0d5534bce7ae",
+    "split": "holdout",
+    "human_verdict": "unique",
+    "human_flag": false,
+    "human_note": null,
+    "human_realism": "authentic",
+    "human_blind_pick_stored": 0,
+    "human_blind_correct": true,
+    "note_letters_reviewer": [],
+    "note_options_decoded": [],
+    "stored_key_index": 0,
+    "grader_key_letter": "D",
+    "presentation": {
+      "A": "I'll ask her to come down with her ID.",
+      "B": "I'll book a redelivery on their site tonight.",
+      "C": "I'll sign for it before the desk closes.",
+      "D": "Nothing that I've been told about since then."
+    },
+    "stimulus": "\"Has anything else of yours arrived since Friday?\"",
+    "choices": [
+      "Nothing that I've been told about since then.",
+      "I'll book a redelivery on their site tonight.",
+      "I'll ask her to come down with her ID.",
+      "I'll sign for it before the desk closes."
+    ],
+    "correct_answer": "Nothing that I've been told about since then.",
+    "content_sha": "04efb498d0a762f39754090e43109e55"
+  },
+  {
+    "id": "f21",
+    "item_id": "952e3854-346b-4852-8a71-0f62b0d88995",
+    "split": "dev",
+    "human_verdict": "unique",
+    "human_flag": false,
+    "human_note": null,
+    "human_realism": "authentic",
+    "human_blind_pick_stored": 2,
+    "human_blind_correct": true,
+    "note_letters_reviewer": [],
+    "note_options_decoded": [],
+    "stored_key_index": 2,
+    "grader_key_letter": "B",
+    "presentation": {
+      "A": "Mornings would help — I'd finish before my seminar.",
+      "B": "They're in the fridge — I'm running them tomorrow.",
+      "C": "Thanks for running them for me — I owe you one.",
+      "D": "I'll do the separation by hand this week, then."
+    },
+    "stimulus": "\"Did you get your samples run, or are they still waiting?\"",
+    "choices": [
+      "I'll do the separation by hand this week, then.",
+      "Mornings would help — I'd finish before my seminar.",
+      "They're in the fridge — I'm running them tomorrow.",
+      "Thanks for running them for me — I owe you one."
+    ],
+    "correct_answer": "They're in the fridge — I'm running them tomorrow.",
+    "content_sha": "576d5963ca663c53af19e7a00afb0c51"
+  },
+  {
+    "id": "f22",
+    "item_id": "a2728c1c-1935-45ed-ac02-bd13b31c1507",
+    "split": "holdout",
+    "human_verdict": "unique",
+    "human_flag": false,
+    "human_note": null,
+    "human_realism": "authentic",
+    "human_blind_pick_stored": 2,
+    "human_blind_correct": false,
+    "note_letters_reviewer": [],
+    "note_options_decoded": [],
+    "stored_key_index": 0,
+    "grader_key_letter": "D",
+    "presentation": {
+      "A": "I'd still like comments on it, if that's possible.",
+      "B": "I'll send you one by the end of next week.",
+      "C": "I'll drop by again once they start up next term.",
+      "D": "I'll come by after my Thursday seminar, then."
+    },
+    "stimulus": "\"I'm moving office hours to Thursdays for the rest of term.\"",
+    "choices": [
+      "I'll come by after my Thursday seminar, then.",
+      "I'll send you one by the end of next week.",
+      "I'd still like comments on it, if that's possible.",
+      "I'll drop by again once they start up next term."
+    ],
+    "correct_answer": "I'll come by after my Thursday seminar, then.",
+    "content_sha": "0e1e4356c72bbd6e9ca4161d9054bd28"
+  },
+  {
+    "id": "f23",
+    "item_id": "a4820863-aebc-4cd8-a4a2-5ce10b304eeb",
+    "split": "dev",
+    "human_verdict": "unique",
+    "human_flag": false,
+    "human_note": null,
+    "human_realism": "authentic",
+    "human_blind_pick_stored": 1,
+    "human_blind_correct": false,
+    "note_letters_reviewer": [],
+    "note_options_decoded": [],
+    "stored_key_index": 3,
+    "grader_key_letter": "C",
+    "presentation": {
+      "A": "Sure — do scans work, or does it have to be paper?",
+      "B": "I'll walk it over there this afternoon, then.",
+      "C": "That's a relief; I'd been carrying it on my card.",
+      "D": "Fair enough — I'll pull those receipts and resubmit."
+    },
+    "stimulus": "\"Your reimbursement cleared — it'll show up on next payroll.\"",
+    "choices": [
+      "I'll walk it over there this afternoon, then.",
+      "Fair enough — I'll pull those receipts and resubmit.",
+      "Sure — do scans work, or does it have to be paper?",
+      "That's a relief; I'd been carrying it on my card."
+    ],
+    "correct_answer": "That's a relief; I'd been carrying it on my card.",
+    "content_sha": "d574a07cc1de4c8387972fdc11fd497a"
+  },
+  {
+    "id": "f24",
+    "item_id": "a489eecb-f289-445c-8e60-6cb7de16ca23",
+    "split": "holdout",
+    "human_verdict": "unique",
+    "human_flag": false,
+    "human_note": null,
+    "human_realism": "authentic",
+    "human_blind_pick_stored": 1,
+    "human_blind_correct": false,
+    "note_letters_reviewer": [],
+    "note_options_decoded": [],
+    "stored_key_index": 2,
+    "grader_key_letter": "B",
+    "presentation": {
+      "A": "Sure, I'll leave the bag by the door.",
+      "B": "I'll book a van for that morning, then.",
+      "C": "That's a relief — I'll tell my parents tonight.",
+      "D": "I'll start looking for somewhere to put my things."
+    },
+    "stimulus": "\"Move-out's on the Saturday, keys back at the desk.\"",
+    "choices": [
+      "Sure, I'll leave the bag by the door.",
+      "That's a relief — I'll tell my parents tonight.",
+      "I'll book a van for that morning, then.",
+      "I'll start looking for somewhere to put my things."
+    ],
+    "correct_answer": "I'll book a van for that morning, then.",
+    "content_sha": "6cd8ca09ae920a7af487006d68bf90aa"
+  },
+  {
+    "id": "f25",
+    "item_id": "acca0551-837b-4a30-8213-a9f50de07cf6",
+    "split": "dev",
+    "human_verdict": "broken",
+    "human_flag": true,
+    "human_note": "D, C, or B could all work but there are some details missing that make them the true answer.",
+    "human_realism": "artificial",
+    "human_blind_pick_stored": 1,
+    "human_blind_correct": false,
+    "note_letters_reviewer": [
+      "D",
+      "C",
+      "B"
+    ],
+    "note_options_decoded": [
+      "That's a relief, I'll pay at the counter.",
+      "Can you at least get the photos off it?",
+      "I'll plan on picking it up later in the week."
+    ],
+    "stored_key_index": 3,
+    "grader_key_letter": "C",
+    "presentation": {
+      "A": "Can you at least get the photos off it?",
+      "B": "Yes please, I'd be lost without one this week.",
+      "C": "That's a relief, I'll pay at the counter.",
+      "D": "I'll plan on picking it up later in the week."
+    },
+    "stimulus": "\"It was just the charging port, it's working again.\"",
+    "choices": [
+      "Can you at least get the photos off it?",
+      "Yes please, I'd be lost without one this week.",
+      "I'll plan on picking it up later in the week.",
+      "That's a relief, I'll pay at the counter."
+    ],
+    "correct_answer": "That's a relief, I'll pay at the counter.",
+    "content_sha": "2eca0ba0826d287d1efa64b05f486226"
+  },
+  {
+    "id": "f26",
+    "item_id": "ad839672-656c-459b-bd59-b11634a75464",
+    "split": "holdout",
+    "human_verdict": "unique",
+    "human_flag": false,
+    "human_note": null,
+    "human_realism": "authentic",
+    "human_blind_pick_stored": 0,
+    "human_blind_correct": false,
+    "note_letters_reviewer": [],
+    "note_options_decoded": [],
+    "stored_key_index": 2,
+    "grader_key_letter": "A",
+    "presentation": {
+      "A": "Only along the bottom, the top stays cold.",
+      "B": "I'll borrow another blanket from the desk.",
+      "C": "That would get me through the night.",
+      "D": "I'll take the fan heater back downstairs."
+    },
+    "stimulus": "\"Is your radiator warm at the top or the bottom?\"",
+    "choices": [
+      "I'll take the fan heater back downstairs.",
+      "I'll borrow another blanket from the desk.",
+      "Only along the bottom, the top stays cold.",
+      "That would get me through the night."
+    ],
+    "correct_answer": "Only along the bottom, the top stays cold.",
+    "content_sha": "ddd28fa54b7367d3d19d2c20c98f4658"
+  },
+  {
+    "id": "f27",
+    "item_id": "b4c8f283-dd92-4c11-b7d4-dd4315bac3f4",
+    "split": "dev",
+    "human_verdict": "unique",
+    "human_flag": false,
+    "human_note": null,
+    "human_realism": "authentic",
+    "human_blind_pick_stored": 1,
+    "human_blind_correct": false,
+    "note_letters_reviewer": [],
+    "note_options_decoded": [],
+    "stored_key_index": 2,
+    "grader_key_letter": "A",
+    "presentation": {
+      "A": "I'll move my appointment to the following week, then.",
+      "B": "I'd just need the early part — I can be there by mid-morning.",
+      "C": "That works — I've got nothing on Sundays.",
+      "D": "I'll let the manager know she's on instead of me."
+    },
+    "stimulus": "\"Nobody's free Friday, so you're still on the schedule.\"",
+    "choices": [
+      "That works — I've got nothing on Sundays.",
+      "I'd just need the early part — I can be there by mid-morning.",
+      "I'll move my appointment to the following week, then.",
+      "I'll let the manager know she's on instead of me."
+    ],
+    "correct_answer": "I'll move my appointment to the following week, then.",
+    "content_sha": "dc722eafd60998fb31be6682cd62a0e3"
+  },
+  {
+    "id": "f28",
+    "item_id": "ba98151a-d53f-4c04-bea1-3a02f87ecfe8",
+    "split": "holdout",
+    "human_verdict": "unique",
+    "human_flag": false,
+    "human_note": null,
+    "human_realism": "authentic",
+    "human_blind_pick_stored": 1,
+    "human_blind_correct": false,
+    "note_letters_reviewer": [],
+    "note_options_decoded": [],
+    "stored_key_index": 0,
+    "grader_key_letter": "D",
+    "presentation": {
+      "A": "Tell them to keep his head still — I'm coming.",
+      "B": "The board's in the store room — I'll bring it out.",
+      "C": "I'll book another go — more lengths for me, then.",
+      "D": "Only in training — never with a real casualty."
+    },
+    "stimulus": "\"Have you done a pool rescue with a spinal board?\"",
+    "choices": [
+      "Only in training — never with a real casualty.",
+      "The board's in the store room — I'll bring it out.",
+      "I'll book another go — more lengths for me, then.",
+      "Tell them to keep his head still — I'm coming."
+    ],
+    "correct_answer": "Only in training — never with a real casualty.",
+    "content_sha": "9440834070d0ea704a4784216bcb08d7"
+  },
+  {
+    "id": "f29",
+    "item_id": "bb788c0b-874b-4406-9675-24a0f8c02c3c",
+    "split": "dev",
+    "human_verdict": "unique",
+    "human_flag": false,
+    "human_note": null,
+    "human_realism": "authentic",
+    "human_blind_pick_stored": 3,
+    "human_blind_correct": false,
+    "note_letters_reviewer": [],
+    "note_options_decoded": [],
+    "stored_key_index": 2,
+    "grader_key_letter": "A",
+    "presentation": {
+      "A": "I'll take that one, my budget will thank me.",
+      "B": "I'll check the student swap group before I buy new.",
+      "C": "An order works, I can manage a week without it.",
+      "D": "The seminar, Professor Vance's group on Tuesdays."
+    },
+    "stimulus": "\"A used copy just came in on trade.\"",
+    "choices": [
+      "The seminar, Professor Vance's group on Tuesdays.",
+      "An order works, I can manage a week without it.",
+      "I'll take that one, my budget will thank me.",
+      "I'll check the student swap group before I buy new."
+    ],
+    "correct_answer": "I'll take that one, my budget will thank me.",
+    "content_sha": "d5af7e92b974fe71b755aea02e7dbbc0"
+  },
+  {
+    "id": "f30",
+    "item_id": "c184656e-56f8-4af7-b855-b7ede99ba0db",
+    "split": "holdout",
+    "human_verdict": "unique",
+    "human_flag": false,
+    "human_note": null,
+    "human_realism": "authentic",
+    "human_blind_pick_stored": 1,
+    "human_blind_correct": true,
+    "note_letters_reviewer": [],
+    "note_options_decoded": [],
+    "stored_key_index": 1,
+    "grader_key_letter": "A",
+    "presentation": {
+      "A": "She'll jump at that — I'll ask her tonight.",
+      "B": "Mine are at home, so I'll borrow a pair.",
+      "C": "I'll use the weekend for the reading instead.",
+      "D": "I'll pass that on to the people I'm riding with."
+    },
+    "stimulus": "\"There's a spare seat if your roommate wants to come.\"",
+    "choices": [
+      "I'll use the weekend for the reading instead.",
+      "She'll jump at that — I'll ask her tonight.",
+      "Mine are at home, so I'll borrow a pair.",
+      "I'll pass that on to the people I'm riding with."
+    ],
+    "correct_answer": "She'll jump at that — I'll ask her tonight.",
+    "content_sha": "59a259b35a6bdb6e9e8aad4d7fba7902"
+  },
+  {
+    "id": "f31",
+    "item_id": "cc23ce8d-10b6-46da-b4c7-0842960f2ae5",
+    "split": "dev",
+    "human_verdict": "unique",
+    "human_flag": false,
+    "human_note": null,
+    "human_realism": "authentic",
+    "human_blind_pick_stored": 3,
+    "human_blind_correct": false,
+    "note_letters_reviewer": [],
+    "note_options_decoded": [],
+    "stored_key_index": 1,
+    "grader_key_letter": "B",
+    "presentation": {
+      "A": "I'll make sure someone's in to let him up.",
+      "B": "I'll do it after work and text you.",
+      "C": "Then I'll stop worrying about the bill for it.",
+      "D": "So what did it come to this time round?"
+    },
+    "stimulus": "\"Could you read me the meter before the weekend?\"",
+    "choices": [
+      "So what did it come to this time round?",
+      "I'll do it after work and text you.",
+      "I'll make sure someone's in to let him up.",
+      "Then I'll stop worrying about the bill for it."
+    ],
+    "correct_answer": "I'll do it after work and text you.",
+    "content_sha": "6b399dd03c2a3b548229a854ab067794"
+  },
+  {
+    "id": "f32",
+    "item_id": "d74459f3-aab4-40ef-9f04-5c553b6d8f43",
+    "split": "holdout",
+    "human_verdict": "unique",
+    "human_flag": false,
+    "human_note": null,
+    "human_realism": "artificial",
+    "human_blind_pick_stored": 1,
+    "human_blind_correct": true,
+    "note_letters_reviewer": [],
+    "note_options_decoded": [],
+    "stored_key_index": 1,
+    "grader_key_letter": "B",
+    "presentation": {
+      "A": "Tuesday it is — I'll have the room straight.",
+      "B": "Does taking the wedge out clear it on its own?",
+      "C": "Then the shelves can stay where they are.",
+      "D": "That's ours, and we'll move it back inside."
+    },
+    "stimulus": "\"You've failed on the fire door being propped open.\"",
+    "choices": [
+      "Then the shelves can stay where they are.",
+      "Does taking the wedge out clear it on its own?",
+      "Tuesday it is — I'll have the room straight.",
+      "That's ours, and we'll move it back inside."
+    ],
+    "correct_answer": "Does taking the wedge out clear it on its own?",
+    "content_sha": "c2947e5aac4cfacb51a7ea14e29fecdc"
+  },
+  {
+    "id": "f33",
+    "item_id": "d7c3eb67-35b4-454e-9e4b-1f45e65c16e3",
+    "split": "dev",
+    "human_verdict": "alternative",
+    "human_flag": true,
+    "human_note": "D is also another answer.",
+    "human_realism": "artificial",
+    "human_blind_pick_stored": 1,
+    "human_blind_correct": false,
+    "note_letters_reviewer": [
+      "D"
+    ],
+    "note_options_decoded": [
+      "I'll keep the spare in my bag."
+    ],
+    "stored_key_index": 2,
+    "grader_key_letter": "C",
+    "presentation": {
+      "A": "I'll ask at the union desk tomorrow.",
+      "B": "I'll keep the spare in my bag.",
+      "C": "I'll post it through the office door.",
+      "D": "The dance group borrowed it on Tuesday."
+    },
+    "stimulus": "\"Can you drop the key back before Friday?\"",
+    "choices": [
+      "I'll ask at the union desk tomorrow.",
+      "The dance group borrowed it on Tuesday.",
+      "I'll post it through the office door.",
+      "I'll keep the spare in my bag."
+    ],
+    "correct_answer": "I'll post it through the office door.",
+    "content_sha": "188c9f53d2a507199ad17b0cb4af4c85"
+  },
+  {
+    "id": "f34",
+    "item_id": "dffad341-a295-404b-a642-af0e1ddabc65",
+    "split": "holdout",
+    "human_verdict": "alternative",
+    "human_flag": true,
+    "human_note": "B is also another answer here.",
+    "human_realism": "artificial",
+    "human_blind_pick_stored": 3,
+    "human_blind_correct": false,
+    "note_letters_reviewer": [
+      "B"
+    ],
+    "note_options_decoded": [
+      "That'd make it much easier — after dinner?"
+    ],
+    "stored_key_index": 2,
+    "grader_key_letter": "A",
+    "presentation": {
+      "A": "Then we just need to be in when they come.",
+      "B": "I'll put the desk back where it was.",
+      "C": "Sure — give me a few minutes to clear them.",
+      "D": "That'd make it much easier — after dinner?"
+    },
+    "stimulus": "\"The porters agreed to move the desks for us.\"",
+    "choices": [
+      "Sure — give me a few minutes to clear them.",
+      "I'll put the desk back where it was.",
+      "Then we just need to be in when they come.",
+      "That'd make it much easier — after dinner?"
+    ],
+    "correct_answer": "Then we just need to be in when they come.",
+    "content_sha": "804aad05043f6b4687c7a8e5458d8d9d"
+  },
+  {
+    "id": "f35",
+    "item_id": "e0e73ddc-9c4b-406b-bd97-bde30ab5e7fd",
+    "split": "dev",
+    "human_verdict": "unique",
+    "human_flag": false,
+    "human_note": null,
+    "human_realism": "artificial",
+    "human_blind_pick_stored": 3,
+    "human_blind_correct": false,
+    "note_letters_reviewer": [],
+    "note_options_decoded": [],
+    "stored_key_index": 2,
+    "grader_key_letter": "C",
+    "presentation": {
+      "A": "I'll check back Friday then — no point calling before.",
+      "B": "I'll ask my mother to send it over this week.",
+      "C": "I'll look into a loan to cover the difference then.",
+      "D": "I can drop one of my jobs now — that changes everything."
+    },
+    "stimulus": "\"Your award's been cut because your household income rose.\"",
+    "choices": [
+      "I'll ask my mother to send it over this week.",
+      "I'll check back Friday then — no point calling before.",
+      "I'll look into a loan to cover the difference then.",
+      "I can drop one of my jobs now — that changes everything."
+    ],
+    "correct_answer": "I'll look into a loan to cover the difference then.",
+    "content_sha": "e77e4e3fc9b51e0c921335489395de87"
+  },
+  {
+    "id": "f36",
+    "item_id": "ee05fe11-6824-4537-886e-89705ee7e382",
+    "split": "holdout",
+    "human_verdict": "unique",
+    "human_flag": false,
+    "human_note": "It seems like answer with \"-\" are correct. This is the second time this happened.",
+    "human_realism": "authentic",
+    "human_blind_pick_stored": 3,
+    "human_blind_correct": true,
+    "note_letters_reviewer": [],
+    "note_options_decoded": [],
+    "stored_key_index": 3,
+    "grader_key_letter": "B",
+    "presentation": {
+      "A": "An extra hour in the evening is just what I needed.",
+      "B": "That's when I'll come — afternoons are always packed.",
+      "C": "Losing an hour on Fridays will really squeeze me.",
+      "D": "I'll do mine on my laptop and upload it."
+    },
+    "stimulus": "\"The lab opens an hour earlier on Fridays now.\"",
+    "choices": [
+      "I'll do mine on my laptop and upload it.",
+      "An extra hour in the evening is just what I needed.",
+      "Losing an hour on Fridays will really squeeze me.",
+      "That's when I'll come — afternoons are always packed."
+    ],
+    "correct_answer": "That's when I'll come — afternoons are always packed.",
+    "content_sha": "167754fa929c7c2cad62bb6e426197fb"
+  },
+  {
+    "id": "f37",
+    "item_id": "ee8303c2-25b6-45c8-ad48-756897fc6161",
+    "split": "dev",
+    "human_verdict": "broken",
+    "human_flag": true,
+    "human_note": "They are all sort of plausible.",
+    "human_realism": "artificial",
+    "human_blind_pick_stored": 3,
+    "human_blind_correct": false,
+    "note_letters_reviewer": [],
+    "note_options_decoded": [],
+    "stored_key_index": 2,
+    "grader_key_letter": "D",
+    "presentation": {
+      "A": "Could we build on the work we've already done?",
+      "B": "I'll move the team onto the final report.",
+      "C": "I'll go back through the meeting minutes.",
+      "D": "I'll sort out travel for the whole team."
+    },
+    "stimulus": "\"Your check-ins move to the sponsor's office from now on.\"",
+    "choices": [
+      "I'll move the team onto the final report.",
+      "I'll go back through the meeting minutes.",
+      "I'll sort out travel for the whole team.",
+      "Could we build on the work we've already done?"
+    ],
+    "correct_answer": "I'll sort out travel for the whole team.",
+    "content_sha": "73578673ec97c7cdd7d25abfa7168947"
+  },
+  {
+    "id": "f38",
+    "item_id": "f03d3539-bdec-41cf-b70f-2cc69d4b4bbf",
+    "split": "holdout",
+    "human_verdict": "unique",
+    "human_flag": false,
+    "human_note": null,
+    "human_realism": "authentic",
+    "human_blind_pick_stored": 1,
+    "human_blind_correct": false,
+    "note_letters_reviewer": [],
+    "note_options_decoded": [],
+    "stored_key_index": 2,
+    "grader_key_letter": "A",
+    "presentation": {
+      "A": "Wonderful, I'll roll it up and take it to the hall now.",
+      "B": "Fair enough, I'll open the file at home and fix the layer.",
+      "C": "Loose is fine, the conference gives us easels there.",
+      "D": "Then I'll bring the file back tomorrow and try again."
+    },
+    "stimulus": "\"Your poster's done and it looks sharp on the matte stock.\"",
+    "choices": [
+      "Loose is fine, the conference gives us easels there.",
+      "Then I'll bring the file back tomorrow and try again.",
+      "Wonderful, I'll roll it up and take it to the hall now.",
+      "Fair enough, I'll open the file at home and fix the layer."
+    ],
+    "correct_answer": "Wonderful, I'll roll it up and take it to the hall now.",
+    "content_sha": "3556aa68e9fc39cfd370b7fc801d09b1"
+  },
+  {
+    "id": "f39",
+    "item_id": "f5298ebc-0ad2-4051-ab05-e928091621e8",
+    "split": "dev",
+    "human_verdict": "unique",
+    "human_flag": false,
+    "human_note": null,
+    "human_realism": "authentic",
+    "human_blind_pick_stored": 1,
+    "human_blind_correct": false,
+    "note_letters_reviewer": [],
+    "note_options_decoded": [],
+    "stored_key_index": 3,
+    "grader_key_letter": "A",
+    "presentation": {
+      "A": "What would you suggest for getting there instead?",
+      "B": "Put me down for that one, please.",
+      "C": "I'll wait indoors where the driver can see me.",
+      "D": "I'll just wait till the service starts up again."
+    },
+    "stimulus": "\"The shuttle doesn't run out to your area anymore.\"",
+    "choices": [
+      "Put me down for that one, please.",
+      "I'll wait indoors where the driver can see me.",
+      "I'll just wait till the service starts up again.",
+      "What would you suggest for getting there instead?"
+    ],
+    "correct_answer": "What would you suggest for getting there instead?",
+    "content_sha": "1de9ce3ecf5e21eac33d95c2f574ce07"
+  },
+  {
+    "id": "f40",
+    "item_id": "f864d124-ac26-47ba-9386-1ab5c39a386f",
+    "split": "holdout",
+    "human_verdict": "unique",
+    "human_flag": false,
+    "human_note": null,
+    "human_realism": "artificial",
+    "human_blind_pick_stored": 3,
+    "human_blind_correct": false,
+    "note_letters_reviewer": [],
+    "note_options_decoded": [],
+    "stored_key_index": 1,
+    "grader_key_letter": "D",
+    "presentation": {
+      "A": "Then I'll only need the rubric for mine.",
+      "B": "I'll start with his; anything I change I'll flag.",
+      "C": "That'd clear my weekend — I'll forward the folder.",
+      "D": "I'll pull their scripts and write up my reasoning."
+    },
+    "stimulus": "\"Students are appealing the midterm curve in your section.\"",
+    "choices": [
+      "I'll start with his; anything I change I'll flag.",
+      "I'll pull their scripts and write up my reasoning.",
+      "Then I'll only need the rubric for mine.",
+      "That'd clear my weekend — I'll forward the folder."
+    ],
+    "correct_answer": "I'll pull their scripts and write up my reasoning.",
+    "content_sha": "e0bec2ac8bf463db912c5a6a32c0fef1"
+  }
+]

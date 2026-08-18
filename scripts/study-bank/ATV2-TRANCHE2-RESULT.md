@@ -695,7 +695,16 @@ it produced clean items in tranche 1 and leaky ones in tranche 2 — which is
 further reason not to discard them on construction grounds alone.
 
     RESTORED cumulative cleared:
-      pilot 24 + b1 26+6 + b2 26+6 + b3 28+4 + b4 26 + b5 20 = 166
+      pilot 24 + b1 22+6 + b2 26+6 + b3 28+4 + b4 26 + b5 20 = 162
+
+    CORRECTED 2026-08-19. This line first read "b1 26+6 = 32", which
+    double-counted the four items of atv2-b1-p4 — the lecture tranche 1
+    quarantined on its exclusivity flag, and which that tranche's own
+    result file correctly reports as leaving b1 at 28 (24 + 4 restored
+    inference = 28, not 32). Caught by the exclusivity-calibration run,
+    which loaded the corpus from the batch records and got 162 where this
+    summary claimed 166. The batch records were right; the summary line
+    was wrong. Nothing downstream used 166 except this file.
 
 They remain the known-GOOD half of the detector fixture; being in the
 cleared pool and being a control set are not in conflict.
