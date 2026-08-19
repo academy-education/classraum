@@ -72,6 +72,9 @@ export async function GET(req: NextRequest) {
     // means the job did not do its job and the heartbeat has to say so.
     let writeFailures = 0;
     const errors: string[] = [];
+    // Subscriptions that cannot be charged at all (no billing key). Tracked
+    // separately from `errors` so errorCount stays a meaningful signal.
+    const unbillable: string[] = [];
 
     // Process subscriptions in parallel batches of 5 to avoid overwhelming the payment API
     const BATCH_SIZE = 5;
@@ -81,10 +84,22 @@ export async function GET(req: NextRequest) {
         batch.map(async (subscription) => {
           console.log(`[SUBSCRIPTION-BILLING] Processing subscription: ${subscription.id} for academy: ${subscription.academy_id}`);
 
-          // Check if billing key exists
+          // Check if billing key exists.
+          //
+          // This is NOT counted as an error, and the reason matters: a
+          // subscription with auto_renew on and no billing key can never
+          // be charged, so it stays due forever and pushed errorCount to
+          // >= 1 on EVERY run. A permanently non-zero error count cannot
+          // signal anything — a genuine billing failure appearing
+          // tomorrow would look identical to this standing condition.
+          //
+          // It is separated, not silenced (muting a loud failure is its
+          // own regression): it gets its own counter and its own
+          // heartbeat field, so ops can still see exactly which
+          // subscriptions are unbillable and for how long.
           if (!subscription.billing_key) {
-            console.error(`[SUBSCRIPTION-BILLING] No billing key for subscription: ${subscription.id}`);
-            errors.push(`Subscription ${subscription.id}: No billing key`);
+            console.warn(`[SUBSCRIPTION-BILLING] Subscription ${subscription.id} has no billing key — cannot charge, not an error`);
+            unbillable.push(subscription.id);
             return;
           }
 
@@ -504,6 +519,7 @@ export async function GET(req: NextRequest) {
       subscriptionsProcessed: successCount + failCount,
       successfulPayments: successCount,
       failedPayments: failCount,
+      unbillable: unbillable.length > 0 ? unbillable : undefined,
       errors: errors.length > 0 ? errors : undefined
     };
 
@@ -527,6 +543,11 @@ export async function GET(req: NextRequest) {
           failed: failCount,
           writeFailures,
           errorCount: errors.length,
+          // Standing condition, not a failure: auto-renewing subs with no
+          // billing key. Surfaced so it stays visible without polluting
+          // errorCount.
+          unbillableCount: unbillable.length,
+          unbillableIds: unbillable.slice(0, 10),
         },
       },
       Date.now() - startedAt,
