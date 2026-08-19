@@ -5527,6 +5527,28 @@
         "done": "Ready",
         "cached": "Resuming saved test",
         "resuming": "Picking up where the server left off…"
+      },
+      "modules": {
+        "eyebrow": "Adaptive modules",
+        "title": "Module 1 vs Module 2",
+        "note": "Module 2 was drawn to match how Module 1 went. Both rows count scored questions, so they add up to the score above.",
+        "module1": "Module 1",
+        "module2": "Module 2",
+        "detail": "{correct} of {total} scored questions"
+      },
+      "passageSets": {
+        "eyebrow": "Passage sets",
+        "title": "How each passage went",
+        "label": "Passage {n}",
+        "detail": "{correct} of {total} scored questions",
+        "coverage": "{shown} of {sets} passage sets · {covered} of {total} scored questions",
+        "note": "Sets with fewer than 3 scored questions are left out — one or two questions is too few to read anything into."
+      },
+      "units": {
+        "questions": "questions",
+        "question": "question",
+        "reviewItems": "{count} items",
+        "reviewItem": "1 item"
       }
     }
   },

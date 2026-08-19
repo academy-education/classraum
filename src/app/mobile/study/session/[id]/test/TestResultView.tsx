@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react'
 import {
   CheckCircle2, XCircle, AlertTriangle, ChevronDown, Sparkles, ListChecks,
+  ArrowRight, BookOpen,
 } from '@/app/mobile/study/_shared/icons'
 import { PathMascot, type MascotState } from '@/app/mobile/study/_shared/PathMascot'
 import { useTranslation } from '@/hooks/useTranslation'
@@ -12,7 +13,7 @@ import { WritingFeedbackPanel } from './WritingPanels'
 import { ReportQuestion } from '@/app/mobile/study/_shared/ReportQuestion'
 import type { SpeechSignals } from './types'
 import {
-  tallyRows, scaleFraction, scoreSplit,
+  tallyRows, scaleFraction, scoreSplit, moduleSplit, passageSetBreakdown,
   type ResultRow, type RubricGrade, type TestResultModel,
 } from '@/lib/study/test-result'
 import { authHeaders } from '@/lib/auth-headers'
@@ -21,7 +22,9 @@ import {
 } from '@/lib/study/toefl-section-score'
 import { scoreListenRepeat } from '@/lib/study/listen-repeat-accuracy'
 import { OPEN_RESPONSE_TYPES } from '@/lib/study/openResponse'
-import { buildSectionBreakdown } from '@/lib/study/section-breakdown'
+import {
+  buildSectionBreakdown, bracketedLabel, normaliseSectionLabel,
+} from '@/lib/study/section-breakdown'
 import { SectionBreakdownCard } from '@/app/mobile/study/_shared/SectionBreakdown'
 
 /** Types whose answer is prose, not a pick from `choices`. Kept as an
@@ -44,13 +47,19 @@ const FREE_TEXT_TYPES = new Set([
  * optional and degrades to absent.
  */
 export function TestResultView({
-  model, sessionId, ko, sat, gradingOpenResponses = false,
+  model, sessionId, ko, sat, modules = null, gradingOpenResponses = false,
   answerAudioPaths = {}, answerSpeechSignals = {}, speakingGradeMode = 'text',
   header, footer,
 }: {
   model: TestResultModel
   sessionId: string
   ko: boolean
+  /** Two-module adaptive test: where Module 2 starts (a CARD index) and
+   *  what the routing endpoint graded Module 1 as (correct CARDS). Both
+   *  are cross-checks, not display values — see moduleSplit, which
+   *  returns null rather than print a split that contradicts the score.
+   *  Absent on non-adaptive tests, which is most of them. */
+  modules?: { breakIdx: number | null; module1CorrectCards: number | null } | null
   /** Estimated 200-800 section band. SAT only; null everywhere else. */
   sat?: { score: number; capped: boolean } | null
   /** True while the whole-test batch is still grading the open
@@ -67,6 +76,11 @@ export function TestResultView({
 }) {
   const { t } = useTranslation()
   const [showDetail, setShowDetail] = useState(false)
+
+  /** The unit noun for a delivered-question count. Never optional: see
+   *  the note on TallyRow's `unit`. */
+  const questionUnit = (n: number) =>
+    String(t(n === 1 ? 'study.test.units.question' : 'study.test.units.questions'))
 
   // Unit: DELIVERED QUESTIONS, the same unit as the score. `tally.counted`
   // IS model.totalScored, so the breakdown reconciles with the headline
@@ -123,6 +137,20 @@ export function TestResultView({
   }, [sessionId, hasRubricRows, gradingOpenResponses])
 
   const split = scoreSplit(model.rows, grades)
+
+  /* Module 1 vs Module 2, and per-passage-set accuracy. Both are in
+     SCORED QUESTIONS — the same unit as the hero — and both return null
+     rather than render something that cannot be reconciled with it. */
+  const mSplit = modules
+    ? moduleSplit({
+        rows: model.rows,
+        breakIdx: modules.breakIdx,
+        totalScored: model.totalScored,
+        correctCount: model.correctCount,
+        module1CorrectCards: modules.module1CorrectCards,
+      })
+    : null
+  const passageSets = passageSetBreakdown(model.rows)
 
   // TOEFL Speaking and Writing are scored on the points model rather than
   // percent-correct: a near-miss repeat earns partial credit, and the
@@ -374,6 +402,107 @@ export function TestResultView({
           two labelled sections. */}
       <SectionBreakdownCard breakdown={breakdown} ko={ko} />
 
+      {/* Module 1 vs Module 2.
+        *
+        * Only for a two-module adaptive test, and only when the two
+        * modules' scored questions add back up to the headline AND
+        * Module 1's card count matches what the routing endpoint
+        * recorded at the break. moduleSplit does both checks and returns
+        * null otherwise; there is deliberately no "approximate" path,
+        * because a split that disagrees with the score above it is the
+        * exact shape of the four bugs this screen was rebuilt to end. */}
+      {mSplit && (
+        <div className="rounded-2xl ring-1 ring-gray-200/70 bg-white shadow-[0_1px_2px_rgba(0,0,0,0.03)] overflow-hidden">
+          <div className="flex items-center gap-3 px-4 py-3.5 border-b border-gray-100">
+            <div className="flex-shrink-0 w-11 h-11 rounded-2xl flex items-center justify-center ring-1 ring-black/[0.04] shadow-[inset_0_1px_0_rgba(255,255,255,0.35)] bg-gradient-to-br from-amber-400 to-orange-500 text-white">
+              <ArrowRight className="w-5 h-5" strokeWidth={2.25} />
+            </div>
+            <div className="flex-1 min-w-0">
+              <div className="text-[11px] font-semibold uppercase tracking-[0.08em] text-gray-500 leading-none mb-1">
+                {t('study.test.modules.eyebrow')}
+              </div>
+              <div className="text-[14px] font-semibold text-gray-900 leading-tight">
+                {t('study.test.modules.title')}
+              </div>
+              <div className="text-[12px] text-gray-500 mt-0.5 leading-snug">
+                {t('study.test.modules.note')}
+              </div>
+            </div>
+          </div>
+          <div className="px-4 py-3 space-y-3">
+            <ScoreBar
+              label={String(t('study.test.modules.module1'))}
+              detail={String(t('study.test.modules.detail', {
+                correct: String(mSplit.module1.correct), total: String(mSplit.module1.total),
+              }))}
+              percent={mSplit.module1.percent}
+              tone="emerald"
+              ko={ko}
+            />
+            <ScoreBar
+              label={String(t('study.test.modules.module2'))}
+              detail={String(t('study.test.modules.detail', {
+                correct: String(mSplit.module2.correct), total: String(mSplit.module2.total),
+              }))}
+              percent={mSplit.module2.percent}
+              tone="primary"
+              ko={ko}
+            />
+          </div>
+        </div>
+      )}
+
+      {/* Per-passage-set accuracy.
+        *
+        * TOEFL only in practice, and not by a family branch: SAT rows
+        * carry no passageGroupId at all (0 of 1041 live rows), so the
+        * grouping finds nothing and the card does not render. Sets
+        * smaller than three scored questions are dropped, and the header
+        * says how much of the test is left out rather than implying the
+        * rows account for the whole score. */}
+      {passageSets && (
+        <div className="rounded-2xl ring-1 ring-gray-200/70 bg-white shadow-[0_1px_2px_rgba(0,0,0,0.03)] overflow-hidden">
+          <div className="flex items-center gap-3 px-4 py-3.5 border-b border-gray-100">
+            <div className="flex-shrink-0 w-11 h-11 rounded-2xl flex items-center justify-center ring-1 ring-black/[0.04] shadow-[inset_0_1px_0_rgba(255,255,255,0.35)] bg-gradient-to-br from-primary to-indigo-600 text-white">
+              <BookOpen className="w-5 h-5" strokeWidth={2.25} />
+            </div>
+            <div className="flex-1 min-w-0">
+              <div className="text-[11px] font-semibold uppercase tracking-[0.08em] text-gray-500 leading-none mb-1">
+                {t('study.test.passageSets.eyebrow')}
+              </div>
+              <div className="text-[14px] font-semibold text-gray-900 leading-tight">
+                {t('study.test.passageSets.title')}
+              </div>
+              <div className="text-[12px] text-gray-500 mt-0.5 leading-snug tabular-nums">
+                {t('study.test.passageSets.coverage', {
+                  shown: String(passageSets.sets.length),
+                  sets: String(passageSets.setsInTest),
+                  covered: String(passageSets.coveredScored),
+                  total: String(passageSets.totalScored),
+                })}
+              </div>
+            </div>
+          </div>
+          <div className="px-4 py-3 space-y-3">
+            {passageSets.sets.map(s => (
+              <ScoreBar
+                key={s.ordinal}
+                label={String(t('study.test.passageSets.label', { n: String(s.ordinal) }))}
+                detail={String(t('study.test.passageSets.detail', {
+                  correct: String(s.correct), total: String(s.total),
+                }))}
+                percent={s.percent}
+                tone={s.percent >= 70 ? 'emerald' : 'primary'}
+                ko={ko}
+              />
+            ))}
+            <p className="text-[11px] text-gray-400 leading-snug pt-0.5">
+              {t('study.test.passageSets.note')}
+            </p>
+          </div>
+        </div>
+      )}
+
       {/* How the answers were counted.
         *
         * This was headed "Where your 30 cards went", which is our word,
@@ -427,7 +556,7 @@ export function TestResultView({
         </div>
 
         <div className="px-4 py-2 divide-y divide-gray-100">
-          <TallyRow dot="bg-emerald-500" count={tally.counted}
+          <TallyRow dot="bg-emerald-500" count={tally.counted} unit={questionUnit(tally.counted)}
             label={ko ? '점수에 반영됨' : 'Counted toward your score'}
             note={ko
               ? `위 점수의 분모예요 — ${model.correctCount} / ${tally.counted}.`
@@ -438,11 +567,11 @@ export function TestResultView({
               ? (ko ? `${tally.skippedWithinCounted}문항은 무응답으로, 오답과 동일하게 처리됐어요.`
                     : `${tally.skippedWithinCounted} left blank, counted as wrong.`)
               : undefined} />
-          <TallyRow dot="bg-orange-400" count={tally.pilot}
+          <TallyRow dot="bg-orange-400" count={tally.pilot} unit={questionUnit(tally.pilot)}
             label={ko ? '실험 문항' : 'Experimental'}
             note={ko ? '실제 시험에도 있는 미채점 문항이에요. 풀었지만 점수에는 반영되지 않아요.'
                      : 'Trial questions the real exam also includes. You answered them; they do not count.'} />
-          <TallyRow dot="bg-primary" count={tally.rubric}
+          <TallyRow dot="bg-primary" count={tally.rubric} unit={questionUnit(tally.rubric)}
             label={ko ? '루브릭 채점' : 'Graded by rubric'}
             note={ko ? '말하기·쓰기 답변이라 정답 키가 아닌 채점 기준으로 따로 평가돼요.'
                      : 'Speaking and writing answers, scored against criteria instead of an answer key.'}
@@ -517,7 +646,12 @@ export function TestResultView({
         >
           <span className="text-sm font-semibold text-gray-900">{t('study.test.reviewTitle')}</span>
           <span className="flex items-center gap-1.5 text-[12px] font-medium text-gray-500 tabular-nums">
-            {model.rows.length}
+            {/* CARDS, not questions: a Complete-the-Words paragraph is one
+                row here and ten delivered questions in the counts above.
+                The noun is printed because the two numbers sit on one
+                screen and differ by 18 on a real Reading test. */}
+            {t(model.rows.length === 1 ? 'study.test.units.reviewItem' : 'study.test.units.reviewItems',
+               { count: String(model.rows.length) })}
             <ChevronDown className={`w-4 h-4 transition-transform ${showDetail ? 'rotate-180' : ''}`} />
           </span>
         </button>
@@ -683,7 +817,7 @@ function ScoreBar({ label, detail, percent, tone, ko, headline = false, pending 
       <div className="mt-1.5 h-1.5 rounded-full bg-gray-100 overflow-hidden">
         <div className={`h-full rounded-full ${bar}`} style={{ width: `${percent}%` }} />
       </div>
-      <div className="mt-1 text-[11.5px] text-gray-500">
+      <div className="mt-1 text-[11.5px] text-gray-500 tabular-nums">
         {detail}
         {pending > 0 && (
           <span className="text-amber-700 font-semibold">
@@ -709,8 +843,14 @@ const PART_LABEL: Record<string, { en: string; ko: string }> = {
   academic_discussion: { en: 'Discussion', ko: '학술 토론' },
 }
 
-function TallyRow({ dot, count, label, note, sub, subTone = 'warn' }: {
+function TallyRow({ dot, count, unit, label, note, sub, subTone = 'warn' }: {
   dot: string; count: number; label: string; note: string
+  /** The unit noun for `count`, ALWAYS rendered. Three units live on
+   *  this screen — cards, delivered questions, scored questions — and
+   *  every bug this file records began with a bare number that the
+   *  reader had to guess the unit of. These counts are delivered
+   *  QUESTIONS (see tallyRows), never rows of the review list. */
+  unit: string
   /** Extra detail that lives INSIDE this bucket, not beside it. */
   sub?: string
   /** 'warn' flags something the student should notice (skipped items);
@@ -734,8 +874,13 @@ function TallyRow({ dot, count, label, note, sub, subTone = 'warn' }: {
           </div>
         )}
       </div>
-      <span className="text-[15px] font-bold text-gray-900 tabular-nums flex-shrink-0 tracking-tight">
-        {count}
+      <span className="flex-shrink-0 text-right">
+        <span className="block text-[15px] font-bold text-gray-900 tabular-nums tracking-tight leading-none">
+          {count}
+        </span>
+        <span className="block text-[10px] font-semibold uppercase tracking-[0.06em] text-gray-400 mt-1">
+          {unit}
+        </span>
       </span>
     </div>
   )
@@ -786,10 +931,12 @@ function ResultCard({
   // same map the grader routes on, so a new open-response type cannot
   // be gradeable here and key-matched there.
   const isRubricItem = OPEN_RESPONSE_TYPES.has(q.type ?? '')
+  const rawTag = q.prompt ? bracketedLabel(q.prompt) : null
+  const taskTag = rawTag ? normaliseSectionLabel(rawTag) : null
 
   return (
     <div className={`rounded-2xl ring-1 bg-white overflow-hidden transition-all ${
-      isOpen ? 'shadow-[0_2px_12px_-2px_rgba(0,0,0,0.10)] ring-gray-200' : 'shadow-[0_1px_2px_rgba(0,0,0,0.03)] ring-gray-200 hover:ring-primary/40 active:scale-[0.995]'
+      isOpen ? 'shadow-[0_2px_12px_-2px_rgba(0,0,0,0.10)] ring-gray-200' : 'shadow-[0_1px_2px_rgba(0,0,0,0.03)] ring-gray-200/70 hover:ring-primary/40 active:scale-[0.995]'
     }`}>
       <button
         type="button"
@@ -827,6 +974,18 @@ function ResultCard({
                     : `${row.range.startAt}–${row.range.endAt}`,
                   total: String(deliveredTotal),
                 })}
+              </span>
+            )}
+            {/* Task tag — WHICH part of the test this item belongs to.
+                Read from the bracketed prompt prefix the generator
+                writes ("[Academic Talk — Geology] …"), normalised by the
+                same function the section breakdown groups on, so a row's
+                tag and its row in that card always say the same word.
+                Absent on SAT, whose prompts carry no prefix at all (0 of
+                547 items) — the pill simply does not render. */}
+            {taskTag && (
+              <span className="inline-flex items-center rounded-md bg-gray-100 text-gray-600 ring-1 ring-gray-200/70 px-1.5 py-0.5 text-[10px] font-semibold tracking-[0.02em] leading-none max-w-[45%] truncate">
+                {taskTag}
               </span>
             )}
             {row.ungraded ? (

@@ -20,6 +20,7 @@ const row = (over: Partial<ResultRow> = {}): ResultRow => ({
   isPilot: false,
   correctAnswerDisplay: '',
   range: null,
+  position: null,
   ...over,
 })
 

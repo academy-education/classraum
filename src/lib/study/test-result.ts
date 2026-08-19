@@ -104,6 +104,11 @@ export function reviewRanges(questions: { type?: string | null; blanks?: { id: n
 export interface ResultRowQuestion extends ResultQuestion {
   prompt: string
   passage?: string | null
+  /** Which passage / lecture this item hangs off. Present on 485 of 824
+   *  live TOEFL attempt rows and on ZERO of 1041 SAT rows, which is why
+   *  the per-set card is not an SAT feature — it self-hides there
+   *  because there is nothing to group on, not because we branch. */
+  passageGroupId?: string | null
   choices?: string[] | null
   explanation?: string | null
   graphic?: unknown
@@ -127,6 +132,12 @@ export interface ResultRow {
   correctAnswerDisplay: string
   /** DELIVERED position range, or null when this session can't be numbered. */
   range: ReviewRange | null
+  /** Delivery order as stored, or null on a legacy row. Carried rather
+   *  than re-derived from the array index: `moduleSplit` cuts the test at
+   *  a card index, and cutting an array whose order is not known to be
+   *  the delivery order is precisely the trap canNumberRows exists to
+   *  refuse. Array index would ALWAYS produce a plausible split. */
+  position: number | null
 }
 
 export interface ResultCardInput {
@@ -183,6 +194,7 @@ export function buildResultModel(input: {
       isPilot: c.question.scored === false,
       correctAnswerDisplay: displayCorrectAnswer(c.question),
       range: numbered ? (ranges[i] ?? null) : null,
+      position: typeof c.position === 'number' ? c.position : null,
     })),
   }
 }
@@ -422,4 +434,195 @@ export function toeflBandFromScaled(scaled: number): number {
 /** Convenience: percent straight through the whole chain. */
 export function toeflBandFromPercent(percent: number): number {
   return toeflBandFromScaled(toeflScaledScore(percent))
+}
+
+/* ------------------------------------------------------------------ *
+ * MODULE 1 vs MODULE 2
+ * ------------------------------------------------------------------ */
+
+export interface ModuleAccuracy {
+  /** SCORED QUESTIONS answered correctly in this module. */
+  correct: number
+  /** SCORED QUESTIONS in this module. */
+  total: number
+  percent: number
+}
+
+export interface ModuleSplit {
+  module1: ModuleAccuracy
+  module2: ModuleAccuracy
+}
+
+/**
+ * Per-module accuracy for a two-module adaptive test, in SCORED
+ * QUESTIONS so it reconciles with the headline instead of introducing a
+ * fourth unit.
+ *
+ * WHY THIS REFUSES SO OFTEN.
+ *
+ * Everything about this number is a chance to repeat one of the four
+ * bugs this file was written for, so it is computed and then CHECKED
+ * against the two numbers that were written by the server:
+ *
+ *  1. `m1.total + m2.total` must equal `totalScored`, and
+ *     `m1.correct + m2.correct` must equal `correctCount`.
+ *
+ *     This is not a formality. On live data it fails on 7 of 11 adaptive
+ *     TOEFL sessions, and the reason is real: submit's weightedScore
+ *     gives PARTIAL credit for a Complete-the-Words card (6 of 10 blanks
+ *     = 6 points), while `study_attempts.is_correct` is one boolean for
+ *     the whole card. Session 3f71f4c6 has 26 correct on the session row
+ *     and 10 recoverable from the rows. A module split derived from the
+ *     rows would have printed "7 / 20 and 3 / 15" under a hero reading
+ *     "26 / 35" — three numbers, no two of which add up.
+ *
+ *  2. Module 1's correct CARD count must equal `study_sessions.
+ *     module1_correct`, which the routing endpoint wrote at the module
+ *     break. Cards, not questions: `gradeMultipleChoice` counted cards,
+ *     and comparing it against a question count is the same conflation
+ *     that put a phantom "19" in the Module 2 banner. On live data this
+ *     catches session b13f1ebf, where the route was earned on 6 correct
+ *     and the final grade records 0 — the two disagree, so the student
+ *     is shown neither.
+ *
+ * Returns null on any failure. A module breakdown is a nice-to-have; a
+ * module breakdown that contradicts the score above it is a bug.
+ */
+export function moduleSplit(input: {
+  rows: ResultRow[]
+  /** Index of the FIRST CARD of Module 2 (payload `moduleBreakIdx`, or
+   *  equivalently `study_sessions.module1_total`). */
+  breakIdx: number | null | undefined
+  totalScored: number
+  correctCount: number
+  /** `study_sessions.module1_correct` — correct CARDS in Module 1 as
+   *  graded at the break. Cross-check; omit only if genuinely absent. */
+  module1CorrectCards?: number | null
+}): ModuleSplit | null {
+  const { rows, breakIdx, totalScored, correctCount } = input
+  if (typeof breakIdx !== 'number' || !Number.isInteger(breakIdx)) return null
+  if (breakIdx <= 0 || breakIdx >= rows.length) return null
+
+  // The cut is on `position`, so it is only meaningful if every row
+  // carries one AND they form the complete run 0..n-1. A gap means some
+  // rows are missing and the "module" behind the cut is not the module.
+  const positions = rows.map(r => r.position)
+  // Type guard, not a second gate: the run check below already rejects
+  // a null (null !== 0), and a mutation test confirmed that deleting
+  // this line alone changes no behaviour. It stays to make the cast
+  // sound, and is documented so nobody counts it as a check.
+  if (positions.some(p => typeof p !== 'number')) return null
+  const sorted = [...(positions as number[])].sort((a, b) => a - b)
+  if (sorted.some((p, i) => p !== i)) return null
+
+  let c1 = 0, t1 = 0, c2 = 0, t2 = 0, cards1 = 0
+  for (const r of rows) {
+    const inM1 = (r.position as number) < breakIdx
+    if (inM1 && r.correct) cards1 += 1
+    // Same population as the score: pilots and rubric items are not in
+    // the denominator, so they are not in a module's denominator either.
+    if (r.ungraded || r.isPilot) continue
+    const w = deliveredWeight(r.question)
+    if (inM1) { t1 += w; if (r.correct) c1 += w }
+    else { t2 += w; if (r.correct) c2 += w }
+  }
+
+  if (t1 <= 0 || t2 <= 0) return null
+  if (t1 + t2 !== totalScored) return null
+  if (c1 + c2 !== correctCount) return null
+  if (typeof input.module1CorrectCards === 'number'
+      && input.module1CorrectCards !== cards1) return null
+
+  return {
+    module1: { correct: c1, total: t1, percent: Math.round(100 * c1 / t1) },
+    module2: { correct: c2, total: t2, percent: Math.round(100 * c2 / t2) },
+  }
+}
+
+/* ------------------------------------------------------------------ *
+ * PER-PASSAGE-SET ACCURACY
+ * ------------------------------------------------------------------ */
+
+export interface PassageSetResult {
+  /** 1-based position in the test, by first appearance. */
+  ordinal: number
+  correct: number
+  /** SCORED QUESTIONS behind this set. */
+  total: number
+  percent: number
+}
+
+export interface PassageSetBreakdown {
+  sets: PassageSetResult[]
+  /** How many passage sets the test actually had, including the small
+   *  ones dropped below. Printed, not swallowed. */
+  setsInTest: number
+  /** Scored questions inside the sets shown. */
+  coveredScored: number
+  /** Every scored question in the test, so the card can say what share
+   *  of the test it is talking about. */
+  totalScored: number
+}
+
+/**
+ * Accuracy per passage / lecture set, in SCORED QUESTIONS.
+ *
+ * Two refusals, both measured against the live data rather than guessed:
+ *
+ *  - UNNUMBERED SESSIONS GET NOTHING. The only label available is the
+ *    set's position in the test ("Passage 3") — the ids are content
+ *    hashes (`pg-0281830051bf…`) with no human-readable form. A position
+ *    label on rows whose order is unknown is a confident wrong answer,
+ *    which is the trap `canNumberRows` documents. Four live sessions
+ *    would otherwise have qualified on set size alone; all four are
+ *    legacy rows with no `position`, so none of them get numbers.
+ *
+ *  - SETS BELOW `minPerSet` SCORED QUESTIONS ARE DROPPED. Bank-drawn
+ *    tests carry 10-16 sets of one or two questions each; "0 / 1 on
+ *    Passage 7" is noise wearing the costume of insight, and the same
+ *    argument already retired the second bracketed prompt segment in
+ *    section-breakdown.ts.
+ *
+ * What survives is a MINORITY of the test — on live sessions the shown
+ * sets hold 20-47% of the scored questions. That is why `setsInTest` and
+ * `totalScored` are returned: the card must say "4 of 14 passages, 14 of
+ * 35 scored questions", never imply it accounts for the whole score.
+ */
+export function passageSetBreakdown(
+  rows: ResultRow[],
+  opts: { minPerSet?: number; minSets?: number } = {},
+): PassageSetBreakdown | null {
+  const { minPerSet = 3, minSets = 2 } = opts
+  if (rows.some(r => typeof r.position !== 'number')) return null
+
+  const ordered = [...rows].sort((a, b) => (a.position as number) - (b.position as number))
+  const acc = new Map<string, { ordinal: number; correct: number; total: number }>()
+  let totalScored = 0
+
+  for (const r of ordered) {
+    if (r.ungraded || r.isPilot) continue
+    const w = deliveredWeight(r.question)
+    totalScored += w
+    const gid = (r.question.passageGroupId ?? '').trim()
+    if (!gid) continue
+    const cur = acc.get(gid) ?? { ordinal: acc.size + 1, correct: 0, total: 0 }
+    cur.total += w
+    if (r.correct) cur.correct += w
+    acc.set(gid, cur)
+  }
+
+  const setsInTest = acc.size
+  const sets = [...acc.values()]
+    .filter(s => s.total >= minPerSet)
+    .map(s => ({ ...s, percent: Math.round(100 * s.correct / s.total) }))
+    // Weakest first — the point of the card is what to reread.
+    .sort((a, b) => a.percent - b.percent || b.total - a.total)
+
+  if (sets.length < minSets) return null
+  return {
+    sets,
+    setsInTest,
+    coveredScored: sets.reduce((n, s) => n + s.total, 0),
+    totalScored,
+  }
 }

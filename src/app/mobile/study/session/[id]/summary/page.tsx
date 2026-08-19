@@ -33,6 +33,11 @@ interface SessionRow {
   total_count: number | null
   /** SAT two-module adaptive: the earned Module 2 route, or null. */
   module2_route: string | null
+  /** Module 1 as graded at the module break: correct CARDS, and how many
+   *  CARDS Module 1 held (which is also the break index). Written by
+   *  /api/study/test/route; NULL on every non-adaptive session. */
+  module1_correct: number | null
+  module1_total: number | null
   /** Why the session ended when it wasn't a deliberate submit.
    *  'app_exited' = the native app was backgrounded mid-test and the
    *  exit guard submitted what had been answered. See migration 066. */
@@ -93,7 +98,8 @@ function SummaryInner({ id }: { id: string }) {
         .from('study_sessions')
         .select(`
           id, mode, language, topic_id, topic_freeform, status, created_at, last_active_at,
-          score, correct_count, total_count, module2_route, config, ended_reason,
+          score, correct_count, total_count, module2_route, module1_correct, module1_total,
+          config, ended_reason,
           topic:study_topics ( id, slug, name_en, name_ko )
         `)
         .eq('id', id)
@@ -283,6 +289,15 @@ function SummaryInner({ id }: { id: string }) {
             sessionId={id}
             ko={ko}
             sat={satBand ? { score: satBand.score, capped: satBand.route === 'easy' } : null}
+            /* The payload is not available on a reopened session, so the
+               break index comes from `module1_total` — Module 1's CARD
+               count, which IS the index of Module 2's first card. Both
+               columns are written together by the routing endpoint, and
+               only on an adaptive session, so their presence is the same
+               gate as `adaptive && moduleBreakIdx != null`. */
+            modules={session.module2_route !== null && session.module1_total !== null
+              ? { breakIdx: session.module1_total, module1CorrectCards: session.module1_correct }
+              : null}
             footer={
               <section className="space-y-2 pt-2">
                 {session.topic && !session.config?.dailyChallenge && (

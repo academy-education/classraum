@@ -17,7 +17,7 @@ import type { SpeechSignals, SubmitResult, TestPayload } from './types'
  */
 export function ReviewView({
   test, answers, answerAudioPaths, answerSpeechSignals, speakingGradeMode, result, ko, sessionId,
-  gradingOpenResponses = false,
+  moduleRoute = null, gradingOpenResponses = false,
 }: {
   test: TestPayload
   answers: (string | null)[]
@@ -30,6 +30,10 @@ export function ReviewView({
   result: SubmitResult
   ko: boolean
   sessionId: string
+  /** What the routing endpoint graded Module 1 as, on an adaptive test.
+   *  `correct` is a CARD count — it is only ever used as a cross-check
+   *  against the same card count recomputed from the rows, never shown. */
+  moduleRoute?: { correct: number | null; total: number } | null
   /** Batch grading still running — see TestSession's submit handler. */
   gradingOpenResponses?: boolean
 }) {
@@ -65,6 +69,12 @@ export function ReviewView({
         ko={ko}
         gradingOpenResponses={gradingOpenResponses}
         sat={result.sat ? { score: result.sat.score, capped: !!result.sat.capped } : null}
+        // Adaptive only. `moduleBreakIdx` is the payload's CARD index of
+        // the first Module 2 item; on a non-adaptive test it is absent
+        // and moduleSplit refuses, which is what we want.
+        modules={test.adaptive && typeof test.moduleBreakIdx === 'number'
+          ? { breakIdx: test.moduleBreakIdx, module1CorrectCards: moduleRoute?.correct ?? null }
+          : null}
         answerAudioPaths={answerAudioPaths}
         answerSpeechSignals={answerSpeechSignals}
         speakingGradeMode={speakingGradeMode}

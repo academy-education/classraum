@@ -622,7 +622,7 @@ export function WritingFeedbackPanel({
         </audio>
       )}
       {skill === 'speaking' && speechSignals && (speechSignals.wpm != null || speechSignals.clarity != null || speechSignals.pauseCount != null) && (
-        <div className="rounded-lg border border-gray-200 bg-white/70 px-3 py-2 space-y-1">
+        <div className="rounded-lg ring-1 ring-gray-200/70 bg-white/70 px-3 py-2 space-y-1">
           <div className="text-[11px] font-semibold text-gray-600 uppercase tracking-wide">
             {ko ? '발화 분석' : 'Delivery snapshot'}
           </div>

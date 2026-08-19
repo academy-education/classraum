@@ -5527,6 +5527,28 @@
         "done": "준비 완료",
         "cached": "저장된 시험 이어보는 중",
         "resuming": "서버에서 진행 중인 작업을 이어받고 있어요…"
+      },
+      "modules": {
+        "eyebrow": "적응형 모듈",
+        "title": "모듈 1 · 모듈 2",
+        "note": "모듈 2는 모듈 1 결과에 맞춰 출제됐어요. 두 줄 모두 채점 문항 기준이라 위 점수와 합이 맞아요.",
+        "module1": "모듈 1",
+        "module2": "모듈 2",
+        "detail": "채점 {total}문항 중 {correct}문항"
+      },
+      "passageSets": {
+        "eyebrow": "지문 세트",
+        "title": "지문별 결과",
+        "label": "지문 {n}",
+        "detail": "채점 {total}문항 중 {correct}문항",
+        "coverage": "지문 세트 {sets}개 중 {shown}개 · 채점 {total}문항 중 {covered}문항",
+        "note": "채점 문항이 3개 미만인 세트는 제외했어요. 한두 문항으로는 판단하기 어려워요."
+      },
+      "units": {
+        "questions": "문항",
+        "question": "문항",
+        "reviewItems": "{count}개 항목",
+        "reviewItem": "1개 항목"
       }
     }
   },

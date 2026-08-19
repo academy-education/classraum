@@ -173,6 +173,7 @@ describe('tallyRows', () => {
       isPilot: !!s.isPilot,
       correctAnswerDisplay: 'A',
       range: null,
+      position: null,
     }))
 
   // THE identity. `counted` is the score's denominator, so the card

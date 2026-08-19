@@ -1298,6 +1298,7 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
         result={result}
         ko={ko}
         sessionId={sessionId}
+        moduleRoute={moduleRoute}
         // Batch grading is fired on submit and keeps running while this
         // screen is already up; the result view says so on the rubric row.
         gradingOpenResponses={gradingOpenResponses}
