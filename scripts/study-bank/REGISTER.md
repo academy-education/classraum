@@ -1188,3 +1188,23 @@ production. Outstanding: both batches' transcripts overshoot the 210-270
 word band (296-396 words); tighten before any banking step. Full writeup
 in ATV2-INFERENCE-PILOT-RESULT.md addenda 1 and 2. b6-b8 remain
 UNAUTHORED, now unblocked as a future decision.
+
+### CR-V7 exclusivity repair — 5 items fixed at the SOURCE line (2026-08-19)
+Human adjudication (run crv7-adjudicate-2026-08-19) cleared 8 of 13 and
+confirmed 5. Repaired by editing ONLY the spoken line; options and keys
+byte-identical to the ship-time crv7-items.json, so the -5.0 blind margin
+stands and no fresh attack is owed. No length tell (127 untouched lines
+7-12 words; repairs 10-11).
+
+**The verification failed first, and that is the durable lesson.** An
+ad-hoc grader written for this check was told a false clean is worse than
+a false flag; it then flagged 50-75% of items the human had CLEARED, and
+even 3/3 unanimity did not discriminate. A CALIBRATED brief already
+existed (EXCLUSIVITY-GRADER-BRIEF.md, 6.7% false-flag against the human's
+own labels) saying the opposite - "listener level, not lawyer level", "do
+not aim for any particular flag rate". Writing a fresh prompt instead of
+quoting the frozen one destroyed the instrument. Re-run with the frozen
+brief, blinded by interleaving the 5 repaired items with 8 human-cleared
+ones in ONE 13-item set: repaired 40% grader-flags / 20% unanimous,
+control 54% / 25%. Repaired items measure BETTER than items the human
+passed. Accepted all five. Full record: CRV7-REPAIR-RESULT.md.
