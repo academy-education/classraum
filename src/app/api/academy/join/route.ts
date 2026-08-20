@@ -112,7 +112,7 @@ export async function POST(req: NextRequest) {
   if (body.familyMemberId) {
     const { data: member } = await dbAdmin
       .from('family_members')
-      .select('id, role, family_id, user_id, families!inner(academy_id)')
+      .select('id, role, family_id, user_id, relation, families!inner(academy_id)')
       .eq('id', body.familyMemberId)
       .maybeSingle()
     const familyAcademy = (member?.families as { academy_id?: string } | null)?.academy_id
@@ -130,6 +130,28 @@ export async function POST(req: NextRequest) {
         .eq('id', member.id)
         .is('user_id', null)
       if (error) return NextResponse.json({ error: 'claim failed' }, { status: 500 })
+    }
+
+    /* Relation on a PERSONALISED invite: fill a blank, never overwrite.
+     *
+     * This row was created by a manager, who may already have recorded
+     * that this person is the father — and they know the family. A
+     * relation arriving from the claim form is the invitee's own
+     * statement, which is good data when nothing is on file and not
+     * good enough to silently replace the manager's.
+     *
+     * The `.is('relation', null)` guard makes that a property of the
+     * WRITE rather than of the read above it: two people claiming
+     * concurrently, or a manager setting the relation between our
+     * SELECT and this UPDATE, both lose the race safely instead of
+     * clobbering a value. Checking `member.relation` alone would be a
+     * read-then-write, which this codebase has already been bitten by. */
+    if (role === 'parent' && relation && member.relation === null) {
+      await dbAdmin
+        .from('family_members')
+        .update({ relation })
+        .eq('id', member.id)
+        .is('relation', null)
     }
   } else if (body.familyId) {
     // General invite that carries a family: add the user to it.
