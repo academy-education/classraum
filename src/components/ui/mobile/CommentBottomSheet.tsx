@@ -5,6 +5,7 @@ import { X, Send } from 'lucide-react'
 import { useTranslation } from '@/hooks/useTranslation'
 import { usePersistentMobileAuth } from '@/contexts/PersistentMobileAuth'
 import { useLanguage } from '@/contexts/LanguageContext'
+import { initialsFromName } from '@/lib/name'
 
 interface Comment {
   id: string
@@ -216,7 +217,7 @@ export function CommentBottomSheet({
           <div className="flex items-end gap-2">
             <div className="w-9 h-9 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full flex items-center justify-center flex-shrink-0">
               <span className="text-xs font-semibold text-white">
-                {user?.userName?.charAt(0).toUpperCase() || '?'}
+                {initialsFromName(user?.userName) || '?'}
               </span>
             </div>
             <div className="flex-1 min-w-0">

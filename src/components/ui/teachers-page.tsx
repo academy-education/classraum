@@ -41,6 +41,7 @@ import { clearCachesOnRefresh, markRefreshHandled } from '@/utils/cacheRefresh'
 import { useSubscriptionLimits } from '@/hooks/useSubscriptionLimits'
 
 import { invalidateTeachersCache } from '@/lib/cache'
+import { initialsFromName } from '@/lib/name'
 export { invalidateTeachersCache }
 
 interface Teacher {
@@ -1128,7 +1129,7 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
                   <td className="p-3 sm:p-4">
                     <div className="flex items-center gap-3">
                       <div className="w-9 h-9 rounded-full bg-gradient-to-br from-emerald-400 to-emerald-600 text-white flex items-center justify-center text-sm font-semibold flex-shrink-0">
-                        {teacher.name?.charAt(0).toUpperCase() || '?'}
+                        {initialsFromName(teacher.name) || '?'}
                       </div>
                       <div className="min-w-0">
                         <div className="text-sm font-semibold text-gray-900 truncate">{teacher.name}</div>
@@ -1510,7 +1511,7 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
                           <div key={index} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
                             <div className="flex items-center gap-3">
                               <div className="w-10 h-10 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full flex items-center justify-center text-white font-medium text-sm">
-                                {student.name.split(' ').map(n => n[0]).join('').toUpperCase()}
+                                {initialsFromName(student.name)}
                               </div>
                               <div>
                                 <p className="font-medium text-gray-900">{student.name}</p>

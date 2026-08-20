@@ -35,6 +35,7 @@ import { clearCachesOnRefresh, markRefreshHandled } from '@/utils/cacheRefresh'
 import { Skeleton } from '@/components/ui/skeleton'
 
 import { invalidateParentsCache } from '@/lib/cache'
+import { initialsFromName } from '@/lib/name'
 export { invalidateParentsCache }
 
 interface Parent {
@@ -1227,7 +1228,7 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
                   <td className="p-3 sm:p-4">
                     <div className="flex items-center gap-3">
                       <div className="w-9 h-9 rounded-full bg-gradient-to-br from-sky-400 to-sky-600 text-white flex items-center justify-center text-sm font-semibold flex-shrink-0">
-                        {parent.name?.charAt(0).toUpperCase() || '?'}
+                        {initialsFromName(parent.name) || '?'}
                       </div>
                       <div className="min-w-0">
                         <div className="text-sm font-semibold text-gray-900 truncate">{parent.name}</div>

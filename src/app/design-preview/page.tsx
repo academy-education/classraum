@@ -21,6 +21,7 @@ import {
   Filter, Download, Inbox, Folder,
 } from 'lucide-react'
 import { EmptyState } from '@/components/ui/common/EmptyState'
+import { initialsFromName } from '@/lib/name'
 
 export default function DesignPreviewPage() {
   return (
@@ -1173,7 +1174,7 @@ function NewTableRow() {
         >
           <div className="flex items-center gap-3">
             <div className="w-9 h-9 rounded-full bg-gradient-to-br from-blue-400 to-blue-600 text-white flex items-center justify-center text-sm font-semibold">
-              {s.name.charAt(0)}
+              {initialsFromName(s.name)}
             </div>
             <div>
               <p className="text-sm font-semibold text-gray-900">{s.name}</p>

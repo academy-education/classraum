@@ -3,6 +3,7 @@
 import Image from 'next/image'
 import { useLanguage } from '@/contexts/LanguageContext'
 import { getDateLocale } from '@/utils/dateUtils'
+import { initialsFromName } from '@/lib/name'
 
 interface Message {
   id: string
@@ -33,7 +34,7 @@ export function ChatMessage({ message }: ChatMessageProps) {
           : 'bg-white border border-gray-200'
       }`}>
         {isUser ? (
-          message.senderName?.charAt(0).toUpperCase() || 'U'
+          initialsFromName(message.senderName) || 'U'
         ) : (
           <Image
             src="/inverse-logo.png"

@@ -8,6 +8,7 @@ import { useTranslation } from '@/hooks/useTranslation'
 import { usePersistentMobileAuth } from '@/contexts/PersistentMobileAuth'
 import { SkeletonBlock } from './skeletons'
 import { useLandingData } from './LandingDataProvider'
+import { greetingName } from '@/lib/name'
 
 interface Progress {
   questionsToday: number
@@ -83,7 +84,8 @@ export function StudyHero({ onOpenSearch, overflowMenu }: Props) {
 
   const now = new Date()
   const greeting = ko ? '안녕하세요' : 'Hello'
-  const firstName = user?.userName?.split(' ')[0] ?? user?.userName ?? ''
+  // Korean attaches 님 to the whole name (김영희님), not to the 이름 alone.
+  const firstName = greetingName({ name: user?.userName }, ko ? 'korean' : 'english')
   const dateStr = now.toLocaleDateString(ko ? 'ko-KR' : 'en-US', {
     month: 'short', day: 'numeric', weekday: 'short',
   })

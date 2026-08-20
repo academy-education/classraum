@@ -23,6 +23,7 @@ import {
 import type { AssignmentGradeStatus, AttendanceStatus } from '@/types/db-enums'
 import { isAssignmentGradeStatus } from '@/types/db-enums'
 import type { Json } from '@/lib/database.types'
+import { initialsFromName } from '@/lib/name'
 
 /* ── jsonb narrowing helpers ────────────────────────────────────────────
  * `student_reports.selected_*` and the RPC's `assignment_data` are jsonb
@@ -906,7 +907,7 @@ export default function MobileReportDetailsPage() {
       <Card className="p-5">
         <div className="flex items-center gap-4">
           <div className="w-14 h-14 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full flex items-center justify-center text-white font-semibold text-lg flex-shrink-0">
-            {report.student_name?.charAt(0).toUpperCase() || 'S'}
+            {initialsFromName(report.student_name) || 'S'}
           </div>
           <div className="min-w-0 flex-1">
             <Eyebrow className="mb-0.5">

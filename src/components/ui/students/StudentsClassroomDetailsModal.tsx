@@ -7,6 +7,7 @@ import { ModalShell } from '@/components/ui/common/ModalShell'
 import { School, GraduationCap, Book, Clock, Users } from 'lucide-react'
 import { useLanguage } from '@/contexts/LanguageContext'
 import { getDateLocale } from '@/utils/dateUtils'
+import { initialsFromName } from '@/lib/name'
 
 interface Classroom {
   id: string
@@ -152,7 +153,7 @@ export function StudentsClassroomDetailsModal({
                       <div key={index} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
                         <div className="flex items-center gap-3">
                           <div className="w-10 h-10 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full flex items-center justify-center text-white font-medium text-sm">
-                            {student.name.split(' ').map((n) => n[0]).join('').toUpperCase()}
+                            {initialsFromName(student.name)}
                           </div>
                           <div>
                             <p className="font-medium text-gray-900">{student.name}</p>

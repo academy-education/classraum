@@ -30,6 +30,7 @@ import {
   Bell,
   Tent
 } from "lucide-react"
+import { initialsFromName } from '@/lib/name'
 
 interface SidebarProps {
   activeItem?: string
@@ -411,7 +412,7 @@ export function Sidebar({ activeItem, userName, onHelpClick, academyLogo }: Side
             {userName ? (
               <>
                 <div className="w-8 h-8 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full flex items-center justify-center text-white font-medium text-sm">
-                  {userName.charAt(0).toUpperCase()}
+                  {initialsFromName(userName)}
                 </div>
                 <div className="flex-1 min-w-0">
                   <p className="text-sm font-medium text-gray-900 truncate">{userName}</p>

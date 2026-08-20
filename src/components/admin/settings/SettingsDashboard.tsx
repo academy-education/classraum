@@ -22,6 +22,7 @@ import { getDateLocale } from '@/utils/dateUtils';
 import { StatusBadge } from '../StatusBadge';
 import { AdminSkeleton } from '../AdminSkeleton';
 import { getAdminPermissions } from '@/lib/admin-auth-shared';
+import { initialsFromName } from '@/lib/name';
 
 interface AdminProfile {
   id: string
@@ -199,7 +200,7 @@ export function SettingsDashboard() {
           {/* Avatar */}
           <div className="sm:col-span-2 flex items-center gap-4">
             <div className="w-14 h-14 rounded-full bg-primary flex items-center justify-center text-white font-semibold text-lg shadow-sm shadow-primary/20">
-              {(profile.name || profile.email).charAt(0).toUpperCase()}
+              {initialsFromName(profile.name || profile.email)}
             </div>
             <div>
               <p className="text-base font-semibold text-gray-900">{profile.name || profile.email}</p>

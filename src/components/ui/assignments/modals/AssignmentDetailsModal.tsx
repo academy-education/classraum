@@ -18,6 +18,7 @@ import { ModalShell } from '@/components/ui/common/ModalShell'
 import { Skeleton } from '@/components/ui/skeleton'
 import { AttachmentList } from '@/components/ui/attachment-list'
 import type { Assignment, AssignmentGrade } from '@/components/ui/assignments/hooks/useAssignmentsData'
+import { initialsFromName } from '@/lib/name'
 
 interface AssignmentDetailsModalProps {
   isOpen: boolean
@@ -215,7 +216,7 @@ export function AssignmentDetailsModal({
                   <div className="space-y-3">
                     {assignmentGrades.map((grade) => {
                       const studentName = grade.student_name || 'Unknown Student';
-                      const initials = studentName.split(' ').map((n: string) => n[0]).join('').toUpperCase()
+                      const initials = initialsFromName(studentName)
 
                       return (
                       <div key={grade.id} className="flex items-center justify-between gap-3 p-3 bg-gray-50 rounded-lg">

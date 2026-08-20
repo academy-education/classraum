@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { useTranslation } from '@/hooks/useTranslation'
 import { usePersistentMobileAuth } from '@/contexts/PersistentMobileAuth'
 import { BookOpen, GraduationCap, Sparkles, ArrowRight } from 'lucide-react'
+import { greetingName } from '@/lib/name'
 
 /**
  * Mobile hub — the chooser students land on their FIRST visit (entry
@@ -18,7 +19,7 @@ import { BookOpen, GraduationCap, Sparkles, ArrowRight } from 'lucide-react'
  * student-only experience.
  */
 export default function MobileStartPage() {
-  const { t } = useTranslation()
+  const { t, language } = useTranslation()
   const { user } = usePersistentMobileAuth()
   const role = user?.role
   const isStudent = role === 'student'
@@ -26,7 +27,10 @@ export default function MobileStartPage() {
   // get no Grades tile — there's no academy data behind it.
   const hasAcademy = (user?.academyIds?.length ?? 0) > 0
 
-  const firstName = (user?.userName || '').split(' ')[0]
+  // 님 in ko.json's `greetingNamed` attaches to the WHOLE Korean name; see
+  // greetingName() for why a `.split(' ')[0]` here was wrong for the 150
+  // relationship-label accounts.
+  const firstName = greetingName({ name: user?.userName }, language)
 
   return (
     <div className="min-h-full bg-gray-50">

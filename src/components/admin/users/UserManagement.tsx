@@ -45,6 +45,7 @@ import {
 import { db } from '@/lib/supabase';
 import { useTranslation } from '@/hooks/useTranslation';
 import { getDateLocale } from '@/utils/dateUtils';
+import { initialsFromName } from '@/lib/name';
 
 interface User {
   id: string;
@@ -726,7 +727,7 @@ export function UserManagement() {
                     <td className="px-4 py-4 whitespace-nowrap">
                       <div className="flex items-center">
                         <div className="w-10 h-10 bg-primary rounded-full flex items-center justify-center text-white font-medium text-sm">
-                          {user.name.charAt(0).toUpperCase()}
+                          {initialsFromName(user.name)}
                         </div>
                         <div className="ml-4">
                           <div className="text-sm font-medium text-gray-900">{user.name}</div>

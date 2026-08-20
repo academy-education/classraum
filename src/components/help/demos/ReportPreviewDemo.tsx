@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/button'
 import { Bot, Filter, Sparkles, Edit } from 'lucide-react'
 import { getReportStudents } from './sample-data'
 import { NonFunctional } from './NonFunctional'
+import { initialsFromName } from '@/lib/name'
 
 /**
  * Live preview of the report-card Preview modal — mirrors
@@ -57,7 +58,7 @@ export function ReportPreviewDemo() {
           <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg p-5 border border-blue-100">
             <div className="flex items-center gap-4">
               <div className="w-14 h-14 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full flex items-center justify-center text-white font-medium text-xl">
-                {student.name.charAt(0)}
+                {initialsFromName(student.name)}
               </div>
               <div>
                 <h3 className="text-lg font-semibold text-gray-900">{student.name}</h3>

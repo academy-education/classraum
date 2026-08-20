@@ -2,9 +2,11 @@
  * DOM-ORDER tests for <NameFields>.
  *
  * The order of these two inputs is the whole point of the component, and it
- * is the thing that was wrong in production: ko.json mapped
- * settings.account.firstName -> "이름" and lastName -> "성" while the JSX
- * rendered firstName first, so every Korean user saw 이름 then 성 — backwards.
+ * is the thing that was wrong in production: the old settings form used a
+ * first-name/last-name pair whose Korean labels were 이름 then 성, while the
+ * JSX rendered the first-name box first — so every Korean user saw 이름 then
+ * 성, backwards. Those two locale keys are gone (this component replaced the
+ * pair with 성/이름), which is why they are described here rather than named.
  *
  * Asserting the LABELS alone would not have caught that, and would not catch
  * a regression here either: labels can be right while the boxes are in the

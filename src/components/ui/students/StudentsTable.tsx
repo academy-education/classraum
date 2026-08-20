@@ -16,6 +16,7 @@ import { Student } from '@/hooks/useStudentData'
 import { cn } from '@/lib/utils'
 import { TableCheckbox } from '@/components/ui/dashboard'
 import { EmptyState } from '@/components/ui/common/EmptyState'
+import { initialsFromName } from '@/lib/name'
 
 interface StudentsTableProps {
   students: Student[]
@@ -210,7 +211,7 @@ export function StudentsTable({
               <td className="p-3 sm:p-4">
                 <div className="flex items-center gap-3">
                   <div className="w-9 h-9 rounded-full bg-gradient-to-br from-blue-400 to-blue-600 text-white flex items-center justify-center text-sm font-semibold flex-shrink-0">
-                    {student.name?.charAt(0).toUpperCase() || '?'}
+                    {initialsFromName(student.name) || '?'}
                   </div>
                   <div className="min-w-0">
                     <div className="text-sm font-semibold text-gray-900 truncate">{student.name}</div>

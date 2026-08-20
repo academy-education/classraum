@@ -47,6 +47,7 @@ import { ModalShell } from '@/components/ui/common/ModalShell'
 import { Skeleton } from '@/components/ui/skeleton'
 
 import { invalidateAttendanceCache } from '@/lib/cache'
+import { initialsFromName } from '@/lib/name'
 export { invalidateAttendanceCache }
 
 interface AttendanceRecord {
@@ -1550,7 +1551,7 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
                         </>
                       ) : sessionAttendance.map((attendance) => {
                         const studentName = attendance.student_name || String(t('common.fallbacks.unknownStudent'))
-                        const initials = studentName.split(' ').map((n: string) => n[0]).join('').toUpperCase()
+                        const initials = initialsFromName(studentName)
 
                         return (
                           <div key={attendance.id} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">

@@ -14,6 +14,7 @@ import { SkeletonCard, SkeletonBlock, SkeletonRowList } from '../skeletons'
 import { SegmentedTabs } from '../_shared/SegmentedTabs'
 import { StudyButton, studyButtonClass } from '@/app/mobile/study/_shared/StudyButton'
 import { StudyAvatar } from '@/app/mobile/study/_shared/avatars'
+import { initialsFromName } from '@/lib/name'
 
 /**
  * /mobile/study/league — weekly cohort leaderboard.
@@ -459,18 +460,13 @@ function RankAvatar({ row, size, initialsClass, avatarClass = '' }: {
       avatarConfig={row.avatar_config}
       size={size}
       className={avatarClass}
-      fallback={<span className={initialsClass}>{initialsOf(row.display_name)}</span>}
+      fallback={<span className={initialsClass}>{initialsFromName(row.display_name) || '?'}</span>}
     />
   )
 }
 
-/** Deterministic initials + a stable hue from a display name. */
-function initialsOf(name: string): string {
-  const parts = name.trim().split(/\s+/).filter(Boolean)
-  if (parts.length === 0) return '?'
-  if (parts.length === 1) return parts[0].slice(0, 2).toUpperCase()
-  return (parts[0][0] + parts[parts.length - 1][0]).toUpperCase()
-}
+/** A stable hue from a user id. (Initials come from initialsFromName —
+ *  one rule shared with friends/page.tsx, which used to disagree here.) */
 const AVATAR_HUES = ['bg-rose-100 text-rose-700', 'bg-sky-100 text-sky-700', 'bg-emerald-100 text-emerald-700', 'bg-violet-100 text-violet-700', 'bg-amber-100 text-amber-700', 'bg-cyan-100 text-cyan-700', 'bg-fuchsia-100 text-fuchsia-700', 'bg-indigo-100 text-indigo-700']
 function hueOf(id: string): string {
   let h = 0

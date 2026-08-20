@@ -10,6 +10,7 @@ import { StudyPageHeader, StudyScrollShell, StudyPageTransition, StudyEmptyState
 import { SkeletonBlock, SkeletonCard } from '../skeletons'
 import { StudyButton } from '@/app/mobile/study/_shared/StudyButton'
 import { StudyAvatar } from '@/app/mobile/study/_shared/avatars'
+import { initialsFromName } from '@/lib/name'
 
 /**
  * /mobile/study/friends — friend management.
@@ -571,7 +572,7 @@ function Duels({ ko, refreshKey }: { ko: boolean; refreshKey: number }) {
 function Avatar({ name, avatarId, avatarConfig }: {
   name: string; avatarId?: string | null; avatarConfig?: unknown
 }) {
-  const initial = (name.trim()[0] ?? '?').toUpperCase()
+  const initial = initialsFromName(name) || '?'
   let h = 0
   for (let i = 0; i < name.length; i++) h = (h * 31 + name.charCodeAt(i)) % 360
   return (

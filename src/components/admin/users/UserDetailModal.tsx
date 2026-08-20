@@ -19,6 +19,7 @@ import { ModalShell } from '../ModalShell';
 import { db } from '@/lib/supabase';
 import { useTranslation } from '@/hooks/useTranslation';
 import { getDateLocale } from '@/utils/dateUtils';
+import { initialsFromName } from '@/lib/name';
 
 interface AdminUser {
   id: string;
@@ -139,7 +140,7 @@ export function UserDetailModal({ user, onClose }: UserDetailModalProps) {
       title={
         <span className="inline-flex items-center gap-3 min-w-0">
           <span className="w-12 h-12 bg-primary rounded-full flex items-center justify-center text-white font-medium flex-shrink-0">
-            {user.name.charAt(0).toUpperCase()}
+            {initialsFromName(user.name)}
           </span>
           <span className="flex flex-col min-w-0">
             <span className="text-xl font-semibold text-gray-900">{user.name}</span>

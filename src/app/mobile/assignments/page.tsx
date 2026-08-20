@@ -47,6 +47,7 @@ const GradesTrendChart = dynamic(() => import('./GradesTrendChart'), {
   loading: () => <div className="w-full h-full animate-pulse bg-gray-200 rounded" />,
 })
 import { MOBILE_FEATURES } from '@/config/mobileFeatures'
+import { initialsFromName } from '@/lib/name'
 
 interface Comment {
   id: string
@@ -171,7 +172,7 @@ const fetchAssignmentComments = async (assignmentIds: string[]): Promise<Map<str
         assignment_id: comment.assignment_id,
         user_id: comment.user_id,
         user_name: userName,
-        user_initials: userName.split(' ').map((n: string) => n[0]).join('').toUpperCase(),
+        user_initials: initialsFromName(userName),
         content: comment.text,
         created_at: comment.created_at,
         updated_at: comment.updated_at
@@ -700,9 +701,7 @@ function MobileAssignmentsPageContent() {
         const teacherId = classroom.teacher_id || ''
         const teacherName = teacherMap.get(teacherId) || 'Unknown Teacher'
 
-        const getInitials = (name: string) => {
-          return name?.split(' ').map(n => n[0]).join('') || 'T'
-        }
+        const getInitials = (name: string) => initialsFromName(name) || 'T'
 
         // Get student's grade for this assignment from the map
         const userGrade = userGradesMap.get(assignment.id)
@@ -1627,7 +1626,7 @@ function MobileAssignmentsPageContent() {
         assignment_id: savedComment.assignment_id,
         user_id: savedComment.user_id,
         user_name: user?.userName || 'You',
-        user_initials: user?.userName?.charAt(0) || 'Y',
+        user_initials: initialsFromName(user?.userName) || 'Y',
         content: savedComment.text,
         // created_at is nullable in the schema but defaults to now() on insert;
         // fall back to the local clock only if PostgREST omitted it.
@@ -3200,7 +3199,7 @@ function MobileAssignmentsPageContent() {
                     <div className="flex items-start space-x-3">
                       <div className="w-8 h-8 bg-gradient-to-br from-emerald-400 to-emerald-600 rounded-full flex items-center justify-center flex-shrink-0">
                         <span className="text-sm font-semibold text-white">
-                          {grade.teacher_name.split(' ').map((n: string) => n[0]).join('')}
+                          {initialsFromName(grade.teacher_name)}
                         </span>
                       </div>
                       <div className="flex-1">

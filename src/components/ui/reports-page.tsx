@@ -86,6 +86,7 @@ import {
   getReportSubjectName,
 } from '@/types/queries'
 import type { AssignmentGradeStatus, AttendanceStatus } from '@/types/db-enums'
+import { initialsFromName } from '@/lib/name'
 export { invalidateReportsCache }
 
 interface ReportData {
@@ -3742,7 +3743,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                   <div className="flex items-start justify-between">
                     <div className="flex items-center gap-4">
                       <div className="w-16 h-16 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full flex items-center justify-center text-white font-medium text-xl">
-                        {students.find(s => s.user_id === formData.student_id)?.name?.charAt(0).toUpperCase() || 'S'}
+                        {initialsFromName(students.find(s => s.user_id === formData.student_id)?.name) || 'S'}
                       </div>
                       <div>
                         <h3 className="text-xl font-semibold tracking-tight text-gray-900">

@@ -113,6 +113,22 @@ export function initials(u: NameFields | null | undefined): string {
   return (tokens[0]?.[0] ?? '').toUpperCase()
 }
 
+/**
+ * Avatar initial for a site that only has the joined display STRING — a
+ * denormalised `student_name`, a `teacher_name`, a leaderboard
+ * `display_name` — with no access to the split columns.
+ *
+ * It exists so those ~20 sites are not tempted to re-inline the rule. Before
+ * this, two study screens disagreed on the same person: `league/page.tsx`
+ * rendered `김범` (two syllables, via a single-token `slice(0,2)`) where
+ * `friends/page.tsx` rendered `김`, and ten roster sites rendered `AL` for
+ * "Andy Lee" where the other ten rendered `A`. One rule, one answer:
+ * the leading character of the display form.
+ */
+export function initialsFromName(name: string | null | undefined): string {
+  return initials({ name })
+}
+
 function isKoreanLocale(locale: NameLocale | null | undefined): boolean {
   return locale === 'korean' || locale === 'ko'
 }
@@ -128,6 +144,36 @@ export function honorific(
   const shown = displayName(u)
   if (!shown) return ''
   return isKoreanLocale(locale) ? `${shown}님` : shown
+}
+
+/**
+ * The name to ADDRESS someone by in a greeting.
+ *
+ * Korean attaches 님 to the WHOLE name (김영희님), never to the 이름 alone —
+ * "영희님" is what a stranger who mis-parsed your name says. Two greeting
+ * sites (`StudyHero.tsx`, `mobile/start/page.tsx`) took `.split(' ')[0]` and
+ * appended 님 to that. For the 203 unspaced Korean names the token IS the
+ * whole name, so it was right by accident; for the 150 relationship-label
+ * rows (`강하준 아버지`) it produced `하준님`, which is neither the parent's
+ * name nor the child's.
+ *
+ * English has no affix and does address people by given name, so the Latin
+ * branch keeps returning the given name — the existing behaviour for the 51
+ * two-token Latin accounts is preserved deliberately.
+ *
+ * A Hangul-script name under an English locale returns whole: there is no
+ * whitespace to split on and taking a substring of 성이름 is exactly the bug
+ * this function exists to remove.
+ */
+export function greetingName(
+  u: NameFields | null | undefined,
+  locale: NameLocale = 'english'
+): string {
+  const shown = displayName(u)
+  if (!shown) return ''
+  if (isKoreanLocale(locale) || detectScript(shown) === 'hangul') return shown
+  if (hasSplitName(u)) return clean(u!.given_name)
+  return shown.split(/\s+/).filter(Boolean)[0] ?? ''
 }
 
 /**

@@ -4,6 +4,7 @@ import React from 'react'
 import Image from 'next/image'
 import { Wifi, WifiOff, Users, Activity } from 'lucide-react'
 import { useRealTimePresence } from '@/hooks/useRealTimeData'
+import { initialsFromName } from '@/lib/name'
 
 interface RealTimeIndicatorProps {
   roomId: string
@@ -95,7 +96,7 @@ export function RealTimeIndicator({
                   />
                 ) : (
                   <div className="w-4 h-4 rounded-full bg-blue-500 flex items-center justify-center text-white text-xs">
-                    {(user.name || 'U').charAt(0).toUpperCase()}
+                    {initialsFromName(user.name) || 'U'}
                   </div>
                 )}
                 <span className="text-xs">{getActivityIcon(activity as { type?: string } | null)}</span>

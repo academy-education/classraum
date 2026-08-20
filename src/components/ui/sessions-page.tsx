@@ -110,6 +110,7 @@ import { startOfMonth, endOfMonth, addMonths, subMonths } from 'date-fns'
 // export keeps the helper bound in this module's scope (the page calls
 // it from internal handlers below).
 import { invalidateSessionsCache } from '@/lib/cache'
+import { initialsFromName } from '@/lib/name'
 export { invalidateSessionsCache }
 
 interface Session {
@@ -6796,7 +6797,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                           <div key={attendance.id} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
                             <div className="flex items-center gap-3">
                               <div className="w-10 h-10 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full flex items-center justify-center text-white font-medium text-sm">
-                                {attendance.student_name?.split(' ').map(n => n[0]).join('').toUpperCase() || '?'}
+                                {initialsFromName(attendance.student_name) || '?'}
                               </div>
                               <div>
                                 <p className="font-medium text-gray-900">{attendance.student_name || t('sessions.unknownStudent')}</p>

@@ -155,14 +155,20 @@ export async function POST(req: NextRequest) {
     }
   } else if (body.familyId) {
     // General invite that carries a family: add the user to it.
-    const { data: u } = await dbAdmin
-      .from('users').select('name').eq('id', user.id).maybeSingle()
+    //
+    // `user_name` is DELIBERATELY not written. It is a denormalised copy of
+    // users.name, frozen at row creation and maintained by nobody: 151 of the
+    // 301 linked rows that carry one disagree with users.name today (measured
+    // 2026-08-20, after migration 093). This row HAS a user_id, so every
+    // reader can and does join `users` for the live name — families-page.tsx
+    // does exactly that. A second copy here is just the 302nd chance to drift.
+    // The column stays populated for the invited-but-unclaimed rows, where
+    // there is no user record to join — see 095_deprecate_family_members_user_name.sql.
     const { error } = await dbAdmin
       .from('family_members')
       .insert({
         family_id: body.familyId,
         user_id: user.id,
-        user_name: u?.name ?? '',
         role,
         // Only parents have a relation; a student's relation to the
         // family is their role. Omitted (NULL) when none was supplied.

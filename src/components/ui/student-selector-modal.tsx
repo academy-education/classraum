@@ -5,6 +5,7 @@ import { X, Check, Users } from 'lucide-react'
 import { useTranslation } from '@/hooks/useTranslation'
 import { useSelectedStudentStore } from '@/stores/selectedStudentStore'
 import { Card } from '@/components/ui/card'
+import { initialsFromName } from '@/lib/name'
 
 interface Student {
   id: string
@@ -85,13 +86,7 @@ export function StudentSelectorModal({
           <div className="space-y-2">
             {students.map((student) => {
               const isSelected = selectedStudent?.id === student.id
-              const initials =
-                student.name
-                  ?.split(' ')
-                  .map((n) => n[0])
-                  .join('')
-                  .toUpperCase()
-                  .slice(0, 2) || '?'
+              const initials = initialsFromName(student.name) || '?'
 
               return (
                 <button

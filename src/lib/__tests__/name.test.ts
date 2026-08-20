@@ -16,6 +16,8 @@ import {
   displayName,
   sortKey,
   initials,
+  initialsFromName,
+  greetingName,
   honorific,
   splitName,
   needsNamePrompt,
@@ -107,6 +109,53 @@ describe('initials — must stay behaviour-identical to today name[0]', () => {
   it('is empty, not a crash, for an empty row', () => {
     expect(initials(null)).toBe('')
     expect(initials({ name: '' })).toBe('')
+  })
+})
+
+describe('initialsFromName — the one rule the ~20 string-only sites share', () => {
+  it('agrees with initials() on the joined string', () => {
+    expect(initialsFromName('김영희')).toBe(initials({ name: '김영희' }))
+    expect(initialsFromName('Andy Lee')).toBe(initials({ name: 'Andy Lee' }))
+  })
+  it('ends the league/friends disagreement — ONE syllable, not two', () => {
+    // league/page.tsx did `parts[0].slice(0,2)` for a single-token name and
+    // rendered 김범; friends/page.tsx did `name[0]` and rendered 김.
+    expect(initialsFromName('김범준')).toBe('김')
+    expect(initialsFromName('김범준')).not.toBe('김범')
+  })
+  it('ends the AL/A disagreement — the GIVEN initial only', () => {
+    expect(initialsFromName('Andy Lee')).toBe('A')
+    expect(initialsFromName('Andy Lee')).not.toBe('AL')
+  })
+  it('returns empty (not a crash, not a literal) for missing input, so the call sites keep their own || fallback char', () => {
+    expect(initialsFromName('')).toBe('')
+    expect(initialsFromName(null)).toBe('')
+    expect(initialsFromName(undefined)).toBe('')
+    expect(initialsFromName('   ')).toBe('')
+  })
+})
+
+describe('greetingName — 님 attaches to the whole name', () => {
+  it('returns the WHOLE Korean name, so honorific reads 김영희님', () => {
+    expect(greetingName({ name: '김영희' }, 'korean')).toBe('김영희')
+    expect(greetingName({ family_name: '김', given_name: '영희', name: '김영희' }, 'korean')).toBe('김영희')
+  })
+  it('does not slice a relationship-label row down to the child given name', () => {
+    // `.split(' ')[0]` gave '강하준' -> greeting '강하준님', addressing the
+    // parent by the CHILD's name. The whole label is at least not a lie.
+    expect(greetingName({ name: '강하준 아버지' }, 'korean')).toBe('강하준 아버지')
+    expect(greetingName({ name: '강하준 아버지' }, 'korean')).not.toBe('강하준')
+  })
+  it('keeps the English given-name convention for Latin names', () => {
+    expect(greetingName({ name: 'Andy Lee' }, 'english')).toBe('Andy')
+    expect(greetingName({ family_name: 'Lee', given_name: 'Andy', name: 'Andy Lee' }, 'english')).toBe('Andy')
+  })
+  it('never slices a Hangul name even under the English locale', () => {
+    expect(greetingName({ name: '김영희' }, 'english')).toBe('김영희')
+  })
+  it('is empty for an empty row', () => {
+    expect(greetingName(null, 'korean')).toBe('')
+    expect(greetingName({ name: '' }, 'english')).toBe('')
   })
 })
 

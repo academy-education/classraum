@@ -28,6 +28,7 @@ import { AdminUser, getAdminPermissions } from '@/lib/admin-auth-shared';
 import { db } from '@/lib/supabase';
 import { performLogout } from '@/lib/logout';
 import { useTranslation } from '@/hooks/useTranslation';
+import { initialsFromName } from '@/lib/name';
 
 interface AdminSidebarProps {
   adminUser: AdminUser;
@@ -209,7 +210,7 @@ export function AdminSidebar({ adminUser }: AdminSidebarProps) {
         <div className="mt-3 pt-3 border-t border-gray-100">
           <div className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-50 transition-colors">
             <div className="w-8 h-8 rounded-full bg-gradient-to-br from-primary to-primary flex items-center justify-center text-white font-semibold text-sm shadow-sm shadow-primary/20 flex-shrink-0">
-              {adminUser.name?.charAt(0) || adminUser.email.charAt(0).toUpperCase()}
+              {initialsFromName(adminUser.name) || initialsFromName(adminUser.email)}
             </div>
             <div className="flex-1 min-w-0">
               <p className="text-sm font-semibold text-gray-900 truncate">{adminUser.name || adminUser.email}</p>

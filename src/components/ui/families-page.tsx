@@ -47,6 +47,7 @@ const FamilyImportModal = dynamic(
 import { clearCachesOnRefresh, markRefreshHandled } from '@/utils/cacheRefresh'
 
 import { invalidateFamiliesCache } from '@/lib/cache'
+import { displayName } from '@/lib/name'
 export { invalidateFamiliesCache }
 
 interface Family {
@@ -275,6 +276,8 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
             users(
               id,
               name,
+              family_name,
+              given_name,
               email,
               role
             )
@@ -329,7 +332,13 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
               user_name?: string
               phone?: string
               email?: string
-              users: { name: string; email: string; role?: string } | null
+              users: {
+                name: string
+                family_name?: string | null
+                given_name?: string | null
+                email: string
+                role?: string
+              } | null
               role: string
             }
 
@@ -337,19 +346,27 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
               familyMembers[typedMember.family_id] = []
             }
 
-            // If user_id exists, use user data, otherwise use pre-registration data
+            // If user_id exists the USER ROW is the name. family_members.user_name
+            // is a denormalised copy of it, frozen when the row was created and
+            // maintained by nobody — 151 of the 301 linked rows that carry one
+            // disagree with users.name (e.g. member a2c826cd… holds 'Jason Kim'
+            // for a person whose users.name is 김준수) — so it is never consulted
+            // for a linked member. displayName() reads the 성/이름 columns and
+            // falls back to users.name for the 191 rows where they are NULL.
             if (typedMember.user_id && typedMember.users) {
               familyMembers[typedMember.family_id].push({
                 id: typedMember.id,
                 user_id: typedMember.user_id,
-                name: typedMember.users.name,
+                name: displayName(typedMember.users),
                 email: typedMember.users.email,
                 phone: phoneMap[typedMember.user_id] || null,
                 role: typedMember.role,
                 user_role: (typedMember.users.role as 'student' | 'teacher' | 'manager' | 'parent') || 'parent'
               })
             } else {
-              // Pre-registration member (no user_id yet)
+              // Pre-registration member: there is NO user row to join, so
+              // `user_name` is the only name that exists for this person. This
+              // is the legitimate remaining use of the deprecated column.
               familyMembers[typedMember.family_id].push({
                 id: typedMember.id,
                 user_id: null,

@@ -15,6 +15,7 @@ import { AdminUser } from '@/lib/admin-auth-shared';
 import { performLogout } from '@/lib/logout';
 import { db } from '@/lib/supabase';
 import { useTranslation } from '@/hooks/useTranslation';
+import { initialsFromName } from '@/lib/name';
 
 interface AdminHeaderProps {
   adminUser: AdminUser;
@@ -85,7 +86,7 @@ export function AdminHeader({ adminUser, onToggleSidebar, sidebarOpen = true }: 
               className="flex items-center gap-2 pl-1.5 pr-2 h-9 text-gray-700 hover:bg-gray-100 rounded-lg transition-colors"
             >
               <div className="w-7 h-7 rounded-full bg-gradient-to-br from-primary to-primary flex items-center justify-center text-white font-semibold text-xs shadow-sm shadow-primary/20">
-                {adminUser.name?.charAt(0) || adminUser.email.charAt(0).toUpperCase()}
+                {initialsFromName(adminUser.name) || initialsFromName(adminUser.email)}
               </div>
               <div className="hidden md:block text-left leading-tight">
                 <p className="text-xs font-semibold text-gray-900 truncate max-w-[140px]">

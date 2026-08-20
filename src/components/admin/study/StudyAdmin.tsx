@@ -19,6 +19,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { useTranslation } from '@/hooks/useTranslation'
 import { getDateLocale } from '@/utils/dateUtils'
 import { cn } from '@/lib/utils'
+import { initialsFromName } from '@/lib/name'
 
 /**
  * Study admin console — two operator surfaces:
@@ -360,7 +361,7 @@ function UserDetail({ data, studentId, onToggleTest }: {
     return (Array.isArray(lg) ? lg[0]?.tier : lg?.tier) ?? '—'
   }
 
-  const initial = (user?.name || user?.email || '?').charAt(0).toUpperCase()
+  const initial = initialsFromName(user?.name || user?.email) || '?'
 
   return (
     <div className="space-y-5">
