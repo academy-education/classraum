@@ -12,6 +12,8 @@ import { Card } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { ModalShell } from '@/components/ui/common/ModalShell'
+import { NameFields, validateNameFields } from '@/components/ui/name-fields'
+import { splitName, buildNameUpdate, hasSplitName } from '@/lib/name'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import {
   User,
@@ -74,7 +76,17 @@ interface UserPreferences {
 
 interface UserData {
   id: string
+  /**
+   * The authoritative single-string name. Still NOT NULL in the database and
+   * still written on every save — it is the fallback for the 191 rows whose
+   * split columns are NULL and what all 8 PortOne sites pass to the issuer.
+   */
   name: string
+  /** 성. NULL until the user (or the backfill) supplies it. */
+  family_name?: string | null
+  /** 이름. NULL until the user (or the backfill) supplies it. */
+  given_name?: string | null
+  name_confirmed_at?: string | null
   email: string
   role: string
   academy_id?: string
@@ -103,6 +115,17 @@ export function SettingsPage({ userId }: SettingsPageProps) {
   const [validationErrors, setValidationErrors] = useState<Record<string, string>>({})
   const [hasUnsavedChanges, setHasUnsavedChanges] = useState(false)
   const [originalUserData, setOriginalUserData] = useState<UserData | null>(null)
+  // 성/이름 are REAL state, not a derived split of `name`. The old form
+  // rendered `name.split(' ')[0]` / `.slice(1).join(' ')` and re-joined on
+  // every keystroke, which cannot work for a Korean name (no space -> the
+  // 이름 box was permanently empty and typing into it corrupted the name).
+  const [familyName, setFamilyName] = useState('')
+  const [givenName, setGivenName] = useState('')
+  // What the database currently holds, for change detection. '' when NULL.
+  const [savedNamePair, setSavedNamePair] = useState({ family: '', given: '' })
+  // True when the values on screen came from splitName() rather than from the
+  // columns — a guess the user is asked to eyeball before saving.
+  const [nameNeedsConfirmation, setNameNeedsConfirmation] = useState(false)
   const [showUnsavedModal, setShowUnsavedModal] = useState(false)
   const [pendingSection, setPendingSection] = useState<string | null>(null)
   const [showDeleteAccountModal, setShowDeleteAccountModal] = useState(false)
@@ -151,12 +174,6 @@ export function SettingsPage({ userId }: SettingsPageProps) {
     return null
   }
 
-  const validateName = (name: string): string | null => {
-    if (!name?.trim()) return String(t('validation.nameRequired'))
-    if (name.trim().length < 2) return String(t('validation.nameTooShort'))
-    return null
-  }
-
   // Check if phone number already exists in the database (system-wide across all roles)
   const checkPhoneUniqueness = async (phone: string, currentUserId: string): Promise<boolean> => {
     if (!phone || phone.trim() === '') return true // Empty phone is allowed
@@ -187,8 +204,13 @@ export function SettingsPage({ userId }: SettingsPageProps) {
 
     const errors: Record<string, string> = {}
 
-    const nameError = validateName(userData.name)
-    if (nameError) errors.name = nameError
+    // Per field, and NOT through the old single-field rule: its
+    // `validation.nameTooShort` (minimum 2 characters) would reject a
+    // 1-character 성, which is the normal Korean case (111 of 444 accounts
+    // are 김). validateNameFields returns translation keys.
+    const nameErrors = validateNameFields(familyName, givenName)
+    if (nameErrors.familyName) errors.familyName = String(t(nameErrors.familyName))
+    if (nameErrors.givenName) errors.givenName = String(t(nameErrors.givenName))
 
     // Validate phone number (format and uniqueness)
     const phoneError = await validatePhone(userData.phone || '', userId)
@@ -210,7 +232,13 @@ export function SettingsPage({ userId }: SettingsPageProps) {
   }
 
   // Check if user data has changed
-  const checkForUnsavedChanges = (newUserData: UserData | null) => {
+  // The two name fields live outside userData, so they are passed in
+  // explicitly: a setState from the same event handler is not visible here yet.
+  const checkForUnsavedChanges = (
+    newUserData: UserData | null,
+    nextFamilyName: string = familyName,
+    nextGivenName: string = givenName
+  ) => {
     if (!originalUserData || !newUserData) {
       setHasUnsavedChanges(false)
       return
@@ -218,7 +246,9 @@ export function SettingsPage({ userId }: SettingsPageProps) {
 
     // Check if name or phone has changed (email is still disabled)
     const hasChanged = originalUserData.name !== newUserData.name ||
-                      originalUserData.phone !== newUserData.phone
+                      originalUserData.phone !== newUserData.phone ||
+                      nextFamilyName.trim() !== savedNamePair.family ||
+                      nextGivenName.trim() !== savedNamePair.given
 
     setHasUnsavedChanges(hasChanged)
   }
@@ -244,6 +274,7 @@ export function SettingsPage({ userId }: SettingsPageProps) {
       // Reset user data to original
       if (originalUserData) {
         setUserData(originalUserData)
+        seedNameFields(originalUserData)
       }
     }
     setShowUnsavedModal(false)
@@ -364,6 +395,34 @@ export function SettingsPage({ userId }: SettingsPageProps) {
     }
   }
 
+  /**
+   * Seed the two name inputs from a freshly-loaded users row.
+   *
+   * Precedence: the columns when BOTH are present; otherwise the owner's
+   * split rule applied to `users.name`; otherwise nothing. splitName()
+   * returns null for every shape it cannot do confidently (relationship
+   * labels, one-token Latin, 3+ token Latin, a bare 1-syllable 성, 다니엘),
+   * and that null is the signal to ask — so the boxes are left EMPTY rather
+   * than pre-filled with a guess the user might accept without reading.
+   */
+  const seedNameFields = useCallback((data: UserData) => {
+    const family = typeof data.family_name === 'string' ? data.family_name.trim() : ''
+    const given = typeof data.given_name === 'string' ? data.given_name.trim() : ''
+    setSavedNamePair({ family, given })
+
+    if (family && given) {
+      setFamilyName(family)
+      setGivenName(given)
+      setNameNeedsConfirmation(false)
+      return
+    }
+
+    const guess = splitName(data.name)
+    setFamilyName(guess?.family_name ?? '')
+    setGivenName(guess?.given_name ?? '')
+    setNameNeedsConfirmation(!!guess?.needsConfirmation)
+  }, [])
+
   // Fetch user data
   const fetchUserData = useCallback(async () => {
     if (!userId || userId === '') {
@@ -389,6 +448,7 @@ export function SettingsPage({ userId }: SettingsPageProps) {
 
       setUserData(data)
       setOriginalUserData(data) // Store original data for comparison
+      seedNameFields(data)
 
       // Also fetch additional role-specific data (like phone)
       if (data.role === 'teacher') {
@@ -444,7 +504,7 @@ export function SettingsPage({ userId }: SettingsPageProps) {
     } catch (error) {
       console.error('Error fetching user data:', error)
     }
-  }, [userId])
+  }, [userId, seedNameFields])
 
   // Fetch user preferences
   const fetchPreferences = useCallback(async () => {
@@ -536,10 +596,12 @@ export function SettingsPage({ userId }: SettingsPageProps) {
 
     setSaving(true)
     try {
-      // Prepare update object with name field
-      const updateData: Record<string, unknown> = {
-        name: userData.name
-      }
+      // 성, 이름 AND the joined `name` in the SAME statement. `users.name`
+      // never stops being written: it is NOT NULL, it is the fallback for
+      // every row whose split columns are NULL, and it is the string all 8
+      // PortOne call sites hand to the card issuer.
+      const nameUpdate = buildNameUpdate(familyName, givenName)
+      const updateData: Record<string, unknown> = { ...nameUpdate }
 
       // Only add updated_at if it exists in the original data
       if ('updated_at' in userData) {
@@ -599,8 +661,20 @@ export function SettingsPage({ userId }: SettingsPageProps) {
         invalidateArchiveCache(academyId)
       }
 
-      // Reset unsaved changes tracking
-      setOriginalUserData(userData)
+      // Reset unsaved changes tracking against what was actually written.
+      const savedUserData: UserData = {
+        ...userData,
+        name: nameUpdate.name,
+        family_name: nameUpdate.family_name,
+        given_name: nameUpdate.given_name,
+        name_confirmed_at: nameUpdate.name_confirmed_at,
+      }
+      setUserData(savedUserData)
+      setOriginalUserData(savedUserData)
+      setFamilyName(nameUpdate.family_name)
+      setGivenName(nameUpdate.given_name)
+      setSavedNamePair({ family: nameUpdate.family_name, given: nameUpdate.given_name })
+      setNameNeedsConfirmation(false)
       setHasUnsavedChanges(false)
       setValidationErrors({})
 
@@ -786,6 +860,13 @@ export function SettingsPage({ userId }: SettingsPageProps) {
     }
   }, [userData?.role, fetchAcademyLogo])
 
+  // The split columns are still NULL for this account, but both boxes now
+  // hold something: Save must be enabled even though nothing was "changed",
+  // otherwise a pre-filled guess could never be confirmed.
+  const nameColumnsMissing = !hasSplitName(userData)
+  const canConfirmName =
+    nameColumnsMissing && familyName.trim().length > 0 && givenName.trim().length > 0
+
   const sections = [
     { id: 'account', label: t('settings.sections.account'), icon: User },
     // Show branding section only for managers
@@ -921,53 +1002,32 @@ export function SettingsPage({ userId }: SettingsPageProps) {
               <div>
                 <h2 className="text-xl font-semibold tracking-tight text-gray-900 mb-5 pb-3 border-b border-gray-100">{t('settings.account.title')}</h2>
                 <div className="space-y-6">
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div>
-                      <Label htmlFor="firstName" className="text-sm font-medium text-gray-700">
-                        {t('settings.account.firstName')}
-                      </Label>
-                      <Input
-                        id="firstName"
-                        type="text"
-                        value={userData.name?.split(' ')[0] || ''}
-                        onChange={(e) => {
-                          const lastName = userData.name?.split(' ').slice(1).join(' ') || ''
-                          const newName = lastName ? `${e.target.value} ${lastName}` : e.target.value
-                          const newUserData = userData ? { ...userData, name: newName } : null
-                          setUserData(newUserData)
-                          checkForUnsavedChanges(newUserData)
-                          clearError('name')
-                        }}
-                        className={`mt-1 ${validationErrors.name ? 'border-rose-500 focus:border-rose-500' : ''}`}
-                        placeholder={String(t('settings.account.enterFirstName'))}
-                      />
-                      {validationErrors.name && (
-                        <p className="text-sm text-rose-600 mt-1">{validationErrors.name}</p>
-                      )}
-                    </div>
-                    
-                    <div>
-                      <Label htmlFor="lastName" className="text-sm font-medium text-gray-700">
-                        {t('settings.account.lastName')}
-                      </Label>
-                      <Input
-                        id="lastName"
-                        type="text"
-                        value={userData.name?.split(' ').slice(1).join(' ') || ''}
-                        onChange={(e) => {
-                          const firstName = userData.name?.split(' ')[0] || ''
-                          const newName = firstName ? `${firstName} ${e.target.value}` : e.target.value
-                          const newUserData = userData ? { ...userData, name: newName } : null
-                          setUserData(newUserData)
-                          checkForUnsavedChanges(newUserData)
-                          clearError('name')
-                        }}
-                        className={`mt-1 ${validationErrors.name ? 'border-rose-500 focus:border-rose-500' : ''}`}
-                        placeholder={String(t('settings.account.enterLastName'))}
-                      />
-                    </div>
-                  </div>
-                  
+                  <NameFields
+                    korean={currentLanguage === 'korean'}
+                    t={t}
+                    required
+                    idPrefix="settings-name"
+                    familyName={familyName}
+                    givenName={givenName}
+                    familyNameError={validationErrors.familyName}
+                    givenNameError={validationErrors.givenName}
+                    onFamilyNameChange={(value) => {
+                      setFamilyName(value)
+                      checkForUnsavedChanges(userData, value, givenName)
+                      clearError('familyName')
+                    }}
+                    onGivenNameChange={(value) => {
+                      setGivenName(value)
+                      checkForUnsavedChanges(userData, familyName, value)
+                      clearError('givenName')
+                    }}
+                    hint={
+                      nameNeedsConfirmation ? (
+                        <p className="text-xs text-amber-600">{t('names.confirmHint')}</p>
+                      ) : undefined
+                    }
+                  />
+
                   <div>
                     <Label htmlFor="email" className="text-sm font-medium text-gray-700">
                       {t('settings.account.emailAddress')}
@@ -1025,7 +1085,7 @@ export function SettingsPage({ userId }: SettingsPageProps) {
                   <div className="pt-4 flex items-center gap-3">
                     <Button 
                       onClick={saveUserData} 
-                      disabled={saving || !hasUnsavedChanges}
+                      disabled={saving || (!hasUnsavedChanges && !canConfirmName)}
                       className={hasUnsavedChanges ? 'bg-orange-600 hover:bg-orange-700' : ''}
                     >
                       {saving ? t('settings.account.saving') : t('settings.account.saveChanges')}

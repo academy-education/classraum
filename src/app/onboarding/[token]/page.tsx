@@ -11,6 +11,7 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { db } from '@/lib/supabase'
+import { joinName } from '@/lib/name'
 
 // =====================================================================
 // Onboarding wizard — full-bleed split layout.
@@ -80,6 +81,13 @@ const T = {
     accountBody: 'This is how you’ll sign in. Use an email you check often.',
     fullName: 'Full name',
     fullNamePh: 'Your name',
+    // 성/이름. "Family name"/"Given name" name the ROLE, not the position —
+    // "first/last name" names a position, and the position is exactly what
+    // differs between the two scripts.
+    familyName: 'Family name',
+    givenName: 'Given name',
+    familyNamePh: 'Lee',
+    givenNamePh: 'Andy',
     email: 'Email',
     emailPh: 'you@example.com',
     password: 'Password',
@@ -165,6 +173,10 @@ const T = {
     accountBody: '로그인 시 사용할 정보입니다. 자주 확인하는 이메일을 사용해 주세요.',
     fullName: '이름',
     fullNamePh: '이름을 입력하세요',
+    familyName: '성',
+    givenName: '이름',
+    familyNamePh: '김',
+    givenNamePh: '영희',
     email: '이메일',
     emailPh: 'you@example.com',
     password: '비밀번호',
@@ -240,7 +252,11 @@ export default function OnboardingPage({ params }: { params: Promise<{ token: st
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
-  const [fullName, setFullName] = useState('')
+  // 성/이름 are the real state; fullName is DERIVED. `users.name` stays
+  // authoritative, so the joined string is still what gets posted.
+  const [familyName, setFamilyName] = useState('')
+  const [givenName, setGivenName] = useState('')
+  const fullName = joinName(familyName, givenName)
   const [phone, setPhone] = useState('')
   const [academyName, setAcademyName] = useState('')
   const [academyAddress, setAcademyAddress] = useState('')
@@ -299,7 +315,10 @@ export default function OnboardingPage({ params }: { params: Promise<{ token: st
 
   function validateStep(s: Step): boolean {
     if (s === 'account') {
-      if (!fullName.trim() || !email.trim() || !password) { setError(tt.errReq); return false }
+      // BOTH name fields are required: the trigger stores NEITHER split
+      // column when one is missing, so a half-filled pair silently lands in
+      // the re-prompt cohort instead of being saved.
+      if (!familyName.trim() || !givenName.trim() || !email.trim() || !password) { setError(tt.errReq); return false }
       if (!/^\S+@\S+\.\S+$/.test(email)) { setError(tt.errEmail); return false }
       if (password.length < 8) { setError(tt.errPw); return false }
       if (password !== confirmPassword) { setError(tt.errPwMatch); return false }
@@ -321,7 +340,12 @@ export default function OnboardingPage({ params }: { params: Promise<{ token: st
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          email, password, fullName,
+          email, password,
+          // `fullName` is never dropped — the API and the trigger both
+          // still read it; the split pair is sent alongside.
+          fullName,
+          familyName: familyName.trim(),
+          givenName: givenName.trim(),
           phone: phone || undefined,
           academyName,
           academyAddress: academyAddress || undefined,
@@ -569,7 +593,8 @@ export default function OnboardingPage({ params }: { params: Promise<{ token: st
                 {step === 'account' && (
                   <AccountStep
                     lang={lang}
-                    fullName={fullName} setFullName={setFullName}
+                    familyName={familyName} setFamilyName={setFamilyName}
+                    givenName={givenName} setGivenName={setGivenName}
                     email={email} setEmail={setEmail}
                     password={password} setPassword={setPassword}
                     confirmPassword={confirmPassword} setConfirmPassword={setConfirmPassword}
@@ -588,7 +613,7 @@ export default function OnboardingPage({ params }: { params: Promise<{ token: st
                 {step === 'review' && (
                   <ReviewStep
                     lang={lang}
-                    fullName={fullName} email={email} phone={phone}
+                    familyName={familyName} givenName={givenName} email={email} phone={phone}
                     academyName={academyName} academyAddress={academyAddress}
                     academyEmail={academyEmail} academyPhone={academyPhone}
                     onEdit={goTo}
@@ -858,7 +883,8 @@ function WelcomeStep({ academy, lang }: { academy: AcademyPreview; lang: Lang })
 
 interface AccountStepProps {
   lang: Lang
-  fullName: string; setFullName: (v: string) => void
+  familyName: string; setFamilyName: (v: string) => void
+  givenName: string; setGivenName: (v: string) => void
   email: string; setEmail: (v: string) => void
   password: string; setPassword: (v: string) => void
   confirmPassword: string; setConfirmPassword: (v: string) => void
@@ -870,8 +896,20 @@ function AccountStep(p: AccountStepProps) {
     <div>
       <StepHeader title={tt.accountTitle} body={tt.accountBody} />
       <div className="space-y-5">
-        <Field id="full-name" label={tt.fullName} required icon={<UserIcon className="w-4 h-4" />}
-               value={p.fullName} onChange={p.setFullName} placeholder={tt.fullNamePh} delay={120} />
+        {/* Real DOM order, not just swapped labels: tab order, screen
+            readers and autofill all follow the DOM, so a Korean user must
+            actually tab 성 → 이름. Storage order never changes. */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+          {(p.lang === 'ko' ? ['family', 'given'] : ['given', 'family']).map((which, i) =>
+            which === 'family' ? (
+              <Field key="family" id="family-name" label={tt.familyName} required icon={<UserIcon className="w-4 h-4" />}
+                     value={p.familyName} onChange={p.setFamilyName} placeholder={tt.familyNamePh} delay={120 + i * 30} />
+            ) : (
+              <Field key="given" id="given-name" label={tt.givenName} required icon={<UserIcon className="w-4 h-4" />}
+                     value={p.givenName} onChange={p.setGivenName} placeholder={tt.givenNamePh} delay={120 + i * 30} />
+            )
+          )}
+        </div>
         <Field id="email" label={tt.email} required type="email" icon={<Mail className="w-4 h-4" />}
                value={p.email} onChange={p.setEmail} placeholder={tt.emailPh} delay={180} />
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
@@ -920,7 +958,7 @@ function AcademyStep(p: AcademyStepProps) {
 
 interface ReviewStepProps {
   lang: Lang
-  fullName: string; email: string; phone: string
+  familyName: string; givenName: string; email: string; phone: string
   academyName: string; academyAddress: string; academyEmail: string; academyPhone: string
   onEdit: (target: Step) => void
 }
@@ -935,7 +973,13 @@ function ReviewStep(p: ReviewStepProps) {
           editLabel={tt.edit}
           onEdit={() => p.onEdit('account')}
           rows={[
-            { label: tt.fullName, value: p.fullName },
+            // Two rows, in the same locale order as the inputs, so the
+            // review reflects what was actually typed into which box.
+            ...(p.lang === 'ko'
+              ? [{ label: tt.familyName, value: p.familyName },
+                 { label: tt.givenName, value: p.givenName }]
+              : [{ label: tt.givenName, value: p.givenName },
+                 { label: tt.familyName, value: p.familyName }]),
             { label: tt.email, value: p.email },
             { label: tt.phone, value: p.phone || tt.notProvided, muted: !p.phone },
           ]}

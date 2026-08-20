@@ -12,7 +12,7 @@ import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Squares } from "@/components/ui/squares-background"
-import { Mail, Lock, User, Building, Phone, Eye, EyeOff, CheckCircle2, BookOpen, Ticket } from "lucide-react"
+import { Mail, Lock, Building, Phone, Eye, EyeOff, CheckCircle2, BookOpen, Ticket } from "lucide-react"
 import { useTranslation } from "@/hooks/useTranslation"
 import { useToast } from "@/hooks/use-toast"
 import { readStoredMode } from "@/lib/study/currentMode"
@@ -20,6 +20,8 @@ import { authHeaders } from "@/lib/auth-headers"
 import { savePendingReferral, clearPendingReferral } from "@/lib/study/pending-referral"
 import { safeNotificationPath } from "@/lib/study/notification-link"
 import { useKeyboardInset } from '@/hooks/useKeyboardInset'
+import { NameFields, validateNameFields } from "@/components/ui/name-fields"
+import { joinName, splitName, buildNameUpdate } from "@/lib/name"
 
 /**
  * POST the referral code to the redeem endpoint using the current session.
@@ -57,7 +59,14 @@ export default function AuthPage() {
   const { user, isLoading: authLoading, isInitialized } = useAuth()
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
-  const [fullName, setFullName] = useState("")
+  // 성/이름 are the real state. `fullName` below is DERIVED from them —
+  // it is still what `users.name`, the auth metadata `name` key and the
+  // welcome email receive, because `users.name` stays authoritative and
+  // must be written in the same statement as the split columns.
+  const [familyName, setFamilyName] = useState("")
+  const [givenName, setGivenName] = useState("")
+  const [nameErrors, setNameErrors] = useState<{ familyName?: string; givenName?: string }>({})
+  const fullName = joinName(familyName, givenName)
   const [role, setRole] = useState("")
   const [academyId, setAcademyId] = useState("")
   const [phone, setPhone] = useState("")
@@ -234,7 +243,19 @@ export default function AuthPage() {
             setFamilyId(memberData.family_id)
             setRole(memberData.role)
             setIsRoleFromUrl(true)
-            if (memberData.user_name) setFullName(memberData.user_name)
+            // Prefill 성/이름 from the invite's single-string name ONLY when
+            // the split rule can do it confidently. splitName() returns null
+            // for relationship labels ("강하준 아버지"), single-token Latin,
+            // 3+ token Latin and 1-syllable Korean — for those we leave both
+            // boxes EMPTY rather than seeding a plausible wrong record that
+            // the user would tab straight past.
+            if (memberData.user_name) {
+              const split = splitName(memberData.user_name)
+              if (split) {
+                setFamilyName(split.family_name)
+                setGivenName(split.given_name)
+              }
+            }
             if (memberData.email) setEmail(memberData.email)
             if (memberData.phone) setPhone(memberData.phone)
           } else {
@@ -424,7 +445,11 @@ export default function AuthPage() {
   // needs no role/academy — those only apply to the academy flow.
   const isSignupFormValid = useMemo(() => {
     if (activeTab !== 'signup') return true
-    const baseValid = fullName.trim() !== '' &&
+    // Both name fields must be present and valid. `fullName.trim() !== ''`
+    // would pass with only one of the two filled, since joinName() falls
+    // back to whichever it has — and a half-filled pair is exactly what the
+    // trigger refuses to store.
+    const baseValid = validateNameFields(familyName, givenName).valid &&
            email.trim() !== '' &&
            password.trim() !== '' &&
            signupConfirmPassword.trim() !== ''
@@ -432,12 +457,25 @@ export default function AuthPage() {
     // these students through, so it's the only contact channel).
     if (signupIntent === 'study') return baseValid && isPlausiblePhone(phone)
     return baseValid && role.trim() !== '' && academyId.trim() !== ''
-  }, [activeTab, fullName, email, password, signupConfirmPassword, role, academyId, signupIntent, phone])
+  }, [activeTab, familyName, givenName, email, password, signupConfirmPassword, role, academyId, signupIntent, phone])
 
   const handleSignUp = async (e: React.FormEvent) => {
     e.preventDefault()
     setLoading(true)
     setErrorMessage("") // Clear any existing errors
+
+    // Per-field name validation. One error key per field — a bad 성 must
+    // not light up the 이름 box.
+    const nameCheck = validateNameFields(familyName, givenName)
+    if (!nameCheck.valid) {
+      setNameErrors({
+        familyName: nameCheck.familyName ? t(nameCheck.familyName) : undefined,
+        givenName: nameCheck.givenName ? t(nameCheck.givenName) : undefined,
+      })
+      setLoading(false)
+      return
+    }
+    setNameErrors({})
 
     // Validate passwords match
     if (password !== signupConfirmPassword) {
@@ -493,7 +531,14 @@ export default function AuthPage() {
         password,
         options: {
           data: {
+            // `name` stays — the trigger falls back to it and Supabase
+            // reads it. family_name/given_name are sent ALONGSIDE, and
+            // BOTH or NEITHER: handle_new_user() stores neither column
+            // when one is missing, so a half split can never masquerade
+            // as an already-migrated row.
             name: fullName,
+            family_name: familyName.trim(),
+            given_name: givenName.trim(),
             role: signupRole,
             academy_id: signupAcademyId,
             phone: phone || null,
@@ -570,7 +615,9 @@ export default function AuthPage() {
           .insert({
             id: authData.user.id,
             email: email,
-            name: fullName,
+            // buildNameUpdate writes family_name, given_name AND name in
+            // the same statement — users.name is never left unwritten.
+            ...buildNameUpdate(familyName, givenName),
             role: signupRole,
             phone: phone || null
           })
@@ -1184,20 +1231,23 @@ export default function AuthPage() {
               </div>
             )}
             {activeTab === "signup" && (
-              <div className="space-y-2">
-                <Label className="text-sm font-medium text-foreground/80">{t('auth.form.labels.fullName')} <span className="text-rose-500">*</span></Label>
-                <div className="relative">
-                  <User className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
-                  <Input
-                    type="text"
-                    required
-                    value={fullName}
-                    onChange={(e) => setFullName(e.target.value)}
-                    placeholder={String(t('auth.form.placeholders.fullName'))}
-                    className="pl-10"
-                  />
-                </div>
-              </div>
+              <NameFields
+                korean={language === 'korean'}
+                t={t}
+                required
+                familyName={familyName}
+                givenName={givenName}
+                familyNameError={nameErrors.familyName}
+                givenNameError={nameErrors.givenName}
+                onFamilyNameChange={(v) => {
+                  setFamilyName(v)
+                  setNameErrors((prev) => ({ ...prev, familyName: undefined }))
+                }}
+                onGivenNameChange={(v) => {
+                  setGivenName(v)
+                  setNameErrors((prev) => ({ ...prev, givenName: undefined }))
+                }}
+              />
             )}
             <div className="space-y-2">
               <Label className="text-sm font-medium text-foreground/80">{t('auth.form.labels.email')}{activeTab === "signup" && <span className="text-rose-500"> *</span>}</Label>

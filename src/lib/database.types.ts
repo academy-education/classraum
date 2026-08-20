@@ -1840,6 +1840,7 @@ export type Database = {
           family_id: string
           id: string
           phone: string | null
+          relation: string | null
           role: string
           user_id: string | null
           user_name: string | null
@@ -1850,6 +1851,7 @@ export type Database = {
           family_id: string
           id?: string
           phone?: string | null
+          relation?: string | null
           role: string
           user_id?: string | null
           user_name?: string | null
@@ -1860,6 +1862,7 @@ export type Database = {
           family_id?: string
           id?: string
           phone?: string | null
+          relation?: string | null
           role?: string
           user_id?: string | null
           user_name?: string | null
@@ -5353,9 +5356,13 @@ export type Database = {
           created_at: string | null
           deletion_scheduled_at: string | null
           email: string
+          family_name: string | null
+          given_name: string | null
           id: string
           is_internal: boolean
           name: string
+          name_confirmed_at: string | null
+          name_prompt_snoozed_until: string | null
           phone: string | null
           role: string
           updated_at: string | null
@@ -5364,9 +5371,13 @@ export type Database = {
           created_at?: string | null
           deletion_scheduled_at?: string | null
           email: string
+          family_name?: string | null
+          given_name?: string | null
           id?: string
           is_internal?: boolean
           name: string
+          name_confirmed_at?: string | null
+          name_prompt_snoozed_until?: string | null
           phone?: string | null
           role: string
           updated_at?: string | null
@@ -5375,9 +5386,13 @@ export type Database = {
           created_at?: string | null
           deletion_scheduled_at?: string | null
           email?: string
+          family_name?: string | null
+          given_name?: string | null
           id?: string
           is_internal?: boolean
           name?: string
+          name_confirmed_at?: string | null
+          name_prompt_snoozed_until?: string | null
           phone?: string | null
           role?: string
           updated_at?: string | null

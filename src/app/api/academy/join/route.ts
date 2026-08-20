@@ -74,7 +74,13 @@ export async function POST(req: NextRequest) {
   if (authResult.response) return authResult.response
   const user = authResult.user
 
-  let body: { role?: string; academyId?: string; familyId?: string; familyMemberId?: string }
+  let body: {
+    role?: string
+    academyId?: string
+    familyId?: string
+    familyMemberId?: string
+    relation?: string
+  }
   try { body = await req.json() } catch { return NextResponse.json({ error: 'bad json' }, { status: 400 }) }
 
   let role = body.role
@@ -82,6 +88,21 @@ export async function POST(req: NextRequest) {
   if ((role !== 'student' && role !== 'parent') || !academyId) {
     return NextResponse.json({ error: 'role (student|parent) and academyId required' }, { status: 400 })
   }
+  // 아버지 vs 어머니 has nowhere to live on `role` (which is only
+  // parent|student), which is exactly why it ended up welded into
+  // family_members.user_name on 150 rows. Carry it as a real column or
+  // that fix decays on the very next join. NEVER inferred — an unsupplied
+  // relation stays NULL, because a Korean mother keeps her own 성 and
+  // guessing from the child would be wrong roughly half the time.
+  const RELATIONS = ['father', 'mother', 'guardian', 'grandparent', 'other'] as const
+  const relation =
+    typeof body.relation === 'string' && (RELATIONS as readonly string[]).includes(body.relation)
+      ? body.relation
+      : null
+  if (body.relation != null && relation === null) {
+    return NextResponse.json({ error: `relation must be one of ${RELATIONS.join('|')}` }, { status: 400 })
+  }
+
   const name = await academyName(academyId)
   if (!name) return NextResponse.json({ error: 'academy not found' }, { status: 404 })
 
@@ -116,7 +137,15 @@ export async function POST(req: NextRequest) {
       .from('users').select('name').eq('id', user.id).maybeSingle()
     const { error } = await dbAdmin
       .from('family_members')
-      .insert({ family_id: body.familyId, user_id: user.id, user_name: u?.name ?? '', role })
+      .insert({
+        family_id: body.familyId,
+        user_id: user.id,
+        user_name: u?.name ?? '',
+        role,
+        // Only parents have a relation; a student's relation to the
+        // family is their role. Omitted (NULL) when none was supplied.
+        ...(role === 'parent' && relation ? { relation } : {}),
+      })
     if (error && !error.message.includes('duplicate')) {
       return NextResponse.json({ error: 'family join failed' }, { status: 500 })
     }

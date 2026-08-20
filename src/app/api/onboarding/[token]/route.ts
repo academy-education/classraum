@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@supabase/supabase-js'
 import { enforceRateLimit, getClientIp } from '@/lib/rate-limit'
 import type { Database } from '@/lib/database.types'
+import { joinName, buildNameUpdate } from '@/lib/name'
 
 const supabase = createClient<Database>(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -135,7 +136,17 @@ export async function POST(
     const body = await request.json()
     const email = typeof body.email === 'string' ? body.email.trim().toLowerCase() : ''
     const password = typeof body.password === 'string' ? body.password : ''
-    const fullName = typeof body.fullName === 'string' ? body.fullName.trim() : ''
+    // 성/이름. The pair is authoritative when BOTH arrive; `fullName` is
+    // kept as the fallback for any client that still posts one string.
+    const familyName = typeof body.familyName === 'string' ? body.familyName.trim() : ''
+    const givenName = typeof body.givenName === 'string' ? body.givenName.trim() : ''
+    // BOTH or NEITHER. handle_new_user() stores neither column when one is
+    // missing, so a half split can never look "already migrated" to the
+    // re-prompt and quietly stay wrong forever.
+    const hasSplitName = familyName !== '' && givenName !== ''
+    const fullName = hasSplitName
+      ? joinName(familyName, givenName)
+      : (typeof body.fullName === 'string' ? body.fullName.trim() : '')
     const phone = typeof body.phone === 'string' && body.phone.trim() ? body.phone.trim() : null
 
     // Language preference picked during onboarding. Stored on
@@ -166,7 +177,10 @@ export async function POST(
       email,
       password,
       email_confirm: true,
-      user_metadata: { name: fullName },
+      // `name` is never dropped — the trigger and Supabase both read it.
+      user_metadata: hasSplitName
+        ? { name: fullName, family_name: familyName, given_name: givenName }
+        : { name: fullName },
     })
 
     if (authError || !authData.user) {
@@ -207,7 +221,16 @@ export async function POST(
       const { error } = await supabase
         .from('users')
         .upsert(
-          { id: userId, email, name: fullName, role: 'manager' },
+          {
+            id: userId,
+            email,
+            role: 'manager',
+            // buildNameUpdate writes family_name, given_name AND name in
+            // one statement; users.name stays authoritative either way.
+            ...(hasSplitName
+              ? buildNameUpdate(familyName, givenName)
+              : { name: fullName }),
+          },
           { onConflict: 'id' }
         )
       if (!error) { usersError = null; break }

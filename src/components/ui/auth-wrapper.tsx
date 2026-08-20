@@ -5,6 +5,7 @@ import { useAuth } from '@/contexts/AuthContext'
 import { db } from '@/lib/supabase'
 import { isDevAuthEnabled } from '@/lib/dev-auth'
 import { appInitTracker } from '@/utils/appInitializationTracker'
+import { NamePrompt, type NamePromptUser } from '@/components/ui/name-prompt'
 
 interface AuthWrapperProps {
   children: React.ReactNode
@@ -14,6 +15,9 @@ interface AuthWrapperProps {
 export function AuthWrapper({ children, onUserData }: AuthWrapperProps) {
   const { user, isLoading, isInitialized, error, updateUserData } = useAuth()
   const [authError, setAuthError] = useState<string | null>(null)
+  // The row the 성/이름 re-prompt reads. Null until the users row is fetched;
+  // NamePrompt decides for itself whether anything is shown.
+  const [namePromptUser, setNamePromptUser] = useState<NamePromptUser | null>(null)
 
   // Navigation-aware academy loading - don't show loading if app was previously initialized
   const [isLoadingAcademy, setIsLoadingAcademy] = useState(() => {
@@ -39,6 +43,7 @@ export function AuthWrapper({ children, onUserData }: AuthWrapperProps) {
       if (!user?.id) {
         // Clear user data when no user
         setIsLoadingAcademy(false)
+        setNamePromptUser(null)
         if (updateUserData) {
           updateUserData({
             userId: '',
@@ -61,9 +66,11 @@ export function AuthWrapper({ children, onUserData }: AuthWrapperProps) {
       try {
 
         // Get additional user info from database
+        // family_name/given_name/name_confirmed_at/name_prompt_snoozed_until
+        // drive the re-prompt (191 of 444 rows have NULL split columns).
         const { data: userInfo, error: userError } = await db
           .from('users')
-          .select('name, email, role')
+          .select('id, name, email, role, family_name, given_name, name_confirmed_at, name_prompt_snoozed_until')
           .eq('id', user.id)
           .single()
 
@@ -74,6 +81,15 @@ export function AuthWrapper({ children, onUserData }: AuthWrapperProps) {
           setAuthError('Failed to load user profile')
           return
         }
+
+        setNamePromptUser({
+          id: userInfo.id,
+          name: userInfo.name,
+          family_name: userInfo.family_name,
+          given_name: userInfo.given_name,
+          name_confirmed_at: userInfo.name_confirmed_at,
+          name_prompt_snoozed_until: userInfo.name_prompt_snoozed_until,
+        })
 
         const userRole = userInfo.role
         let fetchedAcademyId = null
@@ -291,6 +307,13 @@ export function AuthWrapper({ children, onUserData }: AuthWrapperProps) {
     // Still render children but log the error - let RoleBasedAuthWrapper handle redirects
   }
 
-  // Always render children - let RoleBasedAuthWrapper handle authentication checks
-  return <>{children}</>
+  // Always render children - let RoleBasedAuthWrapper handle authentication
+  // checks. The name prompt renders alongside them and never gates them: it
+  // is a banner (or, on /settings, a dismissible modal), never a wall.
+  return (
+    <>
+      {children}
+      <NamePrompt user={namePromptUser} />
+    </>
+  )
 }

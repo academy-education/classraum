@@ -4924,7 +4924,12 @@
     "fieldRequired": "This field is required",
     "invalidFormat": "Invalid format",
     "numberOnly": "Please enter numbers only",
-    "rangeError": "Value must be between {{min}} and {{max}}"
+    "rangeError": "Value must be between {{min}} and {{max}}",
+    "familyNameRequired": "Please enter a family name.",
+    "familyNameTooLongKo": "A Korean family name is 1–2 characters.",
+    "familyNameTooLong": "That family name is too long.",
+    "givenNameRequired": "Please enter a given name.",
+    "givenNameTooLong": "That given name is too long."
   },
   "alerts": {
     "errorLoading": "Error loading {{resource}}: {{error}}",
@@ -9943,6 +9948,35 @@
     "completed": {
       "eyebrow": "Step complete",
       "cta": "Continue"
+    }
+  },
+  "names": {
+    "familyName": "Family name",
+    "givenName": "Given name",
+    "familyNamePlaceholder": "Lee",
+    "givenNamePlaceholder": "Andy",
+    "fullNameLabel": "Name",
+    "confirmHint": "We filled this in from your existing name — please check it's right.",
+    "editName": "Edit name",
+    "nameSaved": "Name updated",
+    "nameSaveFailed": "Could not update your name",
+    "guardianOf": "Guardian of {child}",
+    "relationLabel": "Relationship",
+    "relation": {
+      "father": "Father",
+      "mother": "Mother",
+      "guardian": "Guardian",
+      "grandparent": "Grandparent",
+      "other": "Other"
+    },
+    "prompt": {
+      "title": "Confirm your name",
+      "body": "We could not split your name into a family name and a given name automatically. Please enter them separately so your name shows correctly.",
+      "guardianBody": "Your account is currently listed under your child’s name. Please enter your own name so we can address you properly.",
+      "bannerTitle": "Please confirm your name",
+      "bannerAction": "Confirm now",
+      "dismiss": "Later",
+      "save": "Save"
     }
   }
 }

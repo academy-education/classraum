@@ -4,10 +4,18 @@ import { useState, useEffect, useCallback } from 'react'
 import { db } from '@/lib/supabase'
 import type { Json } from '@/lib/database.types'
 import { useStableCallback } from '@/hooks/useStableCallback'
+import { buildNameUpdate, validateFamilyName, validateGivenName } from '@/lib/name'
 
 export interface UserProfile {
   id: string
+  /** Authoritative single-string name. NOT NULL in the DB, never dropped,
+   *  and the fallback for the 191 accounts whose split columns are NULL. */
   name: string
+  /** 성. NULL until the user confirms — do not assume it is present. */
+  family_name?: string | null
+  /** 이름. NULL alongside family_name. */
+  given_name?: string | null
+  name_confirmed_at?: string | null
   email: string
   phone?: string
   role: string
@@ -95,6 +103,10 @@ interface UseMobileProfileReturn {
    *  academy-less study accounts) and the role table when a row exists.
    *  Returns false if every write failed. */
   updatePhone: (phone: string) => Promise<boolean>
+  /** Save a new 성/이름. Writes family_name, given_name AND name in the
+   *  SAME statement — users.name stays authoritative and is what all 8
+   *  PortOne call sites pass to the card issuer. Returns false on failure. */
+  updateName: (familyName: string, givenName: string) => Promise<boolean>
 }
 
 const defaultPreferences: UserPreferences = {
@@ -251,6 +263,9 @@ export const useMobileProfile = (
         profileData = {
           id: userData.id,
           name: userData.name || userName || 'User',
+          family_name: userData.family_name ?? null,
+          given_name: userData.given_name ?? null,
+          name_confirmed_at: userData.name_confirmed_at ?? null,
           email: userData.email || '',
           role: userData.role,
           // users.phone is the base — study-only accounts have no role
@@ -547,6 +562,49 @@ export const useMobileProfile = (
     return true
   }, [userId, data])
 
+  /**
+   * Self-service name change for students and parents.
+   *
+   * Before this, mobile users had NO way to change their own name — the only
+   * writer of users.name was the manager-facing dashboard settings page,
+   * which students and parents never see. That matters more than it sounds:
+   * this population IS the re-prompt cohort (150 parents whose name is a
+   * relationship label like "강하준 아버지", plus the junk/one-token rows), so
+   * this editor is also their only fix path.
+   *
+   * buildNameUpdate() writes family_name, given_name and name together and
+   * stamps name_confirmed_at, which is what stops the re-prompt returning.
+   */
+  const updateName = useCallback(async (familyName: string, givenName: string): Promise<boolean> => {
+    if (!userId || !data) return false
+    if (validateFamilyName(familyName) || validateGivenName(givenName)) return false
+
+    const payload = buildNameUpdate(familyName, givenName)
+    const { error } = await db.from('users').update(payload).eq('id', userId)
+    if (error) {
+      console.error('[useMobileProfile] Error updating name:', error)
+      return false
+    }
+
+    const cachedData: CachedProfileData = {
+      profile: {
+        ...data.profile,
+        name: payload.name,
+        family_name: payload.family_name,
+        given_name: payload.given_name,
+        name_confirmed_at: payload.name_confirmed_at
+      },
+      preferences: data.preferences
+    }
+    setData(cachedData)
+    try {
+      const sessionCacheKey = `mobile-profile-${userId}`
+      sessionStorage.setItem(sessionCacheKey, JSON.stringify(cachedData))
+      sessionStorage.setItem(`${sessionCacheKey}-timestamp`, Date.now().toString())
+    } catch { /* cache best-effort */ }
+    return true
+  }, [userId, data])
+
   // Fetch on mount and when userId changes
   useEffect(() => {
     if (userId) {
@@ -573,6 +631,7 @@ export const useMobileProfile = (
     error,
     refetch: fetchProfileData,
     updatePreferences,
-    updatePhone
+    updatePhone,
+    updateName
   }
 }

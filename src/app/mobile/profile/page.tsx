@@ -28,6 +28,13 @@ import { StudyAvatarCard } from './StudyAvatarCard'
 import { PersonAvatar } from '@/app/mobile/study/_shared/avatars'
 import { normaliseAvatarConfig, type AvatarConfig } from '@/lib/study/avatarConfig'
 import { authHeaders } from '@/lib/auth-headers'
+import {
+  displayName,
+  initials as nameInitials,
+  splitName,
+  validateFamilyName,
+  validateGivenName,
+} from '@/lib/name'
 import { ModalPortal } from '@/components/ui/modal-portal'
 import {
   Select,
@@ -88,7 +95,8 @@ function MobileProfilePageContent() {
     preferencesLoading,
     refetch: refetchProfile,
     updatePreferences,
-    updatePhone
+    updatePhone,
+    updateName
   } = useMobileProfile(user?.userId || null, user?.userName || null, academyIds)
 
   // Inline phone editor state (contact info card).
@@ -102,6 +110,68 @@ function MobileProfilePageContent() {
     setPhoneSaving(false)
     if (ok) setEditingPhone(false)
     else toast({ title: t('common.error') as string || 'Failed to save', variant: 'destructive' })
+  }
+
+  /*
+   * Inline 성/이름 editor.
+   *
+   * Students and parents had NO way to change their own name before this —
+   * the only writer of users.name was the manager dashboard, which they
+   * never see. They are also exactly the population being re-prompted (the
+   * 150 accounts whose "name" is really a relationship label such as
+   * "강하준 아버지", plus the one-token and junk rows), so this row is their
+   * fix path, not just a convenience.
+   *
+   * Matches the phone row's idiom deliberately (ring-1 inputs, ghost Cancel
+   * + primary Save, Enter-to-save) rather than importing the manager form.
+   * Validation is shared with every other surface via validateFamilyName /
+   * validateGivenName — notably, 성 has NO 2-character minimum, because a
+   * 1-character 성 is the normal Korean case.
+   */
+  const [editingName, setEditingName] = useState(false)
+  const [familyDraft, setFamilyDraft] = useState('')
+  const [givenDraft, setGivenDraft] = useState('')
+  const [nameSaving, setNameSaving] = useState(false)
+  const [nameError, setNameError] = useState<string | null>(null)
+  const koreanOrder = language === 'korean'
+
+  const beginEditName = () => {
+    // Prefill from the split columns when we have them. When they are NULL,
+    // try the rule on users.name — but if the rule refuses (a relationship
+    // label, a single token, junk), leave the boxes EMPTY rather than
+    // seeding a wrong guess the user might just accept.
+    const fam = profile?.family_name ?? ''
+    const giv = profile?.given_name ?? ''
+    if (fam && giv) {
+      setFamilyDraft(fam)
+      setGivenDraft(giv)
+    } else {
+      const guess = splitName(profile?.name ?? '')
+      setFamilyDraft(guess?.family_name ?? '')
+      setGivenDraft(guess?.given_name ?? '')
+    }
+    setNameError(null)
+    setEditingName(true)
+  }
+
+  const saveName = async () => {
+    if (nameSaving) return
+    const famKey = validateFamilyName(familyDraft)
+    const givKey = validateGivenName(givenDraft)
+    if (famKey || givKey) {
+      setNameError(t((famKey ?? givKey) as string) as string)
+      return
+    }
+    setNameSaving(true)
+    const ok = await updateName(familyDraft, givenDraft)
+    setNameSaving(false)
+    if (ok) {
+      setEditingName(false)
+      setNameError(null)
+      toast({ title: t('names.nameSaved') as string })
+    } else {
+      toast({ title: t('names.nameSaveFailed') as string, variant: 'destructive' })
+    }
   }
 
   const [showLogoutConfirm, setShowLogoutConfirm] = useState(false)
@@ -447,16 +517,18 @@ function MobileProfilePageContent() {
                    carries its own backdrop, chosen for contrast against
                    the skin tone, and a second disc under it fights that. */
                 <div className="w-20 h-20 mb-3">
-                  <PersonAvatar config={headerAvatar} size={80} label={profile?.name ?? undefined} />
+                  <PersonAvatar config={headerAvatar} size={80} label={displayName(profile) || undefined} />
                 </div>
               ) : (
                 <div className={`w-20 h-20 bg-gradient-to-br ${roleGradient} rounded-full flex items-center justify-center mb-3`}>
                   <span className="text-2xl font-semibold text-white">
-                    {profile?.name?.split(' ').map(n => n[0]).join('').toUpperCase() || 'U'}
+                    {/* Shared helper: script-aware, so 김영희 -> 김 and
+                        Andy Lee -> A, matching what this disc showed before. */}
+                    {nameInitials(profile) || 'U'}
                   </span>
                 </div>
               )}
-              <h2 className="text-lg font-semibold text-gray-900 mb-0.5">{profile?.name}</h2>
+              <h2 className="text-lg font-semibold text-gray-900 mb-0.5">{displayName(profile)}</h2>
               <p className="text-sm text-gray-500 mb-2.5">{profile?.email || t('mobile.profile.noEmail')}</p>
               {profile?.role && (
                 <StatusPill tone={rolePillTone}>
@@ -477,6 +549,103 @@ function MobileProfilePageContent() {
             {t('mobile.profile.contactInformation')}
           </Eyebrow>
           <Card className="divide-y divide-gray-100 py-0 gap-0 overflow-hidden">
+            {/* 성/이름 row. Sits above phone because it is identity, not
+                contact detail, and because for the re-prompt cohort it is
+                the thing we are asking them to fix. */}
+            <div className="p-4">
+              {editingName ? (
+                <div className="flex flex-col gap-2">
+                  <div className="flex items-center gap-3">
+                    <span className="w-9 h-9 rounded-xl bg-violet-500/10 text-violet-600 flex items-center justify-center flex-shrink-0">
+                      <UserIcon className="w-4 h-4" strokeWidth={1.75} />
+                    </span>
+                    <span className="text-sm text-gray-700">{t('names.fullNameLabel')}</span>
+                  </div>
+                  {/* Real DOM order, not just swapped labels: 성 first in
+                      Korean, given first in English, so tab order and
+                      screen readers follow the locale too. */}
+                  <div className="flex flex-col gap-2 pl-12">
+                    {(koreanOrder
+                      ? [
+                          { key: 'family', label: 'names.familyName', ph: 'names.familyNamePlaceholder', v: familyDraft, set: setFamilyDraft },
+                          { key: 'given', label: 'names.givenName', ph: 'names.givenNamePlaceholder', v: givenDraft, set: setGivenDraft },
+                        ]
+                      : [
+                          { key: 'given', label: 'names.givenName', ph: 'names.givenNamePlaceholder', v: givenDraft, set: setGivenDraft },
+                          { key: 'family', label: 'names.familyName', ph: 'names.familyNamePlaceholder', v: familyDraft, set: setFamilyDraft },
+                        ]
+                    ).map((f, i) => (
+                      <label key={f.key} className="flex items-center gap-2">
+                        <span className="w-14 flex-shrink-0 text-[12px] font-medium text-gray-500">
+                          {t(f.label)}
+                        </span>
+                        <input
+                          type="text"
+                          autoFocus={i === 0}
+                          maxLength={40}
+                          value={f.v}
+                          onChange={(e) => { f.set(e.target.value); setNameError(null) }}
+                          onKeyDown={(e) => { if (e.key === 'Enter') void saveName() }}
+                          placeholder={t(f.ph) as string}
+                          className="flex-1 min-w-0 h-9 px-3 rounded-lg ring-1 ring-gray-200 bg-white text-sm text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/40"
+                        />
+                      </label>
+                    ))}
+                  </div>
+                  {nameError && (
+                    <p className="pl-12 text-[12px] text-rose-600">{nameError}</p>
+                  )}
+                  <div className="flex items-center justify-end gap-2">
+                    <button
+                      type="button"
+                      onClick={() => { setEditingName(false); setNameError(null) }}
+                      disabled={nameSaving}
+                      className="flex-shrink-0 h-9 px-3 rounded-lg text-[12.5px] font-medium text-gray-600 hover:bg-gray-100 transition"
+                    >
+                      {t('common.cancel')}
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => void saveName()}
+                      disabled={nameSaving}
+                      className="flex-shrink-0 h-9 px-3.5 rounded-lg bg-primary text-white text-[12.5px] font-semibold disabled:opacity-60 active:scale-[0.97] transition"
+                    >
+                      {nameSaving ? '\u2026' : t('common.save')}
+                    </button>
+                  </div>
+                </div>
+              ) : (
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-3">
+                    <span className="w-9 h-9 rounded-xl bg-violet-500/10 text-violet-600 flex items-center justify-center flex-shrink-0">
+                      <UserIcon className="w-4 h-4" strokeWidth={1.75} />
+                    </span>
+                    <span className="text-sm text-gray-700">{t('names.fullNameLabel')}</span>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={beginEditName}
+                    className="flex items-center gap-1.5 ml-3 min-w-0 group"
+                  >
+                    <span className="text-sm font-medium text-gray-900 truncate">
+                      {displayName(profile)}
+                    </span>
+                    <Pencil className="w-3.5 h-3.5 text-gray-400 group-hover:text-primary flex-shrink-0 transition-colors" strokeWidth={1.75} />
+                  </button>
+                </div>
+              )}
+              {/* The nudge for the re-prompt cohort. Non-blocking: the row
+                  works identically whether or not this is showing. */}
+              {!editingName && !profile?.family_name && !profile?.name_confirmed_at && (
+                <button
+                  type="button"
+                  onClick={beginEditName}
+                  className="mt-2 ml-12 block text-left text-[12px] text-amber-700"
+                >
+                  {t('names.prompt.bannerTitle')}
+                </button>
+              )}
+            </div>
             <div className="p-4">
               {editingPhone ? (
                 <div className="flex items-center gap-2">
