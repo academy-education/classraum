@@ -2,75 +2,22 @@ import { NextRequest, NextResponse } from 'next/server'
 import { dbAdmin } from '@/lib/supabase-admin'
 import { triggerInvoiceCreatedNotifications } from '@/lib/notification-triggers'
 import { verifyCronAuth } from '@/lib/cron-auth'
+import { calculateNextDueDate } from '@/lib/payments/recurrence'
 
-// Calculate the next due date based on recurrence pattern
-// Mirrors the nullable columns on `recurring_payment_templates`. These were
-// declared optional (`?: string`) while the DB has them NULLABLE — a
-// difference the untyped client could not see. The body below already tests
-// for null, so only the declaration was wrong.
-interface Template {
-  start_date: string;
-  end_date: string | null;
-  recurrence_type: string;
-  day_of_month: number | null;
-  day_of_week: number | null;
-  next_due_date: string;
-}
-
-function calculateNextDueDate(template: Template): string {
-  const today = new Date()
-  const startDate = new Date(template.start_date)
-  
-  // If payment hasn't started yet, return start date
-  if (startDate > today) {
-    return template.start_date
-  }
-
-  // If payment has ended, return end date or indicate completion
-  if (template.end_date && new Date(template.end_date) <= today) {
-    return template.end_date
-  }
-
-  if (template.recurrence_type === 'monthly' && template.day_of_month) {
-    const nextDue = new Date(today)
-    
-    // Set to the target day of current month
-    nextDue.setDate(template.day_of_month)
-    
-    // If that day has already passed this month, move to next month
-    if (nextDue <= today) {
-      nextDue.setMonth(nextDue.getMonth() + 1)
-      nextDue.setDate(template.day_of_month)
-    }
-    
-    // Handle months with fewer days (e.g., Feb 30th becomes Feb 28th/29th)
-    if (nextDue.getDate() !== template.day_of_month) {
-      nextDue.setDate(0) // Go to last day of previous month
-    }
-    
-    return nextDue.toISOString().split('T')[0]
-  }
-
-  if (template.recurrence_type === 'weekly' && template.day_of_week !== null) {
-    const nextDue = new Date(today)
-    const targetDayOfWeek = template.day_of_week
-    const currentDayOfWeek = today.getDay()
-    
-    // Calculate days until target day
-    let daysUntilTarget = (targetDayOfWeek || 0) - currentDayOfWeek
-    
-    // If target day is today or has passed this week, move to next week
-    if (daysUntilTarget <= 0) {
-      daysUntilTarget += 7
-    }
-    
-    nextDue.setDate(today.getDate() + daysUntilTarget)
-    return nextDue.toISOString().split('T')[0]
-  }
-
-  // Fallback to stored next_due_date
-  return template.next_due_date
-}
+// The recurrence arithmetic lives in src/lib/payments/recurrence.ts.
+//
+// It used to be a private function in this file. That made it
+// unreachable from anything else that needs to move a template forward
+// — the pre-enable roll-forward, an admin tool, a backfill — so any such
+// caller had to reimplement it, and a reimplementation that drifts by a
+// day is a wrong billing date nobody notices. One implementation, one
+// test suite (src/lib/__tests__/recurrence.test.ts).
+//
+// The extracted version also IMPLEMENTS `semesterly`, which the private
+// one did not: it handled monthly and weekly and then returned
+// `template.next_due_date` unchanged, so a semesterly template could
+// never advance and would have matched the "due today" query on every
+// run forever.
 
 export async function POST(req: NextRequest) {
   try {

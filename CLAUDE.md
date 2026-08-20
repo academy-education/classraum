@@ -88,18 +88,40 @@ The build process requires special handling for route groups with client compone
 - Custom build command in `vercel.json`
 - Function timeouts configured for API routes
 - ICN1 region deployment
-- 19 cron jobs in `vercel.json`. They are enumerated in `JOB_REGISTRY`
+- 20 cron jobs in `vercel.json`. They are enumerated in `JOB_REGISTRY`
   (`src/lib/ops/jobs.ts`) and a test fails if the two disagree, so that
   list is the source of truth — not this file.
-- **Recurring student invoicing is NOT scheduled.** `/api/cron/recurring-payments`
-  and `/api/payments/recurring/generate` exist but neither is in
-  `vercel.json`; the cron was dropped by "Remove cron jobs from
-  vercel.json - may require paid plan" and never restored. This file
-  claimed it was configured, which was wrong. Invoices are currently
-  created through the payments UI instead. The generate route's insert
-  was also broken from Sept 2025 until 2026-07-27 (it omitted the
-  NOT NULL `academy_id` and `invoice_name`), so restoring the schedule
-  before that fix would have produced nothing.
+- **Recurring student invoicing was scheduled on 2026-08-20**
+  (`/api/cron/recurring-payments`, `35 0 * * *` = 09:35 KST) after being
+  dark since "Remove cron jobs from vercel.json - may require paid plan".
+  Two things had to be fixed first, and both are the interesting part:
+
+  1. **You cannot just switch it on.** The generate route invoices ONE
+     period per run and then advances `next_due_date`. All 19 active
+     templates were overdue — the oldest since 2025-01-13 — so a daily
+     cron would have emitted a back-dated invoice per template per day
+     for weeks, to real parents at HERALD and Daniel Kim's Hagwon. Every
+     template was rolled forward to its next FUTURE occurrence first
+     (`scripts/roll-forward-recurring-templates.ts`, snapshot table
+     `recurring_template_next_due_snapshot_20260820`). **Any future
+     re-enable of a period-advancing job must do the same audit: query
+     how far behind the state is before trusting the schedule.**
+  2. **`semesterly` was never implemented.** `calculateNextDueDate`
+     handled `monthly` and `weekly` and then fell through to
+     `return template.next_due_date` — the value it was asked to advance
+     past. `semester_months` had been in the schema the whole time and
+     was ignored. Under a live cron that template would have stayed
+     permanently due and re-invoiced every single day.
+
+  The function now lives in `src/lib/payments/recurrence.ts`, not
+  privately in the route, precisely so the roll-forward could call the
+  same code rather than a reimplementation that drifts by a day.
+  `src/lib/__tests__/recurrence.test.ts` covers all three types plus the
+  boundary cases; every branch was mutation-tested.
+
+  The generate route's insert was also broken from Sept 2025 until
+  2026-07-27 (it omitted the NOT NULL `academy_id` and `invoice_name`),
+  so restoring the schedule before that fix would have produced nothing.
 
 ### Development Auth Flow
 The AuthWrapper component includes dev auth detection - ensure dev auth is disabled in production environments.

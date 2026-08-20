@@ -30,6 +30,10 @@ export const JOB_REGISTRY: JobSpec[] = [
   { job: 'subscription-billing',         label: 'Subscription billing',        schedule: '0 9 * * *',   maxSilenceMinutes: 2 * D, severity: 'critical' },
   { job: 'study-billing',                label: 'Study billing',               schedule: '15 9 * * *',  maxSilenceMinutes: 2 * D, severity: 'critical' },
   { job: 'study-refund-sync',            label: 'Study refund reconcile',      schedule: '40 3 * * *',  maxSilenceMinutes: 2 * D, severity: 'critical' },
+  // Invoices real families. Scheduled 2026-08-20 after every template
+  // was rolled forward to a future occurrence — before that, a daily run
+  // would have emitted back-dated invoices going back to Jan 2025.
+  { job: 'recurring-payments',           label: 'Recurring student invoicing', schedule: '35 0 * * *',  maxSilenceMinutes: 2 * D, severity: 'critical' },
   { job: 'sync',                         label: 'PortOne sync',                schedule: '0 */6 * * *', maxSilenceMinutes: 14 * H, severity: 'critical' },
   { job: 'payment-reminders',            label: 'Payment reminders',           schedule: '10 0 * * *',  maxSilenceMinutes: 2 * D, severity: 'warning' },
 

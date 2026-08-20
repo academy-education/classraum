@@ -9,6 +9,10 @@
       "schedule": "15 9 * * *"
     },
     {
+      "path": "/api/cron/recurring-payments",
+      "schedule": "35 0 * * *"
+    },
+    {
       "path": "/api/cron/pending-grades-reminder",
       "schedule": "0 9 * * *"
     },
@@ -104,6 +108,12 @@
       "maxDuration": 300
     },
     "src/app/api/cron/study-billing/route.ts": {
+      "maxDuration": 300
+    },
+    "src/app/api/cron/recurring-payments/route.ts": {
+      "maxDuration": 300
+    },
+    "src/app/api/payments/recurring/generate/route.ts": {
       "maxDuration": 300
     },
     "src/app/api/cron/study-weekly-recap/route.ts": {
