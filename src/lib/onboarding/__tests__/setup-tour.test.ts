@@ -33,6 +33,8 @@ import {
   completionTransition,
   checklistSteps,
   CHECKLIST_STEP_IDS,
+  CARD_WIDTH,
+  CARD_HEIGHT_ESTIMATE,
   EMPTY_TOUR_STATE,
 } from '../setup-tour'
 
@@ -507,5 +509,49 @@ describe('placeCard goes BESIDE the anchor when it fits neither above nor below'
     expect(p.side).toBe('left')
     // Card's right edge is left of the anchor's left edge.
     expect(p.left + card.width).toBeLessThanOrEqual(anchor.left)
+  })
+})
+
+/**
+ * The card's own box, and what it costs placement.
+ *
+ * The redesign (stepper rail, inset progress panel) grew the card from
+ * ~400px of guess to a measured 500-521px, and the FIRST placement pass
+ * — the only one the user actually sees flinch — runs entirely on
+ * `CARD_HEIGHT_ESTIMATE`. These pin the two things that estimate is
+ * load-bearing for.
+ */
+describe('CARD_HEIGHT_ESTIMATE', () => {
+  it('is close to the height the card really renders at', () => {
+    // Measured in Chrome at 2026-08-20: 500px (Korean, on-route) to
+    // 521px (English, off-route, three-line body). An estimate outside
+    // this band means the constant drifted away from the component and
+    // the first paint will place the card wrongly.
+    expect(CARD_HEIGHT_ESTIMATE).toBeGreaterThanOrEqual(480)
+    expect(CARD_HEIGHT_ESTIMATE).toBeLessThanOrEqual(560)
+  })
+
+  it('still places BESIDE the anchor on a 1280x420 viewport', () => {
+    // The short-viewport case the redesign had to keep working: neither
+    // above nor below can hold a card this tall, so it must go beside
+    // the button rather than on top of it.
+    const viewport = { width: 1280, height: 420 }
+    const card = { width: CARD_WIDTH, height: CARD_HEIGHT_ESTIMATE }
+    const anchor = { top: 96, left: 1060, width: 160, height: 36 }
+    const p = placeCard(anchor, viewport, card)
+    expect(p.side).toBe('left')
+    expect(p.left + card.width).toBeLessThanOrEqual(anchor.left)
+  })
+
+  it('still prefers below the anchor on a full-height viewport', () => {
+    // The common case must NOT have been pushed into a flip by the
+    // extra height: a header button on a laptop screen still gets the
+    // card underneath it.
+    const viewport = { width: 1440, height: 900 }
+    const card = { width: CARD_WIDTH, height: CARD_HEIGHT_ESTIMATE }
+    const anchor = { top: 96, left: 1200, width: 160, height: 36 }
+    const p = placeCard(anchor, viewport, card)
+    expect(p.side).toBe('below')
+    expect(p.top).toBeGreaterThanOrEqual(anchor.top + anchor.height)
   })
 })

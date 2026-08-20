@@ -5,7 +5,7 @@ import { createPortal } from 'react-dom'
 import { usePathname, useRouter } from 'next/navigation'
 import {
   X, ArrowRight, ArrowLeft, Check, UserPlus, School, Users, Calendar,
-  ClipboardList, PartyPopper, MapPin, Lock, type LucideIcon,
+  ClipboardList, PartyPopper, MapPin, Lock, MousePointerClick, type LucideIcon,
 } from 'lucide-react'
 import { useAuth } from '@/contexts/AuthContext'
 import { useTranslation } from '@/hooks/useTranslation'
@@ -13,10 +13,10 @@ import { Button } from '@/components/ui/button'
 import { useSetupCounts } from './useSetupCounts'
 import {
   type DashboardRole, type SetupTourStep, type SetupTourStepId, type SetupCounts,
-  type Beak, type Placement,
+  type Beak, type Placement, type RailItem,
   EMPTY_COUNTS, visibleSteps, isStepComplete, resumeStepIndex, completedCount,
   readTourState, writeTourState, isTourRunning, placeCard, beakFor, buildRail,
-  completionTransition,
+  completionTransition, CARD_WIDTH, CARD_HEIGHT_ESTIMATE,
 } from '@/lib/onboarding/setup-tour'
 
 /**
@@ -39,12 +39,12 @@ import {
  * is painted by a huge box-shadow on a `pointer-events: none` cut-out,
  * so every pixel of the app underneath stays clickable, including the
  * button the tour is pointing at. X, Escape and a click anywhere
- * outside the card/anchor all dismiss.
+ * dismiss. Clicking outside does NOT — see the handler below.
  *
  * ── Standing aside for real modals, without abandoning the user ───────
  * The moment the user opens the very modal we sent them to, `<Modal>`
  * puts `data-app-modal` on its backdrop. The overlay (spotlight, card,
- * Escape and outside-click handlers) goes away — otherwise the first
+ * Escape handler) goes away — otherwise the first
  * click inside the classroom form would dismiss the tour and Escape
  * would be fought over by two components. What REPLACES it is a docked
  * hint: a small pill in the bottom-left corner naming what to fill in
@@ -68,11 +68,6 @@ const STEP_ICONS: Record<SetupTourStepId, LucideIcon> = {
   assignment: ClipboardList,
 }
 
-const CARD_WIDTH = 340
-/** Only used for the FIRST placement pass, before the card has been
- *  measured. The rail made the card taller; an estimate that is too
- *  small flips the card below an anchor it should sit above. */
-const CARD_HEIGHT_ESTIMATE = 400
 
 /** #2885e8 — `--primary` in globals.css. Inline because the spotlight
  *  glow is a box-shadow layered with the dim, not a ring utility. */
@@ -212,6 +207,51 @@ function BeakArrow({ beak }: { beak: Beak }) {
       {/* Paints out the card's own ring line under the beak's base. */}
       <path d={base} stroke="#fff" strokeWidth="2" fill="none" />
     </svg>
+  )
+}
+
+/**
+ * The at-a-glance progress indicator, shared by the card and the docked
+ * hint so the two can never show different progress.
+ *
+ * SEGMENTED, one pill per step, rather than a continuous fill: this
+ * tour's most common state is 0 of 5, where a continuous bar is an
+ * empty rectangle that communicates nothing at all. Five empty pills
+ * still say "five steps, none of them done", and the segment colours
+ * are the same three the stepper markers use, so the glance and the
+ * detail agree.
+ */
+function ProgressMeter({
+  rail, done, total, label, className = '',
+}: {
+  rail: RailItem[]
+  done: number
+  total: number
+  label: string
+  className?: string
+}) {
+  return (
+    <div
+      role="progressbar"
+      aria-label={label}
+      aria-valuemin={0}
+      aria-valuemax={total}
+      aria-valuenow={done}
+      className={`flex items-center gap-1 ${className}`}
+    >
+      {rail.map(item => (
+        <span
+          key={item.step.id}
+          className={`h-1.5 flex-1 rounded-full transition-colors duration-500 motion-reduce:transition-none ${
+            item.state === 'done'
+              ? 'bg-emerald-500'
+              : item.state === 'current'
+                ? 'bg-primary'
+                : 'bg-gray-200'
+          }`}
+        />
+      ))}
+    </div>
   )
 }
 
@@ -373,55 +413,91 @@ export function SetupTour({ userRole }: { userRole: string | null }) {
     writeTourState(userId, { ...state, dismissedAt: new Date().toISOString() })
   }, [userId])
 
+  /* Escape dismisses. Clicking outside deliberately does NOT.
+   *
+   * An outside-click handler was here and it was wrong for this widget.
+   * A tour exists to be used WHILE you work the app underneath it — the
+   * overlay is a pointer-events:none cut-out precisely so the page stays
+   * live — so almost every click a following user makes is "outside" the
+   * card. Exempting the highlighted anchor was not enough: opening the
+   * sidebar, scrolling via a scrollbar, clicking a field inside the form
+   * the tour just told you to open, or missing the button by a few
+   * pixels all killed the guide mid-step, with no way back except
+   * Settings. Andy hit this immediately.
+   *
+   * Escape and the X remain, so it is still trivially escapable, and
+   * both are deliberate acts rather than a side effect of using the app. */
   useEffect(() => {
     if (!running || appModalOpen) return
     const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') dismiss() }
-    const onPointerDown = (e: PointerEvent) => {
-      const target = e.target as Element | null
-      if (!target || !(target instanceof Element)) return
-      if (cardRef.current?.contains(target)) return
-      // Clicking the highlighted control is the point of the tour —
-      // it must not count as "outside".
-      if (step && target.closest(step.anchor)) return
-      dismiss()
-    }
     document.addEventListener('keydown', onKey)
-    document.addEventListener('pointerdown', onPointerDown, true)
-    return () => {
-      document.removeEventListener('keydown', onKey)
-      document.removeEventListener('pointerdown', onPointerDown, true)
-    }
-  }, [running, appModalOpen, dismiss, step])
+    return () => document.removeEventListener('keydown', onKey)
+  }, [running, appModalOpen, dismiss])
 
   if (!mounted || !running || !userId) return null
 
   const anim = reducedMotion ? '' : 'animate-in fade-in duration-200'
+
+  /* Shared by BOTH the card and the docked hint, so the two can never
+     disagree about how far along the user is. */
+  const done = completedCount(live, steps)
+  const total = steps.length
+  const rail = buildRail(live, steps, index)
+
+  const railLockLabel = (id: SetupTourStepId) => {
+    const target = steps.find(s => s.id === id)
+    return String(t('setupTour.locked', {
+      step: target ? String(t(`${target.i18n}.short`)) : id,
+    }))
+  }
 
   /* ── modal open: hand over the screen, keep the guidance ──────── */
   // Docked out of the dialog's way, inert (`pointer-events-none`, no
   // focusable children), above the modal's z-[201] so it is not buried.
   if (appModalOpen) {
     if (!step) return null
+    const HintIcon = STEP_ICONS[step.id]
     return createPortal(
       <div
         role="status"
         aria-live="polite"
         style={hintDock.style}
-        className={`fixed z-[202] pointer-events-none select-none rounded-2xl bg-white ring-1 ring-gray-200/70 shadow-[0_12px_28px_-10px_rgba(0,0,0,0.25),0_1px_2px_rgba(0,0,0,0.03)] px-4 py-3 ${anim}`}
+        className={`fixed z-[202] pointer-events-none select-none overflow-hidden rounded-2xl bg-white ring-1 ring-gray-200/70 shadow-[0_16px_36px_-12px_rgba(0,0,0,0.30),0_1px_2px_rgba(0,0,0,0.04)] ${anim}`}
       >
-        <p className="text-[10px] font-semibold uppercase tracking-[0.12em] text-primary flex items-center gap-1.5">
-          <MapPin className="w-3 h-3" />
-          {String(t('setupTour.hintEyebrow'))}
-          <span className="text-gray-400 font-medium tracking-normal normal-case tabular-nums">
-            {index + 1}/{steps.length}
-          </span>
-        </p>
-        <p className="text-[13px] font-semibold text-gray-900 mt-1 leading-snug">
-          {String(t(`${step.i18n}.title`))}
-        </p>
-        <p className="text-[12px] text-gray-600 leading-relaxed mt-0.5">
-          {String(t(`${step.i18n}.hint`))}
-        </p>
+        {/* Same restrained wash the step card carries, so the hint reads
+            as the same object docked out of the way rather than a
+            second, unrelated widget. */}
+        <div
+          aria-hidden="true"
+          className="absolute inset-x-0 top-0 h-14 bg-gradient-to-b from-primary/[0.055] to-transparent pointer-events-none"
+        />
+        <div className="relative flex items-start gap-2.5 px-3.5 pt-3 pb-2.5">
+          <div className="w-7 h-7 rounded-lg bg-primary/10 text-primary ring-1 ring-primary/15 flex items-center justify-center flex-shrink-0">
+            <HintIcon className="w-3.5 h-3.5" strokeWidth={2.2} />
+          </div>
+          <div className="min-w-0">
+            <p className="text-[10px] font-semibold uppercase tracking-[0.12em] text-primary flex items-center gap-1.5">
+              <MapPin className="w-3 h-3 flex-shrink-0" />
+              <span className="truncate">{String(t('setupTour.hintEyebrow'))}</span>
+              <span className="text-gray-400 font-medium tracking-normal normal-case tabular-nums flex-shrink-0">
+                {index + 1}/{total}
+              </span>
+            </p>
+            <p className="text-[13px] font-semibold text-gray-900 mt-1 leading-snug">
+              {String(t(`${step.i18n}.title`))}
+            </p>
+            <p className="text-[12px] text-gray-600 leading-relaxed mt-0.5">
+              {String(t(`${step.i18n}.hint`))}
+            </p>
+          </div>
+        </div>
+        <ProgressMeter
+          rail={rail}
+          done={done}
+          total={total}
+          label={String(t('setupTour.railTitle'))}
+          className="px-3.5 pb-3"
+        />
       </div>,
       document.body,
     )
@@ -430,10 +506,6 @@ export function SetupTour({ userRole }: { userRole: string | null }) {
   // Mid-probe on the step's own page: hold one frame rather than
   // flashing the centred fallback and snapping to the button.
   if (step && onRoute && !probed) return null
-
-  const done = completedCount(live, steps)
-  const total = steps.length
-  const rail = buildRail(live, steps, index)
 
   const cardBox = { width: CARD_WIDTH, height: cardRef.current?.offsetHeight || CARD_HEIGHT_ESTIMATE }
   const placement: Placement | null = rect
@@ -454,13 +526,7 @@ export function SetupTour({ userRole }: { userRole: string | null }) {
     ? steps.find(s => s.id === celebrating.stepId) ?? null
     : null
   const Icon = celebratedStep ? Check : step ? STEP_ICONS[step.id] : PartyPopper
-
-  const railLockLabel = (id: SetupTourStepId) => {
-    const target = steps.find(s => s.id === id)
-    return String(t('setupTour.locked', {
-      step: target ? String(t(`${target.i18n}.short`)) : id,
-    }))
-  }
+  const stepDone = step ? isStepComplete(step, live) : false
 
   const body = (
     <>
@@ -502,187 +568,301 @@ export function SetupTour({ userRole }: { userRole: string | null }) {
         role="dialog"
         aria-labelledby="setup-tour-title"
         style={cardStyle}
-        className={`fixed z-[191] rounded-2xl bg-white ring-1 ring-gray-200/70 shadow-[0_24px_48px_-12px_rgba(0,0,0,0.28),0_1px_2px_rgba(0,0,0,0.03)] p-5 ${anim}`}
+        className={`fixed z-[191] rounded-2xl bg-white ring-1 ring-gray-200/70 shadow-[0_24px_48px_-12px_rgba(0,0,0,0.28),0_2px_6px_rgba(0,0,0,0.04)] ${anim}`}
       >
         {beak && <BeakArrow beak={beak} />}
+
+        {/* The card's own anchor: a wash under the header, tinted by
+            state. Kept INSIDE the rounded corners and well under 10%
+            alpha so the beak — which is painted flat white and can hang
+            off any edge — never reads as a mismatched patch. */}
+        <div
+          aria-hidden="true"
+          className={`absolute inset-x-0 top-0 h-24 rounded-t-2xl pointer-events-none bg-gradient-to-b to-transparent ${
+            celebratedStep
+              ? 'from-emerald-50'
+              : step
+                ? 'from-primary/[0.055]'
+                : 'from-primary/[0.08]'
+          }`}
+        />
 
         <button
           type="button"
           onClick={dismiss}
           aria-label={String(t('common.close'))}
-          className="absolute top-3 right-3 w-7 h-7 rounded-full text-gray-400 hover:text-gray-700 hover:bg-gray-100 inline-flex items-center justify-center transition-colors motion-reduce:transition-none"
+          className="absolute top-3 right-3 z-10 w-7 h-7 rounded-full text-gray-400 hover:text-gray-700 hover:bg-gray-100/80 inline-flex items-center justify-center transition-colors motion-reduce:transition-none"
         >
           <X className="w-4 h-4" />
         </button>
 
-        {/* Header: icon chip beside the title, so the TITLE leads the
-            card rather than sitting under a stack of chrome. */}
-        <div className="flex items-start gap-3 pr-6">
-          <div className={`w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0 ${
-            celebratedStep ? 'bg-emerald-500 text-white' : 'bg-primary/10 text-primary'
-          }`}>
-            <Icon className="w-[18px] h-[18px]" strokeWidth={2.2} />
-          </div>
-          <div className="min-w-0">
-            <p className={`text-[10px] font-semibold uppercase tracking-[0.12em] tabular-nums ${
-              celebratedStep ? 'text-emerald-600' : 'text-primary'
+        {/* ── WHAT TO DO NOW ─────────────────────────────────────── */}
+        <div className="relative p-4">
+          {/* Header: icon chip beside the title, so the TITLE leads the
+              card rather than sitting under a stack of chrome. */}
+          <div className="flex items-start gap-3 pr-7">
+            <div className={`w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0 ${
+              celebratedStep
+                ? 'bg-emerald-500 text-white ring-4 ring-emerald-100 shadow-[0_2px_8px_-2px_rgba(16,185,129,0.55)]'
+                : step
+                  ? 'bg-primary/10 text-primary ring-1 ring-primary/15'
+                  : 'bg-gradient-to-br from-primary to-blue-500 text-white ring-4 ring-primary/10 shadow-[0_2px_8px_-2px_rgba(40,133,232,0.55)]'
             }`}>
-              {celebratedStep
-                ? String(t('setupTour.completed.eyebrow'))
-                : step
-                  ? String(t('setupTour.stepCounter', { current: index + 1, total }))
-                  : String(t('setupTour.finish.eyebrow'))}
-            </p>
-            <h2 id="setup-tour-title" className="text-[17px] font-semibold tracking-tight text-gray-900 leading-snug mt-0.5">
-              {celebratedStep
-                ? String(t(`${celebratedStep.i18n}.title`))
-                : step
-                  ? String(t(`${step.i18n}.title`))
-                  : String(t('setupTour.finish.title'))}
-            </h2>
+              <Icon className="w-[18px] h-[18px]" strokeWidth={2.2} />
+            </div>
+            <div className="min-w-0">
+              <p className={`text-[10px] font-semibold uppercase tracking-[0.12em] tabular-nums ${
+                celebratedStep ? 'text-emerald-600' : 'text-primary'
+              }`}>
+                {celebratedStep
+                  ? String(t('setupTour.completed.eyebrow'))
+                  : step
+                    ? String(t('setupTour.stepCounter', { current: index + 1, total }))
+                    : String(t('setupTour.finish.eyebrow'))}
+              </p>
+              <h2 id="setup-tour-title" className="text-[17px] font-semibold tracking-tight text-gray-900 leading-snug mt-0.5">
+                {celebratedStep
+                  ? String(t(`${celebratedStep.i18n}.title`))
+                  : step
+                    ? String(t(`${step.i18n}.title`))
+                    : String(t('setupTour.finish.title'))}
+              </h2>
+            </div>
           </div>
-        </div>
 
-        <p className="text-[12.5px] text-gray-500 leading-relaxed mt-2">
-          {celebratedStep
-            ? String(t(`${celebratedStep.i18n}.praise`))
-            : step
-              ? String(t(`${step.i18n}.body`))
-              : String(t('setupTour.finish.body'))}
-        </p>
-
-        {/* LIVE reading of the exact counter that defines "done" here.
-            This is the thing that turns a static instruction into
-            feedback: the number moves when the user's action lands. */}
-        {step && !celebratedStep && (
-          <div className={`mt-3 inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-[11.5px] font-medium ring-1 ${
-            isStepComplete(step, live)
-              ? 'bg-emerald-50 text-emerald-700 ring-emerald-200/70'
-              : 'bg-gray-50 text-gray-500 ring-gray-200/70'
-          }`}>
-            <span className={`w-1.5 h-1.5 rounded-full ${
-              isStepComplete(step, live) ? 'bg-emerald-500' : 'bg-gray-300'
-            }`} />
-            <span className="tabular-nums">
-              {isStepComplete(step, live)
-                ? String(t(`${step.i18n}.statusSome`, { count: live[step.countKey] }))
-                : String(t(`${step.i18n}.statusNone`))}
-            </span>
-          </div>
-        )}
-
-        {/* Off-route, or the control isn't on screen yet. Never a dead
-            end: say so and offer the way there. */}
-        {step && !celebratedStep && !onRoute && (
-          <Button
-            size="sm"
-            className="w-full mt-3"
-            onClick={() => router.push(step.route)}
-          >
-            <MapPin className="w-3.5 h-3.5 mr-1.5" />
-            {String(t(`${step.i18n}.goto`))}
-          </Button>
-        )}
-        {step && !celebratedStep && onRoute && !rect && (
-          <p className="mt-3 text-[12px] text-amber-700 bg-amber-50 ring-1 ring-amber-200/70 rounded-lg px-2.5 py-2">
-            {String(t('setupTour.anchorMissing'))}
+          <p className="text-[12.5px] text-gray-500 leading-relaxed mt-2">
+            {celebratedStep
+              ? String(t(`${celebratedStep.i18n}.praise`))
+              : step
+                ? String(t(`${step.i18n}.body`))
+                : String(t('setupTour.finish.body'))}
           </p>
-        )}
 
-        {/* ── the rail ──────────────────────────────────────────── */}
-        <div className="mt-4 pt-3 border-t border-gray-100">
-          <div className="flex items-center justify-between mb-1.5">
-            <p className="text-[10px] font-semibold uppercase tracking-[0.12em] text-gray-400">
-              {String(t('setupTour.railTitle'))}
+          {/* LIVE reading of the exact counter that defines "done" here.
+              This is the thing that turns a static instruction into
+              feedback: the number moves when the user's action lands.
+              `key` flips with the state on purpose — remounting is what
+              lets the enter animation replay when it crosses zero, so
+              the flip is felt and not merely legible. */}
+          {step && !celebratedStep && (
+            <div
+              key={stepDone ? 'some' : 'none'}
+              className={`mt-3 inline-flex items-center gap-1.5 rounded-full pl-1 pr-2.5 py-1 text-[12px] font-medium ring-1 ${
+                stepDone
+                  ? `bg-emerald-50 text-emerald-700 ring-emerald-200 shadow-[0_0_0_3px_rgba(16,185,129,0.08)] ${
+                      reducedMotion ? '' : 'animate-in zoom-in-95 fade-in duration-300'
+                    }`
+                  : 'bg-gray-50 text-gray-500 ring-gray-200/70'
+              }`}
+            >
+              {stepDone ? (
+                <span className="w-4 h-4 rounded-full bg-emerald-500 text-white flex items-center justify-center flex-shrink-0">
+                  <Check className="w-2.5 h-2.5" strokeWidth={3.5} />
+                </span>
+              ) : (
+                <span className="w-4 h-4 flex items-center justify-center flex-shrink-0">
+                  <span className="w-1.5 h-1.5 rounded-full bg-gray-300" />
+                </span>
+              )}
+              <span className="tabular-nums">
+                {stepDone
+                  ? String(t(`${step.i18n}.statusSome`, { count: live[step.countKey] }))
+                  : String(t(`${step.i18n}.statusNone`))}
+              </span>
+            </div>
+          )}
+
+          {/* THE action for this step, and the only primary in the card.
+              Off-route it is a button that takes you there; on-route the
+              real primary is the highlighted control in the page itself,
+              so the card points at it instead of competing with it. */}
+          {step && !celebratedStep && !onRoute && (
+            <Button
+              size="sm"
+              className="w-full h-9 mt-3"
+              onClick={() => router.push(step.route)}
+            >
+              <MapPin className="w-3.5 h-3.5" />
+              {String(t(`${step.i18n}.goto`))}
+            </Button>
+          )}
+          {step && !celebratedStep && onRoute && rect && (
+            <div className="mt-3 flex items-center gap-2.5 rounded-xl bg-primary/[0.07] ring-1 ring-primary/15 px-2.5 py-2">
+              <span className="w-6 h-6 rounded-lg bg-primary text-white flex items-center justify-center flex-shrink-0 shadow-[0_2px_6px_-1px_rgba(40,133,232,0.5)]">
+                <MousePointerClick className="w-3.5 h-3.5" strokeWidth={2.2} />
+              </span>
+              <p className="text-[12px] font-semibold text-primary leading-snug">
+                {String(t('setupTour.useHighlighted'))}
+              </p>
+            </div>
+          )}
+          {step && !celebratedStep && onRoute && !rect && (
+            <p className="mt-3 text-[12px] text-amber-800 bg-amber-50 ring-1 ring-amber-200/70 rounded-xl px-2.5 py-2 leading-relaxed">
+              {String(t('setupTour.anchorMissing'))}
             </p>
-            <span className="text-[11px] font-medium text-gray-500 tabular-nums">
-              {done} / {total}
-            </span>
-          </div>
-          <ul className="space-y-0.5">
-            {rail.map((item, i) => {
-              const isCurrent = item.state === 'current'
-              return (
-                <li
-                  key={item.step.id}
-                  className={`flex items-center gap-2 rounded-lg px-1.5 py-1 ${
-                    isCurrent ? 'bg-primary/[0.06]' : ''
-                  }`}
-                >
-                  <span className={`w-4 h-4 rounded-full flex items-center justify-center flex-shrink-0 text-[9px] font-semibold tabular-nums ${
-                    item.state === 'done'
-                      ? 'bg-emerald-500 text-white'
-                      : isCurrent
-                        ? 'bg-primary text-white'
-                        : 'bg-gray-100 text-gray-400 ring-1 ring-gray-200/70'
-                  }`}>
-                    {item.state === 'done'
-                      ? <Check className="w-2.5 h-2.5" strokeWidth={3} />
-                      : item.state === 'locked'
-                        ? <Lock className="w-2 h-2" strokeWidth={2.5} />
-                        : i + 1}
-                  </span>
-                  <span className={`text-[12px] truncate ${
-                    item.state === 'done'
-                      ? 'text-gray-400 line-through'
-                      : isCurrent
-                        ? 'text-gray-900 font-semibold'
-                        : item.state === 'locked'
-                          ? 'text-gray-400'
-                          : 'text-gray-600'
-                  }`}>
-                    {String(t(`${item.step.i18n}.rail`))}
-                  </span>
-                  <span className="sr-only">
-                    {String(t(`setupTour.railState.${item.state}`))}
-                  </span>
-                  {item.state === 'locked' && item.lockedBy && (
-                    <span className="ml-auto text-[10.5px] text-gray-400 flex-shrink-0">
-                      {railLockLabel(item.lockedBy)}
-                    </span>
-                  )}
-                </li>
-              )
-            })}
-          </ul>
-        </div>
+          )}
 
-        <div className="flex items-center gap-2 mt-4">
-          {index > 0 ? (
-            <Button
-              variant="outline"
-              size="sm"
-              className="flex-1"
-              onClick={() => { setCelebrating(null); setIndex(index - 1) }}
-            >
-              <ArrowLeft className="w-3.5 h-3.5 mr-1" />
-              {String(t('setupTour.back'))}
-            </Button>
-          ) : (
-            <Button variant="outline" size="sm" className="flex-1" onClick={dismiss}>
-              {String(t('setupTour.exit'))}
-            </Button>
-          )}
-          {celebrating ? (
-            <Button
-              size="sm"
-              className="flex-1"
-              onClick={() => { const n = celebrating.nextIndex; setCelebrating(null); setIndex(n) }}
-            >
-              {String(t('setupTour.completed.cta'))}
-              <ArrowRight className="w-3.5 h-3.5 ml-1" />
-            </Button>
-          ) : step ? (
-            <Button size="sm" className="flex-1" onClick={() => setIndex(index + 1)}>
-              {String(t('setupTour.next'))}
-              <ArrowRight className="w-3.5 h-3.5 ml-1" />
-            </Button>
-          ) : (
-            <Button size="sm" className="flex-1" onClick={dismiss}>
-              <Check className="w-3.5 h-3.5 mr-1" />
-              {String(t('setupTour.finish.cta'))}
-            </Button>
-          )}
+          {/* ── WHERE YOU ARE OVERALL ───────────────────────────────
+              An inset panel, deliberately a different surface from the
+              white "do this now" block above it. It is inset rather
+              than full-bleed so every card edge stays white and the
+              beak can hang off any of the four. */}
+          <div className="mt-4 rounded-xl bg-gray-50/80 ring-1 ring-gray-200/60 px-3 pt-2.5 pb-3">
+            <div className="flex items-center justify-between gap-2">
+              <p className="text-[10px] font-semibold uppercase tracking-[0.12em] text-gray-400">
+                {String(t('setupTour.railTitle'))}
+              </p>
+              <p className="text-[11px] font-semibold tabular-nums">
+                <span className={done > 0 ? 'text-emerald-600' : 'text-gray-400'}>{done}</span>
+                <span className="text-gray-400"> / {total}</span>
+              </p>
+            </div>
+
+            {/* The progress indicator, one segment per step, in the same
+                colours as the stepper markers below it. Segmented rather
+                than continuous because at 0/5 a continuous bar is an
+                empty rectangle that says nothing, while five empty pills
+                still say "five steps, none done". */}
+            <ProgressMeter
+              rail={rail}
+              done={done}
+              total={total}
+              label={String(t('setupTour.railTitle'))}
+              className="mt-1.5"
+            />
+
+            <ol className="mt-2.5">
+              {rail.map((item, i) => {
+                const isCurrent = item.state === 'current'
+                const isLast = i === rail.length - 1
+                return (
+                  <li key={item.step.id} className="flex gap-2.5">
+                    {/* Marker column. The connector below each marker is
+                        the rail's own progress track: it runs green
+                        through the part of the sequence already done.
+                        Absolutely positioned rather than a flex spacer
+                        so it spans the gap BETWEEN rows — as a flex-1
+                        sibling it collapsed to a hairline, because the
+                        row is barely taller than the marker itself. */}
+                    <div className="relative w-5 flex-shrink-0 self-stretch">
+                      {!isLast && (
+                        <span
+                          aria-hidden="true"
+                          className={`absolute left-1/2 -translate-x-1/2 top-[27px] bottom-[-6px] w-0.5 rounded-full ${
+                            item.state === 'done' ? 'bg-emerald-200' : 'bg-gray-200'
+                          }`}
+                        />
+                      )}
+                      <span className={`relative w-5 h-5 rounded-full flex items-center justify-center text-[9px] font-semibold tabular-nums ${
+                        isCurrent ? 'mt-[7px]' : 'mt-1.5'
+                      } ${
+                        item.state === 'done'
+                          ? 'bg-emerald-500 text-white ring-2 ring-emerald-100'
+                          : isCurrent
+                            ? 'bg-primary text-white ring-[3px] ring-primary/15 shadow-[0_2px_5px_-1px_rgba(40,133,232,0.5)]'
+                            : 'bg-white text-gray-400 ring-1 ring-gray-200'
+                      }`}>
+                        {item.state === 'done'
+                          ? <Check className="w-2.5 h-2.5" strokeWidth={3.5} />
+                          : item.state === 'locked'
+                            ? <Lock className="w-2.5 h-2.5 text-gray-300" strokeWidth={2.5} />
+                            : i + 1}
+                      </span>
+                    </div>
+
+                    {/* The current row is a raised white tile on the
+                        panel's grey. Deliberately NOT ringed in primary:
+                        a full-width blue-ringed box reads as a focused
+                        text field. The blue marker and the weight carry
+                        "you are here"; the elevation carries "this row
+                        is the one". */}
+                    <div className={`min-w-0 flex-1 flex items-baseline gap-1.5 rounded-lg ${
+                      isCurrent
+                        ? 'bg-white ring-1 ring-gray-200/80 shadow-[0_1px_2px_rgba(0,0,0,0.05)] px-2 py-2'
+                        : 'px-2 py-2'
+                    }`}>
+                      <span className={`truncate ${
+                        item.state === 'done'
+                          ? 'text-[12px] text-gray-400'
+                          : isCurrent
+                            ? 'text-[12.5px] text-gray-900 font-semibold'
+                            : item.state === 'locked'
+                              ? 'text-[12px] text-gray-400'
+                              : 'text-[12px] text-gray-600'
+                      }`}>
+                        {String(t(`${item.step.i18n}.rail`))}
+                      </span>
+                      <span className="sr-only">
+                        {String(t(`setupTour.railState.${item.state}`))}
+                      </span>
+                      {item.state === 'locked' && item.lockedBy && (
+                        /* Quiet metadata, not an error: no colour, no
+                           weight, and it gives up its width to the step
+                           name rather than truncating it. */
+                        <span className="ml-auto text-[10px] font-normal text-gray-400 truncate">
+                          {railLockLabel(item.lockedBy)}
+                        </span>
+                      )}
+                    </div>
+                  </li>
+                )
+              })}
+            </ol>
+          </div>
+
+          {/* Navigation. Exactly one primary lives in this card and it is
+              NOT here: "Next" means "skip ahead", so it is the quiet
+              outline, and "Exit guide" / "Back" is quieter still. The
+              two states where the card genuinely owns the next action —
+              a step just completed, and the finish card — are the only
+              ones where the right-hand button goes solid. */}
+          <div className="flex items-center gap-2 mt-3.5">
+            {index > 0 ? (
+              <Button
+                variant="ghost"
+                size="sm"
+                className="px-2 text-gray-500 hover:text-gray-900"
+                onClick={() => { setCelebrating(null); setIndex(index - 1) }}
+              >
+                <ArrowLeft className="w-3.5 h-3.5" />
+                {String(t('setupTour.back'))}
+              </Button>
+            ) : (
+              <Button
+                variant="ghost"
+                size="sm"
+                className="px-2 text-gray-500 hover:text-gray-900"
+                onClick={dismiss}
+              >
+                {String(t('setupTour.exit'))}
+              </Button>
+            )}
+            {celebrating ? (
+              <Button
+                size="sm"
+                className="ml-auto"
+                onClick={() => { const n = celebrating.nextIndex; setCelebrating(null); setIndex(n) }}
+              >
+                {String(t('setupTour.completed.cta'))}
+                <ArrowRight className="w-3.5 h-3.5" />
+              </Button>
+            ) : step ? (
+              <Button
+                variant="outline"
+                size="sm"
+                className="ml-auto"
+                onClick={() => setIndex(index + 1)}
+              >
+                {String(t('setupTour.next'))}
+                <ArrowRight className="w-3.5 h-3.5" />
+              </Button>
+            ) : (
+              <Button size="sm" className="ml-auto" onClick={dismiss}>
+                <Check className="w-3.5 h-3.5" />
+                {String(t('setupTour.finish.cta'))}
+              </Button>
+            )}
+          </div>
         </div>
       </div>
     </>

@@ -457,6 +457,25 @@ export function resetSetupTour(userId: string): void {
 
 export interface Rect { top: number; left: number; width: number; height: number }
 
+/**
+ * The tour card's box, in CSS pixels.
+ *
+ * These live HERE rather than in the component because `placeCard` is
+ * the thing that consumes them, and a height estimate that nothing can
+ * test is a height estimate that drifts. `CARD_HEIGHT_ESTIMATE` is used
+ * for the FIRST placement pass only — after one paint the component
+ * measures the real `offsetHeight` and passes that instead — but that
+ * first pass is the one the user sees, and an estimate that is too
+ * small flips the card below an anchor it should sit above.
+ *
+ * Measured in the browser at 2026-08-20, after the rail was rebuilt as
+ * a stepper with an inset panel: 521px for the tallest ordinary step
+ * (English, off-route, three-line body, the "Go to …" button), 500px
+ * for the same step in Korean. 520 is the value that pass sees.
+ */
+export const CARD_WIDTH = 340
+export const CARD_HEIGHT_ESTIMATE = 520
+
 /** Where the CARD sits relative to the anchor. */
 export type PlacementSide = 'below' | 'above' | 'left' | 'right'
 export interface Placement { top: number; left: number; side: PlacementSide }
