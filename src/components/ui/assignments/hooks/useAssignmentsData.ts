@@ -45,6 +45,11 @@ export interface Assignment {
   classroom_sessions?: {
     id: string
     classroom_id: string
+    // Selected by the STEP 1 embed so the page never has to re-fetch
+    // sessions to render a date/time.
+    date?: string
+    start_time?: string
+    end_time?: string
     classrooms?: {
       id: string
       academy_id: string
@@ -103,8 +108,58 @@ export function useAssignmentsData(academyId: string, filterSessionId?: string) 
   // PERFORMANCE: Cache classrooms data to avoid duplicate queries
   const classroomsCache = useRef<Classroom[] | null>(null)
 
+  // ONE classrooms fetch per mount, shared by fetchAssignments,
+  // fetchClassrooms and fetchSessions.
+  //
+  // `classroomsCache` above cannot dedupe them: all three run inside the
+  // same Promise.all, so every one of them sees an empty ref and issues
+  // its own query — three identical round trips on every page load. The
+  // PROMISE has to be shared, not the resolved value.
+  type ClassroomsLoad = { data: Classroom[] | null; error: unknown }
+  const classroomsPromise = useRef<Promise<ClassroomsLoad> | null>(null)
+  const classroomsPromiseAcademy = useRef<string | null>(null)
+
+  const loadClassrooms = useCallback((): Promise<ClassroomsLoad> => {
+    // A different academy invalidates the shared promise.
+    if (classroomsPromiseAcademy.current !== academyId) {
+      classroomsPromise.current = null
+      classroomsCache.current = null
+      classroomsPromiseAcademy.current = academyId
+    }
+
+    if (!classroomsPromise.current) {
+      classroomsPromise.current = (async (): Promise<ClassroomsLoad> => {
+        const { data, error } = await db
+          .from('classrooms')
+          .select('id, name, subject_id, color, teacher_id, paused')
+          .eq('academy_id', academyId)
+          .is('deleted_at', null)
+          .order('name')
+
+        if (!error && data && data.length > 0) {
+          classroomsCache.current = data
+          // Keep feeding the cache the classrooms page reads.
+          try {
+            const cacheKey = `classrooms-${academyId}`
+            sessionStorage.setItem(cacheKey, JSON.stringify(data))
+            sessionStorage.setItem(`${cacheKey}-timestamp`, Date.now().toString())
+          } catch (cacheError) {
+            console.warn('Failed to cache classrooms:', cacheError)
+          }
+        }
+        return { data, error }
+      })()
+    }
+    return classroomsPromise.current
+  }, [academyId])
+
+  // Force the next loadClassrooms() to hit the database again.
+  const invalidateClassrooms = useCallback(() => {
+    classroomsPromise.current = null
+    classroomsCache.current = null
+  }, [])
+
   // Separate function to fetch classrooms for the filter dropdown
-  // Uses shared cache from classrooms page for better performance
   const fetchClassrooms = useCallback(async () => {
     if (!academyId) {
       console.warn('fetchClassrooms: No academyId available yet')
@@ -112,53 +167,14 @@ export function useAssignmentsData(academyId: string, filterSessionId?: string) 
     }
 
     try {
-      // Check shared cache from classrooms page first
-      const cacheKey = `classrooms-${academyId}`
-      const cachedData = sessionStorage.getItem(cacheKey)
-      const cacheTimestamp = sessionStorage.getItem(`${cacheKey}-timestamp`)
-
-      if (cachedData && cacheTimestamp) {
-        const timeDiff = Date.now() - parseInt(cacheTimestamp)
-        const cacheValidFor = 10 * 60 * 1000 // 10 minutes
-
-        if (timeDiff < cacheValidFor) {
-          const parsed = JSON.parse(cachedData)
-          // Handle both object structure { classrooms: [...] } and plain array
-          const allClassrooms = parsed.classrooms || parsed
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          const activeClassrooms = allClassrooms.filter((c: any) => !c.paused)
-          setClassrooms(activeClassrooms)
-          // Also cache for fetchSessions
-          classroomsCache.current = allClassrooms
-          return
-        }
-      }
-
-      // Cache miss - fetch from database
-      const { data: allClassrooms, error: classroomsError } = await db
-        .from('classrooms')
-        .select('id, name, subject_id, color, teacher_id, paused')
-        .eq('academy_id', academyId)
-        .is('deleted_at', null)
-        .order('name')
+      const { data: allClassrooms, error: classroomsError } = await loadClassrooms()
 
       if (classroomsError) {
         console.error('Error fetching classrooms:', classroomsError)
         setClassrooms([])
       } else if (allClassrooms && allClassrooms.length > 0) {
         // Store only active (non-paused) classrooms for the dropdown
-        const activeClassrooms = allClassrooms.filter(c => !c.paused)
-        setClassrooms(activeClassrooms)
-        // Also cache for fetchSessions
-        classroomsCache.current = allClassrooms
-
-        // Cache the results for other pages to use
-        try {
-          sessionStorage.setItem(cacheKey, JSON.stringify(allClassrooms))
-          sessionStorage.setItem(`${cacheKey}-timestamp`, Date.now().toString())
-        } catch (cacheError) {
-          console.warn('Failed to cache classrooms:', cacheError)
-        }
+        setClassrooms(allClassrooms.filter(c => !c.paused))
       } else {
         setClassrooms([])
       }
@@ -166,7 +182,7 @@ export function useAssignmentsData(academyId: string, filterSessionId?: string) 
       console.error('Error in fetchClassrooms:', error)
       setClassrooms([])
     }
-  }, [academyId])
+  }, [academyId, loadClassrooms])
 
   // Check if current user is a manager for this academy
   const checkUserRole = useCallback(async () => {
@@ -267,6 +283,9 @@ export function useAssignmentsData(academyId: string, filterSessionId?: string) 
               *,
               classroom_sessions!inner(
                 id,
+                date,
+                start_time,
+                end_time,
                 classroom_id,
                 classrooms!inner(
                   id,
@@ -296,12 +315,8 @@ export function useAssignmentsData(academyId: string, filterSessionId?: string) 
       }
 
       const [classroomsResult, assignmentsResult] = await Promise.all([
-        db
-          .from('classrooms')
-          .select('id, name, subject_id, color, teacher_id, paused')
-          .eq('academy_id', academyId)
-          .is('deleted_at', null)
-          .order('name'),
+        // Shared with fetchClassrooms/fetchSessions — see loadClassrooms.
+        loadClassrooms(),
         fetchAllAssignments()
       ])
 
@@ -311,12 +326,6 @@ export function useAssignmentsData(academyId: string, filterSessionId?: string) 
         setTotalCount(0)
         setLoading(false)
         return []
-      }
-
-      // Cache classrooms for fetchSessions to avoid duplicate query
-      // Only write cache if not already populated (fetchClassrooms may run in parallel)
-      if (!classroomsCache.current) {
-        classroomsCache.current = allClassrooms
       }
 
       const assignmentsForSorting = assignmentsResult.data
@@ -348,60 +357,44 @@ export function useAssignmentsData(academyId: string, filterSessionId?: string) 
         new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
       )
 
-      // STEP 3: Fetch sessions and categories for the assignments
-      const sessionIdsNeeded = [...new Set(sorted.map(a => a.classroom_session_id))]
+      // STEP 3: Fetch categories for the assignments.
+      //
+      // Session date/start_time/end_time used to be re-fetched here in ~30
+      // parallel `classroom_sessions .in(...50 ids)` calls — ~6.9s of DB
+      // work for the largest academy. The STEP 1 query already INNER JOINs
+      // classroom_sessions (that join is what scopes the query to the
+      // academy); it simply was not selecting those three columns. It is
+      // now, so every assignment already carries its session and the
+      // batching is gone.
       const categoryIdsNeeded = [...new Set(sorted.map(a => a.assignment_categories_id).filter(Boolean))]
 
-      const BATCH_SIZE = 50
-
-      const batchIds = <T,>(ids: T[]): T[][] => {
-        const batches: T[][] = []
-        for (let i = 0; i < ids.length; i += BATCH_SIZE) {
-          batches.push(ids.slice(i, i + BATCH_SIZE))
-        }
-        return batches
-      }
-
-      // Batch fetch sessions
-      const sessionBatches = batchIds(sessionIdsNeeded)
-      const sessionPromises = sessionBatches.map(batch =>
-        db
-          .from('classroom_sessions')
-          .select('id, date, start_time, end_time, classroom_id')
-          .in('id', batch)
-      )
-
-      // Fetch categories (usually small, no need to batch)
-      const categoriesPromise = categoryIdsNeeded.length > 0
-        ? db
+      const categoriesDataResult = categoryIdsNeeded.length > 0
+        ? await db
             .from('assignment_categories')
             .select('id, name')
             .in('id', categoryIdsNeeded)
-        : Promise.resolve({ data: [] })
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        : { data: [] as any[] }
 
-      // Execute session + category fetches in parallel
-      const [sessionResults, categoriesDataResult] = await Promise.all([
-        Promise.all(sessionPromises),
-        categoriesPromise
-      ])
-
-      const sessionsData = sessionResults.flatMap(r => r.data || [])
-
-      // STEP 4: Get classrooms for the sessions (use cached data)
-      const sessionClassroomIds = [...new Set(sessionsData.map(s => s.classroom_id).filter(Boolean))]
-      const classroomsForSessions = allClassrooms.filter(c => sessionClassroomIds.includes(c.id))
-
-      // STEP 5: Join in memory
-      // Assignments already have full data from the initial query (select('*'))
+      // STEP 4: Join in memory.
+      // Assignments already have full data from the initial query
+      // (select('*') + the classroom_sessions embed). The embedded
+      // `classrooms` is only {id, academy_id} (it exists to drive the
+      // academy filter), so it is replaced by the full classroom row —
+      // exactly as before.
       const data = sorted.map(assignment => {
-        const session = sessionsData.find(s => s.id === assignment.classroom_session_id)
+        const session = assignment.classroom_sessions
         const category = categoriesDataResult.data?.find(c => c.id === assignment.assignment_categories_id)
-        const classroom = session ? classroomsForSessions.find(c => c.id === session.classroom_id) : null
+        const classroom = session ? allClassrooms.find(c => c.id === session.classroom_id) : null
 
         return {
           ...assignment,
           classroom_sessions: session ? {
-            ...session,
+            id: session.id,
+            date: session.date,
+            start_time: session.start_time,
+            end_time: session.end_time,
+            classroom_id: session.classroom_id,
             classrooms: classroom
           } : null,
           assignment_categories: category || null
@@ -474,23 +467,55 @@ export function useAssignmentsData(academyId: string, filterSessionId?: string) 
       }
 
       // Helper function to fetch attachments (single query, graceful failure)
+      //
+      // This used to send `.in('assignment_id', [<every assignment id>])` —
+      // a ~55 KB URL for the largest academy, against a table that holds
+      // single-digit row counts, to get back `[]`. It now filters through
+      // the same inner-join chain the assignments query uses, so the URL is
+      // a constant ~200 bytes. Rows for assignments that are not on screen
+      // (soft-deleted, or filtered out by filterSessionId) may come back;
+      // they land in a lookup map that is only ever read by assignment id,
+      // so nothing rendered changes.
       const fetchAllAttachments = async () => {
         if (assignmentIds.length === 0) {
           return { data: [] }
         }
 
         try {
-          const { data, error } = await db
-            .from('assignment_attachments')
-            .select('assignment_id, file_name, file_url, file_size, file_type')
-            .in('assignment_id', assignmentIds)
+          const PAGE = 1000
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          const all: any[] = []
+          for (let page = 0; page < 100; page++) {
+            const { data, error } = await db
+              .from('assignment_attachments')
+              .select(`
+                assignment_id,
+                file_name,
+                file_url,
+                file_size,
+                file_type,
+                assignments!inner(
+                  classroom_sessions!inner(
+                    classrooms!inner(academy_id)
+                  )
+                )
+              `)
+              .eq('assignments.classroom_sessions.classrooms.academy_id', academyId)
+              .order('assignment_id', { ascending: true })
+              .order('file_url', { ascending: true })
+              .range(page * PAGE, page * PAGE + PAGE - 1)
 
-          if (error) {
-            console.warn('📎 [Attachments] Query error, skipping:', error.message)
-            return { data: [] }
+            if (error) {
+              console.warn('📎 [Attachments] Query error, skipping:', error.message)
+              return { data: [] }
+            }
+
+            const rows = data || []
+            all.push(...rows)
+            if (rows.length < PAGE) break
           }
 
-          return { data: data || [] }
+          return { data: all }
         } catch (err) {
           console.warn('📎 [Attachments] Error fetching attachments, skipping:', err)
           return { data: [] }
@@ -618,50 +643,68 @@ export function useAssignmentsData(academyId: string, filterSessionId?: string) 
       setLoading(false)
       return []
     }
-  }, [academyId, filterSessionId])
+  }, [academyId, filterSessionId, loadClassrooms])
 
-  const fetchSessions = useCallback(async () => {
-    if (!academyId) return
+  // The session dropdown for the create/edit modal.
+  //
+  // CORRECTNESS: this used to be a single unpaginated query. PostgREST
+  // caps a response at 1,000 rows, so an academy with more sessions than
+  // that silently lost the overflow and those sessions could not be
+  // picked in the modal. fetchAssignments was fixed for exactly this and
+  // the fix was never applied here. Ordering must be deterministic down
+  // to a unique tiebreaker (id) or .range() pages can skip/duplicate rows.
+  const SESSIONS_PAGE_SIZE = 1000
+  const fetchSessions = useCallback(async (): Promise<Session[]> => {
+    if (!academyId) return []
 
     try {
       // PERFORMANCE: Use cached classrooms data if available, otherwise query
       let classroomsLocal = classroomsCache.current
 
       if (!classroomsLocal) {
-        const { data } = await db
-          .from('classrooms')
-          .select('id, name, subject_id, color, teacher_id')
-          .eq('academy_id', academyId)
-          .is('deleted_at', null)
-
+        // Shared with fetchAssignments/fetchClassrooms — see loadClassrooms.
+        const { data } = await loadClassrooms()
         classroomsLocal = data || []
         classroomsCache.current = classroomsLocal
       }
 
       if (!classroomsLocal || classroomsLocal.length === 0) {
         setSessions([])
-        return
+        return []
       }
 
       const classroomIds = classroomsLocal.map(c => c.id)
       const classroomMap = Object.fromEntries(classroomsLocal.map(c => [c.id, c]))
 
       // Get sessions for these classrooms (including past sessions for editing existing assignments)
-      const { data, error } = await db
-        .from('classroom_sessions')
-        .select('id, date, start_time, end_time, classroom_id')
-        .in('classroom_id', classroomIds)
-        .is('deleted_at', null)
-        // Removed date filter to include past sessions needed for editing existing assignments
-        .order('date', { ascending: false }) // Most recent first
-        .order('start_time', { ascending: true })
+      type SessionRow = { id: string; date: string; start_time: string; end_time: string; classroom_id: string }
+      const rows: SessionRow[] = []
+      let from = 0
+      // Safety bound so a pathological loop can't run forever.
+      for (let page = 0; page < 100; page++) {
+        const { data, error } = await db
+          .from('classroom_sessions')
+          .select('id, date, start_time, end_time, classroom_id')
+          .in('classroom_id', classroomIds)
+          .is('deleted_at', null)
+          // Removed date filter to include past sessions needed for editing existing assignments
+          .order('date', { ascending: false }) // Most recent first
+          .order('start_time', { ascending: true })
+          .order('id', { ascending: true }) // unique tiebreaker — see above
+          .range(from, from + SESSIONS_PAGE_SIZE - 1)
 
-      if (error) {
-        console.error('Error fetching sessions:', error)
-        return
+        if (error) {
+          console.error('Error fetching sessions:', error)
+          return []
+        }
+
+        const batch = (data as SessionRow[] | null) || []
+        rows.push(...batch)
+        if (batch.length < SESSIONS_PAGE_SIZE) break
+        from += SESSIONS_PAGE_SIZE
       }
 
-      const sessionsData = data?.map(session => {
+      const sessionsData = rows.map(session => {
         const classroom = classroomMap[session.classroom_id]
         const classroomName = classroom?.name || 'Unknown Classroom'
 
@@ -674,23 +717,55 @@ export function useAssignmentsData(academyId: string, filterSessionId?: string) 
           start_time: session.start_time,
           end_time: session.end_time
         };
-      }) || []
+      })
 
       setSessions(sessionsData)
+      return sessionsData
     } catch (error: unknown) {
       console.error('Error fetching sessions:', error)
+      return []
     }
-  }, [academyId])
+  }, [academyId, loadClassrooms])
+
+  // LAZY: the session list is only ever read by the create/edit modal, so
+  // it is no longer fetched on page load. Callers that are about to open
+  // that modal await this; it dedupes concurrent callers and returns the
+  // list directly (React state is not readable synchronously here).
+  const sessionsPromise = useRef<Promise<Session[]> | null>(null)
+  const sessionsPromiseAcademy = useRef<string | null>(null)
+
+  const ensureSessions = useCallback((): Promise<Session[]> => {
+    if (sessionsPromiseAcademy.current !== academyId) {
+      sessionsPromise.current = null
+      sessionsPromiseAcademy.current = academyId
+    }
+    if (!sessionsPromise.current) {
+      sessionsPromise.current = fetchSessions().catch(err => {
+        // Do not memoize a failure — the next open should retry.
+        sessionsPromise.current = null
+        console.error('Error fetching sessions:', err)
+        return [] as Session[]
+      })
+    }
+    return sessionsPromise.current
+  }, [academyId, fetchSessions])
 
   // Convenience function to refresh all data in parallel
   const refreshData = useCallback(async () => {
+    // An explicit refresh must re-read classrooms, not replay the shared
+    // promise from the previous load.
+    invalidateClassrooms()
+    // Sessions stay lazy: only re-fetch them if something has already
+    // asked for them (i.e. the modal has been opened this visit).
+    const refreshSessions = sessionsPromise.current !== null
+    if (refreshSessions) sessionsPromise.current = null
     await Promise.all([
       fetchAssignments(),
       fetchClassrooms(),
-      fetchSessions(),
+      refreshSessions ? ensureSessions() : Promise.resolve([]),
       checkUserRole().then(setIsManager)
     ])
-  }, [fetchAssignments, fetchClassrooms, fetchSessions, checkUserRole])
+  }, [invalidateClassrooms, fetchAssignments, fetchClassrooms, ensureSessions, checkUserRole])
 
   // OPTIMIZED: Consolidated useEffect - runs all fetches once on mount and when dependencies change
   useEffect(() => {
@@ -703,6 +778,7 @@ export function useAssignmentsData(academyId: string, filterSessionId?: string) 
       markRefreshHandled()
       // Also explicitly invalidate assignment cache
       invalidateAssignmentsCache(academyId)
+      invalidateClassrooms()
     }
 
     // Check cache SYNCHRONOUSLY before setting loading state
@@ -721,9 +797,9 @@ export function useAssignmentsData(academyId: string, filterSessionId?: string) 
         setPendingGradesCount(parsed.pendingGradesCount || 0)
         setTotalCount(parsed.totalCount || 0)
         setLoading(false)
-        // Still load secondary data in background
+        // Still load secondary data in background.
+        // NOT sessions — see ensureSessions: the modal fetches them.
         fetchClassrooms()
-        fetchSessions()
         checkUserRole().then(setIsManager)
         return // Skip fetchAssignments - we have cached data
       }
@@ -738,13 +814,13 @@ export function useAssignmentsData(academyId: string, filterSessionId?: string) 
     Promise.all([
       fetchAssignments(),
       fetchClassrooms(),
-      fetchSessions(),
+      // NOT fetchSessions — see ensureSessions: the modal fetches them.
       checkUserRole().then(setIsManager)
     ]).then(() => {
     }).catch((error) => {
       console.error('❌ Error loading data:', error)
     })
-  }, [academyId, filterSessionId, fetchAssignments, fetchClassrooms, fetchSessions, checkUserRole])
+  }, [academyId, filterSessionId, fetchAssignments, fetchClassrooms, checkUserRole, invalidateClassrooms])
 
   return {
     assignments, setAssignments,
@@ -758,6 +834,7 @@ export function useAssignmentsData(academyId: string, filterSessionId?: string) 
     fetchAssignments,
     fetchClassrooms,
     fetchSessions,
+    ensureSessions,
     checkUserRole,
     refreshData,
   }

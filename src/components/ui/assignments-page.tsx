@@ -157,6 +157,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
     totalCount,
     isManager,
     fetchAssignments,
+    ensureSessions,
   } = useAssignmentsData(academyId, filterSessionId)
 
   const [isCreating, setIsCreating] = useState(false)
@@ -570,22 +571,8 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
     setEditingAssignment(assignment)
     setAttachmentFiles(assignment.attachments || [])
 
-    const selectedSession = sessions.find(s => s.id === assignment.classroom_session_id)
-
-    if (!selectedSession) {
-      setFormData({
-        classroom_session_id: assignment.classroom_session_id,
-        title: assignment.title,
-        description: assignment.description || '',
-        assignment_type: assignment.assignment_type,
-        due_date: assignment.due_date || '',
-        assignment_categories_id: ''
-      })
-      setShowModal(true)
-      return
-    }
-
-    // Open modal immediately with loading state for category
+    // Open modal immediately with loading state; the session list is
+    // fetched lazily (see ensureSessions) so it may not be here yet.
     setFormData({
       classroom_session_id: assignment.classroom_session_id,
       title: assignment.title,
@@ -598,6 +585,21 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
     setShowModal(true)
 
     try {
+      const loadedSessions = await ensureSessions()
+      const selectedSession = loadedSessions.find(s => s.id === assignment.classroom_session_id)
+
+      if (!selectedSession) {
+        setFormData({
+          classroom_session_id: assignment.classroom_session_id,
+          title: assignment.title,
+          description: assignment.description || '',
+          assignment_type: assignment.assignment_type,
+          due_date: assignment.due_date || '',
+          assignment_categories_id: ''
+        })
+        return
+      }
+
       if (selectedSession?.subject_id) {
         await refreshCategories()
       }
@@ -614,6 +616,13 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
       setEditModalLoading(false)
     }
   }
+
+  // Every entry point into the create/edit modal must kick off the lazy
+  // session fetch, since the session dropdown is the only consumer.
+  const openCreateModal = useCallback(() => {
+    void ensureSessions()
+    setShowModal(true)
+  }, [ensureSessions])
 
   const handleDeleteClick = (assignment: Assignment) => {
     setAssignmentToDelete(assignment)
@@ -725,7 +734,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
   // Hook also bridges the `app:create-new` event from the command palette.
   useListPageShortcuts({
     searchInputRef,
-    onCreate: () => setShowModal(true),
+    onCreate: () => openCreateModal(),
     isCreateBlocked: showModal || showDeleteModal || showViewModal || showSubmissionsModal,
     onEscape: selectedAssignmentIds.size > 0
       ? () => setSelectedAssignmentIds(new Set())
@@ -1424,7 +1433,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
               </div>
             )}
           </div>
-          <Button data-tour="add-assignment" onClick={() => setShowModal(true)} className="flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm h-8 sm:h-9 px-2.5 sm:px-4">
+          <Button data-tour="add-assignment" onClick={openCreateModal} className="flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm h-8 sm:h-9 px-2.5 sm:px-4">
             <Plus className="w-3 h-3 sm:w-4 sm:h-4" />
             {t("assignments.addAssignment")}
           </Button>
@@ -2104,7 +2113,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
                 ? { actionLabel: String(t("assignments.clearSearch")), onAction: () => setAssignmentSearchQuery(''), actionVariant: 'outline' as const, actionIcon: <X className="w-4 h-4" /> }
                 : classroomFilter !== 'all'
                   ? { actionLabel: language === 'korean' ? '필터 해제' : 'Clear filter', onAction: () => updateClassroomFilter('all'), actionVariant: 'outline' as const, actionIcon: <X className="w-4 h-4" /> }
-                  : { actionLabel: String(t("assignments.addAssignment")), onAction: () => setShowModal(true), actionIcon: <Plus className="w-4 h-4" /> })}
+                  : { actionLabel: String(t("assignments.addAssignment")), onAction: openCreateModal, actionIcon: <Plus className="w-4 h-4" /> })}
             {...((!showPendingOnly && !assignmentSearchQuery && classroomFilter === 'all')
               ? { helpSlug: 'assignments', helpLabel: String(t("common.learnMore")) }
               : {})}
