@@ -1900,7 +1900,8 @@
       "createClassroom": "Create your first classroom",
       "addTeachers": "Add at least one teacher",
       "addStudents": "Add a family with students",
-      "scheduleSession": "Schedule your first session"
+      "scheduleSession": "Schedule your first session",
+      "startTour": "Guide me through it"
     },
     "title": "Dashboard",
     "description": "At-a-glance overview of your academy",
@@ -4152,7 +4153,10 @@
       },
       "welcomeReplay": "Show welcome screen again",
       "welcomeReplayDescription": "Replays the 3-slide intro you saw on first login.",
-      "welcomeReplayButton": "Show welcome again"
+      "welcomeReplayButton": "Show welcome again",
+      "setupTourReplay": "Guided academy setup",
+      "setupTourReplayDescription": "Walk through creating a classroom, a session and an assignment, step by step, on the real pages.",
+      "setupTourReplayButton": "Run the setup guide"
     },
     "privacySecurity": {
       "title": "Privacy & Security",
@@ -9855,5 +9859,45 @@
     "allArticles": "All articles",
     "couldnt": "Couldnt find what you were looking for?",
     "openChat": "Open chat with support"
+  },
+  "setupTour": {
+    "stepCounter": "Step {current} of {total}",
+    "back": "Back",
+    "next": "Next",
+    "exit": "Exit guide",
+    "anchorMissing": "We can't find that button on this screen right now. It may still be loading, or your plan may not include it — use Next to move on.",
+    "finish": {
+      "eyebrow": "All set",
+      "title": "Your academy is running",
+      "body": "Teachers, a classroom, students, a session and an assignment — the dashboard now has real data to show. You can reopen this guide any time from Settings.",
+      "cta": "Done"
+    },
+    "steps": {
+      "teachers": {
+        "title": "Invite a teacher first",
+        "body": "A classroom must be assigned to a teacher, and your own manager account is not one — so this comes first. This button copies an invite link; send it to a teacher and they will appear here once they sign up.",
+        "goto": "Go to Teachers"
+      },
+      "classroom": {
+        "title": "Create your first classroom",
+        "body": "Name it, pick the teacher you invited, and set the weekly schedule. Everything else in Classraum hangs off a classroom.",
+        "goto": "Go to Classrooms"
+      },
+      "students": {
+        "title": "Add a family and its students",
+        "body": "Students join through a family. Create the family here, then share the student and parent registration links it gives you. Enrol them into your classroom afterwards.",
+        "goto": "Go to Families"
+      },
+      "session": {
+        "title": "Schedule your first session",
+        "body": "A session is one dated meeting of a classroom — the thing attendance and assignments attach to. Pick the classroom, the date and the times.",
+        "goto": "Go to Sessions"
+      },
+      "assignment": {
+        "title": "Set your first assignment",
+        "body": "Assignments belong to a session, so choose the session you just scheduled, give it a title and a due date. Every enrolled student gets a grade row automatically.",
+        "goto": "Go to Assignments"
+      }
+    }
   }
 }

@@ -1615,6 +1615,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
             {t("scheduleBreaks.button")}
           </Button>
           <Button
+            data-tour="create-classroom"
             className="flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm h-8 sm:h-9 px-2.5 sm:px-4"
             onClick={handleCreateClick}
           >

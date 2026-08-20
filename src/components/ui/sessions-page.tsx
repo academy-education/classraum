@@ -4597,6 +4597,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
           <p className="text-gray-500">{t("sessions.description")}</p>
         </div>
         <Button
+          data-tour="add-session"
           className="self-start sm:self-auto flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm h-8 sm:h-9 px-2.5 sm:px-4"
           onClick={() => {
             // Clear original data for new session

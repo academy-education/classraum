@@ -49,6 +49,7 @@ import {
 } from '@/lib/cache'
 import { useToast } from '@/hooks/use-toast'
 import { resetWelcomeSeen } from '@/components/ui/welcome-modal'
+import { startSetupTour } from '@/components/ui/onboarding/SetupTour'
 
 // Mirrors public.user_preferences: every column except user_id is nullable,
 // and the three settings blobs are jsonb (Json), not narrower shapes.
@@ -1282,6 +1283,27 @@ export function SettingsPage({ userId }: SettingsPageProps) {
                       }}
                     >
                       {t('settings.languageRegion.welcomeReplayButton')}
+                    </Button>
+
+                  </div>
+
+                  {/* Run the guided setup walkthrough again. Same shape
+                      as the welcome replay above, but no reload is
+                      needed: startSetupTour writes the flag and fires
+                      the event the SetupTour in AppLayout listens on. */}
+                  <div className="pt-4 border-t border-gray-100">
+                    <Label className="text-sm font-medium text-gray-700">
+                      {t('settings.languageRegion.setupTourReplay')}
+                    </Label>
+                    <p className="text-xs text-gray-500 mt-1 mb-3">
+                      {t('settings.languageRegion.setupTourReplayDescription')}
+                    </p>
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={() => { if (userId) startSetupTour(userId) }}
+                    >
+                      {t('settings.languageRegion.setupTourReplayButton')}
                     </Button>
                   </div>
                 </div>

@@ -1424,7 +1424,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
               </div>
             )}
           </div>
-          <Button onClick={() => setShowModal(true)} className="flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm h-8 sm:h-9 px-2.5 sm:px-4">
+          <Button data-tour="add-assignment" onClick={() => setShowModal(true)} className="flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm h-8 sm:h-9 px-2.5 sm:px-4">
             <Plus className="w-3 h-3 sm:w-4 sm:h-4" />
             {t("assignments.addAssignment")}
           </Button>

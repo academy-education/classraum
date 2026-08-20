@@ -802,6 +802,7 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
               showSuccessToast(t('teachers.inviteLinkCopied') as string)
             }}
             disabled={!canAddUsers}
+            data-tour="invite-teacher"
             className="flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm h-8 sm:h-9 px-2.5 sm:px-4"
           >
             <UserPlus className="w-3 h-3 sm:w-4 sm:h-4" />

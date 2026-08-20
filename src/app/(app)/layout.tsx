@@ -14,6 +14,7 @@ import { Button } from '@/components/ui/button'
 import { NotificationDropdown } from '@/components/ui/notification-dropdown'
 import { ChatWidget } from '@/components/ui/chat-widget'
 import { WelcomeModal } from '@/components/ui/welcome-modal'
+import { SetupTour } from '@/components/ui/onboarding/SetupTour'
 import {
   Bell,
   HelpCircle,
@@ -494,6 +495,14 @@ export default function AppLayout({
           so AppLayout doesn't need to track it. Replay path lives in
           Settings → "Show welcome screen again". */}
       <WelcomeModal />
+
+      {/* Guided academy-setup walkthrough. Mounted here — not on the
+          dashboard page — because it follows the user across
+          /teachers → /classrooms → /families → /sessions →
+          /assignments and must survive those navigations. It never
+          auto-opens: it is launched from the getting-started checklist
+          or from Settings, so it can't collide with the WelcomeModal. */}
+      <SetupTour userRole={userRole} />
     </div>
     </>
   )

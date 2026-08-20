@@ -2,10 +2,12 @@
 
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
-import { Check, GraduationCap, Users, Calendar, BookOpen, X } from 'lucide-react'
+import { Check, GraduationCap, Users, Calendar, BookOpen, X, Wand2 } from 'lucide-react'
 import { useAuth } from '@/contexts/AuthContext'
 import { useTranslation } from '@/hooks/useTranslation'
 import { db } from '@/lib/supabase'
+import { Button } from '@/components/ui/button'
+import { startSetupTour } from '@/components/ui/onboarding/SetupTour'
 
 /**
  * First-week onboarding checklist for brand-new academies.
@@ -19,6 +21,13 @@ import { db } from '@/lib/supabase'
  * pattern as the WelcomeModal. A user on a new device briefly seeing
  * the checklist again is fine; once they create a classroom, it's
  * gone regardless of dismissal.
+ *
+ * This is also the LAUNCHER for the guided setup tour (SetupTour). The
+ * two are deliberately not siblings on the dashboard: the checklist
+ * already owns the "fresh academy" signal and the screen real estate,
+ * so the tour hangs off its primary button instead of being a second
+ * widget with a second definition of "new user". The checklist stays
+ * the map; the tour is the guide that walks you across it.
  */
 const DISMISSED_KEY_PREFIX = 'classraum:getting_started_dismissed:'
 
@@ -56,7 +65,17 @@ export function GettingStartedChecklist({ academyId }: { academyId: string }) {
         db.from('classrooms').select('id', { count: 'exact', head: true }).eq('academy_id', academyId).is('deleted_at', null),
         db.from('teachers').select('user_id', { count: 'exact', head: true }).eq('academy_id', academyId),
         db.from('students').select('user_id', { count: 'exact', head: true }).eq('academy_id', academyId),
-        db.from('classroom_sessions').select('id', { count: 'exact', head: true }).is('deleted_at', null),
+        // Scoped through the classroom, because classroom_sessions carries
+        // no academy_id of its own. This previously had NO academy filter
+        // and leaned entirely on RLS to scope it — which happens to hold
+        // for a single-academy manager, but breaks for anyone managing two
+        // academies, and makes Postgres apply the (expensive) session RLS
+        // policy to every row before counting.
+        db.from('classroom_sessions')
+          .select('id, classrooms!inner(academy_id, deleted_at)', { count: 'exact', head: true })
+          .eq('classrooms.academy_id', academyId)
+          .is('classrooms.deleted_at', null)
+          .is('deleted_at', null),
       ])
       if (cancelled) return
       setCounts({
@@ -147,6 +166,15 @@ export function GettingStartedChecklist({ academyId }: { academyId: string }) {
       <p className="text-sm text-gray-600 mt-1 mb-4">
         {t('dashboard.gettingStarted.description')}
       </p>
+
+      <Button
+        size="sm"
+        className="mb-4"
+        onClick={() => { if (user?.id) startSetupTour(user.id) }}
+      >
+        <Wand2 className="w-3.5 h-3.5 mr-1.5" />
+        {t('dashboard.gettingStarted.startTour')}
+      </Button>
 
       <ul className="space-y-2">
         {steps.map((step, i) => {

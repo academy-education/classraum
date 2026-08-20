@@ -60,6 +60,10 @@ export function Modal({ isOpen, onClose, children, size = 'md', fullHeight, inli
     <>
       {/* Backdrop — soft blur for a modern depth-of-field feel */}
       <div
+        /* Marker, not a style hook: the setup tour queries for this to
+           know a real modal is open, so that it can hide itself and stop
+           competing for Escape / outside-clicks. */
+        data-app-modal="true"
         className="fixed inset-0 z-[200] bg-black/40 backdrop-blur-sm"
       />
       {/* Modal container - centers the modal */}
