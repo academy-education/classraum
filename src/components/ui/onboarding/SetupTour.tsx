@@ -5,7 +5,7 @@ import { createPortal } from 'react-dom'
 import { usePathname, useRouter } from 'next/navigation'
 import {
   X, ArrowRight, ArrowLeft, Check, UserPlus, School, Users, Calendar,
-  ClipboardList, PartyPopper, MapPin, type LucideIcon,
+  ClipboardList, PartyPopper, MapPin, Lock, type LucideIcon,
 } from 'lucide-react'
 import { useAuth } from '@/contexts/AuthContext'
 import { useTranslation } from '@/hooks/useTranslation'
@@ -13,8 +13,10 @@ import { Button } from '@/components/ui/button'
 import { useSetupCounts } from './useSetupCounts'
 import {
   type DashboardRole, type SetupTourStep, type SetupTourStepId, type SetupCounts,
+  type Beak, type Placement,
   EMPTY_COUNTS, visibleSteps, isStepComplete, resumeStepIndex, completedCount,
-  readTourState, writeTourState, isTourRunning, placeCard,
+  readTourState, writeTourState, isTourRunning, placeCard, beakFor, buildRail,
+  completionTransition,
 } from '@/lib/onboarding/setup-tour'
 
 /**
@@ -27,11 +29,10 @@ import {
  * · GettingStartedChecklist answers "what is left to do?" and owns the
  *   "fresh academy" signal (it renders only while classrooms == 0).
  *   The tour is LAUNCHED FROM IT — the checklist grew one primary
- *   button — rather than replacing it or sitting beside it. That keeps
- *   exactly one onboarding widget on the dashboard, reuses the
- *   existing freshness test instead of inventing a second definition
- *   of "new user", and leaves the checklist doing the thing it is
- *   genuinely good at: a persistent map you can glance at.
+ *   button — rather than replacing it or sitting beside it. Both now
+ *   take their ORDER from `SETUP_TOUR_STEPS` (see `checklistSteps`),
+ *   so the checklist can no longer tell a fresh manager to create a
+ *   classroom they are structurally unable to create.
  *
  * ── Escapability ─────────────────────────────────────────────────────
  * Nothing here traps anyone. There is no interactive backdrop: the dim
@@ -40,12 +41,23 @@ import {
  * button the tour is pointing at. X, Escape and a click anywhere
  * outside the card/anchor all dismiss.
  *
- * ── Standing aside for real modals ───────────────────────────────────
+ * ── Standing aside for real modals, without abandoning the user ───────
  * The moment the user opens the very modal we sent them to, `<Modal>`
- * puts `data-app-modal` on its backdrop and this component renders
- * null and stops listening for Escape / outside clicks. Otherwise the
- * first click inside the classroom form would dismiss the tour and
- * Escape would be fought over by two components.
+ * puts `data-app-modal` on its backdrop. The overlay (spotlight, card,
+ * Escape and outside-click handlers) goes away — otherwise the first
+ * click inside the classroom form would dismiss the tour and Escape
+ * would be fought over by two components. What REPLACES it is a docked
+ * hint: a small pill in the bottom-left corner naming what to fill in
+ * for this step. It is `pointer-events: none` end to end and contains
+ * no focusable node, so it can neither swallow a click meant for the
+ * dialog nor enter its focus order.
+ *
+ * ── Continuous help ──────────────────────────────────────────────────
+ * The card is not a static instruction. It carries (a) a live reading
+ * of the very counter that defines "done" for this step, refreshed by
+ * `useSetupCounts`, (b) a success state the moment that counter rises,
+ * before it moves anyone anywhere, and (c) a rail of all five steps
+ * with locked ones saying what they are waiting for.
  */
 
 const STEP_ICONS: Record<SetupTourStepId, LucideIcon> = {
@@ -57,7 +69,18 @@ const STEP_ICONS: Record<SetupTourStepId, LucideIcon> = {
 }
 
 const CARD_WIDTH = 340
-const CARD_HEIGHT_ESTIMATE = 260
+/** Only used for the FIRST placement pass, before the card has been
+ *  measured. The rail made the card taller; an estimate that is too
+ *  small flips the card below an anchor it should sit above. */
+const CARD_HEIGHT_ESTIMATE = 400
+
+/** #2885e8 — `--primary` in globals.css. Inline because the spotlight
+ *  glow is a box-shadow layered with the dim, not a ring utility. */
+const PRIMARY_RGB = '40,133,232'
+
+/** How long the success state is held before the tour moves on. Long
+ *  enough to read one line; "Continue" skips it, "Back" cancels it. */
+const CELEBRATE_MS = 2600
 
 /** Fired by the checklist / Settings to open the tour in the layout. */
 export const SETUP_TOUR_EVENT = 'classraum:setup-tour'
@@ -87,19 +110,109 @@ function usePrefersReducedMotion(): boolean {
   return reduced
 }
 
-/** True while any `<Modal>` is mounted. Watches body's child list,
- *  which is where every modal portals to (see ModalPortal / Modal). */
-function useAppModalOpen(): boolean {
-  const [open, setOpen] = useState(false)
+/** Widest of the two vertical gutters the open dialog leaves free. */
+const HINT_WIDTH = 304
+const HINT_MARGIN = 16
+const HINT_MIN_WIDTH = 208
+
+export interface HintDock { open: boolean; style: React.CSSProperties }
+
+/**
+ * True while any `<Modal>` is mounted — plus where the tour's docked
+ * hint can stand without covering the dialog.
+ *
+ * Body's child list is watched because that is where every modal
+ * portals to (see ModalPortal / Modal). `data-app-modal-box` is the
+ * dialog itself; the gutters either side of it are the only places a
+ * hint can sit without landing on the dialog's Cancel/Save row, which
+ * is exactly where a bottom-left corner pill lands on a wide modal.
+ * `pointer-events: none` means the hint could never SWALLOW that
+ * click, but obscuring the button is bad enough.
+ *
+ * The degenerate case — a dialog so wide that neither gutter can hold
+ * even a narrow pill (phones) — docks bottom-centre and accepts the
+ * overlap, because the alternative is no guidance at all.
+ */
+function useAppModalOpen(): HintDock {
+  const [dock, setDock] = useState<HintDock>({ open: false, style: {} })
   useEffect(() => {
     if (typeof document === 'undefined') return
-    const read = () => setOpen(!!document.querySelector('[data-app-modal]'))
+    const read = () => {
+      const open = !!document.querySelector('[data-app-modal]')
+      if (!open) { setDock(d => (d.open ? { open: false, style: {} } : d)) ; return }
+      const box = document.querySelector('[data-app-modal-box]')
+      const vw = window.innerWidth
+      const r = box?.getBoundingClientRect()
+      const leftGutter = r ? r.left : vw
+      const rightGutter = r ? vw - r.right : vw
+      const widest = Math.max(leftGutter, rightGutter)
+      const width = Math.min(HINT_WIDTH, widest - HINT_MARGIN * 2)
+      const style: React.CSSProperties = width >= HINT_MIN_WIDTH
+        ? {
+            width,
+            bottom: 20,
+            ...(leftGutter >= rightGutter ? { left: HINT_MARGIN } : { right: HINT_MARGIN }),
+          }
+        : {
+            width: Math.min(HINT_WIDTH, vw - HINT_MARGIN * 2),
+            bottom: 20,
+            left: '50%',
+            transform: 'translateX(-50%)',
+          }
+      setDock({ open: true, style })
+    }
     read()
     const observer = new MutationObserver(read)
     observer.observe(document.body, { childList: true, subtree: true })
-    return () => observer.disconnect()
+    window.addEventListener('resize', read)
+    return () => { observer.disconnect(); window.removeEventListener('resize', read) }
   }, [])
-  return open
+  return dock
+}
+
+/**
+ * The beak, as an SVG rather than the usual rotated square.
+ *
+ * A rotated square needs its inner half hidden behind the card, which
+ * means fighting the card's own `ring-1` and its stacking context. A
+ * triangle whose two slanted edges are stroked and whose flat base is
+ * over-painted in white simply covers the 1px of card ring it sits on,
+ * and works identically on all four edges.
+ */
+function BeakArrow({ beak }: { beak: Beak }) {
+  const horizontal = beak.side === 'top' || beak.side === 'bottom'
+  const w = horizontal ? 20 : 10
+  const h = horizontal ? 10 : 20
+  const shape = {
+    top: 'M1 10 L10 1.5 L19 10',
+    bottom: 'M1 0 L10 8.5 L19 0',
+    left: 'M10 1 L1.5 10 L10 19',
+    right: 'M0 1 L8.5 10 L0 19',
+  }[beak.side]
+  const base = {
+    top: 'M0.5 10 H19.5',
+    bottom: 'M0.5 0 H19.5',
+    left: 'M10 0.5 V19.5',
+    right: 'M0 0.5 V19.5',
+  }[beak.side]
+  const style: React.CSSProperties = horizontal
+    ? { left: beak.offset - w / 2, [beak.side === 'top' ? 'top' : 'bottom']: -(h - 1) }
+    : { top: beak.offset - h / 2, [beak.side === 'left' ? 'left' : 'right']: -(w - 1) }
+
+  return (
+    <svg
+      aria-hidden="true"
+      width={w}
+      height={h}
+      viewBox={`0 0 ${w} ${h}`}
+      className="absolute pointer-events-none"
+      style={style}
+    >
+      <path d={shape} fill="#fff" stroke="rgba(229,231,235,0.9)" strokeWidth="1" strokeLinejoin="round" />
+      {/* Paints out the card's own ring line under the beak's base. */}
+      <path d={base} stroke="#fff" strokeWidth="2" fill="none" />
+    </svg>
+  )
 }
 
 export function SetupTour({ userRole }: { userRole: string | null }) {
@@ -108,7 +221,8 @@ export function SetupTour({ userRole }: { userRole: string | null }) {
   const router = useRouter()
   const pathname = usePathname() ?? ''
   const reducedMotion = usePrefersReducedMotion()
-  const appModalOpen = useAppModalOpen()
+  const hintDock = useAppModalOpen()
+  const appModalOpen = hintDock.open
   const userId = user?.id
 
   const [running, setRunning] = useState(false)
@@ -119,6 +233,10 @@ export function SetupTour({ userRole }: { userRole: string | null }) {
   // hard reload and then jumps to the button — a visible flinch.
   const [probed, setProbed] = useState(false)
   const [mounted, setMounted] = useState(false)
+  // Non-null while the "you just did it" card is showing.
+  const [celebrating, setCelebrating] = useState<
+    { stepId: SetupTourStepId; nextIndex: number } | null
+  >(null)
   const cardRef = useRef<HTMLDivElement | null>(null)
 
   const { counts, refresh } = useSetupCounts(running ? academyId : undefined)
@@ -159,25 +277,38 @@ export function SetupTour({ userRole }: { userRole: string | null }) {
     setIndex(i === -1 ? steps.length : i)
   }, [running, counts, userId, steps])
 
-  /* ── advance when the work actually gets done ─────────────────── */
-  // Keyed on a signature of the COUNTS, deliberately. Reacting to
-  // `index` too would make Back unusable: stepping back onto a step the
-  // user already finished would bounce them straight forward again.
-  const lastCountsSig = useRef<string | null>(null)
+  /* ── celebrate, then advance, when the work actually gets done ── */
+  // Two counts readings are compared by `completionTransition`; only
+  // the CURRENT step's own counter rising fires it. `index` is read
+  // through a ref on purpose — reacting to it would re-evaluate on
+  // Back and bounce the user forward off a step they deliberately
+  // returned to.
+  const indexRef = useRef(index)
+  indexRef.current = index
+  const prevCounts = useRef<SetupCounts | null>(null)
+  const celebratingRef = useRef(celebrating)
+  celebratingRef.current = celebrating
   useEffect(() => {
-    if (!running || !counts) { lastCountsSig.current = null; return }
-    const sig = JSON.stringify(counts)
-    if (lastCountsSig.current === sig) return
-    const first = lastCountsSig.current === null
-    lastCountsSig.current = sig
-    if (first) return // the resume effect owns the initial position
-    setIndex(current => {
-      if (current >= steps.length || !isStepComplete(steps[current], counts)) return current
-      let next = current + 1
-      while (next < steps.length && isStepComplete(steps[next], counts)) next += 1
-      return next
-    })
+    if (!running || !counts) { prevCounts.current = null; return }
+    const before = prevCounts.current
+    if (before && JSON.stringify(before) === JSON.stringify(counts)) return
+    prevCounts.current = counts
+    if (celebratingRef.current) return
+    const transition = completionTransition(before, counts, indexRef.current, steps)
+    if (transition) setCelebrating({ stepId: transition.completed, nextIndex: transition.nextIndex })
   }, [counts, running, steps])
+
+  // Hold the success card briefly, then move on. Any manual Back /
+  // Continue clears `celebrating` and therefore this timer.
+  useEffect(() => {
+    if (!celebrating) return
+    const target = celebrating.nextIndex
+    const id = window.setTimeout(() => {
+      setIndex(target)
+      setCelebrating(null)
+    }, CELEBRATE_MS)
+    return () => window.clearTimeout(id)
+  }, [celebrating])
 
   // Re-count on the events that can mean "they just did it": arriving
   // on a page, a modal closing, and a slow safety poll.
@@ -262,22 +393,55 @@ export function SetupTour({ userRole }: { userRole: string | null }) {
     }
   }, [running, appModalOpen, dismiss, step])
 
-  if (!mounted || !running || !userId || appModalOpen) return null
+  if (!mounted || !running || !userId) return null
+
+  const anim = reducedMotion ? '' : 'animate-in fade-in duration-200'
+
+  /* ── modal open: hand over the screen, keep the guidance ──────── */
+  // Docked out of the dialog's way, inert (`pointer-events-none`, no
+  // focusable children), above the modal's z-[201] so it is not buried.
+  if (appModalOpen) {
+    if (!step) return null
+    return createPortal(
+      <div
+        role="status"
+        aria-live="polite"
+        style={hintDock.style}
+        className={`fixed z-[202] pointer-events-none select-none rounded-2xl bg-white ring-1 ring-gray-200/70 shadow-[0_12px_28px_-10px_rgba(0,0,0,0.25),0_1px_2px_rgba(0,0,0,0.03)] px-4 py-3 ${anim}`}
+      >
+        <p className="text-[10px] font-semibold uppercase tracking-[0.12em] text-primary flex items-center gap-1.5">
+          <MapPin className="w-3 h-3" />
+          {String(t('setupTour.hintEyebrow'))}
+          <span className="text-gray-400 font-medium tracking-normal normal-case tabular-nums">
+            {index + 1}/{steps.length}
+          </span>
+        </p>
+        <p className="text-[13px] font-semibold text-gray-900 mt-1 leading-snug">
+          {String(t(`${step.i18n}.title`))}
+        </p>
+        <p className="text-[12px] text-gray-600 leading-relaxed mt-0.5">
+          {String(t(`${step.i18n}.hint`))}
+        </p>
+      </div>,
+      document.body,
+    )
+  }
+
   // Mid-probe on the step's own page: hold one frame rather than
   // flashing the centred fallback and snapping to the button.
   if (step && onRoute && !probed) return null
 
   const done = completedCount(live, steps)
   const total = steps.length
-  const anim = reducedMotion ? '' : 'animate-in fade-in duration-200'
+  const rail = buildRail(live, steps, index)
 
-  const placement = rect
-    ? placeCard(
-        rect,
-        { width: window.innerWidth, height: window.innerHeight },
-        { width: CARD_WIDTH, height: cardRef.current?.offsetHeight || CARD_HEIGHT_ESTIMATE },
-      )
+  const cardBox = { width: CARD_WIDTH, height: cardRef.current?.offsetHeight || CARD_HEIGHT_ESTIMATE }
+  const placement: Placement | null = rect
+    ? placeCard(rect, { width: window.innerWidth, height: window.innerHeight }, cardBox)
     : null
+  // No anchor (off-route, or the button has not painted) means the card
+  // is centred and points at nothing — so it gets no beak.
+  const beak = rect ? beakFor(rect, placement, cardBox) : null
 
   const cardStyle: React.CSSProperties = placement
     ? { top: placement.top, left: placement.left, width: CARD_WIDTH }
@@ -286,25 +450,51 @@ export function SetupTour({ userRole }: { userRole: string | null }) {
         transform: 'translate(-50%, -50%)',
       }
 
-  const Icon = step ? STEP_ICONS[step.id] : PartyPopper
+  const celebratedStep = celebrating
+    ? steps.find(s => s.id === celebrating.stepId) ?? null
+    : null
+  const Icon = celebratedStep ? Check : step ? STEP_ICONS[step.id] : PartyPopper
+
+  const railLockLabel = (id: SetupTourStepId) => {
+    const target = steps.find(s => s.id === id)
+    return String(t('setupTour.locked', {
+      step: target ? String(t(`${target.i18n}.short`)) : id,
+    }))
+  }
 
   const body = (
     <>
       {/* Spotlight. The dim is a 9999px box-shadow around the cut-out,
           so there is no element covering the app: the real button stays
-          clickable and nothing is trapped. */}
+          clickable and nothing is trapped. The accent glow rides the
+          same shadow stack; the pulse is a separate, purely decorative
+          layer so `prefers-reduced-motion` can drop it on its own. */}
       {rect && (
-        <div
-          aria-hidden="true"
-          className={`fixed rounded-xl ring-2 ring-primary pointer-events-none z-[190] ${anim}`}
-          style={{
-            top: rect.top - 6,
-            left: rect.left - 6,
-            width: rect.width + 12,
-            height: rect.height + 12,
-            boxShadow: '0 0 0 9999px rgba(17,24,39,0.45)',
-          }}
-        />
+        <>
+          <div
+            aria-hidden="true"
+            className={`fixed rounded-xl ring-2 ring-primary/80 pointer-events-none z-[190] ${anim}`}
+            style={{
+              top: rect.top - 6,
+              left: rect.left - 6,
+              width: rect.width + 12,
+              height: rect.height + 12,
+              boxShadow: `0 0 0 5px rgba(${PRIMARY_RGB},0.18), 0 0 0 9999px rgba(17,24,39,0.38)`,
+            }}
+          />
+          {!reducedMotion && (
+            <div
+              aria-hidden="true"
+              className="fixed rounded-xl ring-4 ring-primary/25 pointer-events-none z-[190] animate-pulse motion-reduce:animate-none"
+              style={{
+                top: rect.top - 10,
+                left: rect.left - 10,
+                width: rect.width + 20,
+                height: rect.height + 20,
+              }}
+            />
+          )}
+        </>
       )}
 
       <div
@@ -314,6 +504,8 @@ export function SetupTour({ userRole }: { userRole: string | null }) {
         style={cardStyle}
         className={`fixed z-[191] rounded-2xl bg-white ring-1 ring-gray-200/70 shadow-[0_24px_48px_-12px_rgba(0,0,0,0.28),0_1px_2px_rgba(0,0,0,0.03)] p-5 ${anim}`}
       >
+        {beak && <BeakArrow beak={beak} />}
+
         <button
           type="button"
           onClick={dismiss}
@@ -323,61 +515,146 @@ export function SetupTour({ userRole }: { userRole: string | null }) {
           <X className="w-4 h-4" />
         </button>
 
-        <div className="w-10 h-10 rounded-xl bg-primary/10 text-primary flex items-center justify-center mb-3">
-          <Icon className="w-5 h-5" strokeWidth={2} />
+        {/* Header: icon chip beside the title, so the TITLE leads the
+            card rather than sitting under a stack of chrome. */}
+        <div className="flex items-start gap-3 pr-6">
+          <div className={`w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0 ${
+            celebratedStep ? 'bg-emerald-500 text-white' : 'bg-primary/10 text-primary'
+          }`}>
+            <Icon className="w-[18px] h-[18px]" strokeWidth={2.2} />
+          </div>
+          <div className="min-w-0">
+            <p className={`text-[10px] font-semibold uppercase tracking-[0.12em] tabular-nums ${
+              celebratedStep ? 'text-emerald-600' : 'text-primary'
+            }`}>
+              {celebratedStep
+                ? String(t('setupTour.completed.eyebrow'))
+                : step
+                  ? String(t('setupTour.stepCounter', { current: index + 1, total }))
+                  : String(t('setupTour.finish.eyebrow'))}
+            </p>
+            <h2 id="setup-tour-title" className="text-[17px] font-semibold tracking-tight text-gray-900 leading-snug mt-0.5">
+              {celebratedStep
+                ? String(t(`${celebratedStep.i18n}.title`))
+                : step
+                  ? String(t(`${step.i18n}.title`))
+                  : String(t('setupTour.finish.title'))}
+            </h2>
+          </div>
         </div>
 
-        <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-primary mb-1">
-          {step
-            ? String(t('setupTour.stepCounter', { current: index + 1, total }))
-            : String(t('setupTour.finish.eyebrow'))}
+        <p className="text-[12.5px] text-gray-500 leading-relaxed mt-2">
+          {celebratedStep
+            ? String(t(`${celebratedStep.i18n}.praise`))
+            : step
+              ? String(t(`${step.i18n}.body`))
+              : String(t('setupTour.finish.body'))}
         </p>
-        <h2 id="setup-tour-title" className="text-[17px] font-semibold tracking-tight text-gray-900">
-          {step ? String(t(`${step.i18n}.title`)) : String(t('setupTour.finish.title'))}
-        </h2>
-        <p className="text-[13px] text-gray-600 leading-relaxed mt-1.5">
-          {step ? String(t(`${step.i18n}.body`)) : String(t('setupTour.finish.body'))}
-        </p>
+
+        {/* LIVE reading of the exact counter that defines "done" here.
+            This is the thing that turns a static instruction into
+            feedback: the number moves when the user's action lands. */}
+        {step && !celebratedStep && (
+          <div className={`mt-3 inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-[11.5px] font-medium ring-1 ${
+            isStepComplete(step, live)
+              ? 'bg-emerald-50 text-emerald-700 ring-emerald-200/70'
+              : 'bg-gray-50 text-gray-500 ring-gray-200/70'
+          }`}>
+            <span className={`w-1.5 h-1.5 rounded-full ${
+              isStepComplete(step, live) ? 'bg-emerald-500' : 'bg-gray-300'
+            }`} />
+            <span className="tabular-nums">
+              {isStepComplete(step, live)
+                ? String(t(`${step.i18n}.statusSome`, { count: live[step.countKey] }))
+                : String(t(`${step.i18n}.statusNone`))}
+            </span>
+          </div>
+        )}
 
         {/* Off-route, or the control isn't on screen yet. Never a dead
             end: say so and offer the way there. */}
-        {step && !onRoute && (
+        {step && !celebratedStep && !onRoute && (
           <Button
             size="sm"
-            className="w-full mt-4"
+            className="w-full mt-3"
             onClick={() => router.push(step.route)}
           >
             <MapPin className="w-3.5 h-3.5 mr-1.5" />
             {String(t(`${step.i18n}.goto`))}
           </Button>
         )}
-        {step && onRoute && !rect && (
+        {step && !celebratedStep && onRoute && !rect && (
           <p className="mt-3 text-[12px] text-amber-700 bg-amber-50 ring-1 ring-amber-200/70 rounded-lg px-2.5 py-2">
             {String(t('setupTour.anchorMissing'))}
           </p>
         )}
 
-        {/* Progress */}
-        <div className="flex items-center gap-1.5 mt-4">
-          {steps.map((s, i) => {
-            const complete = isStepComplete(s, live)
-            return (
-              <div
-                key={s.id}
-                className={`h-1.5 rounded-full transition-all motion-reduce:transition-none ${
-                  i === index ? 'w-6 bg-primary' : complete ? 'w-1.5 bg-emerald-500' : 'w-1.5 bg-gray-200'
-                }`}
-              />
-            )
-          })}
-          <span className="ml-auto text-[11px] font-medium text-gray-500 tabular-nums">
-            {done} / {total}
-          </span>
+        {/* ── the rail ──────────────────────────────────────────── */}
+        <div className="mt-4 pt-3 border-t border-gray-100">
+          <div className="flex items-center justify-between mb-1.5">
+            <p className="text-[10px] font-semibold uppercase tracking-[0.12em] text-gray-400">
+              {String(t('setupTour.railTitle'))}
+            </p>
+            <span className="text-[11px] font-medium text-gray-500 tabular-nums">
+              {done} / {total}
+            </span>
+          </div>
+          <ul className="space-y-0.5">
+            {rail.map((item, i) => {
+              const isCurrent = item.state === 'current'
+              return (
+                <li
+                  key={item.step.id}
+                  className={`flex items-center gap-2 rounded-lg px-1.5 py-1 ${
+                    isCurrent ? 'bg-primary/[0.06]' : ''
+                  }`}
+                >
+                  <span className={`w-4 h-4 rounded-full flex items-center justify-center flex-shrink-0 text-[9px] font-semibold tabular-nums ${
+                    item.state === 'done'
+                      ? 'bg-emerald-500 text-white'
+                      : isCurrent
+                        ? 'bg-primary text-white'
+                        : 'bg-gray-100 text-gray-400 ring-1 ring-gray-200/70'
+                  }`}>
+                    {item.state === 'done'
+                      ? <Check className="w-2.5 h-2.5" strokeWidth={3} />
+                      : item.state === 'locked'
+                        ? <Lock className="w-2 h-2" strokeWidth={2.5} />
+                        : i + 1}
+                  </span>
+                  <span className={`text-[12px] truncate ${
+                    item.state === 'done'
+                      ? 'text-gray-400 line-through'
+                      : isCurrent
+                        ? 'text-gray-900 font-semibold'
+                        : item.state === 'locked'
+                          ? 'text-gray-400'
+                          : 'text-gray-600'
+                  }`}>
+                    {String(t(`${item.step.i18n}.rail`))}
+                  </span>
+                  <span className="sr-only">
+                    {String(t(`setupTour.railState.${item.state}`))}
+                  </span>
+                  {item.state === 'locked' && item.lockedBy && (
+                    <span className="ml-auto text-[10.5px] text-gray-400 flex-shrink-0">
+                      {railLockLabel(item.lockedBy)}
+                    </span>
+                  )}
+                </li>
+              )
+            })}
+          </ul>
         </div>
 
         <div className="flex items-center gap-2 mt-4">
           {index > 0 ? (
-            <Button variant="outline" size="sm" className="flex-1" onClick={() => setIndex(index - 1)}>
+            <Button
+              variant="outline"
+              size="sm"
+              className="flex-1"
+              onClick={() => { setCelebrating(null); setIndex(index - 1) }}
+            >
               <ArrowLeft className="w-3.5 h-3.5 mr-1" />
               {String(t('setupTour.back'))}
             </Button>
@@ -386,7 +663,16 @@ export function SetupTour({ userRole }: { userRole: string | null }) {
               {String(t('setupTour.exit'))}
             </Button>
           )}
-          {step ? (
+          {celebrating ? (
+            <Button
+              size="sm"
+              className="flex-1"
+              onClick={() => { const n = celebrating.nextIndex; setCelebrating(null); setIndex(n) }}
+            >
+              {String(t('setupTour.completed.cta'))}
+              <ArrowRight className="w-3.5 h-3.5 ml-1" />
+            </Button>
+          ) : step ? (
             <Button size="sm" className="flex-1" onClick={() => setIndex(index + 1)}>
               {String(t('setupTour.next'))}
               <ArrowRight className="w-3.5 h-3.5 ml-1" />

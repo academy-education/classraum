@@ -79,6 +79,11 @@ export function Modal({ isOpen, onClose, children, size = 'md', fullHeight, inli
       >
         {/* Modal box */}
         <div
+          /* Second marker, same reason as `data-app-modal` above: the
+             setup tour measures this box so its docked hint can sit in
+             whichever gutter the dialog leaves free, instead of over
+             the dialog's own buttons. */
+          data-app-modal-box="true"
           className={`bg-white rounded-2xl ring-1 ring-gray-100 w-full ${sizeClasses[size]} shadow-[0_24px_48px_-12px_rgba(0,0,0,0.18),0_4px_8px_-4px_rgba(0,0,0,0.08)] flex flex-col`}
           style={{
             ...(useFullHeight ? { height: heightStyle } : { maxHeight: heightStyle }),

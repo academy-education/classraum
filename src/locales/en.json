@@ -1901,7 +1901,8 @@
       "addTeachers": "Add at least one teacher",
       "addStudents": "Add a family with students",
       "scheduleSession": "Schedule your first session",
-      "startTour": "Guide me through it"
+      "startTour": "Guide me through it",
+      "setAssignment": "Set your first assignment"
     },
     "title": "Dashboard",
     "description": "At-a-glance overview of your academy",
@@ -9875,29 +9876,72 @@
     "steps": {
       "teachers": {
         "title": "Invite a teacher first",
-        "body": "A classroom must be assigned to a teacher, and your own manager account is not one — so this comes first. This button copies an invite link; send it to a teacher and they will appear here once they sign up.",
-        "goto": "Go to Teachers"
+        "body": "A classroom must be assigned to a teacher, and your manager account is not one. This button copies an invite link to send.",
+        "goto": "Go to Teachers",
+        "short": "a teacher",
+        "statusNone": "No teachers yet",
+        "statusSome": "{count} invited",
+        "hint": "Copy the link, then send it to your teacher.",
+        "praise": "Teacher invited — your classroom now has someone to assign it to.",
+        "rail": "Invite a teacher"
       },
       "classroom": {
         "title": "Create your first classroom",
-        "body": "Name it, pick the teacher you invited, and set the weekly schedule. Everything else in Classraum hangs off a classroom.",
-        "goto": "Go to Classrooms"
+        "body": "Name it, pick the teacher you invited, and set the weekly schedule.",
+        "goto": "Go to Classrooms",
+        "short": "a classroom",
+        "statusNone": "No classrooms yet",
+        "statusSome": "{count} created",
+        "hint": "Name the classroom, choose the teacher you invited, then set the weekly schedule.",
+        "praise": "Classroom created. Everything else in Classraum hangs off it.",
+        "rail": "Create a classroom"
       },
       "students": {
         "title": "Add a family and its students",
-        "body": "Students join through a family. Create the family here, then share the student and parent registration links it gives you. Enrol them into your classroom afterwards.",
-        "goto": "Go to Families"
+        "body": "Students join through a family. Create the family, then share the registration links it gives you.",
+        "goto": "Go to Families",
+        "short": "students",
+        "statusNone": "No students yet",
+        "statusSome": "{count} enrolled",
+        "hint": "Fill in the family name, then share the student and parent links it returns.",
+        "praise": "Students added. You can enrol them into your classroom now.",
+        "rail": "Add students"
       },
       "session": {
         "title": "Schedule your first session",
-        "body": "A session is one dated meeting of a classroom — the thing attendance and assignments attach to. Pick the classroom, the date and the times.",
-        "goto": "Go to Sessions"
+        "body": "A session is one dated meeting of a classroom — what attendance and assignments attach to.",
+        "goto": "Go to Sessions",
+        "short": "a session",
+        "statusNone": "No sessions yet",
+        "statusSome": "{count} scheduled",
+        "hint": "Pick the classroom, the date, and the start and end times.",
+        "praise": "Session scheduled — attendance and assignments can attach to it.",
+        "rail": "Schedule a session"
       },
       "assignment": {
         "title": "Set your first assignment",
-        "body": "Assignments belong to a session, so choose the session you just scheduled, give it a title and a due date. Every enrolled student gets a grade row automatically.",
-        "goto": "Go to Assignments"
+        "body": "Assignments belong to a session. Pick the one you just scheduled, then add a title and a due date.",
+        "goto": "Go to Assignments",
+        "short": "an assignment",
+        "statusNone": "No assignments yet",
+        "statusSome": "{count} created",
+        "hint": "Choose the session you just scheduled, then add a title and a due date.",
+        "praise": "Assignment set. Every enrolled student got a grade row automatically.",
+        "rail": "Set an assignment"
       }
+    },
+    "railTitle": "Setup steps",
+    "locked": "Needs {step} first",
+    "railState": {
+      "done": "Done",
+      "current": "Current step",
+      "locked": "Locked",
+      "todo": "Not started"
+    },
+    "hintEyebrow": "Setup guide",
+    "completed": {
+      "eyebrow": "Step complete",
+      "cta": "Continue"
     }
   }
 }

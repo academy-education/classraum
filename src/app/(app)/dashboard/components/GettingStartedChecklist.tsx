@@ -2,12 +2,16 @@
 
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
-import { Check, GraduationCap, Users, Calendar, BookOpen, X, Wand2 } from 'lucide-react'
+import { Check, GraduationCap, Users, Calendar, BookOpen, ClipboardList, X, Wand2, type LucideIcon } from 'lucide-react'
 import { useAuth } from '@/contexts/AuthContext'
 import { useTranslation } from '@/hooks/useTranslation'
 import { db } from '@/lib/supabase'
 import { Button } from '@/components/ui/button'
 import { startSetupTour } from '@/components/ui/onboarding/SetupTour'
+import {
+  type SetupCounts, type SetupTourStepId,
+  checklistSteps, isStepComplete,
+} from '@/lib/onboarding/setup-tour'
 
 /**
  * First-week onboarding checklist for brand-new academies.
@@ -22,6 +26,15 @@ import { startSetupTour } from '@/components/ui/onboarding/SetupTour'
  * the checklist again is fine; once they create a classroom, it's
  * gone regardless of dismissal.
  *
+ * ORDER comes from `SETUP_TOUR_STEPS` (via `checklistSteps`), not from
+ * a list kept here. It used to be a second hardcoded array that began
+ * with "create your first classroom" — the one step a brand-new
+ * manager CANNOT do, because ClassroomCreateModal disables Create
+ * without a `teacher_id` and a manager's signup writes no `teachers`
+ * row. The checklist and the tour therefore told the user to do two
+ * different things first. One list, one order, and `validateStepOrder`
+ * polices it in the tour's own test.
+ *
  * This is also the LAUNCHER for the guided setup tour (SetupTour). The
  * two are deliberately not siblings on the dashboard: the checklist
  * already owns the "fresh academy" signal and the screen real estate,
@@ -31,17 +44,20 @@ import { startSetupTour } from '@/components/ui/onboarding/SetupTour'
  */
 const DISMISSED_KEY_PREFIX = 'classraum:getting_started_dismissed:'
 
-interface Counts {
-  classrooms: number
-  teachers: number
-  students: number
-  sessions: number
+/** Icon + label + destination for the steps the checklist shows. The
+ *  ORDER is not here — it comes from the tour's step list. */
+const PRESENTATION: Record<SetupTourStepId, { icon: LucideIcon; labelKey: string }> = {
+  teachers: { icon: GraduationCap, labelKey: 'dashboard.gettingStarted.addTeachers' },
+  classroom: { icon: BookOpen, labelKey: 'dashboard.gettingStarted.createClassroom' },
+  students: { icon: Users, labelKey: 'dashboard.gettingStarted.addStudents' },
+  session: { icon: Calendar, labelKey: 'dashboard.gettingStarted.scheduleSession' },
+  assignment: { icon: ClipboardList, labelKey: 'dashboard.gettingStarted.setAssignment' },
 }
 
 export function GettingStartedChecklist({ academyId }: { academyId: string }) {
   const { user } = useAuth()
   const { t } = useTranslation()
-  const [counts, setCounts] = useState<Counts | null>(null)
+  const [counts, setCounts] = useState<SetupCounts | null>(null)
   const [dismissed, setDismissed] = useState(false)
 
   // Read dismissal flag once we have a user.
@@ -83,6 +99,9 @@ export function GettingStartedChecklist({ academyId }: { academyId: string }) {
         teachers: t.count ?? 0,
         students: s.count ?? 0,
         sessions: sess.count ?? 0,
+        // Not a checklist row (see CHECKLIST_STEP_IDS); present only
+        // because SetupCounts is the shared shape.
+        assignments: 0,
       })
     })()
     return () => { cancelled = true }
@@ -90,36 +109,13 @@ export function GettingStartedChecklist({ academyId }: { academyId: string }) {
 
   if (dismissed || !counts) return null
 
-  const steps = [
-    {
-      key: 'classroom',
-      done: counts.classrooms > 0,
-      icon: BookOpen,
-      title: t('dashboard.gettingStarted.createClassroom'),
-      href: '/classrooms',
-    },
-    {
-      key: 'teachers',
-      done: counts.teachers > 0,
-      icon: GraduationCap,
-      title: t('dashboard.gettingStarted.addTeachers'),
-      href: '/teachers',
-    },
-    {
-      key: 'students',
-      done: counts.students > 0,
-      icon: Users,
-      title: t('dashboard.gettingStarted.addStudents'),
-      href: '/families',
-    },
-    {
-      key: 'sessions',
-      done: counts.sessions > 0,
-      icon: Calendar,
-      title: t('dashboard.gettingStarted.scheduleSession'),
-      href: '/sessions',
-    },
-  ] as const
+  const steps = checklistSteps().map(step => ({
+    key: step.id,
+    done: isStepComplete(step, counts),
+    icon: PRESENTATION[step.id].icon,
+    title: t(PRESENTATION[step.id].labelKey),
+    href: step.route,
+  }))
 
   const completed = steps.filter(s => s.done).length
   // Hide once everything's done — no need for a "100% complete" badge
@@ -156,7 +152,7 @@ export function GettingStartedChecklist({ academyId }: { academyId: string }) {
         <span className="text-[11px] font-semibold uppercase tracking-[0.12em] text-primary">
           {t('dashboard.gettingStarted.eyebrow')}
         </span>
-        <span className="text-xs text-gray-500">
+        <span className="text-xs text-gray-500 tabular-nums">
           {completed} / {steps.length}
         </span>
       </div>

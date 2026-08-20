@@ -220,6 +220,111 @@ export function completedCount(
   return steps.filter(s => isStepComplete(s, counts)).length
 }
 
+/**
+ * The first requirement of `step` that is NOT yet satisfied, or null if
+ * the step is reachable. This is what the rail prints as the reason a
+ * step is locked ("needs a classroom first") — a locked row that does
+ * not say why is just a disabled control.
+ */
+export function lockedReason(
+  step: SetupTourStep,
+  counts: SetupCounts,
+  steps: readonly SetupTourStep[] = SETUP_TOUR_STEPS,
+): SetupTourStepId | null {
+  for (const id of step.requires) {
+    const req = steps.find(s => s.id === id)
+    if (!req || !isStepComplete(req, counts)) return id
+  }
+  return null
+}
+
+export type RailState = 'done' | 'current' | 'locked' | 'todo'
+
+export interface RailItem {
+  step: SetupTourStep
+  state: RailState
+  /** Set whenever a requirement is unmet — including on the current
+   *  step, so the card can explain a step the user jumped onto. */
+  lockedBy: SetupTourStepId | null
+}
+
+/**
+ * The five-row progress rail.
+ *
+ * Precedence is done > current > locked > todo, deliberately: a step
+ * the user has already satisfied never reads as "locked" just because
+ * they did it out of order, and the step they are standing on always
+ * reads as current even if it is not strictly reachable yet.
+ */
+export function buildRail(
+  counts: SetupCounts,
+  steps: readonly SetupTourStep[] = SETUP_TOUR_STEPS,
+  currentIndex = -1,
+): RailItem[] {
+  return steps.map((step, i) => {
+    const lockedBy = lockedReason(step, counts, steps)
+    const state: RailState = isStepComplete(step, counts)
+      ? 'done'
+      : i === currentIndex
+        ? 'current'
+        : lockedBy
+          ? 'locked'
+          : 'todo'
+    return { step, state, lockedBy }
+  })
+}
+
+export interface CompletionTransition {
+  /** The step whose counter just went up. */
+  completed: SetupTourStepId
+  /** Where the tour should land — `steps.length` means "the finish card". */
+  nextIndex: number
+}
+
+/**
+ * Did the step the user is standing on just get done?
+ *
+ * Compares two count readings. Returns null unless the CURRENT step's
+ * own counter rose from zero — an unrelated counter moving (a second
+ * teacher, someone else's import) must not fire a celebration or shove
+ * the user forward. `prev` being null is the first reading of the
+ * session and can never be a transition: everything would look "new".
+ */
+export function completionTransition(
+  prev: SetupCounts | null,
+  next: SetupCounts,
+  currentIndex: number,
+  steps: readonly SetupTourStep[] = SETUP_TOUR_STEPS,
+): CompletionTransition | null {
+  if (!prev) return null
+  if (currentIndex < 0 || currentIndex >= steps.length) return null
+  const step = steps[currentIndex]
+  if (isStepComplete(step, prev)) return null
+  if (!isStepComplete(step, next)) return null
+  let nextIndex = currentIndex + 1
+  while (nextIndex < steps.length && isStepComplete(steps[nextIndex], next)) nextIndex += 1
+  return { completed: step.id, nextIndex }
+}
+
+/**
+ * Which steps the dashboard checklist lists, in TOUR order.
+ *
+ * The checklist used to carry its own hardcoded array that began with
+ * "create your first classroom" — the one step a brand-new manager
+ * cannot do (ClassroomCreateModal disables Create without a
+ * `teacher_id`). Two lists meant two orders and the widgets
+ * contradicted each other. There is now one list, and
+ * `validateStepOrder` polices it.
+ */
+export const CHECKLIST_STEP_IDS: readonly SetupTourStepId[] =
+  ['teachers', 'classroom', 'students', 'session'] as const
+
+export function checklistSteps(
+  steps: readonly SetupTourStep[] = SETUP_TOUR_STEPS,
+): SetupTourStep[] {
+  return steps.filter(s => CHECKLIST_STEP_IDS.includes(s.id))
+}
+
 export interface OrderViolation {
   step: SetupTourStepId
   requires: SetupTourStepId
@@ -351,7 +456,10 @@ export function resetSetupTour(userId: string): void {
 /* ── placement ─────────────────────────────────────────────────────── */
 
 export interface Rect { top: number; left: number; width: number; height: number }
-export interface Placement { top: number; left: number; side: 'below' | 'above' }
+
+/** Where the CARD sits relative to the anchor. */
+export type PlacementSide = 'below' | 'above' | 'left' | 'right'
+export interface Placement { top: number; left: number; side: PlacementSide }
 
 /**
  * Where to put the tooltip card relative to its anchor.
@@ -360,6 +468,10 @@ export interface Placement { top: number; left: number; side: 'below' | 'above' 
  * without a browser. Rules, in order:
  *   · prefer below the anchor; flip above when the card would run off
  *     the bottom AND there is more room above;
+ *   · when NEITHER side of the anchor can hold the card (a short
+ *     viewport, a phone in landscape), go beside it instead of
+ *     covering it — the card is the thing explaining the button, so
+ *     landing on top of the button is the one placement to avoid;
  *   · clamp horizontally into the viewport with a margin, so a button
  *     in the top-right corner (which every one of these is) does not
  *     push the card off-screen;
@@ -375,8 +487,26 @@ export function placeCard(
 ): Placement {
   const spaceBelow = viewport.height - (anchor.top + anchor.height)
   const spaceAbove = anchor.top
-  const fitsBelow = spaceBelow >= card.height + gap + margin
-  const side: 'below' | 'above' = fitsBelow || spaceBelow >= spaceAbove ? 'below' : 'above'
+  const needed = card.height + gap + margin
+  const fitsBelow = spaceBelow >= needed
+  const fitsAbove = spaceAbove >= needed
+
+  const anchorCentreX = anchor.left + anchor.width / 2
+  const maxLeft = Math.max(margin, viewport.width - card.width - margin)
+  const maxTop = Math.max(margin, viewport.height - card.height - margin)
+  const clamp = (v: number, hi: number) => Math.min(Math.max(v, margin), hi)
+
+  if (!fitsBelow && !fitsAbove) {
+    // Beside the anchor: away from whichever wall it is nearest.
+    const side: PlacementSide = anchorCentreX > viewport.width / 2 ? 'left' : 'right'
+    const rawLeft = side === 'left'
+      ? anchor.left - card.width - gap
+      : anchor.left + anchor.width + gap
+    const rawTop = anchor.top + anchor.height / 2 - card.height / 2
+    return { left: clamp(rawLeft, maxLeft), top: clamp(rawTop, maxTop), side }
+  }
+
+  const side: PlacementSide = fitsBelow || spaceBelow >= spaceAbove ? 'below' : 'above'
 
   const rawTop = side === 'below'
     ? anchor.top + anchor.height + gap
@@ -384,16 +514,56 @@ export function placeCard(
 
   // Right-align the card to the anchor when the anchor sits in the
   // right half — these are all top-right header buttons.
-  const anchorCentre = anchor.left + anchor.width / 2
-  const rawLeft = anchorCentre > viewport.width / 2
+  const rawLeft = anchorCentreX > viewport.width / 2
     ? anchor.left + anchor.width - card.width
     : anchor.left
 
-  const maxLeft = Math.max(margin, viewport.width - card.width - margin)
-  const maxTop = Math.max(margin, viewport.height - card.height - margin)
-  return {
-    left: Math.min(Math.max(rawLeft, margin), maxLeft),
-    top: Math.min(Math.max(rawTop, margin), maxTop),
-    side,
-  }
+  return { left: clamp(rawLeft, maxLeft), top: clamp(rawTop, maxTop), side }
+}
+
+/** The card EDGE the beak hangs off — the edge facing the anchor. */
+export type BeakSide = 'top' | 'bottom' | 'left' | 'right'
+export interface Beak {
+  side: BeakSide
+  /** Distance along that edge, from the card's top-left corner. */
+  offset: number
+}
+
+const BEAK_EDGE: Record<PlacementSide, BeakSide> = {
+  below: 'top', above: 'bottom', left: 'right', right: 'left',
+}
+
+/**
+ * The little arrow that ties the card to the button it is talking
+ * about.
+ *
+ * It flips to whichever card edge faces the anchor, and slides along
+ * that edge to line up with the anchor's centre — because the card is
+ * clamped into the viewport, "centre of the card" is usually NOT
+ * "centre of the button".
+ *
+ * Returns null when the anchor's centre falls outside the card's span
+ * on that axis: the beak would then be pinned to a corner pointing at
+ * nothing, which reads as a rendering bug. No beak is better than a
+ * lying one — and the centred, anchor-less state (off-route) has no
+ * placement at all, so it never gets one either.
+ */
+export function beakFor(
+  anchor: Rect,
+  placement: Placement | null,
+  card: { width: number; height: number },
+  inset = 18,
+): Beak | null {
+  if (!placement) return null
+  const side = BEAK_EDGE[placement.side]
+  const horizontal = side === 'top' || side === 'bottom'
+  const centre = horizontal
+    ? anchor.left + anchor.width / 2
+    : anchor.top + anchor.height / 2
+  const start = horizontal ? placement.left : placement.top
+  const length = horizontal ? card.width : card.height
+  const raw = centre - start
+  if (raw < 0 || raw > length) return null
+  const hi = Math.max(inset, length - inset)
+  return { side, offset: Math.min(Math.max(raw, inset), hi) }
 }

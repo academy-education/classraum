@@ -27,6 +27,12 @@ import {
   parseTourState,
   isTourRunning,
   placeCard,
+  beakFor,
+  buildRail,
+  lockedReason,
+  completionTransition,
+  checklistSteps,
+  CHECKLIST_STEP_IDS,
   EMPTY_TOUR_STATE,
 } from '../setup-tour'
 
@@ -281,5 +287,225 @@ describe('placeCard', () => {
     const p = placeCard({ top: 60, left: 200, width: 100, height: 36 }, tiny, card)
     expect(p.left).toBe(16)
     expect(p.top).toBe(16)
+  })
+})
+
+
+describe('locked reasons', () => {
+  it('names the first unmet requirement, so the rail can say WHY', () => {
+    expect(lockedReason(byId('classroom'), EMPTY_COUNTS)).toBe('teachers')
+    expect(lockedReason(byId('session'), counts({ teachers: 1 }))).toBe('classroom')
+    expect(lockedReason(byId('assignment'), counts({ teachers: 1, classrooms: 1 }))).toBe('session')
+  })
+
+  it('returns null once the requirement is satisfied', () => {
+    expect(lockedReason(byId('classroom'), counts({ teachers: 1 }))).toBeNull()
+    expect(lockedReason(byId('teachers'), EMPTY_COUNTS)).toBeNull()
+    expect(lockedReason(byId('students'), EMPTY_COUNTS)).toBeNull()
+  })
+
+  it('agrees with isStepUnlocked on every step and both count states', () => {
+    for (const step of SETUP_TOUR_STEPS) {
+      for (const c of [EMPTY_COUNTS, counts({ teachers: 1, classrooms: 1 })]) {
+        expect(lockedReason(step, c) === null).toBe(isStepUnlocked(step, c))
+      }
+    }
+  })
+})
+
+describe('rail', () => {
+  it('marks done / current / locked / todo, in that precedence', () => {
+    // teachers done, standing on classroom.
+    const rail = buildRail(counts({ teachers: 1 }), SETUP_TOUR_STEPS, 1)
+    expect(rail.map(r => r.state)).toEqual(['done', 'current', 'todo', 'locked', 'locked'])
+  })
+
+  it('carries the blocking step id on every locked row', () => {
+    const rail = buildRail(EMPTY_COUNTS, SETUP_TOUR_STEPS, 0)
+    expect(rail.find(r => r.step.id === 'session')!.lockedBy).toBe('classroom')
+    expect(rail.find(r => r.step.id === 'assignment')!.lockedBy).toBe('session')
+    // "students" needs nothing — it must not render a lock reason.
+    expect(rail.find(r => r.step.id === 'students')!.lockedBy).toBeNull()
+    expect(rail.find(r => r.step.id === 'students')!.state).toBe('todo')
+  })
+
+  it('lets a done step outrank current and locked', () => {
+    // Standing on "assignment" with everything done: not "current-locked".
+    const all = counts({ teachers: 1, classrooms: 1, students: 1, sessions: 1, assignments: 1 })
+    expect(buildRail(all, SETUP_TOUR_STEPS, 4).map(r => r.state))
+      .toEqual(['done', 'done', 'done', 'done', 'done'])
+    // A step completed out of order reads done, not locked.
+    expect(buildRail(counts({ sessions: 1 }), SETUP_TOUR_STEPS, 0)
+      .find(r => r.step.id === 'session')!.state).toBe('done')
+  })
+
+  it('still explains a CURRENT step that is not yet reachable', () => {
+    // The user pressed Next past the teacher step.
+    const rail = buildRail(EMPTY_COUNTS, SETUP_TOUR_STEPS, 1)
+    const classroom = rail[1]
+    expect(classroom.state).toBe('current')
+    expect(classroom.lockedBy).toBe('teachers')
+  })
+
+  it('has one row per visible step for a teacher too', () => {
+    const teacherSteps = visibleSteps('teacher')
+    expect(buildRail(EMPTY_COUNTS, teacherSteps, 0)).toHaveLength(4)
+    expect(buildRail(EMPTY_COUNTS, teacherSteps, 0)[0].lockedBy).toBeNull()
+  })
+})
+
+describe('completion → advance', () => {
+  it('fires when the CURRENT step\'s own counter rises from zero', () => {
+    const t = completionTransition(EMPTY_COUNTS, counts({ teachers: 1 }), 0)
+    expect(t).toEqual({ completed: 'teachers', nextIndex: 1 })
+  })
+
+  it('ignores a counter that is not this step\'s', () => {
+    // Standing on "teachers"; someone imported students in another tab.
+    expect(completionTransition(EMPTY_COUNTS, counts({ students: 30 }), 0)).toBeNull()
+  })
+
+  it('does not fire on the first reading, when there is nothing to compare', () => {
+    expect(completionTransition(null, counts({ teachers: 1 }), 0)).toBeNull()
+  })
+
+  it('does not re-fire for a step that was already complete', () => {
+    expect(completionTransition(counts({ teachers: 1 }), counts({ teachers: 2 }), 0)).toBeNull()
+  })
+
+  it('skips over steps that are already done when choosing where to land', () => {
+    // teachers just created; classroom and students already exist.
+    const before = counts({ classrooms: 1, students: 4 })
+    const after = counts({ classrooms: 1, students: 4, teachers: 1 })
+    expect(completionTransition(before, after, 0)).toEqual({ completed: 'teachers', nextIndex: 3 })
+  })
+
+  it('lands past the last step — the finish card — when that was the last one left', () => {
+    const before = counts({ teachers: 1, classrooms: 1, students: 1, sessions: 1 })
+    const after = { ...before, assignments: 1 }
+    expect(completionTransition(before, after, 4))
+      .toEqual({ completed: 'assignment', nextIndex: SETUP_TOUR_STEPS.length })
+  })
+
+  it('is inert on the finish card and on a nonsense index', () => {
+    expect(completionTransition(EMPTY_COUNTS, counts({ teachers: 1 }), SETUP_TOUR_STEPS.length)).toBeNull()
+    expect(completionTransition(EMPTY_COUNTS, counts({ teachers: 1 }), -1)).toBeNull()
+  })
+
+  it('uses the step list it is given, so a teacher advances through THEIR steps', () => {
+    const teacherSteps = visibleSteps('teacher')
+    expect(completionTransition(EMPTY_COUNTS, counts({ classrooms: 1 }), 0, teacherSteps))
+      .toEqual({ completed: 'classroom', nextIndex: 1 })
+  })
+})
+
+describe('checklist shares the tour\'s order', () => {
+  it('is a subsequence of the tour steps, in tour order', () => {
+    const tourOrder = SETUP_TOUR_STEPS.map(s => s.id)
+    const listOrder = checklistSteps().map(s => s.id)
+    expect(listOrder).toEqual(tourOrder.filter(id => CHECKLIST_STEP_IDS.includes(id)))
+  })
+
+  it('puts the teacher invite before the classroom — the whole point of the reorder', () => {
+    const ids = checklistSteps().map(s => s.id)
+    expect(ids[0]).toBe('teachers')
+    expect(ids.indexOf('teachers')).toBeLessThan(ids.indexOf('classroom'))
+  })
+
+  it('has no forward dependency of its own', () => {
+    expect(validateStepOrder(checklistSteps())).toEqual([])
+  })
+})
+
+describe('beak placement', () => {
+  const vp = { width: 1280, height: 800 }
+  const card = { width: 340, height: 260 }
+
+  it('hangs off the TOP edge when the card is below the anchor', () => {
+    const anchor = { top: 100, left: 900, width: 160, height: 36 }
+    const p = placeCard(anchor, vp, card)
+    expect(p.side).toBe('below')
+    const beak = beakFor(anchor, p, card)!
+    expect(beak.side).toBe('top')
+    // Lines up with the button's centre, not the card's.
+    expect(p.left + beak.offset).toBe(980)
+  })
+
+  it('flips to the BOTTOM edge when the card is above the anchor', () => {
+    const anchor = { top: 720, left: 400, width: 160, height: 36 }
+    const p = placeCard(anchor, vp, card)
+    expect(p.side).toBe('above')
+    expect(beakFor(anchor, p, card)!.side).toBe('bottom')
+  })
+
+  it('flips to the RIGHT edge when the card is placed to the LEFT of the anchor', () => {
+    // No room above or below: card goes beside the anchor.
+    const short = { width: 1280, height: 260 }
+    const anchor = { top: 100, left: 1000, width: 160, height: 36 }
+    const p = placeCard(anchor, short, card)
+    expect(p.side).toBe('left')
+    const beak = beakFor(anchor, p, card)!
+    expect(beak.side).toBe('right')
+    expect(p.top + beak.offset).toBe(118) // the anchor's vertical centre
+  })
+
+  it('flips to the LEFT edge when the card is placed to the RIGHT of the anchor', () => {
+    const short = { width: 1280, height: 260 }
+    const anchor = { top: 100, left: 40, width: 160, height: 36 }
+    const p = placeCard(anchor, short, card)
+    expect(p.side).toBe('right')
+    expect(beakFor(anchor, p, card)!.side).toBe('left')
+  })
+
+  it('has no beak in the centred, anchor-less state', () => {
+    expect(beakFor({ top: 0, left: 0, width: 0, height: 0 }, null, card)).toBeNull()
+  })
+
+  it('keeps the beak off the rounded corners', () => {
+    // A hard-left anchor: the card is clamped to margin 16 and the
+    // anchor centre would land at the very corner.
+    const anchor = { top: 100, left: 8, width: 20, height: 36 }
+    const p = placeCard(anchor, vp, card)
+    const beak = beakFor(anchor, p, card)!
+    expect(beak.offset).toBe(18)
+
+    // And the other corner: a hard-right anchor whose centre falls past
+    // the card's right edge minus the inset.
+    const far = { top: 100, left: 1240, width: 40, height: 36 }
+    const fp = placeCard(far, vp, card)
+    expect(far.left + far.width / 2 - fp.left).toBeGreaterThan(card.width - 18)
+    expect(beakFor(far, fp, card)!.offset).toBe(card.width - 18)
+  })
+
+  it('returns null rather than a beak pointing at nothing', () => {
+    // Anchor far to the right of a card clamped at the left margin.
+    const p: { top: number; left: number; side: 'below' } = { top: 200, left: 16, side: 'below' }
+    expect(beakFor({ top: 100, left: 1200, width: 40, height: 36 }, p, card)).toBeNull()
+  })
+
+  it('always points inside the card when it points at all', () => {
+    for (let left = 0; left <= 1240; left += 20) {
+      for (const top of [10, 300, 780]) {
+        const anchor = { top, left, width: 160, height: 36 }
+        const p = placeCard(anchor, vp, card)
+        const beak = beakFor(anchor, p, card)
+        if (!beak) continue
+        const length = beak.side === 'top' || beak.side === 'bottom' ? card.width : card.height
+        expect(beak.offset).toBeGreaterThanOrEqual(0)
+        expect(beak.offset).toBeLessThanOrEqual(length)
+      }
+    }
+  })
+})
+
+describe('placeCard goes BESIDE the anchor when it fits neither above nor below', () => {
+  it('does not cover the very button it is explaining', () => {
+    const short = { width: 1280, height: 300 }
+    const card = { width: 340, height: 260 }
+    const anchor = { top: 120, left: 1000, width: 160, height: 36 }
+    const p = placeCard(anchor, short, card)
+    expect(p.side).toBe('left')
+    // Card's right edge is left of the anchor's left edge.
+    expect(p.left + card.width).toBeLessThanOrEqual(anchor.left)
   })
 })
