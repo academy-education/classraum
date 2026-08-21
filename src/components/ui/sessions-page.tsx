@@ -5906,12 +5906,17 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                 {/* Assignments Section */}
                 {(editingSession || showModal) && !multipleSessions && (
                   <div className="space-y-2">
-                    <div className="flex items-center justify-between">
+                    {/* flex-wrap: the three ghost buttons below total ~380px of
+                        text, which on a 375px phone pushed "Import from Text"
+                        and "Add Assignment" past the dialog's right edge and
+                        made the whole modal body scroll sideways to reach
+                        them. Wrapping keeps them on screen. */}
+                    <div className="flex flex-wrap items-center justify-between gap-y-1">
                       <Label className={`text-sm font-medium ${!formData.classroom_id ? 'text-gray-400' : 'text-foreground/80'}`}>
                         {t("sessions.assignmentsLabel")}
                       </Label>
                       {!sessionModalLoading && (
-                        <div className="flex items-center gap-1">
+                        <div className="flex flex-wrap items-center gap-1">
                           <Button
                             type="button"
                             variant="ghost"
