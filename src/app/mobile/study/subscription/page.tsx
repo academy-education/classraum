@@ -16,12 +16,13 @@ import { authHeaders } from '@/lib/auth-headers'
 import { openExternalUrl } from '@/lib/nativeApp'
 import { FREE_CREDITS, creditCostForTest } from '@/lib/study/plans'
 import { deriveSubscriptionUiState } from '@/lib/study/subscription-state'
-import { buyCreditPack, billingCustomer, missingPhoneMessage, stashBillingIntent, billingRedirectUrl, billingIssueId, billingWindowType, offerPeriodFor, requestOneTimePayment, checkoutContext } from '@/lib/study/purchase-credits'
+import { buyCreditPack, billingCustomer, stashBillingIntent, billingRedirectUrl, billingIssueId, billingWindowType, offerPeriodFor, requestOneTimePayment, checkoutContext } from '@/lib/study/purchase-credits'
 import { track } from '@/lib/study/track-client'
 import { isAppReturnedEvent, type AppLifecycleEvent, type ExitPlatform } from '@/lib/study/test-exit-guard'
 import { PortOne } from '@/lib/portone-browser'
 import { useAuth } from '@/contexts/AuthContext'
 import { passCreditLabel } from '../_shared/pass-label'
+import { PhonePromptModal } from '@/components/ui/phone-prompt-modal'
 
 interface Subscription {
   status: 'free' | 'trial' | 'active' | 'past_due' | 'cancelled' | 'expired'
@@ -155,6 +156,15 @@ export default function SubscriptionPage() {
   const [data, setData] = useState<SubPayload | null>(null)
   const [loading, setLoading] = useState(true)
   const [acting, setActing] = useState<Acting>(null)
+  /* Phone at checkout, not at signup.
+   *
+   * Signup no longer asks for a number, so a social signup reaches
+   * this page with users.phone NULL — and Inicis V2 will not open the
+   * card window without one. This used to be a dead end that told the
+   * user to go to their profile and start over; now the prompt opens
+   * here and `retry` re-runs the exact purchase they asked for.
+   */
+  const [phonePrompt, setPhonePrompt] = useState<{ retry: () => void } | null>(null)
   const [error, setError] = useState<string | null>(null)
   const [successMessage, setSuccessMessage] = useState<string | null>(null)
   const [confirmingCancel, setConfirmingCancel] = useState(false)
@@ -448,7 +458,11 @@ export default function SubscriptionPage() {
 
       // Inicis V2 needs the buyer's phone to open the card window.
       const customer = await billingCustomer(user)
-      if (!customer.phoneNumber) { setError(missingPhoneMessage(ko)); return }
+      if (!customer.phoneNumber) {
+        setActing(null)
+        setPhonePrompt({ retry: () => void subscribe(planId) })
+        return
+      }
 
       // Mobile WebViews leave via redirect; billing-redirect completes
       // the charge with the issued key. PC stays on the Promise flow.
@@ -515,7 +529,11 @@ export default function SubscriptionPage() {
     track('checkout_started', { kind: 'pass', passId })
     try {
       const customer = await billingCustomer(user)
-      if (!customer.phoneNumber) { setError(missingPhoneMessage(ko)); return }
+      if (!customer.phoneNumber) {
+        setActing(null)
+        setPhonePrompt({ retry: () => void buyPass(passId, issueName) })
+        return
+      }
       stashBillingIntent({ kind: 'pass', passId, returnTo: '/mobile/study/subscription', ko })
       // Passes never renew → a normal one-time checkout window, not the
       // billing-key card-registration form.
@@ -600,6 +618,12 @@ export default function SubscriptionPage() {
     if (r.ok) {
       await load()
       setSuccessMessage(ko ? `크레딧 ${credits}개가 추가되었어요.` : `${credits} credits added to your account.`)
+    } else if (r.needsPhone) {
+      // Prompt in place rather than showing r.error, which tells the
+      // buyer to go and find their profile page.
+      setActing(null)
+      setPhonePrompt({ retry: () => void buyPack(packId, credits) })
+      return
     } else if (r.error) {
       setError(r.error)
     }
@@ -1307,6 +1331,22 @@ export default function SubscriptionPage() {
             {ko ? '결제 및 환불 정책' : 'Billing & refund policy'}
           </Link>
         </div>
+
+        <PhonePromptModal
+          isOpen={phonePrompt !== null}
+          onClose={() => setPhonePrompt(null)}
+          userId={user?.id}
+          t={t as (k: string, p?: Record<string, string | number | undefined>) => string}
+          onSaved={() => {
+            // Re-run the purchase the buyer already asked for. Closing
+            // first so the modal is gone before the PG window opens —
+            // two overlays at once is how the card window ends up
+            // behind ours on iOS.
+            const retry = phonePrompt?.retry
+            setPhonePrompt(null)
+            retry?.()
+          }}
+        />
 
     </StudyScrollShell>
   )

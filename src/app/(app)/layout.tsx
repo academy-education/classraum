@@ -29,6 +29,7 @@ import { useUnreadMessages } from '@/hooks/useUnreadMessages'
 import { LayoutErrorBoundary } from '@/components/ui/error-boundary'
 import { usePushNotifications } from '@/hooks/usePushNotifications'
 import { useNativeApp } from '@/hooks/useNativeApp'
+import { useOAuthDeepLink } from '@/hooks/useOAuthDeepLink'
 import { useTranslation } from '@/hooks/useTranslation'
 import { ConfirmProvider } from '@/hooks/useConfirm'
 
@@ -191,6 +192,11 @@ export default function AppLayout({
   })
 
   // Initialize native app features (splash screen, deep linking, status bar)
+  // A native OAuth return can land while the app is already on one
+  // of these surfaces (session restored, provider bounce). Catching it
+  // here too costs one listener and avoids a dead-end return.
+  useOAuthDeepLink()
+
   useNativeApp({
     statusBarStyle: 'dark',
     statusBarColor: '#FFFFFF',

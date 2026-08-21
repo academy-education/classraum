@@ -4878,6 +4878,41 @@
       "joining": "Joining...",
       "alreadyMember": "You are already a member of this academy.",
       "joinError": "Failed to join academy. Please try again."
+    },
+    "social": {
+      "divider": "or",
+      "continueWith": "Continue with {provider}",
+      "signingIn": "Opening {provider}…",
+      "errors": {
+        "start": "Could not start sign-in with {provider}. Please try again, or use your email and password.",
+        "cancelled": "Sign-in was cancelled.",
+        "failed": "Sign-in with {provider} did not complete. Please try again.",
+        "kakaoNoEmail": "Kakao did not share an email address, and Classraum needs one to create your account. In Kakao, allow the email consent item — or sign up with your email and password instead.",
+        "noEmail": "{provider} did not share an email address, and Classraum needs one to create your account. Please sign up with your email and password instead.",
+        "noProfile": "Your sign-in worked, but your Classraum profile could not be created. Please contact support so we can finish setting up your account."
+      },
+      "join": {
+        "failedTitle": "You're signed in, but the academy invite didn't finish",
+        "failedBody": "Your account is ready. We couldn't attach it to the academy yet — open your invite link again, or ask your academy to resend it.",
+        "expired": "That invite link has expired. Please open the invite from your academy again.",
+        "unsupportedRole": "This invite is for a teacher or manager. Please sign up with your email and password using the invite link.",
+        "retry": "Try the invite again"
+      },
+      "link": {
+        "required": "This email already has a Classraum account with a password. For your security, sign in with that password once and we'll connect {provider} to it.",
+        "prompt": "Sign in with your password to connect {provider}.",
+        "success": "{provider} is now connected to your account.",
+        "failed": "We couldn't connect {provider}. You are signed in — you can try again later.",
+        "cancel": "Not now"
+      },
+      "phone": {
+        "title": "Add a phone number to continue",
+        "body": "Our payment provider requires a mobile number for the receipt. It is only used for billing.",
+        "invalid": "Please enter a valid phone number (e.g. 010-1234-5678).",
+        "save": "Save and continue",
+        "cancel": "Cancel",
+        "saveFailed": "We couldn't save that number. Please try again."
+      }
     }
   },
   "errors": {

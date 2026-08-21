@@ -22,6 +22,15 @@ import { safeNotificationPath } from "@/lib/study/notification-link"
 import { useKeyboardInset } from '@/hooks/useKeyboardInset'
 import { NameFields, validateNameFields } from "@/components/ui/name-fields"
 import { joinName, splitName, buildNameUpdate } from "@/lib/name"
+import { SocialAuthButtons } from "@/components/ui/social-auth-buttons"
+import { PROVIDER_LABEL, type OAuthProvider } from "@/lib/auth/oauth-providers"
+import { startOAuthSignIn, completeOAuthReturn } from "@/lib/auth/oauth-signin"
+import { browserContextStore } from "@/lib/auth/oauth-context"
+import { isOAuthFlow, OAUTH_FLOW_PARAM } from "@/lib/auth/oauth-callback"
+import { outcomeMessageKey } from "@/lib/auth/oauth-outcome"
+import { savePendingLink, peekPendingLink, takePendingLinkFor, clearPendingLink } from "@/lib/auth/pending-link"
+import { isNativeApp, openExternalUrl } from "@/lib/nativeApp"
+import { useOAuthDeepLink } from "@/hooks/useOAuthDeepLink"
 
 /**
  * POST the referral code to the redeem endpoint using the current session.
@@ -99,6 +108,26 @@ export default function AuthPage() {
   const [showNewPassword, setShowNewPassword] = useState(false)
   const [showResetConfirmPassword, setShowResetConfirmPassword] = useState(false)
 
+  // ── Social sign-in ────────────────────────────────────────────────
+  // Every one of these is inert while NEXT_PUBLIC_OAUTH_PROVIDERS is
+  // unset: the strip renders null, so nothing can set `oauthProvider`,
+  // and `flow=oauth` can only appear on a URL we ourselves built.
+  const [oauthProvider, setOauthProvider] = useState<OAuthProvider | null>(null)
+  const [socialNotice, setSocialNotice] = useState<{ text: string; tone: 'error' | 'info' } | null>(null)
+  // True from the FIRST render when this load is an OAuth return, so the
+  // role-based redirect below cannot fire before the invite has been
+  // attached. Computed lazily rather than in an effect: an effect runs
+  // after the first render, and the redirect effect runs then too.
+  const [oauthReturning, setOauthReturning] = useState<boolean>(
+    () => typeof window !== 'undefined' && isOAuthFlow(window.location.search)
+  )
+  const [pendingLinkProvider, setPendingLinkProvider] = useState<OAuthProvider | null>(null)
+
+  // Native returns arrive as a classraum:// deep link, not a navigation.
+  // No-op on web and in every build where the flag is off (nothing can
+  // have started a flow, so no such link can arrive).
+  useOAuthDeepLink()
+
   // Bring the focused field into the visible strip once the keyboard has
   // finished opening.
   //
@@ -121,6 +150,15 @@ export default function AuthPage() {
     }, 100)
     return () => window.clearTimeout(id)
   }, [keyboardInset])
+
+  // A prove-then-link handshake survives a reload of this page.
+  useEffect(() => {
+    const marker = peekPendingLink(browserContextStore())
+    if (!marker) return
+    setPendingLinkProvider(marker.provider)
+    setActiveTab('signin')
+    setEmail((prev) => prev || marker.email)
+  }, [])
 
   // Handle URL parameters immediately on component mount
   useEffect(() => {
@@ -306,6 +344,12 @@ export default function AuthPage() {
       return
     }
 
+    // An OAuth return is still being judged: the takeover check may yet
+    // reject this session, and /api/academy/join may yet flip users.role.
+    // Routing now would either hand over an account we are about to sign
+    // out of, or send an invited parent to the student surface.
+    if (oauthReturning) return
+
     // Check for invite parameters and redirect to mobile with those params
     const checkInviteParams = () => {
       const urlParams = new URLSearchParams(window.location.search)
@@ -430,7 +474,7 @@ export default function AuthPage() {
     setTimeout(() => {
       handleAuthenticatedUser()
     }, 100)
-  }, [isInitialized, authLoading, user, isPasswordReset, activeTab, router])
+  }, [isInitialized, authLoading, user, isPasswordReset, activeTab, router, oauthReturning])
 
   // Loose plausibility check, not a strict format: 9–15 digits once
   // separators are stripped covers KR mobiles (010-XXXX-XXXX) and
@@ -458,6 +502,179 @@ export default function AuthPage() {
     if (signupIntent === 'study') return baseValid && isPlausiblePhone(phone)
     return baseValid && role.trim() !== '' && academyId.trim() !== ''
   }, [activeTab, familyName, givenName, email, password, signupConfirmPassword, role, academyId, signupIntent, phone])
+
+  /**
+   * Start a social sign-in.
+   *
+   * All the ordering that matters (store the invite context BEFORE
+   * leaving, clear it again on every failure, suppress the in-WebView
+   * redirect on native) lives in startOAuthSignIn, which is unit-tested.
+   * This function is state plumbing only.
+   */
+  const handleOAuth = async (provider: OAuthProvider) => {
+    setErrorMessage("")
+    setSocialNotice(null)
+    setOauthProvider(provider)
+
+    const result = await startOAuthSignIn(provider, {
+      store: browserContextStore(),
+      search: window.location.search,
+      location: {
+        protocol: window.location.protocol,
+        hostname: window.location.hostname,
+        port: window.location.port,
+      },
+      native: isNativeApp(),
+      openExternal: openExternalUrl,
+      signInWithOAuth: (args) => db.auth.signInWithOAuth(args),
+    })
+
+    if (!result.ok) {
+      setOauthProvider(null)
+      setSocialNotice({
+        tone: 'error',
+        text: t('auth.social.errors.start', { provider: PROVIDER_LABEL[provider] }),
+      })
+      console.error('[Auth] OAuth start failed:', result.reason, result.message)
+      return
+    }
+    // On web the browser is already navigating away; on native the
+    // Custom Tab is open and the return arrives as a deep link. Either
+    // way the button stays in its busy state until the page unmounts.
+  }
+
+  /**
+   * Finish a social sign-in.
+   *
+   * Runs once per OAuth return. `oauthReturning` holds the role-based
+   * redirect effect off until this resolves — without that the user can
+   * be routed into the app before the academy invite is attached, and the
+   * dashboard they land on is the wrong one.
+   */
+  const finishOAuthReturn = async () => {
+    const store = browserContextStore()
+    // A deliberate link is the one sanctioned bypass of the takeover
+    // check, and it is only deliberate if WE are mid-handshake.
+    const marker = peekPendingLink(store)
+
+    const result = await completeOAuthReturn({
+      store,
+      deliberateLink: Boolean(marker),
+      fetchIdentity: async () => {
+        const res = await fetch('/api/auth/oauth-identity', { headers: await authHeaders() })
+        if (!res.ok) return null
+        return res.json()
+      },
+      provision: async () => {
+        const res = await fetch('/api/auth/oauth-provision', {
+          method: 'POST',
+          headers: await authHeaders(),
+        })
+        return res.ok
+      },
+      join: async (body) => {
+        const res = await fetch('/api/academy/join', {
+          method: 'POST',
+          headers: await authHeaders(),
+          body: JSON.stringify(body),
+        })
+        return { ok: res.ok }
+      },
+    })
+
+    // Strip the flow marker either way, so a reload is an ordinary load
+    // and cannot re-run any of this.
+    try {
+      const url = new URL(window.location.href)
+      url.searchParams.delete(OAUTH_FLOW_PARAM)
+      url.searchParams.delete('code')
+      url.searchParams.delete('error')
+      url.searchParams.delete('error_description')
+      window.history.replaceState({}, '', url.toString())
+    } catch { /* URL rewriting is cosmetic */ }
+
+    if (result.kind === 'blocked') {
+      const provider = result.provider
+      // SIGN OUT FIRST, always. Whatever else we do, the session being
+      // rejected must not survive this function.
+      if (result.outcome.kind === 'link_required') {
+        // Undo the auto-link before dropping the session — this is the
+        // only moment we hold a session authorised to unlink it. Leaving
+        // it attached would mean the NEXT social sign-in looks like a
+        // long-standing legitimate link and sails through.
+        try {
+          const { data } = await db.auth.getUserIdentities()
+          const identity = data?.identities?.find((i) => i.provider === provider)
+          if (identity) await db.auth.unlinkIdentity(identity)
+        } catch (e) {
+          console.error('[Auth] Could not unlink auto-linked identity:', e)
+        }
+        savePendingLink(provider, result.outcome.email, store)
+        setPendingLinkProvider(provider as OAuthProvider)
+        setEmail(result.outcome.email)
+        setActiveTab('signin')
+      }
+      await db.auth.signOut({ scope: 'local' }).catch(() => {})
+      const key = outcomeMessageKey(result.outcome, provider)
+      setSocialNotice({
+        tone: result.outcome.kind === 'link_required' ? 'info' : 'error',
+        text: key
+          ? t(key, { provider: PROVIDER_LABEL[provider as OAuthProvider] ?? provider })
+          : '',
+      })
+      setOauthProvider(null)
+      setOauthReturning(false)
+      return
+    }
+
+    if (result.kind === 'join_failed') {
+      // Authenticated but unattached. They must see something they can
+      // act on — the alternative is a study student staring at a hub
+      // that has none of their academy's data in it.
+      setSocialNotice({ tone: 'error', text: t('auth.social.join.failedBody') })
+    } else if (result.kind === 'context_lost') {
+      setSocialNotice({
+        tone: 'error',
+        text:
+          result.reason === 'unsupported_role'
+            ? t('auth.social.join.unsupportedRole')
+            : t('auth.social.join.expired'),
+      })
+    } else if (result.kind === 'unknown') {
+      setSocialNotice({ tone: 'error', text: t('auth.social.errors.failed', { provider: 'OAuth' }) })
+    }
+
+    // Release the redirect effect. It re-reads users.role, which
+    // /api/academy/join may just have flipped.
+    setOauthReturning(false)
+  }
+
+  useEffect(() => {
+    if (!oauthReturning) return
+    let cancelled = false
+    ;(async () => {
+      // The browser client exchanges ?code= for a session on load
+      // (detectSessionInUrl). Wait for it before asking the server who
+      // we are, or the identity call goes out unauthenticated.
+      for (let i = 0; i < 40 && !cancelled; i++) {
+        const { data } = await db.auth.getSession()
+        if (data.session) break
+        await new Promise((r) => setTimeout(r, 250))
+      }
+      if (cancelled) return
+      const { data } = await db.auth.getSession()
+      if (!data.session) {
+        // No session after the wait: a denied consent, or an exchange
+        // that failed. Say so rather than spinning.
+        setSocialNotice({ tone: 'error', text: t('auth.social.errors.cancelled') })
+        setOauthReturning(false)
+        return
+      }
+      await finishOAuthReturn()
+    })()
+    return () => { cancelled = true }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [oauthReturning])
 
   const handleSignUp = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -977,6 +1194,34 @@ export default function AuthPage() {
         toast({ title: t('auth.signin.failed') as string || 'Sign in failed', description: errorMessage, variant: 'destructive' })
         setLoading(false)
       } else {
+        /* PROVE-THEN-LINK, second half.
+         *
+         * The password just succeeded, which is the proof of ownership
+         * the whole handshake exists to obtain. Only now is linking the
+         * provider safe, and only to the account that password opened —
+         * takePendingLinkFor refuses when the signed-in address is not
+         * the one the marker was written for, so a marker left behind on
+         * a shared device cannot attach somebody else's Kakao account.
+         *
+         * A failure here is NOT fatal: the user is signed in to their
+         * own account, which is what they asked for. They keep the
+         * password login and can try again. */
+        const linkStore = browserContextStore()
+        const provider = takePendingLinkFor(email, linkStore)
+        setPendingLinkProvider(null)
+        if (provider) {
+          try {
+            const { error: linkError } = await db.auth.linkIdentity({ provider })
+            setSocialNotice(
+              linkError
+                ? { tone: 'error', text: t('auth.social.link.failed', { provider: PROVIDER_LABEL[provider] }) }
+                : { tone: 'info', text: t('auth.social.link.success', { provider: PROVIDER_LABEL[provider] }) }
+            )
+          } catch {
+            setSocialNotice({ tone: 'error', text: t('auth.social.link.failed', { provider: PROVIDER_LABEL[provider] }) })
+          }
+        }
+
         // Clear password reset state if this is a normal login
         if (isPasswordReset) {
           setIsPasswordReset(false)
@@ -1527,7 +1772,55 @@ export default function AuthPage() {
               )}
             </Button>
           </form>
-          
+
+          {/* Social sign-in.
+              With NEXT_PUBLIC_OAUTH_PROVIDERS unset, SocialAuthButtons
+              returns null and `socialNotice` / `pendingLinkProvider` can
+              never be set (nothing can start a flow), so this whole
+              block renders nothing and the card is unchanged. */}
+          {(socialNotice || pendingLinkProvider) && (
+            <div
+              className={`p-3 rounded-xl ring-1 ${
+                socialNotice?.tone === 'error'
+                  ? 'bg-rose-50 ring-rose-100'
+                  : 'bg-blue-50 ring-blue-100'
+              } pointer-events-auto`}
+            >
+              <p
+                className={`text-sm ${
+                  socialNotice?.tone === 'error' ? 'text-rose-700' : 'text-blue-700'
+                }`}
+              >
+                {socialNotice?.text ||
+                  (pendingLinkProvider
+                    ? t('auth.social.link.prompt', { provider: PROVIDER_LABEL[pendingLinkProvider] })
+                    : '')}
+              </p>
+              {pendingLinkProvider && (
+                <button
+                  type="button"
+                  onClick={() => {
+                    clearPendingLink(browserContextStore())
+                    setPendingLinkProvider(null)
+                    setSocialNotice(null)
+                  }}
+                  className="mt-1 text-xs font-medium text-muted-foreground hover:text-foreground"
+                >
+                  {t('auth.social.link.cancel')}
+                </button>
+              )}
+            </div>
+          )}
+
+          {(activeTab === "signin" || activeTab === "signup") && (
+            <SocialAuthButtons
+              t={t}
+              onSelect={handleOAuth}
+              busyProvider={oauthProvider}
+              disabled={loading || oauthReturning}
+            />
+          )}
+
           <div className="text-center space-y-1 pointer-events-auto">
             <p className="text-sm text-muted-foreground">
               {activeTab === "signin" ? (

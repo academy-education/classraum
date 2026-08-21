@@ -300,6 +300,15 @@ export interface BuyCreditPackResult {
   /** User dismissed the card overlay — treat as a silent no-op, not an error. */
   cancelled?: boolean
   error?: string
+  /**
+   * The buyer has no phone number on file, which Inicis V2 requires.
+   *
+   * A machine-readable flag beside the human message, so the caller can
+   * open the "add your number" prompt in place instead of showing a
+   * message that tells the user to go and find their profile page. The
+   * message stays for any caller that has no prompt to open.
+   */
+  needsPhone?: boolean
 }
 
 export async function buyCreditPack(
@@ -328,7 +337,7 @@ export async function buyCreditPack(
     // paymentId server-side.
     if (first.body.code === 'no_billing_key') {
       const customer = await billingCustomer(user)
-      if (!customer.phoneNumber) return { ok: false, error: missingPhoneMessage(ko) }
+      if (!customer.phoneNumber) return { ok: false, error: missingPhoneMessage(ko), needsPhone: true }
       // Mobile WebViews leave via redirect here; the billing-redirect
       // page redeems the paymentId.
       stashBillingIntent({

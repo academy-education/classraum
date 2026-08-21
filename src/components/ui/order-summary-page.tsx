@@ -7,6 +7,7 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Check, ArrowLeft, Info, ExternalLink } from 'lucide-react'
 import { db } from '@/lib/supabase'
+import { isPlausiblePhone, normalizePhone } from '@/lib/auth/phone'
 import { useTranslation } from '@/hooks/useTranslation'
 import { getDateLocale } from '@/utils/dateUtils'
 import { useRouter } from 'next/navigation'
@@ -158,10 +159,21 @@ export function OrderSummaryPage({ academyId, selectedPlan, onBack }: OrderSumma
               .single()).data
           : null
 
+        // users.phone is the fallback, and for a social signup it is the
+        // ONLY place a number can be: the role row is created by the
+        // trigger with phone NULL, and signup no longer asks for one.
+        // Without this the field is blank for a user who has already
+        // given us their number at a previous checkout.
+        const { data: userPhoneRow } = await db
+          .from('users')
+          .select('phone')
+          .eq('id', user.id)
+          .maybeSingle()
+
         setUserInfo({
           name: userData?.name || '',
           email: userData?.email || '',
-          phone: roleData?.phone || '',
+          phone: roleData?.phone || userPhoneRow?.phone || '',
           address: academyData?.address || ''
         })
 
@@ -240,6 +252,48 @@ export function OrderSummaryPage({ academyId, selectedPlan, onBack }: OrderSumma
         variant: 'destructive',
       })
       return
+    }
+
+    /* A PRESENT phone is not a USABLE phone.
+     *
+     * Inicis V2 rejects the billing-key request outright if the number
+     * is not dialable, and that rejection surfaces as an opaque PG error
+     * inside the card window — after the user has committed. Checking
+     * the shape here turns it into a field-level correction. The rule is
+     * the shared, deliberately loose one (9-15 digits); the PG remains
+     * the real validator. */
+    if (!isPlausiblePhone(userInfo.phone)) {
+      toast({
+        title: t('auth.social.phone.invalid'),
+        variant: 'destructive',
+      })
+      return
+    }
+
+    /* PERSIST IT, so this is the last time we ask.
+     *
+     * Signup no longer collects a phone number, so for a social signup
+     * this form is where it first arrives. Written to users.phone —
+     * the column billingCustomer() reads — and NOT fanned out to the
+     * role tables, which keep their own copy for their own reasons.
+     * Failure is non-fatal: it costs the user a retype next time, and
+     * blocking a payment over it would be worse. */
+    const savedPhone = normalizePhone(userInfo.phone)
+    if (savedPhone) {
+      try {
+        const { data: { user: payer } } = await db.auth.getUser()
+        if (payer?.id) {
+          const { error: phoneSaveError } = await db
+            .from('users')
+            .update({ phone: savedPhone })
+            .eq('id', payer.id)
+          if (phoneSaveError) {
+            console.error('[OrderSummary] could not persist phone:', phoneSaveError)
+          }
+        }
+      } catch (e) {
+        console.error('[OrderSummary] could not persist phone:', e)
+      }
     }
 
     if (!selectedPlan) {

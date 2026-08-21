@@ -49,6 +49,20 @@ export async function GET(request: Request) {
     }
   )
 
+  // Social sign-in returns here too, and its `code` is INDISTINGUISHABLE
+  // from an email-confirmation `code` — same parameter, same route. The
+  // `flow=oauth` marker is put on `redirectTo` by markOAuthFlow() purely
+  // so this branch can exist without changing what any other flow does.
+  //
+  // Forwarded to /auth (not exchanged here) because the post-return
+  // wiring — the takeover check, the stored invite context, the call to
+  // /api/academy/join — needs the browser-side Supabase client that holds
+  // the PKCE verifier. Every param is passed through, including the
+  // `error`/`error_description` a denied consent arrives with.
+  if (searchParams.get('flow') === 'oauth') {
+    return NextResponse.redirect(`${normalizedOrigin}/auth?${searchParams.toString()}`)
+  }
+
   // Handle password recovery flow - check for various formats
   if (type === 'recovery' || (access_token && refresh_token)) {
     // If we have access_token and refresh_token, redirect with tokens

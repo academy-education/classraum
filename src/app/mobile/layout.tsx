@@ -19,6 +19,7 @@ import { RoleBasedAuthWrapper } from '@/components/ui/role-based-auth-wrapper'
 import { appInitTracker } from '@/utils/appInitializationTracker'
 import { usePushNotifications } from '@/hooks/usePushNotifications'
 import { useNativeApp } from '@/hooks/useNativeApp'
+import { useOAuthDeepLink } from '@/hooks/useOAuthDeepLink'
 import { useTheme } from '@/hooks/useTheme'
 import { fetchThemeFromAccount } from '@/lib/theme-account'
 import { stashReferralFromUrl } from '@/lib/study/pending-referral'
@@ -73,6 +74,11 @@ function MobileLayoutContent({ children }: MobileLayoutProps) {
   }, [refetch])
 
   // Initialize native app features (splash screen, deep linking, status bar)
+  // A native OAuth return can land while the app is already on one
+  // of these surfaces (session restored, provider bounce). Catching it
+  // here too costs one listener and avoids a dead-end return.
+  useOAuthDeepLink()
+
   useNativeApp({
     onResume: handleAppResume,
     statusBarStyle: 'dark',
