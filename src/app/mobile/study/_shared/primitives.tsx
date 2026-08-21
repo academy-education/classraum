@@ -503,7 +503,14 @@ export function StudyTodayCard({
     </>
   )
   return (
-    <div className="relative">
+    // min-w-0: this wrapper is a grid item on the study landing. Its
+    // min-content width comes from the `truncate` title inside, which
+    // is a single unbreakable nowrap line — so a long title (e.g.
+    // "3 questions on Reading & Writing", 358px) widened the 335px
+    // grid track and pushed the whole page 3px past a 375px viewport,
+    // giving the study landing horizontal scroll on an iPhone SE.
+    // Measured: track 357.82px -> 335px with this class.
+    <div className="relative min-w-0">
       {href
         ? <Link href={href} className={commonClassName}>{body}</Link>
         : <button type="button" onClick={onClick} disabled={loading} className={commonClassName}>{body}</button>}
