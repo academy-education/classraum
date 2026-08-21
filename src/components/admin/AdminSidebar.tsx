@@ -197,7 +197,16 @@ export function AdminSidebar({ adminUser }: AdminSidebarProps) {
 
       {/* Bottom: alerts + user */}
       <div className="px-3 pt-3 pb-3 border-t border-gray-100">
-        <button className="group w-full flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium text-gray-600 hover:bg-gray-50 hover:text-gray-900 transition-colors">
+        {/* The alerts button polls a live unresolved-alert count and renders it
+            as a badge, so it reads as actionable — but it had no onClick, no
+            href and no wrapping Link, and clicking it did nothing. There is no
+            /admin/alerts route; the only surface that lists alerts (and offers
+            Resolve / Resolve all) is the System alerts panel at the top of the
+            dashboard, so that is where it goes. */}
+        <button
+          onClick={() => router.push('/admin')}
+          className="group w-full flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium text-gray-600 hover:bg-gray-50 hover:text-gray-900 transition-colors"
+        >
           <Bell className="w-4 h-4 text-gray-400 group-hover:text-gray-600 transition-colors" />
           <span className="flex-1 text-left">{String(t('admin.dashboard.alerts'))}</span>
           {alertCount > 0 && (

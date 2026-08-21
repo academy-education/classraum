@@ -77,18 +77,34 @@ export async function GET(request: NextRequest) {
     const authUsers = await listAllAuthUsers();
     const authMap = new Map(authUsers.map(u => [u.id, u]));
 
-    // Get academy relationships
-    const [
-      { data: managers },
-      { data: teachers },
-      { data: students },
-      { data: parents }
-    ] = await Promise.all([
-      supabase.from('managers').select('user_id, academy_id, academies(name)').in('user_id', userIds),
-      supabase.from('teachers').select('user_id, academy_id, academies(name)').in('user_id', userIds),
-      supabase.from('students').select('user_id, academy_id, academies(name)').in('user_id', userIds),
-      supabase.from('parents').select('user_id, academy_id, academies(name)').in('user_id', userIds)
-    ]);
+    // Get academy relationships.
+    //
+    // MUST be chunked. `.in('user_id', userIds)` puts every id in the request
+    // URL; at 445 users that URL is ~16KB and the fetch fails outright
+    // (`TypeError: fetch failed` from undici) rather than returning a
+    // PostgREST error. The failure was discarded — `{ data: managers }`
+    // never destructured `error` — so `data` came back null, `academyMap`
+    // stayed empty, and every one of the 445 rows rendered "N/A" in the
+    // Academy column while 404 of them really do have an academy. Chunk the
+    // id list and surface any error instead of laundering it into a blank.
+    const ACADEMY_LOOKUP_CHUNK = 100;
+    type AcademyRel = { user_id: string | null; academy_id: string | null; academies: { name: string | null } | null };
+    const relTables = ['managers', 'teachers', 'students', 'parents'] as const;
+    const fetchRels = async (table: (typeof relTables)[number]): Promise<AcademyRel[]> => {
+      const out: AcademyRel[] = [];
+      for (let i = 0; i < userIds.length; i += ACADEMY_LOOKUP_CHUNK) {
+        const { data, error } = await supabase
+          .from(table)
+          .select('user_id, academy_id, academies(name)')
+          .in('user_id', userIds.slice(i, i + ACADEMY_LOOKUP_CHUNK));
+        if (error) throw new Error(`${table} academy lookup: ${error.message}`);
+        out.push(...((data ?? []) as unknown as AcademyRel[]));
+      }
+      return out;
+    };
+    const [managers, teachers, students, parents] = await Promise.all(
+      relTables.map(fetchRels)
+    );
 
     // Create lookup maps
     const academyMap = new Map();
