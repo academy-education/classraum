@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { useTranslation } from '@/hooks/useTranslation'
+import { useIsBottomNavLayout } from '@/hooks/useResponsiveViewMode'
 import { useAuth } from '@/contexts/AuthContext'
 import { Button } from '@/components/ui/button'
 import {
@@ -65,6 +66,12 @@ export function WelcomeModal() {
   const router = useRouter()
   const [open, setOpen] = useState(false)
   const [slideIndex, setSlideIndex] = useState(0)
+  // Slide 1 told every user their navigation "lives in the left panel".
+  // Below lg there is no left panel — the sidebar is unmounted and
+  // DashboardBottomNavigation takes over — so on a phone the very first
+  // sentence of the product pointed at empty space. Must be read before the
+  // `!open` early return below, or the hook order changes between renders.
+  const bottomNavLayout = useIsBottomNavLayout()
 
   // Read the flag on mount. Wrapped in a try because localStorage can
   // throw in private/incognito modes and a Sentry breadcrumb every page
@@ -97,7 +104,7 @@ export function WelcomeModal() {
     {
       icon: Compass,
       title: String(t('welcome.slide1.title')),
-      body: String(t('welcome.slide1.body')),
+      body: String(t(bottomNavLayout ? 'welcome.slide1.bodyBottomNav' : 'welcome.slide1.body')),
       bullets: [
         String(t('welcome.slide1.bullet1')),
         String(t('welcome.slide1.bullet2')),

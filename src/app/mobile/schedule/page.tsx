@@ -714,7 +714,7 @@ function MobileSchedulePageContent() {
           <button
             onClick={() => navigateMonth('prev')}
             aria-label={String(t('common.previousMonth'))}
-            className="p-2 hover:bg-gray-100 rounded-lg transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
+            className="tap-target p-2 hover:bg-gray-100 rounded-lg transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
           >
             <ChevronLeft className="w-5 h-5 text-gray-600" />
           </button>
@@ -726,14 +726,14 @@ function MobileSchedulePageContent() {
           <button
             onClick={() => navigateMonth('next')}
             aria-label={String(t('common.nextMonth'))}
-            className="p-2 hover:bg-gray-100 rounded-lg transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
+            className="tap-target p-2 hover:bg-gray-100 rounded-lg transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
           >
             <ChevronRight className="w-5 h-5 text-gray-600" />
           </button>
         </div>
         
         {/* Calendar Grid */}
-        <div className="grid grid-cols-7 gap-1">
+        <div className="grid grid-cols-7 gap-0">
           {/* Day Headers */}
           {getWeekdayShort(language).map((day, index) => (
             <div key={index} className="text-center text-xs font-medium text-gray-500 py-2">
@@ -744,7 +744,7 @@ function MobileSchedulePageContent() {
           {/* Calendar Days */}
           {getDaysInMonth(currentMonth).map((day, index) => {
             if (!day) {
-              return <div key={index} className="aspect-square" />
+              return <div key={index} className="aspect-square min-h-[44px]" />
             }
             
             const isSelected = day.toDateString() === selectedDate.toDateString()
@@ -756,7 +756,7 @@ function MobileSchedulePageContent() {
               <button
                 key={index}
                 onClick={() => setSelectedDate(new Date(day))}
-                className={`aspect-square rounded-lg text-sm font-medium transition-colors relative ${
+                className={`aspect-square min-h-[44px] rounded-lg text-sm font-medium transition-colors relative ${
                   isSelected
                     ? 'bg-primary text-primary-foreground'
                     : isCurrentDay

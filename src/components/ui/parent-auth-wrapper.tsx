@@ -7,13 +7,9 @@ import { LoadingScreen } from '@/components/ui/loading-screen'
 import { StudentSelectorModal } from '@/components/ui/student-selector-modal'
 import { useSelectedStudentStore, useSelectedStudentHydrated } from '@/stores/selectedStudentStore'
 import { appInitTracker } from '@/utils/appInitializationTracker'
+import { dedupeFamilyStudents, type FamilyStudent } from '@/lib/family/students'
 
-interface Student {
-  id: string
-  name: string
-  email: string
-  academy_id: string
-}
+type Student = FamilyStudent
 
 interface ParentAuthWrapperProps {
   children: React.ReactNode
@@ -133,12 +129,10 @@ export function ParentAuthWrapper({ children }: ParentAuthWrapperProps) {
 
 
         if (studentUsers && studentUsers.length > 0) {
-          const studentList = studentUsers.map((student: any) => ({
-            id: student.id,
-            name: student.name,
-            email: student.email,
-            academy_id: student.academy_id
-          }))
+          // `get_users_for_family` returns one row per (child, academy), so a
+          // child enrolled in two academies arrives twice. Collapse to one row
+          // per child, carrying every academy id — see lib/family/students.
+          const studentList = dedupeFamilyStudents(studentUsers)
 
 
           if (isMounted) {

@@ -22,9 +22,13 @@ import {
   Loader2,
   Megaphone,
   Paperclip,
-  CheckCircle
+  CheckCircle,
+  Grid3X3,
+  Rows3,
+  User
 } from 'lucide-react'
-import { TableCheckbox, BulkActionBar } from '@/components/ui/dashboard'
+import { TableCheckbox, BulkActionBar, DashboardCard } from '@/components/ui/dashboard'
+import { useResponsiveViewMode } from '@/hooks/useResponsiveViewMode'
 import { useTranslation } from '@/hooks/useTranslation'
 import { useCreateShortcut } from '@/hooks/useCreateShortcut'
 import { EmptyState } from '@/components/ui/common/EmptyState'
@@ -96,6 +100,9 @@ export function AnnouncementsPage({ academyId }: AnnouncementsPageProps) {
 
   // Dropdown state
   const [openDropdown, setOpenDropdown] = useState<string | null>(null)
+
+  // View mode — table on md+, cards below md, until the user picks one.
+  const [viewMode, setViewMode] = useResponsiveViewMode<'card' | 'table'>('table', 'card')
 
   // Sort and filter state
   const [sortField, setSortField] = useState<string | null>(null)
@@ -772,6 +779,30 @@ export function AnnouncementsPage({ academyId }: AnnouncementsPageProps) {
         </Button>
       </div>
 
+      {/* View Mode Toggle */}
+      <div className="flex justify-end mb-4">
+        <div className="flex items-center gap-1 border border-border rounded-lg p-1 bg-white">
+          <Button
+            variant={viewMode === 'table' ? 'default' : 'ghost'}
+            size="sm"
+            onClick={() => setViewMode('table')}
+            className={`h-9 px-3 ${viewMode === 'table' ? 'bg-primary text-primary-foreground' : 'text-gray-600 hover:text-gray-900'}`}
+            title={String(t("common.tableView"))}
+          >
+            <Rows3 className="w-4 h-4" />
+          </Button>
+          <Button
+            variant={viewMode === 'card' ? 'default' : 'ghost'}
+            size="sm"
+            onClick={() => { setViewMode('card'); setSelectedRows([]); setSelectAll(false) }}
+            className={`h-9 px-3 ${viewMode === 'card' ? 'bg-primary text-primary-foreground' : 'text-gray-600 hover:text-gray-900'}`}
+            title={String(t("common.cardView"))}
+          >
+            <Grid3X3 className="w-4 h-4" />
+          </Button>
+        </div>
+      </div>
+
       {/* Search */}
       <div className="flex items-center gap-4 mb-8">
         <div className="relative flex-1 max-w-md">
@@ -812,7 +843,133 @@ export function AnnouncementsPage({ academyId }: AnnouncementsPageProps) {
         </div>
       )}
 
-      {/* Content — table chrome matching DataTable */}
+      {/* Content — card grid (default below md) or table chrome matching DataTable */}
+      {viewMode === 'card' ? (
+        loading ? (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            {[...Array(8)].map((_, i) => (
+              <Card key={i} className="!gap-0 !py-0 overflow-hidden flex flex-col h-full">
+                <div className="h-1 w-full bg-gray-200" />
+                <div className="p-4 sm:p-5 flex flex-col flex-1 animate-pulse">
+                  <div className="flex items-start justify-between mb-3">
+                    <div className="flex-1 min-w-0 space-y-1.5">
+                      <div className="h-3 w-16 bg-gray-200 rounded" />
+                      <div className="h-5 w-3/4 bg-gray-200 rounded" />
+                      <div className="h-3 w-1/2 bg-gray-200 rounded" />
+                    </div>
+                  </div>
+                  <div className="grid grid-cols-3 gap-2 my-3 py-3 border-y border-gray-100">
+                    <div className="space-y-1.5"><div className="h-2 w-12 bg-gray-200 rounded" /><div className="h-4 w-10 bg-gray-200 rounded" /></div>
+                    <div className="space-y-1.5"><div className="h-2 w-12 bg-gray-200 rounded" /><div className="h-4 w-10 bg-gray-200 rounded" /></div>
+                    <div className="space-y-1.5"><div className="h-2 w-12 bg-gray-200 rounded" /><div className="h-4 w-10 bg-gray-200 rounded" /></div>
+                  </div>
+                </div>
+              </Card>
+            ))}
+          </div>
+        ) : announcements.length === 0 ? (
+          <Card>
+            <EmptyState
+              icon={Megaphone}
+              title={String(t('announcements.noAnnouncements'))}
+              description={String(t('announcements.noAnnouncementsDescription'))}
+              actionLabel={String(t('announcements.newAnnouncement'))}
+              onAction={handleOpenAddModal}
+              actionVariant="outline"
+              actionIcon={<Plus className="w-4 h-4" />}
+              helpSlug="announcements"
+              helpLabel={String(t('common.learnMore'))}
+            />
+          </Card>
+        ) : filteredAnnouncements.length === 0 ? (
+          <Card>
+            <EmptyState
+              icon={Megaphone}
+              title={String(t('announcements.noAnnouncementsFound'))}
+            />
+          </Card>
+        ) : (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            {filteredAnnouncements.map((announcement) => (
+              <DashboardCard
+                key={announcement.id}
+                accentColor="#2885e8"
+                statusLabel={formatDate(announcement.created_at)}
+                title={announcement.title}
+                subtitle={
+                  <>
+                    <User className="w-3.5 h-3.5 flex-shrink-0 mt-0.5" strokeWidth={1.75} />
+                    <span>{announcement.creator_name}</span>
+                  </>
+                }
+                actions={
+                  <>
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      className="h-7 w-7 p-0"
+                      title={String(t('common.edit'))}
+                      aria-label={String(t('common.edit'))}
+                      onClick={() => handleOpenEditModal(announcement)}
+                    >
+                      <Edit className="w-3.5 h-3.5 text-gray-500" />
+                    </Button>
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      className="h-7 w-7 p-0"
+                      title={String(t('common.delete'))}
+                      aria-label={String(t('common.delete'))}
+                      onClick={() => handleOpenDeleteModal(announcement)}
+                    >
+                      <Trash2 className="w-3.5 h-3.5 text-rose-500" />
+                    </Button>
+                  </>
+                }
+                metrics={[
+                  {
+                    label: t('announcements.classrooms') as string,
+                    value: String(announcement.classrooms.length),
+                  },
+                  {
+                    label: t('announcements.attachments') as string,
+                    value: announcement.attachments.length > 0 ? String(announcement.attachments.length) : '—',
+                  },
+                  {
+                    label: t('announcements.createdAt') as string,
+                    value: formatDate(announcement.created_at),
+                  },
+                ]}
+                meta={
+                  announcement.classrooms.length > 0 ? (
+                    <div className="flex flex-wrap gap-1">
+                      {announcement.classrooms.map((classroom) => (
+                        <span
+                          key={classroom.id}
+                          className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-sky-50 text-sky-700"
+                        >
+                          {classroom.name}
+                        </span>
+                      ))}
+                    </div>
+                  ) : undefined
+                }
+                notes={announcement.content || undefined}
+                footerActions={
+                  <Button
+                    variant="outline"
+                    className="w-full text-xs sm:text-sm h-9"
+                    onClick={() => handleOpenViewModal(announcement)}
+                  >
+                    <Eye className="w-3.5 h-3.5 mr-1.5" />
+                    {t('announcements.viewAnnouncement')}
+                  </Button>
+                }
+              />
+            ))}
+          </div>
+        )
+      ) : (
       <div className="bg-white rounded-2xl ring-1 ring-gray-100/80 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_12px_-4px_rgba(0,0,0,0.06)] overflow-hidden">
         {loading ? (
           <div className="overflow-x-auto min-h-[640px]">
@@ -1074,6 +1231,7 @@ export function AnnouncementsPage({ academyId }: AnnouncementsPageProps) {
           </div>
         )}
       </div>
+      )}
 
       {/* Bulk Delete Confirmation Modal */}
       <ModalShell.Confirm

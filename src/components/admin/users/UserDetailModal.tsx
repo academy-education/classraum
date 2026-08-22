@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import {
   User,
@@ -16,7 +16,7 @@ import {
 } from 'lucide-react';
 import { StatusBadge, type StatusTone } from '../StatusBadge';
 import { ModalShell } from '../ModalShell';
-import { db } from '@/lib/supabase';
+import { useAdminFetch } from '../useAdminFetch';
 import { useTranslation } from '@/hooks/useTranslation';
 import { getDateLocale } from '@/utils/dateUtils';
 import { initialsFromName } from '@/lib/name';
@@ -57,37 +57,57 @@ export function UserDetailModal({ user, onClose }: UserDetailModalProps) {
   const [activityLogs, setActivityLogs] = useState<UserActivityLog[]>([])
   const [activityLoading, setActivityLoading] = useState(false)
   const [activityError, setActivityError] = useState<string | null>(null)
+  const adminFetch = useAdminFetch()
 
   // Fetch real admin activity that targeted this user. Lazy-loaded — only
   // runs the first time the user opens the Activity tab.
+  //
+  // TWO BUGS LIVED HERE.
+  //
+  // 1. The query ran in the BROWSER against `admin_activity_logs` with the
+  //    anon key. That table has RLS enabled and ZERO policies, so PostgREST
+  //    returned `{ data: [], error: null }` — a silent empty list, never an
+  //    error — and 161 rows could not render for anyone. It now goes through
+  //    /api/admin/activity-logs, which checks the admin role server-side and
+  //    reads with the service-role key.
+  //
+  // 2. The tab span on its skeleton for ever even once rows existed. Two
+  //    causes, both fixed by the ref latch below. `activityLogs.length > 0`
+  //    as the "already loaded" guard meant an empty result never counted as
+  //    loaded, so the effect re-ran every time `activityLoading` flipped
+  //    back to false. And under React 18 StrictMode — which mounts effects
+  //    twice in dev — the first run's cleanup set `cancelled = true`, whose
+  //    own `finally { if (!cancelled) setLoading(false) }` then declined to
+  //    clear the flag. A ref survives the double mount and the loading flag
+  //    is now cleared unconditionally.
+  const activityRequestedFor = useRef<string | null>(null)
+
   useEffect(() => {
-    if (activeTab !== 'activity' || activityLogs.length > 0 || activityLoading) return
-    let cancelled = false
+    if (activeTab !== 'activity') return
+    if (activityRequestedFor.current === user.id) return
+    activityRequestedFor.current = user.id
+    let unmounted = false
     const load = async () => {
       setActivityLoading(true)
       setActivityError(null)
       try {
-        const { data, error } = await db
-          .from('admin_activity_logs')
-          .select('id, action_type, description, ip_address, created_at')
-          .eq('target_type', 'user')
-          .eq('target_id', user.id)
-          .order('created_at', { ascending: false })
-          .limit(20)
-        if (cancelled) return
-        if (error) throw error
-        setActivityLogs((data as UserActivityLog[]) || [])
+        const res = await adminFetch(
+          `/api/admin/activity-logs?targetType=user&targetId=${encodeURIComponent(user.id)}&pageSize=20`
+        )
+        const body = await res.json()
+        if (!res.ok) throw new Error(body?.error || `HTTP ${res.status}`)
+        if (!unmounted) setActivityLogs((body.data as UserActivityLog[]) || [])
       } catch (e) {
-        if (cancelled) return
         console.error('[UserDetailModal] activity load error:', e)
-        setActivityError(e instanceof Error ? e.message : String(t('admin.users.failedToLoadActivity')))
+        activityRequestedFor.current = null
+        if (!unmounted) setActivityError(e instanceof Error ? e.message : String(t('admin.users.failedToLoadActivity')))
       } finally {
-        if (!cancelled) setActivityLoading(false)
+        if (!unmounted) setActivityLoading(false)
       }
     }
     load()
-    return () => { cancelled = true }
-  }, [activeTab, user.id, activityLogs.length, activityLoading])
+    return () => { unmounted = true }
+  }, [activeTab, user.id, adminFetch, t])
 
   // Both badges go through the shared StatusBadge so colors / sizing / ring
   // treatment match the rest of the admin UI 1:1.

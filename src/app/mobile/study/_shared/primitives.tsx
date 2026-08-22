@@ -114,10 +114,13 @@ export function StudyPageHeader({
           sits at the far left and the row fills the screen. */}
       <div className={wide ? 'w-full px-5 lg:px-8' : 'max-w-3xl lg:max-w-6xl 2xl:max-w-[1600px] mx-auto px-5 lg:px-8'}>
         <div className="flex items-center gap-3">
+          {/* tap-target: this shared back button is 36px and shrinks to 32px
+              once the header collapses. Its only neighbour is the (non
+              interactive) title, so the 44px projection is free. */}
           {hasBack && (
             <button type="button" onClick={goBack}
               aria-label={backLabel}
-              className={`flex-shrink-0 inline-flex items-center justify-center rounded-full bg-white ring-1 ring-gray-200/70 text-gray-700 shadow-[0_1px_2px_rgba(0,0,0,0.04)] hover:ring-primary/40 hover:text-primary active:scale-95 transition-all ${
+              className={`tap-target flex-shrink-0 inline-flex items-center justify-center rounded-full bg-white ring-1 ring-gray-200/70 text-gray-700 shadow-[0_1px_2px_rgba(0,0,0,0.04)] hover:ring-primary/40 hover:text-primary active:scale-95 transition-all ${
                 collapsed ? 'w-8 h-8' : 'w-9 h-9'
               }`}>
               <ArrowLeft className="w-4 h-4" />

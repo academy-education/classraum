@@ -38,8 +38,8 @@ interface DashboardStats {
   activeSubscriptions: number;
   trialAcademies: number;
   supportTickets: number;
-  urgentTickets: number;
-  normalTickets: number;
+  unreadSupportTickets: number;
+  closedSupportTickets: number;
   systemHealth: number;
   servicesOperational: boolean;
   // Trend data for charts
@@ -526,9 +526,9 @@ export function AdminDashboard() {
           <div className="text-[28px] leading-none font-semibold text-gray-900 tracking-tight tabular-nums mb-2">
             {stats.supportTickets}
           </div>
-          <div className="flex items-center text-sm text-rose-600">
+          <div className={`flex items-center text-sm ${stats.unreadSupportTickets > 0 ? 'text-rose-600' : 'text-gray-500'}`}>
             <AlertTriangle className="w-4 h-4 mr-1" />
-            <span>{String(t('admin.dashboard.ticketBreakdown', { urgent: stats.urgentTickets, normal: stats.normalTickets }))}</span>
+            <span>{String(t('admin.dashboard.conversationBreakdown', { unread: stats.unreadSupportTickets, closed: stats.closedSupportTickets }))}</span>
           </div>
         </div>
 

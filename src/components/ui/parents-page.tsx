@@ -27,6 +27,7 @@ import {
 import { cn } from '@/lib/utils'
 import { DashboardCard, BulkActionBar, TableCheckbox } from '@/components/ui/dashboard'
 import { useTranslation } from '@/hooks/useTranslation'
+import { useResponsiveViewMode } from '@/hooks/useResponsiveViewMode'
 import { ModalShell } from '@/components/ui/common/ModalShell'
 import { EmptyState } from '@/components/ui/common/EmptyState'
 import { useToast } from '@/hooks/use-toast'
@@ -71,7 +72,7 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
   const [tableLoading, setTableLoading] = useState(false)
   const [initialized, setInitialized] = useState(false)
   const [searchQuery, setSearchQuery] = useState('')
-  const [viewMode, setViewMode] = useState<'card' | 'table'>('table')
+  const [viewMode, setViewMode] = useResponsiveViewMode<'card' | 'table'>('table', 'card')
   const [selectedParents, setSelectedParents] = useState<Set<string>>(new Set())
   const searchInputRef = useRef<HTMLInputElement | null>(null)
 

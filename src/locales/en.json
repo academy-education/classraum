@@ -2,7 +2,8 @@
   "studentSelector": {
     "title": "Select Student",
     "description": "Choose which student you want to view information for.",
-    "changeInfo": "You can change this selection at any time."
+    "changeInfo": "You can change this selection at any time.",
+    "enrolledInAcademies": "Enrolled in {{count}} academies"
   },
   "pagination": {
     "showing": "Showing",
@@ -653,7 +654,8 @@
       "fallbackAcademy": "Academy",
       "fallbackUser": "User",
       "closeSidebar": "Close sidebar",
-      "resolveAll": "Resolve all"
+      "resolveAll": "Resolve all",
+      "conversationBreakdown": "{unread} unread · {closed} closed"
     },
     "users": {
       "title": "Users",
@@ -1698,7 +1700,17 @@
       "subscriptionCanceled": "Subscription canceled",
       "noEmailValue": "No email",
       "failedToRevokeLink": "Failed to revoke link",
-      "failedToRegenerateLink": "Failed to regenerate link"
+      "failedToRegenerateLink": "Failed to regenerate link",
+      "loadingBilling": "Loading billing…",
+      "failedToLoadBilling": "Failed to load billing data",
+      "collected": "Collected",
+      "outstanding": "Outstanding",
+      "totalInvoices": "Total invoices",
+      "lastPayment": "Last payment",
+      "recentInvoices": "Recent invoices",
+      "paidInvoiceCount": "{count} paid",
+      "pendingInvoiceCount": "{count} pending",
+      "noSubscription": "No subscription"
     },
     "communications": {
       "kicker": "Outreach",
@@ -5906,7 +5918,8 @@
         "daysAgo": "{count}d ago",
         "characterLimit": "{current}/{max}",
         "closeComments": "Close comments"
-      }
+      },
+      "classroomPosition": "Classroom {{current}} of {{total}}"
     },
     "fileViewer": {
       "previewNotAvailable": "Preview not available",
@@ -9873,6 +9886,7 @@
     "slide1": {
       "title": "Welcome to Classraum",
       "body": "Everything you need to run your academy lives in the left panel. Here is what each section is for.",
+      "bodyBottomNav": "Everything you need to run your academy is in the navigation bar at the bottom of the screen. Here is what each section is for.",
       "bullet1": "Classrooms, Sessions, Assignments, Attendance — the day-to-day teaching workflow.",
       "bullet2": "Payments, Reports, Announcements — running the academy.",
       "bullet3": "Contacts (Teachers, Families, Parents, Students) — your directory."

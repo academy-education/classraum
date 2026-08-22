@@ -1,50 +1,29 @@
-import { createClient } from '@supabase/supabase-js';
 import { NextRequest, NextResponse } from 'next/server';
-import type { Database } from '@/lib/database.types';
+import { dbAdmin } from '@/lib/supabase-admin';
+import { requireAdmin } from '../../_lib/admin-auth';
 
+/**
+ * GET /api/admin/subscriptions/invoices
+ *
+ * WHY dbAdmin AND NOT THE CALLER'S CLIENT
+ * ---------------------------------------
+ * This route used to build a `createClient(anon key)` bound to the caller's
+ * JWT via the Authorization header and then SELECT `subscription_invoices`
+ * through it. That table's RLS only grants academy-scoped access, so an
+ * admin — who belongs to no academy — matched no policy and PostgREST
+ * answered `{ data: [], error: null }`. Not an error: an empty list.
+ *
+ * The blast radius was bigger than an empty table. RefundModal is only
+ * reachable from an invoice row, so zero rows meant the entire refund
+ * feature was unreachable from the UI even though both invoices exist.
+ *
+ * The admin role check still runs first (requireAdmin); only the DATA read
+ * moved to the service-role client. RLS is unchanged.
+ */
 export async function GET(req: NextRequest) {
   try {
-    const authHeader = req.headers.get('authorization');
-
-    if (!authHeader || !authHeader.startsWith('Bearer ')) {
-      return NextResponse.json(
-        { error: 'Missing authorization header' },
-        { status: 401 }
-      );
-    }
-
-    const token = authHeader.substring(7);
-
-    const supabase = createClient<Database>(
-      process.env.NEXT_PUBLIC_SUPABASE_URL!,
-      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
-      {
-        global: {
-          headers: {
-            Authorization: authHeader
-          }
-        }
-      }
-    );
-
-    // Verify user is admin/super_admin
-    const {
-      data: { user },
-      error: authError,
-    } = await supabase.auth.getUser(token);
-
-    if (authError || !user) {
+    if (!(await requireAdmin(req))) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-    }
-
-    const { data: userInfo, error: userError } = await supabase
-      .from('users')
-      .select('role')
-      .eq('id', user.id)
-      .single();
-
-    if (userError || !userInfo || !['admin', 'super_admin'].includes(userInfo.role)) {
-      return NextResponse.json({ error: 'Forbidden - Admin access required' }, { status: 403 });
     }
 
     // Get query parameters
@@ -66,7 +45,7 @@ export async function GET(req: NextRequest) {
     const to = from + pageSize - 1;
 
     // Build query with pagination
-    let query = supabase
+    let query = dbAdmin
       .from('subscription_invoices')
       .select('*', { count: 'exact' })
       .order('created_at', { ascending: false })

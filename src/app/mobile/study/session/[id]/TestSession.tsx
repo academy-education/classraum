@@ -1467,11 +1467,15 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
             the full shell width; its px-5 padding lands the N/M pill at the
             same left edge as the question column below. */}
         <div className="px-5 py-2 flex items-center justify-between w-full">
+          {/* tap-target: this toggle is the only mid-exam way to jump between
+              questions and its text is only 17px tall. The row is
+              justify-between, so the projected 44px area cannot reach the
+              timer beside it. */}
           <button
             type="button"
             onClick={() => setGridOpen(v => !v)}
             disabled={audioPlaying}
-            className="text-[11px] text-gray-500 tabular-nums inline-flex items-center gap-1 disabled:opacity-40"
+            className="tap-target text-[11px] text-gray-500 tabular-nums inline-flex items-center gap-1 disabled:opacity-40"
           >
             {t('study.test.questionN', { current: currentLabel, total: String(totalQuestions) })}
             {gridOpen ? <ChevronUp className="w-3 h-3" /> : <ChevronDown className="w-3 h-3" />}
@@ -1491,7 +1495,7 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
             <button
               type="button"
               onClick={togglePause}
-              className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-semibold border transition-colors ${
+              className={`tap-target inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-semibold border transition-colors ${
                 paused
                   ? 'bg-primary text-white border-primary hover:bg-primary/90'
                   : 'bg-white text-gray-600 border-gray-200 hover:border-primary hover:text-primary'
@@ -1513,7 +1517,7 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
           question. */}
       {gridOpen && (
         <div className="flex-shrink-0 border-b border-gray-100 bg-gray-50/60 px-3 py-3">
-          <div className="grid grid-cols-8 gap-1.5">
+          <div className="grid grid-cols-7 gap-1.5">
             {test.questions.map((_, i) => {
               const isCurrent = i === currentIdx
               const isAnswered = isItemAnswered(i)
@@ -1535,7 +1539,7 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
                   type="button"
                   disabled={anyRecording || moduleLocked || sectionLocked}
                   onClick={() => { if (moduleLocked || sectionLocked) return; setCurrentIdx(i); setGridOpen(false) }}
-                  className={`h-8 rounded-md text-xs font-medium transition-colors tabular-nums disabled:opacity-40 ${
+                  className={`h-11 rounded-md text-xs font-medium transition-colors tabular-nums disabled:opacity-40 ${
                     isCurrent
                       ? 'bg-primary text-white'
                       : isAnswered

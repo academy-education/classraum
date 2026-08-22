@@ -17,7 +17,8 @@ import {
   RefreshCw,
   Banknote,
   Copy,
-  Clock
+  Clock,
+  MinusCircle
 } from 'lucide-react';
 import { DashboardCard } from '../DashboardCard';
 import { StatusBadge, type StatusTone } from '../StatusBadge';
@@ -51,9 +52,11 @@ interface Academy {
   phone?: string;
   address?: string;
   subscriptionTier: 'free' | 'individual' | 'basic' | 'pro' | 'enterprise';
-  status: 'active' | 'suspended' | 'trial' | 'inactive' | 'pending_onboarding';
+  status: 'active' | 'suspended' | 'trial' | 'inactive' | 'pending_onboarding' | 'no_subscription';
   totalUsers: number;
-  monthlyRevenue: number;
+  /** null when the academy has no academy_subscriptions row at all — a
+   *  different fact from a subscription that bills ₩0. */
+  monthlyRevenue: number | null;
   createdAt: Date;
   lastActive: Date;
   isSuspended: boolean;
@@ -162,7 +165,8 @@ export function AcademyManagement() {
         address: string | null
         subscriptionTier: string
         subscriptionStatus: string
-        monthlyRevenue: number
+        hasSubscription: boolean
+        monthlyRevenue: number | null
         isSuspended: boolean
         suspensionReason: string | null
         totalUsers: number
@@ -188,6 +192,11 @@ export function AcademyManagement() {
           status = 'active'
         } else if (a.subscriptionStatus === 'trialing') {
           status = 'trial'
+        } else if (!a.hasSubscription) {
+          // No academy_subscriptions row exists. Previously the API
+          // fabricated 'active' here and the badge said Active; 9 of the 12
+          // "active" academies were this case.
+          status = 'no_subscription'
         } else if (a.subscriptionStatus === 'canceled' || a.subscriptionStatus === 'past_due') {
           status = 'suspended'
           isSuspended = true
@@ -434,7 +443,7 @@ export function AcademyManagement() {
       academy.isSuspended ? String(t('admin.academies.suspended')) : academy.status,
       academy.subscriptionTier,
       academy.totalUsers,
-      academy.monthlyRevenue,
+      academy.monthlyRevenue === null ? String(t('admin.academies.noSubscription')) : academy.monthlyRevenue,
       academy.createdAt.toLocaleDateString(getDateLocale(language)),
       academy.lastActive.toLocaleDateString(getDateLocale(language))
     ]);
@@ -470,6 +479,7 @@ export function AcademyManagement() {
       trial:               { tone: 'pending', icon: AlertCircle, label: String(t('admin.academies.trial')) },
       pending_onboarding:  { tone: 'violet',  icon: Clock,       label: String(t('admin.academies.pendingInvite')) },
       inactive:            { tone: 'muted',   icon: XCircle,     label: String(t('admin.common.inactive')) },
+      no_subscription:     { tone: 'muted',   icon: MinusCircle, label: String(t('admin.academies.noSubscription')) },
     }
     const entry = map[status]
     if (!entry) return null
@@ -507,7 +517,8 @@ export function AcademyManagement() {
       case 'status':       return a.isSuspended ? 'suspended' : a.status
       case 'subscription': return a.subscriptionTier
       case 'users':        return a.totalUsers
-      case 'revenue':      return a.monthlyRevenue
+      // null (no subscription) sorts below every real amount, incl. ₩0.
+      case 'revenue':      return a.monthlyRevenue === null ? -1 : a.monthlyRevenue
       case 'lastActive':   return a.lastActive
       default: return null
     }
@@ -780,6 +791,7 @@ export function AcademyManagement() {
                   <SelectItem value="pending_onboarding">{String(t('admin.academies.pendingInvite'))}</SelectItem>
                   <SelectItem value="suspended">{String(t('admin.academies.suspended'))}</SelectItem>
                   <SelectItem value="inactive">{String(t('admin.common.inactive'))}</SelectItem>
+                  <SelectItem value="no_subscription">{String(t('admin.academies.noSubscription'))}</SelectItem>
                 </SelectContent>
               </Select>
 
@@ -845,7 +857,7 @@ export function AcademyManagement() {
                 meta={[
                   { label: String(t('admin.academies.thSubscription')), value: getTierBadge(academy.subscriptionTier) },
                   { label: String(t('admin.academies.thUsers')), value: academy.totalUsers },
-                  { label: String(t('admin.academies.thRevenue')), value: formatPrice(academy.monthlyRevenue) },
+                  { label: String(t('admin.academies.thRevenue')), value: academy.monthlyRevenue === null ? String(t('admin.academies.noSubscription')) : formatPrice(academy.monthlyRevenue) },
                   {
                     label: String(t('admin.academies.thLastActive')),
                     value: new Date(academy.lastActive).toLocaleDateString(getDateLocale(language)),
@@ -935,10 +947,16 @@ export function AcademyManagement() {
                       </div>
                     </td>
                     <td className="px-4 py-4 whitespace-nowrap">
-                      <div className="text-sm font-medium text-gray-900">
-                        {formatPrice(academy.monthlyRevenue)}
-                      </div>
-                      <div className="text-xs text-gray-500">{String(t('admin.academies.perMonth'))}</div>
+                      {academy.monthlyRevenue === null ? (
+                        <div className="text-sm text-gray-400">{String(t('admin.academies.noSubscription'))}</div>
+                      ) : (
+                        <>
+                          <div className="text-sm font-medium text-gray-900">
+                            {formatPrice(academy.monthlyRevenue)}
+                          </div>
+                          <div className="text-xs text-gray-500">{String(t('admin.academies.perMonth'))}</div>
+                        </>
+                      )}
                     </td>
                     <td className="px-4 py-4 whitespace-nowrap">
                       <div className="text-sm text-gray-900">

@@ -24,6 +24,7 @@ import {
 import { DashboardCard, BulkActionBar } from '@/components/ui/dashboard'
 import { StatusPill } from '@/components/ui/status-pill'
 import { useTranslation } from '@/hooks/useTranslation'
+import { useResponsiveViewMode } from '@/hooks/useResponsiveViewMode'
 import { useToast } from '@/hooks/use-toast'
 import { showSuccessToast, showErrorToast } from '@/stores'
 import { useSubscriptionLimits } from '@/hooks/useSubscriptionLimits'
@@ -81,7 +82,7 @@ export function StudentsPageOriginalUI({ academyId }: StudentsPageOriginalUIProp
   })
 
   const [searchQuery, setSearchQuery] = useState('')
-  const [viewMode, setViewMode] = useState<'card' | 'table'>('table')
+  const [viewMode, setViewMode] = useResponsiveViewMode<'card' | 'table'>('table', 'card')
   const [selectedStudents, setSelectedStudents] = useState<Set<string>>(new Set())
   const searchInputRef = useRef<HTMLInputElement | null>(null)
 

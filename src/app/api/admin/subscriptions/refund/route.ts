@@ -1,50 +1,25 @@
-import { createClient } from '@supabase/supabase-js';
 import { NextRequest, NextResponse } from 'next/server';
-import type { Database } from '@/lib/database.types';
+import { dbAdmin } from '@/lib/supabase-admin';
+import { requireAdmin } from '../../_lib/admin-auth';
 
+/**
+ * POST /api/admin/subscriptions/refund
+ *
+ * Same root cause as ../invoices/route.ts: the invoice SELECT and the
+ * post-refund UPDATE both ran through an anon-key client bound to the
+ * caller's JWT. `subscription_invoices` RLS is academy-scoped, so for an
+ * admin the SELECT returned no row and this route answered
+ * "Invoice not found" (404) for an invoice that plainly exists — and had
+ * the SELECT ever succeeded, the UPDATE would have silently written zero
+ * rows AFTER the money had already been returned by PortOne.
+ *
+ * Admin role check first (requireAdmin), data access via service role.
+ */
 export async function POST(req: NextRequest) {
   try {
-    const authHeader = req.headers.get('authorization');
-
-    if (!authHeader || !authHeader.startsWith('Bearer ')) {
-      return NextResponse.json(
-        { error: 'Missing authorization header' },
-        { status: 401 }
-      );
-    }
-
-    const token = authHeader.substring(7);
-
-    const supabase = createClient<Database>(
-      process.env.NEXT_PUBLIC_SUPABASE_URL!,
-      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
-      {
-        global: {
-          headers: {
-            Authorization: authHeader
-          }
-        }
-      }
-    );
-
-    // Verify user is admin/super_admin
-    const {
-      data: { user },
-      error: authError,
-    } = await supabase.auth.getUser(token);
-
-    if (authError || !user) {
+    const admin = await requireAdmin(req);
+    if (!admin) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-    }
-
-    const { data: userInfo, error: userError } = await supabase
-      .from('users')
-      .select('role')
-      .eq('id', user.id)
-      .single();
-
-    if (userError || !userInfo || !['admin', 'super_admin'].includes(userInfo.role)) {
-      return NextResponse.json({ error: 'Forbidden - Admin access required' }, { status: 403 });
     }
 
     // Parse request body
@@ -66,7 +41,7 @@ export async function POST(req: NextRequest) {
     }
 
     // Fetch invoice details
-    const { data: invoice, error: invoiceError } = await supabase
+    const { data: invoice, error: invoiceError } = await dbAdmin
       .from('subscription_invoices')
       .select('*')
       .eq('id', invoiceId)
@@ -199,11 +174,11 @@ export async function POST(req: NextRequest) {
       refund_amount: refundAmount,
       refund_reason: reason,
       refunded_at: new Date().toISOString(),
-      refunded_by: user.id,
+      refunded_by: admin.userId,
       portone_cancellation: portoneResult.cancellation
     };
 
-    const { error: updateError } = await supabase
+    const { error: updateError } = await dbAdmin
       .from('subscription_invoices')
       .update({
         status: refundType === 'full' ? 'refunded' : 'partially_refunded',

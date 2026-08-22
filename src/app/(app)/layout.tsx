@@ -324,7 +324,12 @@ export default function AppLayout({
       />
 
       {/* Main app container - positioned between safe areas with reduced bottom */}
+      {/* data-surface scopes the below-`md` touch-target sizing in globals.css
+          to the manager/teacher surface. The student/parent surface lives in
+          src/app/mobile and is already designed for phones — its deliberately
+          small controls (6px carousel dots, 20px toggles) must not be grown. */}
       <div
+        data-surface="dashboard"
         className="flex bg-gray-50 fixed"
         style={{
           top: 'var(--safe-area-top)',

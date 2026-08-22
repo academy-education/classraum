@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { dbAdmin } from '@/lib/supabase-admin'
 import { requireAdmin, countRows } from '../_lib/admin-auth'
 import type { Database } from '@/lib/database.types'
+import { lastNMonthsKST, monthlyNetRevenueKST, type DatedAmount } from '@/lib/admin/revenue'
 
 /**
  * The `head()` helper below takes a table name dynamically. Under the typed
@@ -23,7 +24,7 @@ import type { Database } from '@/lib/database.types'
  */
 type TableName = Extract<
   keyof Database['public']['Tables'],
-  'academies' | 'users' | 'academy_subscriptions' | 'support_tickets' | 'alerts'
+  'academies' | 'users' | 'academy_subscriptions' | 'chat_conversations' | 'chat_messages' | 'alerts'
 >
 
 /**
@@ -64,8 +65,8 @@ export async function GET(request: NextRequest) {
       activeSubscriptions,
       trialAcademies,
       supportTickets,
-      urgentTickets,
-      normalTickets,
+      unreadSupportTickets,
+      closedSupportTickets,
       criticalAlerts,
       totalActiveAlerts,
     ] = await Promise.all([
@@ -79,17 +80,33 @@ export async function GET(request: NextRequest) {
         () => head('academy_subscriptions').eq('status', 'trialing'),
         'trial_subscriptions'
       ),
+      // ---- Support: count what the Support PAGE shows ----
+      //
+      // These three counts read `support_tickets`, which is EMPTY (0 rows)
+      // and has been for the life of the table. The admin Support page
+      // (SupportManagement.tsx) has always read `chat_conversations`, and
+      // lists 5 conversations there. So the dashboard KPI and the sidebar
+      // badge both showed "0 support tickets" while the page one click away
+      // listed five open conversations.
+      //
+      // The page's own header cards define the vocabulary, and this now
+      // matches them exactly: "active" is `status <> 'closed'` there, so it
+      // is `status <> 'closed'` here. `support_tickets` is not consulted at
+      // all — a table nobody writes to cannot be the source for a headline
+      // number.
       countRows(
-        () => head('support_tickets').in('status', ['open', 'in_progress']),
-        'support_tickets'
+        () => head('chat_conversations').neq('status', 'closed'),
+        'support_conversations'
+      ),
+      // Unread is defined by the page as messages FROM THE USER that are
+      // still is_read = false — the same predicate, not a re-invention.
+      countRows(
+        () => head('chat_messages').eq('is_read', false).eq('sender_type', 'user'),
+        'unread_support_messages'
       ),
       countRows(
-        () => head('support_tickets').in('status', ['open', 'in_progress']).eq('priority', 'high'),
-        'urgent_tickets'
-      ),
-      countRows(
-        () => head('support_tickets').in('status', ['open', 'in_progress']).in('priority', ['low', 'medium']),
-        'normal_tickets'
+        () => head('chat_conversations').eq('status', 'closed'),
+        'closed_support_conversations'
       ),
       countRows(
         () => head('alerts').eq('resolved', false).in('severity', ['critical', 'high']),
@@ -107,26 +124,60 @@ export async function GET(request: NextRequest) {
     const activeAcademies = new Set((activeAcademyRows || []).map(r => r.academy_id)).size
 
     // ---- Revenue: this month vs last month ----
-    const startOfMonth = new Date()
-    startOfMonth.setDate(1)
-    startOfMonth.setHours(0, 0, 0, 0)
-    const startOfLastMonth = new Date(startOfMonth)
-    startOfLastMonth.setMonth(startOfLastMonth.getMonth() - 1)
+    //
+    // SOURCE OF TRUTH: study payments minus the refund ledger, bucketed by
+    // KST calendar month — the SAME aggregation the chart directly beneath
+    // this KPI uses (@/lib/admin/revenue, unit-tested).
+    //
+    // This KPI used to sum `invoices.final_amount` where status = 'paid'.
+    // `invoices` is academy→student billing — money a hagwon collects from
+    // its own parents — NOT money Classraum received; charts/route.ts says
+    // so in its own header comment. Worse, it cut the month at server-local
+    // midnight (UTC on Vercel), so late-evening KST payments landed in the
+    // wrong month.
+    //
+    // The visible symptom was a KPI reading "Monthly revenue ₩0" sitting
+    // directly above a chart reading ₩119,400 for the same month, on the
+    // same screen. A KPI and the chart under it must not be able to
+    // disagree; the only way to guarantee that is one source, not two that
+    // happen to agree today.
+    // lastNMonthsKST returns OLDEST FIRST, so index 0 is last month.
+    const [lastMonth, thisMonth] = lastNMonthsKST(2)
 
-    const sumPaid = async (fromIso: string, toIso?: string) => {
-      let q = dbAdmin
-        .from('invoices')
-        .select('final_amount')
-        .eq('status', 'paid')
-        .gte('paid_at', fromIso)
-      if (toIso) q = q.lt('paid_at', toIso)
-      const { data, error } = await q
-      if (error) throw new Error(`invoice sum: ${error.message}`)
-      return (data || []).reduce((s, i: { final_amount: number | null }) => s + (i.final_amount || 0), 0)
+    const datedRows = async (
+      table: 'study_payments' | 'study_payment_refunds',
+      fromIso: string,
+      toIso: string
+    ): Promise<DatedAmount[]> => {
+      const out: DatedAmount[] = []
+      const CHUNK = 1000
+      for (let from = 0; ; from += CHUNK) {
+        const { data, error } = await dbAdmin
+          .from(table)
+          .select('amount_won, created_at')
+          .gte('created_at', fromIso)
+          .lt('created_at', toIso)
+          .order('created_at')
+          .range(from, from + CHUNK - 1)
+        if (error) throw new Error(`${table}: ${error.message}`)
+        const rows = data || []
+        out.push(...rows.map(r => ({ amountWon: r.amount_won, at: r.created_at })))
+        if (rows.length < CHUNK) break
+      }
+      return out
     }
 
-    const monthlyRevenue = await sumPaid(startOfMonth.toISOString())
-    const lastMonthRevenue = await sumPaid(startOfLastMonth.toISOString(), startOfMonth.toISOString())
+    const [twoMonthPayments, twoMonthRefunds] = await Promise.all([
+      datedRows('study_payments', lastMonth.startIso, thisMonth.endIso),
+      datedRows('study_payment_refunds', lastMonth.startIso, thisMonth.endIso),
+    ])
+
+    const [lastMonthRevenue, monthlyRevenue] = monthlyNetRevenueKST(
+      [lastMonth, thisMonth],
+      twoMonthPayments,
+      twoMonthRefunds
+    )
+
     const revenueGrowth =
       lastMonthRevenue > 0 ? ((monthlyRevenue - lastMonthRevenue) / lastMonthRevenue) * 100 : 0
 
@@ -147,18 +198,35 @@ export async function GET(request: NextRequest) {
         )
       )
 
-    const revenueTrendPromise = Promise.all(
-      last10Days.map(async date => {
-        const { data, error } = await dbAdmin
-          .from('invoices')
-          .select('final_amount')
-          .eq('status', 'paid')
-          .gte('paid_at', `${date}T00:00:00`)
-          .lte('paid_at', `${date}T23:59:59`)
-        if (error) throw new Error(`revenue trend ${date}: ${error.message}`)
-        return (data || []).reduce((s, i: { final_amount: number | null }) => s + (i.final_amount || 0), 0)
-      })
-    )
+    // The sparkline in the same card must come from the same source as the
+    // headline number, for the same reason. Daily buckets, KST, net of
+    // refunds — one query over the 10-day window, bucketed in JS.
+    const trendWindowStart = new Date(`${last10Days[0]}T00:00:00+09:00`).toISOString()
+    const trendWindowEnd = new Date(
+      new Date(`${last10Days[last10Days.length - 1]}T00:00:00+09:00`).getTime() + 24 * 60 * 60 * 1000
+    ).toISOString()
+
+    const revenueTrendPromise = (async () => {
+      const [payments, refunds] = await Promise.all([
+        datedRows('study_payments', trendWindowStart, trendWindowEnd),
+        datedRows('study_payment_refunds', trendWindowStart, trendWindowEnd),
+      ])
+      const KST_OFFSET_MS = 9 * 60 * 60 * 1000
+      const dayKey = (iso: string) =>
+        new Date(Date.parse(iso) + KST_OFFSET_MS).toISOString().split('T')[0]
+      const byDay = new Map(last10Days.map(d => [d, 0]))
+      const add = (rows: DatedAmount[], sign: 1 | -1) => {
+        for (const r of rows) {
+          if (!r.at) continue
+          const k = dayKey(r.at)
+          if (!byDay.has(k)) continue
+          byDay.set(k, (byDay.get(k) || 0) + sign * (r.amountWon ?? 0))
+        }
+      }
+      add(payments, 1)
+      add(refunds, -1)
+      return last10Days.map(d => byDay.get(d) || 0)
+    })()
 
     const [academiesTrend, usersTrend, subscriptionsTrend, revenueTrend] = await Promise.all([
       cumulativeTrend('academies'),
@@ -209,8 +277,8 @@ export async function GET(request: NextRequest) {
         activeSubscriptions,
         trialAcademies,
         supportTickets,
-        urgentTickets,
-        normalTickets,
+        unreadSupportTickets,
+        closedSupportTickets,
         systemHealth: Math.round(systemHealth * 10) / 10,
         servicesOperational: criticalAlerts === 0,
         academiesTrend,

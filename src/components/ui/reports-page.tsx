@@ -28,7 +28,8 @@ function jsonStringArray(value: Json | undefined): string[] {
 }
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
-import { TableCheckbox, BulkActionBar } from '@/components/ui/dashboard'
+import { TableCheckbox, BulkActionBar, DashboardCard } from '@/components/ui/dashboard'
+import { useResponsiveViewMode } from '@/hooks/useResponsiveViewMode'
 import { useCreateShortcut } from '@/hooks/useCreateShortcut'
 import { useListPageShortcuts } from '@/hooks/useListPageShortcuts'
 import { useConfirm } from '@/hooks/useConfirm'
@@ -58,7 +59,9 @@ import {
   Save,
   AlertTriangle,
   Loader2,
-  School
+  School,
+  Grid3X3,
+  Rows3
 } from 'lucide-react'
 import { useTranslation } from '@/hooks/useTranslation'
 import { getDateLocale } from '@/utils/dateUtils'
@@ -403,6 +406,44 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
     }
   }
 
+  // Card accent bar color — mirrors the tailwind tone used by getStatusColor.
+  const getStatusAccent = (status: string) => {
+    switch (status) {
+      case 'Finished':
+        return '#0ea5e9'
+      case 'Approved':
+        return '#10b981'
+      case 'Sent':
+        return '#8b5cf6'
+      case 'Viewed':
+        return '#6366f1'
+      case 'Error':
+        return '#f43f5e'
+      case 'Draft':
+      default:
+        return '#9ca3af'
+    }
+  }
+
+  // Eyebrow tone for the card status label.
+  const getStatusToneClass = (status: string) => {
+    switch (status) {
+      case 'Finished':
+        return 'text-sky-600'
+      case 'Approved':
+        return 'text-emerald-600'
+      case 'Sent':
+        return 'text-violet-600'
+      case 'Viewed':
+        return 'text-indigo-600'
+      case 'Error':
+        return 'text-rose-600'
+      case 'Draft':
+      default:
+        return 'text-gray-500'
+    }
+  }
+
   const [reports, setReports] = useState<ReportData[]>([])
   // Start `loading=true` so the first render shows the skeleton rather than
   // briefly flashing the EmptyState while userRole + the first fetch resolve.
@@ -526,6 +567,10 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [reportDataCache, setReportDataCache] = useState<Record<string, any>>({})
   const [dropdownOpen, setDropdownOpen] = useState<string | null>(null)
+  // Below `md` the 900px-wide table cannot fit, so cards are the default
+  // there; at `md`+ the table stays the default. An explicit toggle click
+  // wins at every width.
+  const [viewMode, setViewMode] = useResponsiveViewMode<'card' | 'table'>('table', 'card')
   const dropdownButtonRefs = useRef<{ [key: string]: HTMLButtonElement | null }>({})
   const [showEditReportModal, setShowEditReportModal] = useState(false)
   const [editingReport, setEditingReport] = useState<ReportData | null>(null)
@@ -2248,6 +2293,82 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
     })
   }
 
+  const handleEditClick = async (report: ReportData) => {
+    // Fetch fresh data for this specific report
+    const { data: freshReportData } = await db
+      .from('student_reports')
+      .select(`
+        id,
+        student_id,
+        report_name,
+        start_date,
+        end_date,
+        selected_subjects,
+        selected_classrooms,
+        selected_assignment_categories,
+        ai_feedback_enabled,
+        feedback,
+        ai_feedback_created_by,
+        ai_feedback_created_at,
+        ai_feedback_template,
+        status,
+        show_category_average,
+        show_individual_grades,
+        show_percentile_ranking
+      `)
+      .eq('id', report.id)
+      .single()
+
+    const reportToEdit = freshReportData || report
+    setEditingReport(report as ReportData)
+    setCurrentReportId(reportToEdit.id)
+    setFormData({
+      student_id: reportToEdit.student_id,
+      report_name: reportToEdit.report_name || '',
+      start_date: reportToEdit.start_date || '',
+      end_date: reportToEdit.end_date || '',
+      selected_subjects: jsonStringArray(reportToEdit.selected_subjects),
+      selected_classrooms: jsonStringArray(reportToEdit.selected_classrooms),
+      selected_assignment_categories: jsonStringArray(reportToEdit.selected_assignment_categories),
+      ai_feedback_enabled: reportToEdit.ai_feedback_enabled ?? false,
+      feedback: reportToEdit.feedback ?? '',
+      status: reportToEdit.status || 'Draft',
+      show_category_average: reportToEdit.show_category_average ?? true,
+      show_individual_grades: reportToEdit.show_individual_grades ?? false,
+      show_percentile_ranking: reportToEdit.show_percentile_ranking ?? true
+    })
+    
+    // Load existing feedback data for editing  
+    setEditableFeedback(reportToEdit.feedback ?? '')
+    
+    // Set AI feedback metadata
+    if (reportToEdit.ai_feedback_created_by) {
+        if (userId === reportToEdit.ai_feedback_created_by) {
+          setAiFeedbackCreatedBy(userName || 'You')
+        } else {
+          setAiFeedbackCreatedBy('User')
+        }
+    } else {
+      setAiFeedbackCreatedBy('')
+    }
+    
+    if (reportToEdit.ai_feedback_created_at) {
+      setAiFeedbackCreatedAt(reportToEdit.ai_feedback_created_at)
+    } else {
+      setAiFeedbackCreatedAt('')
+    }
+    
+    if (reportToEdit.ai_feedback_template) {
+      setAiFeedbackTemplate(reportToEdit.ai_feedback_template)
+    } else {
+      setAiFeedbackTemplate('')
+    }
+    
+    // AI feedback will be handled through formData sync
+    setShowEditReportModal(true)
+    setDropdownOpen(null)
+  }
+
   const handleDeleteClick = (report: ReportData) => {
     setReportToDelete(report)
     setShowDeleteModal(true)
@@ -2468,6 +2589,71 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
     </div>
   )
 
+  // Pagination is shared by both view modes — card view is server-paginated
+  // exactly like the table, so hiding it there would strand every page but
+  // the first.
+  const paginationControls = totalCount > 0 ? (
+          <div className="mt-4 flex items-center justify-between border-t border-gray-200 bg-white px-4 py-3 sm:px-6">
+            <div className="flex flex-1 justify-between sm:hidden">
+              <Button
+                onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
+                disabled={currentPage === 1}
+                variant="outline"
+                size="sm"
+                className="flex items-center gap-1"
+              >
+                <ChevronLeft className="w-4 h-4" />
+                {t("reports.pagination.previous")}
+              </Button>
+              <Button
+                onClick={() => setCurrentPage(p => Math.min(Math.ceil(totalCount / itemsPerPage), p + 1))}
+                disabled={currentPage >= Math.ceil(totalCount / itemsPerPage)}
+                variant="outline"
+                size="sm"
+                className="flex items-center gap-1"
+              >
+                {t("reports.pagination.next")}
+                <ChevronRight className="w-4 h-4" />
+              </Button>
+            </div>
+            <div className="hidden sm:flex sm:flex-1 sm:items-center sm:justify-between">
+              <div>
+                <p className="text-sm text-gray-700">
+                  {t("reports.pagination.showing")}
+                  <span className="font-medium"> {((currentPage - 1) * itemsPerPage) + 1} </span>
+                  {t("reports.pagination.to")}
+                  <span className="font-medium"> {Math.min(currentPage * itemsPerPage, totalCount)} </span>
+                  {t("reports.pagination.of")}
+                  <span className="font-medium"> {totalCount} </span>
+                  {t("reports.pagination.reports")}
+                </p>
+              </div>
+              <div className="flex gap-2">
+                <Button
+                  onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
+                  disabled={currentPage === 1}
+                  variant="outline"
+                  size="sm"
+                  className="flex items-center gap-1"
+                >
+                  <ChevronLeft className="w-4 h-4" />
+                  {t("reports.pagination.previous")}
+                </Button>
+                <Button
+                  onClick={() => setCurrentPage(p => Math.min(Math.ceil(totalCount / itemsPerPage), p + 1))}
+                  disabled={currentPage >= Math.ceil(totalCount / itemsPerPage)}
+                  variant="outline"
+                  size="sm"
+                  className="flex items-center gap-1"
+                >
+                  {t("reports.pagination.next")}
+                  <ChevronRight className="w-4 h-4" />
+                </Button>
+              </div>
+            </div>
+          </div>
+  ) : null
+
   if (loading ) {
     return (
       <div className="p-4">
@@ -2523,6 +2709,30 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
         </div>
       </div>
 
+      {/* View Mode Toggle */}
+      <div className="flex justify-end mb-4">
+        <div className="flex items-center gap-1 border border-border rounded-lg p-1 bg-white">
+          <Button
+            variant={viewMode === 'table' ? 'default' : 'ghost'}
+            size="sm"
+            onClick={() => setViewMode('table')}
+            className={`h-9 px-3 ${viewMode === 'table' ? 'bg-primary text-primary-foreground' : 'text-gray-600 hover:text-gray-900'}`}
+            title={String(t("common.tableView"))}
+          >
+            <Rows3 className="w-4 h-4" />
+          </Button>
+          <Button
+            variant={viewMode === 'card' ? 'default' : 'ghost'}
+            size="sm"
+            onClick={() => { setViewMode('card'); setSelectedRows([]); setSelectAll(false) }}
+            className={`h-9 px-3 ${viewMode === 'card' ? 'bg-primary text-primary-foreground' : 'text-gray-600 hover:text-gray-900'}`}
+            title={String(t("common.cardView"))}
+          >
+            <Grid3X3 className="w-4 h-4" />
+          </Button>
+        </div>
+      </div>
+
       <div className="flex items-center gap-4 mb-8">
         <div className="relative flex-1 max-w-md">
           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5 pointer-events-none" />
@@ -2538,8 +2748,8 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
         </div>
       </div>
 
-      {/* Bulk Action Bar — shows when reports are selected. */}
-      {selectedRows.length > 0 && (
+      {/* Bulk Action Bar — table mode only; card view has no row checkboxes. */}
+      {viewMode === 'table' && selectedRows.length > 0 && (
         <div className="mb-4">
           <BulkActionBar
             selectedCount={selectedRows.length}
@@ -2575,6 +2785,125 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
         </div>
       )}
 
+      {viewMode === 'card' ? (
+        (loading || !initialized) ? (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            {[...Array(8)].map((_, i) => (
+              <Card key={i} className="!gap-0 !py-0 overflow-hidden flex flex-col h-full">
+                <div className="h-1 w-full bg-gray-200" />
+                <div className="p-4 sm:p-5 flex flex-col flex-1 animate-pulse">
+                  <div className="flex items-start justify-between mb-3">
+                    <div className="flex-1 min-w-0 space-y-1.5">
+                      <div className="h-3 w-16 bg-gray-200 rounded" />
+                      <div className="h-5 w-3/4 bg-gray-200 rounded" />
+                      <div className="h-3 w-1/2 bg-gray-200 rounded" />
+                    </div>
+                  </div>
+                  <div className="grid grid-cols-3 gap-2 my-3 py-3 border-y border-gray-100">
+                    <div className="space-y-1.5"><div className="h-2 w-12 bg-gray-200 rounded" /><div className="h-4 w-10 bg-gray-200 rounded" /></div>
+                    <div className="space-y-1.5"><div className="h-2 w-12 bg-gray-200 rounded" /><div className="h-4 w-10 bg-gray-200 rounded" /></div>
+                    <div className="space-y-1.5"><div className="h-2 w-12 bg-gray-200 rounded" /><div className="h-4 w-10 bg-gray-200 rounded" /></div>
+                  </div>
+                </div>
+              </Card>
+            ))}
+          </div>
+        ) : filteredReports.length === 0 ? (
+          <Card>
+            <EmptyState
+              icon={FileText}
+              title={String(t('reports.noReportsFound'))}
+              description={searchQuery ? String(t('common.tryAdjustingSearch')) : String(t('reports.noReportsCreated'))}
+              {...(!searchQuery && {
+                actionLabel: String(t('reports.createReport')),
+                actionIcon: <Plus className="w-4 h-4" />,
+                onAction: () => setShowAddReportModal(true),
+              })}
+            />
+          </Card>
+        ) : (
+          <>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+              {filteredReports.map((report) => (
+                <DashboardCard
+                  key={report.id}
+                  accentColor={getStatusAccent(report.status || 'Draft')}
+                  statusToneClass={getStatusToneClass(report.status || 'Draft')}
+                  statusLabel={
+                    <span className="inline-flex items-center gap-1.5">
+                      {getStatusIcon(report.status || 'Draft')}
+                      {getStatusTranslation(report.status || 'Draft')}
+                    </span>
+                  }
+                  title={report.report_name || t('reports.untitledReport')}
+                  subtitle={
+                    <>
+                      <Users className="w-3.5 h-3.5 flex-shrink-0 mt-0.5" strokeWidth={1.75} />
+                      <span>
+                        {report.student_name}
+                        {report.student_email ? ` \u00b7 ${report.student_email}` : ''}
+                      </span>
+                    </>
+                  }
+                  metrics={[
+                    {
+                      label: t('reports.school') as string,
+                      value: report.student_school || t('reports.notSpecified'),
+                    },
+                    {
+                      label: t('reports.createdDate') as string,
+                      value: formatDate(report.created_at),
+                    },
+                    {
+                      label: t('reports.updatedDate') as string,
+                      value: formatDate(report.updated_at),
+                    },
+                  ]}
+                  meta={
+                    report.start_date && report.end_date ? (
+                      <div className="flex items-center gap-1.5">
+                        <Clock className="w-3.5 h-3.5 flex-shrink-0" strokeWidth={1.75} />
+                        <span>{formatDate(report.start_date)} - {formatDate(report.end_date)}</span>
+                      </div>
+                    ) : undefined
+                  }
+                  footerActions={
+                    <>
+                      <Button
+                        variant="outline"
+                        className="w-full text-xs sm:text-sm h-9"
+                        onClick={() => openPreviewModal(report)}
+                      >
+                        <Eye className="w-3.5 h-3.5 mr-1.5" />
+                        {t('reports.previewReport')}
+                      </Button>
+                      <div className="flex gap-2">
+                        <Button
+                          variant="outline"
+                          className="flex-1 text-xs sm:text-sm h-9"
+                          onClick={() => { void handleEditClick(report) }}
+                        >
+                          <Edit className="w-3.5 h-3.5 mr-1.5" />
+                          {t('common.edit')}
+                        </Button>
+                        <Button
+                          variant="outline"
+                          className="flex-1 text-xs sm:text-sm h-9 text-rose-600 ring-rose-200 hover:bg-rose-50 hover:ring-rose-300"
+                          onClick={() => handleDeleteClick(report)}
+                        >
+                          <Trash2 className="w-3.5 h-3.5 mr-1.5" />
+                          {t('common.delete')}
+                        </Button>
+                      </div>
+                    </>
+                  }
+                />
+              ))}
+            </div>
+            {paginationControls}
+          </>
+        )
+      ) : (
       <div className="bg-white rounded-2xl ring-1 ring-gray-100/80 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_12px_-4px_rgba(0,0,0,0.06)] overflow-hidden">
         <div className="overflow-x-auto min-h-[640px] flex flex-col">
           <table className="w-full min-w-[900px]">
@@ -2802,82 +3131,10 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                           >
                             <button 
                               className="w-full px-4 py-2 text-sm text-left hover:bg-gray-50 flex items-center gap-2 cursor-pointer whitespace-nowrap"
-                              onClick={async (e) => {
+                              onClick={(e) => {
                                 e.preventDefault()
                                 e.stopPropagation()
-                                // Fetch fresh data for this specific report
-                                const { data: freshReportData } = await db
-                                  .from('student_reports')
-                                  .select(`
-                                    id,
-                                    student_id,
-                                    report_name,
-                                    start_date,
-                                    end_date,
-                                    selected_subjects,
-                                    selected_classrooms,
-                                    selected_assignment_categories,
-                                    ai_feedback_enabled,
-                                    feedback,
-                                    ai_feedback_created_by,
-                                    ai_feedback_created_at,
-                                    ai_feedback_template,
-                                    status,
-                                    show_category_average,
-                                    show_individual_grades,
-                                    show_percentile_ranking
-                                  `)
-                                  .eq('id', report.id)
-                                  .single()
-
-                                const reportToEdit = freshReportData || report
-                                setEditingReport(report as ReportData)
-                                setCurrentReportId(reportToEdit.id)
-                                setFormData({
-                                  student_id: reportToEdit.student_id,
-                                  report_name: reportToEdit.report_name || '',
-                                  start_date: reportToEdit.start_date || '',
-                                  end_date: reportToEdit.end_date || '',
-                                  selected_subjects: jsonStringArray(reportToEdit.selected_subjects),
-                                  selected_classrooms: jsonStringArray(reportToEdit.selected_classrooms),
-                                  selected_assignment_categories: jsonStringArray(reportToEdit.selected_assignment_categories),
-                                  ai_feedback_enabled: reportToEdit.ai_feedback_enabled ?? false,
-                                  feedback: reportToEdit.feedback ?? '',
-                                  status: reportToEdit.status || 'Draft',
-                                  show_category_average: reportToEdit.show_category_average ?? true,
-                                  show_individual_grades: reportToEdit.show_individual_grades ?? false,
-                                  show_percentile_ranking: reportToEdit.show_percentile_ranking ?? true
-                                })
-                                
-                                // Load existing feedback data for editing  
-                                setEditableFeedback(reportToEdit.feedback ?? '')
-                                
-                                // Set AI feedback metadata
-                                if (reportToEdit.ai_feedback_created_by) {
-                                    if (userId === reportToEdit.ai_feedback_created_by) {
-                                      setAiFeedbackCreatedBy(userName || 'You')
-                                    } else {
-                                      setAiFeedbackCreatedBy('User')
-                                    }
-                                } else {
-                                  setAiFeedbackCreatedBy('')
-                                }
-                                
-                                if (reportToEdit.ai_feedback_created_at) {
-                                  setAiFeedbackCreatedAt(reportToEdit.ai_feedback_created_at)
-                                } else {
-                                  setAiFeedbackCreatedAt('')
-                                }
-                                
-                                if (reportToEdit.ai_feedback_template) {
-                                  setAiFeedbackTemplate(reportToEdit.ai_feedback_template)
-                                } else {
-                                  setAiFeedbackTemplate('')
-                                }
-                                
-                                // AI feedback will be handled through formData sync
-                                setShowEditReportModal(true)
-                                setDropdownOpen(null)
+                                void handleEditClick(report)
                               }}
                             >
                               <Edit className="w-4 h-4" />
@@ -2936,70 +3193,10 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
           </table>
         </div>
 
-        {/* Pagination Controls */}
-        {totalCount > 0 && (
-          <div className="mt-4 flex items-center justify-between border-t border-gray-200 bg-white px-4 py-3 sm:px-6">
-            <div className="flex flex-1 justify-between sm:hidden">
-              <Button
-                onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
-                disabled={currentPage === 1}
-                variant="outline"
-                size="sm"
-                className="flex items-center gap-1"
-              >
-                <ChevronLeft className="w-4 h-4" />
-                {t("reports.pagination.previous")}
-              </Button>
-              <Button
-                onClick={() => setCurrentPage(p => Math.min(Math.ceil(totalCount / itemsPerPage), p + 1))}
-                disabled={currentPage >= Math.ceil(totalCount / itemsPerPage)}
-                variant="outline"
-                size="sm"
-                className="flex items-center gap-1"
-              >
-                {t("reports.pagination.next")}
-                <ChevronRight className="w-4 h-4" />
-              </Button>
-            </div>
-            <div className="hidden sm:flex sm:flex-1 sm:items-center sm:justify-between">
-              <div>
-                <p className="text-sm text-gray-700">
-                  {t("reports.pagination.showing")}
-                  <span className="font-medium"> {((currentPage - 1) * itemsPerPage) + 1} </span>
-                  {t("reports.pagination.to")}
-                  <span className="font-medium"> {Math.min(currentPage * itemsPerPage, totalCount)} </span>
-                  {t("reports.pagination.of")}
-                  <span className="font-medium"> {totalCount} </span>
-                  {t("reports.pagination.reports")}
-                </p>
-              </div>
-              <div className="flex gap-2">
-                <Button
-                  onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
-                  disabled={currentPage === 1}
-                  variant="outline"
-                  size="sm"
-                  className="flex items-center gap-1"
-                >
-                  <ChevronLeft className="w-4 h-4" />
-                  {t("reports.pagination.previous")}
-                </Button>
-                <Button
-                  onClick={() => setCurrentPage(p => Math.min(Math.ceil(totalCount / itemsPerPage), p + 1))}
-                  disabled={currentPage >= Math.ceil(totalCount / itemsPerPage)}
-                  variant="outline"
-                  size="sm"
-                  className="flex items-center gap-1"
-                >
-                  {t("reports.pagination.next")}
-                  <ChevronRight className="w-4 h-4" />
-                </Button>
-              </div>
-            </div>
-          </div>
-        )}
+        {paginationControls}
 
       </div>
+      )}
 
       {/* Bulk Delete Confirmation Modal */}
       <ModalShell.Confirm

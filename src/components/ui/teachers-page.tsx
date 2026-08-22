@@ -32,6 +32,7 @@ import {
 import { cn } from '@/lib/utils'
 import { DashboardCard, BulkActionBar, TableCheckbox } from '@/components/ui/dashboard'
 import { useTranslation } from '@/hooks/useTranslation'
+import { useResponsiveViewMode } from '@/hooks/useResponsiveViewMode'
 import { getDateLocale } from '@/utils/dateUtils'
 import { ModalShell } from '@/components/ui/common/ModalShell'
 import { EmptyState } from '@/components/ui/common/EmptyState'
@@ -104,7 +105,7 @@ export function TeachersPage({ academyId }: TeachersPageProps) {
     }
   }, [currentPage])
 
-  const [viewMode, setViewMode] = useState<'card' | 'table'>('table')
+  const [viewMode, setViewMode] = useResponsiveViewMode<'card' | 'table'>('table', 'card')
   const [selectedTeachers, setSelectedTeachers] = useState<Set<string>>(new Set())
   const searchInputRef = useRef<HTMLInputElement | null>(null)
 

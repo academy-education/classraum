@@ -1543,7 +1543,7 @@ export default function MobilePage() {
           <div className="flex bg-gray-50 ring-1 ring-gray-100 p-1 rounded-full">
             <button
               onClick={() => setCalendarView('weekly')}
-              className={`px-6 py-2 text-sm font-semibold rounded-full transition-all ${
+              className={`tap-target-y px-6 py-2 text-sm font-semibold rounded-full transition-all ${
                 calendarView === 'weekly'
                   ? 'bg-white text-primary shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_12px_-4px_rgba(0,0,0,0.06)]'
                   : 'text-gray-500 hover:text-gray-900'
@@ -1553,7 +1553,7 @@ export default function MobilePage() {
             </button>
             <button
               onClick={() => setCalendarView('monthly')}
-              className={`px-6 py-2 text-sm font-semibold rounded-full transition-all ${
+              className={`tap-target-y px-6 py-2 text-sm font-semibold rounded-full transition-all ${
                 calendarView === 'monthly'
                   ? 'bg-white text-primary shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_12px_-4px_rgba(0,0,0,0.06)]'
                   : 'text-gray-500 hover:text-gray-900'
@@ -1567,7 +1567,7 @@ export default function MobilePage() {
         <div className="flex items-center justify-between mb-4">
           <button
             onClick={() => calendarView === 'monthly' ? navigateMonth('prev') : navigateWeek('prev')}
-            className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
+            className="tap-target p-2 hover:bg-gray-100 rounded-lg transition-colors"
           >
             <ChevronLeft className="w-5 h-5 text-gray-600" />
           </button>
@@ -1581,14 +1581,14 @@ export default function MobilePage() {
 
           <button
             onClick={() => calendarView === 'monthly' ? navigateMonth('next') : navigateWeek('next')}
-            className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
+            className="tap-target p-2 hover:bg-gray-100 rounded-lg transition-colors"
           >
             <ChevronRight className="w-5 h-5 text-gray-600" />
           </button>
         </div>
 
         {/* Calendar Grid */}
-        <div className="grid grid-cols-7 gap-1">
+        <div className="grid grid-cols-7 gap-0">
           {/* Day Headers */}
           {getWeekdayShort(language).map((day, index) => (
             <div key={index} className="text-center text-xs font-medium text-gray-500 py-2">
@@ -1600,7 +1600,7 @@ export default function MobilePage() {
           {calendarView === 'monthly'
             ? getDaysInMonth(currentMonth).map((day, index) => {
                 if (!day) {
-                  return <div key={index} className="aspect-square" />
+                  return <div key={index} className="aspect-square min-h-[44px]" />
                 }
 
                 const isSelected = day.toDateString() === selectedDate.toDateString()
@@ -1612,7 +1612,7 @@ export default function MobilePage() {
                   <button
                     key={index}
                     onClick={() => setSelectedDate(new Date(day))}
-                    className={`aspect-square rounded-lg text-sm font-medium transition-colors relative ${
+                    className={`aspect-square min-h-[44px] rounded-lg text-sm font-medium transition-colors relative ${
                       isSelected
                         ? 'bg-primary text-primary-foreground'
                         : isCurrentDay
@@ -1639,7 +1639,7 @@ export default function MobilePage() {
                   <button
                     key={index}
                     onClick={() => setSelectedDate(new Date(day))}
-                    className={`aspect-square rounded-lg text-sm font-medium transition-colors relative ${
+                    className={`aspect-square min-h-[44px] rounded-lg text-sm font-medium transition-colors relative ${
                       isSelected
                         ? 'bg-primary text-primary-foreground'
                         : isCurrentDay

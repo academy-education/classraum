@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useEffect, useRef, useCallback, useMemo } from 'react'
+import { useResponsiveViewMode } from '@/hooks/useResponsiveViewMode'
 import { useListPageShortcuts } from '@/hooks/useListPageShortcuts'
 import { useDirtyState } from '@/hooks/useDirtyState'
 import { useConfirm } from '@/hooks/useConfirm'
@@ -353,7 +354,11 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
   // Debounced search queries for better performance
   const debouncedSessionSearchQuery = useDebounce(sessionSearchQuery, 300)
   const debouncedAttendanceSearchQuery = useDebounce(attendanceSearchQuery, 300)
-  const [viewMode, setViewMode] = useState<'card' | 'table' | 'calendar'>('calendar')
+  // Below `md` the month grid is a 7-column `min-w-[700px]` table inside a
+  // ~343px column, so half the month sits outside the viewport at rest.
+  // Default phones to the card list instead; the calendar toggle still works
+  // at every width, and an explicit click wins over the breakpoint.
+  const [viewMode, setViewMode] = useResponsiveViewMode<'card' | 'table' | 'calendar'>('calendar', 'card')
   const [selectedSessionIds, setSelectedSessionIds] = useState<Set<string>>(new Set())
   const [tableSort, setTableSort] = useState<DataTableSortState | null>({ columnId: 'date', direction: 'desc' })
   const [showBulkDeleteConfirm, setShowBulkDeleteConfirm] = useState(false)
@@ -2067,6 +2072,14 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
         const parsed = JSON.parse(cachedData)
         setSessions(parsed.sessions)
         setTotalCount(parsed.totalCount || 0)
+        // `initialized` gates the card view's empty state. This branch returns
+        // without calling fetchSessions (the only other place it is set), so
+        // without this a warm-cache mount with zero sessions rendered neither
+        // cards nor the empty state — a blank content area. Reachable by
+        // client-side navigating away from /sessions and back inside the
+        // 2-minute cache window (clearCachesOnRefresh only fires on a real
+        // reload), and now the default path on phones.
+        setInitialized(true)
         setLoading(false)
         // Still load secondary data in background
         fetchClassrooms()

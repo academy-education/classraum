@@ -273,36 +273,70 @@ export function NamePrompt({ user }: { user: NamePromptUser | null }) {
     )
   }
 
+  /* min-h-11 rather than relying on the below-md rule in globals.css: this
+     banner is a direct child of <body>, so it is outside
+     [data-surface="dashboard"] and that rule cannot reach it. It also floats
+     over the student surface, where the rule is deliberately not applied —
+     but a primary CTA and a dismiss control need a 44px target on every
+     surface. */
+  const action = (
+    <Link href={nameFormHref}>
+      <Button size="sm" className="min-h-11">{t('names.prompt.bannerAction')}</Button>
+    </Link>
+  )
+
+  /* SHORT-SCREEN COMPACT MODE — `[@media(max-height:700px)]`.
+   *
+   * The full banner is a ~196px fixed, bottom-anchored card. On a 667px-tall
+   * phone that lands squarely on top of the study page's "Start here — take
+   * your first practice test" CTA, which is precisely the card a brand-new
+   * student is meant to press: measured at 375x667, a tap at the CTA's centre
+   * hit the banner, not the CTA.
+   *
+   * So under 700px of viewport height the banner collapses to a single row —
+   * icon, title, action, dismiss — by hiding the explanatory body and moving
+   * the action inline. The explanation is not lost; it is on the page the
+   * action links to. The action markup is rendered twice (stacked and inline)
+   * rather than repositioned, so the swap stays a pure media query with no
+   * height measurement and no layout effect.
+   */
   return (
     <div
-      className={`fixed inset-x-0 bottom-0 z-50 p-4 pointer-events-none ${
+      className={`fixed inset-x-0 bottom-0 z-50 p-4 [@media(max-height:700px)]:p-2 pointer-events-none ${
         // Clear the mobile bottom navigation bar.
-        onMobile ? 'pb-24' : ''
+        onMobile ? 'pb-24 [@media(max-height:700px)]:pb-[72px]' : ''
       }`}
     >
-      <div className="mx-auto max-w-xl rounded-xl border border-gray-200 bg-white shadow-lg p-4 flex items-start gap-3 pointer-events-auto">
-        <div className="flex-shrink-0 rounded-lg bg-primary/10 p-2">
+      <div className="mx-auto max-w-xl rounded-xl border border-gray-200 bg-white shadow-lg p-4 [@media(max-height:700px)]:p-2 flex items-start [@media(max-height:700px)]:items-center gap-3 [@media(max-height:700px)]:gap-2 pointer-events-auto">
+        {/* The icon chip is decorative; on a short screen its 36px buys back
+            enough width for the title to fit beside the inline action. */}
+        <div className="flex-shrink-0 rounded-lg bg-primary/10 p-2 [@media(max-height:700px)]:hidden">
           <UserPen className="w-4 h-4 text-primary" />
         </div>
         <div className="min-w-0 flex-1">
-          <p className="text-sm font-medium text-gray-900">{t('names.prompt.bannerTitle')}</p>
-          <p className="text-sm text-gray-600 mt-0.5">
+          {/* Compact mode uses the SHORTER existing title ("Confirm your
+              name"), because the long one truncates to "Please confirm y…"
+              once the action sits beside it. */}
+          <p className="text-sm font-medium text-gray-900 [@media(max-height:700px)]:hidden">{t('names.prompt.bannerTitle')}</p>
+          <p className="hidden [@media(max-height:700px)]:block text-sm font-medium text-gray-900 truncate">{t('names.prompt.title')}</p>
+          <p className="text-sm text-gray-600 mt-0.5 [@media(max-height:700px)]:hidden">
             {isGuardian && guardianLine
               ? guardianLine
               : isGuardian
                 ? t('names.prompt.guardianBody')
                 : t('names.prompt.body')}
           </p>
-          <div className="mt-2">
-            <Link href={nameFormHref}>
-              <Button size="sm">{t('names.prompt.bannerAction')}</Button>
-            </Link>
+          <div className="mt-2 [@media(max-height:700px)]:hidden">
+            {action}
           </div>
+        </div>
+        <div className="hidden [@media(max-height:700px)]:block flex-shrink-0">
+          {action}
         </div>
         <Button
           variant="ghost"
           size="sm"
-          className="p-1 flex-shrink-0"
+          className="p-1 flex-shrink-0 min-h-11 min-w-11"
           onClick={handleDismiss}
           aria-label={String(t('names.prompt.dismiss'))}
         >

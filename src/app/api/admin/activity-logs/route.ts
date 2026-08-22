@@ -49,6 +49,11 @@ export async function GET(request: NextRequest) {
     const actionType = searchParams.get('actionType');
     const adminUserId = searchParams.get('adminUserId');
     const targetType = searchParams.get('targetType');
+    // Filter to the rows that targeted ONE entity. Added for the user-detail
+    // Activity tab, which previously queried admin_activity_logs straight
+    // from the browser with the anon key — that table has RLS enabled and
+    // ZERO policies, so the read could only ever return an empty list.
+    const targetId = searchParams.get('targetId');
     const startDate = searchParams.get('startDate');
     const endDate = searchParams.get('endDate');
 
@@ -79,6 +84,9 @@ export async function GET(request: NextRequest) {
     }
     if (targetType) {
       query = query.eq('target_type', targetType);
+    }
+    if (targetId) {
+      query = query.eq('target_id', targetId);
     }
     if (startDate) {
       query = query.gte('created_at', startDate);

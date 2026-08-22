@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import {
   Building2,
   Users,
@@ -42,8 +42,30 @@ interface Academy {
   subscriptionTier: string;
   createdAt: Date;
   totalUsers: number;
-  monthlyRevenue: number;
+  /** null when the academy has no subscription row at all. */
+  monthlyRevenue: number | null;
   lastActive: Date;
+}
+
+interface AcademyBilling {
+  totals: {
+    invoiceCount: number;
+    paidCount: number;
+    paidAmount: number;
+    pendingCount: number;
+    pendingAmount: number;
+    lastPaidAt: string | null;
+  };
+  recent: {
+    id: string;
+    name: string | null;
+    amount: number;
+    status: string | null;
+    dueDate: string | null;
+    paidAt: string | null;
+    createdAt: string | null;
+    paymentMethod: string | null;
+  }[];
 }
 
 interface AcademyDetailModalProps {
@@ -84,11 +106,54 @@ export function AcademyDetailModal({ academy, onClose }: AcademyDetailModalProps
     is_important: false
   });
 
+  // ---- Billing tab data ------------------------------------------------
+  // This tab used to render two unconditional string literals ("No invoices
+  // yet" / "Invoice history will appear here once payments are made") and
+  // issue NO query at all. It was never an empty state derived from data —
+  // it was prose that could not change, in front of 1,824 real invoices.
+  const [billing, setBilling] = useState<AcademyBilling | null>(null);
+  const [billingLoading, setBillingLoading] = useState(false);
+  const [billingError, setBillingError] = useState<string | null>(null);
+
   useEffect(() => {
     if (activeTab === 'notes') {
       loadNotes();
     }
   }, [activeTab]);
+
+  // The "already requested" latch is a REF, not state, and the loading flag
+  // is cleared unconditionally. Both matter under React 18 StrictMode, which
+  // mounts every effect twice in dev: with a `cancelled` flag captured per
+  // run and `finally { if (!cancelled) setLoading(false) }`, the first run's
+  // cleanup sets cancelled = true, its own finally then declines to clear
+  // the flag, and the tab shows "Loading billing…" for ever. A state-based
+  // guard cannot fix that either — the second run reads the pre-flush value.
+  const billingRequestedFor = useRef<string | null>(null);
+
+  useEffect(() => {
+    if (activeTab !== 'billing') return;
+    if (billingRequestedFor.current === academy.id) return;
+    billingRequestedFor.current = academy.id;
+    let unmounted = false;
+    (async () => {
+      setBillingLoading(true);
+      setBillingError(null);
+      try {
+        const res = await adminFetch(`/api/admin/academies/${academy.id}/billing`);
+        const body = await res.json();
+        if (!res.ok) throw new Error(body?.detail || body?.error || `HTTP ${res.status}`);
+        if (!unmounted) setBilling(body as AcademyBilling);
+      } catch (e) {
+        console.error('[AcademyDetailModal] billing load error:', e);
+        // Allow a retry on the next open rather than latching a dead state.
+        billingRequestedFor.current = null;
+        if (!unmounted) setBillingError(e instanceof Error ? e.message : String(e));
+      } finally {
+        if (!unmounted) setBillingLoading(false);
+      }
+    })();
+    return () => { unmounted = true };
+  }, [activeTab, academy.id, adminFetch]);
 
   const loadNotes = async () => {
     try {
@@ -311,7 +376,11 @@ export function AcademyDetailModal({ academy, onClose }: AcademyDetailModalProps
                   <div className="flex items-center justify-between">
                     <DollarSign className="h-8 w-8 text-violet-600" />
                     <div className="text-right">
-                      <p className="text-lg font-semibold text-gray-900">{formatPrice(academy.monthlyRevenue)}</p>
+                      <p className="text-lg font-semibold text-gray-900">
+                        {academy.monthlyRevenue === null
+                          ? String(t('admin.academies.noSubscription'))
+                          : formatPrice(academy.monthlyRevenue)}
+                      </p>
                       <p className="text-xs text-gray-600">{String(t('admin.academies.monthly'))}</p>
                     </div>
                   </div>
@@ -358,31 +427,115 @@ export function AcademyDetailModal({ academy, onClose }: AcademyDetailModalProps
 
           {activeTab === 'billing' && (
             <div className="space-y-4">
-              <div className="bg-gray-50 p-4 rounded-lg">
-                <h3 className="font-medium text-gray-900 mb-3">{String(t('admin.academies.billingOverview'))}</h3>
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                  <div>
-                    <p className="text-sm text-gray-600">{String(t('admin.academies.currentPlan'))}</p>
-                    <p className="text-lg font-semibold capitalize">{academy.subscriptionTier}</p>
-                  </div>
-                  <div>
-                    <p className="text-sm text-gray-600">{String(t('admin.academies.csvMonthlyRevenue'))}</p>
-                    <p className="text-lg font-semibold">{formatPrice(academy.monthlyRevenue)}</p>
-                  </div>
-                  <div>
-                    <p className="text-sm text-gray-600">{String(t('admin.academies.nextBilling'))}</p>
-                    <p className="text-lg font-semibold text-gray-400">{String(t('admin.academies.noBillingData'))}</p>
-                  </div>
+              {billingLoading && (
+                <div className="flex items-center justify-center py-10 text-sm text-gray-500">
+                  <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                  {String(t('admin.academies.loadingBilling'))}
                 </div>
-              </div>
+              )}
 
-              <div className="text-center py-8">
-                <FileText className="mx-auto h-12 w-12 text-gray-400" />
-                <h3 className="mt-2 text-sm font-medium text-gray-900">{String(t('admin.academies.noInvoices'))}</h3>
-                <p className="mt-1 text-sm text-gray-500">
-                  {String(t('admin.academies.noInvoicesDesc'))}
-                </p>
-              </div>
+              {!billingLoading && billingError && (
+                <div className="rounded-lg bg-rose-50 ring-1 ring-rose-200 p-4">
+                  <p className="text-sm font-medium text-rose-900">{String(t('admin.academies.failedToLoadBilling'))}</p>
+                  <p className="text-sm text-rose-700 mt-1">{billingError}</p>
+                </div>
+              )}
+
+              {!billingLoading && !billingError && billing && (
+                <>
+                  <div className="bg-gray-50 p-4 rounded-lg">
+                    <h3 className="font-medium text-gray-900 mb-3">{String(t('admin.academies.billingOverview'))}</h3>
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                      <div>
+                        <p className="text-sm text-gray-600">{String(t('admin.academies.currentPlan'))}</p>
+                        <p className="text-lg font-semibold capitalize">{academy.subscriptionTier}</p>
+                      </div>
+                      <div>
+                        <p className="text-sm text-gray-600">{String(t('admin.academies.collected'))}</p>
+                        <p className="text-lg font-semibold tabular-nums">{formatPrice(billing.totals.paidAmount)}</p>
+                        <p className="text-xs text-gray-500">
+                          {String(t('admin.academies.paidInvoiceCount', { count: billing.totals.paidCount }))}
+                        </p>
+                      </div>
+                      <div>
+                        <p className="text-sm text-gray-600">{String(t('admin.academies.outstanding'))}</p>
+                        <p className="text-lg font-semibold tabular-nums">{formatPrice(billing.totals.pendingAmount)}</p>
+                        <p className="text-xs text-gray-500">
+                          {String(t('admin.academies.pendingInvoiceCount', { count: billing.totals.pendingCount }))}
+                        </p>
+                      </div>
+                    </div>
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-4 pt-4 border-t border-gray-200">
+                      <div>
+                        <p className="text-sm text-gray-600">{String(t('admin.academies.totalInvoices'))}</p>
+                        <p className="text-lg font-semibold tabular-nums">{billing.totals.invoiceCount.toLocaleString()}</p>
+                      </div>
+                      <div>
+                        <p className="text-sm text-gray-600">{String(t('admin.academies.lastPayment'))}</p>
+                        <p className="text-lg font-semibold">
+                          {billing.totals.lastPaidAt
+                            ? new Date(billing.totals.lastPaidAt).toLocaleDateString(getDateLocale(language))
+                            : String(t('admin.academies.noBillingData'))}
+                        </p>
+                      </div>
+                      <div>
+                        <p className="text-sm text-gray-600">{String(t('admin.academies.csvMonthlyRevenue'))}</p>
+                        <p className="text-lg font-semibold tabular-nums">
+                          {academy.monthlyRevenue === null
+                            ? String(t('admin.academies.noSubscription'))
+                            : formatPrice(academy.monthlyRevenue)}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  {billing.totals.invoiceCount === 0 ? (
+                    <div className="text-center py-8">
+                      <FileText className="mx-auto h-12 w-12 text-gray-400" />
+                      <h3 className="mt-2 text-sm font-medium text-gray-900">{String(t('admin.academies.noInvoices'))}</h3>
+                      <p className="mt-1 text-sm text-gray-500">
+                        {String(t('admin.academies.noInvoicesDesc'))}
+                      </p>
+                    </div>
+                  ) : (
+                    <div>
+                      <h3 className="font-medium text-gray-900 mb-2">{String(t('admin.academies.recentInvoices'))}</h3>
+                      <div className="divide-y divide-gray-100 rounded-lg ring-1 ring-gray-100">
+                        {billing.recent.map(inv => (
+                          <div key={inv.id} className="flex items-center justify-between px-4 py-3">
+                            <div className="min-w-0">
+                              <p className="text-sm font-medium text-gray-900 truncate">
+                                {inv.name || inv.id.substring(0, 8)}
+                              </p>
+                              <p className="text-xs text-gray-500">
+                                {inv.paidAt
+                                  ? new Date(inv.paidAt).toLocaleDateString(getDateLocale(language))
+                                  : inv.dueDate
+                                    ? new Date(inv.dueDate).toLocaleDateString(getDateLocale(language))
+                                    : ''}
+                                {inv.paymentMethod ? ` · ${inv.paymentMethod}` : ''}
+                              </p>
+                            </div>
+                            <div className="flex items-center gap-3 shrink-0">
+                              <span className="text-sm font-medium tabular-nums">{formatPrice(inv.amount)}</span>
+                              <StatusBadge
+                                size="sm"
+                                tone={
+                                  inv.status === 'paid' ? 'active' :
+                                  inv.status === 'pending' ? 'pending' :
+                                  inv.status === 'refunded' ? 'violet' : 'muted'
+                                }
+                              >
+                                {inv.status || '—'}
+                              </StatusBadge>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                </>
+              )}
             </div>
           )}
 

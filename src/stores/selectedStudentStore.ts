@@ -1,13 +1,9 @@
 import { useSyncExternalStore } from 'react'
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
+import type { FamilyStudent } from '@/lib/family/students'
 
-interface Student {
-  id: string
-  name: string
-  email: string
-  academy_id: string
-}
+type Student = FamilyStudent
 
 interface SelectedStudentStore {
   selectedStudent: Student | null

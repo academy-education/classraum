@@ -34,6 +34,7 @@ import { cn } from '@/lib/utils'
 import { DashboardCard, BulkActionBar, TableCheckbox } from '@/components/ui/dashboard'
 import { useCreateShortcut } from '@/hooks/useCreateShortcut'
 import { useTranslation } from '@/hooks/useTranslation'
+import { useResponsiveViewMode } from '@/hooks/useResponsiveViewMode'
 import { ModalShell } from '@/components/ui/common/ModalShell'
 import { EmptyState } from '@/components/ui/common/EmptyState'
 import { useToast } from '@/hooks/use-toast'
@@ -109,7 +110,7 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
   }, [currentPage])
 
 
-  const [viewMode, setViewMode] = useState<'card' | 'table'>('table')
+  const [viewMode, setViewMode] = useResponsiveViewMode<'card' | 'table'>('table', 'card')
   const [selectedFamilies, setSelectedFamilies] = useState<Set<string>>(new Set())
   const [sortField, setSortField] = useState<string | null>(null)
   const [sortDirection, setSortDirection] = useState<'asc' | 'desc'>('asc')

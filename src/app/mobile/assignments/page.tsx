@@ -240,6 +240,88 @@ const fetchAssignmentAttachments = async (assignmentIds: string[]): Promise<Map<
   }
 }
 
+/**
+ * Carousel pager: prev arrow · position indicator · next arrow.
+ *
+ * The indicator used to be one 6x6px dot per classroom with 6px gaps. This
+ * student has 17 classrooms, and 17 x 44px does not fit in a 375px screen —
+ * so making the dots bigger is not a solution, it is a different bug. The
+ * two cases are genuinely different and get different designs:
+ *
+ *   <= CAROUSEL_DOT_LIMIT  dots, each wrapped in a real 44x44 button. The
+ *                          painted dot stays 6px; the button around it is
+ *                          the target. 5 x 44 + two 44px arrows = 308px,
+ *                          which fits.
+ *   >  CAROUSEL_DOT_LIMIT  a "3 / 17" counter. Past five, a dot strip is
+ *                          not a usable jump control anyway — nothing tells
+ *                          you which dot is which classroom — so the honest
+ *                          affordance is the arrows plus a legible position.
+ *                          The classroom name is on the card above it.
+ */
+const CAROUSEL_DOT_LIMIT = 5
+
+function CarouselPager({
+  count,
+  index,
+  onSelect,
+  onPrev,
+  onNext,
+  positionLabel,
+  prevLabel,
+  nextLabel,
+}: {
+  count: number
+  index: number
+  onSelect: (i: number) => void
+  onPrev: () => void
+  onNext: () => void
+  positionLabel: (i: number) => string
+  prevLabel: string
+  nextLabel: string
+}) {
+  const arrowClass = "tap-target w-8 h-8 rounded-full bg-white ring-1 ring-gray-100 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_12px_-4px_rgba(0,0,0,0.06)] flex items-center justify-center hover:bg-gray-50 transition-colors"
+
+  return (
+    <div className="flex items-center justify-center gap-4 pt-2">
+      <button onClick={onPrev} className={arrowClass} aria-label={prevLabel}>
+        <ChevronLeft className="w-4 h-4 text-gray-700" strokeWidth={2} />
+      </button>
+
+      {count > CAROUSEL_DOT_LIMIT ? (
+        <p
+          aria-live="polite"
+          aria-label={positionLabel(index)}
+          className="text-[13px] font-semibold text-gray-500 tabular-nums text-center min-w-[64px]"
+        >
+          {index + 1} / {count}
+        </p>
+      ) : (
+        <div className="flex items-center">
+          {Array.from({ length: count }).map((_, i) => (
+            <button
+              key={i}
+              onClick={() => onSelect(i)}
+              aria-label={positionLabel(i)}
+              aria-current={i === index}
+              className="w-11 h-11 inline-flex items-center justify-center"
+            >
+              <span
+                className={`h-1.5 rounded-full transition-all ${
+                  i === index ? 'w-5 bg-primary' : 'w-1.5 bg-gray-300'
+                }`}
+              />
+            </button>
+          ))}
+        </div>
+      )}
+
+      <button onClick={onNext} className={arrowClass} aria-label={nextLabel}>
+        <ChevronRight className="w-4 h-4 text-gray-700" strokeWidth={2} />
+      </button>
+    </div>
+  )
+}
+
 function MobileAssignmentsPageContent() {
   const { t } = useTranslation()
   const { user } = usePersistentMobileAuth()
@@ -2166,41 +2248,19 @@ function MobileAssignmentsPageContent() {
 
             {/* Controls row: prev arrow · indicator pills · next arrow */}
             {getFilteredClassrooms().length > 1 && (
-              <div className="flex items-center justify-center gap-4 pt-2">
-                <button
-                  onClick={prevCarouselItem}
-                  className="w-8 h-8 rounded-full bg-white ring-1 ring-gray-100 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_12px_-4px_rgba(0,0,0,0.06)] flex items-center justify-center hover:bg-gray-50 transition-colors"
-                  aria-label={String(t("mobile.assignments.previousClassroom"))}
-                >
-                  <ChevronLeft className="w-4 h-4 text-gray-700" strokeWidth={2} />
-                </button>
-
-                <div className="flex items-center gap-1.5">
-                  {getFilteredClassrooms().map((_, index) => (
-                    <button
-                      key={index}
-                      onClick={() => {
-                        setCurrentCarouselIndex(index)
-                        setCurrentPage(1)
-                      }}
-                      className={`h-1.5 rounded-full transition-all ${
-                        index === currentCarouselIndex
-                          ? 'w-5 bg-primary'
-                          : 'w-1.5 bg-gray-300 hover:bg-gray-400'
-                      }`}
-                      aria-label={`Go to classroom ${index + 1}`}
-                    />
-                  ))}
-                </div>
-
-                <button
-                  onClick={nextCarouselItem}
-                  className="w-8 h-8 rounded-full bg-white ring-1 ring-gray-100 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_12px_-4px_rgba(0,0,0,0.06)] flex items-center justify-center hover:bg-gray-50 transition-colors"
-                  aria-label={String(t("mobile.assignments.nextClassroom"))}
-                >
-                  <ChevronRight className="w-4 h-4 text-gray-700" strokeWidth={2} />
-                </button>
-              </div>
+              <CarouselPager
+                count={getFilteredClassrooms().length}
+                index={currentCarouselIndex}
+                onSelect={(i) => {
+                  setCurrentCarouselIndex(i)
+                  setCurrentPage(1)
+                }}
+                onPrev={prevCarouselItem}
+                onNext={nextCarouselItem}
+                positionLabel={(i) => String(t('mobile.assignments.classroomPosition', { current: String(i + 1), total: String(getFilteredClassrooms().length) }))}
+                prevLabel={String(t('mobile.assignments.previousClassroom'))}
+                nextLabel={String(t('mobile.assignments.nextClassroom'))}
+              />
             )}
           </div>
         </div>
@@ -2671,38 +2731,16 @@ function MobileAssignmentsPageContent() {
 
             {/* Controls row: prev arrow · indicator pills · next arrow */}
             {getFilteredClassrooms().length > 1 && (
-              <div className="flex items-center justify-center gap-4 pt-2">
-                <button
-                  onClick={prevCarouselItem}
-                  className="w-8 h-8 rounded-full bg-white ring-1 ring-gray-100 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_12px_-4px_rgba(0,0,0,0.06)] flex items-center justify-center hover:bg-gray-50 transition-colors"
-                  aria-label={String(t("mobile.assignments.previousClassroom"))}
-                >
-                  <ChevronLeft className="w-4 h-4 text-gray-700" strokeWidth={2} />
-                </button>
-
-                <div className="flex items-center gap-1.5">
-                  {getFilteredClassrooms().map((_, index) => (
-                    <button
-                      key={index}
-                      onClick={() => setCurrentCarouselIndex(index)}
-                      className={`h-1.5 rounded-full transition-all ${
-                        index === currentCarouselIndex
-                          ? 'w-5 bg-primary'
-                          : 'w-1.5 bg-gray-300 hover:bg-gray-400'
-                      }`}
-                      aria-label={`Go to classroom ${index + 1}`}
-                    />
-                  ))}
-                </div>
-
-                <button
-                  onClick={nextCarouselItem}
-                  className="w-8 h-8 rounded-full bg-white ring-1 ring-gray-100 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_12px_-4px_rgba(0,0,0,0.06)] flex items-center justify-center hover:bg-gray-50 transition-colors"
-                  aria-label={String(t("mobile.assignments.nextClassroom"))}
-                >
-                  <ChevronRight className="w-4 h-4 text-gray-700" strokeWidth={2} />
-                </button>
-              </div>
+              <CarouselPager
+                count={getFilteredClassrooms().length}
+                index={currentCarouselIndex}
+                onSelect={(i) => setCurrentCarouselIndex(i)}
+                onPrev={prevCarouselItem}
+                onNext={nextCarouselItem}
+                positionLabel={(i) => String(t('mobile.assignments.classroomPosition', { current: String(i + 1), total: String(getFilteredClassrooms().length) }))}
+                prevLabel={String(t('mobile.assignments.previousClassroom'))}
+                nextLabel={String(t('mobile.assignments.nextClassroom'))}
+              />
             )}
           </div>
 

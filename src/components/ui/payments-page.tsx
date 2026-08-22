@@ -26,12 +26,17 @@ import {
   Trash2,
   Loader2,
   ChevronDown,
+  Mail,
+  FileText,
+  Grid3X3,
+  Rows3,
 } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { BulkActionBar, DashboardCard, TableCheckbox } from '@/components/ui/dashboard'
 import { Label } from '@/components/ui/label'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { useTranslation } from '@/hooks/useTranslation'
+import { useResponsiveViewMode } from '@/hooks/useResponsiveViewMode'
 import { getWeekdayShortMap } from '@/utils/dateUtils'
 import { EmptyState } from '@/components/ui/common/EmptyState'
 import { useToast } from '@/hooks/use-toast'
@@ -70,6 +75,34 @@ const TemplatePaymentsModal = dynamic(() => import('@/components/ui/payments/mod
 export { invalidatePaymentsCache }
 
 const itemsPerPage = 10
+
+// Card-view equivalents of the table's status pill: the accent bar colour and
+// the eyebrow tone. Covers both invoice statuses (pending/paid/failed/refunded)
+// and recurring-enrollment statuses (active/paused/cancelled).
+const STATUS_ACCENT: Record<string, string> = {
+  paid: '#10b981',
+  active: '#10b981',
+  pending: '#f59e0b',
+  paused: '#f59e0b',
+  failed: '#f43f5e',
+  overdue: '#f43f5e',
+  refunded: '#0ea5e9',
+  cancelled: '#9ca3af',
+}
+const STATUS_TONE: Record<string, string> = {
+  paid: 'text-emerald-600',
+  active: 'text-emerald-600',
+  pending: 'text-amber-600',
+  paused: 'text-amber-600',
+  failed: 'text-rose-600',
+  overdue: 'text-rose-600',
+  refunded: 'text-sky-600',
+  cancelled: 'text-gray-500',
+}
+const statusAccent = (status: string | null | undefined) =>
+  (status && STATUS_ACCENT[status]) || '#9ca3af'
+const statusTone = (status: string | null | undefined) =>
+  (status && STATUS_TONE[status]) || 'text-gray-500'
 
 interface PaymentsPageProps {
   academyId: string
@@ -117,6 +150,10 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
   const [openDropdownId, setOpenDropdownId] = useState<string | null>(null)
   const [openInvoiceDropdownId, setOpenInvoiceDropdownId] = useState<string | null>(null)
   const [activeTab, setActiveTab] = useState<'one_time' | 'recurring' | 'plans'>('one_time')
+  // Below `md` the 800px-wide table is only reachable by an undiscoverable
+  // sideways scroll, so phones default to cards. An explicit toggle click
+  // wins at every width (see useResponsiveViewMode).
+  const [viewMode, setViewMode] = useResponsiveViewMode<'card' | 'table'>('table', 'card')
 
   // Data fetching hook - all state and fetch logic extracted
   const {
@@ -2224,6 +2261,59 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
     )
   }
 
+  // Shared between the table and the card view so switching view mode never
+  // changes which page of results you are on (and so there is exactly one
+  // copy of this markup to keep in step).
+  const paginationControls = displayCount > 0 ? (
+    <div className="mt-4 flex items-center justify-between border-t border-gray-200 bg-white px-4 py-3 sm:px-6">
+      <div className="flex flex-1 justify-between sm:hidden">
+        <Button
+          onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
+          disabled={currentPage === 1}
+          variant="outline"
+        >
+          {t("payments.pagination.previous")}
+        </Button>
+        <Button
+          onClick={() => setCurrentPage(p => Math.min(Math.ceil(displayCount / itemsPerPage), p + 1))}
+          disabled={currentPage >= Math.ceil(displayCount / itemsPerPage)}
+          variant="outline"
+        >
+          {t("payments.pagination.next")}
+        </Button>
+      </div>
+      <div className="hidden sm:flex sm:flex-1 sm:items-center sm:justify-between">
+        <div>
+          <p className="text-sm text-gray-700">
+            {t("payments.pagination.showing")}
+            <span className="font-medium"> {Math.min(((currentPage - 1) * itemsPerPage) + 1, displayCount)} </span>
+            {t("payments.pagination.to")}
+            <span className="font-medium"> {Math.min(currentPage * itemsPerPage, displayCount)} </span>
+            {t("payments.pagination.of")}
+            <span className="font-medium"> {displayCount} </span>
+            {t("payments.pagination.payments")}
+          </p>
+        </div>
+        <div className="flex gap-2">
+          <Button
+            onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
+            disabled={currentPage === 1}
+            variant="outline"
+          >
+            {t("payments.pagination.previous")}
+          </Button>
+          <Button
+            onClick={() => setCurrentPage(p => Math.min(Math.ceil(displayCount / itemsPerPage), p + 1))}
+            disabled={currentPage >= Math.ceil(displayCount / itemsPerPage)}
+            variant="outline"
+          >
+            {t("payments.pagination.next")}
+          </Button>
+        </div>
+      </div>
+    </div>
+  ) : null
+
   return (
     <div className="p-4">
       {/* Header */}
@@ -2531,6 +2621,36 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
       ) : (
         /* Payments Table for All, One-time, and Recurring tabs */
         <div>
+          {/* View Mode Toggle */}
+          <div className="flex justify-end mb-4">
+            <div className="flex items-center gap-1 border border-border rounded-lg p-1 bg-white">
+              <Button
+                variant={viewMode === 'table' ? 'default' : 'ghost'}
+                size="sm"
+                onClick={() => setViewMode('table')}
+                className={`h-9 px-3 ${viewMode === 'table' ? 'bg-primary text-primary-foreground' : 'text-gray-600 hover:text-gray-900'}`}
+                title={String(t("common.tableView"))}
+              >
+                <Rows3 className="w-4 h-4" />
+              </Button>
+              <Button
+                variant={viewMode === 'card' ? 'default' : 'ghost'}
+                size="sm"
+                onClick={() => {
+                  setViewMode('card')
+                  // Row checkboxes only exist in the table, so a selection
+                  // carried into card view would drive an invisible bulk bar.
+                  setSelectedOneTimeInvoices(new Set())
+                  setSelectedRecurringStudents(new Set())
+                }}
+                className={`h-9 px-3 ${viewMode === 'card' ? 'bg-primary text-primary-foreground' : 'text-gray-600 hover:text-gray-900'}`}
+                title={String(t("common.cardView"))}
+              >
+                <Grid3X3 className="w-4 h-4" />
+              </Button>
+            </div>
+          </div>
+
           {/* Search Bar */}
           <div className="relative mb-4 max-w-md">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5 pointer-events-none" />
@@ -2598,7 +2718,254 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
             </div>
           )}
 
-          {/* Payments Table — chrome matches DataTable used by sessions / assignments / classrooms / attendance */}
+          {viewMode === 'card' ? (
+          /* Card view — the table is 800px wide and unusable below `md`.
+             Every column the table shows is reproduced here: student name +
+             email in the header, the rest across the metric strip / meta row,
+             and the row dropdown's three items as header icon buttons that
+             open the same modals. */
+          <div className="space-y-6">
+            {(activeTab === 'recurring' ? recurringStudentsLoading : invoicesLoading) ? (
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                {[...Array(8)].map((_, i) => (
+                  <Card key={i} className="!gap-0 !py-0 overflow-hidden flex flex-col h-full">
+                    <div className="h-1 w-full bg-gray-200" />
+                    <div className="p-4 sm:p-5 flex flex-col flex-1 animate-pulse">
+                      <div className="flex items-start justify-between mb-3">
+                        <div className="flex-1 min-w-0 space-y-1.5">
+                          <div className="h-3 w-16 bg-gray-200 rounded" />
+                          <div className="h-5 w-3/4 bg-gray-200 rounded" />
+                          <div className="h-3 w-1/2 bg-gray-200 rounded" />
+                        </div>
+                        <div className="flex gap-1">
+                          <div className="h-7 w-7 bg-gray-200 rounded" />
+                          <div className="h-7 w-7 bg-gray-200 rounded" />
+                          <div className="h-7 w-7 bg-gray-200 rounded" />
+                        </div>
+                      </div>
+                      <div className="grid grid-cols-3 gap-2 my-3 py-3 border-y border-gray-100">
+                        <div className="space-y-1.5"><div className="h-2 w-12 bg-gray-200 rounded" /><div className="h-4 w-10 bg-gray-200 rounded" /></div>
+                        <div className="space-y-1.5"><div className="h-2 w-12 bg-gray-200 rounded" /><div className="h-4 w-10 bg-gray-200 rounded" /></div>
+                        <div className="space-y-1.5"><div className="h-2 w-12 bg-gray-200 rounded" /><div className="h-4 w-10 bg-gray-200 rounded" /></div>
+                      </div>
+                      <div className="h-3 w-2/3 bg-gray-200 rounded mb-3" />
+                    </div>
+                  </Card>
+                ))}
+              </div>
+            ) : activeTab === 'recurring' ? (
+              filteredRecurringStudents.length === 0 ? (
+                <Card>
+                  <EmptyState
+                    icon={Users}
+                    title={String(t('payments.noRecurringStudents'))}
+                    description={searchQuery ? String(t('common.tryAdjustingSearch')) : String(t('payments.noStudentsEnrolledRecurring'))}
+                  />
+                </Card>
+              ) : (
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                  {filteredRecurringStudents.map((recurringStudent) => (
+                    <DashboardCard
+                      key={recurringStudent.id}
+                      paused={recurringStudent.status === 'paused'}
+                      accentColor={statusAccent(recurringStudent.status)}
+                      statusLabel={recurringStudent.status
+                        ? t(`payments.${recurringStudent.status}`)
+                        : String(t('common.fallbacks.unknown'))}
+                      statusToneClass={statusTone(recurringStudent.status)}
+                      title={recurringStudent.student_name}
+                      subtitle={
+                        <>
+                          <Mail className="w-3.5 h-3.5 flex-shrink-0 mt-0.5" strokeWidth={1.75} />
+                          <span className="break-all">{recurringStudent.student_email}</span>
+                        </>
+                      }
+                      actions={
+                        <>
+                          <Button
+                            variant="ghost"
+                            size="sm"
+                            className="h-7 w-7 p-0 text-gray-400 hover:text-gray-700"
+                            onClick={() => handleViewStudentPayments(
+                              recurringStudent.student_id,
+                              recurringStudent.template_id,
+                              recurringStudent.student_name,
+                              recurringStudent.template_name
+                            )}
+                            title={String(t('common.view'))}
+                          >
+                            <Eye className="w-4 h-4" strokeWidth={1.75} />
+                          </Button>
+                          <Button
+                            variant="ghost"
+                            size="sm"
+                            className="h-7 w-7 p-0 text-gray-400 hover:text-gray-700"
+                            onClick={() => {
+                              setEditingRecurringStudent(recurringStudent)
+                              setHasAmountOverride(!!recurringStudent.amount_override)
+                              setRecurringOverrideAmount(recurringStudent.amount_override?.toString() || '')
+                              setRecurringStatus(recurringStudent.status ?? 'active')
+                              setShowEditRecurringModal(true)
+                            }}
+                            title={String(t('common.edit'))}
+                          >
+                            <Edit className="w-4 h-4" strokeWidth={1.75} />
+                          </Button>
+                          <Button
+                            variant="ghost"
+                            size="sm"
+                            className="h-7 w-7 p-0 text-gray-400 hover:text-rose-600 hover:bg-rose-50"
+                            onClick={() => {
+                              setRecurringToDelete(recurringStudent)
+                              setShowDeleteRecurringModal(true)
+                            }}
+                            title={String(t('common.delete'))}
+                          >
+                            <Trash2 className="w-4 h-4" strokeWidth={1.75} />
+                          </Button>
+                        </>
+                      }
+                      metrics={[
+                        {
+                          label: t('payments.amount') as string,
+                          value: recurringStudent.amount_override ? (
+                            <>
+                              <span className="block">{formatCurrency(recurringStudent.amount_override)}</span>
+                              <span className="block text-xs font-normal text-gray-500 line-through">
+                                {formatCurrency(recurringStudent.template_amount)}
+                              </span>
+                            </>
+                          ) : formatCurrency(recurringStudent.template_amount),
+                        },
+                        {
+                          label: t('payments.template') as string,
+                          value: recurringStudent.template_name,
+                        },
+                        {
+                          label: t('payments.recurrenceType') as string,
+                          value: t(`payments.${recurringStudent.recurrence_type}`),
+                        },
+                      ]}
+                    />
+                  ))}
+                </div>
+              )
+            ) : (
+              filteredInvoices.length === 0 ? (
+                <Card>
+                  <EmptyState
+                    icon={DollarSign}
+                    title={String(t('payments.noPayments'))}
+                    description={searchQuery ? String(t('common.tryAdjustingSearch')) : String(t('payments.noPaymentRecordsCreated'))}
+                  />
+                </Card>
+              ) : (
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                  {filteredInvoices.map((invoice) => (
+                    <DashboardCard
+                      key={invoice.id}
+                      accentColor={statusAccent(invoice.status)}
+                      statusLabel={
+                        <span className="inline-flex items-center gap-1.5">
+                          <span className="[&>svg]:w-3.5 [&>svg]:h-3.5 inline-flex">{getStatusIcon(invoice.status)}</span>
+                          {t(`payments.${invoice.status}`)}
+                        </span>
+                      }
+                      statusToneClass={statusTone(invoice.status)}
+                      title={invoice.student_name}
+                      subtitle={
+                        <>
+                          <Mail className="w-3.5 h-3.5 flex-shrink-0 mt-0.5" strokeWidth={1.75} />
+                          <span className="break-all">{invoice.student_email}</span>
+                        </>
+                      }
+                      actions={
+                        <>
+                          <Button
+                            variant="ghost"
+                            size="sm"
+                            className="h-7 w-7 p-0 text-gray-400 hover:text-gray-700"
+                            onClick={() => {
+                              setViewingInvoice(invoice)
+                              setShowViewPaymentModal(true)
+                            }}
+                            title={String(t('common.view'))}
+                          >
+                            <Eye className="w-4 h-4" strokeWidth={1.75} />
+                          </Button>
+                          <Button
+                            variant="ghost"
+                            size="sm"
+                            className="h-7 w-7 p-0 text-gray-400 hover:text-gray-700"
+                            onClick={() => {
+                              setEditingInvoice(invoice)
+                              setEditInvoiceName(invoice.invoice_name || '')
+                              setEditAmount(formatAmountWithCommas(invoice.amount.toString()))
+                              setEditDiscountAmount(formatAmountWithCommas(invoice.discount_amount?.toString() || '0'))
+                              setEditDiscountReason(invoice.discount_reason || '')
+                              setEditDueDate(invoice.due_date)
+                              setEditStatus(invoice.status)
+                              setEditPaidAt(invoice.paid_at || '')
+                              setEditPaymentMethod(invoice.payment_method || '')
+                              setEditRefundedAmount(formatAmountWithCommas(invoice.refunded_amount?.toString() || '0'))
+                              setShowEditPaymentModal(true)
+                            }}
+                            title={String(t('common.edit'))}
+                          >
+                            <Edit className="w-4 h-4" strokeWidth={1.75} />
+                          </Button>
+                          <Button
+                            variant="ghost"
+                            size="sm"
+                            className="h-7 w-7 p-0 text-gray-400 hover:text-rose-600 hover:bg-rose-50"
+                            onClick={() => handleDeleteInvoiceClick(invoice)}
+                            title={String(t('common.delete'))}
+                          >
+                            <Trash2 className="w-4 h-4" strokeWidth={1.75} />
+                          </Button>
+                        </>
+                      }
+                      metrics={[
+                        {
+                          label: t('payments.amount') as string,
+                          value: invoice.discount_amount > 0 ? (
+                            <>
+                              <span className="block">{formatCurrency(invoice.final_amount)}</span>
+                              <span className="block text-xs font-normal text-gray-500 line-through">
+                                {formatCurrency(invoice.amount)}
+                              </span>
+                            </>
+                          ) : formatCurrency(invoice.final_amount),
+                        },
+                        {
+                          label: t('payments.dueDate') as string,
+                          value: invoice.due_date ? formatDate(invoice.due_date) : '-',
+                        },
+                        {
+                          label: t('payments.paidDate') as string,
+                          value: invoice.paid_at ? formatDate(invoice.paid_at) : '-',
+                        },
+                      ]}
+                      meta={
+                        <div className="flex items-start gap-1.5">
+                          <FileText className="w-3.5 h-3.5 flex-shrink-0 mt-0.5" strokeWidth={1.75} />
+                          <span>{t('payments.invoiceName')}: {invoice.invoice_name || '-'}</span>
+                        </div>
+                      }
+                    />
+                  ))}
+                </div>
+              )
+            )}
+
+            {paginationControls && (
+              <div className="bg-white rounded-2xl ring-1 ring-gray-100/80 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_12px_-4px_rgba(0,0,0,0.06)] overflow-hidden">
+                {paginationControls}
+              </div>
+            )}
+          </div>
+          ) : (
+          /* Payments Table — chrome matches DataTable used by sessions / assignments / classrooms / attendance */
           <div className="bg-white rounded-2xl ring-1 ring-gray-100/80 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_12px_-4px_rgba(0,0,0,0.06)] overflow-hidden">
             <div className="overflow-x-auto min-h-[640px] flex flex-col">
               <table className="w-full min-w-[800px]">
@@ -3211,58 +3578,11 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
             </div>
 
             {/* Pagination Controls */}
-            {displayCount > 0 && (
-              <div className="mt-4 flex items-center justify-between border-t border-gray-200 bg-white px-4 py-3 sm:px-6">
-                <div className="flex flex-1 justify-between sm:hidden">
-                  <Button
-                    onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
-                    disabled={currentPage === 1}
-                    variant="outline"
-                  >
-                    {t("payments.pagination.previous")}
-                  </Button>
-                  <Button
-                    onClick={() => setCurrentPage(p => Math.min(Math.ceil(displayCount / itemsPerPage), p + 1))}
-                    disabled={currentPage >= Math.ceil(displayCount / itemsPerPage)}
-                    variant="outline"
-                  >
-                    {t("payments.pagination.next")}
-                  </Button>
-                </div>
-                <div className="hidden sm:flex sm:flex-1 sm:items-center sm:justify-between">
-                  <div>
-                    <p className="text-sm text-gray-700">
-                      {t("payments.pagination.showing")}
-                      <span className="font-medium"> {Math.min(((currentPage - 1) * itemsPerPage) + 1, displayCount)} </span>
-                      {t("payments.pagination.to")}
-                      <span className="font-medium"> {Math.min(currentPage * itemsPerPage, displayCount)} </span>
-                      {t("payments.pagination.of")}
-                      <span className="font-medium"> {displayCount} </span>
-                      {t("payments.pagination.payments")}
-                    </p>
-                  </div>
-                  <div className="flex gap-2">
-                    <Button
-                      onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
-                      disabled={currentPage === 1}
-                      variant="outline"
-                    >
-                      {t("payments.pagination.previous")}
-                    </Button>
-                    <Button
-                      onClick={() => setCurrentPage(p => Math.min(Math.ceil(displayCount / itemsPerPage), p + 1))}
-                      disabled={currentPage >= Math.ceil(displayCount / itemsPerPage)}
-                      variant="outline"
-                    >
-                      {t("payments.pagination.next")}
-                    </Button>
-                  </div>
-                </div>
-              </div>
-            )}
+            {paginationControls}
 
             {/* Footer */}
           </div>
+          )}
         </div>
       )}
 

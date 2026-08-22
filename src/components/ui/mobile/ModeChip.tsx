@@ -54,7 +54,7 @@ export function ModeChip() {
         onClick={() => { hapticTap(); setOpen(true) }}
         aria-label={String(t('mobile.mode.sheetTitle'))}
         aria-expanded={open}
-        className="inline-flex items-center gap-1.5 h-9 px-3 rounded-full bg-primary/10 text-primary text-xs font-semibold hover:bg-primary/15 active:bg-primary/20 transition-colors"
+        className="tap-target-y inline-flex items-center gap-1.5 h-9 px-3 rounded-full bg-primary/10 text-primary text-xs font-semibold hover:bg-primary/15 active:bg-primary/20 transition-colors"
       >
         <Icon className="w-3.5 h-3.5" strokeWidth={2} />
         <span>{label}</span>

@@ -6,13 +6,9 @@ import { useTranslation } from '@/hooks/useTranslation'
 import { useSelectedStudentStore } from '@/stores/selectedStudentStore'
 import { Card } from '@/components/ui/card'
 import { initialsFromName } from '@/lib/name'
+import type { FamilyStudent } from '@/lib/family/students'
 
-interface Student {
-  id: string
-  name: string
-  email: string
-  academy_id: string
-}
+type Student = FamilyStudent
 
 interface StudentSelectorModalProps {
   isOpen: boolean
@@ -87,6 +83,7 @@ export function StudentSelectorModal({
             {students.map((student) => {
               const isSelected = selectedStudent?.id === student.id
               const initials = initialsFromName(student.name) || '?'
+              const academyCount = student.academy_ids?.length ?? 0
 
               return (
                 <button
@@ -107,6 +104,15 @@ export function StudentSelectorModal({
                   <div className="flex-1 min-w-0 text-left">
                     <p className="text-sm font-semibold text-gray-900 truncate">{student.name}</p>
                     <p className="text-xs text-gray-500 truncate">{student.email}</p>
+                    {/* A child can be enrolled in more than one academy. That
+                        used to surface as duplicate rows; it is now one row
+                        that says so. Selecting it shows every academy — the
+                        pages carry their own academy filter. */}
+                    {academyCount > 1 && (
+                      <p className="text-[11px] text-gray-400 truncate mt-0.5">
+                        {t('studentSelector.enrolledInAcademies', { count: academyCount })}
+                      </p>
+                    )}
                   </div>
 
                   {/* Check icon indicator instead of plain dot — clearer "selected" cue */}

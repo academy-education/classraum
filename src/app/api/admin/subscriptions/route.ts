@@ -118,10 +118,17 @@ export async function GET(req: NextRequest) {
       { data: studentsPerAcademy },
       { data: parentsPerAcademy }
     ] = await Promise.all([
-      db.from('managers').select('academy_id').in('academy_id', academyIds),
-      db.from('teachers').select('academy_id').in('academy_id', academyIds),
-      db.from('students').select('academy_id').in('academy_id', academyIds),
-      db.from('parents').select('academy_id').in('academy_id', academyIds),
+      // `.eq('active', true)` on all four: /api/admin/academies counts only
+      // active rows, and the two pages have to answer the same question or
+      // the same academy shows two different user counts (it showed 13 on
+      // Academies and 15 here). Managers were already counted on both sides
+      // after that fix; the active filter is the other half of the
+      // agreement — HERALD has 6 students and 3 teachers whose rows are all
+      // inactive, and counting them here would put it at 15 vs 5.
+      db.from('managers').select('academy_id').eq('active', true).in('academy_id', academyIds),
+      db.from('teachers').select('academy_id').eq('active', true).in('academy_id', academyIds),
+      db.from('students').select('academy_id').eq('active', true).in('academy_id', academyIds),
+      db.from('parents').select('academy_id').eq('active', true).in('academy_id', academyIds),
     ]);
 
     // Create user count map by academy

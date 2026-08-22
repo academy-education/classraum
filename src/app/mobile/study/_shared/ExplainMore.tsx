@@ -123,7 +123,7 @@ export function ExplainMore({
               type="button"
               onClick={() => setLang(l)}
               aria-pressed={lang === l}
-              className={`h-6 px-2.5 rounded-full text-[11px] font-semibold transition-all ${
+              className={`tap-target-y h-6 min-w-[44px] px-2.5 rounded-full text-[11px] font-semibold transition-all ${
                 lang === l ? 'bg-white text-gray-900 shadow-sm' : 'text-gray-500 hover:text-gray-700'
               }`}
             >
@@ -133,13 +133,16 @@ export function ExplainMore({
         </div>
       </div>
 
-      {/* Quick-action chips — step-by-step first, then simpler. */}
-      <div className="flex flex-wrap items-center gap-2">
+      {/* Quick-action chips — step-by-step first, then simpler.
+          gap-3, not gap-2: the chips are h-8 and project a 44px hit area, so
+          a 12px gap is what makes the projected areas tile instead of
+          overlapping when they wrap onto two lines. */}
+      <div className="flex flex-wrap items-center gap-3">
         <button
           type="button"
           onClick={() => void run('steps')}
           disabled={busy || stepsUsed}
-          className="inline-flex items-center gap-1.5 h-8 px-3 rounded-full bg-white text-gray-700 ring-1 ring-gray-200/70 text-[12.5px] font-medium hover:ring-primary/40 hover:text-primary active:scale-[0.98] disabled:opacity-50 disabled:hover:ring-gray-200/70 disabled:hover:text-gray-700 transition-all"
+          className="tap-target-y inline-flex items-center gap-1.5 h-8 px-3 rounded-full bg-white text-gray-700 ring-1 ring-gray-200/70 text-[12.5px] font-medium hover:ring-primary/40 hover:text-primary active:scale-[0.98] disabled:opacity-50 disabled:hover:ring-gray-200/70 disabled:hover:text-gray-700 transition-all"
         >
           {stepsUsed ? <Check className="w-3.5 h-3.5 text-emerald-600" /> : <ListOrdered className="w-3.5 h-3.5" />}
           {label('steps', lang)}
@@ -148,7 +151,7 @@ export function ExplainMore({
           type="button"
           onClick={() => void run('simpler')}
           disabled={busy || simplerUsed}
-          className="inline-flex items-center gap-1.5 h-8 px-3 rounded-full bg-white text-gray-700 ring-1 ring-gray-200/70 text-[12.5px] font-medium hover:ring-primary/40 hover:text-primary active:scale-[0.98] disabled:opacity-50 disabled:hover:ring-gray-200/70 disabled:hover:text-gray-700 transition-all"
+          className="tap-target-y inline-flex items-center gap-1.5 h-8 px-3 rounded-full bg-white text-gray-700 ring-1 ring-gray-200/70 text-[12.5px] font-medium hover:ring-primary/40 hover:text-primary active:scale-[0.98] disabled:opacity-50 disabled:hover:ring-gray-200/70 disabled:hover:text-gray-700 transition-all"
         >
           {simplerUsed ? <Check className="w-3.5 h-3.5 text-emerald-600" /> : <Baby className="w-3.5 h-3.5" />}
           {label('simpler', lang)}

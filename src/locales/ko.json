@@ -2,7 +2,8 @@
   "studentSelector": {
     "title": "학생 선택",
     "description": "정보를 확인할 학생을 선택하세요.",
-    "changeInfo": "언제든지 선택을 변경할 수 있습니다."
+    "changeInfo": "언제든지 선택을 변경할 수 있습니다.",
+    "enrolledInAcademies": "학원 {{count}}곳에 등록"
   },
   "pagination": {
     "showing": "표시 중",
@@ -653,7 +654,8 @@
       "fallbackAcademy": "학원",
       "fallbackUser": "사용자",
       "closeSidebar": "사이드바 닫기",
-      "resolveAll": "모두 해결"
+      "resolveAll": "모두 해결",
+      "conversationBreakdown": "읽지 않음 {unread}건 · 종료 {closed}건"
     },
     "users": {
       "title": "사용자",
@@ -1698,7 +1700,17 @@
       "subscriptionCanceled": "구독 취소됨",
       "noEmailValue": "이메일 없음",
       "failedToRevokeLink": "링크 취소에 실패했습니다",
-      "failedToRegenerateLink": "링크 재생성에 실패했습니다"
+      "failedToRegenerateLink": "링크 재생성에 실패했습니다",
+      "loadingBilling": "청구 정보 불러오는 중…",
+      "failedToLoadBilling": "청구 정보를 불러오지 못했습니다",
+      "collected": "수납액",
+      "outstanding": "미수금",
+      "totalInvoices": "전체 청구서",
+      "lastPayment": "최근 결제일",
+      "recentInvoices": "최근 청구서",
+      "paidInvoiceCount": "{count}건 결제 완료",
+      "pendingInvoiceCount": "{count}건 미결제",
+      "noSubscription": "구독 없음"
     },
     "communications": {
       "kicker": "아웃리치",
@@ -5906,7 +5918,8 @@
         "daysAgo": "{count}일 전",
         "characterLimit": "{current}/{max}",
         "closeComments": "댓글 닫기"
-      }
+      },
+      "classroomPosition": "수업 {{total}}개 중 {{current}}번째"
     },
     "fileViewer": {
       "previewNotAvailable": "미리보기를 사용할 수 없습니다",
@@ -9859,6 +9872,7 @@
     "slide1": {
       "title": "Classraum에 오신 것을 환영합니다",
       "body": "학원 운영에 필요한 모든 것이 왼쪽 패널에 있습니다. 각 섹션의 용도는 다음과 같습니다.",
+      "bodyBottomNav": "학원 운영에 필요한 모든 것이 화면 하단의 내비게이션 바에 있습니다. 각 섹션의 용도는 다음과 같습니다.",
       "bullet1": "수업·세션·과제·출결 — 일상적인 교육 워크플로우.",
       "bullet2": "결제·리포트·공지 — 학원 운영.",
       "bullet3": "연락처 (교사·가족·학부모·학생) — 디렉토리."

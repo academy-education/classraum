@@ -625,7 +625,7 @@ function MobileProfilePageContent() {
                   <button
                     type="button"
                     onClick={beginEditName}
-                    className="flex items-center gap-1.5 ml-3 min-w-0 group"
+                    className="tap-target-y flex items-center gap-1.5 ml-3 min-w-0 group"
                   >
                     <span className="text-sm font-medium text-gray-900 truncate">
                       {displayName(profile)}
@@ -689,7 +689,7 @@ function MobileProfilePageContent() {
                   <button
                     type="button"
                     onClick={() => { setPhoneDraft(profile.phone ?? ''); setEditingPhone(true) }}
-                    className="flex items-center gap-1.5 ml-3 min-w-0 group"
+                    className="tap-target-y flex items-center gap-1.5 ml-3 min-w-0 group"
                   >
                     {profile.phone ? (
                       <span className="text-sm font-medium text-gray-900 truncate">{profile.phone}</span>
@@ -923,7 +923,7 @@ function MobileProfilePageContent() {
                           role="switch"
                           aria-checked={checked}
                           aria-label={String(t(label))}
-                          className={`relative inline-flex h-5 w-9 flex-shrink-0 cursor-pointer rounded-full transition-colors duration-200 ease-in-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-offset-2 ${
+                          className={`tap-target relative inline-flex h-5 w-9 flex-shrink-0 cursor-pointer rounded-full transition-colors duration-200 ease-in-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-offset-2 ${
                             checked ? 'bg-primary' : 'bg-gray-200'
                           } ${preferencesLoading ? 'opacity-50 cursor-not-allowed' : ''}`}
                         >
@@ -1034,7 +1034,7 @@ function MobileProfilePageContent() {
               role="switch"
               aria-checked={preferences.push_notifications}
               aria-label={String(t('mobile.profile.pushNotifications'))}
-              className={`relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full transition-colors duration-200 ease-in-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-offset-2 ${
+              className={`tap-target relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full transition-colors duration-200 ease-in-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-offset-2 ${
                 preferences.push_notifications ? 'bg-primary' : 'bg-gray-200'
               } ${preferencesLoading ? 'opacity-50 cursor-not-allowed' : ''}`}
             >
@@ -1074,7 +1074,7 @@ function MobileProfilePageContent() {
                     role="switch"
                     aria-checked={checked}
                     aria-label={String(t(label))}
-                    className={`relative inline-flex h-5 w-9 flex-shrink-0 cursor-pointer rounded-full transition-colors duration-200 ease-in-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-offset-2 ${
+                    className={`tap-target relative inline-flex h-5 w-9 flex-shrink-0 cursor-pointer rounded-full transition-colors duration-200 ease-in-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-offset-2 ${
                       checked ? 'bg-primary' : 'bg-gray-200'
                     } ${disabled ? 'opacity-50 cursor-not-allowed' : ''}`}
                   >

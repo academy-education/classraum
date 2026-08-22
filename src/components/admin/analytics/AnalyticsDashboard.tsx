@@ -68,7 +68,8 @@ interface AnalyticsData {
     };
   };
   usage: {
-    activeUsers: number;
+    /** null when the auth listing failed — render as unavailable, never 0. */
+    activeUsers: number | null;
     studySessions: number;
     completedStudySessions: number;
     /** null when no session in the window completed. */
@@ -212,7 +213,7 @@ export function AnalyticsDashboard() {
         />
         <DashboardCard
           title={String(t('admin.analytics.activeUsers'))}
-          value={data.usage.activeUsers.toLocaleString()}
+          value={data.usage.activeUsers === null ? String(t('admin.common.na')) : data.usage.activeUsers.toLocaleString()}
           subtitle={String(t('admin.analytics.sessionsCount', { n: data.usage.studySessions.toLocaleString() }))}
           icon={<Activity className="h-5 w-5" />}
           accent="violet"
@@ -464,7 +465,7 @@ export function AnalyticsDashboard() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <DashboardCard
                   title={String(t('admin.analytics.monthlyActiveUsers'))}
-                  value={data.usage.activeUsers.toLocaleString()}
+                  value={data.usage.activeUsers === null ? String(t('admin.common.na')) : data.usage.activeUsers.toLocaleString()}
                   icon={<Users className="h-5 w-5" />}
                   accent="emerald"
                 />

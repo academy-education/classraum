@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createClient } from '@supabase/supabase-js';
 import type { Database } from '@/lib/database.types';
+import { listAllAuthUsers } from '../_lib/admin-auth';
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
 const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY!;
@@ -134,7 +135,6 @@ export async function GET(request: NextRequest) {
       { count: allAcademies },
       { count: newAcademies },
       { count: trialAcademies },
-      { count: activeUsers },
     ] = await Promise.all([
       supabase.rpc('admin_invoice_revenue_totals', { p_start: iso(startDate), p_end: iso(now) }),
       supabase.rpc('admin_invoice_revenue_totals', { p_start: iso(prevStart), p_end: iso(startDate) }),
@@ -151,8 +151,36 @@ export async function GET(request: NextRequest) {
       // Every academy that has ever been given a trial window. This is a real
       // count of trial starts, not a multiple of the academy count.
       supabase.from('academies').select('*', { count: 'exact', head: true }).not('trial_ends_at', 'is', null),
-      supabase.from('users').select('*', { count: 'exact', head: true }).gte('updated_at', thirtyDaysAgo),
     ]);
+
+    // ---- Active users (30d) -----------------------------------------------
+    //
+    // MUST be last_sign_in_at, not users.updated_at.
+    //
+    // `updated_at` counts any row write, including ones no human caused. The
+    // name-migration on 2026-08-20 touched 444 user rows in a single batch,
+    // and every one of them then read as "active in the last 30 days" — 419
+    // of them, against 48 accounts that had actually signed in. The System
+    // page, which has always used last_sign_in_at, said 48 on the same
+    // platform on the same day; two pages, one question, an 8.7x gap.
+    //
+    // last_sign_in_at lives on auth.users, which PostgREST does not expose,
+    // so this goes through the paginated admin listing (the same helper the
+    // System page uses — one definition, so the two cannot drift again).
+    const thirtyDaysAgoMs = Date.parse(thirtyDaysAgo);
+    let activeUsers: number | null = null;
+    try {
+      const authUsers = await listAllAuthUsers();
+      activeUsers = authUsers.filter(u => {
+        if (!u.last_sign_in_at) return false;
+        const t = Date.parse(u.last_sign_in_at);
+        return Number.isFinite(t) && t >= thirtyDaysAgoMs;
+      }).length;
+    } catch (e) {
+      // Absent, not zero — a failed lookup must not read as "nobody is
+      // using the platform".
+      console.error('[Admin Analytics API] listAllAuthUsers failed:', e);
+    }
 
     // ---- Revenue: collected (paid invoices) in the selected window ---------
     const collected = num(first(revenueTotals)?.amount_won);
@@ -255,7 +283,7 @@ export async function GET(request: NextRequest) {
         acquisition,
       },
       usage: {
-        activeUsers: activeUsers || 0,
+        activeUsers,
         studySessions: num(s?.session_count),
         completedStudySessions: num(s?.completed_count),
         avgSessionDuration,

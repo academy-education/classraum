@@ -95,11 +95,14 @@ export function AdminSidebar({ adminUser }: AdminSidebarProps) {
 
       setAlertCount(alertsCount || 0);
 
-      // Load open support ticket count
+      // Open support conversations — the same table and the same predicate
+      // the Support page itself uses (chat_conversations, status <> closed).
+      // This counted `support_tickets`, an empty table nothing writes to, so
+      // the badge was permanently absent while the page listed 5.
       const { count: ticketsCount } = await db
-        .from('support_tickets')
+        .from('chat_conversations')
         .select('*', { count: 'exact', head: true })
-        .in('status', ['open', 'in_progress']);
+        .neq('status', 'closed');
 
       setSupportTicketCount(ticketsCount || 0);
     } catch (error) {

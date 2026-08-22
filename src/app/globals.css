@@ -728,3 +728,87 @@
 @keyframes camp-dot-breathe { 0%, 100% { opacity: 1 } 50% { opacity: 0.35 } }
 .camp-dot-breathe { animation: camp-dot-breathe 2.6s ease-in-out infinite }
 @media (prefers-reduced-motion: reduce) { .camp-dot-breathe { animation: none } }
+
+/* Touch hit areas.
+ *
+ * Many controls on the mobile surface are visually small on purpose — a 6px
+ * carousel dot, a 24px "Mark reviewed" pill, a 20px toggle. Growing the box
+ * to 44px would wreck those designs, so `.tap-target` leaves the painted
+ * element alone and projects a centred, transparent ::after that is at least
+ * 44x44 (the iOS/Android minimum). The element itself only needs
+ * `position: relative`, which the utility sets.
+ *
+ * CAVEAT — do not apply this to controls whose CENTRES sit closer than 44px
+ * apart. The projected areas would overlap and the later-painted sibling
+ * would swallow taps meant for its neighbour, turning a small target into a
+ * WRONG target. For tightly packed rows either space the controls out, grow
+ * them for real, or change the design (see the assignments carousel, which
+ * collapses to a counter past 5 items).
+ */
+@layer utilities {
+  .tap-target {
+    position: relative;
+  }
+
+  .tap-target::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: max(100%, 44px);
+    height: max(100%, 44px);
+    transform: translate(-50%, -50%);
+    /* Not a paint change — purely a hit area. */
+    background: transparent;
+  }
+
+  /* Same idea, vertical only: use where horizontal neighbours are closer
+   * than 44px apart but the control has empty space above and below. */
+  .tap-target-y {
+    position: relative;
+  }
+
+  .tap-target-y::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: max(100%, 44px);
+    transform: translateY(-50%);
+    background: transparent;
+  }
+}
+
+/* Touch target sizing — manager/teacher surface, below `md`.
+ *
+ * Measured at 375px: /classrooms had 57 controls under 40px and /students 35.
+ * The offenders were 28x28 icon buttons on the classroom cards, 32px-tall
+ * primary buttons (Create Classroom, Resolve) and 36x32 header icons.
+ *
+ * This is deliberately NOT a change to `size="sm"` in buttonVariants, which
+ * was the obvious fix and does not work. Every one of those controls sets its
+ * height with a per-call className — `h-7 w-7 p-0`, `h-8 sm:h-9`, `h-9` — and
+ * `cn()` runs tailwind-merge, which resolves `h-7` against the variant's `h-8`
+ * by DROPPING the variant. Editing the variant would have changed nothing on
+ * exactly the buttons that were measured as too small, while looking like a
+ * fix. `min-height`/`min-width` are different properties from `height`/`width`,
+ * so they apply no matter which utility class won the merge — one lever that
+ * the next person adding a `h-7` button cannot accidentally opt out of.
+ *
+ * Nor is it `.tap-target`: that projects a 44px ::after and its own caveat
+ * above forbids it for controls whose centres sit closer than 44px apart —
+ * which is precisely the classroom card's three icon buttons at `gap-1`.
+ * Overlapping projections would swallow each other's taps. These controls have
+ * room to grow, so they are grown for real.
+ *
+ * Scoped by [data-surface="dashboard"] (set in src/app/(app)/layout.tsx) so it
+ * cannot reach the student/parent surface in src/app/mobile, whose small
+ * controls are intentional. `data-tap-exempt` opts an individual control out.
+ */
+@media (max-width: 767.98px) {
+  [data-surface="dashboard"] button:not([data-tap-exempt]) {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}

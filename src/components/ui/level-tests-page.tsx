@@ -11,6 +11,7 @@ import { Label } from '@/components/ui/label'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { ModalShell } from '@/components/ui/common/ModalShell'
 import { useTranslation } from '@/hooks/useTranslation'
+import { useResponsiveViewMode } from '@/hooks/useResponsiveViewMode'
 import { getDateLocale } from '@/utils/dateUtils'
 import { useCreateShortcut } from '@/hooks/useCreateShortcut'
 import { showSuccessToast, showErrorToast } from '@/stores'
@@ -68,7 +69,7 @@ export function LevelTestsPage({ academyId }: LevelTestsPageProps) {
   const [testToDelete, setTestToDelete] = useState<LevelTest | null>(null)
 
   // Default to the table ('list') view since it's now on the left of the toggle.
-  const [viewMode, setViewMode] = useState<'card' | 'list'>('list')
+  const [viewMode, setViewMode] = useResponsiveViewMode<'card' | 'list'>('list', 'card')
   const [selectedTestIds, setSelectedTestIds] = useState<Set<string>>(new Set())
   const [showBulkDeleteConfirm, setShowBulkDeleteConfirm] = useState(false)
   const [bulkDeleting, setBulkDeleting] = useState(false)
@@ -448,7 +449,11 @@ export function LevelTestsPage({ academyId }: LevelTestsPageProps) {
                     <FileQuestion className="w-4 h-4 sm:w-5 sm:h-5 text-blue-600" />
                   </div>
                   <div className="min-w-0 flex-1">
-                    <h3 className="text-base sm:text-lg font-bold text-gray-900 truncate">{test.title}</h3>
+                    {/* Wraps below md, ellipsis at md and up. This card is now
+                        the phone default, and `truncate` alone cut "8th Grade
+                        Intermediate English Level Test" down to its first few
+                        words with no way to read the rest in place. */}
+                    <h3 className="text-base sm:text-lg font-bold text-gray-900 break-words line-clamp-2 md:line-clamp-none md:truncate">{test.title}</h3>
                     <p className="text-xs sm:text-sm text-gray-600 mt-0.5 truncate">
                       {test.subjects?.name || '—'}{test.grade ? ` · ${test.grade}` : ''}
                     </p>

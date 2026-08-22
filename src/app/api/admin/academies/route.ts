@@ -91,6 +91,12 @@ export async function GET(request: NextRequest) {
     const studentCounts = countByAcademy(students)
     const teacherCounts = countByAcademy(teachers)
     const parentCounts = countByAcademy(parents)
+    // Managers are users of the academy too. Omitting them made HERALD —
+    // whose only members are 5 managers — read "0 users", and put this
+    // column permanently 2 below the Subscriptions page for Andy Lee's
+    // Hagwon (13 here vs 15 there) because that page always counted all
+    // four roles. Both now count the same four, active only.
+    const managerCounts = countByAcademy((managers || []).map(m => ({ academy_id: m.academy_id })))
 
     // Last activity = most recent updated_at across ALL user types.
     const lastActivityByAcademy: Record<string, string> = {}
@@ -123,14 +129,27 @@ export async function GET(request: NextRequest) {
         phone: manager?.phone || null,
         address: academy.address || null,
         subscriptionTier: sub?.plan_tier || academy.subscription_tier || 'free',
-        subscriptionStatus: sub?.status || (academy.is_suspended ? 'canceled' : 'active'),
-        monthlyRevenue: sub?.monthly_amount || 0,
+        // "No subscription row" is a REAL state, not 'active'.
+        //
+        // Only 2 of 12 academies have an academy_subscriptions row. The old
+        // `sub?.status || 'active'` invented one for the other 10, which is
+        // how the header card read "ACTIVE 9" for a platform with 2
+        // subscriptions — and paired it with a fabricated "₩0 per month"
+        // that was indistinguishable from a real free-tier ₩0.
+        //
+        // `hasSubscription` lets the client tell the two apart instead of
+        // guessing from a zero, and monthlyRevenue is null (not 0) when
+        // there is nothing to report.
+        hasSubscription: !!sub,
+        subscriptionStatus: sub?.status || (academy.is_suspended ? 'canceled' : 'none'),
+        monthlyRevenue: sub ? (sub.monthly_amount || 0) : null,
         isSuspended: academy.is_suspended || false,
         suspensionReason: academy.suspension_reason || null,
         totalUsers:
           (studentCounts[academy.id] || 0) +
           (teacherCounts[academy.id] || 0) +
-          (parentCounts[academy.id] || 0),
+          (parentCounts[academy.id] || 0) +
+          (managerCounts[academy.id] || 0),
         createdAt: academy.created_at,
         updatedAt: academy.updated_at,
         lastActive: lastActivityByAcademy[academy.id] || academy.created_at,

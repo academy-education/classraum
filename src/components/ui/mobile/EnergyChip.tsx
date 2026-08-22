@@ -81,7 +81,7 @@ export function EnergyChip() {
         type="button"
         onClick={() => setOpen(o => !o)}
         aria-label={ko ? `에너지 ${state.energy}/${state.cap}` : `Energy ${state.energy} of ${state.cap}`}
-        className={`inline-flex items-center gap-1 h-9 px-2.5 rounded-full transition-colors ${
+        className={`tap-target-y inline-flex items-center gap-1 h-9 px-2.5 rounded-full transition-colors ${
           low ? 'bg-rose-50 active:bg-rose-100' : 'bg-amber-50 active:bg-amber-100'
         }`}
       >

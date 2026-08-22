@@ -264,7 +264,7 @@ export function MobileHeader() {
                 href="/mobile/study/subscription"
                 aria-label={language === 'korean' ? '크레딧' : 'Credits'}
                 title={language === 'korean' ? '모의고사 생성 크레딧' : 'Mock-test credits'}
-                className="inline-flex items-center gap-1.5 h-9 pl-2 pr-2 rounded-full bg-primary/10 hover:bg-primary/15 active:bg-primary/20 transition-colors focus:outline-none"
+                className="tap-target-y inline-flex items-center gap-1.5 h-9 pl-2 pr-2 rounded-full bg-primary/10 hover:bg-primary/15 active:bg-primary/20 transition-colors focus:outline-none"
               >
                 {/* Coin + count + "+" — the plus sits AFTER the number so
                     the chip reads "5 credits, tap to add more" (the chip
@@ -286,7 +286,7 @@ export function MobileHeader() {
             {!isStudy && (user?.academyIds?.length ?? 0) > 0 && (
             <button
               onClick={handleMessagesClick}
-              className="relative w-9 h-9 rounded-full bg-gray-50 hover:bg-gray-100 active:bg-gray-200 flex items-center justify-center transition-colors focus:outline-none"
+              className="tap-target relative w-9 h-9 rounded-full bg-gray-50 hover:bg-gray-100 active:bg-gray-200 flex items-center justify-center transition-colors focus:outline-none"
               aria-label={String(t("common.messages"))}
             >
               {/* Same weight override as the bell — the two sit side by
@@ -303,7 +303,7 @@ export function MobileHeader() {
             {/* Notification Button */}
             <button
               onClick={handleNotificationClick}
-              className="relative w-9 h-9 rounded-full bg-gray-50 hover:bg-gray-100 active:bg-gray-200 flex items-center justify-center transition-colors focus:outline-none"
+              className="tap-target relative w-9 h-9 rounded-full bg-gray-50 hover:bg-gray-100 active:bg-gray-200 flex items-center justify-center transition-colors focus:outline-none"
               aria-label={String(t("common.notifications"))}
             >
               {/* weight overrides the icon system's pinned "bold" — at

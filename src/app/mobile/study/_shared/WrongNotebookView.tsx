@@ -267,7 +267,7 @@ export function WrongNotebookInner({ asTab = false }: { asTab?: boolean } = {}) 
                 return qs ? `/mobile/study/wrong-notebook/print?${qs}` : '/mobile/study/wrong-notebook/print'
               })()}
               target="_blank"
-              className="inline-flex items-center gap-1.5 h-9 px-3 rounded-full bg-white ring-1 ring-gray-200/70 shadow-[0_1px_2px_rgba(0,0,0,0.03)] text-[12.5px] font-medium text-gray-800 hover:ring-primary/40 hover:text-primary transition"
+              className="tap-target-y inline-flex items-center gap-1.5 h-9 px-3 rounded-full bg-white ring-1 ring-gray-200/70 shadow-[0_1px_2px_rgba(0,0,0,0.03)] text-[12.5px] font-medium text-gray-800 hover:ring-primary/40 hover:text-primary transition"
             >
               <Printer className="w-3.5 h-3.5" />{t('study.wrongNotebook.print')}
             </Link>
@@ -461,7 +461,7 @@ export function WrongNotebookInner({ asTab = false }: { asTab?: boolean } = {}) 
                         type="button"
                         onClick={() => setPage(p => Math.max(0, p - 1))}
                         disabled={clampedPage === 0}
-                        className="inline-flex items-center gap-1 h-9 px-3 rounded-full bg-white ring-1 ring-gray-200/70 text-[13px] font-medium text-gray-700 hover:ring-primary/40 hover:text-primary disabled:opacity-40 disabled:cursor-not-allowed transition"
+                        className="tap-target-y inline-flex items-center gap-1 h-9 px-3 rounded-full bg-white ring-1 ring-gray-200/70 text-[13px] font-medium text-gray-700 hover:ring-primary/40 hover:text-primary disabled:opacity-40 disabled:cursor-not-allowed transition"
                       >
                         <ChevronLeft className="w-4 h-4" />
                         {ko ? '이전' : 'Previous'}
@@ -475,7 +475,7 @@ export function WrongNotebookInner({ asTab = false }: { asTab?: boolean } = {}) 
                         type="button"
                         onClick={() => setPage(p => Math.min(totalPages - 1, p + 1))}
                         disabled={clampedPage >= totalPages - 1}
-                        className="inline-flex items-center gap-1 h-9 px-3 rounded-full bg-white ring-1 ring-gray-200/70 text-[13px] font-medium text-gray-700 hover:ring-primary/40 hover:text-primary disabled:opacity-40 disabled:cursor-not-allowed transition"
+                        className="tap-target-y inline-flex items-center gap-1 h-9 px-3 rounded-full bg-white ring-1 ring-gray-200/70 text-[13px] font-medium text-gray-700 hover:ring-primary/40 hover:text-primary disabled:opacity-40 disabled:cursor-not-allowed transition"
                       >
                         {ko ? '다음' : 'Next'}
                         <ChevronRight className="w-4 h-4" />
@@ -508,7 +508,7 @@ export function WrongNotebookInner({ asTab = false }: { asTab?: boolean } = {}) 
                             type="button"
                             onClick={() => setReviewedPage(p => Math.max(0, p - 1))}
                             disabled={clampedReviewedPage === 0}
-                            className="inline-flex items-center gap-1 h-9 px-3 rounded-full bg-white ring-1 ring-gray-200/70 text-[13px] font-medium text-gray-700 hover:ring-primary/40 hover:text-primary disabled:opacity-40 disabled:cursor-not-allowed transition"
+                            className="tap-target-y inline-flex items-center gap-1 h-9 px-3 rounded-full bg-white ring-1 ring-gray-200/70 text-[13px] font-medium text-gray-700 hover:ring-primary/40 hover:text-primary disabled:opacity-40 disabled:cursor-not-allowed transition"
                           >
                             <ChevronLeft className="w-4 h-4" />
                             {ko ? '이전' : 'Previous'}
@@ -522,7 +522,7 @@ export function WrongNotebookInner({ asTab = false }: { asTab?: boolean } = {}) 
                             type="button"
                             onClick={() => setReviewedPage(p => Math.min(reviewedTotalPages - 1, p + 1))}
                             disabled={clampedReviewedPage >= reviewedTotalPages - 1}
-                            className="inline-flex items-center gap-1 h-9 px-3 rounded-full bg-white ring-1 ring-gray-200/70 text-[13px] font-medium text-gray-700 hover:ring-primary/40 hover:text-primary disabled:opacity-40 disabled:cursor-not-allowed transition"
+                            className="tap-target-y inline-flex items-center gap-1 h-9 px-3 rounded-full bg-white ring-1 ring-gray-200/70 text-[13px] font-medium text-gray-700 hover:ring-primary/40 hover:text-primary disabled:opacity-40 disabled:cursor-not-allowed transition"
                           >
                             {ko ? '다음' : 'Next'}
                             <ChevronRight className="w-4 h-4" />
@@ -600,7 +600,7 @@ function FilterSelect({
         {label}
       </span>
       <Select value={value} onValueChange={onChange}>
-        <SelectTrigger className="w-full h-9 rounded-xl bg-white ring-1 ring-gray-200/70 border-0 text-[13px] font-medium text-gray-700 shadow-none">
+        <SelectTrigger className="tap-target-y w-full h-9 rounded-xl bg-white ring-1 ring-gray-200/70 border-0 text-[13px] font-medium text-gray-700 shadow-none">
           <SelectValue />
         </SelectTrigger>
         <SelectContent>
@@ -691,7 +691,7 @@ function NotebookEntryCard({ entry, index, ko, onToggleReviewed }: {
                   onClick={() => onToggleReviewed(entry.attempt_id, !reviewed)}
                   aria-pressed={reviewed}
                   aria-label={reviewed ? (ko ? '복습 완료 취소' : 'Mark as not reviewed') : (ko ? '복습 완료로 표시' : 'Mark as reviewed')}
-                  className={`inline-flex items-center gap-1 h-6 px-2 rounded-full text-[10px] font-semibold transition-all ${
+                  className={`tap-target inline-flex items-center gap-1 h-6 px-2 rounded-full text-[10px] font-semibold transition-all ${
                     reviewed
                       ? 'bg-emerald-50 ring-1 ring-emerald-200 text-emerald-700 hover:bg-emerald-100'
                       : 'bg-white ring-1 ring-gray-200/70 text-gray-500 hover:ring-emerald-300 hover:text-emerald-700'
@@ -707,7 +707,7 @@ function NotebookEntryCard({ entry, index, ko, onToggleReviewed }: {
             </p>
             {entry.question.prompt.length > 160 && (
               <button type="button" onClick={() => setExpanded(v => !v)}
-                className="text-[11px] text-gray-500 hover:text-gray-800 mt-1 inline-flex items-center gap-0.5">
+                className="tap-target text-[11px] text-gray-500 hover:text-gray-800 mt-1 inline-flex items-center gap-0.5">
                 {expanded ? t('study.wrongNotebook.showLess') : t('study.wrongNotebook.showMore')}<ChevronRight className={`w-3 h-3 transition-transform ${expanded ? 'rotate-90' : ''}`} />
               </button>
             )}
