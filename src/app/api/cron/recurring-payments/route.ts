@@ -71,10 +71,31 @@ export async function GET(req: NextRequest) {
       headers,
     })
 
-    const result = await response.json()
+    // Read the body as TEXT first. A non-2xx from the generate route may
+    // be HTML (a Next error page) or empty, in which case .json() throws
+    // and the catch below reports the parse failure instead of the real
+    // status — which is exactly what happened on 2026-08-21/22: two
+    // failed runs whose heartbeat said only "Failed to generate
+    // recurring invoices", with no status and no body to act on.
+    const raw = await response.text()
+    let result: {
+      message?: string
+      totalInvoicesCreated?: number
+      templatesFound?: number
+      templatesProcessed?: number
+      errors?: string[]
+      skipped?: boolean
+    } = {}
+    try {
+      result = raw ? JSON.parse(raw) : {}
+    } catch {
+      // leave result empty; `raw` is carried in the error below
+    }
 
     if (!response.ok) {
-      throw new Error(result.message || 'Failed to generate recurring invoices')
+      throw new Error(
+        `generate returned ${response.status}: ${result.message || raw.slice(0, 300) || '(empty body)'}`,
+      )
     }
 
     // Log the result for monitoring
