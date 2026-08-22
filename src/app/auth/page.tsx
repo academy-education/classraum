@@ -141,14 +141,35 @@ export default function AuthPage() {
   // so scrolling on the same frame would scroll the OLD geometry. One
   // frame after paint is enough, and 'nearest' means a field already in
   // view does not jump.
+  //
+  // Driven by FOCUS, not by the inset changing. The first version keyed
+  // off `keyboardInset` alone, which only fires when the keyboard opens
+  // or resizes — so filling the form top-down, where the keyboard is
+  // ALREADY up by the time you reach 전화번호, scrolled nothing at all.
+  // That is the reported bug: the last field sat half-behind the keys.
+  // `focusin` fires for every field, including the ones tapped while the
+  // keyboard is open.
+  //
+  // 'center', not 'nearest': 'nearest' scrolls the MINIMUM, so a field
+  // whose top edge is barely visible above the keyboard already counts
+  // as in view and does not move. Centring is what a person expects when
+  // they tap a field near the bottom of a form.
   useEffect(() => {
-    if (!keyboardInset) return
-    const el = document.activeElement
-    if (!(el instanceof HTMLInputElement || el instanceof HTMLTextAreaElement)) return
-    const id = window.setTimeout(() => {
-      el.scrollIntoView({ block: 'nearest', behavior: 'smooth' })
-    }, 100)
-    return () => window.clearTimeout(id)
+    const bring = (target: EventTarget | null) => {
+      if (!(target instanceof HTMLInputElement || target instanceof HTMLTextAreaElement)) return
+      // One frame after the keyboard animation, not on the same tick:
+      // iOS fires focus BEFORE the visual viewport has reflowed, so
+      // scrolling immediately scrolls the old geometry.
+      window.setTimeout(() => {
+        target.scrollIntoView({ block: 'center', behavior: 'smooth' })
+      }, 250)
+    }
+    const onFocusIn = (e: FocusEvent) => bring(e.target)
+    document.addEventListener('focusin', onFocusIn)
+    // Also re-run when the keyboard itself resizes (rotation, or an
+    // autocomplete bar appearing) while a field is already focused.
+    if (keyboardInset) bring(document.activeElement)
+    return () => document.removeEventListener('focusin', onFocusIn)
   }, [keyboardInset])
 
   // A prove-then-link handshake survives a reload of this page.

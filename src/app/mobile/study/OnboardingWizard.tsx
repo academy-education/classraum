@@ -79,6 +79,38 @@ export function OnboardingWizard({ onComplete }: { onComplete: () => void }) {
   // the sheet is bottom-anchored, so without this it opens straight
   // under the keyboard.
   const keyboardInset = useKeyboardInset()
+
+  /*
+   * Bring the focused field into view inside the sheet.
+   *
+   * The sheet already lifts above the keyboard (`bottom: keyboardInset`)
+   * and scrolls internally (`overflow-y-auto`) — but nothing ever
+   * scrolled it, so on step 5 the nickname input stayed below the fold
+   * with the keys over it. Reported from a real device; neither audit
+   * could reproduce it because Chrome cannot emulate an iOS keyboard.
+   *
+   * Scoped to this sheet rather than the document: the wizard is modal,
+   * and a document-level listener would fight the auth page's own.
+   * 'center' rather than 'nearest' for the same reason as there — a
+   * field whose top edge is just visible counts as in-view to 'nearest'
+   * and would not move.
+   */
+  const sheetRef = useRef<HTMLDivElement | null>(null)
+  useEffect(() => {
+    const sheet = sheetRef.current
+    if (!sheet) return
+    const onFocusIn = (e: FocusEvent) => {
+      const el = e.target
+      if (!(el instanceof HTMLInputElement || el instanceof HTMLTextAreaElement)) return
+      // iOS fires focus before the visual viewport reflows for the
+      // keyboard; scrolling on the same tick scrolls stale geometry.
+      window.setTimeout(() => {
+        el.scrollIntoView({ block: 'center', behavior: 'smooth' })
+      }, 250)
+    }
+    sheet.addEventListener('focusin', onFocusIn)
+    return () => sheet.removeEventListener('focusin', onFocusIn)
+  }, [])
   const { t, language } = useTranslation()
   const ko = language === 'korean'
 
@@ -186,6 +218,7 @@ export function OnboardingWizard({ onComplete }: { onComplete: () => void }) {
         // tab bar covers the wizard's Skip/Next action bar and users
         // can't advance past step 1. Safe-area padding keeps the
         // action bar clear of the iOS home indicator too.
+        ref={sheetRef}
         className="fixed inset-x-0 bottom-0 z-[121] overflow-y-auto rounded-t-3xl bg-white shadow-[0_-8px_32px_-8px_rgba(0,0,0,0.18)] animate-slide-up"
         style={{
           // Lift the whole sheet off the keyboard, and shrink it by the
@@ -199,7 +232,7 @@ export function OnboardingWizard({ onComplete }: { onComplete: () => void }) {
           // does not help: it tracks the home indicator, not the
           // keyboard.
           bottom: keyboardInset,
-          maxHeight: `calc(92vh - ${keyboardInset}px)`,
+          maxHeight: `calc(92dvh - ${keyboardInset}px)`,
           // The home indicator is only there when the keyboard is not.
           paddingBottom: keyboardInset ? 0 : 'env(safe-area-inset-bottom)',
           transition: 'bottom 180ms ease-out, max-height 180ms ease-out',
