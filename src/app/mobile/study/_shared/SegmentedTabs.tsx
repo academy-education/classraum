@@ -15,6 +15,17 @@ import { useTranslation } from '@/hooks/useTranslation'
  *    app's design refresh; best for top-level filters (subject, kind).
  *
  * `recommendedValue` marks one option with a small ★ badge.
+ *
+ * BOTH variants are h-11 (44px), which is the iOS/Android minimum tap
+ * height, and they are grown for real rather than given a
+ * `.tap-target` projection. The tray variant's segments sit flush
+ * against each other and the pill variant WRAPS — measured at 375 on
+ * /mobile/profile the two pill rows' centres were 38px apart — so in
+ * both cases a projected 44px box would overlap its neighbour and the
+ * later-painted sibling would swallow taps meant for the other one.
+ * That is the case globals.css's `.tap-target` doc comment explicitly
+ * forbids. Note the `[data-surface="dashboard"]` min-height rule does
+ * not reach the student surface, so these heights must be explicit.
  */
 export interface SegmentedOption<T> {
   value: T
@@ -49,7 +60,7 @@ export function SegmentedTabs<T>({
               role="tab"
               aria-selected={selected}
               onClick={() => onChange(opt.value)}
-              className={`relative h-8 px-3.5 rounded-full text-[13px] font-semibold tracking-tight transition-all active:scale-[0.96] ${
+              className={`relative h-11 min-w-11 px-3.5 rounded-full text-[13px] font-semibold tracking-tight transition-all active:scale-[0.96] ${
                 selected
                   ? 'bg-primary text-white shadow-[0_6px_14px_-6px_rgba(40,133,232,0.6)]'
                   : 'text-gray-500 hover:text-gray-700 hover:bg-gray-100'
@@ -76,7 +87,7 @@ export function SegmentedTabs<T>({
             role="tab"
             aria-selected={selected}
             onClick={() => onChange(opt.value)}
-            className={`relative flex-1 h-9 rounded-[10px] text-[13px] font-semibold tracking-tight transition-all ${
+            className={`relative flex-1 h-11 rounded-[10px] text-[13px] font-semibold tracking-tight transition-all ${
               selected
                 ? 'bg-white text-gray-900 shadow-[0_1px_2px_rgba(0,0,0,0.05),0_2px_6px_-2px_rgba(0,0,0,0.10)] ring-1 ring-black/[0.04]'
                 : 'text-gray-500 hover:text-gray-700 active:scale-[0.97]'

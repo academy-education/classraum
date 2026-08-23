@@ -134,13 +134,13 @@ export function StudyNicknameCard({ ko }: { ko: boolean }) {
             autoCorrect="off"
             spellCheck={false}
             placeholder={ko ? '닉네임을 정하세요' : 'Choose a nickname'}
-            className="flex-1 min-w-0 px-3 py-2 text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-transparent disabled:bg-gray-100"
+            className="flex-1 min-w-0 h-11 px-3 py-2 text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-transparent disabled:bg-gray-100"
           />
           <button
             type="button"
             onClick={requestSave}
             disabled={!canSave}
-            className="flex-shrink-0 inline-flex items-center justify-center h-10 px-4 rounded-full bg-gradient-to-b from-primary to-primary/90 text-white text-[13px] font-semibold shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_2px_8px_rgba(40,133,232,0.28)] active:scale-[0.98] disabled:opacity-40 disabled:cursor-not-allowed transition-all"
+            className="flex-shrink-0 inline-flex items-center justify-center h-11 px-4 rounded-full bg-gradient-to-b from-primary to-primary/90 text-white text-[13px] font-semibold shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_2px_8px_rgba(40,133,232,0.28)] active:scale-[0.98] disabled:opacity-40 disabled:cursor-not-allowed transition-all"
           >
             {saving ? <Loader2 className="w-4 h-4 animate-spin" /> : saved ? <Check className="w-4 h-4" /> : (ko ? '저장' : 'Save')}
           </button>

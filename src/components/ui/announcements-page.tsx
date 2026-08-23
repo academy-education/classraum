@@ -32,6 +32,7 @@ import { useResponsiveViewMode } from '@/hooks/useResponsiveViewMode'
 import { useTranslation } from '@/hooks/useTranslation'
 import { useCreateShortcut } from '@/hooks/useCreateShortcut'
 import { EmptyState } from '@/components/ui/common/EmptyState'
+import { CardListControls } from '@/components/ui/common/CardListControls'
 import { Label } from '@/components/ui/label'
 import { ModalShell } from '@/components/ui/common/ModalShell'
 import { useAuth } from '@/contexts/AuthContext'
@@ -821,6 +822,35 @@ export function AnnouncementsPage({ academyId }: AnnouncementsPageProps) {
         <SearchKbdHint />
         </div>
       </div>
+
+      {/* Card view has no <thead>, so the title/creator/created sort
+          buttons and the classroom funnel that live there do not render
+          at all. Same state, same three fields, same derived classroom
+          list. */}
+      {viewMode === 'card' && (
+        <CardListControls
+          className="-mt-4"
+          sortField={sortField}
+          sortDirection={sortDirection}
+          onSortFieldChange={setSortField}
+          onSortDirectionChange={setSortDirection}
+          sortOptions={[
+            { value: 'title', label: String(t('announcements.announcementTitle')) },
+            { value: 'creator', label: String(t('announcements.createdBy')) },
+            { value: 'created_at', label: String(t('announcements.createdAt')) },
+          ]}
+          filters={[{
+            id: 'classroom',
+            label: String(t('announcements.classrooms')),
+            value: classroomFilter,
+            onChange: (value) => { setClassroomFilter(value); setCurrentPage(1) },
+            options: [
+              { value: 'all', label: String(t('announcements.allClassrooms')) },
+              ...classrooms.map(classroom => ({ value: classroom.id, label: classroom.name })),
+            ],
+          }]}
+        />
+      )}
 
       {/* Bulk Action Bar — appears when announcements are selected. */}
       {selectedRows.length > 0 && (

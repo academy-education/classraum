@@ -260,7 +260,37 @@ export function StudyAvatarCard({ onSaved }: {
                   at 375px the sixth pill sat half off the edge with no
                   affordance saying it could be dragged, so one whole
                   category read as decoration. Wrapping costs a second
-                  row and clips nothing. */}
+                  row and clips nothing.
+
+                  `h-11` (44px), not the `h-8` this shipped with, and
+                  GROWN rather than given a `.tap-target` projection.
+                  Measured at 375: the six pills wrap 4 + 2, and the two
+                  row centres sat 38px apart — closer than 44. That is
+                  precisely the case the utility's own doc comment in
+                  globals.css forbids, because the projected boxes would
+                  overlap and the later-painted row would swallow taps
+                  meant for the row above it, turning a small target into
+                  a WRONG one. `.tap-target-y` fails for the same reason:
+                  the neighbours that are too close here are the ones
+                  ABOVE and BELOW.
+
+                  Growing the height fixes the overlap as a side effect
+                  rather than needing a second lever — at 44px tall with
+                  `gap-1.5`, the row centres are 50px apart. The widths
+                  are untouched (55–79px, all already past 44), so the
+                  pills still wrap 4 + 2 and the card grows by 24px
+                  total. The `data-surface="dashboard"` min-height rule
+                  does NOT reach here — this is the student surface — so
+                  the height has to be set explicitly.
+
+                  `min-w-11` is there for KOREAN specifically, and it is
+                  not belt-and-braces. The labels that are 55–79px wide
+                  in English are one or two Hangul syllables in Korean,
+                  and "옷" (Clothes) measured 39.3px at 375 — under 44 on
+                  the width axis even after the height was fixed. English
+                  never shows it, so only a 375-in-Korean pass catches
+                  it. The minimum only ever binds on that one pill; every
+                  other label is already past 44 in both languages. */}
               <div role="tablist" aria-label={String(t('study.avatar.customise'))} className="flex items-center gap-1.5 flex-wrap">
                 {TABS.map(id => (
                   <button
@@ -269,7 +299,7 @@ export function StudyAvatarCard({ onSaved }: {
                     role="tab"
                     aria-selected={tab === id}
                     onClick={() => setTab(id)}
-                    className={`h-8 px-3.5 rounded-full text-[13px] font-semibold whitespace-nowrap transition-all active:scale-[0.96] ${
+                    className={`h-11 min-w-11 px-3.5 rounded-full text-[13px] font-semibold whitespace-nowrap transition-all active:scale-[0.96] ${
                       tab === id
                         ? 'bg-primary text-white shadow-[0_6px_14px_-6px_rgba(40,133,232,0.6)]'
                         : 'text-gray-500 bg-gray-100 hover:text-gray-700'
@@ -291,7 +321,7 @@ export function StudyAvatarCard({ onSaved }: {
                 type="button"
                 onClick={() => void save()}
                 disabled={!dirty || saving}
-                className="h-10 px-4 rounded-xl bg-primary text-white text-[13.5px] font-semibold disabled:opacity-40 disabled:cursor-not-allowed active:scale-[0.97] transition"
+                className="h-11 px-4 rounded-xl bg-primary text-white text-[13.5px] font-semibold disabled:opacity-40 disabled:cursor-not-allowed active:scale-[0.97] transition"
               >
                 {saving
                   ? <span className="inline-flex items-center gap-1.5"><Loader2 className="w-3.5 h-3.5 animate-spin" />{t('study.avatar.saving')}</span>
@@ -301,7 +331,7 @@ export function StudyAvatarCard({ onSaved }: {
                 <button
                   type="button"
                   onClick={() => { setDraft(stored); setFailed(false); setUnsupported(false) }}
-                  className="h-10 px-3 rounded-xl text-[13px] font-medium text-gray-600 hover:bg-gray-100 transition"
+                  className="h-11 px-3 rounded-xl text-[13px] font-medium text-gray-600 hover:bg-gray-100 transition"
                 >
                   {t('study.avatar.discard')}
                 </button>
@@ -313,7 +343,7 @@ export function StudyAvatarCard({ onSaved }: {
               <button
                 type="button"
                 onClick={randomise}
-                className="h-10 px-3 rounded-xl text-[13px] font-medium text-gray-600 hover:bg-gray-100 transition ml-auto"
+                className="h-11 px-3 rounded-xl text-[13px] font-medium text-gray-600 hover:bg-gray-100 transition ml-auto"
               >
                 {t('study.avatar.randomise')}
               </button>
@@ -321,7 +351,7 @@ export function StudyAvatarCard({ onSaved }: {
                 <button
                   type="button"
                   onClick={useInitials}
-                  className="h-10 px-3 rounded-xl text-[13px] font-medium text-gray-500 hover:bg-gray-100 transition"
+                  className="h-11 px-3 rounded-xl text-[13px] font-medium text-gray-500 hover:bg-gray-100 transition"
                 >
                   {t('study.avatar.useInitials')}
                 </button>

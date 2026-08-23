@@ -952,7 +952,19 @@ function MobileProfilePageContent() {
         <Card className="divide-y divide-gray-100 py-0 gap-0 overflow-hidden">
           {/* Language picker — uses Select but visually matches the row pattern */}
           <Select value={language} onValueChange={(value) => handleLanguageChange(value as 'english' | 'korean')}>
-            <SelectTrigger className="w-full h-auto p-4 border-0 shadow-none bg-transparent rounded-none hover:bg-gray-50 transition-colors [&>svg]:hidden">
+            {/* `data-[size=default]:h-auto` is doing real work and is not
+                redundant with the `h-auto` beside it. SelectTrigger's base
+                class carries `data-[size=default]:h-10`, and an attribute
+                selector outranks a plain class, so the row this was WRITTEN
+                to be — `h-auto p-4`, the same shape as the Logout and Delete
+                Account rows below it, which measure 69–70px — was being
+                clamped to 40px. That made it both the shortest tap target on
+                the page and visually out of step with its own card. Matching
+                the variant's own selector is what lets `h-auto` win; the row
+                then measures 69px and the p-4 padding it always declared is
+                finally applied. `min-h-` would have cleared 44px while
+                leaving the row squashed and still inconsistent. */}
+            <SelectTrigger className="w-full h-auto data-[size=default]:h-auto p-4 border-0 shadow-none bg-transparent rounded-none hover:bg-gray-50 transition-colors [&>svg]:hidden">
               <div className="flex items-center gap-3 w-full">
                 <div className="w-9 h-9 rounded-xl bg-sky-500/10 flex items-center justify-center flex-shrink-0">
                   <Globe className="w-4 h-4 text-sky-600" strokeWidth={1.75} />

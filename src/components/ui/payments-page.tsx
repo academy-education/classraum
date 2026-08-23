@@ -39,6 +39,7 @@ import { useTranslation } from '@/hooks/useTranslation'
 import { useResponsiveViewMode } from '@/hooks/useResponsiveViewMode'
 import { getWeekdayShortMap } from '@/utils/dateUtils'
 import { EmptyState } from '@/components/ui/common/EmptyState'
+import { CardListControls } from '@/components/ui/common/CardListControls'
 import { useToast } from '@/hooks/use-toast'
 import { showSuccessToast, showErrorToast } from '@/stores'
 import {
@@ -2002,8 +2003,19 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
           aValue = a.student_name || ''
           bValue = b.student_name || ''
           break
+        // The one-time table header has always rendered an Invoice Name
+        // sort button, but this switch had no case for it, so the click
+        // fell through to `default: return 0` and the list never moved.
+        // Added rather than dropped from the header: the card-mode
+        // control offers every column the header does, and a control
+        // that silently does nothing is worse on a phone than on a
+        // desktop, where at least the arrow gives no feedback either.
+        case 'invoice_name':
+          aValue = a.invoice_name || ''
+          bValue = b.invoice_name || ''
+          break
         case 'amount':
-          return sortDirection === 'asc' 
+          return sortDirection === 'asc'
             ? (a.final_amount || a.amount || 0) - (b.final_amount || b.amount || 0)
             : (b.final_amount || b.amount || 0) - (a.final_amount || a.amount || 0)
         case 'status':
@@ -2665,6 +2677,69 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
               <SearchKbdHint />
           </div>
 
+          {/* Card view has no <thead>, so the column sort buttons and the
+              status funnel that live there do not render at all. The sort
+              and filter state is per-tab (oneTime* / recurring*), so this
+              mirrors whichever tab is showing. The `plans` tab never gets
+              here — it renders its own card grid above and has neither a
+              sortable column nor a filter. */}
+          {viewMode === 'card' && (
+            activeTab === 'one_time' ? (
+              <CardListControls
+                sortField={oneTimeSortField}
+                sortDirection={oneTimeSortDirection}
+                onSortFieldChange={setOneTimeSortField}
+                onSortDirectionChange={setOneTimeSortDirection}
+                sortOptions={[
+                  { value: 'student', label: String(t('common.roles.student')) },
+                  { value: 'invoice_name', label: String(t('payments.invoiceName')) },
+                  { value: 'amount', label: String(t('payments.amount')) },
+                  { value: 'due_date', label: String(t('payments.dueDate')) },
+                  { value: 'paid_at', label: String(t('payments.paidDate')) },
+                ]}
+                filters={[{
+                  id: 'status',
+                  label: String(t('common.status')),
+                  value: oneTimeStatusFilter,
+                  onChange: setOneTimeStatusFilter,
+                  options: [
+                    { value: 'all', label: String(t('common.all')) },
+                    { value: 'pending', label: String(t('payments.pending')) },
+                    { value: 'paid', label: String(t('payments.paid')) },
+                    { value: 'overdue', label: String(t('payments.overdue')) },
+                    { value: 'cancelled', label: String(t('payments.cancelled')) },
+                  ],
+                }]}
+              />
+            ) : (
+              <CardListControls
+                sortField={recurringSortField}
+                sortDirection={recurringSortDirection}
+                onSortFieldChange={setRecurringSortField}
+                onSortDirectionChange={setRecurringSortDirection}
+                sortOptions={[
+                  { value: 'student', label: String(t('common.roles.student')) },
+                  { value: 'template', label: String(t('payments.template')) },
+                  { value: 'amount', label: String(t('payments.amount')) },
+                ]}
+                filters={[{
+                  id: 'status',
+                  label: String(t('common.status')),
+                  value: recurringStatusFilter,
+                  onChange: setRecurringStatusFilter,
+                  // active/paused, NOT the pending/paid/overdue the table
+                  // header offers — see the header dropdown for why those
+                  // three could never match a row.
+                  options: [
+                    { value: 'all', label: String(t('common.all')) },
+                    { value: 'active', label: String(t('common.active')) },
+                    { value: 'paused', label: String(t('payments.paused')) },
+                  ],
+                }]}
+              />
+            )
+          )}
+
           {/* Bulk Actions Bar — uses shared BulkActionBar primitive for visual consistency
               with sessions / assignments / classrooms / attendance pages. */}
           {((activeTab === 'one_time' && selectedOneTimeInvoices.size > 0) ||
@@ -3047,32 +3122,34 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                                   >
                                     {t('common.all')}
                                   </button>
+                                  {/* active / paused — the only two values
+                                      `recurring_payment_template_students.status`
+                                      can hold (enforced by its `status_check`
+                                      CHECK constraint, and all 11 live rows are
+                                      'active'). This dropdown previously offered
+                                      pending / paid / overdue, which are INVOICE
+                                      statuses: picking any of them compared a
+                                      student row's status against a value the
+                                      column cannot contain, so the list always
+                                      emptied. The bulk-status Select on this same
+                                      page already writes active/paused. */}
                                   <button
                                     onClick={() => {
-                                      setRecurringStatusFilter('pending')
+                                      setRecurringStatusFilter('active')
                                       setShowRecurringStatusFilter(false)
                                     }}
-                                    className={`block w-full text-left px-3 py-2 text-sm hover:bg-gray-100 ${recurringStatusFilter === 'pending' ? 'bg-primary/10 text-primary' : 'text-gray-700'}`}
+                                    className={`block w-full text-left px-3 py-2 text-sm hover:bg-gray-100 ${recurringStatusFilter === 'active' ? 'bg-primary/10 text-primary' : 'text-gray-700'}`}
                                   >
-                                    {t('payments.pending')}
+                                    {t('common.active')}
                                   </button>
                                   <button
                                     onClick={() => {
-                                      setRecurringStatusFilter('paid')
+                                      setRecurringStatusFilter('paused')
                                       setShowRecurringStatusFilter(false)
                                     }}
-                                    className={`block w-full text-left px-3 py-2 text-sm hover:bg-gray-100 ${recurringStatusFilter === 'paid' ? 'bg-primary/10 text-primary' : 'text-gray-700'}`}
+                                    className={`block w-full text-left px-3 py-2 text-sm hover:bg-gray-100 ${recurringStatusFilter === 'paused' ? 'bg-primary/10 text-primary' : 'text-gray-700'}`}
                                   >
-                                    {t('payments.paid')}
-                                  </button>
-                                  <button
-                                    onClick={() => {
-                                      setRecurringStatusFilter('overdue')
-                                      setShowRecurringStatusFilter(false)
-                                    }}
-                                    className={`block w-full text-left px-3 py-2 text-sm hover:bg-gray-100 ${recurringStatusFilter === 'overdue' ? 'bg-primary/10 text-primary' : 'text-gray-700'}`}
-                                  >
-                                    {t('payments.overdue')}
+                                    {t('payments.paused')}
                                   </button>
                                 </div>
                               )}

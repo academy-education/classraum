@@ -66,6 +66,7 @@ import {
 import { useTranslation } from '@/hooks/useTranslation'
 import { getDateLocale } from '@/utils/dateUtils'
 import { EmptyState } from '@/components/ui/common/EmptyState'
+import { CardListControls } from '@/components/ui/common/CardListControls'
 import { Label } from '@/components/ui/label'
 // Import from the standalone sanitize module — importing from
 // './RichTextEditor' would statically pull tiptap (~200kB) into this
@@ -2733,7 +2734,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
         </div>
       </div>
 
-      <div className="flex items-center gap-4 mb-8">
+      <div className={`flex items-center gap-4 ${viewMode === 'card' ? 'mb-4' : 'mb-8'}`}>
         <div className="relative flex-1 max-w-md">
           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5 pointer-events-none" />
           <Input
@@ -2747,6 +2748,42 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
         <SearchKbdHint />
         </div>
       </div>
+
+      {/* Card view has no <thead>, so the column sort buttons and the
+          status funnel that live there do not render at all. Same
+          `sortField`/`sortDirection`/`statusFilter` state, same five
+          fields and same seven status values — see CardListControls for
+          why this is a Select rather than a row of chips. */}
+      {viewMode === 'card' && (
+        <CardListControls
+          sortField={sortField}
+          sortDirection={sortDirection}
+          onSortFieldChange={setSortField}
+          onSortDirectionChange={setSortDirection}
+          sortOptions={[
+            { value: 'report_name', label: String(t('reports.reportName')) },
+            { value: 'student', label: String(t('reports.student')) },
+            { value: 'school', label: String(t('reports.school')) },
+            { value: 'created_date', label: String(t('reports.createdDate')) },
+            { value: 'updated_date', label: String(t('reports.updatedDate')) },
+          ]}
+          filters={[{
+            id: 'status',
+            label: String(t('common.status')),
+            value: statusFilter,
+            onChange: setStatusFilter,
+            options: [
+              { value: 'all', label: String(t('reports.all')) },
+              { value: 'Draft', label: String(t('reports.draft')) },
+              { value: 'Finished', label: String(t('reports.finished')) },
+              { value: 'Approved', label: String(t('reports.approved')) },
+              { value: 'Sent', label: String(t('reports.sent')) },
+              { value: 'Viewed', label: String(t('reports.viewed')) },
+              { value: 'Error', label: String(t('reports.error')) },
+            ],
+          }]}
+        />
+      )}
 
       {/* Bulk Action Bar — table mode only; card view has no row checkboxes. */}
       {viewMode === 'table' && selectedRows.length > 0 && (
