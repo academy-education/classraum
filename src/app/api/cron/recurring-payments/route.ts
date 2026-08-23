@@ -1,24 +1,47 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { verifyCronAuth } from '@/lib/cron-auth'
 import { recordHeartbeat } from '@/lib/ops/heartbeat'
+import { generateRecurringInvoices } from '@/lib/payments/generate-recurring'
 
 /**
  * Daily cron — generates recurring student invoices.
  *
- * Thin forwarder: the work is in POST /api/payments/recurring/generate,
- * which is also reachable from the payments UI. This route exists so
- * Vercel Cron (which only issues GET) can drive it.
+ * Schedule (vercel.json): 00:35 UTC daily = 09:35 KST. Deliberately
+ * clear of the other money crons (09:00/09:15 UTC billing) and of the
+ * 00:00–00:10 UTC notification crons.
  *
- * Schedule (vercel.json): 20:00 UTC daily = 05:00 KST. Deliberately
- * clear of the other money crons (09:00/09:15 UTC billing, 00:10 UTC
- * payment reminders) so a slow run cannot contend with them, and clear
- * of 00:00–00:10 UTC where three notification crons already sit.
+ * WHY THERE IS NO fetch() HERE ANY MORE (root cause of the 2026-08-21/22/23
+ * failures). This route used to do:
+ *
+ *     fetch(`${req.nextUrl.origin}/api/payments/recurring/generate`, …)
+ *
+ * i.e. the app calling itself over the public internet to run a function
+ * that lives in its own bundle. On Vercel, `req.nextUrl.origin` is the
+ * immutable deployment URL, and Deployment Protection guards that URL.
+ * Every run got, verbatim from the heartbeat:
+ *
+ *     generate returned 401: {"protection":{"vercel_auth_enabled":true,
+ *     "vercel_auth_callback":"https://vercel.com/sso-api?url=…%2Fapi%2F
+ *     payments%2Frecurring%2Fgenerate&nonce=…"}}
+ *
+ * The request never reached the generate route. `CRON_SECRET` was never
+ * the problem and forwarding it could never have helped — Vercel's SSO
+ * gate answers before any of our code runs, and it does not read that
+ * header. (The inbound cron request is exempt because Vercel Cron is
+ * internal; its own outbound copy of the same URL is not.) That JSON
+ * body having no `message` key is also why the first two failures said
+ * only "Failed to generate recurring invoices".
+ *
+ * The work is now imported. No origin to guess, no second credential, no
+ * gateway in the path — the same thing /api/cron/refresh-test-specs has
+ * always done. The HTTP route still exists, unchanged, for manual and
+ * external callers.
  *
  * Before this was scheduled, all 19 active templates were overdue — some
- * since Jan 2025 — and the generate route invoices ONE period per run
- * before advancing next_due_date. Switching the cron on without first
- * rolling every template to a FUTURE occurrence would have emitted weeks
- * of back-dated invoices to real parents. The roll-forward
+ * since Jan 2025 — and generation invoices ONE period per run before
+ * advancing next_due_date. Switching the cron on without first rolling
+ * every template to a FUTURE occurrence would have emitted weeks of
+ * back-dated invoices to real parents. The roll-forward
  * (scripts/roll-forward-recurring-templates.ts) is a prerequisite, not
  * an optional tidy-up.
  */
@@ -29,80 +52,13 @@ export async function GET(req: NextRequest) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
     }
 
-    // Call the recurring invoice generation endpoint
-    const baseUrl = req.nextUrl.origin
-    const generateUrl = `${baseUrl}/api/payments/recurring/generate`
-
-    const headers: Record<string, string> = {
-      'Content-Type': 'application/json',
-    }
-    // Forward the same secret the inbound guard accepts. CRON_SECRET
-    // first — that is the name Vercel Cron requires, and the one likely
-    // to be the only one set. Reading CRON_SECRET_KEY alone meant this
-    // route could authenticate INBOUND via verifyCronAuth and then
-    // forward no credential at all, so recurring invoice generation
-    // 401'd downstream and silently produced nothing.
-    //
-    // The old `else` fell back to a 'vercel-cron/1.0' User-Agent. That
-    // was always spoofable, and verifyCronAuth deliberately stopped
-    // honouring it — so the fallback could not authenticate anything.
-    // Fail loudly instead of firing a request that is certain to 401.
-    const cronSecret = process.env.CRON_SECRET || process.env.CRON_SECRET_KEY
-    if (!cronSecret) {
-      console.error('[cron/recurring-payments] no CRON_SECRET configured — cannot authenticate to the generate endpoint')
-      // Past the auth guard, so this run DID happen and must be
-      // reported — a misconfigured secret that stayed silent is exactly
-      // how this job would look identical to a healthy one while
-      // generating nothing.
-      await recordHeartbeat(
-        'recurring-payments',
-        { ok: false, detail: { error: 'CRON_SECRET not configured' } },
-        Date.now() - started,
-      )
-      return NextResponse.json(
-        { error: 'CRON_SECRET not configured' },
-        { status: 500 },
-      )
-    }
-    headers['Authorization'] = `Bearer ${cronSecret}`
-
-    const response = await fetch(generateUrl, {
-      method: 'POST',
-      headers,
-    })
-
-    // Read the body as TEXT first. A non-2xx from the generate route may
-    // be HTML (a Next error page) or empty, in which case .json() throws
-    // and the catch below reports the parse failure instead of the real
-    // status — which is exactly what happened on 2026-08-21/22: two
-    // failed runs whose heartbeat said only "Failed to generate
-    // recurring invoices", with no status and no body to act on.
-    const raw = await response.text()
-    let result: {
-      message?: string
-      totalInvoicesCreated?: number
-      templatesFound?: number
-      templatesProcessed?: number
-      errors?: string[]
-      skipped?: boolean
-    } = {}
-    try {
-      result = raw ? JSON.parse(raw) : {}
-    } catch {
-      // leave result empty; `raw` is carried in the error below
-    }
-
-    if (!response.ok) {
-      throw new Error(
-        `generate returned ${response.status}: ${result.message || raw.slice(0, 300) || '(empty body)'}`,
-      )
-    }
+    const result = await generateRecurringInvoices()
 
     // Log the result for monitoring
     console.log('[CRON] Recurring payments cron job completed:', result)
 
-    // `withHeartbeat` is not used here on purpose. The generate endpoint
-    // answers 200 with a non-empty `errors[]` when SOME templates failed
+    // `withHeartbeat` is not used here on purpose. Generation returns
+    // normally with a non-empty `errors[]` when SOME templates failed
     // — a partial failure that means real families were not invoiced.
     // withHeartbeat would see a resolved promise and mark the run green,
     // so the one signal that something is wrong would be the thing the

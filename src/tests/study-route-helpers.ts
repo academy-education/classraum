@@ -22,6 +22,13 @@ import { NextRequest } from 'next/server'
 export interface QueryResult {
   data?: unknown
   error?: unknown
+  /**
+   * PostgREST returns `count` alongside data for
+   * `.select(col, { count: 'exact', head: true })`. Callers that assert on
+   * a head-count query (e.g. the recurring-invoice generator's early exit)
+   * need to enqueue one.
+   */
+  count?: number | null
 }
 
 const CHAIN_METHODS = [
