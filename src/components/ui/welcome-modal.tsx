@@ -6,6 +6,8 @@ import { useRouter } from 'next/navigation'
 import { useTranslation } from '@/hooks/useTranslation'
 import { useIsBottomNavLayout } from '@/hooks/useResponsiveViewMode'
 import { useAuth } from '@/contexts/AuthContext'
+import { db } from '@/lib/supabase'
+import { setWelcomeModalOpen } from '@/lib/ui/first-run-overlays'
 import { Button } from '@/components/ui/button'
 import {
   X,
@@ -61,7 +63,7 @@ interface Slide {
 }
 
 export function WelcomeModal() {
-  const { user } = useAuth()
+  const { user, academyId, isLoading: authLoading } = useAuth()
   const { t } = useTranslation()
   const router = useRouter()
   const [open, setOpen] = useState(false)
@@ -72,6 +74,38 @@ export function WelcomeModal() {
   // sentence of the product pointed at empty space. Must be read before the
   // `!open` early return below, or the hook order changes between renders.
   const bottomNavLayout = useIsBottomNavLayout()
+
+  /* CAMP-ONLY ACADEMIES GET DIFFERENT COPY.
+   *
+   * Slide 1 listed Classrooms, Sessions, Attendance, Payments, Reports,
+   * Announcements and the whole Contacts directory. Migration 087 marks a
+   * school `camp_only`, and the sidebar then collapses to a single Camp
+   * entry — so for a camp teacher every one of those bullets named a page
+   * they do not have, on their very first screen. Slide 2's "create a
+   * classroom, add students, sessions auto-generate" is the same problem:
+   * a camp program is provisioned by Classraum, not self-served.
+   *
+   * Same read path the sidebar uses for the same flag (RLS lets academy
+   * members read their own academies row), so the modal and the nav agree
+   * about what kind of school this is. Null until it resolves; the modal
+   * does not open before then, so no user ever sees the wrong copy flip. */
+  const [campOnly, setCampOnly] = useState<boolean | null>(null)
+  useEffect(() => {
+    let cancelled = false
+    // No academy on a settled session (platform admin, orphan account):
+    // there is nothing to be camp-only about — fall through to the
+    // original copy rather than holding the modal shut forever.
+    if (!academyId) { if (!authLoading) setCampOnly(false); return }
+    void (async () => {
+      const { data } = await db
+        .from('academies')
+        .select('camp_only')
+        .eq('id', academyId)
+        .maybeSingle()
+      if (!cancelled) setCampOnly(data?.camp_only === true)
+    })()
+    return () => { cancelled = true }
+  }, [academyId, authLoading])
 
   // Read the flag on mount. Wrapped in a try because localStorage can
   // throw in private/incognito modes and a Sentry breadcrumb every page
@@ -86,6 +120,18 @@ export function WelcomeModal() {
     }
   }, [user?.id])
 
+  /* The modal waits for the camp flag: opening on the default copy and
+     swapping it a beat later would show a camp teacher the academy tour
+     they are not supposed to see, however briefly. */
+  const visible = open && !!user?.id && campOnly !== null
+
+  /* Publish to the first-run overlay store so the NamePrompt banner does
+     not stack underneath this dialog on a brand-new account. */
+  useEffect(() => {
+    setWelcomeModalOpen(visible)
+    return () => setWelcomeModalOpen(false)
+  }, [visible])
+
   const close = (markSeen: boolean) => {
     if (markSeen && user?.id && typeof window !== 'undefined') {
       try {
@@ -98,29 +144,51 @@ export function WelcomeModal() {
     setSlideIndex(0)
   }
 
-  if (!open || !user?.id) return null
+  if (!visible) return null
 
   const slides: Slide[] = [
     {
       icon: Compass,
       title: String(t('welcome.slide1.title')),
-      body: String(t(bottomNavLayout ? 'welcome.slide1.bodyBottomNav' : 'welcome.slide1.body')),
-      bullets: [
-        String(t('welcome.slide1.bullet1')),
-        String(t('welcome.slide1.bullet2')),
-        String(t('welcome.slide1.bullet3')),
-      ],
+      body: String(t(
+        campOnly
+          ? (bottomNavLayout ? 'welcome.slide1.campBodyBottomNav' : 'welcome.slide1.campBody')
+          : (bottomNavLayout ? 'welcome.slide1.bodyBottomNav' : 'welcome.slide1.body'),
+      )),
+      bullets: campOnly
+        ? [
+            String(t('welcome.slide1.campBullet1')),
+            String(t('welcome.slide1.campBullet2')),
+            String(t('welcome.slide1.campBullet3')),
+          ]
+        : [
+            String(t('welcome.slide1.bullet1')),
+            String(t('welcome.slide1.bullet2')),
+            String(t('welcome.slide1.bullet3')),
+          ],
     },
     {
       icon: Sparkles,
       title: String(t('welcome.slide2.title')),
-      body: String(t('welcome.slide2.body')),
-      bullets: [
-        String(t('welcome.slide2.bullet1')),
-        String(t('welcome.slide2.bullet2')),
-        String(t('welcome.slide2.bullet3')),
-      ],
-      cta: { label: String(t('welcome.slide2.cta')), href: '/dashboard/help/getting-started' },
+      body: String(t(campOnly ? 'welcome.slide2.campBody' : 'welcome.slide2.body')),
+      bullets: campOnly
+        ? [
+            String(t('welcome.slide2.campBullet1')),
+            String(t('welcome.slide2.campBullet2')),
+            String(t('welcome.slide2.campBullet3')),
+          ]
+        : [
+            String(t('welcome.slide2.bullet1')),
+            String(t('welcome.slide2.bullet2')),
+            String(t('welcome.slide2.bullet3')),
+          ],
+      // The getting-started guide is about setting up an academy —
+      // classrooms, schedules, families. A camp program is provisioned by
+      // Classraum, so that link would be a tour of the same pages slide 1
+      // just stopped promising. Slide 3's help centre still applies.
+      ...(campOnly ? {} : {
+        cta: { label: String(t('welcome.slide2.cta')), href: '/dashboard/help/getting-started' },
+      }),
     },
     {
       icon: HelpCircle,

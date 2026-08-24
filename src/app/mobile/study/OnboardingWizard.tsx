@@ -12,6 +12,7 @@ import { PersonAvatar, STUDY_AVATARS } from '@/app/mobile/study/_shared/avatars'
 import { STUDY_AVATAR_IDS } from '@/lib/study/avatars'
 import { useKeyboardInset } from '@/hooks/useKeyboardInset'
 import { GOAL_SCALES, goalTestsFor } from '@/lib/study/goal-scales'
+import { isAvailableTargetTest } from '@/lib/study/target-tests'
 
 type Difficulty = 'warmup' | 'balanced' | 'challenge'
 /**
@@ -44,16 +45,19 @@ const TOTAL_STEPS = 5
 // `available` mirrors the landing-grid lock: only the SAT is open for
 // now; the rest render dimmed with a "Soon" chip so new students can't
 // onboard onto a test that has no content yet.
+// `available` mirrors AVAILABLE_TARGET_TESTS rather than repeating it:
+// the camp auto-answer in useOnboardingGate reads the same list, and a
+// private copy here is how GOAL_SCALES drifted before it was shared.
 const TESTS = [
-  { value: 'sat',   label_en: 'SAT',         label_ko: 'SAT',    available: true },
-  { value: 'toefl', label_en: 'TOEFL',       label_ko: 'TOEFL',  available: true },
-  { value: 'ksat',  label_en: 'KSAT (수능)', label_ko: '수능',   available: false },
-  { value: 'toeic', label_en: 'TOEIC',       label_ko: 'TOEIC',  available: false },
-  { value: 'ielts', label_en: 'IELTS',       label_ko: 'IELTS',  available: false },
-  { value: 'act',   label_en: 'ACT',         label_ko: 'ACT',    available: false },
-  { value: 'ap',    label_en: 'AP Exams',    label_ko: 'AP 시험', available: false },
-  { value: 'gre',   label_en: 'GRE',         label_ko: 'GRE',    available: false },
-]
+  { value: 'sat',   label_en: 'SAT',         label_ko: 'SAT'    },
+  { value: 'toefl', label_en: 'TOEFL',       label_ko: 'TOEFL'  },
+  { value: 'ksat',  label_en: 'KSAT (수능)', label_ko: '수능'   },
+  { value: 'toeic', label_en: 'TOEIC',       label_ko: 'TOEIC'  },
+  { value: 'ielts', label_en: 'IELTS',       label_ko: 'IELTS'  },
+  { value: 'act',   label_en: 'ACT',         label_ko: 'ACT'    },
+  { value: 'ap',    label_en: 'AP Exams',    label_ko: 'AP 시험' },
+  { value: 'gre',   label_en: 'GRE',         label_ko: 'GRE'    },
+].map(x => ({ ...x, available: isAvailableTargetTest(x.value) }))
 
 const GRADES = [
   { value: 'middle',     label_en: 'Middle School', label_ko: '중학생' },

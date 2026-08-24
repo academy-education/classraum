@@ -5697,6 +5697,13 @@
       "noRecentInvoicesDesc": "All your payments are up to date",
       "viewInvoices": "View All Invoices"
     },
+    "campWork": {
+      "title": "Camp",
+      "multiPrograms": "{count} camps",
+      "toDo": "{count} to do",
+      "allDone": "All done",
+      "viewAll": "View all {count} camp assignments"
+    },
     "calendar": {
       "weekly": "Weekly",
       "monthly": "Monthly"
@@ -9893,7 +9900,12 @@
       "bodyBottomNav": "Everything you need to run your academy is in the navigation bar at the bottom of the screen. Here is what each section is for.",
       "bullet1": "Classrooms, Sessions, Assignments, Attendance — the day-to-day teaching workflow.",
       "bullet2": "Payments, Reports, Announcements — running the academy.",
-      "bullet3": "Contacts (Teachers, Families, Parents, Students) — your directory."
+      "bullet3": "Contacts (Teachers, Families, Parents, Students) — your directory.",
+      "campBody": "Your school runs Classraum camps, so the app is trimmed to match: the Camp section in the left panel is your whole workspace.",
+      "campBodyBottomNav": "Your school runs Classraum camps, so the app is trimmed to match: the Camp section in the navigation bar at the bottom is your whole workspace.",
+      "campBullet1": "Overview — students enrolled, completion and average score for the whole program.",
+      "campBullet2": "Classrooms — build practice sets and class reviews for each class, out of your question quota.",
+      "campBullet3": "Students — every camper's progress and accuracy by skill, plus camp reports."
     },
     "slide2": {
       "title": "Most people start here",
@@ -9901,7 +9913,11 @@
       "bullet1": "Create a Classroom — name it, pick a teacher, set the weekly schedule.",
       "bullet2": "Add students and link them to families.",
       "bullet3": "Sessions auto-generate from the schedule — no extra setup needed.",
-      "cta": "Read the getting-started guide"
+      "cta": "Read the getting-started guide",
+      "campBody": "Your camp program is set up for you when the partnership begins. From there:",
+      "campBullet1": "Open Camp and pick your program — the classrooms attached to it are listed there.",
+      "campBullet2": "Create an assignment for a classroom: choose the section and how many questions.",
+      "campBullet3": "Students see it under “From your teacher” in Study on their phone, and results come back to Overview."
     },
     "slide3": {
       "title": "Stuck? Help is one click away",

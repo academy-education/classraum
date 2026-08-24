@@ -27,7 +27,7 @@
  * field via guardianDisplayName() — never by re-parsing the frozen label.
  */
 
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useState, useSyncExternalStore } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { UserPen, X } from 'lucide-react'
@@ -38,6 +38,11 @@ import { useToast } from '@/hooks/use-toast'
 import { Button } from '@/components/ui/button'
 import { ModalShell } from '@/components/ui/common/ModalShell'
 import { NameFields, validateNameFields } from '@/components/ui/name-fields'
+import {
+  getWelcomeModalServerSnapshot,
+  isWelcomeModalOpen,
+  subscribeWelcomeModal,
+} from '@/lib/ui/first-run-overlays'
 import {
   buildNameUpdate,
   guardianDisplayName,
@@ -95,7 +100,17 @@ export function NamePrompt({ user }: { user: NamePromptUser | null }) {
   // value, no counter to drift.
   const snoozedUntil = user?.name_prompt_snoozed_until
   const snoozed = !!snoozedUntil && new Date(snoozedUntil).getTime() > Date.now()
-  const shouldShow = !!user && needsNamePrompt(user) && !snoozed && !dismissed && !saved
+  /* Two first-run overlays used to open on top of each other on a new
+     account: the WelcomeModal's centred dialog and this banner. The
+     welcome wins (it is modal and short-lived); this banner waits it out
+     and appears the moment it closes — live state, not a stored flag, so
+     nothing is deferred to a later session. See lib/ui/first-run-overlays. */
+  const welcomeOpen = useSyncExternalStore(
+    subscribeWelcomeModal,
+    isWelcomeModalOpen,
+    getWelcomeModalServerSnapshot,
+  )
+  const shouldShow = !!user && needsNamePrompt(user) && !snoozed && !dismissed && !saved && !welcomeOpen
 
   // Pre-fill from the split rule where it is safe. splitName() returns null
   // for every shape it cannot do — relationship labels, masked strings like
@@ -285,52 +300,58 @@ export function NamePrompt({ user }: { user: NamePromptUser | null }) {
     </Link>
   )
 
-  /* SHORT-SCREEN COMPACT MODE — `[@media(max-height:700px)]`.
+  /* SLIM BAR EVERYWHERE A PHONE IS INVOLVED.
    *
-   * The full banner is a ~196px fixed, bottom-anchored card. On a 667px-tall
-   * phone that lands squarely on top of the study page's "Start here — take
-   * your first practice test" CTA, which is precisely the card a brand-new
-   * student is meant to press: measured at 375x667, a tap at the CTA's centre
-   * hit the banner, not the CTA.
+   * This used to be a ~196px fixed card, and a previous pass collapsed it
+   * to one row only under `[@media(max-height:700px)]`. That fixed 375x667
+   * and left 375x812 exactly as it was: the full card still landed on the
+   * study page's "Start here" CTA and on the /mobile calendar, and
+   * document.elementFromPoint over those elements returned the banner.
+   * Screen HEIGHT was never the right axis — an 812px phone has the same
+   * 375px of width and the same content sitting under the same fixed
+   * overlay; it just has more of it to cover.
    *
-   * So under 700px of viewport height the banner collapses to a single row —
-   * icon, title, action, dismiss — by hiding the explanatory body and moving
-   * the action inline. The explanation is not lost; it is on the page the
-   * action links to. The action markup is rendered twice (stacked and inline)
-   * rather than repositioned, so the swap stays a pure media query with no
-   * height measurement and no layout effect.
+   * So the single row is now the DEFAULT and the roomy card is the
+   * exception, restored only at `lg` (>=1024px), where the surface is a
+   * desktop dashboard with room to spare and nothing to occlude. Nothing
+   * is lost on a phone: the explanation lives on the page the action
+   * links to, which is where the name is actually edited.
+   *
+   * The action markup is rendered twice (inline and stacked) rather than
+   * repositioned, so the swap stays a pure media query — no height
+   * measurement, no layout effect.
    */
   return (
     <div
-      className={`fixed inset-x-0 bottom-0 z-50 p-4 [@media(max-height:700px)]:p-2 pointer-events-none ${
+      className={`fixed inset-x-0 bottom-0 z-50 p-2 lg:p-4 pointer-events-none ${
         // Clear the mobile bottom navigation bar.
-        onMobile ? 'pb-24 [@media(max-height:700px)]:pb-[72px]' : ''
+        onMobile ? 'pb-[72px] lg:pb-24' : ''
       }`}
     >
-      <div className="mx-auto max-w-xl rounded-xl border border-gray-200 bg-white shadow-lg p-4 [@media(max-height:700px)]:p-2 flex items-start [@media(max-height:700px)]:items-center gap-3 [@media(max-height:700px)]:gap-2 pointer-events-auto">
-        {/* The icon chip is decorative; on a short screen its 36px buys back
-            enough width for the title to fit beside the inline action. */}
-        <div className="flex-shrink-0 rounded-lg bg-primary/10 p-2 [@media(max-height:700px)]:hidden">
+      <div className="mx-auto max-w-xl rounded-xl border border-gray-200 bg-white shadow-lg p-2 lg:p-4 flex items-center lg:items-start gap-2 lg:gap-3 pointer-events-auto">
+        {/* The icon chip is decorative; dropping it on a phone buys back
+            36px of width so the title fits beside the inline action. */}
+        <div className="hidden lg:block flex-shrink-0 rounded-lg bg-primary/10 p-2">
           <UserPen className="w-4 h-4 text-primary" />
         </div>
         <div className="min-w-0 flex-1">
-          {/* Compact mode uses the SHORTER existing title ("Confirm your
+          {/* The slim bar uses the SHORTER existing title ("Confirm your
               name"), because the long one truncates to "Please confirm y…"
               once the action sits beside it. */}
-          <p className="text-sm font-medium text-gray-900 [@media(max-height:700px)]:hidden">{t('names.prompt.bannerTitle')}</p>
-          <p className="hidden [@media(max-height:700px)]:block text-sm font-medium text-gray-900 truncate">{t('names.prompt.title')}</p>
-          <p className="text-sm text-gray-600 mt-0.5 [@media(max-height:700px)]:hidden">
+          <p className="lg:hidden text-sm font-medium text-gray-900 truncate">{t('names.prompt.title')}</p>
+          <p className="hidden lg:block text-sm font-medium text-gray-900">{t('names.prompt.bannerTitle')}</p>
+          <p className="hidden lg:block text-sm text-gray-600 mt-0.5">
             {isGuardian && guardianLine
               ? guardianLine
               : isGuardian
                 ? t('names.prompt.guardianBody')
                 : t('names.prompt.body')}
           </p>
-          <div className="mt-2 [@media(max-height:700px)]:hidden">
+          <div className="mt-2 hidden lg:block">
             {action}
           </div>
         </div>
-        <div className="hidden [@media(max-height:700px)]:block flex-shrink-0">
+        <div className="lg:hidden flex-shrink-0">
           {action}
         </div>
         <Button

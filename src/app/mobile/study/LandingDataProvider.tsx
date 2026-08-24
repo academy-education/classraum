@@ -2,7 +2,7 @@
 
 import { createContext, useCallback, useContext, useEffect, useState, type ReactNode } from 'react'
 import { authHeaders } from '@/lib/auth-headers'
-import type { StudentCampAssignment } from '@/lib/camp/student'
+import type { StudentCampAssignment, StudentCampContext } from '@/lib/camp/student'
 
 /**
  * Provider that fetches the batched /api/study/landing payload once
@@ -68,6 +68,10 @@ export interface LandingData {
    *  teacher" shelf. Empty array when the student is in no camp
    *  classroom; null until loaded. */
   campAssignments: StudentCampAssignment[] | null
+  /** Camp MEMBERSHIP, independent of whether any assignment exists yet.
+   *  Null until loaded. Consumed by useOnboardingGate, which must not
+   *  ask a camp student which test they are preparing for. */
+  camp: StudentCampContext | null
   loading: boolean
   refetch: () => Promise<void>
 }
@@ -86,6 +90,7 @@ export function LandingDataProvider({ children }: { children: ReactNode }) {
   const [firstTestPending, setFirstTestPending] = useState<boolean | null>(null)
   const [dailyChallenge, setDailyChallenge] = useState<LandingData['dailyChallenge']>(null)
   const [campAssignments, setCampAssignments] = useState<StudentCampAssignment[] | null>(null)
+  const [camp, setCamp] = useState<StudentCampContext | null>(null)
   const [loading, setLoading] = useState(true)
 
   const fetchOnce = useCallback(async () => {
@@ -105,6 +110,7 @@ export function LandingDataProvider({ children }: { children: ReactNode }) {
         firstTestPending?: boolean
         dailyChallenge?: LandingData['dailyChallenge']
         campAssignments?: StudentCampAssignment[]
+        camp?: StudentCampContext
       }
       setProgress(json.progress ?? null)
       setStreak(json.streak ?? 0)
@@ -117,6 +123,7 @@ export function LandingDataProvider({ children }: { children: ReactNode }) {
       setFirstTestPending(json.firstTestPending ?? null)
       setDailyChallenge(json.dailyChallenge ?? null)
       setCampAssignments(json.campAssignments ?? [])
+      setCamp(json.camp ?? { isCamp: false, testFamilies: [], primaryTestFamily: null })
     } catch {
       // Soft-fail: consumers using the fallback fetch will still work.
     } finally {
@@ -129,7 +136,7 @@ export function LandingDataProvider({ children }: { children: ReactNode }) {
   }, [fetchOnce])
 
   return (
-    <Ctx.Provider value={{ progress, streak, freezes, streakSaved, maxStreak, prefs, subscriptionStatus, xpToday, firstTestPending, dailyChallenge, campAssignments, loading, refetch: fetchOnce }}>
+    <Ctx.Provider value={{ progress, streak, freezes, streakSaved, maxStreak, prefs, subscriptionStatus, xpToday, firstTestPending, dailyChallenge, campAssignments, camp, loading, refetch: fetchOnce }}>
       {children}
     </Ctx.Provider>
   )

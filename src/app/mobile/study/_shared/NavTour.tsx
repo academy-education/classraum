@@ -6,6 +6,7 @@ import { BookOpen, Route, Shuffle, Trophy, X, ChevronRight, ChevronLeft } from '
 import { useTranslation } from '@/hooks/useTranslation'
 import { authHeaders } from '@/lib/auth-headers'
 import { StudyButton } from './StudyButton'
+import { onboardingHandledThisLoad } from './onboarding-signal'
 
 /**
  * First-visit walkthrough for the 5 study-mode bottom-nav tabs.
@@ -20,6 +21,17 @@ import { StudyButton } from './StudyButton'
  * Study tab itself is the current screen so we skip introducing it).
  * Snap-to-solve is behind the coming-soon lock and has no nav tab, so
  * the tour must not advertise it.
+ *
+ * NEVER ON THE SAME PAGE LOAD AS THE ONBOARDING WIZARD. Both are
+ * first-run flows on this one route and neither knew about the other,
+ * so a new student finished five wizard steps and this opened on top:
+ * nine screens before any work. The tour now stands down whenever the
+ * wizard has claimed the page load (see ./onboarding-signal) or whenever
+ * prefs say onboarding has not happened yet — `nav_tour_seen_at` is
+ * still unset either way, so the tour simply arrives on the next visit.
+ * Sequenced, not dropped: the wizard asks who you are, the tour says
+ * where things live, and a camp student needs the second even though
+ * their camp answers the first.
  */
 
 const STORAGE_KEY = 'study-nav-tour-seen-v1'
@@ -93,19 +105,29 @@ export function NavTour() {
         const res = await fetch('/api/study/prefs', { headers })
         if (cancelled) return
         if (res.ok) {
-          const json = await res.json() as { prefs?: { nav_tour_seen_at?: string | null } }
+          const json = await res.json() as {
+            prefs?: { nav_tour_seen_at?: string | null; onboarded_at?: string | null }
+          }
           if (json.prefs?.nav_tour_seen_at) {
             // Backfill the local cache and stay hidden.
             localStorage.setItem(STORAGE_KEY, '1')
             return
           }
+          // Onboarding has not been answered yet → the wizard owns this
+          // visit. Nothing is persisted here, so the tour returns on the
+          // next load with its own flag still unset.
+          if (!json.prefs?.onboarded_at) return
         }
         // Genuinely unseen (or prefs unreachable — first visit wins).
-        timer = window.setTimeout(() => { if (!cancelled) setActive(true) }, 600)
+        timer = window.setTimeout(() => {
+          if (!cancelled && !onboardingHandledThisLoad()) setActive(true)
+        }, 600)
       } catch {
         // Prefs unreachable: fall back to showing (worst case a repeat
         // view), matching the old localStorage-only behaviour.
-        timer = window.setTimeout(() => { if (!cancelled) setActive(true) }, 600)
+        timer = window.setTimeout(() => {
+          if (!cancelled && !onboardingHandledThisLoad()) setActive(true)
+        }, 600)
       }
     })()
     return () => {
