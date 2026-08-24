@@ -6,6 +6,7 @@ import { useAuth } from '@/contexts/AuthContext'
 import { LoadingScreen } from '@/components/ui/loading-screen'
 import { appInitTracker } from '@/utils/appInitializationTracker'
 import { readStoredMode } from '@/lib/study/currentMode'
+import { studentEntryTarget } from '@/lib/study/student-entry'
 
 /* /home — the app's role-aware entry point.
  *
@@ -52,26 +53,11 @@ export default function AppRootPage() {
         const userRole = userInfo.role
 
         // Redirect based on role (only if not already on target page).
-        // Study-only students (no academy membership) go straight to
-        // Study. Academy students land in their LAST-USED mode
-        // (persisted in localStorage — survives app restarts); the
-        // Grades/Study hub only shows on a true first visit. Parents
-        // go to the Grades dashboard since Study is student-only.
+        // The student ladder lives in studentEntryTarget() — shared with
+        // the post-login redirect in /auth, which had a diverging copy.
+        // Parents go to the Grades dashboard since Study is student-only.
         if (userRole === 'student') {
-          const { count } = await db
-            .from('students')
-            .select('user_id', { count: 'exact', head: true })
-            .eq('user_id', user.id)
-            .eq('active', true)
-          const hasAcademy = (count ?? 0) > 0
-          const storedMode = readStoredMode()
-          const target = !hasAcademy
-            ? '/mobile/study'
-            : storedMode === 'study'
-              ? '/mobile/study'
-              : storedMode === 'grades'
-                ? '/mobile'
-                : '/mobile/start'
+          const target = await studentEntryTarget(db, user.id)
           if (pathname !== target) {
             router.replace(target)
           }

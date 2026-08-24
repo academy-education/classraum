@@ -14,6 +14,9 @@ export interface StudentCampAssignment {
   classroomName: string | null
   teacherName: string | null
   testFamily: string
+  /** The camp this assignment belongs to — the Grades-side card names it. */
+  campProgramId: string
+  campProgramName: string | null
   state: 'not_started' | 'in_progress' | 'done'
   sessionId: string | null
   /** Graded totals when done (study_sessions.correct_count/total_count). */
@@ -57,7 +60,7 @@ export async function loadStudentCampAssignments(studentId: string): Promise<Stu
   const [{ data: programs }, { data: classrooms }, { data: sessions }] = await Promise.all([
     dbAdmin
       .from('camp_programs')
-      .select('id, test_family, ends_on')
+      .select('id, name, test_family, ends_on')
       .in('id', programIds)
       .is('deleted_at', null),
     // No FK from classrooms.teacher_id in the generated types, so no
@@ -120,6 +123,8 @@ export async function loadStudentCampAssignments(studentId: string): Promise<Stu
       classroomName: (classroom?.name as string | undefined) ?? null,
       teacherName,
       testFamily: program.test_family as string,
+      campProgramId: a.camp_program_id as string,
+      campProgramName: (program.name as string | undefined) ?? null,
       state: session ? (session.status === 'completed' ? 'done' : 'in_progress') : 'not_started',
       sessionId: session?.id ?? null,
       correctCount: session?.correct_count ?? null,
@@ -127,4 +132,71 @@ export async function loadStudentCampAssignments(studentId: string): Promise<Stu
     })
   }
   return out
+}
+
+/**
+ * Is this student in a camp, and what test does that camp prepare for?
+ *
+ * Deliberately NOT derived from loadStudentCampAssignments(): a student
+ * enrolled in a camp classroom the day before the teacher pushes the
+ * first set has zero assignments and is still, unambiguously, a camp
+ * student. The membership is the fact; the assignments are traffic on
+ * top of it.
+ *
+ * Same liveness rule as the shelf — program not deleted, and today not
+ * past ends_on — so a finished camp stops answering for the student and
+ * they become an ordinary study user again.
+ *
+ * `testFamilies` is a set because a student can sit in an SAT camp and
+ * a TOEFL camp at once (the E2E academy has exactly that shape).
+ * `primaryTestFamily` is the focus pointer: the family of the most
+ * recently started program, which is the camp they are currently in.
+ */
+export interface StudentCampContext {
+  isCamp: boolean
+  testFamilies: string[]
+  primaryTestFamily: string | null
+}
+
+export async function loadStudentCampContext(studentId: string): Promise<StudentCampContext> {
+  const empty: StudentCampContext = { isCamp: false, testFamilies: [], primaryTestFamily: null }
+
+  const { data: memberships } = await dbAdmin
+    .from('classroom_students')
+    .select('classroom_id')
+    .eq('student_id', studentId)
+  const classroomIds = [...new Set((memberships ?? []).map(m => m.classroom_id as string))]
+  if (classroomIds.length === 0) return empty
+
+  const { data: classrooms } = await dbAdmin
+    .from('classrooms')
+    .select('camp_program_id')
+    .in('id', classroomIds)
+    .not('camp_program_id', 'is', null)
+  const programIds = [...new Set((classrooms ?? [])
+    .map(c => c.camp_program_id as string | null)
+    .filter((x): x is string => !!x))]
+  if (programIds.length === 0) return empty
+
+  const { data: programs } = await dbAdmin
+    .from('camp_programs')
+    .select('id, test_family, starts_on, ends_on')
+    .in('id', programIds)
+    .is('deleted_at', null)
+
+  const today = new Date().toISOString().slice(0, 10)
+  const live = (programs ?? []).filter(p => !p.ends_on || today <= (p.ends_on as string))
+  if (live.length === 0) return empty
+
+  // Most recent start wins the focus pointer. `starts_on` is nullable in
+  // the schema, so a null sorts last rather than throwing off the sort.
+  const sorted = [...live].sort((a, b) =>
+    String(b.starts_on ?? '').localeCompare(String(a.starts_on ?? '')))
+  const families = [...new Set(live.map(p => p.test_family as string).filter(Boolean))]
+
+  return {
+    isCamp: true,
+    testFamilies: families,
+    primaryTestFamily: (sorted[0]?.test_family as string | undefined) ?? families[0] ?? null,
+  }
 }

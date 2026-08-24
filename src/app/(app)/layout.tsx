@@ -518,6 +518,24 @@ export default function AppLayout({
     </>
   )
 
+  // /home is the app's ROLE ROUTER, not a manager page: its whole job is
+  // to read the signed-in user's role and send them to the right surface.
+  // Wrapping it in RoleBasedAuthWrapper(['manager','teacher']) below meant
+  // the LAYOUT bounced every student and parent who landed on it straight
+  // to /mobile — before the router's own effect could run. So the student
+  // ladder in home/page.tsx never executed: a study-mode student entering
+  // at the app root (middleware sends "/" here) was dumped into Grades
+  // regardless of their stored mode, and the camp-only branch could never
+  // have fired. AuthWrapper still gates it; only the manager role
+  // allowlist and the manager chrome are skipped.
+  if (pathname === '/home') {
+    return (
+      <LayoutErrorBoundary>
+        <AuthWrapper>{children}</AuthWrapper>
+      </LayoutErrorBoundary>
+    )
+  }
+
   return (
     <LayoutErrorBoundary>
       <AuthWrapper>

@@ -16,6 +16,7 @@ import { Mail, Lock, Building, Phone, Eye, EyeOff, CheckCircle2, BookOpen, Ticke
 import { useTranslation } from "@/hooks/useTranslation"
 import { useToast } from "@/hooks/use-toast"
 import { readStoredMode } from "@/lib/study/currentMode"
+import { studentEntryTarget } from "@/lib/study/student-entry"
 import { authHeaders } from "@/lib/auth-headers"
 import { savePendingReferral, clearPendingReferral } from "@/lib/study/pending-referral"
 import { safeNotificationPath } from "@/lib/study/notification-link"
@@ -443,27 +444,12 @@ export default function AuthPage() {
         const userRole = userInfo.role
         console.log('[Auth] User role detected:', userRole)
 
-        // Redirect based on role. Study-only students (no academy
-        // membership) go straight to Study — the hub's Grades tile
-        // would be an empty dead end for them. Academy students land
-        // in their LAST-USED mode (persisted in localStorage); the
-        // /mobile/start hub only shows on a true first visit. Parents
-        // skip the hub since Study is a student-only experience.
+        // Redirect based on role. The student ladder lives in
+        // studentEntryTarget() — shared with (app)/home, which had a
+        // diverging copy of it. Parents skip the hub since Study is a
+        // student-only experience.
         if (userRole === 'student') {
-          const { count } = await db
-            .from('students')
-            .select('user_id', { count: 'exact', head: true })
-            .eq('user_id', user.id)
-            .eq('active', true)
-          const hasAcademy = (count ?? 0) > 0
-          const storedMode = readStoredMode()
-          const target = !hasAcademy
-            ? '/mobile/study'
-            : storedMode === 'study'
-              ? '/mobile/study'
-              : storedMode === 'grades'
-                ? '/mobile'
-                : '/mobile/start'
+          const target = await studentEntryTarget(db, user.id)
           console.log('[Auth] Redirecting student to', target)
           router.replace(target)
         } else if (userRole === 'parent') {

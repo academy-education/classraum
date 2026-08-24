@@ -6,7 +6,7 @@ import {
   GraduationCap, ArrowRight, Clock, CheckCircle2, Loader2, ListChecks,
 } from '@/app/mobile/study/_shared/icons'
 import { useTranslation } from '@/hooks/useTranslation'
-import { authHeaders } from '@/lib/auth-headers'
+import { resolveCampSessionId, campSessionHref } from '@/lib/camp/open-assignment'
 import { useLandingData } from './LandingDataProvider'
 import type { StudentCampAssignment } from '@/lib/camp/student'
 
@@ -35,32 +35,17 @@ export function CampAssignmentsShelf() {
   const rows = landing?.campAssignments ?? []
   if (rows.length === 0) return null
 
+  // Start/resume lives in src/lib/camp/open-assignment.ts — the Camp card
+  // on the Grades surfaces opens the same assignments and must not carry
+  // a second copy of this rule.
   const open = async (a: StudentCampAssignment) => {
-    if (a.sessionId) {
-      router.push(`/mobile/study/session/${a.sessionId}`)
-      return
-    }
     if (startingId) return
     setStartingId(a.id)
     setErrorId(null)
-    try {
-      const headers = await authHeaders()
-      const res = await fetch('/api/study/camp/start', {
-        method: 'POST',
-        headers: { ...headers, 'Content-Type': 'application/json' },
-        body: JSON.stringify({ assignmentId: a.id }),
-      })
-      const json = await res.json().catch(() => null) as { sessionId?: string } | null
-      if (!res.ok || !json?.sessionId) {
-        setErrorId(a.id)
-        return
-      }
-      router.push(`/mobile/study/session/${json.sessionId}`)
-    } catch {
-      setErrorId(a.id)
-    } finally {
-      setStartingId(null)
-    }
+    const sessionId = await resolveCampSessionId(a)
+    setStartingId(null)
+    if (!sessionId) { setErrorId(a.id); return }
+    router.push(campSessionHref(sessionId))
   }
 
   return (

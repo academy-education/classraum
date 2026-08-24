@@ -39,6 +39,7 @@ import { Calendar, ChevronRight, AlertCircle, MessageCircle, BookOpen, ChevronLe
 import { CommentBottomSheet } from '@/components/ui/mobile/CommentBottomSheet'
 import { FileViewerBottomSheet } from '@/components/ui/mobile/FileViewerBottomSheet'
 import { MobilePageErrorBoundary } from '@/components/error-boundaries/MobilePageErrorBoundary'
+import { CampWorkCard } from '@/components/ui/mobile/CampWorkCard'
 import { simpleTabDetection } from '@/utils/simpleTabDetection'
 import dynamic from 'next/dynamic'
 
@@ -2096,6 +2097,12 @@ function MobileAssignmentsPageContent() {
           {t('mobile.assignments.tabs.grades')}
         </button>
       </div>
+
+      {/* Camp — camp work is NOT in the `assignments` table this page
+          reads, so it never appeared in the counts or the list below.
+          Sits above the classroom carousel because it is outstanding
+          work; self-hides for students with no live camp assignment. */}
+      {activeTab === 'assignments' && <CampWorkCard className="mb-5" />}
 
       {/* Academy Filter and Classroom Carousel - Only show on assignments tab */}
       {activeTab === 'assignments' && (

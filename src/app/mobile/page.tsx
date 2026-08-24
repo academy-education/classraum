@@ -21,6 +21,7 @@ import { Calendar, Clock, ClipboardList, ChevronRight, Receipt, RefreshCw, Schoo
 import { useSelectedStudentStore } from '@/stores/selectedStudentStore'
 import { useStableCallback } from '@/hooks/useStableCallback'
 import { SkeletonErrorBoundary } from '@/components/error-boundaries/SkeletonErrorBoundary'
+import { CampWorkCard } from '@/components/ui/mobile/CampWorkCard'
 import { useEffectiveUserId } from '@/hooks/useEffectiveUserId'
 import { simpleTabDetection } from '@/utils/simpleTabDetection'
 import { formatDateLocal, getWeekdayShort } from '@/utils/dateUtils'
@@ -1534,6 +1535,13 @@ export default function MobilePage() {
           )}
         </div>
       </SkeletonErrorBoundary>
+
+      {/* Camp — teacher-set camp work, which does NOT live in the
+          `assignments` table the "Pending assignments" tile above counts.
+          A camp student used to read "0" here while their teacher's
+          dashboard showed sets waiting. Self-hides for everyone with no
+          live camp assignment. */}
+      <CampWorkCard />
 
       {/* Calendar Widget */}
       <SkeletonErrorBoundary>

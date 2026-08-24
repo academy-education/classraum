@@ -4,7 +4,7 @@ import { enforceRateLimit } from '@/lib/rate-limit'
 import { computeDailyChallenge } from '@/lib/study/daily-challenge'
 import { requireStudyUser } from '@/lib/study/auth'
 import { evaluateStreak } from '@/lib/study/streak'
-import { loadStudentCampAssignments } from '@/lib/camp/student'
+import { loadStudentCampAssignments, loadStudentCampContext } from '@/lib/camp/student'
 
 /**
  * GET /api/study/landing — batched landing-page summary.
@@ -76,6 +76,7 @@ export async function GET(req: NextRequest) {
     dailyChallenge,
     { count: completedTestCount },
     campAssignments,
+    campContext,
   ] = await Promise.all([
     // Streak + freeze: derives the count, auto-consumes freezes to bridge a
     // missed day, grants milestone freezes, and persists study_streak_state.
@@ -145,6 +146,15 @@ export async function GET(req: NextRequest) {
       console.error('[study/landing] camp assignments load failed', e)
       return []
     }),
+    // Camp MEMBERSHIP (not traffic) — drives the onboarding decision on
+    // the client: a student whose teacher already enrolled them in an
+    // SAT camp must not be asked which test they are preparing for.
+    // Same non-fatal contract as the shelf; on failure the student just
+    // gets the ordinary (non-camp) onboarding.
+    loadStudentCampContext(user.id).catch(e => {
+      console.error('[study/landing] camp context load failed', e)
+      return { isCamp: false, testFamilies: [], primaryTestFamily: null }
+    }),
   ])
 
   // Streak + freeze state (evaluated + persisted by evaluateStreak above).
@@ -209,5 +219,7 @@ export async function GET(req: NextRequest) {
     dailyChallenge,
     // "From your teacher" shelf (empty for students in no camp classroom).
     campAssignments,
+    // { isCamp, testFamilies, primaryTestFamily } — see loadStudentCampContext.
+    camp: campContext,
   })
 }
