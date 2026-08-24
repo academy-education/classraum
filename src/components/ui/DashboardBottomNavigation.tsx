@@ -27,12 +27,14 @@ import {
   FileQuestion,
   HelpCircle,
   Zap,
-  LogOut
+  LogOut,
+  Tent
 } from 'lucide-react'
 import { db } from '@/lib/supabase'
 import { performLogout } from '@/lib/logout'
 import { useTranslation } from '@/hooks/useTranslation'
 import { cn } from '@/lib/utils'
+import { useCampAcademy } from '@/hooks/useCampAcademy'
 
 interface SubMenuItem {
   id: string
@@ -61,6 +63,14 @@ export function DashboardBottomNavigation({ userRole, onHelpClick }: DashboardBo
   const { t } = useTranslation()
   const [activeShelf, setActiveShelf] = useState<string | null>(null)
   const [loggingOut, setLoggingOut] = useState(false)
+  /* SAME SIGNAL THE SIDEBAR READS (useCampAcademy → academies.camp_only,
+   * migration 087). This nav used to list Classrooms / Sessions /
+   * Payments / Contacts for a camp-only school while the sidebar hid
+   * every one of them, so the same teacher got a different app on a
+   * phone than on a laptop — and the welcome modal's camp copy, which
+   * promises a Camp workspace, was contradicted by the bar directly
+   * under it. */
+  const { campOnly } = useCampAcademy()
   const shelfRef = useRef<HTMLDivElement>(null)
   const navRef = useRef<HTMLDivElement>(null)
 
@@ -82,6 +92,44 @@ export function DashboardBottomNavigation({ userRole, onHelpClick }: DashboardBo
 
   // Define navigation items with their sub-menus
   const getNavItems = (): NavItemWithShelf[] => {
+    /* Camp-only school: mirror the sidebar's collapse exactly — Camp is
+     * the whole workspace, Families is the only contacts entry that
+     * still means anything (camp parent reports travel over family
+     * links), and the bottom section stays minus Upgrade, since camp
+     * billing is a manual quota grant with nothing to sell. */
+    if (campOnly) {
+      return [
+        {
+          id: 'camp',
+          icon: Tent,
+          labelKey: 'navigation.camp',
+          subItems: [
+            { id: 'camp-program', href: '/camp-program', icon: Tent, labelKey: 'navigation.camp' }
+          ]
+        },
+        {
+          id: 'people',
+          icon: Users,
+          labelKey: 'dashboard.shelf.people',
+          subItems: [
+            { id: 'families', href: '/families', icon: FamilyIcon, labelKey: 'navigation.families' }
+          ]
+        },
+        {
+          id: 'more',
+          icon: MoreHorizontal,
+          labelKey: 'dashboard.shelf.more',
+          subItems: [
+            { id: 'archive', href: '/archive', icon: Archive, labelKey: 'navigation.archive' },
+            ...(userRole !== 'teacher' ? [{ id: 'subscription', href: '/settings/subscription', icon: CreditCard, labelKey: 'navigation.subscription' }] : []),
+            { id: 'settings', href: '/settings', icon: Settings, labelKey: 'navigation.settings' },
+            { id: 'help', href: '#help', icon: HelpCircle, labelKey: 'navigation.getHelp' },
+            { id: 'logout', href: '#logout', icon: LogOut, labelKey: 'common.signOut' }
+          ]
+        }
+      ]
+    }
+
     const items: NavItemWithShelf[] = [
       {
         id: 'home',

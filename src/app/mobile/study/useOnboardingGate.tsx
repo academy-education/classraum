@@ -119,20 +119,17 @@ async function autoAnswerForCamp(families: string[], primary: string | null): Pr
   try {
     const all = families.map(f => f.toLowerCase()).filter(isAvailableTargetTest)
     const focus = isAvailableTargetTest(primary) ? String(primary).toLowerCase() : (all[0] ?? null)
-    /* FOCUS FIRST, AND SEND ONLY THE LIST.
+    /* SEND WHAT WE MEAN: the whole list, plus the camp's primary
+     * family as the focus pointer.
      *
-     * PUT /api/study/prefs keeps target_test and target_tests in lockstep,
-     * but the two branches are `if / else if`: when BOTH keys are present
-     * the target_test branch wins and REPLACES target_tests with
-     * `[...existingInDb, target_test]`. Sending {tests:['sat','toefl'],
-     * test:'sat'} stored `['sat']` — measured, not inferred: the camp
-     * student sits in both an SAT and a TOEFL program and came back with
-     * target_tests = ["sat"].
-     *
-     * So send the list alone; the else-branch then sets the focus pointer
-     * to list[0] when none is set, which is why the focus is sorted to the
-     * front. (The wizard sends both keys and loses the same way — that is
-     * a pre-existing defect in the route, not something this fixes.) */
+     * This used to send the list ALONE and rely on the route defaulting
+     * the pointer to list[0] — a workaround for the route's lockstep
+     * block being `if / else if`, where the pointer branch REBUILT the
+     * list and a body carrying both keys stored only the pointer
+     * ({tests:['sat','toefl'], test:'sat'} → ['sat'], measured on a real
+     * camp student in both an SAT and a TOEFL program). The route now
+     * honours both keys, so the focus is stated rather than implied by
+     * ordering. */
     const tests = focus ? [focus, ...all.filter(t => t !== focus)] : all
     const headers = await authHeaders()
     await fetch('/api/study/prefs', {
@@ -143,7 +140,7 @@ async function autoAnswerForCamp(families: string[], primary: string | null): Pr
         // still closes onboarding — the wizard could not have taken that
         // answer either — it just leaves the target columns alone rather
         // than writing a test with no content.
-        ...(tests.length > 0 ? { target_tests: tests } : {}),
+        ...(tests.length > 0 ? { target_tests: tests, target_test: focus } : {}),
         onboarded_at: new Date().toISOString(),
       }),
     })

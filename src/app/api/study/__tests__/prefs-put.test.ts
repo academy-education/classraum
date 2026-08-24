@@ -262,4 +262,116 @@ describe('PUT /api/study/prefs', () => {
     expect(res.status).toBe(400)
     expect(await res.json()).toEqual({ error: 'bad json' })
   })
+
+  /* target_test (the focus POINTER) vs target_tests (the LIST).
+   *
+   * The lockstep block used to be `if / else if` with the pointer branch
+   * REBUILDING the list, so a body carrying BOTH keys — which the study
+   * onboarding wizard sends — kept only the pointer:
+   * {target_tests:['sat','toefl'], target_test:'sat'} stored ['sat'].
+   * All four shapes are pinned here. */
+  describe('target_test / target_tests lockstep', () => {
+    it('LIST ONLY: stores the list and fills the pointer from it', async () => {
+      enqueue('study_user_prefs', { data: { target_test: null } })   // pointer read
+      const upsertChain = enqueue('study_user_prefs', { data: { student_id: 'student-1' } })
+
+      const res = await PUT(makeRequest({ target_tests: ['sat', 'toefl'] }, { method: 'PUT' }))
+      expect(res.status).toBe(200)
+      const payload = upsertChain.upsert.mock.calls[0][0]
+      expect(payload.target_tests).toEqual(['sat', 'toefl'])
+      expect(payload.target_test).toBe('sat')
+    })
+
+    it('LIST ONLY: keeps an existing pointer that is still a member', async () => {
+      enqueue('study_user_prefs', { data: { target_test: 'toefl' } })
+      const upsertChain = enqueue('study_user_prefs', { data: { student_id: 'student-1' } })
+
+      const res = await PUT(makeRequest({ target_tests: ['sat', 'toefl'] }, { method: 'PUT' }))
+      expect(res.status).toBe(200)
+      const payload = upsertChain.upsert.mock.calls[0][0]
+      expect(payload.target_tests).toEqual(['sat', 'toefl'])
+      // The pointer is left OUT of the patch entirely when it is still
+      // valid — the column keeps its stored value. Asserting the
+      // effective value (patch if present, else the stored one) so this
+      // fails if the route ever moves the focus to list[0] instead.
+      expect('target_test' in payload ? payload.target_test : 'toefl').toBe('toefl')
+    })
+
+    it('POINTER ONLY: appends to the stored list without clobbering it', async () => {
+      enqueue('study_user_prefs', { data: { target_tests: ['toefl'] } })  // list read
+      const upsertChain = enqueue('study_user_prefs', { data: { student_id: 'student-1' } })
+
+      const res = await PUT(makeRequest({ target_test: 'sat' }, { method: 'PUT' }))
+      expect(res.status).toBe(200)
+      const payload = upsertChain.upsert.mock.calls[0][0]
+      expect(payload.target_test).toBe('sat')
+      expect(payload.target_tests).toEqual(['toefl', 'sat'])
+    })
+
+    it('BOTH: the list is the list and the pointer is the focus — neither is rebuilt', async () => {
+      // No DB read at all in this shape: the caller stated both values.
+      const upsertChain = enqueue('study_user_prefs', { data: { student_id: 'student-1' } })
+
+      const res = await PUT(makeRequest(
+        { target_tests: ['sat', 'toefl'], target_test: 'sat' },
+        { method: 'PUT' },
+      ))
+      expect(res.status).toBe(200)
+      const payload = upsertChain.upsert.mock.calls[0][0]
+      // THE DEFECT: this used to be ['sat'].
+      expect(payload.target_tests).toEqual(['sat', 'toefl'])
+      expect(payload.target_test).toBe('sat')
+    })
+
+    it('BOTH: a pointer that is not in the list is a 400, not a silent pick', async () => {
+      const res = await PUT(makeRequest(
+        { target_tests: ['sat', 'toefl'], target_test: 'act' },
+        { method: 'PUT' },
+      ))
+      expect(res.status).toBe(400)
+      expect(await res.json()).toEqual({
+        error: 'target_test must be a member of target_tests',
+      })
+      expect(fromMock).not.toHaveBeenCalled()
+    })
+
+    it('BOTH: membership is case-insensitive and the pointer takes the list\'s casing', async () => {
+      const upsertChain = enqueue('study_user_prefs', { data: { student_id: 'student-1' } })
+
+      const res = await PUT(makeRequest(
+        { target_tests: ['SAT', 'toefl'], target_test: 'sat' },
+        { method: 'PUT' },
+      ))
+      expect(res.status).toBe(200)
+      const payload = upsertChain.upsert.mock.calls[0][0]
+      expect(payload.target_tests).toEqual(['SAT', 'toefl'])
+      expect(payload.target_test).toBe('SAT')
+    })
+
+    it('BOTH: a null pointer is filled from the list rather than rejected', async () => {
+      const upsertChain = enqueue('study_user_prefs', { data: { student_id: 'student-1' } })
+
+      const res = await PUT(makeRequest(
+        { target_tests: ['sat', 'toefl'], target_test: null },
+        { method: 'PUT' },
+      ))
+      expect(res.status).toBe(200)
+      const payload = upsertChain.upsert.mock.calls[0][0]
+      expect(payload.target_tests).toEqual(['sat', 'toefl'])
+      expect(payload.target_test).toBe('sat')
+    })
+
+    it('BOTH: an empty list clears the pointer', async () => {
+      const upsertChain = enqueue('study_user_prefs', { data: { student_id: 'student-1' } })
+
+      const res = await PUT(makeRequest(
+        { target_tests: [], target_test: null },
+        { method: 'PUT' },
+      ))
+      expect(res.status).toBe(200)
+      const payload = upsertChain.upsert.mock.calls[0][0]
+      expect(payload.target_tests).toEqual([])
+      expect(payload.target_test).toBeNull()
+    })
+  })
 })

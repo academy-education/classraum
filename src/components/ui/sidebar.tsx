@@ -31,6 +31,7 @@ import {
   Tent
 } from "lucide-react"
 import { initialsFromName } from '@/lib/name'
+import { useCampAcademy } from '@/hooks/useCampAcademy'
 
 interface SidebarProps {
   activeItem?: string
@@ -79,11 +80,13 @@ export function Sidebar({ activeItem, userName, onHelpClick, academyLogo }: Side
   const [userRole, setUserRole] = useState<string | null>(null)
   const [expandedMenu, setExpandedMenu] = useState<string | null>(null)
   const { t } = useTranslation()
-  const { user, academyId } = useAuth()
-  const [hasCampProgram, setHasCampProgram] = useState(false)
-  /** Camp-only school (academies.camp_only, migration 087): the sidebar
-   *  collapses to Camp + Families + the bottom section. */
-  const [campOnly, setCampOnly] = useState(false)
+  const { user } = useAuth()
+  /** hasCampProgram: the academy holds an active camp program.
+   *  campOnly: camp-only school (academies.camp_only, migration 087) —
+   *  the sidebar collapses to Camp + Families + the bottom section.
+   *  Shared with DashboardBottomNavigation so the phone nav and the
+   *  desktop nav cannot disagree about what kind of school this is. */
+  const { hasCampProgram, campOnly } = useCampAcademy()
 
   // Fetch user role
   useEffect(() => {
@@ -114,43 +117,6 @@ export function Sidebar({ activeItem, userName, onHelpClick, academyLogo }: Side
 
     fetchUserRole()
   }, [user])
-
-  // Camp is a paid, manually-granted program (migration 081/082) — the
-  // nav entry only exists for academies that hold an active one. RLS
-  // lets the academy's managers and teachers read camp_programs, so a
-  // plain client query answers "is this a camp academy" directly.
-  useEffect(() => {
-    let cancelled = false
-    const checkCampProgram = async () => {
-      if (!academyId) {
-        setHasCampProgram(false)
-        setCampOnly(false)
-        return
-      }
-      // Same read path for both flags: RLS lets academy members read
-      // their own academies row (the app layout reads logo_url the same
-      // way) and camp_programs (081).
-      const [{ data, error }, { data: academyRow }] = await Promise.all([
-        db
-          .from('camp_programs')
-          .select('id')
-          .eq('academy_id', academyId)
-          .is('deleted_at', null)
-          .limit(1),
-        db
-          .from('academies')
-          .select('camp_only')
-          .eq('id', academyId)
-          .maybeSingle(),
-      ])
-      if (!cancelled) {
-        setHasCampProgram(!error && (data?.length ?? 0) > 0)
-        setCampOnly(academyRow?.camp_only === true)
-      }
-    }
-    checkCampProgram()
-    return () => { cancelled = true }
-  }, [academyId])
 
   // Determine active item from pathname if not provided
   const currentActiveItem = activeItem || pathname.split('/')[1] || 'dashboard'

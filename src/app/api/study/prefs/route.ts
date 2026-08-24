@@ -180,12 +180,55 @@ export async function PUT(req: NextRequest) {
     patch.avatar_config = normaliseAvatarConfig(patch.avatar_config)
   }
 
-  // Keep target_test and target_tests in lockstep so callers can PUT
-  // either shape and the server does the right thing:
-  //   - PUT target_test alone → also append to target_tests + set current
-  //   - PUT target_tests alone → ensure target_test still refers to one
-  //     of the tests in the list (fallback to first entry, or null on empty)
-  if ('target_test' in patch) {
+  /* Keep target_test (the focus POINTER) and target_tests (the LIST) in
+   * lockstep. All three shapes are honoured — and the third is why this
+   * is one block rather than an if/else-if chain:
+   *
+   *   - pointer alone  → append it to the stored list, keep it as focus
+   *   - list alone     → keep the stored focus if it is still a member,
+   *                      else fall back to the first entry (null if empty)
+   *   - BOTH together  → the list is the list, the pointer is the focus.
+   *
+   * It used to be `if ('target_test') … else if ('target_tests')`, and
+   * the pointer branch REBUILT the list from the stored rows. So a
+   * caller sending both — which the study onboarding wizard does — had
+   * its list thrown away: {target_tests:['sat','toefl'],
+   * target_test:'sat'} stored ['sat']. Measured on a real row, not
+   * inferred. Neither key may silently overwrite the other.
+   *
+   * Membership is case-insensitive throughout: onboarding stored "SAT"
+   * while other callers PUT "sat", and a case-sensitive check appended a
+   * duplicate that rendered as two identical chips. When both keys
+   * arrive, the pointer is stored using the LIST's casing so the two
+   * columns hold literally the same string.
+   *
+   * A non-null pointer that is not in the submitted list is a 400, not a
+   * coercion. The caller has stated two things that contradict each
+   * other; picking one of them silently is the exact failure mode this
+   * block is being fixed for, and no legitimate caller can hit it (the
+   * wizard chooses its focus out of the list it sends). A null pointer
+   * is not a contradiction — it means "no preference" — so it is filled
+   * from the list rather than rejected.
+   */
+  const hasPtr = 'target_test' in patch
+  const hasList = 'target_tests' in patch
+
+  if (hasPtr && hasList) {
+    const list = (patch.target_tests as string[] | undefined) ?? []
+    const ptr = patch.target_test as string | null
+    if (ptr === null) {
+      patch.target_test = list.length > 0 ? list[0] : null
+    } else {
+      const match = list.find(e => e.toLowerCase() === ptr.toLowerCase())
+      if (!match) {
+        return NextResponse.json(
+          { error: 'target_test must be a member of target_tests' },
+          { status: 400 },
+        )
+      }
+      patch.target_test = match
+    }
+  } else if (hasPtr) {
     const current = patch.target_test as string | null
     // Merge into the array. Read the existing list off the DB so we don't
     // clobber other targets the student has already added.
@@ -195,14 +238,10 @@ export async function PUT(req: NextRequest) {
       .eq('student_id', user.id)
       .maybeSingle()
     const existing = (row?.target_tests as string[] | undefined) ?? []
-    // Case-insensitive membership: onboarding stored "SAT" while other
-    // callers may PUT "sat"; a case-sensitive check appended a duplicate
-    // that rendered as two identical chips. Keep the existing casing if
-    // a case-insensitive match is already present.
     if (current && !existing.some(e => e.toLowerCase() === current.toLowerCase())) {
       patch.target_tests = [...existing, current]
     }
-  } else if ('target_tests' in patch) {
+  } else if (hasList) {
     const list = (patch.target_tests as string[] | undefined) ?? []
     const { data: row } = await dbAdmin
       .from('study_user_prefs')
@@ -210,10 +249,16 @@ export async function PUT(req: NextRequest) {
       .eq('student_id', user.id)
       .maybeSingle()
     const currentPtr = row?.target_test as string | null | undefined
+    const stillThere = currentPtr
+      ? list.find(e => e.toLowerCase() === currentPtr.toLowerCase())
+      : undefined
     if (list.length === 0) {
       patch.target_test = null
-    } else if (!currentPtr || !list.includes(currentPtr)) {
+    } else if (!stillThere) {
       patch.target_test = list[0]
+    } else if (stillThere !== currentPtr) {
+      // Same test, different casing — align on the list's spelling.
+      patch.target_test = stillThere
     }
   }
 
