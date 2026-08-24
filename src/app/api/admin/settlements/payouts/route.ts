@@ -5,6 +5,16 @@ import type { Database } from '@/lib/database.types';
 const PORTONE_API_SECRET = process.env.PORTONE_API_SECRET;
 const PORTONE_API_URL = 'https://api.portone.io';
 
+/**
+ * PostgREST reads `*` as the LIKE wildcard inside an `ilike` pattern, and `,`
+ * `(` `)` terminate a value inside an `or(...)` group. Neutralise them so a
+ * user typing `Kim (Gangnam), *` searches for that literal text instead of
+ * producing a match-everything pattern or a 400.
+ */
+function sanitizeIlikeTerm(term: string): string {
+  return term.replace(/[*,()\\]/g, ' ').trim();
+}
+
 // GET endpoint for fetching payouts
 export async function GET(request: NextRequest) {
   try {
@@ -56,15 +66,30 @@ export async function GET(request: NextRequest) {
       return NextResponse.json({ error: 'Forbidden - Admin access required' }, { status: 403 });
     }
 
+    // Academy lookups below run with the SERVICE ROLE, not the caller's JWT.
+    // RLS on `academies` scopes rows to the academies a user belongs to — the
+    // admin token used here saw 1 of 12 academies — so resolving a name filter
+    // (or an academy name for a partner id) through the caller's client
+    // silently matched nothing. The admin/super_admin check above is the
+    // authorization gate; this client only performs the lookup.
+    const supabaseAdmin = process.env.SUPABASE_SERVICE_ROLE_KEY
+      ? createClient<Database>(
+          process.env.NEXT_PUBLIC_SUPABASE_URL!,
+          process.env.SUPABASE_SERVICE_ROLE_KEY
+        )
+      : supabase;
+
     // Check if PortOne API secret is configured
+    // A missing secret is a MISCONFIGURATION, not an empty payout history.
     if (!PORTONE_API_SECRET) {
       console.warn('[Payouts API] PORTONE_API_SECRET not configured');
-      return NextResponse.json({
-        items: [],
-        totalCount: 0,
-        page: { number: 0, size: 20, totalCount: 0 },
-        message: 'PortOne API not configured. Please set PORTONE_API_SECRET environment variable.'
-      });
+      return NextResponse.json(
+        {
+          error: 'not_configured',
+          message: 'PortOne API not configured. Please set PORTONE_API_SECRET environment variable.'
+        },
+        { status: 503 }
+      );
     }
 
     // Parse query parameters
@@ -75,6 +100,7 @@ export async function GET(request: NextRequest) {
     const status = searchParams.get('status');
     const from = searchParams.get('from');
     const to = searchParams.get('to');
+    const academyName = searchParams.get('academyName');
 
     // Build PortOne API request body
     // PortOne requires a filter object with criteria field
@@ -105,8 +131,41 @@ export async function GET(request: NextRequest) {
     if (status) {
       requestBody.filter.statuses = [status];
     }
-    if (partnerId) {
-      requestBody.filter.partnerIds = [partnerId];
+    // Academy-name search runs SERVER-SIDE. PortOne's payouts API has no
+    // name/text filter — only `partnerIds` — so the name is resolved against
+    // our own `academies` table and pushed down as partner ids. This makes the
+    // search span every page; the previous client-side `.filter()` only
+    // matched the 20 rows already loaded while the footer kept showing the
+    // unfiltered total.
+    const partnerIds: string[] = [];
+    if (partnerId) partnerIds.push(partnerId);
+    if (academyName && sanitizeIlikeTerm(academyName)) {
+      const term = sanitizeIlikeTerm(academyName);
+      const { data: matchedAcademies, error: academyError } = await supabaseAdmin
+        .from('academies')
+        .select('portone_partner_id')
+        .ilike('name', `%${term}%`)
+        .not('portone_partner_id', 'is', null);
+
+      if (academyError) {
+        console.error('[Payouts API] academy lookup failed:', academyError);
+        return NextResponse.json(
+          { error: 'academy_lookup_failed', message: 'Failed to resolve academy name filter' },
+          { status: 500 }
+        );
+      }
+
+      const ids = (matchedAcademies || [])
+        .map(a => a.portone_partner_id)
+        .filter(Boolean) as string[];
+      if (ids.length === 0) {
+        // No academy matches the search — no payouts can match either.
+        return NextResponse.json({ items: [], totalCount: 0, page, pageSize });
+      }
+      partnerIds.push(...ids);
+    }
+    if (partnerIds.length > 0) {
+      requestBody.filter.partnerIds = [...new Set(partnerIds)];
     }
 
     // Fetch payouts from PortOne Platform API
@@ -136,9 +195,16 @@ export async function GET(request: NextRequest) {
         requestBody,
         errorData
       });
+      // 502, not the upstream status verbatim: a PortOne 401 relayed as our
+      // own 401 reads as "your admin session expired", which it is not.
       return NextResponse.json(
-        { error: 'Failed to fetch payouts from PortOne', details: errorData },
-        { status: response.status }
+        {
+          error: 'upstream_error',
+          upstreamStatus: response.status,
+          message: 'Failed to fetch payouts from PortOne',
+          details: errorData,
+        },
+        { status: 502 }
       );
     }
 
@@ -152,7 +218,7 @@ export async function GET(request: NextRequest) {
           .filter((id: string | undefined): id is string => Boolean(id))
       )] as string[];
 
-      const { data: academies } = await supabase
+      const { data: academies } = await supabaseAdmin
         .from('academies')
         .select('portone_partner_id, name')
         .in('portone_partner_id', partnerIds);
@@ -169,7 +235,18 @@ export async function GET(request: NextRequest) {
       }));
     }
 
-    return NextResponse.json(payoutsData);
+    // Same normalisation as /api/admin/settlements: PortOne returns the total
+    // as `page.totalCount`, the client reads `totalCount`. Flatten once here.
+    const totalCount: number =
+      payoutsData.page?.totalCount ?? payoutsData.totalCount ?? 0;
+
+    return NextResponse.json({
+      items: payoutsData.items || [],
+      totalCount,
+      page,
+      pageSize,
+      counts: payoutsData.counts,
+    });
   } catch (error) {
     console.error('Error fetching payouts:', error);
     return NextResponse.json(

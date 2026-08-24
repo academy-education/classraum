@@ -114,7 +114,16 @@ export async function GET(request: NextRequest) {
   for (let from = 0; ; from += 1000) {
     const q = freshReviews()
       .select('run_id, reviewer_id, item_id, key_slot, blind_pick, blind_at, verdict, realism, note, reviewed_at')
+      /*
+       * run_id is NOT unique — a run holds many rows — so ordering by
+       * it alone leaves ties, and OFFSET/LIMIT over a partial order can
+       * resolve those ties differently on the page-2 scan than on page
+       * 1. That skips or duplicates rows silently, and a skipped review
+       * row shrinks `answered` on a score this page presents as a
+       * verdict. `id` is unique, so run_id + id is a TOTAL order.
+       */
       .order('run_id', { ascending: false })
+      .order('id', { ascending: true })
       .range(from, from + 999)
     const { data, error } = runId ? await q.eq('run_id', runId) : await q
     if (error) return NextResponse.json({ error: error.message }, { status: 500 })

@@ -1,7 +1,7 @@
 'use client'
 
 import { useCallback, useEffect, useMemo, useState } from 'react'
-import { CreditCard, Layers, Target, Trophy, ReceiptText, Flag, CalendarClock, Search, Inbox, Download, UserRound, Settings2 } from 'lucide-react'
+import { CreditCard, Layers, Target, Trophy, ReceiptText, Flag, CalendarClock, Search, Inbox, Download, UserRound, Settings2, AlertTriangle } from 'lucide-react'
 import { useAdminFetch } from '@/components/admin/useAdminFetch'
 import { filterSortStudyUsers, type DirectoryUser } from '@/lib/study/admin-user-search'
 import { accessRevocationFor } from '@/lib/study/refund-revocation'
@@ -963,15 +963,34 @@ function ReportsQueue() {
   const [counts, setCounts] = useState<Record<string, number>>({})
   const [busy, setBusy] = useState<string | null>(null)
   const [loading, setLoading] = useState(true)
+  const [loadError, setLoadError] = useState<string | null>(null)
 
+  /**
+   * The empty state below is only honest if a FAILED load cannot reach it.
+   * This used to be `catch { setReports([]) }` with no `res.ok` check, so a
+   * 500 — or a body with no `reports` key — rendered "No reports in this
+   * bucket", i.e. the exact "a broken read looks like an empty platform"
+   * failure the dashboard route's own header comment warns about.
+   */
   const load = useCallback(async () => {
     setLoading(true)
+    setLoadError(null)
     try {
       const res = await adminFetch(`/api/admin/study/reports?status=${status}`)
-      const json = await res.json()
-      setReports(json.reports ?? [])
+      const json = await res.json().catch(() => null)
+      if (!res.ok) {
+        throw new Error(json?.detail || json?.error || `Request failed (${res.status})`)
+      }
+      if (!Array.isArray(json?.reports)) {
+        throw new Error('Malformed response: no reports array')
+      }
+      setReports(json.reports)
       setCounts(json.counts ?? {})
-    } catch { setReports([]) }
+    } catch (e) {
+      setReports([])
+      setCounts({})
+      setLoadError(e instanceof Error ? e.message : String(e))
+    }
     finally { setLoading(false) }
   }, [adminFetch, status])
 
@@ -1035,9 +1054,28 @@ function ReportsQueue() {
         </div>
       )}
 
-      {!loading && reports.length === 0 && (
+      {!loading && loadError && (
         <Card className="gap-0">
-          <EmptyState icon={Inbox} title={String(t('admin.studyConsole.noReportsBucket'))} variant="subtle" />
+          <EmptyState
+            icon={AlertTriangle}
+            title={String(t('admin.studyConsole.reportsLoadFailed'))}
+            description={loadError}
+            actionLabel={String(t('admin.common.refresh'))}
+            onAction={() => void load()}
+            actionVariant="outline"
+            variant="subtle"
+          />
+        </Card>
+      )}
+
+      {!loading && !loadError && reports.length === 0 && (
+        <Card className="gap-0">
+          <EmptyState
+            icon={Inbox}
+            title={String(t('admin.studyConsole.noReportsBucket'))}
+            description={String(t('admin.studyConsole.noReportsBucketDesc'))}
+            variant="subtle"
+          />
         </Card>
       )}
 

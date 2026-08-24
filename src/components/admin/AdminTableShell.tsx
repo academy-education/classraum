@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { cn } from '@/lib/utils';
+import { isInteractiveTarget } from './rowActivation';
 
 /**
  * Responsive table chrome for the admin panel.
@@ -75,7 +76,12 @@ export function AdminMobileRow({
         selected ? 'bg-primary/5' : onClick && 'active:bg-gray-50',
         onClick && 'cursor-pointer',
       )}
-      onClick={onClick}
+      /* The card contains the row's bulk-select checkbox and its kebab.
+         Without this guard, ticking the checkbox or opening the menu would
+         also fire the card's onClick — i.e. adding row activation would
+         break the two controls that already worked. Same guard the desktop
+         <tr> uses. */
+      onClick={onClick && ((e) => { if (!isInteractiveTarget(e.target)) onClick() })}
     >
       <div className="flex items-start gap-3">
         {lead ? <div className="flex-shrink-0 pt-0.5">{lead}</div> : null}

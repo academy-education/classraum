@@ -5,6 +5,33 @@ import type { Database } from '@/lib/database.types';
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
 const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY!;
 
+/**
+ * Build a PostgREST-safe `ilike` value for use inside an `or=(...)` filter.
+ *
+ * `or=(...)` is a comma/parenthesis-delimited grammar, so a raw user string
+ * containing `,` `(` `)` either 400s or — worse — parses as an extra disjunct
+ * and matches every row. PostgREST's own answer to that is to double-quote the
+ * value, which is what this does: the quoted form keeps commas and parens
+ * LITERAL, so searching for `a,b` really searches for `a,b`.
+ *
+ * Inside the quotes only `\` and `"` still need escaping. `%` and `*` are
+ * ilike wildcards with no escape hatch over the wire, so they are folded to
+ * `_` (single-character wildcard) rather than left able to widen the match to
+ * everything. Length-capped so a pathological paste can't build a giant
+ * pattern.
+ *
+ * Returns '' for an absent/blank search, which callers treat as "no filter".
+ */
+function sanitizeSearch(raw: string | null): string {
+  if (!raw) return '';
+  return raw
+    .trim()
+    .slice(0, 100)
+    .replace(/[%*]/g, '_')
+    .replace(/\\/g, '\\\\')
+    .replace(/"/g, '\\"');
+}
+
 export async function GET(request: NextRequest) {
   try {
     // Verify authentication
@@ -45,10 +72,40 @@ export async function GET(request: NextRequest) {
     // Get query parameters
     const searchParams = request.nextUrl.searchParams;
     const page = parseInt(searchParams.get('page') || '0');
-    const pageSize = parseInt(searchParams.get('pageSize') || '50');
+    const pageSize = Math.min(Math.max(parseInt(searchParams.get('pageSize') || '50') || 50, 1), 5000);
     const reportType = searchParams.get('reportType');
     const startDate = searchParams.get('startDate');
     const endDate = searchParams.get('endDate');
+    // Free-text search. Used to be a .filter() over the 50 rows the client had
+    // already loaded, so it could only ever find matches on the current page
+    // while the footer went on claiming the full total. Server-side now.
+    const search = sanitizeSearch(searchParams.get('search'));
+
+    // The client searched three fields, and two of them live on OTHER tables
+    // (the reported comment's text, the reporter's email). PostgREST cannot
+    // OR across an embedded resource and the parent in one filter, so those
+    // two are resolved to id lists first and folded into the same `or(...)`
+    // as an `in.(...)` disjunct. Both lookups are capped; when a cap is hit
+    // the search is narrower than the client-side version was, but it is
+    // narrower over the WHOLE table rather than exact over one page.
+    let searchOr: string | null = null;
+    if (search) {
+      // The two standalone .ilike() lookups below are NOT inside an or=(...)
+      // group, so they must not carry the backslash escaping that only the
+      // quoted form needs — undo it for them.
+      const unquotedSearch = search.replace(/\\(["\\\\])/g, '$1');
+      const [{ data: matchedUsers }, { data: matchedComments }] = await Promise.all([
+        supabase.from('users').select('id').ilike('email', `%${unquotedSearch}%`).limit(500),
+        supabase.from('assignment_comments').select('id').ilike('text', `%${unquotedSearch}%`).limit(500),
+      ]);
+      const userIds = (matchedUsers || []).map((u) => u.id);
+      const commentIds = (matchedComments || []).map((c) => c.id);
+      // Values are double-quoted: see sanitizeSearch.
+      const clauses = [`text.ilike."%${search}%"`];
+      if (userIds.length > 0) clauses.push(`user_id.in.(${userIds.join(',')})`);
+      if (commentIds.length > 0) clauses.push(`comment_id.in.(${commentIds.join(',')})`);
+      searchOr = clauses.join(',');
+    }
 
     // Build query
     let query = supabase
@@ -82,6 +139,9 @@ export async function GET(request: NextRequest) {
     if (endDate) {
       query = query.lte('created_at', endDate);
     }
+    if (searchOr) {
+      query = query.or(searchOr);
+    }
 
     // Pagination
     const from = page * pageSize;
@@ -101,28 +161,36 @@ export async function GET(request: NextRequest) {
     // per-type counts were .filter().length over the current 50-row page, so
     // the breakdown could never sum to the total on any table bigger than one
     // page. Counted in SQL now, under the same filters as `total`.
-    const { data: statRows, error: statsError } = await supabase.rpc('admin_comment_report_stats', {
-      // Omitted params fall back to the function's DEFAULT NULL.
-      p_report_type: reportType || undefined,
-      p_start: startDate || undefined,
-      p_end: endDate || undefined,
-    });
-    if (statsError) {
-      console.error('[Comment Reports API] Error fetching stats:', statsError);
-      throw statsError;
-    }
-    const s = Array.isArray(statRows) && statRows.length > 0 ? statRows[0] : null;
-    const toNum = (v: unknown) => {
-      const n = typeof v === 'number' ? v : Number(v);
-      return Number.isFinite(n) ? n : 0;
+    //
+    // This used to call admin_comment_report_stats(), but that function has no
+    // `search` parameter — once search became a server-side filter the RPC
+    // would have described a different set of rows than the list below it. The
+    // counts are now issued as head:true count queries carrying EXACTLY the
+    // filters the list carries, search included. spam / abuse / other are
+    // mutually exclusive and exhaustive, so they always sum to `total`.
+    const countUnder = async (shape: (q: any) => any): Promise<number> => {
+      let q: any = supabase.from('comment_reports').select('id', { count: 'exact', head: true });
+      if (reportType) q = q.eq('report_type', reportType);
+      if (startDate) q = q.gte('created_at', startDate);
+      if (endDate) q = q.lte('created_at', endDate);
+      if (searchOr) q = q.or(searchOr);
+      const { count: c, error } = await shape(q);
+      if (error) throw error;
+      return c || 0;
     };
 
-    const stats = {
-      total: toNum(s?.total),
-      spam: toNum(s?.spam),
-      abuse: toNum(s?.abuse),
+    const [spamCount, abuseCount, otherCount] = await Promise.all([
+      countUnder((q) => q.eq('report_type', 'spam')),
+      countUnder((q) => q.eq('report_type', 'abuse')),
       // Anything that is neither spam nor abuse, so the three always sum to total.
-      other: toNum(s?.other)
+      countUnder((q) => q.not('report_type', 'in', '("spam","abuse")')),
+    ]);
+
+    const stats = {
+      total: count || 0,
+      spam: spamCount,
+      abuse: abuseCount,
+      other: otherCount
     };
 
     return NextResponse.json({

@@ -790,10 +790,23 @@ export function attemptSummary(attempts: RebuildAttempt[] = A3_ATTEMPTS) {
  * The two-line answer to "what is wrong with the bank".
  *
  * `brokenItems` is the ONE cohort both instruments agree on. Everything
- * else is `unverifiedItems` — not known to be bad, just never read by a
- * person. Conflating those two is what made the position unreadable:
+ * else is `unverifiedItems()` — not known to be bad, just never read by
+ * a person. Conflating those two is what made the position unreadable:
  * 2% is a quality problem and 98% is a scheduling problem, and they
  * need completely different responses.
+ *
+ * ── Why "everything else" is a FUNCTION and not a number ─────────────
+ * It was `unverifiedItems: 3387`, typed by hand. The bank moved and the
+ * literal did not: on 2026-08-24 the page showed 3,387 in the headline
+ * and 3,377 — the SQL-verified live count — in the panel below it, for
+ * the same bank. Two totals on one screen, and the stale one was the
+ * larger, so the bank looked bigger and better staffed than it is.
+ *
+ * That is the failure this whole module exists to prevent, restated by
+ * its own header: "Cohort STATE is deliberately NOT here — it is
+ * measured, not declared." A count of items is state. The DECISION —
+ * that everything outside the known-broken cohort counts as unverified
+ * — stays here; the count comes from the bank.
  */
 export const PLAIN_STATUS = {
   /** RESOLVED 2026-08-18: the broken cr-v1/cr-v2/harvest-v1 rows (63 live at
@@ -803,9 +816,26 @@ export const PLAIN_STATUS = {
   brokenCohort: 'Choose a Response (cr-v1 — archived 2026-08-18)',
   brokenItems: 0,
   brokenIsLive: false,
-  /** Includes the 132 cr-v7 items: attack-cleared but not yet human-read. */
-  unverifiedItems: 3387,
   /** What unblocks the 98%. One 20-minute sitting, by one named person. */
   blockedOn: 'B2 — the two never-read cohorts (B4 passed 2026-08-15)',
   humanChecksSoFar: 'Every cohort a human has actually read came back clean. The one that failed a human check — Choose a Response cr-v1 — was archived on 2026-08-18 and replaced by cr-v7.',
 } as const
+
+/**
+ * "Everything else" — derived from the live bank count, never declared.
+ *
+ * @param liveItems non-archived rows in `study_item_bank`, counted in
+ *   SQL at read time (`/api/admin/bank-qc/live?only=totals`).
+ *
+ * The subtraction is conditional on `brokenIsLive` because that is what
+ * makes the two numbers a partition of one population: a broken cohort
+ * that is still live is INSIDE `liveItems` and must come out of
+ * "everything else", while an archived one was never in it. Getting
+ * this backwards would double-count or under-count by exactly the size
+ * of the broken cohort — currently 0, which is precisely when a sign
+ * error is invisible.
+ */
+export function unverifiedItems(liveItems: number): number {
+  const brokenInPopulation = PLAIN_STATUS.brokenIsLive ? PLAIN_STATUS.brokenItems : 0
+  return Math.max(0, liveItems - brokenInPopulation)
+}

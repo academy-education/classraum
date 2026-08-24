@@ -143,32 +143,47 @@ export function SubscriptionUsageMonitoring() {
         }
       />
 
-      {/* Overview Stats */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        <DashboardCard
-          title={String(t('admin.usage.totalStudents'))}
-          value={statistics.total_usage.students.toLocaleString()}
-          icon={<Users className="w-5 h-5" />}
-          accent="blue"
-        />
-        <DashboardCard
-          title={String(t('admin.usage.totalTeachers'))}
-          value={statistics.total_usage.teachers.toLocaleString()}
-          icon={<GraduationCap className="w-5 h-5" />}
-          accent="violet"
-        />
-        <DashboardCard
-          title={String(t('admin.usage.storageUsed'))}
-          value={`${statistics.total_usage.storage.toFixed(1)} GB`}
-          icon={<HardDrive className="w-5 h-5" />}
-          accent="emerald"
-        />
-        <DashboardCard
-          title={String(t('admin.usage.totalClassrooms'))}
-          value={statistics.total_usage.classrooms.toLocaleString()}
-          icon={<BookOpen className="w-5 h-5" />}
-          accent="amber"
-        />
+      {/* Overview Stats.
+
+          These four are PLATFORM-WIDE aggregates over every academy, while the
+          table below lists only the academies that have a subscription. With
+          174 students up here and 8 in the table, the reader has to be told
+          they are looking at two different populations — otherwise the header
+          reads as a total of the rows beneath it. */}
+      <div className="space-y-3">
+        <p className="text-xs text-gray-500">
+          {String(t('admin.usage.platformScopeNote', { count: statistics.total_academies }))}
+        </p>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <DashboardCard
+            title={String(t('admin.usage.totalStudents'))}
+            value={statistics.total_usage.students.toLocaleString()}
+            subtitle={String(t('admin.usage.platformScope'))}
+            icon={<Users className="w-5 h-5" />}
+            accent="blue"
+          />
+          <DashboardCard
+            title={String(t('admin.usage.totalTeachers'))}
+            value={statistics.total_usage.teachers.toLocaleString()}
+            subtitle={String(t('admin.usage.platformScope'))}
+            icon={<GraduationCap className="w-5 h-5" />}
+            accent="violet"
+          />
+          <DashboardCard
+            title={String(t('admin.usage.storageUsed'))}
+            value={`${statistics.total_usage.storage.toFixed(1)} GB`}
+            subtitle={String(t('admin.usage.platformScope'))}
+            icon={<HardDrive className="w-5 h-5" />}
+            accent="emerald"
+          />
+          <DashboardCard
+            title={String(t('admin.usage.totalClassrooms'))}
+            value={statistics.total_usage.classrooms.toLocaleString()}
+            subtitle={String(t('admin.usage.platformScope'))}
+            icon={<BookOpen className="w-5 h-5" />}
+            accent="amber"
+          />
+        </div>
       </div>
 
       {/* Approaching Limits Alert */}
@@ -211,6 +226,14 @@ export function SubscriptionUsageMonitoring() {
 
       {/* Usage Table */}
       <div className="bg-white rounded-2xl ring-1 ring-gray-100/80 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_12px_-4px_rgba(0,0,0,0.06)] overflow-hidden">
+        {/* The route filters to academies that HAVE a subscription, so this is
+            a strict subset of the platform totals in the header. Say so. */}
+        <div className="px-6 pt-5 pb-3 border-b border-gray-100">
+          <h2 className="text-sm font-semibold text-gray-900">{String(t('admin.usage.tableTitle'))}</h2>
+          <p className="text-xs text-gray-500 mt-0.5">
+            {String(t('admin.usage.tableScopeNote', { count: total }))}
+          </p>
+        </div>
         {!loading && usageData.length === 0 ? (
           <AdminEmptyState icon={TrendingUp} title={String(t('admin.usage.noUsageData'))} />
         ) : (

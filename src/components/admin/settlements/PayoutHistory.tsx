@@ -3,9 +3,8 @@
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from '@/hooks/useTranslation';
 import { getDateLocale } from '@/utils/dateUtils';
-import { Search } from 'lucide-react';
+import { Search, AlertTriangle, RefreshCw } from 'lucide-react';
 import { PortOnePayout, PayoutStatus } from '@/types/subscription';
-import { db } from '@/lib/supabase';
 import {
   Select,
   SelectContent,
@@ -21,12 +20,16 @@ import { StatusBadge, type StatusTone } from '../StatusBadge';
 import { useAdminFetch } from '../useAdminFetch';
 import { ModalShell } from '../ModalShell';
 import { AdminEmptyState } from '../AdminEmptyState';
+import { useDebouncedValue } from '../useDebouncedValue';
 
 interface PayoutHistoryProps {
-  onClose: () => void;
+  /** Overlay mode only. Ignored when `inline`. */
+  onClose?: () => void;
+  /** Render as a page view (the settlements view switch) instead of a modal. */
+  inline?: boolean;
 }
 
-export function PayoutHistory({ onClose }: PayoutHistoryProps) {
+export function PayoutHistory({ onClose, inline = false }: PayoutHistoryProps) {
   const adminFetch = useAdminFetch();
   const { toast } = useDedupedToast();
   const { t, language } = useTranslation();
@@ -34,6 +37,8 @@ export function PayoutHistory({ onClose }: PayoutHistoryProps) {
   const [loading, setLoading] = useState(true);
   const [page, setPage] = useState(0);
   const [totalCount, setTotalCount] = useState(0);
+  // Upstream failure vs. genuinely-no-payouts are different screens.
+  const [loadError, setLoadError] = useState<string | null>(null);
 
   // Calculate default date range (last 30 days)
   const getDefaultDateRange = () => {
@@ -55,9 +60,20 @@ export function PayoutHistory({ onClose }: PayoutHistoryProps) {
     dateTo: defaultDates.to,
   });
 
+  // The academy search is server-side now, so debounce it: one PortOne call
+  // per pause, not one per keystroke.
+  const debouncedAcademy = useDebouncedValue(filters.academyName, 400);
+
+  // Any change to the filter criteria puts you back on page 1 — otherwise a
+  // search run from page 3 lands on a page the filtered set may not have.
+  useEffect(() => {
+    setPage(0);
+  }, [filters.status, filters.dateFrom, filters.dateTo, debouncedAcademy]);
+
   useEffect(() => {
     loadPayouts();
-  }, [page, filters]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [page, filters.status, filters.dateFrom, filters.dateTo, debouncedAcademy]);
 
   const loadPayouts = async () => {
     try {
@@ -77,27 +93,35 @@ export function PayoutHistory({ onClose }: PayoutHistoryProps) {
       if (filters.dateTo) {
         params.append('to', filters.dateTo);
       }
+      // Academy-name search is resolved SERVER-SIDE (name -> PortOne partner
+      // ids) so it spans every page and totalCount stays consistent with the
+      // rows. The old client-side .filter() only searched the loaded 20.
+      if (debouncedAcademy.trim()) {
+        params.append('academyName', debouncedAcademy.trim());
+      }
+
+      setLoadError(null);
 
       const response = await adminFetch(`/api/admin/settlements/payouts?${params.toString()}`);
 
       if (!response.ok) {
-        throw new Error(String(t('admin.settlements.failedToFetchPayouts')));
+        const body = await response.json().catch(() => ({}));
+        throw new Error(body?.message || String(t('admin.settlements.failedToFetchPayouts')));
       }
 
       const data = await response.json();
 
-      // Filter by academy name if specified
-      let filteredItems = data.items || [];
-      if (filters.academyName) {
-        filteredItems = filteredItems.filter((p: PortOnePayout) =>
-          p.academyName?.toLowerCase().includes(filters.academyName.toLowerCase())
-        );
-      }
-
-      setPayouts(filteredItems);
-      setTotalCount(data.totalCount || 0);
+      setPayouts(data.items || []);
+      // Route normalises PortOne's `page.totalCount` to `totalCount`; the
+      // fallback covers a raw upstream envelope.
+      setTotalCount(data.totalCount ?? data.page?.totalCount ?? 0);
     } catch (error) {
       console.error('Error loading payouts:', error);
+      setPayouts([]);
+      setTotalCount(0);
+      setLoadError(
+        error instanceof Error ? error.message : String(t('admin.settlements.failedToFetchPayouts'))
+      );
       toast({ title: String(t('admin.failedToLoadPayouts')), variant: 'destructive' });
     } finally {
       setLoading(false);
@@ -137,14 +161,7 @@ export function PayoutHistory({ onClose }: PayoutHistoryProps) {
     });
   };
 
-  return (
-    <ModalShell
-      onClose={onClose}
-      title={String(t('admin.settlements.payoutHistory'))}
-      description={String(t('admin.settlements.payoutHistoryDesc'))}
-      className="!max-w-6xl"
-      bodyClassName="p-0"
-      footer={totalCount > 20 ? (
+  const footerNode = totalCount > 20 ? (
         <div className="w-full flex flex-wrap items-center justify-between gap-2">
           <div className="text-sm text-gray-700">
             {String(t('admin.settlements.showingResults', { from: page * 20 + 1, to: Math.min((page + 1) * 20, totalCount), total: totalCount }))}
@@ -168,8 +185,9 @@ export function PayoutHistory({ onClose }: PayoutHistoryProps) {
             </Button>
           </div>
         </div>
-      ) : undefined}
-    >
+  ) : undefined;
+
+  const bodyNode = (
       <div className="flex flex-col h-full">
         {/* Filters */}
         <div className="px-6 py-4 bg-white border-b border-gray-100">
@@ -272,6 +290,29 @@ export function PayoutHistory({ onClose }: PayoutHistoryProps) {
                     {String(t('admin.settlements.loadingPayouts'))}
                   </td>
                 </tr>
+              ) : loadError ? (
+                <tr>
+                  <td colSpan={7}>
+                    <div className="flex flex-col items-center justify-center gap-3 px-6 py-12 text-center">
+                      <div className="w-11 h-11 rounded-full bg-red-50 flex items-center justify-center">
+                        <AlertTriangle className="w-5 h-5 text-red-600" />
+                      </div>
+                      <div>
+                        <p className="text-sm font-semibold text-red-700">
+                          {String(t('admin.settlements.payoutLoadErrorTitle'))}
+                        </p>
+                        <p className="mt-1 text-sm text-gray-500 max-w-md">
+                          {String(t('admin.settlements.payoutLoadErrorDesc'))}
+                        </p>
+                        <p className="mt-1 text-xs text-gray-400 break-all">{loadError}</p>
+                      </div>
+                      <Button onClick={() => loadPayouts()} variant="outline" size="sm" className="gap-1.5">
+                        <RefreshCw className="w-4 h-4" />
+                        {String(t('admin.settlements.loadErrorRetry'))}
+                      </Button>
+                    </div>
+                  </td>
+                </tr>
               ) : payouts.length === 0 ? (
                 <tr>
                   <td colSpan={7}>
@@ -318,6 +359,40 @@ export function PayoutHistory({ onClose }: PayoutHistoryProps) {
         </div>
 
       </div>
+  );
+
+  /**
+   * Inline mode — the settlements page renders this INSTEAD of its own
+   * table when the view switch is on "Payouts", rather than opening an
+   * overlay on top of it. Two tables and two four-field filter rows on the
+   * same screen (one of them dimmed behind a scrim) was the defect: the
+   * page read as if it had appended a second, near-identical section.
+   *
+   * The modal path is kept because nothing else about ModalShell is wrong;
+   * it just is not the right shape for what is really a second view of the
+   * same page.
+   */
+  if (inline) {
+    return (
+      <div className="bg-white rounded-2xl ring-1 ring-gray-100/80 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_12px_-4px_rgba(0,0,0,0.06)] overflow-hidden">
+        {bodyNode}
+        {footerNode ? (
+          <div className="px-6 py-4 border-t border-gray-100">{footerNode}</div>
+        ) : null}
+      </div>
+    );
+  }
+
+  return (
+    <ModalShell
+      onClose={onClose ?? (() => {})}
+      title={String(t('admin.settlements.payoutHistory'))}
+      description={String(t('admin.settlements.payoutHistoryDesc'))}
+      className="!max-w-6xl"
+      bodyClassName="p-0"
+      footer={footerNode}
+    >
+      {bodyNode}
     </ModalShell>
   );
 }

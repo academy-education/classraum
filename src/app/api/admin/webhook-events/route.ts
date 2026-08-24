@@ -5,6 +5,53 @@ import type { Database } from '@/lib/database.types';
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
 const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY!;
 
+/**
+ * Build a PostgREST-safe `ilike` value for use inside an `or=(...)` filter.
+ *
+ * `or=(...)` is a comma/parenthesis-delimited grammar, so a raw user string
+ * containing `,` `(` `)` either 400s or — worse — parses as an extra disjunct
+ * and matches every row. PostgREST's own answer to that is to double-quote the
+ * value, which is what this does: the quoted form keeps commas and parens
+ * LITERAL, so searching for `a,b` really searches for `a,b`.
+ *
+ * Inside the quotes only `\` and `"` still need escaping. `%` and `*` are
+ * ilike wildcards with no escape hatch over the wire, so they are folded to
+ * `_` (single-character wildcard) rather than left able to widen the match to
+ * everything. Length-capped so a pathological paste can't build a giant
+ * pattern.
+ *
+ * Returns '' for an absent/blank search, which callers treat as "no filter".
+ */
+function sanitizeSearch(raw: string | null): string {
+  if (!raw) return '';
+  return raw
+    .trim()
+    .slice(0, 100)
+    .replace(/[%*]/g, '_')
+    .replace(/\\/g, '\\\\')
+    .replace(/"/g, '\\"');
+}
+
+/**
+ * Whitelist of sortable columns. User input is never interpolated into
+ * `.order()` — an unrecognised key falls back to `received_at`.
+ */
+const SORTABLE_COLUMNS = new Set([
+  'received_at',
+  'amount',
+  'status',
+  'event_type',
+  'processed',
+]);
+
+function parseSort(raw: string | null): { column: string; ascending: boolean } {
+  const [key, dir] = (raw || '').split(':');
+  if (!SORTABLE_COLUMNS.has(key)) {
+    return { column: 'received_at', ascending: false };
+  }
+  return { column: key, ascending: dir === 'asc' };
+}
+
 export async function GET(request: NextRequest) {
   try {
     // Verify authentication
@@ -45,38 +92,53 @@ export async function GET(request: NextRequest) {
     // Get query parameters
     const searchParams = request.nextUrl.searchParams;
     const page = parseInt(searchParams.get('page') || '0');
-    const pageSize = parseInt(searchParams.get('pageSize') || '50');
+    // Capped: the CSV export asks for the whole filtered set in one request,
+    // and an uncapped pageSize would let a caller pull the entire table.
+    const pageSize = Math.min(Math.max(parseInt(searchParams.get('pageSize') || '50') || 50, 1), 5000);
     const type = searchParams.get('type');
     const eventType = searchParams.get('eventType');
     const status = searchParams.get('status');
     const processed = searchParams.get('processed');
     const startDate = searchParams.get('startDate');
     const endDate = searchParams.get('endDate');
+    // Free-text search. Used to be a .filter() over the 50 rows the client had
+    // already loaded, so it could only ever find matches on the current page
+    // while the footer went on claiming the full total. Server-side now.
+    const search = sanitizeSearch(searchParams.get('search'));
+    const sort = parseSort(searchParams.get('sort'));
 
-    // Build query
-    let query = supabase
-      .from('webhook_events')
-      .select('*', { count: 'exact' })
-      .order('received_at', { ascending: false });
+    // Every list/count query below MUST see the same filters, or the cards
+    // stop describing the rows. One applier, used by all four.
+    const applyFilters = (q: any): any => {
+      let out = q;
+      if (type) out = out.eq('type', type);
+      if (eventType) out = out.eq('event_type', eventType);
+      if (status) out = out.eq('status', status);
+      if (processed !== null && processed !== '') out = out.eq('processed', processed === 'true');
+      if (startDate) out = out.gte('received_at', startDate);
+      if (endDate) out = out.lte('received_at', endDate);
+      if (search) {
+        // Values are double-quoted: see sanitizeSearch.
+        out = out.or(
+          `entity_id.ilike."%${search}%",event_type.ilike."%${search}%",partner_id.ilike."%${search}%"`
+        );
+      }
+      return out;
+    };
 
-    // Apply filters
-    if (type) {
-      query = query.eq('type', type);
-    }
-    if (eventType) {
-      query = query.eq('event_type', eventType);
-    }
-    if (status) {
-      query = query.eq('status', status);
-    }
-    if (processed !== null && processed !== '') {
-      query = query.eq('processed', processed === 'true');
-    }
-    if (startDate) {
-      query = query.gte('received_at', startDate);
-    }
-    if (endDate) {
-      query = query.lte('received_at', endDate);
+    // Build query. Sort is whitelisted server-side (parseSort) so ordering
+    // covers the whole filtered set, not just the page the client holds.
+    // `nullsFirst: false` keeps NULL amounts at the end in both directions,
+    // matching the old client-side sort which used -Infinity for null.
+    let query = applyFilters(
+      supabase
+        .from('webhook_events')
+        .select('*', { count: 'exact' })
+        .order(sort.column, { ascending: sort.ascending, nullsFirst: false })
+    );
+    // Deterministic tiebreak so pagination can't repeat or skip rows.
+    if (sort.column !== 'received_at') {
+      query = query.order('received_at', { ascending: false });
     }
 
     // Pagination
@@ -99,38 +161,52 @@ export async function GET(request: NextRequest) {
     const uniqueEventTypes = (Array.isArray(eventTypeRows) ? eventTypeRows : [])
       .map((r: { event_type: string }) => r.event_type);
 
-    // Statistics.
+    // Statistics — a REAL PARTITION of the filtered set.
     //
-    // `total` is an exact count over the whole (filtered) table, but the
-    // breakdown used to be .filter().length over the CURRENT PAGE — so the
-    // cards could never add up: "5,000 events / 43 processed / 7 unprocessed".
-    // The breakdown is now counted in SQL under exactly the same filters.
-    const { data: statRows, error: statsError } = await supabase.rpc('admin_webhook_event_stats', {
-      // Omitted params fall back to the function's DEFAULT NULL, so pass
-      // `undefined` rather than an explicit null (which the generated Args
-      // type does not allow).
-      p_type: type || undefined,
-      p_event_type: eventType || undefined,
-      p_status: status || undefined,
-      p_processed: processed !== null && processed !== '' ? processed === 'true' : undefined,
-      p_start: startDate || undefined,
-      p_end: endDate || undefined,
-    });
-    if (statsError) {
-      console.error('[Webhook Events API] Error fetching stats:', statsError);
-      throw statsError;
-    }
-    const s = Array.isArray(statRows) && statRows.length > 0 ? statRows[0] : null;
-    const toNum = (v: unknown) => {
-      const n = typeof v === 'number' ? v : Number(v);
-      return Number.isFinite(n) ? n : 0;
+    // Measured 2026-08-24, before this change: the cards read
+    // "Total 2 / Succeeded 1 / Pending 1 / Failed 1" — three numbers summing
+    // to 3 over 2 events. The card labelled "Succeeded" was rendering the raw
+    // `processed` count, and the one unprocessed-with-an-error row was being
+    // counted BOTH as Pending (not processed) and as Failed (has an error).
+    // `processed` and `error_message` are independent columns, so counting one
+    // bucket per column can never partition the table.
+    //
+    // The three buckets below are mutually exclusive and exhaustive by
+    // construction, so they always sum to `total`:
+    //   failed    = error_message IS NOT NULL
+    //   succeeded = error_message IS NULL AND processed IS TRUE
+    //   pending   = error_message IS NULL AND processed IS NOT TRUE
+    //
+    // `processed` is NULLABLE (default false), so `pending` is written as
+    // NOT (processed IS TRUE) rather than `processed = false` — otherwise a
+    // NULL row would fall into no bucket and the three would silently sum to
+    // LESS than the total, which is the same class of bug in the other
+    // direction.
+    //
+    // Counted in SQL (head:true fetches no rows) under exactly the same
+    // filters as the list — including `search`, which the previous RPC could
+    // not see.
+    const countUnder = async (
+      shape: (q: any) => any
+    ): Promise<number> => {
+      const { count, error } = await shape(
+        applyFilters(supabase.from('webhook_events').select('id', { count: 'exact', head: true }))
+      );
+      if (error) throw error;
+      return count || 0;
     };
 
+    const [failedCount, succeededCount, pendingCount] = await Promise.all([
+      countUnder((q) => q.not('error_message', 'is', null)),
+      countUnder((q) => q.is('error_message', null).is('processed', true)),
+      countUnder((q) => q.is('error_message', null).not('processed', 'is', true)),
+    ]);
+
     const stats = {
-      total: toNum(s?.total),
-      processed: toNum(s?.processed),
-      unprocessed: toNum(s?.unprocessed),
-      errors: toNum(s?.errors)
+      total: count || 0,
+      succeeded: succeededCount,
+      pending: pendingCount,
+      failed: failedCount,
     };
 
     return NextResponse.json({

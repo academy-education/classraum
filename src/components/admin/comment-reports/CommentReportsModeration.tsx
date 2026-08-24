@@ -27,6 +27,7 @@ import { AdminSkeleton } from '../AdminSkeleton';
 import { DashboardCard } from '../DashboardCard';
 import { StatusBadge, type StatusTone } from '../StatusBadge';
 import { AdminEmptyState } from '../AdminEmptyState';
+import { useDebouncedValue } from '../useDebouncedValue';
 
 interface CommentUser {
   name: string | null;
@@ -75,13 +76,16 @@ export function CommentReportsModeration() {
   // Filters
   const [reportTypeFilter, setReportTypeFilter] = useState('');
   const [searchQuery, setSearchQuery] = useState('');
+  // Debounced copy is what actually goes to the API — the search is a real
+  // server round trip now, not a .filter() over the loaded page.
+  const debouncedSearch = useDebouncedValue(searchQuery, 300);
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
   const [showFilters, setShowFilters] = useState(false);
 
   useEffect(() => {
     loadReports();
-  }, [page, reportTypeFilter, startDate, endDate]);
+  }, [page, reportTypeFilter, startDate, endDate, debouncedSearch]);
 
   const loadReports = async () => {
     try {
@@ -95,6 +99,7 @@ export function CommentReportsModeration() {
       if (reportTypeFilter) params.append('reportType', reportTypeFilter);
       if (startDate) params.append('startDate', new Date(startDate).toISOString());
       if (endDate) params.append('endDate', new Date(endDate).toISOString());
+      if (debouncedSearch.trim()) params.append('search', debouncedSearch.trim());
 
       const response = await adminFetch(`/api/admin/comment-reports?${params.toString()}`);
 
@@ -177,24 +182,6 @@ export function CommentReportsModeration() {
       : type.charAt(0).toUpperCase() + type.slice(1);
   };
 
-  const filteredReports = searchQuery
-    ? reports.filter(report => {
-        const comment = Array.isArray(report.assignment_comments)
-          ? report.assignment_comments[0]
-          : report.assignment_comments;
-        const reporter = Array.isArray(report.users)
-          ? report.users[0]
-          : report.users;
-
-        const q = searchQuery.toLowerCase();
-        return (
-          (report.text || '').toLowerCase().includes(q) ||
-          (comment?.text || '').toLowerCase().includes(q) ||
-          (reporter?.email || '').toLowerCase().includes(q)
-        );
-      })
-    : reports;
-
   return (
     <div className="space-y-6">
       <AdminPageHeader
@@ -246,7 +233,10 @@ export function CommentReportsModeration() {
               type="text"
               placeholder={String(t('admin.commentReports.searchReportsPlaceholder'))}
               value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
+              onChange={(e) => {
+                setSearchQuery(e.target.value);
+                setPage(0);
+              }}
               className="pl-10"
             />
           </div>
@@ -314,7 +304,7 @@ export function CommentReportsModeration() {
       <div className="bg-white rounded-2xl ring-1 ring-gray-100/80 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_12px_-4px_rgba(0,0,0,0.06)] overflow-hidden">
         {loading ? (
           <AdminSkeleton.LogRows rows={6} />
-        ) : filteredReports.length === 0 ? (
+        ) : reports.length === 0 ? (
           <AdminEmptyState
             icon={MessageSquare}
             title={String(t('admin.commentReports.noCommentReportsFound'))}
@@ -322,7 +312,7 @@ export function CommentReportsModeration() {
           />
         ) : (
           <div className="divide-y divide-gray-100">
-            {filteredReports.map((report) => {
+            {reports.map((report) => {
               const comment = Array.isArray(report.assignment_comments)
                 ? report.assignment_comments[0]
                 : report.assignment_comments;
@@ -404,7 +394,7 @@ export function CommentReportsModeration() {
         )}
 
         {/* Pagination */}
-        {!loading && filteredReports.length > 0 && (
+        {!loading && reports.length > 0 && (
           <div className="px-6 py-4 border-t border-gray-100 flex flex-wrap items-center justify-between gap-3">
             <div className="text-sm text-gray-600">
               {String(t('admin.commentReports.showingReports', { from: page * pageSize + 1, to: Math.min((page + 1) * pageSize, total), total }))}

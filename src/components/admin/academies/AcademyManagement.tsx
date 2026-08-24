@@ -44,6 +44,7 @@ import { useTranslation } from '@/hooks/useTranslation';
 import { getDateLocale } from '@/utils/dateUtils';
 import { AdminEmptyState } from '../AdminEmptyState';
 import { AdminTableShell, AdminMobileRow } from '../AdminTableShell';
+import { rowActivationProps } from '../rowActivation';
 
 interface Academy {
   id: string;
@@ -88,6 +89,17 @@ export function AcademyManagement() {
   const [selectedAcademy, setSelectedAcademy] = useState<Academy | null>(null);
   const [showDetailModal, setShowDetailModal] = useState(false);
   const [showActions, setShowActions] = useState<string | null>(null);
+  /**
+   * Opening the detail modal used to be reachable ONLY from the kebab's
+   * "View details" item. Extracted so the row click, the name button and
+   * the menu item all go through one path.
+   */
+  const openAcademyDetail = (academy: Academy) => {
+    setSelectedAcademy(academy);
+    setShowDetailModal(true);
+    setShowActions(null);
+  };
+
   // The row menu renders `fixed`, positioned from the trigger's bounding
   // rect. As an `absolute` child of the table's `overflow-x-auto` wrapper it
   // was clipped (overflow-x:auto forces overflow-y:auto), so the bottom rows'
@@ -574,11 +586,7 @@ export function AcademyManagement() {
           }}
         >
           <button
-            onClick={() => {
-              setSelectedAcademy(academy);
-              setShowDetailModal(true);
-              setShowActions(null);
-            }}
+            onClick={() => openAcademyDetail(academy)}
             className="flex items-center w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
           >
             <Eye className="mr-3 h-4 w-4" />
@@ -849,6 +857,7 @@ export function AcademyManagement() {
               <AdminMobileRow
                 key={academy.id}
                 selected={selectedIds.has(academy.id)}
+                onClick={() => openAcademyDetail(academy)}
                 lead={renderRowCheckbox(academy)}
                 title={academy.name}
                 subtitle={academy.email}
@@ -909,13 +918,26 @@ export function AcademyManagement() {
               </thead>
               <tbody className="divide-y divide-gray-100">
                 {sortedAcademies.map((academy) => (
-                  <tr key={academy.id} className={`hover:bg-gray-50 ${selectedIds.has(academy.id) ? 'bg-primary/[0.03]' : ''}`}>
+                  <tr
+                    key={academy.id}
+                    {...rowActivationProps(() => openAcademyDetail(academy))}
+                    className={`group cursor-pointer hover:bg-gray-50 ${selectedIds.has(academy.id) ? 'bg-primary/[0.03]' : ''}`}
+                  >
                     <td className="px-4 py-4 w-8">
                       {renderRowCheckbox(academy)}
                     </td>
                     <td className="px-4 py-4 whitespace-nowrap">
                       <div>
-                        <div className="text-sm font-medium text-gray-900">{academy.name}</div>
+                        {/* A real button, so the affordance is visible AND
+                            reachable by keyboard. The row's onClick is a
+                            pointer convenience on top of this. */}
+                        <button
+                          type="button"
+                          onClick={() => openAcademyDetail(academy)}
+                          className="text-sm font-medium text-gray-900 text-left rounded-sm group-hover:text-primary group-hover:underline underline-offset-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50"
+                        >
+                          {academy.name}
+                        </button>
                         <div className="text-xs text-gray-500">{academy.email}</div>
                         {academy.phone && (
                           <div className="text-xs text-gray-500 flex items-center mt-1">

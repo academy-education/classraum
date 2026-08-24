@@ -168,7 +168,13 @@ export async function GET(req: NextRequest) {
     const metrics = {
       totalMRR,
       totalARR: totalMRR * 12,
-      growth: 0, // Would need historical data
+      // `growth: 0` used to live here and the MRR card rendered it as
+      // "+0% from last month" with an up-arrow — a hardcoded constant
+      // presented as a measured trend. Nothing in this database stores a
+      // prior-period MRR snapshot to compute it against, so the field is
+      // removed rather than faked. Reinstate it only alongside a real
+      // historical MRR source; do NOT substitute invoice revenue, which
+      // measures cash collected rather than contracted MRR.
       churnRate: Math.round(churnRate * 10) / 10,
       newSubscriptions: toNum(agg?.new_30d),
       canceledSubscriptions: canceledThisMonth

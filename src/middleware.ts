@@ -26,7 +26,7 @@ export function middleware(request: NextRequest) {
     // "unknown route → /auth" before the rename catches it.
     '/exams-and-scores', '/level-tests',
     '/admin', '/admin/academies', '/admin/users', '/admin/subscriptions',
-    '/admin/analytics', '/admin/communications', '/admin/support', '/admin/system', '/admin/settings'
+    '/admin/analytics', '/admin/support', '/admin/system', '/admin/settings'
   ]
 
   // Permanent redirect from the old /level-tests/* URL to the new

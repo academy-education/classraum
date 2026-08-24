@@ -81,6 +81,38 @@ export async function GET(request: NextRequest) {
     }
     const totalAuthUsers = authUsers?.length ?? 0;
 
+    // `auth.users` and `public.users` are DIFFERENT populations and this page
+    // used to present the auth count as "Total users" while /admin and
+    // /admin/users presented the public count under the same label. Both were
+    // right; the label was the defect. They are now reported separately, and
+    // the gap between them is surfaced as its own metric so an admin sees the
+    // discrepancy instead of discovering it by comparing two screens.
+    //
+    // Paginated on purpose: a bare .select('id') is capped at 1000 rows by
+    // PostgREST, which would silently under-count the profile ids and invent
+    // orphans once the platform passes that size.
+    const publicUserIds = new Set<string>();
+    let profilesError: unknown = null;
+    for (let from = 0; ; from += 1000) {
+      const { data, error } = await supabase
+        .from('users')
+        .select('id')
+        .range(from, from + 999);
+      if (error) { profilesError = error; break; }
+      for (const r of data ?? []) publicUserIds.add(r.id);
+      if (!data || data.length < 1000) break;
+    }
+    if (profilesError) {
+      console.error('[Admin System API] listing public.users ids failed:', profilesError);
+    }
+    const totalPlatformUsers = publicUserIds.size;
+    // A profile row with no auth account: the user cannot sign in, so this is
+    // a real data-integrity signal, not a cosmetic difference.
+    const authIds = new Set((authUsers ?? []).map(u => u.id));
+    const usersWithoutAuth = authUsers && !profilesError
+      ? [...publicUserIds].filter(id => !authIds.has(id)).length
+      : null;
+
     // Calculate active users (logged in within last 30 days)
     const thirtyDaysAgo = new Date();
     thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
@@ -174,12 +206,28 @@ export async function GET(request: NextRequest) {
     // Same contract as `services`: `id` is the stable key the client localizes.
     const systemMetrics = [
       {
-        id: 'total_users',
-        name: 'Total Users',
+        id: 'auth_accounts',
+        name: 'Auth Accounts',
         value: totalAuthUsers.toString(),
         status: 'good',
-        description: 'Registered users in the system'
+        description: 'Sign-in accounts in Supabase Auth'
       },
+      {
+        id: 'platform_users',
+        name: 'Platform Users',
+        value: totalPlatformUsers.toString(),
+        status: 'good',
+        description: 'Profile rows in public.users — the number /admin and /admin/users report'
+      },
+      // Only shown when it can actually be computed; a null here would render
+      // as "0 orphans", which is the one wrong answer this metric must not give.
+      ...(usersWithoutAuth === null ? [] : [{
+        id: 'users_without_auth',
+        name: 'Users Without Auth Account',
+        value: usersWithoutAuth.toString(),
+        status: usersWithoutAuth > 0 ? 'warning' : 'good',
+        description: 'Profiles with no sign-in account — the gap between the two counts above'
+      }]),
       {
         id: 'active_users_30d',
         name: 'Active Users (30d)',
@@ -195,11 +243,16 @@ export async function GET(request: NextRequest) {
         description: 'Currently active subscriptions'
       },
       {
-        id: 'database_tables',
-        name: 'Database Tables',
+        // NOT a count of tables in the database — `tables` is the hardcoded
+        // list a few lines up. Presented as "Database tables" it read as a
+        // schema-wide fact and was off by an order of magnitude. It is the
+        // number of tables THIS page samples row counts for, and is now
+        // labelled as such.
+        id: 'monitored_tables',
+        name: 'Monitored Tables',
         value: tables.length.toString(),
         status: 'good',
-        description: 'Main database tables'
+        description: 'Core tables sampled by this page — not the total in the database'
       }
     ];
 

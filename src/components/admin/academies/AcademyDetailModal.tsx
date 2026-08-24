@@ -21,6 +21,7 @@ import {
   Loader2
 } from 'lucide-react';
 import { formatPrice } from '@/lib/subscription';
+import { relativeTimeParts } from '@/lib/admin/relative-time';
 import { db } from '@/lib/supabase';
 import { useTranslation } from '@/hooks/useTranslation';
 import { getDateLocale } from '@/utils/dateUtils';
@@ -391,7 +392,13 @@ export function AcademyDetailModal({ academy, onClose }: AcademyDetailModalProps
                     <Clock className="h-8 w-8 text-amber-600" />
                     <div className="text-right">
                       <p className="text-sm font-semibold text-gray-900">
-                        {String(t('admin.academies.hoursAgo', { hours: Math.floor((Date.now() - academy.lastActive.getTime()) / (1000 * 60 * 60)) }))}
+                        {/* Rolls up past hours. The raw hour count printed
+                            "5427h ago" for an academy last seen seven months
+                            back; relativeTimeParts picks the unit. */}
+                        {(() => {
+                          const { key, params } = relativeTimeParts(academy.lastActive);
+                          return String(t(`admin.academies.${key}`, params));
+                        })()}
                       </p>
                       <p className="text-xs text-gray-600">{String(t('admin.academies.thLastActive'))}</p>
                     </div>

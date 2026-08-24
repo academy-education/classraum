@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useState, useEffect } from 'react';
-import { Search, Download, Eye, Calendar } from 'lucide-react';
+import { Search, Download, Eye, Calendar, AlertTriangle, RefreshCw, Banknote } from 'lucide-react';
 import { AdminPageHeader } from '../AdminPageHeader';
 import { StatusBadge, type StatusTone } from '../StatusBadge';
 import { AdminSkeleton } from '../AdminSkeleton';
@@ -12,7 +12,6 @@ import { SortableTh } from '../SortableTh';
 import { PortOneSettlement, SettlementStatus } from '@/types/subscription';
 import { SettlementDetailModal } from './SettlementDetailModal';
 import { PayoutHistory } from './PayoutHistory';
-import { db } from '@/lib/supabase';
 import {
   Select,
   SelectContent,
@@ -46,9 +45,21 @@ export function SettlementManagement() {
   const [loading, setLoading] = useState(true);
   const [selectedSettlement, setSelectedSettlement] = useState<PortOneSettlement | null>(null);
   const [showDetailModal, setShowDetailModal] = useState(false);
-  const [showPayoutHistory, setShowPayoutHistory] = useState(false);
+  /**
+   * Which of the two tables this page is showing.
+   *
+   * "Payout history" used to open PayoutHistory as an overlay ON TOP of the
+   * settlements table, so the screen carried two tables and two identical
+   * four-field filter rows, one of them dimmed behind the scrim. They are
+   * not a page and a dialog — they are two views of the same money, so the
+   * page switches between them.
+   */
+  const [view, setView] = useState<'settlements' | 'payouts'>('settlements');
   const [page, setPage] = useState(0);
   const [totalCount, setTotalCount] = useState(0);
+  // `loadError` is deliberately separate from "0 rows": an upstream failure and
+  // an empty period must not render the same screen.
+  const [loadError, setLoadError] = useState<string | null>(null);
 
   // Calculate default date range (last 30 days)
   const getDefaultDateRange = () => {
@@ -105,14 +116,19 @@ export function SettlementManagement() {
       }
       // Academy-name search runs SERVER-SIDE now (resolved to PortOne partner
       // ids) so it spans every page and the totalCount stays correct.
-      if (filters.academyName.trim()) {
-        params.append('academyName', filters.academyName.trim());
+      if (debouncedAcademy.trim()) {
+        params.append('academyName', debouncedAcademy.trim());
       }
+
+      setLoadError(null);
 
       const response = await adminFetch(`/api/admin/settlements?${params.toString()}`);
 
       if (!response.ok) {
-        throw new Error(String(t('admin.settlements.failedToFetch')));
+        const body = await response.json().catch(() => ({}));
+        throw new Error(
+          body?.message || String(t('admin.settlements.failedToFetch'))
+        );
       }
 
       const data = await response.json();
@@ -120,12 +136,20 @@ export function SettlementManagement() {
       const items = data.items || [];
       setSettlements(items);
       announce(String(t('admin.settlements.loadedAnnounce', { n: items.length })));
-      setTotalCount(data.totalCount || 0);
+      // The route now normalises PortOne's `page.totalCount` to a top-level
+      // `totalCount`; the `page.totalCount` fallback covers any response that
+      // still carries the raw upstream envelope.
+      setTotalCount(data.totalCount ?? data.page?.totalCount ?? 0);
     } catch (error) {
       console.error('Error loading settlements:', error);
-      // Set empty data instead of showing alert
+      // Do NOT fall back to an empty table — that is the failure-made-quiet
+      // pattern this screen used to have. Surface it as its own state.
       setSettlements([]);
       setTotalCount(0);
+      setLoadError(
+        error instanceof Error ? error.message : String(t('admin.settlements.failedToFetch'))
+      );
+      announce(String(t('admin.settlements.loadErrorTitle')));
     } finally {
       setLoading(false);
     }
@@ -255,12 +279,39 @@ export function SettlementManagement() {
       </div>
     ) : null;
 
+  // Distinct from AdminEmptyState on purpose: an upstream failure gets a red
+  // alert + a retry affordance, an empty period gets the grey magnifier.
+  const errorNode = (
+    <div className="flex flex-col items-center justify-center gap-3 px-6 py-12 text-center">
+      <div className="w-11 h-11 rounded-full bg-red-50 flex items-center justify-center">
+        <AlertTriangle className="w-5 h-5 text-red-600" />
+      </div>
+      <div>
+        <p className="text-sm font-semibold text-red-700">
+          {String(t('admin.settlements.loadErrorTitle'))}
+        </p>
+        <p className="mt-1 text-sm text-gray-500 max-w-md">
+          {String(t('admin.settlements.loadErrorDesc'))}
+        </p>
+        {loadError && (
+          <p className="mt-1 text-xs text-gray-400 break-all">{loadError}</p>
+        )}
+      </div>
+      <Button onClick={() => loadSettlements()} variant="outline" size="sm" className="gap-1.5">
+        <RefreshCw className="w-4 h-4" />
+        {String(t('admin.settlements.loadErrorRetry'))}
+      </Button>
+    </div>
+  );
+
   // Below `md` the 8-column table is replaced by this card stack — dragging a
   // 900px-wide table sideways on a phone is not a usable way to read it.
   const mobileRows = (
     <>
       {loading ? (
         <AdminSkeleton.LogRows rows={6} />
+      ) : loadError ? (
+        errorNode
       ) : settlements.length === 0 ? (
         <AdminEmptyState
           icon={Search}
@@ -309,19 +360,53 @@ export function SettlementManagement() {
         description={String(t('admin.settlements.subtitle'))}
         actions={
           <>
-            <Button onClick={() => setShowPayoutHistory(true)} variant="outline" size="sm" className="gap-1.5">
-              <Calendar className="w-4 h-4" />
-              {String(t('admin.settlements.payoutHistory'))}
-            </Button>
-            <Button onClick={handleExportCSV} size="sm" className="gap-1.5">
-              <Download className="w-4 h-4" />
-              {String(t('admin.settlements.exportCsv'))}
-            </Button>
+            <div
+              role="tablist"
+              aria-label={String(t('admin.settlements.viewSwitchLabel'))}
+              className="inline-flex items-center rounded-lg bg-gray-100 p-0.5"
+            >
+              {([
+                ['settlements', String(t('admin.settlements.title')), Banknote],
+                ['payouts', String(t('admin.settlements.payoutHistory')), Calendar],
+              ] as const).map(([key, label, Icon]) => (
+                <button
+                  key={key}
+                  type="button"
+                  role="tab"
+                  aria-selected={view === key}
+                  onClick={() => setView(key)}
+                  className={`inline-flex items-center gap-1.5 h-7 px-3 rounded-md text-xs font-semibold transition-colors ${
+                    view === key
+                      ? 'bg-white text-gray-900 shadow-[0_1px_2px_rgba(0,0,0,0.06)]'
+                      : 'text-gray-500 hover:text-gray-700'
+                  }`}
+                >
+                  <Icon className="w-3.5 h-3.5" />
+                  {label}
+                </button>
+              ))}
+            </div>
+            {/* Honest label: this exports the rows on screen, not the whole
+                filtered set — PortOne is paged upstream and we do not walk it.
+                Hidden on the payouts view, which it does not export. */}
+            {view === 'settlements' && (
+              <Button
+                onClick={handleExportCSV}
+                size="sm"
+                className="gap-1.5"
+                disabled={settlements.length === 0}
+                title={String(t('admin.settlements.csvExportPageNote'))}
+              >
+                <Download className="w-4 h-4" />
+                {String(t('admin.settlements.exportCsv'))}
+              </Button>
+            )}
           </>
         }
       />
       <LiveRegion />
 
+      {view === 'payouts' ? <PayoutHistory inline /> : (<>
       {/* Filters */}
       <div className="bg-white p-4 rounded-2xl ring-1 ring-gray-100/80 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_12px_-4px_rgba(0,0,0,0.06)]">
         {/* 1 → 2 → 4. Going straight to 4 columns at `md` left each cell
@@ -420,6 +505,10 @@ export function SettlementManagement() {
                     ))}
                   </tr>
                 ))
+              ) : loadError ? (
+                <tr>
+                  <td colSpan={8}>{errorNode}</td>
+                </tr>
               ) : settlements.length === 0 ? (
                 <tr>
                   <td colSpan={8}>
@@ -467,6 +556,7 @@ export function SettlementManagement() {
         {/* Pagination — uses shared Button so disabled / hover treatment matches */}
         {paginationNode}
       </AdminTableShell>
+      </>)}
 
       {/* Modals */}
       {showDetailModal && selectedSettlement && (
@@ -479,9 +569,6 @@ export function SettlementManagement() {
         />
       )}
 
-      {showPayoutHistory && (
-        <PayoutHistory onClose={() => setShowPayoutHistory(false)} />
-      )}
     </div>
   );
 }

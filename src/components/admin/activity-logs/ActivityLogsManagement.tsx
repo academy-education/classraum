@@ -27,12 +27,12 @@ import { getDateLocale } from '@/utils/dateUtils';
 import { useAdminFetch } from '../useAdminFetch';
 import { AdminSkeleton } from '../AdminSkeleton';
 import { StatusBadge, type StatusTone } from '../StatusBadge';
-import { useTableSort } from '../useTableSort';
 import { SortableTh } from '../SortableTh';
 import { usePolling } from '../usePolling';
 import { useUrlState } from '../useUrlState';
 import { AdminEmptyState } from '../AdminEmptyState';
 import { AdminTableShell, AdminMobileRow } from '../AdminTableShell';
+import { useDebouncedValue } from '../useDebouncedValue';
 
 interface ActivityLog {
   id: string;
@@ -65,6 +65,11 @@ const actionTypes = [
 
 const targetTypes = ['academy', 'user', 'subscription', 'notification', 'support_ticket'];
 
+/** Upper bound on rows pulled for a CSV export. The export covers the whole
+ *  FILTERED set, not the loaded page; if the filter still matches more than
+ *  this, the filename says so rather than the file quietly being partial. */
+const CSV_EXPORT_CAP = 5000;
+
 export function ActivityLogsManagement() {
   const { t, language } = useTranslation();
   const adminFetch = useAdminFetch();
@@ -86,6 +91,33 @@ export function ActivityLogsManagement() {
   const [endDate, setEndDate] = useState('');
   const [showFilters, setShowFilters] = useState(false);
 
+  // Search runs SERVER-SIDE (see /api/admin/activity-logs) over description +
+  // the actor's name/email. Debounced so typing doesn't fire a request per
+  // keystroke; `searchQuery` drives the input, `debouncedSearch` the fetch.
+  const debouncedSearch = useDebouncedValue(searchQuery, 300);
+
+  // Sort is server-side too, so the column headers order the whole filtered
+  // set rather than the 50 loaded rows. State mirrors the URL (?sort=&dir=)
+  // exactly as the old client-side useTableSort did, so existing links keep
+  // working — what changed is WHERE the ordering happens.
+  const [sortKey, setSortKey] = useUrlState('sort', 'created_at');
+  const [sortDir, setSortDir] = useUrlState('dir', 'desc');
+  const toggleSort = (key: string) => {
+    setPage(0);
+    if (sortKey !== key) {
+      setSortKey(key);
+      setSortDir('asc');
+      return;
+    }
+    if (sortDir === 'asc') setSortDir('desc');
+    else {
+      // Third click returns to the default newest-first ordering.
+      setSortKey('created_at');
+      setSortDir('desc');
+    }
+  };
+  const sortIndicator = (key: string) => (sortKey !== key ? '' : sortDir === 'asc' ? '\u25b2' : '\u25bc');
+
   // Distinct actors derived from the current page of logs. This avoids a
   // second API round-trip for the dropdown options. If a deep link sets an
   // actor that isn't on the visible page, we still keep the value selected
@@ -102,7 +134,7 @@ export function ActivityLogsManagement() {
 
   useEffect(() => {
     loadActivityLogs();
-  }, [page, actionTypeFilter, targetTypeFilter, adminUserFilter, startDate, endDate]);
+  }, [page, actionTypeFilter, targetTypeFilter, adminUserFilter, startDate, endDate, debouncedSearch, sortKey, sortDir]);
 
   // Auto-refresh every 60s while the tab is visible. Activity is the kind
   // of feed admins watch live (e.g. during an incident); pauses when the
@@ -111,20 +143,27 @@ export function ActivityLogsManagement() {
   // the table out and back in every minute.
   usePolling(() => loadActivityLogs({ silent: true }), { intervalMs: 60_000 });
 
+  // Every filter — including search and sort — is a query param, so the
+  // server decides both the matching set and its order.
+  const buildParams = (overrides: { page?: number; pageSize?: number } = {}) => {
+    const params = new URLSearchParams({
+      page: (overrides.page ?? page).toString(),
+      pageSize: (overrides.pageSize ?? pageSize).toString(),
+      sort: `${sortKey}:${sortDir}`,
+    });
+    if (actionTypeFilter) params.append('actionType', actionTypeFilter);
+    if (targetTypeFilter) params.append('targetType', targetTypeFilter);
+    if (adminUserFilter) params.append('adminUserId', adminUserFilter);
+    if (startDate) params.append('startDate', new Date(startDate).toISOString());
+    if (endDate) params.append('endDate', new Date(endDate).toISOString());
+    if (debouncedSearch.trim()) params.append('search', debouncedSearch.trim());
+    return params;
+  };
+
   const loadActivityLogs = async ({ silent = false }: { silent?: boolean } = {}) => {
     try {
       if (!silent) setLoading(true);
-      // Build query params
-      const params = new URLSearchParams({
-        page: page.toString(),
-        pageSize: pageSize.toString()
-      });
-
-      if (actionTypeFilter) params.append('actionType', actionTypeFilter);
-      if (targetTypeFilter) params.append('targetType', targetTypeFilter);
-      if (adminUserFilter) params.append('adminUserId', adminUserFilter);
-      if (startDate) params.append('startDate', new Date(startDate).toISOString());
-      if (endDate) params.append('endDate', new Date(endDate).toISOString());
+      const params = buildParams();
 
       const response = await adminFetch(`/api/admin/activity-logs?${params.toString()}`);
 
@@ -174,7 +213,29 @@ export function ActivityLogsManagement() {
       .join(' ');
   };
 
-  const exportToCSV = () => {
+  // Export the WHOLE filtered set as CSV, not just the loaded page — the footer
+  // claims a total, so the export has to mean the same thing. Re-fetches with
+  // the same filters and sort at a large pageSize (capped at CSV_EXPORT_CAP);
+  // if the filtered total is bigger than the cap the filename records exactly
+  // how much was written.
+  const [exporting, setExporting] = useState(false);
+  const exportToCSV = async () => {
+    if (total === 0 || exporting) return;
+    setExporting(true);
+    let exportLogs: ActivityLog[] = [];
+    try {
+      const params = buildParams({ page: 0, pageSize: CSV_EXPORT_CAP });
+      const response = await adminFetch(`/api/admin/activity-logs?${params.toString()}`);
+      if (!response.ok) throw new Error('Failed to fetch logs for export');
+      const result = await response.json();
+      exportLogs = result.success ? result.data : [];
+    } catch (error) {
+      console.error('[ActivityLogs] Export failed:', error);
+      setExporting(false);
+      return;
+    }
+    setExporting(false);
+    if (exportLogs.length === 0) return;
     const headers = [
       String(t('admin.activityLogs.columns.timestamp')),
       String(t('admin.activityLogs.adminUser')),
@@ -183,7 +244,7 @@ export function ActivityLogsManagement() {
       String(t('admin.activityLogs.columns.description')),
       String(t('admin.activityLogs.ipAddress')),
     ];
-    const rows = logs.map(log => [
+    const rows = exportLogs.map(log => [
       new Date(log.created_at).toLocaleString(getDateLocale(language)),
       log.users.name || log.users.email,
       formatActionType(log.action_type),
@@ -201,41 +262,23 @@ export function ActivityLogsManagement() {
     const url = URL.createObjectURL(blob);
     const link = document.createElement('a');
     link.href = url;
-    link.download = `activity-logs-${new Date().toISOString().split('T')[0]}.csv`;
+    // Honest filename: if the filtered set exceeded the cap, say so in the name
+    // rather than shipping a silently-truncated file called "activity-logs".
+    const suffix = exportLogs.length < total ? `-first${exportLogs.length}of${total}` : '';
+    link.download = `activity-logs-${new Date().toISOString().split('T')[0]}${suffix}.csv`;
     link.click();
   };
 
-  const filteredLogs = searchQuery
-    ? logs.filter(log =>
-        log.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        log.users.email.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        (log.users.name && log.users.name.toLowerCase().includes(searchQuery.toLowerCase()))
-      )
-    : logs;
-
-  // Click-to-sort on column headers. Sorts the visible page (50 rows) — the
-  // overall ordering still comes from the API; this is a refinement on what
-  // the admin is currently looking at.
-  const { toggle: toggleSort, sortIndicator, sorted: sortedLogs } = useTableSort(filteredLogs, {
-    defaultKey: 'created_at',
-    defaultDir: 'desc',
-    getValue: (log, key) => {
-      switch (key) {
-        case 'created_at':  return new Date(log.created_at);
-        case 'admin':       return log.users.name || log.users.email;
-        case 'action_type': return log.action_type;
-        case 'description': return log.description;
-        case 'ip_address':  return log.ip_address || '';
-        default:            return '';
-      }
-    },
-  });
+  // No client-side filter or sort here on purpose: search, sort and paging are
+  // all resolved by the API over the full table, so `logs` is already the
+  // correct page of the correctly-ordered, correctly-filtered set. Keeping a
+  // second copy of that logic here would give two writers for one ordering.
 
   // Pagination has to sit inside the card at both sizes. AdminTableShell
   // exposes a mobile slot and a table slot only, so the same node is rendered
   // into both — exactly one of the two is ever visible.
   const paginationNode =
-    !loading && filteredLogs.length > 0 ? (
+    !loading && logs.length > 0 ? (
       <div className="px-6 py-4 border-t border-gray-100 flex flex-wrap items-center justify-between gap-3">
         <div className="text-sm text-gray-600">
           {String(t('admin.activityLogs.showingLogs', { from: page * pageSize + 1, to: Math.min((page + 1) * pageSize, total), total }))}
@@ -271,7 +314,7 @@ export function ActivityLogsManagement() {
       {loading ? (
         <AdminSkeleton.LogRows rows={6} />
       ) : (
-        sortedLogs.map((log) => (
+        logs.map((log) => (
           <AdminMobileRow
             key={log.id}
             title={log.users.name || log.users.email}
@@ -318,7 +361,7 @@ export function ActivityLogsManagement() {
         description={String(t('admin.activityLogs.subtitle'))}
         actions={
           <>
-            <Button onClick={exportToCSV} variant="outline" size="sm" className="gap-1.5">
+            <Button onClick={exportToCSV} variant="outline" size="sm" className="gap-1.5" disabled={total === 0 || exporting}>
               <Download className="w-4 h-4" />
               {String(t('admin.settlements.exportCsv'))}
             </Button>
@@ -339,7 +382,12 @@ export function ActivityLogsManagement() {
               type="text"
               placeholder={String(t('admin.activityLogs.searchPlaceholder'))}
               value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
+              onChange={(e) => {
+                setSearchQuery(e.target.value);
+                // A new search means a new result set — page 3 of the old one
+                // is meaningless (and often past the end of the new one).
+                setPage(0);
+              }}
               className="pl-10"
             />
           </div>
@@ -453,7 +501,7 @@ export function ActivityLogsManagement() {
       </div>
 
       {/* Activity Logs Table */}
-      {!loading && filteredLogs.length === 0 ? (
+      {!loading && logs.length === 0 ? (
         <div className="bg-white rounded-2xl ring-1 ring-gray-100/80 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_12px_-4px_rgba(0,0,0,0.06)] overflow-hidden">
           <AdminEmptyState
             icon={Clock}
@@ -488,7 +536,7 @@ export function ActivityLogsManagement() {
                 {loading && <AdminSkeleton.TableRows rows={6} cols={5} />}
                 {!loading && (<>
 
-                {sortedLogs.map((log) => (
+                {logs.map((log) => (
                   <tr key={log.id} className="hover:bg-gray-50">
                     <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-600">
                       {new Date(log.created_at).toLocaleString(getDateLocale(language))}

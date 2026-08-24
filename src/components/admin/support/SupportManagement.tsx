@@ -62,6 +62,20 @@ interface ChatConversation {
 
 export function SupportManagement() {
   const { t, language } = useTranslation();
+
+  /**
+   * "1 messages" shipped on every conversation with exactly one message,
+   * because `admin.support.messagesCount` is a single string and `t()` has
+   * no plural support. Selecting between two keys at the call site is the
+   * smallest fix that is actually correct: English needs both forms, Korean
+   * needs neither (메시지 {count}개 is number-invariant), and both locales
+   * carry both keys so the selection can never fall through to a raw path.
+   */
+  const messagesCountLabel = (count: number) =>
+    String(
+      t(count === 1 ? 'admin.support.messagesCountOne' : 'admin.support.messagesCount', { count })
+    );
+
   const { announce, LiveRegion } = useLiveAnnounce();
   const confirm = useConfirm();
   const [conversations, setConversations] = useState<ChatConversation[]>([]);
@@ -390,7 +404,7 @@ export function SupportManagement() {
           label: String(t('admin.support.conversation')),
           value: (
             <span className="inline-flex items-center gap-1.5">
-              {String(t('admin.support.messagesCount', { count: conversation.messageCount }))}
+              {String(messagesCountLabel(conversation.messageCount))}
               {conversation.unreadCount ? (
                 <StatusBadge tone="danger" size="sm">
                   {String(t('admin.support.unreadCount', { count: conversation.unreadCount }))}
@@ -519,7 +533,7 @@ export function SupportManagement() {
                           </div>
                           <div className="flex items-center mt-1 text-xs text-gray-500">
                             <MessageSquare className="mr-1 h-3 w-3" />
-                            {String(t('admin.support.messagesCount', { count: conversation.messageCount }))}
+                            {String(messagesCountLabel(conversation.messageCount))}
                             {conversation.unreadCount ? (
                               <span className="ml-2">
                                 <StatusBadge tone="danger" size="sm">{String(t('admin.support.unreadCount', { count: conversation.unreadCount }))}</StatusBadge>

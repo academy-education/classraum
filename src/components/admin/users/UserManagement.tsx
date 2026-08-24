@@ -31,6 +31,7 @@ import { SortableTh } from '../SortableTh';
 import { useDebouncedValue } from '../useDebouncedValue';
 import { AdminEmptyState } from '../AdminEmptyState';
 import { AdminTableShell, AdminMobileRow } from '../AdminTableShell';
+import { rowActivationProps } from '../rowActivation';
 import { UserDetailModal } from './UserDetailModal';
 import { EditUserModal, type EditUserTarget } from './EditUserModal';
 import { Input } from '@/components/ui/input';
@@ -79,6 +80,17 @@ export function UserManagement() {
   const [selectedUser, setSelectedUser] = useState<User | null>(null);
   const [showDetailModal, setShowDetailModal] = useState(false);
   const [showActions, setShowActions] = useState<string | null>(null);
+  /**
+   * One path to the detail modal, shared by the row click, the name button
+   * and the kebab's "View details" item. Before this, the kebab was the
+   * only way in and clicking a row did nothing at all.
+   */
+  const openUserDetail = (user: User) => {
+    setSelectedUser(user);
+    setShowDetailModal(true);
+    setShowActions(null);
+  };
+
   // The row menu is rendered `fixed` and positioned from the trigger's
   // bounding rect. Rendering it `absolute` inside the table's
   // `overflow-x-auto` wrapper clipped it (overflow-x:auto forces
@@ -370,11 +382,7 @@ export function UserManagement() {
           }}
         >
           <button
-            onClick={() => {
-              setSelectedUser(user);
-              setShowDetailModal(true);
-              setShowActions(null);
-            }}
+            onClick={() => openUserDetail(user)}
             className="flex items-center w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-50"
           >
             <Eye className="mr-3 h-4 w-4" />
@@ -651,6 +659,7 @@ export function UserManagement() {
               <AdminMobileRow
                 key={user.id}
                 selected={selectedIds.has(user.id)}
+                onClick={() => openUserDetail(user)}
                 lead={renderRowCheckbox(user)}
                 title={user.name}
                 subtitle={user.email}
@@ -719,7 +728,8 @@ export function UserManagement() {
                 {paginatedUsers.map((user) => (
                   <tr
                     key={user.id}
-                    className={`hover:bg-gray-50 ${selectedIds.has(user.id) ? 'bg-primary/[0.03]' : ''}`}
+                    {...rowActivationProps(() => openUserDetail(user))}
+                    className={`group cursor-pointer hover:bg-gray-50 ${selectedIds.has(user.id) ? 'bg-primary/[0.03]' : ''}`}
                   >
                     <td className="px-4 py-4 whitespace-nowrap">
                       {renderRowCheckbox(user)}
@@ -730,7 +740,16 @@ export function UserManagement() {
                           {initialsFromName(user.name)}
                         </div>
                         <div className="ml-4">
-                          <div className="text-sm font-medium text-gray-900">{user.name}</div>
+                          {/* A real button: the affordance is visible and
+                              the detail view is reachable by keyboard. The
+                              row's onClick sits on top of it. */}
+                          <button
+                            type="button"
+                            onClick={() => openUserDetail(user)}
+                            className="text-sm font-medium text-gray-900 text-left rounded-sm group-hover:text-primary group-hover:underline underline-offset-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50"
+                          >
+                            {user.name}
+                          </button>
                           <div className="text-sm text-gray-500">{user.email}</div>
                         </div>
                       </div>

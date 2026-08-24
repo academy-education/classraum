@@ -29,27 +29,48 @@ import { getDateLocale } from '@/utils/dateUtils';
 import { AdminSkeleton } from './AdminSkeleton';
 import { useTranslation } from '@/hooks/useTranslation';
 
+/**
+ * Every field is nullable, and `null` means "this tile's section failed",
+ * NOT zero.
+ *
+ * The route fans out ~40 Supabase reads per load. They all used to sit under
+ * one try/Promise.all, so one `TypeError: fetch failed` on a single
+ * sparkline bucket returned 500 and this component rendered the whole-page
+ * error — a dashboard blanked by one bad socket. The route now retries
+ * transient faults and degrades per section; a section that still fails
+ * arrives as nulls plus an entry in `degraded`, and the tile says so in
+ * place while the rest of the page renders.
+ *
+ * The nullability is the guard that keeps that honest: there is no code path
+ * that can turn a failed read into a believable 0.
+ */
 interface DashboardStats {
-  totalAcademies: number;
-  activeAcademies: number;
-  totalUsers: number;
-  monthlyRevenue: number;
-  revenueGrowth: number;
-  activeSubscriptions: number;
-  trialAcademies: number;
-  supportTickets: number;
-  unreadSupportTickets: number;
-  closedSupportTickets: number;
-  systemHealth: number;
-  servicesOperational: boolean;
+  totalAcademies: number | null;
+  activeAcademies: number | null;
+  totalUsers: number | null;
+  monthlyRevenue: number | null;
+  revenueGrowth: number | null;
+  activeSubscriptions: number | null;
+  trialAcademies: number | null;
+  supportTickets: number | null;
+  unreadSupportTickets: number | null;
+  closedSupportTickets: number | null;
+  systemHealth: number | null;
+  servicesOperational: boolean | null;
   // Trend data for charts
-  academiesTrend: number[];
-  usersTrend: number[];
-  subscriptionsTrend: number[];
-  revenueTrend: number[];
-  academiesGrowth: number;
-  usersGrowth: number;
-  subscriptionsGrowth: number;
+  academiesTrend: number[] | null;
+  usersTrend: number[] | null;
+  subscriptionsTrend: number[] | null;
+  revenueTrend: number[] | null;
+  academiesGrowth: number | null;
+  usersGrowth: number | null;
+  subscriptionsGrowth: number | null;
+}
+
+/** One section the server could not load, with the reason. */
+interface DegradedSection {
+  section: string;
+  detail: string;
 }
 
 interface SystemAlert {
@@ -110,6 +131,7 @@ export function AdminDashboard() {
   };
 
   const [stats, setStats] = useState<DashboardStats | null>(null);
+  const [degraded, setDegraded] = useState<DegradedSection[]>([]);
   const [alerts, setAlerts] = useState<SystemAlert[]>([]);
   const [loading, setLoading] = useState(true);
   const [loadError, setLoadError] = useState<string | null>(null);
@@ -164,17 +186,34 @@ export function AdminDashboard() {
         throw new Error(body?.detail || body?.error || `Request failed (${res.status})`);
       }
 
-      const { stats, alerts } = await res.json() as {
+      const { stats, alerts, degraded } = await res.json() as {
         stats: DashboardStats;
-        alerts: { id: string; type: SystemAlert['type']; title: string; message: string; timestamp: string; resolved: boolean }[];
+        alerts: { id: string; type: SystemAlert['type']; title: string; message: string; timestamp: string; resolved: boolean }[] | null;
+        degraded?: DegradedSection[];
       };
 
+      const failedSections = degraded ?? [];
+
+      // Every section down is not a degraded page, it is a broken one —
+      // there would be nothing left to render but a grid of dashes. Fall
+      // through to the whole-page error so the admin gets the reason and a
+      // retry rather than an empty-looking platform.
+      const anySectionLoaded =
+        Object.values(stats).some(v => v !== null) || alerts !== null;
+      if (!anySectionLoaded) {
+        throw new Error(
+          failedSections.map(d => `${d.section}: ${d.detail}`).join('; ') || 'No data returned'
+        );
+      }
+
       setStats(stats);
-      setAlerts(alerts.map(a => ({ ...a, timestamp: new Date(a.timestamp) })));
+      setDegraded(failedSections);
+      setAlerts((alerts ?? []).map(a => ({ ...a, timestamp: new Date(a.timestamp) })));
     } catch (error) {
       console.error('Error loading dashboard data:', error);
       // No fabricated zeros — surface the failure.
       setStats(null);
+      setDegraded([]);
       setAlerts([]);
       setLoadError(error instanceof Error ? error.message : String(error));
     } finally {
@@ -263,6 +302,65 @@ export function AdminDashboard() {
     return message;
   };
 
+  /**
+   * ── Rendering a tile whose section did not load ──────────────────────
+   *
+   * A dash, not a zero, and an explicit "couldn't load" line under it. The
+   * temptation is to render 0 and move on; that is the defect this whole
+   * change exists to prevent, because "Total academies 0" is a sentence the
+   * reader believes.
+   */
+  const unavailable = String(t('admin.dashboard.tileUnavailable'));
+
+  const metric = (v: number | null, fmt: (n: number) => string = n => n.toLocaleString()) =>
+    v === null ? <span className="text-gray-300">—</span> : fmt(v);
+
+  const unavailableRow = (
+    <div className="flex items-center text-sm text-amber-600">
+      <AlertTriangle className="w-4 h-4 mr-1" />
+      <span>{unavailable}</span>
+    </div>
+  );
+
+  const growthRow = (
+    pct: number | null,
+    labelKey: 'percentChangeOverDays' | 'percentChangeFromLastMonth',
+  ) => {
+    if (pct === null) return unavailableRow;
+    return (
+      <div className={`flex items-center text-sm ${pct >= 0 ? 'text-emerald-600' : 'text-rose-600'}`}>
+        {pct >= 0 ? <TrendingUp className="w-4 h-4 mr-1" /> : <TrendingDown className="w-4 h-4 mr-1" />}
+        <span>{String(t(`admin.dashboard.${labelKey}`, { sign: pct >= 0 ? '+' : '', percent: pct }))}</span>
+      </div>
+    );
+  };
+
+  const trendBox = (
+    series: number[] | null,
+    dataKey: string,
+    color: string,
+    isCurrency = false,
+  ) => (
+    <div className="mt-4 w-full h-16 relative">
+      {series === null ? (
+        <div className="flex items-center justify-center h-full text-xs text-amber-600">
+          {unavailable}
+        </div>
+      ) : series.length > 0 ? (
+        <AdminTrendChart
+          data={series.map((value, index) => ({ day: index, [dataKey]: value }))}
+          dataKey={dataKey}
+          color={color}
+          isCurrency={isCurrency}
+        />
+      ) : (
+        <div className="flex items-center justify-center h-full text-xs text-gray-400">
+          {String(t('admin.dashboard.noData'))}
+        </div>
+      )}
+    </div>
+  );
+
   if (loading) {
     // Real header stays mounted; only the body content shows skeletons.
     // AdminSkeleton.Bar uses the shimmer sweep — no outer animate-pulse needed.
@@ -325,6 +423,27 @@ export function AdminDashboard() {
           </div>
         }
       />
+
+      {/* A partial load says so ONCE at the top, with the reason and a
+          retry. Without this the page looks complete apart from a couple of
+          dashes, and an admin reading a stale-looking tile has no way to
+          tell it apart from a genuinely empty one. */}
+      {degraded.length > 0 && (
+        <div className="bg-amber-50 ring-1 ring-amber-200/70 rounded-2xl p-4 flex flex-wrap items-start gap-3">
+          <AlertTriangle className="h-5 w-5 text-amber-500 flex-shrink-0" />
+          <div className="flex-1 min-w-0">
+            <p className="text-sm font-medium text-gray-900">
+              {String(t('admin.dashboard.partiallyLoaded', { count: degraded.length }))}
+            </p>
+            <p className="text-xs text-gray-600 mt-1 break-words">
+              {degraded.map(d => `${d.section}: ${d.detail}`).join(' · ')}
+            </p>
+          </div>
+          <Button variant="outline" size="sm" onClick={loadDashboardData}>
+            {String(t('admin.common.refresh'))}
+          </Button>
+        </div>
+      )}
 
       {/* System Alerts — de-duplicated: identical title+message rows (e.g. a
           batch of the same failure) collapse into one card with an ×N count,
@@ -399,30 +518,10 @@ export function AdminDashboard() {
             <h3 className="text-[11px] font-semibold uppercase tracking-[0.08em] text-gray-500">{String(t('admin.dashboard.totalAcademies'))}</h3>
           </div>
           <div className="text-[28px] leading-none font-semibold text-gray-900 tracking-tight tabular-nums mb-2">
-            {stats.totalAcademies.toLocaleString()}
+            {metric(stats.totalAcademies)}
           </div>
-          <div className={`flex items-center text-sm ${stats.academiesGrowth >= 0 ? 'text-emerald-600' : 'text-rose-600'}`}>
-            {stats.academiesGrowth >= 0 ? 
-              <TrendingUp className="w-4 h-4 mr-1" /> : 
-              <TrendingDown className="w-4 h-4 mr-1" />
-            }
-            <span>{String(t('admin.dashboard.percentChangeOverDays', { sign: stats.academiesGrowth >= 0 ? '+' : '', percent: stats.academiesGrowth }))}</span>
-          </div>
-          
-          {/* Mini Academy Trend Chart */}
-          <div className="mt-4 w-full h-16 relative">
-            {stats.academiesTrend.length > 0 ? (
-              <AdminTrendChart
-                data={stats.academiesTrend.map((value, index) => ({ day: index, academies: value }))}
-                dataKey="academies"
-                color="#3B82F6"
-              />
-            ) : (
-              <div className="flex items-center justify-center h-full text-xs text-gray-400">
-                {String(t('admin.dashboard.noData'))}
-              </div>
-            )}
-          </div>
+          {growthRow(stats.academiesGrowth, 'percentChangeOverDays')}
+          {trendBox(stats.academiesTrend, 'academies', '#3B82F6')}
         </div>
 
         <div className="bg-white p-5 rounded-2xl ring-1 ring-gray-100/80 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_12px_-4px_rgba(0,0,0,0.06)] hover:ring-gray-300 hover:shadow-[0_8px_24px_-12px_rgba(15,23,42,0.12)] transition-all">
@@ -430,30 +529,10 @@ export function AdminDashboard() {
             <h3 className="text-[11px] font-semibold uppercase tracking-[0.08em] text-gray-500">{String(t('admin.dashboard.totalUsers'))}</h3>
           </div>
           <div className="text-[28px] leading-none font-semibold text-gray-900 tracking-tight tabular-nums mb-2">
-            {stats.totalUsers.toLocaleString()}
+            {metric(stats.totalUsers)}
           </div>
-          <div className={`flex items-center text-sm ${stats.usersGrowth >= 0 ? 'text-emerald-600' : 'text-rose-600'}`}>
-            {stats.usersGrowth >= 0 ? 
-              <TrendingUp className="w-4 h-4 mr-1" /> : 
-              <TrendingDown className="w-4 h-4 mr-1" />
-            }
-            <span>{String(t('admin.dashboard.percentChangeOverDays', { sign: stats.usersGrowth >= 0 ? '+' : '', percent: stats.usersGrowth }))}</span>
-          </div>
-          
-          {/* Mini Users Trend Chart */}
-          <div className="mt-4 w-full h-16 relative">
-            {stats.usersTrend.length > 0 ? (
-              <AdminTrendChart
-                data={stats.usersTrend.map((value, index) => ({ day: index, users: value }))}
-                dataKey="users"
-                color="#10B981"
-              />
-            ) : (
-              <div className="flex items-center justify-center h-full text-xs text-gray-400">
-                {String(t('admin.dashboard.noData'))}
-              </div>
-            )}
-          </div>
+          {growthRow(stats.usersGrowth, 'percentChangeOverDays')}
+          {trendBox(stats.usersTrend, 'users', '#10B981')}
         </div>
 
         <div className="bg-white p-5 rounded-2xl ring-1 ring-gray-100/80 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_12px_-4px_rgba(0,0,0,0.06)] hover:ring-gray-300 hover:shadow-[0_8px_24px_-12px_rgba(15,23,42,0.12)] transition-all">
@@ -461,28 +540,10 @@ export function AdminDashboard() {
             <h3 className="text-[11px] font-semibold uppercase tracking-[0.08em] text-gray-500">{String(t('admin.dashboard.monthlyRevenue'))}</h3>
           </div>
           <div className="text-[28px] leading-none font-semibold text-gray-900 tracking-tight tabular-nums mb-2">
-            {formatCurrency(stats.monthlyRevenue)}
+            {metric(stats.monthlyRevenue, formatCurrency)}
           </div>
-          <div className="flex items-center text-sm text-emerald-600">
-            <TrendingUp className="w-4 h-4 mr-1" />
-            <span>{String(t('admin.dashboard.percentChangeFromLastMonth', { sign: '+', percent: stats.revenueGrowth }))}</span>
-          </div>
-          
-          {/* Mini Revenue Trend Chart */}
-          <div className="mt-4 w-full h-16 relative">
-            {stats.revenueTrend.length > 0 ? (
-              <AdminTrendChart
-                data={stats.revenueTrend.map((value, index) => ({ day: index, revenue: value }))}
-                dataKey="revenue"
-                color="#8B5CF6"
-                isCurrency
-              />
-            ) : (
-              <div className="flex items-center justify-center h-full text-xs text-gray-400">
-                {String(t('admin.dashboard.noData'))}
-              </div>
-            )}
-          </div>
+          {growthRow(stats.revenueGrowth, 'percentChangeFromLastMonth')}
+          {trendBox(stats.revenueTrend, 'revenue', '#8B5CF6', true)}
         </div>
 
         <div className="bg-white p-5 rounded-2xl ring-1 ring-gray-100/80 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_12px_-4px_rgba(0,0,0,0.06)] hover:ring-gray-300 hover:shadow-[0_8px_24px_-12px_rgba(15,23,42,0.12)] transition-all">
@@ -490,30 +551,10 @@ export function AdminDashboard() {
             <h3 className="text-[11px] font-semibold uppercase tracking-[0.08em] text-gray-500">{String(t('admin.dashboard.activeSubscriptions'))}</h3>
           </div>
           <div className="text-[28px] leading-none font-semibold text-gray-900 tracking-tight tabular-nums mb-2">
-            {stats.activeSubscriptions.toLocaleString()}
+            {metric(stats.activeSubscriptions)}
           </div>
-          <div className={`flex items-center text-sm ${stats.subscriptionsGrowth >= 0 ? 'text-emerald-600' : 'text-rose-600'}`}>
-            {stats.subscriptionsGrowth >= 0 ? 
-              <TrendingUp className="w-4 h-4 mr-1" /> : 
-              <TrendingDown className="w-4 h-4 mr-1" />
-            }
-            <span>{String(t('admin.dashboard.percentChangeOverDays', { sign: stats.subscriptionsGrowth >= 0 ? '+' : '', percent: stats.subscriptionsGrowth }))}</span>
-          </div>
-          
-          {/* Mini Subscriptions Trend Chart */}
-          <div className="mt-4 w-full h-16 relative">
-            {stats.subscriptionsTrend.length > 0 ? (
-              <AdminTrendChart
-                data={stats.subscriptionsTrend.map((value, index) => ({ day: index, subscriptions: value }))}
-                dataKey="subscriptions"
-                color="#F59E0B"
-              />
-            ) : (
-              <div className="flex items-center justify-center h-full text-xs text-gray-400">
-                {String(t('admin.dashboard.noData'))}
-              </div>
-            )}
-          </div>
+          {growthRow(stats.subscriptionsGrowth, 'percentChangeOverDays')}
+          {trendBox(stats.subscriptionsTrend, 'subscriptions', '#F59E0B')}
         </div>
       </div>
 
@@ -524,12 +565,14 @@ export function AdminDashboard() {
             <h3 className="text-[11px] font-semibold uppercase tracking-[0.08em] text-gray-500">{String(t('admin.dashboard.supportTickets'))}</h3>
           </div>
           <div className="text-[28px] leading-none font-semibold text-gray-900 tracking-tight tabular-nums mb-2">
-            {stats.supportTickets}
+            {metric(stats.supportTickets)}
           </div>
-          <div className={`flex items-center text-sm ${stats.unreadSupportTickets > 0 ? 'text-rose-600' : 'text-gray-500'}`}>
-            <AlertTriangle className="w-4 h-4 mr-1" />
-            <span>{String(t('admin.dashboard.conversationBreakdown', { unread: stats.unreadSupportTickets, closed: stats.closedSupportTickets }))}</span>
-          </div>
+          {stats.unreadSupportTickets === null || stats.closedSupportTickets === null ? unavailableRow : (
+            <div className={`flex items-center text-sm ${stats.unreadSupportTickets > 0 ? 'text-rose-600' : 'text-gray-500'}`}>
+              <AlertTriangle className="w-4 h-4 mr-1" />
+              <span>{String(t('admin.dashboard.conversationBreakdown', { unread: stats.unreadSupportTickets, closed: stats.closedSupportTickets }))}</span>
+            </div>
+          )}
         </div>
 
         <div className="bg-white p-5 rounded-2xl ring-1 ring-gray-100/80 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_12px_-4px_rgba(0,0,0,0.06)] hover:ring-gray-300 hover:shadow-[0_8px_24px_-12px_rgba(15,23,42,0.12)] transition-all">
@@ -537,8 +580,9 @@ export function AdminDashboard() {
             <h3 className="text-[11px] font-semibold uppercase tracking-[0.08em] text-gray-500">{String(t('admin.dashboard.systemHealth'))}</h3>
           </div>
           <div className="text-[28px] leading-none font-semibold text-gray-900 tracking-tight tabular-nums mb-2">
-            {stats.systemHealth}%
+            {stats.systemHealth === null ? <span className="text-gray-300">—</span> : `${stats.systemHealth}%`}
           </div>
+          {stats.servicesOperational === null ? unavailableRow : (
           <div className={`flex items-center text-sm ${stats.servicesOperational ? 'text-emerald-600' : 'text-amber-600'}`}>
             {stats.servicesOperational ? (
               <>
@@ -552,6 +596,7 @@ export function AdminDashboard() {
               </>
             )}
           </div>
+          )}
         </div>
 
         <div className="bg-white p-5 rounded-2xl ring-1 ring-gray-100/80 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_12px_-4px_rgba(0,0,0,0.06)] hover:ring-gray-300 hover:shadow-[0_8px_24px_-12px_rgba(15,23,42,0.12)] transition-all">
@@ -559,10 +604,13 @@ export function AdminDashboard() {
             <h3 className="text-[11px] font-semibold uppercase tracking-[0.08em] text-gray-500">{String(t('admin.dashboard.growthRate'))}</h3>
           </div>
           <div className="text-[28px] leading-none font-semibold text-gray-900 tracking-tight tabular-nums mb-2">
-            {stats.revenueGrowth >= 0 ? '+' : ''}{stats.revenueGrowth}%
+            {stats.revenueGrowth === null
+              ? <span className="text-gray-300">—</span>
+              : `${stats.revenueGrowth >= 0 ? '+' : ''}${stats.revenueGrowth}%`}
           </div>
           {/* Honest copy — describes the trend rather than asserting a
               hardcoded "+10% target" we don't have anywhere in config. */}
+          {stats.revenueGrowth === null ? unavailableRow : (
           <div className={`flex items-center text-sm ${stats.revenueGrowth >= 0 ? 'text-emerald-600' : 'text-rose-600'}`}>
             {stats.revenueGrowth >= 0 ? (
               <>
@@ -576,6 +624,7 @@ export function AdminDashboard() {
               </>
             )}
           </div>
+          )}
         </div>
       </div>
 

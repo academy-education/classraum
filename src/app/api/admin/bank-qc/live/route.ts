@@ -53,6 +53,24 @@ async function readBank() {
     const { data, error } = await dbAdmin
       .from('study_item_bank')
       .select('id, family, domain, source, cohort, created_at, verify_meta, item, archived')
+      /*
+       * ORDER BY id — the pagination is worthless without it.
+       *
+       * `.range()` is OFFSET/LIMIT. Postgres makes no ordering promise
+       * for a query with no ORDER BY, so two successive .range() calls
+       * are two independent scans: a row can appear in both windows or
+       * in neither, and the loop's `data.length < 1000` stop condition
+       * cannot tell. A dropped row makes the bank SMALLER and its
+       * measured coverage HIGHER — i.e. it makes the bank look better
+       * than it is, the one direction this page must never fail in.
+       *
+       * `id` is the primary key, so it is a TOTAL order: no ties, no
+       * ambiguity left for the planner to resolve differently between
+       * pages. A non-unique sort column (created_at, cohort) would not
+       * be enough — rows sharing a value could still be re-ordered
+       * between the two scans.
+       */
+      .order('id', { ascending: true })
       .range(from, from + 999)
     if (error) throw new Error(`study_item_bank: ${error.message}`)
     out.push(...((data ?? []) as unknown as BankRow[]))
@@ -72,6 +90,11 @@ async function readAttacks() {
        * longer asks. Same reasoning as 076 for reviews. */
       .from('study_item_attacks_fresh')
       .select('item_id, run_id, solvers, correct, attacked_at')
+      /* Same reason as readBank: unordered .range() is not pagination.
+       * The view exposes the row `id`, which is unique, so this is a
+       * total order. Losing an attack row here silently drops an item
+       * from `measured` — the coverage denominator on the finish bar. */
+      .order('id', { ascending: true })
       .range(from, from + 999)
     if (error) throw new Error(`study_item_attacks: ${error.message}`)
     out.push(...((data ?? []) as unknown as AttackRow[]))
@@ -119,11 +142,58 @@ function statusFor(measured: number, blindPct: number | null, cohortSize: number
   return coverage >= MEANINGFUL_COVERAGE ? 'ready' : 'spot-checked'
 }
 
+/**
+ * How many items are LIVE in the bank, right now.
+ *
+ * ── Why this exists as its own query ─────────────────────────────────
+ * The headline on /admin/bank-qc ("Everything else — unverified") was a
+ * hardcoded 3,387 in bank-register.ts while the panel two screens down
+ * read 3,377 off this route. One page, two totals for one bank, and the
+ * literal was the bigger of the two — the flattering direction.
+ *
+ * A literal cannot be kept in step by discipline; it drifts the moment
+ * a cohort is archived. So the headline is derived instead, and this is
+ * the cheap way to derive it: `head: true` with an exact count runs a
+ * COUNT in Postgres and returns NO rows, so it is immune to PostgREST's
+ * 1000-row cap. Counting in SQL, not by fetching rows — the failure
+ * CLAUDE.md records as a verifier reporting "0 problems" off a
+ * truncated read.
+ *
+ * `.not('archived', 'is', true)` is the SAME live predicate the full
+ * payload applies in JS (`.filter(i => !i.archived)`): archived rows
+ * out, a NULL treated as live. Verified equal in SQL (3,377 both ways)
+ * on 2026-08-24.
+ */
+async function countLiveItems(): Promise<number> {
+  const { count, error } = await dbAdmin
+    .from('study_item_bank')
+    .select('id', { count: 'exact', head: true })
+    .not('archived', 'is', true)
+  if (error) throw new Error(`study_item_bank count: ${error.message}`)
+  return count ?? 0
+}
+
 export async function GET(request: NextRequest) {
   const admin = await requireAdmin(request)
   if (!admin) return NextResponse.json({ error: 'unauthorized' }, { status: 401 })
 
   try {
+    /*
+     * `?only=totals` — the headline card's read.
+     *
+     * The full payload below pages the whole bank and every attack row
+     * to build per-cohort state. The card at the top of the page needs
+     * one integer, and rendering it from a second full read would double
+     * a multi-thousand-row scan on every page load. Same source, same
+     * predicate, one COUNT.
+     */
+    if (new URL(request.url).searchParams.get('only') === 'totals') {
+      return NextResponse.json({
+        generatedAt: new Date().toISOString(),
+        totals: { items: await countLiveItems() },
+      })
+    }
+
     const live = (await readBank()).filter(i => !i.archived)
     const attacks = await readAttacks()
 
@@ -216,7 +286,18 @@ export async function GET(request: NextRequest) {
            * model agreeing with itself about 211 items.
            */
           .eq('reviewer_kind', 'human')
+          /*
+           * item_id FIRST for readability, `id` as the tiebreaker.
+           *
+           * item_id alone is NOT unique here — two reviewers on the
+           * same item is the design of this table — so ordering by it
+           * leaves ties, and Postgres may break a tie differently on
+           * the page-2 scan than it did on page 1. That is the same
+           * skip/duplicate hazard as an unordered .range(), just harder
+           * to see. Adding the unique `id` makes the order total.
+           */
           .order('item_id', { ascending: true })
+          .order('id', { ascending: true })
           .range(from, from + 999)
         if (error || !data?.length) break
         /*

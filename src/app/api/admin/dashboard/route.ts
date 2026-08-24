@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { dbAdmin } from '@/lib/supabase-admin'
 import { requireAdmin, countRows } from '../_lib/admin-auth'
+import { settle, withRetry, valueOrNull, type Settled } from '../_lib/resilience'
 import type { Database } from '@/lib/database.types'
 import { lastNMonthsKST, monthlyNetRevenueKST, type DatedAmount } from '@/lib/admin/revenue'
 
@@ -47,129 +48,234 @@ type TableName = Extract<
  * reads server-side for this precise problem.
  *
  * Failure policy: any count that comes back non-numeric throws (see
- * `countRows`), the route returns 500, and the client renders an error state.
- * A failed load must never be indistinguishable from an empty platform.
+ * `countRows`). A failed count must never be indistinguishable from an empty
+ * platform — that constraint is unchanged and is why nothing below ever
+ * falls back to a zero.
+ *
+ * What DID change (2026-08-24) is the blast radius. Every read used to sit
+ * in one `Promise.all` under one `try`, so a single `TypeError: fetch
+ * failed` on one of the ten sparkline buckets returned 500 and blanked the
+ * whole page:
+ *
+ *     Failed to load dashboard data
+ *     count(users_trend_2026-08-13) failed: TypeError: fetch failed
+ *
+ * At ~40 requests per load that is not a rare event. Now:
+ *
+ *   · every read is wrapped in `withRetry`, which retries transient faults
+ *     (network) and does NOT retry deterministic ones (bad table, denied);
+ *   · the reads are grouped into SECTIONS, one per dashboard tile, each run
+ *     through `settle`. A section that still fails yields `null` for its
+ *     fields and its name in `degraded[]`. The client renders that one tile
+ *     as unavailable and keeps the rest of the page.
+ *
+ * `null` is load-bearing: it is the value that says "we do not know", which
+ * is a different fact from 0. See _lib/resilience.ts.
  */
 export async function GET(request: NextRequest) {
   if (!(await requireAdmin(request))) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
   }
 
-  try {
-    const head = (table: TableName) =>
-      dbAdmin.from(table).select('*', { count: 'exact', head: true })
+  const head = (table: TableName) =>
+    dbAdmin.from(table).select('*', { count: 'exact', head: true })
 
-    const [
-      totalAcademies,
-      totalUsers,
-      activeSubscriptions,
-      trialAcademies,
-      supportTickets,
-      unreadSupportTickets,
-      closedSupportTickets,
-      criticalAlerts,
-      totalActiveAlerts,
-    ] = await Promise.all([
-      countRows(() => head('academies'), 'academies'),
-      countRows(() => head('users'), 'users'),
-      countRows(
+  /** A count that retries a transient fault before giving up. */
+  const count = (build: () => ReturnType<typeof head>, label: string) =>
+    withRetry(() => countRows(build, label), { label })
+
+  // ---- 10-day trend window (shared by three sections) ----
+  const last10Days = Array.from({ length: 10 }, (_, i) => {
+    const d = new Date()
+    d.setDate(d.getDate() - (9 - i))
+    return d.toISOString().split('T')[0]
+  })
+
+  const cumulativeTrend = (
+    table: TableName,
+    apply?: (q: ReturnType<typeof head>) => ReturnType<typeof head>
+  ) =>
+    Promise.all(
+      last10Days.map(date =>
+        count(() => {
+          const base = head(table)
+          return (apply ? apply(base) : base).lte('created_at', `${date}T23:59:59`)
+        }, `${table}_trend_${date}`)
+      )
+    )
+
+  const pctChange = (series: number[]) =>
+    series.length > 1
+      ? ((series[series.length - 1] - series[0]) / Math.max(series[0], 1)) * 100
+      : 0
+
+  const datedRows = async (
+    table: 'study_payments' | 'study_payment_refunds',
+    fromIso: string,
+    toIso: string
+  ): Promise<DatedAmount[]> => {
+    const out: DatedAmount[] = []
+    const CHUNK = 1000
+    for (let from = 0; ; from += CHUNK) {
+      const { data, error } = await withRetry(
+        async () =>
+          await dbAdmin
+            .from(table)
+            .select('amount_won, created_at')
+            .gte('created_at', fromIso)
+            .lt('created_at', toIso)
+            .order('created_at')
+            .range(from, from + CHUNK - 1),
+        { label: `${table}[${from}]` }
+      )
+      if (error) throw new Error(`${table}: ${error.message}`)
+      const rows = data || []
+      out.push(...rows.map(r => ({ amountWon: r.amount_won, at: r.created_at })))
+      if (rows.length < CHUNK) break
+    }
+    return out
+  }
+
+  // ─────────────────────── Sections ───────────────────────
+  //
+  // One `settle` per dashboard TILE. The grouping is deliberate: a tile's
+  // headline number, its sparkline and its growth figure share a section so
+  // they cannot disagree — you never get a live number beside a stale trend.
+  // Sections are independent, so a failure costs exactly one tile.
+
+  const academiesSection = settle('academies', async () => {
+    const [total, trend, activeAcademyRows] = await Promise.all([
+      count(() => head('academies'), 'academies'),
+      cumulativeTrend('academies'),
+      // Distinct academies carrying an active/trialing subscription.
+      withRetry(
+        async () => {
+          const { data, error } = await dbAdmin
+            .from('academy_subscriptions')
+            .select('academy_id')
+            .in('status', ['active', 'trialing'])
+          if (error) throw new Error(`active academies: ${error.message}`)
+          return data || []
+        },
+        { label: 'active_academies' }
+      ),
+    ])
+    return {
+      totalAcademies: total,
+      activeAcademies: new Set(activeAcademyRows.map(r => r.academy_id)).size,
+      academiesTrend: trend,
+      academiesGrowth: Math.round(pctChange(trend) * 10) / 10,
+    }
+  })
+
+  const usersSection = settle('users', async () => {
+    const [total, trend] = await Promise.all([
+      count(() => head('users'), 'users'),
+      cumulativeTrend('users'),
+    ])
+    return {
+      totalUsers: total,
+      usersTrend: trend,
+      usersGrowth: Math.round(pctChange(trend) * 10) / 10,
+    }
+  })
+
+  const subscriptionsSection = settle('subscriptions', async () => {
+    const [active, trial, trend] = await Promise.all([
+      count(
         () => head('academy_subscriptions').in('status', ['active', 'trialing']),
         'active_subscriptions'
       ),
-      countRows(
-        () => head('academy_subscriptions').eq('status', 'trialing'),
-        'trial_subscriptions'
-      ),
-      // ---- Support: count what the Support PAGE shows ----
-      //
-      // These three counts read `support_tickets`, which is EMPTY (0 rows)
-      // and has been for the life of the table. The admin Support page
-      // (SupportManagement.tsx) has always read `chat_conversations`, and
-      // lists 5 conversations there. So the dashboard KPI and the sidebar
-      // badge both showed "0 support tickets" while the page one click away
-      // listed five open conversations.
-      //
-      // The page's own header cards define the vocabulary, and this now
-      // matches them exactly: "active" is `status <> 'closed'` there, so it
-      // is `status <> 'closed'` here. `support_tickets` is not consulted at
-      // all — a table nobody writes to cannot be the source for a headline
-      // number.
-      countRows(
-        () => head('chat_conversations').neq('status', 'closed'),
-        'support_conversations'
-      ),
+      count(() => head('academy_subscriptions').eq('status', 'trialing'), 'trial_subscriptions'),
+      cumulativeTrend('academy_subscriptions', q => q.in('status', ['active', 'trialing'])),
+    ])
+    return {
+      activeSubscriptions: active,
+      trialAcademies: trial,
+      subscriptionsTrend: trend,
+      subscriptionsGrowth: Math.round(pctChange(trend) * 10) / 10,
+    }
+  })
+
+  // ---- Support: count what the Support PAGE shows ----
+  //
+  // These three counts used to read `support_tickets`, which is EMPTY (0
+  // rows) and has been for the life of the table. The admin Support page
+  // (SupportManagement.tsx) has always read `chat_conversations`, and lists
+  // 5 conversations there. So the dashboard KPI and the sidebar badge both
+  // showed "0 support tickets" while the page one click away listed five
+  // open conversations.
+  //
+  // The page's own header cards define the vocabulary, and this matches them
+  // exactly: "active" is `status <> 'closed'` there, so it is
+  // `status <> 'closed'` here. `support_tickets` is not consulted at all — a
+  // table nobody writes to cannot be the source for a headline number.
+  const supportSection = settle('support', async () => {
+    const [open, unread, closed] = await Promise.all([
+      count(() => head('chat_conversations').neq('status', 'closed'), 'support_conversations'),
       // Unread is defined by the page as messages FROM THE USER that are
       // still is_read = false — the same predicate, not a re-invention.
-      countRows(
+      count(
         () => head('chat_messages').eq('is_read', false).eq('sender_type', 'user'),
         'unread_support_messages'
       ),
-      countRows(
-        () => head('chat_conversations').eq('status', 'closed'),
-        'closed_support_conversations'
-      ),
-      countRows(
+      count(() => head('chat_conversations').eq('status', 'closed'), 'closed_support_conversations'),
+    ])
+    return { supportTickets: open, unreadSupportTickets: unread, closedSupportTickets: closed }
+  })
+
+  const healthSection = settle('health', async () => {
+    const [critical, totalActive] = await Promise.all([
+      count(
         () => head('alerts').eq('resolved', false).in('severity', ['critical', 'high']),
         'critical_alerts'
       ),
-      countRows(() => head('alerts').eq('resolved', false), 'active_alerts'),
+      count(() => head('alerts').eq('resolved', false), 'active_alerts'),
     ])
+    // 100% minus a penalty per unresolved alert.
+    const systemHealth = Math.max(
+      0,
+      Math.min(100, 100 - critical * 5 - Math.max(0, totalActive - critical) * 1)
+    )
+    return {
+      systemHealth: Math.round(systemHealth * 10) / 10,
+      servicesOperational: critical === 0,
+    }
+  })
 
-    // Distinct academies carrying an active/trialing subscription.
-    const { data: activeAcademyRows, error: activeAcademyErr } = await dbAdmin
-      .from('academy_subscriptions')
-      .select('academy_id')
-      .in('status', ['active', 'trialing'])
-    if (activeAcademyErr) throw new Error(`active academies: ${activeAcademyErr.message}`)
-    const activeAcademies = new Set((activeAcademyRows || []).map(r => r.academy_id)).size
-
-    // ---- Revenue: this month vs last month ----
-    //
-    // SOURCE OF TRUTH: study payments minus the refund ledger, bucketed by
-    // KST calendar month — the SAME aggregation the chart directly beneath
-    // this KPI uses (@/lib/admin/revenue, unit-tested).
-    //
-    // This KPI used to sum `invoices.final_amount` where status = 'paid'.
-    // `invoices` is academy→student billing — money a hagwon collects from
-    // its own parents — NOT money Classraum received; charts/route.ts says
-    // so in its own header comment. Worse, it cut the month at server-local
-    // midnight (UTC on Vercel), so late-evening KST payments landed in the
-    // wrong month.
-    //
-    // The visible symptom was a KPI reading "Monthly revenue ₩0" sitting
-    // directly above a chart reading ₩119,400 for the same month, on the
-    // same screen. A KPI and the chart under it must not be able to
-    // disagree; the only way to guarantee that is one source, not two that
-    // happen to agree today.
+  // ---- Revenue: this month vs last month, plus the 10-day sparkline ----
+  //
+  // SOURCE OF TRUTH: study payments minus the refund ledger, bucketed by
+  // KST calendar month — the SAME aggregation the chart directly beneath
+  // this KPI uses (@/lib/admin/revenue, unit-tested).
+  //
+  // This KPI used to sum `invoices.final_amount` where status = 'paid'.
+  // `invoices` is academy→student billing — money a hagwon collects from
+  // its own parents — NOT money Classraum received; charts/route.ts says
+  // so in its own header comment. Worse, it cut the month at server-local
+  // midnight (UTC on Vercel), so late-evening KST payments landed in the
+  // wrong month.
+  //
+  // The visible symptom was a KPI reading "Monthly revenue ₩0" sitting
+  // directly above a chart reading ₩119,400 for the same month, on the
+  // same screen. A KPI and the chart under it must not be able to
+  // disagree; the only way to guarantee that is one source, not two that
+  // happen to agree today.
+  const revenueSection = settle('revenue', async () => {
     // lastNMonthsKST returns OLDEST FIRST, so index 0 is last month.
     const [lastMonth, thisMonth] = lastNMonthsKST(2)
 
-    const datedRows = async (
-      table: 'study_payments' | 'study_payment_refunds',
-      fromIso: string,
-      toIso: string
-    ): Promise<DatedAmount[]> => {
-      const out: DatedAmount[] = []
-      const CHUNK = 1000
-      for (let from = 0; ; from += CHUNK) {
-        const { data, error } = await dbAdmin
-          .from(table)
-          .select('amount_won, created_at')
-          .gte('created_at', fromIso)
-          .lt('created_at', toIso)
-          .order('created_at')
-          .range(from, from + CHUNK - 1)
-        if (error) throw new Error(`${table}: ${error.message}`)
-        const rows = data || []
-        out.push(...rows.map(r => ({ amountWon: r.amount_won, at: r.created_at })))
-        if (rows.length < CHUNK) break
-      }
-      return out
-    }
+    const trendWindowStart = new Date(`${last10Days[0]}T00:00:00+09:00`).toISOString()
+    const trendWindowEnd = new Date(
+      new Date(`${last10Days[last10Days.length - 1]}T00:00:00+09:00`).getTime() +
+        24 * 60 * 60 * 1000
+    ).toISOString()
 
-    const [twoMonthPayments, twoMonthRefunds] = await Promise.all([
+    const [twoMonthPayments, twoMonthRefunds, windowPayments, windowRefunds] = await Promise.all([
       datedRows('study_payments', lastMonth.startIso, thisMonth.endIso),
       datedRows('study_payment_refunds', lastMonth.startIso, thisMonth.endIso),
+      datedRows('study_payments', trendWindowStart, trendWindowEnd),
+      datedRows('study_payment_refunds', trendWindowStart, trendWindowEnd),
     ])
 
     const [lastMonthRevenue, monthlyRevenue] = monthlyNetRevenueKST(
@@ -181,79 +287,43 @@ export async function GET(request: NextRequest) {
     const revenueGrowth =
       lastMonthRevenue > 0 ? ((monthlyRevenue - lastMonthRevenue) / lastMonthRevenue) * 100 : 0
 
-    // ---- 10-day trends ----
-    const last10Days = Array.from({ length: 10 }, (_, i) => {
-      const d = new Date()
-      d.setDate(d.getDate() - (9 - i))
-      return d.toISOString().split('T')[0]
-    })
-
-    const cumulativeTrend = (table: TableName, apply?: (q: ReturnType<typeof head>) => ReturnType<typeof head>) =>
-      Promise.all(
-        last10Days.map(date =>
-          countRows(() => {
-            const base = head(table)
-            return (apply ? apply(base) : base).lte('created_at', `${date}T23:59:59`)
-          }, `${table}_trend_${date}`)
-        )
-      )
-
-    // The sparkline in the same card must come from the same source as the
+    // The sparkline in the same card comes from the same source as the
     // headline number, for the same reason. Daily buckets, KST, net of
     // refunds — one query over the 10-day window, bucketed in JS.
-    const trendWindowStart = new Date(`${last10Days[0]}T00:00:00+09:00`).toISOString()
-    const trendWindowEnd = new Date(
-      new Date(`${last10Days[last10Days.length - 1]}T00:00:00+09:00`).getTime() + 24 * 60 * 60 * 1000
-    ).toISOString()
-
-    const revenueTrendPromise = (async () => {
-      const [payments, refunds] = await Promise.all([
-        datedRows('study_payments', trendWindowStart, trendWindowEnd),
-        datedRows('study_payment_refunds', trendWindowStart, trendWindowEnd),
-      ])
-      const KST_OFFSET_MS = 9 * 60 * 60 * 1000
-      const dayKey = (iso: string) =>
-        new Date(Date.parse(iso) + KST_OFFSET_MS).toISOString().split('T')[0]
-      const byDay = new Map(last10Days.map(d => [d, 0]))
-      const add = (rows: DatedAmount[], sign: 1 | -1) => {
-        for (const r of rows) {
-          if (!r.at) continue
-          const k = dayKey(r.at)
-          if (!byDay.has(k)) continue
-          byDay.set(k, (byDay.get(k) || 0) + sign * (r.amountWon ?? 0))
-        }
+    const KST_OFFSET_MS = 9 * 60 * 60 * 1000
+    const dayKey = (iso: string) =>
+      new Date(Date.parse(iso) + KST_OFFSET_MS).toISOString().split('T')[0]
+    const byDay = new Map(last10Days.map(d => [d, 0]))
+    const add = (rows: DatedAmount[], sign: 1 | -1) => {
+      for (const r of rows) {
+        if (!r.at) continue
+        const k = dayKey(r.at)
+        if (!byDay.has(k)) continue
+        byDay.set(k, (byDay.get(k) || 0) + sign * (r.amountWon ?? 0))
       }
-      add(payments, 1)
-      add(refunds, -1)
-      return last10Days.map(d => byDay.get(d) || 0)
-    })()
+    }
+    add(windowPayments, 1)
+    add(windowRefunds, -1)
 
-    const [academiesTrend, usersTrend, subscriptionsTrend, revenueTrend] = await Promise.all([
-      cumulativeTrend('academies'),
-      cumulativeTrend('users'),
-      cumulativeTrend('academy_subscriptions', q => q.in('status', ['active', 'trialing'])),
-      revenueTrendPromise,
-    ])
+    return {
+      monthlyRevenue,
+      revenueGrowth: Math.round(revenueGrowth * 10) / 10,
+      revenueTrend: last10Days.map(d => byDay.get(d) || 0),
+    }
+  })
 
-    const pctChange = (series: number[]) =>
-      series.length > 1
-        ? ((series[series.length - 1] - series[0]) / Math.max(series[0], 1)) * 100
-        : 0
-
-    // System health: 100% minus a penalty per unresolved alert.
-    const criticalImpact = criticalAlerts * 5
-    const otherAlertsImpact = Math.max(0, totalActiveAlerts - criticalAlerts) * 1
-    const systemHealth = Math.max(0, Math.min(100, 100 - criticalImpact - otherAlertsImpact))
-
-    // ---- Alerts feed ----
-    const { data: alertRows, error: alertErr } = await dbAdmin
-      .from('alerts')
-      .select('id, severity, title, message, created_at, resolved')
-      .order('created_at', { ascending: false })
-      .limit(10)
-    if (alertErr) throw new Error(`alerts: ${alertErr.message}`)
-
-    const alerts = (alertRows || []).map(a => ({
+  const alertsSection = settle('alerts', async () => {
+    const { data, error } = await withRetry(
+      async () =>
+        await dbAdmin
+          .from('alerts')
+          .select('id, severity, title, message, created_at, resolved')
+          .order('created_at', { ascending: false })
+          .limit(10),
+      { label: 'alerts_feed' }
+    )
+    if (error) throw new Error(`alerts: ${error.message}`)
+    return (data || []).map(a => ({
       id: a.id,
       type:
         a.severity === 'critical' || a.severity === 'high'
@@ -266,36 +336,82 @@ export async function GET(request: NextRequest) {
       timestamp: a.created_at,
       resolved: a.resolved || false,
     }))
+  })
 
-    return NextResponse.json({
-      stats: {
-        totalAcademies,
-        activeAcademies,
-        totalUsers,
-        monthlyRevenue,
-        revenueGrowth: Math.round(revenueGrowth * 10) / 10,
-        activeSubscriptions,
-        trialAcademies,
-        supportTickets,
-        unreadSupportTickets,
-        closedSupportTickets,
-        systemHealth: Math.round(systemHealth * 10) / 10,
-        servicesOperational: criticalAlerts === 0,
-        academiesTrend,
-        usersTrend,
-        subscriptionsTrend,
-        revenueTrend,
-        academiesGrowth: Math.round(pctChange(academiesTrend) * 10) / 10,
-        usersGrowth: Math.round(pctChange(usersTrend) * 10) / 10,
-        subscriptionsGrowth: Math.round(pctChange(subscriptionsTrend) * 10) / 10,
-      },
-      alerts,
-    })
-  } catch (e) {
-    console.error('[Admin dashboard API] Error:', e)
-    return NextResponse.json(
-      { error: 'Failed to load dashboard data', detail: e instanceof Error ? e.message : String(e) },
-      { status: 500 }
-    )
+  const [academies, users, subscriptions, support, health, revenue, alerts] = await Promise.all([
+    academiesSection,
+    usersSection,
+    subscriptionsSection,
+    supportSection,
+    healthSection,
+    revenueSection,
+    alertsSection,
+  ])
+
+  const sections: Record<string, Settled<unknown>> = {
+    academies,
+    users,
+    subscriptions,
+    support,
+    health,
+    revenue,
+    alerts,
   }
+  const degraded = Object.entries(sections)
+    .filter(([, s]) => !s.ok)
+    .map(([name, s]) => ({ section: name, detail: (s as { error: string }).error }))
+
+  // Null, never zero. A tile with a null field renders "unavailable"; a
+  // tile with 0 renders 0, and those must stay different facts.
+  const nulls = <T extends Record<string, unknown>>(keys: readonly (keyof T)[]) =>
+    Object.fromEntries(keys.map(k => [k, null])) as { [K in keyof T]: null }
+
+  return NextResponse.json({
+    stats: {
+      ...(valueOrNull(academies) ??
+        nulls<{
+          totalAcademies: number
+          activeAcademies: number
+          academiesTrend: number[]
+          academiesGrowth: number
+        }>(['totalAcademies', 'activeAcademies', 'academiesTrend', 'academiesGrowth'])),
+      ...(valueOrNull(users) ??
+        nulls<{ totalUsers: number; usersTrend: number[]; usersGrowth: number }>([
+          'totalUsers',
+          'usersTrend',
+          'usersGrowth',
+        ])),
+      ...(valueOrNull(subscriptions) ??
+        nulls<{
+          activeSubscriptions: number
+          trialAcademies: number
+          subscriptionsTrend: number[]
+          subscriptionsGrowth: number
+        }>([
+          'activeSubscriptions',
+          'trialAcademies',
+          'subscriptionsTrend',
+          'subscriptionsGrowth',
+        ])),
+      ...(valueOrNull(support) ??
+        nulls<{
+          supportTickets: number
+          unreadSupportTickets: number
+          closedSupportTickets: number
+        }>(['supportTickets', 'unreadSupportTickets', 'closedSupportTickets'])),
+      ...(valueOrNull(health) ??
+        nulls<{ systemHealth: number; servicesOperational: boolean }>([
+          'systemHealth',
+          'servicesOperational',
+        ])),
+      ...(valueOrNull(revenue) ??
+        nulls<{ monthlyRevenue: number; revenueGrowth: number; revenueTrend: number[] }>([
+          'monthlyRevenue',
+          'revenueGrowth',
+          'revenueTrend',
+        ])),
+    },
+    alerts: valueOrNull(alerts),
+    degraded,
+  })
 }

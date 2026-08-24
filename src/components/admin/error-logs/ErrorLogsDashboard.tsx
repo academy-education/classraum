@@ -31,6 +31,7 @@ import { usePolling } from '../usePolling';
 import { useUrlState } from '../useUrlState';
 import { useConfirm } from '../useConfirm';
 import { AdminEmptyState } from '../AdminEmptyState';
+import { useDebouncedValue } from '../useDebouncedValue';
 
 interface ErrorLog {
   id: string;
@@ -46,6 +47,11 @@ interface ErrorLog {
 }
 
 const logLevels = ['debug', 'info', 'warn', 'error', 'critical'];
+
+/** Upper bound on rows pulled for a CSV export. The export covers the whole
+ *  FILTERED set, not the loaded page; if the filter still matches more than
+ *  this, the filename says so rather than the file quietly being partial. */
+const CSV_EXPORT_CAP = 5000;
 
 export function ErrorLogsDashboard() {
   const adminFetch = useAdminFetch();
@@ -67,12 +73,21 @@ export function ErrorLogsDashboard() {
   const [endDate, setEndDate] = useState('');
   const [showFilters, setShowFilters] = useState(false);
 
+  // Search runs SERVER-SIDE (see /api/admin/error-logs). Debounced so typing
+  // doesn't fire a request per keystroke; `searchQuery` drives the input,
+  // `debouncedSearch` drives the fetch.
+  const debouncedSearch = useDebouncedValue(searchQuery, 300);
+
+  // Sort is also server-side, so the ordering is over the whole filtered set
+  // rather than the 50 loaded rows. URL-persisted so a refresh keeps it.
+  const [sortBy, setSortBy] = useUrlState('sort', 'created_at:desc');
+
   // Expanded log details
   const [expandedLogId, setExpandedLogId] = useState<string | null>(null);
 
   useEffect(() => {
     loadErrorLogs();
-  }, [page, levelFilter, serviceFilter, startDate, endDate]);
+  }, [page, levelFilter, serviceFilter, startDate, endDate, debouncedSearch, sortBy]);
 
   // Auto-refresh every 60s while the tab is visible. Errors are time-
   // sensitive; an admin watching the page wants new errors to appear
@@ -81,19 +96,26 @@ export function ErrorLogsDashboard() {
   // don't blank the table out and back in every minute.
   usePolling(() => loadErrorLogs({ silent: true }), { intervalMs: 60_000 });
 
+  // Every filter — including search and sort — is a query param, so the
+  // server decides both the matching set and its order.
+  const buildParams = (overrides: { page?: number; pageSize?: number } = {}) => {
+    const params = new URLSearchParams({
+      page: (overrides.page ?? page).toString(),
+      pageSize: (overrides.pageSize ?? pageSize).toString(),
+      sort: sortBy,
+    });
+    if (levelFilter) params.append('level', levelFilter);
+    if (serviceFilter) params.append('serviceName', serviceFilter);
+    if (startDate) params.append('startDate', new Date(startDate).toISOString());
+    if (endDate) params.append('endDate', new Date(endDate).toISOString());
+    if (debouncedSearch.trim()) params.append('search', debouncedSearch.trim());
+    return params;
+  };
+
   const loadErrorLogs = async ({ silent = false }: { silent?: boolean } = {}) => {
     try {
       if (!silent) setLoading(true);
-      // Build query params
-      const params = new URLSearchParams({
-        page: page.toString(),
-        pageSize: pageSize.toString()
-      });
-
-      if (levelFilter) params.append('level', levelFilter);
-      if (serviceFilter) params.append('serviceName', serviceFilter);
-      if (startDate) params.append('startDate', new Date(startDate).toISOString());
-      if (endDate) params.append('endDate', new Date(endDate).toISOString());
+      const params = buildParams();
 
       const response = await adminFetch(`/api/admin/error-logs?${params.toString()}`);
 
@@ -117,11 +139,29 @@ export function ErrorLogsDashboard() {
     }
   };
 
-  // Export the currently-sorted page of logs as CSV. Mirrors the visible
-  // filter + sort state — admins get exactly what's on screen, which is
-  // what they typically want for sharing with engineering.
-  const exportToCSV = () => {
-    if (sortedLogs.length === 0) return;
+  // Export the WHOLE filtered set as CSV, not just the loaded page — the
+  // footer claims a total, so the export has to mean the same thing. Re-fetches
+  // with the same filters and sort at a large pageSize (capped at
+  // CSV_EXPORT_CAP); if the filtered total is bigger than the cap the filename
+  // records exactly how much was written.
+  const [exporting, setExporting] = useState(false);
+  const exportToCSV = async () => {
+    if (total === 0 || exporting) return;
+    setExporting(true);
+    let exportLogs: ErrorLog[] = [];
+    try {
+      const params = buildParams({ page: 0, pageSize: CSV_EXPORT_CAP });
+      const response = await adminFetch(`/api/admin/error-logs?${params.toString()}`);
+      if (!response.ok) throw new Error('Failed to fetch logs for export');
+      const result = await response.json();
+      exportLogs = result.success ? result.data : [];
+    } catch (error) {
+      console.error('[Error Logs] Export failed:', error);
+      setExporting(false);
+      return;
+    }
+    setExporting(false);
+    if (exportLogs.length === 0) return;
     const headers = [
       String(t('admin.errorLogs.csvTimestamp')),
       String(t('admin.errorLogs.service')),
@@ -131,7 +171,7 @@ export function ErrorLogsDashboard() {
       String(t('admin.errorLogs.requestId')),
       String(t('admin.errorLogs.userId')),
     ];
-    const rows = sortedLogs.map(l => [
+    const rows = exportLogs.map(l => [
       new Date(l.created_at).toISOString(),
       l.service_name,
       l.level,
@@ -146,7 +186,10 @@ export function ErrorLogsDashboard() {
     const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
     const link = document.createElement('a');
     link.href = URL.createObjectURL(blob);
-    link.download = `error-logs-${new Date().toISOString().split('T')[0]}.csv`;
+    // Honest filename: if the filtered set exceeded the cap, say so in the name
+    // rather than shipping a silently-truncated file called "error-logs".
+    const suffix = exportLogs.length < total ? `-first${exportLogs.length}of${total}` : '';
+    link.download = `error-logs-${new Date().toISOString().split('T')[0]}${suffix}.csv`;
     link.click();
   };
 
@@ -206,43 +249,10 @@ export function ErrorLogsDashboard() {
     return level.charAt(0).toUpperCase() + level.slice(1);
   };
 
-  const filteredLogs = searchQuery
-    ? logs.filter(log =>
-        log.message.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        log.service_name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        (log.error_message && log.error_message.toLowerCase().includes(searchQuery.toLowerCase()))
-      )
-    : logs;
-
-  // Sort the visible page. List view uses cards rather than a table, so a
-  // dropdown is the natural affordance. URL-persisted via useUrlState so a
-  // refresh keeps the chosen order.
-  const [sortBy, setSortBy] = useUrlState('sort', 'created_at:desc');
-  const levelOrder: Record<string, number> = { critical: 4, error: 3, warn: 2, info: 1, debug: 0 };
-  const sortedLogs = React.useMemo(() => {
-    const [key, dir] = sortBy.split(':');
-    const sign = dir === 'asc' ? 1 : -1;
-    return [...filteredLogs].sort((a, b) => {
-      let av: string | number | Date = '';
-      let bv: string | number | Date = '';
-      switch (key) {
-        case 'created_at':
-          av = new Date(a.created_at).getTime();
-          bv = new Date(b.created_at).getTime();
-          break;
-        case 'level':
-          av = levelOrder[a.level] ?? -1;
-          bv = levelOrder[b.level] ?? -1;
-          break;
-        case 'service_name':
-          av = a.service_name;
-          bv = b.service_name;
-          break;
-      }
-      if (typeof av === 'number' && typeof bv === 'number') return sign * (av - bv);
-      return sign * String(av).localeCompare(String(bv));
-    });
-  }, [filteredLogs, sortBy]);
+  // No client-side filter or sort here on purpose: search, sort and paging are
+  // all resolved by the API over the full table, so `logs` is already the
+  // correct page of the correctly-ordered, correctly-filtered set. Keeping a
+  // second copy of that logic here would give two writers for one ordering.
 
   return (
     <div className="space-y-6">
@@ -252,7 +262,7 @@ export function ErrorLogsDashboard() {
         description={String(t('admin.errorLogs.subtitle'))}
         actions={
           <>
-            <Button onClick={exportToCSV} variant="outline" size="sm" className="gap-1.5" disabled={sortedLogs.length === 0}>
+            <Button onClick={exportToCSV} variant="outline" size="sm" className="gap-1.5" disabled={total === 0 || exporting}>
               <Download className="w-4 h-4" />
               {String(t('admin.settlements.exportCsv'))}
             </Button>
@@ -277,11 +287,16 @@ export function ErrorLogsDashboard() {
               type="text"
               placeholder={String(t('admin.errorLogs.searchPlaceholder'))}
               value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
+              onChange={(e) => {
+                setSearchQuery(e.target.value);
+                // A new search means a new result set — page 3 of the old one
+                // is meaningless (and often past the end of the new one).
+                setPage(0);
+              }}
               className="pl-10"
             />
           </div>
-          <Select value={sortBy} onValueChange={setSortBy}>
+          <Select value={sortBy} onValueChange={(value) => { setSortBy(value); setPage(0); }}>
             <SelectTrigger className="w-[180px]">
               <SelectValue placeholder={String(t('admin.errorLogs.sortByPlaceholder'))} />
             </SelectTrigger>
@@ -379,11 +394,11 @@ export function ErrorLogsDashboard() {
         {loading ? (
           // Skeleton rows match the real log row layout for a stable feel.
           <AdminSkeleton.LogRows rows={6} />
-        ) : sortedLogs.length === 0 ? (
+        ) : logs.length === 0 ? (
           <AdminEmptyState icon={Bug} title={String(t('admin.errorLogs.noLogsFound'))} />
         ) : (
           <div className="divide-y divide-gray-100">
-            {sortedLogs.map((log) => (
+            {logs.map((log) => (
               <div key={log.id} className="hover:bg-gray-50 transition-colors">
                 <div
                   className="p-4 cursor-pointer"
@@ -460,7 +475,7 @@ export function ErrorLogsDashboard() {
         )}
 
         {/* Pagination */}
-        {!loading && sortedLogs.length > 0 && (
+        {!loading && logs.length > 0 && (
           <div className="px-6 py-4 border-t border-gray-100 flex flex-wrap items-center justify-between gap-3">
             <div className="text-sm text-gray-600">
               {String(t('admin.errorLogs.showingRange', {

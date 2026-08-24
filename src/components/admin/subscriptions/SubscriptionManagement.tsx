@@ -59,10 +59,34 @@ interface SubscriptionData {
 interface RevenueMetrics {
   totalMRR: number;
   totalARR: number;
-  growth: number;
+  // NOTE: there is deliberately no `growth` here. The API used to return a
+  // hardcoded `growth: 0`, which this card rendered as "+0% from last month"
+  // with an up-arrow — a fabricated trend, indistinguishable on screen from a
+  // real flat month. Nothing stores a historical MRR snapshot, and deriving
+  // "last month" from paid invoices would compare cash collected against
+  // contracted MRR: two different quantities reported as one delta. Removed
+  // rather than faked; add it back when a real prior-period MRR exists.
   churnRate: number;
   newSubscriptions: number;
   canceledSubscriptions: number;
+}
+
+/**
+ * The single source of truth for "is this subscription's billing overdue, and
+ * if not, how far off is it".
+ *
+ * Previously the row asked TWO different questions in one ternary: it printed
+ * "Overdue" when status === 'past_due', and otherwise printed a raw day count
+ * that was never clamped. A subscription still marked `active` whose
+ * next_billing_date had passed therefore rendered "-280 days until billing",
+ * directly beneath a past_due row that correctly said "Overdue" — the same
+ * fact, two answers. A past date IS overdue regardless of which status column
+ * says so, so both conditions collapse into one predicate here and both the
+ * label and its colour read it.
+ */
+function billingCountdown(subscription: { status: string; nextBillingDate: Date }) {
+  const days = Math.ceil((subscription.nextBillingDate.getTime() - Date.now()) / (1000 * 60 * 60 * 24));
+  return { overdue: subscription.status === 'past_due' || days < 0, days };
 }
 
 export function SubscriptionManagement() {
@@ -362,10 +386,9 @@ export function SubscriptionManagement() {
           <DashboardCard
             title={String(t('admin.subscriptions.monthlyRecurringRevenue'))}
             value={formatPrice(metrics.totalMRR)}
-            subtitle={String(t('admin.subscriptions.growthFromLastMonth', { percent: metrics.growth }))}
+            subtitle={String(t('admin.subscriptions.monthlyRecurringRevenueSubtitle'))}
             icon={<DollarSign className="h-5 w-5" />}
             accent="emerald"
-            trend={{ value: metrics.growth, isPositive: metrics.growth >= 0 }}
           />
           <DashboardCard
             title={String(t('admin.subscriptions.annualRecurringRevenue'))}
@@ -509,10 +532,11 @@ export function SubscriptionManagement() {
                           {subscription.nextBillingDate.toLocaleDateString(getDateLocale(language))}
                         </div>
                         <div className={`text-xs ${
-                          subscription.status === 'past_due' ? 'text-rose-600 font-medium' : 'text-gray-500'
+                          billingCountdown(subscription).overdue ? 'text-rose-600 font-medium' : 'text-gray-500'
                         }`}>
-                          {subscription.status === 'past_due' ? String(t('admin.subscriptions.overdue')) :
-                           String(t('admin.subscriptions.daysUntilBilling', { count: Math.ceil((subscription.nextBillingDate.getTime() - Date.now()) / (1000 * 60 * 60 * 24)) }))}
+                          {billingCountdown(subscription).overdue
+                            ? String(t('admin.subscriptions.overdue'))
+                            : String(t('admin.subscriptions.daysUntilBilling', { count: billingCountdown(subscription).days }))}
                         </div>
                       </div>
                     </td>

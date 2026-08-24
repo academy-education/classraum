@@ -31,6 +31,7 @@ import { StatusBadge, type StatusTone } from '../StatusBadge';
 import { useUrlState } from '../useUrlState';
 import { AdminEmptyState } from '../AdminEmptyState';
 import { usePolling } from '../usePolling';
+import { useDebouncedValue } from '../useDebouncedValue';
 
 interface WebhookEvent {
   id: string;
@@ -61,11 +62,14 @@ export function WebhookEventViewer() {
   const [pageSize] = useState(50);
   const [totalPages, setTotalPages] = useState(0);
   const [total, setTotal] = useState(0);
+  // A partition of the filtered set, computed server-side: the three buckets
+  // are mutually exclusive and always sum to `total`. See the API route for
+  // why the previous processed/unprocessed/errors triple could not.
   const [statistics, setStatistics] = useState({
     total: 0,
-    processed: 0,
-    unprocessed: 0,
-    errors: 0
+    succeeded: 0,
+    pending: 0,
+    failed: 0
   });
 
   // Filters
@@ -74,16 +78,24 @@ export function WebhookEventViewer() {
   const [statusFilter, setStatusFilter] = useState('');
   const [processedFilter, setProcessedFilter] = useState('');
   const [searchQuery, setSearchQuery] = useState('');
+  // Debounced copy is what actually goes to the API — the search is a real
+  // server round trip now, not a .filter() over the loaded page.
+  const debouncedSearch = useDebouncedValue(searchQuery, 300);
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
   const [showFilters, setShowFilters] = useState(false);
+
+  // Sort dropdown — list view uses cards rather than a table. The key is sent
+  // to the API and whitelisted there, so the ordering covers the whole
+  // filtered set instead of re-ordering the 50 rows already in hand.
+  const [sortBy, setSortBy] = useUrlState('sort', 'received_at:desc');
 
   // Expanded event details
   const [expandedEventId, setExpandedEventId] = useState<string | null>(null);
 
   useEffect(() => {
     loadWebhookEvents();
-  }, [page, typeFilter, eventTypeFilter, statusFilter, processedFilter, startDate, endDate]);
+  }, [page, typeFilter, eventTypeFilter, statusFilter, processedFilter, startDate, endDate, debouncedSearch, sortBy]);
 
   // Auto-refresh every 60s while the tab is visible. Webhook events come in
   // unpredictably (settlements, payouts) and admins shouldn't have to F5
@@ -107,6 +119,8 @@ export function WebhookEventViewer() {
       if (processedFilter) params.append('processed', processedFilter);
       if (startDate) params.append('startDate', new Date(startDate).toISOString());
       if (endDate) params.append('endDate', new Date(endDate).toISOString());
+      if (debouncedSearch.trim()) params.append('search', debouncedSearch.trim());
+      if (sortBy) params.append('sort', sortBy);
 
       const response = await adminFetch(`/api/admin/webhook-events?${params.toString()}`);
 
@@ -130,44 +144,80 @@ export function WebhookEventViewer() {
     }
   };
 
-  // Export the currently-sorted page of events as CSV. Uses sortedEvents
-  // (vs raw events) so the file matches what's on screen.
-  const exportToCSV = () => {
-    if (sortedEvents.length === 0) return;
-    const headers = [
-      String(t('admin.webhooks.receivedAt')),
-      String(t('admin.webhooks.type')),
-      String(t('admin.webhooks.event')),
-      String(t('admin.common.status')),
-      String(t('admin.webhooks.processed')),
-      String(t('admin.webhooks.entityId')),
-      String(t('admin.webhooks.partnerId')),
-      String(t('admin.webhooks.amount')),
-      String(t('admin.webhooks.currency')),
-      String(t('admin.webhooks.webhookId')),
-      String(t('admin.webhooks.error')),
-    ];
-    const rows = sortedEvents.map(e => [
-      new Date(e.received_at).toISOString(),
-      e.type,
-      e.event_type,
-      e.status,
-      e.processed ? 'yes' : 'no',
-      e.entity_id,
-      e.partner_id || '',
-      e.amount ?? '',
-      e.currency || '',
-      e.webhook_id || '',
-      e.error_message || '',
-    ]);
-    const csv = [headers, ...rows]
-      .map(row => row.map(cell => `"${String(cell).replace(/"/g, '""')}"`).join(','))
-      .join('\n');
-    const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
-    const link = document.createElement('a');
-    link.href = URL.createObjectURL(blob);
-    link.download = `webhook-events-${new Date().toISOString().split('T')[0]}.csv`;
-    link.click();
+  // Maximum rows one CSV export will pull. The API caps pageSize at the same
+  // number, so this is the real ceiling either way.
+  const CSV_MAX_ROWS = 5000;
+  const [exporting, setExporting] = useState(false);
+
+  // Export the WHOLE filtered set as CSV.
+  //
+  // This used to serialise the client-side sorted array — the 50 rows the
+  // client happened to hold — while the footer directly below the button
+  // announced the full total, so "export" quietly meant "export page 1". It
+  // now re-fetches with the same filters/search/sort at a capped pageSize and
+  // writes that.
+  const exportToCSV = async () => {
+    if (total === 0 || exporting) return;
+    setExporting(true);
+    try {
+      const params = new URLSearchParams({
+        page: '0',
+        pageSize: String(CSV_MAX_ROWS),
+      });
+      if (typeFilter) params.append('type', typeFilter);
+      if (eventTypeFilter) params.append('eventType', eventTypeFilter);
+      if (statusFilter) params.append('status', statusFilter);
+      if (processedFilter) params.append('processed', processedFilter);
+      if (startDate) params.append('startDate', new Date(startDate).toISOString());
+      if (endDate) params.append('endDate', new Date(endDate).toISOString());
+      if (debouncedSearch.trim()) params.append('search', debouncedSearch.trim());
+      if (sortBy) params.append('sort', sortBy);
+
+      const response = await adminFetch(`/api/admin/webhook-events?${params.toString()}`);
+      if (!response.ok) throw new Error('Failed to fetch webhook events for export');
+      const result = await response.json();
+      const rowsToExport: WebhookEvent[] = result?.data ?? [];
+      if (rowsToExport.length === 0) return;
+
+      const headers = [
+        String(t('admin.webhooks.receivedAt')),
+        String(t('admin.webhooks.type')),
+        String(t('admin.webhooks.event')),
+        String(t('admin.common.status')),
+        String(t('admin.webhooks.processed')),
+        String(t('admin.webhooks.entityId')),
+        String(t('admin.webhooks.partnerId')),
+        String(t('admin.webhooks.amount')),
+        String(t('admin.webhooks.currency')),
+        String(t('admin.webhooks.webhookId')),
+        String(t('admin.webhooks.error')),
+      ];
+      const rows = rowsToExport.map(e => [
+        new Date(e.received_at).toISOString(),
+        e.type,
+        e.event_type,
+        e.status,
+        e.processed ? 'yes' : 'no',
+        e.entity_id,
+        e.partner_id || '',
+        e.amount ?? '',
+        e.currency || '',
+        e.webhook_id || '',
+        e.error_message || '',
+      ]);
+      const csv = [headers, ...rows]
+        .map(row => row.map(cell => `"${String(cell).replace(/"/g, '""')}"`).join(','))
+        .join('\n');
+      const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+      const link = document.createElement('a');
+      link.href = URL.createObjectURL(blob);
+      link.download = `webhook-events-${new Date().toISOString().split('T')[0]}.csv`;
+      link.click();
+    } catch (error) {
+      console.error('[Webhook Events] Error exporting CSV:', error);
+    } finally {
+      setExporting(false);
+    }
   };
 
   const toggleProcessed = async (eventId: string, currentStatus: boolean) => {
@@ -213,49 +263,6 @@ export function WebhookEventViewer() {
     return `${currencySymbol}${amount.toLocaleString()}`;
   };
 
-  const filteredEvents = searchQuery
-    ? events.filter(event =>
-        event.entity_id.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        event.event_type.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        (event.partner_id && event.partner_id.toLowerCase().includes(searchQuery.toLowerCase()))
-      )
-    : events;
-
-  // Sort dropdown — list view uses cards rather than a table.
-  const [sortBy, setSortBy] = useUrlState('sort', 'received_at:desc');
-  const sortedEvents = React.useMemo(() => {
-    const [key, dir] = sortBy.split(':');
-    const sign = dir === 'asc' ? 1 : -1;
-    return [...filteredEvents].sort((a, b) => {
-      let av: string | number = '';
-      let bv: string | number = '';
-      switch (key) {
-        case 'received_at':
-          av = new Date(a.received_at).getTime();
-          bv = new Date(b.received_at).getTime();
-          break;
-        case 'amount':
-          av = a.amount ?? -Infinity;
-          bv = b.amount ?? -Infinity;
-          break;
-        case 'status':
-          av = a.status;
-          bv = b.status;
-          break;
-        case 'event_type':
-          av = a.event_type;
-          bv = b.event_type;
-          break;
-        case 'processed':
-          av = a.processed ? 1 : 0;
-          bv = b.processed ? 1 : 0;
-          break;
-      }
-      if (typeof av === 'number' && typeof bv === 'number') return sign * (av - bv);
-      return sign * String(av).localeCompare(String(bv));
-    });
-  }, [filteredEvents, sortBy]);
-
   return (
     <div className="space-y-6">
       <AdminPageHeader
@@ -264,8 +271,15 @@ export function WebhookEventViewer() {
         description={String(t('admin.webhooks.subtitle'))}
         actions={
           <>
-            <Button onClick={exportToCSV} variant="outline" size="sm" className="gap-1.5" disabled={sortedEvents.length === 0}>
-              <Download className="w-4 h-4" />
+            <Button
+              onClick={exportToCSV}
+              variant="outline"
+              size="sm"
+              className="gap-1.5"
+              disabled={total === 0 || exporting}
+              title={String(t('admin.webhooks.exportCsvHint', { max: CSV_MAX_ROWS.toLocaleString() }))}
+            >
+              <Download className={`w-4 h-4 ${exporting ? 'animate-pulse' : ''}`} />
               {String(t('admin.settlements.exportCsv'))}
             </Button>
             <Button onClick={() => loadWebhookEvents()} disabled={loading} size="sm" className="gap-1.5">
@@ -286,19 +300,22 @@ export function WebhookEventViewer() {
         />
         <DashboardCard
           title={String(t('admin.webhooks.succeeded'))}
-          value={statistics.processed.toLocaleString()}
+          value={statistics.succeeded.toLocaleString()}
+          subtitle={String(t('admin.webhooks.succeededHint'))}
           icon={<CheckCircle2 className="w-5 h-5" />}
           accent="emerald"
         />
         <DashboardCard
           title={String(t('admin.webhooks.pending'))}
-          value={statistics.unprocessed.toLocaleString()}
+          value={statistics.pending.toLocaleString()}
+          subtitle={String(t('admin.webhooks.pendingHint'))}
           icon={<Clock className="w-5 h-5" />}
           accent="amber"
         />
         <DashboardCard
           title={String(t('admin.webhooks.failed'))}
-          value={statistics.errors.toLocaleString()}
+          value={statistics.failed.toLocaleString()}
+          subtitle={String(t('admin.webhooks.failedHint'))}
           icon={<XCircle className="w-5 h-5" />}
           accent="rose"
         />
@@ -313,11 +330,14 @@ export function WebhookEventViewer() {
               type="text"
               placeholder={String(t('admin.webhooks.searchPlaceholder'))}
               value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
+              onChange={(e) => {
+                setSearchQuery(e.target.value);
+                setPage(0);
+              }}
               className="pl-10"
             />
           </div>
-          <Select value={sortBy} onValueChange={setSortBy}>
+          <Select value={sortBy} onValueChange={(v) => { setSortBy(v); setPage(0); }}>
             <SelectTrigger className="w-[180px]">
               <SelectValue placeholder={String(t('admin.webhooks.sortBy'))} />
             </SelectTrigger>
@@ -436,11 +456,11 @@ export function WebhookEventViewer() {
       <div className="bg-white rounded-2xl ring-1 ring-gray-100/80 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_12px_-4px_rgba(0,0,0,0.06)] overflow-hidden">
         {loading ? (
           <AdminSkeleton.LogRows rows={6} />
-        ) : sortedEvents.length === 0 ? (
+        ) : events.length === 0 ? (
           <AdminEmptyState icon={Webhook} title={String(t('admin.webhooks.noEventsFound'))} />
         ) : (
           <div className="divide-y divide-gray-100">
-            {sortedEvents.map((event) => (
+            {events.map((event) => (
               <div key={event.id} className="hover:bg-gray-50 transition-colors">
                 <div
                   className="p-4 cursor-pointer"
@@ -549,7 +569,7 @@ export function WebhookEventViewer() {
         )}
 
         {/* Pagination */}
-        {!loading && sortedEvents.length > 0 && (
+        {!loading && events.length > 0 && (
           <div className="px-6 py-4 border-t border-gray-100 flex flex-wrap items-center justify-between gap-3">
             <div className="text-sm text-gray-600">
               {String(t('admin.webhooks.showingEvents', {

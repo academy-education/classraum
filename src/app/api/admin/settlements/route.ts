@@ -5,6 +5,16 @@ import type { Database } from '@/lib/database.types';
 const PORTONE_API_SECRET = process.env.PORTONE_API_SECRET;
 const PORTONE_API_URL = 'https://api.portone.io';
 
+/**
+ * PostgREST reads `*` as the LIKE wildcard inside an `ilike` pattern, and `,`
+ * `(` `)` terminate a value inside an `or(...)` group. Neutralise them so a
+ * user typing `Kim (Gangnam), *` searches for that literal text instead of
+ * producing a match-everything pattern or a 400.
+ */
+function sanitizeIlikeTerm(term: string): string {
+  return term.replace(/[*,()\\]/g, ' ').trim();
+}
+
 export async function GET(request: NextRequest) {
   try {
     // Get authorization token from header
@@ -50,16 +60,31 @@ export async function GET(request: NextRequest) {
       return NextResponse.json({ error: 'Forbidden - Admin access required' }, { status: 403 });
     }
 
-    // Check if PortOne API secret is configured
+    // Academy lookups below run with the SERVICE ROLE, not the caller's JWT.
+    // RLS on `academies` scopes rows to the academies a user belongs to — the
+    // admin token used here saw 1 of 12 academies — so resolving a name filter
+    // (or an academy name for a partner id) through the caller's client
+    // silently matched nothing. The admin/super_admin check above is the
+    // authorization gate; this client only performs the lookup.
+    const supabaseAdmin = process.env.SUPABASE_SERVICE_ROLE_KEY
+      ? createClient<Database>(
+          process.env.NEXT_PUBLIC_SUPABASE_URL!,
+          process.env.SUPABASE_SERVICE_ROLE_KEY
+        )
+      : supabase;
+
+    // Check if PortOne API secret is configured.
+    // This is a MISCONFIGURATION, not an empty result — returning 200 with an
+    // empty list here made a broken deployment look like "no settlements yet".
     if (!PORTONE_API_SECRET) {
       console.warn('[Settlements API] PORTONE_API_SECRET not configured');
-      return NextResponse.json({
-        items: [],
-        totalCount: 0,
-        page: 0,
-        pageSize: 20,
-        message: 'PortOne API not configured. Please set PORTONE_API_SECRET environment variable.'
-      });
+      return NextResponse.json(
+        {
+          error: 'not_configured',
+          message: 'PortOne API not configured. Please set PORTONE_API_SECRET environment variable.'
+        },
+        { status: 503 }
+      );
     }
 
     // Parse query parameters
@@ -109,17 +134,25 @@ export async function GET(request: NextRequest) {
     // pagination count wrong).
     const partnerIds: string[] = [];
     if (partnerId) partnerIds.push(partnerId);
-    if (academyName && academyName.trim()) {
-      const { data: matchedAcademies } = await supabase
+    if (academyName && sanitizeIlikeTerm(academyName)) {
+      const { data: matchedAcademies, error: academyError } = await supabaseAdmin
         .from('academies')
         .select('portone_partner_id')
-        .ilike('name', `%${academyName.trim()}%`)
+        .ilike('name', `%${sanitizeIlikeTerm(academyName)}%`)
         .not('portone_partner_id', 'is', null);
+      if (academyError) {
+        console.error('[Settlements API] academy lookup failed:', academyError);
+        return NextResponse.json(
+          { error: 'academy_lookup_failed', message: 'Failed to resolve academy name filter' },
+          { status: 500 }
+        );
+      }
       const ids = (matchedAcademies || [])
         .map(a => a.portone_partner_id)
         .filter(Boolean) as string[];
       if (ids.length === 0) {
         // No academy matches the search — no settlements can match either.
+        // Genuinely empty (200), as distinct from the upstream-failure 502 below.
         return NextResponse.json({ items: [], totalCount: 0, page, pageSize });
       }
       partnerIds.push(...ids);
@@ -150,15 +183,20 @@ export async function GET(request: NextRequest) {
       const errorData = await response.json().catch(() => ({}));
       console.error('PortOne API error:', response.status, errorData);
 
-      // Return empty result instead of error for better UX
-      return NextResponse.json({
-        items: [],
-        totalCount: 0,
-        page: page,
-        pageSize: pageSize,
-        error: errorData,
-        message: 'No settlements found or PortOne API error'
-      });
+      // An upstream failure is NOT an empty result. Returning 200 + items:[]
+      // (the old "better UX") made a PortOne outage indistinguishable from a
+      // period with no settlements, which is exactly the kind of quiet wrong
+      // answer CLAUDE.md forbids. Propagate it as a gateway error so the UI
+      // can render a retryable error state.
+      return NextResponse.json(
+        {
+          error: 'upstream_error',
+          upstreamStatus: response.status,
+          message: 'Failed to fetch settlements from PortOne',
+          details: errorData,
+        },
+        { status: 502 }
+      );
     }
 
     const settlementsData = await response.json();
@@ -171,7 +209,7 @@ export async function GET(request: NextRequest) {
           .filter((id: string | undefined): id is string => Boolean(id))
       )] as string[];
 
-      const { data: academies } = await supabase
+      const { data: academies } = await supabaseAdmin
         .from('academies')
         .select('portone_partner_id, name')
         .in('portone_partner_id', partnerIds);
@@ -188,7 +226,20 @@ export async function GET(request: NextRequest) {
       }));
     }
 
-    return NextResponse.json(settlementsData);
+    // Normalise PortOne's envelope instead of leaking it to two separate
+    // clients. Upstream returns `{ items, page: { number, size, totalCount } }`
+    // — both clients were reading a top-level `totalCount` that never existed,
+    // so pagination could never appear. The shape is flattened HERE, once.
+    const totalCount: number =
+      settlementsData.page?.totalCount ?? settlementsData.totalCount ?? 0;
+
+    return NextResponse.json({
+      items: settlementsData.items || [],
+      totalCount,
+      page,
+      pageSize,
+      counts: settlementsData.counts,
+    });
   } catch (error) {
     console.error('Error fetching settlements:', error);
     return NextResponse.json(

@@ -20,6 +20,7 @@ import {
 import { RegisterPanel } from './RegisterPanel'
 import { A3_ATTEMPTS, PLAIN_STATUS } from '@/lib/study/bank-register'
 import { LiveBankState } from './LiveBankState'
+import { UnverifiedCount } from './UnverifiedCount'
 import { TASK_PIPELINES, type TaskPipeline } from '@/lib/study/task-pipelines'
 import { FAMILY_STAGES, type ItemFamily } from '@/lib/study/bank-qc'
 
@@ -399,18 +400,10 @@ export function BankQcDashboard() {
               {PLAIN_STATUS.brokenIsLive && <strong> Live to students right now.</strong>}
             </p>
           </div>
-          <div className="rounded-xl bg-gray-50 ring-1 ring-gray-200 p-4">
-            <div className="text-2xl font-semibold text-gray-900 tabular-nums">
-              {PLAIN_STATUS.unverifiedItems.toLocaleString()}
-            </div>
-            <div className="text-[12px] font-medium text-gray-900 mt-0.5">
-              Everything else — unverified
-            </div>
-            <p className="text-[11px] text-gray-600 mt-1.5 leading-snug">
-              Not known to be broken. Never read by a person. Blocked on{' '}
-              <strong className="text-gray-800">{PLAIN_STATUS.blockedOn}</strong>.
-            </p>
-          </div>
+          {/* Counted from the bank at render time, not typed in. This
+              card read a hardcoded 3,387 while the live panel below read
+              3,377 for the same bank — see UnverifiedCount. */}
+          <UnverifiedCount />
         </div>
 
         <p className="text-[11px] text-gray-600 mt-3 leading-snug max-w-3xl">
