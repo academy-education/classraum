@@ -1,6 +1,6 @@
 import { dbAdmin } from '@/lib/supabase-admin'
 import { triggerInvoiceCreatedNotifications } from '@/lib/notification-triggers'
-import { calculateNextDueDate, todayISO } from '@/lib/payments/recurrence'
+import { calculateNextDueDate, todayISO, type RecurrenceTemplate } from '@/lib/payments/recurrence'
 
 /**
  * Recurring student invoice generation — the actual work.
@@ -73,6 +73,50 @@ export interface GenerateRecurringResult {
  * @param today `YYYY-MM-DD` in UTC. Injectable for tests only; production
  *              callers pass nothing.
  */
+/*
+ * A template with nobody to invoice still has to move its clock forward.
+ *
+ * The no-linked-students path used to `continue` WITHOUT advancing
+ * next_due_date, which looks harmless — no students, no invoices — and is
+ * not. Two consequences, found live on 2026-08-24 when HERALD's "Weekly
+ * Lessons" (0 linked students, due 2026-08-21) reported
+ * templatesFound: 1, templatesProcessed: 0 on a green run:
+ *
+ *   1. The template matches the "due today" query on every subsequent
+ *      run, forever, so the job can never reach a clean state.
+ *   2. Worse: the stale due date is retained. The moment somebody links a
+ *      student to that template, the next run invoices them for
+ *      2026-08-21 — a BACK-DATED invoice. That is exactly what the
+ *      2026-08-20 roll-forward existed to prevent, arriving through a
+ *      side door.
+ *
+ * Advancing here is also the correct billing semantics: a student added
+ * today should be billed from the next period, never for one that ended
+ * before they were enrolled.
+ *
+ * Deliberately NOT applied to "linked but none active" — see that branch.
+ */
+async function rollForwardEmptyTemplate(
+  template: RecurrenceTemplate & { id: string; name: string },
+  why: string,
+): Promise<void> {
+  const nextDueDate = calculateNextDueDate(template)
+  const { error } = await dbAdmin
+    .from('recurring_payment_templates')
+    .update({ next_due_date: nextDueDate })
+    .eq('id', template.id)
+  if (error) {
+    console.error(
+      `[RECURRING] Error rolling forward empty template ${template.id} (${why}):`,
+      error,
+    )
+    return
+  }
+  console.log(
+    `[RECURRING] Template ${template.name}: ${why}; advanced next_due_date to ${nextDueDate}`,
+  )
+}
+
 export async function generateRecurringInvoices(
   today: string = todayISO(),
 ): Promise<GenerateRecurringResult> {
@@ -141,6 +185,7 @@ export async function generateRecurringInvoices(
 
         if (!rawTemplateStudents || rawTemplateStudents.length === 0) {
           console.log(`[RECURRING] No students found for template: ${template.name}`)
+          await rollForwardEmptyTemplate(template, 'no students linked')
           continue
         }
 
@@ -156,6 +201,13 @@ export async function generateRecurringInvoices(
         const templateStudents = rawTemplateStudents.filter(s => activeStudentIds.has(s.student_id))
 
         if (templateStudents.length === 0) {
+          // NOT rolled forward, deliberately, and a test pins this.
+          // Students linked but none active is an AMBIGUOUS state — a
+          // cohort paused for a month is not the same as a template
+          // nobody was ever going to be billed from. Advancing here would
+          // silently skip a period the academy may well intend to charge
+          // once those students are reactivated. Leaving the date put
+          // keeps that decision with a human.
           console.log(`[RECURRING] No active students found for template: ${template.name}`)
           continue
         }
