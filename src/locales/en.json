@@ -2648,7 +2648,18 @@
       "notEnoughData": "Not enough answers yet.",
       "mockTests": "Mock tests",
       "mockTest": "Mock test",
-      "generatedAt": "Report generated {date}"
+      "generatedAt": "Report generated {date}",
+      "delivery": {
+        "heading": "Send to parents",
+        "kakao": "KakaoTalk",
+        "notReady": "Not connected yet",
+        "explain": "Parents read reports in the app today. Sending them over KakaoTalk needs a Kakao channel and an approved Alimtalk template before it can be switched on.",
+        "whatsNeeded": "What's still needed",
+        "step1": "A Kakao business channel for the academy",
+        "step2": "An Alimtalk template approved by Kakao",
+        "step3": "A registered sender number (발신번호 사전등록)",
+        "parentsCanRead": "Parents and students can already open reports in the app — this only adds a push."
+      }
     },
     "overview": {
       "studentsEnrolled": "Students enrolled",

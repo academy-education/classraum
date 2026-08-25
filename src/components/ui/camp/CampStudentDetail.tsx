@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button'
 import { ModalShell } from '@/components/ui/common/ModalShell'
 import { StatusPill, type StatusPillTone } from '@/components/ui/status-pill'
 import { CampReportView } from '@/components/ui/camp/CampReportView'
+import { CampReportDelivery } from '@/components/ui/camp/CampReportDelivery'
 import { CampStudentSessionReview } from '@/components/ui/camp/CampStudentSessionReview'
 import type { CampReportPayload } from '@/lib/camp/report-types'
 import { authHeaders } from '@/lib/auth-headers'
@@ -398,6 +399,7 @@ export function CampStudentDetail({ classroomId, studentId, studentName, testFam
                   ))}
                 </div>
               )}
+              <CampReportDelivery t={t} />
             </div>
           </div>
         )}

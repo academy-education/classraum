@@ -2648,7 +2648,18 @@
       "notEnoughData": "아직 답안이 충분하지 않습니다.",
       "mockTests": "모의고사",
       "mockTest": "모의고사",
-      "generatedAt": "{date} 생성된 리포트"
+      "generatedAt": "{date} 생성된 리포트",
+      "delivery": {
+        "heading": "학부모에게 보내기",
+        "kakao": "카카오톡",
+        "notReady": "아직 연결되지 않음",
+        "explain": "현재 학부모는 앱에서 리포트를 확인합니다. 카카오톡 발송을 켜려면 카카오 채널과 승인된 알림톡 템플릿이 필요합니다.",
+        "whatsNeeded": "준비가 필요한 항목",
+        "step1": "학원 카카오 비즈니스 채널",
+        "step2": "카카오 승인을 받은 알림톡 템플릿",
+        "step3": "발신번호 사전등록",
+        "parentsCanRead": "학부모와 학생은 이미 앱에서 리포트를 볼 수 있습니다. 이 기능은 알림을 추가하는 것입니다."
+      }
     },
     "overview": {
       "studentsEnrolled": "등록 학생",

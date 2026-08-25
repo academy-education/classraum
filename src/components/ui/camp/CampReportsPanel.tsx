@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useState } from 'react'
 import { Button } from '@/components/ui/button'
+import { CampReportDelivery } from '@/components/ui/camp/CampReportDelivery'
 import { ModalShell } from '@/components/ui/common/ModalShell'
 import { EmptyState } from '@/components/ui/common/EmptyState'
 import { CampReportView } from '@/components/ui/camp/CampReportView'
@@ -173,6 +174,7 @@ export function CampReportsPanel({ classroomId, classroomName, onClose }: CampRe
             ))}
           </div>
         )}
+        <CampReportDelivery t={t} />
       </ModalShell>
 
       {/* Preview — the shared printable layout */}
