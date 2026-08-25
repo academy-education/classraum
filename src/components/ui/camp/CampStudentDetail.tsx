@@ -10,7 +10,7 @@ import type { CampReportPayload } from '@/lib/camp/report-types'
 import { authHeaders } from '@/lib/auth-headers'
 import { useTranslation } from '@/hooks/useTranslation'
 import { showErrorToast, showSuccessToast } from '@/stores'
-import { ChevronRight, ClipboardList, FileText, Loader2, Printer } from 'lucide-react'
+import { ChevronRight, ClipboardList, FileText, Loader2, Printer, Trash2 } from 'lucide-react'
 
 /**
  * Per-student drill-down modal, opened from the classroom progress table
@@ -66,6 +66,10 @@ export function CampStudentDetail({ classroomId, studentId, studentName, testFam
   const [reports, setReports] = useState<{ id: string; createdAt: string; periodStart: string | null; periodEnd: string | null }[] | null>(null)
   const [reportsError, setReportsError] = useState(false)
   const [reportsLoading, setReportsLoading] = useState(false)
+  /** Report queued for withdrawal — confirmed, because it disappears
+   *  from the student's and the parents' lists too, not just ours. */
+  const [withdrawing, setWithdrawing] = useState<string | null>(null)
+  const [withdrawBusy, setWithdrawBusy] = useState(false)
 
   const formatDate = useCallback((iso: string) => {
     const d = new Date(iso)
@@ -187,10 +191,30 @@ export function CampStudentDetail({ classroomId, studentId, studentName, testFam
   }, [t])
 
 
+  const confirmWithdraw = useCallback(async () => {
+    if (!withdrawing || withdrawBusy) return
+    setWithdrawBusy(true)
+    try {
+      const headers = await authHeaders()
+      const res = await fetch(`/api/camp/reports?id=${withdrawing}`, { method: 'DELETE', headers })
+      if (!res.ok) {
+        const j = await res.json().catch(() => ({}))
+        showErrorToast(j.error || String(t('camp.withdrawReport.failed')))
+        return
+      }
+      showSuccessToast(String(t('camp.withdrawReport.done')))
+      setWithdrawing(null)
+      setReports(null)   // refetch on next open
+      void loadReports()
+    } catch {
+      showErrorToast(String(t('camp.withdrawReport.failed')))
+    } finally { setWithdrawBusy(false) }
+  }, [withdrawing, withdrawBusy, t, loadReports])
+
   return (
     <>
       <ModalShell
-        isOpen={reportPreview === null && sessionReview === null}
+        isOpen={reportPreview === null && sessionReview === null && withdrawing === null}
         onClose={() => { if (!generating) onClose() }}
         size="lg"
         title={studentName}
@@ -336,8 +360,8 @@ export function CampStudentDetail({ classroomId, studentId, studentName, testFam
               ) : (
                 <div className="divide-y divide-gray-100 rounded-xl ring-1 ring-gray-100 overflow-hidden">
                   {(reports ?? []).map(r => (
+                    <div key={r.id} className="flex items-stretch bg-white hover:bg-gray-50 transition-colors">
                     <button
-                      key={r.id}
                       type="button"
                       onClick={() => void openStoredReport(r.id)}
                       title={String(t('camp.studentDetail.reportsList.open'))}
@@ -361,12 +385,43 @@ export function CampStudentDetail({ classroomId, studentId, studentName, testFam
                       </div>
                       <ChevronRight className="w-4 h-4 text-gray-300 group-hover:text-gray-500 flex-shrink-0 transition-colors" />
                     </button>
+                    <button
+                      type="button"
+                      onClick={() => setWithdrawing(r.id)}
+                      title={String(t('camp.withdrawReport.action'))}
+                      aria-label={String(t('camp.withdrawReport.action'))}
+                      className="px-3 text-gray-300 hover:text-rose-600 transition-colors"
+                    >
+                      <Trash2 className="w-3.5 h-3.5" strokeWidth={1.75} />
+                    </button>
+                    </div>
                   ))}
                 </div>
               )}
             </div>
           </div>
         )}
+      </ModalShell>
+
+      <ModalShell
+        isOpen={withdrawing !== null}
+        onClose={() => { if (!withdrawBusy) setWithdrawing(null) }}
+        size="sm"
+        title={String(t('camp.withdrawReport.title'))}
+        closeDisabled={withdrawBusy}
+        footer={
+          <ModalShell.Footer split>
+            <Button variant="outline" onClick={() => setWithdrawing(null)} disabled={withdrawBusy}>
+              {t('common.cancel')}
+            </Button>
+            <Button variant="destructive" onClick={() => void confirmWithdraw()} disabled={withdrawBusy}>
+              {withdrawBusy && <Loader2 className="w-4 h-4 mr-2 animate-spin" />}
+              {t('camp.withdrawReport.confirm')}
+            </Button>
+          </ModalShell.Footer>
+        }
+      >
+        <p className="text-sm text-gray-700">{t('camp.withdrawReport.body')}</p>
       </ModalShell>
 
       {/* Freshly generated report — shared printable layout */}

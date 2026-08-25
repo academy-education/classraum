@@ -1056,6 +1056,7 @@ export type Database = {
           camp_program_id: string
           classroom_id: string
           classroom_session_id: string | null
+          presented_at: string | null
           created_at: string
           deleted_at: string | null
           domain: string | null
@@ -1072,6 +1073,7 @@ export type Database = {
           camp_program_id: string
           classroom_id: string
           classroom_session_id?: string | null
+          presented_at?: string | null
           created_at?: string
           deleted_at?: string | null
           domain?: string | null
@@ -1088,6 +1090,7 @@ export type Database = {
           camp_program_id?: string
           classroom_id?: string
           classroom_session_id?: string | null
+          presented_at?: string | null
           created_at?: string
           deleted_at?: string | null
           domain?: string | null

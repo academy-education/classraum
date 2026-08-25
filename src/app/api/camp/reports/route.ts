@@ -11,6 +11,9 @@ import { isParentOfStudent, toFamilyPayload, type CampReportPayload } from '@/li
  *   +&studentId=…      … narrowed to one student (still teacher-authorised)
  * GET ?studentId=…     parent/student list — caller must BE the student
  *                      or be a family-linked parent
+ * DELETE ?id=…         withdraw a report (teacher/manager of its
+ *                       classroom). Soft — see the handler.
+ *
  * GET ?id=…            one report with payload — teacher/manager of the
  *                      classroom sees everything; the student and their
  *                      parents get the family payload (teacher-only
@@ -161,4 +164,50 @@ export async function GET(req: NextRequest) {
   }
 
   return NextResponse.json({ error: 'id, classroomId or studentId required' }, { status: 400 })
+}
+
+export async function DELETE(req: NextRequest) {
+  const user = await getUserFromRequest(req)
+  if (!user) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+
+  const id = req.nextUrl.searchParams.get('id')
+  if (!id) return NextResponse.json({ error: 'id required' }, { status: 400 })
+
+  const { data: report } = await dbAdmin
+    .from('camp_reports')
+    .select('id, classroom_id, deleted_at')
+    .eq('id', id)
+    .maybeSingle()
+  if (!report || report.deleted_at !== null) {
+    return NextResponse.json({ error: 'report not found' }, { status: 404 })
+  }
+
+  const { data: classroom } = await dbAdmin
+    .from('classrooms')
+    .select('id, teacher_id, academy_id, deleted_at')
+    .eq('id', report.classroom_id)
+    .maybeSingle()
+  if (!classroom || classroom.deleted_at !== null) {
+    return NextResponse.json({ error: 'classroom not found' }, { status: 404 })
+  }
+  // Teacher/manager only. A student or parent must never be able to
+  // withdraw a report about themselves.
+  if (!(await canManageClassroom(user.id, classroom))) {
+    return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
+  }
+
+  /* Soft delete. Every read path in this route already filters
+     `deleted_at is null`, and the RLS policies (migration 086) do the
+     same, so a withdrawn report disappears from the teacher list, the
+     student's mobile list and the parent's at once. Kept rather than
+     dropped because a report is a record of what was sent home — if
+     delivery has already happened, erasing our copy of it is worse
+     than keeping it marked withdrawn. */
+  const { error } = await dbAdmin
+    .from('camp_reports')
+    .update({ deleted_at: new Date().toISOString() })
+    .eq('id', report.id)
+  if (error) return NextResponse.json({ error: error.message }, { status: 500 })
+
+  return NextResponse.json({ deleted: true })
 }

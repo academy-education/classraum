@@ -27,6 +27,12 @@ import {
  * GET ?classroomId=…
  *   The classroom's assignments, newest first.
  *
+ * PATCH ?id=…  { title?, dueAt?, classroomSessionId? }
+ *   Edit the fields that do NOT touch the drawn questions, so it costs
+ *   nothing. Section, domain and count are deliberately NOT editable:
+ *   changing any of them means a different draw, which means charging
+ *   the quota again — that is a new assignment, not an edit.
+ *
  * DELETE ?id=…
  *   Soft-delete one assignment. Refunds the quota ONLY when no student
  *   has opened it — see the handler for why.
@@ -350,4 +356,85 @@ export async function DELETE(req: NextRequest) {
   }
 
   return NextResponse.json({ deleted: true, refunded, hadSittings: touched })
+}
+
+export async function PATCH(req: NextRequest) {
+  const user = await getUserFromRequest(req)
+  if (!user) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+
+  const id = req.nextUrl.searchParams.get('id')
+  if (!id) return NextResponse.json({ error: 'id required' }, { status: 400 })
+
+  let body: { title?: string; dueAt?: string | null; classroomSessionId?: string | null }
+  try { body = await req.json() } catch { return NextResponse.json({ error: 'bad json' }, { status: 400 }) }
+
+  const { data: assignment } = await dbAdmin
+    .from('camp_assignments')
+    .select('id, classroom_id, deleted_at')
+    .eq('id', id)
+    .maybeSingle()
+  if (!assignment || assignment.deleted_at !== null) {
+    return NextResponse.json({ error: 'assignment not found' }, { status: 404 })
+  }
+
+  const classroom = await loadClassroom(assignment.classroom_id)
+  if (!classroom) return NextResponse.json({ error: 'classroom not found' }, { status: 404 })
+  if (!(await canManageClassroom(user.id, classroom))) {
+    return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
+  }
+
+  const patch: Record<string, unknown> = {}
+
+  if (body.title !== undefined) {
+    const title = typeof body.title === 'string' ? body.title.trim() : ''
+    if (!title) return NextResponse.json({ error: 'title cannot be empty' }, { status: 400 })
+    patch.title = title
+  }
+
+  // null clears the due date; undefined leaves it alone. The two are
+  // different requests and must not collapse into each other.
+  if (body.dueAt !== undefined) {
+    if (body.dueAt === null) patch.due_at = null
+    else {
+      const parsed = new Date(body.dueAt)
+      if (Number.isNaN(parsed.getTime())) {
+        return NextResponse.json({ error: 'invalid dueAt' }, { status: 400 })
+      }
+      patch.due_at = parsed.toISOString()
+    }
+  }
+
+  if (body.classroomSessionId !== undefined) {
+    if (body.classroomSessionId === null) patch.classroom_session_id = null
+    else {
+      // Same rule as create: the session must belong to THIS classroom,
+      // or the work is filed under a lesson these students are not in.
+      const { data: session } = await dbAdmin
+        .from('classroom_sessions')
+        .select('id, classroom_id, deleted_at')
+        .eq('id', body.classroomSessionId)
+        .maybeSingle()
+      if (!session || session.deleted_at !== null) {
+        return NextResponse.json({ error: 'session not found' }, { status: 404 })
+      }
+      if (session.classroom_id !== classroom.id) {
+        return NextResponse.json({ error: 'session belongs to a different classroom' }, { status: 400 })
+      }
+      patch.classroom_session_id = session.id
+    }
+  }
+
+  if (Object.keys(patch).length === 0) {
+    return NextResponse.json({ error: 'nothing to update' }, { status: 400 })
+  }
+
+  const { data: updated, error } = await dbAdmin
+    .from('camp_assignments')
+    .update(patch)
+    .eq('id', assignment.id)
+    .select(ASSIGNMENT_COLUMNS)
+    .single()
+  if (error) return NextResponse.json({ error: error.message }, { status: 500 })
+
+  return NextResponse.json({ assignment: updated })
 }

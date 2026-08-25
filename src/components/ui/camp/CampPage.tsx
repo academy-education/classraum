@@ -22,7 +22,7 @@ import type { Question } from '@/app/mobile/study/session/[id]/test/types'
 import { authHeaders } from '@/lib/auth-headers'
 import { useTranslation } from '@/hooks/useTranslation'
 import { showSuccessToast, showErrorToast } from '@/stores'
-import { Loader2, Plus, School, Tent, ClipboardList, Search, Calendar, Trash2, ChevronDown, ChevronUp, Presentation, FileText, BookOpen, Clock, Users, CheckCircle2, Target, AlertTriangle } from 'lucide-react'
+import { Loader2, Plus, School, Tent, ClipboardList, Search, Calendar, Trash2, Pencil, ChevronDown, ChevronUp, Presentation, FileText, BookOpen, Clock, Users, CheckCircle2, Target, AlertTriangle } from 'lucide-react'
 
 /**
  * Camp dashboard — quota meter, camp classrooms, and the assignment
@@ -187,6 +187,12 @@ export function CampPage({ academyId }: CampPageProps) {
      commits — the quota is the thing they are actually spending. */
   const [pendingDelete, setPendingDelete] = useState<{ id: string; title: string; count: number; sittings: number } | null>(null)
   const [deleting, setDeleting] = useState(false)
+  /* Assignment being edited. Only the fields that do NOT change the
+     drawn questions — title, due date, session — so an edit is free.
+     Changing section/count would mean a new draw and a fresh charge,
+     which is a new assignment, not an edit. */
+  const [editing, setEditing] = useState<{ id: string; title: string; dueDate: string; classroomSessionId: string; classroomId: string } | null>(null)
+  const [savingEdit, setSavingEdit] = useState(false)
 
   /** session id -> {date, start_time} for every camp classroom on this
    *  program, so the Classrooms tab can group work by the lesson it
@@ -436,6 +442,31 @@ export function CampPage({ academyId }: CampPageProps) {
       setDeleting(false)
     }
   }, [pendingDelete, deleting, t, fetchAll])
+
+  const saveAssignmentEdit = useCallback(async () => {
+    if (!editing || savingEdit) return
+    setSavingEdit(true)
+    try {
+      const headers = await authHeaders()
+      const res = await fetch(`/api/camp/assignments?id=${editing.id}`, {
+        method: 'PATCH',
+        headers: { ...headers, 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          title: editing.title,
+          // null clears it; the API treats null and undefined differently
+          dueAt: editing.dueDate ? new Date(`${editing.dueDate}T23:59:59`).toISOString() : null,
+          classroomSessionId: editing.classroomSessionId || null,
+        }),
+      })
+      const json = await res.json().catch(() => ({}))
+      if (!res.ok) { showErrorToast(json.error || String(t('camp.editAssignment.failed'))); return }
+      showSuccessToast(String(t('camp.editAssignment.saved')))
+      setEditing(null)
+      await fetchAll()
+    } catch {
+      showErrorToast(String(t('camp.editAssignment.failed')))
+    } finally { setSavingEdit(false) }
+  }, [editing, savingEdit, t, fetchAll])
 
   const openReviewModal = (classroomId: string) => {
     setReviewClassroomId(classroomId)
@@ -1148,6 +1179,22 @@ export function CampPage({ academyId }: CampPageProps) {
                             <Button
                               variant="ghost"
                               size="sm"
+                              className="h-7 w-7 p-0 text-gray-300 hover:text-gray-700 hover:bg-gray-100"
+                              onClick={() => setEditing({
+                                id: a.id,
+                                title: a.title,
+                                dueDate: a.due_at ? a.due_at.slice(0, 10) : '',
+                                classroomSessionId: a.classroom_session_id ?? '',
+                                classroomId: a.classroom_id,
+                              })}
+                              title={String(t('camp.editAssignment.action'))}
+                              aria-label={String(t('camp.editAssignment.action'))}
+                            >
+                              <Pencil className="w-3.5 h-3.5" strokeWidth={1.75} />
+                            </Button>
+                            <Button
+                              variant="ghost"
+                              size="sm"
                               className="h-7 w-7 p-0 text-gray-300 hover:text-rose-600 hover:bg-rose-50"
                               onClick={() => void askDeleteAssignment(a)}
                               title={String(t('camp.deleteAssignment.action'))}
@@ -1526,6 +1573,84 @@ export function CampPage({ academyId }: CampPageProps) {
       {sessionInfoId && (
         <CampSessionInfo sessionId={sessionInfoId} onClose={() => setSessionInfoId(null)} />
       )}
+
+      <ModalShell
+        isOpen={editing !== null}
+        onClose={() => { if (!savingEdit) setEditing(null) }}
+        size="sm"
+        title={String(t('camp.editAssignment.title'))}
+        closeDisabled={savingEdit}
+        footer={
+          <ModalShell.Footer split>
+            <Button variant="outline" onClick={() => setEditing(null)} disabled={savingEdit}>
+              {t('common.cancel')}
+            </Button>
+            <Button onClick={() => void saveAssignmentEdit()} disabled={savingEdit || !editing?.title.trim()}>
+              {savingEdit && <Loader2 className="w-4 h-4 mr-2 animate-spin" />}
+              {t('camp.editAssignment.save')}
+            </Button>
+          </ModalShell.Footer>
+        }
+      >
+        {editing && (
+          <div className="space-y-4">
+            <div className="space-y-2">
+              <Label className="text-sm font-medium text-foreground/80">
+                {t('camp.form.title')} <span className="text-rose-500">*</span>
+              </Label>
+              <Input
+                type="text"
+                value={editing.title}
+                onChange={e => setEditing(prev => prev && ({ ...prev, title: e.target.value }))}
+                className="h-10"
+              />
+            </div>
+
+            <div className="space-y-2">
+              <Label className="text-sm font-medium text-foreground/80">{t('camp.form.session')}</Label>
+              <Select
+                value={editing.classroomSessionId || 'none'}
+                onValueChange={v => setEditing(prev => prev && ({ ...prev, classroomSessionId: v === 'none' ? '' : v }))}
+              >
+                <SelectTrigger className="h-10 bg-white border border-border focus:border-primary data-[state=open]:border-primary">
+                  <SelectValue placeholder={String(t('camp.form.noSession'))} />
+                </SelectTrigger>
+                <SelectContent className="z-[210]">
+                  <SelectItem value="none">{t('camp.form.noSession')}</SelectItem>
+                  {Object.entries(sessionsById)
+                    .filter(([, v]) => v.classroom_id === editing.classroomId)
+                    .sort((a, b) => (a[1].date < b[1].date ? 1 : -1))
+                    .map(([id, v]) => (
+                      <SelectItem key={id} value={id}>
+                        {formatDate(v.date)}{v.start_time ? ` · ${v.start_time.slice(0, 5)}` : ''}
+                      </SelectItem>
+                    ))}
+                </SelectContent>
+              </Select>
+            </div>
+
+            <div className="space-y-2">
+              <Label className="text-sm font-medium text-foreground/80">{t('camp.form.dueDate')}</Label>
+              <AssignmentsDatePicker
+                value={editing.dueDate}
+                onChange={(value) => setEditing(prev => prev && ({ ...prev, dueDate: Array.isArray(value) ? value[0] : value }))}
+                fieldId="camp_edit_due_date"
+                height="h-10"
+                shadow="shadow-sm"
+                placeholder={String(t('camp.form.dueDate'))}
+                activeDatePicker={activeDatePicker}
+                setActiveDatePicker={setActiveDatePicker}
+                t={t}
+                language={language}
+              />
+            </div>
+
+            {/* Say why the other fields are absent, rather than leaving
+                the teacher hunting for them. */}
+            <p className="text-xs text-muted-foreground">{t('camp.editAssignment.hint')}</p>
+          </div>
+        )}
+      </ModalShell>
 
       <ModalShell
         isOpen={pendingDelete !== null}

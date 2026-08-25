@@ -2757,6 +2757,22 @@
       "refunded": "{{n}} questions returned to the quota",
       "failed": "Couldn't delete this set",
       "unknownRefund": "We couldn't check whether anyone has opened it. If nobody has, the questions are returned automatically."
+    },
+    "editAssignment": {
+      "action": "Edit",
+      "title": "Edit set",
+      "hint": "Section, question type and count can't be changed — those would need a new draw and would charge the quota again. Make a new set for that.",
+      "save": "Save changes",
+      "saved": "Set updated",
+      "failed": "Couldn't save these changes"
+    },
+    "withdrawReport": {
+      "action": "Withdraw",
+      "title": "Withdraw this report?",
+      "body": "It disappears from your list and from the student's and their parents'. The record is kept, marked withdrawn.",
+      "confirm": "Withdraw report",
+      "done": "Report withdrawn",
+      "failed": "Couldn't withdraw this report"
     }
   },
   "attendance": {

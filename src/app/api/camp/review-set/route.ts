@@ -35,7 +35,7 @@ import {
 export const dynamic = 'force-dynamic'
 
 const REVIEW_COLUMNS =
-  'id, camp_program_id, classroom_id, teacher_id, title, section, domain, question_count, item_ids, kind, classroom_session_id, created_at'
+  'id, camp_program_id, classroom_id, teacher_id, title, section, domain, question_count, item_ids, kind, classroom_session_id, presented_at, created_at'
 
 const MAX_COUNT = 40
 
@@ -70,6 +70,21 @@ export async function GET(req: NextRequest) {
   // classroom STUDENTS must be rejected here, not just unlinked in the UI.
   if (!(await canManageClassroom(user.id, classroom))) {
     return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
+  }
+
+  /* First presenter fetch marks the deck as used. This is the fact the
+     delete refund rule turns on — a deck nobody ever opened refunds its
+     quota, a presented one does not, and without this stamp there is no
+     way to tell them apart. Fire-and-forget: failing to stamp must not
+     stop a lesson, and the worst case is a refund we would rather not
+     have given. */
+  if (!set.presented_at) {
+    void dbAdmin
+      .from('camp_assignments')
+      .update({ presented_at: new Date().toISOString() })
+      .eq('id', set.id)
+      .is('presented_at', null)
+      .then(() => undefined)
   }
 
   const { data: program } = await dbAdmin
@@ -268,4 +283,56 @@ export async function POST(req: NextRequest) {
   }
 
   return NextResponse.json({ reviewSet }, { status: 201 })
+}
+
+export async function DELETE(req: NextRequest) {
+  const user = await getUserFromRequest(req)
+  if (!user) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+
+  const id = req.nextUrl.searchParams.get('id')
+  if (!id) return NextResponse.json({ error: 'id required' }, { status: 400 })
+
+  const { data: set } = await dbAdmin
+    .from('camp_assignments')
+    .select('id, classroom_id, camp_program_id, question_count, presented_at, deleted_at')
+    .eq('id', id)
+    .eq('kind', 'review')
+    .is('deleted_at', null)
+    .maybeSingle()
+  if (!set) return NextResponse.json({ error: 'review set not found' }, { status: 404 })
+
+  const classroom = await loadClassroom(set.classroom_id)
+  if (!classroom) return NextResponse.json({ error: 'classroom not found' }, { status: 404 })
+  if (!(await canManageClassroom(user.id, classroom))) {
+    return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
+  }
+
+  const { error: delError } = await dbAdmin
+    .from('camp_assignments')
+    .update({ deleted_at: new Date().toISOString() })
+    .eq('id', set.id)
+  if (delError) return NextResponse.json({ error: delError.message }, { status: 500 })
+
+  /* Refund only a deck that was never presented. Presented decks keep
+     the charge for the same reason a sat assignment does: the questions
+     were drawn and shown. Refunding them would let a teacher build,
+     present and delete on a loop to recover quota indefinitely. */
+  let refunded = 0
+  if (!set.presented_at) {
+    const { data: program } = await dbAdmin
+      .from('camp_programs')
+      .select('id, questions_used')
+      .eq('id', set.camp_program_id)
+      .maybeSingle()
+    if (program) {
+      const next = Math.max(0, (program.questions_used ?? 0) - set.question_count)
+      const { error: refundError } = await dbAdmin
+        .from('camp_programs')
+        .update({ questions_used: next })
+        .eq('id', program.id)
+      if (!refundError) refunded = (program.questions_used ?? 0) - next
+    }
+  }
+
+  return NextResponse.json({ deleted: true, refunded, wasPresented: !!set.presented_at })
 }

@@ -92,9 +92,40 @@ parents (family link, then Kakao/email). Tasks #319–#324.
 - Camp modals use the shared `DatePicker` (date-picker.tsx), not native
   date inputs.
 - `academies.camp_only` (migration 087, set manually like program
-  grants): minimal sidebar (Camp, Families, Settings, Archive, Help,
-  Logout) and `/camp-program` landing for managers/teachers. 087 also
+  grants): minimal sidebar (Camp, Classrooms, Sessions, Attendance,
+  Families, Settings, Archive, Help, Logout — the three academics
+  entries were added 2026-08-25 so a camp-only school can manage its own
+  roster and take a register; before that every roster change was a
+  support ticket to us, and camp classrooms had no sessions at all) and `/camp-program` landing for managers/teachers. 087 also
   added a COLUMN-scoped `grant select (id, name, logo_url, camp_only)`
   to `authenticated` — academies had NO client select grant at all, so
   every client read (incl. the layout's logo_url) had been failing
   silently. The E2E academy has camp_only=true (V21 guards it).
+
+## P7 additions (2026-08-25): the undo gaps
+
+Camp work could be created and never unmade. Closed:
+
+- `DELETE /api/camp/assignments?id=` — soft delete. Refunds the quota
+  ONLY if no student has opened it: a sat set consumed what the school
+  paid for, and refunding it would let a teacher recover quota by
+  deleting completed work. The sitting count MUST come from the server
+  (`GET ?id=` returns it) — RLS hides students' study_sessions from
+  their teacher, so counting in the browser returns 0 and the dialog
+  promised a refund the API then refused.
+- `PATCH /api/camp/assignments?id=` — title, due date and session only.
+  Section/domain/count are deliberately not editable: changing any of
+  them means a different draw and a fresh charge, which is a new
+  assignment, not an edit.
+- `DELETE /api/camp/review-set?id=` — soft delete. Students never sit a
+  review deck, so there is no "opened" signal; migration 099 adds
+  `presented_at`, stamped by the presenter fetch, and only an unstamped
+  deck refunds. Without it the choice was refund-always (build, present,
+  delete, repeat, forever) or refund-never (a typo costs the quota).
+  **No UI surface yet** — review sets are created and presented
+  immediately and are listed nowhere, so a teacher cannot reach this.
+  Needs a review-set list first.
+- `DELETE /api/camp/reports?id=` — soft withdraw, teacher/manager only.
+  Every read path already filters `deleted_at is null`, so it leaves the
+  student's and the parents' lists at the same time. Soft rather than
+  hard because a report is a record of what was sent home.
