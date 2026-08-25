@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback, useRef } from 'react'
 import { db } from '@/lib/supabase'
+import { fetchAllRows } from '@/lib/fetch-all-rows'
 import { queryCache, CACHE_TTL, CACHE_KEYS } from '@/lib/queryCache'
 import { useStableCallback } from '@/hooks/useStableCallback'
 import { clearCachesOnRefresh, markRefreshHandled } from '@/utils/cacheRefresh'
@@ -242,13 +243,26 @@ export const useDashboardStats = (academyId: string | null): UseDashboardStatsRe
             const now = new Date()
             const startOfLastMonth = new Date(now.getFullYear(), now.getMonth() - 1, 1)
 
-            const { data } = await db
+            /* Two months of paid invoices drives "revenue this month".
+               The demo academy already returns 912 of the 1000-row cap
+               at 150 students, so a slightly larger school would start
+               under-reporting revenue silently. Paged, with id as a
+               unique tiebreaker so no invoice is counted twice. */
+            const { data } = await fetchAllRows<{
+              final_amount: number | null
+              created_at: string | null
+              paid_at: string | null
+              status: string | null
+              academy_id: string
+            }>((from, to) => db
               .from('invoices')
               .select('final_amount, created_at, paid_at, status, academy_id')
               .eq('academy_id', academyId)
               .eq('status', 'paid')
               .gte('paid_at', startOfLastMonth.toISOString())
               .order('paid_at', { ascending: false })
+              .order('id', { ascending: true })
+              .range(from, to))
             return data
           },
           CACHE_TTL.SHORT
@@ -337,7 +351,12 @@ export const useDashboardStats = (academyId: string | null): UseDashboardStatsRe
       const invoices = invoicesResult || []
 
       const thisMonthInvoices = invoices.filter(invoice => {
-        const paidDate = invoice.paid_at ? new Date(invoice.paid_at) : new Date(invoice.created_at)
+        // Both columns are nullable. The previous untyped query hid that;
+        // new Date(null) is 1970, which would silently drop an invoice
+        // out of every month bucket instead of erroring.
+        const stamp = invoice.paid_at ?? invoice.created_at
+        if (!stamp) return false
+        const paidDate = new Date(stamp)
         return paidDate.getMonth() === currentMonth && paidDate.getFullYear() === currentYear
       })
 
@@ -345,7 +364,9 @@ export const useDashboardStats = (academyId: string | null): UseDashboardStatsRe
         
       const lastMonthRevenue = invoices
         .filter(invoice => {
-          const paidDate = invoice.paid_at ? new Date(invoice.paid_at) : new Date(invoice.created_at)
+          const stamp = invoice.paid_at ?? invoice.created_at
+          if (!stamp) return false
+          const paidDate = new Date(stamp)
           return paidDate.getMonth() === lastMonth && paidDate.getFullYear() === lastMonthYear
         })
         .reduce((sum, invoice) => sum + (invoice.final_amount || 0), 0)
@@ -373,7 +394,9 @@ export const useDashboardStats = (academyId: string | null): UseDashboardStatsRe
           // Check if we have actual invoice data for this day
           const dayRevenue = invoices
             .filter(invoice => {
-              const paidDate = invoice.paid_at ? new Date(invoice.paid_at) : new Date(invoice.created_at)
+              const stamp = invoice.paid_at ?? invoice.created_at
+              if (!stamp) return false
+              const paidDate = new Date(stamp)
               return paidDate.toDateString() === date.toDateString()
             })
             .reduce((sum, invoice) => sum + (invoice.final_amount || 0), 0)

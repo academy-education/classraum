@@ -517,11 +517,22 @@ describe('assembleToeflFromBank two-module adaptive draw', () => {
     const m1 = await assembleToeflFromBank({ section: 'listening', module: 1 }, 'seed-mix1')
     // Module 1 uses the blueprint's EXPLICIT m1 shares, not Math.ceil(n/2)
     // — see the `m1` note in TOEFL_META.listening.
+    /* These are the RESTORED ETS counts. 51dfe1d cut Choose a Response
+       from 14 delivered to 6 and raised conversation to compensate;
+       CR-V7 put the ETS count back permanently (5751a3f) once 132 new
+       items were live, and these expectations were left behind pointing
+       at the reverted experiment. Derived from TOEFL_META.listening's
+       m1/lower/upper columns, not copied from a failing run:
+         m1     CR 11 + conv 6 + ann 6 + talk  4 = 27
+         lower  CR  9 + conv 6 + ann 6          = 21   (27+21 = 48)
+         upper  CR  3 + conv 6 + talk 12        = 21   (27+21 = 48)
+       Both paths deliver ETS's 48. The old numbers also summed to 27/48
+       — the section was never short, only mixed differently. */
     expect(m1.composition).toEqual({
-      'multiple_choice:choose_response': 3,
-      'multiple_choice:conversation': 8,
+      'multiple_choice:choose_response': 11,
+      'multiple_choice:conversation': 6,
       'multiple_choice:announcement': 6,
-      'multiple_choice:academic_talk': 10,
+      'multiple_choice:academic_talk': 4,
     })
     // Stage 2 INVERTS: the lower module serves no Academic Talk, the upper
     // module serves no Announcement. ETS Table 1. This is the part the old
@@ -530,8 +541,8 @@ describe('assembleToeflFromBank two-module adaptive draw', () => {
     const lower = await assembleToeflFromBank(
       { section: 'listening', module: 2, path: 'lower' }, 'seed-mix2l')
     expect(lower.composition).toEqual({
-      'multiple_choice:choose_response': 3,
-      'multiple_choice:conversation': 12,
+      'multiple_choice:choose_response': 9,
+      'multiple_choice:conversation': 6,
       'multiple_choice:announcement': 6,
     })
     enqueue('study_item_bank', { data: listeningBank({ deep: true }) })
@@ -575,9 +586,10 @@ describe('assembleToeflFromBank two-module adaptive draw', () => {
     enqueue('study_item_bank', { data: [...orphans, ...listeningBank({ deep: true })] })
     const m1 = await assembleToeflFromBank({ section: 'listening', module: 1 }, 'seed-orphan')
     for (const q of m1.questions) expect(q.passageGroupId ?? '').not.toMatch(/^orphan-/)
-    // 8, not 6: the module-1 conversation quota rose when Choose a Response
-    // was cut from 14 delivered to 6 on 2026-08-11.
-    expect(m1.composition['multiple_choice:conversation']).toBe(8)
+    // 6: the module-1 conversation quota is back to the ETS share. It rose
+    // to 8 only while Choose a Response was cut to 6 (51dfe1d); CR-V7
+    // restored the ETS count permanently (5751a3f) and this followed it.
+    expect(m1.composition['multiple_choice:conversation']).toBe(6)
   })
 
   it('comes up SHORT rather than serving a fragment of an audio', async () => {
@@ -631,7 +643,9 @@ describe('assembleToeflFromBank two-module adaptive draw', () => {
       byTask[q.listeningTask!] = (byTask[q.listeningTask!] ?? 0) + 1
     }
     expect(byTask).toEqual({
-      choose_response: 4, conversation: 10, announcement: 4, academic_talk: 17,
+      // sM1 + sUpper from the restored blueprint: CR 8+3, conv 4+4,
+      // ann 4+0, talk 4+8 = 35 of the 48 delivered, which is ETS Table 1.
+      choose_response: 11, conversation: 8, announcement: 4, academic_talk: 12,
     })
   })
 

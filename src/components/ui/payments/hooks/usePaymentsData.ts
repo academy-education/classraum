@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback } from 'react'
 import { db } from '@/lib/supabase'
+import { fetchAllRows } from '@/lib/fetch-all-rows'
 import { toRecurrenceType, type RecurrenceType } from '@/components/ui/common/db-enums'
 import { simpleTabDetection } from '@/utils/simpleTabDetection'
 import { clearCachesOnRefresh, markRefreshHandled } from '@/utils/cacheRefresh'
@@ -275,21 +276,35 @@ export function usePaymentsData(academyId: string, activeTab: string) {
       // This runs in parallel with the main query for the current tab
       const fetchAggregates = async () => {
         try {
-          // Get total paid amount
-          const { data: paidData } = await db
-            .from('invoices')
-            .select('final_amount')
-            .eq('academy_id', academyId)
-            .eq('status', 'paid')
-            .is('deleted_at', null)
+          /* These sum EVERY invoice, so they must page past the ~1000-row
+             cap. Unpaginated, the demo academy summed 1000 of its 1774
+             paid invoices and reported ₩269,425,000 against an actual
+             ₩431,470,000 — all-time revenue understated by 37.6%, with
+             no error and no warning. A money figure that is quietly
+             wrong is worse than one that fails to load.
+             Ordered by id: unique, so pages cannot skip or repeat a row
+             and double-count it into the total. */
+          const { data: paidData } = await fetchAllRows<{ final_amount: number | null }>(
+            (from, to) => db
+              .from('invoices')
+              .select('final_amount')
+              .eq('academy_id', academyId)
+              .eq('status', 'paid')
+              .is('deleted_at', null)
+              .order('id', { ascending: true })
+              .range(from, to),
+          )
 
-          // Get total pending amount
-          const { data: pendingData } = await db
-            .from('invoices')
-            .select('final_amount')
-            .eq('academy_id', academyId)
-            .eq('status', 'pending')
-            .is('deleted_at', null)
+          const { data: pendingData } = await fetchAllRows<{ final_amount: number | null }>(
+            (from, to) => db
+              .from('invoices')
+              .select('final_amount')
+              .eq('academy_id', academyId)
+              .eq('status', 'pending')
+              .is('deleted_at', null)
+              .order('id', { ascending: true })
+              .range(from, to),
+          )
 
           const totalPaid = paidData?.reduce((sum, inv) => sum + (inv.final_amount || 0), 0) || 0
           const totalPending = pendingData?.reduce((sum, inv) => sum + (inv.final_amount || 0), 0) || 0
