@@ -70,6 +70,14 @@ const LITERAL = /\b(?:t|tList)\s*\(\s*(['"`])([^'"`$\n]+?)\1/g
 // captures the whole template body.
 const TEMPLATE = /\b(?:t|tList)\s*\(\s*`([^`]*\$\{[^`]*)`/g
 
+// Keys held as DATA rather than passed to t() — `labelKey: 'nav.foo'`
+// in the navigation shelves and similar. The t()/tList() scan above
+// cannot see these, and a broken one renders the raw key to the user:
+// `dashboard.shelf.academics` shipped in the camp-only phone nav and
+// this suite stayed green, because nothing ever wrote it as t('...').
+// 145 keys across the codebase live this way.
+const DATA_KEY = /\b(?:label|name|title|message|blurb)Key\s*:\s*(['"])([a-z][A-Za-z0-9_]*(?:\.[A-Za-z0-9_]+)+)\1/g
+
 interface Ref { key: string; where: string }
 
 const literalRefs: Ref[] = []
@@ -86,6 +94,11 @@ for (const file of FILES) {
     // Several call sites pass already-resolved plain text through t() as
     // a convenience; a dot is what distinguishes a key from prose.
     if (m[2].includes('.')) literalRefs.push({ key: m[2], where: `${rel}:${lineAt(m.index)}` })
+  }
+
+  DATA_KEY.lastIndex = 0
+  while ((m = DATA_KEY.exec(text))) {
+    literalRefs.push({ key: m[2], where: `${rel}:${lineAt(m.index)}` })
   }
 
   TEMPLATE.lastIndex = 0

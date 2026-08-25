@@ -111,9 +111,9 @@ export function DashboardBottomNavigation({ userRole, onHelpClick }: DashboardBo
            are filtered in different files and have disagreed before; if
            you add a screen for camp-only schools in one, add it here. */
         {
-          id: 'academics',
+          id: 'classes',
           icon: School,
-          labelKey: 'dashboard.shelf.academics',
+          labelKey: 'dashboard.shelf.classes',
           subItems: [
             { id: 'classrooms', href: '/classrooms', icon: School, labelKey: 'navigation.classrooms' },
             { id: 'sessions', href: '/sessions', icon: Calendar, labelKey: 'navigation.sessions' },
