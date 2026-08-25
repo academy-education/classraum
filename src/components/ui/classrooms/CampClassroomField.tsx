@@ -3,7 +3,7 @@
 import { Label } from '@/components/ui/label'
 import { Checkbox } from '@/components/ui/checkbox'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
-import { Tent, Lock } from 'lucide-react'
+import { Tent, Lock, AlertTriangle } from 'lucide-react'
 import { isProgramOpen } from '@/lib/camp/cap'
 import type { CampProgramOption } from '@/hooks/useCampPrograms'
 
@@ -108,6 +108,17 @@ export function CampClassroomField({ programs, value, onChange, locked = false, 
           {selected && (
             <p className="text-xs text-muted-foreground tabular-nums">
               {t('classrooms.camp.capNote', { cap: selected.student_cap })}
+            </p>
+          )}
+
+          {/* Shown BEFORE the choice is irreversible, not after. Once
+              work exists the lock message below replaces it — by then
+              the warning is useless, so it has to land while the user
+              can still pick a different camp. */}
+          {!locked && (
+            <p className="text-xs text-amber-700 dark:text-amber-500 flex items-start gap-1.5">
+              <AlertTriangle className="w-3 h-3 mt-0.5 flex-shrink-0" strokeWidth={2} />
+              <span>{t('classrooms.camp.fixedWarning')}</span>
             </p>
           )}
 

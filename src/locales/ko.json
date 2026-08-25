@@ -2048,7 +2048,8 @@
       "ended": "종료됨",
       "capNote": "이 캠프의 전체 정원은 {{cap}}명입니다 (모든 반 합산).",
       "lockedHasWork": "이미 캠프 과제가 있는 반이라 캠프를 변경할 수 없습니다. 새 반을 만들어 주세요.",
-      "capExceeded": "정원 {{cap}}명인 캠프에 {{count}}명이 됩니다. {{over}}명을 빼주세요."
+      "capExceeded": "정원 {{cap}}명인 캠프에 {{count}}명이 됩니다. {{over}}명을 빼주세요.",
+      "fixedWarning": "이 반에 캠프 과제가 생기면 캠프를 변경할 수 없습니다. 변경하려면 새 반을 만들어야 합니다."
     }
   },
   "sessions": {
@@ -2555,7 +2556,12 @@
       "allDomains": "전체 유형",
       "questionCount": "문항 수",
       "countHint": "{min}–{max} 사이",
-      "dueDate": "마감일"
+      "dueDate": "마감일",
+      "session": "수업",
+      "noSession": "수업에 연결하지 않음",
+      "sessionHint": "선택 사항입니다. 예정된 수업에 연결하면 해당 수업의 과제와 함께 표시됩니다.",
+      "selectClassroomFirst": "먼저 반을 선택하세요",
+      "noSessions": "이 반에는 아직 수업이 없습니다"
     },
     "sections": {
       "reading_writing": "읽기 및 쓰기",

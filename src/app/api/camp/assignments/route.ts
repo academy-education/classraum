@@ -27,7 +27,7 @@ import {
 export const dynamic = 'force-dynamic'
 
 const ASSIGNMENT_COLUMNS =
-  'id, camp_program_id, classroom_id, teacher_id, title, section, domain, question_count, item_ids, due_at, created_at'
+  'id, camp_program_id, classroom_id, teacher_id, title, section, domain, question_count, item_ids, due_at, classroom_session_id, created_at'
 
 const MAX_COUNT = 40
 
@@ -78,6 +78,7 @@ export async function POST(req: NextRequest) {
     domain?: string
     count?: number
     dueAt?: string
+    classroomSessionId?: string
   }
   try { body = await req.json() } catch { return NextResponse.json({ error: 'bad json' }, { status: 400 }) }
 
@@ -106,6 +107,27 @@ export async function POST(req: NextRequest) {
   }
   if (!classroom.camp_program_id) {
     return NextResponse.json({ error: 'classroom is not part of a camp program' }, { status: 400 })
+  }
+
+  /* Optional session link (migration 096). Validated against THIS
+     classroom: a session id from another classroom would file the work
+     under a lesson the students are not in, and nothing downstream
+     re-checks it. Absent is fine and is the norm for a vacation camp
+     with no timetable. */
+  let classroomSessionId: string | null = null
+  if (body.classroomSessionId) {
+    const { data: session } = await dbAdmin
+      .from('classroom_sessions')
+      .select('id, classroom_id, deleted_at')
+      .eq('id', body.classroomSessionId)
+      .maybeSingle()
+    if (!session || session.deleted_at !== null) {
+      return NextResponse.json({ error: 'session not found' }, { status: 404 })
+    }
+    if (session.classroom_id !== classroom.id) {
+      return NextResponse.json({ error: 'session belongs to a different classroom' }, { status: 400 })
+    }
+    classroomSessionId = session.id
   }
 
   const { data: program } = await dbAdmin
@@ -166,6 +188,7 @@ export async function POST(req: NextRequest) {
       question_count: count,
       item_ids: draw.itemIds,
       due_at: dueAt,
+      classroom_session_id: classroomSessionId,
     })
     .select(ASSIGNMENT_COLUMNS)
     .single()

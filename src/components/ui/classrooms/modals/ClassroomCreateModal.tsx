@@ -188,6 +188,13 @@ export function ClassroomCreateModal({
       }
     >
           <form id="classroom-form" onSubmit={handleSubmit} className="space-y-5">
+            <CampClassroomField
+              programs={campPrograms}
+              value={formData.camp_program_id}
+              onChange={(id) => handleInputChange('camp_program_id', id)}
+              locked={campLocked}
+              t={t}
+            />
             <div className="space-y-2">
               <Label className="text-sm font-medium text-foreground/80">
                 {t("classrooms.classroomName")} <span className="text-rose-500">*</span>
@@ -684,14 +691,6 @@ export function ClassroomCreateModal({
                 placeholder={String(t("classrooms.additionalNotes"))}
               />
             </div>
-
-            <CampClassroomField
-              programs={campPrograms}
-              value={formData.camp_program_id}
-              onChange={(id) => handleInputChange('camp_program_id', id)}
-              locked={campLocked}
-              t={t}
-            />
           </form>
     </ModalShell>
   )

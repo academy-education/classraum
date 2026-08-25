@@ -1928,7 +1928,8 @@
       "ended": "ended",
       "capNote": "This camp seats {{cap}} students in total, across all of its classes.",
       "lockedHasWork": "This class already has camp assignments, so its camp can't be changed. Create a new class instead.",
-      "capExceeded": "That would put {{count}} students in a camp that seats {{cap}}. Remove {{over}} to continue."
+      "capExceeded": "That would put {{count}} students in a camp that seats {{cap}}. Remove {{over}} to continue.",
+      "fixedWarning": "Once this class has camp assignments its camp can't be changed — you'd need to create a new class."
     }
   },
   "dashboard": {
@@ -2555,7 +2556,12 @@
       "allDomains": "All types",
       "questionCount": "Questions",
       "countHint": "Between {min} and {max}",
-      "dueDate": "Due date"
+      "dueDate": "Due date",
+      "session": "Session",
+      "noSession": "Not tied to a session",
+      "sessionHint": "Optional. Link this set to a scheduled class so it appears with that session's work.",
+      "selectClassroomFirst": "Choose a class first",
+      "noSessions": "This class has no sessions yet"
     },
     "sections": {
       "reading_writing": "Reading & Writing",

@@ -94,32 +94,67 @@ export function useSessionData(academyId: string, filterClassroomId?: string, fi
       let cachedSessions = queryCache.get<Session[]>(cacheKey)
 
       if (!cachedSessions) {
-        // Build query with filters
-        let query = db
-          .from('classroom_sessions')
-          .select(`
-            *,
-            classrooms!inner(
-              id,
-              name,
-              color,
-              teacher_id,
-              academy_id
-            )
-          `)
-          .eq('classrooms.academy_id', academyId)
-          .order('date', { ascending: true })
-          .order('start_time', { ascending: true })
+        /* PostgREST caps a single response at ~1000 rows, so this MUST
+           paginate. Unpaginated, the demo academy's 1462 sessions came
+           back as 1000 — and because the sort is date ASCENDING, the
+           rows dropped were the LATEST ones: the page ended on
+           2026-08-04 while "today" was 2026-08-25, so the list and the
+           calendar showed only history and no current or upcoming
+           class at all. The same defect was fixed on the assignments
+           page (ae9d96c) and this surface was missed.
 
-        // Apply filters
-        if (filterClassroomId) {
-          query = query.eq('classroom_id', filterClassroomId)
-        }
-        if (filterDate) {
-          query = query.eq('date', filterDate)
+           Order deterministically — date, start_time, then id as a
+           tiebreaker — so pages never skip or duplicate a row across
+           .range() calls. Sessions share a date and a start_time all
+           the time, which is exactly when a non-unique sort silently
+           reorders between requests. */
+        const SESSIONS_PAGE_SIZE = 1000
+        type PgError = { message?: string; details?: string; hint?: string; code?: string }
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const fetchAllSessions = async (): Promise<{ data: any[] | null; error: PgError | null }> => {
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          const all: any[] = []
+          let from = 0
+          // Safety bound so a pathological loop cannot run forever.
+          for (let page = 0; page < 100; page++) {
+            let query = db
+              .from('classroom_sessions')
+              .select(`
+                *,
+                classrooms!inner(
+                  id,
+                  name,
+                  color,
+                  teacher_id,
+                  academy_id
+                )
+              `)
+              .eq('classrooms.academy_id', academyId)
+              .order('date', { ascending: true })
+              .order('start_time', { ascending: true })
+              .order('id', { ascending: true })
+              .range(from, from + SESSIONS_PAGE_SIZE - 1)
+
+            // Apply filters
+            if (filterClassroomId) {
+              query = query.eq('classroom_id', filterClassroomId)
+            }
+            if (filterDate) {
+              query = query.eq('date', filterDate)
+            }
+
+            const { data, error } = await query
+            if (error) return { data: null, error }
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            const rows = (data as any[] | null) || []
+            all.push(...rows)
+            if (rows.length < SESSIONS_PAGE_SIZE) break
+            from += SESSIONS_PAGE_SIZE
+          }
+          return { data: all, error: null }
         }
 
-        const { data, error } = await query
+        const { data, error } = await fetchAllSessions()
 
         if (error) throw error
 

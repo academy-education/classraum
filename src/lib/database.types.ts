@@ -1055,6 +1055,7 @@ export type Database = {
         Row: {
           camp_program_id: string
           classroom_id: string
+          classroom_session_id: string | null
           created_at: string
           deleted_at: string | null
           domain: string | null
@@ -1070,6 +1071,7 @@ export type Database = {
         Insert: {
           camp_program_id: string
           classroom_id: string
+          classroom_session_id?: string | null
           created_at?: string
           deleted_at?: string | null
           domain?: string | null
@@ -1085,6 +1087,7 @@ export type Database = {
         Update: {
           camp_program_id?: string
           classroom_id?: string
+          classroom_session_id?: string | null
           created_at?: string
           deleted_at?: string | null
           domain?: string | null

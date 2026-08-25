@@ -183,6 +183,13 @@ export function ClassroomEditModal({
       }
     >
           <form id="edit-classroom-form" onSubmit={handleEditSubmit} className="space-y-5">
+            <CampClassroomField
+              programs={campPrograms}
+              value={formData.camp_program_id}
+              onChange={(id) => setFormData({ ...formData, camp_program_id: id })}
+              locked={campLocked}
+              t={t}
+            />
             <div className="space-y-2">
               <Label className="text-sm font-medium text-foreground/80">
                 {t("classrooms.classroomName")} <span className="text-rose-500">*</span>
@@ -566,13 +573,6 @@ export function ClassroomEditModal({
               />
             </div>
 
-            <CampClassroomField
-              programs={campPrograms}
-              value={formData.camp_program_id}
-              onChange={(id) => setFormData({ ...formData, camp_program_id: id })}
-              locked={campLocked}
-              t={t}
-            />
 
             {/* Student Enrollment Section */}
             <div className="space-y-2">

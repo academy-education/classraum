@@ -7,7 +7,8 @@ import { Card } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
-import { DatePicker } from '@/components/ui/date-picker'
+import { AssignmentsDatePicker } from '@/components/ui/assignments/AssignmentsDatePicker'
+import { db } from '@/lib/supabase'
 import { ModalShell } from '@/components/ui/common/ModalShell'
 import { EmptyState } from '@/components/ui/common/EmptyState'
 import { StatusPill } from '@/components/ui/status-pill'
@@ -161,7 +162,43 @@ export function CampPage({ academyId }: CampPageProps) {
     domain: '',
     count: '20',
     dueDate: '',
+    // '' = not tied to a session. Optional by design (migration 096):
+    // a vacation camp has no timetable to hang work off.
+    classroomSessionId: '',
   })
+
+  /* Sessions of the currently-selected classroom, for the optional
+     session picker. Refetched when the classroom changes — a session
+     from another classroom would file the work under a lesson these
+     students are not in, and the API rejects that. */
+  const [sessionOptions, setSessionOptions] = useState<{ id: string; date: string; start_time: string }[]>([])
+  const [sessionsLoading, setSessionsLoading] = useState(false)
+  /* AssignmentsDatePicker is a popup; this holds which field owns it,
+     matching how the assignments page drives the same component. */
+  const [activeDatePicker, setActiveDatePicker] = useState<string | null>(null)
+
+  useEffect(() => {
+    let alive = true
+    const classroomId = form.classroomId
+    if (!classroomId) { setSessionOptions([]); return }
+    setSessionsLoading(true)
+    db.from('classroom_sessions')
+      .select('id, date, start_time')
+      .eq('classroom_id', classroomId)
+      .is('deleted_at', null)
+      .order('date', { ascending: false })
+      .order('start_time', { ascending: false })
+      // A single classroom's sessions sit far below the PostgREST cap,
+      // but bound it anyway so a long-running camp cannot silently
+      // truncate the way the sessions page did.
+      .limit(200)
+      .then(({ data, error }) => {
+        if (!alive) return
+        setSessionOptions(error ? [] : (data ?? []))
+        setSessionsLoading(false)
+      })
+    return () => { alive = false }
+  }, [form.classroomId])
 
   /* Camp P3 — class review presenter. The modal creates a review set
    * (POST /api/camp/review-set, same quota pool), fetches its full items
@@ -294,6 +331,7 @@ export function CampPage({ academyId }: CampPageProps) {
       domain: '',
       count: '20',
       dueDate: '',
+      classroomSessionId: '',
     })
     setFormError(null)
     setShowModal(true)
@@ -399,6 +437,7 @@ export function CampPage({ academyId }: CampPageProps) {
           domain: form.domain || undefined,
           count: Number(form.count),
           dueAt: form.dueDate ? new Date(`${form.dueDate}T23:59:59`).toISOString() : undefined,
+          classroomSessionId: form.classroomSessionId || undefined,
         }),
       })
       const json = await res.json().catch(() => ({}))
@@ -1022,7 +1061,7 @@ export function CampPage({ academyId }: CampPageProps) {
             </Label>
             <Select
               value={form.classroomId}
-              onValueChange={value => setForm(prev => ({ ...prev, classroomId: value }))}
+              onValueChange={value => setForm(prev => ({ ...prev, classroomId: value, classroomSessionId: '' }))}
             >
               <SelectTrigger className="h-10 bg-white border border-border focus:border-primary focus-visible:border-primary focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=open]:border-primary">
                 <SelectValue placeholder={String(t('camp.form.selectClassroom'))} />
@@ -1033,6 +1072,45 @@ export function CampPage({ academyId }: CampPageProps) {
                 ))}
               </SelectContent>
             </Select>
+          </div>
+
+          {/* Optional session link (migration 096). Sits under the
+              classroom because it is scoped to it — the API rejects a
+              session from a different classroom. Mirrors the ordinary
+              assignments modal, where the session is picked first. */}
+          <div className="space-y-2">
+            <Label className="text-sm font-medium text-foreground/80">{t('camp.form.session')}</Label>
+            <Select
+              value={form.classroomSessionId || 'none'}
+              onValueChange={value =>
+                setForm(prev => ({ ...prev, classroomSessionId: value === 'none' ? '' : value }))
+              }
+              disabled={!form.classroomId || sessionsLoading}
+            >
+              <SelectTrigger className="h-10 bg-white border border-border focus:border-primary focus-visible:border-primary focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=open]:border-primary">
+                <SelectValue
+                  placeholder={String(
+                    !form.classroomId
+                      ? t('camp.form.selectClassroomFirst')
+                      : t('camp.form.noSession'),
+                  )}
+                />
+              </SelectTrigger>
+              <SelectContent className="z-[210]">
+                <SelectItem value="none">{t('camp.form.noSession')}</SelectItem>
+                {sessionOptions.map(session => (
+                  <SelectItem key={session.id} value={session.id}>
+                    {formatDate(session.date)}
+                    {session.start_time ? ` · ${session.start_time.slice(0, 5)}` : ''}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+            <p className="text-xs text-muted-foreground">
+              {form.classroomId && !sessionsLoading && sessionOptions.length === 0
+                ? t('camp.form.noSessions')
+                : t('camp.form.sessionHint')}
+            </p>
           </div>
 
           <div className="space-y-2">
@@ -1117,10 +1195,17 @@ export function CampPage({ academyId }: CampPageProps) {
               <Label className="text-sm font-medium text-foreground/80">{t('camp.form.dueDate')}</Label>
               {/* Same DatePicker the sessions/classrooms modals use —
                   native date inputs were the odd one out (Andy: camp UX). */}
-              <DatePicker
+              <AssignmentsDatePicker
                 value={form.dueDate}
-                onChange={value => setForm(prev => ({ ...prev, dueDate: value }))}
+                onChange={(value) => setForm(prev => ({ ...prev, dueDate: Array.isArray(value) ? value[0] : value }))}
+                fieldId="camp_due_date"
+                height="h-10"
+                shadow="shadow-sm"
                 placeholder={String(t('camp.form.dueDate'))}
+                activeDatePicker={activeDatePicker}
+                setActiveDatePicker={setActiveDatePicker}
+                t={t}
+                language={language}
               />
             </div>
           </div>
