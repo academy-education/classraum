@@ -110,6 +110,9 @@ export function ClassroomCreateDemo() {
     teacher_name: teachers[0].name,
     color: '#3B82F6',
     notes: '',
+    // The help-center demo has no academy, so it has no camps:
+    // CampClassroomField renders nothing for an empty program list.
+    camp_program_id: '',
   })
   const [selectedStudents, setSelectedStudents] = useState<string[]>([students[0].id, students[1].id])
   const [previewColor, setPreviewColor] = useState<string | null>(null)
@@ -129,6 +132,8 @@ export function ClassroomCreateDemo() {
         onClose={noop}
         formData={formData}
         setFormData={setFormData}
+        campPrograms={[]}
+        campLocked={false}
         schedules={SAMPLE_SCHEDULES}
         selectedStudents={selectedStudents}
         setSelectedStudents={setSelectedStudents}

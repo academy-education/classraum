@@ -23,6 +23,10 @@ export interface Classroom {
   created_at: string | null
   updated_at: string | null
   paused?: boolean | null
+  /** Non-null makes this a CAMP classroom, wired to that program. The
+   *  list query selects '*', so this arrives already — it was simply
+   *  missing from the interface. */
+  camp_program_id?: string | null
   enrolled_students?: { user_id?: string; name: string; school_name?: string }[]
   student_count?: number
   schedules?: { id: string; day: string; start_time: string; end_time: string }[]

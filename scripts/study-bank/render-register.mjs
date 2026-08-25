@@ -38,7 +38,7 @@ const OUT = new URL('./REGISTER.md', import.meta.url).pathname
 const TS = new URL('../../src/lib/study/bank-register.ts', import.meta.url).pathname
 const js = execFileSync('npx', ['esbuild', TS, '--format=esm', '--platform=node', '--loader:.ts=ts'],
   { encoding: 'utf8', maxBuffer: 8 << 20 })
-const { WORK, SETTLED, FOUND_WHILE_FIXING, registerSummary, A3_ATTEMPTS, PLAIN_STATUS } =
+const { WORK, SETTLED, FOUND_WHILE_FIXING, registerSummary, A3_ATTEMPTS, PLAIN_STATUS, unverifiedItems } =
   await import('data:text/javascript;base64,' + Buffer.from(js).toString('base64'))
 
 /* Same trick for the review maths — imported, never re-implemented. */
@@ -69,6 +69,15 @@ async function all(table, cols, tweak = q => q) {
 
 const bank = (await all('study_item_bank', 'id, family, domain, item, archived')).filter(r => !r.archived)
 const attacks = await all('study_item_attacks', 'item_id, correct, solvers, attacked_at')
+/*
+ * "Everything else" is COUNTED, not declared. It used to be a literal
+ * in bank-register.ts (3,387) while this script already had the live
+ * bank in hand (3,377) — the markdown and the admin page disagreed with
+ * each other and with the database. `bank` is already filtered to
+ * non-archived rows above, which is the same live population the admin
+ * route counts.
+ */
+const UNVERIFIED = unverifiedItems(bank.length)
 /*
  * reviewer_kind = 'human' is NOT optional here. The whole table below
  * turns on `blind` being a model and `human` not being one; a
@@ -345,9 +354,9 @@ process is not reporting the position.**
 | | items | what is true |
 |---|---|---|
 | **${PLAIN_STATUS.brokenCohort}** | ${PLAIN_STATUS.brokenItems} | **Known broken.** Solvable without the audio, on two independent instruments.${PLAIN_STATUS.brokenIsLive ? ' **Live to students right now.**' : ''} |
-| Everything else | ${PLAIN_STATUS.unverifiedItems.toLocaleString()} | **Not known to be broken** — never read by a person |
+| Everything else | ${UNVERIFIED.toLocaleString()} | **Not known to be broken** — never read by a person |
 
-${((PLAIN_STATUS.brokenItems / (PLAIN_STATUS.brokenItems + PLAIN_STATUS.unverifiedItems)) * 100).toFixed(1)}% is a quality problem. The rest is a scheduling
+${((PLAIN_STATUS.brokenItems / (PLAIN_STATUS.brokenItems + UNVERIFIED)) * 100).toFixed(1)}% is a quality problem. The rest is a scheduling
 problem, and it is blocked on one 20-minute task: **${PLAIN_STATUS.blockedOn}**.
 
 ${PLAIN_STATUS.humanChecksSoFar}

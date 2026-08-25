@@ -13,6 +13,8 @@ import {
   Loader2,
 } from 'lucide-react'
 import { useTranslation } from '@/hooks/useTranslation'
+import { CampClassroomField } from '@/components/ui/classrooms/CampClassroomField'
+import type { CampProgramOption } from '@/hooks/useCampPrograms'
 import { Button } from '@/components/ui/button'
 import { TableCheckbox } from '@/components/ui/dashboard'
 import { Input } from '@/components/ui/input'
@@ -31,6 +33,8 @@ interface FormData {
   teacher_name: string
   color: string
   notes: string
+  /** '' = an ordinary classroom. */
+  camp_program_id: string
 }
 
 interface ClassroomCreateModalProps {
@@ -40,6 +44,8 @@ interface ClassroomCreateModalProps {
   inline?: boolean
   formData: FormData
   setFormData: React.Dispatch<React.SetStateAction<FormData>>
+  campPrograms: CampProgramOption[]
+  campLocked: boolean
   schedules: Schedule[]
   selectedStudents: string[]
   setSelectedStudents: React.Dispatch<React.SetStateAction<string[]>>
@@ -91,6 +97,8 @@ export function ClassroomCreateModal({
   inline,
   formData,
   setFormData: _setFormData,
+  campPrograms,
+  campLocked,
   schedules,
   selectedStudents,
   filteredTeachers,
@@ -676,6 +684,14 @@ export function ClassroomCreateModal({
                 placeholder={String(t("classrooms.additionalNotes"))}
               />
             </div>
+
+            <CampClassroomField
+              programs={campPrograms}
+              value={formData.camp_program_id}
+              onChange={(id) => handleInputChange('camp_program_id', id)}
+              locked={campLocked}
+              t={t}
+            />
           </form>
     </ModalShell>
   )

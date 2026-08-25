@@ -31,6 +31,7 @@ import {
   Rows3
 } from 'lucide-react'
 import { useTranslation } from '@/hooks/useTranslation'
+import { useCampPrograms, campCapOverflow } from '@/hooks/useCampPrograms'
 import { useToast } from '@/hooks/use-toast'
 import { useSubjectData } from '@/hooks/useSubjectData'
 import { useSubjectActions } from '@/hooks/useSubjectActions'
@@ -291,8 +292,41 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
     teacher_id: '',
     teacher_name: '',
     color: '#3B82F6',
-    notes: ''
+    notes: '',
+    camp_program_id: ''
   })
+
+  /* Camp wiring for the classroom form. `campLocked` is set when the
+     classroom being edited already has camp assignments: those rows
+     carry their own camp_program_id and the quota was charged to that
+     program, so re-pointing the classroom would strand paid-for work
+     in a camp it no longer belongs to. */
+  const { programs: campPrograms, countCampAssignments, enrolledInProgram } = useCampPrograms(academyId)
+  const [campLocked, setCampLocked] = useState(false)
+
+  /**
+   * Refuse a save that would push a camp past the seat count the school
+   * paid for. Counted across the WHOLE program, not this classroom:
+   * three classes of ten must not fit inside a cap of fifteen.
+   * Returns an error message, or null when the save may proceed.
+   */
+  const campCapError = useCallback(async (
+    programId: string,
+    studentIds: string[],
+    excludeClassroomId?: string,
+  ): Promise<string | null> => {
+    if (!programId) return null
+    const program = campPrograms.find(p => p.id === programId)
+    if (!program || !program.student_cap) return null
+    const others = await enrolledInProgram(programId, excludeClassroomId)
+    const overflow = campCapOverflow(others, studentIds, program.student_cap)
+    if (!overflow) return null
+    return String(t('classrooms.camp.capExceeded', {
+      count: overflow.total,
+      cap: program.student_cap,
+      over: overflow.over,
+    }))
+  }, [campPrograms, enrolledInProgram, t])
 
   // Reset to page 1 when filters change
   useEffect(() => {
@@ -640,6 +674,12 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
       return
     }
 
+    const capMsg = await campCapError(formData.camp_program_id, selectedStudents)
+    if (capMsg) {
+      showErrorToast(String(t('classrooms.camp.whichProgram')), capMsg)
+      return
+    }
+
     setIsCreating(true)
 
     try {
@@ -656,7 +696,9 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
           teacher_id: teacherId,
           color: formData.color,
           notes: formData.notes || null,
-          academy_id: academyId
+          academy_id: academyId,
+          // Nullable: '' from the form means "an ordinary classroom".
+          camp_program_id: formData.camp_program_id || null
         })
         .select('*')
         .single()
@@ -749,7 +791,8 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
         teacher_id: '',
         teacher_name: '',
         color: '#3B82F6',
-        notes: ''
+        notes: '',
+        camp_program_id: ''
       })
       setSchedules([])
       setSelectedStudents([])
@@ -933,7 +976,8 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
         teacher_id: '',
         teacher_name: '',
         color: '#3B82F6',
-        notes: ''
+        notes: '',
+        camp_program_id: ''
       })
       setSchedules([])
       setSelectedStudents([])
@@ -959,6 +1003,15 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
       return
     }
 
+    const targetProgram = campLocked
+      ? (editingClassroom.camp_program_id || '')
+      : formData.camp_program_id
+    const capMsgEdit = await campCapError(targetProgram, selectedStudents, editingClassroom.id)
+    if (capMsgEdit) {
+      showErrorToast(String(t('classrooms.camp.whichProgram')), capMsgEdit)
+      return
+    }
+
     setIsSaving(true)
     try {
       // Direct user ID assignment - no need to create teacher records for managers
@@ -974,6 +1027,14 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
           teacher_id: teacherId,
           color: formData.color,
           notes: formData.notes || null,
+          // When the classroom is locked (it already has camp work) we
+          // send the ORIGINAL program back, not whatever the form holds.
+          // The control is disabled, so they agree — this is the belt to
+          // that braces, because a stale form state must never be able
+          // to move assignments between camps.
+          camp_program_id: campLocked
+            ? (editingClassroom.camp_program_id || null)
+            : (formData.camp_program_id || null),
           updated_at: new Date().toISOString()
         })
         .eq('id', editingClassroom.id)
@@ -1113,7 +1174,8 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
         teacher_id: '',
         teacher_name: '',
         color: '#3B82F6',
-        notes: ''
+        notes: '',
+        camp_program_id: ''
       })
       setSchedules([])
       setSelectedStudents([])
@@ -1331,6 +1393,8 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
   })
 
   const handleCreateClick = () => {
+    // A classroom that does not exist yet has no camp work to strand.
+    setCampLocked(false)
     // Reset form first
     setFormData({
       name: '',
@@ -1339,7 +1403,8 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
       teacher_id: '',
       teacher_name: '',
       color: '#3B82F6',
-      notes: ''
+      notes: '',
+      camp_program_id: ''
     })
     setSchedules([])
     setSelectedStudents([])
@@ -1372,7 +1437,9 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
       teacher_id: classroom.teacher_id || '',
       teacher_name: classroom.teacher_name || '',
       color: classroom.color || '#3B82F6',
-      notes: classroom.notes || ''
+      notes: classroom.notes || '',
+      // '' models "not a camp classroom"; the column is nullable.
+      camp_program_id: classroom.camp_program_id || ''
     })
     const studentUserIds = classroom.enrolled_students?.map(student => {
       // Prefer matching by user_id (reliable), fall back to name matching (legacy data)
@@ -1384,6 +1451,15 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
     setSchedules([])
     setEditModalLoading(true)
     setShowEditModal(true)
+
+    /* Lock the camp control while we find out whether this classroom
+       already has camp assignments. Start LOCKED and unlock on a clean
+       answer: opening unlocked and locking a moment later is the window
+       in which someone re-points a camp classroom by accident. */
+    setCampLocked(true)
+    countCampAssignments(classroom.id)
+      .then(count => setCampLocked(count > 0))
+      .catch(() => setCampLocked(true))
 
     // Fetch schedules in background
     try {
@@ -2056,6 +2132,8 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
       {/* Add Classroom Modal */}
       <ClassroomCreateModal
         isOpen={showModal}
+        campPrograms={campPrograms}
+        campLocked={campLocked}
         onClose={() => {
           setShowModal(false)
           setSchedules([])
@@ -2138,6 +2216,8 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
       {/* Edit Classroom Modal */}
       <ClassroomEditModal
         isOpen={showEditModal}
+        campPrograms={campPrograms}
+        campLocked={campLocked}
         onClose={() => {
           setShowEditModal(false)
           setEditingClassroom(null)

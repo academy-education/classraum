@@ -1919,6 +1919,16 @@
       "classrooms": " classrooms",
       "previous": "Previous",
       "next": "Next"
+    },
+    "camp": {
+      "toggle": "This is a camp class",
+      "toggleHint": "Camp classes draw their assignments from the question bank against the camp's paid quota.",
+      "whichProgram": "Which camp",
+      "selectProgram": "Select a camp program",
+      "ended": "ended",
+      "capNote": "This camp seats {{cap}} students in total, across all of its classes.",
+      "lockedHasWork": "This class already has camp assignments, so its camp can't be changed. Create a new class instead.",
+      "capExceeded": "That would put {{count}} students in a camp that seats {{cap}}. Remove {{over}} to continue."
     }
   },
   "dashboard": {

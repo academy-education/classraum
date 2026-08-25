@@ -135,9 +135,23 @@ export function Sidebar({ activeItem, userName, onHelpClick, academyLogo }: Side
     })
   }
   const navigationItems = allNavigationItems.filter(item => {
-    // Camp-only school: the main nav is just Camp — everything else the
-    // dashboard offers is about a curriculum the school doesn't run.
-    if (campOnly) return item.id === 'camp-program'
+    /* Camp-only school: Camp, plus the three screens a camp still needs
+       to be a real school day.
+         classrooms — otherwise the school cannot create a class or add
+           a student at all, and every roster change is a support ticket
+           to us. The camp toggle on that form is what wires a new class
+           to a program.
+         sessions + attendance — a camp meets in a room, and somebody
+           has to mark who turned up. Camp classrooms ARE classrooms, so
+           both work with no camp-specific code.
+       Everything else the dashboard offers is about a curriculum the
+       school doesn't run. */
+    if (campOnly) {
+      return item.id === 'camp-program'
+        || item.id === 'classrooms'
+        || item.id === 'sessions'
+        || item.id === 'attendance'
+    }
     // While loading, don't show items that might be hidden for teachers to prevent flash
     if (userRole === null) {
       // Optimistically hide items that would be hidden for teachers during loading

@@ -107,6 +107,19 @@ export function DashboardBottomNavigation({ userRole, onHelpClick }: DashboardBo
             { id: 'camp-program', href: '/camp-program', icon: Tent, labelKey: 'navigation.camp' }
           ]
         },
+        /* Must mirror the sidebar's camp-only allowlist exactly. The two
+           are filtered in different files and have disagreed before; if
+           you add a screen for camp-only schools in one, add it here. */
+        {
+          id: 'academics',
+          icon: School,
+          labelKey: 'dashboard.shelf.academics',
+          subItems: [
+            { id: 'classrooms', href: '/classrooms', icon: School, labelKey: 'navigation.classrooms' },
+            { id: 'sessions', href: '/sessions', icon: Calendar, labelKey: 'navigation.sessions' },
+            { id: 'attendance', href: '/attendance', icon: UserCheck, labelKey: 'navigation.attendance' }
+          ]
+        },
         {
           id: 'people',
           icon: Users,
