@@ -22,7 +22,7 @@ import type { Question } from '@/app/mobile/study/session/[id]/test/types'
 import { authHeaders } from '@/lib/auth-headers'
 import { useTranslation } from '@/hooks/useTranslation'
 import { showSuccessToast, showErrorToast } from '@/stores'
-import { Loader2, Plus, School, Tent, ClipboardList, Search, Calendar, ChevronDown, ChevronUp, Presentation, FileText, BookOpen, Clock, Users, CheckCircle2, Target, AlertTriangle } from 'lucide-react'
+import { Loader2, Plus, School, Tent, ClipboardList, Search, Calendar, Trash2, ChevronDown, ChevronUp, Presentation, FileText, BookOpen, Clock, Users, CheckCircle2, Target, AlertTriangle } from 'lucide-react'
 
 /**
  * Camp dashboard — quota meter, camp classrooms, and the assignment
@@ -182,6 +182,11 @@ export function CampPage({ academyId }: CampPageProps) {
   const [sessionSearchQuery, setSessionSearchQuery] = useState('')
   /** Session opened from a date chip on the Classrooms tab. */
   const [sessionInfoId, setSessionInfoId] = useState<string | null>(null)
+  /* Assignment queued for deletion. `sittings` decides whether the quota
+     comes back, and the confirm dialog says which BEFORE the teacher
+     commits — the quota is the thing they are actually spending. */
+  const [pendingDelete, setPendingDelete] = useState<{ id: string; title: string; count: number; sittings: number } | null>(null)
+  const [deleting, setDeleting] = useState(false)
 
   /** session id -> {date, start_time} for every camp classroom on this
    *  program, so the Classrooms tab can group work by the lesson it
@@ -386,6 +391,51 @@ export function CampPage({ academyId }: CampPageProps) {
       .map(([id, v]) => ({ id, date: v.date, start_time: v.start_time }))
       .sort((a, b) => (a.date < b.date ? 1 : -1))
   }, [reviewClassroomId, sessionsById])
+
+  /** Ask the SERVER how many students have opened it, so the dialog
+   *  promises what the delete will actually do. Counting this in the
+   *  browser returns 0 every time — RLS hides students' study_sessions
+   *  from their teacher — which promised a refund the API then refused. */
+  const askDeleteAssignment = useCallback(async (a: CampAssignment) => {
+    let sittings = 0
+    try {
+      const headers = await authHeaders()
+      const res = await fetch(`/api/camp/assignments?id=${a.id}`, { headers })
+      if (res.ok) sittings = (await res.json()).sittings ?? 0
+      else throw new Error(String(res.status))
+    } catch {
+      // Could not tell — assume it HAS been sat. The dialog then promises
+      // no refund; if the server disagrees it refunds anyway and the toast
+      // says so. Promising a refund we cannot deliver is the worse error.
+      sittings = -1
+    }
+    setPendingDelete({ id: a.id, title: a.title, count: a.question_count, sittings })
+  }, [])
+
+  const confirmDeleteAssignment = useCallback(async () => {
+    if (!pendingDelete || deleting) return
+    setDeleting(true)
+    try {
+      const headers = await authHeaders()
+      const res = await fetch(`/api/camp/assignments?id=${pendingDelete.id}`, { method: 'DELETE', headers })
+      const json = await res.json().catch(() => ({}))
+      if (!res.ok) {
+        showErrorToast(json.error || String(t('camp.deleteAssignment.failed')))
+        return
+      }
+      showSuccessToast(
+        String(t('camp.deleteAssignment.deleted')),
+        json.refunded > 0 ? String(t('camp.deleteAssignment.refunded', { n: json.refunded })) : undefined,
+      )
+      setPendingDelete(null)
+      // Refetch the program too: the quota bar moved if anything was refunded.
+      await fetchAll()
+    } catch {
+      showErrorToast(String(t('camp.deleteAssignment.failed')))
+    } finally {
+      setDeleting(false)
+    }
+  }, [pendingDelete, deleting, t, fetchAll])
 
   const openReviewModal = (classroomId: string) => {
     setReviewClassroomId(classroomId)
@@ -1090,6 +1140,21 @@ export function CampPage({ academyId }: CampPageProps) {
                             <StatusPill tone="sky" size="md">
                               {t('camp.questionCountLabel', { count: a.question_count })}
                             </StatusPill>
+                            {/* Until now a mis-built set was permanent and its
+                                quota gone. Quiet by default — destructive, and
+                                the row is read far more often than it is
+                                deleted — with the consequence spelled out in
+                                the dialog rather than here. */}
+                            <Button
+                              variant="ghost"
+                              size="sm"
+                              className="h-7 w-7 p-0 text-gray-300 hover:text-rose-600 hover:bg-rose-50"
+                              onClick={() => void askDeleteAssignment(a)}
+                              title={String(t('camp.deleteAssignment.action'))}
+                              aria-label={String(t('camp.deleteAssignment.action'))}
+                            >
+                              <Trash2 className="w-3.5 h-3.5" strokeWidth={1.75} />
+                            </Button>
                           </div>
                         </div>
                       </Card>
@@ -1461,6 +1526,50 @@ export function CampPage({ academyId }: CampPageProps) {
       {sessionInfoId && (
         <CampSessionInfo sessionId={sessionInfoId} onClose={() => setSessionInfoId(null)} />
       )}
+
+      <ModalShell
+        isOpen={pendingDelete !== null}
+        onClose={() => { if (!deleting) setPendingDelete(null) }}
+        size="sm"
+        title={String(t('camp.deleteAssignment.title'))}
+        closeDisabled={deleting}
+        footer={
+          <ModalShell.Footer split>
+            <Button variant="outline" onClick={() => setPendingDelete(null)} disabled={deleting}>
+              {t('common.cancel')}
+            </Button>
+            <Button
+              variant="destructive"
+              onClick={() => void confirmDeleteAssignment()}
+              disabled={deleting}
+            >
+              {deleting && <Loader2 className="w-4 h-4 mr-2 animate-spin" />}
+              {t('camp.deleteAssignment.confirm')}
+            </Button>
+          </ModalShell.Footer>
+        }
+      >
+        {pendingDelete && (
+          <div className="space-y-3">
+            <p className="text-sm text-gray-700">
+              {t('camp.deleteAssignment.body', { title: pendingDelete.title })}
+            </p>
+            {/* Say what happens to the quota BEFORE they commit — it is
+                the thing the school actually paid for. */}
+            <div className={`rounded-lg px-3 py-2 text-sm ${
+              pendingDelete.sittings === 0
+                ? 'bg-emerald-50 text-emerald-800'
+                : 'bg-amber-50 text-amber-800'
+            }`}>
+              {pendingDelete.sittings === 0
+                ? t('camp.deleteAssignment.willRefund', { n: pendingDelete.count })
+                : pendingDelete.sittings < 0
+                  ? t('camp.deleteAssignment.unknownRefund')
+                  : t('camp.deleteAssignment.noRefund', { n: pendingDelete.sittings })}
+            </div>
+          </div>
+        )}
+      </ModalShell>
 
       {presenter && (
         <CampReviewPresenter

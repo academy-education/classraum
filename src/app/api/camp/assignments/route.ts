@@ -20,8 +20,16 @@ import {
  *   PER ASSIGNMENT (decision in docs/CAMP-MODE-PLAN.md), enforced here
  *   because migration 082 made camp tables read-only for clients.
  *
+ * GET ?id=…
+ *   One assignment plus its sitting count (server-side: RLS hides
+ *   students' study_sessions from teachers, so a browser count is 0).
+ *
  * GET ?classroomId=…
  *   The classroom's assignments, newest first.
+ *
+ * DELETE ?id=…
+ *   Soft-delete one assignment. Refunds the quota ONLY when no student
+ *   has opened it — see the handler for why.
  */
 
 export const dynamic = 'force-dynamic'
@@ -44,8 +52,37 @@ export async function GET(req: NextRequest) {
   const user = await getUserFromRequest(req)
   if (!user) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
 
+  /* ?id=… — one assignment plus how many students have opened it.
+     The sitting count MUST come from here. RLS hides students'
+     study_sessions from their teacher, so the same count run in the
+     browser returns 0 every time — which would tell a teacher their
+     quota is coming back moments before the DELETE handler, reading the
+     same fact with the service role, refuses to refund it. Measured:
+     service role 6, teacher 0, for one real assignment. */
+  const singleId = req.nextUrl.searchParams.get('id')
+  if (singleId) {
+    const { data: one } = await dbAdmin
+      .from('camp_assignments')
+      .select('id, camp_program_id, classroom_id, teacher_id, title, section, domain, question_count, item_ids, due_at, classroom_session_id, created_at, deleted_at')
+      .eq('id', singleId)
+      .maybeSingle()
+    if (!one || one.deleted_at !== null) {
+      return NextResponse.json({ error: 'assignment not found' }, { status: 404 })
+    }
+    const room = await loadClassroom(one.classroom_id)
+    if (!room) return NextResponse.json({ error: 'classroom not found' }, { status: 404 })
+    if (!(await canManageClassroom(user.id, room))) {
+      return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
+    }
+    const { count } = await dbAdmin
+      .from('study_sessions')
+      .select('id', { count: 'exact', head: true })
+      .eq('config->>campAssignmentId', one.id)
+    return NextResponse.json({ assignment: one, sittings: count ?? 0 })
+  }
+
   const classroomId = req.nextUrl.searchParams.get('classroomId')
-  if (!classroomId) return NextResponse.json({ error: 'classroomId required' }, { status: 400 })
+  if (!classroomId) return NextResponse.json({ error: 'id or classroomId required' }, { status: 400 })
 
   const classroom = await loadClassroom(classroomId)
   if (!classroom) return NextResponse.json({ error: 'classroom not found' }, { status: 404 })
@@ -240,4 +277,77 @@ export async function POST(req: NextRequest) {
   }
 
   return NextResponse.json({ assignment }, { status: 201 })
+}
+
+export async function DELETE(req: NextRequest) {
+  const user = await getUserFromRequest(req)
+  if (!user) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+
+  const id = req.nextUrl.searchParams.get('id')
+  if (!id) return NextResponse.json({ error: 'id required' }, { status: 400 })
+
+  const { data: assignment } = await dbAdmin
+    .from('camp_assignments')
+    .select('id, classroom_id, camp_program_id, question_count, deleted_at')
+    .eq('id', id)
+    .maybeSingle()
+  if (!assignment || assignment.deleted_at !== null) {
+    return NextResponse.json({ error: 'assignment not found' }, { status: 404 })
+  }
+
+  const classroom = await loadClassroom(assignment.classroom_id)
+  if (!classroom) return NextResponse.json({ error: 'classroom not found' }, { status: 404 })
+  if (!(await canManageClassroom(user.id, classroom))) {
+    return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
+  }
+
+  /* Has anyone opened it? A camp session records the assignment id in
+     study_sessions.config, which is how the student shelf finds its
+     work — so this is the same fact the shelf reads, not a second
+     opinion about it. */
+  const { count: sittings } = await dbAdmin
+    .from('study_sessions')
+    .select('id', { count: 'exact', head: true })
+    .eq('config->>campAssignmentId', assignment.id)
+
+  const touched = (sittings ?? 0) > 0
+
+  /* Soft delete. The rows students already sat reference this
+     assignment, and a hard delete would strand their sessions and the
+     answers inside them — the same reason migration 096 used ON DELETE
+     SET NULL for the session link. */
+  const { error: delError } = await dbAdmin
+    .from('camp_assignments')
+    .update({ deleted_at: new Date().toISOString() })
+    .eq('id', assignment.id)
+  if (delError) return NextResponse.json({ error: delError.message }, { status: 500 })
+
+  /* Refund the quota only if nobody opened it.
+     A set a student has already sat consumed what the school paid for:
+     the questions were served, the answers were graded, and the work
+     appears in their report. Refunding it would let a teacher recover
+     quota by deleting completed work — the school would be paying for
+     less than it used. An untouched set served nobody, so the charge
+     has no counterpart and is returned.
+     Guarded with greatest(0, …) via a read-then-write on a value only
+     this route and the builder move; a negative questions_used would
+     silently hand out free quota. */
+  let refunded = 0
+  if (!touched) {
+    const { data: program } = await dbAdmin
+      .from('camp_programs')
+      .select('id, questions_used')
+      .eq('id', assignment.camp_program_id)
+      .maybeSingle()
+    if (program) {
+      const next = Math.max(0, (program.questions_used ?? 0) - assignment.question_count)
+      const { error: refundError } = await dbAdmin
+        .from('camp_programs')
+        .update({ questions_used: next })
+        .eq('id', program.id)
+      if (!refundError) refunded = (program.questions_used ?? 0) - next
+    }
+  }
+
+  return NextResponse.json({ deleted: true, refunded, hadSittings: touched })
 }

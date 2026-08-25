@@ -2745,6 +2745,18 @@
       "open": "View session details",
       "online": "Online",
       "offline": "In person"
+    },
+    "deleteAssignment": {
+      "action": "Delete",
+      "title": "Delete this set?",
+      "body": "\"{{title}}\" will be removed from the class.",
+      "willRefund": "Nobody has opened it, so its {{n}} questions go back to your quota.",
+      "noRefund": "{{n}} student(s) have already sat it. The questions stay spent — they were served and graded, and the work is in their reports.",
+      "confirm": "Delete set",
+      "deleted": "Set deleted",
+      "refunded": "{{n}} questions returned to the quota",
+      "failed": "Couldn't delete this set",
+      "unknownRefund": "We couldn't check whether anyone has opened it. If nobody has, the questions are returned automatically."
     }
   },
   "attendance": {
