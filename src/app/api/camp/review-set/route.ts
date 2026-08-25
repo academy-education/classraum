@@ -35,7 +35,7 @@ import {
 export const dynamic = 'force-dynamic'
 
 const REVIEW_COLUMNS =
-  'id, camp_program_id, classroom_id, teacher_id, title, section, domain, question_count, item_ids, kind, created_at'
+  'id, camp_program_id, classroom_id, teacher_id, title, section, domain, question_count, item_ids, kind, classroom_session_id, created_at'
 
 const MAX_COUNT = 40
 
@@ -126,6 +126,7 @@ export async function POST(req: NextRequest) {
     section?: string
     domain?: string
     count?: number
+    classroomSessionId?: string
   }
   try { body = await req.json() } catch { return NextResponse.json({ error: 'bad json' }, { status: 400 }) }
 
@@ -145,6 +146,27 @@ export async function POST(req: NextRequest) {
   }
   if (!classroom.camp_program_id) {
     return NextResponse.json({ error: 'classroom is not part of a camp program' }, { status: 400 })
+  }
+
+  /* Optional session link, same contract as the assignment builder: a
+     review set is a lesson activity, so recording which lesson it ran
+     in is the point. Validated against THIS classroom — a session from
+     another one would file the review under a class these students are
+     not in. */
+  let classroomSessionId: string | null = null
+  if (body.classroomSessionId) {
+    const { data: session } = await dbAdmin
+      .from('classroom_sessions')
+      .select('id, classroom_id, deleted_at')
+      .eq('id', body.classroomSessionId)
+      .maybeSingle()
+    if (!session || session.deleted_at !== null) {
+      return NextResponse.json({ error: 'session not found' }, { status: 404 })
+    }
+    if (session.classroom_id !== classroom.id) {
+      return NextResponse.json({ error: 'session belongs to a different classroom' }, { status: 400 })
+    }
+    classroomSessionId = session.id
   }
 
   const { data: program } = await dbAdmin
@@ -201,6 +223,7 @@ export async function POST(req: NextRequest) {
       question_count: count,
       item_ids: draw.itemIds,
       kind: 'review',
+      classroom_session_id: classroomSessionId,
     })
     .select(REVIEW_COLUMNS)
     .single()

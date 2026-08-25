@@ -2694,7 +2694,19 @@
       "assignments": "Assignments",
       "assignmentsDone": "Assignments done",
       "generateReport": "Generate report",
-      "loadFailed": "Failed to load student details."
+      "loadFailed": "Failed to load student details.",
+      "tabs": {
+        "overview": "Overview",
+        "assignments": "Assignments",
+        "reports": "Reports"
+      },
+      "reportsList": {
+        "empty": "No reports generated for this student yet",
+        "generated": "Generated {{date}}",
+        "period": "{{start}} – {{end}}",
+        "open": "Open report",
+        "loadFailed": "Couldn't load this student's reports"
+      }
     },
     "selector": {
       "switchProgram": "Switch camp program"
@@ -2714,7 +2726,10 @@
       "studentAnswer": "Student's answer",
       "leftBlank": "Left blank",
       "explanation": "Explanation"
-    }
+    },
+    "sessionLabel": "Session {{date}}",
+    "noSessionLabel": "No session",
+    "sortedBySession": "Grouped by session, most recent first"
   },
   "attendance": {
     "title": "Attendance",

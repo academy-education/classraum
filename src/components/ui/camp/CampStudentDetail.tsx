@@ -50,6 +50,20 @@ export function CampStudentDetail({ classroomId, studentId, studentName, testFam
   /** Completed-assignment answer review (GET /api/camp/student-session). */
   const [sessionReview, setSessionReview] = useState<{ sessionId: string; title: string } | null>(null)
 
+  /* Three tabs instead of one long scroll. Everything used to stack in
+     a single column — three stat chips, then every assignment, then a
+     bar per skill, then two pill clouds — so the teacher scrolled past
+     the numbers to reach the work and past the work to reach the
+     skills. Split by the question being asked: how is this student
+     doing / what have they done / what have we sent home. */
+  const [tab, setTab] = useState<'overview' | 'assignments' | 'reports'>('overview')
+
+  /** Reports already generated FOR THIS STUDENT (meta only). Fetched
+   *  lazily — most visits to this modal never open the tab. */
+  const [reports, setReports] = useState<{ id: string; createdAt: string; periodStart: string | null; periodEnd: string | null }[] | null>(null)
+  const [reportsError, setReportsError] = useState(false)
+  const [reportsLoading, setReportsLoading] = useState(false)
+
   const formatDate = useCallback((iso: string) => {
     const d = new Date(iso)
     return d.toLocaleDateString(language === 'korean' ? 'ko-KR' : 'en-US', {
@@ -114,6 +128,10 @@ export function CampStudentDetail({ classroomId, studentId, studentName, testFam
         return
       }
       showSuccessToast(String(t('camp.reports.generatedSuccessfully', { count: 1 })))
+      // The Reports tab has just gone stale — drop the cache so it
+      // refetches next time it is opened, rather than showing a list
+      // that is missing the report the teacher just made.
+      setReports(null)
       const view = await fetch(`/api/camp/reports?id=${reportId}`, { headers })
       const viewJson = await view.json().catch(() => ({}))
       if (!view.ok || !viewJson.report?.payload) {
@@ -128,6 +146,50 @@ export function CampStudentDetail({ classroomId, studentId, studentName, testFam
       setGenerating(false)
     }
   }
+
+  const loadReports = useCallback(async () => {
+    setReportsLoading(true)
+    setReportsError(false)
+    try {
+      const headers = await authHeaders()
+      const res = await fetch(
+        `/api/camp/reports?classroomId=${classroomId}&studentId=${studentId}`,
+        { headers },
+      )
+      if (!res.ok) throw new Error(String(res.status))
+      const json = await res.json()
+      setReports((json.reports ?? []).map((r: { id: string; createdAt?: string; created_at?: string; periodStart?: string | null; periodEnd?: string | null }) => ({
+        id: r.id,
+        createdAt: r.createdAt ?? r.created_at ?? '',
+        periodStart: r.periodStart ?? null,
+        periodEnd: r.periodEnd ?? null,
+      })))
+    } catch {
+      setReportsError(true)
+      setReports([])
+    } finally {
+      setReportsLoading(false)
+    }
+  }, [classroomId, studentId])
+
+  useEffect(() => {
+    // Only when the tab is actually opened, and only once.
+    if (tab === 'reports' && reports === null && !reportsLoading) void loadReports()
+  }, [tab, reports, reportsLoading, loadReports])
+
+  /** Open one stored report in the shared printable layout. */
+  const openStoredReport = useCallback(async (id: string) => {
+    try {
+      const headers = await authHeaders()
+      const res = await fetch(`/api/camp/reports?id=${id}`, { headers })
+      if (!res.ok) throw new Error(String(res.status))
+      const json = await res.json()
+      if (json.report?.payload) setReportPreview(json.report.payload as CampReportPayload)
+      else showErrorToast(String(t('camp.studentDetail.reportsList.loadFailed')))
+    } catch {
+      showErrorToast(String(t('camp.studentDetail.reportsList.loadFailed')))
+    }
+  }, [t])
 
   const strengths = payload?.strengths ?? []
   const weaknesses = payload?.weaknesses ?? []
@@ -173,9 +235,30 @@ export function CampStudentDetail({ classroomId, studentId, studentName, testFam
         ) : error || !payload ? (
           <p className="text-sm text-rose-600 py-3">{t('camp.studentDetail.loadFailed')}</p>
         ) : (
-          <div className="space-y-6">
+          <div className="space-y-5">
+            {/* Tab strip */}
+            <div className="flex items-center gap-1 border-b border-gray-200 -mt-1">
+              {(['overview', 'assignments', 'reports'] as const).map(key => (
+                <button
+                  key={key}
+                  type="button"
+                  onClick={() => setTab(key)}
+                  className={`px-3 py-2 text-sm font-medium border-b-2 -mb-px transition-colors ${
+                    tab === key
+                      ? 'border-primary text-primary'
+                      : 'border-transparent text-gray-500 hover:text-gray-800'
+                  }`}
+                >
+                  {t(`camp.studentDetail.tabs.${key}`)}
+                  {key === 'assignments' && payload.assignments.length > 0 && (
+                    <span className="ml-1.5 text-xs text-gray-400 tabular-nums">{payload.assignments.length}</span>
+                  )}
+                </button>
+              ))}
+            </div>
+
             {/* Summary chips — overall accuracy, completion, standing */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+            <div className={`grid grid-cols-1 sm:grid-cols-3 gap-3 ${tab === 'overview' ? '' : 'hidden'}`}>
               <div className="rounded-xl bg-gray-50 px-4 py-3">
                 <p className="text-[10px] font-semibold uppercase tracking-[0.1em] text-gray-500 mb-1">
                   {t('camp.reports.overallAccuracy')}
@@ -207,7 +290,7 @@ export function CampStudentDetail({ classroomId, studentId, studentName, testFam
             </div>
 
             {/* Per-assignment status/score over time */}
-            <div>
+            <div className={tab === 'assignments' ? '' : 'hidden'}>
               <div className="flex items-center gap-2 mb-2">
                 <ClipboardList className="w-4 h-4 text-gray-400" strokeWidth={1.75} />
                 <h4 className="text-sm font-semibold text-gray-900">{t('camp.studentDetail.assignments')}</h4>
@@ -267,7 +350,7 @@ export function CampStudentDetail({ classroomId, studentId, studentName, testFam
             </div>
 
             {/* Accuracy by domain — same bar idiom as the classroom panel */}
-            <div>
+            <div className={tab === 'overview' ? '' : 'hidden'}>
               <div className="flex items-center gap-2 mb-2">
                 <BarChart3 className="w-4 h-4 text-gray-400" strokeWidth={1.75} />
                 <h4 className="text-sm font-semibold text-gray-900">{t('camp.dashboard.accuracyBySkill')}</h4>
@@ -300,7 +383,7 @@ export function CampStudentDetail({ classroomId, studentId, studentName, testFam
             </div>
 
             {/* Strengths / focus areas */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className={`grid grid-cols-1 sm:grid-cols-2 gap-4 ${tab === 'overview' ? '' : 'hidden'}`}>
               <div>
                 <h4 className="text-sm font-semibold text-gray-900 mb-2">{t('camp.reports.strengths')}</h4>
                 {strengths.length === 0 ? (
@@ -329,6 +412,52 @@ export function CampStudentDetail({ classroomId, studentId, studentName, testFam
                   </div>
                 )}
               </div>
+            </div>
+
+            {/* Reports already sent home for this student */}
+            <div className={tab === 'reports' ? '' : 'hidden'}>
+              {reportsLoading ? (
+                <div className="space-y-2 animate-pulse">
+                  {[...Array(3)].map((_, i) => <div key={i} className="h-14 bg-gray-100 rounded-lg" />)}
+                </div>
+              ) : reportsError ? (
+                <p className="text-sm text-rose-600 py-3">{t('camp.studentDetail.reportsList.loadFailed')}</p>
+              ) : (reports ?? []).length === 0 ? (
+                <div className="py-8 text-center">
+                  <FileText className="w-8 h-8 text-gray-300 mx-auto mb-2" strokeWidth={1.5} />
+                  <p className="text-sm text-gray-400">{t('camp.studentDetail.reportsList.empty')}</p>
+                </div>
+              ) : (
+                <div className="divide-y divide-gray-100 rounded-xl ring-1 ring-gray-100 overflow-hidden">
+                  {(reports ?? []).map(r => (
+                    <button
+                      key={r.id}
+                      type="button"
+                      onClick={() => void openStoredReport(r.id)}
+                      title={String(t('camp.studentDetail.reportsList.open'))}
+                      className="w-full flex items-center gap-3 px-4 py-3 bg-white hover:bg-gray-50 focus-visible:outline-none focus-visible:bg-gray-50 transition-colors cursor-pointer group text-left"
+                    >
+                      <FileText className="w-4 h-4 text-gray-400 flex-shrink-0" strokeWidth={1.75} />
+                      <div className="flex-1 min-w-0">
+                        <p className="text-sm font-medium text-gray-900">
+                          {r.periodStart && r.periodEnd
+                            ? t('camp.studentDetail.reportsList.period', {
+                                start: formatDate(r.periodStart),
+                                end: formatDate(r.periodEnd),
+                              })
+                            : t('camp.studentDetail.reportsList.open')}
+                        </p>
+                        {r.createdAt && (
+                          <p className="text-xs text-gray-400">
+                            {t('camp.studentDetail.reportsList.generated', { date: formatDate(r.createdAt) })}
+                          </p>
+                        )}
+                      </div>
+                      <ChevronRight className="w-4 h-4 text-gray-300 group-hover:text-gray-500 flex-shrink-0 transition-colors" />
+                    </button>
+                  ))}
+                </div>
+              )}
             </div>
           </div>
         )}

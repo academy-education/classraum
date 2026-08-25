@@ -8,6 +8,7 @@ import { isParentOfStudent, toFamilyPayload, type CampReportPayload } from '@/li
  * Camp P4 — read camp reports.
  *
  * GET ?classroomId=…   teacher/manager list for a classroom (meta only)
+ *   +&studentId=…      … narrowed to one student (still teacher-authorised)
  * GET ?studentId=…     parent/student list — caller must BE the student
  *                      or be a family-linked parent
  * GET ?id=…            one report with payload — teacher/manager of the
@@ -99,12 +100,21 @@ export async function GET(req: NextRequest) {
       return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
     }
 
-    const { data: rows, error } = await dbAdmin
+    /* `studentId` alongside `classroomId` narrows the teacher's list to
+       one student — the per-student drill-down needs exactly that, and
+       fetching the whole classroom to filter it client-side would grow
+       with the roster. Authorisation is unchanged: the caller has
+       already been proven to manage this classroom, and the filter can
+       only ever narrow what they were entitled to see. */
+    let listQuery = dbAdmin
       .from('camp_reports')
       .select(META_COLUMNS)
       .eq('classroom_id', classroomId)
       .is('deleted_at', null)
       .order('created_at', { ascending: false })
+    if (studentId) listQuery = listQuery.eq('student_id', studentId)
+
+    const { data: rows, error } = await listQuery
     if (error) return NextResponse.json({ error: error.message }, { status: 500 })
 
     const reports = (rows ?? []) as ReportMetaRow[]

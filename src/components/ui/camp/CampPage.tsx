@@ -21,7 +21,7 @@ import type { Question } from '@/app/mobile/study/session/[id]/test/types'
 import { authHeaders } from '@/lib/auth-headers'
 import { useTranslation } from '@/hooks/useTranslation'
 import { showSuccessToast, showErrorToast } from '@/stores'
-import { Loader2, Plus, School, Tent, ClipboardList, ChevronDown, ChevronUp, Presentation, FileText, BookOpen, Clock, Users, CheckCircle2, Target, AlertTriangle } from 'lucide-react'
+import { Loader2, Plus, School, Tent, ClipboardList, Search, Calendar, ChevronDown, ChevronUp, Presentation, FileText, BookOpen, Clock, Users, CheckCircle2, Target, AlertTriangle } from 'lucide-react'
 
 /**
  * Camp dashboard — quota meter, camp classrooms, and the assignment
@@ -99,6 +99,8 @@ interface CampAssignment {
   domain: string | null
   question_count: number
   due_at: string | null
+  /** Optional link to a classroom session (migration 096). */
+  classroom_session_id: string | null
   created_at: string
 }
 
@@ -176,6 +178,26 @@ export function CampPage({ academyId }: CampPageProps) {
   /* AssignmentsDatePicker is a popup; this holds which field owns it,
      matching how the assignments page drives the same component. */
   const [activeDatePicker, setActiveDatePicker] = useState<string | null>(null)
+  const [sessionSearchQuery, setSessionSearchQuery] = useState('')
+
+  /** session id -> {date, start_time} for every camp classroom on this
+   *  program, so the Classrooms tab can group work by the lesson it
+   *  belongs to. Separate from `sessionOptions`, which is scoped to the
+   *  one classroom chosen in the modal. */
+  const [sessionsById, setSessionsById] = useState<Record<string, { date: string; start_time: string | null; classroom_id: string }>>({})
+
+  /** Sessions matching the picker's search box. Matches the date as
+   *  rendered and the raw ISO date, so "Aug 25" and "2026-08-25" both
+   *  find the same row. */
+  const filteredSessionOptions = useMemo(() => {
+    const q = sessionSearchQuery.trim().toLowerCase()
+    if (!q) return sessionOptions
+    return sessionOptions.filter(s =>
+      formatDate(s.date).toLowerCase().includes(q) ||
+      s.date.includes(q) ||
+      (s.start_time ?? '').includes(q),
+    )
+  }, [sessionOptions, sessionSearchQuery])
 
   useEffect(() => {
     let alive = true
@@ -207,7 +229,7 @@ export function CampPage({ academyId }: CampPageProps) {
 
   /* Camp P4 — per-classroom reports modal (generate + preview). */
   const [reportsClassroom, setReportsClassroom] = useState<{ id: string; name: string } | null>(null)
-  const [reviewForm, setReviewForm] = useState({ section: '', domain: '', count: '10' })
+  const [reviewForm, setReviewForm] = useState({ section: '', domain: '', count: '10', classroomSessionId: '' })
   const [reviewSubmitting, setReviewSubmitting] = useState(false)
   const [reviewError, setReviewError] = useState<string | null>(null)
   const [presenter, setPresenter] = useState<{ title: string; testFamily: string; questions: Question[] } | null>(null)
@@ -223,6 +245,20 @@ export function CampPage({ academyId }: CampPageProps) {
       }),
     )
     setAssignments(Object.fromEntries(results))
+
+    // Sessions for these classrooms, so an assignment row can show the
+    // lesson it belongs to. Bounded — a camp classroom's own sessions
+    // are far below the PostgREST cap, but never unbounded on principle.
+    if (classroomIds.length) {
+      const { data } = await db
+        .from('classroom_sessions')
+        .select('id, date, start_time, classroom_id')
+        .in('classroom_id', classroomIds)
+        .is('deleted_at', null)
+        .order('date', { ascending: false })
+        .limit(1000)
+      setSessionsById(Object.fromEntries((data ?? []).map(r => [r.id, { date: r.date, start_time: r.start_time, classroom_id: r.classroom_id }])))
+    }
   }, [])
 
   const fetchAll = useCallback(async () => {
@@ -337,9 +373,20 @@ export function CampPage({ academyId }: CampPageProps) {
     setShowModal(true)
   }
 
+  /** Sessions of the classroom the review modal was opened for. Read
+   *  from the map already fetched with the assignments, so opening the
+   *  modal costs no extra request. */
+  const reviewSessionOptions = useMemo(() => {
+    if (!reviewClassroomId) return []
+    return Object.entries(sessionsById)
+      .filter(([, v]) => v.classroom_id === reviewClassroomId)
+      .map(([id, v]) => ({ id, date: v.date, start_time: v.start_time }))
+      .sort((a, b) => (a.date < b.date ? 1 : -1))
+  }, [reviewClassroomId, sessionsById])
+
   const openReviewModal = (classroomId: string) => {
     setReviewClassroomId(classroomId)
-    setReviewForm({ section: '', domain: '', count: '10' })
+    setReviewForm({ section: '', domain: '', count: '10', classroomSessionId: '' })
     setReviewError(null)
   }
 
@@ -368,6 +415,7 @@ export function CampPage({ academyId }: CampPageProps) {
           section: reviewForm.section || undefined,
           domain: reviewForm.domain || undefined,
           count,
+          classroomSessionId: reviewForm.classroomSessionId || undefined,
         }),
       })
       const created = await createRes.json().catch(() => ({}))
@@ -979,12 +1027,31 @@ export function CampPage({ academyId }: CampPageProps) {
                   </Card>
                 ) : (
                   <div className="space-y-2">
-                    {rows.map(a => (
+                    {/* Grouped by the session the work belongs to, newest
+                        lesson first, with unlinked sets last. A camp that
+                        runs to a timetable reads as a sequence of lessons;
+                        one that does not is unaffected, because every row
+                        simply falls into the unlinked group. */}
+                    {[...rows].sort((x, y) => {
+                      const sx = x.classroom_session_id ? sessionsById[x.classroom_session_id] : undefined
+                      const sy = y.classroom_session_id ? sessionsById[y.classroom_session_id] : undefined
+                      // Unlinked sinks to the bottom regardless of age.
+                      if (!!sx !== !!sy) return sx ? -1 : 1
+                      if (sx && sy && sx.date !== sy.date) return sx.date < sy.date ? 1 : -1
+                      // Same lesson (or both unlinked): newest set first.
+                      return x.created_at < y.created_at ? 1 : -1
+                    }).map(a => (
                       <Card key={a.id} className="p-3 sm:p-4 hover:shadow-md transition-shadow ml-4 sm:ml-6">
                         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-0">
                           <div className="flex-1 min-w-0">
                             <h4 className="text-sm sm:text-base font-semibold text-gray-900 truncate">{a.title}</h4>
                             <div className="flex flex-wrap items-center gap-2 sm:gap-4 text-xs sm:text-sm text-gray-600 mt-1">
+                              {a.classroom_session_id && sessionsById[a.classroom_session_id] && (
+                                <div className="flex items-center gap-1 text-blue-700">
+                                  <Calendar className="w-3 h-3 sm:w-4 sm:h-4" />
+                                  <span>{formatDate(sessionsById[a.classroom_session_id]!.date)}</span>
+                                </div>
+                              )}
                               {(a.section || a.domain) && (
                                 <div className="flex items-center gap-1">
                                   <BookOpen className="w-3 h-3 sm:w-4 sm:h-4 text-gray-500" />
@@ -1086,6 +1153,7 @@ export function CampPage({ academyId }: CampPageProps) {
                 setForm(prev => ({ ...prev, classroomSessionId: value === 'none' ? '' : value }))
               }
               disabled={!form.classroomId || sessionsLoading}
+              onOpenChange={open => { if (!open) setSessionSearchQuery('') }}
             >
               <SelectTrigger className="h-10 bg-white border border-border focus:border-primary focus-visible:border-primary focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=open]:border-primary">
                 <SelectValue
@@ -1097,13 +1165,38 @@ export function CampPage({ academyId }: CampPageProps) {
                 />
               </SelectTrigger>
               <SelectContent className="z-[210]">
+                {/* Search box, same as the ordinary assignments modal —
+                    a long camp accumulates a lot of sessions and a bare
+                    list stops being usable. Kept OUTSIDE the filtered
+                    list so "not tied to a session" is always reachable. */}
+                {sessionOptions.length > 6 && (
+                  <div className="px-2 py-1.5 sticky top-0 bg-white dark:bg-gray-900 border-b z-10">
+                    <div className="relative">
+                      <Search className="absolute left-2 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground pointer-events-none" />
+                      <Input
+                        placeholder={String(t('common.search'))}
+                        value={sessionSearchQuery}
+                        onChange={e => setSessionSearchQuery(e.target.value)}
+                        className="pl-8 h-8"
+                        onKeyDown={e => e.stopPropagation()}
+                      />
+                    </div>
+                  </div>
+                )}
                 <SelectItem value="none">{t('camp.form.noSession')}</SelectItem>
-                {sessionOptions.map(session => (
-                  <SelectItem key={session.id} value={session.id}>
-                    {formatDate(session.date)}
-                    {session.start_time ? ` · ${session.start_time.slice(0, 5)}` : ''}
-                  </SelectItem>
-                ))}
+                <div className="overflow-y-auto">
+                  {filteredSessionOptions.map(session => (
+                    <SelectItem key={session.id} value={session.id}>
+                      {formatDate(session.date)}
+                      {session.start_time ? ` · ${session.start_time.slice(0, 5)}` : ''}
+                    </SelectItem>
+                  ))}
+                  {sessionOptions.length > 0 && filteredSessionOptions.length === 0 && (
+                    <div className="py-6 text-center text-sm text-muted-foreground">
+                      {t('common.noResults')}
+                    </div>
+                  )}
+                </div>
               </SelectContent>
             </Select>
             <p className="text-xs text-muted-foreground">
@@ -1244,6 +1337,35 @@ export function CampPage({ academyId }: CampPageProps) {
         }
       >
         <form id="camp-review-form" onSubmit={handleReviewSubmit} className="space-y-5">
+          {/* A review runs IN a lesson, so recording which lesson is the
+              point. Optional, like the assignment builder: a camp with no
+              timetable simply leaves it unset. */}
+          <div className="space-y-2">
+            <Label className="text-sm font-medium text-foreground/80">{t('camp.form.session')}</Label>
+            <Select
+              value={reviewForm.classroomSessionId || 'none'}
+              onValueChange={value =>
+                setReviewForm(prev => ({ ...prev, classroomSessionId: value === 'none' ? '' : value }))
+              }
+            >
+              <SelectTrigger className="h-10 bg-white border border-border focus:border-primary focus-visible:border-primary focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=open]:border-primary">
+                <SelectValue placeholder={String(t('camp.form.noSession'))} />
+              </SelectTrigger>
+              <SelectContent className="z-[210]">
+                <SelectItem value="none">{t('camp.form.noSession')}</SelectItem>
+                {reviewSessionOptions.map(session => (
+                  <SelectItem key={session.id} value={session.id}>
+                    {formatDate(session.date)}
+                    {session.start_time ? ` · ${session.start_time.slice(0, 5)}` : ''}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+            {reviewSessionOptions.length === 0 && (
+              <p className="text-xs text-muted-foreground">{t('camp.form.noSessions')}</p>
+            )}
+          </div>
+
           <div className="grid grid-cols-2 gap-4">
             <div className="space-y-2">
               <Label className="text-sm font-medium text-foreground/80">{t('camp.form.section')}</Label>
