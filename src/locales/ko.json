@@ -2773,6 +2773,20 @@
       "confirm": "리포트 회수",
       "done": "리포트를 회수했습니다",
       "failed": "리포트를 회수하지 못했습니다"
+    },
+    "reviewSets": {
+      "heading": "복습 덱",
+      "empty": "복습 덱이 아직 없습니다",
+      "present": "다시 발표",
+      "presented": "{{date}} 발표",
+      "neverPresented": "발표한 적 없음",
+      "delete": "덱 삭제",
+      "confirmTitle": "이 덱을 삭제할까요?",
+      "confirmBody": "\"{{title}}\" 덱을 삭제합니다.",
+      "willRefund": "발표한 적이 없어 {{n}}문항이 잔여 문항으로 반환됩니다.",
+      "noRefund": "{{date}}에 발표되었습니다. 문항은 반환되지 않습니다.",
+      "deleted": "덱을 삭제했습니다",
+      "failed": "덱을 삭제하지 못했습니다"
     }
   },
   "attendance": {

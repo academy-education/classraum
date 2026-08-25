@@ -193,6 +193,12 @@ export function CampPage({ academyId }: CampPageProps) {
      which is a new assignment, not an edit. */
   const [editing, setEditing] = useState<{ id: string; title: string; dueDate: string; classroomSessionId: string; classroomId: string } | null>(null)
   const [savingEdit, setSavingEdit] = useState(false)
+  /* Review decks per classroom. They were created, presented once and
+     then unreachable — no list meant no way to see what had been made,
+     whether it was ever used, or to get its quota back. */
+  const [reviewSets, setReviewSets] = useState<Record<string, { id: string; title: string; question_count: number; presented_at: string | null; created_at: string }[]>>({})
+  const [pendingDeckDelete, setPendingDeckDelete] = useState<{ id: string; title: string; count: number; presentedAt: string | null } | null>(null)
+  const [deckDeleting, setDeckDeleting] = useState(false)
 
   /** session id -> {date, start_time} for every camp classroom on this
    *  program, so the Classrooms tab can group work by the lesson it
@@ -259,6 +265,16 @@ export function CampPage({ academyId }: CampPageProps) {
       }),
     )
     setAssignments(Object.fromEntries(results))
+
+    const deckResults = await Promise.all(
+      classroomIds.map(async id => {
+        const res = await fetch(`/api/camp/review-set?classroomId=${id}`, { headers })
+        if (!res.ok) return [id, []] as const
+        const json = await res.json()
+        return [id, (json.reviewSets ?? [])] as const
+      }),
+    )
+    setReviewSets(Object.fromEntries(deckResults))
 
     // Sessions for these classrooms, so an assignment row can show the
     // lesson it belongs to. Bounded — a camp classroom's own sessions
@@ -467,6 +483,25 @@ export function CampPage({ academyId }: CampPageProps) {
       showErrorToast(String(t('camp.editAssignment.failed')))
     } finally { setSavingEdit(false) }
   }, [editing, savingEdit, t, fetchAll])
+
+  const confirmDeckDelete = useCallback(async () => {
+    if (!pendingDeckDelete || deckDeleting) return
+    setDeckDeleting(true)
+    try {
+      const headers = await authHeaders()
+      const res = await fetch(`/api/camp/review-set?id=${pendingDeckDelete.id}`, { method: 'DELETE', headers })
+      const json = await res.json().catch(() => ({}))
+      if (!res.ok) { showErrorToast(json.error || String(t('camp.reviewSets.failed'))); return }
+      showSuccessToast(
+        String(t('camp.reviewSets.deleted')),
+        json.refunded > 0 ? String(t('camp.deleteAssignment.refunded', { n: json.refunded })) : undefined,
+      )
+      setPendingDeckDelete(null)
+      await fetchAll()
+    } catch {
+      showErrorToast(String(t('camp.reviewSets.failed')))
+    } finally { setDeckDeleting(false) }
+  }, [pendingDeckDelete, deckDeleting, t, fetchAll])
 
   const openReviewModal = (classroomId: string) => {
     setReviewClassroomId(classroomId)
@@ -1215,6 +1250,50 @@ export function CampPage({ academyId }: CampPageProps) {
                     <CampClassroomDashboard classroomId={room.id} testFamily={program.test_family} />
                   </div>
                 )}
+
+                {/* Review decks. Listed so a teacher can see what was
+                    built, whether it was ever presented, present it
+                    again, or get the quota back for one that was not. */}
+                {(reviewSets[room.id]?.length ?? 0) > 0 && (
+                  <div className="ml-4 sm:ml-6 mt-3">
+                    <div className="flex items-center gap-2 mb-2">
+                      <Presentation className="w-3.5 h-3.5 text-gray-400" strokeWidth={1.75} />
+                      <h4 className="text-xs font-semibold uppercase tracking-[0.08em] text-gray-500">
+                        {t('camp.reviewSets.heading')}
+                      </h4>
+                    </div>
+                    <div className="divide-y divide-gray-100 rounded-xl ring-1 ring-gray-100 overflow-hidden">
+                      {(reviewSets[room.id] ?? []).map(deck => (
+                        <div key={deck.id} className="flex items-center gap-3 px-4 py-2.5 bg-white">
+                          <div className="flex-1 min-w-0">
+                            <p className="text-sm font-medium text-gray-900 truncate">{deck.title}</p>
+                            <p className="text-xs text-gray-400 tabular-nums">
+                              {deck.presented_at
+                                ? t('camp.reviewSets.presented', { date: formatDate(deck.presented_at) })
+                                : t('camp.reviewSets.neverPresented')}
+                            </p>
+                          </div>
+                          <StatusPill tone="sky" size="md">
+                            {t('camp.questionCountLabel', { count: deck.question_count })}
+                          </StatusPill>
+                          <Button
+                            variant="ghost"
+                            size="sm"
+                            className="h-7 w-7 p-0 text-gray-300 hover:text-rose-600 hover:bg-rose-50"
+                            onClick={() => setPendingDeckDelete({
+                              id: deck.id, title: deck.title,
+                              count: deck.question_count, presentedAt: deck.presented_at,
+                            })}
+                            title={String(t('camp.reviewSets.delete'))}
+                            aria-label={String(t('camp.reviewSets.delete'))}
+                          >
+                            <Trash2 className="w-3.5 h-3.5" strokeWidth={1.75} />
+                          </Button>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
               </div>
             )
           })}
@@ -1573,6 +1652,40 @@ export function CampPage({ academyId }: CampPageProps) {
       {sessionInfoId && (
         <CampSessionInfo sessionId={sessionInfoId} onClose={() => setSessionInfoId(null)} />
       )}
+
+      <ModalShell
+        isOpen={pendingDeckDelete !== null}
+        onClose={() => { if (!deckDeleting) setPendingDeckDelete(null) }}
+        size="sm"
+        title={String(t('camp.reviewSets.confirmTitle'))}
+        closeDisabled={deckDeleting}
+        footer={
+          <ModalShell.Footer split>
+            <Button variant="outline" onClick={() => setPendingDeckDelete(null)} disabled={deckDeleting}>
+              {t('common.cancel')}
+            </Button>
+            <Button variant="destructive" onClick={() => void confirmDeckDelete()} disabled={deckDeleting}>
+              {deckDeleting && <Loader2 className="w-4 h-4 mr-2 animate-spin" />}
+              {t('camp.deleteAssignment.confirm')}
+            </Button>
+          </ModalShell.Footer>
+        }
+      >
+        {pendingDeckDelete && (
+          <div className="space-y-3">
+            <p className="text-sm text-gray-700">
+              {t('camp.reviewSets.confirmBody', { title: pendingDeckDelete.title })}
+            </p>
+            <div className={`rounded-lg px-3 py-2 text-sm ${
+              pendingDeckDelete.presentedAt ? 'bg-amber-50 text-amber-800' : 'bg-emerald-50 text-emerald-800'
+            }`}>
+              {pendingDeckDelete.presentedAt
+                ? t('camp.reviewSets.noRefund', { date: formatDate(pendingDeckDelete.presentedAt) })
+                : t('camp.reviewSets.willRefund', { n: pendingDeckDelete.count })}
+            </div>
+          </div>
+        )}
+      </ModalShell>
 
       <ModalShell
         isOpen={editing !== null}

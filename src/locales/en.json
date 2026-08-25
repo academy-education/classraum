@@ -2773,6 +2773,20 @@
       "confirm": "Withdraw report",
       "done": "Report withdrawn",
       "failed": "Couldn't withdraw this report"
+    },
+    "reviewSets": {
+      "heading": "Review decks",
+      "empty": "No review decks yet",
+      "present": "Present again",
+      "presented": "Presented {{date}}",
+      "neverPresented": "Never presented",
+      "delete": "Delete deck",
+      "confirmTitle": "Delete this deck?",
+      "confirmBody": "\"{{title}}\" will be removed.",
+      "willRefund": "It was never presented, so its {{n}} questions go back to your quota.",
+      "noRefund": "It was presented on {{date}}. The questions stay spent.",
+      "deleted": "Deck deleted",
+      "failed": "Couldn't delete this deck"
     }
   },
   "attendance": {

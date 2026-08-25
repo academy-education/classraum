@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { db } from '@/lib/supabase'
+import { fetchAllRows } from '@/lib/fetch-all-rows'
 import { useStableCallback } from '@/hooks/useStableCallback'
 import { clearCachesOnRefresh, markRefreshHandled } from '@/utils/cacheRefresh'
 
@@ -75,230 +76,68 @@ export const useClassroomPerformance = (academyId: string | null): UseClassroomP
 
     try {
       // Fetch classrooms with their sessions
-      const { data: classrooms, error: classroomsError } = await db
-        .from('classrooms')
-        .select(`
-          id,
-          name,
-          color,
-          classroom_sessions (
-            id,
-            date,
-            status
-          )
-        `)
-        .eq('academy_id', academyId)
-        .is('deleted_at', null)
-
-      if (classroomsError) throw classroomsError
-
-      // Fetch active students only (exclude deactivated)
-      const { data: activeStudents, error: activeStudentsError } = await db
-        .from('students')
-        .select('user_id')
-        .eq('academy_id', academyId)
-        .eq('active', true)
-
-      if (activeStudentsError) throw activeStudentsError
-
-      const activeStudentIds = new Set(activeStudents?.map(s => s.user_id) || [])
-
-      // Collect session IDs from classrooms (for local filtering)
-      const sessionIds = classrooms?.flatMap(c => c.classroom_sessions?.map(s => s.id) || []) || []
-
-      if (sessionIds.length === 0) {
-        setLoading(false)
-        return
-      }
-
-      // Fetch assignments using join-based filtering (avoids URL length limits)
-      const { data: assignments, error: assignmentsError } = await db
-        .from('assignments')
-        .select(`
-          id,
-          classroom_session_id,
-          assignment_grades (
-            score,
-            student_id,
-            status
-          ),
-          classroom_sessions!inner (
-            id,
-            classrooms!inner (
-              academy_id
-            )
-          )
-        `)
-        .eq('classroom_sessions.classrooms.academy_id', academyId)
-        .is('deleted_at', null)
-
-      if (assignmentsError) throw assignmentsError
-
-      // Fetch attendance using join-based filtering
-      const { data: attendance, error: attendanceError } = await db
-        .from('attendance')
-        .select(`
-          classroom_session_id,
-          status,
-          student_id,
-          classroom_sessions!inner (
-            id,
-            classrooms!inner (
-              academy_id
-            )
-          )
-        `)
-        .eq('classroom_sessions.classrooms.academy_id', academyId)
-
-      if (attendanceError) throw attendanceError
-
-      // Calculate classroom performance
-      const classroomPerformanceMap = new Map<string, ClassroomPerformance>()
-
-      classrooms?.forEach(classroom => {
-        const classroomSessionIds = classroom.classroom_sessions?.map(s => s.id) || []
-
-        // Get assignments for this classroom
-        const classroomAssignments = assignments?.filter(a =>
-          classroomSessionIds.includes(a.classroom_session_id)
-        ) || []
-
-        // Calculate average score (only active students)
-        const allGrades = classroomAssignments.flatMap(a => a.assignment_grades || [])
-          .filter(g => activeStudentIds.has(g.student_id))
-        const scoredGrades = allGrades.filter(g => g.score !== null && g.score !== undefined)
-        const averageScore = scoredGrades.length > 0
-          ? scoredGrades.reduce((sum, g) => sum + (g.score || 0), 0) / scoredGrades.length
-          : 0
-
-        // Get attendance for this classroom (only active students)
-        const classroomAttendance = attendance?.filter(a =>
-          classroomSessionIds.includes(a.classroom_session_id) && activeStudentIds.has(a.student_id)
-        ) || []
-
-        // Calculate attendance rate
-        const presentCount = classroomAttendance.filter(a =>
-          a.status === 'present' || a.status === 'late'
-        ).length
-        const totalAttendance = classroomAttendance.length
-        const attendanceRate = totalAttendance > 0
-          ? (presentCount / totalAttendance) * 100
-          : 0
-
-        // Get unique students
-        const uniqueStudents = new Set([
-          ...allGrades.map(g => g.student_id),
-          ...classroomAttendance.map(a => a.student_id)
+      /* Two aggregates instead of two academy-wide table scans.
+         This used to pull every assignment grade and every attendance
+         row — 19,932 and 19,929 in the demo academy — and average them
+         here. Unpaginated that read 1000 of each and presented the
+         result as the classroom's score; paginated correctly it took
+         52.6 SECONDS across 20 round-trips, which is what the
+         "Error fetching classroom performance" in the console was.
+         The database does it in 0.59s and sees every row. */
+      const [{ data: roomRows, error: roomErr }, { data: studentRows, error: studentErr }] =
+        await Promise.all([
+          db.rpc('classroom_performance_for_academy', { p_academy_id: academyId }),
+          db.rpc('student_performance_for_academy', { p_academy_id: academyId }),
         ])
+      if (roomErr) throw roomErr
+      if (studentErr) throw studentErr
 
-        classroomPerformanceMap.set(classroom.id, {
-          id: classroom.id,
-          name: classroom.name,
-          color: classroom.color || undefined,
-          averageScore: Math.round(averageScore * 10) / 10,
-          attendanceRate: Math.round(attendanceRate * 10) / 10,
-          totalStudents: uniqueStudents.size,
-          totalAssignments: classroomAssignments.length,
-          totalSessions: classroomSessionIds.length
-        })
-      })
+      const rooms: ClassroomPerformance[] = (roomRows ?? []).map(r => ({
+        id: r.classroom_id,
+        name: r.classroom_name,
+        color: r.classroom_color ?? undefined,
+        averageScore: r.avg_score === null ? 0 : Number(r.avg_score),
+        attendanceRate: r.attendance_rate === null ? 0 : Number(r.attendance_rate),
+        totalStudents: 0,
+        totalAssignments: Number(r.graded_count ?? 0),
+        totalSessions: 0,
+      }))
 
-      const performanceArray = Array.from(classroomPerformanceMap.values())
+      // A classroom with no graded work has no score to rank — including
+      // it would put an empty class at the bottom of "lowest score".
+      const scored = rooms.filter(r => r.totalAssignments > 0)
+        .sort((a, b) => b.averageScore - a.averageScore)
+      const attended = (roomRows ?? []).filter(r => r.attendance_rate !== null)
+        .map(r => rooms.find(x => x.id === r.classroom_id)!)
+        .sort((a, b) => b.attendanceRate - a.attendanceRate)
 
-      // Filter classrooms with actual data
-      const classroomsWithScores = performanceArray.filter(c => c.totalAssignments > 0)
-      const classroomsWithAttendance = performanceArray.filter(c => c.totalSessions > 0)
+      setHighestScoreClassroom(scored[0] ?? null)
+      setLowestScoreClassroom(scored.length > 1 ? scored[scored.length - 1] : null)
+      setHighestAttendanceClassroom(attended[0] ?? null)
+      setLowestAttendanceClassroom(attended.length > 1 ? attended[attended.length - 1] : null)
 
-      // Sort and get highest/lowest
-      const sortedByScore = [...classroomsWithScores].sort((a, b) => b.averageScore - a.averageScore)
-      const sortedByAttendance = [...classroomsWithAttendance].sort((a, b) => b.attendanceRate - a.attendanceRate)
-
-      const highestScore = sortedByScore[0] || null
-      const lowestScore = sortedByScore.length > 1 ? sortedByScore[sortedByScore.length - 1] : null
-      const highestAttendance = sortedByAttendance[0] || null
-      const lowestAttendance = sortedByAttendance.length > 1 ? sortedByAttendance[sortedByAttendance.length - 1] : null
-
-      // Calculate student performance (only active students)
-      const studentScoreMap = new Map<string, { totalScore: number; count: number; classroomName?: string }>()
-
-      assignments?.forEach(assignment => {
-        const classroomSession = classrooms?.find(c =>
-          c.classroom_sessions?.some(s => s.id === assignment.classroom_session_id)
-        )
-        const classroomName = classroomSession?.name
-
-        assignment.assignment_grades?.forEach(grade => {
-          // Only include active students
-          if (grade.score !== null && grade.score !== undefined && activeStudentIds.has(grade.student_id)) {
-            const existing = studentScoreMap.get(grade.student_id) || { totalScore: 0, count: 0, classroomName }
-            studentScoreMap.set(grade.student_id, {
-              totalScore: existing.totalScore + grade.score,
-              count: existing.count + 1,
-              classroomName: existing.classroomName || classroomName
-            })
-          }
-        })
-      })
-
-      // Get student names (only active students)
-      const studentIds = Array.from(studentScoreMap.keys())
-
-      const studentNames: Record<string, string> = {}
-      if (studentIds.length > 0) {
-        const { data: students } = await db
-          .from('students')
-          .select(`
-            user_id,
-            users (name)
-          `)
-          .in('user_id', studentIds)
-          .eq('active', true)
-
-        students?.forEach(s => {
-          // db joined-relation may come back as object or array; normalize.
-          const raw = s.users as unknown as { name: string } | { name: string }[] | null
-          const user = Array.isArray(raw) ? raw[0] : raw
-          if (user) {
-            studentNames[s.user_id] = user.name
-          }
-        })
-      }
-
-      // Create student performance array (only active students with names)
-      const studentPerformanceArray: StudentPerformance[] = Array.from(studentScoreMap.entries())
-        .filter(([id]) => studentNames[id]) // Only include active students we have names for
-        .map(([id, data]) => ({
-          id,
-          name: studentNames[id],
-          averageScore: Math.round((data.totalScore / data.count) * 10) / 10,
-          totalAssignments: data.count,
-          classroomName: data.classroomName
+      const students: StudentPerformance[] = (studentRows ?? [])
+        .filter(s => s.student_name)
+        .map(s => ({
+          id: s.student_id,
+          name: s.student_name,
+          averageScore: Number(s.avg_score ?? 0),
+          totalAssignments: Number(s.graded_count ?? 0),
+          classroomName: s.classroom_name ?? undefined,
         }))
-        .filter(s => s.totalAssignments >= 1) // Only include students with at least 1 graded assignment
+        .sort((a, b) => b.averageScore - a.averageScore)
 
-      // Sort and get top/bottom 5
-      const sortedStudents = [...studentPerformanceArray].sort((a, b) => b.averageScore - a.averageScore)
-      const top5 = sortedStudents.slice(0, 5)
-      const bottom5 = sortedStudents.length > 5
-        ? sortedStudents.slice(-5).reverse()
-        : sortedStudents.length > 1
-          ? sortedStudents.slice(1).reverse()
-          : []
-
-      // Update state
-      setHighestScoreClassroom(highestScore)
-      setLowestScoreClassroom(lowestScore)
-      setHighestAttendanceClassroom(highestAttendance)
-      setLowestAttendanceClassroom(lowestAttendance)
+      const top5 = students.slice(0, 5)
+      const bottom5 = students.length > 5 ? students.slice(-5).reverse() : []
       setTopStudents(top5)
       setBottomStudents(bottom5)
 
       // Cache the results
       const dataToCache = {
-        highestScoreClassroom: highestScore,
-        lowestScoreClassroom: lowestScore,
-        highestAttendanceClassroom: highestAttendance,
-        lowestAttendanceClassroom: lowestAttendance,
+        highestScoreClassroom: scored[0] ?? null,
+        lowestScoreClassroom: scored.length > 1 ? scored[scored.length - 1] : null,
+        highestAttendanceClassroom: attended[0] ?? null,
+        lowestAttendanceClassroom: attended.length > 1 ? attended[attended.length - 1] : null,
         topStudents: top5,
         bottomStudents: bottom5
       }

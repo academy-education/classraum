@@ -26,6 +26,7 @@ import {
  *   Teacher (or academy manager) of a camp classroom. Same auth, window,
  *   vocabulary, draw, and quota rules as /api/camp/assignments.
  *
+ * GET ?classroomId=…  the classroom's decks (metadata only)
  * GET ?id=…
  *   The full solvable items (passage, prompt, choices, correct answer,
  *   explanation, graphic) for one review set — TEACHER ONLY. Students in
@@ -52,8 +53,32 @@ export async function GET(req: NextRequest) {
   const user = await getUserFromRequest(req)
   if (!user) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
 
+  /* ?classroomId=… — list the classroom's decks (no items, so this is
+     safe to render in a teacher list; the full payload with keys and
+     explanations stays behind ?id=). Until this existed decks were
+     created, presented once and then unreachable, which is why the
+     DELETE below had nowhere to be called from. */
+  const listClassroomId = req.nextUrl.searchParams.get('classroomId')
+  if (listClassroomId) {
+    const room = await loadClassroom(listClassroomId)
+    if (!room) return NextResponse.json({ error: 'classroom not found' }, { status: 404 })
+    if (!(await canManageClassroom(user.id, room))) {
+      return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
+    }
+    const { data, error } = await dbAdmin
+      .from('camp_assignments')
+      .select('id, title, section, domain, question_count, presented_at, created_at')
+      .eq('classroom_id', listClassroomId)
+      .eq('kind', 'review')
+      .is('deleted_at', null)
+      .order('created_at', { ascending: false })
+      .limit(200)
+    if (error) return NextResponse.json({ error: error.message }, { status: 500 })
+    return NextResponse.json({ reviewSets: data ?? [] })
+  }
+
   const id = req.nextUrl.searchParams.get('id')
-  if (!id) return NextResponse.json({ error: 'id required' }, { status: 400 })
+  if (!id) return NextResponse.json({ error: 'id or classroomId required' }, { status: 400 })
 
   const { data: set } = await dbAdmin
     .from('camp_assignments')

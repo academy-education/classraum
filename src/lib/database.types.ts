@@ -6121,6 +6121,28 @@ export type Database = {
           member_count: number
         }[]
       }
+      classroom_performance_for_academy: {
+        Args: { p_academy_id: string }
+        Returns: {
+          classroom_id: string
+          classroom_name: string
+          classroom_color: string | null
+          avg_score: number | null
+          graded_count: number
+          attendance_rate: number | null
+          attendance_count: number
+        }[]
+      }
+      student_performance_for_academy: {
+        Args: { p_academy_id: string }
+        Returns: {
+          student_id: string
+          student_name: string
+          avg_score: number | null
+          graded_count: number
+          classroom_name: string | null
+        }[]
+      }
     }
     Enums: {
       report_status:
