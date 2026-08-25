@@ -1,4 +1,5 @@
 import { db as anonDb } from '@/lib/supabase'
+import { fetchAllRows } from '@/lib/fetch-all-rows'
 import { createBulkNotifications, createNotification, sendPushNotification } from '@/lib/notifications'
 import type { NotificationType } from '@/lib/notification-types'
 import type { Database } from '@/lib/database.types'
@@ -2029,8 +2030,21 @@ export async function triggerSessionAutoCompletionNotifications() {
     const currentTime = now.toTimeString().slice(0, 5) // HH:MM format
     const currentDate = now.toISOString().split('T')[0] // YYYY-MM-DD format
 
-    // Find sessions that should be auto-completed
-    const { data: expiredSessions } = await db
+    /* Find sessions that should be auto-completed.
+       Paged: normally this returns a handful, because the cron runs
+       daily and clears the backlog. But if the cron stalls the backlog
+       grows, and unpaginated it would silently process the first 1000
+       and leave the rest scheduled forever with no notification — the
+       failure would be invisible precisely when the job was already
+       broken. */
+    const { data: expiredSessions } = await fetchAllRows<{
+      id: string
+      date: string
+      start_time: string
+      end_time: string
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      classrooms: any
+    }>((from, to) => db
       .from('classroom_sessions')
       .select(`
         id,
@@ -2047,6 +2061,10 @@ export async function triggerSessionAutoCompletionNotifications() {
       `)
       .eq('status', 'scheduled')
       .or(`date.lt.${currentDate},and(date.eq.${currentDate},end_time.lt.${currentTime})`)
+      // id is unique, so pages cannot skip or repeat a session and
+      // notify twice about the same one.
+      .order('id', { ascending: true })
+      .range(from, to))
 
     if (!expiredSessions || expiredSessions.length === 0) {
       console.log('No expired sessions found for auto-completion')

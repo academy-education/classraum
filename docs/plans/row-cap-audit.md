@@ -97,28 +97,41 @@ Measured against real data, not assumed:
 | `payments-page.tsx:1348` | narrowed by `.in('student_id', selected)` |
 | `useReports.ts:105` | 77 reports for the largest academy |
 
-## Not yet checked (13)
+## Audit COMPLETE — 2026-08-26
 
-Lower priority: most are date-windowed aggregates (a week, a month) that
-cannot approach 1000, or batch jobs rather than screens. Each still
-needs checking against its real scope before being called safe.
+Every site the detector flags has now been read against its real scope.
+Three were genuinely wrong and are fixed; the rest are safe and are
+listed so nobody "fixes" them into slower code.
 
-    assignments         app/(app)/dashboard/hooks/useClassroomPerformance.ts:116
-    assignments         app/mobile/hooks/useMobileDashboard.ts:387
-    assignments         components/ui/archive-page.tsx:271
-    assignments         hooks/queries/useOptimizedAssignments.ts:55
-    assignments         lib/notification-triggers.ts:1896
-    attendance          app/(app)/dashboard/hooks/useClassroomPerformance.ts:139
-    classroom_sessions  app/mobile/page.tsx:290
-    classroom_sessions  app/mobile/page.tsx:522
-    classroom_sessions  components/ui/archive-page.tsx:228
-    classroom_sessions  hooks/queries/useOptimizedAttendance.ts:43
-    classroom_sessions  lib/notification-triggers.ts:2034
-    classroom_sessions  lib/notification-triggers.ts:2062
+### Fixed
 
-**A caution on this list.** It came from a regex over call sites, and
-the first version of that regex reported 329 — it could not see a
-`.range()` more than 1600 characters below the `.from()`. Payments and
-reports were on that list and are correct. Verify each site against its
-real scope before changing it; the measurement above is the instrument,
-not the grep.
+| site | what it was |
+|---|---|
+| `sessions-page.tsx` ×2 | 1000 of 1487, and a hand-written `.limit(1000)` |
+| `attendance-page.tsx` | 1000 of 1487, oldest history dropped |
+| `usePaymentsData.ts` ×2 | revenue understated ₩162,045,000 (37.6%) |
+| `useDashboardStats.ts` | 912 of the 1000 cap — wrong on the next larger school |
+| `useClassroomPerformance.ts` | replaced with DB aggregates: 52.6s → 0.59s |
+| `notification-triggers.ts:2034` | auto-completion backlog would cap at 1000 |
+
+### Checked and SAFE — leave alone
+
+| site | why |
+|---|---|
+| `useDashboardStats.ts:169` | last 7 days — 198 rows |
+| `useDashboardStats.ts:276` | the previous week |
+| `mobile/page.tsx:290,522` | one DAY and one student's classrooms |
+| `archive-page.tsx:228` | 37 archived sessions exist |
+| `archive-page.tsx:271` | 83 archived assignments exist |
+| `useMobileDashboard.ts:389` | narrowed by `.in('id', gradeAssignmentIds)` |
+| `notification-triggers.ts:1897` | `.eq('due_date', yesterday)` — one day |
+| `notification-triggers.ts:2080` | an UPDATE, not a select |
+| `payments-page.tsx:1292` | an INSERT, not a select |
+| `payments-page.tsx:1348` | narrowed by `.in('student_id', selected)` |
+| `useReports.ts:105` | 77 reports for the largest academy |
+
+**The detector still flags all eleven of the safe ones** and always
+will: it cannot tell an INSERT from a SELECT, or see that a date filter
+bounds the result. That is the point of this table. The count went 329 →
+21 → 12 → 3-actually-wrong, and every reduction came from measuring, not
+from a better regex.

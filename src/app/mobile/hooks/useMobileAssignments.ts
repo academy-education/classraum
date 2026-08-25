@@ -90,11 +90,15 @@ export const useMobileAssignments = (user: User | null | any, studentId: string 
 
     try {
       // First get the student's enrolled classroom IDs
+      /* maybeSingle, not single: a PARENT has no `students` row at all,
+         and .single() answers that with a 406 (PGRST116 "0 rows") — an
+         error for the most ordinary case there is. The code below
+         already treats a missing row as "no classrooms". */
       const { data: studentData, error: studentError } = await db
         .from('students')
         .select('classroom_students(classroom_id)')
         .eq('user_id', user.id)
-        .single()
+        .maybeSingle()
 
       if (studentError) {
         console.error('[useMobileAssignments] Failed to load enrolled classrooms:', studentError)

@@ -181,11 +181,13 @@ export const useMobileDashboard = (user: User | null | any, studentId: string | 
       const fourteenDaysAgo = getDateOffsetLocal(-14)
 
       // First get the student's enrolled classroom IDs
+      // maybeSingle: a parent has no `students` row, and .single() turns
+      // that ordinary case into a 406.
       const { data: studentData } = await db
         .from('students')
         .select('classroom_students(classroom_id)')
         .eq('user_id', user.userId)
-        .single()
+        .maybeSingle()
 
       const classroomIds = studentData?.classroom_students?.map((cs: any) => cs.classroom_id) || []
       const hasClassrooms = classroomIds.length > 0
