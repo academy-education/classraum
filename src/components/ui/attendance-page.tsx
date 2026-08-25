@@ -6,6 +6,7 @@ import { SearchKbdHint } from '@/components/ui/search-kbd-hint'
 import { AttendanceStatusPills, statusFromShortcut } from '@/components/ui/attendance/AttendanceStatusPills'
 import { useSearchParams, useRouter } from 'next/navigation'
 import { db } from '@/lib/supabase'
+import { fetchAllRows } from '@/lib/fetch-all-rows'
 import { toAttendanceStatus, toSessionLocation } from '@/components/ui/common/db-enums'
 import { simpleTabDetection } from '@/utils/simpleTabDetection'
 import { Button } from '@/components/ui/button'
@@ -243,35 +244,46 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
 
       setInitialized(true)
 
-      // OPTIMIZED: Single query with joins to get sessions with classroom and teacher info
-      // Classroom filter will be applied client-side
-      let sessionsQuery = db
-        .from('classroom_sessions')
-        .select(`
-          *,
-          classrooms!inner(
-            id,
-            name,
-            color,
-            academy_id,
-            teacher_id
-          )
-        `, { count: 'exact' })
-        .eq('classrooms.academy_id', academyId)
-        .is('deleted_at', null)
-
-      // Apply session filter if provided (server-side scoping)
-      if (filterSessionId) {
-        sessionsQuery = sessionsQuery.eq('id', filterSessionId)
-      }
-
-      // Fetch all sessions (pagination will be applied client-side)
-      const { data: sessions, error: sessionsError, count } = await sessionsQuery
-        .order('date', { ascending: false })
-
-      setTotalCount(count || 0)
+      /* Single query with joins, paginated past the PostgREST cap.
+         This page paginates CLIENT-side, so it needs every row — and
+         unpaginated it received 1000 of the demo academy's 1463. The
+         sort is date DESCENDING, so the rows dropped were the OLDEST:
+         attendance history simply stopped part-way back, while the
+         count read from the same query still said 1463. A total that
+         disagrees with the list is the tell.
+         Ordered date + id so pages cannot skip or repeat a row —
+         sessions share a date constantly. */
+      const { data: sessions, error: sessionsError, truncated } = await fetchAllRows<Record<string, any>>(
+        (from, to) => {
+          let q = db
+            .from('classroom_sessions')
+            .select(`
+              *,
+              classrooms!inner(
+                id,
+                name,
+                color,
+                academy_id,
+                teacher_id
+              )
+            `)
+            .eq('classrooms.academy_id', academyId)
+            .is('deleted_at', null)
+            .order('date', { ascending: false })
+            .order('id', { ascending: true })
+            .range(from, to)
+          // Apply session filter if provided (server-side scoping)
+          if (filterSessionId) q = q.eq('id', filterSessionId)
+          return q
+        },
+      )
+      if (truncated) console.warn('[attendance] session pager hit its page ceiling')
 
       if (sessionsError) throw sessionsError
+
+      // Count what we HOLD, not a separate count(*): the two disagreeing
+      // is precisely the bug above.
+      setTotalCount(sessions?.length || 0)
 
       if (!sessions || sessions.length === 0) {
         setAttendanceRecords([])
@@ -395,7 +407,8 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
       try {
         const dataToCache = {
           records: attendanceRecordsWithDetails,
-          totalCount: count || 0
+          // Same source as setTotalCount above — never a separate count(*).
+          totalCount: sessions?.length || 0
         }
         sessionStorage.setItem(cacheKey, JSON.stringify(dataToCache))
         sessionStorage.setItem(`${cacheKey}-timestamp`, Date.now().toString())
