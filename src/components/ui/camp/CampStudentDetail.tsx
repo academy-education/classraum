@@ -10,7 +10,7 @@ import type { CampReportPayload } from '@/lib/camp/report-types'
 import { authHeaders } from '@/lib/auth-headers'
 import { useTranslation } from '@/hooks/useTranslation'
 import { showErrorToast, showSuccessToast } from '@/stores'
-import { BarChart3, ChevronRight, ClipboardList, FileText, Loader2, Printer } from 'lucide-react'
+import { ChevronRight, ClipboardList, FileText, Loader2, Printer } from 'lucide-react'
 
 /**
  * Per-student drill-down modal, opened from the classroom progress table
@@ -29,6 +29,9 @@ interface CampStudentDetailProps {
   classroomId: string
   studentId: string
   studentName: string
+  /** Kept for the call sites; CampReportView reads the family from the
+   *  payload itself (payload.program.testFamily), so this component no
+   *  longer needs it. */
   testFamily: string
   onClose: () => void
 }
@@ -39,7 +42,7 @@ const STATE_TONES: Record<'not_started' | 'in_progress' | 'done', StatusPillTone
   done: 'emerald',
 }
 
-export function CampStudentDetail({ classroomId, studentId, studentName, testFamily, onClose }: CampStudentDetailProps) {
+export function CampStudentDetail({ classroomId, studentId, studentName, testFamily: _testFamily, onClose }: CampStudentDetailProps) {
   const { t, language } = useTranslation()
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(false)
@@ -97,14 +100,6 @@ export function CampStudentDetail({ classroomId, studentId, studentName, testFam
     return () => { cancelled = true }
   }, [classroomId, studentId])
 
-  const sectionLabel = useCallback(
-    (section: string) => String(t(`camp.sections.${section}`)),
-    [t],
-  )
-  const domainLabel = useCallback(
-    (domain: string) => (testFamily === 'sat' ? domain : String(t(`camp.tasks.${domain}`))),
-    [t, testFamily],
-  )
   const stateLabel = useCallback(
     (state: 'not_started' | 'in_progress' | 'done') => String(t(`camp.dashboard.state.${state}`)),
     [t],
@@ -191,8 +186,6 @@ export function CampStudentDetail({ classroomId, studentId, studentName, testFam
     }
   }, [t])
 
-  const strengths = payload?.strengths ?? []
-  const weaknesses = payload?.weaknesses ?? []
 
   return (
     <>
@@ -257,36 +250,14 @@ export function CampStudentDetail({ classroomId, studentId, studentName, testFam
               ))}
             </div>
 
-            {/* Summary chips — overall accuracy, completion, standing */}
-            <div className={`grid grid-cols-1 sm:grid-cols-3 gap-3 ${tab === 'overview' ? '' : 'hidden'}`}>
-              <div className="rounded-xl bg-gray-50 px-4 py-3">
-                <p className="text-[10px] font-semibold uppercase tracking-[0.1em] text-gray-500 mb-1">
-                  {t('camp.reports.overallAccuracy')}
-                </p>
-                <p className="text-xl font-semibold text-gray-900 tabular-nums">
-                  {payload.cohort.studentAccuracy !== null ? `${payload.cohort.studentAccuracy}%` : '—'}
-                </p>
-              </div>
-              <div className="rounded-xl bg-gray-50 px-4 py-3">
-                <p className="text-[10px] font-semibold uppercase tracking-[0.1em] text-gray-500 mb-1">
-                  {t('camp.studentDetail.assignmentsDone')}
-                </p>
-                <p className="text-xl font-semibold text-gray-900 tabular-nums">
-                  {payload.completion
-                    ? `${payload.completion.done}/${payload.completion.total}`
-                    : '—'}
-                </p>
-              </div>
-              <div className="rounded-xl bg-gray-50 px-4 py-3">
-                <p className="text-[10px] font-semibold uppercase tracking-[0.1em] text-gray-500 mb-1">
-                  {t('camp.reports.classStanding')}
-                </p>
-                <p className="text-xl font-semibold text-gray-900 tabular-nums">
-                  {payload.cohort.percentile !== null
-                    ? String(t('camp.reports.percentile', { p: payload.cohort.percentile }))
-                    : '—'}
-                </p>
-              </div>
+            {/* Overview IS the report. Rendering CampReportView with the
+                live payload — rather than a second layout that resembles
+                it — is the only way "the modal and the report look the
+                same" can stay true: they are one component fed by one
+                payload builder (src/lib/camp/reports.ts). A hand-rolled
+                copy drifts the first time either is touched. */}
+            <div className={tab === 'overview' ? '' : 'hidden'}>
+              <CampReportView payload={payload} />
             </div>
 
             {/* Per-assignment status/score over time */}
@@ -347,71 +318,6 @@ export function CampStudentDetail({ classroomId, studentId, studentName, testFam
                   })}
                 </div>
               )}
-            </div>
-
-            {/* Accuracy by domain — same bar idiom as the classroom panel */}
-            <div className={tab === 'overview' ? '' : 'hidden'}>
-              <div className="flex items-center gap-2 mb-2">
-                <BarChart3 className="w-4 h-4 text-gray-400" strokeWidth={1.75} />
-                <h4 className="text-sm font-semibold text-gray-900">{t('camp.dashboard.accuracyBySkill')}</h4>
-              </div>
-              {payload.skills.length === 0 ? (
-                <p className="text-sm text-gray-400">{t('camp.reports.noGradedAnswers')}</p>
-              ) : (
-                <div className="space-y-2">
-                  {payload.skills.map(skill => (
-                    <div key={`${skill.section}:${skill.domain}`} className="flex items-center gap-3">
-                      <div className="w-56 flex-shrink-0 text-xs text-gray-600 truncate" title={`${sectionLabel(skill.section)} · ${domainLabel(skill.domain)}`}>
-                        <span className="text-gray-400">{sectionLabel(skill.section)}</span>
-                        <span className="mx-1 text-gray-300">·</span>
-                        {domainLabel(skill.domain)}
-                      </div>
-                      <div className="flex-1 h-2 bg-gray-100 rounded-full overflow-hidden">
-                        <div
-                          className={`h-full rounded-full ${skill.accuracy >= 70 ? 'bg-emerald-500' : skill.accuracy >= 40 ? 'bg-amber-500' : 'bg-rose-500'}`}
-                          style={{ width: `${skill.accuracy}%` }}
-                        />
-                      </div>
-                      <div className="w-24 flex-shrink-0 text-right text-xs text-gray-500 tabular-nums">
-                        {skill.accuracy}%
-                        <span className="text-gray-300 ml-1">{skill.correct}/{skill.total}</span>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              )}
-            </div>
-
-            {/* Strengths / focus areas */}
-            <div className={`grid grid-cols-1 sm:grid-cols-2 gap-4 ${tab === 'overview' ? '' : 'hidden'}`}>
-              <div>
-                <h4 className="text-sm font-semibold text-gray-900 mb-2">{t('camp.reports.strengths')}</h4>
-                {strengths.length === 0 ? (
-                  <p className="text-sm text-gray-400">{t('camp.reports.notEnoughData')}</p>
-                ) : (
-                  <div className="flex flex-wrap gap-1.5">
-                    {strengths.map(s => (
-                      <StatusPill key={`${s.section}:${s.domain}`} tone="emerald" size="md">
-                        {domainLabel(s.domain)} · {s.accuracy}%
-                      </StatusPill>
-                    ))}
-                  </div>
-                )}
-              </div>
-              <div>
-                <h4 className="text-sm font-semibold text-gray-900 mb-2">{t('camp.reports.weaknesses')}</h4>
-                {weaknesses.length === 0 ? (
-                  <p className="text-sm text-gray-400">{t('camp.reports.notEnoughData')}</p>
-                ) : (
-                  <div className="flex flex-wrap gap-1.5">
-                    {weaknesses.map(s => (
-                      <StatusPill key={`${s.section}:${s.domain}`} tone="rose" size="md">
-                        {domainLabel(s.domain)} · {s.accuracy}%
-                      </StatusPill>
-                    ))}
-                  </div>
-                )}
-              </div>
             </div>
 
             {/* Reports already sent home for this student */}

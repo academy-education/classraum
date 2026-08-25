@@ -9,6 +9,7 @@ import { SearchKbdHint } from '@/components/ui/search-kbd-hint'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { db } from '@/lib/supabase'
+import { fetchAllRows } from '@/lib/fetch-all-rows'
 import type { Json } from '@/lib/database.types'
 import {
   isSessionStatus,
@@ -1386,16 +1387,28 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
         query = query.lte('date', endDateFilter)
       }
 
-      // Apply ordering - most recent sessions first (date DESC, then start_time DESC)
-      query = query
-        .order('date', { ascending: false })
-        .order('start_time', { ascending: false })
+      /* This page paginates CLIENT-side, so it needs every row.
+         Unpaginated it received 1000 of the demo academy's 1463 while
+         `count: 'exact'` still reported 1463 — a list and a total that
+         disagree, which is exactly how the truncation stayed invisible.
+         Sorted date DESCENDING, so the rows lost were the OLDEST.
+         Ordered date + start_time + id: .range() pages are separate
+         requests, and sessions share a date and a start_time constantly,
+         so without a unique tiebreaker a row can be skipped or repeated. */
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const { data, error, truncated } = await fetchAllRows<any>(
+        (from, to) => query
+          .order('date', { ascending: false })
+          .order('start_time', { ascending: false })
+          .order('id', { ascending: true })
+          .range(from, to),
+      )
+      if (truncated) console.warn('[sessions] pager hit its page ceiling')
 
-      // Fetch all sessions (pagination will be applied client-side)
-      const { data, error, count } = await query
-
-      // Update total count (reflects server-side filtered results only)
-      setTotalCount(count || 0)
+      // Count what we HOLD. A separate count(*) beside a truncated list
+      // is the bug, not the fix.
+      const count = data?.length ?? 0
+      setTotalCount(count)
       
       if (error) {
         console.error('Error fetching sessions:', error)
@@ -2137,14 +2150,23 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
 
       const classroomIds = academyClassrooms.map(c => c.id)
 
-      const { data, error } = await db
-        .from('classroom_sessions')
-        .select('*')
-        .in('classroom_id', classroomIds)
-        .is('deleted_at', null)
-        .order('date', { ascending: false })
-        .order('start_time', { ascending: false })
-        .limit(1000)
+      /* This drives the filter-card counts, and it carried a hard
+         .limit(1000) — which is the "1000 sessions" the page reported.
+         Not a PostgREST cap this time: someone wrote the cap by hand.
+         Same pager, same ordering rule as the list query above. */
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const { data, error, truncated: allTruncated } = await fetchAllRows<any>(
+        (from, to) => db
+          .from('classroom_sessions')
+          .select('*')
+          .in('classroom_id', classroomIds)
+          .is('deleted_at', null)
+          .order('date', { ascending: false })
+          .order('start_time', { ascending: false })
+          .order('id', { ascending: true })
+          .range(from, to),
+      )
+      if (allTruncated) console.warn('[sessions] filter-count pager hit its page ceiling')
 
       if (error) {
         console.error('Error fetching all sessions:', error)

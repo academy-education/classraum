@@ -16,6 +16,7 @@ import { CampClassroomDashboard } from '@/components/ui/camp/CampClassroomDashbo
 import { CampReviewPresenter } from '@/components/ui/camp/CampReviewPresenter'
 import { CampReportsPanel } from '@/components/ui/camp/CampReportsPanel'
 import { CampStudentsPanel } from '@/components/ui/camp/CampStudentsPanel'
+import { CampSessionInfo } from '@/components/ui/camp/CampSessionInfo'
 import { LineChart, Line, ResponsiveContainer, XAxis, YAxis, Tooltip } from 'recharts'
 import type { Question } from '@/app/mobile/study/session/[id]/test/types'
 import { authHeaders } from '@/lib/auth-headers'
@@ -179,6 +180,8 @@ export function CampPage({ academyId }: CampPageProps) {
      matching how the assignments page drives the same component. */
   const [activeDatePicker, setActiveDatePicker] = useState<string | null>(null)
   const [sessionSearchQuery, setSessionSearchQuery] = useState('')
+  /** Session opened from a date chip on the Classrooms tab. */
+  const [sessionInfoId, setSessionInfoId] = useState<string | null>(null)
 
   /** session id -> {date, start_time} for every camp classroom on this
    *  program, so the Classrooms tab can group work by the lesson it
@@ -1047,10 +1050,20 @@ export function CampPage({ academyId }: CampPageProps) {
                             <h4 className="text-sm sm:text-base font-semibold text-gray-900 truncate">{a.title}</h4>
                             <div className="flex flex-wrap items-center gap-2 sm:gap-4 text-xs sm:text-sm text-gray-600 mt-1">
                               {a.classroom_session_id && sessionsById[a.classroom_session_id] && (
-                                <div className="flex items-center gap-1 text-blue-700">
-                                  <Calendar className="w-3 h-3 sm:w-4 sm:h-4" />
+                                /* A quiet slate chip, not blue text: the card
+                                   already uses blue for links and two competing
+                                   blues read as noise. Clicking opens the
+                                   lesson instead of sending the teacher to the
+                                   sessions page to go and find it. */
+                                <button
+                                  type="button"
+                                  onClick={e => { e.stopPropagation(); setSessionInfoId(a.classroom_session_id!) }}
+                                  title={String(t('camp.sessionInfo.open'))}
+                                  className="inline-flex items-center gap-1 rounded-md border border-gray-200 bg-gray-50 px-1.5 py-0.5 text-gray-600 hover:bg-gray-100 hover:text-gray-900 hover:border-gray-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 transition-colors"
+                                >
+                                  <Calendar className="w-3 h-3 sm:w-3.5 sm:h-3.5 flex-shrink-0" strokeWidth={1.75} />
                                   <span>{formatDate(sessionsById[a.classroom_session_id]!.date)}</span>
-                                </div>
+                                </button>
                               )}
                               {(a.section || a.domain) && (
                                 <div className="flex items-center gap-1">
@@ -1443,6 +1456,10 @@ export function CampPage({ academyId }: CampPageProps) {
           classroomName={reportsClassroom.name}
           onClose={() => setReportsClassroom(null)}
         />
+      )}
+
+      {sessionInfoId && (
+        <CampSessionInfo sessionId={sessionInfoId} onClose={() => setSessionInfoId(null)} />
       )}
 
       {presenter && (

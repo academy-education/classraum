@@ -25,10 +25,27 @@ current or upcoming class was visible on the list or the calendar.
 
 The last two are nowhere near the cap and need nothing.
 
+## A miss worth recording
+
+The first attempt fixed `src/hooks/useSessionData.ts`, and verified it by
+replaying that hook's query against the database: 1462 of 1462, no
+duplicates. Both true, and both irrelevant — **nothing imports that
+hook.** The sessions page has its own query. The check proved the hook
+was fixed and said nothing about the page, which still showed 1000.
+
+The hook has been deleted rather than left as a fixed-but-dead trap.
+
+Verify against the SURFACE the user named, not against a plausible
+implementation of it. `grep -rn "useSessionData" src/` was one command
+and would have caught this before the claim was made.
+
 ## Fixed
 
 - `src/components/ui/assignments/hooks/useAssignmentsData.ts` (ae9d96c)
-- `src/hooks/useSessionData.ts` — sessions page + calendar
+- `src/components/ui/sessions-page.tsx` — the sessions list AND the
+  filter-card counts. The latter carried a hand-written `.limit(1000)`,
+  not a PostgREST cap; that literal was the "1000 sessions" the page
+  reported. Both now paginate.
 - `src/components/ui/attendance-page.tsx` — also stopped reporting a
   separate `count(*)` beside a truncated list, which is the tell
 
@@ -56,7 +73,6 @@ needs checking against its real scope before being called safe.
     assignments         app/mobile/hooks/useMobileDashboard.ts:387
     assignments         components/ui/archive-page.tsx:271
     assignments         hooks/queries/useOptimizedAssignments.ts:55
-    assignments         hooks/useSessionData.ts:185
     assignments         lib/notification-triggers.ts:1896
     attendance          app/(app)/dashboard/hooks/useClassroomPerformance.ts:139
     classroom_sessions  app/(app)/dashboard/hooks/useDashboardStats.ts:168

@@ -2729,7 +2729,23 @@
     },
     "sessionLabel": "Session {{date}}",
     "noSessionLabel": "No session",
-    "sortedBySession": "Grouped by session, most recent first"
+    "sortedBySession": "Grouped by session, most recent first",
+    "sessionInfo": {
+      "title": "Session",
+      "date": "Date",
+      "time": "Time",
+      "classroom": "Class",
+      "status": "Status",
+      "location": "Location",
+      "teacher": "Teacher",
+      "attendance": "Attendance",
+      "present": "{{n}} present",
+      "noAttendance": "No attendance taken",
+      "loadFailed": "Couldn't load this session",
+      "open": "View session details",
+      "online": "Online",
+      "offline": "In person"
+    }
   },
   "attendance": {
     "title": "Attendance",

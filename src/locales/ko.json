@@ -2729,7 +2729,23 @@
     },
     "sessionLabel": "{{date}} 수업",
     "noSessionLabel": "수업 미연결",
-    "sortedBySession": "수업별로 묶어 최신순으로 표시합니다"
+    "sortedBySession": "수업별로 묶어 최신순으로 표시합니다",
+    "sessionInfo": {
+      "title": "수업",
+      "date": "날짜",
+      "time": "시간",
+      "classroom": "반",
+      "status": "상태",
+      "location": "장소",
+      "teacher": "선생님",
+      "attendance": "출석",
+      "present": "{{n}}명 출석",
+      "noAttendance": "출석 기록 없음",
+      "loadFailed": "수업 정보를 불러오지 못했습니다",
+      "open": "수업 상세 보기",
+      "online": "온라인",
+      "offline": "대면"
+    }
   },
   "attendance": {
     "title": "출석",
