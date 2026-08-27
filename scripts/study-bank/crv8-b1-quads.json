@@ -1,0 +1,1088 @@
+{
+ "cohort": "cr-v8",
+ "stage": 1,
+ "batch": "b1",
+ "method": "symmetric four-world authoring, post-hoc seeded key selection",
+ "items": [
+  {
+   "localId": "crv8-b1-01",
+   "setting": "Campus copy center, self-service counter; a staff member speaks with a student making copies.",
+   "worlds": [
+    {
+     "kind": "bad news",
+     "keyAct": "adapts the plan to the shortage",
+     "line": "The color copier is out of toner until the delivery comes Thursday.",
+     "reply": "I'll print these flyers in black and white today then.",
+     "explanationIfSpoken": "The staffer reports the color copier is down, so switching the flyers to black and white is the natural adjustment. Naming a campus card answers a payment question that was never asked, and stacking originals complies with a request nobody made. Choosing double-sided because prices match responds to a pricing note that was never given.",
+     "kills": {
+      "1": "Announcing the machine is \"out of toner\" asks nothing about payment, so naming a campus card answers a question never posed.",
+      "2": "\"The color copier\" being empty is a supply report, not a request to clear space, so promising to stack originals complies with nothing said.",
+      "3": "News that toner is gone \"until the delivery\" comes says nothing about pricing, so choosing double-sided because costs are equal has no basis here."
+     }
+    },
+    {
+     "kind": "question",
+     "keyAct": "answers the either-or with a choice",
+     "line": "Are you paying for these copies with cash or campus card?",
+     "reply": "My campus card, if the reader is working now.",
+     "explanationIfSpoken": "The staffer asks cash or card, and picking the campus card answers that either-or directly. Printing in black and white responds to a toner problem nobody reported, and stacking originals complies with a request never made. A remark about double-sided costing the same reacts to pricing information that was never stated.",
+     "kills": {
+      "0": "The question \"cash or campus card\" is about payment, not machine trouble, so switching flyers to black and white answers news never delivered.",
+      "2": "Asking how someone is \"paying for these copies\" makes no request to move anything, so offering to stack originals is unprompted.",
+      "3": "A choice between \"cash or campus\" card concerns payment method, not price parity, so a decision based on equal double-sided cost fits nothing said."
+     }
+    },
+    {
+     "kind": "request",
+     "keyAct": "complies and names a spot",
+     "line": "Could you move your originals so I can refill the paper trays?",
+     "reply": "I'll stack them on the far counter right away.",
+     "explanationIfSpoken": "The staffer needs the originals moved to refill paper, and stacking them on the far counter is direct compliance. Vowing to print in black and white responds to a toner shortage nobody mentioned, and naming a campus card answers a payment question never asked. Citing equal double-sided pricing reacts to information that was never given.",
+     "kills": {
+      "0": "A request to \"move your originals\" mentions no toner trouble, so vowing to print in black and white answers unspoken news.",
+      "1": "Needing to \"refill the paper\" trays involves no payment question, so naming a campus card answers nothing asked.",
+      "3": "Asking someone to clear space for \"the paper trays\" says nothing about pricing, so a choice based on equal cost is untethered."
+     }
+    },
+    {
+     "kind": "neutral info",
+     "keyAct": "opts in based on the pricing",
+     "line": "Double-sided printing costs the same as single-sided this semester.",
+     "reply": "In that case I'll do my whole packet double-sided.",
+     "explanationIfSpoken": "The staffer notes double-sided costs no extra, so deciding to do the whole packet double-sided follows directly. Shifting flyers to black and white addresses a toner problem never raised, and a campus-card answer responds to no payment question. Stacking originals complies with a request nobody made.",
+     "kills": {
+      "0": "A note that double-sided \"costs the same\" reports no breakdown, so moving flyers to black and white fixes a problem never raised.",
+      "1": "Saying double-sided matches \"single-sided this semester\" asks no payment question, so a campus-card answer is unprompted.",
+      "2": "Price information about \"Double-sided printing\" requests nothing, so promising to stack originals complies with no request."
+     }
+    }
+   ]
+  },
+  {
+   "localId": "crv8-b1-02",
+   "setting": "Intramural sports referee sign-up table; the coordinator speaks with a student considering officiating.",
+   "worlds": [
+    {
+     "kind": "good news",
+     "keyAct": "commits after hearing the pay",
+     "line": "We just raised the referee pay to fifteen dollars a game.",
+     "reply": "That rate works for me, so sign me up for soccer.",
+     "explanationIfSpoken": "The coordinator announces a pay raise, and agreeing that the rate works and signing up responds to exactly that news. Listing community-league seasons answers an experience question nobody asked, and fixing a calendar over Monday reacts to a date correction never made. A condition about finishing by nine accepts a Friday assignment that was never offered.",
+     "kills": {
+      "1": "\"raised the referee pay\" announces money and asks no experience question, so citing two community-league seasons answers nothing.",
+      "2": "\"fifteen dollars a game\" concerns pay, not the clinic date, so adjusting a calendar over Monday responds to no correction here.",
+      "3": "News that \"we just raised\" the pay assigns no match, so agreeing to Friday if done by nine accepts an offer never made."
+     }
+    },
+    {
+     "kind": "question",
+     "keyAct": "reports relevant experience",
+     "line": "Have you refereed basketball before, or would this be your first season?",
+     "reply": "I did two seasons at my community league back home.",
+     "explanationIfSpoken": "The coordinator asks about experience, and two seasons at a community league answers it precisely. Agreeing that a rate works refers to a pay figure never quoted, and rescheduling around Monday reacts to a clinic correction nobody made. A promise about Friday evening accepts an assignment that was never proposed.",
+     "kills": {
+      "0": "\"refereed basketball before\" asks about experience and quotes no rate, so saying a rate works refers to a figure never given.",
+      "2": "Asking about a \"first season\" mentions no clinic day, so changing a calendar over Monday corrects nothing said.",
+      "3": "The question \"Have you refereed\" schedules nothing, so a condition about being done by nine on Friday answers no assignment."
+     }
+    },
+    {
+     "kind": "correction",
+     "keyAct": "adjusts plans to the corrected date",
+     "line": "Actually the rules clinic is Tuesday night, not Monday like the flyer says.",
+     "reply": "I'll change my calendar so I don't show up Monday.",
+     "explanationIfSpoken": "The coordinator corrects the clinic date, so updating a calendar to avoid showing up Monday is the fitting response. Agreeing to a pay rate refers to money never mentioned, and community-league history answers an experience question nobody asked. A Friday-evening condition accepts a match assignment that was never offered.",
+     "kills": {
+      "0": "Correcting that the clinic \"is Tuesday night\" quotes no pay rate, so agreeing that a rate works has no antecedent.",
+      "1": "A date fix about \"the rules clinic\" asks nothing about experience, so listing community-league seasons answers no question.",
+      "3": "Moving the clinic to Tuesday, \"not Monday like\" the flyer said, proposes no Friday match, so a nine-o'clock condition addresses nothing."
+     }
+    },
+    {
+     "kind": "request",
+     "keyAct": "accepts with a time condition",
+     "line": "Can you cover the seven o'clock volleyball match this Friday evening?",
+     "reply": "Friday works as long as I'm done by nine.",
+     "explanationIfSpoken": "The coordinator asks for Friday coverage, and accepting with a nine-o'clock condition answers that request directly. A remark that the rate works cites pay never quoted, and basketball seasons answer an experience question nobody posed. Fixing a calendar to avoid Monday reacts to a clinic correction that was never made.",
+     "kills": {
+      "0": "Asking someone to \"cover the seven o'clock\" match names no pay figure, so saying the rate works answers a number never spoken.",
+      "1": "A staffing request for a \"volleyball match this Friday\" asks nothing about past seasons, so basketball history is unprompted.",
+      "2": "\"this Friday evening\" concerns a match, not the clinic date, so recalculating Monday plans corrects nothing said here."
+     }
+    }
+   ]
+  },
+  {
+   "localId": "crv8-b1-03",
+   "setting": "Departmental wide-format poster printing queue; the lab administrator speaks with a graduate student.",
+   "worlds": [
+    {
+     "kind": "bad news",
+     "keyAct": "waives urgency, citing own timeline",
+     "line": "The large-format printer jammed, so the queue is backed up two days.",
+     "reply": "My conference isn't until next month, so I can wait.",
+     "explanationIfSpoken": "The administrator reports a two-day backlog, so noting the conference is a month away and accepting the wait fits perfectly. Citing forty-two inches to choose matte applies a width rule nobody stated, and appreciation for trimming accepts a service never offered. Specifying a department email answers a notification question that was never asked.",
+     "kills": {
+      "1": "The \"printer jammed\" report is about a delay and sets no width rule, so citing forty-two inches to choose matte answers nothing.",
+      "2": "A queue \"backed up two\" days offers no trimming, so appreciation for trimming accepts an offer never made.",
+      "3": "\"the queue is\" backed up describes a jam and proposes no notification, so dictating which email address to use is unprompted."
+     }
+    },
+    {
+     "kind": "neutral info",
+     "keyAct": "applies the rule to own case",
+     "line": "Posters over thirty-six inches wide have to go on the matte roll.",
+     "reply": "Mine is forty-two, so matte it is.",
+     "explanationIfSpoken": "The administrator states the width rule, and noting the poster is forty-two inches and accepting matte applies that rule to this case. Waiting because a conference is next month responds to a delay nobody announced, and gratitude for trimming accepts a service never offered. Naming a department address answers an email question that was never posed.",
+     "kills": {
+      "0": "A width rule about \"thirty-six inches wide\" announces no delay, so patience about a next-month conference addresses nothing said.",
+      "2": "Saying wide posters go \"on the matte\" roll offers no trimming service, so accepting trimming has no antecedent.",
+      "3": "\"the matte roll\" requirement proposes no email alert, so specifying a department address answers no question."
+     }
+    },
+    {
+     "kind": "offer",
+     "keyAct": "accepts the service with a reason",
+     "line": "I can trim and tube your poster for you once it prints.",
+     "reply": "I'd appreciate the trimming; my scissors ruined the last one.",
+     "explanationIfSpoken": "The administrator offers to trim and tube the poster, so welcoming the trimming and recalling a ruined attempt accepts that offer with a reason. Waiting until next month responds to a delay nobody reported, and a forty-two-inch matte decision applies a width rule never stated. Choosing a department address answers an email question that was never asked.",
+     "kills": {
+      "0": "Offering to \"trim and tube\" a poster mentions no breakdown, so waiting because a conference is next month responds to no delay.",
+      "1": "\"once it prints\" concerns finishing services, not width limits, so citing forty-two inches to pick matte fits nothing said.",
+      "3": "An offer to handle \"your poster for\" you involves no email, so choosing a department address over a personal one is unprompted."
+     }
+    },
+    {
+     "kind": "question",
+     "keyAct": "specifies how to carry it out",
+     "line": "Do you want us to email you when your file starts printing?",
+     "reply": "Send it to my department address, not my personal one.",
+     "explanationIfSpoken": "The administrator asks about an email alert, and directing it to the department address tells them exactly how to do it. Accepting a two-day wait responds to a jam nobody reported, and a matte decision at forty-two inches applies a rule never given. Gratitude for trimming accepts a service that was never offered.",
+     "kills": {
+      "0": "Asking about an alert \"when your file\" starts reports no jam, so accepting a two-day wait responds to no delay.",
+      "1": "\"email you when\" printing starts concerns notification, not paper stock, so a forty-two-inch matte decision has no basis here.",
+      "2": "The offer \"to email you\" involves no scissors or trimming, so gratitude for trimming accepts a different offer entirely."
+     }
+    }
+   ]
+  },
+  {
+   "localId": "crv8-b1-04",
+   "setting": "Observatory public night volunteer desk; the volunteer coordinator speaks with a student volunteer.",
+   "worlds": [
+    {
+     "kind": "bad news",
+     "keyAct": "volunteers to alert the visitors",
+     "line": "Cloud cover is rolling in, so tonight's viewing may end early.",
+     "reply": "I'll warn the people in line before they buy tickets.",
+     "explanationIfSpoken": "The coordinator warns that clouds may cut the night short, so alerting people before they buy tickets passes that warning where it matters. Granting dinner time and citing last weekend's shift answers a coverage request nobody made, and sharper planets credit an eyepiece never mentioned. Picking the closing shift answers a preference question that was never asked.",
+     "kills": {
+      "1": "\"Cloud cover is\" rolling in is a weather report, not a staffing request, so granting dinner time and citing last weekend answers nothing.",
+      "2": "Warning that viewing \"may end early\" mentions no equipment, so praising sharper planets has no new eyepiece to credit.",
+      "3": "\"tonight's viewing\" being cut short asks no preference, so choosing closing over early answers a question never posed."
+     }
+    },
+    {
+     "kind": "request",
+     "keyAct": "agrees and cites qualification",
+     "line": "Could you take over the telescope line while I grab dinner?",
+     "reply": "I ran that station last weekend, so take your time.",
+     "explanationIfSpoken": "The coordinator asks for coverage during dinner, and agreeing while citing last weekend's experience grants exactly that. Warning ticket buyers relays cloud news nobody delivered, and sharper planets credit an eyepiece never mentioned. Declaring a closing-shift preference answers a scheduling question that was never asked.",
+     "kills": {
+      "0": "Asking someone to \"take over the telescope\" line reports no clouds, so warning ticket buyers relays news nobody delivered.",
+      "2": "A cover request \"while I grab\" dinner involves no new gear, so celebrating sharper views credits an eyepiece never mentioned.",
+      "3": "\"the telescope line\" handoff is immediate, not a shift-preference question, so picking closing answers nothing asked."
+     }
+    },
+    {
+     "kind": "good news",
+     "keyAct": "predicts a benefit for guests",
+     "line": "We finally got the new eyepiece the donors paid for.",
+     "reply": "The planets should look much sharper for the guests now.",
+     "explanationIfSpoken": "The coordinator shares that the donor-funded eyepiece arrived, and predicting sharper planets for guests responds to that good news. Warning people before they buy tickets spreads trouble nobody reported, and granting dinner time answers a request never made. A closing-shift choice answers a preference question that was never posed.",
+     "kills": {
+      "0": "Good news about \"the new eyepiece\" predicts no early closure, so warning people before they buy tickets spreads trouble nobody reported.",
+      "1": "Saying \"the donors paid\" for gear requests no coverage, so telling someone to take their time grants permission never sought.",
+      "3": "\"We finally got\" the eyepiece asks no scheduling question, so declaring a closing-shift preference is unprompted."
+     }
+    },
+    {
+     "kind": "question",
+     "keyAct": "states a preference with a reason",
+     "line": "Which shift do you prefer, the early one or closing?",
+     "reply": "Closing, since my lab runs until seven most days.",
+     "explanationIfSpoken": "The coordinator asks early or closing, and choosing closing because of a lab that runs late answers it with a reason. Warning ticket buyers responds to cloud news nobody gave, and granting dinner time answers a coverage request never made. Sharper planets credit an eyepiece that was never mentioned.",
+     "kills": {
+      "0": "\"Which shift do\" you prefer concerns scheduling, not weather, so warning ticket buyers about tonight responds to no cloud news.",
+      "1": "Asking about \"the early one\" or closing hands over no station, so granting dinner time answers no request.",
+      "2": "A preference question, \"early one or closing\", mentions no eyepiece, so crediting sharper planets fits nothing said."
+     }
+    }
+   ]
+  },
+  {
+   "localId": "crv8-b1-05",
+   "setting": "Campus community garden plot allocation table; the garden manager speaks with a student gardener.",
+   "worlds": [
+    {
+     "kind": "neutral info",
+     "keyAct": "declines the move option",
+     "line": "Returning gardeners keep their same plot unless they ask to move.",
+     "reply": "Mine gets the best sun, so I'll keep it.",
+     "explanationIfSpoken": "The manager explains that returners keep their plot unless they request a move, so citing good sun and keeping it answers that choice. Asking how long before digging references a flood nobody reported, and a tomatoes-and-marigolds answer responds to a crop question never asked. Signing a tool log accepts a loan that was never offered.",
+     "kills": {
+      "1": "\"keep their same plot\" mentions no fence or flood, so asking how long before digging responds to damage nobody reported.",
+      "2": "A policy that gardeners \"keep their same\" plot asks nothing about crops, so listing tomatoes and marigolds answers no question.",
+      "3": "\"unless they ask\" to move concerns plot assignment, not equipment, so promising to sign a tool log accepts an unoffered loan."
+     }
+    },
+    {
+     "kind": "bad news",
+     "keyAct": "flags own stake and asks timing",
+     "line": "The plots along the north fence flooded and need to dry out.",
+     "reply": "Mine backs onto that fence; how long before I can dig?",
+     "explanationIfSpoken": "The manager reports flooding along the north fence, so noting one's plot backs onto it and asking when digging can resume engages that news directly. Keeping a plot for its sun decides a keep-or-move question nobody raised, and a crop answer responds to no survey. Signing the shed log accepts a tool loan that was never offered.",
+     "kills": {
+      "0": "Flood news about \"the north fence\" raises no keep-or-move choice, so citing good sun to keep a plot decides a question never posed.",
+      "2": "Plots that \"need to dry\" out prompt no crop survey, so a tomatoes-and-marigolds answer is unprompted.",
+      "3": "\"flooded and need\" to dry describes soggy ground, not a tool loan, so signing the shed log accepts nothing offered here."
+     }
+    },
+    {
+     "kind": "question",
+     "keyAct": "answers with planting details",
+     "line": "Do you plan to grow vegetables or just flowers this year?",
+     "reply": "Mostly tomatoes, with marigolds along the border to help.",
+     "explanationIfSpoken": "The manager asks vegetables or flowers, and tomatoes with a marigold border answers exactly that. Vowing to keep a sunny plot responds to a retention policy nobody stated, and asking when digging can resume references flooding never mentioned. Signing a tool log accepts a loan that was never offered.",
+     "kills": {
+      "0": "Asking about \"vegetables or just flowers\" raises no plot-retention rule, so vowing to keep a sunny plot answers a different matter.",
+      "1": "A crop question for \"this year\" reports no flooding, so asking when digging can resume cites damage never mentioned.",
+      "3": "\"Do you plan\" to grow concerns planting choices, not borrowing, so signing a tool log responds to no offer."
+     }
+    },
+    {
+     "kind": "offer",
+     "keyAct": "meets the condition to borrow",
+     "line": "We can lend you tools from the shed if you sign the log.",
+     "reply": "I'll sign it now; I only own a trowel.",
+     "explanationIfSpoken": "The manager offers tools on condition of signing the log, so signing right away and admitting to owning only a trowel takes the offer up. Keeping a sunny plot responds to a policy nobody described, and asking about digging references a flood never reported. A tomatoes answer responds to a crop question that was never asked.",
+     "kills": {
+      "0": "An offer to \"lend you tools\" involves no plot policy, so declaring a plot will be kept for its sun answers nothing here.",
+      "1": "Tools \"from the shed\" come with no flood report, so asking how long before digging cites trouble nobody raised.",
+      "2": "The condition to \"sign the log\" concerns borrowing, not crop plans, so a tomatoes answer fits no question asked."
+     }
+    }
+   ]
+  },
+  {
+   "localId": "crv8-b1-06",
+   "setting": "Blood drive check-in table in the student union; a volunteer checks in a student donor.",
+   "worlds": [
+    {
+     "kind": "question",
+     "keyAct": "confirms compliance with specifics",
+     "line": "Did you drink plenty of water before coming in today?",
+     "reply": "Two bottles this morning, like the reminder email said.",
+     "explanationIfSpoken": "The volunteer asks about hydration, and reporting two bottles per the reminder email answers it concretely. Promising to return in two weeks concedes a deferral nobody issued, and calling twenty minutes fine cites a wait never quoted. Requesting a text accepts an alert that was never offered.",
+     "kills": {
+      "1": "\"plenty of water\" is a hydration check, not an eligibility ruling, so promising to return in two weeks concedes a deferral nobody issued.",
+      "2": "Asking about water \"before coming in\" states no wait time, so calling twenty minutes fine cites a figure never given.",
+      "3": "\"Did you drink\" enough is a screening question, not a texting offer, so requesting the text accepts nothing offered."
+     }
+    },
+    {
+     "kind": "correction",
+     "keyAct": "accepts the deferral timeline",
+     "line": "Our records show your last donation was six weeks ago, not twelve.",
+     "reply": "I'll wait the extra two weeks and come back.",
+     "explanationIfSpoken": "The volunteer corrects the donation date to six weeks ago, so agreeing to wait out the remaining gap and return accepts that ruling. A two-bottle water report answers a hydration question nobody asked, and accepting twenty minutes cites a wait never stated. Asking for a text accepts an alert that was never offered.",
+     "kills": {
+      "0": "\"Our records show\" a date discrepancy, not a hydration question, so reporting two bottles of water answers nothing asked.",
+      "2": "A correction that it was \"six weeks ago\" quotes no wait estimate, so accepting twenty minutes refers to nothing said.",
+      "3": "\"not twelve\" corrects a donation date and offers no text alert, so asking for the text responds to no offer."
+     }
+    },
+    {
+     "kind": "neutral info",
+     "keyAct": "takes the wait in stride",
+     "line": "The wait is about twenty minutes once you finish this form.",
+     "reply": "I brought class reading, so twenty minutes is fine.",
+     "explanationIfSpoken": "The volunteer estimates a twenty-minute wait, so mentioning class reading and accepting that stretch responds to it exactly. Itemizing bottles of water answers a hydration question nobody posed, and agreeing to come back in two weeks addresses a deferral never issued. Requesting a text accepts something that was never proposed.",
+     "kills": {
+      "0": "\"The wait is\" a timing note, not a hydration check, so itemizing bottles of water answers no question here.",
+      "1": "An estimate tied to finishing \"this form\" makes no eligibility ruling, so agreeing to come back in two weeks addresses no deferral.",
+      "3": "\"about twenty minutes\" is stated with no offer to text, so requesting a text accepts something never proposed."
+     }
+    },
+    {
+     "kind": "offer",
+     "keyAct": "opts into the alert",
+     "line": "We can text you when a bed opens so you can wait outside.",
+     "reply": "I'd like the text; the benches outside are more comfortable.",
+     "explanationIfSpoken": "The volunteer offers a text when a bed opens, so opting in and citing the comfortable benches outside accepts it naturally. A two-bottle report answers a hydration question nobody asked, and postponing two weeks responds to a deferral never issued. Calling twenty minutes fine references a wait estimate that was never given.",
+     "kills": {
+      "0": "Offering a text \"when a bed\" opens asks nothing about water, so a two-bottle report is unprompted.",
+      "1": "\"wait outside\" concerns comfort during today's visit, not eligibility, so postponing two weeks responds to no ruling.",
+      "2": "The offer to \"text you when\" a bed opens names no duration, so calling twenty minutes fine references an unstated figure."
+     }
+    }
+   ]
+  },
+  {
+   "localId": "crv8-b1-07",
+   "setting": "University surplus furniture sale warehouse; a staff member speaks with a student shopper.",
+   "worlds": [
+    {
+     "kind": "neutral info",
+     "keyAct": "verifies the discounted price",
+     "line": "Everything with a yellow tag is half off the marked price.",
+     "reply": "This desk is yellow-tagged, so that's twenty dollars, right?",
+     "explanationIfSpoken": "The staffer explains the yellow-tag discount, so checking that a tagged desk comes to twenty dollars applies that rule. Rushing to check out first guards against a no-holds policy nobody stated, and an apartment answer responds to a housing question never asked. Handing over an address accepts a delivery that was never offered.",
+     "kills": {
+      "1": "\"half off the\" marked price is a discount note, not a no-holds warning, so rushing to check out first guards against a policy never stated.",
+      "2": "A note about \"a yellow tag\" asks nothing about housing, so an apartment answer describes a question never posed.",
+      "3": "\"the marked price\" being halved offers no delivery, so handing over an address accepts a service nobody mentioned."
+     }
+    },
+    {
+     "kind": "bad news",
+     "keyAct": "reorders errands to fit the policy",
+     "line": "We can't hold items; anything unpaid goes back on the floor.",
+     "reply": "I'll check out now, then, and shop for chairs after.",
+     "explanationIfSpoken": "The staffer warns that unpaid items return to the floor, so paying immediately and browsing afterward adapts to that policy. Computing twenty dollars from a half-off tag uses a discount nobody quoted, and an apartment answer responds to a housing question never asked. Giving an address accepts a delivery that was never offered.",
+     "kills": {
+      "0": "\"We can't hold\" items quotes no discount, so computing twenty dollars from a half-off deal uses math nobody supplied.",
+      "2": "A warning that unpaid stock \"goes back on\" the floor asks nothing about housing, so an apartment answer is unprompted.",
+      "3": "\"anything unpaid goes\" back concerns holds, not transport, so giving an address for delivery accepts no offer made."
+     }
+    },
+    {
+     "kind": "question",
+     "keyAct": "answers and extends the shopping list",
+     "line": "Are you furnishing a dorm room or an off-campus apartment?",
+     "reply": "An apartment, so I'm hunting for a kitchen table too.",
+     "explanationIfSpoken": "The staffer asks dorm or apartment, and answering apartment while adding a kitchen table to the hunt fits that question. Pricing a desk at half off references a discount nobody stated, and racing to the register answers a holds warning never given. Leaving an address accepts a delivery that was never proposed.",
+     "kills": {
+      "0": "Asking about \"a dorm room\" or apartment states no discount, so pricing a desk at half off references nothing said.",
+      "1": "\"Are you furnishing\" a room is a question about needs, not a holds policy, so racing to the register answers no warning.",
+      "3": "The question about an \"off-campus apartment\" offers no driver, so leaving an address accepts a delivery never proposed."
+     }
+    },
+    {
+     "kind": "offer",
+     "keyAct": "arranges the delivery",
+     "line": "Our driver can deliver anything big for ten dollars a load.",
+     "reply": "Take down my address; the couch won't fit in my car.",
+     "explanationIfSpoken": "The staffer offers ten-dollar delivery for big items, so giving an address because the couch won't fit in the car takes that offer up. Figuring twenty dollars from a half-off tag uses a discount never quoted, and hurrying to pay responds to a holds policy nobody stated. An apartment answer replies to a housing question that was never asked.",
+     "kills": {
+      "0": "An offer to \"deliver anything big\" quotes no discount, so figuring twenty dollars from a half-off tag has no basis.",
+      "1": "\"ten dollars a\" load is a delivery price, not a holds warning, so hurrying to pay first responds to no policy stated.",
+      "2": "\"Our driver can\" deliver concerns transport, not housing type, so an apartment answer replies to no question."
+     }
+    }
+   ]
+  },
+  {
+   "localId": "crv8-b1-08",
+   "setting": "University press internship office; an editor speaks with a student applicant.",
+   "worlds": [
+    {
+     "kind": "good news",
+     "keyAct": "asks whether the news extends to a friend",
+     "line": "The board approved a second intern slot for the fall.",
+     "reply": "So my roommate can apply too, if she hurries?",
+     "explanationIfSpoken": "The editor announces a second intern slot, so asking whether a roommate can now apply follows that expansion naturally. Asking if a journalism essay counts answers a materials request nobody made, and insisting on still wanting the job concedes a downside never stated. Reviewing the style guide prepares for a test that was never described.",
+     "kills": {
+      "1": "\"a second intern\" slot being added requests no materials, so asking whether a journalism essay counts answers no requirement.",
+      "2": "\"The board approved\" more slots removes nothing, so insisting on still wanting the job concedes a downside never stated.",
+      "3": "News of a \"slot for the\" fall describes no test, so cramming the style guide prepares for nothing mentioned."
+     }
+    },
+    {
+     "kind": "request",
+     "keyAct": "checks if a substitute satisfies the request",
+     "line": "Please bring a writing sample when you come for the interview.",
+     "reply": "Would an essay from my journalism class count?",
+     "explanationIfSpoken": "The editor asks for a writing sample, so checking whether a journalism essay qualifies engages that request directly. Asking about a roommate applying follows news of an opening nobody announced, and declaring the stipend doesn't matter rebuts bad news never delivered. Reviewing the style guide prepares for a test that was never mentioned.",
+     "kills": {
+      "0": "\"bring a writing sample\" instructs one applicant and announces no openings, so asking if a roommate can apply follows nothing said.",
+      "2": "A request to bring materials \"for the interview\" says nothing about pay, so declaring the stipend doesn't matter rebuts no bad news.",
+      "3": "\"a writing sample\" is the only thing requested — no test is described, so studying the style guide addresses a detail never given."
+     }
+    },
+    {
+     "kind": "correction",
+     "keyAct": "reaffirms interest despite the news",
+     "line": "The internship is unpaid, though the posting listed a stipend.",
+     "reply": "I still want it; the editing experience matters more.",
+     "explanationIfSpoken": "The editor corrects the posting to say the position is unpaid, so reaffirming interest because the experience matters more responds to exactly that. A roommate question follows expansion news nobody gave, and asking if an essay counts answers a request never made. Style-guide review prepares for a test that was never described.",
+     "kills": {
+      "0": "\"The internship is unpaid\" concerns compensation, not headcount, so asking whether a roommate can also apply follows no such news.",
+      "1": "Correcting that the \"posting listed a\" stipend wrongly requests no documents, so asking if an essay counts answers no requirement.",
+      "3": "\"though the posting\" erred about pay, no test was mentioned, so reviewing the style guide prepares for nothing raised."
+     }
+    },
+    {
+     "kind": "neutral info",
+     "keyAct": "plans preparation for the test",
+     "line": "Interviews run fifteen minutes, with a short proofreading test after.",
+     "reply": "I'll review the style guide tonight just in case.",
+     "explanationIfSpoken": "The editor describes a proofreading test after the interview, so planning to review the style guide prepares for exactly that. A roommate question follows opening news nobody announced, and asking whether an essay counts answers a sample request never made. Insisting the stipend doesn't matter rebuts pay news that was never delivered.",
+     "kills": {
+      "0": "\"Interviews run fifteen\" minutes is logistics, not news of a second opening, so asking about a roommate applying is unprompted.",
+      "1": "Details about a \"short proofreading test\" request no sample, so asking whether a journalism essay counts addresses no requirement.",
+      "2": "\"fifteen minutes, with\" a test describes format, not pay, so insisting the stipend doesn't matter rebuts nothing said."
+     }
+    }
+   ]
+  },
+  {
+   "localId": "crv8-b1-09",
+   "setting": "Campus radio station ad booking window; the ad manager speaks with a student club representative.",
+   "worlds": [
+    {
+     "kind": "bad news",
+     "keyAct": "shows the conflict doesn't apply",
+     "line": "The morning show slots are sold out through the end of October.",
+     "reply": "Our fundraiser is November eighth, so later slots still work.",
+     "explanationIfSpoken": "The manager says morning slots are gone through October, so pointing out the fundraiser is November eighth shows the sellout doesn't hurt them. Reporting that the ad still needs recording answers a production question nobody asked, and preferring a live read accepts an upsell never offered. Citing club registration rebuts an eligibility ruling that was never made.",
+     "kills": {
+      "1": "\"sold out through\" October is availability news, not a production question, so reporting the ad still needs recording answers nothing.",
+      "2": "News that \"morning show slots\" are gone offers no live read, so preferring a live read accepts an unmade offer.",
+      "3": "Slots being gone until \"the end of\" October says nothing about rates, so proving club registration rebuts no eligibility ruling."
+     }
+    },
+    {
+     "kind": "question",
+     "keyAct": "picks the second alternative offered",
+     "line": "Is your ad ready to air, or does it still need recording?",
+     "reply": "We only have a script, so it still needs recording.",
+     "explanationIfSpoken": "The manager asks whether the ad is finished or still needs recording, and admitting there's only a script answers the second branch. Citing a November eighth fundraiser responds to a sellout nobody reported, and comparing a live read to a rough cut evaluates an upsell never offered. Asserting club registration rebuts a rate ruling that was never made.",
+     "kills": {
+      "0": "\"ready to air\" is a production question, not a scheduling report, so citing a November eighth fundraiser addresses no sold-out news.",
+      "2": "Asking whether it does \"still need recording\" offers no host read, so comparing a live read to a rough cut evaluates an unoffered service.",
+      "3": "\"Is your ad\" ready concerns production, not pricing tiers, so asserting club registration answers no rate ruling."
+     }
+    },
+    {
+     "kind": "offer",
+     "keyAct": "accepts the upgrade over own version",
+     "line": "For five dollars more, our host can read the ad live.",
+     "reply": "The live read sounds better than our rough recording.",
+     "explanationIfSpoken": "The manager offers a live host read for five dollars more, and judging it better than the club's rough recording accepts that upgrade. Pointing to November availability solves a sellout nobody reported, and saying the ad still needs recording ignores that a live read requires none. Citing registration with student activities rebuts an eligibility ruling that was never made.",
+     "kills": {
+      "0": "An upsell of \"five dollars more\" reports no sellout, so pointing to November availability responds to no scheduling problem.",
+      "1": "If the host \"can read the ad\" live, no finished recording is required, so saying it still needs recording ignores what was offered.",
+      "3": "Offering a live read for \"five dollars\" more makes no eligibility claim, so citing registration with student activities rebuts nothing."
+     }
+    },
+    {
+     "kind": "correction",
+     "keyAct": "contests the ruling with evidence",
+     "line": "Student rates apply only to registered clubs, not campus departments.",
+     "reply": "We registered with student activities in September, so we qualify.",
+     "explanationIfSpoken": "The manager limits student rates to registered clubs, so producing a September registration shows the group qualifies. Redirecting to November slots solves a sellout nobody mentioned, and a script-only status answers a production question never asked. Praising a live read accepts an upsell that was never offered.",
+     "kills": {
+      "0": "A rule about \"Student rates\" reports no sellout, so redirecting to November slots solves a problem never raised.",
+      "1": "Eligibility talk about \"registered clubs\" asks nothing about production, so reporting a script-only status answers no question.",
+      "2": "\"not campus departments\" concerns who gets the discount, not delivery format, so praising a live read accepts nothing offered."
+     }
+    }
+   ]
+  },
+  {
+   "localId": "crv8-b1-10",
+   "setting": "Ceramics studio kiln loading bench; the studio technician speaks with a student potter.",
+   "worlds": [
+    {
+     "kind": "request",
+     "keyAct": "starts the requested task immediately",
+     "line": "Wipe the bottoms of your pieces so glaze doesn't fuse to the shelf.",
+     "reply": "I'll grab a damp sponge and do them now.",
+     "explanationIfSpoken": "The technician asks for the bottoms to be wiped, so grabbing a damp sponge and doing it now is direct compliance. Glaze plans for a weekend sale celebrate firing results nobody announced, and hunting for annex kiln space fixes a breakdown never reported. Assigning a vase to the bottom shelf applies a loading rule that was never given.",
+     "kills": {
+      "1": "\"Wipe the bottoms\" is an instruction, not firing results, so celebrating glaze plans for a weekend sale responds to no news.",
+      "2": "A request about keeping glaze off \"the shelf\" reports no breakdown, so hunting for kiln space elsewhere solves a problem never stated.",
+      "3": "\"glaze doesn't fuse\" concerns clean bottoms, not loading height, so citing fourteen inches for the bottom shelf follows a rule never given."
+     }
+    },
+    {
+     "kind": "good news",
+     "keyAct": "moves to the next step of the craft",
+     "line": "Your bowls from Tuesday's firing came out without a single crack.",
+     "reply": "I can finally glaze them for the sale this weekend.",
+     "explanationIfSpoken": "The technician reports the bowls survived firing intact, so moving on to glazing them for the weekend sale builds on that news. Grabbing a sponge complies with a wiping instruction nobody gave, and seeking annex kiln space fixes a breakdown never reported. A bottom-shelf decision applies loading guidance that was never offered.",
+     "kills": {
+      "0": "Good results \"without a single\" crack request no wiping, so grabbing a sponge complies with an instruction never given.",
+      "2": "\"Tuesday's firing came\" out fine, with no mention of breakdowns, so seeking space at the art annex fixes nothing reported.",
+      "3": "News about \"Your bowls from\" Tuesday states no loading rule, so assigning a vase to the bottom shelf applies guidance never offered."
+     }
+    },
+    {
+     "kind": "bad news",
+     "keyAct": "seeks a workaround elsewhere",
+     "line": "The big kiln needs a new element, so firings pause this week.",
+     "reply": "I'll ask the art annex if their kiln has space.",
+     "explanationIfSpoken": "The technician announces the kiln is down for the week, so checking whether the art annex kiln has space is a sensible workaround. Fetching a sponge complies with a wiping instruction nobody gave, and weekend glaze plans ignore that firings are stopped. A bottom-shelf choice follows a loading rule that is irrelevant while nothing is being loaded.",
+     "kills": {
+      "0": "\"needs a new element\" is a breakdown report, not a wiping instruction, so fetching a sponge complies with nothing asked.",
+      "1": "A pause because the kiln \"needs a new\" element delivers no results, so glazing for the weekend sale ignores that firings are stopped.",
+      "3": "\"firings pause this week\" means nothing is being loaded, so choosing the bottom shelf for a vase follows a rule irrelevant now."
+     }
+    },
+    {
+     "kind": "neutral info",
+     "keyAct": "applies the rule to own piece",
+     "line": "Tall pieces load on the bottom shelf where the kiln runs cooler.",
+     "reply": "My vase is fourteen inches, so bottom shelf for it.",
+     "explanationIfSpoken": "The technician explains that tall pieces go on the cooler bottom shelf, so placing a fourteen-inch vase there applies the rule. Grabbing a damp sponge complies with a wiping request nobody made, and glaze plans for the sale celebrate results never announced. Shopping for annex kiln space answers a breakdown that was never mentioned.",
+     "kills": {
+      "0": "Guidance that \"Tall pieces load\" low is not a wiping request, so grabbing a damp sponge complies with no instruction.",
+      "1": "A loading tip about where \"the kiln runs\" cooler reports no results, so glaze plans for the sale celebrate news never given.",
+      "2": "\"the bottom shelf\" advice implies the kiln is running, so shopping for annex kiln space answers a breakdown nobody mentioned."
+     }
+    }
+   ]
+  },
+  {
+   "localId": "crv8-b1-11",
+   "setting": "A university greenhouse: a faculty supervisor talks with a student research assistant at the seedling bench about tray four of their growth trial.",
+   "worlds": [
+    {
+     "kind": "bad news",
+     "keyAct": "asks about recovering from the loss",
+     "line": "The chiller failed overnight, so tray four's seedlings are all wilted.",
+     "reply": "Do we have enough spare seeds to restart that tray?",
+     "explanationIfSpoken": "The supervisor reports that tray four's seedlings were lost, so asking whether spare seeds exist to restart the tray is the natural next move. A report of stopping halfway through height measurements answers a question that was never asked, and setting a phone timer complies with a misting request nobody made. Wondering whether growth is ahead of the protocol's schedule treats dead plants as a success.",
+     "kills": {
+      "1": "The line reports the seedlings are \"all wilted\" and asks nothing about paperwork, so a report of getting through half the measurements answers no question posed here.",
+      "2": "\"The chiller failed\" is an announcement of damage, not a favor being asked, so promising to set a phone timer complies with a request nobody made.",
+      "3": "Seedlings that are \"all wilted\" cannot be running ahead of the protocol's predictions, so that upbeat schedule check contradicts the news outright."
+     }
+    },
+    {
+     "kind": "question",
+     "keyAct": "reports partial completion with a cause",
+     "line": "Did you finish logging the height measurements for tray four?",
+     "reply": "I got through half before the scanner battery died.",
+     "explanationIfSpoken": "Asked whether the height logging is finished, the assistant naturally reports partial progress and the reason it stalled. Asking about spare seeds responds to a disaster this question never mentions, and a phone timer accepts a care request that was never made. Checking results against the protocol's forecast reacts to news that was never delivered.",
+     "kills": {
+      "0": "Asking about \"height measurements\" reports no casualty at all, so wondering about spare seeds to restart a tray responds to a loss this line never mentions.",
+      "2": "\"Did you finish logging\" asks about work already done, not future care, so promising a timer for repeated misting answers a favor that was not requested.",
+      "3": "\"Did you finish\" seeks a progress report and delivers no news, so checking whether growth beat the protocol's prediction has nothing here to react to."
+     }
+    },
+    {
+     "kind": "request",
+     "keyAct": "agrees and names a compliance method",
+     "line": "Can you mist tray four every two hours until the humidifier's repaired?",
+     "reply": "I'll set a timer on my phone to keep track.",
+     "explanationIfSpoken": "The supervisor asks for misting on a strict interval, and promising a phone timer both agrees and shows how the interval will be kept. Asking about spare seeds treats the plants as dead when they only need moisture, and the half-finished measurement report answers a question that was not asked. Calling anything ahead of schedule responds to news never given.",
+     "kills": {
+      "0": "Misting \"until the humidifier's repaired\" presumes living plants that need moisture, so discussing spare seeds to restart the tray treats them as already dead.",
+      "1": "A request to \"mist tray four\" going forward is not a question about finished work, so the half-done measurement report answers nothing asked here.",
+      "3": "Someone asking for care \"every two hours\" is managing a problem, not sharing a success, so calling the tray ahead of schedule fits no news in this line."
+     }
+    },
+    {
+     "kind": "good news",
+     "keyAct": "checks the news against the protocol's forecast",
+     "line": "Tray four finally germinated — every single cell has a sprout.",
+     "reply": "That's ahead of the schedule the protocol predicted, right?",
+     "explanationIfSpoken": "Full germination is exciting news, and comparing it to the protocol's predicted timeline is a natural researcher's reaction. Asking about spare seeds makes no sense when nothing died, and a half-finished logging report answers a question that was never asked. Setting a timer complies with a misting request that was never made.",
+     "kills": {
+      "0": "Since \"every single cell\" sprouted, nothing was lost, so asking whether spare seeds exist to restart the tray responds to a failure that never happened.",
+      "1": "The line says the tray \"finally germinated\", which announces news and asks no question, so a report of half-finished logging answers nothing.",
+      "2": "Celebrating that each cell \"has a sprout\" requests no ongoing care, so agreeing and setting a phone timer complies with a favor never asked."
+     }
+    }
+   ]
+  },
+  {
+   "localId": "crv8-b1-12",
+   "setting": "A rowing team boathouse before morning practice: the coxswain talks with a rower by the boat racks.",
+   "worlds": [
+    {
+     "kind": "correction",
+     "keyAct": "repurposes the freed time",
+     "line": "Actually we launch at six thirty, not six — I misread the schedule.",
+     "reply": "Then I'll grab breakfast first since I skipped it to make six.",
+     "explanationIfSpoken": "The corrected start time frees half an hour, so using it for the breakfast that was skipped for the earlier time follows directly. Asking which erg workout replaces the row responds to a cancellation that never happened, and pointing out a spanner answers a rigging offer never made. A question about who sits in seven reacts to a lineup that was never posted.",
+     "kills": {
+      "1": "\"we launch at six thirty\" keeps the crew on the water, so asking which erg workout replaces the row responds to a cancellation this line never made.",
+      "2": "Correcting a start time — \"I misread the schedule\" — offers no help with rigging, so directing someone to a spanner in a bag pocket serves nothing said.",
+      "3": "The words \"six thirty, not six\" concern when they launch, not who sits where, so asking who ended up behind them in seven follows no seat news."
+     }
+    },
+    {
+     "kind": "bad news",
+     "keyAct": "asks for the substitute plan",
+     "line": "The river's fogged in, so the morning session's moved to the ergs.",
+     "reply": "Which erg workout does coach want us to do instead?",
+     "explanationIfSpoken": "With the water session scrapped for fog, the practical follow-up is what erg piece replaces it. A breakfast plan built on a later launch responds to a time change nobody announced, and handing over a spanner's location answers a rigging offer that was never made. Asking who sits behind them in seven consults a lineup that does not exist on machines.",
+     "kills": {
+      "0": "With the session \"moved to the ergs\", no later launch time was announced, so a breakfast plan justified by a half-hour delay has nothing to hook onto.",
+      "2": "\"The river's fogged in\" announces a change of plans, not an offer to rig a boat, so supplying a spanner's location answers no offer here.",
+      "3": "Once \"the morning session's\" on machines, nobody is seated in a boat, so asking who rows behind them in seven has no lineup to consult."
+     }
+    },
+    {
+     "kind": "offer",
+     "keyAct": "accepts by pointing to the needed tool",
+     "line": "I can rig your boat while you finish stretching, if you want.",
+     "reply": "The spanner you'd need is in my bag's side pocket.",
+     "explanationIfSpoken": "Accepting the rigging offer by pointing to where the necessary spanner sits is exactly how a rower would take the help. A breakfast plan tied to a moved start responds to a correction never given, and asking about a replacement erg workout contradicts a morning that is clearly on the water. The seven-seat question consults a lineup this offer never mentioned.",
+     "kills": {
+      "0": "Offering to \"rig your boat\" mentions no schedule change, so explaining a breakfast plan built on a moved start time responds to news never given.",
+      "1": "The offer assumes a water session — \"rig your boat\" — so asking which erg workout replaces the row contradicts what was just said.",
+      "3": "\"while you finish stretching\" is about dividing chores right now, not posting a lineup, so a question about who sits in seven has no basis here."
+     }
+    },
+    {
+     "kind": "neutral info",
+     "keyAct": "asks a detail about the posted arrangement",
+     "line": "Coach posted the seat assignments — you're stroking the second boat.",
+     "reply": "Who ended up sitting behind me in seven this time?",
+     "explanationIfSpoken": "Hearing the lineup is posted, a stroke naturally asks who fills the seat directly behind. A breakfast plan justified by a later launch answers a time correction nobody made, and the erg-workout question contradicts crews going out in boats. Pointing out a spanner responds to a rigging offer that was never extended.",
+     "kills": {
+      "0": "\"Coach posted the seat assignments\" says nothing about the start time moving, so a breakfast plan built on a later launch answers news never given.",
+      "1": "Being named to \"the second boat\" means crews are going out on the water, so asking for a replacement erg workout contradicts the line.",
+      "2": "The line reports \"the seat assignments\" and offers no rigging help, so pointing out where the spanner sits answers an offer that was never made."
+     }
+    }
+   ]
+  },
+  {
+   "localId": "crv8-b1-13",
+   "setting": "An a cappella group's audition table: the music director speaks with a student auditioning for the group.",
+   "worlds": [
+    {
+     "kind": "question",
+     "keyAct": "declines a repeat and affirms readiness",
+     "line": "Do you want the pitch played once more before you start?",
+     "reply": "One hearing was enough to plant the note in my head.",
+     "explanationIfSpoken": "Offered the pitch a second time, the singer declines because the first hearing stuck. Asking for a moment to recall a particular verse responds to an instruction never given, and scheduling around callbacks presumes a result that has not been announced. Asking where to warm up during a wait ignores that they are about to start.",
+     "kills": {
+      "1": "The line offers the pitch \"once more\" and names no verse, so asking for a moment to recall how a particular verse starts has no referent.",
+      "2": "\"before you start\" places this moment ahead of the singing, so clearing a schedule for callbacks presumes a result the singer has not earned yet.",
+      "3": "A yes-or-no offer about \"the pitch\" is not about queue position, so asking where to warm up during a wait answers a different situation entirely."
+     }
+    },
+    {
+     "kind": "request",
+     "keyAct": "buys time to comply",
+     "line": "Could you sing the second verse instead? Everyone's done the first.",
+     "reply": "Give me a moment to remember how that verse starts.",
+     "explanationIfSpoken": "Asked to switch to the second verse mid-audition, the singer reasonably asks for a beat to recall its opening. Declaring one pitch hearing was plenty declines an offer never made, and a question about when callbacks meet jumps to a result not yet delivered. Asking where to warm up while waiting contradicts being asked to perform right now.",
+     "kills": {
+      "0": "This line requests \"the second verse\", not another hearing of the pitch, so declaring one hearing was enough declines an offer that was never made.",
+      "2": "\"Everyone's done the first\" is mid-audition coaching, not a verdict, so asking when callbacks meet jumps to news that was not delivered.",
+      "3": "Asking someone to \"sing the second verse\" means they are performing this instant, so a question about warming up while waiting contradicts the moment."
+     }
+    },
+    {
+     "kind": "good news",
+     "keyAct": "asks logistics for the next stage",
+     "line": "Your range check was great — you're through to the callback round.",
+     "reply": "When do callbacks meet, so I can clear my schedule?",
+     "explanationIfSpoken": "Told they made callbacks, the singer immediately asks when that round meets so they can hold the time. Declining another pitch responds to an offer never on the table, and asking for a moment to recall a verse prepares for an instruction that was not given. The warm-up question belongs to someone still waiting to sing, which this news says is over.",
+     "kills": {
+      "0": "\"Your range check was great\" is a verdict, not an offer to replay the pitch, so saying one hearing was enough declines nothing on the table.",
+      "1": "Being told \"you're through\" ends the singing, so asking for a moment to recall a verse prepares for a request that was never made.",
+      "3": "Advancing \"to the callback round\" means today's audition is finished, so asking where to warm up while waiting no longer applies."
+     }
+    },
+    {
+     "kind": "neutral info",
+     "keyAct": "requests accommodation for the wait",
+     "line": "We audition alphabetically, so you'll be about tenth on the list.",
+     "reply": "Is there somewhere quiet to warm up while I wait?",
+     "explanationIfSpoken": "Facing a wait of nine singers, asking for a quiet spot to warm up is the practical response. Declining another pitch hearing responds to an offer never made, and asking for a moment to recall a verse answers an instruction that was not given. A callback logistics question presumes a result that cannot exist before they have sung.",
+     "kills": {
+      "0": "The line explains \"you'll be about tenth\" and offers no pitch, so declining a second hearing of the note responds to nothing said.",
+      "1": "\"We audition alphabetically\" is queue logistics, not a mid-song instruction, so asking for a moment to recall a particular verse has no trigger.",
+      "2": "Someone \"about tenth on the list\" has not sung yet, so asking when callbacks meet presumes a result that does not exist."
+     }
+    }
+   ]
+  },
+  {
+   "localId": "crv8-b1-14",
+   "setting": "The student legal aid clinic's reception desk: the receptionist talks with a student who came in about a lease dispute.",
+   "worlds": [
+    {
+     "kind": "neutral info",
+     "keyAct": "signs up and gauges the wait",
+     "line": "The advisor sees walk-ins in the order names go on this sheet.",
+     "reply": "I'll add my name now, so how long is the list?",
+     "explanationIfSpoken": "Told that walk-ins go in sheet order, the student signs up and asks how long the wait will be. Pleading for someone to look at the lease before a delay invents a setback nobody mentioned, and comparing whose letter carries more weight evaluates an offer never made. Describing a photo versus a paper copy answers a question that was never asked.",
+     "kills": {
+      "1": "The line says the advisor \"sees walk-ins\" today in sheet order, so begging for an interim look at a lease before some delay invents a setback never stated.",
+      "2": "Explaining how \"the order names\" go down offers no letter to any landlord, so weighing whose letter carries more weight evaluates an offer never made.",
+      "3": "Putting a name \"on this sheet\" is about signing up, not documents brought, so reporting only a photo of the lease answers no question asked."
+     }
+    },
+    {
+     "kind": "bad news",
+     "keyAct": "probes for an interim workaround",
+     "line": "Our housing specialist is out sick, so lease cases wait until Thursday.",
+     "reply": "Can anyone at least look over my lease before then?",
+     "explanationIfSpoken": "Hearing lease cases are delayed to Thursday, the student pushes for someone to at least glance at the lease sooner. Signing onto today's list ignores that the relevant help is delayed, and weighing whose letter carries more weight responds to an offer nobody extended. The photo-versus-paper answer replies to a question that was never posed.",
+     "kills": {
+      "0": "With lease cases pushed to \"wait until Thursday\", no useful sign-up is on offer today, so adding a name and asking the list's length ignores the delay.",
+      "2": "\"out sick\" delivers a setback, not an offer of clinic letterhead, so comparing the weight of two letters responds to nothing proposed.",
+      "3": "The line announces \"lease cases wait\" and asks for no documents, so reporting a photo versus a paper copy answers a question never posed."
+     }
+    },
+    {
+     "kind": "offer",
+     "keyAct": "weighs the offer's value before accepting",
+     "line": "We can email your landlord on clinic letterhead if you'd like.",
+     "reply": "Would a letter from you carry more weight than mine did?",
+     "explanationIfSpoken": "Offered a letter on clinic letterhead, the student sensibly asks whether it would succeed where their own letter failed. Signing onto a walk-in sheet responds to a procedure never described, and pleading for an earlier lease review reacts to a delay nobody announced. Describing which copy of the lease is on hand answers a question that was not asked.",
+     "kills": {
+      "0": "Offering to \"email your landlord\" is not an explanation of a walk-in sheet, so adding a name to a list and asking its length fits nothing said.",
+      "1": "\"if you'd like\" extends help right now and announces no absence, so pleading for someone to look at the lease before a delay invents a setback.",
+      "3": "The line proposes writing \"on clinic letterhead\" and requests no documents, so describing which copy of the lease was brought answers no question."
+     }
+    },
+    {
+     "kind": "question",
+     "keyAct": "answers with a partial substitute",
+     "line": "Did you bring the signed copy of your lease with you?",
+     "reply": "Only a photo of it, since my roommate has the paper one.",
+     "explanationIfSpoken": "Asked for the signed lease, the student explains they only have a photo because the roommate keeps the paper copy. Signing onto a list answers a procedure never described, and asking for an earlier review responds to a delay nobody announced. Weighing whose letter carries more weight evaluates an offer that was never extended.",
+     "kills": {
+      "0": "\"Did you bring\" asks about documents, not sign-up order, so adding a name to a list and asking its length belongs to a different exchange.",
+      "1": "Asking for \"the signed copy\" implies someone is ready to review it now, so begging for an earlier look responds to a delay never stated.",
+      "2": "The line asks about \"your lease with you\" and offers no letter, so weighing whose letter carries more weight responds to nothing proposed."
+     }
+    }
+   ]
+  },
+  {
+   "localId": "crv8-b1-15",
+   "setting": "A museum internship coordinator's office: the coordinator meets with a student intern about their placement.",
+   "worlds": [
+    {
+     "kind": "good news",
+     "keyAct": "asks a content follow-up about the assignment",
+     "line": "The curator picked you to help hang the new photography exhibit.",
+     "reply": "Which photographs is the exhibit built around this time?",
+     "explanationIfSpoken": "Chosen to help hang the photography show, the intern naturally asks what work the exhibit centers on. Asking where to reprint something responds to a badge error nobody mentioned, and bargaining for a tour script answers a coverage request never made. Worrying about fall placements reacts to a funding blow that was never dealt.",
+     "kills": {
+      "1": "The line says the curator \"picked you\" for an exhibit and mentions no badge, so asking where to get one reprinted has no error to fix.",
+      "2": "Being chosen to \"help hang\" a show is an honor announced, not a favor asked, so conditional agreement pending a tour script accepts a request never made.",
+      "3": "News of \"the new photography exhibit\" going up signals things proceeding, so probing how lost funding touches fall placements answers a blow never dealt."
+     }
+    },
+    {
+     "kind": "correction",
+     "keyAct": "asks how to remedy the error",
+     "line": "Small fix — your badge says visitor services, but you're in collections.",
+     "reply": "Where do I go to get it reprinted?",
+     "explanationIfSpoken": "Told the badge lists the wrong department, the intern asks where to have it corrected. Asking which photographs anchor a show follows exhibit news that was never shared, and bargaining for a tour script answers a request nobody made. Worrying about fall placements reacts to funding news that was never given.",
+     "kills": {
+      "0": "A badge that \"says visitor services\" is a clerical slip, not exhibit news, so asking which photographs anchor the show follows nothing said here.",
+      "2": "The line flags \"your badge\" and requests no tour coverage, so bargaining for a script before saying yes responds to no request.",
+      "3": "\"you're in collections\" fixes a label and reports no lost funding, so asking whether fall placements are affected reacts to news never given."
+     }
+    },
+    {
+     "kind": "request",
+     "keyAct": "accepts conditionally on materials",
+     "line": "Could you cover the Saturday gallery tour? Marcus just dropped it.",
+     "reply": "If someone lends me the tour script, I'm in.",
+     "explanationIfSpoken": "Asked to take over Saturday's tour, the intern agrees on the condition of getting the script. A question about which photographs anchor an exhibit follows news never shared, and asking where to reprint something repairs a badge error nobody flagged. Worrying about fall placements responds to funding news that was never delivered.",
+     "kills": {
+      "0": "Asking someone to \"cover the Saturday gallery tour\" shares no exhibit news, so a question about which photographs the show features fits nothing here.",
+      "1": "\"Marcus just dropped it\" explains a staffing hole, not a badge error, so asking where to get a reprint repairs nothing mentioned.",
+      "3": "The favor concerns \"the Saturday gallery tour\" and reports no cuts, so worrying over fall placements answers news that was not delivered."
+     }
+    },
+    {
+     "kind": "bad news",
+     "keyAct": "asks about the scope of the impact",
+     "line": "Funding fell through, so spring internships won't be offered this year.",
+     "reply": "Does that change anything about the fall placements already made?",
+     "explanationIfSpoken": "Hearing spring internships are cancelled, the intern asks whether the damage reaches the fall placements too. Asking which photographs a show features celebrates an assignment never announced, and the reprint question fixes a badge error nobody raised. Conditional agreement pending a tour script accepts a coverage request that was never made.",
+     "kills": {
+      "0": "\"Funding fell through\" is a loss, not an exhibit assignment, so asking which photographs the show is built around celebrates nothing said.",
+      "1": "The line cancels \"spring internships\" and mentions no badge, so asking where to reprint one fixes an error never raised.",
+      "2": "A program that \"won't be offered\" is not a request to cover a tour, so conditional agreement pending a script accepts nothing asked."
+     }
+    }
+   ]
+  },
+  {
+   "localId": "crv8-b1-16",
+   "setting": "The campus safety escort service dispatch desk at night: the dispatcher talks with a student volunteer driver.",
+   "worlds": [
+    {
+     "kind": "request",
+     "keyAct": "accepts and requests contact details",
+     "line": "Someone at the library needs an escort to north dorms — free?",
+     "reply": "Send me their number and I'll head over now.",
+     "explanationIfSpoken": "Given a live escort request, the volunteer accepts and asks for the caller's number to coordinate the pickup. Asking who covers the late van answers a rotation policy never described, and the bulb-and-mount report answers a maintenance question nobody asked. Musing about a new cart and wait times reacts to funding news never announced.",
+     "kills": {
+      "1": "The line concerns one rider \"at the library\" right now, not late-shift staffing, so asking who takes the late van tonight ignores the waiting caller.",
+      "2": "\"needs an escort\" is a dispatch, not a maintenance question, so a report about a swapped bulb and rattling mount answers nothing asked.",
+      "3": "Dispatching a walk \"to north dorms\" carries no funding news, so musing whether a new cart shortens waits reacts to nothing announced."
+     }
+    },
+    {
+     "kind": "neutral info",
+     "keyAct": "asks how the policy applies to them",
+     "line": "Requests slow down after midnight, so we rotate one van instead of two.",
+     "reply": "Which of us two is on the late van tonight?",
+     "explanationIfSpoken": "Hearing that only one van runs late, the volunteer asks which of them draws that shift. Offering to head over once given a number serves a caller who does not exist in this line, and the headlight status answers a question never posed. Linking a new cart to shorter waits builds on funding news never shared.",
+     "kills": {
+      "0": "The line describes how \"we rotate one van\" as standing policy and names no caller, so asking for someone's number to head over now serves nobody.",
+      "2": "Staffing \"after midnight\" has nothing to do with a headlight repair, so the bulb-and-mount status answers a question that was not asked.",
+      "3": "Noting that \"Requests slow down\" is routine shift talk, not new funding, so connecting a second cart to wait times has no news to build on."
+     }
+    },
+    {
+     "kind": "question",
+     "keyAct": "answers with status plus a caveat",
+     "line": "Has the golf cart's headlight been fixed since last weekend?",
+     "reply": "Facilities swapped the bulb, but the mount still rattles.",
+     "explanationIfSpoken": "Asked about the headlight, the volunteer gives the repair status along with the part still not right. Requesting a caller's number dispatches nobody, since no rider was mentioned, and naming who rides the late van answers a rotation question never posed. Tying a new cart to shorter waits celebrates funding news that was never shared.",
+     "kills": {
+      "0": "\"Has the golf cart's headlight been fixed\" seeks a repair status, not a pickup, so offering to head over once given a number dispatches no one.",
+      "1": "A question about \"the golf cart's headlight\" is not about van rotation, so naming who rides the late van answers something never asked.",
+      "3": "Asking whether a light was fixed \"since last weekend\" reports no funding win, so tying a new cart to shorter waits celebrates nothing said."
+     }
+    },
+    {
+     "kind": "good news",
+     "keyAct": "connects the news to service impact",
+     "line": "The provost approved funding for a second cart starting next month.",
+     "reply": "Does a new cart mean we can shorten wait times?",
+     "explanationIfSpoken": "Told a second cart is funded, the volunteer connects the news to what riders care about, shorter waits. Asking for a caller's number has nobody to escort, and the late-van question answers a rotation policy never described. The bulb-and-mount report answers a maintenance question that was never asked.",
+     "kills": {
+      "0": "\"The provost approved funding\" is an announcement with no caller attached, so asking for a number to head over now has nobody to escort.",
+      "1": "News of \"a second cart\" next month says nothing about tonight's vans, so asking who covers the late shift answers a different topic.",
+      "2": "Looking ahead to a cart \"starting next month\", the line asks nothing, so a status report on a bulb and rattling mount answers no question."
+     }
+    }
+   ]
+  },
+  {
+   "localId": "crv8-b1-17",
+   "setting": "The club sports equipment cage: the cage attendant talks with a club team captain checking out gear for practice.",
+   "worlds": [
+    {
+     "kind": "correction",
+     "keyAct": "acknowledges the mix-up via a telltale detail",
+     "line": "Those helmets belong to lacrosse — your club's bin is two shelves down.",
+     "reply": "No wonder none of these had our tape marks.",
+     "explanationIfSpoken": "Told they grabbed lacrosse's helmets, the captain realizes why the club's usual tape marks were missing. Judging that twelve will cover it accepts a cone offer never extended, and counting what is usable tonight reacts to damage nobody reported. A promise to confirm the roster answers a jersey question that was never asked.",
+     "kills": {
+      "1": "The line redirects to \"your club's bin\" and offers no count of anything, so judging that twelve should cover it accepts an offer never made.",
+      "2": "\"belong to lacrosse\" flags a mix-up, not ruined gear, so asking how many usable balls remain tonight responds to no damage report.",
+      "3": "Pointing \"two shelves down\" is about finding gear, not jersey sizing, so promising roster confirmation by Thursday answers a question not asked."
+     }
+    },
+    {
+     "kind": "offer",
+     "keyAct": "accepts and confirms the amount suffices",
+     "line": "I can hold twelve cones for your Thursday session if that helps.",
+     "reply": "Twelve should cover it, since our own cones keep vanishing.",
+     "explanationIfSpoken": "Offered twelve reserved cones, the captain accepts and explains why the hold matters, their own keep disappearing. The tape-marks remark explains a bin mix-up that never happened, and counting usable balls reacts to a loss never announced. A roster timeline answers a jersey deadline nobody mentioned.",
+     "kills": {
+      "0": "Offering to \"hold twelve cones\" involves no grabbing of a wrong bin, so the remark about missing tape marks explains a mix-up that never happened.",
+      "2": "Planning \"for your Thursday session\" reports nothing ruined, so asking what is left usable tonight reacts to a loss never announced.",
+      "3": "The line extends help \"if that helps\" and asks nothing about players, so a promise to confirm the roster answers no question here."
+     }
+    },
+    {
+     "kind": "bad news",
+     "keyAct": "quantifies what remains after the loss",
+     "line": "Half the practice balls came back waterlogged and have to be tossed.",
+     "reply": "How many usable ones does that leave us for tonight?",
+     "explanationIfSpoken": "Hearing half the balls are ruined, the captain asks exactly how many remain for tonight's practice. The tape-marks comment responds to a shelving mix-up nobody flagged, and approving twelve as enough accepts a cone offer never extended. Promising roster sizes by Thursday answers a jersey question that was never asked.",
+     "kills": {
+      "0": "\"Half the practice balls\" being ruined is not a shelving correction, so noting the absence of tape marks responds to a mix-up nobody flagged.",
+      "1": "The line says gear must \"be tossed\" and offers nothing, so approving twelve as sufficient accepts an offer that was never extended.",
+      "3": "Balls that \"came back waterlogged\" are tonight's problem, not jersey paperwork, so a Thursday roster promise answers a different question."
+     }
+    },
+    {
+     "kind": "question",
+     "keyAct": "gives a timeline for the outstanding answer",
+     "line": "Is your roster finalized? Sizes for the new jerseys are due Friday.",
+     "reply": "Two players are still deciding, but I'll confirm by Thursday.",
+     "explanationIfSpoken": "Asked whether the roster is set before the jersey deadline, the captain explains what is outstanding and commits to a date. The tape-marks remark explains a helmet mix-up that never came up, and approving twelve cones accepts an offer nobody made. Counting usable balls reacts to damage that was never reported.",
+     "kills": {
+      "0": "Asking \"Is your roster finalized\" involves no misplaced helmets, so the comment about missing tape marks explains nothing in this exchange.",
+      "1": "A deadline about \"the new jerseys\" is not a cone offer, so judging that twelve will cover it responds to no proposal.",
+      "2": "Sizes being \"due Friday\" reports no damaged equipment, so counting what is usable for tonight reacts to a loss never mentioned."
+     }
+    }
+   ]
+  },
+  {
+   "localId": "crv8-b1-18",
+   "setting": "A language exchange meetup: the organizer talks with an attendee at the sign-in table before the session starts.",
+   "worlds": [
+    {
+     "kind": "neutral info",
+     "keyAct": "raises a consequence of the format",
+     "line": "We switch partners every twenty minutes when the bell rings.",
+     "reply": "Twenty minutes goes fast, so is there time to trade contacts?",
+     "explanationIfSpoken": "Hearing the rotation is only twenty minutes, the attendee wonders whether that leaves room to swap contact details before moving on. Asking to be paired with a particular speaker points at arrivals never mentioned, and conditionally agreeing to take notes accepts a request nobody made. Shelving menu vocabulary reacts to a theme change never announced.",
+     "kills": {
+      "1": "The line explains rotation \"when the bell rings\" and mentions no new arrivals, so asking to be paired with one has nobody to point to.",
+      "2": "\"We switch partners\" is house procedure, not a plea for help, so conditionally agreeing to take notes accepts a request never made.",
+      "3": "Describing the \"every twenty minutes\" rhythm announces no theme change, so shelving prepped menu vocabulary reacts to a correction that never came."
+     }
+    },
+    {
+     "kind": "good news",
+     "keyAct": "acts on the news with a placement request",
+     "line": "Two native Portuguese speakers joined tonight — you asked for that last week.",
+     "reply": "Can you pair me with one for the first round?",
+     "explanationIfSpoken": "Told the Portuguese speakers they requested have arrived, the attendee immediately asks to be matched with one. The remark about twenty minutes references a rotation rule this line never gave, and the note-taking agreement answers a favor nobody asked. Postponing menu vocabulary responds to a theme switch that was never announced.",
+     "kills": {
+      "0": "The line celebrates who \"joined tonight\" and states no rotation length, so remarking that twenty minutes goes fast cites a rule never given.",
+      "2": "\"you asked for that\" recalls a wish granted, not a favor needed, so agreeing to note-taking with a vocabulary caveat answers no request.",
+      "3": "The arrival of \"native Portuguese speakers\" changes no theme, so postponing menu vocabulary responds to a switch nobody announced."
+     }
+    },
+    {
+     "kind": "request",
+     "keyAct": "agrees while flagging a limitation",
+     "line": "Could you take notes for the beginner table? Our helper cancelled.",
+     "reply": "I can, if the beginners don't mind my basic vocabulary.",
+     "explanationIfSpoken": "Asked to fill in at the beginner table, the attendee agrees while admitting their vocabulary is limited. The twenty-minutes remark cites a rotation rule this line never stated, and asking to be paired with a Portuguese speaker points at arrivals nobody mentioned. Shelving menu vocabulary reacts to a theme correction that never came.",
+     "kills": {
+      "0": "A plea to help \"the beginner table\" states no rotation timing, so the quip about twenty minutes and trading contacts floats free of this line.",
+      "1": "\"Our helper cancelled\" is a staffing gap, not the arrival of Portuguese speakers, so requesting to be paired with one points at no one.",
+      "3": "A request to \"take notes\" involves no theme correction, so declaring the menu vocabulary must wait reacts to nothing said here."
+     }
+    },
+    {
+     "kind": "correction",
+     "keyAct": "adapts prepared material to the change",
+     "line": "Heads up — tonight's theme is travel stories, not food like the flyer said.",
+     "reply": "Then the menu vocabulary I prepped will have to wait.",
+     "explanationIfSpoken": "Learning the theme switched from food to travel, the attendee sets aside the menu vocabulary they prepared. Timing worries about twenty minutes cite a rotation rule never given, and asking to be paired with a Portuguese speaker points at arrivals nobody mentioned. Conditional agreement about note-taking accepts a job that was never offered.",
+     "kills": {
+      "0": "The line swaps themes — \"travel stories, not food\" — and gives no rotation rule, so timing worries about twenty minutes answer nothing stated.",
+      "1": "Correcting \"the flyer\" adds no new attendees, so asking to be paired with a Portuguese speaker for round one has no basis here.",
+      "2": "\"Heads up\" delivers a change of topic, not a request for note-taking, so conditional agreement about vocabulary accepts a job never offered."
+     }
+    }
+   ]
+  },
+  {
+   "localId": "crv8-b1-19",
+   "setting": "The campus sustainability office's bike rack audit: a staffer talks with a student volunteer doing the counting.",
+   "worlds": [
+    {
+     "kind": "question",
+     "keyAct": "reports a count with supporting criteria",
+     "line": "How many bikes on the science quad racks looked abandoned?",
+     "reply": "Nineteen had flat tires and rusted chains, so I flagged each.",
+     "explanationIfSpoken": "Asked for the abandoned count, the volunteer gives the number and the criteria used to flag them. Praising a laminated sheet over a soggy clipboard evaluates an offer never extended, and producing a paper backup rescues data nobody said was lost. Promising a garage detour amends instructions that were never given.",
+     "kills": {
+      "1": "The line requests a count from \"the science quad\" and offers no printout, so praising a laminated sheet over a soggy clipboard answers no offer.",
+      "2": "Asking which bikes \"looked abandoned\" reports no crash, so producing a paper backup of scanned tags rescues data nobody lost.",
+      "3": "A question about \"the science quad racks\" adds no new locations, so promising a garage stop before totals amends instructions never given."
+     }
+    },
+    {
+     "kind": "offer",
+     "keyAct": "accepts by contrast with the current tool",
+     "line": "I can print you a laminated tally sheet for rainy days.",
+     "reply": "That would beat the soggy clipboard I used last week.",
+     "explanationIfSpoken": "Offered a laminated tally sheet, the volunteer accepts by contrasting it with last week's soggy clipboard. Reciting nineteen flagged bikes answers a count question never posed, and volunteering a paper backup repairs a data loss nobody reported. A garage detour responds to a mapping correction that was never made.",
+     "kills": {
+      "0": "Offering \"a laminated tally sheet\" asks for no numbers, so a count of nineteen flagged bikes answers a question that was not posed.",
+      "2": "Planning \"for rainy days\" is about future comfort, not a lost dataset, so volunteering a backup of this morning's tags repairs nothing here.",
+      "3": "The line offers to \"print you\" a sheet and assigns no new racks, so planning a garage detour responds to no instruction."
+     }
+    },
+    {
+     "kind": "bad news",
+     "keyAct": "offers a backup that softens the loss",
+     "line": "The registration database crashed, so today's tag numbers didn't save.",
+     "reply": "My paper backup lists every tag I scanned this morning.",
+     "explanationIfSpoken": "Told the database lost today's tags, the volunteer softens the blow by producing a paper backup of every tag scanned. The count of nineteen answers a question never asked, and ranking a laminated sheet against a clipboard evaluates an offer never made. The garage promise corrects a map error nobody mentioned.",
+     "kills": {
+      "0": "\"The registration database crashed\" reports a loss without asking for figures, so the tally of nineteen abandoned bikes answers no question here.",
+      "1": "Losing \"today's tag numbers\" is not an offer of supplies, so comparing a laminated sheet with a soggy clipboard evaluates nothing proposed.",
+      "3": "The crash means the data \"didn't save\" — the line adds no missed location, so promising to swing by the garage corrects a map never mentioned."
+     }
+    },
+    {
+     "kind": "correction",
+     "keyAct": "amends the plan to include the missed area",
+     "line": "Count the covered garage racks too — the map you got left them out.",
+     "reply": "I'll swing by the garage before I turn in totals.",
+     "explanationIfSpoken": "Told the map omitted the covered garage, the volunteer adds a garage stop before submitting totals. Reciting nineteen flagged bikes answers a count question that was never asked here, and ranking a laminated sheet against a clipboard evaluates an offer never made. The paper backup rescues data nobody said was lost.",
+     "kills": {
+      "0": "The line adds \"the covered garage racks\" without asking for figures, so reciting nineteen flagged bikes answers a question that was not asked.",
+      "1": "Fixing \"the map you got\" offers no laminated printout, so ranking one against a soggy clipboard responds to no offer.",
+      "2": "The instruction to \"Count the covered\" racks reports no crash, so producing a paper backup of scanned tags saves data nobody lost."
+     }
+    }
+   ]
+  },
+  {
+   "localId": "crv8-b1-20",
+   "setting": "An orientation leader training room: the training coordinator talks with a student trainee between sessions.",
+   "worlds": [
+    {
+     "kind": "offer",
+     "keyAct": "accepts the modeled demonstration",
+     "line": "If icebreakers make you nervous, I can demo one with your group.",
+     "reply": "Watching you run one first would settle my nerves.",
+     "explanationIfSpoken": "Offered a demonstration icebreaker, the nervous trainee accepts, since seeing one modeled first would help. Asking whether the tour route matches the binders answers rehearsal logistics never mentioned, and the mics question presumes a convocation result never announced. Asking whether indoor hours count reacts to a closure nobody reported.",
+     "kills": {
+      "1": "The line offers to \"demo one\" icebreaker and schedules no walking, so asking whether the tour route matches the binders answers different logistics.",
+      "2": "\"If icebreakers make you nervous\" is coaching, not a competition result, so asking about mics at convocation presumes news never delivered.",
+      "3": "Offering help \"with your group\" closes no facility, so asking whether an indoor version counts for hours reacts to no cancellation."
+     }
+    },
+    {
+     "kind": "neutral info",
+     "keyAct": "verifies materials match the activity",
+     "line": "Tomorrow we rehearse campus tours, so wear shoes you can walk in.",
+     "reply": "Is the tour route the same one printed in our binders?",
+     "explanationIfSpoken": "Told tomorrow is tour rehearsal, the trainee checks whether the binder's printed route is the one they will walk. Accepting a modeled icebreaker answers an offer never extended, and the convocation mics question jumps to results never shared. Asking whether indoor sessions still count responds to a closure nobody announced.",
+     "kills": {
+      "0": "The line says \"we rehearse campus tours\" and extends no demo, so accepting a modeled icebreaker to settle nerves answers no offer.",
+      "2": "Advice to \"wear shoes\" for walking carries no skit results, so a staging question about convocation mics jumps to news never shared.",
+      "3": "\"Tomorrow we rehearse\" describes plans proceeding normally and announces no closure, so asking whether indoor hours still count answers nothing said."
+     }
+    },
+    {
+     "kind": "good news",
+     "keyAct": "asks a staging question for the venue",
+     "line": "Your practice skit scored highest — you'll perform it at convocation.",
+     "reply": "Will the convocation stage have mics, or do we project?",
+     "explanationIfSpoken": "Told their skit will be performed at convocation, the trainee asks a practical staging question about the bigger venue. Wanting to watch a demo icebreaker accepts an offer never made, and the binder route question asks about a rehearsal never mentioned. The facilitation-hours worry responds to a closure that was never announced.",
+     "kills": {
+      "0": "\"Your practice skit scored highest\" is a verdict, not an icebreaker offer, so asking to watch one modeled first accepts nothing extended.",
+      "1": "Winning a slot \"at convocation\" involves no tour rehearsal, so checking the route against the binders asks about plans never mentioned.",
+      "3": "The line celebrates a skit that \"scored highest\" and closes nothing, so asking whether indoor sessions still count reacts to no setback."
+     }
+    },
+    {
+     "kind": "bad news",
+     "keyAct": "checks the change against requirements",
+     "line": "The ropes course is closed for repairs, so team-building moves indoors.",
+     "reply": "Does the indoor version still count toward our facilitation hours?",
+     "explanationIfSpoken": "With the ropes course closed and team-building moved indoors, the trainee checks whether the substitute still counts toward required facilitation hours. Wanting to watch a demo icebreaker accepts an offer never made, and the binder route question concerns a rehearsal never mentioned. The mics question celebrates a convocation result that was never delivered.",
+     "kills": {
+      "0": "\"closed for repairs\" is scheduling news, not an offer to model an icebreaker, so wanting to watch one first accepts nothing offered.",
+      "1": "Team-building that \"moves indoors\" says nothing about tour rehearsals, so asking whether the route matches the binders answers a different plan.",
+      "2": "\"The ropes course\" closing carries no skit victory, so a question about convocation mics celebrates news that was never given."
+     }
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,1088 @@
+{
+ "cohort": "cr-v8",
+ "stage": 1,
+ "batch": "b2",
+ "method": "symmetric four-world authoring, post-hoc seeded key selection",
+ "items": [
+  {
+   "localId": "crv8-b2-01",
+   "setting": "Town watch repair counter: a repairer behind the counter speaking with a customer who brought in a watch.",
+   "worlds": [
+    {
+     "kind": "bad news",
+     "keyAct": "declines the repair in favor of buying new",
+     "line": "The movement's cracked — a repair would cost more than the watch is worth.",
+     "reply": "Then I'd rather put that money toward a new one.",
+     "explanationIfSpoken": "Told that fixing the watch would cost more than the watch is worth, deciding to put the money toward a new one is the natural response. Asking to swap the battery while waiting ignores the verdict that repair isn't worthwhile, and 'just the strap for now' answers a glass-or-strap choice that was never posed. Wanting initials engraved responds to a free-engraving offer nobody made.",
+     "kills": {
+      "1": "The line judges fixing to cost \"more than the watch is worth\", so there is no cheap battery swap on the table to wait for.",
+      "2": "It declares that \"a repair would cost\" too much overall; no glass-versus-strap choice is offered, so picking just the strap answers a question never asked.",
+      "3": "A verdict that fixing exceeds what \"the watch is worth\" contains no engraving offer for initials to accept."
+     }
+    },
+    {
+     "kind": "good news",
+     "keyAct": "asks for immediate service on the spot",
+     "line": "Good timing — we just got the exact battery your model needs.",
+     "reply": "Could you swap the battery in while I wait?",
+     "explanationIfSpoken": "When the shop announces the exact battery has just arrived, asking to have it swapped in while waiting follows directly. Abandoning the watch for a new one makes no sense when the fix is a cheap battery, and 'just the strap for now' answers a scope question nobody asked. Requesting initials engraved responds to an offer that was never made.",
+     "kills": {
+      "0": "Announcing that \"the exact battery\" has arrived is cheap good news, not a cost verdict that would justify buying a new watch.",
+      "2": "The line concerns the \"battery your model\" needs; no scratched glass or strap choice exists to narrow down.",
+      "3": "Saying \"we just got\" a battery offers no free engraving, so asking for initials responds to nothing said."
+     }
+    },
+    {
+     "kind": "question",
+     "keyAct": "narrows the job to one part",
+     "line": "Did you want the scratched glass replaced too, or just the strap?",
+     "reply": "Just the strap for now — the glass barely bothers me.",
+     "explanationIfSpoken": "Asked whether to replace the scratched glass too or just the strap, choosing just the strap and dismissing the glass answers the question exactly. Walking away toward a new watch responds to a price verdict never delivered, and asking to swap a battery while waiting has no battery news behind it. Offering initials for engraving belongs to a promotion nobody mentioned.",
+     "kills": {
+      "0": "A question about \"the scratched glass\" versus the strap sets no price, so abandoning the watch for a new one is unmotivated.",
+      "1": "The choice posed is \"glass replaced too\" or the strap; no battery has arrived to be swapped while waiting.",
+      "3": "Asking \"or just the strap\" is about repair scope, not engraving, so offering initials answers a different conversation."
+     }
+    },
+    {
+     "kind": "offer",
+     "keyAct": "accepts the add-on with a personal choice",
+     "line": "We can engrave the back for free with any repair this month.",
+     "reply": "My initials on it would make a nice touch.",
+     "explanationIfSpoken": "Offered free engraving with any repair, suggesting initials takes the offer up naturally. Putting money toward a new watch reacts to a repair-too-expensive verdict that was never given, and asking for a battery swap while waiting has no arrived battery behind it. Choosing 'just the strap' answers a glass-or-strap question that was never posed.",
+     "kills": {
+      "0": "Something offered \"for free with\" a repair delivers no cost blow to walk away from toward a new watch.",
+      "1": "The line offers to \"engrave the back\", not to fit a battery, so asking for a battery swap fits nothing said.",
+      "2": "An engraving promotion \"with any repair\" poses no glass-or-strap question for 'just the strap' to answer."
+     }
+    }
+   ]
+  },
+  {
+   "localId": "crv8-b2-02",
+   "setting": "Picture framing shop: a framer at the counter with a customer framing a poster.",
+   "worlds": [
+    {
+     "kind": "question",
+     "keyAct": "picks a style and gives a reason",
+     "line": "Would you like the poster mounted flat, or floating with a shadow gap?",
+     "reply": "Floating, please — the ragged edges are part of the look.",
+     "explanationIfSpoken": "Asked to choose between flat mounting and floating with a shadow gap, picking floating because the ragged edges matter answers the question directly. Demanding a remeasure before cutting responds to a sizing error nobody reported, and agreeing to Thursday accepts a date never proposed. Asking about touch-ups or replacement presumes damage that was never mentioned.",
+     "kills": {
+      "1": "A mounting-style question about \"mounted flat, or floating\" involves no measurement mistake, so remeasuring before cutting responds to nothing.",
+      "2": "Asking about \"a shadow gap\" sets no pickup date, so agreeing to Thursday hangs in the air.",
+      "3": "\"Would you like\" a mounting style reports no damage, so asking about touch-ups or replacement fits nothing here."
+     }
+    },
+    {
+     "kind": "correction",
+     "keyAct": "halts the work pending a recheck",
+     "line": "Actually your frame was quoted in centimeters, not inches — it'll run smaller.",
+     "reply": "Then let's remeasure everything before you cut the frame.",
+     "explanationIfSpoken": "Warned that the frame was quoted in centimeters instead of inches and will run smaller, insisting on a remeasure before any cutting is the sensible response. Choosing floating over flat answers a style question never asked, and agreeing to leave the piece until Thursday responds to no request. Asking whether damage can be touched up misreads a units mix-up as a chipped frame.",
+     "kills": {
+      "0": "A warning that the frame was \"quoted in centimeters\" is not a style question, so choosing floating over flat answers nothing asked.",
+      "2": "News that it will \"run smaller\" mentions no Thursday deadline to accept.",
+      "3": "The problem is units, \"centimeters, not inches\" — nothing is chipped, so touch-up versus replacement misreads the issue."
+     }
+    },
+    {
+     "kind": "request",
+     "keyAct": "grants the extra time",
+     "line": "Could you leave the artwork with us until Thursday afternoon?",
+     "reply": "Thursday works — I don't need it before the weekend.",
+     "explanationIfSpoken": "Asked to leave the artwork until Thursday afternoon, agreeing because it isn't needed before the weekend grants the request cleanly. Choosing a floating mount answers a style question never posed, and calling for a remeasure responds to a sizing error nobody flagged. Asking about touch-ups or frame replacement presumes damage that was never confessed.",
+     "kills": {
+      "0": "A request to \"leave the artwork\" for a few days asks nothing about flat versus floating mounts.",
+      "1": "Keeping the piece \"until Thursday afternoon\" implies no sizing error, so demanding a remeasure before cutting is unprompted.",
+      "3": "\"Could you leave\" the artwork reports no chipped corner, so the repair-or-replace question has no target."
+     }
+    },
+    {
+     "kind": "bad news",
+     "keyAct": "asks how the damage will be remedied",
+     "line": "I'm afraid we chipped the corner of your frame while fitting it.",
+     "reply": "Can you touch it up, or does the whole frame need replacing?",
+     "explanationIfSpoken": "Told the shop chipped the corner of the frame, asking whether it can be touched up or must be replaced addresses the damage head-on. Picking a floating mount answers a question about style that was never asked, and calling for a remeasure treats a chip as a sizing error. Agreeing to Thursday grants a request to keep the artwork that was never made.",
+     "kills": {
+      "0": "Confessing \"we chipped the corner\" is an apology, not a mounting-style question, so choosing floating answers nothing.",
+      "1": "The mishap happened \"while fitting it\"; no unit mix-up is mentioned, so a remeasure fixes nothing described.",
+      "2": "Admitting damage to \"your frame\" makes no request about leaving the artwork until Thursday."
+     }
+    }
+   ]
+  },
+  {
+   "localId": "crv8-b2-03",
+   "setting": "Key cutting kiosk: the operator speaking with a customer who wants keys copied.",
+   "worlds": [
+    {
+     "kind": "bad news",
+     "keyAct": "seeks an alternative provider",
+     "line": "This blank keeps snapping in the cutter — your key's an odd profile.",
+     "reply": "Is there a locksmith nearby who stocks unusual blanks?",
+     "explanationIfSpoken": "When the blank keeps snapping because the key has an odd profile, asking for a locksmith who stocks unusual blanks tackles the actual obstacle. Promising to email a landlord addresses a permission rule nobody stated, and paying extra for a colored copy assumes cutting is going fine. Testing a key in the ignition presumes a finished copy that was never produced.",
+     "kills": {
+      "1": "A blank \"snapping in the cutter\" is a hardware problem, not a rule about mailbox copies, so emailing a landlord solves nothing.",
+      "2": "With \"an odd profile\" defeating the machine, no orange color upgrade is on the table to pay extra for.",
+      "3": "\"keeps snapping\" means no copy was produced, so there is nothing to test in an ignition."
+     }
+    },
+    {
+     "kind": "neutral info",
+     "keyAct": "commits to supplying the required document",
+     "line": "Copies for the building's mailboxes need written approval from the landlord.",
+     "reply": "I'll email my landlord tonight and bring the note tomorrow.",
+     "explanationIfSpoken": "Told that mailbox copies need written approval from the landlord, promising to email the landlord and bring the note tomorrow satisfies the requirement. Hunting for a locksmith with unusual blanks answers a cutting failure that never happened, and paying extra for an orange copy accepts an offer never made. Testing a car key in the ignition responds to a finished job nobody announced.",
+     "kills": {
+      "0": "A policy that mailbox keys \"need written approval\" is not a cutting failure, so hunting for a locksmith with unusual blanks misses the point.",
+      "2": "The line is about \"the building's mailboxes\" paperwork, with no orange copy offered to pay extra for.",
+      "3": "Requiring \"approval from the landlord\" concerns permission, not a finished car key, so testing an ignition fits nothing."
+     }
+    },
+    {
+     "kind": "offer",
+     "keyAct": "pays extra citing a practical benefit",
+     "line": "For fifty cents extra we can cut your house key in bright orange.",
+     "reply": "I'll pay the extra — I can never find the silver ones.",
+     "explanationIfSpoken": "Offered a bright orange house key for fifty cents more, paying the extra because silver keys get lost is a direct acceptance. Asking for a locksmith with unusual blanks reacts to a cutting failure nobody reported, and promising a landlord's note satisfies a mailbox rule never stated. Testing a key in the ignition treats a house key as a finished car key.",
+     "kills": {
+      "0": "An offer of \"fifty cents extra\" for color means cutting is working fine, so no locksmith with rare blanks is needed.",
+      "1": "Coloring \"your house key\" involves no mailbox rule, so promising a landlord's note answers nothing.",
+      "3": "The subject is a house key \"in bright orange\", not a car key, so an ignition test is beside the point."
+     }
+    },
+    {
+     "kind": "good news",
+     "keyAct": "requests a trial before paying",
+     "line": "Your tricky car key actually came out perfectly on the first pass.",
+     "reply": "Let me test it in the ignition before I pay.",
+     "explanationIfSpoken": "Hearing that the tricky car key came out perfectly, asking to test it in the ignition before paying is the prudent next step. Seeking a locksmith with unusual blanks contradicts the success just reported, and emailing a landlord meets a mailbox rule nobody mentioned. Paying fifty cents extra for orange accepts a color offer that was never made.",
+     "kills": {
+      "0": "A key that \"came out perfectly\" defeats the premise of hunting for a locksmith who stocks unusual blanks.",
+      "1": "Success \"on the first pass\" raises no landlord-approval requirement to satisfy tomorrow.",
+      "2": "The line reports a finished \"tricky car key\", offering no fifty-cent color option to pay extra for."
+     }
+    }
+   ]
+  },
+  {
+   "localId": "crv8-b2-04",
+   "setting": "Shoe store fitting bench: a salesperson kneeling by a customer trying on running shoes.",
+   "worlds": [
+    {
+     "kind": "request",
+     "keyAct": "asks a clarifying question before complying",
+     "line": "Could you walk to the mirror and back so I can watch the fit?",
+     "reply": "On carpet or the hard floor by the door?",
+     "explanationIfSpoken": "Asked to walk to the mirror and back, checking whether to walk on carpet or the hard floor clarifies before complying. Switching to the trail model reacts to a width shortage nobody mentioned, and buying a second grey pair celebrates a discount never announced. Describing thin summer socks answers a sock question that was never asked.",
+     "kills": {
+      "1": "Asking the customer to \"walk to the mirror\" implies the shoes are on hand, so switching models over missing wide sizes fits nothing said.",
+      "2": "Wanting to \"watch the fit\" mentions no clearance price, so grabbing a second pair in grey is unprompted.",
+      "3": "The request is to walk \"to the mirror and back\", not a question about socks, so describing summer sock habits answers nothing."
+     }
+    },
+    {
+     "kind": "bad news",
+     "keyAct": "proposes a substitute product",
+     "line": "We're out of the wide fit in nines — only regular width left.",
+     "reply": "If wide's gone, I'll try the trail model instead.",
+     "explanationIfSpoken": "Told the wide fit in nines is gone, pivoting to try the trail model instead deals with the shortage directly. Asking which floor to walk on responds to a walking request never made, and grabbing a second grey pair celebrates a clearance nobody announced. An answer about thin summer socks meets a question that was never posed.",
+     "kills": {
+      "0": "A stock report that the store is \"out of the wide\" size makes no walking request, so asking carpet-or-hard-floor answers nothing.",
+      "2": "With \"only regular width\" available there is no discount news, so buying a second grey pair celebrates nothing.",
+      "3": "\"the wide fit\" being gone is about width stock, not sock habits, so an answer about thin summer socks misses it."
+     }
+    },
+    {
+     "kind": "good news",
+     "keyAct": "expands the purchase on the news",
+     "line": "That same runner just went on clearance — forty percent off today.",
+     "reply": "In that case I'll grab the grey pair as well.",
+     "explanationIfSpoken": "Hearing the runner just went to forty percent off, adding the grey pair takes advantage of the deal naturally. Asking whether to walk on carpet answers a fitting request never made, and falling back to the trail model reacts to a width shortage nobody reported. Talking about thin summer socks answers a question that was never asked.",
+     "kills": {
+      "0": "A price announcement of \"forty percent off\" makes no request to walk, so clarifying which floor to walk on fits nothing.",
+      "1": "\"went on clearance\" says nothing about wide sizes running out, so falling back to the trail model is unmotivated.",
+      "3": "Discount news about \"That same runner\" asks nothing about socks, so the thin-socks answer has no question to meet."
+     }
+    },
+    {
+     "kind": "question",
+     "keyAct": "answers with a usage detail",
+     "line": "Do you usually wear these with thick hiking socks or thin ones?",
+     "reply": "Thin ones mostly — I only hike in summer.",
+     "explanationIfSpoken": "Asked whether these shoes get worn with thick hiking socks or thin ones, answering thin because the hiking happens in summer resolves the question. Asking about carpet versus hard floor responds to a walking request never made, and switching to the trail model addresses a stock-out nobody reported. Adding a grey pair celebrates a clearance that was never announced.",
+     "kills": {
+      "0": "A sock question about \"thick hiking socks\" or thin requests no walking demo, so asking about carpet versus hard floor answers nothing.",
+      "1": "Asking what socks \"you usually wear\" reports no width shortage, so switching to the trail model responds to nothing.",
+      "2": "\"or thin ones\" poses a fit question, not a clearance deal, so adding a grey pair to celebrate savings fits nothing."
+     }
+    }
+   ]
+  },
+  {
+   "localId": "crv8-b2-05",
+   "setting": "Tailor alteration counter: a tailor with a customer's suit and an alteration ticket.",
+   "worlds": [
+    {
+     "kind": "correction",
+     "keyAct": "overrides the paperwork with the true instruction",
+     "line": "You asked us to shorten the sleeves, but the ticket says trousers.",
+     "reply": "The ticket's wrong — it's the jacket sleeves, two centimeters.",
+     "explanationIfSpoken": "When the tailor flags that the ticket says trousers instead of sleeves, declaring the ticket wrong and restating the sleeve job settles the conflict. Approving a waist alteration accepts an offer nobody made, and agreeing to a week-long turnaround responds to a lining timeline never mentioned. Asking for a minute because the changing room is occupied answers a try-on request that was never made.",
+     "kills": {
+      "1": "Flagging that \"the ticket says\" the wrong garment is not an offer of extra work, so approving a waist job answers nothing.",
+      "2": "A mix-up over the request to \"shorten the sleeves\" mentions no week-long lining timeline to accept.",
+      "3": "The tailor is checking what the customer \"asked us to\" do, not requesting the suit be put on for pinning."
+     }
+    },
+    {
+     "kind": "offer",
+     "keyAct": "authorizes the extra work",
+     "line": "While the seam's open, we could take in the waist for ten dollars.",
+     "reply": "Do that too — it's always been a bit loose.",
+     "explanationIfSpoken": "Offered a waist take-in for ten dollars while the seam is open, authorizing it because the waist has always been loose is a straightforward acceptance. Correcting the ticket responds to a paperwork conflict nobody raised, and agreeing to a week accepts a lining timeline never quoted. Stalling over an occupied changing room answers a try-on request that was never made.",
+     "kills": {
+      "0": "An offer made \"While the seam's open\" reports no ticket error, so insisting the ticket is wrong corrects nothing.",
+      "2": "Taking in \"the waist\" for ten dollars quotes no week-long turnaround, so accepting a week responds to nothing.",
+      "3": "Saying \"we could take\" in the waist proposes extra work; it does not ask the customer to change for a pinning."
+     }
+    },
+    {
+     "kind": "neutral info",
+     "keyAct": "accepts the timeline citing slack",
+     "line": "Anything with lining takes a full week instead of our usual two days.",
+     "reply": "A week's fine — the wedding isn't until next month.",
+     "explanationIfSpoken": "Informed that lined garments take a full week, accepting the week because the wedding is a month away fits perfectly. Declaring the ticket wrong disputes a mix-up nobody raised, and approving a waist take-in accepts an offer never made. Asking for a minute over the changing room complies with a try-on request that was never made.",
+     "kills": {
+      "0": "A timeline note that lining \"takes a full week\" alleges no ticket mistake to push back on.",
+      "1": "Comparing \"our usual two days\" with a week concerns schedule, not a ten-dollar waist offer to approve.",
+      "3": "Explaining that \"Anything with lining\" is slower makes no request to put the suit on now."
+     }
+    },
+    {
+     "kind": "request",
+     "keyAct": "complies with a brief delay",
+     "line": "Can you put the suit on so I can pin the hem properly?",
+     "reply": "Give me a minute — the changing room is occupied.",
+     "explanationIfSpoken": "Asked to put the suit on for pinning, asking for a minute because the changing room is occupied is compliance with a small delay. Declaring the ticket wrong reacts to a paperwork dispute nobody raised, and authorizing a waist job accepts an offer never made. Accepting a week-long turnaround answers a lining timeline that was never quoted.",
+     "kills": {
+      "0": "A request to \"put the suit on\" raises no sleeves-versus-trousers dispute for the customer to correct.",
+      "1": "Wanting to \"pin the hem\" offers no waist alteration, so approving one because it is loose fits nothing.",
+      "2": "\"Can you put\" the suit on is an immediate request, not a lining timeline, so accepting a week answers nothing."
+     }
+    }
+   ]
+  },
+  {
+   "localId": "crv8-b2-06",
+   "setting": "Garden center checkout: a cashier ringing up a customer's plants and supplies.",
+   "worlds": [
+    {
+     "kind": "question",
+     "keyAct": "answers the placement question specifically",
+     "line": "Is this fern going indoors, or out on a shaded porch?",
+     "reply": "Indoors — my bathroom gets nice and humid.",
+     "explanationIfSpoken": "Asked whether the fern is headed indoors or to a shaded porch, answering indoors and citing the humid bathroom fits the question exactly. Directing a reward toward today's plants spends a benefit nobody announced, and promising to photograph a receipt answers a request never made. Offering to swap a compost bag fixes damage that was never reported.",
+     "kills": {
+      "1": "A placement question about \"a shaded porch\" announces no reward, so asking to apply one spends nothing that exists.",
+      "2": "Asking where \"this fern\" will live makes no request to keep a receipt, so promising to photograph one answers nothing.",
+      "3": "Whether it is \"going indoors\" or out is about placement; no split compost bag exists to swap for an intact one."
+     }
+    },
+    {
+     "kind": "good news",
+     "keyAct": "directs how to redeem the benefit",
+     "line": "Members get double points this weekend, and you just earned a reward.",
+     "reply": "Use the reward on today's plants if you can.",
+     "explanationIfSpoken": "Told a reward has just been earned, asking to apply it to today's plants puts the good news to immediate use. Naming a humid bathroom answers a fern-placement question never asked, and vowing to photograph a receipt responds to a request nobody made. Swapping a compost bag from the pallet fixes damage that was never mentioned.",
+     "kills": {
+      "0": "News that \"you just earned\" a reward asks nothing about where a fern will live, so naming a humid bathroom answers no question.",
+      "2": "\"double points this\" weekend is a perk announcement, not a receipt request, so vowing to photograph paperwork fits nothing.",
+      "3": "A bonus where \"Members get double\" points reports no damaged goods, so swapping a bag from the pallet addresses nothing said."
+     }
+    },
+    {
+     "kind": "request",
+     "keyAct": "agrees via an equivalent method",
+     "line": "Could you keep the receipt in case the rosebush doesn't take?",
+     "reply": "I'll photograph it — paper always vanishes in my shed.",
+     "explanationIfSpoken": "Asked to keep the receipt in case the rosebush fails, promising a photograph because paper gets lost honors the request in a practical way. The humid-bathroom answer meets a fern question never asked, and directing a reward toward today's plants spends a benefit nobody announced. Swapping a compost bag responds to damage that was never reported.",
+     "kills": {
+      "0": "A request to \"keep the receipt\" poses no indoors-or-porch question for the fern answer to meet.",
+      "1": "Guarding against a rosebush that \"doesn't take\" mentions no reward to apply to today's plants.",
+      "3": "Saying \"in case the\" rosebush fails is precautionary advice, not a report of a split bag needing a swap."
+     }
+    },
+    {
+     "kind": "bad news",
+     "keyAct": "volunteers to fix the problem personally",
+     "line": "One bag of the compost you grabbed has split down the side.",
+     "reply": "I'll swap it for an intact one from the pallet.",
+     "explanationIfSpoken": "Told one compost bag has split down the side, offering to swap it for an intact one from the pallet solves the problem on the spot. The humid-bathroom answer addresses a fern question never asked, and applying a reward spends points that were never announced. Photographing a receipt responds to a keep-the-receipt request nobody made.",
+     "kills": {
+      "0": "A bag that \"has split\" is a stock problem, not a fern question, so the humid-bathroom answer meets no question.",
+      "1": "Damaged compost that \"you grabbed\" awards no points or reward for the customer to redeem.",
+      "2": "The issue is a bag \"split down the side\" — no receipt request exists for a photograph to satisfy."
+     }
+    }
+   ]
+  },
+  {
+   "localId": "crv8-b2-07",
+   "setting": "Camera shop trade-in desk: a clerk appraising a customer's old camera gear.",
+   "worlds": [
+    {
+     "kind": "bad news",
+     "keyAct": "rejects the price and keeps the item",
+     "line": "Fungus inside the lens knocks the trade-in value down to thirty.",
+     "reply": "At thirty I'd sooner keep it as a spare.",
+     "explanationIfSpoken": "Quoted only thirty because of fungus in the lens, deciding to keep the lens as a spare rejects the low offer sensibly. Listing what accessories are in the bag answers an inventory question never asked, and welcoming a used-gear rule responds to a policy nobody stated. Asking about the shop's cut probes a consignment offer that was never made.",
+     "kills": {
+      "1": "A valuation cut \"down to thirty\" asks nothing about boxes or chargers, so listing what is in the bag answers no question.",
+      "2": "\"Fungus inside the lens\" explains a low price; it states no used-gear-only rule for the customer to accept.",
+      "3": "Quoting \"the trade-in value\" outright proposes no consignment, so asking about the shop's cut fits nothing offered."
+     }
+    },
+    {
+     "kind": "question",
+     "keyAct": "reports partial inventory",
+     "line": "Are the original box and charger included, or just the body?",
+     "reply": "Box is long gone, but the charger's in my bag.",
+     "explanationIfSpoken": "Asked whether the original box and charger are included, reporting the box gone but the charger present answers the checklist question. Refusing at thirty rejects a price that was never quoted, and embracing used gear responds to a credit rule nobody stated. Asking about the shop's cut probes a consignment pitch that was never made.",
+     "kills": {
+      "0": "An inventory question ending \"or just the body\" quotes no thirty-dollar figure, so refusing at thirty rejects nothing.",
+      "2": "Asking whether the \"box and charger\" come along states no rule about credit and new stock to accommodate.",
+      "3": "\"Are the original\" accessories included is a checklist question, not a consignment pitch, so asking about a cut answers nothing."
+     }
+    },
+    {
+     "kind": "neutral info",
+     "keyAct": "accepts the constraint with a plan",
+     "line": "Trade-in credit here only applies to used gear, not new stock.",
+     "reply": "Used works — I was eyeing that secondhand flash anyway.",
+     "explanationIfSpoken": "Told trade-in credit only applies to used gear, embracing the rule because a secondhand flash was already the target fits neatly. Balking at thirty rejects a number that was never given, and reporting a missing box answers an accessories question never asked. Probing the shop's cut responds to a consignment offer nobody made.",
+     "kills": {
+      "0": "A rule that credit fits \"used gear\" names no price, so balking at thirty responds to a number never given.",
+      "1": "Store policy on \"Trade-in credit\" asks nothing about boxes or chargers being included.",
+      "3": "Saying \"not new stock\" is a constraint on spending credit, not a consignment offer, so probing the shop's cut fits nothing."
+     }
+    },
+    {
+     "kind": "offer",
+     "keyAct": "probes the offer's terms",
+     "line": "We could list it on consignment instead — you'd net more eventually.",
+     "reply": "How big a cut does the shop take on that?",
+     "explanationIfSpoken": "Offered a consignment listing that would net more eventually, asking how big a cut the shop takes probes the terms before deciding. Keeping the lens at thirty rejects a valuation that was never quoted, and reporting a missing box answers an accessories question never asked. Welcoming a used-gear rule responds to a credit policy nobody stated.",
+     "kills": {
+      "0": "An invitation to \"list it on consignment\" cites no thirty-dollar valuation to turn down.",
+      "1": "Saying \"you'd net more\" pitches a selling route; it asks nothing about a box or charger being in the bag.",
+      "2": "Proposing to sell \"on consignment instead\" sets no used-gear rule, so agreeing to spend credit on a secondhand flash answers nothing."
+     }
+    }
+   ]
+  },
+  {
+   "localId": "crv8-b2-08",
+   "setting": "Music store repair bench: a technician speaking with a musician about gear brought in.",
+   "worlds": [
+    {
+     "kind": "good news",
+     "keyAct": "voices relief at avoided expense",
+     "line": "The buzzing was just a loose screw — no charge for that.",
+     "reply": "So nothing to pay — you've saved my week.",
+     "explanationIfSpoken": "Hearing the buzz was only a loose screw with no charge, expressing relief at paying nothing matches the good news. Negotiating pickup before Friday's gig answers an overnight-testing request never made, and conceding viola pricing corrects a bow mix-up nobody raised. Asking what a full restoration costs responds to major damage that was never reported.",
+     "kills": {
+      "1": "Announcing \"no charge\" and a finished fix makes no request to leave the amp overnight, so bargaining about Friday pickup fits nothing.",
+      "2": "The culprit was \"a loose screw\", not a mislabeled bow, so conceding viola pricing corrects nothing.",
+      "3": "A trivial fix that was \"just a loose\" screw is the opposite of major damage, so pricing a full restoration answers nothing."
+     }
+    },
+    {
+     "kind": "request",
+     "keyAct": "consents with a condition",
+     "line": "Can you leave the amp overnight so I can test it cold?",
+     "reply": "As long as I can pick it up before Friday's gig.",
+     "explanationIfSpoken": "Asked to leave the amp overnight for a cold test, consenting on condition of pickup before Friday's gig is a natural conditional yes. Relief about paying nothing celebrates a free fix nobody announced, and viola pricing talk corrects a bow mix-up never raised. A restoration quote question responds to a spreading crack that was never reported.",
+     "kills": {
+      "0": "A request to \"leave the amp\" is still diagnostic; no free fix has been announced to be relieved about.",
+      "2": "Wanting to \"test it cold\" concerns an amp, not a bow, so talk of viola pricing belongs to another conversation.",
+      "3": "\"Can you leave\" it overnight implies routine testing, not a spreading crack, so asking about full restoration fits nothing said."
+     }
+    },
+    {
+     "kind": "correction",
+     "keyAct": "concedes the identification",
+     "line": "This is a viola bow, not a violin bow — different rehair price.",
+     "reply": "It's my daughter's, so viola pricing it is.",
+     "explanationIfSpoken": "Corrected that the bow is a viola bow with a different rehair price, conceding it belongs to a daughter's viola accepts the identification and the price. Relief at paying nothing celebrates a free fix nobody announced, and pickup-before-Friday terms answer an amp request never made. Pricing a full restoration responds to a crack that was never mentioned.",
+     "kills": {
+      "0": "Identifying \"a viola bow\" and a price difference announces no free repair for the customer to celebrate.",
+      "1": "A note about \"rehair price\" involves no amp, so negotiating pickup before Friday's gig answers nothing.",
+      "3": "The only issue raised is a \"different rehair price\" on a bow — no crack, so a restoration quote has no subject."
+     }
+    },
+    {
+     "kind": "bad news",
+     "keyAct": "asks the cost of the bigger job",
+     "line": "The crack has spread under the fretboard — that's beyond a simple fix.",
+     "reply": "What would a full restoration set me back?",
+     "explanationIfSpoken": "Told the crack has spread beyond a simple fix, asking what a full restoration would cost moves to the real decision. Relief at paying nothing contradicts the grave news, and Friday-pickup terms answer an overnight amp request never made. Conceding viola pricing corrects a bow mix-up that was never raised.",
+     "kills": {
+      "0": "Damage that is \"beyond a simple\" fix is grave news, not a free-repair announcement, so relief about paying nothing misfits.",
+      "1": "A crack \"under the fretboard\" concerns an instrument's body, not amp testing, so overnight-pickup terms answer nothing.",
+      "2": "\"The crack has\" spread describes damage, not a bow mix-up, so accepting viola pricing corrects nothing."
+     }
+    }
+   ]
+  },
+  {
+   "localId": "crv8-b2-09",
+   "setting": "Stationery shop custom stamp counter: a clerk taking a customer's custom stamp order.",
+   "worlds": [
+    {
+     "kind": "neutral info",
+     "keyAct": "waves off the limit as irrelevant to their use",
+     "line": "Self-inking stamps run out after about ten thousand impressions.",
+     "reply": "Ten thousand will outlast my little book club easily.",
+     "explanationIfSpoken": "Told self-inking stamps last about ten thousand impressions, noting that a small book club will never exhaust that dismisses the limit sensibly. Approving a logo add-on accepts a five-dollar upsell never offered, and ruling for Drive settles a spelling conflict nobody flagged. Choosing Monday answers a today-or-Monday question that was never asked.",
+     "kills": {
+      "1": "A lifespan fact about \"ten thousand impressions\" offers no five-dollar logo upgrade for the customer to approve.",
+      "2": "Explaining that stamps \"run out after\" heavy use flags no spelling discrepancy to fix before engraving.",
+      "3": "\"Self-inking stamps run\" out eventually — that states no today-versus-Monday choice for Monday to answer."
+     }
+    },
+    {
+     "kind": "offer",
+     "keyAct": "approves the upsell for aesthetics",
+     "line": "We can add your logo above the address for five dollars more.",
+     "reply": "Add it — the plain text looks a bit bare.",
+     "explanationIfSpoken": "Offered a logo above the address for five dollars more, approving it because plain text looks bare accepts the upsell directly. Reassurance about a book club's light usage answers a lifespan fact never stated, and ruling for Drive settles a spelling conflict nobody raised. Picking Monday answers a scheduling question that was never asked.",
+     "kills": {
+      "0": "An upsell for \"five dollars more\" makes no lifespan claim, so reassurance about a book club's usage answers nothing.",
+      "2": "Offering a logo \"above the address\" reports no Road-versus-Drive conflict for the customer to settle.",
+      "3": "Proposing to \"add your logo\" is an option to accept, not a scheduling question, so choosing Monday answers nothing asked."
+     }
+    },
+    {
+     "kind": "correction",
+     "keyAct": "settles the discrepancy and orders a fix",
+     "line": "The proof spells the street as Elm Road, but you wrote Elm Drive.",
+     "reply": "Drive is right — please fix it before you engrave.",
+     "explanationIfSpoken": "Shown that the proof says Elm Road while the order says Elm Drive, ruling that Drive is right and asking for the fix resolves the conflict. Reassurance about a book club's usage answers a durability fact never stated, and approving a logo accepts an upsell nobody offered. Choosing Monday answers a pickup question that was never asked.",
+     "kills": {
+      "0": "A discrepancy where \"The proof spells\" the street one way is not a durability fact to shrug off with usage estimates.",
+      "1": "Flagging \"Elm Road\" against Elm Drive offers no logo upgrade, so approving an add-on fits nothing.",
+      "3": "Noting that \"you wrote Elm\" Drive needs a which-is-right answer, not a pickup day, so choosing Monday dodges the actual question."
+     }
+    },
+    {
+     "kind": "question",
+     "keyAct": "picks the later option with justification",
+     "line": "Do you need the rubber stamp today, or can it wait till Monday?",
+     "reply": "Monday's fine — the invoices don't go out till midweek.",
+     "explanationIfSpoken": "Asked whether the stamp is needed today or can wait till Monday, choosing Monday because invoices go out midweek answers with a reason. Book-club reassurance responds to a lifespan fact nobody stated, and approving a logo accepts a five-dollar upsell never offered. Ruling for Drive settles a spelling conflict that was never raised.",
+     "kills": {
+      "0": "A scheduling question about whether it can \"wait till Monday\" asserts nothing about impression counts to reassure about.",
+      "1": "Asking when \"you need the\" stamp offers no logo option, so approving a five-dollar add-on answers nothing.",
+      "2": "A timing question about \"the rubber stamp\" raises no spelling conflict, so ruling for Drive corrects nothing said."
+     }
+    }
+   ]
+  },
+  {
+   "localId": "crv8-b2-10",
+   "setting": "Appliance rental store: a clerk at the desk with a customer who rents appliances.",
+   "worlds": [
+    {
+     "kind": "good news",
+     "keyAct": "claims the bargain with a hygiene condition",
+     "line": "A returned dehumidifier just came in — half the price of renting new.",
+     "reply": "I'll take the returned one if it's been cleaned.",
+     "explanationIfSpoken": "Offered a returned dehumidifier at half the price of new, claiming it on condition it has been cleaned accepts the bargain sensibly. Asking for a similar model responds to a shortage nobody reported, and promising to unplug a freezer early complies with a defrost request never made. Mentioning October's three-month mark reacts to a rate policy that was never explained.",
+     "kills": {
+      "1": "Offering a unit at \"half the price\" means stock is available, so asking for a similar model instead answers no shortage.",
+      "2": "\"A returned dehumidifier\" arriving involves no freezer pickup, so promising to unplug days ahead fits nothing.",
+      "3": "News that a bargain \"just came in\" cites no three-month rate rule for October to matter to."
+     }
+    },
+    {
+     "kind": "bad news",
+     "keyAct": "requests a replacement option",
+     "line": "The washer you reserved came back damaged, so it's out of service.",
+     "reply": "Is there a similar model I could rent instead?",
+     "explanationIfSpoken": "Told the reserved washer came back damaged and is out of service, asking for a similar model to rent instead addresses the loss directly. Claiming a cleaned returned unit accepts a half-price bargain never offered, and unplugging a freezer early complies with a defrost request nobody made. October's three-month milestone responds to a rate rule that was never stated.",
+     "kills": {
+      "0": "A reservation lost because the unit is \"out of service\" offers no half-price returned bargain to accept if cleaned.",
+      "2": "A washer that \"came back damaged\" is in the store's hands; no freezer defrost request exists to comply with.",
+      "3": "Losing \"The washer you\" reserved is a stock problem, not a rate policy, so October's milestone helps nothing."
+     }
+    },
+    {
+     "kind": "request",
+     "keyAct": "states how they will comply",
+     "line": "Please defrost the freezer before our driver collects it next week.",
+     "reply": "I'll unplug it a couple of days ahead.",
+     "explanationIfSpoken": "Asked to defrost the freezer before next week's pickup, promising to unplug it a couple of days ahead states exactly how the request will be met. Claiming a returned dehumidifier accepts a bargain nobody offered, and asking for a similar model responds to damage that was never reported. October's three-month mark reacts to a rate rule that was never explained.",
+     "kills": {
+      "0": "An instruction to \"defrost the freezer\" announces no discounted returned unit for the customer to claim.",
+      "1": "Saying \"our driver collects\" it describes a scheduled pickup — nothing is damaged or out of service to need a substitute model.",
+      "3": "A prep request for \"before our driver\" arrives states no long-term rate change for October to trigger."
+     }
+    },
+    {
+     "kind": "neutral info",
+     "keyAct": "relates the policy to their own timeline",
+     "line": "Rentals over three months automatically switch to the cheaper long-term rate.",
+     "reply": "Mine hits three months in October, so that helps.",
+     "explanationIfSpoken": "Told rentals over three months switch to a cheaper long-term rate, noting that October marks three months connects the policy to the customer's own rental. Claiming a cleaned returned unit accepts a bargain never offered, and asking for a substitute model responds to damage nobody reported. Unplugging a freezer early complies with a defrost request that was never made.",
+     "kills": {
+      "0": "A rate rule for rentals \"over three months\" mentions no returned dehumidifier to take home cleaned.",
+      "1": "Switching to \"the cheaper long-term\" rate is billing news; nothing is damaged, so requesting a substitute model answers nothing.",
+      "2": "Policy that rentals \"automatically switch\" rates makes no defrost request for unplugging plans to satisfy."
+     }
+    }
+   ]
+  },
+  {
+   "localId": "crv8-b2-11",
+   "setting": "City library branch desk; a librarian speaks with a patron standing at the counter.",
+   "worlds": [
+    {
+     "kind": "good news",
+     "keyAct": "accepts and completes the pickup",
+     "line": "The book you reserved just arrived — it's here at the desk.",
+     "reply": "I'll check it out now with my card.",
+     "explanationIfSpoken": "The librarian announces that the reserved book is ready at the desk, so checking it out on the spot is the natural next step. Asking another branch to send a copy makes no sense when the book is already here, and offering to write down a new phone number answers a request nobody made. Choosing to turn books in responds to a question about current loans, not to news that a reserve has arrived.",
+     "kills": {
+      "1": "The line says the book is \"here at the desk\", so asking another branch to send over a copy is pointless.",
+      "2": "The line announces a reserve that \"just arrived\"; it asks nothing about renewing or returning current loans, so choosing to turn books in answers nothing.",
+      "3": "The line is about \"The book you reserved\"; no one asked for a contact number, so supplying a new one is off-point."
+     }
+    },
+    {
+     "kind": "bad news",
+     "keyAct": "asks for an alternative source",
+     "line": "The copy you reserved came back damaged, so we had to withdraw it.",
+     "reply": "Could another branch send over their copy instead?",
+     "explanationIfSpoken": "Since this branch's copy was withdrawn, asking whether another branch can send theirs is the cooperative way forward. Checking the book out now is impossible because it has been pulled from circulation, and turning in two finished books responds to a question about loans in hand, not to news about one damaged reserve. Writing down a new phone number answers a request the librarian never made.",
+     "kills": {
+      "0": "Because the staff \"had to withdraw it\", the book cannot be checked out now with any card.",
+      "2": "The line concerns one reserve that \"came back damaged\", not two loans in the patron's hands to turn in.",
+      "3": "The line reports that \"we had to withdraw\" a book; it asks for no phone number to be updated."
+     }
+    },
+    {
+     "kind": "question",
+     "keyAct": "answers by choosing one option",
+     "line": "Are you renewing these two, or turning them in today?",
+     "reply": "Turning them in — I finished both last night.",
+     "explanationIfSpoken": "The librarian poses an either-or about two books the patron is holding, and the reply picks one side and explains it. Checking a book out now with a card doesn't answer a renew-or-return question about items already on the account. Requesting a copy from another branch and reciting a changed phone number both ignore the choice entirely.",
+     "kills": {
+      "0": "The question is about \"renewing these two\" books already on the account; checking something out now with a card answers neither option.",
+      "1": "\"these two\" books are physically in hand, so nothing needs to be sent over from another branch.",
+      "3": "The clerk asks about \"turning them in today\", not about any phone number on file."
+     }
+    },
+    {
+     "kind": "request",
+     "keyAct": "complies and supplies the detail",
+     "line": "Could you update the phone number we have on file for you?",
+     "reply": "It changed last month — I'll write the new one down.",
+     "explanationIfSpoken": "The librarian asks for an updated number, and the reply confirms it changed and offers to provide it. Checking out a book, requesting a copy from another branch, and deciding to return finished loans all respond to book transactions, but this line raises only an account detail. None of those replies gives the librarian the number she asked for.",
+     "kills": {
+      "0": "The request concerns \"the phone number\", not a book to check out with a card.",
+      "1": "The line asks about a detail \"on file for you\"; no book copy is missing, so nothing needs sending from another branch.",
+      "2": "A request to \"update the phone number\" is not a renew-or-return question, so announcing finished books answers nothing."
+     }
+    }
+   ]
+  },
+  {
+   "localId": "crv8-b2-12",
+   "setting": "Community pool pass office; a clerk at the window speaks with a resident.",
+   "worlds": [
+    {
+     "kind": "neutral info",
+     "keyAct": "adjusts the purchase to the timing",
+     "line": "Season passes go on sale Monday; today we only sell day tickets.",
+     "reply": "One day ticket now, and I'll return Monday.",
+     "explanationIfSpoken": "The clerk explains that only day tickets are available until Monday, so buying one now and coming back for the pass fits exactly. Renewing a pass right here contradicts the stated Monday start, and asking to add children responds to an offer that was never made. Choosing open swim over laps answers a preference question nobody asked.",
+     "kills": {
+      "1": "Today the office can \"only sell day tickets\"; no family add-on was offered, so approving one for both kids has nothing to attach to.",
+      "2": "Season passes go \"on sale Monday\", so renewing a pass right here today is impossible.",
+      "3": "The line \"Season passes go\" on sale Monday states timing only; it poses no lap-versus-open choice to answer."
+     }
+    },
+    {
+     "kind": "offer",
+     "keyAct": "accepts the add-on for family",
+     "line": "We can add your kids to your pass for ten dollars each.",
+     "reply": "Do both of mine, then — they swim every weekend.",
+     "explanationIfSpoken": "The clerk offers a per-child add-on, and the reply takes it for both children with a reason. Buying a day ticket and returning Monday presupposes a Monday sale that this line never mentions, and renewing a pass responds to a lapse nobody reported. Picking open swim over laps answers a tier question that wasn't posed.",
+     "kills": {
+      "0": "The offer extends children \"to your pass\"; nothing says sales resume Monday, so returning then is unmotivated.",
+      "2": "The clerk offers to \"add your kids\"; no one said the pass lapsed, so renewing it here answers nothing.",
+      "3": "\"ten dollars each\" prices a child add-on; no lap-swim-versus-open-swim choice was asked."
+     }
+    },
+    {
+     "kind": "correction",
+     "keyAct": "fixes the lapse on the spot",
+     "line": "Actually, your pass expired in June, not August like the sticker says.",
+     "reply": "I'll renew it right here before we swim.",
+     "explanationIfSpoken": "Told the pass lapsed months earlier than the sticker shows, renewing immediately is the sensible fix. Buying a day ticket and coming back Monday invokes a Monday sale this line never mentions, and adding both kids accepts an offer that was never made. Declaring a preference for open swim answers no question the clerk asked.",
+     "kills": {
+      "0": "The pass \"expired in June\"; nothing schedules a Monday sale, so promising to return Monday refers to nothing.",
+      "1": "The correction is about the date \"like the sticker says\"; no child add-on was offered for anyone to accept.",
+      "3": "The fix is that it's June, \"not August\" — a validity issue, not a lap-versus-open-swim question."
+     }
+    },
+    {
+     "kind": "question",
+     "keyAct": "picks the simpler tier",
+     "line": "Did you want lap-swim hours included, or just open swim?",
+     "reply": "Just open swim — I never do laps anyway.",
+     "explanationIfSpoken": "The clerk asks which tier the pass should cover, and the reply picks one and gives a reason. A day ticket plus a Monday return presupposes a sales schedule this line never states, and approving a kids add-on accepts an unmade offer. Renewing on the spot responds to an expiry nobody mentioned.",
+     "kills": {
+      "0": "The question is whether to have \"lap-swim hours included\"; it mentions no Monday sale to return for.",
+      "1": "The either-or ends \"or just open swim\"; no children or per-child price are in play.",
+      "2": "Asking about \"just open swim\" is a preference question; it reports no expired pass to renew."
+     }
+    }
+   ]
+  },
+  {
+   "localId": "crv8-b2-13",
+   "setting": "Recreation center climbing wall check-in; a staff member speaks with a climber arriving for a session.",
+   "worlds": [
+    {
+     "kind": "good news",
+     "keyAct": "acts on the new clearance",
+     "line": "You passed the belay test — you're cleared for the ropes now.",
+     "reply": "I'll book a rope lane for tonight.",
+     "explanationIfSpoken": "Newly cleared for the ropes, the climber immediately books a lane, which is exactly what the clearance enables. Asking for a pen responds to a signing request nobody made, and coming back tomorrow for new routes presupposes a reset that isn't happening. Taking only the harness accepts a rental offer that was never extended.",
+     "kills": {
+      "1": "The line says the climber \"passed the belay test\" — it announces a result and asks for nothing to be signed.",
+      "2": "Being \"cleared for the ropes\" means the wall is open to them now; there is no reset to wait out until tomorrow.",
+      "3": "Clearance \"for the ropes now\" is a permission, not a gear rental, so taking only the harness answers nothing."
+     }
+    },
+    {
+     "kind": "request",
+     "keyAct": "complies with the paperwork",
+     "line": "Please sign this waiver before you touch the wall today.",
+     "reply": "Hand me a pen and I'll do it now.",
+     "explanationIfSpoken": "Asked to sign before climbing, the climber asks for a pen and complies at once. Booking a rope lane skips the paperwork the staffer just required, and coming back tomorrow ignores that the wall is available today once the form is signed. Taking a harness responds to a rental offer nobody made.",
+     "kills": {
+      "0": "The staffer says to \"sign this waiver\" — a paperwork request, not a clearance that lets anyone book a lane.",
+      "2": "The climber may \"touch the wall today\" once signed, so deferring to tomorrow for new routes is unmotivated.",
+      "3": "\"Please sign this\" asks for a signature; it offers no shoes or harness to accept part of."
+     }
+    },
+    {
+     "kind": "bad news",
+     "keyAct": "defers the visit to the reopening",
+     "line": "The wall is closed tonight — we're resetting all the routes.",
+     "reply": "I'll come back tomorrow once the new routes are up.",
+     "explanationIfSpoken": "With the wall shut for a route reset, returning tomorrow for the fresh routes is the natural adjustment. Booking a rope lane for tonight directly contradicts the closure, and asking for a pen answers a signing request that was never made. Taking a harness makes no sense when there is no session to gear up for.",
+     "kills": {
+      "0": "The wall is \"closed tonight\", so booking a rope lane for tonight is impossible.",
+      "1": "Staff are \"resetting all the routes\" — that's a closure notice, with no form to sign or pen to need.",
+      "3": "\"The wall is closed\", so there is no session for which to take a harness."
+     }
+    },
+    {
+     "kind": "offer",
+     "keyAct": "accepts part of the rental",
+     "line": "We can lend you shoes and a harness for five dollars.",
+     "reply": "I'll take the harness only; my shoes still fit.",
+     "explanationIfSpoken": "Offered gear for a small fee, the climber takes the harness and declines the shoes with a reason. Booking a rope lane responds to a clearance nobody granted, and asking for a pen treats a verbal gear offer as paperwork. Coming back tomorrow presupposes a closure that this line never mentions.",
+     "kills": {
+      "0": "The offer is to \"lend you shoes\" and a harness — equipment, not a belay result that clears anyone to book ropes.",
+      "1": "\"shoes and a harness\" are offered verbally to take or leave; there is nothing to sign, so no pen is needed.",
+      "2": "\"We can lend\" gear for a session happening now; no reset closure sends anyone home until tomorrow."
+     }
+    }
+   ]
+  },
+  {
+   "localId": "crv8-b2-14",
+   "setting": "Town hall permit window; a clerk speaks with a resident filing a shed permit.",
+   "worlds": [
+    {
+     "kind": "correction",
+     "keyAct": "swaps to the right form",
+     "line": "This form is for fences; you need the yellow one for sheds.",
+     "reply": "I'll grab the yellow one and start over.",
+     "explanationIfSpoken": "Told they filled out the wrong form, the resident goes to get the correct one — the direct fix. Remarking that the timeline still works presupposes a review duration this line never gives, and answering with setback distances responds to a question that wasn't asked. Paying a fee again in cash presupposes a failed payment nobody mentioned.",
+     "kills": {
+      "1": "The clerk says \"you need the yellow\" form — a paperwork mix-up with no timeline stated, so nothing 'still leaves time'.",
+      "2": "The problem is that this form \"is for fences\" — a form choice, not a question about distance to a property line.",
+      "3": "The issue is the \"one for sheds\" being the wrong sheet; no payment failed, so covering a fee 'again' refers to nothing."
+     }
+    },
+    {
+     "kind": "neutral info",
+     "keyAct": "notes the timeline works out",
+     "line": "Permit reviews take ten business days from the date we stamp them.",
+     "reply": "That still leaves time before we break ground.",
+     "explanationIfSpoken": "Given the ten-day review window, the resident checks it against their construction schedule and finds it fits. Grabbing a different form responds to a mistake nobody flagged, and reciting setback distances answers a question that wasn't asked. Paying a fee again presupposes a bounced payment this line never mentions.",
+     "kills": {
+      "0": "\"ten business days\" is a processing timeline; no fault was found with the form, so starting over is unmotivated.",
+      "2": "\"Permit reviews take\" time — a statement about processing, not a question about shed setbacks to answer with feet.",
+      "3": "The clock runs from \"the date we\" stamp it; no payment bounced, so paying the fee 'again' has no referent."
+     }
+    },
+    {
+     "kind": "question",
+     "keyAct": "answers the measurement question",
+     "line": "Is the shed going closer than three feet to the property line?",
+     "reply": "No, we set it back at least six.",
+     "explanationIfSpoken": "The clerk asks a specific setback question and the reply answers it with the actual distance. Grabbing a new form responds to a correction nobody made, and commenting on remaining time invokes a review period this line never states. Offering to pay a fee again presupposes a failed payment that isn't in play.",
+     "kills": {
+      "0": "The clerk asks if it's \"closer than three feet\" — a measurement question, not a complaint about which form was used.",
+      "1": "The question is about distance to \"the property line\"; no ten-day count was given for any time to be left.",
+      "3": "\"Is the shed going\" too close is a placement question; no fee failed, so paying again in cash answers nothing."
+     }
+    },
+    {
+     "kind": "bad news",
+     "keyAct": "settles the payment another way",
+     "line": "Your check bounced, so the application is on hold for now.",
+     "reply": "Let me cover that fee again in cash today.",
+     "explanationIfSpoken": "With the check bounced and the application frozen, paying the fee again in cash today clears the hold. Grabbing a different form addresses a mistake nobody flagged, and the setback answer responds to a question that wasn't asked. Saying the timeline still leaves room assumes a fixed review count, but a hold is open-ended.",
+     "kills": {
+      "0": "\"Your check bounced\" — the payment failed, but nothing is wrong with the form itself, so starting over fixes nothing.",
+      "1": "The application is \"on hold for now\", indefinitely; there is no ten-day clock against which time is 'left'.",
+      "2": "The problem is that \"the application is\" frozen over payment — not a question about shed setback distances."
+     }
+    }
+   ]
+  },
+  {
+   "localId": "crv8-b2-15",
+   "setting": "Polling place volunteer table; a coordinator speaks with a signed-up volunteer.",
+   "worlds": [
+    {
+     "kind": "offer",
+     "keyAct": "takes the proposed swap",
+     "line": "We could move you to the evening shift if mornings are hard.",
+     "reply": "Evenings suit me better, so switch me over.",
+     "explanationIfSpoken": "Offered a move to evenings, the volunteer accepts and asks to be switched. Announcing a start at check-in presupposes a clearance nobody granted, and promising to bring clipboards answers a supply request that wasn't made. Commenting on the training hour and quiz responds to details this line never gives.",
+     "kills": {
+      "1": "The offer concerns \"the evening shift\"; no check-in clearance was granted, so staffing that table at doors-open is unlicensed.",
+      "2": "The condition is only \"if mornings are hard\" — nothing was asked to be brought, so promising two clipboards answers nothing.",
+      "3": "The coordinator offers to \"move you to\" evenings; no training length or quiz was described to call fine."
+     }
+    },
+    {
+     "kind": "good news",
+     "keyAct": "claims the newly allowed post",
+     "line": "Your poll-worker certificate cleared, so you can staff the check-in table.",
+     "reply": "I'll start at check-in as soon as doors open.",
+     "explanationIfSpoken": "With the certificate cleared, the volunteer claims the check-in post from opening — exactly what the news permits. Asking to be switched to evenings responds to a shift offer that wasn't made, and bringing clipboards answers a supply request nobody voiced. Remarking on the hour-long training and quiz refers to details never stated.",
+     "kills": {
+      "0": "The news is that the \"certificate cleared\" — no shift change was offered, so asking to be switched over answers nothing.",
+      "2": "Being cleared to \"staff the check-in\" table involves no supplies; nobody asked for clipboards to be brought.",
+      "3": "A cleared \"poll-worker certificate\" is a permission; no training hour or end-of-session quiz was mentioned."
+     }
+    },
+    {
+     "kind": "request",
+     "keyAct": "agrees and exceeds the ask",
+     "line": "Could you bring your own clipboard on Tuesday? We're short a few.",
+     "reply": "I have two at home — I'll bring both.",
+     "explanationIfSpoken": "Asked to bring a clipboard because supplies are short, the volunteer offers both of theirs. Asking to switch to evenings responds to an offer that wasn't made, and claiming the check-in post presupposes a clearance nobody announced. Commenting on training length answers information this line never provides.",
+     "kills": {
+      "0": "The ask is to bring \"your own clipboard\" — a supply request, with no evening shift on the table to switch to.",
+      "1": "\"We're short a few\" clipboards; the request grants no post, so starting at check-in is unlicensed.",
+      "3": "The favor is to \"bring your own\" gear; no training hour or quiz was described for anyone to shrug off."
+     }
+    },
+    {
+     "kind": "neutral info",
+     "keyAct": "acknowledges the format calmly",
+     "line": "Training runs an hour, and there's a quiz at the end.",
+     "reply": "An hour is fine; quizzes don't scare me.",
+     "explanationIfSpoken": "Told the training format, the volunteer takes both the length and the quiz in stride. Asking to switch shifts responds to an offer nobody made, and claiming the check-in table presupposes a cleared certificate this line never mentions. Promising two clipboards answers a supply request that wasn't voiced.",
+     "kills": {
+      "0": "The line \"runs an hour\" describes training only; no evening shift was offered, so 'switch me over' has no target.",
+      "1": "Mentioning \"a quiz at the end\" grants no staffing clearance, so starting at check-in is unlicensed.",
+      "2": "The line says \"there's a quiz\" — it describes the session and requests nothing to be brought."
+     }
+    }
+   ]
+  },
+  {
+   "localId": "crv8-b2-16",
+   "setting": "Farmers co-op membership desk; a staffer speaks with a resident about produce shares.",
+   "worlds": [
+    {
+     "kind": "bad news",
+     "keyAct": "asks to join the waitlist",
+     "line": "This year's produce shares are sold out — the list filled yesterday.",
+     "reply": "Put me on the waitlist in case someone drops.",
+     "explanationIfSpoken": "With shares gone, asking for the waitlist is the only way to stay in the running. Requesting a refund presupposes a recorded payment nobody mentioned, and volunteering Saturday hours accepts a work-exchange offer that wasn't made. Choosing the market stall answers a pickup question about a share this person doesn't have.",
+     "kills": {
+      "1": "Shares \"are sold out\" and this person holds none, so there is no recorded payment to refund a difference from.",
+      "2": "\"the list filled\" yesterday — nothing open was offered to join, so announcing free Saturdays answers nothing.",
+      "3": "With \"shares are sold out\", this person has no delivery, so no barn-or-stall pickup choice applies."
+     }
+    },
+    {
+     "kind": "correction",
+     "keyAct": "resolves the mismatch toward the smaller option",
+     "line": "You're down as a half share, but you paid for a full one.",
+     "reply": "Half was what I meant — just refund the difference.",
+     "explanationIfSpoken": "Faced with a records-versus-payment mismatch, the member confirms the half share and asks for the overpayment back. Joining a waitlist makes no sense for someone who already holds a share, and volunteering Saturdays responds to a work offer that wasn't made. Picking the market stall answers a location question nobody asked.",
+     "kills": {
+      "0": "This member already \"paid for a full\" share and holds one, so a waitlist has nothing to offer them.",
+      "2": "The issue is being listed \"as a half share\" — a billing discrepancy, with no volunteering proposed to count anyone in for.",
+      "3": "The mismatch concerns paying \"for a full one\" — share size, not where a pickup should happen."
+     }
+    },
+    {
+     "kind": "offer",
+     "keyAct": "volunteers for the work exchange",
+     "line": "Members can work four hours a month for a discount.",
+     "reply": "Count me in — Saturdays are wide open for me.",
+     "explanationIfSpoken": "Offered a work-for-discount arrangement, the member signs on and names their availability. Asking for the waitlist responds to a sell-out this line never reports, and requesting a refund presupposes an overpayment nobody found. Choosing the market stall answers a pickup question that wasn't asked.",
+     "kills": {
+      "0": "\"Members can work\" for a perk — membership is open and running, with no sell-out to be waitlisted for.",
+      "1": "Working \"for a discount\" is an offer going forward; no overpayment exists for any difference to be refunded.",
+      "3": "The offer is \"four hours a\" month of work; it poses no barn-versus-stall pickup choice."
+     }
+    },
+    {
+     "kind": "question",
+     "keyAct": "chooses the handier location",
+     "line": "Do you want your pickup at the barn or the market stall?",
+     "reply": "The market stall — it's right on my way home.",
+     "explanationIfSpoken": "Asked to choose a pickup point, the member picks the stall for convenience. Joining a waitlist makes no sense for someone whose share is already being scheduled, and a refund request presupposes a billing error nobody raised. Volunteering Saturdays accepts a work offer this line never makes.",
+     "kills": {
+      "0": "Arranging \"your pickup at\" a location means the share is already theirs; no waitlist is in play.",
+      "1": "The choice is \"at the barn\" or the stall — a location question, not a half-versus-full billing fix.",
+      "2": "Asking about the barn \"or the market stall\" poses a choice; it offers no work hours to be counted in for."
+     }
+    }
+   ]
+  },
+  {
+   "localId": "crv8-b2-17",
+   "setting": "Community theater costume loan room; the wardrobe manager speaks with a member borrowing pieces.",
+   "worlds": [
+    {
+     "kind": "request",
+     "keyAct": "agrees and names the means",
+     "line": "Could you have the cloak dry-cleaned before you return it?",
+     "reply": "There's a cleaner by my house I can use.",
+     "explanationIfSpoken": "Asked to clean the cloak before returning it, the borrower agrees and names a nearby cleaner. Confirming that a two-week loan covers the run responds to terms this line never states, and asking to set a jacket aside presupposes an arrival nobody announced. Calling twenty fair accepts a price that was never quoted.",
+     "kills": {
+      "1": "The ask is to have \"the cloak dry-cleaned\" — a care request, with no loan length stated to declare sufficient.",
+      "2": "The cloak is out with the borrower \"before you return it\"; nothing new arrived for anyone to set aside.",
+      "3": "The favor is to \"have the cloak\" cleaned; no rental fee was quoted for 'twenty' to be fair."
+     }
+    },
+    {
+     "kind": "neutral info",
+     "keyAct": "confirms the term is enough",
+     "line": "Loans run two weeks, and hats can't leave the building.",
+     "reply": "A two-week loan covers our whole run, then.",
+     "explanationIfSpoken": "Told the loan terms, the borrower checks them against the show's schedule and confirms they fit. Naming a cleaner responds to a cleaning request nobody made, and setting a jacket aside presupposes a return this line never mentions. Accepting a weekly price answers a rental correction that wasn't given.",
+     "kills": {
+      "0": "Loans \"run two weeks\" — the line states terms and requests no cleaning, so naming a cleaner answers nothing.",
+      "2": "The rule that hats \"can't leave the building\" is policy talk; no returned jacket exists to set aside.",
+      "3": "The line covers loan rules — \"hats can't leave\" — and quotes no price, so calling twenty fair has no basis."
+     }
+    },
+    {
+     "kind": "good news",
+     "keyAct": "arranges to try the returned piece",
+     "line": "The velvet jacket you asked about just came back in.",
+     "reply": "Set it aside — I'll come try it after lunch.",
+     "explanationIfSpoken": "The piece the borrower wanted is back, so holding it for a fitting is the natural move. Naming a cleaner responds to a request nobody made, and confirming a two-week term refers to loan rules this line never states. Agreeing to a weekly price accepts a correction that wasn't given.",
+     "kills": {
+      "0": "The jacket \"just came back in\" — arrival news, with no cleaning requested and no cleaner needed.",
+      "1": "The line is about the piece \"you asked about\"; no loan length was given for anyone to call sufficient.",
+      "3": "The news is that the \"velvet jacket you\" wanted is available; no rental price was quoted to accept."
+     }
+    },
+    {
+     "kind": "correction",
+     "keyAct": "accepts the price after the correction",
+     "line": "That's actually a rental, not a loan — it's twenty a week.",
+     "reply": "Twenty is fair; I'll take it for two.",
+     "explanationIfSpoken": "Corrected that the piece rents by the week, the borrower accepts the price and commits to two weeks. Naming a cleaner responds to a cleaning request nobody made, and confirming a two-week loan cannot apply to something just declared not a loan. Setting the piece aside for later ignores that it is already in hand being priced.",
+     "kills": {
+      "0": "The correction is that it's \"twenty a week\" — a pricing matter, with nothing said about cleaning the cloak.",
+      "1": "The piece is \"a rental, not a loan\", so remarking that a two-week loan covers the run cannot apply.",
+      "2": "\"That's actually a\" rental in front of them being priced — it did not just come back in for anyone to hold."
+     }
+    }
+   ]
+  },
+  {
+   "localId": "crv8-b2-18",
+   "setting": "Neighborhood tool library; a desk volunteer speaks with a member at the counter.",
+   "worlds": [
+    {
+     "kind": "question",
+     "keyAct": "answers with the shorter window",
+     "line": "Do you need the drill for the weekend, or just today?",
+     "reply": "Just today — the shelf goes up this afternoon.",
+     "explanationIfSpoken": "Asked how long the drill is needed, the member picks the shorter window and explains the job. Approving a sharpening responds to an offer that wasn't made, and renting from the hardware store makes no sense when the drill is available right here. Accepting a two-tool limit refers to a policy this line never mentions.",
+     "kills": {
+      "1": "The line ends \"or just today\" — an either-or about time, with nothing offered for a go-ahead.",
+      "2": "The member is asked if they \"need the drill\" that is available here, so renting one elsewhere is unmotivated.",
+      "3": "The question is about keeping it \"for the weekend\"; no borrowing limit was stated to call plenty."
+     }
+    },
+    {
+     "kind": "offer",
+     "keyAct": "accepts the on-the-spot service",
+     "line": "We can sharpen those hedge shears for you while you wait.",
+     "reply": "They've been dull all summer, so go ahead.",
+     "explanationIfSpoken": "Offered a quick sharpening, the member accepts and explains why it's overdue. Answering 'just today' responds to a duration question nobody asked, and renting a tool elsewhere has no referent when the shears are the member's own. Praising a two-tool limit refers to a policy this line never states.",
+     "kills": {
+      "0": "The service happens \"while you wait\" — it's an offer to accept, not a question about how long a tool is needed.",
+      "2": "\"those hedge shears\" belong to the member; nothing is broken or missing, so renting 'one' elsewhere has no referent.",
+      "3": "\"We can sharpen\" is a service offer; no member limit was described for anyone to accept."
+     }
+    },
+    {
+     "kind": "bad news",
+     "keyAct": "sources the tool elsewhere",
+     "line": "The tile saw came back broken, so it's out of circulation.",
+     "reply": "I'll rent one from the hardware store this week.",
+     "explanationIfSpoken": "With the tile saw pulled from circulation, renting one commercially is the practical fallback. Answering 'just today' responds to a duration question that wasn't asked, and giving a go-ahead approves a service nobody offered. Calling a two-tool limit plenty refers to a policy this line never mentions.",
+     "kills": {
+      "0": "The saw is \"out of circulation\" — that's a notice about a broken tool, not an either-or question to answer with 'just today'.",
+      "1": "The saw \"came back broken\"; nothing was offered for approval, so a go-ahead has nothing to attach to.",
+      "3": "\"The tile saw\" is one broken tool; no member borrowing limit was mentioned to call plenty."
+     }
+    },
+    {
+     "kind": "neutral info",
+     "keyAct": "accepts the stated limit",
+     "line": "New members get two tools at a time for the first month.",
+     "reply": "Two at a time is plenty to start with.",
+     "explanationIfSpoken": "Told the new-member limit, the member accepts it as ample. Answering 'just today' responds to a duration question nobody asked, and giving a go-ahead approves a service that wasn't offered. Renting from the hardware store presupposes a broken tool this line never reports.",
+     "kills": {
+      "0": "The rule applies \"for the first month\" — it's a policy statement, not a question about needing a drill through the weekend.",
+      "1": "\"New members get\" an allowance; the line offers no sharpening or other service to approve.",
+      "2": "Members get \"two tools at a time\" — a generous limit, with nothing broken or unavailable to rent elsewhere."
+     }
+    }
+   ]
+  },
+  {
+   "localId": "crv8-b2-19",
+   "setting": "Animal shelter volunteer orientation; a staff coordinator speaks with a new volunteer.",
+   "worlds": [
+    {
+     "kind": "correction",
+     "keyAct": "relocates to the right place",
+     "line": "Orientation is in the annex, not this building — across the courtyard.",
+     "reply": "I'll head over there before it starts.",
+     "explanationIfSpoken": "Told the session is actually in the annex, the volunteer heads there right away. Explaining today's sandals responds to a footwear rule nobody raised, and signing up for solo walks presupposes a clearance this line never grants. Giving a shirt size accepts an offer that wasn't made.",
+     "kills": {
+      "1": "The fix is directions \"across the courtyard\" — nothing about footwear, so explaining sandals answers nothing.",
+      "2": "Being told it's \"not this building\" is a location correction; it grants no permission to book solo walks.",
+      "3": "Orientation being \"in the annex\" involves no merchandise; no shirt was offered to size."
+     }
+    },
+    {
+     "kind": "request",
+     "keyAct": "explains today's lapse and promises compliance",
+     "line": "Could you wear closed-toe shoes whenever you're in the kennels?",
+     "reply": "These sandals are all I brought — I'll change tomorrow.",
+     "explanationIfSpoken": "Asked to wear closed-toe shoes in the kennels, the volunteer admits today's lapse and promises to comply from tomorrow. Heading 'over there' has no destination since no other place was named, and booking solo walks presupposes a clearance nobody announced. Giving a shirt size responds to an offer that wasn't made.",
+     "kills": {
+      "0": "The rule applies \"in the kennels\" — a dress request naming no other location, so 'over there' has no referent.",
+      "2": "Asking for \"closed-toe shoes\" is a safety request; it clears no one to sign up for solo dog walks.",
+      "3": "The request covers \"whenever you're in\" the kennels — footwear only, with no shirt order in play."
+     }
+    },
+    {
+     "kind": "good news",
+     "keyAct": "books the newly permitted duty",
+     "line": "Your background check came through, so you can walk dogs solo.",
+     "reply": "I'll sign up for the Thursday solo walks, then.",
+     "explanationIfSpoken": "Cleared by the background check, the volunteer books the solo slot the clearance now allows. Heading somewhere else responds to a location correction nobody made, and the sandals explanation answers a dress-code request that wasn't voiced. Giving a shirt size accepts an offer this line never extends.",
+     "kills": {
+      "0": "The news permits them to \"walk dogs solo\" — it names no other building to head to before anything starts.",
+      "1": "\"Your background check\" clearing is a screening result; no footwear rule was raised for sandals to violate.",
+      "3": "Being cleared so they \"can walk dogs\" solo is a permission; no staff shirt was offered to pick a size for."
+     }
+    },
+    {
+     "kind": "offer",
+     "keyAct": "accepts with the needed detail",
+     "line": "We can order you a staff T-shirt in your size.",
+     "reply": "A medium works; put me down for one.",
+     "explanationIfSpoken": "Offered a staff shirt, the volunteer gives the size and accepts. Heading across to another building responds to a correction nobody made, and the sandals explanation answers a footwear request that wasn't voiced. Booking solo walks presupposes a background-check clearance this line never mentions.",
+     "kills": {
+      "0": "The offer is a shirt \"in your size\" — nothing about rooms or buildings, so relocating answers nothing.",
+      "1": "Ordering \"a staff T-shirt\" says nothing about shoes or kennels, so explaining sandals is off-point.",
+      "2": "\"We can order\" apparel — an offer that grants no clearance to sign up for solo walks."
+     }
+    }
+   ]
+  },
+  {
+   "localId": "crv8-b2-20",
+   "setting": "Community kitchen shift sign-in; the shift lead speaks with a regular volunteer arriving.",
+   "worlds": [
+    {
+     "kind": "good news",
+     "keyAct": "volunteers for the expanded schedule",
+     "line": "The grant came through, so hot meals go back to five nights.",
+     "reply": "I can cover the two new weeknights myself.",
+     "explanationIfSpoken": "With funding restored and two nights added back, the volunteer offers to staff exactly those new nights. Settling in for prep responds to a scaled-back shift this line never describes, and promising to scan a badge answers a rule nobody stated. Arranging a trade with Marcus responds to a swap request that wasn't made.",
+     "kills": {
+      "1": "Meals \"go back to five\" nights — service is expanding, and nobody limited tonight to prep work.",
+      "2": "The \"grant came through\" — funding news, with no badge or sign-in rule mentioned to commit to.",
+      "3": "Going \"back to five nights\" adds shifts; no one asked for a Friday to be traded away."
+     }
+    },
+    {
+     "kind": "bad news",
+     "keyAct": "adapts to the limited shift",
+     "line": "The walk-in fridge died overnight, so tonight's shift is prep only.",
+     "reply": "Prep suits me — I'll start chopping for tomorrow.",
+     "explanationIfSpoken": "With the fridge down and the shift reduced to prep, the volunteer rolls with it and starts chopping. Offering to cover two new weeknights presupposes an expansion this line never announces, and promising to scan a badge answers a rule nobody stated. Trading Friday with Marcus responds to a request that wasn't made.",
+     "kills": {
+      "0": "Tonight \"is prep only\" because of the failure — the schedule shrank for the evening; no new weeknights were added to cover.",
+      "2": "The \"fridge died overnight\" — an equipment problem, with nothing said about badges or counting hours.",
+      "3": "\"The walk-in fridge\" failing is a kitchen problem; nobody asked for any shift to be traded."
+     }
+    },
+    {
+     "kind": "neutral info",
+     "keyAct": "commits to the logging routine",
+     "line": "Sign in with your badge each shift, or the hours won't count.",
+     "reply": "I'll scan mine first thing every time I'm in.",
+     "explanationIfSpoken": "Told that hours only count when badged in, the volunteer commits to scanning on every arrival. Covering new weeknights presupposes an expansion this line never mentions, and settling for prep responds to a limitation nobody described. Trading Friday answers a swap request that wasn't made.",
+     "kills": {
+      "0": "The instruction is to sign in \"with your badge\" — a logging rule, with no expanded schedule to volunteer for.",
+      "1": "Only unbadged \"hours won't count\" — nothing changed about tonight's tasks, so pivoting to prep answers nothing.",
+      "3": "\"Sign in with\" a badge is routine procedure; no one asked for a Friday trade with anyone."
+     }
+    },
+    {
+     "kind": "question",
+     "keyAct": "names a swap partner",
+     "line": "Can you swap Friday with someone? We're overstaffed that night.",
+     "reply": "Marcus owes me one — I'll trade with him.",
+     "explanationIfSpoken": "Asked to move off an overstaffed Friday, the volunteer immediately names a willing trade partner. Volunteering for extra weeknights goes the wrong direction when the problem is too many hands, and the prep remark responds to a limitation nobody described. Promising to scan a badge answers a rule this line never states.",
+     "kills": {
+      "0": "The night is \"overstaffed that night\" — too many hands already, so offering to cover extra weeknights answers nothing.",
+      "1": "The ask is to \"swap Friday with\" someone — a scheduling question that chopping for tomorrow does not address.",
+      "2": "\"Can you swap\" asks for a trade; it states no badge routine for anyone to commit to."
+     }
+    }
+   ]
+  }
+ ]
+}

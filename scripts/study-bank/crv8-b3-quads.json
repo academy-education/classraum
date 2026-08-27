@@ -1,0 +1,1088 @@
+{
+ "cohort": "cr-v8",
+ "stage": 1,
+ "batch": "b3",
+ "method": "symmetric four-world authoring, post-hoc seeded key selection",
+ "items": [
+  {
+   "localId": "crv8-b3-01",
+   "setting": "Airport baggage service office: a baggage agent at the counter speaks with a passenger whose checked suitcase did not appear on the carousel.",
+   "worlds": [
+    {
+     "kind": "good news",
+     "keyAct": "asks to collect it on the spot",
+     "line": "We found your suitcase — it arrived on the later Chicago flight.",
+     "reply": "Could I pick it up at this counter right now?",
+     "explanationIfSpoken": "The agent says the suitcase has been found and has already arrived, so asking to collect it at the counter right away is the natural next step. Wondering whether it stays in Chicago until tomorrow contradicts the announced arrival, and describing a red ribbon is pointless once the bag is identified. There is also no claim form in play, so a phone number has nothing to be added to.",
+     "kills": {
+      "1": "Since the agent says \"it arrived on the later Chicago flight\", asking whether it stays there until tomorrow's first flight contradicts the stated arrival.",
+      "2": "\"We found your suitcase\" means the bag is already identified, so volunteering a ribbon description to help locate it is pointless.",
+      "3": "The agent says \"found your suitcase\" and requests no paperwork, so \"on here\" has no form to refer to."
+     }
+    },
+    {
+     "kind": "bad news",
+     "keyAct": "checks how long it stays put",
+     "line": "I'm sorry, but your suitcase is still sitting in Chicago.",
+     "reply": "So it stays there until the first flight tomorrow?",
+     "explanationIfSpoken": "Told the suitcase is still sitting in Chicago, the passenger naturally checks how long it will stay there before the next flight brings it over. Asking to pick it up at this counter right now is impossible for a bag in another city, and a ribbon description was never requested. Offering a phone number presupposes a claim form that was never mentioned.",
+     "kills": {
+      "0": "With the bag \"still sitting in Chicago\", there is nothing at this counter to pick up right now.",
+      "2": "The agent already tracks the bag — \"your suitcase is still\" located — so no identifying ribbon description was asked for.",
+      "3": "\"I'm sorry, but\" opens a report of bad news, not paperwork, so there is no form for a phone number to go on."
+     }
+    },
+    {
+     "kind": "question",
+     "keyAct": "answers with an identifying detail",
+     "line": "Does your suitcase have any tags or stickers on the outside?",
+     "reply": "It has a red ribbon tied around the handle.",
+     "explanationIfSpoken": "The agent asks what marks the suitcase carries, and naming the red ribbon around the handle answers exactly that. Asking to pick the bag up now ignores that it has not yet been located, and musing that it stays somewhere until tomorrow invents a delay nobody reported. A phone number belongs on a form, and no form has been offered.",
+     "kills": {
+      "0": "A question about \"any tags or stickers\" means the bag has not been located, so it cannot be picked up at the counter now.",
+      "1": "Asking about \"tags or stickers on the outside\" reports no delay or location, so there is no \"there\" for the bag to stay in.",
+      "3": "\"Does your suitcase have\" opens a question, not a claim form, so a phone number has nowhere to go."
+     }
+    },
+    {
+     "kind": "request",
+     "keyAct": "asks a clarifying question about the form",
+     "line": "Please fill out this claim form with your local address.",
+     "reply": "Do you also need my phone number on here?",
+     "explanationIfSpoken": "Handed a claim form that wants a local address, the passenger sensibly checks whether a phone number should go on it too. Asking to pick the bag up now clashes with the fact that a claim is being filed at all, and inferring that it stays somewhere until tomorrow has no stated basis. The ribbon description answers a question about appearance that was never asked.",
+     "kills": {
+      "0": "Being told to \"fill out this claim form\" means the bag is missing, so it cannot be collected at the counter right now.",
+      "1": "The request for \"your local address\" states no location or delay, so asking whether it stays there has no referent.",
+      "2": "The form wants \"your local address\", and nobody asked what the bag looks like, so the ribbon description answers nothing."
+     }
+    }
+   ]
+  },
+  {
+   "localId": "crv8-b3-02",
+   "setting": "Hotel front desk: a receptionist and a departing guest discuss a late checkout on the morning of departure.",
+   "worlds": [
+    {
+     "kind": "question",
+     "keyAct": "identifies the reservation",
+     "line": "Which room are you in, and under whose name?",
+     "reply": "Room five twelve, booked under the name Park.",
+     "explanationIfSpoken": "The clerk asks for the room and the name, and reciting both answers the question directly. Protesting about a conference pushes against a deadline nobody has imposed, and calling a midnight window plenty refers to a storage offer never made. Doubting the printed noon time presupposes a correction that has not been issued.",
+     "kills": {
+      "1": "The clerk only asks \"under whose name\" the room is booked and imposes no deadline, so there is no ruling for a conference conflict to protest.",
+      "2": "\"Which room are you in\" mentions no luggage window, so calling midnight plenty refers to nothing.",
+      "3": "Asking which \"room are you in\" issues no correction, so no printed noon time has been called into doubt."
+     }
+    },
+    {
+     "kind": "bad news",
+     "keyAct": "protests with a scheduling conflict",
+     "line": "I'm afraid noon is firm — the room turns over today.",
+     "reply": "But my conference here doesn't finish until three o'clock.",
+     "explanationIfSpoken": "Told that noon cannot move, the guest pushes back with the real conflict: the conference runs until three. Reciting a room number and name answers a question that was not asked, and praising a midnight storage window responds to an offer never made. Calling the printed noon time wrong contradicts a clerk who has just confirmed noon.",
+     "kills": {
+      "0": "The clerk states \"noon is firm\" rather than asking anything, so reciting a room and name answers no question.",
+      "2": "Because \"the room turns over\" at noon and no midnight storage was offered, nothing here is plenty of time.",
+      "3": "Since \"noon is firm\", the printed noon time is confirmed, not wrong."
+     }
+    },
+    {
+     "kind": "offer",
+     "keyAct": "confirms the offered window suffices",
+     "line": "If it helps, we can store your luggage until midnight.",
+     "reply": "Until midnight is plenty — my train leaves at ten.",
+     "explanationIfSpoken": "Offered luggage storage until midnight, the guest confirms the window comfortably covers a ten o'clock train. Reciting a room and name answers no question here, and the conference objection has nothing to push against since storage until midnight outlasts an event ending at three. Doubting a printed noon time responds to a correction nobody made.",
+     "kills": {
+      "0": "An offer to \"store your luggage\" asks for no room or name, so reciting them answers nothing.",
+      "1": "Storage running \"until midnight\" easily outlasts a conference ending at three, so there is no conflict to protest.",
+      "3": "\"If it helps\" extends a favor and states no checkout rule, so no printed time has been contradicted."
+     }
+    },
+    {
+     "kind": "correction",
+     "keyAct": "asks to confirm the correction",
+     "line": "Actually, your booking already includes checkout at four o'clock.",
+     "reply": "Then the noon time printed on my key sleeve is wrong?",
+     "explanationIfSpoken": "The clerk corrects the record — checkout is already four — so the guest reasonably checks whether the noon time printed on the key sleeve is simply wrong. Reciting a room and name answers no question, and the conference objection is moot when four o'clock already covers an event ending at three. Praising a midnight window responds to a storage offer that was never made.",
+     "kills": {
+      "0": "\"Your booking already\" includes late checkout is an assertion, not a question, so reciting a room and name hangs.",
+      "1": "With \"checkout at four o'clock\" included, a conference ending at three fits comfortably, leaving nothing to protest.",
+      "2": "The line grants \"checkout at four\" and offers no luggage storage, so calling a midnight window plenty has no referent."
+     }
+    }
+   ]
+  },
+  {
+   "localId": "crv8-b3-03",
+   "setting": "Car rental return lane: a return agent inspects the car while the customer stands by with luggage.",
+   "worlds": [
+    {
+     "kind": "bad news",
+     "keyAct": "disputes with prior documentation",
+     "line": "There's a new scratch on the rear bumper here.",
+     "reply": "That was documented when I picked the car up.",
+     "explanationIfSpoken": "Accused of a new scratch, the customer disputes it by pointing to the pickup paperwork where the mark was already recorded. Answering yes about a filling station responds to a fuel question that was not asked, and heading for the shuttle walks away from an unresolved damage claim. A phoned extension addresses lateness, which is not what the agent raised.",
+     "kills": {
+      "1": "Pointing out \"a new scratch\" asks nothing about fuel, so answering yes about a station answers no question.",
+      "2": "An unsettled charge for a scratch \"on the rear bumper\" must be resolved first, so heading for the shuttle is premature.",
+      "3": "The complaint is \"a new scratch\", not a late return, so citing a phoned extension is beside the point."
+     }
+    },
+    {
+     "kind": "question",
+     "keyAct": "confirms with a location",
+     "line": "Did you refill the tank within ten miles of here?",
+     "reply": "Yes, at the station just across the highway.",
+     "explanationIfSpoken": "Asked whether the tank was refilled nearby, the customer confirms and names the station across the highway. Claiming something was documented at pickup disputes damage nobody alleged, and leaving for the shuttle skips a question that is still open. A phoned extension speaks to return dates, not fuel.",
+     "kills": {
+      "0": "Asking whether you did \"refill the tank\" alleges no damage, so nothing was ever documented to dispute.",
+      "2": "The question about \"ten miles of here\" is still open, and walking off to the shuttle skips answering it.",
+      "3": "\"Refill the tank\" concerns fuel, not dates, so a rental extension in the system is irrelevant."
+     }
+    },
+    {
+     "kind": "good news",
+     "keyAct": "moves on to onward transport",
+     "line": "Everything checks out — you're all set, receipt is emailed.",
+     "reply": "Then I'll head straight for the terminal shuttle now.",
+     "explanationIfSpoken": "With the inspection clean and the receipt sent, the customer is free to move on and heads for the terminal shuttle. Disputing documentation makes no sense when no damage has been alleged, and answering yes about a station replies to a fuel question that was never posed. Citing a phoned extension defends against a lateness charge nobody made.",
+     "kills": {
+      "0": "When \"Everything checks out\", no damage has been alleged, so there is nothing documented to dispute.",
+      "1": "\"You're all set\" leaves no question pending, so answering yes about a station answers nothing.",
+      "3": "With the \"receipt is emailed\" and nothing disputed, no lateness was raised for a phoned extension to answer."
+     }
+    },
+    {
+     "kind": "correction",
+     "keyAct": "cites a prior arrangement",
+     "line": "Actually this return was due yesterday, not this morning.",
+     "reply": "My extension by phone should be in the system.",
+     "explanationIfSpoken": "Told the car was due back yesterday, the customer counters that a phoned extension should already be on file. Pickup documentation answers a damage claim, not a lateness claim, and answering yes about a station replies to a fuel question never asked. Strolling to the shuttle abandons a dispute that is still open.",
+     "kills": {
+      "0": "The issue is a return \"due yesterday\", not damage, so pickup documentation about a scratch answers nothing.",
+      "1": "Saying it was due yesterday, \"not this morning\", asks nothing, so a yes about a filling station hangs.",
+      "2": "A return flagged as \"due yesterday\" is an open dispute, so heading for the shuttle is premature."
+     }
+    }
+   ]
+  },
+  {
+   "localId": "crv8-b3-04",
+   "setting": "Ferry ticket booth: a ticket clerk and a traveler arranging passage to Oak Island.",
+   "worlds": [
+    {
+     "kind": "neutral info",
+     "keyAct": "asks a follow-up about duration",
+     "line": "The three o'clock boat makes two stops before Oak Island.",
+     "reply": "How much longer does that make the whole crossing?",
+     "explanationIfSpoken": "Hearing that the three o'clock boat makes two stops, the traveler asks how much those stops stretch the crossing. Asking about a morning boat running instead presupposes a cancellation nobody announced, and fetching a license answers an ID request never made. Agreeing that five more is fine accepts a surcharge that was never quoted.",
+     "kills": {
+      "1": "A boat that \"makes two stops\" is clearly running, so there is no cancellation for a morning boat to replace.",
+      "2": "Describing the route \"before Oak Island\" requests no ID, so fetching a license answers nothing.",
+      "3": "The \"three o'clock boat\" was described, not priced, so agreeing that five more is fine hangs."
+     }
+    },
+    {
+     "kind": "bad news",
+     "keyAct": "asks about a replacement sailing",
+     "line": "The afternoon crossing is cancelled because of the swell.",
+     "reply": "Is the first morning boat likely to run instead?",
+     "explanationIfSpoken": "With the afternoon sailing cancelled by the swell, the traveler sensibly asks whether tomorrow's first boat will run in its place. A cancelled crossing has no duration for stops to lengthen, and no ID has been requested that a license would satisfy. Accepting five dollars more responds to an express upgrade that is not on the table.",
+     "kills": {
+      "0": "A \"crossing is cancelled\" has no duration, so nothing can make it longer.",
+      "2": "Explaining it is off \"because of the swell\" requests no ID, so the license errand is unprompted.",
+      "3": "With the \"afternoon crossing is cancelled\", no five-dollar express upgrade is on the table to accept."
+     }
+    },
+    {
+     "kind": "request",
+     "keyAct": "complies after a short delay",
+     "line": "I'll need to see a photo ID for the discount.",
+     "reply": "My driver's license is in the car — one minute.",
+     "explanationIfSpoken": "Asked for photo ID to apply the discount, the traveler complies, stepping away briefly to fetch the license from the car. Asking how much longer stops make the crossing responds to route details nobody gave, and a morning boat running instead presupposes a cancellation never announced. Accepting five more takes up a surcharge that was never offered.",
+     "kills": {
+      "0": "A request for \"a photo ID\" says nothing about stops, so no crossing has been lengthened to ask about.",
+      "1": "Checking ID \"for the discount\" reports no cancellation, so there is nothing for a morning boat to run instead of.",
+      "3": "The clerk will \"need to see a\" license and quotes no surcharge, so agreeing five more is fine answers nothing."
+     }
+    },
+    {
+     "kind": "offer",
+     "keyAct": "accepts conditional on time saved",
+     "line": "For five dollars more you can board the express.",
+     "reply": "Five more is fine if it halves the crossing time.",
+     "explanationIfSpoken": "Offered the express for five dollars more, the traveler accepts on the condition that it meaningfully shortens the trip. Asking how much longer something makes the crossing inverts an offer that speeds it up, and a morning boat running instead answers a cancellation nobody reported. Fetching a license satisfies an ID request that was never made.",
+     "kills": {
+      "0": "An invitation to \"board the express\" shortens the trip, so asking how much longer it makes the crossing inverts the offer.",
+      "1": "Offering \"five dollars more\" cancels nothing, so there is no sailing for a morning boat to replace.",
+      "2": "\"You can board\" for a surcharge — no ID was demanded, so fetching a license responds to nothing."
+     }
+    }
+   ]
+  },
+  {
+   "localId": "crv8-b3-05",
+   "setting": "Long-distance bus luggage bay: the driver is loading bags while a passenger hands theirs over.",
+   "worlds": [
+    {
+     "kind": "request",
+     "keyAct": "reports the precondition met and authorizes",
+     "line": "Could you take the laptop out before I stow this?",
+     "reply": "It's already in my shoulder bag, go ahead.",
+     "explanationIfSpoken": "The driver asks for the laptop to come out first, and the passenger reports it is already in the shoulder bag, so stowing can proceed. Going around back responds to a destination mix-up nobody mentioned, and meeting another bus answers an assignment never made. The coffee question needs a rest stop that was not announced.",
+     "kills": {
+      "1": "Asking you to \"take the laptop out\" involves no destination mix-up, so going around back complies with nothing.",
+      "2": "The driver is about to \"stow this\" bag right here, so there is no other bus to ask about meeting.",
+      "3": "A request about \"the laptop out\" announces no rest stop, so the coffee question hangs."
+     }
+    },
+    {
+     "kind": "correction",
+     "keyAct": "self-identifies and complies",
+     "line": "Actually this bay is for Portland; Seattle bags load behind.",
+     "reply": "Mine is for Seattle, so I'll go around back.",
+     "explanationIfSpoken": "Corrected that Seattle bags load behind, the passenger identifies theirs as a Seattle bag and moves to the right place. Authorizing the driver to go ahead answers a laptop request that was never made, and meeting another bus responds to a full bay nobody reported. The coffee question needs a break that was not announced.",
+     "kills": {
+      "0": "\"This bay is for Portland\" requests no laptop removal, so telling the driver to go ahead authorizes nothing.",
+      "2": "If \"Seattle bags load behind\", the bag still travels on this departure, so there is no other bus to meet.",
+      "3": "Sorting which \"this bay is\" for announces no break, so the coffee-and-stretch question hangs."
+     }
+    },
+    {
+     "kind": "bad news",
+     "keyAct": "asks how retrieval works",
+     "line": "The bay is full — your duffel rides the next coach.",
+     "reply": "Will someone unload it, or do I meet that bus?",
+     "explanationIfSpoken": "Told the duffel will ride the next coach, the passenger asks the practical question: who retrieves it at the other end. Authorizing the driver to go ahead answers a laptop request nobody made, and going around back treats a full bay as a mislabeled one. The coffee question needs a rest stop that was never mentioned.",
+     "kills": {
+      "0": "Saying \"your duffel rides\" the next coach asks for no laptop to be removed first, so go ahead answers nothing.",
+      "1": "When the duffel \"rides the next coach\", it is assigned to another vehicle, not another door on this one.",
+      "3": "\"The bay is full\" mentions no rest stop, so there is nothing to grab coffee during."
+     }
+    },
+    {
+     "kind": "neutral info",
+     "keyAct": "checks what the break allows",
+     "line": "There's a fifteen-minute rest stop about halfway to Portland.",
+     "reply": "Enough time to grab coffee and stretch my legs?",
+     "explanationIfSpoken": "Hearing there is a fifteen-minute stop halfway, the passenger checks whether that allows coffee and a stretch. Authorizing the driver to go ahead answers a laptop request never made, and going around back responds to a bay mix-up nobody flagged. Meeting another bus presupposes a full bay that was not reported.",
+     "kills": {
+      "0": "News of a \"fifteen-minute rest stop\" requests nothing, so telling anyone to go ahead fits no request.",
+      "1": "Mentioning the stop \"halfway to Portland\" flags no loading mix-up, so going around back complies with nothing.",
+      "2": "A \"rest stop about halfway\" says nothing about a full bay, so no bag is riding another coach."
+     }
+    }
+   ]
+  },
+  {
+   "localId": "crv8-b3-06",
+   "setting": "Travel clinic vaccination desk: a nurse and a traveler preparing shots before an international trip.",
+   "worlds": [
+    {
+     "kind": "question",
+     "keyAct": "answers yes with a time reference",
+     "line": "Have you had a typhoid shot in the last three years?",
+     "reply": "Yes, before a Kenya trip about two years ago.",
+     "explanationIfSpoken": "Asked about typhoid in the last three years, the traveler confirms one before a Kenya trip two years back. Worrying that one dose is useless responds to a schedule nobody described, and taking a one-copay bundle accepts an offer never made. Hunting another clinic answers a shortage that was not reported.",
+     "kills": {
+      "1": "Asking about \"the last three years\" states no dosing schedule, so worrying that one dose is useless refers to nothing.",
+      "2": "\"Have you had\" opens a history question, and no bundle was priced, so one copay works answers nothing.",
+      "3": "A question about \"a typhoid shot\" mentions no shortage, so hunting for another clinic is unprompted."
+     }
+    },
+    {
+     "kind": "neutral info",
+     "keyAct": "flags that the schedule may not fit the trip",
+     "line": "This vaccine needs two doses, spaced four weeks apart.",
+     "reply": "My flight is in three weeks — is one dose useless?",
+     "explanationIfSpoken": "Told the vaccine takes two doses a month apart, the traveler flags the obvious problem: the flight leaves in three weeks. Answering yes about Kenya replies to a history question nobody asked, and accepting a one-copay bundle takes up pricing never quoted. Seeking another clinic solves a stock problem the clinic does not have.",
+     "kills": {
+      "0": "Stating it \"needs two doses\" asks nothing, so a yes about a Kenya trip answers no question.",
+      "2": "A schedule \"spaced four weeks apart\" quotes no price, so accepting one copay hangs.",
+      "3": "\"This vaccine needs\" spacing describes a shot in stock, so stock at another clinic is not the issue."
+     }
+    },
+    {
+     "kind": "offer",
+     "keyAct": "accepts on cost grounds",
+     "line": "We can bundle hepatitis and typhoid for one copay.",
+     "reply": "One copay works; my plan covers almost nothing here.",
+     "explanationIfSpoken": "Offered both shots for a single copay, the traveler accepts because insurance barely helps. A yes about a Kenya trip answers a history question never asked, and the one-dose worry responds to a spacing schedule nobody described. Looking for another clinic contradicts an offer that shows both vaccines are on hand.",
+     "kills": {
+      "0": "Offering to \"bundle hepatitis and typhoid\" asks no history question, so a yes about Kenya answers nothing.",
+      "1": "Pricing \"for one copay\" says nothing about dose spacing, so the one-dose worry hangs.",
+      "3": "\"We can bundle\" both shots only if they are in stock, so seeking another clinic contradicts the offer."
+     }
+    },
+    {
+     "kind": "bad news",
+     "keyAct": "seeks it elsewhere before a deadline",
+     "line": "We're out of yellow fever vaccine until next Tuesday.",
+     "reply": "My departure is Friday — does another clinic stock it?",
+     "explanationIfSpoken": "With the vaccine out until Tuesday and departure on Friday, asking which other clinic stocks it is the urgent, sensible move. A yes about Kenya answers a question nobody asked, and the one-dose worry responds to a schedule never described. Accepting a bundle is impossible when the shot cannot be given today.",
+     "kills": {
+      "0": "News about \"yellow fever vaccine\" stock asks nothing, so a yes about a Kenya trip answers no question.",
+      "1": "Being out \"until next Tuesday\" is a supply problem, not a two-dose schedule, so the one-dose worry hangs.",
+      "2": "\"We're out of\" the vaccine, so a bundle of shots cannot be accepted today."
+     }
+    }
+   ]
+  },
+  {
+   "localId": "crv8-b3-07",
+   "setting": "Passport photo studio: a photographer preparing and delivering a customer's passport photos.",
+   "worlds": [
+    {
+     "kind": "correction",
+     "keyAct": "complies while flagging a difficulty",
+     "line": "Actually, glasses have to come off for passport photos now.",
+     "reply": "I can't see much without them, so guide me.",
+     "explanationIfSpoken": "Told the rules now require glasses off, the customer complies but warns of poor eyesight and asks to be guided. Asking whether the result is sharp enough to reuse presupposes a finished photo that does not exist yet, and adjusting hair further back answers an instruction about hair nobody gave. A Thursday complaint needs a pickup date that was never named.",
+     "kills": {
+      "1": "If glasses \"have to come off\", the photo is still being set up, so nothing exists yet to reuse for a visa.",
+      "2": "The rule \"for passport photos\" concerns glasses, not hair, so further back adjusts nothing that was asked.",
+      "3": "\"Glasses have to come off\" is preparation talk; no pickup day was named, so a Thursday complaint hangs."
+     }
+    },
+    {
+     "kind": "good news",
+     "keyAct": "asks about reuse of the result",
+     "line": "Your prints came out sharp — no retakes needed today.",
+     "reply": "Sharp enough to reuse for my visa application too?",
+     "explanationIfSpoken": "Hearing the prints came out sharp, the customer asks whether the same shots can serve the visa application. Asking to be guided through removing glasses is moot once shooting is over, and a posing check about hair has no pending instruction to answer. Calling Thursday too late objects to a delay nobody announced.",
+     "kills": {
+      "0": "With \"no retakes needed\", the shoot is over, so being guided through removing glasses is moot.",
+      "2": "\"Prints came out sharp\" means posing is finished, so no hair instruction is pending to adjust.",
+      "3": "The line \"came out sharp\" names no Thursday pickup, so calling Thursday too late answers nothing."
+     }
+    },
+    {
+     "kind": "request",
+     "keyAct": "agrees and checks the adjustment",
+     "line": "Tuck your hair behind your ears so both show.",
+     "reply": "Like this, or should it be further back?",
+     "explanationIfSpoken": "Given the hair instruction, the customer adjusts and checks whether it is far enough back. Asking to be guided without glasses responds to a glasses rule nobody stated, and asking about reusing a sharp print presupposes a photo that has not been taken. A Thursday complaint needs a printing delay that was never announced.",
+     "kills": {
+      "0": "Directing hair \"behind your ears\" says nothing about glasses, so there is nothing to see without.",
+      "1": "\"So both show\" means the photo is still being posed, so nothing exists yet to reuse.",
+      "3": "\"Tuck your hair\" sets up the shot and names no pickup delay, so a Thursday complaint hangs."
+     }
+    },
+    {
+     "kind": "bad news",
+     "keyAct": "rejects the delay with a deadline",
+     "line": "The printer is down, so pickup won't be till Thursday.",
+     "reply": "Thursday is too late; my visa appointment is Wednesday.",
+     "explanationIfSpoken": "Told pickup slips to Thursday, the customer objects that the visa appointment is Wednesday, so the delay does not work. Asking to be guided through removing glasses belongs to the shooting stage, not delivery, and no sharpness verdict was given for a reuse question to build on. A hair check answers a posing instruction nobody is giving now.",
+     "kills": {
+      "0": "\"The printer is down\" is a delivery problem after shooting, so no glasses instruction needs guiding.",
+      "1": "A delay because \"pickup won't be\" ready gives no verdict on sharpness, so asking about reuse of a sharp print hangs.",
+      "2": "Delay \"till Thursday\" is about printing, not posing, so no hair adjustment was requested."
+     }
+    }
+   ]
+  },
+  {
+   "localId": "crv8-b3-08",
+   "setting": "Currency exchange counter: a teller and a customer changing money before a trip.",
+   "worlds": [
+    {
+     "kind": "neutral info",
+     "keyAct": "adjusts strategy to the fee",
+     "line": "We charge a flat eight-dollar fee on every exchange.",
+     "reply": "Then I'll change everything at once, not in parts.",
+     "explanationIfSpoken": "Hearing there is a flat fee per exchange, the customer sensibly decides to change everything in one transaction. Choosing small bills answers a denomination question that was not asked, and hunting a branch that still has stock responds to a shortage nobody reported. Admitting a wrong envelope reacts to an error the teller never flagged.",
+     "kills": {
+      "1": "Quoting a \"flat eight-dollar fee\" asks no denomination question, so choosing small ones answers nothing.",
+      "2": "A fee \"on every exchange\" reports no shortage, so hunting a branch that still has some is unprompted.",
+      "3": "\"We charge a\" fee flags no error with the customer's note, so there is no wrong envelope to explain."
+     }
+    },
+    {
+     "kind": "question",
+     "keyAct": "chooses a denomination with a reason",
+     "line": "Do you want that in large bills or small?",
+     "reply": "Small ones, mostly for taxis and street food.",
+     "explanationIfSpoken": "Asked large or small, the customer picks small bills and explains why: taxis and street food. Consolidating exchanges dodges a fee nobody mentioned, and asking about another branch treats a teller mid-count as out of stock. Confessing a wrong envelope answers a mix-up the teller never raised.",
+     "kills": {
+      "0": "Offering \"large bills or small\" mentions no fee, so consolidating to dodge charges hangs.",
+      "2": "A teller asking to pay out \"in large bills\" or small is dispensing, not out of stock, so no branch search is needed.",
+      "3": "A choice of \"bills or small\" flags no misidentified note, so there is no envelope mix-up to admit."
+     }
+    },
+    {
+     "kind": "bad news",
+     "keyAct": "asks for another location",
+     "line": "Our yen ran out this morning; more arrives tomorrow.",
+     "reply": "Which nearby branch might still have some today?",
+     "explanationIfSpoken": "With the yen gone until tomorrow, asking which nearby branch still has some today is the practical next step. An all-at-once plan responds to a fee that was never quoted, and picking small bills answers a choice that cannot be offered from an empty till. The wrong-envelope confession reacts to an error in the customer's own notes that nobody flagged.",
+     "kills": {
+      "0": "When the yen \"ran out this morning\", no fee was quoted, so an all-at-once plan responds to nothing.",
+      "1": "With nothing to hand over until \"more arrives tomorrow\", no large-or-small choice is on offer.",
+      "3": "\"Our yen ran\" out — the shortage is the shop's, not a mix-up in the customer's envelope."
+     }
+    },
+    {
+     "kind": "correction",
+     "keyAct": "acknowledges the error and explains",
+     "line": "This note is Hong Kong dollars, not Chinese yuan.",
+     "reply": "I brought the wrong envelope — the yuan stayed home.",
+     "explanationIfSpoken": "Shown that the note is Hong Kong dollars, the customer realizes the mix-up: the wrong envelope came along and the yuan stayed home. A change-it-all-at-once plan responds to a fee never quoted, and small bills answer a question never asked. Searching for another branch treats the customer's own mistake as the shop's shortage.",
+     "kills": {
+      "0": "Identifying \"Hong Kong dollars\" quotes no fee, so the change-it-all-at-once plan hangs.",
+      "1": "Saying it is \"not Chinese yuan\" poses no large-or-small question to answer.",
+      "2": "\"This note is\" the customer's own money misidentified, not an empty till, so no other branch needs finding."
+     }
+    }
+   ]
+  },
+  {
+   "localId": "crv8-b3-09",
+   "setting": "Hostel common room: a staff member manages the activities booking board while chatting with a guest.",
+   "worlds": [
+    {
+     "kind": "offer",
+     "keyAct": "claims the final spot urgently",
+     "line": "There's one spot left on tomorrow's sunrise hike list.",
+     "reply": "Grab that last spot for me before someone else does.",
+     "explanationIfSpoken": "With a single place left on the sunrise hike, the guest claims it before anyone else can. Asking about a similar later event responds to a cancellation nobody announced, and checking the kayak trip against a six-name minimum uses a rule that was never stated. Saying a name can stay up presupposes being on a list already.",
+     "kills": {
+      "1": "With \"one spot left\", nothing has been cancelled, so asking about a similar replacement hangs.",
+      "2": "The \"sunrise hike list\" is down to one place, and no six-person minimum was stated to check the kayak trip against.",
+      "3": "\"One spot left\" means the guest is not on any list yet, so no name can stay up."
+     }
+    },
+    {
+     "kind": "bad news",
+     "keyAct": "asks about later alternatives",
+     "line": "The walking tour got scrapped; the guide is sick.",
+     "reply": "Was anything similar planned for later this week?",
+     "explanationIfSpoken": "With the walking tour scrapped, the guest asks whether something similar is planned later in the week. Grabbing a last spot responds to an opening nobody mentioned, and a six-name check uses a minimum that was never stated. Insisting on still going contradicts an event that no longer exists.",
+     "kills": {
+      "0": "A \"tour got scrapped\" opens no seat to grab; nothing here has one spot left.",
+      "2": "Because \"the guide is sick\" the issue is cancellation; no six-name minimum was stated to check.",
+      "3": "Once the \"walking tour got scrapped\", insisting on still going contradicts the line."
+     }
+    },
+    {
+     "kind": "neutral info",
+     "keyAct": "checks a trip against the minimum",
+     "line": "Sign-ups close at eight, and each trip needs six people.",
+     "reply": "Does the kayak trip have six names yet, then?",
+     "explanationIfSpoken": "Told each trip needs six people before the eight o'clock cutoff, the guest checks whether the kayak trip has reached six names. Grabbing a last spot inverts the situation, since trips here need more names, not fewer. A replacement question answers a cancellation nobody announced, and refusing to erase a name responds to a request never made.",
+     "kills": {
+      "0": "If each trip \"needs six people\", lists want more names, so no single last spot exists to grab.",
+      "1": "\"Sign-ups close at\" eight cancels nothing, so a question about a similar replacement hangs.",
+      "3": "Rules that \"close at eight\" ask no one to remove a name, so declaring the name can stay up fits nothing."
+     }
+    },
+    {
+     "kind": "request",
+     "keyAct": "declines the premise, still attending",
+     "line": "Could you erase your name from Friday if you're not going?",
+     "reply": "I'm still going, so the name can stay up.",
+     "explanationIfSpoken": "Asked to erase the name if not attending, the guest rejects the premise: still going, so the name stays. Grabbing a last spot answers an opening nobody offered, and a similar-event question responds to a cancellation never announced. The six-name check uses a minimum rule that was never mentioned.",
+     "kills": {
+      "0": "Asking you to \"erase your name\" concerns dropping out, not a last spot to claim.",
+      "1": "The condition \"if you're not going\" cancels nothing, so no similar replacement is needed.",
+      "2": "\"Your name from Friday\" is the topic, not trip minimums, so a six-name check answers nothing."
+     }
+    }
+   ]
+  },
+  {
+   "localId": "crv8-b3-10",
+   "setting": "Campsite ranger station: a ranger and a camper at the check-in window of a forest campground.",
+   "worlds": [
+    {
+     "kind": "correction",
+     "keyAct": "accepts the correct site and relocates",
+     "line": "Site twelve is actually reserved; your permit says site twenty.",
+     "reply": "Twenty it is — we'll shift camp before dark.",
+     "explanationIfSpoken": "Corrected that the permit actually says site twenty, the camper accepts and plans to move before dark. The firewood question responds to fire rules nobody discussed, and asking how high to hang food answers a bear warning never given. A leaving-Saturday answer replies to a weather question that was not asked.",
+     "kills": {
+      "1": "Reading that \"your permit says\" site twenty involves no fire rules, so the firewood question hangs.",
+      "2": "A site being \"actually reserved\" mentions no bear or food storage, so asking how high answers nothing.",
+      "3": "\"Site twelve is\" the issue, not weather, so a leaving-Saturday answer fits no question."
+     }
+    },
+    {
+     "kind": "good news",
+     "keyAct": "asks how to source what's now allowed",
+     "line": "The fire ban lifted this morning, so campfires are fine.",
+     "reply": "Do you sell firewood here, or should we gather it?",
+     "explanationIfSpoken": "With the fire ban lifted, the camper immediately asks how to get wood: buy it at the station or gather it. Agreeing to shift to site twenty echoes a correction nobody made, and asking how high to hang food answers a bear warning never issued. The leaving-Saturday reply answers a storm question that was not asked.",
+     "kills": {
+      "0": "News that the \"fire ban lifted\" corrects no site number, so agreeing to shift to twenty echoes nothing.",
+      "2": "If \"campfires are fine\", no food-hanging request was made, so asking how high is high enough hangs.",
+      "3": "A ban \"lifted this morning\" asks nothing about staying, so the leaving-Saturday answer hangs."
+     }
+    },
+    {
+     "kind": "request",
+     "keyAct": "agrees and asks for a specification",
+     "line": "Please hang your food bags; a bear was seen nearby.",
+     "reply": "We have a rope — how high is high enough?",
+     "explanationIfSpoken": "Warned about a bear and asked to hang food, the camper agrees and asks the practical detail: how high counts as safe. Confirming site twenty echoes a correction nobody made, and the firewood question responds to fire permissions never discussed. The Saturday answer replies to a storm question that was not asked.",
+     "kills": {
+      "0": "\"A bear was seen\" corrects no site number, so agreeing to twenty confirms nothing said here.",
+      "1": "Asking you to hang \"your food bags\" grants no fire permission, so sourcing firewood is unprompted.",
+      "3": "A bear \"was seen nearby\" is tonight's concern; no storm question was asked, so the Saturday answer fits nothing."
+     }
+    },
+    {
+     "kind": "question",
+     "keyAct": "answers no with reasoning",
+     "line": "Are you staying through the storm forecast for Sunday night?",
+     "reply": "We're leaving Saturday, so it should miss us.",
+     "explanationIfSpoken": "Asked about staying through Sunday night's storm, the camper answers no: they leave Saturday, so the storm should miss them. Confirming site twenty echoes a correction nobody made, and the firewood question responds to fire rules never mentioned. Asking how high to hang food answers a bear warning that was not given.",
+     "kills": {
+      "0": "A question about \"the storm forecast\" corrects no site assignment, so agreeing to twenty echoes nothing.",
+      "1": "\"Are you staying\" grants no fire permission, so the firewood question is unprompted.",
+      "2": "Wondering about plans \"for Sunday night\" makes no food-hanging request, so asking how high answers nothing."
+     }
+    }
+   ]
+  },
+  {
+   "localId": "crv8-b3-11",
+   "setting": "Physiotherapy clinic reception desk; the receptionist is speaking with a student patient who has just arrived to check in.",
+   "worlds": [
+    {
+     "kind": "bad news",
+     "keyAct": "asks for a substitute provider today",
+     "line": "Your physiotherapist called in sick, so this afternoon's session can't happen.",
+     "reply": "Is another therapist able to see me this afternoon, then?",
+     "explanationIfSpoken": "The therapist is out and the session is cancelled, so asking whether another therapist can step in today is the natural next move. Offering to forward a referral letter answers a paperwork request nobody made, and accepting an earlier slot makes no sense when the session can't happen at all. Reporting that the shoulder still aches answers a symptom question that was never asked.",
+     "kills": {
+      "1": "Forwarding a referral letter answers no request here; \"called in sick\" announces a cancellation, not missing paperwork.",
+      "2": "Accepting an earlier slot contradicts \"can't happen\" — there is no session left to take.",
+      "3": "The line \"called in sick\" delivers a cancellation and asks nothing, so a report on shoulder progress answers no question."
+     }
+    },
+    {
+     "kind": "request",
+     "keyAct": "offers to supply the document immediately",
+     "line": "Before we start, we need your referral letter from the campus doctor.",
+     "reply": "It's in my email — can I forward it right now?",
+     "explanationIfSpoken": "The receptionist needs the referral letter before treatment, and offering to forward it from email solves exactly that. Asking for a substitute therapist responds to a cancellation that never happened — \"before we start\" shows the session is going ahead. Accepting an earlier slot answers no offer, and describing lingering shoulder pain answers no symptom question.",
+     "kills": {
+      "0": "\"Before we start\" shows the session is proceeding as planned, so requesting a substitute therapist this afternoon answers a cancellation that never happened.",
+      "2": "The line asks for a \"referral letter\", not whether you want an earlier time, so accepting a slot responds to nothing offered.",
+      "3": "A request for paperwork \"from the campus doctor\" asks nothing about symptoms, so a pain report answers no question."
+     }
+    },
+    {
+     "kind": "good news",
+     "keyAct": "accepts the earlier slot citing availability",
+     "line": "Good timing — a cancellation just opened, so we can take you early.",
+     "reply": "I'll take it — my next class isn't until four.",
+     "explanationIfSpoken": "An earlier opening is being offered, so accepting it and noting you're free until four fits perfectly. Asking whether another therapist can see you presumes a cancellation of your own session, which didn't happen. Forwarding a referral answers no paperwork request, and a shoulder-pain update answers no question about symptoms.",
+     "kills": {
+      "0": "\"can take you early\" means care is available right now, so asking for a substitute therapist this afternoon is unmotivated.",
+      "1": "A \"cancellation just opened\" offers a time, not a document request, so volunteering to forward a letter fits nothing said.",
+      "3": "\"cancellation just opened\" concerns the schedule, not your symptoms, so a pain update is a non sequitur."
+     }
+    },
+    {
+     "kind": "question",
+     "keyAct": "reports partial progress on symptoms",
+     "line": "Did the exercises we gave you last week ease the shoulder pain?",
+     "reply": "A little, though it still aches whenever I reach overhead.",
+     "explanationIfSpoken": "The receptionist asks directly whether last week's exercises helped, so a partial-progress report about reaching overhead answers it squarely. Asking for a substitute therapist responds to a cancellation nobody announced. Offering to forward a referral letter and accepting an earlier slot both answer requests and offers that were never made.",
+     "kills": {
+      "0": "The line asks whether \"the exercises\" helped; it cancels nothing, so requesting a substitute therapist is unfounded.",
+      "1": "\"ease the shoulder pain\" asks about symptoms, not paperwork, so offering to forward a referral answers nothing.",
+      "2": "\"gave you last week\" looks back at homework, not a new opening, so accepting an earlier slot responds to no offer."
+     }
+    }
+   ]
+  },
+  {
+   "localId": "crv8-b3-12",
+   "setting": "Scheduling window at a dental office; the scheduler is speaking with a student patient.",
+   "worlds": [
+    {
+     "kind": "correction",
+     "keyAct": "accepts the corrected date",
+     "line": "Our system shows your cleaning Thursday, not Friday like your reminder said.",
+     "reply": "Thursday works too — I'll fix it in my calendar.",
+     "explanationIfSpoken": "The scheduler corrects a date mix-up, so confirming Thursday works and updating the calendar resolves it. Asking for after-three availability responds to a morning-slot offer nobody made. Asking who takes over cleanings presumes a staff departure that wasn't announced, and an insurance answer replies to a question never posed.",
+     "kills": {
+      "1": "The line settles which day with \"not Friday\"; it offers no morning slots, so asking for afternoon availability declines nothing.",
+      "2": "\"your cleaning Thursday\" concerns one appointment's date, so asking who takes over future cleanings answers a departure never announced.",
+      "3": "\"your reminder said\" concerns scheduling, not billing, so an insurance answer addresses a question that wasn't asked."
+     }
+    },
+    {
+     "kind": "offer",
+     "keyAct": "declines the time but asks for an alternative",
+     "line": "If mornings suit you, Dr. Patel keeps eight o'clock slots open for students.",
+     "reply": "Mornings are tough — do they have anything after three?",
+     "explanationIfSpoken": "The scheduler offers standing morning slots, so explaining mornings don't work and asking about afternoons engages that offer directly. Agreeing that Thursday works corrects a date error nobody mentioned. Asking who will take over cleanings answers a departure not announced, and reporting insurance status answers no question here.",
+     "kills": {
+      "0": "\"eight o'clock slots\" offers a time of day; agreeing that Thursday works corrects no date mix-up.",
+      "2": "\"Dr. Patel keeps\" slots open — nobody is leaving, so asking who takes over responds to a departure not mentioned.",
+      "3": "\"mornings suit you\" is about timing, not coverage, so reporting insurance status answers nothing said."
+     }
+    },
+    {
+     "kind": "bad news",
+     "keyAct": "asks about the replacement provider",
+     "line": "The hygienist you usually see is leaving the practice at month's end.",
+     "reply": "Who would take over my cleanings after she goes?",
+     "explanationIfSpoken": "News that the usual hygienist is leaving naturally prompts asking who will take over. Confirming that Thursday works fixes a date error nobody raised, and asking for after-three slots declines an offer that wasn't made. An answer about parents' insurance addresses a coverage question that was never asked.",
+     "kills": {
+      "0": "\"is leaving\" announces staffing news, not a date correction, so affirming Thursday fixes nothing said.",
+      "1": "\"leaving the practice\" is a departure notice, not a slot offer, so asking for after-three times declines nothing offered.",
+      "3": "\"you usually see\" concerns a person, not an insurance plan, so a coverage answer is a non sequitur."
+     }
+    },
+    {
+     "kind": "question",
+     "keyAct": "confirms current status with a future change",
+     "line": "Are you still on your parents' insurance, or has your coverage changed?",
+     "reply": "Still theirs until June, then I switch to the student plan.",
+     "explanationIfSpoken": "The scheduler asks about coverage, so answering that it stays with the parents until June and then changes answers exactly that. Agreeing Thursday works responds to a date correction nobody made, and asking for afternoon slots responds to no offer. Asking who takes over cleanings presumes a departure that wasn't mentioned.",
+     "kills": {
+      "0": "\"your coverage changed\" asks about insurance, so agreeing that Thursday works answers a scheduling question never posed.",
+      "1": "\"still on your parents'\" invites a coverage answer; requesting afternoon slots ignores the question entirely.",
+      "2": "\"has your coverage\" concerns billing, not staff, so asking who takes over cleanings responds to no departure."
+     }
+    }
+   ]
+  },
+  {
+   "localId": "crv8-b3-13",
+   "setting": "Pre-screening room before an eye exam; the technician is speaking with a student patient.",
+   "worlds": [
+    {
+     "kind": "request",
+     "keyAct": "complies while asking for a moment",
+     "line": "I'll need you to take your contacts out before the pressure test.",
+     "reply": "I have a case in my bag — give me a second.",
+     "explanationIfSpoken": "The technician asks for the contacts to come out, so reaching for the case and asking for a moment is direct compliance. Explaining time abroad answers a records question nobody asked, and naming screens as a headache trigger answers no symptom probe. Asking whether to skip new lenses presumes exam results that haven't been given.",
+     "kills": {
+      "1": "\"take your contacts out\" is an instruction, not a records query, so explaining years abroad answers nothing asked.",
+      "2": "\"the pressure test\" names what comes next, not a symptom question, so citing screens as a trigger replies to no inquiry.",
+      "3": "\"I'll need you\" issues a task; asking whether to skip new lenses presumes results not yet given."
+     }
+    },
+    {
+     "kind": "neutral info",
+     "keyAct": "explains the gap in the record",
+     "line": "Your last exam here was almost three years ago, in your file.",
+     "reply": "I was studying abroad, so I missed a couple of visits.",
+     "explanationIfSpoken": "The technician notes a three-year gap in the file, so explaining the study-abroad absence accounts for it. Producing a contacts case complies with an instruction that was never given, and specifying screen-time triggers answers no symptom question. Concluding no new lenses are needed presumes fresh results the line doesn't contain.",
+     "kills": {
+      "0": "\"in your file\" reports a record; producing a contacts case complies with an instruction never given.",
+      "2": "\"almost three years\" concerns visit history, not symptoms, so specifying screen triggers answers no question here.",
+      "3": "\"Your last exam\" looks backward at records; skipping new lenses presumes fresh results the line doesn't offer."
+     }
+    },
+    {
+     "kind": "question",
+     "keyAct": "specifies which condition triggers symptoms",
+     "line": "Have you noticed the headaches more when you're reading or at screens?",
+     "reply": "Mostly at screens, especially near the end of long assignments.",
+     "explanationIfSpoken": "Asked whether reading or screens brings on the headaches, naming screens during long assignments answers the question precisely. Reaching for a contacts case obeys no instruction in the line, and a study-abroad explanation accounts for a records gap nobody mentioned. Deciding against new lenses jumps to a result the exam hasn't produced.",
+     "kills": {
+      "0": "\"Have you noticed\" asks about symptoms; reaching for a contacts case obeys no instruction in it.",
+      "1": "\"reading or at screens\" probes triggers, not attendance, so a study-abroad explanation accounts for nothing asked.",
+      "3": "\"the headaches\" are still being investigated; declaring no new lenses needed jumps past a question, not a result."
+     }
+    },
+    {
+     "kind": "good news",
+     "keyAct": "confirms no purchase is needed",
+     "line": "Your prescription barely shifted, so your current glasses are still fine.",
+     "reply": "So I can skip ordering new lenses this year?",
+     "explanationIfSpoken": "The result is that the prescription barely moved, so checking that no new lenses are needed follows directly. Producing a contacts case answers an instruction that was never given, and explaining time abroad addresses a records gap nobody raised. Naming screen triggers answers a symptom question that isn't in the line.",
+     "kills": {
+      "0": "\"barely shifted\" delivers a result; producing a contacts case answers an instruction that wasn't given.",
+      "1": "\"current glasses\" concerns the outcome, not attendance history, so explaining time abroad fits no question here.",
+      "2": "\"still fine\" closes the exam with results; naming screen triggers answers a symptom probe nobody made."
+     }
+    }
+   ]
+  },
+  {
+   "localId": "crv8-b3-14",
+   "setting": "Triage desk at a campus walk-in clinic; the triage nurse is speaking with a student who has just signed in.",
+   "worlds": [
+    {
+     "kind": "question",
+     "keyAct": "rates the symptom with a qualifier",
+     "line": "On a scale of one to ten, how bad is the pain right now?",
+     "reply": "Around a six, but it spikes when I put weight on it.",
+     "explanationIfSpoken": "The nurse asks for a pain rating, so giving a six with a note about weight-bearing answers exactly that. Asking to visit the pharmacy responds to a wait time never stated, and planning a ride across town responds to a referral nobody made. Choosing the fastest provider accepts an offer that isn't on the table.",
+     "kills": {
+      "1": "\"how bad\" asks for a rating; asking to hold a spot answers a queue length never stated.",
+      "2": "\"the pain right now\" is being assessed here; planning transport to a hospital responds to no referral.",
+      "3": "\"one to ten\" requests a number; choosing the fastest provider answers an offer that wasn't made."
+     }
+    },
+    {
+     "kind": "neutral info",
+     "keyAct": "asks to hold a place while stepping out",
+     "line": "There are six people ahead of you, so expect about an hour.",
+     "reply": "Can I run to the pharmacy downstairs and keep my spot?",
+     "explanationIfSpoken": "Told the wait is about an hour, asking to step out to the pharmacy while keeping the spot uses that information directly. A pain rating answers a question nobody asked, and arranging a ride across town responds to no referral. Picking the fastest provider accepts a choice that was never offered.",
+     "kills": {
+      "0": "\"six people ahead\" states the queue and asks nothing, so rating the pain answers a question nobody posed.",
+      "2": "\"about an hour\" promises care here eventually; arranging a ride across town responds to no referral.",
+      "3": "\"ahead of you\" describes the wait and offers no alternative, so picking the fastest provider accepts nothing offered."
+     }
+    },
+    {
+     "kind": "bad news",
+     "keyAct": "asks how to reach the referral site",
+     "line": "We can't treat eye injuries here — you'll need the hospital across town.",
+     "reply": "Is there a shuttle, or should I call a taxi?",
+     "explanationIfSpoken": "Being referred to a hospital across town makes transportation the immediate problem, so asking about a shuttle or taxi fits. Volunteering a pain number answers no question in the line, and holding a spot in this queue serves no purpose when care won't happen here. Accepting a faster in-house provider contradicts being sent away.",
+     "kills": {
+      "0": "\"can't treat\" refers you out and asks nothing, so volunteering a pain rating answers no question in it.",
+      "1": "\"the hospital across town\" is where care happens, so holding a spot in this queue serves no purpose.",
+      "3": "\"can't treat eye injuries\" refuses care here; accepting a faster in-house provider contradicts being sent away."
+     }
+    },
+    {
+     "kind": "offer",
+     "keyAct": "accepts, prioritizing speed over provider",
+     "line": "A nurse practitioner can see you sooner, if that's alright with you.",
+     "reply": "Whoever's fastest is fine — I just want this looked at.",
+     "explanationIfSpoken": "Offered a nurse practitioner sooner, saying whoever is fastest is fine accepts the trade the line proposes. A pain score answers no question posed here, and asking to leave and hold a spot addresses a delay this line removes. Asking about shuttles to a hospital responds to a referral that never happened.",
+     "kills": {
+      "0": "\"see you sooner\" offers scheduling, not assessment, so a pain score with a qualifier answers no question posed.",
+      "1": "\"can see you sooner\" shrinks the wait; asking to leave and hold a spot answers a delay this line removes.",
+      "2": "\"can see you\" promises treatment here, so asking about shuttles to a hospital responds to no referral."
+     }
+    }
+   ]
+  },
+  {
+   "localId": "crv8-b3-15",
+   "setting": "Taping bench in the athletics training room; the trainer is speaking with a student athlete before practice.",
+   "worlds": [
+    {
+     "kind": "correction",
+     "keyAct": "clarifies which side needs treatment",
+     "line": "You're down for the left ankle, but you keep pointing at the right.",
+     "reply": "The left's the old injury — it's the right that hurts now.",
+     "explanationIfSpoken": "The trainer flags a mismatch between the chart and the athlete's gestures, so explaining that the old injury was the left and the new pain is the right resolves it. Checking foot position complies with a wrapping instruction never given. Relaying the coach's relief presumes a clearance not announced, and offering to buy tape fixes a shortage nobody mentioned.",
+     "kills": {
+      "1": "\"keep pointing\" flags a mismatch, not a wrapping instruction, so checking foot position complies with nothing asked.",
+      "2": "\"down for the left ankle\" questions which side to treat; relaying coach's relief presumes a clearance not given.",
+      "3": "\"the left ankle\" discrepancy is the issue, not supplies, so offering to buy tape fixes a shortage never mentioned."
+     }
+    },
+    {
+     "kind": "request",
+     "keyAct": "complies while checking the exact form",
+     "line": "Can you flex your foot up and hold it while I wrap?",
+     "reply": "Like this, or do you want the toes pulled back further?",
+     "explanationIfSpoken": "Mid-taping, the trainer asks for a held position, so demonstrating and checking whether the toes should come back further is direct compliance. Relitigating which side hurts answers a discrepancy nobody raised at this point. Announcing the coach's reaction responds to clearance news not delivered, and proposing a drugstore roll solves a shortage that doesn't exist.",
+     "kills": {
+      "0": "\"while I wrap\" shows treatment is underway on an agreed spot, so relitigating which side hurts answers no discrepancy raised.",
+      "2": "\"flex your foot\" is a mid-procedure instruction; announcing coach's reaction to full clearance responds to news not delivered.",
+      "3": "\"I wrap\" means tape is in hand, so proposing to bring a drugstore roll solves no shortage."
+     }
+    },
+    {
+     "kind": "good news",
+     "keyAct": "notes a third party's reaction to the news",
+     "line": "The swelling's gone down enough that you can practice fully today.",
+     "reply": "Coach will be glad — she's been planning around my minutes.",
+     "explanationIfSpoken": "Full clearance is exactly the news the coach has been waiting on, so passing along her likely relief fits naturally. Disputing which side hurts answers a chart question nobody asked, and checking toe position complies with no instruction given. Offering to buy tape addresses a supply problem the line never raises.",
+     "kills": {
+      "0": "\"swelling's gone down\" is a verdict on the known injury, so disputing which side hurts answers no chart question.",
+      "1": "\"practice fully today\" is clearance news, not a positioning request, so asking about toe angle complies with nothing.",
+      "3": "\"gone down enough\" concerns the injury, not inventory, so offering to buy tape addresses a shortage nobody raised."
+     }
+    },
+    {
+     "kind": "bad news",
+     "keyAct": "proposes a stopgap supply",
+     "line": "This roll's my last one — we're out of tape until Thursday's delivery.",
+     "reply": "Would a drugstore roll work if I bring my own tomorrow?",
+     "explanationIfSpoken": "With the training room out of tape until Thursday, offering to bring a drugstore roll tomorrow directly addresses the shortage. Clarifying which ankle hurts resolves a chart discrepancy nobody raised, and asking how far to pull the toes back answers no instruction. Passing on the coach's relief responds to clearance news that wasn't delivered.",
+     "kills": {
+      "0": "\"out of tape\" is a supply problem, so clarifying which ankle hurts resolves no chart discrepancy here.",
+      "1": "\"my last one\" concerns stock, not technique, so asking how far to pull the toes back answers no instruction.",
+      "2": "\"until Thursday's delivery\" is about supplies, not clearance, so passing on coach's relief responds to no medical news."
+     }
+    }
+   ]
+  },
+  {
+   "localId": "crv8-b3-16",
+   "setting": "Campus nutrition counseling office; the dietitian is speaking with a student client at a follow-up visit.",
+   "worlds": [
+    {
+     "kind": "question",
+     "keyAct": "admits partial compliance with a reason",
+     "line": "Did you manage to log your meals in the app this week?",
+     "reply": "Most days — I lost track over the weekend trip.",
+     "explanationIfSpoken": "Asked whether the meal logging happened, admitting most days with a weekend lapse answers honestly. Declining a Saturday tour refuses an event nobody proposed, and crediting spinach for iron responds to lab news not given. Blaming a Monday swipe reset explains a dining-plan detail that was never mentioned.",
+     "kills": {
+      "1": "\"Did you manage\" asks about homework and offers no event, so declining a Saturday tour refuses nothing proposed.",
+      "2": "\"log your meals\" concerns tracking, not lab results, so crediting spinach for iron answers news not given.",
+      "3": "\"in the app\" asks about logging, not dining swipes, so blaming a Monday reset explains nothing asked."
+     }
+    },
+    {
+     "kind": "offer",
+     "keyAct": "declines the day but not the activity",
+     "line": "We run a free grocery-store tour on Saturdays, if you're interested.",
+     "reply": "Saturdays I work, but I'd join one on another day.",
+     "explanationIfSpoken": "Invited to a Saturday tour, explaining the work conflict while staying interested engages the offer directly. Reporting how many days were logged answers a homework question nobody asked. Celebrating normal iron responds to lab news not delivered, and the swipe-reset realization connects to nothing in the invitation.",
+     "kills": {
+      "0": "\"if you're interested\" invites a response to a tour, so reporting how many days were logged answers no such question.",
+      "2": "\"grocery-store tour\" is an invitation, not results, so celebrating normal iron responds to no lab news.",
+      "3": "\"on Saturdays\" schedules an outing, not dining-hall billing, so the swipe-reset realization fits nothing said."
+     }
+    },
+    {
+     "kind": "good news",
+     "keyAct": "credits the dietary change for the result",
+     "line": "Your iron levels came back normal on the latest blood work.",
+     "reply": "So the spinach and lentils are actually doing their job.",
+     "explanationIfSpoken": "Normal iron on the blood work is the payoff of the diet changes, so crediting the spinach and lentils responds to that news. A logging confession answers a question that wasn't asked, and declining Saturdays refuses an invitation nobody extended. The swipe-reset insight belongs to a dining-plan conversation this line never opens.",
+     "kills": {
+      "0": "\"came back normal\" reports results and asks nothing, so a logging confession answers no question here.",
+      "1": "\"the latest blood work\" is a lab report, not an invitation, so declining Saturdays refuses nothing offered.",
+      "3": "\"iron levels\" concern nutrition labs, not meal-plan billing, so the swipe-reset insight connects to nothing said."
+     }
+    },
+    {
+     "kind": "neutral info",
+     "keyAct": "reinterprets a past problem in light of the info",
+     "line": "Your meal plan swipes reset each Monday, not at the month's end.",
+     "reply": "No wonder I kept running short by the last week.",
+     "explanationIfSpoken": "Learning the swipes reset weekly rather than monthly explains why the student kept running short, so the realization fits the information exactly. Reporting logged days answers a tracking question nobody posed, and turning down Saturdays declines an invitation not made. Crediting lentils for iron replies to lab news that was never delivered.",
+     "kills": {
+      "0": "\"swipes reset\" explains dining credits and asks nothing, so reporting logged days answers no question posed.",
+      "1": "\"each Monday\" clarifies billing timing, not an event, so turning down Saturdays declines nothing offered.",
+      "2": "\"meal plan swipes\" are about dining credit, not labs, so crediting lentils for iron replies to absent news."
+     }
+    }
+   ]
+  },
+  {
+   "localId": "crv8-b3-17",
+   "setting": "Intake desk at a sleep study lab; the study coordinator is speaking with a student participant.",
+   "worlds": [
+    {
+     "kind": "request",
+     "keyAct": "seeks the boundary of an instruction",
+     "line": "We ask that you skip caffeine after noon on the day you come in.",
+     "reply": "Does that include tea, or just coffee and energy drinks?",
+     "explanationIfSpoken": "Given a no-caffeine-after-noon rule, asking whether tea counts probes exactly where the instruction's boundary lies. Asking whether next week still counts responds to a cancellation nobody announced, and clearing a pillow with the sensors addresses sleeping logistics not yet described. Asking how forty dollars arrives follows payment news that was never given.",
+     "kills": {
+      "1": "\"the day you come in\" assumes the session happens, so asking whether next week still counts answers no cancellation.",
+      "2": "\"skip caffeine\" is a dietary rule, so clearing a pillow with the sensors responds to sleeping arrangements not described.",
+      "3": "\"after noon\" sets a rule, not a payment, so asking how forty dollars arrives follows news not given."
+     }
+    },
+    {
+     "kind": "bad news",
+     "keyAct": "asks whether rescheduling preserves a benefit",
+     "line": "Tonight's session is off — the recording equipment failed its afternoon check.",
+     "reply": "Will the slots next week still count for my psych credit?",
+     "explanationIfSpoken": "With tonight cancelled by an equipment failure, the participant's real concern is whether a later slot still earns the psychology credit. Asking whether tea counts prepares for a visit that isn't happening, and planning to bring a pillow prepares for a stay just cancelled. Asking how payment arrives assumes money this line takes away.",
+     "kills": {
+      "0": "\"session is off\" cancels tonight, so asking whether tea counts prepares for a visit that isn't happening.",
+      "2": "\"equipment failed\" means nobody sleeps here tonight, so planning to bring a pillow prepares for a stay just cancelled.",
+      "3": "\"Tonight's session is off\" removes tonight's earnings, so asking how payment arrives assumes money this line takes away."
+     }
+    },
+    {
+     "kind": "neutral info",
+     "keyAct": "plans a comfort item within study rules",
+     "line": "You'll sleep here overnight, and we wake you at six for debrief.",
+     "reply": "I'll bring my own pillow, if that doesn't mess with sensors.",
+     "explanationIfSpoken": "Told the stay is overnight with a six a.m. debrief, planning to bring a pillow that won't interfere with sensors is a sensible response to those logistics. Asking whether tea counts probes a caffeine instruction never given. Asking if next week still counts answers a cancellation that didn't happen, and asking about checks responds to payment news not delivered.",
+     "kills": {
+      "0": "\"sleep here overnight\" describes logistics, not a caffeine rule, so asking whether tea counts probes an instruction never given.",
+      "1": "\"we wake you\" confirms the session runs, so asking if next week still counts answers a cancellation that didn't happen.",
+      "3": "\"at six for debrief\" covers scheduling, not compensation, so asking about checks responds to no payment news."
+     }
+    },
+    {
+     "kind": "good news",
+     "keyAct": "asks about the payment mechanism",
+     "line": "You qualified for the paid group, so tonight earns you forty dollars.",
+     "reply": "Does that arrive as a check, or straight to my account?",
+     "explanationIfSpoken": "Learning tonight pays forty dollars, asking whether it comes as a check or a deposit follows the news directly. Asking whether tea counts responds to a caffeine rule not stated, and asking whether next week counts treats tonight as cancelled when the line confirms it proceeds. Negotiating a pillow with the sensors answers logistics this line never covers.",
+     "kills": {
+      "0": "\"the paid group\" is about compensation, not caffeine, so asking whether tea counts answers no such rule.",
+      "1": "\"tonight earns you\" confirms tonight proceeds, so asking whether next week counts treats it as cancelled.",
+      "2": "\"forty dollars\" is payment news, not sleeping logistics, so negotiating a pillow with sensors answers nothing here."
+     }
+    }
+   ]
+  },
+  {
+   "localId": "crv8-b3-18",
+   "setting": "Allergy testing lab; the technician is speaking with a student patient at the check-in counter.",
+   "worlds": [
+    {
+     "kind": "question",
+     "keyAct": "discloses and asks about consequences",
+     "line": "Have you taken any antihistamines in the past seventy-two hours?",
+     "reply": "One on Monday night — does that push my test back?",
+     "explanationIfSpoken": "Screened for recent antihistamines, admitting the Monday pill and asking whether it delays the test answers and follows up appropriately. Asking about phone use during results responds to a waiting period never described. Defending both nut allergies corrects a form discrepancy nobody raised, and choosing which half runs answers a cutback that wasn't announced.",
+     "kills": {
+      "1": "\"Have you taken\" screens medication and describes no waiting period, so asking about phone use during results fits nothing said.",
+      "2": "\"any antihistamines\" concerns medication, not your allergy list, so defending both nut allergies corrects no discrepancy raised.",
+      "3": "\"past seventy-two hours\" is a screening question, not scheduling news, so choosing which half runs answers no cutback."
+     }
+    },
+    {
+     "kind": "neutral info",
+     "keyAct": "asks what is allowed during the interval",
+     "line": "The skin pricks go on your forearm, and results show in twenty minutes.",
+     "reply": "Can I read or use my phone while we wait?",
+     "explanationIfSpoken": "Told there is a twenty-minute wait for results, asking whether reading or phone use is allowed fills exactly that gap. Confessing a Monday pill answers a medication question nobody asked. Insisting the allergy is both corrects no discrepancy, and asking which half survives responds to a shortage that doesn't exist.",
+     "kills": {
+      "0": "\"results show in\" explains procedure and asks nothing, so confessing a Monday pill answers no medication question.",
+      "2": "\"on your forearm\" is procedural description, so insisting the allergy is both corrects no form discrepancy mentioned.",
+      "3": "\"The skin pricks\" proceed as described in full, so asking which half survives responds to no shortage."
+     }
+    },
+    {
+     "kind": "correction",
+     "keyAct": "resolves the discrepancy by affirming both",
+     "line": "Your form lists a peanut allergy, but you told me it was tree nuts.",
+     "reply": "It's both, actually — peanuts are just the more severe one.",
+     "explanationIfSpoken": "The technician flags a conflict between the form and the interview, and saying it's both, with peanuts the more severe, resolves it. Reporting a Monday antihistamine answers a screening question not asked here. Asking about phones during the wait skips a question still open, and picking which half runs answers a capacity cutback nobody announced.",
+     "kills": {
+      "0": "\"Your form lists\" queries the record, not medication, so reporting a Monday antihistamine answers a question not asked.",
+      "1": "\"you told me\" seeks clarification first, so asking about phones during the wait skips a question still open.",
+      "3": "\"lists a peanut allergy\" is a record question, not capacity news, so picking which half runs answers no cutback."
+     }
+    },
+    {
+     "kind": "bad news",
+     "keyAct": "asks which portion proceeds",
+     "line": "One panel's on back order, so we can only run half today.",
+     "reply": "Which half — the foods, or the pollens and dust?",
+     "explanationIfSpoken": "Told only half the testing can run, asking whether it's the foods or the pollens is the immediate practical question. Disclosing an antihistamine answers a screening question not in the line, and asking about phone rules ignores the decision the line demands. Asserting both allergies corrects a paperwork discrepancy nobody raised.",
+     "kills": {
+      "0": "\"on back order\" is a supply issue, not screening, so disclosing an antihistamine answers no question here.",
+      "1": "\"only run half\" changes today's scope, so asking about phone rules ignores the decision the line demands.",
+      "2": "\"One panel's\" availability is about inventory, not your paperwork, so asserting both allergies corrects no discrepancy raised."
+     }
+    }
+   ]
+  },
+  {
+   "localId": "crv8-b3-19",
+   "setting": "Campus vaccination pop-up tent; a volunteer nurse is speaking with a student.",
+   "worlds": [
+    {
+     "kind": "offer",
+     "keyAct": "accepts bundling with a rationale",
+     "line": "We can do your flu shot in the same visit, no extra form.",
+     "reply": "Two today is fine — better than coming back next week.",
+     "explanationIfSpoken": "Offered a flu shot in the same visit, agreeing to both today to avoid a second trip accepts the bundle directly. Insisting this is a second dose defends against a queue-sorting challenge nobody made. The sweater question complies with a sleeve instruction not given, and asking about emailed proof presumes a visit already finished.",
+     "kills": {
+      "1": "\"the same visit\" offers an add-on, so insisting this is your second dose defends against no sorting challenge.",
+      "2": "\"no extra form\" sweetens an offer, not an instruction, so the sweater question responds to no request to bare an arm.",
+      "3": "\"We can do\" looks forward to more shots, so asking about proof today presumes a completion not announced."
+     }
+    },
+    {
+     "kind": "correction",
+     "keyAct": "asserts eligibility for the current line",
+     "line": "This line's for second doses — first timers check in at that table.",
+     "reply": "This is my second — I got the first at home in July.",
+     "explanationIfSpoken": "Redirected as a possible first-timer, stating that the first dose happened at home in July establishes the right to stay in this line. Accepting two shots today answers a bundling offer nobody made. The sweater question complies with an instruction not given, and asking about proof assumes a visit that hasn't even started.",
+     "kills": {
+      "0": "\"first timers check in\" sorts the queue and offers nothing extra, so accepting two shots today answers no offer.",
+      "2": "\"This line's for\" concerns which queue you join, not clothing, so the sweater question complies with no instruction given.",
+      "3": "\"check in at that table\" happens before any shot, so asking about proof assumes a finished visit."
+     }
+    },
+    {
+     "kind": "request",
+     "keyAct": "flags an obstacle to complying",
+     "line": "Roll your sleeve past the shoulder and relax your arm for me.",
+     "reply": "This sweater won't roll — should I just slip it off?",
+     "explanationIfSpoken": "Asked to roll the sleeve up, pointing out the sweater won't roll and offering to remove it is compliance meeting a practical obstacle. Weighing two visits accepts a bundling offer nobody made here. Defending a dose count answers no queue challenge, and asking about emailed proof presumes the visit is already over.",
+     "kills": {
+      "0": "\"relax your arm\" means the shot is starting, so weighing two visits accepts an offer nobody made.",
+      "1": "\"Roll your sleeve\" means you're already through the line, so defending your dose count answers no challenge.",
+      "3": "\"past the shoulder\" comes before the needle, so asking about emailed proof presumes the visit is over."
+     }
+    },
+    {
+     "kind": "good news",
+     "keyAct": "checks on follow-up documentation",
+     "line": "You're all set — no reaction, so you're free to head out.",
+     "reply": "Do I still get the proof of vaccination emailed today?",
+     "explanationIfSpoken": "Cleared to leave after the observation period, checking that the emailed proof still arrives today is the natural closing question. Accepting a second shot answers an offer not on the table, and arguing about which line to stand in contests nothing said. Asking whether to remove a sweater serves a shot already given.",
+     "kills": {
+      "0": "\"free to head out\" closes the visit, so accepting a second shot today answers an offer not on the table.",
+      "1": "\"You're all set\" means the doses are done, so arguing you belong in this line contests nothing said.",
+      "2": "\"no reaction\" ends the observation period, so asking whether to remove a sweater serves a shot already given."
+     }
+    }
+   ]
+  },
+  {
+   "localId": "crv8-b3-20",
+   "setting": "First aid certification classroom; the instructor is speaking with a student before the session begins.",
+   "worlds": [
+    {
+     "kind": "neutral info",
+     "keyAct": "confirms what the format permits",
+     "line": "The written test is open book, but the CPR demo isn't.",
+     "reply": "So we can bring the manual in for the written part?",
+     "explanationIfSpoken": "Told the written portion is open book, checking whether the manual is allowed in confirms exactly what that format permits. Volunteering to stay after class accepts an extra-practice invitation never made. Citing a lifeguard certification rebuts a records discrepancy nobody raised, and requesting an interim email responds to a card delay not announced.",
+     "kills": {
+      "1": "\"open book\" describes test format and offers no extra session, so volunteering to stay accepts an invitation never made.",
+      "2": "\"The written test\" concerns format, not enrollment records, so citing a lifeguard certification rebuts no discrepancy raised.",
+      "3": "\"the CPR demo\" is still ahead, so requesting an interim email responds to a card delay not announced."
+     }
+    },
+    {
+     "kind": "offer",
+     "keyAct": "takes up the offer citing a weakness",
+     "line": "I stay twenty minutes after class if anyone wants extra mannequin practice.",
+     "reply": "I'd stay — my chest compressions still feel too shallow.",
+     "explanationIfSpoken": "Offered extra mannequin time after class, accepting and naming shallow compressions as the reason takes up the offer directly. Asking whether manuals are allowed answers test-format news that wasn't given. Explaining a lifeguard certification defends against no records challenge, and asking for email proof responds to a card delay this line never mentions.",
+     "kills": {
+      "0": "\"extra mannequin practice\" is a hands-on offer, so asking whether manuals are allowed answers no test-format news.",
+      "2": "\"after class\" offers practice time, not a records challenge, so explaining a lifeguard certification defends against nothing said.",
+      "3": "\"if anyone wants\" invites practice, so asking for email proof responds to a delay this line never mentions."
+     }
+    },
+    {
+     "kind": "correction",
+     "keyAct": "explains the record gap with an external source",
+     "line": "Your card would say recertification, but our records show no earlier course.",
+     "reply": "I certified through my lifeguard job — maybe under a different system.",
+     "explanationIfSpoken": "The instructor flags that the records show no earlier course, so explaining the certification came through a lifeguard job under a different system accounts for the gap. Asking about bringing the manual answers a format point nobody made. Accepting after-class practice takes up an offer never extended, and seeking interim email proof answers a delay that wasn't announced.",
+     "kills": {
+      "0": "\"our records show\" questions history, not test rules, so asking about bringing the manual answers no format point.",
+      "1": "\"no earlier course\" challenges eligibility, so accepting after-class practice takes up an offer that wasn't made.",
+      "3": "\"would say recertification\" is about the card's wording, not its timing, so seeking interim email proof answers no delay."
+     }
+    },
+    {
+     "kind": "bad news",
+     "keyAct": "seeks an interim substitute document",
+     "line": "The certification cards are delayed, so nothing gets handed out today.",
+     "reply": "Will an email confirmation work for my job application meanwhile?",
+     "explanationIfSpoken": "With the cards delayed, asking whether an email confirmation can stand in for a job application addresses the practical consequence directly. Asking about manuals answers open-book news that wasn't given, and joining extra practice accepts no standing offer. Defending a prior lifeguard course rebuts a records challenge nobody made.",
+     "kills": {
+      "0": "\"handed out today\" concerns cards, not the test's format, so asking about manuals answers no open-book news.",
+      "1": "\"cards are delayed\" is a logistics snag at the end of the course, so joining extra practice accepts no standing offer.",
+      "2": "\"The certification cards\" delay affects everyone equally, so defending a prior lifeguard course rebuts no records challenge."
+     }
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,562 @@
+[
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Before we start, we need your referral letter from the campus doctor.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "It's in my email — can I forward it right now?",
+      "Is another therapist able to see me this afternoon, then?",
+      "A little, though it still aches whenever I reach overhead.",
+      "I'll take it — my next class isn't until four."
+    ],
+    "correct_answer": "It's in my email — can I forward it right now?",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The receptionist needs the referral letter before treatment, and offering to forward it from email solves exactly that. Asking for a substitute therapist responds to a cancellation that never happened — \"before we start\" shows the session is going ahead. Accepting an earlier slot answers no offer, and describing lingering shoulder pain answers no symptom question.",
+    "distractor_rationales": {
+      "Is another therapist able to see me this afternoon, then?": "\"Before we start\" shows the session is proceeding as planned, so requesting a substitute therapist this afternoon answers a cancellation that never happened.",
+      "I'll take it — my next class isn't until four.": "The line asks for a \"referral letter\", not whether you want an earlier time, so accepting a slot responds to nothing offered.",
+      "A little, though it still aches whenever I reach overhead.": "A request for paperwork \"from the campus doctor\" asks nothing about symptoms, so a pain report answers no question."
+    },
+    "_crv7": {
+      "localId": "crv8-b3-11",
+      "selectedWorld": 1,
+      "kind": "request",
+      "keyAct": "offers to supply the document immediately",
+      "setting": "Physiotherapy clinic reception desk; the receptionist is speaking with a student patient who has just arrived to check in."
+    }
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Tuck your hair behind your ears so both show.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Like this, or should it be further back?",
+      "Sharp enough to reuse for my visa application too?",
+      "Thursday is too late; my visa appointment is Wednesday.",
+      "I can't see much without them, so guide me."
+    ],
+    "correct_answer": "Like this, or should it be further back?",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "Given the hair instruction, the customer adjusts and checks whether it is far enough back. Asking to be guided without glasses responds to a glasses rule nobody stated, and asking about reusing a sharp print presupposes a photo that has not been taken. A Thursday complaint needs a printing delay that was never announced.",
+    "distractor_rationales": {
+      "I can't see much without them, so guide me.": "Directing hair \"behind your ears\" says nothing about glasses, so there is nothing to see without.",
+      "Sharp enough to reuse for my visa application too?": "\"So both show\" means the photo is still being posed, so nothing exists yet to reuse.",
+      "Thursday is too late; my visa appointment is Wednesday.": "\"Tuck your hair\" sets up the shot and names no pickup delay, so a Thursday complaint hangs."
+    },
+    "_crv7": {
+      "localId": "crv8-b3-07",
+      "selectedWorld": 2,
+      "kind": "request",
+      "keyAct": "agrees and checks the adjustment",
+      "setting": "Passport photo studio: a photographer preparing and delivering a customer's passport photos."
+    }
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Do you want that in large bills or small?\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Which nearby branch might still have some today?",
+      "I brought the wrong envelope — the yuan stayed home.",
+      "Then I'll change everything at once, not in parts.",
+      "Small ones, mostly for taxis and street food."
+    ],
+    "correct_answer": "Small ones, mostly for taxis and street food.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "Asked large or small, the customer picks small bills and explains why: taxis and street food. Consolidating exchanges dodges a fee nobody mentioned, and asking about another branch treats a teller mid-count as out of stock. Confessing a wrong envelope answers a mix-up the teller never raised.",
+    "distractor_rationales": {
+      "Then I'll change everything at once, not in parts.": "Offering \"large bills or small\" mentions no fee, so consolidating to dodge charges hangs.",
+      "Which nearby branch might still have some today?": "A teller asking to pay out \"in large bills\" or small is dispensing, not out of stock, so no branch search is needed.",
+      "I brought the wrong envelope — the yuan stayed home.": "A choice of \"bills or small\" flags no misidentified note, so there is no envelope mix-up to admit."
+    },
+    "_crv7": {
+      "localId": "crv8-b3-08",
+      "selectedWorld": 1,
+      "kind": "question",
+      "keyAct": "chooses a denomination with a reason",
+      "setting": "Currency exchange counter: a teller and a customer changing money before a trip."
+    }
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"You qualified for the paid group, so tonight earns you forty dollars.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Does that include tea, or just coffee and energy drinks?",
+      "Does that arrive as a check, or straight to my account?",
+      "I'll bring my own pillow, if that doesn't mess with sensors.",
+      "Will the slots next week still count for my psych credit?"
+    ],
+    "correct_answer": "Does that arrive as a check, or straight to my account?",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "Learning tonight pays forty dollars, asking whether it comes as a check or a deposit follows the news directly. Asking whether tea counts responds to a caffeine rule not stated, and asking whether next week counts treats tonight as cancelled when the line confirms it proceeds. Negotiating a pillow with the sensors answers logistics this line never covers.",
+    "distractor_rationales": {
+      "Does that include tea, or just coffee and energy drinks?": "\"the paid group\" is about compensation, not caffeine, so asking whether tea counts answers no such rule.",
+      "Will the slots next week still count for my psych credit?": "\"tonight earns you\" confirms tonight proceeds, so asking whether next week counts treats it as cancelled.",
+      "I'll bring my own pillow, if that doesn't mess with sensors.": "\"forty dollars\" is payment news, not sleeping logistics, so negotiating a pillow with sensors answers nothing here."
+    },
+    "_crv7": {
+      "localId": "crv8-b3-17",
+      "selectedWorld": 3,
+      "kind": "good news",
+      "keyAct": "asks about the payment mechanism",
+      "setting": "Intake desk at a sleep study lab; the study coordinator is speaking with a student participant."
+    }
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"The skin pricks go on your forearm, and results show in twenty minutes.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "It's both, actually — peanuts are just the more severe one.",
+      "Can I read or use my phone while we wait?",
+      "One on Monday night — does that push my test back?",
+      "Which half — the foods, or the pollens and dust?"
+    ],
+    "correct_answer": "Can I read or use my phone while we wait?",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "Told there is a twenty-minute wait for results, asking whether reading or phone use is allowed fills exactly that gap. Confessing a Monday pill answers a medication question nobody asked. Insisting the allergy is both corrects no discrepancy, and asking which half survives responds to a shortage that doesn't exist.",
+    "distractor_rationales": {
+      "One on Monday night — does that push my test back?": "\"results show in\" explains procedure and asks nothing, so confessing a Monday pill answers no medication question.",
+      "It's both, actually — peanuts are just the more severe one.": "\"on your forearm\" is procedural description, so insisting the allergy is both corrects no form discrepancy mentioned.",
+      "Which half — the foods, or the pollens and dust?": "\"The skin pricks\" proceed as described in full, so asking which half survives responds to no shortage."
+    },
+    "_crv7": {
+      "localId": "crv8-b3-18",
+      "selectedWorld": 1,
+      "kind": "neutral info",
+      "keyAct": "asks what is allowed during the interval",
+      "setting": "Allergy testing lab; the technician is speaking with a student patient at the check-in counter."
+    }
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"We run a free grocery-store tour on Saturdays, if you're interested.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Saturdays I work, but I'd join one on another day.",
+      "So the spinach and lentils are actually doing their job.",
+      "No wonder I kept running short by the last week.",
+      "Most days — I lost track over the weekend trip."
+    ],
+    "correct_answer": "Saturdays I work, but I'd join one on another day.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "Invited to a Saturday tour, explaining the work conflict while staying interested engages the offer directly. Reporting how many days were logged answers a homework question nobody asked. Celebrating normal iron responds to lab news not delivered, and the swipe-reset realization connects to nothing in the invitation.",
+    "distractor_rationales": {
+      "Most days — I lost track over the weekend trip.": "\"if you're interested\" invites a response to a tour, so reporting how many days were logged answers no such question.",
+      "So the spinach and lentils are actually doing their job.": "\"grocery-store tour\" is an invitation, not results, so celebrating normal iron responds to no lab news.",
+      "No wonder I kept running short by the last week.": "\"on Saturdays\" schedules an outing, not dining-hall billing, so the swipe-reset realization fits nothing said."
+    },
+    "_crv7": {
+      "localId": "crv8-b3-16",
+      "selectedWorld": 1,
+      "kind": "offer",
+      "keyAct": "declines the day but not the activity",
+      "setting": "Campus nutrition counseling office; the dietitian is speaking with a student client at a follow-up visit."
+    }
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"If mornings suit you, Dr. Patel keeps eight o'clock slots open for students.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Mornings are tough — do they have anything after three?",
+      "Thursday works too — I'll fix it in my calendar.",
+      "Still theirs until June, then I switch to the student plan.",
+      "Who would take over my cleanings after she goes?"
+    ],
+    "correct_answer": "Mornings are tough — do they have anything after three?",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The scheduler offers standing morning slots, so explaining mornings don't work and asking about afternoons engages that offer directly. Agreeing that Thursday works corrects a date error nobody mentioned. Asking who will take over cleanings answers a departure not announced, and reporting insurance status answers no question here.",
+    "distractor_rationales": {
+      "Thursday works too — I'll fix it in my calendar.": "\"eight o'clock slots\" offers a time of day; agreeing that Thursday works corrects no date mix-up.",
+      "Who would take over my cleanings after she goes?": "\"Dr. Patel keeps\" slots open — nobody is leaving, so asking who takes over responds to a departure not mentioned.",
+      "Still theirs until June, then I switch to the student plan.": "\"mornings suit you\" is about timing, not coverage, so reporting insurance status answers nothing said."
+    },
+    "_crv7": {
+      "localId": "crv8-b3-12",
+      "selectedWorld": 1,
+      "kind": "offer",
+      "keyAct": "declines the time but asks for an alternative",
+      "setting": "Scheduling window at a dental office; the scheduler is speaking with a student patient."
+    }
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"We found your suitcase — it arrived on the later Chicago flight.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "It has a red ribbon tied around the handle.",
+      "So it stays there until the first flight tomorrow?",
+      "Do you also need my phone number on here?",
+      "Could I pick it up at this counter right now?"
+    ],
+    "correct_answer": "Could I pick it up at this counter right now?",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The agent says the suitcase has been found and has already arrived, so asking to collect it at the counter right away is the natural next step. Wondering whether it stays in Chicago until tomorrow contradicts the announced arrival, and describing a red ribbon is pointless once the bag is identified. There is also no claim form in play, so a phone number has nothing to be added to.",
+    "distractor_rationales": {
+      "So it stays there until the first flight tomorrow?": "Since the agent says \"it arrived on the later Chicago flight\", asking whether it stays there until tomorrow's first flight contradicts the stated arrival.",
+      "It has a red ribbon tied around the handle.": "\"We found your suitcase\" means the bag is already identified, so volunteering a ribbon description to help locate it is pointless.",
+      "Do you also need my phone number on here?": "The agent says \"found your suitcase\" and requests no paperwork, so \"on here\" has no form to refer to."
+    },
+    "_crv7": {
+      "localId": "crv8-b3-01",
+      "selectedWorld": 0,
+      "kind": "good news",
+      "keyAct": "asks to collect it on the spot",
+      "setting": "Airport baggage service office: a baggage agent at the counter speaks with a passenger whose checked suitcase did not appear on the carousel."
+    }
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Actually, your booking already includes checkout at four o'clock.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Until midnight is plenty — my train leaves at ten.",
+      "But my conference here doesn't finish until three o'clock.",
+      "Room five twelve, booked under the name Park.",
+      "Then the noon time printed on my key sleeve is wrong?"
+    ],
+    "correct_answer": "Then the noon time printed on my key sleeve is wrong?",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The clerk corrects the record — checkout is already four — so the guest reasonably checks whether the noon time printed on the key sleeve is simply wrong. Reciting a room and name answers no question, and the conference objection is moot when four o'clock already covers an event ending at three. Praising a midnight window responds to a storage offer that was never made.",
+    "distractor_rationales": {
+      "Room five twelve, booked under the name Park.": "\"Your booking already\" includes late checkout is an assertion, not a question, so reciting a room and name hangs.",
+      "But my conference here doesn't finish until three o'clock.": "With \"checkout at four o'clock\" included, a conference ending at three fits comfortably, leaving nothing to protest.",
+      "Until midnight is plenty — my train leaves at ten.": "The line grants \"checkout at four\" and offers no luggage storage, so calling a midnight window plenty has no referent."
+    },
+    "_crv7": {
+      "localId": "crv8-b3-02",
+      "selectedWorld": 3,
+      "kind": "correction",
+      "keyAct": "asks to confirm the correction",
+      "setting": "Hotel front desk: a receptionist and a departing guest discuss a late checkout on the morning of departure."
+    }
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"The certification cards are delayed, so nothing gets handed out today.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "I'd stay — my chest compressions still feel too shallow.",
+      "I certified through my lifeguard job — maybe under a different system.",
+      "Will an email confirmation work for my job application meanwhile?",
+      "So we can bring the manual in for the written part?"
+    ],
+    "correct_answer": "Will an email confirmation work for my job application meanwhile?",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "With the cards delayed, asking whether an email confirmation can stand in for a job application addresses the practical consequence directly. Asking about manuals answers open-book news that wasn't given, and joining extra practice accepts no standing offer. Defending a prior lifeguard course rebuts a records challenge nobody made.",
+    "distractor_rationales": {
+      "So we can bring the manual in for the written part?": "\"handed out today\" concerns cards, not the test's format, so asking about manuals answers no open-book news.",
+      "I'd stay — my chest compressions still feel too shallow.": "\"cards are delayed\" is a logistics snag at the end of the course, so joining extra practice accepts no standing offer.",
+      "I certified through my lifeguard job — maybe under a different system.": "\"The certification cards\" delay affects everyone equally, so defending a prior lifeguard course rebuts no records challenge."
+    },
+    "_crv7": {
+      "localId": "crv8-b3-20",
+      "selectedWorld": 3,
+      "kind": "bad news",
+      "keyAct": "seeks an interim substitute document",
+      "setting": "First aid certification classroom; the instructor is speaking with a student before the session begins."
+    }
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Did you refill the tank within ten miles of here?\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Then I'll head straight for the terminal shuttle now.",
+      "That was documented when I picked the car up.",
+      "My extension by phone should be in the system.",
+      "Yes, at the station just across the highway."
+    ],
+    "correct_answer": "Yes, at the station just across the highway.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "Asked whether the tank was refilled nearby, the customer confirms and names the station across the highway. Claiming something was documented at pickup disputes damage nobody alleged, and leaving for the shuttle skips a question that is still open. A phoned extension speaks to return dates, not fuel.",
+    "distractor_rationales": {
+      "That was documented when I picked the car up.": "Asking whether you did \"refill the tank\" alleges no damage, so nothing was ever documented to dispute.",
+      "Then I'll head straight for the terminal shuttle now.": "The question about \"ten miles of here\" is still open, and walking off to the shuttle skips answering it.",
+      "My extension by phone should be in the system.": "\"Refill the tank\" concerns fuel, not dates, so a rental extension in the system is irrelevant."
+    },
+    "_crv7": {
+      "localId": "crv8-b3-03",
+      "selectedWorld": 1,
+      "kind": "question",
+      "keyAct": "confirms with a location",
+      "setting": "Car rental return lane: a return agent inspects the car while the customer stands by with luggage."
+    }
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"We can't treat eye injuries here — you'll need the hospital across town.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Can I run to the pharmacy downstairs and keep my spot?",
+      "Around a six, but it spikes when I put weight on it.",
+      "Is there a shuttle, or should I call a taxi?",
+      "Whoever's fastest is fine — I just want this looked at."
+    ],
+    "correct_answer": "Is there a shuttle, or should I call a taxi?",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "Being referred to a hospital across town makes transportation the immediate problem, so asking about a shuttle or taxi fits. Volunteering a pain number answers no question in the line, and holding a spot in this queue serves no purpose when care won't happen here. Accepting a faster in-house provider contradicts being sent away.",
+    "distractor_rationales": {
+      "Around a six, but it spikes when I put weight on it.": "\"can't treat\" refers you out and asks nothing, so volunteering a pain rating answers no question in it.",
+      "Can I run to the pharmacy downstairs and keep my spot?": "\"the hospital across town\" is where care happens, so holding a spot in this queue serves no purpose.",
+      "Whoever's fastest is fine — I just want this looked at.": "\"can't treat eye injuries\" refuses care here; accepting a faster in-house provider contradicts being sent away."
+    },
+    "_crv7": {
+      "localId": "crv8-b3-14",
+      "selectedWorld": 2,
+      "kind": "bad news",
+      "keyAct": "asks how to reach the referral site",
+      "setting": "Triage desk at a campus walk-in clinic; the triage nurse is speaking with a student who has just signed in."
+    }
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"We can bundle hepatitis and typhoid for one copay.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Yes, before a Kenya trip about two years ago.",
+      "One copay works; my plan covers almost nothing here.",
+      "My departure is Friday — does another clinic stock it?",
+      "My flight is in three weeks — is one dose useless?"
+    ],
+    "correct_answer": "One copay works; my plan covers almost nothing here.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "Offered both shots for a single copay, the traveler accepts because insurance barely helps. A yes about a Kenya trip answers a history question never asked, and the one-dose worry responds to a spacing schedule nobody described. Looking for another clinic contradicts an offer that shows both vaccines are on hand.",
+    "distractor_rationales": {
+      "Yes, before a Kenya trip about two years ago.": "Offering to \"bundle hepatitis and typhoid\" asks no history question, so a yes about Kenya answers nothing.",
+      "My flight is in three weeks — is one dose useless?": "Pricing \"for one copay\" says nothing about dose spacing, so the one-dose worry hangs.",
+      "My departure is Friday — does another clinic stock it?": "\"We can bundle\" both shots only if they are in stock, so seeking another clinic contradicts the offer."
+    },
+    "_crv7": {
+      "localId": "crv8-b3-06",
+      "selectedWorld": 2,
+      "kind": "offer",
+      "keyAct": "accepts on cost grounds",
+      "setting": "Travel clinic vaccination desk: a nurse and a traveler preparing shots before an international trip."
+    }
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Your last exam here was almost three years ago, in your file.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "I was studying abroad, so I missed a couple of visits.",
+      "I have a case in my bag — give me a second.",
+      "Mostly at screens, especially near the end of long assignments.",
+      "So I can skip ordering new lenses this year?"
+    ],
+    "correct_answer": "I was studying abroad, so I missed a couple of visits.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The technician notes a three-year gap in the file, so explaining the study-abroad absence accounts for it. Producing a contacts case complies with an instruction that was never given, and specifying screen-time triggers answers no symptom question. Concluding no new lenses are needed presumes fresh results the line doesn't contain.",
+    "distractor_rationales": {
+      "I have a case in my bag — give me a second.": "\"in your file\" reports a record; producing a contacts case complies with an instruction never given.",
+      "Mostly at screens, especially near the end of long assignments.": "\"almost three years\" concerns visit history, not symptoms, so specifying screen triggers answers no question here.",
+      "So I can skip ordering new lenses this year?": "\"Your last exam\" looks backward at records; skipping new lenses presumes fresh results the line doesn't offer."
+    },
+    "_crv7": {
+      "localId": "crv8-b3-13",
+      "selectedWorld": 1,
+      "kind": "neutral info",
+      "keyAct": "explains the gap in the record",
+      "setting": "Pre-screening room before an eye exam; the technician is speaking with a student patient."
+    }
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"You're all set — no reaction, so you're free to head out.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "This sweater won't roll — should I just slip it off?",
+      "Two today is fine — better than coming back next week.",
+      "Do I still get the proof of vaccination emailed today?",
+      "This is my second — I got the first at home in July."
+    ],
+    "correct_answer": "Do I still get the proof of vaccination emailed today?",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "Cleared to leave after the observation period, checking that the emailed proof still arrives today is the natural closing question. Accepting a second shot answers an offer not on the table, and arguing about which line to stand in contests nothing said. Asking whether to remove a sweater serves a shot already given.",
+    "distractor_rationales": {
+      "Two today is fine — better than coming back next week.": "\"free to head out\" closes the visit, so accepting a second shot today answers an offer not on the table.",
+      "This is my second — I got the first at home in July.": "\"You're all set\" means the doses are done, so arguing you belong in this line contests nothing said.",
+      "This sweater won't roll — should I just slip it off?": "\"no reaction\" ends the observation period, so asking whether to remove a sweater serves a shot already given."
+    },
+    "_crv7": {
+      "localId": "crv8-b3-19",
+      "selectedWorld": 3,
+      "kind": "good news",
+      "keyAct": "checks on follow-up documentation",
+      "setting": "Campus vaccination pop-up tent; a volunteer nurse is speaking with a student."
+    }
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Could you take the laptop out before I stow this?\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Enough time to grab coffee and stretch my legs?",
+      "Mine is for Seattle, so I'll go around back.",
+      "It's already in my shoulder bag, go ahead.",
+      "Will someone unload it, or do I meet that bus?"
+    ],
+    "correct_answer": "It's already in my shoulder bag, go ahead.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The driver asks for the laptop to come out first, and the passenger reports it is already in the shoulder bag, so stowing can proceed. Going around back responds to a destination mix-up nobody mentioned, and meeting another bus answers an assignment never made. The coffee question needs a rest stop that was not announced.",
+    "distractor_rationales": {
+      "Mine is for Seattle, so I'll go around back.": "Asking you to \"take the laptop out\" involves no destination mix-up, so going around back complies with nothing.",
+      "Will someone unload it, or do I meet that bus?": "The driver is about to \"stow this\" bag right here, so there is no other bus to ask about meeting.",
+      "Enough time to grab coffee and stretch my legs?": "A request about \"the laptop out\" announces no rest stop, so the coffee question hangs."
+    },
+    "_crv7": {
+      "localId": "crv8-b3-05",
+      "selectedWorld": 0,
+      "kind": "request",
+      "keyAct": "reports the precondition met and authorizes",
+      "setting": "Long-distance bus luggage bay: the driver is loading bags while a passenger hands theirs over."
+    }
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Could you erase your name from Friday if you're not going?\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Grab that last spot for me before someone else does.",
+      "I'm still going, so the name can stay up.",
+      "Does the kayak trip have six names yet, then?",
+      "Was anything similar planned for later this week?"
+    ],
+    "correct_answer": "I'm still going, so the name can stay up.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "Asked to erase the name if not attending, the guest rejects the premise: still going, so the name stays. Grabbing a last spot answers an opening nobody offered, and a similar-event question responds to a cancellation never announced. The six-name check uses a minimum rule that was never mentioned.",
+    "distractor_rationales": {
+      "Grab that last spot for me before someone else does.": "Asking you to \"erase your name\" concerns dropping out, not a last spot to claim.",
+      "Was anything similar planned for later this week?": "The condition \"if you're not going\" cancels nothing, so no similar replacement is needed.",
+      "Does the kayak trip have six names yet, then?": "\"Your name from Friday\" is the topic, not trip minimums, so a six-name check answers nothing."
+    },
+    "_crv7": {
+      "localId": "crv8-b3-09",
+      "selectedWorld": 3,
+      "kind": "request",
+      "keyAct": "declines the premise, still attending",
+      "setting": "Hostel common room: a staff member manages the activities booking board while chatting with a guest."
+    }
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"You're down for the left ankle, but you keep pointing at the right.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Coach will be glad — she's been planning around my minutes.",
+      "The left's the old injury — it's the right that hurts now.",
+      "Would a drugstore roll work if I bring my own tomorrow?",
+      "Like this, or do you want the toes pulled back further?"
+    ],
+    "correct_answer": "The left's the old injury — it's the right that hurts now.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The trainer flags a mismatch between the chart and the athlete's gestures, so explaining that the old injury was the left and the new pain is the right resolves it. Checking foot position complies with a wrapping instruction never given. Relaying the coach's relief presumes a clearance not announced, and offering to buy tape fixes a shortage nobody mentioned.",
+    "distractor_rationales": {
+      "Like this, or do you want the toes pulled back further?": "\"keep pointing\" flags a mismatch, not a wrapping instruction, so checking foot position complies with nothing asked.",
+      "Coach will be glad — she's been planning around my minutes.": "\"down for the left ankle\" questions which side to treat; relaying coach's relief presumes a clearance not given.",
+      "Would a drugstore roll work if I bring my own tomorrow?": "\"the left ankle\" discrepancy is the issue, not supplies, so offering to buy tape fixes a shortage never mentioned."
+    },
+    "_crv7": {
+      "localId": "crv8-b3-15",
+      "selectedWorld": 0,
+      "kind": "correction",
+      "keyAct": "clarifies which side needs treatment",
+      "setting": "Taping bench in the athletics training room; the trainer is speaking with a student athlete before practice."
+    }
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Please hang your food bags; a bear was seen nearby.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "We're leaving Saturday, so it should miss us.",
+      "Do you sell firewood here, or should we gather it?",
+      "We have a rope — how high is high enough?",
+      "Twenty it is — we'll shift camp before dark."
+    ],
+    "correct_answer": "We have a rope — how high is high enough?",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "Warned about a bear and asked to hang food, the camper agrees and asks the practical detail: how high counts as safe. Confirming site twenty echoes a correction nobody made, and the firewood question responds to fire permissions never discussed. The Saturday answer replies to a storm question that was not asked.",
+    "distractor_rationales": {
+      "Twenty it is — we'll shift camp before dark.": "\"A bear was seen\" corrects no site number, so agreeing to twenty confirms nothing said here.",
+      "Do you sell firewood here, or should we gather it?": "Asking you to hang \"your food bags\" grants no fire permission, so sourcing firewood is unprompted.",
+      "We're leaving Saturday, so it should miss us.": "A bear \"was seen nearby\" is tonight's concern; no storm question was asked, so the Saturday answer fits nothing."
+    },
+    "_crv7": {
+      "localId": "crv8-b3-10",
+      "selectedWorld": 2,
+      "kind": "request",
+      "keyAct": "agrees and asks for a specification",
+      "setting": "Campsite ranger station: a ranger and a camper at the check-in window of a forest campground."
+    }
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"The three o'clock boat makes two stops before Oak Island.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Is the first morning boat likely to run instead?",
+      "My driver's license is in the car — one minute.",
+      "Five more is fine if it halves the crossing time.",
+      "How much longer does that make the whole crossing?"
+    ],
+    "correct_answer": "How much longer does that make the whole crossing?",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "Hearing that the three o'clock boat makes two stops, the traveler asks how much those stops stretch the crossing. Asking about a morning boat running instead presupposes a cancellation nobody announced, and fetching a license answers an ID request never made. Agreeing that five more is fine accepts a surcharge that was never quoted.",
+    "distractor_rationales": {
+      "Is the first morning boat likely to run instead?": "A boat that \"makes two stops\" is clearly running, so there is no cancellation for a morning boat to replace.",
+      "My driver's license is in the car — one minute.": "Describing the route \"before Oak Island\" requests no ID, so fetching a license answers nothing.",
+      "Five more is fine if it halves the crossing time.": "The \"three o'clock boat\" was described, not priced, so agreeing that five more is fine hangs."
+    },
+    "_crv7": {
+      "localId": "crv8-b3-04",
+      "selectedWorld": 0,
+      "kind": "neutral info",
+      "keyAct": "asks a follow-up about duration",
+      "setting": "Ferry ticket booth: a ticket clerk and a traveler arranging passage to Oak Island."
+    }
+  }
+]
