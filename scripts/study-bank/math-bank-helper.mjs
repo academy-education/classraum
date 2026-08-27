@@ -106,7 +106,10 @@ function toItem(raw) {
     passage: null, passageGroupId: null, prompt: raw.prompt, type: 'multiple_choice',
     choices: raw.choices, correct_answer: raw.correct_answer, correct_answers: null,
     acceptable_answers: null, difficulty: raw.difficulty, explanation: raw.explanation || '',
-    distractor_rationales: raw.choices.filter(c => c !== raw.correct_answer).map(c => ({ choice: c, reason: '' })),
+    distractor_rationales: raw.choices.filter(c => c !== raw.correct_answer).map(c => ({
+      choice: c,
+      reason: (raw.distractor_steps || []).find(d => d.choice === c)?.mis_step || '',
+    })),
     blanks: null,
     graphic: raw.svg ? { type: 'rawsvg', svg: raw.svg, caption: raw.caption || null } : (raw.graphic || null),
     domain: raw.domain, subskill: raw.subskill,
@@ -167,6 +170,8 @@ async function main() {
     if (seen.has(content_hash)) { console.log(`DUP    ${label}`); continue }
     const { error } = await admin.from('study_item_bank').insert({
       family: 'sat', section: 'math', domain: raw.domain, subskill: raw.subskill,
+      // migration 068 made task NOT NULL; math rows all carry 'multiple_choice'.
+      task: 'multiple_choice',
       difficulty: raw.difficulty, topic_tag: raw.topic_tag || null, item_type: 'multiple_choice',
       passage_group_id: null, item: it, content_hash, word_count: null, verified: true,
       verify_meta: {

@@ -1,0 +1,1490 @@
+[
+ {
+  "id": "M7",
+  "domain": "Advanced Math",
+  "subskill": "Quadratic vertex / maximum in context",
+  "topic_tag": "vertex-orchard-revenue",
+  "difficulty": "hard",
+  "prompt": "An apple orchard sells day passes. When the pass price is $12, an average of 480 visitors come each day, and for each $1 increase in the price the orchard loses 30 visitors per day. Serving each visitor costs the orchard $2 in supplies. Assuming the pattern continues for prices at or above $12, what is the maximum possible daily profit, in dollars, from pass sales?",
+  "choices": [
+   "5040",
+   "5070",
+   "5850",
+   "5880"
+  ],
+  "correct_answer": "5070",
+  "explanation": "With price p, attendance is 840 - 30p, so profit is (p - 2)(840 - 30p), a downward parabola maximized at p = 15, giving (15 - 2)(840 - 450) = 5070 dollars. The value 5880 is the maximum of revenue alone, and 5850 is revenue at the profit-maximizing price without the $2-per-visitor cost.",
+  "solve": "const profit = p => (p - 2) * (840 - 30 * p); const pStar = 900 / (2 * 30); return profit(pStar);",
+  "distractor_steps": [
+   {
+    "choice": "5880",
+    "mis_step": "Ignores the stated $2-per-visitor cost and maximizes revenue p(840 - 30p) instead of profit, reporting the maximum revenue 14 * 420 = 5880 at p = 14."
+   },
+   {
+    "choice": "5850",
+    "mis_step": "Finds the correct profit-maximizing price of $15 but then reports revenue 15 * 390 = 5850 at that price, forgetting to subtract the $2-per-visitor supply cost."
+   },
+   {
+    "choice": "5040",
+    "mis_step": "Maximizes revenue to get p = 14 and then evaluates the profit function at that non-optimal price: (14 - 2)(840 - 420) = 5040."
+   }
+  ]
+ },
+ {
+  "id": "M8",
+  "domain": "Advanced Math",
+  "subskill": "Exponential growth — compound interest",
+  "topic_tag": "exp-savings-compound",
+  "difficulty": "medium",
+  "prompt": "Mina opens a savings account with a single deposit of $5,000. The account pays 4% annual interest, compounded once per year at the end of each year, and Mina makes no other deposits or withdrawals. To the nearest dollar, what is the balance of the account at the end of the 6th year?",
+  "choices": [
+   "6083",
+   "6200",
+   "6327",
+   "6580"
+  ],
+  "correct_answer": "6327",
+  "explanation": "The balance after n years is 5000(1.04)^n, so after 6 years it is 5000(1.04)^6 = 6326.60, which rounds to 6327 dollars. The value 6200 comes from applying simple rather than compound interest, and 6083 stops the compounding one year early.",
+  "solve": "return Math.round(5000 * Math.pow(1.04, 6));",
+  "distractor_steps": [
+   {
+    "choice": "6200",
+    "mis_step": "Applies simple interest instead of compounding: 5000(1 + 0.04 * 6) = 6200."
+   },
+   {
+    "choice": "6083",
+    "mis_step": "Compounds for only 5 years instead of 6 (off-by-one on the year count): 5000(1.04)^5 = 6083.26, reported as 6083."
+   },
+   {
+    "choice": "6580",
+    "mis_step": "Compounds for 7 years instead of 6 (treats the end of the 6th year as requiring a 7th interest payment): 5000(1.04)^7 = 6579.66, reported as 6580."
+   }
+  ]
+ },
+ {
+  "id": "A7",
+  "domain": "Algebra",
+  "subskill": "Linear function from a table",
+  "topic_tag": "linear-water-meter",
+  "difficulty": "medium",
+  "prompt": "A building's water meter shows the total gallons used since installation, and usage increases at a constant daily rate. The table shows readings: on day 0 the meter read 1,240 gallons; on day 4 it read 1,288 gallons; on day 10 it read 1,360 gallons. If the pattern continues, what will the meter read, in gallons, on day 25?",
+  "choices": [
+   "1528",
+   "1540",
+   "1660",
+   "1990"
+  ],
+  "correct_answer": "1540",
+  "explanation": "The readings rise by (1288 - 1240)/4 = 12 gallons per day, so on day 25 the meter reads 1240 + 12 * 25 = 1540 gallons. The value 1660 comes from adding 25 days of usage to the day-10 reading of 1360, and 1990 from dividing the day-0-to-day-10 change by 4 instead of 10.",
+  "solve": "const rate = (1288 - 1240) / 4; return 1240 + rate * 25;",
+  "distractor_steps": [
+   {
+    "choice": "1660",
+    "mis_step": "Starts from the day-10 reading instead of day 0 but still applies the full 25 days of usage: 1360 + 12 * 25 = 1660."
+   },
+   {
+    "choice": "1990",
+    "mis_step": "Computes the rate from mismatched table entries, dividing the day-0-to-day-10 change by the 4-day gap: (1360 - 1240)/4 = 30 gallons per day, then 1240 + 30 * 25 = 1990."
+   },
+   {
+    "choice": "1528",
+    "mis_step": "Counts only 24 days of usage for day 25 (off-by-one between days elapsed and day number): 1240 + 12 * 24 = 1528."
+   }
+  ]
+ },
+ {
+  "id": "A8",
+  "domain": "Algebra",
+  "subskill": "Systems — weighted average constraint",
+  "topic_tag": "system-alloy-blend",
+  "difficulty": "hard",
+  "prompt": "A foundry produces a 60-kilogram batch of bronze that must be 70% copper by mass. The batch is made by melting together some of alloy A, which is 54% copper, some of alloy B, which is 90% copper, and exactly 6 kilograms of pure copper. How many kilograms of alloy B are in the batch?",
+  "choices": [
+   "10",
+   "19",
+   "24",
+   "35"
+  ],
+  "correct_answer": "19",
+  "explanation": "The two alloys together weigh 60 - 6 = 54 kg and must contribute 0.70(60) - 6 = 36 kg of copper, so 0.54x + 0.90y = 36 with x + y = 54 gives y = 19 kilograms of alloy B. The value 35 is the mass of alloy A, and 24 results from ignoring the 6 kg of pure copper and blending the alloys alone to 70%.",
+  "solve": "const alloyMass = 60 - 6; const copperFromAlloys = 70 * 60 / 100 - 6; const y = (copperFromAlloys * 100 - 54 * alloyMass) / (90 - 54); return y;",
+  "distractor_steps": [
+   {
+    "choice": "35",
+    "mis_step": "Solves the system correctly but reports the mass of alloy A (x = 35) instead of the requested mass of alloy B."
+   },
+   {
+    "choice": "10",
+    "mis_step": "Writes the mass equation as x + y = 60, forgetting that the 6 kg of pure copper counts toward the 60 kg batch, while keeping its copper in the copper equation: 0.54x + 0.90y + 6 = 42 with x + y = 60 gives y = 10."
+   },
+   {
+    "choice": "24",
+    "mis_step": "Ignores the added pure copper entirely and blends the two alloys alone to 70%: 0.54x + 0.90y = 0.70(x + y) with x + y = 54 gives y = 24."
+   }
+  ]
+ },
+ {
+  "id": "M9",
+  "domain": "Advanced Math",
+  "subskill": "Remainder theorem",
+  "topic_tag": "remainder-sensor-poly",
+  "difficulty": "hard",
+  "prompt": "An engineer calibrates a pressure sensor whose voltage output, in millivolts, is modeled by the polynomial p(x) = x^3 - 4x^2 + ax + b, where x is the applied pressure in atmospheres and a and b are calibration constants. Bench testing shows that when p(x) is divided by (x - 3) the remainder is 10, and when p(x) is divided by (x + 2) the remainder is -45. What is the value of a?",
+  "choices": [
+   "8",
+   "-5",
+   "6",
+   "-10"
+  ],
+  "correct_answer": "8",
+  "explanation": "By the remainder theorem p(3) = 10 gives 3a + b = 19 and p(-2) = -45 gives -2a + b = -21; subtracting yields 5a = 40, so a = 8 (and b = -5).",
+  "solve": "const r1 = 10, r2 = -45; const e1 = r1 - (27 - 36); const e2 = r2 - (-8 - 16); const a = (e1 - e2) / 5; return a;",
+  "distractor_steps": [
+   {
+    "choice": "-5",
+    "mis_step": "Solves the system correctly but reports the constant b = -5 instead of the requested coefficient a."
+   },
+   {
+    "choice": "6",
+    "mis_step": "Ignores the stated remainder 10 and treats (x - 3) as a factor, setting p(3) = 0 so 3a + b = 9, which with -2a + b = -21 gives a = 6."
+   },
+   {
+    "choice": "-10",
+    "mis_step": "Drops the sign of the second remainder and sets p(-2) = +45, giving -2a + b = 69, which with 3a + b = 19 yields 5a = -50, a = -10."
+   }
+  ]
+ },
+ {
+  "id": "M10",
+  "domain": "Advanced Math",
+  "subskill": "Rational equation — combined work rate",
+  "topic_tag": "rational-pump-rate",
+  "difficulty": "medium",
+  "prompt": "At a water treatment plant, two pumps working together can fill an equalization tank in 6 hours. Working alone, the newer pump would fill the tank in 5 fewer hours than the older pump would alone. How many hours would the older pump need to fill the tank working alone?",
+  "choices": [
+   "15",
+   "10",
+   "2",
+   "11"
+  ],
+  "correct_answer": "15",
+  "explanation": "With the older pump's solo time t, the equation 1/t + 1/(t - 5) = 1/6 leads to t^2 - 17t + 30 = 0, whose roots are 15 and 2; only t = 15 leaves the newer pump a positive solo time, so the older pump needs 15 hours.",
+  "solve": "const together = 6, diff = 5; const B = 2 * together + diff; const C = together * diff; const t = (B + Math.sqrt(B * B - 4 * C)) / 2; return t;",
+  "distractor_steps": [
+   {
+    "choice": "2",
+    "mis_step": "Keeps the extraneous root t = 2 of the quadratic, ignoring that the newer pump's time t - 5 must be positive."
+   },
+   {
+    "choice": "10",
+    "mis_step": "Solves correctly but reports the newer pump's solo time 15 - 5 = 10 instead of the older pump's."
+   },
+   {
+    "choice": "11",
+    "mis_step": "Skips the rate equation and simply adds the 5-hour difference to the 6-hour together time, giving 6 + 5 = 11."
+   }
+  ]
+ },
+ {
+  "id": "A9",
+  "domain": "Algebra",
+  "subskill": "Slope interpretation",
+  "topic_tag": "slope-fuel-gauge",
+  "difficulty": "medium",
+  "prompt": "On a highway trip, the amount of fuel remaining in a truck's tank decreases at a constant rate with distance driven, so fuel remaining is a linear function of distance. After 120 miles of driving, the gauge shows 12.4 gallons remaining; after 280 miles, it shows 6.0 gallons remaining. According to this linear model, what is the total distance, in miles, the truck can drive from the start of the trip before the tank is empty?",
+  "choices": [
+   "430",
+   "150",
+   "310",
+   "190"
+  ],
+  "correct_answer": "430",
+  "explanation": "The fuel drops (12.4 - 6.0)/(280 - 120) = 0.04 gallon per mile, so the trip began with 12.4 + 0.04(120) = 17.2 gallons; the tank empties after 17.2/0.04 = 430 miles.",
+  "solve": "const slope = (12.4 - 6.0) / (280 - 120); const startFuel = 12.4 + slope * 120; return startFuel / slope;",
+  "distractor_steps": [
+   {
+    "choice": "150",
+    "mis_step": "Computes only the additional miles available after the 280-mile reading, 6.0/0.04 = 150, instead of the total distance from the start."
+   },
+   {
+    "choice": "310",
+    "mis_step": "Treats the 12.4-gallon reading as the full starting tank, ignoring the 120 miles already driven: 12.4/0.04 = 310."
+   },
+   {
+    "choice": "190",
+    "mis_step": "Subtracts instead of adds when extrapolating back to the start, using 12.4 - 0.04(120) = 7.6 gallons, then 7.6/0.04 = 190."
+   }
+  ]
+ },
+ {
+  "id": "A10",
+  "domain": "Algebra",
+  "subskill": "Inequality — minimum integer meeting two constraints",
+  "topic_tag": "inequality-print-batch",
+  "difficulty": "hard",
+  "prompt": "A print shop charges a club a one-time setup fee of $180 plus $2.75 per poster for a batch order. The club will sell each poster for $6 and wants its profit — total sales revenue minus the total amount paid to the print shop — to be at least $260. The club's budget allows it to pay the print shop at most $1,000 in total. Assuming every poster ordered is sold, what is the least number of posters the club can order to meet its profit goal while staying within its budget?",
+  "choices": [
+   "136",
+   "135",
+   "80",
+   "298"
+  ],
+  "correct_answer": "136",
+  "explanation": "Profit of at least $260 requires 6n - (2.75n + 180) >= 260, so 3.25n >= 440 and n >= 135.38..., making 136 the least whole number of posters; ordering 136 costs 2.75(136) + 180 = $554, within the $1,000 budget.",
+  "solve": "const profitGoal = 260, setup = 180, price = 6, unitCost = 2.75; const n = Math.ceil((profitGoal + setup) / (price - unitCost)); const cost = unitCost * n + setup; if (cost > 1000) return -1; return n;",
+  "distractor_steps": [
+   {
+    "choice": "135",
+    "mis_step": "Solves 3.25n >= 440 to get n >= 135.38 but rounds the boundary down instead of up, choosing a count that misses the profit goal."
+   },
+   {
+    "choice": "80",
+    "mis_step": "Omits the $180 setup fee from the cost, solving 6n - 2.75n >= 260 to get 3.25n >= 260 and n = 80."
+   },
+   {
+    "choice": "298",
+    "mis_step": "Answers the wrong extreme: the greatest number of posters affordable under the $1,000 budget, from 2.75n + 180 <= 1000, instead of the least number meeting the profit goal."
+   }
+  ]
+ },
+ {
+  "id": "M11",
+  "domain": "Advanced Math",
+  "subskill": "Quadratic-linear system — two intersection points",
+  "topic_tag": "quadlin-breakeven",
+  "difficulty": "hard",
+  "prompt": "A ceramics studio's weekly cost, in dollars, to produce x planters is C(x) = 0.5x^2 + 10x + 250. The studio sells every planter it produces for $40 each, so its weekly revenue is R(x) = 40x. The studio breaks even at any production level where cost equals revenue. What is the positive difference between the two weekly production levels at which the studio breaks even?",
+  "choices": [
+   "10",
+   "40",
+   "50",
+   "60"
+  ],
+  "correct_answer": "40",
+  "explanation": "Setting 0.5x^2 + 10x + 250 = 40x gives 0.5x^2 - 30x + 250 = 0, or x^2 - 60x + 500 = 0, whose roots are 10 and 50 planters; their positive difference is 50 - 10 = 40.",
+  "solve": "const a = 0.5, b = 10, c = 250, price = 40; const A = a, B = b - price, C = c; const d = Math.sqrt(B*B - 4*A*C); const r1 = (-B + d)/(2*A), r2 = (-B - d)/(2*A); return Math.abs(r1 - r2);",
+  "distractor_steps": [
+   {
+    "choice": "10",
+    "mis_step": "Solved the break-even quadratic correctly but reported only the smaller break-even level, x = 10, instead of the difference between the two levels."
+   },
+   {
+    "choice": "50",
+    "mis_step": "Solved the break-even quadratic correctly but reported only the larger break-even level, x = 50, instead of the difference between the two levels."
+   },
+   {
+    "choice": "60",
+    "mis_step": "Computed the SUM of the two break-even levels (60, from Vieta's -B/A on x^2 - 60x + 500) instead of their positive difference."
+   }
+  ]
+ },
+ {
+  "id": "M12",
+  "domain": "Advanced Math",
+  "subskill": "Discriminant — number of real solutions",
+  "topic_tag": "discriminant-arch-clearance",
+  "difficulty": "medium",
+  "prompt": "A civil engineer models the arch of a footbridge with y = -0.25x^2 + 3x, where x is the horizontal distance in meters from the left base of the arch and y is the height in meters above the walkway. A straight horizontal support bar, parallel to the walkway, is to be mounted at a constant height y = k so that it touches the arch at exactly one point. What is the value of k?",
+  "choices": [
+   "6",
+   "9",
+   "12",
+   "36"
+  ],
+  "correct_answer": "9",
+  "explanation": "The bar meets the arch where -0.25x^2 + 3x - k = 0; touching at exactly one point requires discriminant zero, so 3^2 - 4(-0.25)(-k) = 9 - k = 0, giving k = 9.",
+  "solve": "const a = -0.25, b = 3; return -(b*b)/(4*a);",
+  "distractor_steps": [
+   {
+    "choice": "6",
+    "mis_step": "Reported the vertex's x-coordinate, -b/(2a) = 6, the horizontal location of the arch's peak, instead of the height k at which tangency occurs."
+   },
+   {
+    "choice": "12",
+    "mis_step": "Solved -0.25x^2 + 3x = 0 and reported the arch's span, x = 12, where it returns to the walkway, instead of the tangent height."
+   },
+   {
+    "choice": "36",
+    "mis_step": "Dropped the 4 from the discriminant, setting b^2 - ac = 9 - 0.25k = 0 and solving to get k = 36."
+   }
+  ]
+ },
+ {
+  "id": "A11",
+  "domain": "Algebra",
+  "subskill": "Two-variable linear equation — intercept meaning",
+  "topic_tag": "intercept-gift-card",
+  "difficulty": "medium",
+  "prompt": "A bookstore gift card is loaded with $132. Paperbacks cost $6.00 each and stationery sets cost $4.50 each, and the equation 6p + 4.5s = 132 represents every combination of p paperbacks and s stationery sets that uses the card's full value with nothing left over. If a customer buys exactly 12 stationery sets, how many paperbacks must she buy so that the card's full value is used?",
+  "choices": [
+   "13",
+   "20",
+   "22",
+   "31"
+  ],
+  "correct_answer": "13",
+  "explanation": "The 12 stationery sets cost 4.5 x 12 = $54, leaving 132 - 54 = $78 on the card, and 78/6 = 13 paperbacks use it exactly.",
+  "solve": "const total = 132, pPrice = 6, sPrice = 4.5, sets = 12; return (total - sPrice*sets)/pPrice;",
+  "distractor_steps": [
+   {
+    "choice": "20",
+    "mis_step": "Subtracted the COUNT of stationery sets instead of their cost: (132 - 12)/6 = 20."
+   },
+   {
+    "choice": "22",
+    "mis_step": "Ignored the stated condition that 12 stationery sets were bought and divided the whole card by the paperback price: 132/6 = 22."
+   },
+   {
+    "choice": "31",
+    "mis_step": "Added the stationery cost instead of subtracting it (sign slip when isolating 6p): (132 + 54)/6 = 31."
+   }
+  ]
+ },
+ {
+  "id": "A12",
+  "domain": "Algebra",
+  "subskill": "System with parameter — no solution",
+  "topic_tag": "param-delivery-plans",
+  "difficulty": "hard",
+  "prompt": "A courier company offers two delivery plans for sending a package m miles. Plan A charges a $9 pickup fee plus r dollars per mile, so its total cost is 9 + rm dollars. Plan B's total cost C, in dollars, satisfies the equation 5C - 12m = 60. For what value of r is there NO distance m at which the two plans cost the same amount?",
+  "choices": [
+   "2.4",
+   "3",
+   "5.4",
+   "12"
+  ],
+  "correct_answer": "2.4",
+  "explanation": "Plan B rearranges to C = 12 + 2.4m; setting 9 + rm = 12 + 2.4m gives (r - 2.4)m = 3, which has no solution exactly when r = 2.4, since the flat fees $9 and $12 differ.",
+  "solve": "const coefC = 5, coefM = 12; return coefM/coefC;",
+  "distractor_steps": [
+   {
+    "choice": "3",
+    "mis_step": "Reduced correctly to (r - 2.4)m = 3 but then reported the intermediate constant 3 — the gap between the $12 and $9 flat fees — as the per-mile rate."
+   },
+   {
+    "choice": "5.4",
+    "mis_step": "Set the plans equal for a one-mile trip, solving 9 + r(1) = 12 + 2.4(1) to get r = 5.4 — the rate that makes the plans tie at m = 1, not the rate that makes a tie impossible."
+   },
+   {
+    "choice": "12",
+    "mis_step": "Took the coefficient of m in 5C - 12m = 60 as Plan B's per-mile rate without first solving the equation for C (never dividing by 5)."
+   }
+  ]
+ },
+ {
+  "id": "M13",
+  "domain": "Advanced Math",
+  "subskill": "Polynomial zeros and multiplicity",
+  "topic_tag": "poly-box-volume",
+  "difficulty": "hard",
+  "prompt": "A packaging designer starts with a square sheet of cardboard with side length s centimeters. She cuts a square of side x centimeters from each corner and folds up the flaps to form an open-top box, so the box's volume is V(x) = x(s - 2x)^2 cubic centimeters. The graph of V touches but does not cross the x-axis at x = 12; that is, V has a zero of multiplicity 2 at x = 12. What is the volume, in cubic centimeters, of the box formed when squares of side 2 centimeters are cut from the corners?",
+  "choices": [
+   "80",
+   "128",
+   "800",
+   "968"
+  ],
+  "correct_answer": "800",
+  "explanation": "The multiplicity-2 zero comes from the squared factor, so s - 2(12) = 0 gives s = 24, and V(2) = 2(24 - 4)^2 = 800.",
+  "solve": "const s = 2 * 12; // double zero at x = 12 comes from (s - 2x)^2, so s - 24 = 0\nconst x = 2;\nreturn x * Math.pow(s - 2 * x, 2);",
+  "distractor_steps": [
+   {
+    "choice": "128",
+    "mis_step": "Sets the sheet side s equal to the zero itself (s = 12) instead of solving s - 2(12) = 0, then computes 2(12 - 4)^2 = 128."
+   },
+   {
+    "choice": "968",
+    "mis_step": "Subtracts x once instead of 2x when forming the base side (only one corner cut per edge), computing 2(24 - 2)^2 = 968."
+   },
+   {
+    "choice": "80",
+    "mis_step": "Attaches the multiplicity-2 factor to x instead of to (s - 2x), computing x^2(s - 2x) = 4(20) = 80."
+   }
+  ]
+ },
+ {
+  "id": "M14",
+  "domain": "Advanced Math",
+  "subskill": "Isolate a variable in a nonlinear formula",
+  "topic_tag": "rearrange-lens-formula",
+  "difficulty": "medium",
+  "prompt": "A camera technician uses the thin-lens relation 1/f = 1/p + 1/q, where f is the focal length of the lens, p is the distance from the object to the lens, and q is the distance from the lens to the sensor. To position the sensor for a sharp image, the technician needs q expressed in terms of f and p. Which of the following gives q in terms of f and p?",
+  "choices": [
+   "pf/(p - f)",
+   "pf/(f - p)",
+   "(p - f)/(pf)",
+   "f - p"
+  ],
+  "correct_answer": "pf/(p - f)",
+  "explanation": "Subtracting 1/p from both sides gives 1/q = 1/f - 1/p = (p - f)/(pf), and taking the reciprocal yields q = pf/(p - f).",
+  "solve": "return \"pf/(p - f)\"; // 1/q = 1/f - 1/p = (p - f)/(pf), so q = pf/(p - f)",
+  "distractor_steps": [
+   {
+    "choice": "pf/(f - p)",
+    "mis_step": "Sign slip when isolating 1/q: computes 1/q = 1/p - 1/f instead of 1/f - 1/p, reversing the denominator to f - p."
+   },
+   {
+    "choice": "(p - f)/(pf)",
+    "mis_step": "Correctly combines the fractions to get 1/q = (p - f)/(pf) but forgets to take the reciprocal, reporting 1/q instead of q."
+   },
+   {
+    "choice": "f - p",
+    "mis_step": "Drops the reciprocals entirely, treating the relation as f = p + q and solving that to get q = f - p."
+   }
+  ]
+ },
+ {
+  "id": "A13",
+  "domain": "Algebra",
+  "subskill": "Parallel line through a point",
+  "topic_tag": "parallel-bike-lane",
+  "difficulty": "medium",
+  "prompt": "On a city planning map, each unit represents one city block. Riverside Road passes through the points (2, 5) and (8, 9). A new bike lane will run parallel to Riverside Road and pass through the bicycle depot located at (6, 1). The bike lane's path can be written in the form y = mx + b. What is the value of b?",
+  "choices": [
+   "-8",
+   "-3",
+   "2",
+   "10"
+  ],
+  "correct_answer": "-3",
+  "explanation": "The road's slope is (9 - 5)/(8 - 2) = 2/3, so the parallel lane satisfies 1 = (2/3)(6) + b, which gives b = -3.",
+  "solve": "const m = (9 - 5) / (8 - 2);\nconst b = 1 - m * 6;\nreturn b;",
+  "distractor_steps": [
+   {
+    "choice": "10",
+    "mis_step": "Uses the perpendicular slope -3/2 instead of the parallel slope 2/3, giving 1 = (-3/2)(6) + b, so b = 10."
+   },
+   {
+    "choice": "-8",
+    "mis_step": "Inverts the slope to 3/2 (run over rise flipped), giving 1 = (3/2)(6) + b, so b = -8."
+   },
+   {
+    "choice": "2",
+    "mis_step": "Swaps the depot's coordinates, substituting the point (1, 6): 6 = (2/3)(6) + b, so b = 2."
+   }
+  ]
+ },
+ {
+  "id": "A14",
+  "domain": "Algebra",
+  "subskill": "Absolute value equation in context",
+  "topic_tag": "absval-thermostat",
+  "difficulty": "hard",
+  "prompt": "A greenhouse thermostat keeps the temperature T, in degrees Fahrenheit, within a tolerance band described by |T - s| <= d, where s is the setpoint and d is the tolerance; an alarm sounds exactly when the temperature reaches either boundary of the band. A technician records that the alarm sounds at exactly 66.2 degrees and at exactly 71.8 degrees. A second thermostat in the seedling room uses the same tolerance d but has its setpoint at 73.5 degrees. What is the lowest temperature, in degrees Fahrenheit, that the seedling room can reach without sounding its alarm?",
+  "choices": [
+   "61.7",
+   "67.9",
+   "70.7",
+   "76.3"
+  ],
+  "correct_answer": "70.7",
+  "explanation": "The first setpoint is the midpoint (66.2 + 71.8)/2 = 69, so the tolerance is d = 71.8 - 69 = 2.8, and the second thermostat's lower boundary is 73.5 - 2.8 = 70.7.",
+  "solve": "const s = (66.2 + 71.8) / 2;\nconst d = 71.8 - s;\nreturn 73.5 - d;",
+  "distractor_steps": [
+   {
+    "choice": "67.9",
+    "mis_step": "Takes the full band width 71.8 - 66.2 = 5.6 as the tolerance d instead of half of it, computing 73.5 - 5.6 = 67.9."
+   },
+   {
+    "choice": "76.3",
+    "mis_step": "Adds the tolerance instead of subtracting it, answering the upper boundary 73.5 + 2.8 = 76.3 when the lower one was asked."
+   },
+   {
+    "choice": "61.7",
+    "mis_step": "Shifts the first thermostat's lower boundary in the wrong direction by the setpoint difference 73.5 - 69 = 4.5, computing 66.2 - 4.5 = 61.7."
+   }
+  ]
+ },
+ {
+  "id": "M15",
+  "domain": "Advanced Math",
+  "subskill": "Exponential vs linear model comparison",
+  "topic_tag": "exp-lin-subscribers",
+  "difficulty": "hard",
+  "prompt": "Two rival messaging apps launch a growth report. App Notio currently has 5,000 subscribers and gains subscribers at a constant rate of 450 per month. App Pulse currently has 1,200 subscribers, and its subscriber count increases by 20% each month. According to these models, after how many months will Pulse's subscriber count first exceed Notio's?",
+  "choices": [
+   "12",
+   "8",
+   "13",
+   "4"
+  ],
+  "correct_answer": "12",
+  "explanation": "Notio follows 5000 + 450n and Pulse follows 1200(1.2)^n; at n = 11 Pulse has about 8,916 versus Notio's 9,950, but at n = 12 Pulse reaches about 10,699 versus Notio's 10,400, so 12 is the first month Pulse is ahead.",
+  "solve": "let n = 0; while (1200 * Math.pow(1.2, n) <= 5000 + 450 * n) { n++; } return n;",
+  "distractor_steps": [
+   {
+    "choice": "8",
+    "mis_step": "Ignored Notio's linear growth and solved 1200(1.2)^n > 5000, comparing Pulse only against Notio's current 5,000 subscribers."
+   },
+   {
+    "choice": "13",
+    "mis_step": "Indexed the current counts as month 1 instead of month 0, modeling Pulse as 1200(1.2)^(n-1), which shifts the crossing from 12 to 13."
+   },
+   {
+    "choice": "4",
+    "mis_step": "Compared monthly increases instead of totals: solved for when Pulse's monthly gain 0.2(1200)(1.2)^n first exceeds Notio's 450 per month."
+   }
+  ]
+ },
+ {
+  "id": "M16",
+  "domain": "Advanced Math",
+  "subskill": "Function notation and evaluation chains",
+  "topic_tag": "funceval-shipping-tiers",
+  "difficulty": "medium",
+  "prompt": "A courier service computes shipping charges in two stages. For a package with actual weight w kilograms, the billable weight in units is f(w) = 0.8w + 2, which accounts for packaging. The charge in dollars for u billable units is g(u) = 5.5u + 4, where 4 is a fixed processing fee. What is the charge, in dollars, for a package with an actual weight of 15 kilograms?",
+  "choices": [
+   "81",
+   "71.2",
+   "86.5",
+   "73"
+  ],
+  "correct_answer": "81",
+  "explanation": "The billable weight is f(15) = 0.8(15) + 2 = 14 units, so the charge is g(14) = 5.5(14) + 4 = 81 dollars.",
+  "solve": "const u = 0.8 * 15 + 2; return 5.5 * u + 4;",
+  "distractor_steps": [
+   {
+    "choice": "71.2",
+    "mis_step": "Composed the functions in the wrong order, computing f(g(15)) = 0.8(86.5) + 2 instead of g(f(15))."
+   },
+   {
+    "choice": "86.5",
+    "mis_step": "Applied the charge function directly to the actual weight, computing g(15) = 5.5(15) + 4 and skipping the billable-weight conversion f."
+   },
+   {
+    "choice": "73",
+    "mis_step": "Subtracted the fixed $4 processing fee instead of adding it, computing 5.5(14) - 4."
+   }
+  ]
+ },
+ {
+  "id": "A15",
+  "domain": "Algebra",
+  "subskill": "Solve a linear equation with fractions",
+  "topic_tag": "linfrac-recipe-scale",
+  "difficulty": "medium",
+  "prompt": "A cafe opens a new 40-cup bag of flour for the morning bake. The baker first sets aside 15/2 cups for dusting the work surfaces, and each batch of scones uses 5/2 cups of flour. If the baker uses all of the remaining flour on b full batches of scones, the equation (5/2)b + 15/2 = 40 models the situation. What is the value of b?",
+  "choices": [
+   "13",
+   "16",
+   "19",
+   "10"
+  ],
+  "correct_answer": "13",
+  "explanation": "Subtracting the 15/2 cups set aside leaves 65/2 cups for baking, and (65/2) divided by (5/2) gives 13 batches.",
+  "solve": "return (40 - 15/2) / (5/2);",
+  "distractor_steps": [
+   {
+    "choice": "16",
+    "mis_step": "Ignored the 15/2 cups set aside for dusting and divided the full 40 cups by 5/2."
+   },
+   {
+    "choice": "19",
+    "mis_step": "Added the 15/2 cups to the bag instead of subtracting it, solving (5/2)b = 40 + 15/2."
+   },
+   {
+    "choice": "10",
+    "mis_step": "Dropped the denominator of the dusting amount, subtracting 15 cups instead of 15/2 before dividing by 5/2."
+   }
+  ]
+ },
+ {
+  "id": "A16",
+  "domain": "Algebra",
+  "subskill": "Systems — three-way total split",
+  "topic_tag": "system-fundraiser-split",
+  "difficulty": "hard",
+  "prompt": "Three grade levels at a high school raised a combined $2,700 in a fundraiser. The juniors raised 3 times as much as the sophomores, and the seniors raised $100 less than the juniors and sophomores raised combined. How much money, in dollars, did the sophomores raise?",
+  "choices": [
+   "350",
+   "325",
+   "1050",
+   "900"
+  ],
+  "correct_answer": "350",
+  "explanation": "With sophomores raising s, the juniors raised 3s and the seniors raised 4s - 100, so s + 3s + (4s - 100) = 2700 gives 8s = 2800 and s = 350.",
+  "solve": "return (2700 + 100) / 8;",
+  "distractor_steps": [
+   {
+    "choice": "325",
+    "mis_step": "Sign slip on the seniors' relation: modeled the seniors as raising $100 MORE than the other two combined, giving 8s + 100 = 2700 and s = 325."
+   },
+   {
+    "choice": "1050",
+    "mis_step": "Answered the wrong quantity: solved the system correctly but reported the juniors' amount, 3(350) = 1050, instead of the sophomores'."
+   },
+   {
+    "choice": "900",
+    "mis_step": "Ignored both stated relations and assumed the $2,700 total was split equally among the three grades."
+   }
+  ]
+ },
+ {
+  "id": "M17",
+  "domain": "Advanced Math",
+  "subskill": "Quadratic inequality in context",
+  "topic_tag": "quadineq-profit-window",
+  "difficulty": "hard",
+  "prompt": "A furniture workshop's monthly profit, in hundreds of dollars, from building and selling n custom chairs is modeled by P(n) = -n^2 + 90n - 1400. The workshop operates at a profit only when P(n) > 0. For how many integer values of n does the workshop operate at a profit?",
+  "choices": [
+   "45",
+   "49",
+   "50",
+   "51"
+  ],
+  "correct_answer": "49",
+  "explanation": "Factoring gives P(n) = -(n - 20)(n - 70), which is positive only for 20 < n < 70, so the profitable integer production levels are 21 through 69, a total of 49 values.",
+  "solve": "const a=-1,b=90,c=-1400; const d=Math.sqrt(b*b-4*a*c); const r1=(-b+d)/(2*a), r2=(-b-d)/(2*a); const lo=Math.min(r1,r2), hi=Math.max(r1,r2); let count=0; for(let n=Math.ceil(lo); n<=Math.floor(hi); n++){ if(-n*n+90*n-1400>0) count++; } return count;",
+  "distractor_steps": [
+   {
+    "choice": "45",
+    "mis_step": "Answered the vertex n = 90/2 = 45, the production level that maximizes profit, instead of counting the integer values where profit is positive."
+   },
+   {
+    "choice": "50",
+    "mis_step": "Reported the length of the interval between the break-even points, 70 - 20 = 50, instead of counting the integers strictly between them."
+   },
+   {
+    "choice": "51",
+    "mis_step": "Treated the strict inequality as non-strict and included both break-even points, counting the integers 20 through 70 inclusive to get 51."
+   }
+  ]
+ },
+ {
+  "id": "M18",
+  "domain": "Advanced Math",
+  "subskill": "Exponential decay — percent per period",
+  "topic_tag": "expdecay-screen-brightness",
+  "difficulty": "medium",
+  "prompt": "To conserve battery, an e-reader's adaptive display starts a reading session at 500 nits and automatically reduces its brightness by 20% of its current value at the end of each hour. The display becomes hard to read outdoors once its brightness falls below 150 nits. After how many whole hours of reading does the brightness first fall below 150 nits?",
+  "choices": [
+   "2",
+   "4",
+   "5",
+   "6"
+  ],
+  "correct_answer": "6",
+  "explanation": "The brightness after t hours is 500(0.8)^t; after 5 hours it is about 163.8 nits, still at least 150, and after 6 hours it is about 131.1 nits, so the brightness first falls below 150 nits after 6 hours.",
+  "solve": "let t=0, b=500; while(b>=150){ b*=0.8; t++; } return t;",
+  "distractor_steps": [
+   {
+    "choice": "2",
+    "mis_step": "Read \"falls below 150 nits\" as \"falls by 150 nits\" and solved 500(0.8)^t < 350, giving t > 1.6, so 2 hours."
+   },
+   {
+    "choice": "4",
+    "mis_step": "Treated the 20% decrease as a constant 100-nit drop each hour, solving 500 - 100t < 150 to get t > 3.5, so 4 hours."
+   },
+   {
+    "choice": "5",
+    "mis_step": "Solved 500(0.8)^t = 150 to get t ≈ 5.4 and rounded down, reporting the last hour at which the display is still readable rather than the first hour below the threshold."
+   }
+  ]
+ },
+ {
+  "id": "A17",
+  "domain": "Algebra",
+  "subskill": "Linear model from two data points",
+  "topic_tag": "linear-plant-height",
+  "difficulty": "medium",
+  "prompt": "A botanist tracks a bamboo seedling whose height increases at a constant rate. On day 6 of the study the seedling was 21.5 cm tall, and on day 14 it was 33.5 cm tall. According to this linear model, what was the seedling's height, in cm, on day 0 of the study?",
+  "choices": [
+   "12.5",
+   "17.5",
+   "24.5",
+   "30.5"
+  ],
+  "correct_answer": "12.5",
+  "explanation": "The growth rate is (33.5 - 21.5)/(14 - 6) = 1.5 cm per day, so extrapolating back 6 days from the day-6 measurement gives 21.5 - 1.5(6) = 12.5 cm.",
+  "solve": "const d1=6,h1=21.5,d2=14,h2=33.5; const m=(h2-h1)/(d2-d1); return h1 - m*d1;",
+  "distractor_steps": [
+   {
+    "choice": "17.5",
+    "mis_step": "Inverted the slope, using (14 - 6)/(33.5 - 21.5) = 2/3 cm per day, and computed 21.5 - (2/3)(6) = 17.5."
+   },
+   {
+    "choice": "24.5",
+    "mis_step": "Paired the wrong height with the wrong date, extrapolating back from day 6 using the day-14 height: 33.5 - 1.5(6) = 24.5."
+   },
+   {
+    "choice": "30.5",
+    "mis_step": "Added the growth instead of subtracting when extrapolating backward in time: 21.5 + 1.5(6) = 30.5."
+   }
+  ]
+ },
+ {
+  "id": "A18",
+  "domain": "Algebra",
+  "subskill": "Compound inequality from context",
+  "topic_tag": "compound-elevator-load",
+  "difficulty": "hard",
+  "prompt": "A freight elevator's counterweight system operates safely only when the total load in the car is at least 400 kg, and the car is rated for a maximum total load of 1190 kg. A maintenance crew must ride with a tool cart that weighs 220 kg, and each crew member has an average mass of 70 kg. If n is the number of crew members in the car, how many integer values of n keep the total load within the safe operating range?",
+  "choices": [
+   "11",
+   "12",
+   "13",
+   "14"
+  ],
+  "correct_answer": "11",
+  "explanation": "The condition 400 <= 220 + 70n <= 1190 gives 180 <= 70n <= 970, so 2.57... <= n <= 13.85..., meaning n can be any integer from 3 through 13 — 11 values in all.",
+  "solve": "const lowT=400, highT=1190, eq=220, per=70; let count=0; for(let n=0;n<=200;n++){ const load=eq+per*n; if(load>=lowT && load<=highT) count++; } return count;",
+  "distractor_steps": [
+   {
+    "choice": "12",
+    "mis_step": "Rounded the lower bound 2.57 down instead of up, wrongly including n = 2 (a 360 kg load, below the 400 kg minimum) and counting 2 through 13 as 12 values."
+   },
+   {
+    "choice": "13",
+    "mis_step": "Answered the greatest allowed number of crew members, 13, instead of counting how many integer values of n are allowed."
+   },
+   {
+    "choice": "14",
+    "mis_step": "Ignored the stated 400 kg minimum load and counted every n from 0 through 13 under the maximum alone, giving 14 values."
+   }
+  ]
+ },
+ {
+  "id": "M19",
+  "domain": "Advanced Math",
+  "subskill": "Sum/product of roots without solving (different target than sum of squares)",
+  "topic_tag": "vieta-reciprocal-roots",
+  "difficulty": "hard",
+  "prompt": "An electronics kit contains two resistors whose resistances r1 and r2, in ohms, are the two solutions of the equation 3r^2 - 33r + 45 = 0. When the two resistors are wired in parallel, their combined resistance R, in ohms, satisfies 1/R = 1/r1 + 1/r2. What is the value of R?",
+  "choices": [
+   "15/11",
+   "11/15",
+   "11",
+   "15"
+  ],
+  "correct_answer": "15/11",
+  "explanation": "By Vieta's formulas r1 + r2 = 33/3 = 11 and r1*r2 = 45/3 = 15, so 1/r1 + 1/r2 = (r1 + r2)/(r1*r2) = 11/15, and inverting gives R = 15/11 ohms — the roots themselves are irrational, so the relation must be used without solving.",
+  "solve": "const a = 3, b = -33, c = 45; const s = -b / a; const p = c / a; const reciprocalSum = s / p; return p / s;",
+  "distractor_steps": [
+   {
+    "choice": "11/15",
+    "mis_step": "Correctly computes 1/r1 + 1/r2 = (r1 + r2)/(r1*r2) = 11/15 but reports that reciprocal sum as R, forgetting the final inversion 1/R -> R."
+   },
+   {
+    "choice": "11",
+    "mis_step": "Adds the resistances as if the pair were wired in series, reporting the Vieta sum r1 + r2 = -b/a = 11 as the combined resistance."
+   },
+   {
+    "choice": "15",
+    "mis_step": "Mistakes the Vieta product r1*r2 = c/a = 15 for the combined parallel resistance."
+   }
+  ]
+ },
+ {
+  "id": "M20",
+  "domain": "Advanced Math",
+  "subskill": "Square root function in context",
+  "topic_tag": "sqrt-skid-speed",
+  "difficulty": "medium",
+  "prompt": "Accident investigators estimate a car's speed v, in miles per hour, from the length d, in feet, of its skid marks using the model v = k*sqrt(d), where k is a constant that depends on the road surface. In a controlled test on a certain road, a car traveling at 35 miles per hour left a skid mark 49 feet long. According to the model, a car on the same road that was traveling at 45 miles per hour would leave a skid mark of how many feet?",
+  "choices": [
+   "81",
+   "9",
+   "63",
+   "405"
+  ],
+  "correct_answer": "81",
+  "explanation": "The test data give k = 35/sqrt(49) = 5, and solving 45 = 5*sqrt(d) requires squaring 45/5 = 9 to get d = 81 feet.",
+  "solve": "const k = 35 / Math.sqrt(49); const d = Math.pow(45 / k, 2); return d;",
+  "distractor_steps": [
+   {
+    "choice": "9",
+    "mis_step": "Finds k = 5 and isolates sqrt(d) = 45/5 = 9 correctly, but reports 9 without squaring to undo the square root."
+   },
+   {
+    "choice": "63",
+    "mis_step": "Treats speed as directly proportional to skid length instead of to its square root, scaling 49*(45/35) = 63."
+   },
+   {
+    "choice": "405",
+    "mis_step": "Squares the speed but not the constant, computing d = 45^2/5 = 405 instead of (45/5)^2."
+   }
+  ]
+ },
+ {
+  "id": "A19",
+  "domain": "Algebra",
+  "subskill": "Rate conversion linear setup",
+  "topic_tag": "rate-currency-fee",
+  "difficulty": "medium",
+  "prompt": "A currency exchange kiosk charges a flat service fee of f dollars, which is deducted from the amount handed over, and then converts the remaining dollars to euros at a constant rate of r euros per dollar. Maria hands the kiosk 250 dollars and receives 192 euros. Ben hands the kiosk 130 dollars and receives 96 euros. What is the value of f?",
+  "choices": [
+   "10",
+   "8",
+   "58",
+   "5"
+  ],
+  "correct_answer": "10",
+  "explanation": "The two transactions give r = (192 - 96)/(250 - 130) = 0.8 euro per dollar, so Maria's 192 euros came from 192/0.8 = 240 dollars, meaning the fee was 250 - 240 = 10 dollars.",
+  "solve": "const rate = (192 - 96) / (250 - 130); const dollarsConverted = 192 / rate; return 250 - dollarsConverted;",
+  "distractor_steps": [
+   {
+    "choice": "8",
+    "mis_step": "Models the fee as charged in euros after conversion, computing 0.8*250 - 192 = 8 instead of deducting the fee in dollars before converting."
+   },
+   {
+    "choice": "58",
+    "mis_step": "Subtracts euros received from dollars handed over directly, 250 - 192 = 58, ignoring the conversion rate entirely."
+   },
+   {
+    "choice": "5",
+    "mis_step": "Assumes Maria paid no fee when estimating the rate (192/250 = 0.768 euro per dollar), then computes Ben's fee as 130 - 96/0.768 = 5."
+   }
+  ]
+ },
+ {
+  "id": "A20",
+  "domain": "Algebra",
+  "subskill": "System where the QUESTION asks a combination",
+  "topic_tag": "combo-ticket-difference",
+  "difficulty": "hard",
+  "prompt": "A museum sold a total of 190 tickets one afternoon. Adult tickets cost 9 dollars each and student tickets cost 5 dollars each, and total ticket revenue was 1,490 dollars. How many more adult tickets than student tickets were sold that afternoon?",
+  "choices": [
+   "80",
+   "160",
+   "135",
+   "940"
+  ],
+  "correct_answer": "80",
+  "explanation": "Subtracting 7 times the count equation from the revenue equation gives (9a + 5s) - 7(a + s) = 2a - 2s = 1490 - 1330 = 160, so a - s = 160/2 = 80 more adult tickets — no need to find a and s separately.",
+  "solve": "const total = 190; const revenue = 1490; const s = (9 * total - revenue) / (9 - 5); const a = total - s; return a - s;",
+  "distractor_steps": [
+   {
+    "choice": "160",
+    "mis_step": "Correctly eliminates to 2a - 2s = 1490 - 7*190 = 160 but reports 160 without dividing by 2 to isolate a - s."
+   },
+   {
+    "choice": "135",
+    "mis_step": "Solves the system fully and reports the number of adult tickets, 135, instead of the asked-for difference between the two counts."
+   },
+   {
+    "choice": "940",
+    "mis_step": "Answers the difference in revenue between the two ticket types, 9*135 - 5*55 = 940 dollars, instead of the difference in the number of tickets sold."
+   }
+  ]
+ },
+ {
+  "id": "M21",
+  "domain": "Advanced Math",
+  "subskill": "Equivalent forms — completing the square",
+  "topic_tag": "complsq-fountain-arc",
+  "difficulty": "hard",
+  "prompt": "A fountain's water jet leaves a nozzle set 5 feet above the surface of a pool. The height h(x), in feet, of the jet at a horizontal distance of x feet from the nozzle is modeled by h(x) = -3x^2 + 21x + 5. Rewriting h(x) in the vertex form a(x - p)^2 + q reveals the maximum height of the jet. What is the maximum height, in feet, that the water reaches?",
+  "choices": [
+   "17.25",
+   "31.75",
+   "36.75",
+   "41.75"
+  ],
+  "correct_answer": "41.75",
+  "explanation": "Completing the square gives h(x) = -3(x - 3.5)^2 + 41.75, so the vertex value 41.75 is the maximum height; distractors such as 36.75 come from dropping the constant term 5.",
+  "solve": "const a = -3, b = 21, c = 5; const xv = -b / (2 * a); return a * xv * xv + b * xv + c;",
+  "distractor_steps": [
+   {
+    "choice": "17.25",
+    "mis_step": "Factored -3 from the x-terms, completed the square with (7/2)^2 = 12.25, but added 12.25 back outside without multiplying by -3, giving 12.25 + 5 = 17.25."
+   },
+   {
+    "choice": "31.75",
+    "mis_step": "Computed -3(x-3.5)^2 + 36.75 correctly but then subtracted the nozzle constant 5 instead of adding it: 36.75 - 5 = 31.75."
+   },
+   {
+    "choice": "36.75",
+    "mis_step": "Completed the square on -3x^2 + 21x alone and reported -3(-12.25) = 36.75, forgetting to include the constant term +5 in the vertex value."
+   }
+  ]
+ },
+ {
+  "id": "M22",
+  "domain": "Advanced Math",
+  "subskill": "Growth factor from percent change",
+  "topic_tag": "growthfactor-museum",
+  "difficulty": "medium",
+  "prompt": "A city museum recorded 62,500 visitors in 2022. Attendance increased by 12% from 2022 to 2023 during a special exhibition, and then decreased by 25% from 2023 to 2024 after the exhibition closed. How many visitors did the museum record in 2024?",
+  "choices": [
+   "52,500",
+   "54,375",
+   "56,000",
+   "70,000"
+  ],
+  "correct_answer": "52,500",
+  "explanation": "Compounding the changes multiplies by the growth factors: 62,500 x 1.12 x 0.75 = 52,500 visitors; 54,375 results from adding the percents into a single -13% change instead of compounding.",
+  "solve": "return 62500 * 1.12 * 0.75;",
+  "distractor_steps": [
+   {
+    "choice": "54,375",
+    "mis_step": "Added the percent changes (+12% - 25% = -13%) and applied the net percent to the 2022 count once: 62,500 x 0.87 = 54,375, instead of compounding the two factors."
+   },
+   {
+    "choice": "56,000",
+    "mis_step": "Treated the 25% decrease as undoing a 25% increase and divided by 1.25: 70,000 / 1.25 = 56,000, instead of multiplying by 0.75."
+   },
+   {
+    "choice": "70,000",
+    "mis_step": "Stopped after the first change and reported the 2023 attendance, 62,500 x 1.12 = 70,000, rather than the 2024 count that was asked for."
+   }
+  ]
+ },
+ {
+  "id": "A21",
+  "domain": "Algebra",
+  "subskill": "Interpret a coefficient in context",
+  "topic_tag": "coeff-catering-quote",
+  "difficulty": "medium",
+  "prompt": "A catering company prices events using the model C = a + b*n, where C is the total quote in dollars, n is the number of guests, and a and b are constants. The company quoted $1,150 for an event with 25 guests and $1,900 for an event with 50 guests. Based on the model, what is the value of b, the additional cost in dollars for each extra guest?",
+  "choices": [
+   "10",
+   "30",
+   "38",
+   "46"
+  ],
+  "correct_answer": "30",
+  "explanation": "The two quotes give b = (1,900 - 1,150)/(50 - 25) = 750/25 = 30 dollars per additional guest; a value like 38 comes from dividing a whole quote by its guest count, which wrongly folds the fixed fee a into the per-guest rate.",
+  "solve": "return (1900 - 1150) / (50 - 25);",
+  "distractor_steps": [
+   {
+    "choice": "10",
+    "mis_step": "Divided the change in cost by the combined guest counts, 750/(25 + 50) = 10, instead of by the change in the number of guests."
+   },
+   {
+    "choice": "38",
+    "mis_step": "Divided the 50-guest quote by its guest count, 1,900/50 = 38, ignoring that the fixed fee a is included in that quote."
+   },
+   {
+    "choice": "46",
+    "mis_step": "Divided the 25-guest quote by its guest count, 1,150/25 = 46, again treating the whole quote as purely per-guest cost."
+   }
+  ]
+ },
+ {
+  "id": "A22",
+  "domain": "Algebra",
+  "subskill": "Linear system from a geometry-free perimeter/count story",
+  "topic_tag": "system-bookshelf-lengths",
+  "difficulty": "hard",
+  "prompt": "A woodworker is building 3 identical bookcases. Each bookcase requires 4 shelf boards of one length and 2 side boards of another length. Each side board is 0.3 meters shorter than 3 times the length of a shelf board, and the total length of board used for all 3 bookcases is 21.6 meters. What is the length, in meters, of one side board?",
+  "choices": [
+   "0.78",
+   "2.04",
+   "2.28",
+   "6.36"
+  ],
+  "correct_answer": "2.04",
+  "explanation": "With shelf length x, the 3 bookcases use 12 shelves and 6 sides, so 12x + 6(3x - 0.3) = 21.6 gives x = 0.78, and a side board is 3(0.78) - 0.3 = 2.04 meters; the value 0.78 is the shelf length, not what was asked.",
+  "solve": "const x = (21.6 + 6 * 0.3) / (12 + 6 * 3); return 3 * x - 0.3;",
+  "distractor_steps": [
+   {
+    "choice": "0.78",
+    "mis_step": "Solved the system correctly but reported the shelf-board length x = 0.78 instead of the side-board length that was asked for."
+   },
+   {
+    "choice": "2.28",
+    "mis_step": "Read '0.3 meters shorter' with the wrong sign, using y = 3x + 0.3: then 30x + 1.8 = 21.6 gives x = 0.66 and y = 3(0.66) + 0.3 = 2.28."
+   },
+   {
+    "choice": "6.36",
+    "mis_step": "Ignored the 3-bookcase scaling and set 4x + 2y = 21.6 for a single bookcase: substituting y = 3x - 0.3 gives x = 2.22 and y = 6.36."
+   }
+  ]
+ },
+ {
+  "id": "M23",
+  "domain": "Advanced Math",
+  "subskill": "Extraneous root — rational equation",
+  "topic_tag": "rational-extraneous-speed",
+  "difficulty": "hard",
+  "prompt": "A regional bus makes a 90-mile trip from a depot to a coastal city at a constant speed of x miles per hour and returns along the same 90-mile route at a constant speed of x - 15 miles per hour. The bus's average speed for the entire round trip, computed as total distance divided by total time, is 20 miles per hour. What is the value of x?",
+  "choices": [
+   "5",
+   "15",
+   "27.5",
+   "30"
+  ],
+  "correct_answer": "30",
+  "explanation": "Setting 90/x + 90/(x - 15) equal to 180/20 = 9 hours leads to 2x^2 - 70x + 300 = 0, whose roots are 30 and 5; only 30 keeps the return speed x - 15 positive, so x = 30.",
+  "solve": "const d = 90, k = 15, v = 20;\nconst a = 2, b = -(2*k + 2*v), c = v*k;\nconst disc = Math.sqrt(b*b - 4*a*c);\nconst r1 = (-b + disc)/(2*a), r2 = (-b - disc)/(2*a);\nreturn (r1 - k > 0) ? r1 : r2;",
+  "distractor_steps": [
+   {
+    "choice": "5",
+    "mis_step": "Accepting the extraneous algebraic root of the quadratic 2x^2 - 70x + 300 = 0: x = 5 makes the return speed 5 - 15 = -10 mph, which is physically impossible."
+   },
+   {
+    "choice": "15",
+    "mis_step": "Solving correctly for x = 30 but reporting the return speed x - 15 = 15 instead of the outbound speed x that was asked for."
+   },
+   {
+    "choice": "27.5",
+    "mis_step": "Treating the round-trip average speed as the arithmetic mean of the two speeds, (x + (x - 15))/2 = 20, which gives x = 27.5 instead of using total distance over total time."
+   }
+  ]
+ },
+ {
+  "id": "M24",
+  "domain": "Advanced Math",
+  "subskill": "Inverse of a linear-inside-nonlinear pricing",
+  "topic_tag": "inverse-membership-fee",
+  "difficulty": "medium",
+  "prompt": "A makerspace charges its members a total of C(w) = 15*sqrt(2w + 5) + 30 dollars for a month in which a member reserves w workshop sessions, where the $30 is a flat facility fee. Last month, Priya's total charge was $105. How many workshop sessions did she reserve?",
+  "choices": [
+   "7.5",
+   "10",
+   "12.5",
+   "22"
+  ],
+  "correct_answer": "10",
+  "explanation": "Subtracting the $30 flat fee from $105 and dividing by 15 gives sqrt(2w + 5) = 5, so 2w + 5 = 25 and w = 10.",
+  "solve": "const total = 105, flat = 30, rate = 15, m = 2, add = 5;\nconst s = (total - flat)/rate;\nreturn (s*s - add)/m;",
+  "distractor_steps": [
+   {
+    "choice": "22",
+    "mis_step": "Skipping the subtraction of the $30 flat fee: dividing 105 by 15 gives sqrt(2w + 5) = 7, so 2w + 5 = 49 and w = 22."
+   },
+   {
+    "choice": "12.5",
+    "mis_step": "After correctly reaching 2w + 5 = 25, ignoring the stated +5 inside the radical and solving 2w = 25 to get w = 12.5."
+   },
+   {
+    "choice": "7.5",
+    "mis_step": "Undoing the inner operations in the wrong order: dividing 25 by 2 first and then subtracting 5, giving 12.5 - 5 = 7.5."
+   }
+  ]
+ },
+ {
+  "id": "A23",
+  "domain": "Algebra",
+  "subskill": "Graph reading — solution of f(x)=g(x)",
+  "topic_tag": "graphread-two-plans",
+  "difficulty": "medium",
+  "prompt": "Two phone plans charge for monthly data. Plan A's monthly cost, in dollars, is modeled by the line y = 30 + 0.05g, and Plan B's by the line y = 18 + 0.11g, where g is the number of gigabytes of data used that month. If the two lines are graphed in the same gy-plane, the point where they intersect represents the usage at which the plans cost the same. At how many gigabytes of monthly data use do the two plans charge the same total amount?",
+  "choices": [
+   "40",
+   "75",
+   "200",
+   "800"
+  ],
+  "correct_answer": "200",
+  "explanation": "Setting 30 + 0.05g = 18 + 0.11g gives 12 = 0.06g, so g = 200; at 200 gigabytes both plans cost $40.",
+  "solve": "const fA = 30, rA = 0.05, fB = 18, rB = 0.11;\nreturn (fA - fB)/(rB - rA);",
+  "distractor_steps": [
+   {
+    "choice": "40",
+    "mis_step": "Reporting the y-coordinate of the intersection point — the shared monthly cost of $40 — instead of the g-coordinate that was asked for."
+   },
+   {
+    "choice": "75",
+    "mis_step": "Adding the per-gigabyte rates instead of subtracting them: 12/(0.11 + 0.05) = 75."
+   },
+   {
+    "choice": "800",
+    "mis_step": "Using the sum of the two monthly base fees instead of their difference: (30 + 18)/(0.11 - 0.05) = 800."
+   }
+  ]
+ },
+ {
+  "id": "A24",
+  "domain": "Algebra",
+  "subskill": "Inequality with a negative coefficient flip",
+  "topic_tag": "ineqflip-temperature-drop",
+  "difficulty": "hard",
+  "prompt": "At noon an orchard's air temperature is 68 degrees Fahrenheit. A cold front arrives 2 hours later, and from that point on the temperature drops at a constant 3 degrees Fahrenheit per hour, so for 2 <= t <= 12 the temperature t hours after noon is T(t) = 68 - 3(t - 2). The orchard's frost-protection fans do not need to run as long as the temperature is at least 50 degrees Fahrenheit. For which values of t in this interval is the temperature at least 50 degrees Fahrenheit?",
+  "choices": [
+   "t <= 4",
+   "t <= 6",
+   "t <= 8",
+   "t >= 8"
+  ],
+  "correct_answer": "t <= 8",
+  "explanation": "Solving 68 - 3(t - 2) >= 50 gives 74 - 3t >= 50, so -3t >= -24; dividing by -3 reverses the inequality, giving t <= 8.",
+  "solve": "const start = 68, rate = 3, delay = 2, limit = 50;\nconst t = (start - limit)/rate + delay;\nreturn \"t <= \" + t;",
+  "distractor_steps": [
+   {
+    "choice": "t >= 8",
+    "mis_step": "Dividing both sides of -3t >= -24 by -3 without reversing the inequality sign, leaving t >= 8."
+   },
+   {
+    "choice": "t <= 4",
+    "mis_step": "Distributing -3 across (t - 2) with a sign slip as -3t - 6, giving 62 - 3t >= 50 and t <= 4."
+   },
+   {
+    "choice": "t <= 6",
+    "mis_step": "Ignoring the stated 2-hour delay before the drop begins, solving 68 - 3t >= 50 to get t <= 6."
+   }
+  ]
+ },
+ {
+  "id": "M25",
+  "domain": "Advanced Math",
+  "subskill": "System of one linear and one exponential-in-disguise (substitution)",
+  "topic_tag": "subst-culture-doubling",
+  "difficulty": "hard",
+  "prompt": "A microbiology lab maintains a yeast culture that starts with c thousand cells. During each growth session, the cell count doubles, and then technicians harvest 600 thousand cells for testing. After exactly 2 sessions, the count is 1,600 thousand cells. If sessions continue in the same pattern, after how many total sessions from the start will the count first reach at least 8,600 thousand cells?",
+  "choices": [
+   "3",
+   "4",
+   "5",
+   "7"
+  ],
+  "correct_answer": "5",
+  "explanation": "Two sessions give 2(2c - 600) - 600 = 4c - 1800 = 1600, so c = 850; iterating (double, then subtract 600) yields 1100, 1600, 2600, 4600, 8600, so the count first reaches 8,600 thousand after 5 sessions.",
+  "solve": "const c = (1600 + 1800) / 4; let pop = c; let n = 0; while (pop < 8600) { pop = 2 * pop - 600; n++; if (n > 50) break; } return n;",
+  "distractor_steps": [
+   {
+    "choice": "3",
+    "mis_step": "Counts only the sessions after the known 1,600 reading (1600 -> 2600 -> 4600 -> 8600 is 3 more sessions) instead of total sessions from the start."
+   },
+   {
+    "choice": "4",
+    "mis_step": "Misreads the given condition as holding after 1 session, solving 2c - 600 = 1600 to get c = 1100; iterating from 1100 reaches 8,600 at session 4."
+   },
+   {
+    "choice": "7",
+    "mis_step": "Reverses the order of operations to harvest-then-double, x -> 2(x - 600); the condition then gives c = 1300 and the count first passes 8,600 at session 7."
+   }
+  ]
+ },
+ {
+  "id": "M26",
+  "domain": "Advanced Math",
+  "subskill": "Quadratic roots from factored context",
+  "topic_tag": "factored-banner-area",
+  "difficulty": "medium",
+  "prompt": "A school orders a rectangular vinyl banner whose length is (x + 5) feet and whose width is (x - 2) feet, where x is a sizing parameter set by the print shop. The printed area of the banner is 60 square feet. What is the width, in feet, of the banner?",
+  "choices": [
+   "5",
+   "7",
+   "8",
+   "12"
+  ],
+  "correct_answer": "5",
+  "explanation": "Expanding (x + 5)(x - 2) = 60 gives x^2 + 3x - 70 = 0, which factors as (x + 10)(x - 7) = 0; since x - 2 must be positive, x = 7 and the width is 7 - 2 = 5 feet.",
+  "solve": "const x = (-3 + Math.sqrt(9 + 280)) / 2; return x - 2;",
+  "distractor_steps": [
+   {
+    "choice": "7",
+    "mis_step": "Solves the quadratic correctly for x = 7 but reports x itself instead of the requested width x - 2."
+   },
+   {
+    "choice": "8",
+    "mis_step": "Uses the magnitude of the rejected root x = -10 as the parameter, computing a width of 10 - 2 = 8."
+   },
+   {
+    "choice": "12",
+    "mis_step": "Computes the other dimension: substitutes x = 7 into the length x + 5 instead of the width."
+   }
+  ]
+ },
+ {
+  "id": "A25",
+  "domain": "Algebra",
+  "subskill": "Proportional relationship test",
+  "topic_tag": "proportion-ink-pages",
+  "difficulty": "medium",
+  "prompt": "A wide-format printer performs a one-time nozzle purge when a new 80 mL ink cartridge is installed, then uses a constant amount of ink per page, so ink remaining is a linear (but not proportional) function of pages printed. After 20 pages on a new cartridge, 71 mL remain; after 60 pages, 59 mL remain. What is the total number of pages printed on this cartridge when exactly 20 mL remain?",
+  "choices": [
+   "130",
+   "190",
+   "200",
+   "210"
+  ],
+  "correct_answer": "190",
+  "explanation": "The per-page rate is (71 - 59)/(60 - 20) = 0.3 mL, so the purge used 80 - 71 - 0.3(20) = 3 mL; when 20 mL remain, 60 mL have been used, giving (60 - 3)/0.3 = 190 pages.",
+  "solve": "const k = (71 - 59) / (60 - 20); const p = 80 - 71 - k * 20; return (80 - 20 - p) / k;",
+  "distractor_steps": [
+   {
+    "choice": "130",
+    "mis_step": "Computes only the additional pages after the 59 mL reading, (59 - 20)/0.3 = 130, instead of the total pages from installation."
+   },
+   {
+    "choice": "200",
+    "mis_step": "Finds the correct rate 0.3 mL per page but assumes the relationship is proportional, ignoring the 3 mL purge: 60/0.3 = 200."
+   },
+   {
+    "choice": "210",
+    "mis_step": "Adds the purge instead of subtracting it when converting used ink to printed pages: (60 + 3)/0.3 = 210."
+   }
+  ]
+ },
+ {
+  "id": "A26",
+  "domain": "Algebra",
+  "subskill": "System with parameter — infinitely many solutions (different surface than supply schedules)",
+  "topic_tag": "param-nutrition-labels",
+  "difficulty": "hard",
+  "prompt": "A dietitian describes sample packs containing p grams of pumpkin seeds and q grams of quinoa. The nutrition panel gives the equation 5p + 3q = 510 for one nutrient, and a second panel gives hp + kq = 340 for the same packs, where h and k are constants. If the system of these two equations has infinitely many solutions, what is the value of h + k?",
+  "choices": [
+   "16/3",
+   "19/3",
+   "8",
+   "12"
+  ],
+  "correct_answer": "16/3",
+  "explanation": "Infinitely many solutions force the second equation to be a multiple of the first, with multiplier 340/510 = 2/3; then h = 5(2/3) = 10/3 and k = 3(2/3) = 2, so h + k = 16/3.",
+  "solve": "const t = 340 / 510; const h = 5 * t; const k = 3 * t; return h + k;",
+  "distractor_steps": [
+   {
+    "choice": "19/3",
+    "mis_step": "Scales only the p-coefficient by 2/3, taking h = 10/3 but leaving k = 3 unscaled, giving 10/3 + 3 = 19/3."
+   },
+   {
+    "choice": "8",
+    "mis_step": "Treats matching form as matching coefficients, assuming h = 5 and k = 3 without applying any scale factor, giving 5 + 3 = 8."
+   },
+   {
+    "choice": "12",
+    "mis_step": "Inverts the constant ratio to 510/340 = 3/2, giving h = 15/2 and k = 9/2, whose sum is 12."
+   }
+  ]
+ },
+ {
+  "id": "M27",
+  "domain": "Advanced Math",
+  "subskill": "Composition with an unknown inner parameter",
+  "topic_tag": "compose-thermo-convert",
+  "difficulty": "hard",
+  "prompt": "A greenhouse temperature sensor is miscalibrated: when the true air temperature is c degrees Celsius, the sensor records g(c) = c + k degrees Celsius, where k is a constant calibration offset. The control panel then converts the recorded value to Fahrenheit using f(c) = (9/5)c + 32 and displays f(g(c)). One afternoon the true air temperature was 15 degrees Celsius and the panel displayed 68 degrees Fahrenheit. What is the value of k?",
+  "choices": [
+   "9",
+   "5",
+   "20",
+   "49.8"
+  ],
+  "correct_answer": "5",
+  "explanation": "Undoing the conversion, the sensor's recorded Celsius value is (68 - 32)(5/9) = 20, so the offset is 20 - 15 = 5. The value 20 is the recorded reading itself, not the offset.",
+  "solve": "const display = 68; const trueC = 15; const recorded = (display - 32) * 5 / 9; return recorded - trueC;",
+  "distractor_steps": [
+   {
+    "choice": "9",
+    "mis_step": "Applied the offset after conversion instead of before: converted the true 15 C to f(15) = 59 F and reported the Fahrenheit gap 68 - 59 = 9 as k."
+   },
+   {
+    "choice": "20",
+    "mis_step": "Answered the intermediate quantity: computed the sensor's recorded Celsius value g(15) = (68-32)(5/9) = 20 and stopped, reporting the reading instead of the offset."
+   },
+   {
+    "choice": "49.8",
+    "mis_step": "Inverted the conversion factor: multiplied (68 - 32) by 9/5 instead of 5/9, getting a 'recorded' value of 64.8, then subtracted 15."
+   }
+  ]
+ },
+ {
+  "id": "M28",
+  "domain": "Advanced Math",
+  "subskill": "Percent decay to solve for the rate",
+  "topic_tag": "decayrate-tire-pressure",
+  "difficulty": "medium",
+  "prompt": "A slow leak causes a car tire to lose the same fixed percent of its pressure each day. A mechanic measured the pressure at 32.00 psi on Monday morning and, without any refilling, at 28.88 psi on Wednesday morning, exactly 2 days later. To the nearest tenth of a percent, what percent of its pressure does the tire lose each day?",
+  "choices": [
+   "4.9",
+   "9.8",
+   "5.0",
+   "5.3"
+  ],
+  "correct_answer": "5.0",
+  "explanation": "The daily retention factor r satisfies 32r^2 = 28.88, so r = sqrt(0.9025) = 0.95 and the daily loss is 5.0 percent; 9.8 is the total two-day loss and 4.9 is that total split linearly in half.",
+  "solve": "const p0 = 32, p2 = 28.88; const r = 1 - Math.sqrt(p2 / p0); return Math.round(r * 1000) / 10;",
+  "distractor_steps": [
+   {
+    "choice": "9.8",
+    "mis_step": "Reported the total two-day percent loss, 1 - 28.88/32 = 9.75 percent, without extracting the per-day rate from the two compounding days."
+   },
+   {
+    "choice": "4.9",
+    "mis_step": "Treated the decay as linear: divided the two-day total loss of 9.75 percent by 2 days instead of taking the square root of the ratio, giving 4.875 percent."
+   },
+   {
+    "choice": "5.3",
+    "mis_step": "Inverted the ratio: computed sqrt(32/28.88) - 1 = 0.0526, the daily percent gain needed to recover, instead of the percent lost."
+   }
+  ]
+ },
+ {
+  "id": "A27",
+  "domain": "Algebra",
+  "subskill": "Mean as a linear constraint",
+  "topic_tag": "mean-quiz-target",
+  "difficulty": "medium",
+  "prompt": "Dana's chemistry grade is the mean of six equally weighted quizzes. Her first five quiz scores were 78, 91, 84, 80, and 87. She needs the mean of all six quizzes to be exactly 86 to keep her lab placement. What score must she earn on the sixth quiz?",
+  "choices": [
+   "88",
+   "94",
+   "96",
+   "98"
+  ],
+  "correct_answer": "96",
+  "explanation": "The six quizzes must total 6(86) = 516 points, and the first five total 420, so the sixth score must be 516 - 420 = 96. A score of 88 only closes the two-point gap once rather than for all five earlier quizzes.",
+  "solve": "const scores = [78, 91, 84, 80, 87]; const sum = scores.reduce((a, b) => a + b, 0); return 6 * 86 - sum;",
+  "distractor_steps": [
+   {
+    "choice": "88",
+    "mis_step": "Added the two-point gap between the target 86 and the current mean 84 to the target only once (86 + 2), instead of making up the gap for each of the five existing quizzes."
+   },
+   {
+    "choice": "94",
+    "mis_step": "Computed the total deficit correctly as 5 x 2 = 10 points but added it to the current mean 84 instead of the target 86, giving 84 + 10 = 94."
+   },
+   {
+    "choice": "98",
+    "mis_step": "Counted the new quiz among those below target: applied the two-point gap to all six quizzes, 86 + 6(2) = 98, instead of only the five already taken."
+   }
+  ]
+ },
+ {
+  "id": "A28",
+  "domain": "Algebra",
+  "subskill": "Two-variable inequality feasibility",
+  "topic_tag": "feasible-market-stall",
+  "difficulty": "hard",
+  "prompt": "Priya rents a market stall with 18 square feet of table space and has $168 to spend stocking it. Each gift basket takes up 1.5 square feet of table space and costs $14 to assemble; each candle box takes up 0.5 square feet and costs $6 to assemble. Her contract with the market requires her to display at least 4 gift baskets. What is the greatest number of candle boxes Priya can stock?",
+  "choices": [
+   "28",
+   "24",
+   "19",
+   "18"
+  ],
+  "correct_answer": "18",
+  "explanation": "Stocking the minimum 4 baskets leaves 12 square feet (room for 24 boxes) but only $112, and 112/6 = 18.67, so the budget binds and she can afford at most 18 boxes; 24 comes from checking only the table space.",
+  "solve": "const budget = 168, basketCost = 14, boxCost = 6, space = 18, basketSpace = 1.5, boxSpace = 0.5, minBaskets = 4; const byBudget = Math.floor((budget - basketCost * minBaskets) / boxCost); const bySpace = Math.floor((space - basketSpace * minBaskets) / boxSpace); return Math.min(byBudget, bySpace);",
+  "distractor_steps": [
+   {
+    "choice": "24",
+    "mis_step": "Used only the table-space constraint: (18 - 1.5 x 4)/0.5 = 24 boxes fit on the table, ignoring that the $168 budget runs out first."
+   },
+   {
+    "choice": "19",
+    "mis_step": "Rounded the budget bound the wrong way: 112/6 = 18.67 boxes, rounded up to 19, which exceeds the $112 remaining after the required baskets."
+   },
+   {
+    "choice": "28",
+    "mis_step": "Ignored the stated requirement of at least 4 gift baskets: spent the whole $168 on boxes, floor(168/6) = 28."
+   }
+  ]
+ },
+ {
+  "id": "M29",
+  "domain": "Advanced Math",
+  "subskill": "Quadratic parameter from a stated root condition",
+  "topic_tag": "paramroot-ramp-design",
+  "difficulty": "hard",
+  "prompt": "A course designer models the side profile of a BMX dirt ramp by h(x) = a*x^2 + b*x + c, where h(x) is the height of the ramp surface, in feet, at horizontal position x feet measured from the base of the takeoff tower. The top of the tower gives h(0) = 18. The surface returns to ground level (h(x) = 0) at the landing point x = 12, and the model's other x-intercept lies 18 feet to the left of the landing point. What is the value of a?",
+  "choices": [
+   "-1/4",
+   "1/4",
+   "-1/12",
+   "-6"
+  ],
+  "correct_answer": "-1/4",
+  "explanation": "The x-intercepts are 12 and 12 - 18 = -6, and since h(0) = 18 gives c = 18, the product of the roots satisfies (12)(-6) = c/a = 18/a, so a = 18/(-72) = -1/4.",
+  "solve": "const c = 18; const r1 = 12; const r2 = 12 - 18; return c / (r1 * r2);",
+  "distractor_steps": [
+   {
+    "choice": "1/4",
+    "mis_step": "Drops the sign when locating the second intercept, using x = 6 instead of x = -6, so the root product is 72 and a = 18/72."
+   },
+   {
+    "choice": "-1/12",
+    "mis_step": "Treats the 18-foot offset itself as the second intercept's coordinate, using x = -18, so the root product is -216 and a = 18/(-216)."
+   },
+   {
+    "choice": "-6",
+    "mis_step": "Reports the intermediate quantity — the second x-intercept, 12 - 18 — instead of solving for a."
+   }
+  ]
+ },
+ {
+  "id": "M30",
+  "domain": "Advanced Math",
+  "subskill": "Exponential model — find initial value",
+  "topic_tag": "expinit-podcast-growth",
+  "difficulty": "medium",
+  "prompt": "Since its launch, the number of monthly listeners of a history podcast has increased by 50% every month. Exactly 4 months after launch, the podcast had 81,000 monthly listeners. If the number of monthly listeners t months after launch is modeled by L(t) = L0 * (1.5)^t, how many monthly listeners did the podcast have at launch?",
+  "choices": [
+   "16000",
+   "13500",
+   "24000",
+   "27000"
+  ],
+  "correct_answer": "16000",
+  "explanation": "Four months of 50% growth multiply the launch count by (1.5)^4 = 5.0625, so the launch count is 81,000 / 5.0625 = 16,000.",
+  "solve": "return 81000 / Math.pow(1.5, 4);",
+  "distractor_steps": [
+   {
+    "choice": "13500",
+    "mis_step": "Treats four months of 50% growth as a single multiplication by 1.5 * 4 = 6, dividing 81,000 by 6."
+   },
+   {
+    "choice": "24000",
+    "mis_step": "Off-by-one on the exponent: divides 81,000 by (1.5)^3, counting only three growth steps in four months."
+   },
+   {
+    "choice": "27000",
+    "mis_step": "Models the growth as simple (non-compounding) increase, solving L0 * (1 + 0.5*4) = 81,000."
+   }
+  ]
+ },
+ {
+  "id": "A29",
+  "domain": "Algebra",
+  "subskill": "Distance-rate-time linear split",
+  "topic_tag": "drt-commute-split",
+  "difficulty": "medium",
+  "prompt": "Priya's drive from her apartment to her office is 27 miles long and has two parts: a highway stretch she covers at an average speed of 60 miles per hour and a city stretch she covers at an average speed of 24 miles per hour. Yesterday the entire drive took 48 minutes. How many miles long is the highway stretch?",
+  "choices": [
+   "13",
+   "14",
+   "24",
+   "29"
+  ],
+  "correct_answer": "13",
+  "explanation": "With d miles on the highway, d/60 + (27 - d)/24 = 48/60; multiplying by 120 gives 2d + 5(27 - d) = 96, so -3d = -39 and the highway stretch is 13 miles.",
+  "solve": "const T = 48 / 60; return (T * 120 - 5 * 27) / (2 - 5);",
+  "distractor_steps": [
+   {
+    "choice": "14",
+    "mis_step": "Solves the equation correctly for the highway stretch (13) but reports the other requested-adjacent quantity — the city stretch, 27 - 13."
+   },
+   {
+    "choice": "24",
+    "mis_step": "Assumes the two stretches took equal time (0.4 hours each) and computes the highway distance as 60 * 0.4."
+   },
+   {
+    "choice": "29",
+    "mis_step": "Clears the fractions by multiplying the left side by 120 but converts 48 minutes using 60 on the right, solving 2d + 5(27 - d) = 48."
+   }
+  ]
+ },
+ {
+  "id": "A30",
+  "domain": "Algebra",
+  "subskill": "Linear equation with the unknown on both sides from a story",
+  "topic_tag": "bothsides-gym-plans",
+  "difficulty": "hard",
+  "prompt": "FlexFit gym offers two membership structures. Under the first, a member pays a one-time enrollment fee of $120 plus $35 per month. Under the second, a member pays a one-time enrollment fee of $40 plus $55 per month. After a certain whole number of months, the total amount paid under the first structure equals the total amount paid under the second. What is that equal total amount, in dollars?",
+  "choices": [
+   "260",
+   "400",
+   "140",
+   "4"
+  ],
+  "correct_answer": "260",
+  "explanation": "Setting 120 + 35n = 40 + 55n gives 80 = 20n, so n = 4 months; the equal total paid is 120 + 35(4) = 260 dollars, which the second structure confirms as 40 + 55(4) = 260.",
+  "solve": "const n = (120 - 40) / (55 - 35); return 120 + 35 * n;",
+  "distractor_steps": [
+   {
+    "choice": "4",
+    "mis_step": "Solves 120 + 35n = 40 + 55n correctly but reports the number of months, 4, instead of the total amount paid — the quantity actually asked for."
+   },
+   {
+    "choice": "140",
+    "mis_step": "Computes 35 * 4 for the four months but leaves the $120 enrollment fee out of the total."
+   },
+   {
+    "choice": "400",
+    "mis_step": "Adds the $40 fee instead of subtracting it when isolating n (160 = 20n gives n = 8), then totals 120 + 35(8)."
+   }
+  ]
+ }
+]

@@ -1,0 +1,2141 @@
+[
+ {
+  "section": "reading",
+  "type": "multiple_choice",
+  "readingTask": "daily_life",
+  "difficulty": "hard",
+  "passageGroupId": "pg-99e3a159335c200232add3240bed4927",
+  "passage": "From: Student Housing To: Residents Subject: Laundry Room Update Dear Residents, We’re updating the laundry room machines next week. If you can, please finish your laundry before Monday morning to avoid delays. Access may be limited during installation, and we apologize for any inconvenience. The new machines should be ready by Wednesday, assuming everything goes as planned. Thank you for your patience.",
+  "prompt": "[Daily Life — email] Which office sent this message to residents?",
+  "choices": [
+   "Student Housing",
+   "Residence Life",
+   "Maintenance",
+   "Facilities"
+  ],
+  "correct_answer": "Student Housing",
+  "explanation": "The message header reads \"From: Student Housing,\" so \"Student Housing\" is the office that sent it.",
+  "distractor_rationales": [
+   {
+    "choice": "Residence Life",
+    "reason": "The message header explicitly identifies the sender as \"Student Housing,\" not \"Residence Life.\""
+   },
+   {
+    "choice": "Maintenance",
+    "reason": "Although the message discusses machine maintenance, the sender is identified in the header as \"Student Housing,\" not \"Maintenance.\""
+   },
+   {
+    "choice": "Facilities",
+    "reason": "The message originates from \"Student Housing\" according to the \"From:\" line, not from a Facilities office."
+   }
+  ]
+ },
+ {
+  "section": "reading",
+  "type": "multiple_choice",
+  "readingTask": "daily_life",
+  "difficulty": "hard",
+  "passageGroupId": "pg-c3b781f33280280fafc1b1743d99e8c0",
+  "passage": "From: Campus Events Team To: All Students Subject: Upcoming Film Screening Join us for a special screening of 'The Art of Change' this Thursday at 7 PM in the Student Union Theater. The film explores the impact of digital media on traditional art forms. Refreshments will be provided. Please RSVP by Wednesday to ensure seating.",
+  "prompt": "[Daily Life — Campus notice] Where should a student go on Thursday evening to watch the film?",
+  "choices": [
+   "The Performing Arts Center",
+   "The Student Union Theater",
+   "The Main Auditorium",
+   "The Campus Cinema"
+  ],
+  "correct_answer": "The Student Union Theater",
+  "explanation": "The notice says the screening takes place \"in the Student Union Theater,\" so \"The Student Union Theater\" is where a student should go.",
+  "distractor_rationales": [
+   {
+    "choice": "The Performing Arts Center",
+    "reason": "The passage specifies the film screening will take place \"in the Student Union Theater,\" not at the Performing Arts Center."
+   },
+   {
+    "choice": "The Main Auditorium",
+    "reason": "The location stated in the notice is the Student Union Theater, not the Main Auditorium."
+   },
+   {
+    "choice": "The Campus Cinema",
+    "reason": "The screening is scheduled \"in the Student Union Theater,\" not at the Campus Cinema."
+   }
+  ]
+ },
+ {
+  "section": "reading",
+  "type": "multiple_choice",
+  "readingTask": "daily_life",
+  "difficulty": "hard",
+  "passageGroupId": "pg-1e0bbfb8b1a7d9dc464fd708280588fd",
+  "passage": "Hey everyone! Our club meeting is this Thursday at 6 PM in Room 204. We’ll discuss plans for the upcoming charity event. Bring your ideas and enthusiasm! Snacks will be provided.",
+  "prompt": "[Daily Life — Club flyer] Where should members go for this week's club meeting?",
+  "choices": [
+   "Room 1204",
+   "Room 1110",
+   "Room 204",
+   "Room 88"
+  ],
+  "correct_answer": "Room 204",
+  "explanation": "The flyer says the meeting is \"in Room 204,\" so members should go to \"Room 204.\"",
+  "distractor_rationales": [
+   {
+    "choice": "Room 1204",
+    "reason": "The flyer states the meeting is \"in Room 204,\" not Room 1204."
+   },
+   {
+    "choice": "Room 1110",
+    "reason": "The passage specifies the meeting location as Room 204, not Room 1110."
+   },
+   {
+    "choice": "Room 88",
+    "reason": "The club meeting is scheduled for Room 204, as stated in the flyer, not Room 88."
+   }
+  ]
+ },
+ {
+  "section": "reading",
+  "type": "multiple_choice",
+  "readingTask": "daily_life",
+  "difficulty": "hard",
+  "passageGroupId": "pg-e13bf4f46c8b08d9f3bb652b14690d05",
+  "passage": "Hey, just a heads-up: the laundry room is getting new machines on Monday. If you need to do laundry, try to finish before then, since access might be limited for a few days, depending on how long installation takes. Sorry for the short notice! - Dorm Manager",
+  "prompt": "[Daily Life — Campus Notice] Who signed this note?",
+  "choices": [
+   "The building superintendent",
+   "The facilities office",
+   "The resident advisor",
+   "The dorm manager"
+  ],
+  "correct_answer": "The dorm manager",
+  "explanation": "The note ends with the signature \"- Dorm Manager,\" so \"The dorm manager\" signed it.",
+  "distractor_rationales": [
+   {
+    "choice": "The building superintendent",
+    "reason": "The note is signed by the \"Dorm Manager,\" not the building superintendent."
+   },
+   {
+    "choice": "The facilities office",
+    "reason": "Although the message discusses facility maintenance, it is signed by the Dorm Manager, not the facilities office."
+   },
+   {
+    "choice": "The resident advisor",
+    "reason": "The sender identifies themselves as \"Dorm Manager\" in the signature, not as a resident advisor."
+   }
+  ]
+ },
+ {
+  "section": "reading",
+  "type": "multiple_choice",
+  "readingTask": "daily_life",
+  "difficulty": "hard",
+  "passageGroupId": "pg-60496b357327c463ae03839aef3d3e6d",
+  "passage": "Subject: Job Opportunity - Student Assistant Dear Students, The Library is looking for a Student Assistant to help with daily operations. This position requires 10 hours per week, with flexible scheduling available. If you can manage your time well, this could be a great fit. Please apply by Friday, assuming you meet the eligibility criteria. Interviews will be conducted next week. We look forward to your applications! Sincerely, Library Staff",
+  "prompt": "[Daily Life — email] Who signed the email announcing the Student Assistant position?",
+  "choices": [
+   "The Library Staff",
+   "Career Services",
+   "Student Affairs",
+   "The Registrar"
+  ],
+  "correct_answer": "The Library Staff",
+  "explanation": "The email closes with \"Sincerely, Library Staff,\" so \"The Library Staff\" signed the announcement.",
+  "distractor_rationales": [
+   {
+    "choice": "Career Services",
+    "reason": "The email is signed \"Library Staff,\" not Career Services."
+   },
+   {
+    "choice": "Student Affairs",
+    "reason": "The message is signed by Library Staff, not Student Affairs."
+   },
+   {
+    "choice": "The Registrar",
+    "reason": "The email originates from Library Staff, as shown in the signature, not from the Registrar."
+   }
+  ]
+ },
+ {
+  "section": "reading",
+  "type": "multiple_choice",
+  "readingTask": "daily_life",
+  "difficulty": "hard",
+  "passageGroupId": "pg-247e678861de18ca836e64b305facc29",
+  "passage": "Course Registration Reminder: Registration for spring courses will close at midnight on Friday. If you can’t register by then, you may be able to join a waitlist, space permitting. Please note that some courses may fill before the deadline. Register early to secure your spot.",
+  "prompt": "[Daily Life — course-registration page] When does registration for spring courses close?",
+  "choices": [
+   "Next Wednesday at midnight",
+   "This Friday at midnight",
+   "Tonight at midnight",
+   "Sunday at midnight"
+  ],
+  "correct_answer": "This Friday at midnight",
+  "explanation": "The reminder states that registration \"will close at midnight on Friday,\" which matches \"This Friday at midnight.\"",
+  "distractor_rationales": [
+   {
+    "choice": "Next Wednesday at midnight",
+    "reason": "The passage states registration closes \"at midnight on Friday,\" not Wednesday."
+   },
+   {
+    "choice": "Tonight at midnight",
+    "reason": "The deadline is Friday at midnight, not tonight."
+   },
+   {
+    "choice": "Sunday at midnight",
+    "reason": "Registration closes on Friday at midnight, not Sunday."
+   }
+  ]
+ },
+ {
+  "section": "reading",
+  "type": "multiple_choice",
+  "readingTask": "daily_life",
+  "difficulty": "hard",
+  "passageGroupId": "pg-e68aa50f6491310a01aaf30f21bebb90",
+  "passage": "Hey everyone! The Student Art Show is coming up soon. If you’d like to display your work, please submit your application by next Monday. We’ll try to include all submissions, but space is limited, so some pieces may not be accepted. If your work is selected, you’ll receive a confirmation email by Wednesday. Thanks for your understanding! – Art Show Committee",
+  "prompt": "[Daily Life — campus notice] By when must students submit an application to display their work in the show?",
+  "choices": [
+   "By Wednesday of next week",
+   "By next Thursday",
+   "By next Monday",
+   "By Friday"
+  ],
+  "correct_answer": "By next Monday",
+  "explanation": "The notice asks students to \"submit your application by next Monday,\" which matches \"By next Monday.\"",
+  "distractor_rationales": [
+   {
+    "choice": "By Wednesday of next week",
+    "reason": "The passage states applications must be submitted \"by next Monday,\" not Wednesday."
+   },
+   {
+    "choice": "By next Thursday",
+    "reason": "The deadline specified in the notice is next Monday, not Thursday."
+   },
+   {
+    "choice": "By Friday",
+    "reason": "Applications must be submitted \"by next Monday,\" not Friday."
+   }
+  ]
+ },
+ {
+  "section": "reading",
+  "type": "multiple_choice",
+  "readingTask": "daily_life",
+  "difficulty": "hard",
+  "passageGroupId": "pg-3812d6ab2ec3975529383630cd2cfcf5",
+  "passage": "Campus Notice: Due to ongoing maintenance, the east wing gym will be open for limited hours this week. If you can, please use the west wing facilities instead. Access to the east wing is not guaranteed, as schedules may change without notice. We apologize for any inconvenience and appreciate your understanding.",
+  "prompt": "[Daily Life — campus notice] What does the notice ask students to do while the maintenance is under way?",
+  "choices": [
+   "Use the central wing facilities",
+   "Use the north wing facilities",
+   "Use the south wing facilities",
+   "Use the west wing facilities"
+  ],
+  "correct_answer": "Use the west wing facilities",
+  "explanation": "The notice says \"please use the west wing facilities instead,\" which matches \"Use the west wing facilities.\"",
+  "distractor_rationales": [
+   {
+    "choice": "Use the central wing facilities",
+    "reason": "The notice asks students to \"please use the west wing facilities instead,\" not the central wing."
+   },
+   {
+    "choice": "Use the north wing facilities",
+    "reason": "The passage specifies using \"the west wing facilities,\" not the north wing."
+   },
+   {
+    "choice": "Use the south wing facilities",
+    "reason": "The notice instructs students to use the west wing facilities, not the south wing."
+   }
+  ]
+ },
+ {
+  "section": "reading",
+  "type": "multiple_choice",
+  "readingTask": "daily_life",
+  "difficulty": "hard",
+  "passageGroupId": "pg-3edaadd8baa44b3a85e8371a0fd93658",
+  "passage": "Club Flyer: Join the Cooking Club for our monthly potluck! If you can, bring a dish to share, but everyone is welcome, even if you can’t. Space is limited, so please RSVP. We hope to see you Thursday at 6pm in the Student Center.",
+  "prompt": "[Daily Life — club flyer] When and where will the potluck be held?",
+  "choices": [
+   "Thursday at 6pm in the Student Center",
+   "Friday at 5pm in the Dining Hall",
+   "Tuesday at 7pm in the Main Hall",
+   "Monday at noon in the Art Room"
+  ],
+  "correct_answer": "Thursday at 6pm in the Student Center",
+  "explanation": "The flyer closes with \"We hope to see you Thursday at 6pm in the Student Center,\" matching \"Thursday at 6pm in the Student Center.\"",
+  "distractor_rationales": [
+   {
+    "choice": "Friday at 5pm in the Dining Hall",
+    "reason": "The flyer states the potluck is \"Thursday at 6pm in the Student Center,\" not Friday at 5pm."
+   },
+   {
+    "choice": "Tuesday at 7pm in the Main Hall",
+    "reason": "The passage specifies the event is Thursday at 6pm in the Student Center, not Tuesday at 7pm."
+   },
+   {
+    "choice": "Monday at noon in the Art Room",
+    "reason": "The potluck will be held Thursday at 6pm in the Student Center, not Monday at noon."
+   }
+  ]
+ },
+ {
+  "section": "reading",
+  "type": "multiple_choice",
+  "readingTask": "daily_life",
+  "difficulty": "hard",
+  "passageGroupId": "pg-b29cf50ed5d80bccda3d09e97f8422b1",
+  "passage": "We are hiring part-time baristas! Flexible hours, no experience required. Apply at the café or online.",
+  "prompt": "[Daily Life — Job ad] Which position is the business looking to fill?",
+  "choices": [
+   "Evening kitchen assistants",
+   "Part-time baristas",
+   "Morning cashiers",
+   "Weekend cooks"
+  ],
+  "correct_answer": "Part-time baristas",
+  "explanation": "The ad opens with \"We are hiring part-time baristas!\", so \"Part-time baristas\" is the position being advertised.",
+  "distractor_rationales": [
+   {
+    "choice": "Evening kitchen assistants",
+    "reason": "The ad states the business is hiring \"part-time baristas,\" not evening kitchen assistants."
+   },
+   {
+    "choice": "Morning cashiers",
+    "reason": "The position listed is for \"part-time baristas,\" not morning cashiers."
+   },
+   {
+    "choice": "Weekend cooks",
+    "reason": "The job opening is for part-time baristas, not weekend cooks."
+   }
+  ]
+ },
+ {
+  "section": "reading",
+  "type": "multiple_choice",
+  "readingTask": "daily_life",
+  "difficulty": "hard",
+  "passageGroupId": "pg-578b9fd0f4b54cbeb3d84eb8300fc131",
+  "passage": "Hey everyone! The Student Art Club is planning a mural painting event next Saturday, but we’ll only go ahead if the weather is dry. If you can, please RSVP by Thursday so we can buy enough supplies. We might have to limit spots if too many people sign up, so early replies are appreciated. Snacks will be provided. Hope to see you there! — Art Club Officers",
+  "prompt": "[Daily Life — club flyer] By when are students who plan to attend asked to reply?",
+  "choices": [
+   "One full week before the event",
+   "Three days before the event",
+   "Two days before the event",
+   "The day before the event"
+  ],
+  "correct_answer": "Two days before the event",
+  "explanation": "The message asks students to \"RSVP by Thursday\" for an event planned for \"next Saturday,\" which makes the reply deadline \"Two days before the event.\"",
+  "distractor_rationales": [
+   {
+    "choice": "One full week before the event",
+    "reason": "The RSVP deadline is Thursday for an event next Saturday, which is two days before, not one week."
+   },
+   {
+    "choice": "Three days before the event",
+    "reason": "The passage indicates the RSVP deadline of Thursday is two days before Saturday, not three days."
+   },
+   {
+    "choice": "The day before the event",
+    "reason": "The RSVP deadline of Thursday is two days before Saturday, not just one day before."
+   }
+  ]
+ },
+ {
+  "section": "reading",
+  "type": "multiple_choice",
+  "readingTask": "daily_life",
+  "difficulty": "hard",
+  "passageGroupId": "pg-dacbf2936231bcb4a1b298f8125f8510",
+  "passage": "Hi everyone, the campus gym will be closed this weekend for repairs. We apologize for the inconvenience. Regular hours will resume on Monday. Thank you for your understanding.",
+  "prompt": "[Daily Life — Campus notice] Which campus facility will be closed this weekend?",
+  "choices": [
+   "The swimming pool",
+   "The main library",
+   "The dining hall",
+   "The campus gym"
+  ],
+  "correct_answer": "The campus gym",
+  "explanation": "The notice states that \"the campus gym will be closed this weekend for repairs,\" so \"The campus gym\" is the facility that will be closed.",
+  "distractor_rationales": [
+   {
+    "choice": "The swimming pool",
+    "reason": "The notice states \"the campus gym will be closed this weekend,\" not the swimming pool."
+   },
+   {
+    "choice": "The main library",
+    "reason": "The facility closing is the campus gym, not the main library."
+   },
+   {
+    "choice": "The dining hall",
+    "reason": "The passage indicates the campus gym will be closed, not the dining hall."
+   }
+  ]
+ },
+ {
+  "section": "reading",
+  "type": "multiple_choice",
+  "readingTask": "daily_life",
+  "difficulty": "hard",
+  "passageGroupId": "pg-cf1cd34903f112830b03311ce1b62671",
+  "passage": "Subject: Roommate Needed (Spring Semester) Hi all, I’m looking for a roommate for my two-bedroom apartment starting in January. Rent is $650/month, utilities not included. The place is a 10-minute walk from campus. I’d prefer someone who doesn’t smoke and is tidy, but I’m flexible if you’re respectful. If you can move in before January 10th, that would be ideal, but later is possible if the room is still open. Please email me if interested. Thanks! – Jamie",
+  "prompt": "[Daily Life — email] According to the post, when would it be ideal for a new roommate to move in?",
+  "choices": [
+   "Before January 10th",
+   "Before January 3rd",
+   "Before January 6th",
+   "Before January 8th"
+  ],
+  "correct_answer": "Before January 10th",
+  "explanation": "The post states \"If you can move in before January 10th, that would be ideal,\" which matches \"Before January 10th.\"",
+  "distractor_rationales": [
+   {
+    "choice": "Before January 3rd",
+    "reason": "The passage states the ideal move-in time is \"before January 10th,\" not before January 3rd."
+   },
+   {
+    "choice": "Before January 6th",
+    "reason": "The passage specifies the ideal move-in is \"before January 10th,\" not before January 6th."
+   },
+   {
+    "choice": "Before January 8th",
+    "reason": "The passage indicates the ideal move-in date is \"before January 10th,\" not before January 8th."
+   }
+  ]
+ },
+ {
+  "section": "reading",
+  "type": "multiple_choice",
+  "readingTask": "daily_life",
+  "difficulty": "hard",
+  "passageGroupId": "pg-ad60dc52d0609ee40589a2e45e014a22",
+  "passage": "Hey team, just a quick reminder: our project presentation is scheduled for Wednesday at 2 PM. Make sure your slides are ready and rehearsed. Let me know if you have any questions. Cheers, Sarah.",
+  "prompt": "[Daily Life — Email from team member] According to the email, at what time is the project presentation scheduled to begin?",
+  "choices": [
+   "At eleven in the morning",
+   "At two in the afternoon",
+   "At nine in the morning",
+   "At ten in the morning"
+  ],
+  "correct_answer": "At two in the afternoon",
+  "explanation": "The email says the presentation is scheduled for \"Wednesday at 2 PM,\" which matches \"At two in the afternoon.\"",
+  "distractor_rationales": [
+   {
+    "choice": "At eleven in the morning",
+    "reason": "The email states the presentation is \"scheduled for Wednesday at 2 PM,\" not 11 AM."
+   },
+   {
+    "choice": "At nine in the morning",
+    "reason": "The email specifies the presentation is at \"2 PM,\" not 9 AM."
+   },
+   {
+    "choice": "At ten in the morning",
+    "reason": "The email indicates the presentation is scheduled for \"2 PM,\" not 10 AM."
+   }
+  ]
+ },
+ {
+  "section": "reading",
+  "type": "multiple_choice",
+  "readingTask": "daily_life",
+  "difficulty": "hard",
+  "passageGroupId": "pg-d0a350e176819354cd788c8d8bfaf4fb",
+  "passage": "From: Student Council Subject: Upcoming Election Dear Students, Nominations for the Student Council election are open until next Friday. Interested candidates must submit their applications to the council office by 5 PM. Voting will take place the following week. Get involved and make your voice heard! Best, Student Council",
+  "prompt": "[Daily Life — Email] According to the email, when will voting take place?",
+  "choices": [
+   "The second week after nominations close",
+   "The same week that nominations close",
+   "The week after nominations close",
+   "The day nominations close"
+  ],
+  "correct_answer": "The week after nominations close",
+  "explanation": "The email states \"Voting will take place the following week,\" which matches \"The week after nominations close.\"",
+  "distractor_rationales": [
+   {
+    "choice": "The second week after nominations close",
+    "reason": "The email states \"Voting will take place the following week,\" which is one week after nominations close, not the second week."
+   },
+   {
+    "choice": "The same week that nominations close",
+    "reason": "The email specifies that voting occurs \"the following week,\" meaning the week after nominations close, not the same week."
+   },
+   {
+    "choice": "The day nominations close",
+    "reason": "The email indicates voting takes place \"the following week,\" not on the day nominations close."
+   }
+  ]
+ },
+ {
+  "section": "reading",
+  "type": "multiple_choice",
+  "readingTask": "daily_life",
+  "difficulty": "hard",
+  "passageGroupId": "pg-40d1cb2a466583da96d1928eb2ed45c4",
+  "passage": "Hey everyone! The Film Club is planning a movie night this Friday at 7:30 p.m. in Room 204. If you can, bring your own snacks, but we’ll have popcorn just in case. Please RSVP by Thursday so we know how many seats to set up. If you can’t make it, no worries—we’ll have another event soon. Hope to see you there!",
+  "prompt": "[Daily Life — club flyer] At what time does the movie night begin?",
+  "choices": [
+   "At a quarter to eight in the evening",
+   "At six forty-five in the evening",
+   "At eight fifteen in the evening",
+   "At seven thirty in the evening"
+  ],
+  "correct_answer": "At seven thirty in the evening",
+  "explanation": "The flyer announces the movie night \"this Friday at 7:30 p.m.,\" which matches \"At seven thirty in the evening.\"",
+  "distractor_rationales": [
+   {
+    "choice": "At a quarter to eight in the evening",
+    "reason": "The flyer states the movie night is \"this Friday at 7:30 p.m.,\" not 7:45 p.m."
+   },
+   {
+    "choice": "At six forty-five in the evening",
+    "reason": "The flyer specifies the movie night begins at \"7:30 p.m.,\" not 6:45 p.m."
+   },
+   {
+    "choice": "At eight fifteen in the evening",
+    "reason": "The flyer indicates the movie night starts at \"7:30 p.m.,\" not 8:15 p.m."
+   }
+  ]
+ },
+ {
+  "section": "reading",
+  "type": "multiple_choice",
+  "readingTask": "daily_life",
+  "difficulty": "hard",
+  "passageGroupId": "pg-efc6b56bd4734b1dc89e2828e5d1b52d",
+  "passage": "Social Media Post: Career Services Looking for a summer internship? Join our workshop on resume building and interview skills this Wednesday at 3 PM in Room 204. Limited spots available, so register early!",
+  "prompt": "[Daily Life — Social Media Post] On which day and at what time will the workshop be held?",
+  "choices": [
+   "Wednesday at 3 PM",
+   "Thursday at 2 PM",
+   "Tuesday at 1 PM",
+   "Monday at 4 PM"
+  ],
+  "correct_answer": "Wednesday at 3 PM",
+  "explanation": "The post says to join the workshop \"this Wednesday at 3 PM in Room 204,\" so \"Wednesday at 3 PM\" is the scheduled day and time.",
+  "distractor_rationales": [
+   {
+    "choice": "Thursday at 2 PM",
+    "reason": "The post states the workshop is \"this Wednesday at 3 PM,\" not Thursday at 2 PM."
+   },
+   {
+    "choice": "Tuesday at 1 PM",
+    "reason": "The post specifies the workshop is \"Wednesday at 3 PM,\" not Tuesday at 1 PM."
+   },
+   {
+    "choice": "Monday at 4 PM",
+    "reason": "The post indicates the workshop is on \"Wednesday at 3 PM,\" not Monday at 4 PM."
+   }
+  ]
+ },
+ {
+  "section": "reading",
+  "type": "multiple_choice",
+  "readingTask": "daily_life",
+  "difficulty": "hard",
+  "passageGroupId": "pg-e6dc0310bca00a48c3e7548f7a771004",
+  "passage": "Email from Student Housing Dear Residents, We will be conducting routine fire alarm testing next week. If you can, please avoid using the elevators during testing hours. Testing will take place between 10am and 2pm each day. If you need special assistance, contact the Housing Office in advance. We apologize for any inconvenience and thank you for your cooperation.",
+  "prompt": "[Daily Life — Email] During which hours will the fire alarm testing take place each day?",
+  "choices": [
+   "Between 10 a.m. and 12 p.m.",
+   "Between 10 a.m. and 2 p.m.",
+   "Between 9 a.m. and 1 p.m.",
+   "Between 1 p.m. and 5 p.m."
+  ],
+  "correct_answer": "Between 10 a.m. and 2 p.m.",
+  "explanation": "The email states that \"Testing will take place between 10am and 2pm each day,\" which matches \"Between 10 a.m. and 2 p.m.\"",
+  "distractor_rationales": [
+   {
+    "choice": "Between 10 a.m. and 12 p.m.",
+    "reason": "The email states testing will take place \"between 10am and 2pm each day,\" not between 10am and 12pm."
+   },
+   {
+    "choice": "Between 9 a.m. and 1 p.m.",
+    "reason": "The email specifies testing occurs \"between 10am and 2pm each day,\" not 9am to 1pm."
+   },
+   {
+    "choice": "Between 1 p.m. and 5 p.m.",
+    "reason": "The email indicates testing is \"between 10am and 2pm each day,\" not between 1pm and 5pm."
+   }
+  ]
+ },
+ {
+  "section": "reading",
+  "type": "multiple_choice",
+  "readingTask": "daily_life",
+  "difficulty": "hard",
+  "passageGroupId": "pg-e0646701c82889b282d946c8cd026eea",
+  "passage": "[Daily Life — Social Media Post] Hey everyone! The campus bookstore is having a flash sale tomorrow from 12 PM to 4 PM. All textbooks are 20% off. Don't miss out on this great opportunity to save on your course materials!",
+  "prompt": "[Daily Life — Social Media Post] What should a student who wants the textbook discount do?",
+  "choices": [
+   "Visit the bookstore on Saturday between 10 AM and 2 PM",
+   "Visit the bookstore on Friday between 11 AM and 3 PM",
+   "Visit the bookstore tomorrow between 12 PM and 4 PM",
+   "Visit the bookstore today between 1 PM and 5 PM"
+  ],
+  "correct_answer": "Visit the bookstore tomorrow between 12 PM and 4 PM",
+  "explanation": "Because the sale runs \"tomorrow from 12 PM to 4 PM,\" a student should \"Visit the bookstore tomorrow between 12 PM and 4 PM.\"",
+  "distractor_rationales": [
+   {
+    "choice": "Visit the bookstore on Saturday between 10 AM and 2 PM",
+    "reason": "The post states the flash sale is \"tomorrow from 12 PM to 4 PM,\" not on Saturday from 10 AM to 2 PM."
+   },
+   {
+    "choice": "Visit the bookstore on Friday between 11 AM and 3 PM",
+    "reason": "The post specifies the sale is \"tomorrow from 12 PM to 4 PM,\" not Friday from 11 AM to 3 PM."
+   },
+   {
+    "choice": "Visit the bookstore today between 1 PM and 5 PM",
+    "reason": "The post indicates the sale is \"tomorrow from 12 PM to 4 PM,\" not today from 1 PM to 5 PM."
+   }
+  ]
+ },
+ {
+  "section": "reading",
+  "type": "multiple_choice",
+  "readingTask": "daily_life",
+  "difficulty": "hard",
+  "passageGroupId": "pg-a32ae140a5ff40fdc8c60f36dcf79770",
+  "passage": "[Daily Life — Email] From: Student Services To: All Students Subject: Library Renovation Dear Students, Please be informed that the library will be closed for renovation from March 1 to March 15. During this period, you can access online resources or visit the temporary study area in Building B. We apologize for any inconvenience. Best, Student Services",
+  "prompt": "[Daily Life — Email] During which dates will the library be closed for renovation?",
+  "choices": [
+   "From February 24 to March 9",
+   "From March 10 to March 24",
+   "From March 16 to March 30",
+   "From March 1 to March 15"
+  ],
+  "correct_answer": "From March 1 to March 15",
+  "explanation": "The email announces that the library \"will be closed for renovation from March 1 to March 15,\" matching \"From March 1 to March 15.\"",
+  "distractor_rationales": [
+   {
+    "choice": "From February 24 to March 9",
+    "reason": "The email states the library will be closed \"from March 1 to March 15,\" not from February 24 to March 9."
+   },
+   {
+    "choice": "From March 10 to March 24",
+    "reason": "The email specifies the closure dates as \"March 1 to March 15,\" not March 10 to March 24."
+   },
+   {
+    "choice": "From March 16 to March 30",
+    "reason": "The email indicates the library closes \"from March 1 to March 15,\" not March 16 to March 30."
+   }
+  ]
+ },
+ {
+  "section": "reading",
+  "type": "multiple_choice",
+  "readingTask": "daily_life",
+  "difficulty": "hard",
+  "passageGroupId": "pg-d21f5e6c536b5c78d4496aebfd9180ca",
+  "passage": "Social Media Post Hey everyone! I’m selling my bike, but only if I can find someone to take it by this weekend. It’s in good shape and comes with a lock. Message me if you’re interested. Otherwise, I’ll keep it for now. Thanks!",
+  "prompt": "[Daily Life — Social Media Post] According to the post, what does the seller say about the bike's accessories?",
+  "choices": [
+   "It comes with a lock",
+   "It includes a light",
+   "It includes a bell",
+   "It includes a pump"
+  ],
+  "correct_answer": "It comes with a lock",
+  "explanation": "The post states the bike \"comes with a lock,\" so \"It comes with a lock\" is the only option the passage supports.",
+  "distractor_rationales": [
+   {
+    "choice": "It includes a light",
+    "reason": "The post states the bike \"comes with a lock,\" not a light."
+   },
+   {
+    "choice": "It includes a bell",
+    "reason": "The post mentions the bike \"comes with a lock,\" not a bell."
+   },
+   {
+    "choice": "It includes a pump",
+    "reason": "The post specifies the bike \"comes with a lock,\" not a pump."
+   }
+  ]
+ },
+ {
+  "section": "reading",
+  "type": "multiple_choice",
+  "readingTask": "daily_life",
+  "difficulty": "hard",
+  "passageGroupId": "pg-3fc42a7e89c4f6f8a1dd2cbe50625bab",
+  "passage": "Job Opportunity: Library Assistant The campus library is hiring part-time assistants for the evening shift. Applicants must be available at least three nights a week. Duties include shelving books, helping patrons, and basic desk work. If you can, submit your application by Friday for priority consideration. Positions may fill quickly, so early applications are encouraged. Only shortlisted candidates will be contacted.",
+  "prompt": "[Daily Life — job ad] According to the ad, how often must applicants be available for the evening shift?",
+  "choices": [
+   "A minimum of four nights a week",
+   "At least three nights a week",
+   "At least five nights a week",
+   "At least two nights a week"
+  ],
+  "correct_answer": "At least three nights a week",
+  "explanation": "The ad requires that applicants \"must be available at least three nights a week,\" matching \"At least three nights a week.\"",
+  "distractor_rationales": [
+   {
+    "choice": "A minimum of four nights a week",
+    "reason": "The ad states applicants \"must be available at least three nights a week,\" not four nights."
+   },
+   {
+    "choice": "At least five nights a week",
+    "reason": "The ad specifies applicants must be available \"at least three nights a week,\" not five nights."
+   },
+   {
+    "choice": "At least two nights a week",
+    "reason": "The ad indicates applicants must be available \"at least three nights a week,\" not two nights."
+   }
+  ]
+ },
+ {
+  "section": "reading",
+  "type": "multiple_choice",
+  "readingTask": "daily_life",
+  "difficulty": "hard",
+  "passageGroupId": "pg-ba14c97ac04effa1378b90f49d27db1a",
+  "passage": "Due to maintenance, the library will close early at 3 PM this Friday. Please plan your visits accordingly. We apologize for any inconvenience.",
+  "prompt": "[Daily Life — Campus notice] According to the notice, at what time will the library close this Friday?",
+  "choices": [
+   "It will be closing at 12:30 PM",
+   "It will close at 4:30 PM",
+   "It will close at 3 PM",
+   "It closes at 1 PM"
+  ],
+  "correct_answer": "It will close at 3 PM",
+  "explanation": "The notice says the library \"will close early at 3 PM this Friday,\" so \"It will close at 3 PM\" is correct.",
+  "distractor_rationales": [
+   {
+    "choice": "It will be closing at 12:30 PM",
+    "reason": "The notice states the library will \"close early at 3 PM this Friday,\" not 12:30 PM."
+   },
+   {
+    "choice": "It will close at 4:30 PM",
+    "reason": "The notice specifies the library closes at \"3 PM this Friday,\" not 4:30 PM."
+   },
+   {
+    "choice": "It closes at 1 PM",
+    "reason": "The notice indicates the library closes at \"3 PM this Friday,\" not 1 PM."
+   }
+  ]
+ },
+ {
+  "section": "reading",
+  "type": "multiple_choice",
+  "readingTask": "daily_life",
+  "difficulty": "hard",
+  "passageGroupId": "pg-92d36e10fb6b1fb8d484396233bbfb47",
+  "passage": "Notice: The university library will be closed for maintenance from 8 PM on Friday until 8 AM on Monday. During this period, online resources will remain accessible. We apologize for any inconvenience and appreciate your understanding.",
+  "prompt": "[Daily Life — Campus notice] According to the notice, when will the library reopen after the maintenance?",
+  "choices": [
+   "At 9:30 AM on Monday",
+   "At 11 AM on Monday",
+   "At 10 AM on Monday",
+   "At 8 AM on Monday"
+  ],
+  "correct_answer": "At 8 AM on Monday",
+  "explanation": "The notice states the closure lasts \"until 8 AM on Monday,\" so the library reopens \"At 8 AM on Monday.\"",
+  "distractor_rationales": [
+   {
+    "choice": "At 9:30 AM on Monday",
+    "reason": "The notice states the library closes \"from 8 PM on Friday until 8 AM on Monday,\" indicating reopening at 8 AM, not 9:30 AM."
+   },
+   {
+    "choice": "At 11 AM on Monday",
+    "reason": "The notice specifies the library reopens at \"8 AM on Monday,\" not 11 AM."
+   },
+   {
+    "choice": "At 10 AM on Monday",
+    "reason": "The notice indicates the library reopens at \"8 AM on Monday,\" not 10 AM."
+   }
+  ]
+ },
+ {
+  "section": "reading",
+  "type": "multiple_choice",
+  "readingTask": "daily_life",
+  "difficulty": "hard",
+  "passageGroupId": "pg-5fc02e337f4806b81fa29789a7bc882d",
+  "passage": "Campus Notice: Library Renovation Dear Students, Please be advised that the library will undergo renovations starting next Monday. During this period, access to certain sections will be restricted. We apologize for any inconvenience this may cause. If you need materials from restricted areas, please request them in advance. Assuming enrollment remains steady, the renovations should be completed by the end of the semester. Thank you for your understanding. Library Staff",
+  "prompt": "[Daily Life — campus notice] According to the notice, by when should the renovations be completed?",
+  "choices": [
+   "By the end of the semester.",
+   "By the middle of the term.",
+   "By the start of exam week.",
+   "By the end of the month."
+  ],
+  "correct_answer": "By the end of the semester.",
+  "explanation": "The notice states the renovations \"should be completed by the end of the semester,\" so \"By the end of the semester.\" is the only option the passage supports.",
+  "distractor_rationales": [
+   {
+    "choice": "By the middle of the term.",
+    "reason": "The notice states the renovations should be completed 'by the end of the semester,' not the middle of the term."
+   },
+   {
+    "choice": "By the start of exam week.",
+    "reason": "The passage does not mention exam week; it specifies 'the end of the semester' as the completion date."
+   },
+   {
+    "choice": "By the end of the month.",
+    "reason": "The notice indicates 'the end of the semester,' a much longer timeframe than by the end of the month."
+   }
+  ]
+ },
+ {
+  "section": "reading",
+  "type": "multiple_choice",
+  "readingTask": "daily_life",
+  "difficulty": "hard",
+  "passageGroupId": "pg-38ac670f8e1905d52e07163d45a12fa0",
+  "passage": "Hey! If you’re thinking of joining the Outdoor Club trip this month, please note that spots are limited and priority will be given to members who haven’t participated in a trip yet. If you’ve already joined an outing this semester, you may be placed on a waiting list. Sign up by Sunday if you’re interested. We’ll confirm your spot by Tuesday. – Outdoor Club",
+  "prompt": "[Daily Life — club flyer] After signing up for the trip, what should a student expect to receive next?",
+  "choices": [
+   "A confirmation of their spot by Wednesday.",
+   "A confirmation of their spot by Tuesday.",
+   "A confirmation of their spot by Monday.",
+   "A confirmation of their spot by Sunday."
+  ],
+  "correct_answer": "A confirmation of their spot by Tuesday.",
+  "explanation": "The flyer says \"We'll confirm your spot by Tuesday,\" which matches \"A confirmation of their spot by Tuesday.\"",
+  "distractor_rationales": [
+   {
+    "choice": "A confirmation of their spot by Wednesday.",
+    "reason": "The flyer states 'We'll confirm your spot by Tuesday,' not Wednesday."
+   },
+   {
+    "choice": "A confirmation of their spot by Monday.",
+    "reason": "The passage says confirmation will be by Tuesday, not Monday."
+   },
+   {
+    "choice": "A confirmation of their spot by Sunday.",
+    "reason": "The flyer asks students to sign up by Sunday, but confirmation comes later on Tuesday."
+   }
+  ]
+ },
+ {
+  "section": "reading",
+  "type": "multiple_choice",
+  "readingTask": "daily_life",
+  "difficulty": "hard",
+  "passageGroupId": "pg-cd4cf9bea450869b26c9a7dd5c022deb",
+  "passage": "Hey guys! Just a heads up: the gym will be closing early this Friday for maintenance. If you can, try to finish your workouts by 6:30 PM. The doors will lock at 7 PM sharp, so don’t leave your stuff inside. We apologize for any inconvenience and appreciate your understanding. Regular hours resume Saturday. Thanks! — Campus Recreation",
+  "prompt": "[Daily Life — campus notice] According to the notice, at what time will the gym doors lock on Friday?",
+  "choices": [
+   "The doors will lock promptly at 6:30 PM.",
+   "The doors will lock promptly at 7:30 PM.",
+   "The doors will lock at 7:00 PM.",
+   "The doors will lock at 6 PM."
+  ],
+  "correct_answer": "The doors will lock at 7:00 PM.",
+  "explanation": "The notice says \"The doors will lock at 7 PM sharp,\" which matches \"The doors will lock at 7:00 PM.\"",
+  "distractor_rationales": [
+   {
+    "choice": "The doors will lock promptly at 6:30 PM.",
+    "reason": "The notice states 'The doors will lock at 7 PM sharp,' not 6:30 PM."
+   },
+   {
+    "choice": "The doors will lock promptly at 7:30 PM.",
+    "reason": "The passage specifies 7 PM sharp, not 7:30 PM."
+   },
+   {
+    "choice": "The doors will lock at 6 PM.",
+    "reason": "The notice states the doors will lock at 7 PM, not 6 PM."
+   }
+  ]
+ },
+ {
+  "section": "reading",
+  "type": "multiple_choice",
+  "readingTask": "daily_life",
+  "difficulty": "hard",
+  "passageGroupId": "pg-4ee76e6bbd1388bd2308fe63d1253474",
+  "passage": "Hey everyone! The Film Club is planning a movie marathon this Friday night in the Student Lounge. We’ll start at 7pm and go until midnight, time permitting. If the lounge fills up, we’ll have to turn people away, so come early if you can. Snacks will be provided, but feel free to bring your own. Hope to see you there!",
+  "prompt": "[Daily Life — Club Flyer] Where will the movie marathon be held?",
+  "choices": [
+   "In the Residence Hall Lobby.",
+   "In the Campus Media Center.",
+   "In the Main Auditorium.",
+   "In the Student Lounge."
+  ],
+  "correct_answer": "In the Student Lounge.",
+  "explanation": "The flyer announces the marathon \"this Friday night in the Student Lounge,\" which matches \"In the Student Lounge.\"",
+  "distractor_rationales": [
+   {
+    "choice": "In the Residence Hall Lobby.",
+    "reason": "The flyer specifies the event will be held 'in the Student Lounge,' not the Residence Hall Lobby."
+   },
+   {
+    "choice": "In the Campus Media Center.",
+    "reason": "The passage clearly states the movie marathon will be in the Student Lounge, not the Campus Media Center."
+   },
+   {
+    "choice": "In the Main Auditorium.",
+    "reason": "The flyer indicates the event is in the Student Lounge, not the Main Auditorium."
+   }
+  ]
+ },
+ {
+  "section": "reading",
+  "type": "multiple_choice",
+  "readingTask": "daily_life",
+  "difficulty": "hard",
+  "passageGroupId": "pg-513f882c286326f55eba45af1b9ebc06",
+  "passage": "From: Professor Lee To: Jordan Kim Subject: Office Hours Hi Jordan, Thank you for your email. I’m afraid I won’t be able to meet this Friday as you requested, but I can offer a slot next Monday at 2pm if you’re available. If not, please suggest another time and I’ll do my best to accommodate, schedule permitting. Best, Professor Lee",
+  "prompt": "[Daily Life — email] Which meeting slot does Professor Lee say he can offer?",
+  "choices": [
+   "Next Friday at noon",
+   "Friday at 4 p.m.",
+   "Next Monday at 2 p.m.",
+   "Monday at 9 a.m."
+  ],
+  "correct_answer": "Next Monday at 2 p.m.",
+  "explanation": "Professor Lee writes that he \"can offer a slot next Monday at 2pm,\" which matches \"Next Monday at 2 p.m.\"",
+  "distractor_rationales": [
+   {
+    "choice": "Next Friday at noon",
+    "reason": "The email states that Professor Lee cannot meet 'this Friday' and instead offers 'next Monday at 2pm.'"
+   },
+   {
+    "choice": "Friday at 4 p.m.",
+    "reason": "The professor explicitly says he cannot meet on Friday; the offered slot is Monday at 2pm."
+   },
+   {
+    "choice": "Monday at 9 a.m.",
+    "reason": "The professor offers 'next Monday at 2pm,' not 9 a.m."
+   }
+  ]
+ },
+ {
+  "section": "reading",
+  "type": "multiple_choice",
+  "readingTask": "daily_life",
+  "difficulty": "hard",
+  "passageGroupId": "pg-2bf8d812acc4514bf2306c9ca25034db",
+  "passage": "Notice: The annual student art exhibition will be held in the university gallery from March 5 to April 10. Opening night is March 5 at 6 PM, featuring a reception with refreshments. Students, faculty, and guests are welcome. The gallery is open Monday to Friday, 10 AM to 4 PM, and Saturday, 12 PM to 4 PM. Admission is free.",
+  "prompt": "[Daily Life — Campus notice] How do the gallery's Saturday hours differ from its weekday hours?",
+  "choices": [
+   "The gallery opens two hours earlier on Saturdays.",
+   "The gallery opens two hours later on Saturdays.",
+   "The gallery opens an hour later on Saturdays.",
+   "The gallery closes an hour later on Saturdays."
+  ],
+  "correct_answer": "The gallery opens two hours later on Saturdays.",
+  "explanation": "The gallery opens at 10 AM on weekdays but at 12 PM on Saturday, so \"The gallery opens two hours later on Saturdays.\"",
+  "distractor_rationales": [
+   {
+    "choice": "The gallery opens two hours earlier on Saturdays.",
+    "reason": "The gallery opens at 10 AM on weekdays but 12 PM on Saturday, which is two hours later, not earlier."
+   },
+   {
+    "choice": "The gallery opens an hour later on Saturdays.",
+    "reason": "The passage shows the gallery opens at 10 AM weekdays and 12 PM Saturday, a two-hour difference, not one."
+   },
+   {
+    "choice": "The gallery closes an hour later on Saturdays.",
+    "reason": "Both weekdays and Saturdays close at 4 PM according to the notice; there is no difference in closing time."
+   }
+  ]
+ },
+ {
+  "section": "reading",
+  "type": "multiple_choice",
+  "readingTask": "daily_life",
+  "difficulty": "hard",
+  "passageGroupId": "pg-3ec26c768f0ec97d5a3f1b79ecd0906a",
+  "passage": "Dear Professor Smith, I hope this email finds you well. I am writing to request an extension on my research paper due to unforeseen circumstances. I would appreciate any additional time you could offer. Thank you for your understanding. Best, Alex.",
+  "prompt": "[Daily Life — Email to professor] Who is the email addressed to?",
+  "choices": [
+   "Professor Anderson",
+   "Professor Lee",
+   "Professor Nguyen",
+   "Professor Smith"
+  ],
+  "correct_answer": "Professor Smith",
+  "explanation": "The email begins \"Dear Professor Smith,\" so the recipient is \"Professor Smith.\"",
+  "distractor_rationales": [
+   {
+    "choice": "Professor Anderson",
+    "reason": "The email greeting is 'Dear Professor Smith,' not Professor Anderson."
+   },
+   {
+    "choice": "Professor Lee",
+    "reason": "The email is addressed to 'Professor Smith,' not Professor Lee."
+   },
+   {
+    "choice": "Professor Nguyen",
+    "reason": "The salutation clearly shows the email is to 'Professor Smith,' not Professor Nguyen."
+   }
+  ]
+ },
+ {
+  "section": "reading",
+  "type": "multiple_choice",
+  "readingTask": "daily_life",
+  "difficulty": "hard",
+  "passageGroupId": "pg-b3fc31e78b1a9d4982de36ad724d1beb",
+  "passage": "Subject: Study Group for Chemistry 102 Hi everyone, If you can, please join our weekly study group for Chemistry 102 in the library’s second-floor lounge. We meet Mondays at 6 p.m., but space is limited, so it’s first come, first served. If you’re running late, message me and I’ll try to save you a spot, assuming there’s still room. Snacks provided! Hope to see you there. Best, Maya",
+  "prompt": "[Daily Life — email] On which day does the study group meet each week?",
+  "choices": [
+   "Mondays at 6 p.m.",
+   "Wednesdays at 6 p.m.",
+   "Tuesdays at 6 p.m.",
+   "Thursdays at 6 p.m."
+  ],
+  "correct_answer": "Mondays at 6 p.m.",
+  "explanation": "The email states \"We meet Mondays at 6 p.m.,\" matching \"Mondays at 6 p.m.\"",
+  "distractor_rationales": [
+   {
+    "choice": "Wednesdays at 6 p.m.",
+    "reason": "The email states 'We meet Mondays at 6 p.m.,' not Wednesdays."
+   },
+   {
+    "choice": "Tuesdays at 6 p.m.",
+    "reason": "The passage specifies Mondays at 6 p.m., not Tuesdays."
+   },
+   {
+    "choice": "Thursdays at 6 p.m.",
+    "reason": "The email indicates meetings are on Mondays, not Thursdays."
+   }
+  ]
+ },
+ {
+  "section": "reading",
+  "type": "multiple_choice",
+  "readingTask": "daily_life",
+  "difficulty": "hard",
+  "passageGroupId": "pg-6efdfc809fe3db19e63642a703dcbc0d",
+  "passage": "Hey everyone, Just a quick reminder that the Photography Club meeting is tomorrow at 5 PM in Room 204. We’ll be discussing plans for our upcoming gallery show. If you’re interested in exhibiting your work, please bring a sample. We might have limited spots, so priority will be given to those who attend the meeting. Looking forward to seeing your creative ideas! Cheers, Alex",
+  "prompt": "[Daily Life — social-media post] Where will the Photography Club meeting take place?",
+  "choices": [
+   "In Room 96",
+   "In Room 204",
+   "In Room 58",
+   "In Room 71"
+  ],
+  "correct_answer": "In Room 204",
+  "explanation": "The reminder says the meeting is \"tomorrow at 5 PM in Room 204,\" so \"In Room 204\" is the stated location.",
+  "distractor_rationales": [
+   {
+    "choice": "In Room 96",
+    "reason": "The post states the meeting will be 'in Room 204,' not Room 96."
+   },
+   {
+    "choice": "In Room 58",
+    "reason": "The passage specifies 'Room 204' as the meeting location, not Room 58."
+   },
+   {
+    "choice": "In Room 71",
+    "reason": "The post indicates the meeting is in 'Room 204,' not Room 71."
+   }
+  ]
+ },
+ {
+  "section": "reading",
+  "type": "multiple_choice",
+  "readingTask": "daily_life",
+  "difficulty": "hard",
+  "passageGroupId": "pg-873db6a2146066e20be1f41d91915637",
+  "passage": "Club Flyer: Join the Green Thumb Society! Our weekly meetings are open to all, but space is limited. If you can, please RSVP by Thursday so we can plan refreshments. We’ll be planting herbs this Friday at 4pm in the Community Garden, weather permitting. Tools and seeds will be provided. Late arrivals may not receive materials. Hope to see you there!",
+  "prompt": "[Daily Life — club flyer] By which day does the flyer ask members to RSVP?",
+  "choices": [
+   "By Monday",
+   "By Wednesday",
+   "By Thursday",
+   "By Tuesday"
+  ],
+  "correct_answer": "By Thursday",
+  "explanation": "The flyer asks members to \"please RSVP by Thursday so we can plan refreshments,\" which matches \"By Thursday.\"",
+  "distractor_rationales": [
+   {
+    "choice": "By Monday",
+    "reason": "The flyer asks members to 'RSVP by Thursday,' not Monday."
+   },
+   {
+    "choice": "By Wednesday",
+    "reason": "The passage states to RSVP by Thursday, not Wednesday."
+   },
+   {
+    "choice": "By Tuesday",
+    "reason": "The flyer specifies 'RSVP by Thursday,' not Tuesday."
+   }
+  ]
+ },
+ {
+  "section": "reading",
+  "type": "multiple_choice",
+  "readingTask": "daily_life",
+  "difficulty": "hard",
+  "passageGroupId": "pg-51f1567466e96ec57defdba5b9675b39",
+  "passage": "@CampusEvents (Social Media Post) Heads up! The outdoor movie night is planned for Friday, but we’ll have to cancel if it rains. If you can, bring your own blanket or chair. We’ll provide popcorn. Check our page Friday afternoon for updates. Hope to see you there, weather permitting!",
+  "prompt": "[Daily Life — social-media post] When does the post tell readers to check the page for updates?",
+  "choices": [
+   "On Friday afternoon",
+   "On Wednesday evening",
+   "On Friday morning",
+   "On Thursday afternoon"
+  ],
+  "correct_answer": "On Friday afternoon",
+  "explanation": "The post says \"Check our page Friday afternoon for updates,\" which matches \"On Friday afternoon.\"",
+  "distractor_rationales": [
+   {
+    "choice": "On Wednesday evening",
+    "reason": "The post tells readers to 'Check our page Friday afternoon for updates,' not Wednesday evening."
+   },
+   {
+    "choice": "On Friday morning",
+    "reason": "The passage specifies 'Friday afternoon' for checking updates, not Friday morning."
+   },
+   {
+    "choice": "On Thursday afternoon",
+    "reason": "The post indicates to check the page on 'Friday afternoon,' not Thursday."
+   }
+  ]
+ },
+ {
+  "section": "reading",
+  "type": "multiple_choice",
+  "readingTask": "daily_life",
+  "difficulty": "hard",
+  "passageGroupId": "pg-399069c32b902d10aee49ce91c3c6ded",
+  "passage": "Email from Professor: Assignment Extension Dear Students, I hope you are all doing well. I understand that many of you have been busy with midterms. Therefore, I am granting an extension for the upcoming assignment. The new deadline is next Friday. If you have any questions or concerns, please feel free to reach out. Remember, this extension is a one-time offer, so plan accordingly. Best regards, Professor Lee",
+  "prompt": "[Daily Life — email] According to the email, when is the new deadline for the assignment?",
+  "choices": [
+   "Next Tuesday",
+   "Next Friday",
+   "Next Wednesday",
+   "Next Thursday"
+  ],
+  "correct_answer": "Next Friday",
+  "explanation": "The email states \"The new deadline is next Friday,\" which matches \"Next Friday.\"",
+  "distractor_rationales": [
+   {
+    "choice": "Next Tuesday",
+    "reason": "The email states 'The new deadline is next Friday,' not Tuesday."
+   },
+   {
+    "choice": "Next Wednesday",
+    "reason": "The passage specifies 'next Friday' as the deadline, not Wednesday."
+   },
+   {
+    "choice": "Next Thursday",
+    "reason": "The email indicates 'The new deadline is next Friday,' not Thursday."
+   }
+  ]
+ },
+ {
+  "section": "reading",
+  "type": "multiple_choice",
+  "readingTask": "daily_life",
+  "difficulty": "hard",
+  "passageGroupId": "pg-e6e84e2ad15541bef728bd0a1f38e6db",
+  "passage": "From: Housing Office To: All Residents Subject: Laundry Room Access Dear Residents, We are updating the laundry room schedule to allow more access during peak times. If you can, please avoid doing laundry between 6-8pm to help reduce crowding. Access may be temporarily restricted if the room reaches capacity. Thank you for your cooperation.",
+  "prompt": "[Daily Life — email] According to the email, under what circumstance may access to the laundry room be temporarily restricted?",
+  "choices": [
+   "When the room has reached its capacity",
+   "When machines are being repaired",
+   "When the room is being cleaned",
+   "When an inspection is underway"
+  ],
+  "correct_answer": "When the room has reached its capacity",
+  "explanation": "The email states that \"Access may be temporarily restricted if the room reaches capacity,\" which matches \"When the room has reached its capacity.\"",
+  "distractor_rationales": [
+   {
+    "choice": "When machines are being repaired",
+    "reason": "The passage states access may be temporarily restricted only if the room 'reaches capacity,' and machine repair is never mentioned as a reason for restriction."
+   },
+   {
+    "choice": "When the room is being cleaned",
+    "reason": "The passage specifies only one condition for temporary access restriction: 'if the room reaches capacity,' with no mention of cleaning causing restrictions."
+   },
+   {
+    "choice": "When an inspection is underway",
+    "reason": "The email identifies capacity as the sole reason for temporary restrictions; inspections are not discussed anywhere in the message."
+   }
+  ]
+ },
+ {
+  "section": "reading",
+  "type": "multiple_choice",
+  "readingTask": "daily_life",
+  "difficulty": "hard",
+  "passageGroupId": "pg-7ae6ec2b79e66eec46789080b13284b4",
+  "passage": "Hey everyone! I’m selling my mini fridge (barely used) for $40 OBO. Pick up from North Hall anytime this week, but if you need delivery, I can only do Friday after 5pm, assuming my roommate’s car is available. Please message me if interested. If I get multiple offers, I’ll go with whoever can pick up first. Thanks! - Jamie",
+  "prompt": "[Daily Life — Social Media Post] What can be inferred about a buyer who wants the fridge delivered?",
+  "choices": [
+   "They would have to arrange a time with Jamie's roommate rather than with Jamie.",
+   "They would have to wait until Friday evening at the earliest.",
+   "They would have to pay extra beyond the asking price.",
+   "They would have to message Jamie before Thursday."
+  ],
+  "correct_answer": "They would have to wait until Friday evening at the earliest.",
+  "explanation": "Because Jamie says delivery is possible only \"Friday after 5pm,\" a buyer wanting delivery \"would have to wait until Friday evening at the earliest.\"",
+  "distractor_rationales": [
+   {
+    "choice": "They would have to arrange a time with Jamie's roommate rather than with Jamie.",
+    "reason": "The passage states Jamie is the one arranging delivery: 'if you need delivery, I can only do Friday after 5pm, assuming my roommate's car is available'—Jamie controls when delivery happens."
+   },
+   {
+    "choice": "They would have to pay extra beyond the asking price.",
+    "reason": "Jamie offers the fridge for '$40 OBO' with no mention of additional delivery charges in the post."
+   },
+   {
+    "choice": "They would have to message Jamie before Thursday.",
+    "reason": "The passage specifies delivery is possible Friday after 5pm but does not impose any deadline for messaging prior to Thursday."
+   }
+  ]
+ },
+ {
+  "section": "reading",
+  "type": "multiple_choice",
+  "readingTask": "daily_life",
+  "difficulty": "hard",
+  "passageGroupId": "pg-8829f69fae68cf6de89295d637f85181",
+  "passage": "Subject: Group Project Update Hi everyone, Just a quick note: if you haven’t yet sent your part of the report, please do so by Friday evening. I’ll start compiling everything over the weekend, assuming everyone’s sections are in. If you’re running late, let me know and I’ll try to adjust, but I can’t guarantee your part will be included if it’s much after Friday. Thanks for your efforts! Best, Maya",
+  "prompt": "[Daily Life — Email] What does Maya plan to do over the weekend?",
+  "choices": [
+   "Send each member her comments on the part they submitted.",
+   "Meet with the whole group to review everyone's work.",
+   "Combine everyone's sections into a single document.",
+   "Submit the completed report to their instructor."
+  ],
+  "correct_answer": "Combine everyone's sections into a single document.",
+  "explanation": "Maya writes \"I'll start compiling everything over the weekend,\" which means she will \"Combine everyone's sections into a single document.\"",
+  "distractor_rationales": [
+   {
+    "choice": "Send each member her comments on the part they submitted.",
+    "reason": "Maya states 'I'll start compiling everything over the weekend'—she plans to combine sections, not to provide feedback comments to each member."
+   },
+   {
+    "choice": "Meet with the whole group to review everyone's work.",
+    "reason": "The email describes Maya working alone during the weekend to compile sections; no group meeting is mentioned or planned."
+   },
+   {
+    "choice": "Submit the completed report to their instructor.",
+    "reason": "Maya says she will compile the sections over the weekend, but the email does not state she will submit the final report to the instructor."
+   }
+  ]
+ },
+ {
+  "section": "reading",
+  "type": "multiple_choice",
+  "readingTask": "daily_life",
+  "difficulty": "hard",
+  "passageGroupId": "pg-4d82bd68a0a0f2be0effffdbe5f52061",
+  "passage": "Course Registration Page: Registration for Spring courses opens Monday at 9am. Priority is given to seniors and juniors, space permitting. If you are a sophomore or freshman, you may register starting Wednesday. Waitlists are available for full classes. Please check your student email for updates. Registration closes Friday at 5pm.",
+  "prompt": "[Daily Life — course-registration page] On which day does registration for Spring courses open?",
+  "choices": [
+   "On Wednesday",
+   "On Thursday",
+   "On Tuesday",
+   "On Monday"
+  ],
+  "correct_answer": "On Monday",
+  "explanation": "The page states that \"Registration for Spring courses opens Monday at 9am,\" so \"On Monday\" is the day registration opens.",
+  "distractor_rationales": [
+   {
+    "choice": "On Wednesday",
+    "reason": "The passage states registration 'opens Monday at 9am' for all students; Wednesday is when sophomores and freshmen can begin registering, not when registration opens."
+   },
+   {
+    "choice": "On Thursday",
+    "reason": "The registration page clearly states that registration for Spring courses 'opens Monday at 9am'; Thursday is not mentioned as an opening date."
+   },
+   {
+    "choice": "On Tuesday",
+    "reason": "The passage specifies the registration opening date as Monday at 9am, with no mention of Tuesday."
+   }
+  ]
+ },
+ {
+  "section": "reading",
+  "type": "multiple_choice",
+  "readingTask": "daily_life",
+  "difficulty": "hard",
+  "passageGroupId": "pg-cc0776d2bd458db0d4f7e2c5b3688a48",
+  "passage": "Job Posting: Library Assistant The campus library is seeking a part-time assistant for weekday afternoons. Applicants should be available at least three days a week. If you have prior library experience, please mention it in your application. Only shortlisted candidates will be contacted. The position will remain open until filled, assuming sufficient interest.",
+  "prompt": "[Daily Life — Job Ad] What does the posting say about applicants' availability?",
+  "choices": [
+   "They should be available at least three days a week.",
+   "They should be available at least two days a week.",
+   "They should be available at least four days a week.",
+   "They should be available at least five days a week."
+  ],
+  "correct_answer": "They should be available at least three days a week.",
+  "explanation": "The posting states that applicants \"should be available at least three days a week,\" which matches \"They should be available at least three days a week.\"",
+  "distractor_rationales": [
+   {
+    "choice": "They should be available at least two days a week.",
+    "reason": "The job posting explicitly states applicants 'should be available at least three days a week,' not two."
+   },
+   {
+    "choice": "They should be available at least four days a week.",
+    "reason": "The posting specifies the requirement as 'at least three days a week,' not four."
+   },
+   {
+    "choice": "They should be available at least five days a week.",
+    "reason": "The posting requires availability of 'at least three days a week,' making five days more than what is asked."
+   }
+  ]
+ },
+ {
+  "section": "reading",
+  "type": "multiple_choice",
+  "readingTask": "daily_life",
+  "difficulty": "hard",
+  "passageGroupId": "pg-938f4db00c78ea133223eee4d48ac051",
+  "passage": "Subject: Group Study Room Reservations Hi all, If you can, please submit your group study room requests by Thursday evening. We’ll do our best to accommodate everyone, but space is limited, so not all requests can be guaranteed. If you don’t hear back by Friday noon, assume your request could not be fulfilled this week. Thanks for understanding! -Library Services",
+  "prompt": "[Daily Life — email from service dept] By what time on Thursday does the message ask students to submit their requests?",
+  "choices": [
+   "By Thursday afternoon",
+   "By Thursday evening",
+   "By Thursday night",
+   "By Thursday noon"
+  ],
+  "correct_answer": "By Thursday evening",
+  "explanation": "The email asks students to \"submit your group study room requests by Thursday evening,\" so \"By Thursday evening\" is correct.",
+  "distractor_rationales": [
+   {
+    "choice": "By Thursday afternoon",
+    "reason": "The message instructs students to 'submit your group study room requests by Thursday evening,' which is later than afternoon."
+   },
+   {
+    "choice": "By Thursday night",
+    "reason": "The message specifies 'Thursday evening' as the deadline, not night, which are distinct times of day."
+   },
+   {
+    "choice": "By Thursday noon",
+    "reason": "The email states requests must be submitted 'by Thursday evening,' which is much later in the day than noon."
+   }
+  ]
+ },
+ {
+  "section": "reading",
+  "type": "multiple_choice",
+  "readingTask": "daily_life",
+  "difficulty": "hard",
+  "passageGroupId": "pg-b4292d680e784971a8661166d54b204f",
+  "passage": "Student Government Social Media Post We’re planning a movie night next Friday, if we can fit it in. If you’d like to suggest a film, comment below by Wednesday. We’ll choose a movie based on popularity, but please note, we may not be able to accommodate all requests. Final details will be posted Thursday, assuming the event goes ahead.",
+  "prompt": "[Daily Life — Social Media Post] If the movie night goes ahead, when will the final details be posted?",
+  "choices": [
+   "Three days before the event",
+   "Two days before the event",
+   "The day before the event",
+   "On the day of the event"
+  ],
+  "correct_answer": "The day before the event",
+  "explanation": "Since the post says \"Final details will be posted Thursday\" and the movie night is \"next Friday,\" the details come out \"The day before the event.\"",
+  "distractor_rationales": [
+   {
+    "choice": "Three days before the event",
+    "reason": "The post indicates the movie night is 'next Friday' and final details will be posted 'Thursday,' which is only one day before, not three."
+   },
+   {
+    "choice": "Two days before the event",
+    "reason": "Since the movie is scheduled for next Friday and details are posted Thursday, the announcement comes one day before the event, not two."
+   },
+   {
+    "choice": "On the day of the event",
+    "reason": "The post states final details will be posted Thursday, while the movie night itself is next Friday."
+   }
+  ]
+ },
+ {
+  "section": "reading",
+  "type": "multiple_choice",
+  "readingTask": "daily_life",
+  "difficulty": "hard",
+  "passageGroupId": "pg-b7091111103a540c4d850991ce3143c4",
+  "passage": "Dear students, the registration for spring courses opens next Monday. Please check your student portal for the available courses and register early to secure your spot. Contact the registrar's office if you have any questions.",
+  "prompt": "[Daily Life — Course-registration page] When does registration for spring courses open?",
+  "choices": [
+   "Next Wednesday",
+   "Next Thursday",
+   "Next Tuesday",
+   "Next Monday"
+  ],
+  "correct_answer": "Next Monday",
+  "explanation": "The notice states that \"registration for spring courses opens next Monday,\" so \"Next Monday\" is correct.",
+  "distractor_rationales": [
+   {
+    "choice": "Next Wednesday",
+    "reason": "The course registration page clearly states that 'registration for spring courses opens next Monday'; Wednesday is not the opening date."
+   },
+   {
+    "choice": "Next Thursday",
+    "reason": "The page specifies the opening date as 'next Monday,' not Thursday."
+   },
+   {
+    "choice": "Next Tuesday",
+    "reason": "The registration announcement states that registration 'opens next Monday,' not Tuesday."
+   }
+  ]
+ },
+ {
+  "section": "reading",
+  "type": "multiple_choice",
+  "readingTask": "daily_life",
+  "difficulty": "hard",
+  "passageGroupId": "pg-401eb0fac17cf97a1780211f196b026f",
+  "passage": "Email from Professor Lee to Student Hi, I received your request to submit your paper late. I understand you had a family emergency. While I can’t grant a full extension, I can accept your paper up to two days after the deadline without penalty, if you can submit it by then. Please let me know if this works for you. Best, Professor Lee",
+  "prompt": "[Daily Life — email] According to the email, what reason for the late submission does Professor Lee mention?",
+  "choices": [
+   "A sudden illness",
+   "A family emergency",
+   "A broken laptop",
+   "A car accident"
+  ],
+  "correct_answer": "A family emergency",
+  "explanation": "Professor Lee writes \"I understand you had a family emergency,\" so \"A family emergency\" is the stated reason for the request.",
+  "distractor_rationales": [
+   {
+    "choice": "A sudden illness",
+    "reason": "Professor Lee explicitly states 'I understand you had a family emergency,' not an illness."
+   },
+   {
+    "choice": "A broken laptop",
+    "reason": "The email mentions only a 'family emergency' as the reason for the late submission request; a broken laptop is not discussed."
+   },
+   {
+    "choice": "A car accident",
+    "reason": "Professor Lee identifies the reason for the extension request as 'a family emergency,' with no mention of a car accident."
+   }
+  ]
+ },
+ {
+  "section": "reading",
+  "type": "multiple_choice",
+  "readingTask": "daily_life",
+  "difficulty": "hard",
+  "passageGroupId": "pg-08710aef368469f1b0db0ea9ed72c293",
+  "passage": "From: Professor Lin To: All Students in History 202 Subject: Office Hours Update Dear students, Due to a scheduling conflict, my office hours this week will be by appointment only. If you can’t make it during the usual time, please email me to arrange a different meeting slot. I apologize for any inconvenience and appreciate your flexibility. Regular office hours will resume next week, schedule permitting.",
+  "prompt": "[Daily Life — Email] Why will Professor Lin's office hours be by appointment only this week?",
+  "choices": [
+   "An academic conference",
+   "A department meeting",
+   "A scheduling conflict",
+   "A committee meeting"
+  ],
+  "correct_answer": "A scheduling conflict",
+  "explanation": "The email begins \"Due to a scheduling conflict, my office hours this week will be by appointment only,\" which matches \"A scheduling conflict.\"",
+  "distractor_rationales": [
+   {
+    "choice": "An academic conference",
+    "reason": "The email states 'Due to a scheduling conflict, my office hours this week will be by appointment only,' not due to a conference."
+   },
+   {
+    "choice": "A department meeting",
+    "reason": "Professor Lin cites 'a scheduling conflict' as the reason for the office hours change; a department meeting is not mentioned."
+   },
+   {
+    "choice": "A committee meeting",
+    "reason": "The professor's email specifies only 'a scheduling conflict' as the cause, with no reference to a committee meeting."
+   }
+  ]
+ },
+ {
+  "section": "reading",
+  "type": "multiple_choice",
+  "readingTask": "daily_life",
+  "difficulty": "hard",
+  "passageGroupId": "pg-c7329fb1d93fed777b23916785accc4e",
+  "passage": "Email: Student Union Subject: Movie Night Join us for a movie night this Friday at 7 PM in the Student Lounge. Snacks will be provided. Bring your friends! RSVP by Thursday to secure your spot.",
+  "prompt": "[Daily Life — Email] Where will the movie night be held?",
+  "choices": [
+   "In the Student Lounge",
+   "In the Recreation Center",
+   "In the Main Auditorium",
+   "In the Dining Hall"
+  ],
+  "correct_answer": "In the Student Lounge",
+  "explanation": "The announcement invites students to the movie night \"at 7 PM in the Student Lounge,\" so \"In the Student Lounge\" is the stated location.",
+  "distractor_rationales": [
+   {
+    "choice": "In the Recreation Center",
+    "reason": "The email states 'Join us for a movie night this Friday at 7 PM in the Student Lounge,' not the Recreation Center."
+   },
+   {
+    "choice": "In the Main Auditorium",
+    "reason": "The Student Union email specifies the location as 'the Student Lounge,' not the Main Auditorium."
+   },
+   {
+    "choice": "In the Dining Hall",
+    "reason": "The email explicitly places the movie night 'in the Student Lounge,' not in the Dining Hall."
+   }
+  ]
+ },
+ {
+  "section": "reading",
+  "type": "multiple_choice",
+  "readingTask": "daily_life",
+  "difficulty": "hard",
+  "passageGroupId": "pg-6e88091d0a609fd8bf3528b3b8b7c6e4",
+  "passage": "Join us for the annual job fair this Saturday from 10 AM to 4 PM at the Student Center. Meet potential employers and explore career opportunities. Dress professionally and bring copies of your resume.",
+  "prompt": "[Daily Life — Job ad] Where will the job fair take place?",
+  "choices": [
+   "At the Campus Conference Center",
+   "At the Alumni Welcome Center",
+   "At the University Commons",
+   "At the Student Center"
+  ],
+  "correct_answer": "At the Student Center",
+  "explanation": "The ad says the fair runs \"this Saturday from 10 AM to 4 PM at the Student Center,\" so \"At the Student Center\" is the stated venue.",
+  "distractor_rationales": [
+   {
+    "choice": "At the Campus Conference Center",
+    "reason": "The job fair announcement states the event will be held 'at the Student Center,' not at the Campus Conference Center."
+   },
+   {
+    "choice": "At the Alumni Welcome Center",
+    "reason": "The posting specifies the job fair location as 'the Student Center'; the Alumni Welcome Center is not mentioned."
+   },
+   {
+    "choice": "At the University Commons",
+    "reason": "The job fair is scheduled 'at the Student Center' according to the announcement, not at the University Commons."
+   }
+  ]
+ },
+ {
+  "section": "reading",
+  "type": "multiple_choice",
+  "readingTask": "daily_life",
+  "difficulty": "hard",
+  "passageGroupId": "pg-46c0ae2c2a54c51635bd42be06b23576",
+  "passage": "Email from Professor Lee to Student: Hi Jordan, I appreciate your interest in my seminar. Unfortunately, the class is currently full. If you’d like, I can put your name on the waitlist in case a spot opens up. Please let me know by Friday if you want to be added. Assuming enrollment changes, I’ll contact you as soon as possible. Thank you for your understanding.",
+  "prompt": "[Daily Life — email] What does Professor Lee ask Jordan to do by Friday?",
+  "choices": [
+   "Confirm that he meets the seminar prerequisites",
+   "Choose which meeting time he prefers",
+   "Say whether he wants to be added to the waitlist",
+   "Send a short statement of his interests"
+  ],
+  "correct_answer": "Say whether he wants to be added to the waitlist",
+  "explanation": "The professor writes \"Please let me know by Friday if you want to be added\" to the waitlist, so Jordan must \"Say whether he wants to be added to the waitlist.\"",
+  "distractor_rationales": [
+   {
+    "choice": "Confirm that he meets the seminar prerequisites",
+    "reason": "The passage makes no mention of prerequisites; Professor Lee only states the class is full and asks whether Jordan wants to be placed on the waitlist."
+   },
+   {
+    "choice": "Choose which meeting time he prefers",
+    "reason": "The passage contains no information about multiple meeting times from which to choose."
+   },
+   {
+    "choice": "Send a short statement of his interests",
+    "reason": "Although Professor Lee acknowledges Jordan's interest, the email asks only whether he wants to be added to the waitlist, not for a written statement of interests."
+   }
+  ]
+ },
+ {
+  "section": "reading",
+  "type": "multiple_choice",
+  "readingTask": "daily_life",
+  "difficulty": "hard",
+  "passageGroupId": "pg-04b7d32b62d51a58fcefed6704026caa",
+  "passage": "Attention all students: The library will close early at 3 PM this Friday for maintenance. Please plan your visits accordingly. If you need to return books, use the drop box outside the main entrance.",
+  "prompt": "[Daily Life — Campus notice] At what time will the library close this Friday?",
+  "choices": [
+   "At four o'clock",
+   "At three o'clock",
+   "At twelve o'clock",
+   "At one o'clock"
+  ],
+  "correct_answer": "At three o'clock",
+  "explanation": "The notice states the library \"will close early at 3 PM this Friday,\" which matches \"At three o'clock.\"",
+  "distractor_rationales": [
+   {
+    "choice": "At four o'clock",
+    "reason": "The notice explicitly states the library will close at 3 PM, not 4 PM."
+   },
+   {
+    "choice": "At twelve o'clock",
+    "reason": "The notice explicitly states the library will close at 3 PM, not at noon."
+   },
+   {
+    "choice": "At one o'clock",
+    "reason": "The notice explicitly states the library will close at 3 PM, not at 1 PM."
+   }
+  ]
+ },
+ {
+  "section": "reading",
+  "type": "multiple_choice",
+  "readingTask": "daily_life",
+  "difficulty": "hard",
+  "passageGroupId": "pg-490eb46ff31947e1c059473c82e9281a",
+  "passage": "SOCIAL MEDIA POST Lost & Found: If you lost a set of keys near the dining hall, please DM me with a description. I’ll hold onto them until Friday, after which I’ll turn them in to campus security if unclaimed. Thanks!",
+  "prompt": "[Daily Life — social-media post] Where were the keys most likely found?",
+  "choices": [
+   "Near the lecture halls",
+   "Near the bus stop",
+   "Near the science building",
+   "Near the dining hall"
+  ],
+  "correct_answer": "Near the dining hall",
+  "explanation": "The post is addressed to anyone who \"lost a set of keys near the dining hall,\" so they were most likely found \"Near the dining hall.\"",
+  "distractor_rationales": [
+   {
+    "choice": "Near the lecture halls",
+    "reason": "The post specifically mentions the keys were lost near the dining hall, not near the lecture halls."
+   },
+   {
+    "choice": "Near the bus stop",
+    "reason": "The post specifically mentions the keys were lost near the dining hall, not near the bus stop."
+   },
+   {
+    "choice": "Near the science building",
+    "reason": "The post specifically mentions the keys were lost near the dining hall, not near the science building."
+   }
+  ]
+ },
+ {
+  "section": "reading",
+  "type": "multiple_choice",
+  "readingTask": "daily_life",
+  "difficulty": "hard",
+  "passageGroupId": "pg-6471fc03185b4d123b0363884b050e7b",
+  "passage": "Hey everyone! Join us for the Photography Club meeting this Thursday at 5 PM in Room 204. Bring your cameras and any photos you'd like to share. New members are always welcome!",
+  "prompt": "[Daily Life — Club flyer] Where should a student go to attend this week's Photography Club meeting?",
+  "choices": [
+   "Go to Room 204",
+   "Go to the campus darkroom",
+   "Go to the student lounge",
+   "Go to the art building lobby"
+  ],
+  "correct_answer": "Go to Room 204",
+  "explanation": "The flyer says the meeting is \"this Thursday at 5 PM in Room 204,\" so an interested student should \"Go to Room 204.\"",
+  "distractor_rationales": [
+   {
+    "choice": "Go to the campus darkroom",
+    "reason": "The flyer specifies that the meeting is in Room 204, not at the campus darkroom."
+   },
+   {
+    "choice": "Go to the student lounge",
+    "reason": "The flyer specifies that the meeting is in Room 204, not at the student lounge."
+   },
+   {
+    "choice": "Go to the art building lobby",
+    "reason": "The flyer specifies that the meeting is in Room 204, not at the art building lobby."
+   }
+  ]
+ },
+ {
+  "section": "reading",
+  "type": "multiple_choice",
+  "readingTask": "daily_life",
+  "difficulty": "hard",
+  "passageGroupId": "pg-6368ac2cd04bf90ec7bc94ff6d9486b8",
+  "passage": "[Daily Life — Email] From: Student Council To: All Students Subject: Club Fair Join us for the annual Club Fair this Friday from 3 PM to 6 PM at the Student Center. Discover clubs, meet members, and enjoy free snacks! We hope to see you there.",
+  "prompt": "[Daily Life — Email] Where will the Club Fair be held?",
+  "choices": [
+   "At the Student Center",
+   "At the Campus Green",
+   "At the Main Library",
+   "At the Dining Hall"
+  ],
+  "correct_answer": "At the Student Center",
+  "explanation": "The email announces the fair will take place \"at the Student Center,\" which matches \"At the Student Center.\"",
+  "distractor_rationales": [
+   {
+    "choice": "At the Campus Green",
+    "reason": "The email explicitly states the Club Fair will be held at the Student Center, not at the Campus Green."
+   },
+   {
+    "choice": "At the Main Library",
+    "reason": "The email explicitly states the Club Fair will be held at the Student Center, not at the Main Library."
+   },
+   {
+    "choice": "At the Dining Hall",
+    "reason": "The email explicitly states the Club Fair will be held at the Student Center, not at the Dining Hall."
+   }
+  ]
+ },
+ {
+  "section": "reading",
+  "type": "multiple_choice",
+  "readingTask": "daily_life",
+  "difficulty": "hard",
+  "passageGroupId": "pg-565272c01cff37063ebe6a46343dabff",
+  "passage": "Hey all! The campus gym is offering free trial fitness classes this month, but only if you haven’t attended a class before. If you’re interested, sign up online by the 10th. Please note: spots are limited, so registering early is recommended. If classes fill up, you’ll be placed on a waitlist. Hope to see you there! – Campus Gym Team",
+  "prompt": "[Daily Life — campus notice] According to the notice, by when must interested students complete the online sign-up?",
+  "choices": [
+   "By the last day of the month",
+   "By the 10th of the month",
+   "By the 3rd of the month",
+   "By the 8th of the month"
+  ],
+  "correct_answer": "By the 10th of the month",
+  "explanation": "The notice tells interested students to \"sign up online by the 10th,\" which matches \"By the 10th of the month.\"",
+  "distractor_rationales": [
+   {
+    "choice": "By the last day of the month",
+    "reason": "The notice specifies that students must sign up by the 10th, not by the last day of the month."
+   },
+   {
+    "choice": "By the 3rd of the month",
+    "reason": "The notice specifies that students must sign up by the 10th, not by the 3rd."
+   },
+   {
+    "choice": "By the 8th of the month",
+    "reason": "The notice specifies that students must sign up by the 10th, not by the 8th."
+   }
+  ]
+ },
+ {
+  "section": "reading",
+  "type": "multiple_choice",
+  "readingTask": "daily_life",
+  "difficulty": "hard",
+  "passageGroupId": "pg-ad89dc96196a2af82b2d4c354212aeba",
+  "passage": "Subject: Lost and Found Dear Students, A set of keys was found in the library on Tuesday evening. If you believe they are yours, please visit the front desk to describe them. Unclaimed items will be sent to Campus Security after Friday, so please check before then if you think you lost something. Thank you.",
+  "prompt": "[Daily Life — Email] According to the email, when was the set of keys found in the library?",
+  "choices": [
+   "On Wednesday evening",
+   "On Thursday evening",
+   "On Tuesday evening",
+   "On Monday evening"
+  ],
+  "correct_answer": "On Tuesday evening",
+  "explanation": "The email states the keys were \"found in the library on Tuesday evening,\" which matches \"On Tuesday evening.\"",
+  "distractor_rationales": [
+   {
+    "choice": "On Wednesday evening",
+    "reason": "The email states the keys were found on Tuesday evening, not Wednesday evening."
+   },
+   {
+    "choice": "On Thursday evening",
+    "reason": "The email states the keys were found on Tuesday evening, not Thursday evening."
+   },
+   {
+    "choice": "On Monday evening",
+    "reason": "The email states the keys were found on Tuesday evening, not Monday evening."
+   }
+  ]
+ },
+ {
+  "section": "reading",
+  "type": "multiple_choice",
+  "readingTask": "daily_life",
+  "difficulty": "hard",
+  "passageGroupId": "pg-3e7e40020c66e50ff9f25563ab88a518",
+  "passage": "Course Registration Page: Registration for Biology 102 opens Monday at 9am. If you can, register early, as seats are limited and enrollment is on a first-come, first-served basis. A waitlist may be available. Students who do not meet prerequisites will be dropped.",
+  "prompt": "[Daily Life — course-registration page] When does registration for Biology 102 open?",
+  "choices": [
+   "Wednesday at 8 a.m.",
+   "Thursday at 11 a.m.",
+   "Tuesday at 10 a.m.",
+   "Monday at 9 a.m."
+  ],
+  "correct_answer": "Monday at 9 a.m.",
+  "explanation": "The page says \"Registration for Biology 102 opens Monday at 9am,\" which matches \"Monday at 9 a.m.\"",
+  "distractor_rationales": [
+   {
+    "choice": "Wednesday at 8 a.m.",
+    "reason": "The course registration page states that registration opens Monday at 9am, not Wednesday at 8am."
+   },
+   {
+    "choice": "Thursday at 11 a.m.",
+    "reason": "The course registration page states that registration opens Monday at 9am, not Thursday at 11am."
+   },
+   {
+    "choice": "Tuesday at 10 a.m.",
+    "reason": "The course registration page states that registration opens Monday at 9am, not Tuesday at 10am."
+   }
+  ]
+ },
+ {
+  "section": "reading",
+  "type": "multiple_choice",
+  "readingTask": "daily_life",
+  "difficulty": "hard",
+  "passageGroupId": "pg-8303fb17648ade5ac3839b55bb4671ad",
+  "passage": "Dear students, the registration for spring courses opens next week. Please review your degree requirements and consult your advisor if needed. Ensure you register early to secure your preferred classes.",
+  "prompt": "[Daily Life — Course-registration page] When does registration for spring courses open?",
+  "choices": [
+   "Registration opens next week.",
+   "Registration opens tomorrow.",
+   "Registration opens Friday.",
+   "Registration opens today."
+  ],
+  "correct_answer": "Registration opens next week.",
+  "explanation": "The announcement says 'the registration for spring courses opens next week,' which matches 'Registration opens next week.'",
+  "distractor_rationales": [
+   {
+    "choice": "Registration opens tomorrow.",
+    "reason": "The course registration message states that registration opens next week, not tomorrow."
+   },
+   {
+    "choice": "Registration opens Friday.",
+    "reason": "The course registration message states that registration opens next week without specifying a particular day like Friday."
+   },
+   {
+    "choice": "Registration opens today.",
+    "reason": "The course registration message states that registration opens next week, not today."
+   }
+  ]
+ },
+ {
+  "section": "reading",
+  "type": "multiple_choice",
+  "readingTask": "daily_life",
+  "difficulty": "hard",
+  "passageGroupId": "pg-2ca973ceb1cf1c8f45c3ab5b4ed175c8",
+  "passage": "Course Registration Portal Welcome to Spring 2026 registration! Please note that some courses may be canceled if minimum enrollment is not reached. If you are waitlisted, you will be notified by email if a spot opens up. Registration closes at 5:00 PM on January 15th. After this time, changes are not guaranteed, but you may contact the Registrar’s Office for assistance.",
+  "prompt": "[Daily Life — course-registration page] When does registration close?",
+  "choices": [
+   "At 11:59 PM on January 20",
+   "At 5:00 PM on January 15",
+   "At 3:00 PM on January 8",
+   "At 1:00 PM on January 4"
+  ],
+  "correct_answer": "At 5:00 PM on January 15",
+  "explanation": "The portal states 'Registration closes at 5:00 PM on January 15th,' which matches 'At 5:00 PM on January 15.'",
+  "distractor_rationales": [
+   {
+    "choice": "At 11:59 PM on January 20",
+    "reason": "The portal explicitly states that registration closes at 5:00 PM on January 15th, not 11:59 PM on January 20."
+   },
+   {
+    "choice": "At 3:00 PM on January 8",
+    "reason": "The portal explicitly states that registration closes at 5:00 PM on January 15th, not 3:00 PM on January 8."
+   },
+   {
+    "choice": "At 1:00 PM on January 4",
+    "reason": "The portal explicitly states that registration closes at 5:00 PM on January 15th, not 1:00 PM on January 4."
+   }
+  ]
+ },
+ {
+  "section": "reading",
+  "type": "multiple_choice",
+  "readingTask": "daily_life",
+  "difficulty": "hard",
+  "passageGroupId": "pg-5086343917c011858b51067a25b7d86d",
+  "passage": "From: Campus Events Office Subject: Spring Festival Volunteers Needed We are looking for enthusiastic volunteers to help with the Spring Festival on April 15th. Volunteers are needed for setup, event management, and cleanup. Shifts are available from 9 AM to 5 PM. All volunteers receive a free T-shirt and lunch. Sign up by April 5th.",
+  "prompt": "[Daily Life — Campus notice] Who sent the message recruiting Spring Festival volunteers?",
+  "choices": [
+   "The Community Engagement Office.",
+   "The Student Activities Board.",
+   "The Campus Events Office.",
+   "The Student Union."
+  ],
+  "correct_answer": "The Campus Events Office.",
+  "explanation": "The message's From line reads 'Campus Events Office,' which matches 'The Campus Events Office.'",
+  "distractor_rationales": [
+   {
+    "choice": "The Community Engagement Office.",
+    "reason": "The message is from the Campus Events Office, not the Community Engagement Office."
+   },
+   {
+    "choice": "The Student Activities Board.",
+    "reason": "The message is from the Campus Events Office, not the Student Activities Board."
+   },
+   {
+    "choice": "The Student Union.",
+    "reason": "The message is from the Campus Events Office, not the Student Union."
+   }
+  ]
+ },
+ {
+  "section": "reading",
+  "type": "multiple_choice",
+  "readingTask": "daily_life",
+  "difficulty": "hard",
+  "passageGroupId": "pg-c798413108e39d62bbca7eebc148b9ee",
+  "passage": "Course Registration Page: Advanced Spanish Welcome to the registration page for Advanced Spanish! This course is designed for students who have completed Intermediate Spanish or have equivalent experience. Assuming enrollment is sufficient, the course will begin on September 5th. Please register by August 15th to secure your spot. If you have any questions, feel free to contact the language department. Gracias, Language Department",
+  "prompt": "[Daily Life — course-registration page] Based on the dates given, how far before the course's first day does the registration deadline fall?",
+  "choices": [
+   "Roughly three weeks before the course is scheduled to begin.",
+   "Roughly two months before the course is scheduled to begin.",
+   "Roughly one week before the course is scheduled to begin.",
+   "Roughly ten days before the course is scheduled to begin."
+  ],
+  "correct_answer": "Roughly three weeks before the course is scheduled to begin.",
+  "explanation": "The page asks students to register by August 15th for a course beginning September 5th, an interval of 'Roughly three weeks before the course is scheduled to begin.'",
+  "distractor_rationales": [
+   {
+    "choice": "Roughly two months before the course is scheduled to begin.",
+    "reason": "From August 15th to September 5th is approximately three weeks, not two months."
+   },
+   {
+    "choice": "Roughly one week before the course is scheduled to begin.",
+    "reason": "From August 15th to September 5th is approximately three weeks, not one week."
+   },
+   {
+    "choice": "Roughly ten days before the course is scheduled to begin.",
+    "reason": "From August 15th to September 5th is approximately three weeks (21 days), not ten days."
+   }
+  ]
+ },
+ {
+  "section": "reading",
+  "type": "multiple_choice",
+  "readingTask": "daily_life",
+  "difficulty": "hard",
+  "passageGroupId": "pg-32fa835e6ed6f9d11068ac603dd46c74",
+  "passage": "Student Services Email Dear students, We are currently experiencing a high volume of requests for housing changes. We will do our best to accommodate everyone, but room changes are not guaranteed. If you have an urgent situation, please include details in your request. We appreciate your patience as we process requests in the order received.",
+  "prompt": "[Daily Life — email] Which office sent the message about the housing change requests?",
+  "choices": [
+   "The Housing Assignments office",
+   "The Student Services office",
+   "The Residence Life office",
+   "The Campus Life office"
+  ],
+  "correct_answer": "The Student Services office",
+  "explanation": "The message is headed 'Student Services Email', which identifies 'The Student Services office' as the sender.",
+  "distractor_rationales": [
+   {
+    "choice": "The Housing Assignments office",
+    "reason": "The email is from Student Services, as indicated by the line \"Student Services Email\" at the beginning, not from Housing Assignments."
+   },
+   {
+    "choice": "The Residence Life office",
+    "reason": "The message is explicitly sent by Student Services, not by the Residence Life office."
+   },
+   {
+    "choice": "The Campus Life office",
+    "reason": "The email is from Student Services, not from the Campus Life office."
+   }
+  ]
+ },
+ {
+  "section": "reading",
+  "type": "multiple_choice",
+  "readingTask": "daily_life",
+  "difficulty": "hard",
+  "passageGroupId": "pg-9655ab44a7ec52e26233d6e6665a3503",
+  "passage": "Job Ad: Part-Time Barista We are looking for a friendly and reliable barista to join our team at Brewed Awakenings. The position is part-time, with flexible hours. Experience is preferred but not required. If you can work weekends, that’s a plus! Please apply by sending your resume to brewedawakenings@coffee.com. Interviews will be conducted on a rolling basis, so apply early to secure a spot. Best, Brewed Awakenings Team",
+  "prompt": "[Daily Life — job ad] According to the ad, what is the first step for someone who wants to apply for the barista position?",
+  "choices": [
+   "Send a resume to applications@brewedawakenings.com",
+   "Send a resume to careers@brewedawakenings.com",
+   "Send a resume to brewedawakenings@coffee.com",
+   "Send a resume to jobs@brewedawakenings.com"
+  ],
+  "correct_answer": "Send a resume to brewedawakenings@coffee.com",
+  "explanation": "The ad instructs applicants to apply 'by sending your resume to brewedawakenings@coffee.com', matching 'Send a resume to brewedawakenings@coffee.com'.",
+  "distractor_rationales": [
+   {
+    "choice": "Send a resume to applications@brewedawakenings.com",
+    "reason": "The ad explicitly states to send the resume to brewedawakenings@coffee.com, not to applications@brewedawakenings.com."
+   },
+   {
+    "choice": "Send a resume to careers@brewedawakenings.com",
+    "reason": "The ad specifies sending the resume to brewedawakenings@coffee.com, not to a careers email address."
+   },
+   {
+    "choice": "Send a resume to jobs@brewedawakenings.com",
+    "reason": "The ad states the email address for applications is brewedawakenings@coffee.com, not jobs@brewedawakenings.com."
+   }
+  ]
+ },
+ {
+  "section": "reading",
+  "type": "multiple_choice",
+  "readingTask": "daily_life",
+  "difficulty": "hard",
+  "passageGroupId": "pg-9ad65191099aed243fc2bd11e8e80ee5",
+  "passage": "Dear students, Registration for spring courses opens next Monday. Be sure to check prerequisites and availability. Advisors are available for consultation. Don't miss the deadline!",
+  "prompt": "[Daily Life — Course-registration page] On which day does registration for spring courses open?",
+  "choices": [
+   "Next Thursday",
+   "Next Wednesday",
+   "Next Monday",
+   "Next Tuesday"
+  ],
+  "correct_answer": "Next Monday",
+  "explanation": "The notice states that registration for spring courses opens next Monday, so \"Next Monday\" is correct.",
+  "distractor_rationales": [
+   {
+    "choice": "Next Thursday",
+    "reason": "The announcement states that registration opens next Monday, not Thursday."
+   },
+   {
+    "choice": "Next Wednesday",
+    "reason": "The announcement clearly states registration for spring courses opens next Monday, not Wednesday."
+   },
+   {
+    "choice": "Next Tuesday",
+    "reason": "The announcement specifies that registration opens next Monday, not Tuesday."
+   }
+  ]
+ },
+ {
+  "section": "reading",
+  "type": "multiple_choice",
+  "readingTask": "daily_life",
+  "difficulty": "hard",
+  "passageGroupId": "pg-6e39235f1a2cd95aeb6baa3fd6121f6a",
+  "passage": "Job Opportunity: Student Assistant The campus bookstore is hiring a student assistant for the spring semester. Applicants must be available at least 10 hours per week, if possible. Preference will be given to students with prior retail experience, but all are encouraged to apply. Applications will be reviewed as received, so early submission is recommended.",
+  "prompt": "[Daily Life — job ad] Which applicants will be given preference for the position?",
+  "choices": [
+   "Students with prior cashier experience",
+   "Students with prior sales experience",
+   "Students with prior café experience",
+   "Students with prior retail experience"
+  ],
+  "correct_answer": "Students with prior retail experience",
+  "explanation": "The ad says preference will be given to students with prior retail experience, so \"Students with prior retail experience\" is correct.",
+  "distractor_rationales": [
+   {
+    "choice": "Students with prior cashier experience",
+    "reason": "The job posting states preference will be given to students with prior retail experience, not specifically cashier experience."
+   },
+   {
+    "choice": "Students with prior sales experience",
+    "reason": "The posting indicates preference for applicants with prior retail experience, not specifically sales experience."
+   },
+   {
+    "choice": "Students with prior café experience",
+    "reason": "The posting specifies preference for prior retail experience, not prior café experience."
+   }
+  ]
+ },
+ {
+  "section": "reading",
+  "type": "multiple_choice",
+  "readingTask": "daily_life",
+  "difficulty": "hard",
+  "passageGroupId": "pg-55050760790a56f3e597fa28f2cc4ec4",
+  "passage": "Club Email: Hi all, We’re planning a movie night this Saturday in the lounge, assuming we get enough RSVPs. If you’re interested, please reply by Thursday. We’ll confirm the event on Friday. Snacks will be provided, but feel free to bring your own if you have dietary needs. Hope to see you!",
+  "prompt": "[Daily Life — club email] Where will the movie night take place?",
+  "choices": [
+   "In the dining hall",
+   "In the game room",
+   "In the lounge",
+   "In the gym"
+  ],
+  "correct_answer": "In the lounge",
+  "explanation": "The email says the movie night is planned for \"this Saturday in the lounge,\" so \"In the lounge\" is correct.",
+  "distractor_rationales": [
+   {
+    "choice": "In the dining hall",
+    "reason": "The email specifically states the movie night will be in the lounge, not the dining hall."
+   },
+   {
+    "choice": "In the game room",
+    "reason": "The email clearly indicates the event will take place in the lounge, not the game room."
+   },
+   {
+    "choice": "In the gym",
+    "reason": "The email specifies the movie night is planned for the lounge, not the gym."
+   }
+  ]
+ },
+ {
+  "section": "reading",
+  "type": "multiple_choice",
+  "readingTask": "daily_life",
+  "difficulty": "hard",
+  "passageGroupId": "pg-dcb8ea1ded36615311029c783683e220",
+  "passage": "From: Housing Services To: Residents Subject: Laundry Room Update Dear Residents, If you can, please avoid using the laundry room between 2 and 4 p.m. on Wednesday, as maintenance will be working on the machines. If you must do laundry during that time, only one machine may be available. Thank you for your cooperation.",
+  "prompt": "[Daily Life — email] According to the email, how many machines may still be available while the maintenance work is going on?",
+  "choices": [
+   "Only three machines",
+   "Only four machines",
+   "Only two machines",
+   "Only one machine"
+  ],
+  "correct_answer": "Only one machine",
+  "explanation": "The email states that \"only one machine may be available\" during the maintenance window, so \"Only one machine\" is correct.",
+  "distractor_rationales": [
+   {
+    "choice": "Only three machines",
+    "reason": "The email states that only one machine may be available during the maintenance window, not three machines."
+   },
+   {
+    "choice": "Only four machines",
+    "reason": "The email indicates that only one machine may be available while maintenance is being performed, not four."
+   },
+   {
+    "choice": "Only two machines",
+    "reason": "The email specifies that only one machine may be available during maintenance, not two machines."
+   }
+  ]
+ },
+ {
+  "section": "reading",
+  "type": "multiple_choice",
+  "readingTask": "daily_life",
+  "difficulty": "hard",
+  "passageGroupId": "pg-3bee65dee42381576fdc1fa40ef7aa09",
+  "passage": "Campus Dining Update: Starting next week, the salad bar will be open for lunch only, assuming enrollment in the meal plan remains high. If you can’t make it during lunch hours, other options will be available at the grill station. We appreciate your understanding as we adjust our services.",
+  "prompt": "[Daily Life — campus notice] What does the notice suggest students do if they cannot come during lunch hours?",
+  "choices": [
+   "Get food at the grill station instead",
+   "Get food at the soup station instead",
+   "Get food at the deli counter instead",
+   "Get food at the snack bar instead"
+  ],
+  "correct_answer": "Get food at the grill station instead",
+  "explanation": "The notice says that \"other options will be available at the grill station,\" so \"Get food at the grill station instead\" is correct.",
+  "distractor_rationales": [
+   {
+    "choice": "Get food at the soup station instead",
+    "reason": "The notice states that other options will be available at the grill station, not the soup station."
+   },
+   {
+    "choice": "Get food at the deli counter instead",
+    "reason": "The notice specifies other options will be available at the grill station, not the deli counter."
+   },
+   {
+    "choice": "Get food at the snack bar instead",
+    "reason": "The notice indicates other options will be available at the grill station, not at the snack bar."
+   }
+  ]
+ },
+ {
+  "section": "reading",
+  "type": "multiple_choice",
+  "readingTask": "daily_life",
+  "difficulty": "hard",
+  "passageGroupId": "pg-9bc4040fe5cf4b5dbf175efca641aa86",
+  "passage": "Job Posting: Student Library Assistant The library is seeking a reliable student assistant for weekday afternoons. Duties include shelving books and helping patrons. If you can work at least two days per week, please apply by emailing your availability. Preference will be given to applicants with previous library experience, but all are welcome to apply. Applications received after Monday will not be considered.",
+  "prompt": "[Daily Life — Job Ad] According to the posting, what should a student do to apply for the position?",
+  "choices": [
+   "Bring a printed résumé to the circulation desk in person",
+   "Fill out the application form on the library's website",
+   "Send the library an email listing your availability",
+   "Call the front desk to arrange an interview"
+  ],
+  "correct_answer": "Send the library an email listing your availability",
+  "explanation": "The posting instructs applicants to \"apply by emailing your availability,\" which matches \"Send the library an email listing your availability.\"",
+  "distractor_rationales": [
+   {
+    "choice": "Bring a printed résumé to the circulation desk in person",
+    "reason": "The posting states applicants should apply by emailing their availability, not by bringing a résumé in person."
+   },
+   {
+    "choice": "Fill out the application form on the library's website",
+    "reason": "The posting specifies that candidates should apply by emailing their availability, not by completing a form on the website."
+   },
+   {
+    "choice": "Call the front desk to arrange an interview",
+    "reason": "The posting indicates applicants should apply by emailing their availability, not by calling to arrange an interview."
+   }
+  ]
+ },
+ {
+  "section": "reading",
+  "type": "multiple_choice",
+  "readingTask": "daily_life",
+  "difficulty": "hard",
+  "passageGroupId": "pg-15b933a80527eee257852cee73c05e6e",
+  "passage": "Join us for the annual Film Club marathon this Saturday! We'll be screening classic films from 10 AM to 10 PM in the student lounge. Snacks provided. Bring your friends and enjoy a day of cinema!",
+  "prompt": "[Daily Life — Club flyer] Where will the film marathon be held?",
+  "choices": [
+   "In the media center screening room",
+   "In the student activity center",
+   "In the main auditorium",
+   "In the student lounge"
+  ],
+  "correct_answer": "In the student lounge",
+  "explanation": "The flyer says the films will be screened \"in the student lounge,\" which matches \"In the student lounge.\"",
+  "distractor_rationales": [
+   {
+    "choice": "In the media center screening room",
+    "reason": "The flyer states the film marathon will be screening films in the student lounge, not the media center screening room."
+   },
+   {
+    "choice": "In the student activity center",
+    "reason": "The flyer specifies the event will be held in the student lounge, not the student activity center."
+   },
+   {
+    "choice": "In the main auditorium",
+    "reason": "The flyer indicates the film marathon will take place in the student lounge, not the main auditorium."
+   }
+  ]
+ }
+]

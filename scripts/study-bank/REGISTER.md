@@ -1251,8 +1251,27 @@ on top of form symmetry: only test details whose four alternatives are
 a priori equally likely (which day/time/who/where/name/amount), with
 durations/amounts kept inside one plausible band (the pilot's one
 grader drop was an "up to a month" outlier among day-scale options).
-Full record: DL-SIBLINGS-RESULT.md. Stage 2 (59 fresh siblings,
-preflight clean on first pass) attack + QC in flight.
+Full record: DL-SIBLINGS-RESULT.md. **Stage 2 SHIPPED**: 69 siblings
+banked under cohort dl-siblings-v1 (held-out attack −13.9 below
+control; mode A verify OK; key votes 3/3 on all). Live bank verified
+by count query: 101 drawable Daily Life sets, 0 stranded singles —
+the pre-registered 32 → 101 exactly. Two instrument failures caught
+and re-run, not scored around: a solver that invented an item id for
+a file it claimed was short, and a QC grader that inverted
+passage_needed (its notes cited the passage while marking items
+passage-independent).
+
+### The migration-068 `task` NOT NULL trap is now three-for-three
+Every bank insert helper written before migration 068 omits the
+now-NOT-NULL `task` column and fails on first use: bank-helper.mjs
+(caught at eoi-v3 ship), toefl-bank-helper.mjs (caught at
+dl-siblings-v1 ship — also needed per-item `section:'reading'`), and
+math-bank-helper.mjs (caught at math-v3 ship). All three fixed. Any
+OTHER insert path resurrected from before 068 (insert-writing,
+insert-repeat, insert-fill-in-blanks, insert-arrange-words,
+insert-interview) should be checked for the same omission BEFORE its
+next batch — the failure mode is 0 rows with a plausible-looking
+summary.
 
 ### math-v3 pilot: options-only attack at chance (2026-08-28)
 12 items (solve-gated, named mis-steps) attacked options-only (stem
@@ -1263,7 +1282,15 @@ letter, so the control is generous — the absolute chance-level read is
 the honest one. Grader: 6 hard / 6 medium, all distractors strong,
 zero drops. The attackers' own heuristics (perfect-square preference,
 "precise decimal beats round") are now the documented anti-tells for
-math authoring briefs. Stage 2 (48 more items) authoring in flight.
+math authoring briefs. **Stage 2 SHIPPED**: 59 banked under cohort
+math-v3 (fresh 12-item attack +2.8 PASS; grader 0 easy/0 weak; hub,
+derivability, and dup checkers clean for the cohort; AdvM 191→220,
+Alg 199→229). One item (M22) dropped dead at the insert sandbox over
+a thousands-separator key ("52,500" vs computed "52500") — correct
+math, but a sandbox reject is a drop, never an edit; next math brief
+must ban separators in numeric options. Stored key slots 30/13/10/6
+left unbalanced per math-bank-helper's recorded decision (draw-time
+shuffle + content_sha-bound measurements).
 
 ### build_a_sentence gate family was a trap (2026-08-28)
 `familyFor('build_a_sentence')` fell through to mc_hidden_source,

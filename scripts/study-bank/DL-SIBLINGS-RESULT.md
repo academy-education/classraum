@@ -106,3 +106,51 @@ siblings for the remaining 59 passages under the frozen brief, fresh
 held-out 24-item nosource attack, verify-daily-life-repair mode A,
 answer-blind QC + grader, ledger entry, insert-listening under
 BANK_COHORT=dl-siblings-v1.
+
+## Stage 2 — SHIPPED as cohort dl-siblings-v1 (2026-08-28)
+
+59 siblings authored by 15 independent authors under the frozen brief
+(plus the duration-band rule from D5's drop). Preflight clean on the
+first pass — all 59 assigned key-length ranks hit, tags preserved,
+passages byte-identical, no sibling leakage.
+
+Held-out attack, run `dl-s2-attack` (24 seeded of 59, 3 Haiku
+solvers, distinct pick-strings):
+
+    solver-a   7/24 29.2%
+    solver-b   6/24 25.0%
+    solver-c   7/24 29.2%
+
+    mean 27.8%   control 41.7%   margin -13.9   PASS (below control)
+
+Instrument discipline this run, recorded because each would have
+corrupted the verdict silently:
+- Two solvers returned 23/24; one re-run then claimed the 24-item
+  blind file "contains 23 items" and invented an answer for a
+  nonexistent id S1. The file was verified (24 items, S59 present, no
+  S1) and that solver refused and re-run again. No subsets scored.
+- The chunk-1 QC grader marked 11/12 items passage_needed=false while
+  its own notes cited the passage as the source ("explicit in the
+  From line", "stated directly") — the instrument inverted the field.
+  Re-run with a brief that spells out the direction; both re-graded
+  chunks came back all-true, no leaks, no weak distractors, and the
+  original chunk-3 weak flags (S27/S30) did not reproduce.
+
+Answer-blind QC: key votes 3/3 unanimous on all 59 (15 voters, 5
+chunks). Rationale pass added 3 passage-grounded distractor_rationales
+to every keeper (69/69 verbatim-choice coverage).
+
+verify-daily-life-repair.ts mode A over all 69 keepers: key positions
+25/25/28/23%, hedge-only-in-key 0%, key-longest 25%, no duplication —
+OK. Ledger entry `dl-siblings-v1-2026-08-28` at the rows-file sha.
+
+Insert: **69/69 inserted** under BANK_COHORT=dl-siblings-v1 — after
+fixing toefl-bank-helper.mjs, which (a) requires `section: 'reading'`
+per item for the reading branch of the shape check, and (b) omitted
+the NOT NULL `task` column (migration 068 — the same trap that broke
+bank-helper.mjs; existing rows carry the task name, e.g. 'daily_life').
+
+Live verification against the real bank (count queries, not truncated
+selects): 202 daily_life rows in 101 groups, **101 drawable (≥2), 0
+stranded singles** — exactly the pre-registered 32 → 101. Daily Life
+Reading capacity: ~10 lower-path forms, up from ~4.

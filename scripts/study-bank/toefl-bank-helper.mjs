@@ -315,6 +315,9 @@ async function insertListening(keepPath, files) {
     const { error } = await db.from('study_item_bank').insert({
       family: 'toefl', section: sectionOf(it), domain, difficulty: it.difficulty || 'hard',
       item_type: 'multiple_choice', item: it, content_hash,
+      // migration 068 made task NOT NULL; existing rows carry the task name
+      // ('daily_life', 'academic_talk'), matching topic_tag.
+      task: it.listeningTask ?? it.readingTask,
       topic_tag: it.listeningTask ?? it.readingTask,
       word_count: it.passage ? it.passage.split(/\s+/).filter(Boolean).length : null,
       verified: true, archived: false, source: 'hand', cohort: COHORT,
