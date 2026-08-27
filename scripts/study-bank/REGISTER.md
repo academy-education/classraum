@@ -180,9 +180,14 @@ inflated per-domain counts). And write-key-first briefs put 52% of keys
 in stored slot A — harmless at serve time (draw shuffles) but it trips
 verify-answer-key-spread; stored order reseeded to 15/15/15/14.
 
-R1–R6 (pre-revision RS) are dead and were never banked. Human sitting
-on eoi-v3 still worth having, per the standing rule that the sitting is
-the verdict instrument.
+R1–R6 (pre-revision RS) are dead and were never banked.
+
+POLICY, settled with Andy 2026-08-28: an attack-PASS ships without a
+human sitting. The 08-18 re-attack showed the model attack over-condemns
+relative to humans (humans at chance on 4 of 5 types the model solved at
+93-100%; every model-human disagreement had the model as the pessimist),
+so machine-pass is the stricter clearance. Sittings adjudicate cohorts
+the attack CONDEMNS — they are not an audit tier for clean batches.
 
 ### CR-V7 SHIPPED — banked, old cohort archived, ETS blueprint shape restored (2026-08-18)
 
