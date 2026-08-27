@@ -1300,6 +1300,19 @@ gate-wiring test catches disagreement between the two). Any future
 BAS batch gates as family `production` (shape/withsource/tells) with a
 ledger.json entry at the exact file sha.
 
+### bas-v1: the first gated Build-a-Sentence batch (2026-08-28)
+57 banked (108 → 165 live). The gate that mattered was the one built
+for the task's own defect: with exact single-order grading, a second
+valid ordering is the failure mode, and no blind attack exists because
+nothing is hidden. Assembly convergence was near-perfect (56/59 at
+3/3), and the alternative-order hunt found exactly 2 real ambiguities
+— both in items that had violated the welding doctrine their own brief
+stated (an unforced if-clause, a reattachable about-phrase). Killed
+under the pre-registered any-acceptance reading. Full record:
+BAS-V1-RESULT.md. Lesson: the ambiguity doctrine (one forced landing
+slot per chip, no floating adverbials) is now proven brief text —
+reuse it verbatim for any future arrange_words batch.
+
 ### SSAT enters the spec library, bank-less (2026-08-28)
 `ssat` added to TestFamily, TEST_SPECS (full 6-section Upper Level
 entry with original hard-item exemplars), testFormatGuidance en/ko,

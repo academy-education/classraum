@@ -265,6 +265,38 @@
      "verdict": "verify-daily-life-repair.ts mode A: key position worst slot 28% (<40%), hedge-only-in-key 0%, key-longest 25% (<45%), no prompt/key duplication against siblings."
     }
    }
+  },
+  {
+   "id": "bas-v1-2026-08-28",
+   "createdAt": "2026-08-28",
+   "targetTest": "toefl",
+   "section": "writing",
+   "task": "build_a_sentence",
+   "family": "production",
+   "spec": {
+    "n": 57,
+    "authors": 12,
+    "method": "assigned structure families under the ambiguity doctrine (BAS-V1-PREREGISTERED.md): one forced landing slot per chip, floating adverbials banned, passive-participial capped"
+   },
+   "contentSha": "29f861327c7abcec7653abc204058b972d7a231b1f7105f52a7849f41bd7f8e6",
+   "status": "shipped",
+   "cohort": "bas-v1",
+   "note": "Pre-registration BAS-V1-PREREGISTERED.md; evidence BAS-V1-RESULT.md. 60 authored: B17 dropped at shape (5-word chip); B11/B15 dropped at the alternative-order gate under the strict any-acceptance reading (each alternative drew 1/3 blind-panel acceptance; both items had violated their own welding doctrine).",
+   "stages": {
+    "shape": {
+     "passed": true,
+     "contentSha": "29f861327c7abcec7653abc204058b972d7a231b1f7105f52a7849f41bd7f8e6",
+     "verdict": "57/57: 5-7 chips of 1-4 words, key an exact permutation, no duplicate chips (case-insensitive), no terminal punctuation, choices scrambled, passive-with-agent 1/57, Jaccard<0.5 vs all 108 existing keys and within batch."
+    },
+    "withsource": {
+     "passed": true,
+     "verdict": "Assembly convergence: 3 blind solvers per item given shuffled chips only; 56/57 reproduced the key 3/3, B37 2/3 exact plus one same-sentence chip-boundary transcription artifact. Adversarial alternative-order hunt (3 hunters per item, key shown): 2 valid claims on 59 candidates; blind 3-judge panels rated each alternative 1/3 acceptable; both items (B11, B15) dropped under the strict any-acceptance kill clause."
+    },
+    "tells": {
+     "passed": true,
+     "verdict": "Template spread across ~60 assigned structure families; passive-participial (the harvest-v1 saturated skeleton) 1/57; no key-token Jaccard >= 0.5 against the live 108 or within batch; difficulty 22 hard / 35 medium."
+    }
+   }
   }
  ],
  "auditedCohorts": [

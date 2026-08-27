@@ -1,0 +1,908 @@
+[
+ {
+  "id": "B1",
+  "structure_family": "relative clause with object gap",
+  "difficulty": "hard",
+  "choices": [
+   "turned out",
+   "the volunteers submitted",
+   "blurry",
+   "The photos",
+   "to be"
+  ],
+  "correct_answer": "The photos | the volunteers submitted | turned out | to be | blurry",
+  "explanation": "The tempting wrong start is \"the volunteers submitted\" + \"The photos\", which strands \"turned out\" with no subject; the reduced relative \"the volunteers submitted\" must instead follow \"The photos\" it modifies.",
+  "why_order_is_forced": "\"the volunteers submitted\" is an object-gap reduced relative that can only attach to \"The photos\" (the only other noun, \"blurry\", is an adjective, and \"the volunteers submitted the photos turned out to be blurry\" is ungrammatical). \"turned out\" obligatorily takes \"to be\", and \"to be\" obligatorily takes the predicate \"blurry\"; \"to be blurry\" cannot serve as a fronted infinitival subject because \"turned out\" would then lack a complement. No chip is a floating adverbial."
+ },
+ {
+  "id": "B2",
+  "structure_family": "cleft sentence",
+  "difficulty": "medium",
+  "choices": [
+   "the landlord",
+   "to schedule repairs",
+   "It was",
+   "that forced",
+   "the broken elevator"
+  ],
+  "correct_answer": "It was | the broken elevator | that forced | the landlord | to schedule repairs",
+  "explanation": "Both \"the broken elevator\" and \"the landlord\" look like candidates to follow \"It was\", but only \"the broken elevator\" can do the forcing, since \"the landlord\" is the one being forced \"to schedule repairs\".",
+  "why_order_is_forced": "The cleft frame \"It was ... that forced ...\" needs a focus NP between \"It was\" and \"that forced\", and force takes the pattern force-NP-to-VP, so \"to schedule repairs\" must follow the forced NP. The two NPs cannot swap: \"It was the landlord that forced the broken elevator to schedule repairs\" fails because an elevator cannot schedule anything, so only one grammatical, natural assembly exists. Welding \"that forced\" as one chip blocks any object-cleft rearrangement."
+ },
+ {
+  "id": "B3",
+  "structure_family": "complement-taking verb (insist + subjunctive that-clause)",
+  "difficulty": "hard",
+  "choices": [
+   "be revised",
+   "The manager",
+   "the team drafted",
+   "insisted that",
+   "the schedule"
+  ],
+  "correct_answer": "The manager | insisted that | the schedule | the team drafted | be revised",
+  "explanation": "The garden path is \"insisted that\" + \"the team drafted\" + \"the schedule\", which reads smoothly until \"be revised\" has nowhere to land, since drafted cannot take a clause; \"the team drafted\" is really a relative clause on \"the schedule\".",
+  "why_order_is_forced": "\"insisted that\" must be followed by a full subjunctive clause, whose subject is \"the schedule\" modified by the object-gap relative \"the team drafted\", with \"be revised\" as the subjunctive predicate. The garden-path order \"insisted that the team drafted the schedule be revised\" is ungrammatical because draft does not take a clausal complement, and the reverse assembly \"The team drafted the schedule the manager insisted that be revised\" is blocked by the that-trace effect (welding \"insisted that\" makes the subject-gap relative impossible). Note this item embeds a reduced relative like B1's, but the governing skeleton (subjunctive complement of insist) is different."
+ },
+ {
+  "id": "B4",
+  "structure_family": "comparative with than-clause",
+  "difficulty": "medium",
+  "choices": [
+   "than health officials",
+   "lasted",
+   "This year's flu season",
+   "had predicted",
+   "much longer"
+  ],
+  "correct_answer": "This year's flu season | lasted | much longer | than health officials | had predicted",
+  "explanation": "The comparative chain has to be built inward-out: \"much longer\" licenses \"than health officials\", which in turn needs its stranded verb \"had predicted\" to complete the elliptical than-clause.",
+  "why_order_is_forced": "\"than health officials\" is only licensed immediately after the comparative \"much longer\", and \"had predicted\" is only licensed as the verb of that than-clause subject. The two verbs cannot swap roles: a flu season cannot predict, and \"health officials lasted\" yields no natural sentence, so \"lasted\" is pinned to \"This year's flu season\". Fronting \"much longer than health officials had predicted\" would strand bare \"lasted\" sentence-finally, which is not natural English, so no alternative order survives."
+ },
+ {
+  "id": "B5",
+  "structure_family": "verb + bound preposition chain (prevent ... from)",
+  "difficulty": "medium",
+  "choices": [
+   "from getting",
+   "The transit strike",
+   "to work on time",
+   "prevented",
+   "thousands of commuters"
+  ],
+  "correct_answer": "The transit strike | prevented | thousands of commuters | from getting | to work on time",
+  "explanation": "\"prevented\" demands its object before the bound \"from getting\", and \"from getting\" in turn demands the destination \"to work on time\", so the chain can only be threaded one way.",
+  "why_order_is_forced": "The frame prevent-NP-from-V-ing pins \"thousands of commuters\" between \"prevented\" and \"from getting\", and get requires its goal complement, pinning \"to work on time\" directly after \"from getting\". The subject and object cannot swap: \"Thousands of commuters prevented the transit strike from getting to work on time\" is nonsense because a strike cannot commute. The time reference is welded inside \"to work on time\" rather than floating, so no adverbial chip can reattach elsewhere."
+ },
+ {
+  "id": "B6",
+  "structure_family": "correlative not only/but also",
+  "difficulty": "medium",
+  "choices": [
+   "but also",
+   "fixed them herself",
+   "the new editor",
+   "caught our typos",
+   "not only"
+  ],
+  "correct_answer": "the new editor | not only | caught our typos | but also | fixed them herself",
+  "explanation": "The two verb phrases look swappable around \"not only\" and \"but also\", but \"fixed them herself\" contains a pronoun that must refer back to \"caught our typos\", so the catching has to be mentioned first.",
+  "why_order_is_forced": "\"not only\" cannot precede \"the new editor\" without subject-auxiliary inversion, so it must sit between subject and first verb phrase; \"but also\" must introduce the second conjunct; and the conjuncts cannot swap because \"them\" in \"fixed them herself\" would then precede its antecedent \"our typos\" — cataphora that reads as broken English and also reverses the logical sequence (you catch typos before fixing them). Every chip has exactly one slot."
+ },
+ {
+  "id": "B7",
+  "structure_family": "indirect question embedded",
+  "difficulty": "hard",
+  "choices": [
+   "was never approved",
+   "the director",
+   "by the review board",
+   "wondered why",
+   "the budget she requested"
+  ],
+  "correct_answer": "the director | wondered why | the budget she requested | was never approved | by the review board",
+  "explanation": "The tempting wrong build puts \"by the review board\" right after \"the budget she requested\", as if the board were the requesting agent — but \"she requested\" is active, so an agent phrase cannot attach there; only the passive \"was never approved\" licenses it.",
+  "why_order_is_forced": "\"wondered why\" welds the matrix verb to the complementizer, so it must follow the only wondering-capable subject, \"the director\", and the embedded question must follow it. Inside the embedded clause, \"the budget she requested\" is the only available subject for \"was never approved\" (a budget cannot wonder, a director is not what got approved here). \"by the review board\" is a passive agent bound to \"was never approved\"; placed after the active \"she requested\" it is ungrammatical — that is the deliberate garden path, not an alternative key."
+ },
+ {
+  "id": "B8",
+  "structure_family": "gerund subject",
+  "difficulty": "medium",
+  "choices": [
+   "more patience",
+   "than",
+   "learning a second language",
+   "most students realize",
+   "demands"
+  ],
+  "correct_answer": "learning a second language | demands | more patience | than | most students realize",
+  "explanation": "The gerund \"learning a second language\" must serve as the subject of \"demands\", and \"than\" is pinned by the comparative \"more patience\", leaving \"most students realize\" as the only possible comparison clause.",
+  "why_order_is_forced": "\"than\" must immediately follow \"more patience\" (its comparative licensor) and must be followed by a clause with an object gap — \"most students realize\" is the only chip that provides one. The reversed matrix, \"most students realize more patience than learning a second language demands\", fails because \"realize\" does not take \"patience\" as a direct object (one realizes facts or gains, not patience), so the gerund is the only workable subject of \"demands\". No chip has a second landing slot."
+ },
+ {
+  "id": "B9",
+  "structure_family": "reduced relative (welded to its head to block participial fronting)",
+  "difficulty": "medium",
+  "choices": [
+   "in rent",
+   "should expect",
+   "the tenants renewing",
+   "a small increase",
+   "their leases"
+  ],
+  "correct_answer": "the tenants renewing | their leases | should expect | a small increase | in rent",
+  "explanation": "Two noun phrases compete for two verb slots, but \"renewing\" idiomatically selects \"their leases\" (one cannot renew \"a small increase\"), and \"in rent\" is bound to \"a small increase\" by the collocation increase-in-rent.",
+  "why_order_is_forced": "The participle is welded into \"the tenants renewing\" precisely so it cannot be fronted as a bare adjunct or read as a main verb — the reduced relative must continue with its object. That object must be \"their leases\" because \"renewing a small increase in rent\" is not English, which forces \"a small increase\" to be the object of \"should expect\". \"in rent\" can only complement \"a small increase\" — it cannot modify \"their leases\" or the verb. One slot per chip."
+ },
+ {
+  "id": "B10",
+  "structure_family": "reported speech with tense shift",
+  "difficulty": "hard",
+  "choices": [
+   "main requirement",
+   "she admitted that",
+   "the assignment's",
+   "had completely missed",
+   "her first draft"
+  ],
+  "correct_answer": "she admitted that | her first draft | had completely missed | the assignment's | main requirement",
+  "explanation": "The trap is making \"the assignment's\" plus \"main requirement\" the subject of \"had completely missed\" — but a requirement cannot miss a draft, so \"her first draft\" must do the missing. The backshifted \"had completely missed\" must sit inside the clause introduced by \"she admitted that\".",
+  "why_order_is_forced": "\"she admitted that\" welds verb and complementizer, so the reported clause must follow it whole, and the overt \"that\" blocks the relative-clause reordering (\"her first draft she admitted that had...\" is a that-trace violation). \"the assignment's\" is a possessive determiner with exactly one available noun — \"main requirement\" — since \"her first draft\" already carries its own determiner. The reversed embedded clause (\"the assignment's main requirement had completely missed her first draft\") is semantically anomalous, so subject and object cannot swap. The original brief's family is kept; the complementizer was welded to the verb specifically to kill the NP/S garden-path alternative order that a bare \"she admitted\" chip would have allowed."
+ },
+ {
+  "id": "B11",
+  "structure_family": "conditional (if-clause forced first by chip design)",
+  "difficulty": "medium",
+  "choices": [
+   "to standby mode",
+   "overheats",
+   "until someone resets it",
+   "if the projector",
+   "it automatically switches"
+  ],
+  "correct_answer": "If the projector | overheats | it automatically switches | to standby mode | until someone resets it",
+  "explanation": "The pronoun in \"it automatically switches\" only makes sense once \"if the projector\" has introduced its referent, and \"until someone resets it\" describes how long the standby state lasts, so it must close the sentence after \"to standby mode\".",
+  "why_order_is_forced": "The reversed order (main clause first, if-clause last) is blocked by binding: in \"It automatically switches ... if the projector overheats\" the matrix pronoun c-commands \"the projector\", so coreference fails (Condition C) and \"it\" is left without a referent — the if-clause must come first. \"overheats\" is the only verb that can follow \"if the projector\" (the other verb chip carries its own subject \"it\"). \"to standby mode\" is the goal complement of \"switches\" and cannot attach to \"overheats\". \"until someone resets it\" bounds the standby state, so it must follow \"to standby mode\"; attaching it to \"overheats\" is semantically incoherent, and fronting it before the if-clause produces stacked adjuncts no fluent speaker would accept. No floating adverbial chips: the time clause is welded and pinned by its scope over the standby state."
+ },
+ {
+  "id": "B12",
+  "structure_family": "appositive bound to one noun",
+  "difficulty": "medium",
+  "choices": [
+   "to review",
+   "the editors",
+   "the new guidelines",
+   "asked Dr. Lin",
+   "a specialist in ethics"
+  ],
+  "correct_answer": "The editors | asked Dr. Lin | a specialist in ethics | to review | the new guidelines",
+  "explanation": "The appositive \"a specialist in ethics\" is singular and human, so it can only describe Dr. Lin, and \"to review\" must follow the person being asked before its object \"the new guidelines\" completes it.",
+  "why_order_is_forced": "Appositives are normally reversible or frontable, so the noun is welded into the verb chip (\"asked Dr. Lin\") and every other NP is number-mismatched: \"the editors, a specialist in ethics\" and \"the new guidelines, a specialist in ethics\" both clash plural-vs-singular, so the appositive has exactly one landing slot, immediately after \"asked Dr. Lin\". \"a specialist in ethics\" cannot serve as matrix subject because then \"the editors\" would have no slot at all. \"to review\" is the object-control complement of \"asked NP\" and must follow the appositive-extended object; \"the new guidelines\" is the only chip that can complete transitive \"review\". Self-test: fronting the appositive forces it onto plural \"the editors\" (mismatch), trailing it forces it onto plural \"the new guidelines\" (mismatch) — no alternative survives."
+ },
+ {
+  "id": "B13",
+  "structure_family": "infinitive of purpose bound to its verb (realized as a degree-bound infinitive — see note)",
+  "difficulty": "medium",
+  "choices": [
+   "everyone a bike",
+   "too quickly",
+   "the spin class",
+   "to guarantee",
+   "fills up"
+  ],
+  "correct_answer": "The spin class | fills up | too quickly | to guarantee | everyone a bike",
+  "explanation": "\"too quickly\" sets up an expectation that \"to guarantee\" must satisfy, and the double-object fragment \"everyone a bike\" can only complete \"to guarantee\".",
+  "why_order_is_forced": "Family note: a bare purpose infinitive after a complete main clause can always front (\"To save money, she...\"), so no bare-purpose version can pass the ambiguity gate; the family is realized with the infinitive bound to the degree word instead, which pins it. \"too quickly\" licenses \"to guarantee\" and the pair cannot be separated or reversed: *\"fills up to guarantee everyone a bike too quickly\" breaks the too...to dependency, and fronting \"Too quickly to guarantee everyone a bike, the spin class fills up\" is not acceptable English. \"fills up\" is the only verb that agrees with \"the spin class\", preverbal *\"too quickly fills up\" is ill-formed, and \"everyone a bike\" is a double-object fragment grammatical only directly after \"to guarantee\". Each chip has one slot."
+ },
+ {
+  "id": "B14",
+  "structure_family": "noun clause as object (embedded question under a preposition)",
+  "difficulty": "hard",
+  "choices": [
+   "would end up",
+   "costing the department",
+   "no one worried",
+   "the repairs",
+   "about how much"
+  ],
+  "correct_answer": "No one worried | about how much | the repairs | would end up | costing the department",
+  "explanation": "The garden path is wanting \"the repairs\" to be what people worried about, or wanting the question word next to the verb as in \"costing the department how much\"; in fact \"about how much\" must open the embedded clause, with \"the repairs\" as its subject and \"would end up\" feeding \"costing the department\".",
+  "why_order_is_forced": "\"about how much\" welds the preposition to the wh-phrase, so \"the repairs\" cannot follow \"no one worried\" directly (*\"worried the repairs\") and cannot sit after \"about\" — the only slot for \"the repairs\" is embedded-subject position after \"about how much\". \"would end up\" requires a gerund complement, supplied only by \"costing the department\", and \"costing the department\" is a fragment ungrammatical anywhere except after \"would end up\" (its degree argument is the fronted \"how much\"). The tempting wrong order — trailing the wh-phrase, \"...costing the department about how much\" — is ungrammatical because \"how much\" must be fronted within its clause. Fronting the whole embedded question (\"About how much the repairs would end up costing the department, no one worried\") strands a pied-piped PP in topic position, which does not read as natural English, unlike bare-clause fronting; this is why the matrix verb takes its clause through \"about\" rather than directly."
+ },
+ {
+  "id": "B15",
+  "structure_family": "participial chain modifying the subject only",
+  "difficulty": "hard",
+  "choices": [
+   "must attend",
+   "about the schedule change",
+   "anyone",
+   "the makeup session",
+   "notified by email"
+  ],
+  "correct_answer": "Anyone | notified by email | about the schedule change | must attend | the makeup session",
+  "explanation": "The tempting wrong build is to complete \"anyone\" with \"must attend\" and \"the makeup session\" right away and hang \"notified by email\" at the end, but the reduced relative must sit inside the subject: it is \"anyone notified by email about the schedule change\" who must attend.",
+  "why_order_is_forced": "This is the batch's single permitted passive-participial skeleton. The chain is pinned to the subject by the choice of \"anyone\": a fronted participle (*\"Notified by email..., anyone must attend\") is unlicensed because free-choice \"anyone\" requires its restriction, and a sentence-final participle (*\"Anyone must attend the makeup session notified by email...\") either dangles or absurdly modifies \"the makeup session\". \"about the schedule change\" is the about-complement of \"notified\" and must follow \"notified by email\" (which is welded so \"by email\" cannot wander); attached to \"the makeup session\" it is unnatural (*\"the makeup session about the schedule change\") and it cannot follow \"must attend\", which needs its object. \"must attend\" is transitive here, so \"the makeup session\" is forced into final position. A main-verb reading of \"notified\" is impossible without an auxiliary, so no alternative clause structure exists."
+ },
+ {
+  "id": "B16",
+  "structure_family": "there-existential",
+  "difficulty": "medium",
+  "choices": [
+   "doubt about whether",
+   "will succeed",
+   "there remains",
+   "the new policy",
+   "considerable"
+  ],
+  "correct_answer": "There remains | considerable | doubt about whether | the new policy | will succeed",
+  "explanation": "The existential \"there remains\" must come before its notional subject, so \"considerable\" and \"doubt about whether\" follow the verb rather than starting the sentence as an ordinary subject would.",
+  "why_order_is_forced": "\"there remains\" is welded so the bare verb cannot be re-used in a non-existential order like \"considerable doubt remains\"; that welding is what kills the otherwise-grammatical alternative. \"considerable\" is a bare adjective whose only landing site is before the noun chip \"doubt about whether\" (it cannot precede \"the new policy\", which already has its determiner). \"about whether\" is welded into the doubt chip, so the complement clause cannot be topicalized separately (\"About whether... , there remains...\" is unbuildable). \"the new policy\" is the only available subject for \"will succeed\", and both are trapped inside the whether-clause because \"doubt about whether\" must immediately precede a finite clause."
+ },
+ {
+  "id": "B17",
+  "structure_family": "passive with forced by-agent",
+  "difficulty": "hard",
+  "choices": [
+   "the very committee",
+   "that had approved it earlier",
+   "was rejected by",
+   "The final proposal",
+   "that the interns drafted"
+  ],
+  "correct_answer": "The final proposal | that the interns drafted | was rejected by | the very committee | that had approved it earlier",
+  "explanation": "The garden path is putting \"that had approved it earlier\" right after \"The final proposal\", since that is the first spot a relative clause seems to fit; but a proposal cannot approve anything, so that clause belongs to \"the very committee\" while \"that the interns drafted\" belongs to the proposal.",
+  "why_order_is_forced": "Two relative clauses, each semantically locked to one head: \"that the interns drafted\" can only modify \"The final proposal\" (a committee cannot be drafted by interns), and \"that had approved it earlier\" can only modify \"the very committee\" (a proposal cannot approve, and \"it\" needs the proposal as antecedent, ruling out attachment to the subject). \"was rejected by\" is welded with its \"by\", so the agent phrase \"the very committee\" has exactly one slot, immediately after it. Swapping the clauses (\"The final proposal that had approved it earlier...\") is syntactically buildable but not acceptable English, and the earlier-time adverb is welded inside its relative chip so it cannot float to the main verb."
+ },
+ {
+  "id": "B18",
+  "structure_family": "relative clause with preposition (in which)",
+  "difficulty": "medium",
+  "choices": [
+   "must be performed",
+   "the order",
+   "The trainer explained",
+   "the safety checks",
+   "in which"
+  ],
+  "correct_answer": "The trainer explained | the order | in which | the safety checks | must be performed",
+  "explanation": "\"in which\" looks like it could follow either noun, but only \"the order\" supports it: things are performed in an order, whereas \"the order must be performed\" inside a clause headed by \"the safety checks\" is not English.",
+  "why_order_is_forced": "\"in which\" is pinned to \"the order\" by the fixed collocation 'the order in which'; attaching it to \"the safety checks\" would force the relative's subject to be \"the order\", and 'perform an order' is unacceptable (you perform checks, not an order). \"The trainer explained\" must open the sentence as the only subject-verb chip, its object slot taken by \"the order\". Inside the relative, \"the safety checks\" is the only available subject for the passive \"must be performed\", and neither can escape the clause because \"in which\" must be immediately followed by a finite clause."
+ },
+ {
+  "id": "B19",
+  "structure_family": "double object verb (offer someone something)",
+  "difficulty": "medium",
+  "choices": [
+   "of the pizza",
+   "me",
+   "that we ordered yesterday",
+   "My roommate offered",
+   "half"
+  ],
+  "correct_answer": "My roommate offered | me | half | of the pizza | that we ordered yesterday",
+  "explanation": "The double-object pattern locks \"me\" into the slot right after \"My roommate offered\", and \"half\" must precede its partitive \"of the pizza\" — placing \"me\" anywhere later leaves the pronoun with no verb to receive it.",
+  "why_order_is_forced": "\"me\" has exactly one landing slot: directly after \"My roommate offered\" as the recipient (after \"half\" or at the end it is ungrammatical — 'offered half me', 'ordered yesterday me'). \"of the pizza\" is a partitive that can only follow \"half\". \"that we ordered yesterday\" can only modify \"the pizza\" — a roommate cannot be ordered — and the time word is welded inside the relative chip so it cannot float. The tempting hazard 'the pizza that we ordered me' (double-object 'order') is blocked because \"yesterday\" is welded to the end of that chip, leaving \"me\" no slot there."
+ },
+ {
+  "id": "B20",
+  "structure_family": "comparative correlative (the more... the more)",
+  "difficulty": "hard",
+  "choices": [
+   "you will encounter",
+   "the contract",
+   "The more carefully",
+   "the fewer surprises",
+   "you review"
+  ],
+  "correct_answer": "The more carefully | you review | the contract | the fewer surprises | you will encounter",
+  "explanation": "The tempting wrong order swaps the two halves — starting with \"the fewer surprises\" and ending with \"you review\" \"the contract\" — but \"you will encounter\" carries 'will', which belongs only in the second, result half of the correlative, so the review half must come first.",
+  "why_order_is_forced": "\"you review\" needs an object and \"the contract\" is the only NP that can serve (its own clause's object position is the only slot: 'encounter the contract' is unavailable because \"you will encounter\" already takes the fronted \"the fewer surprises\"). The clause-swap alternative ('The fewer surprises you will encounter, the more carefully you review the contract') is blocked because the correlative's first clause, like an if-clause, rejects 'will' — and \"you will encounter\" is the only chip carrying it — and reinforced by causal direction: careful review produces fewer surprises, not the reverse. \"The more carefully\" must pair with \"you review\" since 'carefully encountering' something is not natural English."
+ },
+ {
+  "id": "B21",
+  "structure_family": "subject with two stacked modifiers that only stack one way",
+  "difficulty": "medium",
+  "choices": [
+   "for years",
+   "is now packed daily",
+   "the recently renovated",
+   "that seniors avoided",
+   "dining hall"
+  ],
+  "correct_answer": "The recently renovated | dining hall | that seniors avoided | for years | is now packed daily",
+  "explanation": "The duration phrase \"for years\" looks like it could describe the current popularity, but \"is now packed daily\" is present tense, so \"for years\" can only extend the past-tense clause \"that seniors avoided\".",
+  "why_order_is_forced": "\"the recently renovated\" carries the determiner and must precede the only bare nominal, \"dining hall\". The relative clause \"that seniors avoided\" has an object gap and \"dining hall\" is the only noun it can modify. \"for years\" is tense-bound: it is compatible with the past habitual \"avoided\" but clashes with \"is now packed daily\" (\"now ... for years\" is contradictory), so it cannot trail the predicate or front the sentence. \"is now packed daily\" is the only finite main predicate and must close the sentence after the full subject NP. I attempted the alternatives \"...is now packed daily for years\" (tense clash) and fronted \"For years the ... is now packed daily\" (same clash); neither reads as acceptable English."
+ },
+ {
+  "id": "B22",
+  "structure_family": "verb + object + object complement",
+  "difficulty": "medium",
+  "choices": [
+   "a serious drawback",
+   "her lack",
+   "the hiring committee",
+   "of experience",
+   "considered"
+  ],
+  "correct_answer": "The hiring committee | considered | her lack | of experience | a serious drawback",
+  "explanation": "The chip \"of experience\" tempts builders to pair it with \"a serious drawback\", but \"her lack\" is incomplete without its complement, and \"considered\" needs its full object before the complement \"a serious drawback\" can be added.",
+  "why_order_is_forced": "\"considered\" in the V + object + object-complement frame requires an animate subject, so only \"the hiring committee\" can precede it (\"Her lack of experience considered...\" is impossible). \"of experience\" is the obligatory complement of the noun \"lack\" — \"her lack\" stranded without it is not idiomatic, and \"a serious drawback of experience\" is semantically incoherent, so \"of experience\" has exactly one landing slot. \"a serious drawback\" must follow the complete object as the object complement; the heavy-NP-shift order \"considered a serious drawback her lack of experience\" is unacceptable because the object is not heavy enough to license shift. I attempted both alternatives and neither reads as natural English."
+ },
+ {
+  "id": "B23",
+  "structure_family": "embedded wh-clause as subject",
+  "difficulty": "hard",
+  "choices": [
+   "surprised",
+   "who rarely gossip",
+   "the news spread",
+   "even the neighbors",
+   "how quickly"
+  ],
+  "correct_answer": "How quickly | the news spread | surprised | even the neighbors | who rarely gossip",
+  "explanation": "The chip \"the news spread\" garden-paths builders into opening with it as a complete main clause, but then \"how quickly\" and \"surprised\" have no grammatical home; only when \"how quickly\" heads the whole clause does \"surprised\" get its subject.",
+  "why_order_is_forced": "\"how quickly\" is a degree wh-phrase that must immediately precede a clause, and \"the news spread\" is the only clausal chip, welding them into the wh-subject \"how quickly the news spread\". \"surprised\" needs that clause as subject and an experiencer object: the reverse \"Even the neighbors surprised how quickly the news spread\" is ungrammatical because \"surprised\" cannot take a bare wh-clause as its object without an expletive (\"it surprised them how...\"). \"who rarely gossip\" is a human-headed relative and \"even the neighbors\" is the only human NP, and it must sit adjacent to its head. Welding subject and verb into the single chip \"the news spread\" blocks any recombination of the inner clause with the matrix verb, which I verified by attempting \"How quickly the news surprised even the neighbors spread...\" — impossible with these chips."
+ },
+ {
+  "id": "B24",
+  "structure_family": "so...that result clause",
+  "difficulty": "hard",
+  "choices": [
+   "that half the audience",
+   "missed lunch",
+   "her opening lecture",
+   "so long",
+   "ran"
+  ],
+  "correct_answer": "Her opening lecture | ran | so long | that half the audience | missed lunch",
+  "explanation": "The chip \"that half the audience\" tempts builders to attach it directly after \"her opening lecture\" as the start of a relative clause, but \"missed lunch\" leaves no gap for a relative reading, so the chip can only be the result clause licensed by \"so long\".",
+  "why_order_is_forced": "The correlative \"so long ... that\" forces \"so long\" to sit after \"ran\" and immediately before \"that half the audience\", and \"that half the audience\" must be completed by the only remaining predicate, \"missed lunch\". The tempting relative-clause reparse fails twice over: \"ran\" is intransitive here, so \"her opening lecture that half the audience ran so long\" has no gap, and \"that half the audience missed lunch\" is gapless, so it cannot modify \"her opening lecture\" either. Using the that-clause as a sentential subject fails because \"ran her opening lecture so long\" is not a possible predicate. I attempted both alternative builds and each is ungrammatical, not merely awkward."
+ },
+ {
+  "id": "B25",
+  "structure_family": "determiner split (such a + adjective noun)",
+  "difficulty": "medium",
+  "choices": [
+   "to attract",
+   "quiet cafe",
+   "nobody expected",
+   "such a",
+   "this much attention"
+  ],
+  "correct_answer": "Nobody expected | such a | quiet cafe | to attract | this much attention",
+  "explanation": "\"such a\" must be completed by the only bare noun phrase, \"quiet cafe\", and \"nobody expected\" then needs that full object before the infinitive \"to attract\" can carry \"this much attention\".",
+  "why_order_is_forced": "\"such a\" is a stranded determiner requiring an adjective + singular noun, and \"quiet cafe\" is the only chip without its own determiner, giving it exactly one landing slot (\"this much attention\" already carries its determiner). \"nobody expected\" is a welded subject + verb, so \"such a quiet cafe\" cannot serve as sentence subject — there is no free verb for it. \"expected\" in the NP + to-infinitive frame requires the object before \"to attract\", and \"to attract\" is transitive, requiring \"this much attention\" immediately after it. I attempted fronting \"To attract this much attention, nobody expected such a quiet cafe\" — the purpose reading is incompatible with \"expected\" and the object is stranded, so it does not read as acceptable English."
+ },
+ {
+  "id": "B26",
+  "structure_family": "concessive although-clause bound by referent",
+  "difficulty": "medium",
+  "choices": [
+   "agree on",
+   "Although the hiring committee",
+   "a single candidate",
+   "it still could not",
+   "met three times"
+  ],
+  "correct_answer": "Although the hiring committee | met three times | it still could not | agree on | a single candidate",
+  "explanation": "The pronoun in \"it still could not\" needs \"Although the hiring committee\" to come first to supply its referent, and \"agree on\" must carry \"a single candidate\" as its object.",
+  "why_order_is_forced": "The although-clause cannot trail: starting with \"it still could not\" leaves the pronoun with no antecedent (a subject pronoun cannot corefer with a full noun phrase inside a following adjunct), so \"Although the hiring committee\" must open the sentence. \"met three times\" is the only predicate available for the committee inside the although-clause, since \"could not\" is welded to \"it\". \"agree on\" must follow the modal chip \"it still could not\" (bare verb after modal) and its bound preposition \"on\" demands the noun phrase \"a single candidate\" immediately after. No chip has a second landing slot."
+ },
+ {
+  "id": "B27",
+  "structure_family": "verb pattern prevent X from Y-ing",
+  "difficulty": "medium",
+  "choices": [
+   "four tickets each",
+   "prevents customers",
+   "The new checkout system",
+   "more than",
+   "from buying"
+  ],
+  "correct_answer": "The new checkout system | prevents customers | from buying | more than | four tickets each",
+  "explanation": "\"prevents customers\" demands its bound complement \"from buying\" right after it, and \"more than\" only makes sense quantifying \"four tickets each\".",
+  "why_order_is_forced": "\"The new checkout system\" is the only possible subject for \"prevents customers\" (customers is welded in as the object). The pattern prevent X FROM Y-ing forces \"from buying\" directly after \"prevents customers\", and the gerund \"buying\" needs an object, which must be the quantity phrase. \"more than\" is a comparative quantifier that can only precede the numeral chip \"four tickets each\"; there is no other number or measure in the pool for it to modify, and it cannot stand clause-finally. Every chip therefore has exactly one slot."
+ },
+ {
+  "id": "B28",
+  "structure_family": "noun + of-phrase chain that only chains one way",
+  "difficulty": "hard",
+  "choices": [
+   "the roof",
+   "we had budgeted",
+   "The cost",
+   "exceeded what",
+   "of the community center",
+   "of repairing"
+  ],
+  "correct_answer": "The cost | of repairing | the roof | of the community center | exceeded what | we had budgeted",
+  "explanation": "Solvers are tempted to attach \"of the community center\" straight to \"The cost\", but that strands \"of repairing\" with no gerund object it can take, so the chain must run through \"the roof\" first.",
+  "why_order_is_forced": "\"of repairing\" is a gerund that must take a concrete repairable object, and \"the roof\" is the only one; \"of the community center\" can only hang off \"the roof\" (a center has a roof; \"the cost of the community center of repairing\" is not English). The reversal risk of a plain transitive (\"our budget exceeded the cost...\") is closed by welding \"exceeded what\": the free relative \"what\" cannot start the sentence without its verb, and \"we had budgeted\" must follow \"exceeded what\" to complete the relative (\"budgeted\" cannot take \"the cost\" here because the cost chips are consumed by the subject chain). The tempting garden path \"The cost of the community center exceeded what we had budgeted\" leaves \"of repairing the roof\" with no grammatical landing site."
+ },
+ {
+  "id": "B29",
+  "structure_family": "relative whose-clause",
+  "difficulty": "medium",
+  "choices": [
+   "solved",
+   "a decades-old problem",
+   "The award went to",
+   "whose simple idea",
+   "a chemistry student"
+  ],
+  "correct_answer": "The award went to | a chemistry student | whose simple idea | solved | a decades-old problem",
+  "explanation": "\"whose simple idea\" can only describe \"a chemistry student\", since an award or \"a decades-old problem\" cannot have an idea, and \"solved\" needs that idea as its subject and the problem as its object.",
+  "why_order_is_forced": "Welding \"The award went to\" removes the classic ambiguity of a whose-clause floating between subject and object: no relative can be inserted after \"The award\" because the verb is fused to it, so the noun phrase after \"went to\" must come next. Semantics pins the rest: only \"a chemistry student\" can be the possessor in \"whose simple idea\" (problems and awards do not have ideas), \"solved\" requires a subject (the idea) before it and an object after it, and \"a decades-old problem\" is the only solvable object. Reversing student and problem produces nonsense in both slots."
+ },
+ {
+  "id": "B30",
+  "structure_family": "too...to construction",
+  "difficulty": "hard",
+  "choices": [
+   "to admit",
+   "had failed",
+   "The coach was",
+   "that her training plan",
+   "too proud"
+  ],
+  "correct_answer": "The coach was | too proud | to admit | that her training plan | had failed",
+  "explanation": "The trap is reading \"The coach was\" + \"to admit\" as a scheduled 'was to admit', which strands \"too proud\" with nowhere to go; \"too proud\" must license \"to admit\", and \"to admit\" must take the that-clause as its content.",
+  "why_order_is_forced": "\"too proud\" must sit directly after the copula in \"The coach was\" — placed anywhere later it dangles with no verb to predicate it (the garden-path order \"The coach was to admit that her training plan had failed\" is a complete clause but leaves \"too proud\" unattachable). The degree word \"too\" is what licenses the infinitive, so \"to admit\" must follow \"too proud\"; \"admit\" is obligatorily transitive here and must take \"that her training plan\" as the start of its complement clause, whose subject then requires the predicate \"had failed\". \"that her training plan\" cannot front as a subject clause because a plan cannot be \"too proud\". Each chip has one slot."
+ },
+ {
+  "id": "B31",
+  "structure_family": "catenative chain",
+  "difficulty": "medium",
+  "choices": [
+   "the shelter",
+   "voted",
+   "that houses stray animals",
+   "The city council",
+   "to continue funding"
+  ],
+  "correct_answer": "The city council | voted | to continue funding | the shelter | that houses stray animals",
+  "explanation": "The chain \"voted\" plus \"to continue funding\" must stay together before its object, and \"that houses stray animals\" can only describe \"the shelter\", not the council.",
+  "why_order_is_forced": "\"voted\" selects an infinitive complement, so \"to continue funding\" must immediately follow it; \"to continue funding\" is transitive and needs \"the shelter\" as its object. The relative clause \"that houses stray animals\" is semantically compatible only with \"the shelter\" — a city council cannot house stray animals — so it cannot attach to the subject, and \"the shelter\" cannot be the sentence subject because shelters do not vote. No temporal or locative floaters exist in the pool."
+ },
+ {
+  "id": "B32",
+  "structure_family": "it-extraposition",
+  "difficulty": "medium",
+  "choices": [
+   "will agree",
+   "the rent",
+   "It is unlikely",
+   "to lower",
+   "that the landlord"
+  ],
+  "correct_answer": "It is unlikely | that the landlord | will agree | to lower | the rent",
+  "explanation": "\"It is unlikely\" must be followed by the complementizer chip \"that the landlord\", and \"will agree\" takes only the infinitive \"to lower\", whose object is \"the rent\".",
+  "why_order_is_forced": "The subject and complementizer are welded (\"It is unlikely\", \"that the landlord\"), so no non-extraposed variant can be built. \"agree\" does not take a noun-phrase object, so \"the rent\" cannot follow \"will agree\" directly; it must follow the transitive \"to lower\". \"the rent\" cannot be a clause subject because \"that the landlord\" already carries the embedded subject. I deliberately avoided a temporal clause (e.g. \"before the semester ends\") because a split temporal adjunct could front grammatically; nothing in this pool can front."
+ },
+ {
+  "id": "B33",
+  "structure_family": "paired conjunction either/or",
+  "difficulty": "medium",
+  "choices": [
+   "or pay",
+   "Students",
+   "a replacement fee",
+   "the borrowed laptops",
+   "must either",
+   "return"
+  ],
+  "correct_answer": "Students | must either | return | the borrowed laptops | or pay | a replacement fee",
+  "explanation": "\"must either\" has to introduce the first verb \"return\", and \"or pay\" opens the second conjunct; the objects are pinned by collocation, since one pays \"a replacement fee\" but returns \"the borrowed laptops\".",
+  "why_order_is_forced": "\"must either\" is welded, so \"either\" cannot drift, and it must precede the first bare verb; \"or pay\" is welded with its conjunction, so the pay-conjunct can only come second. The only movable-looking pieces are the two objects, and they cross-fail on collocation: \"return a replacement fee\" and \"pay the borrowed laptops\" are both unnatural, so each object lands only after its own verb. Self-test: no fronting is possible because \"or pay\" is ungrammatical before \"must either\"."
+ },
+ {
+  "id": "B34",
+  "structure_family": "superlative + relative",
+  "difficulty": "hard",
+  "choices": [
+   "stretches across",
+   "The longest mural",
+   "the station wall",
+   "have ever painted",
+   "that local artists"
+  ],
+  "correct_answer": "The longest mural | that local artists | have ever painted | stretches across | the station wall",
+  "explanation": "The tempting wrong order attaches the relative to the nearer noun, giving \"the station wall\" followed by \"that local artists\" and \"have ever painted\" — but \"ever\" is licensed only by the superlative \"The longest mural\".",
+  "why_order_is_forced": "The polarity item in \"have ever painted\" requires a superlative-licensed relative clause, so \"that local artists have ever painted\" can only modify \"The longest mural\", never the plain noun \"the station wall\" (\"the station wall that local artists have ever painted\" is ungrammatical). The verb was chosen to kill subject–object swap: \"The station wall stretches across the longest mural\" is not natural English, whereas a verb like \"covers\" would have allowed a reversed reading. \"that local artists\" must precede \"have ever painted\" to supply the relative clause's subject."
+ },
+ {
+  "id": "B35",
+  "structure_family": "mind/avoid + gerund complement",
+  "difficulty": "hard",
+  "choices": [
+   "that might seem",
+   "The new intern",
+   "obvious",
+   "avoids asking",
+   "questions"
+  ],
+  "correct_answer": "The new intern | avoids asking | questions | that might seem | obvious",
+  "explanation": "The garden path is building \"avoids asking\" then \"obvious\" then \"questions\" — natural-sounding until \"that might seem\" is left with no adjective to complete it, since \"seem\" demands \"obvious\" as its complement.",
+  "why_order_is_forced": "\"avoids\" takes a gerund, welded as \"avoids asking\", which needs the object \"questions\". Placing \"obvious\" prenominally (\"asking obvious questions\") strands \"that might seem\" without a complement, and \"seem\" cannot end the sentence bare — so \"obvious\" has exactly one landing slot, after \"that might seem\". The relative \"that might seem\" cannot attach to \"The new intern\" because people take \"who\" and \"seem obvious\" predicates over things, not a person; and \"questions\" cannot be the subject because questions do not avoid asking."
+ },
+ {
+  "id": "B36",
+  "structure_family": "cleft what-clause subject",
+  "difficulty": "medium",
+  "choices": [
+   "was that",
+   "prefer studying in groups",
+   "What the survey",
+   "most students",
+   "revealed"
+  ],
+  "correct_answer": "What the survey | revealed | was that | most students | prefer studying in groups",
+  "explanation": "The cleft \"What the survey\" must be completed by \"revealed\" before the copula \"was that\" can introduce the finding, so the sentence's real subject is a whole clause rather than \"most students\".",
+  "why_order_is_forced": "\"What the survey\" is a determiner-headed fragment that only \"revealed\" can complete (no other verb chip exists), so those two chips weld into the cleft subject. \"was that\" is welded so a student cannot start the sentence with a bare \"That\"-clause, killing the reversed cleft \"That most students... was what the survey revealed\". \"most students\" is the only bare plural NP able to serve as subject of \"prefer studying in groups\", and \"prefer studying in groups\" carries its own object and PP internally, so nothing in it can detach and float. I attempted \"What the survey was that revealed...\" and \"Most students revealed what the survey...\" — both collapse because \"was that\" cannot follow \"the survey\" directly and \"revealed\" has no other subject slot."
+ },
+ {
+  "id": "B37",
+  "structure_family": "enough+to construction",
+  "difficulty": "medium",
+  "choices": [
+   "to be offered",
+   "The intern proved",
+   "position",
+   "a permanent",
+   "reliable enough"
+  ],
+  "correct_answer": "The intern proved | reliable enough | to be offered | a permanent | position",
+  "explanation": "\"reliable enough\" must sit between \"The intern proved\" and \"to be offered\" because \"enough\" licenses the infinitive, and \"a permanent\" can only be completed by \"position\".",
+  "why_order_is_forced": "Subject and verb are welded in \"The intern proved\", so \"the intern\" can never be reanalyzed as an object of anything. \"proved\" here is a linking verb whose only available complement is the adjective phrase \"reliable enough\"; \"enough\" in turn is the sole licenser of the infinitive \"to be offered\", so the three chips chain in one order — fronting \"to be offered a permanent position\" fails because \"enough\" cannot end the sentence with no infinitive after it (*\"...proved reliable enough\" leaves \"to be offered\" stranded sentence-initially: \"Enough...\" cannot front either since it is welded after the adjective). \"a permanent\" is a determiner+adjective fragment and \"position\" is the only bare noun in the pool, so they combine exactly one way and only after \"to be offered\", which needs an NP. I tried \"A permanent position proved...\" — impossible, because \"proved\" is locked inside \"The intern proved\"."
+ },
+ {
+  "id": "B38",
+  "structure_family": "verb + that-clause with embedded modal",
+  "difficulty": "hard",
+  "choices": [
+   "who take",
+   "prolonged sun exposure",
+   "Doctors recommend",
+   "should avoid",
+   "that patients",
+   "this antibiotic"
+  ],
+  "correct_answer": "Doctors recommend | that patients | who take | this antibiotic | should avoid | prolonged sun exposure",
+  "explanation": "The tempting wrong order puts \"should avoid\" directly after \"that patients\", which strands the relative clause \"who take\" with nothing to modify; the modal must wait until the relative clause \"who take\" \"this antibiotic\" has closed.",
+  "why_order_is_forced": "\"Doctors recommend\" welds subject and verb, so \"who take\" cannot climb up to modify \"Doctors\" (which would otherwise allow \"Doctors who take this antibiotic recommend that patients should avoid prolonged sun exposure\"). Inside the that-clause, \"who take\" needs a human head noun and \"that patients\" is the only one, pinning the relative immediately after it. Swapping the two object NPs — \"patients who take prolonged sun exposure should avoid this antibiotic\" — fails collocation: one does not \"take\" sun exposure, so the only natural object of \"who take\" is \"this antibiotic\", leaving \"prolonged sun exposure\" as the sole remaining complement for \"should avoid\". No adverbial chips exist, so nothing floats."
+ },
+ {
+  "id": "B39",
+  "structure_family": "noun clause after preposition (aware of how...)",
+  "difficulty": "medium",
+  "choices": [
+   "snow removal",
+   "are aware of",
+   "how much",
+   "Few commuters",
+   "the city spends on"
+  ],
+  "correct_answer": "Few commuters | are aware of | how much | the city spends on | snow removal",
+  "explanation": "The preposition in \"are aware of\" takes the whole clause headed by \"how much\", not a simple noun, and \"snow removal\" must complete the welded \"the city spends on\" rather than follow \"are aware of\" directly.",
+  "why_order_is_forced": "\"Few commuters\" is the only possible subject for the plural \"are aware of\". The stranded preposition in \"are aware of\" needs a complement, and \"how much\" is the only chip that can open one; \"how much\" is the fronted degree object of \"spends\", so \"the city spends on\" must follow it as the clause's subject+verb. \"snow removal\" is trapped as the object of the welded \"spends on\" — welding the second preposition into the verb chip is what blocks the otherwise-tempting alternatives \"Few commuters are aware of snow removal...\" (no continuation for \"how much the city spends on\" would remain grammatical) and the fronting \"On snow removal, few commuters are aware of how much the city spends\", since \"on\" cannot detach from \"spends\"."
+ },
+ {
+  "id": "B40",
+  "structure_family": "as...as comparison with clause",
+  "difficulty": "hard",
+  "choices": [
+   "had led us",
+   "the professor",
+   "The exam was",
+   "to believe",
+   "not as difficult as"
+  ],
+  "correct_answer": "The exam was | not as difficult as | the professor | had led us | to believe",
+  "explanation": "The garden path is to start with \"the professor\" \"had led us\" \"to believe\" and treat the exam clause as what we were led to believe — but that ordering leaves \"not as difficult as\" with nothing after \"as\", so the comparison must frame the sentence from the start.",
+  "why_order_is_forced": "Welding the full comparative \"not as difficult as\" into one chip is the pin: the second \"as\" must be immediately followed by the standard of comparison, so \"the professor\" \"had led us\" \"to believe\" (an elliptical clause: as difficult as the professor had led us to believe [it was]) is forced into final position. The tempting reordering \"The professor had led us to believe the exam was not as difficult as\" ends on a dangling \"as\" and is ungrammatical; fronting the as-clause (\"As the professor had led us to believe, ...\") is impossible because no bare \"as\" chip exists. \"The exam was\" welds subject and copula, so \"the exam\" cannot become the object of \"believe\", and \"had led us\" requires the animate subject \"the professor\", fixing that pair. \"to believe\" must follow \"had led us\" because \"lead\" subcategorizes for object + to-infinitive."
+ },
+ {
+  "id": "B41",
+  "structure_family": "reduced adverbial participle bound to subject",
+  "difficulty": "medium",
+  "choices": [
+   "the results",
+   "she",
+   "Having finished the survey",
+   "to her supervisor",
+   "emailed"
+  ],
+  "correct_answer": "Having finished the survey | she | emailed | the results | to her supervisor",
+  "explanation": "The participial chip \"Having finished the survey\" describes \"she\" and must open the sentence before the pronoun it modifies, and \"emailed\" then requires its object \"the results\" before the recipient phrase \"to her supervisor\".",
+  "why_order_is_forced": "The subject is the pronoun \"she\", which cannot take a reduced relative, so \"Having finished the survey she...\" is the only way the participle can bind mid-sentence — and its capitalization pins it clause-initially, blocking the sentence-final adjunct reading (\"she emailed ... Having finished the survey\" would put a capital mid-sentence). \"emailed to her supervisor the results\" is not acceptable English with a light object NP, so \"the results\" must directly follow \"emailed\" and \"to her supervisor\" must close."
+ },
+ {
+  "id": "B42",
+  "structure_family": "wh-ever clause (fused relative as subject)",
+  "difficulty": "medium",
+  "choices": [
+   "the stage lights",
+   "should unlock",
+   "Whoever arrives first",
+   "and turn on",
+   "the rehearsal room"
+  ],
+  "correct_answer": "Whoever arrives first | should unlock | the rehearsal room | and turn on | the stage lights",
+  "explanation": "The fused relative \"Whoever arrives first\" is itself the subject of \"should unlock\", and each verb selects its own object: rooms get unlocked and lights get turned on, so \"the rehearsal room\" and \"the stage lights\" cannot trade places.",
+  "why_order_is_forced": "\"Whoever arrives first\" is the only possible subject (capitalized, and nothing else in the pool can front it as an object). The coordination \"and turn on\" must follow a complete first VP, so \"should unlock\" needs its object first. Object swap is blocked lexically: \"unlock the stage lights\" and \"turn on the rehearsal room\" are both non-idiomatic — heaters, lights, and equipment are turned on, rooms are unlocked — so each object has exactly one verb."
+ },
+ {
+  "id": "B43",
+  "structure_family": "ditransitive passive (recipient subject with retained theme)",
+  "difficulty": "medium",
+  "choices": [
+   "a small grant",
+   "its rusted tools",
+   "The community garden",
+   "to replace",
+   "was awarded"
+  ],
+  "correct_answer": "The community garden | was awarded | a small grant | to replace | its rusted tools",
+  "explanation": "\"was awarded\" is a passive that still keeps its theme, so \"a small grant\" must follow the verb rather than precede it, and the purpose infinitive \"to replace\" then needs \"its rusted tools\" as its object.",
+  "why_order_is_forced": "This is my one passive; it has no participial modifier or by-agent, so it does not use the banned template skeleton. \"The community garden\" is the only capitalized chip and the only plausible recipient subject of \"was awarded\"; the retained theme \"a small grant\" has no other landing slot (\"a small grant was awarded...\" would need a lowercase chip to start the sentence). \"to replace\" is a transitive infinitive that demands \"its rusted tools\" immediately after it, and \"its\" is anaphoric to the garden, so the purpose clause cannot front — fronting would put lowercase \"to replace\" first and strand the pronoun before its antecedent."
+ },
+ {
+  "id": "B44",
+  "structure_family": "nested relative (whose-NP with object gap inside the subject)",
+  "difficulty": "hard",
+  "choices": [
+   "will give",
+   "the book club selected",
+   "The author",
+   "a short reading",
+   "whose debut novel"
+  ],
+  "correct_answer": "The author | whose debut novel | the book club selected | will give | a short reading",
+  "explanation": "The tempting wrong build is to attach \"will give\" directly after \"The author\" and treat \"the book club selected\" as a leftover clause, but \"whose debut novel\" is the fronted object of \"the book club selected\", so that whole relative must nest between the subject and its verb.",
+  "why_order_is_forced": "\"whose debut novel\" can only be fronted inside a relative clause headed by \"The author\", and \"the book club selected\" is missing its object, so the two chips must sit together right after the head noun. The garden-path alternative \"The author will give a short reading whose debut novel the book club selected\" strands the whose-relative far from its head and is not acceptable without heavy punctuation; the reverse nesting \"whose debut novel will give a short reading\" fails because a novel cannot give a reading. \"will give\" then requires \"a short reading\" as its object, and \"a short reading the book club selected\" cannot form because \"selected\" already has its gap filled by \"whose debut novel\"."
+ },
+ {
+  "id": "B45",
+  "structure_family": "persuade + object + infinitive",
+  "difficulty": "hard",
+  "choices": [
+   "neither had proposed",
+   "to accept",
+   "The negotiator",
+   "a compromise",
+   "persuaded both sides"
+  ],
+  "correct_answer": "The negotiator | persuaded both sides | to accept | a compromise | neither had proposed",
+  "explanation": "\"neither had proposed\" looks like it wants to start its own clause, tempting a build such as placing it right after \"persuaded both sides\"; in fact it is a bare relative that can only trail \"a compromise\", the thing neither side proposed.",
+  "why_order_is_forced": "\"persuaded both sides\" is welded as one chip so the two animate NPs cannot swap roles, and persuade's control pattern forces the infinitive \"to accept\" immediately after its object. \"to accept\" is transitive and must take \"a compromise\"; the contact relative \"neither had proposed\" needs an inanimate antecedent with an object gap, and \"a compromise\" is the only one — attaching it to \"both sides\" (\"both sides neither had proposed\") is incoherent because sides are not things one proposes, and \"neither\" needs \"both sides\" already introduced as its antecedent. The garden-path reading of \"neither had proposed\" as a main clause is blocked because it is lowercase and every chip must be used in one sentence."
+ },
+ {
+  "id": "B46",
+  "structure_family": "fronted negative with inversion",
+  "difficulty": "hard",
+  "choices": [
+   "prop open",
+   "leading to the roof",
+   "should residents",
+   "Under no circumstances",
+   "the rear door"
+  ],
+  "correct_answer": "Under no circumstances | should residents | prop open | the rear door | leading to the roof",
+  "explanation": "The inverted chip \"should residents\" tempts students to build a question beginning \"should residents prop open...\", but only a fronted \"Under no circumstances\" licenses that inversion in a statement. \"leading to the roof\" can describe only \"the rear door\", since residents cannot lead to a roof.",
+  "why_order_is_forced": "\"Under no circumstances\" must be clause-initial because the welded inversion chip \"should residents\" is grammatical only immediately after a fronted negative; in any other slot it produces a question, and the item must be a statement. \"prop open\" is a transitive phrasal verb requiring its object \"the rear door\" directly after it, and the participial \"leading to the roof\" is semantically compatible only with \"the rear door\" (residents/circumstances cannot lead to a roof), pinning it clause-final. No adverbial chips float: the only PP-like chip is the door's reduced relative. Attempted alternatives — question order \"Should residents prop open the rear door leading to the roof under no circumstances\" is not a statement and is semantically incoherent; no other permutation parses."
+ },
+ {
+  "id": "B47",
+  "structure_family": "question-word + infinitive",
+  "difficulty": "medium",
+  "choices": [
+   "for classes",
+   "explains",
+   "that fill up quickly",
+   "The orientation packet",
+   "how to register"
+  ],
+  "correct_answer": "The orientation packet | explains | how to register | for classes | that fill up quickly",
+  "explanation": "\"how to register\" must serve as the complement of \"explains\", and \"for classes\" is bound to \"register\" (register for). The plural verb in \"that fill up quickly\" shows the clause describes \"classes\", not the singular \"orientation packet\".",
+  "why_order_is_forced": "\"explains\" needs a subject before it (\"The orientation packet\") and its wh-infinitive complement \"how to register\" directly after it. \"for classes\" is the obligatory prepositional complement of \"register\" and cannot attach to \"explains\" or \"packet\". The relative clause \"that fill up quickly\" has a plural verb, so it can modify only \"classes\" — attaching it to the singular \"packet\" fails agreement. Attempted alternatives: fronting \"for classes that fill up quickly\" strands the phrasal complement of \"register\" and is not natural English; no chip is a free adverbial."
+ },
+ {
+  "id": "B48",
+  "structure_family": "result participle clause bound to clause end",
+  "difficulty": "hard",
+  "choices": [
+   "the largest venue",
+   "now holds",
+   "making it",
+   "The renovated stadium",
+   "the state ever built",
+   "sixty thousand spectators"
+  ],
+  "correct_answer": "The renovated stadium | now holds | sixty thousand spectators | making it | the largest venue | the state ever built",
+  "explanation": "The reduced relative \"the state ever built\" garden-paths students into trying to make \"the state\" a subject of a new clause, but its superlative-licensed \"ever\" ties it to \"the largest venue\". \"making it\" states a result, so it must follow the fact that produces it — \"now holds\" \"sixty thousand spectators\".",
+  "why_order_is_forced": "\"now holds\" is transitive and must take \"sixty thousand spectators\" as its object immediately; \"making it\" requires a predicate NP after it, and only \"the largest venue\" fits. \"the state ever built\" contains superlative-polarity \"ever\", grammatical only inside a relative on \"the largest venue\" — \"spectators the state ever built\" and \"stadium the state ever built ... making it\" are nonsense or leave \"making it\" without a host. The result participle cannot be fronted (\"Making it the largest venue..., the stadium now holds...\") because \"it\" would have no antecedent yet and a result clause cannot precede its cause; nor can it interrupt after the subject, where \"it\" cannot corefer with the local subject (that would require \"making itself\"). Every chip is thus chained: subject > verb > object > result > predicate > relative."
+ },
+ {
+  "id": "B49",
+  "structure_family": "verb + preposition + gerund",
+  "difficulty": "medium",
+  "choices": [
+   "to stop using",
+   "The student recycling club",
+   "plastic trays",
+   "succeeded in",
+   "persuading the cafeteria"
+  ],
+  "correct_answer": "The student recycling club | succeeded in | persuading the cafeteria | to stop using | plastic trays",
+  "explanation": "\"succeeded in\" demands a gerund right after it, so \"persuading the cafeteria\" is locked to it, and \"persuading\" in turn demands the infinitive \"to stop using\". \"plastic trays\" is the only possible object left for \"using\".",
+  "why_order_is_forced": "The chips form a single obligatory complement chain: \"succeeded in\" ends in a preposition that must be followed by a gerund, and \"persuading the cafeteria\" is the only gerund chip; \"persuade + NP\" obligatorily takes a to-infinitive, satisfied only by \"to stop using\"; \"using\" is transitive and \"plastic trays\" is the only available NP object. The subject chip \"The student recycling club\" must precede the finite \"succeeded in\". No chip is an adjunct, so nothing can front or reattach; every permutation breaks a selectional requirement mid-chain."
+ },
+ {
+  "id": "B50",
+  "structure_family": "noun + that-complement",
+  "difficulty": "medium",
+  "choices": [
+   "count toward",
+   "Several students",
+   "their final grade",
+   "questioned the claim",
+   "that quiz scores"
+  ],
+  "correct_answer": "Several students | questioned the claim | that quiz scores | count toward | their final grade",
+  "explanation": "\"that quiz scores\" must open the complement of \"questioned the claim\", and the plural \"count toward\" agrees only with \"quiz scores\", not with \"their final grade\". \"their final grade\" is then the only object left for the preposition in \"count toward\".",
+  "why_order_is_forced": "\"questioned the claim\" needs a subject before it (\"Several students\") and \"the claim\" selects a that-complement, supplied only by \"that quiz scores\". Inside that clause, \"count toward\" is plural, so its subject must be \"quiz scores\" — the singular \"their final grade\" fails agreement — leaving \"their final grade\" as the sole object of \"toward\". The tempting swap (\"...the claim their final grade count toward that quiz scores\") fails twice: \"grade count\" breaks agreement, and demonstrative \"that\" cannot precede the bare plural \"quiz scores\". \"that quiz scores\" was deliberately built with a plural noun so it can only be a complementizer chip, never a demonstrative NP, which removes the one extraposition/reordering risk this family has."
+ },
+ {
+  "id": "B51",
+  "structure_family": "coordination that only parses one way (scope-forced either/or)",
+  "difficulty": "medium",
+  "choices": [
+   "or send it back",
+   "approve the proposal",
+   "The committee",
+   "to the author",
+   "must either"
+  ],
+  "correct_answer": "The committee | must either | approve the proposal | or send it back | to the author",
+  "explanation": "The correlative pair split across \"must either\" and \"or send it back\" fixes which option comes first, and \"to the author\" only completes \"send it back\", not \"approve the proposal\".",
+  "why_order_is_forced": "\"or\" is welded into \"or send it back\", so that chip can only be the second disjunct after \"must either\" plus a first option; \"approve the proposal to the author\" is ungrammatical, so \"to the author\" has exactly one landing slot after \"or send it back\". \"The committee\" is the only possible subject and \"must either\" requires a bare verb phrase immediately after it."
+ },
+ {
+  "id": "B52",
+  "structure_family": "embedded degree clause (so well versed ... that)",
+  "difficulty": "medium",
+  "choices": [
+   "that customers often",
+   "in company policy",
+   "The new hires were",
+   "mistook them for veterans",
+   "so well versed"
+  ],
+  "correct_answer": "The new hires were | so well versed | in company policy | that customers often | mistook them for veterans",
+  "explanation": "\"so well versed\" demands its bound complement \"in company policy\" right away, and the degree clause opened by \"that customers often\" can only follow the whole so-phrase.",
+  "why_order_is_forced": "\"versed\" selects the preposition \"in\", so \"in company policy\" must sit directly after \"so well versed\"; it cannot attach at the end because \"mistook them for veterans in company policy\" is not English. \"that customers often\" welds the subordinator, subject, and adverb together, so the that-clause cannot be fronted or split, and \"mistook them for veterans\" is the only predicate available for \"customers often\"."
+ },
+ {
+  "id": "B53",
+  "structure_family": "only + by-gerund means phrase pinned by the inversion requirement",
+  "difficulty": "hard",
+  "choices": [
+   "only by shooting",
+   "extremely tight deadline",
+   "through the night",
+   "The film crew",
+   "met its"
+  ],
+  "correct_answer": "The film crew | met its | extremely tight deadline | only by shooting | through the night",
+  "explanation": "The tempting wrong order fronts \"only by shooting\" and \"through the night\" to open the sentence, but a fronted only-phrase forces subject-auxiliary inversion, and no auxiliary chip exists to build it.",
+  "why_order_is_forced": "Fronting the means phrase would require \"Only by shooting through the night did the film crew meet...\"; without a \"did\" chip that order is ungrammatical, so \"only by shooting\" must follow the main clause. \"met its\" leaves a determiner needing a noun phrase, which only \"extremely tight deadline\" supplies, and \"through the night\" completes \"shooting\" (\"met its deadline through the night\" is not acceptable English), pinning it after \"only by shooting\"."
+ },
+ {
+  "id": "B54",
+  "structure_family": "predicative adjective + bound preposition (responsible for)",
+  "difficulty": "medium",
+  "choices": [
+   "each applicant's",
+   "is responsible",
+   "employment history",
+   "The hiring agency",
+   "for verifying"
+  ],
+  "correct_answer": "The hiring agency | is responsible | for verifying | each applicant's | employment history",
+  "explanation": "\"is responsible\" selects \"for verifying\" as its bound complement, and the genitive \"each applicant's\" must be completed by a noun before the sentence can end.",
+  "why_order_is_forced": "\"responsible\" requires \"for\" immediately after it, so \"for verifying\" has one slot; fronting the for-phrase would strand \"is responsible\" sentence-finally in a marked, unacceptable order. \"each applicant's\" is a possessive determiner that must directly precede a noun, and \"employment history\" is the only noun chip left, so those two chips lock together after \"for verifying\", which itself needs an object."
+ },
+ {
+  "id": "B55",
+  "structure_family": "sentence-final apposition + relative combined",
+  "difficulty": "hard",
+  "choices": [
+   "that many patients",
+   "The clinic extended",
+   "had requested",
+   "a change",
+   "its weekend hours"
+  ],
+  "correct_answer": "The clinic extended | its weekend hours | a change | that many patients | had requested",
+  "explanation": "The garden path is hanging \"that many patients\" and \"had requested\" directly onto \"its weekend hours\", which leaves \"a change\" with nowhere to go; the relative clause actually modifies the appositive \"a change\".",
+  "why_order_is_forced": "\"a change\" is a whole-clause appositive that can only trail the finished statement \"The clinic extended its weekend hours\"; fronting it yields a topicalization with no gap, which is ungrammatical. Welding the subordinator into \"that many patients\" blocks the rival reading \"many patients had requested that...\", and \"had requested\" has no other available subject, so it must follow \"that many patients\", whose clause in turn needs the head noun \"a change\" to supply its gap — attaching it straight to \"its weekend hours\" strands \"a change\" with no landing slot."
+ },
+ {
+  "id": "B56",
+  "structure_family": "subject-verb agreement pins the head noun",
+  "difficulty": "hard",
+  "choices": [
+   "has fallen",
+   "The number",
+   "by nearly half",
+   "the clinic receives",
+   "of complaints"
+  ],
+  "correct_answer": "The number | of complaints | the clinic receives | has fallen | by nearly half",
+  "explanation": "The reduced relative \"the clinic receives\" tempts a solver to start with \"the clinic receives\" as a main clause, and the plural \"of complaints\" right before \"has fallen\" tempts a plural-subject reading; the singular \"has fallen\" only agrees with \"The number\".",
+  "why_order_is_forced": "\"The number\" is the only head the singular \"has fallen\" can agree with, so it must open the subject; \"of complaints\" can only complement \"The number\" (\"complaints of the clinic\" is not buildable and \"by nearly half of complaints\" is ungrammatical); the bare relative \"the clinic receives\" has no relativizer, so it can only sit immediately after the noun it modifies, \"of complaints\" — starting the sentence with it strands \"has fallen\" without a subject; \"by nearly half\" is licensed only by fall-by and cannot follow \"receives\" (*receives by nearly half). No second grammatical permutation exists."
+ },
+ {
+  "id": "B57",
+  "structure_family": "as-clause of role (serves as chair — position forced by the verb)",
+  "difficulty": "medium",
+  "choices": [
+   "that oversees",
+   "My neighbor",
+   "park maintenance",
+   "serves",
+   "of the committee",
+   "as chair"
+  ],
+  "correct_answer": "My neighbor | serves | as chair | of the committee | that oversees | park maintenance",
+  "explanation": "\"as chair\" looks movable but is the obligatory complement of \"serves\", and \"that oversees\" must trail the noun it restricts, so the whole role phrase assembles in one fixed chain.",
+  "why_order_is_forced": "\"serves\" is intransitive here and requires the as-complement immediately (\"serves as chair\"), so \"as chair\" cannot front or float; \"of the committee\" can only complement \"chair\" (\"park maintenance of the committee\" and \"My neighbor of the committee serves\" fail because the remaining chips then have no grammatical continuation — \"as chair that oversees\" leaves \"of the committee\" homeless); \"that oversees\" is a transitive relative needing both a preceding head noun and a following object, which pins it between \"of the committee\" and \"park maintenance\". Only one permutation parses."
+ },
+ {
+  "id": "B58",
+  "structure_family": "verb + object + bare infinitive (helped the panel narrow)",
+  "difficulty": "hard",
+  "choices": [
+   "narrow",
+   "the selection panel",
+   "The revised criteria",
+   "to three finalists",
+   "helped",
+   "the list of candidates"
+  ],
+  "correct_answer": "The revised criteria | helped | the selection panel | narrow | the list of candidates | to three finalists",
+  "explanation": "\"narrow\" garden-paths as an adjective, tempting the wrong order \"the selection panel helped\" followed by an attempt to tuck \"narrow\" against \"the list of candidates\" as a modifier; it is actually the bare infinitive that \"helped\" licenses after its object.",
+  "why_order_is_forced": "\"helped\" requires object + bare infinitive, giving the fixed chain \"helped the selection panel narrow\"; the reverse subject choice (\"The selection panel helped the revised criteria narrow...\") is not acceptable English because criteria cannot be helped to act. \"narrow\" cannot be an attributive adjective since \"the list of candidates\" is a welded chip with no insertion point, so \"narrow\" has exactly one slot, after \"the selection panel\". \"to three finalists\" is the goal argument of narrow-X-to-Y and cannot attach to \"helped\" or to any noun, pinning it last."
+ },
+ {
+  "id": "B59",
+  "structure_family": "whether-clause as object (of depends on)",
+  "difficulty": "medium",
+  "choices": [
+   "whether",
+   "cancels the flight",
+   "Our refund",
+   "depends on",
+   "the airline"
+  ],
+  "correct_answer": "Our refund | depends on | whether | the airline | cancels the flight",
+  "explanation": "The bare \"whether\" chip looks free-floating but must bridge \"depends on\" and a full clause, so \"the airline\" and \"cancels the flight\" are locked inside the whether-clause in subject-verb order.",
+  "why_order_is_forced": "\"depends on\" demands a nominal complement, and \"whether\" is the only chip that can head one, so the sequence \"depends on whether\" is welded; inside the clause \"the airline\" must precede \"cancels the flight\" as its subject. The reversed frame \"The airline depends on whether our refund cancels the flight\" fails because a refund cannot cancel a flight, and fronting (\"Whether the airline cancels the flight depends on our refund\") reverses the dependency into nonsense — the refund is contingent, not the cancellation. One permutation survives."
+ },
+ {
+  "id": "B60",
+  "structure_family": "noun phrase with forced ordinal chain (the first phase of the...)",
+  "difficulty": "medium",
+  "choices": [
+   "consists of",
+   "the building's outdated wiring",
+   "The first phase",
+   "replacing",
+   "of the library renovation"
+  ],
+  "correct_answer": "The first phase | of the library renovation | consists of | replacing | the building's outdated wiring",
+  "explanation": "\"of the library renovation\" and \"consists of\" both start attachments, but only \"The first phase\" can host the renovation phrase, and \"consists of\" needs the gerund \"replacing\" plus its object to complete.",
+  "why_order_is_forced": "\"of the library renovation\" can only complement the ordinal head \"The first phase\" — \"the building's outdated wiring of the library renovation\" is not natural English, and no other noun can take it; \"consists of\" requires a nominal, which only the gerund \"replacing\" supplies, and \"replacing\" is transitive so \"the building's outdated wiring\" must follow it as object. The reversal \"Replacing the building's outdated wiring consists of the first phase...\" is unacceptable because an action does not consist of a phase. Every chip therefore has a single landing slot."
+ }
+]
