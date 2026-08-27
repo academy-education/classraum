@@ -38,6 +38,7 @@ export type TestFamily =
   | 'act'
   | 'ap'
   | 'gre'
+  | 'ssat'
 
 interface TopicRow {
   id: string
@@ -117,6 +118,7 @@ function mapTestFamily(slug: string): TestFamily | null {
   if (slug === 'test-act')  return 'act'
   if (slug === 'test-ap')   return 'ap'
   if (slug === 'test-gre')  return 'gre'
+  if (slug === 'test-ssat') return 'ssat'
   return null
 }
 
@@ -214,6 +216,21 @@ export function testFormatGuidanceEn(family: TestFamily, section: string | null)
             ? 'Analytical Writing is normally essay-format; for written practice render the prompt and ask the student to outline or full-draft a response.'
             : '',
     ].filter(Boolean).join(' ')
+
+    case 'ssat': return [
+      'This is the SSAT Upper Level, the private secondary school admissions test (grades 8-11 applicants).',
+      'Format: 5-choice multiple choice throughout, plus one unscored 25-minute writing sample. Scoring has a guessing penalty: +1 correct, -1/4 wrong, 0 blank — distractors should be attractive enough to punish confident errors. NO calculator anywhere.',
+      section?.startsWith('Quantitative')
+        ? 'Quantitative: arithmetic, elementary algebra, geometry, and quantitative-comparison-style reasoning. Difficulty comes from insight and setup, never heavy computation — every item solvable in under 90 seconds without a calculator.'
+        : section === 'Verbal'
+          ? 'Verbal: synonyms (capitalized stem word, 5 single-word choices) and completion analogies ("Word1 is to Word2 as" completed by a word pair). 30 seconds per item.'
+          : section === 'Reading Comprehension'
+            ? 'Reading: 250-350 word passages, roughly half nonfiction and half LITERARY (fiction excerpts, narrative essays, occasionally poetry) — the literary share distinguishes SSAT from SAT reading.'
+            : section === 'Writing Sample'
+              ? 'Writing Sample: one 25-minute free-response task — offer an essay prompt and a story-starter prompt side by side and let the student choose. Unscored but sent to schools.'
+              : '',
+      'Calibrate vocabulary and rigor to a strong 13-16-year-old, not a college applicant.',
+    ].filter(Boolean).join(' ')
   }
 }
 
@@ -298,6 +315,21 @@ export function testFormatGuidanceKo(family: TestFamily, section: string | null)
           : section === 'Analytical Writing' || section === '분석적 작문'
             ? 'Analytical Writing은 본래 에세이. 글로 연습할 때는 문제만 제시하고 학생이 개요 또는 전체 글을 쓰도록 하세요.'
             : '',
+    ].filter(Boolean).join(' ')
+
+    case 'ssat': return [
+      'SSAT Upper Level — 미국·캐나다 사립중등학교 입학시험(8-11학년 지원자).',
+      '형식: 전 영역 5지선다 + 채점되지 않는 25분 작문 샘플. 추측 감점 적용: 정답 +1, 오답 -1/4, 무응답 0 — 자신 있는 오답을 벌하도록 함정을 매력적으로. 전 영역 계산기 금지.',
+      section?.startsWith('수리') || section?.startsWith('Quantitative')
+        ? '수리: 산술, 기초 대수, 기하, 수량 비교형 추론. 난이도는 무거운 계산이 아니라 통찰과 설정에서 — 모든 문항이 계산기 없이 90초 안에 풀려야 함.'
+        : section === '어휘' || section === 'Verbal'
+          ? '어휘: 동의어(대문자 표제어 + 한 단어 보기 5개)와 완성형 유추("Word1 is to Word2 as"를 단어 쌍으로 완성). 문항당 30초.'
+          : section === '독해' || section === 'Reading Comprehension'
+            ? '독해: 250-350단어 지문, 절반 가량은 비문학·절반 가량은 문학(소설 발췌, 서사 에세이, 때때로 시) — 문학 비중이 SAT 독해와의 차이점.'
+            : section === '작문 샘플' || section === 'Writing Sample'
+              ? '작문 샘플: 25분 자유응답 1개 — 에세이 프롬프트와 이야기 시작 프롬프트를 나란히 제시하고 학생이 선택. 채점되지 않지만 지원 학교에 전송됨.'
+              : '',
+      '어휘와 엄밀함은 대학 지원자가 아니라 우수한 13-16세 수준으로.',
     ].filter(Boolean).join(' ')
   }
 }

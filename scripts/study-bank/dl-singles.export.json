@@ -1,0 +1,899 @@
+[
+ {
+  "bank_id": "9eaaed71-3013-4e87-baef-adc7c8a6a128",
+  "passage_group_id": "pg-46c0ae2c2a54c51635bd42be06b23576",
+  "passage": "Email from Professor Lee to Student: Hi Jordan, I appreciate your interest in my seminar. Unfortunately, the class is currently full. If you’d like, I can put your name on the waitlist in case a spot opens up. Please let me know by Friday if you want to be added. Assuming enrollment changes, I’ll contact you as soon as possible. Thank you for your understanding.",
+  "existing_prompt": "[Daily Life — email] Why does Professor Lee use the phrase 'assuming enrollment changes'?",
+  "existing_choices": [
+   "To suggest Jordan should contact other professors",
+   "To encourage Jordan to check the class website",
+   "To apologize for the class being full",
+   "To indicate a spot is not guaranteed"
+  ],
+  "existing_key": "To indicate a spot is not guaranteed"
+ },
+ {
+  "bank_id": "4631a830-e785-4020-9576-a3cff5d445d7",
+  "passage_group_id": "pg-b7091111103a540c4d850991ce3143c4",
+  "passage": "Dear students, the registration for spring courses opens next Monday. Please check your student portal for the available courses and register early to secure your spot. Contact the registrar's office if you have any questions.",
+  "existing_prompt": "[Daily Life — Course-registration page] What should students do if they have questions about registration?",
+  "existing_choices": [
+   "Look for the answer on the portal",
+   "Contact the registrar's office",
+   "Ask a classmate who registered early",
+   "Wait until registration has closed"
+  ],
+  "existing_key": "Contact the registrar's office"
+ },
+ {
+  "bank_id": "34ca11e4-2c3b-4338-b880-1938574e467a",
+  "passage_group_id": "pg-e68aa50f6491310a01aaf30f21bebb90",
+  "passage": "Hey everyone! The Student Art Show is coming up soon. If you’d like to display your work, please submit your application by next Monday. We’ll try to include all submissions, but space is limited, so some pieces may not be accepted. If your work is selected, you’ll receive a confirmation email by Wednesday. Thanks for your understanding! – Art Show Committee",
+  "existing_prompt": "[Daily Life — campus notice] What is implied if a student does not receive a confirmation email by Wednesday?",
+  "existing_choices": [
+   "They will be notified later",
+   "They should contact the committee immediately",
+   "Their work was not selected for the show",
+   "Their application was lost"
+  ],
+  "existing_key": "Their work was not selected for the show"
+ },
+ {
+  "bank_id": "2547f86d-3263-4847-8136-ecdc35ff4ff5",
+  "passage_group_id": "pg-3edaadd8baa44b3a85e8371a0fd93658",
+  "passage": "Club Flyer: Join the Cooking Club for our monthly potluck! If you can, bring a dish to share, but everyone is welcome, even if you can’t. Space is limited, so please RSVP. We hope to see you Thursday at 6pm in the Student Center.",
+  "existing_prompt": "[Daily Life — club flyer] Why does the flyer say 'everyone is welcome, even if you can’t'?",
+  "existing_choices": [
+   "Because only those who send an RSVP will be given a seat.",
+   "To suggest that every guest is expected to bring a dish.",
+   "Because only club members may bring a dish.",
+   "To encourage people who can't bring food to attend."
+  ],
+  "existing_key": "To encourage people who can't bring food to attend."
+ },
+ {
+  "bank_id": "13c2c133-2a7c-4ee2-b751-a2fff7cd34fb",
+  "passage_group_id": "pg-99e3a159335c200232add3240bed4927",
+  "passage": "From: Student Housing To: Residents Subject: Laundry Room Update Dear Residents, We’re updating the laundry room machines next week. If you can, please finish your laundry before Monday morning to avoid delays. Access may be limited during installation, and we apologize for any inconvenience. The new machines should be ready by Wednesday, assuming everything goes as planned. Thank you for your patience.",
+  "existing_prompt": "[Daily Life — email] What does 'assuming everything goes as planned' suggest about the installation?",
+  "existing_choices": [
+   "Residents will be able to use the machines throughout the installation.",
+   "There is a possibility the installation could be delayed.",
+   "The new machines may never be installed at all.",
+   "The installation is certain to be done by Wednesday."
+  ],
+  "existing_key": "There is a possibility the installation could be delayed."
+ },
+ {
+  "bank_id": "8d8ef1d9-8308-4954-bb8d-71f42639826d",
+  "passage_group_id": "pg-38ac670f8e1905d52e07163d45a12fa0",
+  "passage": "Hey! If you’re thinking of joining the Outdoor Club trip this month, please note that spots are limited and priority will be given to members who haven’t participated in a trip yet. If you’ve already joined an outing this semester, you may be placed on a waiting list. Sign up by Sunday if you’re interested. We’ll confirm your spot by Tuesday. – Outdoor Club",
+  "existing_prompt": "[Daily Life — club flyer] What is implied about students who have already joined an outing this semester?",
+  "existing_choices": [
+   "They might not get a spot on this trip",
+   "They must pay a higher membership fee.",
+   "They are barred from signing up for any trip this semester",
+   "They are given priority over first-time participants"
+  ],
+  "existing_key": "They might not get a spot on this trip"
+ },
+ {
+  "bank_id": "833d64f2-a728-4b28-ad38-2eef4c95b5f4",
+  "passage_group_id": "pg-565272c01cff37063ebe6a46343dabff",
+  "passage": "Hey all! The campus gym is offering free trial fitness classes this month, but only if you haven’t attended a class before. If you’re interested, sign up online by the 10th. Please note: spots are limited, so registering early is recommended. If classes fill up, you’ll be placed on a waitlist. Hope to see you there! – Campus Gym Team",
+  "existing_prompt": "[Daily Life — campus notice] Why does the notice specify 'only if you haven’t attended a class before'?",
+  "existing_choices": [
+   "To restrict the offer to new participants",
+   "To make the classes more advanced",
+   "To allow people to attend multiple free classes",
+   "To encourage everyone to sign up"
+  ],
+  "existing_key": "To restrict the offer to new participants"
+ },
+ {
+  "bank_id": "b67f18ad-68a5-4053-a171-5101b77f7be2",
+  "passage_group_id": "pg-3812d6ab2ec3975529383630cd2cfcf5",
+  "passage": "Campus Notice: Due to ongoing maintenance, the east wing gym will be open for limited hours this week. If you can, please use the west wing facilities instead. Access to the east wing is not guaranteed, as schedules may change without notice. We apologize for any inconvenience and appreciate your understanding.",
+  "existing_prompt": "[Daily Life — campus notice] What does 'access to the east wing is not guaranteed' suggest about the gym schedule?",
+  "existing_choices": [
+   "The schedule could change unexpectedly.",
+   "The gym will be closed for the whole week.",
+   "The gym will be open every day.",
+   "The schedule is posted online."
+  ],
+  "existing_key": "The schedule could change unexpectedly."
+ },
+ {
+  "bank_id": "533ca98c-b23d-45f5-b85b-69371ffd171f",
+  "passage_group_id": "pg-60496b357327c463ae03839aef3d3e6d",
+  "passage": "Subject: Job Opportunity - Student Assistant Dear Students, The Library is looking for a Student Assistant to help with daily operations. This position requires 10 hours per week, with flexible scheduling available. If you can manage your time well, this could be a great fit. Please apply by Friday, assuming you meet the eligibility criteria. Interviews will be conducted next week. We look forward to your applications! Sincerely, Library Staff",
+  "existing_prompt": "[Daily Life — email] Why does the email mention 'assuming you meet the eligibility criteria'?",
+  "existing_choices": [
+   "To imply that the criteria are strict",
+   "To ensure only qualified students apply",
+   "To suggest that the position is competitive",
+   "To discourage students from applying"
+  ],
+  "existing_key": "To ensure only qualified students apply"
+ },
+ {
+  "bank_id": "d7638194-19f8-42c5-a960-f2f06b16f903",
+  "passage_group_id": "pg-7ae6ec2b79e66eec46789080b13284b4",
+  "passage": "Hey everyone! I’m selling my mini fridge (barely used) for $40 OBO. Pick up from North Hall anytime this week, but if you need delivery, I can only do Friday after 5pm, assuming my roommate’s car is available. Please message me if interested. If I get multiple offers, I’ll go with whoever can pick up first. Thanks! - Jamie",
+  "existing_prompt": "[Daily Life — Social Media Post] Why does Jamie mention 'assuming my roommate’s car is available'?",
+  "existing_choices": [
+   "To suggest that the price may change.",
+   "To indicate that pickup is preferred.",
+   "To explain why delivery is not guaranteed.",
+   "To warn that the fridge might not be available."
+  ],
+  "existing_key": "To explain why delivery is not guaranteed."
+ },
+ {
+  "bank_id": "21be1a75-e3b7-4f94-8525-06f2d0cf54bc",
+  "passage_group_id": "pg-dacbf2936231bcb4a1b298f8125f8510",
+  "passage": "Hi everyone, the campus gym will be closed this weekend for repairs. We apologize for the inconvenience. Regular hours will resume on Monday. Thank you for your understanding.",
+  "existing_prompt": "[Daily Life — Campus notice] What should gym users do if they want to work out this weekend?",
+  "existing_choices": [
+   "Find an alternative location to exercise.",
+   "Complain to the gym management.",
+   "Wait until Monday to work out.",
+   "Ignore the closure and visit the gym."
+  ],
+  "existing_key": "Find an alternative location to exercise."
+ },
+ {
+  "bank_id": "0c90d9d4-33e0-44d9-b5e8-9450e2b3141a",
+  "passage_group_id": "pg-cd4cf9bea450869b26c9a7dd5c022deb",
+  "passage": "Hey guys! Just a heads up: the gym will be closing early this Friday for maintenance. If you can, try to finish your workouts by 6:30 PM. The doors will lock at 7 PM sharp, so don’t leave your stuff inside. We apologize for any inconvenience and appreciate your understanding. Regular hours resume Saturday. Thanks! — Campus Recreation",
+  "existing_prompt": "[Daily Life — campus notice] Why does the notice say 'if you can, try to finish your workouts by 6:30 PM'?",
+  "existing_choices": [
+   "Because the gym will close at 6:30 PM.",
+   "Because everyone must leave by 6:00 PM.",
+   "To suggest people can stay as late as they want.",
+   "To politely encourage people to finish early without making it a strict rule."
+  ],
+  "existing_key": "To politely encourage people to finish early without making it a strict rule."
+ },
+ {
+  "bank_id": "f1b3a307-d2e0-4d15-a3e0-2e202aa1f50f",
+  "passage_group_id": "pg-247e678861de18ca836e64b305facc29",
+  "passage": "Course Registration Reminder: Registration for spring courses will close at midnight on Friday. If you can’t register by then, you may be able to join a waitlist, space permitting. Please note that some courses may fill before the deadline. Register early to secure your spot.",
+  "existing_prompt": "[Daily Life — course-registration page] What does the reminder suggest about joining a waitlist after Friday?",
+  "existing_choices": [
+   "A place on a waitlist is not guaranteed to become a seat.",
+   "A waitlist place will become a seat as soon as another student drops the course.",
+   "A waitlist is opened for any course that fills before the deadline.",
+   "Students must have tried to register before Friday to be put on a waitlist."
+  ],
+  "existing_key": "A place on a waitlist is not guaranteed to become a seat."
+ },
+ {
+  "bank_id": "735d50d1-4a78-4e1d-82b8-22a08614ac54",
+  "passage_group_id": "pg-b3fc31e78b1a9d4982de36ad724d1beb",
+  "passage": "Subject: Study Group for Chemistry 102 Hi everyone, If you can, please join our weekly study group for Chemistry 102 in the library’s second-floor lounge. We meet Mondays at 6 p.m., but space is limited, so it’s first come, first served. If you’re running late, message me and I’ll try to save you a spot, assuming there’s still room. Snacks provided! Hope to see you there. Best, Maya",
+  "existing_prompt": "[Daily Life — email] Why does Maya mention 'assuming there’s still room'?",
+  "existing_choices": [
+   "To indicate the group is always full",
+   "To suggest latecomers will be turned away at the door",
+   "To encourage everyone to arrive late",
+   "To politely warn that she cannot guarantee a spot for latecomers"
+  ],
+  "existing_key": "To politely warn that she cannot guarantee a spot for latecomers"
+ },
+ {
+  "bank_id": "acec3206-5544-4d96-ab41-f5a0a6e5592f",
+  "passage_group_id": "pg-3ec26c768f0ec97d5a3f1b79ecd0906a",
+  "passage": "Dear Professor Smith, I hope this email finds you well. I am writing to request an extension on my research paper due to unforeseen circumstances. I would appreciate any additional time you could offer. Thank you for your understanding. Best, Alex.",
+  "existing_prompt": "[Daily Life — Email to professor] What is Alex's main request in the email?",
+  "existing_choices": [
+   "Feedback on the research paper.",
+   "An extension on the research paper.",
+   "Advice on unforeseen circumstances.",
+   "A meeting to discuss the paper."
+  ],
+  "existing_key": "An extension on the research paper."
+ },
+ {
+  "bank_id": "647a69b1-b557-49ad-b38d-f947cbc2c6c6",
+  "passage_group_id": "pg-6368ac2cd04bf90ec7bc94ff6d9486b8",
+  "passage": "[Daily Life — Email] From: Student Council To: All Students Subject: Club Fair Join us for the annual Club Fair this Friday from 3 PM to 6 PM at the Student Center. Discover clubs, meet members, and enjoy free snacks! We hope to see you there.",
+  "existing_prompt": "What is the main purpose of this email?",
+  "existing_choices": [
+   "To publish the schedule for the whole week",
+   "To announce the founding of a new club",
+   "To invite students to the Club Fair",
+   "To advertise the free snacks being served"
+  ],
+  "existing_key": "To invite students to the Club Fair"
+ },
+ {
+  "bank_id": "65ad0161-b8bb-41b8-ab8b-49d6a4cbf1c2",
+  "passage_group_id": "pg-40d1cb2a466583da96d1928eb2ed45c4",
+  "passage": "Hey everyone! The Film Club is planning a movie night this Friday at 7:30 p.m. in Room 204. If you can, bring your own snacks, but we’ll have popcorn just in case. Please RSVP by Thursday so we know how many seats to set up. If you can’t make it, no worries—we’ll have another event soon. Hope to see you there!",
+  "existing_prompt": "[Daily Life — club flyer] What does the phrase 'no worries—we’ll have another event soon' suggest about the club's attitude?",
+  "existing_choices": [
+   "They assume that every member will attend each of their events",
+   "They feel let down when members cannot attend",
+   "They will stop scheduling events if too few people RSVP by Thursday",
+   "They want to be inclusive and not pressure anyone to attend"
+  ],
+  "existing_key": "They want to be inclusive and not pressure anyone to attend"
+ },
+ {
+  "bank_id": "fbb3767b-da9a-4a41-a0ea-497f3e46eb1d",
+  "passage_group_id": "pg-5086343917c011858b51067a25b7d86d",
+  "passage": "From: Campus Events Office Subject: Spring Festival Volunteers Needed We are looking for enthusiastic volunteers to help with the Spring Festival on April 15th. Volunteers are needed for setup, event management, and cleanup. Shifts are available from 9 AM to 5 PM. All volunteers receive a free T-shirt and lunch. Sign up by April 5th.",
+  "existing_prompt": "[Daily Life — Campus notice] What is implied about the Spring Festival?",
+  "existing_choices": [
+   "It is a small event held for a private group.",
+   "It is planned as an indoor event this April.",
+   "It is open only to enrolled students.",
+   "It requires significant organization."
+  ],
+  "existing_key": "It requires significant organization."
+ },
+ {
+  "bank_id": "1d39d60e-ec4e-4bf6-ad27-27925aa4c633",
+  "passage_group_id": "pg-04b7d32b62d51a58fcefed6704026caa",
+  "passage": "Attention all students: The library will close early at 3 PM this Friday for maintenance. Please plan your visits accordingly. If you need to return books, use the drop box outside the main entrance.",
+  "existing_prompt": "[Daily Life — Campus notice] What should students do if they need to return books on Friday?",
+  "existing_choices": [
+   "Use the drop box outside the main entrance.",
+   "Visit the library before 3 PM.",
+   "Contact the library staff.",
+   "Wait until the library reopens."
+  ],
+  "existing_key": "Use the drop box outside the main entrance."
+ },
+ {
+  "bank_id": "ebdc4617-06e3-4517-81d4-ecb97e0bda82",
+  "passage_group_id": "pg-a32ae140a5ff40fdc8c60f36dcf79770",
+  "passage": "[Daily Life — Email] From: Student Services To: All Students Subject: Library Renovation Dear Students, Please be informed that the library will be closed for renovation from March 1 to March 15. During this period, you can access online resources or visit the temporary study area in Building B. We apologize for any inconvenience. Best, Student Services",
+  "existing_prompt": "What should students do if they need a place to study during the library closure?",
+  "existing_choices": [
+   "Use only the online resources during the closure",
+   "Visit the temporary study area in Building B",
+   "Wait for the library to reopen in the middle of March",
+   "Study at home until renovations finish"
+  ],
+  "existing_key": "Visit the temporary study area in Building B"
+ },
+ {
+  "bank_id": "d825dcd8-c7e1-48e5-9484-d1cb6317a14e",
+  "passage_group_id": "pg-513f882c286326f55eba45af1b9ebc06",
+  "passage": "From: Professor Lee To: Jordan Kim Subject: Office Hours Hi Jordan, Thank you for your email. I’m afraid I won’t be able to meet this Friday as you requested, but I can offer a slot next Monday at 2pm if you’re available. If not, please suggest another time and I’ll do my best to accommodate, schedule permitting. Best, Professor Lee",
+  "existing_prompt": "[Daily Life — email] What does Professor Lee mean by 'schedule permitting'?",
+  "existing_choices": [
+   "He will rearrange his other appointments so that Jordan can meet on Friday",
+   "He might not be able to meet at times other than Monday 2pm",
+   "He guarantees that he can accommodate whatever time Jordan proposes",
+   "He is available only on Mondays for the rest of the term"
+  ],
+  "existing_key": "He might not be able to meet at times other than Monday 2pm"
+ },
+ {
+  "bank_id": "66fb30b2-de52-44ad-8abb-23f671bf7ae4",
+  "passage_group_id": "pg-e0646701c82889b282d946c8cd026eea",
+  "passage": "[Daily Life — Social Media Post] Hey everyone! The campus bookstore is having a flash sale tomorrow from 12 PM to 4 PM. All textbooks are 20% off. Don't miss out on this great opportunity to save on your course materials!",
+  "existing_prompt": "Why was this post likely made?",
+  "existing_choices": [
+   "To inform about a new bookstore location",
+   "To announce a temporary discount",
+   "To apologize for high textbook prices",
+   "To encourage online shopping"
+  ],
+  "existing_key": "To announce a temporary discount"
+ },
+ {
+  "bank_id": "08b2ec90-4a6e-4610-baf6-1262e870663e",
+  "passage_group_id": "pg-b29cf50ed5d80bccda3d09e97f8422b1",
+  "passage": "We are hiring part-time baristas! Flexible hours, no experience required. Apply at the café or online.",
+  "existing_prompt": "[Daily Life — Job ad] What should interested applicants do?",
+  "existing_choices": [
+   "Call the manager",
+   "Apply at the café or online",
+   "Submit a resume by mail",
+   "Attend an interview immediately"
+  ],
+  "existing_key": "Apply at the café or online"
+ },
+ {
+  "bank_id": "b90fa03b-d8a2-4807-a187-36da6a53cca0",
+  "passage_group_id": "pg-2ca973ceb1cf1c8f45c3ab5b4ed175c8",
+  "passage": "Course Registration Portal Welcome to Spring 2026 registration! Please note that some courses may be canceled if minimum enrollment is not reached. If you are waitlisted, you will be notified by email if a spot opens up. Registration closes at 5:00 PM on January 15th. After this time, changes are not guaranteed, but you may contact the Registrar’s Office for assistance.",
+  "existing_prompt": "[Daily Life — course-registration page] Why does the portal say 'changes are not guaranteed' after the deadline?",
+  "existing_choices": [
+   "Because the registration system shuts down permanently",
+   "Because it may not be possible to process requests after the deadline",
+   "Because all courses are full after the deadline",
+   "Because students are not allowed to contact the Registrar’s Office"
+  ],
+  "existing_key": "Because it may not be possible to process requests after the deadline"
+ },
+ {
+  "bank_id": "5e7550a6-1d3a-4b62-bdea-94be8c29b6dd",
+  "passage_group_id": "pg-9655ab44a7ec52e26233d6e6665a3503",
+  "passage": "Job Ad: Part-Time Barista We are looking for a friendly and reliable barista to join our team at Brewed Awakenings. The position is part-time, with flexible hours. Experience is preferred but not required. If you can work weekends, that’s a plus! Please apply by sending your resume to brewedawakenings@coffee.com. Interviews will be conducted on a rolling basis, so apply early to secure a spot. Best, Brewed Awakenings Team",
+  "existing_prompt": "[Daily Life — job ad] Why does the ad mention 'apply early to secure a spot'?",
+  "existing_choices": [
+   "To indicate that late applications will not be considered.",
+   "To encourage applicants to apply even without experience.",
+   "To imply that the job is very competitive.",
+   "To suggest that positions are limited."
+  ],
+  "existing_key": "To suggest that positions are limited."
+ },
+ {
+  "bank_id": "8edf8bfc-c63a-4f60-8f45-436b1bd74137",
+  "passage_group_id": "pg-6471fc03185b4d123b0363884b050e7b",
+  "passage": "Hey everyone! Join us for the Photography Club meeting this Thursday at 5 PM in Room 204. Bring your cameras and any photos you'd like to share. New members are always welcome!",
+  "existing_prompt": "[Daily Life — Club flyer] What should new members bring to the meeting?",
+  "existing_choices": [
+   "Snacks and drinks.",
+   "Notebooks and pens.",
+   "Cameras and photos.",
+   "Membership forms."
+  ],
+  "existing_key": "Cameras and photos."
+ },
+ {
+  "bank_id": "7900440c-e223-4dea-9c6d-84a0cf8a359e",
+  "passage_group_id": "pg-ba14c97ac04effa1378b90f49d27db1a",
+  "passage": "Due to maintenance, the library will close early at 3 PM this Friday. Please plan your visits accordingly. We apologize for any inconvenience.",
+  "existing_prompt": "[Daily Life — Campus notice] Why might the library have issued this notice?",
+  "existing_choices": [
+   "To inform about early closure",
+   "To announce a new book collection",
+   "To promote library events",
+   "To request feedback from students"
+  ],
+  "existing_key": "To inform about early closure"
+ },
+ {
+  "bank_id": "912fa58a-6734-4773-8db1-7c64f2402ed3",
+  "passage_group_id": "pg-15b933a80527eee257852cee73c05e6e",
+  "passage": "Join us for the annual Film Club marathon this Saturday! We'll be screening classic films from 10 AM to 10 PM in the student lounge. Snacks provided. Bring your friends and enjoy a day of cinema!",
+  "existing_prompt": "[Daily Life — Club flyer] What should participants bring to the event?",
+  "existing_choices": [
+   "Food",
+   "Tickets",
+   "Friends",
+   "Chairs"
+  ],
+  "existing_key": "Friends"
+ },
+ {
+  "bank_id": "dd49b992-d7f6-4f60-b3ac-f7c4e3bd5fdb",
+  "passage_group_id": "pg-6efdfc809fe3db19e63642a703dcbc0d",
+  "passage": "Hey everyone, Just a quick reminder that the Photography Club meeting is tomorrow at 5 PM in Room 204. We’ll be discussing plans for our upcoming gallery show. If you’re interested in exhibiting your work, please bring a sample. We might have limited spots, so priority will be given to those who attend the meeting. Looking forward to seeing your creative ideas! Cheers, Alex",
+  "existing_prompt": "[Daily Life — social-media post] Why does Alex mention 'priority will be given to those who attend the meeting'?",
+  "existing_choices": [
+   "To encourage attendance at the meeting",
+   "To suggest that the meeting might be canceled",
+   "To imply that the gallery show is competitive",
+   "To ensure only the best work is exhibited"
+  ],
+  "existing_key": "To encourage attendance at the meeting"
+ },
+ {
+  "bank_id": "81013da8-c2f5-46fc-9d15-4ebddeba21b7",
+  "passage_group_id": "pg-92d36e10fb6b1fb8d484396233bbfb47",
+  "passage": "Notice: The university library will be closed for maintenance from 8 PM on Friday until 8 AM on Monday. During this period, online resources will remain accessible. We apologize for any inconvenience and appreciate your understanding.",
+  "existing_prompt": "[Daily Life — Campus notice] What should students do if they need library resources during the closure?",
+  "existing_choices": [
+   "Access online resources during the closure.",
+   "Wait until the library reopens on Monday.",
+   "Visit the library before 8 PM on Friday.",
+   "Contact the library staff for assistance."
+  ],
+  "existing_key": "Access online resources during the closure."
+ },
+ {
+  "bank_id": "8e0b1d75-a7f3-4c79-afd6-64f63e249141",
+  "passage_group_id": "pg-32fa835e6ed6f9d11068ac603dd46c74",
+  "passage": "Student Services Email Dear students, We are currently experiencing a high volume of requests for housing changes. We will do our best to accommodate everyone, but room changes are not guaranteed. If you have an urgent situation, please include details in your request. We appreciate your patience as we process requests in the order received.",
+  "existing_prompt": "[Daily Life — email] Why does the email say 'room changes are not guaranteed'?",
+  "existing_choices": [
+   "Only urgent requests will be processed",
+   "Students are not allowed to change rooms",
+   "There may not be enough rooms available for all requests",
+   "All requests will be processed immediately"
+  ],
+  "existing_key": "There may not be enough rooms available for all requests"
+ },
+ {
+  "bank_id": "8f24cdfd-8277-4b27-a712-25160ec6bef5",
+  "passage_group_id": "pg-e13bf4f46c8b08d9f3bb652b14690d05",
+  "passage": "Hey, just a heads-up: the laundry room is getting new machines on Monday. If you need to do laundry, try to finish before then, since access might be limited for a few days, depending on how long installation takes. Sorry for the short notice! - Dorm Manager",
+  "existing_prompt": "[Daily Life — Campus Notice] What is implied about laundry access after Monday?",
+  "existing_choices": [
+   "It will definitely be unavailable for several days.",
+   "It will be available only to staff.",
+   "It will be improved immediately after Monday.",
+   "It may be limited for an uncertain period."
+  ],
+  "existing_key": "It may be limited for an uncertain period."
+ },
+ {
+  "bank_id": "03727495-c25e-437d-a403-bfda9b5cf5cb",
+  "passage_group_id": "pg-490eb46ff31947e1c059473c82e9281a",
+  "passage": "SOCIAL MEDIA POST Lost & Found: If you lost a set of keys near the dining hall, please DM me with a description. I’ll hold onto them until Friday, after which I’ll turn them in to campus security if unclaimed. Thanks!",
+  "existing_prompt": "[Daily Life — social-media post] What should someone do if they think the keys are theirs but it’s already Saturday?",
+  "existing_choices": [
+   "Wait for another post about the keys",
+   "DM the original poster immediately",
+   "Go to the dining hall to look for the keys",
+   "Contact campus security to ask about the keys"
+  ],
+  "existing_key": "Contact campus security to ask about the keys"
+ },
+ {
+  "bank_id": "29cb4511-26ec-4de5-9155-70f1ecf47c0e",
+  "passage_group_id": "pg-d0a350e176819354cd788c8d8bfaf4fb",
+  "passage": "From: Student Council Subject: Upcoming Election Dear Students, Nominations for the Student Council election are open until next Friday. Interested candidates must submit their applications to the council office by 5 PM. Voting will take place the following week. Get involved and make your voice heard! Best, Student Council",
+  "existing_prompt": "[Daily Life — Email] What can be inferred about the Student Council's view on student participation?",
+  "existing_choices": [
+   "They prefer only a few students to participate.",
+   "They are indifferent to student participation.",
+   "They believe student participation is crucial.",
+   "They are concerned about low voter turnout."
+  ],
+  "existing_key": "They believe student participation is crucial."
+ },
+ {
+  "bank_id": "776ec2c1-9003-4586-98c4-f435de0d5614",
+  "passage_group_id": "pg-ad60dc52d0609ee40589a2e45e014a22",
+  "passage": "Hey team, just a quick reminder: our project presentation is scheduled for Wednesday at 2 PM. Make sure your slides are ready and rehearsed. Let me know if you have any questions. Cheers, Sarah.",
+  "existing_prompt": "[Daily Life — Email from team member] What is Sarah's role in the team based on the email?",
+  "existing_choices": [
+   "She is likely the team leader.",
+   "She is the project sponsor.",
+   "She is a new team member.",
+   "She is the audience for the presentation."
+  ],
+  "existing_key": "She is likely the team leader."
+ },
+ {
+  "bank_id": "bbaafe9a-79f6-4e6a-8e82-896260e96278",
+  "passage_group_id": "pg-c798413108e39d62bbca7eebc148b9ee",
+  "passage": "Course Registration Page: Advanced Spanish Welcome to the registration page for Advanced Spanish! This course is designed for students who have completed Intermediate Spanish or have equivalent experience. Assuming enrollment is sufficient, the course will begin on September 5th. Please register by August 15th to secure your spot. If you have any questions, feel free to contact the language department. Gracias, Language Department",
+  "existing_prompt": "[Daily Life — course-registration page] Why does the page mention 'assuming enrollment is sufficient'?",
+  "existing_choices": [
+   "To imply that the course is only for advanced students.",
+   "To suggest that the course is very popular.",
+   "To encourage students to register early.",
+   "To indicate that the course might be canceled if not enough students enroll."
+  ],
+  "existing_key": "To indicate that the course might be canceled if not enough students enroll."
+ },
+ {
+  "bank_id": "b2b47f1f-843e-4fe3-b973-8d862adcbec5",
+  "passage_group_id": "pg-efc6b56bd4734b1dc89e2828e5d1b52d",
+  "passage": "Social Media Post: Career Services Looking for a summer internship? Join our workshop on resume building and interview skills this Wednesday at 3 PM in Room 204. Limited spots available, so register early!",
+  "existing_prompt": "[Daily Life — Social Media Post] What should a student do to attend the workshop?",
+  "existing_choices": [
+   "Show up at Room 204 on Wednesday.",
+   "Register early due to limited spots.",
+   "Prepare a resume beforehand.",
+   "Contact Career Services for details."
+  ],
+  "existing_key": "Register early due to limited spots."
+ },
+ {
+  "bank_id": "39c21e79-dcaf-41e4-b659-71900f86653e",
+  "passage_group_id": "pg-d21f5e6c536b5c78d4496aebfd9180ca",
+  "passage": "Social Media Post Hey everyone! I’m selling my bike, but only if I can find someone to take it by this weekend. It’s in good shape and comes with a lock. Message me if you’re interested. Otherwise, I’ll keep it for now. Thanks!",
+  "existing_prompt": "[Daily Life — Social Media Post] Why does the seller say 'only if I can find someone to take it by this weekend'?",
+  "existing_choices": [
+   "The seller needs the bike gone soon",
+   "The bike is available all semester",
+   "The seller will lower the price after the weekend",
+   "The bike is not actually for sale"
+  ],
+  "existing_key": "The seller needs the bike gone soon"
+ },
+ {
+  "bank_id": "dcae5cfd-51a5-494d-914d-c212062cdc75",
+  "passage_group_id": "pg-2bf8d812acc4514bf2306c9ca25034db",
+  "passage": "Notice: The annual student art exhibition will be held in the university gallery from March 5 to April 10. Opening night is March 5 at 6 PM, featuring a reception with refreshments. Students, faculty, and guests are welcome. The gallery is open Monday to Friday, 10 AM to 4 PM, and Saturday, 12 PM to 4 PM. Admission is free.",
+  "existing_prompt": "[Daily Life — Campus notice] Why was this notice posted?",
+  "existing_choices": [
+   "To announce a new art course.",
+   "To inform about extended gallery hours.",
+   "To invite people to a gallery opening reception.",
+   "To request volunteers for the event."
+  ],
+  "existing_key": "To invite people to a gallery opening reception."
+ },
+ {
+  "bank_id": "ce4ef64a-5c26-4596-8c25-8925d427dc38",
+  "passage_group_id": "pg-c7329fb1d93fed777b23916785accc4e",
+  "passage": "Email: Student Union Subject: Movie Night Join us for a movie night this Friday at 7 PM in the Student Lounge. Snacks will be provided. Bring your friends! RSVP by Thursday to secure your spot.",
+  "existing_prompt": "[Daily Life — Email] What should a student do if they want to attend the movie night?",
+  "existing_choices": [
+   "Arrive at the Student Lounge at 7 PM.",
+   "Bring their own snacks.",
+   "RSVP by Thursday.",
+   "Invite their friends."
+  ],
+  "existing_key": "RSVP by Thursday."
+ },
+ {
+  "bank_id": "dfbf3f11-e594-4767-aff2-7fadeacae048",
+  "passage_group_id": "pg-5fc02e337f4806b81fa29789a7bc882d",
+  "passage": "Campus Notice: Library Renovation Dear Students, Please be advised that the library will undergo renovations starting next Monday. During this period, access to certain sections will be restricted. We apologize for any inconvenience this may cause. If you need materials from restricted areas, please request them in advance. Assuming enrollment remains steady, the renovations should be completed by the end of the semester. Thank you for your understanding. Library Staff",
+  "existing_prompt": "[Daily Life — campus notice] Why does the notice mention 'assuming enrollment remains steady'?",
+  "existing_choices": [
+   "To suggest that the library might close permanently.",
+   "To imply that the renovation schedule might change.",
+   "To encourage students to enroll in more classes.",
+   "To indicate that renovations depend on student numbers."
+  ],
+  "existing_key": "To imply that the renovation schedule might change."
+ },
+ {
+  "bank_id": "3a6ec685-af84-4925-b5ec-d5447b7a6b9d",
+  "passage_group_id": "pg-e6dc0310bca00a48c3e7548f7a771004",
+  "passage": "Email from Student Housing Dear Residents, We will be conducting routine fire alarm testing next week. If you can, please avoid using the elevators during testing hours. Testing will take place between 10am and 2pm each day. If you need special assistance, contact the Housing Office in advance. We apologize for any inconvenience and thank you for your cooperation.",
+  "existing_prompt": "[Daily Life — Email] What does the phrase 'if you can' suggest about avoiding the elevators?",
+  "existing_choices": [
+   "Some residents may need to use the elevators during testing.",
+   "The elevators will be switched off entirely from 10am until 2pm.",
+   "Residents are expected to leave the building during the tests.",
+   "Use of the elevators is forbidden until testing ends."
+  ],
+  "existing_key": "Some residents may need to use the elevators during testing."
+ },
+ {
+  "bank_id": "9a9dc7cd-e269-453c-a086-fd465ba12380",
+  "passage_group_id": "pg-55050760790a56f3e597fa28f2cc4ec4",
+  "passage": "Club Email: Hi all, We’re planning a movie night this Saturday in the lounge, assuming we get enough RSVPs. If you’re interested, please reply by Thursday. We’ll confirm the event on Friday. Snacks will be provided, but feel free to bring your own if you have dietary needs. Hope to see you!",
+  "existing_prompt": "[Daily Life — club email] Why does the organizer say 'assuming we get enough RSVPs'?",
+  "existing_choices": [
+   "The movie selection is not finalized",
+   "The lounge is not available on Saturday",
+   "The event will only happen if enough people respond",
+   "Everyone must bring their own snacks"
+  ],
+  "existing_key": "The event will only happen if enough people respond"
+ },
+ {
+  "bank_id": "248419f4-b49e-4166-8909-7f32eacc9fdd",
+  "passage_group_id": "pg-6e88091d0a609fd8bf3528b3b8b7c6e4",
+  "passage": "Join us for the annual job fair this Saturday from 10 AM to 4 PM at the Student Center. Meet potential employers and explore career opportunities. Dress professionally and bring copies of your resume.",
+  "existing_prompt": "[Daily Life — Job ad] Why is it important to dress professionally for the job fair?",
+  "existing_choices": [
+   "To meet the dress code required at the Student Center.",
+   "To make a good impression on potential employers.",
+   "To compete for the best-dressed prize.",
+   "To look no different from the other students there."
+  ],
+  "existing_key": "To make a good impression on potential employers."
+ },
+ {
+  "bank_id": "e90ab006-f5dd-4301-a12c-02dc9095a29e",
+  "passage_group_id": "pg-6e39235f1a2cd95aeb6baa3fd6121f6a",
+  "passage": "Job Opportunity: Student Assistant The campus bookstore is hiring a student assistant for the spring semester. Applicants must be available at least 10 hours per week, if possible. Preference will be given to students with prior retail experience, but all are encouraged to apply. Applications will be reviewed as received, so early submission is recommended.",
+  "existing_prompt": "[Daily Life — job ad] What does 'if possible' suggest about the 10-hour availability requirement?",
+  "existing_choices": [
+   "Only students who can work exactly 10 hours can apply",
+   "Applicants who can't work 10 hours per week may still be considered",
+   "Applicants must work more than 10 hours per week",
+   "The bookstore will not hire anyone with less than 10 hours availability"
+  ],
+  "existing_key": "Applicants who can't work 10 hours per week may still be considered"
+ },
+ {
+  "bank_id": "a29fff73-392b-45c1-a14b-bda841563812",
+  "passage_group_id": "pg-938f4db00c78ea133223eee4d48ac051",
+  "passage": "Subject: Group Study Room Reservations Hi all, If you can, please submit your group study room requests by Thursday evening. We’ll do our best to accommodate everyone, but space is limited, so not all requests can be guaranteed. If you don’t hear back by Friday noon, assume your request could not be fulfilled this week. Thanks for understanding! -Library Services",
+  "existing_prompt": "[Daily Life — email from service dept] Why does the message include the phrase 'if you can'?",
+  "existing_choices": [
+   "To suggest that submitting late requests is acceptable",
+   "To warn that late requests will be ignored",
+   "To indicate that requests after Thursday will be prioritized",
+   "To acknowledge that some students may have difficulty submitting by Thursday"
+  ],
+  "existing_key": "To acknowledge that some students may have difficulty submitting by Thursday"
+ },
+ {
+  "bank_id": "2d51d084-ccea-44c9-823d-4e319a6b16f5",
+  "passage_group_id": "pg-399069c32b902d10aee49ce91c3c6ded",
+  "passage": "Email from Professor: Assignment Extension Dear Students, I hope you are all doing well. I understand that many of you have been busy with midterms. Therefore, I am granting an extension for the upcoming assignment. The new deadline is next Friday. If you have any questions or concerns, please feel free to reach out. Remember, this extension is a one-time offer, so plan accordingly. Best regards, Professor Lee",
+  "existing_prompt": "[Daily Life — email] Why does Professor Lee mention 'this extension is a one-time offer'?",
+  "existing_choices": [
+   "To imply that the assignment is very important.",
+   "To suggest that students should not ask for more time.",
+   "To encourage students to submit their work early.",
+   "To emphasize that no further extensions will be given."
+  ],
+  "existing_key": "To emphasize that no further extensions will be given."
+ },
+ {
+  "bank_id": "091ec626-dae3-48ea-bd42-b27f9e02154d",
+  "passage_group_id": "pg-ad89dc96196a2af82b2d4c354212aeba",
+  "passage": "Subject: Lost and Found Dear Students, A set of keys was found in the library on Tuesday evening. If you believe they are yours, please visit the front desk to describe them. Unclaimed items will be sent to Campus Security after Friday, so please check before then if you think you lost something. Thank you.",
+  "existing_prompt": "[Daily Life — Email] What is implied by 'Unclaimed items will be sent to Campus Security after Friday'?",
+  "existing_choices": [
+   "The keys will be thrown away after Friday",
+   "Students have until Friday to claim their keys",
+   "Campus Security will return the keys to the owner",
+   "The library will keep the keys indefinitely"
+  ],
+  "existing_key": "Students have until Friday to claim their keys"
+ },
+ {
+  "bank_id": "4b12ab83-bfe6-49c0-9e05-27c54bc4641c",
+  "passage_group_id": "pg-3bee65dee42381576fdc1fa40ef7aa09",
+  "passage": "Campus Dining Update: Starting next week, the salad bar will be open for lunch only, assuming enrollment in the meal plan remains high. If you can’t make it during lunch hours, other options will be available at the grill station. We appreciate your understanding as we adjust our services.",
+  "existing_prompt": "[Daily Life — campus notice] Why does the notice say 'assuming enrollment in the meal plan remains high'?",
+  "existing_choices": [
+   "The salad bar will close if fewer students buy meal plans",
+   "The grill station will be closed if enrollment drops",
+   "The salad bar will be open for dinner if more students enroll",
+   "The salad bar is only open to students with meal plans"
+  ],
+  "existing_key": "The salad bar will close if fewer students buy meal plans"
+ },
+ {
+  "bank_id": "6028f1dd-13af-4432-a5fd-2f444b3040b6",
+  "passage_group_id": "pg-9bc4040fe5cf4b5dbf175efca641aa86",
+  "passage": "Job Posting: Student Library Assistant The library is seeking a reliable student assistant for weekday afternoons. Duties include shelving books and helping patrons. If you can work at least two days per week, please apply by emailing your availability. Preference will be given to applicants with previous library experience, but all are welcome to apply. Applications received after Monday will not be considered.",
+  "existing_prompt": "[Daily Life — Job Ad] What is implied by 'Preference will be given to applicants with previous library experience, but all are welcome to apply'?",
+  "existing_choices": [
+   "Only experienced applicants will be hired",
+   "Applicants must have library experience",
+   "Applicants without experience still have a chance",
+   "No one without experience should apply"
+  ],
+  "existing_key": "Applicants without experience still have a chance"
+ },
+ {
+  "bank_id": "6b95d7a5-12bb-4de0-a78b-301b4aa692f6",
+  "passage_group_id": "pg-873db6a2146066e20be1f41d91915637",
+  "passage": "Club Flyer: Join the Green Thumb Society! Our weekly meetings are open to all, but space is limited. If you can, please RSVP by Thursday so we can plan refreshments. We’ll be planting herbs this Friday at 4pm in the Community Garden, weather permitting. Tools and seeds will be provided. Late arrivals may not receive materials. Hope to see you there!",
+  "existing_prompt": "[Daily Life — club flyer] Why does the flyer ask members to RSVP 'if you can'?",
+  "existing_choices": [
+   "To discourage people from coming without RSVP",
+   "To make the event seem more exclusive",
+   "To suggest only certain people should attend",
+   "To show that RSVP is helpful but not required"
+  ],
+  "existing_key": "To show that RSVP is helpful but not required"
+ },
+ {
+  "bank_id": "37991076-c761-415d-a72e-6d710e42f8b3",
+  "passage_group_id": "pg-1e0bbfb8b1a7d9dc464fd708280588fd",
+  "passage": "Hey everyone! Our club meeting is this Thursday at 6 PM in Room 204. We’ll discuss plans for the upcoming charity event. Bring your ideas and enthusiasm! Snacks will be provided.",
+  "existing_prompt": "[Daily Life — Club flyer] What is the main purpose of the club meeting?",
+  "existing_choices": [
+   "To distribute snacks to members on Thursday evening.",
+   "To discuss plans for the upcoming charity event.",
+   "To clean and set up Room 204 before the meeting starts.",
+   "To decide on a new club president for the next term."
+  ],
+  "existing_key": "To discuss plans for the upcoming charity event."
+ },
+ {
+  "bank_id": "1e644ca6-09bd-40fe-b883-8e8d501a86c4",
+  "passage_group_id": "pg-8829f69fae68cf6de89295d637f85181",
+  "passage": "Subject: Group Project Update Hi everyone, Just a quick note: if you haven’t yet sent your part of the report, please do so by Friday evening. I’ll start compiling everything over the weekend, assuming everyone’s sections are in. If you’re running late, let me know and I’ll try to adjust, but I can’t guarantee your part will be included if it’s much after Friday. Thanks for your efforts! Best, Maya",
+  "existing_prompt": "[Daily Life — Email] What can be inferred about Maya's attitude toward late submissions?",
+  "existing_choices": [
+   "She may include late parts, but only if they arrive soon after the deadline.",
+   "She would rather leave out any section that misses Friday, whatever explanation the sender offers.",
+   "Because she begins compiling over the weekend, she will not accept any part sent after Friday evening.",
+   "As long as latecomers email her in advance, she guarantees that their sections will appear in the report."
+  ],
+  "existing_key": "She may include late parts, but only if they arrive soon after the deadline."
+ },
+ {
+  "bank_id": "2d893ff4-e616-4819-b15e-89a3b4d53efa",
+  "passage_group_id": "pg-8303fb17648ade5ac3839b55bb4671ad",
+  "passage": "Dear students, the registration for spring courses opens next week. Please review your degree requirements and consult your advisor if needed. Ensure you register early to secure your preferred classes.",
+  "existing_prompt": "[Daily Life — Course-registration page] What should students do before registering for courses?",
+  "existing_choices": [
+   "Register without planning.",
+   "Review their degree requirements.",
+   "Ignore their advisor's advice.",
+   "Wait until the last minute."
+  ],
+  "existing_key": "Review their degree requirements."
+ },
+ {
+  "bank_id": "6d77430e-8430-48f6-8c13-05c105843408",
+  "passage_group_id": "pg-9ad65191099aed243fc2bd11e8e80ee5",
+  "passage": "Dear students, Registration for spring courses opens next Monday. Be sure to check prerequisites and availability. Advisors are available for consultation. Don't miss the deadline!",
+  "existing_prompt": "[Daily Life — Course-registration page] What is implied about the role of advisors?",
+  "existing_choices": [
+   "They can help with course selection",
+   "They will register students",
+   "They approve course prerequisites",
+   "They set the registration deadline"
+  ],
+  "existing_key": "They can help with course selection"
+ },
+ {
+  "bank_id": "ab91c343-5641-4164-bf85-3f179c696749",
+  "passage_group_id": "pg-c3b781f33280280fafc1b1743d99e8c0",
+  "passage": "From: Campus Events Team To: All Students Subject: Upcoming Film Screening Join us for a special screening of 'The Art of Change' this Thursday at 7 PM in the Student Union Theater. The film explores the impact of digital media on traditional art forms. Refreshments will be provided. Please RSVP by Wednesday to ensure seating.",
+  "existing_prompt": "[Daily Life — Campus notice] Why was this notice posted?",
+  "existing_choices": [
+   "To announce a change in the location of the film screening.",
+   "To inform students about a film screening and encourage attendance.",
+   "To request volunteers for an upcoming event.",
+   "To notify students about a new course on digital media."
+  ],
+  "existing_key": "To inform students about a film screening and encourage attendance."
+ },
+ {
+  "bank_id": "2c83d338-2ffa-4885-9e4b-0e203cebf4d9",
+  "passage_group_id": "pg-401eb0fac17cf97a1780211f196b026f",
+  "passage": "Email from Professor Lee to Student Hi, I received your request to submit your paper late. I understand you had a family emergency. While I can’t grant a full extension, I can accept your paper up to two days after the deadline without penalty, if you can submit it by then. Please let me know if this works for you. Best, Professor Lee",
+  "existing_prompt": "[Daily Life — email] Why does Professor Lee say 'if you can submit it by then'?",
+  "existing_choices": [
+   "To refuse the extension completely",
+   "To suggest the student should ignore the deadline",
+   "To check if the student is able to meet the new deadline",
+   "To ask the student to submit earlier than planned"
+  ],
+  "existing_key": "To check if the student is able to meet the new deadline"
+ },
+ {
+  "bank_id": "0237ba73-6444-4ba0-9166-25a3178e1618",
+  "passage_group_id": "pg-51f1567466e96ec57defdba5b9675b39",
+  "passage": "@CampusEvents (Social Media Post) Heads up! The outdoor movie night is planned for Friday, but we’ll have to cancel if it rains. If you can, bring your own blanket or chair. We’ll provide popcorn. Check our page Friday afternoon for updates. Hope to see you there, weather permitting!",
+  "existing_prompt": "[Daily Life — social-media post] Why does the post ask people to 'bring your own blanket or chair, if you can'?",
+  "existing_choices": [
+   "To discourage students from showing up unless they bring their own seating",
+   "Because the screening will simply be moved indoors if the weather turns",
+   "To be polite and acknowledge that not everyone may be able to bring one.",
+   "Because the organizers require every guest to bring their own seating to the movie night"
+  ],
+  "existing_key": "To be polite and acknowledge that not everyone may be able to bring one."
+ },
+ {
+  "bank_id": "0a9c919e-b239-4a36-bca5-9e980660d736",
+  "passage_group_id": "pg-e6e84e2ad15541bef728bd0a1f38e6db",
+  "passage": "From: Housing Office To: All Residents Subject: Laundry Room Access Dear Residents, We are updating the laundry room schedule to allow more access during peak times. If you can, please avoid doing laundry between 6-8pm to help reduce crowding. Access may be temporarily restricted if the room reaches capacity. Thank you for your cooperation.",
+  "existing_prompt": "[Daily Life — email] What is the Housing Office implying by asking residents to avoid laundry between 6-8pm 'if you can'?",
+  "existing_choices": [
+   "Only staff may use the laundry room between 6 and 8pm each evening",
+   "Laundry is not allowed between 6 and 8pm under the updated schedule",
+   "Residents who must do laundry at that time may still do so",
+   "The laundry room is closed during those hours to reduce crowding"
+  ],
+  "existing_key": "Residents who must do laundry at that time may still do so"
+ },
+ {
+  "bank_id": "2c20dede-3747-4950-964d-ab92577fa1dc",
+  "passage_group_id": "pg-4ee76e6bbd1388bd2308fe63d1253474",
+  "passage": "Hey everyone! The Film Club is planning a movie marathon this Friday night in the Student Lounge. We’ll start at 7pm and go until midnight, time permitting. If the lounge fills up, we’ll have to turn people away, so come early if you can. Snacks will be provided, but feel free to bring your own. Hope to see you there!",
+  "existing_prompt": "[Daily Life — Club Flyer] What is implied by 'come early if you can'?",
+  "existing_choices": [
+   "The movies start late",
+   "The event is only for early birds",
+   "Late arrivals might not get in",
+   "Snacks will be served first"
+  ],
+  "existing_key": "Late arrivals might not get in"
+ },
+ {
+  "bank_id": "14da8ef7-03e6-4b27-ac7e-5b63680e7b3a",
+  "passage_group_id": "pg-cc0776d2bd458db0d4f7e2c5b3688a48",
+  "passage": "Job Posting: Library Assistant The campus library is seeking a part-time assistant for weekday afternoons. Applicants should be available at least three days a week. If you have prior library experience, please mention it in your application. Only shortlisted candidates will be contacted. The position will remain open until filled, assuming sufficient interest.",
+  "existing_prompt": "[Daily Life — Job Ad] What is implied by 'the position will remain open until filled, assuming sufficient interest'?",
+  "existing_choices": [
+   "The library is hiring for several positions.",
+   "The job may close early if not enough people apply.",
+   "Everyone who applies will be interviewed.",
+   "The job will definitely be filled this semester."
+  ],
+  "existing_key": "The job may close early if not enough people apply."
+ },
+ {
+  "bank_id": "81b6a781-b258-4618-8421-c5de513663ad",
+  "passage_group_id": "pg-b4292d680e784971a8661166d54b204f",
+  "passage": "Student Government Social Media Post We’re planning a movie night next Friday, if we can fit it in. If you’d like to suggest a film, comment below by Wednesday. We’ll choose a movie based on popularity, but please note, we may not be able to accommodate all requests. Final details will be posted Thursday, assuming the event goes ahead.",
+  "existing_prompt": "[Daily Life — Social Media Post] Why does the post say 'assuming the event goes ahead'?",
+  "existing_choices": [
+   "Because the event may be canceled if there is not enough space.",
+   "Because an outdoor movie night could be called off if the weather turns bad.",
+   "Because the organizers have not yet settled on which Friday to hold it.",
+   "Because the film will not be chosen until the comments have been counted."
+  ],
+  "existing_key": "Because the event may be canceled if there is not enough space."
+ },
+ {
+  "bank_id": "7ab46289-4b20-46f4-8abc-c1f6cde7c9c5",
+  "passage_group_id": "pg-dcb8ea1ded36615311029c783683e220",
+  "passage": "From: Housing Services To: Residents Subject: Laundry Room Update Dear Residents, If you can, please avoid using the laundry room between 2 and 4 p.m. on Wednesday, as maintenance will be working on the machines. If you must do laundry during that time, only one machine may be available. Thank you for your cooperation.",
+  "existing_prompt": "[Daily Life — email] Why does Housing Services use the phrase 'if you can' in their request?",
+  "existing_choices": [
+   "To warn that the laundry room will be closed",
+   "To politely recognize that some residents may have no choice but to do laundry then",
+   "To imply that maintenance is optional",
+   "To suggest that laundry is not important"
+  ],
+  "existing_key": "To politely recognize that some residents may have no choice but to do laundry then"
+ },
+ {
+  "bank_id": "ca6c8ec4-9676-490b-8a87-228ae0f9fef9",
+  "passage_group_id": "pg-578b9fd0f4b54cbeb3d84eb8300fc131",
+  "passage": "Hey everyone! The Student Art Club is planning a mural painting event next Saturday, but we’ll only go ahead if the weather is dry. If you can, please RSVP by Thursday so we can buy enough supplies. We might have to limit spots if too many people sign up, so early replies are appreciated. Snacks will be provided. Hope to see you there! — Art Club Officers",
+  "existing_prompt": "[Daily Life — club flyer] Why does the flyer ask people to RSVP 'if you can'?",
+  "existing_choices": [
+   "They do not need to know how many people are coming.",
+   "They want only certain people to attend.",
+   "They are unsure about the event date.",
+   "The organizers understand not everyone can commit early."
+  ],
+  "existing_key": "The organizers understand not everyone can commit early."
+ },
+ {
+  "bank_id": "0bded2c2-dc55-4cd8-a214-65095210ff5a",
+  "passage_group_id": "pg-cf1cd34903f112830b03311ce1b62671",
+  "passage": "Subject: Roommate Needed (Spring Semester) Hi all, I’m looking for a roommate for my two-bedroom apartment starting in January. Rent is $650/month, utilities not included. The place is a 10-minute walk from campus. I’d prefer someone who doesn’t smoke and is tidy, but I’m flexible if you’re respectful. If you can move in before January 10th, that would be ideal, but later is possible if the room is still open. Please email me if interested. Thanks! – Jamie",
+  "existing_prompt": "[Daily Life — email] What does the post suggest about the kind of roommate Jamie is looking for?",
+  "existing_choices": [
+   "Jamie prefers a tidy non-smoker but will consider others who are respectful",
+   "Jamie will not consider anyone who smokes or who is untidy",
+   "Jamie will reduce the rent for a roommate who keeps the apartment clean",
+   "Jamie treats an early move-in date as more important than a roommate's habits"
+  ],
+  "existing_key": "Jamie prefers a tidy non-smoker but will consider others who are respectful"
+ },
+ {
+  "bank_id": "7815d4c0-aa00-474f-a8ed-1f0e65f2ed30",
+  "passage_group_id": "pg-08710aef368469f1b0db0ea9ed72c293",
+  "passage": "From: Professor Lin To: All Students in History 202 Subject: Office Hours Update Dear students, Due to a scheduling conflict, my office hours this week will be by appointment only. If you can’t make it during the usual time, please email me to arrange a different meeting slot. I apologize for any inconvenience and appreciate your flexibility. Regular office hours will resume next week, schedule permitting.",
+  "existing_prompt": "[Daily Life — Email] What does Professor Lin mean by 'schedule permitting'?",
+  "existing_choices": [
+   "Regular office hours will resume next week only if her schedule allows it",
+   "Regular office hours are certain to return to their usual time next week",
+   "Students will have to book an appointment in advance in order to attend",
+   "Office hours will be extended next week to make up for the lost time"
+  ],
+  "existing_key": "Regular office hours will resume next week only if her schedule allows it"
+ },
+ {
+  "bank_id": "23d32542-4a34-4078-a034-e7a690e9679b",
+  "passage_group_id": "pg-3fc42a7e89c4f6f8a1dd2cbe50625bab",
+  "passage": "Job Opportunity: Library Assistant The campus library is hiring part-time assistants for the evening shift. Applicants must be available at least three nights a week. Duties include shelving books, helping patrons, and basic desk work. If you can, submit your application by Friday for priority consideration. Positions may fill quickly, so early applications are encouraged. Only shortlisted candidates will be contacted.",
+  "existing_prompt": "[Daily Life — job ad] What does the ad suggest about an application submitted after Friday?",
+  "existing_choices": [
+   "It may still be considered, but it will not receive priority",
+   "It will not be accepted, because Friday is the closing date",
+   "It will be held until the next hiring round in the following term",
+   "It will be considered first, since most applicants apply early"
+  ],
+  "existing_key": "It may still be considered, but it will not receive priority"
+ },
+ {
+  "bank_id": "d4da3f30-f99d-4205-aebc-6f484bf999d0",
+  "passage_group_id": "pg-3e7e40020c66e50ff9f25563ab88a518",
+  "passage": "Course Registration Page: Registration for Biology 102 opens Monday at 9am. If you can, register early, as seats are limited and enrollment is on a first-come, first-served basis. A waitlist may be available. Students who do not meet prerequisites will be dropped.",
+  "existing_prompt": "[Daily Life — course-registration page] What does the page say will happen to a student who enrolls in Biology 102 without the prerequisites?",
+  "existing_choices": [
+   "The student will be removed from the course.",
+   "The student will be moved onto the waitlist instead.",
+   "The student may keep the seat by registering on Monday morning.",
+   "The student must get the instructor's approval before Monday."
+  ],
+  "existing_key": "The student will be removed from the course."
+ },
+ {
+  "bank_id": "a17a4876-69ab-49bf-879f-9c69b46b06b1",
+  "passage_group_id": "pg-4d82bd68a0a0f2be0effffdbe5f52061",
+  "passage": "Course Registration Page: Registration for Spring courses opens Monday at 9am. Priority is given to seniors and juniors, space permitting. If you are a sophomore or freshman, you may register starting Wednesday. Waitlists are available for full classes. Please check your student email for updates. Registration closes Friday at 5pm.",
+  "existing_prompt": "[Daily Life — course-registration page] What is implied by 'space permitting' in this context?",
+  "existing_choices": [
+   "Not all seniors and juniors are guaranteed a spot",
+   "Seniors and juniors may take more courses than other students",
+   "Registration is open to everyone at the same time",
+   "Waitlists are offered only to sophomores and freshmen"
+  ],
+  "existing_key": "Not all seniors and juniors are guaranteed a spot"
+ }
+]

@@ -1240,3 +1240,44 @@ brief, blinded by interleaving the 5 repaired items with 8 human-cleared
 ones in ONE 13-item set: repaired 40% grader-flags / 20% unanimous,
 control 54% / 25%. Repaired items measure BETTER than items the human
 passed. Accepted all five. Full record: CRV7-REPAIR-RESULT.md.
+
+### Daily Life siblings: two named kills, then a below-chance pass (2026-08-28)
+Mode A (one new sibling per stranded passage) died twice with a named
+mechanism each time — inverse-prudence (+44.4), then world-knowledge
+typicality (+30.6: "the solver guesses REALITY, not the item") — and
+passed on the final allowed revision at **−11.1, below control**, with
+zero certain eliminations. The fix that worked is FLAT-PRIOR ANCHORING
+on top of form symmetry: only test details whose four alternatives are
+a priori equally likely (which day/time/who/where/name/amount), with
+durations/amounts kept inside one plausible band (the pilot's one
+grader drop was an "up to a month" outlier among day-scale options).
+Full record: DL-SIBLINGS-RESULT.md. Stage 2 (59 fresh siblings,
+preflight clean on first pass) attack + QC in flight.
+
+### math-v3 pilot: options-only attack at chance (2026-08-28)
+12 items (solve-gated, named mis-steps) attacked options-only (stem
+stripped entirely): mean 27.8% ≈ uniform chance, margin −22.2 against
+a 50% best-fixed-letter control. Caveat recorded in
+MATH-V3-RESULT.md: the seeded re-lettering stacked 6/12 keys on one
+letter, so the control is generous — the absolute chance-level read is
+the honest one. Grader: 6 hard / 6 medium, all distractors strong,
+zero drops. The attackers' own heuristics (perfect-square preference,
+"precise decimal beats round") are now the documented anti-tells for
+math authoring briefs. Stage 2 (48 more items) authoring in flight.
+
+### build_a_sentence gate family was a trap (2026-08-28)
+`familyFor('build_a_sentence')` fell through to mc_hidden_source,
+demanding stages (nosource/qc) that cannot exist for a production
+task. Fixed in gate-contract.json + the bank-qc.ts mirror (the
+gate-wiring test catches disagreement between the two). Any future
+BAS batch gates as family `production` (shape/withsource/tells) with a
+ledger.json entry at the exact file sha.
+
+### SSAT enters the spec library, bank-less (2026-08-28)
+`ssat` added to TestFamily, TEST_SPECS (full 6-section Upper Level
+entry with original hard-item exemplars), testFormatGuidance en/ko,
+and study_topics (root a6f72794, 6 section rows). Deliberately NOT in
+SHIPPED_TEST_SLUGS — full mocks stay "coming soon" until a gated SSAT
+bank exists; live practice generation is what ships now. Peterson's
+practice PDFs are calibration reference ONLY — never ingest their
+items or passages into the bank (copyright).

@@ -1,0 +1,374 @@
+[
+ {
+  "id": "M1",
+  "domain": "Advanced Math",
+  "subskill": "Vieta's formulas / root relationships",
+  "topic_tag": "vieta-projectile-roots",
+  "difficulty": "hard",
+  "prompt": "A testing rig fires a small ball upward past a horizontal sensor beam. The ball's height above the beam, in meters, t seconds after firing is given by h(t) = -5t^2 + 30t - 20. The beam registers the ball at the two times t1 and t2 (in seconds) when h(t) = 0. The rig's software needs the value of t1^2 + t2^2 to estimate wear on the launcher. What is the value of t1^2 + t2^2?",
+  "choices": [
+   "28",
+   "44",
+   "36",
+   "20"
+  ],
+  "correct_answer": "28",
+  "explanation": "Dividing -5t^2 + 30t - 20 = 0 by -5 gives t^2 - 6t + 4 = 0, so t1 + t2 = 6 and t1*t2 = 4; then t1^2 + t2^2 = (t1 + t2)^2 - 2*t1*t2 = 36 - 8 = 28.",
+  "solve": "const a = -5, b = 30, c = -20; const s = -b/a; const p = c/a; return s*s - 2*p;",
+  "distractor_steps": [
+   {
+    "choice": "44",
+    "mis_step": "Sign slip in the product term of the identity: computing (t1+t2)^2 + 2*t1*t2 = 36 + 8 instead of subtracting 2*t1*t2."
+   },
+   {
+    "choice": "36",
+    "mis_step": "Treating the square of the sum as the sum of the squares: answering (t1+t2)^2 = 6^2 = 36, the intermediate quantity, without removing the cross term."
+   },
+   {
+    "choice": "20",
+    "mis_step": "Using the difference-of-roots identity by mistake: (t1+t2)^2 - 4*t1*t2 = 36 - 16 = 20, which is (t1 - t2)^2, not t1^2 + t2^2."
+   }
+  ]
+ },
+ {
+  "id": "M2",
+  "domain": "Advanced Math",
+  "subskill": "Exponential models",
+  "topic_tag": "exp-decay-instrument",
+  "difficulty": "medium",
+  "prompt": "A laboratory calibrates a radiation detector using a sealed isotope source whose activity is 480 counts per second when installed. The isotope's half-life is 12 hours, so the activity t hours after installation is A(t) = 480 * (1/2)^(t/12). The calibration procedure can begin only once the activity has dropped to 60 counts per second. How many hours after installation can the procedure begin?",
+  "choices": [
+   "36",
+   "96",
+   "24",
+   "48"
+  ],
+  "correct_answer": "36",
+  "explanation": "The activity must fall by a factor of 480/60 = 8 = 2^3, which takes 3 half-lives, so t = 3 * 12 = 36 hours.",
+  "solve": "const A0 = 480, target = 60, half = 12; return half * Math.log2(A0 / target);",
+  "distractor_steps": [
+   {
+    "choice": "96",
+    "mis_step": "Treating the decay ratio as a number of half-lives: computing t = 12 * (480/60) = 12 * 8, multiplying the half-life by the factor of decrease instead of by log2 of that factor."
+   },
+   {
+    "choice": "24",
+    "mis_step": "Undercounting the halvings by one: tracking 480 -> 240 -> 120 and stopping after 2 half-lives, so t = 2 * 12 = 24."
+   },
+   {
+    "choice": "48",
+    "mis_step": "Overcounting by including the starting value as a step: counting the four listed activities 480, 240, 120, 60 as four half-lives, so t = 4 * 12 = 48."
+   }
+  ]
+ },
+ {
+  "id": "A1",
+  "domain": "Algebra",
+  "subskill": "Systems of two linear equations",
+  "topic_tag": "mixture-fertilizer-system",
+  "difficulty": "medium",
+  "prompt": "A greenhouse manager blends two bulk fertilizers to fill a customer's order. Fertilizer A is 24% nitrogen by weight and Fertilizer B is 9% nitrogen by weight. The order calls for 60 kilograms of blended fertilizer that is exactly 14% nitrogen by weight. If a kilograms of Fertilizer A and b kilograms of Fertilizer B are used, then a + b = 60 and 0.24a + 0.09b = 0.14(60). How many kilograms of Fertilizer A should be used?",
+  "choices": [
+   "20",
+   "40",
+   "35",
+   "12.5"
+  ],
+  "correct_answer": "20",
+  "explanation": "Substituting b = 60 - a into 0.24a + 0.09b = 8.4 gives 0.15a + 5.4 = 8.4, so a = 3/0.15 = 20 kilograms of the 24% fertilizer (and 40 kilograms of the 9% fertilizer).",
+  "solve": "const total = 60, high = 24, low = 9, target = 14; return (target - low) * total / (high - low);",
+  "distractor_steps": [
+   {
+    "choice": "40",
+    "mis_step": "Solving the system correctly but reporting b, the kilograms of Fertilizer B, instead of the kilograms of Fertilizer A that were asked for."
+   },
+   {
+    "choice": "35",
+    "mis_step": "Ignoring the nitrogen contributed by Fertilizer B: requiring Fertilizer A alone to supply all 8.4 kg of nitrogen, giving a = 8.4 / 0.24 = 35."
+   },
+   {
+    "choice": "12.5",
+    "mis_step": "After reaching 0.24a + 0.09(60 - a) = 8.4 and isolating 8.4 - 5.4 = 3, dividing by Fertilizer A's concentration 0.24 instead of the concentration difference 0.15, giving 3 / 0.24 = 12.5."
+   }
+  ]
+ },
+ {
+  "id": "M3",
+  "domain": "Advanced Math",
+  "subskill": "Tangency via discriminant = 0",
+  "topic_tag": "tangent-drone-path",
+  "difficulty": "hard",
+  "prompt": "A survey drone flies over a field along the parabolic path y = -2x^2 + 20x - 15, where x is the horizontal distance in meters from the launch point and y is the height in meters. A ground-based laser rangefinder projects a beam along the line y = 4x + k, where k is a constant. For what value of k does the laser beam touch the drone's path at exactly one point?",
+  "choices": [
+   "17",
+   "33",
+   "49",
+   "57"
+  ],
+  "correct_answer": "17",
+  "explanation": "Setting -2x^2 + 20x - 15 = 4x + k gives 2x^2 - 16x + (15 + k) = 0, and tangency requires the discriminant (-16)^2 - 4(2)(15 + k) to equal 0, so 15 + k = 32 and k = 17. The value 33 is the height of the tangency point, not k.",
+  "solve": "const A = 2; const B = -(20 - 4); const constPart = 15; const k = (B*B)/(4*A) - constPart; return k;",
+  "distractor_steps": [
+   {
+    "choice": "33",
+    "mis_step": "Solves correctly (k = 17, tangency at x = 4) but reports the height of the tangency point, y = 4(4) + 17 = 33, instead of the asked-for parameter k."
+   },
+   {
+    "choice": "49",
+    "mis_step": "Drops the leading coefficient 2 from the discriminant, using 256 - 4(15 + k) = 0 instead of 256 - 8(15 + k) = 0, giving 15 + k = 64 and k = 49."
+   },
+   {
+    "choice": "57",
+    "mis_step": "Adds 4x instead of subtracting when setting the two expressions equal, producing 2x^2 - 24x + (15 + k) = 0; its discriminant condition 576 - 8(15 + k) = 0 gives k = 57."
+   }
+  ]
+ },
+ {
+  "id": "M4",
+  "domain": "Advanced Math",
+  "subskill": "Function composition",
+  "topic_tag": "composition-pricing",
+  "difficulty": "medium",
+  "prompt": "An electronics store applies a $15-off coupon to a speaker's listed price p dollars, modeled by d(p) = p - 15, and then the register applies 8% sales tax to the discounted amount, modeled by t(x) = 1.08x. A customer's final charge, t(d(p)), is $91.80. What was the speaker's listed price, in dollars?",
+  "choices": [
+   "85",
+   "98.89",
+   "100",
+   "106.80"
+  ],
+  "correct_answer": "100",
+  "explanation": "Since t(d(p)) = 1.08(p - 15) = 91.80, dividing by 1.08 gives p - 15 = 85, so the listed price was 100 dollars. The value 85 is the discounted price before tax, not the listed price.",
+  "solve": "const total = 91.80; const discounted = total / 1.08; const original = discounted + 15; return original;",
+  "distractor_steps": [
+   {
+    "choice": "85",
+    "mis_step": "Correctly undoes the tax (91.80 / 1.08 = 85) but stops at the intermediate discounted price instead of adding back the $15 coupon."
+   },
+   {
+    "choice": "98.89",
+    "mis_step": "Undoes the steps in the wrong order — adds the $15 coupon back first and then divides by 1.08: (91.80 + 15)/1.08 = 98.888..., about 98.89."
+   },
+   {
+    "choice": "106.80",
+    "mis_step": "Ignores the tax step entirely and only adds back the coupon: 91.80 + 15 = 106.80."
+   }
+  ]
+ },
+ {
+  "id": "A2",
+  "domain": "Algebra",
+  "subskill": "System with parameter (infinite solutions)",
+  "topic_tag": "param-supply-schedules",
+  "difficulty": "hard",
+  "prompt": "A landscaping company is comparing two mulch suppliers. Supplier A's total cost y dollars for x bags follows the schedule y = (3/4)x + 5, where 5 is a flat delivery fee. Supplier B's schedule satisfies cx - 8y = -5c - 10, where c is a constant. If the system of the two schedules has infinitely many solutions — that is, the two pricing schedules are identical — what is the value of c?",
+  "choices": [
+   "-10",
+   "-6",
+   "3/4",
+   "6"
+  ],
+  "correct_answer": "6",
+  "explanation": "Solving cx - 8y = -5c - 10 for y gives y = (c/8)x + (5c + 10)/8, and matching the slope 3/4 requires c/8 = 3/4, so c = 6; the intercept condition (5c + 10)/8 = 5 also gives 6, confirming the schedules coincide. The value 3/4 is the slope itself, left unmultiplied by 8.",
+  "solve": "const slopeA = 3/4; const c = slopeA * 8; const intercept = (5*c + 10)/8; if (Math.abs(intercept - 5) > 1e-9) return NaN; return c;",
+  "distractor_steps": [
+   {
+    "choice": "-6",
+    "mis_step": "Sign slip when isolating y: divides -8y = -cx - 5c - 10 by +8 instead of -8, reading the slope as -c/8, so -c/8 = 3/4 gives c = -6."
+   },
+   {
+    "choice": "3/4",
+    "mis_step": "Equates c directly with Supplier A's slope, forgetting that Supplier B's equation must first be divided by 8, so c is left as 3/4."
+   },
+   {
+    "choice": "-10",
+    "mis_step": "Sign slip on the flat fee when matching intercepts: sets (5c + 10)/8 = -5 instead of 5, giving 5c + 10 = -40 and c = -10."
+   }
+  ]
+ },
+ {
+  "id": "M5",
+  "domain": "Advanced Math",
+  "subskill": "Radical equation with extraneous root",
+  "topic_tag": "radical-cable-tension",
+  "difficulty": "medium",
+  "prompt": "A wave pulse travels along a stretched cable. Its speed v, in meters per second, is modeled by v = sqrt(6T - 14), where T is the tension in the cable in newtons. During a particular test, the measured speed also satisfies v = T - 5. What is the tension T, in newtons, during this test?",
+  "choices": [
+   "13",
+   "3",
+   "8",
+   "9/5"
+  ],
+  "correct_answer": "13",
+  "explanation": "Squaring sqrt(6T - 14) = T - 5 gives T^2 - 16T + 39 = 0, so T = 13 or T = 3; at T = 3 the right side T - 5 = -2 is negative while the square root is 2, so only T = 13 satisfies the original equation.",
+  "solve": "const disc = Math.sqrt(16*16 - 4*39); const roots = [(16 + disc)/2, (16 - disc)/2]; const valid = roots.filter(T => Math.abs(Math.sqrt(6*T - 14) - (T - 5)) < 1e-9); return valid[0];",
+  "distractor_steps": [
+   {
+    "choice": "3",
+    "mis_step": "Solves the squared equation T^2 - 16T + 39 = 0 and reports the extraneous root T = 3, which makes T - 5 negative and fails the original radical equation."
+   },
+   {
+    "choice": "8",
+    "mis_step": "Solves correctly but reports v, the wave speed (sqrt(6*13 - 14) = 8), instead of the tension T that was asked for."
+   },
+   {
+    "choice": "9/5",
+    "mis_step": "Drops the radical without squaring, solving the linear equation 6T - 14 = T - 5 to get T = 9/5."
+   }
+  ]
+ },
+ {
+  "id": "A3",
+  "domain": "Algebra",
+  "subskill": "Linear equations in two variables",
+  "topic_tag": "linear-van-rental",
+  "difficulty": "medium",
+  "prompt": "A moving-van rental company charges a one-time rental fee plus a constant charge for each mile driven, so the total cost is a linear function of miles driven. A rental in which the van is driven 120 miles costs $85, and a rental in which the van is driven 200 miles costs $117. What is the total cost, in dollars, of a rental in which the van is driven 150 miles?",
+  "choices": [
+   "97",
+   "101",
+   "60",
+   "145"
+  ],
+  "correct_answer": "97",
+  "explanation": "The per-mile charge is (117 - 85)/(200 - 120) = $0.40, so the one-time fee is 85 - 0.40(120) = $37, and a 150-mile rental costs 37 + 0.40(150) = $97.",
+  "solve": "const rate = (117 - 85) / (200 - 120); const fee = 85 - rate * 120; return fee + rate * 150;",
+  "distractor_steps": [
+   {
+    "choice": "101",
+    "mis_step": "Averages the two given costs, (85 + 117)/2 = 101, which would be valid only if 150 were the midpoint of 120 and 200 miles (the midpoint is 160)."
+   },
+   {
+    "choice": "60",
+    "mis_step": "Applies the correct per-mile rate of $0.40 to all 150 miles but omits the one-time rental fee: 0.40 * 150 = 60."
+   },
+   {
+    "choice": "145",
+    "mis_step": "Adds the per-mile charge for all 150 miles onto the $85 total of the 120-mile rental instead of onto the one-time fee: 85 + 0.40 * 150 = 145."
+   }
+  ]
+ },
+ {
+  "id": "A4",
+  "domain": "Algebra",
+  "subskill": "System with no solution (parallel lines)",
+  "topic_tag": "parallel-budget-lines",
+  "difficulty": "hard",
+  "prompt": "A caterer prepares x trays of pasta and y trays of salad. Each tray of pasta uses 6 pounds of produce and each tray of salad uses 8 pounds, and the caterer must use exactly the 96 pounds of produce on hand. Each tray of pasta costs $9 to make and each tray of salad costs k dollars, and the total production cost must be exactly $132. For what value of k is there NO combination of x and y (not necessarily whole numbers) that satisfies both requirements?",
+  "choices": [
+   "12",
+   "16/3",
+   "11",
+   "9"
+  ],
+  "correct_answer": "12",
+  "explanation": "The system 6x + 8y = 96 and 9x + ky = 132 has no solution when the coefficient ratios match but the constants' ratio does not: k/8 = 9/6 gives k = 12, and since 132/96 = 11/8 differs from 9/6, the lines are parallel and distinct.",
+  "solve": "const k = 8 * (9 / 6); const coeffRatio = 9 / 6; const constRatio = 132 / 96; if (Math.abs(coeffRatio - constRatio) < 1e-9) { return null; } return k;",
+  "distractor_steps": [
+   {
+    "choice": "16/3",
+    "mis_step": "Inverts the coefficient ratio, setting k/8 equal to 6/9 instead of 9/6, giving k = 8 * (6/9) = 16/3."
+   },
+   {
+    "choice": "11",
+    "mis_step": "Scales the y-coefficient 8 by the constants' ratio 132/96 instead of the x-coefficients' ratio 9/6, giving k = 8 * (132/96) = 11."
+   },
+   {
+    "choice": "9",
+    "mis_step": "Finds the correct scale factor 3/2 but applies it to the x-coefficient 6 instead of the y-coefficient 8, giving k = 6 * (3/2) = 9."
+   }
+  ]
+ },
+ {
+  "id": "M6",
+  "domain": "Advanced Math",
+  "subskill": "Polynomial equations in quadratic form",
+  "topic_tag": "quadform-lens-design",
+  "difficulty": "hard",
+  "prompt": "An optical engineer models the wavefront error E, in micrometers, of a prototype lens at signed horizontal position x millimeters from the optical axis (negative values are left of the axis) by E(x) = x^4 - k*x^2 + 49, where k is a positive calibration constant. The design specification requires the wavefront error to equal zero at exactly two distinct positions x. What is the value of k?",
+  "choices": [
+   "49",
+   "7",
+   "50",
+   "14"
+  ],
+  "correct_answer": "14",
+  "explanation": "Substituting u = x^2 gives u^2 - ku + 49 = 0; exactly two real positions require a repeated positive root, so k^2 - 4(49) = 0 with u = k/2 > 0, giving k = 14 (the zeros are x = ±sqrt(7)).",
+  "solve": "const c = 49; return 2 * Math.sqrt(c);",
+  "distractor_steps": [
+   {
+    "choice": "7",
+    "mis_step": "Sets the discriminant as k^2 - 49 = 0, dropping the factor 4 in b^2 - 4ac, and gets k = 7."
+   },
+   {
+    "choice": "49",
+    "mis_step": "Vieta mix-up: sets k equal to the PRODUCT of the u-roots (which is the constant 49) instead of their sum."
+   },
+   {
+    "choice": "50",
+    "mis_step": "Treats sqrt(49) = 7 as the required zero of E in x rather than as x^2, substitutes x = 7 into x^4 - k*x^2 + 49 = 0, and solves 49^2 - 49k + 49 = 0 to get k = 50."
+   }
+  ]
+ },
+ {
+  "id": "A5",
+  "domain": "Algebra",
+  "subskill": "Perpendicular lines — y-intercept",
+  "topic_tag": "perpendicular-trail-map",
+  "difficulty": "medium",
+  "prompt": "On a coordinate map of a nature preserve, each unit represents 1 kilometer. A straight access road passes through the points (1, 2) and (5, 10). A new hiking trail will run in a straight line perpendicular to the access road and pass through the ranger station located at (6, 4). What is the y-coordinate of the point where the trail crosses the y-axis?",
+  "choices": [
+   "16",
+   "1",
+   "7",
+   "-8"
+  ],
+  "correct_answer": "7",
+  "explanation": "The road's slope is (10 - 2)/(5 - 1) = 2, so the trail's slope is -1/2; through (6, 4) this gives y = -x/2 + 7, so the trail crosses the y-axis at 7.",
+  "solve": "const m = (10 - 2) / (5 - 1); const p = -1 / m; return 4 - p * 6;",
+  "distractor_steps": [
+   {
+    "choice": "-8",
+    "mis_step": "Uses the road's own slope 2 (parallel instead of perpendicular): b = 4 - 2(6) = -8."
+   },
+   {
+    "choice": "16",
+    "mis_step": "Negates the slope but does not take the reciprocal, using -2: b = 4 - (-2)(6) = 16."
+   },
+   {
+    "choice": "1",
+    "mis_step": "Takes the reciprocal but forgets the sign flip, using 1/2: b = 4 - (1/2)(6) = 1."
+   }
+  ]
+ },
+ {
+  "id": "A6",
+  "domain": "Algebra",
+  "subskill": "Linear inequalities in context",
+  "topic_tag": "inequality-event-capacity",
+  "difficulty": "hard",
+  "prompt": "An event planner is renting exactly 40 tables for a fundraiser. Round tables cost $60 each and seat 8 guests; rectangular tables cost $85 each and seat 12 guests. The total table rental cost can be at most $2,910, and the tables must provide seating for at least 380 guests. What is the greatest number of rectangular tables the planner can rent?",
+  "choices": [
+   "15",
+   "20",
+   "6",
+   "21"
+  ],
+  "correct_answer": "20",
+  "explanation": "With t rectangular tables, the cost condition 60(40 - t) + 85t <= 2910 gives t <= 20.4, and the seating condition 8(40 - t) + 12t >= 380 gives t >= 15, so the greatest feasible whole number of rectangular tables is 20.",
+  "solve": "const total = 40, budget = 2910, costRound = 60, costRect = 85, seatRound = 8, seatRect = 12, minSeats = 380; const tMax = Math.floor((budget - costRound * total) / (costRect - costRound)); const tMin = Math.ceil((minSeats - seatRound * total) / (seatRect - seatRound)); return tMax >= tMin ? tMax : NaN;",
+  "distractor_steps": [
+   {
+    "choice": "21",
+    "mis_step": "Correctly reaches t <= 20.4 from the budget but rounds the bound UP to 21, which violates the $2,910 budget."
+   },
+   {
+    "choice": "15",
+    "mis_step": "Solves the seating inequality correctly (t >= 15) but reports the minimum feasible value instead of the maximum that was asked for."
+   },
+   {
+    "choice": "6",
+    "mis_step": "Fails to substitute r = 40 - t, charging for all 40 round tables PLUS the rectangular tables: 85t + 60(40) <= 2910 gives t <= 6."
+   }
+  ]
+ }
+]

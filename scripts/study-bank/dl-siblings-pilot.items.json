@@ -1,0 +1,218 @@
+[
+ {
+  "id": "D1",
+  "bank_id": "bbaafe9a-79f6-4e6a-8e82-896260e96278",
+  "passage_group_id": "pg-c798413108e39d62bbca7eebc148b9ee",
+  "kind": "inference",
+  "passage": "Course Registration Page: Advanced Spanish Welcome to the registration page for Advanced Spanish! This course is designed for students who have completed Intermediate Spanish or have equivalent experience. Assuming enrollment is sufficient, the course will begin on September 5th. Please register by August 15th to secure your spot. If you have any questions, feel free to contact the language department. Gracias, Language Department",
+  "prompt": "[Daily Life — course-registration page] What can be inferred about who may enroll in Advanced Spanish?",
+  "choices": [
+   "A student who has never taken Intermediate Spanish may still be eligible to enroll.",
+   "Students are expected to have completed Intermediate Spanish at this school.",
+   "Enrollment in advanced courses typically requires a placement test.",
+   "Questions about the course should be sent by August 15th."
+  ],
+  "correct_answer": "A student who has never taken Intermediate Spanish may still be eligible to enroll.",
+  "explanation": "Because the page admits students who \"have equivalent experience,\" \"A student who has never taken Intermediate Spanish may still be eligible to enroll,\" whereas no placement test is mentioned and August 15th is the registration deadline, not a deadline for questions.",
+  "existing_prompt": "[Daily Life — course-registration page] Why does the page mention 'assuming enrollment is sufficient'?",
+  "existing_key": "To indicate that the course might be canceled if not enough students enroll."
+ },
+ {
+  "id": "D2",
+  "bank_id": "8e0b1d75-a7f3-4c79-afd6-64f63e249141",
+  "passage_group_id": "pg-32fa835e6ed6f9d11068ac603dd46c74",
+  "kind": "inference",
+  "passage": "Student Services Email Dear students, We are currently experiencing a high volume of requests for housing changes. We will do our best to accommodate everyone, but room changes are not guaranteed. If you have an urgent situation, please include details in your request. We appreciate your patience as we process requests in the order received.",
+  "prompt": "[Daily Life — email] What can be inferred about a housing request that was submitted recently?",
+  "choices": [
+   "It is likely to be approved if the student explains the situation in detail.",
+   "It may be reviewed only after earlier requests have been processed.",
+   "It is one of a small number of requests the office is reviewing.",
+   "It may be handled sooner if it is marked as urgent."
+  ],
+  "correct_answer": "It may be reviewed only after earlier requests have been processed.",
+  "explanation": "Since the office processes requests \"in the order received,\" \"It may be reviewed only after earlier requests have been processed,\" and nothing in the email promises approval for detailed explanations or faster handling for urgent requests.",
+  "existing_prompt": "[Daily Life — email] Why does the email say 'room changes are not guaranteed'?",
+  "existing_key": "There may not be enough rooms available for all requests"
+ },
+ {
+  "id": "D3",
+  "bank_id": "5e7550a6-1d3a-4b62-bdea-94be8c29b6dd",
+  "passage_group_id": "pg-9655ab44a7ec52e26233d6e6665a3503",
+  "kind": "next-step",
+  "passage": "Job Ad: Part-Time Barista We are looking for a friendly and reliable barista to join our team at Brewed Awakenings. The position is part-time, with flexible hours. Experience is preferred but not required. If you can work weekends, that’s a plus! Please apply by sending your resume to brewedawakenings@coffee.com. Interviews will be conducted on a rolling basis, so apply early to secure a spot. Best, Brewed Awakenings Team",
+  "prompt": "[Daily Life — job ad] According to the ad, what should a person who wants this job do next?",
+  "choices": [
+   "Send a resume together with proof of prior barista experience.",
+   "Complete an application form in person at the cafe.",
+   "Send a resume to the email address provided.",
+   "Wait for interview dates to be announced."
+  ],
+  "correct_answer": "Send a resume to the email address provided.",
+  "explanation": "The ad tells applicants to \"apply by sending your resume\" to the shop's email, so the next step is \"Send a resume to the email address provided,\" since experience is \"preferred but not required\" and interviews happen \"on a rolling basis\" rather than on announced dates.",
+  "existing_prompt": "[Daily Life — job ad] Why does the ad mention 'apply early to secure a spot'?",
+  "existing_key": "To suggest that positions are limited."
+ },
+ {
+  "id": "D4",
+  "bank_id": "6d77430e-8430-48f6-8c13-05c105843408",
+  "passage_group_id": "pg-9ad65191099aed243fc2bd11e8e80ee5",
+  "kind": "next-step",
+  "passage": "Dear students, Registration for spring courses opens next Monday. Be sure to check prerequisites and availability. Advisors are available for consultation. Don't miss the deadline!",
+  "prompt": "[Daily Life — Course-registration page] What would be an appropriate next step for a student who plans to register for spring courses?",
+  "choices": [
+   "Check prerequisites and availability",
+   "Register immediately, since courses typically fill in the order requests arrive",
+   "Wait to check availability until after registration has opened",
+   "Find out whether courses may still be added after the deadline"
+  ],
+  "correct_answer": "Check prerequisites and availability",
+  "explanation": "The notice tells students to \"Check prerequisites and availability\" ahead of Monday's opening, while registering now is impossible, waiting to check reverses the notice's instruction, and adding after the deadline conflicts with \"Don't miss the deadline.\"",
+  "existing_prompt": "[Daily Life — Course-registration page] What is implied about the role of advisors?",
+  "existing_key": "They can help with course selection"
+ },
+ {
+  "id": "D5",
+  "bank_id": "2c83d338-2ffa-4885-9e4b-0e203cebf4d9",
+  "passage_group_id": "pg-401eb0fac17cf97a1780211f196b026f",
+  "kind": "next-step",
+  "passage": "Email from Professor Lee to Student Hi, I received your request to submit your paper late. I understand you had a family emergency. While I can’t grant a full extension, I can accept your paper up to two days after the deadline without penalty, if you can submit it by then. Please let me know if this works for you. Best, Professor Lee",
+  "prompt": "[Daily Life — email] According to the email, what will the student need to do in order to avoid a late penalty?",
+  "choices": [
+   "Submit the paper within two days of the original deadline if they accept the offer",
+   "Submit the paper as soon as the family emergency has been resolved",
+   "Request a full extension in writing before the original deadline",
+   "Provide documentation of the emergency when submitting the paper"
+  ],
+  "correct_answer": "Submit the paper within two days of the original deadline if they accept the offer",
+  "explanation": "Because Professor Lee accepts the paper \"up to two days after the deadline without penalty,\" the student must \"Submit the paper within two days of the original deadline if they accept the offer\"; no documentation is requested, a full extension is refused, and no open-ended emergency allowance is given.",
+  "existing_prompt": "[Daily Life — email] Why does Professor Lee say 'if you can submit it by then'?",
+  "existing_key": "To check if the student is able to meet the new deadline"
+ },
+ {
+  "id": "D6",
+  "bank_id": "e90ab006-f5dd-4301-a12c-02dc9095a29e",
+  "passage_group_id": "pg-6e39235f1a2cd95aeb6baa3fd6121f6a",
+  "kind": "literal detail",
+  "passage": "Job Opportunity: Student Assistant The campus bookstore is hiring a student assistant for the spring semester. Applicants must be available at least 10 hours per week, if possible. Preference will be given to students with prior retail experience, but all are encouraged to apply. Applications will be reviewed as received, so early submission is recommended.",
+  "prompt": "[Daily Life — job ad] What does the posting say about how applications will be handled?",
+  "choices": [
+   "They will be held and reviewed together once the position has closed",
+   "They will be reviewed as they are received",
+   "Retail applicants are considered first",
+   "Late applications may not be accepted"
+  ],
+  "correct_answer": "They will be reviewed as they are received",
+  "explanation": "The posting states that applications \"will be reviewed as received,\" which \"They will be reviewed as they are received\" restates, whereas the posting mentions no closing date, no rejection of late applications, and gives retail experience preference in selection, not review order.",
+  "existing_prompt": "[Daily Life — job ad] What does 'if possible' suggest about the 10-hour availability requirement?",
+  "existing_key": "Applicants who can't work 10 hours per week may still be considered"
+ },
+ {
+  "id": "D7",
+  "bank_id": "9a9dc7cd-e269-453c-a086-fd465ba12380",
+  "passage_group_id": "pg-55050760790a56f3e597fa28f2cc4ec4",
+  "kind": "next-step",
+  "passage": "Club Email: Hi all, We’re planning a movie night this Saturday in the lounge, assuming we get enough RSVPs. If you’re interested, please reply by Thursday. We’ll confirm the event on Friday. Snacks will be provided, but feel free to bring your own if you have dietary needs. Hope to see you!",
+  "prompt": "[Daily Life — club email] According to the email, what should a member who hopes to attend do first?",
+  "choices": [
+   "Reply to the email by Friday",
+   "Reply to the email by Thursday",
+   "Bring their own snacks if they have dietary needs",
+   "Wait for the confirmation on Friday before deciding"
+  ],
+  "correct_answer": "Reply to the email by Thursday",
+  "explanation": "The email asks interested members to \"please reply by Thursday,\" while \"Reply to the email by Friday\" mistakes the day the event is confirmed for the RSVP deadline.",
+  "existing_prompt": "[Daily Life — club email] Why does the organizer say 'assuming we get enough RSVPs'?",
+  "existing_key": "The event will only happen if enough people respond"
+ },
+ {
+  "id": "D8",
+  "bank_id": "7ab46289-4b20-46f4-8abc-c1f6cde7c9c5",
+  "passage_group_id": "pg-dcb8ea1ded36615311029c783683e220",
+  "kind": "literal detail",
+  "passage": "From: Housing Services To: Residents Subject: Laundry Room Update Dear Residents, If you can, please avoid using the laundry room between 2 and 4 p.m. on Wednesday, as maintenance will be working on the machines. If you must do laundry during that time, only one machine may be available. Thank you for your cooperation.",
+  "prompt": "[Daily Life — email] What does the email state about machine availability on Wednesday afternoon?",
+  "choices": [
+   "All machines will be out of service from 2 to 4 p.m.",
+   "Only one machine may be available",
+   "At least one machine is expected to remain available",
+   "Residents are asked to avoid the laundry room all day Wednesday"
+  ],
+  "correct_answer": "Only one machine may be available",
+  "explanation": "The email says that for residents who must do laundry during the maintenance window, \"only one machine may be available,\" which is a possibility rather than a guarantee that \"at least one machine is expected to remain available.\"",
+  "existing_prompt": "[Daily Life — email] Why does Housing Services use the phrase 'if you can' in their request?",
+  "existing_key": "To politely recognize that some residents may have no choice but to do laundry then"
+ },
+ {
+  "id": "D9",
+  "bank_id": "4b12ab83-bfe6-49c0-9e05-27c54bc4641c",
+  "passage_group_id": "pg-3bee65dee42381576fdc1fa40ef7aa09",
+  "kind": "inference",
+  "passage": "Campus Dining Update: Starting next week, the salad bar will be open for lunch only, assuming enrollment in the meal plan remains high. If you can’t make it during lunch hours, other options will be available at the grill station. We appreciate your understanding as we adjust our services.",
+  "prompt": "[Daily Life — campus notice] What can be inferred about students who cannot come to the dining hall during lunch hours?",
+  "choices": [
+   "They can still get something to eat at the grill station, though not from the salad bar",
+   "They may need to keep their meal plan enrollment current to use the grill station",
+   "They can get salad bar items at the grill station outside lunch hours",
+   "They can typically visit the salad bar at dinner instead"
+  ],
+  "correct_answer": "They can still get something to eat at the grill station, though not from the salad bar",
+  "explanation": "Since the salad bar will be open \"for lunch only\" and \"other options will be available at the grill station,\" such students can eat, but \"they can get salad bar items at the grill station\" goes beyond the notice's unspecified \"other options.\"",
+  "existing_prompt": "[Daily Life — campus notice] Why does the notice say 'assuming enrollment in the meal plan remains high'?",
+  "existing_key": "The salad bar will close if fewer students buy meal plans"
+ },
+ {
+  "id": "D10",
+  "bank_id": "1e644ca6-09bd-40fe-b883-8e8d501a86c4",
+  "passage_group_id": "pg-8829f69fae68cf6de89295d637f85181",
+  "kind": "literal detail",
+  "passage": "Subject: Group Project Update Hi everyone, Just a quick note: if you haven’t yet sent your part of the report, please do so by Friday evening. I’ll start compiling everything over the weekend, assuming everyone’s sections are in. If you’re running late, let me know and I’ll try to adjust, but I can’t guarantee your part will be included if it’s much after Friday. Thanks for your efforts! Best, Maya",
+  "prompt": "[Daily Life — Email] According to the email, what does Maya plan to do after the Friday deadline?",
+  "choices": [
+   "Begin assembling the report over the weekend, even if some sections have not yet arrived",
+   "Begin assembling the report over the weekend, provided the sections have come in",
+   "Extend the deadline into the weekend so members can finish their parts",
+   "Adjust her timeline for members who say they are running behind"
+  ],
+  "correct_answer": "Begin assembling the report over the weekend, provided the sections have come in",
+  "explanation": "Maya writes that she will 'start compiling everything over the weekend, assuming everyone's sections are in', which matches 'Begin assembling the report over the weekend, provided the sections have come in'.",
+  "existing_prompt": "[Daily Life — Email] What can be inferred about Maya's attitude toward late submissions?",
+  "existing_key": "She may include late parts, but only if they arrive soon after the deadline."
+ },
+ {
+  "id": "D11",
+  "bank_id": "6028f1dd-13af-4432-a5fd-2f444b3040b6",
+  "passage_group_id": "pg-9bc4040fe5cf4b5dbf175efca641aa86",
+  "kind": "purpose",
+  "passage": "Job Posting: Student Library Assistant The library is seeking a reliable student assistant for weekday afternoons. Duties include shelving books and helping patrons. If you can work at least two days per week, please apply by emailing your availability. Preference will be given to applicants with previous library experience, but all are welcome to apply. Applications received after Monday will not be considered.",
+  "prompt": "[Daily Life — Job Ad] Why does the posting ask applicants to email their availability?",
+  "choices": [
+   "To confirm that applicants are able to commit to every weekday afternoon shift",
+   "To find out which applicants already have some previous library experience",
+   "To check whether applicants can work at least two weekday afternoons",
+   "To plan possible weekend shifts around applicants' schedules"
+  ],
+  "correct_answer": "To check whether applicants can work at least two weekday afternoons",
+  "explanation": "Since the posting says 'If you can work at least two days per week, please apply by emailing your availability', the request serves 'To check whether applicants can work at least two weekday afternoons'.",
+  "existing_prompt": "[Daily Life — Job Ad] What is implied by 'Preference will be given to applicants with previous library experience, but all are welcome to apply'?",
+  "existing_key": "Applicants without experience still have a chance"
+ },
+ {
+  "id": "D12",
+  "bank_id": "912fa58a-6734-4773-8db1-7c64f2402ed3",
+  "passage_group_id": "pg-15b933a80527eee257852cee73c05e6e",
+  "kind": "inference",
+  "passage": "Join us for the annual Film Club marathon this Saturday! We'll be screening classic films from 10 AM to 10 PM in the student lounge. Snacks provided. Bring your friends and enjoy a day of cinema!",
+  "prompt": "[Daily Life — Club flyer] What is suggested about the marathon?",
+  "choices": [
+   "It is being offered for the first time this year",
+   "Screenings may run past midnight for popular titles",
+   "Attendees may need to supply their own refreshments",
+   "It has taken place before"
+  ],
+  "correct_answer": "It has taken place before",
+  "explanation": "The flyer's phrase 'the annual Film Club marathon' indicates 'It has taken place before'.",
+  "existing_prompt": "[Daily Life — Club flyer] What should participants bring to the event?",
+  "existing_key": "Friends"
+ }
+]

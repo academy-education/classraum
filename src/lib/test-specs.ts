@@ -1034,6 +1034,208 @@ Why hard: "Despite" signals contrast — surface clarity vs. underlying complexi
       },
     ],
   },
+  ssat: {
+    display: 'SSAT Upper Level',
+    framing_en: 'The Enrollment Management Association\'s Secondary School Admission Test, Upper Level — taken by students in grades 8-11 applying to independent (private) secondary schools in the US/Canada. Format: Writing Sample (1 prompt / 25 min, UNSCORED but sent to schools) + Quantitative Section 1 (25 Q / 30 min) + Reading (40 Q / 40 min) + Verbal (60 Q / 30 min) + Quantitative Section 2 (25 Q / 30 min) + Experimental (16 Q / 15 min, UNSCORED). Every multiple-choice question has 5 choices. Scoring uses a GUESSING PENALTY: +1 point per correct answer, -1/4 point per wrong answer, 0 for a blank — so distractors that confidently attract wrong answers matter more than on rightmark-only tests. Scores are reported as scaled scores (500-800 per section) plus percentiles computed against same-grade, same-gender test takers over the past three years. NO CALCULATOR is allowed anywhere — quantitative difficulty comes from insight and setup, never from heavy computation.',
+    framing_ko: 'Enrollment Management Association의 사립중등학교 입학시험 SSAT Upper Level — 미국·캐나다 사립학교에 지원하는 8-11학년 학생이 응시. 구성: 작문 샘플(프롬프트 1개 / 25분, 채점 안 되지만 지원 학교에 전송) + 수리 1(25문항 / 30분) + 독해(40문항 / 40분) + 어휘(60문항 / 30분) + 수리 2(25문항 / 30분) + 실험 섹션(16문항 / 15분, 채점 안 됨). 모든 객관식은 5지선다. 채점에 추측 감점 적용: 정답 +1점, 오답 -1/4점, 무응답 0점 — 오답을 자신 있게 고르게 만드는 함정 선택지가 정답만 세는 시험보다 더 중요함. 점수는 영역별 환산 점수(500-800)와 최근 3년간 같은 학년·같은 성별 응시자 대비 백분위로 보고됨. 전 영역 계산기 사용 금지 — 수리 난이도는 무거운 계산이 아니라 통찰과 문제 설정에서 나옴.',
+    sections: [
+      {
+        name_en: 'Writing Sample',
+        name_ko: '작문 샘플',
+        // Not multiple choice — the real test offers TWO prompts (one
+        // essay, one story starter); the student picks ONE and handwrites
+        // for 25 minutes. UNSCORED: no score is computed, but a copy goes
+        // to every school the student applies to, so it is high-stakes in
+        // practice. Generator should emit ONE prompt PAIR per "question"
+        // as a free-response item, mirroring how TOEFL Writing ships
+        // writing_email / writing_discussion — never as multiple choice.
+        questionsPerSection: 1,
+        minutesPerSection: 25,
+        choiceCount: 5, // not really MC — free-response essay; 5 kept for schema consistency with the rest of SSAT
+        patterns_en: 'ONE writing task, 25 minutes, handwritten on the real test. The student is shown TWO prompts side by side and chooses ONE: (A) an ESSAY prompt — a short statement of opinion or a general claim the student must agree or disagree with and support with specific examples from experience, reading, or observation (e.g. "Do you agree or disagree: failure teaches more than success? Support your position with one or two specific examples."); (B) a CREATIVE prompt — a story starter, a single evocative opening line the student must continue as a short piece of fiction (e.g. "The door at the end of the hallway had always been locked — until today."). Generate BOTH prompts as one item so the student can choose, and tag them "[Essay]" and "[Story Starter]". The sample is UNSCORED — no rubric points — but schools read it for organization, development, voice, and mechanics, so any feedback shown to the student should address those four dimensions. Topics must be accessible to a 13-16-year-old with no specialist knowledge: school life, friendship, community, personal growth, everyday ethical choices.',
+        patterns_ko: '작문 과제 1개, 25분, 실제 시험에서는 손글씨. 학생에게 프롬프트 2개가 나란히 제시되고 하나를 선택: (A) 에세이 프롬프트 — 짧은 의견 진술이나 일반적 주장에 대해 찬성/반대를 정하고 경험·독서·관찰에서 나온 구체적 예시로 뒷받침(예: "실패가 성공보다 더 많이 가르친다는 데 동의하는가? 구체적 예시 한두 개로 입장을 뒷받침하라."); (B) 창작 프롬프트 — 이야기 시작 문장, 학생이 짧은 픽션으로 이어 써야 하는 인상적인 첫 문장 하나(예: "복도 끝의 그 문은 늘 잠겨 있었다 — 오늘까지는."). 학생이 고를 수 있도록 두 프롬프트를 하나의 문항으로 함께 생성하고 "[에세이]"와 "[이야기 시작]" 태그를 붙일 것. 이 샘플은 채점되지 않음 — 루브릭 점수 없음 — 그러나 지원 학교가 구성, 전개, 목소리, 문법·표기를 읽으므로 학생에게 보여주는 피드백은 이 네 차원을 다뤄야 함. 주제는 전문 지식 없는 13-16세가 접근 가능해야 함: 학교 생활, 우정, 공동체, 개인적 성장, 일상의 윤리적 선택.',
+        distractorPatterns_en: 'Not applicable as multiple choice — this is a free-response task. If model feedback contrasts weak vs strong responses, weak-response patterns to flag are: (1) essay that restates the prompt\'s claim in different words instead of arguing it, (2) essay whose "example" is a vague category ("many famous people failed") rather than one developed, specific case, (3) story that abandons the given opening line or contradicts it, (4) story that is all event and no consequence — a list of things happening with no character reaction, (5) either mode written as a single unbroken paragraph.',
+        distractorPatterns_ko: '객관식이 아니므로 함정 선택지 없음 — 자유 응답 과제. 모델 피드백이 약한 답안과 강한 답안을 대조한다면 지적할 약한 답안 패턴: (1) 주장을 논증하는 대신 프롬프트의 주장을 말만 바꿔 반복하는 에세이, (2) "예시"가 하나의 구체적 사례가 아니라 막연한 범주("실패한 유명인은 많다")인 에세이, (3) 주어진 첫 문장을 버리거나 모순되게 잇는 이야기, (4) 사건만 있고 결과가 없는 이야기 — 인물의 반응 없이 일어나는 일의 나열, (5) 어느 쪽이든 문단 구분 없는 한 덩어리 글.',
+        difficultyMix: { easy: 0.00, medium: 1.00, hard: 0.00 },
+        hardItemFraming_en: 'Difficulty tiers do not apply — every administration gets one prompt pair of comparable, moderate openness. A GOOD prompt pair keeps both options genuinely answerable in 25 handwritten minutes: the essay claim must be two-sided (a thoughtful student could argue either way), and the story starter must imply a tension or question without dictating the plot. AVOID: essay claims with an obviously "correct" side ("Is honesty important?"), story starters that require genre knowledge, and any prompt needing facts a 13-year-old may not have.',
+        hardItemFraming_ko: '난이도 구분 없음 — 매 시행마다 비슷한 수준의, 적당히 열린 프롬프트 한 쌍이 출제됨. 좋은 프롬프트 쌍은 두 선택지 모두 손글씨 25분 안에 실제로 답할 수 있어야 함: 에세이 주장은 양면적이어야 하고(사려 깊은 학생이 어느 쪽으로든 논증 가능), 이야기 시작 문장은 줄거리를 정해주지 않으면서 긴장이나 질문을 암시해야 함. 피할 것: "정답"이 뻔한 에세이 주장("정직은 중요한가?"), 장르 지식이 필요한 이야기 시작, 13세가 모를 수 있는 사실이 필요한 프롬프트.',
+      },
+      {
+        name_en: 'Quantitative Section 1',
+        name_ko: '수리 1',
+        questionsPerSection: 25,
+        minutesPerSection: 30,
+        choiceCount: 5,
+        patterns_en: 'First of TWO identically-formatted quantitative sections (they bookend the test; content coverage is the same, so a full mock generates 25 Q for each). NO CALCULATOR — every item must be solvable with clean arithmetic once the right insight is found; difficulty lives in setup and number sense, not computation. Content: arithmetic (fractions, decimals, percents, ratios, remainders, sequences, number properties — odd/even, primes, divisibility), elementary algebra (linear equations, simple quadratics via factoring, symbolic manipulation, translating word problems), geometry (angles, triangles, perimeter/area, circles, coordinate basics, simple solids), interpretation of charts/tables, and quantitative-comparison-STYLE reasoning items that ask which of two quantities is larger or what must be true, rewarding estimation over solving. Numbers are chosen so intermediate values stay whole or simple (a fraction like 15/4 is fine; long division of ugly decimals is not).',
+        patterns_ko: '동일 형식의 수리 섹션 2개 중 첫 번째(시험의 앞뒤에 배치; 내용 범위가 같으므로 전체 모의고사는 각 25문항씩 생성). 계산기 금지 — 모든 문항은 올바른 통찰을 찾으면 깔끔한 산수로 풀려야 함; 난이도는 계산이 아니라 문제 설정과 수 감각에 있음. 내용: 산술(분수, 소수, 백분율, 비율, 나머지, 수열, 수의 성질 — 홀짝, 소수, 약수·배수), 기초 대수(1차방정식, 인수분해로 푸는 간단한 이차식, 기호 조작, 서술형 번역), 기하(각, 삼각형, 둘레·넓이, 원, 좌표 기초, 간단한 입체), 표·그래프 해석, 그리고 두 양 중 어느 쪽이 큰지 또는 반드시 참인 것을 묻는 수량 비교형 추론 문항 — 풀이보다 어림을 보상. 중간 값이 정수나 간단한 값으로 유지되도록 숫자를 선택(15/4 같은 분수는 괜찮지만 지저분한 소수의 긴 나눗셈은 안 됨).',
+        distractorPatterns_en: 'Distractors matter doubly here because wrong answers COST -1/4 point — a trap that attracts a confident wrong answer beats a random number. Encode: (1) the answer to a plausible mis-setup (applied the ratio to the wrong quantity, averaged rates instead of using total-distance/total-time), (2) an intermediate value the solver computes on the way to the answer (the piece length when the question asks for the side), (3) sign or reciprocal errors (2/3 vs 3/2), (4) the "forgot an edge case" count (off by one because zero or the single-digit case was dropped), (5) the number obtained by doing arithmetic on the numbers in the problem without any setup at all (sum or product of the givens).',
+        distractorPatterns_ko: '오답이 -1/4점 감점을 부르므로 함정이 두 배로 중요 — 자신 있게 고르게 만드는 함정이 아무 숫자보다 나음. 반영할 것: (1) 그럴듯한 잘못된 설정의 답(비율을 다른 양에 적용, 총거리/총시간 대신 속력 평균), (2) 답으로 가는 길에 계산하게 되는 중간 값(문제는 한 변을 묻는데 잘라낸 철사 길이를 배치), (3) 부호·역수 오류(2/3 vs 3/2), (4) 경계 사례를 빠뜨린 개수(0이나 한 자리 수를 빠뜨려 하나 차이), (5) 아무 설정 없이 문제의 숫자들로 산수만 한 결과(주어진 수들의 합이나 곱).',
+        difficultyMix: { easy: 0.28, medium: 0.48, hard: 0.24 },
+        hardItemFraming_en: 'A HARD SSAT quantitative item is NOT computationally heavy — it hides a one-line solution behind a setup most students get wrong. Signatures: (a) a symmetric-expression shortcut (x + 1/x given, x² + 1/x² asked — squaring beats solving), (b) a ratio that applies to a DIFFERENT dimension than the one given (area ratio given, side or perimeter asked), (c) a counting question with an easy-to-drop boundary case, (d) a remainder/divisibility item where testing small cases beats algebra, (e) a "which must be true" item where the trap choices are true for the obvious example but not for all cases. Every hard item must still be doable in under 90 seconds WITHOUT a calculator once the insight lands. AVOID: multi-digit multiplication, ugly decimals, and anything a calculator would trivialize — that is SAT-shaped difficulty, not SSAT-shaped.',
+        hardItemFraming_ko: '어려운 SSAT 수리 문항은 계산이 무거운 게 아님 — 대부분의 학생이 틀리는 설정 뒤에 한 줄짜리 풀이를 숨김. 시그니처: (a) 대칭식 지름길(x + 1/x이 주어지고 x² + 1/x²을 물음 — 방정식 풀이보다 제곱이 빠름), (b) 주어진 차원과 다른 차원에 적용되는 비율(넓이 비가 주어지고 변이나 둘레를 물음), (c) 빠뜨리기 쉬운 경계 사례가 있는 개수 세기, (d) 대수보다 작은 수 대입이 빠른 나머지·약수 문항, (e) 뻔한 예시에서는 참이지만 모든 경우에 참은 아닌 함정이 있는 "반드시 참인 것" 문항. 어려운 문항도 통찰만 떠오르면 계산기 없이 90초 안에 풀려야 함. 피할 것: 여러 자리 곱셈, 지저분한 소수, 계산기가 있으면 시시해지는 모든 것 — 그건 SAT형 난이도이지 SSAT형이 아님.',
+        hardItemExamples_en: [
+          `EXAMPLE 1 (HARD — symmetric expression shortcut):
+  Prompt: "If x + 1/x = 4, what is the value of x² + 1/x²?"
+  Choices: ["8", "12", "14", "16", "18"]
+  Correct: "14"
+  Why hard: the intended path is to SQUARE the given equation — (x + 1/x)² = x² + 2 + 1/x² = 16, so x² + 1/x² = 14. Students who try to solve for x hit x = 2 ± √3 and stall without a calculator (which is the point — no calculator is allowed). Trap "16" is the bare square of 4 (forgot to subtract the cross term 2); "12" subtracts 4 instead of 2; "8" doubles the 4. The item is one line long and still separates the top decile, which is exactly the SSAT hard shape.`,
+          `EXAMPLE 2 (HARD — ratio applied to the wrong dimension):
+  Prompt: "A 20-inch wire is cut into two pieces, and each piece is bent into a square. The area of the larger square is 9 times the area of the smaller square. What is the side length, in inches, of the larger square?"
+  Choices: ["1 1/4", "3 3/4", "5", "11 1/4", "15"]
+  Correct: "3 3/4"
+  Why hard: three insight steps, near-zero computation. (1) Area ratio 9 means SIDE ratio 3 (not 9) — the signature √-of-area-ratio step. (2) Side ratio 3 means perimeter ratio 3, so the pieces are 15 in and 5 in. (3) The larger square's side is 15/4 = 3 3/4. Trap "15" is the larger PIECE (intermediate value, question asks for the side); "5" is the smaller piece; "1 1/4" is the SMALLER square's side; "11 1/4" is 3 × 3 3/4 — the student who finds the right side and then applies the ratio one extra time. Every distractor is a specific stopping point or mis-mapping, so a confident wrong answer eats the -1/4 penalty.`,
+        ],
+        hardItemExamples_ko: [
+          `예시 1 (어려움 — 대칭식 지름길):
+  문제: "x + 1/x = 4일 때, x² + 1/x²의 값은?"
+  보기: ["8", "12", "14", "16", "18"]
+  정답: "14"
+  어려운 이유: 의도된 경로는 주어진 식을 제곱하는 것 — (x + 1/x)² = x² + 2 + 1/x² = 16이므로 x² + 1/x² = 14. x를 직접 구하려는 학생은 x = 2 ± √3에 막혀 계산기 없이는 멈춤(그게 핵심 — 계산기 금지). 함정 "16"은 4의 제곱 그대로(교차항 2를 빼는 것을 잊음); "12"는 2 대신 4를 뺌; "8"은 4의 두 배. 한 줄짜리 문항인데도 상위권을 변별 — 정확히 SSAT형 어려움.`,
+          `예시 2 (어려움 — 비율을 다른 차원에 적용):
+  문제: "20인치 철사를 두 조각으로 자르고 각 조각을 정사각형으로 구부린다. 큰 정사각형의 넓이가 작은 정사각형 넓이의 9배일 때, 큰 정사각형의 한 변의 길이는 몇 인치인가?"
+  보기: ["1 1/4", "3 3/4", "5", "11 1/4", "15"]
+  정답: "3 3/4"
+  어려운 이유: 통찰 3단계, 계산은 거의 없음. (1) 넓이 비 9는 변의 비 3을 의미(9가 아님) — 시그니처 √(넓이 비) 단계. (2) 변의 비 3이면 둘레 비도 3이므로 조각은 15인치와 5인치. (3) 큰 정사각형의 변은 15/4 = 3 3/4. 함정 "15"는 큰 철사 조각(중간 값 — 문제는 변을 물음); "5"는 작은 조각; "1 1/4"은 작은 정사각형의 변; "11 1/4"은 3 × 3 3/4 — 올바른 변을 구한 뒤 비율을 한 번 더 적용한 학생의 답. 모든 오답이 특정 중단 지점이나 잘못된 대응이라 자신 있는 오답이 -1/4 감점을 먹게 됨.`,
+        ],
+      },
+      {
+        name_en: 'Reading Comprehension',
+        name_ko: '독해',
+        questionsPerSection: 40,
+        minutesPerSection: 40,
+        choiceCount: 5,
+        patterns_en: 'Approximately 7 passages of 250-350 words, each followed by 4-6 questions (40 total). CRITICAL mix requirement: roughly half the passages are NONFICTION (history, science, biography, social science, essays/opinion) and roughly half are LITERARY — excerpts from novels and short stories, narrative personal essays, and occasionally poetry. The literary share is what distinguishes SSAT Reading from SAT/ACT reading; do not generate an all-nonfiction set. Question types per passage: main idea / central purpose, stated detail (locate and match), inference (what the author or a character implies but does not state), vocabulary in context ("As used in line X, \'...\' most nearly means"), author\'s purpose or technique (why a detail, comparison, or aside is included), and tone/attitude (of the author toward the subject, or of a character). Passages should read like real published prose for an educated general audience — period fiction with slightly formal diction is fair game for grades 8-11 — and every question must be answerable strictly from the passage.',
+        patterns_ko: '약 7개의 250-350단어 지문, 각 지문에 4-6문항(총 40문항). 핵심 혼합 요건: 지문의 절반 가량은 비문학(역사, 과학, 전기, 사회과학, 에세이·논설), 절반 가량은 문학 — 소설·단편 발췌, 서사적 개인 에세이, 때때로 시. 이 문학 비중이 SSAT 독해를 SAT/ACT 독해와 구별하는 요소이므로 전부 비문학으로 생성하면 안 됨. 지문당 문항 유형: 주제·중심 목적, 명시된 세부 정보(찾아서 대응), 추론(저자나 인물이 말하지 않고 암시하는 것), 문맥 어휘("X행에서 사용된 \'...\'의 의미와 가장 가까운 것"), 저자의 목적·기법(세부, 비유, 여담이 왜 들어갔는지), 어조·태도(주제에 대한 저자의, 또는 인물의). 지문은 교양 있는 일반 독자를 위한 실제 출판 산문처럼 읽혀야 하고 — 다소 격식 있는 문체의 시대 소설도 8-11학년에게 적절 — 모든 문항은 오직 지문만으로 답할 수 있어야 함.',
+        distractorPatterns_en: 'Wrong answers should be: (1) true in the real world but not supported by the passage, (2) an extreme or absolute version of the passage\'s moderate claim ("always"/"never" where the passage says "often"), (3) correct for a DIFFERENT part of the passage than the lines the question targets, (4) for tone items, a near-neighbor emotion of the wrong intensity or polarity (mistaking wry amusement for bitterness, or nostalgia for regret), (5) for vocabulary-in-context, the word\'s most common modern meaning when the passage uses a secondary or period sense, (6) for literary inference, a reading that takes a character\'s ironic or polite statement at face value.',
+        distractorPatterns_ko: '오답은 다음과 같아야 함: (1) 현실에서는 맞지만 지문에 근거 없음, (2) 지문의 온건한 주장을 극단·절대로 바꾼 버전(지문은 "종종"인데 보기는 "항상"/"절대"), (3) 문제가 겨냥한 행이 아니라 지문의 다른 부분에 대해 맞는 내용, (4) 어조 문항에서는 강도나 극성이 틀린 이웃 감정(씁쓸한 유머를 비통함으로, 향수를 후회로 착각), (5) 문맥 어휘에서는 지문이 이차적·시대적 의미로 쓴 단어의 가장 흔한 현대적 의미, (6) 문학 추론에서는 인물의 반어적·의례적 발언을 액면 그대로 받아들인 해석.',
+        difficultyMix: { easy: 0.25, medium: 0.50, hard: 0.25 },
+        hardItemFraming_en: 'A HARD SSAT Reading item almost always sits on a LITERARY passage whose surface events and actual meaning diverge — irony, understatement, a narrator whose stated feelings contradict their behavior, or period prose whose formal politeness hides friction. The question then targets the gap: what a character really feels, why the author includes an apparently digressive detail, or the tone of a sentence that reads neutral out of context. On nonfiction, hard items target the FUNCTION of a detail (concession, anticipated objection, qualifying aside) rather than its content. The trap is the answer that summarizes the surface accurately. AVOID: hard-labeled items that are just detail lookups on dense text — density is not difficulty.',
+        hardItemFraming_ko: '어려운 SSAT 독해 문항은 거의 항상 표면적 사건과 실제 의미가 어긋나는 문학 지문 위에 있음 — 반어, 절제된 표현, 말과 행동이 모순되는 서술자, 격식 있는 정중함이 갈등을 감추는 시대 산문. 문제는 그 틈을 겨냥: 인물이 실제로 느끼는 것, 저자가 겉보기에 곁가지인 세부를 넣은 이유, 맥락 없이 읽으면 중립적인 문장의 어조. 비문학에서 어려운 문항은 세부의 내용이 아니라 기능(양보, 예상 반박, 한정하는 여담)을 겨냥. 함정은 표면을 정확하게 요약한 선택지. 피할 것: 밀도 높은 지문의 단순 세부 찾기에 "어려움" 라벨 붙이기 — 밀도는 난이도가 아님.',
+        hardItemExamples_en: [
+          `EXAMPLE 1 (HARD — literary inference, statement vs. behavior; original passage):
+  Passage (excerpt, original): "My grandmother declared, every June, that she was far too old for the garden — that this year, at last, the beds could go to seed and no one would be the poorer for it. She made this announcement while kneeling in the dirt, trowel in hand, a flat of seedlings at her elbow. By July the tomatoes stood staked and tied in rows straighter than any I ever managed, and she complained of her back each evening with something that was not quite complaint, the way a sailor might grumble about the sea."
+  Prompt: "The passage suggests that the grandmother's June declaration is best understood as"
+  Choices: ["a genuine plan to give up gardening that she fails to carry out", "a yearly ritual that contradicts, and is contradicted by, everything she does", "a request for her family to take over the work of the garden", "evidence that her health is worse than her family realizes", "an expression of resentment toward a chore she has never enjoyed"]
+  Correct: "a yearly ritual that contradicts, and is contradicted by, everything she does"
+  Why hard: every cue is behavioral, not stated. "Every June" makes it ritual; kneeling in the dirt WHILE declaring retirement makes it self-contradicting; "not quite complaint, the way a sailor might grumble about the sea" signals affection for the work. Trap 1 takes the declaration at face value; trap 5 misreads the grumbling as resentment when the sailor simile marks it as love disguised as complaint; trap 4 invents a fact. The item rewards reading the gap between what is said and what is done — the core hard-literary skill on this test.`,
+          `EXAMPLE 2 (HARD — function of a detail in nonfiction; original passage):
+  Passage (excerpt, original): "The case for lighthouse automation seemed unanswerable: machines do not sleep, do not fall ill, and do not need supplies rowed out through a winter swell. And yet the keepers' logbooks record something no sensor replaced. At Portland Bill in 1912, a keeper noted a fishing boat drifting oddly an hour before any distress signal went up, and had the rescue launch ready when it did. The automated light that succeeded him shines more reliably than he ever could. It notices nothing."
+  Prompt: "The author includes the 1912 logbook incident primarily in order to"
+  Choices: ["prove that automated lighthouses have made coastal navigation more dangerous", "illustrate a kind of vigilance that automation, whatever its advantages, did not reproduce", "suggest that lighthouse keepers were more valuable as rescuers than as operators of the light", "argue that the decision to automate lighthouses should be reversed", "show that early automated lights were less reliable than the keepers they replaced"]
+  Correct: "illustrate a kind of vigilance that automation, whatever its advantages, did not reproduce"
+  Why hard: the passage openly CONCEDES automation's advantages ("seemed unanswerable", "shines more reliably"), so traps 1, 4, and 5 — which read the anecdote as an attack on automation — contradict the author's explicit concessions. Trap 3 inflates the anecdote's content into the thesis. Only the correct answer captures the detail's FUNCTION: a concrete instance of the one thing lost ("It notices nothing"). Function-of-a-detail items with a concession structure are the signature hard nonfiction shape.`,
+        ],
+        hardItemExamples_ko: [
+          `예시 1 (어려움 — 문학 추론, 말과 행동의 어긋남; 자체 제작 지문):
+  지문 (발췌, 자체 제작): "할머니는 매년 6월마다 선언하셨다. 이제 정원을 돌보기엔 너무 늙었다고 — 올해야말로 화단이 씨앗 채로 묵어도 아쉬울 사람 하나 없다고. 이 선언을 하시는 동안 할머니는 흙에 무릎을 꿇고, 손에는 모종삽을, 팔꿈치 옆에는 모종판을 두고 계셨다. 7월이 되면 토마토는 내가 한 번도 해내지 못한 것보다 곧은 줄로 지주에 묶여 서 있었고, 할머니는 저녁마다 허리가 아프다고 하셨다 — 그런데 그것은 꼭 불평이라고는 할 수 없는, 뱃사람이 바다를 두고 투덜거리는 것 같은 소리였다."
+  문제: "지문에 따르면 할머니의 6월 선언은 어떻게 이해하는 것이 가장 적절한가?"
+  보기: ["실행에 옮기지 못한, 정원 일을 그만두려는 진심 어린 계획", "할머니의 모든 행동과 서로 모순되는, 해마다 반복되는 의례", "정원 일을 가족이 대신 맡아 달라는 요청", "가족이 아는 것보다 할머니의 건강이 나쁘다는 증거", "한 번도 좋아한 적 없는 집안일에 대한 원망의 표현"]
+  정답: "할머니의 모든 행동과 서로 모순되는, 해마다 반복되는 의례"
+  어려운 이유: 모든 단서가 진술이 아닌 행동에 있음. "매년 6월마다"가 의례임을, 은퇴를 선언하면서 흙에 무릎 꿇은 모습이 자기모순임을, "꼭 불평이라고는 할 수 없는, 뱃사람이 바다를 두고 투덜거리는 것 같은"이 일에 대한 애정임을 알림. 함정 1은 선언을 액면 그대로 받아들임; 함정 5는 뱃사람 비유가 불평으로 위장한 애정임을 놓치고 원망으로 오독; 함정 4는 없는 사실을 지어냄. 말한 것과 행한 것 사이의 틈을 읽는 능력 — 이 시험의 핵심 고난도 문학 기술 — 을 보상하는 문항.`,
+          `예시 2 (어려움 — 비문학에서 세부의 기능; 자체 제작 지문):
+  지문 (발췌, 자체 제작): "등대 자동화의 논거는 반박 불가능해 보였다: 기계는 잠들지 않고, 병에 걸리지 않고, 겨울 파도를 뚫고 노를 저어 보급품을 날라다 줄 필요도 없다. 그러나 등대지기들의 항해 일지에는 어떤 센서도 대체하지 못한 것이 기록되어 있다. 1912년 포틀랜드 빌에서 한 등대지기는 조난 신호가 오르기 한 시간 전에 이상하게 표류하는 어선을 알아차렸고, 신호가 올랐을 때는 구조정을 이미 준비해 둔 상태였다. 그의 뒤를 이은 자동 등대는 그가 할 수 있었던 것보다 더 안정적으로 빛난다. 그리고 아무것도 알아차리지 못한다."
+  문제: "저자가 1912년 항해 일지 사건을 포함한 주된 이유는?"
+  보기: ["자동 등대가 연안 항해를 더 위험하게 만들었음을 입증하기 위해", "자동화가, 그 장점이 무엇이든, 재현하지 못한 종류의 경계심을 보여주기 위해", "등대지기가 등불 관리자보다 구조자로서 더 가치 있었음을 시사하기 위해", "등대 자동화 결정을 되돌려야 한다고 주장하기 위해", "초기 자동 등대가 그들이 대체한 등대지기보다 덜 안정적이었음을 보이기 위해"]
+  정답: "자동화가, 그 장점이 무엇이든, 재현하지 못한 종류의 경계심을 보여주기 위해"
+  어려운 이유: 지문은 자동화의 장점을 공개적으로 인정함("반박 불가능해 보였다", "더 안정적으로 빛난다"). 따라서 일화를 자동화 공격으로 읽는 함정 1, 4, 5는 저자의 명시적 양보와 모순. 함정 3은 일화의 내용을 논지로 부풀림. 정답만이 세부의 기능 — 잃어버린 단 한 가지("아무것도 알아차리지 못한다")의 구체적 사례 — 을 포착. 양보 구조 속 세부의 기능을 묻는 문항이 비문학 고난도의 시그니처 형태.`,
+        ],
+      },
+      {
+        name_en: 'Verbal',
+        name_ko: '어휘',
+        questionsPerSection: 60,
+        minutesPerSection: 30,
+        choiceCount: 5,
+        patterns_en: 'Two question types, 30 each, delivered as one 60-question / 30-minute section (30 seconds per item — speed matters). TYPE A — SYNONYMS (items 1-30): a single capitalized stem word, five single-word (occasionally short-phrase) choices; pick the closest in meaning. Vocabulary ranges from grade-8 solid to genuinely advanced (the pool overlaps SAT-level words); hard items use secondary meanings of familiar words. TYPE B — ANALOGIES (items 31-60): SSAT format is a COMPLETION, not the A:B :: C:D grid — the stem reads "Word1 is to Word2 as" and the five choices each complete it with a pair ("word3 is to word4"). The correct completion reproduces the STEM RELATIONSHIP. Relation types to rotate across a set (do not let one dominate): part/whole, worker/tool, worker/product, degree-of-intensity, cause/effect, antonym, synonym, function/purpose, category/member, characteristic, and object/location. Tag items "[Synonym]" or "[Analogy]".',
+        patterns_ko: '문항 유형 2개, 각 30문항, 하나의 60문항 / 30분 섹션으로 출제(문항당 30초 — 속도가 중요). 유형 A — 동의어(1-30번): 대문자 표제어 하나와 다섯 개의 한 단어(가끔 짧은 구) 선택지; 의미가 가장 가까운 것을 고름. 어휘는 8학년 탄탄한 수준부터 진짜 고급 수준까지(SAT급 단어와 겹치는 풀); 어려운 문항은 친숙한 단어의 이차적 의미를 사용. 유형 B — 유추(31-60번): SSAT 형식은 A:B :: C:D 격자가 아니라 완성형 — 문두가 "Word1 is to Word2 as"로 제시되고 다섯 선택지가 각각 쌍("word3 is to word4")으로 문장을 완성. 정답 완성은 문두의 관계를 재현해야 함. 한 세트 안에서 순환시킬 관계 유형(하나가 지배하지 않도록): 부분/전체, 작업자/도구, 작업자/산물, 정도 차이, 원인/결과, 반의어, 동의어, 기능/목적, 범주/구성원, 특성, 사물/장소. 문항에 "[동의어]" 또는 "[유추]" 태그.',
+        distractorPatterns_en: 'Synonym distractors: (1) a word related to the stem\'s OTHER meaning (for TEMPER-as-moderate, an anger word), (2) a word that sounds or looks like the stem (adverse/averse territory), (3) a word from the same semantic field but wrong relation (an associate, not a synonym — "smoke" for EMBER), (4) an antonym of the stem (catches students who half-remember the word). Analogy distractors: (1) a pair with a RELATED but different relation (category/member offered when the stem is part/whole), (2) a pair whose words associate with the stem words topically but whose internal relation differs, (3) the correct relation REVERSED in order (tool-to-worker when the stem runs worker-to-tool), (4) a pair with the right relation but wrong degree or scale.',
+        distractorPatterns_ko: '동의어 함정: (1) 표제어의 다른 의미와 관련된 단어(TEMPER가 "완화하다"일 때 분노 계열 단어), (2) 표제어와 소리나 철자가 비슷한 단어(adverse/averse 부류), (3) 같은 의미장이지만 관계가 틀린 단어(동의어가 아닌 연상어 — EMBER에 대한 "smoke"), (4) 표제어의 반의어(단어를 어렴풋이 기억하는 학생을 잡음). 유추 함정: (1) 관련되지만 다른 관계의 쌍(문두는 부분/전체인데 범주/구성원 제시), (2) 단어들은 문두와 소재상 연상되지만 내부 관계가 다른 쌍, (3) 올바른 관계의 순서 반전(문두는 작업자→도구인데 도구→작업자), (4) 관계는 맞지만 정도나 규모가 틀린 쌍.',
+        difficultyMix: { easy: 0.30, medium: 0.45, hard: 0.25 },
+        hardItemFraming_en: 'A HARD synonym item uses either (a) a FAMILIAR word in its secondary sense (TEMPER = to moderate; PEDESTRIAN = dull; CHAMPION = to advocate for) with the primary sense\'s associate planted as the trap, or (b) a genuinely advanced word (OBDURATE, PROBITY, TRUCULENT) whose distractors include a look-alike and a same-field associate. A HARD analogy uses an ABSTRACT relation — degree of intensity, cause/effect, or function — where at least two choices share surface topic with the stem and only the relation separates them; or it runs a common relation in the less-expected DIRECTION. AVOID: hard-labeled items whose difficulty is only an obscure stem with four obviously-unrelated distractors — if elimination solves it, it is not hard.',
+        hardItemFraming_ko: '어려운 동의어 문항은 (a) 친숙한 단어의 이차적 의미(TEMPER = 완화하다; PEDESTRIAN = 평범한; CHAMPION = 옹호하다)를 쓰고 일차적 의미의 연상어를 함정으로 심거나, (b) 진짜 고급 단어(OBDURATE, PROBITY, TRUCULENT)에 유사 철자어와 같은 의미장 연상어를 함정으로 배치. 어려운 유추는 추상적 관계 — 정도 차이, 원인/결과, 기능 — 를 쓰되 최소 두 선택지가 문두와 표면 소재를 공유해 관계만으로 갈리게 하거나, 흔한 관계를 예상 밖의 방향으로 돌림. 피할 것: 난해한 표제어에 명백히 무관한 함정 4개를 붙인 "어려움" 문항 — 소거법으로 풀리면 어려운 게 아님.',
+        hardItemExamples_en: [
+          `EXAMPLE 1 (HARD — [Synonym], secondary meaning of a familiar word):
+  Prompt: "[Synonym] TEMPER"
+  Choices: ["enrage", "moderate", "describe", "harden", "endure"]
+  Correct: "moderate"
+  Why hard: students know "temper" as the noun (anger) and reach for the anger-field trap "enrage". As a verb, to temper is to soften or moderate ("justice tempered with mercy"). "Harden" is a second-layer trap — tempering STEEL strengthens it, so students who know the metallurgy sense but not its meaning pick it; the metallurgical process is still a moderating of brittleness, and the general sense is to restrain. Secondary-meaning items with the primary-meaning associate planted are the signature hard synonym shape.`,
+          `EXAMPLE 2 (HARD — [Analogy], degree of intensity with topical traps):
+  Prompt: "[Analogy] Breeze is to gale as"
+  Choices: ["rain is to cloud", "ember is to inferno", "wave is to ocean", "thermometer is to temperature", "gust is to wind"]
+  Correct: "ember is to inferno"
+  Why hard: the stem relation is DEGREE — a mild instance to an extreme instance of the same phenomenon. Three distractors share the weather/nature field with the stem ("rain is to cloud" = product/source, "wave is to ocean" = part/whole, "gust is to wind" = member/category — and reversed in scale), so field-matching fails and only relation analysis works. "Ember is to inferno" leaves the weather field entirely but reproduces the relation exactly: a small, mild instance of fire to an overwhelming one. Correct answers that abandon the stem's topic while keeping its relation are what separate top scorers on SSAT analogies.`,
+        ],
+        hardItemExamples_ko: [
+          `예시 1 (어려움 — [동의어], 친숙한 단어의 이차적 의미):
+  문제: "[동의어] TEMPER"
+  보기: ["enrage (격분시키다)", "moderate (완화하다)", "describe (묘사하다)", "harden (단단하게 하다)", "endure (견디다)"]
+  정답: "moderate (완화하다)"
+  어려운 이유: 학생들은 "temper"를 명사(화)로 알고 있어 분노 계열 함정 "enrage"로 손이 감. 동사 temper는 부드럽게 하다, 완화하다("자비로 완화된 정의"). "harden"은 이중 함정 — 강철을 temper하면 강해지므로 야금 용례만 아는 학생이 고름; 그러나 그 공정도 취성을 완화하는 것이고 일반적 의미는 억제·완화. 일차 의미의 연상어를 함정으로 심은 이차 의미 문항이 고난도 동의어의 시그니처 형태.`,
+          `예시 2 (어려움 — [유추], 소재 함정이 있는 정도 관계):
+  문제: "[유추] Breeze is to gale as"
+  보기: ["rain is to cloud", "ember is to inferno", "wave is to ocean", "thermometer is to temperature", "gust is to wind"]
+  정답: "ember is to inferno"
+  어려운 이유: 문두의 관계는 정도 — 같은 현상의 약한 사례에서 극단적 사례로. 함정 셋이 문두와 기상·자연 소재를 공유("rain is to cloud" = 산물/근원, "wave is to ocean" = 부분/전체, "gust is to wind" = 구성원/범주 — 게다가 규모가 반대 방향)하므로 소재 맞추기는 실패하고 관계 분석만 통함. "ember is to inferno"는 기상 소재를 완전히 벗어나지만 관계를 정확히 재현: 불의 작고 약한 사례에서 압도적 사례로. 문두의 소재를 버리고 관계를 지키는 정답 — SSAT 유추에서 최상위권을 가르는 지점.`,
+        ],
+      },
+      {
+        name_en: 'Quantitative Section 2',
+        name_ko: '수리 2',
+        questionsPerSection: 25,
+        minutesPerSection: 30,
+        choiceCount: 5,
+        patterns_en: 'Second quantitative section — identical format and content coverage to Quantitative Section 1 (25 questions, 30 minutes, 5 choices, NO CALCULATOR). It sits at the end of the test, so real administrations show no systematic content difference from Section 1; generate to the same spec: arithmetic and number properties, elementary algebra, geometry, chart/table interpretation, and quantitative-comparison-style reasoning. Within a full mock, do not duplicate problem setups between the two quantitative sections — same skill list, fresh contexts and numbers. Difficulty ramps gently within the section, with the last five items carrying most of the hard weight.',
+        patterns_ko: '두 번째 수리 섹션 — 형식과 내용 범위가 수리 1과 동일(25문항, 30분, 5지선다, 계산기 금지). 시험 마지막에 배치되며 실제 시행에서 수리 1과 체계적인 내용 차이는 없음; 같은 사양으로 생성: 산술과 수의 성질, 기초 대수, 기하, 표·그래프 해석, 수량 비교형 추론. 전체 모의고사 안에서 두 수리 섹션 간에 문제 설정을 중복하지 말 것 — 같은 기술 목록에 새로운 맥락과 숫자. 난이도는 섹션 안에서 완만하게 상승하며 마지막 다섯 문항이 어려운 문항 비중의 대부분을 짊어짐.',
+        distractorPatterns_en: 'Same distractor discipline as Quantitative Section 1, sharpened by the guessing penalty: (1) the mis-setup answer (took "9 times the area" as 9 times the side; averaged the two speeds), (2) an intermediate value on the correct path, (3) the count that misses a boundary case (dropped the single-digit number, counted an endpoint twice), (4) reciprocal/inverted-ratio errors, (5) the plausible answer produced by solving for the WRONG unknown in a two-variable setup.',
+        distractorPatterns_ko: '수리 1과 같은 함정 원칙을 추측 감점으로 더 벼림: (1) 잘못된 설정의 답("넓이 9배"를 변 9배로 받아들임; 두 속력의 평균), (2) 올바른 풀이 경로의 중간 값, (3) 경계 사례를 놓친 개수(한 자리 수 누락, 끝점 중복 계산), (4) 역수·뒤집힌 비율 오류, (5) 두 변수 설정에서 다른 미지수를 구한 그럴듯한 답.',
+        difficultyMix: { easy: 0.28, medium: 0.48, hard: 0.24 },
+        hardItemFraming_en: 'Identical hard-item shape to Quantitative Section 1: insight-gated, computation-light, calculator-irrelevant. Favored hard shapes for this slot: (a) an unknown-free shortcut — the question asks for a COMBINATION of variables (1/x + 1/y from x+y and xy) that never requires solving for the individual values; (b) a counting or digits question with one hidden boundary case; (c) a geometry item where the needed relationship (shared altitude, ratio of areas, angle chase) replaces any formula grinding; (d) a must-be-true item over parity or divisibility where the trap choices hold for the first example a student tries. Each must fall to one clean idea in under 90 seconds.',
+        hardItemFraming_ko: '수리 1과 동일한 고난도 형태: 통찰로 갈리고, 계산은 가볍고, 계산기는 무의미. 이 슬롯에 적합한 어려운 형태: (a) 미지수를 구하지 않는 지름길 — x+y와 xy에서 1/x + 1/y처럼 개별 값을 구할 필요가 없는 변수 조합을 물음; (b) 숨은 경계 사례가 하나 있는 개수·자릿수 문제; (c) 공식 계산 대신 필요한 관계(공통 높이, 넓이 비, 각 추적)로 풀리는 기하 문항; (d) 학생이 처음 시도하는 예시에서는 함정 선택지도 성립하는 홀짝·약수 "반드시 참" 문항. 각각 하나의 깔끔한 아이디어로 90초 안에 무너져야 함.',
+        hardItemExamples_en: [
+          `EXAMPLE 1 (HARD — combination shortcut, no solving for x and y):
+  Prompt: "If x and y are positive numbers with x + y = 8 and xy = 12, what is the value of 1/x + 1/y?"
+  Choices: ["1/12", "1/8", "2/3", "3/2", "20"]
+  Correct: "2/3"
+  Why hard: the one-line path is 1/x + 1/y = (x + y)/(xy) = 8/12 = 2/3. Students who instead solve the quadratic get x, y = 4 ± 2 = 6 and 2 — solvable here, but slower, and the trap set punishes the detours: "3/2" is the reciprocal (computed xy/(x+y)); "1/8" and "1/12" come from taking the reciprocal of just one given; "20" is the no-setup sum 8 + 12. The item teaches the SSAT lesson that the asked-for combination, not the individual unknowns, is the object to manipulate.`,
+          `EXAMPLE 2 (HARD — counting with a dropped boundary case):
+  Prompt: "How many positive integers less than 100 have digits that add up to 9?"
+  Choices: ["8", "9", "10", "11", "12"]
+  Correct: "10"
+  Why hard: the two-digit count is systematic — 18, 27, 36, 45, 54, 63, 72, 81, 90: nine numbers (tens digit 1 through 9, units digit forced). The boundary case is the single-digit number 9 itself, which most solvers drop, making trap "9" the modal wrong answer — and under the -1/4 guessing penalty, a confidently chosen 9 is exactly the trap the test intends. "11" catches those who also admit 99 (digits sum to 18, a near-miss check) or double-count 90. Zero computation; the entire difficulty is the completeness check.`,
+        ],
+        hardItemExamples_ko: [
+          `예시 1 (어려움 — 개별 값을 구하지 않는 조합 지름길):
+  문제: "양수 x, y가 x + y = 8, xy = 12를 만족할 때, 1/x + 1/y의 값은?"
+  보기: ["1/12", "1/8", "2/3", "3/2", "20"]
+  정답: "2/3"
+  어려운 이유: 한 줄 풀이는 1/x + 1/y = (x + y)/(xy) = 8/12 = 2/3. 이차방정식을 푸는 학생은 x, y = 6과 2를 얻음 — 여기서는 풀리지만 더 느리고, 함정들이 우회로를 벌함: "3/2"은 역수(xy/(x+y)를 계산); "1/8"과 "1/12"은 주어진 값 하나만의 역수; "20"은 설정 없는 합 8 + 12. 개별 미지수가 아니라 요구된 조합 자체가 조작 대상이라는 SSAT의 교훈을 가르치는 문항.`,
+          `예시 2 (어려움 — 경계 사례를 놓치는 개수 세기):
+  문제: "100보다 작은 양의 정수 중 각 자리 숫자의 합이 9인 수는 몇 개인가?"
+  보기: ["8", "9", "10", "11", "12"]
+  정답: "10"
+  어려운 이유: 두 자리 수는 체계적으로 셀 수 있음 — 18, 27, 36, 45, 54, 63, 72, 81, 90: 아홉 개(십의 자리 1-9, 일의 자리는 자동 결정). 경계 사례는 한 자리 수 9 자체이며 대부분이 빠뜨려 함정 "9"가 최빈 오답이 됨 — -1/4 추측 감점 아래에서 자신 있게 고른 9야말로 시험이 의도한 함정. "11"은 99(자릿수 합 18 — 아깝게 틀리는 검산 사례)를 넣거나 90을 중복 계산한 경우. 계산은 전무; 난이도 전체가 완전성 점검에 있음.`,
+        ],
+      },
+      {
+        name_en: 'Experimental',
+        name_ko: '실험 섹션',
+        // UNSCORED — the EMA uses it to field-test future items. Mix per
+        // the official format: 6 verbal + 5 reading + 5 quantitative in a
+        // single 16-question / 15-minute block. Students are told it is
+        // unscored; item styles are identical to the scored sections.
+        questionsPerSection: 16,
+        minutesPerSection: 15,
+        choiceCount: 5,
+        patterns_en: 'UNSCORED 16-question / 15-minute section used by the test maker to field-test items for future forms; it does not affect any score, but students should treat it seriously since they are not told which items are experimental in older paper formats. Fixed composition: 6 VERBAL items (synonyms and analogies, same specs as the Verbal section), then 5 READING items (one short passage of 250-350 words with 5 questions, same specs as Reading Comprehension), then 5 QUANTITATIVE items (same no-calculator specs as the quantitative sections). Generate by reusing the corresponding scored-section patterns at mostly easy/medium difficulty — field-test blocks skew toward calibration items, not killers. Tag items by their type ("[Synonym]", "[Analogy]", reading passage grouping, math) so the app can render each with the right template.',
+        patterns_ko: '채점되지 않는 16문항 / 15분 섹션 — 시험 주관사가 미래 시험지의 문항을 사전 검증하는 데 사용; 어떤 점수에도 영향이 없지만, 종이 시험 구형식에서는 어느 문항이 실험용인지 알려주지 않으므로 학생은 진지하게 임해야 함. 고정 구성: 어휘 6문항(동의어·유추, 어휘 섹션과 같은 사양), 이어서 독해 5문항(250-350단어 짧은 지문 1개에 5문항, 독해 섹션과 같은 사양), 이어서 수리 5문항(수리 섹션과 같은 계산기 금지 사양). 해당 채점 섹션의 패턴을 재사용하되 대부분 쉬움/보통 난이도로 생성 — 사전 검증 블록은 킬러가 아니라 보정용 문항 위주. 앱이 올바른 템플릿으로 렌더링할 수 있도록 유형별 태그("[동의어]", "[유추]", 독해 지문 그룹, 수리)를 붙일 것.',
+        distractorPatterns_en: 'Reuse the distractor disciplines of the corresponding scored section for each item type: Verbal items follow the Verbal section\'s synonym/analogy trap patterns, the reading passage follows Reading Comprehension\'s patterns, and the math items follow the quantitative sections\' mis-setup/intermediate-value patterns. No experimental-specific trap style exists.',
+        distractorPatterns_ko: '문항 유형별로 해당 채점 섹션의 함정 원칙을 재사용: 어휘 문항은 어휘 섹션의 동의어·유추 함정 패턴, 독해 지문은 독해 섹션의 패턴, 수리 문항은 수리 섹션의 잘못된 설정·중간 값 패턴을 따름. 실험 섹션 고유의 함정 양식은 없음.',
+        difficultyMix: { easy: 0.45, medium: 0.45, hard: 0.10 },
+        hardItemFraming_en: 'Rarely needed — the field-test block skews easy/medium for calibration. When a hard item is requested here, borrow the hard-item framing of the matching scored section (Verbal, Reading, or Quantitative) unchanged; there is no experimental-specific hard shape.',
+        hardItemFraming_ko: '거의 필요 없음 — 사전 검증 블록은 보정을 위해 쉬움/보통에 치우침. 여기서 어려운 문항이 요청되면 대응하는 채점 섹션(어휘·독해·수리)의 고난도 프레이밍을 그대로 빌려 쓸 것; 실험 섹션 고유의 고난도 형태는 없음.',
+      },
+    ],
+  },
 }
 
 /**

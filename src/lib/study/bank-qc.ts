@@ -111,6 +111,11 @@ export function familyForTask(task: string, family: 'toefl' | 'sat', section: st
     case 'speaking_repeat':
     case 'speaking_interview':
     case 'arrange_words':
+    // The bank ROW carries task='build_a_sentence' while the item type is
+    // 'arrange_words'; insertFrozen passes the row name to the gate, so
+    // both must resolve to production or the gate demands nosource /
+    // elimination stages that cannot exist for a no-options item type.
+    case 'build_a_sentence':
     case 'writing_email':
     case 'writing_discussion':
       return 'production'
