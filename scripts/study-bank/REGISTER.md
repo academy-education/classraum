@@ -1300,6 +1300,19 @@ gate-wiring test catches disagreement between the two). Any future
 BAS batch gates as family `production` (shape/withsource/tells) with a
 ledger.json entry at the exact file sha.
 
+### cr-v8: the cr-v7 method replicates (2026-08-28)
+46 banked (132 → 178 live CR). Second independent run of the
+symmetric-worlds method: pilot −2.8, cross-batch −11.1, both CLEAR
+with solvers overwhelmingly "confident" and still below chance — the
+method, not the batch, is what works. The exclusivity checker's
+sole-defensible option matched the RNG-picked key 46/46, and the 14
+contested items were discarded whole (no repair pass — the no-edit
+invariant survived a full run for the first time). Deviation recorded
+in CRV8-RESULT.md: b2/b3 rendered before the b1 verdict. New
+authoring note for any cr-v9: conditional offers in shop settings
+breed defensible second replies — 8 of the 14 contested came from the
+two town-shop authors. Full record: CRV8-RESULT.md.
+
 ### bas-v1: the first gated Build-a-Sentence batch (2026-08-28)
 57 banked (108 → 165 live). The gate that mattered was the one built
 for the task's own defect: with exact single-order grading, a second

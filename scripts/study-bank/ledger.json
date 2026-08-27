@@ -297,6 +297,47 @@
      "verdict": "Template spread across ~60 assigned structure families; passive-participial (the harvest-v1 saturated skeleton) 1/57; no key-token Jaccard >= 0.5 against the live 108 or within batch; difficulty 22 hard / 35 medium."
     }
    }
+  },
+  {
+   "id": "crv8-2026-08-28",
+   "createdAt": "2026-08-28",
+   "targetTest": "toefl",
+   "section": "listening",
+   "task": "choose_response",
+   "family": "mc_hidden_source",
+   "spec": {
+    "n": 46,
+    "authors": 6,
+    "method": "cr-v7 symmetric four-world method, run 2: seeded RNG picks the spoken world after text freeze (seeds 20260829/20260928/20261028); topical neighborhood, indirect-competitor test, and reaction-token parity baked into the brief"
+   },
+   "contentSha": "3ddd89cb7797fe461b0ad7606f96498a9e6d1f6fffa3bd9961273a457c4736b9",
+   "status": "shipped",
+   "cohort": "cr-v8",
+   "note": "Pre-registration CRV8-PREREGISTERED.md; evidence CRV8-RESULT.md. 60 authored; 14 discarded whole as exclusivity-contested (single frozen-brief pass, no repair). Deviation recorded: b2/b3 were rendered before the b1 pilot verdict (pre-reg sequenced them after) — no integrity impact, attack solvers never saw b2/b3. Two metadata-only fixes within the cr-v7 precedent (kill-string comma, kill-label typo).",
+   "stages": {
+    "shape": {
+     "passed": true,
+     "contentSha": "3ddd89cb7797fe461b0ad7606f96498a9e6d1f6fffa3bd9961273a457c4736b9",
+     "verdict": "render-crv7.mjs mechanical checks on all 3 batches: 720 kill-quotes anchor 2+-word verbatim spans of their own lines, letters dealt 5/5/5/5 per batch, one logged quota re-roll (20260828→20260829)."
+    },
+    "withsource": {
+     "passed": true,
+     "verdict": "Frozen EXCLUSIVITY-GRADER-BRIEF.md verbatim over all 60, blind to key: 46 unique / 14 contested (contested discarded whole). On all 46 uniques the grader's sole-defensible option matched the RNG-picked key 46/46."
+    },
+    "nosource": {
+     "passed": true,
+     "n": 36,
+     "verdict": "Pilot (12 from b1, keys 3/3/3/3, control exactly 25%): mean 22.2%, margin -2.8, confident picks 3/19. Cross-batch held-out attack (24 survivors, none from the pilot): mean 22.2% vs 33.3% best-fixed-letter control, margin -11.1. Both CLEAR (kill bar +30)."
+    },
+    "elimination": {
+     "passed": true,
+     "verdict": "Options-only elimination probe over all 46: 2 \"certain\" rejects, both landed on distractors (keys were C on both items), both reasoned from topical narrowing the attacks already price in; 44/46 uncertain."
+    },
+    "tells": {
+     "passed": true,
+     "verdict": "Key length rank worst slot 34.8% (bar 40%); hedge keys 6.5% vs distractors 8.7% (safe direction); intensifiers 0%/0%; zero near-dup pairs (J>=0.5) against the live 132 or within batch; letters 10/10/12/14 after contested drops."
+    }
+   }
   }
  ],
  "auditedCohorts": [

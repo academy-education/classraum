@@ -1,0 +1,1290 @@
+[
+ {
+  "type": "multiple_choice",
+  "passage": "Transcript: \"We finally got the new eyepiece the donors paid for.\"",
+  "passageGroupId": null,
+  "prompt": "[Choose a Response] Which is the most natural reply?",
+  "choices": [
+   "I ran that station last weekend, so take your time.",
+   "The planets should look much sharper for the guests now.",
+   "Closing, since my lab runs until seven most days.",
+   "I'll warn the people in line before they buy tickets."
+  ],
+  "correct_answer": "The planets should look much sharper for the guests now.",
+  "difficulty": "hard",
+  "listeningTask": "choose_response",
+  "explanation": "The coordinator shares that the donor-funded eyepiece arrived, and predicting sharper planets for guests responds to that good news. Warning people before they buy tickets spreads trouble nobody reported, and granting dinner time answers a request never made. A closing-shift choice answers a preference question that was never posed.",
+  "distractor_rationales": {
+   "I'll warn the people in line before they buy tickets.": "Good news about \"the new eyepiece\" predicts no early closure, so warning people before they buy tickets spreads trouble nobody reported.",
+   "I ran that station last weekend, so take your time.": "Saying \"the donors paid\" for gear requests no coverage, so telling someone to take their time grants permission never sought.",
+   "Closing, since my lab runs until seven most days.": "\"We finally got\" the eyepiece asks no scheduling question, so declaring a closing-shift preference is unprompted."
+  },
+  "_crv7": {
+   "localId": "crv8-b1-04",
+   "selectedWorld": 2,
+   "kind": "good news",
+   "keyAct": "predicts a benefit for guests",
+   "setting": "Observatory public night volunteer desk; the volunteer coordinator speaks with a student volunteer."
+  }
+ },
+ {
+  "type": "multiple_choice",
+  "passage": "Transcript: \"Heads up — tonight's theme is travel stories, not food like the flyer said.\"",
+  "passageGroupId": null,
+  "prompt": "[Choose a Response] Which is the most natural reply?",
+  "choices": [
+   "Twenty minutes goes fast, so is there time to trade contacts?",
+   "Can you pair me with one for the first round?",
+   "Then the menu vocabulary I prepped will have to wait.",
+   "I can, if the beginners don't mind my basic vocabulary."
+  ],
+  "correct_answer": "Then the menu vocabulary I prepped will have to wait.",
+  "difficulty": "hard",
+  "listeningTask": "choose_response",
+  "explanation": "Learning the theme switched from food to travel, the attendee sets aside the menu vocabulary they prepared. Timing worries about twenty minutes cite a rotation rule never given, and asking to be paired with a Portuguese speaker points at arrivals nobody mentioned. Conditional agreement about note-taking accepts a job that was never offered.",
+  "distractor_rationales": {
+   "Twenty minutes goes fast, so is there time to trade contacts?": "The line swaps themes — \"travel stories, not food\" — and gives no rotation rule, so timing worries about twenty minutes answer nothing stated.",
+   "Can you pair me with one for the first round?": "Correcting \"the flyer\" adds no new attendees, so asking to be paired with a Portuguese speaker for round one has no basis here.",
+   "I can, if the beginners don't mind my basic vocabulary.": "\"Heads up\" delivers a change of topic, not a request for note-taking, so conditional agreement about vocabulary accepts a job never offered."
+  },
+  "_crv7": {
+   "localId": "crv8-b1-18",
+   "selectedWorld": 3,
+   "kind": "correction",
+   "keyAct": "adapts prepared material to the change",
+   "setting": "A language exchange meetup: the organizer talks with an attendee at the sign-in table before the session starts."
+  }
+ },
+ {
+  "type": "multiple_choice",
+  "passage": "Transcript: \"Can you mist tray four every two hours until the humidifier's repaired?\"",
+  "passageGroupId": null,
+  "prompt": "[Choose a Response] Which is the most natural reply?",
+  "choices": [
+   "That's ahead of the schedule the protocol predicted, right?",
+   "I'll set a timer on my phone to keep track.",
+   "I got through half before the scanner battery died.",
+   "Do we have enough spare seeds to restart that tray?"
+  ],
+  "correct_answer": "I'll set a timer on my phone to keep track.",
+  "difficulty": "hard",
+  "listeningTask": "choose_response",
+  "explanation": "The supervisor asks for misting on a strict interval, and promising a phone timer both agrees and shows how the interval will be kept. Asking about spare seeds treats the plants as dead when they only need moisture, and the half-finished measurement report answers a question that was not asked. Calling anything ahead of schedule responds to news never given.",
+  "distractor_rationales": {
+   "Do we have enough spare seeds to restart that tray?": "Misting \"until the humidifier's repaired\" presumes living plants that need moisture, so discussing spare seeds to restart the tray treats them as already dead.",
+   "I got through half before the scanner battery died.": "A request to \"mist tray four\" going forward is not a question about finished work, so the half-done measurement report answers nothing asked here.",
+   "That's ahead of the schedule the protocol predicted, right?": "Someone asking for care \"every two hours\" is managing a problem, not sharing a success, so calling the tray ahead of schedule fits no news in this line."
+  },
+  "_crv7": {
+   "localId": "crv8-b1-11",
+   "selectedWorld": 2,
+   "kind": "request",
+   "keyAct": "agrees and names a compliance method",
+   "setting": "A university greenhouse: a faculty supervisor talks with a student research assistant at the seedling bench about tray four of their growth trial."
+  }
+ },
+ {
+  "type": "multiple_choice",
+  "passage": "Transcript: \"For five dollars more, our host can read the ad live.\"",
+  "passageGroupId": null,
+  "prompt": "[Choose a Response] Which is the most natural reply?",
+  "choices": [
+   "We only have a script, so it still needs recording.",
+   "We registered with student activities in September, so we qualify.",
+   "Our fundraiser is November eighth, so later slots still work.",
+   "The live read sounds better than our rough recording."
+  ],
+  "correct_answer": "The live read sounds better than our rough recording.",
+  "difficulty": "hard",
+  "listeningTask": "choose_response",
+  "explanation": "The manager offers a live host read for five dollars more, and judging it better than the club's rough recording accepts that upgrade. Pointing to November availability solves a sellout nobody reported, and saying the ad still needs recording ignores that a live read requires none. Citing registration with student activities rebuts an eligibility ruling that was never made.",
+  "distractor_rationales": {
+   "Our fundraiser is November eighth, so later slots still work.": "An upsell of \"five dollars more\" reports no sellout, so pointing to November availability responds to no scheduling problem.",
+   "We only have a script, so it still needs recording.": "If the host \"can read the ad\" live, no finished recording is required, so saying it still needs recording ignores what was offered.",
+   "We registered with student activities in September, so we qualify.": "Offering a live read for \"five dollars\" more makes no eligibility claim, so citing registration with student activities rebuts nothing."
+  },
+  "_crv7": {
+   "localId": "crv8-b1-09",
+   "selectedWorld": 2,
+   "kind": "offer",
+   "keyAct": "accepts the upgrade over own version",
+   "setting": "Campus radio station ad booking window; the ad manager speaks with a student club representative."
+  }
+ },
+ {
+  "type": "multiple_choice",
+  "passage": "Transcript: \"Double-sided printing costs the same as single-sided this semester.\"",
+  "passageGroupId": null,
+  "prompt": "[Choose a Response] Which is the most natural reply?",
+  "choices": [
+   "My campus card, if the reader is working now.",
+   "I'll print these flyers in black and white today then.",
+   "In that case I'll do my whole packet double-sided.",
+   "I'll stack them on the far counter right away."
+  ],
+  "correct_answer": "In that case I'll do my whole packet double-sided.",
+  "difficulty": "hard",
+  "listeningTask": "choose_response",
+  "explanation": "The staffer notes double-sided costs no extra, so deciding to do the whole packet double-sided follows directly. Shifting flyers to black and white addresses a toner problem never raised, and a campus-card answer responds to no payment question. Stacking originals complies with a request nobody made.",
+  "distractor_rationales": {
+   "I'll print these flyers in black and white today then.": "A note that double-sided \"costs the same\" reports no breakdown, so moving flyers to black and white fixes a problem never raised.",
+   "My campus card, if the reader is working now.": "Saying double-sided matches \"single-sided this semester\" asks no payment question, so a campus-card answer is unprompted.",
+   "I'll stack them on the far counter right away.": "Price information about \"Double-sided printing\" requests nothing, so promising to stack originals complies with no request."
+  },
+  "_crv7": {
+   "localId": "crv8-b1-01",
+   "selectedWorld": 3,
+   "kind": "neutral info",
+   "keyAct": "opts in based on the pricing",
+   "setting": "Campus copy center, self-service counter; a staff member speaks with a student making copies."
+  }
+ },
+ {
+  "type": "multiple_choice",
+  "passage": "Transcript: \"How many bikes on the science quad racks looked abandoned?\"",
+  "passageGroupId": null,
+  "prompt": "[Choose a Response] Which is the most natural reply?",
+  "choices": [
+   "My paper backup lists every tag I scanned this morning.",
+   "I'll swing by the garage before I turn in totals.",
+   "Nineteen had flat tires and rusted chains, so I flagged each.",
+   "That would beat the soggy clipboard I used last week."
+  ],
+  "correct_answer": "Nineteen had flat tires and rusted chains, so I flagged each.",
+  "difficulty": "hard",
+  "listeningTask": "choose_response",
+  "explanation": "Asked for the abandoned count, the volunteer gives the number and the criteria used to flag them. Praising a laminated sheet over a soggy clipboard evaluates an offer never extended, and producing a paper backup rescues data nobody said was lost. Promising a garage detour amends instructions that were never given.",
+  "distractor_rationales": {
+   "That would beat the soggy clipboard I used last week.": "The line requests a count from \"the science quad\" and offers no printout, so praising a laminated sheet over a soggy clipboard answers no offer.",
+   "My paper backup lists every tag I scanned this morning.": "Asking which bikes \"looked abandoned\" reports no crash, so producing a paper backup of scanned tags rescues data nobody lost.",
+   "I'll swing by the garage before I turn in totals.": "A question about \"the science quad racks\" adds no new locations, so promising a garage stop before totals amends instructions never given."
+  },
+  "_crv7": {
+   "localId": "crv8-b1-19",
+   "selectedWorld": 0,
+   "kind": "question",
+   "keyAct": "reports a count with supporting criteria",
+   "setting": "The campus sustainability office's bike rack audit: a staffer talks with a student volunteer doing the counting."
+  }
+ },
+ {
+  "type": "multiple_choice",
+  "passage": "Transcript: \"I can hold twelve cones for your Thursday session if that helps.\"",
+  "passageGroupId": null,
+  "prompt": "[Choose a Response] Which is the most natural reply?",
+  "choices": [
+   "Twelve should cover it, since our own cones keep vanishing.",
+   "How many usable ones does that leave us for tonight?",
+   "Two players are still deciding, but I'll confirm by Thursday.",
+   "No wonder none of these had our tape marks."
+  ],
+  "correct_answer": "Twelve should cover it, since our own cones keep vanishing.",
+  "difficulty": "hard",
+  "listeningTask": "choose_response",
+  "explanation": "Offered twelve reserved cones, the captain accepts and explains why the hold matters, their own keep disappearing. The tape-marks remark explains a bin mix-up that never happened, and counting usable balls reacts to a loss never announced. A roster timeline answers a jersey deadline nobody mentioned.",
+  "distractor_rationales": {
+   "No wonder none of these had our tape marks.": "Offering to \"hold twelve cones\" involves no grabbing of a wrong bin, so the remark about missing tape marks explains a mix-up that never happened.",
+   "How many usable ones does that leave us for tonight?": "Planning \"for your Thursday session\" reports nothing ruined, so asking what is left usable tonight reacts to a loss never announced.",
+   "Two players are still deciding, but I'll confirm by Thursday.": "The line extends help \"if that helps\" and asks nothing about players, so a promise to confirm the roster answers no question here."
+  },
+  "_crv7": {
+   "localId": "crv8-b1-17",
+   "selectedWorld": 1,
+   "kind": "offer",
+   "keyAct": "accepts and confirms the amount suffices",
+   "setting": "The club sports equipment cage: the cage attendant talks with a club team captain checking out gear for practice."
+  }
+ },
+ {
+  "type": "multiple_choice",
+  "passage": "Transcript: \"Our records show your last donation was six weeks ago, not twelve.\"",
+  "passageGroupId": null,
+  "prompt": "[Choose a Response] Which is the most natural reply?",
+  "choices": [
+   "I'll wait the extra two weeks and come back.",
+   "I'd like the text; the benches outside are more comfortable.",
+   "I brought class reading, so twenty minutes is fine.",
+   "Two bottles this morning, like the reminder email said."
+  ],
+  "correct_answer": "I'll wait the extra two weeks and come back.",
+  "difficulty": "hard",
+  "listeningTask": "choose_response",
+  "explanation": "The volunteer corrects the donation date to six weeks ago, so agreeing to wait out the remaining gap and return accepts that ruling. A two-bottle water report answers a hydration question nobody asked, and accepting twenty minutes cites a wait never stated. Asking for a text accepts an alert that was never offered.",
+  "distractor_rationales": {
+   "Two bottles this morning, like the reminder email said.": "\"Our records show\" a date discrepancy, not a hydration question, so reporting two bottles of water answers nothing asked.",
+   "I brought class reading, so twenty minutes is fine.": "A correction that it was \"six weeks ago\" quotes no wait estimate, so accepting twenty minutes refers to nothing said.",
+   "I'd like the text; the benches outside are more comfortable.": "\"not twelve\" corrects a donation date and offers no text alert, so asking for the text responds to no offer."
+  },
+  "_crv7": {
+   "localId": "crv8-b1-06",
+   "selectedWorld": 1,
+   "kind": "correction",
+   "keyAct": "accepts the deferral timeline",
+   "setting": "Blood drive check-in table in the student union; a volunteer checks in a student donor."
+  }
+ },
+ {
+  "type": "multiple_choice",
+  "passage": "Transcript: \"Can you cover the seven o'clock volleyball match this Friday evening?\"",
+  "passageGroupId": null,
+  "prompt": "[Choose a Response] Which is the most natural reply?",
+  "choices": [
+   "That rate works for me, so sign me up for soccer.",
+   "I'll change my calendar so I don't show up Monday.",
+   "Friday works as long as I'm done by nine.",
+   "I did two seasons at my community league back home."
+  ],
+  "correct_answer": "Friday works as long as I'm done by nine.",
+  "difficulty": "hard",
+  "listeningTask": "choose_response",
+  "explanation": "The coordinator asks for Friday coverage, and accepting with a nine-o'clock condition answers that request directly. A remark that the rate works cites pay never quoted, and basketball seasons answer an experience question nobody posed. Fixing a calendar to avoid Monday reacts to a clinic correction that was never made.",
+  "distractor_rationales": {
+   "That rate works for me, so sign me up for soccer.": "Asking someone to \"cover the seven o'clock\" match names no pay figure, so saying the rate works answers a number never spoken.",
+   "I did two seasons at my community league back home.": "A staffing request for a \"volleyball match this Friday\" asks nothing about past seasons, so basketball history is unprompted.",
+   "I'll change my calendar so I don't show up Monday.": "\"this Friday evening\" concerns a match, not the clinic date, so recalculating Monday plans corrects nothing said here."
+  },
+  "_crv7": {
+   "localId": "crv8-b1-02",
+   "selectedWorld": 3,
+   "kind": "request",
+   "keyAct": "accepts with a time condition",
+   "setting": "Intramural sports referee sign-up table; the coordinator speaks with a student considering officiating."
+  }
+ },
+ {
+  "type": "multiple_choice",
+  "passage": "Transcript: \"Actually we launch at six thirty, not six — I misread the schedule.\"",
+  "passageGroupId": null,
+  "prompt": "[Choose a Response] Which is the most natural reply?",
+  "choices": [
+   "Which erg workout does coach want us to do instead?",
+   "Who ended up sitting behind me in seven this time?",
+   "The spanner you'd need is in my bag's side pocket.",
+   "Then I'll grab breakfast first since I skipped it to make six."
+  ],
+  "correct_answer": "Then I'll grab breakfast first since I skipped it to make six.",
+  "difficulty": "hard",
+  "listeningTask": "choose_response",
+  "explanation": "The corrected start time frees half an hour, so using it for the breakfast that was skipped for the earlier time follows directly. Asking which erg workout replaces the row responds to a cancellation that never happened, and pointing out a spanner answers a rigging offer never made. A question about who sits in seven reacts to a lineup that was never posted.",
+  "distractor_rationales": {
+   "Which erg workout does coach want us to do instead?": "\"we launch at six thirty\" keeps the crew on the water, so asking which erg workout replaces the row responds to a cancellation this line never made.",
+   "The spanner you'd need is in my bag's side pocket.": "Correcting a start time — \"I misread the schedule\" — offers no help with rigging, so directing someone to a spanner in a bag pocket serves nothing said.",
+   "Who ended up sitting behind me in seven this time?": "The words \"six thirty, not six\" concern when they launch, not who sits where, so asking who ended up behind them in seven follows no seat news."
+  },
+  "_crv7": {
+   "localId": "crv8-b1-12",
+   "selectedWorld": 0,
+   "kind": "correction",
+   "keyAct": "repurposes the freed time",
+   "setting": "A rowing team boathouse before morning practice: the coxswain talks with a rower by the boat racks."
+  }
+ },
+ {
+  "type": "multiple_choice",
+  "passage": "Transcript: \"The provost approved funding for a second cart starting next month.\"",
+  "passageGroupId": null,
+  "prompt": "[Choose a Response] Which is the most natural reply?",
+  "choices": [
+   "Which of us two is on the late van tonight?",
+   "Send me their number and I'll head over now.",
+   "Facilities swapped the bulb, but the mount still rattles.",
+   "Does a new cart mean we can shorten wait times?"
+  ],
+  "correct_answer": "Does a new cart mean we can shorten wait times?",
+  "difficulty": "hard",
+  "listeningTask": "choose_response",
+  "explanation": "Told a second cart is funded, the volunteer connects the news to what riders care about, shorter waits. Asking for a caller's number has nobody to escort, and the late-van question answers a rotation policy never described. The bulb-and-mount report answers a maintenance question that was never asked.",
+  "distractor_rationales": {
+   "Send me their number and I'll head over now.": "\"The provost approved funding\" is an announcement with no caller attached, so asking for a number to head over now has nobody to escort.",
+   "Which of us two is on the late van tonight?": "News of \"a second cart\" next month says nothing about tonight's vans, so asking who covers the late shift answers a different topic.",
+   "Facilities swapped the bulb, but the mount still rattles.": "Looking ahead to a cart \"starting next month\", the line asks nothing, so a status report on a bulb and rattling mount answers no question."
+  },
+  "_crv7": {
+   "localId": "crv8-b1-16",
+   "selectedWorld": 3,
+   "kind": "good news",
+   "keyAct": "connects the news to service impact",
+   "setting": "The campus safety escort service dispatch desk at night: the dispatcher talks with a student volunteer driver."
+  }
+ },
+ {
+  "type": "multiple_choice",
+  "passage": "Transcript: \"The ropes course is closed for repairs, so team-building moves indoors.\"",
+  "passageGroupId": null,
+  "prompt": "[Choose a Response] Which is the most natural reply?",
+  "choices": [
+   "Will the convocation stage have mics, or do we project?",
+   "Does the indoor version still count toward our facilitation hours?",
+   "Watching you run one first would settle my nerves.",
+   "Is the tour route the same one printed in our binders?"
+  ],
+  "correct_answer": "Does the indoor version still count toward our facilitation hours?",
+  "difficulty": "hard",
+  "listeningTask": "choose_response",
+  "explanation": "With the ropes course closed and team-building moved indoors, the trainee checks whether the substitute still counts toward required facilitation hours. Wanting to watch a demo icebreaker accepts an offer never made, and the binder route question concerns a rehearsal never mentioned. The mics question celebrates a convocation result that was never delivered.",
+  "distractor_rationales": {
+   "Watching you run one first would settle my nerves.": "\"closed for repairs\" is scheduling news, not an offer to model an icebreaker, so wanting to watch one first accepts nothing offered.",
+   "Is the tour route the same one printed in our binders?": "Team-building that \"moves indoors\" says nothing about tour rehearsals, so asking whether the route matches the binders answers a different plan.",
+   "Will the convocation stage have mics, or do we project?": "\"The ropes course\" closing carries no skit victory, so a question about convocation mics celebrates news that was never given."
+  },
+  "_crv7": {
+   "localId": "crv8-b1-20",
+   "selectedWorld": 3,
+   "kind": "bad news",
+   "keyAct": "checks the change against requirements",
+   "setting": "An orientation leader training room: the training coordinator talks with a student trainee between sessions."
+  }
+ },
+ {
+  "type": "multiple_choice",
+  "passage": "Transcript: \"The big kiln needs a new element, so firings pause this week.\"",
+  "passageGroupId": null,
+  "prompt": "[Choose a Response] Which is the most natural reply?",
+  "choices": [
+   "My vase is fourteen inches, so bottom shelf for it.",
+   "I'll grab a damp sponge and do them now.",
+   "I'll ask the art annex if their kiln has space.",
+   "I can finally glaze them for the sale this weekend."
+  ],
+  "correct_answer": "I'll ask the art annex if their kiln has space.",
+  "difficulty": "hard",
+  "listeningTask": "choose_response",
+  "explanation": "The technician announces the kiln is down for the week, so checking whether the art annex kiln has space is a sensible workaround. Fetching a sponge complies with a wiping instruction nobody gave, and weekend glaze plans ignore that firings are stopped. A bottom-shelf choice follows a loading rule that is irrelevant while nothing is being loaded.",
+  "distractor_rationales": {
+   "I'll grab a damp sponge and do them now.": "\"needs a new element\" is a breakdown report, not a wiping instruction, so fetching a sponge complies with nothing asked.",
+   "I can finally glaze them for the sale this weekend.": "A pause because the kiln \"needs a new\" element delivers no results, so glazing for the weekend sale ignores that firings are stopped.",
+   "My vase is fourteen inches, so bottom shelf for it.": "\"firings pause this week\" means nothing is being loaded, so choosing the bottom shelf for a vase follows a rule irrelevant now."
+  },
+  "_crv7": {
+   "localId": "crv8-b1-10",
+   "selectedWorld": 2,
+   "kind": "bad news",
+   "keyAct": "seeks a workaround elsewhere",
+   "setting": "Ceramics studio kiln loading bench; the studio technician speaks with a student potter."
+  }
+ },
+ {
+  "type": "multiple_choice",
+  "passage": "Transcript: \"Returning gardeners keep their same plot unless they ask to move.\"",
+  "passageGroupId": null,
+  "prompt": "[Choose a Response] Which is the most natural reply?",
+  "choices": [
+   "Mine gets the best sun, so I'll keep it.",
+   "Mostly tomatoes, with marigolds along the border to help.",
+   "I'll sign it now; I only own a trowel.",
+   "Mine backs onto that fence; how long before I can dig?"
+  ],
+  "correct_answer": "Mine gets the best sun, so I'll keep it.",
+  "difficulty": "hard",
+  "listeningTask": "choose_response",
+  "explanation": "The manager explains that returners keep their plot unless they request a move, so citing good sun and keeping it answers that choice. Asking how long before digging references a flood nobody reported, and a tomatoes-and-marigolds answer responds to a crop question never asked. Signing a tool log accepts a loan that was never offered.",
+  "distractor_rationales": {
+   "Mine backs onto that fence; how long before I can dig?": "\"keep their same plot\" mentions no fence or flood, so asking how long before digging responds to damage nobody reported.",
+   "Mostly tomatoes, with marigolds along the border to help.": "A policy that gardeners \"keep their same\" plot asks nothing about crops, so listing tomatoes and marigolds answers no question.",
+   "I'll sign it now; I only own a trowel.": "\"unless they ask\" to move concerns plot assignment, not equipment, so promising to sign a tool log accepts an unoffered loan."
+  },
+  "_crv7": {
+   "localId": "crv8-b1-05",
+   "selectedWorld": 0,
+   "kind": "neutral info",
+   "keyAct": "declines the move option",
+   "setting": "Campus community garden plot allocation table; the garden manager speaks with a student gardener."
+  }
+ },
+ {
+  "type": "multiple_choice",
+  "passage": "Transcript: \"Funding fell through, so spring internships won't be offered this year.\"",
+  "passageGroupId": null,
+  "prompt": "[Choose a Response] Which is the most natural reply?",
+  "choices": [
+   "Which photographs is the exhibit built around this time?",
+   "Does that change anything about the fall placements already made?",
+   "Where do I go to get it reprinted?",
+   "If someone lends me the tour script, I'm in."
+  ],
+  "correct_answer": "Does that change anything about the fall placements already made?",
+  "difficulty": "hard",
+  "listeningTask": "choose_response",
+  "explanation": "Hearing spring internships are cancelled, the intern asks whether the damage reaches the fall placements too. Asking which photographs a show features celebrates an assignment never announced, and the reprint question fixes a badge error nobody raised. Conditional agreement pending a tour script accepts a coverage request that was never made.",
+  "distractor_rationales": {
+   "Which photographs is the exhibit built around this time?": "\"Funding fell through\" is a loss, not an exhibit assignment, so asking which photographs the show is built around celebrates nothing said.",
+   "Where do I go to get it reprinted?": "The line cancels \"spring internships\" and mentions no badge, so asking where to reprint one fixes an error never raised.",
+   "If someone lends me the tour script, I'm in.": "A program that \"won't be offered\" is not a request to cover a tour, so conditional agreement pending a script accepts nothing asked."
+  },
+  "_crv7": {
+   "localId": "crv8-b1-15",
+   "selectedWorld": 3,
+   "kind": "bad news",
+   "keyAct": "asks about the scope of the impact",
+   "setting": "A museum internship coordinator's office: the coordinator meets with a student intern about their placement."
+  }
+ },
+ {
+  "type": "multiple_choice",
+  "passage": "Transcript: \"Are you furnishing a dorm room or an off-campus apartment?\"",
+  "passageGroupId": null,
+  "prompt": "[Choose a Response] Which is the most natural reply?",
+  "choices": [
+   "This desk is yellow-tagged, so that's twenty dollars, right?",
+   "I'll check out now, then, and shop for chairs after.",
+   "Take down my address; the couch won't fit in my car.",
+   "An apartment, so I'm hunting for a kitchen table too."
+  ],
+  "correct_answer": "An apartment, so I'm hunting for a kitchen table too.",
+  "difficulty": "hard",
+  "listeningTask": "choose_response",
+  "explanation": "The staffer asks dorm or apartment, and answering apartment while adding a kitchen table to the hunt fits that question. Pricing a desk at half off references a discount nobody stated, and racing to the register answers a holds warning never given. Leaving an address accepts a delivery that was never proposed.",
+  "distractor_rationales": {
+   "This desk is yellow-tagged, so that's twenty dollars, right?": "Asking about \"a dorm room\" or apartment states no discount, so pricing a desk at half off references nothing said.",
+   "I'll check out now, then, and shop for chairs after.": "\"Are you furnishing\" a room is a question about needs, not a holds policy, so racing to the register answers no warning.",
+   "Take down my address; the couch won't fit in my car.": "The question about an \"off-campus apartment\" offers no driver, so leaving an address accepts a delivery never proposed."
+  },
+  "_crv7": {
+   "localId": "crv8-b1-07",
+   "selectedWorld": 2,
+   "kind": "question",
+   "keyAct": "answers and extends the shopping list",
+   "setting": "University surplus furniture sale warehouse; a staff member speaks with a student shopper."
+  }
+ },
+ {
+  "type": "multiple_choice",
+  "passage": "Transcript: \"The copy you reserved came back damaged, so we had to withdraw it.\"",
+  "passageGroupId": null,
+  "prompt": "[Choose a Response] Which is the most natural reply?",
+  "choices": [
+   "I'll check it out now with my card.",
+   "Turning them in — I finished both last night.",
+   "It changed last month — I'll write the new one down.",
+   "Could another branch send over their copy instead?"
+  ],
+  "correct_answer": "Could another branch send over their copy instead?",
+  "difficulty": "hard",
+  "listeningTask": "choose_response",
+  "explanation": "Since this branch's copy was withdrawn, asking whether another branch can send theirs is the cooperative way forward. Checking the book out now is impossible because it has been pulled from circulation, and turning in two finished books responds to a question about loans in hand, not to news about one damaged reserve. Writing down a new phone number answers a request the librarian never made.",
+  "distractor_rationales": {
+   "I'll check it out now with my card.": "Because the staff \"had to withdraw it\", the book cannot be checked out now with any card.",
+   "Turning them in — I finished both last night.": "The line concerns one reserve that \"came back damaged\", not two loans in the patron's hands to turn in.",
+   "It changed last month — I'll write the new one down.": "The line reports that \"we had to withdraw\" a book; it asks for no phone number to be updated."
+  },
+  "_crv7": {
+   "localId": "crv8-b2-11",
+   "selectedWorld": 1,
+   "kind": "bad news",
+   "keyAct": "asks for an alternative source",
+   "setting": "City library branch desk; a librarian speaks with a patron standing at the counter."
+  }
+ },
+ {
+  "type": "multiple_choice",
+  "passage": "Transcript: \"The wall is closed tonight — we're resetting all the routes.\"",
+  "passageGroupId": null,
+  "prompt": "[Choose a Response] Which is the most natural reply?",
+  "choices": [
+   "I'll book a rope lane for tonight.",
+   "I'll take the harness only; my shoes still fit.",
+   "Hand me a pen and I'll do it now.",
+   "I'll come back tomorrow once the new routes are up."
+  ],
+  "correct_answer": "I'll come back tomorrow once the new routes are up.",
+  "difficulty": "hard",
+  "listeningTask": "choose_response",
+  "explanation": "With the wall shut for a route reset, returning tomorrow for the fresh routes is the natural adjustment. Booking a rope lane for tonight directly contradicts the closure, and asking for a pen answers a signing request that was never made. Taking a harness makes no sense when there is no session to gear up for.",
+  "distractor_rationales": {
+   "I'll book a rope lane for tonight.": "The wall is \"closed tonight\", so booking a rope lane for tonight is impossible.",
+   "Hand me a pen and I'll do it now.": "Staff are \"resetting all the routes\" — that's a closure notice, with no form to sign or pen to need.",
+   "I'll take the harness only; my shoes still fit.": "\"The wall is closed\", so there is no session for which to take a harness."
+  },
+  "_crv7": {
+   "localId": "crv8-b2-13",
+   "selectedWorld": 2,
+   "kind": "bad news",
+   "keyAct": "defers the visit to the reopening",
+   "setting": "Recreation center climbing wall check-in; a staff member speaks with a climber arriving for a session."
+  }
+ },
+ {
+  "type": "multiple_choice",
+  "passage": "Transcript: \"For fifty cents extra we can cut your house key in bright orange.\"",
+  "passageGroupId": null,
+  "prompt": "[Choose a Response] Which is the most natural reply?",
+  "choices": [
+   "I'll email my landlord tonight and bring the note tomorrow.",
+   "Is there a locksmith nearby who stocks unusual blanks?",
+   "I'll pay the extra — I can never find the silver ones.",
+   "Let me test it in the ignition before I pay."
+  ],
+  "correct_answer": "I'll pay the extra — I can never find the silver ones.",
+  "difficulty": "hard",
+  "listeningTask": "choose_response",
+  "explanation": "Offered a bright orange house key for fifty cents more, paying the extra because silver keys get lost is a direct acceptance. Asking for a locksmith with unusual blanks reacts to a cutting failure nobody reported, and promising a landlord's note satisfies a mailbox rule never stated. Testing a key in the ignition treats a house key as a finished car key.",
+  "distractor_rationales": {
+   "Is there a locksmith nearby who stocks unusual blanks?": "An offer of \"fifty cents extra\" for color means cutting is working fine, so no locksmith with rare blanks is needed.",
+   "I'll email my landlord tonight and bring the note tomorrow.": "Coloring \"your house key\" involves no mailbox rule, so promising a landlord's note answers nothing.",
+   "Let me test it in the ignition before I pay.": "The subject is a house key \"in bright orange\", not a car key, so an ignition test is beside the point."
+  },
+  "_crv7": {
+   "localId": "crv8-b2-03",
+   "selectedWorld": 2,
+   "kind": "offer",
+   "keyAct": "pays extra citing a practical benefit",
+   "setting": "Key cutting kiosk: the operator speaking with a customer who wants keys copied."
+  }
+ },
+ {
+  "type": "multiple_choice",
+  "passage": "Transcript: \"We could list it on consignment instead — you'd net more eventually.\"",
+  "passageGroupId": null,
+  "prompt": "[Choose a Response] Which is the most natural reply?",
+  "choices": [
+   "Used works — I was eyeing that secondhand flash anyway.",
+   "How big a cut does the shop take on that?",
+   "Box is long gone, but the charger's in my bag.",
+   "At thirty I'd sooner keep it as a spare."
+  ],
+  "correct_answer": "How big a cut does the shop take on that?",
+  "difficulty": "hard",
+  "listeningTask": "choose_response",
+  "explanation": "Offered a consignment listing that would net more eventually, asking how big a cut the shop takes probes the terms before deciding. Keeping the lens at thirty rejects a valuation that was never quoted, and reporting a missing box answers an accessories question never asked. Welcoming a used-gear rule responds to a credit policy nobody stated.",
+  "distractor_rationales": {
+   "At thirty I'd sooner keep it as a spare.": "An invitation to \"list it on consignment\" cites no thirty-dollar valuation to turn down.",
+   "Box is long gone, but the charger's in my bag.": "Saying \"you'd net more\" pitches a selling route; it asks nothing about a box or charger being in the bag.",
+   "Used works — I was eyeing that secondhand flash anyway.": "Proposing to sell \"on consignment instead\" sets no used-gear rule, so agreeing to spend credit on a secondhand flash answers nothing."
+  },
+  "_crv7": {
+   "localId": "crv8-b2-07",
+   "selectedWorld": 3,
+   "kind": "offer",
+   "keyAct": "probes the offer's terms",
+   "setting": "Camera shop trade-in desk: a clerk appraising a customer's old camera gear."
+  }
+ },
+ {
+  "type": "multiple_choice",
+  "passage": "Transcript: \"Would you like the poster mounted flat, or floating with a shadow gap?\"",
+  "passageGroupId": null,
+  "prompt": "[Choose a Response] Which is the most natural reply?",
+  "choices": [
+   "Thursday works — I don't need it before the weekend.",
+   "Floating, please — the ragged edges are part of the look.",
+   "Then let's remeasure everything before you cut the frame.",
+   "Can you touch it up, or does the whole frame need replacing?"
+  ],
+  "correct_answer": "Floating, please — the ragged edges are part of the look.",
+  "difficulty": "hard",
+  "listeningTask": "choose_response",
+  "explanation": "Asked to choose between flat mounting and floating with a shadow gap, picking floating because the ragged edges matter answers the question directly. Demanding a remeasure before cutting responds to a sizing error nobody reported, and agreeing to Thursday accepts a date never proposed. Asking about touch-ups or replacement presumes damage that was never mentioned.",
+  "distractor_rationales": {
+   "Then let's remeasure everything before you cut the frame.": "A mounting-style question about \"mounted flat, or floating\" involves no measurement mistake, so remeasuring before cutting responds to nothing.",
+   "Thursday works — I don't need it before the weekend.": "Asking about \"a shadow gap\" sets no pickup date, so agreeing to Thursday hangs in the air.",
+   "Can you touch it up, or does the whole frame need replacing?": "\"Would you like\" a mounting style reports no damage, so asking about touch-ups or replacement fits nothing here."
+  },
+  "_crv7": {
+   "localId": "crv8-b2-02",
+   "selectedWorld": 0,
+   "kind": "question",
+   "keyAct": "picks a style and gives a reason",
+   "setting": "Picture framing shop: a framer at the counter with a customer framing a poster."
+  }
+ },
+ {
+  "type": "multiple_choice",
+  "passage": "Transcript: \"Did you want lap-swim hours included, or just open swim?\"",
+  "passageGroupId": null,
+  "prompt": "[Choose a Response] Which is the most natural reply?",
+  "choices": [
+   "I'll renew it right here before we swim.",
+   "Do both of mine, then — they swim every weekend.",
+   "One day ticket now, and I'll return Monday.",
+   "Just open swim — I never do laps anyway."
+  ],
+  "correct_answer": "Just open swim — I never do laps anyway.",
+  "difficulty": "hard",
+  "listeningTask": "choose_response",
+  "explanation": "The clerk asks which tier the pass should cover, and the reply picks one and gives a reason. A day ticket plus a Monday return presupposes a sales schedule this line never states, and approving a kids add-on accepts an unmade offer. Renewing on the spot responds to an expiry nobody mentioned.",
+  "distractor_rationales": {
+   "One day ticket now, and I'll return Monday.": "The question is whether to have \"lap-swim hours included\"; it mentions no Monday sale to return for.",
+   "Do both of mine, then — they swim every weekend.": "The either-or ends \"or just open swim\"; no children or per-child price are in play.",
+   "I'll renew it right here before we swim.": "Asking about \"just open swim\" is a preference question; it reports no expired pass to renew."
+  },
+  "_crv7": {
+   "localId": "crv8-b2-12",
+   "selectedWorld": 3,
+   "kind": "question",
+   "keyAct": "picks the simpler tier",
+   "setting": "Community pool pass office; a clerk at the window speaks with a resident."
+  }
+ },
+ {
+  "type": "multiple_choice",
+  "passage": "Transcript: \"We're out of the wide fit in nines — only regular width left.\"",
+  "passageGroupId": null,
+  "prompt": "[Choose a Response] Which is the most natural reply?",
+  "choices": [
+   "On carpet or the hard floor by the door?",
+   "In that case I'll grab the grey pair as well.",
+   "Thin ones mostly — I only hike in summer.",
+   "If wide's gone, I'll try the trail model instead."
+  ],
+  "correct_answer": "If wide's gone, I'll try the trail model instead.",
+  "difficulty": "hard",
+  "listeningTask": "choose_response",
+  "explanation": "Told the wide fit in nines is gone, pivoting to try the trail model instead deals with the shortage directly. Asking which floor to walk on responds to a walking request never made, and grabbing a second grey pair celebrates a clearance nobody announced. An answer about thin summer socks meets a question that was never posed.",
+  "distractor_rationales": {
+   "On carpet or the hard floor by the door?": "A stock report that the store is \"out of the wide\" size makes no walking request, so asking carpet-or-hard-floor answers nothing.",
+   "In that case I'll grab the grey pair as well.": "With \"only regular width\" available there is no discount news, so buying a second grey pair celebrates nothing.",
+   "Thin ones mostly — I only hike in summer.": "\"the wide fit\" being gone is about width stock, not sock habits, so an answer about thin summer socks misses it."
+  },
+  "_crv7": {
+   "localId": "crv8-b2-04",
+   "selectedWorld": 1,
+   "kind": "bad news",
+   "keyAct": "proposes a substitute product",
+   "setting": "Shoe store fitting bench: a salesperson kneeling by a customer trying on running shoes."
+  }
+ },
+ {
+  "type": "multiple_choice",
+  "passage": "Transcript: \"Could you wear closed-toe shoes whenever you're in the kennels?\"",
+  "passageGroupId": null,
+  "prompt": "[Choose a Response] Which is the most natural reply?",
+  "choices": [
+   "These sandals are all I brought — I'll change tomorrow.",
+   "I'll head over there before it starts.",
+   "A medium works; put me down for one.",
+   "I'll sign up for the Thursday solo walks, then."
+  ],
+  "correct_answer": "These sandals are all I brought — I'll change tomorrow.",
+  "difficulty": "hard",
+  "listeningTask": "choose_response",
+  "explanation": "Asked to wear closed-toe shoes in the kennels, the volunteer admits today's lapse and promises to comply from tomorrow. Heading 'over there' has no destination since no other place was named, and booking solo walks presupposes a clearance nobody announced. Giving a shirt size responds to an offer that wasn't made.",
+  "distractor_rationales": {
+   "I'll head over there before it starts.": "The rule applies \"in the kennels\" — a dress request naming no other location, so 'over there' has no referent.",
+   "I'll sign up for the Thursday solo walks, then.": "Asking for \"closed-toe shoes\" is a safety request; it clears no one to sign up for solo dog walks.",
+   "A medium works; put me down for one.": "The request covers \"whenever you're in\" the kennels — footwear only, with no shirt order in play."
+  },
+  "_crv7": {
+   "localId": "crv8-b2-19",
+   "selectedWorld": 1,
+   "kind": "request",
+   "keyAct": "explains today's lapse and promises compliance",
+   "setting": "Animal shelter volunteer orientation; a staff coordinator speaks with a new volunteer."
+  }
+ },
+ {
+  "type": "multiple_choice",
+  "passage": "Transcript: \"The proof spells the street as Elm Road, but you wrote Elm Drive.\"",
+  "passageGroupId": null,
+  "prompt": "[Choose a Response] Which is the most natural reply?",
+  "choices": [
+   "Ten thousand will outlast my little book club easily.",
+   "Monday's fine — the invoices don't go out till midweek.",
+   "Add it — the plain text looks a bit bare.",
+   "Drive is right — please fix it before you engrave."
+  ],
+  "correct_answer": "Drive is right — please fix it before you engrave.",
+  "difficulty": "hard",
+  "listeningTask": "choose_response",
+  "explanation": "Shown that the proof says Elm Road while the order says Elm Drive, ruling that Drive is right and asking for the fix resolves the conflict. Reassurance about a book club's usage answers a durability fact never stated, and approving a logo accepts an upsell nobody offered. Choosing Monday answers a pickup question that was never asked.",
+  "distractor_rationales": {
+   "Ten thousand will outlast my little book club easily.": "A discrepancy where \"The proof spells\" the street one way is not a durability fact to shrug off with usage estimates.",
+   "Add it — the plain text looks a bit bare.": "Flagging \"Elm Road\" against Elm Drive offers no logo upgrade, so approving an add-on fits nothing.",
+   "Monday's fine — the invoices don't go out till midweek.": "Noting that \"you wrote Elm\" Drive needs a which-is-right answer, not a pickup day, so choosing Monday dodges the actual question."
+  },
+  "_crv7": {
+   "localId": "crv8-b2-09",
+   "selectedWorld": 2,
+   "kind": "correction",
+   "keyAct": "settles the discrepancy and orders a fix",
+   "setting": "Stationery shop custom stamp counter: a clerk taking a customer's custom stamp order."
+  }
+ },
+ {
+  "type": "multiple_choice",
+  "passage": "Transcript: \"Do you want your pickup at the barn or the market stall?\"",
+  "passageGroupId": null,
+  "prompt": "[Choose a Response] Which is the most natural reply?",
+  "choices": [
+   "Put me on the waitlist in case someone drops.",
+   "The market stall — it's right on my way home.",
+   "Half was what I meant — just refund the difference.",
+   "Count me in — Saturdays are wide open for me."
+  ],
+  "correct_answer": "The market stall — it's right on my way home.",
+  "difficulty": "hard",
+  "listeningTask": "choose_response",
+  "explanation": "Asked to choose a pickup point, the member picks the stall for convenience. Joining a waitlist makes no sense for someone whose share is already being scheduled, and a refund request presupposes a billing error nobody raised. Volunteering Saturdays accepts a work offer this line never makes.",
+  "distractor_rationales": {
+   "Put me on the waitlist in case someone drops.": "Arranging \"your pickup at\" a location means the share is already theirs; no waitlist is in play.",
+   "Half was what I meant — just refund the difference.": "The choice is \"at the barn\" or the stall — a location question, not a half-versus-full billing fix.",
+   "Count me in — Saturdays are wide open for me.": "Asking about the barn \"or the market stall\" poses a choice; it offers no work hours to be counted in for."
+  },
+  "_crv7": {
+   "localId": "crv8-b2-16",
+   "selectedWorld": 3,
+   "kind": "question",
+   "keyAct": "chooses the handier location",
+   "setting": "Farmers co-op membership desk; a staffer speaks with a resident about produce shares."
+  }
+ },
+ {
+  "type": "multiple_choice",
+  "passage": "Transcript: \"While the seam's open, we could take in the waist for ten dollars.\"",
+  "passageGroupId": null,
+  "prompt": "[Choose a Response] Which is the most natural reply?",
+  "choices": [
+   "Give me a minute — the changing room is occupied.",
+   "A week's fine — the wedding isn't until next month.",
+   "Do that too — it's always been a bit loose.",
+   "The ticket's wrong — it's the jacket sleeves, two centimeters."
+  ],
+  "correct_answer": "Do that too — it's always been a bit loose.",
+  "difficulty": "hard",
+  "listeningTask": "choose_response",
+  "explanation": "Offered a waist take-in for ten dollars while the seam is open, authorizing it because the waist has always been loose is a straightforward acceptance. Correcting the ticket responds to a paperwork conflict nobody raised, and agreeing to a week accepts a lining timeline never quoted. Stalling over an occupied changing room answers a try-on request that was never made.",
+  "distractor_rationales": {
+   "The ticket's wrong — it's the jacket sleeves, two centimeters.": "An offer made \"While the seam's open\" reports no ticket error, so insisting the ticket is wrong corrects nothing.",
+   "A week's fine — the wedding isn't until next month.": "Taking in \"the waist\" for ten dollars quotes no week-long turnaround, so accepting a week responds to nothing.",
+   "Give me a minute — the changing room is occupied.": "Saying \"we could take\" in the waist proposes extra work; it does not ask the customer to change for a pinning."
+  },
+  "_crv7": {
+   "localId": "crv8-b2-05",
+   "selectedWorld": 1,
+   "kind": "offer",
+   "keyAct": "authorizes the extra work",
+   "setting": "Tailor alteration counter: a tailor with a customer's suit and an alteration ticket."
+  }
+ },
+ {
+  "type": "multiple_choice",
+  "passage": "Transcript: \"We could move you to the evening shift if mornings are hard.\"",
+  "passageGroupId": null,
+  "prompt": "[Choose a Response] Which is the most natural reply?",
+  "choices": [
+   "Evenings suit me better, so switch me over.",
+   "An hour is fine; quizzes don't scare me.",
+   "I have two at home — I'll bring both.",
+   "I'll start at check-in as soon as doors open."
+  ],
+  "correct_answer": "Evenings suit me better, so switch me over.",
+  "difficulty": "hard",
+  "listeningTask": "choose_response",
+  "explanation": "Offered a move to evenings, the volunteer accepts and asks to be switched. Announcing a start at check-in presupposes a clearance nobody granted, and promising to bring clipboards answers a supply request that wasn't made. Commenting on the training hour and quiz responds to details this line never gives.",
+  "distractor_rationales": {
+   "I'll start at check-in as soon as doors open.": "The offer concerns \"the evening shift\"; no check-in clearance was granted, so staffing that table at doors-open is unlicensed.",
+   "I have two at home — I'll bring both.": "The condition is only \"if mornings are hard\" — nothing was asked to be brought, so promising two clipboards answers nothing.",
+   "An hour is fine; quizzes don't scare me.": "The coordinator offers to \"move you to\" evenings; no training length or quiz was described to call fine."
+  },
+  "_crv7": {
+   "localId": "crv8-b2-15",
+   "selectedWorld": 0,
+   "kind": "offer",
+   "keyAct": "takes the proposed swap",
+   "setting": "Polling place volunteer table; a coordinator speaks with a signed-up volunteer."
+  }
+ },
+ {
+  "type": "multiple_choice",
+  "passage": "Transcript: \"Before we start, we need your referral letter from the campus doctor.\"",
+  "passageGroupId": null,
+  "prompt": "[Choose a Response] Which is the most natural reply?",
+  "choices": [
+   "It's in my email — can I forward it right now?",
+   "Is another therapist able to see me this afternoon, then?",
+   "A little, though it still aches whenever I reach overhead.",
+   "I'll take it — my next class isn't until four."
+  ],
+  "correct_answer": "It's in my email — can I forward it right now?",
+  "difficulty": "hard",
+  "listeningTask": "choose_response",
+  "explanation": "The receptionist needs the referral letter before treatment, and offering to forward it from email solves exactly that. Asking for a substitute therapist responds to a cancellation that never happened — \"before we start\" shows the session is going ahead. Accepting an earlier slot answers no offer, and describing lingering shoulder pain answers no symptom question.",
+  "distractor_rationales": {
+   "Is another therapist able to see me this afternoon, then?": "\"Before we start\" shows the session is proceeding as planned, so requesting a substitute therapist this afternoon answers a cancellation that never happened.",
+   "I'll take it — my next class isn't until four.": "The line asks for a \"referral letter\", not whether you want an earlier time, so accepting a slot responds to nothing offered.",
+   "A little, though it still aches whenever I reach overhead.": "A request for paperwork \"from the campus doctor\" asks nothing about symptoms, so a pain report answers no question."
+  },
+  "_crv7": {
+   "localId": "crv8-b3-11",
+   "selectedWorld": 1,
+   "kind": "request",
+   "keyAct": "offers to supply the document immediately",
+   "setting": "Physiotherapy clinic reception desk; the receptionist is speaking with a student patient who has just arrived to check in."
+  }
+ },
+ {
+  "type": "multiple_choice",
+  "passage": "Transcript: \"Tuck your hair behind your ears so both show.\"",
+  "passageGroupId": null,
+  "prompt": "[Choose a Response] Which is the most natural reply?",
+  "choices": [
+   "Like this, or should it be further back?",
+   "Sharp enough to reuse for my visa application too?",
+   "Thursday is too late; my visa appointment is Wednesday.",
+   "I can't see much without them, so guide me."
+  ],
+  "correct_answer": "Like this, or should it be further back?",
+  "difficulty": "hard",
+  "listeningTask": "choose_response",
+  "explanation": "Given the hair instruction, the customer adjusts and checks whether it is far enough back. Asking to be guided without glasses responds to a glasses rule nobody stated, and asking about reusing a sharp print presupposes a photo that has not been taken. A Thursday complaint needs a printing delay that was never announced.",
+  "distractor_rationales": {
+   "I can't see much without them, so guide me.": "Directing hair \"behind your ears\" says nothing about glasses, so there is nothing to see without.",
+   "Sharp enough to reuse for my visa application too?": "\"So both show\" means the photo is still being posed, so nothing exists yet to reuse.",
+   "Thursday is too late; my visa appointment is Wednesday.": "\"Tuck your hair\" sets up the shot and names no pickup delay, so a Thursday complaint hangs."
+  },
+  "_crv7": {
+   "localId": "crv8-b3-07",
+   "selectedWorld": 2,
+   "kind": "request",
+   "keyAct": "agrees and checks the adjustment",
+   "setting": "Passport photo studio: a photographer preparing and delivering a customer's passport photos."
+  }
+ },
+ {
+  "type": "multiple_choice",
+  "passage": "Transcript: \"Do you want that in large bills or small?\"",
+  "passageGroupId": null,
+  "prompt": "[Choose a Response] Which is the most natural reply?",
+  "choices": [
+   "Which nearby branch might still have some today?",
+   "I brought the wrong envelope — the yuan stayed home.",
+   "Then I'll change everything at once, not in parts.",
+   "Small ones, mostly for taxis and street food."
+  ],
+  "correct_answer": "Small ones, mostly for taxis and street food.",
+  "difficulty": "hard",
+  "listeningTask": "choose_response",
+  "explanation": "Asked large or small, the customer picks small bills and explains why: taxis and street food. Consolidating exchanges dodges a fee nobody mentioned, and asking about another branch treats a teller mid-count as out of stock. Confessing a wrong envelope answers a mix-up the teller never raised.",
+  "distractor_rationales": {
+   "Then I'll change everything at once, not in parts.": "Offering \"large bills or small\" mentions no fee, so consolidating to dodge charges hangs.",
+   "Which nearby branch might still have some today?": "A teller asking to pay out \"in large bills\" or small is dispensing, not out of stock, so no branch search is needed.",
+   "I brought the wrong envelope — the yuan stayed home.": "A choice of \"bills or small\" flags no misidentified note, so there is no envelope mix-up to admit."
+  },
+  "_crv7": {
+   "localId": "crv8-b3-08",
+   "selectedWorld": 1,
+   "kind": "question",
+   "keyAct": "chooses a denomination with a reason",
+   "setting": "Currency exchange counter: a teller and a customer changing money before a trip."
+  }
+ },
+ {
+  "type": "multiple_choice",
+  "passage": "Transcript: \"The skin pricks go on your forearm, and results show in twenty minutes.\"",
+  "passageGroupId": null,
+  "prompt": "[Choose a Response] Which is the most natural reply?",
+  "choices": [
+   "It's both, actually — peanuts are just the more severe one.",
+   "Can I read or use my phone while we wait?",
+   "One on Monday night — does that push my test back?",
+   "Which half — the foods, or the pollens and dust?"
+  ],
+  "correct_answer": "Can I read or use my phone while we wait?",
+  "difficulty": "hard",
+  "listeningTask": "choose_response",
+  "explanation": "Told there is a twenty-minute wait for results, asking whether reading or phone use is allowed fills exactly that gap. Confessing a Monday pill answers a medication question nobody asked. Insisting the allergy is both corrects no discrepancy, and asking which half survives responds to a shortage that doesn't exist.",
+  "distractor_rationales": {
+   "One on Monday night — does that push my test back?": "\"results show in\" explains procedure and asks nothing, so confessing a Monday pill answers no medication question.",
+   "It's both, actually — peanuts are just the more severe one.": "\"on your forearm\" is procedural description, so insisting the allergy is both corrects no form discrepancy mentioned.",
+   "Which half — the foods, or the pollens and dust?": "\"The skin pricks\" proceed as described in full, so asking which half survives responds to no shortage."
+  },
+  "_crv7": {
+   "localId": "crv8-b3-18",
+   "selectedWorld": 1,
+   "kind": "neutral info",
+   "keyAct": "asks what is allowed during the interval",
+   "setting": "Allergy testing lab; the technician is speaking with a student patient at the check-in counter."
+  }
+ },
+ {
+  "type": "multiple_choice",
+  "passage": "Transcript: \"We run a free grocery-store tour on Saturdays, if you're interested.\"",
+  "passageGroupId": null,
+  "prompt": "[Choose a Response] Which is the most natural reply?",
+  "choices": [
+   "Saturdays I work, but I'd join one on another day.",
+   "So the spinach and lentils are actually doing their job.",
+   "No wonder I kept running short by the last week.",
+   "Most days — I lost track over the weekend trip."
+  ],
+  "correct_answer": "Saturdays I work, but I'd join one on another day.",
+  "difficulty": "hard",
+  "listeningTask": "choose_response",
+  "explanation": "Invited to a Saturday tour, explaining the work conflict while staying interested engages the offer directly. Reporting how many days were logged answers a homework question nobody asked. Celebrating normal iron responds to lab news not delivered, and the swipe-reset realization connects to nothing in the invitation.",
+  "distractor_rationales": {
+   "Most days — I lost track over the weekend trip.": "\"if you're interested\" invites a response to a tour, so reporting how many days were logged answers no such question.",
+   "So the spinach and lentils are actually doing their job.": "\"grocery-store tour\" is an invitation, not results, so celebrating normal iron responds to no lab news.",
+   "No wonder I kept running short by the last week.": "\"on Saturdays\" schedules an outing, not dining-hall billing, so the swipe-reset realization fits nothing said."
+  },
+  "_crv7": {
+   "localId": "crv8-b3-16",
+   "selectedWorld": 1,
+   "kind": "offer",
+   "keyAct": "declines the day but not the activity",
+   "setting": "Campus nutrition counseling office; the dietitian is speaking with a student client at a follow-up visit."
+  }
+ },
+ {
+  "type": "multiple_choice",
+  "passage": "Transcript: \"If mornings suit you, Dr. Patel keeps eight o'clock slots open for students.\"",
+  "passageGroupId": null,
+  "prompt": "[Choose a Response] Which is the most natural reply?",
+  "choices": [
+   "Mornings are tough — do they have anything after three?",
+   "Thursday works too — I'll fix it in my calendar.",
+   "Still theirs until June, then I switch to the student plan.",
+   "Who would take over my cleanings after she goes?"
+  ],
+  "correct_answer": "Mornings are tough — do they have anything after three?",
+  "difficulty": "hard",
+  "listeningTask": "choose_response",
+  "explanation": "The scheduler offers standing morning slots, so explaining mornings don't work and asking about afternoons engages that offer directly. Agreeing that Thursday works corrects a date error nobody mentioned. Asking who will take over cleanings answers a departure not announced, and reporting insurance status answers no question here.",
+  "distractor_rationales": {
+   "Thursday works too — I'll fix it in my calendar.": "\"eight o'clock slots\" offers a time of day; agreeing that Thursday works corrects no date mix-up.",
+   "Who would take over my cleanings after she goes?": "\"Dr. Patel keeps\" slots open — nobody is leaving, so asking who takes over responds to a departure not mentioned.",
+   "Still theirs until June, then I switch to the student plan.": "\"mornings suit you\" is about timing, not coverage, so reporting insurance status answers nothing said."
+  },
+  "_crv7": {
+   "localId": "crv8-b3-12",
+   "selectedWorld": 1,
+   "kind": "offer",
+   "keyAct": "declines the time but asks for an alternative",
+   "setting": "Scheduling window at a dental office; the scheduler is speaking with a student patient."
+  }
+ },
+ {
+  "type": "multiple_choice",
+  "passage": "Transcript: \"We found your suitcase — it arrived on the later Chicago flight.\"",
+  "passageGroupId": null,
+  "prompt": "[Choose a Response] Which is the most natural reply?",
+  "choices": [
+   "It has a red ribbon tied around the handle.",
+   "So it stays there until the first flight tomorrow?",
+   "Do you also need my phone number on here?",
+   "Could I pick it up at this counter right now?"
+  ],
+  "correct_answer": "Could I pick it up at this counter right now?",
+  "difficulty": "hard",
+  "listeningTask": "choose_response",
+  "explanation": "The agent says the suitcase has been found and has already arrived, so asking to collect it at the counter right away is the natural next step. Wondering whether it stays in Chicago until tomorrow contradicts the announced arrival, and describing a red ribbon is pointless once the bag is identified. There is also no claim form in play, so a phone number has nothing to be added to.",
+  "distractor_rationales": {
+   "So it stays there until the first flight tomorrow?": "Since the agent says \"it arrived on the later Chicago flight\", asking whether it stays there until tomorrow's first flight contradicts the stated arrival.",
+   "It has a red ribbon tied around the handle.": "\"We found your suitcase\" means the bag is already identified, so volunteering a ribbon description to help locate it is pointless.",
+   "Do you also need my phone number on here?": "The agent says \"found your suitcase\" and requests no paperwork, so \"on here\" has no form to refer to."
+  },
+  "_crv7": {
+   "localId": "crv8-b3-01",
+   "selectedWorld": 0,
+   "kind": "good news",
+   "keyAct": "asks to collect it on the spot",
+   "setting": "Airport baggage service office: a baggage agent at the counter speaks with a passenger whose checked suitcase did not appear on the carousel."
+  }
+ },
+ {
+  "type": "multiple_choice",
+  "passage": "Transcript: \"Actually, your booking already includes checkout at four o'clock.\"",
+  "passageGroupId": null,
+  "prompt": "[Choose a Response] Which is the most natural reply?",
+  "choices": [
+   "Until midnight is plenty — my train leaves at ten.",
+   "But my conference here doesn't finish until three o'clock.",
+   "Room five twelve, booked under the name Park.",
+   "Then the noon time printed on my key sleeve is wrong?"
+  ],
+  "correct_answer": "Then the noon time printed on my key sleeve is wrong?",
+  "difficulty": "hard",
+  "listeningTask": "choose_response",
+  "explanation": "The clerk corrects the record — checkout is already four — so the guest reasonably checks whether the noon time printed on the key sleeve is simply wrong. Reciting a room and name answers no question, and the conference objection is moot when four o'clock already covers an event ending at three. Praising a midnight window responds to a storage offer that was never made.",
+  "distractor_rationales": {
+   "Room five twelve, booked under the name Park.": "\"Your booking already\" includes late checkout is an assertion, not a question, so reciting a room and name hangs.",
+   "But my conference here doesn't finish until three o'clock.": "With \"checkout at four o'clock\" included, a conference ending at three fits comfortably, leaving nothing to protest.",
+   "Until midnight is plenty — my train leaves at ten.": "The line grants \"checkout at four\" and offers no luggage storage, so calling a midnight window plenty has no referent."
+  },
+  "_crv7": {
+   "localId": "crv8-b3-02",
+   "selectedWorld": 3,
+   "kind": "correction",
+   "keyAct": "asks to confirm the correction",
+   "setting": "Hotel front desk: a receptionist and a departing guest discuss a late checkout on the morning of departure."
+  }
+ },
+ {
+  "type": "multiple_choice",
+  "passage": "Transcript: \"The certification cards are delayed, so nothing gets handed out today.\"",
+  "passageGroupId": null,
+  "prompt": "[Choose a Response] Which is the most natural reply?",
+  "choices": [
+   "I'd stay — my chest compressions still feel too shallow.",
+   "I certified through my lifeguard job — maybe under a different system.",
+   "Will an email confirmation work for my job application meanwhile?",
+   "So we can bring the manual in for the written part?"
+  ],
+  "correct_answer": "Will an email confirmation work for my job application meanwhile?",
+  "difficulty": "hard",
+  "listeningTask": "choose_response",
+  "explanation": "With the cards delayed, asking whether an email confirmation can stand in for a job application addresses the practical consequence directly. Asking about manuals answers open-book news that wasn't given, and joining extra practice accepts no standing offer. Defending a prior lifeguard course rebuts a records challenge nobody made.",
+  "distractor_rationales": {
+   "So we can bring the manual in for the written part?": "\"handed out today\" concerns cards, not the test's format, so asking about manuals answers no open-book news.",
+   "I'd stay — my chest compressions still feel too shallow.": "\"cards are delayed\" is a logistics snag at the end of the course, so joining extra practice accepts no standing offer.",
+   "I certified through my lifeguard job — maybe under a different system.": "\"The certification cards\" delay affects everyone equally, so defending a prior lifeguard course rebuts no records challenge."
+  },
+  "_crv7": {
+   "localId": "crv8-b3-20",
+   "selectedWorld": 3,
+   "kind": "bad news",
+   "keyAct": "seeks an interim substitute document",
+   "setting": "First aid certification classroom; the instructor is speaking with a student before the session begins."
+  }
+ },
+ {
+  "type": "multiple_choice",
+  "passage": "Transcript: \"Did you refill the tank within ten miles of here?\"",
+  "passageGroupId": null,
+  "prompt": "[Choose a Response] Which is the most natural reply?",
+  "choices": [
+   "Then I'll head straight for the terminal shuttle now.",
+   "That was documented when I picked the car up.",
+   "My extension by phone should be in the system.",
+   "Yes, at the station just across the highway."
+  ],
+  "correct_answer": "Yes, at the station just across the highway.",
+  "difficulty": "hard",
+  "listeningTask": "choose_response",
+  "explanation": "Asked whether the tank was refilled nearby, the customer confirms and names the station across the highway. Claiming something was documented at pickup disputes damage nobody alleged, and leaving for the shuttle skips a question that is still open. A phoned extension speaks to return dates, not fuel.",
+  "distractor_rationales": {
+   "That was documented when I picked the car up.": "Asking whether you did \"refill the tank\" alleges no damage, so nothing was ever documented to dispute.",
+   "Then I'll head straight for the terminal shuttle now.": "The question about \"ten miles of here\" is still open, and walking off to the shuttle skips answering it.",
+   "My extension by phone should be in the system.": "\"Refill the tank\" concerns fuel, not dates, so a rental extension in the system is irrelevant."
+  },
+  "_crv7": {
+   "localId": "crv8-b3-03",
+   "selectedWorld": 1,
+   "kind": "question",
+   "keyAct": "confirms with a location",
+   "setting": "Car rental return lane: a return agent inspects the car while the customer stands by with luggage."
+  }
+ },
+ {
+  "type": "multiple_choice",
+  "passage": "Transcript: \"We can't treat eye injuries here — you'll need the hospital across town.\"",
+  "passageGroupId": null,
+  "prompt": "[Choose a Response] Which is the most natural reply?",
+  "choices": [
+   "Can I run to the pharmacy downstairs and keep my spot?",
+   "Around a six, but it spikes when I put weight on it.",
+   "Is there a shuttle, or should I call a taxi?",
+   "Whoever's fastest is fine — I just want this looked at."
+  ],
+  "correct_answer": "Is there a shuttle, or should I call a taxi?",
+  "difficulty": "hard",
+  "listeningTask": "choose_response",
+  "explanation": "Being referred to a hospital across town makes transportation the immediate problem, so asking about a shuttle or taxi fits. Volunteering a pain number answers no question in the line, and holding a spot in this queue serves no purpose when care won't happen here. Accepting a faster in-house provider contradicts being sent away.",
+  "distractor_rationales": {
+   "Around a six, but it spikes when I put weight on it.": "\"can't treat\" refers you out and asks nothing, so volunteering a pain rating answers no question in it.",
+   "Can I run to the pharmacy downstairs and keep my spot?": "\"the hospital across town\" is where care happens, so holding a spot in this queue serves no purpose.",
+   "Whoever's fastest is fine — I just want this looked at.": "\"can't treat eye injuries\" refuses care here; accepting a faster in-house provider contradicts being sent away."
+  },
+  "_crv7": {
+   "localId": "crv8-b3-14",
+   "selectedWorld": 2,
+   "kind": "bad news",
+   "keyAct": "asks how to reach the referral site",
+   "setting": "Triage desk at a campus walk-in clinic; the triage nurse is speaking with a student who has just signed in."
+  }
+ },
+ {
+  "type": "multiple_choice",
+  "passage": "Transcript: \"We can bundle hepatitis and typhoid for one copay.\"",
+  "passageGroupId": null,
+  "prompt": "[Choose a Response] Which is the most natural reply?",
+  "choices": [
+   "Yes, before a Kenya trip about two years ago.",
+   "One copay works; my plan covers almost nothing here.",
+   "My departure is Friday — does another clinic stock it?",
+   "My flight is in three weeks — is one dose useless?"
+  ],
+  "correct_answer": "One copay works; my plan covers almost nothing here.",
+  "difficulty": "hard",
+  "listeningTask": "choose_response",
+  "explanation": "Offered both shots for a single copay, the traveler accepts because insurance barely helps. A yes about a Kenya trip answers a history question never asked, and the one-dose worry responds to a spacing schedule nobody described. Looking for another clinic contradicts an offer that shows both vaccines are on hand.",
+  "distractor_rationales": {
+   "Yes, before a Kenya trip about two years ago.": "Offering to \"bundle hepatitis and typhoid\" asks no history question, so a yes about Kenya answers nothing.",
+   "My flight is in three weeks — is one dose useless?": "Pricing \"for one copay\" says nothing about dose spacing, so the one-dose worry hangs.",
+   "My departure is Friday — does another clinic stock it?": "\"We can bundle\" both shots only if they are in stock, so seeking another clinic contradicts the offer."
+  },
+  "_crv7": {
+   "localId": "crv8-b3-06",
+   "selectedWorld": 2,
+   "kind": "offer",
+   "keyAct": "accepts on cost grounds",
+   "setting": "Travel clinic vaccination desk: a nurse and a traveler preparing shots before an international trip."
+  }
+ },
+ {
+  "type": "multiple_choice",
+  "passage": "Transcript: \"Your last exam here was almost three years ago, in your file.\"",
+  "passageGroupId": null,
+  "prompt": "[Choose a Response] Which is the most natural reply?",
+  "choices": [
+   "I was studying abroad, so I missed a couple of visits.",
+   "I have a case in my bag — give me a second.",
+   "Mostly at screens, especially near the end of long assignments.",
+   "So I can skip ordering new lenses this year?"
+  ],
+  "correct_answer": "I was studying abroad, so I missed a couple of visits.",
+  "difficulty": "hard",
+  "listeningTask": "choose_response",
+  "explanation": "The technician notes a three-year gap in the file, so explaining the study-abroad absence accounts for it. Producing a contacts case complies with an instruction that was never given, and specifying screen-time triggers answers no symptom question. Concluding no new lenses are needed presumes fresh results the line doesn't contain.",
+  "distractor_rationales": {
+   "I have a case in my bag — give me a second.": "\"in your file\" reports a record; producing a contacts case complies with an instruction never given.",
+   "Mostly at screens, especially near the end of long assignments.": "\"almost three years\" concerns visit history, not symptoms, so specifying screen triggers answers no question here.",
+   "So I can skip ordering new lenses this year?": "\"Your last exam\" looks backward at records; skipping new lenses presumes fresh results the line doesn't offer."
+  },
+  "_crv7": {
+   "localId": "crv8-b3-13",
+   "selectedWorld": 1,
+   "kind": "neutral info",
+   "keyAct": "explains the gap in the record",
+   "setting": "Pre-screening room before an eye exam; the technician is speaking with a student patient."
+  }
+ },
+ {
+  "type": "multiple_choice",
+  "passage": "Transcript: \"You're all set — no reaction, so you're free to head out.\"",
+  "passageGroupId": null,
+  "prompt": "[Choose a Response] Which is the most natural reply?",
+  "choices": [
+   "This sweater won't roll — should I just slip it off?",
+   "Two today is fine — better than coming back next week.",
+   "Do I still get the proof of vaccination emailed today?",
+   "This is my second — I got the first at home in July."
+  ],
+  "correct_answer": "Do I still get the proof of vaccination emailed today?",
+  "difficulty": "hard",
+  "listeningTask": "choose_response",
+  "explanation": "Cleared to leave after the observation period, checking that the emailed proof still arrives today is the natural closing question. Accepting a second shot answers an offer not on the table, and arguing about which line to stand in contests nothing said. Asking whether to remove a sweater serves a shot already given.",
+  "distractor_rationales": {
+   "Two today is fine — better than coming back next week.": "\"free to head out\" closes the visit, so accepting a second shot today answers an offer not on the table.",
+   "This is my second — I got the first at home in July.": "\"You're all set\" means the doses are done, so arguing you belong in this line contests nothing said.",
+   "This sweater won't roll — should I just slip it off?": "\"no reaction\" ends the observation period, so asking whether to remove a sweater serves a shot already given."
+  },
+  "_crv7": {
+   "localId": "crv8-b3-19",
+   "selectedWorld": 3,
+   "kind": "good news",
+   "keyAct": "checks on follow-up documentation",
+   "setting": "Campus vaccination pop-up tent; a volunteer nurse is speaking with a student."
+  }
+ },
+ {
+  "type": "multiple_choice",
+  "passage": "Transcript: \"Could you take the laptop out before I stow this?\"",
+  "passageGroupId": null,
+  "prompt": "[Choose a Response] Which is the most natural reply?",
+  "choices": [
+   "Enough time to grab coffee and stretch my legs?",
+   "Mine is for Seattle, so I'll go around back.",
+   "It's already in my shoulder bag, go ahead.",
+   "Will someone unload it, or do I meet that bus?"
+  ],
+  "correct_answer": "It's already in my shoulder bag, go ahead.",
+  "difficulty": "hard",
+  "listeningTask": "choose_response",
+  "explanation": "The driver asks for the laptop to come out first, and the passenger reports it is already in the shoulder bag, so stowing can proceed. Going around back responds to a destination mix-up nobody mentioned, and meeting another bus answers an assignment never made. The coffee question needs a rest stop that was not announced.",
+  "distractor_rationales": {
+   "Mine is for Seattle, so I'll go around back.": "Asking you to \"take the laptop out\" involves no destination mix-up, so going around back complies with nothing.",
+   "Will someone unload it, or do I meet that bus?": "The driver is about to \"stow this\" bag right here, so there is no other bus to ask about meeting.",
+   "Enough time to grab coffee and stretch my legs?": "A request about \"the laptop out\" announces no rest stop, so the coffee question hangs."
+  },
+  "_crv7": {
+   "localId": "crv8-b3-05",
+   "selectedWorld": 0,
+   "kind": "request",
+   "keyAct": "reports the precondition met and authorizes",
+   "setting": "Long-distance bus luggage bay: the driver is loading bags while a passenger hands theirs over."
+  }
+ },
+ {
+  "type": "multiple_choice",
+  "passage": "Transcript: \"You're down for the left ankle, but you keep pointing at the right.\"",
+  "passageGroupId": null,
+  "prompt": "[Choose a Response] Which is the most natural reply?",
+  "choices": [
+   "Coach will be glad — she's been planning around my minutes.",
+   "The left's the old injury — it's the right that hurts now.",
+   "Would a drugstore roll work if I bring my own tomorrow?",
+   "Like this, or do you want the toes pulled back further?"
+  ],
+  "correct_answer": "The left's the old injury — it's the right that hurts now.",
+  "difficulty": "hard",
+  "listeningTask": "choose_response",
+  "explanation": "The trainer flags a mismatch between the chart and the athlete's gestures, so explaining that the old injury was the left and the new pain is the right resolves it. Checking foot position complies with a wrapping instruction never given. Relaying the coach's relief presumes a clearance not announced, and offering to buy tape fixes a shortage nobody mentioned.",
+  "distractor_rationales": {
+   "Like this, or do you want the toes pulled back further?": "\"keep pointing\" flags a mismatch, not a wrapping instruction, so checking foot position complies with nothing asked.",
+   "Coach will be glad — she's been planning around my minutes.": "\"down for the left ankle\" questions which side to treat; relaying coach's relief presumes a clearance not given.",
+   "Would a drugstore roll work if I bring my own tomorrow?": "\"the left ankle\" discrepancy is the issue, not supplies, so offering to buy tape fixes a shortage never mentioned."
+  },
+  "_crv7": {
+   "localId": "crv8-b3-15",
+   "selectedWorld": 0,
+   "kind": "correction",
+   "keyAct": "clarifies which side needs treatment",
+   "setting": "Taping bench in the athletics training room; the trainer is speaking with a student athlete before practice."
+  }
+ },
+ {
+  "type": "multiple_choice",
+  "passage": "Transcript: \"Please hang your food bags; a bear was seen nearby.\"",
+  "passageGroupId": null,
+  "prompt": "[Choose a Response] Which is the most natural reply?",
+  "choices": [
+   "We're leaving Saturday, so it should miss us.",
+   "Do you sell firewood here, or should we gather it?",
+   "We have a rope — how high is high enough?",
+   "Twenty it is — we'll shift camp before dark."
+  ],
+  "correct_answer": "We have a rope — how high is high enough?",
+  "difficulty": "hard",
+  "listeningTask": "choose_response",
+  "explanation": "Warned about a bear and asked to hang food, the camper agrees and asks the practical detail: how high counts as safe. Confirming site twenty echoes a correction nobody made, and the firewood question responds to fire permissions never discussed. The Saturday answer replies to a storm question that was not asked.",
+  "distractor_rationales": {
+   "Twenty it is — we'll shift camp before dark.": "\"A bear was seen\" corrects no site number, so agreeing to twenty confirms nothing said here.",
+   "Do you sell firewood here, or should we gather it?": "Asking you to hang \"your food bags\" grants no fire permission, so sourcing firewood is unprompted.",
+   "We're leaving Saturday, so it should miss us.": "A bear \"was seen nearby\" is tonight's concern; no storm question was asked, so the Saturday answer fits nothing."
+  },
+  "_crv7": {
+   "localId": "crv8-b3-10",
+   "selectedWorld": 2,
+   "kind": "request",
+   "keyAct": "agrees and asks for a specification",
+   "setting": "Campsite ranger station: a ranger and a camper at the check-in window of a forest campground."
+  }
+ },
+ {
+  "type": "multiple_choice",
+  "passage": "Transcript: \"The three o'clock boat makes two stops before Oak Island.\"",
+  "passageGroupId": null,
+  "prompt": "[Choose a Response] Which is the most natural reply?",
+  "choices": [
+   "Is the first morning boat likely to run instead?",
+   "My driver's license is in the car — one minute.",
+   "Five more is fine if it halves the crossing time.",
+   "How much longer does that make the whole crossing?"
+  ],
+  "correct_answer": "How much longer does that make the whole crossing?",
+  "difficulty": "hard",
+  "listeningTask": "choose_response",
+  "explanation": "Hearing that the three o'clock boat makes two stops, the traveler asks how much those stops stretch the crossing. Asking about a morning boat running instead presupposes a cancellation nobody announced, and fetching a license answers an ID request never made. Agreeing that five more is fine accepts a surcharge that was never quoted.",
+  "distractor_rationales": {
+   "Is the first morning boat likely to run instead?": "A boat that \"makes two stops\" is clearly running, so there is no cancellation for a morning boat to replace.",
+   "My driver's license is in the car — one minute.": "Describing the route \"before Oak Island\" requests no ID, so fetching a license answers nothing.",
+   "Five more is fine if it halves the crossing time.": "The \"three o'clock boat\" was described, not priced, so agreeing that five more is fine hangs."
+  },
+  "_crv7": {
+   "localId": "crv8-b3-04",
+   "selectedWorld": 0,
+   "kind": "neutral info",
+   "keyAct": "asks a follow-up about duration",
+   "setting": "Ferry ticket booth: a ticket clerk and a traveler arranging passage to Oak Island."
+  }
+ }
+]
