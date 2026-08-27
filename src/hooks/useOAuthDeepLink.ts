@@ -1,7 +1,6 @@
 "use client"
 
 import { useEffect } from 'react'
-import { useRouter } from 'next/navigation'
 import { App } from '@capacitor/app'
 import { Browser } from '@capacitor/browser'
 import { isNativeApp } from '@/lib/nativeApp'
@@ -31,8 +30,6 @@ import { oauthDeepLinkTarget } from '@/lib/auth/oauth-deeplink'
  * listener, and that Browser.close() fires early enough.
  */
 export function useOAuthDeepLink(): void {
-  const router = useRouter()
-
   useEffect(() => {
     if (!isNativeApp()) return
 
@@ -44,12 +41,30 @@ export function useOAuthDeepLink(): void {
         // Android Custom Tabs sometimes have nothing to close; the
         // navigation below is what matters and must not depend on it.
       })
-      if (!cancelled) router.replace(target)
+      /* HARD navigation, deliberately — this used to be router.replace().
+       *
+       * The whole OAuth-return machinery on /auth runs AT PAGE LOAD:
+       * `oauthReturning` is a lazy useState initializer reading
+       * window.location.search, and supabase-js only exchanges ?code=
+       * for a session via detectSessionInUrl when the client boots. On
+       * web that is exactly what happens, because the provider redirect
+       * IS a fresh load. Natively the user is already sitting on a
+       * mounted /auth (they pressed the button there), so a soft
+       * client-side navigation changes the URL and NOTHING ELSE — no
+       * initializer re-runs, no exchange, no error banner. The deep
+       * link arrived and the screen just sat there, which shipped as
+       * "OAuth works on web but not in the app" (2026-08-28, reproduced
+       * on the simulator with a probe deep link).
+       *
+       * location.replace() makes the native return a fresh load of the
+       * same URL a web return lands on — one code path, no second
+       * implementation of the return sequence. */
+      if (!cancelled) window.location.replace(target)
     })
 
     return () => {
       cancelled = true
       handle.then((l) => l.remove()).catch(() => {})
     }
-  }, [router])
+  }, [])
 }
