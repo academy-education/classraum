@@ -286,17 +286,17 @@ export function StudySubPageHeader({
           bold title reads cleaner and scales with the viewport. */}
       <div className="flex items-end gap-3">
         <div className="min-w-0 flex-1">
-          <p className="text-[10.5px] font-semibold uppercase tracking-[0.12em] text-gray-500 leading-none mb-1.5">
+          <p className="text-2xs font-semibold uppercase tracking-[0.12em] text-gray-500 leading-none mb-1.5">
             {eyebrow}
           </p>
-          <h1 className="text-[24px] sm:text-[26px] font-bold tracking-tight text-gray-900 truncate leading-tight">
+          <h1 className="text-2xl font-semibold tracking-tight text-gray-900 truncate leading-tight">
             {title}
           </h1>
         </div>
         {!hasBackRow && rightSlot}
       </div>
       {subtitle && (
-        <p className="text-[13.5px] sm:text-[14px] text-gray-500 mt-1.5 leading-relaxed">{subtitle}</p>
+        <p className="text-sm text-gray-500 mt-1.5 leading-relaxed">{subtitle}</p>
       )}
     </header>
   )

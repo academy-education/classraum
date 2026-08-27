@@ -1876,9 +1876,13 @@ export default function MobilePage() {
               {t('mobile.home.recentInvoices')}
             </h2>
             {recentInvoices.length > 0 && (
+              /* .tap-target, not a taller box: this sits in a section
+                 header row, so growing it for real would push the heading
+                 down. No neighbour within 44px, so the projected area
+                 cannot swallow an adjacent tap. */
               <button
                 onClick={() => router.push('/mobile/invoices')}
-                className="text-sky-700 text-sm font-medium"
+                className="tap-target text-sky-700 text-sm font-medium"
               >
                 {t('common.viewAll')}
               </button>

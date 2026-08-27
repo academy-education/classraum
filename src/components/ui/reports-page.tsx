@@ -2660,9 +2660,9 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
       <div className="p-4">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
           <div>
-            <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-primary mb-1.5">{t("eyebrows.reports")}</p>
-            <h1 className="text-2xl sm:text-3xl font-semibold tracking-tight text-gray-900">{t("reports.title")}</h1>
-            <p className="text-gray-500">{t('reports.description')}</p>
+            <p className="hidden sm:block text-2xs font-semibold uppercase tracking-[0.12em] text-primary mb-1.5">{t("eyebrows.reports")}</p>
+            <h1 className="text-xl sm:text-3xl font-semibold tracking-tight text-gray-900">{t("reports.title")}</h1>
+            <p className="hidden sm:block text-gray-500">{t('reports.description')}</p>
           </div>
           <div className="flex items-center gap-2 sm:gap-3">
             <Button className="flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm h-8 sm:h-9 px-2.5 sm:px-4">
@@ -2687,9 +2687,9 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
     <div className="p-4">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
         <div>
-          <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-primary mb-1.5">{t("eyebrows.reports")}</p>
-          <h1 className="text-2xl sm:text-3xl font-semibold tracking-tight text-gray-900">{t("reports.title")}</h1>
-          <p className="text-gray-500">{t('reports.description')}</p>
+          <p className="hidden sm:block text-2xs font-semibold uppercase tracking-[0.12em] text-primary mb-1.5">{t("eyebrows.reports")}</p>
+          <h1 className="text-xl sm:text-3xl font-semibold tracking-tight text-gray-900">{t("reports.title")}</h1>
+          <p className="hidden sm:block text-gray-500">{t('reports.description')}</p>
         </div>
         <div className="flex items-center gap-2 sm:gap-3">
           <Button

@@ -315,9 +315,9 @@ export function UpgradePage({ onNavigateToOrderSummary, academyId }: UpgradePage
             rest of the manager/teacher pages (settings, sessions, etc.). */}
         <div className="flex items-center justify-between mb-8">
           <div>
-            <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-primary mb-1.5">{t('eyebrows.upgrade')}</p>
-            <h1 className="text-2xl sm:text-3xl font-semibold tracking-tight text-gray-900">{t('upgrade.title')}</h1>
-            <p className="text-gray-500">{t('upgrade.subtitle')}</p>
+            <p className="hidden sm:block text-2xs font-semibold uppercase tracking-[0.12em] text-primary mb-1.5">{t('eyebrows.upgrade')}</p>
+            <h1 className="text-xl sm:text-3xl font-semibold tracking-tight text-gray-900">{t('upgrade.title')}</h1>
+            <p className="hidden sm:block text-gray-500">{t('upgrade.subtitle')}</p>
           </div>
         </div>
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
@@ -349,9 +349,9 @@ export function UpgradePage({ onNavigateToOrderSummary, academyId }: UpgradePage
             rest of the manager/teacher pages (settings, sessions, etc.). */}
         <div className="flex items-center justify-between mb-8">
           <div>
-            <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-primary mb-1.5">{t('eyebrows.upgrade')}</p>
-            <h1 className="text-2xl sm:text-3xl font-semibold tracking-tight text-gray-900">{t('upgrade.title')}</h1>
-            <p className="text-gray-500">{t('upgrade.subtitle')}</p>
+            <p className="hidden sm:block text-2xs font-semibold uppercase tracking-[0.12em] text-primary mb-1.5">{t('eyebrows.upgrade')}</p>
+            <h1 className="text-xl sm:text-3xl font-semibold tracking-tight text-gray-900">{t('upgrade.title')}</h1>
+            <p className="hidden sm:block text-gray-500">{t('upgrade.subtitle')}</p>
           </div>
         </div>
 
@@ -380,9 +380,9 @@ export function UpgradePage({ onNavigateToOrderSummary, academyId }: UpgradePage
           manager/teacher pages. Identical to the loading/iOS branches above. */}
       <div className="flex items-center justify-between mb-8">
         <div>
-          <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-primary mb-1.5">{t('eyebrows.upgrade')}</p>
-          <h1 className="text-2xl sm:text-3xl font-semibold tracking-tight text-gray-900">{t('upgrade.title')}</h1>
-          <p className="text-gray-500">{t('upgrade.subtitle')}</p>
+          <p className="hidden sm:block text-2xs font-semibold uppercase tracking-[0.12em] text-primary mb-1.5">{t('eyebrows.upgrade')}</p>
+          <h1 className="text-xl sm:text-3xl font-semibold tracking-tight text-gray-900">{t('upgrade.title')}</h1>
+          <p className="hidden sm:block text-gray-500">{t('upgrade.subtitle')}</p>
         </div>
       </div>
 

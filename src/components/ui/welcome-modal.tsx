@@ -277,6 +277,15 @@ export function WelcomeModal() {
                 key={i}
                 onClick={() => setSlideIndex(i)}
                 aria-label={`Slide ${i + 1}`}
+                /* Exempt from the blanket 44px floor in globals.css. These
+                   are 6px progress dots sitting 12px apart; the floor
+                   inflated them into 44px circles that filled the footer.
+                   .tap-target is not the alternative either — that rule's
+                   own caveat forbids it for controls whose centres are
+                   closer than 44px, since the projected areas would
+                   swallow each other. Back/Next are the real controls;
+                   the dots stay an indicator that happens to be clickable. */
+                data-tap-exempt
                 className={`h-1.5 rounded-full transition-all ${
                   i === slideIndex ? 'bg-primary w-6' : 'bg-gray-300 w-1.5 hover:bg-gray-400'
                 }`}

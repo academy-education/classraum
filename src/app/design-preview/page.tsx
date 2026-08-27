@@ -366,7 +366,7 @@ function NewPageHeader() {
     <div className="pb-6 border-b border-gray-100 -mb-2">
       <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
         <div>
-          <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-primary mb-1.5">
+          <p className="hidden sm:block text-2xs font-semibold uppercase tracking-[0.12em] text-primary mb-1.5">
             Classroom management
           </p>
           <h1 className="text-3xl font-semibold tracking-tight text-gray-900">
@@ -1284,7 +1284,7 @@ function CompositeClassroomsPage() {
       <div className="pb-6 border-b border-gray-100">
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
           <div>
-            <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-primary mb-1.5">
+            <p className="hidden sm:block text-2xs font-semibold uppercase tracking-[0.12em] text-primary mb-1.5">
               Classroom management
             </p>
             <h1 className="text-3xl font-semibold tracking-tight text-gray-900">Classrooms</h1>

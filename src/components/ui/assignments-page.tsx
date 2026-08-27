@@ -1292,9 +1292,9 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
         {/* Header */}
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
           <div>
-            <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-primary mb-1.5">{t("eyebrows.assignments")}</p>
-            <h1 className="text-2xl sm:text-3xl font-semibold tracking-tight text-gray-900">{t("assignments.title")}</h1>
-            <p className="text-gray-500">{t("assignments.description")}</p>
+            <p className="hidden sm:block text-2xs font-semibold uppercase tracking-[0.12em] text-primary mb-1.5">{t("eyebrows.assignments")}</p>
+            <h1 className="text-xl sm:text-3xl font-semibold tracking-tight text-gray-900">{t("assignments.title")}</h1>
+            <p className="hidden sm:block text-gray-500">{t("assignments.description")}</p>
           </div>
           <Button className="self-start sm:self-auto flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm h-8 sm:h-9 px-2.5 sm:px-4">
             <Plus className="w-3 h-3 sm:w-4 sm:h-4" />
@@ -1396,9 +1396,9 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
         <div>
-          <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-primary mb-1.5">{t("eyebrows.assignments")}</p>
-          <h1 className="text-2xl sm:text-3xl font-semibold tracking-tight text-gray-900">{t("assignments.title")}</h1>
-          <p className="text-gray-500">{t("assignments.description")}</p>
+          <p className="hidden sm:block text-2xs font-semibold uppercase tracking-[0.12em] text-primary mb-1.5">{t("eyebrows.assignments")}</p>
+          <h1 className="text-xl sm:text-3xl font-semibold tracking-tight text-gray-900">{t("assignments.title")}</h1>
+          <p className="hidden sm:block text-gray-500">{t("assignments.description")}</p>
         </div>
         <div className="flex flex-wrap gap-2 self-start sm:self-auto">
           <div className="relative" ref={exportMenuRef}>
@@ -1893,7 +1893,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
                       className="w-3 h-3 sm:w-4 sm:h-4 rounded-full flex-shrink-0"
                       style={{ backgroundColor: sessionGroup.classroomColor || '#6B7280' }}
                     />
-                    <h3 className="text-base sm:text-lg font-semibold text-gray-900">
+                    <h3 className="text-lg font-semibold text-gray-900">
                       {sessionGroup.classroomName}
                     </h3>
                   </div>

@@ -21,7 +21,7 @@ function Input({ className, type, ...props }: React.ComponentProps<"input">) {
         // that one doesn't" inside the same page. Accessibility is still
         // covered because the border color change to primary is the focus
         // indicator.
-        "file:text-foreground placeholder:text-muted-foreground selection:bg-primary selection:text-primary-foreground dark:bg-input/30 border-border flex h-10 w-full min-w-0 rounded-lg border bg-transparent px-3 py-2 text-base shadow-xs transition-[color,background-color,border-color] outline-none file:inline-flex file:h-7 file:border-0 file:bg-transparent file:text-sm file:font-medium disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 md:text-sm",
+        "file:text-foreground placeholder:text-muted-foreground selection:bg-primary selection:text-primary-foreground dark:bg-input/30 border-border flex h-11 md:h-10 w-full min-w-0 rounded-lg border bg-transparent px-3 py-2 text-base shadow-xs transition-[color,background-color,border-color] outline-none file:inline-flex file:h-7 file:border-0 file:bg-transparent file:text-sm file:font-medium disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 md:text-sm",
         "focus-visible:border-primary focus-visible:ring-0 focus-visible:ring-offset-0",
         "aria-invalid:ring-0 aria-invalid:border-destructive",
         className

@@ -2240,9 +2240,9 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
         {/* Header */}
         <div className="flex items-center justify-between">
           <div>
-            <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-primary mb-1.5">{t("eyebrows.payments")}</p>
-            <h1 className="text-2xl sm:text-3xl font-semibold tracking-tight text-gray-900">{t("payments.title")}</h1>
-            <p className="text-gray-500">{t("payments.description")}</p>
+            <p className="hidden sm:block text-2xs font-semibold uppercase tracking-[0.12em] text-primary mb-1.5">{t("eyebrows.payments")}</p>
+            <h1 className="text-xl sm:text-3xl font-semibold tracking-tight text-gray-900">{t("payments.title")}</h1>
+            <p className="hidden sm:block text-gray-500">{t("payments.description")}</p>
           </div>
           <div className="flex items-center gap-3">
             <div className="h-10 w-28 bg-gray-200 rounded-md animate-pulse"></div>
@@ -2331,9 +2331,9 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
         <div>
-          <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-primary mb-1.5">{t('eyebrows.payments')}</p>
-          <h1 className="text-2xl sm:text-3xl font-semibold tracking-tight text-gray-900">{t('payments.title')}</h1>
-          <p className="text-gray-500">{t('payments.description')}</p>
+          <p className="hidden sm:block text-2xs font-semibold uppercase tracking-[0.12em] text-primary mb-1.5">{t('eyebrows.payments')}</p>
+          <h1 className="text-xl sm:text-3xl font-semibold tracking-tight text-gray-900">{t('payments.title')}</h1>
+          <p className="hidden sm:block text-gray-500">{t('payments.description')}</p>
         </div>
         <div className="flex items-center gap-2 sm:gap-3">
           <Button
@@ -2362,7 +2362,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
             </div>
             <p className="text-[11px] font-semibold uppercase tracking-[0.1em] text-gray-500">{t('payments.totalRevenue')}</p>
           </div>
-          <p className="text-2xl sm:text-3xl font-semibold tracking-tight text-gray-900 tabular-nums">
+          <p className="text-xl sm:text-3xl font-semibold tracking-tight text-gray-900 tabular-nums">
             {formatCurrency(allTimeRevenue)}
           </p>
         </Card>
@@ -2377,7 +2377,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
             </div>
             <p className="text-[11px] font-semibold uppercase tracking-[0.1em] text-gray-500">{t('payments.pendingAmount')}</p>
           </div>
-          <p className="text-2xl sm:text-3xl font-semibold tracking-tight text-gray-900 tabular-nums">
+          <p className="text-xl sm:text-3xl font-semibold tracking-tight text-gray-900 tabular-nums">
             {formatCurrency(allTimePending)}
           </p>
         </Card>
@@ -2392,7 +2392,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
             </div>
             <p className="text-[11px] font-semibold uppercase tracking-[0.1em] text-gray-500">{t('payments.activeTemplates')}</p>
           </div>
-          <p className="text-2xl sm:text-3xl font-semibold tracking-tight text-gray-900 tabular-nums">
+          <p className="text-xl sm:text-3xl font-semibold tracking-tight text-gray-900 tabular-nums">
             {paymentTemplates.filter(t => t.is_active).length}
           </p>
         </Card>
@@ -2407,7 +2407,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
             </div>
             <p className="text-[11px] font-semibold uppercase tracking-[0.1em] text-gray-500">{t('payments.monthlyRecurringRevenue')}</p>
           </div>
-          <p className="text-2xl sm:text-3xl font-semibold tracking-tight text-gray-900 tabular-nums">
+          <p className="text-xl sm:text-3xl font-semibold tracking-tight text-gray-900 tabular-nums">
             {formatCurrency(
               paymentTemplates
                 .filter(t => t.is_active && t.recurrence_type === 'monthly')

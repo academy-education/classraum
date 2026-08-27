@@ -50,7 +50,7 @@ export default function MobileStartPage() {
         </div>
 
         <div className="px-5 pt-2 pb-2">
-          <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-primary mb-1.5">
+          <p className="hidden sm:block text-2xs font-semibold uppercase tracking-[0.12em] text-primary mb-1.5">
             {t('mobile.hub.eyebrow')}
           </p>
           <h2 className="text-[22px] font-semibold tracking-tight text-gray-900 leading-tight">

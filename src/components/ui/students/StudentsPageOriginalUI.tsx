@@ -467,9 +467,9 @@ export function StudentsPageOriginalUI({ academyId }: StudentsPageOriginalUIProp
       <div className="p-4">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
           <div>
-            <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-primary mb-1.5">{t("eyebrows.students")}</p>
-            <h1 className="text-2xl sm:text-3xl font-semibold tracking-tight text-gray-900">{t("students.title")}</h1>
-            <p className="text-gray-500">{t("students.description")}</p>
+            <p className="hidden sm:block text-2xs font-semibold uppercase tracking-[0.12em] text-primary mb-1.5">{t("eyebrows.students")}</p>
+            <h1 className="text-xl sm:text-3xl font-semibold tracking-tight text-gray-900">{t("students.title")}</h1>
+            <p className="hidden sm:block text-gray-500">{t("students.description")}</p>
           </div>
           <div className="flex items-center gap-2 sm:gap-3">
             <Button
@@ -506,9 +506,9 @@ export function StudentsPageOriginalUI({ academyId }: StudentsPageOriginalUIProp
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
         <div>
-          <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-primary mb-1.5">{t("eyebrows.students")}</p>
-          <h1 className="text-2xl sm:text-3xl font-semibold tracking-tight text-gray-900">{t("students.title")}</h1>
-          <p className="text-gray-500">{t("students.description")}</p>
+          <p className="hidden sm:block text-2xs font-semibold uppercase tracking-[0.12em] text-primary mb-1.5">{t("eyebrows.students")}</p>
+          <h1 className="text-xl sm:text-3xl font-semibold tracking-tight text-gray-900">{t("students.title")}</h1>
+          <p className="hidden sm:block text-gray-500">{t("students.description")}</p>
         </div>
         <div className="flex items-center gap-2 sm:gap-3">
           {!limitsLoading && totalUserLimit > 0 && (

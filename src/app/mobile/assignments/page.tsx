@@ -1997,12 +1997,37 @@ function MobileAssignmentsPageContent() {
   // (prevents "Select a student" flash for parents on hard refresh).
   if (authLoading || assignmentsProgLoading || gradesProgLoading || !studentHydrated) {
     return (
-      <div className="p-4 space-y-4">
+      /* Mirrors the loaded page's chrome, in order and at the same
+         heights: title, segmented control, academy row, then the cards.
+         It used to render the title and five cards only, so the tab
+         strip and the academy row popped in on load and pushed the list
+         down the screen. The camp card deliberately has no placeholder —
+         it is absent for most students (see CampWorkCard), and a
+         skeleton that resolves to nothing is the worse flash. */
+      <div className="p-4">
         <div className="mb-6">
           <h1 className="text-2xl font-semibold tracking-tight text-gray-900">
             {t('mobile.assignments.title')}
           </h1>
         </div>
+
+        {/* Segmented control — same 44px row as the real one. */}
+        <div className="flex mb-5 bg-gray-50 ring-1 ring-gray-100 rounded-full p-1 animate-pulse">
+          <div className="flex-1 min-h-[44px] rounded-full bg-white" />
+          <div className="flex-1 min-h-[44px] rounded-full" />
+        </div>
+
+        {/* Academy row — matches the Card + px-5 py-6 + 36px icon chip. */}
+        <div className="mb-5 rounded-xl border border-gray-100 bg-white px-5 py-6 animate-pulse">
+          <div className="flex items-center gap-3">
+            <div className="w-9 h-9 rounded-lg bg-gray-200 flex-shrink-0" />
+            <div className="flex-1 space-y-2">
+              <div className="h-2.5 w-16 bg-gray-200 rounded" />
+              <div className="h-4 w-32 bg-gray-200 rounded" />
+            </div>
+          </div>
+        </div>
+
         <StaggeredListSkeleton items={5} />
       </div>
     )
@@ -2075,7 +2100,7 @@ function MobileAssignmentsPageContent() {
             if (activeTab !== 'assignments') hapticTap()
             setActiveTab('assignments')
           }}
-          className={`flex-1 py-2 px-4 rounded-full text-sm font-semibold transition-all ${
+          className={`flex-1 min-h-[44px] py-2 px-4 rounded-full text-sm font-semibold transition-all ${
             activeTab === 'assignments'
               ? 'bg-white text-primary shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_12px_-4px_rgba(0,0,0,0.06)]'
               : 'text-gray-500 hover:text-gray-900'
@@ -2088,7 +2113,7 @@ function MobileAssignmentsPageContent() {
             if (activeTab !== 'grades') hapticTap()
             setActiveTab('grades')
           }}
-          className={`flex-1 py-2 px-4 rounded-full text-sm font-semibold transition-all ${
+          className={`flex-1 min-h-[44px] py-2 px-4 rounded-full text-sm font-semibold transition-all ${
             activeTab === 'grades'
               ? 'bg-white text-primary shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_12px_-4px_rgba(0,0,0,0.06)]'
               : 'text-gray-500 hover:text-gray-900'
@@ -2284,7 +2309,7 @@ function MobileAssignmentsPageContent() {
                 placeholder={String(t('common.search'))}
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-10 pr-4 py-2 bg-white ring-1 ring-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary border-0"
+                className="w-full pl-10 pr-4 py-2 min-h-[44px] bg-white ring-1 ring-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary border-0"
               />
             </div>
           </div>
@@ -2301,7 +2326,7 @@ function MobileAssignmentsPageContent() {
                   setSortBy({field: 'session', direction: 'desc'})
                 }
               }}
-              className={`px-3 py-2 ring-1 rounded-lg flex items-center gap-2 text-sm transition-colors ${
+              className={`px-3 py-2 min-h-[44px] ring-1 rounded-lg flex items-center gap-2 text-sm transition-colors ${
                 sortBy?.field === 'session'
                   ? 'ring-primary text-primary bg-primary/5'
                   : 'ring-gray-200 text-gray-600 hover:bg-gray-50'
@@ -2331,7 +2356,7 @@ function MobileAssignmentsPageContent() {
                   setSortBy({field: 'due', direction: 'desc'})
                 }
               }}
-              className={`px-3 py-2 ring-1 rounded-lg flex items-center gap-2 text-sm transition-colors ${
+              className={`px-3 py-2 min-h-[44px] ring-1 rounded-lg flex items-center gap-2 text-sm transition-colors ${
                 sortBy?.field === 'due'
                   ? 'ring-primary text-primary bg-primary/5'
                   : 'ring-gray-200 text-gray-600 hover:bg-gray-50'
@@ -2502,11 +2527,18 @@ function MobileAssignmentsPageContent() {
                             {t('mobile.assignments.dueDate')}: {formatDueDate(assignment.due_date)}, 2025
                           </span>
                         </span>
+                        {/* Padded to the 44px floor. This was 16px tall —
+                            an icon and a number with no padding at all —
+                            and there is one per assignment card, so it was
+                            ten of the page's under-size targets on its own.
+                            The negative margin keeps the row's visual
+                            height unchanged while the hit area grows. */}
                         <button
                           onClick={() => handleOpenComments(assignment)}
-                          className="flex items-center gap-1 hover:text-gray-900 transition-colors flex-shrink-0"
+                          aria-label={String(t('mobile.assignments.comments.title'))}
+                          className="flex items-center gap-1 hover:text-gray-900 transition-colors flex-shrink-0 min-h-[44px] min-w-[44px] justify-end -my-3 px-1"
                         >
-                          <MessageCircle className="w-3.5 h-3.5" strokeWidth={1.75} />
+                          <MessageCircle className="w-4 h-4" strokeWidth={1.75} />
                           <span className="font-semibold tabular-nums">{assignment.comment_count || 0}</span>
                         </button>
                       </div>
@@ -2523,6 +2555,7 @@ function MobileAssignmentsPageContent() {
                   <Button
                     variant="outline"
                     size="sm"
+                    className="min-h-[44px]"
                     disabled={currentPage === 1}
                     onClick={() => {
                       setCurrentPage(p => Math.max(1, p - 1))
@@ -2543,6 +2576,7 @@ function MobileAssignmentsPageContent() {
                   <Button
                     variant="outline"
                     size="sm"
+                    className="min-h-[44px]"
                     disabled={currentPage >= totalPages}
                     onClick={() => {
                       setCurrentPage(p => Math.min(totalPages, p + 1))
@@ -2959,7 +2993,7 @@ function MobileAssignmentsPageContent() {
               placeholder={String(t('common.search'))}
               value={gradesSearchQuery}
               onChange={(e) => setGradesSearchQuery(e.target.value)}
-              className="w-full pl-10 pr-4 py-2 bg-white ring-1 ring-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary border-0"
+              className="w-full pl-10 pr-4 py-2 min-h-[44px] bg-white ring-1 ring-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary border-0"
             />
           </div>
 
@@ -2973,7 +3007,7 @@ function MobileAssignmentsPageContent() {
                   setSortBy({field: 'session', direction: 'desc'})
                 }
               }}
-              className={`px-3 py-2 ring-1 rounded-lg flex items-center gap-2 text-sm transition-colors ${
+              className={`px-3 py-2 min-h-[44px] ring-1 rounded-lg flex items-center gap-2 text-sm transition-colors ${
                 sortBy?.field === 'session'
                   ? 'ring-primary text-primary bg-primary/5'
                   : 'ring-gray-200 text-gray-600 hover:bg-gray-50'
@@ -3002,7 +3036,7 @@ function MobileAssignmentsPageContent() {
                   setSortBy({field: 'due', direction: 'desc'})
                 }
               }}
-              className={`px-3 py-2 ring-1 rounded-lg flex items-center gap-2 text-sm transition-colors ${
+              className={`px-3 py-2 min-h-[44px] ring-1 rounded-lg flex items-center gap-2 text-sm transition-colors ${
                 sortBy?.field === 'due'
                   ? 'ring-primary text-primary bg-primary/5'
                   : 'ring-gray-200 text-gray-600 hover:bg-gray-50'
@@ -3270,6 +3304,7 @@ function MobileAssignmentsPageContent() {
                       <Button
                         variant="outline"
                         size="sm"
+                        className="min-h-[44px]"
                         disabled={currentGradesPage === 1}
                         onClick={() => {
                           setCurrentGradesPage(p => Math.max(1, p - 1))
@@ -3290,6 +3325,7 @@ function MobileAssignmentsPageContent() {
                       <Button
                         variant="outline"
                         size="sm"
+                        className="min-h-[44px]"
                         disabled={currentGradesPage >= gradesTotalPages}
                         onClick={() => {
                           setCurrentGradesPage(p => Math.min(gradesTotalPages, p + 1))

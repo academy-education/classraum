@@ -875,9 +875,9 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
       <div className="p-4">
         <div className="flex items-center justify-between mb-8">
           <div>
-            <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-primary mb-1.5">{t("eyebrows.parents")}</p>
-            <h1 className="text-2xl sm:text-3xl font-semibold tracking-tight text-gray-900">{t("parents.title")}</h1>
-            <p className="text-gray-500">{t("parents.description")}</p>
+            <p className="hidden sm:block text-2xs font-semibold uppercase tracking-[0.12em] text-primary mb-1.5">{t("eyebrows.parents")}</p>
+            <h1 className="text-xl sm:text-3xl font-semibold tracking-tight text-gray-900">{t("parents.title")}</h1>
+            <p className="hidden sm:block text-gray-500">{t("parents.description")}</p>
           </div>
           <div className="flex items-center gap-3">
           </div>
@@ -899,9 +899,9 @@ export function ParentsPage({ academyId }: ParentsPageProps) {
       {/* Header */}
       <div className="flex items-center justify-between mb-8">
         <div>
-          <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-primary mb-1.5">{t("eyebrows.parents")}</p>
-          <h1 className="text-2xl sm:text-3xl font-semibold tracking-tight text-gray-900">{t("parents.title")}</h1>
-          <p className="text-gray-500">{t("parents.description")}</p>
+          <p className="hidden sm:block text-2xs font-semibold uppercase tracking-[0.12em] text-primary mb-1.5">{t("eyebrows.parents")}</p>
+          <h1 className="text-xl sm:text-3xl font-semibold tracking-tight text-gray-900">{t("parents.title")}</h1>
+          <p className="hidden sm:block text-gray-500">{t("parents.description")}</p>
         </div>
       </div>
 

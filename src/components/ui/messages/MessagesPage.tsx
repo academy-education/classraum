@@ -474,9 +474,9 @@ export function MessagesPage() {
             )}
             <div>
               {!(isMobileView && showChatOnMobile && selectedConversation) && (
-                <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-primary mb-1.5">{String(t('eyebrows.messages'))}</p>
+                <p className="hidden sm:block text-2xs font-semibold uppercase tracking-[0.12em] text-primary mb-1.5">{String(t('eyebrows.messages'))}</p>
               )}
-              <h1 className="text-2xl sm:text-3xl font-semibold tracking-tight text-gray-900">
+              <h1 className="text-xl sm:text-3xl font-semibold tracking-tight text-gray-900">
                 {isMobileView && showChatOnMobile && selectedConversation
                   ? (selectedConversation.isGroup
                       ? (selectedConversation.name || selectedConversation.participants.map(p => p.name).join(', '))

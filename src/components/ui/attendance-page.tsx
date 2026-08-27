@@ -956,9 +956,9 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
         {/* Header */}
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-4">
           <div>
-            <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-primary mb-1.5">{t("eyebrows.attendance")}</p>
-            <h1 className="text-2xl sm:text-3xl font-semibold tracking-tight text-gray-900">{t("attendance.title")}</h1>
-            <p className="text-gray-500">{t("attendance.description")}</p>
+            <p className="hidden sm:block text-2xs font-semibold uppercase tracking-[0.12em] text-primary mb-1.5">{t("eyebrows.attendance")}</p>
+            <h1 className="text-xl sm:text-3xl font-semibold tracking-tight text-gray-900">{t("attendance.title")}</h1>
+            <p className="hidden sm:block text-gray-500">{t("attendance.description")}</p>
           </div>
         </div>
 
@@ -1026,9 +1026,9 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-4">
         <div>
-          <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-primary mb-1.5">{t("eyebrows.attendance")}</p>
-          <h1 className="text-2xl sm:text-3xl font-semibold tracking-tight text-gray-900">{t("attendance.title")}</h1>
-          <p className="text-gray-500">{t("attendance.description")}</p>
+          <p className="hidden sm:block text-2xs font-semibold uppercase tracking-[0.12em] text-primary mb-1.5">{t("eyebrows.attendance")}</p>
+          <h1 className="text-xl sm:text-3xl font-semibold tracking-tight text-gray-900">{t("attendance.title")}</h1>
+          <p className="hidden sm:block text-gray-500">{t("attendance.description")}</p>
         </div>
       </div>
 

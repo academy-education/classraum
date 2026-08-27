@@ -532,9 +532,9 @@ export default function SubscriptionManagementPage() {
             placeholder rectangle for the title. */}
         <div className="flex items-center justify-between mb-8">
           <div>
-            <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-primary mb-1.5">{t('eyebrows.subscription')}</p>
-            <h1 className="text-2xl sm:text-3xl font-semibold tracking-tight text-gray-900">{t('subscription.title')}</h1>
-            <p className="text-gray-500">{t('subscription.subtitle')}</p>
+            <p className="hidden sm:block text-2xs font-semibold uppercase tracking-[0.12em] text-primary mb-1.5">{t('eyebrows.subscription')}</p>
+            <h1 className="text-xl sm:text-3xl font-semibold tracking-tight text-gray-900">{t('subscription.title')}</h1>
+            <p className="hidden sm:block text-gray-500">{t('subscription.subtitle')}</p>
           </div>
         </div>
 
@@ -619,9 +619,9 @@ export default function SubscriptionManagementPage() {
           header above so first paint doesn't visually shift. */}
       <div className="flex items-center justify-between mb-8">
         <div>
-          <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-primary mb-1.5">{t('eyebrows.subscription')}</p>
-          <h1 className="text-2xl sm:text-3xl font-semibold tracking-tight text-gray-900">{t('subscription.title')}</h1>
-          <p className="text-gray-500">{t('subscription.subtitle')}</p>
+          <p className="hidden sm:block text-2xs font-semibold uppercase tracking-[0.12em] text-primary mb-1.5">{t('eyebrows.subscription')}</p>
+          <h1 className="text-xl sm:text-3xl font-semibold tracking-tight text-gray-900">{t('subscription.title')}</h1>
+          <p className="hidden sm:block text-gray-500">{t('subscription.subtitle')}</p>
         </div>
       </div>
 

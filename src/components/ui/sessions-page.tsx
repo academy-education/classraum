@@ -4273,7 +4273,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                 ))}
               </div>
             ) : (
-              <span className="text-gray-500">{t("sessions.selectDates")}</span>
+              <span className="hidden sm:block text-gray-500">{t("sessions.selectDates")}</span>
             )
           ) : (
             formatDisplayDate(value)
@@ -4458,9 +4458,9 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
         {/* Header */}
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
           <div>
-            <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-primary mb-1.5">{t("eyebrows.sessions")}</p>
-            <h1 className="text-2xl sm:text-3xl font-semibold tracking-tight text-gray-900">{t("sessions.title")}</h1>
-            <p className="text-gray-500">{t("sessions.description")}</p>
+            <p className="hidden sm:block text-2xs font-semibold uppercase tracking-[0.12em] text-primary mb-1.5">{t("eyebrows.sessions")}</p>
+            <h1 className="text-xl sm:text-3xl font-semibold tracking-tight text-gray-900">{t("sessions.title")}</h1>
+            <p className="hidden sm:block text-gray-500">{t("sessions.description")}</p>
           </div>
           <Button className="self-start sm:self-auto flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm h-8 sm:h-9 px-2.5 sm:px-4">
             <Plus className="w-3 h-3 sm:w-4 sm:h-4" />
@@ -4628,9 +4628,9 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
         <div>
-          <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-primary mb-1.5">{t("eyebrows.sessions")}</p>
-          <h1 className="text-2xl sm:text-3xl font-semibold tracking-tight text-gray-900">{t("sessions.title")}</h1>
-          <p className="text-gray-500">{t("sessions.description")}</p>
+          <p className="hidden sm:block text-2xs font-semibold uppercase tracking-[0.12em] text-primary mb-1.5">{t("eyebrows.sessions")}</p>
+          <h1 className="text-xl sm:text-3xl font-semibold tracking-tight text-gray-900">{t("sessions.title")}</h1>
+          <p className="hidden sm:block text-gray-500">{t("sessions.description")}</p>
         </div>
         <Button
           data-tour="add-session"

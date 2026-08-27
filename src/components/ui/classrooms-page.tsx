@@ -1620,30 +1620,61 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
     </Card>
   )
 
+  /* ONE header for both the loading and the loaded render.
+     It was two hand-kept copies, and they had already drifted: the
+     skeleton still showed the eyebrow, the description and the stat card
+     that the real header hides below `sm`, so a phone visibly reflowed
+     when the data landed. Anything that must differ between the two
+     states goes behind `loading`, and nothing else may. */
+  /* A function returning JSX, NOT a component defined in render: as a
+     component it would be a new type on every parent render, so React
+     would unmount and remount the whole header each time. Called as
+     `{renderHeader()}`, the JSX is simply inlined. */
+  const renderHeader = (isLoading = false) => (
+    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-4 sm:mb-8">
+      <div>
+        <p className="hidden sm:block text-2xs font-semibold uppercase tracking-[0.12em] text-primary mb-1.5">{t("eyebrows.classrooms")}</p>
+        <h1 className="text-xl sm:text-3xl font-semibold tracking-tight text-gray-900">{t("classrooms.title")}</h1>
+        <p className="hidden sm:block text-gray-500">{t("classrooms.description")}</p>
+        {/* The stat card's two numbers, as one line, for phones only. */}
+        {isLoading ? (
+          <div className="sm:hidden h-4 w-28 bg-gray-200 rounded mt-1.5 animate-pulse" />
+        ) : (
+          <p className="sm:hidden text-sm text-gray-500 mt-0.5 tabular-nums">
+            <span className="font-semibold text-gray-900">{filteredTotalCount}</span>
+            {' '}{t("classrooms.active")}
+            {totalCount > 0 && <> · {totalCount} {t("classrooms.total")}</>}
+          </p>
+        )}
+      </div>
+      <div className="flex items-center gap-2 sm:gap-3">
+        <Button
+          variant="outline"
+          className="flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm h-8 sm:h-9 px-2.5 sm:px-4"
+          onClick={isLoading ? undefined : () => setShowScheduleBreaksModal(true)}
+        >
+          <CalendarOff className="w-3 h-3 sm:w-4 sm:h-4" />
+          {t("scheduleBreaks.button")}
+        </Button>
+        <Button
+          data-tour="create-classroom"
+          className="flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm h-8 sm:h-9 px-2.5 sm:px-4"
+          onClick={isLoading ? undefined : handleCreateClick}
+        >
+          <Plus className="w-3 h-3 sm:w-4 sm:h-4" />
+          {t("classrooms.createClassroom")}
+        </Button>
+      </div>
+    </div>
+  )
+
   if (loading) {
     return (
       <div className="flex-1 overflow-y-auto p-4">
-        {/* Header */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
-          <div>
-            <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-primary mb-1.5">{t("eyebrows.classrooms")}</p>
-            <h1 className="text-2xl sm:text-3xl font-semibold tracking-tight text-gray-900">{t("classrooms.title")}</h1>
-            <p className="text-gray-500">{t("classrooms.description")}</p>
-          </div>
-          <div className="flex items-center gap-2 sm:gap-3">
-            <Button variant="outline" className="flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm h-8 sm:h-9 px-2.5 sm:px-4">
-              <CalendarOff className="w-3 h-3 sm:w-4 sm:h-4" />
-              {t("scheduleBreaks.button")}
-            </Button>
-            <Button className="flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm h-8 sm:h-9 px-2.5 sm:px-4">
-              <Plus className="w-3 h-3 sm:w-4 sm:h-4" />
-              {t("classrooms.createClassroom")}
-            </Button>
-          </div>
-        </div>
+        {renderHeader(true)}
 
-        {/* Stats Card Skeleton */}
-        <div className="mb-8">
+        {/* Stats Card Skeleton — hidden on phones, matching the real one. */}
+        <div className="mb-8 hidden sm:block">
           <Card className="w-full sm:w-80 p-6 animate-pulse border-l-4 border-gray-300">
             <div className="space-y-3">
               <div className="h-4 bg-gray-300 rounded w-32"></div>
@@ -1680,35 +1711,11 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
 
   return (
     <div className="flex-1 overflow-y-auto p-4">
-      {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
-        <div>
-          <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-primary mb-1.5">{t("eyebrows.classrooms")}</p>
-          <h1 className="text-2xl sm:text-3xl font-semibold tracking-tight text-gray-900">{t("classrooms.title")}</h1>
-          <p className="text-gray-500">{t("classrooms.description")}</p>
-        </div>
-        <div className="flex items-center gap-2 sm:gap-3">
-          <Button
-            variant="outline"
-            className="flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm h-8 sm:h-9 px-2.5 sm:px-4"
-            onClick={() => setShowScheduleBreaksModal(true)}
-          >
-            <CalendarOff className="w-3 h-3 sm:w-4 sm:h-4" />
-            {t("scheduleBreaks.button")}
-          </Button>
-          <Button
-            data-tour="create-classroom"
-            className="flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm h-8 sm:h-9 px-2.5 sm:px-4"
-            onClick={handleCreateClick}
-          >
-            <Plus className="w-3 h-3 sm:w-4 sm:h-4" />
-            {t("classrooms.createClassroom")}
-          </Button>
-        </div>
-      </div>
+      {renderHeader()}
 
-      {/* Stats Card — hero number with icon chip + trend pill */}
-      <div className="mb-8">
+      {/* Stats Card — hero number with icon chip + trend pill.
+          Hidden on phones: its two numbers are in the header line above. */}
+      <div className="mb-8 hidden sm:block">
         <Card className="w-full sm:w-80 p-5">
           <div className="flex items-center gap-2 mb-3">
             <div className="w-7 h-7 rounded-lg bg-primary/10 flex items-center justify-center">

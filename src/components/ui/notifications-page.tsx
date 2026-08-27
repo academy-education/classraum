@@ -339,8 +339,8 @@ export function NotificationsPage({ userId, onNavigate }: NotificationsPageProps
       {/* Header */}
       <div className="flex items-center justify-between mb-8">
         <div>
-          <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-primary mb-1.5">{t("eyebrows.notifications")}</p>
-          <h1 className="text-2xl sm:text-3xl font-semibold tracking-tight text-gray-900">{t("notifications.title")}</h1>
+          <p className="hidden sm:block text-2xs font-semibold uppercase tracking-[0.12em] text-primary mb-1.5">{t("eyebrows.notifications")}</p>
+          <h1 className="text-xl sm:text-3xl font-semibold tracking-tight text-gray-900">{t("notifications.title")}</h1>
           <p className="text-gray-500">
             {totalCount > 0 && (
               <span>

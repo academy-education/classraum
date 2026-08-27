@@ -46,10 +46,10 @@ export default async function HelpLandingPage() {
   return (
     <div className="p-4">
       <div className="mb-6">
-        <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-primary mb-1.5">
+        <p className="hidden sm:block text-2xs font-semibold uppercase tracking-[0.12em] text-primary mb-1.5">
           {chrome.eyebrow}
         </p>
-        <h1 className="text-2xl sm:text-3xl font-semibold tracking-tight text-gray-900">
+        <h1 className="text-xl sm:text-3xl font-semibold tracking-tight text-gray-900">
           {chrome.title}
         </h1>
         <p className="text-gray-500 mt-1">{chrome.subtitle}</p>
