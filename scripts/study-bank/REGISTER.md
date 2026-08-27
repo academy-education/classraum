@@ -157,6 +157,33 @@ B4 is *Calibrate the reviewer before spending another cohort* (~20 minutes — o
 
 ## 5. Found while fixing
 
+### eoi-v3 SHIPPED — 59 Expression of Ideas items, attack-gated end to end (2026-08-28)
+
+EoI was the SAT capacity bottleneck (66 items, all cohort v2, 65/66
+Rhetorical Synthesis, ~6 R&W forms per student). Cohort eoi-v3 adds 59
+(29 Transitions + 30 RS) → 125 live, ~11 forms. Full record:
+`EOI-V3-STAGE1-PREREGISTERED.md` / `EOI-V3-STAGE1-RESULT.md`.
+
+The finding worth keeping: the first RS pilot reproduced v2's known
+100%-blind defect FROM SCRATCH (+61.1 at 18 trials) — goal-in-stem +
+form-varied options is guessable BY CONSTRUCTION; solvers match the
+option's rhetorical shape to the visible goal and never need the notes.
+One brief revision — FORM SYMMETRY (write the key first; every
+distractor reuses the key's shape for the goal, so only note-fidelity
+separates options) — moved it to +16.7 (pilot) and +18.1 (held-out at
+scale). Transitions was clean by construction (−5.6 / −23.6).
+
+Also found: bank-helper.mjs silently broken since migration 068 (task
+NOT NULL) — first post-068 SAT batch bounced 100%; fixed. Its final
+summary counts verified rows without an archived filter (prints
+inflated per-domain counts). And write-key-first briefs put 52% of keys
+in stored slot A — harmless at serve time (draw shuffles) but it trips
+verify-answer-key-spread; stored order reseeded to 15/15/15/14.
+
+R1–R6 (pre-revision RS) are dead and were never banked. Human sitting
+on eoi-v3 still worth having, per the standing rule that the sitting is
+the verdict instrument.
+
 ### CR-V7 SHIPPED — banked, old cohort archived, ETS blueprint shape restored (2026-08-18)
 
 Shipped on Andy's explicit approval. The order of operations, each step

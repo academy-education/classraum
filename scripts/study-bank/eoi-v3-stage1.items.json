@@ -1,0 +1,194 @@
+[
+  {
+    "id": "T1",
+    "subskill": "Transitions",
+    "difficulty": "medium",
+    "topic_tag": "self-healing concrete",
+    "passage": "Self-healing concrete contains dormant bacteria that precipitate limestone when water enters a crack, sealing it. The bacteria, however, can seal only cracks narrower than about a millimeter and lose viability after two decades inside the alkaline material. _____ several tunnel projects in wet climates have adopted the mixture, reasoning that even partial repair delays costly maintenance.",
+    "prompt": "Which choice completes the text with the most logical transition?",
+    "choices": [
+      "Despite these constraints,",
+      "As a result,",
+      "For example,",
+      "Similarly,"
+    ],
+    "correct_answer": "Despite these constraints,",
+    "explanation": "The passage details the mixture's limitations and then reports that tunnel projects adopt it anyway, a concessive relationship signaled by \"Despite these constraints.\" \"As a result,\" would wrongly present the adoption as a consequence of those limitations, and \"For example,\" would wrongly present it as an illustration of them."
+  },
+  {
+    "id": "T2",
+    "subskill": "Transitions",
+    "difficulty": "medium",
+    "topic_tag": "urban raccoon cognition",
+    "passage": "Raccoons in cities routinely encounter latched bins, weighted lids, and bungee cords designed to keep them out. _____ urban raccoons have become measurably better at opening novel containers than their rural counterparts, solving puzzle boxes in field tests up to twice as fast. Researchers suspect this constant practice acts as a kind of cognitive training regimen.",
+    "prompt": "Which choice completes the text with the most logical transition?",
+    "choices": [
+      "On the other hand,",
+      "Consequently,",
+      "Likewise,",
+      "In short,"
+    ],
+    "correct_answer": "Consequently,",
+    "explanation": "The second sentence presents urban raccoons' superior container-opening ability as the outcome of their constant encounters with locking devices, so \"Consequently,\" fits the joint. \"On the other hand,\" would signal a contrast that the passage does not make, and \"In short,\" would signal a summary rather than a result."
+  },
+  {
+    "id": "R1",
+    "subskill": "Rhetorical Synthesis",
+    "difficulty": "medium",
+    "topic_tag": "sourdough starter microbiome",
+    "passage": "While researching a topic, a student has taken the following notes:\n- Earlier studies identified the microbes in sourdough starters by culturing samples in the lab, a method that misses organisms that will not grow on standard media.\n- In a new study, a research team instead sequenced DNA directly from starter samples, detecting microbes without needing to grow them.\n- The team analyzed 500 starters submitted by home bakers across four continents.\n- The sequencing revealed acetic acid bacteria, a group that earlier surveys had largely overlooked.\n- It remains unclear whether a starter's geographic origin influences which microbes it contains.",
+    "prompt": "The student wants to emphasize how the study's method differed from earlier approaches. Which choice most effectively accomplishes this goal?",
+    "choices": [
+      "By sequencing DNA from starters collected over a five-year period, the research team improved on the culturing methods that earlier studies of sourdough had relied on.",
+      "The study's approach detected acetic acid bacteria, a group that earlier surveys of sourdough starters had largely overlooked.",
+      "Because earlier studies cultured their samples on standard media, they could not determine whether a starter's geographic origin influences its microbes.",
+      "Unlike earlier studies, which cultured samples, the new study sequenced starter DNA directly."
+    ],
+    "correct_answer": "Unlike earlier studies, which cultured samples, the new study sequenced starter DNA directly.",
+    "explanation": "The goal is a contrast of methods, and \"Unlike earlier studies, which cultured samples, the new study sequenced starter DNA directly\" states exactly the difference recorded in the notes. The choice mentioning \"starters collected over a five-year period\" adds a detail the notes do not contain, the choice about acetic acid bacteria reports a finding rather than the method, and the choice blaming culturing for the geographic-origin uncertainty draws a causal link the notes never make."
+  },
+  {
+    "id": "T3",
+    "subskill": "Transitions",
+    "difficulty": "hard",
+    "topic_tag": "whistled languages",
+    "passage": "Whistled languages are sometimes dismissed as crude signaling codes. Linguists counter that they preserve the full grammar of the spoken languages they derive from. _____ practiced whistlers of Silbo Gomero can render any Spanish sentence, even one they have never heard whistled. Listeners, studies show, parse such novel sentences accurately.",
+    "prompt": "Which choice completes the text with the most logical transition?",
+    "choices": [
+      "On the contrary,",
+      "In other words,",
+      "For instance,",
+      "Similarly,"
+    ],
+    "correct_answer": "For instance,",
+    "explanation": "The third sentence offers Silbo Gomero as a specific case supporting the linguists' claim that whistled languages preserve full grammar, so \"For instance,\" fits. \"On the contrary,\" wrongly signals opposition to that claim, \"In other words,\" wrongly treats the Silbo Gomero detail as a mere restatement, and \"Similarly,\" wrongly presents it as a separate parallel case rather than an example of the claim itself."
+  },
+  {
+    "id": "T4",
+    "subskill": "Transitions",
+    "difficulty": "medium",
+    "topic_tag": "exoplanet atmospheres",
+    "passage": "Astronomers once expected that thick, high-altitude clouds would hide the atmospheres of most giant exoplanets from spectroscopic study. _____ recent observations have revealed clear chemical signatures, including water vapor, in dozens of these worlds. Each detection helps researchers refine models of how such atmospheres form.",
+    "prompt": "Which choice completes the text with the most logical transition?",
+    "choices": [
+      "Consequently,",
+      "For example,",
+      "Likewise,",
+      "However,"
+    ],
+    "correct_answer": "However,",
+    "explanation": "The second sentence reports findings that run against the earlier expectation that clouds would hide these atmospheres, so the contrast transition \"However,\" is needed. \"Consequently,\" wrongly frames the detections as a result of that expectation, while \"For example,\" and \"Likewise,\" wrongly treat them as an illustration of it or a parallel to it."
+  },
+  {
+    "id": "R2",
+    "subskill": "Rhetorical Synthesis",
+    "difficulty": "medium",
+    "topic_tag": "Antikythera mechanism replicas",
+    "passage": "While researching a topic, a student has taken the following notes:\n- The Antikythera mechanism is an ancient Greek geared device that modeled the movements of the Sun, Moon, and planets.\n- It was recovered in 1901 from a shipwreck near the Greek island of Antikythera.\n- Working replicas built by a university engineering team showed that the device could predict eclipses.\n- One reconstructed gear train uses a 223-tooth gear to track the 223-month Saros eclipse cycle.\n- Scholars still debate whether the device was a teaching tool or a practical astronomical instrument.",
+    "prompt": "The student wants to introduce the device to an audience unfamiliar with it. Which choice most effectively accomplishes this goal?",
+    "choices": [
+      "Recovered from a shipwreck in 1901, the Antikythera mechanism is an ancient Greek geared device that modeled the movements of the Sun, Moon, and planets.",
+      "With its 223-tooth gear tracking the 235-month Saros cycle, the Antikythera mechanism remains a marvel of ancient engineering.",
+      "Working replicas built by a team of museum conservators demonstrated that the ancient Antikythera mechanism could predict eclipses.",
+      "Scholars have now established that the Antikythera mechanism, an ancient Greek device recovered in 1901, served as a practical astronomical instrument."
+    ],
+    "correct_answer": "Recovered from a shipwreck in 1901, the Antikythera mechanism is an ancient Greek geared device that modeled the movements of the Sun, Moon, and planets.",
+    "explanation": "The choice beginning \"Recovered from a shipwreck in 1901\" tells a newcomer what the device is, when it was found, and what it did, all consistent with the notes. The option opening \"With its 223-tooth gear\" leads with a specialist detail and misstates the notes' 223-month Saros cycle as \"235-month\"; the option crediting \"a team of museum conservators\" contradicts the notes, which attribute the replicas to a university engineering team; and the option claiming scholars \"have now established\" the device's purpose contradicts the notes, which say that question is still debated."
+  },
+  {
+    "id": "T5",
+    "subskill": "Transitions",
+    "difficulty": "hard",
+    "topic_tag": "tulip mania reassessment",
+    "passage": "Historians long treated the Dutch tulip mania of the 1630s as an episode of ruinous mass speculation. Recent archival work, though, finds that most contracts were quietly renegotiated at a fraction of quoted prices and that few traders ever paid the sums recorded. _____ the famous bubble's financial damage existed largely on paper rather than in merchants' ledgers.",
+    "prompt": "Which choice completes the text with the most logical transition?",
+    "choices": [
+      "In other words,",
+      "On the contrary,",
+      "As a result,",
+      "For instance,"
+    ],
+    "correct_answer": "In other words,",
+    "explanation": "The final sentence restates the archival finding in plainer terms, so \"In other words,\" fits: damage \"largely on paper\" is the same claim as renegotiated contracts and unpaid sums, not a separate outcome. \"As a result,\" is tempting but wrong because the last sentence is a rephrasing of the finding, not a consequence that follows from it."
+  },
+  {
+    "id": "T6",
+    "subskill": "Transitions",
+    "difficulty": "medium",
+    "topic_tag": "bioluminescent bays",
+    "passage": "In Puerto Rico's Mosquito Bay, dinoflagellates flash blue-green light whenever the water around them is disturbed. On tour nights, guides paddle visitors into the darkest coves so that each stroke leaves a glowing wake. _____ researchers stationed onshore sample the water hourly to track the density of the organisms. Their counts help managers decide when the bay needs a rest from tourism.",
+    "prompt": "Which choice completes the text with the most logical transition?",
+    "choices": [
+      "Meanwhile,",
+      "Consequently,",
+      "In contrast,",
+      "Instead,"
+    ],
+    "correct_answer": "Meanwhile,",
+    "explanation": "The researchers' hourly sampling happens onshore during the same tour nights on which guides are paddling visitors through the coves, so the simultaneity signaled by \"Meanwhile,\" fits. \"Consequently,\" fails because the sampling is not caused by the paddling, and \"Instead,\" wrongly implies the sampling replaces the tours."
+  },
+  {
+    "id": "R3",
+    "subskill": "Rhetorical Synthesis",
+    "difficulty": "hard",
+    "topic_tag": "gut-brain axis pilot trial",
+    "passage": "While researching a topic, a student has taken the following notes:\n- In a pilot trial, researchers tracked 24 adults who added a fermented-food regimen to their diets for eight weeks.\n- Participants' self-reported anxiety scores were lower at the end of the study, an association the authors describe as correlational.\n- Participants' scores on a standardized attention task did not change over the same period.\n- The authors caution that the sample was small and call for a larger replication before drawing conclusions.",
+    "prompt": "The student wants to present a cautious summary of the findings. Which choice most effectively accomplishes this goal?",
+    "choices": [
+      "In a small pilot trial, an eight-week fermented-food regimen was associated with lower self-reported anxiety but no change on an attention task, and the authors call for a larger replication.",
+      "In a small pilot trial, an eight-week fermented-food regimen was associated with improved performance on an attention task but no change in self-reported anxiety, and the authors call for a larger replication.",
+      "A pilot trial found that adding fermented foods for eight weeks reduced adults' anxiety, showing that a simple dietary change can directly ease anxiety symptoms.",
+      "In a pilot trial of a fermented-food regimen, participants improved on both of the study's measures over eight weeks, and the authors call for a larger replication."
+    ],
+    "correct_answer": "In a small pilot trial, an eight-week fermented-food regimen was associated with lower self-reported anxiety but no change on an attention task, and the authors call for a larger replication.",
+    "explanation": "The notes report a correlational drop in anxiety, no change on the attention task, and a call for replication, all of which the summary beginning \"In a small pilot trial\" and ending \"call for a larger replication\" preserves with hedged, non-causal wording. The option claiming the regimen was \"associated with improved performance on an attention task but no change in self-reported anxiety\" reverses which outcome was positive, the option saying participants \"improved on both of the study's measures\" contradicts the note that attention scores did not change, and the option asserting diet \"can directly ease anxiety symptoms\" makes a causal claim the notes explicitly avoid."
+  },
+  {
+    "id": "R4",
+    "subskill": "Rhetorical Synthesis",
+    "difficulty": "medium",
+    "topic_tag": "Saharan dust and Amazon soils",
+    "passage": "While researching a topic, a student has taken the following notes:\n- Ecologists long assumed that the Amazon basin's phosphorus, a nutrient essential for plant growth, is recycled almost entirely from decaying vegetation within the forest.\n- A team led by Dr. Camila Ortega used satellite lidar data to track dust plumes crossing the Atlantic from the Sahara.\n- The team measured about 22,000 tons of phosphorus arriving in Amazon soils each year in Saharan dust.\n- Much of the dust comes from the Bodélé Depression, an ancient lakebed whose sediments are rich in phosphorus-bearing minerals.\n- The finding suggests that the Amazon's fertility depends partly on a desert an ocean away.",
+    "prompt": "The student wants to explain why the finding surprised researchers. Which choice most effectively accomplishes this goal?",
+    "choices": [
+      "Although researchers had assumed the Amazon's phosphorus was mostly recycled within the forest itself, Ortega's team measured about 22,000 tons arriving each year in Saharan dust.",
+      "Researchers were surprised to learn that the phosphorus fertilizing Amazon soils comes from volcanic ash deposits in the Sahara, which winds gradually erode and carry across the Atlantic to the forest.",
+      "Although scientists had long assumed that the Amazon's phosphorus supply was recycled almost entirely within the forest, Ortega's team measured roughly 2,200 tons arriving each year in Saharan dust.",
+      "Researchers were surprised to learn that the fertility of the Amazon rainforest depends partly on a desert located an ocean away."
+    ],
+    "correct_answer": "Although researchers had assumed the Amazon's phosphorus was mostly recycled within the forest itself, Ortega's team measured about 22,000 tons arriving each year in Saharan dust.",
+    "explanation": "The finding surprised researchers because the measurement contradicted the prior assumption, and only the choice pairing that assumption with the measured \"about 22,000 tons\" captures both. The option citing \"roughly 2,200 tons\" misstates the quantity in the notes, the option tracing the phosphorus to \"volcanic ash deposits\" invents a source the notes attribute to an ancient lakebed, and the option about \"a desert located an ocean away\" states the finding's implication without explaining what made it surprising."
+  },
+  {
+    "id": "R5",
+    "subskill": "Rhetorical Synthesis",
+    "difficulty": "hard",
+    "topic_tag": "mycelium packaging vs plastic foam",
+    "passage": "While researching a topic, a student has taken the following notes:\n- Mycelium packaging is grown from fungal threads and agricultural waste in about a week.\n- In a 2025 materials lab study, mycelium packaging insulated shipped goods against temperature swings better than expanded polystyrene foam did.\n- In the same study's drop tests, mycelium packaging absorbed impacts less effectively than polystyrene foam.\n- Producing mycelium packaging currently costs roughly twice as much per unit as producing polystyrene foam.\n- Several furniture and electronics companies have begun shipping lightweight products in mycelium packaging.",
+    "prompt": "The student wants to compare the performance of the two materials. Which choice most effectively accomplishes this goal?",
+    "choices": [
+      "In the lab study, mycelium packaging performed comparably to polystyrene foam overall, though it provided better insulation against temperature swings and absorbed impacts less effectively in drop tests.",
+      "In the lab study, mycelium packaging outperformed polystyrene foam in drop tests, though it insulated shipped goods somewhat less effectively against temperature swings.",
+      "In the lab study, mycelium packaging proved more resistant to moisture than polystyrene foam, holding its shape after repeated exposure to humid shipping conditions.",
+      "Because it outperformed polystyrene foam across the lab study's tests, mycelium packaging is the stronger of the two materials for protecting shipped goods."
+    ],
+    "correct_answer": "In the lab study, mycelium packaging performed comparably to polystyrene foam overall, though it provided better insulation against temperature swings and absorbed impacts less effectively in drop tests.",
+    "explanation": "The notes give mycelium the advantage in insulation and polystyrene the advantage in drop tests, and only the choice reporting \"better insulation against temperature swings\" alongside \"absorbed impacts less effectively in drop tests\" matches both directions. The option claiming mycelium \"outperformed polystyrene foam in drop tests\" reverses which material won each metric, the option about being \"more resistant to moisture\" invokes a test the notes never mention, and the option calling mycelium \"the stronger of the two materials\" asserts an overall winner the split results do not support."
+  },
+  {
+    "id": "R6",
+    "subskill": "Rhetorical Synthesis",
+    "difficulty": "medium",
+    "topic_tag": "night-shift lighting study",
+    "passage": "While researching a topic, a student has taken the following notes:\n- Researchers at a sleep institute installed adjustable overhead lighting in a hospital ward that gradually dimmed and shifted to warmer tones overnight.\n- Forty-two night-shift nurses at one urban hospital wore sleep trackers for eight weeks.\n- Trackers showed that nurses working under the adjusted lighting fell asleep an average of 18 minutes sooner after their shifts.\n- The researchers noted that, because participants came from a single hospital, the results may not extend to other workplaces.\n- The team plans to repeat the study with warehouse and factory workers.",
+    "prompt": "The student wants to acknowledge a limitation of the study. Which choice most effectively accomplishes this goal?",
+    "choices": [
+      "Because its participants came from a single hospital, the study's results may not extend to other workplaces.",
+      "Because the nurses knew their sleep was being monitored, they may have changed their sleep habits in ways that influenced the study's results.",
+      "The researchers acknowledged that their findings about adjusted lighting may not extend beyond nurses to employees in other professions.",
+      "The study has not yet been repeated with warehouse and factory workers, a step the researchers consider necessary before drawing firm conclusions."
+    ],
+    "correct_answer": "Because its participants came from a single hospital, the study's results may not extend to other workplaces.",
+    "explanation": "The notes state the limitation as the single-hospital sample possibly not extending to other workplaces, which the choice ending \"may not extend to other workplaces\" restates faithfully. The option about nurses knowing \"their sleep was being monitored\" raises a limitation the notes never mention, the option about extending \"beyond nurses to employees in other professions\" shifts the note's scope from other workplaces to other professions, and the option that the study \"has not yet been repeated\" dresses the team's planned next step as a limitation."
+  }
+]

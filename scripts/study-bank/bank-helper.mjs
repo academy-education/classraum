@@ -192,6 +192,11 @@ async function main() {
     if (seen.has(content_hash)) { console.log(`DUP  ${label}`); continue }
     const { error } = await admin.from('study_item_bank').insert({
       family: 'sat', section: 'reading_writing', domain: raw.domain, subskill: raw.subskill,
+      /* task became NOT NULL in migration 068 (backfilled from
+         item->>'type'), which silently broke this inserter — every row
+         of the first post-068 batch bounced. SAT R&W rows carry their
+         item_type here, exactly what 068's backfill produced. */
+      task: 'multiple_choice',
       difficulty: q.difficulty, topic_tag: raw.topic_tag || null, item_type: 'multiple_choice',
       passage_group_id: null, item: it, content_hash, word_count: it.word_count, verified: true,
       verify_meta: {
