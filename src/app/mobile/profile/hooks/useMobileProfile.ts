@@ -1,6 +1,11 @@
 "use client"
 
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect, useCallback, useSyncExternalStore } from 'react'
+import {
+  subscribeProfileRefresh,
+  getProfileRefreshSnapshot,
+  getProfileRefreshServerSnapshot,
+} from '@/lib/ui/profile-refresh'
 import { db } from '@/lib/supabase'
 import type { Json } from '@/lib/database.types'
 import { useStableCallback } from '@/hooks/useStableCallback'
@@ -605,12 +610,24 @@ export const useMobileProfile = (
     return true
   }, [userId, data])
 
-  // Fetch on mount and when userId changes
+  /* Re-read when someone else writes this user's profile row.
+     The social-onboarding step is mounted by AuthWrapper, a different
+     tree entirely, so without this a user finishes onboarding and lands
+     here still seeing the provider's nickname and a blank phone until a
+     hard reload. The store publishes a counter, not the values — what
+     renders is what the server actually stored. */
+  const profileVersion = useSyncExternalStore(
+    subscribeProfileRefresh,
+    getProfileRefreshSnapshot,
+    getProfileRefreshServerSnapshot,
+  )
+
+  // Fetch on mount, when userId changes, and when the profile is written
   useEffect(() => {
     if (userId) {
       fetchProfileData()
     }
-  }, [userId])
+  }, [userId, profileVersion])
 
   // Clear cache when userId changes (for parent switching students)
   useEffect(() => {

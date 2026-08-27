@@ -6,6 +6,8 @@ import { db } from '@/lib/supabase'
 import { isDevAuthEnabled } from '@/lib/dev-auth'
 import { appInitTracker } from '@/utils/appInitializationTracker'
 import { NamePrompt, type NamePromptUser } from '@/components/ui/name-prompt'
+import { SocialOnboardingModal } from '@/components/ui/social-onboarding-modal'
+import { needsSocialOnboarding } from '@/lib/auth/social-onboarding'
 
 interface AuthWrapperProps {
   children: React.ReactNode
@@ -18,6 +20,14 @@ export function AuthWrapper({ children, onUserData }: AuthWrapperProps) {
   // The row the 성/이름 re-prompt reads. Null until the users row is fetched;
   // NamePrompt decides for itself whether anything is shown.
   const [namePromptUser, setNamePromptUser] = useState<NamePromptUser | null>(null)
+  /* The blocking first-run step for social signups. Held separately from
+     namePromptUser because it needs the PHONE and the identity providers,
+     neither of which the name re-prompt cares about. */
+  const [socialOnboarding, setSocialOnboarding] = useState<{
+    needed: boolean
+    metadata: Record<string, unknown> | null
+  }>({ needed: false, metadata: null })
+  const [profileReloadKey, setProfileReloadKey] = useState(0)
 
   // Navigation-aware academy loading - don't show loading if app was previously initialized
   const [isLoadingAcademy, setIsLoadingAcademy] = useState(() => {
@@ -44,6 +54,7 @@ export function AuthWrapper({ children, onUserData }: AuthWrapperProps) {
         // Clear user data when no user
         setIsLoadingAcademy(false)
         setNamePromptUser(null)
+        setSocialOnboarding({ needed: false, metadata: null })
         if (updateUserData) {
           updateUserData({
             userId: '',
@@ -70,7 +81,7 @@ export function AuthWrapper({ children, onUserData }: AuthWrapperProps) {
         // drive the re-prompt (191 of 444 rows have NULL split columns).
         const { data: userInfo, error: userError } = await db
           .from('users')
-          .select('id, name, email, role, family_name, given_name, name_confirmed_at, name_prompt_snoozed_until')
+          .select('id, name, email, role, phone, family_name, given_name, name_confirmed_at, name_prompt_snoozed_until')
           .eq('id', user.id)
           .single()
 
@@ -89,6 +100,24 @@ export function AuthWrapper({ children, onUserData }: AuthWrapperProps) {
           given_name: userInfo.given_name,
           name_confirmed_at: userInfo.name_confirmed_at,
           name_prompt_snoozed_until: userInfo.name_prompt_snoozed_until,
+        })
+
+        /* Social signups arrive with no phone and often a provider
+           nickname for a name. The gate is the IDENTITY, never the
+           missing field: 392 of 448 existing accounts have a NULL phone
+           and every one of them is email-only, so this can never wall
+           them. See src/lib/auth/social-onboarding.ts. */
+        const providers = (user.app_metadata?.providers as string[] | undefined)
+          ?? (user.app_metadata?.provider ? [user.app_metadata.provider as string] : [])
+        setSocialOnboarding({
+          needed: needsSocialOnboarding({
+            providers,
+            phone: userInfo.phone,
+            family_name: userInfo.family_name,
+            given_name: userInfo.given_name,
+            name_confirmed_at: userInfo.name_confirmed_at,
+          }),
+          metadata: (user.user_metadata ?? null) as Record<string, unknown> | null,
         })
 
         const userRole = userInfo.role
@@ -296,7 +325,7 @@ export function AuthWrapper({ children, onUserData }: AuthWrapperProps) {
     return () => {
       isMounted = false
     }
-  }, [user, isInitialized, isLoading]) // Only re-run when user or auth state changes
+  }, [user, isInitialized, isLoading, profileReloadKey]) // Re-runs after onboarding writes, so `needed` flips false
 
   // Don't show loading screen - let layout and page components handle loading states
   // This prevents flickering when content loads
@@ -313,7 +342,26 @@ export function AuthWrapper({ children, onUserData }: AuthWrapperProps) {
   return (
     <>
       {children}
-      <NamePrompt user={namePromptUser} />
+      {/* The social-signup step is a WALL and the name re-prompt is not,
+          so when both would apply the wall wins and the banner is
+          suppressed — otherwise a dismissible banner would render behind
+          a modal that cannot be dismissed, offering a link nobody can
+          reach. Completing the wall settles the name too, so the banner
+          has nothing left to ask. */}
+      {socialOnboarding.needed ? (
+        <SocialOnboardingModal
+          isOpen
+          userMetadata={socialOnboarding.metadata}
+          onCompleted={() => {
+            setSocialOnboarding(s => ({ ...s, needed: false }))
+            // Re-read the row rather than trusting the local flip: the
+            // server is authoritative about what was actually written.
+            setProfileReloadKey(k => k + 1)
+          }}
+        />
+      ) : (
+        <NamePrompt user={namePromptUser} />
+      )}
     </>
   )
 }

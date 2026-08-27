@@ -392,7 +392,9 @@
       "superAdminTools": "Super admin",
       "main": "Main",
       "loading": "Loading…",
-      "signOut": "Sign out"
+      "signOut": "Sign out",
+      "nicknameReports": "Nickname reports",
+      "nicknameReportsDesc": "Review reported study nicknames"
     },
     "studyConsole": {
       "title": "Study",
@@ -1930,7 +1932,8 @@
       "lockedHasWork": "This class already has camp assignments, so its camp can't be changed. Create a new class instead.",
       "capExceeded": "That would put {{count}} students in a camp that seats {{cap}}. Remove {{over}} to continue.",
       "fixedWarning": "Once this class has camp assignments its camp can't be changed — you'd need to create a new class."
-    }
+    },
+    "total": "total"
   },
   "dashboard": {
     "gettingStarted": {
@@ -5042,6 +5045,19 @@
         "cancel": "Cancel",
         "saveFailed": "We couldn't save that number. Please try again."
       }
+    },
+    "socialOnboarding": {
+      "title": "Finish setting up your account",
+      "subtitle": "We need a couple of details your sign-in provider doesn't share.",
+      "phoneLabel": "Phone number",
+      "phonePlaceholder": "010-1234-5678",
+      "phoneHint": "Used so your academy can reach you about classes, attendance and payments.",
+      "phoneInvalid": "Enter a valid phone number.",
+      "submit": "Continue",
+      "saving": "Saving…",
+      "signOut": "Sign out",
+      "saveFailedTitle": "Could not save your details",
+      "saveFailedBody": "Please check your connection and try again."
     }
   },
   "errors": {
