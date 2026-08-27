@@ -149,7 +149,22 @@ export function oauthRedirectTo(opts: {
   const hostname = opts.hostname ?? 'app.classraum.com'
   const port = opts.port ?? ''
 
-  if (hostname === 'localhost' || hostname === '127.0.0.1') {
+  /* Local development, INCLUDING the `app.` subdomain that dev uses to
+     exercise the real subdomain routing.
+ 
+     The port is load-bearing here and only here: Next picks a free port
+     when 3000 is taken, so a dev server frequently lives on something
+     like 62420. `app.localhost` used to fall through to the production
+     `startsWith('app.')` branch below, which drops the port because a
+     production host never has one — producing
+     `http://app.localhost/auth/callback`, i.e. port 80, where nothing is
+     listening. Supabase then rejects it as an unregistered redirect and
+     the failure reads like a provider misconfiguration. */
+  const isLocalHost =
+    hostname === 'localhost' ||
+    hostname === '127.0.0.1' ||
+    hostname.endsWith('.localhost')
+  if (isLocalHost) {
     return `${protocol}//${hostname}${port ? ':' + port : ''}${OAUTH_CALLBACK_PATH}`
   }
   if (hostname === 'app.www.classraum.com') {

@@ -53,6 +53,11 @@ export const JOB_REGISTRY: JobSpec[] = [
   // Compliance / housekeeping.
   { job: 'process-account-deletions',    label: 'Account deletion processor',  schedule: '0 3 * * *',   maxSilenceMinutes: 2 * D, severity: 'critical' },
   { job: 'account-deletion-digest',      label: 'Account deletion digest',     schedule: '0 0 * * 1',   maxSilenceMinutes: 9 * D, severity: 'warning' },
+  // Weekly is plenty for a 6-month clock, and the job is silent until
+  // `apple` is in NEXT_PUBLIC_OAUTH_PROVIDERS. Critical because the
+  // failure it guards is Apple sign-in breaking with no deploy, no code
+  // change and nothing in our logs.
+  { job: 'apple-secret-expiry',          label: 'Apple secret expiry check',   schedule: '0 6 * * 1',   maxSilenceMinutes: 9 * D, severity: 'critical' },
 
   // Content refresh. Monthly/quarterly — long silence is normal.
   { job: 'refresh-test-specs',           label: 'Test spec refresh',           schedule: '30 4 1 * *',  maxSilenceMinutes: 40 * D, severity: 'warning' },

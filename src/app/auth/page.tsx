@@ -18,7 +18,7 @@ import { useToast } from "@/hooks/use-toast"
 import { readStoredMode } from "@/lib/study/currentMode"
 import { studentEntryTarget } from "@/lib/study/student-entry"
 import { authHeaders } from "@/lib/auth-headers"
-import { savePendingReferral, clearPendingReferral } from "@/lib/study/pending-referral"
+import { savePendingReferral, clearPendingReferral, readPendingReferral } from "@/lib/study/pending-referral"
 import { safeNotificationPath } from "@/lib/study/notification-link"
 import { useKeyboardInset } from '@/hooks/useKeyboardInset'
 import { NameFields, validateNameFields } from "@/components/ui/name-fields"
@@ -649,6 +649,27 @@ export default function AuthPage() {
       })
     } else if (result.kind === 'unknown') {
       setSocialNotice({ tone: 'error', text: t('auth.social.errors.failed', { provider: 'OAuth' }) })
+    }
+
+    /* Redeem a friend-invite code, exactly as the password path does at
+       the end of handleSignUp.
+ 
+       Without this the two signup doors behaved differently for the same
+       invite link: a password signup had its credits before the redirect
+       landed, while an OAuth signup arrived at the study home with an
+       unclaimed banner to notice and press. The code was never LOST —
+       savePendingReferral stashes it the moment `?ref=` is read, and the
+       home banner is the fallback redeemer — but "you must click this to
+       get what you were already promised" is not the same product.
+ 
+       Read from the stash rather than result.context.ref: the stash is
+       what the banner reads, so redeeming from it is what clears the
+       banner. Only on 'ok' — a 'blocked' session is about to be signed
+       out, and redeeming against it would burn the code on an account
+       the user is not going to keep. */
+    if (result.kind === 'ok') {
+      const stashedRef = readPendingReferral()
+      if (stashedRef) await redeemReferralCode(stashedRef)
     }
 
     // Release the redirect effect. It re-reads users.role, which

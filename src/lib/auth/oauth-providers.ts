@@ -117,11 +117,45 @@ export function enabledProviders(): OAuthProvider[] {
  *
  * Kakao: `account_email` is the consent item that makes an email address
  * available at all. Requesting it does NOT guarantee one arrives — see
- * `kakao-email.ts` — but omitting it guarantees one does not.
+ * `kakao-email.ts`.
+ *
+ * CORRECTION (2026-08-26, found against the live console): the previous
+ * note here said "omitting it guarantees one does not". That is false.
+ * Supabase's Kakao provider HARDCODES three default scopes —
+ * `account_email`, `profile_image`, `profile_nickname` — and APPENDS
+ * whatever we pass rather than replacing them. So every Kakao value in
+ * this table is already a default, and this entry adds nothing.
+ *
+ * It is kept because it documents intent, and because the appending
+ * behaviour is Supabase's, not a contract: if they ever switch to
+ * replace-semantics, an empty entry here would silently stop asking for
+ * the email.
+ *
+ * The practical consequence is NOT ours to fix in code: `profile_image`
+ * is requested on every Kakao sign-in whether we want it or not, so the
+ * 프로필 사진 consent item must be configured in the Kakao console or
+ * every authorize request fails with KOE205 — before any consent screen,
+ * so none of our own error handling ever sees it. We ask for it, we do
+ * not store it (there is no photo column anywhere; avatars are built
+ * in-app from `avatar_config`), and it is set to 선택 동의 so users can
+ * decline.
+ *
  * Google and Apple return an email by default; Apple's is often a private
  * relay address, which is fine, it is still a deliverable mailbox.
  */
 export const PROVIDER_SCOPES: Record<OAuthProvider, string | undefined> = {
+  /* `phone_number` prefills the social-onboarding step for Kakao users.
+     Google and Apple have no phone scope at all, so they always type it.
+
+     ⚠ THIS BREAKS KAKAO LOGIN UNTIL THE CONSENT ITEM EXISTS. Kakao
+     rejects an authorize request that names an unconfigured 동의항목
+     with KOE205 — before any consent screen, so none of our own error
+     handling ever sees it. Set 전화번호 in 카카오 로그인 → 동의항목
+     (it needs its own 추가 기능 신청, like 이메일 did) THEN append
+     ` phone_number` to this string. Removed 2026-08-27: the consent item
+     was still unapproved and every Kakao login died at KOE205; users
+     type their number in the onboarding modal instead, which is how the
+     first live Kakao signup already worked. */
   kakao: 'account_email profile_nickname',
   google: 'email profile',
   apple: 'email name',

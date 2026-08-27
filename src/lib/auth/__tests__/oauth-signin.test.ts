@@ -83,6 +83,8 @@ describe('startOAuthSignIn', () => {
       provider: 'kakao',
       options: {
         redirectTo: 'https://app.classraum.com/auth/callback?flow=oauth',
+        // phone_number deliberately absent: its 동의항목 is unapproved and
+        // naming it kills every Kakao login with KOE205 (2026-08-27).
         scopes: 'account_email profile_nickname',
       },
     })

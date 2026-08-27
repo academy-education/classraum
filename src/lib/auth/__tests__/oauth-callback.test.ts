@@ -115,6 +115,39 @@ describe('oauthRedirectTo', () => {
     ).toBe(`http://localhost:3000${OAUTH_CALLBACK_PATH}`)
   })
 
+  it('keeps the port on the app.localhost subdomain too', () => {
+    // The case the test above did NOT cover, and the bug that hid there:
+    // `app.localhost` matched the production `startsWith('app.')` branch,
+    // which drops the port because a production host never has one. The
+    // result was `http://app.localhost/auth/callback` — port 80, nothing
+    // listening — and Supabase rejected it as an unregistered redirect,
+    // which reads like a provider misconfiguration rather than our bug.
+    //
+    // Dev runs on the app subdomain to exercise the real routing, and
+    // Next picks a free port whenever 3000 is taken, so this is the
+    // ordinary local case, not an exotic one.
+    expect(
+      oauthRedirectTo({ native: false, protocol: 'http:', hostname: 'app.localhost', port: '62420' })
+    ).toBe(`http://app.localhost:62420${OAUTH_CALLBACK_PATH}`)
+  })
+
+  it.each(['localhost', '127.0.0.1', 'app.localhost'])(
+    'keeps %s addressable without a port when none is given',
+    (hostname) => {
+      expect(
+        oauthRedirectTo({ native: false, protocol: 'http:', hostname })
+      ).toBe(`http://${hostname}${OAUTH_CALLBACK_PATH}`)
+    },
+  )
+
+  it('does not mistake a real domain ending in localhost-ish text', () => {
+    // `.endsWith('.localhost')` must not catch a production host. Only a
+    // true .localhost TLD is local.
+    expect(
+      oauthRedirectTo({ native: false, protocol: 'https:', hostname: 'app.notlocalhost.com' })
+    ).toBe(`https://app.notlocalhost.com${OAUTH_CALLBACK_PATH}`)
+  })
+
   it('repairs the malformed app.www host that has been seen in production', () => {
     expect(
       oauthRedirectTo({ native: false, protocol: 'https:', hostname: 'app.www.classraum.com' })
