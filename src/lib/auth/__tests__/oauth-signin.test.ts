@@ -112,7 +112,11 @@ describe('startOAuthSignIn', () => {
     // Google refuses to authenticate inside an embedded WebView, so the
     // redirect MUST be suppressed and handed to the OS instead.
     expect(optionsSeen.skipBrowserRedirect).toBe(true)
-    expect(optionsSeen.redirectTo).toBe('classraum://auth/callback?flow=oauth')
+    // BARE — no query string. The dashboard allow-list entry is exactly
+    // classraum://auth/callback, Supabase matches exactly, and a ?flow=
+    // suffix sent the whole native return to the Site-URL fallback:
+    // signed in inside the browser sheet, app left signed out.
+    expect(optionsSeen.redirectTo).toBe('classraum://auth/callback')
     expect(opened).toEqual(['https://accounts.google.com/o/oauth2/auth?x=1'])
   })
 

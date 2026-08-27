@@ -69,14 +69,27 @@ export async function startOAuthSignIn(
   const now = deps.now ?? Date.now()
   const context = captureOAuthContext(contextFromSearch(deps.search), deps.store, now)
 
-  const redirectTo = markOAuthFlow(
-    oauthRedirectTo({
-      native: deps.native,
-      protocol: deps.location.protocol,
-      hostname: deps.location.hostname,
-      port: deps.location.port,
-    })
-  )
+  /* The ?flow=oauth marker goes on the WEB redirect only.
+   *
+   * Supabase's redirect allow-list matches EXACTLY, and the dashboard
+   * entry is `classraum://auth/callback` — appending `?flow=oauth` made
+   * the native redirect_to fail that match, so GoTrue silently fell
+   * back to the Site URL: the provider sheet finished by loading
+   * app.classraum.com?code=..., the WEB app exchanged the code, and the
+   * user ended up signed in inside the browser sheet while the native
+   * app sat signed out (live failure, 2026-08-28). Web tolerates the
+   * same fallback invisibly, which is why only the app broke.
+   *
+   * Dropping the marker natively loses nothing: the deep-link handler
+   * (oauthDeepLinkTarget) adds flow=oauth to the in-app /auth URL it
+   * builds, and parseOAuthCallbackUrl never required it. */
+  const base = oauthRedirectTo({
+    native: deps.native,
+    protocol: deps.location.protocol,
+    hostname: deps.location.hostname,
+    port: deps.location.port,
+  })
+  const redirectTo = deps.native ? base : markOAuthFlow(base)
 
   let result: Awaited<ReturnType<StartDeps['signInWithOAuth']>>
   try {
