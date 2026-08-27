@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
-import { Users, UserPlus, Copy, Check, Search, X, Loader2, Trophy, Clock, Swords } from '@/app/mobile/study/_shared/icons'
+import { Users, UserPlus, Copy, Check, Search, X, Loader2, Trophy, Clock, Swords, Flag } from '@/app/mobile/study/_shared/icons'
 import { authHeaders } from '@/lib/auth-headers'
 import { useTranslation } from '@/hooks/useTranslation'
 import { StudySubscriptionGate } from '../SubscriptionGate'
@@ -198,6 +198,42 @@ function AddFriend({ ko, myCode, onChanged }: { ko: boolean; myCode: string | nu
     } catch { return { ok: false } }
   }
 
+  /* Report a handle. Search results are the one place a student sees
+     strangers' nicknames, so this is where the tail of the word list
+     gets caught — see src/lib/study/nickname-moderation.ts, which is
+     deliberately conservative because Korean profanity overlaps
+     ordinary words.
+
+     Only the student id is sent: the server snapshots the nickname
+     itself, so nobody can file a report claiming a victim used words
+     they never used. */
+  const [reported, setReported] = useState<Set<string>>(new Set())
+  const [reporting, setReporting] = useState<string | null>(null)
+  const reportNickname = async (studentId: string) => {
+    if (reporting || reported.has(studentId)) return
+    if (!window.confirm(ko
+      ? '이 닉네임을 신고할까요? 운영팀이 확인합니다.'
+      : 'Report this nickname? Our team will review it.')) return
+    setReporting(studentId)
+    try {
+      const headers = await authHeaders()
+      const res = await fetch('/api/study/report-nickname', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', ...headers },
+        body: JSON.stringify({ studentId }),
+      })
+      // A duplicate returns ok:true — from the reporter's side they have
+      // done all they can, and "you already reported this" only invites
+      // them to look for another way to be heard.
+      if (res.ok) setReported(prev => new Set(prev).add(studentId))
+    } catch {
+      /* Silent: a failed report must not derail the friends screen. The
+         student can try again, and the button stays available. */
+    } finally {
+      setReporting(null)
+    }
+  }
+
   const addByNickname = async (nickname: string) => {
     const r = await request({ nickname })
     if (r.ok) { onChanged(); void refetchSearch() }
@@ -252,6 +288,20 @@ function AddFriend({ ko, myCode, onChanged }: { ko: boolean; myCode: string | nu
             <div key={r.student_id} className="flex items-center gap-2.5 px-1 py-1">
               <Avatar name={r.nickname} avatarId={r.avatar_id} avatarConfig={r.avatar_config} />
               <span className="flex-1 min-w-0 truncate text-[14px] font-medium text-gray-800">{r.nickname}</span>
+              {/* Quiet by design: reporting is rare and must not compete
+                  with Add, which is what this screen is for. */}
+              <button
+                type="button"
+                onClick={() => void reportNickname(r.student_id)}
+                disabled={reporting === r.student_id || reported.has(r.student_id)}
+                aria-label={ko ? '닉네임 신고' : 'Report nickname'}
+                title={ko ? '닉네임 신고' : 'Report nickname'}
+                className="tap-target flex-shrink-0 p-1 text-gray-300 hover:text-rose-500 disabled:text-emerald-500 transition-colors"
+              >
+                {reported.has(r.student_id)
+                  ? <Check className="w-3.5 h-3.5" />
+                  : <Flag className="w-3.5 h-3.5" />}
+              </button>
               {r.relation === 'friends' ? (
                 <span className="text-[11.5px] font-semibold text-emerald-600">{ko ? '친구' : 'Friends'}</span>
               ) : r.relation === 'pending_out' ? (

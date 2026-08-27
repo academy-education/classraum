@@ -14,7 +14,11 @@ export const NICKNAME_MAX = 16
 /** Letters (any language, so Hangul works), digits, and underscore. */
 const NICKNAME_RE = /^[\p{L}\p{N}_]+$/u
 
-export type NicknameError = 'too_short' | 'too_long' | 'charset' | 'empty'
+import { checkNicknameContent, type NicknameContentError } from './nickname-moderation'
+
+export type NicknameError =
+  | 'too_short' | 'too_long' | 'charset' | 'empty'
+  | NicknameContentError
 
 /** Trim + collapse — the stored/compared form. Does not lowercase (display
  *  keeps the user's casing; uniqueness is enforced case-insensitively at the
@@ -33,5 +37,10 @@ export function validateNickname(raw: string): NicknameError | null {
   if (len < NICKNAME_MIN) return 'too_short'
   if (len > NICKNAME_MAX) return 'too_long'
   if (!NICKNAME_RE.test(n)) return 'charset'
-  return null
+  /* Content last, so a nickname that is BOTH too long and rude reports
+     the length first — the fixable, unembarrassing reason. Folded into
+     this one validator rather than added at the call sites, because the
+     availability check and the save path both call it and must not be
+     able to disagree about what is allowed. */
+  return checkNicknameContent(n)
 }

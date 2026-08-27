@@ -24,6 +24,7 @@ export type Database = {
           created_at: string | null
           id: string
           is_suspended: boolean | null
+          is_test: boolean
           logo_url: string | null
           name: string
           onboarding_completed_at: string | null
@@ -47,6 +48,7 @@ export type Database = {
           created_at?: string | null
           id?: string
           is_suspended?: boolean | null
+          is_test?: boolean
           logo_url?: string | null
           name: string
           onboarding_completed_at?: string | null
@@ -70,6 +72,7 @@ export type Database = {
           created_at?: string | null
           id?: string
           is_suspended?: boolean | null
+          is_test?: boolean
           logo_url?: string | null
           name?: string
           onboarding_completed_at?: string | null
@@ -3983,6 +3986,67 @@ export type Database = {
           week_start?: string
         }
         Relationships: []
+      }
+      study_nickname_reports: {
+        Row: {
+          created_at: string
+          id: string
+          reason: string | null
+          reported_nickname: string
+          reported_student_id: string
+          reporter_student_id: string
+          resolution_note: string | null
+          resolved_at: string | null
+          resolved_by: string | null
+          status: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          reason?: string | null
+          reported_nickname: string
+          reported_student_id: string
+          reporter_student_id: string
+          resolution_note?: string | null
+          resolved_at?: string | null
+          resolved_by?: string | null
+          status?: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          reason?: string | null
+          reported_nickname?: string
+          reported_student_id?: string
+          reporter_student_id?: string
+          resolution_note?: string | null
+          resolved_at?: string | null
+          resolved_by?: string | null
+          status?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "study_nickname_reports_reported_student_id_fkey"
+            columns: ["reported_student_id"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "study_nickname_reports_reporter_student_id_fkey"
+            columns: ["reporter_student_id"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "study_nickname_reports_resolved_by_fkey"
+            columns: ["resolved_by"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       study_question_reports: {
         Row: {

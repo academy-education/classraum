@@ -20,7 +20,11 @@ export function StudyNicknameCard({ ko }: { ko: boolean }) {
   const [ready, setReady] = useState(false)
   // Locked once the student has used their one post-pick change.
   const [locked, setLocked] = useState(false)
-  const [status, setStatus] = useState<'idle' | 'checking' | 'available' | 'taken' | 'invalid'>('idle')
+  /* `reserved` and `blocked` are split out from `invalid` because they
+     need different copy: telling someone who typed `admin` that the
+     rule is "2–16 chars, letters/numbers/_" is simply untrue — their
+     input satisfies it — and leaves them retrying the same thing. */
+  const [status, setStatus] = useState<'idle' | 'checking' | 'available' | 'taken' | 'invalid' | 'reserved' | 'blocked'>('idle')
   const [saving, setSaving] = useState(false)
   const [saved, setSaved] = useState(false)
   // Nickname changes are one-time, so a save is gated behind a confirm.
@@ -59,13 +63,20 @@ export function StudyNicknameCard({ ko }: { ko: boolean }) {
         const headers = await authHeaders()
         const res = await fetch(`/api/study/nickname?check=${encodeURIComponent(trimmed)}`, { headers })
         const json = await res.json()
-        setStatus(json.available ? 'available' : (json.reason === 'taken' ? 'taken' : 'invalid'))
+        setStatus(
+          json.available ? 'available'
+          : json.reason === 'taken' ? 'taken'
+          : json.reason === 'reserved' ? 'reserved'
+          : json.reason === 'inappropriate' ? 'blocked'
+          : 'invalid',
+        )
       } catch { setStatus('idle') }
     }, 400)
     return () => { if (debounce.current) clearTimeout(debounce.current) }
   }, [trimmed, dirty])
 
-  const canSave = dirty && !saving && status !== 'taken' && status !== 'invalid' && status !== 'checking' && trimmed.length > 0 && !locked
+  const blockedStatus = status === 'taken' || status === 'invalid' || status === 'reserved' || status === 'blocked'
+  const canSave = dirty && !saving && !blockedStatus && status !== 'checking' && trimmed.length > 0 && !locked
 
   // Open the confirm dialog (the actual write happens on confirm).
   const requestSave = useCallback(() => {
@@ -75,7 +86,7 @@ export function StudyNicknameCard({ ko }: { ko: boolean }) {
 
   const doSave = useCallback(async () => {
     setConfirming(false)
-    if (!dirty || saving || status === 'taken' || status === 'invalid' || trimmed.length === 0) return
+    if (!dirty || saving || blockedStatus || trimmed.length === 0) return
     setSaving(true)
     try {
       const headers = await authHeaders()
@@ -86,7 +97,15 @@ export function StudyNicknameCard({ ko }: { ko: boolean }) {
       })
       if (res.status === 409) { setStatus('taken'); return }
       if (res.status === 423) { setLocked(true); return } // change already used
-      if (!res.ok) { setStatus('invalid'); return }
+      if (!res.ok) {
+        const body = (await res.json().catch(() => ({}))) as { code?: string }
+        setStatus(
+          body.code === 'reserved' ? 'reserved'
+          : body.code === 'inappropriate' ? 'blocked'
+          : 'invalid',
+        )
+        return
+      }
       const json = await res.json()
       setInitial(json.nickname as string)
       if (json.locked === true) setLocked(true)
@@ -104,13 +123,17 @@ export function StudyNicknameCard({ ko }: { ko: boolean }) {
     : status === 'available' ? (ko ? '사용 가능해요' : 'Available')
     : status === 'taken' ? (ko ? '이미 사용 중이에요' : 'Already taken')
     : status === 'invalid' ? (ko ? '2–16자, 문자·숫자·밑줄만' : '2–16 chars, letters/numbers/_')
+    : status === 'reserved' ? (ko ? '사용할 수 없는 이름이에요' : "That name isn't available")
+    // Neutral on purpose. The user knows what they typed; the product
+    // does not need to say it back to them.
+    : status === 'blocked' ? (ko ? '다른 닉네임을 사용해 주세요' : 'Please choose a different nickname')
     // A picked-but-not-yet-changed nickname gets one warning about the limit.
     : initial ? (ko ? '닉네임은 한 번만 변경할 수 있어요.' : 'You can change your nickname once.')
     : (ko ? '리더보드와 친구에게 보여요 · 한 번만 변경 가능' : 'Shown on the leaderboard · changeable once')
   const hintColor =
     locked ? 'text-gray-400'
     : status === 'available' ? 'text-emerald-600'
-    : status === 'taken' || status === 'invalid' ? 'text-rose-600'
+    : blockedStatus ? 'text-rose-600'
     : 'text-gray-500'
 
   return (
