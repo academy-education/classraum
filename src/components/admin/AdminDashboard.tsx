@@ -135,6 +135,11 @@ export function AdminDashboard() {
   const [alerts, setAlerts] = useState<SystemAlert[]>([]);
   const [loading, setLoading] = useState(true);
   const [loadError, setLoadError] = useState<string | null>(null);
+  /* Demo and seed academies are excluded by default. MEASURED 2026-08-26:
+     12 academies where 2 are real, 449 users where 43 belong to a real
+     academy. The toggle exists so the demo data is still reachable for
+     screenshots and tours — hiding it entirely would break those. */
+  const [includeTest, setIncludeTest] = useState(false);
 
   useEffect(() => {
     loadDashboardData();
@@ -158,7 +163,10 @@ export function AdminDashboard() {
     return () => {
       document.head.removeChild(style)
     }
-  }, []);
+    // Re-fetches when the test-data toggle flips. Without this the switch
+    // changes its own label and nothing else — which reads as broken.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [includeTest]);
 
   /**
    * All dashboard figures now come from /api/admin/dashboard, which runs the
@@ -180,7 +188,7 @@ export function AdminDashboard() {
       setLoading(true);
       setLoadError(null);
 
-      const res = await adminFetch('/api/admin/dashboard');
+      const res = await adminFetch(`/api/admin/dashboard${includeTest ? '?includeTest=1' : ''}`);
       if (!res.ok) {
         const body = await res.json().catch(() => null);
         throw new Error(body?.detail || body?.error || `Request failed (${res.status})`);
@@ -414,12 +422,31 @@ export function AdminDashboard() {
         title={String(t('admin.dashboard.title'))}
         description={String(t('admin.dashboard.subtitle'))}
         actions={
-          <div className="hidden sm:flex items-center gap-1.5 px-2.5 h-7 rounded-full bg-emerald-50 ring-1 ring-emerald-200/60 text-[11px] font-semibold text-emerald-700">
-            <span className="relative flex h-1.5 w-1.5">
-              <span className="absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-60 animate-ping" />
-              <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-emerald-500" />
-            </span>
-            {String(t('admin.dashboard.live'))}
+          <div className="flex items-center gap-2">
+            {/* Says what it is showing, not just what it can show — an
+                unlabelled switch leaves an admin unsure whether the
+                number in front of them includes the demo academy. */}
+            <button
+              type="button"
+              onClick={() => setIncludeTest(v => !v)}
+              className={`flex items-center gap-1.5 px-2.5 h-7 rounded-full text-[11px] font-semibold ring-1 transition-colors ${
+                includeTest
+                  ? 'bg-amber-50 ring-amber-200/60 text-amber-700 hover:bg-amber-100'
+                  : 'bg-gray-50 ring-gray-200/60 text-gray-600 hover:bg-gray-100'
+              }`}
+              title={includeTest
+                ? 'Showing demo and test academies alongside real ones'
+                : 'Showing real academies only'}
+            >
+              {includeTest ? 'Incl. test data' : 'Real data only'}
+            </button>
+            <div className="hidden sm:flex items-center gap-1.5 px-2.5 h-7 rounded-full bg-emerald-50 ring-1 ring-emerald-200/60 text-[11px] font-semibold text-emerald-700">
+              <span className="relative flex h-1.5 w-1.5">
+                <span className="absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-60 animate-ping" />
+                <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-emerald-500" />
+              </span>
+              {String(t('admin.dashboard.live'))}
+            </div>
           </div>
         }
       />

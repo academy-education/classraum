@@ -165,7 +165,19 @@ export function AdminLayout({ children }: AdminLayoutProps) {
       {/* Main Content */}
       <div className="flex-1 flex flex-col overflow-hidden">
         <AdminHeader adminUser={adminUser} onToggleSidebar={toggleSidebar} sidebarOpen={sidebarOpen} />
-        <main className="flex-1 overflow-y-auto p-4 sm:p-6">
+        {/* `relative` is load-bearing, not decoration.
+            Tailwind's `sr-only` is `position: absolute` with no `top`, so
+            such an element sits at its STATIC position — and with no
+            positioned ancestor that position is resolved against the
+            initial containing block. A screen-reader <caption> 7,300px
+            down a long table therefore stretched <html> to 7,683px and
+            gave the admin panel a SECOND scrollbar: the whole shell could
+            be dragged down past its own content, leaving a blank area
+            below. Only /admin/bank-qc showed it, because only it has
+            tables long enough to push a caption that far.
+            Anchoring here confines every absolutely-positioned
+            descendant of every admin page to the scroller it lives in. */}
+        <main className="relative flex-1 overflow-y-auto p-4 sm:p-6">
           {children}
         </main>
       </div>

@@ -10,6 +10,7 @@
  */
 
 import React from 'react'
+import { AdminPageHeader } from '@/components/admin/AdminPageHeader'
 import { AlertTriangle, CheckCircle2, CircleDashed, FlaskConical, Layers, ShieldCheck, Workflow, XCircle } from 'lucide-react'
 import {
   getLedger, ceilingFor, healthFor, formsFor, formsBySection, STAGE_ORDER,
@@ -352,14 +353,16 @@ export function BankQcDashboard() {
 
   return (
     <div className="space-y-6">
+      {/* Was a bespoke <header> with a text-xl h1 — 22px against the 30px
+          every other admin page renders through AdminPageHeader. Same
+          copy, same page; only the chrome is now shared. */}
+      <AdminPageHeader
+        kicker="Quality"
+        title="Question bank QC"
+        description="How each batch of questions is authored and what every quality gate measured. Scores are shown as points above the cohort's own best fixed-letter control, because raw accuracy is meaningless when key positions are not uniform."
+      />
       <header>
-        <h1 className="text-xl font-semibold text-gray-900">Question bank QC</h1>
-        <p className="text-sm text-gray-600 mt-1 max-w-3xl">
-          How each batch of questions is authored and what every quality gate measured.
-          Scores are shown as points above the cohort&apos;s own best fixed-letter control,
-          because raw accuracy is meaningless when key positions are not uniform.
-        </p>
-        <p className="text-[11px] text-gray-500 mt-2">
+        <p className="text-[11px] text-gray-500">
           Ledger generated {ledger.generatedAt} · updates on deploy, not live to the second
         </p>
         <p className="text-[11px] text-amber-800 bg-amber-50/70 ring-1 ring-amber-100 rounded-lg px-3 py-2 mt-3 max-w-3xl leading-snug">

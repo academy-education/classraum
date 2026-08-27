@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { dbAdmin } from '@/lib/supabase-admin'
 import { requireAdmin, countRows } from '../_lib/admin-auth'
+import { includeTestRequested, realAcademyIds, realAcademyUserIds, testAcademySummary } from '../_lib/test-academies'
 import { settle, withRetry, valueOrNull, type Settled } from '../_lib/resilience'
 import type { Database } from '@/lib/database.types'
 import { lastNMonthsKST, monthlyNetRevenueKST, type DatedAmount } from '@/lib/admin/revenue'
@@ -77,6 +78,25 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
   }
 
+  /* Demo and seed academies are excluded unless the caller asks for
+     them (?includeTest=1 — the panel's "show test data" switch).
+     MEASURED 2026-08-26, this is not a rounding difference: 12 academies
+     shown where 2 are real, 449 users where 43 belong to a real academy,
+     194 students where 32 do. A dashboard reporting fixtures as
+     performance is worse than one reporting nothing.
+
+     `realIds === null` means DO NOT FILTER — either the caller asked to
+     see everything, or the lookup failed. Failing toward showing too
+     much is deliberate: an inflated number an admin can explain beats a
+     deflated one that quietly hides a paying customer. */
+  const includeTest = includeTestRequested(request)
+  const [realIds, realUserIds] = await Promise.all([
+    realAcademyIds(includeTest),
+    realAcademyUserIds(includeTest),
+  ])
+  const academyScope = <Q extends { in: (c: string, v: string[]) => Q }>(q: Q, column: string): Q =>
+    realIds === null ? q : q.in(column, realIds)
+
   const head = (table: TableName) =>
     dbAdmin.from(table).select('*', { count: 'exact', head: true })
 
@@ -145,15 +165,16 @@ export async function GET(request: NextRequest) {
 
   const academiesSection = settle('academies', async () => {
     const [total, trend, activeAcademyRows] = await Promise.all([
-      count(() => head('academies'), 'academies'),
-      cumulativeTrend('academies'),
+      count(() => academyScope(head('academies'), 'id'), 'academies'),
+      cumulativeTrend('academies', q => academyScope(q, 'id')),
       // Distinct academies carrying an active/trialing subscription.
       withRetry(
         async () => {
-          const { data, error } = await dbAdmin
+          const q = dbAdmin
             .from('academy_subscriptions')
             .select('academy_id')
             .in('status', ['active', 'trialing'])
+          const { data, error } = await (realIds === null ? q : q.in('academy_id', realIds))
           if (error) throw new Error(`active academies: ${error.message}`)
           return data || []
         },
@@ -170,8 +191,8 @@ export async function GET(request: NextRequest) {
 
   const usersSection = settle('users', async () => {
     const [total, trend] = await Promise.all([
-      count(() => head('users'), 'users'),
-      cumulativeTrend('users'),
+      count(() => (realUserIds === null ? head('users') : head('users').in('id', realUserIds)), 'users'),
+      cumulativeTrend('users', q => (realUserIds === null ? q : q.in('id', realUserIds))),
     ])
     return {
       totalUsers: total,

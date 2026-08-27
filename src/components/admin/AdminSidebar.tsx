@@ -10,6 +10,7 @@ import {
   CreditCard,
   Users,
   MessageSquare,
+  Flag,
   BarChart3,
   Headphones,
   Settings,
@@ -56,6 +57,7 @@ const navigationItems: NavigationItem[] = [
   { nameKey: 'bankQc',         descriptionKey: 'bankQcDesc',         href: '/admin/bank-qc',         icon: FlaskConical,    permission: 'viewDashboard' },
   { nameKey: 'support',        descriptionKey: 'supportDesc',        href: '/admin/support',         icon: Headphones,      permission: 'viewSupport' },
   { nameKey: 'commentReports', descriptionKey: 'commentReportsDesc', href: '/admin/comment-reports', icon: MessageSquare,   permission: 'manageSupport' },
+  { nameKey: 'nicknameReports', descriptionKey: 'nicknameReportsDesc', href: '/admin/nickname-reports', icon: Flag,          permission: 'manageSupport' },
 ];
 
 const superAdminItems: NavigationItem[] = [
