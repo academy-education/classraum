@@ -39,6 +39,7 @@ export type TestFamily =
   | 'ap'
   | 'gre'
   | 'ssat'
+  | 'isee'
 
 interface TopicRow {
   id: string
@@ -119,6 +120,7 @@ function mapTestFamily(slug: string): TestFamily | null {
   if (slug === 'test-ap')   return 'ap'
   if (slug === 'test-gre')  return 'gre'
   if (slug === 'test-ssat') return 'ssat'
+  if (slug === 'test-isee') return 'isee'
   return null
 }
 
@@ -231,6 +233,23 @@ export function testFormatGuidanceEn(family: TestFamily, section: string | null)
               : '',
       'Calibrate vocabulary and rigor to a strong 13-16-year-old, not a college applicant.',
     ].filter(Boolean).join(' ')
+
+    case 'isee': return [
+      'This is the ISEE Upper Level (ERB), the private school admissions test for applicants to grades 9-12.',
+      'Format: 4-choice multiple choice throughout, plus one unscored 30-minute essay. NO guessing penalty — right answers only, so distractors must attract on content. Stanine 1-9 per section is the headline score. NO calculator anywhere.',
+      section === 'Verbal Reasoning'
+        ? 'Verbal: synonyms (capitalized stem, 4 choices) and sentence completions (one blank, or two blanks answered by word pairs) driven by internal logic cues. 30 seconds per item.'
+        : section === 'Quantitative Reasoning'
+          ? 'QR: word problems plus QUANTITATIVE COMPARISONS with the fixed options — (A) Column A greater, (B) Column B greater, (C) equal, (D) cannot be determined. Reasoning over computation.'
+          : section === 'Reading Comprehension'
+            ? 'Reading: 6 passages (300-600 words) with ~6 questions each — main idea, supporting detail, inference, vocabulary in context, organization/logic, tone/figurative language.'
+            : section === 'Mathematics Achievement'
+              ? 'MA: curriculum-aligned computation and procedure — arithmetic, algebra, geometry, data analysis. More calculation than QR, still no calculator.'
+              : section === 'Essay'
+                ? 'Essay: ONE expository/personal prompt (no choice of two), 30 minutes, ~300-400 words. Unscored but sent to schools.'
+                : '',
+      'Calibrate to a strong 13-17-year-old applying to secondary school.',
+    ].filter(Boolean).join(' ')
   }
 }
 
@@ -330,6 +349,23 @@ export function testFormatGuidanceKo(family: TestFamily, section: string | null)
               ? '작문 샘플: 25분 자유응답 1개 — 에세이 프롬프트와 이야기 시작 프롬프트를 나란히 제시하고 학생이 선택. 채점되지 않지만 지원 학교에 전송됨.'
               : '',
       '어휘와 엄밀함은 대학 지원자가 아니라 우수한 13-16세 수준으로.',
+    ].filter(Boolean).join(' ')
+
+    case 'isee': return [
+      'ISEE Upper Level(ERB) — 사립학교 9-12학년 지원자를 위한 입학시험.',
+      '형식: 전 영역 4지선다 + 채점되지 않는 30분 에세이. 추측 감점 없음 — 정답만 세므로 함정은 내용으로 매력적이어야 함. 영역별 스테나인(1-9)이 핵심 지표. 전 영역 계산기 금지.',
+      section === '언어 추론' || section === 'Verbal Reasoning'
+        ? '언어 추론: 동의어(대문자 표제어, 4지선다)와 내부 논리 단서로 풀리는 문장 완성(빈칸 1개, 또는 단어 쌍으로 답하는 빈칸 2개). 문항당 30초.'
+        : section === '수리 추론' || section === 'Quantitative Reasoning'
+          ? '수리 추론: 서술형 문제 + 고정 선택지의 수량 비교 — (A) A열이 큼, (B) B열이 큼, (C) 같음, (D) 판단 불가. 계산보다 추론.'
+          : section === '독해' || section === 'Reading Comprehension'
+            ? '독해: 6개 지문(300-600단어), 지문당 약 6문항 — 주제, 세부 정보, 추론, 문맥 어휘, 구성·논리, 어조·비유.'
+            : section === '수학 성취도' || section === 'Mathematics Achievement'
+              ? '수학 성취도: 교육과정에 맞춘 계산과 절차 — 산술, 대수, 기하, 자료 분석. 수리 추론보다 계산이 많지만 계산기는 여전히 금지.'
+              : section === '에세이' || section === 'Essay'
+                ? '에세이: 설명·개인 경험 프롬프트 1개(2개 중 선택 아님), 30분, 약 300-400단어. 채점되지 않지만 지원 학교에 전송됨.'
+                : '',
+      '수준은 중등학교에 지원하는 우수한 13-17세에 맞출 것.',
     ].filter(Boolean).join(' ')
   }
 }
