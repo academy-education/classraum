@@ -29,8 +29,15 @@ export default function AppRootPage() {
       return
     }
 
-    // If no user after initialization, AuthWrapper will handle redirect to /auth
+    /* No user after initialization: go to /auth OURSELVES. The comment
+     * here used to say "AuthWrapper will handle redirect to /auth" — it
+     * does not, and never did: AuthWrapper always renders children, and
+     * the layout deliberately skips RoleBasedAuthWrapper for /home so
+     * the role ladder below can run. Nothing else guards this page, so
+     * a signed-out visitor to app.classraum.com sat on the LoadingScreen
+     * forever. */
     if (!user) {
+      router.replace('/auth')
       return
     }
 
@@ -46,7 +53,10 @@ export default function AppRootPage() {
 
         if (error || !userInfo) {
           console.error('[AppRoot] Error fetching user role:', error)
-          // Let AuthWrapper handle the error case
+          // Same trap as the !user branch: nothing "handles" errors here
+          // but this page. /auth can show a real error and offers a way
+          // forward; an eternal spinner offers neither.
+          router.replace('/auth')
           return
         }
 
