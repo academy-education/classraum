@@ -110,6 +110,10 @@ export function familyForTask(task: string, family: 'toefl' | 'sat', section: st
       return 'cloze'
     case 'speaking_repeat':
     case 'speaking_interview':
+    // insertFrozen's interview spec passes the row task 'interview'
+    // (matching the FROZEN table), so both names must resolve here —
+    // the same trap arrange_words/build_a_sentence hit.
+    case 'interview':
     case 'arrange_words':
     // The bank ROW carries task='build_a_sentence' while the item type is
     // 'arrange_words'; insertFrozen passes the row name to the gate, so

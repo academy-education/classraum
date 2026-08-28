@@ -1300,6 +1300,26 @@ gate-wiring test catches disagreement between the two). Any future
 BAS batch gates as family `production` (shape/withsource/tells) with a
 ledger.json entry at the exact file sha.
 
+### interview-v2: 8 sets shipped; two instrument misfires caught (2026-08-28)
+32 rungs banked (12 → 20 four-rung sets; Speaking repeat-free
+sittings 12 → 20). The substantive gate for a free-response task is
+ANSWERABILITY review against the stated population, and it did real
+work: 4 of 12 authored sets died on rung-1 stranding (no-events,
+no-travel, no-money students) or topic duplication. Two instrument
+failures recorded, both caught before they decided anything: (a)
+reviewers stranded "monolingual students" on the second-language set
+— impossible among TOEFL candidates; re-judged with the population
+stated, 3/3 answerable; (b) a re-judge round ran against a payload
+file that was never written and the judges reviewed the WRONG SET —
+voided, re-run with the payload verified on disk. **Lesson: verify
+the payload file exists before launching agents that Read it.** Also
+the migration-068-adjacent gate trap struck a FOURTH time:
+familyFor('interview') fell through to mc_hidden_source (the frozen
+spec's row task was unmapped); fixed in gate-contract.json + bank-qc
+mirror, 117/117. New-row task values normalized to
+'speaking_interview' to match the live 48 (same decision as bas-v1's
+arrange_words normalization).
+
 ### cr-v8: the cr-v7 method replicates (2026-08-28)
 46 banked (132 → 178 live CR). Second independent run of the
 symmetric-worlds method: pilot −2.8, cross-batch −11.1, both CLEAR

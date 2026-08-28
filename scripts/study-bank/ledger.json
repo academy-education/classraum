@@ -338,6 +338,38 @@
      "verdict": "Key length rank worst slot 34.8% (bar 40%); hedge keys 6.5% vs distractors 8.7% (safe direction); intensifiers 0%/0%; zero near-dup pairs (J>=0.5) against the live 132 or within batch; letters 10/10/12/14 after contested drops."
     }
    }
+  },
+  {
+   "id": "interview-v2-2026-08-28",
+   "createdAt": "2026-08-28",
+   "targetTest": "toefl",
+   "section": "speaking",
+   "task": "interview",
+   "family": "production",
+   "spec": {
+    "n": 32,
+    "authors": 12,
+    "method": "4-rung ladder (personal-with-fallback → preference → evaluate-claim → future) mirroring the 12 live sets; INTERVIEW-V2-PREREGISTERED.md"
+   },
+   "contentSha": "60d0f584ecbd8dc1804fe2d620e5336a980353bfd0ad568a9a833f14634dceed",
+   "status": "shipped",
+   "cohort": "interview-v2",
+   "note": "12 sets authored across two rounds; 4 dropped on rung-1 answerability (campus-events, sustainability, travel-breaks) or topic duplication (sleep-schedules vs live wellbeing, 3/3). One instrument misfire recorded: reviewers stranded \"monolingual students\" on second-language — impossible in a TOEFL population; re-judged with the population stated, 3/3 answerable. A second misfire: the first re-judge ran against a payload file that was never written and the judges reviewed the wrong set; voided, re-run with the payload verified on disk.",
+   "stages": {
+    "shape": {
+     "passed": true,
+     "contentSha": "60d0f584ecbd8dc1804fe2d620e5336a980353bfd0ad568a9a833f14634dceed",
+     "verdict": "32/32 rungs: [Interview] tag, non-empty situation passage, EMPTY correct_answer, passageGroupId per set, ladder order preserved in file order (created_at is the assembler's playback order). checkSpeakingInterview enforced again at insert."
+    },
+    "withsource": {
+     "passed": true,
+     "verdict": "Answerability review, 3 independent reviewers per set against the stated TOEFL population (16-17, first term, no money, no travel, English as additional language by definition): all 8 shipped sets 3/3 answerable_by_all; ladder 3/3; cultural-neutrality and distinctness flags all below the 2/3 bar. The 4 sets any reviewer failed on answerability were dropped whole."
+    },
+    "tells": {
+     "passed": true,
+     "verdict": "Topic-level distinctness 3/3 per set vs the 12 live topics and within batch; no rung-text Jaccard >= 0.5 within batch; the fixed 4-rung ladder is serving-visible structure, not a tell (free response, no key to leak)."
+    }
+   }
   }
  ],
  "auditedCohorts": [

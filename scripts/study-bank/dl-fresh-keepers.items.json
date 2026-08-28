@@ -1,0 +1,906 @@
+[
+ {
+  "id": "F1-1",
+  "kind": "literal detail",
+  "prompt": "[Daily Life — email] According to the email, where will the rescheduled workshop be held?",
+  "choices": [
+   "In Room 12 of the Whitmore Annex",
+   "In Room 4 of the Whitmore Annex",
+   "In Room 8 of the training lab",
+   "In Room 6 of the Carver Annex"
+  ],
+  "correct_answer": "In Room 12 of the Whitmore Annex",
+  "explanation": "The email states the workshop \"will now run in the Whitmore Annex, Room 12,\" which matches \"In Room 12 of the Whitmore Annex.\"",
+  "passage": "Subject: Data Workshop Rescheduled\n\nHi everyone,\n\nThe Excel basics workshop originally set for Thursday has been moved to Tuesday, September 8, at 9:00 a.m. It will now run in the Whitmore Annex, Room 12, rather than the main training lab. Seats are capped at 15, so reserve one by emailing Priya Nair directly, not the training office, before Friday noon. Coffee and pastries provided.\n\nBest,\nMarcus Delgado, HR Coordinator"
+ },
+ {
+  "id": "F1-2",
+  "kind": "next-step",
+  "prompt": "[Daily Life — email] Whom should a staff member email to reserve a seat at the workshop?",
+  "choices": [
+   "Email the training office",
+   "Email Marcus Delgado",
+   "Email Priya Nair",
+   "Email Dana Cho"
+  ],
+  "correct_answer": "Email Priya Nair",
+  "explanation": "The email instructs staff to reserve a seat \"by emailing Priya Nair directly, not the training office,\" which matches \"Email Priya Nair.\"",
+  "passage": "Subject: Data Workshop Rescheduled\n\nHi everyone,\n\nThe Excel basics workshop originally set for Thursday has been moved to Tuesday, September 8, at 9:00 a.m. It will now run in the Whitmore Annex, Room 12, rather than the main training lab. Seats are capped at 15, so reserve one by emailing Priya Nair directly, not the training office, before Friday noon. Coffee and pastries provided.\n\nBest,\nMarcus Delgado, HR Coordinator"
+ },
+ {
+  "id": "F2-1",
+  "kind": "literal detail",
+  "prompt": "[Daily Life — campus notice] Where can students pick up a loaner laptop during the closure?",
+  "choices": [
+   "at the main circulation desk in Hartwell Library",
+   "at the music library circulation desk",
+   "at the student center front desk",
+   "at the Facilities office"
+  ],
+  "correct_answer": "at the music library circulation desk",
+  "explanation": "The notice states that loaner laptops \"can be picked up at the music library circulation desk.\"",
+  "passage": "Notice: The second-floor computer lab in Hartwell Library will close for carpet replacement from Monday, March 3 through Thursday, March 6. During the closure, loaner laptops can be picked up at the music library circulation desk. Printing has been moved to Room 114 in the student center. Direct questions to Dana Okafor in Facilities at 555-0173."
+ },
+ {
+  "id": "F2-2",
+  "kind": "next-step",
+  "prompt": "[Daily Life — campus notice] According to the notice, what should a student with questions about the closure do?",
+  "choices": [
+   "call the Hartwell Library circulation desk",
+   "call the campus IT service help line",
+   "call the student center main office",
+   "call Dana Okafor in Facilities"
+  ],
+  "correct_answer": "call Dana Okafor in Facilities",
+  "explanation": "The notice says to \"Direct questions to Dana Okafor in Facilities at 555-0173,\" so \"call Dana Okafor in Facilities\" is correct.",
+  "passage": "Notice: The second-floor computer lab in Hartwell Library will close for carpet replacement from Monday, March 3 through Thursday, March 6. During the closure, loaner laptops can be picked up at the music library circulation desk. Printing has been moved to Room 114 in the student center. Direct questions to Dana Okafor in Facilities at 555-0173."
+ },
+ {
+  "id": "F3-1",
+  "kind": "literal detail",
+  "prompt": "[Daily Life — club flyer] According to the flyer, on which day is the club's info session?",
+  "choices": [
+   "This Monday",
+   "This Tuesday",
+   "This Wednesday",
+   "This Thursday"
+  ],
+  "correct_answer": "This Tuesday",
+  "explanation": "The flyer invites students to \"our info session this Tuesday at 7:30 p.m.,\" so \"This Tuesday\" is correct.",
+  "passage": "Join the Maplewood Board Game Club! We need volunteers for our Spring Tournament on Saturday, April 12, in the Harmon Hall basement. Curious? Come to our info session this Tuesday at 7:30 p.m. in Room 210. Dues are $8 per semester. Questions about dues or sign-ups? Text our treasurer, Dana Okafor, at 555-0142 — please don't use the club email, which we only check once a month."
+ },
+ {
+  "id": "F3-2",
+  "kind": "next-step",
+  "prompt": "[Daily Life — club flyer] According to the flyer, how should students ask questions about dues or sign-ups?",
+  "choices": [
+   "Text Dana Okafor at 555-0142",
+   "Ask in Room 210 after class",
+   "Call the activities office",
+   "Email the club's inbox"
+  ],
+  "correct_answer": "Text Dana Okafor at 555-0142",
+  "explanation": "The flyer says \"Text our treasurer, Dana Okafor, at 555-0142\" and warns against the club email, so \"Text Dana Okafor at 555-0142\" is correct.",
+  "passage": "Join the Maplewood Board Game Club! We need volunteers for our Spring Tournament on Saturday, April 12, in the Harmon Hall basement. Curious? Come to our info session this Tuesday at 7:30 p.m. in Room 210. Dues are $8 per semester. Questions about dues or sign-ups? Text our treasurer, Dana Okafor, at 555-0142 — please don't use the club email, which we only check once a month."
+ },
+ {
+  "id": "F4-1",
+  "kind": "literal detail",
+  "prompt": "[Daily Life — job ad] By what day must applications for the barista position be turned in?",
+  "choices": [
+   "By Tuesday, September 9",
+   "By Wednesday, September 10",
+   "By Thursday, September 11",
+   "By Saturday, September 13"
+  ],
+  "correct_answer": "By Tuesday, September 9",
+  "explanation": "The posting says applications are due \"by Tuesday, September 9,\" so \"By Tuesday, September 9\" is correct.",
+  "passage": "Perch Coffee on Maple Street is hiring two part-time baristas for the fall. Shifts run weekday afternoons, 2:00 to 6:30 p.m. Pay starts at $13.50 an hour. To apply, pick up a paper application at the counter and hand the completed form to Dana, the weekend supervisor, not the store manager. Applications are due by Tuesday, September 9. Short interviews will be held on Thursday, September 11, between 10 a.m. and noon."
+ },
+ {
+  "id": "F4-2",
+  "kind": "next-step",
+  "prompt": "[Daily Life — job ad] After filling out the paper application, what should an applicant do with it?",
+  "choices": [
+   "Hand it to Marisol, the morning shift lead",
+   "Hand it to Dana, the weekend supervisor",
+   "Hand it to Theo, the store manager",
+   "Hand it to Priya, the head barista"
+  ],
+  "correct_answer": "Hand it to Dana, the weekend supervisor",
+  "explanation": "The posting instructs applicants to hand the completed form \"to Dana, the weekend supervisor, not the store manager,\" so \"Hand it to Dana, the weekend supervisor\" is correct.",
+  "passage": "Perch Coffee on Maple Street is hiring two part-time baristas for the fall. Shifts run weekday afternoons, 2:00 to 6:30 p.m. Pay starts at $13.50 an hour. To apply, pick up a paper application at the counter and hand the completed form to Dana, the weekend supervisor, not the store manager. Applications are due by Tuesday, September 9. Short interviews will be held on Thursday, September 11, between 10 a.m. and noon."
+ },
+ {
+  "id": "F5-1",
+  "kind": "literal detail",
+  "prompt": "[Daily Life — course-registration page] Where will the course sessions be held?",
+  "choices": [
+   "In Room 210 of the Lakeview Branch Library",
+   "In Room 6 of the Parks Department office",
+   "In Room 118 of the Community Center",
+   "In Room 12 of the Maple Street Annex"
+  ],
+  "correct_answer": "In Room 210 of the Lakeview Branch Library",
+  "explanation": "The passage says the course meets \"in Room 210 of the Lakeview Branch Library,\" not at the Parks Department office.",
+  "passage": "Registration for the Food Handler Certification Course opens Thursday, March 5, at noon on the Parks Department website. The course meets on March 14 and March 21 in Room 210 of the Lakeview Branch Library, not at the Parks Department office. The fee is $48, due at registration. Enrollment is capped at 22. For questions, call course coordinator Dana Ruiz at 555-0173."
+ },
+ {
+  "id": "F5-2",
+  "kind": "next-step",
+  "prompt": "[Daily Life — course-registration page] A registrant who has a question about the course should do which of the following?",
+  "choices": [
+   "Call Marcus Delaney at 555-0142",
+   "Call Dana Ruiz at 555-0173",
+   "Call Priya Venkatesan at 555-0168",
+   "Call Rob Castellano at 555-0195"
+  ],
+  "correct_answer": "Call Dana Ruiz at 555-0173",
+  "explanation": "The passage directs anyone with questions to \"call course coordinator Dana Ruiz at 555-0173.\"",
+  "passage": "Registration for the Food Handler Certification Course opens Thursday, March 5, at noon on the Parks Department website. The course meets on March 14 and March 21 in Room 210 of the Lakeview Branch Library, not at the Parks Department office. The fee is $48, due at registration. Enrollment is capped at 22. For questions, call course coordinator Dana Ruiz at 555-0173."
+ },
+ {
+  "id": "F6-1",
+  "kind": "literal detail",
+  "prompt": "[Daily Life — email] Where should Marisol pick up her replacement ID?",
+  "choices": [
+   "At the Card Services counter in Denton Hall",
+   "At the Whitmore Library circulation desk",
+   "At the Registrar's office front window",
+   "At the Student Union information desk"
+  ],
+  "correct_answer": "At the Whitmore Library circulation desk",
+  "explanation": "The email states that pickups \"are handled at the Whitmore Library circulation desk rather than our office,\" so \"At the Whitmore Library circulation desk\" is correct.",
+  "passage": "Subject: Replacement ID ready for pickup\n\nHi Marisol,\n\nYour replacement student ID arrived this morning. While our front counter is being renovated, pickups are handled at the Whitmore Library circulation desk rather than our office. Bring a photo ID and the $15 fee in cash — the desk is not able to process card payments. The desk is staffed Tuesday through Friday, 1:00 to 5:00 p.m.\n\nCard Services, Denton Hall 110"
+ },
+ {
+  "id": "F6-2",
+  "kind": "purpose",
+  "prompt": "[Daily Life — email] Why does the email tell Marisol to bring the fee in cash?",
+  "choices": [
+   "Card payments there carry a processing surcharge",
+   "Its card terminal is being replaced this month",
+   "The desk is not able to process card payments",
+   "Only exact change can be accepted there"
+  ],
+  "correct_answer": "The desk is not able to process card payments",
+  "explanation": "The email asks for cash because \"the desk is not able to process card payments,\" which matches \"The desk is not able to process card payments.\"",
+  "passage": "Subject: Replacement ID ready for pickup\n\nHi Marisol,\n\nYour replacement student ID arrived this morning. While our front counter is being renovated, pickups are handled at the Whitmore Library circulation desk rather than our office. Bring a photo ID and the $15 fee in cash — the desk is not able to process card payments. The desk is staffed Tuesday through Friday, 1:00 to 5:00 p.m.\n\nCard Services, Denton Hall 110"
+ },
+ {
+  "id": "S1-1-1",
+  "kind": "literal detail",
+  "prompt": "[Daily Life — email] Where should the student pick up the poster this week?",
+  "choices": [
+   "In Room 301 of Beckett Hall",
+   "At the campus mailroom",
+   "At the usual counter",
+   "At the printing lab"
+  ],
+  "correct_answer": "In Room 301 of Beckett Hall",
+  "explanation": "The email says pickups \"are handled in Room 301, upstairs in the same building\" as the Beckett Hall counter, so \"In Room 301 of Beckett Hall\" is correct. \"At the usual counter\" is where pickups normally happen, but that counter is being repainted this week.",
+  "passage": "Hi, this is Elena Vasquez from Media Services. The poster you ordered is ready. Because our usual counter in Beckett Hall is being repainted this week, pickups are handled in Room 301, upstairs in the same building. Ask for Tom Okada, who has the order list. Room 301 stays open until 6 p.m. on weekdays. If you would rather have the poster delivered, call ext. 4412 before Thursday.",
+  "kind_tag": "email",
+  "atypical_fact": "Poster pickups are handled in Room 301, upstairs, instead of at the usual Media Services counter (which is being repainted) — the institutional default would be pickup at the service counter."
+ },
+ {
+  "id": "S1-1-2",
+  "kind": "next-step",
+  "prompt": "[Daily Life — email] According to the email, what should the student do to have the poster delivered?",
+  "choices": [
+   "Leave a request at the front desk by Friday",
+   "Email Media Services before Wednesday",
+   "Call ext. 4412 before Thursday",
+   "Stop by the office by Friday"
+  ],
+  "correct_answer": "Call ext. 4412 before Thursday",
+  "explanation": "The email states, \"If you would rather have the poster delivered, call ext. 4412 before Thursday,\" so \"Call ext. 4412 before Thursday\" is correct. The other actions — emailing, leaving a request at the front desk, or stopping by — are not what the email instructs.",
+  "passage": "Hi, this is Elena Vasquez from Media Services. The poster you ordered is ready. Because our usual counter in Beckett Hall is being repainted this week, pickups are handled in Room 301, upstairs in the same building. Ask for Tom Okada, who has the order list. Room 301 stays open until 6 p.m. on weekdays. If you would rather have the poster delivered, call ext. 4412 before Thursday.",
+  "kind_tag": "email",
+  "atypical_fact": "Poster pickups are handled in Room 301, upstairs, instead of at the usual Media Services counter (which is being repainted) — the institutional default would be pickup at the service counter."
+ },
+ {
+  "id": "S1-2-1",
+  "kind": "literal detail",
+  "prompt": "[Daily Life — campus notice] When is bicycle registration offered this year?",
+  "choices": [
+   "On weekday afternoons",
+   "On Saturday mornings",
+   "On Sunday evenings",
+   "On Friday mornings"
+  ],
+  "correct_answer": "On Saturday mornings",
+  "explanation": "The notice states that registration \"is offered only on Saturday mornings this year, not during the week,\" so \"On Saturday mornings\" is correct. \"On weekday afternoons\" reflects the usual weekday arrangement the notice explicitly rules out.",
+  "passage": "Campus Notice: All bicycles parked on campus must display a registration tag by October 5. Register in Room 27 of the Fenwick Building. Note that registration is offered only on Saturday mornings this year, not during the week. Bring your student ID; the tag itself is free, but replacing a lost tag costs $4. Questions? Call Wei Zhang at 555-0119.",
+  "kind_tag": "campus notice",
+  "atypical_fact": "Bicycle registration is offered only on Saturday mornings, not during the week — the institutional default would be weekday office hours."
+ },
+ {
+  "id": "S1-2-2",
+  "kind": "inference",
+  "prompt": "[Daily Life — campus notice] What can be concluded about a student registering a bicycle for the first time?",
+  "choices": [
+   "They must pay $4 when the tag is issued",
+   "They pay a fee that is refunded later",
+   "They receive the tag at no charge",
+   "They pay $4 each semester"
+  ],
+  "correct_answer": "They receive the tag at no charge",
+  "explanation": "The notice says \"the tag itself is free,\" so a first-time registrant would \"receive the tag at no charge.\" The $4 amount applies only to \"replacing a lost tag,\" not to the initial registration.",
+  "passage": "Campus Notice: All bicycles parked on campus must display a registration tag by October 5. Register in Room 27 of the Fenwick Building. Note that registration is offered only on Saturday mornings this year, not during the week. Bring your student ID; the tag itself is free, but replacing a lost tag costs $4. Questions? Call Wei Zhang at 555-0119.",
+  "kind_tag": "campus notice",
+  "atypical_fact": "Bicycle registration is offered only on Saturday mornings, not during the week — the institutional default would be weekday office hours."
+ },
+ {
+  "id": "S2-1-1",
+  "kind": "literal detail",
+  "prompt": "[Daily Life — club flyer] When does the Trail Walkers Club meet?",
+  "choices": [
+   "Every Wednesday at 6:30 p.m.",
+   "Every Tuesday at 7:00 a.m.",
+   "Every Monday at 8:00 a.m.",
+   "Every Friday at 5:00 p.m."
+  ],
+  "correct_answer": "Every Tuesday at 7:00 a.m.",
+  "explanation": "The flyer states the club meets \"every Tuesday at 7:00 a.m. — yes, before classes,\" so \"Every Tuesday at 7:00 a.m.\" is correct. \"Every Wednesday at 6:30 p.m.\" and \"Every Friday at 5:00 p.m.\" match the typical evening-meeting default for clubs, and \"Every Monday at 8:00 a.m.\" is a different morning slot the flyer never mentions.",
+  "passage": "Join the Trail Walkers Club! We meet every Tuesday at 7:00 a.m. — yes, before classes — outside the Sycamore Center. New members should text Amara Diallo at 555-0126 to reserve a loaner backpack. Monthly dues are $4, collected in cash at the first walk of each month. Rainy-day walks still happen; only lightning cancels. Gear questions? Stop by Room 210B any weekday afternoon.",
+  "kind_tag": "club flyer",
+  "atypical_fact": "The club meets at 7:00 a.m. on Tuesdays, before classes — the institutional default for a student club is a weekday evening meeting."
+ },
+ {
+  "id": "S2-1-2",
+  "kind": "inference",
+  "prompt": "[Daily Life — club flyer] What can be concluded about walks in bad weather?",
+  "choices": [
+   "Walks move indoors when it rains.",
+   "Members vote on walking in rain.",
+   "Light rain postpones the walk.",
+   "Rain does not cancel a walk."
+  ],
+  "correct_answer": "Rain does not cancel a walk.",
+  "explanation": "The flyer says \"Rainy-day walks still happen; only lightning cancels,\" which supports \"Rain does not cancel a walk.\" \"Light rain postpones the walk\" and \"Walks move indoors when it rains\" contradict the statement that rainy-day walks still happen, and \"Members vote on walking in rain\" describes a procedure the flyer never mentions.",
+  "passage": "Join the Trail Walkers Club! We meet every Tuesday at 7:00 a.m. — yes, before classes — outside the Sycamore Center. New members should text Amara Diallo at 555-0126 to reserve a loaner backpack. Monthly dues are $4, collected in cash at the first walk of each month. Rainy-day walks still happen; only lightning cancels. Gear questions? Stop by Room 210B any weekday afternoon.",
+  "kind_tag": "club flyer",
+  "atypical_fact": "The club meets at 7:00 a.m. on Tuesdays, before classes — the institutional default for a student club is a weekday evening meeting."
+ },
+ {
+  "id": "S2-2-1",
+  "kind": "literal detail",
+  "prompt": "[Daily Life — job ad] On which days do the mailroom sorter shifts run?",
+  "choices": [
+   "Tuesday through Saturday",
+   "Wednesday through Sunday",
+   "Sunday through Thursday",
+   "Monday through Friday"
+  ],
+  "correct_answer": "Sunday through Thursday",
+  "explanation": "The ad says \"Shifts run Sunday through Thursday,\" so \"Sunday through Thursday\" is correct. \"Monday through Friday\" is the standard workweek default the ad departs from, and \"Tuesday through Saturday\" and \"Wednesday through Sunday\" are five-day spans the ad never mentions.",
+  "passage": "The campus mailroom in the Aldrich Annex is hiring two student sorters for fall. Shifts run Sunday through Thursday, 6:00 to 9:00 p.m. Pay starts at $16.25 an hour, with a raise after 60 days — not the usual semester wait. Apply in person: pick up a form from Hana Kim in Room 18, then hand the completed form to Lucas Ferreira. Questions? Call ext. 2280 before noon.",
+  "kind_tag": "job ad",
+  "atypical_fact": "Shifts run Sunday through Thursday rather than the default Monday-through-Friday workweek (a second atypical detail: the raise comes after 60 days instead of the usual full-semester wait)."
+ },
+ {
+  "id": "S2-2-2",
+  "kind": "inference",
+  "prompt": "[Daily Life — job ad] What does the ad suggest about pay raises at the mailroom?",
+  "choices": [
+   "A raise arrives after two full semesters.",
+   "A raise arrives after about two months.",
+   "A raise arrives only with a promotion.",
+   "A raise arrives after a year of work."
+  ],
+  "correct_answer": "A raise arrives after about two months.",
+  "explanation": "The ad promises \"a raise after 60 days — not the usual semester wait,\" and 60 days is about two months, so \"A raise arrives after about two months.\" is correct. \"A raise arrives after two full semesters.\" and \"A raise arrives after a year of work.\" stretch the wait far beyond what the ad states, and \"A raise arrives only with a promotion.\" adds a condition the ad never mentions.",
+  "passage": "The campus mailroom in the Aldrich Annex is hiring two student sorters for fall. Shifts run Sunday through Thursday, 6:00 to 9:00 p.m. Pay starts at $16.25 an hour, with a raise after 60 days — not the usual semester wait. Apply in person: pick up a form from Hana Kim in Room 18, then hand the completed form to Lucas Ferreira. Questions? Call ext. 2280 before noon.",
+  "kind_tag": "job ad",
+  "atypical_fact": "Shifts run Sunday through Thursday rather than the default Monday-through-Friday workweek (a second atypical detail: the raise comes after 60 days instead of the usual full-semester wait)."
+ },
+ {
+  "id": "S3-1-1",
+  "kind": "literal detail",
+  "prompt": "[Daily Life — course-registration page] According to the page, how does a student register for POT 110?",
+  "choices": [
+   "by submitting a paper form at the registrar's office",
+   "by adding it through the college's online portal",
+   "by calling the ceramics coordinator",
+   "by emailing the department office"
+  ],
+  "correct_answer": "by calling the ceramics coordinator",
+  "explanation": "The page states the course \"cannot be added online\" and instructs students to \"call the ceramics coordinator, Noor Haddad, at 555-0184.\" So \"by calling the ceramics coordinator\" is correct, while \"by adding it through the college's online portal\" is explicitly ruled out, and neither \"by submitting a paper form at the registrar's office\" nor \"by emailing the department office\" is mentioned.",
+  "passage": "POT 110: Beginning Wheel Throwing — 4 seats left. Classes meet Tuesdays, 6:00–8:30 p.m., in Room 112 of the Corliss Building. Note: this course cannot be added online. To register, call the ceramics coordinator, Noor Haddad, at 555-0184 before September 5. A $40 clay fee is billed with tuition; tools are provided. Students who miss the first session are dropped automatically.",
+  "kind_tag": "course-registration page",
+  "atypical_fact": "The course cannot be added online; registration is only by phoning the ceramics coordinator — the opposite of the institutional default of online self-service registration, which is planted as a distractor."
+ },
+ {
+  "id": "S3-1-2",
+  "kind": "inference",
+  "prompt": "[Daily Life — course-registration page] What can be inferred about equipment for the course?",
+  "choices": [
+   "Students do not need to purchase their own pottery tools",
+   "Students must bring their own clay to each session",
+   "Tools can be rented from the ceramics studio",
+   "A tool kit is included in the $40 clay fee"
+  ],
+  "correct_answer": "Students do not need to purchase their own pottery tools",
+  "explanation": "Since the page says \"tools are provided,\" it follows that \"Students do not need to purchase their own pottery tools.\" The clay fee is \"billed with tuition\" to cover clay, so \"Students must bring their own clay to each session\" contradicts the page; nothing supports \"Tools can be rented from the ceramics studio\" or \"A tool kit is included in the $40 clay fee.\"",
+  "passage": "POT 110: Beginning Wheel Throwing — 4 seats left. Classes meet Tuesdays, 6:00–8:30 p.m., in Room 112 of the Corliss Building. Note: this course cannot be added online. To register, call the ceramics coordinator, Noor Haddad, at 555-0184 before September 5. A $40 clay fee is billed with tuition; tools are provided. Students who miss the first session are dropped automatically.",
+  "kind_tag": "course-registration page",
+  "atypical_fact": "The course cannot be added online; registration is only by phoning the ceramics coordinator — the opposite of the institutional default of online self-service registration, which is planted as a distractor."
+ },
+ {
+  "id": "S3-2-1",
+  "kind": "literal detail",
+  "prompt": "[Daily Life — email] During what hours can residents collect a held package?",
+  "choices": [
+   "10:00 a.m. to 1:00 p.m.",
+   "9:00 a.m. to 4:30 p.m.",
+   "12:30 to 6:30 p.m.",
+   "5:00 to 8:00 p.m."
+  ],
+  "correct_answer": "5:00 to 8:00 p.m.",
+  "explanation": "The email says \"Pickup is evenings only, 5:00 to 8:00 p.m.,\" so \"5:00 to 8:00 p.m.\" is correct. The daytime windows \"9:00 a.m. to 4:30 p.m.,\" \"10:00 a.m. to 1:00 p.m.,\" and \"12:30 to 6:30 p.m.\" all fall during the day, when the room is used for tutoring.",
+  "passage": "Subject: Where to collect your held packages. Hi residents — while the mailroom counter is being rebuilt, all held packages have been moved to Room 44 in Pinecrest Hall. Pickup is evenings only, 5:00 to 8:00 p.m., since the room is used for tutoring during the day. Bring your student ID. Packages not collected within ten days are returned to the sender. Questions? Call Mateo Rossi at ext. 7731. — Residence Services",
+  "kind_tag": "email",
+  "atypical_fact": "Package pickup is available in the evening only (5:00 to 8:00 p.m.), because the room hosts tutoring during the day — the opposite of the institutional default of daytime business hours, which is planted as a distractor."
+ },
+ {
+  "id": "S3-2-2",
+  "kind": "purpose",
+  "prompt": "[Daily Life — email] Why have held packages been moved to Room 44?",
+  "choices": [
+   "Because the mailroom's package counter is being rebuilt",
+   "Because the mailroom lost several packages last term",
+   "Because Pinecrest Hall is closer to most residences",
+   "Because Room 44 has more shelf space for parcels"
+  ],
+  "correct_answer": "Because the mailroom's package counter is being rebuilt",
+  "explanation": "The email explains the move happened \"while the mailroom counter is being rebuilt,\" so \"Because the mailroom's package counter is being rebuilt\" is correct. The email never mentions lost packages, walking distance, or storage space, so \"Because the mailroom lost several packages last term,\" \"Because Pinecrest Hall is closer to most residences,\" and \"Because Room 44 has more shelf space for parcels\" are unsupported.",
+  "passage": "Subject: Where to collect your held packages. Hi residents — while the mailroom counter is being rebuilt, all held packages have been moved to Room 44 in Pinecrest Hall. Pickup is evenings only, 5:00 to 8:00 p.m., since the room is used for tutoring during the day. Bring your student ID. Packages not collected within ten days are returned to the sender. Questions? Call Mateo Rossi at ext. 7731. — Residence Services",
+  "kind_tag": "email",
+  "atypical_fact": "Package pickup is available in the evening only (5:00 to 8:00 p.m.), because the room hosts tutoring during the day — the opposite of the institutional default of daytime business hours, which is planted as a distractor."
+ },
+ {
+  "id": "S4-1-1",
+  "kind": "literal detail",
+  "prompt": "[Daily Life — campus notice] According to the notice, when do the sorting volunteers meet?",
+  "choices": [
+   "Wednesdays at 12:30 p.m.",
+   "Thursdays at 6:15 p.m.",
+   "Tuesdays at 4 p.m.",
+   "Mondays at 10:45 a.m."
+  ],
+  "correct_answer": "Tuesdays at 4 p.m.",
+  "explanation": "The notice states that volunteers who want to help sort donations meet \"Tuesdays at 4 p.m.\" The options \"Wednesdays at 12:30 p.m.\", \"Thursdays at 6:15 p.m.\", and \"Mondays at 10:45 a.m.\" name day-and-time combinations that appear nowhere in the notice.",
+  "passage": "Campus Notice: The annual Winter Coat Drive runs through Friday, December 5. This year, donations go in the marked bins in Room 208 of the Tanaka Wing; the Student Union information desk is not accepting items. For pickups of ten or more coats, call Ravi Menon at 555-0163. Volunteers who want to help sort donations meet Tuesdays at 4 p.m. All coat sizes are welcome.",
+  "kind_tag": "campus notice",
+  "atypical_fact": "Donated coats are dropped off in Room 208 of the Tanaka Wing rather than at the Student Union information desk, the obvious institutional default for campus collection drives."
+ },
+ {
+  "id": "S4-1-2",
+  "kind": "next-step",
+  "prompt": "[Daily Life — campus notice] A student who wants to donate one coat should do what with it?",
+  "choices": [
+   "hand it to the staff at the Student Union information desk",
+   "drop it off at the main library circulation desk",
+   "take it to the campus security office",
+   "leave it in a marked bin in Room 208 of the Tanaka Wing"
+  ],
+  "correct_answer": "leave it in a marked bin in Room 208 of the Tanaka Wing",
+  "explanation": "The notice says donations go in the marked bins in Room 208 of the Tanaka Wing, so the correct action is to \"leave it in a marked bin in Room 208 of the Tanaka Wing.\" The option \"hand it to the staff at the Student Union information desk\" contradicts the notice, which says that desk is not accepting items, and neither \"drop it off at the main library circulation desk\" nor \"take it to the campus security office\" is mentioned.",
+  "passage": "Campus Notice: The annual Winter Coat Drive runs through Friday, December 5. This year, donations go in the marked bins in Room 208 of the Tanaka Wing; the Student Union information desk is not accepting items. For pickups of ten or more coats, call Ravi Menon at 555-0163. Volunteers who want to help sort donations meet Tuesdays at 4 p.m. All coat sizes are welcome.",
+  "kind_tag": "campus notice",
+  "atypical_fact": "Donated coats are dropped off in Room 208 of the Tanaka Wing rather than at the Student Union information desk, the obvious institutional default for campus collection drives."
+ },
+ {
+  "id": "S4-2-1",
+  "kind": "literal detail",
+  "prompt": "[Daily Life — club flyer] According to the flyer, when is the $20 materials fee collected?",
+  "choices": [
+   "at a member's second visit to the club",
+   "when a student first signs up",
+   "at the final meeting of the semester",
+   "at the start of each month"
+  ],
+  "correct_answer": "at a member's second visit to the club",
+  "explanation": "The flyer says the $20 materials fee is collected at your second visit, matching \"at a member's second visit to the club.\" The option \"when a student first signs up\" is the timing the flyer explicitly rules out, and \"at the final meeting of the semester\" and \"at the start of each month\" describe schedules the flyer never mentions.",
+  "passage": "Join the Pottery Club! We meet Saturdays at 9 a.m. in Room 9 of the Harborview Center. Your first session is free, and the $20 materials fee is collected at your second visit, not when you sign up. Aprons and tools are provided. To reserve a wheel for any session, call Zofia Nowak at ext. 5520 by the Thursday before. Beginners welcome!",
+  "kind_tag": "club flyer",
+  "atypical_fact": "The $20 materials fee is collected at a member's second visit, not at sign-up — the institutional default for club fees is payment when you first join."
+ },
+ {
+  "id": "S4-2-2",
+  "kind": "next-step",
+  "prompt": "[Daily Life — club flyer] A student who wants to reserve a wheel should do what?",
+  "choices": [
+   "add their name to a sign-up sheet at the door",
+   "call ext. 5520 by the Thursday before the session",
+   "email the club's officers at least one week in advance",
+   "arrive thirty minutes before the session begins"
+  ],
+  "correct_answer": "call ext. 5520 by the Thursday before the session",
+  "explanation": "The flyer instructs anyone who wants to reserve a wheel to call Zofia Nowak at ext. 5520 by the Thursday before, matching \"call ext. 5520 by the Thursday before the session.\" The options \"add their name to a sign-up sheet at the door,\" \"email the club's officers at least one week in advance,\" and \"arrive thirty minutes before the session begins\" describe reservation methods the flyer never offers.",
+  "passage": "Join the Pottery Club! We meet Saturdays at 9 a.m. in Room 9 of the Harborview Center. Your first session is free, and the $20 materials fee is collected at your second visit, not when you sign up. Aprons and tools are provided. To reserve a wheel for any session, call Zofia Nowak at ext. 5520 by the Thursday before. Beginners welcome!",
+  "kind_tag": "club flyer",
+  "atypical_fact": "The $20 materials fee is collected at a member's second visit, not at sign-up — the institutional default for club fees is payment when you first join."
+ },
+ {
+  "id": "S5-1-1",
+  "kind": "inference",
+  "prompt": "[Daily Life — job ad] What does the ad indicate about training for the position?",
+  "choices": [
+   "It is completed online before the first shift",
+   "It takes place during a weekday orientation session",
+   "It happens during the first two shifts, which are paid",
+   "It is unpaid until the second week"
+  ],
+  "correct_answer": "It happens during the first two shifts, which are paid",
+  "explanation": "The ad says training is provided during the first two shifts and that those shifts are paid at the full rate, which matches \"It happens during the first two shifts, which are paid.\" Nothing supports an online course, a weekday orientation session, or an unpaid period.",
+  "passage": "Dunmore Hall Mailroom — Student Assistant Wanted. Sort packages and staff the pickup window, ten hours per week at $15.50 an hour. Interviews take place on Saturday mornings in Room 315. To apply, call Kwame Mensah at 555-0148 before October 3. No experience needed; training is provided during your first two shifts, which are paid at the full rate.",
+  "kind_tag": "job ad",
+  "atypical_fact": "Interviews are held on Saturday mornings, not during weekday business hours (the institutional default, planted among the distractors as weekday afternoon slots)."
+ },
+ {
+  "id": "S5-1-2",
+  "kind": "literal detail",
+  "prompt": "[Daily Life — job ad] When are interviews for the position held?",
+  "choices": [
+   "Thursday afternoons",
+   "Saturday mornings",
+   "Wednesday mornings",
+   "Tuesday afternoons"
+  ],
+  "correct_answer": "Saturday mornings",
+  "explanation": "The ad states that interviews take place on \"Saturday mornings\" in Room 315. The weekday options — \"Thursday afternoons,\" \"Wednesday mornings,\" and \"Tuesday afternoons\" — reflect typical business-hours scheduling, which this ad deliberately does not use.",
+  "passage": "Dunmore Hall Mailroom — Student Assistant Wanted. Sort packages and staff the pickup window, ten hours per week at $15.50 an hour. Interviews take place on Saturday mornings in Room 315. To apply, call Kwame Mensah at 555-0148 before October 3. No experience needed; training is provided during your first two shifts, which are paid at the full rate.",
+  "kind_tag": "job ad",
+  "atypical_fact": "Interviews are held on Saturday mornings, not during weekday business hours (the institutional default, planted among the distractors as weekday afternoon slots)."
+ },
+ {
+  "id": "S5-2-1",
+  "kind": "literal detail",
+  "prompt": "[Daily Life — email] By what time must the kit be returned on the due date?",
+  "choices": [
+   "By the time the desk closes",
+   "By noon on that day",
+   "By eight in the morning",
+   "By five in the evening"
+  ],
+  "correct_answer": "By eight in the morning",
+  "explanation": "The email states the kit must come back \"by eight in the morning on the due date, not by closing time,\" which matches \"By eight in the morning.\" The option \"By the time the desk closes\" is the usual default that the email explicitly rules out, and no midday or evening deadline is mentioned.",
+  "passage": "Hi Leo, The camera kit you reserved is ready for pickup in Room 22 of the Merrick Building. Bring your student card; the loan period is twelve days, and the kit must come back by eight in the morning on the due date, not by closing time. If anything is missing from the case, call me at ext. 8804 the same day. Best, Aisling Byrne, Media Loans Desk",
+  "kind_tag": "email",
+  "atypical_fact": "The kit must be returned by eight in the morning on the due date — not by closing time, which is the institutional default and is planted among the distractors."
+ },
+ {
+  "id": "S5-2-2",
+  "kind": "next-step",
+  "prompt": "[Daily Life — email] What should Leo do if something is missing from the case?",
+  "choices": [
+   "Call the media loans desk on the same day",
+   "Email the media loans desk within a week",
+   "Take the case to the front desk instead",
+   "Fill out an online damage report form"
+  ],
+  "correct_answer": "Call the media loans desk on the same day",
+  "explanation": "The email instructs Leo to call ext. 8804 \"the same day\" if anything is missing, which matches \"Call the media loans desk on the same day.\" The email never mentions emailing within a week, taking the case anywhere else, or filling out an online form.",
+  "passage": "Hi Leo, The camera kit you reserved is ready for pickup in Room 22 of the Merrick Building. Bring your student card; the loan period is twelve days, and the kit must come back by eight in the morning on the due date, not by closing time. If anything is missing from the case, call me at ext. 8804 the same day. Best, Aisling Byrne, Media Loans Desk",
+  "kind_tag": "email",
+  "atypical_fact": "The kit must be returned by eight in the morning on the due date — not by closing time, which is the institutional default and is planted among the distractors."
+ },
+ {
+  "id": "S6-1-1",
+  "kind": "literal detail",
+  "prompt": "[Daily Life — email] According to the email, when can the camera kit be picked up?",
+  "choices": [
+   "On weekday afternoons from 1 to 3 p.m.",
+   "On Friday from 2 to 4 p.m.",
+   "On Sunday from 9 to 11 a.m.",
+   "On Monday, 9 to 11 a.m."
+  ],
+  "correct_answer": "On Sunday from 9 to 11 a.m.",
+  "explanation": "The email states the pickup window is \"Sunday from 9 to 11 a.m.\" and adds that weekday pickup ended this semester, which rules out \"On weekday afternoons from 1 to 3 p.m.\" along with the other single-day windows.",
+  "passage": "From: Yusuf Demir, Media Loans\nSubject: Camera kit ready\n\nYour camera kit is ready for pickup at Room 130 in the Calloway Center. Please note that our pickup window is Sunday from 9 to 11 a.m. — weekday pickup ended this semester. Bring your student card, and call the office at 555-0192 if you need to reschedule. Kits kept past the loan date are charged $6 per day.",
+  "kind_tag": "email",
+  "atypical_fact": "Equipment pickup happens only on Sunday mornings (9 to 11 a.m.); the institutional default — weekday pickup hours — was explicitly discontinued and is planted as a distractor."
+ },
+ {
+  "id": "S6-1-2",
+  "kind": "next-step",
+  "prompt": "[Daily Life — email] What should a student do to reschedule a pickup?",
+  "choices": [
+   "Submit the online rescheduling request form.",
+   "Call the office at 555-0192.",
+   "Send a message to the media loans office.",
+   "Stop by the front desk."
+  ],
+  "correct_answer": "Call the office at 555-0192.",
+  "explanation": "The email says to \"call the office at 555-0192 if you need to reschedule\"; nothing in the message mentions an online form, a written message, or visiting a desk.",
+  "passage": "From: Yusuf Demir, Media Loans\nSubject: Camera kit ready\n\nYour camera kit is ready for pickup at Room 130 in the Calloway Center. Please note that our pickup window is Sunday from 9 to 11 a.m. — weekday pickup ended this semester. Bring your student card, and call the office at 555-0192 if you need to reschedule. Kits kept past the loan date are charged $6 per day.",
+  "kind_tag": "email",
+  "atypical_fact": "Equipment pickup happens only on Sunday mornings (9 to 11 a.m.); the institutional default — weekday pickup hours — was explicitly discontinued and is planted as a distractor."
+ },
+ {
+  "id": "S6-2-1",
+  "kind": "literal detail",
+  "prompt": "[Daily Life — course-registration page] Who handles waitlist add requests for CER 140?",
+  "choices": [
+   "The campus registrar's office",
+   "The academic advising office",
+   "The studio coordinator",
+   "The course instructor"
+  ],
+  "correct_answer": "The studio coordinator",
+  "explanation": "The page says the waitlist is managed by \"the studio coordinator\" and explicitly not by the registrar's office, which eliminates \"The campus registrar's office\" as well as the advising office and the instructor, neither of whom is mentioned.",
+  "passage": "CER 140: Wheel Throwing I — Registration\n\nSections meet Tuesdays in Room 61, Ashgrove Hall. Enrollment is capped at 12. The waitlist is managed by the studio coordinator, Sofia Lindqvist (ext. 3316), not by the registrar's office, so add requests go to her. The $30 materials fee is billed with tuition. Waitlisted students are admitted on Thursday evenings, when unclaimed seats are released.",
+  "kind_tag": "course-registration page",
+  "atypical_fact": "The waitlist is managed by the studio coordinator rather than the registrar's office (the institutional default, planted as a distractor); additionally, waitlist admissions happen in a weekly Thursday-evening batch instead of the default as-soon-as-someone-drops."
+ },
+ {
+  "id": "S6-2-2",
+  "kind": "inference",
+  "prompt": "[Daily Life — course-registration page] If a seat opens in CER 140, when would a waitlisted student most likely be added?",
+  "choices": [
+   "At the start of the following week.",
+   "As soon as another student drops.",
+   "On the first morning of classes.",
+   "On a Thursday evening."
+  ],
+  "correct_answer": "On a Thursday evening.",
+  "explanation": "Because waitlisted students are admitted on Thursday evenings when unclaimed seats are released, an opening leads to \"On a Thursday evening.\" rather than \"As soon as another student drops.\" or any of the other timings, which the page never supports.",
+  "passage": "CER 140: Wheel Throwing I — Registration\n\nSections meet Tuesdays in Room 61, Ashgrove Hall. Enrollment is capped at 12. The waitlist is managed by the studio coordinator, Sofia Lindqvist (ext. 3316), not by the registrar's office, so add requests go to her. The $30 materials fee is billed with tuition. Waitlisted students are admitted on Thursday evenings, when unclaimed seats are released.",
+  "kind_tag": "course-registration page",
+  "atypical_fact": "The waitlist is managed by the studio coordinator rather than the registrar's office (the institutional default, planted as a distractor); additionally, waitlist admissions happen in a weekly Thursday-evening batch instead of the default as-soon-as-someone-drops."
+ },
+ {
+  "id": "S7-1-1",
+  "kind": "literal detail",
+  "prompt": "[Daily Life — club flyer] When will the print swap take place?",
+  "choices": [
+   "Wednesday, April 15, at 7:00 p.m.",
+   "Sunday, April 12, at 9:00 a.m.",
+   "Friday, April 3, at 5:00 p.m.",
+   "Thursday, April 16, at 6:30 p.m."
+  ],
+  "correct_answer": "Sunday, April 12, at 9:00 a.m.",
+  "explanation": "The flyer schedules the swap for \"Sunday, April 12, at 9:00 a.m.\" — explicitly a morning event so prints can be hung in daylight. \"Wednesday, April 15, at 7:00 p.m.\" and \"Thursday, April 16, at 6:30 p.m.\" match the usual weekday-evening club slot, which is exactly what this flyer departs from; \"Friday, April 3, at 5:00 p.m.\" is likewise never stated.",
+  "passage": "Shutter & Frame Photography Club — Spring Print Swap! Bring up to three matted prints to Room 204A in the Bellamy Building on Sunday, April 12, at 9:00 a.m. — yes, a morning event, so we can hang everything in daylight. The swap is free for members; guests pay $4 at the door. To reserve a display table, call Jonas Weber at 555-0157 by Tuesday; unreserved tables go to the waitlist. — Priyanka Rao, club president",
+  "kind_tag": "club flyer",
+  "atypical_fact": "The club event runs on a Sunday MORNING at 9:00 a.m. (the institutional default for a student club event is a weekday evening slot, which is planted among the distractors)."
+ },
+ {
+  "id": "S7-1-2",
+  "kind": "next-step",
+  "prompt": "[Daily Life — club flyer] How can someone reserve a display table for the swap?",
+  "choices": [
+   "Ask at the door that day",
+   "Email the membership officer",
+   "Sign the list posted outside Room 204A",
+   "Call the club's number by Tuesday"
+  ],
+  "correct_answer": "Call the club's number by Tuesday",
+  "explanation": "The flyer says tables are reserved by phone with a Tuesday cutoff, so \"Call the club's number by Tuesday\" is correct. No sign-up list, email address, or day-of booking is mentioned — tables not reserved by the deadline simply go to the waitlist, so \"Ask at the door that day\" fails.",
+  "passage": "Shutter & Frame Photography Club — Spring Print Swap! Bring up to three matted prints to Room 204A in the Bellamy Building on Sunday, April 12, at 9:00 a.m. — yes, a morning event, so we can hang everything in daylight. The swap is free for members; guests pay $4 at the door. To reserve a display table, call Jonas Weber at 555-0157 by Tuesday; unreserved tables go to the waitlist. — Priyanka Rao, club president",
+  "kind_tag": "club flyer",
+  "atypical_fact": "The club event runs on a Sunday MORNING at 9:00 a.m. (the institutional default for a student club event is a weekday evening slot, which is planted among the distractors)."
+ },
+ {
+  "id": "S7-2-1",
+  "kind": "literal detail",
+  "prompt": "[Daily Life — campus notice] How long will the Lost and Found keep unclaimed items before donating them?",
+  "choices": [
+   "one semester",
+   "two weeks",
+   "ten days",
+   "thirty days"
+  ],
+  "correct_answer": "ten days",
+  "explanation": "The notice states that unclaimed items will be donated after \"ten days.\" \"One semester\" mirrors the common campus practice of holding items until the end of term, but this notice sets a much shorter window; \"two weeks\" and \"thirty days\" are close in register yet never stated.",
+  "passage": "Campus Notice: The Lost and Found has moved from the security desk to Room 33 in Kestrel House. Beginning Monday, it will be run by the Office of Sustainability, and unclaimed items will be donated after ten days. To ask whether an item has been turned in, call Fatima Zahra at ext. 6642 between 1:00 and 4:00 p.m. on weekdays. Photo ID is required to claim anything.",
+  "kind_tag": "campus notice",
+  "atypical_fact": "Unclaimed items are donated after only TEN DAYS (the institutional default of holding items until the end of the semester is planted among the distractors); the office is also run by the Office of Sustainability rather than campus security."
+ },
+ {
+  "id": "S7-2-2",
+  "kind": "next-step",
+  "prompt": "[Daily Life — campus notice] What should a student who has lost something do to check whether it has been turned in?",
+  "choices": [
+   "Phone the office on a weekday afternoon",
+   "Stop by Room 33 before noon",
+   "Check the list posted at the security desk",
+   "Take a photo of the item to Kestrel House"
+  ],
+  "correct_answer": "Phone the office on a weekday afternoon",
+  "explanation": "The notice directs anyone asking about a lost item to call between 1:00 and 4:00 p.m. on weekdays, so \"Phone the office on a weekday afternoon\" is correct. \"Check the list posted at the security desk\" points to the location the office just left, and neither \"Stop by Room 33 before noon\" nor \"Take a photo of the item to Kestrel House\" is an instruction the notice gives.",
+  "passage": "Campus Notice: The Lost and Found has moved from the security desk to Room 33 in Kestrel House. Beginning Monday, it will be run by the Office of Sustainability, and unclaimed items will be donated after ten days. To ask whether an item has been turned in, call Fatima Zahra at ext. 6642 between 1:00 and 4:00 p.m. on weekdays. Photo ID is required to claim anything.",
+  "kind_tag": "campus notice",
+  "atypical_fact": "Unclaimed items are donated after only TEN DAYS (the institutional default of holding items until the end of the semester is planted among the distractors); the office is also run by the Office of Sustainability rather than campus security."
+ },
+ {
+  "id": "S8-1-1",
+  "kind": "literal detail",
+  "prompt": "[Daily Life — campus notice] Where should students go to renew their gym lockers?",
+  "choices": [
+   "The front desk of the recreation center",
+   "The gym's equipment checkout window",
+   "The campus card services counter",
+   "Room 118 in the Whitfield Annex"
+  ],
+  "correct_answer": "Room 118 in the Whitfield Annex",
+  "explanation": "The notice says renewals will not be handled at the recreation center's front desk and instead directs students to bring their locker tag to \"Room 118 in the Whitfield Annex.\" \"The front desk of the recreation center\" is the usual arrangement the notice explicitly cancels, and neither \"The gym's equipment checkout window\" nor \"The campus card services counter\" is mentioned as a renewal location.",
+  "passage": "Gym locker renewals for the spring term begin Monday, February 9. This term, renewals will not be handled at the recreation center's front desk. Instead, bring your current locker tag to Room 118 in the Whitfield Annex, weekdays between 10 a.m. and 2 p.m. The $12 fee is payable by campus card only. For questions, call Andrei Popescu at 555-0175. Tags not renewed by February 20 will be reassigned to other students.",
+  "kind_tag": "campus notice",
+  "atypical_fact": "Locker renewals are handled in Room 118 of the Whitfield Annex, not at the recreation center's front desk (the institutional default, which the notice explicitly rules out and which appears among the distractors)."
+ },
+ {
+  "id": "S8-1-2",
+  "kind": "next-step",
+  "prompt": "[Daily Life — campus notice] What will happen to lockers whose tags are not renewed by February 20?",
+  "choices": [
+   "They will be reassigned to other students",
+   "They will be emptied by facilities staff",
+   "They will incur a late renewal charge",
+   "They will be locked until next term"
+  ],
+  "correct_answer": "They will be reassigned to other students",
+  "explanation": "The notice states that tags not renewed by February 20 will be reassigned to other students, matching \"They will be reassigned to other students.\" Nothing in the notice supports \"They will be emptied by facilities staff,\" \"They will incur a late renewal charge,\" or \"They will be locked until next term.\"",
+  "passage": "Gym locker renewals for the spring term begin Monday, February 9. This term, renewals will not be handled at the recreation center's front desk. Instead, bring your current locker tag to Room 118 in the Whitfield Annex, weekdays between 10 a.m. and 2 p.m. The $12 fee is payable by campus card only. For questions, call Andrei Popescu at 555-0175. Tags not renewed by February 20 will be reassigned to other students.",
+  "kind_tag": "campus notice",
+  "atypical_fact": "Locker renewals are handled in Room 118 of the Whitfield Annex, not at the recreation center's front desk (the institutional default, which the notice explicitly rules out and which appears among the distractors)."
+ },
+ {
+  "id": "S8-2-1",
+  "kind": "literal detail",
+  "prompt": "[Daily Life — job ad] How should candidates apply for the package clerk position?",
+  "choices": [
+   "By handing in a paper application at Room 52",
+   "Through the university's online job portal",
+   "By calling the mailroom's front counter",
+   "By emailing a resume to the mailroom"
+  ],
+  "correct_answer": "By handing in a paper application at Room 52",
+  "explanation": "The ad says to apply in Room 52 and that the mailroom accepts paper applications only, matching \"By handing in a paper application at Room 52.\" \"Through the university's online job portal\" is the standard route the ad explicitly excludes, and neither \"By calling the mailroom's front counter\" nor \"By emailing a resume to the mailroom\" is offered as an application method.",
+  "passage": "The Larkspur Hall mailroom is hiring a part-time package clerk for the fall term. Shifts run Tuesday and Thursday evenings, 6 to 10 p.m., at $16.50 an hour. Apply in Room 52: the mailroom accepts paper applications only, not submissions through the university's online job portal. Interviews will be conducted by Mei-Ling Chu, the student shift leader. To confirm your interview time, call ext. 9917 and ask for Omar Farouk.",
+  "kind_tag": "job ad",
+  "atypical_fact": "Applications must be submitted on paper in Room 52 — the mailroom explicitly does not accept submissions through the university's online job portal, which is the institutional default and appears among the distractors."
+ },
+ {
+  "id": "S8-2-2",
+  "kind": "purpose",
+  "prompt": "[Daily Life — job ad] Why is Omar Farouk mentioned in the ad?",
+  "choices": [
+   "He conducts all of the candidate interviews",
+   "He supervises the evening package shifts",
+   "He confirms interview times by phone",
+   "He reviews incoming applications"
+  ],
+  "correct_answer": "He confirms interview times by phone",
+  "explanation": "The ad tells applicants to call ext. 9917 and ask for Omar Farouk to confirm their interview time, so \"He confirms interview times by phone\" is his stated role. \"He conducts all of the candidate interviews\" is contradicted because the ad assigns interviews to the student shift leader, and the ad says nothing to support \"He supervises the evening package shifts\" or \"He reviews incoming applications.\"",
+  "passage": "The Larkspur Hall mailroom is hiring a part-time package clerk for the fall term. Shifts run Tuesday and Thursday evenings, 6 to 10 p.m., at $16.50 an hour. Apply in Room 52: the mailroom accepts paper applications only, not submissions through the university's online job portal. Interviews will be conducted by Mei-Ling Chu, the student shift leader. To confirm your interview time, call ext. 9917 and ask for Omar Farouk.",
+  "kind_tag": "job ad",
+  "atypical_fact": "Applications must be submitted on paper in Room 52 — the mailroom explicitly does not accept submissions through the university's online job portal, which is the institutional default and appears among the distractors."
+ },
+ {
+  "id": "S9-1-1",
+  "kind": "next-step",
+  "prompt": "[Daily Life — job ad] According to the ad, what should an interested applicant do?",
+  "choices": [
+   "Email a résumé to the hiring office",
+   "Drop off a paper application in person",
+   "Call to arrange a short working interview at the desk",
+   "Submit an online form before the deadline"
+  ],
+  "correct_answer": "Call to arrange a short working interview at the desk",
+  "explanation": "The ad says that instead of emailing a résumé, applicants should phone to set up a short working interview at the desk itself, so \"Call to arrange a short working interview at the desk\" is what the ad asks for; \"Email a résumé to the hiring office\" is exactly the step the ad rules out.",
+  "passage": "Part-time desk assistant wanted at the Rosewood Center. Shifts run Friday through Sunday evenings, 4 to 9 p.m., and pay starts at $16.50 an hour. Instead of emailing a résumé, applicants should call Tunde Adeyemi at 555-0139 to arrange a short working interview at the desk itself. Hiring closes April 3; training for the new hire takes place in Room 226.",
+  "kind_tag": "job ad",
+  "atypical_fact": "Applicants do not email a résumé (the institutional default); they phone to arrange a short working interview at the desk itself."
+ },
+ {
+  "id": "S9-1-2",
+  "kind": "literal detail",
+  "prompt": "[Daily Life — job ad] When are the assistant's shifts?",
+  "choices": [
+   "Friday through Sunday evenings",
+   "Monday through Thursday evenings",
+   "Tuesday and Thursday evenings",
+   "Saturday and Sunday mornings"
+  ],
+  "correct_answer": "Friday through Sunday evenings",
+  "explanation": "The ad states that shifts run \"Friday through Sunday evenings, 4 to 9 p.m.\", which matches \"Friday through Sunday evenings\"; the other spans, such as \"Monday through Thursday evenings\", name days the ad does not mention.",
+  "passage": "Part-time desk assistant wanted at the Rosewood Center. Shifts run Friday through Sunday evenings, 4 to 9 p.m., and pay starts at $16.50 an hour. Instead of emailing a résumé, applicants should call Tunde Adeyemi at 555-0139 to arrange a short working interview at the desk itself. Hiring closes April 3; training for the new hire takes place in Room 226.",
+  "kind_tag": "job ad",
+  "atypical_fact": "Applicants do not email a résumé (the institutional default); they phone to arrange a short working interview at the desk itself."
+ },
+ {
+  "id": "S9-2-1",
+  "kind": "literal detail",
+  "prompt": "[Daily Life — club flyer] When does the club meet?",
+  "choices": [
+   "Wednesday evenings at 7 p.m.",
+   "Monday mornings at 8 a.m.",
+   "Tuesday evenings at 6 p.m.",
+   "Saturday mornings at 7 a.m."
+  ],
+  "correct_answer": "Saturday mornings at 7 a.m.",
+  "explanation": "The flyer says the club meets \"Saturday mornings at 7 a.m.\" to plan routes before heading out, so \"Saturday mornings at 7 a.m.\" is correct; a typical slot like \"Wednesday evenings at 7 p.m.\" is not what this flyer announces.",
+  "passage": "The Trailhead Hiking Club is back for spring. We meet Saturday mornings at 7 a.m. in Room 14 of the Gable Building to plan routes before heading out. Dues are $10 per semester and cover trail maps and a shared first-aid kit. To join, leave your name with Katarina Horvat at ext. 2205 by March 12.",
+  "kind_tag": "club flyer",
+  "atypical_fact": "The club meets Saturday mornings at 7 a.m., not the weekday-evening slot a campus club would typically use."
+ },
+ {
+  "id": "S9-2-2",
+  "kind": "next-step",
+  "prompt": "[Daily Life — club flyer] To join the club, a student should",
+  "choices": [
+   "sign up in person at the first meeting",
+   "call the extension on the flyer",
+   "stop by the student activities office",
+   "email the club president directly"
+  ],
+  "correct_answer": "call the extension on the flyer",
+  "explanation": "The flyer tells students to join by leaving their name at the listed campus extension, which matches \"call the extension on the flyer\"; options like \"stop by the student activities office\" describe channels the flyer never offers.",
+  "passage": "The Trailhead Hiking Club is back for spring. We meet Saturday mornings at 7 a.m. in Room 14 of the Gable Building to plan routes before heading out. Dues are $10 per semester and cover trail maps and a shared first-aid kit. To join, leave your name with Katarina Horvat at ext. 2205 by March 12.",
+  "kind_tag": "club flyer",
+  "atypical_fact": "The club meets Saturday mornings at 7 a.m., not the weekday-evening slot a campus club would typically use."
+ },
+ {
+  "id": "S10-1-1",
+  "kind": "literal detail",
+  "prompt": "[Daily Life — email] Where is Hiro's coat being held?",
+  "choices": [
+   "the main lost-and-found desk",
+   "Room 340 of Thornbury Hall",
+   "the security office",
+   "the reading lounge"
+  ],
+  "correct_answer": "Room 340 of Thornbury Hall",
+  "explanation": "The email states the coat is being held in \"Room 340 of Thornbury Hall, not at the main lost-and-found desk,\" because items containing IDs go straight to the residence office. So \"Room 340 of Thornbury Hall\" is correct, and \"the main lost-and-found desk\" is explicitly ruled out.",
+  "passage": "From: Leila Amini, Residence Life Office\nSubject: Found: navy winter coat\n\nHi Hiro,\n\nA staff member turned in a navy winter coat with your student ID in the pocket. We are holding it in Room 340 of Thornbury Hall, not at the main lost-and-found desk — items containing IDs go straight to the residence office. You can pick it up any weekday between 2:00 and 6:00 p.m. If those hours do not work, call 555-0168 to arrange another pickup time.\n\n— Leila",
+  "kind_tag": "email",
+  "atypical_fact": "The coat is held in Room 340 of Thornbury Hall (the residence office), not at the institution's main lost-and-found desk, because items containing IDs bypass the desk."
+ },
+ {
+  "id": "S10-1-2",
+  "kind": "next-step",
+  "prompt": "[Daily Life — email] What should Hiro do if he cannot come during the listed pickup hours?",
+  "choices": [
+   "Call 555-0168 to arrange another pickup time",
+   "Email the Residence Life Office directly",
+   "Ask a staff member in the lounge",
+   "Leave a note on the office door"
+  ],
+  "correct_answer": "Call 555-0168 to arrange another pickup time",
+  "explanation": "The email says, \"If those hours do not work, call 555-0168 to arrange another pickup time.\" That matches \"Call 555-0168 to arrange another pickup time\"; the passage never suggests he should \"Email the Residence Life Office directly,\" \"Ask a staff member in the lounge,\" or \"Leave a note on the office door.\"",
+  "passage": "From: Leila Amini, Residence Life Office\nSubject: Found: navy winter coat\n\nHi Hiro,\n\nA staff member turned in a navy winter coat with your student ID in the pocket. We are holding it in Room 340 of Thornbury Hall, not at the main lost-and-found desk — items containing IDs go straight to the residence office. You can pick it up any weekday between 2:00 and 6:00 p.m. If those hours do not work, call 555-0168 to arrange another pickup time.\n\n— Leila",
+  "kind_tag": "email",
+  "atypical_fact": "The coat is held in Room 340 of Thornbury Hall (the residence office), not at the institution's main lost-and-found desk, because items containing IDs bypass the desk."
+ },
+ {
+  "id": "S10-2-1",
+  "kind": "literal detail",
+  "prompt": "[Daily Life — club flyer] When does the Poetry Out Loud Club meet?",
+  "choices": [
+   "Saturday afternoons at 2:00",
+   "Wednesday evenings at 7:30",
+   "Sunday mornings at 10:00",
+   "Friday nights at 8:00"
+  ],
+  "correct_answer": "Sunday mornings at 10:00",
+  "explanation": "The flyer says, \"We meet Sunday mornings at 10:00, not weekday evenings like most campus clubs.\" That confirms \"Sunday mornings at 10:00\" and rules out the weekday-evening default \"Wednesday evenings at 7:30,\" as well as \"Saturday afternoons at 2:00\" and \"Friday nights at 8:00.\"",
+  "passage": "POETRY OUT LOUD CLUB — New Members Welcome!\n\nWe meet Sunday mornings at 10:00, not weekday evenings like most campus clubs — our members asked for a quieter slot. Sessions are held in Room 7 of the Quill Center. No experience needed, but bring a poem written by someone other than yourself to read aloud. Questions? Call our advisor, Marco Silva, at ext. 4479. First meeting: this Sunday.",
+  "kind_tag": "club flyer",
+  "atypical_fact": "The club meets Sunday mornings at 10:00 rather than the usual weekday-evening slot most campus clubs use; a second atypical detail is that members must bring a poem written by someone other than themselves."
+ },
+ {
+  "id": "S10-2-2",
+  "kind": "next-step",
+  "prompt": "[Daily Life — club flyer] What should a new member do before attending a session?",
+  "choices": [
+   "Bring a poem written by someone other than themselves",
+   "Sign up in advance at the Quill Center",
+   "Contact the advisor to register",
+   "Submit one of their own poems"
+  ],
+  "correct_answer": "Bring a poem written by someone other than themselves",
+  "explanation": "The flyer instructs new members to \"bring a poem written by someone other than yourself to read aloud,\" which matches \"Bring a poem written by someone other than themselves.\" It contradicts \"Submit one of their own poems,\" and it never asks anyone to \"Sign up in advance at the Quill Center\" or \"Contact the advisor to register.\"",
+  "passage": "POETRY OUT LOUD CLUB — New Members Welcome!\n\nWe meet Sunday mornings at 10:00, not weekday evenings like most campus clubs — our members asked for a quieter slot. Sessions are held in Room 7 of the Quill Center. No experience needed, but bring a poem written by someone other than yourself to read aloud. Questions? Call our advisor, Marco Silva, at ext. 4479. First meeting: this Sunday.",
+  "kind_tag": "club flyer",
+  "atypical_fact": "The club meets Sunday mornings at 10:00 rather than the usual weekday-evening slot most campus clubs use; a second atypical detail is that members must bring a poem written by someone other than themselves."
+ },
+ {
+  "id": "S11-1-1",
+  "kind": "literal detail",
+  "prompt": "[Daily Life — course-registration page] According to the page, how does a student claim a seat in CHEM 115?",
+  "choices": [
+   "By submitting a request through the online portal",
+   "By calling the course coordinator, Astrid Berg",
+   "By signing the paper sheet outside Room 209",
+   "By emailing the department office"
+  ],
+  "correct_answer": "By signing the paper sheet outside Room 209",
+  "explanation": "The page states that seats \"are claimed on the paper sign-up sheet posted outside Room 209,\" so \"By signing the paper sheet outside Room 209\" is correct. \"By submitting a request through the online portal\" fails because the portal \"lists the course for viewing only,\" and \"By calling the course coordinator, Astrid Berg\" is the channel for prerequisite questions, not enrollment.",
+  "passage": "CHEM 115: Introduction to Forensic Chemistry. Registration opens Saturday, March 7, at 9 a.m. Seats are claimed on the paper sign-up sheet posted outside Room 209 in the Falkner Building; the online portal lists the course for viewing only. Questions about prerequisites go to the course coordinator, Astrid Berg, at 555-0121. The section is capped at 24 students, and a $40 materials fee is billed at midterm.",
+  "kind_tag": "course-registration page",
+  "atypical_fact": "Seats are claimed on a paper sign-up sheet posted outside Room 209 — the online portal is view-only, reversing the institutional default of online registration (and registration opens on a Saturday)."
+ },
+ {
+  "id": "S11-1-2",
+  "kind": "purpose",
+  "prompt": "[Daily Life — course-registration page] According to the page, why would a student call 555-0121?",
+  "choices": [
+   "To check for open seats in the section",
+   "To ask about the midterm schedule",
+   "To pay the $40 materials fee",
+   "To ask about prerequisites"
+  ],
+  "correct_answer": "To ask about prerequisites",
+  "explanation": "The page directs \"Questions about prerequisites\" to the coordinator at 555-0121, so \"To ask about prerequisites\" is correct. \"To pay the $40 materials fee\" is wrong because the fee \"is billed at midterm,\" and \"To check for open seats in the section\" is not a stated use of the phone line.",
+  "passage": "CHEM 115: Introduction to Forensic Chemistry. Registration opens Saturday, March 7, at 9 a.m. Seats are claimed on the paper sign-up sheet posted outside Room 209 in the Falkner Building; the online portal lists the course for viewing only. Questions about prerequisites go to the course coordinator, Astrid Berg, at 555-0121. The section is capped at 24 students, and a $40 materials fee is billed at midterm.",
+  "kind_tag": "course-registration page",
+  "atypical_fact": "Seats are claimed on a paper sign-up sheet posted outside Room 209 — the online portal is view-only, reversing the institutional default of online registration (and registration opens on a Saturday)."
+ },
+ {
+  "id": "S11-2-1",
+  "kind": "literal detail",
+  "prompt": "[Daily Life — campus notice] On which day will the heating inspection of Wrenfield Hall take place?",
+  "choices": [
+   "Wednesday, November 18",
+   "Saturday, November 21",
+   "Tuesday, November 10",
+   "Sunday, November 15"
+  ],
+  "correct_answer": "Sunday, November 15",
+  "explanation": "The notice announces the inspection \"on Sunday, November 15, from 7 a.m. to noon,\" so \"Sunday, November 15\" is correct. Weekday dates such as \"Wednesday, November 18\" and \"Tuesday, November 10\" do not appear in the notice, and Thursday is mentioned only as the deadline for rescheduling.",
+  "passage": "Campus Notice: The annual heating inspection of Wrenfield Hall will take place on Sunday, November 15, from 7 a.m. to noon. Residents do not need to move belongings, but pets must be out of rooms during the inspection. Facilities staff will be escorted by resident assistant Ana Castillo. To reschedule a room's time slot, call Dmitri Volkov at ext. 7752 before Thursday. A revised floor schedule is posted outside Room 48.",
+  "kind_tag": "campus notice",
+  "atypical_fact": "The heating inspection is held on a Sunday, rather than the institutional default of a weekday maintenance visit."
+ },
+ {
+  "id": "S11-2-2",
+  "kind": "next-step",
+  "prompt": "[Daily Life — campus notice] According to the notice, what should a resident do to change their room's inspection time slot?",
+  "choices": [
+   "Leave a written note for Ana Castillo outside Room 48",
+   "Call Dmitri Volkov at ext. 7752 before Thursday",
+   "Visit Dmitri Volkov in Room 48 on Thursday",
+   "Ask Ana Castillo during the inspection"
+  ],
+  "correct_answer": "Call Dmitri Volkov at ext. 7752 before Thursday",
+  "explanation": "The notice instructs, \"To reschedule a room's time slot, call Dmitri Volkov at ext. 7752 before Thursday,\" so \"Call Dmitri Volkov at ext. 7752 before Thursday\" is correct. \"Ask Ana Castillo during the inspection\" and \"Leave a written note for Ana Castillo outside Room 48\" are not offered as rescheduling channels — Ana Castillo's stated role is escorting facilities staff.",
+  "passage": "Campus Notice: The annual heating inspection of Wrenfield Hall will take place on Sunday, November 15, from 7 a.m. to noon. Residents do not need to move belongings, but pets must be out of rooms during the inspection. Facilities staff will be escorted by resident assistant Ana Castillo. To reschedule a room's time slot, call Dmitri Volkov at ext. 7752 before Thursday. A revised floor schedule is posted outside Room 48.",
+  "kind_tag": "campus notice",
+  "atypical_fact": "The heating inspection is held on a Sunday, rather than the institutional default of a weekday maintenance visit."
+ },
+ {
+  "id": "S12-1-1",
+  "kind": "literal detail",
+  "prompt": "[Daily Life — campus notice] According to the notice, how should students book a flu shot appointment?",
+  "choices": [
+   "By signing up in person at the Marlowe Center",
+   "By emailing the clinic coordinator",
+   "Through the online booking portal",
+   "By calling 555-0186"
+  ],
+  "correct_answer": "By calling 555-0186",
+  "explanation": "The notice states that appointments \"must be booked by calling 555-0186\" and that the online portal \"will not be used for this event,\" which rules out \"Through the online booking portal.\" Nothing in the notice mentions emailing the coordinator or signing up in person.",
+  "passage": "Flu Shot Clinic. The student health office will hold this semester's flu shot clinic on Thursday, October 9, in Room 122 of the Marlowe Center. Appointments must be booked by calling 555-0186; the online portal will not be used for this event. Students without appointments can be seen between 4:00 and 5:00 p.m. only. Questions can be directed to clinic coordinator Chinwe Obi.",
+  "kind_tag": "campus notice",
+  "atypical_fact": "Appointments must be booked by phone (555-0186); the online booking portal — the institutional default — is explicitly not used for this event."
+ },
+ {
+  "id": "S12-1-2",
+  "kind": "next-step",
+  "prompt": "[Daily Life — campus notice] What should a student who did not book an appointment do to get a flu shot?",
+  "choices": [
+   "Come anytime between noon and 2:00 p.m.",
+   "Come between 9:00 and 11:00 a.m.",
+   "Come between 4:00 and 5:00 p.m.",
+   "Come after 6:00 p.m."
+  ],
+  "correct_answer": "Come between 4:00 and 5:00 p.m.",
+  "explanation": "The notice says students without appointments \"can be seen between 4:00 and 5:00 p.m. only,\" so \"Come between 4:00 and 5:00 p.m.\" is the only window that works; the morning, midday, and evening windows fall outside it.",
+  "passage": "Flu Shot Clinic. The student health office will hold this semester's flu shot clinic on Thursday, October 9, in Room 122 of the Marlowe Center. Appointments must be booked by calling 555-0186; the online portal will not be used for this event. Students without appointments can be seen between 4:00 and 5:00 p.m. only. Questions can be directed to clinic coordinator Chinwe Obi.",
+  "kind_tag": "campus notice",
+  "atypical_fact": "Appointments must be booked by phone (555-0186); the online booking portal — the institutional default — is explicitly not used for this event."
+ }
+]
