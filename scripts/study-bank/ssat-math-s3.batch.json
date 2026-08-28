@@ -1,0 +1,632 @@
+[
+ {
+  "id": "SQ79",
+  "difficulty": "medium",
+  "subskill": "part-to-part ratios with unit conversion",
+  "topic_tag": "ratios",
+  "prompt": "A dough mixture is made from flour and sugar in the ratio 5 : 2 by weight. The whole mixture weighs 3.5 kilograms. How many MORE grams of flour than sugar does the mixture contain?",
+  "choices": [
+   "500",
+   "1500",
+   "2100",
+   "2500",
+   "3500"
+  ],
+  "correct_answer": "1500",
+  "explanation": "The mixture has 5 + 2 = 7 equal parts. Convert first: 3.5 kg = 3500 g, so one part is 3500 ÷ 7 = 500 g. Flour is 5 parts and sugar is 2 parts, so flour exceeds sugar by 5 − 2 = 3 parts, which is 3 × 500 = 1500 grams.",
+  "solve": "var totalGrams = 3.5 * 1000;\nvar part = totalGrams / 7;\nvar diff = part * (5 - 2);\nreturn String(diff);",
+  "distractor_steps": [
+   {
+    "choice": "500",
+    "mis_step": "Found the value of one ratio part (3500 ÷ 7) and reported that as the difference."
+   },
+   {
+    "choice": "2100",
+    "mis_step": "Divided the total by 5 (treating flour's 5 parts as the whole) and then took 3 parts: 3500 ÷ 5 × 3."
+   },
+   {
+    "choice": "2500",
+    "mis_step": "Reported the weight of the flour (5 parts) instead of the difference."
+   },
+   {
+    "choice": "3500",
+    "mis_step": "Converted 3.5 kg to grams and stopped, reporting the whole mixture."
+   }
+  ]
+ },
+ {
+  "id": "SQ80",
+  "difficulty": "hard",
+  "subskill": "simultaneous remainder conditions",
+  "topic_tag": "number properties",
+  "prompt": "A positive integer N is greater than 100. When N is divided by 7 the remainder is 4, and when N is divided by 4 the remainder is 3. What is the least possible value of N?",
+  "choices": [
+   "102",
+   "103",
+   "108",
+   "123",
+   "151"
+  ],
+  "correct_answer": "123",
+  "explanation": "Numbers leaving remainder 4 on division by 7 are 4, 11, 18, 25, … Of these, 11 also leaves remainder 3 on division by 4. Since 7 and 4 are relatively prime, every solution is 11 more than a multiple of 28: 11, 39, 67, 95, 123, … The first value greater than 100 is 123 (123 = 17·7 + 4 and 123 = 30·4 + 3).",
+  "solve": "for (var n = 101; n < 400; n++) {\n  if (n % 7 === 4 && n % 4 === 3) { return String(n); }\n}\nreturn \"none\";",
+  "distractor_steps": [
+   {
+    "choice": "102",
+    "mis_step": "Used only the division-by-7 condition: the least integer above 100 leaving remainder 4 when divided by 7."
+   },
+   {
+    "choice": "103",
+    "mis_step": "Used only the division-by-4 condition: the least integer above 100 leaving remainder 3 when divided by 4."
+   },
+   {
+    "choice": "108",
+    "mis_step": "Swapped the two remainders (remainder 3 with 7 and remainder 4 with 4), giving the least value above 100 that is 3 more than a multiple of 7 and a multiple of 4."
+   },
+   {
+    "choice": "151",
+    "mis_step": "Found 123 but added one extra full period of 28, going one solution too far."
+   }
+  ]
+ },
+ {
+  "id": "SQ81",
+  "difficulty": "hard",
+  "subskill": "ratio that changes when one quantity is increased",
+  "topic_tag": "ratios",
+  "prompt": "In a jar, the ratio of red marbles to blue marbles is 3 : 5. After 16 more red marbles are put into the jar, the ratio of red marbles to blue marbles becomes 5 : 7. How many blue marbles are in the jar?",
+  "choices": [
+   "84",
+   "100",
+   "140",
+   "224",
+   "240"
+  ],
+  "correct_answer": "140",
+  "explanation": "Let the original counts be 3k red and 5k blue. Adding red does not change the blue count, so (3k + 16)/(5k) = 5/7. Cross-multiplying: 21k + 112 = 25k, so 4k = 112 and k = 28. Blue = 5(28) = 140. (Check: red goes from 84 to 100, and 100 : 140 = 5 : 7.)",
+  "solve": "for (var k = 1; k <= 500; k++) {\n  var red = 3 * k, blue = 5 * k;\n  if ((red + 16) * 7 === blue * 5) { return String(blue); }\n}\nreturn \"none\";",
+  "distractor_steps": [
+   {
+    "choice": "84",
+    "mis_step": "Solved for k correctly but reported the original number of red marbles, 3k."
+   },
+   {
+    "choice": "100",
+    "mis_step": "Reported the number of red marbles after the 16 were added, 3k + 16."
+   },
+   {
+    "choice": "224",
+    "mis_step": "Reported the original total number of marbles, 3k + 5k."
+   },
+   {
+    "choice": "240",
+    "mis_step": "Reported the total number of marbles after the addition, 3k + 16 + 5k."
+   }
+  ]
+ },
+ {
+  "id": "SQ82",
+  "difficulty": "medium",
+  "subskill": "place value with a reversed-digit condition",
+  "topic_tag": "number properties",
+  "prompt": "The two digits of a certain two-digit number have a sum of 12. When the two digits are reversed, the new two-digit number is 18 less than the original number. What is the PRODUCT of the two digits?",
+  "choices": [
+   "12",
+   "35",
+   "36",
+   "57",
+   "75"
+  ],
+  "correct_answer": "35",
+  "explanation": "Let the tens digit be t and the units digit be u. Then t + u = 12, and (10t + u) − (10u + t) = 9(t − u) = 18, so t − u = 2. Solving the pair gives t = 7 and u = 5, so the number is 75 and the reversed number is 57. The product of the digits is 7 × 5 = 35.",
+  "solve": "for (var t = 1; t <= 9; t++) {\n  for (var u = 0; u <= 9; u++) {\n    var n = 10 * t + u, r = 10 * u + t;\n    if (t + u === 12 && n - r === 18) { return String(t * u); }\n  }\n}\nreturn \"none\";",
+  "distractor_steps": [
+   {
+    "choice": "12",
+    "mis_step": "Reported the sum of the digits rather than their product."
+   },
+   {
+    "choice": "36",
+    "mis_step": "Ignored the reversal condition and split the sum of 12 evenly into 6 and 6, giving 6 × 6."
+   },
+   {
+    "choice": "57",
+    "mis_step": "Reported the reversed number instead of the product of the digits."
+   },
+   {
+    "choice": "75",
+    "mis_step": "Reported the original number instead of the product of the digits."
+   }
+  ]
+ },
+ {
+  "id": "SQ83",
+  "difficulty": "medium",
+  "subskill": "unit rate combined with time conversion",
+  "topic_tag": "rates",
+  "prompt": "A printer produces 3 pages every 8 seconds, working at a constant rate. How many pages does it produce in 1 hour and 20 minutes?",
+  "choices": [
+   "450",
+   "600",
+   "1350",
+   "1620",
+   "1800"
+  ],
+  "correct_answer": "1800",
+  "explanation": "First convert the time: 1 hour 20 minutes = 80 minutes = 80 × 60 = 4800 seconds. Then apply the rate: 4800 ÷ 8 = 600 intervals of 8 seconds, and each produces 3 pages, so 600 × 3 = 1800 pages.",
+  "solve": "var seconds = 80 * 60;\nvar pages = (seconds / 8) * 3;\nreturn String(pages);",
+  "distractor_steps": [
+   {
+    "choice": "450",
+    "mis_step": "Used only the 20 minutes (1200 seconds), ignoring the hour: 1200 ÷ 8 × 3."
+   },
+   {
+    "choice": "600",
+    "mis_step": "Found the number of 8-second intervals in 4800 seconds and stopped, never multiplying by 3 pages."
+   },
+   {
+    "choice": "1350",
+    "mis_step": "Used only the 1 hour (3600 seconds), ignoring the extra 20 minutes: 3600 ÷ 8 × 3."
+   },
+   {
+    "choice": "1620",
+    "mis_step": "Read '1 hour 20 minutes' as 1.20 hours = 4320 seconds, then computed 4320 ÷ 8 × 3."
+   }
+  ]
+ },
+ {
+  "id": "SQ84",
+  "difficulty": "medium",
+  "subskill": "unit cost, markup, and partial sales",
+  "topic_tag": "percents",
+  "prompt": "A store buys 60 identical notebooks for a total of $150. It sells 45 of them at a price that is a 40% markup over the cost of one notebook, and it sells the remaining 15 at exactly the cost of one notebook. What is the store's total profit, in dollars?",
+  "choices": [
+   "37.50",
+   "45.00",
+   "60.00",
+   "112.50",
+   "157.50"
+  ],
+  "correct_answer": "45.00",
+  "explanation": "Cost per notebook is 150 ÷ 60 = $2.50. A 40% markup gives a selling price of 2.50 × 1.4 = $3.50, so each of the 45 marked-up notebooks earns 3.50 − 2.50 = $1.00 of profit, for $45.00. The 15 sold at cost earn $0 profit. Total profit = $45.00.",
+  "solve": "var unitCost = 150 / 60;\nvar price = unitCost * 1.4;\nvar profit = 45 * (price - unitCost) + 15 * 0;\nreturn profit.toFixed(2);",
+  "distractor_steps": [
+   {
+    "choice": "37.50",
+    "mis_step": "Reported the revenue from the 15 notebooks sold at cost, 15 × 2.50."
+   },
+   {
+    "choice": "60.00",
+    "mis_step": "Assumed all 60 notebooks were sold at the marked-up price, giving 60 × $1.00 of profit."
+   },
+   {
+    "choice": "112.50",
+    "mis_step": "Reported the cost of the 45 marked-up notebooks, 45 × 2.50, instead of the profit."
+   },
+   {
+    "choice": "157.50",
+    "mis_step": "Reported the revenue from the 45 marked-up notebooks, 45 × 3.50, instead of the profit."
+   }
+  ]
+ },
+ {
+  "id": "SQ85",
+  "difficulty": "medium",
+  "subskill": "means and totals when members are removed",
+  "topic_tag": "averages",
+  "prompt": "The 20 students in a class have an average (arithmetic mean) score of 78 on a test. When the two lowest scores are removed, the average of the remaining 18 scores is 81. What is the average of the two removed scores?",
+  "choices": [
+   "51",
+   "60",
+   "75",
+   "78",
+   "102"
+  ],
+  "correct_answer": "51",
+  "explanation": "Work with totals. All 20 scores sum to 20 × 78 = 1560. The 18 remaining scores sum to 18 × 81 = 1458. So the two removed scores sum to 1560 − 1458 = 102, and their average is 102 ÷ 2 = 51.",
+  "solve": "var total = 20 * 78;\nvar remaining = 18 * 81;\nvar removedSum = total - remaining;\nreturn String(removedSum / 2);",
+  "distractor_steps": [
+   {
+    "choice": "60",
+    "mis_step": "Multiplied the new mean by the original 20 students and took the difference from the old total: 20 × 81 − 20 × 78."
+   },
+   {
+    "choice": "75",
+    "mis_step": "Subtracted the 3-point rise in the mean directly from the original mean, 78 − 3."
+   },
+   {
+    "choice": "78",
+    "mis_step": "Assumed the removed scores average the same as the whole class, reporting the original mean."
+   },
+   {
+    "choice": "102",
+    "mis_step": "Found the SUM of the two removed scores and reported it without dividing by 2."
+   }
+  ]
+ },
+ {
+  "id": "SQ86",
+  "difficulty": "hard",
+  "subskill": "chaining two ratios through a shared term",
+  "topic_tag": "ratios",
+  "prompt": "In a box of red, green, and blue counters, the ratio of red to green is 3 : 4 and the ratio of green to blue is 6 : 5. There are 12 more blue counters than red counters. How many GREEN counters are in the box?",
+  "choices": [
+   "72",
+   "108",
+   "120",
+   "144",
+   "372"
+  ],
+  "correct_answer": "144",
+  "explanation": "Make the green terms match. Scale 3 : 4 by 3 to get red : green = 9 : 12, and scale 6 : 5 by 2 to get green : blue = 12 : 10. So red : green : blue = 9 : 12 : 10. Blue exceeds red by 10 − 9 = 1 part, and that part equals 12 counters. Green = 12 parts × 12 = 144. (Check: 108 red, 144 green, 120 blue.)",
+  "solve": "var r = 9, g = 12, b = 10;\nvar part = 12 / (b - r);\nreturn String(g * part);",
+  "distractor_steps": [
+   {
+    "choice": "72",
+    "mis_step": "Used green − blue (12 − 10 = 2 parts) as the given difference of 12, making one part 6, then took 12 parts."
+   },
+   {
+    "choice": "108",
+    "mis_step": "Scaled correctly but reported the number of red counters, 9 parts."
+   },
+   {
+    "choice": "120",
+    "mis_step": "Scaled correctly but reported the number of blue counters, 10 parts."
+   },
+   {
+    "choice": "372",
+    "mis_step": "Reported the total number of counters, 9 + 12 + 10 = 31 parts."
+   }
+  ]
+ },
+ {
+  "id": "SQ87",
+  "difficulty": "medium",
+  "subskill": "concentration when only the solute is added",
+  "topic_tag": "percents",
+  "prompt": "A chemist has 60 liters of a solution that is 30% acid. How many liters of PURE acid must be added so that the resulting solution is 50% acid?",
+  "choices": [
+   "12",
+   "18",
+   "24",
+   "30",
+   "42"
+  ],
+  "correct_answer": "24",
+  "explanation": "The original solution contains 0.30 × 60 = 18 liters of acid. Adding x liters of pure acid raises both the acid and the total: (18 + x)/(60 + x) = 0.5. Multiplying out gives 36 + 2x = 60 + x, so x = 24. (Check: 42 liters of acid in 84 liters of solution is exactly 50%.)",
+  "solve": "var acid = 0.3 * 60;\nvar x = (0.5 * 60 - acid) / (1 - 0.5);\nreturn String(x);",
+  "distractor_steps": [
+   {
+    "choice": "12",
+    "mis_step": "Set (18 + x)/60 = 0.5, forgetting that the added acid also increases the total volume."
+   },
+   {
+    "choice": "18",
+    "mis_step": "Reported the amount of acid already in the original solution."
+   },
+   {
+    "choice": "30",
+    "mis_step": "Computed 50% of the original 60 liters and reported that as the amount to add."
+   },
+   {
+    "choice": "42",
+    "mis_step": "Solved correctly but reported the total acid in the final mixture, 18 + 24, instead of the amount added."
+   }
+  ]
+ },
+ {
+  "id": "SQ88",
+  "difficulty": "hard",
+  "subskill": "counting multiples with an exclusive-or condition",
+  "topic_tag": "number properties",
+  "prompt": "How many integers x with 1 < x < 120 are divisible by 3 or by 5, but NOT by both?",
+  "choices": [
+   "32",
+   "39",
+   "48",
+   "55",
+   "62"
+  ],
+  "correct_answer": "48",
+  "explanation": "Between 2 and 119 there are 39 multiples of 3 (3 through 117) and 23 multiples of 5 (5 through 115). The numbers divisible by both are the 7 multiples of 15 (15 through 105). Those 7 must be thrown out of BOTH lists, so the count is 39 + 23 − 2(7) = 48.",
+  "solve": "var c = 0;\nfor (var x = 2; x <= 119; x++) {\n  var d3 = (x % 3 === 0), d5 = (x % 5 === 0);\n  if ((d3 || d5) && !(d3 && d5)) { c++; }\n}\nreturn String(c);",
+  "distractor_steps": [
+   {
+    "choice": "32",
+    "mis_step": "Counted only the multiples of 3 that are not multiples of 5 (39 − 7) and stopped."
+   },
+   {
+    "choice": "39",
+    "mis_step": "Counted the multiples of 3 alone."
+   },
+   {
+    "choice": "55",
+    "mis_step": "Counted 'divisible by 3 or 5' with ordinary inclusion-exclusion (39 + 23 − 7), subtracting the overlap once instead of removing it from both lists."
+   },
+   {
+    "choice": "62",
+    "mis_step": "Added the two counts, 39 + 23, with no adjustment for the overlap."
+   }
+  ]
+ },
+ {
+  "id": "SQ89",
+  "difficulty": "medium",
+  "subskill": "mixture-equations",
+  "topic_tag": "algebra-mixture",
+  "prompt": "A chemist has 40 milliliters of a solution that is 15% acid. She adds some milliliters of a solution that is 50% acid. The mixture that results is 25% acid. How many milliliters of the 50% solution did she add?",
+  "choices": [
+   "8",
+   "12",
+   "16",
+   "20",
+   "40"
+  ],
+  "correct_answer": "16",
+  "explanation": "Let x be the milliliters added. Acid before: 0.15(40) = 6 mL, plus 0.50x. Acid after: 0.25(40 + x). So 6 + 0.50x = 10 + 0.25x, giving 0.25x = 4 and x = 16. Check: 6 + 8 = 14 mL of acid in 56 mL, and 14/56 = 25%. (Equivalently, by alligation the parts are (25-15):(50-25) = 10:25 = 2:5, so x = 40 x 2/5 = 16.)",
+  "solve": "const V = 40, c1 = 15, c2 = 50, ct = 25;\nconst x = (V * (ct - c1)) / (c2 - ct);\nreturn String(x);",
+  "distractor_steps": [
+   {
+    "choice": "8",
+    "mis_step": "Held the FINAL volume at 40 mL: needed acid 0.25(40) = 10, already have 6, shortfall 4, so 4/0.50 = 8."
+   },
+   {
+    "choice": "12",
+    "mis_step": "Set the added acid equal to the acid already present instead of to the shortfall: 0.50x = 6."
+   },
+   {
+    "choice": "20",
+    "mis_step": "Set the added acid equal to 25% of the ORIGINAL volume: 0.50x = 0.25(40)."
+   },
+   {
+    "choice": "40",
+    "mis_step": "Ignored the acid already in the original solution: 0.50x = 0.25(40 + x), so 0.25x = 10."
+   }
+  ]
+ },
+ {
+  "id": "SQ90",
+  "difficulty": "hard",
+  "subskill": "similar-figures-area-ratio",
+  "topic_tag": "geometry-similarity",
+  "prompt": "In triangle ABC, point D lies on side AB and point E lies on side AC so that DE is parallel to BC. AD = 6 and DB = 4. The area of triangle ADE is 27. What is the area of quadrilateral DBCE?",
+  "choices": [
+   "12",
+   "18",
+   "45",
+   "48",
+   "75"
+  ],
+  "correct_answer": "48",
+  "explanation": "Because DE is parallel to BC, triangle ADE is similar to triangle ABC with ratio AD:AB = 6:10 = 3:5. Areas scale as the SQUARE of that ratio, so [ADE]:[ABC] = 9:25. Then [ABC] = 27 x 25/9 = 75, and the quadrilateral is the leftover: 75 - 27 = 48. (Directly, [ADE]:[DBCE] = 9:16, so 27 x 16/9 = 48.)",
+  "solve": "const ad = 6, db = 4, adeArea = 27;\nconst whole = adeArea * (ad + db) * (ad + db) / (ad * ad);\nreturn String(whole - adeArea);",
+  "distractor_steps": [
+   {
+    "choice": "12",
+    "mis_step": "Used the ratio AD:DB = 3:2 (instead of AD:AB) and squared it: 27 x 4/9 = 12."
+   },
+   {
+    "choice": "18",
+    "mis_step": "Applied the LINEAR ratio 3:5 to the areas: [ABC] = 27 x 5/3 = 45, then 45 - 27 = 18."
+   },
+   {
+    "choice": "45",
+    "mis_step": "Same linear-ratio error, and answered the whole triangle: 27 x 5/3 = 45."
+   },
+   {
+    "choice": "75",
+    "mis_step": "Found [ABC] = 27 x 25/9 = 75 correctly but answered the whole triangle instead of the quadrilateral."
+   }
+  ]
+ },
+ {
+  "id": "SQ91",
+  "difficulty": "medium",
+  "subskill": "combined-work-rates",
+  "topic_tag": "algebra-rates",
+  "prompt": "Working alone, Ana can paint a room in 6 hours and Ben can paint the same room in 12 hours. They paint together for 2 hours, and then Ana leaves. How many additional hours does Ben need to finish the room by himself?",
+  "choices": [
+   "2",
+   "6",
+   "8",
+   "10",
+   "12"
+  ],
+  "correct_answer": "6",
+  "explanation": "Call the room 12 units. Ana does 12/6 = 2 units per hour and Ben does 12/12 = 1 unit per hour, so together they do 3 units per hour. In 2 hours they finish 6 units, leaving 6 units. Ben alone needs 6/1 = 6 more hours.",
+  "solve": "const total = 12;\nconst ana = total / 6, ben = total / 12;\nconst done = (ana + ben) * 2;\nreturn String((total - done) / ben);",
+  "distractor_steps": [
+   {
+    "choice": "2",
+    "mis_step": "Finished the remaining half at the COMBINED rate of 1/4 room per hour instead of Ben's rate: (1/2)/(1/4) = 2."
+   },
+   {
+    "choice": "8",
+    "mis_step": "Counted only Ana's work during the first 2 hours (1/3 done), leaving 2/3 for Ben: (2/3)/(1/12) = 8."
+   },
+   {
+    "choice": "10",
+    "mis_step": "Subtracted the 2 elapsed hours from Ben's solo time: 12 - 2 = 10."
+   },
+   {
+    "choice": "12",
+    "mis_step": "Answered Ben's solo time for the whole room, ignoring the work already done."
+   }
+  ]
+ },
+ {
+  "id": "SQ92",
+  "difficulty": "medium",
+  "subskill": "chord-radius-right-triangle",
+  "topic_tag": "geometry-circles",
+  "prompt": "Circle O has radius 10. Chord AB of the circle has length 16. What is the area of triangle AOB?",
+  "choices": [
+   "48",
+   "64",
+   "80",
+   "96",
+   "160"
+  ],
+  "correct_answer": "48",
+  "explanation": "Drop a perpendicular from O to AB; it bisects the chord, giving a right triangle with hypotenuse 10 (a radius) and one leg 8 (half the chord). The distance from O to AB is sqrt(100 - 64) = 6. Using AB as the base, the area is (1/2)(16)(6) = 48.",
+  "solve": "const r = 10, chord = 16;\nconst half = chord / 2;\nconst d = Math.sqrt(r * r - half * half);\nreturn String(chord * d / 2);",
+  "distractor_steps": [
+   {
+    "choice": "64",
+    "mis_step": "Used half the chord as the height instead of computing the distance to the chord: (1/2)(16)(8)."
+   },
+   {
+    "choice": "80",
+    "mis_step": "Used the radius 10 as the height to the chord: (1/2)(16)(10)."
+   },
+   {
+    "choice": "96",
+    "mis_step": "Found the height 6 correctly but omitted the factor of 1/2: 16 x 6."
+   },
+   {
+    "choice": "160",
+    "mis_step": "Used the radius as the height AND omitted the 1/2: 16 x 10."
+   }
+  ]
+ },
+ {
+  "id": "SQ93",
+  "difficulty": "hard",
+  "subskill": "algebraic-identities",
+  "topic_tag": "algebra-identities",
+  "prompt": "Two numbers have a sum of 15, and the sum of their squares is 137. What is their product?",
+  "choices": [
+   "44",
+   "56",
+   "61",
+   "88",
+   "122"
+  ],
+  "correct_answer": "44",
+  "explanation": "Since (a + b)^2 = a^2 + 2ab + b^2, we get 15^2 = 137 + 2ab, so 225 - 137 = 2ab, giving 2ab = 88 and ab = 44. (The numbers are 4 and 11: 4 + 11 = 15 and 16 + 121 = 137.)",
+  "solve": "const s = 15, sq = 137;\nreturn String((s * s - sq) / 2);",
+  "distractor_steps": [
+   {
+    "choice": "56",
+    "mis_step": "Assumed the two numbers are as close together as possible (7 and 8) and multiplied, never using the 137."
+   },
+   {
+    "choice": "61",
+    "mis_step": "Subtracted the SUM rather than its square, then halved: (137 - 15)/2."
+   },
+   {
+    "choice": "88",
+    "mis_step": "Computed 225 - 137 = 88 and stopped, forgetting the coefficient 2 on ab."
+   },
+   {
+    "choice": "122",
+    "mis_step": "Subtracted the sum rather than its square and did not halve: 137 - 15."
+   }
+  ]
+ },
+ {
+  "id": "SQ94",
+  "difficulty": "hard",
+  "subskill": "perpendicular-bisector",
+  "topic_tag": "coordinate-geometry",
+  "prompt": "In the xy-plane, A is the point (0, 4) and B is the point (8, 8). The perpendicular bisector of segment AB crosses the x-axis at the point (k, 0). What is the value of k?",
+  "choices": [
+   "1",
+   "4",
+   "7",
+   "12",
+   "16"
+  ],
+  "correct_answer": "7",
+  "explanation": "The midpoint of AB is (4, 6). The slope of AB is (8 - 4)/(8 - 0) = 1/2, so the perpendicular bisector has slope -2. Its equation is y - 6 = -2(x - 4). Setting y = 0 gives -6 = -2(x - 4), so x - 4 = 3 and x = 7.",
+  "solve": "const ax = 0, ay = 4, bx = 8, by = 8;\nconst mx = (ax + bx) / 2, my = (ay + by) / 2;\nconst m = (by - ay) / (bx - ax);\nconst p = -1 / m;\nreturn String(mx - my / p);",
+  "distractor_steps": [
+   {
+    "choice": "1",
+    "mis_step": "Took the reciprocal of the slope but not the negative, using slope +2: 0 = 6 + 2(x - 4)."
+   },
+   {
+    "choice": "4",
+    "mis_step": "Stopped at the midpoint and reported its x-coordinate."
+   },
+   {
+    "choice": "12",
+    "mis_step": "Drew the perpendicular line through endpoint B(8, 8) instead of through the midpoint: 0 = 8 - 2(x - 8)."
+   },
+   {
+    "choice": "16",
+    "mis_step": "Negated the slope without taking the reciprocal, using slope -1/2: 0 = 6 - (1/2)(x - 4)."
+   }
+  ]
+ },
+ {
+  "id": "SQ96",
+  "difficulty": "medium",
+  "subskill": "interior-exterior-angles",
+  "topic_tag": "geometry-polygons",
+  "prompt": "In a certain regular polygon, each interior angle measures exactly 5 times the measure of each exterior angle. How many sides does the polygon have?",
+  "choices": [
+   "5",
+   "6",
+   "10",
+   "12",
+   "24"
+  ],
+  "correct_answer": "12",
+  "explanation": "An interior angle and its exterior angle form a straight line, so they add to 180. If the exterior angle is x, then 5x + x = 180, giving x = 30. The exterior angles of any polygon sum to 360, so the number of sides is 360/30 = 12.",
+  "solve": "const k = 5;\nconst ext = 180 / (k + 1);\nreturn String(360 / ext);",
+  "distractor_steps": [
+   {
+    "choice": "5",
+    "mis_step": "Reported the multiplier 5 as the number of sides."
+   },
+   {
+    "choice": "6",
+    "mis_step": "Used interior + exterior = 360 instead of 180: 6x = 360, x = 60, then 360/60 = 6."
+   },
+   {
+    "choice": "10",
+    "mis_step": "Took the exterior angle to be 180/5 = 36 (dividing rather than splitting 180 into 6 parts), then 360/36 = 10."
+   },
+   {
+    "choice": "24",
+    "mis_step": "Used 720 rather than 360 as the sum of the exterior angles: 720/30 = 24."
+   }
+  ]
+ },
+ {
+  "id": "SQ98",
+  "difficulty": "hard",
+  "subskill": "solid-measure-with-unit-conversion",
+  "topic_tag": "geometry-solids",
+  "prompt": "A solid cube has a total surface area of 150 square centimeters. What is the volume of the cube, in cubic millimeters?",
+  "choices": [
+   "12500",
+   "125000",
+   "750000",
+   "15625000",
+   "125000000"
+  ],
+  "correct_answer": "125000",
+  "explanation": "A cube has 6 congruent square faces, so each face has area 150/6 = 25 square centimeters and the edge is sqrt(25) = 5 centimeters. The volume is 5^3 = 125 cubic centimeters. Since 1 cm = 10 mm, 1 cubic centimeter = 10 x 10 x 10 = 1000 cubic millimeters, so the volume is 125 x 1000 = 125000 cubic millimeters.",
+  "solve": "const sa = 150;\nconst edge = Math.sqrt(sa / 6);\nconst volCm = edge ** 3;\nreturn String(volCm * 1000);",
+  "distractor_steps": [
+   {
+    "choice": "12500",
+    "mis_step": "Converted cubic centimeters to cubic millimeters by multiplying by 100 (squaring the linear factor) instead of by 1000: 125 x 100."
+   },
+   {
+    "choice": "750000",
+    "mis_step": "Used volume = surface area x edge (150 x 5 = 750 cubic centimeters), then converted: 750 x 1000."
+   },
+   {
+    "choice": "15625000",
+    "mis_step": "Took the edge to be 150/6 = 25 cm without taking the square root: 25^3 = 15625, then x 1000."
+   },
+   {
+    "choice": "125000000",
+    "mis_step": "Converted with the cubic-meter factor, treating 1 cubic centimeter as 10^6 cubic millimeters: 125 x 1000000."
+   }
+  ]
+ }
+]

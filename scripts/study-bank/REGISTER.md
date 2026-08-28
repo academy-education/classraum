@@ -1474,6 +1474,34 @@ bank exists; live practice generation is what ships now. Peterson's
 practice PDFs are calibration reference ONLY — never ingest their
 items or passages into the bank (copyright).
 
+### Reading REFUTED under authored keys; volume s3 ships (2026-08-28)
+Shipped: ssat-verbal-s3 29, isee-verbal-s3 19, ssat-math-s3 18,
+isee-math-s3 30. **SSAT 178 items, ISEE 181.** The math difficulty
+floor worked — 2 grader flags across 50 items, against 32 of 120 last
+round.
+
+**Reading v2 killed at +61.1 and reading authoring STOPS.** The
+mechanical fixes all worked (slot spread even, key-longest 8/24, tone
+items neutralized) but the tell relocated a third time: qualifier →
+moderation → TENSION. On 14 of 24 items the key is the one option that
+concedes and asserts at once. That is a property of the task — a
+best-supported reading IS characteristically a both/and claim — not an
+authoring slip. Only two structural routes remain (symmetric worlds
+for reading, or licensed passages); do not attempt a v3 under the
+authored-key design. Record: READING-PILOT-KILLED.md.
+
+**MY INSTRUMENT LIED, and the lesson is the shape of the lie.** The
+first math/verbal attack reported +43.3 and +47.2 KILLS. My
+blind-builder carried `prompt` through for any item that had one —
+right for reading (stem shown, passage withheld), fatal for math and
+verbal where the prompt IS the stem. The solver saying it "solved via
+direct calculation from the problem statements" was reporting honestly;
+I had handed it the problems. Corrected margins: −3.3, −20.8, −2.8,
+−6.7 — all PASS. Caught only because 97.2% from bare options is
+physically impossible. **A blind file must now be ASSERTED stem-free
+before any attack launches**, and an implausibly HIGH attack score
+deserves the same suspicion as an implausibly clean one.
+
 ### Volume round 3: math scales, READING DIES ON THE FIRST TRY (2026-08-28)
 Shipped: ssat-math-s2 48 (attack −26.4), isee-math-s2 40 (−6.9).
 SSAT 131 items live, ISEE 132. eoi-v6 (−20.8, hunter clean) and

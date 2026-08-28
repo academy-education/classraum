@@ -1,0 +1,902 @@
+[
+ {
+  "id": "IQ37",
+  "difficulty": "medium",
+  "subskill": "scale-and-rate conversion",
+  "topic_tag": "proportional-reasoning",
+  "prompt": "On a map, 2 centimeters represents 25 kilometers. Two towns are 6 centimeters apart on the map. A bus travels the actual road between the towns at a steady 50 kilometers per hour. How many minutes does the trip take?",
+  "choices": [
+   "40",
+   "90",
+   "110",
+   "180"
+  ],
+  "correct_answer": "90",
+  "explanation": "First convert map distance to real distance: 6 cm is three groups of 2 cm, so the real distance is 3 x 25 = 75 km. Then convert the travel time: 75 km at 50 km/h takes 75/50 = 1.5 hours, and 1.5 x 60 = 90 minutes.",
+  "solve": "const km = 6 / 2 * 25; const hours = km / 50; return String(Math.round(hours * 60));",
+  "distractor_steps": [
+   {
+    "choice": "180",
+    "mis_step": "Reads the scale as 1 cm : 25 km, getting 150 km, then 150/50 = 3 hours = 180 minutes."
+   },
+   {
+    "choice": "110",
+    "mis_step": "Gets 1.5 hours correctly but reads the decimal as hours and minutes, 1 hour 50 minutes = 110 minutes."
+   },
+   {
+    "choice": "40",
+    "mis_step": "Divides speed by distance, 50/75 = 2/3 hour, giving 40 minutes."
+   }
+  ]
+ },
+ {
+  "id": "IQ38",
+  "difficulty": "medium",
+  "subskill": "area-to-quantity rate with a remainder",
+  "topic_tag": "estimation",
+  "prompt": "A rectangular field measures 78 meters by 41 meters. One bag of fertilizer covers 250 square meters. What is the least number of whole bags needed to cover the entire field?",
+  "choices": [
+   "12",
+   "13",
+   "15",
+   "16"
+  ],
+  "correct_answer": "13",
+  "explanation": "The area is 78 x 41 = 3198 square meters. Dividing, 3198/250 is a little more than 12 (since 12 bags cover only 3000 square meters), so 12 bags leave 198 square meters uncovered and a 13th bag is required.",
+  "solve": "const area = 78 * 41; return String(Math.ceil(area / 250));",
+  "distractor_steps": [
+   {
+    "choice": "12",
+    "mis_step": "Computes 3198/250 = 12.79 and drops the remainder instead of rounding up."
+   },
+   {
+    "choice": "16",
+    "mis_step": "Rounds the coverage down to 200 square meters per bag: 3198/200 = 15.99, rounded up to 16."
+   },
+   {
+    "choice": "15",
+    "mis_step": "Rounds both dimensions up to 80 by 45 = 3600 square meters, then 3600/250 = 14.4, rounded up to 15."
+   }
+  ]
+ },
+ {
+  "id": "IQ39",
+  "difficulty": "medium",
+  "subskill": "scaling a recipe against a limiting supply",
+  "topic_tag": "proportional-reasoning",
+  "prompt": "A muffin recipe that makes 8 servings calls for 2 1/2 cups of flour and 3/4 cup of sugar. A baker has 6 cups of flour and more than enough sugar and every other ingredient. Servings may be made in any amount, not only in whole recipes. What is the greatest number of whole servings the baker can make?",
+  "choices": [
+   "16",
+   "19",
+   "20",
+   "24"
+  ],
+  "correct_answer": "19",
+  "explanation": "Each serving uses 2.5/8 = 5/16 cup of flour. With 6 cups available, 6 / (5/16) = 96/5 = 19.2 servings. Since only whole servings count, the answer is 19 (19 servings use 5.9375 cups, and a 20th would need more than 6).",
+  "solve": "const flourPerServing = 2.5 / 8; return String(Math.floor(6 / flourPerServing));",
+  "distractor_steps": [
+   {
+    "choice": "16",
+    "mis_step": "Assumes only whole recipes can be made: 6/2.5 = 2.4, so 2 full recipes = 16 servings."
+   },
+   {
+    "choice": "20",
+    "mis_step": "Rounds 19.2 servings up to the nearest convenient value instead of down."
+   },
+   {
+    "choice": "24",
+    "mis_step": "Rounds the 2.4 recipes up to 3 whole recipes, giving 3 x 8 = 24 servings."
+   }
+  ]
+ },
+ {
+  "id": "IQ40",
+  "difficulty": "hard",
+  "subskill": "combined direct and inverse proportion",
+  "topic_tag": "proportional-reasoning",
+  "prompt": "Six identical machines, all working at the same constant rate, together produce 4800 parts in 4 hours. How many such machines are needed to produce 9600 parts in 6 hours?",
+  "choices": [
+   "4",
+   "8",
+   "12",
+   "18"
+  ],
+  "correct_answer": "8",
+  "explanation": "One machine makes 4800/(6 x 4) = 200 parts per hour. Producing 9600 parts in 6 hours requires 9600/6 = 1600 parts per hour, so 1600/200 = 8 machines are needed. Doubling the parts doubles the requirement, but the longer time cuts it by a factor of 6/4.",
+  "solve": "const rate = 4800 / (6 * 4); const needed = 9600 / 6; return String(needed / rate);",
+  "distractor_steps": [
+   {
+    "choice": "12",
+    "mis_step": "Scales only by the parts ratio and ignores the change in time: 6 x (9600/4800) = 12."
+   },
+   {
+    "choice": "18",
+    "mis_step": "Inverts the time relationship, multiplying by 6/4 instead of dividing: 6 x 2 x 1.5 = 18."
+   },
+   {
+    "choice": "4",
+    "mis_step": "Scales only by the time ratio and ignores the increase in parts: 6 x (4/6) = 4."
+   }
+  ]
+ },
+ {
+  "id": "IQ41",
+  "difficulty": "medium",
+  "subskill": "chained percent change",
+  "topic_tag": "proportional-reasoning",
+  "prompt": "A jacket is priced at $60.00. A store takes 25% off the price, and then an 8% sales tax is applied to the discounted price. What is the final amount paid?",
+  "choices": [
+   "$45.00",
+   "$48.60",
+   "$49.80",
+   "$64.80"
+  ],
+  "correct_answer": "$48.60",
+  "explanation": "The discount leaves 75% of $60.00, which is $45.00. The tax then adds 8% of $45.00, which is $3.60, giving $48.60. The two percents act on different amounts, so they cannot be combined by subtracting.",
+  "solve": "const d = 60 * (1 - 0.25); const f = d * 1.08; return \"$\" + f.toFixed(2);",
+  "distractor_steps": [
+   {
+    "choice": "$45.00",
+    "mis_step": "Applies the discount but forgets to add the sales tax."
+   },
+   {
+    "choice": "$49.80",
+    "mis_step": "Combines the percents as a single net 17% discount: 60 x 0.83 = 49.80."
+   },
+   {
+    "choice": "$64.80",
+    "mis_step": "Applies the 8% tax to the original price and forgets the discount: 60 x 1.08 = 64.80."
+   }
+  ]
+ },
+ {
+  "id": "IQ42",
+  "difficulty": "medium",
+  "subskill": "unit price with unit conversion",
+  "topic_tag": "proportional-reasoning",
+  "prompt": "Brand A juice is sold in an 800-milliliter bottle for $5.20. Brand B juice is sold in a 1.5-liter bottle for $9.00. How much less per liter is the cheaper brand?",
+  "choices": [
+   "$0.05",
+   "$0.50",
+   "$0.80",
+   "$3.80"
+  ],
+  "correct_answer": "$0.50",
+  "explanation": "Brand A costs 5.20/0.8 = $6.50 per liter. Brand B costs 9.00/1.5 = $6.00 per liter. Brand B is cheaper by $6.50 - $6.00 = $0.50 per liter. Both volumes must be put in the same unit before dividing.",
+  "solve": "const a = 5.20 / 0.8; const b = 9.00 / 1.5; return \"$\" + (a - b).toFixed(2);",
+  "distractor_steps": [
+   {
+    "choice": "$0.05",
+    "mis_step": "Compares cost per 100 milliliters instead of per liter: 0.65 - 0.60 = 0.05."
+   },
+   {
+    "choice": "$0.80",
+    "mis_step": "Treats the 800-milliliter bottle as a full liter, comparing $5.20 with $6.00."
+   },
+   {
+    "choice": "$3.80",
+    "mis_step": "Compares the bottle prices directly, 9.00 - 5.20, ignoring the different volumes."
+   }
+  ]
+ },
+ {
+  "id": "IQ43",
+  "difficulty": "hard",
+  "subskill": "ratio change after adding to one part",
+  "topic_tag": "proportional-reasoning",
+  "prompt": "A jar contains red and blue marbles in the ratio 5 to 3. After 24 more blue marbles are put in and no marbles are removed, the ratio of red to blue becomes 5 to 6. How many marbles are in the jar after the blue marbles are added?",
+  "choices": [
+   "40",
+   "64",
+   "88",
+   "120"
+  ],
+  "correct_answer": "88",
+  "explanation": "Let the counts be 5k red and 3k blue. Red never changes, so in the new ratio 5 to 6 the same 5k stands for the 5 part, meaning blue is now 6k. Then 3k + 24 = 6k, so k = 8: there are 40 red and 48 blue, a total of 88.",
+  "solve": "let k = null; for (let i = 1; i <= 200; i++) { if (5 * (3 * i + 24) === 6 * (5 * i)) k = i; } return String(5 * k + 3 * k + 24);",
+  "distractor_steps": [
+   {
+    "choice": "64",
+    "mis_step": "Finds k = 8 correctly but reports the original total 8k = 64 instead of the total after the marbles are added."
+   },
+   {
+    "choice": "40",
+    "mis_step": "Reports the number of red marbles, 5k = 40, rather than the total."
+   },
+   {
+    "choice": "120",
+    "mis_step": "Reads the new ratio 5 to 6 as equal amounts: 3k + 24 = 5k gives k = 12, so 60 + 60 = 120."
+   }
+  ]
+ },
+ {
+  "id": "IQ44",
+  "difficulty": "hard",
+  "subskill": "area scale factor versus linear scale factor",
+  "topic_tag": "proportional-reasoning",
+  "prompt": "A rectangular photograph is 4 inches by 6 inches. It is enlarged to a similar rectangle whose area is 9 times the area of the original. What is the perimeter, in inches, of the enlarged photograph?",
+  "choices": [
+   "56",
+   "60",
+   "90",
+   "180"
+  ],
+  "correct_answer": "60",
+  "explanation": "For similar figures the area multiplies by the square of the linear scale factor, so a 9 times area means each side is multiplied by 3. The enlargement is 12 by 18, with perimeter 2(12 + 18) = 60 inches. Equivalently, the perimeter scales by 3: 20 x 3 = 60.",
+  "solve": "const f = Math.sqrt(9); return String(2 * (4 * f + 6 * f));",
+  "distractor_steps": [
+   {
+    "choice": "180",
+    "mis_step": "Multiplies the original perimeter of 20 by the area factor 9 instead of the linear factor 3."
+   },
+   {
+    "choice": "90",
+    "mis_step": "Takes half the area factor, 4.5, as the linear factor: 18 by 27 gives perimeter 90."
+   },
+   {
+    "choice": "56",
+    "mis_step": "Adds 9 to each dimension instead of scaling: 13 by 15 gives perimeter 56."
+   }
+  ]
+ },
+ {
+  "id": "IQ45",
+  "difficulty": "medium",
+  "subskill": "rate applied across a time conversion",
+  "topic_tag": "proportional-reasoning",
+  "prompt": "A printer prints 3 pages every 8 seconds. Working at this constant rate without stopping, how many pages does it print in 1 hour and 20 minutes?",
+  "choices": [
+   "600",
+   "1350",
+   "1620",
+   "1800"
+  ],
+  "correct_answer": "1800",
+  "explanation": "1 hour 20 minutes is 80 minutes, or 80 x 60 = 4800 seconds. That contains 4800/8 = 600 eight-second intervals, and each produces 3 pages, so 600 x 3 = 1800 pages.",
+  "solve": "const secs = 80 * 60; return String(secs / 8 * 3);",
+  "distractor_steps": [
+   {
+    "choice": "600",
+    "mis_step": "Counts the number of 8-second intervals and stops, forgetting that each yields 3 pages."
+   },
+   {
+    "choice": "1350",
+    "mis_step": "Uses only 1 hour, ignoring the extra 20 minutes: 3600/8 x 3 = 1350."
+   },
+   {
+    "choice": "1620",
+    "mis_step": "Reads 1 hour 20 minutes as 1.2 hours = 4320 seconds: 4320/8 x 3 = 1620."
+   }
+  ]
+ },
+ {
+  "id": "IQ46",
+  "difficulty": "hard",
+  "subskill": "percent change in a reciprocal rate",
+  "topic_tag": "proportional-reasoning",
+  "prompt": "A car travels 32 miles on each gallon of gasoline. After a tune-up it travels 40 miles on each gallon. If the price of gasoline does not change, by what percent does the cost of gasoline per mile decrease?",
+  "choices": [
+   "8%",
+   "20%",
+   "25%",
+   "80%"
+  ],
+  "correct_answer": "20%",
+  "explanation": "Cost per mile is the price of a gallon divided by the miles per gallon, so it is proportional to 1/32 before and 1/40 after. The new cost is (1/40)/(1/32) = 32/40 = 0.8 of the old cost, a decrease of 0.2, or 20%. Note the decrease is measured against the original cost, not the new one.",
+  "solve": "const c1 = 3.60 / 32, c2 = 3.60 / 40; return String(Math.round((c1 - c2) / c1 * 100)) + \"%\";",
+  "distractor_steps": [
+   {
+    "choice": "25%",
+    "mis_step": "Divides the mileage gain by the original mileage, 8/32 = 25%, which measures the increase in miles per gallon rather than the decrease in cost per mile."
+   },
+   {
+    "choice": "80%",
+    "mis_step": "Computes the ratio of new cost to old cost, 32/40 = 0.8, and reports 80% instead of the decrease."
+   },
+   {
+    "choice": "8%",
+    "mis_step": "Reports the raw difference in miles per gallon, 40 - 32, as a percent."
+   }
+  ]
+ },
+ {
+  "id": "IM43",
+  "difficulty": "medium",
+  "subskill": "systems of linear equations in a word problem",
+  "topic_tag": "algebra",
+  "prompt": "A theater sold only adult tickets at $12 each and student tickets at $7 each. It sold 80 tickets in all and took in $795. How many dollars came from student tickets?",
+  "choices": [
+   "231",
+   "329",
+   "396",
+   "564"
+  ],
+  "correct_answer": "231",
+  "explanation": "Let a be adult tickets and s student tickets, so a + s = 80 and 12a + 7s = 795. Substituting s = 80 - a gives 12a + 560 - 7a = 795, so 5a = 235 and a = 47. Then s = 80 - 47 = 33, and student ticket revenue is 7(33) = $231.",
+  "solve": "const total=80, money=795; const a=(money-7*total)/(12-7); const s=total-a; return String(7*s);",
+  "distractor_steps": [
+   {
+    "choice": "329",
+    "mis_step": "Solved the system but attached the student price to the adult count: 7 x 47."
+   },
+   {
+    "choice": "396",
+    "mis_step": "Found s = 33 correctly but multiplied by the adult price: 12 x 33."
+   },
+   {
+    "choice": "564",
+    "mis_step": "Computed the adult revenue 12 x 47 instead of the student revenue."
+   }
+  ]
+ },
+ {
+  "id": "IM44",
+  "difficulty": "medium",
+  "subskill": "weighted mean with a missing group mean",
+  "topic_tag": "data-analysis",
+  "prompt": "A class of 40 students took a test and the mean score for the whole class was 82. The 24 girls in the class had a mean score of 78. What was the mean score of the 16 boys?",
+  "choices": [
+   "76",
+   "82",
+   "86",
+   "88"
+  ],
+  "correct_answer": "88",
+  "explanation": "The total of all 40 scores is 40 x 82 = 3280. The girls' total is 24 x 78 = 1872, so the boys' total is 3280 - 1872 = 1408. The boys' mean is 1408 / 16 = 88.",
+  "solve": "const overall=40*82; const girls=24*78; return String((overall-girls)/16);",
+  "distractor_steps": [
+   {
+    "choice": "76",
+    "mis_step": "Found the girls' shortfall 24(82 - 78) = 96, divided by 16 to get 6, then subtracted instead of adding: 82 - 6."
+   },
+   {
+    "choice": "82",
+    "mis_step": "Used the overall mean as the girls' total (24 x 82 = 1968), giving (3280 - 1968)/16."
+   },
+   {
+    "choice": "86",
+    "mis_step": "Assumed the two group means are symmetric about the overall mean, ignoring the unequal group sizes: 82 + (82 - 78)."
+   }
+  ]
+ },
+ {
+  "id": "IM45",
+  "difficulty": "medium",
+  "subskill": "mean of a data set with an unknown value",
+  "topic_tag": "data-analysis",
+  "prompt": "Marisol has scores of 82, 91, and 76 on her first three tests. Each test is scored out of 100. What is the lowest score she can earn on a fourth test and still have a mean of at least 85 for the four tests?",
+  "choices": [
+   "85",
+   "79",
+   "91",
+   "87"
+  ],
+  "correct_answer": "91",
+  "explanation": "Four tests with a mean of at least 85 require a total of at least 4 x 85 = 340. The first three total 82 + 91 + 76 = 249, so the fourth score must be at least 340 - 249 = 91.",
+  "solve": "const need=85*4-(82+91+76); return String(need);",
+  "distractor_steps": [
+   {
+    "choice": "85",
+    "mis_step": "Assumed the missing score must simply equal the target mean."
+   },
+   {
+    "choice": "79",
+    "mis_step": "Measured each score against 85 (-3, +6, -9) for a net of -6, then subtracted instead of adding: 85 - 6."
+   },
+   {
+    "choice": "87",
+    "mis_step": "Averaged the three known scores to 83 and balanced only that average against the target: 2(85) - 83."
+   }
+  ]
+ },
+ {
+  "id": "IM46",
+  "difficulty": "hard",
+  "subskill": "effect of removing values on a mean",
+  "topic_tag": "data-analysis",
+  "prompt": "A list of 7 numbers has a mean of 24. The numbers 30 and 18 are removed from the list. What is the mean of the 5 numbers that remain?",
+  "choices": [
+   "30",
+   "24",
+   "23",
+   "20"
+  ],
+  "correct_answer": "24",
+  "explanation": "The sum of the 7 numbers is 7 x 24 = 168. Removing 30 and 18 removes 48, leaving a sum of 120 for 5 numbers, so the new mean is 120 / 5 = 24. (The two removed numbers themselves average 24, so the mean does not change.)",
+  "solve": "const sum=7*24; const rest=sum-30-18; return String(rest/5);",
+  "distractor_steps": [
+   {
+    "choice": "30",
+    "mis_step": "Subtracted 48 from 168 correctly but divided by 4 instead of 5."
+   },
+   {
+    "choice": "23",
+    "mis_step": "Removed only the larger number and divided by 6: (168 - 30)/6."
+   },
+   {
+    "choice": "20",
+    "mis_step": "Found the remaining sum 120 but divided by 6, miscounting how many numbers are left."
+   }
+  ]
+ },
+ {
+  "id": "IM47",
+  "difficulty": "medium",
+  "subskill": "linear function built from a table of values",
+  "topic_tag": "algebra",
+  "prompt": "The table shows values of a linear function.\n\n  x  |  2   5   9\n  y  | 13  28  48\n\nWhat is the value of y when x = 20?",
+  "choices": [
+   "100",
+   "103",
+   "113",
+   "130"
+  ],
+  "correct_answer": "103",
+  "explanation": "The rate of change is (28 - 13)/(5 - 2) = 5 per unit of x, and it is the same from x = 5 to x = 9: (48 - 28)/4 = 5. Using y = 5x + b with (2, 13): 13 = 10 + b, so b = 3. Then y = 5(20) + 3 = 103.",
+  "solve": "const m=(28-13)/(5-2); const b=13-m*2; return String(m*20+b);",
+  "distractor_steps": [
+   {
+    "choice": "100",
+    "mis_step": "Used the rate of 5 but treated the relationship as direct variation, dropping the constant: y = 5(20)."
+   },
+   {
+    "choice": "113",
+    "mis_step": "Treated the first y-value as the constant term: y = 5(20) + 13."
+   },
+   {
+    "choice": "130",
+    "mis_step": "Assumed y is proportional to x and scaled the first pair, since 20 is 10 times 2: y = 10(13)."
+   }
+  ]
+ },
+ {
+  "id": "IM48",
+  "difficulty": "medium",
+  "subskill": "successive percents of a whole",
+  "topic_tag": "data-analysis",
+  "prompt": "In a survey of 250 people, 40% were students. Of those students, 36% ride the bus to school. Of those bus riders, 25% have a monthly pass. How many of the 250 people surveyed are students who ride the bus and have a monthly pass?",
+  "choices": [
+   "9",
+   "25",
+   "36",
+   "90"
+  ],
+  "correct_answer": "9",
+  "explanation": "Students: 40% of 250 = 100. Bus riders among them: 36% of 100 = 36. With monthly passes: 25% of 36 = 9.",
+  "solve": "const st=250*40/100; const bus=st*36/100; const pass=bus*25/100; return String(pass);",
+  "distractor_steps": [
+   {
+    "choice": "25",
+    "mis_step": "Applied the 25% to all 100 students rather than to the 36 bus riders."
+   },
+   {
+    "choice": "36",
+    "mis_step": "Stopped after the bus-rider step and never applied the final 25%."
+   },
+   {
+    "choice": "90",
+    "mis_step": "Applied 36% to the whole survey of 250 instead of to the 100 students."
+   }
+  ]
+ },
+ {
+  "id": "IM49",
+  "difficulty": "hard",
+  "subskill": "solving an exponential equation by matching bases",
+  "topic_tag": "algebra",
+  "prompt": "If 3^(2n) = 81^(n - 2), what is the value of n?",
+  "choices": [
+   "-2",
+   "1",
+   "4",
+   "6"
+  ],
+  "correct_answer": "4",
+  "explanation": "Since 81 = 3^4, the right side is 3^(4(n - 2)) = 3^(4n - 8). With equal bases the exponents must be equal: 2n = 4n - 8, so 2n = 8 and n = 4.",
+  "solve": "let ans=null; for(let n=-20;n<=20;n++){ if(2*n===4*(n-2)) ans=n; } return String(ans);",
+  "distractor_steps": [
+   {
+    "choice": "-2",
+    "mis_step": "Ignored the exponent 4 from rewriting 81 and set 2n = n - 2."
+   },
+   {
+    "choice": "1",
+    "mis_step": "Failed to distribute the 4 across the subtraction: 2n = 4n - 2."
+   },
+   {
+    "choice": "6",
+    "mis_step": "Rewrote 81 as 3^3, giving 2n = 3n - 6."
+   }
+  ]
+ },
+ {
+  "id": "IM50",
+  "difficulty": "medium",
+  "subskill": "conditional probability from a two-way table",
+  "topic_tag": "data-analysis",
+  "prompt": "The table shows how the 70 members of a school club travel to school.\n\n            Bus   Walk\n Grade 7     18     12\n Grade 8     14     26\n\nOne member who walks is chosen at random. What is the probability that this member is in Grade 7?",
+  "choices": [
+   "6/35",
+   "19/35",
+   "2/5",
+   "6/19"
+  ],
+  "correct_answer": "6/19",
+  "explanation": "Only walkers can be chosen, and there are 12 + 26 = 38 of them. Of these, 12 are in Grade 7, so the probability is 12/38 = 6/19.",
+  "solve": "const a=12,b=38; let x=a,y=b; while(y){const t=y; y=x%y; x=t;} return (a/x)+\"/\"+(b/x);",
+  "distractor_steps": [
+   {
+    "choice": "6/35",
+    "mis_step": "Used all 70 members as the denominator instead of only the walkers: 12/70."
+   },
+   {
+    "choice": "19/35",
+    "mis_step": "Found the probability that a member walks, 38/70, rather than the required conditional probability."
+   },
+   {
+    "choice": "2/5",
+    "mis_step": "Conditioned on Grade 7 instead of on walkers: 12/30."
+   }
+  ]
+ },
+ {
+  "id": "IM51",
+  "difficulty": "hard",
+  "subskill": "quadratic equation from a geometric word problem",
+  "topic_tag": "algebra",
+  "prompt": "The length of a rectangle is 3 more than twice its width. The area of the rectangle is 90 square centimeters. What is the perimeter, in centimeters?",
+  "choices": [
+   "21",
+   "36",
+   "42",
+   "84"
+  ],
+  "correct_answer": "42",
+  "explanation": "Let the width be w, so the length is 2w + 3 and w(2w + 3) = 90, or 2w^2 + 3w - 90 = 0. This factors as (w - 6)(2w + 15) = 0, and only w = 6 is positive. The length is 2(6) + 3 = 15, so the perimeter is 2(6 + 15) = 42.",
+  "solve": "let w=null; for(let k=1;k<=60;k++){ if(2*k*k+3*k===90) w=k; } const l=2*w+3; return String(2*(w+l));",
+  "distractor_steps": [
+   {
+    "choice": "21",
+    "mis_step": "Added the width and length but did not double the sum: 6 + 15."
+   },
+   {
+    "choice": "36",
+    "mis_step": "After finding w = 6, dropped the '+3' and used a length of 2w = 12: 2(6 + 12)."
+   },
+   {
+    "choice": "84",
+    "mis_step": "Doubled each of the four sides, computing 4(w + l) instead of 2(w + l)."
+   }
+  ]
+ },
+ {
+  "id": "IM52",
+  "difficulty": "hard",
+  "subskill": "mixture equation with a changing total",
+  "topic_tag": "algebra",
+  "prompt": "A chemist has 40 liters of a solution that is 15% acid. How many liters of pure acid must be added so that the resulting solution is 32% acid?",
+  "choices": [
+   "12.8",
+   "10",
+   "8",
+   "6.8"
+  ],
+  "correct_answer": "10",
+  "explanation": "The solution contains 0.15(40) = 6 liters of acid. Adding x liters of pure acid gives 6 + x liters of acid in 40 + x liters of solution, so 6 + x = 0.32(40 + x). Then 6 + x = 12.8 + 0.32x, so 0.68x = 6.8 and x = 10.",
+  "solve": "const acid=40*15/100; const x=(40*32/100-acid)/(1-32/100); return String(Math.round(x*1e6)/1e6);",
+  "distractor_steps": [
+   {
+    "choice": "12.8",
+    "mis_step": "Reported 32% of 40 as the amount of acid to add rather than solving for the added amount."
+   },
+   {
+    "choice": "8",
+    "mis_step": "Used the formula 40(32 - 15)/(100 - 15), dividing by 100 minus the starting percent instead of 100 minus the final percent."
+   },
+   {
+    "choice": "6.8",
+    "mis_step": "Held the total volume at 40 liters, ignoring that adding acid increases it: 0.32(40) - 6."
+   }
+  ]
+ },
+ {
+  "id": "IM53",
+  "difficulty": "medium",
+  "subskill": "composite-area",
+  "topic_tag": "geometry-measurement",
+  "prompt": "A rectangular garden measures 24 feet by 16 feet. A concrete walkway of uniform width 3 feet is built all the way around the OUTSIDE of the garden. What is the area of the walkway alone, in square feet?",
+  "choices": [
+   "276",
+   "129",
+   "240",
+   "660"
+  ],
+  "correct_answer": "276",
+  "explanation": "The walkway adds 3 ft on both sides of each dimension, so the outer rectangle is (24 + 3 + 3) by (16 + 3 + 3) = 30 by 22, with area 660 square feet. The garden itself has area 24 x 16 = 384 square feet. The walkway is the difference: 660 - 384 = 276 square feet.",
+  "solve": "var outer = (24 + 2*3) * (16 + 2*3);\nvar inner = 24 * 16;\nreturn String(outer - inner);",
+  "distractor_steps": [
+   {
+    "choice": "129",
+    "mis_step": "Added the 3-foot width only once to each dimension (27 by 19 = 513) instead of twice, then subtracted 384."
+   },
+   {
+    "choice": "240",
+    "mis_step": "Multiplied the garden's perimeter by the walk width, 2(24 + 16) x 3 = 240, ignoring the four corner squares."
+   },
+   {
+    "choice": "660",
+    "mis_step": "Computed the area of the outer rectangle 30 x 22 and forgot to subtract the garden."
+   }
+  ]
+ },
+ {
+  "id": "IM54",
+  "difficulty": "hard",
+  "subskill": "similar-triangles",
+  "topic_tag": "geometry-measurement",
+  "prompt": "In triangle ABC, point D lies on side AB and point E lies on side AC so that segment DE is parallel to side BC. If AD = 6, DB = 4, and DE = 9, what is the length of BC?",
+  "choices": [
+   "6",
+   "13.5",
+   "15",
+   "22.5"
+  ],
+  "correct_answer": "15",
+  "explanation": "Because DE is parallel to BC, triangle ADE is similar to triangle ABC. The corresponding sides are AD and AB, not AD and DB. AB = AD + DB = 6 + 4 = 10, so the scale factor from the small triangle to the large one is AB/AD = 10/6 = 5/3. Therefore BC = 9 x 5/3 = 15.",
+  "solve": "var AD = 6, DB = 4, DE = 9;\nvar AB = AD + DB;\nreturn String(DE * (AB / AD));",
+  "distractor_steps": [
+   {
+    "choice": "6",
+    "mis_step": "Used the ratio DB : AD = 4 : 6 as the scale factor and shrank DE: 9 x (4/6) = 6."
+   },
+   {
+    "choice": "13.5",
+    "mis_step": "Used the ratio AD : DB = 6 : 4 = 1.5 as the scale factor: 9 x 1.5 = 13.5."
+   },
+   {
+    "choice": "22.5",
+    "mis_step": "Used AB : DB = 10 : 4 = 2.5 as the scale factor, pairing the whole side with the wrong part: 9 x 2.5 = 22.5."
+   }
+  ]
+ },
+ {
+  "id": "IM55",
+  "difficulty": "medium",
+  "subskill": "circle-sector",
+  "topic_tag": "geometry-measurement",
+  "prompt": "A circle has area 36(pi) square centimeters. A sector of this circle has a central angle of 120 degrees. What is the perimeter of the sector, that is, the length of its arc plus its two straight radii, in centimeters?",
+  "choices": [
+   "4π",
+   "4π + 12",
+   "8π + 12",
+   "12π + 12"
+  ],
+  "correct_answer": "4π + 12",
+  "explanation": "From area = (pi)r^2 = 36(pi), the radius is r = 6, so the full circumference is 2(pi)(6) = 12(pi). A 120-degree sector is 120/360 = 1/3 of the circle, so its arc is (1/3)(12(pi)) = 4(pi). The two straight sides are radii, adding 6 + 6 = 12. The perimeter is 4(pi) + 12.",
+  "solve": "var r = Math.sqrt(36);\nvar circumference = 2 * r;\nvar arcCoef = circumference * (120 / 360);\nreturn arcCoef + \"π + \" + (2 * r);",
+  "distractor_steps": [
+   {
+    "choice": "4π",
+    "mis_step": "Found the arc length correctly but forgot that the perimeter of a sector also includes the two radii."
+   },
+   {
+    "choice": "8π + 12",
+    "mis_step": "Used the diameter 12 in place of the radius when computing the circumference, giving an arc of (1/3)(2(pi)(12)) = 8(pi)."
+   },
+   {
+    "choice": "12π + 12",
+    "mis_step": "Added the full circumference 12(pi) instead of taking the 120/360 fraction of it."
+   }
+  ]
+ },
+ {
+  "id": "IM56",
+  "difficulty": "hard",
+  "subskill": "volume-conservation",
+  "topic_tag": "geometry-measurement",
+  "prompt": "A rectangular tank has a base measuring 30 cm by 24 cm and contains water to a depth of 15 cm. All of this water is poured into an empty rectangular tank whose base measures 27 cm by 20 cm and which is tall enough to hold it. To what depth, in centimeters, does the water rise in the second tank?",
+  "choices": [
+   "11.25",
+   "15",
+   "18",
+   "20"
+  ],
+  "correct_answer": "20",
+  "explanation": "The volume of water is 30 x 24 x 15 = 10800 cubic centimeters, and that volume does not change when it is poured. The second tank's base area is 27 x 20 = 540 square centimeters, so the depth is 10800 / 540 = 20 centimeters.",
+  "solve": "var volume = 30 * 24 * 15;\nvar base2 = 27 * 20;\nreturn String(volume / base2);",
+  "distractor_steps": [
+   {
+    "choice": "11.25",
+    "mis_step": "Inverted the base-area ratio, computing 15 x (540/720) instead of 15 x (720/540)."
+   },
+   {
+    "choice": "15",
+    "mis_step": "Assumed the depth of the water carries over unchanged when it is poured into a different container."
+   },
+   {
+    "choice": "18",
+    "mis_step": "Scaled by only one pair of matching dimensions, 15 x (24/20) = 18, ignoring the change from 30 cm to 27 cm."
+   }
+  ]
+ },
+ {
+  "id": "IM57",
+  "difficulty": "medium",
+  "subskill": "angle-relationships",
+  "topic_tag": "geometry-measurement",
+  "prompt": "In triangle ABC, the exterior angle at vertex C measures 130 degrees. The measure of angle A is 4 times the measure of angle B. What is the measure, in degrees, of the largest interior angle of triangle ABC?",
+  "choices": [
+   "104",
+   "26",
+   "50",
+   "130"
+  ],
+  "correct_answer": "104",
+  "explanation": "An exterior angle of a triangle equals the sum of the two remote interior angles, so angle A + angle B = 130. Since angle A = 4(angle B), we get 5(angle B) = 130, so angle B = 26 and angle A = 104. The interior angle at C is 180 - 130 = 50. The largest interior angle is 104 degrees.",
+  "solve": "var B = 130 / 5;\nvar A = 4 * B;\nvar C = 180 - 130;\nreturn String(Math.max(A, B, C));",
+  "distractor_steps": [
+   {
+    "choice": "26",
+    "mis_step": "Split 130 in the ratio 4 : 1 correctly but reported the smaller part, angle B, instead of the largest angle."
+   },
+   {
+    "choice": "50",
+    "mis_step": "Reported the interior angle at C, 180 - 130 = 50, treating it as the largest because 130 is the largest number in the problem."
+   },
+   {
+    "choice": "130",
+    "mis_step": "Treated 130 degrees as the INTERIOR angle at C, giving A + B = 50, B = 10, A = 40, and then called 130 the largest interior angle."
+   }
+  ]
+ },
+ {
+  "id": "IM58",
+  "difficulty": "medium",
+  "subskill": "coordinate-geometry-area",
+  "topic_tag": "geometry-measurement",
+  "prompt": "In the coordinate plane, a quadrilateral has vertices at (0, 0), (12, 0), (9, 6), and (3, 6), listed in order around the figure. What is the area of this quadrilateral, in square units?",
+  "choices": [
+   "36",
+   "54",
+   "72",
+   "108"
+  ],
+  "correct_answer": "54",
+  "explanation": "The two horizontal sides are parallel, so the figure is a trapezoid. The lower base runs from (0, 0) to (12, 0), a length of 12. The upper base runs from (3, 6) to (9, 6), a length of 9 - 3 = 6. The height is the vertical distance between the bases, 6 - 0 = 6. Area = (1/2)(12 + 6)(6) = 54 square units.",
+  "solve": "var b1 = 12 - 0;\nvar b2 = 9 - 3;\nvar h = 6 - 0;\nreturn String(0.5 * (b1 + b2) * h);",
+  "distractor_steps": [
+   {
+    "choice": "36",
+    "mis_step": "Used only the shorter base, treating the figure as a 6 by 6 rectangle."
+   },
+   {
+    "choice": "72",
+    "mis_step": "Used only the longer base, treating the figure as a 12 by 6 rectangle."
+   },
+   {
+    "choice": "108",
+    "mis_step": "Added the two bases and multiplied by the height but forgot the factor of 1/2: (12 + 6)(6) = 108."
+   }
+  ]
+ },
+ {
+  "id": "IM59",
+  "difficulty": "hard",
+  "subskill": "solids-and-nets",
+  "topic_tag": "geometry-measurement",
+  "prompt": "A solid wooden cube has volume 216 cubic centimeters. Its entire outer surface is painted red, and then the cube is cut into 27 identical smaller cubes. How many of the small cubes have paint on exactly two of their faces?",
+  "choices": [
+   "6",
+   "8",
+   "12",
+   "20"
+  ],
+  "correct_answer": "12",
+  "explanation": "The big cube has edge 6 cm, and cutting it into 27 identical cubes means slicing it 3 by 3 by 3, so each small cube is 2 cm on an edge. A small cube has paint on exactly two faces when it sits along an edge of the big cube but not at a corner. Each of the 12 edges of a cube contributes exactly one such middle cube, so the answer is 12.",
+  "solve": "var edge = Math.cbrt(216);\nvar n = 3;\nvar twoFaces = 12 * (n - 2);\nreturn String(twoFaces);",
+  "distractor_steps": [
+   {
+    "choice": "6",
+    "mis_step": "Counted the small cubes at the center of each face of the big cube, which have paint on exactly ONE face."
+   },
+   {
+    "choice": "8",
+    "mis_step": "Counted the corner cubes, which have paint on THREE faces."
+   },
+   {
+    "choice": "20",
+    "mis_step": "Counted every small cube lying along an edge, including the 8 corners: 12 + 8 = 20."
+   }
+  ]
+ },
+ {
+  "id": "IM60",
+  "difficulty": "medium",
+  "subskill": "perimeter-with-unit-conversion",
+  "topic_tag": "geometry-measurement",
+  "prompt": "A rectangular field measures 45 yards by 30 yards. A contractor charges 6 dollars per FOOT to install fencing. What is the total cost, in dollars, of fencing completely around the field?",
+  "choices": [
+   "900",
+   "1350",
+   "8100",
+   "2700"
+  ],
+  "correct_answer": "2700",
+  "explanation": "The perimeter is 2(45 + 30) = 150 yards. Since the price is per foot, convert: 150 yards x 3 = 450 feet. The cost is 450 x 6 = 2700 dollars.",
+  "solve": "var perimeterYards = 2 * (45 + 30);\nvar perimeterFeet = perimeterYards * 3;\nreturn String(perimeterFeet * 6);",
+  "distractor_steps": [
+   {
+    "choice": "900",
+    "mis_step": "Multiplied the perimeter in YARDS by the per-foot price, skipping the yards-to-feet conversion: 150 x 6."
+   },
+   {
+    "choice": "1350",
+    "mis_step": "Used the semiperimeter 45 + 30 = 75 yards = 225 feet as the distance around, then multiplied by 6."
+   },
+   {
+    "choice": "8100",
+    "mis_step": "Used the AREA 45 x 30 = 1350 square yards in place of the perimeter and multiplied by 6."
+   }
+  ]
+ },
+ {
+  "id": "IM61",
+  "difficulty": "medium",
+  "subskill": "pythagorean-theorem-3d",
+  "topic_tag": "geometry-measurement",
+  "prompt": "A closed rectangular box measures 12 inches long, 9 inches wide, and 8 inches tall. A straight rod is placed inside so that it runs from one corner of the box to the opposite corner, passing through the interior. What is the length of the rod, in inches?",
+  "choices": [
+   "17",
+   "15",
+   "23",
+   "29"
+  ],
+  "correct_answer": "17",
+  "explanation": "First find the diagonal of the 12 by 9 base: it is the square root of 144 + 81 = 225, which is 15. That base diagonal and the 8-inch height form a right triangle whose hypotenuse is the rod, so the rod is the square root of 225 + 64 = 289, which is 17 inches.",
+  "solve": "var baseDiagSq = 12*12 + 9*9;\nvar spaceDiag = Math.sqrt(baseDiagSq + 8*8);\nreturn String(spaceDiag);",
+  "distractor_steps": [
+   {
+    "choice": "15",
+    "mis_step": "Stopped after the diagonal of the 12 by 9 base and never brought in the 8-inch height."
+   },
+   {
+    "choice": "23",
+    "mis_step": "Found the base diagonal 15 and then ADDED the height instead of applying the Pythagorean theorem again: 15 + 8."
+   },
+   {
+    "choice": "29",
+    "mis_step": "Added the three edge lengths: 12 + 9 + 8."
+   }
+  ]
+ },
+ {
+  "id": "IM62",
+  "difficulty": "hard",
+  "subskill": "inscribed-figures",
+  "topic_tag": "geometry-measurement",
+  "prompt": "A circle is inscribed in a square, touching all four sides. The area of the circle is 49(pi) square inches. What is the area, in square inches, of the region inside the square but outside the circle?",
+  "choices": [
+   "196 - 7π",
+   "196 - 49π",
+   "196 - 14π",
+   "784 - 196π"
+  ],
+  "correct_answer": "196 - 49π",
+  "explanation": "From (pi)r^2 = 49(pi), the radius is 7, so the circle's diameter is 14. An inscribed circle touches all four sides, so the side of the square equals that diameter, 14, and the square's area is 14 x 14 = 196. The region between them is 196 - 49(pi) square inches.",
+  "solve": "var r = Math.sqrt(49);\nvar side = 2 * r;\nreturn (side * side) + \" - \" + (r * r) + \"π\";",
+  "distractor_steps": [
+   {
+    "choice": "196 - 7π",
+    "mis_step": "Recomputed the circle's area as (pi)r = 7(pi) instead of (pi)r^2, using the radius in place of its square."
+   },
+   {
+    "choice": "196 - 14π",
+    "mis_step": "Subtracted the circle's CIRCUMFERENCE 2(pi)(7) = 14(pi) instead of its area."
+   },
+   {
+    "choice": "784 - 196π",
+    "mis_step": "Treated the given 14 as the radius rather than the diameter, making the square's side 28 and the circle's area 196(pi)."
+   }
+  ]
+ }
+]

@@ -1055,6 +1055,150 @@
      "verdict": "Options-only sanity enforced in the brief; attack confirms it."
     }
    }
+  },
+  {
+   "id": "ssat-verbal-s3-2026-08-28",
+   "createdAt": "2026-08-28",
+   "targetTest": "ssat",
+   "section": "verbal",
+   "task": "multiple_choice",
+   "family": "mc_stem_source",
+   "spec": {
+    "n": 29,
+    "authors": 2,
+    "method": "pilot brief plus all pilot-lesson rules (no exact-synonym-of-other-sense traps, no near-anagram look-alikes, no duplicated first-blank words, banked-stem exclusion list)"
+   },
+   "contentSha": "055e12c45edf5caa115942dd24794eb7d6347c415a3e6094c15302ad64be974b",
+   "status": "shipped",
+   "cohort": "ssat-verbal-s3",
+   "note": "One contested item dropped by the blind exclusivity audit.",
+   "stages": {
+    "shape": {
+     "passed": true,
+     "contentSha": "055e12c45edf5caa115942dd24794eb7d6347c415a3e6094c15302ad64be974b",
+     "verdict": "Choice counts and distinctness at the family count; keys verbatim; no stem collisions within batch or against the live bank; check-batch-joins clean."
+    },
+    "withsource": {
+     "passed": true,
+     "verdict": "Key votes >=2/3 on every item; blind exclusivity audit; contested dropped."
+    },
+    "nosource": {
+     "passed": true,
+     "verdict": "Options-only attack, stems stripped and the blind file ASSERTED stem-free before launch: mean 34.7% vs 37.5% control, margin −2.8 PASS."
+    },
+    "tells": {
+     "passed": true,
+     "verdict": "Options-only sanity in the brief; solvers reported perfect-square and roundness signals that did not convert to accuracy."
+    }
+   }
+  },
+  {
+   "id": "isee-verbal-s3-2026-08-28",
+   "createdAt": "2026-08-28",
+   "targetTest": "isee",
+   "section": "verbal",
+   "task": "multiple_choice",
+   "family": "mc_stem_source",
+   "spec": {
+    "n": 19,
+    "authors": 2,
+    "method": "pilot brief plus all pilot-lesson rules (no exact-synonym-of-other-sense traps, no near-anagram look-alikes, no duplicated first-blank words, banked-stem exclusion list)"
+   },
+   "contentSha": "30c2647864cf06a47c3820b945e7de179d93858c9a0b7573d94d8c2b1ee4272b",
+   "status": "shipped",
+   "cohort": "isee-verbal-s3",
+   "note": "One contested item dropped by the blind exclusivity audit.",
+   "stages": {
+    "shape": {
+     "passed": true,
+     "contentSha": "30c2647864cf06a47c3820b945e7de179d93858c9a0b7573d94d8c2b1ee4272b",
+     "verdict": "Choice counts and distinctness at the family count; keys verbatim; no stem collisions within batch or against the live bank; check-batch-joins clean."
+    },
+    "withsource": {
+     "passed": true,
+     "verdict": "Key votes >=2/3 on every item; blind exclusivity audit; contested dropped."
+    },
+    "nosource": {
+     "passed": true,
+     "verdict": "Options-only attack, stems stripped and the blind file ASSERTED stem-free before launch: mean 33.3% vs 40.0% control, margin −6.7 PASS."
+    },
+    "tells": {
+     "passed": true,
+     "verdict": "Options-only sanity in the brief; solvers reported perfect-square and roundness signals that did not convert to accuracy."
+    }
+   }
+  },
+  {
+   "id": "ssat-math-s3-2026-08-28",
+   "createdAt": "2026-08-28",
+   "targetTest": "ssat",
+   "section": "math",
+   "task": "multiple_choice",
+   "family": "mc_stem_source",
+   "spec": {
+    "n": 18,
+    "authors": 2,
+    "method": "math-v3 solve-gated method with a NEW DIFFICULTY FLOOR (no one-step items) after 32 of 120 were lost to grader-easy last round"
+   },
+   "contentSha": "8ac97ea7a8f835a2f5afd9452471bb76bd28782da56b3c3696df23eb0083d43e",
+   "status": "shipped",
+   "cohort": "ssat-math-s3",
+   "note": "INSTRUMENT FAILURE RECORDED: the first attack on this batch reported a KILL (+43.3 SSAT / +47.2 ISEE math) because the blind-builder carried `prompt` through for any item that had one — correct for reading, where the stem is shown and the passage withheld, but fatal here, where the prompt IS the stem. The solver reporting it \"solved via direct calculation from the problem statements\" was telling the truth. Caught because a 97.2% options-only score is not physically possible. Blinds rebuilt, asserted stem-free, attack re-run; the corrected margins are recorded below.",
+   "stages": {
+    "shape": {
+     "passed": true,
+     "contentSha": "8ac97ea7a8f835a2f5afd9452471bb76bd28782da56b3c3696df23eb0083d43e",
+     "verdict": "Sandbox recompute 50/50 across both families; no thousands separators; keys verbatim; check-batch-joins clean."
+    },
+    "withsource": {
+     "passed": true,
+     "verdict": "Anchored grader with the difficulty floor stated: only 2 items flagged across both families (vs 32 last round — the floor worked)."
+    },
+    "nosource": {
+     "passed": true,
+     "verdict": "Options-only attack, stems stripped and the blind file ASSERTED stem-free before launch: mean 21.7% vs 25.0% control, margin −3.3 PASS."
+    },
+    "tells": {
+     "passed": true,
+     "verdict": "Options-only sanity in the brief; solvers reported perfect-square and roundness signals that did not convert to accuracy."
+    }
+   }
+  },
+  {
+   "id": "isee-math-s3-2026-08-28",
+   "createdAt": "2026-08-28",
+   "targetTest": "isee",
+   "section": "math",
+   "task": "multiple_choice",
+   "family": "mc_stem_source",
+   "spec": {
+    "n": 30,
+    "authors": 2,
+    "method": "math-v3 solve-gated method with a NEW DIFFICULTY FLOOR (no one-step items) after 32 of 120 were lost to grader-easy last round"
+   },
+   "contentSha": "ad64f40e8438db7225afa49600583fd6f7cea989602841e203fe58eacb75bbb1",
+   "status": "shipped",
+   "cohort": "isee-math-s3",
+   "note": "INSTRUMENT FAILURE RECORDED: the first attack on this batch reported a KILL (+43.3 SSAT / +47.2 ISEE math) because the blind-builder carried `prompt` through for any item that had one — correct for reading, where the stem is shown and the passage withheld, but fatal here, where the prompt IS the stem. The solver reporting it \"solved via direct calculation from the problem statements\" was telling the truth. Caught because a 97.2% options-only score is not physically possible. Blinds rebuilt, asserted stem-free, attack re-run; the corrected margins are recorded below.",
+   "stages": {
+    "shape": {
+     "passed": true,
+     "contentSha": "ad64f40e8438db7225afa49600583fd6f7cea989602841e203fe58eacb75bbb1",
+     "verdict": "Sandbox recompute 50/50 across both families; no thousands separators; keys verbatim; check-batch-joins clean."
+    },
+    "withsource": {
+     "passed": true,
+     "verdict": "Anchored grader with the difficulty floor stated: only 2 items flagged across both families (vs 32 last round — the floor worked)."
+    },
+    "nosource": {
+     "passed": true,
+     "verdict": "Options-only attack, stems stripped and the blind file ASSERTED stem-free before launch: mean 29.2% vs 50.0% control, margin −20.8 PASS."
+    },
+    "tells": {
+     "passed": true,
+     "verdict": "Options-only sanity in the brief; solvers reported perfect-square and roundness signals that did not convert to accuracy."
+    }
+   }
   }
  ],
  "auditedCohorts": [
