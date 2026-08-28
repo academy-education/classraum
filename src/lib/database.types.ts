@@ -3606,6 +3606,54 @@ export type Database = {
           },
         ]
       }
+      study_item_sweep_verdicts: {
+        Row: {
+          created_at: string
+          id: string
+          item_id: string
+          item_sha: string
+          note: string | null
+          reviewer_id: string
+          updated_at: string
+          verdict: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          item_id: string
+          item_sha: string
+          note?: string | null
+          reviewer_id: string
+          updated_at?: string
+          verdict: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          item_id?: string
+          item_sha?: string
+          note?: string | null
+          reviewer_id?: string
+          updated_at?: string
+          verdict?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: \"study_item_sweep_verdicts_item_id_fkey\"
+            columns: [\"item_id\"]
+            isOneToOne: false
+            referencedRelation: \"study_item_bank\"
+            referencedColumns: [\"id\"]
+          },
+          {
+            foreignKeyName: \"study_item_sweep_verdicts_item_id_fkey\"
+            columns: [\"item_id\"]
+            isOneToOne: false
+            referencedRelation: \"study_item_calibration\"
+            referencedColumns: [\"item_id\"]
+          },
+        ]
+      }
       study_item_reviews: {
         Row: {
           blind_at: string | null

@@ -2,6 +2,7 @@
 
 import React from 'react'
 import { ReviewPanel } from './ReviewPanel'
+import { ItemSweepPanel } from './ItemSweepPanel'
 
 /*
  * The Supabase client is imported DYNAMICALLY, inside the effect, not at
@@ -342,6 +343,11 @@ export function LiveBankState() {
           .map(c => c.domain)
           .filter((d, i, a) => a.indexOf(d) === i)}
       />
+
+      {/* The open counterpart to the blind sitting above: the whole
+          SSAT/ISEE bank with the key showing, so the semantic defects
+          no gate here can see get read by a person. */}
+      <ItemSweepPanel />
 
       <div className={`${CARD} p-5`}>
         <div className="flex items-baseline justify-between gap-3 flex-wrap">
