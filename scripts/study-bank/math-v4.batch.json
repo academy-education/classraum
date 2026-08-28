@@ -1,0 +1,1738 @@
+[
+ {
+  "id": "M101",
+  "domain": "Advanced Math",
+  "subskill": "Exponential models: rescaling the time interval of a decay factor",
+  "topic_tag": "solar farm output",
+  "difficulty": "medium",
+  "prompt": "The annual electricity output of a solar farm decreases exponentially as its panels age. The farm produced 1250 megawatt-hours in 2010 and 800 megawatt-hours in 2018. If output continues to follow the same exponential model, how many megawatt-hours will the farm produce in 2022?",
+  "choices": [
+   "512",
+   "575",
+   "640",
+   "656"
+  ],
+  "correct_answer": "640",
+  "explanation": "Over the 8 years from 2010 to 2018 the output is multiplied by 800/1250 = 0.64, so over any 4-year span it is multiplied by sqrt(0.64) = 0.8. From 2018 to 2022 is 4 years, giving 800 * 0.8 = 640 megawatt-hours.",
+  "solve": "var e2010 = 1250, e2018 = 800;\nvar factor8 = e2018 / e2010;\nvar factor4 = Math.pow(factor8, 4 / 8);\nvar e2022 = e2018 * factor4;\nreturn Math.round(e2022 * 100) / 100;",
+  "distractor_steps": [
+   {
+    "choice": "512",
+    "mis_step": "Applies the full 8-year factor 0.64 to the 2018 value instead of the 4-year factor: 800 * 0.64 = 512."
+   },
+   {
+    "choice": "575",
+    "mis_step": "Models the decline linearly: a drop of 450 over 8 years is 225 over 4 years, giving 800 - 225 = 575."
+   },
+   {
+    "choice": "656",
+    "mis_step": "Halves the percent decrease rather than taking the square root of the factor: 36% over 8 years read as 18% over 4 years, giving 800 * 0.82 = 656."
+   }
+  ]
+ },
+ {
+  "id": "M102",
+  "domain": "Advanced Math",
+  "subskill": "Quadratic models: choosing the root that satisfies a stated constraint",
+  "topic_tag": "museum ticket pricing",
+  "difficulty": "medium",
+  "prompt": "A museum currently charges 15 dollars for admission and sells 1200 tickets on a typical Saturday. Market research predicts that for each 1 dollar the museum adds to the price, it will sell 40 fewer tickets that day. The museum wants Saturday ticket revenue to be exactly 20000 dollars while still admitting at least 950 visitors. What price, in dollars, should the museum charge?",
+  "choices": [
+   "20",
+   "21.25",
+   "22.5",
+   "25"
+  ],
+  "correct_answer": "20",
+  "explanation": "With x dollars added, revenue is (15 + x)(1200 - 40x) = 20000, which simplifies to x^2 - 15x + 50 = 0, so x = 5 or x = 10. A 5 dollar increase gives 1000 visitors and a 10 dollar increase gives only 800, so the price must be 15 + 5 = 20 dollars.",
+  "solve": "var base = 15, sold = 1200, drop = 40, target = 20000, minVisitors = 950;\nvar answer = null;\nfor (var x = 0; x <= 30; x += 0.25) {\n  var price = base + x;\n  var attendance = sold - drop * x;\n  if (Math.abs(price * attendance - target) < 1e-6 && attendance >= minVisitors) {\n    answer = price;\n  }\n}\nreturn answer;",
+  "distractor_steps": [
+   {
+    "choice": "25",
+    "mis_step": "Solves the revenue equation correctly but ignores the 950-visitor condition and reports the other root, x = 10, as a price of 25."
+   },
+   {
+    "choice": "21.25",
+    "mis_step": "Solves the attendance constraint as an equation instead of the revenue equation: 1200 - 40x = 950 gives x = 6.25 and a price of 21.25."
+   },
+   {
+    "choice": "22.5",
+    "mis_step": "Maximizes revenue instead of setting it equal to 20000: the vertex of -40x^2 + 600x + 18000 is at x = 7.5, a price of 22.5."
+   }
+  ]
+ },
+ {
+  "id": "M103",
+  "domain": "Advanced Math",
+  "subskill": "Radical equations: squaring and rejecting extraneous solutions",
+  "topic_tag": "tide pool sampling",
+  "difficulty": "hard",
+  "prompt": "At one rocky shoreline, ecologists model the number of visible species n in a tide pool of area a square meters by n = sqrt(a + 32). During a survey a researcher records one pool for which the number of visible species is exactly 10 less than the pool's area in square meters. What is that pool's area, in square meters?",
+  "choices": [
+   "4",
+   "7",
+   "12",
+   "17"
+  ],
+  "correct_answer": "17",
+  "explanation": "The condition gives sqrt(a + 32) = a - 10; squaring yields a^2 - 21a + 68 = 0, whose roots are 17 and 4. Only a = 17 works, since sqrt(17 + 32) = 7 = 17 - 10, while a = 4 gives sqrt(36) = 6 but 4 - 10 = -6.",
+  "solve": "var c = 32, k = 10;\nvar sols = [];\nfor (var a = 0; a <= 400; a += 1) {\n  if (Math.abs(Math.sqrt(a + c) - (a - k)) < 1e-9) {\n    sols.push(a);\n  }\n}\nreturn sols[0];",
+  "distractor_steps": [
+   {
+    "choice": "4",
+    "mis_step": "Squares both sides and keeps both roots of a^2 - 21a + 68 = 0 without checking them, reporting the extraneous root 4."
+   },
+   {
+    "choice": "12",
+    "mis_step": "Squares the right side term by term, writing a + 32 = a^2 - 100 instead of a^2 - 20a + 100, which gives a^2 - a - 132 = 0 and the positive root 12."
+   },
+   {
+    "choice": "7",
+    "mis_step": "Solves correctly but reports the number of species, sqrt(17 + 32) = 7, rather than the pool's area."
+   }
+  ]
+ },
+ {
+  "id": "M105",
+  "domain": "Advanced Math",
+  "subskill": "Systems with a nonlinear equation: sum and product of two dimensions",
+  "topic_tag": "drone survey grid",
+  "difficulty": "medium",
+  "prompt": "A survey drone maps a rectangular plot of farmland. Flying once completely around the boundary of the plot covers 280 meters, and flying straight from one corner to the opposite corner covers 100 meters. The drone photographs the plot in parallel passes flown along the longer side. What is the length, in meters, of the longer side of the plot?",
+  "choices": [
+   "60",
+   "70",
+   "80",
+   "100"
+  ],
+  "correct_answer": "80",
+  "explanation": "If the sides are L and W, then L + W = 280/2 = 140 and L^2 + W^2 = 100^2 = 10000, so 2LW = 140^2 - 10000 = 9600 and LW = 4800. The numbers with sum 140 and product 4800 are 80 and 60, so the longer side is 80 meters.",
+  "solve": "var perimeter = 280, diagonal = 100;\nvar s = perimeter / 2;\nvar product = (s * s - diagonal * diagonal) / 2;\nvar disc = Math.sqrt(s * s - 4 * product);\nvar longer = (s + disc) / 2;\nreturn Math.round(longer * 100) / 100;",
+  "distractor_steps": [
+   {
+    "choice": "60",
+    "mis_step": "Sets up the system correctly but reports the smaller root of t^2 - 140t + 4800 = 0, giving the shorter side 60 instead of the longer one."
+   },
+   {
+    "choice": "70",
+    "mis_step": "Uses only the boundary distance and assumes the plot is square: 280/4 = 70."
+   },
+   {
+    "choice": "100",
+    "mis_step": "Takes the corner-to-corner distance itself as the longer side, treating the 100-meter diagonal as a side length."
+   }
+  ]
+ },
+ {
+  "id": "M106",
+  "domain": "Algebra",
+  "subskill": "Absolute value inequalities in context",
+  "topic_tag": "bike share rebalancing",
+  "difficulty": "hard",
+  "prompt": "A bike-share dock is called balanced when the number of bikes b at the dock satisfies |b - 48| <= 9. At 6:00 a.m. the dock holds 105 bikes. Starting at 6:00 a.m. commuters take bikes from the dock at a constant rate of 36 bikes per hour while other riders return bikes to it at a constant rate of 12 bikes per hour. Treating the bike count as changing continuously, for how many minutes is the dock balanced?",
+  "choices": [
+   "45",
+   "30",
+   "120",
+   "165"
+  ],
+  "correct_answer": "45",
+  "explanation": "The dock is balanced while the count is between 39 and 57, and the count falls from 105 at 36 - 12 = 24 bikes per hour. It reaches 57 after 2 hours and 39 after 2.75 hours, so it stays balanced for 0.75 hour, or 45 minutes.",
+  "solve": "const start = 105, center = 48, tol = 9, taken = 36, returned = 12;\nconst net = taken - returned;\nconst tEnterBand = (start - (center + tol)) / net;\nconst tLeaveBand = (start - (center - tol)) / net;\nreturn (tLeaveBand - tEnterBand) * 60;",
+  "distractor_steps": [
+   {
+    "choice": "30",
+    "mis_step": "Ignores the 12 bikes per hour being returned and uses 36 bikes per hour as the net rate, giving a band width of 18 bikes crossed in 18/36 = 0.5 hour = 30 minutes."
+   },
+   {
+    "choice": "120",
+    "mis_step": "Reports the intermediate quantity: the time from 6:00 a.m. until the count first enters the band at 57 bikes, (105 - 57)/24 = 2 hours = 120 minutes."
+   },
+   {
+    "choice": "165",
+    "mis_step": "Reports the clock time at which the dock stops being balanced, measured from 6:00 a.m., (105 - 39)/24 = 2.75 hours = 165 minutes, instead of the length of the balanced interval."
+   }
+  ]
+ },
+ {
+  "id": "M107",
+  "domain": "Algebra",
+  "subskill": "Mixture and blending setups with linear equations",
+  "topic_tag": "greenhouse humidity",
+  "difficulty": "medium",
+  "prompt": "A greenhouse blends two air streams. Outside air carries 5 grams of water vapor per cubic meter, and air from a mist chamber carries 20 grams of water vapor per cubic meter. The blower must deliver 480 cubic meters of blended air per minute carrying 14 grams of water vapor per cubic meter. How many cubic meters of mist-chamber air per minute must the blend contain?",
+  "choices": [
+   "192",
+   "216",
+   "288",
+   "336"
+  ],
+  "correct_answer": "288",
+  "explanation": "Blending 480 cubic meters of outside air alone would carry 480(5) = 2400 grams, while the target blend carries 480(14) = 6720 grams. Each cubic meter of mist-chamber air substituted in adds 20 - 5 = 15 grams, so 4320/15 = 288 cubic meters are needed.",
+  "solve": "const total = 480, mist = 20, outside = 5, target = 14;\nconst deficit = total * target - total * outside;\nreturn deficit / (mist - outside);",
+  "distractor_steps": [
+   {
+    "choice": "192",
+    "mis_step": "Solves the blend correctly but reports the other stream, the 480 - 288 = 192 cubic meters of outside air."
+   },
+   {
+    "choice": "216",
+    "mis_step": "Divides the 480(14 - 5) = 4320 gram deficit by the mist stream's full 20 grams per cubic meter instead of by the 15 gram gain over outside air, giving 216."
+   },
+   {
+    "choice": "336",
+    "mis_step": "Sets up a bare proportion x/480 = 14/20 from the two moisture values, ignoring the outside stream's 5 grams, giving 480(14)/20 = 336."
+   }
+  ]
+ },
+ {
+  "id": "M108",
+  "domain": "Algebra",
+  "subskill": "Systems of two linear equations in two variables",
+  "topic_tag": "ferry fuel burn",
+  "difficulty": "medium",
+  "prompt": "A ferry burns fuel at one constant rate while cruising and at a different constant rate while maneuvering in harbor. On a run with 4 hours of cruising and 1 hour of maneuvering the ferry burned 470 liters of fuel. On a run with 6 hours of cruising and 2 hours of maneuvering it burned 780 liters. At these same rates how many liters of fuel will a run with 7 hours of cruising and 1.5 hours of maneuvering burn?",
+  "choices": [
+   "680",
+   "799",
+   "1170",
+   "785"
+  ],
+  "correct_answer": "785",
+  "explanation": "From 4c + m = 470 and 6c + 2m = 780 the rates are c = 80 liters per hour cruising and m = 150 liters per hour maneuvering. The run then burns 7(80) + 1.5(150) = 785 liters.",
+  "solve": "const c = (2 * 470 - 780) / (2 * 4 - 6);\nconst m = 470 - 4 * c;\nreturn 7 * c + 1.5 * m;",
+  "distractor_steps": [
+   {
+    "choice": "680",
+    "mis_step": "Solves for the cruising rate 80 liters per hour and applies it to the whole 7 + 1.5 = 8.5 hours, ignoring the higher maneuvering rate: 8.5(80) = 680."
+   },
+   {
+    "choice": "799",
+    "mis_step": "Skips the system and takes an average burn rate from the first run, 470/5 = 94 liters per hour, then multiplies by 8.5 hours to get 799."
+   },
+   {
+    "choice": "1170",
+    "mis_step": "Solves the system but attaches the rates to the wrong modes, using 150 liters per hour for the 7 cruising hours and 80 for the 1.5 maneuvering hours: 1050 + 120 = 1170."
+   }
+  ]
+ },
+ {
+  "id": "M109",
+  "domain": "Algebra",
+  "subskill": "Systems of linear equations with a follow-up replacement condition",
+  "topic_tag": "orchard yield",
+  "difficulty": "hard",
+  "prompt": "An orchard block contains 200 mature trees, each either standard or dwarf. Last season every standard tree produced 120 kg of fruit and every dwarf tree produced 80 kg, for a block total of 19440 kg. Before next season the grower will remove some standard trees and plant an equal number of mature dwarf trees, so the block still holds 200 trees, and per-tree yields will stay the same. If the block is to produce 16920 kg next season, how many standard trees must be replaced?",
+  "choices": [
+   "23",
+   "63",
+   "21",
+   "114"
+  ],
+  "correct_answer": "63",
+  "explanation": "Since 120x + 80(200 - x) = 19440, the block holds 86 standard trees and 114 dwarf trees. Each replacement costs 120 - 80 = 40 kg, and the required drop is 19440 - 16920 = 2520 kg, so 2520/40 = 63 trees must be replaced.",
+  "solve": "const trees = 200, sYield = 120, dYield = 80, lastSeason = 19440, target = 16920;\nconst standard = (lastSeason - dYield * trees) / (sYield - dYield);\nconst shortfall = lastSeason - target;\nconst replaced = shortfall / (sYield - dYield);\nreturn replaced <= standard ? replaced : null;",
+  "distractor_steps": [
+   {
+    "choice": "23",
+    "mis_step": "Computes the 63 replacements correctly but reports the standard trees left in the block, 86 - 63 = 23."
+   },
+   {
+    "choice": "21",
+    "mis_step": "Treats a replaced tree as contributing nothing rather than 80 kg, dividing the 2520 kg shortfall by the full 120 kg standard yield to get 21."
+   },
+   {
+    "choice": "114",
+    "mis_step": "Stops at the first equation and reports the dwarf-tree count from last season, 200 - 86 = 114."
+   }
+  ]
+ },
+ {
+  "id": "M110",
+  "domain": "Algebra",
+  "subskill": "Linear inequalities in one variable",
+  "topic_tag": "recycling plant sorting",
+  "difficulty": "medium",
+  "prompt": "A recycling plant pays a fixed facility charge of $900 per week plus its hauling costs. Each hauling trip costs $480 plus $27 for every tonne of sorted material carried on that trip. The plant schedules 4 trips in one week and loads the same whole number of tonnes on each trip. If the facility charge and all hauling costs together must be at most $9200 for the week, what is the greatest number of tonnes that can be loaded on each trip?",
+  "choices": [
+   "34",
+   "67",
+   "72",
+   "59"
+  ],
+  "correct_answer": "59",
+  "explanation": "The $900 charge and the 4($480) = $1920 in trip fees leave 9200 - 900 - 1920 = $6380, and 4 trips carrying t tonnes each cost 27(4t) = 108t dollars. Since 108t <= 6380 gives t <= 59.07, the greatest whole number of tonnes per trip is 59.",
+  "solve": "const budget = 9200, facility = 900, trips = 4, tripFee = 480, perTonne = 27;\nconst available = budget - facility - trips * tripFee;\nreturn Math.floor(available / (perTonne * trips));",
+  "distractor_steps": [
+   {
+    "choice": "34",
+    "mis_step": "Charges the weekly $900 facility fee once per trip, using 9200 - 4(900) - 1920 = 3680 dollars for tonnage and getting floor(3680/108) = 34."
+   },
+   {
+    "choice": "67",
+    "mis_step": "Omits the $900 facility charge from the budget, using 9200 - 1920 = 7280 dollars for tonnage and getting floor(7280/108) = 67."
+   },
+   {
+    "choice": "72",
+    "mis_step": "Counts the $480 trip fee only once instead of for all 4 trips, using 9200 - 900 - 480 = 7820 dollars for tonnage and getting floor(7820/108) = 72."
+   }
+  ]
+ },
+ {
+  "id": "M111",
+  "domain": "Geometry and Trigonometry",
+  "subskill": "Circle theorems (tangent-secant power of a point)",
+  "topic_tag": "stadium concession",
+  "difficulty": "medium",
+  "prompt": "A stadium's inner concourse wall is a perfect circle. A concession cart is parked at point P on the plaza outside the wall. One straight service lane runs from P and just grazes the wall, touching it at exactly one point T, with PT = 18 m. A second straight service lane runs from P, enters the wall at point A and exits at point B on the far side, with PA = 12 m. Points P, A, and B lie on one straight line. What is the length, in meters, of the portion AB of the second lane that lies inside the circular wall?",
+  "choices": [
+   "15",
+   "27",
+   "6",
+   "9"
+  ],
+  "correct_answer": "15",
+  "explanation": "The grazing lane is tangent, so PT^2 = PA * PB, giving 18^2 = 12 * PB and PB = 324/12 = 27 m. The inside portion is PB - PA = 27 - 12 = 15 m.",
+  "solve": "const PT = 18, PA = 12;\nconst PB = (PT * PT) / PA;\nreturn PB - PA;",
+  "distractor_steps": [
+   {
+    "choice": "27",
+    "mis_step": "Solves PT^2 = PA*PB correctly to get PB = 27 but reports the whole secant from the cart instead of only the chord inside the wall."
+   },
+   {
+    "choice": "6",
+    "mis_step": "Assumes the tangent length is the sum of the two secant pieces and computes PT - PA = 18 - 12."
+   },
+   {
+    "choice": "9",
+    "mis_step": "Gets PB = 27 but subtracts the tangent length instead of PA, computing 27 - 18."
+   }
+  ]
+ },
+ {
+  "id": "M112",
+  "domain": "Geometry and Trigonometry",
+  "subskill": "Right-triangle trigonometry with two triangles sharing a leg",
+  "difficulty": "hard",
+  "topic_tag": "wind tunnel testing",
+  "prompt": "A wing model is mounted level inside a wind tunnel, so its leading edge and its trailing edge are the same height above the tunnel floor. A camera sits on the tunnel floor, in the same vertical plane as the model, on the leading-edge side. From the camera the angle of elevation to the leading edge is 38 degrees and the angle of elevation to the trailing edge is 21 degrees. The horizontal distance from the leading edge to the trailing edge is 0.60 m. To the nearest 0.01 m, how high above the floor is the model mounted?",
+  "choices": [
+   "1.51",
+   "0.18",
+   "0.45",
+   "0.77"
+  ],
+  "correct_answer": "0.45",
+  "explanation": "With height h, the horizontal distances from the camera are h/tan(38 degrees) and h/tan(21 degrees), and their difference is 0.60, so h = 0.60/(1/tan(21 degrees) - 1/tan(38 degrees)) = 0.60/1.3251, about 0.45 m.",
+  "solve": "const rad = Math.PI / 180;\nconst span = 0.60;\nconst h = span / (1 / Math.tan(21 * rad) - 1 / Math.tan(38 * rad));\nreturn Math.round(h * 100) / 100;",
+  "distractor_steps": [
+   {
+    "choice": "1.51",
+    "mis_step": "Writes the horizontal distances as h*tan(38) and h*tan(21) instead of h/tan, solving 0.60/(tan38 - tan21)."
+   },
+   {
+    "choice": "0.18",
+    "mis_step": "Subtracts the angles first and treats 17 degrees as the angle of a single right triangle with horizontal leg 0.60, computing 0.60*tan(17 degrees)."
+   },
+   {
+    "choice": "0.77",
+    "mis_step": "Uses only the 38-degree sighting and mistakes 0.60 m for the height, solving for the horizontal leg 0.60/tan(38 degrees) instead."
+   }
+  ]
+ },
+ {
+  "id": "M113",
+  "domain": "Geometry and Trigonometry",
+  "subskill": "Similar triangles in a light-and-shadow configuration",
+  "difficulty": "medium",
+  "topic_tag": "library circulation",
+  "prompt": "A single ceiling lamp lights the open floor around a library's circulation desk. Let O be the point on the floor directly beneath the lamp. A vertical returns display stand 1.8 m tall stands with its base 4.8 m from O. The shadow that the top of the stand casts falls on the floor at a point 8.0 m from O, on the same straight line as O and the stand, with the stand between them. How high above the floor, in meters, is the lamp?",
+  "choices": [
+   "3.0",
+   "8.0",
+   "2.7",
+   "4.5"
+  ],
+  "correct_answer": "4.5",
+  "explanation": "The lamp, the stand top, and the shadow tip lie on one ray, so the triangle with height h and base 8.0 is similar to the triangle with height 1.8 and base 8.0 - 4.8 = 3.2. Then h = 8.0 * 1.8/3.2 = 4.5 m.",
+  "solve": "const standHeight = 1.8, standFromO = 4.8, shadowTipFromO = 8.0;\nconst shadowLength = shadowTipFromO - standFromO;\nreturn shadowTipFromO * standHeight / shadowLength;",
+  "distractor_steps": [
+   {
+    "choice": "3.0",
+    "mis_step": "Uses the distance from O to the stand as the large triangle's base instead of the distance from O to the shadow tip: 4.8 * 1.8/3.2."
+   },
+   {
+    "choice": "8.0",
+    "mis_step": "Reads the distance from O to the shadow tip as the answer, confusing the horizontal floor distance with the vertical height."
+   },
+   {
+    "choice": "2.7",
+    "mis_step": "Pairs the sides across the wrong triangles, scaling by 8.0/4.8 instead of 8.0/3.2: 1.8 * 8.0/4.8."
+   }
+  ]
+ },
+ {
+  "id": "M114",
+  "domain": "Geometry and Trigonometry",
+  "subskill": "Coordinate geometry: area of a region bounded by segments and a horizontal line",
+  "difficulty": "medium",
+  "topic_tag": "coffee roast profile",
+  "prompt": "A roastery logs a roast profile as points (t, T), where t is time in minutes and T is bean temperature in degrees Celsius. After first crack the logged profile is modeled by the two straight segments joining (9, 178) to (13, 194) and (13, 194) to (17, 201). The roastery scores a batch by the area, in units of degree-Celsius-minutes, of the region bounded above by this two-segment path, below by the horizontal line T = 170, and on the sides by the vertical lines t = 9 and t = 17. What is that area?",
+  "choices": [
+   "156",
+   "174",
+   "220",
+   "128"
+  ],
+  "correct_answer": "174",
+  "explanation": "Above T = 170 the heights at t = 9, 13, 17 are 8, 24, and 31, so the region splits into two trapezoids of width 4: (8 + 24)/2 * 4 = 64 and (24 + 31)/2 * 4 = 110, totaling 174.",
+  "solve": "const base = 170;\nconst pts = [[9, 178], [13, 194], [17, 201]];\nlet area = 0;\nfor (let i = 0; i < pts.length - 1; i++) {\n  const h1 = pts[i][1] - base;\n  const h2 = pts[i + 1][1] - base;\n  area += (h1 + h2) / 2 * (pts[i + 1][0] - pts[i][0]);\n}\nreturn area;",
+  "distractor_steps": [
+   {
+    "choice": "156",
+    "mis_step": "Ignores the bend at (13, 194) and treats the whole span as one trapezoid: (8 + 31)/2 * 8."
+   },
+   {
+    "choice": "220",
+    "mis_step": "Replaces each trapezoid by a rectangle whose height is taken at the right end of its interval: 24*4 + 31*4."
+   },
+   {
+    "choice": "128",
+    "mis_step": "Replaces each trapezoid by a rectangle whose height is taken at the left end of its interval: 8*4 + 24*4."
+   }
+  ]
+ },
+ {
+  "id": "M115",
+  "domain": "Geometry and Trigonometry",
+  "subskill": "Volume of a cone with radius scaled by depth",
+  "difficulty": "hard",
+  "topic_tag": "water tower drainage",
+  "prompt": "A water tower's tank is a right circular cone with its apex pointing straight down. The circular rim at the top has radius 4.0 m and sits 9.0 m above the apex. The tank starts completely full, and water is drained from the apex at a steady 1400 liters per minute until the water surface is 6.0 m above the apex. Note that 1 cubic meter equals 1000 liters. To the nearest minute, how long does the draining take?",
+  "choices": [
+   "36",
+   "108",
+   "32",
+   "76"
+  ],
+  "correct_answer": "76",
+  "explanation": "At depth 6.0 m the water surface radius is 4.0 * 6.0/9.0 = 8/3 m, so the water left is (1/3)*pi*(8/3)^2*6.0 cubic meters and the amount drained is (1/3)*pi*(4.0^2*9.0 - (8/3)^2*6.0), about 106.12 cubic meters, or 106116 liters; dividing by 1400 liters per minute gives about 75.8 minutes.",
+  "solve": "const R = 4.0, H = 9.0, depth = 6.0, rate = 1400;\nconst r = R * depth / H;\nconst drainedM3 = (Math.PI / 3) * (R * R * H - r * r * depth);\nreturn Math.round(drainedM3 * 1000 / rate);",
+  "distractor_steps": [
+   {
+    "choice": "36",
+    "mis_step": "Keeps the rim radius 4.0 m at the 6.0 m level instead of scaling it, computing (1/3)*pi*4.0^2*(9.0 - 6.0) as the drained volume."
+   },
+   {
+    "choice": "108",
+    "mis_step": "Drains the entire cone, using (1/3)*pi*4.0^2*9.0 instead of only the portion above the 6.0 m level."
+   },
+   {
+    "choice": "32",
+    "mis_step": "Scales the radius correctly but times the water remaining below the 6.0 m level, (1/3)*pi*(8/3)^2*6.0, rather than the water removed."
+   }
+  ]
+ },
+ {
+  "id": "M116",
+  "domain": "Problem-Solving and Data Analysis",
+  "subskill": "ratios and rates",
+  "topic_tag": "trail maintenance crew",
+  "difficulty": "medium",
+  "prompt": "A trail maintenance crew of 6 workers, each clearing brush at the same constant rate, clears 0.9 mile of trail in 5 hours. For next week the crew leader must have 3.6 miles of trail cleared during a single 8-hour shift. How many workers, each clearing at that same constant rate, must be assigned to that shift?",
+  "choices": [
+   "9",
+   "15",
+   "20",
+   "24"
+  ],
+  "correct_answer": "15",
+  "explanation": "Each worker clears 0.9/(6*5) = 0.03 mile per hour, so one worker clears 8*0.03 = 0.24 mile in an 8-hour shift, and 3.6/0.24 = 15 workers are needed.",
+  "solve": "const workers = 6, miles1 = 0.9, hours1 = 5, miles2 = 3.6, hours2 = 8;\nconst perWorkerHour = miles1 / (workers * hours1);\nconst needed = miles2 / (hours2 * perWorkerHour);\nreturn Math.round(needed * 1e6) / 1e6;",
+  "distractor_steps": [
+   {
+    "choice": "9",
+    "mis_step": "Solves correctly for 15 total workers but reports the ADDITIONAL workers beyond the current crew, 15 - 6 = 9."
+   },
+   {
+    "choice": "20",
+    "mis_step": "Uses the whole crew's rate 0.9/5 = 0.18 mile per hour and computes 3.6/0.18 = 20, producing a number of HOURS and reporting it as a number of workers."
+   },
+   {
+    "choice": "24",
+    "mis_step": "Scales the crew by the mileage ratio only, 3.6/0.9 = 4, giving 6*4 = 24 workers, ignoring that the shift is 8 hours rather than 5."
+   }
+  ]
+ },
+ {
+  "id": "M118",
+  "domain": "Problem-Solving and Data Analysis",
+  "subskill": "unit conversion",
+  "topic_tag": "battery discharge",
+  "difficulty": "hard",
+  "prompt": "A remote weather station runs from a 12-volt battery rated at 84 ampere-hours, so the battery stores (12)(84) watt-hours of energy. The manufacturer specifies that only 80% of that rated energy may be discharged. The station's sensors draw 3.5 watts continuously, and in addition its radio transmitter draws 18 watts for 4 minutes out of every hour. Under these conditions, what is the greatest whole number of hours the station can operate before the usable energy is exhausted?",
+  "choices": [
+   "171",
+   "191",
+   "214",
+   "230"
+  ],
+  "correct_answer": "171",
+  "explanation": "Usable energy is 0.8(12)(84) = 806.4 watt-hours, and the station uses 3.5 + 18(4/60) = 4.7 watt-hours each hour, so it runs 806.4/4.7 = 171.5 hours, or 171 whole hours.",
+  "solve": "const usableWh = 12 * 84 * 0.8;\nconst hourlyLoad = 3.5 + 18 * (4 / 60);\nreturn Math.floor(usableWh / hourlyLoad);",
+  "distractor_steps": [
+   {
+    "choice": "191",
+    "mis_step": "Reads '4 minutes out of every hour' as 4 percent of the hour, giving a transmitter cost of 18(0.04) = 0.72 watt-hour per hour and a load of 4.22: floor(806.4/4.22) = 191."
+   },
+   {
+    "choice": "214",
+    "mis_step": "Uses the full rated 12(84) = 1008 watt-hours and never applies the 80% usable-energy restriction: floor(1008/4.7) = 214."
+   },
+   {
+    "choice": "230",
+    "mis_step": "Applies the 80% restriction but budgets only the continuous 3.5-watt sensor draw, omitting the transmitter entirely: floor(806.4/3.5) = 230."
+   }
+  ]
+ },
+ {
+  "id": "M119",
+  "domain": "Problem-Solving and Data Analysis",
+  "subskill": "probability from two-way tables",
+  "topic_tag": "parking garage flow",
+  "difficulty": "medium",
+  "prompt": "A parking garage logged all 600 vehicles that entered on one day. Of these, 360 entered before noon and 240 entered at or after noon. Among the vehicles that entered before noon, 300 were driven by monthly pass holders; among the vehicles that entered at or after noon, 150 were driven by monthly pass holders. One of the 600 logged vehicles is selected at random. Given that the selected vehicle was not driven by a monthly pass holder, what is the probability that it entered at or after noon?",
+  "choices": [
+   "3/20",
+   "3/8",
+   "2/5",
+   "3/5"
+  ],
+  "correct_answer": "3/5",
+  "explanation": "The vehicles not driven by pass holders number 360 - 300 = 60 before noon and 240 - 150 = 90 at or after noon, for 150 in all, so the probability is 90/150.",
+  "solve": "const beforeTotal = 360, beforePass = 300, afterTotal = 240, afterPass = 150;\nconst beforeNon = beforeTotal - beforePass;\nconst afterNon = afterTotal - afterPass;\nconst num = afterNon, den = beforeNon + afterNon;\nconst gcd = (a, b) => b ? gcd(b, a % b) : a;\nconst g = gcd(num, den);\nreturn (num / g) + \"/\" + (den / g);",
+  "distractor_steps": [
+   {
+    "choice": "3/20",
+    "mis_step": "Computes the joint probability rather than the conditional one, dividing the 90 non-pass after-noon vehicles by the full log of 600."
+   },
+   {
+    "choice": "3/8",
+    "mis_step": "Reverses the condition and computes the probability that an at-or-after-noon vehicle had no pass, 90/240."
+   },
+   {
+    "choice": "2/5",
+    "mis_step": "Ignores the given condition entirely and reports the probability that a vehicle entered at or after noon, 240/600."
+   }
+  ]
+ },
+ {
+  "id": "M121",
+  "domain": "Advanced Math",
+  "subskill": "Nonlinear equations in one variable",
+  "topic_tag": "soil compaction test",
+  "difficulty": "hard",
+  "prompt": "In a soil compaction test, two labs model the dry-density gain g, in kg/m^3, that a sample achieves as a function of its moisture content m, in percent. Lab A uses the model g = m - 4, and Lab B uses the model g = sqrt(2m + 40). There is exactly one moisture content at which the two models predict the same gain. What is that predicted gain, in kg/m^3?",
+  "choices": [
+   "6",
+   "8",
+   "10",
+   "12"
+  ],
+  "correct_answer": "8",
+  "explanation": "Setting m - 4 = sqrt(2m + 40) and squaring gives m^2 - 10m - 24 = 0, so m = 12 or m = -2; only m = 12 satisfies the original equation because a gain of m - 4 must be nonnegative. The common predicted gain is 12 - 4 = 8 kg/m^3.",
+  "solve": "var a = 1, b = -10, c = -24;\nvar d = Math.sqrt(b * b - 4 * a * c);\nvar roots = [(-b + d) / (2 * a), (-b - d) / (2 * a)];\nvar m = roots.filter(function (x) {\n  return (x - 4) >= 0 && Math.abs(Math.sqrt(2 * x + 40) - (x - 4)) < 1e-9;\n})[0];\nreturn m - 4;",
+  "distractor_steps": [
+   {
+    "choice": "6",
+    "mis_step": "Fails to discard the extraneous root and evaluates Lab B's model at m = -2: sqrt(2(-2) + 40) = 6."
+   },
+   {
+    "choice": "10",
+    "mis_step": "Sign error when squaring: expands (m - 4)^2 as m^2 - 8m - 16, gets m^2 - 10m - 56 = 0 and m = 14, then reports 14 - 4 = 10."
+   },
+   {
+    "choice": "12",
+    "mis_step": "Solves correctly for the moisture content but reports m = 12 instead of substituting it back to get the density gain."
+   }
+  ]
+ },
+ {
+  "id": "M122",
+  "domain": "Advanced Math",
+  "subskill": "Nonlinear equations in one variable and systems of equations in two variables",
+  "topic_tag": "printing press runs",
+  "difficulty": "medium",
+  "prompt": "A print shop bids on poster runs. For a run of x thousand posters, the shop's total cost, in hundreds of dollars, is x^2 + 4x + 45, and its revenue, in hundreds of dollars, is 22x. Revenue equals cost at two different run sizes. What is the larger of those two run sizes, in thousands of posters?",
+  "choices": [
+   "3",
+   "9",
+   "15",
+   "18"
+  ],
+  "correct_answer": "15",
+  "explanation": "Setting x^2 + 4x + 45 = 22x gives x^2 - 18x + 45 = 0, which factors as (x - 3)(x - 15) = 0. The two break-even run sizes are 3 thousand and 15 thousand posters.",
+  "solve": "var a = 1, b = 4 - 22, c = 45;\nvar d = Math.sqrt(b * b - 4 * a * c);\nreturn Math.max((-b + d) / (2 * a), (-b - d) / (2 * a));",
+  "distractor_steps": [
+   {
+    "choice": "3",
+    "mis_step": "Solves the quadratic correctly but reports the smaller root, x = 3, as the answer."
+   },
+   {
+    "choice": "9",
+    "mis_step": "Uses the axis of symmetry x = 18/2 = 9 (the most profitable run size) instead of a value where revenue equals cost."
+   },
+   {
+    "choice": "18",
+    "mis_step": "Drops the constant 45 when moving cost and revenue to one side, solving x^2 - 18x = 0 to get x = 18."
+   }
+  ]
+ },
+ {
+  "id": "M123",
+  "domain": "Advanced Math",
+  "subskill": "Nonlinear functions",
+  "topic_tag": "fish hatchery growth",
+  "difficulty": "medium",
+  "prompt": "A hatchery tracks the total biomass of fish in one rearing tank. The biomass was 160 kg on day 0 and 240 kg on day 20, and the technicians model the biomass as growing exponentially at a constant percent rate. According to this model, what is the biomass, in kilograms, on day 80?",
+  "choices": [
+   "480",
+   "540",
+   "810",
+   "1215"
+  ],
+  "correct_answer": "810",
+  "explanation": "The growth factor for each 20-day interval is 240/160 = 1.5, and day 80 is four such intervals after day 0. The modeled biomass is 160(1.5)^4 = 810 kg.",
+  "solve": "var initial = 160;\nvar ratio = 240 / 160;\nvar periods = (80 - 0) / 20;\nreturn initial * Math.pow(ratio, periods);",
+  "distractor_steps": [
+   {
+    "choice": "480",
+    "mis_step": "Models the growth as linear, adding a constant 80 kg per 20 days: 160 + 4(80) = 480."
+   },
+   {
+    "choice": "540",
+    "mis_step": "Counts only the three 20-day intervals between day 20 and day 80 while still starting from 160 kg: 160(1.5)^3 = 540."
+   },
+   {
+    "choice": "1215",
+    "mis_step": "Uses the day-20 reading of 240 kg as the initial amount but still applies four growth periods: 240(1.5)^4 = 1215."
+   }
+  ]
+ },
+ {
+  "id": "M124",
+  "domain": "Advanced Math",
+  "subskill": "Equivalent expressions",
+  "topic_tag": "sound insulation panels",
+  "difficulty": "hard",
+  "prompt": "A workshop's total assembly time, in minutes, for a batch of x sound insulation panels is modeled by T(x) = 6x^3 + 5x^2 + kx - 12, where k is a constant. To separate setup work from per-panel work, a planner rewrites the model as T(x) = (2x - 3)(3x^2 + ax + 4), where a is a constant, and this rewriting holds for every value of x. How many minutes does a batch of 3 panels take?",
+  "choices": [
+   "156",
+   "168",
+   "174",
+   "234"
+  ],
+  "correct_answer": "156",
+  "explanation": "Expanding (2x - 3)(3x^2 + ax + 4) gives 6x^3 + (2a - 9)x^2 + (8 - 3a)x - 12, so 2a - 9 = 5 gives a = 7 and then k = 8 - 3(7) = -13. Evaluating 6x^3 + 5x^2 - 13x - 12 at x = 3 gives 162 + 45 - 39 - 12 = 156 minutes.",
+  "solve": "var a = (5 + 9) / 2;\nvar k = 8 - 3 * a;\nvar x = 3;\nreturn 6 * x * x * x + 5 * x * x + k * x - 12;",
+  "distractor_steps": [
+   {
+    "choice": "168",
+    "mis_step": "Finds a = 7 and k = -13 but omits the constant term -12 when evaluating: 162 + 45 - 39 = 168."
+   },
+   {
+    "choice": "174",
+    "mis_step": "Matches the coefficients to the wrong powers, setting 8 - 3a = 5 to get a = 1 and then k = 2(1) - 9 = -7, giving 162 + 45 - 21 - 12 = 174."
+   },
+   {
+    "choice": "234",
+    "mis_step": "Reverses the subtraction when matching the x-term, taking k = 3a - 8 = 13, giving 162 + 45 + 39 - 12 = 234."
+   }
+  ]
+ },
+ {
+  "id": "M125",
+  "domain": "Advanced Math",
+  "subskill": "Function notation and composition",
+  "topic_tag": "ice rink cooling",
+  "difficulty": "medium",
+  "prompt": "At an ice rink, the slab starts 10 degrees Celsius above its target temperature, and the gap closes at a steady rate, so h hours after the chiller starts the gap is T(h) = 10 - 0.5h degrees Celsius. Because deeper cooling is less efficient, the chiller's energy cost, in dollars per hour, when the gap is T degrees is C(T) = 40 - 2T. What is the chiller's energy cost, in dollars per hour, 14 hours after it starts?",
+  "choices": [
+   "12",
+   "20",
+   "26",
+   "34"
+  ],
+  "correct_answer": "34",
+  "explanation": "After 14 hours the gap is 10 - 0.5(14) = 3 degrees Celsius, so the cost per hour is 40 - 2(3) = 34 dollars.",
+  "solve": "var T = 10 - 0.5 * 14;\nreturn 40 - 2 * T;",
+  "distractor_steps": [
+   {
+    "choice": "12",
+    "mis_step": "Substitutes the time 14 directly into the cost function instead of the temperature gap: 40 - 2(14) = 12."
+   },
+   {
+    "choice": "20",
+    "mis_step": "Uses the starting gap of 10 degrees rather than the gap after 14 hours: 40 - 2(10) = 20."
+   },
+   {
+    "choice": "26",
+    "mis_step": "Uses the total drop 0.5(14) = 7 degrees as the gap instead of subtracting it from 10: 40 - 2(7) = 26."
+   }
+  ]
+ },
+ {
+  "id": "M126",
+  "domain": "Algebra",
+  "subskill": "systems of linear equations in context (mixture)",
+  "topic_tag": "fertilizer blending",
+  "difficulty": "medium",
+  "prompt": "A supplier makes a custom fertilizer by blending two stock products. Product A is 12% nitrogen by mass and Product B is 32% nitrogen by mass. The supplier wants 750 kilograms of a blend that is 20% nitrogen by mass. How many kilograms of Product A should be used?",
+  "choices": [
+   "300",
+   "375",
+   "450",
+   "600"
+  ],
+  "correct_answer": "450",
+  "explanation": "The blend must contain 0.20 times 750 = 150 kilograms of nitrogen, so if a kilograms of Product A are used then 0.12a + 0.32(750 - a) = 150, giving 240 - 0.20a = 150 and a = 450 kilograms.",
+  "solve": "const total = 750;\nconst pA = 12, pB = 32, pT = 20; // percent nitrogen, kept as integers\n// pA*a + pB*(total - a) = pT*total  ->  a = total*(pB - pT)/(pB - pA)\nconst a = total * (pB - pT) / (pB - pA);\nreturn a;",
+  "distractor_steps": [
+   {
+    "choice": "300",
+    "mis_step": "Solved the system correctly but reported the mass of Product B (750 - 450) instead of Product A."
+   },
+   {
+    "choice": "375",
+    "mis_step": "Assumed 20% is the plain average of 12% and 32%, so split the 750 kilograms equally between the two products."
+   },
+   {
+    "choice": "600",
+    "mis_step": "Read '20% nitrogen' as '20% of the mass is the high-nitrogen product', taking 0.20(750) = 150 kilograms of B and 600 kilograms of A."
+   }
+  ]
+ },
+ {
+  "id": "M127",
+  "domain": "Algebra",
+  "subskill": "absolute value inequalities in context",
+  "topic_tag": "cable tension survey",
+  "difficulty": "hard",
+  "prompt": "In a survey of stay cables, the tension T in a cable is measured in newtons. A cable passes the tension specification if |T - 3800| <= 260. Separately, a cable is flagged for retesting if its tension differs from the design tension of 4000 newtons by more than 4% of that design tension. The tensions that both pass the specification and are not flagged for retesting form a single interval. What is the width, in newtons, of that interval?",
+  "choices": [
+   "220",
+   "320",
+   "520",
+   "620"
+  ],
+  "correct_answer": "220",
+  "explanation": "Passing the specification means 3540 <= T <= 4060, and 4% of 4000 is 160, so not being flagged means 3840 <= T <= 4160; tensions meeting both run from 3840 to 4060, a width of 4060 - 3840 = 220 newtons.",
+  "solve": "const specCenter = 3800, specTol = 260;\nconst design = 4000;\nconst flagTol = 4 * design / 100; // 4 percent of the design tension\nconst lo = Math.max(specCenter - specTol, design - flagTol);\nconst hi = Math.min(specCenter + specTol, design + flagTol);\nreturn hi - lo;",
+  "distractor_steps": [
+   {
+    "choice": "320",
+    "mis_step": "Reported the width of the not-flagged interval alone (4160 - 3840), ignoring the specification condition."
+   },
+   {
+    "choice": "520",
+    "mis_step": "Reported the width of the specification interval alone (4060 - 3540), ignoring the retesting condition."
+   },
+   {
+    "choice": "620",
+    "mis_step": "Combined the two intervals by taking the outermost endpoints (3540 to 4160) instead of the overlap."
+   }
+  ]
+ },
+ {
+  "id": "M128",
+  "domain": "Algebra",
+  "subskill": "systems of linear equations in context (rates)",
+  "topic_tag": "honey extraction",
+  "difficulty": "medium",
+  "prompt": "A beekeeper uses two extractors during a harvest. The small extractor spins 24 frames per hour and the large extractor spins 40 frames per hour. On one harvest day the two machines ran for a combined total of 14 hours and together spun 480 frames. For how many hours did the small extractor run?",
+  "choices": [
+   "5",
+   "7",
+   "9",
+   "12"
+  ],
+  "correct_answer": "5",
+  "explanation": "If the small extractor runs s hours and the large one runs 14 - s hours, then 24s + 40(14 - s) = 480, so 560 - 16s = 480 and s = 5 hours.",
+  "solve": "const rateSmall = 24, rateLarge = 40;\nconst hours = 14, frames = 480;\n// rateSmall*s + rateLarge*(hours - s) = frames\nconst s = (rateLarge * hours - frames) / (rateLarge - rateSmall);\nreturn s;",
+  "distractor_steps": [
+   {
+    "choice": "9",
+    "mis_step": "Solved the system correctly but reported the large extractor's running time (14 - 5) instead of the small extractor's."
+   },
+   {
+    "choice": "7",
+    "mis_step": "Assumed the two machines ran for equal amounts of time and split the 14 combined hours in half."
+   },
+   {
+    "choice": "12",
+    "mis_step": "Ignored the small extractor and divided the 480 frames by the large extractor's rate of 40 frames per hour."
+   }
+  ]
+ },
+ {
+  "id": "M129",
+  "domain": "Algebra",
+  "subskill": "linear inequalities in context",
+  "topic_tag": "glass furnace fuel",
+  "difficulty": "medium",
+  "prompt": "A glass furnace burns natural gas at 300 cubic meters per hour while melting and at 120 cubic meters per hour while holding. During a 45-hour production run the furnace is in exactly one of these two states at all times, at least 12 of the hours must be holding hours, and only 10200 cubic meters of gas are available for the run. What is the greatest whole number of hours the furnace can spend melting?",
+  "choices": [
+   "16",
+   "19",
+   "26",
+   "33"
+  ],
+  "correct_answer": "26",
+  "explanation": "With m melting hours, gas use is 300m + 120(45 - m) = 5400 + 180m, and 5400 + 180m <= 10200 gives m <= 26.66..., which is below the 33-hour cap from the 12 required holding hours, so at most 26 whole hours of melting are possible.",
+  "solve": "const melt = 300, hold = 120;\nconst total = 45, supply = 10200, minHold = 12;\nconst fromGas = (supply - hold * total) / (melt - hold);\nconst fromHoldRule = total - minHold;\nreturn Math.floor(Math.min(fromGas, fromHoldRule));",
+  "distractor_steps": [
+   {
+    "choice": "16",
+    "mis_step": "Divided the leftover allowance 10200 - 5400 = 4800 by the melting rate 300 instead of by the 180 cubic-meter-per-hour rate difference."
+   },
+   {
+    "choice": "19",
+    "mis_step": "Solved correctly but reported the number of holding hours (45 - 26) rather than the melting hours."
+   },
+   {
+    "choice": "33",
+    "mis_step": "Used only the requirement of at least 12 holding hours (45 - 12) and never checked the 10200 cubic meter gas supply."
+   }
+  ]
+ },
+ {
+  "id": "M130",
+  "domain": "Algebra",
+  "subskill": "systems of linear equations with a net-change step",
+  "topic_tag": "bridge load testing",
+  "difficulty": "hard",
+  "prompt": "A bridge load test uses 60 ballast units in total, some concrete and some steel. Each concrete unit weighs 1.8 tons and each steel unit weighs 3.0 tons, and the 60 units together weigh 138 tons. For the next stage engineers keep the total at 60 units but replace some of the concrete units with steel units, one for one, until the ballast weighs 150 tons. How many units are replaced?",
+  "choices": [
+   "4",
+   "10",
+   "25",
+   "35"
+  ],
+  "correct_answer": "10",
+  "explanation": "From c + s = 60 and 1.8c + 3.0s = 138 the rig starts with 35 concrete and 25 steel units; each one-for-one replacement adds 3.0 - 1.8 = 1.2 tons, so reaching 150 tons requires (150 - 138)/1.2 = 10 replacements.",
+  "solve": "const units = 60;\nconst wC = 18, wS = 30;   // tons times 10, to stay exact\nconst w0 = 1380, w1 = 1500; // tons times 10\nconst steel0 = (w0 - wC * units) / (wS - wC);\nconst concrete0 = units - steel0;\nconst n = (w1 - w0) / (wS - wC);\nreturn n <= concrete0 ? n : concrete0;",
+  "distractor_steps": [
+   {
+    "choice": "25",
+    "mis_step": "Solved the starting system and reported the initial number of steel units instead of the number of replacements."
+   },
+   {
+    "choice": "35",
+    "mis_step": "Solved the starting system and reported the initial number of concrete units instead of the number of replacements."
+   },
+   {
+    "choice": "4",
+    "mis_step": "Divided the 12-ton increase by the full steel weight 3.0 tons, treating each swapped-in steel unit as pure added weight and ignoring the concrete unit removed."
+   }
+  ]
+ },
+ {
+  "id": "M131",
+  "domain": "Geometry and Trigonometry",
+  "subskill": "right-triangle trigonometry (slope foreshortening)",
+  "topic_tag": "tea plantation harvest",
+  "difficulty": "medium",
+  "prompt": "On a survey map, a rectangular tea plot measures 205 m in the up-slope direction and 78 m across the slope. Map distances are horizontal distances. The hillside the plot sits on rises at a constant angle of 14 degrees above the horizontal, so the actual ground running up the slope is longer than its map length, while distances measured across the slope are unaffected. To the nearest square meter, what is the actual ground surface area of the plot, in square meters?",
+  "choices": [
+   "15515",
+   "15990",
+   "16480",
+   "16984"
+  ],
+  "correct_answer": "16480",
+  "explanation": "The 205 m map length is the horizontal projection of the true up-slope length, so the true length is 205/cos(14 degrees) = 211.28 m, while the 78 m cross-slope width is already a true length. The surface area is 211.28 * 78 = 16480 square meters.",
+  "solve": "const w = 205, s = 78, ang = 14;\nconst slope = w / Math.cos(ang * Math.PI / 180);\nreturn String(Math.round(slope * s));",
+  "distractor_steps": [
+   {
+    "choice": "15990",
+    "mis_step": "Ignored the incline entirely and multiplied the two map dimensions, 205 * 78."
+   },
+   {
+    "choice": "15515",
+    "mis_step": "Multiplied by cos(14) instead of dividing, treating 205 m as the slope length rather than its horizontal projection: 205*cos(14)*78."
+   },
+   {
+    "choice": "16984",
+    "mis_step": "Applied the slope correction to both dimensions, (205/cos 14) * (78/cos 14), though the cross-slope width is not foreshortened."
+   }
+  ]
+ },
+ {
+  "id": "M132",
+  "domain": "Geometry and Trigonometry",
+  "subskill": "volume of a cylinder with a net rate",
+  "topic_tag": "well water pumping",
+  "difficulty": "medium",
+  "prompt": "A village well is a vertical cylinder with an inside diameter of 1.8 m. Water currently stands 5.4 m deep in the well. A pump removes water at 240 liters per minute, while groundwater seeps in and refills the well at 15 liters per minute the whole time the pump runs. The crew wants the standing water reduced to a depth of 2.2 m. Using 1 cubic meter = 1000 liters, how many minutes of pumping are needed, to the nearest tenth of a minute?",
+  "choices": [
+   "36.2",
+   "31.9",
+   "61.1",
+   "33.9"
+  ],
+  "correct_answer": "36.2",
+  "explanation": "Lowering the water from 5.4 m to 2.2 m removes a cylinder of height 3.2 m and radius 0.9 m, or pi*0.9^2*3.2 = 8.143 cubic meters = 8143 liters. The water level falls at a net 240 - 15 = 225 liters per minute, so 8143/225 = 36.2 minutes.",
+  "solve": "const d = 1.8, h0 = 5.4, h1 = 2.2, pump = 240, seep = 15;\nconst r = d / 2;\nconst liters = Math.PI * r * r * (h0 - h1) * 1000;\nconst t = liters / (pump - seep);\nreturn (Math.round(t * 10) / 10).toFixed(1);",
+  "distractor_steps": [
+   {
+    "choice": "33.9",
+    "mis_step": "Ignored the seepage and divided the 8143 liters by the pump rate 240 alone."
+   },
+   {
+    "choice": "31.9",
+    "mis_step": "Added the seepage to the pump rate instead of subtracting it, using 255 liters per minute."
+   },
+   {
+    "choice": "61.1",
+    "mis_step": "Emptied the whole 5.4 m water column instead of only the 3.2 m drop, using pi*0.9^2*5.4 = 13741 liters over the net 225."
+   }
+  ]
+ },
+ {
+  "id": "M133",
+  "domain": "Geometry and Trigonometry",
+  "subskill": "solving for a radius from volume; cube-root scaling",
+  "topic_tag": "pastry proofing",
+  "difficulty": "hard",
+  "prompt": "A baker mounds dough into a dome shaped like a hemisphere resting flat on a tray. Before proofing the dough occupies 452 cm^3; after proofing it occupies 836 cm^3, and the dough keeps its hemispherical shape the entire time. The height of the dome is the distance from the tray to the top of the dome. To the nearest tenth of a centimeter, by how much does the height of the dome increase during proofing?",
+  "choices": [
+   "1.1",
+   "1.4",
+   "5.1",
+   "7.4"
+  ],
+  "correct_answer": "1.4",
+  "explanation": "A hemisphere of volume V has radius (3V/(2*pi))^(1/3), and its height equals that radius, so the heights are (3*452/(2*pi))^(1/3) = 6.0 cm and (3*836/(2*pi))^(1/3) = 7.4 cm. The increase is 7.4 - 6.0 = 1.4 cm.",
+  "solve": "const V0 = 452, V1 = 836;\nconst rad = function (V) { return Math.cbrt(3 * V / (2 * Math.PI)); };\nconst diff = rad(V1) - rad(V0);\nreturn (Math.round(diff * 10) / 10).toFixed(1);",
+  "distractor_steps": [
+   {
+    "choice": "1.1",
+    "mis_step": "Used the full-sphere formula (3V/(4*pi))^(1/3) for both radii instead of the hemisphere formula, then subtracted."
+   },
+   {
+    "choice": "5.1",
+    "mis_step": "Scaled the height by the volume ratio 836/452 = 1.85 directly rather than by its cube root: 6.0*1.85 - 6.0."
+   },
+   {
+    "choice": "7.4",
+    "mis_step": "Reported the final dome height instead of the increase, omitting the subtraction of the original 6.0 cm."
+   }
+  ]
+ },
+ {
+  "id": "M134",
+  "domain": "Geometry and Trigonometry",
+  "subskill": "circles: chord, sagitta, and radius",
+  "topic_tag": "solar water heater",
+  "difficulty": "medium",
+  "prompt": "The reflector behind a solar water heater is a trough whose cross section is an arc of a circle. Measured straight across, the opening of the reflector spans 118 cm, and the deepest point of the arc lies 24 cm below the midpoint of that straight span. To the nearest tenth of a centimeter, what is the radius of the circle the arc comes from, in centimeters?",
+  "choices": [
+   "72.5",
+   "59.0",
+   "96.5",
+   "84.5"
+  ],
+  "correct_answer": "84.5",
+  "explanation": "Place the center a distance r from the arc's low point; the endpoint of the 118 cm span is 59 cm from the midline and r - 24 from the center, so r^2 = 59^2 + (r - 24)^2. Expanding gives 48r = 3481 + 576 = 4057, so r = 84.5 cm.",
+  "solve": "const chord = 118, depth = 24;\nconst half = chord / 2;\nconst r = (half * half + depth * depth) / (2 * depth);\nreturn (Math.round(r * 10) / 10).toFixed(1);",
+  "distractor_steps": [
+   {
+    "choice": "59.0",
+    "mis_step": "Took half the 118 cm span as the radius, treating the opening as a diameter of the circle."
+   },
+   {
+    "choice": "72.5",
+    "mis_step": "Dropped the depth^2 term when expanding, using r = (chord^2)/(8*depth) = 13924/192."
+   },
+   {
+    "choice": "96.5",
+    "mis_step": "Added the full 24 cm depth rather than half of it to the 72.5 cm term when assembling the radius."
+   }
+  ]
+ },
+ {
+  "id": "M135",
+  "domain": "Geometry and Trigonometry",
+  "subskill": "distance in the coordinate plane with a scale factor",
+  "topic_tag": "bus route timing",
+  "difficulty": "medium",
+  "prompt": "On a city planner's grid, a bus shelter sits at the point (-6, 8) and a transit hub sits at the point (18, 15). One grid unit represents 0.6 km, and a proposed shuttle would run in a straight line between the two points at an average speed of 26 km/h including stops. To the nearest tenth of a minute, how long would one trip take?",
+  "choices": [
+   "19.2",
+   "34.6",
+   "42.9",
+   "57.7"
+  ],
+  "correct_answer": "34.6",
+  "explanation": "The straight-line separation is sqrt((18-(-6))^2 + (15-8)^2) = sqrt(576 + 49) = 25 grid units, which is 25 * 0.6 = 15 km. At 26 km/h that trip takes (15/26)*60 = 34.6 minutes.",
+  "solve": "const x1 = -6, y1 = 8, x2 = 18, y2 = 15, scale = 0.6, speed = 26;\nconst units = Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));\nconst km = units * scale;\nconst minutes = km / speed * 60;\nreturn (Math.round(minutes * 10) / 10).toFixed(1);",
+  "distractor_steps": [
+   {
+    "choice": "57.7",
+    "mis_step": "Skipped the 0.6 km per unit conversion and treated the 25 grid units as 25 km."
+   },
+   {
+    "choice": "42.9",
+    "mis_step": "Added the horizontal and vertical legs, 24 + 7 = 31 units, instead of applying the distance formula."
+   },
+   {
+    "choice": "19.2",
+    "mis_step": "Sign slip subtracting the negative coordinate: used 18 - 6 = 12 for the horizontal leg, giving sqrt(144+49) units."
+   }
+  ]
+ },
+ {
+  "id": "M136",
+  "domain": "Problem-Solving and Data Analysis",
+  "subskill": "Rates with unit conversion and a split-price percent",
+  "topic_tag": "sawmill output",
+  "difficulty": "hard",
+  "prompt": "A sawmill processes 16 logs per hour and runs 7.5 hours each day. Each log contains 45 cubic feet of wood, and 60% of that volume is recovered as sawn lumber; the remainder becomes sawdust and slabs. Lumber is sold by the board foot, where 1 cubic foot of lumber equals 12 board feet. Of the board feet produced in a day, 5% is graded off-grade and sells for $0.45 per board foot, and the rest sells for $0.90 per board foot. To the nearest cent, what is one day's lumber revenue, in dollars?",
+  "choices": [
+   "22744.80",
+   "33242.40",
+   "34117.20",
+   "34992.00"
+  ],
+  "correct_answer": "34117.20",
+  "explanation": "The mill cuts 16(7.5) = 120 logs holding 120(45) = 5400 cubic feet, of which 60% is lumber: 3240 cubic feet, or 3240(12) = 38880 board feet. Then 5% of 38880 is 1944 board feet at $0.45 and the remaining 36936 board feet at $0.90, giving 874.80 + 33242.40 = 34117.20 dollars.",
+  "solve": "const logs = 16 * 7.5;\nconst cubicFeet = logs * 45;\nconst lumberCubicFeet = cubicFeet * 0.60;\nconst boardFeet = lumberCubicFeet * 12;\nconst offGrade = boardFeet * 0.05;\nconst firsts = boardFeet - offGrade;\nconst revenue = firsts * 0.90 + offGrade * 0.45;\nreturn revenue.toFixed(2);",
+  "distractor_steps": [
+   {
+    "choice": "34992.00",
+    "mis_step": "Ignores the off-grade condition and prices all 38880 board feet at $0.90."
+   },
+   {
+    "choice": "33242.40",
+    "mis_step": "Treats the 5% off-grade lumber as unsellable scrap rather than selling it at $0.45, pricing only 36936 board feet."
+   },
+   {
+    "choice": "22744.80",
+    "mis_step": "Uses the 40% waste share instead of the 60% recovery share when converting log volume to lumber volume."
+   }
+  ]
+ },
+ {
+  "id": "M137",
+  "domain": "Problem-Solving and Data Analysis",
+  "subskill": "Successive percent changes on two factors",
+  "topic_tag": "vineyard irrigation",
+  "difficulty": "medium",
+  "prompt": "Last season a vineyard block used 625000 liters of irrigation water. Before this season the grower planted more vines, increasing the number of vines in the block by 12%, and installed drip emitters that decreased the water used per vine by 18%. If every vine in the block receives the reduced per-vine amount, how many liters of irrigation water does the block use this season?",
+  "choices": [
+   "512500",
+   "574000",
+   "587500",
+   "700000"
+  ],
+  "correct_answer": "574000",
+  "explanation": "Total water is (number of vines) times (water per vine), so the new total is 625000(1.12)(0.82) = 574000 liters.",
+  "solve": "const last = 625000;\nconst total = last * 1.12 * 0.82;\nreturn String(Math.round(total));",
+  "distractor_steps": [
+   {
+    "choice": "587500",
+    "mis_step": "Adds the percent changes instead of multiplying the factors, applying a single net change of 12% - 18% = -6% to 625000."
+   },
+   {
+    "choice": "700000",
+    "mis_step": "Applies only the 12% increase in vine count and stops at that intermediate total, ignoring the per-vine reduction."
+   },
+   {
+    "choice": "512500",
+    "mis_step": "Applies only the 18% per-vine reduction to last season's total, ignoring the additional vines."
+   }
+  ]
+ },
+ {
+  "id": "M138",
+  "domain": "Problem-Solving and Data Analysis",
+  "subskill": "Part-to-part ratio with unit conversion and ceiling",
+  "topic_tag": "film processing chemicals",
+  "difficulty": "medium",
+  "prompt": "A photo lab mixes film developer by combining concentrate and water in the ratio 2:13 by volume. One filled processing tank holds 4.5 liters of this working solution, and the lab fills 18 tanks during a week. Concentrate is sold only in 250-milliliter bottles, and any leftover concentrate in an opened bottle can be used in later tanks that same week. What is the least number of bottles of concentrate the lab must buy for the week?",
+  "choices": [
+   "54",
+   "44",
+   "50",
+   "43"
+  ],
+  "correct_answer": "44",
+  "explanation": "Concentrate is 2 of the 2 + 13 = 15 parts, so each 4.5-liter tank needs 4.5(2/15) = 0.6 liter, and 18 tanks need 10.8 liters, or 10800 milliliters. Since 10800/250 = 43.2, the lab must buy 44 bottles.",
+  "solve": "const tanks = 18;\nconst perTankLiters = 4.5 * (2 / (2 + 13));\nconst totalMl = tanks * perTankLiters * 1000;\nreturn String(Math.ceil(totalMl / 250));",
+  "distractor_steps": [
+   {
+    "choice": "50",
+    "mis_step": "Reads 2:13 as the part-to-whole fraction 2/13 instead of 2/15, giving about 12.46 liters and 49.85 bottles rounded up."
+   },
+   {
+    "choice": "43",
+    "mis_step": "Rounds the 43.2 bottles down instead of up, leaving the last tank short."
+   },
+   {
+    "choice": "54",
+    "mis_step": "Rounds up bottle count separately for each tank (0.6 liter is 2.4 bottles, taken as 3) instead of pooling leftover concentrate across the 18 tanks."
+   }
+  ]
+ },
+ {
+  "id": "M139",
+  "domain": "Problem-Solving and Data Analysis",
+  "subskill": "Multi-segment rate schedule in mixed time units",
+  "topic_tag": "kiln firing schedule",
+  "difficulty": "hard",
+  "prompt": "A kiln program begins with the kiln at 20 degrees Celsius. The kiln first ramps up to 600 degrees at a constant 120 degrees per hour, then holds at 600 degrees for 45 minutes, then ramps up to 1240 degrees at a constant 80 degrees per hour. The power is then cut and the kiln cools at a constant 150 degrees per hour until it reaches 200 degrees, the temperature at which it may be unloaded. How long after the program begins can the kiln be unloaded?",
+  "choices": [
+   "19 hours 46 minutes",
+   "20 hours 41 minutes",
+   "21 hours 43 minutes",
+   "20 hours 31 minutes"
+  ],
+  "correct_answer": "20 hours 31 minutes",
+  "explanation": "The segments take (600 - 20)/120 = 4 hours 50 minutes, 45 minutes, (1240 - 600)/80 = 8 hours, and (1240 - 200)/150 = 6 hours 56 minutes. Their sum is 20 hours 31 minutes.",
+  "solve": "const ramp1 = (600 - 20) / 120;\nconst hold = 45 / 60;\nconst ramp2 = (1240 - 600) / 80;\nconst cool = (1240 - 200) / 150;\nconst t = ramp1 + hold + ramp2 + cool;\nconst h = Math.floor(t + 1e-9);\nconst m = Math.round((t - h) * 60);\nreturn h + \" hours \" + m + \" minutes\";",
+  "distractor_steps": [
+   {
+    "choice": "19 hours 46 minutes",
+    "mis_step": "Omits the 45-minute hold at 600 degrees, summing only the three ramp and cool segments."
+   },
+   {
+    "choice": "21 hours 43 minutes",
+    "mis_step": "Cools all the way to the 20-degree starting temperature instead of stopping at the 200-degree unloading temperature, using 1220/150 hours."
+   },
+   {
+    "choice": "20 hours 41 minutes",
+    "mis_step": "Computes the first ramp as 600/120 = 5 hours, ignoring that the kiln starts at 20 degrees rather than 0."
+   }
+  ]
+ },
+ {
+  "id": "M140",
+  "domain": "Problem-Solving and Data Analysis",
+  "subskill": "Conditional probability from a two-way frequency table",
+  "topic_tag": "lab centrifuge runs",
+  "difficulty": "medium",
+  "prompt": "A laboratory logged 240 centrifuge runs. Of the 150 runs that used a fixed-angle rotor, 126 produced a clean pellet and 24 produced a disturbed pellet. Of the 90 runs that used a swinging-bucket rotor, 63 produced a clean pellet and 27 produced a disturbed pellet. If one of the logged runs that produced a disturbed pellet is selected at random, what is the probability that it used a swinging-bucket rotor? Round to the nearest hundredth.",
+  "choices": [
+   "0.11",
+   "0.30",
+   "0.53",
+   "0.47"
+  ],
+  "correct_answer": "0.53",
+  "explanation": "There are 24 + 27 = 51 runs with a disturbed pellet, and 27 of those used a swinging-bucket rotor, so the probability is 27/51, or about 0.53.",
+  "solve": "const disturbedSwing = 27;\nconst disturbedFixed = 24;\nconst p = disturbedSwing / (disturbedSwing + disturbedFixed);\nreturn p.toFixed(2);",
+  "distractor_steps": [
+   {
+    "choice": "0.30",
+    "mis_step": "Conditions on the rotor instead of the outcome, computing 27/90, the share of swinging-bucket runs that were disturbed."
+   },
+   {
+    "choice": "0.11",
+    "mis_step": "Uses the joint probability 27/240, dividing by all logged runs rather than by the disturbed-pellet runs."
+   },
+   {
+    "choice": "0.47",
+    "mis_step": "Reads the wrong row of the table, computing 24/51 for the fixed-angle rotor instead of the swinging-bucket rotor."
+   }
+  ]
+ },
+ {
+  "id": "M141",
+  "domain": "Advanced Math",
+  "subskill": "Exponential models",
+  "topic_tag": "tunnel ventilation",
+  "difficulty": "medium",
+  "prompt": "During a ventilation test in a highway tunnel, engineers switch on the exhaust fans and track the carbon monoxide concentration, which decreases exponentially with time. The concentration is 96 parts per million (ppm) 4 minutes after the fans start and 54 ppm 10 minutes after the fans start. The concentration t minutes after the fans start is modeled by C(t) = a*b^t. To the nearest ppm, what was the concentration at the moment the fans started?",
+  "choices": [
+   "65",
+   "79",
+   "124",
+   "141"
+  ],
+  "correct_answer": "141",
+  "explanation": "Over the 6 minutes between the readings the concentration is multiplied by 54/96 = 0.5625, so b = 0.5625^(1/6) is about 0.9086. Since C(4) = a*b^4 = 96, a = 96/0.9086^4, which is about 141 ppm.",
+  "solve": "const ratio = 54 / 96;\nconst b = Math.pow(ratio, 1 / (10 - 4));\nconst a = 96 / Math.pow(b, 4);\nreturn Math.round(a);",
+  "distractor_steps": [
+   {
+    "choice": "65",
+    "mis_step": "Inverts the ratio when finding the base, using b^6 = 96/54 so that b is about 1.1006 (growth instead of decay), then computes 96/b^4 = 65."
+   },
+   {
+    "choice": "79",
+    "mis_step": "Finds b correctly but extrapolates back from the 54 ppm reading using only 4 steps instead of the 10 steps to t = 0: 54/0.9086^4 = 79."
+   },
+   {
+    "choice": "124",
+    "mis_step": "Treats the decrease as linear, getting a slope of (54 - 96)/6 = -7 ppm per minute and extending back 4 minutes: 96 + 4*7 = 124."
+   }
+  ]
+ },
+ {
+  "id": "M142",
+  "domain": "Advanced Math",
+  "subskill": "Nonlinear equations and systems",
+  "topic_tag": "marina slip rental",
+  "difficulty": "hard",
+  "prompt": "A marina rents boat slips by the month. When the marina charges p dollars per slip per month, the number of slips rented that month is 150 - 0.2p. The marina's monthly upkeep is 3000 dollars plus an additional 60 dollars for each slip that is actually rented. Rounded to the nearest dollar, what is the greatest price per slip for which the marina's monthly profit is exactly 16000 dollars?",
+  "choices": [
+   "250",
+   "560",
+   "589",
+   "621"
+  ],
+  "correct_answer": "560",
+  "explanation": "With n = 150 - 0.2p slips rented, profit is p*n - (3000 + 60n) = -0.2p^2 + 162p - 12000, so setting this equal to 16000 gives -0.2p^2 + 162p - 28000 = 0, whose solutions are 250 and 560. At 560 dollars the marina rents 38 slips for 21280 dollars against 5280 dollars of upkeep.",
+  "solve": "const a = -0.2;\nconst b = 150 + 12;\nconst c = -(3000 + 60 * 150) - 16000;\nconst disc = Math.sqrt(b * b - 4 * a * c);\nconst r1 = (-b + disc) / (2 * a);\nconst r2 = (-b - disc) / (2 * a);\nreturn Math.round(Math.max(r1, r2));",
+  "distractor_steps": [
+   {
+    "choice": "250",
+    "mis_step": "Sets up and solves the profit equation correctly but reports the smaller of the two solutions rather than the greatest price."
+   },
+   {
+    "choice": "589",
+    "mis_step": "Omits the 60 dollars per rented slip from the cost, solving p(150 - 0.2p) - 3000 = 16000 and taking the larger root, 588.6, which rounds to 589."
+   },
+   {
+    "choice": "621",
+    "mis_step": "Treats the 16000 dollars as revenue rather than profit, solving p(150 - 0.2p) = 16000 and taking the larger root, 621.2, which rounds to 621."
+   }
+  ]
+ },
+ {
+  "id": "M143",
+  "domain": "Advanced Math",
+  "subskill": "Function composition",
+  "topic_tag": "egg incubation",
+  "difficulty": "medium",
+  "prompt": "A hatchery models egg incubation with two functions. After d days in the incubator, an egg has accumulated H(d) = 14.4d^2 + 60d degree-hours of heat, and a chick that hatches after accumulating H degree-hours has mass m(H) = 0.05H + 38 grams. According to this model, and to the nearest tenth of a day, after how many days is the predicted hatch mass 260 grams?",
+  "choices": [
+   "15.6",
+   "17.0",
+   "17.6",
+   "19.8"
+  ],
+  "correct_answer": "15.6",
+  "explanation": "A mass of 260 grams requires 0.05H + 38 = 260, so H = (260 - 38)/0.05 = 4440 degree-hours. Solving 14.4d^2 + 60d = 4440 gives a positive value of d of about 15.6 days.",
+  "solve": "const H = (260 - 38) / 0.05;\nconst a = 14.4, b = 60, c = -H;\nconst d = (-b + Math.sqrt(b * b - 4 * a * c)) / (2 * a);\nreturn Math.round(d * 10) / 10;",
+  "distractor_steps": [
+   {
+    "choice": "17.0",
+    "mis_step": "Drops the constant 38 from the mass function, using H = 260/0.05 = 5200 degree-hours and solving 14.4d^2 + 60d = 5200 to get 17.03."
+   },
+   {
+    "choice": "17.6",
+    "mis_step": "Ignores the linear 60d term in the heat function, solving 14.4d^2 = 4440 to get d = 17.56."
+   },
+   {
+    "choice": "19.8",
+    "mis_step": "Sign slip in the quadratic formula: takes the minus branch, gets d = -19.77, and reports its absolute value."
+   }
+  ]
+ },
+ {
+  "id": "M145",
+  "domain": "Advanced Math",
+  "subskill": "Polynomial identities",
+  "topic_tag": "loom weaving rate",
+  "difficulty": "hard",
+  "prompt": "A textile mill tracks the cumulative length of cloth a loom has produced during a shift. For the first several hours, the total length in meters after t hours is W(t) = a*t^3 + b*t^2 + 12t, and the mill's technician confirms that W(t) = t*(3t + 4)*(t + k) for every t in that interval, where a, b, and k are constants. How many meters of cloth does the loom weave during the fifth hour of the shift?",
+  "choices": [
+   "214",
+   "312",
+   "448",
+   "760"
+  ],
+  "correct_answer": "312",
+  "explanation": "Expanding t*(3t + 4)*(t + k) gives 3t^3 + (3k + 4)t^2 + 4kt, and matching the linear coefficient 4k = 12 gives k = 3. The fifth hour produces W(5) - W(4) = 5*19*8 - 4*16*7 = 760 - 448 = 312 meters.",
+  "solve": "const k = 12 / 4;\nconst W = function (t) { return t * (3 * t + 4) * (t + k); };\nreturn W(5) - W(4);",
+  "distractor_steps": [
+   {
+    "choice": "214",
+    "mis_step": "Finds k = 3 correctly but computes the cloth woven during the fourth hour, W(4) - W(3) = 448 - 234 = 214."
+   },
+   {
+    "choice": "448",
+    "mis_step": "Uses the cumulative total at the end of the fourth hour, W(4) = 448, as the amount produced in the fifth hour."
+   },
+   {
+    "choice": "760",
+    "mis_step": "Reports the cumulative total W(5) = 760 instead of subtracting the cloth already woven in the first four hours."
+   }
+  ]
+ },
+ {
+  "id": "M146",
+  "domain": "Algebra",
+  "subskill": "linear systems in context",
+  "topic_tag": "composting rate",
+  "difficulty": "medium",
+  "prompt": "A city composting site runs two drums. The aerated drum processes 45 kilograms of food waste per hour, and the tumbler drum processes 30 kilograms per hour. During one week the two drums together ran for a total of 34 hours and processed 1230 kilograms of food waste. How many kilograms of food waste did the aerated drum process that week?",
+  "choices": [
+   "600",
+   "615",
+   "630",
+   "900"
+  ],
+  "correct_answer": "630",
+  "explanation": "If the aerated drum ran h hours, the tumbler ran 34 - h hours, so 45h + 30(34 - h) = 1230, giving 15h = 210 and h = 14 hours. The aerated drum therefore processed 45(14) = 630 kilograms.",
+  "solve": "const rA = 45, rB = 30, hours = 34, mass = 1230;\nconst hA = (mass - rB * hours) / (rA - rB);\nreturn String(rA * hA);",
+  "distractor_steps": [
+   {
+    "choice": "600",
+    "mis_step": "Solved the system correctly but reported the other drum's output, 30 kg/h times its 20 hours."
+   },
+   {
+    "choice": "900",
+    "mis_step": "Assigned the rates to the wrong drums when writing the system (30h + 45(34 - h) = 1230, giving h = 20), then multiplied that hour count by 45."
+   },
+   {
+    "choice": "615",
+    "mis_step": "Ignored the 34-hour condition and split the 1230 kilograms equally between the two drums."
+   }
+  ]
+ },
+ {
+  "id": "M147",
+  "domain": "Algebra",
+  "subskill": "absolute value inequalities in context",
+  "topic_tag": "snowmaking system",
+  "difficulty": "medium",
+  "prompt": "A ski resort draws snowmaking water from a holding pond. A sensor logs the pond as being in its target band whenever the level L, in feet, satisfies |L - 68| <= 3.5. At the moment the snow guns are switched on the level is 80 feet, and while the guns run the level falls at a constant rate of 0.5 foot per hour. If the guns run continuously, for how many hours is the pond in its target band?",
+  "choices": [
+   "14",
+   "17",
+   "24",
+   "31"
+  ],
+  "correct_answer": "14",
+  "explanation": "The band is 64.5 <= L <= 71.5, and L = 80 - 0.5t, so the level reaches 71.5 feet at t = (80 - 71.5)/0.5 = 17 hours and 64.5 feet at t = (80 - 64.5)/0.5 = 31 hours. The pond is in the band for 31 - 17 = 14 hours.",
+  "solve": "const start = 80, rate = 0.5, center = 68, tol = 3.5;\nconst tIn = (start - (center + tol)) / rate;\nconst tOut = (start - (center - tol)) / rate;\nreturn String(tOut - tIn);",
+  "distractor_steps": [
+   {
+    "choice": "17",
+    "mis_step": "Used only the upper boundary 71.5 feet and reported the time at which the pond first enters the band."
+   },
+   {
+    "choice": "31",
+    "mis_step": "Used only the lower boundary 64.5 feet, ignoring that the pond starts above the band, and reported the time at which it leaves."
+   },
+   {
+    "choice": "24",
+    "mis_step": "Dropped the tolerance and solved 80 - 0.5t = 68, finding the time to reach the target level itself."
+   }
+  ]
+ },
+ {
+  "id": "M148",
+  "domain": "Algebra",
+  "subskill": "linear system feeding a constraint inequality",
+  "topic_tag": "seed germination trial",
+  "difficulty": "hard",
+  "prompt": "A nursery tests two seed lots, each with its own constant germination rate. In the first trial a flat of 360 Lot A seeds and 240 Lot B seeds produced 450 germinated seedlings. In the second trial a flat of 200 Lot A seeds and 400 Lot B seeds produced 410 germinated seedlings. The nursery now plants a flat of 800 seeds using only these two lots and wants at least 620 seedlings to germinate. Based on the trial rates, what is the least number of Lot A seeds the flat can contain?",
+  "choices": [
+   "140",
+   "240",
+   "480",
+   "560"
+  ],
+  "correct_answer": "560",
+  "explanation": "The two trials give 360a + 240b = 450 and 200a + 400b = 410, so a = 0.85 and b = 0.60. With x Lot A seeds, 0.85x + 0.60(800 - x) >= 620 gives 0.25x >= 140, so x >= 560.",
+  "solve": "const A1 = 360, B1 = 240, G1 = 450, A2 = 200, B2 = 400, G2 = 410;\nconst det = A1 * B2 - A2 * B1;\nconst a = (G1 * B2 - G2 * B1) / det;\nconst b = (A1 * G2 - A2 * G1) / det;\nconst total = 800, need = 620;\nconst x = (need - b * total) / (a - b);\nreturn String(Math.ceil(x));",
+  "distractor_steps": [
+   {
+    "choice": "240",
+    "mis_step": "Solved the inequality correctly but reported the number of Lot B seeds, 800 - 560."
+   },
+   {
+    "choice": "480",
+    "mis_step": "Assumed the new flat keeps the first trial's 360:240 Lot A to Lot B ratio, giving 0.60(800) Lot A seeds."
+   },
+   {
+    "choice": "140",
+    "mis_step": "Stopped at the intermediate shortfall 620 - 0.60(800) = 140 seedlings and reported it as a seed count."
+   }
+  ]
+ },
+ {
+  "id": "M149",
+  "domain": "Algebra",
+  "subskill": "parameterized linear cost models",
+  "topic_tag": "gym membership pricing",
+  "difficulty": "medium",
+  "prompt": "A gym sells two plans. The Flex plan costs $58 per month plus $4.50 for each class attended. The Studio plan costs $22 per month plus k dollars for each class attended, where k is a constant. A member who attends 24 classes in a month pays the same amount under either plan. What does a member who attends 40 classes in a month pay under the Studio plan?",
+  "choices": [
+   "166",
+   "238",
+   "262",
+   "298"
+  ],
+  "correct_answer": "262",
+  "explanation": "At 24 classes the Flex plan costs 58 + 4.50(24) = 166 dollars, so 22 + 24k = 166 and k = 6. At 40 classes the Studio plan costs 22 + 6(40) = 262 dollars.",
+  "solve": "const aFee = 58, aRate = 4.5, bFee = 22, n = 24, m = 40;\nconst costA = aFee + aRate * n;\nconst k = (costA - bFee) / n;\nreturn String(bFee + k * m);",
+  "distractor_steps": [
+   {
+    "choice": "238",
+    "mis_step": "Computed the cost of the Flex plan at 40 classes, 58 + 4.50(40), instead of the Studio plan."
+   },
+   {
+    "choice": "298",
+    "mis_step": "Found k = 6 correctly but kept the Flex plan's $58 monthly fee, computing 58 + 6(40)."
+   },
+   {
+    "choice": "166",
+    "mis_step": "Found k = 6 and then evaluated the Studio plan at the given 24 classes rather than at 40."
+   }
+  ]
+ },
+ {
+  "id": "M150",
+  "domain": "Algebra",
+  "subskill": "linear inequalities with a fixed constraint",
+  "topic_tag": "laundry water use",
+  "difficulty": "medium",
+  "prompt": "A hotel laundry may use at most 5400 gallons of water per day. Each load of sheets uses 42 gallons and each load of towels uses 28 gallons. Housekeeping requires at least 60 loads of towels every day. What is the greatest number of loads of sheets the laundry can run in one day?",
+  "choices": [
+   "64",
+   "88",
+   "102",
+   "128"
+  ],
+  "correct_answer": "88",
+  "explanation": "The 60 required towel loads use 60(28) = 1680 gallons, leaving 5400 - 1680 = 3720 gallons. Since 3720/42 is about 88.6 and only whole loads count, at most 88 loads of sheets can be run.",
+  "solve": "const cap = 5400, sheet = 42, towel = 28, minTowel = 60;\nconst remaining = cap - minTowel * towel;\nreturn String(Math.floor(remaining / sheet));",
+  "distractor_steps": [
+   {
+    "choice": "128",
+    "mis_step": "Ignored the 60 required towel loads and divided the full 5400-gallon cap by 42."
+   },
+   {
+    "choice": "102",
+    "mis_step": "Swapped the two per-load amounts, reserving 60(42) gallons for towels and dividing the remaining 2880 gallons by 28."
+   },
+   {
+    "choice": "64",
+    "mis_step": "Split the 5400-gallon cap evenly between sheets and towels and divided 2700 by 42."
+   }
+  ]
+ },
+ {
+  "id": "M151",
+  "domain": "Geometry and Trigonometry",
+  "subskill": "Volume and surface area",
+  "topic_tag": "carbon filter life",
+  "difficulty": "hard",
+  "prompt": "A water-filter cartridge is a right circular cylinder of outer diameter 12 cm and height 30 cm, bored through along its axis by a cylindrical hollow core of diameter 4 cm. The entire region between the core and the outer wall is packed with activated carbon, and each cubic centimeter of that carbon adsorbs 0.15 g of chlorine before it is spent. Water passes through the cartridge at 5 liters per minute and carries 0.002 g of chlorine per liter. To the nearest hour, for how long can the cartridge run before its carbon is spent?",
+  "choices": [
+   "471",
+   "754",
+   "801",
+   "848"
+  ],
+  "correct_answer": "754",
+  "explanation": "The carbon occupies pi*(6^2 - 2^2)*30 = 960*pi cubic centimeters, about 3015.9 cm^3, so it holds 0.15*3015.9 = 452.4 g of chlorine. Water delivers 5*0.002 = 0.01 g of chlorine per minute, so the cartridge lasts 452.4/0.01 = 45239 minutes, about 754 hours.",
+  "solve": "var R = 12 / 2;\nvar r = 4 / 2;\nvar h = 30;\nvar carbonVolume = Math.PI * (R * R - r * r) * h;\nvar capacityGrams = 0.15 * carbonVolume;\nvar gramsPerMinute = 5 * 0.002;\nvar minutes = capacityGrams / gramsPerMinute;\nreturn Math.round(minutes / 60);",
+  "distractor_steps": [
+   {
+    "choice": "471",
+    "mis_step": "Reads the stated 4 cm core DIAMETER as the core RADIUS, computing pi*(6^2 - 4^2)*30 = 1885 cm^3 of carbon, giving 282.7/0.01 = 28274 minutes = 471 hours."
+   },
+   {
+    "choice": "801",
+    "mis_step": "Squares only the outer radius and subtracts the inner radius unsquared: pi*(36 - 2)*30 = 3204 cm^3, so 480.7/0.01 = 48066 minutes = 801 hours."
+   },
+   {
+    "choice": "848",
+    "mis_step": "Ignores the hollow core and treats the whole cylinder as carbon: pi*6^2*30 = 3392.9 cm^3, so 508.9/0.01 = 50894 minutes = 848 hours."
+   }
+  ]
+ },
+ {
+  "id": "M152",
+  "domain": "Geometry and Trigonometry",
+  "subskill": "Coordinate geometry: distance",
+  "topic_tag": "tram headway",
+  "difficulty": "medium",
+  "prompt": "On a city map marked in kilometers, a tram line runs in a straight track from terminal A at (2, 3) to terminal B at (14, 12). A tram travels the track at a steady 24 km/h and waits 4 minutes at each terminal before returning, so one full cycle is A to B, wait, B to A, wait. Ten trams run the line, spaced evenly in time around that cycle, so the headway at any stop is the cycle time divided by 10. What is the headway, in minutes?",
+  "choices": [
+   "7.5",
+   "8.3",
+   "9.2",
+   "11.3"
+  ],
+  "correct_answer": "8.3",
+  "explanation": "The track length is sqrt((14-2)^2 + (12-3)^2) = sqrt(144 + 81) = 15 km, so one direction takes 15/24 h = 37.5 minutes. A cycle is 2*37.5 + 2*4 = 83 minutes, and 83/10 = 8.3 minutes.",
+  "solve": "var dx = 14 - 2;\nvar dy = 12 - 3;\nvar km = Math.sqrt(dx * dx + dy * dy);\nvar oneWayMin = km / 24 * 60;\nvar cycleMin = 2 * oneWayMin + 2 * 4;\nreturn Math.round(cycleMin / 10 * 10) / 10;",
+  "distractor_steps": [
+   {
+    "choice": "7.5",
+    "mis_step": "Drops the two 4-minute terminal waits from the cycle, using 2*37.5 = 75 minutes and 75/10 = 7.5."
+   },
+   {
+    "choice": "9.2",
+    "mis_step": "Divides the 83-minute cycle by 9, counting gaps between consecutive trams as one fewer than the number of trams: 83/9 = 9.2."
+   },
+   {
+    "choice": "11.3",
+    "mis_step": "Takes the track length as the sum of the coordinate differences, 12 + 9 = 21 km, giving 52.5 minutes each way and (105 + 8)/10 = 11.3."
+   }
+  ]
+ },
+ {
+  "id": "M153",
+  "domain": "Geometry and Trigonometry",
+  "subskill": "Volume of prisms",
+  "topic_tag": "apiary honey yield",
+  "difficulty": "medium",
+  "prompt": "In a beekeeper's hive, each honeycomb cell is a regular hexagonal prism whose hexagonal opening has side length 2.7 mm and whose depth is 11.5 mm. One frame contains 6800 such cells, and at harvest each cell is filled to 90% of its volume with honey of density 1.42 g per cubic centimeter. To the nearest gram, what mass of honey does one frame hold? (The area of a regular hexagon of side s is (3*sqrt(3)/2)*s^2.)",
+  "choices": [
+   "1893",
+   "2103",
+   "2186",
+   "2337"
+  ],
+  "correct_answer": "1893",
+  "explanation": "Each cell has volume (3*sqrt(3)/2)*(2.7)^2*11.5 = 217.8 cubic millimeters, so 6800 cells filled to 90% hold 6800*217.8*0.9 = 1333100 cubic millimeters, which is 1333.1 cubic centimeters. At 1.42 g per cubic centimeter that is about 1893 g.",
+  "solve": "var s = 2.7;\nvar depth = 11.5;\nvar cellMm3 = (3 * Math.sqrt(3) / 2) * s * s * depth;\nvar totalMm3 = cellMm3 * 6800 * 0.9;\nvar cm3 = totalMm3 / 1000;\nreturn Math.round(cm3 * 1.42);",
+  "distractor_steps": [
+   {
+    "choice": "2103",
+    "mis_step": "Ignores the 90% fill condition and prices the cells as completely full: 6800*217.8 = 1481.2 cm^3 at 1.42 g/cm^3 = 2103 g."
+   },
+   {
+    "choice": "2186",
+    "mis_step": "Builds the hexagon as six triangles of area (1/2)s^2 by using the side length as the triangle height, giving 3s^2 = 21.87 mm^2 instead of 18.94 mm^2 and 2186 g."
+   },
+   {
+    "choice": "2337",
+    "mis_step": "Divides by the fill fraction instead of multiplying, computing 1481.2/0.9 = 1645.8 cm^3 and 2337 g."
+   }
+  ]
+ },
+ {
+  "id": "M154",
+  "domain": "Geometry and Trigonometry",
+  "subskill": "Right-triangle trigonometry",
+  "topic_tag": "quarry blasting",
+  "difficulty": "hard",
+  "prompt": "A quarry highwall rises vertically from a level floor. From a point on the floor, the angle of elevation of the top of the wall is 32 degrees; from a point 40 m nearer the wall on the same straight line, the angle of elevation of the top is 51 degrees. Engineers plan a blast on a block of rock that spans the full height of the wall, runs 32 m along the crest, and extends 6 m back from the face. The rock has density 2.6 metric tons per cubic meter. To the nearest ton, what mass of rock will the blast break?",
+  "choices": [
+   "12477",
+   "24658",
+   "25258",
+   "32733"
+  ],
+  "correct_answer": "25258",
+  "explanation": "With h the wall height, the two floor distances are h/tan(32) and h/tan(51), and their difference is 40, so h = 40/(1/tan(32) - 1/tan(51)) = 50.60 m. The block's volume is 50.60*32*6 = 9714 cubic meters, and 9714*2.6 is about 25258 tons.",
+  "solve": "var rad = Math.PI / 180;\nvar t32 = Math.tan(32 * rad);\nvar t51 = Math.tan(51 * rad);\nvar h = 40 / (1 / t32 - 1 / t51);\nvar volume = h * 32 * 6;\nreturn Math.round(volume * 2.6);",
+  "distractor_steps": [
+   {
+    "choice": "12477",
+    "mis_step": "Treats the 40 m as the whole horizontal distance from the far point to the wall and uses one triangle, h = 40*tan(32) = 25.0 m, giving 12477 tons."
+   },
+   {
+    "choice": "24658",
+    "mis_step": "Treats the 40 m as the distance from the near point to the wall, h = 40*tan(51) = 49.4 m, giving 24658 tons."
+   },
+   {
+    "choice": "32733",
+    "mis_step": "Sets up the difference with tangents rather than cotangents, solving 40 = h*(tan(51) - tan(32)) to get h = 65.6 m and 32733 tons."
+   }
+  ]
+ },
+ {
+  "id": "M155",
+  "domain": "Geometry and Trigonometry",
+  "subskill": "Circle theorems: intersecting chords",
+  "topic_tag": "fish pond aeration",
+  "difficulty": "medium",
+  "prompt": "A fish farm's pond is a perfect circle. Two straight aeration hoses are laid across the pond, each running from one point on the shoreline to another point on the shoreline, and they cross at a junction box somewhere inside the pond. The junction box divides the first hose into pieces of length 24 m and 15 m. On the second hose, the piece on one side of the junction box measures 8 m. What is the total length, in meters, of the second hose?",
+  "choices": [
+   "31",
+   "39",
+   "45",
+   "53"
+  ],
+  "correct_answer": "53",
+  "explanation": "For two chords crossing inside a circle, the products of the two pieces are equal, so 24*15 = 8*x gives x = 360/8 = 45 m for the unknown piece. The second hose measures 8 + 45 = 53 m.",
+  "solve": "var a = 24;\nvar b = 15;\nvar c = 8;\nvar d = a * b / c;\nreturn c + d;",
+  "distractor_steps": [
+   {
+    "choice": "31",
+    "mis_step": "Applies the chord relation additively, computing 24 + 15 - 8 = 31 as the missing piece and reporting that as the hose."
+   },
+   {
+    "choice": "39",
+    "mis_step": "Assumes both hoses through the junction box must be the same length, reporting the first hose's 24 + 15 = 39 m."
+   },
+   {
+    "choice": "45",
+    "mis_step": "Solves 24*15 = 8*x correctly for the far piece, x = 45, but reports that piece instead of adding the 8 m near piece."
+   }
+  ]
+ },
+ {
+  "id": "M156",
+  "domain": "Problem-Solving and Data Analysis",
+  "subskill": "percent change",
+  "topic_tag": "textile shrinkage",
+  "difficulty": "medium",
+  "prompt": "A drapery workshop cuts rectangular curtain panels from unwashed cotton, each panel 180 cm long and 150 cm wide. Washing a panel shrinks its length by 5 percent and its width by 3.5 percent. To the nearest tenth of a percent, by what percent does a panel's area decrease when it is washed?",
+  "choices": [
+   "4.3",
+   "8.3",
+   "8.5",
+   "9.1"
+  ],
+  "correct_answer": "8.3",
+  "explanation": "Washing leaves 95 percent of the 180 cm length and 96.5 percent of the 150 cm width, so the area falls from 180(150) = 27000 cm^2 to 171(144.75) = 24752.25 cm^2; the loss of 2247.75 cm^2 is 8.325 percent of 27000, which rounds to 8.3.",
+  "solve": "const L0 = 180, W0 = 150, ls = 0.05, ws = 0.035;\nconst A0 = L0 * W0;\nconst A1 = (L0 * (1 - ls)) * (W0 * (1 - ws));\nconst pct = (A0 - A1) / A0 * 100;\nreturn String(Math.round(pct * 10) / 10);",
+  "distractor_steps": [
+   {
+    "choice": "8.5",
+    "mis_step": "Added the two shrinkage percents (5 + 3.5) as if percent changes in perpendicular dimensions combine additively for area."
+   },
+   {
+    "choice": "9.1",
+    "mis_step": "Used the wrong base for the percent change: computed (27000 - 24752.25)/24752.25 = 9.08 percent, the percent by which the washed area would have to grow to return to the original."
+   },
+   {
+    "choice": "4.3",
+    "mis_step": "Computed the percent decrease in perimeter rather than area: perimeter falls from 660 cm to 2(171 + 144.75) = 631.5 cm, a drop of 4.32 percent."
+   }
+  ]
+ },
+ {
+  "id": "M157",
+  "domain": "Problem-Solving and Data Analysis",
+  "subskill": "ratios, rates, and proportional relationships",
+  "topic_tag": "cheese aging",
+  "difficulty": "hard",
+  "prompt": "A creamery ages wheels of cheese in a cave. A wheel enters the cave with a mass of 15 kilograms and is 44 percent water by mass; the remainder is solids, whose mass does not change during aging. Water leaves the wheel at a steady rate of 22 grams per day, and the wheel is ready when it is 30 percent water by mass. To the nearest day, how many days does the wheel spend in the cave? (1 kilogram = 1000 grams)",
+  "choices": [
+   "95",
+   "136",
+   "185",
+   "253"
+  ],
+  "correct_answer": "136",
+  "explanation": "The wheel holds 0.56(15) = 8.4 kilograms of solids, and that mass is unchanged, so at 30 percent water the wheel's mass is 8.4/0.70 = 12 kilograms. The 15 - 12 = 3 kilograms of water lost is 3000 grams, and 3000/22 is about 136.4 days.",
+  "solve": "const m0 = 15, w0 = 0.44, wf = 0.30, rate = 22;\nconst solids = m0 * (1 - w0);\nconst mf = solids / (1 - wf);\nconst lostGrams = (m0 - mf) * 1000;\nreturn String(Math.round(lostGrams / rate));",
+  "distractor_steps": [
+   {
+    "choice": "95",
+    "mis_step": "Applied the final 30 percent to the original mass, taking the water lost as 15(0.44 - 0.30) = 2.1 kilograms, giving 2100/22 days."
+   },
+   {
+    "choice": "185",
+    "mis_step": "Treated the final 30 percent as a fraction of the solid mass rather than of the whole wheel, so the final mass was read as 8.4(1.30) = 10.92 kilograms and the water lost as 4.08 kilograms."
+   },
+   {
+    "choice": "253",
+    "mis_step": "Swapped the water and solid fractions, using 0.44(15) = 6.6 kilograms as the invariant solids, so the final mass was 6.6/0.70 = 9.43 kilograms and the loss 5.57 kilograms."
+   }
+  ]
+ },
+ {
+  "id": "M158",
+  "domain": "Problem-Solving and Data Analysis",
+  "subskill": "ratios, rates, and proportional relationships",
+  "topic_tag": "bell tower gears",
+  "difficulty": "medium",
+  "prompt": "In a bell tower, a drive gear with 32 teeth meshes with a gear that has 20 teeth. Fixed to the same shaft as that 20-tooth gear is a 24-tooth gear, which meshes with a 90-tooth gear carrying the striking cam. The cam trips the hammer 3 times per revolution. If the drive gear turns at a constant 45 revolutions per minute, how many times does the hammer strike in 20 minutes?",
+  "choices": [
+   "384",
+   "450",
+   "960",
+   "1152"
+  ],
+  "correct_answer": "1152",
+  "explanation": "Meshed gears give 45(32/20) = 72 revolutions per minute for the 20-tooth gear and its shaftmate, so the cam gear turns at 72(24/90) = 19.2 revolutions per minute; in 20 minutes that is 384 revolutions, and 3(384) = 1152 strikes.",
+  "solve": "const drive = 45, t1 = 32, t2 = 20, t3 = 24, t4 = 90, perRev = 3, minutes = 20;\nconst shaft2 = drive * t1 / t2;\nconst cam = shaft2 * t3 / t4;\nreturn String(Math.round(cam * minutes * perRev));",
+  "distractor_steps": [
+   {
+    "choice": "384",
+    "mis_step": "Stopped at the number of cam revolutions in 20 minutes and never multiplied by the 3 strikes per revolution."
+   },
+   {
+    "choice": "450",
+    "mis_step": "Inverted the first gear ratio, using 45(20/32) = 28.125 revolutions per minute for the second shaft, then 28.125(24/90) = 7.5 revolutions per minute for the cam."
+   },
+   {
+    "choice": "960",
+    "mis_step": "Ignored the compound shaft and treated the train as a single 32-to-90 ratio, giving 45(32/90) = 16 revolutions per minute for the cam."
+   }
+  ]
+ },
+ {
+  "id": "M159",
+  "domain": "Problem-Solving and Data Analysis",
+  "subskill": "inference from sample statistics and margin of error",
+  "topic_tag": "telescope tracking",
+  "difficulty": "medium",
+  "prompt": "An observatory reviewed a random sample of 480 of the 6400 one-minute exposures its telescope recorded last year and found that 132 of the sampled exposures showed star trailing caused by tracking error. The resulting estimate of the proportion of all 6400 exposures that show trailing has a margin of error of 3.8 percentage points. Using the largest proportion consistent with this margin of error, what is the greatest number of last year's exposures that showed trailing?",
+  "choices": [
+   "1760",
+   "1826",
+   "2003",
+   "2246"
+  ],
+  "correct_answer": "2003",
+  "explanation": "The sample proportion is 132/480 = 0.275, so the largest proportion consistent with a margin of error of 3.8 percentage points is 0.275 + 0.038 = 0.313, and 0.313(6400) = 2003.2, so at most 2003 exposures.",
+  "solve": "const sampled = 480, trailed = 132, total = 6400, moe = 0.038;\nconst p = trailed / sampled;\nreturn String(Math.floor((p + moe) * total));",
+  "distractor_steps": [
+   {
+    "choice": "1760",
+    "mis_step": "Ignored the margin of error entirely and scaled the point estimate, computing 0.275(6400)."
+   },
+   {
+    "choice": "1826",
+    "mis_step": "Read 3.8 percentage points as 3.8 percent of the estimate, using 0.275(1.038) = 0.28545 as the upper proportion."
+   },
+   {
+    "choice": "2246",
+    "mis_step": "Added the full width of the confidence interval instead of one margin, using 0.275 + 2(0.038) = 0.351."
+   }
+  ]
+ },
+ {
+  "id": "M160",
+  "domain": "Problem-Solving and Data Analysis",
+  "subskill": "ratios, rates, and units",
+  "topic_tag": "flour mill throughput",
+  "difficulty": "hard",
+  "prompt": "A flour mill must produce 58.5 metric tons of flour over a 5-day week, the same amount each day. Line A mills 2500 kilograms of wheat per hour, and 72 percent of the wheat it mills becomes flour. Line B mills 1.5 metric tons of wheat per hour, 80 percent of which becomes flour, but Line B may run at most 6 hours per day. If Line B runs its full 6 hours each day, for how many hours per day must Line A run, to the nearest tenth of an hour? (1 metric ton = 1000 kilograms)",
+  "choices": [
+   "1.1",
+   "1.8",
+   "2.5",
+   "2.6"
+  ],
+  "correct_answer": "2.5",
+  "explanation": "The daily target is 58.5/5 = 11.7 metric tons of flour, and Line B supplies 1.5(6)(0.80) = 7.2 metric tons, leaving 4.5 metric tons. Line A makes 2.5(0.72) = 1.8 metric tons of flour per hour, so it must run 4.5/1.8 = 2.5 hours.",
+  "solve": "const weeklyFlour = 58.5, days = 5, bHours = 6;\nconst aWheatPerHour = 2500 / 1000, bWheatPerHour = 1.5;\nconst aExtract = 0.72, bExtract = 0.80;\nconst dailyFlour = weeklyFlour / days;\nconst bFlour = bWheatPerHour * bHours * bExtract;\nconst need = dailyFlour - bFlour;\nconst aFlourPerHour = aWheatPerHour * aExtract;\nreturn String(Math.round((need / aFlourPerHour) * 10) / 10);",
+  "distractor_steps": [
+   {
+    "choice": "1.8",
+    "mis_step": "Applied Line B's extraction rate but not Line A's, dividing the remaining 4.5 metric tons by the raw wheat rate 2.5 metric tons per hour."
+   },
+   {
+    "choice": "1.1",
+    "mis_step": "Ignored both extraction rates, crediting Line B with 1.5(6) = 9 metric tons of flour and dividing the remaining 2.7 by 2.5 metric tons per hour."
+   },
+   {
+    "choice": "2.6",
+    "mis_step": "Swapped the two extraction rates, giving Line B 1.5(6)(0.72) = 6.48 metric tons and Line A a flour rate of 2.5(0.80) = 2.0 metric tons per hour."
+   }
+  ]
+ }
+]

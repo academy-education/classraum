@@ -1488,6 +1488,11 @@ always the one option carrying an internal qualifier while the
 distractors were affectively extreme. Four slot-rules, each firing
 4/4. Full record + the three v2 brief changes: READING-PILOT-KILLED.md.
 
+Round 3 final: eoi-v6 52 banked (attack −20.8, hunter clean) and
+math-v4 56 banked (−9.7) after their QC was re-run. **SAT is now
+level across every domain**: EoI 244, C&S/I&I/SEC 210-240, and all
+four Math domains 224-244. SSAT 131 items, ISEE 132.
+
 **New standing check to add**: a per-KIND join — across a batch, does
 one option shape win disproportionately within a question kind? That
 is arithmetic, and it would have caught this before the attack fleet

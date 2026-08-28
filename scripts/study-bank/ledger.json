@@ -905,6 +905,156 @@
      "verdict": "Options-only sanity enforced in the brief (no lone perfect square, round number or precise decimal); attack confirms the bare values carry nothing."
     }
    }
+  },
+  {
+   "id": "eoi-v6-2026-08-28",
+   "createdAt": "2026-08-28",
+   "targetTest": "sat",
+   "section": "reading_writing",
+   "task": "sat_expression_of_ideas",
+   "family": "mc_hidden_source",
+   "spec": {
+    "n": 52,
+    "authors": 10,
+    "method": "frozen Transitions brief, fresh topics, Opus authors (VOLUME round 3)"
+   },
+   "contentSha": "7068869754c665376bae8e48a85e54cb1af5a1f5ea853482e34679e50bb66598",
+   "status": "shipped",
+   "cohort": "eoi-v6",
+   "note": "60 authored, 8 dropped (4 grader-easy, 6 weak-distractor, overlapping). No duplicate option sets this round — the eoi-v5 defect was designed out of the brief. Grader again marked most items passage_needed=false; the measured attack (−20.8) refutes it — FIFTH occurrence of that inverted-pn misfire, adjudicated by the measurement as standing policy.",
+   "stages": {
+    "shape": {
+     "passed": true,
+     "contentSha": "7068869754c665376bae8e48a85e54cb1af5a1f5ea853482e34679e50bb66598",
+     "verdict": "eoi-v3-tools preflight OK over all 60: 0 absolute-carrying distractor items, 0 hedged-key-only, ranks exact. check-batch-joins clean."
+    },
+    "withsource": {
+     "passed": true,
+     "verdict": "Key votes >=2/3 on all 60 (15 voters over 5 chunks, chunks 2-5 re-run after a session limit killed 19 agents mid-flight); grader drops applied."
+    },
+    "nosource": {
+     "passed": true,
+     "n": 24,
+     "verdict": "Held-out 24-item attack, 3 solvers, distinct pick-strings: mean 12.5% vs 33.3% control, margin −20.8 CLEAN."
+    },
+    "elimination": {
+     "passed": true,
+     "verdict": "Hunter exploitable=false: no duplicate option sets, rarest-connective rule does not hold (22 batch-hapaxes spread 2/1/0 per item), no family saturation, length rank flat, typography internally consistent."
+    },
+    "tells": {
+     "passed": true,
+     "verdict": "Stored key slots as authored; batch joins clean."
+    }
+   }
+  },
+  {
+   "id": "math-v4-2026-08-28",
+   "createdAt": "2026-08-28",
+   "targetTest": "sat",
+   "section": "math",
+   "task": "multiple_choice",
+   "family": "mc_stem_source",
+   "spec": {
+    "n": 56,
+    "authors": 12,
+    "method": "math-v3 solve-gated doctrine across all four domains, Opus authors"
+   },
+   "contentSha": "a0f59644954a41e37b238765edca099625b7d49296e161b0183e946baef9ff2e",
+   "status": "shipped",
+   "cohort": "math-v4",
+   "note": "60 authored, 4 dropped by the anchored grader. Sandbox 60/60 on first pass; no thousands-separator failures this round (the math-v3 lesson held).",
+   "stages": {
+    "shape": {
+     "passed": true,
+     "contentSha": "a0f59644954a41e37b238765edca099625b7d49296e161b0183e946baef9ff2e",
+     "verdict": "Sandbox recompute 60/60; keys verbatim; no separators; check-batch-joins clean."
+    },
+    "withsource": {
+     "passed": true,
+     "verdict": "Anchored grader over all 60 (chunk 2 re-run after the session limit): difficulty, single-defensibility and distractor quality; 4 flagged and dropped."
+    },
+    "nosource": {
+     "passed": true,
+     "n": 24,
+     "verdict": "Options-only attack (stems stripped): mean 19.4% vs 29.2% control, margin −9.7 PASS."
+    },
+    "tells": {
+     "passed": true,
+     "verdict": "Options-only sanity in the brief (no lone perfect square/round number/precise decimal); attack confirms bare values carry nothing."
+    }
+   }
+  },
+  {
+   "id": "ssat-math-s2-2026-08-28",
+   "createdAt": "2026-08-28",
+   "targetTest": "ssat",
+   "section": "math",
+   "task": "multiple_choice",
+   "family": "mc_stem_source",
+   "spec": {
+    "n": 48,
+    "authors": 6,
+    "method": "math-v3 solve-gated method, no calculator, Opus authors"
+   },
+   "contentSha": "7b6c5c924cab2d5a685adeb1b105d78622f5244a6a4de6f1ab257640c4e0e11d",
+   "status": "shipped",
+   "cohort": "ssat-math-s2",
+   "note": "60 authored, 12 grader-flagged dropped (mostly grader-easy — the no-calculator constraint pulls authors toward one-steppers; worth tightening the difficulty floor in the next brief).",
+   "stages": {
+    "shape": {
+     "passed": true,
+     "contentSha": "7b6c5c924cab2d5a685adeb1b105d78622f5244a6a4de6f1ab257640c4e0e11d",
+     "verdict": "Sandbox recompute 60/60; no separators; keys verbatim among distinct choices."
+    },
+    "withsource": {
+     "passed": true,
+     "verdict": "Anchored grader over all 60: difficulty, single-defensibility, calculator-free solvability, distractor quality."
+    },
+    "nosource": {
+     "passed": true,
+     "verdict": "Options-only attack (stems stripped entirely): mean 15.3% vs 41.7% control, margin −26.4 PASS."
+    },
+    "tells": {
+     "passed": true,
+     "verdict": "Options-only sanity enforced in the brief; attack confirms it."
+    }
+   }
+  },
+  {
+   "id": "isee-math-s2-2026-08-28",
+   "createdAt": "2026-08-28",
+   "targetTest": "isee",
+   "section": "math",
+   "task": "multiple_choice",
+   "family": "mc_stem_source",
+   "spec": {
+    "n": 40,
+    "authors": 6,
+    "method": "math-v3 solve-gated method, no calculator, Opus authors"
+   },
+   "contentSha": "3d1cf8d684b5a0472083ef317cdc4b51fbf2db84e174527ddc58f1a03bfea92d",
+   "status": "shipped",
+   "cohort": "isee-math-s2",
+   "note": "60 authored, 20 grader-flagged dropped (mostly grader-easy — the no-calculator constraint pulls authors toward one-steppers; worth tightening the difficulty floor in the next brief).",
+   "stages": {
+    "shape": {
+     "passed": true,
+     "contentSha": "3d1cf8d684b5a0472083ef317cdc4b51fbf2db84e174527ddc58f1a03bfea92d",
+     "verdict": "Sandbox recompute 60/60; no separators; keys verbatim among distinct choices."
+    },
+    "withsource": {
+     "passed": true,
+     "verdict": "Anchored grader over all 60: difficulty, single-defensibility, calculator-free solvability, distractor quality."
+    },
+    "nosource": {
+     "passed": true,
+     "verdict": "Options-only attack (stems stripped entirely): mean 26.4% vs 33.3% control, margin −6.9 PASS."
+    },
+    "tells": {
+     "passed": true,
+     "verdict": "Options-only sanity enforced in the brief; attack confirms it."
+    }
+   }
   }
  ],
  "auditedCohorts": [
