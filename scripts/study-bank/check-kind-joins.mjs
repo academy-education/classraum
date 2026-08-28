@@ -34,7 +34,18 @@
  * qualifier that marked those keys also appears in distractors, and the
  * real discriminator is semantic. This is the SIXTH cheap structural
  * proxy attempted in this repo and, like the previous five, it does not
- * rank batches. Keep it as pre-flight reporting only — it does catch
+ * rank batches.
+ *
+ * *** BUT IT HAS ONE-SIDED VALIDITY, AND THAT IS WHY IT STAYS ***
+ * On its first real run after the failed break-test it caught a genuine
+ * defect the batch-level joins missed: in reading-v2 the key was the
+ * LONGEST option on inference (8/14), main idea (8/20) and organization
+ * (8/14) questions. The batch-wide key-longest rate was 38%, under the
+ * established 45% bar, so the population number hid a per-kind
+ * concentration of 40-57%. Read the asymmetry literally:
+ *   a FAIL here is informative — it found a real length tell;
+ *   a PASS here proves nothing — it passed the batch that died at +58.
+ * Keep it as pre-flight reporting — it does catch
  * gross within-kind skew (its self-test fixture) and it surfaces the
  * fragmented-kind-label defect. THE BLIND ATTACK REMAINS THE GATE for
  * reading. Do not build a seventh proxy.
