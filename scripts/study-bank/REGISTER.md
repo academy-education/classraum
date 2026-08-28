@@ -1300,6 +1300,40 @@ gate-wiring test catches disagreement between the two). Any future
 BAS batch gates as family `production` (shape/withsource/tells) with a
 ledger.json entry at the exact file sha.
 
+### THE CONSENSUS TELL: the sixth structural proxy, and the first that works (2026-08-28)
+The eoi-v4 pattern hunter found that the frozen Rhetorical Synthesis
+brief — "each distractor is wrong ONLY via its one assigned
+corruption" — mechanically manufactures a majority-consensus tell:
+every true element appears in 3 of 4 options, so the option with the
+FEWEST tokens unique to it is the key. Unlike the five failed proxies
+in OPTION-BALANCE-RESULT.md, this one is ARITHMETIC, and the exact
+checker (check-consensus-tell.mjs, self-tested on synthetic fixtures
+and on known data) confirmed it over the whole population:
+
+    eoi-v4 RS (pre-ship)   80% of decided  → 30 items KILLED pre-ship
+    eoi-v3 RS (LIVE, 32)   83% of decided  → compromised; slated
+                            replace-then-archive (cr-v7 precedent)
+    v2 RS (older brief)    15% (anti-predicts) → brief-specific
+    Transitions            immune (single-word options, all ties)
+
+The RS sampling attacks had passed three times (+16.7/+18.1/+22.2)
+because no solver ran consensus voting — "the attack is the gate"
+holds for semantic tells, but this is the recorded exception: when
+the defect is arithmetic, the exact checker over the population
+overrules the sampling attack in BOTH directions. The checker is now
+standing pre-flight for ANY corruption-symmetric brief (RS, and
+check any future "distractor = key with one element wrong" design).
+Fix under test in eoi-v4 RS rev-1: paired corruption (each corrupted
+value appears in two options) plus one zero-unique-token distractor.
+
+The eoi-v4 Transitions half shipped clean: 28 items, attack −38.9,
+EoI 125 → 153. Two more instrument notes: graders inverted
+passage_needed on the T items (third occurrence — refuted by the
+measured attack, adjudication in the ledger), and a solver again
+claimed a verified 24-item file was short and invented an id
+(re-run; second occurrence — treat "the file is short" claims from
+solvers as solver failure until the file is re-verified).
+
 ### Phase 2 opens: first SSAT + ISEE bank items; repeat-v3 (2026-08-28)
 Three ships from one gate run (PHASE2-PREREGISTERED.md):
 - **ssat-verbal-v1, 21 items** — the first SSAT bank content. Attack

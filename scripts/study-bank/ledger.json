@@ -515,6 +515,47 @@
      "verdict": "Hunter: duplicated first-blank words across option pairs on the three hard two-blank items — real narrowing tell, margin still +7.2; banned in the stage-2 brief."
     }
    }
+  },
+  {
+   "id": "eoi-v4-2026-08-28",
+   "createdAt": "2026-08-28",
+   "targetTest": "sat",
+   "section": "reading_writing",
+   "task": "sat_expression_of_ideas",
+   "family": "mc_hidden_source",
+   "spec": {
+    "n": 28,
+    "authors": 10,
+    "method": "Transitions ONLY, under the frozen eoi-v3 Transitions brief, fresh topics. The RS half (30 items) was KILLED pre-ship by the element-frequency consensus tell (check-consensus-tell.mjs)."
+   },
+   "contentSha": "0a8eaec475433223865c55ae8ecf03e726fafeb996da12eb15ed7f39accfb969",
+   "status": "shipped",
+   "cohort": "eoi-v4",
+   "note": "THE FINDING: the frozen RS brief (one assigned corruption per distractor) mechanically manufactures a majority-consensus tell — every true element appears in 3 of 4 options; picking the option with fewest unique tokens scores 80% of decided items. Found by the pattern hunter, then confirmed by an exact checker run over the whole population: eoi-v4 RS 16/20 decided (killed), LIVE eoi-v3 RS 20/24 decided (83%) — the shipped 32 RS items are compromised and are slated replace-then-archive; v2 RS anti-predicts at 15%, proving brief-specificity; Transitions immune (all ties). The RS sampling attacks passed (+16.7/+18.1/+22.2) because no solver ran consensus-voting — the arithmetic-beats-sampling exception applies.",
+   "stages": {
+    "shape": {
+     "passed": true,
+     "contentSha": "0a8eaec475433223865c55ae8ecf03e726fafeb996da12eb15ed7f39accfb969",
+     "verdict": "eoi-v3-tools preflight OK over all 60 authored (ranks exact, 1 absolute-distractor item, 1 hedged-key-only). T-30 carried; RS-30 dead."
+    },
+    "withsource": {
+     "passed": true,
+     "verdict": "Key votes 3/3 on all 30 T items. Grader dq flags dropped T43/T64 (weak). ADJUDICATION RECORDED: graders marked passage_needed=false on most T items; the measured attack (T mean 11.1% vs 50% control) directly refutes that — third occurrence of the inverted-pn grader misfire; the direct measurement rules."
+    },
+    "nosource": {
+     "passed": true,
+     "n": 24,
+     "verdict": "Held-out 24-item attack, 3 solvers (one re-run after fabricating an id for a verified-24-item file): Transitions margin -38.9 CLEAN; RS +22.2 (moot — killed mechanically)."
+    },
+    "elimination": {
+     "passed": true,
+     "verdict": "Pattern hunter: T-half explicitly clean (balanced connective frequencies, no dominant family); the RS finding above is its work."
+    },
+    "tells": {
+     "passed": true,
+     "verdict": "Stored key slots rebalanced 16/4/5/3 -> 7/7/7/7 by seeded reorder (write-key-first skew, eoi-v3 precedent; draw shuffles at serve, attack used independent re-lettering)."
+    }
+   }
   }
  ],
  "auditedCohorts": [

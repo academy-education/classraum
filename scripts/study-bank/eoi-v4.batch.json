@@ -1,0 +1,512 @@
+[
+ {
+  "id": "T37",
+  "subskill": "Transitions",
+  "difficulty": "medium",
+  "topic_tag": "cave pearl formation",
+  "passage": "Cave pearls form when dripping water rotates a sand grain in a shallow pool, coating it with concentric layers of calcite until it becomes a nearly perfect sphere. _____ the largest pearls stop turning long before they are finished, gaining their outer layers while resting motionless. Their near-perfect roundness, set during the early mobile stage, persists all the same.",
+  "prompt": "Which choice completes the text with the most logical transition?",
+  "choices": [
+   "Admittedly,",
+   "Therefore,",
+   "Similarly,",
+   "Instead,"
+  ],
+  "correct_answer": "Admittedly,",
+  "explanation": "The first sentence credits rotation for the pearls' shape, and the last sentence insists their roundness \"persists all the same,\" so the middle sentence concedes a complicating fact about stillness; \"Admittedly,\" signals that concession. \"Therefore,\" would wrongly present the pearls' ceasing to turn as a consequence of how they form, and \"Instead,\" would require a rejected alternative that the passage never states.",
+  "domain": "Expression of Ideas"
+ },
+ {
+  "id": "T38",
+  "subskill": "Transitions",
+  "difficulty": "medium",
+  "topic_tag": "player piano roll archives",
+  "passage": "Player piano rolls encode performances as patterns of perforations, preserving tempo nuances that early audio recordings flattened. The paper stock used a century ago has grown brittle, and each playback risks tearing it. _____ archivists at several universities now scan the rolls optically rather than running them through instruments. The scans can then be converted back into sound with software.",
+  "prompt": "Which choice completes the text with the most logical transition?",
+  "choices": [
+   "In other words,",
+   "Consequently,",
+   "Nonetheless,",
+   "Meanwhile,"
+  ],
+  "correct_answer": "Consequently,",
+  "explanation": "Because brittle paper makes each playback risky, the archivists' switch to optical scanning is a consequence of that fragility, which \"Consequently,\" signals. \"In other words,\" would wrongly frame scanning as a restatement of the paper's condition, and \"Nonetheless,\" would treat the cautious scanning as happening despite the risk rather than because of it.",
+  "domain": "Expression of Ideas"
+ },
+ {
+  "id": "T39",
+  "subskill": "Transitions",
+  "difficulty": "hard",
+  "topic_tag": "city fox diets",
+  "passage": "Urban foxes are widely assumed to subsist largely on discarded human food. Stomach and scat analyses in one English city seemed to confirm this: scavenged items made up nearly half of adult foxes' diets. _____ the same study found that cubs were provisioned almost entirely with earthworms and beetles taken from gardens.",
+  "prompt": "Which choice completes the text with the most logical transition?",
+  "choices": [
+   "For instance,",
+   "Likewise,",
+   "However,",
+   "Thus,"
+  ],
+  "correct_answer": "However,",
+  "explanation": "The adult results appear to confirm the scavenging assumption, but the cubs' diet of \"earthworms and beetles taken from gardens\" cuts against it, a reversal that \"However,\" marks. \"Likewise,\" is tempting because both findings come from \"the same study,\" but it would wrongly present the cubs' diet as matching the adults' pattern rather than contrasting with it.",
+  "domain": "Expression of Ideas"
+ },
+ {
+  "id": "T40",
+  "subskill": "Transitions",
+  "difficulty": "medium",
+  "topic_tag": "ship figurehead restoration",
+  "passage": "Conservators restoring a nineteenth-century ship figurehead are reversing decades of well-meaning but damaging repairs. _____ earlier restorers coated the carved oak figure with thick marine varnish, which trapped moisture and quietly accelerated rot. Removing such layers without harming the original paint requires weeks of careful solvent testing.",
+  "prompt": "Which choice completes the text with the most logical transition?",
+  "choices": [
+   "For example,",
+   "Nevertheless,",
+   "Consequently,",
+   "In the meantime,"
+  ],
+  "correct_answer": "For example,",
+  "explanation": "The first sentence states that past repairs were damaging, and the varnish that trapped moisture is a specific instance of such a repair, so \"For example,\" fits the joint. \"Consequently,\" wrongly casts the varnishing as a result of the conservators' current work, and \"Nevertheless,\" and \"In the meantime,\" signal contrast and concurrent time, neither of which links a claim to its illustration.",
+  "domain": "Expression of Ideas"
+ },
+ {
+  "id": "T41",
+  "subskill": "Transitions",
+  "difficulty": "medium",
+  "topic_tag": "alpine pollinator shifts",
+  "passage": "Ecologists tracking bumblebees in the Alps have found that several species now forage hundreds of meters higher than they did in the 1970s. The flowers those bees historically visited, though, have shifted upslope far more slowly. _____ the pollinators and their plants are drifting out of alignment. Researchers worry that some alpine flowers may soon go unvisited.",
+  "prompt": "Which choice completes the text with the most logical transition?",
+  "choices": [
+   "In other words,",
+   "However,",
+   "Likewise,",
+   "Meanwhile,"
+  ],
+  "correct_answer": "In other words,",
+  "explanation": "The sentence restates the previous two facts—bees moving quickly upslope, flowers moving slowly—as a single plainer claim about misalignment, so the reformulating \"In other words,\" is logical. \"However,\" signals a contrast the sentence does not make, \"Likewise,\" wrongly promises a parallel new example, and \"Meanwhile,\" wrongly frames a summary statement as a separate concurrent event.",
+  "domain": "Expression of Ideas"
+ },
+ {
+  "id": "T42",
+  "subskill": "Transitions",
+  "difficulty": "hard",
+  "topic_tag": "neon sign craft revival",
+  "passage": "Neon bending was fading as its older practitioners retired, taking uncatalogued techniques with them. Racing that clock, a handful of studios have brought apprentices in to train under the remaining benders before the chance disappears. _____ the same studios are scanning the retirees' hand-drawn tube patterns so the paper record outlasts the training window.",
+  "prompt": "Which choice completes the text with the most logical transition?",
+  "choices": [
+   "In the meantime,",
+   "As a consequence,",
+   "Even so,",
+   "In fact,"
+  ],
+  "correct_answer": "In the meantime,",
+  "explanation": "The scanning of paper patterns is a second effort happening during the same limited window as the apprentice training, so the simultaneity signal \"In the meantime,\" fits. \"As a consequence,\" is tempting because both efforts respond to the same urgency, but the scanning is not caused by the training—the two are parallel; \"Even so,\" wrongly concedes an obstacle, and \"In fact,\" wrongly intensifies a prior claim rather than adding a concurrent one.",
+  "domain": "Expression of Ideas"
+ },
+ {
+  "id": "T43",
+  "subskill": "Transitions",
+  "difficulty": "medium",
+  "topic_tag": "peat bog archaeology",
+  "passage": "Peat bogs preserve organic artifacts that would decay in ordinary soil, and excavators at one Irish site have recovered wooden vessels more than two thousand years old. _____ the site's acidic, oxygen-poor layers have yielded leather shoes with their stitching intact. Researchers now plan to survey neighboring bogs before drainage projects begin.",
+  "prompt": "Which choice completes the text with the most logical transition?",
+  "choices": [
+   "By contrast,",
+   "In fact,",
+   "Nevertheless,",
+   "Thus,"
+  ],
+  "correct_answer": "In fact,",
+  "explanation": "The second sentence adds an even more striking instance of the preservation described in the first, so the emphatic additive \"In fact,\" fits the joint. \"By contrast,\" and \"Nevertheless,\" wrongly signal opposition between the two finds, and \"Thus,\" wrongly casts the shoes as a consequence of recovering the vessels.",
+  "domain": "Expression of Ideas"
+ },
+ {
+  "id": "T44",
+  "subskill": "Transitions",
+  "difficulty": "medium",
+  "topic_tag": "ferry route bird surveys",
+  "passage": "Volunteers riding a commuter ferry between two islands logged seabird sightings on each crossing for a year. Counts spiked during autumn migration and dipped in midsummer, when many birds were nesting ashore. _____ the route supported far more birds than earlier shore-based tallies had suggested. The team has proposed adding a second survey route.",
+  "prompt": "Which choice completes the text with the most logical transition?",
+  "choices": [
+   "For instance,",
+   "Nonetheless,",
+   "Similarly,",
+   "Overall,"
+  ],
+  "correct_answer": "Overall,",
+  "explanation": "The sentence steps back from seasonal spikes and dips to a general conclusion about the whole year, which \"Overall,\" signals. \"For instance,\" would introduce an example rather than a summary, \"Similarly,\" has no parallel case to point to, and \"Nonetheless,\" implies the seasonal variation should have counted against high totals, which the text never suggests.",
+  "domain": "Expression of Ideas"
+ },
+ {
+  "id": "T45",
+  "subskill": "Transitions",
+  "difficulty": "hard",
+  "topic_tag": "stage fog chemistry",
+  "passage": "Theatrical fog is made by heating a glycol solution into a fine aerosol, and studies of audiences exposed during a single performance have found no ill effects. Follow-up work with larger audiences reached the same conclusion, and several safety agencies now permit the fluid in enclosed venues. _____ those approvals cover brief exposures, not the nightly doses stagehands receive.",
+  "prompt": "Which choice completes the text with the most logical transition?",
+  "choices": [
+   "Likewise,",
+   "Thus,",
+   "That said,",
+   "In turn,"
+  ],
+  "correct_answer": "That said,",
+  "explanation": "The final sentence narrows the reassuring approvals to brief exposures, a qualification that \"That said,\" introduces. \"Likewise,\" and \"In turn,\" would present the sentence as continuing or following from the approvals rather than limiting them, and \"Thus,\" would wrongly make the limitation a consequence of the agencies' decisions.",
+  "domain": "Expression of Ideas"
+ },
+ {
+  "id": "T46",
+  "subskill": "Transitions",
+  "difficulty": "medium",
+  "topic_tag": "antibiotic clay deposits",
+  "passage": "Certain clay deposits in Oregon kill drug-resistant bacteria in laboratory tests, and geochemists suspect that chemically reduced iron in the clays drives the effect. _____ clays with similar iron chemistry elsewhere might show antibacterial activity as well. Researchers are now assaying deposits in France and Jordan to find out.",
+  "prompt": "Which choice completes the text with the most logical transition?",
+  "choices": [
+   "For example,",
+   "However,",
+   "In that case,",
+   "In the meantime,"
+  ],
+  "correct_answer": "In that case,",
+  "explanation": "The second sentence draws out what would follow if the geochemists' suspicion about reduced iron is correct, so the conditional \"In that case,\" fits the joint. The speculation about other clays is not an illustration, a contradiction, or a simultaneous event, so \"For example,\" \"However,\" and \"In the meantime,\" all fail.",
+  "domain": "Expression of Ideas"
+ },
+ {
+  "id": "T47",
+  "subskill": "Transitions",
+  "difficulty": "medium",
+  "topic_tag": "mechanical watch escapements",
+  "passage": "The lever escapement regulates a mechanical watch by releasing its gear train in tiny, precise increments. Watchmakers have refined the design for over two centuries, and modern versions keep excellent time. _____ the escapement loses energy to friction at every release, a limit that no lubricant fully removes. Some manufacturers now machine escapement parts from silicon, which requires no oil.",
+  "prompt": "Which choice completes the text with the most logical transition?",
+  "choices": [
+   "For instance,",
+   "Even so,",
+   "In other words,",
+   "Thus,"
+  ],
+  "correct_answer": "Even so,",
+  "explanation": "After two sentences praising the design's refinement and accuracy, the third sentence concedes a persistent flaw, so the concessive \"Even so,\" is needed. The friction loss is not an example of the accuracy, a restatement of it, or a result of it, so \"For instance,\" \"In other words,\" and \"Thus,\" each break the logic.",
+  "domain": "Expression of Ideas"
+ },
+ {
+  "id": "T48",
+  "subskill": "Transitions",
+  "difficulty": "hard",
+  "topic_tag": "community fridge networks",
+  "passage": "Community fridges let neighbors leave surplus food for anyone to take, and volunteers log each item's arrival and departure. In one network, produce dropped off before noon was typically claimed within hours, while evening donations often sat overnight. Organizers began steering donors toward morning drop-offs. _____ the share of items claimed on the day of donation rose.",
+  "prompt": "Which choice completes the text with the most logical transition?",
+  "choices": [
+   "In comparison,",
+   "Previously,",
+   "Instead,",
+   "Hence,"
+  ],
+  "correct_answer": "Hence,",
+  "explanation": "The rise in same-day claims is the consequence of steering donors toward the faster-moving morning window, so the causal \"Hence,\" completes the joint. The rise came after the change rather than before it, is not being measured against something else, and is not a substitute for the organizers' step, so \"Previously,\" \"In comparison,\" and \"Instead,\" all misdescribe the relationship.",
+  "domain": "Expression of Ideas"
+ },
+ {
+  "id": "T49",
+  "subskill": "Transitions",
+  "difficulty": "medium",
+  "topic_tag": "lighthouse lens polishing",
+  "passage": "For decades, keepers polished a lighthouse's Fresnel lens with rouge powder, believing the abrasive kept the glass at peak clarity. _____ conservators now suspect that repeated polishing wore microscopic grooves into the prisms, gradually scattering the beam. Modern maintenance guidelines therefore recommend gentler cleaning solutions applied with soft cloths.",
+  "prompt": "Which choice completes the text with the most logical transition?",
+  "choices": [
+   "Nevertheless,",
+   "As a result,",
+   "For example,",
+   "Similarly,"
+  ],
+  "correct_answer": "Nevertheless,",
+  "explanation": "The keepers believed rouge powder preserved clarity, but conservators now suspect the polishing actually damaged the prisms, so the contrastive \"Nevertheless,\" fits. \"As a result,\" wrongly treats the suspicion as a consequence of the keepers' belief, while \"For example,\" and \"Similarly,\" wrongly present the damage as an illustration or a parallel of the polishing practice.",
+  "domain": "Expression of Ideas"
+ },
+ {
+  "id": "T50",
+  "subskill": "Transitions",
+  "difficulty": "medium",
+  "topic_tag": "moth wing acoustics",
+  "passage": "Many moths have wing scales that absorb the ultrasonic clicks bats use to hunt. Researchers describe the scales as a form of acoustic camouflage, muffling echoes before they return to a predator. _____ scales on one silk moth species absorb up to 70 percent of incoming sound energy. Engineers hope to adapt the structure for thin soundproofing panels.",
+  "prompt": "Which choice completes the text with the most logical transition?",
+  "choices": [
+   "For instance,",
+   "In comparison,",
+   "However,",
+   "Likewise,"
+  ],
+  "correct_answer": "For instance,",
+  "explanation": "The silk moth's 70 percent absorption is a specific example of the general claim that moth scales muffle echoes, so \"For instance,\" is correct. \"However,\" wrongly signals a contrast with the camouflage claim, and \"In comparison,\" and \"Likewise,\" wrongly frame the figure as a separate case being set beside the scales rather than an instance of them.",
+  "domain": "Expression of Ideas"
+ },
+ {
+  "id": "T51",
+  "subskill": "Transitions",
+  "difficulty": "hard",
+  "topic_tag": "reclaimed golf course rewilding",
+  "passage": "When a coastal golf course closed, ecologists let native dune grasses reclaim the fairways rather than replanting them by hand. Surveys five years later found more ground-nesting bird species on the site than on nearby restored plots that had been actively seeded. _____ the cheapest approach to rewilding proved, in this case, the most effective one.",
+  "prompt": "Which choice completes the text with the most logical transition?",
+  "choices": [
+   "In other words,",
+   "On the other hand,",
+   "At the same time,",
+   "Consequently,"
+  ],
+  "correct_answer": "In other words,",
+  "explanation": "The final sentence restates the survey finding in general terms rather than reporting something new, so the reformulating \"In other words,\" is correct. \"Consequently,\" wrongly casts the restatement as an outcome that followed from the finding, while \"On the other hand,\" and \"At the same time,\" wrongly signal contrast or an additional simultaneous point.",
+  "domain": "Expression of Ideas"
+ },
+ {
+  "id": "T52",
+  "subskill": "Transitions",
+  "difficulty": "medium",
+  "topic_tag": "typewriter font identification",
+  "passage": "Forensic document examiners begin by photographing a typed page under magnification to record the precise shape of each character. _____ they compare those letterforms with a reference catalog of typefaces used by known typewriter models. A close match can narrow a document's origin to a handful of machines.",
+  "prompt": "Which choice completes the text with the most logical transition?",
+  "choices": [
+   "Next,",
+   "For instance,",
+   "In contrast,",
+   "Similarly,"
+  ],
+  "correct_answer": "Next,",
+  "explanation": "The passage describes an ordered procedure: examiners first photograph the characters and then compare them with a catalog, so \"Next,\" signals that second step. \"For instance,\" \"In contrast,\" and \"Similarly,\" would wrongly present the comparison as an example, an opposition, or a parallel case rather than the following stage.",
+  "domain": "Expression of Ideas"
+ },
+ {
+  "id": "T53",
+  "subskill": "Transitions",
+  "difficulty": "medium",
+  "topic_tag": "reservoir evaporation covers",
+  "passage": "Floating covers and shade balls can sharply reduce evaporation from reservoirs in arid regions. In one trial, a covered reservoir lost forty percent less water over one summer than an uncovered reservoir nearby. _____ the cover cooled the surface water, slowing the growth of algae that can clog intake pipes. Utilities in several states are now testing similar systems.",
+  "prompt": "Which choice completes the text with the most logical transition?",
+  "choices": [
+   "Moreover,",
+   "Thus,",
+   "Still,",
+   "Instead,"
+  ],
+  "correct_answer": "Moreover,",
+  "explanation": "The blank adds a second, further benefit of the cover — cooling that slows algae — on top of the water savings, so the additive \"Moreover,\" fits. \"Thus,\" would cast the cooling as a consequence of the savings, while \"Still,\" and \"Instead,\" would signal a concession or a substitution that the passage does not make.",
+  "domain": "Expression of Ideas"
+ },
+ {
+  "id": "T54",
+  "subskill": "Transitions",
+  "difficulty": "hard",
+  "topic_tag": "carnival ride physics inspection",
+  "passage": "State inspectors evaluating a traveling carnival measured each ride's restraint forces and structural vibration. The pendulum swing exceeded its rated lateral load in one trial, while the smaller rides stayed comfortably within their limits. The swing's worn bearing was replaced within a week. _____ the inspection pointed to a fleet maintained with reasonable, if not flawless, care.",
+  "prompt": "Which choice completes the text with the most logical transition?",
+  "choices": [
+   "In general,",
+   "Consequently,",
+   "Likewise,",
+   "However,"
+  ],
+  "correct_answer": "In general,",
+  "explanation": "The final sentence steps back from mixed particulars — one exceedance, a quick repair, otherwise clean results — to a broad overall assessment, which \"In general,\" signals. \"Consequently,\" misreads that verdict as an effect of the repair, and \"However,\" and \"Likewise,\" assert a contrast or a parallel that the summarizing sentence does not make.",
+  "domain": "Expression of Ideas"
+ },
+ {
+  "id": "T55",
+  "subskill": "Transitions",
+  "difficulty": "medium",
+  "topic_tag": "heritage rose propagation",
+  "passage": "Volunteers at a heritage garden propagate century-old rose varieties by rooting stem cuttings, a method that preserves each plant's exact genetic makeup. _____ a few varieties resist rooting even when cuttings are prepared with great care. For those stubborn cultivars, gardeners instead graft stems onto hardy modern rootstock.",
+  "prompt": "Which choice completes the text with the most logical transition?",
+  "choices": [
+   "In other words,",
+   "Consequently,",
+   "However,",
+   "Also,"
+  ],
+  "correct_answer": "However,",
+  "explanation": "The passage first presents rooting cuttings as the garden's standard method, then qualifies that picture with an exception: a few varieties resist rooting. \"However,\" signals that qualification, whereas \"Consequently,\" and \"In other words,\" would wrongly cast the exception as a result or a restatement of the first sentence.",
+  "domain": "Expression of Ideas"
+ },
+ {
+  "id": "T56",
+  "subskill": "Transitions",
+  "difficulty": "medium",
+  "topic_tag": "silent film score reconstruction",
+  "passage": "Musicologist Dana Ferreira is reconstructing the orchestral score for a 1921 silent film from its single surviving piano part. Marginal notes in the part may indicate which instruments played each passage. _____ Ferreira could assign melodies to specific sections of the orchestra with reasonable confidence. Without such evidence, the assignments would remain educated guesses.",
+  "prompt": "Which choice completes the text with the most logical transition?",
+  "choices": [
+   "For example,",
+   "However,",
+   "Indeed,",
+   "If so,"
+  ],
+  "correct_answer": "If so,",
+  "explanation": "The previous sentence raises only a possibility—the notes \"may indicate\" instrumentation—and the confident assignments depend on that possibility holding. \"If so,\" makes the claim properly contingent, while \"Indeed,\" would treat the possibility as already confirmed and \"However,\" signals a contrast the passage does not make.",
+  "domain": "Expression of Ideas"
+ },
+ {
+  "id": "T57",
+  "subskill": "Transitions",
+  "difficulty": "hard",
+  "topic_tag": "harbor dredging clam surveys",
+  "passage": "Before dredging a harbor channel, engineers commissioned surveys of the clam beds along its edges. The surveys found dense beds at the channel's northern edge but only scattered clams to the south, so crews shifted the dredge route southward. _____ the revised route still passes within meters of two smaller beds flagged by the surveys.",
+  "prompt": "Which choice completes the text with the most logical transition?",
+  "choices": [
+   "Nevertheless,",
+   "As a result,",
+   "Similarly,",
+   "In fact,"
+  ],
+  "correct_answer": "Nevertheless,",
+  "explanation": "The route was shifted southward precisely to move away from the clam beds, yet the final sentence concedes that it \"still passes within meters\" of two of them—a concession that \"Nevertheless,\" expresses. \"As a result,\" would wrongly present that lingering proximity as the intended outcome of the shift rather than a shortfall of it.",
+  "domain": "Expression of Ideas"
+ },
+ {
+  "id": "T58",
+  "subskill": "Transitions",
+  "difficulty": "medium",
+  "topic_tag": "insect hotel occupancy",
+  "passage": "Volunteers at a community garden stocked their insect hotel with bamboo tubes of a single diameter, a size that suits only a few solitary bee species. _____ occupancy stayed low through the first summer. The following spring, the volunteers added tubes of varied widths, and residents multiplied.",
+  "prompt": "Which choice completes the text with the most logical transition?",
+  "choices": [
+   "As a result,",
+   "Nevertheless,",
+   "Similarly,",
+   "Instead,"
+  ],
+  "correct_answer": "As a result,",
+  "explanation": "Because the tubes suited only a few species, low occupancy follows as a consequence, so \"As a result,\" fits the joint. \"Nevertheless,\" and \"Instead,\" wrongly signal opposition to the first sentence, and \"Similarly,\" wrongly treats the low occupancy as a parallel case rather than an effect.",
+  "domain": "Expression of Ideas"
+ },
+ {
+  "id": "T59",
+  "subskill": "Transitions",
+  "difficulty": "medium",
+  "topic_tag": "planetarium projector history",
+  "passage": "Early planetariums displayed the night sky using painted domes and pinpricked metal globes lit from within. These devices could show star positions but could not reproduce the shifting motions of the planets. _____ the optical projector introduced in the 1920s could animate the planets' wandering paths across the dome. Audiences at early demonstrations reportedly gasped.",
+  "prompt": "Which choice completes the text with the most logical transition?",
+  "choices": [
+   "By contrast,",
+   "In other words,",
+   "Consequently,",
+   "Likewise,"
+  ],
+  "correct_answer": "By contrast,",
+  "explanation": "The earlier devices could not reproduce planetary motion while the 1920s projector could, an opposition that \"By contrast,\" marks. \"Likewise,\" and \"In other words,\" wrongly present the projector's ability as a parallel or a restatement of that inability, and \"Consequently,\" wrongly casts it as an effect of it.",
+  "domain": "Expression of Ideas"
+ },
+ {
+  "id": "T60",
+  "subskill": "Transitions",
+  "difficulty": "hard",
+  "topic_tag": "roadside geology signage",
+  "passage": "Transportation departments have begun installing interpretive signs where highways cut through exposed rock, since road cuts offer unusually clear geological cross sections. The signs are required to condense complex histories into a few readable lines. _____ one panel in a mountain pass compresses 300 million years of sediment deposition into a single sentence.",
+  "prompt": "Which choice completes the text with the most logical transition?",
+  "choices": [
+   "For example,",
+   "As a consequence,",
+   "In the same way,",
+   "Nevertheless,"
+  ],
+  "correct_answer": "For example,",
+  "explanation": "The panel that fits 300 million years into one sentence is a specific instance of the general requirement to condense histories, so \"For example,\" fits. \"As a consequence,\" misreads the panel as an effect rather than an illustration, \"In the same way,\" misreads it as a separate parallel case, and \"Nevertheless,\" wrongly signals opposition.",
+  "domain": "Expression of Ideas"
+ },
+ {
+  "id": "T61",
+  "subskill": "Transitions",
+  "difficulty": "medium",
+  "topic_tag": "monastery beer yeast lineage",
+  "passage": "Brewers at a Belgian monastery have propagated the same yeast culture since the 1830s, seeding each new batch with a sample from the last. _____ every modern bottle descends, cell by cell, from a single nineteenth-century starter. Genetic sequencing of the strain recently confirmed this unbroken lineage.",
+  "prompt": "Which choice completes the text with the most logical transition?",
+  "choices": [
+   "In other words,",
+   "Nevertheless,",
+   "Meanwhile,",
+   "Likewise,"
+  ],
+  "correct_answer": "In other words,",
+  "explanation": "The second sentence restates the first claim in plainer terms: continuous propagation since the 1830s means each bottle descends from one starter, so the reformulating \"In other words,\" fits. \"Nevertheless,\" signals contrast, \"Meanwhile,\" signals a separate simultaneous event, and \"Likewise,\" signals a parallel additional case, none of which describes a restatement.",
+  "domain": "Expression of Ideas"
+ },
+ {
+  "id": "T62",
+  "subskill": "Transitions",
+  "difficulty": "medium",
+  "topic_tag": "kelp forest acoustics",
+  "passage": "Marine ecologists spent a year recording the soundscape of a California kelp forest. In healthy stands, snapping shrimp produced a near-constant crackle that larval fish appear to use when settling. _____ hydrophones in nearby sections stripped bare by urchins captured long stretches of near silence. The contrast suggests that sound recordings could track kelp recovery.",
+  "prompt": "Which choice completes the text with the most logical transition?",
+  "choices": [
+   "Consequently,",
+   "Meanwhile,",
+   "In fact,",
+   "Instead,"
+  ],
+  "correct_answer": "Meanwhile,",
+  "explanation": "The sentence reports what hydrophones in a different area recorded during the same monitoring period, so the simultaneity marker \"Meanwhile,\" is logical. \"Consequently,\" wrongly casts the silence as a result of the crackle, \"In fact,\" wrongly intensifies the prior claim, and \"Instead,\" wrongly implies one action substituted for an expected other.",
+  "domain": "Expression of Ideas"
+ },
+ {
+  "id": "T63",
+  "subskill": "Transitions",
+  "difficulty": "hard",
+  "topic_tag": "dry stone wall engineering",
+  "passage": "Dry stone walls stand without mortar because each stone's weight presses inward against its neighbors. Unlike rigid masonry, a well-laid wall can flex as the ground settles, shifting slightly without losing its grip. _____ some masons contend that a good wall actually grows more stable, not weaker, as it settles over the decades.",
+  "prompt": "Which choice completes the text with the most logical transition?",
+  "choices": [
+   "As a result,",
+   "Otherwise,",
+   "Indeed,",
+   "Still,"
+  ],
+  "correct_answer": "Indeed,",
+  "explanation": "The final sentence does not draw a new consequence; it escalates the previous claim that settling walls keep their grip into the stronger claim that they grow more stable, so the emphatic \"Indeed,\" fits. \"As a result,\" treats the masons' contention as an effect of the settling, \"Otherwise,\" requires a condition being negated, and \"Still,\" signals concession where the sentence agrees with and intensifies what came before.",
+  "domain": "Expression of Ideas"
+ },
+ {
+  "id": "T64",
+  "subskill": "Transitions",
+  "difficulty": "medium",
+  "topic_tag": "night market food safety",
+  "passage": "Inspectors at Taipei's night markets check individual stalls for refrigeration lapses, expired ingredients, and unwashed produce, and results vary widely from vendor to vendor. _____ the markets' compliance rates have climbed steadily over the past decade. Officials credit mandatory food-handling courses introduced for licensed vendors in 2014.",
+  "prompt": "Which choice completes the text with the most logical transition?",
+  "choices": [
+   "Overall,",
+   "Consequently,",
+   "For instance,",
+   "Similarly,"
+  ],
+  "correct_answer": "Overall,",
+  "explanation": "The text moves from stall-by-stall results that \"vary widely\" to a broad decade-long pattern, so \"Overall,\" correctly signals a shift from particulars to a general trend. \"Consequently,\" would wrongly present the rising rates as a result of the variation, and \"For instance,\" would require the second sentence to be an example of it.",
+  "domain": "Expression of Ideas"
+ },
+ {
+  "id": "T65",
+  "subskill": "Transitions",
+  "difficulty": "medium",
+  "topic_tag": "observatory dark sky zoning",
+  "passage": "Alder Creek adopted dark-sky zoning to protect the nearby Halvorsen Observatory, requiring shielded fixtures and warm-toned bulbs on new construction. Existing homes and businesses were given five years to retrofit outdoor lighting. _____ the rules can be waived: properties whose lighting is required by state safety codes may keep it unchanged. Astronomers say the exempted fixtures rarely interfere with observations.",
+  "prompt": "Which choice completes the text with the most logical transition?",
+  "choices": [
+   "In some circumstances, however,",
+   "By the same token,",
+   "In other words,",
+   "As a result,"
+  ],
+  "correct_answer": "In some circumstances, however,",
+  "explanation": "After two sentences describing the zoning requirements, the third sentence carves out a safety-code exemption, so \"In some circumstances, however,\" correctly marks a qualification of the rules. \"In other words,\" would make the waiver a restatement of the requirements, and \"As a result,\" would make the exemption a consequence of them.",
+  "domain": "Expression of Ideas"
+ },
+ {
+  "id": "T66",
+  "subskill": "Transitions",
+  "difficulty": "hard",
+  "topic_tag": "postage stamp pigment analysis",
+  "passage": "Philatelists have long dated a rare colonial-era stamp printing to 1852, but spectroscopic analysis of its red pigment revealed traces of a synthetic dye first manufactured in 1856. Researchers caution that the dye could have transferred from an adjacent stamp during storage. _____ the original dating would stand despite the spectroscopic evidence.",
+  "prompt": "Which choice completes the text with the most logical transition?",
+  "choices": [
+   "In light of these findings,",
+   "If that is the case,",
+   "Regardless,",
+   "Therefore,"
+  ],
+  "correct_answer": "If that is the case,",
+  "explanation": "The 1852 dating survives on the unconfirmed possibility that the dye \"could have transferred\" during storage, so \"If that is the case,\" correctly makes the final claim contingent on that scenario. \"Regardless,\" would assert the dating stands even if the dye is original to the stamp, and \"Therefore,\" treats a mere possibility as an established conclusion.",
+  "domain": "Expression of Ideas"
+ }
+]
