@@ -1,0 +1,873 @@
+{
+  "cohort": "cr-v9",
+  "stage": 1,
+  "batch": "b3",
+  "method": "symmetric four-world authoring, post-hoc seeded key selection",
+  "items": [
+    {
+      "localId": "crv9-b3-01",
+      "setting": "A left-luggage counter at a train station; a clerk behind the counter and a traveller with a suitcase.",
+      "worlds": [
+        {
+          "kind": "bad news",
+          "keyAct": "accept the setback and state a fallback plan",
+          "line": "Sorry, our lockers are all full until about four this afternoon.",
+          "reply": "I'll wheel it around town and try again after four then.",
+          "explanationIfSpoken": "The clerk reports that storage is unavailable until a stated hour, so the traveller keeps the bag and names that hour as the moment to return. Answering with a bag count and a pick-up time responds to a question nobody asked, since nothing is being taken in. Thanking someone for redirecting to another floor fits no redirection, and promising to settle up later assumes a charge that was never quoted.",
+          "kills": {
+            "1": "\"all full until\" means nothing is being accepted for storage, so there is no count of pieces to declare or collection time to fix.",
+            "2": "\"our lockers\" places the storage service at this very counter, so the traveller has not been sent one floor down.",
+            "3": "\"until about four\" is about availability, not price, so there is no fee to settle up on collection."
+          }
+        },
+        {
+          "kind": "question",
+          "keyAct": "supply the requested details",
+          "line": "How many pieces are you leaving, and until what time today?",
+          "reply": "Two bags, and I'll collect them before six this evening.",
+          "explanationIfSpoken": "The clerk asks for two pieces of information and the traveller gives both, a count and a collection time. Saying they will wheel the bag round town and return after four refuses a service that is being provided. Thanking someone for pointing downstairs fits nothing, since the drop-off is being processed here, and agreeing to settle up answers no stated price.",
+          "kills": {
+            "0": "\"How many pieces\" shows the bags are being taken in, so wandering off with the suitcase until four contradicts the transaction under way.",
+            "2": "\"what time today\" is the clerk here booking the items in, not sending the traveller to another floor.",
+            "3": "\"How many pieces\" asks for a count, and a promise to pay on collection supplies no count and no time."
+          }
+        },
+        {
+          "kind": "correction",
+          "keyAct": "acknowledge the correction and thank",
+          "line": "That's the parcel desk — left luggage is one floor down, actually.",
+          "reply": "One floor down — thanks, I'd have waited here all morning.",
+          "explanationIfSpoken": "The traveller is at the wrong counter and the clerk relocates the service, so the reply repeats the new location and thanks them. A plan to return after four responds to a closing time that was never given. Naming two bags and a collection hour answers no question, and offering to settle up assumes a price this desk never quoted.",
+          "kills": {
+            "0": "\"one floor down\" means this counter has no storage lockers at all, so their being full cannot be the situation.",
+            "1": "\"That's the parcel desk\" is a redirection, not a request for the number of pieces or a collection time.",
+            "2": "",
+            "3": "\"left luggage is\" locates a service elsewhere; no fee has been mentioned to be paid later."
+          }
+        },
+        {
+          "kind": "neutral info",
+          "keyAct": "accept the stated terms",
+          "line": "The charge is six euros a bag, payable when you pick it up.",
+          "reply": "I'll settle up when I come back for them, no problem.",
+          "explanationIfSpoken": "The clerk states the rate and when it falls due, and the traveller simply accepts that arrangement. Wheeling the bag around town until four would be a refusal of a service that is plainly being offered. Declaring two bags answers no question here, and thanking someone for sending them downstairs fits no redirection.",
+          "kills": {
+            "0": "\"six euros a bag\" prices storage that is clearly available, so full lockers are not the problem.",
+            "1": "\"payable when you pick\" states a payment term rather than asking how many pieces or until when.",
+            "2": "\"The charge is\" is this counter quoting its own rate, so the traveller has not been sent one floor down."
+          }
+        }
+      ]
+    },
+    {
+      "localId": "crv9-b3-02",
+      "setting": "A gate-change desk in an airport terminal; a passenger holding a boarding pass and the agent staffing the desk.",
+      "worlds": [
+        {
+          "kind": "question",
+          "keyAct": "give the new location and walking time",
+          "line": "Is the Lisbon flight still leaving from B12, or has it moved?",
+          "reply": "It's B27 now — roughly ten minutes' walk in that direction.",
+          "explanationIfSpoken": "The passenger asks which gate the flight uses, so the agent names the new gate and how long it takes to reach. Radioing ahead to hold a door answers a timing crisis that has not been raised. A remark about a printer fits no request for a document, and amending a spelling fits no name that was mentioned.",
+          "kills": {
+            "1": "\"still leaving from\" asks which gate is in use, so nobody has said they cannot get to a gate in time.",
+            "2": "\"or has it moved\" seeks information, not a printed boarding pass.",
+            "3": "\"the Lisbon flight\" identifies a flight, not a passenger name, so there is nothing to correct."
+          }
+        },
+        {
+          "kind": "bad news",
+          "keyAct": "intervene on the passenger's behalf",
+          "line": "I've just missed the shuttle, so I can't reach the new gate in time.",
+          "reply": "I'll radio the gate and ask them to hold the door.",
+          "explanationIfSpoken": "The passenger reports a transport failure that threatens boarding, so the agent contacts the gate to buy time. Being told the gate number and a walking time helps nobody who already knows the gate and cannot get there. A note about the reprint answers no request, and correcting a spelling addresses nothing that was said.",
+          "kills": {
+            "0": "\"the new gate\" shows the passenger already knows the gate has changed, so being given its number and a walk time is not an answer.",
+            "2": "\"missed the shuttle\" is a transport problem; no document was asked for.",
+            "3": "\"can't reach the new\" concerns arriving on time, not how a name is spelled."
+          }
+        },
+        {
+          "kind": "request",
+          "keyAct": "confirm the document will be produced",
+          "line": "Could you print me a new boarding pass with the changed gate on it?",
+          "reply": "The reprint will have the new gate printed on it.",
+          "explanationIfSpoken": "The passenger asks for a fresh pass showing the change, and the agent confirms the reprint carries it. Simply naming a gate and a walking time leaves the request itself unanswered. Radioing ahead responds to a missed connection that was not mentioned, and amending a spelling addresses a name nobody raised.",
+          "kills": {
+            "0": "\"Could you print\" is an explicit request for a document, which naming a gate and a walking distance does not fulfil.",
+            "1": "\"print me a new boarding pass\" concerns paperwork, not a missed shuttle or a door held open.",
+            "3": "\"with the changed gate\" identifies the gate line as what must be right, not the traveller's name."
+          }
+        },
+        {
+          "kind": "correction",
+          "keyAct": "undertake to fix the record",
+          "line": "Actually my name is spelled with two Ns, not one, on there.",
+          "reply": "I'll amend the spelling before you head through security.",
+          "explanationIfSpoken": "The passenger flags an error in how their name appears, and the agent commits to correcting it before they move on. Being told a gate number and walking time ignores the error entirely. Radioing a gate to hold a door fits no missed connection, and a reprint described purely by its gate line does not address the misspelling.",
+          "kills": {
+            "0": "\"two Ns\" is about spelling, so this is not a question about which gate the flight uses.",
+            "1": "\"spelled with two\" raises a clerical error, not a missed shuttle or a boarding deadline.",
+            "2": "\"my name is\" identifies the name as the thing to fix, so a reprint praised for its gate line answers the wrong point."
+          }
+        }
+      ]
+    },
+    {
+      "localId": "crv9-b3-03",
+      "setting": "An intercity coach ticket window; a clerk at the glass and a traveller buying a fare.",
+      "worlds": [
+        {
+          "kind": "offer",
+          "keyAct": "take the cheaper alternative",
+          "line": "There's a cheaper service at ten past, if you don't mind waiting.",
+          "reply": "I'll wait for the later one, then — the fare matters more.",
+          "explanationIfSpoken": "The clerk offers a lower fare in exchange for a wait, and the traveller takes that trade explicitly. Confirming a boarding bay responds to directions that were never given. Going off to find cash fits no payment problem, and stating that the trip is one way answers a question nobody asked.",
+          "kills": {
+            "1": "\"at ten past\" names a departure time as an option, not a boarding bay to walk to.",
+            "2": "\"if you don't mind waiting\" makes the choice about time and fare, not about how the ticket is paid for.",
+            "3": "\"There's a cheaper\" is an offer of an alternative service, not a question about the return leg."
+          }
+        },
+        {
+          "kind": "neutral info",
+          "keyAct": "read back the directions and move off",
+          "line": "The eleven o'clock coach boards from bay four, over by the kiosk.",
+          "reply": "Bay four by the kiosk — I'll head over now.",
+          "explanationIfSpoken": "The clerk locates the departure and the traveller repeats the bay and landmark before setting off. Choosing to wait for a later service fits no alternative that was offered. Fetching cash answers no problem with payment, and declaring a one-way trip answers no question.",
+          "kills": {
+            "0": "\"boards from bay four\" locates one departure; no second, cheaper service is put forward to wait for.",
+            "2": "\"over by the kiosk\" gives directions, and says nothing about how the ticket must be paid for.",
+            "3": "\"The eleven o'clock\" is the clerk supplying information, not asking whether the traveller returns today."
+          }
+        },
+        {
+          "kind": "bad news",
+          "keyAct": "go and solve the obstacle",
+          "line": "Sorry, this window only takes cash; the card machine is down.",
+          "reply": "There's a cash point in the hall — back in a minute.",
+          "explanationIfSpoken": "The clerk cannot take a card, so the traveller says where they will get cash and that they are coming straight back. Waiting for a cheaper service responds to an offer that was not made. Repeating a bay number fits no directions, and stating the trip is one way answers no question.",
+          "kills": {
+            "0": "\"only takes cash\" is about payment, not a choice between an earlier and a later coach.",
+            "1": "\"the card machine\" concerns the till at this window; no bay or boarding point has been named.",
+            "3": "\"this window only\" describes a restriction here, and nothing has been asked about the traveller's return."
+          }
+        },
+        {
+          "kind": "question",
+          "keyAct": "answer with the ticket type and reason",
+          "line": "Are you travelling back today, or is this a one-way ticket?",
+          "reply": "One way only — I'm staying with my sister all week.",
+          "explanationIfSpoken": "The clerk needs to know whether to sell a return, and the traveller specifies one way and explains why. Waiting for a cheaper coach responds to an offer that was never made. Reading back a bay number fits no directions, and going for cash fits no payment obstacle.",
+          "kills": {
+            "0": "\"travelling back today\" is a question about the return leg, not an offer of a later, cheaper service.",
+            "1": "\"a one-way ticket\" concerns what to sell; no bay or kiosk has been mentioned to walk to.",
+            "2": "\"Are you travelling\" asks about the itinerary, and says nothing about how payment is taken."
+          }
+        }
+      ]
+    },
+    {
+      "localId": "crv9-b3-04",
+      "setting": "A hotel concierge desk in the evening; a guest at the desk and the concierge on duty.",
+      "worlds": [
+        {
+          "kind": "request",
+          "keyAct": "commit to arranging it and report back",
+          "line": "Could you book us a table somewhere close for eight tonight?",
+          "reply": "I'll try the bistro on the corner and confirm by seven.",
+          "explanationIfSpoken": "The guest asks for a nearby dinner reservation at a set hour, so the concierge names where they will try and when they will report back. Extending the room responds to a change of dates that was never mentioned. Opening hours for a monument answer no dinner request, and a search of lost property fits nothing missing.",
+          "kills": {
+            "1": "\"book us a table\" is a dinner request, so there is no altered departure that would require lengthening the stay.",
+            "2": "\"for eight tonight\" fixes tonight's meal, not which day a monument admits visitors.",
+            "3": "\"somewhere close for\" concerns where to eat; nothing has been reported missing."
+          }
+        },
+        {
+          "kind": "good news",
+          "keyAct": "extend the stay administratively",
+          "line": "Our flight got moved, so we can stay a second night after all.",
+          "reply": "I'll extend the booking and keep your key card working.",
+          "explanationIfSpoken": "The guest's plans have changed in their favour, so the concierge handles the paperwork that follows and keeps their access alive. Trying a bistro and confirming by seven answers a dinner request that was not made. Monument opening days are beside the point, and lost property fits nothing reported gone.",
+          "kills": {
+            "0": "\"stay a second night\" reports a change of dates, not a request for a restaurant or a time.",
+            "2": "\"Our flight got moved\" concerns travel dates, not a monument's opening days.",
+            "3": "\"a second night\" is about the booking; nothing of the guest's has gone missing."
+          }
+        },
+        {
+          "kind": "question",
+          "keyAct": "answer and steer to the better day",
+          "line": "Is the castle open on Mondays, or do we need Tuesday?",
+          "reply": "Mondays it shuts at noon, so Tuesday suits you better.",
+          "explanationIfSpoken": "The guest asks which day to visit, and the concierge gives the Monday restriction and recommends the alternative. Booking a bistro responds to a dinner request that was never made. Extending the booking fits no change of dates, and lost property fits nothing missing.",
+          "kills": {
+            "0": "\"the castle open\" makes this a sightseeing question, so no table or dining hour has been asked for.",
+            "1": "\"on Mondays, or\" is about planning a visit, not about lengthening the stay.",
+            "3": "\"do we need Tuesday\" concerns which day to go; nothing has been lost."
+          }
+        },
+        {
+          "kind": "bad news",
+          "keyAct": "open a search for the missing item",
+          "line": "Someone's taken our umbrella from the stand by the lift.",
+          "reply": "I'll check the lost property box and ask the porters.",
+          "explanationIfSpoken": "The guest reports an item gone from a public stand, so the concierge starts the obvious search and involves staff who may have moved it. Trying a bistro answers no dinner request. Extending the booking fits no change of dates, and castle opening hours have nothing to do with it.",
+          "kills": {
+            "0": "\"taken our umbrella\" reports a loss, not a request for a table at a given hour.",
+            "1": "\"from the stand\" concerns something missing in the hotel, not a changed flight or an extra night.",
+            "2": "\"by the lift\" places the problem inside the building, not at a monument with opening days."
+          }
+        }
+      ]
+    },
+    {
+      "localId": "crv9-b3-05",
+      "setting": "The loading ramp of a small car-and-bike ferry; a deckhand directing traffic and a cyclist waiting to board.",
+      "worlds": [
+        {
+          "kind": "neutral info",
+          "keyAct": "read back the instruction and comply",
+          "line": "Wheel it up the ramp and strap it to the rail on the left.",
+          "reply": "Straps on the left rail — I'll do that now.",
+          "explanationIfSpoken": "The deckhand tells the cyclist where to put the bike and how to secure it, and the cyclist repeats the fixing point before doing it. Riding round to the stern answers a redirection that was not made. Accepting a later sailing fits no shortage of space, and a count of panniers answers no question.",
+          "kills": {
+            "1": "\"up the ramp\" sends the cyclist up this ramp, so no correction toward the stern is being made.",
+            "2": "\"strap it to the rail\" assigns the bike a place, so the deck is plainly not full.",
+            "3": "\"on the left\" is an instruction about securing the bike, not a question about luggage."
+          }
+        },
+        {
+          "kind": "correction",
+          "keyAct": "accept the redirection and reroute",
+          "line": "Not that ramp — bikes load at the stern, cars use this one.",
+          "reply": "The stern, right. I'll ride round the back.",
+          "explanationIfSpoken": "The cyclist has approached the vehicle ramp, so the deckhand redirects them and the cyclist confirms the new loading point. Talking about straps on a left-hand rail fits no instruction to secure anything here. Agreeing to a later sailing fits no full deck, and a count of panniers answers nothing.",
+          "kills": {
+            "0": "\"bikes load at the stern\" sends the cyclist elsewhere, so no rail here has been named to strap the bike to.",
+            "2": "\"cars use this one\" is about which ramp serves what, not about the bike deck being full.",
+            "3": "\"Not that ramp\" corrects a position; nothing has been asked about panniers."
+          }
+        },
+        {
+          "kind": "bad news",
+          "keyAct": "resign to the later sailing",
+          "line": "The bike deck's full already; you'd be waiting for the four o'clock.",
+          "reply": "I'll take the four o'clock — nothing else I can do.",
+          "explanationIfSpoken": "The deckhand says this sailing is beyond capacity and names the next one, so the cyclist accepts it. Repeating straps and a left rail fits no instruction to secure a bike that cannot board. Riding round to the stern answers no redirection, and a count of panniers answers no question.",
+          "kills": {
+            "0": "\"deck's full already\" means there is no place aboard, so there is no rail to strap the bike to.",
+            "1": "\"waiting for the four o'clock\" makes the problem capacity, not which ramp to use.",
+            "3": "\"The bike deck's full\" concerns space aboard, not whether the bike carries luggage."
+          }
+        },
+        {
+          "kind": "question",
+          "keyAct": "answer and volunteer flexibility",
+          "line": "Are you carrying panniers, or is the bike going on empty?",
+          "reply": "Two panniers, but I can take them off if needed.",
+          "explanationIfSpoken": "The deckhand needs to know the bike's load, so the cyclist gives the number and offers to remove them. Confirming straps on a left rail responds to an instruction that was not given. Riding to the stern fits no redirection, and accepting a later sailing fits no report that the deck is full.",
+          "kills": {
+            "0": "\"carrying panniers\" asks about the load, not where to strap the bike.",
+            "1": "\"going on empty\" concerns luggage, so no redirection to the stern has been made.",
+            "2": "\"Are you carrying\" is a question about the bike's load, not news that the deck is full."
+          }
+        }
+      ]
+    },
+    {
+      "localId": "crv9-b3-06",
+      "setting": "The reception desk of a mountain hut in the evening; the warden behind the desk and a hiker just arrived.",
+      "worlds": [
+        {
+          "kind": "offer",
+          "keyAct": "take up the offer and give a reason",
+          "line": "We keep spare wool blankets behind the stove if you're cold.",
+          "reply": "I'll grab one — the dorm windows don't seal well.",
+          "explanationIfSpoken": "The warden offers extra bedding, and the hiker accepts and explains why the extra warmth is needed. Relief at avoiding the floor responds to news about a reserved bunk that was never given. Muddy boots fit no instruction about the rack, and agreeing on six fits no mealtime correction.",
+          "kills": {
+            "1": "\"spare wool blankets\" is an offer of bedding, and says nothing about companions having kept a bunk free.",
+            "2": "\"behind the stove\" locates blankets, not a boot rack or a rule about footwear.",
+            "3": "\"if you're cold\" concerns warmth, so no serving time has been stated to be corrected."
+          }
+        },
+        {
+          "kind": "good news",
+          "keyAct": "register relief at the outcome",
+          "line": "Your friends arrived an hour ago and saved you a bunk.",
+          "reply": "That saves me a night on the floor, then.",
+          "explanationIfSpoken": "The warden reports that a sleeping place has been held, and the hiker reacts to what that spares them. Fetching a blanket because of draughty windows responds to an offer of bedding that was not made. Knocking mud off boots fits no instruction, and confirming six fits no mealtime.",
+          "kills": {
+            "0": "\"saved you a bunk\" is news about a sleeping place, not an offer of blankets to collect.",
+            "2": "\"Your friends arrived\" reports who is here, not a rule about leaving boots anywhere.",
+            "3": "\"an hour ago\" fixes an arrival time, not the hour that a meal is served."
+          }
+        },
+        {
+          "kind": "request",
+          "keyAct": "comply and improve on the request",
+          "line": "Please leave your boots on the rack before you go upstairs.",
+          "reply": "They're pretty muddy — I'll knock them off outside first.",
+          "explanationIfSpoken": "The warden asks for boots to be left downstairs, and the hiker agrees while proposing to clean them before doing so. Collecting a blanket responds to an offer that was never made. Relief about a bunk fits no news of one, and confirming six fits no stated mealtime.",
+          "kills": {
+            "0": "\"on the rack\" states a rule about footwear, not an offer of bedding from behind the stove.",
+            "1": "\"leave your boots\" concerns the hiker's own kit, not the arrival of friends or a saved bunk.",
+            "3": "\"before you go upstairs\" is about where boots go, not when supper is served."
+          }
+        },
+        {
+          "kind": "correction",
+          "keyAct": "adopt the corrected time",
+          "line": "Half board starts at six, not seven — the sign upstairs is old.",
+          "reply": "Six, then. I'll come down straight after washing.",
+          "explanationIfSpoken": "The warden corrects a mealtime the hiker would have taken from an outdated sign, and the hiker adopts the earlier hour. Fetching a blanket answers an offer that was not made. Relief about a bunk fits no such news, and muddy boots fit no request about the rack.",
+          "kills": {
+            "0": "\"Half board starts\" corrects a mealtime; no blankets have been offered to collect.",
+            "1": "\"not seven\" fixes an hour, and says nothing about friends arriving or a bunk being held.",
+            "2": "\"the sign upstairs\" concerns the posted time, not boots or where they must be left."
+          }
+        }
+      ]
+    },
+    {
+      "localId": "crv9-b3-07",
+      "setting": "A firewood kiosk at a campground; the attendant at the hatch and a camper buying wood.",
+      "worlds": [
+        {
+          "kind": "good news",
+          "keyAct": "buy while stock lasts",
+          "line": "We've just restocked, so there's dry birch again this evening.",
+          "reply": "I'll take two bundles before it goes again.",
+          "explanationIfSpoken": "The attendant reports that good wood is back in stock, so the camper buys immediately, before it sells out. Naming a pitch answers a delivery offer that was never made. A promise to put the fire out by a certain hour answers no rule that was stated, and returning a crate fits nothing handed over.",
+          "kills": {
+            "1": "\"just restocked\" is news about supply, so no delivery to a pitch has been offered that needs an address.",
+            "2": "\"dry birch again\" concerns what is for sale, not any curfew for putting fires out.",
+            "3": "\"this evening\" describes availability tonight; no crate has been given out to bring back."
+          }
+        },
+        {
+          "kind": "offer",
+          "keyAct": "accept and give the delivery address",
+          "line": "I can drop a load at your pitch on the quad bike.",
+          "reply": "Pitch nineteen, by the washblock — that'd save me a trip.",
+          "explanationIfSpoken": "The attendant offers to deliver, so the camper supplies the pitch and a landmark and welcomes the saving. Buying two bundles before stock runs out responds to a restocking announcement that was not made. A curfew promise answers no rule, and returning a crate fits nothing lent.",
+          "kills": {
+            "0": "\"on the quad bike\" makes this about getting the wood delivered, not about how much stock has come in.",
+            "2": "\"at your pitch\" concerns where to deliver, not when fires must be extinguished.",
+            "3": "\"I can drop\" is an offer to carry wood out, not a loan of any container to return."
+          }
+        },
+        {
+          "kind": "neutral info",
+          "keyAct": "confirm compliance with the rule",
+          "line": "Fires have to be out by eleven, ranger's orders.",
+          "reply": "We'll douse it before then; we're early risers anyway.",
+          "explanationIfSpoken": "The attendant states the site curfew, and the camper undertakes to comply and explains that it suits them. Buying two bundles before they go responds to no announcement about stock. Giving a pitch number answers no offer of delivery, and returning a crate fits nothing lent.",
+          "kills": {
+            "0": "\"out by eleven\" states a curfew, not an announcement that fresh wood has arrived.",
+            "1": "\"ranger's orders\" is a site rule, so no delivery has been offered that would need a pitch number.",
+            "3": "\"Fires have to\" concerns the fire itself; no crate has changed hands."
+          }
+        },
+        {
+          "kind": "request",
+          "keyAct": "agree and name when it will happen",
+          "line": "Could you bring the crate back when you've emptied it?",
+          "reply": "I'll return it on my way to the showers tomorrow.",
+          "explanationIfSpoken": "The attendant asks for the container back, and the camper agrees and says when it will happen. Buying two bundles before stock goes responds to no restocking news. Giving a pitch and a landmark answers no delivery offer, and a curfew promise answers no rule that was stated.",
+          "kills": {
+            "0": "\"bring the crate back\" is about the container, not about how much wood is in stock.",
+            "1": "\"when you've emptied it\" concerns returning something, not delivering wood to a pitch.",
+            "2": "\"the crate back\" is a request about kit; nothing has been said about when fires must be out."
+          }
+        }
+      ]
+    },
+    {
+      "localId": "crv9-b3-08",
+      "setting": "A bike-share help point on a city street; a rider at the intercom and the staffer answering it.",
+      "worlds": [
+        {
+          "kind": "request",
+          "keyAct": "perform the action remotely and prompt a check",
+          "line": "Can you unlock dock seven? The screen keeps rejecting my card.",
+          "reply": "I've released it from here — try lifting the bike now.",
+          "explanationIfSpoken": "The rider cannot release a bike and asks for help, so the staffer unlocks it remotely and asks them to test it. Closing a trip manually answers a billing record that was never mentioned. Instructions about tagging a broken bike fit nothing damaged, and a remark about route times answers no request.",
+          "kills": {
+            "1": "\"unlock dock seven\" asks for a bike to be let out now, so no finished trip is sitting open on the record.",
+            "2": "\"rejecting my card\" is a payment-screen fault, not a damaged bike being taken to a depot.",
+            "3": "\"Can you unlock\" is a request for action, not a remark about how long a journey took."
+          }
+        },
+        {
+          "kind": "correction",
+          "keyAct": "close the record from the staff side",
+          "line": "The app says I'm still riding, but I docked twenty minutes ago.",
+          "reply": "I can see the dock time; I'll close the trip manually.",
+          "explanationIfSpoken": "The rider reports that the record disagrees with what actually happened, so the staffer checks the logged dock time and ends the trip. Releasing a dock helps nobody whose bike is already returned. Tagging a broken bike fits nothing damaged, and a comment about route times answers nothing raised.",
+          "kills": {
+            "0": "\"I docked twenty minutes ago\" means the bike is already in a dock, so nothing needs unlocking.",
+            "2": "\"The app says\" makes this a record problem, not a faulty bike being wheeled to a depot.",
+            "3": "\"twenty minutes ago\" concerns a billing record, not how fast a route rides."
+          }
+        },
+        {
+          "kind": "offer",
+          "keyAct": "decline the offer and give the procedure",
+          "line": "I'll wheel this broken one back to the depot if that helps.",
+          "reply": "Just tag it and leave it — our van collects tomorrow.",
+          "explanationIfSpoken": "The rider offers to move a faulty bike, and the staffer waves the effort off and gives the standard procedure instead. Releasing a dock responds to no request to unlock anything. Closing a trip fits no open record, and a remark about journey times answers nothing.",
+          "kills": {
+            "0": "\"this broken one\" shows the rider already has a bike in hand, so no dock needs opening.",
+            "1": "\"back to the depot\" is about moving a faulty bike, not about a trip left open in the app.",
+            "3": "\"if that helps\" offers labour, and says nothing about how long a ride took."
+          }
+        },
+        {
+          "kind": "neutral info",
+          "keyAct": "add context about the route",
+          "line": "The new bike lane means I made it here in ten minutes.",
+          "reply": "It's cut most riders' times; the whole route reopened Monday.",
+          "explanationIfSpoken": "The rider remarks on how quick the new lane made their journey, and the staffer generalises it and adds when the route reopened. Releasing a dock answers no request to unlock anything. Closing a trip fits no disputed record, and tagging a broken bike fits nothing faulty.",
+          "kills": {
+            "0": "\"The new bike lane\" makes this a remark about the route, not a request to unlock a dock or a card problem.",
+            "1": "\"in ten minutes\" reports a journey time, not a trip the app has left running.",
+            "2": "\"made it here\" describes arriving on a working bike, so nothing broken is being offered for return."
+          }
+        }
+      ]
+    },
+    {
+      "localId": "crv9-b3-09",
+      "setting": "The corridor of a night train's couchette car; the car attendant and a passenger settling in.",
+      "worlds": [
+        {
+          "kind": "neutral info",
+          "keyAct": "accept the arrangement with a reason",
+          "line": "Breakfast is served in your compartment from six-thirty onwards.",
+          "reply": "Six-thirty suits us; we get off soon after that.",
+          "explanationIfSpoken": "The attendant states when and where breakfast arrives, and the passenger accepts the hour and explains why it fits their journey. Asking to be woken twenty minutes early answers a question that was never put. A comment about spreading luggage fits no news about berths, and keeping hold of documents refuses an offer that was not made.",
+          "kills": {
+            "1": "\"Breakfast is served\" states a service time and asks nothing, so no waking arrangement is being chosen.",
+            "2": "\"in your compartment\" concerns where the meal arrives, not how many berths are occupied.",
+            "3": "\"from six-thirty onwards\" is about the morning meal, not an offer to hold anything overnight."
+          }
+        },
+        {
+          "kind": "question",
+          "keyAct": "specify the wake-up timing",
+          "line": "Do you want me to wake you before Vienna, or sleep through?",
+          "reply": "Wake me twenty minutes before, if you don't mind.",
+          "explanationIfSpoken": "The attendant offers a choice about being woken, and the passenger picks waking and sets the margin. Accepting a breakfast hour answers no service time that was announced. A remark about spreading luggage fits no news of empty berths, and declining to hand over documents refuses an offer that was not made.",
+          "kills": {
+            "0": "\"wake you before Vienna\" asks about waking, not about when a meal is served.",
+            "2": "\"or sleep through\" offers a choice about sleep, and reports nothing about berths standing empty.",
+            "3": "\"Do you want me\" asks the passenger to decide about waking, not about anyone holding documents."
+          }
+        },
+        {
+          "kind": "good news",
+          "keyAct": "draw out the practical benefit",
+          "line": "Two berths stayed empty, so you've got the compartment to yourselves.",
+          "reply": "We can spread the luggage out and actually sleep.",
+          "explanationIfSpoken": "The attendant reports that the compartment is under-occupied, and the passenger names what that lets them do. Accepting a breakfast hour answers no announced service time. Setting a wake-up margin answers no question, and declining to hand over documents refuses an offer nobody made.",
+          "kills": {
+            "0": "\"Two berths stayed empty\" is news about occupancy, not a statement of when breakfast comes.",
+            "1": "\"the compartment to yourselves\" describes who is in the cabin; nobody has been asked about being woken.",
+            "3": "\"stayed empty, so\" concerns berths, not an offer to keep hold of documents."
+          }
+        },
+        {
+          "kind": "offer",
+          "keyAct": "decline the offer politely",
+          "line": "I can keep your passports and hand them back at the border.",
+          "reply": "I'd rather hold onto mine, thanks — I sleep lightly.",
+          "explanationIfSpoken": "The attendant offers to take custody of documents overnight, and the passenger declines and gives a reason. Accepting a breakfast hour answers no service time that was stated. Choosing a wake-up margin answers no question, and a comment about spreading luggage fits no news about berths.",
+          "kills": {
+            "0": "\"keep your passports\" is an offer about documents, not an announcement about breakfast.",
+            "1": "\"hand them back\" concerns custody of papers, and proposes no waking arrangement to choose between.",
+            "2": "\"at the border\" is about the crossing, not about how many berths are occupied."
+          }
+        }
+      ]
+    },
+    {
+      "localId": "crv9-b3-10",
+      "setting": "A water-taxi stand on a harbour pontoon; a boatman at the gunwale and a passenger with a case boarding.",
+      "worlds": [
+        {
+          "kind": "offer",
+          "keyAct": "accept and direct the lift",
+          "line": "I'll help you lift the case down into the boat.",
+          "reply": "Take the handle end — it's heavier than it looks.",
+          "explanationIfSpoken": "The boatman offers to help with the luggage, and the passenger accepts by assigning him an end and warning about the weight. Confirming a plank to stand on answers no boarding instruction. Talking about coffee on the quay fits no departure time, and relief that sailings resumed fits no news about conditions.",
+          "kills": {
+            "1": "\"lift the case\" is about handling luggage, not about telling the passenger where to put their feet.",
+            "2": "\"down into the boat\" shows boarding is happening now, so no later departure time has been given to wait out.",
+            "3": "\"I'll help you\" offers assistance, and says nothing about weather or a service starting again."
+          }
+        },
+        {
+          "kind": "request",
+          "keyAct": "comply and sequence the boarding",
+          "line": "Step over the rope, and keep your weight on the middle plank.",
+          "reply": "Middle plank it is — I'll pass the bag first.",
+          "explanationIfSpoken": "The boatman tells the passenger how to come aboard safely, and the passenger confirms the footing and says what they will do first. Assigning an end of the case answers no offer to lift it. A plan for coffee fits no departure time, and relief about resumed sailings fits no news of conditions.",
+          "kills": {
+            "0": "\"Step over the rope\" instructs the passenger how to board, rather than offering to carry the luggage down.",
+            "2": "\"the middle plank\" places the passenger aboard now, so there is no later crossing to fill with a coffee.",
+            "3": "\"keep your weight\" is a safety instruction, not news about wind or a suspended service."
+          }
+        },
+        {
+          "kind": "neutral info",
+          "keyAct": "plan the wait",
+          "line": "The next crossing leaves on the half hour, same as always.",
+          "reply": "That gives me time for a coffee up on the quay.",
+          "explanationIfSpoken": "The boatman gives the routine departure time, and the passenger works out that the gap allows a coffee ashore. Assigning an end of the case answers no offer to lift anything. Confirming a plank fits no boarding instruction, and relief about resumed sailings fits a service that is described as running normally.",
+          "kills": {
+            "0": "\"The next crossing\" gives a timetable, not an offer to help with luggage.",
+            "1": "\"on the half hour\" points to a future departure, so nobody is being guided aboard yet.",
+            "3": "\"same as always\" describes the service as normal, so there is nothing resumed to feel relieved about."
+          }
+        },
+        {
+          "kind": "good news",
+          "keyAct": "express reversed expectations",
+          "line": "The wind's dropped, so we're running to the island again.",
+          "reply": "I'd written the island off after this morning's forecast.",
+          "explanationIfSpoken": "The boatman announces that conditions have improved and the island route is back on, and the passenger says they had given up on it. Assigning an end of the case answers no offer to lift luggage. Confirming a plank fits no boarding instruction, and planning a coffee fits no departure time.",
+          "kills": {
+            "0": "\"The wind's dropped\" reports conditions, not an offer to carry a case aboard.",
+            "1": "\"running to the island\" announces a route, and tells nobody where to step as they board.",
+            "2": "\"so we're running\" reports a change in status, not the time of the next crossing."
+          }
+        }
+      ]
+    },
+    {
+      "localId": "crv9-b3-11",
+      "setting": "A sports physio's stretching room; the physiotherapist and a club athlete mid-session on the mat.",
+      "worlds": [
+        {
+          "kind": "question",
+          "keyAct": "locates the sensation",
+          "line": "Should I be feeling this stretch in my calf or hamstring?",
+          "reply": "Mostly the hamstring — the calf should stay fairly relaxed.",
+          "explanationIfSpoken": "The athlete wants the target muscle named while holding the position, and naming the hamstring with the calf staying loose answers exactly that. Rewriting the session around a gait film responds to a joint noise that was never mentioned. Clearing anyone for throwing treats an uncertain question as a progress report, and printing a sheet hands over paper instead of an answer.",
+          "kills": {
+            "1": "I'm asking where \"this stretch\" should register, not reporting a joint noise, so dropping lunges and filming my gait answers nothing.",
+            "2": "\"Should I be feeling\" is uncertainty mid-stretch rather than a report of progress, so there's no milestone that could clear me for throwing.",
+            "3": "I want the sensation named right now — \"calf or hamstring\" — not a printed sheet handed to me at the door."
+          }
+        },
+        {
+          "kind": "bad news",
+          "keyAct": "changes today's plan",
+          "line": "My knee started clicking again during yesterday's sprint session.",
+          "reply": "We'll drop the lunges today and film your gait instead.",
+          "explanationIfSpoken": "A recurring click after sprinting is a reason to pull loading exercises and look at how the athlete moves, which is what dropping lunges and filming does. Naming hamstring over calf answers a question about a stretch nobody asked about. Clearing the athlete for throwing ignores the symptom entirely, and printing a stretch sheet responds to a request that was never made.",
+          "kills": {
+            "0": "\"started clicking\" is a symptom report, so telling me hamstring over calf answers a stretch question I never asked.",
+            "2": "A knee that \"started clicking again\" is the opposite of clean news, so clearing me for throwing ignores what I just said.",
+            "3": "I reported a noise from \"yesterday's sprint\", not asked for anything to be written out for me."
+          }
+        },
+        {
+          "kind": "good news",
+          "keyAct": "grants clearance",
+          "line": "I hit full overhead reach this morning without any pinching.",
+          "reply": "That milestone clears you for light throwing next session.",
+          "explanationIfSpoken": "Full pain-free overhead range is the gate for returning to throwing, so granting that clearance is the natural next step. A verdict on hamstring versus calf concerns the wrong end of the body. Cancelling lunges and filming a gait treats a milestone as a setback, and a printed sheet answers a request the athlete never made.",
+          "kills": {
+            "0": "\"full overhead reach\" is shoulder news, so a verdict on hamstring versus calf is about the wrong end of me.",
+            "1": "\"without any pinching\" means nothing hurt, so cancelling lunges and filming my gait treats good news as a setback.",
+            "3": "I'm reporting what I managed \"this morning\", not asking for anything to take away with me."
+          }
+        },
+        {
+          "kind": "request",
+          "keyAct": "fulfills a request",
+          "line": "Could you write these stretches down for me before I go?",
+          "reply": "I'll print the sheet and staple it before you leave.",
+          "explanationIfSpoken": "The athlete wants a written record in hand before leaving, and printing and stapling the sheet before they go meets that timing precisely. Naming the hamstring answers a question about sensation that was not asked. Rewriting today's session assumes a symptom that was never reported, and a clearance for throwing responds to progress news that never came.",
+          "kills": {
+            "0": "\"write these stretches down\" asks for paper, not for a ruling on which muscle should feel it.",
+            "1": "Asking for something \"before I go\" reports no symptom, so rebuilding today's session around a gait film answers nothing.",
+            "2": "\"Could you write\" is a favour at the door, not a progress report that could clear me for throwing."
+          }
+        }
+      ]
+    },
+    {
+      "localId": "crv9-b3-12",
+      "setting": "An optician's frame fitting bench; the dispensing optician and a customer trying frames.",
+      "worlds": [
+        {
+          "kind": "correction",
+          "keyAct": "corrects the item fetched",
+          "line": "These are the titanium ones — I asked for the acetate pair.",
+          "reply": "I'll bring back the acetate pair in tortoiseshell instead.",
+          "explanationIfSpoken": "The customer flags that the wrong material was brought out, so fetching the acetate pair is the only reply that fixes it. Heating temple tips adjusts a frame the customer has already rejected. A collection date answers a timing question nobody asked, and a note about anti-glare coating responds to usage the customer never described.",
+          "kills": {
+            "1": "\"These are the titanium ones\" means the wrong material is in my hand, so heating temple tips adjusts a frame I don't want.",
+            "2": "I'm saying you fetched the wrong pair — \"I asked for the acetate\" — not asking when anything will be ready.",
+            "3": "\"the acetate pair\" is about the material I requested, not about when or why I wear glasses."
+          }
+        },
+        {
+          "kind": "bad news",
+          "keyAct": "proposes an adjustment",
+          "line": "The right arm keeps sliding down whenever I look downward.",
+          "reply": "I can heat the temple tips and curve them closer.",
+          "explanationIfSpoken": "Slippage when looking down is a fit problem, and curving the heated temple tips is the standard remedy for it. Swapping in a tortoiseshell acetate pair assumes the wrong frame was fetched, which was never claimed. A ten-day collection time answers a question about waiting, and a coating recommendation responds to a usage pattern the customer did not give.",
+          "kills": {
+            "0": "\"keeps sliding down\" is a fit complaint about this very frame, not a claim that the wrong pair was brought out.",
+            "2": "I'm describing what happens \"whenever I look downward\" right now, so a collection date says nothing about the slipping.",
+            "3": "\"The right arm\" is a fitting problem, not a statement about when I actually wear them."
+          }
+        },
+        {
+          "kind": "question",
+          "keyAct": "gives a timeline",
+          "line": "How long before these lenses are ready to collect?",
+          "reply": "Ten working days, and we text you when they arrive.",
+          "explanationIfSpoken": "The customer asks for a wait time and gets one, plus how they'll be told. Bringing out a tortoiseshell acetate pair corrects an error nobody reported. Heating temple tips fixes a slipping frame that was never mentioned, and weighing coating against frame weight answers a question about usage rather than timing.",
+          "kills": {
+            "0": "\"How long before\" asks about a wait, so swapping in a tortoiseshell acetate pair answers a question I didn't ask.",
+            "1": "I'm asking about \"these lenses\", not about a frame that needs bending back into shape.",
+            "3": "\"ready to collect\" is purely about timing, not about what I use the glasses for."
+          }
+        },
+        {
+          "kind": "neutral info",
+          "keyAct": "reprioritizes a feature",
+          "line": "I only wear glasses for driving at night, nothing else.",
+          "reply": "Then anti-glare coating matters more than the lightweight frame.",
+          "explanationIfSpoken": "Night driving is a glare problem, so the optician reranks the options around coating rather than frame weight. Fetching an acetate pair corrects a mistake that was never alleged. Heating temple tips fixes slippage the customer never reported, and a collection date answers a timing question that was not asked.",
+          "kills": {
+            "0": "\"I only wear glasses\" describes my habits, not a complaint that the wrong material was brought out.",
+            "1": "Nothing of mine is slipping — \"for driving at night\" is when I use them, not how they sit.",
+            "2": "\"nothing else\" describes my usage, so a ten-day collection time answers a question I never asked."
+          }
+        }
+      ]
+    },
+    {
+      "localId": "crv9-b3-13",
+      "setting": "A pharmacy consultation window; the pharmacist and a customer at the counter.",
+      "worlds": [
+        {
+          "kind": "request",
+          "keyAct": "demonstrates the steps",
+          "line": "Can you show me how to use this inhaler properly?",
+          "reply": "Shake it, breathe out fully, then press as you inhale.",
+          "explanationIfSpoken": "The customer asks for technique and gets the sequence in order, which is exactly what was requested. Choosing a saline spray over a decongestant answers a disclosure about other medicines that was never made. Telling the customer to stop tablets responds to harm they never reported, and a ruling about one glass of wine answers a question about alcohol nobody raised.",
+          "kills": {
+            "1": "\"show me how\" asks for a demonstration of this device, not for a different product to be picked out for me.",
+            "2": "I'm asking about \"this inhaler\" here in front of us, not reporting that anything made me ill.",
+            "3": "\"how to use\" is about technique, and nothing in it raises drinking at all."
+          }
+        },
+        {
+          "kind": "neutral info",
+          "keyAct": "substitutes a product",
+          "line": "I already take something for blood pressure every morning.",
+          "reply": "Then we'll avoid the decongestant and use a saline spray.",
+          "explanationIfSpoken": "Disclosing a daily blood pressure medicine is what steers a pharmacist away from decongestants toward saline, so the substitution follows directly. A step-by-step inhaler demonstration answers a request that was never made. Telling the customer to stop tablets assumes a reaction they never described, and a verdict on wine answers a question about alcohol nobody asked.",
+          "kills": {
+            "0": "\"I already take something\" is a disclosure about my medicines, not a request to be shown how a device works.",
+            "2": "Something I take \"every morning\" is routine and fine, not a tablet that harmed me last week.",
+            "3": "\"for blood pressure\" tells you what I'm on; it asks nothing about drinking."
+          }
+        },
+        {
+          "kind": "bad news",
+          "keyAct": "escalates to the prescriber",
+          "line": "The tablets from last week upset my stomach badly.",
+          "reply": "Stop those and I'll ask your doctor for a coated version.",
+          "explanationIfSpoken": "A bad gastric reaction to a dispensed medicine calls for stopping it and going back to the prescriber, which is what the reply does. Inhaler instructions answer a request for a demonstration that was never made. Swapping a decongestant for saline responds to a disclosure about daily medicines, and a ruling on one glass of wine answers a question about alcohol that never came up.",
+          "kills": {
+            "0": "\"The tablets from last week\" are already taken, so instructions for working a device miss the complaint entirely.",
+            "1": "I'm reporting harm, not listing what I'm on — \"upset my stomach\" is a reaction, not a daily routine.",
+            "3": "\"my stomach badly\" describes how the tablets hit me, and raises nothing about wine."
+          }
+        },
+        {
+          "kind": "question",
+          "keyAct": "answers with a caveat",
+          "line": "Is this one safe with a glass of wine?",
+          "reply": "One glass is fine, but skip it if you feel drowsy.",
+          "explanationIfSpoken": "The customer asks about mixing the medicine with alcohol and gets a permission plus the condition that withdraws it. Inhaler steps answer a request for a demonstration nobody made. A saline substitute responds to a disclosure about other medicines, and telling the customer to stop tablets assumes a reaction that was never reported.",
+          "kills": {
+            "0": "\"Is this one safe\" asks about mixing, not for a demonstration of any technique.",
+            "1": "\"with a glass of wine\" is about alcohol, not about anything I already take daily.",
+            "2": "I'm asking before I take it — \"safe with\" — so nothing has upset me yet."
+          }
+        }
+      ]
+    },
+    {
+      "localId": "crv9-b3-14",
+      "setting": "A dental hygiene checkup room; the hygienist and a patient in the chair.",
+      "worlds": [
+        {
+          "kind": "good news",
+          "keyAct": "discontinues a treatment",
+          "line": "No bleeding this time when I floss the back teeth.",
+          "reply": "The gum inflammation has settled, so we can stop the rinse.",
+          "explanationIfSpoken": "Flossing without bleeding is the sign the gums have recovered, so retiring the medicated rinse follows from it. Ordering an x-ray treats improvement as a symptom. Setting out mint paste answers a preference the patient never voiced, and scanning the lower arch responds to a lost appliance that was never mentioned.",
+          "kills": {
+            "1": "\"No bleeding this time\" reports the gums improving, so ordering an x-ray treats good news as a symptom.",
+            "2": "I'm describing what happens \"when I floss\" at home, not asking for a different flavour of paste.",
+            "3": "\"the back teeth\" are what improved; nothing here says anything of mine has gone missing."
+          }
+        },
+        {
+          "kind": "bad news",
+          "keyAct": "orders imaging",
+          "line": "Cold water at home gives me a sharp upper-left twinge.",
+          "reply": "That sensitivity needs an x-ray before we polish today.",
+          "explanationIfSpoken": "Sharp cold sensitivity in one quadrant needs imaging before the appointment proceeds, which is what the reply orders. Declaring the gums settled and stopping a rinse contradicts a fresh complaint. Setting out mint paste answers a flavour preference that was never given, and scanning the lower arch responds to a missing appliance nobody mentioned.",
+          "kills": {
+            "0": "\"a sharp upper-left twinge\" is a live complaint, so declaring the gums settled and stopping a rinse ignores it.",
+            "2": "\"Cold water at home\" is a symptom report, not a preference about what you use on me here.",
+            "3": "A \"sharp upper-left twinge\" is pain, which says nothing about a lost appliance."
+          }
+        },
+        {
+          "kind": "request",
+          "keyAct": "accommodates a preference",
+          "line": "Could you use the mint paste instead of the bubblegum one?",
+          "reply": "I'll set the mint out and put the other back.",
+          "explanationIfSpoken": "The patient asks for one polishing paste over another and the hygienist simply swaps them on the tray. A statement that inflammation has settled answers a report about bleeding that was never made. Ordering an x-ray responds to sensitivity the patient never described, and scanning the lower arch assumes a lost retainer nobody mentioned.",
+          "kills": {
+            "0": "\"the mint paste\" is a flavour choice and reports nothing about how my gums are doing.",
+            "1": "Asking for one paste \"instead of the bubblegum one\" describes no pain, so imaging answers nothing.",
+            "3": "\"Could you use\" concerns what's on the tray now, not something I've mislaid."
+          }
+        },
+        {
+          "kind": "correction",
+          "keyAct": "redirects the procedure",
+          "line": "It's the lower retainer I lost, not the upper one.",
+          "reply": "I'll scan the lower arch again for a replacement mould.",
+          "explanationIfSpoken": "Correcting which retainer went missing redirects the work to the lower arch, and rescanning it is the action that follows. A note that inflammation has settled answers a report about bleeding that never came. An x-ray responds to sensitivity that was never described, and swapping pastes answers a preference the patient did not state.",
+          "kills": {
+            "0": "\"the lower retainer I lost\" is about a missing appliance, not about gums settling down.",
+            "1": "I'm correcting which one went missing — \"not the upper one\" — and I've reported no sensitivity at all.",
+            "2": "\"It's the lower retainer\" corrects the record about my appliance, not a request about paste."
+          }
+        }
+      ]
+    },
+    {
+      "localId": "crv9-b3-15",
+      "setting": "A campus counseling service front desk; the receptionist and a student at the window.",
+      "worlds": [
+        {
+          "kind": "question",
+          "keyAct": "answers a procedural question",
+          "line": "Do I need a referral before booking with a counselor?",
+          "reply": "No referral needed — you book straight through the student portal.",
+          "explanationIfSpoken": "The student asks whether a gatekeeping step exists and gets a direct no plus the route to booking. Offering a Tuesday slot assumes an appointment already exists to be moved. A session entitlement answers a disclosure about being short-term, and registering at the desk responds to a system failure that was never reported.",
+          "kills": {
+            "1": "\"Do I need a referral\" asks about a requirement, not for a different time on the calendar.",
+            "2": "I'm asking about \"booking with a counselor\" in general; I've said nothing about how long I'm here.",
+            "3": "\"Do I need\" is a question about the rules, and reports no problem with any form."
+          }
+        },
+        {
+          "kind": "request",
+          "keyAct": "offers a new slot",
+          "line": "Could I move my Thursday appointment to sometime next week?",
+          "reply": "Next Tuesday at four is open if that suits you.",
+          "explanationIfSpoken": "A request to shift an existing booking is answered by naming a free slot in the window asked for. A ruling on referrals answers a rules question that was never asked. A six-session entitlement responds to a disclosure about being an exchange student, and registering at the desk fixes a form failure nobody reported.",
+          "kills": {
+            "0": "\"move my Thursday appointment\" means I'm already booked, so referral rules answer nothing.",
+            "2": "Asking to shift to \"sometime next week\" is about timing, not about my status as a student.",
+            "3": "\"Could I move\" is a scheduling favour; nothing in it says a system refused me."
+          }
+        },
+        {
+          "kind": "neutral info",
+          "keyAct": "states an entitlement",
+          "line": "I'm an exchange student here for one semester only.",
+          "reply": "Short-term students get six sessions instead of the usual twelve.",
+          "explanationIfSpoken": "Declaring a one-semester stay is what determines the session allowance, so stating the short-term entitlement follows directly. A ruling on referrals answers a rules question that was never asked. Naming a Tuesday slot assumes an appointment to be moved, and registering at the desk responds to a broken form nobody mentioned.",
+          "kills": {
+            "0": "\"an exchange student\" tells you who I am, not that I'm asking what's required before booking.",
+            "1": "\"one semester only\" describes my stay, not an appointment I want moved.",
+            "3": "I'm introducing myself as \"an exchange student\", not reporting that anything failed."
+          }
+        },
+        {
+          "kind": "bad news",
+          "keyAct": "provides a workaround",
+          "line": "The online form kept rejecting my student ID number.",
+          "reply": "I can register you here at the desk instead.",
+          "explanationIfSpoken": "A form that refuses the ID needs a route around it, and registering at the desk is that route. A ruling on referrals answers a rules question that was never asked. A Tuesday slot assumes a booking exists to be moved, and a six-session entitlement responds to a disclosure about being short-term that never came.",
+          "kills": {
+            "0": "\"kept rejecting my student ID\" is a fault report, not a question about referral rules.",
+            "1": "\"The online form\" broke on me, so no appointment exists yet that could be moved.",
+            "2": "\"my student ID number\" is what the form refused, and says nothing about how long I'm enrolled."
+          }
+        }
+      ]
+    },
+    {
+      "localId": "crv9-b3-16",
+      "setting": "A nutrition clinic's teaching kitchen lab; the dietitian and a client at the bench.",
+      "worlds": [
+        {
+          "kind": "neutral info",
+          "keyAct": "offers guided practice",
+          "line": "I've never cooked with lentils and they intimidate me.",
+          "reply": "I'll walk you through one pot from rinse to serve.",
+          "explanationIfSpoken": "Admitting to no experience with an ingredient invites a guided run-through end to end, which the reply offers. Pouring oat milk corrects a carton mix-up that was never flagged. Naming two tablespoons answers a portion question nobody asked, and praising four nights of cooking responds to a report the client did not give.",
+          "kills": {
+            "1": "\"never cooked with lentils\" is about my inexperience, not a claim that the wrong jug is out on the bench.",
+            "2": "\"they intimidate me\" is nerves about a whole ingredient, not a question about portion size.",
+            "3": "Saying I've \"never cooked\" them is the opposite of reporting nights I already cooked."
+          }
+        },
+        {
+          "kind": "correction",
+          "keyAct": "swaps the ingredient",
+          "line": "That's whole milk in the jug, not the oat one.",
+          "reply": "I'll pour the oat milk before we blend the batter.",
+          "explanationIfSpoken": "The client catches the wrong carton on the bench, so fetching the oat milk before blending fixes it in time. An offer to guide a first pot of lentils responds to inexperience that was never confessed. A two-tablespoon serving answers a portion question nobody asked, and a comment about four nights of cooking responds to news that never came.",
+          "kills": {
+            "0": "\"That's whole milk\" flags what's in front of us, not a confession about an ingredient I've never tried.",
+            "2": "\"not the oat one\" corrects which carton you grabbed; it asks nothing about serving sizes.",
+            "3": "\"in the jug\" is happening here on the bench, not a report about my week at home."
+          }
+        },
+        {
+          "kind": "question",
+          "keyAct": "quantifies a portion",
+          "line": "How much of this dressing counts as one serving?",
+          "reply": "Two tablespoons — the small ladle holds exactly that much.",
+          "explanationIfSpoken": "The client asks for a serving size and gets the amount plus a utensil that measures it. Being walked through a first pot answers an admission of inexperience that was never made. Pouring oat milk corrects a carton nobody flagged, and remarking on four nights of cooking responds to a report the client did not give.",
+          "kills": {
+            "0": "\"this dressing\" is already made, so being walked through a pot of something else answers nothing.",
+            "1": "\"How much\" asks for a quantity, not for a swap of what's in the jug.",
+            "3": "I'm asking what \"counts as one serving\" right now, not telling you what I cooked."
+          }
+        },
+        {
+          "kind": "good news",
+          "keyAct": "sets a next step",
+          "line": "I cooked from your plan four nights this week.",
+          "reply": "Four nights is enough to start tracking your energy levels.",
+          "explanationIfSpoken": "Sustained adherence is what makes it worth measuring outcomes, so moving to energy tracking is the natural next step. An offer to guide a first pot contradicts a client who has already been cooking. Pouring oat milk corrects a carton that was never flagged, and a two-tablespoon serving answers a portion question nobody asked.",
+          "kills": {
+            "0": "\"I cooked from your plan\" already, so an offer to guide me through a first pot misses where I am.",
+            "1": "\"four nights this week\" describes cooking at home, not the carton standing on this bench.",
+            "2": "I'm reporting frequency — \"four nights\" — not asking how big one serving should be."
+          }
+        }
+      ]
+    }
+  ]
+}

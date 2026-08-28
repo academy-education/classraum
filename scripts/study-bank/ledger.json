@@ -556,6 +556,160 @@
      "verdict": "Stored key slots rebalanced 16/4/5/3 -> 7/7/7/7 by seeded reorder (write-key-first skew, eoi-v3 precedent; draw shuffles at serve, attack used independent re-lettering)."
     }
    }
+  },
+  {
+   "id": "eoi-v5-2026-08-28",
+   "createdAt": "2026-08-28",
+   "targetTest": "sat",
+   "section": "reading_writing",
+   "task": "sat_expression_of_ideas",
+   "family": "mc_hidden_source",
+   "spec": {
+    "n": 42,
+    "authors": 10,
+    "method": "Transitions only, frozen eoi-v3/v4 brief, fresh topics, Opus authors (VOLUME-PREREGISTERED.md lane A)"
+   },
+   "contentSha": "d352a38257bd4ab3dc0dca02a06f15a640721054c2af6fb6e62aa0ce6cc77ddd",
+   "status": "shipped",
+   "cohort": "eoi-v5",
+   "note": "60 authored; 3 dropped for duplicate option sets across the batch (T72~T92, T75~T95, T90~T110 — solving one leaks its twin; found by the pattern hunter), 15 dropped by accepts() as grader-weak or grader-easy. Hunter also proposed a \"rarest connective wins\" rule; joined against all 60 keys it scored 35% of decided (chance 25%) — reported as weak, not exploitable, and no single connective exceeded 43% key rate.",
+   "stages": {
+    "shape": {
+     "passed": true,
+     "contentSha": "d352a38257bd4ab3dc0dca02a06f15a640721054c2af6fb6e62aa0ce6cc77ddd",
+     "verdict": "eoi-v3-tools preflight OK on all 60 (ranks exact, 1 absolute-distractor item, 0 hedged-key-only)."
+    },
+    "withsource": {
+     "passed": true,
+     "verdict": "Key votes >=2/3 on all 60 (15 voters, 5 chunks); accepts() then dropped 15 on grader difficulty/distractor quality. Grader passage_needed inversion adjudicated by the measured attack (4th occurrence of that misfire)."
+    },
+    "nosource": {
+     "passed": true,
+     "n": 24,
+     "verdict": "Held-out 24-item attack, 3 solvers, distinct pick-strings: mean 23.6% vs 37.5% best-fixed-letter control, margin -13.9 CLEAN."
+    },
+    "elimination": {
+     "passed": true,
+     "verdict": "Hunter joins run against the full key set: rarest-wins 35% of decided, \"Meanwhile,\" key rate exactly 25%, no connective family dominant. Duplicate-option-set defect found and the three affected items dropped."
+    },
+    "tells": {
+     "passed": true,
+     "verdict": "Stored key slots 10/12/11/9 as authored — no rebalance needed."
+    }
+   }
+  },
+  {
+   "id": "ssat-verbal-s2-2026-08-28",
+   "createdAt": "2026-08-28",
+   "targetTest": "ssat",
+   "section": "verbal",
+   "task": "multiple_choice",
+   "family": "mc_stem_source",
+   "spec": {
+    "n": 51,
+    "authors": 6,
+    "method": "pilot brief + pilot-lesson rules (no exact-synonym-of-other-sense traps, no near-anagram look-alikes, no duplicated first-blank words, disjoint stem letter buckets per author), Opus authors"
+   },
+   "contentSha": "6770da130fee0ad804ca2f24b91d33dad39ffd3168a45500032c896f7eda54f4",
+   "status": "shipped",
+   "cohort": "ssat-verbal-s2",
+   "note": "60 authored. 3 pilot-duplicate stems dropped pre-gate (ABUNDANT, GRAVE, VACANT); 1 vote-fail (AN17); 5 contested (SY30, SY38, SY41, SY50, AN19).",
+   "stages": {
+    "shape": {
+     "passed": true,
+     "contentSha": "6770da130fee0ad804ca2f24b91d33dad39ffd3168a45500032c896f7eda54f4",
+     "verdict": "Choice counts and distinctness at the family count, keys verbatim, kind tags, no stem among choices, no duplicated first-blank words, no stem collisions within batch or against the shipped pilot."
+    },
+    "withsource": {
+     "passed": true,
+     "verdict": "Key votes >=2/3 on every shipped item (3 voters per chunk); blind exclusivity audit dropped contested items whole."
+    },
+    "nosource": {
+     "passed": true,
+     "verdict": "Options-only attack (stems withheld), 24-item sample, 3 solvers: mean 50.0% vs 33.3% control, margin +16.7 PASS."
+    },
+    "tells": {
+     "passed": true,
+     "verdict": "Cross-item hunter ran; reported candidate register/rarity and homograph-decoy rules. Recorded as stage-3 brief input; measured attack margins stayed inside the bar."
+    }
+   }
+  },
+  {
+   "id": "isee-verbal-s2-2026-08-28",
+   "createdAt": "2026-08-28",
+   "targetTest": "isee",
+   "section": "verbal",
+   "task": "multiple_choice",
+   "family": "mc_stem_source",
+   "spec": {
+    "n": 55,
+    "authors": 6,
+    "method": "pilot brief + pilot-lesson rules (no exact-synonym-of-other-sense traps, no near-anagram look-alikes, no duplicated first-blank words, disjoint stem letter buckets per author), Opus authors"
+   },
+   "contentSha": "55890efaa5dadf5cb1b9722e6bb970823ac5cae8332626b4fbfc65033689dc2a",
+   "status": "shipped",
+   "cohort": "isee-verbal-s2",
+   "note": "60 authored. 5 pilot-duplicate stems dropped pre-gate (ABUNDANT, CANDID, METICULOUS, OBDURATE, TRUCULENT); 0 vote-fails; 0 contested.",
+   "stages": {
+    "shape": {
+     "passed": true,
+     "contentSha": "55890efaa5dadf5cb1b9722e6bb970823ac5cae8332626b4fbfc65033689dc2a",
+     "verdict": "Choice counts and distinctness at the family count, keys verbatim, kind tags, no stem among choices, no duplicated first-blank words, no stem collisions within batch or against the shipped pilot."
+    },
+    "withsource": {
+     "passed": true,
+     "verdict": "Key votes >=2/3 on every shipped item (3 voters per chunk); blind exclusivity audit dropped contested items whole."
+    },
+    "nosource": {
+     "passed": true,
+     "verdict": "Options-only attack (stems withheld), 24-item sample, 3 solvers: mean 45.8% vs 37.5% control, margin +8.3 PASS."
+    },
+    "tells": {
+     "passed": true,
+     "verdict": "Cross-item hunter ran; reported candidate register/rarity and homograph-decoy rules. Recorded as stage-3 brief input; measured attack margins stayed inside the bar."
+    }
+   }
+  },
+  {
+   "id": "rsw-v1-2026-08-28",
+   "createdAt": "2026-08-28",
+   "targetTest": "sat",
+   "section": "reading_writing",
+   "task": "sat_expression_of_ideas",
+   "family": "mc_hidden_source",
+   "spec": {
+    "n": 7,
+    "authors": 6,
+    "method": "SYMMETRIC WORLDS: four variant note-sets per item, each with its own goal-summary; seeded RNG picks the shown world after text freeze (VOLUME-PREREGISTERED.md lane C)"
+   },
+   "contentSha": "291c18d04eafaf4440d814ba6d94f296a67bdf5577338d814336d4f70e5e7da1",
+   "status": "shipped",
+   "cohort": "rsw-v1",
+   "note": "RESEARCH PILOT and the successor design named in RS-REFUTED.md. 12 authored, 1 dropped at the kill-map check (rsw-08 summary did not checkably mismatch another world), 4 dropped for the NEW defect below. The guessability cure WORKS: consensus checker 25% expected blind, inverse checker 0/11 decided, hunter found NO key-identifying rule after attacking value-ordering, position, length, hedging and goal-echo. NEW DEFECT (goal-parity): the design equalizes facts but not how well each world SERVES the goal, so on 4 of 11 items the RNG keyed a rhetorically weaker variant and a student who correctly reads the goal is punished. Those 4 dropped; scale-up must require every world to serve the goal equally.",
+   "stages": {
+    "shape": {
+     "passed": true,
+     "contentSha": "291c18d04eafaf4440d814ba6d94f296a67bdf5577338d814336d4f70e5e7da1",
+     "verdict": "Kill-map verified 4x3 per item (each summary checkably mismatches every other world's notes); summary length spread within 35%; 1 item dropped for a missing mismatch."
+    },
+    "withsource": {
+     "passed": true,
+     "verdict": "With-notes voters 3/3 on all 11 — every item is sound against its own notes."
+    },
+    "nosource": {
+     "passed": true,
+     "n": 11,
+     "verdict": "Blind attack with consensus-, minority- and hosting-aware solvers: mean 42.4% vs 27.3% control, margin +15.2 PASS (bar +25)."
+    },
+    "elimination": {
+     "passed": true,
+     "verdict": "Hunter exploitable=false — no rule at 3+ items; it found the goal-parity defect instead, which is a validity issue, not a guessability one."
+    },
+    "tells": {
+     "passed": true,
+     "verdict": "Key letters dealt 3/3/2/3 by construction after freeze; element frequency uniform 1-1-1-1 per slot by design."
+    }
+   }
   }
  ],
  "auditedCohorts": [

@@ -1,0 +1,226 @@
+[
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"The exhaust fan failed, so nothing runs until the parts arrive.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Twelve, maybe fifteen if I add the engraving pass.",
+      "Then I'll switch to the vinyl cutter and redraw it.",
+      "Acrylic, then — I'll pull the other settings before starting.",
+      "That beats waiting for the evening block by hours."
+    ],
+    "correct_answer": "Then I'll switch to the vinyl cutter and redraw it.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "With the machine down indefinitely, moving the job to another tool is the sensible response. Quoting a run time answers a question. Preferring an earlier slot accepts an offer, and pulling different settings answers a material correction.",
+    "distractor_rationales": {
+      "Twelve, maybe fifteen if I add the engraving pass.": "\"nothing runs\" means no job goes on the machine, so quoting twelve or fifteen minutes answers a question I never asked.",
+      "That beats waiting for the evening block by hours.": "\"exhaust fan failed\" is a breakdown, not a favor, so calling an earlier time better accepts a slot I never offered.",
+      "Acrylic, then — I'll pull the other settings before starting.": "\"the parts arrive\" is about repairs, so pulling different settings responds to a material mix-up I never raised."
+    },
+    "_crv7": {
+      "localId": "crv9-b1-18",
+      "selectedWorld": 0,
+      "kind": "bad news",
+      "keyAct": "switches to a different machine",
+      "setting": "At the makerspace laser cutter sign-up queue, the shop monitor and a student."
+    }
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"How high do you want the top edge of the canvas?\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "That would save me an hour of eyeballing these lines.",
+      "The three panels, right — I'll move my tools down there.",
+      "Sixty inches from the floor, same as the others.",
+      "I stuck mine underneath — I'd better peel them off."
+    ],
+    "correct_answer": "Sixty inches from the floor, same as the others.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "A direct question about hanging height gets a number and a consistency rule. Peeling labels answers a label rule I never stated. Identifying a triptych answers a correction, and praising a tool accepts an offer.",
+    "distractor_rationales": {
+      "I stuck mine underneath — I'd better peel them off.": "\"How high\" asks about the canvas, not label placement, so peeling labels off responds to a rule I never gave.",
+      "The three panels, right — I'll move my tools down there.": "\"the top edge\" is part of the work we're both looking at, so identifying three panels as yours corrects a mix-up I never raised.",
+      "That would save me an hour of eyeballing these lines.": "\"do you want\" is a question, not an offer of equipment, so calling something an hour saved accepts a loan I never made."
+    },
+    "_crv7": {
+      "localId": "crv9-b1-16",
+      "selectedWorld": 3,
+      "kind": "question",
+      "keyAct": "specifies a measurement",
+      "setting": "In the student gallery on hanging day, a student artist and the gallery coordinator."
+    }
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"I can lend you a racket from the rental bin.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Volleyball's in the other gym — I signed up wrong.",
+      "Then we'll double up on court one and rotate players.",
+      "The half — we only have four players tonight.",
+      "That would help — my strings snapped on Tuesday night."
+    ],
+    "correct_answer": "That would help — my strings snapped on Tuesday night.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "A loaner racket is accepted, with broken strings as the reason it's needed. Doubling up on one court answers a closure. Explaining a wrong sign-up answers a correction, and choosing a length answers a question.",
+    "distractor_rationales": {
+      "Then we'll double up on court one and rotate players.": "\"lend you a racket\" is an offer of gear, so doubling up on one court responds to a closure I never announced.",
+      "Volleyball's in the other gym — I signed up wrong.": "\"the rental bin\" is where equipment lives, so telling me volleyball is in the other gym corrects a booking error I never raised.",
+      "The half — we only have four players tonight.": "\"I can lend\" is an offer, not a question, so choosing half an hour answers nothing I asked."
+    },
+    "_crv7": {
+      "localId": "crv9-b1-20",
+      "selectedWorld": 1,
+      "kind": "offer",
+      "keyAct": "accepts and explains the need",
+      "setting": "At the badminton court desk in the recreation center, a student and the desk attendant."
+    }
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"The garden club funded a second potting bench for this shed.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Finally — we won't be elbowing each other every Saturday.",
+      "That's awful — those cuttings took the whole spring to root.",
+      "Sure — I'll take two at a time so nothing tips.",
+      "Right — third one down, behind the twine, in the green tin."
+    ],
+    "correct_answer": "Finally — we won't be elbowing each other every Saturday.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "Funding for a second bench solves a crowding problem the volunteers live with, so naming that relief is the natural reaction. Agreeing to carry trays takes on work that was never assigned. Grieving lost cuttings misreads good news as a disaster, and pointing to a shelf answers a question the coordinator never raised.",
+    "distractor_rationales": {
+      "Sure — I'll take two at a time so nothing tips.": "The line announces a \"second potting bench\" arriving; it asks for nothing, so a promise about tipping trays responds to an instruction that isn't there.",
+      "That's awful — those cuttings took the whole spring to root.": "The club \"funded a second\" bench — that's a gain for the shed, so treating the moment as a loss to console contradicts what was said.",
+      "Right — third one down, behind the twine, in the green tin.": "The news is \"for this shed\" in general; no missing item is being hunted, so naming a shelf and a green tin answers no one."
+    },
+    "_crv7": {
+      "localId": "crv9-b1-01",
+      "selectedWorld": 2,
+      "kind": "good news",
+      "keyAct": "welcomes relief",
+      "setting": "A volunteer shed at the campus botanical garden; the volunteer coordinator is speaking to a student volunteer who has just come in."
+    }
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Are you booking for yourself or for your whole quartet?\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Just me — an hour of solo horn practice.",
+      "Put me down — that room's light is worth the wait.",
+      "Then I'll come back at nine and practice late.",
+      "No wonder it looked empty — let me change the date."
+    ],
+    "correct_answer": "Just me — an hour of solo horn practice.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "A direct either-or about party size gets a direct answer plus the intended use. Returning at nine responds to a closure I never announced. Accepting a waitlist spot accepts an offer, and calling the screen empty answers a correction about the day.",
+    "distractor_rationales": {
+      "Then I'll come back at nine and practice late.": "\"Are you booking\" is a question about your party, so promising to return at nine answers a shortage I never reported.",
+      "Put me down — that room's light is worth the wait.": "\"for yourself\" asks who's playing, not whether you want a list, so agreeing to be put down accepts an offer I didn't make.",
+      "No wonder it looked empty — let me change the date.": "\"your whole quartet\" is part of a question, so telling me the screen looked empty corrects a mistake I never named."
+    },
+    "_crv7": {
+      "localId": "crv9-b1-12",
+      "selectedWorld": 2,
+      "kind": "question",
+      "keyAct": "answers with size and purpose",
+      "setting": "At the practice-room booking screen in the music building, a student and the front-desk attendant."
+    }
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Your back tire's flat again — the patch didn't hold overnight.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "That's a relief — I've been riding that wobble for weeks.",
+      "Say when — I'll keep it from rolling forward.",
+      "I'll be done by five-thirty and put things away.",
+      "Then I'll just buy a new tube this time."
+    ],
+    "correct_answer": "Then I'll just buy a new tube this time.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The volunteer reports that the repair failed, so abandoning patches for a whole new tube is the obvious next move. Relief about a wobble answers a wheel that was straightened, which never happened here. Saying when to let go answers a request for hands, and a promise about five-thirty answers a closing time, neither of which was raised.",
+    "distractor_rationales": {
+      "That's a relief — I've been riding that wobble for weeks.": "\"the patch didn't hold\" reports a failure, so there is nothing fixed to be relieved about and no wobble was ever straightened.",
+      "Say when — I'll keep it from rolling forward.": "\"Your back tire's\" is a diagnosis I'm handing you, not a job I need hands for, so telling me to say when helps nothing.",
+      "I'll be done by five-thirty and put things away.": "\"flat again\" says nothing about closing time, so a promise to finish by five-thirty answers a deadline I never set."
+    },
+    "_crv7": {
+      "localId": "crv9-b1-11",
+      "selectedWorld": 0,
+      "kind": "bad news",
+      "keyAct": "switches to a different fix",
+      "setting": "At the dorm bike repair stand outside the residence hall, a student and the bike-shop volunteer on duty."
+    }
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Those aren't peppers — the label blew off; they're eggplant seedlings.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Sold out already? I'll try the farmers' market instead.",
+      "Card, please — I'll take four of the basil pots.",
+      "Eggplant, really? Then I only need two, not six.",
+      "Would you? My hands are full with this watering can."
+    ],
+    "correct_answer": "Eggplant, really? Then I only need two, not six.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "Learning the plants are something else changes how many the customer wants. Heading to the farmers' market responds to a sellout I never mentioned. Accepting a carry accepts an offer, and choosing card answers a price.",
+    "distractor_rationales": {
+      "Sold out already? I'll try the farmers' market instead.": "\"aren't peppers\" corrects what the plants are, so leaving for the farmers' market responds to a sellout I never reported.",
+      "Would you? My hands are full with this watering can.": "\"the label blew off\" explains the mix-up, not a favor, so accepting help to the racks accepts an offer I never made.",
+      "Card, please — I'll take four of the basil pots.": "\"eggplant seedlings\" identifies the plant, so choosing card answers a price I never quoted."
+    },
+    "_crv7": {
+      "localId": "crv9-b1-14",
+      "selectedWorld": 3,
+      "kind": "correction",
+      "keyAct": "revises the order downward",
+      "setting": "At the campus greenhouse seedling sale, a customer and the student volunteer at the table."
+    }
+  },
+  {
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Could you carry the empty buckets down to the wash sink?\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "I'll set a timer before I start so it's mixed.",
+      "I'll take two now and come back for the rest.",
+      "Second from the top, beside the tall test tiles.",
+      "That's the first glaze that's behaved for me all term."
+    ],
+    "correct_answer": "I'll take two now and come back for the rest.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "Asked to move buckets, the student agrees and plans two trips. Setting a stirring timer answers a procedure I never stated. Praising a glaze answers kiln news, and naming a shelf answers a question about brushes.",
+    "distractor_rationales": {
+      "I'll set a timer before I start so it's mixed.": "\"carry the empty buckets\" is a hauling job, so a timer for stirring answers a mixing rule I never gave.",
+      "That's the first glaze that's behaved for me all term.": "\"the wash sink\" is where they go, not a kiln, so calling a glaze well-behaved responds to news I never delivered.",
+      "Second from the top, beside the tall test tiles.": "\"Could you carry\" asks you to do something, so naming a shelf answers a question I didn't ask."
+    },
+    "_crv7": {
+      "localId": "crv9-b1-13",
+      "selectedWorld": 1,
+      "kind": "request",
+      "keyAct": "splits the task into trips",
+      "setting": "At the glaze shelf in the ceramics studio, a student and the studio monitor."
+    }
+  }
+]

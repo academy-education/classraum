@@ -1,0 +1,656 @@
+{
+ "cohort": "cr-v9",
+ "stage": 1,
+ "batch": "b2",
+ "method": "symmetric four-world authoring, post-hoc seeded key selection",
+ "items": [
+  {
+   "localId": "crv9-b2-01",
+   "setting": "A town cobbler counter; the cobbler is speaking to a customer who left a pair of boots",
+   "worlds": [
+    {
+     "kind": "good news",
+     "keyAct": "claims the finished item",
+     "line": "Your boots are done early — the new soles went on smoothly.",
+     "reply": "I'll collect them now, then — ahead of schedule suits me.",
+     "explanationIfSpoken": "The cobbler reports finished work, so collecting the boots on the spot is the natural next move. Hunting for a replacement pair contradicts a repair that already succeeded. Promising to drop off a second boot tomorrow assumes work hasn't started, and naming rubber soles is too late once the soles are fitted.",
+     "kills": {
+      "1": "\"the new soles\" are already fitted, so the boots were saved; shopping for a replacement pair answers a repair that never failed.",
+      "2": "\"done early\" means the job is finished, so there is nothing left to deliver to the bench tomorrow morning.",
+      "3": "the soles \"went on smoothly\" already, so choosing a sole material now would be a decision made after the fact."
+     }
+    },
+    {
+     "kind": "bad news",
+     "keyAct": "resigns to an alternative",
+     "line": "The heel cracked right through, so these boots can't be resoled.",
+     "reply": "I'll start looking for a replacement pair this week, then.",
+     "explanationIfSpoken": "The cobbler declares the boots unrepairable, so accepting that and planning to buy another pair is the fitting response. Collecting finished boots is impossible when nothing was repaired. Offering to bring in a matching boot assumes work is about to begin, and picking a sole material assumes the repair is going ahead.",
+     "kills": {
+      "0": "if they \"can't be resoled\" there is no completed repair waiting at the counter to be taken away.",
+      "2": "the heel \"cracked right through\", so no job is being prepared and no second boot is needed at the bench.",
+      "3": "\"so these boots\" are being written off entirely, which makes a choice between sole materials pointless."
+     }
+    },
+    {
+     "kind": "request",
+     "keyAct": "commits to bringing an item",
+     "line": "Could you bring the matching left boot in before I start?",
+     "explanationIfSpoken": "The cobbler asks for the second boot, so agreeing and naming a delivery time is the cooperative answer. Nothing is finished, so collecting a repair makes no sense. The boots are treated as repairable, which rules out shopping for replacements, and no material question has been put to the customer.",
+     "reply": "It's at home; I'll drop it off tomorrow morning.",
+     "kills": {
+      "0": "the work is still \"before I start\", so there is no completed pair to pick up this evening.",
+      "1": "asking for \"the matching left boot\" shows the repair is going forward, so abandoning the boots for a new pair misreads it.",
+      "3": "the request is \"before I start\" for a missing boot, not a question about which sole material to use."
+     }
+    },
+    {
+     "kind": "question",
+     "keyAct": "states a material preference",
+     "line": "Do you want rubber soles or leather ones on these?",
+     "reply": "Rubber, please — I walk on wet pavement most days.",
+     "explanationIfSpoken": "The cobbler poses a straight choice, so naming one material with a reason answers it. Nothing has been finished yet, so collecting the boots is premature. The boots are clearly being resoled, so writing them off is wrong, and no second boot has been asked for.",
+     "kills": {
+      "0": "the choice of \"rubber soles or leather\" is still open, so the boots cannot already be waiting for collection.",
+      "1": "offering \"or leather ones\" shows the boots are repairable, so giving up and buying another pair does not follow.",
+      "2": "\"rubber soles or leather\" is a question about material, not a request for a missing boot to be brought in."
+     }
+    }
+   ]
+  },
+  {
+   "localId": "crv9-b2-02",
+   "setting": "An independent bookshop orders desk; the bookseller is speaking to a customer about a special order",
+   "worlds": [
+    {
+     "kind": "neutral info",
+     "keyAct": "accepts the stated wait",
+     "line": "Special orders from that publisher usually take about a month.",
+     "reply": "A month is fine — I'll wait rather than order online.",
+     "explanationIfSpoken": "The bookseller gives a plain lead time, so accepting that wait is the natural reply. No format mix-up has been raised, so correcting paperback to hardcover answers nothing. No holding period has been proposed, and the book has plainly not arrived yet.",
+     "kills": {
+      "1": "a line that only says orders \"take about a month\" makes no claim about paperback or hardcover to correct.",
+      "2": "\"about a month\" is a delivery estimate, not an offer to keep a copy behind the counter for two weeks.",
+      "3": "orders that \"usually take about\" a month have not landed, so nothing can be carried out of the shop today."
+     }
+    },
+    {
+     "kind": "correction",
+     "keyAct": "confirms the right format",
+     "line": "You ordered the paperback, but I've written down hardcover here.",
+     "reply": "Paperback is right — please change the record before it ships.",
+     "explanationIfSpoken": "The bookseller flags a mismatch in the order record, so confirming which format is correct is what's needed. No timeline has been quoted, so agreeing to a month-long wait is unmoored. Nothing has been offered about holding a copy, and the order isn't even correct yet, let alone arrived.",
+     "kills": {
+      "0": "having \"written down hardcover\" is a record problem; no delivery estimate was given for a customer to accept.",
+      "2": "\"You ordered the paperback\" raises a format error, not any arrangement to hold a copy for two weeks.",
+      "3": "since \"I've written down hardcover\", the order is still being fixed and no copy is sitting ready to take home."
+     }
+    },
+    {
+     "kind": "offer",
+     "keyAct": "accepts the hold and sets a pickup day",
+     "line": "Once it comes in, I can hold it for two weeks.",
+     "reply": "Two weeks is plenty; I'll collect it on Saturday morning.",
+     "explanationIfSpoken": "The bookseller offers a holding window, so accepting it and naming a collection day fits. No lead time has been quoted, so a month-long wait has nothing to attach to. No format was disputed, and the book is explicitly not in yet.",
+     "kills": {
+      "0": "\"Once it comes in\" states a condition, not an estimate, so there is no month-long wait being accepted.",
+      "1": "an offer to \"hold it for two weeks\" says nothing about paperback or hardcover being recorded wrongly.",
+      "3": "the copy is still only expected \"Once it comes in\", so it cannot already be in the shop to carry away."
+     }
+    },
+    {
+     "kind": "good news",
+     "keyAct": "takes the book immediately",
+     "line": "Your copy arrived this morning, a full week ahead of schedule.",
+     "reply": "I'll take it with me now, since it's already in.",
+     "explanationIfSpoken": "The bookseller announces an early arrival, so leaving with the book is the natural response. Accepting a month-long wait contradicts a book that is already here. No format error was mentioned, and no two-week holding period was proposed.",
+     "kills": {
+      "0": "a copy that \"arrived this morning\" has already come, so agreeing to wait a month for it makes no sense.",
+      "1": "\"Your copy arrived\" is an arrival announcement with nothing said about paperback versus hardcover.",
+      "2": "since it \"arrived this morning\" and is being handed over, no two-week hold was ever put on the table."
+     }
+    }
+   ]
+  },
+  {
+   "localId": "crv9-b2-06",
+   "setting": "A plant nursery checkout; the nursery assistant is speaking to a customer at the till",
+   "worlds": [
+    {
+     "kind": "good news",
+     "keyAct": "increases the order",
+     "line": "These ferns are half price today — the sale started this morning.",
+     "reply": "Half price means I'll take two instead of the one.",
+     "explanationIfSpoken": "The assistant announces a discount, so buying more because of it is the natural reaction. Swapping for a shade plant answers a light problem nobody raised. No bag was mentioned to carry, and no repotting charge was quoted.",
+     "kills": {
+      "1": "\"These ferns are\" simply on sale; nothing was said about sunlight needs or a north-facing window.",
+      "2": "\"half price today\" is a price announcement, not a request to carry a heavy bag out.",
+      "3": "\"the sale started this morning\" concerns cost, not any offer to repot the plant for a fee."
+     }
+    },
+    {
+     "kind": "correction",
+     "keyAct": "accepts the correction and swaps",
+     "line": "That's a sun plant, though you said your window faces north.",
+     "reply": "North it is, so I'd better swap this for a shade one.",
+     "explanationIfSpoken": "The assistant flags a mismatch between the plant and the customer's light, so agreeing and swapping is the sensible reply. Buying two because of a discount responds to a sale that wasn't mentioned. No bag was raised, and no potting fee was quoted.",
+     "kills": {
+      "0": "calling it \"a sun plant\" is a suitability warning, with no discount announced to double an order over.",
+      "2": "\"your window faces north\" is about light at home, not about carrying anything to the car.",
+      "3": "\"That's a sun plant\" concerns the wrong species, not the size of pot it sits in."
+     }
+    },
+    {
+     "kind": "request",
+     "keyAct": "agrees to help carry",
+     "line": "Could you carry the heavy bag while I ring up the rest?",
+     "reply": "I'll take it out to the car and come back.",
+     "explanationIfSpoken": "The assistant asks the customer to move one item while the rest is scanned, so agreeing and saying you'll return fits. Buying two on a discount answers a sale that wasn't announced. No light mismatch was raised, and no repotting was offered.",
+     "kills": {
+      "0": "\"the heavy bag\" is about lifting compost, not about any half-price offer to buy more.",
+      "1": "asking someone to \"carry the heavy bag\" says nothing about sunlight or which window a plant faces.",
+      "3": "while the assistant will \"ring up the rest\", no potting service or fee has been proposed."
+     }
+    },
+    {
+     "kind": "offer",
+     "keyAct": "accepts a paid service",
+     "line": "I can pot this into a bigger container for four dollars.",
+     "reply": "Repotting for four dollars is worth it — go ahead.",
+     "explanationIfSpoken": "The assistant offers repotting for a stated price, so judging it worthwhile and approving it is the fitting reply. Doubling an order on a discount answers a sale that wasn't mentioned. No light mismatch was flagged, and the assistant is doing the work, not asking for carrying help.",
+     "kills": {
+      "0": "charging \"for four dollars\" is an added cost, not a half-price sale that would justify buying two.",
+      "1": "\"a bigger container\" is about pot size, not about sun exposure or a north-facing window.",
+      "2": "\"I can pot this\" puts the work on the assistant, so no one was asked to carry a bag out."
+     }
+    }
+   ]
+  },
+  {
+   "localId": "crv9-b2-07",
+   "setting": "A stationery press custom order desk; the printer is speaking to a customer about invitations",
+   "worlds": [
+    {
+     "kind": "bad news",
+     "keyAct": "asks for a substitute",
+     "line": "The cotton stock we quoted is discontinued by the mill now.",
+     "reply": "Then show me whatever heavy paper you can still get.",
+     "explanationIfSpoken": "The printer says the chosen paper is unavailable, so asking to see substitutes is the natural move. Planning around a printing day answers a schedule that wasn't given. No envelope question was asked, and no proof error was raised.",
+     "kills": {
+      "1": "paper \"discontinued by the mill\" is a supply problem; no printing schedule was mentioned to plan around.",
+      "2": "\"The cotton stock\" is off the table entirely, so no question about lined envelopes was put.",
+      "3": "a stock that \"is discontinued\" concerns materials, not a misspelled street name on a proof."
+     }
+    },
+    {
+     "kind": "neutral info",
+     "keyAct": "plans around a schedule",
+     "line": "Letterpress runs go out every second Tuesday from this shop.",
+     "reply": "Every second Tuesday works; I'll plan the mailing around that.",
+     "explanationIfSpoken": "The printer states when jobs go to press, so building the mailing around that date is the fitting reply. Asking for substitute paper answers a shortage that wasn't announced. No envelope question was asked, and no proof error was flagged.",
+     "kills": {
+      "0": "press days \"every second Tuesday\" is scheduling information, with no paper shortage announced.",
+      "2": "\"Letterpress runs go out\" on a fixed cycle says nothing about whether envelopes should be lined.",
+      "3": "\"from this shop\" describes where runs originate, not any spelling discrepancy on a proof."
+     }
+    },
+    {
+     "kind": "question",
+     "keyAct": "chooses an option",
+     "line": "Do you want the envelopes lined to match the card stock?",
+     "reply": "Lined envelopes, yes — the matching pattern is worth it.",
+     "explanationIfSpoken": "The printer asks a yes-or-no option question, so choosing the lining and giving a reason answers it. Asking for substitute paper contradicts a stock that is being matched. No schedule was stated, and no proof error was raised.",
+     "kills": {
+      "0": "matching \"the card stock\" assumes that stock is available, so nothing is discontinued to replace.",
+      "1": "\"Do you want the envelopes\" lined is an option question, not a statement of press days.",
+      "3": "\"lined to match\" concerns envelope design, not a street name spelled two different ways."
+     }
+    },
+    {
+     "kind": "correction",
+     "keyAct": "confirms the correct spelling",
+     "line": "Your proof spells the street as 'Elm', but your form says 'Elmwood'.",
+     "reply": "Elmwood is correct — please fix it before anything prints.",
+     "explanationIfSpoken": "The printer flags conflicting spellings, so confirming the right one and asking for the fix is what's required. Requesting substitute paper answers a shortage that wasn't reported. No schedule was given, and no envelope option was offered.",
+     "kills": {
+      "0": "\"Your proof spells\" the address, which means the job is proofed and no paper was reported discontinued.",
+      "1": "\"but your form says\" a different street name is a discrepancy, not a statement of press days.",
+      "2": "the mismatch \"spells the street\" wrongly; nothing was asked about lining the envelopes."
+     }
+    }
+   ]
+  },
+  {
+   "localId": "crv9-b2-08",
+   "setting": "A secondhand camera counter; the shop technician is speaking to a customer about an old camera",
+   "worlds": [
+    {
+     "kind": "good news",
+     "keyAct": "decides to keep using it",
+     "line": "Your light meter tested fine — the readings match my reference exactly.",
+     "reply": "That saves a repair bill; I'll keep shooting with it.",
+     "explanationIfSpoken": "The technician reports a clean test, so deciding to carry on using the camera follows naturally. Promising to bring a strap answers a request that wasn't made. No trade was offered, and no battery problem was raised.",
+     "kills": {
+      "1": "\"the readings match\" a reference is a test result; nobody asked for an original strap to be brought in.",
+      "2": "\"Your light meter tested fine\" is a diagnosis, not an offer of store credit for the camera.",
+      "3": "readings that \"match my reference exactly\" say nothing about batteries being out of production."
+     }
+    },
+    {
+     "kind": "request",
+     "keyAct": "promises to bring an accessory",
+     "line": "Please bring the original strap next time so I can price it.",
+     "reply": "It's in a drawer at home; I'll bring it Saturday.",
+     "explanationIfSpoken": "The technician asks for a missing accessory, so saying where it is and when it will arrive is the cooperative answer. A clean meter result was never reported. No credit was offered, and no battery issue was mentioned.",
+     "kills": {
+      "0": "\"the original strap\" is what's being requested; no light-meter test result has been reported at all.",
+      "2": "since pricing waits \"so I can price it\", no store credit has been offered for anything yet.",
+      "3": "a request to \"bring the original strap\" concerns an accessory, not discontinued batteries."
+     }
+    },
+    {
+     "kind": "offer",
+     "keyAct": "chooses between payment forms",
+     "line": "I can trade you store credit rather than cash for this body.",
+     "reply": "Credit suits me — I've had my eye on a lens.",
+     "explanationIfSpoken": "The technician offers credit in place of cash, so picking credit and saying why answers directly. A meter test result was never given. No strap was requested, and no battery problem was raised.",
+     "kills": {
+      "0": "offering \"store credit rather than cash\" is a payment choice, not a report on how a light meter tested.",
+      "1": "the offer is \"for this body\" as it stands, with no missing strap asked for.",
+      "3": "\"I can trade you\" credit concerns payment, not whether batteries are still manufactured."
+     }
+    },
+    {
+     "kind": "neutral info",
+     "keyAct": "anticipates an extra cost",
+     "line": "This model takes a battery nobody manufactures in that size anymore.",
+     "reply": "Then I'll budget for an adapter before I buy it.",
+     "explanationIfSpoken": "The technician warns about an obsolete battery, so planning for an adapter is the practical response. A clean meter test was never reported. No strap was requested, and no store credit was offered.",
+     "kills": {
+      "0": "a warning that the model \"takes a battery\" no longer made is not a report of accurate meter readings.",
+      "1": "saying \"nobody manufactures\" the cell is a supply fact, with no strap requested for pricing.",
+      "2": "batteries \"in that size anymore\" concerns power, not any offer of store credit instead of cash."
+     }
+    }
+   ]
+  },
+  {
+   "localId": "crv9-b2-09",
+   "setting": "A climbing gym gear shop; the shop staffer is speaking to a climber at the equipment counter",
+   "worlds": [
+    {
+     "kind": "bad news",
+     "keyAct": "replaces the condemned item",
+     "line": "This harness is past its expiry date and can't be used here.",
+     "reply": "I'll retire it and buy a harness before this evening.",
+     "explanationIfSpoken": "The staffer condemns the harness, so retiring it and buying another is the fitting reply. Saying where the shoes will be used answers a question that wasn't asked. No rope length was corrected, and no belay device swap was offered.",
+     "kills": {
+      "1": "a harness \"past its expiry date\" is a safety condemnation, not a question about indoor or outdoor use.",
+      "2": "\"This harness is\" the item under discussion, so no forty-metre rope was picked up by mistake.",
+      "3": "gear that \"can't be used here\" is being withdrawn; no replacement belay device was offered."
+     }
+    },
+    {
+     "kind": "question",
+     "keyAct": "specifies intended use",
+     "line": "Are these shoes for the gym walls or outdoor granite?",
+     "reply": "Gym walls only — I never climb outside these days.",
+     "explanationIfSpoken": "The staffer asks where the shoes will be worn so the right pair can be fitted, and naming indoor use answers it. Replacing a harness responds to a condemnation that wasn't made. No rope length was corrected, and no device swap was offered.",
+     "kills": {
+      "0": "\"these shoes\" are the subject, so no harness has been declared expired and unusable.",
+      "2": "asking about \"the gym walls or outdoor granite\" is about footwear use, not about how long a rope should be.",
+      "3": "\"outdoor granite\" versus indoor use is a shoe question, not an offer to replace a belay device."
+     }
+    },
+    {
+     "kind": "correction",
+     "keyAct": "accepts the corrected specification",
+     "line": "You grabbed a forty-metre rope; your gym needs a seventy.",
+     "reply": "Seventy, then — I'd have been short on the long routes.",
+     "explanationIfSpoken": "The staffer corrects the rope length, so accepting the seventy and seeing the consequence is the natural reply. Replacing a harness answers a condemnation that wasn't made. No question was asked about where the shoes will be used, and no belay device was offered.",
+     "kills": {
+      "0": "\"a forty-metre rope\" is the item in question; nothing was said about an expired harness.",
+      "1": "telling the climber \"your gym needs a seventy\" settles rope length and asks nothing about shoes or outdoor granite.",
+      "3": "a rope that \"needs a seventy\" metre length has nothing to do with a worn belay device."
+     }
+    },
+    {
+     "kind": "offer",
+     "keyAct": "accepts a gear replacement",
+     "line": "I can swap the worn belay device for a new one.",
+     "reply": "Please replace it; the grooves worry me on every lower-off.",
+     "explanationIfSpoken": "The staffer offers to replace worn belay hardware, so approving it and citing the wear is the fitting answer. Buying a harness responds to a condemnation that wasn't made. No shoe-use question was asked, and no rope length was corrected.",
+     "kills": {
+      "0": "\"the worn belay device\" is the item being replaced; no harness was declared past its date.",
+      "1": "an offer to \"swap the worn\" hardware is not a question about where the climber uses shoes.",
+      "2": "swapping it \"for a new one\" concerns a belay device, not the length of rope picked up."
+     }
+    }
+   ]
+  },
+  {
+   "localId": "crv9-b2-10",
+   "setting": "A neighborhood bakery bread subscription window; the baker is speaking to a customer signing up",
+   "worlds": [
+    {
+     "kind": "neutral info",
+     "keyAct": "selects a plan around the schedule",
+     "line": "Subscriptions run Tuesday through Saturday; we're closed Sundays and Mondays.",
+     "reply": "Then I'll take the Tuesday-to-Saturday plan and manage weekends myself.",
+     "explanationIfSpoken": "The baker lays out the operating days, so choosing that plan and covering the gap is the natural reply. Starting this week off a waitlist answers news that wasn't given. No bag was requested, and no bread choice was offered.",
+     "kills": {
+      "1": "\"Subscriptions run Tuesday\" through Saturday is a schedule, not an announcement that a place opened up.",
+      "2": "being \"closed Sundays and Mondays\" concerns opening days, not bringing a cloth bag along.",
+      "3": "days that \"run Tuesday through Saturday\" set the calendar; no choice between loaves was offered."
+     }
+    },
+    {
+     "kind": "good news",
+     "keyAct": "starts the service immediately",
+     "line": "A subscription slot opened up, so your name's off the waitlist.",
+     "reply": "I'll start this week, then — the waiting felt endless.",
+     "explanationIfSpoken": "The baker reports a place has come free, so starting straight away is the fitting response. Choosing a five-day plan answers a schedule that wasn't stated. No bag was requested, and no bread choice was offered.",
+     "kills": {
+      "0": "\"A subscription slot opened\" is availability news; no opening days were listed to build a plan around.",
+      "2": "coming \"off the waitlist\" concerns enrolment, not any request to bring a cloth bag.",
+      "3": "\"your name's off\" the list says nothing about choosing between sourdough and rye."
+     }
+    },
+    {
+     "kind": "request",
+     "keyAct": "commits to a routine",
+     "line": "Could you bring your own cloth bag for the daily loaf?",
+     "reply": "I'll keep one hanging by the door so I remember.",
+     "explanationIfSpoken": "The baker asks the customer to supply a bag, so agreeing with a way of remembering fits. Choosing a five-day plan answers a schedule that wasn't stated. No waitlist news was given, and no bread choice was offered.",
+     "kills": {
+      "0": "\"your own cloth bag\" is a packaging request; no operating days were listed to pick a plan from.",
+      "1": "collecting \"the daily loaf\" is assumed already, so no waitlist place was announced as opening.",
+      "3": "asking someone to \"bring your own cloth bag\" is about carrying, not about which loaf to receive."
+     }
+    },
+    {
+     "kind": "question",
+     "keyAct": "states a standing preference",
+     "line": "Would you rather have sourdough or the seeded rye each morning?",
+     "reply": "Sourdough every morning — the rye is too heavy for me.",
+     "explanationIfSpoken": "The baker asks which loaf should come daily, so naming one with a reason answers it. Choosing a five-day plan responds to a schedule that wasn't stated. No waitlist news was given, and no bag was requested.",
+     "kills": {
+      "0": "the choice offered is \"each morning\", not a list of which days the bakery opens.",
+      "1": "asking about \"sourdough or the seeded rye\" presumes a place already; no waitlist news was delivered.",
+      "2": "\"Would you rather have\" one loaf or another is a preference question, not a request to bring a bag."
+     }
+    }
+   ]
+  },
+  {
+   "localId": "crv9-b2-11",
+   "setting": "A swimmer at the town pool talking to the lifeguard on duty in the poolside office",
+   "worlds": [
+    {
+     "kind": "question",
+     "keyAct": "gives the ruling",
+     "line": "Is the lane at the far end reserved for the swim club?",
+     "reply": "No, that lane stays open to everyone until seven.",
+     "explanationIfSpoken": "The swimmer asks whether the far lane is set aside for the club, so a ruling on who may use it and until when answers exactly that. Fishing something out with the pole would need an object in the water, and nothing has been dropped. Being written down for a six-thirty start would need an offer of work, and correcting a date on a card would need a claim about renewal; neither was made.",
+     "kills": {
+      "1": "My line asks whether the lane at \"the far end\" is reserved; nothing of mine is in the water, so fishing an item out with the pole answers nothing.",
+      "2": "Asking whether a lane is reserved for the \"swim club\" is not an offer to work a shift, so being put down for a six-thirty start makes no sense.",
+      "3": "My line is a question about the \"swim club\" lane, not a claim about my membership dates, so nothing on a card needs changing."
+     }
+    },
+    {
+     "kind": "bad news",
+     "keyAct": "promises retrieval",
+     "line": "I dropped my locker key in the deep end just now.",
+     "reply": "I'll fish it out with the pole after this set.",
+     "explanationIfSpoken": "A key has gone to the bottom of the pool, so a promise to hook it out with the pole is the natural help. A ruling about which lane is open answers no question, because none was asked. Scheduling a six-thirty start belongs to an offer of work, and correcting a renewal date belongs to a dispute about membership.",
+     "kills": {
+      "0": "Saying I dropped my \"locker key\" in the water is not a question about lane bookings, so telling me a lane stays open answers nothing.",
+      "2": "Losing something \"in the deep end\" is not an offer to cover a shift, so putting me down for a six-thirty start fits nothing.",
+      "3": "I reported a key going into \"the deep end\", not a wrong renewal date, so amending my card is irrelevant."
+     }
+    },
+    {
+     "kind": "offer",
+     "keyAct": "accepts the offer",
+     "line": "I could take the early shift Saturday if you still need cover.",
+     "reply": "I'll put you down for the six-thirty start, then.",
+     "explanationIfSpoken": "A volunteer offers to cover an early Saturday shift, so writing them in for the six-thirty start accepts it. Telling them a lane is open answers a question nobody asked. Hooking something out with the pole needs a dropped object, and correcting a date on a card needs a membership claim.",
+     "kills": {
+      "0": "Offering to take \"the early shift\" on Saturday says nothing about which lane is reserved, so a ruling on lane use answers nothing.",
+      "1": "My line offers cover for \"the early shift Saturday\"; nothing of mine is in the water to be fished out.",
+      "3": "I offered to \"take the early shift\", not corrected my renewal date, so nothing on a card needs fixing."
+     }
+    },
+    {
+     "kind": "correction",
+     "keyAct": "fixes the record",
+     "line": "Actually my membership renewed last week, not last month.",
+     "reply": "I'll correct the date on your card right now.",
+     "explanationIfSpoken": "The swimmer corrects the renewal date held on record, so amending the card is the fitting response. A ruling about a lane answers no question here. Retrieving something with the pole needs a dropped object, and booking a six-thirty start needs an offer to work, neither of which was made.",
+     "kills": {
+      "0": "I corrected that my membership \"renewed last week\", which has nothing to do with which lane is reserved.",
+      "1": "Saying \"not last month\" is a correction to a date; nothing of mine has gone into the water to retrieve.",
+      "2": "Correcting that it \"renewed last week\" is not an offer to work, so scheduling me for a six-thirty start does not follow."
+     }
+    }
+   ]
+  },
+  {
+   "localId": "crv9-b2-13",
+   "setting": "A hall user at the counter of the village hall booking office with the bookings clerk",
+   "worlds": [
+    {
+     "kind": "request",
+     "keyAct": "confirms availability",
+     "line": "Could we book the small room for Tuesday evenings this term?",
+     "reply": "The small room's free from seven; I'll pencil in Tuesdays.",
+     "explanationIfSpoken": "A regular slot has been requested, so confirming the room is free and pencilling the evenings in grants it. Calling out the boiler engineer treats a fault nobody reported. Quoting kitchen and urn charges answers a question about the fee that was not asked, and moving a booking to another name corrects a record nobody disputed.",
+     "kills": {
+      "1": "I asked to book \"the small room\" for the term; I reported no fault, so sending for the boiler answers nothing.",
+      "2": "Booking \"Tuesday evenings\" is not a question about what the hire fee covers, so kitchen and urn charges are beside the point.",
+      "3": "I am making a new booking for \"the small room\", not correcting whose name an existing one sits under."
+     }
+    },
+    {
+     "kind": "bad news",
+     "keyAct": "escalates the fault",
+     "line": "The heating in the main hall was off all through rehearsal.",
+     "reply": "I'll have the boiler looked at before Thursday evening.",
+     "explanationIfSpoken": "The hall was cold for a whole rehearsal, so promising to get the boiler seen to before the next one addresses it. Pencilling in Tuesday evenings answers a booking request that was not made. Quoting charges for the kitchen and urn answers no question about the fee, and moving a booking to another name corrects nothing here.",
+     "kills": {
+      "0": "Reporting that \"The heating\" failed is not a booking request, so pencilling in Tuesdays fits nothing.",
+      "2": "My line is about the cold in \"the main hall\", not about what the hire fee includes.",
+      "3": "Saying it was off \"all through rehearsal\" is a complaint, not a correction to the name on our booking."
+     }
+    },
+    {
+     "kind": "question",
+     "keyAct": "quotes the extra charge",
+     "line": "Does the hire fee include use of the kitchen and urn?",
+     "reply": "The kitchen's included; the urn is five pounds extra.",
+     "explanationIfSpoken": "The hirer asks what the fee covers, so splitting the answer between what is included and what costs more is exactly right. Pencilling in Tuesday evenings grants a booking that was not requested. Sending for the boiler treats a fault nobody described, and amending a name in the ledger corrects a record nobody questioned.",
+     "kills": {
+      "0": "I asked what \"the hire fee\" covers, not for a room to be pencilled in on Tuesdays.",
+      "1": "Asking about \"the kitchen and urn\" reports no fault, so calling out the boiler engineer answers nothing.",
+      "3": "My question is about \"the hire fee\", not about which name our booking is under."
+     }
+    },
+    {
+     "kind": "correction",
+     "keyAct": "amends the ledger",
+     "line": "Our booking is under the choir's name, not my own.",
+     "reply": "I'll move it to the choir in the ledger.",
+     "explanationIfSpoken": "The record has the wrong name against an existing booking, so shifting it to the choir in the ledger is the fix. Pencilling in Tuesday evenings would create a booking that was not asked for. Sending for the boiler treats a fault nobody mentioned, and quoting urn charges answers a fee question that was not asked.",
+     "kills": {
+      "0": "I am correcting an existing booking to sit \"under the choir's\" name, not asking for new Tuesday slots.",
+      "1": "Saying the booking is \"under the choir's\" name reports no heating fault to chase.",
+      "2": "My line corrects a name, \"not my own\", and asks nothing about fees, the kitchen or the urn."
+     }
+    }
+   ]
+  },
+  {
+   "localId": "crv9-b2-14",
+   "setting": "A visitor at the intake table of the repair cafe, talking to the volunteer who logs items",
+   "worlds": [
+    {
+     "kind": "neutral info",
+     "keyAct": "routes the item",
+     "line": "I've brought a lamp whose switch crackles when you turn it.",
+     "reply": "Electricals go to the bench at the back with Ravi.",
+     "explanationIfSpoken": "An electrical item has been handed in, so directing it to the electrical bench and the person who works there is the fitting reply. Passing thanks to Ravi about an element belongs to a repair already finished. Refusing to store an item answers a request to come back later, and recruiting for November answers an offer to volunteer.",
+     "kills": {
+      "1": "I have \"brought a lamp\" that is faulty now; nothing of mine was mended earlier, so passing on praise about an element fits nothing.",
+      "2": "Saying the \"switch crackles\" hands the item over; I have not asked to leave anything and collect it later.",
+      "3": "I have \"brought a lamp\" to be mended, not offered to work the intake table."
+     }
+    },
+    {
+     "kind": "good news",
+     "keyAct": "relays the news",
+     "line": "The kettle you rewired last month is still working perfectly.",
+     "reply": "I'll tell Ravi — he wasn't sure that element would hold.",
+     "explanationIfSpoken": "An old repair has held up, so promising to pass that on to the person who doubted it is the natural response. Routing electricals to the back bench needs an item in hand, and there is none. Refusing storage answers a request to collect later, and recruiting for November answers an offer of help.",
+     "kills": {
+      "0": "My kettle was \"rewired last month\" and works; there is no item in front of you to send to any bench.",
+      "2": "Reporting it \"working perfectly\" is not a request to leave something here and come back for it.",
+      "3": "Praising a repair from \"last month\" is not an offer to staff the intake table."
+     }
+    },
+    {
+     "kind": "question",
+     "keyAct": "refuses the request",
+     "line": "Can I leave my chair here and collect it at four?",
+     "reply": "No, we can't store items; you'd need to stay with it.",
+     "explanationIfSpoken": "The visitor wants to drop something off and return, so a refusal plus the rule that owners stay is the answer. Directing electricals to the back bench misroutes a chair and answers no question. Passing news to Ravi concerns a finished repair, and recruiting for November answers an offer that was not made.",
+     "kills": {
+      "0": "A chair is not electrical, so pointing at the electricals bench does not tell me whether I may \"leave my chair\" here.",
+      "1": "Asking to \"collect it at four\" is about today's chair, not about a kettle mended for me before.",
+      "3": "I want to \"leave my chair\" and come back, not volunteer on the intake table."
+     }
+    },
+    {
+     "kind": "offer",
+     "keyAct": "recruits the volunteer",
+     "line": "I could sit at this table next month; I've done intake before.",
+     "reply": "We're short for November — give me your name and number.",
+     "explanationIfSpoken": "Someone experienced has offered to staff the table, so naming the month they are needed and taking their details signs them up. Routing electricals needs a broken item, and none was handed over. Passing news to Ravi concerns a past repair, and refusing storage answers a request to come back later.",
+     "kills": {
+      "0": "Offering to \"sit at this table\" brings no broken item with it, so there is nothing to route to a bench.",
+      "1": "Saying I've \"done intake before\" is about volunteering, not about a kettle you repaired for me.",
+      "2": "I offered to help \"next month\"; I have nothing to leave here and collect later."
+     }
+    }
+   ]
+  },
+  {
+   "localId": "crv9-b2-15",
+   "setting": "A visitor and the attendant at the local museum cloakroom",
+   "worlds": [
+    {
+     "kind": "request",
+     "keyAct": "issues a tag",
+     "line": "Could you hold my rucksack until the last tour finishes?",
+     "reply": "Take tag forty-one; we keep bags until half five.",
+     "explanationIfSpoken": "A bag is being handed in for the afternoon, so giving a tag and the closing time completes the transaction. Asking for a description of a coat needs a lost ticket, which was not mentioned. Pointing at the pushchair alcove answers a different question, and fetching a wooden-handled umbrella responds to a mix-up nobody reported.",
+     "kills": {
+      "1": "I am asking you to \"hold my rucksack\" now; nothing of mine was washed, so being asked to describe a coat fits nothing.",
+      "2": "Handing over a rucksack until \"the last tour\" ends is not a question about where a pushchair may go.",
+      "3": "I want my rucksack kept until \"the last tour\" finishes; I have not been handed the wrong umbrella."
+     }
+    },
+    {
+     "kind": "bad news",
+     "keyAct": "starts a search",
+     "line": "The ticket for my coat went through the wash yesterday.",
+     "reply": "Describe the coat and I'll look along the rail.",
+     "explanationIfSpoken": "The claim ticket is destroyed, so asking for a description and offering to search the rail is the way to recover the coat. Issuing a tag needs a bag being handed in, not one already stored. Directing pushchairs to an alcove answers another question, and fetching a wooden-handled umbrella addresses a swap nobody described.",
+     "kills": {
+      "0": "My coat is already with you and \"The ticket\" is ruined; there is no bag to tag and take in.",
+      "2": "Losing a ticket \"through the wash\" is not a question about leaving a pushchair anywhere.",
+      "3": "I have lost \"The ticket\" for a coat, not been handed somebody else's umbrella."
+     }
+    },
+    {
+     "kind": "question",
+     "keyAct": "points out the spot",
+     "line": "Is there anywhere to leave a folded pushchair down here?",
+     "reply": "The alcove behind me takes pushchairs and walking frames.",
+     "explanationIfSpoken": "The visitor asks where bulky items go, so naming the alcove that takes them answers it directly. Issuing a bag tag with a closing time responds to a bag handed over, not a question about space. Asking for a coat description needs a lost ticket, and producing a wooden-handled umbrella addresses a mix-up nobody raised.",
+     "kills": {
+      "0": "I asked where \"a folded pushchair\" can go, not to have a bag tagged and held for me.",
+      "1": "Nothing of mine is lost; asking about \"a folded pushchair\" gives you no coat to search the rail for.",
+      "3": "My question is about space \"down here\" for a pushchair, not about being given the wrong umbrella."
+     }
+    },
+    {
+     "kind": "correction",
+     "keyAct": "corrects the swap",
+     "line": "That's not my umbrella — mine has a wooden handle.",
+     "reply": "The wooden-handled one is further along; I'll bring it.",
+     "explanationIfSpoken": "The wrong umbrella has been handed over, so locating the right one and fetching it corrects the mistake. Giving a bag tag responds to something being handed in, not taken back. Asking for a coat description belongs to a lost ticket, and pointing out the pushchair alcove answers a question that was not asked.",
+     "kills": {
+      "0": "I am refusing an umbrella that is \"not my umbrella\"; there is no bag of mine to tag and hold.",
+      "1": "Saying it is \"not my umbrella\" concerns an umbrella, so searching the coat rail is the wrong hunt.",
+      "2": "Describing \"a wooden handle\" identifies my umbrella; it asks nothing about where pushchairs may go."
+     }
+    }
+   ]
+  },
+  {
+   "localId": "crv9-b2-17",
+   "setting": "A caller and the presenter on the community radio request line",
+   "worlds": [
+    {
+     "kind": "request",
+     "keyAct": "asks for details",
+     "line": "Could you play something for my gran's ninetieth on Sunday?",
+     "reply": "Give me her name and a song and it's yours.",
+     "explanationIfSpoken": "A dedication has been asked for, so requesting the name and the track and agreeing to play it grants the request. Reading out a corrected time responds to a listings error nobody pointed out. Booking a studio slot answers an offer to perform, and appealing to listeners answers a report of something missing.",
+     "kills": {
+      "1": "Asking you to \"play something\" for a birthday corrects nothing you announced, so reading out a fixed time fits nothing.",
+      "2": "A request for \"my gran's\" ninetieth is not an offer to perform, so booking me into a studio makes no sense.",
+      "3": "I am asking for a song for \"my gran's\" birthday; nothing of mine is missing for listeners to watch for."
+     }
+    },
+    {
+     "kind": "correction",
+     "keyAct": "promises an on-air correction",
+     "line": "You said the fair starts at ten; the poster says eleven.",
+     "reply": "I'll read the corrected time out after this record.",
+     "explanationIfSpoken": "The station gave a wrong start time, so promising to put the right one out on air is the fitting fix. Taking a name and a song belongs to a dedication that was not requested. Booking a studio slot answers an offer to play, and appealing to listeners answers a report of something lost.",
+     "kills": {
+      "0": "I am pointing out that \"the poster says\" eleven; I have asked for no dedication at all.",
+      "2": "Correcting when \"the fair starts\" is not an offer to come and perform in the studio.",
+      "3": "Saying \"the poster says\" eleven corrects a printed time; nothing is lost for listeners to look out for."
+     }
+    },
+    {
+     "kind": "offer",
+     "keyAct": "sets a time",
+     "line": "I could bring in my accordion for the Friday folk hour.",
+     "reply": "Come at seven — we'll mic you up in studio two.",
+     "explanationIfSpoken": "A musician has offered to play live, so naming an arrival time and a studio accepts the offer. Asking for a name and a song belongs to a dedication that was not requested. Reading out a corrected time answers a listings error nobody raised, and appealing to listeners answers a report of something missing.",
+     "kills": {
+      "0": "Offering to bring \"my accordion\" in asks for no song to be dedicated to anyone.",
+      "1": "My line offers to play the \"Friday folk\" hour; it corrects no time you announced.",
+      "3": "I am offering to play \"my accordion\" live; no missing animal has been reported."
+     }
+    },
+    {
+     "kind": "neutral info",
+     "keyAct": "appeals to listeners",
+     "line": "There's a lost dog wandering near the bridge on Mill Road.",
+     "reply": "I'll ask listeners to look out for him after this song.",
+     "explanationIfSpoken": "A stray has been spotted, so putting an appeal out to listeners is what the station can usefully do. Taking a name and a track belongs to a dedication nobody requested. Reading out a corrected time answers a listings error that was not raised, and booking a studio slot answers an offer to perform.",
+     "kills": {
+      "0": "Reporting \"a lost dog\" near the bridge is not a request for a birthday dedication.",
+      "1": "Saying the dog is \"on Mill Road\" corrects no time you announced earlier.",
+      "2": "\"a lost dog\" needs finding, not an accordion slot in the studio."
+     }
+    }
+   ]
+  }
+ ]
+}

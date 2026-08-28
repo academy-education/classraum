@@ -1,0 +1,189 @@
+[
+ {
+  "id": "rsw-01",
+  "subskill": "Rhetorical Synthesis",
+  "difficulty": "hard",
+  "topic_tag": "pier piling marine growth survey",
+  "passage": "While researching a topic, a student has taken the following notes:\n- Marine biologist Nadia Oyelaran surveyed marine growth on 40 concrete pilings at the Cutler Bay municipal pier.\n- Divers scraped and weighed samples from four depth zones on each piling, from the waterline down to 4 meters.\n- Sea squirts made up the largest share of the growth by weight in every zone.\n- Mean growth thickness across all pilings was 29 millimeters.\n- The pilings were last cleaned 18 months before the survey.",
+  "prompt": "The student wants to emphasize the study's main finding. Which choice most effectively accomplishes this goal?",
+  "choices": [
+   "The survey's central result is clear: sea squirts dominated the growth by weight in every zone, and the fouling layer averaged 29 millimeters thick.",
+   "The survey's central result is clear: tube worms dominated the growth by weight in every zone, and the fouling layer averaged 24 millimeters thick.",
+   "The survey's central result is clear: blue mussels dominated the growth by weight in every zone, and the fouling layer averaged 19 millimeters thick.",
+   "The survey's central result is clear: barnacles dominated the growth by weight in every zone, and the fouling layer averaged 14 millimeters thick."
+  ],
+  "correct_answer": "The survey's central result is clear: sea squirts dominated the growth by weight in every zone, and the fouling layer averaged 29 millimeters thick.",
+  "explanation": "These notes state that sea squirts made up the largest share of the growth by weight in every zone and that mean thickness was 29 millimeters, so this summary puts the survey's main finding front and center without adding anything the notes do not support. Each other summary names a group the notes never credit with the largest share — barnacles, blue mussels, or tube worms — and each reports a mean thickness of 14, 19, or 24 millimeters where these notes record 29.",
+  "_world": 3
+ },
+ {
+  "id": "rsw-02",
+  "subskill": "Rhetorical Synthesis",
+  "difficulty": "hard",
+  "topic_tag": "bakery flour dust ventilation study",
+  "passage": "While researching a topic, a student has taken the following notes:\n- Occupational health researcher Tomás Herrera measured airborne flour dust in 15 commercial bakeries.\n- Each bakery was sampled for one week before and one week after overhead exhaust hoods were installed.\n- Average dust concentration fell by 64 percent after installation.\n- Levels still exceeded the recommended exposure limit during end-of-day sweeping.\n- The bakeries kept their existing mixing equipment and staffing throughout the study.",
+  "prompt": "The student wants to present a cautious summary of the findings. Which choice most effectively accomplishes this goal?",
+  "choices": [
+   "Herrera's findings suggest the hoods helped but did not solve the problem: across the 12 bakeries sampled, average dust fell by roughly 51 percent, yet levels during dough sheeting runs still exceeded the recommended limit.",
+   "Herrera's findings suggest the hoods helped but did not solve the problem: across the 9 bakeries sampled, average dust fell by roughly 38 percent, yet levels during hand bench dusting still exceeded the recommended limit.",
+   "Herrera's findings suggest the hoods helped but did not solve the problem: across the 6 bakeries sampled, average dust fell by roughly 22 percent, yet levels during flour sack emptying still exceeded the recommended limit.",
+   "Herrera's findings suggest the hoods helped but did not solve the problem: across the 15 bakeries sampled, average dust fell by roughly 64 percent, yet levels during end-of-day sweeping still exceeded the recommended limit."
+  ],
+  "correct_answer": "Herrera's findings suggest the hoods helped but did not solve the problem: across the 15 bakeries sampled, average dust fell by roughly 64 percent, yet levels during end-of-day sweeping still exceeded the recommended limit.",
+  "explanation": "This summary reports exactly what these notes support — 15 bakeries, a 64 percent average drop, and a remaining exceedance during end-of-day sweeping — and hedges it as a suggestion rather than a settled conclusion, which is what a cautious summary requires. Each other summary claims a sample of 6, 9, or 12 bakeries where these notes say 15, a decline of 22, 38, or 51 percent where these notes say 64, and an exceedance during flour sack emptying, hand bench dusting, or dough sheeting runs rather than end-of-day sweeping.",
+  "_world": 3
+ },
+ {
+  "id": "rsw-03",
+  "subskill": "Rhetorical Synthesis",
+  "difficulty": "hard",
+  "topic_tag": "tram rail lubricant trial",
+  "passage": "While researching a topic, a student has taken the following notes:\n- Transit engineer Marta Ollila ran a six-month trial on the city tram network, applying a rail-head lubricant at 18 curves and leaving 18 matched curves untreated.\n- Trackside microphones logged peak wheel squeal at every curve in the study; before treatment, both groups averaged 92 decibels.\n- Across the trial, peak squeal at the lubricated curves fell by an average of 13 decibels, while the untreated curves stayed within 1 decibel of their starting level.\n- Profile gauges showed flange wear building up at the untreated curves at 1.6 times the rate recorded at the lubricated curves.\n- Ollila reports that tram type, service frequency, and ambient temperature were comparable across the two groups.",
+  "prompt": "The student wants to compare the results of the two conditions. Which choice most effectively accomplishes this goal?",
+  "choices": [
+   "Ollila's lubricated curves ran 7 decibels quieter than the untreated curves, which also wore their rail flanges 2.2 times as fast.",
+   "Ollila's lubricated curves ran 9 decibels quieter than the untreated curves, which also wore their rail flanges 1.1 times as fast.",
+   "Ollila's lubricated curves ran 13 decibels quieter than the untreated curves, which also wore their rail flanges 1.6 times as fast.",
+   "Ollila's lubricated curves ran 11 decibels quieter than the untreated curves, which also wore their rail flanges 2.9 times as fast."
+  ],
+  "correct_answer": "Ollila's lubricated curves ran 13 decibels quieter than the untreated curves, which also wore their rail flanges 1.6 times as fast.",
+  "explanation": "These notes record a 13-decibel drop in peak squeal at the lubricated curves and flange wear at the untreated curves accumulating at 1.6 times the lubricated rate, so this sentence states the trial's two-condition contrast on both measures. The other summaries report drops of 7, 9, and 11 decibels and wear ratios of 2.2, 1.1, and 2.9 times, all of which contradict the 13 decibels and 1.6 times recorded here.",
+  "_world": 3
+ },
+ {
+  "id": "rsw-04",
+  "subskill": "Rhetorical Synthesis",
+  "difficulty": "hard",
+  "topic_tag": "campus fountain coin census",
+  "passage": "While researching a topic, a student has taken the following notes:\n- Over one academic year, campus historian Iris Vandermeer catalogued all 8,412 coins recovered from the quad's ornamental fountain during monthly cleanings.\n- In a survey run the same year, 600 students almost uniformly reported tossing 'a quarter, for luck,' and quarters were the coin most students carried for the laundry machines.\n- Quarters made up just 26 percent of the catalogued coins; pennies and dimes accounted for most of the rest.\n- The survey's picture held in only one stretch of the year, during first-year move-in week, when quarters briefly led every other denomination.\n- Measured against what the self-reports predicted, the fountain gave up about two-thirds as many coins as expected.",
+  "prompt": "The student wants to explain why the finding surprised researchers. Which choice most effectively accomplishes this goal?",
+  "choices": [
+   "The census surprised Vandermeer's team because quarters, the coin students almost unanimously reported tossing, made up just 12 percent of the haul, took the lead only during graduation week, and came out of a fountain that yielded barely half as many coins as the survey predicted.",
+   "The census surprised Vandermeer's team because quarters, the coin students almost unanimously reported tossing, made up just 19 percent of the haul, took the lead only after home football weekends, and came out of a fountain that yielded nearly twice as many coins as the survey predicted.",
+   "The census surprised Vandermeer's team because quarters, the coin students almost unanimously reported tossing, made up just 26 percent of the haul, took the lead only during first-year move-in week, and came out of a fountain that yielded about two-thirds as many coins as the survey predicted.",
+   "The census surprised Vandermeer's team because quarters, the coin students almost unanimously reported tossing, made up just 33 percent of the haul, took the lead only in the December cleanings, and came out of a fountain that yielded roughly as many coins as the survey predicted."
+  ],
+  "correct_answer": "The census surprised Vandermeer's team because quarters, the coin students almost unanimously reported tossing, made up just 26 percent of the haul, took the lead only during first-year move-in week, and came out of a fountain that yielded about two-thirds as many coins as the survey predicted.",
+  "explanation": "These notes record a 26 percent quarter share, a single exception during first-year move-in week, and a haul about two-thirds the predicted size, so the sentence explains the surprise as the distance between what students said they tossed and what the cleanings actually produced. The other summaries claim shares of 12, 19, and 33 percent, exceptions during graduation week, after home football weekends, or in December cleanings, and hauls of barely half, roughly as many, or nearly twice as many coins, none of which appears in these notes.",
+  "_world": 2
+ },
+ {
+  "id": "rsw-05",
+  "subskill": "Rhetorical Synthesis",
+  "difficulty": "hard",
+  "topic_tag": "greenhouse shade cloth experiment",
+  "passage": "While researching a topic, a student has taken the following notes:\n- Dr. Priya Anand tested whether shade cloth reduces heat stress in greenhouse lettuce.\n- She grew lettuce under four shade-cloth densities—30, 40, 50, and 60 percent—and weighed the harvested leaves.\n- Yield increased with shade density up to 50 percent and fell at 60 percent.\n- Every plot was planted with a single cultivar, 'Salinas'.\n- Daytime air temperature was held at one fixed level for the entire trial.",
+  "prompt": "The student wants to acknowledge a limitation of the study. Which choice most effectively accomplishes this goal?",
+  "choices": [
+   "Anand's result is limited in scope, however: because every plot grew the single cultivar 'Concept' and irrigation volume was held at one fixed level, the 50 percent optimum may not hold for other cultivars or at other irrigation rates.",
+   "Anand's result is limited in scope, however: because every plot grew the single cultivar 'Nevada' and relative humidity was held at one fixed level, the 50 percent optimum may not hold for other cultivars or at other humidity levels.",
+   "Anand's result is limited in scope, however: because every plot grew the single cultivar 'Parris Island' and carbon dioxide concentration was held at one fixed level, the 50 percent optimum may not hold for other cultivars or at other carbon dioxide levels.",
+   "Anand's result is limited in scope, however: because every plot grew the single cultivar 'Salinas' and daytime air temperature was held at one fixed level, the 50 percent optimum may not hold for other cultivars or at other temperatures."
+  ],
+  "correct_answer": "Anand's result is limited in scope, however: because every plot grew the single cultivar 'Salinas' and daytime air temperature was held at one fixed level, the 50 percent optimum may not hold for other cultivars or at other temperatures.",
+  "explanation": "The notes state that every plot was planted with 'Salinas' and that daytime air temperature was held at one fixed level, so this sentence names exactly the two conditions the trial never varied. The other summaries name a cultivar the notes do not use—'Nevada', 'Concept', or 'Parris Island'—and claim the fixed variable was relative humidity, irrigation volume, or carbon dioxide concentration, none of which the notes mention.",
+  "_world": 0
+ },
+ {
+  "id": "rsw-06",
+  "subskill": "Rhetorical Synthesis",
+  "difficulty": "hard",
+  "topic_tag": "harbor buoy solar beacon test",
+  "passage": "While researching a topic, a student has taken the following notes:\n- Marine engineer Tomás Vidal tested a solar-powered LED beacon built for harbor navigation buoys.\n- Conventional buoy beacons run on sealed batteries that crews must replace from a boat every six months.\n- A fully charged solar beacon kept flashing for eighteen days with no sunlight at all.\n- The beacons stayed lit through storm-driven waves during the winter test.\n- Vidal calculates that crews would service each solar beacon once every three years.",
+  "prompt": "The student wants to emphasize the practical application of the research. Which choice most effectively accomplishes this goal?",
+  "choices": [
+   "Vidal's beacon is ready for working harbors: because a charged unit stays lit for eighteen days without sun and kept flashing through storm-driven waves, crews could service each buoy once every three years instead of every six months.",
+   "Vidal's beacon is ready for working harbors: because a charged unit stays lit for twelve days without sun and kept flashing through dense fog, crews could service each buoy once every five years instead of every six months.",
+   "Vidal's beacon is ready for working harbors: because a charged unit stays lit for fifteen days without sun and kept flashing through sub-freezing temperatures, crews could service each buoy once every two years instead of every six months.",
+   "Vidal's beacon is ready for working harbors: because a charged unit stays lit for nine days without sun and kept flashing through heavy snowfall, crews could service each buoy once every four years instead of every six months."
+  ],
+  "correct_answer": "Vidal's beacon is ready for working harbors: because a charged unit stays lit for eighteen days without sun and kept flashing through storm-driven waves, crews could service each buoy once every three years instead of every six months.",
+  "explanation": "The notes record eighteen days of flashing without sunlight, survival of storm-driven waves, and a three-year service interval replacing the current six months, which is exactly the operational payoff this sentence states. The other summaries substitute twelve, nine, or fifteen days, dense fog, heavy snowfall, or sub-freezing temperatures, and five-, four-, or two-year intervals, none of them supported by the notes.",
+  "_world": 1
+ },
+ {
+  "id": "rsw-07",
+  "subskill": "Rhetorical Synthesis",
+  "difficulty": "hard",
+  "topic_tag": "community mural paint fade study",
+  "passage": "While researching a topic, a student has taken the following notes:\n- Conservator Naomi Okafor tracked 60 outdoor community murals in one city for five years.\n- Each mural was photographed annually under standardized lighting, and color intensity was measured from the images.\n- Across the whole sample, the murals lost an average of 34 percent of their original color intensity over the five years.\n- Fading was fastest on murals painted on concrete, which lost color more quickly than murals on any other surface.\n- Okafor found no difference in fading between murals made by professional artists and those made by volunteer crews.",
+  "prompt": "The student wants to emphasize the study's main finding. Which choice most effectively accomplishes this goal?",
+  "choices": [
+   "Okafor's five-year survey found that the murals lost an average of 19 percent of their color intensity, with the fastest fading on murals painted on brick.",
+   "Okafor's five-year survey found that the murals lost an average of 12 percent of their color intensity, with the fastest fading on murals painted on metal panels.",
+   "Okafor's five-year survey found that the murals lost an average of 27 percent of their color intensity, with the fastest fading on murals painted on stucco.",
+   "Okafor's five-year survey found that the murals lost an average of 34 percent of their color intensity, with the fastest fading on murals painted on concrete."
+  ],
+  "correct_answer": "Okafor's five-year survey found that the murals lost an average of 34 percent of their color intensity, with the fastest fading on murals painted on concrete.",
+  "explanation": "This summary puts the study's central measurement first: the notes record a 34 percent average loss of color intensity and concrete as the surface losing color fastest. The rival summaries each misstate both figures against these notes, giving 27, 12, or 19 percent for the average loss and naming stucco, metal panels, or brick rather than concrete.",
+  "_world": 2
+ },
+ {
+  "id": "rsw-09",
+  "subskill": "Rhetorical Synthesis",
+  "difficulty": "hard",
+  "topic_tag": "library window UV film test",
+  "passage": "While researching a topic, a student has taken the following notes:\n- Ines Vargas, a conservation librarian, tested whether a UV-blocking window film slows the fading of paper stored on open shelves.\n- She mounted identical dyed-paper test strips behind two banks of south-facing windows: one bank was covered with the film, the other was left untreated.\n- Both banks received the same daily sun exposure over a nine-month trial.\n- Strips behind the filmed windows lost 19 percent of their original color intensity.\n- Strips behind the untreated windows lost 58 percent of their original color intensity.",
+  "prompt": "The student wants to compare the results of the two conditions. Which choice most effectively accomplishes this goal?",
+  "choices": [
+   "Over the nine-month trial the strips behind the filmed windows lost 34 percent of their original color intensity, while the strips behind the untreated windows lost 49 percent.",
+   "Over the nine-month trial the strips behind the filmed windows lost 19 percent of their original color intensity, while the strips behind the untreated windows lost 58 percent.",
+   "Over the nine-month trial the strips behind the filmed windows lost 26 percent of their original color intensity, while the strips behind the untreated windows lost 31 percent.",
+   "Over the nine-month trial the strips behind the filmed windows lost 12 percent of their original color intensity, while the strips behind the untreated windows lost 45 percent."
+  ],
+  "correct_answer": "Over the nine-month trial the strips behind the filmed windows lost 19 percent of their original color intensity, while the strips behind the untreated windows lost 58 percent.",
+  "explanation": "The comparison these notes support is 19 percent loss under the film against 58 percent without it, and this summary reports exactly those two figures. Each other summary substitutes numbers the notes contradict — 12 and 45 percent, 26 and 31 percent, or 34 and 49 percent — so none accurately compares the filmed and untreated banks.",
+  "_world": 2
+ },
+ {
+  "id": "rsw-10",
+  "subskill": "Rhetorical Synthesis",
+  "difficulty": "hard",
+  "topic_tag": "stadium recycled turf infill study",
+  "passage": "While researching a topic, a student has taken the following notes:\n- Materials engineer Priya Raghunathan monitored two stadium fields through one playing season: one filled with recycled crumb rubber from scrap tires, the other with virgin sand and cork.\n- Probes buried just beneath the turf logged surface temperature every ten minutes.\n- Before installation the team predicted the crumb-rubber field would run about 6 degrees Fahrenheit hotter than the sand-and-cork field.\n- Across the season the crumb-rubber field instead averaged 4.8 degrees Fahrenheit cooler than the sand-and-cork field.\n- The cooler readings appeared only during the late-afternoon hours; at other times the two fields stayed within a tenth of a degree of each other.",
+  "prompt": "The student wants to explain why the finding surprised researchers. Which choice most effectively accomplishes this goal?",
+  "choices": [
+   "Raghunathan's team had predicted that the crumb-rubber field would run about 12 degrees Fahrenheit hotter than the sand-and-cork field, so it was startling that the recycled infill instead averaged 3.4 degrees Fahrenheit cooler, and cooler only during the evening hours.",
+   "Raghunathan's team had predicted that the crumb-rubber field would run about 6 degrees Fahrenheit hotter than the sand-and-cork field, so it was startling that the recycled infill instead averaged 4.8 degrees Fahrenheit cooler, and cooler only during the late-afternoon hours.",
+   "Raghunathan's team had predicted that the crumb-rubber field would run about 9 degrees Fahrenheit hotter than the sand-and-cork field, so it was startling that the recycled infill instead averaged 2.6 degrees Fahrenheit cooler, and cooler only during the morning hours.",
+   "Raghunathan's team had predicted that the crumb-rubber field would run about 15 degrees Fahrenheit hotter than the sand-and-cork field, so it was startling that the recycled infill instead averaged 1.5 degrees Fahrenheit cooler, and cooler only during the midday hours."
+  ],
+  "correct_answer": "Raghunathan's team had predicted that the crumb-rubber field would run about 6 degrees Fahrenheit hotter than the sand-and-cork field, so it was startling that the recycled infill instead averaged 4.8 degrees Fahrenheit cooler, and cooler only during the late-afternoon hours.",
+  "explanation": "These notes make the finding surprising because a forecast of 6 degrees Fahrenheit hotter was answered by 4.8 degrees cooler, confined to the late-afternoon hours, which is what this summary reports. The other summaries attribute the surprise to predictions of 9, 15, or 12 degrees and to margins of 2.6, 1.5, or 3.4 degrees in the morning, midday, or evening hours, contradicting the logged results.",
+  "_world": 2
+ },
+ {
+  "id": "rsw-11",
+  "subskill": "Rhetorical Synthesis",
+  "difficulty": "hard",
+  "topic_tag": "ferry queue signage experiment",
+  "passage": "While researching a topic, a student has taken the following notes:\n- Ingrid Halvorsen installed digital wait-time signs at the Kaldbak ferry terminal's boarding queue.\n- The trial ran for nine weeks.\n- Signs were installed only at the gates serving the weekend excursion sailings.\n- Reported crowding complaints fell by 22 percent while the signs were in place.\n- Halvorsen did not measure whether the signs changed how long passengers actually waited.",
+  "prompt": "The student wants to acknowledge a limitation of the study. Which choice most effectively accomplishes this goal?",
+  "choices": [
+   "Halvorsen's signs coincided with a 22 percent drop in crowding complaints, but the trial lasted only nine weeks and covered only the gates serving the weekend excursion sailings, so the effect may not hold across the terminal's other sailings.",
+   "Halvorsen's signs coincided with a 22 percent drop in crowding complaints, but the trial lasted only twelve weeks and covered only the gates serving the midday tourist sailings, so the effect may not hold across the terminal's other sailings.",
+   "Halvorsen's signs coincided with a 22 percent drop in crowding complaints, but the trial lasted only three weeks and covered only the gates serving the late-evening return sailings, so the effect may not hold across the terminal's other sailings.",
+   "Halvorsen's signs coincided with a 22 percent drop in crowding complaints, but the trial lasted only six weeks and covered only the gates serving the early-morning commuter sailings, so the effect may not hold across the terminal's other sailings."
+  ],
+  "correct_answer": "Halvorsen's signs coincided with a 22 percent drop in crowding complaints, but the trial lasted only nine weeks and covered only the gates serving the weekend excursion sailings, so the effect may not hold across the terminal's other sailings.",
+  "explanation": "These notes record a trial that \"ran for nine weeks\" at \"the gates serving the weekend excursion sailings,\" and only this summary uses both facts to qualify the 22 percent drop. The other summaries assert a trial of \"three weeks,\" \"six weeks,\" or \"twelve weeks\" and put the signs at the late-evening return, early-morning commuter, or midday tourist gates, each conflicting with what these notes state.",
+  "_world": 2
+ },
+ {
+  "id": "rsw-12",
+  "subskill": "Rhetorical Synthesis",
+  "difficulty": "hard",
+  "topic_tag": "park bench wood treatment trial",
+  "passage": "While researching a topic, a student has taken the following notes:\n- Tomás Ferreira tested a linseed-based wood treatment on public park benches in Aveiro.\n- After two years outdoors, treated benches showed 40 percent less surface cracking than untreated benches.\n- Per bench, the treatment costs less than the polyurethane varnish the city now applies.\n- The advantage was largest for benches in areas with hard winter frosts.\n- Crews can reapply the treatment with a brush during ordinary maintenance rounds.",
+  "prompt": "The student wants to emphasize the practical application of the research. Which choice most effectively accomplishes this goal?",
+  "choices": [
+   "Ferreira's trial gives park crews something they can act on: a brush-applied linseed treatment that costs slightly more than their current varnish, leaves benches with 55 percent less surface cracking after two years, and pays off most on benches in damp woodland shade.",
+   "Ferreira's trial gives park crews something they can act on: a brush-applied linseed treatment that costs less than their current varnish, leaves benches with 40 percent less surface cracking after two years, and pays off most on benches in areas with hard winter frosts.",
+   "Ferreira's trial gives park crews something they can act on: a brush-applied linseed treatment that costs roughly twice as much as their current varnish, leaves benches with 70 percent less surface cracking after two years, and pays off most on benches in full-sun plazas.",
+   "Ferreira's trial gives park crews something they can act on: a brush-applied linseed treatment that costs about the same as their current varnish, leaves benches with 85 percent less surface cracking after two years, and pays off most on benches along the salt-spray seafront."
+  ],
+  "correct_answer": "Ferreira's trial gives park crews something they can act on: a brush-applied linseed treatment that costs less than their current varnish, leaves benches with 40 percent less surface cracking after two years, and pays off most on benches in areas with hard winter frosts.",
+  "explanation": "Only this summary matches these notes on all three facts a maintenance department would act on: the treatment \"costs less than the polyurethane varnish the city now applies,\" it yielded \"40 percent less surface cracking,\" and the advantage was \"largest for benches in areas with hard winter frosts.\" The other summaries price the coating at \"about the same as,\" \"slightly more than,\" or \"roughly twice as much as\" the current varnish, promise 85, 55, or 70 percent less cracking, and send crews to seafront, woodland-shade, or full-sun benches instead.",
+  "_world": 0
+ }
+]

@@ -1,0 +1,440 @@
+{
+ "cohort": "cr-v9",
+ "stage": 1,
+ "batch": "b1",
+ "method": "symmetric four-world authoring, post-hoc seeded key selection",
+ "items": [
+  {
+   "localId": "crv9-b1-01",
+   "setting": "A volunteer shed at the campus botanical garden; the volunteer coordinator is speaking to a student volunteer who has just come in.",
+   "worlds": [
+    {
+     "kind": "request",
+     "keyAct": "agrees to carry",
+     "line": "Could you carry these seedling trays out to the north beds?",
+     "reply": "Sure — I'll take two at a time so nothing tips.",
+     "explanationIfSpoken": "The coordinator asks for hands-on help moving trays, so agreeing and describing how they'll be carried is exactly the cooperative answer. Sympathy about ruined orchid cuttings responds to a loss nobody reported. Relief about a second potting bench answers an announcement that was never made, and naming a shelf behind the twine answers a location question that was never asked.",
+     "kills": {
+      "1": "The line says \"carry these seedling\" trays out — it hands over a task, and nothing in it reports anything lost, so mourning cuttings has nothing to attach to.",
+      "2": "The line only points to \"the north beds\" as a destination; no new equipment for the shed is announced, so welcoming extra bench space fits nothing said.",
+      "3": "\"Could you carry\" asks for an action, not for information, so answering with which shelf something sits on ignores the request entirely."
+     }
+    },
+    {
+     "kind": "bad news",
+     "keyAct": "commiserates",
+     "line": "The greenhouse heater failed overnight, so the orchid cuttings are gone.",
+     "reply": "That's awful — those cuttings took the whole spring to root.",
+     "explanationIfSpoken": "A heater failure that killed the cuttings calls for shared dismay, and noting how long they took to root shows the volunteer grasps the size of the loss. Agreeing to carry trays two at a time accepts a job that was never offered. Welcoming a new potting bench treats a setback as a gain, and naming a shelf answers no question here.",
+     "kills": {
+      "0": "Because the line reports that \"the orchid cuttings\" are dead, it makes no request; promising to carry trays carefully accepts an instruction that was never given.",
+      "2": "\"heater failed overnight\" reports damage, not a purchase or a grant, so relief about crowding at a new bench answers nothing in it.",
+      "3": "The line closes with the cuttings \"are gone\" — a statement, not a search, so supplying a shelf location has no question to answer."
+     }
+    },
+    {
+     "kind": "good news",
+     "keyAct": "welcomes relief",
+     "line": "The garden club funded a second potting bench for this shed.",
+     "reply": "Finally — we won't be elbowing each other every Saturday.",
+     "explanationIfSpoken": "Funding for a second bench solves a crowding problem the volunteers live with, so naming that relief is the natural reaction. Agreeing to carry trays takes on work that was never assigned. Grieving lost cuttings misreads good news as a disaster, and pointing to a shelf answers a question the coordinator never raised.",
+     "kills": {
+      "0": "The line announces a \"second potting bench\" arriving; it asks for nothing, so a promise about tipping trays responds to an instruction that isn't there.",
+      "1": "The club \"funded a second\" bench — that's a gain for the shed, so treating the moment as a loss to console contradicts what was said.",
+      "3": "The news is \"for this shed\" in general; no missing item is being hunted, so naming a shelf and a green tin answers no one."
+     }
+    },
+    {
+     "kind": "question",
+     "keyAct": "gives location",
+     "line": "Do you know which shelf the labeled seed envelopes ended up on?",
+     "reply": "Right — third one down, behind the twine, in the green tin.",
+     "explanationIfSpoken": "The coordinator is hunting for the seed envelopes, so the useful reply is the exact shelf and container. Promising to carry trays two at a time accepts a task nobody assigned. Sorrow over dead cuttings and delight about a new bench both react to news that this line never delivers.",
+     "kills": {
+      "0": "The line asks about \"the labeled seed envelopes\" and requests no physical work, so agreeing to carry trays without tipping them answers a request that was never made.",
+      "1": "\"Do you know\" opens a question, not a report of damage, so an expression of sympathy for lost cuttings has nothing to console.",
+      "2": "Asking \"which shelf\" something sits on announces nothing new for the shed, so celebrating extra bench space responds to news that wasn't given."
+     }
+    }
+   ]
+  },
+  {
+   "localId": "crv9-b1-11",
+   "setting": "At the dorm bike repair stand outside the residence hall, a student and the bike-shop volunteer on duty.",
+   "worlds": [
+    {
+     "kind": "bad news",
+     "keyAct": "switches to a different fix",
+     "line": "Your back tire's flat again — the patch didn't hold overnight.",
+     "reply": "Then I'll just buy a new tube this time.",
+     "explanationIfSpoken": "The volunteer reports that the repair failed, so abandoning patches for a whole new tube is the obvious next move. Relief about a wobble answers a wheel that was straightened, which never happened here. Saying when to let go answers a request for hands, and a promise about five-thirty answers a closing time, neither of which was raised.",
+     "kills": {
+      "1": "\"the patch didn't hold\" reports a failure, so there is nothing fixed to be relieved about and no wobble was ever straightened.",
+      "2": "\"Your back tire's\" is a diagnosis I'm handing you, not a job I need hands for, so telling me to say when helps nothing.",
+      "3": "\"flat again\" says nothing about closing time, so a promise to finish by five-thirty answers a deadline I never set."
+     }
+    },
+    {
+     "kind": "good news",
+     "keyAct": "expresses relief at a fixed problem",
+     "line": "I trued your wheel this morning and it's spinning perfectly straight.",
+     "reply": "That's a relief — I've been riding that wobble for weeks.",
+     "explanationIfSpoken": "A wheel that now spins straight explains weeks of wobble ending, so relief is exactly right. Buying a tube treats the news as a flat tire, which was never mentioned. Offering to keep something from rolling assumes work still in progress, and finishing by five-thirty assumes a deadline.",
+     "kills": {
+      "0": "\"trued your wheel\" is finished work, so buying a new tube answers a tire failure I never reported.",
+      "2": "\"this morning\" puts the job in the past, so offering to steady anything for me arrives far too late.",
+      "3": "\"spinning perfectly straight\" is a result, not a rule about hours, so a promise about five-thirty attaches to nothing."
+     }
+    },
+    {
+     "kind": "request",
+     "keyAct": "agrees and asks for a cue",
+     "line": "Can you hold the frame steady while I tighten this bolt?",
+     "reply": "Say when — I'll keep it from rolling forward.",
+     "explanationIfSpoken": "The volunteer needs a second pair of hands right now, so agreeing and asking for the cue fits. Buying a tube leaves the frame unheld and answers no request. Relief about a wobble responds to completed work, and a promise about five-thirty responds to a closing rule.",
+     "kills": {
+      "0": "\"hold the frame steady\" asks for help this minute, so announcing a tube purchase leaves my hands still full.",
+      "1": "\"tighten this bolt\" is work still underway, so calling something a weeks-long relief fits nothing I said.",
+      "3": "\"Can you hold\" is a request for the next minute, not a closing rule, so five-thirty is beside the point."
+     }
+    },
+    {
+     "kind": "neutral info",
+     "keyAct": "commits to beating the deadline",
+     "line": "All the stand's tools go back on the board by six.",
+     "reply": "I'll be done by five-thirty and put things away.",
+     "explanationIfSpoken": "A stated cutoff invites a commitment to finish before it, which is what this reply gives. Buying a tube answers a tire diagnosis that was never made. Relief about a wobble answers a completed repair, and asking for a cue answers a request for hands.",
+     "kills": {
+      "0": "\"go back on the board\" is about tools, not tires, so buying a tube answers a problem I never raised.",
+      "1": "\"the stand's tools\" are shop property, so relief about weeks of wobble responds to a repair I never mentioned.",
+      "2": "\"by six\" sets a deadline rather than asking for hands, so telling me to say when answers a request I didn't make."
+     }
+    }
+   ]
+  },
+  {
+   "localId": "crv9-b1-12",
+   "setting": "At the practice-room booking screen in the music building, a student and the front-desk attendant.",
+   "worlds": [
+    {
+     "kind": "bad news",
+     "keyAct": "reschedules around the shortage",
+     "line": "Every practice room with a piano is booked until nine tonight.",
+     "reply": "Then I'll come back at nine and practice late.",
+     "explanationIfSpoken": "If the pianos free up at nine, coming back then is the natural adjustment. Accepting a place on a list responds to an offer nobody made. Naming who the booking is for answers a question, and blaming an empty-looking screen answers a correction about dates.",
+     "kills": {
+      "1": "\"booked until nine\" is a wall, not a favor I extended, so agreeing to be put down accepts something I never offered.",
+      "2": "\"Every practice room\" is a report about availability, so telling me it's just you answers a question I didn't ask.",
+      "3": "\"with a piano\" describes rooms that are full, so remarking that the screen looked empty contradicts what I just told you."
+     }
+    },
+    {
+     "kind": "offer",
+     "keyAct": "accepts and gives a reason",
+     "line": "I can put you on the waitlist for the corner room.",
+     "reply": "Put me down — that room's light is worth the wait.",
+     "explanationIfSpoken": "An offer of a waitlist spot is accepted, with a reason for wanting that particular room. Returning at nine responds to a time nobody named. Saying it's just one player answers a question, and complaining the screen looked empty answers a correction.",
+     "kills": {
+      "0": "\"put you on the waitlist\" means the room isn't free now, so promising to return at nine picks an hour I never mentioned.",
+      "2": "\"the corner room\" is an offer, not a question about who's playing, so telling me it's only you answers nothing.",
+      "3": "\"I can put you\" is me doing you a favor, so calling the screen empty responds to a mistake I never pointed out."
+     }
+    },
+    {
+     "kind": "question",
+     "keyAct": "answers with size and purpose",
+     "line": "Are you booking for yourself or for your whole quartet?",
+     "reply": "Just me — an hour of solo horn practice.",
+     "explanationIfSpoken": "A direct either-or about party size gets a direct answer plus the intended use. Returning at nine responds to a closure I never announced. Accepting a waitlist spot accepts an offer, and calling the screen empty answers a correction about the day.",
+     "kills": {
+      "0": "\"Are you booking\" is a question about your party, so promising to return at nine answers a shortage I never reported.",
+      "1": "\"for yourself\" asks who's playing, not whether you want a list, so agreeing to be put down accepts an offer I didn't make.",
+      "3": "\"your whole quartet\" is part of a question, so telling me the screen looked empty corrects a mistake I never named."
+     }
+    },
+    {
+     "kind": "correction",
+     "keyAct": "realizes the error and fixes it",
+     "line": "That screen shows tomorrow's grid — you're booking the wrong day.",
+     "reply": "No wonder it looked empty — let me change the date.",
+     "explanationIfSpoken": "Being shown the wrong date explains why the grid looked so open, and changing it is the fix. Returning at nine responds to rooms being full, which I said nothing about. Accepting a list place accepts an offer, and naming the party answers a question.",
+     "kills": {
+      "0": "\"the wrong day\" is a date mistake, not a shortage, so coming back at nine responds to a closing hour I never gave.",
+      "1": "\"shows tomorrow's grid\" is a correction, not an offer, so agreeing to be put down accepts something I never proposed.",
+      "2": "\"you're booking\" points at your error, not at your group size, so telling me it's just you answers no question of mine."
+     }
+    }
+   ]
+  },
+  {
+   "localId": "crv9-b1-13",
+   "setting": "At the glaze shelf in the ceramics studio, a student and the studio monitor.",
+   "worlds": [
+    {
+     "kind": "neutral info",
+     "keyAct": "plans to follow the procedure",
+     "line": "The celadon bucket gets stirred five minutes before anyone dips a pot.",
+     "reply": "I'll set a timer before I start so it's mixed.",
+     "explanationIfSpoken": "A stated stirring time invites a plan for meeting it, and a timer does that. Carrying buckets in two trips answers a request for help. Praising a glaze result answers kiln news, and naming a shelf answers a question about brushes.",
+     "kills": {
+      "1": "\"stirred five minutes\" is a rule about mixing, not a job for you, so taking two now and returning for the rest answers a request I never made.",
+      "2": "\"The celadon bucket\" is glaze waiting to be used, so calling a glaze well-behaved responds to a firing result I never reported.",
+      "3": "\"dips a pot\" is about the dipping step, so naming a shelf answers a question I didn't ask."
+     }
+    },
+    {
+     "kind": "request",
+     "keyAct": "splits the task into trips",
+     "line": "Could you carry the empty buckets down to the wash sink?",
+     "reply": "I'll take two now and come back for the rest.",
+     "explanationIfSpoken": "Asked to move buckets, the student agrees and plans two trips. Setting a stirring timer answers a procedure I never stated. Praising a glaze answers kiln news, and naming a shelf answers a question about brushes.",
+     "kills": {
+      "0": "\"carry the empty buckets\" is a hauling job, so a timer for stirring answers a mixing rule I never gave.",
+      "2": "\"the wash sink\" is where they go, not a kiln, so calling a glaze well-behaved responds to news I never delivered.",
+      "3": "\"Could you carry\" asks you to do something, so naming a shelf answers a question I didn't ask."
+     }
+    },
+    {
+     "kind": "good news",
+     "keyAct": "marks it as a first success",
+     "line": "Your bowl came out of the kiln with no crawling anywhere.",
+     "reply": "That's the first glaze that's behaved for me all term.",
+     "explanationIfSpoken": "A clean firing after a term of failures is exactly what this reply celebrates. A stirring timer answers a procedure I never described. Splitting bucket trips answers a hauling request, and naming a shelf answers a question.",
+     "kills": {
+      "0": "\"out of the kiln\" is a finished result, so a timer for stirring answers a mixing rule I never stated.",
+      "1": "\"no crawling anywhere\" is news about your pot, not a hauling job, so taking two now answers a request I never made.",
+      "3": "\"Your bowl came\" reports a result, so naming a shelf answers a question I didn't ask."
+     }
+    },
+    {
+     "kind": "question",
+     "keyAct": "gives the location",
+     "line": "Which shelf did you leave the wax resist brushes on?",
+     "reply": "Second from the top, beside the tall test tiles.",
+     "explanationIfSpoken": "A direct question about location gets a direct location. A stirring timer answers a procedure, and splitting bucket trips answers a request. Praising a glaze responds to kiln news I never gave.",
+     "kills": {
+      "0": "\"Which shelf\" asks where something is, so a timer for stirring answers a mixing rule I never stated.",
+      "1": "\"wax resist brushes\" are what I'm hunting for, not buckets to move, so taking two now answers a request I never made.",
+      "2": "\"did you leave\" is a question about brushes, so calling a glaze well-behaved responds to firing news I never reported."
+     }
+    }
+   ]
+  },
+  {
+   "localId": "crv9-b1-14",
+   "setting": "At the campus greenhouse seedling sale, a customer and the student volunteer at the table.",
+   "worlds": [
+    {
+     "kind": "bad news",
+     "keyAct": "names a fallback source",
+     "line": "The tomato starts sold out in the first twenty minutes today.",
+     "reply": "Sold out already? I'll try the farmers' market instead.",
+     "explanationIfSpoken": "Told the tomatoes are gone, the customer looks elsewhere. Accepting help to the racks accepts an offer nobody made. Choosing a payment method answers a price statement, and reducing an order answers a correction about what the plants are.",
+     "kills": {
+      "1": "\"tomato starts sold out\" is a shortage, not an offer of help, so asking whether I really would carry something accepts what I never proposed.",
+      "2": "\"in the first twenty\" describes how fast they went, so choosing card answers a price I never quoted.",
+      "3": "\"twenty minutes today\" is about timing, so cutting an order from six to two responds to a mislabeling I never mentioned."
+     }
+    },
+    {
+     "kind": "offer",
+     "keyAct": "accepts help and explains why",
+     "line": "I can carry your flat out to the bike racks.",
+     "reply": "Would you? My hands are full with this watering can.",
+     "explanationIfSpoken": "An offer to carry is accepted, with a reason the help is welcome. Heading to the farmers' market responds to a sellout I never announced. Choosing card answers a price, and cutting an order answers a correction.",
+     "kills": {
+      "0": "\"carry your flat\" means you already have plants in hand, so leaving for the farmers' market responds to a sellout I never reported.",
+      "2": "\"the bike racks\" is a destination, not a price, so answering with card responds to a total I never named.",
+      "3": "\"I can carry\" is an offer of muscle, so reducing an order responds to a mislabeling I never pointed out."
+     }
+    },
+    {
+     "kind": "neutral info",
+     "keyAct": "picks payment and quantity",
+     "line": "Everything on this bench is a dollar, cash or card.",
+     "reply": "Card, please — I'll take four of the basil pots.",
+     "explanationIfSpoken": "A flat price with two payment options invites choosing one and naming a quantity. Going to the farmers' market responds to a sellout I never reported. Accepting a carry accepts an offer, and cutting an order answers a correction.",
+     "kills": {
+      "0": "\"a dollar\" is a price for things still on the table, so leaving for the farmers' market responds to a sellout I never announced.",
+      "1": "\"cash or card\" asks how you'll pay, not whether you want help carrying, so accepting an offer accepts what I never made.",
+      "3": "\"this bench\" describes what's for sale, so cutting an order from six to two responds to a label mistake I never raised."
+     }
+    },
+    {
+     "kind": "correction",
+     "keyAct": "revises the order downward",
+     "line": "Those aren't peppers — the label blew off; they're eggplant seedlings.",
+     "reply": "Eggplant, really? Then I only need two, not six.",
+     "explanationIfSpoken": "Learning the plants are something else changes how many the customer wants. Heading to the farmers' market responds to a sellout I never mentioned. Accepting a carry accepts an offer, and choosing card answers a price.",
+     "kills": {
+      "0": "\"aren't peppers\" corrects what the plants are, so leaving for the farmers' market responds to a sellout I never reported.",
+      "1": "\"the label blew off\" explains the mix-up, not a favor, so accepting help to the racks accepts an offer I never made.",
+      "2": "\"eggplant seedlings\" identifies the plant, so choosing card answers a price I never quoted."
+     }
+    }
+   ]
+  },
+  {
+   "localId": "crv9-b1-16",
+   "setting": "In the student gallery on hanging day, a student artist and the gallery coordinator.",
+   "worlds": [
+    {
+     "kind": "neutral info",
+     "keyAct": "admits a mistake and plans to redo",
+     "line": "Wall labels go three inches to the right of each frame.",
+     "reply": "I stuck mine underneath — I'd better peel them off.",
+     "explanationIfSpoken": "A placement rule reveals that the labels already stuck in the wrong spot must come down. Identifying a triptych answers a correction about which work is whose. Praising a borrowed tool accepts an offer, and naming a height answers a question.",
+     "kills": {
+      "1": "\"Wall labels\" are cards, not artworks, so identifying three panels as yours answers a mix-up I never pointed out.",
+      "2": "\"three inches\" is a measurement rule, not a loan, so calling something an hour saved accepts an offer I never made.",
+      "3": "\"each frame\" refers to work already on the wall, so giving me a height in inches answers a question I didn't ask."
+     }
+    },
+    {
+     "kind": "correction",
+     "keyAct": "accepts the correction and relocates",
+     "line": "That's not your piece — yours is the triptych by the door.",
+     "reply": "The three panels, right — I'll move my tools down there.",
+     "explanationIfSpoken": "Told which work is actually theirs, the artist relocates. Peeling labels answers a placement rule I never stated. Praising a borrowed level accepts an offer, and naming a height answers a question.",
+     "kills": {
+      "0": "\"not your piece\" corrects which artwork is yours, so peeling labels off responds to a placement rule I never gave.",
+      "2": "\"the triptych\" is a work, not a tool, so calling something an hour saved accepts a loan I never offered.",
+      "3": "\"by the door\" tells you where to stand, so answering with a height in inches answers a question I didn't ask."
+     }
+    },
+    {
+     "kind": "offer",
+     "keyAct": "accepts and values the help",
+     "line": "I can lend you the laser level while I do the back room.",
+     "reply": "That would save me an hour of eyeballing these lines.",
+     "explanationIfSpoken": "An offered tool is accepted, with the time it saves as the reason. Peeling labels answers a placement rule. Identifying a triptych answers a correction, and naming a height answers a question.",
+     "kills": {
+      "0": "\"lend you the laser level\" is an offer of a tool, so peeling labels off responds to a placement rule I never gave.",
+      "1": "\"the back room\" is where I'll be working, so identifying three panels as yours corrects a mix-up I never raised.",
+      "3": "\"I can lend\" is an offer, not a question, so giving me a height in inches answers nothing I asked."
+     }
+    },
+    {
+     "kind": "question",
+     "keyAct": "specifies a measurement",
+     "line": "How high do you want the top edge of the canvas?",
+     "reply": "Sixty inches from the floor, same as the others.",
+     "explanationIfSpoken": "A direct question about hanging height gets a number and a consistency rule. Peeling labels answers a label rule I never stated. Identifying a triptych answers a correction, and praising a tool accepts an offer.",
+     "kills": {
+      "0": "\"How high\" asks about the canvas, not label placement, so peeling labels off responds to a rule I never gave.",
+      "1": "\"the top edge\" is part of the work we're both looking at, so identifying three panels as yours corrects a mix-up I never raised.",
+      "2": "\"do you want\" is a question, not an offer of equipment, so calling something an hour saved accepts a loan I never made."
+     }
+    }
+   ]
+  },
+  {
+   "localId": "crv9-b1-18",
+   "setting": "At the makerspace laser cutter sign-up queue, the shop monitor and a student.",
+   "worlds": [
+    {
+     "kind": "bad news",
+     "keyAct": "switches to a different machine",
+     "line": "The exhaust fan failed, so nothing runs until the parts arrive.",
+     "reply": "Then I'll switch to the vinyl cutter and redraw it.",
+     "explanationIfSpoken": "With the machine down indefinitely, moving the job to another tool is the sensible response. Quoting a run time answers a question. Preferring an earlier slot accepts an offer, and pulling different settings answers a material correction.",
+     "kills": {
+      "1": "\"nothing runs\" means no job goes on the machine, so quoting twelve or fifteen minutes answers a question I never asked.",
+      "2": "\"exhaust fan failed\" is a breakdown, not a favor, so calling an earlier time better accepts a slot I never offered.",
+      "3": "\"the parts arrive\" is about repairs, so pulling different settings responds to a material mix-up I never raised."
+     }
+    },
+    {
+     "kind": "question",
+     "keyAct": "estimates a run length",
+     "line": "How many minutes does your file need on the machine?",
+     "reply": "Twelve, maybe fifteen if I add the engraving pass.",
+     "explanationIfSpoken": "A direct question about run time gets an estimate with a condition. Moving to the vinyl cutter answers a breakdown. Preferring an earlier slot accepts an offer, and pulling settings answers a correction.",
+     "kills": {
+      "0": "\"How many minutes\" assumes the machine will run, so switching to the vinyl cutter responds to a breakdown I never reported.",
+      "2": "\"your file\" is what I'm asking about, so calling an earlier time better accepts a slot I never offered.",
+      "3": "\"on the machine\" is about run length, so pulling different settings responds to a material mix-up I never pointed out."
+     }
+    },
+    {
+     "kind": "offer",
+     "keyAct": "accepts and compares to the alternative",
+     "line": "I can move you into the empty slot at four.",
+     "reply": "That beats waiting for the evening block by hours.",
+     "explanationIfSpoken": "An earlier opening is accepted because it beats the long wait. Switching machines answers a breakdown. Quoting a run time answers a question, and pulling settings answers a correction.",
+     "kills": {
+      "0": "\"the empty slot\" means the machine is running fine, so switching to the vinyl cutter responds to a breakdown I never reported.",
+      "1": "\"at four\" is a time I'm offering, not a question about length, so quoting twelve or fifteen minutes answers nothing I asked.",
+      "3": "\"I can move you\" is a scheduling favor, so pulling different settings responds to a material mix-up I never raised."
+     }
+    },
+    {
+     "kind": "correction",
+     "keyAct": "accepts and adjusts preparation",
+     "line": "Your material is acrylic, not plywood — the settings sheet differs.",
+     "reply": "Acrylic, then — I'll pull the other settings before starting.",
+     "explanationIfSpoken": "Being corrected about the material sends the student to the right settings sheet. Switching machines answers a breakdown. Quoting a run time answers a question, and preferring an earlier hour accepts an offer.",
+     "kills": {
+      "0": "\"acrylic, not plywood\" corrects your material, so switching to the vinyl cutter responds to a breakdown I never reported.",
+      "1": "\"Your material\" is what I'm correcting, so quoting twelve or fifteen minutes answers a question I never asked.",
+      "2": "\"the settings sheet\" is paperwork, not a time slot, so calling an earlier hour better accepts an offer I never made."
+     }
+    }
+   ]
+  },
+  {
+   "localId": "crv9-b1-20",
+   "setting": "At the badminton court desk in the recreation center, a student and the desk attendant.",
+   "worlds": [
+    {
+     "kind": "bad news",
+     "keyAct": "reorganizes play around the closure",
+     "line": "Courts three and four are taped off for refinishing tonight.",
+     "reply": "Then we'll double up on court one and rotate players.",
+     "explanationIfSpoken": "With two courts closed, crowding onto one and rotating keeps everyone playing. Thanking someone for equipment accepts an offer. Explaining a wrong sign-up answers a correction, and choosing a length answers a question.",
+     "kills": {
+      "1": "\"taped off\" is about closed floors, not equipment, so thanking me for something and mentioning snapped strings accepts an offer I never made.",
+      "2": "\"Courts three and four\" are unavailable spaces, so telling me volleyball is in the other gym corrects a booking error I never raised.",
+      "3": "\"refinishing tonight\" explains the closure, so choosing half an hour answers a question I never asked."
+     }
+    },
+    {
+     "kind": "offer",
+     "keyAct": "accepts and explains the need",
+     "line": "I can lend you a racket from the rental bin.",
+     "reply": "That would help — my strings snapped on Tuesday night.",
+     "explanationIfSpoken": "A loaner racket is accepted, with broken strings as the reason it's needed. Doubling up on one court answers a closure. Explaining a wrong sign-up answers a correction, and choosing a length answers a question.",
+     "kills": {
+      "0": "\"lend you a racket\" is an offer of gear, so doubling up on one court responds to a closure I never announced.",
+      "2": "\"the rental bin\" is where equipment lives, so telling me volleyball is in the other gym corrects a booking error I never raised.",
+      "3": "\"I can lend\" is an offer, not a question, so choosing half an hour answers nothing I asked."
+     }
+    },
+    {
+     "kind": "correction",
+     "keyAct": "acknowledges booking the wrong thing",
+     "line": "Your card says volleyball, not badminton, for this time slot.",
+     "reply": "Volleyball's in the other gym — I signed up wrong.",
+     "explanationIfSpoken": "Shown the booking is for the wrong sport, the student admits the sign-up error. Doubling up on one court answers a closure. Accepting a loaner accepts an offer, and choosing a length answers a question.",
+     "kills": {
+      "0": "\"Your card says\" points at a booking mistake, so doubling up on one court responds to a closure I never announced.",
+      "1": "\"this time slot\" is about your reservation, not gear, so mentioning snapped strings accepts an offer I never made.",
+      "3": "\"not badminton\" corrects the sport, so choosing half an hour answers a question I never asked."
+     }
+    },
+    {
+     "kind": "question",
+     "keyAct": "chooses the shorter option",
+     "line": "Do you want the full hour or just the half?",
+     "reply": "The half — we only have four players tonight.",
+     "explanationIfSpoken": "An either-or about booking length gets a choice and a reason. Doubling up on one court answers a closure. Accepting a loaner accepts an offer, and admitting a wrong sign-up answers a correction.",
+     "kills": {
+      "0": "\"the full hour\" assumes a court is available, so doubling up on one court responds to a closure I never announced.",
+      "1": "\"just the half\" is about booking length, not equipment, so mentioning snapped strings accepts an offer I never made.",
+      "2": "\"Do you want\" is a question about time, so telling me volleyball is in the other gym corrects an error I never pointed out."
+     }
+    }
+   ]
+  }
+ ]
+}
