@@ -75,3 +75,31 @@ exactly one choice. DB: family 'isee', section 'verbal', task
 Shared: drop never edit; identical pick-strings = no verdict;
 incomplete solver files refused and re-run; payload files verified
 on disk before any agent launch (the interview-v2 lesson).
+
+## Addendum (2026-08-28, late): eoi RS revision 2 — FINAL
+
+Rev-1 (paired corruption) defeated the consensus checker (23% expected
+blind) but INVERTED the tell: on a contested slot the wrong value
+appears twice and the true value once, so the minority value marks the
+key (hunter rule; mechanical inverse checker 4/7 decided = 57%;
+sampling attack +13.9 passed the bar but absolute 63.9%). Rev-1's 30
+items do not ship.
+
+Revision 2, the LAST allowed before the RS approach is refuted:
+- BALANCED SLOTS: every contested value appears in exactly TWO options
+  — the wrong value in two distractors OR the true value in the key
+  plus one distractor that is wrong for a DIFFERENT, non-numeric
+  reason (goal mismatch, dropped qualifier). No slot may be 1-vs-2 in
+  either direction.
+- COHERENT CLONES: a cloned wrong value must be internally consistent
+  in its host sentence (no "most" beside a 30% figure — the
+  self-contradicting-twin rule).
+- Zero-unique-token distractor and form symmetry retained.
+
+Gates: check-consensus-tell ≤ 30% expected blind AND the inverse
+(minority-value) checker ≤ 30% of decided AND a sampling attack with
+consensus- and minority-aware solvers ≤ +25 AND the hunter finding no
+rule at 3+ items. If rev-2 fails any, the RS brief family is REFUTED:
+the live eoi-v3 RS 32 archive WITHOUT replacement (EoI takes the
+capacity hit) and RS authoring stops pending a genuinely new design.
+The live 32 stay up only until this verdict — hours, not weeks.
