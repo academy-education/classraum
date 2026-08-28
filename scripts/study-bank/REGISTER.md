@@ -1300,6 +1300,22 @@ gate-wiring test catches disagreement between the two). Any future
 BAS batch gates as family `production` (shape/withsource/tells) with a
 ledger.json entry at the exact file sha.
 
+### RHETORICAL SYNTHESIS REFUTED; live 32 archived (2026-08-28, final)
+Rev-2 (balanced 2-2 slots, coherent clones) beat both exact checkers
+(21% consensus, 0% minority) and still died at the pre-registered
+hunter gate: the THIRD-order rule — "the fact-rich wrong-goal option
+hosts the true values; follow them to the key" — verified at 7/9
+named predictions, attack +22.2. Four tells in one brief family, each
+fix re-concentrating the signal (form → element frequency → minority
+value → hosting apparatus). Ruling: goal-in-stem + fact-corrupted
+options is guessable by construction at batch level for ANY
+corruption scheme regular enough to author to. Executed: rev-1/rev-2
+never banked; the LIVE eoi-v3 RS 32 archived WITHOUT replacement
+(EoI 121; Transitions cohorts untouched); RS authoring stopped — a
+future attempt must be a NEW design (seeded selection among four
+independently-authored faithful summaries — the cr-v7 provenance
+cure). Full record: RS-REFUTED.md.
+
 ### THE CONSENSUS TELL: the sixth structural proxy, and the first that works (2026-08-28)
 The eoi-v4 pattern hunter found that the frozen Rhetorical Synthesis
 brief — "each distractor is wrong ONLY via its one assigned
