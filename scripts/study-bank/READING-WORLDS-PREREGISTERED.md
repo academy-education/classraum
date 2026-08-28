@@ -59,3 +59,33 @@ question are equally complete.
 
 If this dies too, reading is closed pending licensed passages — this
 is one experiment, not a revision chain.
+
+## Render findings (2026-08-28, before the attack)
+
+**A design constraint I had not seen: N variants produce exactly N
+options.** ISEE is 4-choice and fits four variants; SSAT is 5-choice
+and therefore needs FIVE variants per topic. The renderer correctly
+skipped every SSAT topic rather than shipping 4-option items into a
+5-choice section, so this pilot is ISEE-only (23 items from 5 topics).
+An SSAT re-author at 5 variants is the fix, not a patch here.
+
+**Two checker bugs found and fixed before they could condemn good
+items** — both cases of the instrument being wrong, not the batch:
+
+1. *Lexical kill-map.* The first version demanded a shared >3-character
+   token between an answer and its own passage. Good reading answers
+   PARAPHRASE ("declined to make her own" for "stepped back"), so the
+   check condemned exactly the well-written items — 177 refusals. The
+   cross-variant validity question is semantic and is now an agent
+   gate; the mechanical loop keeps only the cheap, sound half: an
+   answer that shares MORE vocabulary with another variant's passage
+   than with its own (10 questions dropped on that, correctly — a
+   keyword-matching solver could mis-home them).
+2. *Skeleton identity.* A 55% token-overlap floor assumed small slot
+   spans, but a slot like "what arrangement Ottilie has made"
+   legitimately rewrites a paragraph. Now reported, not refused.
+
+Authoring quality was high: parity notes show genuine self-testing —
+one author caught that "habit" appeared in two variants' answers and
+"would have let a solver match Q3's W1 answer by keyword against the
+wrong passage", and rewrote one to "a plain knack".

@@ -1,0 +1,2142 @@
+[
+ {
+  "topic_id": "RW-S1",
+  "genre": "LITERARY",
+  "slots": [
+   "what arrangement Ottilie has made for the bindery (whom or what she has brought into the shop, and what she has given up)",
+   "what Ottilie says 'the reckoning' refers to",
+   "what Ottilie puts into Ines's hand, and what Ines does with it"
+  ],
+  "question_parity_note": "Q5 (organization) was the hardest to hold parity on. In three variants the contrast Ottilie's news is set against is a quantity or an object (three hundred volumes, a bare rectangle of floor, twelve chairs), but in W1 it is a person, so the first draft of W1's answer read as a different KIND of claim - about inheritance rather than about scale - and stood out from the set. I rewrote it as 'a stranger's hands at the sewing frame' so all four answers share the identical frame 'the years of small repairs set against X' with a concrete noun phrase in X, matched to within two words. Two other parity fixes: (a) Q2's main-idea answers originally named only the arrangement in W1 and both the arrangement and Ines's response in the others, which made W1's answer shorter and less complete - all four now name both, in the same 'an aunt VERB-ing ... while her niece VERB-s ...' shape; (b) the word 'habit' appeared both in W1's reckoning gloss and in W4's, which would have let a solver match Q3's W1 answer by keyword against the wrong passage, so W4's gloss now reads 'a plain knack'. Self-test: lining up each question's four answers with no passage, none is longer, hedgier, more both/and, or more 'answer-shaped' than the others - every set is four flat declaratives of matched length, all four equally specific, and no variant's set is systematically the fullest. The one residual signal I could find is that W2's answers all mention a number ('three hundred'), so I made sure every other variant's answers also carry a concrete count or named particular (Marek/the sewing frame, forty years/the press, twelve chairs/the slate) rather than a bare abstraction.",
+  "questions": [
+   {
+    "qid": "RW-S1-1",
+    "kind": "detail",
+    "difficulty": "easy",
+    "prompt": "The news Ottilie wants Ines to see concerns"
+   },
+   {
+    "qid": "RW-S1-2",
+    "kind": "main idea",
+    "difficulty": "medium",
+    "prompt": "The excerpt is chiefly concerned with"
+   },
+   {
+    "qid": "RW-S1-3",
+    "kind": "vocabulary in context",
+    "difficulty": "medium",
+    "prompt": "As Ottilie uses it, \"the reckoning\" most nearly means"
+   },
+   {
+    "qid": "RW-S1-4",
+    "kind": "inference",
+    "difficulty": "medium",
+    "prompt": "What Ines does with the thing her aunt puts into her hand suggests that she"
+   },
+   {
+    "qid": "RW-S1-5",
+    "kind": "organization",
+    "difficulty": "hard",
+    "prompt": "The passage sets Ottilie's news against"
+   },
+   {
+    "qid": "RW-S1-6",
+    "kind": "implication",
+    "difficulty": "hard",
+    "prompt": "The final sentence chiefly implies that the shop's work will continue"
+   }
+  ],
+  "variants": [
+   {
+    "label": "W1",
+    "slot_values": [
+     "she has taken Marek, an outsider from the tannery, as an apprentice and given him the sewing frame",
+     "the day Marek sews a book straighter than she can, which will show how much of her forty years was skill and how much only habit",
+     "she puts the worn bone folder into Ines's hand, and Ines sets it down on the stool beside the sewing frame for Marek"
+    ],
+    "passage": "The bindery smelled the way it always had, of wheat paste and hot leather, and Ines found her aunt where she expected to find her, at the bench under the north window with her sleeves pushed past the elbow.\n\n\"You came,\" Ottilie said, without looking up. \"Good. There is something you should see before the summer ends.\"\n\nShe nodded toward the far corner, where a young man Ines had never seen sat at the sewing frame, drawing linen thread through the folds of a signature. \"That is Marek. He came from the tannery in March and asked to be taught. I have given him the frame, and the frame is mine no longer.\"\n\nInes had grown up on the shop's small repairs: hymnals with cracked hinges, a schoolmaster's atlas, the doctor's ledgers resewn every spring. Her aunt had done that work for forty years and had never once called it difficult.\n\n\"I have been calling it the reckoning,\" Ottilie said. \"The day he sews a book straighter than I can. It will come, and I want to be at the bench when it does, so that I can see how much of forty years was skill and how much was only habit.\"\n\nInes said nothing. Through the window the yard was full of the flat white light of late August, and the pigeons on the wall shifted and resettled.\n\nOttilie reached across the bench and put the bone folder into her hand - the old one, worn to a curve by her aunt's thumb. Ines held it a moment. Then she set it down on the stool beside the sewing frame, where Marek would reach for it, and stepped back.\n\n\"Well,\" said Ottilie. She wiped her hands on the apron she had worn since before Ines could read. \"You will think what you think.\"\n\nOttilie turned back to the bench, and the shop went on making its one small noise.",
+    "answers": [
+     {
+      "qid": "RW-S1-1",
+      "answer": "a young man from the tannery to whom she has given the sewing frame",
+      "why": "\"That is Marek. He came from the tannery in March and asked to be taught. I have given him the frame.\""
+     },
+     {
+      "qid": "RW-S1-2",
+      "answer": "an aunt giving her craft to an outsider while her niece passes the tool on",
+      "why": "Ines \"set it down on the stool beside the sewing frame, where Marek would reach for it, and stepped back.\""
+     },
+     {
+      "qid": "RW-S1-3",
+      "answer": "the test that will measure how much of her skill was more than habit",
+      "why": "\"so that I can see how much of forty years was skill and how much was only habit.\""
+     },
+     {
+      "qid": "RW-S1-4",
+      "answer": "means the trade to pass to Marek rather than to herself",
+      "why": "She set the bone folder \"on the stool beside the sewing frame, where Marek would reach for it.\""
+     },
+     {
+      "qid": "RW-S1-5",
+      "answer": "the years of small repairs set against a stranger's hands at the sewing frame",
+      "why": "The shop's \"hymnals with cracked hinges\" stand beside \"a young man Ines had never seen\" at the sewing frame."
+     },
+     {
+      "qid": "RW-S1-6",
+      "answer": "in hands that Ines has just declined to make her own",
+      "why": "She \"set it down ... where Marek would reach for it, and stepped back\" before Ottilie turned back to the bench."
+     }
+    ]
+   },
+   {
+    "label": "W2",
+    "slot_values": [
+     "she has signed a courthouse contract to rebind three hundred volumes of deeds by spring",
+     "the full tally of sheets, thread, hide and hours the three hundred volumes will consume",
+     "she puts a quire of the courthouse paper into Ines's hand, and Ines folds sheet after sheet, badly, until the crate is empty"
+    ],
+    "passage": "The bindery smelled the way it always had, of wheat paste and hot leather, and Ines found her aunt where she expected to find her, at the bench under the north window with her sleeves pushed past the elbow.\n\n\"You came,\" Ottilie said, without looking up. \"Good. There is something you should see before the summer ends.\"\n\nShe nodded toward the far wall, where crates Ines had never seen stood stacked to the shelf, their lids prised and set aside. \"The courthouse. Three hundred volumes of deeds to be rebound by spring, and the town has signed for all of them. I have taken the contract, and the bench is not my own hours any longer.\"\n\nInes had grown up on the shop's small repairs: hymnals with cracked hinges, a schoolmaster's atlas, the doctor's ledgers resewn every spring. Her aunt had done that work for forty years and had never once called it difficult.\n\n\"I have been calling it the reckoning,\" Ottilie said. \"Sheets, thread, hide, hours - I have gone through it four times on paper. Three hundred volumes is not three hundred of anything I have ever counted, and I would rather know the sum now than discover it in February.\"\n\nInes said nothing. Through the window the yard was full of the flat white light of late August, and the pigeons on the wall shifted and resettled.\n\nOttilie reached into the nearest crate and put a quire of the courthouse paper into her hand - heavy stock, foxed at the edges. Ines held it a moment. Then she folded one sheet, badly, and folded another, and went on folding until the crate had given up its dozen.\n\n\"Well,\" said Ottilie. She wiped her hands on the apron she had worn since before Ines could read. \"You will think what you think.\"\n\nOttilie turned back to the bench, and the shop went on making its one small noise.",
+    "answers": [
+     {
+      "qid": "RW-S1-1",
+      "answer": "a courthouse contract of three hundred volumes she has signed for spring",
+      "why": "\"Three hundred volumes of deeds to be rebound by spring, and the town has signed for all of them.\""
+     },
+     {
+      "qid": "RW-S1-2",
+      "answer": "an aunt accepting work at an unfamiliar scale while her niece takes up the folding",
+      "why": "\"Three hundred volumes is not three hundred of anything I have ever counted\"; Ines \"went on folding.\""
+     },
+     {
+      "qid": "RW-S1-3",
+      "answer": "the full tally of materials and hours the new work will actually consume",
+      "why": "\"Sheets, thread, hide, hours - I have gone through it four times on paper ... I would rather know the sum now.\""
+     },
+     {
+      "qid": "RW-S1-4",
+      "answer": "is willing to begin the new work even though she does it badly",
+      "why": "\"She folded one sheet, badly, and folded another, and went on folding until the crate had given up its dozen.\""
+     },
+     {
+      "qid": "RW-S1-5",
+      "answer": "the years of small repairs set against three hundred volumes of courthouse deeds",
+      "why": "\"Hymnals with cracked hinges, a schoolmaster's atlas\" stand against \"three hundred volumes of deeds to be rebound by spring.\""
+     },
+     {
+      "qid": "RW-S1-6",
+      "answer": "at its old quiet pace beneath a contract far larger than itself",
+      "why": "\"I have taken the contract,\" and still \"the shop went on making its one small noise.\""
+     }
+    ]
+   },
+   {
+    "label": "W3",
+    "slot_values": [
+     "she has sold the standing press to a printer in Verel and kept only what two hands can do",
+     "what the press was worth set against forty years of standing at it, and whether the printer's figure was fair",
+     "she puts the now useless key of the press bed into Ines's hand, and Ines pockets it and keeps her hand on it"
+    ],
+    "passage": "The bindery smelled the way it always had, of wheat paste and hot leather, and Ines found her aunt where she expected to find her, at the bench under the north window with her sleeves pushed past the elbow.\n\n\"You came,\" Ottilie said, without looking up. \"Good. There is something you should see before the summer ends.\"\n\nShe nodded toward the far corner, where a bare rectangle of floor Ines had never seen showed pale against the darker boards. \"The standing press went to a printer in Verel on Tuesday. I sold it, every bolt of it. What is left is what these two hands can do, and the hands are not young any longer.\"\n\nInes had grown up on the shop's small repairs: hymnals with cracked hinges, a schoolmaster's atlas, the doctor's ledgers resewn every spring. Her aunt had done that work for forty years and had never once called it difficult.\n\n\"I have been calling it the reckoning,\" Ottilie said. \"What the press was worth against what it cost me. Forty years of standing at it, and a printer in Verel names a figure in one afternoon, and now I am obliged to decide whether the figure was a fair one.\"\n\nInes said nothing. Through the window the yard was full of the flat white light of late August, and the pigeons on the wall shifted and resettled.\n\nOttilie reached into her apron and put the key of the press bed into her hand - useless now, and still bright at the bit. Ines held it a moment. Then she put it into her coat pocket, and kept her hand there beside it, and did not take it out again.\n\n\"Well,\" said Ottilie. She wiped her hands on the apron she had worn since before Ines could read. \"You will think what you think.\"\n\nOttilie turned back to the bench, and the shop went on making its one small noise.",
+    "answers": [
+     {
+      "qid": "RW-S1-1",
+      "answer": "the standing press she sold on Tuesday to a printer in Verel",
+      "why": "\"The standing press went to a printer in Verel on Tuesday. I sold it, every bolt of it.\""
+     },
+     {
+      "qid": "RW-S1-2",
+      "answer": "an aunt selling the press while her niece quietly pockets its useless key",
+      "why": "\"I sold it, every bolt of it\"; Ines \"put it into her coat pocket ... and did not take it out again.\""
+     },
+     {
+      "qid": "RW-S1-3",
+      "answer": "the judgment of whether the price named for the press was a fair one",
+      "why": "\"A printer in Verel names a figure in one afternoon, and now I am obliged to decide whether the figure was a fair one.\""
+     },
+     {
+      "qid": "RW-S1-4",
+      "answer": "intends to keep what the sold press meant, though its use is gone",
+      "why": "The key was \"useless now,\" yet she \"kept her hand there beside it, and did not take it out again.\""
+     },
+     {
+      "qid": "RW-S1-5",
+      "answer": "the years of small repairs set against a bare rectangle where the press stood",
+      "why": "\"Hymnals with cracked hinges\" stand against \"a bare rectangle of floor ... pale against the darker boards.\""
+     },
+     {
+      "qid": "RW-S1-6",
+      "answer": "without the press, in whatever the two remaining hands can do",
+      "why": "\"What is left is what these two hands can do,\" and the shop still made \"its one small noise.\""
+     }
+    ]
+   },
+   {
+    "label": "W4",
+    "slot_values": [
+     "she has opened the shop to an evening class of twelve paying strangers",
+     "the evening the twelve students discover the trade holds no secret at all",
+     "she puts the chalk for the class slate into Ines's hand, and Ines writes her own name high in the corner of the slate"
+    ],
+    "passage": "The bindery smelled the way it always had, of wheat paste and hot leather, and Ines found her aunt where she expected to find her, at the bench under the north window with her sleeves pushed past the elbow.\n\n\"You came,\" Ottilie said, without looking up. \"Good. There is something you should see before the summer ends.\"\n\nShe nodded toward the far room, where twelve chairs Ines had never seen stood in rows before a slate, a stub of chalk on the ledge. \"The evening class begins in September. Strangers, twelve of them, paying to be shown the folding and the sewing. I have opened the shop, and the shop is not only ours any longer.\"\n\nInes had grown up on the shop's small repairs: hymnals with cracked hinges, a schoolmaster's atlas, the doctor's ledgers resewn every spring. Her aunt had done that work for forty years and had never once called it difficult.\n\n\"I have been calling it the reckoning,\" Ottilie said. \"The evening they find out. Folding is folding; there is no secret in it. They will pay to learn a mystery and go home with a plain knack, and I would rather they hear that from me than feel cheated.\"\n\nInes said nothing. Through the window the yard was full of the flat white light of late August, and the pigeons on the wall shifted and resettled.\n\nOttilie reached to the ledge and put the chalk for the class slate into her hand - a fresh stick, unbroken. Ines held it a moment. Then she went to the slate and wrote her own name on it, high in the corner where the rows would see it, and did not rub it out.\n\n\"Well,\" said Ottilie. She wiped her hands on the apron she had worn since before Ines could read. \"You will think what you think.\"\n\nOttilie turned back to the bench, and the shop went on making its one small noise.",
+    "answers": [
+     {
+      "qid": "RW-S1-1",
+      "answer": "an evening class of twelve strangers she has opened the shop to",
+      "why": "\"Strangers, twelve of them, paying to be shown the folding and the sewing. I have opened the shop.\""
+     },
+     {
+      "qid": "RW-S1-2",
+      "answer": "an aunt opening her trade to strangers while her niece signs the slate herself",
+      "why": "\"The shop is not only ours any longer\"; Ines \"wrote her own name on it ... and did not rub it out.\""
+     },
+     {
+      "qid": "RW-S1-3",
+      "answer": "the moment her paying students discover the trade holds no secret at all",
+      "why": "\"The evening they find out. Folding is folding; there is no secret in it.\""
+     },
+     {
+      "qid": "RW-S1-4",
+      "answer": "wants a place of her own in the shop's changed arrangement",
+      "why": "She \"wrote her own name on it, high in the corner where the rows would see it, and did not rub it out.\""
+     },
+     {
+      "qid": "RW-S1-5",
+      "answer": "the years of small repairs set against twelve chairs in rows before a slate",
+      "why": "\"Hymnals with cracked hinges\" stand against \"twelve chairs Ines had never seen ... in rows before a slate.\""
+     },
+     {
+      "qid": "RW-S1-6",
+      "answer": "as usual, even with its door now open to paying strangers",
+      "why": "\"I have opened the shop,\" and still \"the shop went on making its one small noise.\""
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "topic_id": "RW-S2",
+  "genre": "NONFICTION — natural science field research",
+  "slots": [
+   "what Okonjo's 1974 survey concluded about the Hollis Fen salamanders",
+   "what the pit-tag record showed during the 2019 drought, including the sentence containing the word 'check'",
+   "what Farrar says the discrepancy exposes, and how she characterizes Okonjo"
+  ],
+  "question_parity_note": "Q3 (vocabulary in context) was the hardest to keep at parity. My first draft gave W1 'check' as a restraint and W3 'put a check on one year's increase', which is the same sense wearing a different sleeve — W3's answer would have been a duplicate of W1's and therefore not wrong against W1's passage. I rewrote W3's slot so each returning animal 'earned a check in the margin of her sheet' (a written mark), which is a fourth genuinely distinct noun sense alongside W1's limit, W2's routine inspection of the readers, and W4's verifying second reading. All four glosses are now noun phrases of 8–9 words with no hedging. Two other parity repairs from the blind self-test: in Q6 three answers opened 'A dry year can reveal…' while W3's opened 'A long record can retire…', which made W3's option identifiable by shape alone — all four now open 'A dry year can…'. In Q5 three read 'Respect for his counting' and W3 read 'Respect for his walking'; all four now read 'Respect for his fieldwork, joined to the view that…' so the frame carries no information. The closing paragraph originally ended on 'the value of a long record is not in any one season' — a fixed sentence that leaned toward W1's central claim and would have made W1's Q6 answer the most passage-supported no matter which variant was shown; it now ends neutrally on the green boxes. Every question's four answers name a number or a named particular where any one of them does, and none hedges more than the others.",
+  "questions": [
+   {
+    "qid": "RW-S2-1",
+    "kind": "detail",
+    "difficulty": "easy",
+    "prompt": "According to the passage, what did Okonjo's 1974 survey conclude about Hollis Fen?"
+   },
+   {
+    "qid": "RW-S2-2",
+    "kind": "evidence summary",
+    "difficulty": "medium",
+    "prompt": "The 2019 pit-tag record is best summarized as evidence that the salamanders did which of the following?"
+   },
+   {
+    "qid": "RW-S2-3",
+    "kind": "vocabulary in context",
+    "difficulty": "medium",
+    "prompt": "As it is used in the third paragraph, the word \"check\" most nearly means which of the following?"
+   },
+   {
+    "qid": "RW-S2-4",
+    "kind": "synthesis / comparison",
+    "difficulty": "hard",
+    "prompt": "How does the passage present the relationship between Okonjo's 1974 result and Farrar's 2019 record?"
+   },
+   {
+    "qid": "RW-S2-5",
+    "kind": "attitude",
+    "difficulty": "medium",
+    "prompt": "Which best describes Farrar's attitude toward Okonjo's work as the passage presents it?"
+   },
+   {
+    "qid": "RW-S2-6",
+    "kind": "main idea",
+    "difficulty": "hard",
+    "prompt": "Which statement best expresses the central claim the passage as a whole supports?"
+   }
+  ],
+  "variants": [
+   {
+    "label": "W1",
+    "slot_values": [
+     "one continuous population spread evenly across the basin, no corner holding more animals than another",
+     "during the drought 212 of 240 tags were read within forty meters of three cold seeps; distance from water became 'the check on where a salamander could go'",
+     "the drought exposed not an error but a structure — a fen that becomes, in a dry year, three small places"
+    ],
+    "passage": "Hollis Fen is not much to look at in August: a shallow bowl of peat and sedge in the coastal hills, drying at the edges. It is, however, the only place where the banded fen salamander has been counted the same way for fifty years. Emeka Okonjo walked its transects in 1974 with a headlamp and a notebook, and reported a single continuous population spread evenly across the basin, noting in his summary that no corner of the fen held more animals than any other.\n\nNaomi Farrar inherited the transects in 2011. She kept Okonjo's routes and his hours and added a grid of pit tags — rice-sized chips, read by an antenna on a pole, that register an animal without anyone having to hold it. For eight seasons the counts behaved. Then the summer of 2019 took nine weeks of rain out of the fen.\n\nFarrar expected the drought to show up as an absence. What the antennas gave her instead was a crowd. Of two hundred forty tagged animals, two hundred twelve were read within forty meters of three cold seeps on the north rim. Distance from water had become the check on where a salamander could go.\n\nThe obvious objection is that tags are not animals: a chip that goes unread may mean a salamander that moved, or an antenna that failed. Farrar spent two seasons on that objection, walking a second grid by hand each week to see whether the machines and her eyes agreed. They did, within eleven percent.\n\nFarrar is careful about Okonjo. He counted what was there to count, she says, and in a wet decade the seeps are simply not where the animals are. What the drought exposed was not an error but a structure: a fen that becomes, in a dry year, three small places.\n\nFifty years is a long time to keep a route. The fen is smaller than it was, and Farrar's grid now reaches ground Okonjo recorded as open water. She counts it anyway, and files the sheets in his old green boxes.",
+    "answers": [
+     {
+      "qid": "RW-S2-1",
+      "answer": "That the fen held one continuous population spread evenly, with no corner holding more animals than another.",
+      "why": "The passage says he \"reported a single continuous population spread evenly across the basin, noting in his summary that no corner of the fen held more animals than any other.\""
+     },
+     {
+      "qid": "RW-S2-2",
+      "answer": "They concentrated: 212 of 240 tags were read within forty meters of three cold seeps.",
+      "why": "\"Of two hundred forty tagged animals, two hundred twelve were read within forty meters of three cold seeps on the north rim.\""
+     },
+     {
+      "qid": "RW-S2-3",
+      "answer": "a limit on where the animals could go",
+      "why": "\"Distance from water had become the check on where a salamander could go\" makes the word name a constraint, not an inspection."
+     },
+     {
+      "qid": "RW-S2-4",
+      "answer": "The 1974 map of an even spread held for wet years but could not show the seeps a dry year exposed.",
+      "why": "\"in a wet decade the seeps are simply not where the animals are\" sets his even-spread map against the seep concentration."
+     },
+     {
+      "qid": "RW-S2-5",
+      "answer": "Respect for his fieldwork, joined to the view that a wet decade hid the seeps from him.",
+      "why": "\"He counted what was there to count, she says, and in a wet decade the seeps are simply not where the animals are.\""
+     },
+     {
+      "qid": "RW-S2-6",
+      "answer": "A dry year can reveal that a population counted as evenly spread actually depends on three small seeps.",
+      "why": "\"What the drought exposed was not an error but a structure: a fen that becomes, in a dry year, three small places.\""
+     }
+    ]
+   },
+   {
+    "label": "W2",
+    "slot_values": [
+     "two breeding groups, upper fen and lower fen, that never exchanged animals",
+     "during the drought 61 of 240 tags were read on both grids in one week; the first crossing turned up on 'a check she runs each Tuesday to clear the readers'",
+     "the drought exposed not an error but a condition — a separation that held only while the fen was wet"
+    ],
+    "passage": "Hollis Fen is not much to look at in August: a shallow bowl of peat and sedge in the coastal hills, drying at the edges. It is, however, the only place where the banded fen salamander has been counted the same way for fifty years. Emeka Okonjo walked its transects in 1974 with a headlamp and a notebook, and reported two breeding groups, one in the upper fen and one in the lower, concluding in his summary that the two never exchanged animals.\n\nNaomi Farrar inherited the transects in 2011. She kept Okonjo's routes and his hours and added a grid of pit tags — rice-sized chips, read by an antenna on a pole, that register an animal without anyone having to hold it. For eight seasons the counts behaved. Then the summer of 2019 took nine weeks of rain out of the fen.\n\nFarrar expected the drought to show up as an absence. What the antennas gave her instead was traffic. Of two hundred forty tagged animals, sixty-one were read on the upper grid and the lower grid in one week. The first crossing turned up on a check she runs each Tuesday to clear the readers.\n\nThe obvious objection is that tags are not animals: a chip that goes unread may mean a salamander that moved, or an antenna that failed. Farrar spent two seasons on that objection, walking a second grid by hand each week to see whether the machines and her eyes agreed. They did, within eleven percent.\n\nFarrar is careful about Okonjo. He counted what was there to count, she says, and the boundary between his groups was an inference laid over good numbers. What the drought exposed was not an error but a condition: a separation that held only while the fen was wet.\n\nFifty years is a long time to keep a route. The fen is smaller than it was, and Farrar's grid now reaches ground Okonjo recorded as open water. She counts it anyway, and files the sheets in his old green boxes.",
+    "answers": [
+     {
+      "qid": "RW-S2-1",
+      "answer": "That the fen held two breeding groups, upper and lower, which never exchanged animals between them.",
+      "why": "He \"reported two breeding groups, one in the upper fen and one in the lower, concluding in his summary that the two never exchanged animals.\""
+     },
+     {
+      "qid": "RW-S2-2",
+      "answer": "They mixed: 61 of 240 tags were read on the upper and lower grids in one week.",
+      "why": "\"Of two hundred forty tagged animals, sixty-one were read on the upper grid and the lower grid in one week.\""
+     },
+     {
+      "qid": "RW-S2-3",
+      "answer": "a routine inspection made to clear the readers",
+      "why": "\"a check she runs each Tuesday to clear the readers\" names a scheduled servicing of equipment."
+     },
+     {
+      "qid": "RW-S2-4",
+      "answer": "The 1974 division into upper and lower groups held for wet years but dissolved once sixty-one animals crossed.",
+      "why": "\"a separation that held only while the fen was wet\" is set directly against the sixty-one animals read on both grids."
+     },
+     {
+      "qid": "RW-S2-5",
+      "answer": "Respect for his fieldwork, joined to the view that his boundary was inference laid over good numbers.",
+      "why": "\"He counted what was there to count, she says, and the boundary between his groups was an inference laid over good numbers.\""
+     },
+     {
+      "qid": "RW-S2-6",
+      "answer": "A dry year can reveal that a boundary between two groups was a condition of the weather.",
+      "why": "\"What the drought exposed was not an error but a condition: a separation that held only while the fen was wet.\""
+     }
+    ]
+   },
+   {
+    "label": "W3",
+    "slot_values": [
+     "a population already thinning, forecast to be gone by the year 2000",
+     "during the drought 219 of 240 tags were still read in September and the count fell nine percent before climbing back; each returning animal 'earned a check in the margin of her sheet'",
+     "the drought exposed not an error but a limit — a forecast no ordinary season could have tested"
+    ],
+    "passage": "Hollis Fen is not much to look at in August: a shallow bowl of peat and sedge in the coastal hills, drying at the edges. It is, however, the only place where the banded fen salamander has been counted the same way for fifty years. Emeka Okonjo walked its transects in 1974 with a headlamp and a notebook, and reported a population already thinning, warning in his summary that at the rate he measured the fen would be empty of salamanders by 2000.\n\nNaomi Farrar inherited the transects in 2011. She kept Okonjo's routes and his hours and added a grid of pit tags — rice-sized chips, read by an antenna on a pole, that register an animal without anyone having to hold it. For eight seasons the counts behaved. Then the summer of 2019 took nine weeks of rain out of the fen.\n\nFarrar expected the drought to show up as an absence. What the antennas gave her instead was steadiness. Of two hundred forty tagged animals, two hundred nineteen were still read in September, and the count fell nine percent before climbing back. Each returning animal earned a check in the margin of her sheet.\n\nThe obvious objection is that tags are not animals: a chip that goes unread may mean a salamander that moved, or an antenna that failed. Farrar spent two seasons on that objection, walking a second grid by hand each week to see whether the machines and her eyes agreed. They did, within eleven percent.\n\nFarrar is careful about Okonjo. He counted what was there to count, she says, and his transects are the reason the question can be settled at all. What the drought exposed was not an error but a limit: a forecast no ordinary season could have tested.\n\nFifty years is a long time to keep a route. The fen is smaller than it was, and Farrar's grid now reaches ground Okonjo recorded as open water. She counts it anyway, and files the sheets in his old green boxes.",
+    "answers": [
+     {
+      "qid": "RW-S2-1",
+      "answer": "That the fen's population was already thinning and would be empty of salamanders by the year 2000.",
+      "why": "He \"reported a population already thinning, warning in his summary that at the rate he measured the fen would be empty of salamanders by 2000.\""
+     },
+     {
+      "qid": "RW-S2-2",
+      "answer": "They persisted: 219 of 240 tags were still read in September, the count off nine percent.",
+      "why": "\"two hundred nineteen were still read in September, and the count fell nine percent before climbing back.\""
+     },
+     {
+      "qid": "RW-S2-3",
+      "answer": "a mark entered in the margin of a sheet",
+      "why": "\"Each returning animal earned a check in the margin of her sheet\" makes the word a written tick, not an inspection or a limit."
+     },
+     {
+      "qid": "RW-S2-4",
+      "answer": "The 1974 warning of a fen empty by 2000 is refuted by counts that fell nine percent and returned.",
+      "why": "\"a forecast no ordinary season could have tested\" is answered by the September count that fell nine percent and climbed back."
+     },
+     {
+      "qid": "RW-S2-5",
+      "answer": "Respect for his fieldwork, joined to the view that his forecast outran what any season could test.",
+      "why": "\"his transects are the reason the question can be settled at all\" beside \"a forecast no ordinary season could have tested.\""
+     },
+     {
+      "qid": "RW-S2-6",
+      "answer": "A dry year can retire a forecast of extinction that no ordinary season could have tested.",
+      "why": "\"What the drought exposed was not an error but a limit: a forecast no ordinary season could have tested.\""
+     }
+    ]
+   },
+   {
+    "label": "W4",
+    "slot_values": [
+     "the densest population then known, four animals to the square meter, living entirely inside the peat",
+     "during the drought 178 of 240 tags were read on the wooded slope three hundred meters above the fen; she read that grid twice 'as a check on the figure'",
+     "the drought exposed not an error but a question — whether the fen is home or only the easiest room to see them in"
+    ],
+    "passage": "Hollis Fen is not much to look at in August: a shallow bowl of peat and sedge in the coastal hills, drying at the edges. It is, however, the only place where the banded fen salamander has been counted the same way for fifty years. Emeka Okonjo walked its transects in 1974 with a headlamp and a notebook, and reported the densest population then known, four animals to the square meter, describing in his summary a species that spent its whole life inside the peat.\n\nNaomi Farrar inherited the transects in 2011. She kept Okonjo's routes and his hours and added a grid of pit tags — rice-sized chips, read by an antenna on a pole, that register an animal without anyone having to hold it. For eight seasons the counts behaved. Then the summer of 2019 took nine weeks of rain out of the fen.\n\nFarrar expected the drought to show up as an absence. What the antennas gave her instead was an exodus. Of two hundred forty tagged animals, one hundred seventy-eight were read on the wooded slope three hundred meters above the fen. She read that grid twice as a check on the figure.\n\nThe obvious objection is that tags are not animals: a chip that goes unread may mean a salamander that moved, or an antenna that failed. Farrar spent two seasons on that objection, walking a second grid by hand each week to see whether the machines and her eyes agreed. They did, within eleven percent.\n\nFarrar is careful about Okonjo. He counted what was there to count, she says, and four to the square meter may be true of a wet August. What the drought exposed was not an error but a question: whether the fen is home or only the easiest room to see them in.\n\nFifty years is a long time to keep a route. The fen is smaller than it was, and Farrar's grid now reaches ground Okonjo recorded as open water. She counts it anyway, and files the sheets in his old green boxes.",
+    "answers": [
+     {
+      "qid": "RW-S2-1",
+      "answer": "That the fen held four animals to the square meter, a species living its whole life in peat.",
+      "why": "He \"reported the densest population then known, four animals to the square meter, describing in his summary a species that spent its whole life inside the peat.\""
+     },
+     {
+      "qid": "RW-S2-2",
+      "answer": "They departed: 178 of 240 tags were read on the wooded slope three hundred meters above.",
+      "why": "\"one hundred seventy-eight were read on the wooded slope three hundred meters above the fen.\""
+     },
+     {
+      "qid": "RW-S2-3",
+      "answer": "a second reading made to verify a figure",
+      "why": "\"She read that grid twice as a check on the figure\" makes the word a confirmation of a number already obtained."
+     },
+     {
+      "qid": "RW-S2-4",
+      "answer": "The 1974 figure of four to the square meter describes a fen the animals leave, as 178 tags showed.",
+      "why": "\"four to the square meter may be true of a wet August\" is set against the hundred seventy-eight tags read upslope."
+     },
+     {
+      "qid": "RW-S2-5",
+      "answer": "Respect for his fieldwork, joined to the view that his density figure may describe a wet August.",
+      "why": "\"He counted what was there to count, she says, and four to the square meter may be true of a wet August.\""
+     },
+     {
+      "qid": "RW-S2-6",
+      "answer": "A dry year can reveal that the ground where animals are counted is not where they live.",
+      "why": "\"whether the fen is home or only the easiest room to see them in.\""
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "topic_id": "RW-S3",
+  "genre": "LITERARY — narrative personal essay about a place returned to",
+  "slots": [
+   "what now stands on the boathouse site, and what Ruth Aldrich says about it",
+   "the saying of Emmett's that the narrator remembers, and the sense of 'spare' inside it",
+   "what the narrator does with Emmett's brass caliper at the end of the visit"
+  ],
+  "question_parity_note": "Q3 (Ruth's remark) was by far the hardest to keep at parity: in the variant where the site is bare there is no present-day activity for a bystander to comment on, so an early draft gave W2 a thin one-clause line ('Took it out in ninety-nine') against three fuller lines. Fixed by giving every variant a two-clause remark whose second clause begins 'Nobody...' and carries equal implicative weight — forgetting (W1), unwillingness to pay (W2), a family not consulted (W3), exclusion (W4) — so the inference is the same distance from the text in all four. Q6 needed a second repair: its first stem asked what the narrator 'inherited,' which W3 could only answer by contradiction (she surrenders the plain object to a display case). The stem was reworded to 'points to,' which lets a variant's last act extend, outlast, work against, or be prevented by Emmett's rule with equal force. Self-test: reading each question's four answers as a bare option set, no one option is more hedged, more both/and, or more abstract than the others — Q2's four glosses are all five-word participial phrases, Q5's four all open with 'can' and run 13 words, Q6's four are all 'a rule/taste ... that ...' clauses in which the second half always cuts against the first, so the familiar 'balanced proposition' tell marks nothing.",
+  "questions": [
+   {
+    "qid": "RW-S3-1",
+    "kind": "detail",
+    "difficulty": "easy",
+    "prompt": "When the narrator walks down to the water, she finds that the site of Emmett's boathouse is now occupied by"
+   },
+   {
+    "qid": "RW-S3-2",
+    "kind": "vocabulary-in-context",
+    "difficulty": "medium",
+    "prompt": "As Emmett uses it in the saying the narrator recalls, \"spare\" most nearly means"
+   },
+   {
+    "qid": "RW-S3-3",
+    "kind": "implication-of-dialogue",
+    "difficulty": "medium",
+    "prompt": "Ruth Aldrich's remark beginning \"Nobody\" chiefly suggests that"
+   },
+   {
+    "qid": "RW-S3-4",
+    "kind": "characterization-of-action",
+    "difficulty": "medium",
+    "prompt": "In the final paragraph, the narrator's handling of the caliper is best described as"
+   },
+   {
+    "qid": "RW-S3-5",
+    "kind": "theme",
+    "difficulty": "hard",
+    "prompt": "Taken as a whole, the essay most nearly suggests that returning to a place"
+   },
+   {
+    "qid": "RW-S3-6",
+    "kind": "synthesis-across-passage",
+    "difficulty": "hard",
+    "prompt": "Emmett's saying, read against the narrator's last act, most clearly points to"
+   }
+  ],
+  "variants": [
+   {
+    "label": "W1",
+    "slot_values": [
+     "a crowded public swimming dock; Ruth: \"Nobody remembers what it was before.\"",
+     "\"Keep a spare of everything\" — spare as a duplicate held in reserve",
+     "she puts the caliper into a boy's hand and leaves him to the knot"
+    ],
+    "passage": "The road to Alder Point still narrows at the culvert, and at the last turn it still smells of creosote and cut grass. I had not driven it in nineteen years. My grandfather Emmett Rowe kept a boathouse at the end of it, a low building the color of a wet paper bag, and for six summers I was the person who swept it out.\n\nI parked where the gravel widens and walked down expecting nothing, which is the safest thing to expect. What I found was a public swimming dock, wide and white, with a dozen children stacked along its edge like gulls. Ruth Aldrich, the harbormaster's daughter, was gathering towels at the rail. \"Busiest thing on the lake now,\" she said, without looking up. \"Nobody remembers what it was before.\" I stood there long enough to be in someone's way.\n\nEmmett was not a talker. He taught by handing you the wrong end of a rope and waiting. The one thing he said often enough that I can still hear the shape of it was about boats. \"Keep a spare of everything,\" he said, \"and you'll never be at anybody's mercy.\" He meant it literally: a second oar under the bench, a second line in the locker, a second key on a nail behind the door.\n\nIn my bag was his brass caliper, the small one, worn to a dull gold at the hinge, with EMMETT R. scratched along one leg in letters he had cut with an awl. I took it out of his house the week after the funeral and never once used it for anything. I had driven up without a plan for it.\n\nAt the end of the dock a boy was fighting a towline and losing. I put the caliper into his hand instead of the answer, showed him where to set it against the rope, and then left him to it, the way I had been left. Whatever the thing had been for, it was for that.",
+    "answers": [
+     {
+      "qid": "RW-S3-1",
+      "answer": "a wide public swimming dock crowded with children",
+      "why": "The passage reads \"What I found was a public swimming dock, wide and white, with a dozen children stacked along its edge like gulls.\""
+     },
+     {
+      "qid": "RW-S3-2",
+      "answer": "held back as a reserve",
+      "why": "\"Keep a spare of everything\" is glossed as \"a second oar under the bench, a second line in the locker, a second key on a nail behind the door.\""
+     },
+     {
+      "qid": "RW-S3-3",
+      "answer": "the site's present use has erased its history for those who enjoy it",
+      "why": "Ruth says of the busiest place on the lake, \"Nobody remembers what it was before.\""
+     },
+     {
+      "qid": "RW-S3-4",
+      "answer": "a deliberate passing on of instruction rather than of a keepsake",
+      "why": "She gives the boy the caliper \"instead of the answer,\" then leaves him to it \"the way I had been left.\""
+     },
+     {
+      "qid": "RW-S3-5",
+      "answer": "can let a person hand on what was learned there to someone new",
+      "why": "The closing line, after the boy takes the caliper, is \"Whatever the thing had been for, it was for that.\""
+     },
+     {
+      "qid": "RW-S3-6",
+      "answer": "a rule of keeping a spare that her gift to the boy extends",
+      "why": "\"Keep a spare of everything\" is enacted when she leaves the caliper with a boy who needs a second of something."
+     }
+    ]
+   },
+   {
+    "label": "W2",
+    "slot_values": [
+     "black pilings and a swept gravel apron; Ruth: \"Nobody wanted to pay to keep it standing.\"",
+     "\"Don't spare the work on what holds the water out\" — spare as stint or economize",
+     "she lets the caliper drop into four feet of water among the pilings"
+    ],
+    "passage": "The road to Alder Point still narrows at the culvert, and at the last turn it still smells of creosote and cut grass. I had not driven it in nineteen years. My grandfather Emmett Rowe kept a boathouse at the end of it, a low building the color of a wet paper bag, and for six summers I was the person who swept it out.\n\nI parked where the gravel widens and walked down expecting nothing, which is the safest thing to expect. What I found was a row of black pilings and a swept gravel apron, the boathouse taken down to its footings. Ruth Aldrich, the harbormaster's daughter, was coiling line at the head of the ramp. \"Took it out in ninety-nine,\" she said, without looking up. \"Nobody wanted to pay to keep it standing.\" I stood there long enough to be in someone's way.\n\nEmmett was not a talker. He taught by handing you the wrong end of a rope and waiting. The one thing he said often enough that I can still hear the shape of it was about boats. \"Don't spare the work on what holds the water out,\" he said, \"whatever it costs you.\" He meant it literally: if a plank wanted replacing you replaced it, and went without a summer's wages to do it right.\n\nIn my bag was his brass caliper, the small one, worn to a dull gold at the hinge, with EMMETT R. scratched along one leg in letters he had cut with an awl. I took it out of his house the week after the funeral and never once used it for anything. I had driven up without a plan for it.\n\nI walked out over the gravel to the last piling, held the caliper a moment, and let it drop into four feet of green water, where it turned once and settled among the stones. Nothing marked the place afterward. I had come to put it somewhere, and there was nowhere left but the water.",
+    "answers": [
+     {
+      "qid": "RW-S3-1",
+      "answer": "black pilings and a swept gravel apron",
+      "why": "The passage reads \"a row of black pilings and a swept gravel apron, the boathouse taken down to its footings.\""
+     },
+     {
+      "qid": "RW-S3-2",
+      "answer": "stinted on to save cost",
+      "why": "\"Don't spare the work on what holds the water out ... whatever it costs you\" is glossed by going \"without a summer's wages to do it right.\""
+     },
+     {
+      "qid": "RW-S3-3",
+      "answer": "the boathouse came down because no one would fund its upkeep",
+      "why": "Ruth says of its removal, \"Nobody wanted to pay to keep it standing.\""
+     },
+     {
+      "qid": "RW-S3-4",
+      "answer": "a quiet surrender of the object to the only place remaining",
+      "why": "She lets it drop \"into four feet of green water,\" concluding \"there was nowhere left but the water.\""
+     },
+     {
+      "qid": "RW-S3-5",
+      "answer": "can leave a person with nowhere to set down what was brought back",
+      "why": "\"I had come to put it somewhere, and there was nowhere left but the water,\" and \"Nothing marked the place afterward.\""
+     },
+     {
+      "qid": "RW-S3-6",
+      "answer": "a rule against stinting on work that the vanished building outlasted",
+      "why": "He would \"not spare the work on what holds the water out,\" yet the boathouse was \"taken down to its footings\" for want of upkeep."
+     }
+    ]
+   },
+   {
+    "label": "W3",
+    "slot_values": [
+     "a two-room county museum of boatbuilding; Ruth: \"Nobody asked the family first.\"",
+     "\"A spare boat is a fast boat\" — spare as plain, stripped of anything extra",
+     "she gives the caliper to Ruth for the display case and says nothing of her kinship"
+    ],
+    "passage": "The road to Alder Point still narrows at the culvert, and at the last turn it still smells of creosote and cut grass. I had not driven it in nineteen years. My grandfather Emmett Rowe kept a boathouse at the end of it, a low building the color of a wet paper bag, and for six summers I was the person who swept it out.\n\nI parked where the gravel widens and walked down expecting nothing, which is the safest thing to expect. What I found was a two-room county museum of boatbuilding under a new metal roof, with Emmett's block plane and awls in a lighted case. Ruth Aldrich, the harbormaster's daughter, was selling tickets at a card table. \"People drive up from the highway for it,\" she said, without looking up. \"Nobody asked the family first.\" I stood there long enough to be in someone's way.\n\nEmmett was not a talker. He taught by handing you the wrong end of a rope and waiting. The one thing he said often enough that I can still hear the shape of it was about boats. \"A spare boat is a fast boat,\" he said, \"and an honest one.\" He meant it literally: no brightwork, no cushions, no varnish, and nothing aboard that a person could not name, lift, and use in the dark.\n\nIn my bag was his brass caliper, the small one, worn to a dull gold at the hinge, with EMMETT R. scratched along one leg in letters he had cut with an awl. I took it out of his house the week after the funeral and never once used it for anything. I had driven up without a plan for it.\n\nI gave the caliper to Ruth for the case, and she wrote EMMETT ROWE on a card in ballpoint and propped it against the awls. It looked smaller in there, and lit, and no longer mine, which was what giving it was for. I did not say whose granddaughter I was, and she did not ask.",
+    "answers": [
+     {
+      "qid": "RW-S3-1",
+      "answer": "a two-room county museum of boatbuilding",
+      "why": "The passage reads \"a two-room county museum of boatbuilding under a new metal roof, with Emmett's block plane and awls in a lighted case.\""
+     },
+     {
+      "qid": "RW-S3-2",
+      "answer": "reduced to bare essentials",
+      "why": "\"A spare boat is a fast boat\" is glossed as \"no brightwork, no cushions, no varnish, and nothing aboard that a person could not name, lift, and use.\""
+     },
+     {
+      "qid": "RW-S3-3",
+      "answer": "the exhibit was assembled without consulting the boatbuilder's own family",
+      "why": "Ruth says of the museum holding Emmett's tools, \"Nobody asked the family first.\""
+     },
+     {
+      "qid": "RW-S3-4",
+      "answer": "a willing release of a private thing into public keeping",
+      "why": "She hands it over for the case and finds it \"no longer mine, which was what giving it was for.\""
+     },
+     {
+      "qid": "RW-S3-5",
+      "answer": "can turn a private inheritance into a public display no longer one's own",
+      "why": "In the case the caliper \"looked smaller in there, and lit, and no longer mine,\" and she never claims the name on the card."
+     },
+     {
+      "qid": "RW-S3-6",
+      "answer": "a taste for plainness that the lighted case quietly works against",
+      "why": "He prized a boat with \"no brightwork, no cushions, no varnish\"; his tool ends \"lit\" behind glass with a card propped against it."
+     }
+    ]
+   },
+   {
+    "label": "W4",
+    "slot_values": [
+     "a shingled house behind a cedar fence with a NO TRESPASSING sign; Ruth: \"Nobody's walked it since.\"",
+     "\"Spare the lake an hour and it will know you\" — spare as give or grant",
+     "she keeps the caliper, puts it back in her bag, and drives out"
+    ],
+    "passage": "The road to Alder Point still narrows at the culvert, and at the last turn it still smells of creosote and cut grass. I had not driven it in nineteen years. My grandfather Emmett Rowe kept a boathouse at the end of it, a low building the color of a wet paper bag, and for six summers I was the person who swept it out.\n\nI parked where the gravel widens and walked down expecting nothing, which is the safest thing to expect. What I found was a shingled house set back behind a cedar fence, and a sign on the gate reading NO TRESPASSING in fresh paint. Ruth Aldrich, the harbormaster's daughter, was walking her dog on the road above. \"They bought the whole point in two-thousand-four,\" she said, without looking up. \"Nobody's walked it since.\" I stood there long enough to be in someone's way.\n\nEmmett was not a talker. He taught by handing you the wrong end of a rope and waiting. The one thing he said often enough that I can still hear the shape of it was about boats. \"Spare the lake an hour,\" he said, \"and it will know you.\" He meant it literally: an hour a day given to the water, in no hurry and for no purpose, and the rest of the day earned.\n\nIn my bag was his brass caliper, the small one, worn to a dull gold at the hinge, with EMMETT R. scratched along one leg in letters he had cut with an awl. I took it out of his house the week after the funeral and never once used it for anything. I had driven up without a plan for it.\n\nI stayed on the road, on the public side of the cedar fence, and looked at the water over it for as long as the dog allowed. Then I put the caliper back in my bag, drove up to the culvert, and out. It had never belonged to the point. It had belonged to him, and now to me.",
+    "answers": [
+     {
+      "qid": "RW-S3-1",
+      "answer": "a shingled house behind a posted cedar fence",
+      "why": "The passage reads \"a shingled house set back behind a cedar fence, and a sign on the gate reading NO TRESPASSING in fresh paint.\""
+     },
+     {
+      "qid": "RW-S3-2",
+      "answer": "set aside and given away",
+      "why": "\"Spare the lake an hour\" is glossed as \"an hour a day given to the water, in no hurry and for no purpose.\""
+     },
+     {
+      "qid": "RW-S3-3",
+      "answer": "the point is now closed to people who once crossed it",
+      "why": "Ruth says of the buyers of the whole point, \"Nobody's walked it since.\""
+     },
+     {
+      "qid": "RW-S3-4",
+      "answer": "a considered refusal to leave the object with the place",
+      "why": "She \"put the caliper back in my bag\" and drove out, concluding \"It had never belonged to the point.\""
+     },
+     {
+      "qid": "RW-S3-5",
+      "answer": "can confirm that what a person kept was never the place's to begin",
+      "why": "The essay ends \"It had never belonged to the point. It had belonged to him, and now to me.\""
+     },
+     {
+      "qid": "RW-S3-6",
+      "answer": "a rule of giving the water an hour that the fence now prevents",
+      "why": "He urged \"an hour a day given to the water,\" but she must stay \"on the public side of the cedar fence\" and look over it."
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "topic_id": "RW-S4",
+  "genre": "nonfiction — history of a craft or industry (New England ropewalks)",
+  "slots": [
+   "what the partners did in 1861 and how it changed the walk itself",
+   "what Elias Coad's March 1873 notebook entry records (the sentence containing the word \"drawn\")",
+   "what became of the last shed after it closed in 1904, and how the author judges that outcome"
+  ],
+  "question_parity_note": "Q4 (the purpose of the Coad quotation) was the hardest to keep at parity. My first skeleton read \"Coad entered accounts, weather, and complaints in the same three columns, and the complaints are the useful part\" — which pre-loaded a grievance reading and made W3's entry (a foreman crediting a nineteen-year-old's plan) the odd one out, thin where the other three were strong. I cut the evaluative clause and neutralized the list to \"accounts, weather, and opinions,\" so all four entries are equally licensed by the frame; each Q4 answer now opens \"show that\" and runs 13-14 words. Q5 needed a matching repair: W2's fate (empty, then burned) originally ended on bare fact while W1, W3 and W4 ended on an authorial judgment, so the tone question had nothing to hinge on in W2 — I added \"the town has not marked the ground,\" giving every variant one closing evaluative clause of comparable weight, and every Q5 answer is now a hedged two-word attitude label plus a because-clause of 17-18 words. Q2: I also removed \"spinners drew it into yarn\" from the fixed skeleton, because that shared verb quietly supported W1's \"extended and thinned by pulling\" reading in all four passages — a cross-variant tell for the vocabulary item. Self-test: reading each question's four answers with no passage, the sets are 2-2 split on Q6 (two \"able,\" two \"unable\"), all four Q3 options name their own material or refusal with equal specificity, and no option is the balanced/both-and one — W1's main idea is as much a trade-off as W4's, and W3's \"which is not the same as survival\" is no more qualified than W4's \"and it was still a display.\"",
+  "questions": [
+   {
+    "qid": "RW-S4-1",
+    "kind": "detail",
+    "difficulty": "easy",
+    "prompt": "According to the passage, what did the Marden Point partners do in 1861?"
+   },
+   {
+    "qid": "RW-S4-2",
+    "kind": "vocabulary in context",
+    "difficulty": "medium",
+    "prompt": "In Coad's entry for March 1873, the word \"drawn\" most nearly means"
+   },
+   {
+    "qid": "RW-S4-3",
+    "kind": "main idea",
+    "difficulty": "medium",
+    "prompt": "Which of the following best states the main point the passage makes about the Marden Point ropewalks?"
+   },
+   {
+    "qid": "RW-S4-4",
+    "kind": "technique (function of a quotation)",
+    "difficulty": "medium",
+    "prompt": "The author quotes Coad's entry for March 1873 primarily in order to"
+   },
+   {
+    "qid": "RW-S4-5",
+    "kind": "tone and attitude",
+    "difficulty": "hard",
+    "prompt": "The passage's final sentence conveys the author's attitude toward the end of the ropewalks as one of"
+   },
+   {
+    "qid": "RW-S4-6",
+    "kind": "application / inference",
+    "difficulty": "hard",
+    "prompt": "A shipowner in 1890 who needed nine hundred feet of unspliced cable would, on the evidence of the passage, have found Marden Point"
+   }
+  ],
+  "variants": [
+   {
+    "label": "W1",
+    "slot_values": [
+     "bought a Huddart-pattern laying machine, which closed rope of any length without a walk and left the long sheds as storage",
+     "\"The yarn is drawn finer every season to suit the drum, and the boys learn one motion only. None of them could close a cable if the machine stopped tomorrow.\"",
+     "its timbers were sold to boatbuilders and the laying house ran until 1948 under a Rhode Island firm; \"Little was lost but the address.\""
+    ],
+    "passage": "A ropewalk is a building shaped by its product. To lay a cable, spinners walked backward down a shed, paying out fiber from bundles at their waists, and the shed had to be as long as the rope. Marden Point had three such sheds by 1794, and for two generations the town measured its prosperity in fathoms rather than acres.\n\nThe work was divided finely. Hatchellers combed the fiber straight; spinners twisted it into yarn; a foreman at a hand crank closed the yarns into strands and the strands into rope, walking backward with the twist running ahead of him. A boy entering at twelve spent four years at the hatchel before he was allowed to spin.\n\nIn 1861 the partners bought a Huddart-pattern laying machine and set it in a brick house at the water end. The machine closed rope of any length without a walk at all, winding it continuously onto a drum, and the long sheds were given over to storage within five years.\n\nThe fullest record of the trade's last decades is the notebook of Elias Coad, foreman of the middle shed from 1868 until his death in 1881. Coad entered accounts, weather, and opinions in the same three columns. The entry for March 1873 is typical: \"The yarn is drawn finer every season to suit the drum, and the boys learn one motion only. None of them could close a cable if the machine stopped tomorrow.\"\n\nBy the 1890s Marden Point rope went out under other firms' labels, and the town's share of the coasting trade fell by half in twelve years. The last shed closed in the spring of 1904. Its timbers were bought by boatbuilders down the coast and are still afloat in a dozen hulls, and the laying house ran until 1948 under a Rhode Island cordage company. Little was lost but the address.",
+    "answers": [
+     {
+      "qid": "RW-S4-1",
+      "answer": "Bought a Huddart-pattern laying machine, set in a brick house, that closed rope of any length without a walk",
+      "why": "The passage states the partners \"bought a Huddart-pattern laying machine and set it in a brick house at the water end.\""
+     },
+     {
+      "qid": "RW-S4-2",
+      "answer": "extended and thinned by pulling",
+      "why": "Coad writes that \"the yarn is drawn finer every season to suit the drum,\" a change in the yarn's thickness."
+     },
+     {
+      "qid": "RW-S4-3",
+      "answer": "A machine that made the long shed unnecessary kept the rope trade alive while hollowing out the graded apprenticeship the sheds had trained, so that skill narrowed to a single motion.",
+      "why": "The machine \"closed rope of any length without a walk at all,\" while Coad reports \"the boys learn one motion only.\""
+     },
+     {
+      "qid": "RW-S4-4",
+      "answer": "show that mechanized laying had reduced the apprentice's training to one repeated motion",
+      "why": "The quoted entry ends, \"None of them could close a cable if the machine stopped tomorrow.\""
+     },
+     {
+      "qid": "RW-S4-5",
+      "answer": "measured acceptance: the timbers and the machinery went on working elsewhere, so what ended was chiefly a location",
+      "why": "The passage closes, \"Little was lost but the address,\" after noting the timbers are \"still afloat in a dozen hulls.\""
+     },
+     {
+      "qid": "RW-S4-6",
+      "answer": "able to supply it, since the laying machine closed rope of any length onto a drum without a walk",
+      "why": "The machine \"closed rope of any length without a walk at all, winding it continuously onto a drum.\""
+     }
+    ]
+   },
+   {
+    "label": "W2",
+    "slot_values": [
+     "gave up local hemp for imported manila, leaving the six-hundred-and-forty-foot walk untouched but the flax fields under pasture",
+     "\"The men come off the walk drawn and grey before forty, and the manila dust is worse than hemp ever was. Two more gone this month to the shipyard.\"",
+     "it stood empty thirty-two years and burned in 1936; nothing survives and \"the town has not marked the ground\""
+    ],
+    "passage": "A ropewalk is a building shaped by its product. To lay a cable, spinners walked backward down a shed, paying out fiber from bundles at their waists, and the shed had to be as long as the rope. Marden Point had three such sheds by 1794, and for two generations the town measured its prosperity in fathoms rather than acres.\n\nThe work was divided finely. Hatchellers combed the fiber straight; spinners twisted it into yarn; a foreman at a hand crank closed the yarns into strands and the strands into rope, walking backward with the twist running ahead of him. A boy entering at twelve spent four years at the hatchel before he was allowed to spin.\n\nIn 1861 the partners gave up local hemp for manila fiber shipped by way of Boston. The walk itself was untouched, six hundred and forty feet as it had stood since 1794, but the fields that had grown the town's fiber were under pasture within five years.\n\nThe fullest record of the trade's last decades is the notebook of Elias Coad, foreman of the middle shed from 1868 until his death in 1881. Coad entered accounts, weather, and opinions in the same three columns. The entry for March 1873 is typical: \"The men come off the walk drawn and grey before forty, and the manila dust is worse than hemp ever was. Two more gone this month to the shipyard.\"\n\nBy the 1890s Marden Point rope went out under other firms' labels, and the town's share of the coasting trade fell by half in twelve years. The last shed closed in the spring of 1904. It stood empty for thirty-two years and burned in 1936, with Coad's notebook the only thing anyone had thought to carry out. Nothing else of the three sheds survives, and the town has not marked the ground.",
+    "answers": [
+     {
+      "qid": "RW-S4-1",
+      "answer": "Gave up local hemp for manila fiber shipped by way of Boston, leaving the six-hundred-and-forty-foot walk itself untouched",
+      "why": "The passage states they \"gave up local hemp for manila fiber shipped by way of Boston\" and that \"the walk itself was untouched.\""
+     },
+     {
+      "qid": "RW-S4-2",
+      "answer": "worn haggard by hard work",
+      "why": "Coad writes that \"the men come off the walk drawn and grey before forty,\" describing their condition, not the yarn's."
+     },
+     {
+      "qid": "RW-S4-3",
+      "answer": "A turn to imported manila kept the old walk and its methods intact while cutting the trade loose from the fields around it, leaving the labor as punishing as before.",
+      "why": "\"The walk itself was untouched,\" yet \"the fields that had grown the town's fiber were under pasture within five years.\""
+     },
+     {
+      "qid": "RW-S4-4",
+      "answer": "show that the shift in fiber left the physical cost of the work undiminished",
+      "why": "The quoted entry reports that \"the manila dust is worse than hemp ever was.\""
+     },
+     {
+      "qid": "RW-S4-5",
+      "answer": "restrained regret: nothing of the sheds survives, the ground is unmarked, and only one notebook was carried out",
+      "why": "The passage closes, \"Nothing else of the three sheds survives, and the town has not marked the ground.\""
+     },
+     {
+      "qid": "RW-S4-6",
+      "answer": "unable to supply it, since the walk that shaped the rope still measured only six hundred and forty feet",
+      "why": "The walk stood at \"six hundred and forty feet as it had stood since 1794,\" and \"the shed had to be as long as the rope.\""
+     }
+    ]
+   },
+   {
+    "label": "W3",
+    "slot_values": [
+     "took up coir for cheap hawsers and fenders, partitioning the middle shed into three bays of two hundred feet each",
+     "\"The plan for the coir bays was drawn by young Pardee, nineteen years old, and it is better than mine. The trade takes its ideas from whoever has one.\"",
+     "it was fitted out as a fish cannery within a year, the same surnames on the payroll; \"the work outlasted the trade that had named it, which is not the same as survival\""
+    ],
+    "passage": "A ropewalk is a building shaped by its product. To lay a cable, spinners walked backward down a shed, paying out fiber from bundles at their waists, and the shed had to be as long as the rope. Marden Point had three such sheds by 1794, and for two generations the town measured its prosperity in fathoms rather than acres.\n\nThe work was divided finely. Hatchellers combed the fiber straight; spinners twisted it into yarn; a foreman at a hand crank closed the yarns into strands and the strands into rope, walking backward with the twist running ahead of him. A boy entering at twelve spent four years at the hatchel before he was allowed to spin.\n\nIn 1861 the partners took up coir, the coarse fiber of the coconut husk, for cheap mooring hawsers and dock fenders. The middle shed was partitioned into three bays of two hundred feet each, since coir work needed no great length, and bulk orders had replaced the naval contracts within five years.\n\nThe fullest record of the trade's last decades is the notebook of Elias Coad, foreman of the middle shed from 1868 until his death in 1881. Coad entered accounts, weather, and opinions in the same three columns. The entry for March 1873 is typical: \"The plan for the coir bays was drawn by young Pardee, nineteen years old, and it is better than mine. The trade takes its ideas from whoever has one.\"\n\nBy the 1890s Marden Point rope went out under other firms' labels, and the town's share of the coasting trade fell by half in twelve years. The last shed closed in the spring of 1904. Within a year it had been fitted out as a fish cannery, and the payroll shows the same surnames, now the daughters'. The work outlasted the trade that had named it, which is not the same as survival.",
+    "answers": [
+     {
+      "qid": "RW-S4-1",
+      "answer": "Took up coir for cheap hawsers and fenders, partitioning the middle shed into three bays of two hundred feet",
+      "why": "The passage states they \"took up coir... for cheap mooring hawsers and dock fenders\" and that the shed \"was partitioned into three bays of two hundred feet each.\""
+     },
+     {
+      "qid": "RW-S4-2",
+      "answer": "sketched out on paper beforehand",
+      "why": "Coad writes that \"the plan for the coir bays was drawn by young Pardee,\" who made the plan rather than the rope."
+     },
+     {
+      "qid": "RW-S4-3",
+      "answer": "A turn to cheap coir traded naval contracts for bulk orders and two-hundred-foot bays, and the labor the trade gathered outlived the trade itself under a different name.",
+      "why": "\"Bulk orders had replaced the naval contracts,\" and afterward \"the work outlasted the trade that had named it.\""
+     },
+     {
+      "qid": "RW-S4-4",
+      "answer": "show that the shop still took its methods from whoever proposed the better plan",
+      "why": "The quoted entry ends, \"The trade takes its ideas from whoever has one.\""
+     },
+     {
+      "qid": "RW-S4-5",
+      "answer": "dry qualification: the same families kept working in the same building, which the author declines to call survival",
+      "why": "The passage closes, \"The work outlasted the trade that had named it, which is not the same as survival.\""
+     },
+     {
+      "qid": "RW-S4-6",
+      "answer": "unable to supply it, since the middle shed had been partitioned into bays of two hundred feet",
+      "why": "The shed \"was partitioned into three bays of two hundred feet each,\" and \"the shed had to be as long as the rope.\""
+     }
+    ]
+   },
+   {
+    "label": "W4",
+    "slot_values": [
+     "refused the laying machines and lengthened the middle shed to eleven hundred feet for unspliced hemp cable",
+     "\"Fewer men are drawn to the walk each year, the shipyard paying weekly in cash while we settle at the season's end. I have hired two from the poorhouse.\"",
+     "the town bought it in 1907 and ran it as a working demonstration until 1961; \"It was kept honestly, and it was still a display.\""
+    ],
+    "passage": "A ropewalk is a building shaped by its product. To lay a cable, spinners walked backward down a shed, paying out fiber from bundles at their waists, and the shed had to be as long as the rope. Marden Point had three such sheds by 1794, and for two generations the town measured its prosperity in fathoms rather than acres.\n\nThe work was divided finely. Hatchellers combed the fiber straight; spinners twisted it into yarn; a foreman at a hand crank closed the yarns into strands and the strands into rope, walking backward with the twist running ahead of him. A boy entering at twelve spent four years at the hatchel before he was allowed to spin.\n\nIn 1861 the partners refused the new laying machines outright and lengthened the middle shed instead to eleven hundred feet, the longest walk in the state. They meant to sell what the machines could not yet make: single unspliced hemp cable for lifeboats and lighthouse moorings.\n\nThe fullest record of the trade's last decades is the notebook of Elias Coad, foreman of the middle shed from 1868 until his death in 1881. Coad entered accounts, weather, and opinions in the same three columns. The entry for March 1873 is typical: \"Fewer men are drawn to the walk each year, the shipyard paying weekly in cash while we settle at the season's end. I have hired two from the poorhouse.\"\n\nBy the 1890s Marden Point rope went out under other firms' labels, and the town's share of the coasting trade fell by half in twelve years. The last shed closed in the spring of 1904. The town bought the eleven-hundred-foot building in 1907 and ran it as a working demonstration until 1961, when the last man who had spun in it retired. It was kept honestly, and it was still a display.",
+    "answers": [
+     {
+      "qid": "RW-S4-1",
+      "answer": "Refused the new laying machines and lengthened the middle shed to eleven hundred feet for unspliced hemp cable",
+      "why": "The passage states the partners \"refused the new laying machines outright and lengthened the middle shed instead to eleven hundred feet.\""
+     },
+     {
+      "qid": "RW-S4-2",
+      "answer": "attracted into taking the work",
+      "why": "Coad writes that \"fewer men are drawn to the walk each year,\" contrasting the shipyard's weekly cash."
+     },
+     {
+      "qid": "RW-S4-3",
+      "answer": "A refusal to mechanize left the trade a narrow specialty in unspliced cable, sustaining the longest walk in the state but not the supply of men to work it.",
+      "why": "The partners \"meant to sell what the machines could not yet make,\" yet Coad records that \"fewer men are drawn to the walk each year.\""
+     },
+     {
+      "qid": "RW-S4-4",
+      "answer": "show that the walk was losing men to employers who paid more promptly",
+      "why": "The quoted entry blames \"the shipyard paying weekly in cash while we settle at the season's end.\""
+     },
+     {
+      "qid": "RW-S4-5",
+      "answer": "guarded approval: the shed was preserved intact for decades, though the author notes it had become a display",
+      "why": "The passage closes, \"It was kept honestly, and it was still a display.\""
+     },
+     {
+      "qid": "RW-S4-6",
+      "answer": "able to supply it, since the middle shed had been lengthened to eleven hundred feet for that purpose",
+      "why": "The shed was lengthened \"to eleven hundred feet\" expressly for \"single unspliced hemp cable.\""
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "topic_id": "RW-S5",
+  "genre": "LITERARY — period fiction; a kitchen conversation between two sisters after a seven-year absence, in which the real subject is never named",
+  "slots": [
+   "the object Margaret takes from her pocket and what she says about where it came from",
+   "the sense in which Margaret uses the word 'close' about the seven years away",
+   "what Hetty does with the object at the end, in place of asking her question"
+  ],
+  "question_parity_note": "Hardest to keep level was RW-S5-4 (technique). In the first draft three variants had Hetty put the object somewhere loaded with household meaning (the caddy that holds the housekeeping money; the drawer of christening things; behind the clock where the father's bills waited) while W4's act was merely 'put the ring on the dresser' — a thinner, vaguer placement that would have made W4's answer the weak one and, worse, made W4's option identifiable as the odd one in the set. I rewrote W4's closing act to 'at the front where it showed' and gave it an equally specific final sentence ('she could take it up again or leave it'), so all four placements now carry a decision of the same weight: assuming the debt, keeping the child's place, deferring the news, leaving the choice to Margaret. RW-S5-6 needed the same treatment: W3's answer originally ended 'which neither sister will be first to open,' a different grammatical tail from the other three ('whom/which neither sister will name aloud'); I normalized it so the tail no longer marks the letter variant. Self-test result: laying the four answers of each question side by side with no passage, none reads as more complete, more qualified, or more 'answer-shaped' than the others — each question's set is four concrete, equally specific claims that differ only in which fact they name. One residual pull is acknowledged and deliberately left: on RW-S5-2, 'affectionate' is the everyday sense of close and will attract a blind guesser. Because that option is fixed to W2 and the shown variant is chosen by the RNG, its pull yields chance-level blind accuracy rather than a predictable key, which is the intended behaviour; removing it would have cost the item its genuine vocabulary-in-context contrast.",
+  "questions": [
+   {
+    "qid": "RW-S5-1",
+    "kind": "detail",
+    "difficulty": "easy",
+    "prompt": "What Margaret says as she sets the object on the table establishes that —"
+   },
+   {
+    "qid": "RW-S5-2",
+    "kind": "vocabulary in context",
+    "difficulty": "medium",
+    "prompt": "As Margaret uses it in \"They were close years, Het,\" the word close most nearly means —"
+   },
+   {
+    "qid": "RW-S5-3",
+    "kind": "implication / prediction",
+    "difficulty": "medium",
+    "prompt": "The passage most strongly suggests that Hetty will —"
+   },
+   {
+    "qid": "RW-S5-4",
+    "kind": "technique",
+    "difficulty": "hard",
+    "prompt": "In the final paragraph, Hetty's real answer to her sister is conveyed chiefly by —"
+   },
+   {
+    "qid": "RW-S5-5",
+    "kind": "characterization",
+    "difficulty": "medium",
+    "prompt": "Margaret's own account presents the seven years away as —"
+   },
+   {
+    "qid": "RW-S5-6",
+    "kind": "main idea / central subject",
+    "difficulty": "hard",
+    "prompt": "The scene is organized around a subject the sisters avoid. That subject is —"
+   }
+  ],
+  "variants": [
+   {
+    "label": "W1",
+    "slot_values": [
+     "a folded pawn ticket for their mother's garnet brooch, redeemable until Michaelmas",
+     "close = sparing, tight with money",
+     "Hetty puts the ticket in the tea caddy where the housekeeping money is kept"
+    ],
+    "passage": "The carrier set my sister down at our gate a little after four, and by the time I had the kettle on she was in our mother's chair as though she had never once got up from it. Seven years. I had rehearsed a hundred sentences in the lane on wash-days, and not one of them came to me now.\n\n\"You've kept the dresser the same,\" Margaret said.\n\n\"There was no cause to change it.\"\n\nShe turned her cup twice around in its saucer without drinking from it. Then she took a pawn ticket, folded small, out of her pocket and set it on the table between us, and said, \"That is our mother's garnet brooch. I have until Michaelmas to fetch it back.\"\n\nI looked at it, and then I looked at the window. Outside, Hollis's boy was driving the geese up from the beck, and I watched him until he was past the wall, because a thing set on a table can be looked away from, and a question cannot be unasked.\n\n\"They were close years, Het,\" she said. \"Nothing was spent in that house that could be saved; we counted the coals into the scuttle.\"\n\n\"I daresay they were.\"\n\n\"You've gone quiet.\"\n\n\"I've gone older. In this house it comes to the same thing.\"\n\nShe laughed, and for a moment it was the old laugh, and I very nearly said it — the thing that had stood in the middle of every letter I never sent, the thing our father had forbidden the name of in this kitchen. But the kettle lifted its lid, and I got up to it, and the moment went by the way the geese had gone by, in a body and quickly.\n\nWhen she went up to lay off her hat, I took the ticket from the table and put it into the tea caddy, where the housekeeping money is kept, and set the caddy back on its shelf. Then I put out the bread and called her down to her tea. Michaelmas was eleven weeks off, and I had said nothing, and the brooch would be fetched back all the same.",
+    "answers": [
+     {
+      "qid": "RW-S5-1",
+      "answer": "her mother's brooch is in pawn and must be redeemed before Michaelmas",
+      "why": "She sets down the ticket and says, \"That is our mother's garnet brooch. I have until Michaelmas to fetch it back.\""
+     },
+     {
+      "qid": "RW-S5-2",
+      "answer": "sparing",
+      "why": "Her gloss is about money withheld: \"Nothing was spent in that house that could be saved.\""
+     },
+     {
+      "qid": "RW-S5-3",
+      "answer": "settle the pledge quietly out of the housekeeping rather than raise the subject",
+      "why": "The close reads, \"I had said nothing, and the brooch would be fetched back all the same.\""
+     },
+     {
+      "qid": "RW-S5-4",
+      "answer": "where she puts the ticket — in the caddy that holds the housekeeping money",
+      "why": "She puts it \"into the tea caddy, where the housekeeping money is kept,\" filing the debt among what the house pays."
+     },
+     {
+      "qid": "RW-S5-5",
+      "answer": "years of unbroken scrimping in which nothing was spent that could be saved",
+      "why": "Margaret's one detail of those years is \"we counted the coals into the scuttle.\""
+     },
+     {
+      "qid": "RW-S5-6",
+      "answer": "the pawned brooch and the money behind it, which neither sister will name aloud",
+      "why": "The unnamed thing sits on the table as \"our mother's garnet brooch\" in pawn, and is \"the thing our father had forbidden the name of in this kitchen.\""
+     }
+    ]
+   },
+   {
+    "label": "W2",
+    "slot_values": [
+     "a single knitted child's bootee; the daughter turns six in spring and the people who have her kept the other",
+     "close = affectionate, warmly companionable",
+     "Hetty lays the bootee in the dresser drawer with their mother's christening things"
+    ],
+    "passage": "The carrier set my sister down at our gate a little after four, and by the time I had the kettle on she was in our mother's chair as though she had never once got up from it. Seven years. I had rehearsed a hundred sentences in the lane on wash-days, and not one of them came to me now.\n\n\"You've kept the dresser the same,\" Margaret said.\n\n\"There was no cause to change it.\"\n\nShe turned her cup twice around in its saucer without drinking from it. Then she took a child's knitted bootee, one only, out of her pocket and set it on the table between us, and said, \"That one was hers. She will be six in the spring, and the people who have her kept the other.\"\n\nI looked at it, and then I looked at the window. Outside, Hollis's boy was driving the geese up from the beck, and I watched him until he was past the wall, because a thing set on a table can be looked away from, and a question cannot be unasked.\n\n\"They were close years, Het,\" she said. \"There were four of us at one table every night of them, and we were sorry when a day ended.\"\n\n\"I daresay they were.\"\n\n\"You've gone quiet.\"\n\n\"I've gone older. In this house it comes to the same thing.\"\n\nShe laughed, and for a moment it was the old laugh, and I very nearly said it — the thing that had stood in the middle of every letter I never sent, the thing our father had forbidden the name of in this kitchen. But the kettle lifted its lid, and I got up to it, and the moment went by the way the geese had gone by, in a body and quickly.\n\nWhen she went up to lay off her hat, I took the bootee from the table and laid it in the dresser drawer with our mother's christening things, and shut the drawer. Then I put out the bread and called her down to her tea. The drawer is where this house keeps what it means to keep, and I had said nothing, and she would find it there whenever she looked.",
+    "answers": [
+     {
+      "qid": "RW-S5-1",
+      "answer": "her daughter turns six in spring and the people who have her kept the other one",
+      "why": "She sets down the bootee and says, \"She will be six in the spring, and the people who have her kept the other.\""
+     },
+     {
+      "qid": "RW-S5-2",
+      "answer": "affectionate",
+      "why": "Her gloss is about company gladly kept: \"we were sorry when a day ended.\""
+     },
+     {
+      "qid": "RW-S5-3",
+      "answer": "keep the child's place among the family's things rather than raise the subject",
+      "why": "The close reads, \"I had said nothing, and she would find it there whenever she looked.\""
+     },
+     {
+      "qid": "RW-S5-4",
+      "answer": "where she puts the bootee — in the drawer of the family's christening things",
+      "why": "She lays it \"in the dresser drawer with our mother's christening things,\" placing the child among the family's own."
+     },
+     {
+      "qid": "RW-S5-5",
+      "answer": "years of crowded company in which the four of them regretted each day's end",
+      "why": "Margaret's one detail of those years is \"four of us at one table every night of them.\""
+     },
+     {
+      "qid": "RW-S5-6",
+      "answer": "the daughter Margaret left behind, whom neither sister will name aloud",
+      "why": "The unnamed thing sits on the table as the bootee of a girl who \"will be six in the spring,\" and is \"the thing our father had forbidden the name of in this kitchen.\""
+     }
+    ]
+   },
+   {
+    "label": "W3",
+    "slot_values": [
+     "an unopened letter with a black seal, come from the house at Louth in March",
+     "close = stifling, airless",
+     "Hetty stands the sealed letter behind the clock, where their father's bills used to stand"
+    ],
+    "passage": "The carrier set my sister down at our gate a little after four, and by the time I had the kettle on she was in our mother's chair as though she had never once got up from it. Seven years. I had rehearsed a hundred sentences in the lane on wash-days, and not one of them came to me now.\n\n\"You've kept the dresser the same,\" Margaret said.\n\n\"There was no cause to change it.\"\n\nShe turned her cup twice around in its saucer without drinking from it. Then she took a letter with a black seal, unbroken, out of her pocket and set it on the table between us, and said, \"That came from the house at Louth in March. I have not opened it and I shall not.\"\n\nI looked at it, and then I looked at the window. Outside, Hollis's boy was driving the geese up from the beck, and I watched him until he was past the wall, because a thing set on a table can be looked away from, and a question cannot be unasked.\n\n\"They were close years, Het,\" she said. \"The rooms over the shop had no window that would open, and in August you could not get a breath.\"\n\n\"I daresay they were.\"\n\n\"You've gone quiet.\"\n\n\"I've gone older. In this house it comes to the same thing.\"\n\nShe laughed, and for a moment it was the old laugh, and I very nearly said it — the thing that had stood in the middle of every letter I never sent, the thing our father had forbidden the name of in this kitchen. But the kettle lifted its lid, and I got up to it, and the moment went by the way the geese had gone by, in a body and quickly.\n\nWhen she went up to lay off her hat, I took the letter from the table and stood it behind the clock on the mantel, sealed as it was, where our father's bills used to stand. Then I put out the bread and called her down to her tea. It would keep there until she asked for it, and I had said nothing, and neither of us had broken the seal.",
+    "answers": [
+     {
+      "qid": "RW-S5-1",
+      "answer": "the black-sealed letter came in March and she does not intend to open it",
+      "why": "She sets it down and says, \"That came from the house at Louth in March. I have not opened it and I shall not.\""
+     },
+     {
+      "qid": "RW-S5-2",
+      "answer": "stifling",
+      "why": "Her gloss is about air, not feeling: \"in August you could not get a breath.\""
+     },
+     {
+      "qid": "RW-S5-3",
+      "answer": "leave the letter sealed behind the clock rather than raise the subject",
+      "why": "The close reads, \"It would keep there until she asked for it, and I had said nothing.\""
+     },
+     {
+      "qid": "RW-S5-4",
+      "answer": "where she puts the letter — behind the clock, where their father's bills waited",
+      "why": "She stands it \"behind the clock on the mantel, sealed as it was, where our father's bills used to stand.\""
+     },
+     {
+      "qid": "RW-S5-5",
+      "answer": "years of airless confinement in rooms whose windows would not open at all",
+      "why": "Margaret's one detail of those years is rooms that \"had no window that would open.\""
+     },
+     {
+      "qid": "RW-S5-6",
+      "answer": "the death behind the black seal, which neither sister will name aloud",
+      "why": "The unnamed thing sits on the table as a letter \"with a black seal, unbroken,\" and is \"the thing our father had forbidden the name of in this kitchen.\""
+     }
+    ]
+   },
+   {
+    "label": "W4",
+    "slot_values": [
+     "a wedding ring on a bootlace; the husband has been three years in Canada without writing",
+     "close = secretive, reticent",
+     "Hetty puts the ring in the dish on the dresser, at the front where it shows"
+    ],
+    "passage": "The carrier set my sister down at our gate a little after four, and by the time I had the kettle on she was in our mother's chair as though she had never once got up from it. Seven years. I had rehearsed a hundred sentences in the lane on wash-days, and not one of them came to me now.\n\n\"You've kept the dresser the same,\" Margaret said.\n\n\"There was no cause to change it.\"\n\nShe turned her cup twice around in its saucer without drinking from it. Then she took a wedding ring on a bootlace out of her pocket and set it on the table between us, and said, \"That is mine still. He has been three years in Canada and has never written a line.\"\n\nI looked at it, and then I looked at the window. Outside, Hollis's boy was driving the geese up from the beck, and I watched him until he was past the wall, because a thing set on a table can be looked away from, and a question cannot be unasked.\n\n\"They were close years, Het,\" she said. \"Nobody in that house told anybody anything; the doors were shut, and the talk stopped when I came in.\"\n\n\"I daresay they were.\"\n\n\"You've gone quiet.\"\n\n\"I've gone older. In this house it comes to the same thing.\"\n\nShe laughed, and for a moment it was the old laugh, and I very nearly said it — the thing that had stood in the middle of every letter I never sent, the thing our father had forbidden the name of in this kitchen. But the kettle lifted its lid, and I got up to it, and the moment went by the way the geese had gone by, in a body and quickly.\n\nWhen she went up to lay off her hat, I took the ring off its lace and put it in the little dish on the dresser where our mother's rings had always gone, at the front where it showed. Then I put out the bread and called her down to her tea. It would sit there in the open, and I had said nothing, and she could take it up again or leave it.",
+    "answers": [
+     {
+      "qid": "RW-S5-1",
+      "answer": "her husband has been three years in Canada and has never written to her",
+      "why": "She sets down the ring and says, \"He has been three years in Canada and has never written a line.\""
+     },
+     {
+      "qid": "RW-S5-2",
+      "answer": "secretive",
+      "why": "Her gloss is about withheld talk: \"Nobody in that house told anybody anything; the doors were shut.\""
+     },
+     {
+      "qid": "RW-S5-3",
+      "answer": "leave the ring in open view rather than raise the subject herself",
+      "why": "The close reads, \"I had said nothing, and she could take it up again or leave it.\""
+     },
+     {
+      "qid": "RW-S5-4",
+      "answer": "where she puts the ring — at the front of the dish, where it shows",
+      "why": "She puts it \"in the little dish on the dresser where our mother's rings had always gone, at the front where it showed.\""
+     },
+     {
+      "qid": "RW-S5-5",
+      "answer": "years of shut-in silence in which the household told one another nothing at all",
+      "why": "Margaret's one detail of those years is that \"the talk stopped when I came in.\""
+     },
+     {
+      "qid": "RW-S5-6",
+      "answer": "the marriage and the husband in Canada, whom neither sister will name aloud",
+      "why": "The unnamed thing sits on the table as \"a wedding ring on a bootlace,\" and is \"the thing our father had forbidden the name of in this kitchen.\""
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "topic_id": "RW-I1",
+  "genre": "NONFICTION — science: an experiment and what it showed",
+  "slots": [
+   "which property distinguished pools A and B from pools C and D",
+   "what the untreated pools revealed that qualified the result",
+   "what Vasnev's second season consisted of and what it was meant to settle"
+  ],
+  "question_parity_note": "The hardest parity problem was RW-I1-3, the vocabulary item. 'Drew' has to carry four genuinely distinct senses (reached / extracted / traced / attracted), and the sentence carrying it also has to supply the second season's PURPOSE for RW-I1-4. W4's second season was originally a passive anecdote ('the roofed pools drew animals from a neighboring clearing'), which gave a crisp 'attracted' but left W4's Q4 answer thin: there was no stated aim, only an observation, while W1-W3 each named one. I rewrote W4's second season as a deliberate board-swap ('to learn whether the animals would follow the shade or return to the basins where they had bred'), which keeps 'drew fifty-eight of them' for the vocabulary sense and gives Q4 an aim of equal weight. All four Q3 glosses were then trimmed to single words so no gloss is longer or more explanatory than another. Second fix, from the no-passage self-test: lined up as an option set, W1's Q6 answer ('nearly every animal but not every individual') read as the most hedged and therefore the most 'answer-like'. All four Q6 answers were rewritten into one bounded-exception frame — 'governs ... except / only / more than ...' — so each concedes exactly one limit and none is the moderate one. The same test on Q5 forced a number into every option (eleven nights, two nights, three meters, nine centimeters), since W4's measurement originally stood alone. Q1's answers were re-cut to 9-10 words each after W3's ran short at seven, and Q4's to 8-10 after W1's ran long at twelve.",
+  "questions": [
+   {
+    "qid": "RW-I1-1",
+    "kind": "detail",
+    "difficulty": "easy",
+    "prompt": "According to the passage, pools A and B differed from pools C and D in that"
+   },
+   {
+    "qid": "RW-I1-2",
+    "kind": "main idea",
+    "difficulty": "medium",
+    "prompt": "Which of the following best describes the passage as a whole?"
+   },
+   {
+    "qid": "RW-I1-3",
+    "kind": "vocabulary in context",
+    "difficulty": "medium",
+    "prompt": "As it is used in the paragraph describing the second season, \"drew\" most nearly means"
+   },
+   {
+    "qid": "RW-I1-4",
+    "kind": "purpose of a procedure (inference)",
+    "difficulty": "medium",
+    "prompt": "Vasnev's second season of work was undertaken chiefly in order to determine"
+   },
+   {
+    "qid": "RW-I1-5",
+    "kind": "technique / function",
+    "difficulty": "hard",
+    "prompt": "The author's treatment of the untreated pools serves chiefly to show that Vasnev"
+   },
+   {
+    "qid": "RW-I1-6",
+    "kind": "implication",
+    "difficulty": "hard",
+    "prompt": "The passage most nearly implies that the cue Vasnev identified"
+   }
+  ],
+  "variants": [
+   {
+    "label": "W1",
+    "slot_values": [
+     "water held two degrees warmer by a buried heating cable",
+     "one marked female chose the cold untreated pool on all eleven nights",
+     "the cables were switched off for the first hour, to rule out the animals following one another"
+    ],
+    "passage": "Every March the pale salamanders of the Radna hills leave the limestone crevices where they have wintered and travel, some of them two hundred meters, to breed in shallow rock pools. For most of the last century the standard account held that each animal remembered its route. Teodora Vasnev, a field biologist who had spent eleven winters in the hills, thought the account did no work. Memory, she liked to say, was the name of the puzzle and not its solution.\n\nIn 1996 she built something that let her ask a narrower question. Four artificial pools, identical basins of poured concrete, were sunk into a level clearing forty meters from any natural water, at the corners of a square eight meters on a side. She labeled them A through D. Pools A and B she held two degrees warmer than the surrounding ground, by means of a heating cable buried beneath each basin; pools C and D she left at the temperature of the clearing. Nothing else about the four differed: the same water, the same depth, the same rim of gravel. At dusk she carried ninety-six adults from three home crevices to the center of the square and left them there.\n\nAveraged over eleven nights across two springs, sixty-one of the ninety-six were in A or B by dawn, twenty-two were still in the open, and thirteen were in C or D. The pattern held on nine nights of the eleven.\n\nThe untreated pools were the informative ones. One female, marked and re-marked across both springs, was found in cold pool D on all eleven nights and in the warmed pools on none of them. Vasnev put this in the body of the paper rather than in a footnote.\n\nIn the second season she switched the cables off for the first hour after release and on thereafter, to learn whether the animals were following one another to the pools. They arrived at A and B in ones and twos across four hours, never in a group; from that scatter she drew the conclusion that each animal was navigating alone.\n\nShe published in 1999, in a journal few outside the region read, and for a decade the work was cited mainly by people who studied cave fish. What makes it worth reading now is less the cue she found than the way she isolated it: she built a clearing in which only one question could be asked at a time, and then reported the one result that spoiled the answer.",
+    "answers": [
+     {
+      "qid": "RW-I1-1",
+      "answer": "their water was held two degrees warmer than the ground",
+      "why": "The apparatus paragraph states she \"held two degrees warmer than the surrounding ground, by means of a heating cable buried beneath each basin.\""
+     },
+     {
+      "qid": "RW-I1-2",
+      "answer": "an experiment identifying warmth as the cue, reported together with the one female who ignored it",
+      "why": "The warmed pools take sixty-one of ninety-six, yet \"One female, marked and re-marked across both springs, was found in cold pool D on all eleven nights.\""
+     },
+     {
+      "qid": "RW-I1-3",
+      "answer": "reached",
+      "why": "\"From that scatter she drew the conclusion that each animal was navigating alone\" uses drew to mean arriving at an inference."
+     },
+     {
+      "qid": "RW-I1-4",
+      "answer": "whether the animals were following one another to the pools",
+      "why": "The second-season sentence states the aim outright: \"to learn whether the animals were following one another to the pools.\""
+     },
+     {
+      "qid": "RW-I1-5",
+      "answer": "kept in the paper the one female found in the untreated pool on all eleven nights",
+      "why": "The exception is \"in the body of the paper rather than in a footnote,\" and the exception is the female \"found in cold pool D on all eleven nights.\""
+     },
+     {
+      "qid": "RW-I1-6",
+      "answer": "governs nearly every animal's choice but not the choice of every individual",
+      "why": "Sixty-one of ninety-six follow the warmth while one female \"was found in cold pool D on all eleven nights and in the warmed pools on none of them.\""
+     }
+    ]
+   },
+   {
+    "label": "W2",
+    "slot_values": [
+     "a liter of the animals' own breeding water stirred in each evening",
+     "on two rainy nights the ninety-six spread evenly across all four pools",
+     "syringes of water were drawn at midnight and at four, to see how fast the scent thinned"
+    ],
+    "passage": "Every March the pale salamanders of the Radna hills leave the limestone crevices where they have wintered and travel, some of them two hundred meters, to breed in shallow rock pools. For most of the last century the standard account held that each animal remembered its route. Teodora Vasnev, a field biologist who had spent eleven winters in the hills, thought the account did no work. Memory, she liked to say, was the name of the puzzle and not its solution.\n\nIn 1996 she built something that let her ask a narrower question. Four artificial pools, identical basins of poured concrete, were sunk into a level clearing forty meters from any natural water, at the corners of a square eight meters on a side. She labeled them A through D. Into pools A and B she stirred, each evening, a single liter of water carried down from the animals' own breeding pools; pools C and D she filled from the same standpipe as the rest. Nothing else about the four differed: the same warmth, the same depth, the same rim of gravel. At dusk she carried ninety-six adults from three home crevices to the center of the square and left them there.\n\nAveraged over eleven nights across two springs, sixty-one of the ninety-six were in A or B by dawn, twenty-two were still in the open, and thirteen were in C or D. The pattern held on nine nights of the eleven.\n\nThe untreated pools were the informative ones. On the two nights when the pattern failed, both of them following heavy rain, the ninety-six adults were spread evenly across all four pools by dawn. Vasnev put this in the body of the paper rather than in a footnote.\n\nIn the second season she drew a syringe of water from each basin at midnight and again at four, to learn whether the borrowed scent thinned within a few hours. The concentration at four was a tenth of what it had been, and yet the arrivals after four were as many as the arrivals before.\n\nShe published in 1999, in a journal few outside the region read, and for a decade the work was cited mainly by people who studied cave fish. What makes it worth reading now is less the cue she found than the way she isolated it: she built a clearing in which only one question could be asked at a time, and then reported the one result that spoiled the answer.",
+    "answers": [
+     {
+      "qid": "RW-I1-1",
+      "answer": "a liter of the animals' own breeding water was stirred in",
+      "why": "The apparatus paragraph specifies \"a single liter of water carried down from the animals' own breeding pools.\""
+     },
+     {
+      "qid": "RW-I1-2",
+      "answer": "an experiment identifying home-pool scent as the cue, reported together with the two rainy nights that undid it",
+      "why": "The scented pools take sixty-one of ninety-six, but on \"the two nights when the pattern failed, both of them following heavy rain,\" the animals spread evenly."
+     },
+     {
+      "qid": "RW-I1-3",
+      "answer": "extracted",
+      "why": "\"She drew a syringe of water from each basin at midnight\" uses drew to mean pulling a sample out."
+     },
+     {
+      "qid": "RW-I1-4",
+      "answer": "whether the borrowed scent thinned within a few hours",
+      "why": "The second-season sentence states the aim outright: \"to learn whether the borrowed scent thinned within a few hours.\""
+     },
+     {
+      "qid": "RW-I1-5",
+      "answer": "kept in the paper the two rain-soaked nights on which the animals spread evenly across four pools",
+      "why": "The exception is \"in the body of the paper rather than in a footnote,\" and the exception is the two nights \"following heavy rain\" when the ninety-six \"were spread evenly across all four pools.\""
+     },
+     {
+      "qid": "RW-I1-6",
+      "answer": "governs the choice reliably except on nights when heavy rain has fallen",
+      "why": "The pattern holds on nine nights of eleven and fails on exactly \"the two nights ... following heavy rain.\""
+     }
+    ]
+   },
+   {
+    "label": "W3",
+    "slot_values": [
+     "a motor beneath each basin tapping twice a second, the rate of dripping water",
+     "empty pool D took thirty animals a night once it was shifted three meters east",
+     "every animal's path was traced on waxed paper, to see whether the approach was direct"
+    ],
+    "passage": "Every March the pale salamanders of the Radna hills leave the limestone crevices where they have wintered and travel, some of them two hundred meters, to breed in shallow rock pools. For most of the last century the standard account held that each animal remembered its route. Teodora Vasnev, a field biologist who had spent eleven winters in the hills, thought the account did no work. Memory, she liked to say, was the name of the puzzle and not its solution.\n\nIn 1996 she built something that let her ask a narrower question. Four artificial pools, identical basins of poured concrete, were sunk into a level clearing forty meters from any natural water, at the corners of a square eight meters on a side. She labeled them A through D. Under pools A and B she set a small motor that tapped the basin twice a second, the rate of water dripping from stone; under pools C and D she set motors that never ran. Nothing else about the four differed: the same water, the same depth, the same rim of gravel. At dusk she carried ninety-six adults from three home crevices to the center of the square and left them there.\n\nAveraged over eleven nights across two springs, sixty-one of the ninety-six were in A or B by dawn, twenty-two were still in the open, and thirteen were in C or D. The pattern held on nine nights of the eleven.\n\nThe untreated pools were the informative ones. Pool D took no animal at all until, on the last three nights, she shifted it three meters east toward the release point; it then took thirty a night, more than either tapping pool. Vasnev put this in the body of the paper rather than in a footnote.\n\nIn the second season she drew the path of every animal on a sheet of waxed paper laid over a map of the clearing, to learn whether the animals approached the pools directly or by searching. The lines ran straight from the release point and bent only in the last two meters.\n\nShe published in 1999, in a journal few outside the region read, and for a decade the work was cited mainly by people who studied cave fish. What makes it worth reading now is less the cue she found than the way she isolated it: she built a clearing in which only one question could be asked at a time, and then reported the one result that spoiled the answer.",
+    "answers": [
+     {
+      "qid": "RW-I1-1",
+      "answer": "a motor beneath them tapped the basins twice a second",
+      "why": "The apparatus paragraph specifies \"a small motor that tapped the basin twice a second, the rate of water dripping from stone.\""
+     },
+     {
+      "qid": "RW-I1-2",
+      "answer": "an experiment identifying a tapping rhythm as the cue, reported together with the pool that worked once moved",
+      "why": "The tapping pools take sixty-one of ninety-six, yet silent \"Pool D took no animal at all until ... she shifted it three meters east.\""
+     },
+     {
+      "qid": "RW-I1-3",
+      "answer": "traced",
+      "why": "\"She drew the path of every animal on a sheet of waxed paper\" uses drew to mean marking a line on a surface."
+     },
+     {
+      "qid": "RW-I1-4",
+      "answer": "whether the animals approached the pools directly or by searching",
+      "why": "The second-season sentence states the aim outright: \"to learn whether the animals approached the pools directly or by searching.\""
+     },
+     {
+      "qid": "RW-I1-5",
+      "answer": "kept in the paper the three-meter shift that turned an empty pool into the busiest one",
+      "why": "The exception is \"in the body of the paper rather than in a footnote,\" and the exception is that once shifted \"three meters east\" pool D \"took thirty a night, more than either tapping pool.\""
+     },
+     {
+      "qid": "RW-I1-6",
+      "answer": "governs the choice only where a pool also stands near enough to matter",
+      "why": "A silent pool moved \"three meters east toward the release point\" beat both cued pools, taking \"thirty a night, more than either tapping pool.\""
+     }
+    ]
+   },
+   {
+    "label": "W4",
+    "slot_values": [
+     "dark boards roofing the basins so the water lay in shade",
+     "the thirteen animals in the untreated pools were all under nine centimeters",
+     "the boards were moved to C and D, to see whether shade or the old basins would win"
+    ],
+    "passage": "Every March the pale salamanders of the Radna hills leave the limestone crevices where they have wintered and travel, some of them two hundred meters, to breed in shallow rock pools. For most of the last century the standard account held that each animal remembered its route. Teodora Vasnev, a field biologist who had spent eleven winters in the hills, thought the account did no work. Memory, she liked to say, was the name of the puzzle and not its solution.\n\nIn 1996 she built something that let her ask a narrower question. Four artificial pools, identical basins of poured concrete, were sunk into a level clearing forty meters from any natural water, at the corners of a square eight meters on a side. She labeled them A through D. Pools A and B she roofed with dark boards set a hand's width above the water, so that each lay in shade; pools C and D she left open to the March sky. Nothing else about the four differed: the same water, the same depth, the same rim of gravel. At dusk she carried ninety-six adults from three home crevices to the center of the square and left them there.\n\nAveraged over eleven nights across two springs, sixty-one of the ninety-six were in A or B by dawn, twenty-two were still in the open, and thirteen were in C or D. The pattern held on nine nights of the eleven.\n\nThe untreated pools were the informative ones. The thirteen animals that ended in C or D were, without exception, the smallest in the sample: not one of them measured over nine centimeters. Vasnev put this in the body of the paper rather than in a footnote.\n\nIn the second season she moved the boards from A and B to C and D, to learn whether the animals would follow the shade or their old basins. The newly shaded pair drew fifty-eight of them on the first night, and only nine went back to the basins where they had bred.\n\nShe published in 1999, in a journal few outside the region read, and for a decade the work was cited mainly by people who studied cave fish. What makes it worth reading now is less the cue she found than the way she isolated it: she built a clearing in which only one question could be asked at a time, and then reported the one result that spoiled the answer.",
+    "answers": [
+     {
+      "qid": "RW-I1-1",
+      "answer": "dark boards above them kept the water in shade",
+      "why": "The apparatus paragraph specifies pools A and B \"roofed with dark boards set a hand's width above the water, so that each lay in shade.\""
+     },
+     {
+      "qid": "RW-I1-2",
+      "answer": "an experiment identifying shade as the cue, reported together with the smallest animals that avoided it",
+      "why": "The shaded pools take sixty-one of ninety-six, but the thirteen strays \"were, without exception, the smallest in the sample.\""
+     },
+     {
+      "qid": "RW-I1-3",
+      "answer": "attracted",
+      "why": "\"The newly shaded pair drew fifty-eight of them on the first night\" uses drew to mean pulling the animals in."
+     },
+     {
+      "qid": "RW-I1-4",
+      "answer": "whether the animals would follow the shade or their old basins",
+      "why": "The second-season sentence states the aim outright: \"to learn whether the animals would follow the shade or their old basins.\""
+     },
+     {
+      "qid": "RW-I1-5",
+      "answer": "kept in the paper the fact that the thirteen strays were all under nine centimeters",
+      "why": "The exception is \"in the body of the paper rather than in a footnote,\" and the exception is that the thirteen in C or D were such that \"not one of them measured over nine centimeters.\""
+     },
+     {
+      "qid": "RW-I1-6",
+      "answer": "governs the choice of the larger adults more than that of the smallest",
+      "why": "Every animal that ignored the shade was small: the thirteen in C or D were \"the smallest in the sample: not one of them measured over nine centimeters.\""
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "topic_id": "RW-I2",
+  "genre": "NONFICTION — history: a decision and its consequences",
+  "slots": [
+   "which scheme the harbour commission adopted in December 1893",
+   "what the county surveyors found when they inspected the works in 1901",
+   "the adjective the writer applies to Hallam's method in the last paragraph, and the evidence he offers for it"
+  ],
+  "question_parity_note": "The hardest question to keep at parity was RW-I2-3, the vocabulary-in-context item. In the first draft the adjective stood alone in the final paragraph, and two of the four ('conservative', 'economical') were far easier to define from ordinary usage than the other two ('derivative', 'provisional'), which meant one variant's answer would have read as the only one a solver could reach without the passage. I fixed this by making slot 3 TWO sentences in every variant: the adjective, then a sentence of evidence that fixes its contextual sense (the 1893 soundings; the Wexham drawings; the five-year-trial memorandum; the rejected estimate). Each adjective is now decidable only from its own evidence sentence, and the four definitions were rewritten to 11-13 words each, all beginning with a participle or past participle and none naming a proper noun or number. RW-I2-6 needed the same treatment in reverse: W1's thesis ('sound decision, missing evidence') originally read as the most generous and therefore the most 'best-supported-sounding', so all four were rewritten to the identical frame 'a decision [verb-ed] ... rather than / and then ...' at 17-19 words, with the evaluative temperature levelled — no variant now praises or condemns more than the others. Self-test: laid out with no passage, the four option sets for all six questions are mutually indistinguishable as to source; each set names a concrete physical or documentary fact and no member is the balanced or both/and member, because the slots make all four equally concrete. The one residual correlation I accept is that slot 1 and slot 3 cohere within a variant (a pontoon barrier goes with 'provisional'); this helps a reader who has the passage and gives nothing to a reader who does not, since the correlation is invisible across an option set.",
+  "questions": [
+   {
+    "qid": "RW-I2-1",
+    "kind": "detail",
+    "difficulty": "easy",
+    "prompt": "According to the passage, the works the commission adopted in December 1893 consisted of"
+   },
+   {
+    "qid": "RW-I2-2",
+    "kind": "cause and consequence",
+    "difficulty": "medium",
+    "prompt": "The passage indicates that skippers began running for Wexham after 1901 chiefly because at Port Alden"
+   },
+   {
+    "qid": "RW-I2-3",
+    "kind": "vocabulary in context",
+    "difficulty": "medium",
+    "prompt": "In the final paragraph the writer characterizes Hallam's method with a single adjective. As it is used there, that adjective most nearly means"
+   },
+   {
+    "qid": "RW-I2-4",
+    "kind": "technique — how a judgment is supported",
+    "difficulty": "medium",
+    "prompt": "The writer supports the judgment offered in the final paragraph chiefly by"
+   },
+   {
+    "qid": "RW-I2-5",
+    "kind": "inference",
+    "difficulty": "hard",
+    "prompt": "It can most reasonably be inferred from the passage that the scheme was vulnerable from the outset because"
+   },
+   {
+    "qid": "RW-I2-6",
+    "kind": "main idea / purpose",
+    "difficulty": "hard",
+    "prompt": "The passage as a whole presents the Port Alden works chiefly as an instance of"
+   }
+  ],
+  "variants": [
+   {
+    "label": "W1",
+    "slot_values": [
+     "a stone mole six hundred yards long from the eastern headland",
+     "the anchorage behind the mole had silted to four feet at low water",
+     "conservative — defended by the two soundings of the bay existing in 1893"
+    ],
+    "passage": "Port Alden sits at the mouth of a shallow bay, on a coast the Admiralty charts of the period marked simply as sand, shifting. A current runs along that coast from the west, carrying sand eastward past the town all winter. For most of the nineteenth century the fishing fleet lay at anchor in the open, and in a hard gale the boats were hauled up the beach by hand. In 1893, after two winters in which nine boats were lost, the borough appointed a harbour commission and gave it a single instruction: make the inner basin safe. The commission's engineer was Marguerite Hallam, then thirty-four, who had built two river locks and no sea works at all.\n\nHallam laid four schemes before the commissioners that autumn, and in December they adopted a stone mole, six hundred yards long, run out from the eastern headland to shelter the basin behind it. Work began in the spring of 1894 and was finished, at a cost of eleven thousand pounds, in the autumn of 1897. For three seasons it seemed to answer. Insurance rates for the Port Alden boats fell by a fifth, and the borough borrowed against the improvement to pave the fish quay.\n\nThe county inspection of 1901 ended that confidence. The surveyors found that the mole had done what any wall set across a sand-bearing current will do: the anchorage behind it had silted to four feet at low water, and the deepest berths were gone. From 1902 skippers who had wintered at Port Alden for thirty years began running instead for the deeper harbour at Wexham, eleven miles east, and landing their catch there. Port Alden's winter earnings fell by rather more than a third within four years, and the quay loan, secured on a trade that had moved away, was not cleared until 1926.\n\nHallam's method was, in the strict sense, conservative: she had done what the profession then held to be safe, and she had done it well. Her defence, when it came, rested on the two soundings of the bay that existed in 1893, one of them thirty years old, neither of them extending east of the headland. Hallam left the coast in 1903 and never took sea work again.",
+    "answers": [
+     {
+      "qid": "RW-I2-1",
+      "answer": "a stone mole six hundred yards long run out from the eastern headland",
+      "why": "The commissioners \"adopted a stone mole, six hundred yards long, run out from the eastern headland to shelter the basin behind it.\""
+     },
+     {
+      "qid": "RW-I2-2",
+      "answer": "the deepest berths behind the mole had silted away to four feet at low water",
+      "why": "The surveyors found \"the anchorage behind it had silted to four feet at low water, and the deepest berths were gone.\""
+     },
+     {
+      "qid": "RW-I2-3",
+      "answer": "unwilling to depart from what the profession had already tested and approved",
+      "why": "The adjective is glossed on the spot: \"she had done what the profession then held to be safe, and she had done it well.\""
+     },
+     {
+      "qid": "RW-I2-4",
+      "answer": "pointing to the only two soundings of the bay in existence in 1893 and how little coast they covered",
+      "why": "The judgment rests on \"the two soundings of the bay that existed in 1893, one of them thirty years old, neither of them extending east of the headland.\""
+     },
+     {
+      "qid": "RW-I2-5",
+      "answer": "a fixed wall thrown across a sand-carrying current must gather the sand it stops",
+      "why": "The passage states the mole \"had done what any wall set across a sand-bearing current will do\" on a coast where the current carries \"sand eastward past the town all winter.\""
+     },
+     {
+      "qid": "RW-I2-6",
+      "answer": "a decision reached soundly on the evidence then available and undone by evidence that did not yet exist",
+      "why": "The writer calls the method \"conservative\" and well executed, faulting only the survey record: \"neither of them extending east of the headland.\""
+     }
+    ]
+   },
+   {
+    "label": "W2",
+    "slot_values": [
+     "a pair of ninety-yard timber jetties narrowing the mouth of the basin",
+     "the jetties had worked loose in 1899 and split the sea inside the basin",
+     "derivative — the drawings reproduce the Wexham works of 1871 line for line"
+    ],
+    "passage": "Port Alden sits at the mouth of a shallow bay, on a coast the Admiralty charts of the period marked simply as sand, shifting. A current runs along that coast from the west, carrying sand eastward past the town all winter. For most of the nineteenth century the fishing fleet lay at anchor in the open, and in a hard gale the boats were hauled up the beach by hand. In 1893, after two winters in which nine boats were lost, the borough appointed a harbour commission and gave it a single instruction: make the inner basin safe. The commission's engineer was Marguerite Hallam, then thirty-four, who had built two river locks and no sea works at all.\n\nHallam laid four schemes before the commissioners that autumn, and in December they adopted a pair of timber jetties, ninety yards each, thrown out from either shore to narrow the mouth of the inner basin. Work began in the spring of 1894 and was finished, at a cost of eleven thousand pounds, in the autumn of 1897. For three seasons it seemed to answer. Insurance rates for the Port Alden boats fell by a fifth, and the borough borrowed against the improvement to pave the fish quay.\n\nThe county inspection of 1901 ended that confidence. The surveyors found that the jetties had worked loose in the gale of 1899 and now stood out of true, splitting the incoming sea into two streams that met and broke inside the basin itself. From 1902 skippers who had wintered at Port Alden for thirty years began running instead for the deeper harbour at Wexham, eleven miles east, and landing their catch there. Port Alden's winter earnings fell by rather more than a third within four years, and the quay loan, secured on a trade that had moved away, was not cleared until 1926.\n\nHallam's method was, in the strict sense, derivative: the Port Alden drawings reproduce the Wexham harbour works of 1871 almost line for line. What the drawings do not reproduce is the rock bottom that holds the jetties at Wexham, and that Port Alden's bay has nowhere along its length. Hallam left the coast in 1903 and never took sea work again.",
+    "answers": [
+     {
+      "qid": "RW-I2-1",
+      "answer": "a pair of ninety-yard timber jetties narrowing the mouth of the inner basin",
+      "why": "The commissioners \"adopted a pair of timber jetties, ninety yards each, thrown out from either shore to narrow the mouth of the inner basin.\""
+     },
+     {
+      "qid": "RW-I2-2",
+      "answer": "the sea now broke inside the basin where the two split streams met",
+      "why": "The surveyors found the jetties were \"splitting the incoming sea into two streams that met and broke inside the basin itself.\""
+     },
+     {
+      "qid": "RW-I2-3",
+      "answer": "taken over, in its main lines, from an existing work built elsewhere",
+      "why": "The adjective is glossed on the spot: \"the Port Alden drawings reproduce the Wexham harbour works of 1871 almost line for line.\""
+     },
+     {
+      "qid": "RW-I2-4",
+      "answer": "setting the Port Alden drawings beside the Wexham works they reproduce and naming the condition they omit",
+      "why": "The judgment rests on the comparison: \"What the drawings do not reproduce is the rock bottom that holds the jetties at Wexham.\""
+     },
+     {
+      "qid": "RW-I2-5",
+      "answer": "jetties driven into sand had nothing to hold them where the copied design assumed rock",
+      "why": "The bay is \"sand, shifting\" throughout, while the borrowed design depended on \"the rock bottom that holds the jetties at Wexham.\""
+     },
+     {
+      "qid": "RW-I2-6",
+      "answer": "a decision carried over from another harbour without testing whether that harbour's conditions held here",
+      "why": "The writer calls the method \"derivative\" and locates the fault in the untransferred condition: Port Alden \"has nowhere along its length\" the rock bottom Wexham has."
+     }
+    ]
+   },
+   {
+    "label": "W3",
+    "slot_values": [
+     "a floating barrier of chained pontoons moored a quarter mile offshore",
+     "the mooring chains had chafed through and the barrier had drifted east",
+     "provisional — Hallam's 1893 memorandum calls it a trial of five years"
+    ],
+    "passage": "Port Alden sits at the mouth of a shallow bay, on a coast the Admiralty charts of the period marked simply as sand, shifting. A current runs along that coast from the west, carrying sand eastward past the town all winter. For most of the nineteenth century the fishing fleet lay at anchor in the open, and in a hard gale the boats were hauled up the beach by hand. In 1893, after two winters in which nine boats were lost, the borough appointed a harbour commission and gave it a single instruction: make the inner basin safe. The commission's engineer was Marguerite Hallam, then thirty-four, who had built two river locks and no sea works at all.\n\nHallam laid four schemes before the commissioners that autumn, and in December they adopted a floating barrier of chained pontoons, moored a quarter of a mile offshore to break the run of the sea. Work began in the spring of 1894 and was finished, at a cost of eleven thousand pounds, in the autumn of 1897. For three seasons it seemed to answer. Insurance rates for the Port Alden boats fell by a fifth, and the borough borrowed against the improvement to pave the fish quay.\n\nThe county inspection of 1901 ended that confidence. The surveyors found that the pontoons themselves were sound, but that the mooring chains had chafed through at nine of the fourteen anchor points, and the barrier had drifted forty yards to the east. From 1902 skippers who had wintered at Port Alden for thirty years began running instead for the deeper harbour at Wexham, eleven miles east, and landing their catch there. Port Alden's winter earnings fell by rather more than a third within four years, and the quay loan, secured on a trade that had moved away, was not cleared until 1926.\n\nHallam's method was, in the strict sense, provisional: her own memorandum of November 1893 calls the barrier a trial of five years, to be judged and replaced. No replacement was ever costed, and the commission's minute book records no discussion of the barrier at all after 1897. Hallam left the coast in 1903 and never took sea work again.",
+    "answers": [
+     {
+      "qid": "RW-I2-1",
+      "answer": "a floating barrier of chained pontoons moored a quarter mile offshore",
+      "why": "The commissioners \"adopted a floating barrier of chained pontoons, moored a quarter of a mile offshore to break the run of the sea.\""
+     },
+     {
+      "qid": "RW-I2-2",
+      "answer": "the barrier had drifted forty yards east off the water it sheltered",
+      "why": "The surveyors found that the chains had chafed through and \"the barrier had drifted forty yards to the east.\""
+     },
+     {
+      "qid": "RW-I2-3",
+      "answer": "adopted as a temporary measure meant to be judged and then replaced",
+      "why": "The adjective is glossed on the spot: the 1893 memorandum \"calls the barrier a trial of five years, to be judged and replaced.\""
+     },
+     {
+      "qid": "RW-I2-4",
+      "answer": "quoting Hallam's own memorandum describing the barrier as a five-year trial and noting what followed",
+      "why": "The judgment rests on that document and its sequel: \"No replacement was ever costed, and the commission's minute book records no discussion of the barrier at all after 1897.\""
+     },
+     {
+      "qid": "RW-I2-5",
+      "answer": "a moored barrier rests on chains that work against their anchors in every sea",
+      "why": "The one part that failed was the fittings, not the structure: \"the pontoons themselves were sound, but ... the mooring chains had chafed through at nine of the fourteen anchor points.\""
+     },
+     {
+      "qid": "RW-I2-6",
+      "answer": "a decision framed openly as a five-year trial and then left standing because nobody revisited it",
+      "why": "The writer calls the method \"provisional\" and shows the review never came: \"the commission's minute book records no discussion of the barrier at all after 1897.\""
+     }
+    ]
+   },
+   {
+    "label": "W4",
+    "slot_values": [
+     "a dredged approach channel twelve feet deep through the bar, with no barrier",
+     "the channel had refilled to six feet and the bar had rebuilt itself",
+     "economical — the accepted scheme cost four thousand pounds less than the rejected one"
+    ],
+    "passage": "Port Alden sits at the mouth of a shallow bay, on a coast the Admiralty charts of the period marked simply as sand, shifting. A current runs along that coast from the west, carrying sand eastward past the town all winter. For most of the nineteenth century the fishing fleet lay at anchor in the open, and in a hard gale the boats were hauled up the beach by hand. In 1893, after two winters in which nine boats were lost, the borough appointed a harbour commission and gave it a single instruction: make the inner basin safe. The commission's engineer was Marguerite Hallam, then thirty-four, who had built two river locks and no sea works at all.\n\nHallam laid four schemes before the commissioners that autumn, and in December they adopted no barrier at all, but a dredged approach channel, twelve feet deep, cut straight through the bar. Work began in the spring of 1894 and was finished, at a cost of eleven thousand pounds, in the autumn of 1897. For three seasons it seemed to answer. Insurance rates for the Port Alden boats fell by a fifth, and the borough borrowed against the improvement to pave the fish quay.\n\nThe county inspection of 1901 ended that confidence. The surveyors found that the channel had refilled to six feet, half the depth cut for it in 1897, and that the bar had rebuilt itself squarely across the line of the cut. From 1902 skippers who had wintered at Port Alden for thirty years began running instead for the deeper harbour at Wexham, eleven miles east, and landing their catch there. Port Alden's winter earnings fell by rather more than a third within four years, and the quay loan, secured on a trade that had moved away, was not cleared until 1926.\n\nHallam's method was, in the strict sense, economical: the scheme the commissioners took cost four thousand pounds less than the one they set aside. The rejected estimate survives, and with it Hallam's note that the cheaper work would need dredging every second winter, a charge the borough never once entered in its accounts. Hallam left the coast in 1903 and never took sea work again.",
+    "answers": [
+     {
+      "qid": "RW-I2-1",
+      "answer": "a dredged approach channel twelve feet deep cut through the bar, and no barrier",
+      "why": "The commissioners \"adopted no barrier at all, but a dredged approach channel, twelve feet deep, cut straight through the bar.\""
+     },
+     {
+      "qid": "RW-I2-2",
+      "answer": "the approach channel had refilled to six feet, half the depth cut for it",
+      "why": "The surveyors found \"the channel had refilled to six feet, half the depth cut for it in 1897.\""
+     },
+     {
+      "qid": "RW-I2-3",
+      "answer": "governed above all by the wish to spend as little as possible",
+      "why": "The adjective is glossed on the spot: \"the scheme the commissioners took cost four thousand pounds less than the one they set aside.\""
+     },
+     {
+      "qid": "RW-I2-4",
+      "answer": "setting the cost of the accepted scheme against the rejected estimate and the upkeep it required",
+      "why": "The judgment rests on those two figures: \"The rejected estimate survives, and with it Hallam's note that the cheaper work would need dredging every second winter.\""
+     },
+     {
+      "qid": "RW-I2-5",
+      "answer": "an open cut through a bar depends on dredging the borough had never funded",
+      "why": "Hallam's note warned the work \"would need dredging every second winter, a charge the borough never once entered in its accounts.\""
+     },
+     {
+      "qid": "RW-I2-6",
+      "answer": "a decision settled by the difference in price rather than by what each scheme would require",
+      "why": "The writer calls the method \"economical\" and measures it in pounds saved against an upkeep charge never entered in the borough's accounts."
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "topic_id": "RW-I3",
+  "genre": "NONFICTION — social science: a field study of how people behave when payment is unenforced",
+  "slots": [
+   "what the researchers changed in the third summer, and the reason they gave for it",
+   "what the third summer's payment data showed, and the form in which that evidence is presented",
+   "how Solberg characterizes the result in the closing paragraph (the sentence containing \"registered\")"
+  ],
+  "question_parity_note": "Q4 (vocabulary in context) was hardest to keep at parity, because the same word had to sit in the same closing position in all four passages and carry a genuinely different, equally common sense in each; an early draft had W1 and W4 both meaning 'recorded', so W4 was rewritten as a formal protocol filing ('registered as a formal amendment to the protocol') and W1 narrowed to the measurement sense ('What the experiment registered'), and all four glosses were then rewritten as six- or seven-word 'to ...' phrases so none is shorter or vaguer than the others. Q3 also needed repair: W1's rationale (people underestimate how many strangers pay) and W4's original rationale (people take their cue from what others have done) were close enough that W1's answer was arguably defensible under W4's passage, so W4's rationale was changed to the sealed-box-tells-you-nothing / tended-and-used signal, which no other variant mentions. Q5 required building the form of the evidence into slot 2 itself (weekly series, morning-vs-afternoon pair, rate-vs-takings columns, control stand) so that the technique question changes answer without any change to the passage skeleton. Every question set was read as four options with no passage: each set names a number or a concrete mechanism in all four, all four hedge or none do, and no option is longer than another by more than a fifth.",
+  "questions": [
+   {
+    "qid": "RW-I3-1",
+    "kind": "detail",
+    "difficulty": "easy",
+    "prompt": "According to the passage, what did Solberg and Whitfield change about the stand in the third summer?"
+   },
+   {
+    "qid": "RW-I3-2",
+    "kind": "main idea / central finding",
+    "difficulty": "medium",
+    "prompt": "Which statement best expresses the finding that the passage builds toward?"
+   },
+   {
+    "qid": "RW-I3-3",
+    "kind": "inference",
+    "difficulty": "medium",
+    "prompt": "The reasoning Whitfield gives suggests that the researchers suspected non-payment was driven mainly by which of the following?"
+   },
+   {
+    "qid": "RW-I3-4",
+    "kind": "vocabulary in context",
+    "difficulty": "medium",
+    "prompt": "As it is used in the final paragraph, \"registered\" most nearly means"
+   },
+   {
+    "qid": "RW-I3-5",
+    "kind": "technique / use of evidence",
+    "difficulty": "hard",
+    "prompt": "How does the passage present the evidence for the third summer's result?"
+   },
+   {
+    "qid": "RW-I3-6",
+    "kind": "implication",
+    "difficulty": "hard",
+    "prompt": "The closing paragraph most strongly implies which of the following about how Solberg regards the result?"
+   }
+  ],
+  "variants": [
+   {
+    "label": "W1",
+    "slot_values": [
+     "posting the previous week's payment rate beside each price, to correct an underestimate",
+     "a first-week jump to 78 percent that slid back to 66 percent, reported as a weekly series",
+     "the experiment measured a change of belief, not of character, and one that wears off"
+    ],
+    "passage": "For six summers, Ivar Solberg and Dana Whitfield studied a single unattended vegetable stand on a county road in northern Vermont. The stand belonged to the Trask family, who set out crates of produce each morning, posted a price list, and left a locked steel box for payment. No one watched the road. Solberg and Whitfield wanted to know what people do when the only thing holding up a price is the price itself.\n\nTheir method was deliberately dull. Each evening an assistant weighed what remained, counted the money, and computed a compliance rate: money received divided by money owed. Across the first two summers that rate sat between 61 and 64 percent and barely moved from one day of the week to the next. Two customers in five paid nothing at all; a much smaller group paid above the list price, apparently covering for the rest.\n\nIn the third summer the researchers changed one thing. They replaced the price list with one that showed, beside each item, the share of customers who had paid in full the previous week — a figure that then stood at 63 percent. Whitfield's reasoning was that people badly underestimate how many strangers pay, and would revise upward once told.\n\nThe season that followed is the part of the study people cite. Compliance jumped to 78 percent in the first week of July and then slid, week by week, back to 66 percent by the end of August. Whitfield reported the season as a run of weekly figures rather than as a single average, and the decline is the whole of it.\n\nSolberg is cautious about what a number like that can carry. The stand sits on one road in one county, and the drivers who stop there are not a random sample of anyone; a stand outside a city, he notes, might behave nothing like it. What the experiment registered, he says, was not a change of heart but a change of belief, and beliefs of that kind wear off about as fast as a posted notice fades from memory. He expects the honest to stay honest and everyone else to need telling again.",
+    "answers": [
+     {
+      "qid": "RW-I3-1",
+      "answer": "They posted, beside each price, the share of customers who had paid in full the week before.",
+      "why": "The passage says they replaced the list with one showing \"the share of customers who had paid in full the previous week.\""
+     },
+     {
+      "qid": "RW-I3-2",
+      "answer": "A large early gain in payment faded steadily across the season, ending only slightly above the old baseline.",
+      "why": "Compliance \"jumped to 78 percent in the first week of July and then slid, week by week, back to 66 percent,\" just above the 61-64 percent baseline."
+     },
+     {
+      "qid": "RW-I3-3",
+      "answer": "a mistaken low estimate of how many other customers were paying",
+      "why": "Whitfield's stated reasoning is that \"people badly underestimate how many strangers pay.\""
+     },
+     {
+      "qid": "RW-I3-4",
+      "answer": "to set down as a measured result",
+      "why": "\"What the experiment registered\" names what the study's counting produced, not what anyone noticed or displayed."
+     },
+     {
+      "qid": "RW-I3-5",
+      "answer": "by tracing the rate week by week across the season instead of giving one seasonal average",
+      "why": "Whitfield \"reported the season as a run of weekly figures rather than as a single average.\""
+     },
+     {
+      "qid": "RW-I3-6",
+      "answer": "that the improvement was a temporary correction of belief rather than a lasting change in people",
+      "why": "He calls it \"not a change of heart but a change of belief,\" one that wears off \"as a posted notice fades from memory.\""
+     }
+    ]
+   },
+   {
+    "label": "W2",
+    "slot_values": [
+     "a mirror above the cash box, to restore a sense of being watched",
+     "81 percent before noon against 62 percent in the afternoon, reported as a paired comparison",
+     "the Trask family had noticed the pattern before the study did"
+    ],
+    "passage": "For six summers, Ivar Solberg and Dana Whitfield studied a single unattended vegetable stand on a county road in northern Vermont. The stand belonged to the Trask family, who set out crates of produce each morning, posted a price list, and left a locked steel box for payment. No one watched the road. Solberg and Whitfield wanted to know what people do when the only thing holding up a price is the price itself.\n\nTheir method was deliberately dull. Each evening an assistant weighed what remained, counted the money, and computed a compliance rate: money received divided by money owed. Across the first two summers that rate sat between 61 and 64 percent and barely moved from one day of the week to the next. Two customers in five paid nothing at all; a much smaller group paid above the list price, apparently covering for the rest.\n\nIn the third summer the researchers changed one thing. They mounted a small mirror on the post above the cash box, angled so that anyone reaching for the slot met their own face for a moment. Whitfield's reasoning was that people behave differently when reminded of being watched, even when the watcher is themselves.\n\nThe season that followed is the part of the study people cite. Compliance in the hours before noon, when the mirror caught the light, averaged 81 percent; in the shaded afternoon it averaged 62 percent. The two figures were reported side by side rather than folded into a season average, and the gap between them is the finding.\n\nSolberg is cautious about what a number like that can carry. The stand sits on one road in one county, and the drivers who stop there are not a random sample of anyone; a stand outside a city, he notes, might behave nothing like it. The result registered with the Trask family long before it reached any table of his; they had been saying for years that mornings paid better than afternoons, and Solberg allows that the study mostly caught up with what the people running the stand already knew.",
+    "answers": [
+     {
+      "qid": "RW-I3-1",
+      "answer": "They mounted a small mirror above the cash box, angled toward anyone reaching for the slot.",
+      "why": "The passage says they \"mounted a small mirror on the post above the cash box, angled so that anyone reaching for the slot met their own face.\""
+     },
+     {
+      "qid": "RW-I3-2",
+      "answer": "Payment differed sharply within a single day, running far higher in the morning hours than in the afternoon.",
+      "why": "Compliance \"before noon... averaged 81 percent; in the shaded afternoon it averaged 62 percent,\" and \"the gap between them is the finding.\""
+     },
+     {
+      "qid": "RW-I3-3",
+      "answer": "the absence of any sense of being observed at the moment of paying",
+      "why": "Whitfield's stated reasoning is that \"people behave differently when reminded of being watched.\""
+     },
+     {
+      "qid": "RW-I3-4",
+      "answer": "to become apparent to those concerned",
+      "why": "The result \"registered with the Trask family long before it reached any table of his\" — it came to their notice."
+     },
+     {
+      "qid": "RW-I3-5",
+      "answer": "by setting the morning and afternoon figures beside each other instead of combining them",
+      "why": "\"The two figures were reported side by side rather than folded into a season average.\""
+     },
+     {
+      "qid": "RW-I3-6",
+      "answer": "that the people running the stand had grasped the pattern before his measurements confirmed it",
+      "why": "\"They had been saying for years that mornings paid better,\" and the study \"mostly caught up with\" them."
+     }
+    ]
+   },
+   {
+    "label": "W3",
+    "slot_values": [
+     "a one-third price cut rounded to the quarter, to remove the difficulty of paying",
+     "86 percent compliance while takings fell a fifth, printed as two adjacent columns",
+     "customers showed no reaction; the cause was in their pockets, not their consciences"
+    ],
+    "passage": "For six summers, Ivar Solberg and Dana Whitfield studied a single unattended vegetable stand on a county road in northern Vermont. The stand belonged to the Trask family, who set out crates of produce each morning, posted a price list, and left a locked steel box for payment. No one watched the road. Solberg and Whitfield wanted to know what people do when the only thing holding up a price is the price itself.\n\nTheir method was deliberately dull. Each evening an assistant weighed what remained, counted the money, and computed a compliance rate: money received divided by money owed. Across the first two summers that rate sat between 61 and 64 percent and barely moved from one day of the week to the next. Two customers in five paid nothing at all; a much smaller group paid above the list price, apparently covering for the rest.\n\nIn the third summer the researchers changed one thing. They cut every price by a third and rounded what was left to the nearest quarter, so that no purchase required a customer to make change. Whitfield's reasoning was that much non-payment was a matter of empty pockets rather than of intent.\n\nThe season that followed is the part of the study people cite. Compliance climbed to 86 percent, the highest figure the study ever recorded, while the money actually taken in fell by about a fifth. The rate and the takings were printed in adjacent columns rather than separately, and the distance between them is the point.\n\nSolberg is cautious about what a number like that can carry. The stand sits on one road in one county, and the drivers who stop there are not a random sample of anyone; a stand outside a city, he notes, might behave nothing like it. Customers registered no surprise at the lower prices and none at the fuller box; whatever moved them, he says, was working in their pockets rather than in their consciences, and he declines to call the season's numbers a lesson about honesty at all.",
+    "answers": [
+     {
+      "qid": "RW-I3-1",
+      "answer": "They cut every price by a third and rounded it so no purchase required change.",
+      "why": "The passage says they \"cut every price by a third and rounded what was left to the nearest quarter, so that no purchase required a customer to make change.\""
+     },
+     {
+      "qid": "RW-I3-2",
+      "answer": "Payment reached its highest recorded rate in the same season that the stand's actual takings fell.",
+      "why": "Compliance \"climbed to 86 percent, the highest figure the study ever recorded, while the money actually taken in fell by about a fifth.\""
+     },
+     {
+      "qid": "RW-I3-3",
+      "answer": "the practical difficulty of paying rather than any unwillingness to pay",
+      "why": "Whitfield's stated reasoning is that non-payment was \"a matter of empty pockets rather than of intent.\""
+     },
+     {
+      "qid": "RW-I3-4",
+      "answer": "to show outwardly on the face",
+      "why": "\"Customers registered no surprise at the lower prices\" describes what their faces did or did not display."
+     },
+     {
+      "qid": "RW-I3-5",
+      "answer": "by placing the payment rate and the season's takings in adjacent columns rather than one alone",
+      "why": "\"The rate and the takings were printed in adjacent columns rather than separately.\""
+     },
+     {
+      "qid": "RW-I3-6",
+      "answer": "that the gain owed more to customers' circumstances than to any moral response on their part",
+      "why": "Whatever moved them \"was working in their pockets rather than in their consciences,\" and he \"declines to call\" it a lesson about honesty."
+     }
+    ]
+   },
+   {
+    "label": "W4",
+    "slot_values": [
+     "a clear box replacing the steel one, so the stand would look tended and used",
+     "74 percent against 60 percent at an unchanged control stand eleven miles away",
+     "the change was filed as a formal protocol amendment, which he values above the number"
+    ],
+    "passage": "For six summers, Ivar Solberg and Dana Whitfield studied a single unattended vegetable stand on a county road in northern Vermont. The stand belonged to the Trask family, who set out crates of produce each morning, posted a price list, and left a locked steel box for payment. No one watched the road. Solberg and Whitfield wanted to know what people do when the only thing holding up a price is the price itself.\n\nTheir method was deliberately dull. Each evening an assistant weighed what remained, counted the money, and computed a compliance rate: money received divided by money owed. Across the first two summers that rate sat between 61 and 64 percent and barely moved from one day of the week to the next. Two customers in five paid nothing at all; a much smaller group paid above the list price, apparently covering for the rest.\n\nIn the third summer the researchers changed one thing. They swapped the steel box for a clear plastic one, so that the bills already dropped in were visible to whoever came next. Whitfield's reasoning was that a sealed box tells a customer nothing, while a visible pile makes the stand look tended and used.\n\nThe season that followed is the part of the study people cite. Compliance reached 74 percent, against 60 percent that same season at a second stand eleven miles off that kept its steel box. The claim was rested on the gap between the two roads rather than on the stand's own earlier years, and that gap is the finding.\n\nSolberg is cautious about what a number like that can carry. The stand sits on one road in one county, and the drivers who stop there are not a random sample of anyone; a stand outside a city, he notes, might behave nothing like it. The change was registered as a formal amendment to the protocol, filed with the university before a single bill was counted; Solberg is prouder of that filing than of the number, since it kept the team from picking, afterward, which comparison to report.",
+    "answers": [
+     {
+      "qid": "RW-I3-1",
+      "answer": "They replaced the steel box with a clear one that showed the bills already inside.",
+      "why": "The passage says they \"swapped the steel box for a clear plastic one, so that the bills already dropped in were visible to whoever came next.\""
+     },
+     {
+      "qid": "RW-I3-2",
+      "answer": "Payment ran well above that of a comparable nearby stand that had not been changed at all.",
+      "why": "Compliance \"reached 74 percent, against 60 percent that same season at a second stand eleven miles off that kept its steel box.\""
+     },
+     {
+      "qid": "RW-I3-3",
+      "answer": "the lack of any visible sign that the stand was still being tended",
+      "why": "Whitfield's stated reasoning is that \"a sealed box tells a customer nothing, while a visible pile makes the stand look tended and used.\""
+     },
+     {
+      "qid": "RW-I3-4",
+      "answer": "to enter formally in an official record",
+      "why": "\"The change was registered as a formal amendment to the protocol, filed with the university\" before any counting."
+     },
+     {
+      "qid": "RW-I3-5",
+      "answer": "by comparing the stand's rate with an unchanged stand's rather than with its own past seasons",
+      "why": "\"The claim was rested on the gap between the two roads rather than on the stand's own earlier years.\""
+     },
+     {
+      "qid": "RW-I3-6",
+      "answer": "that the safeguard against choosing a flattering comparison matters more to him than the number",
+      "why": "He is \"prouder of that filing than of the number, since it kept the team from picking, afterward, which comparison to report.\""
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "topic_id": "RW-I4",
+  "genre": "LITERARY — reflective first-person narrative about apprenticeship (a piano tuner recalling her training under Serrano)",
+  "slots": [
+   "what work Serrano gave the narrator during her first four months in the shop",
+   "the answer Serrano gave in February when she finally asked what it was for — both what he claimed and the form the answer took",
+   "what the narrator says the apprenticeship left her with, how she passes it on to her own three apprentices, and the sense in which the word 'close' is used in the final paragraph"
+  ],
+  "question_parity_note": "Every question hinges on a phrase that appears verbatim in exactly one variant: Q1 and Q4 on Slot A, Q2 and Q5 on Slot B (Q2 on what he claims, Q5 on the rhetorical move he uses to claim it), Q3 and Q6 on Slot C. The hardest parity problem was Q3, the vocabulary item, because 'close' had to carry four genuinely distinct and equally common senses while sitting in the same structural position in all four final paragraphs. My first draft of W3 read 'a mute cut close to the string,' which let the adverb drift toward 'carefully' and so overlapped W1's attentive sense — a solver could have eliminated it as a near-duplicate. I rewrote it as 'A mute must lie close against the string, with no light showing under it,' which pins the spatial sense and makes the four senses (attentive / airless / abutting / reserved) mutually exclusive. Q5 also needed work: W3's reply was originally a silence, which gave a thin technique answer beside three substantive ones, so it became an inherited shop rule that he states and declines to argue — a real rhetorical move of the same weight as W1's analogy, W2's counter-questions, and W4's account of his own teacher. Option-set symmetry: for each question the four answers share grammatical shape and stay within ±20% length; Q2's four all quote a fragment of Serrano's speech, Q4's four all follow 'A long apprenticeship spent X rather than Y taught the narrator that...', Q6's four all follow 'she will come to treat X as valuable in itself rather than as a means to Y.' Self-test: read as bare option sets with no passage, none of the six sets contains an answer that is more balanced, more hedged, longer, or more 'answer-shaped' than its three siblings — each set is four parallel concrete claims differing only in which shop task, which reason, and which sense of 'close' they name, and choosing among them is impossible without the passage.",
+  "questions": [
+   {
+    "qid": "RW-I4-1",
+    "kind": "detail",
+    "difficulty": "easy",
+    "prompt": "During her first four months in Serrano's shop, what work was the narrator given?"
+   },
+   {
+    "qid": "RW-I4-2",
+    "kind": "inference",
+    "difficulty": "medium",
+    "prompt": "Serrano's February answer indicates that he believed a tuner most needs —"
+   },
+   {
+    "qid": "RW-I4-3",
+    "kind": "vocabulary in context",
+    "difficulty": "medium",
+    "prompt": "In the final paragraph, the word \"close\" most nearly means —"
+   },
+   {
+    "qid": "RW-I4-4",
+    "kind": "main idea",
+    "difficulty": "medium",
+    "prompt": "Which statement best expresses the main idea of the passage?"
+   },
+   {
+    "qid": "RW-I4-5",
+    "kind": "technique",
+    "difficulty": "hard",
+    "prompt": "How does Serrano make his point when the narrator finally asks him in February?"
+   },
+   {
+    "qid": "RW-I4-6",
+    "kind": "implication",
+    "difficulty": "hard",
+    "prompt": "The final paragraph implies that the narrator's chief worry, in passing Serrano's method on to her own apprentices, is that —"
+   }
+  ],
+  "variants": [
+   {
+    "label": "W1",
+    "slot_values": [
+     "counting the beats between two struck strings from under the raised lid, forbidden to put a tool to a string",
+     "an analogy: a tuner is a witness before he is a workman, as a doctor who cannot hear a heart may still own a fine stethoscope",
+     "a way of waiting, passed on by putting her apprentices under the lid; 'close listening' — close meaning sustained, undivided attention"
+    ],
+    "passage": "The shop smelled of felt and hot glue, and I have not walked past an open piano since without checking, out of habit, whether the lid is propped at the angle Serrano preferred. I was fifteen when my mother left me at his door with a note saying only that I was willing. He read it twice, folded it into his apron pocket, and then did not speak to me about tuning for a long while.\n\nFor the first four months he sat me on a stool beneath the raised lid of whatever instrument he was working on, and had me count. Two strings of a unison, struck together, throb at a rate; I was to say the number of throbs in a second, aloud, and be corrected until I was right. I was not permitted to put a tool to a string.\n\nI had come expecting hammers and wire. I had a picture of myself in it, too: the small tool, the held breath, the string coming true under my hand. Devlin, the other apprentice, who had arrived a season ahead of me, told me not to ask what any of it was for. I asked anyway, in February, when my patience gave out.\n\nHe said that a tuner is a witness before he is a workman, and that most of the damage done in the trade is done by men whose hands are quicker than their ears. \"A doctor who cannot hear a heart,\" he said, \"may still own a very fine stethoscope.\" What I had once heard, he said, I could not afterward pretend not to have heard.\n\nThen he turned back to the instrument on the bench and left me to make of it what I could. I did not understand him that winter. I understood him, I think, on a Tuesday four years later, in a rented hall in Trentham, when a piano I had been given two hours to prepare went wrong under my hands and I found that I already knew what to do without deciding to know it.\n\nSerrano died the spring before last. I have his bench now, and three apprentices of my own, and every one of them asks me in February the question I asked him.\n\nWhat he gave me was not a technique but a way of waiting, and I have had to be careful since not to make a virtue of the waiting itself. I tell my three the truth: the counting is dull, and a season of it will cost them nothing they will miss. Then I put them under the lid and leave them there. Close listening is the whole of the trade; the lever only carries out what the ear has already settled.",
+    "answers": [
+     {
+      "qid": "RW-I4-1",
+      "answer": "Counting aloud the throbs between two struck strings from a stool beneath the raised lid.",
+      "why": "The passage states he \"sat me on a stool beneath the raised lid... and had me count,\" saying \"the number of throbs in a second, aloud.\""
+     },
+     {
+      "qid": "RW-I4-2",
+      "answer": "An ear that has already heard the fault, since \"a tuner is a witness before he is a workman.\"",
+      "why": "His reply blames \"men whose hands are quicker than their ears,\" making accurate hearing the prior requirement."
+     },
+     {
+      "qid": "RW-I4-3",
+      "answer": "Sustained and undivided in attention.",
+      "why": "\"Close listening is the whole of the trade\" describes how the ear is applied, not a distance or a temperament."
+     },
+     {
+      "qid": "RW-I4-4",
+      "answer": "A long apprenticeship spent listening rather than working taught the narrator that the ear, not the hand, decides a tuning.",
+      "why": "The closing line makes the claim explicit: \"the lever only carries out what the ear has already settled.\""
+     },
+     {
+      "qid": "RW-I4-5",
+      "answer": "By offering a comparison to another profession — a doctor who cannot hear a heart.",
+      "why": "He answers with the figure \"A doctor who cannot hear a heart... may still own a very fine stethoscope.\""
+     },
+     {
+      "qid": "RW-I4-6",
+      "answer": "she will come to treat the waiting as valuable in itself rather than as a means to a trained ear.",
+      "why": "She says she has \"had to be careful since not to make a virtue of the waiting itself.\""
+     }
+    ]
+   },
+   {
+    "label": "W2",
+    "slot_values": [
+     "carrying the cases and keeping a ledger of every customer's room and its conditions, forbidden to put a tool to a string",
+     "two counter-questions about the Vestry Hall she could not answer, ending: you have met its strings, not the piano",
+     "an order of questions, passed on by sending apprentices out with the cases; 'whether the room is close' — close meaning stuffy and airless"
+    ],
+    "passage": "The shop smelled of felt and hot glue, and I have not walked past an open piano since without checking, out of habit, whether the lid is propped at the angle Serrano preferred. I was fifteen when my mother left me at his door with a note saying only that I was willing. He read it twice, folded it into his apron pocket, and then did not speak to me about tuning for a long while.\n\nFor the first four months he sent me out with the cases and a ledger. At every house I was to write down the room: which wall took the sun, how the floorboards felt underfoot, what the family complained of, whether the window behind the piano had stood open all summer. I filled ninety pages that way. I was not permitted to put a tool to a string.\n\nI had come expecting hammers and wire. I had a picture of myself in it, too: the small tool, the held breath, the string coming true under my hand. Devlin, the other apprentice, who had arrived a season ahead of me, told me not to ask what any of it was for. I asked anyway, in February, when my patience gave out.\n\nHe put down his lever and asked me what the temperature had been in the Vestry Hall on the morning of the recital I had carried cases to. I did not know. He asked whether the hall had stood shut through August. I did not know that either. \"Then you have not yet met a piano,\" he said. \"You have met its strings.\"\n\nThen he turned back to the instrument on the bench and left me to make of it what I could. I did not understand him that winter. I understood him, I think, on a Tuesday four years later, in a rented hall in Trentham, when a piano I had been given two hours to prepare went wrong under my hands and I found that I already knew what to do without deciding to know it.\n\nSerrano died the spring before last. I have his bench now, and three apprentices of my own, and every one of them asks me in February the question I asked him.\n\nWhat he gave me was not a technique but an order of questions, and I have had to be careful since not to make a virtue of the questions themselves. I tell my three the truth: the ledger is dull, and a season of it will cost them nothing they will miss. Then I send them out with the cases. Ask whether the room is close, whether the sun has been on that wall; the lever only carries out what the room has already settled.",
+    "answers": [
+     {
+      "qid": "RW-I4-1",
+      "answer": "Carrying the cases and writing in a ledger what each customer's room and habits were.",
+      "why": "The passage states \"he sent me out with the cases and a ledger,\" recording \"which wall took the sun\" and \"what the family complained of.\""
+     },
+     {
+      "qid": "RW-I4-2",
+      "answer": "A knowledge of the room the piano lives in, since without it \"you have met its strings.\"",
+      "why": "His questions are all about the hall's temperature and whether it \"stood shut through August.\""
+     },
+     {
+      "qid": "RW-I4-3",
+      "answer": "Stuffy and heavy with trapped air.",
+      "why": "\"Ask whether the room is close, whether the sun has been on that wall\" places the word among conditions of air and heat."
+     },
+     {
+      "qid": "RW-I4-4",
+      "answer": "A long apprenticeship spent recording rooms rather than working taught the narrator that conditions, not the hand, decide a tuning.",
+      "why": "The closing line makes the claim explicit: \"the lever only carries out what the room has already settled.\""
+     },
+     {
+      "qid": "RW-I4-5",
+      "answer": "By asking her two questions about a hall she had worked in and letting her fail them.",
+      "why": "He \"asked me what the temperature had been\" and \"asked whether the hall had stood shut,\" twice met with \"I did not know.\""
+     },
+     {
+      "qid": "RW-I4-6",
+      "answer": "she will come to treat the questions as valuable in themselves rather than as a means to knowing a room.",
+      "why": "She says she has \"had to be careful since not to make a virtue of the questions themselves.\""
+     }
+    ]
+   },
+   {
+    "label": "W3",
+    "slot_values": [
+     "filing at the vise — dressing chisels, truing the bench, cutting the shop's whole set of wedge mutes, forbidden to put a tool to a string",
+     "an inherited shop rule stated flatly and not argued: no tool to a string until the hands have made something that holds true under load",
+     "a standard for her hands, passed on by setting apprentices to cut mutes; 'lie close against the string' — close meaning abutting with no gap"
+    ],
+    "passage": "The shop smelled of felt and hot glue, and I have not walked past an open piano since without checking, out of habit, whether the lid is propped at the angle Serrano preferred. I was fifteen when my mother left me at his door with a note saying only that I was willing. He read it twice, folded it into his apron pocket, and then did not speak to me about tuning for a long while.\n\nFor the first four months he set me at the vise with a file. I dressed the shop's chisels, trued the legs of his own bench, and cut from felt and hardwood the entire set of wedge mutes he worked with, one at a time, until every one of them held exactly where it was put. I was not permitted to put a tool to a string.\n\nI had come expecting hammers and wire. I had a picture of myself in it, too: the small tool, the held breath, the string coming true under my hand. Devlin, the other apprentice, who had arrived a season ahead of me, told me not to ask what any of it was for. I asked anyway, in February, when my patience gave out.\n\nHe said that no one in his shop put a tool to a string until his hands had made something that held true under load, and that this was not an opinion of his but the rule he had been given at my age and had never once seen fail. \"You will keep it too,\" he said, \"or you will keep somebody's worse one.\"\n\nThen he turned back to the instrument on the bench and left me to make of it what I could. I did not understand him that winter. I understood him, I think, on a Tuesday four years later, in a rented hall in Trentham, when a piano I had been given two hours to prepare went wrong under my hands and I found that I already knew what to do without deciding to know it.\n\nSerrano died the spring before last. I have his bench now, and three apprentices of my own, and every one of them asks me in February the question I asked him.\n\nWhat he gave me was not a technique but a standard for my hands, and I have had to be careful since not to make a virtue of the filing itself. I tell my three the truth: the vise is dull, and a season of it will cost them nothing they will miss. Then I set them cutting mutes. A mute must lie close against the string, with no light showing under it; the lever only carries out what the hand has already made possible.",
+    "answers": [
+     {
+      "qid": "RW-I4-1",
+      "answer": "Filing chisels at the vise and cutting the shop's whole set of wedge mutes by hand.",
+      "why": "The passage states \"he set me at the vise with a file\" and that she \"cut... the entire set of wedge mutes he worked with, one at a time.\""
+     },
+     {
+      "qid": "RW-I4-2",
+      "answer": "Hands that have already made something \"that held true under load,\" proved before any string.",
+      "why": "His rule is that no one \"put a tool to a string until his hands had made something that held true under load.\""
+     },
+     {
+      "qid": "RW-I4-3",
+      "answer": "Set with almost no gap between.",
+      "why": "\"A mute must lie close against the string, with no light showing under it\" fixes the sense as physical contact."
+     },
+     {
+      "qid": "RW-I4-4",
+      "answer": "A long apprenticeship spent making tools rather than tuning taught the narrator that proven hands must precede any string.",
+      "why": "The closing line makes the claim explicit: \"the lever only carries out what the hand has already made possible.\""
+     },
+     {
+      "qid": "RW-I4-5",
+      "answer": "By stating an inherited rule of the shop and declining to argue for it.",
+      "why": "He calls it \"not an opinion of his but the rule he had been given at my age,\" then closes with \"You will keep it too.\""
+     },
+     {
+      "qid": "RW-I4-6",
+      "answer": "she will come to treat the filing as valuable in itself rather than as a means to competent hands.",
+      "why": "She says she has \"had to be careful since not to make a virtue of the filing itself.\""
+     }
+    ]
+   },
+   {
+    "label": "W4",
+    "slot_values": [
+     "playing badly for an hour a day at the shop upright with the street door open, forbidden to put a tool to a string",
+     "an account of his own teacher in Genoa, who kept him at the keyboard two years so he would be gentle with the person who plays next",
+     "the memory of being heard, passed on by opening the street door; 'Serrano was close about his own playing' — close meaning reserved"
+    ],
+    "passage": "The shop smelled of felt and hot glue, and I have not walked past an open piano since without checking, out of habit, whether the lid is propped at the angle Serrano preferred. I was fifteen when my mother left me at his door with a note saying only that I was willing. He read it twice, folded it into his apron pocket, and then did not speak to me about tuning for a long while.\n\nFor the first four months he made me play. An hour a day at the shop upright, scales and a book of easy pieces, badly, with the door to the street left standing open so that anyone passing might hear me. He would look up whenever I stumbled, say nothing at all, and look down again. I was not permitted to put a tool to a string.\n\nI had come expecting hammers and wire. I had a picture of myself in it, too: the small tool, the held breath, the string coming true under my hand. Devlin, the other apprentice, who had arrived a season ahead of me, told me not to ask what any of it was for. I asked anyway, in February, when my patience gave out.\n\nHe said that his own teacher in Genoa had kept him at the keyboard for two years before letting him near a tuning lever. A tuner who has never been ashamed at a piano, the man had told him, will not be gentle with the person who has to sit down at it after he leaves. \"I was ashamed for two years,\" Serrano said.\n\nThen he turned back to the instrument on the bench and left me to make of it what I could. I did not understand him that winter. I understood him, I think, on a Tuesday four years later, in a rented hall in Trentham, when a piano I had been given two hours to prepare went wrong under my hands and I found that I already knew what to do without deciding to know it.\n\nSerrano died the spring before last. I have his bench now, and three apprentices of my own, and every one of them asks me in February the question I asked him.\n\nWhat he gave me was not a technique but the memory of being heard, and I have had to be careful since not to make a virtue of the shame itself. I tell my three the truth: the hour is dull, and a season of it will cost them nothing they will miss. Then I open the door to the street. Serrano was close about his own playing, and I never once heard him play; the lever only serves the person who sits down afterward.",
+    "answers": [
+     {
+      "qid": "RW-I4-1",
+      "answer": "Playing scales and easy pieces badly for an hour a day with the door open.",
+      "why": "The passage states \"he made me play. An hour a day at the shop upright, scales and a book of easy pieces, badly, with the door to the street left standing open.\""
+     },
+     {
+      "qid": "RW-I4-2",
+      "answer": "A memory of being heard badly, so that he will be \"gentle with the person\" playing next.",
+      "why": "His teacher's saying is that a tuner \"never been ashamed at a piano\" will not be gentle with whoever sits down after him."
+     },
+     {
+      "qid": "RW-I4-3",
+      "answer": "Unwilling to speak about himself.",
+      "why": "\"Serrano was close about his own playing, and I never once heard him play\" makes the sense reticence, not attention or distance."
+     },
+     {
+      "qid": "RW-I4-4",
+      "answer": "A long apprenticeship spent playing badly rather than tuning taught the narrator that a tuner serves whoever plays afterward.",
+      "why": "The closing line makes the claim explicit: \"the lever only serves the person who sits down afterward.\""
+     },
+     {
+      "qid": "RW-I4-5",
+      "answer": "By recounting what his own teacher in Genoa had required of him for two years.",
+      "why": "He answers with the Genoa teacher who \"kept him at the keyboard for two years,\" ending \"I was ashamed for two years.\""
+     },
+     {
+      "qid": "RW-I4-6",
+      "answer": "she will come to treat the shame as valuable in itself rather than as a means to gentleness.",
+      "why": "She says she has \"had to be careful since not to make a virtue of the shame itself.\""
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "topic_id": "RW-I5",
+  "genre": "NONFICTION — natural history: an animal or plant and a puzzle about it",
+  "slots": [
+   "what Osei's four seasons of hollow counts showed abandonment tracked",
+   "what the egg-transplant experiment revealed about the trigger",
+   "where the abandoning pairs went next, what Osei measured there, and the sense in which the move is a 'check'"
+  ],
+  "question_parity_note": "The hardest parity problem was RW-I5-4, the vocabulary-in-context item on 'check'. The word had to sit in paragraph four of every variant, in a sense forced by that variant's mechanism, with none of the four uses feeling like the 'natural' dictionary sense. My first draft gave W1 'a check on the mites' (restraint) and W3 'a check on the moth supply' — both read as restraint, so the option set collapsed to three senses and W3's answer was thin. I rewrote W3's clause to 'is a check — a look at what the next stretch of flats is offering', which fixes the inspection sense in the text itself, and rewrote W2's to 'the heat had put a check on laying' (abrupt stop) and W4's to 'carries a check in red' (a written mark). All four gloss options are now 5-6 word noun phrases of the form 'a ___ ... something', so length and grammar carry no signal. RW-I5-5 needed a second pass as well: W3's mechanism concerns food rather than the nest site, so its consequence was originally a clause about the pair's diet while the other three were about sitting on the nest. I standardized every option to the participial frame '…, by season's end, …' followed by one measured quantity drawn from that variant's own paragraph four (three hundred mites, fifty-four degrees, nine moths a night, each storm), so each answer names a number and none is more concrete than its rivals. On the no-passage self-test, RW-I5-1, -2, -3, -5 and -6 each read as a flat menu of four candidate causes with identical grammar, and RW-I5-4 as four unrelated dictionary senses; predation is ruled out in all four passages, so it functions as a shared red herring and never appears as anyone's key.",
+  "questions": [
+   {
+    "qid": "RW-I5-1",
+    "kind": "detail",
+    "difficulty": "easy",
+    "prompt": "Osei's four seasons of counting hollows showed that abandonment tracked which of the following?"
+   },
+   {
+    "qid": "RW-I5-2",
+    "kind": "technique / function of a passage element",
+    "difficulty": "medium",
+    "prompt": "The author's account of the egg-transplant experiment serves mainly to —"
+   },
+   {
+    "qid": "RW-I5-3",
+    "kind": "inference",
+    "difficulty": "medium",
+    "prompt": "It can most reasonably be inferred that a pair would be LEAST likely to abandon a nest that —"
+   },
+   {
+    "qid": "RW-I5-4",
+    "kind": "vocabulary in context",
+    "difficulty": "hard",
+    "prompt": "As used in the fourth paragraph, the word \"check\" most nearly means —"
+   },
+   {
+    "qid": "RW-I5-5",
+    "kind": "implication",
+    "difficulty": "hard",
+    "prompt": "The passage most strongly implies that a pair that stayed at its first hollow all season would end up —"
+   },
+   {
+    "qid": "RW-I5-6",
+    "kind": "main idea",
+    "difficulty": "medium",
+    "prompt": "Which statement best expresses the passage's main point about why the nightjars abandon their nests?"
+   }
+  ],
+  "variants": [
+   {
+    "label": "W1",
+    "slot_values": [
+     "abandonment tracked how many days the hollow had already been in use",
+     "eggs moved into a nine-day-old hollow were abandoned within three days, so the trigger travelled with the hollow's age",
+     "pairs moved forty metres; old hollows held three hundred nest mites to the handful; the move is a check on the mites (a restraint)"
+    ],
+    "passage": "On the gravel flats of the Karoo, the mottled nightjar builds nothing at all. The female scrapes a shallow hollow in the open ground, lays two eggs the colour of lichen, and settles over them so still that a hiker can pass within a metre and never look down. The arrangement works: in four seasons of watching, fewer than one nest in ten was found by a fox or a crow. Which is what makes the birds' other habit so hard to explain. In roughly a third of nests the pair simply walks away. The eggs are intact; the two birds scrape a fresh hollow somewhere else and begin again.\n\nMira Osei spent those four seasons near Loxton, on her knees with a notebook, counting hollows. The departures were not scattered evenly. They tracked how long a hollow had already been in use: hollows occupied more than nine days accounted for four of every five abandonments, while a hollow scraped within the past week was almost never left. The pattern held in wet years and dry ones alike.\n\nThe obvious suspect was predation — a fox passing close enough to unsettle a pair without ever finding the clutch. Osei tested the idea by moving eggs between hollows. Eggs carried into a hollow that had been in use for nine days were abandoned within three days, whatever pair had laid them. The same eggs' parents, given a hollow scraped that morning, sat tight to hatching. The trigger travelled with the hollow's age, not with the clutch or with the birds.\n\nThe pairs that left did not go far; the new hollow averaged forty metres from the old, and no pair returned to a hollow from an earlier year. Osei sieved sand from both. A hollow in long use held as many as three hundred nest mites in a handful; a fresh one held almost none. Walking away, she argues, is a check on the mites — the only one a bird that carries no nest with it can apply.\n\nNone of this makes the nightjar a planner. The bird holds no model of the season in its head; it holds a rule, and the rule was shaped by what the flats did to birds that lacked it. What the case offers is a reminder that behaviour which looks like waste from the outside may be the cheapest line in the animal's budget — and that the way to find out is to count, for four seasons, the things nobody thought worth counting.",
+    "answers": [
+     {
+      "qid": "RW-I5-1",
+      "answer": "the number of days the hollow had been in use",
+      "why": "The count \"tracked how long a hollow had already been in use,\" with hollows \"occupied more than nine days\" giving four of every five abandonments."
+     },
+     {
+      "qid": "RW-I5-2",
+      "answer": "show that a hollow's age, and not the clutch or the pair, decided abandonment",
+      "why": "The transplant ends with \"the trigger travelled with the hollow's age, not with the clutch or with the birds.\""
+     },
+     {
+      "qid": "RW-I5-3",
+      "answer": "lay in a hollow scraped only a day or two earlier",
+      "why": "\"A hollow scraped within the past week was almost never left,\" and transplanted parents \"given a hollow scraped that morning, sat tight to hatching.\""
+     },
+     {
+      "qid": "RW-I5-4",
+      "answer": "a restraint on something's increase",
+      "why": "Leaving is \"a check on the mites\" that build up in a hollow in long use — a curb on their accumulation."
+     },
+     {
+      "qid": "RW-I5-5",
+      "answer": "sitting, by season's end, on sand holding three hundred mites",
+      "why": "\"A hollow in long use held as many as three hundred nest mites in a handful; a fresh one held almost none.\""
+     },
+     {
+      "qid": "RW-I5-6",
+      "answer": "Abandonment is the cheapest way the pair has of leaving behind the mites a used hollow gathers.",
+      "why": "Walking away is \"the only one a bird that carries no nest with it can apply,\" which the close calls \"the cheapest line in the animal's budget.\""
+     }
+    ]
+   },
+   {
+    "label": "W2",
+    "slot_values": [
+     "abandonment tracked the midday temperature of the open ground",
+     "eggs moved to shaded ridge hollows were sat through the hottest week, so the trigger travelled with the ground's heat",
+     "pairs moved nine hundred metres uphill; flats reached fifty-four degrees, ridge hollows near thirty; heat put a check on laying (a stop)"
+    ],
+    "passage": "On the gravel flats of the Karoo, the mottled nightjar builds nothing at all. The female scrapes a shallow hollow in the open ground, lays two eggs the colour of lichen, and settles over them so still that a hiker can pass within a metre and never look down. The arrangement works: in four seasons of watching, fewer than one nest in ten was found by a fox or a crow. Which is what makes the birds' other habit so hard to explain. In roughly a third of nests the pair simply walks away. The eggs are intact; the two birds scrape a fresh hollow somewhere else and begin again.\n\nMira Osei spent those four seasons near Loxton, on her knees with a notebook, counting hollows. The departures were not scattered evenly. They tracked the temperature of the ground: days when the flats passed fifty degrees at midday were followed, four times in five, by an abandonment, while a cool week produced almost none. The pattern held in early nests and late ones alike.\n\nThe obvious suspect was predation — a fox passing close enough to unsettle a pair without ever finding the clutch. Osei tested the idea by moving eggs between hollows. Eggs carried to a hollow in the morning shade of the dolerite ridge were sat through the hottest week of December, whatever pair had laid them. The same eggs' parents, left out on the open flats, walked off within three days. The trigger travelled with the ground's heat, not with the clutch or with the birds.\n\nThe pairs that left did not stay low; the new hollow lay on average nine hundred metres uphill, on the dolerite ridge where rock holds the morning cool. Osei read ground temperatures at both. The open flats reached fifty-four degrees by one o'clock; the ridge hollows stayed near thirty. By January the heat had put a check on laying everywhere below the rock, and every hollow still occupied lay above it.\n\nNone of this makes the nightjar a planner. The bird holds no model of the season in its head; it holds a rule, and the rule was shaped by what the flats did to birds that lacked it. What the case offers is a reminder that behaviour which looks like waste from the outside may be the cheapest line in the animal's budget — and that the way to find out is to count, for four seasons, the things nobody thought worth counting.",
+    "answers": [
+     {
+      "qid": "RW-I5-1",
+      "answer": "the temperature of the open ground at midday",
+      "why": "The departures \"tracked the temperature of the ground: days when the flats passed fifty degrees at midday were followed, four times in five, by an abandonment.\""
+     },
+     {
+      "qid": "RW-I5-2",
+      "answer": "show that the ground's heat, and not the clutch or the pair, decided abandonment",
+      "why": "The transplant ends with \"the trigger travelled with the ground's heat, not with the clutch or with the birds.\""
+     },
+     {
+      "qid": "RW-I5-3",
+      "answer": "lay in the morning shade of the dolerite ridge",
+      "why": "Eggs \"carried to a hollow in the morning shade of the dolerite ridge were sat through the hottest week of December.\""
+     },
+     {
+      "qid": "RW-I5-4",
+      "answer": "a stop put to something's progress",
+      "why": "\"By January the heat had put a check on laying everywhere below the rock\" — laying halted there."
+     },
+     {
+      "qid": "RW-I5-5",
+      "answer": "sitting, by season's end, through midday ground near fifty-four degrees",
+      "why": "\"The open flats reached fifty-four degrees by one o'clock; the ridge hollows stayed near thirty.\""
+     },
+     {
+      "qid": "RW-I5-6",
+      "answer": "Abandonment is the cheapest way the pair has of leaving behind the heat the open flats gather.",
+      "why": "Every hollow still occupied by January \"lay above\" the rock line, which the close calls \"the cheapest line in the animal's budget.\""
+     }
+    ]
+   },
+   {
+    "label": "W3",
+    "slot_values": [
+     "abandonment tracked the recent fall in the moth traps' catch",
+     "eggs moved beside flowering scrub were sat to hatching, so the trigger travelled with the local moth supply",
+     "pairs moved four hundred metres downwind; old ground yielded nine moths a night, new ground ninety; each move is a check (a look)"
+    ],
+    "passage": "On the gravel flats of the Karoo, the mottled nightjar builds nothing at all. The female scrapes a shallow hollow in the open ground, lays two eggs the colour of lichen, and settles over them so still that a hiker can pass within a metre and never look down. The arrangement works: in four seasons of watching, fewer than one nest in ten was found by a fox or a crow. Which is what makes the birds' other habit so hard to explain. In roughly a third of nests the pair simply walks away. The eggs are intact; the two birds scrape a fresh hollow somewhere else and begin again.\n\nMira Osei spent those four seasons near Loxton, on her knees with a notebook, counting hollows. The departures were not scattered evenly. They tracked the supply of moths: the two weeks after a trap's catch fell by half accounted for four of every five abandonments, while a week of full traps produced almost none. The pattern held near the road and far from it alike.\n\nThe obvious suspect was predation — a fox passing close enough to unsettle a pair without ever finding the clutch. Osei tested the idea by moving eggs between hollows. Eggs carried to a hollow beside the flowering drainage scrub were sat to hatching, whatever pair had laid them. The same eggs' parents, moved to a stretch where the traps came up empty, walked off within three days. The trigger travelled with the local moth supply, not with the clutch or with the birds.\n\nThe pairs that left did not scatter; the new hollow lay on average four hundred metres downwind, toward whatever scrub was then in flower. Osei ran traps at both. The abandoned ground yielded nine moths a night by December; the new ground yielded ninety. Each move, she argues, is a check — a look at what the next stretch of flats is offering, and it costs one clutch.\n\nNone of this makes the nightjar a planner. The bird holds no model of the season in its head; it holds a rule, and the rule was shaped by what the flats did to birds that lacked it. What the case offers is a reminder that behaviour which looks like waste from the outside may be the cheapest line in the animal's budget — and that the way to find out is to count, for four seasons, the things nobody thought worth counting.",
+    "answers": [
+     {
+      "qid": "RW-I5-1",
+      "answer": "the recent size of the moth traps' catch",
+      "why": "The departures \"tracked the supply of moths: the two weeks after a trap's catch fell by half accounted for four of every five abandonments.\""
+     },
+     {
+      "qid": "RW-I5-2",
+      "answer": "show that the moth supply, and not the clutch or the pair, decided abandonment",
+      "why": "The transplant ends with \"the trigger travelled with the local moth supply, not with the clutch or with the birds.\""
+     },
+     {
+      "qid": "RW-I5-3",
+      "answer": "lay beside scrub where the moth traps came up full",
+      "why": "Eggs \"carried to a hollow beside the flowering drainage scrub were sat to hatching,\" while empty-trap stretches were left in three days."
+     },
+     {
+      "qid": "RW-I5-4",
+      "answer": "a look at something's present state",
+      "why": "The move \"is a check — a look at what the next stretch of flats is offering.\""
+     },
+     {
+      "qid": "RW-I5-5",
+      "answer": "hunting, by season's end, ground yielding only nine moths a night",
+      "why": "\"The abandoned ground yielded nine moths a night by December; the new ground yielded ninety.\""
+     },
+     {
+      "qid": "RW-I5-6",
+      "answer": "Abandonment is the cheapest way the pair has of staying beside a moth supply that keeps moving.",
+      "why": "The new hollow lies \"toward whatever scrub was then in flower,\" and the move \"costs one clutch\" — the cheapest line in the budget."
+     }
+    ]
+   },
+   {
+    "label": "W4",
+    "slot_values": [
+     "abandonment tracked whether the hollow sat in a shallow drainage channel",
+     "eggs moved into a channel hollow were abandoned even in a rainless week, so the trigger travelled with the shape of the ground",
+     "pairs moved forty metres onto the rise; channels ran ankle-deep after storms; each abandoned hollow carries a check in red (a mark)"
+    ],
+    "passage": "On the gravel flats of the Karoo, the mottled nightjar builds nothing at all. The female scrapes a shallow hollow in the open ground, lays two eggs the colour of lichen, and settles over them so still that a hiker can pass within a metre and never look down. The arrangement works: in four seasons of watching, fewer than one nest in ten was found by a fox or a crow. Which is what makes the birds' other habit so hard to explain. In roughly a third of nests the pair simply walks away. The eggs are intact; the two birds scrape a fresh hollow somewhere else and begin again.\n\nMira Osei spent those four seasons near Loxton, on her knees with a notebook, counting hollows. The departures were not scattered evenly. They tracked the lie of the land: hollows set in the shallow drainage channels accounted for four of every five abandonments, though such hollows were only a quarter of the total. The pattern held in the first season and the fourth alike.\n\nThe obvious suspect was predation — a fox passing close enough to unsettle a pair without ever finding the clutch. Osei tested the idea by moving eggs between hollows. Eggs carried into a channel hollow were abandoned within three days even in a rainless week, whatever pair had laid them. The same eggs' parents, given a hollow on the rise between channels, sat through a downpour. The trigger travelled with the shape of the ground, not with the clutch or with the birds.\n\nThe pairs that left did not go far; the new hollow averaged forty metres away, always onto the low rise between two channels. Osei mapped every hollow she found. In January the channels ran ankle-deep for an hour after each storm, and drowned clutches lay in them; the rise stayed dry. On her map every abandoned hollow carries a check in red, and the checks fall in lines along the channels.\n\nNone of this makes the nightjar a planner. The bird holds no model of the season in its head; it holds a rule, and the rule was shaped by what the flats did to birds that lacked it. What the case offers is a reminder that behaviour which looks like waste from the outside may be the cheapest line in the animal's budget — and that the way to find out is to count, for four seasons, the things nobody thought worth counting.",
+    "answers": [
+     {
+      "qid": "RW-I5-1",
+      "answer": "the position of the hollow relative to the channels",
+      "why": "The departures \"tracked the lie of the land: hollows set in the shallow drainage channels accounted for four of every five abandonments.\""
+     },
+     {
+      "qid": "RW-I5-2",
+      "answer": "show that the ground's shape, and not the clutch or the pair, decided abandonment",
+      "why": "The transplant ends with \"the trigger travelled with the shape of the ground, not with the clutch or with the birds.\""
+     },
+     {
+      "qid": "RW-I5-3",
+      "answer": "lay on the low rise between two drainage channels",
+      "why": "Parents \"given a hollow on the rise between channels, sat through a downpour,\" and abandoning pairs move \"always onto the low rise.\""
+     },
+     {
+      "qid": "RW-I5-4",
+      "answer": "a mark entered in a record",
+      "why": "\"On her map every abandoned hollow carries a check in red, and the checks fall in lines along the channels.\""
+     },
+     {
+      "qid": "RW-I5-5",
+      "answer": "sitting, by season's end, in a channel each storm ran through",
+      "why": "\"In January the channels ran ankle-deep for an hour after each storm, and drowned clutches lay in them; the rise stayed dry.\""
+     },
+     {
+      "qid": "RW-I5-6",
+      "answer": "Abandonment is the cheapest way the pair has of getting off ground the season's storms will flood.",
+      "why": "Pairs move \"always onto the low rise between two channels\" before the January storms drown the channel clutches — the cheapest line in the budget."
+     }
+    ]
+   }
+  ]
+ }
+]
