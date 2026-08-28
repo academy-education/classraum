@@ -52,3 +52,38 @@ zero. The v2 brief must change in three ways before any re-author:
 Add a per-slot join to check-batch-joins.mjs: for each question KIND,
 does one option shape win disproportionately across the batch? That is
 arithmetic and would have caught this before the attack fleet ran.
+
+## The per-kind join was built, break-tested, and FAILED (2026-08-28)
+
+`check-kind-joins.mjs` was written to catch this defect class before an
+attack fleet runs: group by question kind, then ask whether the key
+carries a shape feature (hedged / absolute / longest / shortest) more
+often than chance within that kind.
+
+It self-tests correctly on synthetic fixtures — a set where every tone
+key hedges is caught, a set where all four options hedge passes. But
+**break-tested against the very batch it was built from, it reports
+CLEAN**, both before and after fixing a real bug it did surface (kind
+labels are author free-text and fragment: "tone" and "tone/attitude"
+were counted as separate kinds, halving every group).
+
+Why it fails: the qualifier that marked those keys also appears in
+several distractors ("impatient affection strained by his habits",
+"uncritical devotion untouched by doubt"). The hunter's rule was a
+human-legible generalization, not a mechanical one. The real
+discriminator is semantic.
+
+**This is the SIXTH cheap structural proxy attempted in this repo, and
+like the previous five (key-letter spread, key-length rank,
+punctuation asymmetry, concessive-pivot rate, option-family balance) it
+does not rank batches.** Recorded here and in the script's header so
+nobody builds a seventh. The script stays as pre-flight REPORTING — it
+catches gross skew and the fragmented-label defect — but it is not a
+gate.
+
+For reading, the blind attack is the gate, and the v2 brief carries the
+load: assigned per-passage kind variety (drawn from a 10-kind pool, so
+no slot is always tone), uniform qualification and intensity within
+every option set, uniform specificity and grammar, secondary-sense
+vocabulary, and an author self-test whose result is returned as
+`anti_tell_note`.
