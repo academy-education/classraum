@@ -1474,6 +1474,30 @@ bank exists; live practice generation is what ships now. Peterson's
 practice PDFs are calibration reference ONLY — never ingest their
 items or passages into the bank (copyright).
 
+### READING UNBLOCKED: symmetric worlds beats the tell (2026-08-28)
+19 items banked as isee-reading-worlds-v1 — **the first Reading
+content either test has ever had**, after three authored-key briefs
+died at +58.3, +61.1 and +61.1. Attack −14.5 (below chance), hunter
+exploitable=false. Solvers armed with all three killer rules reported
+that TENSION "discriminated most reliably" and scored 15.9%; one
+marked all 23 confident and got 4. The heuristic is as loud as ever
+and now carries nothing, because every option is some variant's own
+best-supported reading. Third domain where the cr-v7 provenance cure
+succeeded after brief revision failed (CR, RS, now Reading).
+
+**But the cure makes items NON-INDEPENDENT** — the hunter could not
+predict a key yet reconstructed every topic's variant axis, because one
+shown variant answers all of that topic's questions. A student who
+spots the distinguishing fact scores 5/5; one who misses it scores 0/5.
+Five items per topic carry about one item's worth of information.
+Operating constraint: **assembly must draw at most ONE item per topic
+per form**, which sets the true authoring cost (~40 topics per test for
+three forms, not ~7 passages). Full record: READING-WORLDS-RESULT.md.
+
+**SSAT reading is still blocked, structurally**: N variants produce
+exactly N options, so a 5-choice test needs FIVE variants per topic.
+The renderer skipped every SSAT topic rather than ship 4-option items.
+
 ### Reading REFUTED under authored keys; volume s3 ships (2026-08-28)
 Shipped: ssat-verbal-s3 29, isee-verbal-s3 19, ssat-math-s3 18,
 isee-math-s3 30. **SSAT 178 items, ISEE 181.** The math difficulty

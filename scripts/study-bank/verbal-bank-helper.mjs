@@ -62,9 +62,13 @@ async function insert(family, batchPath, qcPath) {
       && raw.choices.includes(raw.correct_answer)
       && new Set(raw.choices.map(c => String(c).trim())).size === want
       && String(raw.prompt || '').trim() && String(raw.explanation || '').trim()
+      && (SECTION !== 'reading' || String(raw.passage || '').trim())
     if (!ok) { console.log(`SKIP ${label} — bad shape (${want} distinct choices incl. key required)`); rejected++; continue }
     const it = {
-      type: 'multiple_choice', blanks: null, graphic: null, passage: null, passageGroupId: null,
+      type: 'multiple_choice', blanks: null, graphic: null,
+      // reading cohorts carry a passage and group by topic; verbal/math do not
+      passage: raw.passage ?? null,
+      passageGroupId: raw.topic_id ? `rw-${raw.topic_id}` : null,
       prompt: raw.prompt, choices: raw.choices, correct_answer: raw.correct_answer,
       correct_answers: null, acceptable_answers: null,
       difficulty: raw.difficulty, explanation: raw.explanation,
@@ -73,9 +77,11 @@ async function insert(family, batchPath, qcPath) {
     const content_hash = hashOf(it)
     if (seen.has(content_hash)) { console.log(`DUP ${label}`); continue }
     const { error } = await db.from('study_item_bank').insert({
-      family, section: SECTION, domain: SECTION === 'math' ? 'Math' : 'Verbal',
+      family, section: SECTION,
+      domain: SECTION === 'math' ? 'Math' : SECTION === 'reading' ? 'Reading Comprehension' : 'Verbal',
       subskill: raw.subskill || raw.kind, task: 'multiple_choice', item_type: 'multiple_choice',
-      difficulty: raw.difficulty, topic_tag: raw.topic_tag || raw.kind, passage_group_id: null,
+      difficulty: raw.difficulty, topic_tag: raw.topic_tag || raw.kind,
+      passage_group_id: raw.topic_id ? `rw-${raw.topic_id}` : null,
       item: it, content_hash, word_count: null, verified: true, archived: false,
       source: 'hand', cohort: process.env.BANK_COHORT || `${family}-verbal-v1`,
       verify_meta: {

@@ -1199,6 +1199,47 @@
      "verdict": "Options-only sanity in the brief; solvers reported perfect-square and roundness signals that did not convert to accuracy."
     }
    }
+  },
+  {
+   "id": "isee-reading-worlds-v1-2026-08-28",
+   "createdAt": "2026-08-28",
+   "targetTest": "isee",
+   "section": "reading",
+   "task": "multiple_choice",
+   "family": "mc_hidden_source",
+   "spec": {
+    "n": 19,
+    "authors": 5,
+    "method": "SYMMETRIC WORLDS for reading: 4 passage variants per topic differing on 2-3 load-bearing fact slots, 6 questions asked of all four, seeded RNG picks the shown variant after freeze (READING-WORLDS-PREREGISTERED.md)"
+   },
+   "contentSha": "151cf612c5b5b81c6ae1f02dfcfa9bfd86b5aae322321d94800d6ba6d1919428",
+   "status": "shipped",
+   "cohort": "isee-reading-worlds-v1",
+   "note": "FIRST Reading content for either test, after three authored-key briefs died at +58.3/+61.1/+61.1. 23 rendered, 4 dropped by the cross-variant validity reviewer. Ten questions were dropped at render for sharing more vocabulary with another variant passage than their own. SSAT could not render: N variants give exactly N options and SSAT is 5-choice, so it needs a 5-variant re-author. KNOWN CONSTRAINT: items within a topic are non-independent (one shown variant answers all of them) — assembly must draw at most ONE item per topic per form; see READING-WORLDS-RESULT.md.",
+   "stages": {
+    "shape": {
+     "passed": true,
+     "contentSha": "151cf612c5b5b81c6ae1f02dfcfa9bfd86b5aae322321d94800d6ba6d1919428",
+     "verdict": "Render checks: skeleton reported, passage lengths within 12%, answers distinct across variants per question, no answer more at home in another variant passage (10 questions dropped on that), blind file asserted passage-free."
+    },
+    "withsource": {
+     "passed": true,
+     "verdict": "With-passage voters >=2/3 on every shipped item. Cross-variant validity reviewer: each answer fits its own passage only AND all four equally complete — 4 of 23 failed and were dropped."
+    },
+    "nosource": {
+     "passed": true,
+     "n": 23,
+     "verdict": "Blind attack, solvers explicitly armed with moderation, tension and specificity (the three rules that killed the previous briefs): mean 15.9% vs 30.4% control, margin −14.5 PASS. Solvers reported tension still fired loudly and scored below chance; one marked all 23 confident and got 4."
+    },
+    "elimination": {
+     "passed": true,
+     "verdict": "Hunter exploitable=false. It reconstructed the variant axis from options but could state no key-predicting rule; length, moderation and concreteness all tested flat. Its risk-1 (per-topic key-letter collapse) checked and cleared."
+    },
+    "tells": {
+     "passed": true,
+     "verdict": "Key spread 7/3/7/6 across the cohort; no topic collapses onto one letter."
+    }
+   }
   }
  ],
  "auditedCohorts": [
