@@ -1300,6 +1300,22 @@ gate-wiring test catches disagreement between the two). Any future
 BAS batch gates as family `production` (shape/withsource/tells) with a
 ledger.json entry at the exact file sha.
 
+### dl-fresh-v1: Daily Life stops binding TOEFL capacity (2026-08-28)
+58 questions / 29 authored-passage sets banked (260 rows, 130
+drawable sets, 0 singles — verified by count). The fallback mode
+pre-registered when siblings died twice WORKS, and works better:
+authored atypical-fact passages inverted every typicality heuristic
+(pilot −27.8, the lowest DL attack score recorded; one solver 0/12).
+The pattern hunter caught the pilot's name-pool recycling tell —
+missed by every per-item check — and Stage 2 designed it out with
+disjoint per-author name pools (zero cross-set recurrence, measured).
+One set dropped whole rather than stranding a single. Daily Life
+sittings 10.1 → 13.0; the binding constraint moves to Choose a
+Response (~12.7) and Listen-and-Repeat (~13.9). Full record:
+DL-FRESH-RESULT.md. **The pattern hunter is now standing equipment
+for any batch attack: cross-item tells decided three cohorts this
+month and no per-item instrument sees them.**
+
 ### interview-v2: 8 sets shipped; two instrument misfires caught (2026-08-28)
 32 rungs banked (12 → 20 four-rung sets; Speaking repeat-free
 sittings 12 → 20). The substantive gate for a free-response task is

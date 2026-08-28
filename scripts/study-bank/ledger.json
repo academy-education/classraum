@@ -370,6 +370,47 @@
      "verdict": "Topic-level distinctness 3/3 per set vs the 12 live topics and within batch; no rung-text Jaccard >= 0.5 within batch; the fixed 4-rung ladder is serving-visible structure, not a tell (free response, no key to leak)."
     }
    }
+  },
+  {
+   "id": "dl-fresh-v1-2026-08-28",
+   "createdAt": "2026-08-28",
+   "targetTest": "toefl",
+   "section": "reading",
+   "task": "daily_life",
+   "family": "mc_hidden_source",
+   "spec": {
+    "n": 58,
+    "authors": 18,
+    "method": "fresh 2-question sets with AUTHORED atypical-fact passages under the frozen flat-prior + form-symmetry brief; Stage 2 adds per-author disjoint name/number/room pools (DL-FRESH-PREREGISTERED.md)"
+   },
+   "contentSha": "5c16902b5a3d2d67d015df9b013db3946630ed07d2d3f39e966adcb7b8ff5605",
+   "status": "shipped",
+   "cohort": "dl-fresh-v1",
+   "note": "Pre-registration DL-FRESH-PREREGISTERED.md; evidence DL-FRESH-RESULT.md. 30 sets authored; set S12-2 dropped whole (weak-distractor question would have stranded its sibling as a single). Pilot name-pool recycling tell found by the pattern hunter and designed out at Stage 2 (zero cross-set name/number recurrence, measured).",
+   "stages": {
+    "shape": {
+     "passed": true,
+     "contentSha": "5c16902b5a3d2d67d015df9b013db3946630ed07d2d3f39e966adcb7b8ff5605",
+     "verdict": "58/58: 45-85 word passages, 4 distinct choices, key verbatim, assigned key-length ranks hit, tags exact, no cross-question leakage, name hygiene verified (no person name or phone/ext in more than one set)."
+    },
+    "withsource": {
+     "passed": true,
+     "verdict": "Key votes 3/3 UNANIMOUS on all 58 (pilot 12 + Stage-2 48, minus the dropped set). Grader (corrected-direction brief): all passage_needed=true; the one weak-distractor flag (S12-2-2) dropped its whole set."
+    },
+    "nosource": {
+     "passed": true,
+     "n": 36,
+     "verdict": "Pilot attack margin -27.8 (mean 13.9% vs 41.7% control — lowest DL attack score recorded; the atypicality design inverts typicality heuristics). Stage-2 held-out 24-question attack margin -1.4 PASS. Caveat recorded: Stage-2 absolute 40.3% sits above the pilot; the best-fixed-letter control (41.7%, lumpy sample) prices in the skew, and the solver that explicitly ran the hunter's hyper-specificity exploit scored exactly control level."
+    },
+    "elimination": {
+     "passed": true,
+     "verdict": "Cross-item pattern hunter ran on both attacks. Pilot: name-pool recycling found (exploit direction would have backfired; inverse learnable at scale) → Stage-2 name hygiene. Stage-2: hyper-specificity hypothesis, measured exploit value nil (specificity-solver at control)."
+    },
+    "tells": {
+     "passed": true,
+     "verdict": "verify-daily-life-repair mode A run BOTH directions (each set's questions as mutual siblings): key positions 31/28/21/21% and 21/24/38/17% (worst 38% < 40%), hedge-only-in-key 0%, key-longest 24%, no prompt/key duplication within sets."
+    }
+   }
   }
  ],
  "auditedCohorts": [
