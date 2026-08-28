@@ -1473,3 +1473,22 @@ SHIPPED_TEST_SLUGS — full mocks stay "coming soon" until a gated SSAT
 bank exists; live practice generation is what ships now. Peterson's
 practice PDFs are calibration reference ONLY — never ingest their
 items or passages into the bank (copyright).
+
+### Volume round 3: math scales, READING DIES ON THE FIRST TRY (2026-08-28)
+Shipped: ssat-math-s2 48 (attack −26.4), isee-math-s2 40 (−6.9).
+SSAT 131 items live, ISEE 132. eoi-v6 (−20.8, hunter clean) and
+math-v4 (−9.7) passed their attacks; QC completing after a session
+limit interrupted 19 agents mid-run.
+
+**Both Reading pilots KILLED at +58.3 and +61.1** — blind solvers
+answered 9 of 10 questions with no passage. The mechanism is the
+brief, and the brief was mine: I specified the same six question
+kinds, so every passage's Q6 was a tone question and the key was
+always the one option carrying an internal qualifier while the
+distractors were affectively extreme. Four slot-rules, each firing
+4/4. Full record + the three v2 brief changes: READING-PILOT-KILLED.md.
+
+**New standing check to add**: a per-KIND join — across a batch, does
+one option shape win disproportionately within a question kind? That
+is arithmetic, and it would have caught this before the attack fleet
+ran. The existing joins are per-batch; this defect lives per-slot.

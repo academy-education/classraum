@@ -1,0 +1,1202 @@
+[
+ {
+  "id": "IQ7",
+  "difficulty": "easy",
+  "subskill": "multi-step cost comparison",
+  "topic_tag": "word problems: unit cost",
+  "prompt": "A market sells rice in two sizes: a 6-kilogram bag for $27 and a 10-kilogram bag for $42. A restaurant needs exactly 30 kilograms of rice and will buy bags of a single size. How many dollars less does the rice cost if the restaurant buys 10-kilogram bags instead of 6-kilogram bags?",
+  "choices": [
+   "9",
+   "15",
+   "54",
+   "75"
+  ],
+  "correct_answer": "9",
+  "explanation": "Thirty kilograms takes five 6-kilogram bags at $27 each, or $135, and three 10-kilogram bags at $42 each, or $126. The difference is $135 - $126 = $9.",
+  "solve": "const smallTotal = 5 * 27;\nconst largeTotal = 3 * 42;\nreturn smallTotal - largeTotal;",
+  "distractor_steps": [
+   {
+    "choice": "15",
+    "mis_step": "Compares the two bag prices directly ($42 - $27) and ignores that different numbers of bags are needed."
+   },
+   {
+    "choice": "54",
+    "mis_step": "Notes that 2 fewer bags are bought (5 versus 3) and multiplies 2 by the $27 bag price."
+   },
+   {
+    "choice": "75",
+    "mis_step": "Multiplies the $15 difference in bag prices by the 5 bags of the smaller size."
+   }
+  ]
+ },
+ {
+  "id": "IQ9",
+  "difficulty": "easy",
+  "subskill": "sequential discounts",
+  "topic_tag": "percent: markdowns",
+  "prompt": "A jacket is priced at $80. During a sale it is marked down 25 percent, and then a store coupon takes an additional $8 off the marked-down price. How many dollars does a customer pay for the jacket?",
+  "choices": [
+   "47",
+   "52",
+   "54",
+   "72"
+  ],
+  "correct_answer": "52",
+  "explanation": "A 25 percent markdown leaves 75 percent of $80, which is $60, and the $8 coupon brings the price to $60 - $8 = $52.",
+  "solve": "const afterPercent = 80 * 75 / 100;\nreturn afterPercent - 8;",
+  "distractor_steps": [
+   {
+    "choice": "47",
+    "mis_step": "Treats the 25 percent markdown as a flat $25 off, computing 80 - 25 - 8."
+   },
+   {
+    "choice": "54",
+    "mis_step": "Applies the $8 coupon first and then takes 25 percent off, computing 0.75 times 72."
+   },
+   {
+    "choice": "72",
+    "mis_step": "Applies only the $8 coupon and ignores the 25 percent markdown."
+   }
+  ]
+ },
+ {
+  "id": "IQ10",
+  "difficulty": "medium",
+  "subskill": "ratio with a change to one part",
+  "topic_tag": "ratio and proportion",
+  "prompt": "In a school club the ratio of seventh graders to eighth graders is 3 to 5. After 12 more seventh graders join and no other members change, the ratio of seventh graders to eighth graders becomes 3 to 4. How many eighth graders are in the club?",
+  "choices": [
+   "20",
+   "48",
+   "60",
+   "80"
+  ],
+  "correct_answer": "80",
+  "explanation": "Writing the original counts as 3k and 5k gives 4(3k + 12) = 3(5k), so 12k + 48 = 15k and k = 16, making the number of eighth graders 5 times 16, or 80.",
+  "solve": "let k = 0;\nfor (let i = 1; i <= 500; i++) {\n  if (4 * (3 * i + 12) === 15 * i) { k = i; break; }\n}\nreturn 5 * k;",
+  "distractor_steps": [
+   {
+    "choice": "20",
+    "mis_step": "Adds the 12 new members to both groups, solving 4(3k + 12) = 3(5k + 12) to get k = 4 and 5k = 20."
+   },
+   {
+    "choice": "48",
+    "mis_step": "Solves for k = 16 correctly but reports 3k, the number of seventh graders before the 12 joined."
+   },
+   {
+    "choice": "60",
+    "mis_step": "Reports the number of seventh graders after the 12 joined rather than the number of eighth graders."
+   }
+  ]
+ },
+ {
+  "id": "IQ11",
+  "difficulty": "medium",
+  "subskill": "average rate over two legs",
+  "topic_tag": "rate, time, distance",
+  "prompt": "A delivery van drives 120 miles to a warehouse at an average speed of 40 miles per hour and returns along the same 120-mile route at an average speed of 60 miles per hour. What is the van's average speed, in miles per hour, for the entire round trip?",
+  "choices": [
+   "52",
+   "50",
+   "48",
+   "24"
+  ],
+  "correct_answer": "48",
+  "explanation": "The trip out takes 120 divided by 40, or 3 hours, and the return takes 120 divided by 60, or 2 hours, so 240 miles are covered in 5 hours, giving 240 divided by 5, or 48 miles per hour.",
+  "solve": "const d = 120;\nconst time = d / 40 + d / 60;\nreturn (2 * d) / time;",
+  "distractor_steps": [
+   {
+    "choice": "52",
+    "mis_step": "Weights each speed by the wrong leg's time, computing (40 times 2 plus 60 times 3) divided by 5."
+   },
+   {
+    "choice": "50",
+    "mis_step": "Averages the two speeds directly as (40 + 60) divided by 2, ignoring that the slower leg takes longer."
+   },
+   {
+    "choice": "24",
+    "mis_step": "Divides only the one-way distance of 120 miles by the total round-trip time of 5 hours."
+   }
+  ]
+ },
+ {
+  "id": "IQ12",
+  "difficulty": "medium",
+  "subskill": "overlapping groups",
+  "topic_tag": "sets and counting",
+  "prompt": "A gym has 30 members. Of these, 18 take the yoga class, 14 take the spin class, and 5 take neither class. How many members take both classes?",
+  "choices": [
+   "2",
+   "7",
+   "11",
+   "25"
+  ],
+  "correct_answer": "7",
+  "explanation": "Since 5 of the 30 members take neither class, 25 take at least one, and 18 + 14 = 32 counts the overlap twice, so 32 - 25 = 7 members take both.",
+  "solve": "const atLeastOne = 30 - 5;\nreturn 18 + 14 - atLeastOne;",
+  "distractor_steps": [
+   {
+    "choice": "2",
+    "mis_step": "Computes 18 + 14 - 30, using the full membership instead of the 25 who take at least one class."
+   },
+   {
+    "choice": "11",
+    "mis_step": "Computes 25 - 14, which counts the members who take yoga only."
+   },
+   {
+    "choice": "25",
+    "mis_step": "Reports the number of members taking at least one class rather than the number taking both."
+   }
+  ]
+ },
+ {
+  "id": "IQ13",
+  "difficulty": "hard",
+  "subskill": "combined rates with a head start",
+  "topic_tag": "work and rate",
+  "prompt": "Pipe A alone fills an empty tank in 6 hours, and pipes A and B running together fill the same empty tank in 4 hours. Starting with the tank empty, pipe B runs alone for 3 hours, and then pipe A is turned on as well. How many additional hours are needed to finish filling the tank?",
+  "choices": [
+   "9",
+   "4",
+   "3",
+   "2"
+  ],
+  "correct_answer": "3",
+  "explanation": "Calling the tank 12 units, the two pipes together fill 3 units per hour and pipe A fills 2 units per hour, so pipe B fills 1 unit per hour and puts in 3 units during its first 3 hours; the remaining 9 units at 3 units per hour take 3 hours.",
+  "solve": "const tank = 12;\nconst rateBoth = tank / 4;\nconst rateA = tank / 6;\nconst rateB = rateBoth - rateA;\nreturn (tank - 3 * rateB) / rateBoth;",
+  "distractor_steps": [
+   {
+    "choice": "9",
+    "mis_step": "Fills the remaining 9 units at pipe B's rate of 1 unit per hour instead of the combined rate of 3 units per hour."
+   },
+   {
+    "choice": "4",
+    "mis_step": "Ignores the 3-hour head start and reports the 4 hours the two pipes need to fill the tank from empty."
+   },
+   {
+    "choice": "2",
+    "mis_step": "Uses pipe A's rate of 2 units per hour for pipe B, so the head start fills 6 units and the remaining 6 units take 2 hours."
+   }
+  ]
+ },
+ {
+  "id": "IQ14",
+  "difficulty": "medium",
+  "subskill": "mixture concentration",
+  "topic_tag": "percent: mixtures",
+  "prompt": "A tank holds 40 liters of a solution that is 30 percent acid by volume. How many liters of pure acid must be added, with nothing removed, so that the resulting solution is 50 percent acid by volume?",
+  "choices": [
+   "28",
+   "16",
+   "12",
+   "8"
+  ],
+  "correct_answer": "16",
+  "explanation": "The 40 liters contain 12 liters of acid and 28 liters of water, and the water is unchanged, so at 50 percent acid the 28 liters of water must be half the new total, making the new total 56 liters and the amount added 56 - 40 = 16 liters.",
+  "solve": "const acid = 40 * 3 / 10;\nconst water = 40 - acid;\nconst newTotal = water * 2;\nreturn newTotal - 40;",
+  "distractor_steps": [
+   {
+    "choice": "28",
+    "mis_step": "Reports the 28 liters of water in the original solution as the amount of acid to add."
+   },
+   {
+    "choice": "12",
+    "mis_step": "Reports the 12 liters of acid already present instead of the amount that must be added."
+   },
+   {
+    "choice": "8",
+    "mis_step": "Solves 12 + x = 0.5 times 40, holding the total volume at 40 liters and ignoring that added acid increases the total."
+   }
+  ]
+ },
+ {
+  "id": "IQ15",
+  "difficulty": "hard",
+  "subskill": "scaling and area",
+  "topic_tag": "geometry: similar figures",
+  "prompt": "A rectangular photograph measures 4 inches by 6 inches. It is enlarged proportionally so that its longer side measures 15 inches. By how many square inches does the area of the photograph increase?",
+  "choices": [
+   "171",
+   "150",
+   "126",
+   "36"
+  ],
+  "correct_answer": "126",
+  "explanation": "The longer side grows from 6 inches to 15 inches, a scale factor of 2.5, so the shorter side becomes 10 inches and the new area is 10 times 15, or 150 square inches, an increase of 150 - 24 = 126 square inches.",
+  "solve": "const scale = 15 / 6;\nconst newArea = (4 * scale) * 15;\nreturn newArea - 4 * 6;",
+  "distractor_steps": [
+   {
+    "choice": "171",
+    "mis_step": "Adds 9 inches to each side instead of scaling, getting a 13 by 15 rectangle of area 195 and an increase of 171."
+   },
+   {
+    "choice": "150",
+    "mis_step": "Reports the area of the enlarged photograph rather than the increase in area."
+   },
+   {
+    "choice": "36",
+    "mis_step": "Multiplies the original area of 24 by the linear scale factor 2.5 to get 60, then subtracts 24."
+   }
+  ]
+ },
+ {
+  "id": "IQ16",
+  "difficulty": "hard",
+  "subskill": "two-variable setup from a total",
+  "topic_tag": "word problems: systems",
+  "prompt": "Adult tickets to a museum cost $8 each and child tickets cost $5 each. A group of 20 people bought one ticket each and paid a total of $136. How many child tickets did the group buy?",
+  "choices": [
+   "17",
+   "12",
+   "10",
+   "8"
+  ],
+  "correct_answer": "8",
+  "explanation": "If all 20 tickets were adult tickets the cost would be $160, and each child ticket replacing an adult ticket lowers the cost by $3, so the $24 shortfall from $160 to $136 means 24 divided by 3, or 8 child tickets.",
+  "solve": "let c = 0;\nfor (let i = 0; i <= 20; i++) {\n  if (8 * (20 - i) + 5 * i === 136) { c = i; break; }\n}\nreturn c;",
+  "distractor_steps": [
+   {
+    "choice": "17",
+    "mis_step": "Divides the $136 total by the $8 adult price, treating every ticket as an adult ticket."
+   },
+   {
+    "choice": "12",
+    "mis_step": "Solves the system correctly but reports the number of adult tickets instead of child tickets."
+   },
+   {
+    "choice": "10",
+    "mis_step": "Assumes the 20 tickets split evenly between the two prices without checking the $136 total."
+   }
+  ]
+ },
+ {
+  "id": "IQ21",
+  "difficulty": "medium",
+  "subskill": "linking two ratios through a shared term",
+  "topic_tag": "ratios",
+  "prompt": "In a shipment, the ratio of pens to markers is 2:3, and the ratio of markers to crayons is 4:5. If the shipment contains 45 crayons, how many pens does it contain?",
+  "choices": [
+   "24",
+   "27",
+   "30",
+   "36"
+  ],
+  "correct_answer": "24",
+  "explanation": "From markers:crayons = 4:5 the shipment has 45 x 4 / 5 = 36 markers, and from pens:markers = 2:3 that gives 36 x 2 / 3 = 24 pens.",
+  "solve": "const crayons = 45;\nconst markers = crayons * 4 / 5;\nreturn markers * 2 / 3;",
+  "distractor_steps": [
+   {
+    "choice": "36",
+    "mis_step": "stopped at the number of markers, an intermediate quantity"
+   },
+   {
+    "choice": "27",
+    "mis_step": "chained the outer numbers as pens:crayons = 3:5, computing 45 x 3 / 5"
+   },
+   {
+    "choice": "30",
+    "mis_step": "applied the pens-to-markers ratio 2:3 directly to the 45 crayons"
+   }
+  ]
+ },
+ {
+  "id": "IQ23",
+  "difficulty": "medium",
+  "subskill": "constant rate of change extended backward",
+  "topic_tag": "rates",
+  "prompt": "Water drains from a tank at a constant rate. After 4 minutes of draining, the tank holds 78 liters; after 9 minutes of draining, it holds 48 liters. How many liters did the tank hold at the moment draining began?",
+  "choices": [
+   "78",
+   "84",
+   "102",
+   "126"
+  ],
+  "correct_answer": "102",
+  "explanation": "The tank loses 78 - 48 = 30 liters in 9 - 4 = 5 minutes, a rate of 6 liters per minute, so the start amount is 78 + 4 x 6 = 102 liters.",
+  "solve": "const t1 = 4, v1 = 78, t2 = 9, v2 = 48;\nconst rate = (v1 - v2) / (t2 - t1);\nreturn v1 + rate * t1;",
+  "distractor_steps": [
+   {
+    "choice": "78",
+    "mis_step": "treated the 4-minute reading as the starting amount, ignoring that 4 minutes of draining had already happened"
+   },
+   {
+    "choice": "84",
+    "mis_step": "found the rate of 6 liters per minute but stepped back only 1 minute instead of 4"
+   },
+   {
+    "choice": "126",
+    "mis_step": "added the two readings, 78 + 48, instead of extending the rate backward"
+   }
+  ]
+ },
+ {
+  "id": "IQ24",
+  "difficulty": "hard",
+  "subskill": "ratio that changes when one quantity is removed",
+  "topic_tag": "ratios",
+  "prompt": "A jar holds red and blue marbles in the ratio 5:3. After 12 red marbles are removed, the jar holds equal numbers of red and blue marbles. How many blue marbles are in the jar?",
+  "choices": [
+   "6",
+   "18",
+   "30",
+   "48"
+  ],
+  "correct_answer": "18",
+  "explanation": "Removing 12 red marbles closes a gap of 5 - 3 = 2 ratio parts, so one part is 6 marbles and the blue count is 3 x 6 = 18.",
+  "solve": "const r = 5, b = 3, removed = 12;\nconst part = removed / (r - b);\nreturn b * part;",
+  "distractor_steps": [
+   {
+    "choice": "30",
+    "mis_step": "reported the original red count 5 x 6 instead of the blue count"
+   },
+   {
+    "choice": "6",
+    "mis_step": "stopped at the value of one ratio part, 12 / 2"
+   },
+   {
+    "choice": "48",
+    "mis_step": "reported the original total 8 x 6 instead of the blue count"
+   }
+  ]
+ },
+ {
+  "id": "IQ25",
+  "difficulty": "hard",
+  "subskill": "combined rates with a change partway through",
+  "topic_tag": "rates",
+  "prompt": "Pipe A alone fills an empty tank in 6 hours, and pipe B alone fills the same tank in 12 hours. Both pipes are opened together; after 2 hours pipe A is shut off and pipe B continues alone until the tank is full. How many hours in all does the filling take?",
+  "choices": [
+   "4",
+   "5",
+   "6",
+   "8"
+  ],
+  "correct_answer": "8",
+  "explanation": "Together the pipes fill 1/6 + 1/12 = 1/4 of the tank per hour, so 2 hours fills half the tank, and pipe B needs (1/2) / (1/12) = 6 more hours, for 2 + 6 = 8 hours in all.",
+  "solve": "const rateA = 1 / 6, rateB = 1 / 12, together = 2;\nconst filled = together * (rateA + rateB);\nconst remaining = 1 - filled;\nreturn together + remaining / rateB;",
+  "distractor_steps": [
+   {
+    "choice": "4",
+    "mis_step": "ignored the shut-off and used the combined rate of 1/4 tank per hour for the whole job"
+   },
+   {
+    "choice": "6",
+    "mis_step": "reported only pipe B's 6 solo hours, omitting the first 2 hours"
+   },
+   {
+    "choice": "5",
+    "mis_step": "filled the remaining half with pipe A's rate 1/6 instead of pipe B's, getting 3 hours plus 2"
+   }
+  ]
+ },
+ {
+  "id": "IQ26",
+  "difficulty": "hard",
+  "subskill": "area ratio from a linear ratio in similar figures",
+  "topic_tag": "proportional-reasoning",
+  "prompt": "Two similar triangles have perimeters in the ratio 3:5. The area of the smaller triangle is 45 square centimeters. What is the area of the larger triangle, in square centimeters?",
+  "choices": [
+   "27",
+   "75",
+   "125",
+   "225"
+  ],
+  "correct_answer": "125",
+  "explanation": "Perimeters in the ratio 3:5 means areas in the ratio 9:25, so the larger area is 45 x 25 / 9 = 125 square centimeters.",
+  "solve": "const p1 = 3, p2 = 5, area1 = 45;\nreturn area1 * (p2 * p2) / (p1 * p1);",
+  "distractor_steps": [
+   {
+    "choice": "75",
+    "mis_step": "scaled the area by 5/3 instead of by the square of 5/3"
+   },
+   {
+    "choice": "225",
+    "mis_step": "multiplied 45 by 5 without dividing by 3"
+   },
+   {
+    "choice": "27",
+    "mis_step": "scaled by 3/5, shrinking the figure instead of enlarging it"
+   }
+  ]
+ },
+ {
+  "id": "IQ29",
+  "difficulty": "easy",
+  "subskill": "counting multiples in a range",
+  "topic_tag": "counting",
+  "prompt": "How many integers from 50 through 300, inclusive, are multiples of 7 ?",
+  "choices": [
+   "34",
+   "35",
+   "36",
+   "42"
+  ],
+  "correct_answer": "35",
+  "explanation": "The smallest multiple of 7 that is at least 50 is 56 and the largest that is at most 300 is 294, and (294 - 56) / 7 = 34, so there are 34 + 1 = 35 multiples.",
+  "solve": "let count = 0;\nfor (let k = 50; k <= 300; k++) {\n  if (k % 7 === 0) count++;\n}\nreturn count;",
+  "distractor_steps": [
+   {
+    "choice": "42",
+    "mis_step": "Ignored the lower limit and counted every multiple of 7 from 1 through 300, which is 42."
+   },
+   {
+    "choice": "34",
+    "mis_step": "Computed (294 - 56) / 7 = 34 and forgot to add 1 for the first multiple counted."
+   },
+   {
+    "choice": "36",
+    "mis_step": "Computed (294 - 56) / 7 = 34 and added 2, counting both endpoints as extra."
+   }
+  ]
+ },
+ {
+  "id": "IQ31",
+  "difficulty": "medium",
+  "subskill": "counting arrangements with a restriction",
+  "topic_tag": "counting",
+  "prompt": "Using the digits 1, 2, 3, 4, and 5, with no digit repeated, how many different three-digit even numbers can be formed?",
+  "choices": [
+   "24",
+   "40",
+   "50",
+   "60"
+  ],
+  "correct_answer": "24",
+  "explanation": "The last digit must be 2 or 4, giving 2 choices, and the first two digits are then any 2 of the 4 remaining digits in order, which is 4(3) = 12, so there are 2(12) = 24 numbers.",
+  "solve": "const digits = [1, 2, 3, 4, 5];\nlet count = 0;\nfor (const a of digits) {\n  for (const b of digits) {\n    for (const c of digits) {\n      if (a !== b && b !== c && a !== c && c % 2 === 0) count++;\n    }\n  }\n}\nreturn count;",
+  "distractor_steps": [
+   {
+    "choice": "60",
+    "mis_step": "Ignored the even requirement and counted every three-digit arrangement: 5(4)(3) = 60."
+   },
+   {
+    "choice": "50",
+    "mis_step": "Allowed digits to repeat while keeping the even ending: 5(5)(2) = 50."
+   },
+   {
+    "choice": "40",
+    "mis_step": "Multiplied 5(4)(2), choosing the first two digits first and forgetting that an even digit may already have been used."
+   }
+  ]
+ },
+ {
+  "id": "IQ32",
+  "difficulty": "medium",
+  "subskill": "common multiples and remainders",
+  "topic_tag": "number-properties",
+  "prompt": "What is the least integer greater than 1 that leaves a remainder of 1 when it is divided by 4, when it is divided by 5, and when it is divided by 6 ?",
+  "choices": [
+   "30",
+   "31",
+   "60",
+   "61"
+  ],
+  "correct_answer": "61",
+  "explanation": "The number must be 1 more than a common multiple of 4, 5, and 6, and the least common multiple of 4, 5, and 6 is 60, so the number is 60 + 1 = 61.",
+  "solve": "let n = 2;\nwhile (!(n % 4 === 1 && n % 5 === 1 && n % 6 === 1)) {\n  n++;\n}\nreturn n;",
+  "distractor_steps": [
+   {
+    "choice": "60",
+    "mis_step": "Found the least common multiple 60 but never added the remainder of 1."
+   },
+   {
+    "choice": "31",
+    "mis_step": "Used only the divisors 5 and 6, whose least common multiple is 30, giving 30 + 1 = 31."
+   },
+   {
+    "choice": "30",
+    "mis_step": "Used the least common multiple of 5 and 6, which is 30, and also omitted the remainder of 1."
+   }
+  ]
+ },
+ {
+  "id": "IQ33",
+  "difficulty": "medium",
+  "subskill": "recovering a term from two given terms",
+  "topic_tag": "sequences",
+  "prompt": "In an arithmetic sequence, the 4th term is 17 and the 9th term is 42. What is the 1st term of the sequence?",
+  "choices": [
+   "2",
+   "5",
+   "7",
+   "12"
+  ],
+  "correct_answer": "2",
+  "explanation": "There are 5 steps from the 4th term to the 9th term, so each step is (42 - 17) / 5 = 5, and the 1st term is 3 steps below 17, or 17 - 3(5) = 2.",
+  "solve": "const d = (42 - 17) / (9 - 4);\nreturn 17 - 3 * d;",
+  "distractor_steps": [
+   {
+    "choice": "5",
+    "mis_step": "Computed the common difference (42 - 17) / 5 = 5 and reported that instead of the first term."
+   },
+   {
+    "choice": "7",
+    "mis_step": "Stepped back only twice from the 4th term: 17 - 2(5) = 7."
+   },
+   {
+    "choice": "12",
+    "mis_step": "Stepped back only once from the 4th term: 17 - 5 = 12."
+   }
+  ]
+ },
+ {
+  "id": "IQ34",
+  "difficulty": "hard",
+  "subskill": "counting with overlapping conditions",
+  "topic_tag": "counting",
+  "prompt": "How many of the integers from 1 through 300, inclusive, are divisible by 3 or by 5 but are NOT divisible by both?",
+  "choices": [
+   "20",
+   "100",
+   "120",
+   "140"
+  ],
+  "correct_answer": "120",
+  "explanation": "There are 100 multiples of 3 and 60 multiples of 5, and the 20 multiples of 15 are counted in both groups, so removing them from each group gives (100 - 20) + (60 - 20) = 120.",
+  "solve": "let count = 0;\nfor (let k = 1; k <= 300; k++) {\n  const byThree = k % 3 === 0;\n  const byFive = k % 5 === 0;\n  if ((byThree || byFive) && !(byThree && byFive)) count++;\n}\nreturn count;",
+  "distractor_steps": [
+   {
+    "choice": "140",
+    "mis_step": "Counted the plain union, removing the 20 multiples of 15 only once: 100 + 60 - 20 = 140."
+   },
+   {
+    "choice": "100",
+    "mis_step": "Counted only the multiples of 3 and ignored the multiples of 5 entirely."
+   },
+   {
+    "choice": "20",
+    "mis_step": "Counted the overlap itself, the 20 multiples of 15, rather than excluding it."
+   }
+  ]
+ },
+ {
+  "id": "IQ35",
+  "difficulty": "hard",
+  "subskill": "digits of a repeating decimal",
+  "topic_tag": "number-properties",
+  "prompt": "The fraction 3/7 written as a decimal is 0.428571428571..., where the block 428571 repeats forever. What is the 100th digit to the right of the decimal point?",
+  "choices": [
+   "1",
+   "5",
+   "7",
+   "8"
+  ],
+  "correct_answer": "5",
+  "explanation": "The block 428571 has length 6, and 100 = 6(16) + 4, so the 100th digit is the 4th digit of the block 428571, which is 5.",
+  "solve": "let r = 3;\nlet digits = \"\";\nfor (let i = 0; i < 6; i++) {\n  r = r * 10;\n  digits += Math.floor(r / 7);\n  r = r % 7;\n}\nconst pos = 100 % 6;\nreturn Number(digits[pos - 1]);",
+  "distractor_steps": [
+   {
+    "choice": "8",
+    "mis_step": "Counted one place short inside the block and took the 3rd digit, 8."
+   },
+   {
+    "choice": "7",
+    "mis_step": "Counted one place too far inside the block and took the 5th digit, 7."
+   },
+   {
+    "choice": "1",
+    "mis_step": "Treated 100 as a multiple of 6 and took the last digit of the block, 1."
+   }
+  ]
+ },
+ {
+  "id": "IQ36",
+  "difficulty": "hard",
+  "subskill": "simultaneous remainder conditions",
+  "topic_tag": "number-properties",
+  "prompt": "A positive integer leaves a remainder of 3 when divided by 5 and a remainder of 4 when divided by 7. What is the least such integer that is greater than 100 ?",
+  "choices": [
+   "88",
+   "103",
+   "109",
+   "123"
+  ],
+  "correct_answer": "123",
+  "explanation": "The integers meeting both conditions are 18, 53, 88, 123, ..., increasing by 35 each time, and the first of these greater than 100 is 123.",
+  "solve": "let n = 101;\nwhile (!(n % 5 === 3 && n % 7 === 4)) {\n  n++;\n}\nreturn n;",
+  "distractor_steps": [
+   {
+    "choice": "88",
+    "mis_step": "Found the correct list 18, 53, 88, 123 but stopped at 88, the largest value below 100 rather than the least above it."
+   },
+   {
+    "choice": "103",
+    "mis_step": "Used only the first condition and took the least integer above 100 leaving remainder 3 when divided by 5."
+   },
+   {
+    "choice": "109",
+    "mis_step": "Used only the second condition and took the least integer above 100 leaving remainder 4 when divided by 7."
+   }
+  ]
+ },
+ {
+  "id": "IM16",
+  "difficulty": "medium",
+  "subskill": "common-base-exponent-equation",
+  "topic_tag": "exponents",
+  "prompt": "If 2^(x + 3) = 32^2, what is the value of x?",
+  "choices": [
+   "4",
+   "3",
+   "10",
+   "7"
+  ],
+  "correct_answer": "7",
+  "explanation": "Since 32 = 2^5, the right side is (2^5)^2 = 2^10, so x + 3 = 10 and x = 7.",
+  "solve": "const rightExponent = Math.log2(Math.pow(32, 2));\nreturn rightExponent - 3;",
+  "distractor_steps": [
+   {
+    "choice": "4",
+    "mis_step": "adds the exponents instead of multiplying, treating 32^2 as 2^(5+2) = 2^7"
+   },
+   {
+    "choice": "3",
+    "mis_step": "evaluates 32^2 as 64 = 2^6, then solves x + 3 = 6"
+   },
+   {
+    "choice": "10",
+    "mis_step": "finds the exponent 10 on the right but forgets to subtract the 3"
+   }
+  ]
+ },
+ {
+  "id": "IM17",
+  "difficulty": "medium",
+  "subskill": "order-of-operations-with-fractions",
+  "topic_tag": "fractions",
+  "prompt": "What is the value of (3/4 - 1/6) divided by 5/12?",
+  "choices": [
+   "-12/5",
+   "35/144",
+   "5/7",
+   "7/5"
+  ],
+  "correct_answer": "7/5",
+  "explanation": "Using twelfths, 3/4 - 1/6 = 9/12 - 2/12 = 7/12, and dividing by 5/12 multiplies by 12/5 to give 7/5.",
+  "solve": "const diff = 3/4 - 1/6;\nconst value = diff / (5/12);\nconst den = 5;\nconst num = Math.round(value * den);\nreturn num + \"/\" + den;",
+  "distractor_steps": [
+   {
+    "choice": "-12/5",
+    "mis_step": "subtracts numerators and denominators separately, getting (3-1)/(4-6) = -1, then divides by 5/12"
+   },
+   {
+    "choice": "35/144",
+    "mis_step": "multiplies by 5/12 instead of dividing: (7/12) x (5/12)"
+   },
+   {
+    "choice": "5/7",
+    "mis_step": "inverts the wrong fraction, computing (5/12) divided by (7/12)"
+   }
+  ]
+ },
+ {
+  "id": "IM18",
+  "difficulty": "medium",
+  "subskill": "average-and-total-sum",
+  "topic_tag": "statistics",
+  "prompt": "The average of six numbers is 14. When one of the numbers is removed, the average of the five remaining numbers is 15. What is the number that was removed?",
+  "choices": [
+   "-9",
+   "6",
+   "9",
+   "20"
+  ],
+  "correct_answer": "9",
+  "explanation": "The six numbers total 6 x 14 = 84 and the five remaining total 5 x 15 = 75, so the removed number is 84 - 75 = 9.",
+  "solve": "const sumSix = 6 * 14;\nconst sumFive = 5 * 15;\nreturn sumSix - sumFive;",
+  "distractor_steps": [
+   {
+    "choice": "-9",
+    "mis_step": "subtracts the totals in the wrong order: 75 - 84"
+   },
+   {
+    "choice": "6",
+    "mis_step": "multiplies the difference of the averages by the original count: (15 - 14) x 6"
+   },
+   {
+    "choice": "20",
+    "mis_step": "pairs each average with the wrong count: 6 x 15 - 5 x 14"
+   }
+  ]
+ },
+ {
+  "id": "IM19",
+  "difficulty": "medium",
+  "subskill": "successive-percent-change",
+  "topic_tag": "percent",
+  "prompt": "A town has a population of 4000. During one year the population increases by 20%, and during the next year the new population decreases by 15%. What is the population at the end of the two years?",
+  "choices": [
+   "3680",
+   "4080",
+   "4200",
+   "4800"
+  ],
+  "correct_answer": "4080",
+  "explanation": "The increase gives 4000 x 1.2 = 4800, and the 15% decrease applies to that 4800, leaving 4800 x 0.85 = 4080.",
+  "solve": "const start = 4000;\nconst afterIncrease = start * 1.2;\nreturn afterIncrease * 0.85;",
+  "distractor_steps": [
+   {
+    "choice": "3680",
+    "mis_step": "swaps the directions, decreasing by 20% and then increasing by 15%: 4000 x 0.8 x 1.15"
+   },
+   {
+    "choice": "4200",
+    "mis_step": "combines the percents additively as a single 5% increase: 4000 x 1.05"
+   },
+   {
+    "choice": "4800",
+    "mis_step": "stops at the intermediate population 4000 x 1.2 and never applies the decrease"
+   }
+  ]
+ },
+ {
+  "id": "IM20",
+  "difficulty": "hard",
+  "subskill": "two-variable-setup-from-a-mixture",
+  "topic_tag": "systems of equations",
+  "prompt": "A cash drawer contains only quarters and dimes. There are 32 coins in the drawer, and their total value is $5.90. How many of the coins are quarters?",
+  "choices": [
+   "11",
+   "14",
+   "18",
+   "27"
+  ],
+  "correct_answer": "18",
+  "explanation": "If all 32 coins were dimes the value would be 320 cents, and each quarter substituted for a dime adds 15 cents, so the 590 - 320 = 270 extra cents require 270 / 15 = 18 quarters.",
+  "solve": "const totalCents = 590;\nconst coins = 32;\nconst quarters = (totalCents - 10 * coins) / (25 - 10);\nreturn quarters;",
+  "distractor_steps": [
+   {
+    "choice": "11",
+    "mis_step": "starts from all quarters (800 cents), then divides the 210-cent excess by 10 instead of 15 and subtracts: 32 - 21"
+   },
+   {
+    "choice": "14",
+    "mis_step": "solves the system correctly but reports the number of dimes instead of the number of quarters"
+   },
+   {
+    "choice": "27",
+    "mis_step": "starts from all dimes but divides the 270-cent shortfall by 10 rather than by the 15-cent difference"
+   }
+  ]
+ },
+ {
+  "id": "IM21",
+  "difficulty": "hard",
+  "subskill": "combined-work-rates-with-a-partial-interval",
+  "topic_tag": "rates",
+  "prompt": "Pump A can fill an empty tank in 6 hours, and pump B can fill the same tank in 12 hours. Both pumps run together for 2 hours, and then pump B is shut off and pump A finishes the tank alone. In all, how many hours does it take to fill the tank?",
+  "choices": [
+   "5",
+   "3",
+   "4",
+   "8"
+  ],
+  "correct_answer": "5",
+  "explanation": "Together the pumps fill 1/6 + 1/12 = 1/4 of the tank each hour, so in 2 hours half the tank is filled, and pump A needs (1/2) divided by (1/6) = 3 more hours, for 2 + 3 = 5 hours total.",
+  "solve": "const rateA = 1/6;\nconst rateB = 1/12;\nconst filled = 2 * (rateA + rateB);\nconst remaining = 1 - filled;\nreturn 2 + remaining / rateA;",
+  "distractor_steps": [
+   {
+    "choice": "3",
+    "mis_step": "reports only the additional time pump A works and omits the first 2 hours"
+   },
+   {
+    "choice": "4",
+    "mis_step": "ignores the shutoff and uses the combined rate 1/4 for the whole job"
+   },
+   {
+    "choice": "8",
+    "mis_step": "lets pump B rather than pump A finish, taking (1/2) divided by (1/12) = 6 more hours"
+   }
+  ]
+ },
+ {
+  "id": "IM22",
+  "difficulty": "hard",
+  "subskill": "integer-solutions-of-an-absolute-value-inequality",
+  "topic_tag": "inequalities",
+  "prompt": "How many integer values of x satisfy the inequality |2x - 7| < 9?",
+  "choices": [
+   "7",
+   "8",
+   "9",
+   "10"
+  ],
+  "correct_answer": "8",
+  "explanation": "The inequality means -9 < 2x - 7 < 9, so -2 < 2x < 16 and -1 < x < 8, which the integers 0 through 7 satisfy.",
+  "solve": "let count = 0;\nfor (let x = -100; x <= 100; x++) {\n  if (Math.abs(2 * x - 7) < 9) count++;\n}\nreturn count;",
+  "distractor_steps": [
+   {
+    "choice": "7",
+    "mis_step": "finds -1 < x < 8 but begins counting at 1, omitting x = 0"
+   },
+   {
+    "choice": "9",
+    "mis_step": "treats the upper bound as inclusive and counts the integers 0 through 8"
+   },
+   {
+    "choice": "10",
+    "mis_step": "replaces the strict inequality with one that allows equality and counts -1 through 8"
+   }
+  ]
+ },
+ {
+  "id": "IM26",
+  "difficulty": "medium",
+  "subskill": "Surface area of a prism from its volume",
+  "topic_tag": "geometry-solids",
+  "prompt": "A rectangular prism has a square base with side 4 centimeters and a volume of 240 cubic centimeters. What is the total surface area of the prism, in square centimeters?",
+  "choices": [
+   "272",
+   "256",
+   "240",
+   "136"
+  ],
+  "correct_answer": "272",
+  "explanation": "The base area is 4 × 4 = 16, so the height is 240 ÷ 16 = 15. The surface area is 2(16) + 4(4 × 15) = 32 + 240 = 272 square centimeters.",
+  "solve": "const s = 4;\nconst V = 240;\nconst base = s * s;\nconst h = V / base;\nconst lateral = 4 * s * h;\nreturn String(2 * base + lateral);",
+  "distractor_steps": [
+   {
+    "choice": "256",
+    "mis_step": "Counted only one base: 16 + 240 = 256."
+   },
+   {
+    "choice": "240",
+    "mis_step": "Reported the lateral surface area 4(4 × 15) = 240 and left out both bases."
+   },
+   {
+    "choice": "136",
+    "mis_step": "Used lw + lh + wh without doubling: 16 + 60 + 60 = 136."
+   }
+  ]
+ },
+ {
+  "id": "IM27",
+  "difficulty": "medium",
+  "subskill": "Distance formula applied to a circle",
+  "topic_tag": "coordinate-geometry",
+  "prompt": "In the coordinate plane, the points (−6, 3) and (2, −3) are the endpoints of a diameter of a circle. What is the area of the circle?",
+  "choices": [
+   "100π",
+   "25π",
+   "16π",
+   "10π"
+  ],
+  "correct_answer": "25π",
+  "explanation": "The horizontal change is 2 − (−6) = 8 and the vertical change is 3 − (−3) = 6, so the diameter is √(64 + 36) = 10 and the radius is 5. The area is π(5)² = 25π.",
+  "solve": "const x1 = -6, y1 = 3, x2 = 2, y2 = -3;\nconst d = Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));\nconst r = d / 2;\nreturn (r * r) + \"π\";",
+  "distractor_steps": [
+   {
+    "choice": "100π",
+    "mis_step": "Used the diameter 10 as the radius: π(10)² = 100π."
+   },
+   {
+    "choice": "16π",
+    "mis_step": "Sign slip on the vertical change, taking 3 − 3 = 0, so the diameter read as 8 and the radius as 4: π(4)² = 16π."
+   },
+   {
+    "choice": "10π",
+    "mis_step": "Computed the circumference 2π(5) = 10π instead of the area."
+   }
+  ]
+ },
+ {
+  "id": "IM29",
+  "difficulty": "medium",
+  "subskill": "Area of an isosceles trapezoid needing its height",
+  "topic_tag": "geometry-trapezoids",
+  "prompt": "An isosceles trapezoid has parallel sides of length 9 centimeters and 15 centimeters, and each of its two non-parallel sides is 5 centimeters long. What is the area of the trapezoid, in square centimeters?",
+  "choices": [
+   "96",
+   "60",
+   "48",
+   "36"
+  ],
+  "correct_answer": "48",
+  "explanation": "Each non-parallel side overhangs the shorter base by (15 − 9) ÷ 2 = 3, so the height is √(5² − 3²) = 4. The area is ((9 + 15)/2) × 4 = 48 square centimeters.",
+  "solve": "const b1 = 9, b2 = 15, leg = 5;\nconst offset = (b2 - b1) / 2;\nconst h = Math.sqrt(leg * leg - offset * offset);\nreturn String(((b1 + b2) / 2) * h);",
+  "distractor_steps": [
+   {
+    "choice": "60",
+    "mis_step": "Used the slanted side 5 as the height: ((9 + 15)/2) × 5 = 60."
+   },
+   {
+    "choice": "96",
+    "mis_step": "Left out the factor of one-half: (9 + 15) × 4 = 96."
+   },
+   {
+    "choice": "36",
+    "mis_step": "Used the horizontal overhang 3 as the height: ((9 + 15)/2) × 3 = 36."
+   }
+  ]
+ },
+ {
+  "id": "IM30",
+  "difficulty": "hard",
+  "subskill": "Volume transfer between a cylinder and a prism",
+  "topic_tag": "geometry-volume",
+  "prompt": "A cylindrical tank with radius 6 centimeters and height 10 centimeters holds water to a depth of 4 centimeters. All of the water is poured into an empty rectangular container whose base measures 9 centimeters by 8 centimeters and which is tall enough to hold it. What is the depth of the water in the rectangular container, in centimeters?",
+  "choices": [
+   "π/3",
+   "2π",
+   "5π",
+   "8π"
+  ],
+  "correct_answer": "2π",
+  "explanation": "The water's volume is π(6)²(4) = 144π cubic centimeters, and the new base area is 9 × 8 = 72 square centimeters, so the depth is 144π ÷ 72 = 2π centimeters.",
+  "solve": "const r = 6, depth = 4, L = 9, W = 8;\nconst volCoef = r * r * depth;\nconst coef = volCoef / (L * W);\nreturn coef === 1 ? \"π\" : coef + \"π\";",
+  "distractor_steps": [
+   {
+    "choice": "5π",
+    "mis_step": "Used the tank's full height 10 instead of the water depth 4: π(36)(10)/72 = 5π."
+   },
+   {
+    "choice": "8π",
+    "mis_step": "Used the diameter 12 as the radius: π(144)(4)/72 = 8π."
+   },
+   {
+    "choice": "π/3",
+    "mis_step": "Forgot to square the radius: π(6)(4)/72 = π/3."
+   }
+  ]
+ },
+ {
+  "id": "IM31",
+  "difficulty": "hard",
+  "subskill": "Interior and exterior angles of a regular polygon",
+  "topic_tag": "geometry-polygons",
+  "prompt": "Each interior angle of a regular polygon measures 165 degrees. How many sides does the polygon have?",
+  "choices": [
+   "12",
+   "15",
+   "22",
+   "24"
+  ],
+  "correct_answer": "24",
+  "explanation": "Each exterior angle measures 180 − 165 = 15 degrees, and the exterior angles of any polygon total 360 degrees, so the polygon has 360 ÷ 15 = 24 sides.",
+  "solve": "const interior = 165;\nconst exterior = 180 - interior;\nreturn String(360 / exterior);",
+  "distractor_steps": [
+   {
+    "choice": "15",
+    "mis_step": "Stopped at the exterior angle 180 − 165 = 15 and reported it as the number of sides."
+   },
+   {
+    "choice": "22",
+    "mis_step": "Solved 180(n − 2) = 165n correctly but reported n − 2 = 22 instead of n."
+   },
+   {
+    "choice": "12",
+    "mis_step": "Used 180 rather than 360 as the total of the exterior angles: 180 ÷ 15 = 12."
+   }
+  ]
+ },
+ {
+  "id": "IM32",
+  "difficulty": "hard",
+  "subskill": "Pythagorean theorem in three dimensions",
+  "topic_tag": "geometry-solids",
+  "prompt": "A closed rectangular box measures 3 inches by 4 inches by 12 inches. What is the length, in inches, of the longest straight rod that will fit inside the box?",
+  "choices": [
+   "19",
+   "17",
+   "13",
+   "5"
+  ],
+  "correct_answer": "13",
+  "explanation": "The diagonal of the 3 by 4 face is √(9 + 16) = 5, and the longest segment is √(5² + 12²) = √169 = 13 inches.",
+  "solve": "const a = 3, b = 4, c = 12;\nreturn String(Math.sqrt(a * a + b * b + c * c));",
+  "distractor_steps": [
+   {
+    "choice": "5",
+    "mis_step": "Stopped at the face diagonal √(3² + 4²) = 5 without using the 12-inch edge."
+   },
+   {
+    "choice": "17",
+    "mis_step": "Added the face diagonal to the third edge instead of using the Pythagorean theorem again: 5 + 12 = 17."
+   },
+   {
+    "choice": "19",
+    "mis_step": "Added the three edge lengths: 3 + 4 + 12 = 19."
+   }
+  ]
+ },
+ {
+  "id": "IM36",
+  "difficulty": "medium",
+  "subskill": "Effect on the mean of removing one value",
+  "topic_tag": "statistics-mean-change",
+  "prompt": "The mean of a set of 9 numbers is 14. One of the numbers, 6, is deleted from the set. What is the mean of the 8 numbers that remain?",
+  "choices": [
+   "10",
+   "13.25",
+   "15",
+   "15.75"
+  ],
+  "correct_answer": "15",
+  "explanation": "The nine numbers total 9 x 14 = 126; removing 6 leaves a total of 120 shared by 8 numbers, so the new mean is 120/8 = 15.",
+  "solve": "const sum=9*14;\nreturn String((sum-6)/8);",
+  "distractor_steps": [
+   {
+    "choice": "15.75",
+    "mis_step": "Divides the original total by the new count without removing the deleted value: 126/8 = 15.75."
+   },
+   {
+    "choice": "13.25",
+    "mis_step": "Subtracts the deleted value spread over the remaining numbers from the old mean: 14 - 6/8 = 13.25."
+   },
+   {
+    "choice": "10",
+    "mis_step": "Averages the old mean with the deleted number: (14 + 6)/2 = 10."
+   }
+  ]
+ },
+ {
+  "id": "IM37",
+  "difficulty": "medium",
+  "subskill": "Probability of two dependent events",
+  "topic_tag": "probability-without-replacement",
+  "prompt": "A drawer contains 4 black socks and 6 white socks. Two socks are taken out at random, one after the other, without the first being put back. What is the probability that both socks are black?",
+  "choices": [
+   "2/15",
+   "4/25",
+   "8/15",
+   "11/15"
+  ],
+  "correct_answer": "2/15",
+  "explanation": "The first sock is black with probability 4/10, and then 3 of the remaining 9 socks are black, so the probability is (4/10)(3/9) = 12/90 = 2/15.",
+  "solve": "const num=4*3, den=10*9;\nconst g=(a,b)=>b?g(b,a%b):a;\nconst k=g(num,den);\nreturn (num/k)+\"/\"+(den/k);",
+  "distractor_steps": [
+   {
+    "choice": "4/25",
+    "mis_step": "Treats the draws as if the first sock were replaced: (4/10)(4/10) = 16/100 = 4/25."
+   },
+   {
+    "choice": "11/15",
+    "mis_step": "Adds the two stage probabilities instead of multiplying: 4/10 + 3/9 = 11/15."
+   },
+   {
+    "choice": "8/15",
+    "mis_step": "Computes the probability of one black and one white sock, 2(4/10)(6/9) = 48/90 = 8/15."
+   }
+  ]
+ },
+ {
+  "id": "IM38",
+  "difficulty": "medium",
+  "subskill": "Quartiles and interquartile range",
+  "topic_tag": "statistics-spread",
+  "prompt": "The daily rainfall totals, in millimeters, for eight days were 3, 6, 8, 12, 14, 16, 20, 26. What is the interquartile range of these eight values?",
+  "choices": [
+   "8",
+   "11",
+   "13",
+   "23"
+  ],
+  "correct_answer": "11",
+  "explanation": "The lower half 3, 6, 8, 12 has median (6+8)/2 = 7 and the upper half 14, 16, 20, 26 has median (16+20)/2 = 18, so the interquartile range is 18 - 7 = 11.",
+  "solve": "const d=[3,6,8,12,14,16,20,26];\nconst q1=(d[1]+d[2])/2;\nconst q3=(d[5]+d[6])/2;\nreturn String(q3-q1);",
+  "distractor_steps": [
+   {
+    "choice": "8",
+    "mis_step": "Uses single data values as the quartiles instead of averaging each half's middle pair: 16 - 8 = 8."
+   },
+   {
+    "choice": "23",
+    "mis_step": "Reports the full range, 26 - 3 = 23, instead of the interquartile range."
+   },
+   {
+    "choice": "13",
+    "mis_step": "Reports the median of all eight values, (12+14)/2 = 13."
+   }
+  ]
+ },
+ {
+  "id": "IM39",
+  "difficulty": "medium",
+  "subskill": "Solving for a value that produces a target mean",
+  "topic_tag": "statistics-mean-target",
+  "prompt": "After 5 quizzes Maya's mean score is 82. She will take one more quiz. What score on the sixth quiz would make her mean for all 6 quizzes equal to 84?",
+  "choices": [
+   "84",
+   "86",
+   "92",
+   "94"
+  ],
+  "correct_answer": "94",
+  "explanation": "Six quizzes averaging 84 require a total of 6 x 84 = 504, and the first five total 5 x 82 = 410, so the sixth score must be 504 - 410 = 94.",
+  "solve": "return String(6*84-5*82);",
+  "distractor_steps": [
+   {
+    "choice": "84",
+    "mis_step": "Assumes scoring the target mean itself, 84, raises the mean to 84."
+   },
+   {
+    "choice": "92",
+    "mis_step": "Adds the total needed gain to the old mean instead of the new one: 82 + 2(5) = 92."
+   },
+   {
+    "choice": "86",
+    "mis_step": "Adds the 2-point gap once to the target mean: 84 + 2 = 86."
+   }
+  ]
+ },
+ {
+  "id": "IM40",
+  "difficulty": "hard",
+  "subskill": "Recovering a data value from a change in the mean",
+  "topic_tag": "statistics-mean-reverse",
+  "prompt": "A set of 8 numbers has a mean of 12. When one of the numbers is replaced by 30, the mean of the 8 numbers becomes 15. What was the number that was replaced?",
+  "choices": [
+   "6",
+   "24",
+   "27",
+   "54"
+  ],
+  "correct_answer": "6",
+  "explanation": "The total rises from 8 x 12 = 96 to 8 x 15 = 120, an increase of 24, and that increase equals 30 minus the number removed, so the number removed was 30 - 24 = 6.",
+  "solve": "const oldSum=8*12, newSum=8*15;\nreturn String(30-(newSum-oldSum));",
+  "distractor_steps": [
+   {
+    "choice": "24",
+    "mis_step": "Stops at the increase in the total, 120 - 96 = 24, and reports it as the missing number."
+   },
+   {
+    "choice": "27",
+    "mis_step": "Subtracts the change in the mean rather than the change in the total: 30 - 3 = 27."
+   },
+   {
+    "choice": "54",
+    "mis_step": "Adds the increase to the new value instead of subtracting: 30 + 24 = 54."
+   }
+  ]
+ },
+ {
+  "id": "IM41",
+  "difficulty": "hard",
+  "subskill": "Finding a missing frequency from a given mean",
+  "topic_tag": "statistics-weighted-mean",
+  "prompt": "In a reading survey, 6 students read 0 books last month, 9 students read 1 book, some number of students read 2 books, and 5 students read 3 books. The mean number of books read per student was exactly 1.5. How many students read 2 books?",
+  "choices": [
+   "3",
+   "12",
+   "30",
+   "42"
+  ],
+  "correct_answer": "12",
+  "explanation": "With x students reading 2 books the total is 9 + 2x + 15 = 24 + 2x books among 20 + x students, so 24 + 2x = 1.5(20 + x) gives 0.5x = 6 and x = 12.",
+  "solve": "const x=(1.5*20-24)/(2-1.5);\nreturn String(x);",
+  "distractor_steps": [
+   {
+    "choice": "3",
+    "mis_step": "Leaves the unknown group out of the head count: 24 + 2x = 1.5(20) = 30 gives x = 3."
+   },
+   {
+    "choice": "30",
+    "mis_step": "Stops at the intermediate total 1.5(20) = 30 books and reports it as the number of students."
+   },
+   {
+    "choice": "42",
+    "mis_step": "Omits the 3-book group's 15 books from the total: 9 + 2x = 1.5(20 + x) gives x = 42."
+   }
+  ]
+ }
+]
