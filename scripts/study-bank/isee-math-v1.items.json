@@ -1,0 +1,452 @@
+[
+ {
+  "id": "IQ1",
+  "difficulty": "easy",
+  "subskill": "multi-step money arithmetic with a whole-group adjustment",
+  "topic_tag": "multi-step-arithmetic",
+  "prompt": "A school club buys tickets to a museum. Adult tickets cost $12 each and student tickets cost $7 each. The club buys 9 adult tickets and 14 student tickets, and the museum then takes $25 off the combined total because the club is a group. How much does the club pay?",
+  "choices": [
+   "$156",
+   "$181",
+   "$206",
+   "$231"
+  ],
+  "correct_answer": "$181",
+  "explanation": "The adult tickets cost 9 x $12 = $108 and the student tickets cost 14 x $7 = $98, for a combined $206. The single group reduction of $25 is taken once from that combined total, giving $206 - $25 = $181.",
+  "solve": "const adult = 9 * 12;\nconst student = 14 * 7;\nconst total = adult + student;\nreturn '$' + (total - 25);",
+  "distractor_steps": [
+   {
+    "choice": "$156",
+    "mis_step": "Subtracts the $25 group reduction from each of the two subtotals: ($108 - $25) + ($98 - $25) = $156, instead of once from the combined total."
+   },
+   {
+    "choice": "$206",
+    "mis_step": "Stops at the intermediate combined ticket cost $108 + $98 and never applies the stated $25 reduction."
+   },
+   {
+    "choice": "$231",
+    "mis_step": "Sign slip at the discount stage: adds the $25 to the combined total instead of subtracting it."
+   }
+  ]
+ },
+ {
+  "id": "IQ2",
+  "difficulty": "easy",
+  "subskill": "successive percent changes on a changing base",
+  "topic_tag": "percent-change",
+  "prompt": "A store marks a $80 jacket up by 25%. The jacket does not sell, so the store then takes 20% off the marked-up price. What is the final price of the jacket?",
+  "choices": [
+   "$60",
+   "$64",
+   "$76",
+   "$80"
+  ],
+  "correct_answer": "$80",
+  "explanation": "The markup gives $80 + 0.25 x $80 = $100, and 20% off that is $100 - 0.20 x $100 = $80. The 20% is taken from the larger base $100, so the $20 removed exactly cancels the $20 added.",
+  "solve": "const afterIncrease = 80 + 80 * 25 / 100;\nconst finalPrice = afterIncrease - afterIncrease * 20 / 100;\nreturn '$' + finalPrice;",
+  "distractor_steps": [
+   {
+    "choice": "$60",
+    "mis_step": "Sign slip at the markup stage: treats the 25% change as a decrease, computing $80 x 0.75."
+   },
+   {
+    "choice": "$64",
+    "mis_step": "Ignores the stated markup and applies the 20% reduction to the original price: $80 x 0.80."
+   },
+   {
+    "choice": "$76",
+    "mis_step": "Combines the percents directly as a net 5% decrease and applies it to the original: $80 - 0.05 x $80."
+   }
+  ]
+ },
+ {
+  "id": "IQ3",
+  "difficulty": "medium",
+  "subskill": "area of a uniform border around a rectangle",
+  "topic_tag": "composite-area",
+  "prompt": "A rectangular vegetable garden measures 18 feet by 24 feet. A concrete path of uniform width 3 feet is poured all the way around the outside of the garden. What is the area, in square feet, of the path alone?",
+  "choices": [
+   "135",
+   "252",
+   "288",
+   "432"
+  ],
+  "correct_answer": "288",
+  "explanation": "The path adds 3 feet on each of two opposite sides, so the outer rectangle is 24 feet by 30 feet with area 720 square feet; the garden itself covers 18 x 24 = 432 square feet, leaving 720 - 432 = 288 square feet of path.",
+  "solve": "const outer = (18 + 2 * 3) * (24 + 2 * 3);\nconst inner = 18 * 24;\nreturn String(outer - inner);",
+  "distractor_steps": [
+   {
+    "choice": "135",
+    "mis_step": "Adds the 3-foot width only once to each dimension instead of once on each of the two opposite sides: 21 x 27 - 432."
+   },
+   {
+    "choice": "252",
+    "mis_step": "Multiplies the garden's perimeter by the path width, 2(18 + 24) x 3, which omits the four 3-by-3 corner squares."
+   },
+   {
+    "choice": "432",
+    "mis_step": "Answers the intermediate quantity, the area of the garden itself, rather than the area of the path."
+   }
+  ]
+ },
+ {
+  "id": "IQ4",
+  "difficulty": "medium",
+  "subskill": "average speed as total distance over total time",
+  "topic_tag": "rates-average-speed",
+  "prompt": "A delivery van drives the first 60 miles of a trip at a steady 30 miles per hour, then drives the remaining 60 miles at a steady 60 miles per hour. What is the van's average speed, in miles per hour, for the entire 120-mile trip?",
+  "choices": [
+   "40",
+   "45",
+   "60",
+   "90"
+  ],
+  "correct_answer": "40",
+  "explanation": "The first 60 miles take 60/30 = 2 hours and the second 60 miles take 60/60 = 1 hour, so the van covers 120 miles in 3 hours, an average of 120/3 = 40 miles per hour.",
+  "solve": "const t1 = 60 / 30;\nconst t2 = 60 / 60;\nreturn String((60 + 60) / (t1 + t2));",
+  "distractor_steps": [
+   {
+    "choice": "45",
+    "mis_step": "Averages the two speeds directly, (30 + 60)/2, weighting the slow leg and fast leg equally even though the slow leg takes twice as long."
+   },
+   {
+    "choice": "60",
+    "mis_step": "Divides the total distance 120 by the first leg's time of 2 hours instead of by the total 3 hours."
+   },
+   {
+    "choice": "90",
+    "mis_step": "Adds the two speeds, 30 + 60, treating the rates as though they combine like distances."
+   }
+  ]
+ },
+ {
+  "id": "IQ5",
+  "difficulty": "medium",
+  "subskill": "ratio change when one part is increased",
+  "topic_tag": "ratio-reasoning",
+  "prompt": "A parking garage contains only compact cars and full-size cars, in the ratio 3 to 5. After 12 more compact cars park in the garage and no cars leave, the ratio of compact cars to full-size cars is 3 to 4. How many cars are in the garage after the 12 compact cars park?",
+  "choices": [
+   "48",
+   "80",
+   "128",
+   "140"
+  ],
+  "correct_answer": "140",
+  "explanation": "Writing the counts as 3k compact and 5k full-size, the new ratio gives 4(3k + 12) = 3(5k), so 3k = 48 and k = 16. The garage then holds 48 + 12 = 60 compact and 80 full-size cars, a total of 140.",
+  "solve": "const k = 48 / 3;\nconst compactAfter = 3 * k + 12;\nconst fullSize = 5 * k;\nreturn String(compactAfter + fullSize);",
+  "distractor_steps": [
+   {
+    "choice": "48",
+    "mis_step": "Answers the intermediate quantity 3k, the original number of compact cars, instead of the total after the arrival."
+   },
+   {
+    "choice": "80",
+    "mis_step": "Answers the intermediate quantity 5k, the number of full-size cars, instead of the total after the arrival."
+   },
+   {
+    "choice": "128",
+    "mis_step": "Ignores the stated condition that 12 cars were added and reports the original total 48 + 80."
+   }
+  ]
+ },
+ {
+  "id": "IQ6",
+  "difficulty": "hard",
+  "subskill": "weighted average with an unknown group size",
+  "topic_tag": "weighted-average",
+  "prompt": "On a history exam, the 12 boys in a class averaged 78 points and the girls in the class averaged 88 points. The average for the whole class was exactly 84 points. How many girls are in the class?",
+  "choices": [
+   "6",
+   "8",
+   "18",
+   "30"
+  ],
+  "correct_answer": "18",
+  "explanation": "Each boy scores 84 - 78 = 6 points below the class average, a total shortfall of 12 x 6 = 72 points, and each girl scores 88 - 84 = 4 points above it. Balancing requires 72/4 = 18 girls.",
+  "solve": "const boys = 12;\nconst shortfall = (84 - 78) * boys;\nconst surplusPerGirl = 88 - 84;\nreturn String(shortfall / surplusPerGirl);",
+  "distractor_steps": [
+   {
+    "choice": "6",
+    "mis_step": "Answers the intermediate quantity 84 - 78, the number of points each boy falls below the class average, rather than a number of girls."
+   },
+   {
+    "choice": "8",
+    "mis_step": "Reverses the two deviations when forming the balance, computing 12 x 4/6 instead of 12 x 6/4."
+   },
+   {
+    "choice": "30",
+    "mis_step": "Answers the size of the whole class, 12 boys plus 18 girls, instead of the number of girls asked for."
+   }
+  ]
+ },
+ {
+  "id": "IM1",
+  "difficulty": "easy",
+  "subskill": "successive percent change",
+  "topic_tag": "percent-change",
+  "prompt": "The population of a small town is 250 people. During the first year the population increases by 20%. During the second year the population decreases by 10% from its value at the end of the first year. What is the population at the end of the second year?",
+  "choices": [
+   "270",
+   "275",
+   "295",
+   "300"
+  ],
+  "correct_answer": "270",
+  "explanation": "A 20% increase takes 250 to 250 + 50 = 300, and 10% of 300 is 30, so the second year ends at 300 - 30 = 270 people.",
+  "solve": "const start = 250;\nconst afterIncrease = start + start * 20 / 100;\nconst afterDecrease = afterIncrease - afterIncrease * 10 / 100;\nreturn Math.round(afterDecrease);",
+  "distractor_steps": [
+   {
+    "choice": "275",
+    "mis_step": "Combined the two percents into a single net 10% increase applied to the original 250, giving 250 + 25 = 275."
+   },
+   {
+    "choice": "295",
+    "mis_step": "Applied the 10% decrease to the 50-person increase instead of to the new population: 300 - 5 = 295."
+   },
+   {
+    "choice": "300",
+    "mis_step": "Stopped after the first year and reported the intermediate population 250 + 50 = 300."
+   }
+  ]
+ },
+ {
+  "id": "IM3",
+  "difficulty": "medium",
+  "subskill": "finding a missing value from a mean",
+  "topic_tag": "mean-and-missing-value",
+  "prompt": "On her first 4 science tests Jordan's mean score was 82 points. After she took a fifth test, the mean of all 5 tests was 84 points. What was her score on the fifth test?",
+  "choices": [
+   "86",
+   "90",
+   "94",
+   "92"
+  ],
+  "correct_answer": "92",
+  "explanation": "The 5 tests total 5 x 84 = 420 points and the first 4 total 4 x 82 = 328 points, so the fifth test scored 420 - 328 = 92 points.",
+  "solve": "const total5 = 5 * 84;\nconst total4 = 4 * 82;\nreturn total5 - total4;",
+  "distractor_steps": [
+   {
+    "choice": "86",
+    "mis_step": "Treated the 2-point rise in the mean as a 2-point addition to the new mean itself: 84 + 2 = 86."
+   },
+   {
+    "choice": "90",
+    "mis_step": "Spread the 2-point rise over the 4 earlier tests instead of all 5: 82 + 2 x 4 = 90."
+   },
+   {
+    "choice": "94",
+    "mis_step": "Computed the total gain 2 x 5 = 10 correctly but added it to the new mean rather than the old one: 84 + 10 = 94."
+   }
+  ]
+ },
+ {
+  "id": "IM4",
+  "difficulty": "medium",
+  "subskill": "two-variable word problem with money values",
+  "topic_tag": "systems-word-problem",
+  "prompt": "A jar contains only nickels (5 cents each) and dimes (10 cents each). There are 34 coins in the jar, and their total value is 2.90 dollars. How many of the coins are dimes?",
+  "choices": [
+   "10",
+   "12",
+   "24",
+   "29"
+  ],
+  "correct_answer": "24",
+  "explanation": "If all 34 coins were nickels the value would be 170 cents; the actual 290 cents is 120 cents more, and each dime replacing a nickel adds 5 cents, so there are 120/5 = 24 dimes.",
+  "solve": "const coins = 34;\nconst cents = 290;\nconst allNickels = coins * 5;\nreturn (cents - allNickels) / (10 - 5);",
+  "distractor_steps": [
+   {
+    "choice": "10",
+    "mis_step": "Found the dime count correctly but reported the other coin, the 34 - 24 = 10 nickels."
+   },
+   {
+    "choice": "12",
+    "mis_step": "Divided the 120-cent excess by the dime's value 10 instead of by the 5-cent difference between the coins: 120/10 = 12."
+   },
+   {
+    "choice": "29",
+    "mis_step": "Ignored the 34-coin condition and divided the total value by the dime value: 290/10 = 29."
+   }
+  ]
+ },
+ {
+  "id": "IM5",
+  "difficulty": "medium",
+  "subskill": "median from a frequency distribution",
+  "topic_tag": "median-from-frequency-table",
+  "prompt": "A teacher records the quiz scores of 25 students. Four students scored 6, seven students scored 7, six students scored 8, five students scored 9, and three students scored 10. What is the median score for the 25 students?",
+  "choices": [
+   "9",
+   "8",
+   "7",
+   "6"
+  ],
+  "correct_answer": "8",
+  "explanation": "With 25 scores in order the median is the 13th one; the counts 4 and 7 account for the first 11 scores, so the 12th through 17th scores are all 8.",
+  "solve": "const scores = [6, 7, 8, 9, 10];\nconst freq = [4, 7, 6, 5, 3];\nconst list = [];\nfor (let i = 0; i < scores.length; i++) {\n  for (let j = 0; j < freq[i]; j++) {\n    list.push(scores[i]);\n  }\n}\nlist.sort(function (a, b) { return a - b; });\nreturn list[Math.floor(list.length / 2)];",
+  "distractor_steps": [
+   {
+    "choice": "9",
+    "mis_step": "Took the median of the frequency column (3, 4, 5, 6, 7 has middle value 5) and reported the score 9 that goes with that frequency."
+   },
+   {
+    "choice": "7",
+    "mis_step": "Reported the mode, the score held by the largest group of 7 students, instead of the median."
+   },
+   {
+    "choice": "6",
+    "mis_step": "Located the median score correctly but answered with the number of students who earned it, 6, instead of the score."
+   }
+  ]
+ },
+ {
+  "id": "IM6",
+  "difficulty": "hard",
+  "subskill": "mixture problem with a changing total",
+  "topic_tag": "mixture-percent",
+  "prompt": "A chemist has 40 ounces of a solution that is 30% acid by volume. She wants to add pure acid so that the resulting solution is 50% acid by volume. How many ounces of pure acid must she add?",
+  "choices": [
+   "8",
+   "12",
+   "16",
+   "20"
+  ],
+  "correct_answer": "16",
+  "explanation": "The 40 ounces contain 40 x 30/100 = 12 ounces of acid, and adding x ounces of pure acid must satisfy (12 + x)/(40 + x) = 0.50, so 12 + x = 20 + 0.5x and x = 16 ounces.",
+  "solve": "const total = 40;\nconst acid = total * 30 / 100;\nconst target = 50 / 100;\nreturn (target * total - acid) / (1 - target);",
+  "distractor_steps": [
+   {
+    "choice": "8",
+    "mis_step": "Held the total volume fixed at 40 ounces, solving 12 + x = 20 and getting x = 8, ignoring that the added acid also enlarges the total."
+   },
+   {
+    "choice": "12",
+    "mis_step": "Reported the intermediate quantity, the 40 x 0.30 = 12 ounces of acid already in the solution."
+   },
+   {
+    "choice": "20",
+    "mis_step": "Reported the amount of acid a 40-ounce 50% solution would contain, 40 x 0.50 = 20 ounces, rather than the amount to be added."
+   }
+  ]
+ },
+ {
+  "id": "IM9",
+  "difficulty": "medium",
+  "subskill": "area of a border region around a rectangle",
+  "topic_tag": "area-composite",
+  "prompt": "A rectangular swimming pool measures 25 feet by 12 feet. A concrete walkway of uniform width 3 feet is built all the way around the outside of the pool. What is the area of the walkway alone, in square feet?",
+  "choices": [
+   "120",
+   "222",
+   "258",
+   "558"
+  ],
+  "correct_answer": "258",
+  "explanation": "The walkway adds 3 feet on each of two opposite sides, so the outer rectangle is 25 + 6 = 31 feet by 12 + 6 = 18 feet, an area of 558 square feet; subtracting the pool's 25 x 12 = 300 square feet leaves 258.",
+  "solve": "const L = 25, W = 12, w = 3; return (L + 2 * w) * (W + 2 * w) - L * W;",
+  "distractor_steps": [
+   {
+    "choice": "120",
+    "mis_step": "adds the 3-foot width only once to each dimension (28 by 15) instead of to both ends, then subtracts the pool area"
+   },
+   {
+    "choice": "222",
+    "mis_step": "multiplies the pool's perimeter 2(25 + 12) = 74 by the width 3, which omits the four corner squares"
+   },
+   {
+    "choice": "558",
+    "mis_step": "reports the area of the outer rectangle without subtracting the area of the pool"
+   }
+  ]
+ },
+ {
+  "id": "IM10",
+  "difficulty": "medium",
+  "subskill": "area scaling between similar figures",
+  "topic_tag": "similarity-scaling",
+  "prompt": "Two similar triangles have corresponding sides in the ratio 2 : 3. The smaller triangle has an area of 20 square centimeters. What is the area of the larger triangle, in square centimeters?",
+  "choices": [
+   "30",
+   "45",
+   "80",
+   "180"
+  ],
+  "correct_answer": "45",
+  "explanation": "Areas of similar figures scale by the square of the side ratio, so the larger area is 20 x (3/2)^2 = 20 x 9/4 = 45 square centimeters.",
+  "solve": "const A = 20, r = 3 / 2; return A * r * r;",
+  "distractor_steps": [
+   {
+    "choice": "30",
+    "mis_step": "scales the area by the side ratio 3/2 itself rather than by its square"
+   },
+   {
+    "choice": "80",
+    "mis_step": "multiplies by 2^2, squaring the wrong member of the ratio"
+   },
+   {
+    "choice": "180",
+    "mis_step": "multiplies by 3^2 but forgets to divide by 2^2"
+   }
+  ]
+ },
+ {
+  "id": "IM11",
+  "difficulty": "medium",
+  "subskill": "volume displacement and change in liquid level",
+  "topic_tag": "volume-displacement",
+  "prompt": "A rectangular container has a base measuring 10 cm by 8 cm and contains water to a depth of 6 cm. A solid metal cube with edge 4 cm is placed in the container and is completely covered by the water without any spilling. By how many centimeters does the water level rise?",
+  "choices": [
+   "0.2",
+   "0.8",
+   "1.25",
+   "6.8"
+  ],
+  "correct_answer": "0.8",
+  "explanation": "The submerged cube displaces 4 x 4 x 4 = 64 cubic centimeters of water, which spreads over the base area of 10 x 8 = 80 square centimeters, so the level rises 64/80 = 0.8 centimeter.",
+  "solve": "const cubeVol = 4 * 4 * 4; const base = 10 * 8; return cubeVol / base;",
+  "distractor_steps": [
+   {
+    "choice": "0.2",
+    "mis_step": "uses the cube's face area 16 instead of its volume 64 as the displaced amount"
+   },
+   {
+    "choice": "1.25",
+    "mis_step": "divides the base area 80 by the displaced volume 64, inverting the division"
+   },
+   {
+    "choice": "6.8",
+    "mis_step": "reports the new water level 6 + 0.8 rather than the amount of the rise"
+   }
+  ]
+ },
+ {
+  "id": "IM12",
+  "difficulty": "hard",
+  "subskill": "recovering volume from face areas of a rectangular solid",
+  "topic_tag": "solid-geometry-reasoning",
+  "prompt": "The three different faces of a rectangular box have areas of 12, 18, and 24 square inches. What is the volume of the box, in cubic inches?",
+  "choices": [
+   "54",
+   "72",
+   "108",
+   "216"
+  ],
+  "correct_answer": "72",
+  "explanation": "If the edges are a, b, c then ab, bc, and ac multiply to (abc)^2, so 12 x 18 x 24 = 5184 equals the volume squared and the volume is sqrt(5184) = 72 cubic inches.",
+  "solve": "const p = 12 * 18 * 24; return Math.sqrt(p);",
+  "distractor_steps": [
+   {
+    "choice": "54",
+    "mis_step": "adds the three face areas 12 + 18 + 24 instead of relating their product to the square of the volume"
+   },
+   {
+    "choice": "108",
+    "mis_step": "computes the total surface area 2(12 + 18 + 24), answering a different quantity"
+   },
+   {
+    "choice": "216",
+    "mis_step": "divides the product 5184 by the largest face area 24 instead of taking the square root"
+   }
+  ]
+ }
+]

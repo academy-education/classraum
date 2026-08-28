@@ -751,6 +751,160 @@
      "verdict": "Letters flat by construction; no near-dup pairs against the live 178."
     }
    }
+  },
+  {
+   "id": "dl-fresh-v3-2026-08-28",
+   "createdAt": "2026-08-28",
+   "targetTest": "toefl",
+   "section": "reading",
+   "task": "daily_life",
+   "family": "mc_hidden_source",
+   "spec": {
+    "n": 60,
+    "authors": 12,
+    "method": "frozen dl-fresh brief + the new CHANNEL PARITY clause; Opus authors"
+   },
+   "contentSha": "dc3dff35eb9931509a214a17ad189a21e6971d0beac82f880e0a48e2a6afc98c",
+   "status": "shipped",
+   "cohort": "dl-fresh-v3",
+   "note": "Replaces the killed dl-fresh-v2 (48) and the archived dl-fresh-v1 sets (24). 72 authored, 6 whole sets dropped on grader flags (never a lone question — that would strand a sibling). check-batch-joins.mjs clean at preflight AND on the final keeper set.",
+   "stages": {
+    "shape": {
+     "passed": true,
+     "contentSha": "dc3dff35eb9931509a214a17ad189a21e6971d0beac82f880e0a48e2a6afc98c",
+     "verdict": "60/60 preflight clean; verify-daily-life-repair mode A: key positions ok, hedge-only-in-key 0%, key-longest 27%."
+    },
+    "withsource": {
+     "passed": true,
+     "verdict": "Key votes >=2/3 on all 72 authored (18 voters, 6 chunks); 6 sets dropped whole on grader flags."
+    },
+    "nosource": {
+     "passed": true,
+     "n": 24,
+     "verdict": "Held-out 24-question attack: mean 31.9% vs 45.8% control, margin -13.9 PASS."
+    },
+    "elimination": {
+     "passed": true,
+     "verdict": "check-batch-joins.mjs (the checker built from the v2 kill) clean on the keeper set: no option-family key skew beyond the bar, no duplicate option sets. The hunter reported a hypothesis it could not test without keys; the join has the keys and reads clean."
+    },
+    "tells": {
+     "passed": true,
+     "verdict": "Channel parity held: the family skew that killed v2 (+6.0) and condemned v1 (12/12) is absent."
+    }
+   }
+  },
+  {
+   "id": "rsw2-2026-08-28",
+   "createdAt": "2026-08-28",
+   "targetTest": "sat",
+   "section": "reading_writing",
+   "task": "sat_expression_of_ideas",
+   "family": "mc_hidden_source",
+   "spec": {
+    "n": 22,
+    "authors": 12,
+    "method": "SYMMETRIC WORLDS + the new GOAL PARITY rule; seeded RNG picks the shown world after freeze"
+   },
+   "contentSha": "f5fb7cf7601e9b29fb3fc45b6037d1cffc63cdbf0c6bd4820d7b75eb4eb0edd6",
+   "status": "shipped",
+   "cohort": "rsw2",
+   "note": "24 authored, 2 dropped by the NEW goal-parity reviewer (rsw2-04, rsw2-24) — the gate created after the pilot lost 4 of 11 to that defect, now catching it before insert instead of after. RS is fully operational under this design.",
+   "stages": {
+    "shape": {
+     "passed": true,
+     "contentSha": "f5fb7cf7601e9b29fb3fc45b6037d1cffc63cdbf0c6bd4820d7b75eb4eb0edd6",
+     "verdict": "Kill-map 24/24 (each summary checkably mismatches every other world), summary length spread within 35%, key letters dealt 6/6/6/6 after freeze."
+    },
+    "withsource": {
+     "passed": true,
+     "verdict": "With-notes voters 3/3 on every item. Goal-parity reviewer: 22 of 24 confirmed all four options genuinely serve the goal; the 2 that failed were dropped."
+    },
+    "nosource": {
+     "passed": true,
+     "n": 24,
+     "verdict": "Attack with consensus-, minority-, hosting- and value-ordering-aware solvers: mean 33.3% vs 25.0% control, margin +8.3 PASS. Solvers reported high confidence on goal-fit reading and still landed near chance."
+    },
+    "elimination": {
+     "passed": true,
+     "verdict": "Hunter exploitable=false after testing length, value ordering by slot, numeric density, per-slot lexis, punctuation and hedge density — no rule at 3+ items."
+    },
+    "tells": {
+     "passed": true,
+     "verdict": "Consensus checker 17% expected blind (below chance); batch joins clean; element frequency uniform by construction."
+    }
+   }
+  },
+  {
+   "id": "ssat-math-v1-2026-08-28",
+   "createdAt": "2026-08-28",
+   "targetTest": "ssat",
+   "section": "math",
+   "task": "multiple_choice",
+   "family": "mc_stem_source",
+   "spec": {
+    "n": 11,
+    "authors": 3,
+    "method": "math-v3 solve-gated method ported to SSAT: JS solve body recomputes the key, named mis-step per distractor, options-only attack; no calculator"
+   },
+   "contentSha": "5e68344a462e974f1078ba6a09db988cc41106ef611a4ac7e345ba78da374b89",
+   "status": "shipped",
+   "cohort": "ssat-math-v1",
+   "note": "First SSAT MATH content. 18 authored, 6 grader-easy + 1 weak-distractor dropped by the anchored grader.",
+   "stages": {
+    "shape": {
+     "passed": true,
+     "contentSha": "5e68344a462e974f1078ba6a09db988cc41106ef611a4ac7e345ba78da374b89",
+     "verdict": "Sandbox recompute 18/18 (every solve body reproduces its key); no thousands separators; keys verbatim among distinct choices."
+    },
+    "withsource": {
+     "passed": true,
+     "verdict": "Anchored grader verified single-defensibility, calculator-free solvability and distractor quality on every item; flagged items dropped."
+    },
+    "nosource": {
+     "passed": true,
+     "verdict": "Options-only attack (stems stripped entirely): mean 13.0% vs 33.3% control, margin -20.4 PASS."
+    },
+    "tells": {
+     "passed": true,
+     "verdict": "Options-only sanity enforced in the brief (no lone perfect square, round number or precise decimal); attack confirms the bare values carry nothing."
+    }
+   }
+  },
+  {
+   "id": "isee-math-v1-2026-08-28",
+   "createdAt": "2026-08-28",
+   "targetTest": "isee",
+   "section": "math",
+   "task": "multiple_choice",
+   "family": "mc_stem_source",
+   "spec": {
+    "n": 15,
+    "authors": 3,
+    "method": "math-v3 solve-gated method ported to ISEE: JS solve body recomputes the key, named mis-step per distractor, options-only attack; no calculator"
+   },
+   "contentSha": "f8be42d837f477612aca0a57c34454eb34befee6ba88b65c35ff7fa2861e7c49",
+   "status": "shipped",
+   "cohort": "isee-math-v1",
+   "note": "First ISEE MATH content. 18 authored, 3 grader-easy dropped by the anchored grader.",
+   "stages": {
+    "shape": {
+     "passed": true,
+     "contentSha": "f8be42d837f477612aca0a57c34454eb34befee6ba88b65c35ff7fa2861e7c49",
+     "verdict": "Sandbox recompute 18/18 (every solve body reproduces its key); no thousands separators; keys verbatim among distinct choices."
+    },
+    "withsource": {
+     "passed": true,
+     "verdict": "Anchored grader verified single-defensibility, calculator-free solvability and distractor quality on every item; flagged items dropped."
+    },
+    "nosource": {
+     "passed": true,
+     "verdict": "Options-only attack (stems stripped entirely): mean 18.5% vs 44.4% control, margin -25.9 PASS."
+    },
+    "tells": {
+     "passed": true,
+     "verdict": "Options-only sanity enforced in the brief (no lone perfect square, round number or precise decimal); attack confirms the bare values carry nothing."
+    }
+   }
   }
  ],
  "auditedCohorts": [

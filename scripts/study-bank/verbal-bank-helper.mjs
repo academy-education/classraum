@@ -28,6 +28,9 @@ import { dirname, join } from 'node:path'
 
 const HERE = dirname(fileURLToPath(import.meta.url))
 const CHOICES_FOR = { ssat: 5, isee: 4 }
+// section defaults to verbal; BANK_SECTION=math banks the math cohorts through
+// the same gated path (same shape, different section/domain).
+const SECTION = process.env.BANK_SECTION || 'verbal'
 
 function loadEnv() {
   const raw = readFileSync(join(HERE, '../../.env.local'), 'utf8')
@@ -47,7 +50,7 @@ async function insert(family, batchPath, qcPath) {
   const env = loadEnv()
   const db = createClient(env.NEXT_PUBLIC_SUPABASE_URL, env.SUPABASE_SERVICE_ROLE_KEY, { auth: { persistSession: false } })
   const { data: existing } = await db.from('study_item_bank')
-    .select('content_hash').eq('family', family)
+    .select('content_hash').eq('family', family).eq('section', SECTION)
   const seen = new Set((existing || []).map(r => r.content_hash))
 
   let inserted = 0, rejected = 0
@@ -70,9 +73,9 @@ async function insert(family, batchPath, qcPath) {
     const content_hash = hashOf(it)
     if (seen.has(content_hash)) { console.log(`DUP ${label}`); continue }
     const { error } = await db.from('study_item_bank').insert({
-      family, section: 'verbal', domain: 'Verbal',
-      subskill: raw.kind, task: 'multiple_choice', item_type: 'multiple_choice',
-      difficulty: raw.difficulty, topic_tag: raw.kind, passage_group_id: null,
+      family, section: SECTION, domain: SECTION === 'math' ? 'Math' : 'Verbal',
+      subskill: raw.subskill || raw.kind, task: 'multiple_choice', item_type: 'multiple_choice',
+      difficulty: raw.difficulty, topic_tag: raw.topic_tag || raw.kind, passage_group_id: null,
       item: it, content_hash, word_count: null, verified: true, archived: false,
       source: 'hand', cohort: process.env.BANK_COHORT || `${family}-verbal-v1`,
       verify_meta: {

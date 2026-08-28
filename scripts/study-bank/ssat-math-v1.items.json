@@ -1,0 +1,387 @@
+[
+ {
+  "id": "SQ3",
+  "difficulty": "medium",
+  "subskill": "ratio with one part changed; recovering the original total",
+  "topic_tag": "ratios",
+  "prompt": "In a jar, the ratio of red marbles to blue marbles is 9:4. After 20 blue marbles are added to the jar, the ratio of red to blue becomes 9:8. How many marbles were in the jar originally?",
+  "choices": [
+   "20",
+   "40",
+   "45",
+   "65",
+   "85"
+  ],
+  "correct_answer": "65",
+  "explanation": "Writing the counts as 9x red and 4x blue, the new ratio gives 8(9x) = 9(4x + 20), so 72x = 36x + 180 and x = 5; the jar originally held 9(5) + 4(5) = 45 + 20 = 65 marbles.",
+  "solve": "for (var x = 1; x <= 1000; x++) {\n  var red = 9 * x;\n  var blue = 4 * x;\n  if (red * 8 === (blue + 20) * 9) {\n    return red + blue;\n  }\n}\nreturn null;",
+  "distractor_steps": [
+   {
+    "choice": "20",
+    "mis_step": "Answered the intermediate quantity of original blue marbles, 4x = 20, instead of the total."
+   },
+   {
+    "choice": "40",
+    "mis_step": "Answered the number of blue marbles AFTER the addition, 20 + 20 = 40."
+   },
+   {
+    "choice": "45",
+    "mis_step": "Answered the intermediate quantity of red marbles, 9x = 45, instead of the total."
+   },
+   {
+    "choice": "85",
+    "mis_step": "Ignored the word 'originally' and reported the total after the 20 blue marbles were added: 45 + 40 = 85."
+   }
+  ]
+ },
+ {
+  "id": "SQ4",
+  "difficulty": "medium",
+  "subskill": "counting multiples with an exclusion (least common multiple)",
+  "topic_tag": "divisibility",
+  "prompt": "How many positive integers less than 200 are divisible by 4 but NOT divisible by 6?",
+  "choices": [
+   "16",
+   "33",
+   "34",
+   "41",
+   "49"
+  ],
+  "correct_answer": "33",
+  "explanation": "There are 49 multiples of 4 below 200 (4 through 196), and a number divisible by both 4 and 6 is a multiple of 12, of which there are 16 below 200 (12 through 192), leaving 49 - 16 = 33.",
+  "solve": "var count = 0;\nfor (var n = 1; n < 200; n++) {\n  if (n % 4 === 0 && n % 6 !== 0) {\n    count++;\n  }\n}\nreturn count;",
+  "distractor_steps": [
+   {
+    "choice": "16",
+    "mis_step": "Subtracted the 33 multiples of 6 below 200 rather than the 16 multiples of 12: 49 - 33 = 16."
+   },
+   {
+    "choice": "34",
+    "mis_step": "Counted 200 itself as a multiple of 4, getting 50 instead of 49, then subtracted the 16 multiples of 12: 50 - 16 = 34."
+   },
+   {
+    "choice": "41",
+    "mis_step": "Used 4 x 6 = 24 as the common multiple to exclude instead of 12, subtracting the 8 multiples of 24 below 200: 49 - 8 = 41."
+   },
+   {
+    "choice": "49",
+    "mis_step": "Counted all multiples of 4 below 200 and ignored the 'not divisible by 6' condition."
+   }
+  ]
+ },
+ {
+  "id": "SQ6",
+  "difficulty": "hard",
+  "subskill": "prime factorization and counting divisors with a property",
+  "topic_tag": "prime factorization",
+  "prompt": "How many of the positive divisors of 10800 are perfect squares?",
+  "choices": [
+   "4",
+   "7",
+   "12",
+   "30",
+   "60"
+  ],
+  "correct_answer": "12",
+  "explanation": "Since 10800 = 2^4 x 3^3 x 5^2, a divisor is a perfect square exactly when every exponent is even, so the exponent of 2 can be 0, 2, or 4 (3 ways), the exponent of 3 can be 0 or 2 (2 ways), and the exponent of 5 can be 0 or 2 (2 ways): 3 x 2 x 2 = 12.",
+  "solve": "var N = 10800;\nvar count = 0;\nfor (var d = 1; d <= N; d++) {\n  if (N % d === 0) {\n    var r = Math.round(Math.sqrt(d));\n    if (r * r === d) {\n      count++;\n    }\n  }\n}\nreturn count;",
+  "distractor_steps": [
+   {
+    "choice": "4",
+    "mis_step": "Multiplied the even-exponent counts for only the primes 3 and 5 (2 x 2), omitting the 3 choices coming from 2^4."
+   },
+   {
+    "choice": "7",
+    "mis_step": "Added the even-exponent counts instead of multiplying them: 3 + 2 + 2 = 7."
+   },
+   {
+    "choice": "30",
+    "mis_step": "Found the 60 total divisors and assumed exactly half of them are perfect squares: 60 / 2 = 30."
+   },
+   {
+    "choice": "60",
+    "mis_step": "Counted every positive divisor, (4+1)(3+1)(2+1) = 60, ignoring the perfect-square condition."
+   }
+  ]
+ },
+ {
+  "id": "SQ9",
+  "difficulty": "medium",
+  "subskill": "setting up a two-variable coin system",
+  "topic_tag": "algebra-systems-coins",
+  "prompt": "A jar contains only nickels (5 cents each) and dimes (10 cents each). There are 40 coins in the jar and they are worth 310 cents in all. How many dimes are in the jar?",
+  "choices": [
+   "18",
+   "20",
+   "22",
+   "31",
+   "34"
+  ],
+  "correct_answer": "22",
+  "explanation": "If d is the number of dimes, then 10d + 5(40 - d) = 310, so 5d + 200 = 310 and d = 22; the 22 dimes and 18 nickels give 220 + 90 = 310 cents.",
+  "solve": "const coins = 40, cents = 310;\nconst d = (cents - 5 * coins) / 5;\nreturn String(d);",
+  "distractor_steps": [
+   {
+    "choice": "18",
+    "mis_step": "Solves the system for the number of nickels and reports that count instead of the number of dimes."
+   },
+   {
+    "choice": "20",
+    "mis_step": "Ignores the 310-cent condition and splits the 40 coins evenly between the two types."
+   },
+   {
+    "choice": "31",
+    "mis_step": "Treats every coin as a dime, dividing 310 by 10 to get 31."
+   },
+   {
+    "choice": "34",
+    "mis_step": "Sign slip when combining: writes 10d - 5(40 - d) = 310, giving 15d = 510 and d = 34."
+   }
+  ]
+ },
+ {
+  "id": "SQ10",
+  "difficulty": "medium",
+  "subskill": "linear model from two data points (fixed fee plus rate)",
+  "topic_tag": "algebra-linear-model",
+  "prompt": "A repair shop charges a fixed service fee plus a constant hourly rate. A 2-hour job costs $175 and a 5-hour job costs $310. At the same fee and rate, what does an 8-hour job cost?",
+  "choices": [
+   "360",
+   "445",
+   "496",
+   "625",
+   "700"
+  ],
+  "correct_answer": "445",
+  "explanation": "The three extra hours between the 2-hour and 5-hour jobs add 310 - 175 = 135 dollars, so the rate is 45 dollars per hour and the fixed fee is 175 - 2(45) = 85 dollars; an 8-hour job costs 85 + 8(45) = 445.",
+  "solve": "const h1 = 2, c1 = 175, h2 = 5, c2 = 310, h = 8;\nconst rate = (c2 - c1) / (h2 - h1);\nconst fee = c1 - rate * h1;\nreturn String(fee + rate * h);",
+  "distractor_steps": [
+   {
+    "choice": "360",
+    "mis_step": "Finds the correct 45-per-hour rate but drops the fixed fee, charging only 8 x 45."
+   },
+   {
+    "choice": "496",
+    "mis_step": "Assumes cost is proportional to hours and scales the 5-hour price: 310/5 x 8."
+   },
+   {
+    "choice": "625",
+    "mis_step": "Sign slip when finding the fee: computes 175 + 2(45) = 265 instead of 175 - 2(45), then adds 8(45)."
+   },
+   {
+    "choice": "700",
+    "mis_step": "Assumes cost is proportional to hours and scales the 2-hour price: 175/2 x 8."
+   }
+  ]
+ },
+ {
+  "id": "SQ11",
+  "difficulty": "hard",
+  "subskill": "integer constraints on a linear equation",
+  "topic_tag": "algebra-integer-constraints",
+  "prompt": "Adult tickets cost $8 each and child tickets cost $5 each. A group bought at least one ticket of each kind and spent exactly $79. What is the greatest possible number of adult tickets the group could have bought?",
+  "choices": [
+   "3",
+   "6",
+   "8",
+   "9",
+   "11"
+  ],
+  "correct_answer": "8",
+  "explanation": "With 8a + 5c = 79, the leftover 79 - 8a must be a positive multiple of 5, which happens only for a = 3 (leaving 55) and a = 8 (leaving 15, or 3 child tickets), so the greatest possible number of adult tickets is 8.",
+  "solve": "const total = 79, adult = 8, child = 5;\nlet best = 0;\nfor (let a = 1; a * adult < total; a++) {\n  const rem = total - adult * a;\n  if (rem > 0 && rem % child === 0) best = a;\n}\nreturn String(best);",
+  "distractor_steps": [
+   {
+    "choice": "3",
+    "mis_step": "Finds the first workable combination (3 adults, 11 children) and stops, instead of maximizing the adult count."
+   },
+   {
+    "choice": "6",
+    "mis_step": "Assumes equal numbers of each ticket, solving 13n = 79 and rounding down to 6."
+   },
+   {
+    "choice": "9",
+    "mis_step": "Takes the floor of 79/8 = 9 without checking that the leftover $7 cannot be spent on $5 child tickets."
+   },
+   {
+    "choice": "11",
+    "mis_step": "Reports the number of child tickets from the a = 3 combination, answering the wrong dimension."
+   }
+  ]
+ },
+ {
+  "id": "SQ12",
+  "difficulty": "hard",
+  "subskill": "age word problems with two time-shifted conditions",
+  "topic_tag": "algebra-age-systems",
+  "prompt": "Five years ago, Ana was three times as old as Ben was then. In four years, Ana will be twice as old as Ben will be then. How old is Ana now?",
+  "choices": [
+   "14",
+   "20",
+   "27",
+   "32",
+   "36"
+  ],
+  "correct_answer": "32",
+  "explanation": "Writing A - 5 = 3(B - 5) and A + 4 = 2(B + 4) gives A = 3B - 10 and then 3B - 6 = 2B + 8, so B = 14 and A = 32; five years ago 27 was three times 9, and in four years 36 will be twice 18.",
+  "solve": "for (let b = 6; b <= 200; b++) {\n  const a = 3 * (b - 5) + 5;\n  if (a + 4 === 2 * (b + 4)) return String(a);\n}\nreturn 'none';",
+  "distractor_steps": [
+   {
+    "choice": "14",
+    "mis_step": "Solves the system correctly but reports Ben's present age instead of Ana's."
+   },
+   {
+    "choice": "20",
+    "mis_step": "Forgets to shift Ben in the second condition, using A + 4 = 2B so A = 2B, which yields A = 20."
+   },
+   {
+    "choice": "27",
+    "mis_step": "Reports Ana's age five years ago, the intermediate quantity A - 5, rather than her age now."
+   },
+   {
+    "choice": "36",
+    "mis_step": "Reports Ana's age four years from now, the intermediate quantity A + 4, rather than her age now."
+   }
+  ]
+ },
+ {
+  "id": "SQ15",
+  "difficulty": "medium",
+  "subskill": "Circumference and area of a circle",
+  "topic_tag": "geometry-circles",
+  "prompt": "A circular tabletop has a circumference of 88 cm. Using pi = 22/7, what is the area of the tabletop, in square centimeters?",
+  "choices": [
+   "14",
+   "28",
+   "44",
+   "616",
+   "2464"
+  ],
+  "correct_answer": "616",
+  "explanation": "From C = 2*pi*r, 88 = 2 x (22/7) x r gives r = 88 x 7 / 44 = 14 cm. Then the area is (22/7) x 14^2 = 22 x 28 = 616 square centimeters.",
+  "solve": "const C = 88; const r = C * 7 / (2 * 22); return 22 * r * r / 7;",
+  "distractor_steps": [
+   {
+    "choice": "14",
+    "mis_step": "Found the radius r = 14 and reported it instead of going on to compute the area."
+   },
+   {
+    "choice": "28",
+    "mis_step": "Found the radius 14, doubled it to the diameter 28, and reported that length as the answer."
+   },
+   {
+    "choice": "44",
+    "mis_step": "Used the area formula as A = pi*r instead of pi*r^2, computing (22/7) x 14 = 44."
+   },
+   {
+    "choice": "2464",
+    "mis_step": "Omitted the factor of 2 in C = 2*pi*r, solving 88 = (22/7)r for r = 28, then computing (22/7) x 28^2."
+   }
+  ]
+ },
+ {
+  "id": "SQ16",
+  "difficulty": "medium",
+  "subskill": "Distance and perimeter in the coordinate plane",
+  "topic_tag": "geometry-coordinate",
+  "prompt": "In the coordinate plane, triangle ABC has vertices A(-6, 3), B(2, 3), and C(2, -12). What is the perimeter of triangle ABC?",
+  "choices": [
+   "17",
+   "23",
+   "40",
+   "46",
+   "60"
+  ],
+  "correct_answer": "40",
+  "explanation": "AB is horizontal with length 2 - (-6) = 8 and BC is vertical with length 3 - (-12) = 15, so AC = sqrt(8^2 + 15^2) = sqrt(289) = 17. The perimeter is 8 + 15 + 17 = 40.",
+  "solve": "const ab = Math.abs(2 - (-6)); const bc = Math.abs(3 - (-12)); const ac = Math.sqrt(ab * ab + bc * bc); return ab + bc + ac;",
+  "distractor_steps": [
+   {
+    "choice": "17",
+    "mis_step": "Computed the hypotenuse AC = 17 and reported that single side as the answer."
+   },
+   {
+    "choice": "23",
+    "mis_step": "Added only the two legs, 8 + 15, forgetting to include side AC in the perimeter."
+   },
+   {
+    "choice": "46",
+    "mis_step": "Took AC to be the sum of the legs, 8 + 15 = 23, and added 8 + 15 + 23."
+   },
+   {
+    "choice": "60",
+    "mis_step": "Computed the area, (1/2) x 8 x 15 = 60, instead of the perimeter."
+   }
+  ]
+ },
+ {
+  "id": "SQ17",
+  "difficulty": "hard",
+  "subskill": "Surface and structure of a cube",
+  "topic_tag": "geometry-solids",
+  "prompt": "A wooden cube with edge length 6 inches is painted red on all six of its faces. The cube is then cut into 216 unit cubes, each with edge length 1 inch. How many of these unit cubes have exactly one red face?",
+  "choices": [
+   "8",
+   "12",
+   "48",
+   "64",
+   "96"
+  ],
+  "correct_answer": "96",
+  "explanation": "The unit cubes with exactly one painted face are the ones strictly inside a face, forming a 4 by 4 square on each of the 6 faces, since 6 - 2 = 4. That gives 6 x 16 = 96 unit cubes.",
+  "solve": "const n = 6; return 6 * (n - 2) * (n - 2);",
+  "distractor_steps": [
+   {
+    "choice": "8",
+    "mis_step": "Counted the corner unit cubes, which have three painted faces rather than exactly one."
+   },
+   {
+    "choice": "12",
+    "mis_step": "Counted the 12 edges of the large cube instead of counting unit cubes."
+   },
+   {
+    "choice": "48",
+    "mis_step": "Counted the unit cubes with exactly two painted faces, 12 x (6 - 2) = 48."
+   },
+   {
+    "choice": "64",
+    "mis_step": "Counted the hidden interior cubes, (6 - 2)^3 = 64, which have no painted faces at all."
+   }
+  ]
+ },
+ {
+  "id": "SQ18",
+  "difficulty": "hard",
+  "subskill": "Areas created by medians and midpoints",
+  "topic_tag": "geometry-area-ratios",
+  "prompt": "In triangle ABC, D is the midpoint of side BC and E is the midpoint of segment AD. The area of triangle ABC is 48 square units. What is the area of triangle ABE, in square units?",
+  "choices": [
+   "8",
+   "12",
+   "16",
+   "24",
+   "32"
+  ],
+  "correct_answer": "12",
+  "explanation": "Because D is the midpoint of BC, triangles ABD and ACD have equal areas, so triangle ABD has area 48/2 = 24. Because E is the midpoint of AD, triangles ABE and DBE have equal areas, so triangle ABE has area 24/2 = 12.",
+  "solve": "const total = 48; const abd = total / 2; return abd / 2;",
+  "distractor_steps": [
+   {
+    "choice": "8",
+    "mis_step": "Assumed the midpoints create centroid-style sixths and took 48/6 = 8."
+   },
+   {
+    "choice": "16",
+    "mis_step": "Assumed the two midpoints cut the triangle into thirds and took 48/3 = 16."
+   },
+   {
+    "choice": "24",
+    "mis_step": "Stopped after the first midpoint, giving the area of triangle ABD, 48/2 = 24, without using E."
+   },
+   {
+    "choice": "32",
+    "mis_step": "Took two thirds of the whole area, (2/3) x 48 = 32, by treating E as a centroid dividing AD in a 2 to 1 ratio."
+   }
+  ]
+ }
+]
