@@ -44,3 +44,38 @@ same level of specificity (four named people, or four offices, or four
 methods each carrying a room/number). Never one bare channel among
 three specific ones.** Add the three joins above to preflight so this
 is caught before agents are spent on attacks.
+
+## The same join condemned a SHIPPED cohort (2026-08-28, same night)
+
+Break-testing `check-batch-joins.mjs` against already-shipped batches —
+the standing rule that a checker must reproduce known numbers before
+being pointed at unknown data — fired on **dl-fresh-v1**, banked hours
+earlier. Population measurement over all 260 live Daily Life rows,
+using the CONDITIONAL rule (items where exactly one option belongs to
+the family, chance 25%):
+
+    phone/number family    dl-fresh-v1     12/12 = 100%
+                           harvest-v1       0/2
+                           dl-siblings-v1   0/1
+    email family           dl-fresh-v1      0/12 =   0%
+    in-person family       all cohorts      3/16 =  19%  (chance)
+
+So the defect is cohort-specific — the same authoring pass that
+produced dl-fresh-v2, one revision earlier — and the rule is perfect
+where it applies: *if exactly one option is a phone/extension option,
+it is the key; never the bare email option.*
+
+Disposition: the 12 affected items sit in 12 two-question sets, and
+archiving a single question would strand its sibling (the exact defect
+the dl-fresh programme existed to fix), so **all 24 rows archived
+whole**. Daily Life: 260 → 236 rows, 118 drawable sets, still 0
+singles. Post-archive the rule reads 0/3, at chance.
+
+Two lessons, both already in this register in other forms and now
+proven again:
+
+1. **Break-test every new checker against shipped data.** This one was
+   written to prevent a repeat and immediately found the original.
+2. The dl-fresh-v3 re-author now covers 12 archived sets as well as
+   the 24 killed ones, and `check-batch-joins.mjs` runs at preflight —
+   before any attack fleet is paid for.
