@@ -1,0 +1,1172 @@
+[
+ {
+  "id": "SQ1",
+  "difficulty": "easy",
+  "subskill": "fraction of a whole: solving for the whole from a change in fractional part",
+  "topic_tag": "fractions",
+  "prompt": "A water tank is 1/4 full. After 21 liters of water are poured in, the tank is 5/8 full. What is the total capacity of the tank, in liters?",
+  "choices": [
+   "24",
+   "35",
+   "42",
+   "56",
+   "84"
+  ],
+  "correct_answer": "56",
+  "explanation": "Going from 1/4 full to 5/8 full is a gain of 5/8 - 1/4 = 3/8 of the tank, and that gain is 21 liters, so 1/8 of the tank is 7 liters and the full tank is 8 x 7 = 56 liters.",
+  "solve": "var start = 1/4;\nvar end = 5/8;\nvar added = 21;\nvar capacity = added / (end - start);\nreturn capacity;",
+  "distractor_steps": [
+   {
+    "choice": "24",
+    "mis_step": "Added the two fractions instead of subtracting: treated 21 liters as 1/4 + 5/8 = 7/8 of the tank, giving 21 / (7/8) = 24."
+   },
+   {
+    "choice": "35",
+    "mis_step": "Found the capacity correctly but answered the intermediate quantity asked about second: the amount of water in the tank at the end, 5/8 x 56 = 35 liters."
+   },
+   {
+    "choice": "42",
+    "mis_step": "Subtracted only the numerators over the common denominator 8, getting 5/8 - 1/8 = 1/2 as the gain, so 21 / (1/2) = 42."
+   },
+   {
+    "choice": "84",
+    "mis_step": "Used the starting fraction as the fraction poured in: 21 / (1/4) = 84."
+   }
+  ]
+ },
+ {
+  "id": "SQ2",
+  "difficulty": "easy",
+  "subskill": "percent of a changed base after a group is enlarged",
+  "topic_tag": "percents",
+  "prompt": "In a class of 24 students, 25% are girls. If 6 more girls join the class and no one leaves, what percent of the class is then girls?",
+  "choices": [
+   "20%",
+   "25%",
+   "40%",
+   "50%",
+   "60%"
+  ],
+  "correct_answer": "40%",
+  "explanation": "25% of 24 is 6 girls, so after 6 more join there are 12 girls in a class of 24 + 6 = 30 students, and 12/30 = 40%.",
+  "solve": "var total = 24;\nvar girls = total * 0.25;\ngirls = girls + 6;\ntotal = total + 6;\nvar pct = girls / total * 100;\nreturn pct + \"%\";",
+  "distractor_steps": [
+   {
+    "choice": "20%",
+    "mis_step": "Answered what percent of the NEW class the 6 arriving girls make up: 6/30 = 20%."
+   },
+   {
+    "choice": "25%",
+    "mis_step": "Assumed adding students to one group leaves the percentage unchanged and repeated the given 25%."
+   },
+   {
+    "choice": "50%",
+    "mis_step": "Updated the number of girls to 12 but kept the original class size: 12/24 = 50%."
+   },
+   {
+    "choice": "60%",
+    "mis_step": "Computed the percent of the other group: the 18 boys out of the new total of 30 is 60%."
+   }
+  ]
+ },
+ {
+  "id": "SQ3",
+  "difficulty": "medium",
+  "subskill": "ratio with one part changed; recovering the original total",
+  "topic_tag": "ratios",
+  "prompt": "In a jar, the ratio of red marbles to blue marbles is 9:4. After 20 blue marbles are added to the jar, the ratio of red to blue becomes 9:8. How many marbles were in the jar originally?",
+  "choices": [
+   "20",
+   "40",
+   "45",
+   "65",
+   "85"
+  ],
+  "correct_answer": "65",
+  "explanation": "Writing the counts as 9x red and 4x blue, the new ratio gives 8(9x) = 9(4x + 20), so 72x = 36x + 180 and x = 5; the jar originally held 9(5) + 4(5) = 45 + 20 = 65 marbles.",
+  "solve": "for (var x = 1; x <= 1000; x++) {\n  var red = 9 * x;\n  var blue = 4 * x;\n  if (red * 8 === (blue + 20) * 9) {\n    return red + blue;\n  }\n}\nreturn null;",
+  "distractor_steps": [
+   {
+    "choice": "20",
+    "mis_step": "Answered the intermediate quantity of original blue marbles, 4x = 20, instead of the total."
+   },
+   {
+    "choice": "40",
+    "mis_step": "Answered the number of blue marbles AFTER the addition, 20 + 20 = 40."
+   },
+   {
+    "choice": "45",
+    "mis_step": "Answered the intermediate quantity of red marbles, 9x = 45, instead of the total."
+   },
+   {
+    "choice": "85",
+    "mis_step": "Ignored the word 'originally' and reported the total after the 20 blue marbles were added: 45 + 40 = 85."
+   }
+  ]
+ },
+ {
+  "id": "SQ4",
+  "difficulty": "medium",
+  "subskill": "counting multiples with an exclusion (least common multiple)",
+  "topic_tag": "divisibility",
+  "prompt": "How many positive integers less than 200 are divisible by 4 but NOT divisible by 6?",
+  "choices": [
+   "16",
+   "33",
+   "34",
+   "41",
+   "49"
+  ],
+  "correct_answer": "33",
+  "explanation": "There are 49 multiples of 4 below 200 (4 through 196), and a number divisible by both 4 and 6 is a multiple of 12, of which there are 16 below 200 (12 through 192), leaving 49 - 16 = 33.",
+  "solve": "var count = 0;\nfor (var n = 1; n < 200; n++) {\n  if (n % 4 === 0 && n % 6 !== 0) {\n    count++;\n  }\n}\nreturn count;",
+  "distractor_steps": [
+   {
+    "choice": "16",
+    "mis_step": "Subtracted the 33 multiples of 6 below 200 rather than the 16 multiples of 12: 49 - 33 = 16."
+   },
+   {
+    "choice": "34",
+    "mis_step": "Counted 200 itself as a multiple of 4, getting 50 instead of 49, then subtracted the 16 multiples of 12: 50 - 16 = 34."
+   },
+   {
+    "choice": "41",
+    "mis_step": "Used 4 x 6 = 24 as the common multiple to exclude instead of 12, subtracting the 8 multiples of 24 below 200: 49 - 8 = 41."
+   },
+   {
+    "choice": "49",
+    "mis_step": "Counted all multiples of 4 below 200 and ignored the 'not divisible by 6' condition."
+   }
+  ]
+ },
+ {
+  "id": "SQ5",
+  "difficulty": "hard",
+  "subskill": "remainder of a polynomial expression from a given remainder",
+  "topic_tag": "remainders",
+  "prompt": "When a positive integer n is divided by 9, the remainder is 5. What is the remainder when n^2 + 3n is divided by 9?",
+  "choices": [
+   "4",
+   "5",
+   "6",
+   "7",
+   "13"
+  ],
+  "correct_answer": "4",
+  "explanation": "Only the remainder matters, so take n = 5: 5^2 + 3(5) = 25 + 15 = 40, and 40 = 4(9) + 4, so the remainder is 4.",
+  "solve": "var n = 9 * 3 + 5;\nvar value = n * n + 3 * n;\nreturn value % 9;",
+  "distractor_steps": [
+   {
+    "choice": "5",
+    "mis_step": "Assumed the remainder is unchanged by the expression and repeated the given remainder 5."
+   },
+   {
+    "choice": "6",
+    "mis_step": "Reduced only the 3n term, using 3(5) = 15 and 15 - 9 = 6, and dropped the n^2 term."
+   },
+   {
+    "choice": "7",
+    "mis_step": "Reduced only the n^2 term, using 5^2 = 25 and 25 - 18 = 7, and dropped the 3n term."
+   },
+   {
+    "choice": "13",
+    "mis_step": "Reduced each term separately to 7 and 6 but never reduced their sum, reporting 7 + 6 = 13."
+   }
+  ]
+ },
+ {
+  "id": "SQ6",
+  "difficulty": "hard",
+  "subskill": "prime factorization and counting divisors with a property",
+  "topic_tag": "prime factorization",
+  "prompt": "How many of the positive divisors of 10800 are perfect squares?",
+  "choices": [
+   "4",
+   "7",
+   "12",
+   "30",
+   "60"
+  ],
+  "correct_answer": "12",
+  "explanation": "Since 10800 = 2^4 x 3^3 x 5^2, a divisor is a perfect square exactly when every exponent is even, so the exponent of 2 can be 0, 2, or 4 (3 ways), the exponent of 3 can be 0 or 2 (2 ways), and the exponent of 5 can be 0 or 2 (2 ways): 3 x 2 x 2 = 12.",
+  "solve": "var N = 10800;\nvar count = 0;\nfor (var d = 1; d <= N; d++) {\n  if (N % d === 0) {\n    var r = Math.round(Math.sqrt(d));\n    if (r * r === d) {\n      count++;\n    }\n  }\n}\nreturn count;",
+  "distractor_steps": [
+   {
+    "choice": "4",
+    "mis_step": "Multiplied the even-exponent counts for only the primes 3 and 5 (2 x 2), omitting the 3 choices coming from 2^4."
+   },
+   {
+    "choice": "7",
+    "mis_step": "Added the even-exponent counts instead of multiplying them: 3 + 2 + 2 = 7."
+   },
+   {
+    "choice": "30",
+    "mis_step": "Found the 60 total divisors and assumed exactly half of them are perfect squares: 60 / 2 = 30."
+   },
+   {
+    "choice": "60",
+    "mis_step": "Counted every positive divisor, (4+1)(3+1)(2+1) = 60, ignoring the perfect-square condition."
+   }
+  ]
+ },
+ {
+  "id": "SQ7",
+  "difficulty": "easy",
+  "subskill": "translating words into a linear equation",
+  "topic_tag": "algebra-word-translation",
+  "prompt": "Six less than three times a number is 51. What is the number?",
+  "choices": [
+   "-15",
+   "15",
+   "17",
+   "19",
+   "23"
+  ],
+  "correct_answer": "19",
+  "explanation": "The sentence says 3n - 6 = 51, so 3n = 57 and n = 19. Checking: three times 19 is 57, and six less than 57 is 51.",
+  "solve": "const total = 51, less = 6, mult = 3;\nconst n = (total + less) / mult;\nreturn String(n);",
+  "distractor_steps": [
+   {
+    "choice": "-15",
+    "mis_step": "Reverses the order of subtraction when translating, writing 6 - 3n = 51, which gives -3n = 45 and n = -15."
+   },
+   {
+    "choice": "15",
+    "mis_step": "Subtracts the 6 instead of adding it when undoing '6 less', computing (51 - 6)/3 = 15."
+   },
+   {
+    "choice": "17",
+    "mis_step": "Ignores the stated 'six less' condition entirely and solves 3n = 51, getting n = 17."
+   },
+   {
+    "choice": "23",
+    "mis_step": "Attaches the 'six less' to the number rather than to the product, solving 3(n - 6) = 51 to get n = 23."
+   }
+  ]
+ },
+ {
+  "id": "SQ8",
+  "difficulty": "easy",
+  "subskill": "consecutive-integer word problems",
+  "topic_tag": "algebra-consecutive-integers",
+  "prompt": "The sum of three consecutive even integers is 78. What is the largest of the three integers?",
+  "choices": [
+   "24",
+   "26",
+   "27",
+   "28",
+   "30"
+  ],
+  "correct_answer": "28",
+  "explanation": "With the integers written as n, n + 2, and n + 4, the sum 3n + 6 = 78 gives n = 24, so the three integers are 24, 26, and 28.",
+  "solve": "const sum = 78;\nconst n = (sum - 6) / 3;\nreturn String(n + 4);",
+  "distractor_steps": [
+   {
+    "choice": "24",
+    "mis_step": "Solves correctly for n but reports the smallest integer instead of the largest one the question asks for."
+   },
+   {
+    "choice": "26",
+    "mis_step": "Divides 78 by 3 and reports that average, 26, which is the middle integer rather than the largest."
+   },
+   {
+    "choice": "27",
+    "mis_step": "Ignores the word 'even' and uses n, n + 1, n + 2, getting 25, 26, 27 and a largest value of 27."
+   },
+   {
+    "choice": "30",
+    "mis_step": "Forgets to subtract the constant 6 when solving, taking 3n = 78 so n = 26, then adding 4 to get 30."
+   }
+  ]
+ },
+ {
+  "id": "SQ9",
+  "difficulty": "medium",
+  "subskill": "setting up a two-variable coin system",
+  "topic_tag": "algebra-systems-coins",
+  "prompt": "A jar contains only nickels (5 cents each) and dimes (10 cents each). There are 40 coins in the jar and they are worth 310 cents in all. How many dimes are in the jar?",
+  "choices": [
+   "18",
+   "20",
+   "22",
+   "31",
+   "34"
+  ],
+  "correct_answer": "22",
+  "explanation": "If d is the number of dimes, then 10d + 5(40 - d) = 310, so 5d + 200 = 310 and d = 22; the 22 dimes and 18 nickels give 220 + 90 = 310 cents.",
+  "solve": "const coins = 40, cents = 310;\nconst d = (cents - 5 * coins) / 5;\nreturn String(d);",
+  "distractor_steps": [
+   {
+    "choice": "18",
+    "mis_step": "Solves the system for the number of nickels and reports that count instead of the number of dimes."
+   },
+   {
+    "choice": "20",
+    "mis_step": "Ignores the 310-cent condition and splits the 40 coins evenly between the two types."
+   },
+   {
+    "choice": "31",
+    "mis_step": "Treats every coin as a dime, dividing 310 by 10 to get 31."
+   },
+   {
+    "choice": "34",
+    "mis_step": "Sign slip when combining: writes 10d - 5(40 - d) = 310, giving 15d = 510 and d = 34."
+   }
+  ]
+ },
+ {
+  "id": "SQ10",
+  "difficulty": "medium",
+  "subskill": "linear model from two data points (fixed fee plus rate)",
+  "topic_tag": "algebra-linear-model",
+  "prompt": "A repair shop charges a fixed service fee plus a constant hourly rate. A 2-hour job costs $175 and a 5-hour job costs $310. At the same fee and rate, what does an 8-hour job cost?",
+  "choices": [
+   "360",
+   "445",
+   "496",
+   "625",
+   "700"
+  ],
+  "correct_answer": "445",
+  "explanation": "The three extra hours between the 2-hour and 5-hour jobs add 310 - 175 = 135 dollars, so the rate is 45 dollars per hour and the fixed fee is 175 - 2(45) = 85 dollars; an 8-hour job costs 85 + 8(45) = 445.",
+  "solve": "const h1 = 2, c1 = 175, h2 = 5, c2 = 310, h = 8;\nconst rate = (c2 - c1) / (h2 - h1);\nconst fee = c1 - rate * h1;\nreturn String(fee + rate * h);",
+  "distractor_steps": [
+   {
+    "choice": "360",
+    "mis_step": "Finds the correct 45-per-hour rate but drops the fixed fee, charging only 8 x 45."
+   },
+   {
+    "choice": "496",
+    "mis_step": "Assumes cost is proportional to hours and scales the 5-hour price: 310/5 x 8."
+   },
+   {
+    "choice": "625",
+    "mis_step": "Sign slip when finding the fee: computes 175 + 2(45) = 265 instead of 175 - 2(45), then adds 8(45)."
+   },
+   {
+    "choice": "700",
+    "mis_step": "Assumes cost is proportional to hours and scales the 2-hour price: 175/2 x 8."
+   }
+  ]
+ },
+ {
+  "id": "SQ11",
+  "difficulty": "hard",
+  "subskill": "integer constraints on a linear equation",
+  "topic_tag": "algebra-integer-constraints",
+  "prompt": "Adult tickets cost $8 each and child tickets cost $5 each. A group bought at least one ticket of each kind and spent exactly $79. What is the greatest possible number of adult tickets the group could have bought?",
+  "choices": [
+   "3",
+   "6",
+   "8",
+   "9",
+   "11"
+  ],
+  "correct_answer": "8",
+  "explanation": "With 8a + 5c = 79, the leftover 79 - 8a must be a positive multiple of 5, which happens only for a = 3 (leaving 55) and a = 8 (leaving 15, or 3 child tickets), so the greatest possible number of adult tickets is 8.",
+  "solve": "const total = 79, adult = 8, child = 5;\nlet best = 0;\nfor (let a = 1; a * adult < total; a++) {\n  const rem = total - adult * a;\n  if (rem > 0 && rem % child === 0) best = a;\n}\nreturn String(best);",
+  "distractor_steps": [
+   {
+    "choice": "3",
+    "mis_step": "Finds the first workable combination (3 adults, 11 children) and stops, instead of maximizing the adult count."
+   },
+   {
+    "choice": "6",
+    "mis_step": "Assumes equal numbers of each ticket, solving 13n = 79 and rounding down to 6."
+   },
+   {
+    "choice": "9",
+    "mis_step": "Takes the floor of 79/8 = 9 without checking that the leftover $7 cannot be spent on $5 child tickets."
+   },
+   {
+    "choice": "11",
+    "mis_step": "Reports the number of child tickets from the a = 3 combination, answering the wrong dimension."
+   }
+  ]
+ },
+ {
+  "id": "SQ12",
+  "difficulty": "hard",
+  "subskill": "age word problems with two time-shifted conditions",
+  "topic_tag": "algebra-age-systems",
+  "prompt": "Five years ago, Ana was three times as old as Ben was then. In four years, Ana will be twice as old as Ben will be then. How old is Ana now?",
+  "choices": [
+   "14",
+   "20",
+   "27",
+   "32",
+   "36"
+  ],
+  "correct_answer": "32",
+  "explanation": "Writing A - 5 = 3(B - 5) and A + 4 = 2(B + 4) gives A = 3B - 10 and then 3B - 6 = 2B + 8, so B = 14 and A = 32; five years ago 27 was three times 9, and in four years 36 will be twice 18.",
+  "solve": "for (let b = 6; b <= 200; b++) {\n  const a = 3 * (b - 5) + 5;\n  if (a + 4 === 2 * (b + 4)) return String(a);\n}\nreturn 'none';",
+  "distractor_steps": [
+   {
+    "choice": "14",
+    "mis_step": "Solves the system correctly but reports Ben's present age instead of Ana's."
+   },
+   {
+    "choice": "20",
+    "mis_step": "Forgets to shift Ben in the second condition, using A + 4 = 2B so A = 2B, which yields A = 20."
+   },
+   {
+    "choice": "27",
+    "mis_step": "Reports Ana's age five years ago, the intermediate quantity A - 5, rather than her age now."
+   },
+   {
+    "choice": "36",
+    "mis_step": "Reports Ana's age four years from now, the intermediate quantity A + 4, rather than her age now."
+   }
+  ]
+ },
+ {
+  "id": "SQ13",
+  "difficulty": "easy",
+  "subskill": "Angles in a triangle",
+  "topic_tag": "geometry-angles",
+  "prompt": "In triangle ABC, the measures of the angles are 3x degrees, 2x degrees, and (x + 30) degrees. What is the measure, in degrees, of the largest angle of the triangle?",
+  "choices": [
+   "25",
+   "50",
+   "55",
+   "75",
+   "90"
+  ],
+  "correct_answer": "75",
+  "explanation": "The three angle measures sum to 180, so 3x + 2x + (x + 30) = 180, giving 6x = 150 and x = 25. The angles are then 75, 50, and 55 degrees, and the largest is 75 degrees.",
+  "solve": "const x = (180 - 30) / 6; return 3 * x;",
+  "distractor_steps": [
+   {
+    "choice": "25",
+    "mis_step": "Solved correctly for x = 25 but reported x itself instead of substituting it into 3x."
+   },
+   {
+    "choice": "50",
+    "mis_step": "Substituted x = 25 into 2x and reported 50, mistaking the middle expression for the largest angle."
+   },
+   {
+    "choice": "55",
+    "mis_step": "Substituted x = 25 into x + 30 and reported 55, assuming the expression with the added constant must be the largest."
+   },
+   {
+    "choice": "90",
+    "mis_step": "Dropped the constant when summing, solving 6x = 180 to get x = 30, then reported 3x = 90."
+   }
+  ]
+ },
+ {
+  "id": "SQ14",
+  "difficulty": "easy",
+  "subskill": "Perimeter and area of a rectangle",
+  "topic_tag": "geometry-perimeter-area",
+  "prompt": "A rectangular sheet of paper has a perimeter of 46 cm and a length of 14 cm. What is the area of the sheet, in square centimeters?",
+  "choices": [
+   "9",
+   "126",
+   "161",
+   "252",
+   "322"
+  ],
+  "correct_answer": "126",
+  "explanation": "Half the perimeter is 46/2 = 23 cm, which is one length plus one width, so the width is 23 - 14 = 9 cm. The area is 14 x 9 = 126 square centimeters.",
+  "solve": "const P = 46, L = 14; const W = P / 2 - L; return L * W;",
+  "distractor_steps": [
+   {
+    "choice": "9",
+    "mis_step": "Found the width, 23 - 14 = 9, and reported that length instead of multiplying to get the area."
+   },
+   {
+    "choice": "161",
+    "mis_step": "Divided the perimeter by 4 to get 11.5 as the width (treating the rectangle like a square) and computed 14 x 11.5."
+   },
+   {
+    "choice": "252",
+    "mis_step": "Subtracted only the two lengths from the whole perimeter, 46 - 28 = 18, and used 18 as the width instead of halving it."
+   },
+   {
+    "choice": "322",
+    "mis_step": "Used the half-perimeter 23 as the width, computing 14 x 23."
+   }
+  ]
+ },
+ {
+  "id": "SQ15",
+  "difficulty": "medium",
+  "subskill": "Circumference and area of a circle",
+  "topic_tag": "geometry-circles",
+  "prompt": "A circular tabletop has a circumference of 88 cm. Using pi = 22/7, what is the area of the tabletop, in square centimeters?",
+  "choices": [
+   "14",
+   "28",
+   "44",
+   "616",
+   "2464"
+  ],
+  "correct_answer": "616",
+  "explanation": "From C = 2*pi*r, 88 = 2 x (22/7) x r gives r = 88 x 7 / 44 = 14 cm. Then the area is (22/7) x 14^2 = 22 x 28 = 616 square centimeters.",
+  "solve": "const C = 88; const r = C * 7 / (2 * 22); return 22 * r * r / 7;",
+  "distractor_steps": [
+   {
+    "choice": "14",
+    "mis_step": "Found the radius r = 14 and reported it instead of going on to compute the area."
+   },
+   {
+    "choice": "28",
+    "mis_step": "Found the radius 14, doubled it to the diameter 28, and reported that length as the answer."
+   },
+   {
+    "choice": "44",
+    "mis_step": "Used the area formula as A = pi*r instead of pi*r^2, computing (22/7) x 14 = 44."
+   },
+   {
+    "choice": "2464",
+    "mis_step": "Omitted the factor of 2 in C = 2*pi*r, solving 88 = (22/7)r for r = 28, then computing (22/7) x 28^2."
+   }
+  ]
+ },
+ {
+  "id": "SQ16",
+  "difficulty": "medium",
+  "subskill": "Distance and perimeter in the coordinate plane",
+  "topic_tag": "geometry-coordinate",
+  "prompt": "In the coordinate plane, triangle ABC has vertices A(-6, 3), B(2, 3), and C(2, -12). What is the perimeter of triangle ABC?",
+  "choices": [
+   "17",
+   "23",
+   "40",
+   "46",
+   "60"
+  ],
+  "correct_answer": "40",
+  "explanation": "AB is horizontal with length 2 - (-6) = 8 and BC is vertical with length 3 - (-12) = 15, so AC = sqrt(8^2 + 15^2) = sqrt(289) = 17. The perimeter is 8 + 15 + 17 = 40.",
+  "solve": "const ab = Math.abs(2 - (-6)); const bc = Math.abs(3 - (-12)); const ac = Math.sqrt(ab * ab + bc * bc); return ab + bc + ac;",
+  "distractor_steps": [
+   {
+    "choice": "17",
+    "mis_step": "Computed the hypotenuse AC = 17 and reported that single side as the answer."
+   },
+   {
+    "choice": "23",
+    "mis_step": "Added only the two legs, 8 + 15, forgetting to include side AC in the perimeter."
+   },
+   {
+    "choice": "46",
+    "mis_step": "Took AC to be the sum of the legs, 8 + 15 = 23, and added 8 + 15 + 23."
+   },
+   {
+    "choice": "60",
+    "mis_step": "Computed the area, (1/2) x 8 x 15 = 60, instead of the perimeter."
+   }
+  ]
+ },
+ {
+  "id": "SQ17",
+  "difficulty": "hard",
+  "subskill": "Surface and structure of a cube",
+  "topic_tag": "geometry-solids",
+  "prompt": "A wooden cube with edge length 6 inches is painted red on all six of its faces. The cube is then cut into 216 unit cubes, each with edge length 1 inch. How many of these unit cubes have exactly one red face?",
+  "choices": [
+   "8",
+   "12",
+   "48",
+   "64",
+   "96"
+  ],
+  "correct_answer": "96",
+  "explanation": "The unit cubes with exactly one painted face are the ones strictly inside a face, forming a 4 by 4 square on each of the 6 faces, since 6 - 2 = 4. That gives 6 x 16 = 96 unit cubes.",
+  "solve": "const n = 6; return 6 * (n - 2) * (n - 2);",
+  "distractor_steps": [
+   {
+    "choice": "8",
+    "mis_step": "Counted the corner unit cubes, which have three painted faces rather than exactly one."
+   },
+   {
+    "choice": "12",
+    "mis_step": "Counted the 12 edges of the large cube instead of counting unit cubes."
+   },
+   {
+    "choice": "48",
+    "mis_step": "Counted the unit cubes with exactly two painted faces, 12 x (6 - 2) = 48."
+   },
+   {
+    "choice": "64",
+    "mis_step": "Counted the hidden interior cubes, (6 - 2)^3 = 64, which have no painted faces at all."
+   }
+  ]
+ },
+ {
+  "id": "SQ18",
+  "difficulty": "hard",
+  "subskill": "Areas created by medians and midpoints",
+  "topic_tag": "geometry-area-ratios",
+  "prompt": "In triangle ABC, D is the midpoint of side BC and E is the midpoint of segment AD. The area of triangle ABC is 48 square units. What is the area of triangle ABE, in square units?",
+  "choices": [
+   "8",
+   "12",
+   "16",
+   "24",
+   "32"
+  ],
+  "correct_answer": "12",
+  "explanation": "Because D is the midpoint of BC, triangles ABD and ACD have equal areas, so triangle ABD has area 48/2 = 24. Because E is the midpoint of AD, triangles ABE and DBE have equal areas, so triangle ABE has area 24/2 = 12.",
+  "solve": "const total = 48; const abd = total / 2; return abd / 2;",
+  "distractor_steps": [
+   {
+    "choice": "8",
+    "mis_step": "Assumed the midpoints create centroid-style sixths and took 48/6 = 8."
+   },
+   {
+    "choice": "16",
+    "mis_step": "Assumed the two midpoints cut the triangle into thirds and took 48/3 = 16."
+   },
+   {
+    "choice": "24",
+    "mis_step": "Stopped after the first midpoint, giving the area of triangle ABD, 48/2 = 24, without using E."
+   },
+   {
+    "choice": "32",
+    "mis_step": "Took two thirds of the whole area, (2/3) x 48 = 32, by treating E as a centroid dividing AD in a 2 to 1 ratio."
+   }
+  ]
+ },
+ {
+  "id": "IQ1",
+  "difficulty": "easy",
+  "subskill": "multi-step money arithmetic with a whole-group adjustment",
+  "topic_tag": "multi-step-arithmetic",
+  "prompt": "A school club buys tickets to a museum. Adult tickets cost $12 each and student tickets cost $7 each. The club buys 9 adult tickets and 14 student tickets, and the museum then takes $25 off the combined total because the club is a group. How much does the club pay?",
+  "choices": [
+   "$156",
+   "$181",
+   "$206",
+   "$231"
+  ],
+  "correct_answer": "$181",
+  "explanation": "The adult tickets cost 9 x $12 = $108 and the student tickets cost 14 x $7 = $98, for a combined $206. The single group reduction of $25 is taken once from that combined total, giving $206 - $25 = $181.",
+  "solve": "const adult = 9 * 12;\nconst student = 14 * 7;\nconst total = adult + student;\nreturn '$' + (total - 25);",
+  "distractor_steps": [
+   {
+    "choice": "$156",
+    "mis_step": "Subtracts the $25 group reduction from each of the two subtotals: ($108 - $25) + ($98 - $25) = $156, instead of once from the combined total."
+   },
+   {
+    "choice": "$206",
+    "mis_step": "Stops at the intermediate combined ticket cost $108 + $98 and never applies the stated $25 reduction."
+   },
+   {
+    "choice": "$231",
+    "mis_step": "Sign slip at the discount stage: adds the $25 to the combined total instead of subtracting it."
+   }
+  ]
+ },
+ {
+  "id": "IQ2",
+  "difficulty": "easy",
+  "subskill": "successive percent changes on a changing base",
+  "topic_tag": "percent-change",
+  "prompt": "A store marks a $80 jacket up by 25%. The jacket does not sell, so the store then takes 20% off the marked-up price. What is the final price of the jacket?",
+  "choices": [
+   "$60",
+   "$64",
+   "$76",
+   "$80"
+  ],
+  "correct_answer": "$80",
+  "explanation": "The markup gives $80 + 0.25 x $80 = $100, and 20% off that is $100 - 0.20 x $100 = $80. The 20% is taken from the larger base $100, so the $20 removed exactly cancels the $20 added.",
+  "solve": "const afterIncrease = 80 + 80 * 25 / 100;\nconst finalPrice = afterIncrease - afterIncrease * 20 / 100;\nreturn '$' + finalPrice;",
+  "distractor_steps": [
+   {
+    "choice": "$60",
+    "mis_step": "Sign slip at the markup stage: treats the 25% change as a decrease, computing $80 x 0.75."
+   },
+   {
+    "choice": "$64",
+    "mis_step": "Ignores the stated markup and applies the 20% reduction to the original price: $80 x 0.80."
+   },
+   {
+    "choice": "$76",
+    "mis_step": "Combines the percents directly as a net 5% decrease and applies it to the original: $80 - 0.05 x $80."
+   }
+  ]
+ },
+ {
+  "id": "IQ3",
+  "difficulty": "medium",
+  "subskill": "area of a uniform border around a rectangle",
+  "topic_tag": "composite-area",
+  "prompt": "A rectangular vegetable garden measures 18 feet by 24 feet. A concrete path of uniform width 3 feet is poured all the way around the outside of the garden. What is the area, in square feet, of the path alone?",
+  "choices": [
+   "135",
+   "252",
+   "288",
+   "432"
+  ],
+  "correct_answer": "288",
+  "explanation": "The path adds 3 feet on each of two opposite sides, so the outer rectangle is 24 feet by 30 feet with area 720 square feet; the garden itself covers 18 x 24 = 432 square feet, leaving 720 - 432 = 288 square feet of path.",
+  "solve": "const outer = (18 + 2 * 3) * (24 + 2 * 3);\nconst inner = 18 * 24;\nreturn String(outer - inner);",
+  "distractor_steps": [
+   {
+    "choice": "135",
+    "mis_step": "Adds the 3-foot width only once to each dimension instead of once on each of the two opposite sides: 21 x 27 - 432."
+   },
+   {
+    "choice": "252",
+    "mis_step": "Multiplies the garden's perimeter by the path width, 2(18 + 24) x 3, which omits the four 3-by-3 corner squares."
+   },
+   {
+    "choice": "432",
+    "mis_step": "Answers the intermediate quantity, the area of the garden itself, rather than the area of the path."
+   }
+  ]
+ },
+ {
+  "id": "IQ4",
+  "difficulty": "medium",
+  "subskill": "average speed as total distance over total time",
+  "topic_tag": "rates-average-speed",
+  "prompt": "A delivery van drives the first 60 miles of a trip at a steady 30 miles per hour, then drives the remaining 60 miles at a steady 60 miles per hour. What is the van's average speed, in miles per hour, for the entire 120-mile trip?",
+  "choices": [
+   "40",
+   "45",
+   "60",
+   "90"
+  ],
+  "correct_answer": "40",
+  "explanation": "The first 60 miles take 60/30 = 2 hours and the second 60 miles take 60/60 = 1 hour, so the van covers 120 miles in 3 hours, an average of 120/3 = 40 miles per hour.",
+  "solve": "const t1 = 60 / 30;\nconst t2 = 60 / 60;\nreturn String((60 + 60) / (t1 + t2));",
+  "distractor_steps": [
+   {
+    "choice": "45",
+    "mis_step": "Averages the two speeds directly, (30 + 60)/2, weighting the slow leg and fast leg equally even though the slow leg takes twice as long."
+   },
+   {
+    "choice": "60",
+    "mis_step": "Divides the total distance 120 by the first leg's time of 2 hours instead of by the total 3 hours."
+   },
+   {
+    "choice": "90",
+    "mis_step": "Adds the two speeds, 30 + 60, treating the rates as though they combine like distances."
+   }
+  ]
+ },
+ {
+  "id": "IQ5",
+  "difficulty": "medium",
+  "subskill": "ratio change when one part is increased",
+  "topic_tag": "ratio-reasoning",
+  "prompt": "A parking garage contains only compact cars and full-size cars, in the ratio 3 to 5. After 12 more compact cars park in the garage and no cars leave, the ratio of compact cars to full-size cars is 3 to 4. How many cars are in the garage after the 12 compact cars park?",
+  "choices": [
+   "48",
+   "80",
+   "128",
+   "140"
+  ],
+  "correct_answer": "140",
+  "explanation": "Writing the counts as 3k compact and 5k full-size, the new ratio gives 4(3k + 12) = 3(5k), so 3k = 48 and k = 16. The garage then holds 48 + 12 = 60 compact and 80 full-size cars, a total of 140.",
+  "solve": "const k = 48 / 3;\nconst compactAfter = 3 * k + 12;\nconst fullSize = 5 * k;\nreturn String(compactAfter + fullSize);",
+  "distractor_steps": [
+   {
+    "choice": "48",
+    "mis_step": "Answers the intermediate quantity 3k, the original number of compact cars, instead of the total after the arrival."
+   },
+   {
+    "choice": "80",
+    "mis_step": "Answers the intermediate quantity 5k, the number of full-size cars, instead of the total after the arrival."
+   },
+   {
+    "choice": "128",
+    "mis_step": "Ignores the stated condition that 12 cars were added and reports the original total 48 + 80."
+   }
+  ]
+ },
+ {
+  "id": "IQ6",
+  "difficulty": "hard",
+  "subskill": "weighted average with an unknown group size",
+  "topic_tag": "weighted-average",
+  "prompt": "On a history exam, the 12 boys in a class averaged 78 points and the girls in the class averaged 88 points. The average for the whole class was exactly 84 points. How many girls are in the class?",
+  "choices": [
+   "6",
+   "8",
+   "18",
+   "30"
+  ],
+  "correct_answer": "18",
+  "explanation": "Each boy scores 84 - 78 = 6 points below the class average, a total shortfall of 12 x 6 = 72 points, and each girl scores 88 - 84 = 4 points above it. Balancing requires 72/4 = 18 girls.",
+  "solve": "const boys = 12;\nconst shortfall = (84 - 78) * boys;\nconst surplusPerGirl = 88 - 84;\nreturn String(shortfall / surplusPerGirl);",
+  "distractor_steps": [
+   {
+    "choice": "6",
+    "mis_step": "Answers the intermediate quantity 84 - 78, the number of points each boy falls below the class average, rather than a number of girls."
+   },
+   {
+    "choice": "8",
+    "mis_step": "Reverses the two deviations when forming the balance, computing 12 x 4/6 instead of 12 x 6/4."
+   },
+   {
+    "choice": "30",
+    "mis_step": "Answers the size of the whole class, 12 boys plus 18 girls, instead of the number of girls asked for."
+   }
+  ]
+ },
+ {
+  "id": "IM1",
+  "difficulty": "easy",
+  "subskill": "successive percent change",
+  "topic_tag": "percent-change",
+  "prompt": "The population of a small town is 250 people. During the first year the population increases by 20%. During the second year the population decreases by 10% from its value at the end of the first year. What is the population at the end of the second year?",
+  "choices": [
+   "270",
+   "275",
+   "295",
+   "300"
+  ],
+  "correct_answer": "270",
+  "explanation": "A 20% increase takes 250 to 250 + 50 = 300, and 10% of 300 is 30, so the second year ends at 300 - 30 = 270 people.",
+  "solve": "const start = 250;\nconst afterIncrease = start + start * 20 / 100;\nconst afterDecrease = afterIncrease - afterIncrease * 10 / 100;\nreturn Math.round(afterDecrease);",
+  "distractor_steps": [
+   {
+    "choice": "275",
+    "mis_step": "Combined the two percents into a single net 10% increase applied to the original 250, giving 250 + 25 = 275."
+   },
+   {
+    "choice": "295",
+    "mis_step": "Applied the 10% decrease to the 50-person increase instead of to the new population: 300 - 5 = 295."
+   },
+   {
+    "choice": "300",
+    "mis_step": "Stopped after the first year and reported the intermediate population 250 + 50 = 300."
+   }
+  ]
+ },
+ {
+  "id": "IM2",
+  "difficulty": "easy",
+  "subskill": "solving a linear equation with distribution",
+  "topic_tag": "linear-equations",
+  "prompt": "If 5(x + 2) = 3x + 26, what is the value of x?",
+  "choices": [
+   "2",
+   "8",
+   "12",
+   "18"
+  ],
+  "correct_answer": "8",
+  "explanation": "Distributing gives 5x + 10 = 3x + 26, so 2x = 26 - 10 = 16 and x = 8.",
+  "solve": "const x = (26 - 5 * 2) / (5 - 3);\nreturn x;",
+  "distractor_steps": [
+   {
+    "choice": "2",
+    "mis_step": "Added 3x to both sides instead of subtracting it: 5x + 3x + 10 = 26, so 8x = 16 and x = 2."
+   },
+   {
+    "choice": "12",
+    "mis_step": "Distributed the 5 only to x and left the 2 unchanged: 5x + 2 = 3x + 26, so 2x = 24 and x = 12."
+   },
+   {
+    "choice": "18",
+    "mis_step": "Moved the 10 to the right side as +10 instead of -10: 5x = 3x + 36, so 2x = 36 and x = 18."
+   }
+  ]
+ },
+ {
+  "id": "IM3",
+  "difficulty": "medium",
+  "subskill": "finding a missing value from a mean",
+  "topic_tag": "mean-and-missing-value",
+  "prompt": "On her first 4 science tests Jordan's mean score was 82 points. After she took a fifth test, the mean of all 5 tests was 84 points. What was her score on the fifth test?",
+  "choices": [
+   "86",
+   "90",
+   "94",
+   "92"
+  ],
+  "correct_answer": "92",
+  "explanation": "The 5 tests total 5 x 84 = 420 points and the first 4 total 4 x 82 = 328 points, so the fifth test scored 420 - 328 = 92 points.",
+  "solve": "const total5 = 5 * 84;\nconst total4 = 4 * 82;\nreturn total5 - total4;",
+  "distractor_steps": [
+   {
+    "choice": "86",
+    "mis_step": "Treated the 2-point rise in the mean as a 2-point addition to the new mean itself: 84 + 2 = 86."
+   },
+   {
+    "choice": "90",
+    "mis_step": "Spread the 2-point rise over the 4 earlier tests instead of all 5: 82 + 2 x 4 = 90."
+   },
+   {
+    "choice": "94",
+    "mis_step": "Computed the total gain 2 x 5 = 10 correctly but added it to the new mean rather than the old one: 84 + 10 = 94."
+   }
+  ]
+ },
+ {
+  "id": "IM4",
+  "difficulty": "medium",
+  "subskill": "two-variable word problem with money values",
+  "topic_tag": "systems-word-problem",
+  "prompt": "A jar contains only nickels (5 cents each) and dimes (10 cents each). There are 34 coins in the jar, and their total value is 2.90 dollars. How many of the coins are dimes?",
+  "choices": [
+   "10",
+   "12",
+   "24",
+   "29"
+  ],
+  "correct_answer": "24",
+  "explanation": "If all 34 coins were nickels the value would be 170 cents; the actual 290 cents is 120 cents more, and each dime replacing a nickel adds 5 cents, so there are 120/5 = 24 dimes.",
+  "solve": "const coins = 34;\nconst cents = 290;\nconst allNickels = coins * 5;\nreturn (cents - allNickels) / (10 - 5);",
+  "distractor_steps": [
+   {
+    "choice": "10",
+    "mis_step": "Found the dime count correctly but reported the other coin, the 34 - 24 = 10 nickels."
+   },
+   {
+    "choice": "12",
+    "mis_step": "Divided the 120-cent excess by the dime's value 10 instead of by the 5-cent difference between the coins: 120/10 = 12."
+   },
+   {
+    "choice": "29",
+    "mis_step": "Ignored the 34-coin condition and divided the total value by the dime value: 290/10 = 29."
+   }
+  ]
+ },
+ {
+  "id": "IM5",
+  "difficulty": "medium",
+  "subskill": "median from a frequency distribution",
+  "topic_tag": "median-from-frequency-table",
+  "prompt": "A teacher records the quiz scores of 25 students. Four students scored 6, seven students scored 7, six students scored 8, five students scored 9, and three students scored 10. What is the median score for the 25 students?",
+  "choices": [
+   "9",
+   "8",
+   "7",
+   "6"
+  ],
+  "correct_answer": "8",
+  "explanation": "With 25 scores in order the median is the 13th one; the counts 4 and 7 account for the first 11 scores, so the 12th through 17th scores are all 8.",
+  "solve": "const scores = [6, 7, 8, 9, 10];\nconst freq = [4, 7, 6, 5, 3];\nconst list = [];\nfor (let i = 0; i < scores.length; i++) {\n  for (let j = 0; j < freq[i]; j++) {\n    list.push(scores[i]);\n  }\n}\nlist.sort(function (a, b) { return a - b; });\nreturn list[Math.floor(list.length / 2)];",
+  "distractor_steps": [
+   {
+    "choice": "9",
+    "mis_step": "Took the median of the frequency column (3, 4, 5, 6, 7 has middle value 5) and reported the score 9 that goes with that frequency."
+   },
+   {
+    "choice": "7",
+    "mis_step": "Reported the mode, the score held by the largest group of 7 students, instead of the median."
+   },
+   {
+    "choice": "6",
+    "mis_step": "Located the median score correctly but answered with the number of students who earned it, 6, instead of the score."
+   }
+  ]
+ },
+ {
+  "id": "IM6",
+  "difficulty": "hard",
+  "subskill": "mixture problem with a changing total",
+  "topic_tag": "mixture-percent",
+  "prompt": "A chemist has 40 ounces of a solution that is 30% acid by volume. She wants to add pure acid so that the resulting solution is 50% acid by volume. How many ounces of pure acid must she add?",
+  "choices": [
+   "8",
+   "12",
+   "16",
+   "20"
+  ],
+  "correct_answer": "16",
+  "explanation": "The 40 ounces contain 40 x 30/100 = 12 ounces of acid, and adding x ounces of pure acid must satisfy (12 + x)/(40 + x) = 0.50, so 12 + x = 20 + 0.5x and x = 16 ounces.",
+  "solve": "const total = 40;\nconst acid = total * 30 / 100;\nconst target = 50 / 100;\nreturn (target * total - acid) / (1 - target);",
+  "distractor_steps": [
+   {
+    "choice": "8",
+    "mis_step": "Held the total volume fixed at 40 ounces, solving 12 + x = 20 and getting x = 8, ignoring that the added acid also enlarges the total."
+   },
+   {
+    "choice": "12",
+    "mis_step": "Reported the intermediate quantity, the 40 x 0.30 = 12 ounces of acid already in the solution."
+   },
+   {
+    "choice": "20",
+    "mis_step": "Reported the amount of acid a 40-ounce 50% solution would contain, 40 x 0.50 = 20 ounces, rather than the amount to be added."
+   }
+  ]
+ },
+ {
+  "id": "IM7",
+  "difficulty": "easy",
+  "subskill": "angle relationships in triangles",
+  "topic_tag": "geometry-angles",
+  "prompt": "In triangle ABC, angle A measures 42 degrees and angle B measures 65 degrees. What is the measure, in degrees, of the exterior angle formed at vertex C by extending side BC beyond C?",
+  "choices": [
+   "73",
+   "107",
+   "115",
+   "138"
+  ],
+  "correct_answer": "107",
+  "explanation": "The three interior angles sum to 180, so angle C is 180 - 42 - 65 = 73 degrees. The exterior angle at C is its supplement, 180 - 73 = 107 degrees (equal to 42 + 65).",
+  "solve": "const a = 42, b = 65; const c = 180 - a - b; return 180 - c;",
+  "distractor_steps": [
+   {
+    "choice": "73",
+    "mis_step": "stops after finding the third interior angle and reports that instead of the exterior angle"
+   },
+   {
+    "choice": "115",
+    "mis_step": "takes the supplement of angle B (180 - 65), computing an exterior angle at the wrong vertex"
+   },
+   {
+    "choice": "138",
+    "mis_step": "takes the supplement of angle A (180 - 42), computing an exterior angle at the wrong vertex"
+   }
+  ]
+ },
+ {
+  "id": "IM8",
+  "difficulty": "easy",
+  "subskill": "relating volume and surface area of a cube",
+  "topic_tag": "solid-geometry",
+  "prompt": "A solid cube has a volume of 64 cubic centimeters. What is the total surface area of the cube, in square centimeters?",
+  "choices": [
+   "16",
+   "24",
+   "96",
+   "384"
+  ],
+  "correct_answer": "96",
+  "explanation": "An edge of the cube is the number whose cube is 64, namely 4 centimeters, so one face has area 4 x 4 = 16 and the six faces together give 6 x 16 = 96 square centimeters.",
+  "solve": "const V = 64; const e = Math.round(Math.cbrt(V)); return 6 * e * e;",
+  "distractor_steps": [
+   {
+    "choice": "16",
+    "mis_step": "finds the area of a single face (4 x 4) and reports it as the total surface area"
+   },
+   {
+    "choice": "24",
+    "mis_step": "multiplies the edge length 4 by the 6 faces instead of multiplying the face area by 6"
+   },
+   {
+    "choice": "384",
+    "mis_step": "treats the volume 64 as the area of one face and multiplies by 6"
+   }
+  ]
+ },
+ {
+  "id": "IM9",
+  "difficulty": "medium",
+  "subskill": "area of a border region around a rectangle",
+  "topic_tag": "area-composite",
+  "prompt": "A rectangular swimming pool measures 25 feet by 12 feet. A concrete walkway of uniform width 3 feet is built all the way around the outside of the pool. What is the area of the walkway alone, in square feet?",
+  "choices": [
+   "120",
+   "222",
+   "258",
+   "558"
+  ],
+  "correct_answer": "258",
+  "explanation": "The walkway adds 3 feet on each of two opposite sides, so the outer rectangle is 25 + 6 = 31 feet by 12 + 6 = 18 feet, an area of 558 square feet; subtracting the pool's 25 x 12 = 300 square feet leaves 258.",
+  "solve": "const L = 25, W = 12, w = 3; return (L + 2 * w) * (W + 2 * w) - L * W;",
+  "distractor_steps": [
+   {
+    "choice": "120",
+    "mis_step": "adds the 3-foot width only once to each dimension (28 by 15) instead of to both ends, then subtracts the pool area"
+   },
+   {
+    "choice": "222",
+    "mis_step": "multiplies the pool's perimeter 2(25 + 12) = 74 by the width 3, which omits the four corner squares"
+   },
+   {
+    "choice": "558",
+    "mis_step": "reports the area of the outer rectangle without subtracting the area of the pool"
+   }
+  ]
+ },
+ {
+  "id": "IM10",
+  "difficulty": "medium",
+  "subskill": "area scaling between similar figures",
+  "topic_tag": "similarity-scaling",
+  "prompt": "Two similar triangles have corresponding sides in the ratio 2 : 3. The smaller triangle has an area of 20 square centimeters. What is the area of the larger triangle, in square centimeters?",
+  "choices": [
+   "30",
+   "45",
+   "80",
+   "180"
+  ],
+  "correct_answer": "45",
+  "explanation": "Areas of similar figures scale by the square of the side ratio, so the larger area is 20 x (3/2)^2 = 20 x 9/4 = 45 square centimeters.",
+  "solve": "const A = 20, r = 3 / 2; return A * r * r;",
+  "distractor_steps": [
+   {
+    "choice": "30",
+    "mis_step": "scales the area by the side ratio 3/2 itself rather than by its square"
+   },
+   {
+    "choice": "80",
+    "mis_step": "multiplies by 2^2, squaring the wrong member of the ratio"
+   },
+   {
+    "choice": "180",
+    "mis_step": "multiplies by 3^2 but forgets to divide by 2^2"
+   }
+  ]
+ },
+ {
+  "id": "IM11",
+  "difficulty": "medium",
+  "subskill": "volume displacement and change in liquid level",
+  "topic_tag": "volume-displacement",
+  "prompt": "A rectangular container has a base measuring 10 cm by 8 cm and contains water to a depth of 6 cm. A solid metal cube with edge 4 cm is placed in the container and is completely covered by the water without any spilling. By how many centimeters does the water level rise?",
+  "choices": [
+   "0.2",
+   "0.8",
+   "1.25",
+   "6.8"
+  ],
+  "correct_answer": "0.8",
+  "explanation": "The submerged cube displaces 4 x 4 x 4 = 64 cubic centimeters of water, which spreads over the base area of 10 x 8 = 80 square centimeters, so the level rises 64/80 = 0.8 centimeter.",
+  "solve": "const cubeVol = 4 * 4 * 4; const base = 10 * 8; return cubeVol / base;",
+  "distractor_steps": [
+   {
+    "choice": "0.2",
+    "mis_step": "uses the cube's face area 16 instead of its volume 64 as the displaced amount"
+   },
+   {
+    "choice": "1.25",
+    "mis_step": "divides the base area 80 by the displaced volume 64, inverting the division"
+   },
+   {
+    "choice": "6.8",
+    "mis_step": "reports the new water level 6 + 0.8 rather than the amount of the rise"
+   }
+  ]
+ },
+ {
+  "id": "IM12",
+  "difficulty": "hard",
+  "subskill": "recovering volume from face areas of a rectangular solid",
+  "topic_tag": "solid-geometry-reasoning",
+  "prompt": "The three different faces of a rectangular box have areas of 12, 18, and 24 square inches. What is the volume of the box, in cubic inches?",
+  "choices": [
+   "54",
+   "72",
+   "108",
+   "216"
+  ],
+  "correct_answer": "72",
+  "explanation": "If the edges are a, b, c then ab, bc, and ac multiply to (abc)^2, so 12 x 18 x 24 = 5184 equals the volume squared and the volume is sqrt(5184) = 72 cubic inches.",
+  "solve": "const p = 12 * 18 * 24; return Math.sqrt(p);",
+  "distractor_steps": [
+   {
+    "choice": "54",
+    "mis_step": "adds the three face areas 12 + 18 + 24 instead of relating their product to the square of the volume"
+   },
+   {
+    "choice": "108",
+    "mis_step": "computes the total surface area 2(12 + 18 + 24), answering a different quantity"
+   },
+   {
+    "choice": "216",
+    "mis_step": "divides the product 5184 by the largest face area 24 instead of taking the square root"
+   }
+  ]
+ }
+]
