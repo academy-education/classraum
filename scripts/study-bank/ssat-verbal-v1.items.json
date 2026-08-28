@@ -1,0 +1,362 @@
+[
+ {
+  "id": "SY1",
+  "kind": "synonym",
+  "difficulty": "easy",
+  "prompt": "[Synonym] FRAGILE",
+  "choices": [
+   "broken",
+   "fragrant",
+   "delicate",
+   "sturdy",
+   "small"
+  ],
+  "correct_answer": "delicate",
+  "explanation": "Something \"fragile\" is \"delicate\" — easily damaged. A fragile object is not necessarily \"broken\" yet, and \"sturdy\" is its opposite."
+ },
+ {
+  "id": "SY2",
+  "kind": "synonym",
+  "difficulty": "easy",
+  "prompt": "[Synonym] VACANT",
+  "choices": [
+   "empty",
+   "valiant",
+   "occupied",
+   "spacious",
+   "quiet"
+  ],
+  "correct_answer": "empty",
+  "explanation": "\"Vacant\" means \"empty,\" as in a vacant seat or room. \"Occupied\" is the opposite, and a vacant space need not be \"spacious\" or \"quiet.\""
+ },
+ {
+  "id": "SY3",
+  "kind": "synonym",
+  "difficulty": "medium",
+  "prompt": "[Synonym] CANDID",
+  "choices": [
+   "candied",
+   "rude",
+   "gentle",
+   "frank",
+   "deceitful"
+  ],
+  "correct_answer": "frank",
+  "explanation": "A \"candid\" person speaks openly and honestly — that is, is \"frank.\" Candid remarks may sometimes sound \"rude,\" but rudeness is not the meaning, and \"deceitful\" is the reverse."
+ },
+ {
+  "id": "SY4",
+  "kind": "synonym",
+  "difficulty": "medium",
+  "prompt": "[Synonym] CHAMPION",
+  "choices": [
+   "triumph",
+   "support",
+   "compete",
+   "boast",
+   "defeat"
+  ],
+  "correct_answer": "support",
+  "explanation": "As a verb, to \"champion\" a cause is to \"support\" or advocate for it. \"Triumph\" plays on the familiar winner sense, but championing an idea means defending it, not winning."
+ },
+ {
+  "id": "SY5",
+  "kind": "synonym",
+  "difficulty": "hard",
+  "prompt": "[Synonym] HAMPER",
+  "choices": [
+   "carry",
+   "pamper",
+   "basket",
+   "assist",
+   "hinder"
+  ],
+  "correct_answer": "hinder",
+  "explanation": "To \"hamper\" progress is to \"hinder\" or obstruct it. \"Basket\" belongs to the noun sense (a laundry hamper), and \"assist\" is the opposite of the verb."
+ },
+ {
+  "id": "SY6",
+  "kind": "synonym",
+  "difficulty": "hard",
+  "prompt": "[Synonym] INGENUOUS",
+  "choices": [
+   "cunning",
+   "clever",
+   "naive",
+   "talented",
+   "modest"
+  ],
+  "correct_answer": "naive",
+  "explanation": "\"Ingenuous\" describes someone innocent and trusting — \"naive.\" \"Clever\" is the trap for the look-alike \"ingenious,\" and \"cunning\" is closer to an antonym."
+ },
+ {
+  "id": "SY7",
+  "kind": "synonym",
+  "difficulty": "easy",
+  "prompt": "[Synonym] ABUNDANT",
+  "choices": [
+   "wealthy",
+   "scarce",
+   "plentiful",
+   "abandoned",
+   "generous"
+  ],
+  "correct_answer": "plentiful",
+  "explanation": "Something \"abundant\" exists in great supply, which is exactly what \"plentiful\" means. \"Scarce\" is the opposite, \"abandoned\" merely sounds similar, and \"wealthy\" and \"generous\" describe people rather than quantity."
+ },
+ {
+  "id": "SY8",
+  "kind": "synonym",
+  "difficulty": "medium",
+  "prompt": "[Synonym] FORTIFY",
+  "choices": [
+   "strengthen",
+   "defend",
+   "forfeit",
+   "weaken",
+   "enlarge"
+  ],
+  "correct_answer": "strengthen",
+  "explanation": "To \"fortify\" something is to \"strengthen\" it. \"Defend\" belongs to the same military field but names a different action, \"forfeit\" is a sound-alike, and \"weaken\" reverses the meaning."
+ },
+ {
+  "id": "SY9",
+  "kind": "synonym",
+  "difficulty": "medium",
+  "prompt": "[Synonym] RELUCTANT",
+  "choices": [
+   "eager",
+   "relevant",
+   "timid",
+   "unwilling",
+   "careless"
+  ],
+  "correct_answer": "unwilling",
+  "explanation": "A \"reluctant\" person is \"unwilling\" to act. \"Timid\" describes a shy temperament rather than resistance to a particular action, \"eager\" is the opposite, and \"relevant\" only resembles the stem in sound."
+ },
+ {
+  "id": "SY10",
+  "kind": "synonym",
+  "difficulty": "medium",
+  "prompt": "[Synonym] GRAVE",
+  "choices": [
+   "mournful",
+   "serious",
+   "tomb",
+   "gravel",
+   "trivial"
+  ],
+  "correct_answer": "serious",
+  "explanation": "As an adjective, \"grave\" means \"serious,\" as in a grave mistake. \"Tomb\" matches the noun's burial sense, \"mournful\" is merely associated with funerals, and \"trivial\" is the opposite."
+ },
+ {
+  "id": "SY11",
+  "kind": "synonym",
+  "difficulty": "hard",
+  "prompt": "[Synonym] FLAG",
+  "choices": [
+   "banner",
+   "flog",
+   "wave",
+   "strengthen",
+   "tire"
+  ],
+  "correct_answer": "tire",
+  "explanation": "As a verb, to \"flag\" is to \"tire\" or lose energy, as when a runner's pace flags. \"Banner\" and \"wave\" answer the familiar noun sense, \"flog\" is a sound-alike, and \"strengthen\" points the wrong direction."
+ },
+ {
+  "id": "SY12",
+  "kind": "synonym",
+  "difficulty": "hard",
+  "prompt": "[Synonym] OBDURATE",
+  "choices": [
+   "obedient",
+   "durable",
+   "stubborn",
+   "yielding",
+   "gloomy"
+  ],
+  "correct_answer": "stubborn",
+  "explanation": "An \"obdurate\" person is hardened and \"stubborn,\" refusing to change course. \"Durable\" and \"obedient\" only echo the word's sound and root, while \"yielding\" is a near-antonym."
+ },
+ {
+  "id": "AN1",
+  "kind": "analogy",
+  "difficulty": "easy",
+  "prompt": "[Analogy] Petal is to flower as",
+  "choices": [
+   "page is to book",
+   "stem is to leaf",
+   "forest is to tree",
+   "pollen is to bee",
+   "blossom is to bloom"
+  ],
+  "correct_answer": "page is to book",
+  "explanation": "A petal is one part of a whole flower, just as a page is one part of a whole book. \"Forest is to tree\" reverses the relation, and \"stem is to leaf\" pairs two parts without a whole."
+ },
+ {
+  "id": "AN2",
+  "kind": "analogy",
+  "difficulty": "medium",
+  "prompt": "[Analogy] Carpenter is to hammer as",
+  "choices": [
+   "nail is to plank",
+   "surgeon is to scalpel",
+   "lumberjack is to timber",
+   "brush is to painter",
+   "blacksmith is to armor"
+  ],
+  "correct_answer": "surgeon is to scalpel",
+  "explanation": "A carpenter works with a hammer as a surgeon works with a scalpel. \"Brush is to painter\" reverses tool and worker, while \"lumberjack is to timber\" and \"blacksmith is to armor\" pair workers with materials or products, not tools."
+ },
+ {
+  "id": "AN3",
+  "kind": "analogy",
+  "difficulty": "medium",
+  "prompt": "[Analogy] Annoyed is to furious as",
+  "choices": [
+   "terrified is to nervous",
+   "irritated is to bothered",
+   "damp is to soaked",
+   "angry is to calm",
+   "hungry is to appetite"
+  ],
+  "correct_answer": "damp is to soaked",
+  "explanation": "\"Furious\" is an extreme degree of being \"annoyed,\" just as \"soaked\" is an extreme degree of being \"damp.\" \"Terrified is to nervous\" runs the intensity backward, and \"irritated is to bothered\" are equal in strength."
+ },
+ {
+  "id": "AN4",
+  "kind": "analogy",
+  "difficulty": "medium",
+  "prompt": "[Analogy] Negligence is to accident as",
+  "choices": [
+   "injury is to collision",
+   "practice is to mastery",
+   "carelessness is to recklessness",
+   "siren is to ambulance",
+   "bandage is to scrape"
+  ],
+  "correct_answer": "practice is to mastery",
+  "explanation": "Negligence causes an accident, just as practice leads to mastery. \"Injury is to collision\" puts the effect before its cause, and \"carelessness is to recklessness\" merely pairs near-synonyms."
+ },
+ {
+  "id": "AN5",
+  "kind": "analogy",
+  "difficulty": "hard",
+  "prompt": "[Analogy] Vice is to avarice as",
+  "choices": [
+   "greed is to wealth",
+   "generosity is to virtue",
+   "emotion is to melancholy",
+   "sin is to penance",
+   "miser is to money"
+  ],
+  "correct_answer": "emotion is to melancholy",
+  "explanation": "Avarice is one specific vice, just as melancholy is one specific emotion. \"Generosity is to virtue\" reverses the order by naming the member before its category, and \"sin is to penance\" links a fault to its consequence rather than to a category."
+ },
+ {
+  "id": "AN6",
+  "kind": "analogy",
+  "difficulty": "hard",
+  "prompt": "[Analogy] Ballast is to stability as",
+  "choices": [
+   "anchor is to chain",
+   "keel is to hull",
+   "buoyancy is to lifejacket",
+   "insulation is to warmth",
+   "compass is to sailor"
+  ],
+  "correct_answer": "insulation is to warmth",
+  "explanation": "The purpose of ballast is to provide stability, just as the purpose of insulation is to provide warmth. \"Buoyancy is to lifejacket\" states the purpose before the object, and \"keel is to hull\" merely names two parts of a ship."
+ },
+ {
+  "id": "AN7",
+  "kind": "analogy",
+  "difficulty": "easy",
+  "prompt": "[Analogy] Victory is to defeat as",
+  "choices": [
+   "triumph is to conquest",
+   "battle is to skirmish",
+   "arrival is to departure",
+   "champion is to trophy",
+   "loss is to setback"
+  ],
+  "correct_answer": "arrival is to departure",
+  "explanation": "\"Victory\" and \"defeat\" are opposites, just as \"arrival\" is the opposite of \"departure\". Pairs like \"triumph\" and \"conquest\" or \"loss\" and \"setback\" stay in the winning-and-losing topic but are near-synonyms, not opposites."
+ },
+ {
+  "id": "AN8",
+  "kind": "analogy",
+  "difficulty": "medium",
+  "prompt": "[Analogy] Cobbler is to shoe as",
+  "choices": [
+   "poet is to poem",
+   "tailor is to needle",
+   "bread is to baker",
+   "leather is to boot",
+   "surgeon is to hospital"
+  ],
+  "correct_answer": "poet is to poem",
+  "explanation": "A \"cobbler\" makes a \"shoe\", just as a \"poet\" makes a \"poem\". A \"tailor\" uses a \"needle\" as a tool rather than producing it, and \"bread is to baker\" states the maker relation in reverse order."
+ },
+ {
+  "id": "AN9",
+  "kind": "analogy",
+  "difficulty": "medium",
+  "prompt": "[Analogy] Granite is to hard as",
+  "choices": [
+   "boulder is to pebble",
+   "marble is to statue",
+   "sweet is to honey",
+   "diamond is to jewel",
+   "feather is to light"
+  ],
+  "correct_answer": "feather is to light",
+  "explanation": "\"Granite\" is known for being \"hard\", just as a \"feather\" is known for being \"light\". \"Sweet is to honey\" reverses the order, putting the quality before the object, and \"marble is to statue\" links a material to what is carved from it."
+ },
+ {
+  "id": "AN10",
+  "kind": "analogy",
+  "difficulty": "medium",
+  "prompt": "[Analogy] Ship is to harbor as",
+  "choices": [
+   "sailor is to voyage",
+   "car is to garage",
+   "stable is to horse",
+   "anchor is to rope",
+   "ocean is to wave"
+  ],
+  "correct_answer": "car is to garage",
+  "explanation": "A \"ship\" is kept in a \"harbor\", just as a \"car\" is kept in a \"garage\". \"Stable is to horse\" reverses the relation by naming the place first, while \"sailor is to voyage\" and \"anchor is to rope\" merely stay in the seafaring topic."
+ },
+ {
+  "id": "AN11",
+  "kind": "analogy",
+  "difficulty": "hard",
+  "prompt": "[Analogy] Frugal is to miserly as",
+  "choices": [
+   "wealthy is to affluent",
+   "spendthrift is to bankruptcy",
+   "generous is to stingy",
+   "confident is to arrogant",
+   "gluttonous is to hungry"
+  ],
+  "correct_answer": "confident is to arrogant",
+  "explanation": "\"Miserly\" is \"frugal\" carried to an extreme, just as \"arrogant\" is \"confident\" carried to an extreme. \"Gluttonous is to hungry\" runs the intensity in the wrong direction, and \"wealthy is to affluent\" is a synonym pair from the same money topic."
+ },
+ {
+  "id": "AN12",
+  "kind": "analogy",
+  "difficulty": "hard",
+  "prompt": "[Analogy] Laconic is to terse as",
+  "choices": [
+   "verbose is to concise",
+   "gregarious is to sociable",
+   "orator is to eloquence",
+   "loquacious is to silent",
+   "murmur is to bellow"
+  ],
+  "correct_answer": "gregarious is to sociable",
+  "explanation": "\"Laconic\" and \"terse\" both mean using few words, just as \"gregarious\" and \"sociable\" both mean enjoying company. \"Verbose is to concise\" and \"loquacious is to silent\" stay in the topic of speech but pair opposites, not synonyms."
+ }
+]

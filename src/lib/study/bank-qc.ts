@@ -109,6 +109,9 @@ export function familyForTask(task: string, family: 'toefl' | 'sat', section: st
     case 'fill_in_blanks':
       return 'cloze'
     case 'speaking_repeat':
+    // insertRepeat passes the gate the row task 'listen_and_repeat' —
+    // fifth occurrence of the unmapped-task-name trap.
+    case 'listen_and_repeat':
     case 'speaking_interview':
     // insertFrozen's interview spec passes the row task 'interview'
     // (matching the FROZEN table), so both names must resolve here —

@@ -1,0 +1,324 @@
+[
+ {
+  "id": "IS1",
+  "kind": "synonym",
+  "difficulty": "easy",
+  "prompt": "[Synonym] ABUNDANT",
+  "choices": [
+   "scarce",
+   "fertile",
+   "plentiful",
+   "abandoned"
+  ],
+  "correct_answer": "plentiful",
+  "explanation": "Something abundant exists in large supply, which is exactly what \"plentiful\" means. \"Scarce\" is the opposite; \"fertile\" belongs to the same field of growth and harvests but describes the capacity to produce, not the quantity present; \"abandoned\" merely looks and sounds like the stem."
+ },
+ {
+  "id": "IS2",
+  "kind": "synonym",
+  "difficulty": "easy",
+  "prompt": "[Synonym] CANDID",
+  "choices": [
+   "frank",
+   "sweet",
+   "secretive",
+   "cheerful"
+  ],
+  "correct_answer": "frank",
+  "explanation": "A candid person speaks openly and honestly, so \"frank\" is closest. \"Secretive\" is the opposite; \"sweet\" trades on the look-alike \"candied\"; \"cheerful\" describes a pleasant mood, which candor does not require — a candid remark can be quite unwelcome."
+ },
+ {
+  "id": "IS3",
+  "kind": "synonym",
+  "difficulty": "medium",
+  "prompt": "[Synonym] METICULOUS",
+  "choices": [
+   "delicate",
+   "hesitant",
+   "careless",
+   "painstaking"
+  ],
+  "correct_answer": "painstaking",
+  "explanation": "Meticulous work shows extreme attention to detail, and \"painstaking\" carries the same idea of great care taken over every step. \"Careless\" is the antonym; \"hesitant\" is an associate — careful people may pause, but meticulousness is thoroughness, not reluctance; \"delicate\" describes fineness or fragility, not carefulness."
+ },
+ {
+  "id": "IS4",
+  "kind": "synonym",
+  "difficulty": "medium",
+  "prompt": "[Synonym] CHAMPION",
+  "choices": [
+   "win",
+   "support",
+   "conquer",
+   "boast"
+  ],
+  "correct_answer": "support",
+  "explanation": "As a verb, to champion a cause is to advocate for and defend it, so \"support\" is closest. \"Win\" and \"conquer\" are drawn from the familiar noun sense of a contest's victor, but championing something means standing up for it, not defeating anyone; \"boast\" belongs to the same arena of triumph but means to brag."
+ },
+ {
+  "id": "IS5",
+  "kind": "synonym",
+  "difficulty": "hard",
+  "prompt": "[Synonym] STOMACH",
+  "choices": [
+   "digest",
+   "crave",
+   "tolerate",
+   "reject"
+  ],
+  "correct_answer": "tolerate",
+  "explanation": "As a verb, to stomach something is to put up with it — one \"cannot stomach\" what one finds unbearable — so \"tolerate\" is closest. \"Digest\" comes from the organ's literal work, not this figurative sense; \"reject\" is the opposite of enduring something; \"crave\" names an appetite, and stomaching something implies no desire for it at all."
+ },
+ {
+  "id": "IS6",
+  "kind": "synonym",
+  "difficulty": "hard",
+  "prompt": "[Synonym] OBDURATE",
+  "choices": [
+   "stubborn",
+   "obedient",
+   "durable",
+   "yielding"
+  ],
+  "correct_answer": "stubborn",
+  "explanation": "An obdurate person is hardened against persuasion — \"stubborn\" is the closest match. \"Yielding\" is the antonym; \"obedient\" tempts through the shared opening sound but means the opposite of resisting direction; \"durable\" borrows the same Latin root for hardness yet describes objects that last, not people who refuse to bend."
+ },
+ {
+  "id": "IS8",
+  "kind": "synonym",
+  "difficulty": "medium",
+  "prompt": "[Synonym] MITIGATE",
+  "choices": [
+   "lessen",
+   "prosecute",
+   "worsen",
+   "imitate"
+  ],
+  "correct_answer": "lessen",
+  "explanation": "To \"mitigate\" something is to make it less severe, so \"lessen\" is the match. \"Prosecute\" comes from confusing the stem with \"litigate,\" \"worsen\" is its antonym, and \"imitate\" merely resembles the stem in spelling."
+ },
+ {
+  "id": "IS9",
+  "kind": "synonym",
+  "difficulty": "medium",
+  "prompt": "[Synonym] PRUDENT",
+  "choices": [
+   "cautious",
+   "prim",
+   "reckless",
+   "wealthy"
+  ],
+  "correct_answer": "cautious",
+  "explanation": "A \"prudent\" person shows careful good judgment, making \"cautious\" the closest meaning. \"Prim\" belongs to the look-alike \"prudish,\" \"reckless\" is the opposite of prudent, and \"wealthy\" only echoes the money contexts where the word often appears."
+ },
+ {
+  "id": "IS10",
+  "kind": "synonym",
+  "difficulty": "medium",
+  "prompt": "[Synonym] ADULATION",
+  "choices": [
+   "praise",
+   "maturity",
+   "scorn",
+   "fame"
+  ],
+  "correct_answer": "praise",
+  "explanation": "\"Adulation\" is excessive admiration, so \"praise\" is the nearest synonym. \"Maturity\" trades on the look-alike \"adult,\" \"scorn\" is the antonym, and \"fame\" is from the same field of celebrity but names being known, not being admired."
+ },
+ {
+  "id": "IS11",
+  "kind": "synonym",
+  "difficulty": "hard",
+  "prompt": "[Synonym] TRUCULENT",
+  "choices": [
+   "hostile",
+   "truthful",
+   "sluggish",
+   "obedient"
+  ],
+  "correct_answer": "hostile",
+  "explanation": "\"Truculent\" describes an aggressive, defiant temper, so \"hostile\" is the match. \"Truthful\" only echoes the opening sound of the stem, \"obedient\" is roughly its opposite, and \"sluggish\" names a different kind of unpleasant temperament altogether."
+ },
+ {
+  "id": "IS12",
+  "kind": "synonym",
+  "difficulty": "hard",
+  "prompt": "[Synonym] PROBITY",
+  "choices": [
+   "honesty",
+   "inquiry",
+   "likelihood",
+   "boldness"
+  ],
+  "correct_answer": "honesty",
+  "explanation": "\"Probity\" means strict moral uprightness, so \"honesty\" is the closest meaning. \"Inquiry\" trades on the look-alike \"probe,\" \"likelihood\" on the look-alike \"probability,\" and \"boldness\" is a virtue from the same field of character traits but not this one."
+ },
+ {
+  "id": "SC1",
+  "kind": "sentence_completion",
+  "difficulty": "easy",
+  "prompt": "[Sentence Completion] Although the comet appears motionless to the naked eye, it is actually ------- through space at tremendous speed.",
+  "choices": [
+   "drifting",
+   "glowing",
+   "hurtling",
+   "hovering"
+  ],
+  "correct_answer": "hurtling",
+  "explanation": "The contrast cue \"Although...appears motionless\" demands a word meaning the opposite of motionless, and \"at tremendous speed\" confirms rapid motion: \"hurtling\" means rushing violently fast. \"Drifting\" fits the space topic but violates the contrast, since drifting is slow, and \"hovering\" repeats the idea of staying in place; \"glowing\" says nothing about motion at all."
+ },
+ {
+  "id": "SC2",
+  "kind": "sentence_completion",
+  "difficulty": "medium",
+  "prompt": "[Sentence Completion] Because Marcus had skipped both breakfast and lunch, by dinnertime he was so ------- that he finished two full plates.",
+  "choices": [
+   "ravenous",
+   "queasy",
+   "drowsy",
+   "cheerful"
+  ],
+  "correct_answer": "ravenous",
+  "explanation": "The cause-and-effect cue \"Because...had skipped both breakfast and lunch\" must produce a state that explains eating \"two full plates\": extreme hunger, which is what \"ravenous\" means. \"Queasy\" fits the food topic but breaks the logic, since a queasy person would eat less, not more; \"drowsy\" and \"cheerful\" explain nothing about the double portion."
+ },
+ {
+  "id": "SC3",
+  "kind": "sentence_completion",
+  "difficulty": "medium",
+  "prompt": "[Sentence Completion] The treaty proved to be a mere -------, a brief pause in the fighting that both armies used to regroup rather than a lasting peace.",
+  "choices": [
+   "respite",
+   "surrender",
+   "formality",
+   "blunder"
+  ],
+  "correct_answer": "respite",
+  "explanation": "The phrase set off by the comma defines the blank: \"a brief pause in the fighting\" is precisely a \"respite,\" a short interval of rest or relief. \"Surrender\" belongs to the same military field but means giving up, not pausing; \"formality\" suits the dismissive \"mere\" but is not a pause; a \"blunder\" is a mistake, which the definition does not describe."
+ },
+ {
+  "id": "SC4",
+  "kind": "sentence_completion",
+  "difficulty": "medium",
+  "prompt": "[Sentence Completion] Though her early canvases were praised for their meticulous detail, the painter's later work grew increasingly -------, suggesting entire figures with only a few loose strokes.",
+  "choices": [
+   "precise",
+   "spare",
+   "colorful",
+   "celebrated"
+  ],
+  "correct_answer": "spare",
+  "explanation": "The cue \"Though...meticulous detail\" signals that the later work moved away from detail, and \"only a few loose strokes\" confirms minimalism: \"spare\" means restrained and unelaborated. \"Precise\" fits painting but repeats \"meticulous,\" defying the contrast; \"colorful\" and \"celebrated\" fit an artist's career but ignore the shift the sentence describes."
+ },
+ {
+  "id": "SC5",
+  "kind": "sentence_completion",
+  "difficulty": "hard",
+  "prompt": "[Sentence Completion] The professor's lectures were famously digressive; moreover, his written essays ------- from one subject to the next with equal abandon.",
+  "choices": [
+   "progressed",
+   "meandered",
+   "hastened",
+   "condensed"
+  ],
+  "correct_answer": "meandered",
+  "explanation": "The continuation cues \"moreover\" and \"with equal abandon\" tell us the essays share the wandering quality of the \"digressive\" lectures, so the blank must mean rambled aimlessly: \"meandered.\" \"Progressed\" fits writing about subjects but implies orderly movement, the opposite of digression; \"hastened\" describes speed, not wandering; \"condensed\" cannot take the phrase \"from one subject to the next.\""
+ },
+ {
+  "id": "SC6",
+  "kind": "sentence_completion",
+  "difficulty": "hard",
+  "prompt": "[Sentence Completion] Because the ancient city's archives were written in a script no modern scholar could read, its political history remained ------- until the tablets were at last deciphered.",
+  "choices": [
+   "conjectural",
+   "illustrious",
+   "immutable",
+   "authoritative"
+  ],
+  "correct_answer": "conjectural",
+  "explanation": "The cause \"a script no modern scholar could read\" forces the effect that the history rested on guesswork, which is what \"conjectural\" means, and \"until...deciphered\" confirms the ignorance was temporary. \"Authoritative\" fits the scholarly topic but reverses the logic, since unreadable records cannot yield reliable history; \"illustrious\" praises the city rather than describing what was known; \"immutable\" means unchangeable, which decipherment disproves."
+ },
+ {
+  "id": "SC7",
+  "kind": "sentence_completion",
+  "difficulty": "easy",
+  "prompt": "[Sentence Completion] Although the hike began in bright sunshine, the weather turned so ------- by afternoon that the group was forced to ------- its plans.",
+  "choices": [
+   "pleasant ... revise",
+   "chilly ... celebrate",
+   "stormy ... abandon",
+   "humid ... finalize"
+  ],
+  "correct_answer": "stormy ... abandon",
+  "explanation": "The word \"Although\" signals a reversal of the \"bright sunshine\" opening, so the weather must become bad — \"stormy\" — and being \"forced\" points to giving up the plans, so \"abandon\" completes the logic. \"pleasant ... revise\" ignores the contrast cue entirely, \"chilly ... celebrate\" fits the first blank loosely but no one is forced to \"celebrate\" plans, and \"humid ... finalize\" fails because forcing suggests disruption, not completion."
+ },
+ {
+  "id": "SC8",
+  "kind": "sentence_completion",
+  "difficulty": "medium",
+  "prompt": "[Sentence Completion] Because the museum's funding had been ------- for years, its curators could ------- only the most essential repairs.",
+  "choices": [
+   "dwindling ... undertake",
+   "ample ... neglect",
+   "growing ... afford",
+   "stagnant ... postpone"
+  ],
+  "correct_answer": "dwindling ... undertake",
+  "explanation": "\"Because\" sets up cause and effect: shrinking money — \"dwindling\" funding — explains why the curators could \"undertake\" nothing beyond the most essential repairs. \"growing ... afford\" fits the topic of budgets but reverses the polarity, since rising funds would not limit the museum to essentials. \"stagnant ... postpone\" starts plausibly, but postponing \"only the most essential repairs\" is backwards — those are the repairs you keep, not delay. \"ample ... neglect\" makes generous funding cause neglect, which the causal cue cannot support."
+ },
+ {
+  "id": "SC9",
+  "kind": "sentence_completion",
+  "difficulty": "medium",
+  "prompt": "[Sentence Completion] A natural -------, the senator could ------- even the bitterest rivals, persuading them to sit at the same table.",
+  "choices": [
+   "orator ... entertain",
+   "firebrand ... provoke",
+   "pessimist ... discourage",
+   "conciliator ... mollify"
+  ],
+  "correct_answer": "conciliator ... mollify",
+  "explanation": "The appositive phrase defines the senator by what follows: someone who persuades \"the bitterest rivals\" to negotiate is a peacemaker, a \"conciliator,\" and calming those rivals is to \"mollify\" them. \"firebrand ... provoke\" is internally consistent but collides with the closing cue about getting rivals to sit at the same table — provocation drives people apart. \"orator ... entertain\" suits a senator topically but entertaining does not explain reconciling enemies, and \"pessimist ... discourage\" contradicts the sentence's account of successful persuasion."
+ },
+ {
+  "id": "SC10",
+  "kind": "sentence_completion",
+  "difficulty": "medium",
+  "prompt": "[Sentence Completion] The review praised the novel's ------- plot and, in the same spirit, admired the author's ------- prose.",
+  "choices": [
+   "meandering ... turgid",
+   "intricate ... polished",
+   "predictable ... elegant",
+   "intricate ... clumsy"
+  ],
+  "correct_answer": "intricate ... polished",
+  "explanation": "\"Praised,\" \"in the same spirit,\" and \"admired\" all demand two compliments in a row: an \"intricate\" plot and \"polished\" prose are both terms of approval. \"intricate ... clumsy\" gets the first blank right but breaks the continuation cue by pairing praise with a fault. \"predictable ... elegant\" fails in the opposite direction, since a review does not praise a plot for being predictable. \"meandering ... turgid\" offers two criticisms where the sentence requires two virtues."
+ },
+ {
+  "id": "SC11",
+  "kind": "sentence_completion",
+  "difficulty": "hard",
+  "prompt": "[Sentence Completion] Far from being ------- by the critics' scorn, the young playwright seemed positively ------- by it, producing her boldest work yet.",
+  "choices": [
+   "flattered ... wounded",
+   "daunted ... galvanized",
+   "encouraged ... invigorated",
+   "daunted ... paralyzed"
+  ],
+  "correct_answer": "daunted ... galvanized",
+  "explanation": "\"Far from being\" requires the second blank to reverse the first: scorn would normally leave a writer \"daunted,\" yet she was instead \"galvanized\" — spurred on — as her \"boldest work yet\" confirms. \"daunted ... paralyzed\" is the trap: the first word fits perfectly, but \"paralyzed\" merely intensifies discouragement instead of reversing it, and a paralyzed writer produces no bold work. \"encouraged ... invigorated\" gives two positives, which the \"far from\" contrast cannot join, and \"flattered ... wounded\" wrongly treats scorn as something flattering."
+ },
+ {
+  "id": "SC12",
+  "kind": "sentence_completion",
+  "difficulty": "hard",
+  "prompt": "[Sentence Completion] Because the manuscript's provenance was so -------, scholars were ------- to attribute it to any single medieval workshop.",
+  "choices": [
+   "ancient ... quick",
+   "well-documented ... reluctant",
+   "murky ... loath",
+   "murky ... eager"
+  ],
+  "correct_answer": "murky ... loath",
+  "explanation": "The causal \"Because\" ties uncertain origins to scholarly hesitation: a \"murky\" provenance leaves scholars \"loath\" — unwilling — to name one workshop. \"murky ... eager\" is the trap pair: the first word fits the blank exactly, but murkiness cannot cause eagerness to make a confident attribution. \"well-documented ... reluctant\" reverses the cause, since clear records would remove the hesitation rather than explain it, and \"ancient ... quick\" fails because age alone gives scholars no reason for haste in attribution."
+ }
+]

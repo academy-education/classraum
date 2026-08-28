@@ -373,6 +373,8 @@ async function insertRepeat(files) {
     if (seen.has(content_hash)) { console.log(`DUP ${id}`); continue }
     const { error } = await db.from('study_item_bank').insert({
       family: 'toefl', section: 'speaking', domain: 'Listen and Repeat', difficulty: band,
+      // migration 068 made task NOT NULL; live repeat rows carry 'speaking_repeat'.
+      task: 'speaking_repeat',
       item_type: 'speaking_repeat', item: { ...it, difficulty: band }, content_hash,
       word_count: n, verified: true, archived: false, source: 'hand', cohort: COHORT,
       verify_meta: { method: 'claude-authored+spec-rule-check', band_by: 'word_count' },
