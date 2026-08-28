@@ -1300,6 +1300,32 @@ gate-wiring test catches disagreement between the two). Any future
 BAS batch gates as family `production` (shape/withsource/tells) with a
 ledger.json entry at the exact file sha.
 
+### Phase 2 opens: first SSAT + ISEE bank items; repeat-v3 (2026-08-28)
+Three ships from one gate run (PHASE2-PREREGISTERED.md):
+- **ssat-verbal-v1, 21 items** — the first SSAT bank content. Attack
+  +6.9 PASS (5-slot control). The blind exclusivity audit caught a
+  genuine defect class: a bare capitalized stem with no part of
+  speech makes the OTHER sense's exact synonym a second right answer
+  (HAMPER/basket, GRAVE/tomb, FLAG/banner) — three drops, and a
+  stage-2 brief rule: primary-sense traps must be associates, never
+  exact synonyms of the other sense.
+- **isee-verbal-v1, 22 items** — first ISEE content. Attack +7.2
+  PASS. Hunter found a real narrowing tell on hard two-blank items
+  (first-blank word duplicated across option pairs) — banned in the
+  stage-2 brief.
+- **repeat-v3, 39 sentences** (live 136; Listen-and-Repeat ~13.3 →
+  ~18.7 sittings). Two decisions worth keeping: cross-author
+  convergence culled 13/36 of round 1 (no per-author topic
+  assignment — the disjoint-topics top-up had 0 dups), and the
+  reviewers' blanket spelled-number flags were adjudicated by
+  COMPUTING the >=85% token-overlap grader: one number per sentence
+  passes worst-case, two fails — only the two 2-number sentences
+  dropped. When the deciding check is arithmetic, compute it.
+Insert path for ssat/isee: verbal-bank-helper.mjs, written before
+first use with the task column from day one. NOTE: banking does not
+flip SSAT/ISEE into SHIPPED_TEST_SLUGS — mocks need all sections
+banked plus assemble blueprints (open work).
+
 ### dl-fresh-v1: Daily Life stops binding TOEFL capacity (2026-08-28)
 58 questions / 29 authored-passage sets banked (260 rows, 130
 drawable sets, 0 singles — verified by count). The fallback mode

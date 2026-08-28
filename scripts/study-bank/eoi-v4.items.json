@@ -1,0 +1,962 @@
+[
+ {
+  "id": "T37",
+  "subskill": "Transitions",
+  "difficulty": "medium",
+  "topic_tag": "cave pearl formation",
+  "passage": "Cave pearls form when dripping water rotates a sand grain in a shallow pool, coating it with concentric layers of calcite until it becomes a nearly perfect sphere. _____ the largest pearls stop turning long before they are finished, gaining their outer layers while resting motionless. Their near-perfect roundness, set during the early mobile stage, persists all the same.",
+  "prompt": "Which choice completes the text with the most logical transition?",
+  "choices": [
+   "Admittedly,",
+   "Therefore,",
+   "Similarly,",
+   "Instead,"
+  ],
+  "correct_answer": "Admittedly,",
+  "explanation": "The first sentence credits rotation for the pearls' shape, and the last sentence insists their roundness \"persists all the same,\" so the middle sentence concedes a complicating fact about stillness; \"Admittedly,\" signals that concession. \"Therefore,\" would wrongly present the pearls' ceasing to turn as a consequence of how they form, and \"Instead,\" would require a rejected alternative that the passage never states."
+ },
+ {
+  "id": "T38",
+  "subskill": "Transitions",
+  "difficulty": "medium",
+  "topic_tag": "player piano roll archives",
+  "passage": "Player piano rolls encode performances as patterns of perforations, preserving tempo nuances that early audio recordings flattened. The paper stock used a century ago has grown brittle, and each playback risks tearing it. _____ archivists at several universities now scan the rolls optically rather than running them through instruments. The scans can then be converted back into sound with software.",
+  "prompt": "Which choice completes the text with the most logical transition?",
+  "choices": [
+   "In other words,",
+   "Consequently,",
+   "Nonetheless,",
+   "Meanwhile,"
+  ],
+  "correct_answer": "Consequently,",
+  "explanation": "Because brittle paper makes each playback risky, the archivists' switch to optical scanning is a consequence of that fragility, which \"Consequently,\" signals. \"In other words,\" would wrongly frame scanning as a restatement of the paper's condition, and \"Nonetheless,\" would treat the cautious scanning as happening despite the risk rather than because of it."
+ },
+ {
+  "id": "T39",
+  "subskill": "Transitions",
+  "difficulty": "hard",
+  "topic_tag": "city fox diets",
+  "passage": "Urban foxes are widely assumed to subsist largely on discarded human food. Stomach and scat analyses in one English city seemed to confirm this: scavenged items made up nearly half of adult foxes' diets. _____ the same study found that cubs were provisioned almost entirely with earthworms and beetles taken from gardens.",
+  "prompt": "Which choice completes the text with the most logical transition?",
+  "choices": [
+   "For instance,",
+   "Likewise,",
+   "However,",
+   "Thus,"
+  ],
+  "correct_answer": "However,",
+  "explanation": "The adult results appear to confirm the scavenging assumption, but the cubs' diet of \"earthworms and beetles taken from gardens\" cuts against it, a reversal that \"However,\" marks. \"Likewise,\" is tempting because both findings come from \"the same study,\" but it would wrongly present the cubs' diet as matching the adults' pattern rather than contrasting with it."
+ },
+ {
+  "id": "R43",
+  "subskill": "Rhetorical Synthesis",
+  "difficulty": "medium",
+  "topic_tag": "rooftop rainwater tea trial",
+  "passage": "While researching a topic, a student has taken the following notes:\n- In 2024, food scientist Mara Ellison's team in Glasgow brewed black tea with rooftop-harvested rainwater and with municipal tap water.\n- A panel of 60 tasters rated each brew for bitterness and aroma in paired tastings.\n- The panel preferred the rainwater brew in 72 percent of paired tastings, rating it noticeably less bitter.\n- Theo Brandt, a chemist collaborating on the project, attributed the difference to rainwater's lower mineral content.\n- The team cautioned that rooftop-harvested water needs to be filtered before drinking.",
+  "prompt": "The student wants to emphasize the study's main finding. Which choice most effectively accomplishes this goal?",
+  "choices": [
+   "In Ellison's trial, tasters preferred tea brewed with rooftop rainwater in 72 percent of paired tastings, rating it noticeably less bitter and richer in aroma than tap-water tea.",
+   "In Theo Brandt's trial, tasters preferred tea brewed with rooftop rainwater in 72 percent of paired tastings, rating it noticeably less bitter than tea made with tap water.",
+   "In Ellison's trial, tasters preferred tea brewed with rooftop rainwater in 72 percent of paired tastings, rating it noticeably less bitter than tea made with tap water.",
+   "In Ellison's trial, tasters preferred tea brewed with rooftop rainwater in 92 percent of paired tastings, rating it noticeably less bitter than tap-water tea."
+  ],
+  "correct_answer": "In Ellison's trial, tasters preferred tea brewed with rooftop rainwater in 72 percent of paired tastings, rating it noticeably less bitter than tea made with tap water.",
+  "explanation": "The notes state that the panel preferred the rainwater brew \"in 72 percent of paired tastings\" and that the trial was run by Ellison's team, exactly as reported in \"In Ellison's trial, tasters preferred tea brewed with rooftop rainwater in 72 percent of paired tastings.\" The other choices misstate the percentage as 92, credit the trial to the collaborating chemist Theo Brandt, or add an aroma advantage the notes never record."
+ },
+ {
+  "id": "R44",
+  "subskill": "Rhetorical Synthesis",
+  "difficulty": "hard",
+  "topic_tag": "canal boat insulation study",
+  "passage": "While researching a topic, a student has taken the following notes:\n- Engineer Priya Nair's group surveyed 48 canal boats moored in Birmingham, England, during the winter of 2025.\n- Using thermal-imaging cameras, the group measured heat loss from each boat's hull and cabin roof.\n- Boats insulated with spray foam lost heat more slowly than boats insulated with fiberglass batting.\n- Owners who had insulated their hulls also tended to report lower fuel use, a link the group described as observational.\n- A follow-up study will place heat-flux sensors inside cabins to track heat loss directly.",
+  "prompt": "The student wants to introduce the research to an audience unfamiliar with it. Which choice most effectively accomplishes this goal?",
+  "choices": [
+   "Using thermal-imaging cameras, engineer Priya Nair's group examined why fiberglass batting outperforms spray foam at slowing heat loss on moored canal boats.",
+   "Using heat-flux sensors placed inside the cabins, engineer Priya Nair's group examined how quickly moored canal boats lose heat during a Birmingham winter.",
+   "Using thermal-imaging cameras, engineer Priya Nair's group examined how insulating a canal boat's hull lowers the fuel use its owner reports each winter.",
+   "Using thermal-imaging cameras, engineer Priya Nair's group examined how quickly moored canal boats lose heat during a Birmingham winter."
+  ],
+  "correct_answer": "Using thermal-imaging cameras, engineer Priya Nair's group examined how quickly moored canal boats lose heat during a Birmingham winter.",
+  "explanation": "Only \"Using thermal-imaging cameras, engineer Priya Nair's group examined how quickly moored canal boats lose heat during a Birmingham winter\" matches the notes' method and stays faithful to what was measured. The others reverse which insulation performed better (the notes say spray foam lost heat more slowly), turn the fuel-use link the group called observational into \"lowers the fuel use,\" or borrow the heat-flux sensors from the planned follow-up rather than the survey itself."
+ },
+ {
+  "id": "R45",
+  "subskill": "Rhetorical Synthesis",
+  "difficulty": "medium",
+  "topic_tag": "firefly synchrony mapping",
+  "passage": "While researching a topic, a student has taken the following notes:\n- Ecologist Lena Okafor's team mapped the flash patterns of Photinus fireflies at 14 sites, all within a single Tennessee valley, in June 2025.\n- At 11 of the 14 sites, males flashed in near-unison for stretches lasting several minutes.\n- Synchrony was strongest on the warmest nights; the team has not yet determined why temperature matters.\n- The team notes that results from one valley may not describe the species elsewhere.",
+  "prompt": "The student wants to present a cautious summary of the findings. Which choice most effectively accomplishes this goal?",
+  "choices": [
+   "Okafor's team observed near-unison flashing at 11 of the 14 sites they mapped, though they caution that findings from a single Tennessee valley may not describe the species elsewhere.",
+   "Okafor's team observed near-unison flashing at 4 of the 14 sites they mapped, though they caution that findings from one Tennessee valley may not describe the species elsewhere.",
+   "Okafor's team observed near-unison flashing at 11 of the 14 sites they mapped, though they caution that the warmth responsible for the synchrony may act differently elsewhere.",
+   "Okafor's team observed near-unison flashing at 11 of the 14 sites they mapped across Tennessee, though they caution that the findings may not describe the species elsewhere."
+  ],
+  "correct_answer": "Okafor's team observed near-unison flashing at 11 of the 14 sites they mapped, though they caution that findings from a single Tennessee valley may not describe the species elsewhere.",
+  "explanation": "The notes report near-unison flashing \"at 11 of the 14 sites\" mapped \"within a single Tennessee valley,\" matching \"Okafor's team observed near-unison flashing at 11 of the 14 sites they mapped, though they caution that findings from a single Tennessee valley may not describe the species elsewhere.\" The other choices treat the undetermined role of temperature as settled with \"the warmth responsible for the synchrony,\" stretch the mapping to sites \"across Tennessee,\" or misreport the count as 4 sites."
+ },
+ {
+  "id": "T40",
+  "subskill": "Transitions",
+  "difficulty": "medium",
+  "topic_tag": "ship figurehead restoration",
+  "passage": "Conservators restoring a nineteenth-century ship figurehead are reversing decades of well-meaning but damaging repairs. _____ earlier restorers coated the carved oak figure with thick marine varnish, which trapped moisture and quietly accelerated rot. Removing such layers without harming the original paint requires weeks of careful solvent testing.",
+  "prompt": "Which choice completes the text with the most logical transition?",
+  "choices": [
+   "For example,",
+   "Nevertheless,",
+   "Consequently,",
+   "In the meantime,"
+  ],
+  "correct_answer": "For example,",
+  "explanation": "The first sentence states that past repairs were damaging, and the varnish that trapped moisture is a specific instance of such a repair, so \"For example,\" fits the joint. \"Consequently,\" wrongly casts the varnishing as a result of the conservators' current work, and \"Nevertheless,\" and \"In the meantime,\" signal contrast and concurrent time, neither of which links a claim to its illustration."
+ },
+ {
+  "id": "T41",
+  "subskill": "Transitions",
+  "difficulty": "medium",
+  "topic_tag": "alpine pollinator shifts",
+  "passage": "Ecologists tracking bumblebees in the Alps have found that several species now forage hundreds of meters higher than they did in the 1970s. The flowers those bees historically visited, though, have shifted upslope far more slowly. _____ the pollinators and their plants are drifting out of alignment. Researchers worry that some alpine flowers may soon go unvisited.",
+  "prompt": "Which choice completes the text with the most logical transition?",
+  "choices": [
+   "In other words,",
+   "However,",
+   "Likewise,",
+   "Meanwhile,"
+  ],
+  "correct_answer": "In other words,",
+  "explanation": "The sentence restates the previous two facts—bees moving quickly upslope, flowers moving slowly—as a single plainer claim about misalignment, so the reformulating \"In other words,\" is logical. \"However,\" signals a contrast the sentence does not make, \"Likewise,\" wrongly promises a parallel new example, and \"Meanwhile,\" wrongly frames a summary statement as a separate concurrent event."
+ },
+ {
+  "id": "T42",
+  "subskill": "Transitions",
+  "difficulty": "hard",
+  "topic_tag": "neon sign craft revival",
+  "passage": "Neon bending was fading as its older practitioners retired, taking uncatalogued techniques with them. Racing that clock, a handful of studios have brought apprentices in to train under the remaining benders before the chance disappears. _____ the same studios are scanning the retirees' hand-drawn tube patterns so the paper record outlasts the training window.",
+  "prompt": "Which choice completes the text with the most logical transition?",
+  "choices": [
+   "In the meantime,",
+   "As a consequence,",
+   "Even so,",
+   "In fact,"
+  ],
+  "correct_answer": "In the meantime,",
+  "explanation": "The scanning of paper patterns is a second effort happening during the same limited window as the apprentice training, so the simultaneity signal \"In the meantime,\" fits. \"As a consequence,\" is tempting because both efforts respond to the same urgency, but the scanning is not caused by the training—the two are parallel; \"Even so,\" wrongly concedes an obstacle, and \"In fact,\" wrongly intensifies a prior claim rather than adding a concurrent one."
+ },
+ {
+  "id": "R46",
+  "subskill": "Rhetorical Synthesis",
+  "difficulty": "medium",
+  "topic_tag": "hospital garden recovery study",
+  "passage": "While researching a topic, a student has taken the following notes:\n- Dr. Imara Solen's team tracked 240 patients recovering from abdominal surgery at Larkfield Hospital.\n- Half the patients had rooms overlooking a courtyard garden; the other half faced a brick service wing.\n- Garden-view patients requested pain medication 22 percent less often and were discharged 1.4 days earlier on average.\n- The team had expected window views to affect mood surveys but not measurable clinical outcomes.\n- Mood-survey scores for the two groups were nearly identical.",
+  "prompt": "The student wants to explain why the finding surprised researchers. Which choice most effectively accomplishes this goal?",
+  "choices": [
+   "Although Solen's team expected window views to affect mood rather than clinical outcomes, garden-view patients requested pain medication less often and were discharged earlier.",
+   "Although Solen's team expected window views to affect mood rather than clinical outcomes, half of the tracked patients had rooms overlooking the hospital's courtyard garden.",
+   "Although Solen's team expected window views to affect mood rather than clinical outcomes, garden-view patients requested pain medication more often and were discharged later.",
+   "Although Solen's team expected window views to affect mood rather than clinical outcomes, garden-view patients developed fewer postoperative infections and required fewer follow-up appointments."
+  ],
+  "correct_answer": "Although Solen's team expected window views to affect mood rather than clinical outcomes, garden-view patients requested pain medication less often and were discharged earlier.",
+  "explanation": "The notes say the team expected views to affect mood surveys but not measurable clinical outcomes, so the surprise is the clinical result the notes record: patients \"requested pain medication less often and were discharged earlier.\" The option ending \"had rooms overlooking the hospital's courtyard garden\" restates study design rather than a finding, the option saying patients \"requested pain medication more often and were discharged later\" reverses the noted direction, and the claim about \"fewer postoperative infections\" appears nowhere in the notes."
+ },
+ {
+  "id": "R47",
+  "subskill": "Rhetorical Synthesis",
+  "difficulty": "hard",
+  "topic_tag": "ancient road wear analysis",
+  "passage": "While researching a topic, a student has taken the following notes:\n- Archaeologist Teodor Vranic's group measured wheel-rut depth along a Roman road near Salona, comparing paved limestone stretches with compacted-gravel stretches.\n- On limestone stretches, Vranic's group measured ruts averaging 4 centimeters deep after an estimated two centuries of cart traffic.\n- On gravel stretches, ruts over the same period averaged 11 centimeters deep.\n- Graduate student Livia Maren modeled cart-axle loads to estimate traffic volume from the wear patterns.",
+  "prompt": "The student wants to compare the results of the two conditions. Which choice most effectively accomplishes this goal?",
+  "choices": [
+   "Ruts on the road's gravel stretches averaged 11 centimeters deep, nearly three times the 4-centimeter average that Vranic's group measured on the paved limestone stretches.",
+   "Ruts on the road's gravel stretches averaged 14 centimeters deep, more than three times the 4-centimeter average that Vranic's group measured on the paved limestone stretches.",
+   "Ruts on the road's gravel stretches averaged 11 centimeters deep, nearly three times the 4-centimeter average that Livia Maren measured on the paved limestone stretches.",
+   "Ruts on the road's gravel stretches averaged 11 centimeters deep, nearly three times the 4-centimeter average recorded on limestone stretches that Roman crews had periodically resurfaced."
+  ],
+  "correct_answer": "Ruts on the road's gravel stretches averaged 11 centimeters deep, nearly three times the 4-centimeter average that Vranic's group measured on the paved limestone stretches.",
+  "explanation": "The notes give averages of 11 centimeters on gravel and 4 centimeters on limestone, measured by Vranic's group, which is exactly what \"averaged 11 centimeters deep, nearly three times the 4-centimeter average that Vranic's group measured\" reports. The option citing \"14 centimeters\" misstates the noted gravel figure, the one crediting \"Livia Maren\" assigns the rut measurements to the student who modeled axle loads, and the notes never mention limestone stretches being \"periodically resurfaced.\""
+ },
+ {
+  "id": "R48",
+  "subskill": "Rhetorical Synthesis",
+  "difficulty": "medium",
+  "topic_tag": "cheese cave microbe survey",
+  "passage": "While researching a topic, a student has taken the following notes:\n- Microbiologist Renata Oduya's team swabbed the rind surfaces of cheeses in 12 aging caves in France's Jura region.\n- Caves with higher humidity housed rinds with greater fungal diversity.\n- Each cave was sampled once, in late autumn.\n- The team notes that rind microbial communities can shift with the seasons.",
+  "prompt": "The student wants to acknowledge a limitation of the study. Which choice most effectively accomplishes this goal?",
+  "choices": [
+   "Because each cave was sampled only once, in late autumn, the survey may not capture how rind microbial communities shift with the seasons.",
+   "Because caves with greater fungal diversity tended to have lower humidity, the survey may not separate the effects of moisture from those of other cave conditions.",
+   "Because higher humidity causes cheese rinds to develop greater fungal diversity, the survey may not generalize to aging caves that are kept deliberately dry.",
+   "Because the team cultured air samples collected from aging caves across the Alps, the survey may not reflect the microbes actually living on the rinds."
+  ],
+  "correct_answer": "Because each cave was sampled only once, in late autumn, the survey may not capture how rind microbial communities shift with the seasons.",
+  "explanation": "The notes state that each cave was sampled once in late autumn and that rind communities can shift with the seasons, so the limitation that the survey \"may not capture how rind microbial communities shift with the seasons\" follows directly. The option pairing greater diversity with \"lower humidity\" reverses the noted relationship, the claim that humidity \"causes\" greater diversity turns a noted association into causation, and the notes describe swabbing rinds in the Jura region, not culturing \"air samples\" from \"the Alps.\""
+ },
+ {
+  "id": "T43",
+  "subskill": "Transitions",
+  "difficulty": "medium",
+  "topic_tag": "peat bog archaeology",
+  "passage": "Peat bogs preserve organic artifacts that would decay in ordinary soil, and excavators at one Irish site have recovered wooden vessels more than two thousand years old. _____ the site's acidic, oxygen-poor layers have yielded leather shoes with their stitching intact. Researchers now plan to survey neighboring bogs before drainage projects begin.",
+  "prompt": "Which choice completes the text with the most logical transition?",
+  "choices": [
+   "By contrast,",
+   "In fact,",
+   "Nevertheless,",
+   "Thus,"
+  ],
+  "correct_answer": "In fact,",
+  "explanation": "The second sentence adds an even more striking instance of the preservation described in the first, so the emphatic additive \"In fact,\" fits the joint. \"By contrast,\" and \"Nevertheless,\" wrongly signal opposition between the two finds, and \"Thus,\" wrongly casts the shoes as a consequence of recovering the vessels."
+ },
+ {
+  "id": "T44",
+  "subskill": "Transitions",
+  "difficulty": "medium",
+  "topic_tag": "ferry route bird surveys",
+  "passage": "Volunteers riding a commuter ferry between two islands logged seabird sightings on each crossing for a year. Counts spiked during autumn migration and dipped in midsummer, when many birds were nesting ashore. _____ the route supported far more birds than earlier shore-based tallies had suggested. The team has proposed adding a second survey route.",
+  "prompt": "Which choice completes the text with the most logical transition?",
+  "choices": [
+   "For instance,",
+   "Nonetheless,",
+   "Similarly,",
+   "Overall,"
+  ],
+  "correct_answer": "Overall,",
+  "explanation": "The sentence steps back from seasonal spikes and dips to a general conclusion about the whole year, which \"Overall,\" signals. \"For instance,\" would introduce an example rather than a summary, \"Similarly,\" has no parallel case to point to, and \"Nonetheless,\" implies the seasonal variation should have counted against high totals, which the text never suggests."
+ },
+ {
+  "id": "T45",
+  "subskill": "Transitions",
+  "difficulty": "hard",
+  "topic_tag": "stage fog chemistry",
+  "passage": "Theatrical fog is made by heating a glycol solution into a fine aerosol, and studies of audiences exposed during a single performance have found no ill effects. Follow-up work with larger audiences reached the same conclusion, and several safety agencies now permit the fluid in enclosed venues. _____ those approvals cover brief exposures, not the nightly doses stagehands receive.",
+  "prompt": "Which choice completes the text with the most logical transition?",
+  "choices": [
+   "Likewise,",
+   "Thus,",
+   "That said,",
+   "In turn,"
+  ],
+  "correct_answer": "That said,",
+  "explanation": "The final sentence narrows the reassuring approvals to brief exposures, a qualification that \"That said,\" introduces. \"Likewise,\" and \"In turn,\" would present the sentence as continuing or following from the approvals rather than limiting them, and \"Thus,\" would wrongly make the limitation a consequence of the agencies' decisions."
+ },
+ {
+  "id": "R49",
+  "subskill": "Rhetorical Synthesis",
+  "difficulty": "medium",
+  "topic_tag": "library noise perception study",
+  "passage": "While researching a topic, a student has taken the following notes:\n- Researchers at the Hartwell Institute surveyed 640 students about noise in a university library.\n- Students rated intermittent sounds, such as scraping chairs and whispering, as more distracting than steady background noise from ventilation.\n- Sound-level meters showed the two kinds of noise reached similar volumes.\n- In response, the library installed felt chair glides and set aside whisper-free zones rather than trying to lower its overall volume.\n- The team has not yet tested whether the same distraction pattern holds in open-plan offices.",
+  "prompt": "The student wants to emphasize the practical application of the research. Which choice most effectively accomplishes this goal?",
+  "choices": [
+   "Guided by evidence that the same distraction pattern holds in open-plan offices, the library installed felt chair glides and set aside whisper-free zones to quiet its reading rooms.",
+   "Guided by the finding that intermittent sounds distract more than steady background noise, the library installed felt chair glides and set aside whisper-free zones rather than trying to lower its overall volume.",
+   "Guided by responses from 460 students who rated intermittent sounds as distracting, the library installed felt chair glides and set aside whisper-free zones in its main reading room.",
+   "Guided by a survey of students and staff in study spaces across campus, the library installed felt chair glides and set aside whisper-free zones to curb its most disruptive sounds."
+  ],
+  "correct_answer": "Guided by the finding that intermittent sounds distract more than steady background noise, the library installed felt chair glides and set aside whisper-free zones rather than trying to lower its overall volume.",
+  "explanation": "The notes state that the library acted on the finding about intermittent sounds by installing chair glides and whisper-free zones \"rather than trying to lower its overall volume,\" so that choice ties the application to the research accurately. The option citing \"open-plan offices\" treats a question the team \"has not yet tested\" as settled, \"460 students\" contradicts the 640 surveyed, and \"students and staff in study spaces across campus\" misstates a survey of students about one library."
+ },
+ {
+  "id": "R50",
+  "subskill": "Rhetorical Synthesis",
+  "difficulty": "hard",
+  "topic_tag": "urban orchard yield audit",
+  "passage": "While researching a topic, a student has taken the following notes:\n- Beginning in 2018, the city of Marden planted 1,200 fruit trees in parks and along streets.\n- A team led by Okafor audited the 2024 harvest and reported that street trees yielded about 40 percent less fruit than park trees.\n- A team led by Brandt reanalyzed the same harvest data and concluded that street and park trees yielded similar amounts once tree age was taken into account.\n- Both teams agree that fruit going unharvested is a bigger problem than low yields.",
+  "prompt": "The student wants to summarize the disagreement between the two research teams. Which choice most effectively accomplishes this goal?",
+  "choices": [
+   "Okafor's team reported that street trees yielded about 40 percent less fruit than park trees, while Brandt's team concluded that the gap disappears once tree age is taken into account.",
+   "Okafor's team argued that fruit going unharvested outweighs low yields as a concern, while Brandt's team countered that harvest totals deserve the greater attention.",
+   "Okafor's team reported that park trees yielded about 40 percent less fruit than street trees, while Brandt's team concluded that the apparent gap disappears once tree age is taken into account.",
+   "Okafor's team reported that street trees suffered more pest damage than park trees, while Brandt's team traced the difference to irrigation rather than location."
+  ],
+  "correct_answer": "Okafor's team reported that street trees yielded about 40 percent less fruit than park trees, while Brandt's team concluded that the gap disappears once tree age is taken into account.",
+  "explanation": "The notes have Okafor's team reporting that street trees yielded about 40 percent less than park trees and Brandt's team attributing the difference to tree age, so that choice states the actual dispute. The option claiming \"park trees yielded about 40 percent less fruit than street trees\" reverses the comparison, the one about \"fruit going unharvested\" recasts a point on which both teams agree as a dispute, and \"pest damage\" and \"irrigation\" appear nowhere in the notes."
+ },
+ {
+  "id": "R51",
+  "subskill": "Rhetorical Synthesis",
+  "difficulty": "medium",
+  "topic_tag": "glass eel migration counts",
+  "passage": "While researching a topic, a student has taken the following notes:\n- Glass eels, juvenile eels a few centimeters long, migrate from ocean spawning grounds into rivers each spring.\n- A monitoring station on the Averill River, run by biologist Serrano's group, counted more than 2 million glass eels moving upstream in one season.\n- Volunteers coordinated by the regional watershed council recorded glass eels in 47 tributaries.\n- On peak nights, counters logged upwards of 90,000 eels per hour.",
+  "prompt": "The student wants to emphasize the scale of the phenomenon. Which choice most effectively accomplishes this goal?",
+  "choices": [
+   "In one season, Serrano's station counted more than 20 million glass eels moving upstream, with peak nights bringing upwards of 90,000 eels per hour.",
+   "In one season, the watershed council's station counted more than 2 million glass eels moving upstream, with peak nights bringing upwards of 90,000 per hour.",
+   "In one season, Serrano's station counted more than 2 million glass eels moving upstream, the largest run yet recorded on the continent.",
+   "In one season, Serrano's station counted more than 2 million glass eels moving upstream, with peak nights bringing upwards of 90,000 per hour."
+  ],
+  "correct_answer": "In one season, Serrano's station counted more than 2 million glass eels moving upstream, with peak nights bringing upwards of 90,000 per hour.",
+  "explanation": "The notes record more than 2 million eels in one season at the station run by Serrano's group and upwards of 90,000 per hour on peak nights, so that choice conveys the scale using accurate figures. \"More than 20 million\" inflates the seasonal count tenfold, \"the watershed council's station\" credits the count to the group that coordinated tributary volunteers, and \"the largest run yet recorded on the continent\" is a claim the notes do not make."
+ },
+ {
+  "id": "T46",
+  "subskill": "Transitions",
+  "difficulty": "medium",
+  "topic_tag": "antibiotic clay deposits",
+  "passage": "Certain clay deposits in Oregon kill drug-resistant bacteria in laboratory tests, and geochemists suspect that chemically reduced iron in the clays drives the effect. _____ clays with similar iron chemistry elsewhere might show antibacterial activity as well. Researchers are now assaying deposits in France and Jordan to find out.",
+  "prompt": "Which choice completes the text with the most logical transition?",
+  "choices": [
+   "For example,",
+   "However,",
+   "In that case,",
+   "In the meantime,"
+  ],
+  "correct_answer": "In that case,",
+  "explanation": "The second sentence draws out what would follow if the geochemists' suspicion about reduced iron is correct, so the conditional \"In that case,\" fits the joint. The speculation about other clays is not an illustration, a contradiction, or a simultaneous event, so \"For example,\" \"However,\" and \"In the meantime,\" all fail."
+ },
+ {
+  "id": "T47",
+  "subskill": "Transitions",
+  "difficulty": "medium",
+  "topic_tag": "mechanical watch escapements",
+  "passage": "The lever escapement regulates a mechanical watch by releasing its gear train in tiny, precise increments. Watchmakers have refined the design for over two centuries, and modern versions keep excellent time. _____ the escapement loses energy to friction at every release, a limit that no lubricant fully removes. Some manufacturers now machine escapement parts from silicon, which requires no oil.",
+  "prompt": "Which choice completes the text with the most logical transition?",
+  "choices": [
+   "For instance,",
+   "Even so,",
+   "In other words,",
+   "Thus,"
+  ],
+  "correct_answer": "Even so,",
+  "explanation": "After two sentences praising the design's refinement and accuracy, the third sentence concedes a persistent flaw, so the concessive \"Even so,\" is needed. The friction loss is not an example of the accuracy, a restatement of it, or a result of it, so \"For instance,\" \"In other words,\" and \"Thus,\" each break the logic."
+ },
+ {
+  "id": "T48",
+  "subskill": "Transitions",
+  "difficulty": "hard",
+  "topic_tag": "community fridge networks",
+  "passage": "Community fridges let neighbors leave surplus food for anyone to take, and volunteers log each item's arrival and departure. In one network, produce dropped off before noon was typically claimed within hours, while evening donations often sat overnight. Organizers began steering donors toward morning drop-offs. _____ the share of items claimed on the day of donation rose.",
+  "prompt": "Which choice completes the text with the most logical transition?",
+  "choices": [
+   "In comparison,",
+   "Previously,",
+   "Instead,",
+   "Hence,"
+  ],
+  "correct_answer": "Hence,",
+  "explanation": "The rise in same-day claims is the consequence of steering donors toward the faster-moving morning window, so the causal \"Hence,\" completes the joint. The rise came after the change rather than before it, is not being measured against something else, and is not a substitute for the organizers' step, so \"Previously,\" \"In comparison,\" and \"Instead,\" all misdescribe the relationship."
+ },
+ {
+  "id": "R52",
+  "subskill": "Rhetorical Synthesis",
+  "difficulty": "medium",
+  "topic_tag": "stadium turf temperature study",
+  "passage": "While researching a topic, a student has taken the following notes:\n- Sports scientist Amara Osei's team studied surface temperatures of the synthetic turf at an outdoor stadium in Phoenix.\n- The team mounted infrared sensors above the field to record turf temperature every ten minutes on summer afternoons.\n- The readings showed that turf temperature was correlated with hours of direct sunlight.\n- On average, the synthetic turf ran hotter than a natural grass practice field nearby.\n- The team wanted continuous data without interrupting the stadium's practice schedule.",
+  "prompt": "The student wants to explain the purpose of the researchers' method. Which choice most effectively accomplishes this goal?",
+  "choices": [
+   "The researchers mounted infrared sensors above the field so they could gather continuous temperature data without interrupting practices.",
+   "The researchers mounted infrared sensors above the field so they could confirm that the synthetic turf stayed cooler than the nearby natural grass.",
+   "The researchers buried thermometer probes beneath the stadium turf so they could gather continuous temperature data across the summer afternoons.",
+   "The researchers mounted infrared sensors above the field so they could demonstrate that hours of direct sunlight cause turf temperatures to climb."
+  ],
+  "correct_answer": "The researchers mounted infrared sensors above the field so they could gather continuous temperature data without interrupting practices.",
+  "explanation": "The notes say the team \"mounted infrared sensors above the field\" and \"wanted continuous data without interrupting the stadium's practice schedule,\" which is exactly what this option pairs. The option about turf that \"stayed cooler than the nearby natural grass\" reverses the notes, the one that would \"demonstrate that hours of direct sunlight cause\" heating turns a correlation into a cause, and the one about \"buried thermometer probes\" describes a method the notes never mention."
+ },
+ {
+  "id": "R53",
+  "subskill": "Rhetorical Synthesis",
+  "difficulty": "hard",
+  "topic_tag": "violin bow hair sourcing",
+  "passage": "While researching a topic, a student has taken the following notes:\n- Bow maker and materials researcher Lena Vasquez analyzed horsehair sold for rehairing violin bows.\n- Of the 60 hair samples she obtained from commercial suppliers, 45 came from horses raised in cold climates.\n- In blind listening trials, professional violinists could not reliably tell bows haired with cold-climate hair from the others.\n- Her team measured no consistent difference in hair diameter between cold-climate and other samples.\n- Whether a hair's microscopic scale texture affects tone remains an open question.",
+  "prompt": "The student wants to emphasize the study's main finding. Which choice most effectively accomplishes this goal?",
+  "choices": [
+   "Although a hair's microscopic scale texture varies noticeably from sample to sample under magnification, Vasquez's listening trials established that this texture has no effect on the tone a bow produces.",
+   "Although just 15 of the 60 hair samples she obtained came from cold-climate horses, professional violinists in blind trials could not reliably tell bows haired with that hair from the others.",
+   "Although most of the sampled hair came from cold-climate horses, professional violinists in blind trials could not reliably tell those bows from the others, and the hairs showed no consistent difference in diameter.",
+   "Although most of the sampled hair came from cold-climate horses, amateur and professional players alike proved unable to reliably tell those bows from the others in blind trials."
+  ],
+  "correct_answer": "Although most of the sampled hair came from cold-climate horses, professional violinists in blind trials could not reliably tell those bows from the others, and the hairs showed no consistent difference in diameter.",
+  "explanation": "This option keeps to the notes: violinists \"could not reliably tell\" the bows apart and the team \"measured no consistent difference in hair diameter.\" The claim that trials \"established that this texture has no effect\" settles what the notes call an open question, \"just 15 of the 60\" misstates the count of 45, and \"amateur and professional players alike\" widens the notes' claim about professional violinists."
+ },
+ {
+  "id": "R54",
+  "subskill": "Rhetorical Synthesis",
+  "difficulty": "medium",
+  "topic_tag": "tidal pool warming experiment",
+  "passage": "While researching a topic, a student has taken the following notes:\n- Marine ecologist Priya Raman's team studies rocky tidal pools on the Oregon coast.\n- Using aquarium heaters, the team warmed selected pools by 2 degrees Celsius for six weeks.\n- Warmed pools lost more of their algal cover than unheated control pools did.\n- Snail populations in the warmed pools stayed stable across the six weeks.\n- The experiment is among the first to heat natural tidal pools in place rather than in a laboratory.",
+  "prompt": "The student wants to introduce the research to an audience unfamiliar with it. Which choice most effectively accomplishes this goal?",
+  "choices": [
+   "On the rocky Oregon coast, ecologist Priya Raman's team used aquarium heaters to warm natural tidal pools by 2 degrees Celsius, mimicking the water temperatures that forecasts project for the end of the century.",
+   "On the rocky Oregon coast, ecologist Priya Raman's team used aquarium heaters to warm natural tidal pools by 2 degrees Celsius, finding that warmed pools lost more of their algal cover than unheated ones.",
+   "On the rocky Oregon coast, ecologist Priya Raman's team tracked snail populations in tidal pools for six weeks, finding that the snails' numbers stayed stable across the study period.",
+   "On the rocky Oregon coast, ecologist Priya Raman's team used aquarium heaters to warm natural tidal pools, finding that warmed pools held onto more of their algal cover than unheated ones."
+  ],
+  "correct_answer": "On the rocky Oregon coast, ecologist Priya Raman's team used aquarium heaters to warm natural tidal pools by 2 degrees Celsius, finding that warmed pools lost more of their algal cover than unheated ones.",
+  "explanation": "This option introduces who, where, and what the notes describe: heaters warmed pools \"by 2 degrees Celsius\" and warmed pools \"lost more of their algal cover.\" The option in which warmed pools \"held onto more of their algal cover\" reverses that result, the one centered on how the team \"tracked snail populations\" presents a side observation as the study itself, and the one \"mimicking the water temperatures that forecasts project\" adds a rationale found nowhere in the notes."
+ },
+ {
+  "id": "T49",
+  "subskill": "Transitions",
+  "difficulty": "medium",
+  "topic_tag": "lighthouse lens polishing",
+  "passage": "For decades, keepers polished a lighthouse's Fresnel lens with rouge powder, believing the abrasive kept the glass at peak clarity. _____ conservators now suspect that repeated polishing wore microscopic grooves into the prisms, gradually scattering the beam. Modern maintenance guidelines therefore recommend gentler cleaning solutions applied with soft cloths.",
+  "prompt": "Which choice completes the text with the most logical transition?",
+  "choices": [
+   "Nevertheless,",
+   "As a result,",
+   "For example,",
+   "Similarly,"
+  ],
+  "correct_answer": "Nevertheless,",
+  "explanation": "The keepers believed rouge powder preserved clarity, but conservators now suspect the polishing actually damaged the prisms, so the contrastive \"Nevertheless,\" fits. \"As a result,\" wrongly treats the suspicion as a consequence of the keepers' belief, while \"For example,\" and \"Similarly,\" wrongly present the damage as an illustration or a parallel of the polishing practice."
+ },
+ {
+  "id": "T50",
+  "subskill": "Transitions",
+  "difficulty": "medium",
+  "topic_tag": "moth wing acoustics",
+  "passage": "Many moths have wing scales that absorb the ultrasonic clicks bats use to hunt. Researchers describe the scales as a form of acoustic camouflage, muffling echoes before they return to a predator. _____ scales on one silk moth species absorb up to 70 percent of incoming sound energy. Engineers hope to adapt the structure for thin soundproofing panels.",
+  "prompt": "Which choice completes the text with the most logical transition?",
+  "choices": [
+   "For instance,",
+   "In comparison,",
+   "However,",
+   "Likewise,"
+  ],
+  "correct_answer": "For instance,",
+  "explanation": "The silk moth's 70 percent absorption is a specific example of the general claim that moth scales muffle echoes, so \"For instance,\" is correct. \"However,\" wrongly signals a contrast with the camouflage claim, and \"In comparison,\" and \"Likewise,\" wrongly frame the figure as a separate case being set beside the scales rather than an instance of them."
+ },
+ {
+  "id": "T51",
+  "subskill": "Transitions",
+  "difficulty": "hard",
+  "topic_tag": "reclaimed golf course rewilding",
+  "passage": "When a coastal golf course closed, ecologists let native dune grasses reclaim the fairways rather than replanting them by hand. Surveys five years later found more ground-nesting bird species on the site than on nearby restored plots that had been actively seeded. _____ the cheapest approach to rewilding proved, in this case, the most effective one.",
+  "prompt": "Which choice completes the text with the most logical transition?",
+  "choices": [
+   "In other words,",
+   "On the other hand,",
+   "At the same time,",
+   "Consequently,"
+  ],
+  "correct_answer": "In other words,",
+  "explanation": "The final sentence restates the survey finding in general terms rather than reporting something new, so the reformulating \"In other words,\" is correct. \"Consequently,\" wrongly casts the restatement as an outcome that followed from the finding, while \"On the other hand,\" and \"At the same time,\" wrongly signal contrast or an additional simultaneous point."
+ },
+ {
+  "id": "R55",
+  "subskill": "Rhetorical Synthesis",
+  "difficulty": "medium",
+  "topic_tag": "school mural attention study",
+  "passage": "While researching a topic, a student has taken the following notes:\n- A team led by psychologist Dana Whitfield observed 240 students at two middle schools before and after hallway murals were painted.\n- Students passing the new murals paused an average of 12 seconds longer between classes.\n- Teachers reported that hallway disruptions seemed to decline after the murals appeared.\n- Whitfield's team did not directly measure classroom focus.\n- A separate group led by Marcus Oyelaran is planning a follow-up study on classroom attention.",
+  "prompt": "The student wants to present a cautious summary of the findings. Which choice most effectively accomplishes this goal?",
+  "choices": [
+   "Whitfield's team found that students paused longer near the new murals and that hallway disruptions seemed to decline, though classroom focus itself was not directly measured.",
+   "Whitfield's team found that students paused an average of 20 seconds longer near the new murals and that disruptions seemed to decline, though classroom focus was not directly measured.",
+   "Marcus Oyelaran's group found that students paused longer near the new murals and that hallway disruptions seemed to decline, though classroom focus itself was not directly measured.",
+   "Whitfield's team found that students paused longer near the murals and reported feeling calmer, though classroom focus was not directly measured."
+  ],
+  "correct_answer": "Whitfield's team found that students paused longer near the new murals and that hallway disruptions seemed to decline, though classroom focus itself was not directly measured.",
+  "explanation": "The correct choice hedges every claim the notes support and flags the unmeasured variable, matching the notes exactly. The option citing \"an average of 20 seconds longer\" misstates the noted 12-second figure, the option crediting \"Marcus Oyelaran's group\" attributes the observation to the team that is only planning a follow-up, and the option saying students \"reported feeling calmer\" adds a detail the notes do not contain."
+ },
+ {
+  "id": "R56",
+  "subskill": "Rhetorical Synthesis",
+  "difficulty": "hard",
+  "topic_tag": "grain silo airflow modeling",
+  "passage": "While researching a topic, a student has taken the following notes:\n- Engineer Priya Raghunathan's team built computer models of airflow inside steel grain silos in Manitoba.\n- The models predicted that running fans at faster speeds would dry stored grain more evenly.\n- In field tests, silos running fans at the highest speed showed the least even drying.\n- Field measurements found that uneven drying tended to appear alongside pockets of compacted grain near silo walls, though the team has not determined whether the pockets cause the unevenness.",
+  "prompt": "The student wants to explain why the finding surprised researchers. Which choice most effectively accomplishes this goal?",
+  "choices": [
+   "Raghunathan's models predicted that faster fans would dry stored grain more evenly, yet the silos running fans at the highest speed dried the least evenly.",
+   "Raghunathan's models predicted that faster fans would dry stored grain more evenly, yet the silos running fans at the lowest speed showed the least even drying in the field.",
+   "Raghunathan's models predicted more even drying at faster fan speeds, yet field tests showed that pockets of compacted grain near silo walls were causing the uneven drying.",
+   "Raghunathan's wind-tunnel experiments in Saskatchewan predicted that faster fans would dry stored grain more evenly, yet the fastest-running silos dried the least evenly."
+  ],
+  "correct_answer": "Raghunathan's models predicted that faster fans would dry stored grain more evenly, yet the silos running fans at the highest speed dried the least evenly.",
+  "explanation": "The correct choice sets the models' prediction against the opposite field result, exactly as the notes record it. The option claiming silos at \"the lowest speed showed the least even drying\" reverses the noted result, the option saying compacted pockets \"were causing the uneven drying\" turns a noted association into a settled cause, and the option describing \"wind-tunnel experiments in Saskatchewan\" misstates both the method and the location in the notes."
+ },
+ {
+  "id": "R57",
+  "subskill": "Rhetorical Synthesis",
+  "difficulty": "medium",
+  "topic_tag": "city pigeon navigation trial",
+  "passage": "While researching a topic, a student has taken the following notes:\n- Biologist Elena Vasquez's team released 60 homing pigeons in an unfamiliar city under two conditions: near heavy traffic noise and in quiet parks.\n- Pigeons released in quiet parks oriented toward home within about two minutes on average.\n- Pigeons released near heavy traffic noise took roughly seven minutes on average to orient.\n- The team has not yet determined whether the birds depend on ambient sound cues or are simply distracted by noise.\n- The trial included pigeons raised in a single loft, and Vasquez cautions against generalizing the results.",
+  "prompt": "The student wants to compare the results of the two conditions. Which choice most effectively accomplishes this goal?",
+  "choices": [
+   "Pigeons released in quiet parks oriented toward home within about two minutes on average, whereas pigeons released near heavy traffic noise needed roughly seven minutes to orient.",
+   "Pigeons released in quiet parks oriented within about two minutes, whereas pigeons released near traffic needed longer because they depend on ambient sound cues to navigate.",
+   "Pigeons from lofts across the city oriented within about two minutes in quiet parks, whereas those released near heavy traffic needed roughly seven minutes.",
+   "Pigeons released in quiet parks oriented toward home within about four minutes on average, whereas pigeons released near heavy traffic needed roughly seven minutes."
+  ],
+  "correct_answer": "Pigeons released in quiet parks oriented toward home within about two minutes on average, whereas pigeons released near heavy traffic noise needed roughly seven minutes to orient.",
+  "explanation": "The correct choice sets the two conditions' orientation times side by side using the figures in the notes. The option asserting the birds \"depend on ambient sound cues to navigate\" settles a question the notes say is undetermined, the option describing \"Pigeons from lofts across the city\" misstates the noted single-loft scope, and the option citing \"about four minutes\" misstates the two-minute figure for quiet parks."
+ },
+ {
+  "id": "T52",
+  "subskill": "Transitions",
+  "difficulty": "medium",
+  "topic_tag": "typewriter font identification",
+  "passage": "Forensic document examiners begin by photographing a typed page under magnification to record the precise shape of each character. _____ they compare those letterforms with a reference catalog of typefaces used by known typewriter models. A close match can narrow a document's origin to a handful of machines.",
+  "prompt": "Which choice completes the text with the most logical transition?",
+  "choices": [
+   "Next,",
+   "For instance,",
+   "In contrast,",
+   "Similarly,"
+  ],
+  "correct_answer": "Next,",
+  "explanation": "The passage describes an ordered procedure: examiners first photograph the characters and then compare them with a catalog, so \"Next,\" signals that second step. \"For instance,\" \"In contrast,\" and \"Similarly,\" would wrongly present the comparison as an example, an opposition, or a parallel case rather than the following stage."
+ },
+ {
+  "id": "T53",
+  "subskill": "Transitions",
+  "difficulty": "medium",
+  "topic_tag": "reservoir evaporation covers",
+  "passage": "Floating covers and shade balls can sharply reduce evaporation from reservoirs in arid regions. In one trial, a covered reservoir lost forty percent less water over one summer than an uncovered reservoir nearby. _____ the cover cooled the surface water, slowing the growth of algae that can clog intake pipes. Utilities in several states are now testing similar systems.",
+  "prompt": "Which choice completes the text with the most logical transition?",
+  "choices": [
+   "Moreover,",
+   "Thus,",
+   "Still,",
+   "Instead,"
+  ],
+  "correct_answer": "Moreover,",
+  "explanation": "The blank adds a second, further benefit of the cover — cooling that slows algae — on top of the water savings, so the additive \"Moreover,\" fits. \"Thus,\" would cast the cooling as a consequence of the savings, while \"Still,\" and \"Instead,\" would signal a concession or a substitution that the passage does not make."
+ },
+ {
+  "id": "T54",
+  "subskill": "Transitions",
+  "difficulty": "hard",
+  "topic_tag": "carnival ride physics inspection",
+  "passage": "State inspectors evaluating a traveling carnival measured each ride's restraint forces and structural vibration. The pendulum swing exceeded its rated lateral load in one trial, while the smaller rides stayed comfortably within their limits. The swing's worn bearing was replaced within a week. _____ the inspection pointed to a fleet maintained with reasonable, if not flawless, care.",
+  "prompt": "Which choice completes the text with the most logical transition?",
+  "choices": [
+   "In general,",
+   "Consequently,",
+   "Likewise,",
+   "However,"
+  ],
+  "correct_answer": "In general,",
+  "explanation": "The final sentence steps back from mixed particulars — one exceedance, a quick repair, otherwise clean results — to a broad overall assessment, which \"In general,\" signals. \"Consequently,\" misreads that verdict as an effect of the repair, and \"However,\" and \"Likewise,\" assert a contrast or a parallel that the summarizing sentence does not make."
+ },
+ {
+  "id": "R58",
+  "subskill": "Rhetorical Synthesis",
+  "difficulty": "medium",
+  "topic_tag": "thrift store textile flows",
+  "passage": "While researching a topic, a student has taken the following notes:\n- Sociologist Dana Whitfield tracked 2,400 donated garments through a Midwestern thrift store chain for one year.\n- About 45 percent of the garments sold in stores; the remainder were baled for export or sent to textile recyclers.\n- Whitfield cautioned that the findings may not generalize to donation centers in coastal cities, which receive different mixes of clothing.\n- The tracking relied on barcode tags, some of which fell off garments and were not replaced.",
+  "prompt": "The student wants to acknowledge a limitation of the study. Which choice most effectively accomplishes this goal?",
+  "choices": [
+   "Although Whitfield tracked 2,400 garments for a year, her findings may not generalize to coastal donation centers, which receive different mixes of clothing.",
+   "Although Whitfield tracked 2,400 garments for a year, about 45 percent of them sold in stores while the remainder were baled for export or recycled.",
+   "Although Whitfield tracked 2,400 garments for a year, her findings may not generalize to Midwestern donation centers, which receive different mixes of clothing.",
+   "Although Whitfield tracked 2,400 garments for a year, her study excluded shoes and accessories, which account for a sizable share of donations."
+  ],
+  "correct_answer": "Although Whitfield tracked 2,400 garments for a year, her findings may not generalize to coastal donation centers, which receive different mixes of clothing.",
+  "explanation": "The notes say Whitfield \"cautioned that the findings may not generalize to donation centers in coastal cities,\" which \"her findings may not generalize to coastal donation centers\" restates as a limitation. The version naming \"Midwestern donation centers\" reverses that caution, since the study itself was Midwestern; the sales-percentage option recasts a finding as a limitation; and an exclusion of \"shoes and accessories\" appears nowhere in the notes."
+ },
+ {
+  "id": "R59",
+  "subskill": "Rhetorical Synthesis",
+  "difficulty": "hard",
+  "topic_tag": "volcanic soil vineyard trial",
+  "passage": "While researching a topic, a student has taken the following notes:\n- Agronomist Marisol Vega's team planted matched grapevine plots on volcanic and clay soils at a Pacific Northwest research station.\n- Vines on the volcanic plots needed 30 percent less irrigation to reach comparable yields.\n- A separate team led by Tomas Herrick analyzed the volcanic soil and attributed its water retention to the clay mineral allophane.\n- Vega suggested that growers in drought-prone regions could site new vineyards on volcanic soils to reduce water use.",
+  "prompt": "The student wants to emphasize the practical application of the research. Which choice most effectively accomplishes this goal?",
+  "choices": [
+   "Vega's trial suggests that growers in drought-prone regions could cut irrigation by about 30 percent by siting new vineyards on volcanic soils.",
+   "Vega's trial suggests that growers in drought-prone regions could cut irrigation by roughly 60 percent by siting new vineyards on volcanic soils.",
+   "Herrick's trial suggests that growers in drought-prone regions could cut irrigation by about 30 percent by siting new vineyards on volcanic soils.",
+   "Vega's trial suggests that growers in drought-prone regions could cut irrigation by amending clay soils with allophane-rich volcanic rock."
+  ],
+  "correct_answer": "Vega's trial suggests that growers in drought-prone regions could cut irrigation by about 30 percent by siting new vineyards on volcanic soils.",
+  "explanation": "The notes record that volcanic plots \"needed 30 percent less irrigation\" and that Vega ran the planting trial and proposed siting vineyards on volcanic soils. The \"roughly 60 percent\" figure inflates the noted savings, \"Herrick's trial\" misattributes the vineyard experiment to the team that did the mineral analysis, and \"amending clay soils with allophane-rich volcanic rock\" is an application the notes never mention."
+ },
+ {
+  "id": "R60",
+  "subskill": "Rhetorical Synthesis",
+  "difficulty": "medium",
+  "topic_tag": "museum visitor path tracking",
+  "passage": "While researching a topic, a student has taken the following notes:\n- Researchers led by Priya Anand used anonymized Wi-Fi tracking to map visitor movement through a Chicago science museum.\n- Anand's team found that turning right at the entrance was associated with viewing more exhibits and concluded that hall layout guides visitors' choices.\n- A second team, led by Marcus Bell, reanalyzed the same tracking data.\n- Bell's team concluded that visitors' prior interests, not hall layout, best explain which exhibits people viewed.",
+  "prompt": "The student wants to summarize the disagreement between the two research teams. Which choice most effectively accomplishes this goal?",
+  "choices": [
+   "Anand's team credits hall layout for visitors' exhibit choices, while Bell's team credits visitors' prior interests.",
+   "Bell's team credits hall layout for shaping visitors' exhibit choices, while Anand's team credits visitors' prior interests.",
+   "Anand's team maintains that turning right causes visitors to view more exhibits, while Bell's team credits visitors' prior interests.",
+   "Anand's team, drawing on entrance surveys at a Boston museum, credits hall layout, while Bell's team credits visitors' prior interests."
+  ],
+  "correct_answer": "Anand's team credits hall layout for visitors' exhibit choices, while Bell's team credits visitors' prior interests.",
+  "explanation": "Per the notes, Anand's team concluded that \"hall layout guides visitors' choices\" while Bell's team concluded that \"visitors' prior interests\" best explain viewing, which the correct summary captures. The version beginning \"Bell's team credits hall layout\" swaps the two positions, the claim that turning right \"causes\" more viewing hardens what the notes report only as an association, and \"entrance surveys at a Boston museum\" contradicts the Wi-Fi tracking conducted in Chicago."
+ },
+ {
+  "id": "T55",
+  "subskill": "Transitions",
+  "difficulty": "medium",
+  "topic_tag": "heritage rose propagation",
+  "passage": "Volunteers at a heritage garden propagate century-old rose varieties by rooting stem cuttings, a method that preserves each plant's exact genetic makeup. _____ a few varieties resist rooting even when cuttings are prepared with great care. For those stubborn cultivars, gardeners instead graft stems onto hardy modern rootstock.",
+  "prompt": "Which choice completes the text with the most logical transition?",
+  "choices": [
+   "In other words,",
+   "Consequently,",
+   "However,",
+   "Also,"
+  ],
+  "correct_answer": "However,",
+  "explanation": "The passage first presents rooting cuttings as the garden's standard method, then qualifies that picture with an exception: a few varieties resist rooting. \"However,\" signals that qualification, whereas \"Consequently,\" and \"In other words,\" would wrongly cast the exception as a result or a restatement of the first sentence."
+ },
+ {
+  "id": "T56",
+  "subskill": "Transitions",
+  "difficulty": "medium",
+  "topic_tag": "silent film score reconstruction",
+  "passage": "Musicologist Dana Ferreira is reconstructing the orchestral score for a 1921 silent film from its single surviving piano part. Marginal notes in the part may indicate which instruments played each passage. _____ Ferreira could assign melodies to specific sections of the orchestra with reasonable confidence. Without such evidence, the assignments would remain educated guesses.",
+  "prompt": "Which choice completes the text with the most logical transition?",
+  "choices": [
+   "For example,",
+   "However,",
+   "Indeed,",
+   "If so,"
+  ],
+  "correct_answer": "If so,",
+  "explanation": "The previous sentence raises only a possibility—the notes \"may indicate\" instrumentation—and the confident assignments depend on that possibility holding. \"If so,\" makes the claim properly contingent, while \"Indeed,\" would treat the possibility as already confirmed and \"However,\" signals a contrast the passage does not make."
+ },
+ {
+  "id": "T57",
+  "subskill": "Transitions",
+  "difficulty": "hard",
+  "topic_tag": "harbor dredging clam surveys",
+  "passage": "Before dredging a harbor channel, engineers commissioned surveys of the clam beds along its edges. The surveys found dense beds at the channel's northern edge but only scattered clams to the south, so crews shifted the dredge route southward. _____ the revised route still passes within meters of two smaller beds flagged by the surveys.",
+  "prompt": "Which choice completes the text with the most logical transition?",
+  "choices": [
+   "Nevertheless,",
+   "As a result,",
+   "Similarly,",
+   "In fact,"
+  ],
+  "correct_answer": "Nevertheless,",
+  "explanation": "The route was shifted southward precisely to move away from the clam beds, yet the final sentence concedes that it \"still passes within meters\" of two of them—a concession that \"Nevertheless,\" expresses. \"As a result,\" would wrongly present that lingering proximity as the intended outcome of the shift rather than a shortfall of it."
+ },
+ {
+  "id": "R61",
+  "subskill": "Rhetorical Synthesis",
+  "difficulty": "medium",
+  "topic_tag": "beaver dam flood modeling",
+  "passage": "While researching a topic, a student has taken the following notes:\n- Hydrologist Priya Nandakumar's team mapped beaver dams across the Skagit River basin to model their effect on flooding.\n- The team identified more than 11,000 dams in the basin.\n- Together, the mapped dams can hold back an estimated 6 million cubic meters of water during storms.\n- Whether the dams reduce flood peaks downstream of the basin remains an open question.\n- The team's model focuses on flooding within the basin itself.",
+  "prompt": "The student wants to emphasize the scale of the phenomenon. Which choice most effectively accomplishes this goal?",
+  "choices": [
+   "The scale is striking: researchers mapped more than 11,000 beaver dams in the Skagit River basin, together capable of holding back an estimated 6 million cubic meters of storm water.",
+   "The scale is striking: researchers mapped more than 11,000 beaver dams across the entire Pacific Northwest, together holding back an estimated 6 million cubic meters.",
+   "The scale is striking: researchers mapped more than 1,100 beaver dams in the Skagit River basin, together capable of holding back an estimated 6 million cubic meters.",
+   "The scale is striking: researchers mapped more than 11,000 beaver dams in the basin, structures shown to reduce flood peaks downstream of the basin."
+  ],
+  "correct_answer": "The scale is striking: researchers mapped more than 11,000 beaver dams in the Skagit River basin, together capable of holding back an estimated 6 million cubic meters of storm water.",
+  "explanation": "This choice conveys scale using the notes' own figures: \"more than 11,000\" dams and \"an estimated 6 million cubic meters.\" The option citing \"more than 1,100\" dams understates the noted count, the one placing the dams \"across the entire Pacific Northwest\" misstates where they were mapped, and the one calling them \"shown to reduce flood peaks downstream\" presents what the notes say remains an open question as settled."
+ },
+ {
+  "id": "R62",
+  "subskill": "Rhetorical Synthesis",
+  "difficulty": "hard",
+  "topic_tag": "night shift lighting study",
+  "passage": "While researching a topic, a student has taken the following notes:\n- Sleep researcher Tomás Iglesias led a study of lighting at hospital night-shift workstations.\n- Nurses at twelve hospitals wore badges that recorded their light exposure during each shift.\n- The badges let the team measure exposure continuously rather than relying on nurses' recollections at the end of a shift.\n- In earlier studies, recalled exposure tended to be lower than badge-recorded exposure.\n- The team will compare exposure levels with scores on alertness tests.",
+  "prompt": "The student wants to explain the purpose of the researchers' method. Which choice most effectively accomplishes this goal?",
+  "choices": [
+   "The nurses wore light-recording badges so that the team could avoid depending on end-of-shift recollections, which in earlier studies tended to run higher than recorded exposure.",
+   "The nurses wore light-recording badges so that the team could track exposure continuously rather than relying on their recollections at the end of each shift.",
+   "The nurses wore light-recording badges so that the team could measure both light exposure and ambient noise continuously during shifts.",
+   "The nurses wore light-recording badges so that the team could compare lighting conditions across the twelve participating hospitals."
+  ],
+  "correct_answer": "The nurses wore light-recording badges so that the team could track exposure continuously rather than relying on their recollections at the end of each shift.",
+  "explanation": "The notes state the badges let the team \"measure exposure continuously rather than relying on nurses' recollections,\" which this choice restates as the method's purpose. The option describing recollections that \"tended to run higher than recorded exposure\" reverses the noted direction—recalled exposure ran lower—while \"ambient noise\" appears nowhere in the notes and comparing conditions across hospitals is not the purpose the notes give."
+ },
+ {
+  "id": "R63",
+  "subskill": "Rhetorical Synthesis",
+  "difficulty": "medium",
+  "topic_tag": "coastal fog nets water quality",
+  "passage": "While researching a topic, a student has taken the following notes:\n- Environmental engineer Mireille Fontaine's group tested fog nets that collect drinking water along the Chilean coast.\n- A separate laboratory led by chemist Rodrigo Salas analyzed the mineral content of the collected water.\n- The group's main finding: water from the nets met national drinking-water standards at 19 of the 21 sites tested.\n- At the two remaining sites, road dust likely raised contaminant levels.",
+  "prompt": "The student wants to emphasize the study's main finding. Which choice most effectively accomplishes this goal?",
+  "choices": [
+   "Fontaine's group found that water collected by fog nets met national drinking-water standards at 19 of the 21 sites, as later taste panels confirmed.",
+   "Rodrigo Salas's laboratory found that water collected by fog nets met national drinking-water standards at 19 of the 21 coastal sites tested.",
+   "Fontaine's group found that water collected by fog nets met national drinking-water standards at 19 of the 21 coastal sites tested.",
+   "Fontaine's group found that water collected by fog nets met national drinking-water standards at 9 of the 21 sites tested."
+  ],
+  "correct_answer": "Fontaine's group found that water collected by fog nets met national drinking-water standards at 19 of the 21 coastal sites tested.",
+  "explanation": "The notes attribute the main finding to Fontaine's group: fog-net water \"met national drinking-water standards at 19 of the 21 sites tested.\" The option crediting \"Rodrigo Salas's laboratory\" swaps in the team that analyzed mineral content, \"9 of the 21 sites\" misstates the noted count, and the notes mention no \"taste panels.\""
+ },
+ {
+  "id": "T58",
+  "subskill": "Transitions",
+  "difficulty": "medium",
+  "topic_tag": "insect hotel occupancy",
+  "passage": "Volunteers at a community garden stocked their insect hotel with bamboo tubes of a single diameter, a size that suits only a few solitary bee species. _____ occupancy stayed low through the first summer. The following spring, the volunteers added tubes of varied widths, and residents multiplied.",
+  "prompt": "Which choice completes the text with the most logical transition?",
+  "choices": [
+   "As a result,",
+   "Nevertheless,",
+   "Similarly,",
+   "Instead,"
+  ],
+  "correct_answer": "As a result,",
+  "explanation": "Because the tubes suited only a few species, low occupancy follows as a consequence, so \"As a result,\" fits the joint. \"Nevertheless,\" and \"Instead,\" wrongly signal opposition to the first sentence, and \"Similarly,\" wrongly treats the low occupancy as a parallel case rather than an effect."
+ },
+ {
+  "id": "T59",
+  "subskill": "Transitions",
+  "difficulty": "medium",
+  "topic_tag": "planetarium projector history",
+  "passage": "Early planetariums displayed the night sky using painted domes and pinpricked metal globes lit from within. These devices could show star positions but could not reproduce the shifting motions of the planets. _____ the optical projector introduced in the 1920s could animate the planets' wandering paths across the dome. Audiences at early demonstrations reportedly gasped.",
+  "prompt": "Which choice completes the text with the most logical transition?",
+  "choices": [
+   "By contrast,",
+   "In other words,",
+   "Consequently,",
+   "Likewise,"
+  ],
+  "correct_answer": "By contrast,",
+  "explanation": "The earlier devices could not reproduce planetary motion while the 1920s projector could, an opposition that \"By contrast,\" marks. \"Likewise,\" and \"In other words,\" wrongly present the projector's ability as a parallel or a restatement of that inability, and \"Consequently,\" wrongly casts it as an effect of it."
+ },
+ {
+  "id": "T60",
+  "subskill": "Transitions",
+  "difficulty": "hard",
+  "topic_tag": "roadside geology signage",
+  "passage": "Transportation departments have begun installing interpretive signs where highways cut through exposed rock, since road cuts offer unusually clear geological cross sections. The signs are required to condense complex histories into a few readable lines. _____ one panel in a mountain pass compresses 300 million years of sediment deposition into a single sentence.",
+  "prompt": "Which choice completes the text with the most logical transition?",
+  "choices": [
+   "For example,",
+   "As a consequence,",
+   "In the same way,",
+   "Nevertheless,"
+  ],
+  "correct_answer": "For example,",
+  "explanation": "The panel that fits 300 million years into one sentence is a specific instance of the general requirement to condense histories, so \"For example,\" fits. \"As a consequence,\" misreads the panel as an effect rather than an illustration, \"In the same way,\" misreads it as a separate parallel case, and \"Nevertheless,\" wrongly signals opposition."
+ },
+ {
+  "id": "R64",
+  "subskill": "Rhetorical Synthesis",
+  "difficulty": "medium",
+  "topic_tag": "orchard bee nesting boxes",
+  "passage": "While researching a topic, a student has taken the following notes:\n- Blue orchard bees are solitary bees that pollinate fruit trees and nest in narrow tunnels rather than hives.\n- Agroecologist Marisol Vega's team placed wooden nesting boxes in 40 apple orchards in Washington State.\n- Boxes positioned near flowering hedgerows were occupied at higher rates than boxes in open rows.\n- The team recorded this association but has not yet tested whether the hedgerows themselves attract the bees.",
+  "prompt": "The student wants to introduce the research to an audience unfamiliar with it. Which choice most effectively accomplishes this goal?",
+  "choices": [
+   "To learn more about blue orchard bees, which nest in tunnels rather than hives, agroecologist Marisol Vega's team placed wooden nesting boxes in 40 Washington State apple orchards.",
+   "To learn more about blue orchard bees, which nest in tunnels rather than hives, agroecologist Marisol Vega's team found that nesting boxes in open orchard rows were occupied more often than boxes near flowering hedgerows.",
+   "To learn more about blue orchard bees, which nest in tunnels rather than hives, agroecologist Marisol Vega's team showed that flowering hedgerows attract the bees and draw them into wooden nesting boxes placed nearby.",
+   "To learn more about blue orchard bees, which nest in tunnels rather than hives, agroecologist Marisol Vega's team surveyed naturally occurring nests in 40 apple orchards across Oregon's fruit-growing valleys."
+  ],
+  "correct_answer": "To learn more about blue orchard bees, which nest in tunnels rather than hives, agroecologist Marisol Vega's team placed wooden nesting boxes in 40 Washington State apple orchards.",
+  "explanation": "Only the option ending \"placed wooden nesting boxes in 40 Washington State apple orchards\" matches the notes. The option saying open rows \"were occupied more often than boxes near flowering hedgerows\" reverses the recorded pattern, the option claiming the team \"showed that flowering hedgerows attract the bees\" asserts a cause the notes say has not yet been tested, and the option describing a survey of \"naturally occurring nests\" in Oregon misstates both the method and the location."
+ },
+ {
+  "id": "R65",
+  "subskill": "Rhetorical Synthesis",
+  "difficulty": "hard",
+  "topic_tag": "subway busker acoustics",
+  "passage": "While researching a topic, a student has taken the following notes:\n- Acoustics researcher Dario Lunt's team recorded performances by 28 buskers at underground subway platforms in a single city.\n- Curved tile walls extended the reverberation of low-frequency notes by roughly half a second on average.\n- Buskers who favored low registers stayed at curved-wall platforms longer per session, though the sample was small.\n- Whether the added reverberation affects how much performers earn remains an open question.",
+  "prompt": "The student wants to present a cautious summary of the findings. Which choice most effectively accomplishes this goal?",
+  "choices": [
+   "In a study of 28 buskers on one city's underground platforms, curved tile walls appeared to extend low-frequency reverberation by about half a second, though whether such acoustics affect performers' earnings remains unclear.",
+   "In a study of 28 buskers on one city's underground platforms, curved tile walls appeared to extend low-frequency reverberation by about half a second, modestly boosting performers' earnings, though the sample was small.",
+   "In a study of buskers recorded across several cities' subway systems, curved tile walls appeared to extend low-frequency reverberation by about half a second, though the effect on earnings remains unclear.",
+   "In a study of 28 buskers on one city's underground platforms, curved tile walls appeared to extend low-frequency reverberation by roughly two seconds, though the effect on earnings remains unclear."
+  ],
+  "correct_answer": "In a study of 28 buskers on one city's underground platforms, curved tile walls appeared to extend low-frequency reverberation by about half a second, though whether such acoustics affect performers' earnings remains unclear.",
+  "explanation": "The option noting that the earnings question \"remains unclear\" while citing the half-second average tracks every note. The option claiming the walls were \"modestly boosting performers' earnings\" settles what the notes call an open question, the option set \"across several cities' subway systems\" misstates the single-city scope, and the option citing \"roughly two seconds\" misstates the half-second figure."
+ },
+ {
+  "id": "R66",
+  "subskill": "Rhetorical Synthesis",
+  "difficulty": "medium",
+  "topic_tag": "antique clock lubrication study",
+  "passage": "While researching a topic, a student has taken the following notes:\n- Horologist Petra Salomaa's team disassembled 60 antique pendulum clocks to study wear on their brass gear trains.\n- Clocks that owners had lubricated regularly were expected to show the least wear.\n- Instead, regularly lubricated clocks showed more pivot wear than clocks that had rarely been oiled.\n- Aged oil traps airborne dust, which can act as an abrasive between moving parts.",
+  "prompt": "The student wants to explain why the finding surprised researchers. Which choice most effectively accomplishes this goal?",
+  "choices": [
+   "The researchers expected regularly lubricated clocks to show the least wear, yet those clocks had more pivot wear than rarely oiled ones.",
+   "The researchers expected rarely oiled clocks to show the least wear, yet those clocks had more pivot wear than regularly oiled ones.",
+   "The researchers expected aged oil to trap airborne dust, yet the dust acted as an abrasive between the clocks' moving parts.",
+   "The researchers expected regularly lubricated clocks to show the least wear, yet steel gear trains outlasted brass ones across the sixty clocks."
+  ],
+  "correct_answer": "The researchers expected regularly lubricated clocks to show the least wear, yet those clocks had more pivot wear than rarely oiled ones.",
+  "explanation": "The notes state the expectation that regularly lubricated clocks would show the least wear and the contrary result, matching the option ending \"more pivot wear than rarely oiled ones.\" The option expecting \"rarely oiled clocks to show the least wear\" reverses both the expectation and the comparison, the option about aged oil casts a bullet the notes never frame as unexpected into surprise form, and the option claiming \"steel gear trains outlasted brass ones\" cites a comparison that appears nowhere in the notes."
+ },
+ {
+  "id": "T61",
+  "subskill": "Transitions",
+  "difficulty": "medium",
+  "topic_tag": "monastery beer yeast lineage",
+  "passage": "Brewers at a Belgian monastery have propagated the same yeast culture since the 1830s, seeding each new batch with a sample from the last. _____ every modern bottle descends, cell by cell, from a single nineteenth-century starter. Genetic sequencing of the strain recently confirmed this unbroken lineage.",
+  "prompt": "Which choice completes the text with the most logical transition?",
+  "choices": [
+   "In other words,",
+   "Nevertheless,",
+   "Meanwhile,",
+   "Likewise,"
+  ],
+  "correct_answer": "In other words,",
+  "explanation": "The second sentence restates the first claim in plainer terms: continuous propagation since the 1830s means each bottle descends from one starter, so the reformulating \"In other words,\" fits. \"Nevertheless,\" signals contrast, \"Meanwhile,\" signals a separate simultaneous event, and \"Likewise,\" signals a parallel additional case, none of which describes a restatement."
+ },
+ {
+  "id": "T62",
+  "subskill": "Transitions",
+  "difficulty": "medium",
+  "topic_tag": "kelp forest acoustics",
+  "passage": "Marine ecologists spent a year recording the soundscape of a California kelp forest. In healthy stands, snapping shrimp produced a near-constant crackle that larval fish appear to use when settling. _____ hydrophones in nearby sections stripped bare by urchins captured long stretches of near silence. The contrast suggests that sound recordings could track kelp recovery.",
+  "prompt": "Which choice completes the text with the most logical transition?",
+  "choices": [
+   "Consequently,",
+   "Meanwhile,",
+   "In fact,",
+   "Instead,"
+  ],
+  "correct_answer": "Meanwhile,",
+  "explanation": "The sentence reports what hydrophones in a different area recorded during the same monitoring period, so the simultaneity marker \"Meanwhile,\" is logical. \"Consequently,\" wrongly casts the silence as a result of the crackle, \"In fact,\" wrongly intensifies the prior claim, and \"Instead,\" wrongly implies one action substituted for an expected other."
+ },
+ {
+  "id": "T63",
+  "subskill": "Transitions",
+  "difficulty": "hard",
+  "topic_tag": "dry stone wall engineering",
+  "passage": "Dry stone walls stand without mortar because each stone's weight presses inward against its neighbors. Unlike rigid masonry, a well-laid wall can flex as the ground settles, shifting slightly without losing its grip. _____ some masons contend that a good wall actually grows more stable, not weaker, as it settles over the decades.",
+  "prompt": "Which choice completes the text with the most logical transition?",
+  "choices": [
+   "As a result,",
+   "Otherwise,",
+   "Indeed,",
+   "Still,"
+  ],
+  "correct_answer": "Indeed,",
+  "explanation": "The final sentence does not draw a new consequence; it escalates the previous claim that settling walls keep their grip into the stronger claim that they grow more stable, so the emphatic \"Indeed,\" fits. \"As a result,\" treats the masons' contention as an effect of the settling, \"Otherwise,\" requires a condition being negated, and \"Still,\" signals concession where the sentence agrees with and intensifies what came before."
+ },
+ {
+  "id": "R67",
+  "subskill": "Rhetorical Synthesis",
+  "difficulty": "medium",
+  "topic_tag": "greenhouse spider pest control",
+  "passage": "While researching a topic, a student has taken the following notes:\n- Entomologist Mara Voss's team tested whether resident jumping spiders reduce whitefly damage in tomato greenhouses.\n- In greenhouses stocked with spiders, whitefly damage appeared on 12 percent of plants.\n- In greenhouses kept spider-free, damage appeared on 38 percent of plants.\n- A separate team led by Devin Okafor tracked pollinator visits in the same greenhouses and found no difference between conditions.\n- Voss's team has not yet repeated the test in open field plots.",
+  "prompt": "The student wants to compare the results of the two conditions. Which choice most effectively accomplishes this goal?",
+  "choices": [
+   "In Voss's test, whitefly damage appeared on 12 percent of plants in greenhouses stocked with spiders but on 38 percent of plants in greenhouses kept spider-free.",
+   "In Voss's test, whitefly damage appeared on 12 percent of plants in greenhouses stocked with spiders but on 38 percent in spider-free ones, a gap that widened as the season went on.",
+   "In Okafor's test, whitefly damage appeared on 12 percent of the plants in greenhouses stocked with spiders but on 38 percent of the plants in greenhouses kept spider-free.",
+   "In Voss's test, whitefly damage appeared on 24 percent of plants in spider-stocked greenhouses but on 38 percent of plants in spider-free ones."
+  ],
+  "correct_answer": "In Voss's test, whitefly damage appeared on 12 percent of plants in greenhouses stocked with spiders but on 38 percent of plants in greenhouses kept spider-free.",
+  "explanation": "The notes attribute the whitefly comparison to Voss's team and give 12 percent versus 38 percent, which this sentence reports exactly. The option citing \"24 percent\" misstates a noted figure, the option beginning \"In Okafor's test\" assigns the whitefly result to the team that tracked pollinator visits, and the option adding \"a gap that widened as the season went on\" reports a detail the notes do not contain."
+ },
+ {
+  "id": "R68",
+  "subskill": "Rhetorical Synthesis",
+  "difficulty": "hard",
+  "topic_tag": "ferry wake shoreline study",
+  "passage": "While researching a topic, a student has taken the following notes:\n- Coastal geologist Priya Raman's team monitored shoreline erosion along a Norwegian fjord ferry route across two summers.\n- Erosion rates were higher at monitoring sites closer to the ferry lane, a correlation the team did not test experimentally.\n- Shoreline change was measured with drone photogrammetry rather than physical sediment cores.\n- The sites were sheltered fjord shorelines rather than open coast.\n- Monitoring paused from October to April, so winter storms fell outside the record.",
+  "prompt": "The student wants to acknowledge a limitation of the study. Which choice most effectively accomplishes this goal?",
+  "choices": [
+   "Because monitoring paused from October to April, the study could not capture the effects of winter storms.",
+   "Because erosion ran higher at sites farther from the ferry lane, the study could not tie the pattern to wake action.",
+   "Because the team showed that ferry wakes cause the erosion near the lane, the study could not weigh other factors.",
+   "Because cores were taken at open-coast sites rather than fjord shorelines, the study could not assess sheltered stretches."
+  ],
+  "correct_answer": "Because monitoring paused from October to April, the study could not capture the effects of winter storms.",
+  "explanation": "The notes state that monitoring paused from October to April and winter storms fell outside the record, which this sentence reports faithfully. The option saying erosion ran higher \"farther from the ferry lane\" reverses the noted direction, the option claiming the team \"showed that ferry wakes cause the erosion\" turns an untested correlation into a demonstrated cause, and the option describing \"cores\" at \"open-coast sites\" misstates both the drone-based method and the sheltered fjord setting."
+ },
+ {
+  "id": "R69",
+  "subskill": "Rhetorical Synthesis",
+  "difficulty": "medium",
+  "topic_tag": "campus food waste audit",
+  "passage": "While researching a topic, a student has taken the following notes:\n- A student research group at Larkspur College weighed dining-hall food waste over one semester.\n- On nights when trays were removed, plate waste fell 31 percent compared with tray nights.\n- The audit covered the campus's two largest dining halls.\n- Whether trayless service also lowers the college's overall food purchasing remains an open question.\n- Drawing on the audit, the dining office now runs trayless service three nights a week.",
+  "prompt": "The student wants to emphasize the practical application of the research. Which choice most effectively accomplishes this goal?",
+  "choices": [
+   "The audit is already guiding campus practice: after it recorded a 31 percent drop in plate waste on trayless nights, the dining office began running trayless service three nights a week.",
+   "The audit is already guiding campus practice: after it showed that trayless service lowers overall food purchasing, the dining office began running trayless nights weekly.",
+   "The audit is already guiding campus practice: after a survey of every dining hall on campus recorded lower plate waste, the dining office began running trayless service.",
+   "The audit is already guiding campus practice: after it recorded a 13 percent drop in plate waste on trayless nights, the dining office began trayless service each week."
+  ],
+  "correct_answer": "The audit is already guiding campus practice: after it recorded a 31 percent drop in plate waste on trayless nights, the dining office began running trayless service three nights a week.",
+  "explanation": "The notes report a 31 percent drop in plate waste and say the dining office now runs trayless service three nights a week, so this sentence highlights the real-world use accurately. The option claiming the audit \"showed that trayless service lowers overall food purchasing\" settles what the notes call an open question, the option describing \"a survey of every dining hall on campus\" misstates the two-hall scope, and the option citing \"a 13 percent drop\" misstates the noted figure."
+ },
+ {
+  "id": "T64",
+  "subskill": "Transitions",
+  "difficulty": "medium",
+  "topic_tag": "night market food safety",
+  "passage": "Inspectors at Taipei's night markets check individual stalls for refrigeration lapses, expired ingredients, and unwashed produce, and results vary widely from vendor to vendor. _____ the markets' compliance rates have climbed steadily over the past decade. Officials credit mandatory food-handling courses introduced for licensed vendors in 2014.",
+  "prompt": "Which choice completes the text with the most logical transition?",
+  "choices": [
+   "Overall,",
+   "Consequently,",
+   "For instance,",
+   "Similarly,"
+  ],
+  "correct_answer": "Overall,",
+  "explanation": "The text moves from stall-by-stall results that \"vary widely\" to a broad decade-long pattern, so \"Overall,\" correctly signals a shift from particulars to a general trend. \"Consequently,\" would wrongly present the rising rates as a result of the variation, and \"For instance,\" would require the second sentence to be an example of it."
+ },
+ {
+  "id": "T65",
+  "subskill": "Transitions",
+  "difficulty": "medium",
+  "topic_tag": "observatory dark sky zoning",
+  "passage": "Alder Creek adopted dark-sky zoning to protect the nearby Halvorsen Observatory, requiring shielded fixtures and warm-toned bulbs on new construction. Existing homes and businesses were given five years to retrofit outdoor lighting. _____ the rules can be waived: properties whose lighting is required by state safety codes may keep it unchanged. Astronomers say the exempted fixtures rarely interfere with observations.",
+  "prompt": "Which choice completes the text with the most logical transition?",
+  "choices": [
+   "In some circumstances, however,",
+   "By the same token,",
+   "In other words,",
+   "As a result,"
+  ],
+  "correct_answer": "In some circumstances, however,",
+  "explanation": "After two sentences describing the zoning requirements, the third sentence carves out a safety-code exemption, so \"In some circumstances, however,\" correctly marks a qualification of the rules. \"In other words,\" would make the waiver a restatement of the requirements, and \"As a result,\" would make the exemption a consequence of them."
+ },
+ {
+  "id": "T66",
+  "subskill": "Transitions",
+  "difficulty": "hard",
+  "topic_tag": "postage stamp pigment analysis",
+  "passage": "Philatelists have long dated a rare colonial-era stamp printing to 1852, but spectroscopic analysis of its red pigment revealed traces of a synthetic dye first manufactured in 1856. Researchers caution that the dye could have transferred from an adjacent stamp during storage. _____ the original dating would stand despite the spectroscopic evidence.",
+  "prompt": "Which choice completes the text with the most logical transition?",
+  "choices": [
+   "In light of these findings,",
+   "If that is the case,",
+   "Regardless,",
+   "Therefore,"
+  ],
+  "correct_answer": "If that is the case,",
+  "explanation": "The 1852 dating survives on the unconfirmed possibility that the dye \"could have transferred\" during storage, so \"If that is the case,\" correctly makes the final claim contingent on that scenario. \"Regardless,\" would assert the dating stands even if the dye is original to the stamp, and \"Therefore,\" treats a mere possibility as an established conclusion."
+ },
+ {
+  "id": "R70",
+  "subskill": "Rhetorical Synthesis",
+  "difficulty": "medium",
+  "topic_tag": "mountain hut water testing",
+  "passage": "While researching a topic, a student has taken the following notes:\n- Alpine huts in the Carn range rely on rooftop rainwater collection for drinking water.\n- In 2023, a team led by hydrologist Mira Sandoval tested water at 18 huts and concluded that ultraviolet purifiers had made the supply reliably safe.\n- A team led by microbiologist Tomas Krejci retested 12 of the same huts in 2024 and argued that seasonal bacterial spikes still made the supply unsafe without boiling.\n- Krejci's team attributed the spikes to bird activity on the collection roofs during late summer.\n- Both teams supported installing covered cisterns at the busiest huts.",
+  "prompt": "The student wants to summarize the disagreement between the two research teams. Which choice most effectively accomplishes this goal?",
+  "choices": [
+   "While Sandoval's team concluded that ultraviolet purifiers had made the huts' water supply reliably safe, Krejci's team argued that seasonal bacterial spikes still made it unsafe without boiling.",
+   "While Krejci's team concluded that ultraviolet purifiers had made the huts' water supply reliably safe, Sandoval's team argued that seasonal bacterial spikes still made boiling necessary before drinking.",
+   "While Sandoval's team concluded that bird activity on collection roofs was the main source of contamination, Krejci's team argued that covered cisterns would address it at the busiest huts.",
+   "While Sandoval's team concluded that the huts' water met national drinking-water standards, Krejci's team argued that chemical runoff from hiking trails made it unsafe."
+  ],
+  "correct_answer": "While Sandoval's team concluded that ultraviolet purifiers had made the huts' water supply reliably safe, Krejci's team argued that seasonal bacterial spikes still made it unsafe without boiling.",
+  "explanation": "The notes assign the safety conclusion to Sandoval's 2023 team and the bacterial-spike objection to Krejci's 2024 team, which is exactly what \"Sandoval's team concluded that ultraviolet purifiers had made the huts' water supply reliably safe, Krejci's team argued that seasonal bacterial spikes still made it unsafe\" reports. The option beginning \"While Krejci's team concluded\" swaps the two teams' positions, the bird-activity option manufactures a dispute out of points the notes attribute to one team or to both, and \"national drinking-water standards\" and \"chemical runoff from hiking trails\" appear nowhere in the notes."
+ },
+ {
+  "id": "R71",
+  "subskill": "Rhetorical Synthesis",
+  "difficulty": "hard",
+  "topic_tag": "sourdough starter exchange study",
+  "passage": "While researching a topic, a student has taken the following notes:\n- The Wildgrain Project, coordinated by food scientist Elena Marsh, tracks sourdough starters shared among home bakers.\n- By 2025, project volunteers had registered more than 40,000 starters exchanged across 62 countries.\n- Genetic sequencing led by microbiologist Priya Raman traced 1,800 of the starters to a single starter from a bakery in Ghent.\n- Raman's team estimated that a typical registered starter had passed through nine households.\n- Marsh has called the network one of the largest informal food-sharing systems ever documented.",
+  "prompt": "The student wants to emphasize the scale of the phenomenon. Which choice most effectively accomplishes this goal?",
+  "choices": [
+   "By 2025, volunteers had registered more than 40,000 starters exchanged across 62 countries, with a typical starter passing through nine households.",
+   "By 2025, volunteers had registered more than 40,000 starters exchanged across 62 countries, with a typical starter passing through nineteen households.",
+   "By 2025, genetic sequencing led by project coordinator Elena Marsh had traced 1,800 of the registered starters, spread across 62 countries, to a single bakery in Ghent.",
+   "By 2025, volunteers had registered more than 40,000 starters exchanged across 62 countries, many shipped overseas by commercial mail."
+  ],
+  "correct_answer": "By 2025, volunteers had registered more than 40,000 starters exchanged across 62 countries, with a typical starter passing through nine households.",
+  "explanation": "Every figure in \"more than 40,000 starters exchanged across 62 countries, with a typical starter passing through nine households\" matches the notes exactly. The option saying \"nineteen households\" inflates the notes' estimate of nine, the option crediting \"project coordinator Elena Marsh\" with the sequencing contradicts the note naming Priya Raman as its leader, and \"many shipped overseas by commercial mail\" presents a detail the notes do not contain."
+ },
+ {
+  "id": "R72",
+  "subskill": "Rhetorical Synthesis",
+  "difficulty": "medium",
+  "topic_tag": "harbor seal haul-out counts",
+  "passage": "While researching a topic, a student has taken the following notes:\n- Harbor seals rest, or \"haul out,\" on shoreline rocks and sandbars at low tide.\n- Counting seals from boats can startle them into the water, lowering counts.\n- A team led by ecologist Dana Whitfield photographs haul-out sites in Puget Sound using drones flown at 300 meters.\n- At that altitude, drone noise stays below the level seals respond to.\n- In Whitfield's surveys, drone counts were on average 12 percent higher than boat-based counts of the same sites.",
+  "prompt": "The student wants to explain the purpose of the researchers' method. Which choice most effectively accomplishes this goal?",
+  "choices": [
+   "The team photographs haul-out sites with drones flown too high for their noise to disturb the seals.",
+   "The team photographs haul-out sites with drones because drone counts averaged 12 percent lower than boat-based counts.",
+   "The team photographs haul-out sites with drones because flights at 300 meters cause more seals to haul out onto the rocks.",
+   "The team photographs haul-out sites from boats at low tide, an approach that avoids startling the resting seals into the water."
+  ],
+  "correct_answer": "The team photographs haul-out sites with drones flown too high for their noise to disturb the seals.",
+  "explanation": "The notes state that boat counts startle seals into the water and that at 300 meters \"drone noise stays below the level seals respond to,\" so \"drones flown too high for their noise to disturb the seals\" captures the method's purpose. The option citing counts \"12 percent lower\" reverses the noted direction of the difference, the claim that flights \"cause more seals to haul out\" turns a count comparison into a causal effect the notes never assert, and the option describing photography \"from boats at low tide\" contradicts both the team's actual method and the note that boats startle seals."
+ }
+]

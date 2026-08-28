@@ -411,6 +411,110 @@
      "verdict": "verify-daily-life-repair mode A run BOTH directions (each set's questions as mutual siblings): key positions 31/28/21/21% and 21/24/38/17% (worst 38% < 40%), hedge-only-in-key 0%, key-longest 24%, no prompt/key duplication within sets."
     }
    }
+  },
+  {
+   "id": "repeat-v3-2026-08-28",
+   "createdAt": "2026-08-28",
+   "targetTest": "toefl",
+   "section": "speaking",
+   "task": "listen_and_repeat",
+   "family": "production",
+   "spec": {
+    "n": 39,
+    "authors": 5,
+    "method": "word-count-banded sentences (8-9/10-11/12); PHASE2-PREREGISTERED.md"
+   },
+   "contentSha": "19f3fbdd23012825ec126ccf479be77bd1b5353ff4082f989032f674b30f7e6f",
+   "status": "shipped",
+   "cohort": "repeat-v3",
+   "note": "First authoring round converged across agents (13 of 36 dropped as exact/near dups — no per-author topic assignment; the top-up with disjoint topics had 0 drops). Reviewers blanket-flagged all spelled numbers as transcription hazards; decided by computing the actual >=85% token-overlap grader: one number per sentence passes worst-case (87.5-91.7%), two fails (83.3%) — the two 2-number sentences dropped, single-number sentences kept (live precedent: \"opens at six\" serves fine).",
+   "stages": {
+    "shape": {
+     "passed": true,
+     "contentSha": "19f3fbdd23012825ec126ccf479be77bd1b5353ff4082f989032f674b30f7e6f",
+     "verdict": "39/39: bands re-derived from word count (15 easy 8-9w / 16 medium 10-11w / 8 hard 12w), passage === correct_answer byte-wise, no scaffolding prefixes, sentence case, single terminal period. insertRepeat re-enforces all of it."
+    },
+    "withsource": {
+     "passed": true,
+     "verdict": "3 speakability reviewers over all 41 candidates: no flags other than the uniform spelled-number concern, which was adjudicated by the grader arithmetic above; no tongue-twisters, names, homophone traps, or above-B1 vocabulary flagged."
+    },
+    "tells": {
+     "passed": true,
+     "verdict": "Exact+near-dup filter (Jaccard >= 0.6) vs the live 97 and within batch applied at merge (13 authored sentences culled); topic variety via disjoint top-up domains."
+    }
+   }
+  },
+  {
+   "id": "ssat-verbal-v1-2026-08-28",
+   "createdAt": "2026-08-28",
+   "targetTest": "ssat",
+   "section": "verbal",
+   "task": "multiple_choice",
+   "family": "mc_stem_source",
+   "spec": {
+    "n": 21,
+    "authors": 4,
+    "method": "first SSAT bank content — Phase 2 Verbal pilot (PHASE2-PREREGISTERED.md)"
+   },
+   "contentSha": "5b2f7bb03f06bb5db496a0bea455efedc4e19658e4e11d76da23453f6ffc5467",
+   "status": "shipped",
+   "cohort": "ssat-verbal-v1",
+   "note": "24 authored; SY5/SY10/SY11 dropped as contested — with no part of speech on the stem, the OTHER sense's exact synonym sat among the options (HAMPER/basket, GRAVE/tomb, FLAG/banner). Stage-2 brief rule: a secondary-sense stem's primary-sense trap must be an ASSOCIATE, never an exact synonym of the other sense.",
+   "stages": {
+    "shape": {
+     "passed": true,
+     "contentSha": "5b2f7bb03f06bb5db496a0bea455efedc4e19658e4e11d76da23453f6ffc5467",
+     "verdict": "Distinct choices at the family count, key verbatim, kind tags, no repeated synonym stems (one ISEE dup dropped pre-gate: two authors both wrote CANDID)."
+    },
+    "withsource": {
+     "passed": true,
+     "verdict": "Key votes >=2/3 on every item (3 voters). Blind exclusivity audit: contested items dropped whole — the audit caught the bare-stem/second-sense defect class."
+    },
+    "nosource": {
+     "passed": true,
+     "verdict": "Options-only attack (stems withheld, 5 slots): mean 36.1% vs 29.2% best-fixed-letter control, margin +6.9 PASS (bar +25)."
+    },
+    "tells": {
+     "passed": true,
+     "verdict": "Hunter: sound-alike distractors can reconstruct hidden stems on synonym items — noted for the stage-2 brief (look-alike traps should not be near-anagrams of the stem); measured margin stayed +6.9."
+    }
+   }
+  },
+  {
+   "id": "isee-verbal-v1-2026-08-28",
+   "createdAt": "2026-08-28",
+   "targetTest": "isee",
+   "section": "verbal",
+   "task": "multiple_choice",
+   "family": "mc_stem_source",
+   "spec": {
+    "n": 22,
+    "authors": 4,
+    "method": "first ISEE bank content — Phase 2 Verbal pilot (PHASE2-PREREGISTERED.md)"
+   },
+   "contentSha": "1d427fa6de88f29c920a7e3bcce39d7fb20f9d08387e7731b19d88fe6872bb55",
+   "status": "shipped",
+   "cohort": "isee-verbal-v1",
+   "note": "24 authored; IS7 dropped pre-gate (dup stem), SC9 dropped as contested (second defensible pair). Stage-2 brief rule from the hunter: two-blank hard items must not reuse a first-blank word across options (SC10-12 did; narrows 4 to 2 blind).",
+   "stages": {
+    "shape": {
+     "passed": true,
+     "contentSha": "1d427fa6de88f29c920a7e3bcce39d7fb20f9d08387e7731b19d88fe6872bb55",
+     "verdict": "Distinct choices at the family count, key verbatim, kind tags, no repeated synonym stems (one ISEE dup dropped pre-gate: two authors both wrote CANDID)."
+    },
+    "withsource": {
+     "passed": true,
+     "verdict": "Key votes >=2/3 on every item (3 voters). Blind exclusivity audit: contested items dropped whole — the audit caught the bare-stem/second-sense defect class."
+    },
+    "nosource": {
+     "passed": true,
+     "verdict": "Options-only attack (stems withheld, 4 slots): mean 50.7% vs 43.5% best-fixed-letter control, margin +7.2 PASS (bar +25)."
+    },
+    "tells": {
+     "passed": true,
+     "verdict": "Hunter: duplicated first-blank words across option pairs on the three hard two-blank items — real narrowing tell, margin still +7.2; banned in the stage-2 brief."
+    }
+   }
   }
  ],
  "auditedCohorts": [
