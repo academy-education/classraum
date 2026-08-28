@@ -87,3 +87,52 @@ no slot is always tone), uniform qualification and intensity within
 every option set, uniform specificity and grammar, secondary-sense
 vocabulary, and an author self-test whose result is returned as
 `anti_tell_note`.
+
+## Reading v2 also KILLED — the tell relocated (2026-08-28, later)
+
+20 fresh passages, 120 questions, authored under the anti-slot-tell
+brief (per-passage kind variety from a 10-kind pool, uniform
+qualification and intensity, secondary-sense vocabulary, author
+self-test returned as `anti_tell_note`).
+
+    SSAT reading v2   mean 86.1%  control 25.0%  margin +61.1  KILLED
+
+The mechanical fixes WORKED and are worth keeping: key-slot spread
+A6/E6/D5/B4/C3, key-is-longest down to 8/24, the two tone items fully
+neutralized (all five options share one "X paired with Y" frame within
+3 characters). The per-kind length concentration flagged at preflight
+was real and is gone.
+
+**But the tell relocated into the proposition.** The hunter's Rule 1,
+firing on 14 of 24 items: *exactly one option concedes and asserts at
+once while the other four state a single flat proposition* — "the
+disagreement between the two proved more informative than either",
+"carries confounds of its own", "denied the standing her competence
+has already earned", "not the voyage itself". My brief told authors
+the options must be uniformly qualified; they moved the balance out of
+the phrasing and into the content. The answer is still "the balanced
+one", and a solver who knows that never needs the passage.
+
+This is the third form of the same defect: qualifier → moderation →
+tension. Reading questions ask which reading is best supported, and a
+best-supported reading is characteristically a both/and claim, so the
+key is *intrinsically* the most balanced proposition in the set. That
+is not an authoring slip to be briefed away — it is a property of the
+task as posed.
+
+**Disposition: all 120 dead, never banked. Reading authoring STOPS
+under this design.** Two options remain and both are structural, not
+another brief revision:
+
+1. **Symmetric worlds for reading** — the cr-v7/rsw cure that worked
+   twice: author FOUR passage variants that differ on the tested
+   facts, write one best-supported summary per variant, and let a
+   seeded RNG pick which passage is shown after freeze. Every option
+   is then somebody's balanced both/and claim, so balance cannot mark
+   the key. This is the only design in the repo that has ever beaten
+   authorship asymmetry.
+2. **Licensed source passages** — real published prose with
+   professionally written items, which sidesteps authored-batch tells
+   entirely but needs rights.
+
+Do not attempt a reading v3 under the authored-key design.
