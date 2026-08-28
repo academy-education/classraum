@@ -710,6 +710,47 @@
      "verdict": "Key letters dealt 3/3/2/3 by construction after freeze; element frequency uniform 1-1-1-1 per slot by design."
     }
    }
+  },
+  {
+   "id": "crv9-2026-08-28",
+   "createdAt": "2026-08-28",
+   "targetTest": "toefl",
+   "section": "listening",
+   "task": "choose_response",
+   "family": "mc_hidden_source",
+   "spec": {
+    "n": 36,
+    "authors": 6,
+    "method": "cr-v7 symmetric four-world method, run 3, Opus authors; seeds pre-committed base 20260830/20260930/20261030"
+   },
+   "contentSha": "53dd68efac522df532e6a4075ad9fc8044ae2255cf33e111044054a018d88797",
+   "status": "shipped",
+   "cohort": "cr-v9",
+   "note": "60 quads authored; 22 DROPPED WHOLE at the mechanical kill-map check (kills quoting nothing in their own line, or missing) — 44 failures is far past the 2-item metadata-fix precedent of cr-v8, so nothing was repaired. 2 more dropped so batch 3 was divisible by 4 (the renderer deals letters flat and requires it). Opus authoring produced better prose but markedly worse kill-map discipline than the earlier Sonnet runs — worth knowing before choosing an author model for quad work.",
+   "stages": {
+    "shape": {
+     "passed": true,
+     "contentSha": "53dd68efac522df532e6a4075ad9fc8044ae2255cf33e111044054a018d88797",
+     "verdict": "render-crv7 mechanical checks on the 36 survivors: every kill quotes a 2+-word verbatim span of its own line; letters dealt flat per batch (2/2/2/2, 3/3/3/3, 4/4/4/4); 3 logged quota re-rolls."
+    },
+    "withsource": {
+     "passed": true,
+     "verdict": "Frozen EXCLUSIVITY-GRADER-BRIEF.md over all 36, blind to key: 36 unique / 0 contested, and the grader's independently chosen sole-defensible option matched the RNG-picked key 36/36 — the cleanest exclusivity result of the three cr runs."
+    },
+    "nosource": {
+     "passed": true,
+     "n": 36,
+     "verdict": "Blind attack, 3 solvers, distinct pick-strings: mean 18.5% vs 25.0% flat-by-construction control, margin -6.5 CLEAR."
+    },
+    "elimination": {
+     "passed": true,
+     "verdict": "Exclusivity pass doubles as the elimination gate at 0 contested; no options-only narrowing found."
+    },
+    "tells": {
+     "passed": true,
+     "verdict": "Letters flat by construction; no near-dup pairs against the live 178."
+    }
+   }
   }
  ],
  "auditedCohorts": [

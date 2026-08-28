@@ -1300,6 +1300,33 @@ gate-wiring test catches disagreement between the two). Any future
 BAS batch gates as family `production` (shape/withsource/tells) with a
 ledger.json entry at the exact file sha.
 
+### Volume round: 191 banked, 2 batches killed by arithmetic (2026-08-28)
+Six cohorts pre-registered (VOLUME-PREREGISTERED.md), authored on Opus.
+Shipped: eoi-v5 42 Transitions (attack −13.9; EoI 121 → 170),
+ssat-verbal-s2 51 (+16.7; SSAT 72 live), isee-verbal-s2 55 (+8.3;
+ISEE 77 live), rsw-v1 7 (RS reopened), cr-v9 36 (attack −6.5,
+exclusivity 36/36 sole-defensible == key, the cleanest CR run yet;
+CR 178 → 214).
+
+**dl-fresh-v2 KILLED after passing every conventional gate** — attack
+−5.6, votes ≥2/3 on all 48, zero grader flags. The hunter found option
+families and one arithmetic join settled it: the bare email option was
+the key 0 of 7 times (chance 1.8) while the room/extension-specific
+option was the key 12 of 16 (chance 6.0). That is the precision
+asymmetry that killed Daily Life's first cohort, regressed by authors
+who satisfied every other rule. Full record + the new CHANNEL PARITY
+brief clause: DL-FRESH-V2-KILLED.md. **The arithmetic-beats-sampling
+rule now has kills in both directions: it condemned a live cohort
+(eoi-v3 RS) and a passing one (dl-fresh-v2).**
+
+Other findings this round: eoi-v5 had three DUPLICATE OPTION SETS
+across the batch (solving one leaks its twin) — dropped, and worth a
+preflight join; the verbal batches produced 8 stem collisions against
+the shipped pilots — dropped pre-gate; cr-v9's Opus authors wrote
+better prose but far worse kill-map discipline than the Sonnet runs
+(22 of 60 quads dropped whole at the mechanical check vs 2 in cr-v8),
+which is an author-model tradeoff worth pricing in.
+
 ### RHETORICAL SYNTHESIS REFUTED; live 32 archived (2026-08-28, final)
 Rev-2 (balanced 2-2 slots, coherent clones) beat both exact checkers
 (21% consensus, 0% minority) and still died at the pre-registered

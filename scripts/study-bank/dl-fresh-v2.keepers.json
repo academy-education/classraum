@@ -1,0 +1,770 @@
+[
+ {
+  "id": "V1-1",
+  "kind": "literal detail",
+  "prompt": "[Daily Life — email] When are kiln firings now held?",
+  "choices": [
+   "Wednesday evenings",
+   "Saturday mornings",
+   "Sunday evenings",
+   "Friday nights"
+  ],
+  "correct_answer": "Wednesday evenings",
+  "explanation": "The email states that firings have moved and \"we now fire on Wednesday evenings\", so \"Wednesday evenings\" is the slot. \"Saturday mornings\" is the weekend slot that has been dropped because the building loses power for maintenance; nothing in the email supports \"Sunday evenings\" or \"Friday nights\".",
+  "passage": "Hi Selin,\n\nTwo changes before term starts. Kiln firings have moved to Foxglove Hall, Room 219, and we now fire on Wednesday evenings — the art building's power is cut every Saturday for maintenance, so the old weekend slot is gone for good. Members pay $7 a firing now, up from $4. If Wednesday doesn't suit you, ring the studio on ext. 3341 and I'll open it another night.\n\nBram Kowalczyk",
+  "kind_tag": "email",
+  "atypical_fact": "The pottery club's kiln firings are held on Wednesday evenings rather than on the weekend, because the art building's power is cut every Saturday for maintenance."
+ },
+ {
+  "id": "V1-2",
+  "kind": "next-step",
+  "prompt": "[Daily Life — email] What does Bram tell Selin to do if the firing night doesn't suit her?",
+  "choices": [
+   "Leave a note on the Room 219 door.",
+   "Sign the sheet outside Room 219.",
+   "Ring the studio on ext. 3341.",
+   "Ask at the Hall office."
+  ],
+  "correct_answer": "Ring the studio on ext. 3341.",
+  "explanation": "The email says to \"ring the studio on ext. 3341\" and he will open it another night, which matches \"Ring the studio on ext. 3341.\" The email never mentions a note on a door, a sign-up sheet, or an office counter, so \"Leave a note on the Room 219 door.\", \"Sign the sheet outside Room 219.\" and \"Ask at the Hall office.\" have no support.",
+  "passage": "Hi Selin,\n\nTwo changes before term starts. Kiln firings have moved to Foxglove Hall, Room 219, and we now fire on Wednesday evenings — the art building's power is cut every Saturday for maintenance, so the old weekend slot is gone for good. Members pay $7 a firing now, up from $4. If Wednesday doesn't suit you, ring the studio on ext. 3341 and I'll open it another night.\n\nBram Kowalczyk",
+  "kind_tag": "email",
+  "atypical_fact": "The pottery club's kiln firings are held on Wednesday evenings rather than on the weekend, because the art building's power is cut every Saturday for maintenance."
+ },
+ {
+  "id": "V2-1",
+  "kind": "inference",
+  "prompt": "[Daily Life — campus notice] A student loses a coat and goes to ask about it on 12 October. Which building should the student go to?",
+  "choices": [
+   "The campus security desk.",
+   "The main porters' lodge.",
+   "The library basement.",
+   "The Birchwood Annex."
+  ],
+  "correct_answer": "The Birchwood Annex.",
+  "explanation": "The notice says that from 1 October the office \"moves to Room 41 of the Birchwood Annex\", and 12 October falls after that date, so \"The Birchwood Annex.\" is where the student should go. \"The library basement.\" is the location the office has left; \"The campus security desk.\" and \"The main porters' lodge.\" are never mentioned.",
+  "passage": "LOST PROPERTY — NEW HOME\n\nFrom 1 October the lost property office is no longer in the library basement. It moves to Room 41 of the Birchwood Annex, the old laundry room, and opens Tuesdays only, 7:00 to 9:00 a.m. Items are kept six weeks, not the full academic year, and anything still unclaimed after that is given to charity. Questions: phone the office on 555-0217.",
+  "kind_tag": "campus notice",
+  "atypical_fact": "Lost property is run out of a converted laundry room in a residence annex rather than the library or a security desk, it is open only two hours a week (Tuesdays 7:00–9:00 a.m.), and items are kept just six weeks instead of the full academic year."
+ },
+ {
+  "id": "V2-2",
+  "kind": "literal detail",
+  "prompt": "[Daily Life — campus notice] According to the notice, how should questions be raised?",
+  "choices": [
+   "Phone the office on 555-0217.",
+   "Wait until the next opening.",
+   "Ask at the porters' lodge.",
+   "Email the duty porter."
+  ],
+  "correct_answer": "Phone the office on 555-0217.",
+  "explanation": "The final line reads \"Questions: phone the office on 555-0217\", which matches \"Phone the office on 555-0217.\" The notice gives no email address, names no porter, and does not tell readers to \"Wait until the next opening.\"",
+  "passage": "LOST PROPERTY — NEW HOME\n\nFrom 1 October the lost property office is no longer in the library basement. It moves to Room 41 of the Birchwood Annex, the old laundry room, and opens Tuesdays only, 7:00 to 9:00 a.m. Items are kept six weeks, not the full academic year, and anything still unclaimed after that is given to charity. Questions: phone the office on 555-0217.",
+  "kind_tag": "campus notice",
+  "atypical_fact": "Lost property is run out of a converted laundry room in a residence annex rather than the library or a security desk, it is open only two hours a week (Tuesdays 7:00–9:00 a.m.), and items are kept just six weeks instead of the full academic year."
+ },
+ {
+  "id": "V3-1",
+  "kind": "literal detail",
+  "prompt": "[Daily Life — club flyer] When does the baking club currently meet?",
+  "choices": [
+   "Thursday evenings, 6:00 to 8:30",
+   "Friday mornings, 7:00 to 9:30",
+   "Sunday mornings, 8:00 to 10:30",
+   "Monday evenings, 6:00 to 8:00"
+  ],
+  "correct_answer": "Sunday mornings, 8:00 to 10:30",
+  "explanation": "The flyer gives the club's current slot as \"Sunday mornings, 8:00 to 10:30\". \"Thursday evenings, 6:00 to 8:30\" matches the slot the club used last year and gave up because the kitchen was booked, and neither \"Friday mornings, 7:00 to 9:30\" nor \"Monday evenings, 6:00 to 8:00\" is mentioned at all.",
+  "passage": "CAMPUS BAKING CLUB — new members welcome. We meet in Room 128 of the Juniper Building. Note our unusual slot: Sunday mornings, 8:00 to 10:30. We tried Thursday evenings last year, but the kitchen was always booked. Bring nothing — flour, butter, and tins are supplied. Dues are $12, paid once for the whole year, not once a term. Questions? Call Callum Reyes at 555-0233.",
+  "kind_tag": "club flyer",
+  "atypical_fact": "Dues are a single $12 payment covering the whole year rather than a per-term or monthly charge, and the club meets on Sunday mornings rather than on a weekday evening (the weekday-evening slot was tried and dropped)."
+ },
+ {
+  "id": "V3-2",
+  "kind": "inference",
+  "prompt": "[Daily Life — club flyer] A student joins the club in September and is still a member the following June. How many dues payments will the student have made?",
+  "choices": [
+   "Three payments, of $12 each",
+   "One payment, of $12",
+   "Nine payments, of $12 each",
+   "Two payments, of $12 each"
+  ],
+  "correct_answer": "One payment, of $12",
+  "explanation": "Dues are described as \"$12, paid once for the whole year, not once a term\", so a member spanning September to June pays \"One payment, of $12\". \"Three payments, of $12 each\" would follow a per-term charge and \"Nine payments, of $12 each\" a monthly one, both of which the flyer rules out; \"Two payments, of $12 each\" has no basis in the flyer.",
+  "passage": "CAMPUS BAKING CLUB — new members welcome. We meet in Room 128 of the Juniper Building. Note our unusual slot: Sunday mornings, 8:00 to 10:30. We tried Thursday evenings last year, but the kitchen was always booked. Bring nothing — flour, butter, and tins are supplied. Dues are $12, paid once for the whole year, not once a term. Questions? Call Callum Reyes at 555-0233.",
+  "kind_tag": "club flyer",
+  "atypical_fact": "Dues are a single $12 payment covering the whole year rather than a per-term or monthly charge, and the club meets on Sunday mornings rather than on a weekday evening (the weekday-evening slot was tried and dropped)."
+ },
+ {
+  "id": "V4-1",
+  "kind": "next-step",
+  "prompt": "[Daily Life — job ad] How should someone who wants this job submit an application?",
+  "choices": [
+   "By emailing a scanned copy to the office",
+   "By calling ext. 5527 to apply by phone",
+   "By posting a paper form to Room 16",
+   "By bringing a paper form to Room 16 in person"
+  ],
+  "correct_answer": "By bringing a paper form to Room 16 in person",
+  "explanation": "The ad says emailed applications are not accepted and that a paper form must be collected and handed back in person, which is \"By bringing a paper form to Room 16 in person\". \"By emailing a scanned copy to the office\" is refused outright, \"By posting a paper form to Room 16\" is not the in-person hand-back the ad requires, and \"By calling ext. 5527 to apply by phone\" uses the number given only for questions.",
+  "passage": "GREENHOUSE ASSISTANT — Cormorant House, part-time. Shift: 5:00 a.m. to 9:00 a.m., Tuesday to Saturday. Watering, potting, and moving trays before the shop opens. Pay is $16.50 an hour. Boots and gloves provided; no experience needed. We do not accept emailed applications: collect a paper form from Room 16 and hand it back there in person. Ask for Freya Lindgren. Diego Marchetti, who runs the greenhouse, interviews on Fridays. Questions: ext. 5527.",
+  "kind_tag": "job ad",
+  "atypical_fact": "The employer refuses emailed applications outright — the only route is collecting a paper form and returning it in person — and the shift is an early-morning Tuesday-to-Saturday one rather than a standard weekday daytime schedule."
+ },
+ {
+  "id": "V4-2",
+  "kind": "literal detail",
+  "prompt": "[Daily Life — job ad] What hours and days does the advertised shift cover?",
+  "choices": [
+   "8:00 a.m. to 12:00 p.m., Wednesday to Sunday",
+   "5:00 a.m. to 9:00 a.m., Tuesday to Saturday",
+   "6:00 p.m. to 10:00 p.m., Monday to Friday",
+   "1:00 p.m. to 5:00 p.m., Monday to Friday"
+  ],
+  "correct_answer": "5:00 a.m. to 9:00 a.m., Tuesday to Saturday",
+  "explanation": "The ad lists the shift as \"5:00 a.m. to 9:00 a.m., Tuesday to Saturday\", work done before the shop opens. \"1:00 p.m. to 5:00 p.m., Monday to Friday\" and \"6:00 p.m. to 10:00 p.m., Monday to Friday\" put the work on a standard weekday pattern the ad does not use, and \"8:00 a.m. to 12:00 p.m., Wednesday to Sunday\" matches neither the hours nor the days given.",
+  "passage": "GREENHOUSE ASSISTANT — Cormorant House, part-time. Shift: 5:00 a.m. to 9:00 a.m., Tuesday to Saturday. Watering, potting, and moving trays before the shop opens. Pay is $16.50 an hour. Boots and gloves provided; no experience needed. We do not accept emailed applications: collect a paper form from Room 16 and hand it back there in person. Ask for Freya Lindgren. Diego Marchetti, who runs the greenhouse, interviews on Fridays. Questions: ext. 5527.",
+  "kind_tag": "job ad",
+  "atypical_fact": "The employer refuses emailed applications outright — the only route is collecting a paper form and returning it in person — and the shift is an early-morning Tuesday-to-Saturday one rather than a standard weekday daytime schedule."
+ },
+ {
+  "id": "V5-1",
+  "kind": "literal detail",
+  "prompt": "[Daily Life — course-registration page] How many students may enroll in the course?",
+  "choices": [
+   "twelve students",
+   "twenty students",
+   "nine students",
+   "six students"
+  ],
+  "correct_answer": "nine students",
+  "explanation": "The page states that enrollment is capped at nine students. \"twelve students,\" \"twenty students,\" and \"six students\" are all plausible caps for a small hands-on class, but none is the figure printed on the page.",
+  "passage": "Beginning Bread Baking (Winter Term)\nInstructor: Anouk Visser\nMeets Sundays, 7:00–9:00 a.m., Room 310, the Saffron Center.\nFee: $140. Flour and yeast are not included; bring your own each week.\nEnrollment is capped at nine students. Call 555-0261 to hold a place before December 1. Payment is due on the first morning of class, not at registration.",
+  "kind_tag": "course-registration page",
+  "atypical_fact": "The $140 fee does NOT include materials — students buy their own flour and yeast every week — whereas a community baking course would normally fold materials into the fee. (Secondary: the class meets early Sunday morning rather than a weekday evening or Saturday, and payment is collected on the first day rather than at registration.)"
+ },
+ {
+  "id": "V5-2",
+  "kind": "inference",
+  "prompt": "[Daily Life — course-registration page] What should someone who enrolls expect to spend on, based on the page?",
+  "choices": [
+   "$140, flour and yeast not included",
+   "$95, flour and yeast not included",
+   "$140, flour and yeast included",
+   "$60, flour and yeast included"
+  ],
+  "correct_answer": "$140, flour and yeast not included",
+  "explanation": "The fee is listed as $140, and the page says flour and yeast are not included and must be brought each week — so the enrolled student pays the fee and also buys materials. \"$140, flour and yeast included\" and \"$60, flour and yeast included\" describe a fee that covers supplies, which this one does not; \"$95, flour and yeast not included\" gets the arrangement right but not the amount.",
+  "passage": "Beginning Bread Baking (Winter Term)\nInstructor: Anouk Visser\nMeets Sundays, 7:00–9:00 a.m., Room 310, the Saffron Center.\nFee: $140. Flour and yeast are not included; bring your own each week.\nEnrollment is capped at nine students. Call 555-0261 to hold a place before December 1. Payment is due on the first morning of class, not at registration.",
+  "kind_tag": "course-registration page",
+  "atypical_fact": "The $140 fee does NOT include materials — students buy their own flour and yeast every week — whereas a community baking course would normally fold materials into the fee. (Secondary: the class meets early Sunday morning rather than a weekday evening or Saturday, and payment is collected on the first day rather than at registration.)"
+ },
+ {
+  "id": "V6-1",
+  "kind": "literal detail",
+  "prompt": "[Daily Life — email] Who issues the storage tags?",
+  "choices": [
+   "the building coordinator",
+   "the laundry attendant",
+   "the front desk clerk",
+   "the night porter"
+  ],
+  "correct_answer": "the laundry attendant",
+  "explanation": "The email says storage tags are issued by the laundry attendant, and explicitly adds that they are not given out at the front desk, which rules out \"the front desk clerk.\" \"the building coordinator\" is the sender but is named only for questions by phone, and \"the night porter\" is never mentioned.",
+  "passage": "From: Kenji Watanabe, building coordinator\nTo: Bramblewood Hall residents\nSubject: Bicycles, winter\n\nThe basement bike room is being repainted. Before November 3, move your bicycle to Room 55, the storage room on the top floor. Take the stairs — the elevator does not stop there. Storage tags are issued by the laundry attendant, not at the front desk. One tag per resident; a second bicycle costs $12 a term. Questions: ext. 8813.",
+  "kind_tag": "email",
+  "atypical_fact": "Winter bicycle storage moves UP to a top-floor room reachable only by stairs (not the basement bike room a reader would expect), and the storage tags are handed out by the laundry attendant rather than at the front desk."
+ },
+ {
+  "id": "V6-2",
+  "kind": "next-step",
+  "prompt": "[Daily Life — email] What should a resident do with a bicycle before November 3?",
+  "choices": [
+   "move it to the bike room in the basement",
+   "move it to a locked shed in the courtyard",
+   "move it to a storage room on the top floor",
+   "move it to the racks by the front door"
+  ],
+  "correct_answer": "move it to a storage room on the top floor",
+  "explanation": "The email instructs residents to move the bicycle to Room 55, the storage room on the top floor, before November 3. \"move it to the bike room in the basement\" is the space being repainted and therefore the one place bicycles cannot stay; \"move it to a locked shed in the courtyard\" and \"move it to the racks by the front door\" name locations the email never offers.",
+  "passage": "From: Kenji Watanabe, building coordinator\nTo: Bramblewood Hall residents\nSubject: Bicycles, winter\n\nThe basement bike room is being repainted. Before November 3, move your bicycle to Room 55, the storage room on the top floor. Take the stairs — the elevator does not stop there. Storage tags are issued by the laundry attendant, not at the front desk. One tag per resident; a second bicycle costs $12 a term. Questions: ext. 8813.",
+  "kind_tag": "email",
+  "atypical_fact": "Winter bicycle storage moves UP to a top-floor room reachable only by stairs (not the basement bike room a reader would expect), and the storage tags are handed out by the laundry attendant rather than at the front desk."
+ },
+ {
+  "id": "V7-1",
+  "kind": "literal detail",
+  "prompt": "[Daily Life — campus notice] How long are unclaimed items kept before they are donated?",
+  "choices": [
+   "Fourteen days",
+   "Thirty days",
+   "Ten days",
+   "Ninety days"
+  ],
+  "correct_answer": "Ten days",
+  "explanation": "The notice states that unclaimed items are donated after ten days, not at the end of term, so \"Ten days\" is correct. \"Thirty days\" is the ordinary holding period a reader would assume, and \"Fourteen days\" and \"Ninety days\" are likewise never mentioned.",
+  "passage": "NOTICE: Lost and Found has moved from the library basement to Room 207 in the Wren Building. Bring a description of what you lost; we stopped issuing claim tickets in March. Unclaimed items are donated after ten days, not at the end of term, so come early. Umbrellas are the one exception: those are recycled the week they arrive. Questions to Leila Nassar, 555-0274.",
+  "kind_tag": "campus notice",
+  "atypical_fact": "Unclaimed items are donated after only ten days rather than being held until the end of the term (the usual campus default of a long holding period, e.g. thirty days)."
+ },
+ {
+  "id": "V7-2",
+  "kind": "next-step",
+  "prompt": "[Daily Life — campus notice] What should someone bring in order to reclaim a lost item?",
+  "choices": [
+   "A claim ticket from the front desk",
+   "A description of the item",
+   "A dated receipt",
+   "A student ID card"
+  ],
+  "correct_answer": "A description of the item",
+  "explanation": "The notice asks people to bring a description of what they lost, which matches \"A description of the item.\" It adds that claim tickets stopped being issued in March, ruling out \"A claim ticket from the front desk\"; \"A dated receipt\" and \"A student ID card\" are not requested anywhere.",
+  "passage": "NOTICE: Lost and Found has moved from the library basement to Room 207 in the Wren Building. Bring a description of what you lost; we stopped issuing claim tickets in March. Unclaimed items are donated after ten days, not at the end of term, so come early. Umbrellas are the one exception: those are recycled the week they arrive. Questions to Leila Nassar, 555-0274.",
+  "kind_tag": "campus notice",
+  "atypical_fact": "Unclaimed items are donated after only ten days rather than being held until the end of the term (the usual campus default of a long holding period, e.g. thirty days)."
+ },
+ {
+  "id": "V8-1",
+  "kind": "literal detail",
+  "prompt": "[Daily Life — club flyer] When does the club meet?",
+  "choices": [
+   "Saturday mornings at 9:00",
+   "Thursday evenings at 7:00",
+   "Friday nights at 6:00",
+   "Sunday mornings at 7:00"
+  ],
+  "correct_answer": "Sunday mornings at 7:00",
+  "explanation": "The flyer says the group meets Sunday mornings at 7:00 and never in the evening, so \"Sunday mornings at 7:00\" is correct. \"Thursday evenings at 7:00\" is the ordinary club slot a reader would expect but is ruled out by \"never evenings,\" as is \"Friday nights at 6:00\"; \"Saturday mornings at 9:00\" names the wrong day and hour.",
+  "passage": "BREAD CLUB — Hollyhock House, Room 12. We meet Sunday mornings at 7:00, never evenings: the dough needs four hours to rise and we like to eat it warm. Bring flour; the club supplies yeast, salt, and the ovens. Beginners are welcome, but sign up by Friday, since we set the schedule to fit the group size. Sanna Virtanen, ext. 2296.",
+  "kind_tag": "club flyer",
+  "atypical_fact": "The club meets early on Sunday mornings at 7:00 and explicitly never in the evening, instead of the usual weekday-evening club slot."
+ },
+ {
+  "id": "V8-2",
+  "kind": "purpose",
+  "prompt": "[Daily Life — club flyer] Why does the flyer ask people to sign up by Friday?",
+  "choices": [
+   "So the schedule fits the group size",
+   "So enough flour can be ordered for everyone",
+   "So the ovens can be booked with the office",
+   "So the room can be unlocked before dawn"
+  ],
+  "correct_answer": "So the schedule fits the group size",
+  "explanation": "The flyer gives one reason for the Friday deadline — the schedule is set to fit the group size — which matches \"So the schedule fits the group size.\" Flour is brought by each member rather than ordered, ruling out \"So enough flour can be ordered for everyone,\" and neither \"So the ovens can be booked with the office\" nor \"So the room can be unlocked before dawn\" appears in the flyer.",
+  "passage": "BREAD CLUB — Hollyhock House, Room 12. We meet Sunday mornings at 7:00, never evenings: the dough needs four hours to rise and we like to eat it warm. Bring flour; the club supplies yeast, salt, and the ovens. Beginners are welcome, but sign up by Friday, since we set the schedule to fit the group size. Sanna Virtanen, ext. 2296.",
+  "kind_tag": "club flyer",
+  "atypical_fact": "The club meets early on Sunday mornings at 7:00 and explicitly never in the evening, instead of the usual weekday-evening club slot."
+ },
+ {
+  "id": "V9-1",
+  "kind": "next-step",
+  "prompt": "[Daily Life — job ad] What must someone do to be considered for the position?",
+  "choices": [
+   "Telephone Rafael Ortega at 555-0288 to arrange a trial shift",
+   "Submit a written application to Rafael Ortega by post",
+   "Email a résumé and references to Rafael Ortega",
+   "Fill in a form at the front desk of Room 133"
+  ],
+  "correct_answer": "Telephone Rafael Ortega at 555-0288 to arrange a trial shift",
+  "explanation": "The ad says applicants must call the named number to arrange a trial shift, which is exactly \"Telephone Rafael Ortega at 555-0288 to arrange a trial shift\". It then rules out the paper and electronic routes by stating that written applications are not accepted, so \"Submit a written application to Rafael Ortega by post\" and \"Email a résumé and references to Rafael Ortega\" are both excluded. \"Fill in a form at the front desk of Room 133\" borrows the room number, but Room 133 is named only as the place where trial shifts happen, not as a place to apply.",
+  "passage": "Weekend Kitchen Assistant — the Damson Center\n\nWe prepare and serve lunch to about ninety people every Sunday. Shifts run from 8:30 a.m. to 1:00 p.m. No cooking experience is required; we train on site. Uniforms are provided, but bring your own non-slip shoes. Applicants must call Rafael Ortega at 555-0288 to arrange a trial shift — we do not accept written applications. Trial shifts take place in Room 133.",
+  "kind_tag": "job ad",
+  "atypical_fact": "Applications are accepted only by telephone; the ad explicitly refuses written applications, where the institutional default would be emailing a résumé or submitting a form."
+ },
+ {
+  "id": "V9-2",
+  "kind": "literal detail",
+  "prompt": "[Daily Life — job ad] When is the lunch served?",
+  "choices": [
+   "Every Saturday",
+   "Every Thursday",
+   "Every weekday",
+   "Every Sunday"
+  ],
+  "correct_answer": "Every Sunday",
+  "explanation": "The ad states that lunch is prepared and served to about ninety people every Sunday, matching \"Every Sunday\". No other day is mentioned anywhere in the ad, so \"Every Saturday\", \"Every Thursday\" and \"Every weekday\" have no support; the only other times given, 8:30 a.m. to 1:00 p.m., are the shift hours rather than additional days.",
+  "passage": "Weekend Kitchen Assistant — the Damson Center\n\nWe prepare and serve lunch to about ninety people every Sunday. Shifts run from 8:30 a.m. to 1:00 p.m. No cooking experience is required; we train on site. Uniforms are provided, but bring your own non-slip shoes. Applicants must call Rafael Ortega at 555-0288 to arrange a trial shift — we do not accept written applications. Trial shifts take place in Room 133.",
+  "kind_tag": "job ad",
+  "atypical_fact": "Applications are accepted only by telephone; the ad explicitly refuses written applications, where the institutional default would be emailing a résumé or submitting a form."
+ },
+ {
+  "id": "V10-1",
+  "kind": "literal detail",
+  "prompt": "[Daily Life — email] What will the singers be accompanied by on Thursday?",
+  "choices": [
+   "Ingrid Halvorsen's electric keyboard",
+   "Tariq Aziz's electric piano",
+   "Ingrid Halvorsen's guitar",
+   "Tariq Aziz's accordion"
+  ],
+  "correct_answer": "Tariq Aziz's accordion",
+  "explanation": "The email says the replacement room has no piano and that the named colleague will accompany the group on his accordion, which is \"Tariq Aziz's accordion\". \"Tariq Aziz's electric piano\" and \"Ingrid Halvorsen's electric keyboard\" contradict the statement that the room has no piano and name an instrument the email never mentions, and \"Ingrid Halvorsen's guitar\" attributes the playing to the sender, who is described only as writing the message.",
+  "passage": "From: Ingrid Halvorsen\nSubject: Thursday rehearsal\n\nHi all — the piano in Larkfield Hall is being tuned on Thursday, so we'll rehearse in Room 29 instead. It has no piano, so Tariq Aziz will accompany us on his accordion. Please arrive by 6:40; we start at 7:00 sharp and finish early, at 8:15. If you need a key for the side door, call ext. 6684 before Wednesday noon.",
+  "kind_tag": "email",
+  "atypical_fact": "With the piano unavailable, the accompaniment is an accordion played by Tariq Aziz, rather than the expected substitute of a borrowed electric keyboard or electric piano."
+ },
+ {
+  "id": "V10-2",
+  "kind": "next-step",
+  "prompt": "[Daily Life — email] What should a singer who needs a key for the side door do?",
+  "choices": [
+   "Ask Ingrid Halvorsen at the start of rehearsal on Thursday",
+   "Collect it from the office in Larkfield Hall on Wednesday",
+   "Call ext. 6684 before noon on Wednesday",
+   "Email Tariq Aziz on Wednesday"
+  ],
+  "correct_answer": "Call ext. 6684 before noon on Wednesday",
+  "explanation": "The closing line gives one route for a side-door key — ringing the extension before Wednesday midday — matching \"Call ext. 6684 before noon on Wednesday\". \"Ask Ingrid Halvorsen at the start of rehearsal on Thursday\" comes too late to satisfy the stated Wednesday deadline, \"Collect it from the office in Larkfield Hall on Wednesday\" invents a collection point in the building the group is leaving, and \"Email Tariq Aziz on Wednesday\" names the accompanist, who is not given as the contact for keys.",
+  "passage": "From: Ingrid Halvorsen\nSubject: Thursday rehearsal\n\nHi all — the piano in Larkfield Hall is being tuned on Thursday, so we'll rehearse in Room 29 instead. It has no piano, so Tariq Aziz will accompany us on his accordion. Please arrive by 6:40; we start at 7:00 sharp and finish early, at 8:15. If you need a key for the side door, call ext. 6684 before Wednesday noon.",
+  "kind_tag": "email",
+  "atypical_fact": "With the piano unavailable, the accompaniment is an accordion played by Tariq Aziz, rather than the expected substitute of a borrowed electric keyboard or electric piano."
+ },
+ {
+  "id": "V11-1",
+  "kind": "literal detail",
+  "prompt": "[Daily Life — email] According to the email, where are finished pieces being held this month?",
+  "choices": [
+   "At the studio front desk, in the pickup bins",
+   "In Room 322 of the Teasel Building",
+   "On the shelves outside the studio",
+   "In the kiln room at the studio"
+  ],
+  "correct_answer": "In Room 322 of the Teasel Building",
+  "explanation": "The email states that while the front desk is being repainted, finished pieces are held \"in Room 322 of the Teasel Building this month, not at the studio.\" That rules out \"At the studio front desk, in the pickup bins,\" which is where pieces would normally sit, and also \"On the shelves outside the studio\" and \"In the kiln room at the studio.\"",
+  "passage": "Hi — your two bowls came out of the kiln fine. One note: while the front desk is being repainted, finished pieces are held in Room 322 of the Teasel Building this month, not at the studio. Mina Okabe is there Tuesdays and Thursdays, 1-4 p.m. Bring your yellow claim slip. If you can't come this week, call 555-0202 and she'll set the bowls aside longer.",
+  "kind_tag": "email",
+  "atypical_fact": "Finished pottery is not held at the studio front desk (the institutional default); during the repainting it is held off-site in Room 322 of the Teasel Building, staffed only Tuesdays and Thursdays."
+ },
+ {
+  "id": "V11-2",
+  "kind": "next-step",
+  "prompt": "[Daily Life — email] What does the email say to do if you cannot come this week?",
+  "choices": [
+   "Leave a voicemail for the studio's evening manager",
+   "Bring the yellow claim slip on Friday afternoon",
+   "Call 555-0202 so the pieces are set aside",
+   "Ask the studio to reschedule the firing"
+  ],
+  "correct_answer": "Call 555-0202 so the pieces are set aside",
+  "explanation": "The closing line says to call 555-0202 and the bowls will be set aside longer, which matches \"Call 555-0202 so the pieces are set aside.\" Nothing in the email mentions a voicemail for an evening manager, a Friday afternoon visit, or rescheduling a firing, so \"Leave a voicemail for the studio's evening manager,\" \"Bring the yellow claim slip on Friday afternoon,\" and \"Ask the studio to reschedule the firing\" are all unsupported.",
+  "passage": "Hi — your two bowls came out of the kiln fine. One note: while the front desk is being repainted, finished pieces are held in Room 322 of the Teasel Building this month, not at the studio. Mina Okabe is there Tuesdays and Thursdays, 1-4 p.m. Bring your yellow claim slip. If you can't come this week, call 555-0202 and she'll set the bowls aside longer.",
+  "kind_tag": "email",
+  "atypical_fact": "Finished pottery is not held at the studio front desk (the institutional default); during the repainting it is held off-site in Room 322 of the Teasel Building, staffed only Tuesdays and Thursdays."
+ },
+ {
+  "id": "V12-1",
+  "kind": "literal detail",
+  "prompt": "[Daily Life — course-registration page] According to the listing, when does registration for CE-118 close?",
+  "choices": [
+   "Not until after the course's second meeting",
+   "On the day before the first session",
+   "At the end of the first week",
+   "When enrollment reaches 12"
+  ],
+  "correct_answer": "Not until after the course's second meeting",
+  "explanation": "The listing says registration closes after the second meeting and that late joiners are welcome, which matches \"Not until after the course's second meeting.\" The usual cutoff described in \"On the day before the first session\" is not what this page says, and neither \"At the end of the first week\" nor \"When enrollment reaches 12\" is given as the closing point, though 12 is the enrollment cap.",
+  "passage": "Intro to Beekeeping (CE-118). Meets Wednesdays, 6:30-8:30 p.m., Room 63, Foxfire House. Six weeks, beginning October 8. Tuition $95; a $40 equipment fee is collected at the first session, in cash only. Enrollment is capped at 12. Registration closes after the second meeting, so late joiners are welcome. Questions: Bruno Keller, ext. 4432.",
+  "kind_tag": "course-registration page",
+  "atypical_fact": "Registration does not close before the course begins; it stays open until after the second meeting, so students may join late even though the class is capped at 12."
+ },
+ {
+  "id": "V12-2",
+  "kind": "inference",
+  "prompt": "[Daily Life — course-registration page] What should a student be prepared to hand over at the first session?",
+  "choices": [
+   "$135 in cash, covering tuition and equipment",
+   "$95, payable by card or check",
+   "$40 in cash for equipment",
+   "$40 by card or check"
+  ],
+  "correct_answer": "$40 in cash for equipment",
+  "explanation": "The page says the $40 equipment fee is collected at the first session, in cash only, so the student brings \"$40 in cash for equipment.\" The $95 tuition is not described as due at that session, ruling out \"$135 in cash, covering tuition and equipment\" and \"$95, payable by card or check,\" and the cash-only condition rules out \"$40 by card or check.\"",
+  "passage": "Intro to Beekeeping (CE-118). Meets Wednesdays, 6:30-8:30 p.m., Room 63, Foxfire House. Six weeks, beginning October 8. Tuition $95; a $40 equipment fee is collected at the first session, in cash only. Enrollment is capped at 12. Registration closes after the second meeting, so late joiners are welcome. Questions: Bruno Keller, ext. 4432.",
+  "kind_tag": "course-registration page",
+  "atypical_fact": "Registration does not close before the course begins; it stays open until after the second meeting, so students may join late even though the class is capped at 12."
+ },
+ {
+  "id": "V13-1",
+  "kind": "literal detail",
+  "prompt": "[Daily Life — club flyer] According to the flyer, what does the Chess Circle supply to people who attend?",
+  "choices": [
+   "Chess sets and clocks, but not coffee",
+   "Score sheets, but not chess sets",
+   "Coffee, but not chess sets",
+   "Clocks, but not coffee"
+  ],
+  "correct_answer": "Coffee, but not chess sets",
+  "explanation": "The flyer states that coffee is provided while boards are not, and tells members to bring their own set — matching \"Coffee, but not chess sets\". \"Chess sets and clocks, but not coffee\" reverses what is supplied; \"Score sheets, but not chess sets\" names something the flyer never mentions; \"Clocks, but not coffee\" contradicts the provided coffee.",
+  "passage": "Campus Chess Circle — new season. We meet in Room 214 of the Gorse Center, Sundays from 8 to 10 a.m. Coffee is provided; boards are not, so bring your own set if you have one. Beginners play first, then open games. Aoife Brennan keeps the ladder standings and posts them Thursdays. To be added to the roster, text Samir Chaudhry at 555-0249 — email goes unread all term.",
+  "kind_tag": "club flyer",
+  "atypical_fact": "The club supplies coffee but NOT chess sets — members must bring their own boards — inverting the usual default that a chess club provides the equipment and members bring themselves. (It also meets Sunday mornings rather than a weeknight evening.)"
+ },
+ {
+  "id": "V13-2",
+  "kind": "next-step",
+  "prompt": "[Daily Life — club flyer] A student has decided to join and wants their name on the roster. According to the flyer, what should they do?",
+  "choices": [
+   "Email Aoife Brennan at the Gorse Center office",
+   "Text Samir Chaudhry at 555-0249",
+   "Ask Aoife Brennan in Room 214",
+   "Call Samir Chaudhry today"
+  ],
+  "correct_answer": "Text Samir Chaudhry at 555-0249",
+  "explanation": "The flyer says roster additions are made by texting the listed number, so \"Text Samir Chaudhry at 555-0249\" is the instruction given. \"Email Aoife Brennan at the Gorse Center office\" fails because the flyer says email goes unread all term; \"Ask Aoife Brennan in Room 214\" assigns her the roster, but she keeps only the ladder standings; \"Call Samir Chaudhry today\" changes the channel the flyer specifies.",
+  "passage": "Campus Chess Circle — new season. We meet in Room 214 of the Gorse Center, Sundays from 8 to 10 a.m. Coffee is provided; boards are not, so bring your own set if you have one. Beginners play first, then open games. Aoife Brennan keeps the ladder standings and posts them Thursdays. To be added to the roster, text Samir Chaudhry at 555-0249 — email goes unread all term.",
+  "kind_tag": "club flyer",
+  "atypical_fact": "The club supplies coffee but NOT chess sets — members must bring their own boards — inverting the usual default that a chess club provides the equipment and members bring themselves. (It also meets Sunday mornings rather than a weeknight evening.)"
+ },
+ {
+  "id": "V14-1",
+  "kind": "literal detail",
+  "prompt": "[Daily Life — campus notice] According to the notice, how will residents pay for the new laundry machines?",
+  "choices": [
+   "By tapping a student ID at the new card reader",
+   "With coins, since the card readers are gone",
+   "Through the housing app on a phone",
+   "By adding money to a meal plan"
+  ],
+  "correct_answer": "With coins, since the card readers are gone",
+  "explanation": "The notice says the machines take coins only and that the card readers are being removed, not replaced — exactly \"With coins, since the card readers are gone\". \"By tapping a student ID at the new card reader\" describes equipment the notice says is being taken out; \"Through the housing app on a phone\" and \"By adding money to a meal plan\" name payment routes the notice never offers.",
+  "passage": "Notice to residents of Elderberry Hall: the laundry room is moving. From Monday it will be in Room 37, on the basement's north side. The new machines take coins only — the card readers are being removed, not replaced. Cycles started after 11 p.m. are free. Report a broken machine to Katya Morozova at ext. 9958; the front desk no longer logs repairs.",
+  "kind_tag": "campus notice",
+  "atypical_fact": "The replacement laundry machines take coins ONLY — the card readers are being removed rather than upgraded, moving the hall backward from card payment to cash — and cycles started after 11 p.m. cost nothing at all."
+ },
+ {
+  "id": "V14-2",
+  "kind": "inference",
+  "prompt": "[Daily Life — campus notice] Based on the notice, at what time could a resident run a wash without paying anything?",
+  "choices": [
+   "During the first week of each month",
+   "Before 8 a.m. on weekday mornings",
+   "At any hour on Sundays",
+   "After 11 p.m."
+  ],
+  "correct_answer": "After 11 p.m.",
+  "explanation": "The notice says cycles started after 11 p.m. are free, so a resident pays nothing only in that window — \"After 11 p.m.\" \"During the first week of each month\", \"Before 8 a.m. on weekday mornings\", and \"At any hour on Sundays\" all name periods the notice attaches no free-cycle allowance to.",
+  "passage": "Notice to residents of Elderberry Hall: the laundry room is moving. From Monday it will be in Room 37, on the basement's north side. The new machines take coins only — the card readers are being removed, not replaced. Cycles started after 11 p.m. are free. Report a broken machine to Katya Morozova at ext. 9958; the front desk no longer logs repairs.",
+  "kind_tag": "campus notice",
+  "atypical_fact": "The replacement laundry machines take coins ONLY — the card readers are being removed rather than upgraded, moving the hall backward from card payment to cash — and cycles started after 11 p.m. cost nothing at all."
+ },
+ {
+  "id": "V15-1",
+  "kind": "literal detail",
+  "prompt": "[Daily Life — campus notice] How long does Lost and Found keep an item before giving it away?",
+  "choices": [
+   "Thirty calendar days",
+   "Eleven days",
+   "One full academic term",
+   "Two full weeks"
+  ],
+  "correct_answer": "Eleven days",
+  "explanation": "The notice states that items are held for eleven days and then donated, which matches \"Eleven days\". \"Thirty calendar days\", \"One full academic term\" and \"Two full weeks\" are all ordinary holding periods for a lost-and-found, but none of them is the period the notice gives.",
+  "passage": "NOTICE: Lost and Found has moved. Anything turned in on campus now goes to Room 141 in the Quince Building, not the library desk. We hold items for eleven days, then donate them. Umbrellas never make it to the shelf — they go straight onto the open rack by the door, so take yours back without asking anyone. Questions: Nils Andersen, 555-0225. Bring a photo of the item if you have one.",
+  "kind_tag": "campus notice",
+  "atypical_fact": "Umbrellas are never held or claimed at the counter at all — they go straight onto an open rack by the door and anyone may take their own back without checking in. The institutional default (claiming a found item at the desk, or at the old library lost-and-found) is planted among the distractors. Secondarily, the holding period is eleven days rather than the usual thirty days or end of term."
+ },
+ {
+  "id": "V15-2",
+  "kind": "next-step",
+  "prompt": "[Daily Life — campus notice] A student left an umbrella in a lecture hall yesterday. According to the notice, what should the student do?",
+  "choices": [
+   "Call Nils Andersen at 555-0225 and arrange a time to collect it",
+   "Ask at the library desk, which still keeps found umbrellas",
+   "Take it straight from the open rack by the door without asking anyone",
+   "Show a photo of it at the desk in Room 141 to claim it"
+  ],
+  "correct_answer": "Take it straight from the open rack by the door without asking anyone",
+  "explanation": "The notice says umbrellas never reach the shelf and go onto the open rack by the door, to be taken back without asking, which is \"Take it straight from the open rack by the door without asking anyone\". \"Show a photo of it at the desk in Room 141 to claim it\" and \"Ask at the library desk, which still keeps found umbrellas\" describe the usual claiming routine that the notice explicitly excludes for umbrellas, and \"Call Nils Andersen at 555-0225 and arrange a time to collect it\" uses the number given only for questions.",
+  "passage": "NOTICE: Lost and Found has moved. Anything turned in on campus now goes to Room 141 in the Quince Building, not the library desk. We hold items for eleven days, then donate them. Umbrellas never make it to the shelf — they go straight onto the open rack by the door, so take yours back without asking anyone. Questions: Nils Andersen, 555-0225. Bring a photo of the item if you have one.",
+  "kind_tag": "campus notice",
+  "atypical_fact": "Umbrellas are never held or claimed at the counter at all — they go straight onto an open rack by the door and anyone may take their own back without checking in. The institutional default (claiming a found item at the desk, or at the old library lost-and-found) is planted among the distractors. Secondarily, the holding period is eleven days rather than the usual thirty days or end of term."
+ },
+ {
+  "id": "V16-1",
+  "kind": "purpose",
+  "prompt": "[Daily Life — job ad] Why does the ad give the extension number ext. 1174?",
+  "choices": [
+   "So that people who cannot manage the stairs can still apply",
+   "So that applicants can arrange a time to come and look around",
+   "So that staff can report a shift they will miss",
+   "So that applicants can ask questions about the pay and hours"
+  ],
+  "correct_answer": "So that people who cannot manage the stairs can still apply",
+  "explanation": "The ad says the box is up two flights of stairs and that anyone who cannot manage them should call the extension so someone will come down, which is \"So that people who cannot manage the stairs can still apply\". The ad never mentions visits, missed shifts, or a line for pay questions, so \"So that applicants can arrange a time to come and look around\", \"So that staff can report a shift they will miss\" and \"So that applicants can ask questions about the pay and hours\" are not supported.",
+  "passage": "WANTED: kitchen assistant, Marigold House. Saturdays and Sundays, 5:00 a.m. to 10:00 a.m., mixing dough and washing pans. Pay is $16 an hour. We do not accept emailed applications; write your name and phone number on a card and drop it in the wooden box outside Room 58. Emeka Obi empties the box on Mondays. The box is up two flights of stairs; if you cannot manage them, call Paloma Duarte at ext. 1174 and she will come down to you.",
+  "kind_tag": "job ad",
+  "atypical_fact": "Applications are not accepted by email at all: the only way in is a handwritten card with a name and phone number dropped into a wooden box outside Room 58, collected on Mondays. The institutional default (emailing a résumé and cover letter) is planted among the distractors. Relatedly, the phone extension exists only for applicants who cannot climb the stairs to the box, not for interviews or pay questions."
+ },
+ {
+  "id": "V16-2",
+  "kind": "literal detail",
+  "prompt": "[Daily Life — job ad] According to the ad, how does someone put their name forward for this job?",
+  "choices": [
+   "By emailing a résumé and cover letter to Marigold House",
+   "By handing a résumé to Paloma Duarte in the kitchen",
+   "By leaving a résumé with Emeka Obi during a Monday shift",
+   "By writing a name and phone number on a card and dropping it in the box outside Room 58"
+  ],
+  "correct_answer": "By writing a name and phone number on a card and dropping it in the box outside Room 58",
+  "explanation": "The ad asks for a name and phone number written on a card and put in the wooden box outside Room 58, which is \"By writing a name and phone number on a card and dropping it in the box outside Room 58\". \"By emailing a résumé and cover letter to Marigold House\" is ruled out by the statement that emailed applications are not accepted, and neither \"By handing a résumé to Paloma Duarte in the kitchen\" nor \"By leaving a résumé with Emeka Obi during a Monday shift\" is offered as a route — the box is simply emptied on Mondays.",
+  "passage": "WANTED: kitchen assistant, Marigold House. Saturdays and Sundays, 5:00 a.m. to 10:00 a.m., mixing dough and washing pans. Pay is $16 an hour. We do not accept emailed applications; write your name and phone number on a card and drop it in the wooden box outside Room 58. Emeka Obi empties the box on Mondays. The box is up two flights of stairs; if you cannot manage them, call Paloma Duarte at ext. 1174 and she will come down to you.",
+  "kind_tag": "job ad",
+  "atypical_fact": "Applications are not accepted by email at all: the only way in is a handwritten card with a name and phone number dropped into a wooden box outside Room 58, collected on Mondays. The institutional default (emailing a résumé and cover letter) is planted among the distractors. Relatedly, the phone extension exists only for applicants who cannot climb the stairs to the box, not for interviews or pay questions."
+ },
+ {
+  "id": "V17-1",
+  "kind": "literal detail",
+  "prompt": "[Daily Life — job ad] When do the shifts for this position run?",
+  "choices": [
+   "Tuesday and Thursday, 6:00 to 9:00 in the morning",
+   "Friday and Sunday, 2:00 to 5:00 in the afternoon",
+   "Monday and Friday, 6:00 to 9:00 in the evening",
+   "Tuesday and Thursday, 4:00 to 7:00 at night"
+  ],
+  "correct_answer": "Tuesday and Thursday, 6:00 to 9:00 in the morning",
+  "explanation": "The ad states the shifts run Tuesday and Thursday from 6:00 to 9:00 a.m., before the building opens, which matches \"Tuesday and Thursday, 6:00 to 9:00 in the morning.\" The same two days appear with a late time in \"Tuesday and Thursday, 4:00 to 7:00 at night,\" and the same clock hours appear on different days in \"Monday and Friday, 6:00 to 9:00 in the evening,\" but the ad pairs those days with the morning hours; nothing supports \"Friday and Sunday, 2:00 to 5:00 in the afternoon.\"",
+  "passage": "Grounds Assistant — the Alder Center\n\nWe need one person to water and repot the plants in our lobby and greenhouse. Shifts run Tuesday and Thursday, 6:00 to 9:00 a.m., before the building opens. Pay is $16 an hour. Gardening experience is not required, but you must be able to lift 20 kilograms. Do not email — bring a paper application to Room 231 and ask for Hana Suzuki.",
+  "kind_tag": "job ad",
+  "atypical_fact": "The shifts are early morning (6:00–9:00 a.m., before the building opens) rather than the afternoon or evening a campus job usually offers, and applications are taken only on paper in person — email is explicitly refused, where an online or emailed application is the institutional default."
+ },
+ {
+  "id": "V17-2",
+  "kind": "next-step",
+  "prompt": "[Daily Life — job ad] What should an interested person do to apply?",
+  "choices": [
+   "Send a completed application by email to Hana Suzuki before Friday.",
+   "Bring a paper application to Room 231 and ask for Hana Suzuki.",
+   "Call 555-0296 and ask Hana Suzuki for an interview time.",
+   "Fill out the form on the Alder Center website tonight."
+  ],
+  "correct_answer": "Bring a paper application to Room 231 and ask for Hana Suzuki.",
+  "explanation": "The ad says not to email and instructs applicants to bring a paper application to Room 231 and ask for Hana Suzuki, so \"Bring a paper application to Room 231 and ask for Hana Suzuki.\" is the only option the text supports. \"Send a completed application by email to Hana Suzuki before Friday.\" is directly refused by \"Do not email\"; no phone contact is offered, ruling out \"Call 555-0296 and ask Hana Suzuki for an interview time.\"; and no website is mentioned, ruling out \"Fill out the form on the Alder Center website tonight.\"",
+  "passage": "Grounds Assistant — the Alder Center\n\nWe need one person to water and repot the plants in our lobby and greenhouse. Shifts run Tuesday and Thursday, 6:00 to 9:00 a.m., before the building opens. Pay is $16 an hour. Gardening experience is not required, but you must be able to lift 20 kilograms. Do not email — bring a paper application to Room 231 and ask for Hana Suzuki.",
+  "kind_tag": "job ad",
+  "atypical_fact": "The shifts are early morning (6:00–9:00 a.m., before the building opens) rather than the afternoon or evening a campus job usually offers, and applications are taken only on paper in person — email is explicitly refused, where an online or emailed application is the institutional default."
+ },
+ {
+  "id": "V18-1",
+  "kind": "literal detail",
+  "prompt": "[Daily Life — club flyer] What does the flyer ask people to bring to a meeting?",
+  "choices": [
+   "A finished project to show the others",
+   "A sewing machine and your own thread",
+   "Five dollars in cash for materials",
+   "One torn or buttonless garment"
+  ],
+  "correct_answer": "One torn or buttonless garment",
+  "explanation": "The flyer opens by asking people to bring one torn or buttonless garment, which matches \"One torn or buttonless garment.\" Thread is supplied and machines are not used at all, so \"A sewing machine and your own thread\" is wrong; the flyer says there are no dues, ruling out \"Five dollars in cash for materials\"; and nothing asks anyone to display completed work, ruling out \"A finished project to show the others.\"",
+  "passage": "The Mending Circle — free repair help\n\nBring one torn or buttonless garment and we will teach you to fix it yourself. We meet in Room 19 of Pimpernel Hall, in the basement kitchen, on the first and third Monday of each month. Thread, needles, and patches are supplied; sewing machines are not, since everything here is done by hand. There are no dues. To get on the mailing list, call Viktor Horvath at extension 3358.",
+  "kind_tag": "club flyer",
+  "atypical_fact": "The club supplies thread, needles, and patches and charges no dues, and it owns no sewing machines at all — every repair is done by hand — where a sewing club would normally expect members to bring their own thread or machine and pay a small fee."
+ },
+ {
+  "id": "V18-2",
+  "kind": "next-step",
+  "prompt": "[Daily Life — club flyer] What should someone do to get on the club's mailing list?",
+  "choices": [
+   "Leave a note for Viktor Horvath in Room 19 tonight.",
+   "Call Viktor Horvath at extension 3358.",
+   "Ask Viktor Horvath after a meeting.",
+   "Text Viktor Horvath a photo."
+  ],
+  "correct_answer": "Call Viktor Horvath at extension 3358.",
+  "explanation": "The last line of the flyer says to get on the mailing list by calling Viktor Horvath at extension 3358, so \"Call Viktor Horvath at extension 3358.\" is correct. The flyer gives no written sign-up, so \"Leave a note for Viktor Horvath in Room 19 tonight.\" is unsupported; it does not direct people to speak to him in person, ruling out \"Ask Viktor Horvath after a meeting.\"; and it mentions no photos or texting, ruling out \"Text Viktor Horvath a photo.\"",
+  "passage": "The Mending Circle — free repair help\n\nBring one torn or buttonless garment and we will teach you to fix it yourself. We meet in Room 19 of Pimpernel Hall, in the basement kitchen, on the first and third Monday of each month. Thread, needles, and patches are supplied; sewing machines are not, since everything here is done by hand. There are no dues. To get on the mailing list, call Viktor Horvath at extension 3358.",
+  "kind_tag": "club flyer",
+  "atypical_fact": "The club supplies thread, needles, and patches and charges no dues, and it owns no sewing machines at all — every repair is done by hand — where a sewing club would normally expect members to bring their own thread or machine and pay a small fee."
+ },
+ {
+  "id": "V19-1",
+  "kind": "literal detail",
+  "prompt": "[Daily Life — email] According to the email, someone whose door code fails and who calls 555-0212 should do which of the following?",
+  "choices": [
+   "Ask for the security office",
+   "Ask for the loading dock",
+   "Ask for the front desk",
+   "Ask for the mailroom"
+  ],
+  "correct_answer": "Ask for the loading dock",
+  "explanation": "The email says to call and \"ask for the loading dock, not the front desk,\" which makes \"Ask for the loading dock\" correct and rules out \"Ask for the front desk.\" Neither \"Ask for the security office\" nor \"Ask for the mailroom\" is mentioned anywhere in the message.",
+  "passage": "Hi all — the ceramics studio reopens Thursday, but not in its old home; we've moved to Room 316 in the Cowslip Building until the kiln shed is rebuilt. Firing fees stay at four dollars a kilo. Musa Diallo now handles glaze orders, so send those to him, not to me. If the door code fails, call 555-0212 and ask for the loading dock, not the front desk. — Iris Vandenberg",
+  "kind_tag": "email",
+  "atypical_fact": "Callers who reach the studio's number are told to ask for the loading dock rather than the front desk — the front desk, the obvious institutional default, is explicitly ruled out."
+ },
+ {
+  "id": "V19-2",
+  "kind": "next-step",
+  "prompt": "[Daily Life — email] A member arrives on Thursday to work on a pot. Where should the member go?",
+  "choices": [
+   "Room 316 in the Cowslip Building",
+   "The kiln shed behind the studio",
+   "The mailroom in the old annex",
+   "The craft room upstairs"
+  ],
+  "correct_answer": "Room 316 in the Cowslip Building",
+  "explanation": "The writer states the studio has \"moved to Room 316 in the Cowslip Building until the kiln shed is rebuilt,\" so \"Room 316 in the Cowslip Building\" is where work happens now and \"The kiln shed behind the studio\" is out of use. \"The mailroom in the old annex\" and \"The craft room upstairs\" never appear in the email.",
+  "passage": "Hi all — the ceramics studio reopens Thursday, but not in its old home; we've moved to Room 316 in the Cowslip Building until the kiln shed is rebuilt. Firing fees stay at four dollars a kilo. Musa Diallo now handles glaze orders, so send those to him, not to me. If the door code fails, call 555-0212 and ask for the loading dock, not the front desk. — Iris Vandenberg",
+  "kind_tag": "email",
+  "atypical_fact": "Callers who reach the studio's number are told to ask for the loading dock rather than the front desk — the front desk, the obvious institutional default, is explicitly ruled out."
+ },
+ {
+  "id": "V20-1",
+  "kind": "literal detail",
+  "prompt": "[Daily Life — club flyer] When does the club meet?",
+  "choices": [
+   "Sunday mornings at six-thirty",
+   "Tuesday evenings at seven",
+   "Friday evenings at eight",
+   "Saturday nights at nine"
+  ],
+  "correct_answer": "Sunday mornings at six-thirty",
+  "explanation": "The flyer says the club meets \"Sunday mornings, not at night\" at \"6:30 a.m. sharp,\" matching \"Sunday mornings at six-thirty.\" The night-time options — \"Saturday nights at nine\" and \"Friday evenings at eight\" — are ruled out by the flyer's own contrast, and \"Tuesday evenings at seven\" names a day the flyer never mentions.",
+  "passage": "SORREL HOUSE ASTRONOMY CLUB. We meet Sunday mornings, not at night — the sun is our object of study. 6:30 a.m. sharp, Room 44, Sorrel House. Bring nothing; the club lends every filter you need. Term dues are eleven dollars, payable at the third meeting rather than the first. Questions? Ask for Magda Novak at ext. 7741. New members welcome all term.",
+  "kind_tag": "club flyer",
+  "atypical_fact": "The astronomy club meets on Sunday mornings at 6:30 a.m. to observe the sun, instead of the expected evening or night-time stargazing session."
+ },
+ {
+  "id": "V20-2",
+  "kind": "next-step",
+  "prompt": "[Daily Life — club flyer] A new member wants to bring cash to the meeting where dues are collected. How much should the member bring?",
+  "choices": [
+   "Twenty-five dollars",
+   "Eighteen dollars",
+   "Fifteen dollars",
+   "Eleven dollars"
+  ],
+  "correct_answer": "Eleven dollars",
+  "explanation": "The flyer states that \"term dues are eleven dollars,\" so \"Eleven dollars\" is the amount to bring. \"Fifteen dollars,\" \"Eighteen dollars,\" and \"Twenty-five dollars\" are all figures the flyer never gives.",
+  "passage": "SORREL HOUSE ASTRONOMY CLUB. We meet Sunday mornings, not at night — the sun is our object of study. 6:30 a.m. sharp, Room 44, Sorrel House. Bring nothing; the club lends every filter you need. Term dues are eleven dollars, payable at the third meeting rather than the first. Questions? Ask for Magda Novak at ext. 7741. New members welcome all term.",
+  "kind_tag": "club flyer",
+  "atypical_fact": "The astronomy club meets on Sunday mornings at 6:30 a.m. to observe the sun, instead of the expected evening or night-time stargazing session."
+ },
+ {
+  "id": "V21-1",
+  "kind": "literal detail",
+  "prompt": "[Daily Life — course-registration page] Where is the $40 field deposit paid?",
+  "choices": [
+   "At the department office in Room 226 during posted hours",
+   "At the cashier window in the Bittern Center",
+   "Through the online registration portal at sign-up",
+   "At the equipment desk before the first lab"
+  ],
+  "correct_answer": "At the cashier window in the Bittern Center",
+  "explanation": "The page states the deposit is paid at the cashier window in the Bittern Center and adds \"not through the online portal,\" which rules out \"Through the online registration portal at sign-up.\" Room 226 is named only for credit-transfer questions, so \"At the department office in Room 226 during posted hours\" is wrong, and no payment point at a lab is mentioned, ruling out \"At the equipment desk before the first lab.\"",
+  "passage": "GEOG 214: Wetland Mapping — 3 credits. Enrollment is capped at 18. Unlike other GEOG courses, seats are not held for third-year students; the roster is filled in the order deposits arrive. The $40 field deposit is paid at the cashier window in the Bittern Center, not through the online portal. Lab sessions meet Saturdays from 7:00 a.m. Questions about equipment go to Tomas Vrba at 555-0257; questions about credit transfer go to the department office in Room 226.",
+  "kind_tag": "course-registration page",
+  "atypical_fact": "The $40 field deposit must be paid in person at a cashier window in the Bittern Center rather than through the online registration portal, which is the institutional default for course fees."
+ },
+ {
+  "id": "V21-2",
+  "kind": "next-step",
+  "prompt": "[Daily Life — course-registration page] A student who has paid the deposit and wants to attend a lab session should plan to be on campus when?",
+  "choices": [
+   "Mondays and Fridays at 4 p.m.",
+   "Thursdays at 10:30 a.m.",
+   "Wednesdays at 6 p.m.",
+   "Saturdays at 7 a.m."
+  ],
+  "correct_answer": "Saturdays at 7 a.m.",
+  "explanation": "The page says lab sessions meet Saturdays from 7:00 a.m., which matches \"Saturdays at 7 a.m.\" No weekday meeting is listed, so \"Mondays and Fridays at 4 p.m.,\" \"Thursdays at 10:30 a.m.,\" and \"Wednesdays at 6 p.m.\" have no support in the text.",
+  "passage": "GEOG 214: Wetland Mapping — 3 credits. Enrollment is capped at 18. Unlike other GEOG courses, seats are not held for third-year students; the roster is filled in the order deposits arrive. The $40 field deposit is paid at the cashier window in the Bittern Center, not through the online portal. Lab sessions meet Saturdays from 7:00 a.m. Questions about equipment go to Tomas Vrba at 555-0257; questions about credit transfer go to the department office in Room 226.",
+  "kind_tag": "course-registration page",
+  "atypical_fact": "The $40 field deposit must be paid in person at a cashier window in the Bittern Center rather than through the online registration portal, which is the institutional default for course fees."
+ },
+ {
+  "id": "V22-1",
+  "kind": "literal detail",
+  "prompt": "[Daily Life — campus notice] After how long are umbrellas and water bottles given away?",
+  "choices": [
+   "After three months",
+   "After one day",
+   "After ten days",
+   "After a week"
+  ],
+  "correct_answer": "After ten days",
+  "explanation": "The notice says umbrellas and water bottles are donated after 10 days, matching \"After ten days.\" It names three months as the usual period that this rule departs from, so \"After three months\" is the wrong span, and neither \"After one day\" nor \"After a week\" appears in the notice.",
+  "passage": "NOTICE — Lost and Found. Starting 3 March, the Lost and Found counter moves from the library basement to Room 31 in Cranberry Hall. The counter is staffed only on Tuesday afternoons; at all other times items are held in a locked cabinet and cannot be released. Umbrellas and water bottles are donated after 10 days rather than the usual three months. Claim by phone at ext. 5563. Ask for Yasmin Farouk; Olav Nilsen handles keys and ID cards only.",
+  "kind_tag": "campus notice",
+  "atypical_fact": "Umbrellas and water bottles are given away after only 10 days, instead of the usual three-month holding period, and the counter is staffed just one afternoon a week."
+ },
+ {
+  "id": "V22-2",
+  "kind": "next-step",
+  "prompt": "[Daily Life — campus notice] A student whose backpack is at the Lost and Found should go to the counter at which time to have it handed over?",
+  "choices": [
+   "On Tuesday afternoons",
+   "On weekday mornings before noon",
+   "On Thursday evenings after 6",
+   "On Sunday mornings"
+  ],
+  "correct_answer": "On Tuesday afternoons",
+  "explanation": "The notice says the counter is staffed only on Tuesday afternoons and that at all other times items stay in a locked cabinet and cannot be released, so \"On Tuesday afternoons\" is the only time an item is handed over. That same sentence rules out \"On weekday mornings before noon,\" \"On Thursday evenings after 6,\" and \"On Sunday mornings.\"",
+  "passage": "NOTICE — Lost and Found. Starting 3 March, the Lost and Found counter moves from the library basement to Room 31 in Cranberry Hall. The counter is staffed only on Tuesday afternoons; at all other times items are held in a locked cabinet and cannot be released. Umbrellas and water bottles are donated after 10 days rather than the usual three months. Claim by phone at ext. 5563. Ask for Yasmin Farouk; Olav Nilsen handles keys and ID cards only.",
+  "kind_tag": "campus notice",
+  "atypical_fact": "Umbrellas and water bottles are given away after only 10 days, instead of the usual three-month holding period, and the counter is staffed just one afternoon a week."
+ },
+ {
+  "id": "V23-1",
+  "kind": "literal detail",
+  "prompt": "[Daily Life — campus notice] Where does the bicycle repair clinic meet this term?",
+  "choices": [
+   "In the bicycle shed behind the Plover Building",
+   "In the courtyard beside the Plover Building",
+   "In the workshop under the Plover Building",
+   "In Room 119 of the Plover Building"
+  ],
+  "correct_answer": "In Room 119 of the Plover Building",
+  "explanation": "The notice states the clinic meets \"in Room 119 of the Plover Building\" and that it is indoors this term. \"In the courtyard beside the Plover Building\" names the usual outdoor location, which is being resurfaced; \"In the bicycle shed behind the Plover Building\" and \"In the workshop under the Plover Building\" are never mentioned.",
+  "passage": "NOTICE: Bicycle Repair Clinic. The clinic meets this Sunday, 1:00 to 4:00 p.m., in Room 119 of the Plover Building. We are indoors this term because the courtyard is being resurfaced. Bring your own bicycle; no loaner frames are kept here. Tools, patch kits, and chain lube are free. Greta Muller supervises. If you cannot carry your bicycle up the stairs, call 555-0281 and someone will meet you at the side entrance.",
+  "kind_tag": "campus notice",
+  "atypical_fact": "The bicycle repair clinic is held indoors in a classroom (Room 119 of the Plover Building) rather than in the outdoor courtyard where such clinics normally run; the courtyard is being resurfaced this term."
+ },
+ {
+  "id": "V23-2",
+  "kind": "purpose",
+  "prompt": "[Daily Life — campus notice] Why is the clinic being held indoors this term?",
+  "choices": [
+   "Because the repair tools cannot be moved outdoors",
+   "Because fewer volunteers are available this term",
+   "Because the courtyard is being resurfaced",
+   "Because rain is forecast for Sunday"
+  ],
+  "correct_answer": "Because the courtyard is being resurfaced",
+  "explanation": "The notice gives one reason: \"We are indoors this term because the courtyard is being resurfaced.\" Nothing is said about weather, so \"Because rain is forecast for Sunday\" is unsupported, and neither \"Because fewer volunteers are available this term\" nor \"Because the repair tools cannot be moved outdoors\" appears in the notice, which says tools are provided free.",
+  "passage": "NOTICE: Bicycle Repair Clinic. The clinic meets this Sunday, 1:00 to 4:00 p.m., in Room 119 of the Plover Building. We are indoors this term because the courtyard is being resurfaced. Bring your own bicycle; no loaner frames are kept here. Tools, patch kits, and chain lube are free. Greta Muller supervises. If you cannot carry your bicycle up the stairs, call 555-0281 and someone will meet you at the side entrance.",
+  "kind_tag": "campus notice",
+  "atypical_fact": "The bicycle repair clinic is held indoors in a classroom (Room 119 of the Plover Building) rather than in the outdoor courtyard where such clinics normally run; the courtyard is being resurfaced this term."
+ },
+ {
+  "id": "V24-1",
+  "kind": "literal detail",
+  "prompt": "[Daily Life — email] When can the parcel be picked up?",
+  "choices": [
+   "At any hour, including weekends and holidays",
+   "Between 7:00 and 9:00 on Tuesday mornings",
+   "Between 7:00 and 9:00 in the evening",
+   "Any weekday between 9:00 and 5:00"
+  ],
+  "correct_answer": "Between 7:00 and 9:00 in the evening",
+  "explanation": "The email says Room 52 \"is staffed only between 7:00 and 9:00 in the evening.\" \"Any weekday between 9:00 and 5:00\" describes ordinary office hours, which the email rules out by saying the front desk cannot hand parcels out at other times; Tuesday is only the day the parcel arrived, and no round-the-clock pickup is offered.",
+  "passage": "Subject: Parcel waiting for you. Hi Ravi — a parcel came for you on Tuesday. We hold parcels in Room 52 at Foxtail House, and that room is staffed only between 7:00 and 9:00 in the evening; the front desk cannot hand them out at other times. Bring photo ID. If you will be away past Friday, reply to this note and I will move the parcel to the mailroom under your name. — Sile Marren, ext. 2218",
+  "kind_tag": "email",
+  "atypical_fact": "Parcels are released only from a separate room (Room 52) during a narrow two-hour evening window, 7:00 to 9:00 p.m., instead of from the front desk during ordinary daytime office hours."
+ },
+ {
+  "id": "V24-2",
+  "kind": "next-step",
+  "prompt": "[Daily Life — email] Ravi Krishnan will be away until after Friday and replies to the note as the writer asks. According to the email, what then happens to the parcel?",
+  "choices": [
+   "It is returned to the sender at the end of the week",
+   "It is moved to the mailroom under his name",
+   "It is held in Room 52 until he returns",
+   "It is left at the Foxtail House desk"
+  ],
+  "correct_answer": "It is moved to the mailroom under his name",
+  "explanation": "The writer offers exactly one alternative: \"reply to this note and I will move the parcel to the mailroom under your name.\" Because that reply is sent, \"It is held in Room 52 until he returns\" no longer applies, and the email never mentions returning it to the sender or leaving it at the Foxtail House desk, which it says cannot release parcels.",
+  "passage": "Subject: Parcel waiting for you. Hi Ravi — a parcel came for you on Tuesday. We hold parcels in Room 52 at Foxtail House, and that room is staffed only between 7:00 and 9:00 in the evening; the front desk cannot hand them out at other times. Bring photo ID. If you will be away past Friday, reply to this note and I will move the parcel to the mailroom under your name. — Sile Marren, ext. 2218",
+  "kind_tag": "email",
+  "atypical_fact": "Parcels are released only from a separate room (Room 52) during a narrow two-hour evening window, 7:00 to 9:00 p.m., instead of from the front desk during ordinary daytime office hours."
+ }
+]
