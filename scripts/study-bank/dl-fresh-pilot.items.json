@@ -1,0 +1,170 @@
+[
+ {
+  "id": "F1-1",
+  "kind": "literal detail",
+  "prompt": "[Daily Life — email] According to the email, where will the rescheduled workshop be held?",
+  "choices": [
+   "In Room 12 of the Whitmore Annex",
+   "In Room 4 of the Whitmore Annex",
+   "In Room 8 of the training lab",
+   "In Room 6 of the Carver Annex"
+  ],
+  "correct_answer": "In Room 12 of the Whitmore Annex",
+  "explanation": "The email states the workshop \"will now run in the Whitmore Annex, Room 12,\" which matches \"In Room 12 of the Whitmore Annex.\"",
+  "passage": "Subject: Data Workshop Rescheduled\n\nHi everyone,\n\nThe Excel basics workshop originally set for Thursday has been moved to Tuesday, September 8, at 9:00 a.m. It will now run in the Whitmore Annex, Room 12, rather than the main training lab. Seats are capped at 15, so reserve one by emailing Priya Nair directly, not the training office, before Friday noon. Coffee and pastries provided.\n\nBest,\nMarcus Delgado, HR Coordinator"
+ },
+ {
+  "id": "F1-2",
+  "kind": "next-step",
+  "prompt": "[Daily Life — email] Whom should a staff member email to reserve a seat at the workshop?",
+  "choices": [
+   "Email the training office",
+   "Email Marcus Delgado",
+   "Email Priya Nair",
+   "Email Dana Cho"
+  ],
+  "correct_answer": "Email Priya Nair",
+  "explanation": "The email instructs staff to reserve a seat \"by emailing Priya Nair directly, not the training office,\" which matches \"Email Priya Nair.\"",
+  "passage": "Subject: Data Workshop Rescheduled\n\nHi everyone,\n\nThe Excel basics workshop originally set for Thursday has been moved to Tuesday, September 8, at 9:00 a.m. It will now run in the Whitmore Annex, Room 12, rather than the main training lab. Seats are capped at 15, so reserve one by emailing Priya Nair directly, not the training office, before Friday noon. Coffee and pastries provided.\n\nBest,\nMarcus Delgado, HR Coordinator"
+ },
+ {
+  "id": "F2-1",
+  "kind": "literal detail",
+  "prompt": "[Daily Life — campus notice] Where can students pick up a loaner laptop during the closure?",
+  "choices": [
+   "at the main circulation desk in Hartwell Library",
+   "at the music library circulation desk",
+   "at the student center front desk",
+   "at the Facilities office"
+  ],
+  "correct_answer": "at the music library circulation desk",
+  "explanation": "The notice states that loaner laptops \"can be picked up at the music library circulation desk.\"",
+  "passage": "Notice: The second-floor computer lab in Hartwell Library will close for carpet replacement from Monday, March 3 through Thursday, March 6. During the closure, loaner laptops can be picked up at the music library circulation desk. Printing has been moved to Room 114 in the student center. Direct questions to Dana Okafor in Facilities at 555-0173."
+ },
+ {
+  "id": "F2-2",
+  "kind": "next-step",
+  "prompt": "[Daily Life — campus notice] According to the notice, what should a student with questions about the closure do?",
+  "choices": [
+   "call the Hartwell Library circulation desk",
+   "call the campus IT service help line",
+   "call the student center main office",
+   "call Dana Okafor in Facilities"
+  ],
+  "correct_answer": "call Dana Okafor in Facilities",
+  "explanation": "The notice says to \"Direct questions to Dana Okafor in Facilities at 555-0173,\" so \"call Dana Okafor in Facilities\" is correct.",
+  "passage": "Notice: The second-floor computer lab in Hartwell Library will close for carpet replacement from Monday, March 3 through Thursday, March 6. During the closure, loaner laptops can be picked up at the music library circulation desk. Printing has been moved to Room 114 in the student center. Direct questions to Dana Okafor in Facilities at 555-0173."
+ },
+ {
+  "id": "F3-1",
+  "kind": "literal detail",
+  "prompt": "[Daily Life — club flyer] According to the flyer, on which day is the club's info session?",
+  "choices": [
+   "This Monday",
+   "This Tuesday",
+   "This Wednesday",
+   "This Thursday"
+  ],
+  "correct_answer": "This Tuesday",
+  "explanation": "The flyer invites students to \"our info session this Tuesday at 7:30 p.m.,\" so \"This Tuesday\" is correct.",
+  "passage": "Join the Maplewood Board Game Club! We need volunteers for our Spring Tournament on Saturday, April 12, in the Harmon Hall basement. Curious? Come to our info session this Tuesday at 7:30 p.m. in Room 210. Dues are $8 per semester. Questions about dues or sign-ups? Text our treasurer, Dana Okafor, at 555-0142 — please don't use the club email, which we only check once a month."
+ },
+ {
+  "id": "F3-2",
+  "kind": "next-step",
+  "prompt": "[Daily Life — club flyer] According to the flyer, how should students ask questions about dues or sign-ups?",
+  "choices": [
+   "Text Dana Okafor at 555-0142",
+   "Ask in Room 210 after class",
+   "Call the activities office",
+   "Email the club's inbox"
+  ],
+  "correct_answer": "Text Dana Okafor at 555-0142",
+  "explanation": "The flyer says \"Text our treasurer, Dana Okafor, at 555-0142\" and warns against the club email, so \"Text Dana Okafor at 555-0142\" is correct.",
+  "passage": "Join the Maplewood Board Game Club! We need volunteers for our Spring Tournament on Saturday, April 12, in the Harmon Hall basement. Curious? Come to our info session this Tuesday at 7:30 p.m. in Room 210. Dues are $8 per semester. Questions about dues or sign-ups? Text our treasurer, Dana Okafor, at 555-0142 — please don't use the club email, which we only check once a month."
+ },
+ {
+  "id": "F4-1",
+  "kind": "literal detail",
+  "prompt": "[Daily Life — job ad] By what day must applications for the barista position be turned in?",
+  "choices": [
+   "By Tuesday, September 9",
+   "By Wednesday, September 10",
+   "By Thursday, September 11",
+   "By Saturday, September 13"
+  ],
+  "correct_answer": "By Tuesday, September 9",
+  "explanation": "The posting says applications are due \"by Tuesday, September 9,\" so \"By Tuesday, September 9\" is correct.",
+  "passage": "Perch Coffee on Maple Street is hiring two part-time baristas for the fall. Shifts run weekday afternoons, 2:00 to 6:30 p.m. Pay starts at $13.50 an hour. To apply, pick up a paper application at the counter and hand the completed form to Dana, the weekend supervisor, not the store manager. Applications are due by Tuesday, September 9. Short interviews will be held on Thursday, September 11, between 10 a.m. and noon."
+ },
+ {
+  "id": "F4-2",
+  "kind": "next-step",
+  "prompt": "[Daily Life — job ad] After filling out the paper application, what should an applicant do with it?",
+  "choices": [
+   "Hand it to Marisol, the morning shift lead",
+   "Hand it to Dana, the weekend supervisor",
+   "Hand it to Theo, the store manager",
+   "Hand it to Priya, the head barista"
+  ],
+  "correct_answer": "Hand it to Dana, the weekend supervisor",
+  "explanation": "The posting instructs applicants to hand the completed form \"to Dana, the weekend supervisor, not the store manager,\" so \"Hand it to Dana, the weekend supervisor\" is correct.",
+  "passage": "Perch Coffee on Maple Street is hiring two part-time baristas for the fall. Shifts run weekday afternoons, 2:00 to 6:30 p.m. Pay starts at $13.50 an hour. To apply, pick up a paper application at the counter and hand the completed form to Dana, the weekend supervisor, not the store manager. Applications are due by Tuesday, September 9. Short interviews will be held on Thursday, September 11, between 10 a.m. and noon."
+ },
+ {
+  "id": "F5-1",
+  "kind": "literal detail",
+  "prompt": "[Daily Life — course-registration page] Where will the course sessions be held?",
+  "choices": [
+   "In Room 210 of the Lakeview Branch Library",
+   "In Room 6 of the Parks Department office",
+   "In Room 118 of the Community Center",
+   "In Room 12 of the Maple Street Annex"
+  ],
+  "correct_answer": "In Room 210 of the Lakeview Branch Library",
+  "explanation": "The passage says the course meets \"in Room 210 of the Lakeview Branch Library,\" not at the Parks Department office.",
+  "passage": "Registration for the Food Handler Certification Course opens Thursday, March 5, at noon on the Parks Department website. The course meets on March 14 and March 21 in Room 210 of the Lakeview Branch Library, not at the Parks Department office. The fee is $48, due at registration. Enrollment is capped at 22. For questions, call course coordinator Dana Ruiz at 555-0173."
+ },
+ {
+  "id": "F5-2",
+  "kind": "next-step",
+  "prompt": "[Daily Life — course-registration page] A registrant who has a question about the course should do which of the following?",
+  "choices": [
+   "Call Marcus Delaney at 555-0142",
+   "Call Dana Ruiz at 555-0173",
+   "Call Priya Venkatesan at 555-0168",
+   "Call Rob Castellano at 555-0195"
+  ],
+  "correct_answer": "Call Dana Ruiz at 555-0173",
+  "explanation": "The passage directs anyone with questions to \"call course coordinator Dana Ruiz at 555-0173.\"",
+  "passage": "Registration for the Food Handler Certification Course opens Thursday, March 5, at noon on the Parks Department website. The course meets on March 14 and March 21 in Room 210 of the Lakeview Branch Library, not at the Parks Department office. The fee is $48, due at registration. Enrollment is capped at 22. For questions, call course coordinator Dana Ruiz at 555-0173."
+ },
+ {
+  "id": "F6-1",
+  "kind": "literal detail",
+  "prompt": "[Daily Life — email] Where should Marisol pick up her replacement ID?",
+  "choices": [
+   "At the Card Services counter in Denton Hall",
+   "At the Whitmore Library circulation desk",
+   "At the Registrar's office front window",
+   "At the Student Union information desk"
+  ],
+  "correct_answer": "At the Whitmore Library circulation desk",
+  "explanation": "The email states that pickups \"are handled at the Whitmore Library circulation desk rather than our office,\" so \"At the Whitmore Library circulation desk\" is correct.",
+  "passage": "Subject: Replacement ID ready for pickup\n\nHi Marisol,\n\nYour replacement student ID arrived this morning. While our front counter is being renovated, pickups are handled at the Whitmore Library circulation desk rather than our office. Bring a photo ID and the $15 fee in cash — the desk is not able to process card payments. The desk is staffed Tuesday through Friday, 1:00 to 5:00 p.m.\n\nCard Services, Denton Hall 110"
+ },
+ {
+  "id": "F6-2",
+  "kind": "purpose",
+  "prompt": "[Daily Life — email] Why does the email tell Marisol to bring the fee in cash?",
+  "choices": [
+   "Card payments there carry a processing surcharge",
+   "Its card terminal is being replaced this month",
+   "The desk is not able to process card payments",
+   "Only exact change can be accepted there"
+  ],
+  "correct_answer": "The desk is not able to process card payments",
+  "explanation": "The email asks for cash because \"the desk is not able to process card payments,\" which matches \"The desk is not able to process card payments.\"",
+  "passage": "Subject: Replacement ID ready for pickup\n\nHi Marisol,\n\nYour replacement student ID arrived this morning. While our front counter is being renovated, pickups are handled at the Whitmore Library circulation desk rather than our office. Bring a photo ID and the $15 fee in cash — the desk is not able to process card payments. The desk is staffed Tuesday through Friday, 1:00 to 5:00 p.m.\n\nCard Services, Denton Hall 110"
+ }
+]
