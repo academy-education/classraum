@@ -14,13 +14,21 @@ const topics = JSON.parse(readFileSync(IN, 'utf8'))
 const norm = s => String(s).toLowerCase().replace(/[^a-z0-9 ]/g, ' ').replace(/\s+/g, ' ').trim()
 const toks = s => new Set(norm(s).split(' ').filter(w => w.length > 3))
 
-const problems = [], warns = [], dropQ = new Set()
+const problems = [], warns = [], dropQ = new Set(), dropT = new Set()
 for (const t of topics) {
   const V = t.variants
-  if (V.length !== 4) { problems.push(`${t.topic_id}: ${V.length} variants`); continue }
+  // Variant count IS the choice count: N variants produce exactly N
+  // options. ISEE (4-choice) needs 4 variants, SSAT (5-choice) needs 5.
+  const NV = V.length
+  const wantNV = t.topic_id.startsWith('RW-S') ? 5 : 4
+  // A family mismatch is a known structural condition, not a defect, so
+  // the topic is DROPPED LOUDLY rather than blocking a mixed file — and
+  // never skipped silently, which is how the first run shipped nothing
+  // for SSAT without saying so.
+  if (NV !== wantNV) { dropT.add(t.topic_id); warns.push(`${t.topic_id}: DROPPED — ${NV} variants but this family needs ${wantNV} (N variants = N options)`); continue }
   if (!t.question_parity_note?.trim()) problems.push(`${t.topic_id}: no question_parity_note`)
   // skeleton identity: pairwise passage token overlap must be high
-  for (let i = 0; i < 4; i++) for (let j = i + 1; j < 4; j++) {
+  for (let i = 0; i < NV; i++) for (let j = i + 1; j < NV; j++) {
     const a = toks(V[i].passage), b = toks(V[j].passage)
     const inter = [...a].filter(x => b.has(x)).length
     const jac = inter / (a.size + b.size - inter)
@@ -37,10 +45,10 @@ for (const t of topics) {
     const ans = V.map(v => v.answers.find(a => a.qid === q.qid))
     if (ans.some(a => !a)) { problems.push(`${t.topic_id}/${q.qid}: missing an answer`); continue }
     const texts = ans.map(a => a.answer)
-    if (new Set(texts.map(norm)).size !== 4) problems.push(`${t.topic_id}/${q.qid}: answers not distinct across variants — slot not load-bearing here`)
+    if (new Set(texts.map(norm)).size !== NV) problems.push(`${t.topic_id}/${q.qid}: answers not distinct across variants — slot not load-bearing here`)
     const al = texts.map(x => x.length)
     if (Math.max(...al) / Math.min(...al) > 1.45) warns.push(`${t.topic_id}/${q.qid}: answer length ratio ${(Math.max(...al)/Math.min(...al)).toFixed(2)}`)
-    for (let i = 0; i < 4; i++) for (let j = 0; j < 4; j++) {
+    for (let i = 0; i < NV; i++) for (let j = 0; j < NV; j++) {
       if (i === j) continue
       // A LEXICAL kill-map is wrong for reading. Good reading answers
       // paraphrase rather than quote ("declined to make her own" for
@@ -69,7 +77,9 @@ const rng = s => () => { s |= 0; s = (s + 0x6D2B79F5) | 0
 const pick = rng(SEED0)
 const items = [], key = {}, blind = []
 for (const [ti, t] of topics.entries()) {
-  const w = Math.floor(pick() * 4)
+  if (dropT.has(t.topic_id)) continue
+  const NV = t.variants.length
+  const w = Math.floor(pick() * NV)
   const shown = t.variants[w]
   const others = t.variants.filter((_, i) => i !== w)
   const L = ['A', 'B', 'C', 'D', 'E']
@@ -78,7 +88,6 @@ for (const [ti, t] of topics.entries()) {
     if (dropQ.has(q.qid)) continue
     const keyText = shown.answers.find(a => a.qid === q.qid).answer
     const pool = others.map(v => v.answers.find(a => a.qid === q.qid).answer)
-    // 5-choice families need a fifth option: reuse a 4th variant answer from an adjacent question of the same variant set is NOT valid; instead the SSAT set draws its extra from the shown variant's neighbouring-slot answer is also invalid. So SSAT items ship with 4 options is wrong too — record and skip.
     const opts = [keyText, ...pool]
     if (opts.length < nch) { continue }
     const r = rng(SEED0 + 977 * (ti + 1) + qi)
@@ -95,7 +104,7 @@ for (const [ti, t] of topics.entries()) {
 writeFileSync(`scripts/study-bank/${OUT}.items.json`, JSON.stringify(items, null, 1))
 writeFileSync(`scripts/study-bank/${OUT}-attack.key.json`, JSON.stringify(key, null, 1))
 writeFileSync(`/tmp/${OUT}-blind.json`, JSON.stringify(blind))
-const spread = ['A','B','C','D'].map(l => Object.values(key).filter(k => k === l).length)
+const spread = ['A','B','C','D','E'].map(l => Object.values(key).filter(k => k === l).length)
 const leaked = blind.some(b => 'passage' in b)
 console.log(`\nitems ${items.length}  shown variants ${[...new Set(items.map(i=>i._shown))].join(',')}  key spread ${spread.join('/')}`)
 console.log(`blind file passage-free: ${!leaked}`)
