@@ -26,11 +26,34 @@ import { readFileSync } from 'node:fs'
  *  real quote and refusing it would send them chasing invisible bugs. */
 const norm = s => String(s ?? '').replace(/\s+/g, ' ').trim()
 
-/** Phrases that are non-assertions dressed as kills. An author who
- *  writes "the passage never says X" has misunderstood the brief, and
- *  that is worth catching cheaply even though the real check is
- *  semantic. */
-const NON_ASSERTION = /\b(never (?:says|mentions|states)|does not (?:say|mention|state)|no mention|not mentioned|is silent (?:on|about)|nothing (?:about|in the passage))\b/i
+/**
+ * META-TEXTUAL non-assertions dressed as kills.
+ *
+ * The defect is a claim about the PASSAGE'S SILENCE ("the passage never
+ * mentions a flood"), which refutes nothing: the other variant's world
+ * may simply be elsewhere in the text.
+ *
+ * A claim about the WORLD is the opposite and must PASS, even when it is
+ * grammatically negative. "Nothing about her puzzled me" positively
+ * asserts the narrator's state and flatly contradicts a sibling answer
+ * that says she was puzzled. "The crew had published nothing about these
+ * fish" is a fact about the crew, not about the prose.
+ *
+ * The first draft of this pattern matched the bare substring "nothing
+ * about" and condemned both kinds. It flagged 8 spans across RW3-S06 and
+ * RW3-S07 — every one of them a legitimate in-world negation — and would
+ * have dropped two sound topics. The subject of the sentence is what
+ * separates the classes, so the pattern now requires an explicitly
+ * textual subject.
+ */
+const TEXT_SUBJECT = '(?:the )?(?:passage|text|excerpt|author|writer|narrator|account|article)'
+const NON_ASSERTION = new RegExp(
+  `\\b${TEXT_SUBJECT}\\s+(?:never|does not|doesn't|did not|didn't)\\s+(?:say|says|mention|mentions|state|states|tell|tells)`
+  + `|\\bno mention (?:of|is made)`
+  + `|\\b(?:is|are) (?:never )?mentioned nowhere`
+  + `|\\b${TEXT_SUBJECT}\\s+is silent\\b`
+  + `|\\bnothing in the (?:passage|text|excerpt)\\b`,
+  'i')
 
 export function run(topics) {
   const fails = [], warns = []
@@ -111,10 +134,32 @@ function selftest() {
     console.error('SELFTEST FAIL: invented quote not caught'); process.exit(1)
   }
 
-  // 3. a non-assertion dressed as a kill is caught
-  const weak = run(mk({ W2: 'the passage never says the keeper left', W3: 'The lamp was lit at dusk', W4: 'The lamp was lit at dusk' }))
-  if (!weak.fails.some(f => f.includes('non-assertion'))) {
-    console.error('SELFTEST FAIL: non-assertion kill not caught'); process.exit(1)
+  // 3. a META-TEXTUAL non-assertion is caught
+  for (const meta of [
+    'the passage never says the keeper left',
+    'The text does not mention a storm',
+    'nothing in the passage supports it',
+  ]) {
+    const weak = run(mk({ W2: meta, W3: 'The lamp was lit at dusk', W4: 'The lamp was lit at dusk' },
+      `The lamp was lit at dusk. The keeper stayed ashore all winter. ${meta}`))
+    if (!weak.fails.some(f => f.includes('non-assertion'))) {
+      console.error(`SELFTEST FAIL: meta non-assertion not caught — "${meta}"`); process.exit(1)
+    }
+  }
+
+  // 3b. IN-WORLD negations must PASS. These are positive claims about the
+  // world that genuinely contradict a sibling, and the first draft of the
+  // pattern condemned all of them.
+  for (const world of [
+    'Nothing about her puzzled me',
+    'The crew had published nothing about these fish before',
+    'no surveyor had yet sounded the riverbed',
+  ]) {
+    const ok = run(mk({ W2: world, W3: 'The lamp was lit at dusk', W4: 'The lamp was lit at dusk' },
+      `The lamp was lit at dusk. The keeper stayed ashore all winter. ${world}.`))
+    if (ok.fails.length) {
+      console.error(`SELFTEST FAIL: in-world negation wrongly condemned — "${world}"`, ok.fails); process.exit(1)
+    }
   }
 
   // 4. a missing kill is caught
@@ -127,7 +172,7 @@ function selftest() {
   const reflow = run(mk({ W2: 'The keeper   stayed\nashore all winter', W3: 'The lamp was lit at dusk', W4: 'The lamp was lit at dusk' }))
   if (reflow.fails.length) { console.error('SELFTEST FAIL: whitespace reflow rejected —', reflow.fails); process.exit(1) }
 
-  console.log('selftest OK — catches invented spans, non-assertions and missing kills; passes clean topics and whitespace reflow')
+  console.log('selftest OK — catches invented spans, META-textual non-assertions and missing kills; passes clean topics, whitespace reflow and IN-WORLD negations')
 }
 
 const args = process.argv.slice(2)
