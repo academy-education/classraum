@@ -133,6 +133,10 @@ describe('the real pilot batch', () => {
     const v = evaluate('mc_hidden_source', batch.contentSha, batch.stages)
     expect(v.canInsert).toBe(false)
     expect(v.failed.sort()).toEqual(['elimination', 'shape', 'tells', 'withsource'])
-    expect(batch.stages.nosource.passed).toBe(true)
+    // batches[0] is a specific entry that HAS a nosource stage; the
+    // assertion is needed because three production-task entries
+    // (build_a_sentence, interview, listen_and_repeat) legitimately have
+    // none — a no-source attack is not a question about those items.
+    expect(batch.stages.nosource!.passed).toBe(true)
   })
 })

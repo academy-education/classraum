@@ -3639,18 +3639,18 @@ export type Database = {
         }
         Relationships: [
           {
-            foreignKeyName: \"study_item_sweep_verdicts_item_id_fkey\"
-            columns: [\"item_id\"]
+            foreignKeyName: "study_item_sweep_verdicts_item_id_fkey"
+            columns: ["item_id"]
             isOneToOne: false
-            referencedRelation: \"study_item_bank\"
-            referencedColumns: [\"id\"]
+            referencedRelation: "study_item_bank"
+            referencedColumns: ["id"]
           },
           {
-            foreignKeyName: \"study_item_sweep_verdicts_item_id_fkey\"
-            columns: [\"item_id\"]
+            foreignKeyName: "study_item_sweep_verdicts_item_id_fkey"
+            columns: ["item_id"]
             isOneToOne: false
-            referencedRelation: \"study_item_calibration\"
-            referencedColumns: [\"item_id\"]
+            referencedRelation: "study_item_calibration"
+            referencedColumns: ["item_id"]
           },
         ]
       }

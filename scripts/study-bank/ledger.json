@@ -1255,7 +1255,30 @@
    },
    "status": "shipped",
    "cohort": "ssat-reading-worlds-s3",
-   "note": "Yield 93.6% (73 of 78) against a pre-registered 60% line; s2 was 36%. Gates: blind −9.7 (ctl 20.0), set-attack −5.4, pattern hunter exploitable=false over ~45 rules, with-passage QC 77/78 unanimous, cross-variant 75/78, 1320/1320 kill spans verbatim. Dropped 5, four of them the same shape - a short span aimed at a compound option, landing on a component the option survives losing. The 3 cross-variant failures were 3/3 with the key in the QC vote; dropped anyway rather than adjudicate between disagreeing instruments. LIMITATION: all six keys in a topic come from one variant, so effective n is TOPICS not items - spread forms across topics and do not score restatement pairs together."
+   "note": "Yield 93.6% (73 of 78) against a pre-registered 60% line; s2 was 36%. Gates: blind −9.7 (ctl 20.0), set-attack −5.4, pattern hunter exploitable=false over ~45 rules, with-passage QC 77/78 unanimous, cross-variant 75/78, 1320/1320 kill spans verbatim. Dropped 5, four of them the same shape - a short span aimed at a compound option, landing on a component the option survives losing. The 3 cross-variant failures were 3/3 with the key in the QC vote; dropped anyway rather than adjudicate between disagreeing instruments. LIMITATION: all six keys in a topic come from one variant, so effective n is TOPICS not items - spread forms across topics and do not score restatement pairs together.",
+   "stages": {
+    "shape": {
+     "passed": true,
+     "verdict": "1320/1320 kill spans verbatim in their own variant passage (check-kill-spans.mjs, break-tested against a batch with no kills). Renderer clean: passage lengths within 12%, answers distinct per question, blind file asserted passage-free (0 of 78 entries contain passage text). Keyword-parity guard run as ADVISORY only."
+    },
+    "nosource": {
+     "passed": true,
+     "n": 44,
+     "verdict": "Blind attack, 3 differently-reasoning solvers, passage withheld: mean 15.3% vs 25.0% best-fixed-letter control, margin −9.7. A SECOND targeted attack tried the set-as-puzzle exploit explicitly and scored 20.5% overall (chance); its confidence was anti-correlated with correctness."
+    },
+    "elimination": {
+     "passed": true,
+     "verdict": "Pattern hunter over ~45 mechanical rules, detector self-tested against planted tells first: exploitable=false, nothing beat control by more than ~5 points on any believable slice. Its one apparent hit (ISEE naive-Bayes 46.7% vs 25%) reversed sign on held-out authoring and was discarded as overfit."
+    },
+    "withsource": {
+     "passed": true,
+     "verdict": "With-passage QC: 77 of 78 unanimous with the key (s2 was 46 of 106 at >=2/3). Caveat: only 2 of 3 voter answer-strings were distinct. Cross-variant reviewer judged all 1320 spans, not a sample: 75 of 78 pass."
+    },
+    "tells": {
+     "passed": true,
+     "verdict": "Six historical tells re-run clean: key-letter spread 19/17/13/19/10 (best fixed letter 24.4%), length rank both directions, punctuation, concessive markers, option-family balance, cross-topic key prose. LIMITATION recorded: all six keys in a topic come from one variant, so effective n is TOPICS not items."
+    }
+   }
   },
   {
    "id": "isee-reading-worlds-s3-2026-08-29",
@@ -1271,7 +1294,30 @@
    },
    "status": "shipped",
    "cohort": "isee-reading-worlds-s3",
-   "note": "Yield 93.6% (73 of 78) against a pre-registered 60% line; s2 was 36%. Gates: blind −6.7 (ctl 25.0), set-attack +5.0, pattern hunter exploitable=false over ~45 rules, with-passage QC 77/78 unanimous, cross-variant 75/78, 1320/1320 kill spans verbatim. Dropped 5, four of them the same shape - a short span aimed at a compound option, landing on a component the option survives losing. The 3 cross-variant failures were 3/3 with the key in the QC vote; dropped anyway rather than adjudicate between disagreeing instruments. LIMITATION: all six keys in a topic come from one variant, so effective n is TOPICS not items - spread forms across topics and do not score restatement pairs together."
+   "note": "Yield 93.6% (73 of 78) against a pre-registered 60% line; s2 was 36%. Gates: blind −6.7 (ctl 25.0), set-attack +5.0, pattern hunter exploitable=false over ~45 rules, with-passage QC 77/78 unanimous, cross-variant 75/78, 1320/1320 kill spans verbatim. Dropped 5, four of them the same shape - a short span aimed at a compound option, landing on a component the option survives losing. The 3 cross-variant failures were 3/3 with the key in the QC vote; dropped anyway rather than adjudicate between disagreeing instruments. LIMITATION: all six keys in a topic come from one variant, so effective n is TOPICS not items - spread forms across topics and do not score restatement pairs together.",
+   "stages": {
+    "shape": {
+     "passed": true,
+     "verdict": "1320/1320 kill spans verbatim in their own variant passage (check-kill-spans.mjs, break-tested against a batch with no kills). Renderer clean: passage lengths within 12%, answers distinct per question, blind file asserted passage-free (0 of 78 entries contain passage text). Keyword-parity guard run as ADVISORY only."
+    },
+    "nosource": {
+     "passed": true,
+     "n": 29,
+     "verdict": "Blind attack, 3 differently-reasoning solvers, passage withheld: mean 26.7% vs 33.3% best-fixed-letter control, margin −6.7. A SECOND targeted attack tried the set-as-puzzle exploit explicitly and scored 20.5% overall (chance); its confidence was anti-correlated with correctness."
+    },
+    "elimination": {
+     "passed": true,
+     "verdict": "Pattern hunter over ~45 mechanical rules, detector self-tested against planted tells first: exploitable=false, nothing beat control by more than ~5 points on any believable slice. Its one apparent hit (ISEE naive-Bayes 46.7% vs 25%) reversed sign on held-out authoring and was discarded as overfit."
+    },
+    "withsource": {
+     "passed": true,
+     "verdict": "With-passage QC: 77 of 78 unanimous with the key (s2 was 46 of 106 at >=2/3). Caveat: only 2 of 3 voter answer-strings were distinct. Cross-variant reviewer judged all 1320 spans, not a sample: 75 of 78 pass."
+    },
+    "tells": {
+     "passed": true,
+     "verdict": "Six historical tells re-run clean: key-letter spread 19/17/13/19/10 (best fixed letter 24.4%), length rank both directions, punctuation, concessive markers, option-family balance, cross-topic key prose. LIMITATION recorded: all six keys in a topic come from one variant, so effective n is TOPICS not items."
+    }
+   }
   }
  ],
  "auditedCohorts": [

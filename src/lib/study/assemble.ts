@@ -1,4 +1,7 @@
 import { dbAdmin } from '@/lib/supabase-admin'
+import {
+  ADMISSION_BLUEPRINT, spreadAcrossPassages, type AdmissionFamily,
+} from './admission-tests'
 import type { Question, QuestionType } from '@/lib/test-verify'
 import { shuffleChoices } from '@/lib/test-verify'
 import { capWarmupItems } from '@/lib/study/toefl-warmup'
@@ -1425,6 +1428,83 @@ export async function assembleToeflFromBank(
  *   - Exposures are still recorded so later personal draws de-prioritise
  *     items the student already met in class.
  */
+/**
+ * SSAT / ISEE — draw one blueprint block from the bank.
+ *
+ * Separate from assembleFromBank because these tests differ in three ways
+ * that are not parameters of it:
+ *
+ *  - the section is a fixed BLOCK with its own clock, not a count the
+ *    caller picks and a minutesPerQ estimate;
+ *  - reading must be SPREAD ACROSS PASSAGES. All six keys within a
+ *    reading-worlds topic come from one passage variant, so six items
+ *    from one passage behave like one item. See MAX_ITEMS_PER_PASSAGE;
+ *  - there is no content-domain blueprint. SSAT and ISEE publish section
+ *    counts and timings, not domain weights, so inventing weights here
+ *    would be fabricating a spec.
+ */
+export async function assembleAdmissionSection(p: {
+  family: AdmissionFamily
+  sectionKey: string
+  studentId?: string
+}, seed = 'admission'): Promise<AssembledTest> {
+  const block = ADMISSION_BLUEPRINT[p.family].find(b => b.key === p.sectionKey)
+  if (!block) throw new Error(`unknown ${p.family} section '${p.sectionKey}'`)
+  if (!block.bankSection) throw new Error(`${p.family}/${p.sectionKey} is free-response, not drawn from the bank`)
+
+  const { data, error } = await dbAdmin
+    .from('study_item_bank')
+    .select('id, difficulty, item, passage_group_id')
+    .eq('family', p.family)
+    .eq('section', block.bankSection)
+    .eq('verified', true)
+    .eq('archived', false)
+  if (error) throw new Error(`assemble query failed: ${error.message}`)
+
+  const rows = (data ?? []).flatMap(row => {
+    const item = readBankItem(row.item)
+    if (!item) {
+      console.error('[assemble] skipping malformed study_item_bank row', row.id)
+      return []
+    }
+    return [{ id: row.id, item, passageGroupId: row.passage_group_id as string | null }]
+  })
+  if (rows.length === 0) throw new Error(`no verified items for ${p.family}/${block.bankSection}`)
+
+  const exposures = p.studentId ? await loadExposures(p.studentId) : new Map<string, string>()
+  const ranked = unseenFirst(rows, exposures, seed + block.key)
+
+  /*
+   * The passage cap applies to reading only. Applying it elsewhere would
+   * be a no-op today (verbal and math rows carry no passage_group_id, so
+   * every row is its own group) but would silently cap a future grouped
+   * section at 3, which is the kind of quiet wrong number this codebase
+   * keeps producing.
+   */
+  const picked = block.bankSection === 'reading'
+    ? spreadAcrossPassages(ranked, block.questions)
+    : ranked.slice(0, block.questions)
+
+  if (picked.length < block.questions) {
+    // Loud, not silent. A short section is a real event: it means the
+    // form is not the published one and the score is out of a different
+    // denominator than the student expects.
+    console.warn(`[assemble] ${p.family}/${block.key} SHORT — wanted ${block.questions}, drew ${picked.length}`)
+  }
+
+  const mixed = seededShuffle(picked, seed + ':order')
+  if (p.studentId) await recordExposures(p.studentId, mixed.map(r => r.id), 'full_test', seed)
+
+  return {
+    title: `${p.family.toUpperCase()} — ${block.name}`,
+    timeLimitMinutes: block.minutes,
+    section: block.name,
+    family: p.family,
+    questions: shuffleDrawnChoices(mixed, seed).map(r => r.item),
+    composition: { [block.name]: mixed.length },
+  }
+}
+
 export async function assembleFromItemIds(
   p: {
     itemIds: string[]
