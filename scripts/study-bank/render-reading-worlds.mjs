@@ -20,13 +20,34 @@ for (const t of topics) {
   // Variant count IS the choice count: N variants produce exactly N
   // options. ISEE (4-choice) needs 4 variants, SSAT (5-choice) needs 5.
   const NV = V.length
-  const wantNV = t.topic_id.startsWith('RW-S') ? 5 : 4
+  /*
+   * Family comes from the topic id, and the test must survive a new id
+   * scheme. s3 numbers its topics RW3-S05 / RW3-I01, which
+   * startsWith('RW-S') reads as FALSE — so every 5-variant SSAT topic
+   * would have been dropped as "4 expected, 5 found", and the drop is
+   * loud enough to look like an authoring failure rather than a parser
+   * one. Match the family letter after the run prefix instead.
+   */
+  const fam = /^RW\d*-([SI])/.exec(t.topic_id)?.[1]
+  if (!fam) { dropT.add(t.topic_id); warns.push(`${t.topic_id}: DROPPED — cannot read family from topic id (expected RW<run>-S… or RW<run>-I…)`); continue }
+  const wantNV = fam === 'S' ? 5 : 4
   // A family mismatch is a known structural condition, not a defect, so
   // the topic is DROPPED LOUDLY rather than blocking a mixed file — and
   // never skipped silently, which is how the first run shipped nothing
   // for SSAT without saying so.
   if (NV !== wantNV) { dropT.add(t.topic_id); warns.push(`${t.topic_id}: DROPPED — ${NV} variants but this family needs ${wantNV} (N variants = N options)`); continue }
-  if (!t.question_parity_note?.trim()) problems.push(`${t.topic_id}: no question_parity_note`)
+  /*
+   * question_parity_note was s2's prose promise that every question is
+   * answerable from every variant. s3 replaces it with `kills`, which
+   * asserts the same property per answer and is machine-checked by
+   * check-kill-spans.mjs — a stronger claim than a sentence.
+   *
+   * So the note is required ONLY for topics that carry no kills. A
+   * topic with neither has nothing standing behind question parity and
+   * still fails.
+   */
+  const hasKills = (t.variants ?? []).some(v => (v.answers ?? []).some(a => a.kills && Object.keys(a.kills).length))
+  if (!hasKills && !t.question_parity_note?.trim()) problems.push(`${t.topic_id}: no question_parity_note and no kill spans — nothing asserts question parity`)
   // skeleton identity: pairwise passage token overlap must be high
   for (let i = 0; i < NV; i++) for (let j = i + 1; j < NV; j++) {
     const a = toks(V[i].passage), b = toks(V[j].passage)
@@ -58,6 +79,30 @@ for (const t of topics) {
       // by an agent gate (cross-variant reviewer), not here. What this
       // loop still catches cheaply: an answer that is literally more at
       // home in another variant's passage than in its own.
+      /*
+       * WRONG-HOME IS VOID ONCE A TOPIC CARRIES KILL SPANS, and is
+       * skipped for those topics rather than merely tolerated.
+       *
+       * The check asks whether an answer's vocabulary sits more in a
+       * sibling's passage than in its own. Under the s2 brief that was
+       * a real signal. Under s3 it cannot be: a kill must POSITIVELY
+       * CONTRADICT the sibling, so the passage has to NAME what it
+       * denies — "She did not put me to mending and re-tarring the wire
+       * trays" is W1's text carrying W2's answer vocabulary, and it is
+       * there precisely because the brief demanded it.
+       *
+       * Measured on the s3 batch: 29 of 48 questions dropped, all here.
+       * Every one was a well-formed item whose passage denies its
+       * siblings by name — the brief working, scored as a defect.
+       *
+       * The property this check approximated (an answer must belong to
+       * its own variant and no other) is still gated, by the semantic
+       * cross-variant reviewer, which reads meaning rather than token
+       * overlap and found 17 real failures on s2. A lexical proxy whose
+       * premise the brief deliberately violates is not a weaker version
+       * of that gate; it is noise pointed at the wrong property.
+       */
+      if (hasKills) continue
       const own = norm(V[i].passage), other = norm(V[j].passage)
       const t2 = [...toks(texts[i])]
       const inOwn = t2.filter(w => own.includes(w)).length
@@ -67,7 +112,27 @@ for (const t of topics) {
   }
 }
 console.log(problems.length ? `REFUSING — ${problems.length} problem(s):\n  ` + problems.slice(0, 25).join('\n  ') : 'kill-map + skeleton + parity checks CLEAN')
-if (warns.length) console.log(`\n${warns.length} warning(s) (reported, not blocking):\n  ` + warns.slice(0, 10).join('\n  '))
+/*
+ * Warnings print in full, and DROPS are separated from advisories.
+ *
+ * The first version printed `warns.slice(0, 10)` under a truthful
+ * "134 warning(s)" header. Ten of those visible lines happened to be
+ * DROPPED lines covering 2 questions, so the batch read as "2 questions
+ * lost" while 29 were actually gone — the count was honest and the
+ * detail was not, which is worse than either alone. A drop changes what
+ * ships and must never be summarised away.
+ */
+const dropLines = warns.filter(w => w.includes('DROPPED'))
+const advisory  = warns.filter(w => !w.includes('DROPPED'))
+if (dropLines.length) {
+  console.log(`\n${dropLines.length} DROP(s) — ${dropQ.size} question(s) and ${dropT.size} topic(s) removed:`)
+  for (const d of dropLines) console.log('  ' + d)
+}
+if (advisory.length) {
+  console.log(`\n${advisory.length} advisory warning(s) (reported, not blocking):`)
+  for (const a of advisory.slice(0, 15)) console.log('  ' + a)
+  if (advisory.length > 15) console.log(`  …and ${advisory.length - 15} more advisories`)
+}
 if (problems.length) process.exit(1)
 
 // seeded selection AFTER validation
@@ -83,7 +148,9 @@ for (const [ti, t] of topics.entries()) {
   const shown = t.variants[w]
   const others = t.variants.filter((_, i) => i !== w)
   const L = ['A', 'B', 'C', 'D', 'E']
-  const nch = t.topic_id.startsWith('RW-S') ? 5 : 4
+  // Same family test as validation above — the stale startsWith('RW-S')
+  // read RW3-S… as ISEE and would have capped SSAT items at 4 options.
+  const nch = /^RW\d*-S/.test(t.topic_id) ? 5 : 4
   for (const [qi, q] of t.questions.entries()) {
     if (dropQ.has(q.qid)) continue
     const keyText = shown.answers.find(a => a.qid === q.qid).answer
