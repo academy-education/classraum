@@ -1240,6 +1240,38 @@
      "verdict": "Key spread 7/3/7/6 across the cohort; no topic collapses onto one letter."
     }
    }
+  },
+  {
+   "id": "ssat-reading-worlds-s3-2026-08-29",
+   "createdAt": "2026-08-29",
+   "targetTest": "ssat",
+   "section": "reading",
+   "task": "multiple_choice",
+   "family": "mc_hidden_source",
+   "spec": {
+    "n": 44,
+    "authors": 13,
+    "method": "symmetric worlds + KILL SPANS: each variant carries a verbatim span positively refuting every sibling answer (READING-WORLDS-S3-PREREGISTERED.md)"
+   },
+   "status": "shipped",
+   "cohort": "ssat-reading-worlds-s3",
+   "note": "Yield 93.6% (73 of 78) against a pre-registered 60% line; s2 was 36%. Gates: blind −9.7 (ctl 20.0), set-attack −5.4, pattern hunter exploitable=false over ~45 rules, with-passage QC 77/78 unanimous, cross-variant 75/78, 1320/1320 kill spans verbatim. Dropped 5, four of them the same shape - a short span aimed at a compound option, landing on a component the option survives losing. The 3 cross-variant failures were 3/3 with the key in the QC vote; dropped anyway rather than adjudicate between disagreeing instruments. LIMITATION: all six keys in a topic come from one variant, so effective n is TOPICS not items - spread forms across topics and do not score restatement pairs together."
+  },
+  {
+   "id": "isee-reading-worlds-s3-2026-08-29",
+   "createdAt": "2026-08-29",
+   "targetTest": "isee",
+   "section": "reading",
+   "task": "multiple_choice",
+   "family": "mc_hidden_source",
+   "spec": {
+    "n": 29,
+    "authors": 13,
+    "method": "symmetric worlds + KILL SPANS: each variant carries a verbatim span positively refuting every sibling answer (READING-WORLDS-S3-PREREGISTERED.md)"
+   },
+   "status": "shipped",
+   "cohort": "isee-reading-worlds-s3",
+   "note": "Yield 93.6% (73 of 78) against a pre-registered 60% line; s2 was 36%. Gates: blind −6.7 (ctl 25.0), set-attack +5.0, pattern hunter exploitable=false over ~45 rules, with-passage QC 77/78 unanimous, cross-variant 75/78, 1320/1320 kill spans verbatim. Dropped 5, four of them the same shape - a short span aimed at a compound option, landing on a component the option survives losing. The 3 cross-variant failures were 3/3 with the key in the QC vote; dropped anyway rather than adjudicate between disagreeing instruments. LIMITATION: all six keys in a topic come from one variant, so effective n is TOPICS not items - spread forms across topics and do not score restatement pairs together."
   }
  ],
  "auditedCohorts": [
