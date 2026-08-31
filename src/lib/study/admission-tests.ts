@@ -187,3 +187,56 @@ export function spreadAcrossPassages<T extends { passageGroupId: string | null }
   }
   return out
 }
+
+/* ------------------------------------------------------------------ *
+ * Topic slug -> blueprint section
+ *
+ * The study_topics rows use their own slugs (`ssat-quant-1`), which do
+ * NOT title-case into the blueprint names ("Quant 1" is not
+ * "Quantitative Section 1"). The topic page's generic parseTestSlug
+ * derives a section by capitalising the slug, and for these families
+ * that silently produces a section nothing matches — so the mapping is
+ * explicit here, where it can be tested, rather than inferred there.
+ *
+ * `ssat-experimental` is deliberately absent. A topic row exists for it
+ * because the real SSAT has one, but ADMISSION_BLUEPRINT excludes it on
+ * purpose (see the note above it): it is unscored, and serving it would
+ * spend 15 minutes of a student's time on questions that do not count.
+ * Absent here means admissionSectionForSlug returns null and the caller
+ * refuses to start, which is the intended behaviour, not an oversight.
+ * ------------------------------------------------------------------ */
+export const ADMISSION_TOPIC_SLUGS: Record<string, { family: AdmissionFamily; key: string }> = {
+  'ssat-writing':          { family: 'ssat', key: 'writing' },
+  'ssat-quant-1':          { family: 'ssat', key: 'quant1' },
+  'ssat-reading':          { family: 'ssat', key: 'reading' },
+  'ssat-verbal':           { family: 'ssat', key: 'verbal' },
+  'ssat-quant-2':          { family: 'ssat', key: 'quant2' },
+  'isee-verbal':           { family: 'isee', key: 'verbal' },
+  'isee-quant-reasoning':  { family: 'isee', key: 'quant' },
+  'isee-reading':          { family: 'isee', key: 'reading' },
+  'isee-math-achievement': { family: 'isee', key: 'mathach' },
+  'isee-essay':            { family: 'isee', key: 'essay' },
+}
+
+/** The blueprint section a topic slug names, or null if the slug is not
+ *  a startable admission section (including `ssat-experimental` and the
+ *  `test-ssat` / `test-isee` parents, which pick a section first). */
+export function admissionSectionForSlug(
+  slug: string,
+): { family: AdmissionFamily; section: AdmissionSection } | null {
+  const hit = ADMISSION_TOPIC_SLUGS[slug]
+  if (!hit) return null
+  const section = ADMISSION_BLUEPRINT[hit.family].find(s => s.key === hit.key)
+  return section ? { family: hit.family, section } : null
+}
+
+/** Total questions and minutes for a full form — for the landing card's
+ *  stat chip, so the number cannot drift from the blueprint by being
+ *  typed by hand. */
+export function admissionFormTotals(family: AdmissionFamily): { questions: number; minutes: number } {
+  const secs = ADMISSION_BLUEPRINT[family]
+  return {
+    questions: secs.reduce((n, s) => n + s.questions, 0),
+    minutes: secs.reduce((n, s) => n + s.minutes, 0),
+  }
+}

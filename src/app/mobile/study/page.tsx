@@ -7,7 +7,7 @@ import {
   Search as SearchIcon, ArrowRight,
   FileText, CreditCard, Settings, Camera, Sparkles,
   Calculator, Languages, Atom, Globe2, BookOpen, Palette, Code2, Music,
-  PenLine, ClipboardCheck, Briefcase, Flag, Scroll, BookMarked, GraduationCap, LucideIcon,
+  PenLine, ClipboardCheck, Briefcase, Flag, Scroll, BookMarked, GraduationCap, Compass, LucideIcon,
   MoreHorizontal, Lock, Target as TargetIcon, Lightbulb,
   Gift, X, Check, Loader2, Coins,
 } from '@/app/mobile/study/_shared/icons'
@@ -19,6 +19,7 @@ import { StudyButton } from './_shared/StudyButton'
 import { CreditConfirmSheet, NoCreditsSheet } from './_shared/CreditConfirmSheet'
 import { creditCostForTest } from '@/lib/study/plans'
 import { SHIPPED_TEST_SLUGS } from '@/lib/study/shipped-tests'
+import { admissionFormTotals } from '@/lib/study/admission-tests'
 import { passCreditLabel } from './_shared/pass-label'
 import { StudyTodayCard } from './_shared/primitives'
 import { ResumableShelf } from './ResumableShelf'
@@ -212,6 +213,19 @@ function themeForSubject(slug: string, name: string): Theme {
  *  (that's the deep-link guard for the same gate). */
 const OPEN_TEST_SLUGS = SHIPPED_TEST_SLUGS
 
+/* SSAT and ISEE chips come from ADMISSION_BLUEPRINT rather than being
+ * typed. I wrote "150 Q / 2h 35m" and "160 Q / 2h 20m" from memory while
+ * planning this card; the real figures are 151/155 and 161/160. Deriving
+ * them means the card cannot drift when a section's count changes. */
+const admissionStat = (family: 'ssat' | 'isee', ko: boolean) => {
+  const { questions, minutes } = admissionFormTotals(family)
+  const h = Math.floor(minutes / 60)
+  const m = minutes % 60
+  return ko
+    ? `${questions}\uBB38\uD56D \u00B7 ${h}\uC2DC\uAC04 ${m}\uBD84`
+    : `${questions} Q \u00B7 ${h}h ${m}m`
+}
+
 const TEST_THEMES: Record<string, {
   Icon: LucideIcon
   gradient: string
@@ -234,6 +248,26 @@ const TEST_THEMES: Record<string, {
     decorChars: ['x²', '∑', '∫'],
     stat_en: '98 Q · 2h 14m',
     stat_ko: '98문항 · 2시간 14분',
+  },
+  ssat: {
+    Icon: GraduationCap,
+    gradient: 'bg-gradient-to-br from-amber-500 via-orange-600 to-orange-700',
+    accent: 'text-amber-50',
+    ring: 'ring-orange-900/20',
+    mono: 'SSAT',
+    decorChars: ['\u00F7', 'A', '\u2261'],
+    stat_en: admissionStat('ssat', false),
+    stat_ko: admissionStat('ssat', true),
+  },
+  isee: {
+    Icon: Compass,
+    gradient: 'bg-gradient-to-br from-violet-500 via-purple-600 to-purple-800',
+    accent: 'text-violet-50',
+    ring: 'ring-purple-900/20',
+    mono: 'ISEE',
+    decorChars: ['\u221A', 'W', '\u00B6'],
+    stat_en: admissionStat('isee', false),
+    stat_ko: admissionStat('isee', true),
   },
   ksat: {
     Icon: Flag,

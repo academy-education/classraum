@@ -27,6 +27,7 @@ import { BankExhaustedSheet } from './BankExhaustedSheet'
 import { LandingDataProvider } from '../../LandingDataProvider'
 import { defaultsForTestSection } from '@/lib/test-specs'
 import { creditCostForTest } from '@/lib/study/plans'
+import { admissionSectionForSlug, type AdmissionSection } from '@/lib/study/admission-tests'
 import { passCreditLabel } from '../../_shared/pass-label'
 import type { TestFamily } from '@/lib/study-prompt-context'
 import type { Json } from '@/lib/database.types'
@@ -431,9 +432,29 @@ function TopicInner({ slug }: { slug: string }) {
     ])
   }, [loadPrefsAndTopic, loadBankCounts, loadProgress, loadPassCredits])
 
-  // Credit cost of the bank test for the currently-selected section.
+  /*
+   * Credit cost of the bank test for the currently-selected section.
+   *
+   * MUST agree with what the server charges. The assemble route calls
+   * creditCostForTest(family, block.key) — the BLUEPRINT BLOCK KEY. This
+   * function used to derive its key by title-casing the topic slug and
+   * re-lowercasing it, which for SSAT/ISEE produced a different string
+   * than the route's:
+   *
+   *     isee-quant-reasoning  -> "quant_reasoning"   route: "quant"
+   *     isee-math-achievement -> "math_achievement"  route: "mathach"
+   *
+   * Neither is in SECTION_CREDIT_COST, so both fell through to the
+   * `?? 1` default and the sheet displayed "1 credit" while the route
+   * reserved 2. The student saw one price and paid another.
+   *
+   * Both sides now read the same block key.
+   */
   const bankCreditCost = () => {
-    const parsed = parseTestSlug(effectiveTopic?.slug ?? slug)
+    const slugNow = effectiveTopic?.slug ?? slug
+    const admission = admissionSectionForSlug(slugNow)
+    if (admission) return creditCostForTest(admission.family, admission.section.key)
+    const parsed = parseTestSlug(slugNow)
     return creditCostForTest(parsed.family, parsed.section?.toLowerCase().replace(/\s+/g, '_') ?? null)
   }
 
@@ -502,11 +523,92 @@ function TopicInner({ slug }: { slug: string }) {
   // Instant bank-assembled full test (SAT + TOEFL). No AI wait — the
   // assemble route builds a blueprint-balanced test from the verified
   // item bank and returns a ready session to route into.
+  /*
+ * Start one SSAT / ISEE section.
+ *
+ * Separate from startBankTest's SAT/TOEFL body because the request
+ * shape genuinely differs: `section` is a BLUEPRINT BLOCK KEY
+ * (quant1 / quant2 / mathach), while the bank's own section column is
+ * carried separately as bankSection. Collapsing the two is what would
+ * make the two SSAT quantitative blocks indistinguishable.
+ *
+ * Never adaptive: neither test has a routing module, and passing
+ * adaptive would put the assemble route into SAT's two-module flow.
+ */
+  const startAdmissionSection = async (
+    family: 'ssat' | 'isee',
+    /* The real blueprint type, not a structural stand-in: bankSection is
+       nullable there (a block that is not drawn from the bank) and
+       narrowing it here would have hidden that from this call site. */
+    section: AdmissionSection,
+  ) => {
+    setBankBusy(true)
+    try {
+      const headers = await authHeaders()
+      const res = await fetch('/api/study/test/assemble', {
+        method: 'POST',
+        headers: { ...headers, 'Content-Type': 'application/json' },
+        /* Only the block KEY goes over the wire. The route looks the
+           block up in ADMISSION_BLUEPRINT and takes bankSection from
+           there, ignoring anything the client sends — so sending it
+           would be dead weight that falsely implies the client chooses
+           which pool a block draws from. It must not. */
+        body: JSON.stringify({
+          family,
+          section: section.key,
+          adaptive: false,
+          creditSource,
+        }),
+      })
+      if (res.status === 402) { setBankBusy(false); setCreditConfirmOpen(false); setNoCreditsOpen(true); return }
+      if (res.status === 409) {
+        const json = await res.json().catch(() => ({})) as { reason?: string; unseen?: number }
+        setBankBusy(false)
+        setCreditConfirmOpen(false)
+        setExhausted({
+          reason: json.reason === 'no_bank_coverage' ? 'no_bank_coverage' : 'pool_exhausted',
+          unseen: json.unseen ?? 0,
+        })
+        return
+      }
+      if (!res.ok) { setBankBusy(false); showError(startFailedMessage(ko)); return }
+      const json = await res.json()
+      router.push(`/mobile/study/session/${json.sessionId}`)
+    } catch {
+      setBankBusy(false)
+      showError(startFailedMessage(ko))
+    }
+  }
+
   const startBankTest = async () => {
     const target = effectiveTopic
     if (!target || bankBusy) return
     const { family, section } = parseTestSlug(target.slug)
-    if (family !== 'sat' && family !== 'toefl') return
+
+    /*
+     * SSAT and ISEE resolve by SLUG, not by the title-cased section name
+     * parseTestSlug derives. `ssat-quant-1` title-cases to "Quant 1",
+     * which matches no blueprint section, and the two SSAT quantitative
+     * blocks differ only by key while sharing a bank section — so a
+     * name lookup cannot tell them apart. admissionSectionForSlug is the
+     * mapping, and it returns null for `ssat-experimental` (unscored,
+     * deliberately not in the blueprint) and for the `test-ssat` /
+     * `test-isee` parents.
+     */
+    const admission = admissionSectionForSlug(target.slug)
+    if (admission) {
+      await startAdmissionSection(admission.family, admission.section)
+      return
+    }
+
+    /* Anything else that is not SAT or TOEFL has no bank path. This used
+     * to be a bare `return`, which meant a student on an unsupported
+     * topic tapped Start and NOTHING happened — no spinner, no message.
+     * Say so instead. */
+    if (family !== 'sat' && family !== 'toefl') {
+      showError(startFailedMessage(ko))
+      return
+    }
     // Body differs by family: SAT is two-module adaptive (assemble draws
     // Module 1, /route draws Module 2 after grading); TOEFL is a single
     // non-adaptive task-type draw. section keys match the bank's `section`
@@ -1044,7 +1146,7 @@ function TopicInner({ slug }: { slug: string }) {
  *  "<family>-<section>" for leaves (e.g., toefl-reading, sat-math).
  *  Section name returned in English to match TEST_SPECS' name_en. */
 function parseTestSlug(slug: string): { family: TestFamily | null; section: string | null } {
-  const FAMILIES: TestFamily[] = ['ksat', 'sat', 'toefl', 'toeic', 'ielts', 'act', 'ap', 'gre']
+  const FAMILIES: TestFamily[] = ['ksat', 'sat', 'toefl', 'toeic', 'ielts', 'act', 'ap', 'gre', 'ssat', 'isee']
   // Parent: test-<family> → all sections; defaultsForTestSection returns sections[0].
   const rootMatch = slug.match(/^test-(.+)$/)
   if (rootMatch) {
