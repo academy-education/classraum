@@ -1474,6 +1474,45 @@
      "verdict": "Key letters on the shipped 19 spread with a 26.3% control. NOTE: on an ascending-order numeric bank the letter check is not independent of the magnitude-rank check."
     }
    }
+  },
+  {
+   "id": "isee-math-s5-2026-08-31",
+   "createdAt": "2026-08-31",
+   "targetTest": "isee",
+   "section": "math",
+   "task": "multiple_choice",
+   "family": "mc_stem_source",
+   "spec": {
+    "n": 44,
+    "authors": 1,
+    "method": "hand-authored, solve-gated; authored to FLATTEN the magnitude-rank skew measured on isee-math-s4"
+   },
+   "status": "shipped",
+   "cohort": "isee-math-s5",
+   "note": "Attack margin +3.0 (29.6% vs 26.7% control). ISEE math 130 -> 174 against an 84-item form, comfortably two sections. The rank fix WORKED: s4 had the key at magnitude rank 1 in 40.5% against 25% expected; s5 measures 9/11/13/9, and the attacker fixed-rank solver degenerated to always-C at 24.4%, which is chance. Dropped IM5-30, whose options included \"3 : 5\" and \"6 : 10\" - the SAME ratio, so neither could be the key. Found by a blind attacker rather than a checker, because every distinct-choices guard here compares STRINGS.",
+   "stages": {
+    "shape": {
+     "passed": true,
+     "verdict": "45/45 solve bodies re-executed and matched their key independently. 4 distinct choices, key present, 3 named mis-steps, 45 subskills with zero reuse from s4. The author mutation-tested its own checker with 12 planted faults, all of which fired, and caught a float mismatch (9.600000000000001 vs 9.6) that reading would have passed."
+    },
+    "nosource": {
+     "passed": true,
+     "n": 44,
+     "verdict": "Options-only attack, prompt withheld because for maths the prompt IS the stem: mean 29.6% vs 26.7% control, margin +3.0. The four items the attacker named as leaky scored exactly at chance."
+    },
+    "elimination": {
+     "passed": true,
+     "verdict": "No roundness, digit-count, decimal-form, unit-format or option-length tell. The rank rule that paid on s4 no longer pays."
+    },
+    "withsource": {
+     "passed": true,
+     "verdict": "No human pass yet; part of register item B5."
+    },
+    "tells": {
+     "passed": true,
+     "verdict": "Key magnitude rank 9/11/13/9. New guard check-equivalent-options.mjs run over all 4,679 live items: 0 defects outside this batch."
+    }
+   }
   }
  ],
  "auditedCohorts": [
