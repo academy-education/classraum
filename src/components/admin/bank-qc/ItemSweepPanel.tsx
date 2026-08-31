@@ -190,10 +190,18 @@ export function ItemSweepPanel() {
 
   return (
     <section className={`${CARD} p-5`}>
+      {/*
+        * The collapsed state has to READ as a control. The first version
+        * was a heading with a small grey chevron, and a reviewer opened
+        * the page and reported seeing nothing — the list is lazy-loaded
+        * (490 items with passages is not something to fetch for every
+        * admin who visits), so an unopened panel is genuinely empty.
+        * Lazy loading is right; looking inert was not.
+        */}
       <button
         onClick={() => setOpen(o => !o)}
         aria-expanded={open}
-        className="w-full flex items-center justify-between gap-3 text-left"
+        className="w-full flex items-center justify-between gap-4 text-left rounded-xl -m-1 p-1 hover:bg-gray-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
       >
         <div>
           <h2 className="text-[15px] font-semibold text-gray-900">Read every question — SSAT &amp; ISEE</h2>
@@ -203,7 +211,10 @@ export function ItemSweepPanel() {
             vocabulary above the grade band. Your marks save as you make them.
           </p>
         </div>
-        <ChevronDown className={`w-5 h-5 text-gray-400 shrink-0 transition-transform ${open ? 'rotate-180' : ''}`} />
+        <span className="shrink-0 inline-flex items-center gap-1.5 rounded-lg border border-gray-200 px-3 py-1.5 text-[13px] font-medium text-gray-700">
+          {open ? 'Hide' : 'Open the list'}
+          <ChevronDown className={`w-4 h-4 text-gray-400 transition-transform ${open ? 'rotate-180' : ''}`} />
+        </span>
       </button>
 
       {open && (

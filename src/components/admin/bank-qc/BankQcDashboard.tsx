@@ -21,6 +21,7 @@ import {
 import { RegisterPanel } from './RegisterPanel'
 import { A3_ATTEMPTS, PLAIN_STATUS } from '@/lib/study/bank-register'
 import { LiveBankState } from './LiveBankState'
+import { ItemSweepPanel } from './ItemSweepPanel'
 import { UnverifiedCount } from './UnverifiedCount'
 import { TASK_PIPELINES, type TaskPipeline } from '@/lib/study/task-pipelines'
 import { FAMILY_STAGES, type ItemFamily } from '@/lib/study/bank-qc'
@@ -480,6 +481,20 @@ export function BankQcDashboard() {
           in the bank). Putting history above state is what made this
           page unreadable. */}
       <LiveBankState />
+      {/*
+        * MOUNTED HERE, NOT INSIDE LiveBankState.
+        *
+        * It was inside, after that component's `if (error)` and
+        * `if (!data)` early returns — so whenever /api/admin/bank-qc/live
+        * was slow or failed, this panel did not render AT ALL and the
+        * page just looked empty. That is what a reviewer reported on
+        * 2026-08-31. The live route pages the whole 4,500-row bank plus
+        * attacks and reviews, so it is the most failure-prone fetch on
+        * the page, and the review tool must not be behind it.
+        *
+        * It fetches its own data and shows its own errors.
+        */}
+      <ItemSweepPanel />
       <RegisterPanel />
 
       <div className="pt-2 border-t border-gray-100">
