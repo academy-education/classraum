@@ -1435,6 +1435,45 @@
      "verdict": "Polar-pair prevalence 100%. Odd-one-out anti-correlation 0/25."
     }
    }
+  },
+  {
+   "id": "ssat-math-s4-2026-08-31",
+   "createdAt": "2026-08-31",
+   "targetTest": "ssat",
+   "section": "math",
+   "task": "multiple_choice",
+   "family": "mc_stem_source",
+   "spec": {
+    "n": 19,
+    "authors": 1,
+    "method": "hand-authored, solve-gated; 5 options with 4 named distractor mis-steps"
+   },
+   "status": "shipped",
+   "cohort": "ssat-math-s4",
+   "note": "Shipped 19 of 25. SSAT math 77 -> 96 against a 50-item requirement. The AGGREGATE MARGIN HID the defect: whole batch +9.3, but the five items the attacker named before scoring came in at 73.3% against 20% chance while the other 20 sat at 33.3%. Cause: distractor sets built by iterating ONE operation on a seed (a doubling ladder, a radius-vs-diameter family), so the ladder is visible without the stem and the key is the middle rung. Authoring rule: the four distractors must come from DIFFERENT operations. Also recorded: with ascending numeric options and a key that is never rank 5, the key-letter spread check and the rank check measure the same thing, so a clean letter spread is weaker evidence than it looks. See SM4-RESULT.md.",
+   "stages": {
+    "shape": {
+     "passed": true,
+     "verdict": "25/25 solve bodies re-executed and matched their key by an independent evaluator. 5 distinct choices, key present, 4 named mis-steps. Shape guards applied to the 19 all-numeric sets; algebraic option sets excluded because parsing them invents false alarms."
+    },
+    "nosource": {
+     "passed": true,
+     "n": 19,
+     "verdict": "Options-only attack on the shipped 19: mean 33.3% vs 26.3% control, margin +7.0. The unfiltered 25 scored +9.3, which was a passing number over a broken subset."
+    },
+    "elimination": {
+     "passed": false,
+     "verdict": "Six items dropped: five named by the attacker as isolable from options alone (confirmed at 73.3%) plus SM4-11, whose coordinate options (3,-4) and (6,-8) are mutually incriminating."
+    },
+    "withsource": {
+     "passed": true,
+     "verdict": "No human pass yet; part of register item B5."
+    },
+    "tells": {
+     "passed": true,
+     "verdict": "Key letters on the shipped 19 spread with a 26.3% control. NOTE: on an ascending-order numeric bank the letter check is not independent of the magnitude-rank check."
+    }
+   }
   }
  ],
  "auditedCohorts": [
