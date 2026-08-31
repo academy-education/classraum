@@ -1513,6 +1513,45 @@
      "verdict": "Key magnitude rank 9/11/13/9. New guard check-equivalent-options.mjs run over all 4,679 live items: 0 defects outside this batch."
     }
    }
+  },
+  {
+   "id": "isee-reading-worlds-s5-2026-08-31",
+   "createdAt": "2026-08-31",
+   "targetTest": "isee",
+   "section": "reading",
+   "task": "multiple_choice",
+   "family": "mc_hidden_source",
+   "spec": {
+    "n": 50,
+    "authors": 9,
+    "method": "symmetric worlds + kill spans, authored against the s4 odd-category failure: all four answers to a question must be the same KIND of claim"
+   },
+   "status": "shipped",
+   "cohort": "isee-reading-worlds-s5",
+   "note": "Yield 92.6% (50 of 54). ISEE reading 48 -> 75 drawable against a 36-item section, so it now serves two forms. Attack margin -19.8 with every item POSITION below chance. The attacker predicted, before scoring, that vocabulary items would be free marks lifting the batch above chance; measured, they scored 14.8%, the second-weakest position. Agreement among solvers is not evidence about the key. Four cross-variant failures in two NEW shapes: a kill that reverses an event direction rather than denying the event (I08-1, I08-2), and a kill contradicted by the variant own keyed sentence (I03-5, I08-5). The three s4 shapes are absent, which is the brief working. RENDERER WARNING: variant index is confounded with content in the source (W1 the unqualified endorsement 7 of 9, W4 the small-consequence stance 6 of 9 - the reviewer said 9 of 9 and overstated it). The seeded shuffle of shown variant and option order is the only thing keeping it out of the served item, so that shuffle is load-bearing.",
+   "stages": {
+    "shape": {
+     "passed": true,
+     "verdict": "648/648 kill spans verbatim; keyword parity clean after the author repaired 8 hits caused by its own length edits; length ratios 1.019-1.058; blind file asserted passage-free."
+    },
+    "nosource": {
+     "passed": true,
+     "n": 50,
+     "verdict": "mean 13.6% vs 33.3% control, margin -19.8. Scored per item POSITION as the attacker asked, since a pooled figure would hide a leak in one position: all six below chance."
+    },
+    "elimination": {
+     "passed": true,
+     "verdict": "The assert-then-deny paragraph shape does not reach the options - no negation, hedge or concessive in any option, and option order is re-permuted across items. The recurring stance position is a template present in every set, so membership identifies nothing."
+    },
+    "withsource": {
+     "passed": true,
+     "verdict": "Cross-variant reviewer read ALL 648 spans, no sampling: 50 of 54 pass. The author same-category claim verified per topic - clean for 5, loose for 3, materially false for I08 Q1/Q2, and the loose/false topics are exactly the ones that failed."
+    },
+    "tells": {
+     "passed": true,
+     "verdict": "Key letters spread across all four for every shown variant, because the renderer shuffles. See the renderer warning in the note."
+    }
+   }
   }
  ],
  "auditedCohorts": [
