@@ -1,7 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { dbAdmin } from '@/lib/supabase-admin'
 import { enforceRateLimit } from '@/lib/rate-limit'
-import { assembleFromBank, assembleToeflFromBank, type ToeflSection } from '@/lib/study/assemble'
+import { assembleFromBank, assembleToeflFromBank, assembleAdmissionSection, type ToeflSection } from '@/lib/study/assemble'
+import { ADMISSION_BLUEPRINT } from '@/lib/study/admission-tests'
 import { SAT_MODULE_CONFIG } from '@/lib/study/sat-adaptive'
 import { toeflAdaptiveConfig } from '@/lib/toefl-adaptive'
 import { requireStudyUser } from '@/lib/study/auth'
@@ -70,17 +71,40 @@ export async function POST(req: NextRequest) {
   // topic the session attaches to, credit cost, access gating, and which
   // assembler runs. Defaults to 'sat' for back-compat with older clients
   // that only sent `section`.
-  const family = body.family === 'toefl' ? 'toefl' : 'sat'
+  const family = body.family === 'toefl' ? 'toefl'
+    : body.family === 'ssat' ? 'ssat'
+    : body.family === 'isee' ? 'isee'
+    : 'sat'
   const isToefl = family === 'toefl'
+  const isAdmission = family === 'ssat' || family === 'isee'
+
+  /*
+   * For SSAT/ISEE the request's `section` is a BLUEPRINT BLOCK KEY
+   * ('quant1', 'mathach', …), not a bank section. The two differ because
+   * both tests deliver two separate blocks that draw from the same bank
+   * section, and every downstream consumer needs the right one:
+   *   - the topic map and credit table are keyed by BLOCK
+   *   - the bank query and the exposure/coverage gate need BANK SECTION
+   * Conflating them would charge and attribute two SSAT quant sittings as
+   * one, and would size the coverage gate against the wrong pool.
+   */
+  const block = isAdmission
+    ? ADMISSION_BLUEPRINT[family].find(b => b.key === body.section && b.bankSection !== null)
+    : null
   const section = isToefl
     ? (TOEFL_SECTIONS.includes(body.section as ToeflSection) ? (body.section as ToeflSection) : null)
-    : (body.section === 'math' || body.section === 'reading_writing' ? body.section : null)
+    : isAdmission
+      ? (block ? block.key : null)
+      : (body.section === 'math' || body.section === 'reading_writing' ? body.section : null)
   if (!section) {
-    return NextResponse.json(
-      { error: isToefl ? 'section must be reading, listening, writing or speaking' : 'section must be math or reading_writing' },
-      { status: 400 },
-    )
+    const valid = isToefl ? 'reading, listening, writing or speaking'
+      : isAdmission
+        ? ADMISSION_BLUEPRINT[family].filter(b => b.bankSection).map(b => b.key).join(', ')
+        : 'math or reading_writing'
+    return NextResponse.json({ error: `section must be ${valid}` }, { status: 400 })
   }
+  /** What the BANK is queried by. Equal to `section` except on SSAT/ISEE. */
+  const bankSection = block ? block.bankSection! : section
 
   // Test-scoped access: block a pass holder scoped to a different test
   // before any session/credit work. Free/plan/all-access users pass
@@ -111,11 +135,17 @@ export async function POST(req: NextRequest) {
   //     assembler draws the whole section at once from its task-type
   //     blueprint (count is ignored; see TOEFL_META).
   const toeflCfg = isToefl ? toeflAdaptiveConfig(section) : null
-  const adaptive = isToefl
-    ? (toeflCfg != null && body.adaptive !== false)
+  // SSAT and ISEE are LINEAR — the published formats are fixed blocks with
+  // fixed clocks, with no module branching to model. `adaptive` is forced
+  // off rather than left to the caller so a stray adaptive:true cannot
+  // halve a section and silently change the test's shape.
+  const adaptive = isAdmission ? false
+    : isToefl ? (toeflCfg != null && body.adaptive !== false)
     : body.adaptive === true
-  const count = isToefl
-    ? 0
+  // The block's published question count, NOT body.count: the whole point
+  // of a fixed-form test is that the caller does not choose its length.
+  const count = isAdmission ? block!.questions
+    : isToefl ? 0
     : adaptive
       ? SAT_MODULE_CONFIG[section as 'math' | 'reading_writing'].moduleSize
       : Math.min(Math.max(Number(body.count) || 22, 5), 54)
@@ -160,14 +190,14 @@ export async function POST(req: NextRequest) {
       dbAdmin
         .from('study_item_bank')
         .select('id', { count: 'exact', head: true })
-        .eq('family', family).eq('section', section)
+        .eq('family', family).eq('section', bankSection)
         .eq('verified', true).eq('archived', false),
       dbAdmin
         .from('study_item_exposures')
         .select('item_id, item:study_item_bank!inner(family, section)')
         .eq('student_id', user.id)
         .eq('item.family', family)
-        .eq('item.section', section),
+        .eq('item.section', bankSection),
     ])
     const input = { poolSize: poolSize ?? 0, seen: seenRows?.length ?? 0, needed: count }
     const coverage = assessCoverage(input)
@@ -239,8 +269,13 @@ export async function POST(req: NextRequest) {
           },
           sess.id,
         )
-      // SAT Module 1 is mixed difficulty → no difficulty filter, blueprint-weighted.
-      : await assembleFromBank({ section: section as 'math' | 'reading_writing', count, studentId: user.id }, sess.id)
+      : isAdmission
+        ? await assembleAdmissionSection(
+            { family, sectionKey: section, studentId: user.id },
+            sess.id,
+          )
+        // SAT Module 1 is mixed difficulty → no difficulty filter, blueprint-weighted.
+        : await assembleFromBank({ section: section as 'math' | 'reading_writing', count, studentId: user.id }, sess.id)
   } catch (e) {
     // Not enough verified items for this section — roll back the session.
     // Delete error intentionally ignored: the credits are already back, so

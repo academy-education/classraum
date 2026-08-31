@@ -324,6 +324,12 @@ export const FREE_CREDITS = 2
 const SECTION_CREDIT_COST: Record<string, Record<string, number>> = {
   sat: { reading_writing: 2, math: 2 },
   toefl: { reading: 1, writing: 1, speaking: 2, listening: 2 },
+  // SSAT / ISEE, keyed by blueprint block key (see SECTION_TOPIC for why
+  // block key rather than bank section). Priced on length, the same rule
+  // the SAT and TOEFL rows follow: the long blocks cost 2, the two short
+  // 25-question SSAT quantitative blocks cost 1.
+  ssat: { quant1: 1, reading: 2, verbal: 2, quant2: 1 },
+  isee: { verbal: 2, quant: 2, reading: 2, mathach: 2 },
 }
 
 /** Credit cost to start one full test for (family, section). */

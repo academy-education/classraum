@@ -21,11 +21,21 @@
 export const SHIPPED_TEST_SLUGS: ReadonlySet<string> = new Set([
   'test-sat',
   'test-toefl',
+  // SSAT and ISEE serve EXACTLY ONE full form each as of 2026-08-29.
+  // verify-admission-forms.mjs measures the margin: SSAT reading and ISEE
+  // math both clear their blueprint by a single item under the
+  // 3-items-per-passage cap. A student who sits either test twice sees
+  // substantially the same questions. Run that script before assuming
+  // otherwise, and re-run it after any archive.
+  'test-ssat',
+  'test-isee',
 ])
 
 export const SHIPPED_TEST_FAMILIES: ReadonlySet<string> = new Set([
   'sat',
   'toefl',
+  'ssat',
+  'isee',
 ])
 
 export function isShippedTestSlug(slug: string | null | undefined): boolean {
