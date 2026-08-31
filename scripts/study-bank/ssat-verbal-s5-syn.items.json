@@ -1,0 +1,542 @@
+[
+ {
+  "id": "SV5-Y01",
+  "kind": "synonym",
+  "subskill": "temperament",
+  "topic_tag": "synonym",
+  "difficulty": "medium",
+  "prompt": "[Synonym] IRASCIBLE",
+  "choices": [
+   "quick to anger",
+   "persistent",
+   "unmoved by pain",
+   "impulsive",
+   "friendly"
+  ],
+  "correct_answer": "quick to anger",
+  "explanation": "IRASCIBLE means quick to anger.",
+  "distractor_rationales": [
+   {
+    "choice": "persistent",
+    "reason": "tenacious means holding on stubbornly, not hot-tempered"
+   },
+   {
+    "choice": "friendly",
+    "reason": "affable means easy to talk to, not hot-tempered"
+   },
+   {
+    "choice": "unmoved by pain",
+    "reason": "stoic means enduring without complaint, not hot-tempered"
+   },
+   {
+    "choice": "impulsive",
+    "reason": "capricious means changeable on a whim, not angry"
+   }
+  ],
+  "_shown": "W2"
+ },
+ {
+  "id": "SV5-Y02",
+  "kind": "synonym",
+  "subskill": "speech",
+  "topic_tag": "synonym",
+  "difficulty": "medium",
+  "prompt": "[Synonym] ELOQUENT",
+  "choices": [
+   "pompously inflated",
+   "rudely brief",
+   "gracefully expressive",
+   "avoiding a direct answer",
+   "talkative"
+  ],
+  "correct_answer": "gracefully expressive",
+  "explanation": "ELOQUENT means gracefully expressive.",
+  "distractor_rationales": [
+   {
+    "choice": "talkative",
+    "reason": "garrulous means chattering at length, not graceful"
+   },
+   {
+    "choice": "rudely brief",
+    "reason": "curt means clipped and rude, not graceful"
+   },
+   {
+    "choice": "avoiding a direct answer",
+    "reason": "evasive means avoiding an answer, not graceful"
+   },
+   {
+    "choice": "pompously inflated",
+    "reason": "bombastic means pompous and overblown, not graceful"
+   }
+  ],
+  "_shown": "W2"
+ },
+ {
+  "id": "SV5-Y03",
+  "kind": "synonym",
+  "subskill": "motion",
+  "topic_tag": "synonym",
+  "difficulty": "medium",
+  "prompt": "[Synonym] TRUDGE",
+  "choices": [
+   "move in quick short steps",
+   "walk heavily and wearily",
+   "lurch from side to side",
+   "drop straight down",
+   "wind along an indirect course"
+  ],
+  "correct_answer": "walk heavily and wearily",
+  "explanation": "TRUDGE means walk heavily and wearily.",
+  "distractor_rationales": [
+   {
+    "choice": "lurch from side to side",
+    "reason": "careen means to lurch from side to side, not to plod"
+   },
+   {
+    "choice": "drop straight down",
+    "reason": "plummet means to drop straight down, not to walk"
+   },
+   {
+    "choice": "wind along an indirect course",
+    "reason": "meander means to wander in curves, not to walk wearily"
+   },
+   {
+    "choice": "move in quick short steps",
+    "reason": "scurry means to move in quick short steps, not heavily"
+   }
+  ],
+  "_shown": "W1"
+ },
+ {
+  "id": "SV5-Y04",
+  "kind": "synonym",
+  "subskill": "size",
+  "topic_tag": "synonym",
+  "difficulty": "medium",
+  "prompt": "[Synonym] SCANT",
+  "choices": [
+   "barely enough",
+   "enormous",
+   "extremely tiny",
+   "more than enough",
+   "large and awkward to handle"
+  ],
+  "correct_answer": "barely enough",
+  "explanation": "SCANT means barely enough.",
+  "distractor_rationales": [
+   {
+    "choice": "extremely tiny",
+    "reason": "minuscule describes the size of one thing, not a short supply"
+   },
+   {
+    "choice": "enormous",
+    "reason": "colossal means vast, not short"
+   },
+   {
+    "choice": "more than enough",
+    "reason": "ample means plentiful, not short"
+   },
+   {
+    "choice": "large and awkward to handle",
+    "reason": "bulky means taking up awkward space, not short in supply"
+   }
+  ],
+  "_shown": "W4"
+ },
+ {
+  "id": "SV5-Y05",
+  "kind": "synonym",
+  "subskill": "attention",
+  "topic_tag": "synonym",
+  "difficulty": "medium",
+  "prompt": "[Synonym] OBLIVIOUS",
+  "choices": [
+   "completely absorbed",
+   "unaware of one's surroundings",
+   "watchful for danger",
+   "attentive to the smallest detail",
+   "done hastily and shallowly"
+  ],
+  "correct_answer": "unaware of one's surroundings",
+  "explanation": "OBLIVIOUS means unaware of one's surroundings.",
+  "distractor_rationales": [
+   {
+    "choice": "watchful for danger",
+    "reason": "vigilant means keenly aware, not unaware"
+   },
+   {
+    "choice": "completely absorbed",
+    "reason": "engrossed means intensely attending to something, not unaware of it"
+   },
+   {
+    "choice": "done hastily and shallowly",
+    "reason": "cursory means glancing, which is still noticing"
+   },
+   {
+    "choice": "attentive to the smallest detail",
+    "reason": "meticulous means minutely attentive, not unaware"
+   }
+  ],
+  "_shown": "W3"
+ },
+ {
+  "id": "SV5-Y06",
+  "kind": "synonym",
+  "subskill": "honesty",
+  "topic_tag": "synonym",
+  "difficulty": "medium",
+  "prompt": "[Synonym] DUPLICITOUS",
+  "choices": [
+   "deliberately two-faced",
+   "outspokenly direct",
+   "not genuine",
+   "strictly principled",
+   "sincere and serious in feeling"
+  ],
+  "correct_answer": "deliberately two-faced",
+  "explanation": "DUPLICITOUS means deliberately two-faced.",
+  "distractor_rationales": [
+   {
+    "choice": "strictly principled",
+    "reason": "scrupulous means strictly principled, not deceitful"
+   },
+   {
+    "choice": "sincere and serious in feeling",
+    "reason": "earnest means sincere, not deceitful"
+   },
+   {
+    "choice": "outspokenly direct",
+    "reason": "forthright means outspokenly direct, not deceitful"
+   },
+   {
+    "choice": "not genuine",
+    "reason": "spurious describes a fake thing, not a person playing two parts"
+   }
+  ],
+  "_shown": "W1"
+ },
+ {
+  "id": "SV5-Y07",
+  "kind": "synonym",
+  "subskill": "effort",
+  "topic_tag": "synonym",
+  "difficulty": "medium",
+  "prompt": "[Synonym] FUTILE",
+  "choices": [
+   "producing no result",
+   "steadily hard-working",
+   "habitually lazy",
+   "carelessly sloppy",
+   "demanding great exertion"
+  ],
+  "correct_answer": "producing no result",
+  "explanation": "FUTILE means producing no result.",
+  "distractor_rationales": [
+   {
+    "choice": "steadily hard-working",
+    "reason": "diligent describes effort applied, not the outcome"
+   },
+   {
+    "choice": "habitually lazy",
+    "reason": "indolent describes withheld effort, not a wasted outcome"
+   },
+   {
+    "choice": "demanding great exertion",
+    "reason": "arduous describes how taxing the effort is, not whether it pays off"
+   },
+   {
+    "choice": "carelessly sloppy",
+    "reason": "slipshod describes how the work was done, not whether it achieved anything"
+   }
+  ],
+  "_shown": "W5"
+ },
+ {
+  "id": "SV5-Y08",
+  "kind": "synonym",
+  "subskill": "mood",
+  "topic_tag": "synonym",
+  "difficulty": "medium",
+  "prompt": "[Synonym] ANXIOUS",
+  "choices": [
+   "uneasy with worry",
+   "in high spirits",
+   "gently longing for what is past",
+   "gloomy and sullen",
+   "untroubled and calm"
+  ],
+  "correct_answer": "uneasy with worry",
+  "explanation": "ANXIOUS means uneasy with worry.",
+  "distractor_rationales": [
+   {
+    "choice": "gloomy and sullen",
+    "reason": "morose means sulky and downcast, not apprehensive"
+   },
+   {
+    "choice": "in high spirits",
+    "reason": "elated means delighted, not worried"
+   },
+   {
+    "choice": "gently longing for what is past",
+    "reason": "wistful means fondly regretful, not worried"
+   },
+   {
+    "choice": "untroubled and calm",
+    "reason": "serene means free of worry, not full of it"
+   }
+  ],
+  "_shown": "W4"
+ },
+ {
+  "id": "SV5-Y09",
+  "kind": "synonym",
+  "subskill": "wealth",
+  "topic_tag": "synonym",
+  "difficulty": "medium",
+  "prompt": "[Synonym] DESTITUTE",
+  "choices": [
+   "producing a large profit",
+   "luxuriously rich",
+   "utterly without money",
+   "greedy for money",
+   "careful in spending"
+  ],
+  "correct_answer": "utterly without money",
+  "explanation": "DESTITUTE means utterly without money.",
+  "distractor_rationales": [
+   {
+    "choice": "luxuriously rich",
+    "reason": "opulent means richly luxurious, not penniless"
+   },
+   {
+    "choice": "careful in spending",
+    "reason": "frugal means careful with money, which implies having some"
+   },
+   {
+    "choice": "greedy for money",
+    "reason": "avaricious means greedy for money, not lacking it"
+   },
+   {
+    "choice": "producing a large profit",
+    "reason": "lucrative means profitable, not penniless"
+   }
+  ],
+  "_shown": "W1"
+ },
+ {
+  "id": "SV5-Y10",
+  "kind": "synonym",
+  "subskill": "order",
+  "topic_tag": "synonym",
+  "difficulty": "medium",
+  "prompt": "[Synonym] SYSTEMATIC",
+  "choices": [
+   "crowded with untidy things",
+   "arranged by a fixed method",
+   "spotlessly clean",
+   "evenly balanced on both sides",
+   "confusingly maze-like"
+  ],
+  "correct_answer": "arranged by a fixed method",
+  "explanation": "SYSTEMATIC means arranged by a fixed method.",
+  "distractor_rationales": [
+   {
+    "choice": "crowded with untidy things",
+    "reason": "cluttered means crowded with untidy things, not methodical"
+   },
+   {
+    "choice": "spotlessly clean",
+    "reason": "immaculate means spotlessly clean, which is not the same as ordered by a rule"
+   },
+   {
+    "choice": "evenly balanced on both sides",
+    "reason": "symmetrical means matched on both sides, not governed by a method"
+   },
+   {
+    "choice": "confusingly maze-like",
+    "reason": "labyrinthine means confusingly maze-like, the reverse of methodical"
+   }
+  ],
+  "_shown": "W1"
+ },
+ {
+  "id": "SV5-Y11",
+  "kind": "synonym",
+  "subskill": "clarity",
+  "topic_tag": "synonym",
+  "difficulty": "medium",
+  "prompt": "[Synonym] ESOTERIC",
+  "choices": [
+   "using far more words than needed",
+   "needlessly complicated",
+   "easily understood",
+   "understood only by a few specialists",
+   "open to more than one meaning"
+  ],
+  "correct_answer": "understood only by a few specialists",
+  "explanation": "ESOTERIC means understood only by a few specialists.",
+  "distractor_rationales": [
+   {
+    "choice": "easily understood",
+    "reason": "lucid means plain to any reader, the reverse of restricted"
+   },
+   {
+    "choice": "open to more than one meaning",
+    "reason": "ambiguous means having rival meanings, not a restricted audience"
+   },
+   {
+    "choice": "needlessly complicated",
+    "reason": "convoluted means twisted in expression, not narrow in audience"
+   },
+   {
+    "choice": "using far more words than needed",
+    "reason": "verbose means padded with words, not narrow in audience"
+   }
+  ],
+  "_shown": "W5"
+ },
+ {
+  "id": "SV5-Y12",
+  "kind": "synonym",
+  "subskill": "courage",
+  "topic_tag": "synonym",
+  "difficulty": "medium",
+  "prompt": "[Synonym] RESOLUTE",
+  "choices": [
+   "contemptibly cowardly",
+   "recklessly rash",
+   "fearless in the face of danger",
+   "firmly determined",
+   "uneasy about what may happen"
+  ],
+  "correct_answer": "firmly determined",
+  "explanation": "RESOLUTE means firmly determined.",
+  "distractor_rationales": [
+   {
+    "choice": "fearless in the face of danger",
+    "reason": "intrepid means unafraid of danger, while determination may face no danger"
+   },
+   {
+    "choice": "contemptibly cowardly",
+    "reason": "craven means spineless, not determined"
+   },
+   {
+    "choice": "recklessly rash",
+    "reason": "foolhardy means acting without thought, not holding to a purpose"
+   },
+   {
+    "choice": "uneasy about what may happen",
+    "reason": "apprehensive means wavering with worry, not firm"
+   }
+  ],
+  "_shown": "W4"
+ },
+ {
+  "id": "SV5-Y13",
+  "kind": "synonym",
+  "subskill": "change",
+  "topic_tag": "synonym",
+  "difficulty": "medium",
+  "prompt": "[Synonym] FLUCTUATE",
+  "choices": [
+   "stop developing and go stale",
+   "grow steadily more intense",
+   "restore to good condition",
+   "wear away gradually",
+   "rise and fall irregularly"
+  ],
+  "correct_answer": "rise and fall irregularly",
+  "explanation": "FLUCTUATE means rise and fall irregularly.",
+  "distractor_rationales": [
+   {
+    "choice": "wear away gradually",
+    "reason": "erode means to diminish steadily in one direction"
+   },
+   {
+    "choice": "grow steadily more intense",
+    "reason": "escalate means to mount steadily in one direction"
+   },
+   {
+    "choice": "stop developing and go stale",
+    "reason": "stagnate means not to move at all"
+   },
+   {
+    "choice": "restore to good condition",
+    "reason": "renovate means to overhaul something, not to vary"
+   }
+  ],
+  "_shown": "W4"
+ },
+ {
+  "id": "SV5-Y14",
+  "kind": "synonym",
+  "subskill": "resistance",
+  "topic_tag": "synonym",
+  "difficulty": "medium",
+  "prompt": "[Synonym] THWART",
+  "choices": [
+   "openly refuse to obey",
+   "block from succeeding",
+   "stop short and go no further",
+   "soften after being harsh",
+   "undermine from within"
+  ],
+  "correct_answer": "block from succeeding",
+  "explanation": "THWART means block from succeeding.",
+  "distractor_rationales": [
+   {
+    "choice": "openly refuse to obey",
+    "reason": "defy means to disobey, while thwarting frustrates a plan"
+   },
+   {
+    "choice": "stop short and go no further",
+    "reason": "balk means to refuse to proceed oneself, not to stop another"
+   },
+   {
+    "choice": "soften after being harsh",
+    "reason": "relent means to ease off, not to obstruct"
+   },
+   {
+    "choice": "undermine from within",
+    "reason": "subvert means to weaken from inside over time, while thwarting stops an attempt outright"
+   }
+  ],
+  "_shown": "W3"
+ },
+ {
+  "id": "SV5-Y15",
+  "kind": "synonym",
+  "subskill": "generosity",
+  "topic_tag": "synonym",
+  "difficulty": "medium",
+  "prompt": "[Synonym] BENEVOLENT",
+  "choices": [
+   "spending very freely",
+   "kindly and wishing others well",
+   "hoarding and unwilling to spend",
+   "generous in forgiving a rival",
+   "donating wealth to public causes"
+  ],
+  "correct_answer": "kindly and wishing others well",
+  "explanation": "BENEVOLENT means kindly and wishing others well.",
+  "distractor_rationales": [
+   {
+    "choice": "generous in forgiving a rival",
+    "reason": "magnanimous means noble toward a defeated rival, a much narrower thing than general goodwill"
+   },
+   {
+    "choice": "donating wealth to public causes",
+    "reason": "philanthropic means actually donating wealth, while goodwill costs nothing"
+   },
+   {
+    "choice": "hoarding and unwilling to spend",
+    "reason": "miserly means tight-fisted, not kindly"
+   },
+   {
+    "choice": "spending very freely",
+    "reason": "lavish means free with money, not warm in feeling"
+   }
+  ],
+  "_shown": "W2"
+ }
+]
