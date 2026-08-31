@@ -67,7 +67,19 @@ async function all(table, cols, tweak = q => q) {
   return out
 }
 
-const bank = (await all('study_item_bank', 'id, family, domain, item, archived')).filter(r => !r.archived)
+/*
+ * LIVE means servable, so this filters `verified` as well as `archived`.
+ * It used to filter only `archived`, which counted 4 unverified TOEFL
+ * rows the assembly query (verified = true) can never draw — the
+ * headline read 4,812 when 4,808 could actually be served, and that
+ * figure got quoted onward. `verified` is a weak claim (see
+ * bank-ledger.ts: it records that a row was inserted, nothing more) but
+ * it is exactly the flag assembly gates on, so it is the right filter
+ * for a COUNT OF SERVABLE ITEMS even though it is the wrong basis for
+ * any claim about quality.
+ */
+const bank = (await all('study_item_bank', 'id, family, domain, item, archived, verified'))
+  .filter(r => !r.archived && r.verified)
 const attacks = await all('study_item_attacks', 'item_id, correct, solvers, attacked_at')
 /*
  * "Everything else" is COUNTED, not declared. It used to be a literal
@@ -326,7 +338,10 @@ const rows = [...cohorts.entries()].map(([k, e]) => {
 
 const s = registerSummary(WORK)
 const open = WORK.filter(w => w.state !== 'done')
-const today = new Date().toISOString().slice(0, 10)
+/* KST, matching every other date in this file and in the register's
+   prose. toISOString() is UTC and stamped the file a day early for the
+   nine hours after Seoul midnight. */
+const today = new Date(Date.now() + 9 * 3600 * 1000).toISOString().slice(0, 10)
 
 const md = `# Question bank register — the one list
 

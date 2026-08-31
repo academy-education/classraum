@@ -8,8 +8,8 @@
 renders on /admin/bank-qc, from the same source, so the two cannot
 disagree.
 
-Generated 2026-08-31. Live items: 4,812.
-Open work: 4 — 0 mine, 4 need you.
+Generated 2026-09-01. Live items: 4,808.
+Open work: 3 — 0 mine, 3 need you.
 
 ---
 
@@ -24,7 +24,7 @@ process is not reporting the position.**
 | | items | what is true |
 |---|---|---|
 | **Choose a Response (cr-v1 — archived 2026-08-18)** | 0 | **Known broken.** Solvable without the audio, on two independent instruments. |
-| Everything else | 4,812 | **Not known to be broken** — never read by a person |
+| Everything else | 4,808 | **Not known to be broken** — never read by a person |
 
 0.0% is a quality problem. The rest is a scheduling
 problem, and it is blocked on one 20-minute task: **B2 — the two never-read cohorts (B4 passed 2026-08-15)**.
@@ -79,9 +79,9 @@ Two qualifications, both learned the hard way:
 
 | test | cohort | items | blind | human | state |
 |---|---|---|---|---|---|
-| TOEFL | Academic Passage | 434 | 100% | 13.3% (n=15) | human says maybe — needs more |
+| TOEFL | Academic Passage | 432 | 100% | 13.3% (n=15) | human says maybe — needs more |
 | TOEFL | Daily Life | 296 | 100% | 33.3% (n=15) | human says maybe — needs more |
-| TOEFL | Academic Talk | 275 | 100% | 35% (n=20) | **cleared by hand** — the model was wrong |
+| TOEFL | Academic Talk | 274 | 100% | 31.6% (n=19) | human says maybe — needs more |
 | SAT | Algebra | 244 | 100% | — | **unconfirmed** — model only |
 | SAT | Expression of Ideas | 244 | 100% | 11.1% (n=18) | human says maybe — needs more |
 | SAT | Information and Ideas | 240 | 95.8% | no usable sitting — 37.5% / 29.4% | **sitting not interpretable** — the reader abstained on most of it |
@@ -89,7 +89,7 @@ Two qualifications, both learned the hard way:
 | SAT | Advanced Math | 233 | 100% | — | **unconfirmed** — model only |
 | SAT | Standard English Conventions | 224 | 65% | 15% (n=20) | **cleared by hand** — the model was wrong |
 | SAT | Problem-Solving and Data Analysis | 224 | 100% | — | **unconfirmed** — model only |
-| TOEFL | Choose a Response | 215 | 100% | 20% (n=40) — best of 2: 100% / 100% / 20% / 12.5% | **cleared by hand** — the model was wrong |
+| TOEFL | Choose a Response | 214 | — | 20% (n=40) | never measured — the attack does not apply |
 | SAT | Craft and Structure | 210 | 97.9% | 26.7% (n=15) | human says maybe — needs more |
 | TOEFL | Conversation | 193 | 86.8% | 20% (n=15) | human says maybe — needs more |
 | ISEE | Math | 174 | — | — | never measured — the attack does not apply |
@@ -130,10 +130,9 @@ a model agreeing with itself.
 
 
 
-### Dependencies — read this before picking anything up
+### Dependencies
 
-**B4 → B2**  
-B4 is *Calibrate the reviewer before spending another cohort* (~20 minutes — one sitting, already drawn, yours). Until it lands, **B2** (Sittings on Academic Talk and Craft and Structure, ~20 minutes each) cannot start.
+Nothing is blocked — every open item can start today.
 
 ## 2. Open work — mine, no approval needed
 
@@ -145,8 +144,7 @@ B4 is *Calibrate the reviewer before spending another cohort* (~20 minutes — o
 
 | id | what | cost | who | why |
 |---|---|---|---|---|
-| B4 | Calibrate the reviewer before spending another cohort | ~20 minutes — one sitting, already drawn | **support@classraum.com — the run is ALREADY DRAWN as calibration-2026-08-11, so he does not touch the cohort dropdown; Bank QC -> Review resumes it automatically. That is deliberate: the dropdown has now misdirected three sittings.**<br>Your co-founder, on support@. Do NOT tell him it is a calibration or that half the items are model-solved — a reviewer who knows that looks harder at them and the run stops measuring what it is for. The one thing to say out loud, in your own words, is what "can't tell" means; a paragraph in the brief has already failed to fix that once. | Three human sittings in a row produced no usable number, each failing differently: wrong reviewer identity (B1), wrong cohort drawn (Academic Passage, 08-10), and a reviewer who pressed "can't tell" on 19 of 20 items including one his own note says he had solved. The reviewer is the instrument every bank verdict rests on, and nothing has ever checked that it works. This is CLAUDE.md's own rule applied to a person rather than a script: a detector that cannot reproduce a known number on known data has no business being pointed at unknown data. Until it passes, another real cohort is 20 minutes of a co-founder's time and one more chance to burn a cohort's first measurement. _20 items by SELECTION, not fabrication — nothing inserted into study_item_bank. 10 the blind attack solved 3/3, 10 it solved 0/3, interleaved, flat 25% control. The measurement that matters is ABSTENTION, which is confound-free: back in the 0-15% range the early sittings produced means the instrument is repaired. The guessable-vs-opaque GAP is explicitly NOT the verdict here — only 2 cohorts overlap between the halves (5 matched items) at current attack coverage, so a gap could be cohort rather than discrimination, and the scorer refuses to read it under 6 matched items. Strengthening it means attacking more items in Choose a Response / SEC / Conversation, which is mine and cheap._ |
-| B2 | Sittings on Academic Talk and Craft and Structure | ~20 minutes each | **support@classraum.com — the co-founder's own account, confirmed 2026-08-09 (it holds the 72 original human reviews). Already super_admin; nothing to create. Same-person reuse is fine HERE because neither cohort has a prior human review, so this is a first measurement rather than an agreement test — unlike B1, where identity was the whole point.**<br>Your CO-FOUNDER, on support@classraum.com — his own account, which holds all 8 real sittings (192 reviews, 2026-08-04 to 08-10). NOT you: andy.manager@gmail.com is YOURS and holds exactly one run, the B1 mirror. THIS ENTRY SAID THE OPPOSITE until 2026-08-11 — "You, on support@" — while the account note directly above it said support@ was the co-founder's. Following the prose would have put a second human behind the reviewer_id that carries every cohort measurement the bank has, and the damage would have been RETROACTIVE: not just the new sitting but all 192 prior reviews would become "one of two people", with no column to separate them. That is the precise failure B1 exists to detect, sitting in the instruction telling you how to avoid it. Unlike B1 these cohorts have never been read by anyone, so there is no contamination risk in the ITEMS; the constraint is that one human keeps one account for good, because reviewer identity IS the account. Use the normal "Start a sitting" draw, not a mirror. | Roughly 486 items sit as "the model says guessable, nobody checked". HALF-ATTEMPTED and NOT USABLE as of 2026-08-11. Academic Talk WAS sat on 2026-08-10 (run academic-talk-2026-08-10, support@, 20 items, all four cohort tags correct, 0 stale shas) — and it came back 19/20 "Can't tell", 0% correct. Under the pre-registered rule 0% is CLEARED; it is not being read that way, and the reason is in the run itself rather than in a judgement call after the fact. The sitting ran 23:14-00:17 KST; the corrected brief was committed 23:56 KST, i.e. DURING it. Both 08-10 sittings were therefore taken under the OLD abstention wording, which has never been un-tested. One of his own notes reads "this was guessable but I just didn't click it. The other answers are too obviously wrong so D is the only plausible answer" — a reviewer stating outright that he abstained on an item he had solved. That is not caution, it is the button meaning something different to him than to the brief, and it turns the 0% into a measurement of the instrument. He was not rushing: 40-70s per item on the blind step, 20-30s on the reveal, full step-2 judgements on all 20. Craft and Structure has still never been sat. NEXT: re-run Academic Talk under the corrected brief, and say in the covering message what "Can't tell" is for. _Daily Life and Announcement both came back clean under a human, so these plausibly are too._ |
+| B6 | Second reader on the two cohorts B2 left inconclusive | ~20 minutes, plus a calibration first | **NOT support@classraum.com, and NOT andy.manager@gmail.com. A third, fresh login.**<br>ANDY, not the co-founder. This is the one task on the register that the co-founder must not do: he holds every human sitting on this bank, so a second pass by him measures his own consistency rather than two readers — which is exactly how B1 died. andy.manager@gmail.com is unusable despite its name because it holds the co-founder's B1 mirror, so Andy needs a THIRD account created before this can start. Andy's only prior data point is 85% abstention on that mirror, taken under the old wording, and calibration is per-reviewer (see B4) — so his first sitting needs its own calibration before its number means anything. | B2 scored Craft and Structure 8/20 = 40% and Information and Ideas 8/20 = 40%. Both sit in the pre-registered 36-59% dead zone, and B2-PREREGISTERED.md fixed the consequence before the data existed: a second reader decides, nothing else changes. It also closed the obvious escape in advance — "if a cohort lands at 36%, it is inconclusive, not basically cleared" — so these do NOT get read as passes on the grounds that 40% is near chance. The dead zone is wide on purpose: at n=20 one item moves the score 5 points, and 486 items should not turn on one item. _Cheapest correct order: create the third login, sit a calibration on it, then sit the two cohorts. Skipping the calibration is what produced four consecutive unusable sittings before B4._ |
 | B5 | Run the cofounder QC sweep over the SSAT/ISEE bank | 490 items, resumable | **support@classraum.com — already super_admin, no setup needed.**<br>Your co-founder. Say out loud, in your own words, what Keep / Flag / Reject each mean before he starts. The B2 sitting came back 19/20 "can't tell" including one item his own note says he had solved, because a written brief failed to fix exactly that; at 490 items the same misunderstanding produces a much more expensive non-answer. | Every SSAT and ISEE item has passed the machine gates — blind attack, pattern hunter, cross-variant validity, kill spans — and none has been read by a person. The sweep exists at /admin/bank-qc and records Keep/Flag/Reject per item with a note, but nothing has been reviewed yet. _The panel tells him what NOT to spend time on — guessability, letter spread, duplicate options and the maths arithmetic are all machine-checked. What only a person catches: a second defensible answer, a wrong key, vocabulary above the grade band. Reading items get their own note, because a distractor there is another passage variant's correct answer and so an option that looks NEARLY right is the defect rather than a coincidence._ |
 | B3 | TestFlight device pass, iOS 1.0.4 | — | Either of you. | Unrelated to the bank, still open. |
 
