@@ -8,8 +8,8 @@
 renders on /admin/bank-qc, from the same source, so the two cannot
 disagree.
 
-Generated 2026-08-31. Live items: 4,800.
-Open work: 5 — 1 mine, 4 need you.
+Generated 2026-08-31. Live items: 4,812.
+Open work: 4 — 0 mine, 4 need you.
 
 ---
 
@@ -24,7 +24,7 @@ process is not reporting the position.**
 | | items | what is true |
 |---|---|---|
 | **Choose a Response (cr-v1 — archived 2026-08-18)** | 0 | **Known broken.** Solvable without the audio, on two independent instruments. |
-| Everything else | 4,800 | **Not known to be broken** — never read by a person |
+| Everything else | 4,812 | **Not known to be broken** — never read by a person |
 
 0.0% is a quality problem. The rest is a scheduling
 problem, and it is blocked on one 20-minute task: **B2 — the two never-read cohorts (B4 passed 2026-08-15)**.
@@ -99,8 +99,8 @@ Two qualifications, both learned the hard way:
 | SSAT | Verbal | 124 | — | — | never measured — the attack does not apply |
 | TOEFL | Announcement | 121 | 100% | 15% (n=20) | **cleared by hand** — the model was wrong |
 | ISEE | Reading Comprehension | 117 | — | — | never measured — the attack does not apply |
+| SSAT | Math | 108 | — | — | never measured — the attack does not apply |
 | ISEE | Verbal | 96 | — | — | never measured — the attack does not apply |
-| SSAT | Math | 96 | — | — | never measured — the attack does not apply |
 | TOEFL | Complete the Words | 93 | — | — | never measured — the attack does not apply |
 | TOEFL | Academic Discussion | 92 | — | — | never measured — the attack does not apply |
 | TOEFL | Email | 90 | — | — | never measured — the attack does not apply |
@@ -139,7 +139,7 @@ B4 is *Calibrate the reviewer before spending another cohort* (~20 minutes — o
 
 | id | what | size | blocked by | why |
 |---|---|---|---|---|
-| A17 | SSAT and ISEE serve exactly ONE form each | Only SSAT VERBAL remains: 101 items = 1.68 forms, and its s4 batch was KILLED at 80% options-only, so it needs a different construction rather than another attempt. Every other section now clears two forms | — | verify-admission-forms.mjs measures the live margin: SSAT reading clears its 40-item blueprint by ONE item and ISEE math clears its 84 by ONE, under the 3-items-per-passage cap. A student who sits either test twice sees substantially the same questions, and the unseen-first draw cannot help because there is nothing unseen left. _Reading is the expensive half. The symmetric-worlds method that survives the blind attack yielded 38 of 106 on s2 and 73 of 78 on s3 once the kill-span brief landed, so the cost per shipped item is now known rather than guessed. The per-passage cap is not negotiable down: measured on s3, all six keys in a topic come from one passage variant, so six items from one passage behave like one item._ |
+
 
 ## 3. Open work — needs you
 

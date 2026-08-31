@@ -1591,6 +1591,45 @@
      "verdict": "Key spread A8/B8/C3/D6/E5 before drops. No option string repeats across the batch; relation families do not sit at fixed letters."
     }
    }
+  },
+  {
+   "id": "ssat-math-s5-2026-08-31",
+   "createdAt": "2026-08-31",
+   "targetTest": "ssat",
+   "section": "math",
+   "task": "multiple_choice",
+   "family": "mc_stem_source",
+   "spec": {
+    "n": 12,
+    "authors": 1,
+    "method": "hand-authored, solve-gated; four distractors from FOUR DIFFERENT operations, never one operation iterated"
+   },
+   "status": "shipped",
+   "cohort": "ssat-math-s5",
+   "note": "Attack margin +8.3 (33.3% vs 25.0% control), best solver 41.7%. SSAT math 96 -> 108 against a 50-item section, closing the last gap: EVERY delivered section of both tests now clears two full forms. Written against the defect that dropped six items from s4 - distractor sets built by iterating ONE operation on a seed, so the ladder and therefore the key were visible without the question. The attacker enumerated every pairwise relation across all 12 sets and found no chain of one operation through three or more options; the longest runs are two-member pairs. UNRESOLVED, recorded rather than acted on: the attacker proposed a HUB pattern - four distractors from four different operations still leak if all four derive FROM the key, making it the unique referenced value (SM5-02, SM5-06, SM5-12). Measured 33.3% against 20% chance on 9 picks, which is not significant at that size. Worth re-testing when the cohort is larger; the fix would be to relate some distractors to each other or to an intermediate quantity rather than all to the key. n=12 is small and the attacker said so itself, declining to trust any accuracy figure at that size and trusting only the ladder finding, which is arithmetic and was checked exhaustively rather than sampled.",
+   "stages": {
+    "shape": {
+     "passed": true,
+     "verdict": "12/12 solve bodies re-executed and matched their key independently. 5 distinct choices, key present, 4 named mis-steps, 12 subskills with zero reuse from s4, no two options sharing a value. The author caught three items that had drifted into ladders during authoring and repaired them, and found a bug in its own checker (the chain builder cycled on factor -1, reporting a plus-minus pair as a 7-long chain)."
+    },
+    "nosource": {
+     "passed": true,
+     "n": 12,
+     "verdict": "Options-only attack, prompt withheld: mean 33.3% vs 25.0% control, margin +8.3."
+    },
+    "elimination": {
+     "passed": true,
+     "verdict": "No single-operation ladder anywhere, verified exhaustively over all pairwise relations. No rank rule pays; key rank spread D3/C3/E2/B2/A2 is flat."
+    },
+    "withsource": {
+     "passed": true,
+     "verdict": "No human pass yet; part of register item B5."
+    },
+    "tells": {
+     "passed": true,
+     "verdict": "The attacker noted that because numeric options print ascending, the key-letter spread and the key-RANK spread are the same statistic - so a flat letter spread here is one fact, not two."
+    }
+   }
   }
  ],
  "auditedCohorts": [

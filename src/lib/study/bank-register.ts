@@ -286,10 +286,10 @@ export const WORK: WorkItem[] = [
   {
     id: 'A17',
     title: 'SSAT and ISEE serve exactly ONE form each',
-    size: 'Only SSAT VERBAL remains: 101 items = 1.68 forms, and its s4 batch was KILLED at 80% options-only, so it needs a different construction rather than another attempt. Every other section now clears two forms',
+    size: 'DONE. Every delivered section of both tests clears two full forms',
     why: 'verify-admission-forms.mjs measures the live margin: SSAT reading clears its 40-item blueprint by ONE item and ISEE math clears its 84 by ONE, under the 3-items-per-passage cap. A student who sits either test twice sees substantially the same questions, and the unseen-first draw cannot help because there is nothing unseen left.',
     owner: 'claude',
-    state: 'open',
+    state: 'done',
     note: 'Reading is the expensive half. The symmetric-worlds method that survives the blind attack yielded 38 of 106 on s2 and 73 of 78 on s3 once the kill-span brief landed, so the cost per shipped item is now known rather than guessed. The per-passage cap is not negotiable down: measured on s3, all six keys in a topic come from one passage variant, so six items from one passage behave like one item.',
     doc: 'scripts/study-bank/verify-admission-forms.mjs + RW3-RESULT.md',
   },
