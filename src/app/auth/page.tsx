@@ -982,7 +982,28 @@ export default function AuthPage() {
 
             if (roleInsertError) {
               console.error(`[Auth] Failed to create ${roleTable} record:`, roleInsertError)
-              toast({ title: t('auth.signup.profileCreationFailed') as string || `Warning: Your ${signupRole} profile could not be created. Please contact support.`, variant: 'warning' })
+              /*
+               * Managers and teachers can no longer attach themselves to an
+               * academy that already has a manager (migration 103 — the
+               * self-serve route was a privilege escalation: anyone could
+               * type an academy UUID from an invite link and read that
+               * academy's students, parents and teachers).
+               *
+               * The generic "contact support" toast is wrong for that case:
+               * nothing is broken and support cannot fix it. The academy's
+               * own manager has to add them.
+               */
+              const selfServeRefused =
+                (roleTable === 'managers' || roleTable === 'teachers') &&
+                (roleInsertError.code === '42501' ||
+                 /row-level security|policy/i.test(roleInsertError.message))
+              toast({
+                title: selfServeRefused
+                  ? `An existing manager of this academy has to add you as a ${signupRole}. Your account was created — ask them to invite you, then sign in.`
+                  : (t('auth.signup.profileCreationFailed') as string ||
+                     `Warning: Your ${signupRole} profile could not be created. Please contact support.`),
+                variant: 'warning',
+              })
             } else {
               console.log(`[Auth] ${roleTable} record created successfully`)
             }

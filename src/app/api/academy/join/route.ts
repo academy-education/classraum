@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { dbAdmin } from '@/lib/supabase-admin'
+import { classifyDuplicate, type JoinRole } from '@/lib/academy/join-duplicate'
 import { requireStudyUser } from '@/lib/study/auth'
 import { raiseAlert } from '@/lib/ops/alert'
 
@@ -179,11 +180,38 @@ export async function POST(req: NextRequest) {
     }
   }
 
-  // The actual academy link — one join-table row per (user, academy).
+  /*
+   * The actual academy link.
+   *
+   * A duplicate means DIFFERENT things for the two tables, and treating
+   * them alike reported success for something that had not happened:
+   *
+   *   students  UNIQUE (user_id, academy_id) — a duplicate is a re-join
+   *             of the SAME academy. Idempotent; swallowing it is right.
+   *   parents   PRIMARY KEY (user_id) — one row per user, full stop. A
+   *             parent already linked to academy A who joins academy B
+   *             collides on the PK, and swallowing it told them they had
+   *             joined B when they were still only in A.
+   *
+   * So a parent duplicate is only benign when the existing row points at
+   * the academy they asked for.
+   */
   const { error: joinError } = role === 'student'
     ? await dbAdmin.from('students').insert({ user_id: user.id, academy_id: academyId, active: true })
     : await dbAdmin.from('parents').insert({ user_id: user.id, academy_id: academyId })
-  if (joinError && !joinError.message.includes('duplicate')) {
+  if (joinError && joinError.message.includes('duplicate')) {
+    const existing = role === 'parent'
+      ? (await dbAdmin.from('parents').select('academy_id').eq('user_id', user.id).maybeSingle()).data
+      : null
+    const verdict = classifyDuplicate(role as JoinRole, academyId, existing?.academy_id ?? null)
+    if (verdict.kind === 'conflict') {
+      return NextResponse.json({
+        error: 'this account is already a parent at another academy',
+        reason: 'parent_already_linked',
+      }, { status: 409 })
+    }
+    // Same academy — a genuine re-join, nothing to do.
+  } else if (joinError) {
     return NextResponse.json({ error: 'join failed' }, { status: 500 })
   }
 
