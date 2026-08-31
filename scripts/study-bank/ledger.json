@@ -1357,6 +1357,45 @@
      "verdict": "Key letters A10/B16/C10/D9. Because options print ascending, letter spread IS magnitude-rank spread; recorded in IM4-RESULT.md rather than treated as a letter tell."
     }
    }
+  },
+  {
+   "id": "ssat-reading-worlds-s4-2026-08-31",
+   "createdAt": "2026-08-31",
+   "targetTest": "ssat",
+   "section": "reading",
+   "task": "multiple_choice",
+   "family": "mc_hidden_source",
+   "spec": {
+    "n": 75,
+    "authors": 14,
+    "method": "symmetric worlds + kill spans (the s3 brief), 5 variants per topic"
+   },
+   "status": "shipped",
+   "cohort": "ssat-reading-worlds-s4",
+   "note": "Yield 89.3% (75 of 84); s3 was 93.6%. SSAT reading 41 -> 83 drawable against a 40-item section, so it fills two forms where it could not fill one. Nine dropped: 7 cross-variant failures plus 2 flagged by both independent readers. Failures cluster where one of the five slot values is a different KIND from the other four - a desire among facts (S11), a relation among permissions (S14-6, which BACKFIRED into affirming its sibling), a null among causes (S17-1), a different object among attitudes (S12-5). See RW4-RESULT.md.",
+   "stages": {
+    "shape": {
+     "passed": true,
+     "verdict": "1680/1680 kill spans verbatim. Keyword parity 0 LONE and 27 INVERTED, against 118/160 on the s3 batch that shipped. Length ratios 1.015-1.037 against a 1.12 bar. Blind file asserted passage-free."
+    },
+    "nosource": {
+     "passed": true,
+     "n": 84,
+     "verdict": "Blind attack, 3 differently-reasoning solvers including one running the closed-world set exploit: mean 28.6% vs 21.4% control, margin +7.1. Three distinct pick-strings."
+    },
+    "elimination": {
+     "passed": true,
+     "verdict": "The attacker enumerated each set's five worlds from option text but found no mechanism for identifying WHICH was shown; its null-world hypothesis was half right (S17 shown, S21 not)."
+    },
+    "withsource": {
+     "passed": true,
+     "verdict": "Cross-variant reviewer judged all 84 questions and read all 1680 spans: 7 FAIL. The with-passage VOTE was found to have no discriminating power (3 independent agents, 1 distinct answer-string, 84/84 each) and is no longer treated as evidence - see QC-VOTE-INDEPENDENCE.md. Its FLAGGING variant did work: two independent agents each flagged S09-6 and S12-5."
+    },
+    "tells": {
+     "passed": true,
+     "verdict": "Key spread 18/17/16/18/15. check-slot-type.mjs, the 8th structural proxy, scored 27% precision against this batch's known failures and is recorded as a failure so nobody rebuilds it."
+    }
+   }
   }
  ],
  "auditedCohorts": [

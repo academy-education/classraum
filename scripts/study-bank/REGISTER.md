@@ -8,7 +8,7 @@
 renders on /admin/bank-qc, from the same source, so the two cannot
 disagree.
 
-Generated 2026-08-31. Live items: 4,544.
+Generated 2026-08-31. Live items: 4,664.
 Open work: 5 — 1 mine, 4 need you.
 
 ---
@@ -24,7 +24,7 @@ process is not reporting the position.**
 | | items | what is true |
 |---|---|---|
 | **Choose a Response (cr-v1 — archived 2026-08-18)** | 0 | **Known broken.** Solvable without the audio, on two independent instruments. |
-| Everything else | 4,544 | **Not known to be broken** — never read by a person |
+| Everything else | 4,664 | **Not known to be broken** — never read by a person |
 
 0.0% is a quality problem. The rest is a scheduling
 problem, and it is blocked on one 20-minute task: **B2 — the two never-read cohorts (B4 passed 2026-08-15)**.
@@ -93,18 +93,18 @@ Two qualifications, both learned the hard way:
 | SAT | Craft and Structure | 210 | 97.9% | 26.7% (n=15) | human says maybe — needs more |
 | TOEFL | Conversation | 193 | 86.8% | 20% (n=15) | human says maybe — needs more |
 | TOEFL | Build a Sentence | 165 | — | — | never measured — the attack does not apply |
+| SSAT | Reading Comprehension | 138 | — | — | never measured — the attack does not apply |
 | TOEFL | Listen and Repeat | 136 | — | — | never measured — the attack does not apply |
+| ISEE | Math | 130 | — | — | never measured — the attack does not apply |
 | TOEFL | Announcement | 121 | 100% | 15% (n=20) | **cleared by hand** — the model was wrong |
 | SSAT | Verbal | 101 | — | — | never measured — the attack does not apply |
 | ISEE | Verbal | 96 | — | — | never measured — the attack does not apply |
 | TOEFL | Complete the Words | 93 | — | — | never measured — the attack does not apply |
 | TOEFL | Academic Discussion | 92 | — | — | never measured — the attack does not apply |
 | TOEFL | Email | 90 | — | — | never measured — the attack does not apply |
-| ISEE | Math | 85 | — | — | never measured — the attack does not apply |
 | TOEFL | Interview | 80 | — | — | never measured — the attack does not apply |
 | SSAT | Math | 77 | — | — | never measured — the attack does not apply |
 | ISEE | Reading Comprehension | 67 | — | — | never measured — the attack does not apply |
-| SSAT | Reading Comprehension | 63 | — | — | never measured — the attack does not apply |
 | ISEE | Essay | 8 | — | — | never measured — the attack does not apply |
 | SSAT | Writing Sample | 4 | — | — | never measured — the attack does not apply |
 
@@ -139,7 +139,7 @@ B4 is *Calibrate the reviewer before spending another cohort* (~20 minutes — o
 
 | id | what | size | blocked by | why |
 |---|---|---|---|---|
-| A17 | SSAT and ISEE serve exactly ONE form each | ~40 SSAT reading items (about 14 passages) and ~40 ISEE math | — | verify-admission-forms.mjs measures the live margin: SSAT reading clears its 40-item blueprint by ONE item and ISEE math clears its 84 by ONE, under the 3-items-per-passage cap. A student who sits either test twice sees substantially the same questions, and the unseen-first draw cannot help because there is nothing unseen left. _Reading is the expensive half. The symmetric-worlds method that survives the blind attack yielded 38 of 106 on s2 and 73 of 78 on s3 once the kill-span brief landed, so the cost per shipped item is now known rather than guessed. The per-passage cap is not negotiable down: measured on s3, all six keys in a topic come from one passage variant, so six items from one passage behave like one item._ |
+| A17 | SSAT and ISEE serve exactly ONE form each | SSAT reading DONE (41 -> 83 drawable, two forms). Remaining: SSAT verbal ~20, SSAT math ~25, ISEE reading ~25, ISEE math ~40 for a full second form | — | verify-admission-forms.mjs measures the live margin: SSAT reading clears its 40-item blueprint by ONE item and ISEE math clears its 84 by ONE, under the 3-items-per-passage cap. A student who sits either test twice sees substantially the same questions, and the unseen-first draw cannot help because there is nothing unseen left. _Reading is the expensive half. The symmetric-worlds method that survives the blind attack yielded 38 of 106 on s2 and 73 of 78 on s3 once the kill-span brief landed, so the cost per shipped item is now known rather than guessed. The per-passage cap is not negotiable down: measured on s3, all six keys in a topic come from one passage variant, so six items from one passage behave like one item._ |
 
 ## 3. Open work — needs you
 

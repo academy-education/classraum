@@ -286,7 +286,7 @@ export const WORK: WorkItem[] = [
   {
     id: 'A17',
     title: 'SSAT and ISEE serve exactly ONE form each',
-    size: '~40 SSAT reading items (about 14 passages) and ~40 ISEE math',
+    size: 'SSAT reading DONE (41 -> 83 drawable, two forms). Remaining: SSAT verbal ~20, SSAT math ~25, ISEE reading ~25, ISEE math ~40 for a full second form',
     why: 'verify-admission-forms.mjs measures the live margin: SSAT reading clears its 40-item blueprint by ONE item and ISEE math clears its 84 by ONE, under the 3-items-per-passage cap. A student who sits either test twice sees substantially the same questions, and the unseen-first draw cannot help because there is nothing unseen left.',
     owner: 'claude',
     state: 'open',
