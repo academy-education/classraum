@@ -385,6 +385,41 @@ export interface Found {
 
 export const FOUND_WHILE_FIXING: Found[] = [
   {
+    date: '2026-09-01',
+    what: 'THE PRICE SHOWN WAS NOT THE PRICE CHARGED, on two live ISEE sections. The assemble route reserves creditCostForTest(family, block.key) — the blueprint block key. The topic sheet derived its own key by title-casing the topic slug and lowercasing it back, which for two sections produced a string that is not in SECTION_CREDIT_COST at all: isee-quant-reasoning -> "quant_reasoning" against the route\'s "quant", and isee-math-achievement -> "math_achievement" against "mathach". Both fell through to the `?? 1` default, so the sheet displayed 1 credit while the route reserved 2. Two paths computing one number differently, each internally consistent — the same shape as the band-vs-percent bug in CLAUDE.md. Both sides now read the same block key, pinned by a test over the two source files. HOW IT WAS FOUND MATTERS MORE THAN THE BUG: a break-test came back GREEN. Removing ssat/isee from parseTestSlug failed nothing, which looked like dead code and was actually a coverage gap — that family feeds credit pricing and the path card, and neither had a test. A reversion that breaks nothing is evidence about the TESTS, not about the code.',
+    landedAs: 'fixed',
+  },
+  {
+    date: '2026-09-01',
+    what: 'THE SERVE-TIME CHOICE SHUFFLE IS LOAD-BEARING AND HAD NO TEST AT ALL. Measured across the live maths bank: every cohort is middle-heavy — the key rarely sits at the smallest or largest option, because good distractor practice brackets the answer with over- and under-applied errors. sat/v2 (n=710) puts 72% of keys in the middle two ranks against 50% expected. THE EXPOSURE IS A CONJUNCTION, and my first framing was too broad: a rank skew only becomes a letter tell where options are actually PRINTED in order. SSAT/ISEE cohorts are 65-100% ascending (today\'s authored: 100%); sat/v2 is 8%. So sat/v2 is skewed and structurally immune, while FOUR SSAT/ISEE cohorts are both skewed and sorted — worth about +13 points to "never pick the extremes" with no question read. The reading bank has the same shape for a different reason: in reading-worlds-s5, variant W1 carries the unqualified endorsement in 7 of 9 topics. Only shuffleDrawnChoices keeps either out of the served item, and a future change preserving source order "for fidelity" (real SSAT and ISEE do print ascending) would silently reinstate a deterministic key position. Now guarded and break-tested. check-key-rank-spread.mjs measures when it could safely be retired. THE UNDERLYING SKEW IS STILL IN THE BANK — the guard protects the serving path, it does not repair the four cohorts.',
+    landedAs: 'fixed',
+  },
+  {
+    date: '2026-09-01',
+    what: 'SSAT AND ISEE WERE SERVABLE BY API AND UNREACHABLE BY A STUDENT for a full day. 769 gated items, two full forms per section, a working assemble route and a correct result screen — and three separate UI blocks: TEST_THEMES had no entry so no card rendered; parseTestSlug omitted both families; and startBankTest opened with a bare `return` for anything not SAT or TOEFL, so Start did NOTHING — no spinner, no message. It survived because every check I ran exercised the API path; nothing exercised the UI path. Sections now resolve by SLUG through ADMISSION_TOPIC_SLUGS, not by the title-cased section name, because ssat-quant-1 title-cases to "Quant 1" (matching no blueprint section) and the two SSAT quantitative blocks differ only by key while sharing a bank section — a name lookup cannot tell them apart. ssat-experimental is deliberately unmapped: a topic row exists because the real SSAT has one, but it is unscored and excluded from the blueprint, so serving it would spend 15 minutes on questions that do not count.',
+    landedAs: 'fixed',
+  },
+  {
+    date: '2026-09-01',
+    what: 'THE QC SWEEP PANEL COULD NEVER LOAD, and could never show why. Two bugs producing one symptom. (1) The route filtered verdicts with .in(\'item_id\', ids) over every item; supabase-js sends a select as a GET, so 769 UUIDs became a 28,452-character URL, far past any practical cap, and the request never returned. (2) The load effect guarded on open && !data && !loading with no err, so a failure set the error, cleared loading, and immediately refetched — an infinite retry rendering as a permanent "Loading the bank…" with the error never on screen long enough to read. The verdicts table is small by construction and is now read whole and joined in memory, paged so a 1000-row cap cannot truncate it; err is in the guard and there is a Try again button. NOTE ON MY OWN TESTING: the first test for (2) was VACUOUS — counting fetches after an induced failure passed with the retry loop restored, because jsdom does not flush the effect cycle within any assertable window. Replaced with a source pin that does fail on reversion. Second vacuous test of that session.',
+    landedAs: 'fixed',
+  },
+  {
+    date: '2026-09-01',
+    what: 'TWO STALE NUMBERS I HAD BEEN REPEATING, both found only by computing them. (1) The bank holds 769 SSAT/ISEE items, not 645 — stale from before that day\'s cohorts. (2) Live item count is 4,808, not 4,812; the higher figure counted 4 unverified TOEFL rows that will not serve. Also corrected in shipped-tests.ts: the gate said SSAT and ISEE serve "EXACTLY ONE full form each as of 2026-08-29", true when written and false two days later once A17 closed — both now serve two (SSAT reading 83 drawable/40 needed, ISEE math 174/84, SSAT verbal 124/60). Reading counts are AFTER the 3-items-per-passage cap, so the raw bank count overstates repeatability: SSAT reading holds 138 items but only 83 are drawable into one form. The comment now says to re-run verify-admission-forms.mjs rather than trust it.',
+    landedAs: 'fixed',
+  },
+  {
+    date: '2026-09-01',
+    what: 'BUILD BROKEN BY MY OWN TESTS, and the reason generalises. Four @typescript-eslint/no-require-imports errors failed the Vercel deploy; jest was green (2,308) and tsc was clean, which is exactly why it got through — neither runs ESLint, and the production build does. A rule that only fires in `next lint` had nothing standing in front of it. Running tests plus types is NOT running what the build runs.',
+    landedAs: 'fixed',
+  },
+  {
+    date: '2026-09-01',
+    what: 'THE ROUTE IS SERVER-AUTHORITATIVE ON WHICH POOL A BLOCK DRAWS FROM, and that property was unguarded. assemble/route.ts looks the block up in ADMISSION_BLUEPRINT by key and takes bankSection from there, ignoring any bankSection in the request body. The UI was sending one anyway — dead weight that falsely implied the client chooses the pool. Removed, and the property pinned: a route that started trusting the client could fill a scored maths block from the reading pool. Not a bug that existed; a bug that was one edit away.',
+    landedAs: 'fixed',
+  },
+  {
     date: '2026-08-06',
     what: 'bank-helper.mjs REJECT branch for positional explanations threw a ReferenceError every time it fired — `id` is not in scope (the variable is `label`) and `rejected` was never declared, so under strict mode it killed the whole insert run rather than skipping one item. That is why it survived: the check had evidently never fired on a real batch. Fixed and break-tested with an item whose explanation says "Choice 2" — it now prints REJECT, continues, and exits 0.',
     landedAs: 'fixed',
