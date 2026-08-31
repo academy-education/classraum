@@ -148,3 +148,64 @@ it('surfaces another reviewer disagreeing', async () => {
   const row = screen.getByText('PROMPT 1').closest('article')!
   expect(row.textContent).toMatch(/Another reviewer marked this reject/i)
 })
+
+describe('a failed load does not retry forever', () => {
+  /*
+   * The bug a reviewer hit: the effect guard was
+   *   open && !data && !loading
+   * so a failure set the error, cleared loading, and the effect
+   * immediately fetched again. The panel showed "Loading the bank…"
+   * permanently and the error never stayed on screen long enough to read.
+   *
+   * THE BEHAVIOURAL VERSION OF THIS TEST DID NOT DISCRIMINATE. Counting
+   * fetches after an induced failure passed with the loop restored,
+   * because jsdom does not flush the effect cycle within any window I
+   * could assert on. A test that cannot fail is worse than none, so the
+   * guard is pinned at the source instead — verified to fail when `err`
+   * is removed from the condition.
+   */
+  const src = require('fs').readFileSync(
+    require('path').join(process.cwd(), 'src/components/admin/bank-qc/ItemSweepPanel.tsx'), 'utf8')
+
+  it('has err in the load guard', () => {
+    expect(src).toMatch(/if \(open && !data && !loading && !err\) void load\(\)/)
+    expect(src).toMatch(/\[open, data, loading, err, load\]/)
+  })
+
+  it('offers a manual retry, since it no longer retries itself', async () => {
+    expect(src).toMatch(/Try again/)
+    let calls = 0
+    global.fetch = jest.fn(async (_u: unknown, init?: RequestInit) => {
+      if (init?.method === 'POST') return { ok: true, json: async () => ({}) } as unknown as Response
+      calls++
+      if (calls === 1) return { ok: false, json: async () => ({ error: 'boom' }) } as unknown as Response
+      return { ok: true, json: async () => payload([item({ id: '1' })]) } as unknown as Response
+    }) as unknown as typeof fetch
+
+    render(<ItemSweepPanel />)
+    const u = await open()
+    await waitFor(() => expect(screen.getByText(/boom/)).toBeInTheDocument())
+    await u.click(screen.getByRole('button', { name: /Try again/i }))
+    await waitFor(() => expect(screen.getByText('PROMPT 1')).toBeInTheDocument())
+  })
+})
+
+describe('the sweep route does not filter verdicts by an id list', () => {
+  /*
+   * supabase-js sends a select as a GET, so `.in('item_id', ids)` over
+   * the whole bank built a 28,452-character URL for 769 items. The
+   * request never returned, which is what left the panel loading
+   * forever. The verdicts table is small; it is read whole and joined
+   * in memory.
+   */
+  const route = require('fs').readFileSync(
+    require('path').join(process.cwd(), 'src/app/api/admin/bank-qc/sweep/route.ts'), 'utf8')
+
+  it('has no .in() over item ids', () => {
+    expect(route).not.toMatch(/\.in\('item_id'/)
+  })
+
+  it('pages the verdicts read, so a 1000-row cap cannot truncate it', () => {
+    expect(route).toMatch(/from \+ 999/)
+  })
+})

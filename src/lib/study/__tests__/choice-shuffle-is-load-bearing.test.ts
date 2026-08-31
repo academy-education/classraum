@@ -33,7 +33,7 @@
 jest.mock('@/lib/supabase-admin', () => ({ dbAdmin: { from: jest.fn() } }))
 
 import { shuffleDrawnChoices } from '../assemble'
-import type { Question } from '@/types/study'
+import type { Question } from '@/lib/test-verify'
 
 const mc = (id: string, choices: string[]): { id: string; item: Question } => ({
   id,

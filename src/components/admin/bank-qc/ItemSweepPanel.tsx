@@ -114,7 +114,17 @@ export function ItemSweepPanel() {
     }
   }, [])
 
-  React.useEffect(() => { if (open && !data && !loading) void load() }, [open, data, loading, load])
+  /*
+   * `err` is in the guard on purpose. Without it a failed load set the
+   * error, cleared `loading`, and the effect immediately re-ran and
+   * fetched again — an infinite retry that rendered as a PERMANENT
+   * "Loading the bank…" and never let the error appear on screen. That
+   * is what a reviewer saw: the panel open, the spinner forever, and no
+   * way to tell that anything had gone wrong.
+   */
+  React.useEffect(() => {
+    if (open && !data && !loading && !err) void load()
+  }, [open, data, loading, err, load])
 
   const save = async (itemId: string, verdict: Verdict | '', note: string) => {
     setSaving(s => ({ ...s, [itemId]: true }))
@@ -220,8 +230,17 @@ export function ItemSweepPanel() {
       {open && (
         <div className="mt-4">
           {err && (
-            <div className="flex items-center gap-2 text-sm text-red-700 bg-red-50 ring-1 ring-red-200 rounded-lg px-3 py-2 mb-3">
-              <AlertTriangle className="w-4 h-4 shrink-0" /> {err}
+            <div className="flex items-center justify-between gap-3 text-sm text-red-700 bg-red-50 ring-1 ring-red-200 rounded-lg px-3 py-2 mb-3">
+              <span className="flex items-center gap-2">
+                <AlertTriangle className="w-4 h-4 shrink-0" /> {err}
+              </span>
+              {/* It no longer retries itself, so there has to be a way back. */}
+              <button
+                onClick={() => { setErr(''); void load() }}
+                className="shrink-0 rounded-md border border-red-300 px-2.5 py-1 text-[12.5px] font-medium hover:bg-red-100"
+              >
+                Try again
+              </button>
             </div>
           )}
           {loading && (

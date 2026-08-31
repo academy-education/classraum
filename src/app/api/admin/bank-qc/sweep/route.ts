@@ -109,14 +109,37 @@ export async function GET(request: NextRequest) {
      * table can produce, and it is invisible if the route only ever
      * returns your own row.
      */
-    const { data: vRows, error: vErr } = await dbAdmin
-      .from('study_item_sweep_verdicts')
-      .select('item_id,reviewer_id,verdict,note,item_sha,updated_at')
-      .in('item_id', items.map(i => i.id))
-    if (vErr) throw new Error(vErr.message)
+    /*
+     * NO .in() OVER THE ITEM IDS.
+     *
+     * That is how this was first written, and it made the panel
+     * permanently unloadable: supabase-js sends a select as a GET, so
+     * 769 UUIDs became a 28,452-character URL — far past any practical
+     * cap. The request never came back, and the panel sat on "Loading
+     * the bank…" forever.
+     *
+     * The verdicts table is small by construction (one row per reviewer
+     * per item they have actually judged), so reading it whole and
+     * joining in memory is both correct and cheaper than a filter that
+     * has to enumerate every id. Paged, because PostgREST caps a
+     * response at 1000 rows and a truncated read here would silently
+     * report items as unreviewed.
+     */
+    const vRows: Array<Record<string, unknown>> = []
+    for (let from = 0; ; from += 1000) {
+      const { data, error } = await dbAdmin
+        .from('study_item_sweep_verdicts')
+        .select('item_id,reviewer_id,verdict,note,item_sha,updated_at')
+        .range(from, from + 999)
+      if (error) throw new Error(error.message)
+      vRows.push(...((data ?? []) as unknown as Array<Record<string, unknown>>))
+      if (!data || data.length < 1000) break
+    }
 
     const shaById = new Map(items.map(i => [i.id, i.sha]))
-    const verdicts = (vRows ?? []).map(v => ({
+    // Joined in memory now that the whole table is read: keep only
+    // verdicts belonging to items in THIS response.
+    const verdicts = vRows.filter(v => shaById.has(v.item_id as string)).map(v => ({
       itemId: v.item_id as string,
       reviewerId: v.reviewer_id as string,
       mine: v.reviewer_id === admin.userId,
