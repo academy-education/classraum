@@ -1396,6 +1396,45 @@
      "verdict": "Key spread 18/17/16/18/15. check-slot-type.mjs, the 8th structural proxy, scored 27% precision against this batch's known failures and is recorded as a failure so nobody rebuilds it."
     }
    }
+  },
+  {
+   "id": "ssat-verbal-s4-2026-08-31",
+   "createdAt": "2026-08-31",
+   "targetTest": "ssat",
+   "section": "verbal",
+   "task": "multiple_choice",
+   "family": "mc_stem_source",
+   "spec": {
+    "n": 25,
+    "authors": 1,
+    "method": "hand-authored synonyms and analogies to a fixed distractor taxonomy (opposite / reversal / near-field / wrong-member)"
+   },
+   "status": "killed",
+   "cohort": "ssat-verbal-s4",
+   "note": "KILLED on the blind attack: solver 1 scored 80% from options alone, mean 48.0% vs 20.0% control, margin +28.0. Solver 3 scored 0/25, meaning odd-one-out is perfectly ANTI-correlated with the key - a second tell. Mechanism: every item carries a polar pair (antonym for synonyms, order-reversal for analogies) and the key is one of the two, 25 of 25, so three of five options are eliminable without the stem. The BRIEF caused it - an opposite-of-the-key distractor is recognisable only by reference to the key. Same shape as cr-v1. Not patched and re-run; see SV4-KILLED.md.",
+   "stages": {
+    "shape": {
+     "passed": true,
+     "verdict": "25 items, 5 distinct choices, key present, 4 named distractor mis-steps, key letters A5/B5/C5/D5/E5, 0 stem collisions against the 79 distinct stems live in the bank."
+    },
+    "nosource": {
+     "passed": false,
+     "n": 25,
+     "verdict": "mean 48.0% vs 20.0% control, margin +28.0; solver 1 at 80% alone. DEAD."
+    },
+    "elimination": {
+     "passed": false,
+     "verdict": "Three of five options eliminable with no stem in 25 of 25 items."
+    },
+    "withsource": {
+     "passed": false,
+     "verdict": "Not run - the batch was condemned before any with-source work was spent on it."
+    },
+    "tells": {
+     "passed": false,
+     "verdict": "Polar-pair prevalence 100%. Odd-one-out anti-correlation 0/25."
+    }
+   }
   }
  ],
  "auditedCohorts": [
