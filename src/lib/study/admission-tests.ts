@@ -19,12 +19,16 @@ export interface AdmissionSection {
   name: string
   /** study_item_bank.section this block draws from. null = not drawn from
    *  the bank (essay prompts, which are free-response). */
-  bankSection: 'verbal' | 'math' | 'reading' | null
+  bankSection: 'verbal' | 'math' | 'reading' | 'writing' | null
   questions: number
   minutes: number
   choiceCount: number
-  /** Whether the block contributes to the reported score. SSAT's Writing
-   *  Sample and Experimental section, and ISEE's Essay, do not. */
+  /**
+   * Whether the block contributes to the reported score. SSAT's Writing
+   * Sample and ISEE's Essay do not — but UNSCORED IS NOT UNIMPORTANT:
+   * both are sent to every school the student applies to, so they are
+   * dropped from the score, never from the form.
+   */
   scored: boolean
 }
 
@@ -35,7 +39,7 @@ export interface AdmissionSection {
  */
 export const ADMISSION_BLUEPRINT: Record<AdmissionFamily, AdmissionSection[]> = {
   ssat: [
-    { key: 'writing',   name: 'Writing Sample',           bankSection: null,      questions: 1,  minutes: 25, choiceCount: 0, scored: false },
+    { key: 'writing',   name: 'Writing Sample',           bankSection: 'writing', questions: 1,  minutes: 25, choiceCount: 0, scored: false },
     { key: 'quant1',    name: 'Quantitative Section 1',   bankSection: 'math',    questions: 25, minutes: 30, choiceCount: 5, scored: true },
     { key: 'reading',   name: 'Reading Comprehension',    bankSection: 'reading', questions: 40, minutes: 40, choiceCount: 5, scored: true },
     { key: 'verbal',    name: 'Verbal',                   bankSection: 'verbal',  questions: 60, minutes: 30, choiceCount: 5, scored: true },
@@ -46,7 +50,7 @@ export const ADMISSION_BLUEPRINT: Record<AdmissionFamily, AdmissionSection[]> = 
     { key: 'quant',     name: 'Quantitative Reasoning',   bankSection: 'math',    questions: 37, minutes: 35, choiceCount: 4, scored: true },
     { key: 'reading',   name: 'Reading Comprehension',    bankSection: 'reading', questions: 36, minutes: 35, choiceCount: 4, scored: true },
     { key: 'mathach',   name: 'Mathematics Achievement',  bankSection: 'math',    questions: 47, minutes: 40, choiceCount: 4, scored: true },
-    { key: 'essay',     name: 'Essay',                    bankSection: null,      questions: 1,  minutes: 30, choiceCount: 0, scored: false },
+    { key: 'essay',     name: 'Essay',                    bankSection: 'writing', questions: 1,  minutes: 30, choiceCount: 0, scored: false },
   ],
 }
 

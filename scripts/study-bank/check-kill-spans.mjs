@@ -96,7 +96,10 @@ export function run(topics) {
     }
 
     // N variants must produce exactly N options — the s2 lesson.
-    const wantN = String(t.topic_id).startsWith('RW3-S') ? 5 : 4
+    // SSAT topics (…-S…) are 5-choice, ISEE topics (…-I…) 4-choice. Keyed on
+    // the letter, not the batch number, so a new batch (RW4-S…) is not
+    // silently held to the ISEE count.
+    const wantN = /^RW\d+-S/.test(String(t.topic_id)) ? 5 : 4
     if (V.length !== wantN) bad.push(`${V.length} variants, expected ${wantN} for ${t.topic_id}`)
 
     if (bad.length) fails.push(`${t.topic_id}: ${bad.length} problem(s)\n      - ` + bad.slice(0, 6).join('\n      - ')

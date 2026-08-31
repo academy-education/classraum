@@ -8,8 +8,8 @@
 renders on /admin/bank-qc, from the same source, so the two cannot
 disagree.
 
-Generated 2026-08-31. Live items: 4,532.
-Open work: 8 — 4 mine, 4 need you.
+Generated 2026-08-31. Live items: 4,544.
+Open work: 5 — 1 mine, 4 need you.
 
 ---
 
@@ -24,7 +24,7 @@ process is not reporting the position.**
 | | items | what is true |
 |---|---|---|
 | **Choose a Response (cr-v1 — archived 2026-08-18)** | 0 | **Known broken.** Solvable without the audio, on two independent instruments. |
-| Everything else | 4,532 | **Not known to be broken** — never read by a person |
+| Everything else | 4,544 | **Not known to be broken** — never read by a person |
 
 0.0% is a quality problem. The rest is a scheduling
 problem, and it is blocked on one 20-minute task: **B2 — the two never-read cohorts (B4 passed 2026-08-15)**.
@@ -105,6 +105,8 @@ Two qualifications, both learned the hard way:
 | SSAT | Math | 77 | — | — | never measured — the attack does not apply |
 | ISEE | Reading Comprehension | 67 | — | — | never measured — the attack does not apply |
 | SSAT | Reading Comprehension | 63 | — | — | never measured — the attack does not apply |
+| ISEE | Essay | 8 | — | — | never measured — the attack does not apply |
+| SSAT | Writing Sample | 4 | — | — | never measured — the attack does not apply |
 
 
 
@@ -137,10 +139,7 @@ B4 is *Calibrate the reviewer before spending another cohort* (~20 minutes — o
 
 | id | what | size | blocked by | why |
 |---|---|---|---|---|
-| A15 | SSAT/ISEE result screen still shows a generic percentage | one screen, no schema change | — | SSAT scores +1 correct, -1/4 wrong, 0 for a BLANK, and ISEE scores rights only. The result screen shows neither — it reports percent correct, which is the SAT/TOEFL convention and is simply the wrong number for SSAT. The data needed is already stored: study_attempts.student_answer is null for a blank, so correct/wrong/omitted is recoverable per session with no migration. scoreAdmission() in src/lib/study/admission-tests.ts already computes it and is break-tested. _It must also surface scaleNote and NOT print a band. The real SSAT reports a 500-800 scaled score and the real ISEE a 1-9 stanine, both norm-referenced against test-taker populations we do not have. A plausible band derived from percent-correct would be a fabricated number on a screen a parent reads, and this project has shipped one of those before — a hand-written band ladder printed beside a percent-derived 0-30 score, each internally consistent and jointly false._ |
-| A16 | The SSAT/ISEE essay blocks have nothing behind them | 16 prompts authored, no insert path | — | SSAT Writing Sample and ISEE Essay are real blocks in the delivered blueprint, and both are currently unroutable: the assemble route refuses any block whose bankSection is null. 16 prompts exist in scripts/study-bank/essay-prompts-v1.json and have never been inserted, because no helper writes free-response items and the existing insert paths all assume multiple choice. _Both sections are UNSCORED on the real exams but are sent to schools, so they are high-stakes in practice and cannot be dropped from a full form without changing what the test is._ |
 | A17 | SSAT and ISEE serve exactly ONE form each | ~40 SSAT reading items (about 14 passages) and ~40 ISEE math | — | verify-admission-forms.mjs measures the live margin: SSAT reading clears its 40-item blueprint by ONE item and ISEE math clears its 84 by ONE, under the 3-items-per-passage cap. A student who sits either test twice sees substantially the same questions, and the unseen-first draw cannot help because there is nothing unseen left. _Reading is the expensive half. The symmetric-worlds method that survives the blind attack yielded 38 of 106 on s2 and 73 of 78 on s3 once the kill-span brief landed, so the cost per shipped item is now known rather than guessed. The per-passage cap is not negotiable down: measured on s3, all six keys in a topic come from one passage variant, so six items from one passage behave like one item._ |
-| A19 | No way to add a second manager to an academy | one admin route, or a dashboard screen | — | Closing the membership escalation (migration 103) removed the only path that existed. Self-serve signup could attach anyone to any academy by UUID — proven against production, an account could claim HERALD and read its students, parents and teachers — so it had to go. Bootstrap of a manager-less academy still works and an existing manager can now add others via managers_added_by_manager, but NO UI OR ROUTE CALLS THAT POLICY. Today a second manager has to be added through admin tooling. _Real academies do have several: HERALD has 5, Andy Lee's Hagwon 2. This is not hypothetical demand._ |
 
 ## 3. Open work — needs you
 

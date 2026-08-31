@@ -14,6 +14,7 @@ import { ReportQuestion } from '@/app/mobile/study/_shared/ReportQuestion'
 import type { SpeechSignals } from './types'
 import {
   tallyRows, scaleFraction, scoreSplit, moduleSplit, passageSetBreakdown,
+  admissionScoreFromRows,
   type ResultRow, type RubricGrade, type TestResultModel,
 } from '@/lib/study/test-result'
 import { authHeaders } from '@/lib/auth-headers'
@@ -137,6 +138,12 @@ export function TestResultView({
   }, [sessionId, hasRubricRows, gradingOpenResponses])
 
   const split = scoreSplit(model.rows, grades)
+  /* SSAT/ISEE raw score. Derived from rows the submit path already
+     writes — study_attempts keeps student_answer null for a blank — so
+     this needed no schema change and no second source of truth. */
+  const admission = (model.family === 'ssat' || model.family === 'isee')
+    ? admissionScoreFromRows(model.family, model.rows, model.correctCount)
+    : null
 
   /* Module 1 vs Module 2, and per-passage-set accuracy. Both are in
      SCORED QUESTIONS — the same unit as the hero — and both return null
@@ -332,6 +339,52 @@ export function TestResultView({
                   : (ko ? '문항당 1점입니다. 위의 밴드 점수는 이 비율에서 나옵니다.'
                         : 'One point per question. Your band above comes from this share.')}
               />
+            </div>
+          )}
+          {/*
+            * SSAT and ISEE.
+            *
+            * These score differently from everything else on this screen
+            * and percent correct is the WRONG NUMBER for SSAT: a wrong
+            * answer costs a quarter point, a blank costs nothing, so two
+            * students with the same accuracy and different skip rates do
+            * not have the same score. The raw score is the headline; the
+            * accuracy percentage stays only as context.
+            *
+            * There is deliberately NO band and NO scaled score. The real
+            * SSAT reports 500-800 and the real ISEE a 1-9 stanine, both
+            * norm-referenced against populations we do not have. A
+            * plausible band computed from percent correct would be a
+            * fabricated number on a screen a parent reads — this app has
+            * shipped one of those before. `scaleNote` says so in words
+            * instead.
+            */}
+          {(model.family === 'ssat' || model.family === 'isee') && admission && scoreReady && (
+            <div className="mt-5 space-y-2.5">
+              <ScaleRow
+                label={ko ? '원점수' : 'Raw score'}
+                value={String(admission.raw)}
+                min={model.family === 'ssat' ? -Math.round(admission.maxRaw / 4) : 0}
+                max={admission.maxRaw}
+                fraction={scaleFraction(
+                  admission.raw,
+                  model.family === 'ssat' ? -(admission.maxRaw / 4) : 0,
+                  Math.max(1, admission.maxRaw))}
+                note={model.family === 'ssat'
+                  ? (ko ? '정답 +1점, 오답 -1/4점, 무응답 0점입니다.'
+                        : 'Correct +1, wrong −¼, blank 0.')
+                  : (ko ? 'ISEE는 정답만 셉니다. 오답 감점이 없으니 모든 문항에 답하세요.'
+                        : 'ISEE counts right answers only — no penalty, so answer everything.')}
+              />
+              <div className="flex flex-wrap gap-x-5 gap-y-1 text-[12.5px] text-white/80 tabular-nums">
+                <span>{ko ? '정답' : 'Correct'} {admission.correct}</span>
+                <span>{ko ? '오답' : 'Wrong'} {admission.wrong}</span>
+                <span>{ko ? '무응답' : 'Blank'} {admission.omitted}</span>
+                <span>{ko ? '정답률' : 'Accuracy'} {admission.percentCorrect}%</span>
+              </div>
+              <p className="text-[12px] leading-relaxed text-white/70 max-w-prose">
+                {admission.scaleNote}
+              </p>
             </div>
           )}
           {model.family === 'sat' && sat && (

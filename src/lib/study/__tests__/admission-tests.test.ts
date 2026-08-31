@@ -47,9 +47,22 @@ describe('blueprint matches the published format', () => {
     }
   })
 
-  it('uses the right choice count per family — 5 for SSAT, 4 for ISEE', () => {
-    for (const b of ADMISSION_BLUEPRINT.ssat) if (b.bankSection) expect(b.choiceCount).toBe(5)
-    for (const b of ADMISSION_BLUEPRINT.isee) if (b.bankSection) expect(b.choiceCount).toBe(4)
+  // Scoped to SCORED blocks. The free-response blocks are bank-backed too
+  // now that the essay prompts are inserted, and they carry choiceCount 0
+  // because they have no options at all — a rule about how many options a
+  // multiple-choice item has does not apply to them.
+  it('uses the right choice count per multiple-choice block — 5 SSAT, 4 ISEE', () => {
+    for (const b of ADMISSION_BLUEPRINT.ssat) if (b.scored) expect(b.choiceCount).toBe(5)
+    for (const b of ADMISSION_BLUEPRINT.isee) if (b.scored) expect(b.choiceCount).toBe(4)
+  })
+
+  it('gives the free-response blocks no options', () => {
+    for (const fam of ['ssat', 'isee'] as const) {
+      for (const b of ADMISSION_BLUEPRINT[fam].filter(x => !x.scored)) {
+        expect(b.choiceCount).toBe(0)
+        expect(b.questions).toBe(1)
+      }
+    }
   })
 
   it('counts only scored blocks toward the form total', () => {

@@ -36,6 +36,7 @@
  *   - SCORED    what the score is out of. Excludes unscored pilots and
  *               open-response items. Lives in study_sessions.total_count.
  *  Every label rendering one of these must name its unit. */
+import { scoreAdmission, type AdmissionScore } from './admission-tests'
 export type ResultUnit = 'card' | 'delivered' | 'scored'
 
 /** Minimal shape of a stored question. Structural rather than the submit
@@ -250,6 +251,35 @@ export function tallyRows(rows: ResultRow[]): ResultTally {
 }
 
 /**
+ * SSAT / ISEE raw scoring for the result screen.
+ *
+ * These two do not score like anything else here, and percent correct —
+ * what the screen showed before — is simply the wrong number for SSAT:
+ * a wrong answer costs a quarter point and a BLANK costs nothing, so two
+ * students with identical accuracy and different skip rates have
+ * different scores.
+ *
+ * Nothing new is stored for this. tallyRows already separates
+ * `skippedWithinCounted` from the rest, because study_attempts keeps
+ * `student_answer` null for a blank, so correct / wrong / omitted is
+ * recoverable from rows the submit path already writes.
+ */
+export function admissionScoreFromRows(
+  family: 'ssat' | 'isee',
+  rows: ResultRow[],
+  correctCount: number,
+): AdmissionScore {
+  const tally = tallyRows(rows)
+  const omitted = tally.skippedWithinCounted
+  // Clamped because correctCount comes from study_sessions and the rows
+  // from study_attempts. They should agree; if a session was ever written
+  // inconsistently a negative `wrong` would silently inflate an SSAT raw
+  // score, which is the one direction this must not fail in.
+  const wrong = Math.max(0, tally.counted - correctCount - omitted)
+  return scoreAdmission(family, { correct: correctCount, wrong, omitted })
+}
+
+/**
  * Where a score sits on its own scale, 0..1, for a meter.
  *
  * The floor matters and is easy to drop. TOEFL bands run 1..6, not 0..6:
@@ -262,7 +292,7 @@ export function scaleFraction(value: number, min: number, max: number): number {
   return Math.max(0, Math.min(1, (value - min) / (max - min)))
 }
 
-export type TestFamily = 'toefl' | 'sat' | 'other'
+export type TestFamily = 'toefl' | 'sat' | 'ssat' | 'isee' | 'other'
 export type SatSection = 'math' | 'reading_writing'
 
 /**
@@ -279,6 +309,11 @@ export type SatSection = 'math' | 'reading_writing'
 export function familyFromTopicSlug(slugOrFamily: string | null | undefined): TestFamily {
   const s = (slugOrFamily ?? '').trim().toLowerCase()
   if (s === 'toefl' || s.startsWith('toefl-')) return 'toefl'
+  // BEFORE the sat check: 'ssat-reading' does not start with 'sat-', but
+  // ordering these deliberately documents that the two families share a
+  // suffix and a careless startsWith would collide.
+  if (s === 'ssat' || s.startsWith('ssat-')) return 'ssat'
+  if (s === 'isee' || s.startsWith('isee-')) return 'isee'
   if (s === 'sat' || s.startsWith('sat-')) return 'sat'
   return 'other'
 }

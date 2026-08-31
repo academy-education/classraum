@@ -128,9 +128,18 @@ describe('the route accepts block keys, not bank sections', () => {
     expect(routable('isee', 'mathach')).toBe(true)
   })
 
-  it('refuses the free-response blocks, which have no items behind them', () => {
-    expect(routable('ssat', 'writing')).toBe(false)
-    expect(routable('isee', 'essay')).toBe(false)
+  /*
+   * These WERE unroutable, deliberately: 16 prompts were authored and
+   * nothing had inserted them, so routing to the block would have drawn
+   * from an empty pool. essay-bank-helper.mjs banked them (4 SSAT pairs,
+   * 8 ISEE), so the blocks are now backed and routable.
+   *
+   * Unscored is not the same as undelivered — both are sent to every
+   * school the student applies to.
+   */
+  it('routes the free-response blocks now that prompts are banked', () => {
+    expect(routable('ssat', 'writing')).toBe(true)
+    expect(routable('isee', 'essay')).toBe(true)
   })
 
   it('refuses a bank section passed where a block key belongs', () => {

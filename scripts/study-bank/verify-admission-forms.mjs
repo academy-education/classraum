@@ -32,6 +32,7 @@ const db = createClient(env.NEXT_PUBLIC_SUPABASE_URL, env.SUPABASE_SERVICE_ROLE_
 const MAX_PER_PASSAGE = 3
 const BLUEPRINT = {
   ssat: [
+    { key: 'writing', bankSection: 'writing', questions: 1 },
     { key: 'quant1',  bankSection: 'math',    questions: 25 },
     { key: 'reading', bankSection: 'reading', questions: 40 },
     { key: 'verbal',  bankSection: 'verbal',  questions: 60 },
@@ -42,6 +43,7 @@ const BLUEPRINT = {
     { key: 'quant',   bankSection: 'math',    questions: 37 },
     { key: 'reading', bankSection: 'reading', questions: 36 },
     { key: 'mathach', bankSection: 'math',    questions: 47 },
+    { key: 'essay',   bankSection: 'writing', questions: 1 },
   ],
 }
 
@@ -98,5 +100,5 @@ for (const [family, sections] of Object.entries(BLUEPRINT)) {
 
 console.log(failed
   ? '\nFAIL — at least one section cannot be filled from the live bank.'
-  : '\nEvery scored section can be filled. Margins above say how repeatable a form is.')
+  : '\nEvery delivered section can be filled. Margins above say how repeatable a form is.')
 process.exit(failed ? 1 : 0)
