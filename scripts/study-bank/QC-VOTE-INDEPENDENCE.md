@@ -30,11 +30,41 @@ disagreement (17 unanimous, 29 at 2/3, 60 below), which looked like the
 instrument working. It was not the instrument working — s2's items were
 ambiguous enough to split a single reader against itself.
 
-## The fix
+## The fix did not work, and that is the real finding
 
-THREE SEPARATE AGENTS, one vote each, each with the key and explanation
-fields withheld by instruction. Different stances still, but now the
-stance is the only thing they share.
+Re-run with THREE SEPARATE AGENTS, one vote each, fresh context, key and
+explanation withheld by instruction, different reading stances:
+
+    distinct answer-strings: 1 of 3
+    agreement with key:      84/84, 84/84, 84/84
+
+Identical. So the collapse was never about shared context — same-model
+agents converge on reading comprehension whether or not they can see
+each other's work.
+
+**The with-passage VOTE therefore has no discriminating power.** "3 of 3
+agree with the key" is close to a tautology: if the model can answer the
+item at all, every voter answers it the same way. A gate that cannot
+return a negative is not a gate.
+
+This is the seventh instrument on this project to fail the same way — it
+looked like it was working because the batch it was built on (s2) was
+bad enough to split a single reader against itself.
+
+## What replaces it
+
+Two things, neither of them a vote:
+
+1. **The FLAGGING task.** Voters asked to answer AND to flag broken items
+   found real defects: two separate agents independently flagged
+   RW4-S09-6 and RW4-S12-5. Flagging asks for a judgement the model can
+   actually vary on; answering does not.
+2. **A human sitting (register B5).** A person is the only reader in this
+   pipeline that can disagree with the model at all. That is now the
+   argument for B5, rather than thoroughness.
+
+Report the vote's coverage if you like, but never its agreement rate as
+evidence of item quality.
 
 ## What this does NOT invalidate
 
