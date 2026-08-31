@@ -56,3 +56,14 @@ describe('the collapsed panel reads as a control', () => {
     expect(src).toMatch(/aria-expanded=\{open\}/)
   })
 })
+
+describe('free-response items render as themselves', () => {
+  // SSAT Writing Sample and ISEE Essay have no options and no key. The
+  // sweep pulls every ssat/isee item, so they appear in the list; before
+  // this they rendered an empty <ol> and read as a broken MC item.
+  it('branches on an empty choices array', () => {
+    const src = read('src/components/admin/bank-qc/ItemSweepPanel.tsx')
+    expect(src).toMatch(/it\.choices\.length === 0/)
+    expect(src).toMatch(/Free response — no options and no answer key/)
+  })
+})

@@ -348,6 +348,21 @@ export function ItemSweepPanel() {
 
                         <p className="text-[14.5px] text-gray-900 mb-2.5 max-w-3xl">{it.prompt}</p>
 
+                        {/*
+                          * Free-response items (SSAT Writing Sample, ISEE
+                          * Essay) have no options and no key. Rendering the
+                          * normal empty <ol> made them look like a broken
+                          * multiple-choice item; they are a different kind
+                          * of item and say so.
+                          */}
+                        {it.choices.length === 0 ? (
+                          <p className="text-[13px] text-gray-500 italic bg-gray-50 rounded-lg px-3 py-2 mb-3">
+                            Free response — no options and no answer key. Judge the prompt
+                            itself: is it answerable in the time allowed, two-sided enough
+                            to argue either way, and free of knowledge a 13-year-old may
+                            not have?
+                          </p>
+                        ) : (
                         <ol className="space-y-1 mb-3">
                           {it.choices.map((c, i) => {
                             const isKey = c.trim() === it.correctAnswer.trim()
@@ -362,6 +377,7 @@ export function ItemSweepPanel() {
                             )
                           })}
                         </ol>
+                        )}
 
                         {(it.explanation || it.distractorRationales.length > 0) && (
                           <div className="text-[12.5px] text-gray-600 bg-gray-50 rounded-lg px-3 py-2.5 mb-3">
