@@ -1861,7 +1861,25 @@ export default function AuthPage() {
             </div>
           )}
 
-          {(activeTab === "signin" || activeTab === "signup") && (
+          {/*
+            * Social sign-in is offered for LOGIN always, and for SIGNUP
+            * only in study mode.
+            *
+            * handleOAuth does not read `signupIntent` — it cannot, because
+            * the OAuth round trip leaves the page and returns with only
+            * what the provider sends. So every social signup lands as
+            * role='student' with no academy (handle_new_user defaults the
+            * role, and there is nowhere in the flow to collect an academy
+            * id). A user who selected "academy" and pressed Google was
+            * silently given a study account.
+            *
+            * Hiding the buttons for academy signup is the honest
+            * short-term fix: it removes an affordance that could not do
+            * what it appeared to do. Supporting it properly means
+            * carrying the intent through the redirect and collecting the
+            * academy id on return — a real flow, not a flag.
+            */}
+          {(activeTab === "signin" || (activeTab === "signup" && signupIntent === 'study')) && (
             <SocialAuthButtons
               t={t}
               onSelect={handleOAuth}
