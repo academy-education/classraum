@@ -11,6 +11,8 @@
  * the whole bank, not the filtered view; a filtered denominator reads as
  * "everything checked" the moment someone narrows to one section.
  */
+import { readFileSync } from 'node:fs'
+import { join } from 'node:path'
 import React from 'react'
 import { render, screen, waitFor, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
@@ -164,8 +166,8 @@ describe('a failed load does not retry forever', () => {
    * guard is pinned at the source instead — verified to fail when `err`
    * is removed from the condition.
    */
-  const src = require('fs').readFileSync(
-    require('path').join(process.cwd(), 'src/components/admin/bank-qc/ItemSweepPanel.tsx'), 'utf8')
+  const src = readFileSync(
+    join(process.cwd(), 'src/components/admin/bank-qc/ItemSweepPanel.tsx'), 'utf8')
 
   it('has err in the load guard', () => {
     expect(src).toMatch(/if \(open && !data && !loading && !err\) void load\(\)/)
@@ -198,8 +200,8 @@ describe('the sweep route does not filter verdicts by an id list', () => {
    * forever. The verdicts table is small; it is read whole and joined
    * in memory.
    */
-  const route = require('fs').readFileSync(
-    require('path').join(process.cwd(), 'src/app/api/admin/bank-qc/sweep/route.ts'), 'utf8')
+  const route = readFileSync(
+    join(process.cwd(), 'src/app/api/admin/bank-qc/sweep/route.ts'), 'utf8')
 
   it('has no .in() over item ids', () => {
     expect(route).not.toMatch(/\.in\('item_id'/)
