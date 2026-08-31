@@ -1,0 +1,1082 @@
+[
+ {
+  "id": "SV5-Y01",
+  "kind": "synonym",
+  "subskill": "temperament",
+  "topic_tag": "synonym",
+  "difficulty": "medium",
+  "prompt": "[Synonym] IRASCIBLE",
+  "choices": [
+   "quick to anger",
+   "persistent",
+   "unmoved by pain",
+   "impulsive",
+   "friendly"
+  ],
+  "correct_answer": "quick to anger",
+  "explanation": "IRASCIBLE means quick to anger.",
+  "distractor_rationales": [
+   {
+    "choice": "persistent",
+    "reason": "tenacious means holding on stubbornly, not hot-tempered"
+   },
+   {
+    "choice": "friendly",
+    "reason": "affable means easy to talk to, not hot-tempered"
+   },
+   {
+    "choice": "unmoved by pain",
+    "reason": "stoic means enduring without complaint, not hot-tempered"
+   },
+   {
+    "choice": "impulsive",
+    "reason": "capricious means changeable on a whim, not angry"
+   }
+  ],
+  "_shown": "W2"
+ },
+ {
+  "id": "SV5-Y02",
+  "kind": "synonym",
+  "subskill": "speech",
+  "topic_tag": "synonym",
+  "difficulty": "medium",
+  "prompt": "[Synonym] ELOQUENT",
+  "choices": [
+   "pompously inflated",
+   "rudely brief",
+   "gracefully expressive",
+   "avoiding a direct answer",
+   "talkative"
+  ],
+  "correct_answer": "gracefully expressive",
+  "explanation": "ELOQUENT means gracefully expressive.",
+  "distractor_rationales": [
+   {
+    "choice": "talkative",
+    "reason": "garrulous means chattering at length, not graceful"
+   },
+   {
+    "choice": "rudely brief",
+    "reason": "curt means clipped and rude, not graceful"
+   },
+   {
+    "choice": "avoiding a direct answer",
+    "reason": "evasive means avoiding an answer, not graceful"
+   },
+   {
+    "choice": "pompously inflated",
+    "reason": "bombastic means pompous and overblown, not graceful"
+   }
+  ],
+  "_shown": "W2"
+ },
+ {
+  "id": "SV5-Y03",
+  "kind": "synonym",
+  "subskill": "motion",
+  "topic_tag": "synonym",
+  "difficulty": "medium",
+  "prompt": "[Synonym] TRUDGE",
+  "choices": [
+   "move in quick short steps",
+   "walk heavily and wearily",
+   "lurch from side to side",
+   "drop straight down",
+   "wind along an indirect course"
+  ],
+  "correct_answer": "walk heavily and wearily",
+  "explanation": "TRUDGE means walk heavily and wearily.",
+  "distractor_rationales": [
+   {
+    "choice": "lurch from side to side",
+    "reason": "careen means to lurch from side to side, not to plod"
+   },
+   {
+    "choice": "drop straight down",
+    "reason": "plummet means to drop straight down, not to walk"
+   },
+   {
+    "choice": "wind along an indirect course",
+    "reason": "meander means to wander in curves, not to walk wearily"
+   },
+   {
+    "choice": "move in quick short steps",
+    "reason": "scurry means to move in quick short steps, not heavily"
+   }
+  ],
+  "_shown": "W1"
+ },
+ {
+  "id": "SV5-Y04",
+  "kind": "synonym",
+  "subskill": "size",
+  "topic_tag": "synonym",
+  "difficulty": "medium",
+  "prompt": "[Synonym] SCANT",
+  "choices": [
+   "barely enough",
+   "enormous",
+   "extremely tiny",
+   "more than enough",
+   "large and awkward to handle"
+  ],
+  "correct_answer": "barely enough",
+  "explanation": "SCANT means barely enough.",
+  "distractor_rationales": [
+   {
+    "choice": "extremely tiny",
+    "reason": "minuscule describes the size of one thing, not a short supply"
+   },
+   {
+    "choice": "enormous",
+    "reason": "colossal means vast, not short"
+   },
+   {
+    "choice": "more than enough",
+    "reason": "ample means plentiful, not short"
+   },
+   {
+    "choice": "large and awkward to handle",
+    "reason": "bulky means taking up awkward space, not short in supply"
+   }
+  ],
+  "_shown": "W4"
+ },
+ {
+  "id": "SV5-Y05",
+  "kind": "synonym",
+  "subskill": "attention",
+  "topic_tag": "synonym",
+  "difficulty": "medium",
+  "prompt": "[Synonym] OBLIVIOUS",
+  "choices": [
+   "completely absorbed",
+   "unaware of one's surroundings",
+   "watchful for danger",
+   "attentive to the smallest detail",
+   "done hastily and shallowly"
+  ],
+  "correct_answer": "unaware of one's surroundings",
+  "explanation": "OBLIVIOUS means unaware of one's surroundings.",
+  "distractor_rationales": [
+   {
+    "choice": "watchful for danger",
+    "reason": "vigilant means keenly aware, not unaware"
+   },
+   {
+    "choice": "completely absorbed",
+    "reason": "engrossed means intensely attending to something, not unaware of it"
+   },
+   {
+    "choice": "done hastily and shallowly",
+    "reason": "cursory means glancing, which is still noticing"
+   },
+   {
+    "choice": "attentive to the smallest detail",
+    "reason": "meticulous means minutely attentive, not unaware"
+   }
+  ],
+  "_shown": "W3"
+ },
+ {
+  "id": "SV5-Y06",
+  "kind": "synonym",
+  "subskill": "honesty",
+  "topic_tag": "synonym",
+  "difficulty": "medium",
+  "prompt": "[Synonym] DUPLICITOUS",
+  "choices": [
+   "deliberately two-faced",
+   "outspokenly direct",
+   "not genuine",
+   "strictly principled",
+   "sincere and serious in feeling"
+  ],
+  "correct_answer": "deliberately two-faced",
+  "explanation": "DUPLICITOUS means deliberately two-faced.",
+  "distractor_rationales": [
+   {
+    "choice": "strictly principled",
+    "reason": "scrupulous means strictly principled, not deceitful"
+   },
+   {
+    "choice": "sincere and serious in feeling",
+    "reason": "earnest means sincere, not deceitful"
+   },
+   {
+    "choice": "outspokenly direct",
+    "reason": "forthright means outspokenly direct, not deceitful"
+   },
+   {
+    "choice": "not genuine",
+    "reason": "spurious describes a fake thing, not a person playing two parts"
+   }
+  ],
+  "_shown": "W1"
+ },
+ {
+  "id": "SV5-Y07",
+  "kind": "synonym",
+  "subskill": "effort",
+  "topic_tag": "synonym",
+  "difficulty": "medium",
+  "prompt": "[Synonym] FUTILE",
+  "choices": [
+   "producing no result",
+   "steadily hard-working",
+   "habitually lazy",
+   "carelessly sloppy",
+   "demanding great exertion"
+  ],
+  "correct_answer": "producing no result",
+  "explanation": "FUTILE means producing no result.",
+  "distractor_rationales": [
+   {
+    "choice": "steadily hard-working",
+    "reason": "diligent describes effort applied, not the outcome"
+   },
+   {
+    "choice": "habitually lazy",
+    "reason": "indolent describes withheld effort, not a wasted outcome"
+   },
+   {
+    "choice": "demanding great exertion",
+    "reason": "arduous describes how taxing the effort is, not whether it pays off"
+   },
+   {
+    "choice": "carelessly sloppy",
+    "reason": "slipshod describes how the work was done, not whether it achieved anything"
+   }
+  ],
+  "_shown": "W5"
+ },
+ {
+  "id": "SV5-Y08",
+  "kind": "synonym",
+  "subskill": "mood",
+  "topic_tag": "synonym",
+  "difficulty": "medium",
+  "prompt": "[Synonym] ANXIOUS",
+  "choices": [
+   "uneasy with worry",
+   "in high spirits",
+   "gently longing for what is past",
+   "gloomy and sullen",
+   "untroubled and calm"
+  ],
+  "correct_answer": "uneasy with worry",
+  "explanation": "ANXIOUS means uneasy with worry.",
+  "distractor_rationales": [
+   {
+    "choice": "gloomy and sullen",
+    "reason": "morose means sulky and downcast, not apprehensive"
+   },
+   {
+    "choice": "in high spirits",
+    "reason": "elated means delighted, not worried"
+   },
+   {
+    "choice": "gently longing for what is past",
+    "reason": "wistful means fondly regretful, not worried"
+   },
+   {
+    "choice": "untroubled and calm",
+    "reason": "serene means free of worry, not full of it"
+   }
+  ],
+  "_shown": "W4"
+ },
+ {
+  "id": "SV5-Y09",
+  "kind": "synonym",
+  "subskill": "wealth",
+  "topic_tag": "synonym",
+  "difficulty": "medium",
+  "prompt": "[Synonym] DESTITUTE",
+  "choices": [
+   "producing a large profit",
+   "luxuriously rich",
+   "utterly without money",
+   "greedy for money",
+   "careful in spending"
+  ],
+  "correct_answer": "utterly without money",
+  "explanation": "DESTITUTE means utterly without money.",
+  "distractor_rationales": [
+   {
+    "choice": "luxuriously rich",
+    "reason": "opulent means richly luxurious, not penniless"
+   },
+   {
+    "choice": "careful in spending",
+    "reason": "frugal means careful with money, which implies having some"
+   },
+   {
+    "choice": "greedy for money",
+    "reason": "avaricious means greedy for money, not lacking it"
+   },
+   {
+    "choice": "producing a large profit",
+    "reason": "lucrative means profitable, not penniless"
+   }
+  ],
+  "_shown": "W1"
+ },
+ {
+  "id": "SV5-Y10",
+  "kind": "synonym",
+  "subskill": "order",
+  "topic_tag": "synonym",
+  "difficulty": "medium",
+  "prompt": "[Synonym] SYSTEMATIC",
+  "choices": [
+   "crowded with untidy things",
+   "arranged by a fixed method",
+   "spotlessly clean",
+   "evenly balanced on both sides",
+   "confusingly maze-like"
+  ],
+  "correct_answer": "arranged by a fixed method",
+  "explanation": "SYSTEMATIC means arranged by a fixed method.",
+  "distractor_rationales": [
+   {
+    "choice": "crowded with untidy things",
+    "reason": "cluttered means crowded with untidy things, not methodical"
+   },
+   {
+    "choice": "spotlessly clean",
+    "reason": "immaculate means spotlessly clean, which is not the same as ordered by a rule"
+   },
+   {
+    "choice": "evenly balanced on both sides",
+    "reason": "symmetrical means matched on both sides, not governed by a method"
+   },
+   {
+    "choice": "confusingly maze-like",
+    "reason": "labyrinthine means confusingly maze-like, the reverse of methodical"
+   }
+  ],
+  "_shown": "W1"
+ },
+ {
+  "id": "SV5-Y11",
+  "kind": "synonym",
+  "subskill": "clarity",
+  "topic_tag": "synonym",
+  "difficulty": "medium",
+  "prompt": "[Synonym] ESOTERIC",
+  "choices": [
+   "using far more words than needed",
+   "needlessly complicated",
+   "easily understood",
+   "understood only by a few specialists",
+   "open to more than one meaning"
+  ],
+  "correct_answer": "understood only by a few specialists",
+  "explanation": "ESOTERIC means understood only by a few specialists.",
+  "distractor_rationales": [
+   {
+    "choice": "easily understood",
+    "reason": "lucid means plain to any reader, the reverse of restricted"
+   },
+   {
+    "choice": "open to more than one meaning",
+    "reason": "ambiguous means having rival meanings, not a restricted audience"
+   },
+   {
+    "choice": "needlessly complicated",
+    "reason": "convoluted means twisted in expression, not narrow in audience"
+   },
+   {
+    "choice": "using far more words than needed",
+    "reason": "verbose means padded with words, not narrow in audience"
+   }
+  ],
+  "_shown": "W5"
+ },
+ {
+  "id": "SV5-Y12",
+  "kind": "synonym",
+  "subskill": "courage",
+  "topic_tag": "synonym",
+  "difficulty": "medium",
+  "prompt": "[Synonym] RESOLUTE",
+  "choices": [
+   "contemptibly cowardly",
+   "recklessly rash",
+   "fearless in the face of danger",
+   "firmly determined",
+   "uneasy about what may happen"
+  ],
+  "correct_answer": "firmly determined",
+  "explanation": "RESOLUTE means firmly determined.",
+  "distractor_rationales": [
+   {
+    "choice": "fearless in the face of danger",
+    "reason": "intrepid means unafraid of danger, while determination may face no danger"
+   },
+   {
+    "choice": "contemptibly cowardly",
+    "reason": "craven means spineless, not determined"
+   },
+   {
+    "choice": "recklessly rash",
+    "reason": "foolhardy means acting without thought, not holding to a purpose"
+   },
+   {
+    "choice": "uneasy about what may happen",
+    "reason": "apprehensive means wavering with worry, not firm"
+   }
+  ],
+  "_shown": "W4"
+ },
+ {
+  "id": "SV5-Y13",
+  "kind": "synonym",
+  "subskill": "change",
+  "topic_tag": "synonym",
+  "difficulty": "medium",
+  "prompt": "[Synonym] FLUCTUATE",
+  "choices": [
+   "stop developing and go stale",
+   "grow steadily more intense",
+   "restore to good condition",
+   "wear away gradually",
+   "rise and fall irregularly"
+  ],
+  "correct_answer": "rise and fall irregularly",
+  "explanation": "FLUCTUATE means rise and fall irregularly.",
+  "distractor_rationales": [
+   {
+    "choice": "wear away gradually",
+    "reason": "erode means to diminish steadily in one direction"
+   },
+   {
+    "choice": "grow steadily more intense",
+    "reason": "escalate means to mount steadily in one direction"
+   },
+   {
+    "choice": "stop developing and go stale",
+    "reason": "stagnate means not to move at all"
+   },
+   {
+    "choice": "restore to good condition",
+    "reason": "renovate means to overhaul something, not to vary"
+   }
+  ],
+  "_shown": "W4"
+ },
+ {
+  "id": "SV5-Y14",
+  "kind": "synonym",
+  "subskill": "resistance",
+  "topic_tag": "synonym",
+  "difficulty": "medium",
+  "prompt": "[Synonym] THWART",
+  "choices": [
+   "openly refuse to obey",
+   "block from succeeding",
+   "stop short and go no further",
+   "soften after being harsh",
+   "undermine from within"
+  ],
+  "correct_answer": "block from succeeding",
+  "explanation": "THWART means block from succeeding.",
+  "distractor_rationales": [
+   {
+    "choice": "openly refuse to obey",
+    "reason": "defy means to disobey, while thwarting frustrates a plan"
+   },
+   {
+    "choice": "stop short and go no further",
+    "reason": "balk means to refuse to proceed oneself, not to stop another"
+   },
+   {
+    "choice": "soften after being harsh",
+    "reason": "relent means to ease off, not to obstruct"
+   },
+   {
+    "choice": "undermine from within",
+    "reason": "subvert means to weaken from inside over time, while thwarting stops an attempt outright"
+   }
+  ],
+  "_shown": "W3"
+ },
+ {
+  "id": "SV5-Y15",
+  "kind": "synonym",
+  "subskill": "generosity",
+  "topic_tag": "synonym",
+  "difficulty": "medium",
+  "prompt": "[Synonym] BENEVOLENT",
+  "choices": [
+   "spending very freely",
+   "kindly and wishing others well",
+   "hoarding and unwilling to spend",
+   "generous in forgiving a rival",
+   "donating wealth to public causes"
+  ],
+  "correct_answer": "kindly and wishing others well",
+  "explanation": "BENEVOLENT means kindly and wishing others well.",
+  "distractor_rationales": [
+   {
+    "choice": "generous in forgiving a rival",
+    "reason": "magnanimous means noble toward a defeated rival, a much narrower thing than general goodwill"
+   },
+   {
+    "choice": "donating wealth to public causes",
+    "reason": "philanthropic means actually donating wealth, while goodwill costs nothing"
+   },
+   {
+    "choice": "hoarding and unwilling to spend",
+    "reason": "miserly means tight-fisted, not kindly"
+   },
+   {
+    "choice": "spending very freely",
+    "reason": "lavish means free with money, not warm in feeling"
+   }
+  ],
+  "_shown": "W2"
+ },
+ {
+  "id": "SV5-A01",
+  "kind": "analogy",
+  "subskill": "the farmyard",
+  "topic_tag": "analogy",
+  "difficulty": "medium",
+  "prompt": "[Analogy] trough is to water as",
+  "choices": [
+   "clay is to brick",
+   "den is to fox",
+   "cub is to bear",
+   "swarm is to bee",
+   "barrel is to cider"
+  ],
+  "correct_answer": "barrel is to cider",
+  "explanation": "trough : water — container of. barrel : cider expresses the same relation.",
+  "distractor_rationales": [
+   {
+    "choice": "cub is to bear",
+    "reason": "a barrel is a vessel, not cider's offspring"
+   },
+   {
+    "choice": "swarm is to bee",
+    "reason": "a barrel is not a group of ciders"
+   },
+   {
+    "choice": "den is to fox",
+    "reason": "cider does not live in a barrel; nothing dwells there"
+   },
+   {
+    "choice": "clay is to brick",
+    "reason": "cider is not made out of barrel"
+   }
+  ],
+  "_shown": "W5"
+ },
+ {
+  "id": "SV5-A02",
+  "kind": "analogy",
+  "subskill": "the natural world",
+  "topic_tag": "analogy",
+  "difficulty": "medium",
+  "prompt": "[Analogy] acre is to land as",
+  "choices": [
+   "ounce is to weight",
+   "fin is to dolphin",
+   "cow is to milk",
+   "pack is to wolf",
+   "bray is to donkey"
+  ],
+  "correct_answer": "ounce is to weight",
+  "explanation": "acre : land — unit of. ounce : weight expresses the same relation.",
+  "distractor_rationales": [
+   {
+    "choice": "pack is to wolf",
+    "reason": "an ounce is a measure, not a group of weights"
+   },
+   {
+    "choice": "fin is to dolphin",
+    "reason": "an ounce is not a physical piece of anything"
+   },
+   {
+    "choice": "bray is to donkey",
+    "reason": "an ounce makes no noise"
+   },
+   {
+    "choice": "cow is to milk",
+    "reason": "weight does not produce ounces; the ounce measures it"
+   }
+  ],
+  "_shown": "W5"
+ },
+ {
+  "id": "SV5-A03",
+  "kind": "analogy",
+  "subskill": "the town",
+  "topic_tag": "analogy",
+  "difficulty": "medium",
+  "prompt": "[Analogy] barracks is to soldier as",
+  "choices": [
+   "caterpillar is to butterfly",
+   "monastery is to monk",
+   "medicine is to pharmacy",
+   "sieve is to strain",
+   "hull is to ship"
+  ],
+  "correct_answer": "monastery is to monk",
+  "explanation": "barracks : soldier — dwelling of. monastery : monk expresses the same relation.",
+  "distractor_rationales": [
+   {
+    "choice": "hull is to ship",
+    "reason": "a monastery is a whole building, not a component of a monk"
+   },
+   {
+    "choice": "sieve is to strain",
+    "reason": "a monastery is a residence, not an implement used for a task"
+   },
+   {
+    "choice": "medicine is to pharmacy",
+    "reason": "monks are not merchandise sold at a monastery"
+   },
+   {
+    "choice": "caterpillar is to butterfly",
+    "reason": "a monastery is a place, not a phase of anything"
+   }
+  ],
+  "_shown": "W2"
+ },
+ {
+  "id": "SV5-A04",
+  "kind": "analogy",
+  "subskill": "people and animals at work",
+  "topic_tag": "analogy",
+  "difficulty": "medium",
+  "prompt": "[Analogy] predator is to prey as",
+  "choices": [
+   "kennel is to hound",
+   "hiss is to snake",
+   "host is to guest",
+   "barber is to razor",
+   "trickle is to torrent"
+  ],
+  "correct_answer": "host is to guest",
+  "explanation": "predator : prey — opposite roles. host : guest expresses the same relation.",
+  "distractor_rationales": [
+   {
+    "choice": "kennel is to hound",
+    "reason": "a host is a person, not a shelter a guest occupies"
+   },
+   {
+    "choice": "hiss is to snake",
+    "reason": "neither word names a noise"
+   },
+   {
+    "choice": "barber is to razor",
+    "reason": "a guest is a person, not an instrument the host uses"
+   },
+   {
+    "choice": "trickle is to torrent",
+    "reason": "a guest is not an intensified host"
+   }
+  ],
+  "_shown": "W5"
+ },
+ {
+  "id": "SV5-A05",
+  "kind": "analogy",
+  "subskill": "the farmhouse kitchen",
+  "topic_tag": "analogy",
+  "difficulty": "medium",
+  "prompt": "[Analogy] cluck is to hen as",
+  "choices": [
+   "neigh is to horse",
+   "wool is to sweater",
+   "chisel is to carve",
+   "crate is to apple",
+   "fawn is to deer"
+  ],
+  "correct_answer": "neigh is to horse",
+  "explanation": "cluck : hen — sound of. neigh : horse expresses the same relation.",
+  "distractor_rationales": [
+   {
+    "choice": "chisel is to carve",
+    "reason": "a neigh is a noise, not an implement performing a task"
+   },
+   {
+    "choice": "wool is to sweater",
+    "reason": "a horse is not made out of neighs"
+   },
+   {
+    "choice": "crate is to apple",
+    "reason": "a neigh holds nothing"
+   },
+   {
+    "choice": "fawn is to deer",
+    "reason": "a neigh is a noise, not the horse's offspring"
+   }
+  ],
+  "_shown": "W1"
+ },
+ {
+  "id": "SV5-A06",
+  "kind": "analogy",
+  "subskill": "trades and measures",
+  "topic_tag": "analogy",
+  "difficulty": "medium",
+  "prompt": "[Analogy] drill is to bore as",
+  "choices": [
+   "olive is to oil",
+   "photographer is to camera",
+   "hour is to time",
+   "constellation is to star",
+   "saw is to cut"
+  ],
+  "correct_answer": "saw is to cut",
+  "explanation": "drill : bore — tool of. saw : cut expresses the same relation.",
+  "distractor_rationales": [
+   {
+    "choice": "photographer is to camera",
+    "reason": "cutting is an action, not the person who wields the saw"
+   },
+   {
+    "choice": "olive is to oil",
+    "reason": "a saw does not yield cutting as a cow yields milk; cutting is what it does"
+   },
+   {
+    "choice": "hour is to time",
+    "reason": "cutting is not a quantity a saw measures"
+   },
+   {
+    "choice": "constellation is to star",
+    "reason": "cutting is not a group the saw belongs to"
+   }
+  ],
+  "_shown": "W1"
+ },
+ {
+  "id": "SV5-A07",
+  "kind": "analogy",
+  "subskill": "craft and commerce",
+  "topic_tag": "analogy",
+  "difficulty": "medium",
+  "prompt": "[Analogy] handle is to basket as",
+  "choices": [
+   "tadpole is to frog",
+   "lid is to kettle",
+   "spices is to grocer",
+   "silver is to bracelet",
+   "conductor is to baton"
+  ],
+  "correct_answer": "lid is to kettle",
+  "explanation": "handle : basket — part of. lid : kettle expresses the same relation.",
+  "distractor_rationales": [
+   {
+    "choice": "conductor is to baton",
+    "reason": "a lid is a component, not a craftsman using the kettle"
+   },
+   {
+    "choice": "silver is to bracelet",
+    "reason": "a kettle is not made out of lids"
+   },
+   {
+    "choice": "spices is to grocer",
+    "reason": "a kettle is not a shop that sells lids"
+   },
+   {
+    "choice": "tadpole is to frog",
+    "reason": "a lid is not an earlier phase a kettle passes through"
+   }
+  ],
+  "_shown": "W5"
+ },
+ {
+  "id": "SV5-A08",
+  "kind": "analogy",
+  "subskill": "house and home",
+  "topic_tag": "analogy",
+  "difficulty": "medium",
+  "prompt": "[Analogy] chilly is to freezing as",
+  "choices": [
+   "seller is to buyer",
+   "aviary is to parrot",
+   "oyster is to pearl",
+   "hungry is to ravenous",
+   "glass is to window"
+  ],
+  "correct_answer": "hungry is to ravenous",
+  "explanation": "chilly : freezing — degree of. hungry : ravenous expresses the same relation.",
+  "distractor_rationales": [
+   {
+    "choice": "glass is to window",
+    "reason": "neither word names a substance anything is made from"
+   },
+   {
+    "choice": "oyster is to pearl",
+    "reason": "hunger does not yield ravenousness as a good"
+   },
+   {
+    "choice": "seller is to buyer",
+    "reason": "the two are the same state at different strengths, not opposed roles"
+   },
+   {
+    "choice": "aviary is to parrot",
+    "reason": "neither word names a place"
+   }
+  ],
+  "_shown": "W3"
+ },
+ {
+  "id": "SV5-A09",
+  "kind": "analogy",
+  "subskill": "the village market",
+  "topic_tag": "analogy",
+  "difficulty": "medium",
+  "prompt": "[Analogy] chirp is to cricket as",
+  "choices": [
+   "roar is to lion",
+   "fish is to fishmonger",
+   "sheep is to wool",
+   "joey is to kangaroo",
+   "vase is to flowers"
+  ],
+  "correct_answer": "roar is to lion",
+  "explanation": "chirp : cricket — sound of. roar : lion expresses the same relation.",
+  "distractor_rationales": [
+   {
+    "choice": "sheep is to wool",
+    "reason": "a roar is a noise, not a good the lion yields"
+   },
+   {
+    "choice": "fish is to fishmonger",
+    "reason": "a lion is not a shop"
+   },
+   {
+    "choice": "vase is to flowers",
+    "reason": "a roar holds nothing"
+   },
+   {
+    "choice": "joey is to kangaroo",
+    "reason": "a roar is not a lion's offspring"
+   }
+  ],
+  "_shown": "W5"
+ },
+ {
+  "id": "SV5-A10",
+  "kind": "analogy",
+  "subskill": "the market town",
+  "topic_tag": "analogy",
+  "difficulty": "medium",
+  "prompt": "[Analogy] bouquet is to flower as",
+  "choices": [
+   "paint is to hardware store",
+   "gram is to mass",
+   "fond is to devoted",
+   "choir is to singer",
+   "pliers is to grip"
+  ],
+  "correct_answer": "choir is to singer",
+  "explanation": "bouquet : flower — collective of. choir : singer expresses the same relation.",
+  "distractor_rationales": [
+   {
+    "choice": "paint is to hardware store",
+    "reason": "a choir is a group of people, not a shop"
+   },
+   {
+    "choice": "fond is to devoted",
+    "reason": "a choir is not a stronger version of a singer"
+   },
+   {
+    "choice": "gram is to mass",
+    "reason": "a choir is not a standard measure"
+   },
+   {
+    "choice": "pliers is to grip",
+    "reason": "a singer is not an action a choir carries out"
+   }
+  ],
+  "_shown": "W4"
+ },
+ {
+  "id": "SV5-A11",
+  "kind": "analogy",
+  "subskill": "the workshop and the garden",
+  "topic_tag": "analogy",
+  "difficulty": "medium",
+  "prompt": "[Analogy] hinge is to door as",
+  "choices": [
+   "gardener is to spade",
+   "flask is to oil",
+   "dawn is to midday",
+   "collar is to shirt",
+   "tired is to exhausted"
+  ],
+  "correct_answer": "collar is to shirt",
+  "explanation": "hinge : door — part of. collar : shirt expresses the same relation.",
+  "distractor_rationales": [
+   {
+    "choice": "tired is to exhausted",
+    "reason": "a collar is not a milder version of a shirt"
+   },
+   {
+    "choice": "flask is to oil",
+    "reason": "a collar is a component, not a vessel a shirt is kept in"
+   },
+   {
+    "choice": "dawn is to midday",
+    "reason": "a collar is not an earlier phase the shirt grows out of"
+   },
+   {
+    "choice": "gardener is to spade",
+    "reason": "a collar is not an implement anyone wields"
+   }
+  ],
+  "_shown": "W4"
+ },
+ {
+  "id": "SV5-A12",
+  "kind": "analogy",
+  "subskill": "the harbour",
+  "topic_tag": "analogy",
+  "difficulty": "medium",
+  "prompt": "[Analogy] fathom is to depth as",
+  "choices": [
+   "author is to reader",
+   "coop is to chicken",
+   "iron is to anchor",
+   "urn is to ashes",
+   "knot is to speed"
+  ],
+  "correct_answer": "knot is to speed",
+  "explanation": "fathom : depth — unit of. knot : speed expresses the same relation.",
+  "distractor_rationales": [
+   {
+    "choice": "urn is to ashes",
+    "reason": "a knot holds no contents"
+   },
+   {
+    "choice": "author is to reader",
+    "reason": "neither word names a party"
+   },
+   {
+    "choice": "coop is to chicken",
+    "reason": "speed is not something anything lives inside"
+   },
+   {
+    "choice": "iron is to anchor",
+    "reason": "speed is not a substance a knot is made from"
+   }
+  ],
+  "_shown": "W2"
+ },
+ {
+  "id": "SV5-A13",
+  "kind": "analogy",
+  "subskill": "the farm through the year",
+  "topic_tag": "analogy",
+  "difficulty": "medium",
+  "prompt": "[Analogy] duckling is to duck as",
+  "choices": [
+   "bleat is to goat",
+   "gosling is to goose",
+   "furlong is to distance",
+   "sowing is to harvest",
+   "maple is to syrup"
+  ],
+  "correct_answer": "gosling is to goose",
+  "explanation": "duckling : duck — young of. gosling : goose expresses the same relation.",
+  "distractor_rationales": [
+   {
+    "choice": "furlong is to distance",
+    "reason": "a gosling measures nothing"
+   },
+   {
+    "choice": "sowing is to harvest",
+    "reason": "the pair names offspring and parent, two birds, not one bird at two phases"
+   },
+   {
+    "choice": "bleat is to goat",
+    "reason": "a gosling is a bird, not a noise"
+   },
+   {
+    "choice": "maple is to syrup",
+    "reason": "a goose does not yield goslings as it yields down"
+   }
+  ],
+  "_shown": "W3"
+ },
+ {
+  "id": "SV5-A14",
+  "kind": "analogy",
+  "subskill": "public life",
+  "topic_tag": "analogy",
+  "difficulty": "medium",
+  "prompt": "[Analogy] rehearsal is to performance as",
+  "choices": [
+   "range is to mountain",
+   "doctor is to patient",
+   "hoe is to weed",
+   "stamps is to post office",
+   "draft is to essay"
+  ],
+  "correct_answer": "draft is to essay",
+  "explanation": "rehearsal : performance — stage of. draft : essay expresses the same relation.",
+  "distractor_rationales": [
+   {
+    "choice": "doctor is to patient",
+    "reason": "a draft and an essay are not two facing parties"
+   },
+   {
+    "choice": "range is to mountain",
+    "reason": "a draft is not a group of essays"
+   },
+   {
+    "choice": "hoe is to weed",
+    "reason": "a draft is not an implement and an essay is not an action"
+   },
+   {
+    "choice": "stamps is to post office",
+    "reason": "an essay is not a shop"
+   }
+  ],
+  "_shown": "W1"
+ },
+ {
+  "id": "SV5-A15",
+  "kind": "analogy",
+  "subskill": "people, animals and instruments",
+  "topic_tag": "analogy",
+  "difficulty": "medium",
+  "prompt": "[Analogy] archer is to bow as",
+  "choices": [
+   "chick is to hen",
+   "glimmer is to blaze",
+   "sole is to shoe",
+   "angler is to rod",
+   "lawyer is to client"
+  ],
+  "correct_answer": "angler is to rod",
+  "explanation": "archer : bow — worker and the tool used. angler : rod expresses the same relation.",
+  "distractor_rationales": [
+   {
+    "choice": "lawyer is to client",
+    "reason": "an angler and a rod are user and instrument, not opposed parties"
+   },
+   {
+    "choice": "chick is to hen",
+    "reason": "a rod is not the angler's offspring"
+   },
+   {
+    "choice": "sole is to shoe",
+    "reason": "a rod is held by the angler, not a limb of him"
+   },
+   {
+    "choice": "glimmer is to blaze",
+    "reason": "a rod is not an intensified angler"
+   }
+  ],
+  "_shown": "W4"
+ }
+]

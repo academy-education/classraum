@@ -23,7 +23,10 @@ const problems = []
 for (const t of topics) {
   const V = t.variants ?? []
   if (V.length !== 5) { problems.push(`${t.topic_id}: ${V.length} variants, expected 5`); continue }
-  const stems = V.map(v => String(v.stem ?? '').trim())
+  /* Synonym variants carry `stem`; analogy variants carry `source`. The
+     first version read only `stem` and refused every analogy topic with
+     "stems not distinct" — a confusing message for a correct file. */
+  const stems = V.map(v => String(v.stem ?? v.source ?? '').trim())
   const answers = V.map(v => String(v.answer ?? '').trim())
   if (new Set(stems.map(s => s.toUpperCase())).size !== 5) problems.push(`${t.topic_id}: stems not distinct`)
   if (new Set(answers.map(s => s.toLowerCase())).size !== 5) problems.push(`${t.topic_id}: answers not distinct`)
@@ -64,23 +67,32 @@ for (const [ti, t] of topics.entries()) {
   for (let i = ord.length - 1; i > 0; i--) { const j = Math.floor(r() * (i + 1)); [ord[i], ord[j]] = [ord[j], ord[i]] }
   const isAnalogy = !!shown.source
   const id = t.topic_id
+  /* SSAT prints analogies as "A is to B as", not "A : B" — the colon is
+     an authoring shorthand and must not reach a student. */
+  const asWords = s => String(s).split(':').map(x => x.trim()).join(' is to ')
   const prompt = isAnalogy
-    ? `[Analogy] ${shown.source} as`
+    ? `[Analogy] ${asWords(shown.source)} as`
     : `[Synonym] ${shown.stem}`
   items.push({
     id, kind: isAnalogy ? 'analogy' : 'synonym',
     subskill: t.domain ?? t.field ?? (isAnalogy ? 'analogy' : 'synonym'),
     topic_tag: isAnalogy ? 'analogy' : 'synonym',
     difficulty: t.difficulty ?? 'medium',
-    prompt, choices: ord, correct_answer: shown.answer,
+    prompt,
+    choices: isAnalogy ? ord.map(asWords) : ord,
+    correct_answer: isAnalogy ? asWords(shown.answer) : shown.answer,
     explanation: isAnalogy
       ? `${shown.source} — ${shown.relation}. ${shown.answer} expresses the same relation.`
       : `${shown.stem} means ${shown.answer}.`,
-    distractor_rationales: Object.entries(shown.kills).map(([l, why]) => ({ choice: V.find(v => v.label === l).answer, reason: why })),
+    distractor_rationales: Object.entries(shown.kills).map(([l, why]) => {
+      const other = V.find(v => v.label === l)
+      return { choice: isAnalogy ? asWords(other.answer) : other.answer, reason: why }
+    }),
     _shown: shown.label,
   })
-  key[id] = L[ord.indexOf(shown.answer)]
-  blind.push({ id, options: Object.fromEntries(ord.map((o, i) => [L[i], o])) })
+  const rendered = isAnalogy ? ord.map(asWords) : ord
+  key[id] = L[rendered.indexOf(isAnalogy ? asWords(shown.answer) : shown.answer)]
+  blind.push({ id, options: Object.fromEntries(rendered.map((o, i) => [L[i], o])) })
 }
 
 const spread = L.map(l => Object.values(key).filter(k => k === l).length)

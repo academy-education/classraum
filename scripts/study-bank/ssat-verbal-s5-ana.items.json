@@ -1,0 +1,542 @@
+[
+ {
+  "id": "SV5-A01",
+  "kind": "analogy",
+  "subskill": "the farmyard",
+  "topic_tag": "analogy",
+  "difficulty": "medium",
+  "prompt": "[Analogy] trough is to water as",
+  "choices": [
+   "clay is to brick",
+   "den is to fox",
+   "cub is to bear",
+   "swarm is to bee",
+   "barrel is to cider"
+  ],
+  "correct_answer": "barrel is to cider",
+  "explanation": "trough : water — container of. barrel : cider expresses the same relation.",
+  "distractor_rationales": [
+   {
+    "choice": "cub is to bear",
+    "reason": "a barrel is a vessel, not cider's offspring"
+   },
+   {
+    "choice": "swarm is to bee",
+    "reason": "a barrel is not a group of ciders"
+   },
+   {
+    "choice": "den is to fox",
+    "reason": "cider does not live in a barrel; nothing dwells there"
+   },
+   {
+    "choice": "clay is to brick",
+    "reason": "cider is not made out of barrel"
+   }
+  ],
+  "_shown": "W5"
+ },
+ {
+  "id": "SV5-A02",
+  "kind": "analogy",
+  "subskill": "the natural world",
+  "topic_tag": "analogy",
+  "difficulty": "medium",
+  "prompt": "[Analogy] acre is to land as",
+  "choices": [
+   "ounce is to weight",
+   "fin is to dolphin",
+   "cow is to milk",
+   "pack is to wolf",
+   "bray is to donkey"
+  ],
+  "correct_answer": "ounce is to weight",
+  "explanation": "acre : land — unit of. ounce : weight expresses the same relation.",
+  "distractor_rationales": [
+   {
+    "choice": "pack is to wolf",
+    "reason": "an ounce is a measure, not a group of weights"
+   },
+   {
+    "choice": "fin is to dolphin",
+    "reason": "an ounce is not a physical piece of anything"
+   },
+   {
+    "choice": "bray is to donkey",
+    "reason": "an ounce makes no noise"
+   },
+   {
+    "choice": "cow is to milk",
+    "reason": "weight does not produce ounces; the ounce measures it"
+   }
+  ],
+  "_shown": "W5"
+ },
+ {
+  "id": "SV5-A03",
+  "kind": "analogy",
+  "subskill": "the town",
+  "topic_tag": "analogy",
+  "difficulty": "medium",
+  "prompt": "[Analogy] barracks is to soldier as",
+  "choices": [
+   "caterpillar is to butterfly",
+   "monastery is to monk",
+   "medicine is to pharmacy",
+   "sieve is to strain",
+   "hull is to ship"
+  ],
+  "correct_answer": "monastery is to monk",
+  "explanation": "barracks : soldier — dwelling of. monastery : monk expresses the same relation.",
+  "distractor_rationales": [
+   {
+    "choice": "hull is to ship",
+    "reason": "a monastery is a whole building, not a component of a monk"
+   },
+   {
+    "choice": "sieve is to strain",
+    "reason": "a monastery is a residence, not an implement used for a task"
+   },
+   {
+    "choice": "medicine is to pharmacy",
+    "reason": "monks are not merchandise sold at a monastery"
+   },
+   {
+    "choice": "caterpillar is to butterfly",
+    "reason": "a monastery is a place, not a phase of anything"
+   }
+  ],
+  "_shown": "W2"
+ },
+ {
+  "id": "SV5-A04",
+  "kind": "analogy",
+  "subskill": "people and animals at work",
+  "topic_tag": "analogy",
+  "difficulty": "medium",
+  "prompt": "[Analogy] predator is to prey as",
+  "choices": [
+   "kennel is to hound",
+   "hiss is to snake",
+   "host is to guest",
+   "barber is to razor",
+   "trickle is to torrent"
+  ],
+  "correct_answer": "host is to guest",
+  "explanation": "predator : prey — opposite roles. host : guest expresses the same relation.",
+  "distractor_rationales": [
+   {
+    "choice": "kennel is to hound",
+    "reason": "a host is a person, not a shelter a guest occupies"
+   },
+   {
+    "choice": "hiss is to snake",
+    "reason": "neither word names a noise"
+   },
+   {
+    "choice": "barber is to razor",
+    "reason": "a guest is a person, not an instrument the host uses"
+   },
+   {
+    "choice": "trickle is to torrent",
+    "reason": "a guest is not an intensified host"
+   }
+  ],
+  "_shown": "W5"
+ },
+ {
+  "id": "SV5-A05",
+  "kind": "analogy",
+  "subskill": "the farmhouse kitchen",
+  "topic_tag": "analogy",
+  "difficulty": "medium",
+  "prompt": "[Analogy] cluck is to hen as",
+  "choices": [
+   "neigh is to horse",
+   "wool is to sweater",
+   "chisel is to carve",
+   "crate is to apple",
+   "fawn is to deer"
+  ],
+  "correct_answer": "neigh is to horse",
+  "explanation": "cluck : hen — sound of. neigh : horse expresses the same relation.",
+  "distractor_rationales": [
+   {
+    "choice": "chisel is to carve",
+    "reason": "a neigh is a noise, not an implement performing a task"
+   },
+   {
+    "choice": "wool is to sweater",
+    "reason": "a horse is not made out of neighs"
+   },
+   {
+    "choice": "crate is to apple",
+    "reason": "a neigh holds nothing"
+   },
+   {
+    "choice": "fawn is to deer",
+    "reason": "a neigh is a noise, not the horse's offspring"
+   }
+  ],
+  "_shown": "W1"
+ },
+ {
+  "id": "SV5-A06",
+  "kind": "analogy",
+  "subskill": "trades and measures",
+  "topic_tag": "analogy",
+  "difficulty": "medium",
+  "prompt": "[Analogy] drill is to bore as",
+  "choices": [
+   "olive is to oil",
+   "photographer is to camera",
+   "hour is to time",
+   "constellation is to star",
+   "saw is to cut"
+  ],
+  "correct_answer": "saw is to cut",
+  "explanation": "drill : bore — tool of. saw : cut expresses the same relation.",
+  "distractor_rationales": [
+   {
+    "choice": "photographer is to camera",
+    "reason": "cutting is an action, not the person who wields the saw"
+   },
+   {
+    "choice": "olive is to oil",
+    "reason": "a saw does not yield cutting as a cow yields milk; cutting is what it does"
+   },
+   {
+    "choice": "hour is to time",
+    "reason": "cutting is not a quantity a saw measures"
+   },
+   {
+    "choice": "constellation is to star",
+    "reason": "cutting is not a group the saw belongs to"
+   }
+  ],
+  "_shown": "W1"
+ },
+ {
+  "id": "SV5-A07",
+  "kind": "analogy",
+  "subskill": "craft and commerce",
+  "topic_tag": "analogy",
+  "difficulty": "medium",
+  "prompt": "[Analogy] handle is to basket as",
+  "choices": [
+   "tadpole is to frog",
+   "lid is to kettle",
+   "spices is to grocer",
+   "silver is to bracelet",
+   "conductor is to baton"
+  ],
+  "correct_answer": "lid is to kettle",
+  "explanation": "handle : basket — part of. lid : kettle expresses the same relation.",
+  "distractor_rationales": [
+   {
+    "choice": "conductor is to baton",
+    "reason": "a lid is a component, not a craftsman using the kettle"
+   },
+   {
+    "choice": "silver is to bracelet",
+    "reason": "a kettle is not made out of lids"
+   },
+   {
+    "choice": "spices is to grocer",
+    "reason": "a kettle is not a shop that sells lids"
+   },
+   {
+    "choice": "tadpole is to frog",
+    "reason": "a lid is not an earlier phase a kettle passes through"
+   }
+  ],
+  "_shown": "W5"
+ },
+ {
+  "id": "SV5-A08",
+  "kind": "analogy",
+  "subskill": "house and home",
+  "topic_tag": "analogy",
+  "difficulty": "medium",
+  "prompt": "[Analogy] chilly is to freezing as",
+  "choices": [
+   "seller is to buyer",
+   "aviary is to parrot",
+   "oyster is to pearl",
+   "hungry is to ravenous",
+   "glass is to window"
+  ],
+  "correct_answer": "hungry is to ravenous",
+  "explanation": "chilly : freezing — degree of. hungry : ravenous expresses the same relation.",
+  "distractor_rationales": [
+   {
+    "choice": "glass is to window",
+    "reason": "neither word names a substance anything is made from"
+   },
+   {
+    "choice": "oyster is to pearl",
+    "reason": "hunger does not yield ravenousness as a good"
+   },
+   {
+    "choice": "seller is to buyer",
+    "reason": "the two are the same state at different strengths, not opposed roles"
+   },
+   {
+    "choice": "aviary is to parrot",
+    "reason": "neither word names a place"
+   }
+  ],
+  "_shown": "W3"
+ },
+ {
+  "id": "SV5-A09",
+  "kind": "analogy",
+  "subskill": "the village market",
+  "topic_tag": "analogy",
+  "difficulty": "medium",
+  "prompt": "[Analogy] chirp is to cricket as",
+  "choices": [
+   "roar is to lion",
+   "fish is to fishmonger",
+   "sheep is to wool",
+   "joey is to kangaroo",
+   "vase is to flowers"
+  ],
+  "correct_answer": "roar is to lion",
+  "explanation": "chirp : cricket — sound of. roar : lion expresses the same relation.",
+  "distractor_rationales": [
+   {
+    "choice": "sheep is to wool",
+    "reason": "a roar is a noise, not a good the lion yields"
+   },
+   {
+    "choice": "fish is to fishmonger",
+    "reason": "a lion is not a shop"
+   },
+   {
+    "choice": "vase is to flowers",
+    "reason": "a roar holds nothing"
+   },
+   {
+    "choice": "joey is to kangaroo",
+    "reason": "a roar is not a lion's offspring"
+   }
+  ],
+  "_shown": "W5"
+ },
+ {
+  "id": "SV5-A10",
+  "kind": "analogy",
+  "subskill": "the market town",
+  "topic_tag": "analogy",
+  "difficulty": "medium",
+  "prompt": "[Analogy] bouquet is to flower as",
+  "choices": [
+   "paint is to hardware store",
+   "gram is to mass",
+   "fond is to devoted",
+   "choir is to singer",
+   "pliers is to grip"
+  ],
+  "correct_answer": "choir is to singer",
+  "explanation": "bouquet : flower — collective of. choir : singer expresses the same relation.",
+  "distractor_rationales": [
+   {
+    "choice": "paint is to hardware store",
+    "reason": "a choir is a group of people, not a shop"
+   },
+   {
+    "choice": "fond is to devoted",
+    "reason": "a choir is not a stronger version of a singer"
+   },
+   {
+    "choice": "gram is to mass",
+    "reason": "a choir is not a standard measure"
+   },
+   {
+    "choice": "pliers is to grip",
+    "reason": "a singer is not an action a choir carries out"
+   }
+  ],
+  "_shown": "W4"
+ },
+ {
+  "id": "SV5-A11",
+  "kind": "analogy",
+  "subskill": "the workshop and the garden",
+  "topic_tag": "analogy",
+  "difficulty": "medium",
+  "prompt": "[Analogy] hinge is to door as",
+  "choices": [
+   "gardener is to spade",
+   "flask is to oil",
+   "dawn is to midday",
+   "collar is to shirt",
+   "tired is to exhausted"
+  ],
+  "correct_answer": "collar is to shirt",
+  "explanation": "hinge : door — part of. collar : shirt expresses the same relation.",
+  "distractor_rationales": [
+   {
+    "choice": "tired is to exhausted",
+    "reason": "a collar is not a milder version of a shirt"
+   },
+   {
+    "choice": "flask is to oil",
+    "reason": "a collar is a component, not a vessel a shirt is kept in"
+   },
+   {
+    "choice": "dawn is to midday",
+    "reason": "a collar is not an earlier phase the shirt grows out of"
+   },
+   {
+    "choice": "gardener is to spade",
+    "reason": "a collar is not an implement anyone wields"
+   }
+  ],
+  "_shown": "W4"
+ },
+ {
+  "id": "SV5-A12",
+  "kind": "analogy",
+  "subskill": "the harbour",
+  "topic_tag": "analogy",
+  "difficulty": "medium",
+  "prompt": "[Analogy] fathom is to depth as",
+  "choices": [
+   "author is to reader",
+   "coop is to chicken",
+   "iron is to anchor",
+   "urn is to ashes",
+   "knot is to speed"
+  ],
+  "correct_answer": "knot is to speed",
+  "explanation": "fathom : depth — unit of. knot : speed expresses the same relation.",
+  "distractor_rationales": [
+   {
+    "choice": "urn is to ashes",
+    "reason": "a knot holds no contents"
+   },
+   {
+    "choice": "author is to reader",
+    "reason": "neither word names a party"
+   },
+   {
+    "choice": "coop is to chicken",
+    "reason": "speed is not something anything lives inside"
+   },
+   {
+    "choice": "iron is to anchor",
+    "reason": "speed is not a substance a knot is made from"
+   }
+  ],
+  "_shown": "W2"
+ },
+ {
+  "id": "SV5-A13",
+  "kind": "analogy",
+  "subskill": "the farm through the year",
+  "topic_tag": "analogy",
+  "difficulty": "medium",
+  "prompt": "[Analogy] duckling is to duck as",
+  "choices": [
+   "bleat is to goat",
+   "gosling is to goose",
+   "furlong is to distance",
+   "sowing is to harvest",
+   "maple is to syrup"
+  ],
+  "correct_answer": "gosling is to goose",
+  "explanation": "duckling : duck — young of. gosling : goose expresses the same relation.",
+  "distractor_rationales": [
+   {
+    "choice": "furlong is to distance",
+    "reason": "a gosling measures nothing"
+   },
+   {
+    "choice": "sowing is to harvest",
+    "reason": "the pair names offspring and parent, two birds, not one bird at two phases"
+   },
+   {
+    "choice": "bleat is to goat",
+    "reason": "a gosling is a bird, not a noise"
+   },
+   {
+    "choice": "maple is to syrup",
+    "reason": "a goose does not yield goslings as it yields down"
+   }
+  ],
+  "_shown": "W3"
+ },
+ {
+  "id": "SV5-A14",
+  "kind": "analogy",
+  "subskill": "public life",
+  "topic_tag": "analogy",
+  "difficulty": "medium",
+  "prompt": "[Analogy] rehearsal is to performance as",
+  "choices": [
+   "range is to mountain",
+   "doctor is to patient",
+   "hoe is to weed",
+   "stamps is to post office",
+   "draft is to essay"
+  ],
+  "correct_answer": "draft is to essay",
+  "explanation": "rehearsal : performance — stage of. draft : essay expresses the same relation.",
+  "distractor_rationales": [
+   {
+    "choice": "doctor is to patient",
+    "reason": "a draft and an essay are not two facing parties"
+   },
+   {
+    "choice": "range is to mountain",
+    "reason": "a draft is not a group of essays"
+   },
+   {
+    "choice": "hoe is to weed",
+    "reason": "a draft is not an implement and an essay is not an action"
+   },
+   {
+    "choice": "stamps is to post office",
+    "reason": "an essay is not a shop"
+   }
+  ],
+  "_shown": "W1"
+ },
+ {
+  "id": "SV5-A15",
+  "kind": "analogy",
+  "subskill": "people, animals and instruments",
+  "topic_tag": "analogy",
+  "difficulty": "medium",
+  "prompt": "[Analogy] archer is to bow as",
+  "choices": [
+   "chick is to hen",
+   "glimmer is to blaze",
+   "sole is to shoe",
+   "angler is to rod",
+   "lawyer is to client"
+  ],
+  "correct_answer": "angler is to rod",
+  "explanation": "archer : bow — worker and the tool used. angler : rod expresses the same relation.",
+  "distractor_rationales": [
+   {
+    "choice": "lawyer is to client",
+    "reason": "an angler and a rod are user and instrument, not opposed parties"
+   },
+   {
+    "choice": "chick is to hen",
+    "reason": "a rod is not the angler's offspring"
+   },
+   {
+    "choice": "sole is to shoe",
+    "reason": "a rod is held by the angler, not a limb of him"
+   },
+   {
+    "choice": "glimmer is to blaze",
+    "reason": "a rod is not an intensified angler"
+   }
+  ],
+  "_shown": "W4"
+ }
+]
