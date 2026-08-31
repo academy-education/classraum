@@ -21,12 +21,21 @@
 export const SHIPPED_TEST_SLUGS: ReadonlySet<string> = new Set([
   'test-sat',
   'test-toefl',
-  // SSAT and ISEE serve EXACTLY ONE full form each as of 2026-08-29.
-  // verify-admission-forms.mjs measures the margin: SSAT reading and ISEE
-  // math both clear their blueprint by a single item under the
-  // 3-items-per-passage cap. A student who sits either test twice sees
-  // substantially the same questions. Run that script before assuming
-  // otherwise, and re-run it after any archive.
+  // SSAT and ISEE each serve TWO full forms as of 2026-08-31 (A17).
+  // The tightest sections, measured by verify-admission-forms.mjs:
+  //
+  //     SSAT reading   83 drawable / 40 needed = 2.08 forms
+  //     ISEE math     174 drawable / 84 needed = 2.07
+  //     SSAT verbal   124 drawable / 60 needed = 2.07
+  //
+  // Reading counts are AFTER the 3-items-per-passage cap (SSAT reading
+  // holds 138 items but only 83 are drawable in one form), so do not
+  // read repeatability off the raw bank count.
+  //
+  // This block previously said "EXACTLY ONE full form each"; that was
+  // true on 2026-08-29 and stopped being true two days later. Re-run the
+  // script rather than trusting this comment, and re-run it after any
+  // archive — archiving items is what would silently take it back to one.
   'test-ssat',
   'test-isee',
 ])
