@@ -1552,6 +1552,45 @@
      "verdict": "Key letters spread across all four for every shown variant, because the renderer shuffles. See the renderer warning in the note."
     }
    }
+  },
+  {
+   "id": "ssat-verbal-s5-2026-08-31",
+   "createdAt": "2026-08-31",
+   "targetTest": "ssat",
+   "section": "verbal",
+   "task": "multiple_choice",
+   "family": "mc_stem_source",
+   "spec": {
+    "n": 23,
+    "authors": 2,
+    "method": "BIJECTIVE SETS - five (stem, answer) rows per topic, each answer correct for exactly one stem, seeded RNG picks the shown stem after text freeze. The cr-v7 provenance cure transferred to verbal."
+   },
+   "status": "shipped",
+   "cohort": "ssat-verbal-s5",
+   "note": "SSAT verbal 101 -> 124 against a 60-item section: 2.07 forms, up from 1.68. Pre-registered bars both MET: margin -5.6 against <= +10, best single solver 23.3% against <= 40%. The same section previous batch was killed the same day at +28.0 with a solver at 80%. Dropped 7 for EXCLUSIVITY, not guessability: 5 synonym sets on the evaluative twin (two words for the same behaviour differing only in approval, which a gloss cannot carry) and 2 analogy sets on nesting relation families. Both reviewers independently derived the same rule: narrowing one member protects only the direction you narrowed. Repair by replacing a member, never by re-wording a gloss. See EVALUATIVE-TWIN.md.",
+   "stages": {
+    "shape": {
+     "passed": true,
+     "verdict": "15 synonym + 15 analogy topics; 75 distinct stems and 75 distinct sources; zero collisions against the live bank; zero reversal pairs anywhere. The analogy author used a cyclic block design so all 15 relation families appear exactly 5 times with no repeated combination."
+    },
+    "nosource": {
+     "passed": true,
+     "n": 23,
+     "verdict": "Options-only attack, stem withheld because for verbal the stem IS the question: mean 21.1% vs 26.7% control, margin -5.6, best solver 23.3%. Three distinct pick-strings."
+    },
+    "elimination": {
+     "passed": true,
+     "verdict": "The attacker found polar pairs still present in 14 of 15 synonym items but they no longer point at the key - they are a by-product of five glosses from one field and come in bunches, where the killed batch had exactly one manufactured from the key. It declined to report this as a finding."
+    },
+    "withsource": {
+     "passed": false,
+     "verdict": "Exclusivity review of all 300 synonym and 300 analogy off-diagonal cells: 7 topics FAIL. This is the gate the attack cannot see - an item whose distractor is also true has two correct answers."
+    },
+    "tells": {
+     "passed": true,
+     "verdict": "Key spread A8/B8/C3/D6/E5 before drops. No option string repeats across the batch; relation families do not sit at fixed letters."
+    }
+   }
   }
  ],
  "auditedCohorts": [

@@ -8,7 +8,7 @@
 renders on /admin/bank-qc, from the same source, so the two cannot
 disagree.
 
-Generated 2026-08-31. Live items: 4,777.
+Generated 2026-08-31. Live items: 4,800.
 Open work: 5 — 1 mine, 4 need you.
 
 ---
@@ -24,7 +24,7 @@ process is not reporting the position.**
 | | items | what is true |
 |---|---|---|
 | **Choose a Response (cr-v1 — archived 2026-08-18)** | 0 | **Known broken.** Solvable without the audio, on two independent instruments. |
-| Everything else | 4,777 | **Not known to be broken** — never read by a person |
+| Everything else | 4,800 | **Not known to be broken** — never read by a person |
 
 0.0% is a quality problem. The rest is a scheduling
 problem, and it is blocked on one 20-minute task: **B2 — the two never-read cohorts (B4 passed 2026-08-15)**.
@@ -96,9 +96,9 @@ Two qualifications, both learned the hard way:
 | TOEFL | Build a Sentence | 165 | — | — | never measured — the attack does not apply |
 | SSAT | Reading Comprehension | 138 | — | — | never measured — the attack does not apply |
 | TOEFL | Listen and Repeat | 136 | — | — | never measured — the attack does not apply |
+| SSAT | Verbal | 124 | — | — | never measured — the attack does not apply |
 | TOEFL | Announcement | 121 | 100% | 15% (n=20) | **cleared by hand** — the model was wrong |
 | ISEE | Reading Comprehension | 117 | — | — | never measured — the attack does not apply |
-| SSAT | Verbal | 101 | — | — | never measured — the attack does not apply |
 | ISEE | Verbal | 96 | — | — | never measured — the attack does not apply |
 | SSAT | Math | 96 | — | — | never measured — the attack does not apply |
 | TOEFL | Complete the Words | 93 | — | — | never measured — the attack does not apply |
