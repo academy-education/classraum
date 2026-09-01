@@ -1,0 +1,898 @@
+[
+  {
+    "id": "SV6-01",
+    "subskill": "synonym",
+    "difficulty": "medium",
+    "prompt": "RECOUNT",
+    "choices": [
+      "state as a required condition",
+      "beg earnestly",
+      "answer back sharply",
+      "tell in order what happened",
+      "stray from the main subject"
+    ],
+    "correct_answer": "tell in order what happened",
+    "explanation": "RECOUNT means tell in order what happened.",
+    "set_id": "SET-A"
+  },
+  {
+    "id": "SV6-02",
+    "subskill": "synonym",
+    "difficulty": "medium",
+    "prompt": "IMPLORE",
+    "choices": [
+      "beg earnestly",
+      "tell in order what happened",
+      "stray from the main subject",
+      "answer back sharply",
+      "state as a required condition"
+    ],
+    "correct_answer": "beg earnestly",
+    "explanation": "IMPLORE means beg earnestly.",
+    "set_id": "SET-A"
+  },
+  {
+    "id": "SV6-03",
+    "subskill": "synonym",
+    "difficulty": "hard",
+    "prompt": "STIPULATE",
+    "choices": [
+      "answer back sharply",
+      "tell in order what happened",
+      "stray from the main subject",
+      "beg earnestly",
+      "state as a required condition"
+    ],
+    "correct_answer": "state as a required condition",
+    "explanation": "STIPULATE means state as a required condition.",
+    "set_id": "SET-A"
+  },
+  {
+    "id": "SV6-04",
+    "subskill": "synonym",
+    "difficulty": "hard",
+    "prompt": "DIGRESS",
+    "choices": [
+      "state as a required condition",
+      "beg earnestly",
+      "answer back sharply",
+      "tell in order what happened",
+      "stray from the main subject"
+    ],
+    "correct_answer": "stray from the main subject",
+    "explanation": "DIGRESS means stray from the main subject.",
+    "set_id": "SET-A"
+  },
+  {
+    "id": "SV6-05",
+    "subskill": "synonym",
+    "difficulty": "medium",
+    "prompt": "VEER",
+    "choices": [
+      "draw back gradually",
+      "stay suspended in one place above",
+      "drop sharply downward",
+      "swerve suddenly to one side",
+      "travel across"
+    ],
+    "correct_answer": "swerve suddenly to one side",
+    "explanation": "VEER means swerve suddenly to one side.",
+    "set_id": "SET-B"
+  },
+  {
+    "id": "SV6-06",
+    "subskill": "synonym",
+    "difficulty": "medium",
+    "prompt": "PLUMMET",
+    "choices": [
+      "drop sharply downward",
+      "stay suspended in one place above",
+      "draw back gradually",
+      "swerve suddenly to one side",
+      "travel across"
+    ],
+    "correct_answer": "drop sharply downward",
+    "explanation": "PLUMMET means drop sharply downward.",
+    "set_id": "SET-B"
+  },
+  {
+    "id": "SV6-07",
+    "subskill": "synonym",
+    "difficulty": "hard",
+    "prompt": "RECEDE",
+    "choices": [
+      "stay suspended in one place above",
+      "draw back gradually",
+      "drop sharply downward",
+      "travel across",
+      "swerve suddenly to one side"
+    ],
+    "correct_answer": "draw back gradually",
+    "explanation": "RECEDE means draw back gradually.",
+    "set_id": "SET-B"
+  },
+  {
+    "id": "SV6-08",
+    "subskill": "synonym",
+    "difficulty": "hard",
+    "prompt": "TRAVERSE",
+    "choices": [
+      "travel across",
+      "swerve suddenly to one side",
+      "drop sharply downward",
+      "stay suspended in one place above",
+      "draw back gradually"
+    ],
+    "correct_answer": "travel across",
+    "explanation": "TRAVERSE means travel across.",
+    "set_id": "SET-B"
+  },
+  {
+    "id": "SV6-09",
+    "subskill": "synonym",
+    "difficulty": "medium",
+    "prompt": "HOVER",
+    "choices": [
+      "drop sharply downward",
+      "draw back gradually",
+      "swerve suddenly to one side",
+      "stay suspended in one place above",
+      "travel across"
+    ],
+    "correct_answer": "stay suspended in one place above",
+    "explanation": "HOVER means stay suspended in one place above.",
+    "set_id": "SET-B"
+  },
+  {
+    "id": "SV6-10",
+    "subskill": "synonym",
+    "difficulty": "hard",
+    "prompt": "PERIPHERAL",
+    "choices": [
+      "agreed to by everyone involved",
+      "able to be carried out",
+      "expressed in few words",
+      "lying at the outer edge",
+      "no longer in use because outdated"
+    ],
+    "correct_answer": "lying at the outer edge",
+    "explanation": "PERIPHERAL means lying at the outer edge.",
+    "set_id": "SET-C"
+  },
+  {
+    "id": "SV6-11",
+    "subskill": "synonym",
+    "difficulty": "medium",
+    "prompt": "OBSOLETE",
+    "choices": [
+      "lying at the outer edge",
+      "agreed to by everyone involved",
+      "no longer in use because outdated",
+      "able to be carried out",
+      "expressed in few words"
+    ],
+    "correct_answer": "no longer in use because outdated",
+    "explanation": "OBSOLETE means no longer in use because outdated.",
+    "set_id": "SET-C"
+  },
+  {
+    "id": "SV6-12",
+    "subskill": "synonym",
+    "difficulty": "medium",
+    "prompt": "UNANIMOUS",
+    "choices": [
+      "no longer in use because outdated",
+      "agreed to by everyone involved",
+      "able to be carried out",
+      "lying at the outer edge",
+      "expressed in few words"
+    ],
+    "correct_answer": "agreed to by everyone involved",
+    "explanation": "UNANIMOUS means agreed to by everyone involved.",
+    "set_id": "SET-C"
+  },
+  {
+    "id": "SV6-13",
+    "subskill": "synonym",
+    "difficulty": "medium",
+    "prompt": "FEASIBLE",
+    "choices": [
+      "agreed to by everyone involved",
+      "no longer in use because outdated",
+      "expressed in few words",
+      "able to be carried out",
+      "lying at the outer edge"
+    ],
+    "correct_answer": "able to be carried out",
+    "explanation": "FEASIBLE means able to be carried out.",
+    "set_id": "SET-C"
+  },
+  {
+    "id": "SV6-14",
+    "subskill": "synonym",
+    "difficulty": "medium",
+    "prompt": "CONCISE",
+    "choices": [
+      "able to be carried out",
+      "lying at the outer edge",
+      "expressed in few words",
+      "agreed to by everyone involved",
+      "no longer in use because outdated"
+    ],
+    "correct_answer": "expressed in few words",
+    "explanation": "CONCISE means expressed in few words.",
+    "set_id": "SET-C"
+  },
+  {
+    "id": "SV6-15",
+    "subskill": "synonym",
+    "difficulty": "hard",
+    "prompt": "QUANDARY",
+    "choices": [
+      "an earlier case that guides later ones",
+      "a difficult choice among poor options",
+      "nearness in space or time",
+      "a small piece left over",
+      "a statement that seems to contradict itself"
+    ],
+    "correct_answer": "a difficult choice among poor options",
+    "explanation": "QUANDARY means a difficult choice among poor options.",
+    "set_id": "SET-D"
+  },
+  {
+    "id": "SV6-16",
+    "subskill": "synonym",
+    "difficulty": "hard",
+    "prompt": "PRECEDENT",
+    "choices": [
+      "nearness in space or time",
+      "a difficult choice among poor options",
+      "a statement that seems to contradict itself",
+      "an earlier case that guides later ones",
+      "a small piece left over"
+    ],
+    "correct_answer": "an earlier case that guides later ones",
+    "explanation": "PRECEDENT means an earlier case that guides later ones.",
+    "set_id": "SET-D"
+  },
+  {
+    "id": "SV6-17",
+    "subskill": "synonym",
+    "difficulty": "medium",
+    "prompt": "REMNANT",
+    "choices": [
+      "nearness in space or time",
+      "a small piece left over",
+      "a statement that seems to contradict itself",
+      "a difficult choice among poor options",
+      "an earlier case that guides later ones"
+    ],
+    "correct_answer": "a small piece left over",
+    "explanation": "REMNANT means a small piece left over.",
+    "set_id": "SET-D"
+  },
+  {
+    "id": "SV6-18",
+    "subskill": "synonym",
+    "difficulty": "hard",
+    "prompt": "PARADOX",
+    "choices": [
+      "a statement that seems to contradict itself",
+      "nearness in space or time",
+      "an earlier case that guides later ones",
+      "a difficult choice among poor options",
+      "a small piece left over"
+    ],
+    "correct_answer": "a statement that seems to contradict itself",
+    "explanation": "PARADOX means a statement that seems to contradict itself.",
+    "set_id": "SET-D"
+  },
+  {
+    "id": "SV6-19",
+    "subskill": "synonym",
+    "difficulty": "medium",
+    "prompt": "DELEGATE",
+    "choices": [
+      "hand a task to someone else to carry out",
+      "make something up on the spot",
+      "examine closely and in detail",
+      "cut short before the intended end",
+      "rescue what can still be used from a loss"
+    ],
+    "correct_answer": "hand a task to someone else to carry out",
+    "explanation": "DELEGATE means hand a task to someone else to carry out.",
+    "set_id": "SET-E"
+  },
+  {
+    "id": "SV6-20",
+    "subskill": "synonym",
+    "difficulty": "medium",
+    "prompt": "SCRUTINIZE",
+    "choices": [
+      "cut short before the intended end",
+      "hand a task to someone else to carry out",
+      "make something up on the spot",
+      "rescue what can still be used from a loss",
+      "examine closely and in detail"
+    ],
+    "correct_answer": "examine closely and in detail",
+    "explanation": "SCRUTINIZE means examine closely and in detail.",
+    "set_id": "SET-E"
+  },
+  {
+    "id": "SV6-21",
+    "subskill": "synonym",
+    "difficulty": "medium",
+    "prompt": "IMPROVISE",
+    "choices": [
+      "hand a task to someone else to carry out",
+      "examine closely and in detail",
+      "cut short before the intended end",
+      "rescue what can still be used from a loss",
+      "make something up on the spot"
+    ],
+    "correct_answer": "make something up on the spot",
+    "explanation": "IMPROVISE means make something up on the spot.",
+    "set_id": "SET-E"
+  },
+  {
+    "id": "SV6-22",
+    "subskill": "synonym",
+    "difficulty": "medium",
+    "prompt": "SALVAGE",
+    "choices": [
+      "rescue what can still be used from a loss",
+      "hand a task to someone else to carry out",
+      "make something up on the spot",
+      "examine closely and in detail",
+      "cut short before the intended end"
+    ],
+    "correct_answer": "rescue what can still be used from a loss",
+    "explanation": "SALVAGE means rescue what can still be used from a loss.",
+    "set_id": "SET-E"
+  },
+  {
+    "id": "SV6-23",
+    "subskill": "synonym",
+    "difficulty": "hard",
+    "prompt": "CURTAIL",
+    "choices": [
+      "hand a task to someone else to carry out",
+      "rescue what can still be used from a loss",
+      "cut short before the intended end",
+      "make something up on the spot",
+      "examine closely and in detail"
+    ],
+    "correct_answer": "cut short before the intended end",
+    "explanation": "CURTAIL means cut short before the intended end.",
+    "set_id": "SET-E"
+  },
+  {
+    "id": "SV6-24",
+    "subskill": "synonym",
+    "difficulty": "medium",
+    "prompt": "METICULOUS",
+    "choices": [
+      "keeping distant and uninvolved",
+      "refusing to change one's mind",
+      "extremely careful about small details",
+      "able to turn skillfully to many different tasks",
+      "easily fooled into believing things"
+    ],
+    "correct_answer": "extremely careful about small details",
+    "explanation": "METICULOUS means extremely careful about small details.",
+    "set_id": "SET-F"
+  },
+  {
+    "id": "SV6-25",
+    "subskill": "synonym",
+    "difficulty": "medium",
+    "prompt": "ALOOF",
+    "choices": [
+      "refusing to change one's mind",
+      "easily fooled into believing things",
+      "extremely careful about small details",
+      "able to turn skillfully to many different tasks",
+      "keeping distant and uninvolved"
+    ],
+    "correct_answer": "keeping distant and uninvolved",
+    "explanation": "ALOOF means keeping distant and uninvolved.",
+    "set_id": "SET-F"
+  },
+  {
+    "id": "SV6-26",
+    "subskill": "synonym",
+    "difficulty": "medium",
+    "prompt": "VERSATILE",
+    "choices": [
+      "keeping distant and uninvolved",
+      "able to turn skillfully to many different tasks",
+      "extremely careful about small details",
+      "easily fooled into believing things",
+      "refusing to change one's mind"
+    ],
+    "correct_answer": "able to turn skillfully to many different tasks",
+    "explanation": "VERSATILE means able to turn skillfully to many different tasks.",
+    "set_id": "SET-F"
+  },
+  {
+    "id": "SV6-27",
+    "subskill": "synonym",
+    "difficulty": "medium",
+    "prompt": "OBSTINATE",
+    "choices": [
+      "able to turn skillfully to many different tasks",
+      "easily fooled into believing things",
+      "keeping distant and uninvolved",
+      "extremely careful about small details",
+      "refusing to change one's mind"
+    ],
+    "correct_answer": "refusing to change one's mind",
+    "explanation": "OBSTINATE means refusing to change one's mind.",
+    "set_id": "SET-F"
+  },
+  {
+    "id": "SV6-28",
+    "subskill": "synonym",
+    "difficulty": "medium",
+    "prompt": "FLOURISH",
+    "choices": [
+      "stop moving or developing",
+      "give up possession or control of",
+      "grow strongly and do well",
+      "spread through every part of something",
+      "make up a false account of"
+    ],
+    "correct_answer": "grow strongly and do well",
+    "explanation": "FLOURISH means grow strongly and do well.",
+    "set_id": "SET-G"
+  },
+  {
+    "id": "SV6-29",
+    "subskill": "synonym",
+    "difficulty": "medium",
+    "prompt": "STAGNATE",
+    "choices": [
+      "give up possession or control of",
+      "stop moving or developing",
+      "grow strongly and do well",
+      "make up a false account of",
+      "spread through every part of something"
+    ],
+    "correct_answer": "stop moving or developing",
+    "explanation": "STAGNATE means stop moving or developing.",
+    "set_id": "SET-G"
+  },
+  {
+    "id": "SV6-30",
+    "subskill": "synonym",
+    "difficulty": "hard",
+    "prompt": "PERMEATE",
+    "choices": [
+      "give up possession or control of",
+      "stop moving or developing",
+      "make up a false account of",
+      "grow strongly and do well",
+      "spread through every part of something"
+    ],
+    "correct_answer": "spread through every part of something",
+    "explanation": "PERMEATE means spread through every part of something.",
+    "set_id": "SET-G"
+  },
+  {
+    "id": "SV6-31",
+    "subskill": "synonym",
+    "difficulty": "hard",
+    "prompt": "RELINQUISH",
+    "choices": [
+      "give up possession or control of",
+      "stop moving or developing",
+      "grow strongly and do well",
+      "make up a false account of",
+      "spread through every part of something"
+    ],
+    "correct_answer": "give up possession or control of",
+    "explanation": "RELINQUISH means give up possession or control of.",
+    "set_id": "SET-G"
+  },
+  {
+    "id": "SV6-32",
+    "subskill": "synonym",
+    "difficulty": "hard",
+    "prompt": "FABRICATE",
+    "choices": [
+      "stop moving or developing",
+      "grow strongly and do well",
+      "make up a false account of",
+      "spread through every part of something",
+      "give up possession or control of"
+    ],
+    "correct_answer": "make up a false account of",
+    "explanation": "FABRICATE means make up a false account of.",
+    "set_id": "SET-G"
+  },
+  {
+    "id": "SV6-33",
+    "subskill": "analogy",
+    "difficulty": "medium",
+    "prompt": "CHISEL is to SCULPTOR as",
+    "choices": [
+      "composer is to symphony",
+      "sparrow is to bird",
+      "scalpel is to surgeon",
+      "wound is to scar",
+      "spoke is to wheel"
+    ],
+    "correct_answer": "scalpel is to surgeon",
+    "explanation": "chisel : sculptor — a tool and the worker who wields it. The pair \"scalpel is to surgeon\" expresses that same relation.",
+    "set_id": "SET-H"
+  },
+  {
+    "id": "SV6-34",
+    "subskill": "analogy",
+    "difficulty": "medium",
+    "prompt": "RUNG is to LADDER as",
+    "choices": [
+      "composer is to symphony",
+      "spoke is to wheel",
+      "wound is to scar",
+      "sparrow is to bird",
+      "scalpel is to surgeon"
+    ],
+    "correct_answer": "spoke is to wheel",
+    "explanation": "rung : ladder — a physical part and the object it belongs to. The pair \"spoke is to wheel\" expresses that same relation.",
+    "set_id": "SET-H"
+  },
+  {
+    "id": "SV6-35",
+    "subskill": "analogy",
+    "difficulty": "medium",
+    "prompt": "NOVELIST is to MANUSCRIPT as",
+    "choices": [
+      "sparrow is to bird",
+      "spoke is to wheel",
+      "composer is to symphony",
+      "wound is to scar",
+      "scalpel is to surgeon"
+    ],
+    "correct_answer": "composer is to symphony",
+    "explanation": "novelist : manuscript — a creator and the work that creator produces. The pair \"composer is to symphony\" expresses that same relation.",
+    "set_id": "SET-H"
+  },
+  {
+    "id": "SV6-36",
+    "subskill": "analogy",
+    "difficulty": "hard",
+    "prompt": "LIGHTNING is to THUNDER as",
+    "choices": [
+      "wound is to scar",
+      "scalpel is to surgeon",
+      "spoke is to wheel",
+      "sparrow is to bird",
+      "composer is to symphony"
+    ],
+    "correct_answer": "wound is to scar",
+    "explanation": "lightning : thunder — one thing and the consequence it brings about. The pair \"wound is to scar\" expresses that same relation.",
+    "set_id": "SET-H"
+  },
+  {
+    "id": "SV6-37",
+    "subskill": "analogy",
+    "difficulty": "medium",
+    "prompt": "OAK is to TREE as",
+    "choices": [
+      "sparrow is to bird",
+      "spoke is to wheel",
+      "wound is to scar",
+      "composer is to symphony",
+      "scalpel is to surgeon"
+    ],
+    "correct_answer": "sparrow is to bird",
+    "explanation": "oak : tree — a member and the broader class it belongs to. The pair \"sparrow is to bird\" expresses that same relation.",
+    "set_id": "SET-H"
+  },
+  {
+    "id": "SV6-38",
+    "subskill": "analogy",
+    "difficulty": "medium",
+    "prompt": "BREEZE is to GALE as",
+    "choices": [
+      "apology is to insult",
+      "drizzle is to downpour",
+      "scabbard is to sword",
+      "pilot is to cockpit",
+      "chapter is to novel"
+    ],
+    "correct_answer": "drizzle is to downpour",
+    "explanation": "breeze : gale — a mild form and the intense form of the same thing. The pair \"drizzle is to downpour\" expresses that same relation.",
+    "set_id": "SET-I"
+  },
+  {
+    "id": "SV6-39",
+    "subskill": "analogy",
+    "difficulty": "medium",
+    "prompt": "JUDGE is to COURTROOM as",
+    "choices": [
+      "apology is to insult",
+      "chapter is to novel",
+      "pilot is to cockpit",
+      "drizzle is to downpour",
+      "scabbard is to sword"
+    ],
+    "correct_answer": "pilot is to cockpit",
+    "explanation": "judge : courtroom — a worker and the place that worker works from. The pair \"pilot is to cockpit\" expresses that same relation.",
+    "set_id": "SET-I"
+  },
+  {
+    "id": "SV6-40",
+    "subskill": "analogy",
+    "difficulty": "hard",
+    "prompt": "ENVELOPE is to LETTER as",
+    "choices": [
+      "drizzle is to downpour",
+      "apology is to insult",
+      "chapter is to novel",
+      "pilot is to cockpit",
+      "scabbard is to sword"
+    ],
+    "correct_answer": "scabbard is to sword",
+    "explanation": "envelope : letter — a fitted covering and the thing it is made to hold. The pair \"scabbard is to sword\" expresses that same relation.",
+    "set_id": "SET-I"
+  },
+  {
+    "id": "SV6-41",
+    "subskill": "analogy",
+    "difficulty": "hard",
+    "prompt": "ANTIDOTE is to POISON as",
+    "choices": [
+      "drizzle is to downpour",
+      "chapter is to novel",
+      "apology is to insult",
+      "pilot is to cockpit",
+      "scabbard is to sword"
+    ],
+    "correct_answer": "apology is to insult",
+    "explanation": "antidote : poison — a remedy and the harm it is meant to undo. The pair \"apology is to insult\" expresses that same relation.",
+    "set_id": "SET-I"
+  },
+  {
+    "id": "SV6-42",
+    "subskill": "analogy",
+    "difficulty": "medium",
+    "prompt": "STANZA is to POEM as",
+    "choices": [
+      "apology is to insult",
+      "scabbard is to sword",
+      "drizzle is to downpour",
+      "chapter is to novel",
+      "pilot is to cockpit"
+    ],
+    "correct_answer": "chapter is to novel",
+    "explanation": "stanza : poem — a numbered section and the written work it divides. The pair \"chapter is to novel\" expresses that same relation.",
+    "set_id": "SET-I"
+  },
+  {
+    "id": "SV6-43",
+    "subskill": "analogy",
+    "difficulty": "medium",
+    "prompt": "MILK is to COW as",
+    "choices": [
+      "honey is to bee",
+      "fleet is to ship",
+      "clay is to pottery",
+      "receipt is to purchase",
+      "desert is to rainfall"
+    ],
+    "correct_answer": "honey is to bee",
+    "explanation": "milk : cow — a substance and the animal that yields it. The pair \"honey is to bee\" expresses that same relation.",
+    "set_id": "SET-J"
+  },
+  {
+    "id": "SV6-44",
+    "subskill": "analogy",
+    "difficulty": "medium",
+    "prompt": "FLOCK is to SHEEP as",
+    "choices": [
+      "desert is to rainfall",
+      "receipt is to purchase",
+      "clay is to pottery",
+      "honey is to bee",
+      "fleet is to ship"
+    ],
+    "correct_answer": "fleet is to ship",
+    "explanation": "flock : sheep — a collective term and the individual it groups. The pair \"fleet is to ship\" expresses that same relation.",
+    "set_id": "SET-J"
+  },
+  {
+    "id": "SV6-45",
+    "subskill": "analogy",
+    "difficulty": "hard",
+    "prompt": "SAND is to GLASS as",
+    "choices": [
+      "desert is to rainfall",
+      "fleet is to ship",
+      "honey is to bee",
+      "clay is to pottery",
+      "receipt is to purchase"
+    ],
+    "correct_answer": "clay is to pottery",
+    "explanation": "sand : glass — a raw material and the manufactured thing made from it. The pair \"clay is to pottery\" expresses that same relation.",
+    "set_id": "SET-J"
+  },
+  {
+    "id": "SV6-46",
+    "subskill": "analogy",
+    "difficulty": "hard",
+    "prompt": "TROPHY is to VICTORY as",
+    "choices": [
+      "receipt is to purchase",
+      "honey is to bee",
+      "clay is to pottery",
+      "fleet is to ship",
+      "desert is to rainfall"
+    ],
+    "correct_answer": "receipt is to purchase",
+    "explanation": "trophy : victory — a token kept as proof of an event. The pair \"receipt is to purchase\" expresses that same relation.",
+    "set_id": "SET-J"
+  },
+  {
+    "id": "SV6-47",
+    "subskill": "analogy",
+    "difficulty": "hard",
+    "prompt": "ORPHAN is to PARENTS as",
+    "choices": [
+      "honey is to bee",
+      "receipt is to purchase",
+      "fleet is to ship",
+      "desert is to rainfall",
+      "clay is to pottery"
+    ],
+    "correct_answer": "desert is to rainfall",
+    "explanation": "orphan : parents — something defined by what it lacks. The pair \"desert is to rainfall\" expresses that same relation.",
+    "set_id": "SET-J"
+  },
+  {
+    "id": "SV6-48",
+    "subskill": "analogy",
+    "difficulty": "medium",
+    "prompt": "BAROMETER is to PRESSURE as",
+    "choices": [
+      "odometer is to distance",
+      "helmet is to injury",
+      "silence is to sound",
+      "theater is to performance",
+      "seedling is to tree"
+    ],
+    "correct_answer": "odometer is to distance",
+    "explanation": "barometer : pressure — an instrument and the quantity it measures. The pair \"odometer is to distance\" expresses that same relation.",
+    "set_id": "SET-K"
+  },
+  {
+    "id": "SV6-49",
+    "subskill": "analogy",
+    "difficulty": "hard",
+    "prompt": "VACUUM is to AIR as",
+    "choices": [
+      "seedling is to tree",
+      "odometer is to distance",
+      "theater is to performance",
+      "silence is to sound",
+      "helmet is to injury"
+    ],
+    "correct_answer": "silence is to sound",
+    "explanation": "vacuum : air — a condition consisting of the absence of something. The pair \"silence is to sound\" expresses that same relation.",
+    "set_id": "SET-K"
+  },
+  {
+    "id": "SV6-50",
+    "subskill": "analogy",
+    "difficulty": "hard",
+    "prompt": "DAM is to FLOOD as",
+    "choices": [
+      "seedling is to tree",
+      "helmet is to injury",
+      "odometer is to distance",
+      "theater is to performance",
+      "silence is to sound"
+    ],
+    "correct_answer": "helmet is to injury",
+    "explanation": "dam : flood — a device and the disaster it is built to prevent. The pair \"helmet is to injury\" expresses that same relation.",
+    "set_id": "SET-K"
+  },
+  {
+    "id": "SV6-51",
+    "subskill": "analogy",
+    "difficulty": "medium",
+    "prompt": "APPRENTICE is to MASTER as",
+    "choices": [
+      "odometer is to distance",
+      "theater is to performance",
+      "silence is to sound",
+      "seedling is to tree",
+      "helmet is to injury"
+    ],
+    "correct_answer": "seedling is to tree",
+    "explanation": "apprentice : master — an early stage and the mature form it grows into. The pair \"seedling is to tree\" expresses that same relation.",
+    "set_id": "SET-K"
+  },
+  {
+    "id": "SV6-52",
+    "subskill": "analogy",
+    "difficulty": "medium",
+    "prompt": "ARCHITECT is to BLUEPRINT as",
+    "choices": [
+      "geologist is to rocks",
+      "hermit is to solitude",
+      "tire is to rubber",
+      "playwright is to script",
+      "overture is to opera"
+    ],
+    "correct_answer": "playwright is to script",
+    "explanation": "architect : blueprint — a professional and the written plan that professional draws up. The pair \"playwright is to script\" expresses that same relation.",
+    "set_id": "SET-L"
+  },
+  {
+    "id": "SV6-53",
+    "subskill": "analogy",
+    "difficulty": "medium",
+    "prompt": "WINDOWPANE is to GLASS as",
+    "choices": [
+      "geologist is to rocks",
+      "playwright is to script",
+      "overture is to opera",
+      "hermit is to solitude",
+      "tire is to rubber"
+    ],
+    "correct_answer": "tire is to rubber",
+    "explanation": "windowpane : glass — an object and the material it is made of. The pair \"tire is to rubber\" expresses that same relation.",
+    "set_id": "SET-L"
+  },
+  {
+    "id": "SV6-54",
+    "subskill": "analogy",
+    "difficulty": "hard",
+    "prompt": "MISER is to GREED as",
+    "choices": [
+      "geologist is to rocks",
+      "hermit is to solitude",
+      "playwright is to script",
+      "overture is to opera",
+      "tire is to rubber"
+    ],
+    "correct_answer": "hermit is to solitude",
+    "explanation": "miser : greed — a person and the single trait that defines the type. The pair \"hermit is to solitude\" expresses that same relation.",
+    "set_id": "SET-L"
+  },
+  {
+    "id": "SV6-55",
+    "subskill": "analogy",
+    "difficulty": "hard",
+    "prompt": "PREFACE is to BOOK as",
+    "choices": [
+      "tire is to rubber",
+      "playwright is to script",
+      "geologist is to rocks",
+      "hermit is to solitude",
+      "overture is to opera"
+    ],
+    "correct_answer": "overture is to opera",
+    "explanation": "preface : book — an opening section and the work it introduces. The pair \"overture is to opera\" expresses that same relation.",
+    "set_id": "SET-L"
+  },
+  {
+    "id": "SV6-56",
+    "subskill": "analogy",
+    "difficulty": "medium",
+    "prompt": "BOTANIST is to PLANTS as",
+    "choices": [
+      "playwright is to script",
+      "geologist is to rocks",
+      "tire is to rubber",
+      "hermit is to solitude",
+      "overture is to opera"
+    ],
+    "correct_answer": "geologist is to rocks",
+    "explanation": "botanist : plants — a specialist and the subject that specialist studies. The pair \"geologist is to rocks\" expresses that same relation.",
+    "set_id": "SET-L"
+  }
+]

@@ -94,10 +94,15 @@ function sandbox(item) {
   }
 }
 
+// SAT items carry 4 options; SSAT and ISEE items carry 5. This was pinned at
+// exactly 4 until 2026-09-01, which meant `verify` reported SHAPE on every
+// 5-option batch and printed "0/48 recompute to their key" — the sandbox never
+// ran on a single SSAT or ISEE math item. A gate that cannot pass is not a gate.
 function shapeOk(raw) {
-  return raw.prompt && Array.isArray(raw.choices) && raw.choices.length === 4
+  const n = Array.isArray(raw.choices) ? raw.choices.length : 0
+  return raw.prompt && (n === 4 || n === 5)
     && raw.choices.includes(raw.correct_answer)
-    && new Set(raw.choices.map(c => String(c).trim())).size === 4
+    && new Set(raw.choices.map(c => String(c).trim())).size === n
     && typeof raw.solve === 'string'
 }
 
@@ -137,7 +142,7 @@ async function main() {
   if (cmd === 'verify') {
     let pass = 0
     for (const raw of batch) {
-      if (!shapeOk(raw)) { console.log(`SHAPE  id${raw.id} — need 4 distinct choices incl. key + a solve string`); continue }
+      if (!shapeOk(raw)) { console.log(`SHAPE  id${raw.id} — need 4 or 5 distinct choices incl. key + a solve string`); continue }
       const r = sandbox(raw)
       if (r.ok) { pass++; console.log(`OK     id${raw.id} [${raw.domain}] key=${raw.correct_answer}  ✓computed ${r.computed}`) }
       else console.log(`FAIL   id${raw.id} [${raw.domain}] key=${raw.correct_answer}  ✗computed ${r.computed}`)

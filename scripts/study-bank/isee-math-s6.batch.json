@@ -1,0 +1,642 @@
+[
+  {
+    "id": "IM6-01",
+    "domain": "Math",
+    "subskill": "average speed as total distance over total time",
+    "difficulty": "medium",
+    "prompt": "A cyclist rides 30 kilometers from home to a lake at a steady 15 kilometers per hour, then rides the same 30 kilometers back home at a steady 10 kilometers per hour. What is the cyclist's average speed for the entire trip, in kilometers per hour?",
+    "choices": [
+      "12",
+      "12.5",
+      "13",
+      "15"
+    ],
+    "correct_answer": "12",
+    "explanation": "The outbound leg takes 30 divided by 15, or 2 hours, and the return leg takes 30 divided by 10, or 3 hours, so the whole trip covers 60 kilometers in 5 hours. Average speed is total distance divided by total time, 60 over 5, which is 12 kilometers per hour. Averaging the two speeds directly is wrong because the cyclist spends more time at the slower speed.",
+    "solve": "const d=30,s1=15,s2=10; const t=d/s1+d/s2; return (2*d)/t;"
+  },
+  {
+    "id": "IM6-02",
+    "domain": "Math",
+    "subskill": "successive percent increase then decrease",
+    "difficulty": "medium",
+    "prompt": "A jacket that costs 60 dollars has its price raised by 20 percent. Some weeks later the new price is reduced by 25 percent. What is the final price of the jacket, in dollars?",
+    "choices": [
+      "54",
+      "57",
+      "60",
+      "63"
+    ],
+    "correct_answer": "54",
+    "explanation": "The raise gives 60 times 1.20, or 72 dollars. The reduction is taken on 72, not on 60, so the final price is 72 times 0.75, or 54 dollars. The two percents cannot be combined by subtracting them because they act on different amounts.",
+    "solve": "const p=60; const up=p*1.20; return up*0.75;"
+  },
+  {
+    "id": "IM6-03",
+    "domain": "Math",
+    "subskill": "ratio with a stated difference between the parts",
+    "difficulty": "medium",
+    "prompt": "In a school club the ratio of boys to girls is 3 to 5. There are 12 more girls than boys. How many students are in the club altogether?",
+    "choices": [
+      "18",
+      "30",
+      "48",
+      "60"
+    ],
+    "correct_answer": "48",
+    "explanation": "Writing the counts as 3 parts and 5 parts, the difference is 2 parts, and that difference equals 12, so one part is 6. The club has 3 plus 5, or 8 parts, and 8 times 6 is 48 students.",
+    "solve": "const b=3,g=5,diff=12; const part=diff/(g-b); return (b+g)*part;"
+  },
+  {
+    "id": "IM6-04",
+    "domain": "Math",
+    "subskill": "recursive sequence rule (double and add one)",
+    "difficulty": "medium",
+    "prompt": "The first four terms of a sequence are 3, 7, 15, 31. Each term after the first is found by doubling the previous term and then adding 1. What is the fifth term?",
+    "choices": [
+      "47",
+      "55",
+      "62",
+      "63"
+    ],
+    "correct_answer": "63",
+    "explanation": "Applying the stated rule to 31 gives 2 times 31 plus 1, which is 63. Continuing the differences instead of using the rule, or doubling without adding 1, both break the pattern the sequence actually follows.",
+    "solve": "let t=3; for(let i=0;i<4;i++) t=2*t+1; return t;"
+  },
+  {
+    "id": "IM6-05",
+    "domain": "Math",
+    "subskill": "rectangle area recovered from perimeter and a side relationship",
+    "difficulty": "medium",
+    "prompt": "A rectangle has a perimeter of 26 centimeters, and its length is 3 centimeters greater than its width. What is the area of the rectangle, in square centimeters?",
+    "choices": [
+      "22",
+      "26",
+      "33",
+      "40"
+    ],
+    "correct_answer": "40",
+    "explanation": "Half the perimeter is the length plus the width, or 13. If the width is w, then w plus w plus 3 equals 13, so the width is 5 and the length is 8. The area is 5 times 8, or 40 square centimeters.",
+    "solve": "const P=26,d=3; const w=(P/2-d)/2; const l=w+d; return w*l;"
+  },
+  {
+    "id": "IM6-06",
+    "domain": "Math",
+    "subskill": "probability of a complementary event",
+    "difficulty": "medium",
+    "prompt": "A bag holds 4 red marbles, 6 blue marbles, and 5 green marbles, all the same size. One marble is drawn at random. What is the probability that the marble is NOT blue?",
+    "choices": [
+      "2/5",
+      "3/5",
+      "2/3",
+      "9/10"
+    ],
+    "correct_answer": "3/5",
+    "explanation": "There are 15 marbles in all, and 4 plus 5, or 9, of them are not blue. The probability is 9 out of 15, which reduces to 3 out of 5.",
+    "solve": "const r=4,b=6,g=5; return (r+g)/(r+b+g);"
+  },
+  {
+    "id": "IM6-07",
+    "domain": "Math",
+    "subskill": "common remainder using a least common multiple",
+    "difficulty": "hard",
+    "prompt": "What is the least integer greater than 50 that leaves a remainder of 2 when it is divided by 3, by 4, and by 5?",
+    "choices": [
+      "52",
+      "60",
+      "62",
+      "122"
+    ],
+    "correct_answer": "62",
+    "explanation": "A number leaves remainder 2 on division by 3, 4, and 5 exactly when it is 2 more than a common multiple of those three numbers. The least common multiple of 3, 4, and 5 is 60, so the numbers are 2, 62, 122, and so on. The smallest of these above 50 is 62.",
+    "solve": "for(let n=51;n<1000;n++){ if(n%3===2 && n%4===2 && n%5===2) return n; } return null;"
+  },
+  {
+    "id": "IM6-08",
+    "domain": "Math",
+    "subskill": "solving a linear equation with parentheses",
+    "difficulty": "medium",
+    "prompt": "If 5x - 3 = 2(x + 6), what is the value of x?",
+    "choices": [
+      "3",
+      "5",
+      "9",
+      "15"
+    ],
+    "correct_answer": "5",
+    "explanation": "Distributing on the right gives 5x minus 3 equals 2x plus 12. Subtracting 2x from both sides and adding 3 to both sides gives 3x equal to 15, so x is 5.",
+    "solve": "for(let x=-50;x<=50;x+=0.5){ if(Math.abs((5*x-3)-(2*(x+6)))<1e-9) return x; } return null;"
+  },
+  {
+    "id": "IM6-09",
+    "domain": "Math",
+    "subskill": "combined work rates of two pipes",
+    "difficulty": "medium",
+    "prompt": "Pipe A alone fills an empty tank in 6 hours. Pipe B alone fills the same tank in 12 hours. If both pipes run together from empty, how many hours does it take to fill the tank?",
+    "choices": [
+      "3",
+      "4",
+      "9",
+      "18"
+    ],
+    "correct_answer": "4",
+    "explanation": "In one hour pipe A fills one sixth of the tank and pipe B fills one twelfth, so together they fill one sixth plus one twelfth, which is one quarter of the tank each hour. Filling the whole tank therefore takes 4 hours.",
+    "solve": "const a=6,b=12; const rate=1/a+1/b; return 1/rate;"
+  },
+  {
+    "id": "IM6-10",
+    "domain": "Math",
+    "subskill": "percent composition after adding members to a group",
+    "difficulty": "hard",
+    "prompt": "A club has 30 members, and 40 percent of them are girls. Some boys then join the club, and no one leaves. After the new boys join, girls make up 25 percent of the club. How many boys joined?",
+    "choices": [
+      "8",
+      "12",
+      "18",
+      "20"
+    ],
+    "correct_answer": "18",
+    "explanation": "Forty percent of 30 is 12 girls, and that number does not change. If 12 girls are 25 percent of the new total, the new total is 12 divided by 0.25, or 48 members. Since the club began with 30 members, 48 minus 30, or 18, boys joined.",
+    "solve": "const n=30, girls=0.40*n; const newTotal=girls/0.25; return newTotal-n;"
+  },
+  {
+    "id": "IM6-11",
+    "domain": "Math",
+    "subskill": "cube volume from surface area",
+    "difficulty": "medium",
+    "prompt": "The total surface area of a cube is 150 square centimeters. What is the volume of the cube, in cubic centimeters?",
+    "choices": [
+      "25",
+      "125",
+      "216",
+      "300"
+    ],
+    "correct_answer": "125",
+    "explanation": "A cube has 6 congruent square faces, so each face has area 150 divided by 6, or 25 square centimeters. An edge is therefore 5 centimeters, and the volume is 5 times 5 times 5, or 125 cubic centimeters.",
+    "solve": "const SA=150; const face=SA/6; const e=Math.sqrt(face); return e*e*e;"
+  },
+  {
+    "id": "IM6-12",
+    "domain": "Math",
+    "subskill": "comparing fractions with unlike denominators",
+    "difficulty": "medium",
+    "prompt": "Which of the following fractions has the least value?",
+    "choices": [
+      "5/8",
+      "3/5",
+      "7/11",
+      "2/3"
+    ],
+    "correct_answer": "3/5",
+    "explanation": "Converting each to a decimal gives 0.625, 0.6, about 0.636, and about 0.667. The smallest of these is 0.6, which is three fifths. Comparing numerators or denominators alone is unreliable here because all four fractions are close to two thirds.",
+    "solve": "const f=[[5,8],[3,5],[7,11],[2,3]]; let best=f[0]; for(const p of f){ if(p[0]/p[1] < best[0]/best[1]) best=p; } return best[0]+'/'+best[1];"
+  },
+  {
+    "id": "IM6-13",
+    "domain": "Math",
+    "subskill": "counting arrangements with a restricted leading digit",
+    "difficulty": "hard",
+    "prompt": "Using only the digits 1, 2, 3, 4, and 5, and using no digit more than once in a number, how many different three-digit numbers greater than 300 can be formed?",
+    "choices": [
+      "12",
+      "18",
+      "24",
+      "36"
+    ],
+    "correct_answer": "36",
+    "explanation": "To exceed 300 the hundreds digit must be 3, 4, or 5, which is 3 choices. After that digit is used, 4 digits remain for the tens place and 3 for the units place. The count is 3 times 4 times 3, or 36. Forgetting that the leading digit itself can be chosen in 3 ways leaves only 12.",
+    "solve": "let c=0; const d=[1,2,3,4,5]; for(const a of d) for(const b of d) for(const e of d){ if(a!==b && b!==e && a!==e){ const n=100*a+10*b+e; if(n>300) c++; } } return c;"
+  },
+  {
+    "id": "IM6-14",
+    "domain": "Math",
+    "subskill": "recomputing a mean after removing one value",
+    "difficulty": "medium",
+    "prompt": "The average (arithmetic mean) of five numbers is 18. One of the numbers, 26, is removed from the list. What is the average of the four remaining numbers?",
+    "choices": [
+      "14",
+      "16",
+      "17.5",
+      "22.5"
+    ],
+    "correct_answer": "16",
+    "explanation": "Five numbers with mean 18 have a total of 90. Removing 26 leaves a total of 64 spread over four numbers, so the new average is 64 divided by 4, or 16.",
+    "solve": "const n=5,m=18,x=26; const sum=n*m; return (sum-x)/(n-1);"
+  },
+  {
+    "id": "IM6-15",
+    "domain": "Math",
+    "subskill": "consecutive even integers with a given sum",
+    "difficulty": "medium",
+    "prompt": "The sum of four consecutive even integers is 92. What is the greatest of the four integers?",
+    "choices": [
+      "20",
+      "22",
+      "24",
+      "26"
+    ],
+    "correct_answer": "26",
+    "explanation": "If the smallest is n, the four integers are n, n plus 2, n plus 4, and n plus 6, so their sum is 4n plus 12. Setting that equal to 92 gives n equal to 20, and the integers are 20, 22, 24, and 26. The greatest is 26.",
+    "solve": "const S=92; const n=(S-12)/4; return n+6;"
+  },
+  {
+    "id": "IM6-16",
+    "domain": "Math",
+    "subskill": "two numbers from their sum and product",
+    "difficulty": "hard",
+    "prompt": "Two positive integers have a sum of 30 and a product of 209. What is the smaller of the two integers?",
+    "choices": [
+      "11",
+      "15",
+      "19",
+      "23"
+    ],
+    "correct_answer": "11",
+    "explanation": "Pairs adding to 30 include 11 and 19, whose product is 209. The smaller of that pair is 11. Splitting 30 evenly gives 15 and 15, whose product is 225, so the two numbers cannot be equal.",
+    "solve": "const S=30,P=209; for(let a=1;a<S;a++){ if(a*(S-a)===P && a<=S-a) return a; } return null;"
+  },
+  {
+    "id": "IM6-17",
+    "domain": "Math",
+    "subskill": "taking a percent of a percent",
+    "difficulty": "medium",
+    "prompt": "What number is 30 percent of 40 percent of 250?",
+    "choices": [
+      "30",
+      "75",
+      "100",
+      "175"
+    ],
+    "correct_answer": "30",
+    "explanation": "Forty percent of 250 is 100, and 30 percent of 100 is 30. Taking either percent of 250 by itself skips a step and gives a much larger number.",
+    "solve": "return 0.30*(0.40*250);"
+  },
+  {
+    "id": "IM6-18",
+    "domain": "Math",
+    "subskill": "scaling a production rate across a unit change",
+    "difficulty": "medium",
+    "prompt": "A machine produces 3 widgets every 8 seconds. Working at this same rate without stopping, how many widgets does the machine produce in 4 minutes?",
+    "choices": [
+      "30",
+      "80",
+      "90",
+      "96"
+    ],
+    "correct_answer": "90",
+    "explanation": "Four minutes is 240 seconds, which contains 240 divided by 8, or 30 intervals. Each interval yields 3 widgets, so the machine produces 30 times 3, or 90 widgets. Stopping at 30 counts intervals rather than widgets.",
+    "solve": "const per=3, sec=8, mins=4; const total=mins*60; return (total/sec)*per;"
+  },
+  {
+    "id": "IM6-19",
+    "domain": "Math",
+    "subskill": "solving for one unit price in a two-item purchase",
+    "difficulty": "medium",
+    "prompt": "Five notebooks and 3 pens cost 19 dollars in total. Each notebook costs 2 dollars. What is the cost of one pen, in dollars?",
+    "choices": [
+      "2",
+      "3",
+      "9",
+      "14"
+    ],
+    "correct_answer": "3",
+    "explanation": "The notebooks account for 5 times 2, or 10 dollars, leaving 9 dollars for the 3 pens. Dividing 9 by 3 gives 3 dollars for one pen; the 9 dollars is the cost of all three pens together, not of one.",
+    "solve": "const total=19, nb=5, nbCost=2, pens=3; return (total-nb*nbCost)/pens;"
+  },
+  {
+    "id": "IM6-20",
+    "domain": "Math",
+    "subskill": "proportion with an amount already on hand",
+    "difficulty": "hard",
+    "prompt": "A recipe calls for 3 cups of flour for every 2 cups of sugar. A baker plans to use 9 cups of sugar and already has 4 cups of flour on the shelf. How many more cups of flour does the baker need?",
+    "choices": [
+      "4.5",
+      "6",
+      "9",
+      "9.5"
+    ],
+    "correct_answer": "9.5",
+    "explanation": "Nine cups of sugar is 4.5 batches of the 2-cup unit, so the recipe needs 4.5 times 3, or 13.5 cups of flour. Subtracting the 4 cups already on hand leaves 9.5 cups still needed.",
+    "solve": "const flourPer=3, sugarPer=2, sugar=9, have=4; const need=sugar/sugarPer*flourPer; return need-have;"
+  },
+  {
+    "id": "IM6-21",
+    "domain": "Math",
+    "subskill": "least multiplier that makes a product a perfect square",
+    "difficulty": "hard",
+    "prompt": "What is the least positive integer n such that 180 times n is a perfect square?",
+    "choices": [
+      "5",
+      "12",
+      "20",
+      "45"
+    ],
+    "correct_answer": "5",
+    "explanation": "Factoring gives 180 as 2 squared times 3 squared times 5. The factors of 2 and 3 already appear an even number of times, but 5 appears once, so multiplying by 5 makes every exponent even, and 180 times 5 is 900, which is 30 squared. Some larger multipliers also produce perfect squares, but the question asks for the least one.",
+    "solve": "for(let n=1;n<1000;n++){ const r=Math.sqrt(180*n); if(Math.abs(r-Math.round(r))<1e-9) return n; } return null;"
+  },
+  {
+    "id": "IM6-22",
+    "domain": "Math",
+    "subskill": "discount followed by sales tax",
+    "difficulty": "medium",
+    "prompt": "A bicycle listed at 250 dollars is marked down by 20 percent. A sales tax of 8 percent is then added to the marked-down price. What is the amount the customer pays, in dollars?",
+    "choices": [
+      "180",
+      "200",
+      "216",
+      "270"
+    ],
+    "correct_answer": "216",
+    "explanation": "The markdown gives 250 times 0.80, or 200 dollars. The tax is charged on that 200, so the customer pays 200 times 1.08, or 216 dollars. Applying the tax to the original 250 would overcharge, and treating the discount and tax as a single 12 percent drop is not how the two operations combine.",
+    "solve": "const list=250; const sale=list*0.80; return sale*1.08;"
+  },
+  {
+    "id": "IM6-23",
+    "domain": "Math",
+    "subskill": "score needed to reach a target average",
+    "difficulty": "medium",
+    "prompt": "Sarah's average (arithmetic mean) score on her first 4 tests is 82. She wants her average over all 5 tests to be 85. What score must she earn on the fifth test?",
+    "choices": [
+      "85",
+      "88",
+      "91",
+      "97"
+    ],
+    "correct_answer": "97",
+    "explanation": "Her first four tests total 4 times 82, or 328 points. A 5-test average of 85 requires 5 times 85, or 425 points. The difference, 425 minus 328, is 97, so she needs a 97.",
+    "solve": "const n=4,cur=82,target=85; return (n+1)*target - n*cur;"
+  },
+  {
+    "id": "IM6-24",
+    "domain": "Math",
+    "subskill": "triangle angle sum with related angle measures",
+    "difficulty": "hard",
+    "prompt": "In a triangle, the measure of the second angle is twice the measure of the first, and the measure of the third angle is 20 degrees greater than the measure of the first. What is the measure of the largest angle, in degrees?",
+    "choices": [
+      "40",
+      "80",
+      "100",
+      "120"
+    ],
+    "correct_answer": "80",
+    "explanation": "Letting the first angle be x, the three angles are x, 2x, and x plus 20, and they sum to 180. That gives 4x plus 20 equal to 180, so x is 40 and the angles measure 40, 80, and 60 degrees. The largest is 80 degrees.",
+    "solve": "const x=(180-20)/4; const angles=[x,2*x,x+20]; return Math.max.apply(null,angles);"
+  },
+  {
+    "id": "IM6-25",
+    "domain": "Math",
+    "subskill": "concentration after adding pure solute",
+    "difficulty": "hard",
+    "prompt": "A 40-liter solution is 25 percent acid by volume. How many liters of pure acid must be added so that the resulting solution is 40 percent acid by volume?",
+    "choices": [
+      "6",
+      "8",
+      "10",
+      "15"
+    ],
+    "correct_answer": "10",
+    "explanation": "The solution starts with 10 liters of acid in 40 liters of liquid. Adding x liters of pure acid raises the acid to 10 plus x and the total to 40 plus x. Setting 10 plus x equal to 0.40 times 40 plus x gives 0.6x equal to 6, so x is 10 liters. Note that the added acid increases the total volume as well, which is why simply taking 15 percent of 40 does not work.",
+    "solve": "const V=40, c0=0.25, c1=0.40; const acid=V*c0; const x=(c1*V-acid)/(1-c1); return x;"
+  },
+  {
+    "id": "IM6-26",
+    "domain": "Math",
+    "subskill": "order of operations with exponents",
+    "difficulty": "medium",
+    "prompt": "What is the value of 2⁶ − 4² × 3?",
+    "choices": [
+      "16",
+      "40",
+      "48",
+      "144"
+    ],
+    "correct_answer": "16",
+    "explanation": "The exponents are evaluated first, giving 64 minus 16 times 3. Multiplication comes before subtraction, so this is 64 minus 48, or 16. Subtracting before multiplying gives 144, which is a much larger value than the expression actually has.",
+    "solve": "return Math.pow(2,6) - Math.pow(4,2)*3;"
+  },
+  {
+    "id": "IM6-27",
+    "domain": "Math",
+    "subskill": "distance between two points in the coordinate plane",
+    "difficulty": "medium",
+    "prompt": "In the coordinate plane, point A is at (-3, 2) and point B is at (5, 8). What is the length of segment AB?",
+    "choices": [
+      "6",
+      "8",
+      "9",
+      "10"
+    ],
+    "correct_answer": "10",
+    "explanation": "The horizontal separation is 5 minus negative 3, or 8, and the vertical separation is 8 minus 2, or 6. These are the legs of a right triangle whose hypotenuse is the segment, so its length is the square root of 64 plus 36, which is 10.",
+    "solve": "const dx=5-(-3), dy=8-2; return Math.sqrt(dx*dx+dy*dy);"
+  },
+  {
+    "id": "IM6-28",
+    "domain": "Math",
+    "subskill": "probability of a dice sum over a range",
+    "difficulty": "hard",
+    "prompt": "Two fair six-sided dice, each numbered 1 through 6, are rolled once. What is the probability that the sum of the two numbers showing is 9 or greater?",
+    "choices": [
+      "1/9",
+      "1/6",
+      "2/9",
+      "5/18"
+    ],
+    "correct_answer": "5/18",
+    "explanation": "Of the 36 equally likely ordered outcomes, 4 give a sum of 9, 3 give 10, 2 give 11, and 1 gives 12, for 10 favorable outcomes. The probability is 10 out of 36, which reduces to 5 out of 18.",
+    "solve": "let c=0; for(let a=1;a<=6;a++) for(let b=1;b<=6;b++) if(a+b>=9) c++; return c/36;"
+  },
+  {
+    "id": "IM6-29",
+    "domain": "Math",
+    "subskill": "first term of an arithmetic sequence from two known terms",
+    "difficulty": "medium",
+    "prompt": "In an arithmetic sequence, the 4th term is 17 and the 9th term is 42. What is the 1st term?",
+    "choices": [
+      "-3",
+      "2",
+      "5",
+      "12"
+    ],
+    "correct_answer": "2",
+    "explanation": "There are 5 steps from the 4th term to the 9th term, and the total change is 42 minus 17, or 25, so the common difference is 5. Stepping back 3 differences from the 4th term gives 17 minus 15, or 2.",
+    "solve": "const t4=17,t9=42; const d=(t9-t4)/(9-4); return t4-3*d;"
+  },
+  {
+    "id": "IM6-30",
+    "domain": "Math",
+    "subskill": "counting integers divisible by two numbers",
+    "difficulty": "hard",
+    "prompt": "How many integers between 100 and 200 are divisible by both 4 and 6?",
+    "choices": [
+      "4",
+      "6",
+      "8",
+      "16"
+    ],
+    "correct_answer": "8",
+    "explanation": "An integer divisible by both 4 and 6 is divisible by their least common multiple, 12. The multiples of 12 strictly between 100 and 200 run from 108 to 192, and there are 8 of them. Counting multiples of 24, the product of 4 and 6, would miss half of them.",
+    "solve": "let c=0; for(let n=101;n<200;n++) if(n%4===0 && n%6===0) c++; return c;"
+  },
+  {
+    "id": "IM6-31",
+    "domain": "Math",
+    "subskill": "capacity from a change in fractional fullness",
+    "difficulty": "medium",
+    "prompt": "A water tank is 2/5 full. After 18 more liters of water are added, the tank is 7/10 full. What is the total capacity of the tank, in liters?",
+    "choices": [
+      "60",
+      "72",
+      "90",
+      "120"
+    ],
+    "correct_answer": "60",
+    "explanation": "The added water raised the level by 7/10 minus 2/5, which is 3/10 of the tank. If 3/10 of the capacity is 18 liters, the capacity is 18 divided by 0.3, or 60 liters.",
+    "solve": "const added=18; const frac=7/10-2/5; return added/frac;"
+  },
+  {
+    "id": "IM6-32",
+    "domain": "Math",
+    "subskill": "consecutive odd integers defined by an equation",
+    "difficulty": "hard",
+    "prompt": "The sum of three consecutive odd integers is 3 greater than twice the largest of the three. What is that sum?",
+    "choices": [
+      "9",
+      "15",
+      "18",
+      "21"
+    ],
+    "correct_answer": "21",
+    "explanation": "Calling the smallest n, the three integers are n, n plus 2, and n plus 4, with sum 3n plus 6. Setting that equal to 2 times n plus 4, plus 3, gives 3n plus 6 equal to 2n plus 11, so n is 5. The integers are 5, 7, and 9, and their sum is 21, which is indeed 3 more than twice 9.",
+    "solve": "for(let n=1;n<200;n+=2){ const s=n+(n+2)+(n+4); if(s===2*(n+4)+3) return s; } return null;"
+  },
+  {
+    "id": "IM6-33",
+    "domain": "Math",
+    "subskill": "circle area from circumference",
+    "difficulty": "medium",
+    "prompt": "A circle has a circumference of 12 pi centimeters. What is its area, in square centimeters?",
+    "choices": [
+      "12π",
+      "24π",
+      "36π",
+      "144π"
+    ],
+    "correct_answer": "36π",
+    "explanation": "Circumference equals 2 pi times the radius, so 12 pi means the radius is 6 centimeters. Area is pi times the radius squared, which is 36 pi square centimeters. Using the diameter of 12 in place of the radius quadruples the result.",
+    "solve": "const C=12; const r=C/2; return (r*r)+'π';"
+  },
+  {
+    "id": "IM6-34",
+    "domain": "Math",
+    "subskill": "time required at a given printing rate",
+    "difficulty": "medium",
+    "prompt": "A printer prints 45 pages in 3 minutes. At this same rate, how many minutes does it take the printer to print 300 pages?",
+    "choices": [
+      "15",
+      "20",
+      "45",
+      "60"
+    ],
+    "correct_answer": "20",
+    "explanation": "The rate is 45 divided by 3, or 15 pages per minute. Printing 300 pages therefore takes 300 divided by 15, or 20 minutes. The value 15 is the rate itself, not a number of minutes.",
+    "solve": "const pages=45, mins=3, target=300; const rate=pages/mins; return target/rate;"
+  },
+  {
+    "id": "IM6-35",
+    "domain": "Math",
+    "subskill": "ratio that changes when items are removed",
+    "difficulty": "hard",
+    "prompt": "A jar contains red and blue marbles in the ratio 5 to 3. After 8 red marbles are removed, the jar contains equal numbers of red and blue marbles. How many blue marbles are in the jar?",
+    "choices": [
+      "12",
+      "20",
+      "24",
+      "32"
+    ],
+    "correct_answer": "12",
+    "explanation": "Writing the counts as 5x red and 3x blue, removing 8 red leaves 5x minus 8, and that must equal 3x. So 2x equals 8 and x is 4, giving 20 red and 12 blue marbles. Removing 8 red from 20 leaves 12 of each, as required, and the blue count never changed.",
+    "solve": "const x=8/(5-3); return 3*x;"
+  },
+  {
+    "id": "IM6-36",
+    "domain": "Math",
+    "subskill": "percent comparison where the part exceeds the whole",
+    "difficulty": "medium",
+    "prompt": "45 is what percent of 36?",
+    "choices": [
+      "72",
+      "80",
+      "90",
+      "125"
+    ],
+    "correct_answer": "125",
+    "explanation": "The comparison is 45 divided by 36, which equals 1.25, or 125 percent. Because 45 is larger than 36, the answer must exceed 100 percent; dividing in the other order gives 80 percent, which answers a different question.",
+    "solve": "return (45/36)*100;"
+  },
+  {
+    "id": "IM6-37",
+    "domain": "Math",
+    "subskill": "two-price ticket problem with a fixed total count",
+    "difficulty": "hard",
+    "prompt": "At a school play, adult tickets cost 8 dollars each and child tickets cost 5 dollars each. A total of 30 tickets were sold, bringing in 204 dollars. How many adult tickets were sold?",
+    "choices": [
+      "12",
+      "15",
+      "18",
+      "22"
+    ],
+    "correct_answer": "18",
+    "explanation": "If all 30 tickets had been child tickets, the take would have been 150 dollars. Each adult ticket substituted in adds 3 dollars, and the actual take is 54 dollars more than 150, so 54 divided by 3, or 18, adult tickets were sold. Checking, 18 adults at 8 dollars plus 12 children at 5 dollars is 204 dollars.",
+    "solve": "const n=30, total=204, a=8, c=5; return (total-n*c)/(a-c);"
+  },
+  {
+    "id": "IM6-38",
+    "domain": "Math",
+    "subskill": "perimeter of an L-shaped figure after a corner cut",
+    "difficulty": "hard",
+    "prompt": "A rectangular piece measuring 3 centimeters by 4 centimeters is cut away from one corner of a square whose sides are 10 centimeters, leaving an L-shaped figure. What is the perimeter of the L-shaped figure, in centimeters?",
+    "choices": [
+      "33",
+      "40",
+      "47",
+      "52"
+    ],
+    "correct_answer": "40",
+    "explanation": "Cutting a rectangle from a corner shortens two of the square's sides by 3 and 4 centimeters, but it adds two new edges of exactly those same lengths facing into the notch. The removed length and the added length cancel, so the perimeter stays 4 times 10, or 40 centimeters.",
+    "solve": "const s=10,a=3,b=4; const sides=[s, s, s-a, b, a, s-b]; return sides.reduce(function(x,y){return x+y;},0);"
+  },
+  {
+    "id": "IM6-39",
+    "domain": "Math",
+    "subskill": "probability of two draws without replacement",
+    "difficulty": "hard",
+    "prompt": "A box contains 3 red pens and 5 white pens. Two pens are drawn at random, one after the other, without replacing the first. What is the probability that both pens drawn are red?",
+    "choices": [
+      "3/28",
+      "9/64",
+      "1/4",
+      "3/8"
+    ],
+    "correct_answer": "3/28",
+    "explanation": "The first draw is red with probability 3 out of 8. Given that, only 2 red pens remain among 7, so the second draw is red with probability 2 out of 7. Multiplying gives 6 out of 56, which reduces to 3 out of 28. Squaring 3 out of 8 would be the answer only if the first pen were put back.",
+    "solve": "const r=3,w=5,t=r+w; return (r/t)*((r-1)/(t-1));"
+  },
+  {
+    "id": "IM6-40",
+    "domain": "Math",
+    "subskill": "percent change in area from percent changes in dimensions",
+    "difficulty": "hard",
+    "prompt": "The length of a rectangle is increased by 20 percent and its width is decreased by 10 percent. By what percent does the area of the rectangle increase?",
+    "choices": [
+      "2",
+      "5",
+      "8",
+      "10"
+    ],
+    "correct_answer": "8",
+    "explanation": "The new area is 1.20 times 0.90, or 1.08, times the original area, which is an increase of 8 percent. Subtracting the two percents treats area as if it were a sum of the dimensions rather than a product.",
+    "solve": "const factor=1.20*0.90; return (factor-1)*100;"
+  }
+]

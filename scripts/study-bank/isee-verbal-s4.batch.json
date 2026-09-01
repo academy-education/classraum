@@ -1,0 +1,482 @@
+[
+ {
+  "id": "IV4-01",
+  "subskill": "synonym",
+  "difficulty": "medium",
+  "prompt": "DWINDLE",
+  "choices": [
+   "to increase rapidly in number",
+   "to branch off in different directions",
+   "to grow steadily smaller",
+   "to come together at one point"
+  ],
+  "correct_answer": "to grow steadily smaller",
+  "explanation": "To dwindle is to shrink little by little until little remains, so growing steadily smaller is the exact match. The other answers name an increase in number, a branching apart, and a coming together, none of which is a loss of size or amount.",
+  "set_id": "SET-A"
+ },
+ {
+  "id": "IV4-02",
+  "subskill": "synonym",
+  "difficulty": "medium",
+  "prompt": "PROLIFERATE",
+  "choices": [
+   "to increase rapidly in number",
+   "to branch off in different directions",
+   "to grow steadily smaller",
+   "to come together at one point"
+  ],
+  "correct_answer": "to increase rapidly in number",
+  "explanation": "To proliferate is to multiply quickly, as cells or copies do, so increasing rapidly in number is exact. Shrinking is the reverse, and branching apart or meeting at a point describe direction of movement rather than quantity.",
+  "set_id": "SET-A"
+ },
+ {
+  "id": "IV4-03",
+  "subskill": "synonym",
+  "difficulty": "medium",
+  "prompt": "DIVERGE",
+  "choices": [
+   "to come together at one point",
+   "to grow steadily smaller",
+   "to increase rapidly in number",
+   "to branch off in different directions"
+  ],
+  "correct_answer": "to branch off in different directions",
+  "explanation": "To diverge is for paths, opinions, or lines to separate and head different ways. Coming together at one point is the reverse movement, while shrinking and multiplying describe amount rather than direction.",
+  "set_id": "SET-A"
+ },
+ {
+  "id": "IV4-04",
+  "subskill": "synonym",
+  "difficulty": "medium",
+  "prompt": "CONVERGE",
+  "choices": [
+   "to grow steadily smaller",
+   "to come together at one point",
+   "to branch off in different directions",
+   "to increase rapidly in number"
+  ],
+  "correct_answer": "to come together at one point",
+  "explanation": "To converge is for separate lines, roads, or groups to meet at a single place. Branching apart is the reverse, and the two remaining answers describe change in quantity, not in direction of travel.",
+  "set_id": "SET-A"
+ },
+ {
+  "id": "IV4-05",
+  "subskill": "synonym",
+  "difficulty": "medium",
+  "prompt": "LUCID",
+  "choices": [
+   "demanding great effort",
+   "easy to understand",
+   "lasting only a short time",
+   "agreed on by everyone"
+  ],
+  "correct_answer": "easy to understand",
+  "explanation": "A lucid explanation is clear and readily followed, so being easy to understand is the direct sense. Requiring great effort concerns difficulty of labor, and the remaining answers concern how long something lasts and how widely it is agreed to.",
+  "set_id": "SET-B"
+ },
+ {
+  "id": "IV4-06",
+  "subskill": "synonym",
+  "difficulty": "medium",
+  "prompt": "ARDUOUS",
+  "choices": [
+   "easy to understand",
+   "lasting only a short time",
+   "demanding great effort",
+   "agreed on by everyone"
+  ],
+  "correct_answer": "demanding great effort",
+  "explanation": "An arduous climb or task is one that takes hard, sustained work, which is what demanding great effort names. Clarity, brevity of duration, and universal agreement are separate qualities entirely.",
+  "set_id": "SET-B"
+ },
+ {
+  "id": "IV4-07",
+  "subskill": "synonym",
+  "difficulty": "medium",
+  "prompt": "FLEETING",
+  "choices": [
+   "lasting only a short time",
+   "agreed on by everyone",
+   "demanding great effort",
+   "easy to understand"
+  ],
+  "correct_answer": "lasting only a short time",
+  "explanation": "A fleeting glimpse or mood passes almost at once, so lasting only a short time is exact. The other answers describe how clear something is, how much work it takes, and how completely it is agreed upon.",
+  "set_id": "SET-B"
+ },
+ {
+  "id": "IV4-08",
+  "subskill": "synonym",
+  "difficulty": "medium",
+  "prompt": "UNANIMOUS",
+  "choices": [
+   "easy to understand",
+   "demanding great effort",
+   "lasting only a short time",
+   "agreed on by everyone"
+  ],
+  "correct_answer": "agreed on by everyone",
+  "explanation": "A unanimous vote is one in which every member is on the same side, so agreement by everyone is the definition. Clarity, difficulty, and brief duration have nothing to do with how many people concur.",
+  "set_id": "SET-B"
+ },
+ {
+  "id": "IV4-09",
+  "subskill": "synonym",
+  "difficulty": "hard",
+  "prompt": "REBUKE",
+  "choices": [
+   "to hint at something without stating it",
+   "to praise highly",
+   "to criticize sharply",
+   "to reveal information that was kept secret"
+  ],
+  "correct_answer": "to criticize sharply",
+  "explanation": "To rebuke someone is to reprove them in strong terms for a fault, which is sharp criticism. Praising highly runs the other way, revealing a secret concerns information rather than fault, and hinting without stating is indirect where a rebuke is blunt.",
+  "set_id": "SET-C"
+ },
+ {
+  "id": "IV4-10",
+  "subskill": "synonym",
+  "difficulty": "hard",
+  "prompt": "EXTOL",
+  "choices": [
+   "to praise highly",
+   "to reveal information that was kept secret",
+   "to criticize sharply",
+   "to hint at something without stating it"
+  ],
+  "correct_answer": "to praise highly",
+  "explanation": "To extol is to speak in warm, elevated terms of someone's merits. Sharp criticism is the opposite response, and the other two answers describe what a speaker does with information rather than what a speaker says about worth.",
+  "set_id": "SET-C"
+ },
+ {
+  "id": "IV4-11",
+  "subskill": "synonym",
+  "difficulty": "hard",
+  "prompt": "DIVULGE",
+  "choices": [
+   "to hint at something without stating it",
+   "to criticize sharply",
+   "to reveal information that was kept secret",
+   "to praise highly"
+  ],
+  "correct_answer": "to reveal information that was kept secret",
+  "explanation": "To divulge is to let out what was being withheld, so revealing kept-back information is exact. Hinting without stating stops short of revealing, while praise and criticism are judgments rather than disclosures.",
+  "set_id": "SET-C"
+ },
+ {
+  "id": "IV4-12",
+  "subskill": "synonym",
+  "difficulty": "hard",
+  "prompt": "INSINUATE",
+  "choices": [
+   "to reveal information that was kept secret",
+   "to praise highly",
+   "to criticize sharply",
+   "to hint at something without stating it"
+  ],
+  "correct_answer": "to hint at something without stating it",
+  "explanation": "To insinuate is to work an idea in sideways, leaving it implied rather than said. Openly revealing a secret is the direct act this word avoids, and praising or criticizing name plain judgments rather than a hint.",
+  "set_id": "SET-C"
+ },
+ {
+  "id": "IV4-13",
+  "subskill": "synonym",
+  "difficulty": "medium",
+  "prompt": "OBSOLETE",
+  "choices": [
+   "exceeding what is required in amount",
+   "no longer in use",
+   "certain to happen",
+   "not favoring either side"
+  ],
+  "correct_answer": "no longer in use",
+  "explanation": "Something obsolete has been replaced and passed out of use, as an old machine or a discarded word has. Exceeding a required amount concerns quantity, and the remaining answers concern fairness between sides and the certainty of an event.",
+  "set_id": "SET-D"
+ },
+ {
+  "id": "IV4-14",
+  "subskill": "synonym",
+  "difficulty": "medium",
+  "prompt": "IMPARTIAL",
+  "choices": [
+   "no longer in use",
+   "not favoring either side",
+   "certain to happen",
+   "exceeding what is required in amount"
+  ],
+  "correct_answer": "not favoring either side",
+  "explanation": "An impartial judge or referee gives no advantage to either party, which is precisely not favoring a side. Being out of use, being in excess, and being certain to occur describe entirely different properties.",
+  "set_id": "SET-D"
+ },
+ {
+  "id": "IV4-15",
+  "subskill": "synonym",
+  "difficulty": "hard",
+  "prompt": "SUPERFLUOUS",
+  "choices": [
+   "exceeding what is required in amount",
+   "no longer in use",
+   "certain to happen",
+   "not favoring either side"
+  ],
+  "correct_answer": "exceeding what is required in amount",
+  "explanation": "Something superfluous is more than is needed, an extra beyond the necessary quantity. Being out of date concerns age rather than amount, and neutrality between parties and certainty of outcome are unrelated qualities.",
+  "set_id": "SET-D"
+ },
+ {
+  "id": "IV4-16",
+  "subskill": "synonym",
+  "difficulty": "medium",
+  "prompt": "INEVITABLE",
+  "choices": [
+   "not favoring either side",
+   "exceeding what is required in amount",
+   "no longer in use",
+   "certain to happen"
+  ],
+  "correct_answer": "certain to happen",
+  "explanation": "An inevitable outcome cannot be avoided and will occur whatever is done. Being out of use, being in excess, and taking no side describe conditions of things or people, not the certainty of an event.",
+  "set_id": "SET-D"
+ },
+ {
+  "id": "IV4-17",
+  "subskill": "sentence_completion",
+  "difficulty": "medium",
+  "prompt": "Although Marcus had rehearsed the entire speech for weeks, he turned ------- the moment the microphone reached him, answering the host in single words.",
+  "choices": [
+   "skeptical",
+   "methodical",
+   "lenient",
+   "reticent"
+  ],
+  "correct_answer": "reticent",
+  "explanation": "The contrast set up by 'although' opposes weeks of rehearsal against single-word answers, so the blank must name an unwillingness to speak. Being orderly, being easy on offenders, and doubting a claim would none of them explain why his answers shrank to one word.",
+  "set_id": "SET-E"
+ },
+ {
+  "id": "IV4-18",
+  "subskill": "sentence_completion",
+  "difficulty": "medium",
+  "prompt": "Despite the disorder of the emergency room around her, Dr. Alvarez stayed -------, working through her checklist one item at a time and skipping nothing.",
+  "choices": [
+   "reticent",
+   "lenient",
+   "skeptical",
+   "methodical"
+  ],
+  "correct_answer": "methodical",
+  "explanation": "The sentence contrasts surrounding disorder with a checklist worked through one item at a time with nothing skipped, which describes orderly step-by-step procedure. Reserve in speech, mildness toward wrongdoers, and doubt about a claim are not what an unbroken sequence of steps demonstrates.",
+  "set_id": "SET-E"
+ },
+ {
+  "id": "IV4-19",
+  "subskill": "sentence_completion",
+  "difficulty": "medium",
+  "prompt": "The new principal proved surprisingly ------- with latecomers, even though the handbook she had inherited demanded detention for a single missed bell.",
+  "choices": [
+   "lenient",
+   "reticent",
+   "skeptical",
+   "methodical"
+  ],
+  "correct_answer": "lenient",
+  "explanation": "The handbook demands punishment and the principal's treatment of latecomers is called surprising by contrast, so the blank must mean going easy on them. Reserve in speech, orderly method, and doubt about a claim do not stand in opposition to a rule requiring detention.",
+  "set_id": "SET-E"
+ },
+ {
+  "id": "IV4-20",
+  "subskill": "sentence_completion",
+  "difficulty": "medium",
+  "prompt": "Although the finding had already appeared in a respected journal, Priya remained ------- of it until she had watched the experiment repeated in her own laboratory.",
+  "choices": [
+   "reticent",
+   "lenient",
+   "skeptical",
+   "methodical"
+  ],
+  "correct_answer": "skeptical",
+  "explanation": "Publication in a respected journal is offered as a reason to believe, and the contrast plus 'of it' requires an attitude of withheld belief that only repetition could settle. Silence, orderliness, and mildness in punishing are not attitudes one holds toward a finding awaiting proof.",
+  "set_id": "SET-E"
+ },
+ {
+  "id": "IV4-21",
+  "subskill": "sentence_completion",
+  "difficulty": "medium",
+  "prompt": "Because one overlooked spark could set the dry brush alight, the lookouts stayed -------, scanning the ridgeline hour after hour.",
+  "choices": [
+   "audible",
+   "vigilant",
+   "nocturnal",
+   "treacherous"
+  ],
+  "correct_answer": "vigilant",
+  "explanation": "The cause given is that a single missed spark would be disastrous, and the result is hours of scanning the ridge, so the blank must mean watchful. Being audible, being unsafe underfoot, and being active by night are not consequences of a danger that must be spotted early.",
+  "set_id": "SET-F"
+ },
+ {
+  "id": "IV4-22",
+  "subskill": "sentence_completion",
+  "difficulty": "medium",
+  "prompt": "The hall's new panels absorbed so little sound that a whisper from the last row was perfectly ------- on the stage.",
+  "choices": [
+   "audible",
+   "treacherous",
+   "vigilant",
+   "nocturnal"
+  ],
+  "correct_answer": "audible",
+  "explanation": "The panels' failure to absorb sound is the cause, so the whisper's carrying to the stage is the result, and the blank must mean able to be heard. Watchfulness, danger underfoot, and night activity have no connection to how sound travels in a hall.",
+  "set_id": "SET-F"
+ },
+ {
+  "id": "IV4-23",
+  "subskill": "sentence_completion",
+  "difficulty": "medium",
+  "prompt": "Meltwater had left the ledge slick and its footholds crumbling, so the guides declared the upper route too ------- for beginners.",
+  "choices": [
+   "nocturnal",
+   "treacherous",
+   "audible",
+   "vigilant"
+  ],
+  "correct_answer": "treacherous",
+  "explanation": "A slick ledge with crumbling footholds is given as the reason the route was closed to beginners, so the blank must mean dangerously unreliable to cross. Alertness, being able to be heard, and being active at night are not properties a mountain route is judged unsafe for.",
+  "set_id": "SET-F"
+ },
+ {
+  "id": "IV4-24",
+  "subskill": "sentence_completion",
+  "difficulty": "medium",
+  "prompt": "The desert fox leaves its burrow only after sundown, since the midday heat would drain it of water, and this ------- habit is shared by many animals of the dunes.",
+  "choices": [
+   "vigilant",
+   "audible",
+   "nocturnal",
+   "treacherous"
+  ],
+  "correct_answer": "nocturnal",
+  "explanation": "The heat of midday is given as the cause, and leaving the burrow only after sundown is the result, so the blank must name a habit of being active at night. Watchfulness, audibility, and dangerous footing are unrelated to when an animal ventures out.",
+  "set_id": "SET-F"
+ },
+ {
+  "id": "IV4-25",
+  "subskill": "sentence_completion",
+  "difficulty": "medium",
+  "prompt": "The coach's halftime note was -------: three words long, with nothing added and nothing explained.",
+  "choices": [
+   "sedentary",
+   "perennial",
+   "parched",
+   "terse"
+  ],
+  "correct_answer": "terse",
+  "explanation": "The colon restates the blank, and the restatement is a note of three words with nothing added, which defines brevity of wording. Recurring each year, being dried out for want of rain, and involving much sitting are not restated anywhere in the sentence.",
+  "set_id": "SET-G"
+ },
+ {
+  "id": "IV4-26",
+  "subskill": "sentence_completion",
+  "difficulty": "medium",
+  "prompt": "Flooding on this bend of the river is -------: it arrives with the spring melt every single year, and has done so for as long as records exist.",
+  "choices": [
+   "perennial",
+   "sedentary",
+   "parched",
+   "terse"
+  ],
+  "correct_answer": "perennial",
+  "explanation": "The restatement after the colon supplies the definition directly, namely something that returns every year without interruption. Shortness of wording, dryness for want of rain, and a seated way of life are not what yearly return describes.",
+  "set_id": "SET-G"
+ },
+ {
+  "id": "IV4-27",
+  "subskill": "sentence_completion",
+  "difficulty": "medium",
+  "prompt": "The basin is -------: it takes in fewer than four inches of rain in a typical year, and only cactus and hard scrub grow there.",
+  "choices": [
+   "terse",
+   "sedentary",
+   "perennial",
+   "parched"
+  ],
+  "correct_answer": "parched",
+  "explanation": "The sentence defines the blank with rainfall of under four inches and vegetation limited to cactus and scrub, which is the condition of ground dried out for want of water. Yearly recurrence, brevity of wording, and a sitting way of life are not defined by rainfall figures.",
+  "set_id": "SET-G"
+ },
+ {
+  "id": "IV4-28",
+  "subskill": "sentence_completion",
+  "difficulty": "medium",
+  "prompt": "Their new office jobs were -------: eight hours seated at a desk, with the walk to the parking lot the only movement of the day.",
+  "choices": [
+   "perennial",
+   "terse",
+   "sedentary",
+   "parched"
+  ],
+  "correct_answer": "sedentary",
+  "explanation": "The restatement gives eight hours seated with almost no movement, which is the definition of a way of working that involves sitting. Brevity of wording, yearly recurrence, and dryness for want of rain are not restated by a description of hours spent at a desk.",
+  "set_id": "SET-G"
+ },
+ {
+  "id": "IV4-29",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "prompt": "A ------- musician, Delgado played fiddle, piano, and trombone, and could sight-read a part for any of the three.",
+  "choices": [
+   "versatile",
+   "itinerant",
+   "durable",
+   "ornate"
+  ],
+  "correct_answer": "versatile",
+  "explanation": "The examples given are three different instruments played competently by one person, which illustrates a wide range of ability. Constant travel, resistance to wear, and heavy decoration are not what a list of instruments demonstrates.",
+  "set_id": "SET-H"
+ },
+ {
+  "id": "IV4-30",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "prompt": "The ------- judge rode a circuit of six county courthouses, sleeping in a different town nearly every week of the term.",
+  "choices": [
+   "ornate",
+   "itinerant",
+   "versatile",
+   "durable"
+  ],
+  "correct_answer": "itinerant",
+  "explanation": "Six courthouses on a circuit and a different town each week are examples of a working life spent moving from place to place. A range of skills, toughness against wear, and elaborate decoration are not shown by a list of towns and courthouses.",
+  "set_id": "SET-H"
+ },
+ {
+  "id": "IV4-31",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "prompt": "The chapel ceiling was -------, crowded with gilded scrollwork, painted medallions, and carved vines that ran into every corner.",
+  "choices": [
+   "versatile",
+   "ornate",
+   "durable",
+   "itinerant"
+  ],
+  "correct_answer": "ornate",
+  "explanation": "Gilded scrollwork, painted medallions, and carved vines are examples of heavy ornament covering a surface. Breadth of skill, constant travel, and resistance to wear are not illustrated by a list of decorations.",
+  "set_id": "SET-H"
+ },
+ {
+  "id": "IV4-32",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "prompt": "The boots proved -------: two winters of gravel, road salt, and daily wear had not split a single seam.",
+  "choices": [
+   "itinerant",
+   "ornate",
+   "durable",
+   "versatile"
+  ],
+  "correct_answer": "durable",
+  "explanation": "Gravel, road salt, and two winters of daily use are examples of hard treatment the boots withstood without damage, which illustrates lasting strength. Range of skill, constant travel, and heavy decoration are not shown by unsplit seams.",
+  "set_id": "SET-H"
+ }
+]
