@@ -8,7 +8,7 @@
 renders on /admin/bank-qc, from the same source, so the two cannot
 disagree.
 
-Generated 2026-09-01. Live items: 4,981.
+Generated 2026-09-01. Live items: 5,021.
 Open work: 3 — 0 mine, 3 need you.
 
 ---
@@ -24,7 +24,7 @@ process is not reporting the position.**
 | | items | what is true |
 |---|---|---|
 | **Choose a Response (cr-v1 — archived 2026-08-18)** | 0 | **Known broken.** Solvable without the audio, on two independent instruments. |
-| Everything else | 4,981 | **Not known to be broken** — never read by a person |
+| Everything else | 5,021 | **Not known to be broken** — never read by a person |
 
 0.0% is a quality problem. The rest is a scheduling
 problem, and it is blocked on one 20-minute task: **B2 — the two never-read cohorts (B4 passed 2026-08-15)**.
@@ -82,6 +82,7 @@ Two qualifications, both learned the hard way:
 | TOEFL | Academic Passage | 432 | 100% | 13.3% (n=15) | human says maybe — needs more |
 | TOEFL | Daily Life | 296 | 100% | 33.3% (n=15) | human says maybe — needs more |
 | TOEFL | Academic Talk | 274 | 100% | 31.6% (n=19) | human says maybe — needs more |
+| ISEE | Math | 254 | — | — | never measured — the attack does not apply |
 | SAT | Algebra | 244 | 100% | — | **unconfirmed** — model only |
 | SAT | Expression of Ideas | 244 | 100% | 11.1% (n=18) | human says maybe — needs more |
 | SAT | Information and Ideas | 240 | 95.8% | no usable sitting — 37.5% / 29.4% | **sitting not interpretable** — the reader abstained on most of it |
@@ -90,7 +91,6 @@ Two qualifications, both learned the hard way:
 | SAT | Standard English Conventions | 224 | 65% | 15% (n=20) | **cleared by hand** — the model was wrong |
 | SAT | Problem-Solving and Data Analysis | 224 | 100% | — | **unconfirmed** — model only |
 | TOEFL | Choose a Response | 214 | — | 20% (n=40) | never measured — the attack does not apply |
-| ISEE | Math | 214 | — | — | never measured — the attack does not apply |
 | SAT | Craft and Structure | 210 | 97.9% | 26.7% (n=15) | human says maybe — needs more |
 | TOEFL | Conversation | 193 | 86.8% | 20% (n=15) | human says maybe — needs more |
 | SSAT | Verbal | 180 | — | — | never measured — the attack does not apply |
