@@ -1,0 +1,65 @@
+[
+  {
+    "ref": "R0240",
+    "verdict": "ambiguous",
+    "rival": "A person who dislikes exercise but runs daily",
+    "evidence": "The passage defines the phenomenon as 'the discomfort individuals feel when holding conflicting beliefs or attitudes' and glosses it as 'the human tendency to seek consistency in thoughts and actions, often driving individuals to justify or alter their beliefs to align with their behaviors.' Disliking exercise while running daily is exactly a thought inconsistent with an action, and the closing clause ('alter their beliefs to align with their behaviors') describes its resolution as well as it describes the key's.",
+    "note": "The key matches the worked example's shape (a held value plus a behavior that violates it), but the passage states no criterion that excludes an attitude-versus-behavior conflict, so a prepared candidate can defend the exercise option."
+  },
+  {
+    "ref": "R0494",
+    "verdict": "sound",
+    "rival": null,
+    "evidence": "'the campus gym will be closed this weekend for repairs' plus the stem's condition 'if they want to work out this weekend'. 'Regular hours will resume on Monday' supports waiting only for someone who does NOT want to exercise this weekend, which the stem excludes.",
+    "note": "The stem's explicit 'this weekend' condition rules out the wait-until-Monday distractor; the flag was wrong."
+  },
+  {
+    "ref": "R0225",
+    "verdict": "ambiguous",
+    "rival": "To indicate that renovations depend on student numbers.",
+    "evidence": "'Assuming enrollment remains steady, the renovations should be completed by the end of the semester.' The clause literally makes the completion date conditional on enrollment, which is precisely 'renovations depend on student numbers'; it is the same sentence that yields the key's 'the schedule might change'.",
+    "note": "Key and rival are two readings of one conditional clause -- its pragmatic function versus its literal content -- and the notice supplies nothing that adjudicates between them."
+  },
+  {
+    "ref": "R0433",
+    "verdict": "sound",
+    "rival": null,
+    "evidence": "'focused on scenes of urban life, particularly ballet dancers'. The appositive names people, not places, so 'scene' here is the subject matter Degas rendered, not 'a location where something happens'; 'quarrel' and 'a dramatic event' have no anchor anywhere in the passage.",
+    "note": "The location sense is a genuine sense of the word but is blocked by 'particularly ballet dancers'; a working distractor, not ambiguity."
+  },
+  {
+    "ref": "R0100",
+    "verdict": "ambiguous",
+    "rival": "Cost reduction challenges",
+    "evidence": "The passage says solar and wind 'have seen significant advancements in efficiency and cost reduction' -- cost is raised as an achievement, never as a challenge. The only things named as challenges are 'the intermittent nature of solar and wind power presents challenges' and 'Energy storage solutions ... are essential'. So 'cost reduction challenges' is, like the key, NOT mentioned as a challenge.",
+    "note": "A NOT-question needs exactly one option absent from the challenge list, and two options qualify here: the key is negated ('without emitting greenhouse gases') while the rival appears only in the positive, so both are correct answers to the question as asked."
+  },
+  {
+    "ref": "R0016",
+    "verdict": "sound",
+    "rival": null,
+    "evidence": "'photosynthetic algae called zooxanthellae that live inside their tissues -- a partnership called symbiosis', and 'The polyps themselves get most of their energy from' those algae. 'Partnership' is the passage's own gloss; nothing supports 'temporary' (the algae live inside the tissues and their loss is described as an abnormal event), 'competitive', or 'parasitic'.",
+    "note": "The passage supplies the defining word 'partnership' in apposition, which settles the item."
+  },
+  {
+    "ref": "R0022",
+    "verdict": "sound",
+    "rival": null,
+    "evidence": "'coral reefs are considered highly productive ecosystems, supporting an astonishing diversity of marine life'. The sense is sustaining an ecosystem, so the two physical glosses ('carrying the weight of a load', 'holding something up physically') are excluded by the abstract object 'diversity of marine life', and 'agreeing with a stated claim' has no argumentative object here.",
+    "note": "Only the figurative option survives the abstract direct object; the two physical distractors are near-synonyms of each other, which itself signals neither is the key."
+  },
+  {
+    "ref": "R0411",
+    "verdict": "sound",
+    "rival": null,
+    "evidence": "'We're planning a movie night next Friday, if we can fit it in' is the only hedge on whether the event happens. The weather option has no anchor -- the post never says the event is outdoors. 'next Friday' fixes the date, excluding the undecided-Friday option, and 'We'll choose a movie based on popularity ... comment below by Wednesday' hedges the film choice, not the event.",
+    "note": "The key's paraphrase of 'fit it in' as space rather than schedule is loose, but it is the only option tied to any hedge on the event's occurrence and the other three are each contradicted by the post."
+  },
+  {
+    "ref": "R0336",
+    "verdict": "sound",
+    "rival": null,
+    "evidence": "'Interviews will be conducted on a rolling basis, so apply early to secure a spot.' Rolling review plus a 'spot' that can be lost by applying late points to limited openings. Competitiveness would require a claim about applicant volume, which the ad never makes; it in fact lowers barriers -- 'Experience is preferred but not required.'",
+    "note": "The competitiveness option is a plausible real-world inference that the ad's own text does not license, which is a distractor working as intended."
+  }
+]
