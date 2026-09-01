@@ -330,7 +330,7 @@ export const WORK: WorkItem[] = [
     id: 'B5',
     title: 'Run the cofounder QC sweep over the SSAT/ISEE bank',
     size: '490 items, resumable',
-    why: 'Every SSAT and ISEE item has passed the machine gates — blind attack, pattern hunter, cross-variant validity, kill spans — and none has been read by a person. The sweep exists at /admin/bank-qc and records Keep/Flag/Reject per item with a note, but nothing has been reviewed yet.',
+    why: 'Every SSAT and ISEE item has passed the machine gates and NONE has been read by a person. The sweep at /admin/bank-qc holds 26 verdicts, all keep, all now annotated EXPLORATORY: Andy confirmed 2026-09-01 that pass was the co-founder trying the tool out, not sitting the sweep. Real coverage is ZERO of 942, and the figure moved the wrong way today - the s6 round added 173 items. TWO OF THE MACHINE GATES WERE PROVEN INCAPABLE OF FAILING on 2026-09-01: the with-passage QC vote (three independent agents, key withheld, 84/84 agreement every time) and the options-only blind attack on bijective verbal sets (every strategy scores exactly chance BY CONSTRUCTION). A model cannot disagree with itself, so a person is the only reader in this pipeline who can return a negative.',
     owner: 'you',
     state: 'open',
     account: 'support@classraum.com — already super_admin, no setup needed.',
