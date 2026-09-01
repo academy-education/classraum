@@ -1,0 +1,902 @@
+[
+ {
+  "passage": "The concept of plate tectonics revolutionized geology by explaining the movement of Earth's lithosphere. This theory posits that the lithosphere is divided into tectonic plates that float on the semi-fluid asthenosphere beneath. Interactions between these plates can lead to earthquakes, volcanic activity, and the formation of mountain ranges.\n\nThe theory, developed in the mid-20th century, provided a unifying framework for understanding geological phenomena. Despite its acceptance, some aspects, such as the driving forces behind plate movements, continue to be studied and debated. Plate tectonics remains a cornerstone of modern geological science.",
+  "questions": [
+   {
+    "ref": "R0211",
+    "prompt": "[Academic — Geology] In the passage, what does 'asthenosphere' most closely mean?",
+    "choices": [
+     "Core of the Earth",
+     "Semi-fluid layer beneath the lithosphere",
+     "Uppermost layer of Earth's crust",
+     "Solid rock layer"
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0212",
+    "prompt": "[Academic — Geology] What is the main idea of the passage?",
+    "choices": [
+     "Plate tectonics explains volcanic activity but not earthquakes or mountain building.",
+     "Plate tectonics is a recent theory that has had little influence on the wider history of geology.",
+     "Plate tectonics is now completely understood, with no questions still debated.",
+     "Plate tectonics explains the movement of Earth's lithosphere and geological phenomena."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0213",
+    "prompt": "[Academic — Geology] All of the following are mentioned as results of tectonic plate interactions EXCEPT:",
+    "choices": [
+     "Mountain formation",
+     "Ocean currents",
+     "Volcanic activity",
+     "Earthquakes"
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0214",
+    "prompt": "[Academic — Geology] Why does the author mention the ongoing studies and debates about plate tectonics?",
+    "choices": [
+     "To show that the driving forces behind plate movement are now completely understood",
+     "To argue that plate tectonics has been made outdated by newer geological models",
+     "To emphasize that the theory no longer serves as a framework for geologists",
+     "To highlight that some aspects of the theory are still being explored"
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "The study of coral reefs in marine biology reveals their crucial role in ocean ecosystems. These structures, formed by colonies of tiny animals called polyps, provide habitat and protection for a diverse range of marine life. Coral reefs also contribute to carbon and nitrogen cycling and help protect coastlines from erosion.\n\nHowever, they are sensitive to environmental changes, such as temperature fluctuations and pollution, which can lead to coral bleaching. Conservation efforts are essential to preserve these vital ecosystems, as they face threats from climate change and human activities.",
+  "questions": [
+   {
+    "ref": "R0215",
+    "prompt": "[Academic — Biology] All of the following are mentioned as threats to coral reefs EXCEPT:",
+    "choices": [
+     "Erosion",
+     "Human activities",
+     "Climate change",
+     "Pollution"
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0216",
+    "prompt": "[Academic — Biology] According to the passage, which of the following is a function of coral reefs?",
+    "choices": [
+     "They prevent pollution from reaching coastal waters.",
+     "They are unaffected by changes in ocean temperature.",
+     "They contribute to carbon and nitrogen cycling.",
+     "They are built by colonies of large fish."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0217",
+    "prompt": "[Academic — Biology] Why does the author mention coral bleaching in the passage?",
+    "choices": [
+     "To highlight a consequence of environmental changes",
+     "To show how colonies of tiny polyps build the structures that shelter marine life",
+     "To illustrate how quickly reefs recover from pollution and temperature swings",
+     "To explain how reefs contribute to carbon and nitrogen cycling in the ocean"
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Cognitive dissonance, a concept introduced by psychologist Leon Festinger, refers to the discomfort experienced when an individual holds two or more contradictory beliefs or values. In most cases, people are motivated to reduce this discomfort by changing their attitudes or behaviors. However, the process is not always straightforward. For example, when someone continues to smoke despite knowing the health risks, they may justify their behavior by downplaying the dangers or emphasizing the pleasure they derive from smoking.\n\nThis rationalization serves to alleviate the dissonance between their knowledge and actions. Some researchers argue that cognitive dissonance is a universal phenomenon, affecting individuals across cultures. On the other hand, others contend that cultural factors can influence how people experience and resolve dissonance. For instance, in collectivist societies, maintaining group harmony may be prioritized over personal consistency, leading to different strategies for managing conflicting beliefs. Thus, the ways in which cognitive dissonance manifests and is addressed can vary significantly depending on cultural context.",
+  "questions": [
+   {
+    "ref": "R0218",
+    "prompt": "[Academic — Psychology] Why does the author mention 'collectivist societies'?",
+    "choices": [
+     "To argue that collectivist societies do not experience dissonance.",
+     "To provide an example of how culture affects dissonance management.",
+     "To illustrate the dangers of cognitive dissonance.",
+     "To show that collectivist societies are superior to individualistic ones."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0219",
+    "prompt": "[Academic — Psychology] What is the author's central claim about cognitive dissonance?",
+    "choices": [
+     "It operates the same way everywhere, untouched by cultural influences.",
+     "Its experience and resolution can vary depending on cultural context.",
+     "It arises only in individualistic societies that prize personal consistency.",
+     "It is always resolved by a change in the person's behavior."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0220",
+    "prompt": "[Academic — Psychology] All of the following are mentioned as ways people deal with cognitive dissonance EXCEPT:",
+    "choices": [
+     "Justifying their behavior by downplaying risks",
+     "Ignoring the existence of dissonance",
+     "Changing their attitudes to ease the discomfort",
+     "Prioritizing group harmony over consistency"
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0221",
+    "prompt": "[Academic — Psychology] The word 'resolve' in the passage most nearly means:",
+    "choices": [
+     "dissolve completely",
+     "find a solution to",
+     "make a firm decision",
+     "separate into parts"
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0222",
+    "prompt": "[Academic — Psychology] What can be inferred about the role of culture in cognitive dissonance?",
+    "choices": [
+     "Culture makes cognitive dissonance more severe in collectivist societies than elsewhere.",
+     "Culture eliminates the occurrence of dissonance wherever group harmony is prioritized.",
+     "Culture can shape both the experience and resolution of cognitive dissonance.",
+     "Culture affects only individualistic societies, where personal consistency matters."
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "[Academic — Art History] The Impressionist movement, emerging in the late 19th century, marked a significant shift in the art world. Artists like Monet and Renoir moved away from realistic depictions, focusing instead on capturing light and movement. Their work was characterized by loose brushwork and vibrant colors.\n\nInitially, the Impressionists faced harsh criticism from traditionalists who favored detailed and historical subjects. However, their innovative approach eventually gained acceptance, influencing future generations of artists. The movement's emphasis on everyday scenes and the transient effects of light challenged the norms of the time, paving the way for modern art.",
+  "questions": [
+   {
+    "ref": "R0223",
+    "prompt": "[Academic — Art History] According to the passage, Impressionists were criticized because they:",
+    "choices": [
+     "Focused on historical subjects",
+     "Favored detailed depictions",
+     "Used dull colors",
+     "Emphasized everyday scenes"
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0224",
+    "prompt": "[Academic — Art History] Why did the Impressionists face initial criticism?",
+    "choices": [
+     "They used muted colors",
+     "They ignored light effects",
+     "They copied traditional styles",
+     "They rejected historical subjects"
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Campus Notice: Library Renovation Dear Students, Please be advised that the library will undergo renovations starting next Monday. During this period, access to certain sections will be restricted. We apologize for any inconvenience this may cause. If you need materials from restricted areas, please request them in advance. Assuming enrollment remains steady, the renovations should be completed by the end of the semester. Thank you for your understanding. Library Staff",
+  "questions": [
+   {
+    "ref": "R0225",
+    "prompt": "[Daily Life — campus notice] Why does the notice mention 'assuming enrollment remains steady'?",
+    "choices": [
+     "To suggest that the library might close permanently.",
+     "To imply that the renovation schedule might change.",
+     "To encourage students to enroll in more classes.",
+     "To indicate that renovations depend on student numbers."
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Subject: Job Opportunity - Student Assistant Dear Students, The Library is looking for a Student Assistant to help with daily operations. This position requires 10 hours per week, with flexible scheduling available. If you can manage your time well, this could be a great fit. Please apply by Friday, assuming you meet the eligibility criteria. Interviews will be conducted next week. We look forward to your applications! Sincerely, Library Staff",
+  "questions": [
+   {
+    "ref": "R0226",
+    "prompt": "[Daily Life — email] Why does the email mention 'assuming you meet the eligibility criteria'?",
+    "choices": [
+     "To imply that the criteria are strict",
+     "To ensure only qualified students apply",
+     "To suggest that the position is competitive",
+     "To discourage students from applying"
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "[Academic — Biology] Photosynthesis in plants primarily occurs in the leaves, specifically in the chloroplasts. These organelles contain chlorophyll, which captures light energy. This energy is used to convert carbon dioxide and water into glucose and oxygen.\n\nThe process is influenced by factors such as light intensity, carbon dioxide concentration, and temperature. However, too much heat can damage the proteins involved, reducing efficiency. Plants have adapted to varying conditions, with some thriving in low light and others in high temperatures.",
+  "questions": [
+   {
+    "ref": "R0227",
+    "prompt": "In the passage, what does the word 'efficiency' most closely mean?",
+    "choices": [
+     "Cost-effectiveness",
+     "Speed",
+     "Productivity",
+     "Simplicity"
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0228",
+    "prompt": "What is the main idea of this passage?",
+    "choices": [
+     "Photosynthesis is a complex process influenced by various factors.",
+     "Photosynthesis only occurs in high temperatures.",
+     "Plants cannot photosynthesize without sunlight.",
+     "Chlorophyll is the only factor affecting photosynthesis."
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Job Ad: Student Library Assistant The library is hiring student assistants for evening shifts (5–10 PM). Duties include shelving books and helping visitors. Applicants must be available at least two evenings per week. Preference will be given to students with previous library experience, but all are welcome to apply. If you can start by February 1st, please mention this in your application. Applications will be reviewed as received, and positions may be filled before the final deadline.",
+  "questions": [
+   {
+    "ref": "R0229",
+    "prompt": "[Daily Life — job ad] What is implied by 'positions may be filled before the final deadline'?",
+    "choices": [
+     "The final deadline no longer matters",
+     "The shifts will begin later than the ad first stated",
+     "Applicants should apply as soon as possible",
+     "Only students with library experience will be hired"
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0230",
+    "prompt": "[Daily Life — job ad] Why does the ad ask applicants to mention if they can start by February 1st?",
+    "choices": [
+     "To see if applicants have library experience",
+     "To check if applicants have other jobs",
+     "To prioritize applicants who are available sooner",
+     "To make sure applicants are available every evening"
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "[Daily Life — Email] From: Student Council To: All Students Subject: Club Fair Join us for the annual Club Fair this Friday from 3 PM to 6 PM at the Student Center. Discover clubs, meet members, and enjoy free snacks! We hope to see you there.",
+  "questions": [
+   {
+    "ref": "R0231",
+    "prompt": "What is the main purpose of this email?",
+    "choices": [
+     "To publish the schedule for the whole week",
+     "To announce the founding of a new club",
+     "To invite students to the Club Fair",
+     "To advertise the free snacks being served"
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Cognitive dissonance is a psychological concept that describes the discomfort experienced when holding conflicting beliefs or attitudes. This theory, developed by Leon Festinger in the 1950s, suggests that individuals strive for internal consistency. When faced with dissonance, people are motivated to reduce it by changing their beliefs, acquiring new information, or minimizing the importance of the conflict.\n\nFor example, a person who values health but smokes might experience dissonance and resolve it by quitting smoking or downplaying the health risks. Cognitive dissonance has been widely studied and applied in various fields, including marketing, where it helps explain consumer behavior and decision-making processes.",
+  "questions": [
+   {
+    "ref": "R0232",
+    "prompt": "[Academic — Psychology] What is the purpose of the smoking example in the passage?",
+    "choices": [
+     "To show that cognitive dissonance only affects smokers.",
+     "To suggest that quitting smoking is the only solution to dissonance.",
+     "To argue that smoking is not harmful to health.",
+     "To illustrate how cognitive dissonance can be resolved."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0233",
+    "prompt": "[Academic — Psychology] What can be inferred about the application of cognitive dissonance in marketing?",
+    "choices": [
+     "It only applies to health-related products.",
+     "It has no relevance to consumer behavior.",
+     "It discourages consumers from making purchases.",
+     "It helps understand consumer decision-making."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0234",
+    "prompt": "[Academic — Psychology] What is the main idea of the passage?",
+    "choices": [
+     "Cognitive dissonance explains how people deal with conflicting beliefs.",
+     "Cognitive dissonance is irrelevant to consumer behavior.",
+     "Cognitive dissonance only applies to health-related decisions.",
+     "Cognitive dissonance was developed in the 21st century."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0235",
+    "prompt": "[Academic — Psychology] According to the passage, all of the following are ways to reduce cognitive dissonance EXCEPT:",
+    "choices": [
+     "Ignoring the conflict entirely.",
+     "Changing beliefs to align with actions.",
+     "Acquiring new information to justify beliefs.",
+     "Minimizing the importance of the conflict."
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Hey everyone! Join us for the Photography Club meeting this Thursday at 5 PM in Room 204. Bring your cameras and any photos you'd like to share. New members are always welcome!",
+  "questions": [
+   {
+    "ref": "R0236",
+    "prompt": "[Daily Life — Club flyer] What should new members bring to the meeting?",
+    "choices": [
+     "Snacks and drinks.",
+     "Notebooks and pens.",
+     "Cameras and photos.",
+     "Membership forms."
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Behavioral economics explores how psychological factors influence economic decision-making. Unlike traditional economics, which assumes rational behavior, behavioral economics considers how emotions and cognitive biases affect choices. For example, the concept of 'loss aversion' suggests that people feel the pain of losing money more acutely than the pleasure of gaining the same amount.\n\nThis can lead to irrational financial decisions, such as holding onto losing investments. By understanding these psychological influences, policymakers and businesses can design strategies that better align with actual human behavior, potentially leading to more effective economic policies and marketing strategies.",
+  "questions": [
+   {
+    "ref": "R0237",
+    "prompt": "[Academic — Economics] All of the following are mentioned in the passage EXCEPT:",
+    "choices": [
+     "Loss aversion affects financial decisions.",
+     "Traditional economics assumes rationality.",
+     "Behavioral economics ignores human behavior.",
+     "Behavioral economics considers emotions."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0238",
+    "prompt": "[Academic — Economics] According to the passage, which of the following is true about behavioral economics?",
+    "choices": [
+     "It only studies financial markets.",
+     "It considers psychological factors.",
+     "It ignores cognitive biases.",
+     "It assumes all decisions are rational."
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Cognitive dissonance is a psychological theory that describes the discomfort individuals feel when holding conflicting beliefs or attitudes. This tension often leads people to change their beliefs or behaviors to reduce the dissonance. For example, a person who values health but smokes may experience dissonance and either quit smoking or rationalize the behavior.\n\nThe theory, developed by Leon Festinger in the 1950s, has been influential in understanding decision-making and attitude change. It highlights the human tendency to seek consistency in thoughts and actions, often driving individuals to justify or alter their beliefs to align with their behaviors.",
+  "questions": [
+   {
+    "ref": "R0239",
+    "prompt": "[Academic — Psychology] Why does the author mention the example of a person who values health but smokes?",
+    "choices": [
+     "To demonstrate a scenario of cognitive dissonance",
+     "To show the benefits of smoking cessation",
+     "To illustrate a common health issue",
+     "To explain the development of the theory"
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0240",
+    "prompt": "[Academic — Psychology] According to the passage, which of the following is an example of cognitive dissonance?",
+    "choices": [
+     "A person who enjoys reading but watches TV",
+     "A person who loves animals but eats meat",
+     "A person who dislikes exercise but runs daily",
+     "A person who values honesty and tells the truth"
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0241",
+    "prompt": "[Academic — Psychology] All of the following are mentioned as responses to cognitive dissonance EXCEPT:",
+    "choices": [
+     "Rationalizing behavior",
+     "Ignoring the dissonance",
+     "Changing beliefs",
+     "Quitting a behavior"
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0242",
+    "prompt": "[Academic — Psychology] In the passage, what does the word 'rationalize' most nearly mean?",
+    "choices": [
+     "To justify",
+     "To ignore",
+     "To simplify",
+     "To complicate"
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Campus Recreation Center Notice Due to maintenance, the indoor pool will be closed from March 5th to March 12th. Fitness classes will continue as scheduled, assuming enrollment meets the minimum number required. If you have already registered for a class and it is canceled, you will be notified by email. We apologize for any inconvenience and appreciate your understanding.",
+  "questions": [
+   {
+    "ref": "R0243",
+    "prompt": "[Daily Life — campus notice] What should a student do if they do not receive an email about their class?",
+    "choices": [
+     "Go to the pool instead",
+     "Assume their class is still happening",
+     "Ask for a refund immediately",
+     "Contact the maintenance department"
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0244",
+    "prompt": "[Daily Life — campus notice] Why does the notice say 'assuming enrollment meets the minimum number required'?",
+    "choices": [
+     "The pool may reopen before March 12th if enough members register",
+     "Every fitness class will run as scheduled because only the pool is closed",
+     "Some classes might not happen if too few people sign up",
+     "The class timetable will be revised each week while the repair work continues"
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "The study of linguistics often reveals surprising insights into human communication. For instance, while many languages have a similar structure, the way they convey meaning can differ significantly. Some languages, like English, rely heavily on word order to convey meaning, whereas others, such as Latin, use inflections. However, this contrast is not absolute, as most languages employ a combination of both methods. A fascinating aspect of linguistics is the concept of language universals, which are features or characteristics common to all languages. Many linguists argue that these universals are evidence of an innate language faculty in humans.\n\nOn the other hand, some researchers suggest that these similarities arise from shared human experiences and cognitive processes. The debate continues as researchers explore the intricate relationship between language, thought, and culture. For example, the Sapir-Whorf hypothesis suggests that language influences thought, a claim that has sparked much discussion. The hypothesis posits that speakers of different languages perceive the world differently, a notion that has been both supported and challenged by various studies. This ongoing debate highlights the complexity of understanding language and its impact on human cognition.",
+  "questions": [
+   {
+    "ref": "R0245",
+    "prompt": "[Academic — Linguistics] In the passage, what does the word 'faculty' most nearly mean?",
+    "choices": [
+     "An inherent ability",
+     "A type of profession",
+     "A physical building",
+     "A group of teachers"
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0246",
+    "prompt": "[Academic — Linguistics] Why does the author mention the Sapir-Whorf hypothesis?",
+    "choices": [
+     "To show that language structure is irrelevant to how speakers perceive the world",
+     "To argue against language universals and the innate faculty they are said to show",
+     "To illustrate a debated theory about language and thought",
+     "To prove that language universally determines how its speakers perceive the world"
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0247",
+    "prompt": "[Academic — Linguistics] According to the passage, all of the following are mentioned EXCEPT:",
+    "choices": [
+     "The Sapir-Whorf hypothesis is universally accepted.",
+     "Languages can differ significantly in how they convey meaning.",
+     "Language universals suggest an innate language faculty.",
+     "Some languages use inflections to convey meaning."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0248",
+    "prompt": "[Academic — Linguistics] What can be inferred about the relationship between language and thought according to the passage?",
+    "choices": [
+     "The relationship is straightforward and well understood.",
+     "Language has no influence on thought.",
+     "Thought completely determines language structure.",
+     "The relationship is complex and subject to debate."
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "The Cambrian Explosion, a pivotal event in biological history, occurred approximately 541 million years ago. This period marked a rapid diversification of life forms, with most major animal phyla appearing in the fossil record. The causes of this explosion remain debated, but hypotheses include increased oxygen levels, the evolution of predation, and genetic innovations.\n\nFossils from this era, such as trilobites and early mollusks, provide critical insights into early animal life. The Burgess Shale in Canada is one of the most significant fossil sites from this period, offering a window into Cambrian ecosystems.",
+  "questions": [
+   {
+    "ref": "R0249",
+    "prompt": "[Academic — Biology] Why does the author mention trilobites and early mollusks?",
+    "choices": [
+     "To suggest they were the most advanced species",
+     "To highlight their role in modern ecosystems",
+     "To argue they were the only species during the Cambrian",
+     "To illustrate examples of early animal life"
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0250",
+    "prompt": "[Academic — Biology] All of the following are mentioned as hypotheses for the Cambrian Explosion EXCEPT:",
+    "choices": [
+     "Evolution of predation",
+     "Climate change",
+     "Genetic innovations",
+     "Increased oxygen levels"
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0251",
+    "prompt": "[Academic — Biology] What is the main idea of the passage?",
+    "choices": [
+     "Trilobites were the most dominant species during the Cambrian Explosion.",
+     "Increased oxygen levels were the sole cause of the Cambrian Explosion.",
+     "The Burgess Shale is the only fossil site from the Cambrian period.",
+     "The Cambrian Explosion was a period of rapid diversification of life forms."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0252",
+    "prompt": "[Academic — Biology] In the passage, what does the word 'pivotal' most closely mean?",
+    "choices": [
+     "Temporary",
+     "Unimportant",
+     "Predictable",
+     "Central"
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0253",
+    "prompt": "[Academic — Biology] According to the passage, which of the following is true about the Burgess Shale?",
+    "choices": [
+     "It contains only trilobite fossils.",
+     "It is the largest fossil site in the world.",
+     "It was discovered in the 20th century.",
+     "It is a significant fossil site from the Cambrian period."
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Job Opportunity: Student Assistant The campus bookstore is hiring a student assistant for the spring semester. Applicants must be available at least 10 hours per week, if possible. Preference will be given to students with prior retail experience, but all are encouraged to apply. Applications will be reviewed as received, so early submission is recommended.",
+  "questions": [
+   {
+    "ref": "R0254",
+    "prompt": "[Daily Life — job ad] What does 'if possible' suggest about the 10-hour availability requirement?",
+    "choices": [
+     "Only students who can work exactly 10 hours can apply",
+     "Applicants who can't work 10 hours per week may still be considered",
+     "Applicants must work more than 10 hours per week",
+     "The bookstore will not hire anyone with less than 10 hours availability"
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "From: Prof. Li To: Jamie Subject: Office Hours Hi Jamie, Thanks for your message. I’m afraid I can’t meet during my usual office hours this week due to a conference. If you can be flexible, I could see you briefly after class on Thursday, time permitting. Otherwise, let’s arrange a time for next week. Let me know what works for you. Best, Prof. Li",
+  "questions": [
+   {
+    "ref": "R0255",
+    "prompt": "[Daily Life — email from professor] What is Prof. Li implying by saying 'time permitting'?",
+    "choices": [
+     "She may not have enough time after class on Thursday to meet Jamie",
+     "She is certain that she will be able to meet Jamie after class on Thursday",
+     "The Thursday meeting will take place in her office at the usual hour",
+     "Jamie should skip Thursday and propose a time for the following week"
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0256",
+    "prompt": "[Daily Life — email from professor] What should Jamie do if she cannot be flexible on Thursday?",
+    "choices": [
+     "Cancel the meeting altogether",
+     "Wait until next week to arrange a meeting",
+     "Insist on meeting after class anyway",
+     "Go to Prof. Li’s office during usual hours"
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Join us for the annual job fair this Saturday from 10 AM to 4 PM at the Student Center. Meet potential employers and explore career opportunities. Dress professionally and bring copies of your resume.",
+  "questions": [
+   {
+    "ref": "R0257",
+    "prompt": "[Daily Life — Job ad] Why is it important to dress professionally for the job fair?",
+    "choices": [
+     "To meet the dress code required at the Student Center.",
+     "To make a good impression on potential employers.",
+     "To compete for the best-dressed prize.",
+     "To look no different from the other students there."
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Hey everyone, Just a quick reminder that the Photography Club meeting is tomorrow at 5 PM in Room 204. We’ll be discussing plans for our upcoming gallery show. If you’re interested in exhibiting your work, please bring a sample. We might have limited spots, so priority will be given to those who attend the meeting. Looking forward to seeing your creative ideas! Cheers, Alex",
+  "questions": [
+   {
+    "ref": "R0258",
+    "prompt": "[Daily Life — social-media post] Why does Alex mention 'priority will be given to those who attend the meeting'?",
+    "choices": [
+     "To encourage attendance at the meeting",
+     "To suggest that the meeting might be canceled",
+     "To imply that the gallery show is competitive",
+     "To ensure only the best work is exhibited"
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "The Impressionist movement in art history, which emerged in France during the late nineteenth century, is often celebrated for its innovative use of light and color. Many artists of this movement, such as Monet and Renoir, sought to capture fleeting moments and the transient effects of sunlight on their subjects. However, some critics at the time dismissed Impressionism as unfinished or overly spontaneous, arguing that its loose brushwork lacked the discipline of traditional academic painting. Paradoxically, this very spontaneity became a hallmark of the movement, influencing generations of artists.\n\nIn most cases, Impressionists painted outdoors, a practice known as 'en plein air,' to better observe natural light. This approach contrasted sharply with the studio-based methods favored by earlier artists. The cause-effect relationship between technological advances—such as the invention of portable paint tubes—and the rise of outdoor painting is widely acknowledged. While many Impressionists focused on landscapes, others explored urban scenes, reflecting the rapidly changing environment of modern Paris. Despite initial resistance, Impressionism eventually gained acceptance and is now regarded as a pivotal development in the history of Western art.",
+  "questions": [
+   {
+    "ref": "R0259",
+    "prompt": "[Academic — Art History] The word 'discipline' in the passage most nearly means:",
+    "choices": [
+     "a recognized branch of academic study such as art history",
+     "the kind of training that soldiers receive in an army",
+     "punishment given to students who behave badly",
+     "strict adherence to established techniques"
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0260",
+    "prompt": "[Academic — Art History] Why does the author mention the critics' view that Impressionism was 'unfinished or overly spontaneous'?",
+    "choices": [
+     "To illustrate that every artist who broke with academic tradition met the same resistance from critics",
+     "To suggest that the loose brushwork of the Impressionists really did lack the discipline of academic art",
+     "To argue that resistance from the academic establishment kept Impressionism from ever winning acceptance",
+     "To highlight a contrast between initial perceptions and the movement's eventual influence"
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0261",
+    "prompt": "[Academic — Art History] What can be inferred about the relationship between technological advances and Impressionist painting practices?",
+    "choices": [
+     "The invention of portable paint tubes came too late to matter, since the Impressionists had already adopted outdoor methods.",
+     "Monet and Renoir invented the portable paint tube themselves in order to work on landscapes en plein air.",
+     "Outdoor painting arose from the artists' interest in modern Paris, not from any change in materials.",
+     "Technological advances enabled Impressionists to paint outdoors more easily, which influenced their artistic style."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0262",
+    "prompt": "[Academic — Art History] According to the passage, all of the following are mentioned as features of Impressionism EXCEPT:",
+    "choices": [
+     "the depiction of historical events",
+     "a focus on capturing fleeting moments",
+     "painting outdoors to observe natural light",
+     "the use of loose brushwork"
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0263",
+    "prompt": "[Academic — Art History] What is the author's central claim about the Impressionist movement?",
+    "choices": [
+     "Impressionism was universally accepted by critics from the moment its paintings were first shown in Paris.",
+     "Traditional academic painting was superior to Impressionist technique, which critics rightly dismissed as undisciplined and unfinished.",
+     "The Impressionist movement focused only on rural landscapes painted outdoors, away from the changing city.",
+     "Impressionism's innovative techniques and focus on spontaneity ultimately transformed Western art despite initial criticism."
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Coral reefs are among the most biodiverse marine ecosystems, supporting roughly a quarter of all ocean species despite covering less than one percent of the seafloor. Their architecture is built by tiny animals called polyps, which secrete calcium carbonate skeletons over thousands of years. The polyps themselves get most of their energy from photosynthetic algae called zooxanthellae that live inside their tissues—a partnership called symbiosis. When ocean temperatures rise even slightly above the polyps' tolerance, the algae are expelled.\n\nThe coral turns white, a phenomenon called bleaching, and although the polyps can survive briefly without their algal partners, prolonged bleaching usually leads to colony death. Recovery is possible if temperatures fall quickly enough, but the recovery window narrows as bleaching events occur more frequently. Recent decades have seen mass bleaching events on a scale never previously documented, raising urgent questions about whether reef ecosystems can persist under projected warming.",
+  "questions": [
+   {
+    "ref": "R0264",
+    "prompt": "[Academic — Biology] The word 'window' in the phrase 'recovery window' is closest in meaning to:",
+    "choices": [
+     "a clear view of something seen from a distance",
+     "a period during which something is possible",
+     "a gap in a long, continuous series of measurements",
+     "an opening built into the wall of a structure"
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0265",
+    "prompt": "[Academic — Biology] What is the main idea of the passage?",
+    "choices": [
+     "Bleaching kills coral polyps as soon as the algae are expelled, so a whitened colony is already dead.",
+     "Reefs rest on a temperature-sensitive partnership that increasingly frequent warming now threatens.",
+     "Coral polyps build reef structures over thousands of years, an accumulation fast enough to outpace the damage warming causes.",
+     "Reefs support roughly a quarter of all ocean species because they occupy a large share of the seafloor."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0266",
+    "prompt": "[Academic — Biology] It can be inferred that a reef hit by bleaching in consecutive years is:",
+    "choices": [
+     "less likely to recover than one bleached only once",
+     "protected, because its polyps become tolerant of heat",
+     "certain to die within a single year",
+     "safe as long as its algae remain within its tissues"
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0267",
+    "prompt": "[Academic — Biology] According to the passage, the immediate cause of a coral colony turning white is:",
+    "choices": [
+     "the loss of the algae that live in the polyps' tissues",
+     "the accumulation of calcium carbonate skeletons",
+     "a sudden drop in ocean temperature",
+     "the death of the polyps that make up the colony"
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "[Academic — Biology] Photosynthesis is a critical process in which plants convert light energy into chemical energy. Chlorophyll, the green pigment in plants, absorbs light most efficiently in the blue and red wavelengths. This energy is then used to convert carbon dioxide and water into glucose and oxygen. Interestingly, chlorophyll reflects green light, which is why plants appear green. However, this reflection means that green light is not used efficiently in photosynthesis.",
+  "questions": [
+   {
+    "ref": "R0268",
+    "prompt": "[Academic — Biology] As used in the passage, 'reflects' is closest in meaning to",
+    "choices": [
+     "thinks carefully about a past decision.",
+     "represents or stands for something else.",
+     "bends while passing through a medium.",
+     "throws back rather than absorbs."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0269",
+    "prompt": "[Academic — Biology] According to the passage, what does the conversion described produce?",
+    "choices": [
+     "Glucose and oxygen.",
+     "Chlorophyll and light energy.",
+     "Carbon dioxide and water.",
+     "Chemical energy and green light."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0270",
+    "prompt": "What is the main idea of the passage?",
+    "choices": [
+     "Chlorophyll absorbs green light efficiently.",
+     "Photosynthesis converts light into chemical energy.",
+     "Glucose and oxygen are byproducts of chlorophyll.",
+     "Plants appear green because they absorb green light."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0271",
+    "prompt": "[Academic — Biology] What does the passage imply about plants grown under green light alone?",
+    "choices": [
+     "They would fare worse than plants grown under blue or red light.",
+     "They would do especially well, since plants themselves appear green.",
+     "They would gradually lose their green coloring.",
+     "They would be unaffected, because all light carries usable energy."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0272",
+    "prompt": "[Academic — Biology] According to the passage, all of the following are true EXCEPT",
+    "choices": [
+     "Chlorophyll absorbs light most efficiently in the blue and red wavelengths.",
+     "Light energy is converted into a chemical form of energy.",
+     "Plants appear green because chlorophyll reflects green light back.",
+     "Chlorophyll is stored in a plant's roots until it is needed."
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Hey team, just a quick reminder that our meeting is tomorrow at 10 AM. Please review the agenda I sent last week and come prepared with your updates. Thanks!",
+  "questions": [
+   {
+    "ref": "R0273",
+    "prompt": "[Daily Life — Email to team] What should team members do before the meeting?",
+    "choices": [
+     "Invite more people",
+     "Review the agenda",
+     "Cancel the meeting",
+     "Bring snacks"
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0274",
+    "prompt": "[Daily Life — Email to team] What is implied about the meeting agenda?",
+    "choices": [
+     "It is confidential",
+     "It was sent last week",
+     "It will be sent tomorrow",
+     "It is not important"
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "[Academic — Psychology] Cognitive dissonance theory, developed by Leon Festinger in the 1950s, posits that individuals experience psychological discomfort when holding two conflicting beliefs. To alleviate this discomfort, people tend to change their attitudes to align with their actions. For instance, if someone who values health smokes, they might downplay the risks of smoking to reduce the inconsistency between their behavior and beliefs.\n\nThis process can lead to significant attitude shifts over time, especially when the individual perceives their actions as voluntary. Subsequent research has shown that the magnitude of dissonance is influenced by factors such as the importance of the conflicting beliefs and the individual's ability to justify the discrepancy.",
+  "questions": [
+   {
+    "ref": "R0275",
+    "prompt": "[Academic — Psychology] According to the passage, all of the following influence the magnitude of cognitive dissonance EXCEPT:",
+    "choices": [
+     "The perceived voluntariness of the action.",
+     "The individual's ability to justify the discrepancy.",
+     "The importance of the conflicting beliefs.",
+     "The number of conflicting beliefs held."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0276",
+    "prompt": "[Academic — Psychology] Which of the following best states the main idea of the passage?",
+    "choices": [
+     "Festinger demonstrated that smoking is a cause of psychological discomfort.",
+     "When beliefs and actions conflict, people change their behavior rather than their beliefs.",
+     "Dissonance leads people to bring their attitudes into line with their actions, and later work identified what strengthens this effect.",
+     "Attitude change occurs only when a person's actions are involuntary."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0277",
+    "prompt": "[Academic — Psychology] Why does the author note that attitude shifts are especially likely when a person sees their actions as voluntary?",
+    "choices": [
+     "To explain why Festinger developed the theory in the 1950s",
+     "To identify a condition under which the effect becomes stronger",
+     "To show that a person can avoid dissonance entirely by acting voluntarily",
+     "To argue that actions taken under compulsion produce no discomfort whatever"
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0278",
+    "prompt": "[Academic — Psychology] The word 'magnitude' in the passage is closest in meaning to:",
+    "choices": [
+     "degree of intensity",
+     "the standing of a public figure",
+     "the measured strength of an earthquake",
+     "the brightness of a star"
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Hey everyone! The Outdoor Club is planning a weekend hike to Pine Ridge. If you can, please RSVP by Thursday so we can arrange rides. We’ll go unless the weather turns bad. Space is limited, so priority will be given to members who haven’t joined a trip this semester. Hope to see you there!",
+  "questions": [
+   {
+    "ref": "R0279",
+    "prompt": "[Daily Life — club flyer] Why does the flyer mention 'priority will be given to members who haven’t joined a trip this semester'?",
+    "choices": [
+     "To encourage new members to participate",
+     "To ensure fairness in participation",
+     "To discourage frequent participants",
+     "To limit the number of attendees"
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0280",
+    "prompt": "[Daily Life — club flyer] What should a member who has already joined a trip this semester expect if they RSVP?",
+    "choices": [
+     "They will definitely get a spot",
+     "They might not get a spot if space runs out",
+     "They will be put on a waiting list automatically",
+     "They should not RSVP at all"
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ }
+]

@@ -1,0 +1,826 @@
+[
+ {
+  "passage": "Hey team, just a quick reminder: our project presentation is scheduled for Wednesday at 2 PM. Make sure your slides are ready and rehearsed. Let me know if you have any questions. Cheers, Sarah.",
+  "questions": [
+   {
+    "ref": "R0763",
+    "prompt": "[Daily Life — Email from team member] According to the email, at what time is the project presentation scheduled to begin?",
+    "choices": [
+     "At ten in the morning",
+     "At nine in the morning",
+     "At eleven in the morning",
+     "At two in the afternoon"
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Plate tectonics is a scientific theory explaining the movement of Earth's lithosphere. The litho[1] is divided into tectonic pla[2] that float on the semi-fluid astheno[3]. Convergent bound[4] occur where plates collide, leading to mountain forma[5] and seismic activ[6]. Divergent bound[7] are characterized by plates moving apart, resulting in sea-floor spread[8]. This dynamic system is a key driver of geolog[9] phenomena, shaping the planet's surfa[10].",
+  "questions": [
+   {
+    "ref": "R0764",
+    "prompt": "[Complete the Words] Fill in the missing letters in each word.",
+    "choices": [],
+    "type": "fill_in_blanks"
+   }
+  ]
+ },
+ {
+  "passage": "Subject: Cello pickup\n\nHi — your cello came back from repair on Tuesday, four days early. We normally hold finished instruments at the front desk, but the desk is being rebuilt this week, so Ivan Petrov is keeping yours in Room 161 until Friday. Bring the yellow claim slip itself; a photo of it on your phone will not be accepted. After Friday the cello goes into the practice-room locker.",
+  "questions": [
+   {
+    "ref": "R0765",
+    "prompt": "[Daily Life — email] What should the reader take with them to collect the cello?",
+    "choices": [
+     "Your student ID card",
+     "A photograph of the yellow claim slip",
+     "The yellow claim slip itself",
+     "A signed repair receipt"
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Subject: Where to collect your held packages. Hi residents — while the mailroom counter is being rebuilt, all held packages have been moved to Room 44 in Pinecrest Hall. Pickup is evenings only, 5:00 to 8:00 p.m., since the room is used for tutoring during the day. Bring your student ID. Packages not collected within ten days are returned to the sender. Questions? Call Mateo Rossi at ext. 7731. — Residence Services",
+  "questions": [
+   {
+    "ref": "R0766",
+    "prompt": "[Daily Life — email] Why have held packages been moved to Room 44?",
+    "choices": [
+     "Because the mailroom lost several packages last term",
+     "Because Room 44 has more shelf space for parcels",
+     "Because the mailroom's package counter is being rebuilt",
+     "Because Pinecrest Hall is closer to most residences"
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Registration for the Food Handler Certification Course opens Thursday, March 5, at noon on the Parks Department website. The course meets on March 14 and March 21 in Room 210 of the Lakeview Branch Library, not at the Parks Department office. The fee is $48, due at registration. Enrollment is capped at 22. For questions, call course coordinator Dana Ruiz at 555-0173.",
+  "questions": [
+   {
+    "ref": "R0767",
+    "prompt": "[Daily Life — course-registration page] Where will the course sessions be held?",
+    "choices": [
+     "In Room 118 of the Community Center",
+     "In Room 6 of the Parks Department office",
+     "In Room 210 of the Lakeview Branch Library",
+     "In Room 12 of the Maple Street Annex"
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Linguistics is the scientific study of language, encompassing a range of topics from phonetics to syntax. Phoneti[1] deals with the sound[2] of speech, while syn[3] examines how words combine into sen[4]nces. Morpho[5] and pragma[6] focus on word forms and contex[7]al meaning respectively, providing insi[8] into how lang[9] convey mea[10].",
+  "questions": [
+   {
+    "ref": "R0768",
+    "prompt": "[Complete the Words] Fill in the missing letters in each word.",
+    "choices": [],
+    "type": "fill_in_blanks"
+   }
+  ]
+ },
+ {
+  "passage": "From: Student Housing To: Residents Subject: Laundry Room Update Dear Residents, We’re updating the laundry room machines next week. If you can, please finish your laundry before Monday morning to avoid delays. Access may be limited during installation, and we apologize for any inconvenience. The new machines should be ready by Wednesday, assuming everything goes as planned. Thank you for your patience.",
+  "questions": [
+   {
+    "ref": "R0769",
+    "prompt": "[Daily Life — email] Which office sent this message to residents?",
+    "choices": [
+     "Facilities",
+     "Student Housing",
+     "Maintenance",
+     "Residence Life"
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Biology explores the intricate mechanisms of life, from cellular processes to complex ecosystems. Cell divi[1] is a fundam[2] process that en[3]s genetic material is accurately repli[4]. In multicellular orga[5], this process is crucial for growth and repa[6] of tissues. The cell cyc[7] is regu[8] by a series of checkpoints that moni[9] DNA integrity and ensure proper cell func[10].",
+  "questions": [
+   {
+    "ref": "R0770",
+    "prompt": "[Complete the Words] Fill in the missing letters in each word.",
+    "choices": [],
+    "type": "fill_in_blanks"
+   }
+  ]
+ },
+ {
+  "passage": "Dear students, the registration for spring courses opens next Monday. Please check your student portal for the available courses and register early to secure your spot. Contact the registrar's office if you have any questions.",
+  "questions": [
+   {
+    "ref": "R0771",
+    "prompt": "[Daily Life — Course-registration page] When does registration for spring courses open?",
+    "choices": [
+     "Next Monday",
+     "Next Wednesday",
+     "Next Thursday",
+     "Next Tuesday"
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Economics is the social science that examines how individuals and societies allocate resources. Microecon[1] focuses on the deci[2] of individuals and firms, analyzing supply and dem[3]. Macroecon[4] looks at the economy as a whole, consider[5] factors like GDP and unemploy[6]. Policymakers use econom[7] models to predict trends and imple[8] strategies that aim to stabi[9] and grow the econ[10].",
+  "questions": [
+   {
+    "ref": "R0772",
+    "prompt": "[Complete the Words] Fill in the missing letters in each word.",
+    "choices": [],
+    "type": "fill_in_blanks"
+   }
+  ]
+ },
+ {
+  "passage": "Supply and demand are fundamental concepts in economics. The law of demand states that, all else being equal, as the price of a good de[1], the quantity demanded in[2]. Conversely, the law of supply suggests that as the price in[3], the quantity supplied in[4].\n\nMarket equilibrium occurs when supply and demand are bal[5], determining the price and quantity of goods sold. Changes in these factors can lead to surpluses or shor[6]. Understanding these principles is essential for analy[7] market dynamics and making informed busi[8] decisions. Economists use these models to pre[9] future market trends and guide policy[10].",
+  "questions": [
+   {
+    "ref": "R0773",
+    "prompt": "[Complete the Words] Fill in the missing letters in each word.",
+    "choices": [],
+    "type": "fill_in_blanks"
+   }
+  ]
+ },
+ {
+  "passage": "From: Sara Lindgren, Chemistry Stockroom\n\nThe safety orientation you signed up for has moved from Thursday to Tuesday. It now runs in Room 201, not the lecture theatre, because we need the sinks. Bring your own padlock for the bench drawer; unlike last year, the stockroom no longer hands them out. If Tuesday does not suit you, reply to this message rather than calling ext. 4501, which is answered only during deliveries.",
+  "questions": [
+   {
+    "ref": "R0774",
+    "prompt": "[Daily Life — email] On which day does the orientation now meet?",
+    "choices": [
+     "Wednesday",
+     "Tuesday",
+     "Thursday",
+     "Monday"
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "The campus mailroom in the Aldrich Annex is hiring two student sorters for fall. Shifts run Sunday through Thursday, 6:00 to 9:00 p.m. Pay starts at $16.25 an hour, with a raise after 60 days — not the usual semester wait. Apply in person: pick up a form from Hana Kim in Room 18, then hand the completed form to Lucas Ferreira. Questions? Call ext. 2280 before noon.",
+  "questions": [
+   {
+    "ref": "R0775",
+    "prompt": "[Daily Life — job ad] What does the ad suggest about pay raises at the mailroom?",
+    "choices": [
+     "A raise arrives after a year of work.",
+     "A raise arrives after two full semesters.",
+     "A raise arrives after about two months.",
+     "A raise arrives only with a promotion."
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Cognitive psychology explores the internal processes of the mind, such as perception and memory. Atten[1] is a critical compo[2] of cognitive funct[3], influencing how we process informa[4]. Memory is often cate[5] into short-term and long-term stor[6], each with distinct charac[7]. Research in this field has led to the devel[8] of various models that explain how we acq[9] and retrieve know[10].",
+  "questions": [
+   {
+    "ref": "R0776",
+    "prompt": "[Complete the Words] Fill in the missing letters in each word.",
+    "choices": [],
+    "type": "fill_in_blanks"
+   }
+  ]
+ },
+ {
+  "passage": "Kitchen Assistant — Elmgrove Hall\n\nSix hours a week, always Sunday mornings; we do not staff weeknights. Pay is $16.25 an hour plus one meal per shift. No cooking experience is needed — we train on the job — but you must already hold a food-handler's card before your first shift; we cannot arrange one for you. Send applications to Maya Sharma. Interviews are held in Room 162 during the first week of term.",
+  "questions": [
+   {
+    "ref": "R0777",
+    "prompt": "[Daily Life — job ad] An applicant who has never worked in a kitchen and does not have a food-handler's card could begin work —",
+    "choices": [
+     "once they hold the required card",
+     "after a two-week probation period",
+     "after their first paid weekend shift",
+     "immediately, since the job trains new hires"
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Plate tectonics is a fundamental concept in geology, explaining the movement of Earth's lithosphere. Tectonic pla[1] float on the semi-fluid astheno[2], causing earthquakes and volca[3] eruptions. This theory has transfor[4] our understanding of continen[5] drift and oceanic spre[6], providing a frame[7] for studying geologi[8] phenomena and predict[9] natural disas[10].",
+  "questions": [
+   {
+    "ref": "R0778",
+    "prompt": "[Complete the Words] Fill in the missing letters in each word.",
+    "choices": [],
+    "type": "fill_in_blanks"
+   }
+  ]
+ },
+ {
+  "passage": "Geology is the scientific study of Earth, its materials, and the processes that shape it. Geologists investigate rocks, minerals, and fossils to under[1] the planet's history and structure. One area of focus is plate tectonics, which explains the move[2] of Earth's lithosphere and its impact on geological phenomena. Geologists also study erosion and sedimenta[3] processes, which contribute to the formation of landforms. Additionally, the field examines the role of water in shaping the Earth's surface, including the forma[4] of rivers, lakes, and oceans. Understanding these processes is crucial for resource manage[5] and environmental conservation.\n\nGeologists use a variety of tools and techniques, such as remote sensing and geophysical surveys, to gather data and test hypo[6]. The study of geology provides insights into natural hazards, such as earthquakes and volcanic eruptions, helping to pre[7] and mitigate their effects. As technology advances, new methods continue to enhance our under[8] of Earth's dynamic systems. Geology remains a vital discipline for addressing global challenges related to climate change and resource sustai[9]. By exploring the Earth's past and present, geologists contribute to a more compre[10] understanding of our planet.",
+  "questions": [
+   {
+    "ref": "R0779",
+    "prompt": "[Complete the Words] Fill in the missing letters in each word.",
+    "choices": [],
+    "type": "fill_in_blanks"
+   }
+  ]
+ },
+ {
+  "passage": "Subject: Replacement ID ready for pickup\n\nHi Marisol,\n\nYour replacement student ID arrived this morning. While our front counter is being renovated, pickups are handled at the Whitmore Library circulation desk rather than our office. Bring a photo ID and the $15 fee in cash — the desk is not able to process card payments. The desk is staffed Tuesday through Friday, 1:00 to 5:00 p.m.\n\nCard Services, Denton Hall 110",
+  "questions": [
+   {
+    "ref": "R0780",
+    "prompt": "[Daily Life — email] Where should Marisol pick up her replacement ID?",
+    "choices": [
+     "At the Registrar's office front window",
+     "At the Card Services counter in Denton Hall",
+     "At the Whitmore Library circulation desk",
+     "At the Student Union information desk"
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Job Posting: Library Assistant The campus library is seeking a part-time assistant for weekday afternoons. Applicants should be available at least three days a week. If you have prior library experience, please mention it in your application. Only shortlisted candidates will be contacted. The position will remain open until filled, assuming sufficient interest.",
+  "questions": [
+   {
+    "ref": "R0781",
+    "prompt": "[Daily Life — Job Ad] What does the posting say about applicants' availability?",
+    "choices": [
+     "They should be available at least five days a week.",
+     "They should be available at least three days a week.",
+     "They should be available at least four days a week.",
+     "They should be available at least two days a week."
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Astronomy is the scientific study of celestial objects and phenomena beyond Earth's atmosphere. Telescop[1] are crucial for observ[2] distant stars and galax[3], providing data on their composi[4] and motion. The study of cosm[5] seeks to understand the origin and evolu[6] of the universe, exploring concepts like dark matter and ener[7] that influen[8] cosmic struct[9] and expan[10].",
+  "questions": [
+   {
+    "ref": "R0782",
+    "prompt": "[Complete the Words] Fill in the missing letters in each word.",
+    "choices": [],
+    "type": "fill_in_blanks"
+   }
+  ]
+ },
+ {
+  "passage": "@CampusEvents (Social Media Post) Heads up! The outdoor movie night is planned for Friday, but we’ll have to cancel if it rains. If you can, bring your own blanket or chair. We’ll provide popcorn. Check our page Friday afternoon for updates. Hope to see you there, weather permitting!",
+  "questions": [
+   {
+    "ref": "R0783",
+    "prompt": "[Daily Life — social-media post] When does the post tell readers to check the page for updates?",
+    "choices": [
+     "On Thursday afternoon",
+     "On Friday morning",
+     "On Wednesday evening",
+     "On Friday afternoon"
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Subject: Roommate Needed (Spring Semester) Hi all, I’m looking for a roommate for my two-bedroom apartment starting in January. Rent is $650/month, utilities not included. The place is a 10-minute walk from campus. I’d prefer someone who doesn’t smoke and is tidy, but I’m flexible if you’re respectful. If you can move in before January 10th, that would be ideal, but later is possible if the room is still open. Please email me if interested. Thanks! – Jamie",
+  "questions": [
+   {
+    "ref": "R0784",
+    "prompt": "[Daily Life — email] According to the post, when would it be ideal for a new roommate to move in?",
+    "choices": [
+     "Before January 3rd",
+     "Before January 10th",
+     "Before January 8th",
+     "Before January 6th"
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Student Government Social Media Post We’re planning a movie night next Friday, if we can fit it in. If you’d like to suggest a film, comment below by Wednesday. We’ll choose a movie based on popularity, but please note, we may not be able to accommodate all requests. Final details will be posted Thursday, assuming the event goes ahead.",
+  "questions": [
+   {
+    "ref": "R0785",
+    "prompt": "[Daily Life — Social Media Post] If the movie night goes ahead, when will the final details be posted?",
+    "choices": [
+     "On the day of the event",
+     "The day before the event",
+     "Two days before the event",
+     "Three days before the event"
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Bike Barn Assistant — 8 hours a week. You will patch tubes, true wheels, and log rentals at the counter in Rowan Court. No repair experience needed; we train. Shifts are Sunday mornings only, since the shop closes on weekdays during term. Pay is 14 dollars an hour, paid monthly. Bring your student ID to the open interview on 3 March. Questions: Tessa Bright, ext. 4411.",
+  "questions": [
+   {
+    "ref": "R0786",
+    "prompt": "[Daily Life — job ad] A reader decides to attend the open interview on 3 March. What does the ad tell them to bring?",
+    "choices": [
+     "Bring a printed résumé",
+     "Bring two written references",
+     "Bring a student ID",
+     "Bring proof of repair experience"
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "POT 110: Beginning Wheel Throwing — 4 seats left. Classes meet Tuesdays, 6:00–8:30 p.m., in Room 112 of the Corliss Building. Note: this course cannot be added online. To register, call the ceramics coordinator, Noor Haddad, at 555-0184 before September 5. A $40 clay fee is billed with tuition; tools are provided. Students who miss the first session are dropped automatically.",
+  "questions": [
+   {
+    "ref": "R0787",
+    "prompt": "[Daily Life — course-registration page] According to the page, how does a student register for POT 110?",
+    "choices": [
+     "by submitting a paper form at the registrar's office",
+     "by emailing the department office",
+     "by adding it through the college's online portal",
+     "by calling the ceramics coordinator"
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Job Posting: Student Library Assistant The library is seeking a reliable student assistant for weekday afternoons. Duties include shelving books and helping patrons. If you can work at least two days per week, please apply by emailing your availability. Preference will be given to applicants with previous library experience, but all are welcome to apply. Applications received after Monday will not be considered.",
+  "questions": [
+   {
+    "ref": "R0788",
+    "prompt": "[Daily Life — Job Ad] According to the posting, what should a student do to apply for the position?",
+    "choices": [
+     "Bring a printed résumé to the circulation desk in person",
+     "Send the library an email listing your availability",
+     "Call the front desk to arrange an interview",
+     "Fill out the application form on the library's website"
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "CHEM 115: Introduction to Forensic Chemistry. Registration opens Saturday, March 7, at 9 a.m. Seats are claimed on the paper sign-up sheet posted outside Room 209 in the Falkner Building; the online portal lists the course for viewing only. Questions about prerequisites go to the course coordinator, Astrid Berg, at 555-0121. The section is capped at 24 students, and a $40 materials fee is billed at midterm.",
+  "questions": [
+   {
+    "ref": "R0789",
+    "prompt": "[Daily Life — course-registration page] According to the page, how does a student claim a seat in CHEM 115?",
+    "choices": [
+     "By calling the course coordinator, Astrid Berg",
+     "By submitting a request through the online portal",
+     "By emailing the department office",
+     "By signing the paper sheet outside Room 209"
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "KOR 118 — Beginners' Sign Language, Room 173\nMeets Mondays and Wednesdays, 6:00–7:20 p.m. Enrolment is capped at 14.\nThe waitlist is not first-come. Every name added by Friday at 4 p.m. goes into one draw, and results are posted Friday night. Adding your name earlier does not help.\nRegistered students pay a 12,000 won materials fee in the first week. Questions: Yuki Mori, ext. 4473.",
+  "questions": [
+   {
+    "ref": "R0790",
+    "prompt": "[Daily Life — course-registration page] A student finds KOR 118 full and adds a name to the waitlist. According to the page, what decides who gets a place?",
+    "choices": [
+     "A single draw of the names posted on Friday night",
+     "The order in which names were added before Friday at 4 p.m.",
+     "A single draw of every name added by Friday at 4 p.m.",
+     "The order in which names were added to the waitlist"
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Email: Student Union Subject: Movie Night Join us for a movie night this Friday at 7 PM in the Student Lounge. Snacks will be provided. Bring your friends! RSVP by Thursday to secure your spot.",
+  "questions": [
+   {
+    "ref": "R0791",
+    "prompt": "[Daily Life — Email] Where will the movie night be held?",
+    "choices": [
+     "In the Main Auditorium",
+     "In the Student Lounge",
+     "In the Dining Hall",
+     "In the Recreation Center"
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Impressionism revolutionized the art world in the late 19th century. Artists like Monet and Reno[1] focused on captur[2] light and color rather than detai[3] forms, leading to a new aesthe[4]. This movement encoura[5] artists to experime[6] with techni[7] and perspec[8], influenc[9] future generati[10] of painters.",
+  "questions": [
+   {
+    "ref": "R0792",
+    "prompt": "[Complete the Words] Fill in the missing letters in each word.",
+    "choices": [],
+    "type": "fill_in_blanks"
+   }
+  ]
+ },
+ {
+  "passage": "STUDENT JOB — Café Assistant. Shifts run 5:30 to 8:30 in the morning, Monday to Thursday, before first lecture; we have no evening or weekend hours to offer. Pay is $16 an hour, paid every Friday. No experience needed — you will be trained on the espresso machine in week one. Applications close 14 March. To apply, telephone Elin Dahl on ext. 4442 and ask for an interview slot.",
+  "questions": [
+   {
+    "ref": "R0793",
+    "prompt": "[Daily Life — job ad] What hours does the café assistant job cover?",
+    "choices": [
+     "5:30 to 8:30 in the morning, Monday to Thursday",
+     "5:30 to 8:30 in the evening, Monday to Friday",
+     "9:00 to 12:00 in the morning, Saturday only",
+     "6:00 to 9:00 in the evening, Friday and Sunday"
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Join us for the annual job fair this Saturday from 10 AM to 4 PM at the Student Center. Meet potential employers and explore career opportunities. Dress professionally and bring copies of your resume.",
+  "questions": [
+   {
+    "ref": "R0794",
+    "prompt": "[Daily Life — Job ad] Where will the job fair take place?",
+    "choices": [
+     "At the Student Center",
+     "At the University Commons",
+     "At the Campus Conference Center",
+     "At the Alumni Welcome Center"
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Market economies are systems where economic decisions are guided by supply and demand. In a market econo[1], prices are determined by the interac[2] of buyers and sellers. Competi[3] among businesses leads to innova[4] and efficien[5]. Consumers have the free[6] to choose from a variety of products, influencing produc[7] decisions. Govern[8] intervention is minimal, allowing the market to self-regu[9]. This system contrasts with centrally planned econo[10].",
+  "questions": [
+   {
+    "ref": "R0795",
+    "prompt": "[Complete the Words] Fill in the missing letters in each word.",
+    "choices": [],
+    "type": "fill_in_blanks"
+   }
+  ]
+ },
+ {
+  "passage": "POETRY OUT LOUD CLUB — New Members Welcome!\n\nWe meet Sunday mornings at 10:00, not weekday evenings like most campus clubs — our members asked for a quieter slot. Sessions are held in Room 7 of the Quill Center. No experience needed, but bring a poem written by someone other than yourself to read aloud. Questions? Call our advisor, Marco Silva, at ext. 4479. First meeting: this Sunday.",
+  "questions": [
+   {
+    "ref": "R0796",
+    "prompt": "[Daily Life — club flyer] What should a new member do before attending a session?",
+    "choices": [
+     "Submit one of their own poems",
+     "Contact the advisor to register",
+     "Bring a poem written by someone other than themselves",
+     "Sign up in advance at the Quill Center"
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "The study of linguistics encompasses various aspects of language. Phonology examines the sound sys[1] of languages, while syntax focuses on the struc[2] of sentences. Semantics deals with meaning, and pragmatics looks at con[3] in language use. These subfields inter[4] to provide a comprehensive understanding of how lan[5] functions.\n\nLinguists also study language acq[6] and change, exploring how languages evolve over time. This field has applications in areas such as artificial intelli[7] and language education, where insights into language pro[8] can enhance learning and communication. Linguistics is a dynamic and inter[9] field that continues to expand our knowledge of human cog[10].",
+  "questions": [
+   {
+    "ref": "R0797",
+    "prompt": "[Complete the Words] Fill in the missing letters in each word.",
+    "choices": [],
+    "type": "fill_in_blanks"
+   }
+  ]
+ },
+ {
+  "passage": "Photosynthesis is a crucial process in which plants convert light energy into chemical energy. Chloropla[1] are the organ[2] responsible for this process, containing chlorop[3] that abso[4] sunlight. The light-depen[5] reactions occur in the thylak[6] membranes, where ATP and NADPH are pro[7]ced. These molec[8] are then used in the Calvin cyc[9] to synthesize glu[10]se.",
+  "questions": [
+   {
+    "ref": "R0798",
+    "prompt": "[Complete the Words] Fill in the missing letters in each word.",
+    "choices": [],
+    "type": "fill_in_blanks"
+   }
+  ]
+ },
+ {
+  "passage": "Due to maintenance, the library will close early at 3 PM this Friday. Please plan your visits accordingly. We apologize for any inconvenience.",
+  "questions": [
+   {
+    "ref": "R0799",
+    "prompt": "[Daily Life — Campus notice] According to the notice, at what time will the library close this Friday?",
+    "choices": [
+     "It will be closing at 12:30 PM",
+     "It will close at 4:30 PM",
+     "It will close at 3 PM",
+     "It closes at 1 PM"
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Developmental psychology examines changes in cognition and behavior across the lifespan. Researchers study infan[1] attachment, language acquisi[2], and the influ[3] of parenting style[4] on socioemo[5] growth. Longi[6] studies track indivi[7] progress over deca[8], allowing for the identifi[9] of patterns in psycholog[10] maturation.",
+  "questions": [
+   {
+    "ref": "R0800",
+    "prompt": "[Complete the Words] Fill in the missing letters in each word.",
+    "choices": [],
+    "type": "fill_in_blanks"
+   }
+  ]
+ },
+ {
+  "passage": "The business cycle is a fundamental concept in macroeconomics. It refers to the fluctuations in economic activity that an economy experiences over time, consisting of periods of expan[1] and contraction. During expansion, economic indicators such as GDP and employment typ[2] rise, while during contraction, these indicators de[3]. Understanding the business cycle helps policymakers and economists pre[4] economic trends and implement measures to stabi[5] the economy.\n\nFactors such as consumer confidence, interest rates, and government poli[6] can influence the cycle's phases. By analyzing these factors, businesses can make informed deci[7] and plan for future growth. The business cycle remains a key area of study in econ[8], providing insights into the dynamic nature of mar[9] economies and the challenges of economic fore[10].",
+  "questions": [
+   {
+    "ref": "R0801",
+    "prompt": "[Complete the Words] Fill in the missing letters in each word.",
+    "choices": [],
+    "type": "fill_in_blanks"
+   }
+  ]
+ },
+ {
+  "passage": "Business ethics involves the principles and standards that guide behavior in the world of commerce. Corpor[1] social responsib[2] is a key aspect, where companies aim to have a posi[3] impact on society and the environ[4]. Ethical dilem[5] often arise in areas such as market[6] and finance, requiring careful consid[7] of moral values. By adhering to ethical guidel[8], businesses can build trust with stakehold[9] and foster long-term succe[10].",
+  "questions": [
+   {
+    "ref": "R0802",
+    "prompt": "[Complete the Words] Fill in the missing letters in each word.",
+    "choices": [],
+    "type": "fill_in_blanks"
+   }
+  ]
+ },
+ {
+  "passage": "Job Opportunity: Library Assistant The campus library is hiring part-time assistants for the evening shift. Applicants must be available at least three nights a week. Duties include shelving books, helping patrons, and basic desk work. If you can, submit your application by Friday for priority consideration. Positions may fill quickly, so early applications are encouraged. Only shortlisted candidates will be contacted.",
+  "questions": [
+   {
+    "ref": "R0803",
+    "prompt": "[Daily Life — job ad] According to the ad, how often must applicants be available for the evening shift?",
+    "choices": [
+     "At least two nights a week",
+     "A minimum of four nights a week",
+     "At least five nights a week",
+     "At least three nights a week"
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Market economies rely on the forces of supply and demand to allocate resources efficiently. In such systems, prices are deter[1] by the interac[2] of buyers and sellers. When demand exceeds supply, prices tend to inc[3], encouraging produc[4] to increase output. Conversely, when supply surpasses demand, prices dec[5], prompting a reduc[6] in production. This self-regulat[7] mechanism is a funda[8] aspect of capital[9] economies, promoting innova[10] and growth.",
+  "questions": [
+   {
+    "ref": "R0804",
+    "prompt": "[Complete the Words] Fill in the missing letters in each word.",
+    "choices": [],
+    "type": "fill_in_blanks"
+   }
+  ]
+ },
+ {
+  "passage": "[Daily Life — Social Media Post] Hey everyone! The campus bookstore is having a flash sale tomorrow from 12 PM to 4 PM. All textbooks are 20% off. Don't miss out on this great opportunity to save on your course materials!",
+  "questions": [
+   {
+    "ref": "R0805",
+    "prompt": "[Daily Life — Social Media Post] What should a student who wants the textbook discount do?",
+    "choices": [
+     "Visit the bookstore on Friday between 11 AM and 3 PM",
+     "Visit the bookstore tomorrow between 12 PM and 4 PM",
+     "Visit the bookstore today between 1 PM and 5 PM",
+     "Visit the bookstore on Saturday between 10 AM and 2 PM"
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Plate tectonics is a scientific theory explaining the movement of Earth's lithosphere. The litho[1] is divided into tectonic plates that float on the semi-fluid asthe[2]. These plates move due to convective cur[3] in the mantle, causing earthquakes and volcanic act[4].\n\nThe interaction of these plates can form moun[5] ranges, ocean trenches, and other geological fea[6]. Understanding plate tectonics is crucial for predi[7] natural disasters and exploring Earth's geolo[8] history. This theory has trans[9] our understanding of the dynamic nature of our pla[10].",
+  "questions": [
+   {
+    "ref": "R0806",
+    "prompt": "[Complete the Words] Fill in the missing letters in each word.",
+    "choices": [],
+    "type": "fill_in_blanks"
+   }
+  ]
+ },
+ {
+  "passage": "Subject: your ink cartridges. Hello — the two cartridges you ordered arrived this morning and are waiting at the stores counter in Room 183. We hold orders until Friday only; anything unclaimed after that goes back into general stock, and nothing is kept over the weekend. Bring your student card. There is no need to print the confirmation email, as we have a copy on file. Questions: ext. 4483. — Pia Lindholm",
+  "questions": [
+   {
+    "ref": "R0807",
+    "prompt": "[Daily Life — email] If you want to keep the order rather than lose it to general stock, the latest you can collect it is —",
+    "choices": [
+     "By Wednesday",
+     "By Thursday",
+     "By next Monday",
+     "By Friday"
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "POT 110: Beginning Wheel Throwing — 4 seats left. Classes meet Tuesdays, 6:00–8:30 p.m., in Room 112 of the Corliss Building. Note: this course cannot be added online. To register, call the ceramics coordinator, Noor Haddad, at 555-0184 before September 5. A $40 clay fee is billed with tuition; tools are provided. Students who miss the first session are dropped automatically.",
+  "questions": [
+   {
+    "ref": "R0808",
+    "prompt": "[Daily Life — course-registration page] What can be inferred about equipment for the course?",
+    "choices": [
+     "A tool kit is included in the $40 clay fee",
+     "Students must bring their own clay to each session",
+     "Students do not need to purchase their own pottery tools",
+     "Tools can be rented from the ceramics studio"
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "The Renaissance was a period of great cultural and artistic change in Europe. Artists like Leonardo da Vinci and Michelangelo revolution[1] art with their inno[2] techniques and perspec[3]. This era saw the re[4] of classical knowledge and the birth of human[5], emphasizing the value of human beings. The inven[6] of the printing press by Gutenberg in the 15th century democrat[7] access to information, allowing ideas to spread rapid[8]. The Renaissance laid the founda[9] for modern Western thought and cul[10].",
+  "questions": [
+   {
+    "ref": "R0809",
+    "prompt": "[Complete the Words] Fill in the missing letters in each word.",
+    "choices": [],
+    "type": "fill_in_blanks"
+   }
+  ]
+ },
+ {
+  "passage": "Cognitive psychology is the study of mental processes such as perception, memory, and reasoning. Researchers in this field explore how people ac[1] and process information, often using experi[2] methods to understand cognitive func[3]. One area of interest is how attent[4] affects memory retention and recall.\n\nStudies have shown that multitasking can impair the effec[5] of memory encoding, leading to decreased recall accu[6]. Additionally, cognitive psy[7] examines problem-solving strategies and decision-making processes. Understanding these processes can help in designing educa[8] programs that enhance learning and memory. Cognitive psychology also has applica[9] in areas such as artificial intelligence and human-computer inter[10].",
+  "questions": [
+   {
+    "ref": "R0810",
+    "prompt": "[Complete the Words] Fill in the missing letters in each word.",
+    "choices": [],
+    "type": "fill_in_blanks"
+   }
+  ]
+ },
+ {
+  "passage": "Fernbank House Bread Club — Sundays, 7:30 a.m.\nWe meet in Room 171. Ovens are hot by eight, so come early.\nDo not bring flour or tins; the club buys everything, and members pay 4,000 won at the door each week. Bring only a clean apron.\nFirst-timers should sign the sheet on the Room 171 door before Saturday noon. Clara Mendes runs the shaping table and answers questions at ext. 4471.",
+  "questions": [
+   {
+    "ref": "R0811",
+    "prompt": "[Daily Life — club flyer] When does the Bread Club meet?",
+    "choices": [
+     "Saturdays at 8:00 a.m.",
+     "Thursdays at 7:30 p.m.",
+     "Saturdays at 11:30 a.m.",
+     "Sundays at 7:30 a.m."
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Renaissance art is renowned for its emphasis on realism and human emotion. Artists like Leonardo da Vinci and Michelangelo exhi[1] a mastery of perspec[2] and anatomical accu[3]. The use of chiarosc[4] brought depth and dimen[5] to their paintings, creating a lifelike appea[6]. This era marked a trans[7] from medieval styles to more naturalistic depic[8] of the human form, influ[9] subsequent generations of art[10].",
+  "questions": [
+   {
+    "ref": "R0812",
+    "prompt": "[Complete the Words] Fill in the missing letters in each word.",
+    "choices": [],
+    "type": "fill_in_blanks"
+   }
+  ]
+ },
+ {
+  "passage": "Hi all — Room 113 will be repainted from 6 to 10 October, so no practice slots are available there that week. Sofia Marino has opened extra evening slots on the third floor; book them by phone at ext. 4413, since the website cannot handle same-week changes. Please move your music stands out by Friday. The piano stays and will be covered.",
+  "questions": [
+   {
+    "ref": "R0813",
+    "prompt": "[Daily Life — email] How should students book the extra evening slots?",
+    "choices": [
+     "By filling in the online booking form",
+     "By writing a note",
+     "By sending an email",
+     "By telephoning the office"
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Dear Professor Smith, I hope this email finds you well. I am writing to request an extension on my research paper due to unforeseen circumstances. I would appreciate any additional time you could offer. Thank you for your understanding. Best, Alex.",
+  "questions": [
+   {
+    "ref": "R0814",
+    "prompt": "[Daily Life — Email to professor] Who is the email addressed to?",
+    "choices": [
+     "Professor Lee",
+     "Professor Nguyen",
+     "Professor Smith",
+     "Professor Anderson"
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Notice: The second-floor computer lab in Hartwell Library will close for carpet replacement from Monday, March 3 through Thursday, March 6. During the closure, loaner laptops can be picked up at the music library circulation desk. Printing has been moved to Room 114 in the student center. Direct questions to Dana Okafor in Facilities at 555-0173.",
+  "questions": [
+   {
+    "ref": "R0815",
+    "prompt": "[Daily Life — campus notice] Where can students pick up a loaner laptop during the closure?",
+    "choices": [
+     "at the main circulation desk in Hartwell Library",
+     "at the student center front desk",
+     "at the Facilities office",
+     "at the music library circulation desk"
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Market economies operate on the principles of supply and demand. Businesses comp[1] to offer goods and servi[2] that meet consumer needs, influenc[3] prices and availabi[4]. Govern[5] may intervene to regul[6] markets, ensuring fair competi[7] and protect[8] consumers. Understanding these dynam[9] is crucial for econo[10] analysis.",
+  "questions": [
+   {
+    "ref": "R0816",
+    "prompt": "[Complete the Words] Fill in the missing letters in each word.",
+    "choices": [],
+    "type": "fill_in_blanks"
+   }
+  ]
+ },
+ {
+  "passage": "Astronomy is the scientific study of celestial objects and phenomena beyond Earth's atmosphere. Astronom[1] use telescopes and other instruments to observe stars, planets, and galaxies, seeking to under[2] their composition and behavior. The study of cosm[3] involves understanding the origin and evolution of the universe, including the Big Bang theory and dark mat[4]. Astrophysi[5] applies the principles of physics to explain the life cycles of stars and the dynamics of galaxies.\n\nRecent advances in space explor[6] have expanded our knowledge of exoplan[7] and the potential for life beyond Earth. These discoveries continue to challenge our percep[8] of the universe and inspire new questions about our place within it. As technology evolves, astronomers are better equipped to explore the cos[9] and uncover the mysteries of the cosmos, driving further scientific inno[10].",
+  "questions": [
+   {
+    "ref": "R0817",
+    "prompt": "[Complete the Words] Fill in the missing letters in each word.",
+    "choices": [],
+    "type": "fill_in_blanks"
+   }
+  ]
+ },
+ {
+  "passage": "Behavioral economics examines the psychological factors influencing economic decision-making. Unlike traditional economics, which assumes rational behavior, behavioral eco[1] considers how emotions and cognitive biases affect choices. For example, the endow[2] effect describes how people value items more highly when they own them. Similarly, loss aver[3] suggests that people prefer to avoid losses rather than acquire equivalent gains. These insights have implications for policy-making, as they can help design interventions that nudge individuals toward better deci[4].\n\nAdditionally, understanding these biases can improve financial edu[5] and consumer protection. Behavioral economics also explores how social influ[6] and cultural norms shape economic behavior. This field continues to grow, offering a more real[7] view of human behavior in economic contexts. Researchers use experi[8] and empirical data to test theories and develop models that better reflect actual decision-making processes. By integrating psychology and economics, this discipline provides a more compre[9] understanding of how people make choices in complex environ[10].",
+  "questions": [
+   {
+    "ref": "R0818",
+    "prompt": "[Complete the Words] Fill in the missing letters in each word.",
+    "choices": [],
+    "type": "fill_in_blanks"
+   }
+  ]
+ },
+ {
+  "passage": "From: Professor Lee To: Jordan Kim Subject: Office Hours Hi Jordan, Thank you for your email. I’m afraid I won’t be able to meet this Friday as you requested, but I can offer a slot next Monday at 2pm if you’re available. If not, please suggest another time and I’ll do my best to accommodate, schedule permitting. Best, Professor Lee",
+  "questions": [
+   {
+    "ref": "R0819",
+    "prompt": "[Daily Life — email] Which meeting slot does Professor Lee say he can offer?",
+    "choices": [
+     "Next Friday at noon",
+     "Next Monday at 2 p.m.",
+     "Monday at 9 a.m.",
+     "Friday at 4 p.m."
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Club Flyer: Join the Green Thumb Society! Our weekly meetings are open to all, but space is limited. If you can, please RSVP by Thursday so we can plan refreshments. We’ll be planting herbs this Friday at 4pm in the Community Garden, weather permitting. Tools and seeds will be provided. Late arrivals may not receive materials. Hope to see you there!",
+  "questions": [
+   {
+    "ref": "R0820",
+    "prompt": "[Daily Life — club flyer] By which day does the flyer ask members to RSVP?",
+    "choices": [
+     "By Wednesday",
+     "By Monday",
+     "By Tuesday",
+     "By Thursday"
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "From: Housing Office To: All Residents Subject: Laundry Room Access Dear Residents, We are updating the laundry room schedule to allow more access during peak times. If you can, please avoid doing laundry between 6-8pm to help reduce crowding. Access may be temporarily restricted if the room reaches capacity. Thank you for your cooperation.",
+  "questions": [
+   {
+    "ref": "R0821",
+    "prompt": "[Daily Life — email] According to the email, under what circumstance may access to the laundry room be temporarily restricted?",
+    "choices": [
+     "When an inspection is underway",
+     "When the room has reached its capacity",
+     "When machines are being repaired",
+     "When the room is being cleaned"
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ }
+]

@@ -1,0 +1,853 @@
+[
+ {
+  "passage": "Hey everyone! I’m selling my mini fridge (barely used) for $40 OBO. Pick up from North Hall anytime this week, but if you need delivery, I can only do Friday after 5pm, assuming my roommate’s car is available. Please message me if interested. If I get multiple offers, I’ll go with whoever can pick up first. Thanks! - Jamie",
+  "questions": [
+   {
+    "ref": "R0281",
+    "prompt": "[Daily Life — Social Media Post] Why does Jamie mention 'assuming my roommate’s car is available'?",
+    "choices": [
+     "To suggest that the price may change.",
+     "To indicate that pickup is preferred.",
+     "To explain why delivery is not guaranteed.",
+     "To warn that the fridge might not be available."
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Job Ad: Part-time Library Assistant needed. Duties include shelving books, helping patrons, and basic desk work. Shifts are mostly evenings and weekends, but some flexibility is possible if you have class conflicts. Applicants must be able to lift up to 20 lbs. Please apply by March 10, but applications may be reviewed earlier if the position is filled. Only shortlisted candidates will be contacted.",
+  "questions": [
+   {
+    "ref": "R0282",
+    "prompt": "[Daily Life — job ad] Why does the ad mention 'some flexibility is possible if you have class conflicts'?",
+    "choices": [
+     "To suggest that only students can apply",
+     "To indicate that the job is full-time",
+     "To attract students who have busy schedules",
+     "To warn that shifts are always changing"
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0283",
+    "prompt": "[Daily Life — job ad] What does the ad imply about the application deadline?",
+    "choices": [
+     "The job may be filled before March 10",
+     "Everyone will be interviewed after March 10",
+     "Applications are only accepted on weekends",
+     "No one can apply after March 10"
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Subject: Study Room Reservations Update Hi everyone, Due to increased demand, the library will only accept study room bookings from groups of three or more, space permitting. If you can’t meet this requirement, please consider using the open seating areas. Bookings are not guaranteed and may be canceled if rooms are needed for library events. Thank you for your understanding. Best, Library Team",
+  "questions": [
+   {
+    "ref": "R0284",
+    "prompt": "[Daily Life — email] What should a student do if their group has only two people?",
+    "choices": [
+     "Try to book a study room anyway",
+     "Use the open seating areas",
+     "Wait until the rule changes",
+     "Ask the library to make an exception"
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0285",
+    "prompt": "[Daily Life — email] Why does the library mention that bookings may be canceled if rooms are needed for events?",
+    "choices": [
+     "To explain that the library has fewer study rooms than it once had",
+     "To warn students that their reservations are not always secure",
+     "To encourage students to submit their bookings as early as possible",
+     "To suggest that students should not book rooms at all"
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Subject: Group Study Room Booking Hi everyone, If you can, please confirm your attendance for the group study session by Thursday evening. Space is limited, so we may need to prioritize those who reply first. If you’re unable to make it, let me know as soon as possible so I can offer your spot to someone else. The room is reserved for two hours, assuming enrollment doesn’t exceed the room’s capacity. Thanks for your understanding! Best, Maya",
+  "questions": [
+   {
+    "ref": "R0286",
+    "prompt": "[Daily Life — Email] Why does Maya ask people to let her know if they can't attend?",
+    "choices": [
+     "So she can move the session to a different day.",
+     "So she can call off the session if too few reply.",
+     "So she can reserve a room with a larger capacity.",
+     "So she can give their spot to someone else."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0287",
+    "prompt": "[Daily Life — Email] What does Maya imply about the group study session?",
+    "choices": [
+     "The room can be kept for more than two hours if the group needs it.",
+     "The session will run longer than two hours if enough people confirm.",
+     "Everyone who replies by Thursday evening is guaranteed a spot.",
+     "Not everyone who wants to attend will be able to join."
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "[Academic — Psychology] Cognitive dissonance is a psychological phenomenon that occurs when an individual experiences conflict between their beliefs and actions. This discomfort often leads to a change in beliefs or behaviors to reduce the dissonance. For instance, if a person values health but smokes, they might quit smoking or downplay the health risks to align their actions with their beliefs.\n\nThe theory, first proposed by Leon Festinger in 1957, suggests that the drive to reduce dissonance is a fundamental human motivation. Research has shown that dissonance can be reduced by changing one of the conflicting elements, adding new consonant elements, or reducing the importance of the conflicting elements. This theory has been applied to various fields, including marketing and education, to understand and influence behavior.",
+  "questions": [
+   {
+    "ref": "R0288",
+    "prompt": "[Academic — Psychology] The passage suggests that quitting smoking and dismissing the health risks of smoking are best understood as:",
+    "choices": [
+     "behaviors that differ in how much dissonance each initially produced",
+     "alternative routes to the same psychological goal",
+     "two instances of adding new consonant elements",
+     "evidence that only one of the two people genuinely values health"
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0289",
+    "prompt": "[Academic — Psychology] Why does the author mention marketing and education?",
+    "choices": [
+     "To argue that dissonance is felt more sharply by shoppers than by students in class",
+     "To name the fields in which Festinger tested his 1957 theory",
+     "To show that the theory has been extended well beyond its original context",
+     "To describe the circumstances in which the theory was first proposed in 1957"
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0290",
+    "prompt": "[Academic — Psychology] The word 'drive' in the passage is closest in meaning to:",
+    "choices": [
+     "a journey taken by vehicle",
+     "a mechanism that transmits power",
+     "an organized campaign to collect funds",
+     "an underlying impulse"
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0291",
+    "prompt": "[Academic — Psychology] Which of the following is NOT a way to reduce cognitive dissonance according to the passage?",
+    "choices": [
+     "Changing one of the conflicting beliefs or actions.",
+     "Ignoring the dissonance completely.",
+     "Adding new consonant elements to the situation.",
+     "Reducing the importance of the conflicting elements."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0292",
+    "prompt": "[Academic — Psychology] Which of the following best states the main idea of the passage?",
+    "choices": [
+     "Festinger's theory explains both why dissonance arises and how it is reduced, and it has found practical applications.",
+     "The fields of marketing and education gave rise to the theory of dissonance.",
+     "Dissonance research is concerned mainly with smoking and health behavior.",
+     "People always resolve dissonance by changing the behavior that caused it."
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Hey everyone! The Film Club is planning a movie night next Friday, assuming enough people sign up. If you’re interested, please RSVP by Tuesday so we can book the screening room. We may have to postpone if we don’t reach the minimum number. Snacks provided (budget permitting). Hope to see you there! – Film Club Officers",
+  "questions": [
+   {
+    "ref": "R0293",
+    "prompt": "[Daily Life — club flyer] Why does the flyer say 'snacks provided (budget permitting)'?",
+    "choices": [
+     "To warn that snacks may not be provided if the club cannot afford them",
+     "To suggest that the free snacks are the main reason to attend the movie night",
+     "To explain that the cost of the snacks will be split among the people who come",
+     "To encourage members to bring their own snacks to share with others"
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0294",
+    "prompt": "[Daily Life — club flyer] What is implied if not enough people RSVP by Tuesday?",
+    "choices": [
+     "The event will be canceled or postponed",
+     "Only the snacks will be canceled, not the film",
+     "The club will book a smaller screening room",
+     "The event will move outdoors so no room is needed"
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "The study of linguistics involves understanding the structure and function of language. One key area is phonetics, which examines the sounds of speech. Phonetics is divided into three branches: articulatory, acoustic, and auditory phonetics. Articulatory phonetics focuses on how speech sounds are produced by the movement of the vocal organs.\n\nAcoustic phonetics deals with the physical properties of speech sounds as they travel through the air. Auditory phonetics is concerned with how speech sounds are perceived by the ear and brain. Each branch provides unique insights into how humans communicate and process language.",
+  "questions": [
+   {
+    "ref": "R0295",
+    "prompt": "[Academic — Linguistics] According to the passage, which of the following is NOT a branch of phonetics?",
+    "choices": [
+     "Articulatory phonetics",
+     "Auditory phonetics",
+     "Acoustic phonetics",
+     "Analytical phonetics"
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0296",
+    "prompt": "[Academic — Linguistics] What is the purpose of mentioning the three branches of phonetics in the passage?",
+    "choices": [
+     "To explain the history of phonetics.",
+     "To show the diversity within the field of phonetics.",
+     "To argue for the importance of phonetics in linguistics.",
+     "To highlight the complexity of language."
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "In most cases, market equilibrium is achieved when supply meets demand at a particular price point. However, some economists argue that real-world markets rarely reach perfect equilibrium due to external factors such as government intervention or sudden shifts in consumer preferences. Paradoxically, while interventions like price controls are intended to stabilize markets, they can sometimes lead to unintended consequences, such as shortages or surpluses.\n\nFor example, a government-imposed price ceiling may cause demand to exceed supply, resulting in persistent shortages. This cause-effect chain demonstrates the complexity of managing economic systems. Many analysts believe that understanding these dynamics is crucial for designing effective policies, as interventions often produce ripple effects that extend beyond their initial targets.",
+  "questions": [
+   {
+    "ref": "R0297",
+    "prompt": "[Academic — Economics] Why does the author mention a government-imposed price ceiling?",
+    "choices": [
+     "To illustrate how interventions can create shortages as an unintended consequence",
+     "To explain why real-world markets never manage to reach a state of perfect equilibrium",
+     "To show that sudden shifts in consumer preference matter less than government action",
+     "To argue that price controls succeed in stabilizing markets whenever they are imposed"
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0298",
+    "prompt": "[Academic — Economics] According to the passage, all of the following are mentioned as factors that disrupt market equilibrium EXCEPT:",
+    "choices": [
+     "Price controls",
+     "Technological innovation",
+     "Government intervention",
+     "Sudden shifts in consumer preferences"
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0299",
+    "prompt": "[Academic — Economics] What can be inferred about the effectiveness of government interventions in markets?",
+    "choices": [
+     "They always achieve their intended goals.",
+     "They eliminate the need for understanding market dynamics.",
+     "They are never used in real-world markets.",
+     "They can have effects that extend beyond their immediate purpose."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0300",
+    "prompt": "[Academic — Economics] The word 'ceiling' in the passage most nearly means:",
+    "choices": [
+     "the maximum vertical height",
+     "upper limit on price",
+     "the point of greatest demand",
+     "the roof of a building"
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0301",
+    "prompt": "[Academic — Economics] What is the author's central claim about market equilibrium and interventions?",
+    "choices": [
+     "Price controls always stabilize markets.",
+     "Market equilibrium is always achieved in real-world markets.",
+     "Consumer preferences have no effect on market outcomes.",
+     "Government interventions can disrupt market equilibrium and produce unintended consequences."
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Dear students, the registration for spring courses opens next week. Please review your degree requirements and consult your advisor if needed. Ensure you register early to secure your preferred classes.",
+  "questions": [
+   {
+    "ref": "R0302",
+    "prompt": "[Daily Life — Course-registration page] What should students do before registering for courses?",
+    "choices": [
+     "Register without planning.",
+     "Review their degree requirements.",
+     "Ignore their advisor's advice.",
+     "Wait until the last minute."
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "[Academic — Geology] Plate tectonics theory explains the movement of Earth's lithospheric plates. These plates float on the semi-fluid asthenosphere beneath them, driven by forces such as mantle convection, slab pull, and ridge push. Convergent boundaries occur where plates move towards each other, often forming mountain ranges or subduction zones.\n\nDivergent boundaries, where plates move apart, can create mid-ocean ridges or rift valleys. Transform boundaries, where plates slide past one another, are characterized by seismic activity. While the theory is widely accepted, ongoing research continues to refine our understanding of the forces and interactions involved in plate movements.",
+  "questions": [
+   {
+    "ref": "R0303",
+    "prompt": "[Academic — Geology] Why does the author mention mantle convection, slab pull, and ridge push?",
+    "choices": [
+     "To explain why the asthenosphere is semi-fluid",
+     "To identify the forces that account for the plates' motion",
+     "To distinguish among the three kinds of plate boundary",
+     "To indicate which questions researchers have already settled"
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0304",
+    "prompt": "[Academic — Geology] What is the main idea of the passage?",
+    "choices": [
+     "The forces driving plate movements are fully understood.",
+     "Convergent boundaries are responsible for creating mountain ranges.",
+     "Plate tectonics explains the movement and interaction of Earth's plates.",
+     "Transform boundaries are the most significant in causing seismic activity."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0305",
+    "prompt": "[Academic — Geology] According to the passage, all of the following are true EXCEPT:",
+    "choices": [
+     "The layer beneath the plates is not fully solid.",
+     "Rift valleys can form where plates move apart.",
+     "Earthquake activity is characteristic of transform boundaries.",
+     "Mantle convection is the strongest of the forces that move plates."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0306",
+    "prompt": "[Academic — Geology] What does the passage suggest about the current standing of plate tectonics theory?",
+    "choices": [
+     "It accounts for convergent boundaries but not for transform boundaries.",
+     "It is well established even though aspects of its mechanisms are still under investigation.",
+     "It has been fully confirmed and no longer guides new research.",
+     "Most geologists working today dispute its central claims."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0307",
+    "prompt": "[Academic — Geology] The word 'refine' in the passage is closest in meaning to:",
+    "choices": [
+     "improve in accuracy",
+     "narrow in scope",
+     "replace with something different",
+     "purify by removing impurities"
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "In most cases, coral reefs are celebrated for their vibrant biodiversity and their role as nurseries for marine life. However, recent studies have revealed that some reefs, paradoxically, can become ecological traps. These reefs attract fish and invertebrates with their complex structures, but due to pollution and rising ocean temperatures, they may no longer provide adequate resources for survival.\n\nIn fact, many species that settle in these compromised habitats experience lower reproductive success. This cause-and-effect relationship is particularly evident in regions where agricultural runoff increases algal blooms, which in turn suffocate coral polyps. While some researchers argue that artificial reefs can mitigate these problems, others caution that such interventions may only mask underlying issues. The debate continues as scientists seek sustainable solutions to preserve reef ecosystems.",
+  "questions": [
+   {
+    "ref": "R0308",
+    "prompt": "[Academic — Biology] The word 'trap' in the phrase 'ecological traps' most nearly means:",
+    "choices": [
+     "A situation that attracts but harms organisms",
+     "A method for cleaning reefs",
+     "A device for catching animals",
+     "A type of coral structure"
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0309",
+    "prompt": "[Academic — Biology] According to the passage, all of the following are mentioned as factors that negatively affect coral reefs EXCEPT:",
+    "choices": [
+     "Algal blooms",
+     "Pollution from agricultural runoff",
+     "Rising ocean temperatures",
+     "Artificial reefs"
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0310",
+    "prompt": "[Academic — Biology] Why does the author mention agricultural runoff in the passage?",
+    "choices": [
+     "To illustrate a specific cause of coral reef decline",
+     "To describe how coral polyps reproduce in nutrient-rich water",
+     "To propose a practical solution for restoring damaged reefs",
+     "To highlight how artificial reefs can offset such pollution"
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0311",
+    "prompt": "[Academic — Biology] What can be inferred about the effectiveness of artificial reefs from the passage?",
+    "choices": [
+     "They are accepted by nearly all researchers as the best available response.",
+     "They may address symptoms but not root causes of reef decline.",
+     "They fail to attract the fish and invertebrates that natural reefs draw in.",
+     "They remove any need to control the agricultural runoff that feeds algal blooms."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0312",
+    "prompt": "[Academic — Biology] What is the author's central claim in the passage?",
+    "choices": [
+     "Agricultural runoff has no measurable impact on reef health.",
+     "Coral reefs are always beneficial for the species they attract.",
+     "Artificial reefs are the most effective solution to reef degradation worldwide.",
+     "Some coral reefs can harm marine species due to environmental changes."
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Club Flyer: Join the Green Thumb Society! Our weekly meetings are open to all, but space is limited. If you can, please RSVP by Thursday so we can plan refreshments. We’ll be planting herbs this Friday at 4pm in the Community Garden, weather permitting. Tools and seeds will be provided. Late arrivals may not receive materials. Hope to see you there!",
+  "questions": [
+   {
+    "ref": "R0313",
+    "prompt": "[Daily Life — club flyer] Why does the flyer ask members to RSVP 'if you can'?",
+    "choices": [
+     "To discourage people from coming without RSVP",
+     "To make the event seem more exclusive",
+     "To suggest only certain people should attend",
+     "To show that RSVP is helpful but not required"
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Subject: Group Project Update Hi everyone, Just a quick note: if you haven’t yet sent your part of the report, please do so by Friday evening. I’ll start compiling everything over the weekend, assuming everyone’s sections are in. If you’re running late, let me know and I’ll try to adjust, but I can’t guarantee your part will be included if it’s much after Friday. Thanks for your efforts! Best, Maya",
+  "questions": [
+   {
+    "ref": "R0314",
+    "prompt": "[Daily Life — Email] What can be inferred about Maya's attitude toward late submissions?",
+    "choices": [
+     "She may include late parts, but only if they arrive soon after the deadline.",
+     "She would rather leave out any section that misses Friday, whatever explanation the sender offers.",
+     "Because she begins compiling over the weekend, she will not accept any part sent after Friday evening.",
+     "As long as latecomers email her in advance, she guarantees that their sections will appear in the report."
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Instagram Post from Student Union Hey everyone! We’re excited to announce our Spring Festival on April 9th. There will be food trucks, live music, and games. If you’re interested in volunteering, please DM us by March 25th. We’ll try to include as many volunteers as possible, but spots are limited. Priority will be given to those who can help with setup in the morning. Hope to see you there!",
+  "questions": [
+   {
+    "ref": "R0315",
+    "prompt": "[Daily Life — social-media post] What can be inferred about volunteering for the festival?",
+    "choices": [
+     "Volunteering is only for food trucks",
+     "Not all volunteers will be accepted",
+     "Everyone who applies will get a spot",
+     "Only students in the Student Union can volunteer"
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0316",
+    "prompt": "[Daily Life — social-media post] Why does the post mention 'priority will be given to those who can help with setup in the morning'?",
+    "choices": [
+     "To warn that volunteers who help with setup will work longer hours",
+     "To indicate that the food trucks will arrive in the morning",
+     "To encourage people to volunteer for less popular time slots",
+     "To suggest that setup is the only task volunteers will be given"
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Email from Professor Lin: Dear Jamie, Thank you for your interest in my research group. At this time, we do not have any open positions, but if you can wait until next semester, there may be opportunities, space permitting. Please feel free to check in again in December. Best regards, Professor Lin",
+  "questions": [
+   {
+    "ref": "R0317",
+    "prompt": "[Daily Life — email] What should Jamie do next, based on the email?",
+    "choices": [
+     "Contact Professor Lin again in December.",
+     "Apply to other research groups immediately.",
+     "Show up at the lab next week.",
+     "Wait for Professor Lin to reach out first."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0318",
+    "prompt": "[Daily Life — email] What does Professor Lin's use of 'space permitting' suggest?",
+    "choices": [
+     "There is no guarantee of a position next semester.",
+     "Jamie has been put on a list and will be contacted in December.",
+     "The group expects to take on new members in December.",
+     "Jamie should approach a different research group instead."
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "In most cases, coral reefs are considered stable ecosystems, supporting a remarkable diversity of marine life. However, recent studies have revealed that some reefs exhibit surprising instability, with rapid shifts in species composition. This paradoxical pattern has been linked to the introduction of invasive species, which can disrupt established food webs. For example, the arrival of lionfish in the Caribbean has led to a decline in native fish populations, which in turn affects algae growth on the reef.\n\nAs native grazers become scarce, algae proliferate, sometimes smothering coral and reducing reef resilience. While many reefs recover from such disturbances, others do not, suggesting that the presence of certain keystone species may determine a reef’s ability to withstand change. On the other hand, some scientists argue that environmental factors, such as water temperature and nutrient levels, play a more significant role than species interactions. The ongoing debate highlights the complexity of coral reef dynamics and the need for further research to clarify the relative importance of biological and environmental influences.",
+  "questions": [
+   {
+    "ref": "R0319",
+    "prompt": "[Academic — Biology] Why does the author mention the arrival of lionfish in the Caribbean?",
+    "choices": [
+     "To demonstrate that species interactions matter more than temperature or nutrient levels",
+     "To illustrate how invasive species can initiate a chain of ecological effects",
+     "To show that native fish populations always recover from such disturbances",
+     "To argue that invasive lionfish are the single greatest threat facing Caribbean reefs"
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0320",
+    "prompt": "[Academic — Biology] According to the passage, all of the following are mentioned as factors influencing coral reef stability EXCEPT:",
+    "choices": [
+     "the presence of keystone species",
+     "environmental factors like water temperature",
+     "the genetic diversity of coral species",
+     "the introduction of invasive species"
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0321",
+    "prompt": "[Academic — Biology] The word 'composition' in the passage most nearly means:",
+    "choices": [
+     "the process by which something is gradually formed",
+     "the act of writing an essay or report",
+     "the makeup or arrangement of different species",
+     "an original piece of music written by a composer"
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0322",
+    "prompt": "[Academic — Biology] What can be inferred about the role of native grazers in coral reef ecosystems?",
+    "choices": [
+     "They primarily feed on coral rather than algae.",
+     "They help control algae growth, which supports coral health.",
+     "They are responsible for introducing invasive species.",
+     "They are unaffected by the presence of invasive species."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0323",
+    "prompt": "[Academic — Biology] What is the author's central claim about coral reef stability?",
+    "choices": [
+     "The arrival of invasive species such as the lionfish in the Caribbean is the single cause of the rapid shifts in species composition that some reefs display.",
+     "Coral reef stability is influenced by both biological and environmental factors, and the relative importance of each remains uncertain.",
+     "Water temperature and nutrient levels have been shown to matter more than species interactions, settling the question of what governs a reef's resilience.",
+     "Coral reefs are stable ecosystems whose remarkable diversity of marine life protects them from any lasting change in species composition."
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "The study of plate tectonics has revolutionized our understanding of Earth's geological processes. This theory explains the movement of Earth's lithospheric plates on the asthenosphere, leading to phenomena such as earthquakes, volcanic activity, and mountain formation. The concept of continental drift, initially proposed by Alfred Wegener, laid the groundwork for plate tectonics.\n\nDespite initial skepticism, evidence from seafloor spreading and fossil distribution supported the theory. Today, plate tectonics is fundamental to geology, providing insights into the dynamic nature of our planet and its history. It also helps predict geological events and understand past climate changes.",
+  "questions": [
+   {
+    "ref": "R0324",
+    "prompt": "[Academic — Geology] All of the following are true about plate tectonics EXCEPT:",
+    "choices": [
+     "It was initially met with skepticism.",
+     "It explains the movement of Earth's plates.",
+     "It is unrelated to climate change.",
+     "It helps predict geological events."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0325",
+    "prompt": "[Academic — Geology] According to the passage, what evidence supported the theory of plate tectonics?",
+    "choices": [
+     "Mountain formation and earthquakes",
+     "Seafloor spreading and fossil distribution",
+     "Volcanic activity and climate change",
+     "Continental drift and asthenosphere movement"
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0326",
+    "prompt": "[Academic — Geology] Why does the author mention Alfred Wegener in the passage?",
+    "choices": [
+     "To show he was the first to study earthquakes and volcanic activity",
+     "To argue against his theories, which seafloor evidence later refuted",
+     "To suggest he discovered plate tectonics and the asthenosphere",
+     "To credit him with the concept of continental drift"
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Club Flyer: The Green Earth Club invites you to our Spring Clean-Up event this Saturday. If you can spare an hour, join us at the campus lake at 10am. Supplies will be provided, space permitting. Please RSVP so we can plan accordingly. Volunteers may receive a small thank-you gift, assuming supplies last.",
+  "questions": [
+   {
+    "ref": "R0327",
+    "prompt": "[Daily Life — club flyer] What is implied about the thank-you gifts?",
+    "choices": [
+     "The gifts are very expensive.",
+     "Only club members get gifts.",
+     "Not every volunteer is guaranteed a gift.",
+     "Gifts will be mailed later."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0328",
+    "prompt": "[Daily Life — club flyer] Why does the flyer say supplies will be provided 'subject to availability'?",
+    "choices": [
+     "There may not be enough supplies for everyone.",
+     "Supplies will be given out only to volunteers who RSVP.",
+     "Volunteers are expected to bring their own gloves and bags.",
+     "Supplies can be picked up at the campus lake from 10am."
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "From: Professor Lin Subject: Meeting Request Hi Alex, Thank you for your email. I’m afraid I can’t meet this week due to conference travel. If you can, please send your questions by email and I’ll reply as soon as possible. Otherwise, I’m available for in-person meetings next Wednesday afternoon, space permitting. Let me know what works best for you. Best, Professor Lin",
+  "questions": [
+   {
+    "ref": "R0329",
+    "prompt": "[Daily Life — Email] What is Professor Lin suggesting by offering to answer questions by email?",
+    "choices": [
+     "She will not answer any questions until next Wednesday afternoon.",
+     "She would rather handle all of her advising by email than meet students in person.",
+     "She does not want to meet with Alex in person at any point.",
+     "She is unable to meet in person this week but wants to help promptly."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0330",
+    "prompt": "[Daily Life — Email] Why does Professor Lin add 'time permitting' to her offer for next Wednesday?",
+    "choices": [
+     "To indicate her schedule may already be full that afternoon.",
+     "To warn that she may have to travel again that week.",
+     "To show that meetings are only for certain students.",
+     "To suggest that any meeting will have to be short."
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "The theory of plate tectonics revolutionized geology by explaining the movement of Earth's lithospheric plates. These plates float on the semi-fluid asthenosphere and shift due to mantle convection. This movement causes earthquakes, volcanic activity, and the formation of mountain ranges. While the theory is widely accepted, some aspects, such as the exact mechanisms driving plate motion, remain under investigation.",
+  "questions": [
+   {
+    "ref": "R0331",
+    "prompt": "[Academic — Geology] In the passage, the word \"float\" is closest in meaning to",
+    "choices": [
+     "sink gradually into",
+     "rest upon and move across",
+     "drift on the surface of an ocean",
+     "stay motionless above"
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0332",
+    "prompt": "[Academic — Geology] What is the main idea of the passage?",
+    "choices": [
+     "Mantle convection has been proven to be the sole cause of plate motion.",
+     "Plate tectonics accounts for major geological activity, though parts of it are still being studied.",
+     "Earthquakes and volcanoes were unexplained until the asthenosphere was discovered.",
+     "Geologists disagree about whether Earth's plates move at all."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0333",
+    "prompt": "[Academic — Geology] According to the passage, all of the following are associated with plate tectonics EXCEPT:",
+    "choices": [
+     "The formation of mountain ranges over time",
+     "Complete understanding of plate motion",
+     "Volcanic activity along the plate boundaries",
+     "Earthquakes caused by shifting lithospheric plates"
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Notice: The university library will be closed for maintenance from 8 PM on Friday until 8 AM on Monday. During this period, online resources will remain accessible. We apologize for any inconvenience and appreciate your understanding.",
+  "questions": [
+   {
+    "ref": "R0334",
+    "prompt": "[Daily Life — Campus notice] What should students do if they need library resources during the closure?",
+    "choices": [
+     "Access online resources during the closure.",
+     "Wait until the library reopens on Monday.",
+     "Visit the library before 8 PM on Friday.",
+     "Contact the library staff for assistance."
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Subject: Group Study Room Reservations Hi all, If you can, please submit your group study room requests by Thursday evening. We’ll do our best to accommodate everyone, but space is limited, so not all requests can be guaranteed. If you don’t hear back by Friday noon, assume your request could not be fulfilled this week. Thanks for understanding! -Library Services",
+  "questions": [
+   {
+    "ref": "R0335",
+    "prompt": "[Daily Life — email from service dept] Why does the message include the phrase 'if you can'?",
+    "choices": [
+     "To suggest that submitting late requests is acceptable",
+     "To warn that late requests will be ignored",
+     "To indicate that requests after Thursday will be prioritized",
+     "To acknowledge that some students may have difficulty submitting by Thursday"
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Job Ad: Part-Time Barista We are looking for a friendly and reliable barista to join our team at Brewed Awakenings. The position is part-time, with flexible hours. Experience is preferred but not required. If you can work weekends, that’s a plus! Please apply by sending your resume to brewedawakenings@coffee.com. Interviews will be conducted on a rolling basis, so apply early to secure a spot. Best, Brewed Awakenings Team",
+  "questions": [
+   {
+    "ref": "R0336",
+    "prompt": "[Daily Life — job ad] Why does the ad mention 'apply early to secure a spot'?",
+    "choices": [
+     "To indicate that late applications will not be considered.",
+     "To encourage applicants to apply even without experience.",
+     "To imply that the job is very competitive.",
+     "To suggest that positions are limited."
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "[Academic — Psychology] Memory consolidation is a process by which temporary memories are transformed into a more permanent state. This process occurs during sleep, particularly in the REM stage. Research shows that sleep deprivation can severely impact this process, leading to difficulties in learning and memory retention. Interestingly, studies also suggest that naps can enhance memory consolidation, indicating that even short periods of sleep are beneficial for memory.",
+  "questions": [
+   {
+    "ref": "R0337",
+    "prompt": "[Academic — Psychology] What can be inferred about a student who stays awake all night studying before an exam?",
+    "choices": [
+     "The student would retain more if the material were reviewed during REM sleep.",
+     "The student's memories would stay temporary but be recalled more quickly.",
+     "A short nap afterward would erase what had been studied earlier.",
+     "The lost sleep may undercut retention of the material just studied."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0338",
+    "prompt": "[Academic — Psychology] As used in the passage, 'consolidation' is closest in meaning to",
+    "choices": [
+     "compression of something into a smaller space.",
+     "stabilization into a lasting form.",
+     "the merging of two organizations into one.",
+     "repeated review of material already learned."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0339",
+    "prompt": "[Academic — Psychology] According to the passage, what is the relationship between REM sleep and memory consolidation?",
+    "choices": [
+     "REM sleep is the stage in which temporary memories are first formed.",
+     "Consolidation begins only once REM sleep has ended.",
+     "Consolidation takes place during sleep and especially during REM.",
+     "REM sleep interrupts consolidation that began earlier in the night."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0340",
+    "prompt": "According to the passage, all of the following are true about memory consolidation EXCEPT:",
+    "choices": [
+     "It occurs during REM sleep.",
+     "Sleep deprivation affects it negatively.",
+     "It only happens during long sleep periods.",
+     "Naps can enhance it."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0341",
+    "prompt": "[Academic — Psychology] What is the main idea of the passage?",
+    "choices": [
+     "Sleep, including short periods of it, supports the process that makes memories durable.",
+     "REM sleep is the only stage in which learning can take place.",
+     "Naps are more effective than a full night of sleep for retaining information.",
+     "Sleep deprivation is the leading cause of poor academic performance."
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "In most cases, the process of photosynthesis in plants is straightforward: sunlight is absorbed by chlorophyll, which initiates a series of chemical reactions that ultimately convert carbon dioxide and water into glucose and oxygen. However, some desert plants have evolved an alternative pathway known as CAM photosynthesis, which allows them to conserve water by opening their stomata only at night. This adaptation, while beneficial in arid environments, comes at a cost; CAM plants typically grow more slowly than their counterparts that use the standard C3 pathway.\n\nParadoxically, although CAM photosynthesis is less efficient in terms of energy production, it enables survival in habitats where water is scarce. Many researchers believe that the trade-off between water conservation and growth rate is a key factor influencing the distribution of plant species in desert ecosystems. The evolution of CAM photosynthesis illustrates how environmental pressures can drive the development of specialized physiological mechanisms, even when those mechanisms are not optimal under all conditions.",
+  "questions": [
+   {
+    "ref": "R0342",
+    "prompt": "[Academic — Biology] Why does the author mention that CAM photosynthesis is 'less efficient in terms of energy production'?",
+    "choices": [
+     "To illustrate a drawback of the adaptation that is outweighed by its survival benefits.",
+     "To suggest that CAM plants outperform C3 plants in every habitat, since they lose far less water.",
+     "To argue that opening the stomata only at night would benefit plants in any environment at all.",
+     "To show that slow growth has confined CAM photosynthesis to a few unusual desert species."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0343",
+    "prompt": "[Academic — Biology] The word 'pathway' in the passage most nearly means:",
+    "choices": [
+     "A method of transportation between two places.",
+     "A series of biochemical steps or processes.",
+     "A road or track laid out for walking outdoors.",
+     "A scenic route winding through a forest reserve."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0344",
+    "prompt": "[Academic — Biology] What can be inferred about the distribution of CAM plants in desert ecosystems?",
+    "choices": [
+     "Their presence is influenced by the balance between water availability and growth rate.",
+     "They dominate all types of desert environments.",
+     "They are absent from regions with high rainfall.",
+     "They outcompete C3 plants in all conditions."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0345",
+    "prompt": "[Academic — Biology] What is the author's central claim about CAM photosynthesis in desert plants?",
+    "choices": [
+     "Because it produces energy more efficiently than the C3 pathway, it has become the dominant form of photosynthesis.",
+     "Opening the stomata at night lets CAM plants grow faster than C3 plants while using less water.",
+     "It is a specialized adaptation that trades growth rate for water conservation in arid environments.",
+     "It is limited to tropical rainforests, where dense shade rather than drought drove its evolution."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0346",
+    "prompt": "[Academic — Biology] All of the following are mentioned in the passage EXCEPT:",
+    "choices": [
+     "CAM photosynthesis is less efficient in energy production than C3 photosynthesis.",
+     "CAM plants are found in habitats where water is scarce.",
+     "CAM plants open their stomata only at night.",
+     "CAM plants require more sunlight than C3 plants."
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ }
+]

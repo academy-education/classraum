@@ -1,0 +1,870 @@
+[
+ {
+  "passage": "In most cases, photosynthesis is considered the primary process by which plants convert sunlight into chemical energy. However, some plants, such as certain parasitic species, have evolved to obtain nutrients from other organisms instead. This adaptation is thought to have arisen in response to environments where sunlight is scarce or competition for light is intense. For example, dodder plants lack significant chlorophyll and instead attach themselves to host plants, extracting water and nutrients.\n\nParadoxically, while parasitic plants benefit from this strategy, their dependence on hosts makes them vulnerable to changes in host populations. Many researchers argue that the evolution of parasitism in plants demonstrates both the flexibility and the limitations of plant adaptation. When host availability declines, parasitic plants often experience dramatic population decreases, which can, in turn, affect the broader ecosystem. Thus, the cause-effect relationship between host abundance and parasitic plant survival highlights the interconnectedness of ecological communities.",
+  "questions": [
+   {
+    "ref": "R0347",
+    "prompt": "[Academic — Biology] Why does the author mention dodder plants in the passage?",
+    "choices": [
+     "To show that photosynthesis has become unnecessary for plants growing in shade",
+     "To explain why parasitic plants always outcompete the hosts they attach to",
+     "To argue that all plants rely on hosts when light is scarce or contested",
+     "To illustrate a specific example of a parasitic plant adaptation"
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0348",
+    "prompt": "[Academic — Biology] The word 'extracting' in the passage most nearly means:",
+    "choices": [
+     "copying information",
+     "drawing out for nourishment",
+     "creating anew",
+     "removing by force"
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0349",
+    "prompt": "[Academic — Biology] What is the author's central claim about parasitic plants in the passage?",
+    "choices": [
+     "Most plants rely exclusively on photosynthesis for survival.",
+     "The evolution of parasitism in plants illustrates both adaptability and vulnerability in plant survival strategies.",
+     "Parasitic plants are not affected by changes in their environment.",
+     "Parasitic plants are more successful than photosynthetic plants in all environments."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0350",
+    "prompt": "[Academic — Biology] According to the passage, all of the following are mentioned as factors influencing the evolution of parasitic plants EXCEPT:",
+    "choices": [
+     "Soil nutrient depletion",
+     "Competition for light",
+     "Changes in host populations",
+     "Scarcity of sunlight"
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0351",
+    "prompt": "[Academic — Biology] What can be inferred about the relationship between parasitic plants and their hosts?",
+    "choices": [
+     "A decline in host populations can indirectly impact other species in the ecosystem.",
+     "Dodder plants damage their hosts so severely that the host populations cannot recover.",
+     "By drawing off water and nutrients, parasitic plants raise the numbers of the hosts they attach to.",
+     "Lacking chlorophyll, dodder can still live on its own in shaded ground."
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "From: Student Housing To: Residents Subject: Laundry Room Update Dear Residents, We’re updating the laundry room machines next week. If you can, please finish your laundry before Monday morning to avoid delays. Access may be limited during installation, and we apologize for any inconvenience. The new machines should be ready by Wednesday, assuming everything goes as planned. Thank you for your patience.",
+  "questions": [
+   {
+    "ref": "R0352",
+    "prompt": "[Daily Life — email] What does 'assuming everything goes as planned' suggest about the installation?",
+    "choices": [
+     "Residents will be able to use the machines throughout the installation.",
+     "There is a possibility the installation could be delayed.",
+     "The new machines may never be installed at all.",
+     "The installation is certain to be done by Wednesday."
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Plate tectonics theory has revolutionized our understanding of Earth's geology. In most cases, the movement of tectonic plates is gradual, resulting in the slow formation of mountains and ocean basins. However, some geological events, such as earthquakes and volcanic eruptions, occur suddenly and can have dramatic effects on the landscape. The cause-effect chain begins with the accumulation of stress along plate boundaries, which is eventually released in the form of seismic activity.\n\nMany geologists argue that the type of plate boundary—whether divergent, convergent, or transform—determines the nature of geological phenomena in a region. On the other hand, some researchers emphasize the role of local factors, such as rock composition and groundwater presence, in influencing the severity of these events. Paradoxically, areas with frequent minor earthquakes may experience less structural damage over time than regions with rare but powerful quakes, as the former can relieve built-up stress. Understanding these complex interactions is essential for improving earthquake prediction and disaster preparedness.",
+  "questions": [
+   {
+    "ref": "R0353",
+    "prompt": "[Academic — Geology] Why does the author mention that 'areas with frequent minor earthquakes may experience less structural damage over time'?",
+    "choices": [
+     "To illustrate a paradoxical effect of frequent minor seismic activity",
+     "To suggest that prediction is unnecessary in regions where small quakes are common",
+     "To contrast the damage done by volcanic eruptions with that done by earthquakes",
+     "To argue that earthquakes are beneficial wherever stress is released at a boundary"
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0354",
+    "prompt": "[Academic — Geology] According to the passage, all of the following are mentioned as influencing the severity of geological events EXCEPT:",
+    "choices": [
+     "the Earth's magnetic field",
+     "the type of plate boundary",
+     "the presence of groundwater",
+     "local rock composition"
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0355",
+    "prompt": "[Academic — Geology] What can be inferred about regions that experience frequent minor earthquakes?",
+    "choices": [
+     "They may be less likely to suffer severe structural damage from major earthquakes.",
+     "They accumulate more stress over time and therefore suffer greater damage than regions with rare quakes.",
+     "They lie far from any plate boundary and see little tectonic activity.",
+     "They face a heightened risk of catastrophic volcanic eruptions along the same boundary."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0356",
+    "prompt": "[Academic — Geology] What is the author's central claim about plate tectonics and geological events?",
+    "choices": [
+     "Minor earthquakes always cause more damage than major ones.",
+     "Earthquakes and volcanic eruptions can be completely predicted by studying plate boundaries.",
+     "The movement of tectonic plates and local factors together shape the frequency and severity of geological events.",
+     "All geological events are caused solely by the movement of tectonic plates."
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Dear students, Registration for spring courses opens next Monday. Be sure to check prerequisites and availability. Advisors are available for consultation. Don't miss the deadline!",
+  "questions": [
+   {
+    "ref": "R0357",
+    "prompt": "[Daily Life — Course-registration page] What is implied about the role of advisors?",
+    "choices": [
+     "They can help with course selection",
+     "They will register students",
+     "They approve course prerequisites",
+     "They set the registration deadline"
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Job Posting: Student Library Assistant The library is seeking a reliable student assistant for weekday afternoons. Duties include shelving books and helping patrons. If you can work at least two days per week, please apply by emailing your availability. Preference will be given to applicants with previous library experience, but all are welcome to apply. Applications received after Monday will not be considered.",
+  "questions": [
+   {
+    "ref": "R0358",
+    "prompt": "[Daily Life — Job Ad] What is implied by 'Preference will be given to applicants with previous library experience, but all are welcome to apply'?",
+    "choices": [
+     "Only experienced applicants will be hired",
+     "Applicants must have library experience",
+     "Applicants without experience still have a chance",
+     "No one without experience should apply"
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "[Academic — Biology] Photosynthesis is a process used by plants and other organisms to convert light energy into chemical energy. This energy is stored in the form of glucose, which is used by the plant for growth and development. The process occurs in chloroplasts, which contain chlorophyll.\n\nChlorophyll absorbs light most efficiently in the blue and red wavelengths. During photosynthesis, carbon dioxide and water are converted into glucose and oxygen. This process is crucial for life on Earth, as it provides the oxygen we breathe and forms the base of the food chain.",
+  "questions": [
+   {
+    "ref": "R0359",
+    "prompt": "What is the main idea of the passage?",
+    "choices": [
+     "Chloroplasts are the largest structures inside a plant cell.",
+     "The color of light reaching a plant has no effect on its growth.",
+     "Plants require more oxygen than they are able to produce.",
+     "Photosynthesis stores light energy as glucose and underpins life on Earth."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0360",
+    "prompt": "All of the following are mentioned in the passage EXCEPT:",
+    "choices": [
+     "Oxygen is a byproduct of photosynthesis.",
+     "Photosynthesis converts carbon dioxide into glucose.",
+     "Chlorophyll absorbs green light most efficiently.",
+     "Photosynthesis occurs in chloroplasts."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0361",
+    "prompt": "Which of the following can be inferred from the passage?",
+    "choices": [
+     "A plant kept in darkness would lack the glucose it needs for growth.",
+     "Only plants are capable of carrying out photosynthesis.",
+     "Chloroplasts begin producing chlorophyll whenever carbon dioxide is scarce.",
+     "Plants can take in glucose directly from the air around them."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0362",
+    "prompt": "In the passage, the word \"base\" is closest in meaning to",
+    "choices": [
+     "a site used by an organization as its headquarters",
+     "the lowest physical part of a plant",
+     "a substance that neutralizes an acid",
+     "the foundation"
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "In the late 19th century, Impressionism emerged as a revolutionary art movement in France, challenging traditional artistic norms. Artists such as Claude Monet and Edgar Degas focused on capturing the effects of light and movement, often painting en plein air, or outdoors.\n\nThis approach contrasted sharply with the detailed, historical scenes favored by the established Paris Salon. The Impressionists' use of vivid colors and loose brushwork initially faced harsh criticism, but they gradually gained acceptance and have since been celebrated for their innovative contributions to art.",
+  "questions": [
+   {
+    "ref": "R0363",
+    "prompt": "[Academic — Art History] According to the passage, which of the following is NOT true about Impressionism?",
+    "choices": [
+     "It focused on historical scenes.",
+     "It captured the effects of light and movement.",
+     "It was initially criticized by the Paris Salon.",
+     "It used vivid colors and loose brushwork."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0364",
+    "prompt": "[Academic — Art History] In the phrase \"a revolutionary art movement,\" the word \"movement\" is closest in meaning to",
+    "choices": [
+     "a change of position from one place to another",
+     "the act of travelling from one country to another",
+     "a self-contained section of a longer musical work",
+     "a shared trend pursued by a group of artists"
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0365",
+    "prompt": "[Academic — Art History] What is the main idea of the passage?",
+    "choices": [
+     "The Impressionists' vivid colors and loose brushwork mattered more to them than the effects of light and movement.",
+     "The Paris Salon lost its influence as soon as Impressionist works appeared.",
+     "Monet and Degas were the only painters to work outdoors in 19th-century France.",
+     "Impressionism broke with established French artistic conventions and was eventually celebrated for doing so."
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "In most cases, the process of photosynthesis in plants is considered a straightforward conversion of sunlight into chemical energy. However, some species have evolved alternative pathways that complicate this picture. For example, while the majority of plants use the C3 pathway, a subset known as C4 plants have developed a mechanism that minimizes water loss in hot climates. This adaptation is not merely a minor modification; it involves a suite of anatomical and biochemical changes.\n\nThe evolution of the C4 pathway is thought to be a response to declining atmospheric CO2 levels millions of years ago, which created selective pressure favoring more efficient carbon fixation. Paradoxically, although C4 plants are more efficient under certain conditions, they are less common globally than C3 plants. This is partly because the C4 pathway requires more energy input, making it advantageous only in specific environments. Thus, while many plants have retained the ancestral C3 pathway, the existence of C4 plants illustrates how environmental pressures can drive significant evolutionary innovation, even if such innovations are not universally adopted.",
+  "questions": [
+   {
+    "ref": "R0366",
+    "prompt": "[Academic — biology] What can be inferred about the relationship between environmental conditions and the prevalence of C4 plants?",
+    "choices": [
+     "C4 plants are globally less common than C3 plants because their pathway fixes carbon less efficiently.",
+     "C4 plants are spread evenly across climates, since the pathway arose from a worldwide fall in CO2 levels.",
+     "C4 plants are more likely to be found in environments where water conservation is critical.",
+     "C4 plants outnumber C3 plants everywhere, because their anatomical and biochemical changes are efficient."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0367",
+    "prompt": "[Academic — biology] What is the author's central claim in the passage?",
+    "choices": [
+     "Environmental pressures have led to the evolution of alternative photosynthetic pathways, but these innovations are not universally advantageous.",
+     "Photosynthesis works the same way in every plant, since it is simply the straightforward conversion of sunlight into chemical energy.",
+     "Because falling atmospheric carbon dioxide favored more efficient carbon fixation, plants everywhere are expected to shift to the C4 pathway.",
+     "Because the C4 pathway limits water loss and fixes carbon more efficiently, C4 plants have become more widespread than those using the older C3 pathway."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0368",
+    "prompt": "[Academic — biology] According to the passage, all of the following are mentioned as reasons for the evolution or persistence of different photosynthetic pathways EXCEPT:",
+    "choices": [
+     "The need to minimize water loss in hot climates",
+     "The availability of soil nutrients",
+     "The energy requirements of the C4 pathway",
+     "Declining atmospheric CO2 levels"
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0369",
+    "prompt": "[Academic — biology] Why does the author mention that the C4 pathway 'requires more energy input'?",
+    "choices": [
+     "To illustrate that every plant lineage faced the same fall in atmospheric CO2 levels",
+     "To explain why C4 plants are not more widespread despite their efficiency",
+     "To argue that the energy cost of a pathway has no bearing on whether it spreads",
+     "To suggest that C4 plants outperform C3 plants in every environment they occupy"
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "[Daily Life — Email] From: Student Services To: All Students Subject: Library Renovation Dear Students, Please be informed that the library will be closed for renovation from March 1 to March 15. During this period, you can access online resources or visit the temporary study area in Building B. We apologize for any inconvenience. Best, Student Services",
+  "questions": [
+   {
+    "ref": "R0370",
+    "prompt": "What should students do if they need a place to study during the library closure?",
+    "choices": [
+     "Use only the online resources during the closure",
+     "Visit the temporary study area in Building B",
+     "Wait for the library to reopen in the middle of March",
+     "Study at home until renovations finish"
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "In the late 19th century, Impressionism challenged traditional art forms. Artists like Monet and Renoir focused on capturing light and movement, often painting en plein air. Critics initially dismissed their work as unfinished and chaotic. However, as the public began to appreciate the spontaneity and vivid colors, the movement gained acceptance, influencing future art styles significantly.",
+  "questions": [
+   {
+    "ref": "R0371",
+    "prompt": "[Academic — Art History] According to the passage, what was the critics' initial objection to this work?",
+    "choices": [
+     "It ignored the effects of light on the landscape.",
+     "Its colors were too muted for the subject.",
+     "It copied traditional academic forms too closely.",
+     "It struck them as incomplete and disorderly."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0372",
+    "prompt": "[Academic — Art History] What is the main idea of the passage?",
+    "choices": [
+     "Monet and Renoir were the only successful Impressionists.",
+     "Impressionism focused on historical scenes.",
+     "Critics always supported Impressionism from the start.",
+     "Impressionism was initially rejected but later influenced future art styles."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0373",
+    "prompt": "[Academic — Art History] The passage mentions all of the following EXCEPT",
+    "choices": [
+     "an initially negative critical reception.",
+     "financial hardship among the painters.",
+     "an influence on later artistic styles.",
+     "painting outdoors."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0374",
+    "prompt": "[Academic — Art History] In the phrase 'the movement gained acceptance,' the word 'movement' is closest in meaning to",
+    "choices": [
+     "a shift in an object's position over time.",
+     "the physical motion of a subject.",
+     "an organized political campaign.",
+     "a group of artists sharing an approach."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0375",
+    "prompt": "[Academic — Art History] What can be inferred about the change in the movement's standing?",
+    "choices": [
+     "Critics were the first to recognize the value of the loose, vivid painting.",
+     "Acceptance arrived only after the leading painters had died.",
+     "A shift in public taste came before its lasting influence was evident.",
+     "The artists altered their loose technique in order to satisfy hostile critics."
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Social Post: Heads up! The campus gym will be open for extended hours during finals week, but only if enough students sign up in advance. If you can’t commit to a time slot, you may not be able to use the gym during those hours. Check the sign-up sheet for details. Thanks for understanding!",
+  "questions": [
+   {
+    "ref": "R0376",
+    "prompt": "[Daily Life — social-media post] Why does the post say 'only if enough students sign up in advance'?",
+    "choices": [
+     "The gym already keeps extended hours all term, not only during finals",
+     "The gym will not extend hours unless there is enough interest",
+     "Any student may use the gym during the extended hours without signing up",
+     "The gym will stay closed for the whole of finals week"
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0377",
+    "prompt": "[Daily Life — social-media post] What should a student do if they want to use the gym during extended hours?",
+    "choices": [
+     "Sign up for a time slot in advance",
+     "Just show up during extended hours",
+     "Wait to see if the gym is open",
+     "Ask the gym staff for special access"
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "The Renaissance, spanning the 14th to the 17th century, was a period of great cultural and artistic growth in Europe. This era saw the revival of classical learning and wisdom, significantly influencing art, architecture, and literature. Artists like Leonardo da Vinci and Michelangelo exemplified the Renaissance's ideals through their innovative techniques and humanistic themes.\n\nThe invention of the printing press by Johannes Gutenberg around 1440 played a crucial role in disseminating knowledge, making literature more accessible. This cultural movement laid the foundation for the modern age, bridging the gap between the Middle Ages and contemporary history.",
+  "questions": [
+   {
+    "ref": "R0378",
+    "prompt": "[Academic — Art History] All of the following are mentioned as influences of the Renaissance EXCEPT:",
+    "choices": [
+     "Literature",
+     "Science",
+     "Architecture",
+     "Art"
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0379",
+    "prompt": "[Academic — Art History] Why does the author mention Leonardo da Vinci and Michelangelo?",
+    "choices": [
+     "To highlight their role in modern art",
+     "To suggest they invented the printing press",
+     "To argue they were the only artists of the Renaissance",
+     "To illustrate artists who embodied Renaissance ideals"
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0380",
+    "prompt": "[Academic — Art History] According to the passage, which of the following is true about the printing press?",
+    "choices": [
+     "It was first used in the 17th century.",
+     "It was primarily used by Michelangelo.",
+     "It made art more accessible.",
+     "It was invented by Johannes Gutenberg."
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Course Registration Update: Spanish 201 If you can, please register for Spanish 201 by noon on Friday to secure your spot. Space is limited, and enrollment will be closed once the class is full. If you’re on the waitlist, you’ll be notified by email if a spot opens up. Thank you for your understanding.",
+  "questions": [
+   {
+    "ref": "R0381",
+    "prompt": "[Daily Life — course-registration page] Why does the update use the phrase 'if you can' in its request?",
+    "choices": [
+     "To suggest that late registration is preferred",
+     "To indicate that only some students are eligible",
+     "To acknowledge that not everyone may be able to register by the deadline",
+     "Because registration is optional for this class"
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0382",
+    "prompt": "[Daily Life — course-registration page] What does the registration update imply for students who register after the class is full?",
+    "choices": [
+     "They will be placed on a waitlist",
+     "They can attend the class without registering",
+     "They will be given priority next semester",
+     "They will be automatically enrolled"
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "From: Prof. Lin To: Alex Kim Subject: Office Hours Hi Alex, Thanks for your email. I’m afraid I won’t be able to meet this Friday as you requested, since I have a conference. However, if you’re available, I can see you briefly on Thursday afternoon. If that doesn’t work, let me know and we’ll try to find another time, though my schedule is quite full next week. Best, Prof. Lin",
+  "questions": [
+   {
+    "ref": "R0383",
+    "prompt": "[Daily Life — email] What can be inferred about Prof. Lin’s schedule next week?",
+    "choices": [
+     "Prof. Lin would rather avoid meeting Alex and is offering Thursday only out of politeness.",
+     "Prof. Lin has an open calendar next week once the conference has finished.",
+     "Prof. Lin will not be teaching next week and so has few commitments.",
+     "Prof. Lin will be very busy and may have limited availability."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0384",
+    "prompt": "[Daily Life — email] Why does Prof. Lin use the phrase 'I’m afraid' in her message?",
+    "choices": [
+     "To indicate she forgot about the meeting.",
+     "To suggest Alex should not ask again.",
+     "To express anger at Alex.",
+     "To politely refuse Alex's request."
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Hey team, just a quick reminder: our project presentation is scheduled for Wednesday at 2 PM. Make sure your slides are ready and rehearsed. Let me know if you have any questions. Cheers, Sarah.",
+  "questions": [
+   {
+    "ref": "R0385",
+    "prompt": "[Daily Life — Email from team member] What is Sarah's role in the team based on the email?",
+    "choices": [
+     "She is likely the team leader.",
+     "She is the project sponsor.",
+     "She is a new team member.",
+     "She is the audience for the presentation."
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Subject: Lost and Found Dear Students, A set of keys was found in the library on Tuesday evening. If you believe they are yours, please visit the front desk to describe them. Unclaimed items will be sent to Campus Security after Friday, so please check before then if you think you lost something. Thank you.",
+  "questions": [
+   {
+    "ref": "R0386",
+    "prompt": "[Daily Life — Email] What is implied by 'Unclaimed items will be sent to Campus Security after Friday'?",
+    "choices": [
+     "The keys will be thrown away after Friday",
+     "Students have until Friday to claim their keys",
+     "Campus Security will return the keys to the owner",
+     "The library will keep the keys indefinitely"
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "The study of economic systems reveals significant differences in how societies organize production and distribution. Capitalism, for example, is characterized by private ownership and market-driven economies. In contrast, socialism emphasizes collective ownership and planned economies. However, most modern economies are mixed, incorporating elements of both systems. This blend allows for flexibility and adaptation to changing circumstances. Many economists argue that mixed economies provide a balance between efficiency and equity. On the other hand, critics suggest that such systems can lead to inefficiencies and bureaucratic complexities.\n\nThe debate over the best economic system is ongoing, with proponents of each system highlighting different strengths and weaknesses. For instance, capitalist economies are often praised for their innovation and growth potential, while socialist systems are lauded for their focus on social welfare and equality. The global economic landscape continues to evolve, influenced by technological advancements and shifting political ideologies. As countries navigate these changes, the challenge remains to find an economic system that maximizes benefits for all citizens while minimizing drawbacks. The exploration of economic systems provides valuable insights into the diverse ways societies strive to meet the needs of their populations.",
+  "questions": [
+   {
+    "ref": "R0387",
+    "prompt": "[Academic — Economics] Why does the author mention technological advancements?",
+    "choices": [
+     "To show that technology has no impact on socialism",
+     "To illustrate a factor influencing economic systems",
+     "To prove that technology solves all economic problems",
+     "To argue that technology is the main driver of capitalism"
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0388",
+    "prompt": "[Academic — Economics] According to the passage, all of the following are mentioned EXCEPT:",
+    "choices": [
+     "Capitalism is characterized by private ownership.",
+     "Economic systems are influenced by technological advancements.",
+     "Mixed economies are universally accepted as the best system.",
+     "Socialism focuses on social welfare and equality."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0389",
+    "prompt": "[Academic — Economics] What can be inferred about the future of economic systems according to the passage?",
+    "choices": [
+     "Economic systems will continue to evolve.",
+     "Mixed economies have reached their final form.",
+     "Capitalism will displace mixed economies.",
+     "Mixed systems will soon disappear."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0390",
+    "prompt": "[Academic — Economics] In the passage, what does the word 'equity' most nearly mean?",
+    "choices": [
+     "Fairness",
+     "Profitability",
+     "Legal rights",
+     "Stock ownership"
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Coral reefs are among the most biodiverse marine ecosystems, supporting roughly a quarter of all ocean species despite covering less than one percent of the seafloor. Their architecture is built by tiny animals called polyps, which secrete calcium carbonate skeletons over thousands of years. The polyps themselves get most of their energy from photosynthetic algae called zooxanthellae that live inside their tissues — a partnership called symbiosis. When ocean temperatures rise even slightly above the polyps' tolerance, the algae are expelled.\n\nThe coral turns white, a phenomenon called bleaching, and although the polyps can survive briefly without their algal partners, prolonged bleaching usually leads to colony death. Recovery is possible if temperatures fall quickly enough, but the recovery window narrows as bleaching events occur more frequently. Recent decades have seen mass bleaching events on a scale never previously documented, raising urgent questions about whether reef ecosystems can persist under projected warming.",
+  "questions": [
+   {
+    "ref": "R0391",
+    "prompt": "[Academic — Biology] What is the purpose of mentioning 'mass bleaching events' in recent decades?",
+    "choices": [
+     "To emphasize the unprecedented scale of recent events",
+     "To show that bleaching had never occurred before recent decades",
+     "To suggest that reef ecosystems are expanding despite the warming",
+     "To highlight how quickly reefs recover once temperatures fall"
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0392",
+    "prompt": "[Academic — Biology] What is the purpose of mentioning 'mass bleaching events' in the passage?",
+    "choices": [
+     "To show how polyps slowly build the reef's structure",
+     "To explain how the algae inside the polyps make food",
+     "To describe a natural recovery process",
+     "To highlight the severity of the issue"
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0393",
+    "prompt": "[Academic — Biology] According to the passage, all of the following are true of coral reefs EXCEPT:",
+    "choices": [
+     "Polyps obtain energy mainly through hunting small fish.",
+     "Their structure is built by polyps over long timescales.",
+     "They contain about 25% of marine species.",
+     "Recovery from bleaching depends on rapid cooling."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0394",
+    "prompt": "[Academic — Biology] According to the passage, what happens when ocean temperatures rise?",
+    "choices": [
+     "Polyps secrete more calcium carbonate.",
+     "Zooxanthellae are expelled.",
+     "Reef biodiversity increases.",
+     "Polyps become more active."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0395",
+    "prompt": "[Academic — Biology] Why does the author mention 'mass bleaching events on a scale never previously documented'?",
+    "choices": [
+     "To argue that reefs are expanding into waters that were once too cool",
+     "To suggest that bleaching was unknown before the recent decades described",
+     "To imply that polyps have begun adapting to temperatures above their tolerance",
+     "To highlight the increasing frequency and severity of bleaching"
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0396",
+    "prompt": "[Academic — Biology] What is the main idea of the passage?",
+    "choices": [
+     "Coral reefs are resilient ecosystems that can recover from bleaching.",
+     "Coral reefs are primarily built by algae and other microorganisms.",
+     "Coral reefs are threatened by rising ocean temperatures, leading to bleaching.",
+     "Coral reefs cover a large portion of the seafloor and support marine life."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0397",
+    "prompt": "[Academic — Biology] In the passage, the word 'symbiosis' refers to:",
+    "choices": [
+     "A parasitic relationship",
+     "A competitive relationship",
+     "A mutually beneficial relationship",
+     "An independent relationship"
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0398",
+    "prompt": "[Academic — Biology] According to the passage, what happens when ocean temperatures rise above the polyps' tolerance?",
+    "choices": [
+     "The coral reefs expand rapidly.",
+     "The algae are expelled from the polyps.",
+     "The polyps increase their energy production.",
+     "The polyps begin to reproduce more quickly."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0399",
+    "prompt": "[Academic — Biology] In the passage, what does the word 'symbiosis' mean?",
+    "choices": [
+     "A parasitic relationship harmful to the host",
+     "An independent relationship requiring no partner",
+     "A mutually beneficial relationship",
+     "A competitive relationship over scarce resources"
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0400",
+    "prompt": "[Academic — Biology] What does the word 'symbiosis' mean in the context of the passage?",
+    "choices": [
+     "A contest between species for limited space",
+     "An organism that lives entirely alone",
+     "A partnership in which one side is harmed",
+     "A mutual relationship between species"
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0401",
+    "prompt": "[Academic — Biology] What is the purpose of mentioning 'mass bleaching events on a scale never previously documented'?",
+    "choices": [
+     "To argue that coral reefs are no longer important.",
+     "To emphasize the severity of recent changes.",
+     "To suggest that bleaching is a new phenomenon.",
+     "To highlight the resilience of coral reefs."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0402",
+    "prompt": "[Academic — Biology] The word 'symbiosis' in the passage is closest in meaning to:",
+    "choices": [
+     "complete independence",
+     "mutual benefit",
+     "open hostility",
+     "direct rivalry"
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Job Opportunity: Student Library Assistant Looking for a part-time job on campus? The library is hiring student assistants for evening shifts. If you can work at least two evenings per week, apply by Sunday night. Preference will be given to students with previous library experience, but all are welcome to apply. Positions will be filled as applications are reviewed, so early submission is encouraged.",
+  "questions": [
+   {
+    "ref": "R0403",
+    "prompt": "[Daily Life — job ad] What can be inferred about the hiring process from the phrase 'preference will be given to students with previous library experience, but all are welcome to apply'?",
+    "choices": [
+     "Applicants must already have library experience in order to be considered",
+     "Applicants without experience still have a chance of being hired",
+     "The job is open only to upperclassmen this semester",
+     "Only students who have worked in a library before will be considered"
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0404",
+    "prompt": "[Daily Life — job ad] What is the main reason applicants are encouraged to submit their applications early?",
+    "choices": [
+     "The library will only review early applications",
+     "Applicants need to start work immediately",
+     "Late applications will not be considered at all",
+     "Positions may be filled before the deadline"
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "We are hiring part-time baristas! Flexible hours, no experience required. Apply at the café or online.",
+  "questions": [
+   {
+    "ref": "R0405",
+    "prompt": "[Daily Life — Job ad] What should interested applicants do?",
+    "choices": [
+     "Call the manager",
+     "Apply at the café or online",
+     "Submit a resume by mail",
+     "Attend an interview immediately"
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Plate tectonics theory revolutionized geology by explaining the movement of Earth's lithospheric plates. In most cases, the boundaries between these plates are sites of significant geological activity, such as earthquakes and volcanic eruptions. However, some plate boundaries, paradoxically, remain relatively stable for millions of years, despite the immense forces at work.\n\nThe cause-effect chain underlying this stability involves the balance of forces: when the resistance along a boundary matches the driving force, movement is minimized. On the other hand, when this balance is disrupted, even a slight change can trigger sudden and dramatic geological events. Many geologists now believe that understanding these stable boundaries is crucial for predicting future seismic hazards, as they may store energy that is eventually released in powerful earthquakes.",
+  "questions": [
+   {
+    "ref": "R0406",
+    "prompt": "[Academic — Geology] What can be inferred about the importance of studying stable plate boundaries?",
+    "choices": [
+     "They tell geologists nothing useful about where future earthquakes are likely to occur.",
+     "They matter less to geologists than actively moving boundaries.",
+     "They are unlikely to produce earthquakes because the forces along them stay balanced.",
+     "They may help scientists predict where major earthquakes could occur in the future."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0407",
+    "prompt": "[Academic — Geology] All of the following are mentioned in the passage EXCEPT:",
+    "choices": [
+     "Stable boundaries are immune to geological activity.",
+     "Plate tectonics theory explains the movement of lithospheric plates.",
+     "Sudden changes can disrupt the balance at plate boundaries.",
+     "Stable plate boundaries can store energy for long periods."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0408",
+    "prompt": "[Academic — Geology] What is the author's central claim about plate boundaries?",
+    "choices": [
+     "All plate boundaries are constantly active and unstable, which is why earthquakes and volcanic eruptions occur along every one of them without exception.",
+     "Plate tectonics theory explains how plates move but cannot account for boundaries that hardly move at all.",
+     "Stable plate boundaries never experience earthquakes, because the resistance along them permanently matches the immense forces that drive the plates.",
+     "Some plate boundaries remain stable due to a balance of forces, but this stability can be disrupted, leading to significant geological events."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0409",
+    "prompt": "[Academic — Geology] Why does the author mention 'the balance of forces' along plate boundaries?",
+    "choices": [
+     "To show that resistance is always greater than driving force",
+     "To argue that all plate boundaries are equally active",
+     "To suggest that balance of forces has no effect on geological events",
+     "To explain the underlying reason for the long-term stability of some plate boundaries"
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Subject: Study Group for Chemistry 102 Hi everyone, If you can, please join our weekly study group for Chemistry 102 in the library’s second-floor lounge. We meet Mondays at 6 p.m., but space is limited, so it’s first come, first served. If you’re running late, message me and I’ll try to save you a spot, assuming there’s still room. Snacks provided! Hope to see you there. Best, Maya",
+  "questions": [
+   {
+    "ref": "R0410",
+    "prompt": "[Daily Life — email] Why does Maya mention 'assuming there’s still room'?",
+    "choices": [
+     "To indicate the group is always full",
+     "To suggest latecomers will be turned away at the door",
+     "To encourage everyone to arrive late",
+     "To politely warn that she cannot guarantee a spot for latecomers"
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Student Government Social Media Post We’re planning a movie night next Friday, if we can fit it in. If you’d like to suggest a film, comment below by Wednesday. We’ll choose a movie based on popularity, but please note, we may not be able to accommodate all requests. Final details will be posted Thursday, assuming the event goes ahead.",
+  "questions": [
+   {
+    "ref": "R0411",
+    "prompt": "[Daily Life — Social Media Post] Why does the post say 'assuming the event goes ahead'?",
+    "choices": [
+     "Because the event may be canceled if there is not enough space.",
+     "Because an outdoor movie night could be called off if the weather turns bad.",
+     "Because the organizers have not yet settled on which Friday to hold it.",
+     "Because the film will not be chosen until the comments have been counted."
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "The study of coral reefs, often referred to as the \"rainforests of the sea,\" reveals their critical role in marine ecosystems. These structures are formed by colonies of coral polyps held together by calcium carbonate. Coral reefs support a vast array of marine life, providing food and shelter for numerous species.\n\nHowever, they are highly sensitive to environmental changes, such as temperature fluctuations and pollution. Coral bleaching, a phenomenon where corals lose their vibrant colors due to stress, is a growing concern. Efforts to protect these ecosystems focus on reducing carbon emissions and promoting sustainable fishing practices.",
+  "questions": [
+   {
+    "ref": "R0412",
+    "prompt": "[Academic — Biology] What is the main idea of the passage?",
+    "choices": [
+     "Coral reefs are vital to marine ecosystems but are threatened by environmental changes.",
+     "Sustainable fishing has proven more damaging to reefs than rising water temperatures do.",
+     "Coral reefs consist mainly of calcium carbonate laid down by colonies of polyps over time.",
+     "Coral bleaching is the one serious danger that reef ecosystems now face."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0413",
+    "prompt": "[Academic — Biology] All of the following are true of coral reefs EXCEPT:",
+    "choices": [
+     "They thrive in polluted waters.",
+     "They provide shelter for marine life.",
+     "They are formed by coral polyps.",
+     "They are sensitive to temperature changes."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0414",
+    "prompt": "[Academic — Biology] Why does the author mention \"rainforests of the sea\" in the passage?",
+    "choices": [
+     "To suggest that coral reefs are similar to rainforests in size",
+     "To emphasize the biodiversity of coral reefs",
+     "To indicate that coral reefs are located in tropical regions",
+     "To imply that coral reefs are endangered like rainforests"
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ }
+]
