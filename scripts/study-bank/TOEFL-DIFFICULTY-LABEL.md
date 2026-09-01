@@ -148,3 +148,63 @@ the items are sandbox-verified. It is renamed `author_reported_difficulty`
 and flagged `difficulty_ungraded`, so a future audit does not count these
 as already graded and skip them. Verified after the write: 0 rows still
 claim a grade, 125 flagged ungraded.
+
+
+## The full regrade: 821 items, four independent graders
+
+Applied 2026-09-01. Every item graded blind, stored label withheld and
+asserted absent from each batch file.
+
+    411  hard -> easy
+    347  hard -> medium
+     40  hard -> hard      <- the label was right for 5% of them
+     12  medium -> easy
+     11  medium -> medium
+
+    before   0 easy / 23 medium / 798 hard
+    after  423 easy / 358 medium /  40 hard
+
+The four graders never saw each other's work and returned 51/45/3.8,
+48/47/4.4, 56/39/5.3 and 51/43/6.0 percent. That agreement across
+independent readers is what makes this safe to act on; a single grader
+at 71% easy would not have been.
+
+**Effect on the thing that was broken.** A student routed to the easier
+module can now be served 781 items at their level. Before the regrade
+the bank believed it had 23.
+
+## Provenance is recorded, because two labels here have already lied
+
+Every row now carries `grader_difficulty`, `difficulty_graded_at`,
+`difficulty_graded_by`, `difficulty_before` and the grader's one-line
+reason. The bank has already held one label that was an insert default
+and another that was an author's self-report wearing a grader's name; a
+third that did not say where it came from would not have been an
+improvement.
+
+## What the graders found that difficulty does not capture
+
+Recorded because it is worth more than the regrade and none of it was
+asked for:
+
+- **Two items quote text the passage does not contain.** The prompts ask
+  about "time permitting" and "subject to availability" where the
+  passage says "space permitting". Those are defects, not hard items.
+- **Several have two defensible answers** — R0240 (both options meet the
+  passage's own definition of cognitive dissonance), R0494, R0225,
+  R0433, R0100, R0016, R0022.
+- **A large part of this section is not TOEFL Reading.** The
+  multiple-choice half of batches 10-12 is Daily Life functional text —
+  40-90 word notices with one located fact, closer to TOEIC Part 7 than
+  to a 700-word academic passage. Not one MC item in those three files
+  reached `hard`, and the top of the distribution is carried entirely by
+  Complete-the-Words, which is a spelling/production task that does not
+  appear on TOEFL Reading at all.
+- **Heavy topic repetition** — cognitive dissonance in ~9 passages,
+  Impressionism in ~8, coral reefs 5, plate tectonics 5. Every grader
+  noted it independently and all three said the same thing: a candidate
+  meeting the fourth Impressionism passage answers its EXCEPT item from
+  the previous three.
+
+The last two are about what this section IS, not how it is labelled, and
+neither is fixed by regrading.
