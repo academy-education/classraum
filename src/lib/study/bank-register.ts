@@ -304,7 +304,7 @@ export const WORK: WorkItem[] = [
     doc: 'scripts/study-bank/RW5-ATTACK-RESULT.md',
   },
   {
-    id: 'A19',
+    id: 'A20',
     title: 'Enforce the never-together constraint in assembly, not in prose',
     size: 'one constraint plus its test',
     state: 'open',

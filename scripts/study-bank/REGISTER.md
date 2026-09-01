@@ -132,15 +132,15 @@ a model agreeing with itself.
 
 ### Dependencies — read this before picking anything up
 
-**A18 → A19**  
-A18 is *Repair the two latent reading-worlds defects before the variant rotation reaches them* (2 items across 2 sets, mine). Until it lands, **A19** (Enforce the never-together constraint in assembly, not in prose, one constraint plus its test) cannot start.
+**A18 → A20**  
+A18 is *Repair the two latent reading-worlds defects before the variant rotation reaches them* (2 items across 2 sets, mine). Until it lands, **A20** (Enforce the never-together constraint in assembly, not in prose, one constraint plus its test) cannot start.
 
 ## 2. Open work — mine, no approval needed
 
 | id | what | size | blocked by | why |
 |---|---|---|---|---|
 | A18 | Repair the two latent reading-worlds defects before the variant rotation reaches them | 2 items across 2 sets | — | Both were found by the RW5 blind attack and both are LATENT on the form as shipped, which is exactly why they are easy to leave. I01-5 and I02-5 carry a word-for-word identical option set differing only in one noun ("case" vs "finding"); the shown variants and keys differ, so solving one does not hand you the other today, but the two must never sit on the same form. I07-3 names a proper noun ("the Rochefort sheets") where its three siblings use common-noun descriptions — on the shipped form that option is a DISTRACTOR, so the register slip points AWAY from the key. THE SECOND ONE IS A TIME BOMB rather than a curiosity: under the symmetric-worlds design the shown variant is chosen by seeded RNG after text freeze, so W3 will be drawn eventually, and on that draw the slip points at the key. _Repair means re-authoring the two option sets, not archiving the items — the sets pass the attack at -19.8 aggregate with every position below chance._ |
-| A19 | Enforce the never-together constraint in assembly, not in prose | one constraint plus its test | **A18** | RW5 recorded that the near-clone pair I01-5 / I02-5 "should never sit on the same form". Nothing enforces it: assemble.ts has no notion of a mutually-exclusive pair, so the rule lives only in a result document. CLAUDE.md already names this failure mode — a comment asserting an invariant is not evidence the invariant holds — and the register exists because prose does not survive a skim. The constraint is cheap to express and the pair is known. _Ordering matters: if A18 re-authors the pair so they are no longer near-clones, this constraint may have nothing left to exclude. Do A18 first and re-check whether A19 is still needed rather than building a mechanism for a defect that has been removed._ |
+| A20 | Enforce the never-together constraint in assembly, not in prose | one constraint plus its test | **A18** | RW5 recorded that the near-clone pair I01-5 / I02-5 "should never sit on the same form". Nothing enforces it: assemble.ts has no notion of a mutually-exclusive pair, so the rule lives only in a result document. CLAUDE.md already names this failure mode — a comment asserting an invariant is not evidence the invariant holds — and the register exists because prose does not survive a skim. The constraint is cheap to express and the pair is known. _Ordering matters: if A18 re-authors the pair so they are no longer near-clones, this constraint may have nothing left to exclude. Do A18 first and re-check whether A19 is still needed rather than building a mechanism for a defect that has been removed._ |
 
 ## 3. Open work — needs you
 
