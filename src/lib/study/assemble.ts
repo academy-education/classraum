@@ -101,10 +101,16 @@ export function shuffleDrawnChoices<T extends { id: string; item: Question }>(
 const QUESTION_TYPES = [
   'multiple_choice', 'numeric_entry', 'multi_select', 'three_choice', 'quant_comparison',
   'fill_in_blanks', 'arrange_words', 'speaking_repeat', 'speaking_interview',
-  'writing_email', 'writing_discussion',
+  'writing_email', 'writing_discussion', 'essay', 'essay_choice',
 ] as const
 export type _AllQuestionTypesListed =
   QuestionType extends (typeof QUESTION_TYPES)[number] ? true : never
+
+/** Types with no answer key. A student's response is graded, not matched. */
+const FREE_RESPONSE = new Set<string>([
+  'speaking_repeat', 'speaking_interview',
+  'writing_email', 'writing_discussion', 'essay', 'essay_choice',
+])
 
 const DIFFICULTIES = ['easy', 'medium', 'hard'] as const
 
@@ -202,7 +208,21 @@ function readBankItem(item: unknown): Question | null {
   if (typeof prompt !== 'string' || !prompt) return null
   if (!isQuestionType(type)) return null
   if (!isDifficulty(difficulty)) return null
-  if (typeof correctAnswer !== 'string') return null
+  /*
+   * Free response has no key, and requiring a string here silently made
+   * every SSAT Writing Sample and ISEE Essay item undrawable: they were
+   * banked with correct_answer null, readBankItem returned null, and the
+   * section threw "no verified items" for a student who selected it.
+   *
+   * The bank's own convention for free response — set by the 182 live
+   * TOEFL writing_email / writing_discussion rows — is an EMPTY STRING,
+   * not null. The 12 essay rows have been corrected to match, so this
+   * stays a string check for every type; null is accepted only for the
+   * free-response types, as tolerance for rows banked before the
+   * convention was enforced.
+   */
+  if (typeof correctAnswer !== 'string' && !(correctAnswer === null && FREE_RESPONSE.has(type))) return null
+  const key = typeof correctAnswer === 'string' ? correctAnswer : ''
   if (!Array.isArray(choices) || !choices.every((c: unknown) => typeof c === 'string')) return null
 
   return {
@@ -211,7 +231,7 @@ function readBankItem(item: unknown): Question | null {
     prompt,
     type,
     choices,
-    correct_answer: correctAnswer,
+    correct_answer: key,
     correct_answers: asStrings(b.get('correct_answers')),
     acceptable_answers: asStrings(b.get('acceptable_answers')),
     difficulty,

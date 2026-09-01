@@ -68,7 +68,7 @@ function buildRows() {
         prompt: 'Choose ONE of the two prompts below and write your response. You have 25 minutes.',
         passage: `[Essay]\n${g.essay.prompt}\n\n[Story Starter]\n${g.story.prompt}`,
         // EMPTY ARRAY, NOT null — see the note at the bottom of this file.
-        choices: [], correct_answer: null, correct_answers: null, acceptable_answers: null,
+        choices: [], correct_answer: '', correct_answers: null, acceptable_answers: null,
         passageGroupId: null, difficulty: 'medium',
         explanation: [g.essay.guidance, g.story.guidance].filter(Boolean).join('\n\n'),
         distractor_rationales: [],
@@ -83,7 +83,7 @@ function buildRows() {
       item: {
         type: 'essay', blanks: null, graphic: null,
         prompt: p.prompt, passage: null,
-        choices: [], correct_answer: null, correct_answers: null, acceptable_answers: null,
+        choices: [], correct_answer: '', correct_answers: null, acceptable_answers: null,
         passageGroupId: null, difficulty: 'medium',
         explanation: p.guidance ?? '',
         distractor_rationales: [],

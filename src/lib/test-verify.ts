@@ -31,6 +31,14 @@ export type QuestionType =
   // type-aware handling.
   | 'fill_in_blanks' | 'arrange_words' | 'speaking_repeat' | 'speaking_interview'
   | 'writing_email' | 'writing_discussion'
+  // SSAT Writing Sample and ISEE Essay. Free response like the two
+  // above, but distinct: 'essay_choice' delivers TWO prompts of which
+  // the student picks one (SSAT offers an essay claim and a story
+  // starter as one delivered question), 'essay' delivers one (ISEE).
+  // Both were banked before they were listed here, which made every
+  // essay item undrawable — readBankItem rejected the unknown type and
+  // the draw reported "no verified items" for the whole section.
+  | 'essay' | 'essay_choice'
 
 /** Set of types whose grading + rendering bypass the standard MC
  *  pipeline. Verifier skips them (no comparable choices), choice-count
