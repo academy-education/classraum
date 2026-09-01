@@ -52,11 +52,33 @@ const key=[]
 batches.forEach((b,bi)=>{
   const out=[]
   for(const g of b){
-    const passage=String(g[0].item?.passage??'').slice(0,2200)
+/*
+     * NO TRUNCATION. This sliced at 2,200 characters, and on 2026-09-01
+     * that put 82 listening transcripts (10.2%, longest 3,560) in front
+     * of a grader with their endings cut off. The grader then reported
+     * four items as defective because content was ABSENT — and three of
+     * the four were absent only from MY FILE. Beetles, human
+     * intervention and the Maya/Chinese comparison are all present in
+     * the stored passages.
+     *
+     * Asking a reader to judge what a passage does not contain, having
+     * first removed part of it, is the same error as reading a truncated
+     * warning list and reporting the count from it. Reading was
+     * unaffected — its longest passage is 1,384 characters — which is
+     * why that regrade stands.
+     */
+    const passage=String(g[0].item?.passage??'')
     out.push({
       passage: passage || null,
       questions: g.map(r=>{
-        const ref=`R${String(key.length+1).padStart(4,'0')}`
+        /* Section-scoped prefix. Reading and listening were both built with a
+   bare "R", so R0001 names a different item in each key file. Nothing
+   crossed over — the applier globs `<section>-graded*` and reads
+   `<section>.key.json` — but two files that disagree about what R0001
+   means is one careless glob away from writing 800 difficulties onto
+   the wrong items. Existing R-prefixed keys are left alone; changing
+   them now would orphan grades already returned. */
+const ref=`${SECTION[0].toUpperCase()}${String(key.length+1).padStart(4,'0')}`
         key.push({ref, id:r.id, cohort:r.cohort, stored:r.difficulty})
         return { ref, prompt:r.item?.prompt, choices:r.item?.choices ?? [], type:r.item?.type }
       }),

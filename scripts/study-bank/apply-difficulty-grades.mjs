@@ -27,10 +27,43 @@ const DIR='scripts/study-bank/difficulty-grade'
 const BANDS=new Set(['easy','medium','hard'])
 
 const key=JSON.parse(readFileSync(`${DIR}/${SECTION}.key.json`,'utf8'))
+
+/*
+ * Refuse to write if the key's items are not actually in this section.
+ * The ref namespace was shared between reading and listening (both used
+ * a bare "R"), so a graded file from the wrong section would map onto
+ * real refs and write real difficulties onto the wrong 800 items. The
+ * filename glob already separates them; this checks the DATA rather
+ * than trusting the filename.
+ */
+{
+  const sample = key.slice(0, 25).map(k => k.id)
+  const { data: check } = await db.from('study_item_bank')
+    .select('id,section').in('id', sample)
+  const wrong = (check ?? []).filter(r => r.section !== SECTION)
+  if (wrong.length) {
+    console.error(`REFUSED: ${wrong.length}/${sample.length} sampled key items are not in section '${SECTION}'.`)
+    console.error('  The key file and the section argument disagree — check which grades you are applying.')
+    process.exit(1)
+  }
+}
 const byRef=new Map(key.map(k=>[k.ref,k]))
 
+/*
+ * A file named `<section>-graded-retrunc.json` OVERRIDES the ordinary
+ * batches for the refs it contains, and is loaded last.
+ *
+ * 82 listening transcripts were longer than the 2,200-character slice
+ * the batch builder used, so those items were graded against text with
+ * the ending cut off. Their re-grade against the full transcript must
+ * win, and a "graded twice" refusal would block exactly the correction
+ * it should accept. Every other double-grade is still refused.
+ */
+const files=readdirSync(DIR).filter(f=>f.startsWith(`${SECTION}-graded`)&&f.endsWith('.json'))
+const ordinary=files.filter(f=>!f.includes('retrunc'))
+const overrides=files.filter(f=>f.includes('retrunc'))
 const grades=new Map()
-for(const f of readdirSync(DIR).filter(f=>f.startsWith(`${SECTION}-graded`)&&f.endsWith('.json'))){
+for(const f of ordinary){
   for(const g of JSON.parse(readFileSync(`${DIR}/${f}`,'utf8'))){
     if(!byRef.has(g.ref)){ console.error(`REFUSED: ${f} grades ${g.ref}, which is not in the key`); process.exit(1) }
     if(!BANDS.has(g.difficulty)){ console.error(`REFUSED: ${g.ref} graded '${g.difficulty}'`); process.exit(1) }
@@ -38,6 +71,16 @@ for(const f of readdirSync(DIR).filter(f=>f.startsWith(`${SECTION}-graded`)&&f.e
     grades.set(g.ref,g)
   }
 }
+let overridden=0
+for(const f of overrides){
+  for(const g of JSON.parse(readFileSync(`${DIR}/${f}`,'utf8'))){
+    if(!byRef.has(g.ref)){ console.error(`REFUSED: ${f} grades ${g.ref}, which is not in the key`); process.exit(1) }
+    if(!BANDS.has(g.difficulty)){ console.error(`REFUSED: ${g.ref} graded '${g.difficulty}'`); process.exit(1) }
+    if(grades.has(g.ref)) overridden++
+    grades.set(g.ref,{...g, regraded_full_transcript:true})
+  }
+}
+if(overrides.length) console.log(`${overridden} ref(s) re-graded against the FULL transcript, overriding the truncated pass`)
 const missing=key.filter(k=>!grades.has(k.ref))
 console.log(`${key.length} items keyed, ${grades.size} graded, ${missing.length} missing`)
 if(missing.length){
@@ -75,6 +118,7 @@ for(const k of key){
   vm.difficulty_graded_by='blind subagent grade, stored label withheld'
   vm.difficulty_before=k.stored
   vm.difficulty_why=g.why ?? null
+  if(g.regraded_full_transcript) vm.difficulty_regraded_full_transcript=true
   const { error } = await db.from('study_item_bank').update({ difficulty:g.difficulty, verify_meta:vm }).eq('id',k.id)
   if(error){ console.error('ERR',k.id,error.message); process.exit(1) }
   n++
