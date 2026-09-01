@@ -262,3 +262,52 @@ never at risk, which is the only reason this did not require redoing
 1,623 of 2,186 TOEFL items now carry a measured difficulty with full
 provenance. Speaking and writing are free-response and route differently;
 they are not blocked on this and are left ungraded rather than guessed.
+
+
+## WITHDRAWN: "a large part of this section is not TOEFL"
+
+Every grader said some version of it. Reading graders called Daily Life
+notices and Complete-the-Words "not TOEFL Reading"; a listening grader
+said "214 of 254 items are Choose-a-Response, which is not a TOEFL
+Listening task type — that is a TOEIC Part 2 / Duolingo format".
+
+**They were judging against the wrong exam, and so was my brief.**
+
+This bank targets **TOEFL Essentials**, not the classic iBT. The repo
+says so in the places that decide it:
+
+    bank-ledger.ts   "Reply-style listening tasks are compared to the
+                      ETS Essentials..."
+    bank-targets.ts  "ETS TOEFL Essentials reply items score 62.2%
+                      blind. 45-55% is harder than official."
+    toefl-adaptive   "Reading - 48 delivered / 35 scored / 30 cards...
+                      Module 1 is 1 CtW + 9 Daily + 9 Academic"
+
+Daily Life, Choose a Response and Complete-the-Words are not intruders;
+they are the blueprint. The graders' central structural claim is false,
+and I relayed it to Andy as a finding before checking it — the third
+unverified grader claim I have passed on today.
+
+## Which puts a caveat on the regrade itself
+
+My grading briefs said "anchor to the real exam: TOEFL Reading/Listening
+is for university admission". That is iBT framing, and iBT is a harder
+test than Essentials. Graders anchored to too high a ceiling will
+over-call `easy`.
+
+What that does and does not damage:
+
+- **Relative ordering is unaffected.** Every grader ranked items against
+  the same anchor, so the ordering within the bank holds.
+- **Absolute bands may be shifted one notch toward easy.** The 56% easy
+  in listening and 52% in reading are probably too generous for
+  Essentials.
+- **It is still a large improvement on what it replaced**, which was a
+  literal insert default, and the adaptivity it feeds is relative: the
+  easy route draws easy+medium, the hard route medium+hard, and both now
+  have real pools.
+
+Recorded rather than re-run. Re-grading 1,623 items to move a boundary
+one notch is not worth it before a human has confirmed the boundary is
+in the wrong place — that is the same "measure before acting on the
+backlog" rule that stopped the SAT maths hub rewrite.
