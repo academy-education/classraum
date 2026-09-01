@@ -1,0 +1,861 @@
+[
+ {
+  "passage": "Transcript: Okay, let's start with the cell membrane, because everything else today depends on it. Now, a lot of you probably picture the membrane as a kind of wall — solid, keeping the bad stuff out. But that's not quite right. What researchers describe instead is something called the fluid mosaic model. Picture a double layer of fat molecules, phospholipids, and floating around in that layer are proteins, drifting almost like icebergs in a slow sea. So it's fluid, it moves. And here's the key idea: the membrane is selective. It doesn't just block or allow everything. Small molecules like oxygen slip through on their own, but larger things — sugars, ions — need those floating proteins to act as gates or pumps. Some of those pumps even burn energy to move things against the flow, which, by the way, we'll come back to next week. One quick aside: this same basic design shows up in bacteria, in plants, in you — it's ancient. So when you leave here, don't think 'wall.' Think of a busy, shifting border checkpoint that decides, molecule by molecule, what gets across.",
+  "questions": [
+   {
+    "ref": "R0001",
+    "prompt": "[Academic Talk — Biology] What can be inferred about the energy-burning pumps the professor mentions?",
+    "choices": [
+     "They are found only in ancient bacteria.",
+     "They move small molecules like oxygen through the membrane.",
+     "They will be covered in more detail in a later class.",
+     "They replace the phospholipid layer entirely."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0002",
+    "prompt": "[Academic Talk — Biology] Why does the professor mention bacteria and plants?",
+    "choices": [
+     "To argue that the membrane design is very old and widely shared.",
+     "To introduce next week's topic on energy-burning pumps.",
+     "To explain why plants do not need a cell membrane.",
+     "To show that bacteria have a different kind of membrane."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0003",
+    "prompt": "[Academic Talk — Biology] According to the professor, how does oxygen cross the membrane?",
+    "choices": [
+     "It cannot get through the membrane without a gate.",
+     "It is pumped across by the floating proteins that burn energy.",
+     "It rides across attached to sugars and ions.",
+     "It passes through on its own because it is a small molecule."
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Transcript: So today, plate tectonics — arguably the single biggest idea in all of geology. Here's the core of it: Earth's outer shell isn't one solid piece. It's cracked, like the shell of a hard-boiled egg you've rolled on the counter, into maybe a dozen big slabs we call plates. And these plates are moving — slowly, only a few centimeters a year, about the rate your fingernails grow. Now where plates meet, that's where the action is. They can pull apart, they can grind past each other, or they can collide. When two collide, one can dive under the other, and over millions of years, that's how you build mountain ranges — the Himalayas are still rising today because India is still pushing north into Asia. Here's something students often find surprising: this idea was ridiculed when Alfred Wegener first proposed continental drift back in 1912. He had no mechanism, no explanation for how continents could plow through solid rock. It took decades, and new evidence from the ocean floor, before the theory really took hold in the 1960s. So the lesson isn't just about rocks — it's about how science sometimes needs time to catch up with a good idea.",
+  "questions": [
+   {
+    "ref": "R0004",
+    "prompt": "[Academic Talk — Geology] What can be inferred about why Wegener's idea was initially ridiculed?",
+    "choices": [
+     "He proposed continental drift only after ocean-floor evidence had appeared.",
+     "His estimate of the drift rate was far too fast for a few centimeters a year.",
+     "He argued the outer shell was one solid piece rather than a dozen plates.",
+     "He could not explain the mechanism that moved the continents."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0005",
+    "prompt": "[Academic Talk — Geology] Why does the professor bring up Alfred Wegener?",
+    "choices": [
+     "To explain how mountain ranges like the Himalayas form.",
+     "To prove that continental drift was disproven in the 1960s.",
+     "To credit Wegener with discovering the ocean-floor evidence.",
+     "To show that a good scientific idea can take time to be accepted."
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Transcript: Let's talk about photosynthesis, and I want to push back on a phrase you've probably all heard: that plants 'make food from sunlight.' It's close, but it hides what's really going on. What plants actually do is capture light energy and lock it away as chemical energy — in the bonds of sugar molecules. Think of it as charging a battery. Inside the leaf, in structures called chloroplasts, the green pigment chlorophyll grabs sunlight. That energy is used to split water and, together with carbon dioxide pulled from the air, to build glucose. And here's a detail people forget: oxygen, the thing we breathe, is basically a waste product of this. The plant doesn't want it; it lets it go. Now, one thing to keep straight — and this trips people up every year — the sugar isn't the energy itself; it's storage. The energy gets released later, when the plant, or the animal that eats the plant, breaks that sugar back down. So photosynthesis and respiration are really two halves of one loop. Get that loop straight in your head, and half of this course suddenly makes sense.",
+  "questions": [
+   {
+    "ref": "R0006",
+    "prompt": "[Academic Talk — Biology] Why does the professor compare photosynthesis to charging a battery?",
+    "choices": [
+     "To emphasize that a leaf takes in light far faster than it uses it.",
+     "To show that plants draw on an electrical charge held in the chloroplast.",
+     "To stress that energy is stored now and released later.",
+     "To explain why the pigment inside the chloroplast is green rather than red."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0007",
+    "prompt": "[Academic Talk — Biology] What can be inferred about the relationship between photosynthesis and respiration?",
+    "choices": [
+     "Both processes give off oxygen as a waste product.",
+     "They are separate processes that never feed into each other.",
+     "Respiration builds the sugar molecules that photosynthesis later breaks down.",
+     "Respiration releases the energy that photosynthesis stored in sugar."
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Transcript: Animal migration — when we say an animal migrates, we mean a regular, back-and-forth journey, usually tied to the seasons. And the big question researchers keep circling is: why go to all that trouble? The short answer is resources. Food and breeding sites shift with the seasons, so animals move to follow them. An Arctic tern, for instance, chases summer from pole to pole — it sees more daylight in a year than almost any creature on Earth. But here's what I find genuinely mysterious: how do they find their way? And the answer is, they use several tools at once. Some navigate by the sun, some by the stars, and some — this still amazes me — can actually sense Earth's magnetic field, like a built-in compass. Now, a common misconception: people assume the young always follow the adults to learn the route. Sometimes that's true. But in some species, young birds raised in total isolation, who've never seen the journey, still set off in the right direction at the right time. That points to something inherited, written into them. So migration sits right at this fascinating crossroads of instinct and environment.",
+  "questions": [
+   {
+    "ref": "R0008",
+    "prompt": "[Academic Talk — Biology] What can be inferred from the example of young birds raised in isolation?",
+    "choices": [
+     "Migration routes are learned entirely by following experienced adults on the first trip.",
+     "At least part of migratory behavior is inherited rather than taught.",
+     "Young birds cannot yet sense the magnetic field and must navigate by the stars.",
+     "Birds raised in isolation always set off in the wrong direction."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0009",
+    "prompt": "[Academic Talk — Biology] According to the professor, what is notable about the Arctic tern?",
+    "choices": [
+     "It navigates only by Earth's magnetic field.",
+     "It sees more daylight in a year than almost any other creature.",
+     "Its young cannot survive without following the adults.",
+     "It never migrates farther than a single region."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0010",
+    "prompt": "[Academic Talk — Biology] Why does the professor say migration sits at a crossroads of instinct and environment?",
+    "choices": [
+     "Because instinct and environmental cues pull migrating animals in opposite directions.",
+     "Because young birds learn the route only by following experienced adults on their first trip.",
+     "Because animals set out only when seasonal shortages of food and breeding sites force them to.",
+     "Because the journey depends both on inherited drives and on external conditions and cues."
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Transcript: The water cycle. Now, the phrase makes it sound simple — water goes up, water comes down — but I want you to appreciate one profound thing about it: there is no new water. The water you drank this morning is the same water, the very same molecules, that dinosaurs once drank. It just keeps cycling. So how does it move? Heat from the sun evaporates water from oceans and lakes; it rises as invisible vapor. Up high, where it's cold, that vapor condenses into tiny droplets — that's cloud formation. When those droplets grow heavy enough, they fall: rain, snow. That's precipitation. Then the water flows over land, into rivers, back to the sea, or it soaks down into the ground. Here's a point students underestimate: a huge amount is stored, sometimes for thousands of years, in places we don't see — deep underground, or locked in glaciers. The atmosphere itself, believe it or not, holds only a tiny fraction at any moment. So the cycle isn't a neat little loop; it's a system with fast parts and incredibly slow parts, all running at once.",
+  "questions": [
+   {
+    "ref": "R0011",
+    "prompt": "[Academic Talk — Earth Science] Why does the professor mention that dinosaurs drank the same water?",
+    "choices": [
+     "To illustrate that water is recycled and no new water is made.",
+     "To argue that the water cycle moved much faster in the age of the dinosaurs.",
+     "To explain how glaciers came to store water long ago.",
+     "To show that the atmosphere holds most of Earth's water."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0012",
+    "prompt": "[Academic Talk — Earth Science] What can be inferred about water stored in glaciers and underground?",
+    "choices": [
+     "It can remain out of active circulation for very long periods.",
+     "It moves through the cycle just as quickly as atmospheric water.",
+     "It makes up only a tiny fraction of Earth's total water.",
+     "It represents the fast-moving part of the water cycle."
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Transcript: Let's get into volcanoes, and I want to clear up a common assumption first — that all volcanoes erupt the same violent way, shooting lava and ash sky-high. Actually, eruption style varies enormously, and the main reason comes down to the magma itself, specifically how thick, how viscous, it is. Think about it this way: runny magma, low in silica, lets gas bubble out gently. You get those slow rivers of lava you've seen in Hawaii — dramatic, but you can practically outwalk them. Now, thick, sticky magma is a different story. Gas gets trapped, pressure builds and builds, and when it finally gives way, it's an explosion — think Mount St. Helens. So it's really about whether the gas can escape or not. One more thing, and this matters for public safety: volcanoes usually give warning signs before a big eruption. Small earthquakes swarm underneath as magma pushes upward; the ground may actually bulge outward. So volcanologists monitor these signals closely. It's not a perfect science — we can't name the exact day — but it's a lot better than being caught completely by surprise.",
+  "questions": [
+   {
+    "ref": "R0013",
+    "prompt": "[Academic Talk — Geology] What can be inferred about the prediction of volcanic eruptions?",
+    "choices": [
+     "Prediction is impossible because eruptions give no signals.",
+     "Only Hawaiian-style volcanoes can be monitored.",
+     "Monitoring gives useful warning even though the exact timing is uncertain.",
+     "Scientists can pinpoint the exact day an eruption will occur."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0014",
+    "prompt": "[Academic Talk — Geology] According to the professor, why does thick, sticky magma produce explosive eruptions?",
+    "choices": [
+     "Because thick magma carries no dissolved gas, so nothing can bubble out slowly.",
+     "Because gas gets trapped and pressure builds until it violently releases.",
+     "Because it is low in silica and flows too quickly to cool.",
+     "Because it forms the slow rivers of lava seen in Hawaii."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0015",
+    "prompt": "[Academic Talk — Geology] Why does the professor describe earthquake swarms and bulging ground?",
+    "choices": [
+     "To explain the warning signs volcanologists use to anticipate eruptions.",
+     "To argue that even the largest eruptions strike with no detectable warning at all.",
+     "To describe how runny lava flows slowly down the slopes in Hawaii.",
+     "To show that thick, sticky magma is the variety lowest in silica content."
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Transcript: Genetics. Let's start with what a gene actually is: a stretch of DNA that carries the instructions for building a particular protein. And proteins, in turn, do most of the work in your body. Now, the classic picture, the one from Mendel and his pea plants, is beautifully simple — one gene, two versions, dominant and recessive, and you get tidy ratios in the offspring. And for some traits, that really does hold. But I have to complicate it, because the tidy version misleads people. Most traits you actually care about — height, say, or risk of certain diseases — aren't controlled by one gene. They're influenced by many genes acting together, and, crucially, by the environment. Take height: your genes set a kind of range, a potential. But nutrition during childhood determines where in that range you land. Identical twins, same DNA exactly, can end up noticeably different heights if one was better nourished. So please, resist the phrase 'a gene for' this or that. Genes load the dice; they rarely, by themselves, decide the outcome.",
+  "questions": [
+   {
+    "ref": "R0016",
+    "prompt": "[Academic Talk — Biology] Why does the professor mention identical twins?",
+    "choices": [
+     "To prove that DNA has no effect on height.",
+     "To argue that twins always end up exactly the same height.",
+     "To show that environment can shape outcomes even when DNA is identical.",
+     "To illustrate Mendel's dominant and recessive ratios."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0017",
+    "prompt": "[Academic Talk — Biology] What does the professor mean by saying 'genes load the dice'?",
+    "choices": [
+     "Genes shift the odds toward certain outcomes without deciding them alone.",
+     "Each trait is decided by a single dominant gene, exactly as in Mendel's pea plants.",
+     "The outcome is essentially random, since identical twins can end up at different heights.",
+     "Genes matter only for simple traits; height is set entirely by childhood nutrition."
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Transcript: Okay, so today I want to talk about the Impressionists, and I want you to set aside the idea that they were just, you know, painters of pretty gardens. What was actually radical about them was a shift in what a painting was supposed to be for. Before them, the studio was king. You'd sketch outside, sure, but the real picture got built indoors, layer by layer, smoothed down until the brushstrokes disappeared. The Impressionists basically inverted that. What researchers of the period found is that they treated the finished-looking, blended surface as almost a lie about how we actually see. So Monet, Pissarro, they'd haul their paints outdoors and try to get the whole thing down in one session, chasing a particular quality of light before it changed. That's why you get those loose, visible dabs of color — not sloppiness, but a record of speed. And here's an aside: this only became practical because paint started being sold in metal tubes, so you could carry it. Now, the critics hated it at first. The very name 'Impressionism' was an insult — a reviewer sneering that these were mere impressions, not real paintings. But that's exactly the point. They weren't after the permanent thing; they were after the moment.",
+  "questions": [
+   {
+    "ref": "R0018",
+    "prompt": "[Academic Talk — Art History] What can be inferred about the origin of the term 'Impressionism'?",
+    "choices": [
+     "It was chosen by the painters themselves as a proud label.",
+     "It began as a critic's insult that captured what the movement valued.",
+     "It referred to the metal tubes the painters carried.",
+     "It was coined decades after the movement had ended."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0019",
+    "prompt": "[Academic Talk — Art History] What is the professor's main point about Impressionist painting?",
+    "choices": [
+     "The Impressionists were the first painters ever to take their work outdoors, since no one had sketched outside before.",
+     "The Impressionists gave up color for tonal drawing, since a blended surface demanded it.",
+     "The Impressionists reorganized their practice around capturing fleeting light rather than finishing in the studio.",
+     "The Impressionists painted mainly to record historical events as accurately as a document would."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0020",
+    "prompt": "[Academic Talk — Art History] Why does the professor mention that paint began to be sold in metal tubes?",
+    "choices": [
+     "To argue that studio painting was more expensive than outdoor work.",
+     "To explain what made painting outdoors in one session practical.",
+     "To show that the Impressionists invented a new kind of paint.",
+     "To explain why the Impressionists preferred darker colors."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0021",
+    "prompt": "[Academic Talk — Art History] According to the professor, why did the Impressionists leave visible brushstrokes on their canvases?",
+    "choices": [
+     "They wanted their canvases to look like permanent historical records.",
+     "The visible strokes recorded the speed of painting a scene quickly.",
+     "They had not learned the studio method of blending strokes away.",
+     "Paint sold in metal tubes was too stiff to blend smoothly outdoors."
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Transcript: Let's talk about forgetting, because I think most of you have the wrong model of it in your heads. The intuitive picture is that a memory is like a file, and forgetting is like deleting the file — it's just gone. But that's often not what's happening. A lot of the time, the memory is still in there; you just can't get to it. Think of the tip-of-the-tongue state: you know you know the word, you can feel its shape, maybe its first letter, but you can't pull it up. That's not a deleted file. That's a retrieval failure. And what researchers found is that the right cue can suddenly hand it back to you — someone says a related word and boom, there it is. So a big chunk of forgetting is really about access, not storage. Now, here's the twist that surprises people: forgetting isn't necessarily a bug. If you remembered every parking spot you'd ever used, today's spot would be buried under a thousand old ones. So some forgetting actually helps you by clearing out the outdated stuff. There's a cost, of course — the very cue-dependence that helps you can also mislead you, which is partly why eyewitness memory is so unreliable. But the headline is this: don't assume that what you can't recall is gone.",
+  "questions": [
+   {
+    "ref": "R0022",
+    "prompt": "[Academic Talk — Psychology] What does the professor imply is a downside of relying on cues to recall memories?",
+    "choices": [
+     "Cues can distort recall, contributing to unreliable eyewitness memory.",
+     "Using a cue erases the original memory trace, so a recalled word cannot be found again.",
+     "Cues are effective only for people whose forgetting comes from actual damage to storage.",
+     "Depending on cues prevents new memories from forming, so old parking spots crowd out today's."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0023",
+    "prompt": "[Academic Talk — Psychology] What is the professor's main point about forgetting?",
+    "choices": [
+     "Forgetting happens only in people with damaged brains.",
+     "Forgetting can be completely prevented by paying closer attention.",
+     "Forgetting is often a retrieval problem rather than a loss of the memory itself.",
+     "Forgetting is simply the permanent erasure of stored memories."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0024",
+    "prompt": "[Academic Talk — Psychology] Why does the professor bring up the tip-of-the-tongue state?",
+    "choices": [
+     "To argue that eyewitness testimony is reliable when cued.",
+     "To prove that a forgotten memory has been deleted for good.",
+     "To argue that words are stored far less durably in the brain than pictures.",
+     "To show an example where a memory exists but cannot be accessed."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0025",
+    "prompt": "[Academic Talk — Psychology] According to the professor, how can forgetting be beneficial?",
+    "choices": [
+     "It keeps the tip-of-the-tongue state from happening when you need a word fast.",
+     "It clears out outdated information so current information isn't buried.",
+     "It makes eyewitness memories more reliable as time passes.",
+     "It permanently strengthens the memories that are left after the rest fade."
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Transcript: All right, classical conditioning. Everybody's heard 'Pavlov's dogs,' and everybody thinks they know it — bell, dog, drool, done. But I want to slow that down, because the interesting part is what the animal is actually learning. So Pavlov's dogs naturally salivated to food; no learning needed there, that's a reflex. Then he started ringing a bell right before the food, over and over. And eventually the dogs salivated to the bell alone, with no food in sight. Now the lazy summary is 'the dog learned to drool at the bell.' But what researchers came to understand is subtler: the dog learned that the bell predicts food. The bell became a signal. And here's the key detail people miss — the timing and the reliability matter enormously. If the bell sometimes comes after the food, or only predicts it half the time, the conditioning is weak or doesn't take. The animal isn't just pairing two things that happen close together; it's tracking which cue actually forecasts the outcome. One aside worth flagging: this is not the same as an animal learning that pressing a lever earns a treat — that's a different process, where behavior is shaped by its consequences. Classical conditioning is about an involuntary response getting hooked to a new trigger.",
+  "questions": [
+   {
+    "ref": "R0026",
+    "prompt": "[Academic Talk — Psychology] Why does the professor mention an animal learning to press a lever for a treat?",
+    "choices": [
+     "To argue that treats work better than bells as signals.",
+     "To show that Pavlov also studied lever-pressing.",
+     "To give another example of classical conditioning.",
+     "To contrast it as a different process from classical conditioning."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0027",
+    "prompt": "[Academic Talk — Psychology] What does the professor emphasize as a key detail that people often miss about conditioning?",
+    "choices": [
+     "That the conditioning only takes hold when the animal is hungry enough to want the food it is offered.",
+     "That the strength of the response depends on how loud the bell is rather than on what follows it.",
+     "That the food has to be visible at the same moment the bell rings or nothing gets paired at all.",
+     "That the reliability and timing of the signal strongly affect whether conditioning takes hold."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0028",
+    "prompt": "[Academic Talk — Psychology] What is the professor's main point about classical conditioning?",
+    "choices": [
+     "Classical conditioning works only with food and never with other stimuli.",
+     "An animal learns a reward will follow whenever it performs an action.",
+     "Classical conditioning requires the animal to consciously decide to respond.",
+     "A neutral signal comes to trigger a reflexive response by reliably predicting something meaningful."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0029",
+    "prompt": "[Academic Talk — Psychology] According to the professor, why do the dogs salivate to the bell alone?",
+    "choices": [
+     "Because the bell has come to predict that food is arriving.",
+     "Because pressing the bell earns them a treat.",
+     "Because salivating to a bell is a natural reflex requiring no learning.",
+     "Because the food and bell happen at random, unrelated times."
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Transcript: So when we talk about Roman architecture, people picture columns, and think, well, the Greeks did columns first, so what's new here? And that's fair — the Romans borrowed the Greek vocabulary of columns and pediments. But here's where they broke away: the Romans were, above all, engineers. Their real contribution was space — big, enclosed, usable interior space — and they got it through two things: concrete and the arch. Greek buildings were essentially post-and-beam; you span a gap with a straight stone lintel, and stone is weak in tension, so your gaps stay small and your interiors are cluttered with columns. The arch changes the game. An arch channels weight outward and downward along a curve, turning that tension problem into compression, which stone and concrete handle beautifully. Now stack arches, extend one into a tunnel, and you get a vault; rotate it and you get a dome. What researchers point to as the showcase is the Pantheon — a huge unbroken domed interior, no forest of columns, lit by a single opening at the top. And the concrete mattered too: they could pour it into molds, so shape was no longer limited by what you could carve. The takeaway: the Greeks gave Rome the look, but Rome invented the room.",
+  "questions": [
+   {
+    "ref": "R0030",
+    "prompt": "[Academic Talk — Architecture] According to the professor, why did Greek post-and-beam construction limit interior space?",
+    "choices": [
+     "Because stone is weak in tension, so lintels could only span small gaps.",
+     "Because Greek temples were built mostly of wood rather than stone.",
+     "Because Greek architects preferred open interiors and avoided inner columns.",
+     "Because the Greeks had not yet learned to quarry stone in large enough blocks."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0031",
+    "prompt": "[Academic Talk — Architecture] Why does the professor single out the Pantheon?",
+    "choices": [
+     "Because it relied on post-and-beam construction rather than arches.",
+     "Because it was built entirely from carved stone blocks.",
+     "Because it showcases a huge domed interior free of interior columns.",
+     "Because it is the oldest surviving Greek temple."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0032",
+    "prompt": "[Academic Talk — Architecture] How does the professor explain why the arch is structurally advantageous?",
+    "choices": [
+     "It removes the weight of the roof entirely, so the walls carry no load at all.",
+     "It lets an interior be poured from concrete alone, with no stone used anywhere.",
+     "It removes the need for supporting walls, so no columns or piers are required.",
+     "It turns a tension problem into compression, which stone handles well."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0033",
+    "prompt": "[Academic Talk — Architecture] What is the professor's main point about Roman architecture?",
+    "choices": [
+     "The Romans copied Greek temples without changing anything.",
+     "The Romans avoided the arch because it was structurally unreliable.",
+     "The Romans' lasting achievement was engineering with concrete and the arch to enclose large public spaces.",
+     "The Romans built mainly small private homes rather than public buildings."
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Transcript: Let's tackle the word 'Renaissance' itself, because it's a little misleading. It means 'rebirth,' and it carries this image of a light switching on after a thousand dark years — suddenly art, suddenly science, suddenly genius. I want to push back on that a bit. What historians increasingly emphasize is continuity. The medieval period wasn't a blank; monasteries had been copying classical texts for centuries, and universities existed well before Petrarch. So what actually changed? Partly it was emphasis. Renaissance thinkers put the human being at the center of inquiry — hence 'humanism' — studying classical works not just for religious lessons but as models of how to live and reason and write. And here's a practical accelerant people underrate: the printing press. Once you can print a text instead of copying it by hand, ideas spread faster and cheaper, and a scholar in one city can argue with one in another within months, not decades. There's an aside I'll flag — the movement started in the wealthy Italian city-states, and that's not an accident; trade produced the surplus wealth that paid for artists and libraries. So yes, something real shifted. But think of it less as a switch flipping and more as a slow change in what people found worth paying attention to.",
+  "questions": [
+   {
+    "ref": "R0034",
+    "prompt": "[Academic Talk — History] Why does the professor point out that monasteries copied classical texts and universities existed before Petrarch?",
+    "choices": [
+     "To support the claim that the Renaissance built on existing medieval foundations.",
+     "To show that classical texts were unavailable until the Renaissance.",
+     "To prove that the Middle Ages produced no original thought.",
+     "To argue that Petrarch personally founded the first universities."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0035",
+    "prompt": "[Academic Talk — History] What is the professor's main point about the Renaissance?",
+    "choices": [
+     "The Renaissance rejected the ancient Greek and Roman texts that monasteries had spent centuries copying.",
+     "The Renaissance was a sudden rebirth of learning that broke with a medieval period that produced nothing.",
+     "The Renaissance was a purely artistic movement, funded by Italian trade wealth but with no intellectual side.",
+     "The Renaissance is better understood as a gradual shift in outlook that built on medieval foundations."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0036",
+    "prompt": "[Academic Talk — History] What does the professor suggest about why the Renaissance began in the Italian city-states?",
+    "choices": [
+     "The printing press was invented in the Italian city-states.",
+     "The city-states were the only places with universities.",
+     "Wealth generated by trade funded artists and libraries there.",
+     "The city-states banned classical texts, forcing new ideas to emerge."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0037",
+    "prompt": "[Academic Talk — History] According to the professor, how did the printing press affect the spread of ideas?",
+    "choices": [
+     "It made hand-copying by monks faster and more accurate.",
+     "It allowed scholars in different cities to exchange ideas in months rather than decades.",
+     "It confined ideas to the wealthy Italian city-states.",
+     "It slowed the spread of ideas by making books too expensive."
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Transcript: So, color theory. First thing I want to dislodge: the idea that a color is just sitting out there on the surface of an object, a fixed property, like its weight. It isn't. Color is something your visual system builds. Yes, wavelength of light is the raw input — long wavelengths we tend to see as red, short ones as blue. But your brain doesn't read wavelength in isolation; it reads it in context. And the classic demonstration is simultaneous contrast. Take one identical gray square. Put it on a bright yellow background and it looks faintly bluish; put the same gray on a blue background and it warms up. Same physical patch, two different perceived colors. What researchers concluded from this is that the eye is always judging a color relative to its neighbors, not absolutely. Painters knew this long before scientists explained it — that's why a color on your palette can betray you once it's surrounded by other colors on the canvas. One more layer: this relativity is also why 'warm' and 'cool' aren't fixed labels. A green can read as warm next to a blue and cool next to a yellow. The lesson for you as makers of images: never choose a color alone. Choose it in company.",
+  "questions": [
+   {
+    "ref": "R0038",
+    "prompt": "[Academic Talk — Art / Perception] What practical advice does the professor give image-makers based on the lecture?",
+    "choices": [
+     "Avoid using gray because it is unstable in appearance.",
+     "Always test a color on a plain white background before using it.",
+     "Choose colors strictly by their measured wavelength.",
+     "Never choose a color in isolation; judge it alongside its neighbors."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0039",
+    "prompt": "[Academic Talk — Art / Perception] What is the professor's main point about color theory?",
+    "choices": [
+     "Only the three primary colors are perceived directly; the rest are inferred by the brain.",
+     "Color is a perceptual construction shaped by context as much as by wavelength.",
+     "Color bears no reliable relation to wavelength, since one gray can look blue or warm.",
+     "Color is a fixed physical property that objects possess on their own."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0040",
+    "prompt": "[Academic Talk — Art / Perception] Why does the professor mention that 'warm' and 'cool' are not fixed labels?",
+    "choices": [
+     "To prove that green is the only color that can shift categories.",
+     "To explain why wavelength has no effect on perceived color.",
+     "To argue that warm colors are always more pleasant than cool ones.",
+     "To show that color relativity applies even to temperature categories."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0041",
+    "prompt": "[Academic Talk — Art / Perception] What does the demonstration with the identical gray square illustrate?",
+    "choices": [
+     "That the same physical color can appear different depending on its surroundings.",
+     "That yellow backgrounds always make colors appear warmer.",
+     "That gray is not really a color at all.",
+     "That the brain reads wavelength in complete isolation."
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Transcript: Today: how kids learn language, and specifically why their mistakes are the most revealing thing they do. The common-sense view is that children just imitate — they hear sentences and parrot them back. But imitation can't be the whole story, and here's the evidence. Listen to a three-year-old and you'll hear things like 'I goed to the park' or 'two foots.' Now, no adult ever says 'goed.' The child didn't copy that from anyone. So where does it come from? What researchers concluded is that the child has extracted a rule — add '-ed' to make past tense — and is applying it everywhere, even to irregular verbs that don't follow it. We call this overregularization. And notice the trajectory, because it's striking: kids often say 'went' correctly first, as a memorized chunk, then start saying 'goed' once they discover the rule, and only later circle back to 'went.' So they actually get worse before they get better — which makes no sense if learning is just imitation, but perfect sense if they're building a grammar. One caveat I'll add: this doesn't mean input doesn't matter; a child obviously learns the language they hear. The point is that they're not passive recorders. They're little theorists, testing rules against the world.",
+  "questions": [
+   {
+    "ref": "R0042",
+    "prompt": "[Academic Talk — Linguistics] Why does the professor point out that no adult says 'goed'?",
+    "choices": [
+     "To explain that 'goed' is an acceptable past-tense form that adults have gradually stopped using.",
+     "To prove that the errors children make are copied from the adults they hear speaking every day.",
+     "To argue that adults use forms like 'goed' around young children without realizing they do it.",
+     "To show that the child produced the form by applying a rule, not by imitation."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0043",
+    "prompt": "[Academic Talk — Linguistics] What does the professor concede in the caveat near the end of the talk?",
+    "choices": [
+     "That errors such as 'goed' and 'two foots' are rarer than he suggested.",
+     "That input still matters, since children learn the specific language around them.",
+     "That children are, after all, passive recorders who parrot back the sentences they hear.",
+     "That the language a child hears has no bearing at all on the grammar the child ends up building."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0044",
+    "prompt": "[Academic Talk — Linguistics] What is surprising about the trajectory the professor describes for a word like 'went'?",
+    "choices": [
+     "Children never produce 'went' correctly, even long after they start school.",
+     "Children only pick up 'went' once they are taught it in school.",
+     "Children start with 'goed' and only later work their way to 'went.'",
+     "Children say it correctly first, then incorrectly, then correctly again."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0045",
+    "prompt": "[Academic Talk — Linguistics] What is the professor's main point about how children learn language?",
+    "choices": [
+     "Children cannot produce past-tense forms until an adult corrects them.",
+     "Children actively work out underlying rules, which is why they make systematic errors.",
+     "Children simply copy the sentences adults say, which is where forms like 'goed' come from.",
+     "Children work out irregular verbs only once grammar is taught in school."
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Transcript: Okay, so today I want to reframe how you think about comets. People picture them as, you know, dramatic streaks in the sky, but for a scientist the interesting thing is what they're made of. A comet is basically a chunk of ice, dust, and frozen gases left over from when the solar system formed, four and a half billion years ago. So it's a kind of time capsule. When we study one, we're sampling material that hasn't changed much since the beginning. Now, where do they come from? Two main reservoirs. There's the Kuiper Belt, out past Neptune, and much farther out, the Oort cloud. When one gets nudged inward and approaches the Sun, the ice starts to vaporize, and that's what creates the glowing cloud, the coma, and the tails. Here's the part students always get backwards: the tail does not trail behind the comet like exhaust. It's pushed by the solar wind and radiation pressure, so it always points away from the Sun, regardless of which way the comet is moving. Sometimes the tail is actually ahead of it. So next time you see a diagram, check that detail. What researchers found is that the composition of these tails tells us about the raw ingredients of planet formation.",
+  "questions": [
+   {
+    "ref": "R0046",
+    "prompt": "[Academic Talk — Astronomy] What can be inferred about why scientists value studying comet material?",
+    "choices": [
+     "Studying comets helps predict when they will strike Earth.",
+     "Comet ice can be mined as a future fuel source.",
+     "Comets reveal the ingredients present when the planets were forming.",
+     "Comets are more common than asteroids in the inner solar system."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0047",
+    "prompt": "[Academic Talk — Astronomy] Why does the professor mention that students 'get backwards' the direction of the tail?",
+    "choices": [
+     "To explain why comets are difficult to photograph.",
+     "To correct a common misconception before students rely on it.",
+     "To criticize textbook diagrams for being carelessly drawn and out of date.",
+     "To argue that a comet's tail behaves unpredictably from night to night."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0048",
+    "prompt": "[Academic Talk — Astronomy] What is the professor's main point about comets?",
+    "choices": [
+     "A comet's tail streams out behind it like exhaust, always pointing back along the path it has travelled.",
+     "Comets are best understood as leftover material that preserves conditions from the early solar system.",
+     "All comets originate in the distant Oort cloud, far beyond Neptune, rather than in the nearer Kuiper Belt.",
+     "Comets and asteroids are essentially identical in composition and origin."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0049",
+    "prompt": "[Academic Talk — Astronomy] According to the professor, why does a comet's tail point away from the Sun?",
+    "choices": [
+     "Because the solar wind and radiation pressure push the released material.",
+     "Because the vaporized ice freezes again and trails behind the comet like exhaust.",
+     "Because Neptune's gravity pulls the tail back toward the Kuiper Belt.",
+     "Because the comet's rotation flings the vaporized gas and dust outward as it spins."
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Transcript: Let's build up the model of supply and demand slowly, because the intuition matters more than the graph. Start with demand. As a rule, when the price of something falls, people want to buy more of it, and when the price rises, they buy less. That's the demand relationship, downward-sloping. Supply is the mirror image. When the price is high, sellers are willing to produce and offer more, because it's more profitable; when the price is low, they offer less. So one curve slopes down, the other slopes up. Now, where they cross, that's the interesting spot. We call it the equilibrium price. At that price, the amount buyers want to purchase exactly matches the amount sellers want to sell. There's no leftover surplus and no shortage. And here's the key idea I want you to hold onto: nobody decides this price. It's not the seller dictating it, and it's not the buyer. It emerges from the interaction. If the price is set too high, unsold goods pile up, and sellers cut prices. Too low, buyers compete and bid it up. The market, sort of, self-corrects toward that crossing point. Later we'll see what happens when something shifts a whole curve, but today, just hold onto equilibrium.",
+  "questions": [
+   {
+    "ref": "R0050",
+    "prompt": "[Academic Talk — Economics] According to the professor, what happens when the price is set too high?",
+    "choices": [
+     "The government sets a ceiling to bring the price down.",
+     "Unsold goods accumulate and sellers reduce prices.",
+     "Buyers compete for the scarce goods and bid the price higher.",
+     "The whole supply curve shifts to the right."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0051",
+    "prompt": "[Academic Talk — Economics] What is the professor's main point about supply and demand?",
+    "choices": [
+     "Price settles where the quantity buyers want equals the quantity sellers offer.",
+     "Government price controls are what push a market back toward its equilibrium price.",
+     "Sellers dictate the price and buyers can only accept it or walk away.",
+     "Demand matters far more than supply, since it is buyers who bid the price up or down."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0052",
+    "prompt": "[Academic Talk — Economics] Why does the professor say 'nobody decides this price'?",
+    "choices": [
+     "To argue that buyers ultimately have more power than sellers, since they can refuse to buy.",
+     "To claim that prices move at random and cannot really be explained.",
+     "To introduce the idea that governments must step in and set prices.",
+     "To emphasize that equilibrium arises from interaction rather than one party's choice."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0053",
+    "prompt": "[Academic Talk — Economics] What will the professor most likely discuss in a later class?",
+    "choices": [
+     "What happens when an event shifts an entire curve.",
+     "How to draw the demand curve for the first time.",
+     "Why intuition matters more than graphs.",
+     "The definition of the equilibrium price."
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Transcript: Before we get into charts and tickers, I want to strip the stock market down to one idea. When you buy a share of stock, what have you actually bought? You've bought a small piece of ownership in a company. That's it. If a company divides itself into, say, a million shares and you own one, you own one-millionth of that business, its buildings, its profits, its debts. So a shareholder is, in a real sense, a part-owner, not just a gambler betting on a number. Now, why do companies do this? They sell shares to raise money, capital, to expand, hire, build a factory, whatever, without taking out a loan they have to repay. In exchange, the buyers get ownership and, potentially, a slice of future profits paid out as dividends. Here's where it gets tricky for beginners. The price of a share on any given day reflects what people collectively expect the company to be worth in the future, not just what it earned yesterday. That's why good news that was already expected can leave a price flat, while a surprise can send it swinging. So the number you see isn't the company's value today, exactly, it's a kind of running vote on tomorrow. Keep that distinction in mind.",
+  "questions": [
+   {
+    "ref": "R0054",
+    "prompt": "[Academic Talk — Economics] What is the professor's central point about the stock market?",
+    "choices": [
+     "Most companies sell all of their shares to a single investor.",
+     "Buying stock is essentially the same as putting money in a savings account.",
+     "Owning a stock is owning a fractional share of a real company.",
+     "Stock prices are guaranteed to rise over any given year."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0055",
+    "prompt": "[Academic Talk — Economics] What does the professor mean by calling the share price 'a running vote on tomorrow'?",
+    "choices": [
+     "The price is a running tally of what the company actually earned in the last quarter.",
+     "The shareholders vote on what the share should be worth at each annual meeting.",
+     "The company fixes the price of its shares once each trading day.",
+     "The price reflects collective expectations about the company's future value."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0056",
+    "prompt": "[Academic Talk — Economics] According to the professor, why do companies sell shares?",
+    "choices": [
+     "To push the share price up ahead of future earnings.",
+     "To fund the dividends they have promised shareholders.",
+     "To raise capital without taking on a loan they must repay.",
+     "To cut the number of part-owners the company has to answer to."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0057",
+    "prompt": "[Academic Talk — Economics] What can be inferred about why a stock price might stay flat after good news?",
+    "choices": [
+     "Because the news had already been expected and priced in.",
+     "Because the company chose not to pay out any dividends that quarter.",
+     "Because the company issued new shares that morning, diluting each one.",
+     "Because shareholders cannot sell their shares quickly."
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Transcript: So historical linguistics asks a deceptively simple question: how do we know that languages are related when nobody wrote down the ancestor? Take English, German, Latin, Greek, Sanskrit. They look different, right? But scholars in the eighteen-hundreds noticed something. The correspondences weren't random. English 'father,' Latin 'pater,' Sanskrit 'pitar.' English 'foot,' Latin 'pes, pedis.' Notice a pattern? Where Latin has a 'p,' English tends to have an 'f.' That's not coincidence, and it's not borrowing. It's what we call a regular sound change. Once you find a rule that holds across many, many words, you've got real evidence. And here's the powerful part. If the changes are regular, you can run them backwards. You can reconstruct a word in the parent language even though no text of it survives. We mark those reconstructed forms with an asterisk, so you'll see, say, an asterisk before a Proto-Indo-European root. It's a hypothesis, but a disciplined one. Now, a caution I always give: surface similarity can fool you. Two words that look alike might be pure accident, or a loan from one language to another. What convinces us is the systematic pattern, the recurring correspondence, not a single striking resemblance. That discipline is what separates the field from guesswork.",
+  "questions": [
+   {
+    "ref": "R0058",
+    "prompt": "[Academic Talk — Linguistics] Why does the professor caution that 'surface similarity can fool you'?",
+    "choices": [
+     "Because a word borrowed from a neighboring language is always easy for a scholar to spot.",
+     "Because the correspondence between Latin 'p' and English 'f' turned out to be coincidence.",
+     "Because nineteenth-century scholars mistook borrowings for regular sound changes.",
+     "Because look-alike words may be accidents or borrowings rather than proof of relation."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0059",
+    "prompt": "[Academic Talk — Linguistics] What does the asterisk before a Proto-Indo-European root indicate?",
+    "choices": [
+     "That the word occurs more frequently than any other in the daughter languages.",
+     "That the form is a reconstructed hypothesis with no surviving text.",
+     "That the word entered the language as a loan rather than by regular sound change.",
+     "That scholars have recovered a surviving written record of it."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0060",
+    "prompt": "[Academic Talk — Linguistics] What pattern does the professor use as an example of a regular sound change?",
+    "choices": [
+     "Where Greek has a 'k,' Latin tends to have a 'g.'",
+     "Where Latin has a 'p,' English tends to have an 'f.'",
+     "Where German has an 'f,' Latin tends to have a 'b.'",
+     "Where English has a 'p,' Sanskrit tends to have a 't.'"
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0061",
+    "prompt": "[Academic Talk — Linguistics] What is the professor's main point about historical linguistics?",
+    "choices": [
+     "Regular sound changes let linguists reconstruct unrecorded parent languages.",
+     "Written records of the parent language are the only reliable evidence of relatedness.",
+     "Words in different languages that look and sound alike always share an ancestor.",
+     "Latin is the ancestor of every language now spoken anywhere in Europe."
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Transcript: All right, tides. Most people think the Moon just, sort of, pulls the ocean toward it, and that's half the story. Let me give you the fuller picture. The Moon's gravity pulls hardest on the water on the near side of Earth, the side facing the Moon, so the ocean bulges out there. Fine, that's one high tide. But here's the puzzle: there's a second bulge on the far side, the side facing away from the Moon. Why? Because gravity is weaker there, and the solid Earth is actually pulled away from that far water, leaving it behind, so to speak. So you get two bulges, on opposite sides. As the Earth rotates through them, most coastlines pass through two high tides and two low tides roughly every day. Now, the Sun matters too. It's far away, but it's massive. When the Sun and Moon line up, at new and full moon, their pulls add together and you get especially large tides, spring tides, and no, that has nothing to do with the season. When they're at right angles, the tides are milder, neap tides. So the pattern you see at the beach is really a rotating Earth sweeping through this stretched-out envelope of water.",
+  "questions": [
+   {
+    "ref": "R0062",
+    "prompt": "[Academic Talk — Astronomy] Why does the professor say 'that's half the story' early in the lecture?",
+    "choices": [
+     "To admit that scientists still cannot explain why a second bulge forms.",
+     "To signal that the common near-side explanation is incomplete.",
+     "To warn that the lecture will cover only half of the material on tides.",
+     "To argue that the Sun, not the Moon, is what actually raises the tides."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0063",
+    "prompt": "[Academic Talk — Astronomy] What is the professor's main point about the tides?",
+    "choices": [
+     "Tides result from the Moon's gravitational pull stretching the ocean, producing two bulges.",
+     "Tides are driven mainly by winds and currents, with the Moon contributing only a minor share.",
+     "High tide occurs only on the near side of Earth, where the Moon's gravity pulls the water hardest.",
+     "The Sun is too distant to matter, so the largest tides are produced by the change of seasons."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0064",
+    "prompt": "[Academic Talk — Astronomy] According to the professor, why is there a tidal bulge on the far side of Earth?",
+    "choices": [
+     "Because the solid Earth is pulled away from that far water, leaving it behind.",
+     "Because the water there is closer to the Moon once the Earth has rotated at night.",
+     "Because steady winds push ocean water toward the side facing away from the Moon.",
+     "Because the Sun's pull adds to the Moon's and stretches the far-side water outward."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0065",
+    "prompt": "[Academic Talk — Astronomy] What can be inferred about spring tides from the lecture?",
+    "choices": [
+     "They happen when the Sun and the Moon stand at right angles to each other.",
+     "They are noticeably milder than the neap tides that come at right angles.",
+     "They occur at new and full moon when the Sun's and Moon's pulls combine.",
+     "They occur only in the spring, which is how they got the name."
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Transcript: Let's talk about inflation, and let's start by clearing up what it is not. Inflation is not one price going up. If tomatoes cost more this month because of a bad harvest, that's just a change in one relative price. Inflation is a sustained rise in the general level of prices across the economy, a broad, ongoing increase. And the flip side of rising prices is that each unit of money buys a little less. Your ten dollars doesn't stretch as far. That's the real cost: money loses purchasing power over time. Now, economists usually track this with a price index, something like a basket of typical goods, and they measure how the cost of that basket changes year over year. Where does inflation come from? Roughly two stories. One, demand-pull: too much spending chasing too few goods, so sellers raise prices. Two, cost-push: the cost of inputs, like oil or wages, rises, and firms pass that on. A little inflation, say around two percent a year, is generally considered healthy, it keeps spending moving. The danger is when it's high and unpredictable, because then people can't plan, contracts get tricky, and savings quietly lose value. That unpredictability, more than the number itself, is what worries policymakers.",
+  "questions": [
+   {
+    "ref": "R0066",
+    "prompt": "[Academic Talk — Economics] According to the professor, what is demand-pull inflation?",
+    "choices": [
+     "A deliberate two-percent target that policymakers aim for.",
+     "The cost of inputs such as oil or wages rising, with firms passing that on to buyers.",
+     "A one-time jump in the price of a single crop, such as tomatoes after a bad harvest.",
+     "Too much spending chasing too few goods, prompting sellers to raise prices."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0067",
+    "prompt": "[Academic Talk — Economics] What is the professor's main point about inflation?",
+    "choices": [
+     "Inflation always benefits people who hold their savings in cash, since contracts adjust to match.",
+     "Inflation is a sustained rise in the general price level that erodes money's purchasing power.",
+     "Inflation means every price in the economy, including tomatoes after a bad harvest, rises alike.",
+     "Inflation is caused solely by workers demanding higher wages, which firms pass on to customers."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0068",
+    "prompt": "[Academic Talk — Economics] How does the professor distinguish inflation from a single price change?",
+    "choices": [
+     "A single price change, like costlier tomatoes after a bad harvest, is just one relative price moving.",
+     "A single price change is tracked with a price index that measures a basket of typical goods year over year.",
+     "A single price change reduces the purchasing power of money across the whole economy, only more slowly.",
+     "A single price change always turns into cost-push inflation once firms pass the higher cost along to buyers."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0069",
+    "prompt": "[Academic Talk — Economics] What can be inferred about why policymakers worry most about high inflation?",
+    "choices": [
+     "Because a steady rate of about two percent a year keeps spending moving through the economy.",
+     "Because high inflation is always the cost-push kind, driven by rising oil prices and wages.",
+     "Because unpredictable inflation makes planning and contracts difficult and erodes savings.",
+     "Because a basket-of-goods index measures only one relative price at a time."
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ }
+]

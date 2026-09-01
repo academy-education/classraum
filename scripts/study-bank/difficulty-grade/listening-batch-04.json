@@ -1,0 +1,835 @@
+[
+ {
+  "passage": "Transcript: Let's look at printmaking — the art of making multiple impressions of an image from a prepared surface. The crucial thing to understand is that different techniques put the ink in different places, and that changes how the print looks. Start with the oldest method, the woodcut. The artist carves away the parts that should stay white, leaving the design standing up in relief; ink sits on the raised surface, and the carved-away areas print as blank paper. So in a relief print, the lines you see are the parts left uncut. Now contrast engraving and etching, which work the opposite way. These are intaglio methods — the word comes from the Italian for 'to cut in.' The artist cuts grooves into a metal plate; ink is pushed down into those grooves, the flat surface is wiped clean, and damp paper is pressed hard enough to pull the ink up out of the lines. So in intaglio the ink comes from below the surface, not on top of it. One more, invented around 1800: lithography, which uses no carving at all. It relies on a simple chemical fact — that grease and water repel each other. The artist draws with a greasy crayon on a flat stone; the drawn areas hold ink and the wet blank areas reject it. Three logics, then: on top, cut in, or flat.",
+  "questions": [
+   {
+    "ref": "R0206",
+    "prompt": "[Academic Talk — Art History] Why does the professor sum up the methods as 'on top, cut in, or flat'?",
+    "choices": [
+     "To show that all three methods end up putting ink onto the same kind of metal plate.",
+     "To rank the three methods in order of age, from the medieval woodcut through engraving to the lithograph.",
+     "To highlight that the three methods differ fundamentally in where the ink sits relative to the surface.",
+     "To argue that lithography, the flat method, is by far the hardest of the three for a printmaker to master."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0207",
+    "prompt": "[Academic Talk — Art History] In intaglio methods like engraving and etching, where does the ink that prints come from?",
+    "choices": [
+     "From the chemical repulsion between grease and water on a flat, uncarved stone.",
+     "From ink resting on the raised areas that the artist has left standing uncut.",
+     "From grooves cut below the surface, after the flat surface is wiped clean.",
+     "From the greasy crayon marks the artist draws on a flat stone."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0208",
+    "prompt": "[Academic Talk — Art History] In a relief print such as a woodcut, which parts of the block create the printed lines?",
+    "choices": [
+     "The areas drawn with a greasy crayon.",
+     "The areas wiped clean before the paper is laid down.",
+     "The raised parts that were left uncut.",
+     "The grooves cut into the surface of the block."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0209",
+    "prompt": "[Academic Talk — Art History] What is the professor's main point about printmaking techniques?",
+    "choices": [
+     "Woodcut and engraving are really the same relief method under two different names.",
+     "Different techniques put the ink in different places relative to the surface, which changes how the print looks.",
+     "In every method the ink sits on the raised surface of the block, as it does in a woodcut.",
+     "Lithography, invented around 1800, replaced woodcut and engraving because carving a plate by hand was slow and costly."
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Transcript: The history of photography is really a story of two problems: how to capture an image, and how to make copies of it. The first practical process was announced in France in 1839 — the daguerreotype. It produced an astonishingly sharp image directly on a silver-coated copper plate. But it had a serious limitation: each daguerreotype was a unique object. There was no negative, so you could not make a second print. If you wanted two portraits, you had to sit for the camera twice. At almost the same moment, in England, William Talbot developed a rival process using paper. His images were softer, less crisp than the daguerreotype — and at first that made them less popular. But Talbot's method had a decisive advantage: it produced a negative, from which any number of positive prints could be made. And that, in the long run, is the principle that won. The negative-to-positive idea is the basis of nearly all film photography that followed. Now jump ahead to 1888, when George Eastman put a long roll of film inside a simple box camera and sold it with a slogan: 'You press the button, we do the rest.' The customer shot a hundred pictures, mailed the whole camera back to the factory for developing, and got it returned reloaded. Photography, once the work of specialists, was suddenly something anyone could do.",
+  "questions": [
+   {
+    "ref": "R0210",
+    "prompt": "[Academic Talk — History of Technology] According to the professor, what was the serious limitation of the daguerreotype?",
+    "choices": [
+     "It could only be developed by sending the entire camera back to the factory.",
+     "Each one was a unique object, with no negative to make additional prints.",
+     "Its images came out softer and less crisp than those of the rival paper process.",
+     "It required a hundred-exposure roll of film loaded inside a simple box camera."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0211",
+    "prompt": "[Academic Talk — History of Technology] Why does the professor describe Eastman's slogan and the mailing of the camera back to the factory?",
+    "choices": [
+     "To argue that the sharpness of the daguerreotype made it superior to Eastman's roll film.",
+     "To describe how portraits had to be made in the years before the daguerreotype appeared.",
+     "To explain how the negative-to-positive principle that finally won out was first discovered.",
+     "To show how photography became something almost anyone could do, not just specialists."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0212",
+    "prompt": "[Academic Talk — History of Technology] What is the professor's main point about the early history of photography?",
+    "choices": [
+     "Photography advanced by solving the two problems of capturing an image and making copies of it.",
+     "Talbot's paper process was abandoned — because its softer images could never be printed more than once.",
+     "The daguerreotype stayed the standard because a single sharp plate could be reprinted whenever needed.",
+     "Photography was open to ordinary people from 1839 onward, long before roll film reached the market."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0213",
+    "prompt": "[Academic Talk — History of Technology] What decisive advantage did Talbot's paper process have?",
+    "choices": [
+     "It produced a negative, from which any number of prints could be made.",
+     "It was announced several years before any rival process was made public.",
+     "It produced images noticeably sharper than those of the rival daguerreotype.",
+     "It let customers mail the whole camera back for developing."
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Transcript: Okay, let's talk about why countries trade even when one of them seems better at making everything. The intuition most people start with is called absolute advantage — if I can produce more cloth per hour than you can, I have an absolute advantage in cloth. But that's not actually what drives trade. What matters is comparative advantage, which is about opportunity cost. Here's the classic example. Suppose in one hour Portugal can make either two bottles of wine or two bolts of cloth, while England can make one bottle of wine or half a bolt of cloth. Portugal is better at both — absolute advantage in both goods. But look at what each gives up. For Portugal, making one bolt of cloth means giving up one bottle of wine. For England, making one bolt of cloth means giving up two bottles of wine. So cloth is cheaper for Portugal in terms of forgone wine. Portugal should specialize where its opportunity cost is lowest — cloth — and England should specialize in wine, and then they trade. What researchers found, going all the way back to David Ricardo in 1817, is that both countries end up with more of both goods than if each tried to make everything itself. The lesson: it's relative cost, not raw productivity, that tells you who should make what.",
+  "questions": [
+   {
+    "ref": "R0214",
+    "prompt": "[Academic Talk — Economics] According to the professor, for England, making one bolt of cloth means giving up how much wine?",
+    "choices": [
+     "Half a bottle of wine",
+     "Two bottles of wine",
+     "No wine at all",
+     "One bottle of wine"
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0215",
+    "prompt": "[Academic Talk — Economics] According to the professor, which good should Portugal specialize in, and why?",
+    "choices": [
+     "Cloth, because Portugal's opportunity cost of cloth is the lowest",
+     "Both goods, because specialization would waste its absolute advantage",
+     "Wine, because Portugal can make more wine per hour than England",
+     "Neither good, because Portugal is better at producing both"
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0216",
+    "prompt": "[Academic Talk — Economics] Why does the professor introduce the idea of absolute advantage at the start of the talk?",
+    "choices": [
+     "To set up a common intuition and then show it is not what actually drives trade",
+     "To prove that the country better at everything should never trade",
+     "To explain how David Ricardo measured productivity in 1817",
+     "To argue that absolute advantage and comparative advantage are the same thing"
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0217",
+    "prompt": "[Academic Talk — Economics] What is the professor's main point about why countries trade?",
+    "choices": [
+     "Countries should export whichever good they can physically produce most of per hour, as Portugal can with both.",
+     "What drives beneficial trade is comparative advantage, meaning relative cost, not raw productivity.",
+     "A country holding an absolute advantage in both goods, as Portugal does, gains nothing by trading.",
+     "Trade benefits a country only when it holds an absolute advantage in every good that it sends abroad."
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Transcript: Let's dig into one of the most important ideas in all of economics, and it's deceptively simple: opportunity cost. The opportunity cost of any choice is the value of the next-best thing you gave up to get it. Notice — the next-best alternative, not all the alternatives added together. That distinction trips people up. Here's an example. Say you have a free evening, and your options are studying, working a shift for forty dollars, or going to a concert you'd value at, oh, sixty dollars. If you choose to study, your opportunity cost isn't a hundred dollars — it's sixty, the value of the single best thing you passed up, the concert. Now here's the part I really want you to sit with. Opportunity cost includes things that never show up on a price tag. When a company builds a factory on land it already owns, an accountant might record no cost for the land. But the economist asks: what could that land have earned if it were rented out or sold? That forgone rent is a real cost of using the land, even though no money changed hands. Economists call these implicit costs. So whenever you evaluate a decision, don't just ask what you paid — ask what you gave up. That's the true cost.",
+  "questions": [
+   {
+    "ref": "R0218",
+    "prompt": "[Academic Talk — Economics] What is the professor's main point about opportunity cost?",
+    "choices": [
+     "It is the value of the single next-best alternative given up, including implicit costs.",
+     "It is whatever price an accountant records for a purchase, which is why the land counted as free.",
+     "It applies only to decisions in which money actually changes hands, such as paying rent on land.",
+     "It equals the combined value of every alternative turned down, so the evening cost a hundred dollars."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0219",
+    "prompt": "[Academic Talk — Economics] What term do economists use for costs like the forgone rent on the company's land?",
+    "choices": [
+     "Fixed costs",
+     "Sunk costs",
+     "Implicit costs",
+     "Marginal costs"
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0220",
+    "prompt": "[Academic Talk — Economics] Why does the professor describe the factory built on company-owned land?",
+    "choices": [
+     "To illustrate that opportunity cost includes implicit costs with no price tag",
+     "To explain how firms can avoid taxes by owning rather than renting land",
+     "To show that building factories is usually a poor business decision",
+     "To argue that accountants calculate costs more accurately than economists"
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0221",
+    "prompt": "[Academic Talk — Economics] In the evening example, what is the opportunity cost of choosing to study?",
+    "choices": [
+     "Zero, because studying costs nothing",
+     "Sixty dollars, the value of the concert",
+     "Forty dollars, the value of the work shift",
+     "One hundred dollars, the shift plus the concert"
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Transcript: Today I want to compare two ends of a spectrum: perfect competition and monopoly. In perfect competition, you have many small firms selling an identical product — think of wheat farmers. No single farmer can influence the price; each just accepts whatever the market sets. We call such a firm a price taker. Because entry is easy, if profits are high, new firms flood in until those extra profits disappear. A monopoly is the opposite. One firm is the entire market — maybe it holds a patent, or controls a key resource, or the government granted it exclusive rights. A monopolist is a price maker: it can raise the price by choosing to sell less. But — and students often miss this — even a monopolist can't charge any price it wants. It's still limited by the demand curve; push the price too high and customers simply buy less or go without. Now, why do we care? The concern with monopoly isn't just high prices. It's that the monopolist produces less than a competitive market would, and that reduction — output that never gets made even though buyers would value it — is what economists call deadweight loss. Society loses those transactions. That inefficiency, more than the profits themselves, is the reason antitrust law exists.",
+  "questions": [
+   {
+    "ref": "R0222",
+    "prompt": "[Academic Talk — Economics] Why does the professor say students often miss the point that a monopolist is limited by the demand curve?",
+    "choices": [
+     "To argue that a monopolist ends up just as constrained as a wheat farmer who takes the price",
+     "To suggest that the demand curve only constrains firms in perfectly competitive markets",
+     "To correct the misconception that a monopolist can set prices without any limit",
+     "To prove that monopolists always sell as much output as they possibly can"
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0223",
+    "prompt": "[Academic Talk — Economics] What does the professor call a firm in perfect competition?",
+    "choices": [
+     "A market leader",
+     "A price maker",
+     "A monopolist",
+     "A price taker"
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0224",
+    "prompt": "[Academic Talk — Economics] What is the professor's main concern about monopoly?",
+    "choices": [
+     "That a monopolist sells exactly the same product as its rivals, the way wheat farmers do",
+     "That a monopolist can charge any price it likes, with nothing to limit it",
+     "That easy entry lets new firms flood in and compete the profits away",
+     "That a monopolist produces less than a competitive market, causing deadweight loss"
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0225",
+    "prompt": "[Academic Talk — Economics] According to the professor, what is deadweight loss?",
+    "choices": [
+     "The cost a firm pays to obtain a patent or exclusive rights from the government",
+     "The extra profit a monopolist earns by charging more than a competitive market would",
+     "Valued output that never gets produced because the monopolist restricts supply",
+     "The extra profit that disappears as new firms flood in and compete it away"
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Transcript: Let's clear up two numbers you hear on the news constantly: GDP and the unemployment rate. GDP — gross domestic product — is the market value of all final goods and services produced within a country in a year. Two words there matter a lot. Final — we count the loaf of bread, not separately the flour and the wheat that went into it, or we'd be double-counting. And within a country — it's about where production happens, not who owns the company. Now, unemployment. Here's what surprises people: to be counted as unemployed, you must be without a job and actively looking for one. Someone who's given up searching — a discouraged worker — isn't counted as unemployed at all; they've left the labor force. That's why the official rate can actually fall in a bad economy, if enough frustrated people simply stop looking. The two numbers relate through something called Okun's law, a rough rule of thumb: when output grows faster than usual, unemployment tends to drop, and when the economy shrinks, unemployment climbs. It's not a precise formula — it's an observed regularity. But it captures the basic link: producing more stuff generally means putting more people to work.",
+  "questions": [
+   {
+    "ref": "R0226",
+    "prompt": "[Academic Talk — Economics] What is the professor mainly doing in this talk?",
+    "choices": [
+     "Showing that Okun's law is a precise formula for predicting the economy",
+     "Clarifying what GDP and the unemployment rate measure and how they connect",
+     "Arguing that GDP is a more reliable measure of the economy than the unemployment rate",
+     "Explaining why the government should stop reporting the unemployment rate"
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0227",
+    "prompt": "[Academic Talk — Economics] According to the professor, how can the official unemployment rate fall even in a bad economy?",
+    "choices": [
+     "Because employers stop reporting layoffs to the government",
+     "Because output is growing faster than usual, which by Okun's law pulls the rate down",
+     "Because people working part-time are counted in the official rate as fully employed",
+     "Because discouraged workers stop looking and leave the labor force"
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0228",
+    "prompt": "[Academic Talk — Economics] How does the professor characterize Okun's law?",
+    "choices": [
+     "As an exact equation that precisely predicts unemployment from output",
+     "As a law that applies only when the economy is shrinking",
+     "As a rough rule of thumb linking output growth and unemployment",
+     "As a measure of who owns the companies producing a country's output"
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0229",
+    "prompt": "[Academic Talk — Economics] Why does GDP count only final goods and services?",
+    "choices": [
+     "To avoid double-counting inputs like the flour used to make bread",
+     "Because intermediate goods like flour are usually produced outside the country",
+     "To make sure that services are excluded and only physical goods counted",
+     "Because only final goods are owned by companies based inside the country"
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Transcript: Traditional economics assumes people are rational — that we weigh costs and benefits and choose what's best for us. Behavioral economics asks: what if we don't? And it turns out, in predictable ways, we don't. Take loss aversion. Experiments show that the pain of losing twenty dollars feels roughly twice as strong as the pleasure of gaining twenty dollars. The amounts are identical, but our reactions aren't. That asymmetry explains why people hold onto losing investments far too long — selling would make the loss feel real. Here's another one, the anchoring effect. If I ask you whether the population of a city is more or less than ten million, and then ask you to guess the actual number, your guess will land higher than if I'd first said one million. The initial figure anchors you, even when it's arbitrary and you know it's arbitrary. Now, the point of all this isn't that people are stupid. It's that these biases are systematic — they push in a consistent direction, so we can anticipate them. And that's powerful. If a government wants more people to save for retirement, it can simply make enrollment the default and let inertia work in savers' favor. That's a nudge — same choices available, just a smarter starting point.",
+  "questions": [
+   {
+    "ref": "R0230",
+    "prompt": "[Academic Talk — Economics] What is the professor's main point about behavioral economics?",
+    "choices": [
+     "That loss aversion and anchoring are the only biases that affect decisions",
+     "That people are fundamentally irrational and cannot be helped to decide well",
+     "That people deviate from rational choice in systematic, predictable ways",
+     "That traditional economics has been proven completely correct by experiments"
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0231",
+    "prompt": "[Academic Talk — Economics] According to the experiments the professor cites, how does losing twenty dollars compare with gaining twenty dollars?",
+    "choices": [
+     "The two feel identical only for experienced investors",
+     "Losing feels about the same as gaining, since the amounts are equal",
+     "Gaining feels stronger than losing because gains are more memorable",
+     "Losing feels roughly twice as strong as gaining the same amount"
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0232",
+    "prompt": "[Academic Talk — Economics] Why does the professor say, the point of all this isn't that people are stupid?",
+    "choices": [
+     "To claim that the biases appear at random, so no policy could be built on them",
+     "To emphasize that the biases are systematic and can therefore be anticipated",
+     "To suggest that governments should leave default options alone rather than nudge",
+     "To argue that anchoring and loss aversion only catch people untrained in economics"
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0233",
+    "prompt": "[Academic Talk — Economics] In the anchoring example, how does first hearing ten million rather than one million affect a person's guess?",
+    "choices": [
+     "It makes the guess land higher than it would otherwise have been",
+     "It makes the guess lower than it would otherwise have been",
+     "It makes people refuse to guess a specific number at all",
+     "It makes no difference, because people know the figure is arbitrary"
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Transcript: A central bank — the Federal Reserve in the U.S., the Bank of Korea here — is not a regular bank; you and I can't open an account there. Its customers are commercial banks and the government. Its main job is monetary policy: managing the supply of money and credit to keep the economy stable. The primary tool is the interest rate. When the central bank lowers its key rate, borrowing gets cheaper throughout the economy, businesses and households borrow and spend more, and activity picks up. When it raises the rate, borrowing costs climb, spending cools, and — this is usually the goal — inflation comes down. So there's a balancing act. Cut rates too much and you risk overheating and rising prices; raise them too much and you can choke off growth and cause a recession. Notice the tension there: the same tool that fights inflation can also trigger unemployment. That's why these decisions are so hard. One more crucial point: most central banks are deliberately kept independent from the elected government. Why? Because a politician facing an election is tempted to juice the economy with cheap money right now and let inflation become someone else's problem later. Independence is meant to protect the currency from that short-term temptation.",
+  "questions": [
+   {
+    "ref": "R0234",
+    "prompt": "[Academic Talk — Economics] According to the professor, who are a central bank's customers?",
+    "choices": [
+     "Ordinary savers who hold deposit accounts",
+     "Large corporations borrowing at the key rate",
+     "Other countries' central banks",
+     "Commercial banks and the government"
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0235",
+    "prompt": "[Academic Talk — Economics] What tension does the professor point out about using interest rates to fight inflation?",
+    "choices": [
+     "Raising rates lowers inflation but also makes borrowing cheaper",
+     "Raising rates only works if the central bank serves the public directly",
+     "Cutting rates fights inflation but slows economic growth",
+     "The same tool that fights inflation can also cause unemployment"
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0236",
+    "prompt": "[Academic Talk — Economics] What is the professor's main point about how a central bank works?",
+    "choices": [
+     "It exists mainly to lend the elected government money before an election",
+     "It serves ordinary depositors directly, holding the savings accounts of households and firms",
+     "It manages money and credit through interest rates, balancing inflation against growth",
+     "It should hold interest rates as low as possible so that borrowing stays cheap"
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0237",
+    "prompt": "[Academic Talk — Economics] Why does the professor say most central banks are kept independent from the elected government?",
+    "choices": [
+     "Because the bank's only customers are commercial banks, so the government has no account there",
+     "So the central bank can raise its key rate whenever unemployment rises",
+     "So that the tool used to bring inflation down cannot also be blamed for unemployment",
+     "So politicians cannot use cheap money for short-term gain before an election"
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Transcript: Let's talk about how we classify taxes, because the vocabulary matters for every policy debate you'll ever hear. The key distinction is progressive versus regressive. A progressive tax takes a larger percentage from higher incomes — most income taxes work this way, with rates that rise as you earn more. A regressive tax does the opposite: it takes a larger percentage from lower incomes. Now, that sounds strange — who designs a tax to hit the poor harder? But watch. A sales tax has a single flat rate, say ten percent, applied to everyone equally. Sounds fair. But a lower-income family spends nearly all of what it earns, so almost all its income gets taxed, while a wealthy family saves a big chunk that's never touched by the sales tax. So a flat rate ends up regressive in effect, even though the rate itself is identical for everyone. That gap between the stated rate and the real burden is exactly what economists watch for. One more term: the tax base — that's what's being taxed, whether income, purchases, or property. A good rule policymakers follow is to keep rates moderate but the base broad, because very high rates on a narrow base give people a strong incentive to avoid or evade the tax.",
+  "questions": [
+   {
+    "ref": "R0238",
+    "prompt": "[Academic Talk — Economics] What is the professor mainly explaining in this talk?",
+    "choices": [
+     "How to calculate the exact amount of tax a family owes each year",
+     "Why all taxes should be replaced with a single flat sales tax",
+     "That property taxes are always fairer than income taxes",
+     "How taxes are classified as progressive or regressive and why the distinction matters"
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0239",
+    "prompt": "[Academic Talk — Economics] Why does the professor use the example of a flat ten percent sales tax?",
+    "choices": [
+     "To recommend the sales tax as the fairest way for governments to raise revenue",
+     "To explain how policymakers pick a broad tax base and keep the rates moderate",
+     "To prove that wealthy families pay a larger share of their income in sales tax",
+     "To show that a single flat rate can be regressive in its actual effect"
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0240",
+    "prompt": "[Academic Talk — Economics] What does the professor mean by the tax base?",
+    "choices": [
+     "The gap between a tax's stated rate and the real burden it imposes",
+     "The lowest level of income at which a person first begins to pay any tax",
+     "What is being taxed, such as income, purchases, or property",
+     "The percentage rate that is charged on each dollar a person earns"
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0241",
+    "prompt": "[Academic Talk — Economics] According to the professor, what defines a progressive tax?",
+    "choices": [
+     "It applies the same flat percentage to everyone regardless of income",
+     "It taxes purchases rather than income or property",
+     "It takes a larger percentage from people with higher incomes",
+     "It takes a larger percentage from people with lower incomes"
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Transcript: A: Hi, I need to get a transcript sent out — an official one — to a grad program I'm applying to. B: Sure, we can do that. Is it going to the school directly, or do you want a copy for yourself? A: Directly to the school. The application portal says it has to come straight from you, sealed. B: Okay. That's what we call an electronic official transcript. The department uploads it through our secure system, so nothing gets opened along the way. A: Perfect. How long does that take? B: Usually two business days, but here's the thing — you have a hold on your account. A: A hold? For what? B: It looks like a library fine. Twelve dollars. As long as there's any hold, our system won't release a transcript, official or unofficial. A: Oh, you're kidding. Can I pay it here? B: Not here, unfortunately. The library handles its own fines. Clear it with them, and the hold usually drops within an hour. Then come back or just submit the request online. A: Got it. So pay the fine first, then the two days start counting. B: Exactly. Don't wait too long — that portal deadline sneaks up.",
+  "questions": [
+   {
+    "ref": "R0242",
+    "prompt": "[Conversation — Registrar's Office] What does the registrar imply about paying the fine?",
+    "choices": [
+     "The fine will disappear on its own after two business days.",
+     "The student can pay it online through the registrar's portal.",
+     "The registrar cannot process the payment, so the student must go to the library.",
+     "The fine can be waived because it is under twenty dollars."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0243",
+    "prompt": "[Conversation — Registrar's Office] Why can't the registrar release the transcript right away?",
+    "choices": [
+     "The student has an unpaid tuition balance that blocks all transcripts.",
+     "The graduate program has not yet confirmed the request.",
+     "The secure upload system is down for maintenance today.",
+     "There is a hold on the student's account from a library fine."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0244",
+    "prompt": "[Conversation — Registrar's Office] What will the student most likely do next?",
+    "choices": [
+     "Wait the two business days and then check the portal for the transcript.",
+     "Go to the library to pay the fine and clear the hold.",
+     "Request an unofficial transcript to send in instead.",
+     "Ask the graduate program to push back its deadline."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0245",
+    "prompt": "[Conversation — Registrar's Office] Why does the student come to the registrar's office?",
+    "choices": [
+     "To pick up her diploma in person.",
+     "To request that an official transcript be sent to a graduate school.",
+     "To pay an overdue tuition balance.",
+     "To change her major before the deadline."
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Transcript: A: Thanks for seeing me. I've got a draft of my argument essay, and honestly, I'm not sure it's working. B: No problem — that's exactly what we're here for. Have you read it aloud yet? A: Uh, no. B: Try it sometime; you'll hear the rough spots. But let's look at what you've got. What's your main claim? A: That cities should make public transit free. B: Good, that's clear. Now, where does it appear? A: In the... third paragraph, I think. B: See, that's the first thing. Your reader shouldn't have to hunt for your thesis. Bring it up front, in the intro, so everything after it has something to lean on. A: Okay, that makes sense. B: The other thing — your evidence is strong, but you introduce a counterargument and then just drop it. You never answer it. A: I ran out of room. B: I get it, but an unanswered objection actually weakens you. Cut a weaker example if you need space, and use that room to respond. Don't add new points — go deeper on the ones you have. A: So, move the thesis up and deal with the counterargument. B: Right. Do those two things and the whole draft tightens up.",
+  "questions": [
+   {
+    "ref": "R0246",
+    "prompt": "[Conversation — Writing Center] Why does the tutor ask whether the student has read the essay aloud?",
+    "choices": [
+     "To point out that the essay is too long to read silently.",
+     "To check whether the student rehearsed for an oral presentation.",
+     "To determine whether the student wrote the draft himself.",
+     "To suggest a technique that helps writers notice rough spots."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0247",
+    "prompt": "[Conversation — Writing Center] What is the tutor's main criticism of where the thesis appears?",
+    "choices": [
+     "The thesis contradicts the counterargument that the student raises later.",
+     "The essay offers two competing thesis statements and settles on neither.",
+     "The claim that transit should be free is too broad to defend in a short essay.",
+     "The thesis is buried in the third paragraph instead of stated up front."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0248",
+    "prompt": "[Conversation — Writing Center] What does the student want help with?",
+    "choices": [
+     "Improving his spelling and grammar only.",
+     "Formatting his citations in the correct style.",
+     "Strengthening a draft of an argumentative essay.",
+     "Choosing a topic for a research paper."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0249",
+    "prompt": "[Conversation — Writing Center] What does the tutor advise the student to do about the counterargument?",
+    "choices": [
+     "Delete the counterargument so the essay has room to breathe.",
+     "Move the counterargument up into the introduction, right after the thesis.",
+     "Add several new supporting points instead of going deeper.",
+     "Cut a weaker example and use the room to answer the objection."
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Transcript: A: Hi, I'd like to book an appointment. I've had this cough for about two weeks and it's not going away. B: Sorry to hear that. Have you been seen here before? A: No, this would be my first time. B: Okay, then I'll set you up as a new patient. Can I get your student ID number? A: Sure — it's 4-4-8-2-9-1. B: Got it. And two weeks, you said — any fever with that? A: A little, a few days ago, but it's gone now. B: All right. I can offer you Thursday at ten, or Friday at two-thirty. A: Thursday's tricky, I have a lab until eleven. B: Then let's do Friday at two-thirty with Dr. Reyes. One thing — because you're a new patient, please come fifteen minutes early to fill out intake forms. A: Can I do those online instead? B: You can, actually. I'll email you the link. Fill it out beforehand and you can just walk in at your appointment time. A: Oh, that's much better. B: And bring your insurance card either way. A: Will do. Friday at two-thirty.",
+  "questions": [
+   {
+    "ref": "R0250",
+    "prompt": "[Conversation — Health Center] Why is the student calling the health center?",
+    "choices": [
+     "To refill a prescription the clinic gave him before.",
+     "To ask whether the clinic is open this weekend.",
+     "To make an appointment about a persistent cough.",
+     "To get results from a test he had here last week."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0251",
+    "prompt": "[Conversation — Health Center] What does completing the intake forms online allow the student to do?",
+    "choices": [
+     "Skip bringing his insurance card to the visit.",
+     "Arrive at his appointment time instead of fifteen minutes early.",
+     "See the doctor by video instead of in person.",
+     "Cancel the appointment without a fee."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0252",
+    "prompt": "[Conversation — Health Center] Why does the student choose the Friday appointment over Thursday?",
+    "choices": [
+     "He has a lab class that runs until eleven on Thursday.",
+     "The Thursday slot costs more as a new patient.",
+     "Dr. Reyes is only available on Fridays.",
+     "He wants extra time to complete the intake forms."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0253",
+    "prompt": "[Conversation — Health Center] What will the receptionist most likely do next?",
+    "choices": [
+     "Email the student a link to the intake forms.",
+     "Schedule a follow-up appointment for the next week.",
+     "Transfer the call to Dr. Reyes.",
+     "Charge the student's insurance for the visit."
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Transcript: A: Hi, I got an email saying I need to submit some kind of visa form before the summer, but I don't really understand it. B: Sure, let me take a look. Ah, this is the reduced course load form. Are you planning to take fewer classes, or none, over the summer? A: None. I want to do an internship instead. B: Okay, that's important. If you drop below full-time without filing this, your status could lapse — and that's a real headache to fix. A: That sounds scary. B: It's fine as long as we file on time. The key is that it needs your academic advisor's signature confirming the internship counts toward your degree. A: My advisor? I thought this was just an immigration thing. B: It's both. We can't approve it until your advisor signs off. Once they do, bring it back and I'll process it the same day. A: How long do I have? B: The email gives you until the fifteenth, but don't wait — advisors get swamped this time of year. Get the signature first, then come straight here. A: Okay. Advisor first, then you.",
+  "questions": [
+   {
+    "ref": "R0254",
+    "prompt": "[Conversation — International Student Office] What surprises the student about the form?",
+    "choices": [
+     "That the deadline is the fifteenth, even though advisors get swamped at this time of year.",
+     "That doing an internship instead would count as full-time enrollment for the summer.",
+     "That it requires her academic advisor's signature, not just immigration approval.",
+     "That the office can process the form the same day she brings it back."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0255",
+    "prompt": "[Conversation — International Student Office] What does the student need help with?",
+    "choices": [
+     "Applying for a new passport before her summer internship begins.",
+     "Filling out a form to keep her visa status valid over the summer.",
+     "Finding a summer internship that will count toward her degree.",
+     "Getting permission to transfer to a different university in the fall."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0256",
+    "prompt": "[Conversation — International Student Office] Why does the student need to file the form?",
+    "choices": [
+     "She is taking extra summer classes so that she can graduate a semester early.",
+     "She is switching to online-only courses and needs her advisor's signature for that.",
+     "She will drop below full-time enrollment to do an internship.",
+     "She has already fallen out of status and must file the form to be reinstated."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0257",
+    "prompt": "[Conversation — International Student Office] Why does the advisor urge the student not to wait?",
+    "choices": [
+     "A form handed in after the deadline carries a financial penalty.",
+     "The office needs several days to process the form once it arrives.",
+     "The international student office closes for the summer after the fifteenth.",
+     "Academic advisors get very busy at this time of year."
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Transcript: A: Hi, I think I left my laptop in the library last night and now I can't find it anywhere. B: Okay, let's see if we can track it down. Do you remember which floor? A: The third floor, one of the quiet study rooms. B: Good. A lot of found items from the library end up with us, actually — staff do a sweep after closing. Let me check the log. What does the laptop look like? A: It's a silver one, with a big cracked sticker of a mountain on the lid. B: Hang on... yeah, we've got a silver laptop turned in last night from the third floor. Mountain sticker. A: Oh, thank goodness. B: Before I release it, though, I need you to verify it's yours. Can you tell me the login name, or unlock it? A: The login is j-torres. B: Let me check... that matches. Great. Now, I do need a photo ID to release it — student card's fine. A: It's, um, on the laptop. In the case. B: Ah. Then I'm afraid I can't hand it over right now. Bring any other photo ID and it's yours.",
+  "questions": [
+   {
+    "ref": "R0258",
+    "prompt": "[Conversation — Campus Security] Why does the student come to the campus security office?",
+    "choices": [
+     "To ask for an escort across campus late at night.",
+     "To report a laptop he thinks he lost in the library.",
+     "To report that a laptop was stolen from a quiet study room.",
+     "To pick up a student ID card that was turned in to the lost and found."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0259",
+    "prompt": "[Conversation — Campus Security] How does the officer confirm the laptop is the student's?",
+    "choices": [
+     "By scanning the serial number on the case.",
+     "By checking a receipt for the purchase price.",
+     "By comparing the laptop with a photo the student took of it.",
+     "By matching the login name the student gives."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0260",
+    "prompt": "[Conversation — Campus Security] What can be inferred about why the officer will not release the laptop immediately?",
+    "choices": [
+     "The library must first confirm the item was turned in.",
+     "The student cannot show a photo ID because it is inside the laptop's case.",
+     "The officer doubts the laptop actually belongs to the student.",
+     "The laptop is being held as evidence in an investigation."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0261",
+    "prompt": "[Conversation — Campus Security] What will the student most likely do next?",
+    "choices": [
+     "Go back to the third-floor study room to look again.",
+     "File a written report about the missing laptop.",
+     "Return with another form of photo identification.",
+     "Ask the library staff to unlock the laptop for him."
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Transcript: A: Hi, I'd like to return this textbook. I dropped the class it was for. B: Okay, do you have your receipt? A: Yeah, right here. I bought it, um, nine days ago. B: Let me see... okay, the good news is you're inside our fourteen-day return window. The other news is the book has to be in original condition. A: It should be — I barely opened it. B: Hmm. There's a bit of writing on the first page, though. See, right here. A: Oh — that was already there when I bought it. It was sold as new but somebody had written in it. B: Ah, I believe you, but that does complicate things. If the shrink-wrap's off, we normally can't take it as new. A: But it was like that when I got it. That's not fair. B: I hear you. Tell you what — this is above what I can decide. Let me get the manager; she can authorize a full refund in a case like this. A: Thank you. I'd really appreciate that. B: One second, I'll page her.",
+  "questions": [
+   {
+    "ref": "R0262",
+    "prompt": "[Conversation — Bookstore] What does the student want to do at the bookstore?",
+    "choices": [
+     "Sell back a book at the end of the term.",
+     "Return a textbook he no longer needs.",
+     "Reserve a book that is out of stock.",
+     "Buy a used copy of a chemistry textbook."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0263",
+    "prompt": "[Conversation — Bookstore] What complicates the return?",
+    "choices": [
+     "The fourteen-day window has already passed.",
+     "The receipt is missing.",
+     "The student bought the book at a different store.",
+     "There is writing on the first page of the book."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0264",
+    "prompt": "[Conversation — Bookstore] Why does the clerk decide to page the manager?",
+    "choices": [
+     "The situation is beyond the clerk's authority to resolve.",
+     "The clerk believes the student is not telling the truth.",
+     "The manager keeps the key to the cash register.",
+     "The refund amount exceeds what the clerk can process alone."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0265",
+    "prompt": "[Conversation — Bookstore] What does the student claim about the writing in the book?",
+    "choices": [
+     "It was already there when he bought the book as new.",
+     "A previous classmate lent him the book with notes in it.",
+     "The writing is only on a removable bookmark.",
+     "He made a few notes but then erased them."
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Transcript: A: Hi, I'm hoping to graduate in the spring, and I just want to make sure I've got everything checked off. B: Smart to check now. Let me pull up your audit. Okay... your major requirements look complete, that's great. A: Oh good. B: But there's one thing flagged here — you're short on your general education science credit. A: Wait, didn't my astronomy course cover that? B: It would have, except you took it pass/fail. And the science requirement has to be a graded course. A: Ugh. I had no idea. B: It's a common mix-up. The good news is you only need one course, and there's a three-credit geology class offered in spring that fills it. A: Okay, I can add that. Is there anything else? B: That's the only gap. Once that's on your schedule, I'll clear the hold on your graduation application. But do it before registration closes next Friday — after that, spring sections fill up fast. A: Right. Add the geology course by Friday. B: Exactly. Do that and you're on track.",
+  "questions": [
+   {
+    "ref": "R0266",
+    "prompt": "[Conversation — Academic Advising] What does the advisor say she will do once the geology course is on his schedule?",
+    "choices": [
+     "Change his astronomy grade to a letter grade.",
+     "Clear the hold on his graduation application.",
+     "Enroll him in the geology class herself.",
+     "Waive the general education science requirement."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0267",
+    "prompt": "[Conversation — Academic Advising] Why did the student's astronomy course not satisfy the science requirement?",
+    "choices": [
+     "He earned a failing grade in it and will have to repeat the course",
+     "He took it pass/fail rather than for a letter grade.",
+     "He took it at another institution, so the credits did not transfer",
+     "It carried only two credits, and the requirement calls for three"
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0268",
+    "prompt": "[Conversation — Academic Advising] Why does the advisor stress acting before next Friday?",
+    "choices": [
+     "The application for graduation has to be submitted before that day.",
+     "Registration closes then and spring sections fill up quickly.",
+     "The advisor will be out of the office after that date.",
+     "The three-credit geology class first meets that Friday."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0269",
+    "prompt": "[Conversation — Academic Advising] Why does the student meet with his advisor?",
+    "choices": [
+     "To confirm he has met all his graduation requirements.",
+     "To request a letter of recommendation for a geology program.",
+     "To add a second major now that his major requirements are complete.",
+     "To appeal the pass/fail grade he was given in his astronomy course."
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Transcript: A: Professor Dalton, do you have a minute? You mentioned in class you were looking for a research assistant. B: Ah, yes, come in. So you saw the note on the board. It's for my project on urban bird populations — basically tracking how different species use city parks across the seasons. A: That's exactly what I wanted to ask about. I've taken your intro ecology course, but I've never done real fieldwork. B: Honestly, that's fine. The main thing I need isn't experience — it's someone reliable who can show up at the same parks every week and record data carefully. I can teach the counting method in an afternoon. A: Oh, good. I was a little worried I wasn't qualified. B: The one catch is the hours. The counts have to happen early — we're talking six-thirty in the morning, because that's when the birds are most active. Some students hear that and change their minds. A: Six-thirty is rough, but I think I can manage two mornings a week. B: Then let's do this — come by Thursday and I'll walk you through the data sheets. If it feels like a fit after a couple of weeks, we'll make it official and talk about credit or a small stipend. A: Sounds great. Thank you.",
+  "questions": [
+   {
+    "ref": "R0270",
+    "prompt": "[Conversation — Office Hours] What will the student most likely do next?",
+    "choices": [
+     "Come by on Thursday to learn the data sheets.",
+     "Email other students to recruit them for the project.",
+     "Enroll in an additional fieldwork course.",
+     "Sign a formal contract for a paid position immediately."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0271",
+    "prompt": "[Conversation — Office Hours] Why does the student come to see the professor?",
+    "choices": [
+     "To ask about being a research assistant on the professor's project.",
+     "To ask about the credit or stipend offered for work she has already done.",
+     "To switch into a different section of the intro ecology course.",
+     "To request an extension on the term paper for her ecology course."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0272",
+    "prompt": "[Conversation — Office Hours] What does the professor say is the most important quality he needs in an assistant?",
+    "choices": [
+     "Being reliable and recording data carefully.",
+     "Being able to tell the bird species apart by sound.",
+     "Previous fieldwork experience counting birds.",
+     "A good grade in the intro ecology course."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0273",
+    "prompt": "[Conversation — Office Hours] Why does the professor mention that the counts happen at six-thirty in the morning?",
+    "choices": [
+     "To point out that the city parks are emptiest that early in the morning.",
+     "To explain that the city parks close later in the day.",
+     "To hint that the student may not be committed enough for it.",
+     "To warn about a demanding condition that makes some students quit."
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ }
+]

@@ -1,0 +1,856 @@
+[
+ {
+  "passage": "Transcript: A: Hi, I need to book the confocal microscope for my senior project. Is that something you handle? B: I do — I'm the lab manager. Which microscope, the one in room 214? A: Yeah, that one. My advisor said I'd need it for imaging cell samples. B: Okay. First thing: have you completed the equipment orientation? Nobody touches that scope without it. A: I did the general lab safety module, but not one specific to the microscope. B: Then that's step one. I run a short hands-on session every Tuesday afternoon. Once you've done it, your card gets activated for the reservation system. A: Got it. And after that, how far ahead do I book? B: The scope's popular, so I'd reserve at least a week out. And here's the thing people forget — sessions are capped at two hours during the day. If you need longer runs, you book an evening slot after six, when demand drops. A: My samples take about three hours to image, so evenings it is. B: Smart. One more thing — cancel at least twenty-four hours ahead if your plans change, or the system locks you out of booking for a week. A: Noted. I'll come to the Tuesday session first, then.",
+  "questions": [
+   {
+    "ref": "R0274",
+    "prompt": "[Conversation — Service Desk] Why does the student decide to book an evening slot?",
+    "choices": [
+     "The lab manager is only available in the evenings.",
+     "Evening slots are cheaper than daytime slots.",
+     "The microscope works better after the room cools down.",
+     "His imaging takes longer than the daytime two-hour limit."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0275",
+    "prompt": "[Conversation — Service Desk] What must the student do before he can reserve the microscope?",
+    "choices": [
+     "Get written approval from his advisor.",
+     "Complete the microscope-specific orientation session.",
+     "Retake the general lab safety module.",
+     "Pay a deposit for evening equipment use."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0276",
+    "prompt": "[Conversation — Service Desk] What does the lab manager warn will happen if the student cancels too late?",
+    "choices": [
+     "He will be locked out of booking for a week.",
+     "His orientation certification will be revoked.",
+     "He will be charged a late-cancellation fee.",
+     "His advisor will be notified of the missed session."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0277",
+    "prompt": "[Conversation — Service Desk] What does the student want to do at the lab?",
+    "choices": [
+     "Reserve the confocal microscope for his project.",
+     "Report that a machine in the lab is broken.",
+     "Return a piece of equipment he borrowed last week.",
+     "Sign up for a safety training session."
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Transcript: A: Thanks for meeting with me, Ms. Reyes. The photography club wants to put on an exhibition this spring, but we need money for printing and frames. B: I'm glad you came early — funding requests take time. How much are we talking about? A: Our estimate is around six hundred dollars. B: Okay. The student activities fund can cover most of that, but there's a process. You can't just ask for a lump sum; you have to submit an itemized budget — every print, every frame, listed separately. A: That's more detailed than I expected. B: It has to be. The committee rejects vague requests almost automatically. And one thing that really helps your case: show that the club is contributing something too, even a small amount from your own dues. It signals commitment. A: We do have about a hundred dollars in dues. B: Perfect — put that in as matching funds. That alone makes approval far more likely. A: When's the deadline? B: Requests are reviewed the first Monday of each month, so if you get the budget to me by next Friday, I can present it at the March meeting. Miss that, and you're waiting until April, which might be too late for a spring show. A: I'll have it to you by Friday, then.",
+  "questions": [
+   {
+    "ref": "R0278",
+    "prompt": "[Conversation — Advisor Meeting] Why does the advisor suggest including the club's dues in the request?",
+    "choices": [
+     "Because contributing its own money signals the club's commitment.",
+     "Because dues are the only money the committee will accept.",
+     "Because the committee requires clubs to pay a fee.",
+     "Because the activities fund cannot cover the full amount."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0279",
+    "prompt": "[Conversation — Advisor Meeting] What can be inferred about why the Friday deadline matters?",
+    "choices": [
+     "The committee only meets once per semester.",
+     "Missing it would push funding to April, likely too late for a spring show.",
+     "The club must print the photos before Friday.",
+     "The advisor is unavailable after Friday."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0280",
+    "prompt": "[Conversation — Advisor Meeting] What does the advisor say the funding committee requires?",
+    "choices": [
+     "A written recommendation from a faculty member.",
+     "A single lump-sum request for the whole exhibition.",
+     "An itemized budget listing each print and frame separately.",
+     "Proof that the exhibition will be open to the public."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0281",
+    "prompt": "[Conversation — Advisor Meeting] What is the main reason the student is meeting with the club advisor?",
+    "choices": [
+     "To secure funding for the photography club's exhibition.",
+     "To ask the advisor to approve a new club member.",
+     "To recruit the advisor as a guest speaker.",
+     "To resolve a scheduling conflict with another club."
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Transcript: A: Hi, I'm having trouble with the campus wifi. My laptop says it's connected, but nothing actually loads. B: Okay, that's a common one. So it shows the network name and a full signal, but pages just spin? A: Exactly. And weirdly, my phone works fine on the same network. B: That's a useful clue. It usually means your laptop is holding onto old login credentials. When did you last change your student password? A: Oh — I did reset it last week, actually. B: There it is. The wifi remembers your old password and keeps trying it, which fails silently. You need to make the laptop forget the network and reconnect with the new password. A: How do I do that? B: In your wifi settings, find the campus network in the saved list and select 'forget.' Then reconnect and type the new password when it asks. A: That's it? B: That should do it. If it still won't connect after that, it's probably your device certificate, and you'd need to bring the laptop to the help desk in person — we can't fix certificates remotely. But try the forget-and-reconnect first; nine times out of ten that's the fix. A: Great, I'll try that right now.",
+  "questions": [
+   {
+    "ref": "R0282",
+    "prompt": "[Conversation — Tech Support] Why does the technician ask when the student last changed her password?",
+    "choices": [
+     "To decide whether she needs a new student ID card.",
+     "To determine if she is using the correct network.",
+     "To check whether her account has been locked for security.",
+     "To confirm his guess that stale credentials are the cause."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0283",
+    "prompt": "[Conversation — Tech Support] What problem does the student describe?",
+    "choices": [
+     "She cannot remember the new password she set when she reset her account.",
+     "Her laptop keeps shutting down whenever she carries it between lecture halls.",
+     "The computers in the library will not let her print from her student account.",
+     "Her device connects to the campus wifi but has no internet."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0284",
+    "prompt": "[Conversation — Tech Support] According to the technician, what is causing the student's problem?",
+    "choices": [
+     "Her laptop is sitting too far from the nearest campus router.",
+     "Her laptop is still trying to use her old password.",
+     "Her phone is holding the connection the laptop needs.",
+     "The campus wifi is down in her building right now."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0285",
+    "prompt": "[Conversation — Tech Support] What does the technician say the student should do if the fix does not work?",
+    "choices": [
+     "Restart her laptop several times until it connects.",
+     "Bring the laptop to the help desk in person.",
+     "Switch to using the network on her phone instead.",
+     "Reset her student password again."
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Transcript: Good afternoon, everyone. I'm excited to share that the Hartwell Wing, our new library addition, opens to students this coming Monday. Let me walk you through what's new, because it's more than just extra shelf space. First, the entire second floor is dedicated to group study — twelve enclosed rooms you can reserve online, each with a large screen for sharing your laptop. This is a real change, because until now group work had to happen at open tables, which, as many of you complained, got noisy fast. Second, the ground floor houses a new digital media lab: audio recording booths, video editing stations, and equipment you can check out for class projects. You will need a short orientation before using the lab gear, and those sessions run daily during the first two weeks. One thing to note — the new wing follows quiet-study rules only on the third floor. The lower floors are designed for collaboration and conversation, so please don't shush your neighbors there. Finally, our old reading room in the main building will close for renovation starting next month, so plan to use the new spaces in the meantime. Come explore on Monday — staff will be on hand to give tours.",
+  "questions": [
+   {
+    "ref": "R0286",
+    "prompt": "[Announcement — Library] What is the main purpose of this announcement?",
+    "choices": [
+     "To remind students to return books before the new wing opens.",
+     "To explain a change in the library's rules for borrowing media equipment.",
+     "To introduce the opening of a new library wing and its features.",
+     "To announce that the main building's reading room will close for renovation."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0287",
+    "prompt": "[Announcement — Library] What is located on the second floor of the new wing?",
+    "choices": [
+     "Reservable enclosed group-study rooms with screens.",
+     "A digital media lab with recording booths.",
+     "The equipment checkout desk.",
+     "The main quiet-study reading area."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0288",
+    "prompt": "[Announcement — Library] Why does the speaker mention that group work used to happen at open tables?",
+    "choices": [
+     "To encourage students to keep studying at open tables.",
+     "To warn students that open tables are no longer allowed.",
+     "To highlight the problem the new study rooms are meant to solve.",
+     "To explain why the old reading room is being renovated."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0289",
+    "prompt": "[Announcement — Library] What must students do before using the media lab equipment?",
+    "choices": [
+     "Pay a refundable equipment deposit.",
+     "Get approval from a course instructor.",
+     "Reserve the lab a week in advance.",
+     "Attend a short orientation session."
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Transcript: Attention all students and staff: the Office of Information Technology will be performing a campus-wide network upgrade this weekend, and I want to explain what to expect so no one is caught off guard. Starting Friday at eleven p.m. and running through Sunday morning, we're replacing the core switches that route traffic across campus. During that window, wired and wireless internet will go down in waves — not everywhere at once, but building by building, each outage lasting roughly two hours. Now, here's the part people miss: services hosted off campus, like your personal email or streaming accounts, will come back the moment your building's connection returns. But internal systems — the course portal, library databases, and printing — may lag a few extra hours as servers restart and reconnect. So if you have an assignment due Sunday, and it has to be submitted through the course portal, do not wait until the weekend. Submit it Friday afternoon to be safe. We considered doing this over spring break, but the equipment only arrived last week, and delaying further would push us past the vendor's support deadline. Once complete, you should see noticeably faster and more stable connections. Thank you for your patience.",
+  "questions": [
+   {
+    "ref": "R0290",
+    "prompt": "[Announcement — IT Services] Why does the speaker advise submitting Sunday assignments by Friday afternoon?",
+    "choices": [
+     "Because the course portal will be permanently replaced.",
+     "Because personal email will be unavailable all weekend.",
+     "Because instructors will not accept weekend submissions.",
+     "Because internal systems like the portal may stay down longer than other services."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0291",
+    "prompt": "[Announcement — IT Services] According to the speaker, how will the outages occur?",
+    "choices": [
+     "Outages will happen only during daytime hours.",
+     "The whole campus will lose internet at the same time.",
+     "Only wireless internet will be affected.",
+     "Buildings will lose connection one at a time, in waves."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0292",
+    "prompt": "[Announcement — IT Services] Why was the upgrade not done over spring break?",
+    "choices": [
+     "Students objected to losing internet access over the spring break week.",
+     "The vendor's support contract had already expired before spring break.",
+     "The core switches that route traffic across campus failed and had to be replaced at once.",
+     "The equipment arrived too late, and further delay would miss the support deadline."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0293",
+    "prompt": "[Announcement — IT Services] What is the announcement mainly about?",
+    "choices": [
+     "A warning about a security breach that forced the campus to replace its core switches.",
+     "A planned network upgrade that will cause temporary outages.",
+     "A permanent increase in internet speed that requires no interruption of service.",
+     "A new policy requiring students to register their devices before the switches change."
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Transcript: Welcome, first-years! I'm going to run through your orientation schedule for the week, so grab a pen. Orientation is three days, Wednesday through Friday, and attendance at the Wednesday session is required — that's where you'll get your student ID, your course materials, and, importantly, meet your academic advisor. If you miss Wednesday, you'll have to reschedule the advisor meeting individually, and those slots fill up fast, so please don't skip it. Thursday and Friday are more flexible: they're a menu of optional workshops — time management, using the library databases, campus clubs, that sort of thing. Pick whichever interest you. Now, a lot of you have been asking about the campus tour. It's Thursday morning at ten, leaving from the main quad, and I'd genuinely recommend it even if you think you know your way around — the tour guides point out things like the free tutoring center that aren't obvious. One scheduling note: the welcome dinner everyone's excited about was originally Friday, but we've moved it to Thursday evening because of a conflict with the athletics facility. So if you wrote down Friday, cross that out. Any questions, the orientation desk is open all week.",
+  "questions": [
+   {
+    "ref": "R0294",
+    "prompt": "[Announcement — Orientation] What is the main purpose of this announcement?",
+    "choices": [
+     "To remind students that the campus tour leaves from the main quad at ten.",
+     "To announce that the welcome dinner has moved from Friday to Thursday.",
+     "To explain how to sign up for the optional Thursday and Friday workshops.",
+     "To describe the schedule and structure of first-year orientation."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0295",
+    "prompt": "[Announcement — Orientation] Why is attendance at the Wednesday session required?",
+    "choices": [
+     "Because the optional workshops are all scheduled for Wednesday morning.",
+     "Because the welcome dinner was moved to that evening after a conflict.",
+     "Because students get their ID, materials, and meet their advisor.",
+     "Because the campus tour leaves from the main quad that morning."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0296",
+    "prompt": "[Announcement — Orientation] Why does the speaker recommend the campus tour even to students who think they know the campus?",
+    "choices": [
+     "Because guides point out useful places students might not notice.",
+     "Because the tour replaces the Wednesday advisor meeting.",
+     "Because attendance at the tour is mandatory.",
+     "Because the tour is the only way to receive a campus map."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0297",
+    "prompt": "[Announcement — Orientation] What change to the schedule does the speaker point out?",
+    "choices": [
+     "The welcome dinner was moved from Friday to Thursday evening.",
+     "The advisor meetings have been moved to Friday.",
+     "The optional workshops have been reduced to one day.",
+     "The campus tour now leaves from the athletics facility."
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Transcript: Good morning, everyone. This is a quick update from Dining Services about changes coming to Wexler Hall starting next Monday. First, our hours are shifting. Breakfast will now open at seven thirty instead of seven, but to make up for that, we're extending dinner service by a full hour, closing at nine instead of eight. We heard from many of you that late-afternoon labs made the old dinner cutoff impossible, so this change is really a response to your feedback. Second, the menu itself is getting a refresh. We're adding a permanent plant-based station near the north entrance, and it will rotate a new featured dish every day. One thing to note: the grill station by the windows is being retired, so if the burgers were your go-to, you'll now find them at the central counter instead. Finally, meal swipes are unaffected by any of this, and your existing plan carries over exactly as before. If you have dietary questions, our nutritionist holds walk-in hours on Wednesday afternoons. Thanks, and enjoy the new setup.",
+  "questions": [
+   {
+    "ref": "R0298",
+    "prompt": "[Announcement — Dining Services] What does the speaker say about meal swipes?",
+    "choices": [
+     "They will be reduced next Monday.",
+     "They can only be used before nine.",
+     "They must be renewed with the nutritionist.",
+     "They are unaffected, and existing plans carry over."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0299",
+    "prompt": "[Announcement — Dining Services] What is the main purpose of this announcement?",
+    "choices": [
+     "To recruit students for a nutrition advisory committee that meets on Wednesdays.",
+     "To announce that meal plan prices will rise along with the extended dinner hour.",
+     "To inform students about upcoming changes to the dining hall's hours and menu.",
+     "To explain why the grill station is moving to the north entrance."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0300",
+    "prompt": "[Announcement — Dining Services] Why does the speaker mention the grill station?",
+    "choices": [
+     "To warn students that meal swipes will no longer cover items from that station.",
+     "To let burger fans know where to find that food now.",
+     "To explain why breakfast will now begin half an hour later than it used to.",
+     "To announce that a new featured dish will rotate through it every single day."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0301",
+    "prompt": "[Announcement — Dining Services] According to the speaker, why is dinner service being extended?",
+    "choices": [
+     "Because the grill station is being retired.",
+     "Because a new nutritionist was hired.",
+     "Because many students said late-afternoon labs made the earlier cutoff impossible.",
+     "Because breakfast is now starting half an hour later."
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Transcript: Hello, students. This is an announcement from the Registrar's Office regarding the final examination schedule for this term. The full grid is now posted on the student portal under Academic Calendar, and I'd encourage you to check it today rather than waiting until reading week. A few important points. Exams run from December fourteenth through the nineteenth, and each is scheduled based on your course's meeting time, not the course number, so two classes that meet at different hours will have exams on different days even if they're in the same department. Now, occasionally a student ends up with three exams scheduled within a single twenty-four-hour period. If that's your situation, you're entitled to request a reschedule, but you must submit the form to your dean's office at least ten days before finals begin. Requests made after that window generally can't be accommodated. One more thing: room assignments are often different from your regular classroom, so don't assume you'll be in your usual lecture hall. Double-check the location the night before. Good luck with your preparation.",
+  "questions": [
+   {
+    "ref": "R0302",
+    "prompt": "[Announcement — Registrar's Office] What is the speaker mainly announcing?",
+    "choices": [
+     "That all exams will be held in students' regular classrooms.",
+     "That reading week has been extended this term.",
+     "That the final exam schedule is posted, and explaining how it works.",
+     "That final exams have been canceled for December."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0303",
+    "prompt": "[Announcement — Registrar's Office] Why does the speaker tell students to check the room the night before?",
+    "choices": [
+     "Because the portal closes during reading week.",
+     "Because exam rooms are often different from the regular classroom.",
+     "Because rooms are assigned by course number.",
+     "Because reschedule requests are approved overnight."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0304",
+    "prompt": "[Announcement — Registrar's Office] How is each exam's date determined?",
+    "choices": [
+     "By the time the course normally meets.",
+     "By the course number and department.",
+     "By each professor's own preference.",
+     "By the number of students enrolled in it."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0305",
+    "prompt": "[Announcement — Registrar's Office] What should a student do if they have three exams within twenty-four hours?",
+    "choices": [
+     "Contact each professor individually on the day of the exam to arrange a make-up.",
+     "Submit a reschedule form to the dean's office at least ten days before finals.",
+     "Wait until reading week, when the full examination grid is posted on the portal.",
+     "Take the third exam later, since exams are scheduled by the course's meeting time."
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Transcript: This is a campus-wide advisory from the Office of Emergency Management about our severe-weather procedures, with winter approaching. Please take a moment to understand how closings work, because it's a common source of confusion. When the university makes a weather decision, it falls into one of three categories. A delayed opening means classes before ten a.m. are canceled but everything afterward runs normally. A closure means all classes and non-essential offices are shut, though residence halls and dining stay open for students living on campus. The key thing to remember is that a closure does not automatically cancel evening events or exams — those are decided separately by each department. How will you find out? The official source is the emergency text alert system, so make sure your mobile number is current in the portal. Do not rely on rumors or social media posts, which are often wrong. Announcements are typically made by six a.m. for morning decisions. Finally, even during a full closure, if you feel unsafe traveling to an essential job on campus, contact your supervisor directly. Stay warm and stay safe this season.",
+  "questions": [
+   {
+    "ref": "R0306",
+    "prompt": "[Announcement — Emergency Management] How should students find out about a weather decision?",
+    "choices": [
+     "Through the official emergency text alert system.",
+     "By calling the dining hall, which stays open during a closure.",
+     "By asking roommates who have morning classes.",
+     "By checking social-media posts about closings."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0307",
+    "prompt": "[Announcement — Emergency Management] What does a \"delayed opening\" mean?",
+    "choices": [
+     "Evening events and exams are canceled, but daytime classes meet as usual.",
+     "Residence halls and dining close, but classes still meet.",
+     "All classes and non-essential offices are shut for the day.",
+     "Classes before ten a.m. are canceled, but later ones run normally."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0308",
+    "prompt": "[Announcement — Emergency Management] What does the speaker emphasize about a \"closure\"?",
+    "choices": [
+     "It closes the residence halls and dining.",
+     "It does not automatically cancel evening events or exams.",
+     "It is announced only through social media.",
+     "It automatically cancels all exams."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0309",
+    "prompt": "[Announcement — Emergency Management] What is the main purpose of this advisory?",
+    "choices": [
+     "To describe changes to dining hall service during a closure.",
+     "To announce that all classes and evening exams are canceled for the winter term.",
+     "To remind students to check social media for closing announcements each morning.",
+     "To explain how the university's severe-weather closing procedures work."
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Transcript: Good afternoon. This message is from the Financial Aid Office about the Kendrick Merit Scholarship, and it's time-sensitive, so please listen closely. Applications for next year's award open this Friday and close on March first at midnight — and I want to stress that this is a hard deadline. Unlike some of our rolling programs, late submissions for this particular scholarship are simply not reviewed, no exceptions. The award covers up to half of tuition and is renewable for three years, provided you maintain a 3.5 grade point average. Now, here's a detail students often miss: the application requires two letters of recommendation, and those must be submitted directly by your recommenders through the portal, not attached by you. Because faculty are busy, we strongly advise asking them at least three weeks in advance. Eligibility is open to all continuing students who are not graduating this spring. If you're a first-year, second-year, or third-year student in good standing, you qualify to apply. Questions can go to our office in the Whitmore Building, open weekdays until five. Don't wait — start gathering your materials now.",
+  "questions": [
+   {
+    "ref": "R0310",
+    "prompt": "[Announcement — Financial Aid] What does the scholarship provide?",
+    "choices": [
+     "A stipend covering textbooks and on-campus housing costs each term.",
+     "Priority registration for classes in the coming year.",
+     "Up to half of tuition, renewable for three years with a 3.5 GPA.",
+     "Full tuition for one year, with no possibility of renewal afterwards."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0311",
+    "prompt": "[Announcement — Financial Aid] Why does the speaker advise asking recommenders three weeks in advance?",
+    "choices": [
+     "Because students must write the letters themselves.",
+     "Because the deadline can be extended for faculty.",
+     "Because recommenders must submit the letters directly, and faculty are busy.",
+     "Because only two students may apply per professor."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0312",
+    "prompt": "[Announcement — Financial Aid] What is the speaker mainly discussing?",
+    "choices": [
+     "A change to the university's tuition rates.",
+     "Rules for maintaining good academic standing.",
+     "The application details and deadline for a merit scholarship.",
+     "A new office location for Financial Aid."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0313",
+    "prompt": "[Announcement — Financial Aid] Who is eligible to apply?",
+    "choices": [
+     "Continuing students who are not graduating this spring.",
+     "Only first-year and second-year students in good academic standing.",
+     "Only graduate students who can maintain a 3.5 grade point average.",
+     "Students who will be graduating this coming spring."
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Transcript: Hi, everyone. The Career Development Center is excited to announce our annual Spring Career Fair, taking place Thursday, April tenth, in the Student Union grand ballroom from ten a.m. to four p.m. This year we've confirmed over ninety employers, spanning fields from engineering and healthcare to nonprofits and finance, so there really is something for nearly every major. A few tips to get the most out of it. First, registration is free, but you do need to sign up in advance on the portal to receive your entry badge — walk-ins can't be admitted this year due to space limits. Second, and I can't stress this enough, bring printed copies of your résumé. While many recruiters accept digital submissions, having a physical copy on hand makes a strong impression and lets you leave something behind. Also, dress professionally; first impressions matter. For those feeling nervous, we're running free mock-interview sessions in the two weeks beforehand — I'd really encourage you to book one. And note, this fair is open to all students, including first-years just beginning to explore options, not only graduating seniors. See you there.",
+  "questions": [
+   {
+    "ref": "R0314",
+    "prompt": "[Announcement — Career Center] Why does the speaker mention the mock-interview sessions?",
+    "choices": [
+     "To warn that recruiters will hold real interviews at the fair.",
+     "To explain why a printed resume leaves a stronger impression.",
+     "To encourage nervous students to practice beforehand.",
+     "To explain that space limits are why walk-ins cannot be admitted."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0315",
+    "prompt": "[Announcement — Career Center] Who can attend the career fair?",
+    "choices": [
+     "Only students majoring in engineering, healthcare, or finance.",
+     "Only students bringing printed résumé copies.",
+     "All students, including first-years exploring options.",
+     "Only seniors, since recruiters hire for full-time roles."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0316",
+    "prompt": "[Announcement — Career Center] What does the speaker say about registration?",
+    "choices": [
+     "Walk-ins are welcome this year.",
+     "Only registered seniors may attend.",
+     "It costs a small fee paid at the door.",
+     "It is free, but students must sign up in advance to be admitted."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0317",
+    "prompt": "[Announcement — Career Center] What is the main purpose of this announcement?",
+    "choices": [
+     "To require all seniors to attend an interview.",
+     "To report the results of last year's career fair.",
+     "To describe a new major in finance.",
+     "To announce the Spring Career Fair and how to prepare for it."
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Transcript: Hello, students. I'm calling from the Student Counseling Center to let you know about several new services we're rolling out this semester, because your well-being is our priority. The biggest change is that we've added same-day crisis appointments. Previously, students sometimes waited over a week to be seen, but now, if you're in urgent distress, you can walk in between nine and eleven each morning and speak with a counselor that day. We've also launched a set of drop-in support groups — for example, one for students managing anxiety and another for those adjusting to life far from home. These are confidential and require no referral. Additionally, all of our services remain completely free and are not recorded on your academic transcript, so there's no reason to hesitate on those grounds. One clarification, since students ask: while we offer short-term counseling, we don't provide long-term therapy on campus. For ongoing care, we'll connect you with trusted providers in the community. Our office is on the second floor of the Health Center, and our after-hours phone line operates every night. Please reach out — you don't have to wait for a crisis.",
+  "questions": [
+   {
+    "ref": "R0318",
+    "prompt": "[Announcement — Counseling Center] What is the speaker mainly announcing?",
+    "choices": [
+     "A new fee that will apply to counseling appointments this semester.",
+     "New services the counseling center is offering this semester.",
+     "A requirement that students get a referral before joining a drop-in group.",
+     "That the counseling center is moving to the second floor of the Health Center."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0319",
+    "prompt": "[Announcement — Counseling Center] What is the biggest change described?",
+    "choices": [
+     "The office has moved to a new building.",
+     "Students in urgent distress can get a same-day appointment by walking in.",
+     "Support groups now require a referral.",
+     "Long-term therapy is now offered on campus."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0320",
+    "prompt": "[Announcement — Counseling Center] Why does the speaker mention that services are free and not on the transcript?",
+    "choices": [
+     "To reassure students that cost and privacy are not reasons to hesitate.",
+     "To introduce a new way of billing for counseling visits.",
+     "To explain how the after-hours phone line and the morning walk-in hours work.",
+     "To explain why students still wait over a week for an appointment."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0321",
+    "prompt": "[Announcement — Counseling Center] What clarification does the speaker offer?",
+    "choices": [
+     "That long-term therapy isn't provided on campus, but referrals are given.",
+     "That referrals cost an additional fee.",
+     "That support groups are recorded on transcripts.",
+     "That crisis appointments are only in the afternoon."
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Transcript: Good morning. This announcement comes from the Office of Sustainability about our new campus-wide recycling and composting program, launching the first of next month. We're excited, but we need your cooperation to make it work. Here's what's changing. Every building will now have three-bin stations: one for landfill trash, one for recyclables, and — this is new — one for compost. The compost bins are for food scraps and certified compostable containers from the dining halls only. Please don't put plastic bags in them, even so-called biodegradable ones, because they contaminate the whole batch and the entire bin then has to be sent to the landfill. That's the single most important thing to remember. To help everyone learn the system, we're placing clear signage with pictures above each station. We're also recruiting student volunteers as sustainability monitors during the first two weeks to answer questions — if you're interested, there's a sign-up link in the campus newsletter. Our goal is to cut the university's landfill waste in half within a year. It's ambitious, but entirely achievable if we each do our part. Thank you for helping build a greener campus.",
+  "questions": [
+   {
+    "ref": "R0322",
+    "prompt": "[Announcement — Sustainability Office] What is new about the bin stations?",
+    "choices": [
+     "They replace the recycling bins in each building with a single landfill container.",
+     "They will be installed only in the dining halls, where the compostable containers come from.",
+     "They accept biodegradable plastic bags along with food waste.",
+     "They now include a compost bin alongside trash and recycling."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0323",
+    "prompt": "[Announcement — Sustainability Office] Why does the speaker stress not putting plastic bags in compost bins?",
+    "choices": [
+     "Because the certified compostable bags cost the university more than ordinary ones.",
+     "Because they contaminate the batch, sending the whole bin to the landfill.",
+     "Because the sustainability monitors are only on duty for the program's first two weeks.",
+     "Because the compost bins take scraps from the dining halls and not from other buildings."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0324",
+    "prompt": "[Announcement — Sustainability Office] What is the main purpose of this announcement?",
+    "choices": [
+     "To hire full-time staff to run the new three-bin stations.",
+     "To warn that the dining halls will stop using compostable containers.",
+     "To report that the compost bins were contaminated and sent to the landfill.",
+     "To introduce a new campus recycling and composting program."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0325",
+    "prompt": "[Announcement — Sustainability Office] What goal does the speaker state?",
+    "choices": [
+     "To hire fifty sustainability monitors permanently.",
+     "To eliminate all recycling within a month.",
+     "To open three new dining halls this year.",
+     "To cut the university's landfill waste in half within a year."
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Transcript: A: Hey, do you have a minute? I wanted to talk about splitting the rent for next semester. I’ve been thinking about how we should divide things up, especially since the rooms are pretty different in size. B: Sure, what’s up? Is there something in particular you’re concerned about? A: Well, since you’re taking the bigger room, I was wondering if you’d be willing to pay a bit more. The thing is, the lease says the rent is $1,200 total, but your room is almost twice the size of mine, and you get more closet space and sunlight. B: I see where you’re coming from. How much more do you think would be fair? Did you have a specific number in mind, or should we try to figure it out together? A: I was thinking maybe $650 for you and $550 for me. I looked up some suggestions online, and a lot of people recommend dividing the rent based on room size or amenities. Since your room is bigger and has that extra window, it seemed reasonable. B: I suppose that makes sense. But I’ll also be paying for the parking spot, which is $60 a month.\n\nI wanted to mention that because I know parking can be expensive around here. A: Right, I forgot about that. What do you mean by ‘paying for the parking spot’? Is it included in the lease, or is it a separate fee you have to pay to the landlord? B: It’s a separate fee. The landlord charges $60 per month for the spot, and since I’ll be the only one using it, I’ll cover the full cost myself. A: Okay, in that case, maybe we can adjust the rent split a little to make it fairer. How about $630 for you and $570 for me? That way, you’re not paying too much more overall. B: That sounds more reasonable. Should we write this into the lease addendum so everything’s clear and official? A: Yes, and we should both sign it before the deadline on Friday. That way, there won’t be any confusion later on. B: Agreed. I’ll draft something tonight and send it to you to review, just to make sure we’re both on the same page. A: Thanks, I appreciate it. Let’s make sure we’re both comfortable with the arrangement before we finalize anything.",
+  "questions": [
+   {
+    "ref": "R0326",
+    "prompt": "[Conversation — Roommates] Why do the speakers move from a $650/$550 split to a $630/$570 split?",
+    "choices": [
+     "Because the smaller room also has an extra window.",
+     "Because one roommate will be paying a separate monthly parking fee.",
+     "Because the total rent turned out to be higher than they had expected.",
+     "Because the online guides they consulted recommend an even split."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0327",
+    "prompt": "[Conversation — roommates] What is the agreed-upon next step for the roommates?",
+    "choices": [
+     "Contact the landlord to negotiate rent.",
+     "Pay the first month’s rent in cash.",
+     "Move into their new rooms immediately.",
+     "Sign a lease addendum before the deadline."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0328",
+    "prompt": "[Conversation — Roommates] What can be inferred about the way the two roommates handle their differing positions?",
+    "choices": [
+     "They decide to let the landlord settle the split and write the final figures into the lease.",
+     "Each revises an initial position after learning something the other knew.",
+     "Speaker A holds to the original figures of $650 and $550 until Speaker B agrees to them.",
+     "Speaker B resists paying more for the larger room and offers the parking fee as a reason not to."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0329",
+    "prompt": "[Conversation — Roommates] Why does Speaker A ask what Speaker B means by 'paying for the parking spot'?",
+    "choices": [
+     "To establish whether that cost is already inside the rent being divided.",
+     "To propose that the two of them split the parking cost evenly.",
+     "To challenge whether the landlord may charge a separate monthly fee for it.",
+     "To object to contributing toward a parking spot that only B will ever use."
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Transcript: A: Hi, I’m calling about the room reservation for the club meeting tonight. B: Yes, I have your name here. The reservation is for Room 302 at 7 p.m. A: Great, but I just heard there’s a maintenance issue on the third floor. B: Oh, let me check… Yes, it looks like Room 302 is temporarily closed. I’m sorry for the inconvenience. A: Is there another room available at that time?\n\nB: Let me see… There’s Room 210, but it only seats 12. How many people are you expecting? A: About 20, so that might not work. B: There’s also a lounge on the first floor, but it’s not a formal meeting space. A: I guess we could make that work if it’s the only option. B: I’ll reserve the lounge for you and send a confirmation email. A: Thanks for your help. I’ll let the group know about the change.",
+  "questions": [
+   {
+    "ref": "R0330",
+    "prompt": "[Conversation — Room Reservation] What is the main problem the speakers are trying to solve?",
+    "choices": [
+     "They want to move the club meeting to a different evening this week.",
+     "They are trying to cut the number of attendees so a smaller room fits.",
+     "They need a room larger than the one they reserved for tonight.",
+     "Their reserved meeting room is unavailable due to maintenance."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0331",
+    "prompt": "[Conversation — Room Reservation] Why does the first speaker agree to use the lounge?",
+    "choices": [
+     "Because the club’s twenty or so members prefer to meet in an informal setting.",
+     "Because a first-floor lounge is more comfortable than a formal room like 302.",
+     "Because the lounge has better facilities than either meeting room.",
+     "Because it is the only available space that can accommodate the group."
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Transcript: A: Hi, I’m trying to figure out if I’m still eligible for the Dean’s Opportunity Scholarship. I heard the deadline is coming up, and I want to make sure I have everything in order before I submit my application. Could you tell me exactly when the deadline is? B: Yes, the application deadline is March 15th at 5 p.m. sharp. It’s really important to have everything in by then. Have you already started your application, or are you just beginning? A: I’ve filled out most of it, but I’m still waiting on a recommendation letter from my ECON 302 professor. I asked him last week, but he hasn’t sent it yet. What happens if the letter comes in after the deadline? Would my application still be considered, or is it automatically disqualified? B: The thing is, all materials—including recommendation letters—must be submitted by the deadline. If anything is missing, even by a few minutes, your application unfortunately won’t be considered for the scholarship. The system actually locks at 5 p.m. on March 15th, so nothing can be added after that point. A: I suppose I should remind my professor, then.\n\nIs there any flexibility if the letter is just a day late, or is it a strict cut-off? I know sometimes there’s a short grace period with other applications. B: Unfortunately, there’s no grace period for this scholarship. The system is automated and won’t accept late submissions, even if it’s just a few minutes past the deadline. If you’re worried about timing, it’s a good idea to ask your professor to upload the recommendation a day or two early, just to be safe. Would you like me to send him a reminder as well? A: That would be really helpful, thank you. Also, do I need to submit my FAFSA again this year for the scholarship, or does last year’s submission count? B: Yes, a current FAFSA is required for this scholarship cycle, so make sure you’ve submitted the most recent one and that it’s on file before the deadline. If you need help checking your FAFSA status, I can walk you through the process. A: Thanks for clarifying. I’ll double-check everything today and reach out if I run into any issues. B: Sounds good. Let me know if you need help with the online portal or if yo",
+  "questions": [
+   {
+    "ref": "R0332",
+    "prompt": "[Conversation — student and financial-aid officer about a scholarship deadline] According to the financial-aid officer, what happens if the recommendation letter is submitted after the deadline?",
+    "choices": [
+     "The student can request an extension.",
+     "The application will not be considered at all.",
+     "The application will still be considered if the letter is only one day late.",
+     "The student will have to pay a late fee."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0333",
+    "prompt": "[Conversation — student and financial-aid officer about a scholarship deadline] Why does the student mention that \"sometimes there’s a short grace period with other applications\"?",
+    "choices": [
+     "To explain why her professor has not yet uploaded the letter",
+     "To test whether the stated cut-off might be negotiable in her case",
+     "To confirm that the rest of her materials have already been submitted",
+     "To point out that the scholarship rules conflict with other campus policies"
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0334",
+    "prompt": "[Conversation — student and financial-aid officer about a scholarship deadline] What is the student’s main purpose in speaking with the financial-aid officer?",
+    "choices": [
+     "To confirm what she still has to do before a scholarship application closes",
+     "To report that the online portal locked her out several minutes before the deadline",
+     "To ask the office to remind her ECON 302 professor to upload his recommendation",
+     "To find out whether last year’s FAFSA can be reused instead of a new one"
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0335",
+    "prompt": "[Conversation — student and financial-aid officer about a scholarship deadline] What can be inferred about the state of the student’s application at the end of the conversation?",
+    "choices": [
+     "The officer will add the recommendation letter to the file herself if it arrives a day late",
+     "The automated portal has already locked at five p.m., so none of her materials can be uploaded",
+     "One required item is in someone else’s hands, so she cannot complete it on her own",
+     "She must start the whole application over because last year’s FAFSA is no longer valid"
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Transcript: This is a reminder that the campus shuttle will be operating on a reduced schedule during the upcoming holiday weekend. Buses will run every 45 minutes instead of every 20 minutes, and service will end at 8 p.m. each day. Please plan your travel accordingly. For those needing transportation after hours, local taxi and ride-share services are available. Regular shuttle service will resume on Monday morning.",
+  "questions": [
+   {
+    "ref": "R0336",
+    "prompt": "[Announcement — Campus PA] What should students do if they need transportation after 8 p.m. during the holiday weekend?",
+    "choices": [
+     "Contact the campus security office.",
+     "Walk, since the shuttle stops running at eight.",
+     "Wait for the next shuttle, due 45 minutes later.",
+     "Use local taxi or ride-share services."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0337",
+    "prompt": "[Announcement — Campus PA] What can be inferred about the reduced schedule?",
+    "choices": [
+     "It became necessary because too few drivers were available over the holiday weekend.",
+     "It was arranged ahead of time rather than caused by a sudden problem.",
+     "It applies only to the routes that serve off-campus housing during the holiday weekend.",
+     "It will remain in effect until the university announces that regular service can resume."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0338",
+    "prompt": "[Announcement — Campus PA] How will holiday-weekend service differ from the normal shuttle schedule?",
+    "choices": [
+     "Buses will not run at all until Monday morning.",
+     "Buses will arrive less than half as often as they usually do.",
+     "Buses will keep their usual frequency but will skip some stops.",
+     "Buses will still come every 20 minutes but will stop running earlier."
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Transcript: Let’s discuss asymmetric information in labor markets—a concept that’s vital for understanding how wages and hiring decisions are made. Why does this matter? Well, when employers and employees have different levels of information, it can lead to inefficiencies and even market failures, affecting not just individuals but the broader economy as well. The classic example of asymmetric information is the “lemons problem,” first described by economist George Akerlof. In the used car market, sellers typically know much more about the quality of their cars than buyers do, which can drive down prices and push high-quality cars out of the market. The interesting thing here is that a similar dynamic plays out in labor markets: job applicants know more about their skills, work ethic, and reliability than potential employers. For example, consider a company trying to fill a technical position. The employer can’t directly observe a candidate’s coding ability or problem-solving skills during the initial hiring process. What researchers have found is that, in these situations, firms often rely on educational credentials or previous job titles as proxies for actual skill. But actually—let me clarify—credentials aren’t always a perfect signal.\n\nSome highly skilled workers might lack formal degrees due to financial or personal reasons, while others with impressive diplomas may not perform as well on the job as their resumes suggest. There’s also the issue of “credential inflation,” where jobs require higher and higher degrees, not necessarily because the work is more complex, but because employers are searching for any reliable signal of ability. Another consequence of asymmetric information is adverse selection. Employers, unsure about the true ability of applicants, may offer lower starting wages to protect themselves from hiring unproductive workers. However, this can discourage talented applicants from even applying, leading to a pool of less qualified candidates. The interesting thing is, some companies try to overcome this by using probationary periods, internships, or performance-based pay structures to gather more information about a worker’s actual productivi",
+  "questions": [
+   {
+    "ref": "R0339",
+    "prompt": "[Academic Talk — Asymmetric information in labor markets] What does the professor suggest about the use of educational credentials in hiring?",
+    "choices": [
+     "They are the only signal employers use when hiring for technical roles",
+     "They are an imperfect signal of a worker’s true ability",
+     "They guarantee that a worker will be highly productive",
+     "They matter less and less because of credential inflation"
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0340",
+    "prompt": "[Academic Talk — Asymmetric information in labor markets] According to the professor, what is one way employers try to reduce the effects of asymmetric information?",
+    "choices": [
+     "By ignoring educational credentials",
+     "By offering the same wage to all applicants",
+     "By using probationary periods or performance-based pay",
+     "By refusing to hire workers without degrees"
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Transcript: Second hands in the plays. A dozen of the plays printed under one name in 1623 have at various times been given a collaborator, and for most of the twentieth century the case rested on parallels: a phrase in a disputed scene that turns up again in a play securely assigned to somebody else, and nowhere in between.\n\nA parallel counts for something only if the searching behind it was exhaustive, and the searchable corpus of the period is uneven, some genres transcribed in full and others hardly at all. The lists were also compiled by readers who already suspected where the joins lay, and a reader looking for a phrase in a particular scene finds phrases in that scene.\n\nVickers puts the objection at the negative check. A collocation offered as unique to two authors has to be run against the whole corpus before it is called unique, and in a great many published attributions that search was never carried out; on his account the tally of shared rarities is a tally of what one investigator happened to notice.\n\nOne school treats the question as badly formed. A playhouse text was cut, patched and revised by whoever was to hand, so the search for a second author imposes a category the theatre never used.\n\nCompositor B set about half of the 1623 volume. His preference for certain spellings, and his habit of padding a short line, runs straight through plays of the most various origins, and can be followed from one to the next irrespective of who wrote them.\n\nThe grammatical habits that survive that filter are of another kind: whether a writer reaches for the older third-person ending or the newer one, which relative pronoun he uses for a person, how often the possessive is built with an apostrophe rather than with a following preposition. Counted in blocks of a thousand words, with the counter given no scene divisions and no titles, these rates hold flat across the length of plays known to be by one hand. In Timon, in Pericles, in Measure for Measure, the rates step to a new level and stay there, and the lines at which they step are, within a scene or two, the lines the parallel-hunters had marked a century earlier.",
+  "questions": [
+   {
+    "ref": "R0341",
+    "prompt": "[Academic Talk - Literary Scholarship] Which form of the collaboration claim does the material leave standing?",
+    "choices": [
+     "That a second hand shows where two writers differ in habits neither was attending to, at about the scale of a scene.",
+     "That the divisions in the plays follow the working practice of the printing house rather than that of the writers themselves.",
+     "That collaboration is undetectable in principle, a playhouse text having passed through too many hands to carry one signature.",
+     "That a phrase shared between a disputed scene and another writer's canon marks the point at which that writer took over."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0342",
+    "prompt": "[Academic Talk - Literary Scholarship] Compositor B is described in three sentences with no connective on either side. What is the description doing?",
+    "choices": [
+     "It identifies the man responsible for the divisions between scenes, which were inserted in the printing house rather than by the author.",
+     "It dates the volume against the working lives of the men who set the type, giving a lower bound for the composition.",
+     "It shows that the volume was set by more than one workman, so variation across it cannot be traced to a single source.",
+     "It disqualifies one class of marker and leaves another available, which is why the count that follows is of grammar."
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ }
+]

@@ -1,0 +1,119 @@
+[
+ {
+  "ref": "R0240",
+  "id": "459aba70-4833-4cec-a330-c62d918fa415",
+  "passage": "Cognitive dissonance is a psychological theory that describes the discomfort individuals feel when holding conflicting beliefs or attitudes. This tension often leads people to change their beliefs or behaviors to reduce the dissonance. For example, a person who values health but smokes may experience dissonance and either quit smoking or rationalize the behavior. The theory, developed by Leon Festinger in the 1950s, has been influential in understanding decision-making and attitude change. It highlights the human tendency to seek consistency in thoughts and actions, often driving individuals to justify or alter their beliefs to align with their behaviors.",
+  "prompt": "[Academic — Psychology] According to the passage, which of the following is an example of cognitive dissonance?",
+  "choices": [
+   "A person who enjoys reading but watches TV",
+   "A person who loves animals but eats meat",
+   "A person who dislikes exercise but runs daily",
+   "A person who values honesty and tells the truth"
+  ],
+  "correct": "A person who loves animals but eats meat"
+ },
+ {
+  "ref": "R0494",
+  "id": "21be1a75-e3b7-4f94-8525-06f2d0cf54bc",
+  "passage": "Hi everyone, the campus gym will be closed this weekend for repairs. We apologize for the inconvenience. Regular hours will resume on Monday. Thank you for your understanding.",
+  "prompt": "[Daily Life — Campus notice] What should gym users do if they want to work out this weekend?",
+  "choices": [
+   "Find an alternative location to exercise.",
+   "Complain to the gym management.",
+   "Wait until Monday to work out.",
+   "Ignore the closure and visit the gym."
+  ],
+  "correct": "Find an alternative location to exercise."
+ },
+ {
+  "ref": "R0225",
+  "id": "dfbf3f11-e594-4767-aff2-7fadeacae048",
+  "passage": "Campus Notice: Library Renovation Dear Students, Please be advised that the library will undergo renovations starting next Monday. During this period, access to certain sections will be restricted. We apologize for any inconvenience this may cause. If you need materials from restricted areas, please request them in advance. Assuming enrollment remains steady, the renovations should be completed by the end of the semester. Thank you for your understanding. Library Staff",
+  "prompt": "[Daily Life — campus notice] Why does the notice mention 'assuming enrollment remains steady'?",
+  "choices": [
+   "To suggest that the library might close permanently.",
+   "To imply that the renovation schedule might change.",
+   "To encourage students to enroll in more classes.",
+   "To indicate that renovations depend on student numbers."
+  ],
+  "correct": "To imply that the renovation schedule might change."
+ },
+ {
+  "ref": "R0433",
+  "id": "4e41fc93-ae45-43a7-bb97-7863a2321738",
+  "passage": "The Impressionist movement in art history, which emerged in late 19th-century France, is often characterized by its innovative use of light and color. Many Impressionist painters, such as Claude Monet and Pierre-Auguste Renoir, sought to capture fleeting moments by painting outdoors and employing quick, visible brushstrokes. However, not all artists associated with Impressionism adhered strictly to these techniques. For example, Edgar Degas, while often grouped with the Impressionists, preferred working indoors and focused on scenes of urban life, particularly ballet dancers. In most cases, Degas used a more controlled and deliberate style, contrasting with the spontaneity of his contemporaries. This divergence highlights the movement’s diversity. Some art historians argue that the Impressionists’ shared interest in modern life was more significant than their stylistic similarities. On the other hand, others maintain that the technical aspects—such as the depiction of natural light—are what truly define Impressionism. The debate over what unites the Impressionists continues to influence how their work is interpreted today.",
+  "prompt": "[Academic — Art History] The word 'scene' in the passage most nearly means:",
+  "choices": [
+   "a location where something happens",
+   "a depiction or representation",
+   "a quarrel",
+   "a dramatic event"
+  ],
+  "correct": "a depiction or representation"
+ },
+ {
+  "ref": "R0100",
+  "id": "dfd85ac8-772a-45cb-abda-ed6d65fa10a7",
+  "passage": "The development of renewable energy technologies has been a crucial factor in addressing climate change. Solar and wind energy, in particular, have seen significant advancements in efficiency and cost reduction. These technologies convert natural energy sources into electricity without emitting greenhouse gases. However, the intermittent nature of solar and wind power presents challenges for consistent energy supply. Energy storage solutions, such as batteries, are essential to bridge the gap during periods of low generation. Despite these challenges, the rapid growth of renewable energy offers a promising path toward a sustainable future.",
+  "prompt": "[Academic — Environmental Science] According to the passage, which of the following is NOT mentioned as a challenge for renewable energy?",
+  "choices": [
+   "Intermittent energy supply",
+   "Cost reduction challenges",
+   "High greenhouse gas emissions",
+   "Need for energy storage"
+  ],
+  "correct": "High greenhouse gas emissions"
+ },
+ {
+  "ref": "R0016",
+  "id": "f9fe5fca-fe0d-4373-9e8a-2826529e4914",
+  "passage": "[Academic — Biology] Coral reefs are among the most biodiverse marine ecosystems, supporting roughly a quarter of all ocean species despite covering less than one percent of the seafloor. Their architecture is built by tiny animals called polyps, which secrete calcium carbonate skeletons over thousands of years. The polyps themselves get most of their energy from photosynthetic algae called zooxanthellae that live inside their tissues — a partnership called symbiosis. When ocean temperatures rise even slightly above the polyps' tolerance, the algae are expelled. The coral turns white, a phenomenon called bleaching, and although the polyps can survive briefly without their algal partners, prolonged bleaching usually leads to colony death. Recovery is possible if temperatures fall quickly enough, but the recovery window narrows as bleaching events occur more frequently. Recent decades have seen mass bleaching events on a scale never previously documented, raising urgent questions about whether reef ecosystems can persist under projected warming.",
+  "prompt": "What does the word 'symbiosis' mean in the context of the passage?",
+  "choices": [
+   "A mutually beneficial partnership",
+   "A temporary association between species",
+   "A competitive relationship over resources",
+   "A parasitic interaction harming one side"
+  ],
+  "correct": "A mutually beneficial partnership"
+ },
+ {
+  "ref": "R0022",
+  "id": "f05c5d9b-6ff8-47d8-954a-275b3cad29e4",
+  "passage": "In most cases, coral reefs are considered highly productive ecosystems, supporting an astonishing diversity of marine life. However, their productivity is paradoxically dependent on nutrient-poor waters. This apparent contradiction is resolved by the fact that corals have developed intricate symbiotic relationships with microscopic algae known as zooxanthellae. The algae reside within coral tissues and, through photosynthesis, provide essential nutrients to their hosts. In return, corals offer the algae protection and access to sunlight. When water temperatures rise, some corals expel their zooxanthellae, leading to a phenomenon called coral bleaching. This process, if prolonged, can result in the death of coral colonies. Many scientists argue that the increasing frequency of bleaching events is primarily due to climate change, which elevates sea temperatures. On the other hand, some researchers suggest that local stressors, such as pollution and overfishing, may also play a significant role in weakening corals’ resilience. Thus, the decline of coral reefs is not solely attributable to global warming but is often the result of a complex interplay between global and local factors.",
+  "prompt": "[Academic — Biology] The word 'supporting' in the passage most nearly means:",
+  "choices": [
+   "carrying the weight of a load",
+   "providing a foundation for",
+   "agreeing with a stated claim",
+   "holding something up physically"
+  ],
+  "correct": "providing a foundation for"
+ },
+ {
+  "ref": "R0411",
+  "id": "81b6a781-b258-4618-8421-c5de513663ad",
+  "passage": "Student Government Social Media Post We’re planning a movie night next Friday, if we can fit it in. If you’d like to suggest a film, comment below by Wednesday. We’ll choose a movie based on popularity, but please note, we may not be able to accommodate all requests. Final details will be posted Thursday, assuming the event goes ahead.",
+  "prompt": "[Daily Life — Social Media Post] Why does the post say 'assuming the event goes ahead'?",
+  "choices": [
+   "Because the event may be canceled if there is not enough space.",
+   "Because an outdoor movie night could be called off if the weather turns bad.",
+   "Because the organizers have not yet settled on which Friday to hold it.",
+   "Because the film will not be chosen until the comments have been counted."
+  ],
+  "correct": "Because the event may be canceled if there is not enough space."
+ },
+ {
+  "ref": "R0336",
+  "id": "5e7550a6-1d3a-4b62-bdea-94be8c29b6dd",
+  "passage": "Job Ad: Part-Time Barista We are looking for a friendly and reliable barista to join our team at Brewed Awakenings. The position is part-time, with flexible hours. Experience is preferred but not required. If you can work weekends, that’s a plus! Please apply by sending your resume to brewedawakenings@coffee.com. Interviews will be conducted on a rolling basis, so apply early to secure a spot. Best, Brewed Awakenings Team",
+  "prompt": "[Daily Life — job ad] Why does the ad mention 'apply early to secure a spot'?",
+  "choices": [
+   "To indicate that late applications will not be considered.",
+   "To encourage applicants to apply even without experience.",
+   "To imply that the job is very competitive.",
+   "To suggest that positions are limited."
+  ],
+  "correct": "To suggest that positions are limited."
+ }
+]

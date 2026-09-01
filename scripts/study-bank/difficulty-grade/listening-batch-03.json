@@ -1,0 +1,835 @@
+[
+ {
+  "passage": "Transcript: Hello from the Student Health Center. As flu season approaches, we're holding our annual flu-shot clinic, and I want to walk you through the details. The clinic runs all next week, Monday through Friday, from nine in the morning until four in the afternoon, in the multipurpose room on the ground floor of the student union — not at the health center itself, so please note the location. The shot is completely free for any currently enrolled student; just bring your student ID card. You don't need an appointment, but if you'd rather not wait in line, you can reserve a time slot through the health portal, and those with reservations are seen first. A quick note for anyone who's nervous: this year's vaccine is the standard injection, not the nasal spray, and you should plan to stay for about fifteen minutes afterward so our staff can make sure you don't have a reaction. If you have an egg allergy, please speak to a nurse before getting the shot rather than just getting in line. Stay healthy, everyone.",
+  "questions": [
+   {
+    "ref": "R0138",
+    "prompt": "[Announcement — Health Center] What is the main purpose of this announcement?",
+    "choices": [
+     "To recruit nursing students to volunteer at the health center",
+     "To publicize a free flu-shot clinic and how to take part in it",
+     "To warn students that a flu outbreak has closed the health center",
+     "To require all students to be tested for the flu before final exams"
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0139",
+    "prompt": "[Announcement — Health Center] Where will the flu-shot clinic be held?",
+    "choices": [
+     "At the Student Health Center's main office",
+     "In the ground-floor classrooms of the science building",
+     "In the lobby of each residence hall",
+     "In the multipurpose room of the student union"
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0140",
+    "prompt": "[Announcement — Health Center] What advantage does making a reservation give a student?",
+    "choices": [
+     "It waives the fifteen-minute waiting period after the shot",
+     "It lets the student be seen before those waiting in line",
+     "It makes the shot free instead of charging a small fee",
+     "It allows the student to receive the nasal spray version"
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0141",
+    "prompt": "[Announcement — Health Center] What does the speaker imply a student with an egg allergy should do?",
+    "choices": [
+     "Reserve a time slot through the health portal in advance",
+     "Stay longer than fifteen minutes after receiving the shot",
+     "Talk with a nurse first rather than simply joining the line",
+     "Skip the clinic and visit the health center on another day"
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Transcript: Attention, commuters. Parking Services has several changes to the permit system that take effect at the start of the fall term, and we want you to hear about them now so there are no surprises. First, the flat annual permit is being replaced by tiered pricing based on which lots you're allowed to use. The lots closest to the central classrooms, Zones A and B, will cost more, while the perimeter lots in Zone C stay at the current rate — and Zone C now connects to a free shuttle that loops the campus every ten minutes. Second, permits will be fully digital. Instead of a sticker, your license plate becomes your permit, and enforcement officers will scan plates, so you'll need to register your exact plate number online. If you drive more than one car, you can register up to two plates under one permit at no extra charge. Finally, the old paper visitor passes are gone; guests will pay hourly at the new kiosks. Registration opens in July, and early sign-up locks in this year's Zone C rate. Questions? The parking office is open weekdays.",
+  "questions": [
+   {
+    "ref": "R0142",
+    "prompt": "[Announcement — Parking Services] How will the new permit pricing be determined?",
+    "choices": [
+     "By how many hours per week a student parks on campus",
+     "By which parking zone a student is allowed to use",
+     "By whether a student signs up before or after July",
+     "By the number of license plates a student registers"
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0143",
+    "prompt": "[Announcement — Parking Services] What is the speaker mainly announcing?",
+    "choices": [
+     "That the campus is eliminating student parking permits entirely",
+     "That a parking garage will be closed for the rest of the semester",
+     "That students may now park in faculty lots without a permit",
+     "That changes are coming to how parking permits work next year"
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0144",
+    "prompt": "[Announcement — Parking Services] What can be inferred about a student who chooses a Zone C permit?",
+    "choices": [
+     "They must register at least two license plates to qualify",
+     "They can reach central classrooms using a free shuttle every ten minutes",
+     "They will pay more than students who park in Zones A and B",
+     "They will need to buy hourly passes at the new kiosks"
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0145",
+    "prompt": "[Announcement — Parking Services] Why does the speaker mention registering an exact plate number online?",
+    "choices": [
+     "Because the paper visitor passes now list a plate number instead",
+     "Because only one plate may be registered on each permit",
+     "Because guests must register a plate online before paying at the new kiosks",
+     "Because enforcement officers will scan plates instead of checking stickers"
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Transcript: Hi, everyone. The Study Abroad Office is hosting an information session next Tuesday at five p.m. in Harrison Hall, room 210, and I strongly encourage anyone even a little curious to come. A lot of students assume studying abroad is only for language majors, or that it will delay their graduation, and honestly, both of those ideas are usually wrong. At the session we'll walk through programs on five continents, many of which teach courses entirely in English, and we'll show you exactly how to map foreign credits onto your degree so you stay on track. We'll also be frank about cost. Yes, some programs are expensive, but there are travel grants specifically for first-generation and lower-income students, and we'll explain how to apply. Two returning students who studied in Chile and Japan last year will be there to answer the questions the brochures never cover. You don't need to sign up in advance, but if you plan to come, fill out the short interest form so we can print enough materials. Pizza will be provided, so come hungry.",
+  "questions": [
+   {
+    "ref": "R0146",
+    "prompt": "[Announcement — Study Abroad Office] What misconception does the speaker try to correct?",
+    "choices": [
+     "That the travel grants are reserved for graduate students, leaving undergraduates to pay",
+     "That studying abroad is only for language majors or delays graduation",
+     "That foreign credits can never be applied toward a degree back home",
+     "That study-abroad programs are all taught in a foreign language"
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0147",
+    "prompt": "[Announcement — Study Abroad Office] What does the speaker say about signing up for the session?",
+    "choices": [
+     "Students must apply for a travel grant before they attend",
+     "Advance sign-up is required to reserve one of the seats in Harrison Hall 210",
+     "Only the students who fill out the interest form ahead of time will get pizza",
+     "Sign-up is not required, but an interest form helps them plan materials"
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0148",
+    "prompt": "[Announcement — Study Abroad Office] What is the main purpose of this announcement?",
+    "choices": [
+     "To remind students that applications for study abroad are already overdue",
+     "To describe a new language requirement for all graduating students",
+     "To announce that the study-abroad program has been canceled this year",
+     "To invite students to an information session about studying abroad"
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0149",
+    "prompt": "[Announcement — Study Abroad Office] Why does the speaker mention the two returning students?",
+    "choices": [
+     "Because they can answer practical questions brochures do not cover",
+     "Because they received the travel grants set aside for first-generation and lower-income students",
+     "Because they are collecting the short interest forms so the office can print enough materials",
+     "Because they will be leading next year's programs in Chile and Japan for students who sign up"
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Transcript: Welcome, everyone, to the required laboratory-safety orientation. Before any of you set foot in the teaching labs this term, you need to understand a few non-negotiable rules. First, personal protective equipment. Safety goggles must be worn from the moment you enter until you leave — not pushed up on your forehead, actually over your eyes. Closed-toe shoes are required; if you show up in sandals, you'll be sent back to your room and marked absent. Second, absolutely no food or drink in the lab, and that includes water bottles and gum. It's easy to forget, but a capped bottle on the bench is still a violation. Third, before you use any chemical, you must read its safety data sheet, which tells you how to handle it and what to do if it spills. These sheets are in the binder by the door and also online. Finally, if an accident does happen, don't try to clean up a large spill yourself — alert the instructor immediately and step back. The eyewash station and shower are at the rear of the room; know where they are before you need them. We'll do a walkthrough now.",
+  "questions": [
+   {
+    "ref": "R0150",
+    "prompt": "[Announcement — Chemistry Department] What does the speaker instruct students to do if a large spill occurs?",
+    "choices": [
+     "Rinse the area at the eyewash station before telling anyone",
+     "Alert the instructor immediately and step back rather than clean it themselves",
+     "Consult the binder by the door before taking any action",
+     "Clean it up quickly using the safety data sheet's directions"
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0151",
+    "prompt": "[Announcement — Chemistry Department] What will happen to a student who arrives wearing sandals?",
+    "choices": [
+     "The student will be sent back to the residence and marked absent",
+     "The student will lose points but may complete the lab",
+     "The student will be asked to sit at the rear of the room",
+     "The student will be given goggles and allowed to stay"
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0152",
+    "prompt": "[Announcement — Chemistry Department] What is the main purpose of this announcement?",
+    "choices": [
+     "To recruit students to become laboratory teaching assistants",
+     "To explain the rules students must follow to work in the teaching labs",
+     "To describe a chemical spill that occurred in the building last week",
+     "To announce that the chemistry labs are closing for renovation"
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0153",
+    "prompt": "[Announcement — Chemistry Department] What does the speaker say about a capped water bottle on the bench?",
+    "choices": [
+     "It still counts as a violation of the no-food-or-drink rule",
+     "It is acceptable to keep on the bench as long as the cap stays on",
+     "It must be left by the door with the safety data sheet binder",
+     "It is permitted only during the safety walkthrough"
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Transcript: This is a service notice from the University Library. Our online research databases — the platforms you use to find journal articles and e-books — will be unavailable this coming Saturday, from six in the morning until roughly two in the afternoon, while our vendor performs a major system upgrade. To be clear, the library building itself stays open normal hours, and the print collection, study rooms, and printers are all unaffected; it's only the databases and the search bar on the library homepage that go dark. If you have a paper due early next week, please plan ahead — download any articles you'll need before Saturday morning rather than counting on access during the outage. If you get stuck, remember that a citation you've already saved can often be retrieved directly from the publisher's own site. After the upgrade, you may need to log in again, since the change resets saved sessions, but your saved folders and reading lists will all still be there. A librarian will be at the reference desk all Saturday to help you find print alternatives. Thanks for your patience.",
+  "questions": [
+   {
+    "ref": "R0154",
+    "prompt": "[Announcement — University Library] What can be inferred about a student's saved reading lists after the upgrade?",
+    "choices": [
+     "They will be permanently deleted and must be rebuilt",
+     "They will be transferred automatically to the print collection",
+     "They will remain, though the student may have to log in again",
+     "They will only be accessible from the publisher's own site"
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0155",
+    "prompt": "[Announcement — University Library] Which library service will remain available during the outage?",
+    "choices": [
+     "The e-book collection",
+     "The search bar on the library homepage",
+     "The study rooms and printers",
+     "The online journal-article databases"
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0156",
+    "prompt": "[Announcement — University Library] What does the speaker recommend students do before Saturday?",
+    "choices": [
+     "Reserve one of the library study rooms in advance at the reference desk",
+     "Download any articles they will need for upcoming papers",
+     "Move their saved folders and reading lists onto the publisher's own site",
+     "Log in again beforehand, since the upgrade will reset their saved sessions"
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0157",
+    "prompt": "[Announcement — University Library] What is the main purpose of this announcement?",
+    "choices": [
+     "To introduce a new set of research databases that will replace the ones on the homepage",
+     "To warn students that borrowing privileges and access to the print collection are suspended",
+     "To inform students that the online research databases will be down for maintenance",
+     "To announce that the library building will be closed on Saturday while the vendor works"
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Transcript: Okay, so today we're looking at ocean currents — the large-scale movement of seawater. Now, there are two kinds, and it's easy to blur them together, so let's keep them separate. Surface currents — these are driven mainly by wind, and they only affect roughly the top ten percent of the ocean. Think of the Gulf Stream carrying warm water up along the eastern United States toward Europe. But underneath that, there's a whole different system: the deep currents. These aren't driven by wind at all — they're driven by density. When water gets colder and saltier near the poles, it gets heavier, and it sinks. That sinking pulls water along in a slow, global loop that researchers sometimes call the ocean conveyor belt. And here's the part students find surprising: a single parcel of water might take a thousand years to complete that loop. One aside — this conveyor is also why the ocean is such a huge heat reservoir; it moves warmth around the planet far more than the atmosphere does. So when we talk about climate later in the term, remember: the ocean isn't just sitting there. It's circulating, top and bottom, on very different clocks.",
+  "questions": [
+   {
+    "ref": "R0158",
+    "prompt": "[Academic Talk — Oceanography] According to the professor, what drives the deep ocean currents?",
+    "choices": [
+     "The rotation of the Earth, which drags deep water along a slow global loop.",
+     "Differences in water density caused by temperature and salt.",
+     "Steady winds at the surface, the same force that carries the Gulf Stream north.",
+     "Heat that the atmosphere releases into the sea, since the ocean stores warmth."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0159",
+    "prompt": "[Academic Talk — Oceanography] What is the professor's main point about ocean currents?",
+    "choices": [
+     "Ocean currents move heat around the planet far less effectively than the atmosphere above them does.",
+     "The Gulf Stream carries warm water to Europe and drives the deep conveyor as well.",
+     "Surface and deep currents are driven by different forces and move on very different timescales.",
+     "Wind drives the whole circulation, from the surface down through the deep conveyor."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0160",
+    "prompt": "[Academic Talk — Oceanography] How long does the professor say a single parcel of water may take to complete the deep-current loop?",
+    "choices": [
+     "About ten years.",
+     "About a thousand years.",
+     "About ten thousand years.",
+     "About a hundred years."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0161",
+    "prompt": "[Academic Talk — Oceanography] Why does the professor mention that the ocean is a huge heat reservoir?",
+    "choices": [
+     "To prove that the atmosphere carries far more of the planet's heat than the ocean.",
+     "To explain why wind-driven surface currents stay warmer than the water beneath them.",
+     "To describe how the Gulf Stream forms and carries warm water toward Europe.",
+     "To suggest the ocean will matter when the class studies climate later."
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Transcript: Alright, let's talk about nitrogen. Here's the puzzle: nitrogen makes up about seventy-eight percent of the air we breathe, and yet plants are constantly starved for it. How can something so abundant be so hard to get? The answer is that atmospheric nitrogen comes as N-two — two nitrogen atoms bonded together so tightly that most living things simply can't break them apart. So the gas is there, but it's locked up. Now, the organisms that solve this problem are bacteria — specifically, nitrogen-fixing bacteria. Some of them live in the soil freely; others live in little nodules on the roots of plants like beans and clover. What they do is convert that unusable N-two into ammonia, a form plants can actually absorb. That step is called fixation. And here's what I want you to notice: without those bacteria, the whole cycle stalls. After plants and animals die, other bacteria break the nitrogen back down, and eventually a group called denitrifiers returns nitrogen gas to the atmosphere, closing the loop. One thing farmers figured out long before they understood the chemistry: if you rotate a bean crop through a field, the soil gets richer. Now we know why — those root bacteria were fixing nitrogen the whole time.",
+  "questions": [
+   {
+    "ref": "R0162",
+    "prompt": "[Academic Talk — Biology] What is the professor's main point about nitrogen?",
+    "choices": [
+     "Farmers invented crop rotation in order to add ammonia directly to the soil between plantings.",
+     "Nitrogen is abundant in the air but must be converted by bacteria before plants can use it.",
+     "Denitrifying bacteria are the most important part of the cycle, since they return nitrogen to the air.",
+     "Plants absorb nitrogen gas directly from the air, which is why the atmosphere is mostly nitrogen."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0163",
+    "prompt": "[Academic Talk — Biology] Where does the professor say some nitrogen-fixing bacteria live?",
+    "choices": [
+     "In the bodies of animals after they die.",
+     "Inside the leaves of most green plants.",
+     "In nodules on the roots of plants like beans and clover.",
+     "Only floating in the open atmosphere."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0164",
+    "prompt": "[Academic Talk — Biology] What does the professor imply about farmers who rotated bean crops through their fields?",
+    "choices": [
+     "They were benefiting from nitrogen fixation without understanding the chemistry behind it.",
+     "They rotated bean crops mainly to encourage the denitrifiers that return nitrogen gas to the air.",
+     "They already understood that the bacteria in the root nodules were converting N-two into ammonia.",
+     "They were deliberately adding nitrogen gas to the soil, which plants can absorb straight from air."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0165",
+    "prompt": "[Academic Talk — Biology] Why can't most living things use atmospheric nitrogen directly?",
+    "choices": [
+     "Because nitrogen makes up too small a fraction of the air.",
+     "Because it exists in the atmosphere only as ammonia.",
+     "Because denitrifiers remove it before plants can absorb it.",
+     "Because the two nitrogen atoms in N-two are bonded too tightly to break apart."
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Transcript: So, glaciers. A glacier is basically a river of ice — and I mean that almost literally, because glaciers flow, just very slowly. Here's how one forms: in a place where more snow falls each winter than melts each summer, the snow piles up year after year. As the layers stack, the weight compresses the snow underneath into dense ice. Once that ice gets thick enough — we're talking tens of meters — gravity takes over and the whole mass begins to creep downhill. Now, the interesting thing glaciers do is reshape the land. They act like enormous bulldozers, scraping up rock and soil and carving out wide, U-shaped valleys — and that shape is a giveaway. If you're hiking and the valley around you is U-shaped rather than V-shaped, a glacier was probably there. When the ice finally melts and retreats, it dumps all that debris in ridges called moraines. Now, zoom out in time. Over the last few million years, Earth has swung in and out of ice ages — long cold periods when glaciers advanced across whole continents. What triggers them? The leading explanation points to slow, regular wobbles in Earth's orbit and tilt that change how much sunlight the high latitudes receive. Small astronomical nudges, enormous consequences on the ground.",
+  "questions": [
+   {
+    "ref": "R0166",
+    "prompt": "[Academic Talk — Geology] According to the professor, how does a glacier form?",
+    "choices": [
+     "When gravity drags loose snow downhill until it collects in a U-shaped valley.",
+     "When a river freezes solid through several unusually long winters and then creeps slowly downhill.",
+     "When ridges of debris called moraines trap meltwater that later refreezes into a thick sheet of ice.",
+     "In places where more snow falls in winter than melts in summer, snow compresses into dense ice."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0167",
+    "prompt": "[Academic Talk — Geology] Why does the professor mention the difference between U-shaped and V-shaped valleys?",
+    "choices": [
+     "To describe the way stacked snow is compressed into dense glacial ice.",
+     "To show that glaciers, being rivers of ice, flow faster than we assume.",
+     "To explain how retreating ice dumps its debris into ridges called moraines.",
+     "To give hikers a way to tell that a glacier was once present."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0168",
+    "prompt": "[Academic Talk — Geology] According to the professor, what is the leading explanation for what triggers ice ages?",
+    "choices": [
+     "Slow, regular changes in Earth's orbit and tilt that alter sunlight at high latitudes.",
+     "Long stretches during which more snow falls each winter than melts the following summer.",
+     "The outward spread of moraines, the ridges of rock and soil that retreating ice leaves behind.",
+     "Sudden increases in the speed at which thickened ice creeps downhill under its own weight."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0169",
+    "prompt": "[Academic Talk — Geology] What is the professor's main point about glaciers?",
+    "choices": [
+     "Ice ages are triggered by the ridges of debris, called moraines, that glaciers leave.",
+     "Glaciers carve narrow V-shaped valleys that widen as the ice retreats.",
+     "Snow turns into dense ice only after the mass has begun to creep downhill.",
+     "Glaciers form from compressed snow, flow slowly downhill, and reshape the land."
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Transcript: Let's start with a simple question — where do clouds come from? The short version: clouds form when rising air cools. Here's the mechanism. Air near the ground picks up water vapor, invisible gas. When that warm, moist air rises — and it rises for several reasons, maybe the sun heats the ground, maybe wind pushes it up a mountainside — it expands and cools as it climbs. And cooler air can't hold as much water vapor. So at a certain height, the vapor condenses onto tiny floating particles — dust, salt, pollen — and forms the droplets we see as a cloud. That height, by the way, is why the bottoms of clouds on a given day are often all at the same level. Now, not every cloud brings rain. A droplet in a cloud is tiny; it takes millions of them to merge before one is heavy enough to fall. What I want you to take away is the pattern: whenever you see clouds, something forced air upward. So a line of tall storm clouds isn't random — it's usually telling you air is being lifted along a boundary, what meteorologists call a front. Reading clouds, in other words, is really reading the movement of air.",
+  "questions": [
+   {
+    "ref": "R0170",
+    "prompt": "[Academic Talk — Meteorology] Why does the professor say the bottoms of clouds are often all at the same level on a given day?",
+    "choices": [
+     "Because water vapor condenses at the height where the rising air has cooled enough.",
+     "Because dust and salt particles float only at one level.",
+     "Because wind pushes all the clouds to the same height.",
+     "Because droplets keep merging until they grow heavy."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0171",
+    "prompt": "[Academic Talk — Meteorology] What is the professor's main point about how clouds form?",
+    "choices": [
+     "Clouds form when rising air cools and its water vapor condenses into droplets.",
+     "Clouds form when cool air sinks toward the ground, where it can hold less moisture.",
+     "Rain falls whenever a cloud forms, since the droplets in it are already heavy enough.",
+     "Clouds are simply masses of invisible water vapor that the wind has pushed upward."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0172",
+    "prompt": "[Academic Talk — Meteorology] What main idea does the professor want students to take away?",
+    "choices": [
+     "That lines of tall storm clouds form at random rather than along a front.",
+     "That rain falls as soon as vapor condenses onto dust and salt.",
+     "That the presence of clouds indicates air is being forced upward.",
+     "That fronts push air downward and clear the sky."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0173",
+    "prompt": "[Academic Talk — Meteorology] Why does the professor say that not every cloud brings rain?",
+    "choices": [
+     "Because warm air permanently holds the droplets aloft.",
+     "Because in some clouds the water vapor never condenses at all.",
+     "Because clouds form only along fronts.",
+     "Because a single droplet is tiny, and millions must merge before one is heavy enough to fall."
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Transcript: When you look at healthy soil, you might think of it as just dirt — but ecologically, soil is one of the busiest places on Earth. Let's focus today on decomposition, the process that keeps it alive. When a leaf falls or an animal dies, that material is full of nutrients locked inside complex tissues. Decomposers — and here I mean mostly fungi and bacteria, plus larger creatures like earthworms and beetles — break that material down. As they feed, they release the trapped nutrients, nitrogen, phosphorus, and so on, back into the soil in forms that plant roots can take up again. So decomposers are essentially the recycling crew of the ecosystem. Now here's a point students underestimate: this is slow, and it's climate-dependent. In a warm, wet tropical forest, a fallen leaf can vanish in weeks. In a cold northern bog, similar material can sit almost intact for centuries — that's actually how peat builds up. And think about what would happen if decomposition stopped entirely. Dead material would pile up, and — this is the key — the nutrients would stay locked inside it. Plants would starve in a world buried in their own dead leaves. So decomposition isn't the end of the story; it's what makes the next generation of growth possible.",
+  "questions": [
+   {
+    "ref": "R0174",
+    "prompt": "[Academic Talk — Ecology] What does the professor say about how climate affects the speed of decomposition?",
+    "choices": [
+     "Cold bogs break material down in a matter of weeks.",
+     "Warm, wet conditions speed decomposition, while cold conditions slow it dramatically.",
+     "Material decomposes at roughly the same rate everywhere.",
+     "Tropical forests preserve fallen leaves nearly intact for centuries."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0175",
+    "prompt": "[Academic Talk — Ecology] What is the professor's main point about decomposition?",
+    "choices": [
+     "Decomposition recycles nutrients from dead material back into soil that plants can reuse.",
+     "Soil is mostly lifeless dirt that holds very few nutrients of its own.",
+     "Earthworms and beetles do most of the work of releasing the nutrients trapped in dead tissue.",
+     "Peat builds up quickly in warm, wet tropical forests, where a fallen leaf vanishes in weeks."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0176",
+    "prompt": "[Academic Talk — Ecology] What does the professor suggest would happen if decomposition stopped entirely?",
+    "choices": [
+     "Fungi and bacteria would multiply rapidly.",
+     "Nutrients would stay locked in dead material and plants would starve.",
+     "Plants would grow faster with more dead material around them.",
+     "Peat would stop forming in northern bogs."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0177",
+    "prompt": "[Academic Talk — Ecology] Which organisms does the professor identify as decomposers?",
+    "choices": [
+     "Mostly fungi and bacteria, along with larger creatures like earthworms and beetles.",
+     "Chiefly the fallen leaves and tissues themselves.",
+     "Mainly plant roots taking up nutrients.",
+     "Only earthworms and beetles."
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Transcript: Coral reefs are often called the rainforests of the sea, and the comparison is apt — they cover a tiny fraction of the ocean floor, well under one percent, yet they shelter something like a quarter of all marine species. So today, the central relationship: coral and algae. A coral animal, the polyp, is a soft little creature that builds a hard skeleton of calcium carbonate. But the polyp doesn't live alone. Inside its tissues live tiny algae, and this is a partnership — a symbiosis. The algae photosynthesize and hand most of that food energy to the coral; in return, the coral gives the algae a protected place to live and some raw materials. It's a beautiful deal, and it's also the reef's weak point. Because those algae are sensitive. When the water gets too warm, the coral gets stressed and expels the algae — and since the algae provide both food and color, the coral turns white. We call that bleaching. A bleached coral isn't dead yet, but it's starving, and if the warmth lasts, it will die. So keep this in mind: the whole spectacular structure, all that biodiversity, rests on a microscopic partnership that only works within a narrow temperature range.",
+  "questions": [
+   {
+    "ref": "R0178",
+    "prompt": "[Academic Talk — Marine Biology] According to the professor, what do the algae provide to the coral?",
+    "choices": [
+     "A sheltered place to live inside the polyp's tissues.",
+     "The raw materials the polyp needs for its skeleton.",
+     "The hard calcium carbonate skeleton that supports the reef.",
+     "Most of the food energy they make through photosynthesis."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0179",
+    "prompt": "[Academic Talk — Marine Biology] According to the professor, what causes coral bleaching?",
+    "choices": [
+     "When the polyps multiply faster than the calcium carbonate skeleton can support them.",
+     "When the algae multiply so quickly that they cover the polyps and block out the light.",
+     "When the coral lays down so much calcium carbonate that its skeleton hardens and whitens.",
+     "When the water gets too warm, the stressed coral expels its algae and turns white."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0180",
+    "prompt": "[Academic Talk — Marine Biology] What is the professor's central point about coral reefs?",
+    "choices": [
+     "Coral reefs cover most of the ocean floor, which is why they shelter a quarter of marine species.",
+     "The coral polyp lives perfectly well on its own once it has built its skeleton.",
+     "Bleaching is the point at which the coral has already died and cannot recover.",
+     "The reef's biodiversity rests on a temperature-sensitive partnership between coral and algae."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0181",
+    "prompt": "[Academic Talk — Marine Biology] Why does the professor describe the coral-algae partnership as the reef's 'weak point'?",
+    "choices": [
+     "Because the algae slowly eat away the calcium carbonate skeleton the polyp builds.",
+     "Because reefs sit on less than one percent of the ocean floor, leaving them nowhere to expand as seas warm.",
+     "Because the polyp and its algae end up competing for the same food supply.",
+     "Because the partnership works only within a narrow temperature range and fails when water warms."
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Transcript: Every year, billions of birds migrate thousands of kilometers — and some of them, young birds making the trip for the very first time, do it alone, with no experienced adult to follow. So the question that's fascinated researchers for decades is simply: how do they know where to go? It turns out birds don't rely on just one cue; they use several, and they switch between them. During the day, many species use the sun as a compass — but the sun moves across the sky, so to use it they need an internal clock to correct for the time of day. At night, some birds read the stars — specifically the patterns rotating around the North Star. And here's the one that really surprised people: many birds can sense the Earth's magnetic field. In experiments, researchers put migratory birds in enclosed cages where they couldn't see the sky, then altered the magnetic field artificially — and the birds shifted the direction they tried to fly. That's strong evidence for a magnetic sense. What I find remarkable is the redundancy. If clouds hide the stars, a bird can fall back on magnetism. Nature built in backups. And that's probably why these journeys, incredibly, so often succeed.",
+  "questions": [
+   {
+    "ref": "R0182",
+    "prompt": "[Academic Talk — Zoology] Why does the professor emphasize the 'redundancy' of birds' navigation cues?",
+    "choices": [
+     "To prove that birds ignore the stars on cloudy nights.",
+     "To argue that magnetism is the only reliable cue.",
+     "To show that young birds cannot migrate alone.",
+     "To explain why migratory journeys so often succeed."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0183",
+    "prompt": "[Academic Talk — Zoology] What happened in the experiment with birds in enclosed cages?",
+    "choices": [
+     "The birds went on orienting toward the stars circling the North Star even though the sky was hidden.",
+     "When researchers altered the magnetic field, the birds changed the direction they tried to fly.",
+     "The birds stopped attempting to migrate altogether once the enclosed cage cut them off from the sky.",
+     "The birds fell back on the sun's position, corrected by their internal clock, despite the covered sky."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0184",
+    "prompt": "[Academic Talk — Zoology] Why do birds using the sun as a compass need an internal clock?",
+    "choices": [
+     "Because clouds can hide the sun, so the bird falls back on its clock.",
+     "Because the Earth's magnetic field shifts through the day and the clock corrects it.",
+     "Because the sun moves across the sky, so birds must correct for the time of day.",
+     "Because the stars rotate around the North Star as the night goes on."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0185",
+    "prompt": "[Academic Talk — Zoology] What is the professor's main point about how migrating birds navigate?",
+    "choices": [
+     "Birds rely only on the Earth's magnetic field to find their way.",
+     "Birds use the stars only during the daytime.",
+     "Birds navigate with several cues (the sun, stars, and magnetic field), switching among them.",
+     "Young birds always follow experienced adults — on their first migration."
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Transcript: Today I want to talk about how ancient Egyptian society was organized, because it's easy to picture only pharaohs and pyramids and miss the structure underneath. At the top, yes, was the pharaoh, considered both a king and a living god. But what really held the system together was a class you might not expect: the scribes. Now, literacy in Egypt was rare — probably fewer than one in a hundred people could read the hieroglyphic script. So scribes, who trained for years, became indispensable. They recorded harvests, calculated taxes, and managed the storehouses of grain. And here's the thing researchers emphasize: a boy born to a farming family who learned to write could rise well above his father's station. Writing was a ladder. Below the scribes were the vast majority — farmers, whose work depended entirely on the Nile's annual flood. When the flood came, it left behind dark, fertile silt; the Egyptians even called their land 'Kemet,' the black land, after that soil. An aside — the deserts on either side they called the red land, and largely avoided. During the months the fields were underwater, many farmers were actually recruited to work on royal building projects. So the pyramids, we now think, were not built by slaves but by seasonal laborers. The whole society, then, ran on the rhythm of the river.",
+  "questions": [
+   {
+    "ref": "R0186",
+    "prompt": "[Academic Talk — History] What does the professor suggest about who built the pyramids?",
+    "choices": [
+     "They were built by foreign prisoners captured in war.",
+     "They were built by slaves forced to work year-round.",
+     "They were built by farmers working as seasonal laborers while their fields were flooded.",
+     "They were built by the scribes during the flood season."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0187",
+    "prompt": "[Academic Talk — History] Why does the professor mention a boy from a farming family who learned to write?",
+    "choices": [
+     "To explain why the Nile's annual flood mattered so much to the farming class.",
+     "To show that formal schooling in the hieroglyphic script was available to most Egyptian children.",
+     "To prove that scribes were paid more than any of the seasonal laborers on the building projects.",
+     "To illustrate that literacy could allow a person to rise above the station he was born into."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0188",
+    "prompt": "[Academic Talk — History] According to the professor, why did scribes become so important in Egypt?",
+    "choices": [
+     "They owned the farmland along the Nile and collected rent from the farmers.",
+     "They were regarded as living gods, second only to the pharaoh himself.",
+     "Literacy was rare, and scribes recorded harvests, calculated taxes, and managed the grain stores.",
+     "They supervised the seasonal laborers who built the pyramids while the fields lay under floodwater."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0189",
+    "prompt": "[Academic Talk — History] What is the professor's main point about ancient Egyptian society?",
+    "choices": [
+     "Most Egyptians were slaves who were forced to build the pyramids for the pharaoh.",
+     "Egypt's deserts, called the red land, were the source of the country's wealth.",
+     "The pharaoh's status as a living god was the only thing that held Egyptian society together.",
+     "Beneath the pharaoh, the society depended on a small literate class and on the rhythm of the Nile."
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Transcript: Let's turn to the early history of jazz, a music that really has no single inventor — it emerged, around the turn of the twentieth century, from the streets and dance halls of New Orleans. What made New Orleans special was its mixture: brass-band traditions, church music, the blues, and the syncopated rhythms of ragtime all met in one port city. Out of that mix came something new. The defining feature — and this is what I want you to remember — was improvisation. Unlike a symphony, where every note is written down, jazz musicians invent their lines on the spot, responding to one another as they play. In those early groups, several instruments would improvise at once, weaving independent melodies together; we call that collective improvisation. Now, as the music spread up the Mississippi to Chicago and New York in the 1920s, the spotlight shifted toward the individual soloist — think of a single trumpet stepping forward while the band supports it. By the 1930s the big bands arrived, larger ensembles playing arranged, written-out charts for dancing, which some critics felt tamed the music's wildness. And then, in the 1940s, a reaction: a small group of players developed bebop, fast and complex, meant for close listening rather than dancing. So in just forty years the music traveled from the dance floor to the concert hall.",
+  "questions": [
+   {
+    "ref": "R0190",
+    "prompt": "[Academic Talk — Music History] What is the professor's main point about early jazz?",
+    "choices": [
+     "Jazz remained a New Orleans dance music throughout its first forty years, until the bebop players finally moved it north.",
+     "The written-out arrangements of the 1930s big bands were the purest and most admired form of the music.",
+     "Jazz was invented by one New Orleans musician, and the early bands simply played the written compositions he handed them.",
+     "In about forty years jazz evolved from collective dance music into a soloist-driven, then listening-focused, art."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0191",
+    "prompt": "[Academic Talk — Music History] According to the professor, what characterized the earliest New Orleans jazz groups?",
+    "choices": [
+     "Several instruments improvising independent melodies at the same time.",
+     "A single soloist stepping forward to improvise while the rest of the band supported him.",
+     "Fast, complex music meant for close listening rather than dancing.",
+     "Large dance ensembles playing from arranged charts that were written out in advance."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0192",
+    "prompt": "[Academic Talk — Music History] What can be inferred about bebop from the talk?",
+    "choices": [
+     "It was the earliest style of jazz, built on the collective improvisation heard in New Orleans.",
+     "It arose as a reaction against the dance-oriented big bands, aiming at listeners instead.",
+     "It was created to give dancers in the big-band ballrooms a faster and more complex beat to use.",
+     "It was performed mainly by large ensembles playing the written-out charts arranged for them."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0193",
+    "prompt": "[Academic Talk — Music History] What does the professor identify as the defining feature of jazz?",
+    "choices": [
+     "A steady rhythm meant strictly for dancing.",
+     "Improvisation — musicians inventing their lines on the spot.",
+     "The use of brass instruments borrowed from church music.",
+     "Careful arrangement of every note in advance."
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Transcript: Early cinema — I mean the first fifteen years or so after 1895 — looked almost nothing like the movies you know. When the Lumière brothers in France projected their short films, they simply pointed the camera at everyday life: workers leaving a factory, a train pulling into a station. The films were about a minute long, and audiences were amazed just to see photographs move. But another Frenchman, Georges Méliès, took a different path. Méliès had been a stage magician, and he discovered — partly by accident, when his camera jammed — that film could make things appear, vanish, or transform. So he built painted sets and told fantastical stories, like a rocket flying to the moon. Here you have the two roots of all cinema: on one hand Lumière's documentary impulse, recording the real world; on the other Méliès's theatrical impulse, staging the impossible. Now, where did people watch these? In the United States, the answer was the nickelodeon — a small storefront theater charging just five cents, a nickel, for admission. They spread explosively; by around 1910 there were thousands of them, drawing especially working-class and immigrant crowds, since you didn't need to read English to enjoy a silent picture. That accessibility, more than anything, is what turned cinema from a novelty into a mass medium.",
+  "questions": [
+   {
+    "ref": "R0194",
+    "prompt": "[Academic Talk — Film History] What is the professor's main point about early cinema?",
+    "choices": [
+     "The nickelodeon failed as a business because five cents was still more than working-class and immigrant audiences would pay, so cinema never grew past being a novelty.",
+     "Early films were technically identical to the movies we know today and differed only in running time, since the Lumière brothers already used the storytelling methods of later features.",
+     "Georges Méliès invented cinema by pointing a camera at everyday life, workers leaving a factory and a train arriving, while the Lumière brothers built painted sets and staged trips to the moon.",
+     "Early cinema grew from two impulses — recording reality and staging the impossible — and became a mass medium through cheap, accessible theaters."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0195",
+    "prompt": "[Academic Talk — Film History] How did Méliès discover that film could make things appear or vanish?",
+    "choices": [
+     "By reading about the technique in a magic manual.",
+     "By projecting films in a nickelodeon.",
+     "Partly by accident, when his camera jammed.",
+     "By studying the Lumière brothers' factory films."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0196",
+    "prompt": "[Academic Talk — Film History] According to the professor, what did the Lumière brothers' films show?",
+    "choices": [
+     "Ordinary scenes from everyday life, such as workers leaving a factory.",
+     "Fantastical stories staged on painted sets, such as a rocket flying to the moon.",
+     "Crowds of working-class and immigrant viewers filling the American nickelodeons.",
+     "Tricks discovered by accident when a camera jammed, making objects vanish."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0197",
+    "prompt": "[Academic Talk — Film History] Why does the professor mention that audiences 'didn't need to read English' to enjoy a silent picture?",
+    "choices": [
+     "To show that most of the films shown in American nickelodeons had actually been made in France, not in America.",
+     "To explain why Méliès's staged fantasies drew far larger crowds than Lumière's films of ordinary everyday life.",
+     "To argue that silent pictures were harder for immigrant audiences to follow than the sound films that came later.",
+     "To explain why nickelodeons drew working-class and immigrant crowds, helping cinema become a mass medium."
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Transcript: When we study Greek mythology, it helps to ask not just what the myths say but what they did — what work they performed for the people who told them. The Greeks had no single holy book and no organized church, so myths were how they made sense of the world. Take the natural world first: a thunderstorm was Zeus, king of the gods, hurling his lightning; the changing seasons were explained by the story of Persephone, carried off to the underworld each winter and returning each spring. So myth served as a kind of early science, an explanation for things people couldn't otherwise account for. But — and this is important — the myths did more than explain nature. They also modeled behavior. The hero stories, like those of Heracles or Odysseus, held up examples of courage and cleverness, but they also warned against a fault the Greeks called hubris, excessive pride, which the gods invariably punished. A character who thought himself equal to the gods came to a bad end, every time. And notice the gods themselves: they were not perfect and remote. They quarreled, they fell in love, they took revenge — they behaved, in short, like magnified humans. That very familiarity, scholars think, is what made the stories so memorable, and so useful for teaching.",
+  "questions": [
+   {
+    "ref": "R0198",
+    "prompt": "[Academic Talk — Classics] According to the professor, what fault did the hero stories warn against?",
+    "choices": [
+     "Cowardice in the face of monsters.",
+     "Neglecting to honor the changing seasons.",
+     "Believing that the gods behaved like humans.",
+     "Hubris, or excessive pride, which the gods always punished."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0199",
+    "prompt": "[Academic Talk — Classics] What is the professor's main point about Greek myths?",
+    "choices": [
+     "Greek myths were gathered into one sacred book that an organized priesthood taught from.",
+     "The myths were told purely for entertainment, and taught the Greeks nothing about conduct.",
+     "The Greek gods were imagined as flawless and remote, untouched by ordinary human feeling.",
+     "Myths did real work for the Greeks — explaining nature and modeling how to behave."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0200",
+    "prompt": "[Academic Talk — Classics] How did the Greeks explain the changing seasons, according to the professor?",
+    "choices": [
+     "Through the hero stories of Heracles and Odysseus, which held up examples of courage and cleverness.",
+     "Through the story of Persephone, carried to the underworld each winter and returning each spring.",
+     "Through Zeus, the king of the gods, hurling his lightning down at the earth from the sky above them.",
+     "Through the punishment of mortals guilty of hubris, the excessive pride the gods always struck down."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0201",
+    "prompt": "[Academic Talk — Classics] Why does the professor point out that the Greek gods behaved like 'magnified humans'?",
+    "choices": [
+     "To argue that the Greeks did not really believe the stories they told.",
+     "To explain why the stories were so memorable and useful for teaching.",
+     "To show that the gods far outmatched heroes such as Heracles or Odysseus.",
+     "To prove that myth worked better as early science than as a model of conduct."
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Transcript: Today, Gothic architecture — the style of the great cathedrals built across Europe from roughly the twelfth to the fifteenth centuries. If you walk into one, the first thing you notice is height and light: the buildings soar upward and seem to be made of glass. How was that achieved? The Gothic builders solved an engineering problem. Earlier, Romanesque churches had round arches and thick, heavy walls with small windows, because the walls had to carry the whole weight of the stone roof. The Gothic answer was a combination of three innovations. First, the pointed arch, which directs weight downward more efficiently than a round one. Second — and this is the key piece — the flying buttress, an external stone support that props up the wall from outside, taking the outward thrust of the roof. Once the buttress carries that load, here's the payoff: the wall itself no longer has to be thick or solid. And that meant the builders could open up huge windows filled with stained glass. Now, those windows weren't merely decorative. Most people then couldn't read, so the glowing images of biblical scenes served as teaching tools, a kind of picture-book for the congregation. The overall effect — soaring space flooded with colored light — was meant to lift the worshipper's mind toward heaven. Form and faith, working together.",
+  "questions": [
+   {
+    "ref": "R0202",
+    "prompt": "[Academic Talk — Art History] Why did earlier Romanesque churches have only small windows, according to the professor?",
+    "choices": [
+     "Because the thick walls had to carry the entire weight of the stone roof.",
+     "Because builders preferred dark, shadowy interiors.",
+     "Because the flying buttress had not yet been perfected for cathedrals.",
+     "Because glass was too expensive to produce in large sheets."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0203",
+    "prompt": "[Academic Talk — Art History] According to the professor, which innovation was the key to letting the walls become thinner?",
+    "choices": [
+     "The flying buttress.",
+     "The stained-glass window.",
+     "The thick supporting wall.",
+     "The round arch."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0204",
+    "prompt": "[Academic Talk — Art History] Why does the professor mention that most people then could not read?",
+    "choices": [
+     "To explain why the stained-glass images functioned as teaching tools for the congregation.",
+     "To explain why the cathedrals took so long to build, since every window had to be assembled by hand.",
+     "To argue that the windows were purely decorative, a wash of colored light with no instructional purpose.",
+     "To show that only the clergy could interpret the biblical scenes shown in the cathedral windows."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0205",
+    "prompt": "[Academic Talk — Art History] What is the professor's main point about Gothic cathedrals?",
+    "choices": [
+     "The stained-glass windows were there for decoration only, since the congregation could read the biblical stories anyway.",
+     "A set of engineering innovations let builders raise tall, light-filled walls of stained glass that served both structure and faith.",
+     "Gothic builders kept the thick Romanesque walls and small windows, relying on the pointed arch alone for height.",
+     "Gothic cathedrals were admired above all for the strength of their round arches, which carried the roof's weight without any outside support."
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ }
+]

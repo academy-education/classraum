@@ -1,0 +1,992 @@
+[
+ {
+  "passage": "Transcript: A: Hi, I’m here for my writing center appointment. I’d like some feedback on my thesis draft. I’ve been working on it for a few weeks, but I keep feeling like something’s missing, especially in terms of flow and clarity. B: Sure, I’d be happy to help. What’s your thesis about? Can you give me a quick summary of your main argument? A: It’s for my ENG 401 seminar. I’m arguing that digital media has fundamentally changed how people interpret news, especially in terms of credibility and speed of information. But I’m struggling with the organization—my ideas feel scattered, and I’m not sure my points connect as well as they should. B: Can you show me your outline or maybe walk me through the structure you have right now? A: Yes, here it is. I start with a historical overview of news media, then I move into a section about the influence of social media platforms, and finally I address the rise of misinformation and fake news in the digital age. B: When you say 'historical overview,' what exactly do you cover? How far back are you going, and what are the key developments you mention? A: I cover the 1980s to the present, focusing on the rise of cable news networks, the introduction of 24-hour news cycles, and then the shift to internet-based news sources.\n\nI try to show how each step changed the way people consume information. B: That’s helpful, but I think your introduction could clarify that timeframe more explicitly. Also, the transition between your social media section and the misinformation section seems abrupt. Have you considered how to connect those two ideas more smoothly? A: That’s actually what I was worried about. The thing is, I’m not sure how to bridge those sections without it feeling forced. Should I add a transitional paragraph or maybe a specific example? B: Maybe you could use a case study, like the 2016 U.S. presidential election, to illustrate how social media contributed to the spread of misinformation. That could serve as a natural bridge between the two sections. A: That’s a great idea. Should I also add more sources to support that case study? B: Yes, definitely. Try to include recent studies or articles that analyze the impact of d",
+  "questions": [
+   {
+    "ref": "R0549",
+    "prompt": "[Conversation — student and writing-center tutor about a thesis draft] Why does the tutor ask the student what exactly she covers in the \"historical overview\"?",
+    "choices": [
+     "To determine whether the cable-news material really belongs in a paper on digital media",
+     "To suggest that the historical overview be cut so the paper can start with social media",
+     "To show that the section’s time frame is not made clear enough for a reader",
+     "To point out that the transition into the misinformation section feels abrupt to a reader"
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0550",
+    "prompt": "[Conversation — student and writing-center tutor about a thesis draft] What will the student most likely do before her next appointment?",
+    "choices": [
+     "Reorder the draft so that the misinformation section comes before social media",
+     "Interview experts on the 2016 election to gather original data",
+     "Revise the draft with additional sources and check that citations follow MLA",
+     "Rewrite her thesis so that cable news, rather than social media, is the focus"
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0551",
+    "prompt": "[Conversation — student and writing-center tutor about a thesis draft] What is the student’s main concern about her draft?",
+    "choices": [
+     "That her historical overview reaches further back than the assignment allows",
+     "That her ideas are arranged in a way that does not connect them clearly",
+     "That her argument about digital media is not original enough",
+     "That she has used the wrong citation style throughout the paper"
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0552",
+    "prompt": "[Conversation — student and writing-center tutor about a thesis draft] What suggestion does the tutor give to help improve the transition between sections?",
+    "choices": [
+     "Use more direct quotations.",
+     "Add a case study, such as the 2016 election.",
+     "Remove the historical overview.",
+     "Shorten the section on misinformation."
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Transcript: \"In today's lecture, we'll explore the economic impact of the Industrial Revolution. Many assume it was solely positive, but there were significant drawbacks. For instance, while production increased, so did urban poverty and poor working conditions.\n\nThe rise in factory jobs drew people to cities, leading to overcrowding and unsanitary living conditions. Additionally, the focus on mass production led to environmental degradation. Despite these issues, the Revolution also spurred technological innovation and increased goods availability. But it's crucial to understand that the benefits came with substantial social costs.\"",
+  "questions": [
+   {
+    "ref": "R0553",
+    "prompt": "[Academic Talk — History] What inference can be made about the speaker's view on the Industrial Revolution?",
+    "choices": [
+     "The speaker sees the Revolution as a complex period with mixed outcomes.",
+     "The speaker thinks the Revolution was mainly detrimental to society.",
+     "The speaker believes the Revolution's costs outweighed its benefits.",
+     "The speaker regards technological advancement as the only positive outcome."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0554",
+    "prompt": "[Academic Talk — History] What is the main point the speaker is making about the Industrial Revolution?",
+    "choices": [
+     "It improved living conditions in the cities that factory workers moved to.",
+     "It was a period of almost unqualified economic success.",
+     "It led to significant social and environmental challenges.",
+     "It did little to encourage technological innovation or the availability of goods."
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Transcript: A: Hey, did you see the email about the change in exam format? B: No, what’s different? A: The professor said it’ll be mostly essays instead of multiple choice. B: Really? That’s a big shift. I was counting on the multiple choice sections. A: Same here.\n\nI guess we’ll have to adjust our study plans. B: Yeah. Do you know if the essays will cover the whole semester or just recent topics? A: The email wasn’t clear. Maybe we should ask in class tomorrow. B: Good idea. I’ll make a note to bring it up.",
+  "questions": [
+   {
+    "ref": "R0555",
+    "prompt": "[Conversation — Student lounge] What is the main concern of the students?",
+    "choices": [
+     "How to prepare for the new exam format.",
+     "Whether the exam will be rescheduled.",
+     "If the professor will provide a study guide.",
+     "How many questions will be on the exam."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0556",
+    "prompt": "[Conversation — Student lounge] Why does Student B decide to bring up the exam in class?",
+    "choices": [
+     "Student B wants to ask for more multiple choice questions.",
+     "The email did not specify what the essays will cover.",
+     "Student B missed the original email.",
+     "Student B is worried about the exam date."
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Transcript: A: Did you get a chance to review the draft I sent? B: Yes, but I'm concerned about the section on market trends. A: Oh, why is that? B: It seems a bit outdated. The latest report suggests a shift in consumer preferences. A: I see. Do you have any suggestions for updating it? B: You might want to include data from the recent survey. It provides a more current perspective. A: Thanks, I'll look into that.",
+  "questions": [
+   {
+    "ref": "R0557",
+    "prompt": "[Conversation — Work] Why does the first speaker ask, \"Oh, why is that?\"",
+    "choices": [
+     "To invite the colleague to explain the basis for his objection",
+     "To ask which survey the colleague has in mind",
+     "To dispute the colleague’s reading of the latest report",
+     "To check whether the colleague finished reading the whole draft"
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0558",
+    "prompt": "[Conversation — Work] What is the main concern of the second speaker?",
+    "choices": [
+     "The draft lacks a conclusion.",
+     "The draft is too short.",
+     "The market trends section is outdated.",
+     "The data is too complex."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0559",
+    "prompt": "[Conversation — Work] On what grounds does the second speaker call the market trends section out of date?",
+    "choices": [
+     "The draft was finished before the recent survey was carried out",
+     "The first speaker concedes the figures were only rough estimates",
+     "A newer report indicates that consumer preferences have shifted",
+     "The figures in it come from a competitor’s market rather than this one"
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0560",
+    "prompt": "[Conversation — Work] What will the first speaker most likely do next?",
+    "choices": [
+     "Resend the same draft for a second review once the other speaker has more time",
+     "Look at the recent survey data and update that part of the draft",
+     "Drop the market trends section, since the other speaker called it outdated",
+     "Commission a new survey of consumer preferences herself"
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Transcript: A: \"Today, we'll explore the geological formation of the Grand Canyon.\" B: \"Is it true that the Colorado River carved it over millions of years?\" A: \"Yes, but it's also shaped by tectonic activity and erosion from wind and rain.\"",
+  "questions": [
+   {
+    "ref": "R0561",
+    "prompt": "[Academic Talk — Geology] What can be inferred about the speaker's view on the Grand Canyon's formation?",
+    "choices": [
+     "It resulted mostly from human activity along the river.",
+     "It involves a combination of natural forces.",
+     "It was a simple process, carved by the river alone.",
+     "Geologists still disagree on the cause."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0562",
+    "prompt": "[Academic Talk — Geology] What is the main idea of the talk?",
+    "choices": [
+     "Tectonic activity is the only force responsible for the Grand Canyon's formation.",
+     "The Grand Canyon was formed solely by the Colorado River.",
+     "The Grand Canyon's formation is due to multiple geological processes.",
+     "Erosion from wind and rain has had almost no effect on the canyon's present shape."
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Transcript: A: Hi, Dr. Patel. I wanted to discuss my research proposal for Psychology 410. I’m worried about the timeline, and I’m not sure how to proceed because I’ve run into a couple of unexpected delays. B: Sure, Maya. What’s your main concern? Is it about gathering your data, or is it something else that’s holding you up? A: The main issue is that the proposal is due November 2nd, but I haven’t gotten approval from the ethics committee yet. I suppose I underestimated how long that would take, and now I’m concerned I won’t have everything ready in time. I didn’t realize the approval process could be so slow. B: That’s a common issue for students. The thing is, the committee meets only once every two weeks, so sometimes there’s a bit of a backlog. When did you submit your application to the committee? A: I submitted it last Monday, so October 9th. What do you mean by ‘meets every two weeks’? Does that mean my application might not be reviewed until the 23rd, or is there a chance it could be sooner? B: Exactly, it’s likely they won’t review your application until the 23rd. In that case, you may not get any feedback until after the proposal deadline.\n\nHave you tried reaching out to the committee chair to explain your situation? A: Not yet. Should I email Dr. Simmons directly, or is there a specific process for urgent cases? B: Yes, I recommend you email Dr. Simmons, explain your situation, and ask if there’s any possibility they can expedite the review for you. Also, you could draft your proposal as usual but include a note stating that ethics approval is still pending. A: That makes sense. If I submit the proposal with that note, will it still be considered for grading, or will it be marked incomplete? B: Yes, as long as you’re transparent about the situation, your proposal will still be considered. Just make sure to attach any correspondence you’ve had with the committee so we can see you’re taking the right steps. A: Thank you so much for the advice. I’ll email Dr. Simmons today and update my proposal draft to reflect the pending approval. Is there anything else I should do in the meantime? B: That sounds like a good plan. If you run into any more issues or ",
+  "questions": [
+   {
+    "ref": "R0563",
+    "prompt": "[Conversation — professor↔student office hours] What does the professor advise the student to do?",
+    "choices": [
+     "Wait for the ethics committee's review on the 23rd before submitting the draft.",
+     "Ask Dr. Patel for an extension on the November 2nd deadline.",
+     "Email the committee chair and note the pending approval in her proposal.",
+     "Change to a research topic that does not need ethics approval."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0564",
+    "prompt": "[Conversation — professor↔student office hours] What is the student’s main concern?",
+    "choices": [
+     "She has not begun writing her research proposal at all.",
+     "She missed the deadline for submitting her application to the committee.",
+     "She may not get ethics approval before her proposal deadline.",
+     "She is unsure how to reach the committee chair, Dr. Simmons, about her case."
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Transcript: So - the standard story about common-pool resources. You've all met it. Hardin's parable: a pasture open to all, each herder adds one more animal because the gain is private and the cost is shared, and the pasture is stripped bare. Ruin, he said, is the destination toward which all men rush. Tidy. Memorable. And, um, in a narrow sense unobjectionable - the arithmetic does work, given the assumptions.\n\nBut notice what those assumptions do. The herders in the parable cannot talk to one another. They cannot make a rule, cannot monitor a neighbour, cannot impose so much as a mild sanction. Which means the model quietly begs the question - it assumes away exactly the institutions whose existence is at issue, and then reports their absence as a discovery. Now, I want to be careful here. This is not to say the parable is wrong. Where users really are anonymous and mobile - high-seas fisheries are the obvious case - the outcome Hardin describes is not just possible, it is routine.\n\nThe complication comes from the fieldwork. Ostrom and her colleagues catalogued Swiss alpine pastures, Japanese village forests, Spanish irrigation systems, some of them governed for six or seven centuries without either privatisation or a state. And what they found was not harmony. Cheating, disputes, sanctions, all present. What was also present were graduated penalties, boundaries everybody recognised, and cheap local ways of settling quarrels.\n\nSo where does that leave the parable? Not discarded, I would say. Rescued as a special case - the case where communication has been ruled out in advance. And here is the awkward part for policy: for much of the twentieth century governments read Hardin as licence to nationalise or to privatise, and in doing so dismantled working local arrangements they had never bothered to study. That lesson was expensive.",
+  "questions": [
+   {
+    "ref": "R0565",
+    "prompt": "[Academic Talk — Institutional Economics] What is the lecturer's attitude toward Hardin's parable of the pasture?",
+    "choices": [
+     "He accepts it as a general law of resource use that the fieldwork has since confirmed in detail.",
+     "He holds that its central calculation is mistaken, since the private gain does not in fact exceed the shared cost.",
+     "He rejects it outright, on the grounds that the fieldwork found no cheating or disputes among users.",
+     "He treats its reasoning as sound but its reach as overstated, and keeps it for a narrow class of cases."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0566",
+    "prompt": "[Academic Talk — Institutional Economics] What does the lecturer imply about the twentieth-century government policies he describes at the end of the talk?",
+    "choices": [
+     "They showed that state ownership and private ownership are always inferior to community management.",
+     "They removed the very institutions that the model guiding them had defined out of existence in advance.",
+     "They were adopted before Hardin's parable circulated, so they could not have been shaped by it.",
+     "They failed because the local arrangements were already collapsing under the cheating the fieldwork documented."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0567",
+    "prompt": "[Academic Talk — Institutional Economics] When the lecturer says the model 'quietly begs the question', he means that it",
+    "choices": [
+     "invites the audience to draw a moral conclusion the economics does not support.",
+     "raises an obvious further question that the parable itself leaves unanswered.",
+     "builds in as an assumption the very thing it claims to have demonstrated.",
+     "demands more evidence from historians than the surviving records can supply."
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Transcript: Right - so, the headline says coffee drinkers live longer. And the study behind it is not junk. Large sample, careful follow-up, and the association is there and it is fairly strong. The question I want to press is what that association is made of.\n\nStart with the obvious worry: confounding. Coffee drinkers in that cohort were also, on average, wealthier, better housed, more likely to hold a desk job. Any of those will do the work the coffee is being credited with. Fine - the analysts knew that. They adjusted for income, occupation, exercise, smoking. And after adjustment the association shrank. But it did not disappear.\n\nNow, at this point a great many people conclude that the residue must be causal - whatever survives adjustment is the real effect. And that inference is, I am afraid, wishful. Adjustment removes only what you measured, and it removes it only as well as you measured it. Smoking in that questionnaire was recorded as yes or no. Half a pack a day and two packs a day went into the same box. So what is left over need not be a coffee effect at all; it may be the part of smoking your instrument was too blunt to catch. An artifact, in other words - a fact about the measuring, not about the world.\n\nDoes that make observational work worthless? No, and I would resist that conclusion strongly. There are cases where something outside the correlation is doing the argumentative work. Where nature has done the randomising for us. Where the association reverses inside every subgroup. Where the dose tracks the response too cleanly for a confounder to mimic. Those are informative.\n\nSo the discipline here is not blanket scepticism about correlations. It is asking, every single time, what would have to be true of the world for this pattern to arise without the cause you have in mind.",
+  "questions": [
+   {
+    "ref": "R0568",
+    "prompt": "[Academic Talk — Epidemiology] Which result would the lecturer most likely accept as strengthening the case that coffee itself extends life?",
+    "choices": [
+     "A steady rise in the benefit as consumption rises, of a shape no confounder is likely to reproduce.",
+     "A demonstration that coffee drinkers and non-drinkers in the cohort were matched on income, housing and occupation.",
+     "A finding that the association disappears entirely once smoking is recorded in finer bands than simply yes or no.",
+     "A cohort several times larger in which the very same association survives the very same adjustments by the same margin."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0569",
+    "prompt": "[Academic Talk — Epidemiology] How does the lecturer regard the claim that whatever survives statistical adjustment is the real effect?",
+    "choices": [
+     "As evidence that observational studies should be abandoned in favour of laboratory experiments, since adjustment cannot be trusted.",
+     "As a sign that the direction of causation has simply been reversed, with better health leading people to drink more coffee.",
+     "As an understandable but unsafe conclusion, because adjustment is limited by how coarsely the confounders were recorded.",
+     "As a sound rule of thumb, provided the list of measured confounders is long enough to cover income, occupation and smoking."
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Transcript: Two accounts of the same riot, written in the same month, and they do not agree. One is a magistrate's report to the capital. The other is a letter from a merchant to his brother. The temptation - and it is a strong one - is to ask which of the two men was more honest. That is almost never the productive question.\n\nAsk instead what each document was for. The magistrate is explaining, to superiors who may punish him, why order broke down on his watch. He has every reason to inflate the crowd: a mob of two thousand excuses what a scuffle of forty does not. The merchant is warning his brother whether to send goods next season. He has reason to exaggerate the danger too, but a different reason - and, this matters, no reason whatever to describe the magistrate as competent. Yet he does. That remark cuts against the grain of his own interest, and for exactly that reason it is worth more than the sentences on either side of it.\n\nNow, the older method - sift the sources, decide which one is reliable, then believe it throughout - is not so much wrong as far too coarse. Reliability is not a property of a document. It is a property of a document with respect to a particular claim. A thoroughly partisan chronicler may be useless on motive and excellent on weather.\n\nOne more caution before we stop. Where the silences agree, be careful. Neither writer mentions the militia. It is tempting to conclude that the militia never came. But the magistrate would hardly advertise having summoned them, and the merchant may simply not have known. Absence of mention, here, is evidence about what was sayable, not about what occurred. Silences have authors too.",
+  "questions": [
+   {
+    "ref": "R0570",
+    "prompt": "[Academic Talk — Historiography] What is the lecturer's view of the older method of ranking sources by reliability?",
+    "choices": [
+     "He shares its aim but faults it for assigning reliability to whole documents instead of to particular claims.",
+     "He regards it as discredited, since documents written for a superior are systematically false.",
+     "He objects that it ignores the purposes for which documents were written, which is the only thing now recoverable.",
+     "He endorses it, provided the historian first determines which of the two writers was the more honest."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0571",
+    "prompt": "[Academic Talk — Historiography] Why does the lecturer contrast a mob of two thousand with a scuffle of forty?",
+    "choices": [
+     "To suggest that large numbers in early documents were conventional rather than literal.",
+     "To show that official reports record quantities more precisely than private letters do.",
+     "To settle how many people actually took part in the riot.",
+     "To show that a figure can be predicted from the writer's situation, so the discrepancy need not be settled by deciding who lied."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0572",
+    "prompt": "[Academic Talk — Historiography] Taken together, the lecturer's treatment of the merchant's remark and his treatment of the missing militia point to which principle?",
+    "choices": [
+     "Private correspondence should be preferred to official reporting, since a private writer answers to no superior.",
+     "Agreement between two independent sources is the strongest evidence a historian can obtain, and their silences agree too.",
+     "Details irrelevant to a writer’s purpose can be accepted as accurate without checking, since no interest was served by them.",
+     "What a source says or omits is weighed by what saying or omitting it would have cost the writer."
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Transcript: Here is a puzzle out of the radiology literature. Two readers work through the same set of scans, and one of them catches more tumours than the other. The obvious conclusion is that she is the better reader. Sharper eyes. Hold that thought.\n\nBecause she also flags more scans that turn out to be perfectly clean. And once you know that, the obvious conclusion is in trouble. Detecting a faint signal in noise involves two quite separate things, and the old way of scoring - count the hits - runs them together. There is how distinguishable the signal is from the noise for that observer; call it sensitivity. And there is where the observer puts the line at which she is willing to say yes, I see it. That is the criterion. Two different quantities. Slide the criterion toward yes and your hits go up - and your false alarms go up with them, in lockstep. You have not seen any better. You have only become readier to say so.\n\nSo our radiologist may be more sensitive. Or she may simply be moving the goalposts, and I mean that neutrally, which is not how the phrase is ordinarily used. There is no fault in it. Where a missed tumour costs a life and a false alarm costs a second scan, shifting the line is exactly the rational thing to do.\n\nAnd this is where I would push back a little on the textbook framing, which treats the criterion as a nuisance parameter - something to be estimated and set aside so that sensitivity can be read off cleanly. In the laboratory, fine. In a hospital, the criterion is not noise in the measurement. It is the clinical judgement. It encodes what the institution takes a mistake to be worth. Strip it out and you have measured the eye while throwing away the decision.",
+  "questions": [
+   {
+    "ref": "R0573",
+    "prompt": "[Academic Talk — Psychophysics] In saying the radiologist may be 'moving the goalposts', the lecturer means she may be",
+    "choices": [
+     "revising an earlier diagnosis once the outcome of the case is known.",
+     "adjusting the threshold of evidence at which she is prepared to report a tumour.",
+     "improving her ability to tell a faint signal apart from background noise.",
+     "changing the standard of success unfairly so that her performance cannot be judged."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0574",
+    "prompt": "[Academic Talk — Psychophysics] What can be concluded about the two radiologists from the information the lecturer gives?",
+    "choices": [
+     "The second reader is the more sensitive of the two, since a lower hit rate implies a stricter criterion.",
+     "Their sensitivity must be identical, since they read exactly the same set of scans.",
+     "She is the better reader, because in this setting hits matter more than false alarms.",
+     "Nothing yet about their sensitivity; the pattern is equally consistent with her treating a missed tumour as the costlier error."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0575",
+    "prompt": "[Academic Talk — Psychophysics] What is the lecturer's position on the textbook practice of treating the criterion as a nuisance parameter?",
+    "choices": [
+     "He rejects it, holding that sensitivity cannot be estimated separately from the criterion at all.",
+     "He allows it as a laboratory convenience but denies it where the two kinds of error carry unequal costs.",
+     "He accepts it wherever the two kinds of error carry unequal costs, since the criterion is then measurable.",
+     "He considers it a statistical error that inflates estimates of sensitivity by folding in the observer’s caution."
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Transcript: When the big replication projects reported back - psychology first, then economics, then cancer biology - the number everybody fixed on was the headline rate. Something under half. And the immediate explanation, in the press at least, was misconduct. Somebody had been cooking the books.\n\nI want to suggest that is the least interesting explanation available, and probably the smallest contributor. Fraud exists. It is rare, and when it is caught it is caught precisely because it is crude.\n\nThe bigger problem is subtler and requires nobody to lie. Think about a single honest analysis. Do you exclude the participants who responded implausibly fast? Do you log-transform the skewed variable? Do you keep the two conditions apart or pool them? Every one of those choices is defensible. Every one of them was made after the data had arrived. Gelman calls this the garden of forking paths - and notice, the researcher walks down only one path. She never runs twenty analyses and reports the prettiest. She runs one, honestly. But which one she ran depended on what she saw, and that dependence inflates her false-positive rate just as surely as fishing would.\n\nNow, a qualification, because the crisis narrative has hardened into something rather too simple. A failed replication is not a refutation. It may mean the effect is absent. It may mean the effect is real but small, or fragile, or bounded by some feature of the original setting that the second laboratory did not reproduce. Telling those apart is genuinely hard, and the loudest voices on both sides tend to skate past it.\n\nStill - and I do not want the qualification to swallow the point - the direction of the correction is not in doubt. In the fields that began pre-registering their analyses, published effect sizes fell. Which is what you would expect if forking paths, and not fraud, had been doing the inflating all along.",
+  "questions": [
+   {
+    "ref": "R0576",
+    "prompt": "[Academic Talk — Metascience] How does the lecturer treat the explanation that low replication rates are caused by misconduct?",
+    "choices": [
+     "As a genuine but minor factor whose prominence has crowded out a more important one.",
+     "As the principal cause, though one that is difficult to demonstrate case by case.",
+     "As widespread but undetectable, which is why the replication rate is so low.",
+     "As a fabrication of the press, since deliberate fraud in published research is essentially unknown."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0577",
+    "prompt": "[Academic Talk — Metascience] Why does the fall in effect sizes after pre-registration support the lecturer's argument rather than the misconduct account?",
+    "choices": [
+     "Because smaller published effects show that the original researchers had misreported their results.",
+     "Because pre-registration makes fraud far easier for reviewers and editors to detect.",
+     "Because pre-registered studies replicate so reliably that replication attempts become unnecessary.",
+     "Because it removes data-dependent analytic choices without touching anyone's honesty, and the inflation goes away anyway."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0578",
+    "prompt": "[Academic Talk — Metascience] Why does the lecturer point out that a failed replication may reflect a feature of the original setting the second laboratory did not reproduce?",
+    "choices": [
+     "To recommend that a replication attempt be carried out by, or in consultation with, the laboratory that ran the original study.",
+     "To restrain a narrative he otherwise supports, so that his conclusion is not taken further than the evidence allows.",
+     "To argue that most reported replication failures are really failures of method in the second laboratory.",
+     "To account for the difficulty of detecting deliberate misconduct long after publication."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0579",
+    "prompt": "[Academic Talk — Metascience] What does the lecturer mean by 'the garden of forking paths'?",
+    "choices": [
+     "The branching set of rival hypotheses that a whole research field pursues in parallel over several decades.",
+     "The series of defensible analytic decisions a researcher makes once she has seen her data.",
+     "The many routes by which a single finding reaches the popular press and is distorted along the way.",
+     "A deliberate search through twenty analyses for the one that produces a publishable result worth reporting."
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Transcript: The standard picture - and it is a powerful one - puts the environment on one side, posing problems, and the organism on the other, adapting or failing to. Selection is what the world does to a lineage.\n\nEarthworms make that picture uncomfortable. Their physiology is, frankly, a poor match for soil. The kidney they inherited is a freshwater kidney, built for a life their ancestors left behind. And they have not evolved a soil kidney. What they have done instead is remake the soil - burrowing, casting, dragging leaf litter down after them - until the ground immediately around them is wet enough for a freshwater kidney to work in. So which side is doing the adapting?\n\nOdling-Smee and others call this niche construction, and the term I want you to hold on to is ecological inheritance. An earthworm hatches into a burrow system its grandparents dug. It inherits genes from its parents and, quite separately, it inherits a modified world. Some of the selection pressures acting on it were built by its own ancestors. The arrow runs both ways.\n\nNow, how much does this actually change? Here I would be cautious. The critics - Laland's opponents, and they are not fools - point out that standard theory can absorb these cases without strain. A beaver dam is environmental change; call the changed environment a selection pressure, and the bookkeeping still comes out right. And that is fair, as far as it goes. My own view, for what it is worth, is that this is less a refutation of the older account than a complaint about what that account makes easy to notice. A framework that treats the environment as external will keep generating questions in which the organism is the passive party. You can add the feedback loop afterwards. Whether you would ever have thought to look for it is another matter.",
+  "questions": [
+   {
+    "ref": "R0580",
+    "prompt": "[Academic Talk — Evolutionary Biology] What is the lecturer's attitude toward the critics of niche construction?",
+    "choices": [
+     "He treats their objection as resting on a misunderstanding of what ecological inheritance means.",
+     "He argues that standard theory has no way at all of representing feedback running from organism back to environment.",
+     "He agrees with them that niche construction adds nothing worth recording that the older bookkeeping cannot capture.",
+     "He concedes that their technical point holds and objects only that their framework directs attention badly."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0581",
+    "prompt": "[Academic Talk — Evolutionary Biology] Why does the lecturer bring up beaver dams?",
+    "choices": [
+     "Because it is the critics' example, offered to show that the older framework can redescribe such cases without difficulty.",
+     "To show that constructed environments commonly outlast the organisms that built them.",
+     "To argue that large-bodied animals reshape their habitats more thoroughly than small ones do.",
+     "To supply a second, more familiar illustration of ecological inheritance than the earthworm."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0582",
+    "prompt": "[Academic Talk — Evolutionary Biology] What does the earthworm's kidney, taken together with the idea of ecological inheritance, imply about how a trait's persistence should be read?",
+    "choices": [
+     "That adaptation of a trait always lags some distance behind the environmental change that drives it.",
+     "That a lineage may answer a mismatch by altering its surroundings, so persistence is not proof the trait was shaped to fit those surroundings.",
+     "That a trait persisting in a habitat that does not suit it must be vestigial, and will be lost from the lineage once selection has had time enough to work.",
+     "That the soil environment must, over enough generations, have come to select for the very freshwater kidney that the worms have gone on retaining."
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Transcript: Take something as unglamorous as temperature. Before you can measure it, you need a thermometer. To know that your thermometer is any good, you need to know that mercury expands uniformly as temperature rises. And to know that, you would have to measure temperature - independently - which is precisely what you do not yet have.\n\nHasok Chang calls this the problem of nomic measurement, and it is not a puzzle you can dissolve by being more careful. There is no observation that breaks the circle from outside. Fahrenheit could not check his mercury against the truth. There was no such gauge to check it against.\n\nSo how did the thing ever get settled? Not by finding a foundation. By pulling itself up by its own bootstraps - and I use that phrase in its awkward original sense, not the cheerful modern one about self-reliance. The procedure looks impossible from outside and works anyway. You assume the mercury behaves. You build the scale. You use the scale to state laws - the gas laws, latent heat. Those laws then tell you where mercury ought to misbehave, and off you go to look. Mostly it does not. Where it does, you correct, or you switch to another substance, and you run the loop again.\n\nNotice what that is and is not. It is not proof. Nothing here rests on bedrock. But it is not idle either. A bad starting assumption does not stay hidden; it makes the resulting laws messy, and the mess accumulates until somebody trips over it. Self-correction without foundations. Now, some philosophers take all this as licence for a fairly relaxed conventionalism - the scale is simply a choice, so nothing is really being tracked. I would resist that. The choice was constrained at every turn by whether the physics you got out of it hung together, and that constraint did most of the work.",
+  "questions": [
+   {
+    "ref": "R0583",
+    "prompt": "[Academic Talk — Philosophy of Science] What is the lecturer's attitude toward the relaxed conventionalism he describes at the end?",
+    "choices": [
+     "He grants the premise it starts from but holds that it draws far too much from it.",
+     "He accepts it, since he agrees that no observation can break the circle from outside.",
+     "He rejects its starting premise, holding that an independent check on the thermometer was available after all.",
+     "He treats it as irrelevant, because the philosophers proposing it have ignored the historical record."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0584",
+    "prompt": "[Academic Talk — Philosophy of Science] On the lecturer's account, what ultimately justified confidence in the mercury thermometer?",
+    "choices": [
+     "Experimental proof that mercury expands more uniformly than any other available liquid.",
+     "The fact that assuming it yielded laws that held together, when a wrong assumption would have made them progressively messier.",
+     "Nothing beyond convention, since the scale was a choice that required no further justification.",
+     "A later comparison against a direct measurement of temperature that depended on no particular substance."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0585",
+    "prompt": "[Academic Talk — Philosophy of Science] The lecturer says thermometry advanced by 'pulling itself up by its own bootstraps'. In this context the phrase describes",
+    "choices": [
+     "an argument that quietly assumes its own conclusion and is therefore worthless.",
+     "an achievement won by sheer determination and without assistance from anyone outside the laboratory.",
+     "the practice of borrowing a ready-made standard from a neighbouring science that already possesses one.",
+     "a procedure with no external support that improves itself by using its own provisional results."
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Transcript: Rent in central Seoul, or London, or the Bay Area is punishing. Firms pay it. Workers pay it. If you take the cost-minimising firm of the textbook seriously, this should not be happening - you would move to where land is cheap. Some do. Most do not. So something is being bought with that rent.\n\nMarshall's answer, from the 1890s, came in three parts, and it has held up remarkably well. First, suppliers: a cluster can support specialists no single firm could keep busy on its own. Second, matching. A worker with a peculiar skill needs the one employer who happens to need it; in a thin market she never finds him, and both of them settle for less than they might have had. Third, and much the vaguest, knowledge spillovers - things overheard, people who change firms, ideas that leak across a wall.\n\nNow, the third is where I would urge some caution. It has become the fashionable explanation, partly, I suspect, because it flatters the industries doing the explaining. And the evidence is real but indirect. Patent citations cluster geographically, more than chance would predict. That is suggestive. It is not decisive, because firms that had already clustered for the first two reasons would generate the very same citation pattern.\n\nThere is also a selection problem nobody has fully solved. Are productive workers made productive by the city, or does the city simply collect the people who were going to be productive anyway? Studies that follow individuals as they move do find a genuine gain. But they find a gain that arrives gradually, over years - which sits awkwardly with the overhearing story and rather better with the matching one.\n\nNone of which makes spillovers a myth. It makes the point that we have been reading the strongest evidence in support of the weakest of the three mechanisms.",
+  "questions": [
+   {
+    "ref": "R0586",
+    "prompt": "[Academic Talk — Urban Geography] What is the lecturer's view of the knowledge-spillover explanation for clustering?",
+    "choices": [
+     "He considers it an invention of the very industries that benefit from believing it.",
+     "He regards the geographic clustering of patent citations as having settled the question in the spillovers’ favour.",
+     "He accepts that spillovers occur but thinks the support for them is thinner than their popularity suggests.",
+     "He judges it the strongest of Marshall’s three mechanisms and the one supported by the most direct documentation."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0587",
+    "prompt": "[Academic Talk — Urban Geography] Why does the lecturer remark that the spillover explanation 'flatters the industries doing the explaining'?",
+    "choices": [
+     "To offer a reason for the hypothesis's popularity that has nothing to do with how well it is evidenced.",
+     "To claim that researchers in this area are funded by the firms they study.",
+     "To argue that technology firms understand agglomeration better than economists do.",
+     "To show why patent citations are concentrated in a small number of places."
+    ],
+    "type": "multiple_choice"
+   },
+   {
+    "ref": "R0588",
+    "prompt": "[Academic Talk — Urban Geography] Why does a productivity gain that accumulates over several years count against the spillover account?",
+    "choices": [
+     "Because a gain that appears only after several years shows the city simply collected the workers who were going to be productive anyway, wherever they lived.",
+     "Because rents in clustered cities rise at the same gradual pace, so the wage gain is absorbed by land costs and cannot count as evidence for any mechanism.",
+     "Because ideas that leak across a wall should benefit a worker almost as soon as she arrives, whereas finding the employer who needs her skill takes time.",
+     "Because spillovers are confined to industries that patent, and a patent is granted only after years of examination delay."
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Transcript: \"Actually my name is spelled with two Ns, not one, on there.\"",
+  "questions": [
+   {
+    "ref": "R0589",
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+     "I'll radio the gate and ask them to hold the door.",
+     "It's B27 now — roughly ten minutes' walk in that direction.",
+     "The reprint will have the new gate printed on it.",
+     "I'll amend the spelling before you head through security."
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Transcript: \"It's the guest rule she objected to, not the rota.\"",
+  "questions": [
+   {
+    "ref": "R0590",
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+     "Then we can pin it up in the hallway.",
+     "I'll rewrite that section before we meet again.",
+     "Is the copy in the shared folder current?",
+     "I'll sketch a rota out and send it round."
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Transcript: \"The presentation's in the seminar room now, not the lecture hall.\"",
+  "questions": [
+   {
+    "ref": "R0591",
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+     "I'll draft the methods section tonight and share it.",
+     "I'll email the department for access first thing.",
+     "That suits me — I'll have the script over by Thursday.",
+     "I'll tell the others so nobody ends up waiting downstairs."
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Transcript: \"Do we have anyone who can keep goal?\"",
+  "questions": [
+   {
+    "ref": "R0592",
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+     "Ah, that's rough — is there a reserve list?",
+     "Great — glad that's one position already sorted.",
+     "Ravi has — he kept goal last season.",
+     "Good to know — I'll pass that on to our keeper."
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Transcript: \"Your last exam here was almost three years ago, in your file.\"",
+  "questions": [
+   {
+    "ref": "R0593",
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+     "I was studying abroad, so I missed a couple of visits.",
+     "I have a case in my bag — give me a second.",
+     "Mostly at screens, especially near the end of long assignments.",
+     "So I can skip ordering new lenses this year?"
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Transcript: \"We can trim her claws while she's here.\"",
+  "questions": [
+   {
+    "ref": "R0594",
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+     "Please, she never lets me do it.",
+     "She's been off her food since Tuesday.",
+     "So rest and short walks, nothing strenuous?",
+     "How soon can we get that booked in?"
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Transcript: \"The patch drops the night before we play.\"",
+  "questions": [
+   {
+    "ref": "R0595",
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+     "We should practise on the test build.",
+     "I'll set the capture up before we start.",
+     "I'll book the practice room for the week.",
+     "At least it won't land until after our match."
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Transcript: \"Do we need to label everything for allergies?\"",
+  "questions": [
+   {
+    "ref": "R0596",
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+     "Right, I'll sort the table and the float.",
+     "I'll change the poster before it goes up.",
+     "We could buy things in from the market.",
+     "Yes, the union insists on it now."
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Transcript: \"Funding fell through, so spring internships won't be offered this year.\"",
+  "questions": [
+   {
+    "ref": "R0597",
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+     "Which photographs is the exhibit built around this time?",
+     "Does that change anything about the fall placements already made?",
+     "Where do I go to get it reprinted?",
+     "If someone lends me the tour script, I'm in."
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Transcript: \"Are you furnishing a dorm room or an off-campus apartment?\"",
+  "questions": [
+   {
+    "ref": "R0598",
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+     "This desk is yellow-tagged, so that's twenty dollars, right?",
+     "I'll check out now, then, and shop for chairs after.",
+     "Take down my address; the couch won't fit in my car.",
+     "An apartment, so I'm hunting for a kitchen table too."
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Transcript: \"Our gazebo's double-booked, so we've no cover.\"",
+  "questions": [
+   {
+    "ref": "R0599",
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+     "Yes, fine — show me how it works first.",
+     "Awkward — I'll borrow one from the scouts.",
+     "Good to know — I'll change the map I printed.",
+     "Please do — ours is far too small."
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Transcript: \"Your uncle's abroad, but his signature's all the form needs.\"",
+  "questions": [
+   {
+    "ref": "R0600",
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+     "I'll collect it on my way past this afternoon.",
+     "I'll have to tell her to look elsewhere.",
+     "Not until the paperwork's finished, we agreed.",
+     "I'll post it to my uncle in the morning."
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Transcript: \"Can you cover the seven o'clock volleyball match this Friday evening?\"",
+  "questions": [
+   {
+    "ref": "R0601",
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+     "That rate works for me, so sign me up for soccer.",
+     "I'll change my calendar so I don't show up Monday.",
+     "Friday works as long as I'm done by nine.",
+     "I did two seasons at my community league back home."
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Transcript: \"Anything going overseas has to have a customs form.\"",
+  "questions": [
+   {
+    "ref": "R0602",
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+     "Worth the extra, my mother worries about parcels.",
+     "I'll repack it at home and bring it back tomorrow.",
+     "Just books and a folded sweater, nothing breakable.",
+     "I'll fill one in before I get in the line again."
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Transcript: \"I'll need your advisor's signature before I can clear the hold.\"",
+  "questions": [
+   {
+    "ref": "R0603",
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+     "I'd been planning my spring around the wrong requirement.",
+     "I'll see her Wednesday and bring the form back after.",
+     "Then I can drop the class I was sitting in on.",
+     "So the statistics credit goes toward electives instead."
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Transcript: \"There's a locker free in the basement corridor.\"",
+  "questions": [
+   {
+    "ref": "R0604",
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+     "A bike and a few boxes of books.",
+     "Please do — my number's on the tenancy form.",
+     "I'll ask around for somewhere else to store things.",
+     "I'll take it and move my boxes down tomorrow."
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Transcript: \"You're all set — no reaction, so you're free to head out.\"",
+  "questions": [
+   {
+    "ref": "R0605",
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+     "This sweater won't roll — should I just slip it off?",
+     "Two today is fine — better than coming back next week.",
+     "Do I still get the proof of vaccination emailed today?",
+     "This is my second — I got the first at home in July."
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Transcript: \"New heels take a couple of days to set.\"",
+  "questions": [
+   {
+    "ref": "R0606",
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+     "I'll go with whatever you'd use on them.",
+     "I'll leave them with you until midweek.",
+     "That's a shame, I'll look for a new pair.",
+     "Black, to match the rest of the pair."
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Transcript: \"We'll need the original receipts, not the photographs.\"",
+  "questions": [
+   {
+    "ref": "R0607",
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+     "That's a relief — I'd more or less written it off.",
+     "They're in my folder at home — I'll bring them in.",
+     "That would help a lot — money's tight this month.",
+     "I'll swallow that one — I'll ask first next time."
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Transcript: \"Should I be feeling this stretch in my calf or hamstring?\"",
+  "questions": [
+   {
+    "ref": "R0608",
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+     "That milestone clears you for light throwing next session.",
+     "We'll drop the lunges today and film your gait instead.",
+     "I'll print the sheet and staple it before you leave.",
+     "Mostly the hamstring — the calf should stay fairly relaxed."
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Transcript: \"The provost approved funding for a second cart starting next month.\"",
+  "questions": [
+   {
+    "ref": "R0609",
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+     "Which of us two is on the late van tonight?",
+     "Send me their number and I'll head over now.",
+     "Facilities swapped the bulb, but the mount still rattles.",
+     "Does a new cart mean we can shorten wait times?"
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Transcript: \"The heating in the main hall was off all through rehearsal.\"",
+  "questions": [
+   {
+    "ref": "R0610",
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+     "I'll move it to the choir in the ledger.",
+     "I'll have the boiler looked at before Thursday evening.",
+     "The small room's free from seven; I'll pencil in Tuesdays.",
+     "The kitchen's included; the urn is five pounds extra."
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Transcript: \"That train's cancelled, there's engineering work on the line.\"",
+  "questions": [
+   {
+    "ref": "R0611",
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+     "I'll need to travel today instead, if that's possible.",
+     "What's the next way to get there today?",
+     "Could you move my booking onto that one?",
+     "Roughly how long will it be held up for?"
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Transcript: \"That's the fixer tray, not the stop bath.\"",
+  "questions": [
+   {
+    "ref": "R0612",
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+     "Good, so the print was in the right tray.",
+     "Sure, I'll mix some after this print.",
+     "Thanks — I'll start the sheet again.",
+     "Great, they take ages on my own."
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Transcript: \"What drew you to working in an office like this?\"",
+  "questions": [
+   {
+    "ref": "R0613",
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+     "I'll send those across tonight.",
+     "I'll wait to hear from you then.",
+     "I like work where the day has shape.",
+     "I'd be very glad to take it on."
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Transcript: \"The card reader's down and the technician can't come till morning.\"",
+  "questions": [
+   {
+    "ref": "R0614",
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+     "I'll get a cash float from the safe, then.",
+     "I'll work down the list before the doors open.",
+     "I'll run each card through twice, just in case.",
+     "I'll get the pickup list out on the counter."
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Transcript: \"Admission's free for students, you just show your card.\"",
+  "questions": [
+   {
+    "ref": "R0615",
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+     "I'll dig my card out, I wasn't expecting to need it.",
+     "I'll come back once the new hang is up, then.",
+     "On my own, I like taking my time with the labels.",
+     "Then I'll go straight up before my afternoon class."
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Transcript: \"Your job's stuck behind a huge one that keeps failing.\"",
+  "questions": [
+   {
+    "ref": "R0616",
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+     "I'll grab them and get out of everyone's way.",
+     "My laptop, I joined the wireless queue this morning.",
+     "I'll fix the margins, that must be what keeps failing.",
+     "I'll cancel mine and send it to the lab upstairs."
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Transcript: \"Your contract's been signed off by the department head.\"",
+  "questions": [
+   {
+    "ref": "R0617",
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+     "I'll keep my other shifts for now.",
+     "I'll plan my summer around that ending.",
+     "It's all with the HR office already.",
+     "I'll start logging hours from Monday."
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ },
+ {
+  "passage": "Transcript: \"The archives placement is yours if you still want it.\"",
+  "questions": [
+   {
+    "ref": "R0618",
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+     "Good to know — I'll stop chasing it for now.",
+     "That's a shame — I'll see what else is still posted.",
+     "I do — I'll email them about a start date.",
+     "Afternoons mostly — my mornings are all lectures."
+    ],
+    "type": "multiple_choice"
+   }
+  ]
+ }
+]

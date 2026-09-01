@@ -187,9 +187,18 @@ improvement.
 Recorded because it is worth more than the regrade and none of it was
 asked for:
 
-- **Two items quote text the passage does not contain.** The prompts ask
-  about "time permitting" and "subject to availability" where the
-  passage says "space permitting". Those are defects, not hard items.
+- **~~Two items quote text the passage does not contain.~~ WITHDRAWN.**
+  A grader reported that R0328 and R0330 ask about "subject to
+  availability" and "time permitting" where their passages say "space
+  permitting". Checked: BOTH phrases are present in their own passages.
+  The claim is false, and the likely cause is the topic repetition every
+  grader complained about — there are several near-identical Daily Life
+  notices and one of them does say "space permitting".
+
+  I relayed this to Andy as "two unambiguous bugs" before running the
+  check, which took two seconds. A grader's finding is a hypothesis, and
+  this file exists because unverified claims about the bank are exactly
+  what it is for.
 - **Several have two defensible answers** — R0240 (both options meet the
   passage's own definition of cognitive dissonance), R0494, R0225,
   R0433, R0100, R0016, R0022.
