@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { stratifiedSample } from '@/lib/study/sweep-sample'
 import { dbAdmin } from '@/lib/supabase-admin'
 import { requireAdmin } from '@/app/api/admin/_lib/admin-auth'
 import {
@@ -78,12 +79,28 @@ export async function GET(request: NextRequest) {
   const admin = await requireAdmin(request)
   if (!admin) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
 
+  /*
+   * ?sample=N draws a stratified, seeded subset instead of the whole
+   * bank. 982 items is 5-8 hours; 40 is twenty minutes and answers the
+   * question that actually gates the bank — is the defect rate near
+   * zero, or not. It cannot localise a defect to a cohort, and the
+   * covering note says so rather than letting the number be read as
+   * more than it is.
+   *
+   * The seed is fixed and recorded so the draw is auditable: the same
+   * reason the calibration run was drawn in advance rather than picked
+   * from a dropdown, which had by then misdirected three sittings.
+   */
+  const sampleSize = Number(new URL(request.url).searchParams.get('sample') ?? 0)
+  const sampleSeed = new URL(request.url).searchParams.get('seed') ?? 'b5-round1-2026-09-01'
+
   const famParam = request.nextUrl.searchParams.get('family')
   const families: readonly string[] =
     famParam && (FAMILIES as readonly string[]).includes(famParam) ? [famParam] : FAMILIES
 
   try {
-    const rows = await allRows(families)
+    const all = await allRows(families)
+    const rows = sampleSize > 0 ? stratifiedSample(all, sampleSize, sampleSeed) : all
 
     const items = rows.map(r => ({
       id: r.id,

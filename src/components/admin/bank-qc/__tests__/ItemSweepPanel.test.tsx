@@ -170,8 +170,8 @@ describe('a failed load does not retry forever', () => {
     join(process.cwd(), 'src/components/admin/bank-qc/ItemSweepPanel.tsx'), 'utf8')
 
   it('has err in the load guard', () => {
-    expect(src).toMatch(/if \(open && !data && !loading && !err\) void load\(\)/)
-    expect(src).toMatch(/\[open, data, loading, err, load\]/)
+    expect(src).toMatch(/if \(open && !data && !loading && !err\) void load\(sampleOnly\)/)
+    expect(src).toMatch(/\[open, data, loading, err, load, sampleOnly\]/)
   })
 
   it('offers a manual retry, since it no longer retries itself', async () => {

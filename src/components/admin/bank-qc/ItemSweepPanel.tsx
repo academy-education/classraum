@@ -99,10 +99,23 @@ export function ItemSweepPanel() {
   const [saving, setSaving] = React.useState<Record<string, boolean>>({})
   const [rowErr, setRowErr] = React.useState<Record<string, string>>({})
 
-  const load = React.useCallback(async () => {
+  /*
+   * The 40-item sample is the DEFAULT, and the full bank is opt-in.
+   *
+   * 982 items is five to eight hours. Forty is twenty minutes and
+   * answers the question that actually gates the bank: is the defect
+   * rate near zero or not. Defaulting to the whole bank makes the
+   * realistic action ("do some of it") a self-selected sample, which is
+   * the least representative one available and how three earlier
+   * sittings came to measure the draw rather than the items.
+   */
+  const [sampleOnly, setSampleOnly] = React.useState(true)
+
+  const load = React.useCallback(async (sample = true) => {
     setLoading(true); setErr('')
     try {
-      const d: SweepData = await authed('/api/admin/bank-qc/sweep')
+      const d: SweepData = await authed(
+        sample ? '/api/admin/bank-qc/sweep?sample=40' : '/api/admin/bank-qc/sweep')
       setData(d)
       const m: Record<string, { verdict: Verdict | ''; note: string }> = {}
       for (const v of d.verdicts) if (v.mine) m[v.itemId] = { verdict: v.verdict, note: v.note }
@@ -123,8 +136,8 @@ export function ItemSweepPanel() {
    * way to tell that anything had gone wrong.
    */
   React.useEffect(() => {
-    if (open && !data && !loading && !err) void load()
-  }, [open, data, loading, err, load])
+    if (open && !data && !loading && !err) void load(sampleOnly)
+  }, [open, data, loading, err, load, sampleOnly])
 
   const save = async (itemId: string, verdict: Verdict | '', note: string) => {
     setSaving(s => ({ ...s, [itemId]: true }))
@@ -216,9 +229,10 @@ export function ItemSweepPanel() {
         <div>
           <h2 className="text-[15px] font-semibold text-gray-900">Read every question — SSAT &amp; ISEE</h2>
           <p className="text-[12.5px] text-gray-500 mt-1 leading-relaxed max-w-3xl">
-            The whole bank with the answer showing, one Keep / Flag / Reject per item. This is the
-            pass that catches what no script here can: a second defensible answer, a wrong key,
-            vocabulary above the grade band. Your marks save as you make them.
+            A 40-question sample with the answer showing, one Keep / Flag / Reject per item — about
+            twenty minutes. This is the pass that catches what no script here can: a second
+            defensible answer, a wrong key, vocabulary above the grade band. Your marks save as you
+            make them, so you can stop and come back.
           </p>
         </div>
         <span className="shrink-0 inline-flex items-center gap-1.5 rounded-lg border border-gray-200 px-3 py-1.5 text-[13px] font-medium text-gray-700">
@@ -229,6 +243,22 @@ export function ItemSweepPanel() {
 
       {open && (
         <div className="mt-4">
+          {/* The sample is the default; the full bank is a deliberate choice.
+              Shown rather than hidden so nobody reads 40 marks as coverage
+              of 982 items. */}
+          <div className="flex items-center justify-between gap-3 rounded-lg bg-gray-50 ring-1 ring-gray-200 px-3 py-2 mb-3">
+            <p className="text-[12.5px] text-gray-600 leading-relaxed">
+              {sampleOnly
+                ? 'Showing a 40-question sample, drawn across all 31 authoring batches so none is missed. It answers whether there is a problem — not which batch it is in.'
+                : 'Showing all 982 questions. Five to eight hours; only worth it if the sample found something.'}
+            </p>
+            <button
+              onClick={() => { const next = !sampleOnly; setSampleOnly(next); setData(null); setErr(''); void load(next) }}
+              className="shrink-0 rounded-md border border-gray-300 bg-white px-2.5 py-1 text-[12.5px] font-medium text-gray-700 hover:bg-gray-100"
+            >
+              {sampleOnly ? 'Show all 982' : 'Back to the 40'}
+            </button>
+          </div>
           {err && (
             <div className="flex items-center justify-between gap-3 text-sm text-red-700 bg-red-50 ring-1 ring-red-200 rounded-lg px-3 py-2 mb-3">
               <span className="flex items-center gap-2">
@@ -236,7 +266,7 @@ export function ItemSweepPanel() {
               </span>
               {/* It no longer retries itself, so there has to be a way back. */}
               <button
-                onClick={() => { setErr(''); void load() }}
+                onClick={() => { setErr(''); void load(sampleOnly) }}
                 className="shrink-0 rounded-md border border-red-300 px-2.5 py-1 text-[12.5px] font-medium hover:bg-red-100"
               >
                 Try again

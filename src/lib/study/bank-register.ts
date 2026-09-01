@@ -321,7 +321,7 @@ export const WORK: WorkItem[] = [
     state: 'open',
     owner: 'you',
     why: 'B2 scored Craft and Structure 8/20 = 40% and Information and Ideas 8/20 = 40%. Both sit in the pre-registered 36-59% dead zone, and B2-PREREGISTERED.md fixed the consequence before the data existed: a second reader decides, nothing else changes. It also closed the obvious escape in advance — "if a cohort lands at 36%, it is inconclusive, not basically cleared" — so these do NOT get read as passes on the grounds that 40% is near chance. The dead zone is wide on purpose: at n=20 one item moves the score 5 points, and 486 items should not turn on one item.',
-    account: 'NOT support@classraum.com, and NOT andy.manager@gmail.com. A third, fresh login.',
+    account: 'andy@classraum.com - promoted to super_admin 2026-09-01 and verified CLEAN: zero study_item_reviews rows and zero sweep verdicts, so it is a genuinely distinct reviewer identity. NOT support@ (the co-founder) and NOT andy.manager@ (holds the co-founder B1 mirror despite its name).',
     whoSpecifically: 'ANDY, not the co-founder. This is the one task on the register that the co-founder must not do: he holds every human sitting on this bank, so a second pass by him measures his own consistency rather than two readers — which is exactly how B1 died. andy.manager@gmail.com is unusable despite its name because it holds the co-founder\'s B1 mirror, so Andy needs a THIRD account created before this can start. Andy\'s only prior data point is 85% abstention on that mirror, taken under the old wording, and calibration is per-reviewer (see B4) — so his first sitting needs its own calibration before its number means anything.',
     note: 'Cheapest correct order: create the third login, sit a calibration on it, then sit the two cohorts. Skipping the calibration is what produced four consecutive unusable sittings before B4.',
     doc: 'scripts/study-bank/B2-RESULT.md (the scoring) + B2-PREREGISTERED.md (the rule that makes this mandatory rather than optional)',
@@ -329,7 +329,7 @@ export const WORK: WorkItem[] = [
   {
     id: 'B5',
     title: 'Run the cofounder QC sweep over the SSAT/ISEE bank',
-    size: '982 items, resumable — 12 unscored essay prompts have no key to check, so 970 need a verdict',
+    size: '40 questions, about 20 minutes - a seeded sample across all 31 batches. The full 982 is one click away and only worth it if the 40 find something',
     why: 'Every SSAT and ISEE item has passed the machine gates and NONE has been read by a person. The sweep at /admin/bank-qc holds 26 verdicts, all keep, all now annotated EXPLORATORY: Andy confirmed 2026-09-01 that pass was the co-founder trying the tool out, not sitting the sweep. Real coverage is ZERO of 942, and the figure moved the wrong way today - the s6 round added 173 items. TWO OF THE MACHINE GATES WERE PROVEN INCAPABLE OF FAILING on 2026-09-01: the with-passage QC vote (three independent agents, key withheld, 84/84 agreement every time) and the options-only blind attack on bijective verbal sets (every strategy scores exactly chance BY CONSTRUCTION). A model cannot disagree with itself, so a person is the only reader in this pipeline who can return a negative.',
     owner: 'you',
     state: 'open',
@@ -351,9 +351,9 @@ export const WORK: WorkItem[] = [
     id: 'B3',
     title: 'TestFlight device pass, iOS 1.0.4',
     size: '—',
-    why: 'Unrelated to the bank, still open.',
+    why: 'Unrelated to the bank, still open. CLOSED 2026-09-01 at Andy direction.',
     owner: 'you',
-    state: 'open',
+    state: 'done',
   },
 ]
 
