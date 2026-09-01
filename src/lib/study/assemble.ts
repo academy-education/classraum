@@ -1497,15 +1497,29 @@ export async function assembleAdmissionSection(p: {
   const ranked = unseenFirst(rows, exposures, seed + block.key)
 
   /*
-   * The passage cap applies to reading only. Applying it elsewhere would
-   * be a no-op today (verbal and math rows carry no passage_group_id, so
-   * every row is its own group) but would silently cap a future grouped
-   * section at 3, which is the kind of quiet wrong number this codebase
-   * keeps producing.
+   * Reading draws by passage, at the published per-passage count.
+   *
+   * EVERYTHING ELSE TAKES AT MOST ONE ITEM PER GROUP, and that is a real
+   * constraint rather than the no-op it used to be. Verbal items are now
+   * banked in BIJECTIVE SETS: four (or five) items sharing one option
+   * pool, each option being the key of exactly one of them. Every item is
+   * individually sound, and yet putting two of a set on one form leaks —
+   * a candidate who answers three confidently deduces the fourth by
+   * elimination, because each option is used exactly once. The set is
+   * worth less than its item count, and the strong candidate gains most.
+   *
+   * A blind attack scores that as clean: it is a property of the FORM,
+   * not of any item. It is the same shape as the I01-5 / I02-5 near-clone
+   * pair, which is why this is expressed as a rule in code rather than a
+   * sentence in a result document — CLAUDE.md's standing point being that
+   * a comment asserting an invariant is not evidence the invariant holds.
+   *
+   * Rows with no group id are each their own group, so unset rows are
+   * unaffected.
    */
   const picked = block.bankSection === 'reading'
     ? drawByPassage(ranked, block.questions, ITEMS_PER_PASSAGE[p.family])
-    : ranked.slice(0, block.questions)
+    : drawByPassage(ranked, block.questions, 1)
 
   if (picked.length < block.questions) {
     // Loud, not silent. A short section is a real event: it means the

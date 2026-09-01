@@ -158,6 +158,15 @@ async function main() {
 
   const env = loadEnv()
   const admin = createClient(env.NEXT_PUBLIC_SUPABASE_URL, env.SUPABASE_SERVICE_ROLE_KEY, { auth: { persistSession: false } })
+  const FAMILY = process.env.BANK_FAMILY || 'sat'
+  const COHORT = process.env.BANK_COHORT || 'v2'
+  if (!['sat', 'ssat', 'isee'].includes(FAMILY)) {
+    console.error(`BANK_FAMILY must be sat, ssat or isee — got '${FAMILY}'`); process.exit(1)
+  }
+  if (FAMILY !== 'sat' && COHORT === 'v2') {
+    console.error('refusing: a non-SAT batch must name its own BANK_COHORT, not fall back to the SAT default'); process.exit(1)
+  }
+  console.log(`inserting as family=${FAMILY} cohort=${COHORT}`)
   const qc = JSON.parse(readFileSync(qcPath, 'utf8'))
   const { data: existing } = await admin.from('study_item_bank').select('content_hash').eq('section', 'math')
   const seen = new Set((existing || []).map(r => r.content_hash))
@@ -174,7 +183,14 @@ async function main() {
     const content_hash = hashOf(it)
     if (seen.has(content_hash)) { console.log(`DUP    ${label}`); continue }
     const { error } = await admin.from('study_item_bank').insert({
-      family: 'sat', section: 'math', domain: raw.domain, subskill: raw.subskill,
+      /*
+       * FAMILY IS A PARAMETER, not a constant. It was hardcoded 'sat',
+       * which meant inserting an SSAT or ISEE batch through this path
+       * filed every item as SAT — wrong family, wrong blueprint, wrong
+       * scoring rule (SAT has no -1/4 penalty), and invisible afterwards
+       * because the rows look perfectly well formed. Set BANK_FAMILY.
+       */
+      family: FAMILY, section: 'math', domain: raw.domain, subskill: raw.subskill,
       // migration 068 made task NOT NULL; math rows all carry 'multiple_choice'.
       task: 'multiple_choice',
       difficulty: raw.difficulty, topic_tag: raw.topic_tag || null, item_type: 'multiple_choice',
@@ -185,7 +201,7 @@ async function main() {
       },
       source: 'hand',
       archived: false,
-      cohort: process.env.BANK_COHORT || 'v2',
+      cohort: COHORT,
     })
     if (error) { console.log(`ERR    ${label}: ${error.message}`); continue }
     seen.add(content_hash); inserted++

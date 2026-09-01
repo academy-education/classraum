@@ -8,7 +8,7 @@
 renders on /admin/bank-qc, from the same source, so the two cannot
 disagree.
 
-Generated 2026-09-01. Live items: 4,808.
+Generated 2026-09-01. Live items: 4,981.
 Open work: 5 — 2 mine, 3 need you.
 
 ---
@@ -24,7 +24,7 @@ process is not reporting the position.**
 | | items | what is true |
 |---|---|---|
 | **Choose a Response (cr-v1 — archived 2026-08-18)** | 0 | **Known broken.** Solvable without the audio, on two independent instruments. |
-| Everything else | 4,808 | **Not known to be broken** — never read by a person |
+| Everything else | 4,981 | **Not known to be broken** — never read by a person |
 
 0.0% is a quality problem. The rest is a scheduling
 problem, and it is blocked on one 20-minute task: **B2 — the two never-read cohorts (B4 passed 2026-08-15)**.
@@ -90,17 +90,17 @@ Two qualifications, both learned the hard way:
 | SAT | Standard English Conventions | 224 | 65% | 15% (n=20) | **cleared by hand** — the model was wrong |
 | SAT | Problem-Solving and Data Analysis | 224 | 100% | — | **unconfirmed** — model only |
 | TOEFL | Choose a Response | 214 | — | 20% (n=40) | never measured — the attack does not apply |
+| ISEE | Math | 214 | — | — | never measured — the attack does not apply |
 | SAT | Craft and Structure | 210 | 97.9% | 26.7% (n=15) | human says maybe — needs more |
 | TOEFL | Conversation | 193 | 86.8% | 20% (n=15) | human says maybe — needs more |
-| ISEE | Math | 174 | — | — | never measured — the attack does not apply |
+| SSAT | Verbal | 180 | — | — | never measured — the attack does not apply |
 | TOEFL | Build a Sentence | 165 | — | — | never measured — the attack does not apply |
+| SSAT | Math | 153 | — | — | never measured — the attack does not apply |
 | SSAT | Reading Comprehension | 138 | — | — | never measured — the attack does not apply |
 | TOEFL | Listen and Repeat | 136 | — | — | never measured — the attack does not apply |
-| SSAT | Verbal | 124 | — | — | never measured — the attack does not apply |
+| ISEE | Verbal | 128 | — | — | never measured — the attack does not apply |
 | TOEFL | Announcement | 121 | 100% | 15% (n=20) | **cleared by hand** — the model was wrong |
 | ISEE | Reading Comprehension | 117 | — | — | never measured — the attack does not apply |
-| SSAT | Math | 108 | — | — | never measured — the attack does not apply |
-| ISEE | Verbal | 96 | — | — | never measured — the attack does not apply |
 | TOEFL | Complete the Words | 93 | — | — | never measured — the attack does not apply |
 | TOEFL | Academic Discussion | 92 | — | — | never measured — the attack does not apply |
 | TOEFL | Email | 90 | — | — | never measured — the attack does not apply |
