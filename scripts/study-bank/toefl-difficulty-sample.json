@@ -1,0 +1,520 @@
+[
+ {
+  "ref": "T01",
+  "passage": "In most cases, coral reefs are recognized for their vibrant biodiversity and their role as marine habitats. However, recent studies have revealed that some reefs, paradoxically, thrive in nutrient-poor waters where other marine life struggles. This phenomenon is partly explained by the symbiotic relationship between corals and zooxanthellae, microscopic algae that live within coral tissues. The algae perform photosynthesis, providing essential nutrients to the coral, which in turn offers the algae protection and access to sunlight.\n\nOn the other hand, reefs located in nutrient-rich waters often experience algal overgrowth, which can suffocate corals and disrupt this delicate balance. Many scientists believe that human activities, such as agricultural runoff, have intensified this problem by increasing nutrient levels in coastal waters. As a result, the cause-effect chain linking human intervention to reef decline is becoming increasingly clear: nutrient enrichment leads to algal blooms, which then undermine coral health. Although some reefs have adapted to moderate changes, most are highly sensitive to even minor environmental shifts, making their survival precarious in a rapidly changing world.",
+  "prompt": "[Academic — Biology] What can be inferred about coral reefs that have adapted to moderate environmental changes?",
+  "choices": [
+   "They have developed mechanisms to cope with some, but not all, environmental stressors.",
+   "They thrive best in nutrient-rich waters due to increased algal presence.",
+   "They are unaffected by human-induced changes in their environment.",
+   "They are less likely to survive drastic environmental shifts than those that have not adapted."
+  ]
+ },
+ {
+  "ref": "T02",
+  "passage": "Campus Notice: Library Renovation Dear Students, Please be advised that the library will undergo renovations starting next Monday. During this period, access to certain sections will be restricted. We apologize for any inconvenience this may cause. If you need materials from restricted areas, please request them in advance. Assuming enrollment remains steady, the renovations should be completed by the end of the semester. Thank you for your understanding. Library Staff",
+  "prompt": "[Daily Life — campus notice] Why does the notice mention 'assuming enrollment remains steady'?",
+  "choices": [
+   "To suggest that the library might close permanently.",
+   "To imply that the renovation schedule might change.",
+   "To encourage students to enroll in more classes.",
+   "To indicate that renovations depend on student numbers."
+  ]
+ },
+ {
+  "ref": "T03",
+  "passage": "The Impressionist movement in art history is often characterized by its focus on capturing fleeting moments and the effects of light. However, many critics at the time dismissed Impressionist works as unfinished or lacking in substance. In most cases, Impressionist painters deliberately chose to paint en plein air, or outdoors, to better observe natural changes in light and atmosphere. This approach contrasted sharply with the academic tradition, which emphasized careful planning and studio work.\n\nThe Impressionists’ use of quick, visible brushstrokes was not merely a stylistic choice; it was a response to the challenge of depicting transient scenes before the light changed. Paradoxically, although their methods appeared spontaneous, many Impressionists carefully composed their works in advance, often returning to the same location multiple times. Some scholars argue that this blend of apparent immediacy and underlying structure is what gives Impressionist paintings their enduring appeal. Thus, while the movement was initially controversial, its innovative techniques have had a lasting impact on the trajectory of modern art.",
+  "prompt": "[Academic — art history] What can be inferred about the relationship between Impressionist technique and the depiction of light?",
+  "choices": [
+   "Impressionist painters had little interest in outdoor scenes and preferred the controlled conditions of a studio.",
+   "Impressionist techniques were developed specifically to capture the changing qualities of natural light.",
+   "Impressionist technique was in the end no different from academic method, since both involved careful composition.",
+   "Impressionists set aside the effects of light in order to concentrate on the underlying structure of a scene."
+  ]
+ },
+ {
+  "ref": "T04",
+  "passage": "[Academic — Psychology] Memory consolidation is a process by which temporary memories are transformed into a more permanent state. This process occurs during sleep, particularly in the REM stage. Research shows that sleep deprivation can severely impact this process, leading to difficulties in learning and memory retention. Interestingly, studies also suggest that naps can enhance memory consolidation, indicating that even short periods of sleep are beneficial for memory.",
+  "prompt": "According to the passage, all of the following are true about memory consolidation EXCEPT:",
+  "choices": [
+   "It occurs during REM sleep.",
+   "Sleep deprivation affects it negatively.",
+   "It only happens during long sleep periods.",
+   "Naps can enhance it."
+  ]
+ },
+ {
+  "ref": "T05",
+  "passage": "Subject: Study Room Reservations Update Hi everyone, Due to increased demand, the library will only accept study room bookings from groups of three or more, space permitting. If you can’t meet this requirement, please consider using the open seating areas. Bookings are not guaranteed and may be canceled if rooms are needed for library events. Thank you for your understanding. Best, Library Team",
+  "prompt": "[Daily Life — email] Why does the library mention that bookings may be canceled if rooms are needed for events?",
+  "choices": [
+   "To explain that the library has fewer study rooms than it once had",
+   "To warn students that their reservations are not always secure",
+   "To encourage students to submit their bookings as early as possible",
+   "To suggest that students should not book rooms at all"
+  ]
+ },
+ {
+  "ref": "T06",
+  "passage": "Ecology is the study of interactions between organisms and their environment. Ecologi[1] research focuses on ecosys[2] dynamics, examining how species intera[3] and adapt to chang[4] conditions. Conservation effo[5] aim to protect biodive[6] and mitigate the impacts of human activ[7] on natural habitats, ensuring sustai[8] development and preser[9] of ecosystems for fut[10] generations.",
+  "prompt": "[Complete the Words] Fill in the missing letters in each word.",
+  "choices": []
+ },
+ {
+  "ref": "T07",
+  "passage": "In most cases, coral reefs are celebrated for their vibrant biodiversity and their role as nurseries for marine life. However, recent studies have revealed that some reefs, paradoxically, can become ecological traps. These reefs attract fish and invertebrates with their complex structures, but due to pollution and rising ocean temperatures, they may no longer provide adequate resources for survival.\n\nIn fact, many species that settle in these compromised habitats experience lower reproductive success. This cause-and-effect relationship is particularly evident in regions where agricultural runoff increases algal blooms, which in turn suffocate coral polyps. While some researchers argue that artificial reefs can mitigate these problems, others caution that such interventions may only mask underlying issues. The debate continues as scientists seek sustainable solutions to preserve reef ecosystems.",
+  "prompt": "[Academic — Biology] What is the author's central claim in the passage?",
+  "choices": [
+   "Agricultural runoff has no measurable impact on reef health.",
+   "Coral reefs are always beneficial for the species they attract.",
+   "Artificial reefs are the most effective solution to reef degradation worldwide.",
+   "Some coral reefs can harm marine species due to environmental changes."
+  ]
+ },
+ {
+  "ref": "T08",
+  "passage": "The Impressionist movement in art was characterized by a focus on light and color, often capturing everyday scenes with vibrant brushstrokes. Impressionists broke away from traditional techniques, opting instead for a more spontaneous approach. Although initially criticized, the movement eventually gained acceptance, influencing many subsequent art styles and gaining recognition for its innovative techniques.",
+  "prompt": "[Academic — Art History] According to the passage, all of the following are true of Impressionism EXCEPT:",
+  "choices": [
+   "The movement was initially well-received.",
+   "It focused on light and color.",
+   "Impressionism influenced later art styles.",
+   "Impressionists used vibrant brushstrokes."
+  ]
+ },
+ {
+  "ref": "T09",
+  "passage": "Campus Recreation Center Notice Due to ongoing repairs, the basketball courts will be open only to students with a current gym membership, space permitting. If you do not have a membership, please check back next week. We apologize for any inconvenience and appreciate your understanding.",
+  "prompt": "[Daily Life — campus notice] What does 'space permitting' imply about access to the basketball courts?",
+  "choices": [
+   "Some students with memberships may not be able to play if the courts are full",
+   "Every student with a current membership is guaranteed a place on the courts",
+   "Students without a membership may play once the current repairs are finished",
+   "Students may use the courts only during the hours reserved for members"
+  ]
+ },
+ {
+  "ref": "T10",
+  "passage": "In most cases, coral reefs are considered stable ecosystems, thriving in nutrient-poor waters due to their complex symbiotic relationships. However, recent research suggests that some reefs can rapidly shift from coral-dominated to algae-dominated states, a phenomenon known as phase shift. This transition is often triggered by a combination of overfishing and nutrient pollution, which together reduce herbivorous fish populations and increase algal growth. Paradoxically, while many reefs are resilient to short-term disturbances, prolonged stress can undermine their recovery mechanisms.\n\nFor example, the loss of key fish species may not immediately lead to algal overgrowth, but over time, the cumulative effects of stressors can tip the balance. The resulting phase shift is difficult to reverse, as algae can outcompete corals for space and light. Thus, the stability of coral reefs depends not only on their inherent resilience but also on the frequency and intensity of external pressures.",
+  "prompt": "[Academic — Biology] What is the author's central claim about coral reef stability?",
+  "choices": [
+   "Coral reefs are inherently stable and almost never leave a coral-dominated state.",
+   "Algae take over a reef as soon as its herbivorous fish populations begin to decline.",
+   "Reefs recover from any disturbance if they are simply left alone.",
+   "Coral reefs' stability depends on both their resilience and external pressures."
+  ]
+ },
+ {
+  "ref": "T11",
+  "passage": "Astronomy is the scientific study of celestial objects and phenomena beyond Earth's atmosphere. Telesc[1] have revolutionized our unders[2] of the universe, allowing astron[3] to observe distant stars and galax[4]. The discovery of exoplan[5] has expanded our know[6] of potential habitable worlds. Through spectrosc[7], scientists analyze the composi[8] of celestial bodies, gaining insi[9] into their origin and evolu[10].",
+  "prompt": "[Complete the Words] Fill in the missing letters in each word.",
+  "choices": []
+ },
+ {
+  "ref": "T12",
+  "passage": "In most cases, cognitive dissonance arises when individuals hold two conflicting beliefs or attitudes. However, not all instances of dissonance lead to changes in behavior or thought. Some people are able to tolerate a certain level of psychological discomfort without taking action. The classic example involves a person who values health but continues to smoke; the tension between belief and action can prompt either a change in behavior or a rationalization.\n\nParadoxically, research has shown that the greater the effort someone invests in a decision, the more likely they are to justify that decision, even if it conflicts with their prior beliefs. This effect is not limited to major life choices; it can be observed in everyday situations, such as consumer purchases. The cause-effect relationship between dissonance and attitude change is complex: while some individuals resolve dissonance by altering their beliefs, others may simply avoid situations that trigger discomfort. Thus, while many people experience cognitive dissonance, the ways in which they respond to it are varied and context-dependent.",
+  "prompt": "[Academic — psychology] Why does the author mention the example of a person who values health but continues to smoke?",
+  "choices": [
+   "To argue that smoking is the only everyday behavior that produces cognitive dissonance",
+   "To illustrate the conflict between beliefs and actions that characterizes cognitive dissonance",
+   "To suggest that people who continue to smoke are simply unaware of the health risks they are running",
+   "To show that the greater the effort invested in a choice, the more likely a person is to justify it"
+  ]
+ },
+ {
+  "ref": "T13",
+  "passage": "[Academic — Biology] Mangroves are unique coastal ecosystems found in tropical and subtropical regions. They serve as vital nurseries for many marine species and protect shorelines from erosion. Mangroves have specialized roots that filter salt and allow them to thrive in saline environments. These roots also stabilize the sediment, reducing coastal erosion. Despite their importance, mangroves face threats from deforestation and climate change, which can lead to habitat loss and decreased biodiversity.",
+  "prompt": "[Academic — Biology] The author mentions mangrove roots primarily in order to:",
+  "choices": [
+   "describe the way mangroves reproduce",
+   "account for the tropical distribution of mangroves",
+   "show why mangroves are vulnerable to a warming climate",
+   "explain how one feature produces two of the ecosystem's benefits"
+  ]
+ },
+ {
+  "ref": "T14",
+  "passage": "[Academic — Psychology] Cognitive dissonance is a psychological phenomenon that occurs when an individual experiences conflict between their beliefs and actions. This discomfort often leads to a change in beliefs or behaviors to reduce the dissonance. For instance, if a person values health but smokes, they might quit smoking or downplay the health risks to align their actions with their beliefs.\n\nThe theory, first proposed by Leon Festinger in 1957, suggests that the drive to reduce dissonance is a fundamental human motivation. Research has shown that dissonance can be reduced by changing one of the conflicting elements, adding new consonant elements, or reducing the importance of the conflicting elements. This theory has been applied to various fields, including marketing and education, to understand and influence behavior.",
+  "prompt": "[Academic — Psychology] Which of the following best states the main idea of the passage?",
+  "choices": [
+   "Festinger's theory explains both why dissonance arises and how it is reduced, and it has found practical applications.",
+   "The fields of marketing and education gave rise to the theory of dissonance.",
+   "Dissonance research is concerned mainly with smoking and health behavior.",
+   "People always resolve dissonance by changing the behavior that caused it."
+  ]
+ },
+ {
+  "ref": "T15",
+  "passage": "[Academic — Geology] Plate tectonics theory explains the movement of Earth's lithospheric plates. These plates float on the semi-fluid asthenosphere beneath them, driven by forces such as mantle convection, slab pull, and ridge push. Convergent boundaries occur where plates move towards each other, often forming mountain ranges or subduction zones.\n\nDivergent boundaries, where plates move apart, can create mid-ocean ridges or rift valleys. Transform boundaries, where plates slide past one another, are characterized by seismic activity. While the theory is widely accepted, ongoing research continues to refine our understanding of the forces and interactions involved in plate movements.",
+  "prompt": "[Academic — Geology] According to the passage, all of the following are true EXCEPT:",
+  "choices": [
+   "The layer beneath the plates is not fully solid.",
+   "Rift valleys can form where plates move apart.",
+   "Earthquake activity is characteristic of transform boundaries.",
+   "Mantle convection is the strongest of the forces that move plates."
+  ]
+ },
+ {
+  "ref": "T16",
+  "passage": "[Academic — Geology] Volcanic eruptions can have significant impacts on the Earth's climate. When a volcano erupts, it releases sulfur dioxide (SO2) into the atmosphere. This gas can form sulfate aerosols, which reflect sunlight away from the Earth, leading to temporary cooling. The 1991 eruption of Mount Pinatubo in the Philippines, for example, released millions of tons of SO2, resulting in a global temperature decrease of about 0.\n\n5°C for several years. However, not all volcanic eruptions have this effect. The location, size, and composition of the eruption play a crucial role. Eruptions near the equator tend to have a more pronounced impact on global temperatures because the aerosols can spread widely across both hemispheres. In contrast, eruptions at higher latitudes may have a more localized effect.",
+  "prompt": "[Academic — Geology] Based on the passage, two eruptions releasing similar amounts of sulfur dioxide could still differ in their global effect because of:",
+  "choices": [
+   "the amount of sunlight the aerosols reflect, which is fixed by the volume of gas",
+   "their latitude, which governs how widely the aerosols spread",
+   "the length of time the aerosols persist, which is always several years",
+   "the type of gas released, since only some eruptions produce sulfur dioxide"
+  ]
+ },
+ {
+  "ref": "T17",
+  "passage": "[Academic — Psychology] Memory consolidation is a process by which temporary memories are transformed into a more permanent state. This process occurs during sleep, particularly in the REM stage. Research shows that sleep deprivation can severely impact this process, leading to difficulties in learning and memory retention. Interestingly, studies also suggest that naps can enhance memory consolidation, indicating that even short periods of sleep are beneficial for memory.",
+  "prompt": "[Academic — Psychology] As used in the passage, 'consolidation' is closest in meaning to",
+  "choices": [
+   "compression of something into a smaller space.",
+   "stabilization into a lasting form.",
+   "the merging of two organizations into one.",
+   "repeated review of material already learned."
+  ]
+ },
+ {
+  "ref": "T18",
+  "passage": "The development of renewable energy technologies has been a crucial factor in addressing climate change. Solar and wind energy, in particular, have seen significant advancements in efficiency and cost reduction. These technologies convert natural energy sources into electricity without emitting greenhouse gases.\n\nHowever, the intermittent nature of solar and wind power presents challenges for consistent energy supply. Energy storage solutions, such as batteries, are essential to bridge the gap during periods of low generation. Despite these challenges, the rapid growth of renewable energy offers a promising path toward a sustainable future.",
+  "prompt": "[Academic — Environmental Science] What is the main idea of the passage?",
+  "choices": [
+   "Cost, rather than reliability, remains the chief obstacle to renewable energy.",
+   "Renewable sources are too unreliable to play a major role in the energy supply.",
+   "Battery storage has already solved the problem of variable generation.",
+   "Solar and wind power have advanced quickly but require storage to offset their variable output."
+  ]
+ },
+ {
+  "ref": "T19",
+  "passage": "Bioluminescence is the production of light by living organisms, commonly found in marine environments. Organisms such as jellyfish and certain types of squid use bioluminescence for various purposes, including attracting mates, deterring predators, and luring prey. This ability is due to a chemical reaction that occurs in specialized cells. Interestingly, bioluminescent organisms are often found in deep-sea environments where sunlight is scarce, highlighting the adaptation’s evolutionary advantage.",
+  "prompt": "[Academic — Biology] Why does the author point out that bioluminescent organisms are often found where sunlight is scarce?",
+  "choices": [
+   "To suggest why the ability would be favored over evolutionary time",
+   "To establish that jellyfish and squid are the only organisms with this ability",
+   "To explain the chemical reaction that produces the light",
+   "To argue that bioluminescence takes the place of photosynthesis in deep water"
+  ]
+ },
+ {
+  "ref": "T20",
+  "passage": "[Academic — Biology] Photosynthesis is a critical process in which plants convert light energy into chemical energy. Chlorophyll, the green pigment in plants, absorbs light most efficiently in the blue and red wavelengths. This energy is then used to convert carbon dioxide and water into glucose and oxygen. Interestingly, chlorophyll reflects green light, which is why plants appear green. However, this reflection means that green light is not used efficiently in photosynthesis.",
+  "prompt": "[Academic — Biology] According to the passage, all of the following are true EXCEPT",
+  "choices": [
+   "Chlorophyll absorbs light most efficiently in the blue and red wavelengths.",
+   "Light energy is converted into a chemical form of energy.",
+   "Plants appear green because chlorophyll reflects green light back.",
+   "Chlorophyll is stored in a plant's roots until it is needed."
+  ]
+ },
+ {
+  "ref": "T21",
+  "passage": "The Amazon rainforest is a vast ecosystem that plays a critical role in regulating the Earth's climate. It absorbs large amounts of carbon dioxide, which helps mitigate climate change. However, deforestation for agriculture and logging has significantly reduced its capacity to act as a carbon sink.\n\nThe loss of trees not only releases stored carbon but also disrupts local weather patterns, leading to decreased rainfall. This reduction in rainfall can further exacerbate deforestation, creating a feedback loop that threatens the entire ecosystem. Efforts to curb deforestation through policy changes and sustainable practices are crucial to preserving the Amazon's ecological functions.",
+  "prompt": "[Academic — Biology] According to the passage, which two consequences follow directly from the loss of trees?",
+  "choices": [
+   "Stored carbon is released and local weather patterns are disturbed.",
+   "The forest absorbs more carbon dioxide while rainfall over the region increases.",
+   "Soils are washed away by the rain and the level of the rivers begins to fall.",
+   "Farmland expands across the region and logging operations become more profitable."
+  ]
+ },
+ {
+  "ref": "T22",
+  "passage": "[Academic — Psychology] Cognitive dissonance theory, developed by Leon Festinger in the 1950s, posits that individuals experience psychological discomfort when holding two conflicting beliefs. To alleviate this discomfort, people tend to change their attitudes to align with their actions. For instance, if someone who values health smokes, they might downplay the risks of smoking to reduce the inconsistency between their behavior and beliefs.\n\nThis process can lead to significant attitude shifts over time, especially when the individual perceives their actions as voluntary. Subsequent research has shown that the magnitude of dissonance is influenced by factors such as the importance of the conflicting beliefs and the individual's ability to justify the discrepancy.",
+  "prompt": "[Academic — Psychology] Which of the following best states the main idea of the passage?",
+  "choices": [
+   "Festinger demonstrated that smoking is a cause of psychological discomfort.",
+   "When beliefs and actions conflict, people change their behavior rather than their beliefs.",
+   "Dissonance leads people to bring their attitudes into line with their actions, and later work identified what strengthens this effect.",
+   "Attitude change occurs only when a person's actions are involuntary."
+  ]
+ },
+ {
+  "ref": "T23",
+  "passage": "The development of renewable energy technologies has been a crucial factor in addressing climate change. Solar and wind energy, in particular, have seen significant advancements in efficiency and cost reduction. These technologies convert natural energy sources into electricity without emitting greenhouse gases.\n\nHowever, the intermittent nature of solar and wind power presents challenges for consistent energy supply. Energy storage solutions, such as batteries, are essential to bridge the gap during periods of low generation. Despite these challenges, the rapid growth of renewable energy offers a promising path toward a sustainable future.",
+  "prompt": "[Academic — Environmental Science] Why does the author mention energy storage?",
+  "choices": [
+   "To explain why the cost of solar power has fallen",
+   "To argue that storage matters more than generating capacity",
+   "To identify what is needed to cover periods of low generation",
+   "To show that batteries themselves emit no greenhouse gases"
+  ]
+ },
+ {
+  "ref": "T24",
+  "passage": "[Academic — Biology] Photosynthesis is a critical process in which plants convert light energy into chemical energy. Chlorophyll, the green pigment in plants, absorbs light most efficiently in the blue and red wavelengths. This energy is then used to convert carbon dioxide and water into glucose and oxygen. Interestingly, chlorophyll reflects green light, which is why plants appear green. However, this reflection means that green light is not used efficiently in photosynthesis.",
+  "prompt": "[Academic — Biology] What does the passage imply about plants grown under green light alone?",
+  "choices": [
+   "They would fare worse than plants grown under blue or red light.",
+   "They would do especially well, since plants themselves appear green.",
+   "They would gradually lose their green coloring.",
+   "They would be unaffected, because all light carries usable energy."
+  ]
+ },
+ {
+  "ref": "T25",
+  "passage": "From: Housing Services To: Residents Subject: Laundry Room Update Dear Residents, If you can, please avoid using the laundry room between 2 and 4 p.m. on Wednesday, as maintenance will be working on the machines. If you must do laundry during that time, only one machine may be available. Thank you for your cooperation.",
+  "prompt": "[Daily Life — email] According to the email, how many machines may still be available while the maintenance work is going on?",
+  "choices": [
+   "Only two machines",
+   "Only three machines",
+   "Only four machines",
+   "Only one machine"
+  ]
+ },
+ {
+  "ref": "T26",
+  "passage": "Subject: Lost and Found Dear Students, A set of keys was found in the library on Tuesday evening. If you believe they are yours, please visit the front desk to describe them. Unclaimed items will be sent to Campus Security after Friday, so please check before then if you think you lost something. Thank you.",
+  "prompt": "[Daily Life — Email] According to the email, when was the set of keys found in the library?",
+  "choices": [
+   "On Thursday evening",
+   "On Tuesday evening",
+   "On Monday evening",
+   "On Wednesday evening"
+  ]
+ },
+ {
+  "ref": "T27",
+  "passage": "Subject: Roommate Needed (Spring Semester) Hi all, I’m looking for a roommate for my two-bedroom apartment starting in January. Rent is $650/month, utilities not included. The place is a 10-minute walk from campus. I’d prefer someone who doesn’t smoke and is tidy, but I’m flexible if you’re respectful. If you can move in before January 10th, that would be ideal, but later is possible if the room is still open. Please email me if interested. Thanks! – Jamie",
+  "prompt": "[Daily Life — email] According to the post, when would it be ideal for a new roommate to move in?",
+  "choices": [
+   "Before January 3rd",
+   "Before January 10th",
+   "Before January 8th",
+   "Before January 6th"
+  ]
+ },
+ {
+  "ref": "T28",
+  "passage": "Email from Professor Lee to Student: Hi Jordan, I appreciate your interest in my seminar. Unfortunately, the class is currently full. If you’d like, I can put your name on the waitlist in case a spot opens up. Please let me know by Friday if you want to be added. Assuming enrollment changes, I’ll contact you as soon as possible. Thank you for your understanding.",
+  "prompt": "[Daily Life — email] What does Professor Lee ask Jordan to do by Friday?",
+  "choices": [
+   "Say whether he wants to be added to the waitlist",
+   "Choose which meeting time he prefers",
+   "Confirm that he meets the seminar prerequisites",
+   "Send a short statement of his interests"
+  ]
+ },
+ {
+  "ref": "T29",
+  "passage": "Dear students, the registration for spring courses opens next Monday. Please check your student portal for the available courses and register early to secure your spot. Contact the registrar's office if you have any questions.",
+  "prompt": "[Daily Life — Course-registration page] When does registration for spring courses open?",
+  "choices": [
+   "Next Monday",
+   "Next Wednesday",
+   "Next Thursday",
+   "Next Tuesday"
+  ]
+ },
+ {
+  "ref": "T30",
+  "passage": "Job Posting: Student Library Assistant The library is seeking a reliable student assistant for weekday afternoons. Duties include shelving books and helping patrons. If you can work at least two days per week, please apply by emailing your availability. Preference will be given to applicants with previous library experience, but all are welcome to apply. Applications received after Monday will not be considered.",
+  "prompt": "[Daily Life — Job Ad] According to the posting, what should a student do to apply for the position?",
+  "choices": [
+   "Bring a printed résumé to the circulation desk in person",
+   "Send the library an email listing your availability",
+   "Call the front desk to arrange an interview",
+   "Fill out the application form on the library's website"
+  ]
+ },
+ {
+  "ref": "T31",
+  "passage": "Email from Professor Lee to Student Hi, I received your request to submit your paper late. I understand you had a family emergency. While I can’t grant a full extension, I can accept your paper up to two days after the deadline without penalty, if you can submit it by then. Please let me know if this works for you. Best, Professor Lee",
+  "prompt": "[Daily Life — email] According to the email, what reason for the late submission does Professor Lee mention?",
+  "choices": [
+   "A broken laptop",
+   "A family emergency",
+   "A car accident",
+   "A sudden illness"
+  ]
+ },
+ {
+  "ref": "T32",
+  "passage": "Hey all! The campus gym is offering free trial fitness classes this month, but only if you haven’t attended a class before. If you’re interested, sign up online by the 10th. Please note: spots are limited, so registering early is recommended. If classes fill up, you’ll be placed on a waitlist. Hope to see you there! – Campus Gym Team",
+  "prompt": "[Daily Life — campus notice] According to the notice, by when must interested students complete the online sign-up?",
+  "choices": [
+   "By the 3rd of the month",
+   "By the 10th of the month",
+   "By the last day of the month",
+   "By the 8th of the month"
+  ]
+ },
+ {
+  "ref": "T33",
+  "passage": "Course Registration Portal Welcome to Spring 2026 registration! Please note that some courses may be canceled if minimum enrollment is not reached. If you are waitlisted, you will be notified by email if a spot opens up. Registration closes at 5:00 PM on January 15th. After this time, changes are not guaranteed, but you may contact the Registrar’s Office for assistance.",
+  "prompt": "[Daily Life — course-registration page] When does registration close?",
+  "choices": [
+   "At 3:00 PM on January 8",
+   "At 11:59 PM on January 20",
+   "At 5:00 PM on January 15",
+   "At 1:00 PM on January 4"
+  ]
+ },
+ {
+  "ref": "T34",
+  "passage": "@CampusEvents (Social Media Post) Heads up! The outdoor movie night is planned for Friday, but we’ll have to cancel if it rains. If you can, bring your own blanket or chair. We’ll provide popcorn. Check our page Friday afternoon for updates. Hope to see you there, weather permitting!",
+  "prompt": "[Daily Life — social-media post] When does the post tell readers to check the page for updates?",
+  "choices": [
+   "On Thursday afternoon",
+   "On Friday morning",
+   "On Wednesday evening",
+   "On Friday afternoon"
+  ]
+ },
+ {
+  "ref": "T35",
+  "passage": "Due to maintenance, the library will close early at 3 PM this Friday. Please plan your visits accordingly. We apologize for any inconvenience.",
+  "prompt": "[Daily Life — Campus notice] According to the notice, at what time will the library close this Friday?",
+  "choices": [
+   "It will be closing at 12:30 PM",
+   "It will close at 4:30 PM",
+   "It will close at 3 PM",
+   "It closes at 1 PM"
+  ]
+ },
+ {
+  "ref": "T36",
+  "passage": "Campus Dining Update: Starting next week, the salad bar will be open for lunch only, assuming enrollment in the meal plan remains high. If you can’t make it during lunch hours, other options will be available at the grill station. We appreciate your understanding as we adjust our services.",
+  "prompt": "[Daily Life — campus notice] What does the notice suggest students do if they cannot come during lunch hours?",
+  "choices": [
+   "Get food at the deli counter instead",
+   "Get food at the soup station instead",
+   "Get food at the snack bar instead",
+   "Get food at the grill station instead"
+  ]
+ },
+ {
+  "ref": "T37",
+  "passage": "Perch Coffee on Maple Street is hiring two part-time baristas for the fall. Shifts run weekday afternoons, 2:00 to 6:30 p.m. Pay starts at $13.50 an hour. To apply, pick up a paper application at the counter and hand the completed form to Dana, the weekend supervisor, not the store manager. Applications are due by Tuesday, September 9. Short interviews will be held on Thursday, September 11, between 10 a.m. and noon.",
+  "prompt": "[Daily Life — job ad] After filling out the paper application, what should an applicant do with it?",
+  "choices": [
+   "Hand it to Priya, the head barista",
+   "Hand it to Theo, the store manager",
+   "Hand it to Marisol, the morning shift lead",
+   "Hand it to Dana, the weekend supervisor"
+  ]
+ },
+ {
+  "ref": "T38",
+  "passage": "Join the Maplewood Board Game Club! We need volunteers for our Spring Tournament on Saturday, April 12, in the Harmon Hall basement. Curious? Come to our info session this Tuesday at 7:30 p.m. in Room 210. Dues are $8 per semester. Questions about dues or sign-ups? Text our treasurer, Dana Okafor, at 555-0142 — please don't use the club email, which we only check once a month.",
+  "prompt": "[Daily Life — club flyer] According to the flyer, how should students ask questions about dues or sign-ups?",
+  "choices": [
+   "Call the activities office",
+   "Email the club's inbox",
+   "Ask in Room 210 after class",
+   "Text Dana Okafor at 555-0142"
+  ]
+ },
+ {
+  "ref": "T39",
+  "passage": "Registration for the Food Handler Certification Course opens Thursday, March 5, at noon on the Parks Department website. The course meets on March 14 and March 21 in Room 210 of the Lakeview Branch Library, not at the Parks Department office. The fee is $48, due at registration. Enrollment is capped at 22. For questions, call course coordinator Dana Ruiz at 555-0173.",
+  "prompt": "[Daily Life — course-registration page] A registrant who has a question about the course should do which of the following?",
+  "choices": [
+   "Call Marcus Delaney at 555-0142",
+   "Call Rob Castellano at 555-0195",
+   "Call Dana Ruiz at 555-0173",
+   "Call Priya Venkatesan at 555-0168"
+  ]
+ },
+ {
+  "ref": "T40",
+  "passage": "CER 140: Wheel Throwing I — Registration\n\nSections meet Tuesdays in Room 61, Ashgrove Hall. Enrollment is capped at 12. The waitlist is managed by the studio coordinator, Sofia Lindqvist (ext. 3316), not by the registrar's office, so add requests go to her. The $30 materials fee is billed with tuition. Waitlisted students are admitted on Thursday evenings, when unclaimed seats are released.",
+  "prompt": "[Daily Life — course-registration page] If a seat opens in CER 140, when would a waitlisted student most likely be added?",
+  "choices": [
+   "On a Thursday evening.",
+   "As soon as another student drops.",
+   "At the start of the following week.",
+   "On the first morning of classes."
+  ]
+ },
+ {
+  "ref": "T41",
+  "passage": "POETRY OUT LOUD CLUB — New Members Welcome!\n\nWe meet Sunday mornings at 10:00, not weekday evenings like most campus clubs — our members asked for a quieter slot. Sessions are held in Room 7 of the Quill Center. No experience needed, but bring a poem written by someone other than yourself to read aloud. Questions? Call our advisor, Marco Silva, at ext. 4479. First meeting: this Sunday.",
+  "prompt": "[Daily Life — club flyer] When does the Poetry Out Loud Club meet?",
+  "choices": [
+   "Saturday afternoons at 2:00",
+   "Wednesday evenings at 7:30",
+   "Friday nights at 8:00",
+   "Sunday mornings at 10:00"
+  ]
+ },
+ {
+  "ref": "T42",
+  "passage": "Registration for the Food Handler Certification Course opens Thursday, March 5, at noon on the Parks Department website. The course meets on March 14 and March 21 in Room 210 of the Lakeview Branch Library, not at the Parks Department office. The fee is $48, due at registration. Enrollment is capped at 22. For questions, call course coordinator Dana Ruiz at 555-0173.",
+  "prompt": "[Daily Life — course-registration page] Where will the course sessions be held?",
+  "choices": [
+   "In Room 118 of the Community Center",
+   "In Room 6 of the Parks Department office",
+   "In Room 210 of the Lakeview Branch Library",
+   "In Room 12 of the Maple Street Annex"
+  ]
+ },
+ {
+  "ref": "T43",
+  "passage": "The campus mailroom in the Aldrich Annex is hiring two student sorters for fall. Shifts run Sunday through Thursday, 6:00 to 9:00 p.m. Pay starts at $16.25 an hour, with a raise after 60 days — not the usual semester wait. Apply in person: pick up a form from Hana Kim in Room 18, then hand the completed form to Lucas Ferreira. Questions? Call ext. 2280 before noon.",
+  "prompt": "[Daily Life — job ad] What does the ad suggest about pay raises at the mailroom?",
+  "choices": [
+   "A raise arrives after a year of work.",
+   "A raise arrives after two full semesters.",
+   "A raise arrives after about two months.",
+   "A raise arrives only with a promotion."
+  ]
+ },
+ {
+  "ref": "T44",
+  "passage": "Campus Notice: All bicycles parked on campus must display a registration tag by October 5. Register in Room 27 of the Fenwick Building. Note that registration is offered only on Saturday mornings this year, not during the week. Bring your student ID; the tag itself is free, but replacing a lost tag costs $4. Questions? Call Wei Zhang at 555-0119.",
+  "prompt": "[Daily Life — campus notice] When is bicycle registration offered this year?",
+  "choices": [
+   "On Saturday mornings",
+   "On weekday afternoons",
+   "On Sunday evenings",
+   "On Friday mornings"
+  ]
+ },
+ {
+  "ref": "T45",
+  "passage": "Subject: Data Workshop Rescheduled\n\nHi everyone,\n\nThe Excel basics workshop originally set for Thursday has been moved to Tuesday, September 8, at 9:00 a.m. It will now run in the Whitmore Annex, Room 12, rather than the main training lab. Seats are capped at 15, so reserve one by emailing Priya Nair directly, not the training office, before Friday noon. Coffee and pastries provided.\n\nBest,\nMarcus Delgado, HR Coordinator",
+  "prompt": "[Daily Life — email] According to the email, where will the rescheduled workshop be held?",
+  "choices": [
+   "In Room 4 of the Whitmore Annex",
+   "In Room 6 of the Carver Annex",
+   "In Room 12 of the Whitmore Annex",
+   "In Room 8 of the training lab"
+  ]
+ },
+ {
+  "ref": "T46",
+  "passage": "CHEM 115: Introduction to Forensic Chemistry. Registration opens Saturday, March 7, at 9 a.m. Seats are claimed on the paper sign-up sheet posted outside Room 209 in the Falkner Building; the online portal lists the course for viewing only. Questions about prerequisites go to the course coordinator, Astrid Berg, at 555-0121. The section is capped at 24 students, and a $40 materials fee is billed at midterm.",
+  "prompt": "[Daily Life — course-registration page] According to the page, how does a student claim a seat in CHEM 115?",
+  "choices": [
+   "By calling the course coordinator, Astrid Berg",
+   "By submitting a request through the online portal",
+   "By emailing the department office",
+   "By signing the paper sheet outside Room 209"
+  ]
+ },
+ {
+  "ref": "T47",
+  "passage": "Gym locker renewals for the spring term begin Monday, February 9. This term, renewals will not be handled at the recreation center's front desk. Instead, bring your current locker tag to Room 118 in the Whitfield Annex, weekdays between 10 a.m. and 2 p.m. The $12 fee is payable by campus card only. For questions, call Andrei Popescu at 555-0175. Tags not renewed by February 20 will be reassigned to other students.",
+  "prompt": "[Daily Life — campus notice] What will happen to lockers whose tags are not renewed by February 20?",
+  "choices": [
+   "They will be emptied by facilities staff",
+   "They will incur a late renewal charge",
+   "They will be reassigned to other students",
+   "They will be locked until next term"
+  ]
+ },
+ {
+  "ref": "T48",
+  "passage": "Gym locker renewals for the spring term begin Monday, February 9. This term, renewals will not be handled at the recreation center's front desk. Instead, bring your current locker tag to Room 118 in the Whitfield Annex, weekdays between 10 a.m. and 2 p.m. The $12 fee is payable by campus card only. For questions, call Andrei Popescu at 555-0175. Tags not renewed by February 20 will be reassigned to other students.",
+  "prompt": "[Daily Life — campus notice] Where should students go to renew their gym lockers?",
+  "choices": [
+   "The campus card services counter",
+   "The gym's equipment checkout window",
+   "Room 118 in the Whitfield Annex",
+   "The front desk of the recreation center"
+  ]
+ }
+]
