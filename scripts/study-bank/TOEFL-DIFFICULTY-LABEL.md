@@ -217,3 +217,48 @@ asked for:
 
 The last two are about what this section IS, not how it is labelled, and
 neither is fixed by regrading.
+
+
+## Listening: 802 items regraded
+
+    233 medium -> easy      109 medium -> medium
+    148 hard -> medium      103 easy -> easy
+    114 hard -> easy         66 hard -> hard
+     14 medium -> hard       12 easy -> medium, 3 easy -> hard
+
+    before  118 easy / 356 medium / 328 hard
+    after   450 easy / 269 medium /  83 hard
+
+Unlike reading, listening's stored labels were NOT a pure default: 278
+of 802 already agreed (34.7%), against reading's 5%. So the listening
+label carried real information and was simply too harsh — half the bank
+sat a band above where three independent graders put it.
+
+## The truncation, and what it cost
+
+The batch builder sliced passages at 2,200 characters. Reading was
+untouched (longest passage 1,384) but 82 listening transcripts — 10.2%,
+longest 3,560 — lost their endings, and the re-grade against full text
+found that **roughly a third of those items had their key supported ONLY
+by post-cut material**. R0333's entire quoted stimulus was past the cut:
+the item quoted text the grader could not see.
+
+All three "defects" reported from the truncated pass — R0403, R0414,
+R0469 — are in that list. Their keys are supported by the text I removed.
+With full transcripts the same section returned ZERO defects.
+
+Cost of the error: one wasted grading pass over 82 items, and three
+false defect reports that I relayed to Andy before checking. Reading was
+never at risk, which is the only reason this did not require redoing
+1,623 items.
+
+## Where TOEFL stands
+
+    listening   450 / 269 /  83    graded 100%
+    reading     423 / 358 /  40    graded 100%
+    speaking     57 /  56 / 103    graded   0%
+    writing      24 /  80 / 243    graded   0%
+
+1,623 of 2,186 TOEFL items now carry a measured difficulty with full
+provenance. Speaking and writing are free-response and route differently;
+they are not blocked on this and are left ungraded rather than guessed.
