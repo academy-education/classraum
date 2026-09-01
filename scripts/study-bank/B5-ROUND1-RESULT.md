@@ -63,3 +63,43 @@ then turned that one instance into thirteen, in a cohort nobody had
 suspected, in about a minute. Neither half works alone: the checker
 could not have been written without the flag, and the flag would have
 stayed a single item without the checker.
+
+
+## Repaired — and two things I had wrong, both caught by the repairer
+
+Nine ISEE items now quote the phrase carrying the key's sense:
+
+    "keep"    -> As it is used in "would keep its wool in the undercroft,"
+    "score"   -> As it is used in "A score of years went by before the revival,"
+    "current" -> As it is used in "The current in the channel runs two knots,"
+    ...and six more
+
+Each was applied only after the applier checked the quote is VERBATIM in
+the stored passage, appears EXACTLY ONCE, and contains the target word.
+13 ambiguous -> 4, and the 4 remaining are the weak class (x2 across a
+whole passage, where both uses may share a sense).
+
+**MY "sibling items already do this" PREMISE WAS FALSE.** I told the
+repairer — and Andy — that other items in this cohort already quote a
+phrase, so the repair was matching an established house style. The
+repairer searched all 6,674 rows and found ZERO stems of that shape. The
+only quoting stems in the bank point at a region ("As it is used in the
+passage"), not a phrase. I had read the reviewer's example — "in the
+paragraph describing the second season" — as a quoted phrase when it
+describes a paragraph. These nine are the FIRST items in this style, so
+it becomes the house style by precedent rather than by matching one.
+Fourth unverified claim I passed on today.
+
+**THE CHECKER WOULD HAVE PASSED THE REPAIR FOR THE WRONG REASON.** Also
+caught by the repairer, not by me. `check-vocab-ambiguity.mjs` keyed off
+`/\b(first|second|third|...)\s+paragraph\b/`; the repaired stems no
+longer contain that, so they fell out of the DENOMINATOR — 14 pointed
+items became 5 — and would have read as fixed whether or not the quote
+disambiguated anything. A repair that makes its own gate stop looking at
+it is not gated.
+
+The checker now has a branch for quoted stems that asserts the three
+properties the applier checks, and it FAILS an item whose quote is not
+verbatim, not unique, or does not contain the word. Break-tested: change
+"A score of years" to "A score of summers" in the stem and it reports
+`QUOTED STEM FAILS: quote is not verbatim in the passage`.

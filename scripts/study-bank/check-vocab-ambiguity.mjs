@@ -37,6 +37,30 @@ function target(prompt){
     || String(prompt).match(/["'“‘]([A-Za-z-]+)["'”’]\s+most nearly means/i)
   return m ? m[1] : null
 }
+/*
+ * A stem that QUOTES a phrase is checked, not skipped.
+ *
+ * The nine repaired on 2026-09-01 no longer say "third paragraph", so
+ * the ordinal branch below stopped matching and they dropped out of the
+ * denominator — the checker read them as fixed whether or not the quote
+ * disambiguated anything. A repair that makes its own gate stop looking
+ * at it is not gated.
+ *
+ * Returns a FAILURE when the quote does not do its job: absent from the
+ * passage, present more than once, or not containing the target word.
+ */
+function quotedStem(prompt, passage, word){
+  const m=String(prompt).match(/as it is used in\s+["“]([^"”]{4,120})["”]/i)
+  if(!m) return null
+  const flat=t=>String(t).replace(/[‘’]/g,"'").replace(/[“”]/g,'"').replace(/\s+/g,' ').trim()
+  const q=flat(m[1]).replace(/[,.;:]$/,'')
+  const hits=flat(passage).split(q).length-1
+  if(hits===0) return { bad:'quote is not verbatim in the passage' }
+  if(hits>1) return { bad:`quote appears ${hits} times` }
+  if(!new RegExp(`\\b${word}\\w*\\b`,'i').test(q)) return { bad:'quote does not contain the target word' }
+  return { ok:true }
+}
+
 /** Which region the stem points at: an ordinal paragraph, or the whole text. */
 function region(prompt, passage){
   const paras=String(passage).split(/\n\s*\n/).map(s=>s.trim()).filter(Boolean)
@@ -67,6 +91,15 @@ for(const [fam,sec] of FAMS){
   let vocab=0
   for(const r of rows){
     const w=target(r.item?.prompt); if(!w) continue
+
+    /* Quoted stems are counted and checked, never skipped. */
+    const qs=quotedStem(r.item?.prompt, r.item?.passage||'', w)
+    if(qs){
+      vocab++
+      if(qs.bad) bad.push({id:r.id, cohort:r.cohort, word:w, n:0, scoped:true, why:qs.bad})
+      continue
+    }
+
     const reg=region(r.item?.prompt, r.item?.passage||''); if(!reg) continue
     vocab++
     const n=(reg.text.match(new RegExp(`\\b${w}\\w*\\b`,'gi'))??[]).length
@@ -74,7 +107,9 @@ for(const [fam,sec] of FAMS){
   }
   grand+=bad.length; grandN+=vocab
   console.log(`${fam}/${sec}: ${rows.length} items, ${vocab} vocab-in-context with a pointed region, ${bad.length} AMBIGUOUS`)
-  for(const b of bad.slice(0,6)) console.log(`   "${b.word}" x${b.n} in the ${b.scoped?'named paragraph':'passage'}  ${b.cohort}  ${b.id.slice(0,8)}`)
+  for(const b of bad.slice(0,8)) console.log(b.why
+    ? `   "${b.word}" QUOTED STEM FAILS: ${b.why}  ${b.cohort}  ${b.id.slice(0,8)}`
+    : `   "${b.word}" x${b.n} in the ${b.scoped?'named paragraph':'passage'}  ${b.cohort}  ${b.id.slice(0,8)}`)
 }
 console.log(`\nTOTAL: ${grand} of ${grandN} pointed vocab items are ambiguous (${grandN?(100*grand/grandN).toFixed(1):0}%)`)
 process.exit(grand?1:0)
