@@ -450,8 +450,8 @@ function TopicInner({ slug }: { slug: string }) {
    *
    * Both sides now read the same block key.
    */
-  const bankCreditCost = () => {
-    const slugNow = effectiveTopic?.slug ?? slug
+  const bankCreditCost = (forSlug?: string) => {
+    const slugNow = forSlug ?? effectiveTopic?.slug ?? slug
     const admission = admissionSectionForSlug(slugNow)
     if (admission) return creditCostForTest(admission.family, admission.section.key)
     const parsed = parseTestSlug(slugNow)
@@ -1042,7 +1042,20 @@ function TopicInner({ slug }: { slug: string }) {
                       // but confirm the credit spend first (the sheet shows its
                       // own cost line; this one-tap path had none).
                       startSession={() => {
-                        if (effectiveTopic && parseTestSlug(effectiveTopic.slug).family === 'sat') {
+                        /*
+                         * SSAT and ISEE take the SAT path, not the
+                         * customization sheet. Their blueprint fixes the
+                         * question count and the time limit — there is
+                         * nothing to customize — and they are assembled
+                         * from the bank, never generated. Sending them to
+                         * openTestSheet() made the button do NOTHING
+                         * VISIBLE: the sheet has no spec for these
+                         * families, so it never opened and no error was
+                         * shown. That is the same silent dead-end as the
+                         * bare `return` in startBankTest.
+                         */
+                        const fam = effectiveTopic ? parseTestSlug(effectiveTopic.slug).family : null
+                        if (fam === 'sat' || fam === 'ssat' || fam === 'isee') {
                           requestBankStart()
                         } else {
                           openTestSheet()
@@ -1051,10 +1064,14 @@ function TopicInner({ slug }: { slug: string }) {
                       creating={bankBusy ? 'full_test' : creating}
                       t={t}
                       ko={ko}
-                      creditCost={(() => {
-                        const parsed = parseTestSlug(effectiveTopic?.slug ?? topic.slug)
-                        return creditCostForTest(parsed.family, parsed.section?.toLowerCase().replace(/\s+/g, '_') ?? null)
-                      })()}
+                      /* bankCreditCost, NOT a third copy of the
+                         derivation. This was an inline duplicate: the
+                         balance check used the helper while the LABEL
+                         re-derived the key from the slug, so an ISEE
+                         section could display one price and reserve
+                         another. Two copies of one number is how they
+                         drift; the test now pins that only one exists. */
+                      creditCost={bankCreditCost(effectiveTopic?.slug ?? topic.slug)}
                     />
                     {/* AI Speaking/Writing grader (Beta) — lived on the
                         Practice tab before it was locked; kept reachable
@@ -1114,10 +1131,7 @@ function TopicInner({ slug }: { slug: string }) {
       />
       <CreditConfirmSheet
         open={creditConfirmOpen}
-        cost={(() => {
-          const parsed = parseTestSlug(effectiveTopic?.slug ?? slug)
-          return creditCostForTest(parsed.family, parsed.section?.toLowerCase().replace(/\s+/g, '_') ?? null)
-        })()}
+        cost={bankCreditCost()}
         busy={bankBusy}
         ko={ko}
         passCredits={familyPassCredits}
@@ -1130,10 +1144,7 @@ function TopicInner({ slug }: { slug: string }) {
       />
       <NoCreditsSheet
         open={noCreditsOpen}
-        cost={(() => {
-          const parsed = parseTestSlug(effectiveTopic?.slug ?? slug)
-          return creditCostForTest(parsed.family, parsed.section?.toLowerCase().replace(/\s+/g, '_') ?? null)
-        })()}
+        cost={bankCreditCost()}
         ko={ko}
         onCancel={() => setNoCreditsOpen(false)}
       />

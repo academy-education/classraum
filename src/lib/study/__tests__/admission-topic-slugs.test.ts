@@ -136,6 +136,29 @@ describe('the price shown is the price charged', () => {
      expression and asserted they matched — it could not fail. The two
      sides live in two files, so the only honest check is that both files
      pass a blueprint block key. */
+  it('derives the price in exactly ONE place on the topic page', () => {
+    /*
+     * There were FIVE. bankCreditCost() did it once for the balance
+     * check — the copy I fixed first — while the card LABEL, the credit
+     * confirmation sheet and the no-credits sheet each re-derived the
+     * key inline from the slug. So the fix went in and the page still
+     * displayed "1 credit" for an ISEE section the route charges 2 for.
+     * Found only by loading the real page; the source pin below passed
+     * throughout, because it checked the copy I had already fixed.
+     */
+    const sheet = readFileSync(
+      join(process.cwd(), 'src/app/mobile/study/topic/[slug]/page.tsx'), 'utf8')
+    // Count real calls only — a doc comment above bankCreditCost names
+    // the function too, and counting that made this assertion wrong on
+    // its first run (expected 2, file had 3).
+    const calls = sheet.split('\n')
+      .filter(l => !l.trim().startsWith('*') && !l.trim().startsWith('//'))
+      .filter(l => l.includes('creditCostForTest(')).length
+    // both inside bankCreditCost: the admission branch and the fallback
+    expect(calls).toBe(2)
+    expect(sheet).not.toMatch(/cost=\{\(\(\) => \{/)
+  })
+
   it('has both sides passing a blueprint block key, not a derived string', () => {
     const sheet = readFileSync(
       join(process.cwd(), 'src/app/mobile/study/topic/[slug]/page.tsx'), 'utf8')
