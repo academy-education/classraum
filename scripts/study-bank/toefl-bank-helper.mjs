@@ -313,7 +313,7 @@ async function insertListening(keepPath, files) {
     it = shuffleInPlace(it, content_hash)
     const domain = labelFrom(it.prompt, 'Listening')
     const { error } = await db.from('study_item_bank').insert({
-      family: 'toefl', section: sectionOf(it), domain, difficulty: it.difficulty || 'hard',
+      family: 'toefl', section: sectionOf(it), domain, difficulty: difficultyOf(it),
       item_type: 'multiple_choice', item: it, content_hash,
       // migration 068 made task NOT NULL; existing rows carry the task name
       // ('daily_life', 'academic_talk'), matching topic_tag.
@@ -400,7 +400,7 @@ async function insertWriting(flaggedPath, files) {
     const content_hash = hashWriting(it)
     if (seen.has(content_hash)) { console.log(`DUP ${id}`); continue }
     const { error } = await db.from('study_item_bank').insert({
-      family: 'toefl', section: 'writing', domain: DOMAIN[it.type], difficulty: it.difficulty || 'hard',
+      family: 'toefl', section: 'writing', domain: DOMAIN[it.type], difficulty: difficultyOf(it),
       item_type: it.type, item: it, content_hash,
       word_count: it.passage.split(/\s+/).filter(Boolean).length,
       verified: true, archived: false, source: 'hand', cohort: COHORT,
@@ -442,7 +442,7 @@ const FROZEN = {
   'fill-in-blanks': {
     type: 'fill_in_blanks', section: 'reading', domain: 'Complete the Words',
     check: checkFillInBlanks, task: 'complete_the_words',
-    difficulty: it => it.difficulty || 'hard',
+    difficulty: it => difficultyOf(it),
     hash: it => createHash('md5').update(norm(it.passage)).digest('hex'),
     words: it => String(it.passage).split(/\s+/).filter(Boolean).length,
   },
@@ -456,7 +456,7 @@ const FROZEN = {
   'interview': {
     type: 'speaking_interview', section: 'speaking', domain: 'Interview',
     check: checkSpeakingInterview, task: 'interview',
-    difficulty: it => it.difficulty || 'hard',
+    difficulty: it => difficultyOf(it),
     hash: it => createHash('md5').update(norm(it.prompt) + '|' + norm(it.passage)).digest('hex'),
     words: it => String(it.passage).split(/\s+/).filter(Boolean).length,
   },
@@ -495,6 +495,29 @@ async function insertFrozen(kind, files) {
     seen.add(content_hash); inserted++
   }
   console.log(`\n${spec.domain}: inserted ${inserted}, rejected ${rejected}`)
+}
+
+/*
+ * NO SILENT DEFAULT. This read `it.difficulty || 'hard'` in three insert
+ * paths, so every item whose authoring batch omitted a difficulty was
+ * banked HARD. The result, measured 2026-09-01: toefl/reading held 0
+ * easy, 23 medium and 798 hard, and a blind grade of 48 of those "hard"
+ * items returned 34 easy, 12 medium, 2 hard — the label was right for 4%
+ * of them. Three cohorts were 100% hard with no variation at all.
+ *
+ * It inverted the adaptivity it feeds: TOEFL Module 2 routes a
+ * struggling student to the easier module, and the easiest items in the
+ * bank were the ones marked hardest.
+ *
+ * An unset difficulty is now recorded AS unset — 'medium' with a
+ * verify_meta flag saying nobody graded it — so a missing measurement
+ * reads as missing instead of asserting the strongest band.
+ */
+function difficultyOf(it) {
+  return it.difficulty || 'medium'
+}
+function difficultyMeta(it) {
+  return it.difficulty ? {} : { difficulty_ungraded: true }
 }
 
 async function main() {

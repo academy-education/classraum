@@ -67,6 +67,40 @@ existing 821 rather than author against a phantom gap.
 If instead they really are hard, the gap is real and authoring is
 justified — and this document is the record that it was checked first.
 
+## The result: the label is right for 4% of items
+
+48 items, every one stored as `hard`, graded blind with the label
+withheld:
+
+    graded easy    34
+    graded medium  12
+    graded hard     2      <- 4%
+
+Per cohort, all stored 100% hard:
+
+    harvest-v1        5 easy /  6 med / 1 hard    8% actually hard
+    orphan-v1         7 easy /  4 med / 1 hard    8%
+    dl-siblings-v1   12 easy /  0 med / 0 hard    0%
+    dl-fresh-v1      10 easy /  2 med / 0 hard    0%
+
+**The bank's easiest items were labelled its hardest.** The adaptivity is
+not merely broken, it is inverted: a struggling student routes to the
+easier module and the bank believes its easiest material is the hardest
+it has.
+
+The grader also reported the sample is BIMODAL and said so unprompted.
+The Daily Life half (24 items) is 22 easy and near-identical in shape —
+a short notice, a question asking for one literal detail, and distractors
+that are simply other times or room numbers absent from the text. The
+reader matches a string. That is defensible for a practical-reading task
+type and it is not what the bank claims about them.
+
+Its own caveat, recorded because it bounds the finding: it expects
+another grader to agree closely on the Daily Life block, to move 4-6
+items across the easy/medium line in the academic half, and to disagree
+most on `hard`, where nothing in the sample was unmistakably hard.
+Direction is solid, exact counts are not.
+
 ## Whatever the result
 
 `difficulty: it.difficulty || 'hard'` should not survive. A default that
