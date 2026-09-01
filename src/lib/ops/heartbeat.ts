@@ -62,9 +62,21 @@ export async function recordHeartbeat(
       await raiseAlert({
         severity: failStreak >= 3 ? 'critical' : (spec?.severity ?? 'warning'),
         title: `${spec?.label ?? job} failed`,
+        /*
+         * Say WHICH half failed. The generic line read "Scheduled work
+         * it is responsible for is not being done" for every job, and on
+         * 2026-09-01 that sent someone looking for unpurged accounts
+         * over a digest whose own detail said `overdue: 0` — the
+         * deletions had run, only the email announcing them had not.
+         * An alert that overstates is one you learn to discount.
+         */
         message:
           `The job reported a failure${failStreak > 1 ? ` (${failStreak} consecutive)` : ''}.` +
-          ' Scheduled work it is responsible for is not being done.',
+          (typeof (result.detail as { emailError?: unknown } | null)?.emailError === 'string'
+            ? ' Its work ran, but the notification could not be delivered:'
+              + ` ${(result.detail as { emailError: string }).emailError}`
+              + ' Nobody is being told the result.'
+            : ' Scheduled work it is responsible for is not being done.'),
         dedupeKey: `job-failed:${job}`,
         context: { job, failStreak, detail: result.detail ?? null },
       })
