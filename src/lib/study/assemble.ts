@@ -1,6 +1,6 @@
 import { dbAdmin } from '@/lib/supabase-admin'
 import {
-  ADMISSION_BLUEPRINT, spreadAcrossPassages, type AdmissionFamily,
+  ADMISSION_BLUEPRINT, drawByPassage, ITEMS_PER_PASSAGE, type AdmissionFamily,
 } from './admission-tests'
 import type { Question, QuestionType } from '@/lib/test-verify'
 import { shuffleChoices } from '@/lib/test-verify'
@@ -1458,7 +1458,9 @@ export async function assembleToeflFromBank(
  *    caller picks and a minutesPerQ estimate;
  *  - reading must be SPREAD ACROSS PASSAGES. All six keys within a
  *    reading-worlds topic come from one passage variant, so six items
- *    from one passage behave like one item. See MAX_ITEMS_PER_PASSAGE;
+ *    from one passage behave like one item for OUR STATISTICS — which
+ *    is a sampling concern, not a delivery one. Delivery uses
+ *    ITEMS_PER_PASSAGE, the published format;
  *  - there is no content-domain blueprint. SSAT and ISEE publish section
  *    counts and timings, not domain weights, so inventing weights here
  *    would be fabricating a spec.
@@ -1502,7 +1504,7 @@ export async function assembleAdmissionSection(p: {
    * keeps producing.
    */
   const picked = block.bankSection === 'reading'
-    ? spreadAcrossPassages(ranked, block.questions)
+    ? drawByPassage(ranked, block.questions, ITEMS_PER_PASSAGE[p.family])
     : ranked.slice(0, block.questions)
 
   if (picked.length < block.questions) {

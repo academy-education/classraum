@@ -17,7 +17,7 @@
  */
 import {
   ADMISSION_BLUEPRINT, scoreAdmission, scoredQuestionCount,
-  spreadAcrossPassages, MAX_ITEMS_PER_PASSAGE,
+  spreadAcrossPassages, ITEMS_PER_PASSAGE, MAX_ITEMS_PER_PASSAGE_FOR_SAMPLING,
 } from '../admission-tests'
 import { TEST_SPECS } from '@/lib/test-specs'
 import { readFileSync } from 'fs'
@@ -159,8 +159,11 @@ describe('the live-bank verifier mirrors this blueprint', () => {
     }
   })
 
-  it('uses the same per-passage cap', () => {
-    expect(src).toMatch(new RegExp(`MAX_PER_PASSAGE = ${MAX_ITEMS_PER_PASSAGE}\\b`))
+  it('uses the DELIVERY per-passage count, not the QC sampling cap', () => {
+    // The form checker must measure what a student is actually served.
+    // While it used the sampling cap it reported 2.08 forms for sections
+    // that can serve 3.25.
+    expect(src).toMatch(new RegExp(`MAX_PER_PASSAGE = ${ITEMS_PER_PASSAGE.isee}\\b`))
   })
 
   it('sums blocks that share a bank section rather than checking them apart', () => {
@@ -180,18 +183,18 @@ describe('reading items spread across passages', () => {
   // from 7 passages, and since all six keys in a topic come from one
   // variant it is about as reliable as a 7-item test.
   it('takes at most MAX_ITEMS_PER_PASSAGE before revisiting a passage', () => {
-    const out = spreadAcrossPassages(rows(20, 6), 40)
+    const out = spreadAcrossPassages(rows(20, 6), 40, MAX_ITEMS_PER_PASSAGE_FOR_SAMPLING)
     const per: Record<string, number> = {}
     for (const r of out) per[r.passageGroupId!] = (per[r.passageGroupId!] ?? 0) + 1
     expect(out).toHaveLength(40)
-    expect(Math.max(...Object.values(per))).toBeLessThanOrEqual(MAX_ITEMS_PER_PASSAGE)
+    expect(Math.max(...Object.values(per))).toBeLessThanOrEqual(MAX_ITEMS_PER_PASSAGE_FOR_SAMPLING)
     expect(Object.keys(per).length).toBeGreaterThanOrEqual(14)
   })
 
   it('degrades by thinning every passage, not by exhausting a few', () => {
     // 5 passages x 6 items, asking for 12: round-robin gives 3 passages
     // 3 apiece only after every passage has had one.
-    const out = spreadAcrossPassages(rows(5, 6), 12)
+    const out = spreadAcrossPassages(rows(5, 6), 12, MAX_ITEMS_PER_PASSAGE_FOR_SAMPLING)
     const per: Record<string, number> = {}
     for (const r of out) per[r.passageGroupId!] = (per[r.passageGroupId!] ?? 0) + 1
     expect(Object.keys(per)).toHaveLength(5)
@@ -199,11 +202,11 @@ describe('reading items spread across passages', () => {
   })
 
   it('returns everything it can when the bank is short', () => {
-    expect(spreadAcrossPassages(rows(3, 2), 40)).toHaveLength(6)
+    expect(spreadAcrossPassages(rows(3, 2), 40, MAX_ITEMS_PER_PASSAGE_FOR_SAMPLING)).toHaveLength(6)
   })
 
   it('does not group unrelated items that have no passage', () => {
     const solo = Array.from({ length: 9 }, (_, i) => ({ id: `s${i}`, passageGroupId: null }))
-    expect(spreadAcrossPassages(solo, 9)).toHaveLength(9)
+    expect(spreadAcrossPassages(solo, 9, MAX_ITEMS_PER_PASSAGE_FOR_SAMPLING)).toHaveLength(9)
   })
 })

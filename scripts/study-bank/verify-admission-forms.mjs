@@ -8,7 +8,8 @@
  * arithmetic that no real set size could satisfy, and a draw that
  * silently came up short, both of which passed their unit tests.
  *
- * It also applies MAX_ITEMS_PER_PASSAGE, which is the constraint that
+ * It also applies the DELIVERY per-passage count (ITEMS_PER_PASSAGE = 6,
+ * the published format), which is the constraint that
  * actually binds: 63 reading items across 17 passages is not 63 drawable
  * items, it is 41.
  *
@@ -29,7 +30,7 @@ const db = createClient(env.NEXT_PUBLIC_SUPABASE_URL, env.SUPABASE_SERVICE_ROLE_
 
 // Mirrored from src/lib/study/admission-tests.ts. A test pins the two
 // together so this cannot drift into reporting a form we do not serve.
-const MAX_PER_PASSAGE = 3
+const MAX_PER_PASSAGE = 6
 const BLUEPRINT = {
   ssat: [
     { key: 'writing', bankSection: 'writing', questions: 1 },

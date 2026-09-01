@@ -143,30 +143,134 @@ const SCALE_NOTE: Record<AdmissionFamily, string> = {
 /**
  * How many reading items may be drawn from any one passage.
  *
- * Measured on reading-worlds-s3: all six keys within a topic come from a
- * single passage variant, so the six items are perfectly correlated — a
- * candidate who identifies the world once scores ~5/6, and one who does
- * not scores ~0/6. The targeted attack found aggregate accuracy at chance
- * but topic-level variance large, which makes EFFECTIVE n the number of
- * topics rather than the number of items.
+ * THERE ARE TWO ANSWERS, because there are two questions, and conflating
+ * them shipped a mock test that did not match the exam it mocks.
  *
- * A 40-item SSAT reading section drawn from 7 passages would therefore be
- * about as reliable as a 7-item test. Three is the compromise the s2/s3
- * per-topic voter data supports (20 of 22 topics answered non-uniformly),
- * and it keeps a 40-item section spread over at least 14 passages.
+ * ── Delivery: match the published format ────────────────────────────
+ * The real sections are built around a small number of passages read
+ * closely:
+ *
+ *     ISEE Middle/Upper   6 passages x 6 questions = 36 in 35 min
+ *     SSAT Middle/Upper   7-8 passages x 5-6       = 40 in 40 min
+ *
+ * Delivering 36 questions at 3 per passage means TWELVE passages in the
+ * same 35 minutes — 2.9 minutes per passage against the real 5.8. The
+ * question count and the clock both looked right while the reading load
+ * was double, which makes our mock harder than the exam and tells a
+ * student they are less ready than they are. The bank was authored to
+ * the real shape all along: every passage group holds exactly 6 items.
+ *
+ * ── QC: treat the passage as the unit ───────────────────────────────
+ * The 3-item cap was earned, but on a different question. Measured on
+ * reading-worlds-s3, all six keys within a topic come from one passage
+ * variant, so the items are perfectly correlated: a candidate who
+ * identifies the world scores ~5/6 and one who does not scores ~0/6.
+ * That makes EFFECTIVE n the number of topics, so a 40-item section
+ * sampled from 7 passages is about as reliable as a 7-item test — for
+ * OUR statistics. Sampling for a blind attack still caps at 3.
+ *
+ * The premise behind extending that cap to delivery has since been
+ * tested and did not hold: the RW5 attack returned -19.8 with every
+ * item position below chance, so a student cannot identify the world
+ * without reading. The correlation is real in our sampling and absent
+ * in a sitting.
+ *
+ * Capping delivery at 3 also DISCARDED HALF THE BANK — 75 of 117 ISEE
+ * items drawable, 83 of 138 SSAT — so the faithful format yields more
+ * distinct forms (3.25 and 3.45) than the cap did (2.08 each), not
+ * fewer.
  */
-export const MAX_ITEMS_PER_PASSAGE = 3
+
+/** Delivery: questions per passage, per the published format. */
+export const ITEMS_PER_PASSAGE: Record<AdmissionFamily, number> = {
+  isee: 6,
+  ssat: 6,
+}
+
+/**
+ * QC SAMPLING ONLY. Do not use this to draw a student's test — see the
+ * note above. It exists so a blind attack over reading items cannot
+ * take six perfectly-correlated items from one passage and count them
+ * as six independent observations.
+ */
+export const MAX_ITEMS_PER_PASSAGE_FOR_SAMPLING = 3
+
+/**
+ * Draw a reading section the way the exam is built: a FIXED, SMALL
+ * number of passages, each read closely.
+ *
+ * Distinct from spreadAcrossPassages, and the difference is the whole
+ * point. That function round-robins across every passage available, so
+ * raising its cap from 3 to 6 against a 29-passage bank still produced
+ * ten-plus passages at 3-4 items each — the same too-much-reading shape,
+ * just less obviously. Fidelity needs passages CHOSEN, then filled.
+ *
+ * Picks ceil(count / perPassage) passages that can supply a full set,
+ * fills each, and only then falls back to partly-filled passages so a
+ * thin bank degrades instead of failing.
+ */
+export function drawByPassage<T extends { passageGroupId: string | null }>(
+  rows: T[], count: number, perPassage: number,
+): T[] {
+  const groups = new Map<string, T[]>()
+  for (const r of rows) {
+    const k = r.passageGroupId ?? `__solo__${groups.size}`
+    const g = groups.get(k)
+    if (g) g.push(r)
+    else groups.set(k, [r])
+  }
+  // Full passages first, largest first among the rest, so a short bank
+  // loses whole passages rather than serving many fragments.
+  const ordered = [...groups.values()].sort((a, b) => {
+    const af = a.length >= perPassage ? 1 : 0
+    const bf = b.length >= perPassage ? 1 : 0
+    return bf - af || b.length - a.length
+  })
+  /*
+   * Distribute EVENLY across the chosen passages rather than filling
+   * each to `perPassage` and truncating the last. Filling gave SSAT
+   * 6,6,6,6,6,6,4 — the trailing 4 sits outside the published "5 to 6
+   * questions per passage", and a passage carrying four questions is a
+   * visibly different task from one carrying six. Even distribution
+   * gives 6,6,6,6,6,5,5, which is inside the range.
+   */
+  const wanted = Math.min(Math.ceil(count / perPassage), ordered.length)
+  const chosen = ordered.slice(0, wanted)
+  const base = Math.floor(count / wanted)
+  const extra = count % wanted              // this many passages get one more
+  const out: T[] = []
+  chosen.forEach((g, i) => {
+    out.push(...g.slice(0, Math.min(base + (i < extra ? 1 : 0), g.length)))
+  })
+  // A thin bank can leave us short; top up from whatever remains rather
+  // than returning an under-length section silently.
+  if (out.length < count) {
+    const taken = new Set(out)
+    for (const g of ordered) {
+      for (const r of g) {
+        if (out.length >= count) break
+        if (!taken.has(r)) { out.push(r); taken.add(r) }
+      }
+      if (out.length >= count) break
+    }
+  }
+  return out
+}
 
 /**
  * Spread reading items across passages, taking at most
- * MAX_ITEMS_PER_PASSAGE from each before revisiting any.
+ * `maxPer` from each before revisiting any. THE CALLER MUST SAY WHICH
+ * limit it means — ITEMS_PER_PASSAGE to deliver a test,
+ * MAX_ITEMS_PER_PASSAGE_FOR_SAMPLING to draw a QC sample. There is no
+ * default, because the default was how one number came to serve two
+ * incompatible purposes.
  *
  * Round-robin rather than "fill a passage then move on", so a short bank
  * degrades by givingeach passage fewer items rather than by exhausting a
  * few passages completely.
  */
 export function spreadAcrossPassages<T extends { passageGroupId: string | null }>(
-  rows: T[], count: number, maxPer = MAX_ITEMS_PER_PASSAGE,
+  rows: T[], count: number, maxPer: number,
 ): T[] {
   const groups = new Map<string, T[]>()
   for (const r of rows) {
