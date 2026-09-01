@@ -107,3 +107,44 @@ Direction is solid, exact counts are not.
 silently asserts the strongest band is how a whole section came to claim
 something nobody measured. It should refuse the item, or record the
 default in verify_meta so it is visibly a default rather than a finding.
+
+
+## Blast radius, measured across the whole bank
+
+    section              n     easy/med/hard    %hard   graded
+    sat/math           935     52/682/201        21%     100%
+    sat/reading_writing 918    111/616/191       21%     100%
+    toefl/reading      821       0/23/798        97%       0%   <-- broken
+    toefl/listening    802     118/356/328       41%       0%
+    toefl/writing      347      24/80/243        70%       0%
+    toefl/speaking     216      57/56/103        48%       0%
+
+**SAT is the only family with a real difficulty grade** — 100% of its
+1,853 items carry `grader_difficulty`. Every one of TOEFL's 2,186 items
+is ungraded, and reading is the section where the default did the most
+damage because its authoring batches most often omitted a difficulty.
+
+Ten cohorts with n >= 20 sit in a SINGLE band, which is the default's
+fingerprint: toefl/cr-v7 (132, all hard), dl-siblings-v1 (69),
+dl-fresh-v3 (60), a null-cohort of 48, cr-v8 (46), cr-v9 (36),
+dl-fresh-v1 (34), interview-v2 (32), ssat-verbal-s5 (23, all medium) and
+sat/rsw2 (22).
+
+## And one I introduced the same day
+
+The three maths cohorts inserted on 2026-09-01 carried
+`verify_meta.grader_difficulty` holding the AUTHOR'S OWN label. I built
+their qc.json as `{ difficulty: it.difficulty }`, copying the authoring
+agent's self-report into a field whose name claims a second opinion. All
+125 rows agreed with themselves, which is the tell — a real grader
+disagrees sometimes.
+
+That is the same defect as `it.difficulty || 'hard'`: a stored value
+asserting a measurement nobody made. I introduced it while fixing the
+other one.
+
+Repaired, not deleted — the author's label is a real if weak signal and
+the items are sandbox-verified. It is renamed `author_reported_difficulty`
+and flagged `difficulty_ungraded`, so a future audit does not count these
+as already graded and skip them. Verified after the write: 0 rows still
+claim a grade, 125 flagged ungraded.
