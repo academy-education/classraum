@@ -25,7 +25,7 @@ interface AdminHeaderProps {
 
 
 export function AdminHeader({ adminUser, onToggleSidebar, sidebarOpen = true }: AdminHeaderProps) {
-  const { t } = useTranslation();
+  const { t, language, setLanguage } = useTranslation();
   const router = useRouter();
   const [showUserMenu, setShowUserMenu] = useState(false);
   const [isRefreshing, setIsRefreshing] = useState(false);
@@ -74,6 +74,18 @@ export function AdminHeader({ adminUser, onToggleSidebar, sidebarOpen = true }: 
             aria-label={String(t('admin.header.refresh'))}
           >
             <RefreshCw className={`w-4 h-4 ${isRefreshing ? 'animate-spin' : ''}`} />
+          </button>
+
+          {/* Language — super admins had no way to switch; the preference
+              lives in user_preferences and every admin page reads it. */}
+          <button
+            type="button"
+            onClick={() => void setLanguage(language === 'english' ? 'korean' : 'english')}
+            className="px-2.5 py-1.5 text-xs font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-colors"
+            title={language === 'english' ? '한국어로 보기' : 'View in English'}
+            aria-label={language === 'english' ? '한국어로 보기' : 'View in English'}
+          >
+            {language === 'english' ? '한국어' : 'English'}
           </button>
 
           {/* Divider */}

@@ -17,6 +17,7 @@
 import React from 'react'
 import { CheckCircle2, HelpCircle, Loader2, ShieldQuestion, XCircle } from 'lucide-react'
 import { Button } from '@/components/ui/button'
+import { useQcT } from './i18n'
 
 const CARD = 'bg-white rounded-2xl ring-1 ring-gray-100/80 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_12px_-4px_rgba(0,0,0,0.06)]'
 
@@ -61,6 +62,7 @@ interface RunResult {
   why: string
 }
 
+const READING_KEY: Record<string, string> = { leaks: 'leaks', clean: 'clean', inconclusive: 'inconclusive', 'not-enough': 'notEnough' }
 const READING: Record<RunResult['reading'], { chip: string; label: string }> = {
   leaks:         { chip: 'bg-red-50 text-red-700 ring-red-200',           label: 'Items leak' },
   clean:         { chip: 'bg-emerald-50 text-emerald-700 ring-emerald-200', label: 'Clean' },
@@ -85,6 +87,7 @@ async function authed(url: string, init?: RequestInit) {
 }
 
 export function ReviewPanel({ domains }: { domains: string[] }) {
+  const { t } = useQcT()
   const [domain, setDomain] = React.useState(domains[0] ?? '')
   const [size, setSize] = React.useState(12)
   const [mirrorOf, setMirrorOf] = React.useState('')
@@ -191,11 +194,9 @@ export function ReviewPanel({ domains }: { domains: string[] }) {
       <div className="flex items-start gap-2 mb-1">
         <ShieldQuestion className="w-[18px] h-[18px] text-gray-400 mt-px shrink-0" />
         <div>
-          <h3 className="text-[15px] font-semibold text-gray-900">Human review</h3>
+          <h3 className="text-[15px] font-semibold text-gray-900">{t('admin.bankQc.review.title')}</h3>
           <p className="text-[12.5px] text-gray-500 mt-0.5 max-w-2xl">
-            Guess the answer from the four options alone, then judge the item with the
-            stimulus shown. The first answer is sealed before the second question appears —
-            the server does not send the stimulus until you have picked.
+            {t('admin.bankQc.review.intro')}
           </p>
         </div>
       </div>
@@ -206,7 +207,7 @@ export function ReviewPanel({ domains }: { domains: string[] }) {
       {!runId && (
         <div className="flex flex-wrap items-end gap-3 mt-4">
           <div className="min-w-[220px]">
-            <label htmlFor="review-cohort" className={LABEL}>Cohort</label>
+            <label htmlFor="review-cohort" className={LABEL}>{t('admin.bankQc.review.cohort')}</label>
             <select
               id="review-cohort" value={domain} onChange={e => setDomain(e.target.value)}
               className={SELECT}
@@ -215,7 +216,7 @@ export function ReviewPanel({ domains }: { domains: string[] }) {
             </select>
           </div>
           <div className="w-28">
-            <label htmlFor="review-size" className={LABEL}>Items</label>
+            <label htmlFor="review-size" className={LABEL}>{t('admin.bankQc.review.items')}</label>
             <select
               id="review-size" value={size} onChange={e => setSize(Number(e.target.value))}
               className={SELECT}
@@ -224,11 +225,10 @@ export function ReviewPanel({ domains }: { domains: string[] }) {
             </select>
           </div>
           <Button onClick={start} disabled={busy || !domain}>
-            {busy ? <Loader2 className="w-4 h-4 animate-spin" /> : 'Start a sitting'}
+            {busy ? <Loader2 className="w-4 h-4 animate-spin" /> : t('admin.bankQc.review.start')}
           </Button>
           <p className="text-[11.5px] text-gray-400 basis-full">
-            The sample is drawn and recorded before you see anything, so skipped items stay
-            in the denominator. 20+ is needed before a good result counts as a verdict.
+            {t('admin.bankQc.review.startHint')}
           </p>
 
           {/* Second reviewer, SAME items. A fresh draw is random, so two
@@ -237,7 +237,7 @@ export function ReviewPanel({ domains }: { domains: string[] }) {
               items or to the reader. */}
           <div className="basis-full border-t border-gray-100 pt-3 mt-1">
             <label htmlFor="review-mirror" className={LABEL}>
-              Or sit someone else&apos;s run, item for item
+              {t('admin.bankQc.review.mirrorLabel')}
             </label>
             <div className="flex flex-wrap items-center gap-2">
               <input
@@ -246,13 +246,11 @@ export function ReviewPanel({ domains }: { domains: string[] }) {
                 className={FIELD + ' max-w-[320px]'}
               />
               <Button variant="outline" onClick={startMirror} disabled={busy || !mirrorOf.trim()}>
-                {busy ? <Loader2 className="w-4 h-4 animate-spin" /> : 'Mirror this run'}
+                {busy ? <Loader2 className="w-4 h-4 animate-spin" /> : t('admin.bankQc.review.mirrorButton')}
               </Button>
             </div>
             <p className="text-[11.5px] text-gray-400 mt-1.5">
-              Must be a DIFFERENT account from the one that sat the original — same account
-              means one reviewer id, and a reviewer agreeing with themselves is not a
-              measurement. The route refuses it.
+              {t('admin.bankQc.review.mirrorHint')}
             </p>
           </div>
         </div>
@@ -262,7 +260,7 @@ export function ReviewPanel({ domains }: { domains: string[] }) {
       {runId && options && !reveal && (
         <div className="mt-5">
           <p className="text-[11px] uppercase tracking-wide text-gray-500 mb-2">
-            Blind — no stimulus. Which is the intended answer?
+            {t('admin.bankQc.review.blindQuestion')}
           </p>
           <div className="grid gap-2">
             {options.map((o, i) => (
@@ -315,12 +313,12 @@ export function ReviewPanel({ domains }: { domains: string[] }) {
           <div className={`inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-[11.5px] font-medium ring-1 mb-3 ${
             reveal.wasCorrect ? 'bg-red-50 text-red-700 ring-red-200' : 'bg-emerald-50 text-emerald-700 ring-emerald-200'}`}>
             {reveal.wasCorrect
-              ? <><XCircle className="w-3.5 h-3.5" /> You got it blind — that counts against the item</>
-              : <><CheckCircle2 className="w-3.5 h-3.5" /> Not guessable from the options</>}
+              ? <><XCircle className="w-3.5 h-3.5" /> {t('admin.bankQc.review.gotItBlind')}</>
+              : <><CheckCircle2 className="w-3.5 h-3.5" /> {t('admin.bankQc.review.notGuessable')}</>}
           </div>
 
           <p className="text-[13.5px] text-gray-900 bg-gray-50 rounded-xl px-4 py-3 ring-1 ring-gray-100">
-            {reveal.stimulus || <em className="text-gray-400">no stimulus stored</em>}
+            {reveal.stimulus || <em className="text-gray-400">{t('admin.bankQc.review.noStimulus')}</em>}
           </p>
           {reveal.prompt && <p className="text-[12.5px] text-gray-500 mt-2">{reveal.prompt}</p>}
 
@@ -337,29 +335,29 @@ export function ReviewPanel({ domains }: { domains: string[] }) {
 
           <div className="mt-4 grid gap-3">
             <Choice
-              label="Is the highlighted answer the only defensible one?"
+              label={t('admin.bankQc.review.onlyDefensible')}
               value={verdict} onChange={setVerdict}
               options={[
-                ['unique', 'Only defensible answer'],
-                ['alternative', 'Another is also defensible'],
-                ['broken', 'No unique answer / key is wrong'],
+                ['unique', t('admin.bankQc.review.unique')],
+                ['alternative', t('admin.bankQc.review.alternative')],
+                ['broken', t('admin.bankQc.review.broken')],
               ]}
             />
             <Choice
-              label="Does it read like a real published item?"
+              label={t('admin.bankQc.review.realism')}
               value={realism} onChange={setRealism}
-              options={[['authentic', 'Authentic'], ['artificial', 'Authored to a template']]}
+              options={[['authentic', t('admin.bankQc.review.authentic')], ['artificial', t('admin.bankQc.review.artificial')]]}
             />
             <textarea
               value={note} onChange={e => setNote(e.target.value)} rows={2}
-              placeholder="Optional — what gave it away, or which other option works"
+              placeholder={t('admin.bankQc.review.notePlaceholder')}
               className={FIELD}
             />
             <Button
               onClick={submitReveal} disabled={busy || !verdict || !realism}
               className="self-start"
             >
-              {busy ? <Loader2 className="w-4 h-4 animate-spin" /> : 'Next item'}
+              {busy ? <Loader2 className="w-4 h-4 animate-spin" /> : t('admin.bankQc.review.nextItem')}
             </Button>
           </div>
         </div>
@@ -368,7 +366,7 @@ export function ReviewPanel({ domains }: { domains: string[] }) {
       {/* ── results ───────────────────────────────────────────────── */}
       {results.length > 0 && (
         <div className="mt-6 border-t border-gray-100 pt-4">
-          <p className="text-[11px] uppercase tracking-wide text-gray-500 mb-2">Sittings</p>
+          <p className="text-[11px] uppercase tracking-wide text-gray-500 mb-2">{t('admin.bankQc.review.sittings')}</p>
           <div className="grid gap-2">
             {results.map(r => (
               <div key={r.runId} className="rounded-xl ring-1 ring-gray-100 px-4 py-3">
@@ -379,21 +377,21 @@ export function ReviewPanel({ domains }: { domains: string[] }) {
                     // two people disagreeing is the signal, and a merged
                     // number would erase exactly that.
                     <span className="rounded-full px-2 py-0.5 text-[11px] ring-1 bg-gray-50 text-gray-500 ring-gray-200">
-                      another reviewer
+                      {t('admin.bankQc.review.anotherReviewer')}
                     </span>
                   )}
                   <span className={`rounded-full px-2 py-0.5 text-[11px] font-medium ring-1 ${READING[r.reading].chip}`}>
-                    {READING[r.reading].label}
+                    {t(`admin.bankQc.review.status.${READING_KEY[r.reading]}`)}
                   </span>
                   <span className="text-[12px] text-gray-500 tabular-nums">
-                    {r.answered}/{r.drawn} answered
+                    {t('admin.bankQc.review.answered', { answered: r.answered, drawn: r.drawn })}
                     {r.margin !== null && <> · blind {r.pct}% vs control {r.controlPct}% · <strong className="text-gray-900">{r.margin >= 0 ? '+' : ''}{r.margin}pts</strong></>}
                   </span>
                 </div>
                 <p className="text-[12px] text-gray-500 mt-1">{r.why}</p>
                 {r.reviewed > 0 && (
                   <p className="text-[12px] text-gray-500 mt-1 tabular-nums">
-                    {r.reviewed} judged · {r.unique} clean · {r.alternative} soft · {r.broken} broken · {r.artificial} read as templated
+                    {t('admin.bankQc.review.judgedLine', { reviewed: r.reviewed, unique: r.unique, alternative: r.alternative, broken: r.broken, artificial: r.artificial })}
                   </p>
                 )}
               </div>

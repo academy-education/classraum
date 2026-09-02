@@ -17,6 +17,7 @@
 
 import React from 'react'
 import { AlertTriangle, Check, ChevronDown, Flag, Loader2, Search, X } from 'lucide-react'
+import { useQcT } from './i18n'
 
 const CARD = 'bg-white rounded-2xl ring-1 ring-gray-100/80 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_12px_-4px_rgba(0,0,0,0.06)]'
 const FIELD = 'px-3 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-primary/30 focus:border-transparent text-sm'
@@ -83,6 +84,7 @@ async function authed(url: string, init?: RequestInit) {
 const LETTERS = 'ABCDEFGH'
 
 export function ItemSweepPanel() {
+  const { t } = useQcT()
   const [data, setData] = React.useState<SweepData | null>(null)
   const [err, setErr] = React.useState('')
   const [open, setOpen] = React.useState(false)
@@ -227,7 +229,7 @@ export function ItemSweepPanel() {
         className="w-full flex items-center justify-between gap-4 text-left rounded-xl -m-1 p-1 hover:bg-gray-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
       >
         <div>
-          <h2 className="text-[15px] font-semibold text-gray-900">Read every question — SSAT &amp; ISEE</h2>
+          <h2 className="text-[15px] font-semibold text-gray-900">{t('admin.bankQc.sweep.title')}</h2>
           <p className="text-[12.5px] text-gray-500 mt-1 leading-relaxed max-w-3xl">
             A 40-question sample with the answer showing, one Keep / Flag / Reject per item — about
             twenty minutes. This is the pass that catches what no script here can: a second
@@ -338,28 +340,28 @@ export function ItemSweepPanel() {
 
               <div className="flex flex-wrap gap-2 mb-4">
                 <select className={FIELD} value={family} onChange={e => setFamily(e.target.value)} aria-label="Test">
-                  <option value="all">Both tests</option>
+                  <option value="all">{t('admin.bankQc.sweep.bothTests')}</option>
                   <option value="ssat">SSAT</option>
                   <option value="isee">ISEE</option>
                 </select>
                 <select className={FIELD} value={section} onChange={e => setSection(e.target.value)} aria-label="Section">
-                  <option value="all">All sections</option>
-                  <option value="verbal">Verbal</option>
-                  <option value="math">Math</option>
-                  <option value="reading">Reading</option>
+                  <option value="all">{t('admin.bankQc.sweep.allSections')}</option>
+                  <option value="verbal">{t('admin.bankQc.sweep.verbal')}</option>
+                  <option value="math">{t('admin.bankQc.sweep.math')}</option>
+                  <option value="reading">{t('admin.bankQc.sweep.reading')}</option>
                 </select>
                 <select className={FIELD} value={status} onChange={e => setStatus(e.target.value)} aria-label="Status">
-                  <option value="all">Any status</option>
-                  <option value="todo">Not yet reviewed</option>
-                  <option value="keep">Kept</option>
-                  <option value="flag">Flagged</option>
-                  <option value="reject">Rejected</option>
+                  <option value="all">{t('admin.bankQc.sweep.anyStatus')}</option>
+                  <option value="todo">{t('admin.bankQc.sweep.todo')}</option>
+                  <option value="keep">{t('admin.bankQc.sweep.keep')}</option>
+                  <option value="flag">{t('admin.bankQc.sweep.flag')}</option>
+                  <option value="reject">{t('admin.bankQc.sweep.reject')}</option>
                 </select>
                 <div className="relative flex-1 min-w-[180px]">
                   <Search className="w-4 h-4 text-gray-400 absolute left-3 top-1/2 -translate-y-1/2" />
                   <input
                     className={`${FIELD} w-full pl-9`}
-                    placeholder="Search question, options, skill…"
+                    placeholder={t('admin.bankQc.sweep.searchPlaceholder')}
                     value={query}
                     onChange={e => setQuery(e.target.value)}
                     aria-label="Search items"
@@ -379,7 +381,7 @@ export function ItemSweepPanel() {
                     <React.Fragment key={it.id}>
                       {newPassage && (
                         <div className="bg-gray-50 ring-1 ring-gray-200 rounded-xl p-4">
-                          <div className="text-[11px] uppercase tracking-wide text-gray-500 mb-2">Passage</div>
+                          <div className="text-[11px] uppercase tracking-wide text-gray-500 mb-2">{t('admin.bankQc.sweep.passage')}</div>
                           {it.passage!.split(/\n\s*\n/).filter(Boolean).map((p, i) => (
                             <p key={i} className="text-[15px] leading-relaxed text-gray-800 mb-2 last:mb-0 max-w-3xl">{p}</p>
                           ))}
@@ -463,7 +465,7 @@ export function ItemSweepPanel() {
                           })}
                           <input
                             className={`${FIELD} flex-1 min-w-[180px]`}
-                            placeholder="Note — what is wrong, or what to change"
+                            placeholder={t('admin.bankQc.sweep.notePlaceholder')}
                             value={rec.note}
                             onChange={e => setNote(it, e.target.value)}
                             aria-label="Reviewer note"
@@ -476,7 +478,7 @@ export function ItemSweepPanel() {
                   )
                 })}
                 {visible.length === 0 && (
-                  <p className="text-sm text-gray-400 py-8 text-center">No items match these filters.</p>
+                  <p className="text-sm text-gray-400 py-8 text-center">{t('admin.bankQc.sweep.noItems')}</p>
                 )}
               </div>
             </>

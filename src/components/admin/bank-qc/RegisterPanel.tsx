@@ -2,6 +2,7 @@
 
 import React from 'react'
 import { WORK, SETTLED, FOUND_WHILE_FIXING, registerSummary, type WorkItem } from '@/lib/study/bank-register'
+import { useQcT } from './i18n'
 
 /**
  * The register, on the page that people actually look at.
@@ -21,10 +22,11 @@ const CARD = 'bg-white rounded-2xl ring-1 ring-gray-100/80 shadow-[0_1px_2px_rgb
 
 const OWNER: Record<WorkItem['owner'], { label: string; chip: string }> = {
   claude: { label: 'Claude', chip: 'bg-sky-50 text-sky-700 ring-sky-200' },
-  you:    { label: 'Needs you', chip: 'bg-amber-50 text-amber-800 ring-amber-200' },
+  you:    { label: 'Needs you', chip: 'bg-amber-50 text-amber-800 ring-amber-200' },  // label overridden by t('admin.bankQc.register.needsYou') at render
 }
 
 export function RegisterPanel() {
+  const { t } = useQcT()
   const [tab, setTab] = React.useState<'open' | 'settled' | 'found'>('open')
   const s = registerSummary()
   const open = WORK.filter(w => w.state !== 'done')
@@ -33,7 +35,7 @@ export function RegisterPanel() {
     <section className={`${CARD} p-5 mb-8`}>
       <div className="flex items-baseline justify-between gap-3 flex-wrap">
         <div>
-          <h2 className="text-[15px] font-semibold text-gray-900">What is left on the bank</h2>
+          <h2 className="text-[15px] font-semibold text-gray-900">{t('admin.bankQc.register.title')}</h2>
           <p className="text-[12px] text-gray-500 mt-0.5">
             The table above is measured from the database. This is the plan —
             decided, not observed.

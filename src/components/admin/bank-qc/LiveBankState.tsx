@@ -2,6 +2,8 @@
 
 import React from 'react'
 import { ReviewPanel } from './ReviewPanel'
+import { useQcT } from './i18n'
+import type { QcTab } from './tabs'
 
 /*
  * The Supabase client is imported DYNAMICALLY, inside the effect, not at
@@ -144,6 +146,7 @@ const SEGMENTS: Array<{
 ]
 
 function FinishBar({ finish, cohorts }: { finish: Finish; cohorts: CohortRow[] }) {
+  const { t } = useQcT()
   const [open, setOpen] = React.useState<Progress | null>(null)
   const pctOf = (n: number) => (finish.total === 0 ? 0 : (100 * n) / finish.total)
   /* The headline count must agree with the percentage beside it, and
@@ -155,10 +158,10 @@ function FinishBar({ finish, cohorts }: { finish: Finish; cohorts: CohortRow[] }
   return (
     <div className={`${CARD} p-5`}>
       <div className="flex items-baseline justify-between gap-3 flex-wrap">
-        <h2 className="text-[15px] font-semibold text-gray-900">Bank optimization — how far in</h2>
+        <h2 className="text-[15px] font-semibold text-gray-900">{t('admin.bankQc.optimization')}</h2>
         <span className="text-[13px] tabular-nums text-gray-500">
           <strong className="text-[19px] text-gray-900 mr-1">{finish.pct}%</strong>
-          {finished.toLocaleString()} of {finish.total.toLocaleString()} attackable items finished
+          {t('admin.bankQc.finish.ofFinished', { finished: finished.toLocaleString(), total: finish.total.toLocaleString() })}
         </span>
       </div>
 
@@ -173,7 +176,7 @@ function FinishBar({ finish, cohorts }: { finish: Finish; cohorts: CohortRow[] }
             <button
               key={s.key}
               type="button"
-              aria-label={`${s.label}: ${n} items`}
+              aria-label={`${t(`admin.bankQc.finish.${s.key}`)}: ${n} items`}
               className={`${s.bar} h-full transition-opacity focus:outline-none focus-visible:ring-2 focus-visible:ring-gray-900 ${
                 open && open !== s.state ? 'opacity-40' : ''
               }`}
@@ -202,7 +205,7 @@ function FinishBar({ finish, cohorts }: { finish: Finish; cohorts: CohortRow[] }
               onClick={() => setOpen(open === s.state ? null : s.state)}
             >
               <span className={`inline-block h-2 w-2 rounded-full ${s.dot}`} />
-              <span>{s.label}</span>
+              <span>{t(`admin.bankQc.finish.${s.key}`)}</span>
               <span className="tabular-nums text-gray-400">{n.toLocaleString()}</span>
             </button>
           )
@@ -213,7 +216,7 @@ function FinishBar({ finish, cohorts }: { finish: Finish; cohorts: CohortRow[] }
 
       {!open && (
         <p className="mt-3 text-[12px] text-gray-400">
-          Hover a segment to see which cohorts are in it and what each one needs.
+          {t('admin.bankQc.finish.hover')}
         </p>
       )}
     </div>
@@ -224,6 +227,7 @@ function FinishBar({ finish, cohorts }: { finish: Finish; cohorts: CohortRow[] }
  *  concrete action for each — not a status word the reader has to
  *  translate into work. */
 function WhatIsLeft({ state, cohorts }: { state: Progress; cohorts: CohortRow[] }) {
+  const { t } = useQcT()
   const seg = SEGMENTS.find(s => s.state === state)
   const rows = cohorts.filter(c => c.progress === state)
     .sort((a, b) => b.multipleChoice - a.multipleChoice)
@@ -232,7 +236,7 @@ function WhatIsLeft({ state, cohorts }: { state: Progress; cohorts: CohortRow[] 
     <div className="mt-3 rounded-xl bg-gray-50 ring-1 ring-gray-100 p-3.5">
       <div className="flex items-center gap-1.5">
         <span className={`inline-block h-2 w-2 rounded-full ${seg?.dot}`} />
-        <span className="text-[12.5px] font-medium text-gray-900">{seg?.label}</span>
+        <span className="text-[12.5px] font-medium text-gray-900">{seg ? t(`admin.bankQc.finish.${seg.key}`) : null}</span>
       </div>
       <p className="text-[12px] text-gray-500 mt-1 leading-relaxed">{seg?.blurb}</p>
 
@@ -259,6 +263,7 @@ function WhatIsLeft({ state, cohorts }: { state: Progress; cohorts: CohortRow[] 
   )
 }
 
+const STATUS_KEY: Record<Status, string> = { ready: 'ready', 'spot-checked': 'spotChecked', guessable: 'guessable', 'badly-guessable': 'badlyGuessable', unmeasured: 'unmeasured', 'not-applicable': 'notApplicable' }
 const STATUS: Record<Status, { label: string; chip: string }> = {
   ready:             { label: 'Ready',             chip: 'bg-emerald-50 text-emerald-700 ring-emerald-200' },
   // A clean score on a small sample. Distinct from Ready ON PURPOSE: a
@@ -277,14 +282,17 @@ const STATUS: Record<Status, { label: string; chip: string }> = {
 const CARD = 'bg-white rounded-2xl ring-1 ring-gray-100/80 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_12px_-4px_rgba(0,0,0,0.06)]'
 
 function Chip({ status }: { status: Status }) {
+  const { t } = useQcT()
   return (
     <span className={`inline-flex shrink-0 whitespace-nowrap items-center rounded-full px-2 py-0.5 text-[11px] font-medium ring-1 ${STATUS[status].chip}`}>
-      {STATUS[status].label}
+      {t(`admin.bankQc.status.${STATUS_KEY[status]}`)}
     </span>
   )
 }
 
-export function LiveBankState() {
+export function LiveBankState({ tab }: { tab?: QcTab } = {}) {
+  const { t } = useQcT()
+  const hide = (own: QcTab) => tab !== undefined && tab !== 'all' && tab !== own
   const [data, setData] = React.useState<Live | null>(null)
   const [error, setError] = React.useState<string | null>(null)
 
@@ -330,42 +338,47 @@ export function LiveBankState() {
 
   return (
     <section className="mb-8 space-y-4">
+      <div hidden={hide('overview')}>
       {data.finish && <FinishBar finish={data.finish} cohorts={data.cohorts} />}
+      </div>
 
       {/* The one instrument no script here can talk itself into. Only
           cohorts the blind attack applies to — a maths cohort carries
           its whole problem in the stem, so "guess it from the options"
           is not a question about the item. */}
+      <div hidden={hide('review')}>
       <ReviewPanel
         domains={data.cohorts
           .filter(c => c.progress !== 'not-applicable')
           .map(c => c.domain)
           .filter((d, i, a) => a.indexOf(d) === i)}
       />
+      </div>
 
+      <div hidden={hide('overview')} className="space-y-4">
       <div className={`${CARD} p-5`}>
         <div className="flex items-baseline justify-between gap-3 flex-wrap">
-          <h2 className="text-[15px] font-semibold text-gray-900">Bank readiness — live</h2>
+          <h2 className="text-[15px] font-semibold text-gray-900">{t('admin.bankQc.readinessLive')}</h2>
           <span className="text-[11.5px] text-gray-400">
-            read from the database {new Date(data.generatedAt).toLocaleString()}
+            {t('admin.bankQc.readiness.readFrom', { when: new Date(data.generatedAt).toLocaleString() })}
           </span>
         </div>
         <p className="text-[12.5px] text-gray-500 mt-1 leading-relaxed">
-          {data.totals.items.toLocaleString()} live items · {data.totals.measured.toLocaleString()} measured
-          ({pctMeasured}%) · <strong className="text-violet-700">{data.totals.unmeasured.toLocaleString()} never measured</strong>.
-          A cohort that has not been attacked is unknown, not passing.
+          {t('admin.bankQc.readiness.summary', { items: data.totals.items.toLocaleString(), measured: data.totals.measured.toLocaleString(), pct: pctMeasured })}{' '}
+          <strong className="text-violet-700">{t('admin.bankQc.readiness.neverMeasured', { n: data.totals.unmeasured.toLocaleString() })}</strong>.{' '}
+          {t('admin.bankQc.readiness.rule')}
         </p>
 
         <div className="mt-4 overflow-x-auto">
           <table className="w-full text-[12.5px]">
             <thead>
               <tr className="text-left text-gray-400 border-b border-gray-100">
-                <th className="py-1.5 pr-3 font-medium">Cohort</th>
-                <th className="py-1.5 pr-3 font-medium text-right">Items</th>
-                <th className="py-1.5 pr-3 font-medium text-right">Measured</th>
-                <th className="py-1.5 pr-3 font-medium text-right">Blind score</th>
-                <th className="py-1.5 pr-3 font-medium text-right">All solvers</th>
-                <th className="py-1.5 font-medium">Status</th>
+                <th className="py-1.5 pr-3 font-medium">{t('admin.bankQc.readiness.cohort')}</th>
+                <th className="py-1.5 pr-3 font-medium text-right">{t('admin.bankQc.readiness.items')}</th>
+                <th className="py-1.5 pr-3 font-medium text-right">{t('admin.bankQc.readiness.measured')}</th>
+                <th className="py-1.5 pr-3 font-medium text-right">{t('admin.bankQc.readiness.blindScore')}</th>
+                <th className="py-1.5 pr-3 font-medium text-right">{t('admin.bankQc.readiness.allSolvers')}</th>
+                <th className="py-1.5 font-medium">{t('admin.bankQc.readiness.status')}</th>
               </tr>
             </thead>
             <tbody>
@@ -405,9 +418,11 @@ export function LiveBankState() {
           </table>
         </div>
       </div>
+      </div>
 
+      <div hidden={hide('runs')} className="space-y-4">
       <div className={`${CARD} p-5`}>
-        <h2 className="text-[15px] font-semibold text-gray-900">How these questions were made — live</h2>
+        <h2 className="text-[15px] font-semibold text-gray-900">{t('admin.bankQc.howMadeLive')}</h2>
         <p className="text-[12.5px] text-gray-500 mt-1 leading-relaxed">
           Authoring batches as recorded on the items themselves: where they came from,
           the method used, and how that batch scored when attacked.
@@ -454,7 +469,7 @@ export function LiveBankState() {
 
       {data.runs.length > 0 && (
         <div className={`${CARD} p-5`}>
-          <h2 className="text-[15px] font-semibold text-gray-900">Attack runs</h2>
+          <h2 className="text-[15px] font-semibold text-gray-900">{t('admin.bankQc.attackRuns')}</h2>
           <p className="text-[12.5px] text-gray-500 mt-1">
             Every measurement, newest first. Re-attacking uses a new run id, so a
             before/after comparison is never overwritten.
@@ -473,6 +488,7 @@ export function LiveBankState() {
           </ul>
         </div>
       )}
+      </div>
     </section>
   )
 }

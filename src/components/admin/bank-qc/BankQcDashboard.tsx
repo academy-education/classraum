@@ -1,3 +1,5 @@
+'use client'
+
 /**
  * Visibility over how question banks are built and checked.
  *
@@ -25,6 +27,9 @@ import { ItemSweepPanel } from './ItemSweepPanel'
 import { UnverifiedCount } from './UnverifiedCount'
 import { TASK_PIPELINES, type TaskPipeline } from '@/lib/study/task-pipelines'
 import { FAMILY_STAGES, type ItemFamily } from '@/lib/study/bank-qc'
+import { useEffect, useState } from 'react'
+import { useQcT } from './i18n'
+import { QC_TABS, tabFromSearch, type QcTab } from './tabs'
 
 const CARD = 'bg-white rounded-2xl ring-1 ring-gray-100/80 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_12px_-4px_rgba(0,0,0,0.06)]'
 
@@ -323,6 +328,13 @@ function CoverageGroup({ title, rows, auditFor, readiness }: {
 }
 
 export function BankQcDashboard() {
+  const { t } = useQcT()
+  const [tab, setTab] = useState<Exclude<QcTab, 'all'>>('overview')
+  useEffect(() => { setTab(tabFromSearch(window.location.search)) }, [])
+  const selectTab = (k: Exclude<QcTab, 'all'>) => {
+    setTab(k)
+    const u = new URL(window.location.href); u.searchParams.set('tab', k); window.history.replaceState(null, '', u.toString())
+  }
   const ledger = getLedger()
   const { baselines, batches, auditedCohorts, coverage } = ledger
 
@@ -358,23 +370,36 @@ export function BankQcDashboard() {
           every other admin page renders through AdminPageHeader. Same
           copy, same page; only the chrome is now shared. */}
       <AdminPageHeader
-        kicker="Quality"
-        title="Question bank QC"
-        description="How each batch of questions is authored and what every quality gate measured. Scores are shown as points above the cohort's own best fixed-letter control, because raw accuracy is meaningless when key positions are not uniform."
+        kicker={t('admin.bankQc.kicker')}
+        title={t('admin.bankQc.title')}
+        description={t('admin.bankQc.description')}
       />
       <header>
         <p className="text-[11px] text-gray-500">
-          Ledger generated {ledger.generatedAt} · updates on deploy, not live to the second
+          {t('admin.bankQc.ledgerGenerated', { date: ledger.generatedAt })}
         </p>
         <p className="text-[11px] text-amber-800 bg-amber-50/70 ring-1 ring-amber-100 rounded-lg px-3 py-2 mt-3 max-w-3xl leading-snug">
-          <strong>All solve numbers come from AI solvers, not students.</strong> No real test-taker
-          data exists yet — the 8 accounts on record are internal. Every figure here is valid as a
-          comparison against published ETS and College Board items measured the same way, and is
-          not a prediction of what a student would score. Two of the tells the solvers exploited —
-          eliminate absolutes, prefer the hedged option — are standard taught prep strategy, so a
-          coached student may exploit them more, not less. Unverified either way.
+          {t('admin.bankQc.aiNotice')}
         </p>
       </header>
+      {/* ── TABS ─────────────────────────────────────────────────────
+          Added 2026-09-02 after Andy called the page "super unorganized":
+          fourteen sections on one scroll, history interleaved with state.
+          Everything stays mounted (one live fetch), only visibility moves.
+          The URL carries ?tab= so a link lands on the right view. */}
+      <nav className="mt-4 flex flex-wrap gap-1 rounded-xl bg-gray-100 p-1" aria-label="Question bank QC sections">
+        {QC_TABS.map(k => (
+          <button
+            key={k} type="button" onClick={() => selectTab(k)}
+            aria-current={tab === k ? 'page' : undefined}
+            title={t(`admin.bankQc.tabHints.${k}`)}
+            className={`px-3.5 py-1.5 rounded-lg text-[13px] font-medium transition-colors ${
+              tab === k ? 'bg-white text-gray-900 shadow-sm ring-1 ring-gray-200' : 'text-gray-600 hover:text-gray-900'}`}
+          >
+            {t(`admin.bankQc.tabs.${k}`)}
+          </button>
+        ))}
+      </nav>
 
       {/* ── WHAT IS ACTUALLY WRONG ────────────────────────────────────
           Added 2026-08-11. Andy said twice that there was no visibility
@@ -388,8 +413,9 @@ export function BankQcDashboard() {
           Same source as REGISTER.md (lib/study/bank-register.ts), so
           the page and the file cannot drift — the failure that created
           this register in the first place. */}
+      <div hidden={tab !== 'overview'}>
       <section className="mt-6 rounded-2xl ring-1 ring-gray-200 bg-white p-5">
-        <h2 className="text-sm font-semibold text-gray-900">What is actually wrong</h2>
+        <h2 className="text-sm font-semibold text-gray-900">{t('admin.bankQc.whatIsWrong')}</h2>
 
         <div className="mt-3 grid gap-3 sm:grid-cols-2">
           <div className="rounded-xl bg-red-50/70 ring-1 ring-red-100 p-4">
@@ -397,11 +423,11 @@ export function BankQcDashboard() {
               {PLAIN_STATUS.brokenItems}
             </div>
             <div className="text-[12px] font-medium text-red-900 mt-0.5">
-              {PLAIN_STATUS.brokenCohort} — known broken
+              {t('admin.bankQc.knownBroken', { cohort: PLAIN_STATUS.brokenCohort })}
             </div>
             <p className="text-[11px] text-red-800/90 mt-1.5 leading-snug">
-              Solvable without the audio, agreed by two independent instruments.
-              {PLAIN_STATUS.brokenIsLive && <strong> Live to students right now.</strong>}
+              {t('admin.bankQc.knownBrokenWhy')}
+              {PLAIN_STATUS.brokenIsLive && <strong> {t('admin.bankQc.liveNow')}</strong>}
             </p>
           </div>
           {/* Counted from the bank at render time, not typed in. This
@@ -415,7 +441,7 @@ export function BankQcDashboard() {
         </p>
 
         <h3 className="text-[12px] font-semibold text-gray-900 mt-5">
-          Every attempt to fix {PLAIN_STATUS.brokenCohort}
+          {t('admin.bankQc.everyAttempt', { cohort: PLAIN_STATUS.brokenCohort })}
         </h3>
         <p className="text-[11px] text-gray-500 mt-1 max-w-3xl leading-snug">
           <span className="font-medium text-gray-700">blind</span> is how often three AI solvers
@@ -430,11 +456,11 @@ export function BankQcDashboard() {
           <table className="w-full text-[11.5px] border-collapse">
             <thead>
               <tr className="text-left text-gray-500">
-                <th className="py-1.5 pr-3 font-medium">attempt</th>
-                <th className="py-1.5 pr-3 font-medium">blind</th>
-                <th className="py-1.5 pr-3 font-medium">control</th>
-                <th className="py-1.5 pr-3 font-medium">gap</th>
-                <th className="py-1.5 font-medium">verdict</th>
+                <th className="py-1.5 pr-3 font-medium">{t('admin.bankQc.attemptTable.attempt')}</th>
+                <th className="py-1.5 pr-3 font-medium">{t('admin.bankQc.attemptTable.blind')}</th>
+                <th className="py-1.5 pr-3 font-medium">{t('admin.bankQc.attemptTable.control')}</th>
+                <th className="py-1.5 pr-3 font-medium">{t('admin.bankQc.attemptTable.gap')}</th>
+                <th className="py-1.5 font-medium">{t('admin.bankQc.attemptTable.verdict')}</th>
               </tr>
             </thead>
             <tbody>
@@ -474,13 +500,14 @@ export function BankQcDashboard() {
           </table>
         </div>
       </section>
+      </div>
 
       {/* LIVE — the database, read on every load. Placed FIRST because
           everything below it is the checked-in ledger file, and the
           ledger cannot answer "is this ready" (it does not know what is
           in the bank). Putting history above state is what made this
           page unreadable. */}
-      <LiveBankState />
+      <LiveBankState tab={tab} />
       {/*
         * MOUNTED HERE, NOT INSIDE LiveBankState.
         *
@@ -494,11 +521,16 @@ export function BankQcDashboard() {
         *
         * It fetches its own data and shows its own errors.
         */}
+      <div hidden={tab !== 'review'}>
       <ItemSweepPanel />
+      </div>
+      <div hidden={tab !== 'overview'}>
       <RegisterPanel />
+      </div>
 
+      <div hidden={tab !== 'runs'} className="space-y-6">
       <div className="pt-2 border-t border-gray-100">
-        <h2 className="text-[15px] font-semibold text-gray-900">Historical QC runs</h2>
+        <h2 className="text-[15px] font-semibold text-gray-900">{t('admin.bankQc.historicalRuns')}</h2>
         <p className="text-[12.5px] text-gray-500 mt-1 max-w-3xl leading-relaxed">
           Everything below comes from <code className="text-[11.5px]">scripts/study-bank/ledger.json</code>,
           a checked-in file that records batches we ran by hand. It updates on deploy and
@@ -509,30 +541,32 @@ export function BankQcDashboard() {
       {/* At-a-glance. Deliberately four numbers, not twelve — the point is to
           answer "how much do we have and how much of it is sound" in one look. */}
       <div className="grid gap-4 grid-cols-2 lg:grid-cols-4">
-        <Stat label="Questions banked" value={totalItems.toLocaleString()} sub="across TOEFL and SAT" />
+        <Stat label={t('admin.bankQc.stats.banked')} value={totalItems.toLocaleString()} sub={t('admin.bankQc.stats.bankedSub')} />
         <Stat
-          label="Full tests available"
+          label={t('admin.bankQc.stats.fullTests')}
           value={tightest.forms}
           sub={`${tightest.test} ${tightest.section} is scarcest — capped by ${tightest.limitedBy}`}
         />
         <Stat
-          label="Questions ready to serve"
+          label={t('admin.bankQc.stats.ready')}
           value={`${totals.ready.toLocaleString()} / ${totalItems.toLocaleString()}`}
           tone={totals.ready === 0 ? 'bad' : 'good'}
           sub={`${totals.failed.toLocaleString()} failed a gate · ${totals.partial.toLocaleString()} partly checked · ${totals.unverified.toLocaleString()} never checked`}
         />
         <Stat
-          label="Batches in QC"
+          label={t('admin.bankQc.stats.batches')}
           value={batches.filter(b => b.status !== 'inserted').length}
           sub={batches.length ? batches[0]!.id : 'none'}
         />
       </div>
+      </div>
 
       {/* Coverage — the "how many questions per test type" answer. */}
+      <div hidden={tab !== 'reference'} className="space-y-6">
       <section className={`${CARD} p-5`}>
         <div className="flex items-center gap-2 mb-1">
           <Layers className="w-4 h-4 text-gray-500" />
-          <h2 className="text-sm font-semibold text-gray-900">Coverage by test type</h2>
+          <h2 className="text-sm font-semibold text-gray-900">{t('admin.bankQc.coverage')}</h2>
         </div>
         <p className="text-xs text-gray-600 mb-4 max-w-3xl">
           Items banked, how many each test draws, and how many distinct tests that supports
@@ -552,7 +586,7 @@ export function BankQcDashboard() {
       <section className={`${CARD} p-5`}>
         <div className="flex items-center gap-2 mb-1">
           <ShieldCheck className="w-4 h-4 text-gray-500" />
-          <h2 className="text-sm font-semibold text-gray-900">Published baseline</h2>
+          <h2 className="text-sm font-semibold text-gray-900">{t('admin.bankQc.baseline')}</h2>
         </div>
         <p className="text-xs text-gray-600 mb-4 max-w-3xl">
           Official ETS and College Board items run through the identical attack. Real exams leak
@@ -582,7 +616,7 @@ export function BankQcDashboard() {
       <section className={`${CARD} p-5`}>
         <div className="flex items-center gap-2 mb-1">
           <Workflow className="w-4 h-4 text-gray-500" />
-          <h2 className="text-sm font-semibold text-gray-900">How questions are made</h2>
+          <h2 className="text-sm font-semibold text-gray-900">{t('admin.bankQc.howMade')}</h2>
         </div>
         <p className="text-xs text-gray-600 mb-5 max-w-3xl">
           Every task runs the same eight stages, but which gates apply depends on what is
@@ -627,12 +661,14 @@ export function BankQcDashboard() {
           </div>
         </div>
       </section>
+      </div>
 
       {/* Batches in flight */}
+      <div hidden={tab !== 'runs'} className="space-y-6">
       <section className={`${CARD} p-5`}>
         <div className="flex items-center gap-2 mb-4">
           <FlaskConical className="w-4 h-4 text-gray-500" />
-          <h2 className="text-sm font-semibold text-gray-900">Batches</h2>
+          <h2 className="text-sm font-semibold text-gray-900">{t('admin.bankQc.batches')}</h2>
         </div>
 
         {batches.length === 0 && (
@@ -706,7 +742,7 @@ export function BankQcDashboard() {
       <section className={`${CARD} p-5`}>
         <div className="flex items-center gap-2 mb-1">
           <XCircle className="w-4 h-4 text-gray-500" />
-          <h2 className="text-sm font-semibold text-gray-900">Cohorts already in the bank</h2>
+          <h2 className="text-sm font-semibold text-gray-900">{t('admin.bankQc.cohortsInBank')}</h2>
         </div>
         <p className="text-xs text-gray-600 mb-4 max-w-3xl">
           Every cohort already serving students, put through the same no-source attack: hide the
@@ -725,12 +761,12 @@ export function BankQcDashboard() {
           <table className="w-full text-sm">
             <thead>
               <tr className="text-left text-[11px] uppercase tracking-wide text-gray-500 border-b border-gray-100">
-                <th className="py-2 pr-4 font-medium">Task</th>
-                <th className="py-2 pr-4 font-medium text-right">Items</th>
-                <th className="py-2 pr-4 font-medium text-right">Blind</th>
-                <th className="py-2 pr-4 font-medium text-right">Control</th>
-                <th className="py-2 pr-4 font-medium text-right">Margin ↓</th>
-                <th className="py-2 pr-4 font-medium w-56">Guessability</th>
+                <th className="py-2 pr-4 font-medium">{t('admin.bankQc.cohortTable.task')}</th>
+                <th className="py-2 pr-4 font-medium text-right">{t('admin.bankQc.cohortTable.items')}</th>
+                <th className="py-2 pr-4 font-medium text-right">{t('admin.bankQc.cohortTable.blind')}</th>
+                <th className="py-2 pr-4 font-medium text-right">{t('admin.bankQc.cohortTable.control')}</th>
+                <th className="py-2 pr-4 font-medium text-right">{t('admin.bankQc.cohortTable.margin')}</th>
+                <th className="py-2 pr-4 font-medium w-56">{t('admin.bankQc.cohortTable.guessability')}</th>
               </tr>
             </thead>
             <tbody>
@@ -759,6 +795,7 @@ export function BankQcDashboard() {
           </table>
         </div>
       </section>
+      </div>
     </div>
   )
 }

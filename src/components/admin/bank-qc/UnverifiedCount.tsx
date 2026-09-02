@@ -2,6 +2,7 @@
 
 import React from 'react'
 import { PLAIN_STATUS, unverifiedItems } from '@/lib/study/bank-register'
+import { useQcT } from './i18n'
 
 /*
  * The Supabase client is imported DYNAMICALLY, inside the effect —
@@ -13,7 +14,7 @@ import { PLAIN_STATUS, unverifiedItems } from '@/lib/study/bank-register'
  */
 
 /**
- * The "Everything else — unverified" headline on /admin/bank-qc.
+ * The "{t('admin.bankQc.unverified.title')}" headline on /admin/bank-qc.
  *
  * ── What was wrong ───────────────────────────────────────────────────
  * This number was `PLAIN_STATUS.unverifiedItems`, a hand-typed 3,387.
@@ -35,6 +36,7 @@ import { PLAIN_STATUS, unverifiedItems } from '@/lib/study/bank-register'
  * in for the current bank.
  */
 export function UnverifiedCount() {
+  const { t } = useQcT()
   const [liveItems, setLiveItems] = React.useState<number | null>(null)
   const [error, setError] = React.useState<string | null>(null)
 
@@ -71,7 +73,7 @@ export function UnverifiedCount() {
           : value.toLocaleString()}
       </div>
       <div className="text-[12px] font-medium text-gray-900 mt-0.5">
-        Everything else — unverified
+        {t('admin.bankQc.unverified.title')}
       </div>
       <p className="text-[11px] text-gray-600 mt-1.5 leading-snug">
         Not known to be broken. Never read by a person. Blocked on{' '}
@@ -80,9 +82,9 @@ export function UnverifiedCount() {
       <p className="text-[10.5px] text-gray-500 mt-1.5 leading-snug">
         {value === null
           ? (error
-              ? <>Counted live from the bank — <span className="text-red-600">unavailable ({error})</span>. No stale figure is shown in its place.</>
-              : <>Counting live from the bank…</>)
-          : <>Counted live from the bank on load — the same rows the panel below reports as live items.</>}
+              ? <>{t('admin.bankQc.unverified.unavailable', { error })}</>
+              : <>{t('admin.bankQc.unverified.countingLive')}</>)
+          : <>{t('admin.bankQc.unverified.counted')}</>}
       </p>
     </div>
   )

@@ -14,6 +14,12 @@ import { render, screen } from '@testing-library/react'
 import { BankQcDashboard } from '../BankQcDashboard'
 import { getLedger, readinessTotals } from '@/lib/study/bank-ledger'
 
+// The dashboard's i18n wrapper reads LanguageContext, whose module imports
+// the supabase client; jest cannot load supabase's ESM realtime dependency.
+jest.mock('@/lib/supabase', () => ({
+  db: { auth: { getSession: async () => ({ data: { session: { access_token: 't' } } }) } },
+}))
+
 const REQUIRED = ['shape', 'withsource', 'nosource', 'elimination', 'tells']
 
 describe('BankQcDashboard', () => {

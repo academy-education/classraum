@@ -23,7 +23,9 @@ interface LanguageContextType {
   tList: (key: string) => unknown[]
 }
 
-const LanguageContext = createContext<LanguageContextType | undefined>(undefined)
+// Exported so a component can read the context WITHOUT the provider guard
+// (bank-qc panels render bare in tests and fall back to English there).
+export const LanguageContext = createContext<LanguageContextType | undefined>(undefined)
 
 // useLayoutEffect fires before the browser paints — that's what lets the
 // cookie language apply without a visible Korean→English flash — but React

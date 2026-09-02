@@ -1769,6 +1769,165 @@
       "partnerSetupFailed": "Failed to create PortOne partner for academy \"{academyName}\"",
       "paymentProcessingError": "Critical error during payment processing",
       "databaseError": "Database error during {operation}"
+    },
+    "bankQc": {
+      "kicker": "Quality",
+      "title": "Question bank QC",
+      "description": "How each batch of questions is authored and what every quality gate measured. Scores are shown as points above the cohort's own best fixed-letter control, because raw accuracy is meaningless when key positions are not uniform.",
+      "ledgerGenerated": "Ledger generated {date} · updates on deploy, not live to the second",
+      "aiNotice": "All solve numbers come from AI solvers, not students. No real test-taker data exists yet. Every figure here is a comparison against published ETS and College Board items measured the same way, not a prediction of what a student would score.",
+      "tabs": {
+        "overview": "Overview",
+        "review": "Human review",
+        "runs": "Measurements",
+        "reference": "Reference"
+      },
+      "tabHints": {
+        "overview": "What is broken, what is unread, what is left to do",
+        "review": "Blind sittings and the read-every-question sweep",
+        "runs": "Attack runs, batches, cohorts and history",
+        "reference": "Baselines and how questions are made"
+      },
+      "whatIsWrong": "What is actually wrong",
+      "knownBroken": "{cohort} — known broken",
+      "knownBrokenWhy": "Solvable without the audio, agreed by two independent instruments.",
+      "liveNow": "Live to students right now.",
+      "everyAttempt": "Every attempt to fix {cohort}",
+      "attemptTable": {
+        "attempt": "attempt",
+        "blind": "blind",
+        "control": "control",
+        "gap": "gap",
+        "verdict": "verdict",
+        "notRecorded": "not recorded"
+      },
+      "verdict": {
+        "cleared": "cleared",
+        "inconclusive": "inconclusive",
+        "failed": "failed",
+        "refuted": "refuted"
+      },
+      "optimization": "Bank optimization — how far in",
+      "readinessLive": "Bank readiness — live",
+      "howMadeLive": "How these questions were made — live",
+      "attackRuns": "Attack runs",
+      "historicalRuns": "Historical QC runs",
+      "stats": {
+        "banked": "Questions banked",
+        "bankedSub": "across TOEFL and SAT",
+        "fullTests": "Full tests available",
+        "ready": "Questions ready to serve",
+        "batches": "Batches in QC"
+      },
+      "coverage": "Coverage by test type",
+      "baseline": "Published baseline",
+      "howMade": "How questions are made",
+      "batches": "Batches",
+      "cohortsInBank": "Cohorts already in the bank",
+      "cohortTable": {
+        "task": "Task",
+        "items": "Items",
+        "blind": "Blind",
+        "control": "Control",
+        "margin": "Margin ↓",
+        "guessability": "Guessability"
+      },
+      "register": {
+        "title": "What is left on the bank",
+        "needsYou": "Needs you"
+      },
+      "unverified": {
+        "title": "Everything else — unverified",
+        "countingLive": "Counting live from the bank…",
+        "counted": "Counted live from the bank on load — the same rows the panel below reports as live items.",
+        "unavailable": "Counted live from the bank — unavailable ({error}). No stale figure is shown in its place."
+      },
+      "review": {
+        "title": "Human review",
+        "intro": "Guess the answer from the four options alone, then judge the item with the stimulus shown. The first answer is sealed before the second question appears — the server does not send the stimulus until you have picked.",
+        "cohort": "Cohort",
+        "items": "Items",
+        "start": "Start a sitting",
+        "startHint": "The sample is drawn and recorded before you see anything, so skipped items stay in the denominator. 20+ is needed before a good result counts as a verdict.",
+        "mirrorLabel": "Or sit someone else's run, item for item",
+        "mirrorButton": "Mirror this run",
+        "mirrorHint": "Must be a DIFFERENT account from the one that sat the original — the same account means one reviewer id, and a reviewer agreeing with themselves is not a measurement.",
+        "blindQuestion": "Blind — no stimulus. Which is the intended answer?",
+        "blindHint": "Pick the one you think is intended, even when you are unsure — being unsure is the normal state here, because the source is hidden. If nothing points anywhere, choose at random and move on.",
+        "gotItBlind": "You got it blind — that counts against the item",
+        "notGuessable": "Not guessable from the options",
+        "noStimulus": "no stimulus stored",
+        "onlyDefensible": "Is the highlighted answer the only defensible one?",
+        "unique": "Only defensible answer",
+        "alternative": "Another is also defensible",
+        "broken": "No unique answer / key is wrong",
+        "realism": "Does it read like a real published item?",
+        "authentic": "Authentic",
+        "artificial": "Authored to a template",
+        "notePlaceholder": "Optional — what gave it away, or which other option works",
+        "nextItem": "Next item",
+        "sittings": "Sittings",
+        "anotherReviewer": "another reviewer",
+        "answered": "{answered}/{drawn} answered",
+        "judgedLine": "{reviewed} judged · {unique} clean · {alternative} soft · {broken} broken · {artificial} read as templated",
+        "status": {
+          "leaks": "Items leak",
+          "clean": "Clean",
+          "inconclusive": "Promising, not proven",
+          "notEnough": "Not enough yet"
+        }
+      },
+      "sweep": {
+        "title": "Read every question — SSAT & ISEE",
+        "test": "Test",
+        "bothTests": "Both tests",
+        "section": "Section",
+        "allSections": "All sections",
+        "verbal": "Verbal",
+        "math": "Math",
+        "reading": "Reading",
+        "status": "Status",
+        "anyStatus": "Any status",
+        "todo": "Not yet reviewed",
+        "keep": "Kept",
+        "flag": "Flagged",
+        "reject": "Rejected",
+        "searchPlaceholder": "Search question, options, skill…",
+        "passage": "Passage",
+        "notePlaceholder": "Note — what is wrong, or what to change",
+        "noItems": "No items match these filters."
+      },
+      "finish": {
+        "done": "Finished",
+        "humanCleared": "Cleared by hand",
+        "spotChecked": "In band, needs more measuring",
+        "unmeasured": "Not measured",
+        "tooHard": "Below the band",
+        "unconfirmed": "Model says guessable — unconfirmed",
+        "tooEasy": "Too guessable — confirmed by hand",
+        "ofFinished": "{finished} of {total} attackable items finished",
+        "hover": "Hover a segment to see which cohorts are in it and what each one needs."
+      },
+      "readiness": {
+        "readFrom": "read from the database {when}",
+        "summary": "{items} live items · {measured} measured ({pct}%) ·",
+        "neverMeasured": "{n} never measured",
+        "rule": "A cohort that has not been attacked is unknown, not passing.",
+        "cohort": "Cohort",
+        "items": "Items",
+        "measured": "Measured",
+        "blindScore": "Blind score",
+        "allSolvers": "All solvers",
+        "status": "Status"
+      },
+      "status": {
+        "ready": "Ready",
+        "spotChecked": "Spot-checked only",
+        "guessable": "Too guessable",
+        "badlyGuessable": "Far too guessable",
+        "unmeasured": "Not measured",
+        "notApplicable": "N/A — no options"
+      }
     }
   },
   "classrooms": {

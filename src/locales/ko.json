@@ -1769,6 +1769,165 @@
       "partnerSetupFailed": "학원 \"{academyName}\"의 PortOne 파트너 생성에 실패했습니다",
       "paymentProcessingError": "결제 처리 중 심각한 오류가 발생했습니다",
       "databaseError": "{operation} 중 데이터베이스 오류가 발생했습니다"
+    },
+    "bankQc": {
+      "kicker": "품질",
+      "title": "문항 은행 QC",
+      "description": "문항 배치가 어떻게 작성되었고 각 품질 게이트가 무엇을 측정했는지 보여줍니다. 점수는 해당 코호트의 최선 고정 선택지 대조군 대비 초과 포인트로 표시합니다. 정답 위치가 균일하지 않으면 원점수만으로는 의미가 없기 때문입니다.",
+      "ledgerGenerated": "원장 생성 {date} · 배포 시 갱신되며 실시간이 아닙니다",
+      "aiNotice": "모든 풀이 수치는 학생이 아닌 AI 솔버의 결과입니다. 실제 응시자 데이터는 아직 없습니다. 이 수치는 같은 방식으로 측정한 ETS·College Board 공개 문항과의 비교이며, 학생의 예상 점수가 아닙니다.",
+      "tabs": {
+        "overview": "개요",
+        "review": "사람 검토",
+        "runs": "측정 기록",
+        "reference": "참고 자료"
+      },
+      "tabHints": {
+        "overview": "무엇이 깨졌고, 무엇을 아직 읽지 않았고, 무엇이 남았는지",
+        "review": "블라인드 검토와 전체 문항 읽기",
+        "runs": "공격 실행, 배치, 코호트, 이력",
+        "reference": "기준선과 문항 제작 방식"
+      },
+      "whatIsWrong": "실제로 무엇이 문제인가",
+      "knownBroken": "{cohort} — 결함 확인",
+      "knownBrokenWhy": "음성 없이도 풀 수 있음 — 두 개의 독립된 방법으로 확인.",
+      "liveNow": "지금 학생에게 노출 중입니다.",
+      "everyAttempt": "{cohort} 수정 시도 전체",
+      "attemptTable": {
+        "attempt": "시도",
+        "blind": "블라인드",
+        "control": "대조군",
+        "gap": "차이",
+        "verdict": "판정",
+        "notRecorded": "기록 없음"
+      },
+      "verdict": {
+        "cleared": "통과",
+        "inconclusive": "미확정",
+        "failed": "실패",
+        "refuted": "반증됨"
+      },
+      "optimization": "은행 최적화 — 진행률",
+      "readinessLive": "은행 준비 상태 — 실시간",
+      "howMadeLive": "문항 제작 이력 — 실시간",
+      "attackRuns": "공격 실행",
+      "historicalRuns": "과거 QC 실행",
+      "stats": {
+        "banked": "보유 문항",
+        "bankedSub": "TOEFL·SAT 합계",
+        "fullTests": "제공 가능한 전체 시험",
+        "ready": "제공 가능 문항",
+        "batches": "QC 진행 중 배치"
+      },
+      "coverage": "시험 유형별 보유량",
+      "baseline": "공개 기준선",
+      "howMade": "문항 제작 방식",
+      "batches": "배치",
+      "cohortsInBank": "은행에 등록된 코호트",
+      "cohortTable": {
+        "task": "과제",
+        "items": "문항",
+        "blind": "블라인드",
+        "control": "대조군",
+        "margin": "차이 ↓",
+        "guessability": "추측 가능성"
+      },
+      "register": {
+        "title": "남은 작업",
+        "needsYou": "직접 필요"
+      },
+      "unverified": {
+        "title": "나머지 전부 — 미검증",
+        "countingLive": "은행에서 실시간 집계 중…",
+        "counted": "로드 시 은행에서 실시간 집계 — 아래 패널의 실시간 문항과 같은 행입니다.",
+        "unavailable": "실시간 집계 실패 ({error}). 오래된 수치는 표시하지 않습니다."
+      },
+      "review": {
+        "title": "사람 검토",
+        "intro": "네 개의 선택지만 보고 정답을 추측한 뒤, 지문을 보고 문항을 판정합니다. 첫 답은 두 번째 질문이 나타나기 전에 봉인됩니다 — 서버는 선택 전까지 지문을 보내지 않습니다.",
+        "cohort": "코호트",
+        "items": "문항 수",
+        "start": "검토 시작",
+        "startHint": "표본은 화면에 보이기 전에 추출·기록되므로 건너뛴 문항도 분모에 남습니다. 결과가 판정으로 인정되려면 20문항 이상이 필요합니다.",
+        "mirrorLabel": "또는 다른 사람의 검토를 같은 문항으로 진행",
+        "mirrorButton": "이 검토 미러링",
+        "mirrorHint": "원래 검토한 계정과 다른 계정이어야 합니다 — 같은 계정은 같은 검토자이며, 자기 자신과의 일치는 측정이 아닙니다.",
+        "blindQuestion": "블라인드 — 지문 없음. 의도된 정답은?",
+        "blindHint": "확신이 없어도 의도된 답이라고 생각하는 것을 고르세요 — 지문이 숨겨져 있으니 불확실한 것이 정상입니다. 아무 단서도 없으면 무작위로 고르고 넘어가세요.",
+        "gotItBlind": "블라인드로 맞혔습니다 — 문항에는 불리한 결과입니다",
+        "notGuessable": "선택지만으로는 추측 불가",
+        "noStimulus": "저장된 지문 없음",
+        "onlyDefensible": "강조된 답이 유일하게 타당한 답입니까?",
+        "unique": "유일하게 타당한 답",
+        "alternative": "다른 답도 타당함",
+        "broken": "유일한 답 없음 / 정답 오류",
+        "realism": "실제 출제 문항처럼 읽힙니까?",
+        "authentic": "실제 문항 같음",
+        "artificial": "틀에 맞춰 작성됨",
+        "notePlaceholder": "선택 — 무엇이 답을 드러냈는지, 또는 어떤 다른 선택지가 성립하는지",
+        "nextItem": "다음 문항",
+        "sittings": "검토 기록",
+        "anotherReviewer": "다른 검토자",
+        "answered": "{answered}/{drawn} 응답",
+        "judgedLine": "{reviewed} 판정 · {unique} 정상 · {alternative} 약함 · {broken} 결함 · {artificial} 틀에 맞춘 문항",
+        "status": {
+          "leaks": "문항 누출",
+          "clean": "정상",
+          "inconclusive": "유망하나 미입증",
+          "notEnough": "표본 부족"
+        }
+      },
+      "sweep": {
+        "title": "전체 문항 읽기 — SSAT & ISEE",
+        "test": "시험",
+        "bothTests": "두 시험 모두",
+        "section": "섹션",
+        "allSections": "전체 섹션",
+        "verbal": "어휘",
+        "math": "수학",
+        "reading": "독해",
+        "status": "상태",
+        "anyStatus": "전체 상태",
+        "todo": "미검토",
+        "keep": "유지",
+        "flag": "표시",
+        "reject": "제외",
+        "searchPlaceholder": "문항, 선택지, 기술 검색…",
+        "passage": "지문",
+        "notePlaceholder": "메모 — 무엇이 잘못됐는지, 무엇을 바꿔야 하는지",
+        "noItems": "조건에 맞는 문항이 없습니다."
+      },
+      "finish": {
+        "done": "완료",
+        "humanCleared": "사람 검토로 통과",
+        "spotChecked": "기준 범위 내, 추가 측정 필요",
+        "unmeasured": "미측정",
+        "tooHard": "기준 범위 미달",
+        "unconfirmed": "모델은 추측 가능 판정 — 미확인",
+        "tooEasy": "추측 가능 — 사람이 확인",
+        "ofFinished": "공격 가능 문항 {total}개 중 {finished}개 완료",
+        "hover": "구간에 마우스를 올리면 포함된 코호트와 필요한 조치를 볼 수 있습니다."
+      },
+      "readiness": {
+        "readFrom": "데이터베이스 조회 {when}",
+        "summary": "실시간 문항 {items}개 · 측정 {measured}개 ({pct}%) ·",
+        "neverMeasured": "미측정 {n}개",
+        "rule": "공격을 받지 않은 코호트는 통과가 아니라 미확인입니다.",
+        "cohort": "코호트",
+        "items": "문항",
+        "measured": "측정",
+        "blindScore": "블라인드 점수",
+        "allSolvers": "전원 정답",
+        "status": "상태"
+      },
+      "status": {
+        "ready": "준비됨",
+        "spotChecked": "표본만 확인",
+        "guessable": "추측 가능",
+        "badlyGuessable": "매우 추측 가능",
+        "unmeasured": "미측정",
+        "notApplicable": "해당 없음 — 선택지 없음"
+      }
     }
   },
   "dashboard": {
