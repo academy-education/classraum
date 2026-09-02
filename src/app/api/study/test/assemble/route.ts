@@ -231,13 +231,22 @@ export async function POST(req: NextRequest) {
     }
   }
 
+  // The session's language drives every piece of test-screen chrome
+  // (Pause, module badge, the result page's scale note). It was hardcoded
+  // 'en' here, so a Korean student sat a bank test in English chrome while
+  // the rest of the app was Korean (found in the 2026-09-02 store-screenshot
+  // review). Bank items themselves stay English; only the chrome follows.
+  const { data: langPref } = await dbAdmin
+    .from('user_preferences').select('language').eq('user_id', user.id).maybeSingle()
+  const sessionLanguage = langPref?.language === 'korean' ? 'ko' : 'en'
+
   // Assemble from the bank. Seed with the (not-yet-created) session id so
   // the shuffle is stable per session; fall back to a fresh session first.
   const { data: sess, error: sessErr } = await dbAdmin
     .from('study_sessions')
     .insert({
       student_id: user.id, topic_id: SECTION_TOPIC[family][section], mode: 'full_test',
-      status: 'active', language: 'en', generation_status: 'ready',
+      status: 'active', language: sessionLanguage, generation_status: 'ready',
       config: { source: 'bank', family, section, ...(adaptive ? { adaptive: true } : {}), ...(pathNode ? { pathNode } : {}) },
     })
     .select('id')

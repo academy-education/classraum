@@ -1607,7 +1607,7 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
                   ? 'bg-amber-50 text-amber-800 ring-amber-200'
                   : 'bg-primary/10 text-primary ring-primary/20'
               }`}>
-                {isModule2 ? 'Module 2' : 'Module 1'}
+                {ko ? (isModule2 ? '모듈 2' : '모듈 1') : (isModule2 ? 'Module 2' : 'Module 1')}
               </span>
             </div>
           )

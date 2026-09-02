@@ -1955,7 +1955,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
                 <div className="flex items-start justify-between mb-3">
                   <div className="min-w-0">
                     <div className="flex items-center gap-1.5 mb-1 min-w-0">
-                      <p className={`text-[10px] font-semibold uppercase tracking-[0.1em] ${stateColor}`}>
+                      <p className={`text-[10px] font-semibold uppercase tracking-[0.1em] whitespace-nowrap shrink-0 ${stateColor}`}>
                         {stateLabel}
                       </p>
                       {/* Camp classrooms look identical to ordinary ones
@@ -1964,7 +1964,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
                           quota. Name the camp so it is obvious which. */}
                       {classroom.camp_program_id && (
                         <span
-                          className="inline-flex items-center gap-1 rounded px-1.5 py-0.5 bg-violet-50 text-violet-700 dark:bg-violet-950 dark:text-violet-300 text-[10px] font-semibold uppercase tracking-[0.08em] max-w-[10rem]"
+                          className="inline-flex items-center gap-1 rounded px-1.5 py-0.5 bg-violet-50 text-violet-700 dark:bg-violet-950 dark:text-violet-300 text-[10px] font-semibold uppercase tracking-[0.08em] max-w-[10rem] min-w-0"
                           title={campById.get(classroom.camp_program_id)?.name ?? String(t('navigation.camp'))}
                         >
                           <Tent className="w-3 h-3 flex-shrink-0" strokeWidth={2} />

@@ -3711,7 +3711,8 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
     const [hours, minutes] = time.split(':')
     const hour12 = parseInt(hours) === 0 ? 12 : parseInt(hours) > 12 ? parseInt(hours) - 12 : parseInt(hours)
     const ampm = parseInt(hours) >= 12 ? t('sessions.pm') : t('sessions.am')
-    return `${hour12}:${minutes} ${ampm}`
+    // Korean writes the meridiem first: 오후 6:00, never 6:00 오후.
+    return language === 'korean' ? `${ampm} ${hour12}:${minutes}` : `${hour12}:${minutes} ${ampm}`
   }
 
   const formatDate = useMemo(() => {

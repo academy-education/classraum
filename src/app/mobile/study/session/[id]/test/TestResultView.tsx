@@ -316,6 +316,8 @@ export function TestResultView({
           {model.family === 'toefl' && scoreReady && (
             <div className="mt-5 space-y-2.5">
               <ScaleRow
+
+                ko={ko}
                 label={ko ? '밴드 점수' : 'Band score'}
                 /* One band function for all four sections. The two used
                    to differ only in how the proportion was reached, and
@@ -330,6 +332,8 @@ export function TestResultView({
                          : 'This section only. Your overall score averages all four.'}
               />
               <ScaleRow
+
+                ko={ko}
                 label={ko ? '획득 점수' : 'Points earned'}
                 value={String(displayPoints?.earned ?? 0)}
                 min={0} max={displayPoints?.max ?? 0}
@@ -371,6 +375,8 @@ export function TestResultView({
           {(model.family === 'ssat' || model.family === 'isee') && admission && scoreReady && (
             <div className="mt-5 space-y-2.5">
               <ScaleRow
+
+                ko={ko}
                 label={ko ? '원점수' : 'Raw score'}
                 value={String(admission.raw)}
                 min={model.family === 'ssat' ? -Math.round(admission.maxRaw / 4) : 0}
@@ -399,6 +405,8 @@ export function TestResultView({
           {model.family === 'act' && act && scoreReady && (
             <div className="mt-5 space-y-2.5">
               <ScaleRow
+
+                ko={ko}
                 label={ko ? '원점수' : 'Raw score'}
                 value={String(act.raw)}
                 min={0}
@@ -421,6 +429,8 @@ export function TestResultView({
           {model.family === 'sat' && sat && (
             <div className="mt-5 space-y-2.5">
               <ScaleRow
+
+                ko={ko}
                 label={ko ? '예상 섹션 점수' : 'Est. section score'}
                 value={String(sat.score)}
                 min={200} max={800}
@@ -812,9 +822,9 @@ function CountUp({ value, durationMs = 900 }: { value: number; durationMs?: numb
  * A TOEFL band of 1.0 is the worst possible result and must read as an
  * empty bar; value/max would have shown it 17% full.
  */
-function ScaleRow({ label, value, min, max, fraction, note }: {
+function ScaleRow({ label, value, min, max, fraction, note, ko = false }: {
   label: string; value: string; min: number; max: number
-  fraction: number; note: string
+  fraction: number; note: string; ko?: boolean
 }) {
   return (
     <div className="rounded-2xl bg-white/12 ring-1 ring-white/20 backdrop-blur-sm px-3.5 py-3">
@@ -836,7 +846,7 @@ function ScaleRow({ label, value, min, max, fraction, note }: {
           around each other into an L. The floor still has to be stated —
           TOEFL bands start at 1, not 0, so an empty meter is a 1.0. */}
       <p className="text-[10.5px] opacity-75 leading-snug mt-2">
-        <span className="font-semibold opacity-90 tabular-nums">{min}–{max} scale.</span>{' '}
+        <span className="font-semibold opacity-90 tabular-nums">{min}–{max} {ko ? '점 척도.' : 'scale.'}</span>{' '}
         {note}
       </p>
     </div>

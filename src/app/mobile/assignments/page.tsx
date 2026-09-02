@@ -2524,7 +2524,7 @@ function MobileAssignmentsPageContent() {
                         <span className="flex items-center gap-1">
                           <Calendar className="w-3.5 h-3.5" strokeWidth={1.75} />
                           <span className="truncate">
-                            {t('mobile.assignments.dueDate')}: {formatDueDate(assignment.due_date)}, 2025
+                            {t('mobile.assignments.dueDate')}: {formatDueDate(assignment.due_date)}
                           </span>
                         </span>
                         {/* Padded to the 44px floor. This was 16px tall —

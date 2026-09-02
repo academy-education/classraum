@@ -812,7 +812,8 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
     const [hours, minutes] = time.split(':')
     const hour12 = parseInt(hours) === 0 ? 12 : parseInt(hours) > 12 ? parseInt(hours) - 12 : parseInt(hours)
     const ampm = parseInt(hours) >= 12 ? t('attendance.pm') : t('attendance.am')
-    return `${hour12}:${minutes} ${ampm}`
+    // Korean writes the meridiem first: 오후 6:00, never 6:00 오후.
+    return language === 'korean' ? `${ampm} ${hour12}:${minutes}` : `${hour12}:${minutes} ${ampm}`
   }
 
   const formatSessionTime = (sessionTime: string) => {
@@ -1049,7 +1050,7 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
             <div className="w-7 h-7 rounded-lg bg-primary/10 flex items-center justify-center">
               <UserCheck className="w-3.5 h-3.5 text-primary" strokeWidth={2.25} />
             </div>
-            <p className="text-[11px] font-semibold uppercase tracking-[0.1em] text-gray-500">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.1em] text-gray-500 whitespace-nowrap">
               {attendanceSearchQuery ? t("attendance.filteredResults") : t("attendance.title")}
             </p>
           </div>
@@ -1077,7 +1078,7 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
             <div className="w-7 h-7 rounded-lg bg-amber-50 flex items-center justify-center">
               <Filter className="w-3.5 h-3.5 text-amber-600" strokeWidth={2.25} />
             </div>
-            <p className="text-[11px] font-semibold uppercase tracking-[0.1em] text-gray-500">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.1em] text-gray-500 whitespace-nowrap">
               {t("attendance.pendingAttendance")}
             </p>
           </div>
