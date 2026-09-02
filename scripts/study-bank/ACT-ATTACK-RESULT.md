@@ -16,6 +16,7 @@ Source withheld, three independent solvers per file, persisted in
 | act-english-pow-split-…-f1..f4 | 60 | 76.1 | 33-47 | +33..+47 | leakage-free, one item per passage per solver |
 | act-reading-{kid,cs,iki}-2026-09-02 | 108 | 98 / 98 / 85 | 33-37 | +51..+65 | round 1, interleaved |
 | act-reading-split-…-f1..f3 | 36 | 78.7 | 41.7 | +28..+56 | after FULL distractor rewrite, leakage-free |
+| act-english-pow-r3-…-f1,f2 | 20 | 92.9 / 100 | 43 / 50 | +50 | purpose + would-lose items after a THIRD, narrowly-briefed pass (four equal blurbs; locator-only stems) - worse |
 
 Math is gated by the sandbox (135/135 recompute, my own mutations
 caught) and was not attacked; its option sets are numbers.
@@ -46,7 +47,7 @@ distractors are flat absolutes. Rewrite brief: make distractors equally
 hedged, specific, passage-anchored, wrong on a checkable point.
 Round 2 tell, in the solvers' words: "the key is the plain, short,
 neutral option; the fillers over-commit to specific facts." The brief
-produced its mirror image. A third brief would produce a third tell.
+produced its mirror image. A third brief DID produce a third tell: the 20 purpose / would-lose items were rewritten to "four equally essay-shaped blurbs" and scored 92.9% and 100%. Six solvers named it the same way - one Yes option in every purpose item is written to defeat its own premise ("Yes... scouts as elder bees the swarm defers to" for "without a leader"), and the real blurb restates the stem's purpose. Three briefs, three tells, no movement.
 This is the corollary already in CLAUDE.md, observed live three times
 in one day.
 
