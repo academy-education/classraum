@@ -115,7 +115,7 @@ export function CampReviewPresenter({ title, testFamily, questions, onClose }: C
                       isKey(choice) ? 'bg-emerald-500 text-white' : 'bg-gray-100 text-gray-600'
                     }`}
                   >
-                    {choiceLabel(testFamily, i)}
+                    {choiceLabel(testFamily, i, index)}
                   </span>
                   <span className="flex-1 whitespace-pre-wrap">{normalizeDisplayText(choice)}</span>
                   {isKey(choice) && (
