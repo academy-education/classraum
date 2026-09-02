@@ -190,13 +190,19 @@ export function testFormatGuidanceEn(family: TestFamily, section: string | null)
 
     case 'act': return [
       'This is the ACT, an alternative to the SAT for US college admissions.',
-      'Format: 4-choice multiple choice for English/Reading/Science; 5-choice for Math.',
+      // Enhanced ACT (all forms from spring 2026). Verified against ACT's own
+      // 2025-26 practice forms 25MC1/25MC5 on 2026-09-02: EVERY section is
+      // 4-choice, Math included. The previous text here said "5-choice for
+      // Math" and "60 questions in 60 minutes" - the legacy format, retired
+      // Sept 2025. This string is injected into generation prompts, so the
+      // stale version was asking the model to write the wrong test.
+      'Format: 4-choice multiple choice in every section, Math included (Enhanced ACT). Odd-numbered items are lettered A-D, even-numbered F-J.',
       section === 'English'
-        ? 'English: short passages with underlined portions; pick the best revision or NO CHANGE.'
+        ? 'English: 50 questions in 35 minutes. Five passages of ten questions each; each item has an explicit stem and "No Change" is the first option where offered.'
         : section === 'Math'
-          ? 'Math: 60 questions in 60 minutes covering algebra, geometry, trig. 5 choices.'
+          ? 'Math: 45 questions in 50 minutes covering number & quantity, algebra, functions, geometry, statistics & probability. 4 choices. Calculator allowed.'
           : section === 'Reading'
-            ? 'Reading: 4 long passages, 10 questions each, vary genre (prose fiction, social science, humanities, natural science).'
+            ? 'Reading: 36 questions in 40 minutes. Four passages of nine questions - literary narrative (a paired Passage A/B set), social science, humanities, natural science; one may carry a table or graph.'
             : section === 'Science'
               ? 'Science: data interpretation + experiment summaries + conflicting viewpoints. Tests reasoning, not recall.'
               : '',
@@ -307,13 +313,13 @@ export function testFormatGuidanceKo(family: TestFamily, section: string | null)
 
     case 'act': return [
       'ACT — SAT의 대안인 미국 대학입학시험.',
-      '형식: English/Reading/Science는 4지선다, Math는 5지선다.',
+      '형식: 모든 영역이 4지선다이며 수학도 포함(Enhanced ACT). 홀수 문항은 A-D, 짝수 문항은 F-J로 표기.',
       section === 'English' || section === '영어'
-        ? 'English: 짧은 지문에 밑줄 친 부분의 가장 좋은 수정 또는 NO CHANGE 선택.'
+        ? 'English: 35분 50문항. 지문 5개, 각 10문항. 모든 문항에 명시적 발문이 있고 "No Change"가 제시될 때는 첫 보기.'
         : section === 'Math' || section === '수학'
-          ? '수학: 60분 60문항, 대수·기하·삼각법, 5지선다.'
+          ? '수학: 50분 45문항, 수와 양·대수·함수·기하·통계와 확률. 4지선다. 계산기 사용 가능.'
           : section === 'Reading' || section === '읽기'
-            ? '4개의 긴 지문, 각 10문항, 장르 다양(픽션·사회과학·인문·자연과학).'
+            ? '읽기: 40분 36문항. 지문 4개, 각 9문항 - 문학 서사(A/B 짝지문), 사회과학, 인문, 자연과학. 한 지문에 표나 그래프가 붙을 수 있음.'
             : section === 'Science' || section === '과학'
               ? '과학: 자료 해석, 실험 요약, 상반된 견해. 암기보다 추론을 평가합니다.'
               : '',
