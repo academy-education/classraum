@@ -1875,7 +1875,11 @@
           "clean": "Clean",
           "inconclusive": "Promising, not proven",
           "notEnough": "Not enough yet"
-        }
+        },
+        "blindHintLead": "Pick the one you think is intended, even when you are unsure — being unsure is the normal state here, because the source is hidden. If three look wrong, or one looks longer, more hedged or more test-like, ",
+        "blindHintStrong": "that is the answer to pick",
+        "blindHintTail": ": the hunch is exactly what is being measured. If nothing points anywhere, choose at random and move on — random is what the 25% baseline is for.",
+        "agreement": "Agreement between reviewers"
       },
       "sweep": {
         "title": "Read every question — SSAT & ISEE",
@@ -1895,7 +1899,21 @@
         "searchPlaceholder": "Search question, options, skill…",
         "passage": "Passage",
         "notePlaceholder": "Note — what is wrong, or what to change",
-        "noItems": "No items match these filters."
+        "noItems": "No items match these filters.",
+        "alreadyChecked": "Already checked — skip these",
+        "checked1": "Whether the answer is guessable from the options alone — every cohort passed a blind attack where solvers saw only the choices.",
+        "checked2": "Answer-letter spread, key length, duplicate option sets, reused stems.",
+        "checked3": "The arithmetic in maths items — each was re-solved in a sandbox.",
+        "personCatches": "What only a person catches",
+        "catch1Lead": "Two defensible answers",
+        "catch1": " — the most common real defect. Can you argue a distractor from the passage or stem?",
+        "catch2Lead": "Wrong key",
+        "catch2": " — solve it yourself before looking at the mark.",
+        "catch3Lead": "Grade fit",
+        "catch3": " — these are middle-school exams.",
+        "catch4": "Tone, cultural assumptions, and whether the difficulty label matches.",
+        "readingLead": "Reading works differently.",
+        "readingBody": " Each passage exists in four or five parallel versions differing on a few facts, and the one shown was picked at random after the questions were frozen — that is why the answer cannot be guessed. The side effect is that a wrong option is another version’s correct answer, so an option that looks nearly right is exactly the defect to flag. Judge it against the passage on screen only."
       },
       "finish": {
         "done": "Finished",
@@ -1927,7 +1945,10 @@
         "badlyGuessable": "Far too guessable",
         "unmeasured": "Not measured",
         "notApplicable": "N/A — no options"
-      }
+      },
+      "coverageBlurb": "Items banked, how many each test draws, and how many distinct tests that supports before questions repeat. A section can only run as many tests as its scarcest task allows, so the capping task is listed first in each group.",
+      "baselineBlurb": "Official ETS and College Board items run through the identical attack. Real exams leak too — but how much depends entirely on the format, from +13 for a short two-speaker exchange to +68.8 for a lecture set, where world knowledge alone often decides the answer. Each task is judged against the baseline for its own format, never against 25% and never against an average across formats.",
+      "howMadeBlurb": "Every task runs the same eight stages, but which gates apply depends on what is being hidden. Four of the eleven TOEFL task types have no answer key at all, so two of the gates are undefined for them — those show as dashed."
     }
   },
   "classrooms": {

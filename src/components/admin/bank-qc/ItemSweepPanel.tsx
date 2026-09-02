@@ -288,34 +288,27 @@ export function ItemSweepPanel() {
               <div className="grid gap-4 sm:grid-cols-2 bg-gray-50 rounded-xl p-4 mb-4">
                 <div>
                   <h3 className="text-[11px] uppercase tracking-wide text-gray-500 font-medium mb-1.5">
-                    Already checked — skip these
+                    {t('admin.bankQc.sweep.alreadyChecked')}
                   </h3>
                   <ul className="text-[12.5px] text-gray-600 space-y-1 list-disc pl-4">
-                    <li>Whether the answer is guessable from the options alone — every cohort passed a
-                        blind attack where solvers saw only the choices.</li>
-                    <li>Answer-letter spread, key length, duplicate option sets, reused stems.</li>
-                    <li>The arithmetic in maths items — each was re-solved in a sandbox.</li>
+                    <li>{t('admin.bankQc.sweep.checked1')}</li>
+                    <li>{t('admin.bankQc.sweep.checked2')}</li>
+                    <li>{t('admin.bankQc.sweep.checked3')}</li>
                   </ul>
                 </div>
                 <div>
                   <h3 className="text-[11px] uppercase tracking-wide text-gray-500 font-medium mb-1.5">
-                    What only a person catches
+                    {t('admin.bankQc.sweep.personCatches')}
                   </h3>
                   <ul className="text-[12.5px] text-gray-600 space-y-1 list-disc pl-4">
-                    <li><strong>Two defensible answers</strong> — the most common real defect. Can you
-                        argue a distractor from the passage or stem?</li>
-                    <li><strong>Wrong key</strong> — solve it yourself before looking at the mark.</li>
-                    <li><strong>Grade fit</strong> — these are middle-school exams.</li>
-                    <li>Tone, cultural assumptions, and whether the difficulty label matches.</li>
+                    <li><strong>{t('admin.bankQc.sweep.catch1Lead')}</strong>{t('admin.bankQc.sweep.catch1')}</li>
+                    <li><strong>{t('admin.bankQc.sweep.catch2Lead')}</strong>{t('admin.bankQc.sweep.catch2')}</li>
+                    <li><strong>{t('admin.bankQc.sweep.catch3Lead')}</strong>{t('admin.bankQc.sweep.catch3')}</li>
+                    <li>{t('admin.bankQc.sweep.catch4')}</li>
                   </ul>
                 </div>
                 <div className="sm:col-span-2 text-[12.5px] text-gray-600 border-t border-gray-200 pt-3">
-                  <strong className="text-gray-800">Reading works differently.</strong> Each passage exists
-                  in four or five parallel versions differing on a few facts, and the one shown was picked
-                  at random after the questions were frozen — that is why the answer cannot be guessed. The
-                  side effect is that a wrong option is another version&rsquo;s correct answer, so an option
-                  that looks <em>nearly</em> right is exactly the defect to flag. Judge it against the
-                  passage on screen only.
+                  <strong className="text-gray-800">{t('admin.bankQc.sweep.readingLead')}</strong>{t('admin.bankQc.sweep.readingBody')}
                 </div>
               </div>
 

@@ -297,12 +297,9 @@ export function ReviewPanel({ domains }: { domains: string[] }) {
               treats any abstention in a NEW run as a validity failure
               rather than a datum. */}
           <p className="mt-3 text-[11.5px] leading-relaxed text-gray-500">
-            Pick the one you think is intended, even when you are unsure — being
-            unsure is the normal state here, because the source is hidden. If three
-            look wrong, or one looks longer, more hedged or more test-like,{' '}
-            <strong className="text-gray-700">that is the answer to pick</strong>:
-            the hunch is exactly what is being measured. If nothing points anywhere,
-            choose at random and move on — random is what the 25% baseline is for.
+            {t('admin.bankQc.review.blindHintLead')}
+            <strong className="text-gray-700">{t('admin.bankQc.review.blindHintStrong')}</strong>
+            {t('admin.bankQc.review.blindHintTail')}
           </p>
         </div>
       )}
@@ -410,7 +407,7 @@ export function ReviewPanel({ domains }: { domains: string[] }) {
             */}
           <div className="mt-4 border-t border-gray-100 pt-3">
             <p className="text-[11px] uppercase tracking-wide text-gray-500 mb-2">
-              Agreement between reviewers
+              {t('admin.bankQc.review.agreement')}
             </p>
             {agreement.length === 0 ? (
               <p className="text-[12px] text-gray-500">

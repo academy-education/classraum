@@ -569,9 +569,7 @@ export function BankQcDashboard() {
           <h2 className="text-sm font-semibold text-gray-900">{t('admin.bankQc.coverage')}</h2>
         </div>
         <p className="text-xs text-gray-600 mb-4 max-w-3xl">
-          Items banked, how many each test draws, and how many distinct tests that supports
-          before questions repeat. A section can only run as many tests as its scarcest task
-          allows, so the capping task is listed first in each group.
+          {t('admin.bankQc.coverageBlurb')}
         </p>
         <div className="space-y-4">
           {groups.map(g => (
@@ -589,12 +587,7 @@ export function BankQcDashboard() {
           <h2 className="text-sm font-semibold text-gray-900">{t('admin.bankQc.baseline')}</h2>
         </div>
         <p className="text-xs text-gray-600 mb-4 max-w-3xl">
-          Official ETS and College Board items run through the identical attack. Real exams leak
-          too — but <strong>how much depends entirely on the format</strong>, from +13 for a short
-          two-speaker exchange to +68.8 for a lecture set, where world knowledge alone often decides
-          the answer. Each task is judged against the baseline for <em>its own</em> format, never
-          against 25% and never against an average across formats — averaging the two listening
-          figures into one +46.7 would have been wrong for both.
+          {t('admin.bankQc.baselineBlurb')}
         </p>
         <div className="grid gap-3 sm:grid-cols-2">
           {baselines.map(b => (
@@ -619,9 +612,7 @@ export function BankQcDashboard() {
           <h2 className="text-sm font-semibold text-gray-900">{t('admin.bankQc.howMade')}</h2>
         </div>
         <p className="text-xs text-gray-600 mb-5 max-w-3xl">
-          Every task runs the same eight stages, but which gates apply depends on what is
-          being hidden. Four of the eleven TOEFL task types have no answer key at all, so two
-          of the gates are undefined for them — those show as dashed.
+          {t('admin.bankQc.howMadeBlurb')}
         </p>
 
         <div className="space-y-6">
