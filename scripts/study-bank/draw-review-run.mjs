@@ -36,11 +36,22 @@ const [domainArg, sizeArg, reviewerId, runIdArg] = process.argv.slice(2)
 /* Cohorts are drawn in the order given, and that order IS the sitting's
  * order — front-load the cohort whose answer matters most, so a reviewer
  * who stops halfway has still answered the question worth asking. */
-const domains = (domainArg || '').split(',').map(d => d.trim()).filter(Boolean)
-if (!domains.length || !sizeArg || !reviewerId) {
-  console.error('usage: draw-review-run.mjs <domain[,domain2,...]> <size> <reviewerId> [runId]'); process.exit(1)
+/* PER-DOMAIN SIZES, added 2026-09-02: "Domain:N" overrides <size> for
+ * that domain, so one sitting can hold 20 of a one-domain cohort next to
+ * 7+7+6 of a cohort that spans three domains (ACT Reading) - the
+ * one-run-per-reviewer guard otherwise forces equal slices.
+ * DRAW_FAMILY=act restricts the pool to one family: "Craft and Structure"
+ * is BOTH an SAT and an ACT domain, and without it an ACT sitting would
+ * quietly draw SAT items. */
+const entries = (domainArg || '').split(',').map(d => d.trim()).filter(Boolean)
+  .map(e => { const m = e.match(/^(.*?):(\d+)$/); return m ? { domain: m[1].trim(), size: Number(m[2]) } : { domain: e, size: Number(sizeArg) } })
+const domains = entries.map(e => e.domain)
+const sizes = entries.map(e => e.size)
+if (!domains.length || !reviewerId || sizes.some(n => !Number.isFinite(n) || n <= 0)) {
+  console.error('usage: draw-review-run.mjs <domain[:n][,domain2[:n],...]> <size> <reviewerId> [runId]   (DRAW_FAMILY=act to restrict)'); process.exit(1)
 }
-const size = Number(sizeArg)
+const FAMILY = process.env.DRAW_FAMILY || null
+const offsets = sizes.reduce((acc, n) => (acc.push(acc[acc.length - 1] + n), acc), [0])
 const L = ['A', 'B', 'C', 'D']
 
 const env = Object.fromEntries(readFileSync(process.cwd() + '/.env.local', 'utf8').split('\n')
@@ -78,11 +89,14 @@ for (let f = 0; ; f += 1000) {
  * partway leaves complete cohorts behind rather than four fragments,
  * none of which can be scored. */
 const sample = []
-for (const domain of domains) {
+for (const [di, domain] of domains.entries()) {
+  const size = sizes[di]
   const pool = []
   for (let f = 0; ; f += 1000) {
-    const { data, error } = await db.from('study_item_bank').select('id, item')
+    let q = db.from('study_item_bank').select('id, item')
       .eq('domain', domain).neq('archived', true).order('id', { ascending: true }).range(f, f + 999)
+    if (FAMILY) q = q.eq('family', FAMILY)
+    const { data, error } = await q
     if (error) throw new Error(error.message)
     pool.push(...data); if (data.length < 1000) break
   }
@@ -118,7 +132,7 @@ for (const domain of domains) {
  * had measured. */
 const slots = []
 for (const [ci] of domains.entries()) {
-  const seg = sample.slice(ci * size, (ci + 1) * size)
+  const seg = sample.slice(offsets[ci], offsets[ci + 1])
   slots.push(...sh(seg.map((_, i) => L[i % 4])))
 }
 
@@ -138,12 +152,12 @@ const { error } = await db.from('study_item_reviews').insert(rows)
 if (error) { console.error('insert failed:', error.message, error.code ?? ''); process.exit(1) }
 
 domains.forEach((d, ci) => {
-  const seg = rows.slice(ci * size, (ci + 1) * size)
+  const seg = rows.slice(offsets[ci], offsets[ci + 1])
   const c = L.map(x => seg.filter(r => r.key_slot === x).length)
   const ctrl = (100 * Math.max(...c)) / seg.length
   console.log(`  ${d}: keys ${c.join('/')} -> control ${ctrl.toFixed(1)}%`)
 })
 const counts = L.map(x => rows.filter(r => r.key_slot === x).length)
 console.log(`drawn ${rows.length} into run "${runId}" across ${domains.length} cohort(s), in this order:`)
-domains.forEach((d, i) => console.log(`  ${i + 1}. ${d}  (${size} items)`))
+domains.forEach((d, i) => console.log(`  ${i + 1}. ${d}  (${sizes[i]} items)`))
 console.log(`key letters ${L.map((x, i) => `${x}:${counts[i]}`).join(' ')}  ->  control ${(100 * Math.max(...counts) / rows.length).toFixed(1)}%`)

@@ -325,6 +325,18 @@ export const WORK: WorkItem[] = [
     doc: 'src/lib/study/act-test.ts (blueprint + quotas + scoring, every number cited) + act-blueprint.test.ts (every legacy regression break-tested)',
   },
   {
+    id: 'B7',
+    title: 'ACT human sitting: can a person answer English PoW and Reading without the passage?',
+    size: '40 questions, blind, about 25-30 minutes in one sitting',
+    state: 'open',
+    owner: 'you',
+    why: 'ACT English Production of Writing and all of ACT Reading fail the AI blind attack at 76% and 79% per item with cross-item leakage removed, and three distractor rewrites did not move them (ACT-ATTACK-RESULT.md). The register already holds seven TOEFL cohorts where the same attack said 83-100% and a person scored 13-27%, so the AI number is a screen and not a verdict. A person is the only instrument left that can return either answer. Run act-cofounder-2026-09-02 is drawn: 20 Production of Writing, then 7 Key Ideas, 7 Craft and Structure, 6 Integration - one reading cohort of 20 across its three domains, PoW front-loaded so a half-finished sitting still answers the question worth asking. Keys dealt flat: control 27.5% overall, 25.0% on PoW. Pool restricted to family act (DRAW_FAMILY) because "Craft and Structure" is also an SAT domain name.',
+    account: 'support@classraum.com - the co-founder, already super_admin. The run is pre-drawn for his reviewer id; /admin/bank-qc resumes it, no dropdown.',
+    whoSpecifically: 'The co-founder. He has not seen any ACT item, and the draw excludes anything he has ever reviewed.',
+    note: 'Decision rule, fixed before the number exists: PoW or Reading at or below ~40% blind = clean, gate flips for English, Math and Reading; at or above ~60% = a person can guess it too, archive the 258 verbal items rather than repair them; between = dead zone, second reader decides, exactly the B2/B6 rule. Do not lower the bar to fit the data.',
+    doc: 'scripts/study-bank/ACT-ATTACK-RESULT.md',
+  },
+  {
     id: 'B6',
     title: 'Second reader on the two cohorts B2 left inconclusive',
     size: '~20 minutes, plus a calibration first',
