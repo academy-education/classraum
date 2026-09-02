@@ -1,0 +1,1074 @@
+[
+  {
+    "id": "AM2-01",
+    "domain": "Integrating Essential Skills",
+    "subskill": "Map scale proportion",
+    "difficulty": "easy",
+    "prompt": "On a map, 2.5 centimeters represents an actual distance of 15 kilometers. Two towns are 9 centimeters apart on the map. What is the actual distance, in kilometers, between the towns?",
+    "choices": [
+      "22.5",
+      "54",
+      "1.5",
+      "37.5"
+    ],
+    "correct_answer": "54",
+    "explanation": "The scale is 15/2.5 = 6 kilometers per centimeter. So 9 centimeters represents 9 × 6 = 54 kilometers.",
+    "solve": "return 9*(15/2.5);"
+  },
+  {
+    "id": "AM2-02",
+    "domain": "Number and Quantity",
+    "subskill": "Complex-number multiplication",
+    "difficulty": "medium",
+    "prompt": "For the imaginary unit i (where i² = −1), what is the product (3 + 2i)(4 − i) written in the form a + bi?",
+    "choices": [
+      "14 + 5i",
+      "10 + 5i",
+      "14 - 5i",
+      "12 + 5i"
+    ],
+    "correct_answer": "14 + 5i",
+    "explanation": "Expanding gives 12 − 3i + 8i − 2i². Since i² = −1, the last term is +2, so the real part is 12 + 2 = 14 and the imaginary part is −3i + 8i = 5i. The product is 14 + 5i.",
+    "solve": "const a=3,b=2,c=4,d=-1; const re=a*c-b*d, im=a*d+b*c; return `${re} + ${im}i`;"
+  },
+  {
+    "id": "AM2-03",
+    "domain": "Statistics and Probability",
+    "subskill": "Probability without replacement",
+    "difficulty": "medium",
+    "prompt": "A bag contains 5 red marbles and 3 blue marbles. Two marbles are drawn at random, one after the other, without replacement. What is the probability that both marbles are red?",
+    "choices": [
+      "25/64",
+      "5/8",
+      "5/28",
+      "5/14"
+    ],
+    "correct_answer": "5/14",
+    "explanation": "The first draw is red with probability 5/8. With one red gone, the second is red with probability 4/7. The product is 20/56 = 5/14.",
+    "solve": "return (5/8)*(4/7);"
+  },
+  {
+    "id": "AM2-04",
+    "domain": "Algebra",
+    "subskill": "Arithmetic sequence nth term",
+    "difficulty": "medium",
+    "prompt": "In an arithmetic sequence, the 4th term is 11 and the 9th term is 31. What is the 20th term?",
+    "choices": [
+      "63",
+      "75",
+      "71",
+      "67"
+    ],
+    "correct_answer": "75",
+    "explanation": "From the 4th to the 9th term is 5 steps, covering 31 − 11 = 20, so the common difference is 4. From the 9th to the 20th term is 11 more steps: 31 + 11·4 = 75.",
+    "solve": "const d=(31-11)/(9-4); return 31+(20-9)*d;"
+  },
+  {
+    "id": "AM2-05",
+    "domain": "Functions",
+    "subskill": "Piecewise function evaluation",
+    "difficulty": "medium",
+    "prompt": "The function f is defined by f(x) = x² − 1 for x < 2 and f(x) = 3x + 4 for x ≥ 2. What is the value of f(−3) + f(2)?",
+    "choices": [
+      "-2",
+      "18",
+      "5",
+      "11"
+    ],
+    "correct_answer": "18",
+    "explanation": "Since −3 < 2, f(−3) uses the first rule: (−3)² − 1 = 8. Since 2 ≥ 2, f(2) uses the second rule: 3(2) + 4 = 10. The sum is 8 + 10 = 18.",
+    "solve": "const f=x=>x<2?x*x-1:3*x+4; return f(-3)+f(2);"
+  },
+  {
+    "id": "AM2-06",
+    "domain": "Geometry",
+    "subskill": "Distance formula",
+    "difficulty": "easy",
+    "prompt": "In the standard (x, y) coordinate plane, what is the distance between the points (−3, 4) and (5, −2)?",
+    "choices": [
+      "14",
+      "10",
+      "8",
+      "100"
+    ],
+    "correct_answer": "10",
+    "explanation": "The horizontal change is 5 − (−3) = 8 and the vertical change is −2 − 4 = −6. The distance is √(8² + 6²) = √(64 + 36) = √100 = 10.",
+    "solve": "return Math.hypot(5-(-3),-2-4);"
+  },
+  {
+    "id": "AM2-07",
+    "domain": "Statistics and Probability",
+    "subskill": "Conditional probability from a two-way table",
+    "difficulty": "medium",
+    "prompt": "The table below shows the 60 students in a music program by grade and ensemble. Juniors: 18 in Band, 12 in Chorus. Seniors: 10 in Band, 20 in Chorus. If a student is chosen at random from those in Chorus, what is the probability that the student is a senior?",
+    "choices": [
+      "8/15",
+      "5/8",
+      "2/3",
+      "1/3"
+    ],
+    "correct_answer": "5/8",
+    "explanation": "Restricting to Chorus, there are 12 + 20 = 32 students, of whom 20 are seniors. The conditional probability is 20/32 = 5/8.",
+    "solve": "const jc=12, sc=20; return sc/(jc+sc);"
+  },
+  {
+    "id": "AM2-08",
+    "domain": "Algebra",
+    "subskill": "Absolute value equation, sum of solutions",
+    "difficulty": "hard",
+    "prompt": "What is the sum of all real solutions of |3x + 2| = 11?",
+    "choices": [
+      "3",
+      "-4/3",
+      "4/3",
+      "-13/3"
+    ],
+    "correct_answer": "-4/3",
+    "explanation": "Either 3x + 2 = 11, giving x = 3, or 3x + 2 = −11, giving x = −13/3. Their sum is 3 − 13/3 = 9/3 − 13/3 = −4/3.",
+    "solve": "const x1=(11-2)/3, x2=(-11-2)/3; return x1+x2;"
+  },
+  {
+    "id": "AM2-09",
+    "domain": "Geometry",
+    "subskill": "Triangle area from two sides and included angle",
+    "difficulty": "medium",
+    "prompt": "A triangle has two sides of lengths 8 and 10, and the angle between them measures 30°. What is the area of the triangle?",
+    "choices": [
+      "40",
+      "34.6",
+      "20",
+      "80"
+    ],
+    "correct_answer": "20",
+    "explanation": "The area of a triangle with sides a and b and included angle C is (1/2)ab·sin C = (1/2)(8)(10)(sin 30°) = 40(1/2) = 20.",
+    "solve": "return Math.round(0.5*8*10*Math.sin(Math.PI/6)*1e9)/1e9;"
+  },
+  {
+    "id": "AM2-10",
+    "domain": "Statistics and Probability",
+    "subskill": "Counting with restrictions",
+    "difficulty": "hard",
+    "prompt": "A 4-digit code is formed from the digits 0 through 9. The first digit cannot be 0, and no digit may be repeated. How many such codes are possible?",
+    "choices": [
+      "504",
+      "4536",
+      "4032",
+      "3024"
+    ],
+    "correct_answer": "4536",
+    "explanation": "The first digit has 9 choices (1–9). The second digit can be any of the 9 remaining digits (0 is now allowed), the third any of 8, and the fourth any of 7. Total: 9·9·8·7 = 4,536. (Using only 8 choices for the second digit forgets that 0 becomes available again.)",
+    "solve": "return 9*9*8*7;"
+  },
+  {
+    "id": "AM2-11",
+    "domain": "Statistics and Probability",
+    "subskill": "Expected value",
+    "difficulty": "medium",
+    "prompt": "In a carnival game, a player wins $9 with probability 1/3, wins $2 with probability 1/4, and wins nothing otherwise. What is the expected value, in dollars, of the player's winnings from one play?",
+    "choices": [
+      "11",
+      "5.5",
+      "11/3",
+      "3.5"
+    ],
+    "correct_answer": "3.5",
+    "explanation": "Expected value = 9(1/3) + 2(1/4) + 0(5/12) = 3 + 0.5 + 0 = 3.5 dollars. Averaging the prize amounts without their probabilities does not give the expected value.",
+    "solve": "return 9*(1/3)+2*(1/4)+0*(1-1/3-1/4);"
+  },
+  {
+    "id": "AM2-12",
+    "domain": "Integrating Essential Skills",
+    "subskill": "Missing value from a mean",
+    "difficulty": "easy",
+    "prompt": "Daniel's scores on four quizzes were 78, 90, 85, and 80. What score does he need on a fifth quiz so that the mean of all five scores is exactly 84?",
+    "choices": [
+      "84",
+      "91",
+      "83.25",
+      "87"
+    ],
+    "correct_answer": "87",
+    "explanation": "Five scores with mean 84 must total 5 × 84 = 420. The four known scores total 333, so the fifth must be 420 − 333 = 87.",
+    "solve": "return 5*84-(78+90+85+80);"
+  },
+  {
+    "id": "AM2-13",
+    "domain": "Number and Quantity",
+    "subskill": "Scientific notation division",
+    "difficulty": "easy",
+    "prompt": "What is (6 × 10⁸) ÷ (1.5 × 10⁻³) expressed in scientific notation?",
+    "choices": [
+      "4.5 × 10^11",
+      "4 × 10^5",
+      "4 × 10^11",
+      "9 × 10^5"
+    ],
+    "correct_answer": "4 × 10^11",
+    "explanation": "Divide the coefficients and subtract the exponents: 6 ÷ 1.5 = 4 and 10⁸ ÷ 10⁻³ = 10^(8 − (−3)) = 10¹¹. The quotient is 4 × 10¹¹.",
+    "solve": "const m=6/1.5, e=8-(-3); return `${m} × 10^${e}`;"
+  },
+  {
+    "id": "AM2-14",
+    "domain": "Algebra",
+    "subskill": "Exponential equation with common base",
+    "difficulty": "medium",
+    "prompt": "What value of x satisfies 4^(x + 1) = 8^(x − 2)?",
+    "choices": [
+      "-4",
+      "4",
+      "1",
+      "8"
+    ],
+    "correct_answer": "8",
+    "explanation": "Write both sides with base 2: 4^(x+1) = 2^(2x + 2) and 8^(x−2) = 2^(3x − 6). Setting the exponents equal, 2x + 2 = 3x − 6, so x = 8.",
+    "solve": "return (2*1-(-6))/(3-2);"
+  },
+  {
+    "id": "AM2-15",
+    "domain": "Number and Quantity",
+    "subskill": "Logarithm quotient rule",
+    "difficulty": "easy",
+    "prompt": "What is the value of log₂ 48 − log₂ 3?",
+    "choices": [
+      "45",
+      "16",
+      "144",
+      "4"
+    ],
+    "correct_answer": "4",
+    "explanation": "The difference of two logarithms with the same base is the logarithm of the quotient: log₂ 48 − log₂ 3 = log₂(48 ÷ 3) = log₂ 16. Because 2⁴ = 16, the value is 4.",
+    "solve": "return Math.round(Math.log2(48/3)*1e9)/1e9;"
+  },
+  {
+    "id": "AM2-16",
+    "domain": "Algebra",
+    "subskill": "Linear inequality, least integer",
+    "difficulty": "easy",
+    "prompt": "What is the least integer value of x that satisfies 5 − 3x < −13?",
+    "choices": [
+      "7",
+      "3",
+      "-6",
+      "6"
+    ],
+    "correct_answer": "7",
+    "explanation": "Subtract 5 from both sides: −3x < −18. Dividing by −3 reverses the inequality: x > 6. The least integer greater than 6 is 7.",
+    "solve": "let x=-100; while(!(5-3*x<-13)) x++; return x;"
+  },
+  {
+    "id": "AM2-17",
+    "domain": "Geometry",
+    "subskill": "Angle sum of a triangle with algebraic angles",
+    "difficulty": "easy",
+    "prompt": "The measures of the three angles of a triangle are (2x + 10)°, (3x − 5)°, and (x + 25)°. What is the measure, in degrees, of the largest angle?",
+    "choices": [
+      "50",
+      "60",
+      "25",
+      "70"
+    ],
+    "correct_answer": "70",
+    "explanation": "The angles sum to 180°: 6x + 30 = 180, so x = 25. The angles are 60°, 70°, and 50°, and the largest is 70°.",
+    "solve": "const x=(180-30)/6; return Math.max(2*x+10,3*x-5,x+25);"
+  },
+  {
+    "id": "AM2-18",
+    "domain": "Geometry",
+    "subskill": "Trigonometric ratios in a right triangle",
+    "difficulty": "easy",
+    "prompt": "In a right triangle, one acute angle θ satisfies tan θ = 5/12. What is sin θ?",
+    "choices": [
+      "13/5",
+      "5/12",
+      "12/13",
+      "5/13"
+    ],
+    "correct_answer": "5/13",
+    "explanation": "tan θ = opposite/adjacent = 5/12, so the hypotenuse is √(5² + 12²) = 13. Then sin θ = opposite/hypotenuse = 5/13.",
+    "solve": "const o=5,a=12; const h=Math.hypot(o,a); return `${o}/${h}`;"
+  },
+  {
+    "id": "AM2-19",
+    "domain": "Number and Quantity",
+    "subskill": "Matrix multiplication (single entry)",
+    "difficulty": "medium",
+    "prompt": "Let A be the 2×2 matrix with first row [2, −1] and second row [3, 0], and let B be the 2×2 matrix with first row [1, 4] and second row [2, 5]. What is the entry in the first row, second column of the product AB?",
+    "choices": [
+      "3",
+      "20",
+      "13",
+      "8"
+    ],
+    "correct_answer": "3",
+    "explanation": "The entry in row 1, column 2 of AB is the dot product of row 1 of A with column 2 of B: (2)(4) + (−1)(5) = 8 − 5 = 3.",
+    "solve": "const A=[[2,-1],[3,0]],B=[[1,4],[2,5]]; return A[0][0]*B[0][1]+A[0][1]*B[1][1];"
+  },
+  {
+    "id": "AM2-20",
+    "domain": "Functions",
+    "subskill": "Translation of an absolute-value graph",
+    "difficulty": "easy",
+    "prompt": "Let f(x) = |x|. The graph of g(x) = f(x − 3) + 2 is a translation of the graph of f. What are the coordinates of the vertex of the graph of g?",
+    "choices": [
+      "(-3, -2)",
+      "(-3, 2)",
+      "(3, 2)",
+      "(3, -2)"
+    ],
+    "correct_answer": "(3, 2)",
+    "explanation": "Replacing x with x − 3 shifts the graph 3 units to the right, and adding 2 shifts it 2 units up. The vertex of f at (0, 0) therefore moves to (3, 2).",
+    "solve": "const g=x=>Math.abs(x-3)+2; let best=null; for(let x=-10;x<=10;x+=0.5){const y=g(x); if(best===null||y<best[1]) best=[x,y];} return `(${best[0]}, ${best[1]})`;"
+  },
+  {
+    "id": "AM2-21",
+    "domain": "Geometry",
+    "subskill": "Interior angles of a regular polygon",
+    "difficulty": "medium",
+    "prompt": "Each interior angle of a regular polygon measures 156°. How many sides does the polygon have?",
+    "choices": [
+      "18",
+      "12",
+      "15",
+      "24"
+    ],
+    "correct_answer": "15",
+    "explanation": "Each exterior angle is 180° − 156° = 24°, and the exterior angles of any convex polygon sum to 360°. So the number of sides is 360/24 = 15.",
+    "solve": "return 360/(180-156);"
+  },
+  {
+    "id": "AM2-22",
+    "domain": "Algebra",
+    "subskill": "Rational equation with extraneous root",
+    "difficulty": "hard",
+    "prompt": "What is the solution set of the equation x/(x − 3) = 3/(x − 3) + 2?",
+    "choices": [
+      "{0}",
+      "{-3}",
+      "No real solution",
+      "{3}"
+    ],
+    "correct_answer": "No real solution",
+    "explanation": "Multiplying both sides by (x − 3) gives x = 3 + 2(x − 3), so x = 3 + 2x − 6 and x = 3. But x = 3 makes the original denominators zero, so it must be rejected. No other candidate exists, so the equation has no real solution.",
+    "solve": "const cand=3; const valid=(cand-3)!==0; return valid?String(cand):\"No real solution\";"
+  },
+  {
+    "id": "AM2-23",
+    "domain": "Integrating Essential Skills",
+    "subskill": "Volume with unit conversion",
+    "difficulty": "medium",
+    "prompt": "An aquarium is a rectangular box 60 cm long, 30 cm wide, and 40 cm tall. It is filled with water to 3/4 of its height. How many liters of water does it contain? (1 liter = 1,000 cubic centimeters)",
+    "choices": [
+      "72",
+      "54000",
+      "54",
+      "18"
+    ],
+    "correct_answer": "54",
+    "explanation": "The water depth is (3/4)(40) = 30 cm, so the volume is 60 × 30 × 30 = 54,000 cubic centimeters. Dividing by 1,000 gives 54 liters.",
+    "solve": "return 60*30*(0.75*40)/1000;"
+  },
+  {
+    "id": "AM2-24",
+    "domain": "Integrating Essential Skills",
+    "subskill": "Unit-conversion chain (speed)",
+    "difficulty": "medium",
+    "prompt": "A train travels at a constant 54 kilometers per hour. What is its speed in meters per second? (1 kilometer = 1,000 meters)",
+    "choices": [
+      "15",
+      "90",
+      "900",
+      "194.4"
+    ],
+    "correct_answer": "15",
+    "explanation": "54 km/h = 54,000 meters per hour. One hour is 3,600 seconds, so the speed is 54,000/3,600 = 15 meters per second.",
+    "solve": "return 54*1000/3600;"
+  },
+  {
+    "id": "AM2-25",
+    "domain": "Functions",
+    "subskill": "Inverse function value",
+    "difficulty": "medium",
+    "prompt": "If f(x) = (3x − 5)/2, what is the value of f⁻¹(8)?",
+    "choices": [
+      "19/2",
+      "26/3",
+      "11/3",
+      "7"
+    ],
+    "correct_answer": "7",
+    "explanation": "f⁻¹(8) is the input x for which f(x) = 8. Solving (3x − 5)/2 = 8 gives 3x − 5 = 16, so 3x = 21 and x = 7.",
+    "solve": "return (2*8+5)/3;"
+  },
+  {
+    "id": "AM2-26",
+    "domain": "Integrating Essential Skills",
+    "subskill": "Average speed for a round trip",
+    "difficulty": "hard",
+    "prompt": "Maya drives 60 kilometers from her home to a lake at an average speed of 40 kilometers per hour, then returns home along the same road at an average speed of 60 kilometers per hour. What is her average speed, in kilometers per hour, for the entire round trip?",
+    "choices": [
+      "50",
+      "55",
+      "100",
+      "48"
+    ],
+    "correct_answer": "48",
+    "explanation": "The trip out takes 60/40 = 1.5 hours and the return takes 60/60 = 1 hour. Total distance 120 km over total time 2.5 hours gives an average speed of 120/2.5 = 48 km/h.",
+    "solve": "return (60+60)/(60/40+60/60);"
+  },
+  {
+    "id": "AM2-27",
+    "domain": "Statistics and Probability",
+    "subskill": "Comparing standard deviations",
+    "difficulty": "medium",
+    "prompt": "Each of the following is a set of 4 data values. Which set has the GREATEST standard deviation?",
+    "choices": [
+      "3, 4, 6, 7",
+      "2, 5, 5, 8",
+      "1, 1, 9, 9",
+      "5, 5, 5, 5"
+    ],
+    "correct_answer": "1, 1, 9, 9",
+    "explanation": "Standard deviation measures spread about the mean. All four sets have mean 5. The set with every value 4 units from the mean is spread the most: its deviations are ±4 throughout, giving a standard deviation of 4, larger than any other set here (the others have deviations of 0, at most 2, and at most 3).",
+    "solve": "const sets=[[1,1,9,9],[5,5,5,5],[3,4,6,7],[2,5,5,8]]; const sd=a=>{const m=a.reduce((x,y)=>x+y)/a.length; return Math.sqrt(a.reduce((s,v)=>s+(v-m)**2,0)/a.length)}; let best=sets[0]; for(const s of sets) if(sd(s)>sd(best)) best=s; return best.join(\", \");"
+  },
+  {
+    "id": "AM2-28",
+    "domain": "Statistics and Probability",
+    "subskill": "Mean after removing a value",
+    "difficulty": "easy",
+    "prompt": "The mean of 6 numbers is 20. When one of the numbers, 45, is removed from the set, what is the mean of the remaining 5 numbers?",
+    "choices": [
+      "20",
+      "15",
+      "27.5",
+      "33"
+    ],
+    "correct_answer": "15",
+    "explanation": "The original sum is 6 × 20 = 120. Removing 45 leaves a sum of 75 over 5 numbers, so the new mean is 75/5 = 15.",
+    "solve": "return (6*20-45)/5;"
+  },
+  {
+    "id": "AM2-29",
+    "domain": "Integrating Essential Skills",
+    "subskill": "Ratio with a total",
+    "difficulty": "easy",
+    "prompt": "The ratio of boys to girls in a class is 3:5. If there are 32 students in the class, how many girls are in the class?",
+    "choices": [
+      "8",
+      "4",
+      "20",
+      "12"
+    ],
+    "correct_answer": "20",
+    "explanation": "The ratio 3:5 has 8 parts, so each part is 32/8 = 4 students. Girls are 5 parts: 5 × 4 = 20.",
+    "solve": "return 32*5/(3+5);"
+  },
+  {
+    "id": "AM2-30",
+    "domain": "Functions",
+    "subskill": "Vertical asymptotes vs. holes of a rational function",
+    "difficulty": "hard",
+    "prompt": "Which of the following gives ALL vertical asymptotes of the graph of f(x) = (2x² − 8)/(x² − 5x + 6)?",
+    "choices": [
+      "y = 2 only",
+      "x = 3 only",
+      "x = 2 and x = 3",
+      "x = 2 only"
+    ],
+    "correct_answer": "x = 3 only",
+    "explanation": "Factor: f(x) = 2(x − 2)(x + 2)/[(x − 2)(x − 3)]. The factor (x − 2) cancels, so x = 2 is a hole, not an asymptote. The only remaining zero of the denominator is x = 3, which is the sole vertical asymptote. (y = 2 is the horizontal asymptote.)",
+    "solve": "const num=x=>2*x*x-8, den=x=>x*x-5*x+6; const va=[2,3].filter(x=>den(x)===0&&num(x)!==0); return va.length===1?`x = ${va[0]} only`:`x = ${va.join(\" and x = \")}`;"
+  },
+  {
+    "id": "AM2-31",
+    "domain": "Algebra",
+    "subskill": "System with no solution",
+    "difficulty": "medium",
+    "prompt": "For what value of k does the system 3x − 6y = 9 and kx − 4y = 5 have NO solution?",
+    "choices": [
+      "1/2",
+      "2",
+      "-2",
+      "6"
+    ],
+    "correct_answer": "2",
+    "explanation": "A linear system has no solution when the lines are parallel but distinct. Parallel requires proportional coefficients: 3/k = −6/−4, so k = 3·4/6 = 2. With k = 2 the constants are not in the same ratio (9/5 ≠ 3/2), so the lines are distinct and never meet.",
+    "solve": "return 3*4/6;"
+  },
+  {
+    "id": "AM2-32",
+    "domain": "Functions",
+    "subskill": "Quadratic model from three points",
+    "difficulty": "hard",
+    "prompt": "A quadratic function f satisfies f(0) = 3, f(1) = 6, and f(2) = 13. What is the value of f(4)?",
+    "choices": [
+      "39",
+      "27",
+      "35",
+      "24"
+    ],
+    "correct_answer": "39",
+    "explanation": "Write f(x) = ax² + bx + c. From f(0) = 3, c = 3. Then a + b = 3 and 4a + 2b = 10, so 2a + b = 5 and a = 2, b = 1. Thus f(x) = 2x² + x + 3 and f(4) = 32 + 4 + 3 = 39.",
+    "solve": "const c=3; const a=((13-c)-2*(6-c))/2; const b=(6-c)-a; return a*16+b*4+c;"
+  },
+  {
+    "id": "AM2-33",
+    "domain": "Integrating Essential Skills",
+    "subskill": "Area of a border region",
+    "difficulty": "medium",
+    "prompt": "A rectangular garden measures 12 meters by 8 meters. A path of uniform width 1.5 meters surrounds the garden on all four sides. What is the area, in square meters, of the path?",
+    "choices": [
+      "165",
+      "60",
+      "69",
+      "96"
+    ],
+    "correct_answer": "69",
+    "explanation": "Including the path, the outer rectangle measures 15 m by 11 m, with area 165 m². Subtracting the garden's 96 m² leaves 165 − 96 = 69 m² of path.",
+    "solve": "const L=12,W=8,w=1.5; return (L+2*w)*(W+2*w)-L*W;"
+  },
+  {
+    "id": "AM2-34",
+    "domain": "Geometry",
+    "subskill": "Sector area",
+    "difficulty": "easy",
+    "prompt": "A sector of a circle with radius 6 inches has a central angle of 40°. What is the area, in square inches, of the sector?",
+    "choices": [
+      "4π",
+      "12π",
+      "2π",
+      "24π"
+    ],
+    "correct_answer": "4π",
+    "explanation": "The sector is 40/360 = 1/9 of the whole circle, whose area is π(6²) = 36π. So the sector area is 36π/9 = 4π square inches.",
+    "solve": "const k=(40/360)*36; return `${k}π`;"
+  },
+  {
+    "id": "AM2-35",
+    "domain": "Functions",
+    "subskill": "Function composition",
+    "difficulty": "easy",
+    "prompt": "If f(x) = 2x + 1 and g(x) = x² − 3, what is the value of f(g(4))?",
+    "choices": [
+      "27",
+      "78",
+      "13",
+      "25"
+    ],
+    "correct_answer": "27",
+    "explanation": "Work from the inside out: g(4) = 16 − 3 = 13, and then f(13) = 2(13) + 1 = 27.",
+    "solve": "const f=x=>2*x+1, g=x=>x*x-3; return f(g(4));"
+  },
+  {
+    "id": "AM2-36",
+    "domain": "Algebra",
+    "subskill": "Geometric series sum",
+    "difficulty": "medium",
+    "prompt": "What is the sum of the first 8 terms of the geometric sequence 3, 6, 12, 24, … ?",
+    "choices": [
+      "1533",
+      "765",
+      "381",
+      "384"
+    ],
+    "correct_answer": "765",
+    "explanation": "The first term is 3 and the ratio is 2. The sum of n terms is a(rⁿ − 1)/(r − 1) = 3(2⁸ − 1)/(2 − 1) = 3·255 = 765.",
+    "solve": "let s=0,t=3; for(let i=0;i<8;i++){s+=t;t*=2;} return s;"
+  },
+  {
+    "id": "AM2-37",
+    "domain": "Number and Quantity",
+    "subskill": "Vector operations and magnitude",
+    "difficulty": "hard",
+    "prompt": "Vectors u and v are given by u = ⟨3, −2⟩ and v = ⟨−1, 5⟩. What is the magnitude of the vector 2u − v?",
+    "choices": [
+      "√82",
+      "√130",
+      "√10",
+      "√58"
+    ],
+    "correct_answer": "√130",
+    "explanation": "First compute 2u − v = ⟨6 − (−1), −4 − 5⟩ = ⟨7, −9⟩. Its magnitude is √(7² + (−9)²) = √(49 + 81) = √130.",
+    "solve": "const x=2*3-(-1), y=2*(-2)-5; return \"√\"+(x*x+y*y);"
+  },
+  {
+    "id": "AM2-38",
+    "domain": "Functions",
+    "subskill": "Exponential growth model",
+    "difficulty": "medium",
+    "prompt": "A colony of bacteria triples in size every 5 hours. If the colony starts with 200 bacteria, how many bacteria will there be after 20 hours?",
+    "choices": [
+      "16200",
+      "2400",
+      "5400",
+      "12000"
+    ],
+    "correct_answer": "16200",
+    "explanation": "In 20 hours there are 20 ÷ 5 = 4 tripling periods, so the population is 200·3⁴ = 200·81 = 16,200.",
+    "solve": "return 200*Math.pow(3,20/5);"
+  },
+  {
+    "id": "AM2-39",
+    "domain": "Integrating Essential Skills",
+    "subskill": "Fuel cost chain",
+    "difficulty": "medium",
+    "prompt": "A car averages 32 miles per gallon of gasoline, and gasoline costs $3.50 per gallon. To the nearest cent, how much will the gasoline cost for a 480-mile trip?",
+    "choices": [
+      "48.00",
+      "52.50",
+      "15.00",
+      "137.14"
+    ],
+    "correct_answer": "52.50",
+    "explanation": "The trip uses 480/32 = 15 gallons. At $3.50 per gallon, that costs 15 × 3.50 = $52.50.",
+    "solve": "return (480/32)*3.5;"
+  },
+  {
+    "id": "AM2-40",
+    "domain": "Algebra",
+    "subskill": "Radical equation with extraneous root",
+    "difficulty": "hard",
+    "prompt": "What is the sum of all real solutions of √(2x + 5) = x − 5?",
+    "choices": [
+      "8",
+      "12",
+      "10",
+      "2"
+    ],
+    "correct_answer": "10",
+    "explanation": "Squaring gives 2x + 5 = x² − 10x + 25, so x² − 12x + 20 = 0 and x = 10 or x = 2. Checking, x = 2 makes the right side −3 while a square root is never negative, so it is extraneous. Only x = 10 works, and the sum of all real solutions is 10.",
+    "solve": "const roots=[10,2].filter(x=>Math.abs(Math.sqrt(2*x+5)-(x-5))<1e-9); return roots.reduce((a,b)=>a+b,0);"
+  },
+  {
+    "id": "AM2-41",
+    "domain": "Algebra",
+    "subskill": "Minimum value of a quadratic",
+    "difficulty": "medium",
+    "prompt": "What is the minimum value of y = 2x² − 12x + 7?",
+    "choices": [
+      "-11",
+      "25",
+      "7",
+      "3"
+    ],
+    "correct_answer": "-11",
+    "explanation": "The vertex of y = ax² + bx + c is at x = −b/(2a) = 12/4 = 3. Substituting, y = 2(9) − 36 + 7 = −11. Since the parabola opens upward, that is the minimum value.",
+    "solve": "const a=2,b=-12,c=7; const x=-b/(2*a); return a*x*x+b*x+c;"
+  },
+  {
+    "id": "AM2-42",
+    "domain": "Geometry",
+    "subskill": "Slope of a perpendicular line",
+    "difficulty": "easy",
+    "prompt": "What is the slope of a line that is perpendicular to the line 3x − 4y = 8?",
+    "choices": [
+      "4/3",
+      "3/4",
+      "-3/4",
+      "-4/3"
+    ],
+    "correct_answer": "-4/3",
+    "explanation": "Rewriting as y = (3/4)x − 2 shows the slope is 3/4. A perpendicular line has the negative reciprocal slope, −4/3.",
+    "solve": "const m=3/4; return -1/m;"
+  },
+  {
+    "id": "AM2-43",
+    "domain": "Integrating Essential Skills",
+    "subskill": "Elapsed time",
+    "difficulty": "easy",
+    "prompt": "A bus departs at 8:45 a.m. and the trip takes 3 hours 50 minutes. At what time does the bus arrive?",
+    "choices": [
+      "12:05 p.m.",
+      "1:35 p.m.",
+      "12:35 p.m.",
+      "11:35 a.m."
+    ],
+    "correct_answer": "12:35 p.m.",
+    "explanation": "Adding 3 hours to 8:45 a.m. gives 11:45 a.m. Adding 50 more minutes passes noon: 11:45 + 15 min = 12:00 p.m., then 35 more minutes gives 12:35 p.m.",
+    "solve": "let m=8*60+45+3*60+50; const h24=Math.floor(m/60)%24, mm=m%60; const ap=h24>=12?\"p.m.\":\"a.m.\"; const h=((h24+11)%12)+1; return `${h}:${String(mm).padStart(2,\"0\")} ${ap}`;"
+  },
+  {
+    "id": "AM2-44",
+    "domain": "Algebra",
+    "subskill": "Product of quadratic roots",
+    "difficulty": "medium",
+    "prompt": "What is the product of the two solutions of 2x² − 7x + 3 = 0?",
+    "choices": [
+      "6",
+      "3",
+      "1.5",
+      "3.5"
+    ],
+    "correct_answer": "1.5",
+    "explanation": "For ax² + bx + c = 0, the product of the roots is c/a. Here that is 3/2 = 1.5. Factoring confirms it: (2x − 1)(x − 3) = 0 gives roots 1/2 and 3, whose product is 1.5.",
+    "solve": "const a=2,b=-7,c=3; const d=Math.sqrt(b*b-4*a*c); const r1=(-b+d)/(2*a), r2=(-b-d)/(2*a); return r1*r2;"
+  },
+  {
+    "id": "AM2-45",
+    "domain": "Integrating Essential Skills",
+    "subskill": "Combined work rate",
+    "difficulty": "medium",
+    "prompt": "One pipe can fill an empty tank in 6 hours, and a second pipe can fill the same tank in 9 hours. If both pipes are opened at the same time, how many hours will it take to fill the empty tank?",
+    "choices": [
+      "15",
+      "4.5",
+      "7.5",
+      "3.6"
+    ],
+    "correct_answer": "3.6",
+    "explanation": "Together the pipes fill 1/6 + 1/9 = 3/18 + 2/18 = 5/18 of the tank per hour. Filling the whole tank takes 18/5 = 3.6 hours.",
+    "solve": "return 1/(1/6+1/9);"
+  },
+  {
+    "id": "AM2-46",
+    "domain": "Number and Quantity",
+    "subskill": "Powers of i",
+    "difficulty": "medium",
+    "prompt": "For the imaginary unit i, what is the value of i²⁷?",
+    "choices": [
+      "i",
+      "1",
+      "-1",
+      "-i"
+    ],
+    "correct_answer": "-i",
+    "explanation": "Powers of i repeat in a cycle of four: i, −1, −i, 1. Since 27 = 4·6 + 3, i²⁷ equals i³, which is −i.",
+    "solve": "const cyc=[\"1\",\"i\",\"−1\",\"−i\"]; return cyc[27%4];"
+  },
+  {
+    "id": "AM2-47",
+    "domain": "Algebra",
+    "subskill": "Remainder theorem",
+    "difficulty": "hard",
+    "prompt": "When the polynomial x³ − 4x² + kx − 6 is divided by x − 3, the remainder is 3. What is the value of k?",
+    "choices": [
+      "-6",
+      "6",
+      "4",
+      "8"
+    ],
+    "correct_answer": "6",
+    "explanation": "By the remainder theorem the remainder equals p(3): 27 − 36 + 3k − 6 = 3k − 15. Setting 3k − 15 = 3 gives k = 6.",
+    "solve": "const p=k=>27-36+3*k-6; return (3-(p(0)))/3;"
+  },
+  {
+    "id": "AM2-48",
+    "domain": "Number and Quantity",
+    "subskill": "Least common multiple",
+    "difficulty": "easy",
+    "prompt": "Three buses leave a depot at 6:00 a.m. One returns every 12 minutes, one every 18 minutes, and one every 30 minutes. How many minutes after 6:00 a.m. will all three next be at the depot at the same time?",
+    "choices": [
+      "540",
+      "90",
+      "6",
+      "180"
+    ],
+    "correct_answer": "180",
+    "explanation": "The buses coincide at the least common multiple of 12, 18, and 30. Prime factorizations are 2²·3, 2·3², and 2·3·5, so the LCM is 2²·3²·5 = 180 minutes.",
+    "solve": "const g=(a,b)=>b?g(b,a%b):a; const l=(a,b)=>a*b/g(a,b); return l(l(12,18),30);"
+  },
+  {
+    "id": "AM2-49",
+    "domain": "Integrating Essential Skills",
+    "subskill": "Percent increase then decrease",
+    "difficulty": "medium",
+    "prompt": "A town's population was 2,500. It increased by 12% one year and then decreased by 12% the following year. What was the population at the end of the second year?",
+    "choices": [
+      "2464",
+      "2536",
+      "2800",
+      "2500"
+    ],
+    "correct_answer": "2464",
+    "explanation": "After the increase the population is 2,500 × 1.12 = 2,800. A 12% decrease from 2,800 removes 336, leaving 2,464. The two percent changes do not cancel because the second is taken of a larger base.",
+    "solve": "return 2500*1.12*0.88;"
+  },
+  {
+    "id": "AM2-50",
+    "domain": "Geometry",
+    "subskill": "Area between a square and its inscribed circle",
+    "difficulty": "medium",
+    "prompt": "A circle is inscribed in a square with side length 10 cm, touching all four sides. What is the area, in square centimeters, of the region inside the square but outside the circle?",
+    "choices": [
+      "100 - 25π",
+      "100 - 100π",
+      "400 - 100π",
+      "100 - 10π"
+    ],
+    "correct_answer": "100 - 25π",
+    "explanation": "The square has area 10² = 100. The inscribed circle has diameter 10, so radius 5 and area 25π. The region between them has area 100 − 25π.",
+    "solve": "const s=10; const r=s/2; return `${s*s} − ${r*r}π`;"
+  },
+  {
+    "id": "AM2-51",
+    "domain": "Functions",
+    "subskill": "Period of a sinusoidal function",
+    "difficulty": "medium",
+    "prompt": "What is the period of the function y = 3 sin(2x − π) + 1?",
+    "choices": [
+      "2π",
+      "π/2",
+      "4π",
+      "π"
+    ],
+    "correct_answer": "π",
+    "explanation": "For y = a·sin(bx − c) + d the period is 2π/|b|. Here b = 2, so the period is 2π/2 = π. The amplitude 3, phase shift, and vertical shift do not affect the period.",
+    "solve": "const B=2; const k=2/B; return k===1?\"π\":`${k}π`;"
+  },
+  {
+    "id": "AM2-52",
+    "domain": "Statistics and Probability",
+    "subskill": "Probability of at least one success",
+    "difficulty": "hard",
+    "prompt": "A basketball player makes each free throw with probability 0.6, independently of other attempts. If she attempts 3 free throws, what is the probability that she makes AT LEAST one?",
+    "choices": [
+      "0.936",
+      "0.6",
+      "0.064",
+      "0.216"
+    ],
+    "correct_answer": "0.936",
+    "explanation": "The complement of \"at least one made\" is \"all three missed\", which has probability 0.4³ = 0.064. So the desired probability is 1 − 0.064 = 0.936.",
+    "solve": "return Math.round((1-Math.pow(1-0.6,3))*1e9)/1e9;"
+  },
+  {
+    "id": "AM2-53",
+    "domain": "Functions",
+    "subskill": "Arithmetic series from an explicit formula",
+    "difficulty": "medium",
+    "prompt": "The nth term of a sequence is given by aₙ = 5n − 2. What is the sum of the first 30 terms?",
+    "choices": [
+      "2205",
+      "2265",
+      "2280",
+      "4530"
+    ],
+    "correct_answer": "2265",
+    "explanation": "The first term is 5(1) − 2 = 3 and the 30th term is 5(30) − 2 = 148. The sum of an arithmetic series is n(first + last)/2 = 30(3 + 148)/2 = 15·151 = 2265.",
+    "solve": "let s=0; for(let n=1;n<=30;n++) s+=5*n-2; return s;"
+  },
+  {
+    "id": "AM2-54",
+    "domain": "Geometry",
+    "subskill": "Space diagonal of a rectangular box",
+    "difficulty": "medium",
+    "prompt": "A rectangular box has edges of length 3, 4, and 12 inches. What is the length, in inches, of the longest straight rod that can fit inside the box (from one corner to the opposite corner)?",
+    "choices": [
+      "12",
+      "12.6",
+      "13",
+      "5"
+    ],
+    "correct_answer": "13",
+    "explanation": "The space diagonal of a box with edges a, b, c is √(a² + b² + c²) = √(9 + 16 + 144) = √169 = 13 inches.",
+    "solve": "return Math.sqrt(3*3+4*4+12*12);"
+  },
+  {
+    "id": "AM2-55",
+    "domain": "Geometry",
+    "subskill": "Arc length",
+    "difficulty": "medium",
+    "prompt": "A circle has radius 12 centimeters. What is the length, in centimeters, of an arc that subtends a central angle of 150°?",
+    "choices": [
+      "10π",
+      "60π",
+      "20π",
+      "5π"
+    ],
+    "correct_answer": "10π",
+    "explanation": "The arc is 150/360 = 5/12 of the full circumference 2π(12) = 24π. So the arc length is (5/12)(24π) = 10π centimeters.",
+    "solve": "const k=(150/360)*2*12; return `${k}π`;"
+  },
+  {
+    "id": "AM2-56",
+    "domain": "Integrating Essential Skills",
+    "subskill": "Successive percent changes",
+    "difficulty": "easy",
+    "prompt": "A jacket originally priced at $80 is marked up 25%. The new price is then discounted 20%. What is the final price of the jacket, in dollars?",
+    "choices": [
+      "80",
+      "100",
+      "84",
+      "76"
+    ],
+    "correct_answer": "80",
+    "explanation": "After the markup the price is 80 × 1.25 = $100. A 20% discount on $100 is $20, leaving $80.",
+    "solve": "return 80*1.25*0.8;"
+  },
+  {
+    "id": "AM2-57",
+    "domain": "Geometry",
+    "subskill": "Law of cosines",
+    "difficulty": "hard",
+    "prompt": "Two sides of a triangle have lengths 7 and 9, and the angle between them measures 60°. What is the length of the third side?",
+    "choices": [
+      "√67",
+      "√130",
+      "√193",
+      "√11"
+    ],
+    "correct_answer": "√67",
+    "explanation": "By the law of cosines, c² = 7² + 9² − 2(7)(9)cos 60° = 49 + 81 − 126(1/2) = 130 − 63 = 67, so the third side is √67.",
+    "solve": "const c2=Math.round(49+81-2*7*9*Math.cos(Math.PI/3)); return \"√\"+c2;"
+  },
+  {
+    "id": "AM2-58",
+    "domain": "Statistics and Probability",
+    "subskill": "Median from a frequency table",
+    "difficulty": "medium",
+    "prompt": "A survey asked 20 students how many siblings they have. The results: 3 students said 1, 7 students said 2, 4 students said 3, 4 students said 4, and 2 students said 5. What is the median number of siblings?",
+    "choices": [
+      "3",
+      "2.5",
+      "2.75",
+      "2"
+    ],
+    "correct_answer": "2.5",
+    "explanation": "With 20 values, the median is the average of the 10th and 11th values in order. The first 3 values are 1, values 4–10 are 2, and values 11–14 are 3. The 10th value is 2 and the 11th is 3, so the median is (2 + 3)/2 = 2.5. The mode (2) and the mean (2.75) are different measures.",
+    "solve": "const vals=[]; [[1,3],[2,7],[3,4],[4,4],[5,2]].forEach(([v,f])=>{for(let i=0;i<f;i++)vals.push(v)}); vals.sort((a,b)=>a-b); return (vals[9]+vals[10])/2;"
+  },
+  {
+    "id": "AM2-59",
+    "domain": "Statistics and Probability",
+    "subskill": "Weighted average",
+    "difficulty": "medium",
+    "prompt": "In a course, each of three unit tests counts for 20% of the final grade and the final exam counts for 40%. A student scored 82, 90, and 76 on the unit tests and 85 on the final exam. What is the student's final grade?",
+    "choices": [
+      "83.25",
+      "82.67",
+      "83.6",
+      "83.83"
+    ],
+    "correct_answer": "83.6",
+    "explanation": "Weight each score: 0.2(82) + 0.2(90) + 0.2(76) + 0.4(85) = 16.4 + 18 + 15.2 + 34 = 83.6.",
+    "solve": "return Math.round((0.2*82+0.2*90+0.2*76+0.4*85)*1e6)/1e6;"
+  },
+  {
+    "id": "AM2-60",
+    "domain": "Number and Quantity",
+    "subskill": "Rational exponents",
+    "difficulty": "easy",
+    "prompt": "What is the value of 27^(4/3)?",
+    "choices": [
+      "9",
+      "108",
+      "81",
+      "36"
+    ],
+    "correct_answer": "81",
+    "explanation": "A fractional exponent means a root and a power: 27^(4/3) = (∛27)⁴ = 3⁴ = 81.",
+    "solve": "return Math.round(Math.pow(27,4/3));"
+  },
+  {
+    "id": "AM2-61",
+    "domain": "Functions",
+    "subskill": "Geometric sequence nth term",
+    "difficulty": "hard",
+    "prompt": "In a geometric sequence of positive numbers, the 2nd term is 12 and the 5th term is 324. What is the 8th term?",
+    "choices": [
+      "8748",
+      "2916",
+      "6561",
+      "972"
+    ],
+    "correct_answer": "8748",
+    "explanation": "From the 2nd to the 5th term the ratio is applied three times, so r³ = 324/12 = 27 and r = 3. From the 5th to the 8th term is three more applications: 324·3³ = 324·27 = 8,748.",
+    "solve": "const r=Math.cbrt(324/12); return Math.round(324*Math.pow(r,3));"
+  },
+  {
+    "id": "AM2-62",
+    "domain": "Functions",
+    "subskill": "Logarithmic equation with domain check",
+    "difficulty": "hard",
+    "prompt": "Which of the following describes the solution set of log₃(x + 4) + log₃(x − 4) = 2?",
+    "choices": [
+      "5 and -5",
+      "5 only",
+      "No real solution",
+      "-5 only"
+    ],
+    "correct_answer": "5 only",
+    "explanation": "Combining the logarithms gives log₃[(x + 4)(x − 4)] = 2, so x² − 16 = 9 and x² = 25. Only x = 5 keeps both x + 4 and x − 4 positive; x = −5 would require the logarithm of a negative number, so it is rejected.",
+    "solve": "const c=[5,-5].filter(x=>x+4>0&&x-4>0&&Math.abs((x+4)*(x-4)-9)<1e-9); if(c.length===0) return \"No real solution\"; if(c.length===2) return \"5 and −5\"; return c[0]+\" only\";"
+  },
+  {
+    "id": "AM2-63",
+    "domain": "Algebra",
+    "subskill": "System with infinitely many solutions",
+    "difficulty": "medium",
+    "prompt": "For what value of p does the system 2x + 5y = 7 and 6x + py = 21 have infinitely many solutions?",
+    "choices": [
+      "3",
+      "10",
+      "15",
+      "5"
+    ],
+    "correct_answer": "15",
+    "explanation": "Infinitely many solutions means the second equation is a multiple of the first. Since 6 = 3·2 and 21 = 3·7, the multiplier is 3, so p must equal 3·5 = 15.",
+    "solve": "const m=6/2; return 5*m;"
+  },
+  {
+    "id": "AM2-64",
+    "domain": "Integrating Essential Skills",
+    "subskill": "Mixture problem",
+    "difficulty": "hard",
+    "prompt": "A chemist has 20 liters of a solution that is 30% acid. How many liters of a 60% acid solution must be added to obtain a solution that is 40% acid?",
+    "choices": [
+      "40",
+      "10/3",
+      "20",
+      "10"
+    ],
+    "correct_answer": "10",
+    "explanation": "Let x be the liters added. Acid: 0.30(20) + 0.60x = 0.40(20 + x), so 6 + 0.6x = 8 + 0.4x, giving 0.2x = 2 and x = 10 liters.",
+    "solve": "return (0.4*20-0.3*20)/(0.6-0.4);"
+  },
+  {
+    "id": "AM2-65",
+    "domain": "Integrating Essential Skills",
+    "subskill": "Tax and tip on a bill",
+    "difficulty": "medium",
+    "prompt": "A restaurant bill is $48.00 before tax. An 8% sales tax is added to the bill, and a 20% tip is calculated on the pre-tax amount. What is the total amount paid, in dollars?",
+    "choices": [
+      "62.21",
+      "57.60",
+      "51.84",
+      "61.44"
+    ],
+    "correct_answer": "61.44",
+    "explanation": "Tax is 0.08 × 48 = $3.84 and the tip is 0.20 × 48 = $9.60. The total is 48 + 3.84 + 9.60 = $61.44.",
+    "solve": "return Math.round((48+48*0.08+48*0.20)*100)/100;"
+  },
+  {
+    "id": "AM2-66",
+    "domain": "Geometry",
+    "subskill": "Circle equation by completing the square",
+    "difficulty": "medium",
+    "prompt": "A circle in the standard (x, y) coordinate plane has equation x² + y² − 6x + 4y − 12 = 0. What is the radius of the circle?",
+    "choices": [
+      "25",
+      "5",
+      "13",
+      "1"
+    ],
+    "correct_answer": "5",
+    "explanation": "Complete the square: (x² − 6x + 9) + (y² + 4y + 4) = 12 + 9 + 4, so (x − 3)² + (y + 2)² = 25. The radius is √25 = 5.",
+    "solve": "const r2=12+Math.pow(-6/2,2)+Math.pow(4/2,2); return Math.sqrt(r2);"
+  },
+  {
+    "id": "AM2-67",
+    "domain": "Functions",
+    "subskill": "Combined transformation evaluated at a point",
+    "difficulty": "hard",
+    "prompt": "Let f(x) = x². The function g is defined by g(x) = −2·f(x − 1) + 3. What is the value of g(3)?",
+    "choices": [
+      "-15",
+      "11",
+      "-5",
+      "52"
+    ],
+    "correct_answer": "-5",
+    "explanation": "Substitute directly: g(3) = −2·f(2) + 3 = −2(4) + 3 = −8 + 3 = −5.",
+    "solve": "const f=x=>x*x; const g=x=>-2*f(x-1)+3; return g(3);"
+  }
+]
