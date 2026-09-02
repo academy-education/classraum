@@ -1,0 +1,213 @@
+#!/usr/bin/env node
+/**
+ * act-bank-helper.mjs — validate and insert ACT English and Reading
+ * batches. (Math goes through math-bank-helper.mjs with BANK_FAMILY=act,
+ * because its sandbox recompute is the stronger gate.)
+ *
+ *   node act-bank-helper.mjs check  english|reading <batch.json>
+ *   node act-bank-helper.mjs insert english|reading <batch.json> <cohort> [--apply]
+ *
+ * REFUSES THE BATCH, NOT THE ITEM. An ACT section is a fixed structure —
+ * English is five passages of exactly ten, Reading is four passages of
+ * exactly nine, one per genre — and a passage with nine English items is
+ * not "90% usable", it is a passage the assembler will never draw. So a
+ * structural failure anywhere stops the whole insert, and nothing is
+ * written until every check passes. This is the same rule the verbal
+ * bijective-set inserter follows, for the same reason.
+ *
+ * What is checked, all decidable:
+ *   - exactly 4 options, key present verbatim, no duplicate options
+ *   - every item in a passage group carries the IDENTICAL passage text
+ *     (the client groups a passage run by identical text, and a group
+ *     whose items differ in passage text renders as ten separate
+ *     passages)
+ *   - English: 10 items per group; "No Change" is choices[0] wherever it
+ *     appears; the stem quotes the target span (Andy's decision of
+ *     2026-09-02: SAT convention, no underline renderer)
+ *   - Reading: 9 items per group; `genre` in the published four; no stem
+ *     cites a LINE NUMBER (text reflows on a phone, so "line 26" is a
+ *     lie — items cite paragraphs and quoted phrases instead)
+ *   - `domain` is one of the section's published reporting categories,
+ *     spelled exactly as ACT_QUOTAS spells it, so the quota checker can
+ *     count it
+ *   - explanations name no option letter or position
+ *
+ * Batch shape (both sections):
+ *   [{ id, passage_id, passage_title?, passage, prompt, choices[4],
+ *      correct_answer, explanation, domain, subskill, difficulty,
+ *      genre? (reading), paired? (reading) }]
+ */
+import { readFileSync } from 'node:fs'
+import { createHash } from 'node:crypto'
+import { createClient } from '@supabase/supabase-js'
+
+const [cmd, section, file, cohort] = process.argv.slice(2)
+const APPLY = process.argv.includes('--apply')
+if (!cmd || !section || !file || (cmd === 'insert' && !cohort)) {
+  console.error('usage: act-bank-helper.mjs check|insert english|reading <batch.json> [cohort] [--apply]')
+  process.exit(1)
+}
+if (!['english', 'reading'].includes(section)) { console.error(`section must be english or reading (math uses math-bank-helper.mjs)`); process.exit(1) }
+
+/* Mirrors src/lib/study/act-test.ts. Kept literal here so this script
+   has no TS import path to break; act-blueprint.test.ts pins the source. */
+const PER_PASSAGE = { english: 10, reading: 9 }
+const GENRES = ['literary_narrative', 'social_science', 'humanities', 'natural_science']
+const DOMAINS = {
+  english: ['Production of Writing', 'Knowledge of Language', 'Conventions of Standard English'],
+  reading: ['Key Ideas and Details', 'Craft and Structure', 'Integration of Knowledge and Ideas'],
+}
+
+const batch = JSON.parse(readFileSync(file, 'utf8'))
+const problems = []
+const flat = s => String(s ?? '').replace(/\s+/g, ' ').trim()
+
+/* ---- per-item checks ---- */
+for (const it of batch) {
+  const tag = it.id ?? '(no id)'
+  if (!it.passage_id) problems.push(`${tag}: no passage_id`)
+  if (!flat(it.passage)) problems.push(`${tag}: empty passage`)
+  if (!flat(it.prompt)) problems.push(`${tag}: empty prompt`)
+  if (!Array.isArray(it.choices) || it.choices.length !== 4) problems.push(`${tag}: needs exactly 4 choices`)
+  else {
+    if (!it.choices.includes(it.correct_answer)) problems.push(`${tag}: key is not among the choices verbatim`)
+    if (new Set(it.choices.map(flat)).size !== 4) problems.push(`${tag}: duplicate options`)
+    if (section === 'english') {
+      const nc = it.choices.findIndex(c => /^no change$/i.test(flat(c)))
+      if (nc > 0) problems.push(`${tag}: "No Change" must be choices[0], found at ${nc}`)
+    }
+  }
+  if (!DOMAINS[section].includes(it.domain)) problems.push(`${tag}: domain "${it.domain}" is not one of ${DOMAINS[section].join(' | ')}`)
+  if (!['easy', 'medium', 'hard'].includes(it.difficulty)) problems.push(`${tag}: difficulty "${it.difficulty}"`)
+  if (/\b(option|choice|answer)\s*\(?[A-J]\)?(?![a-z])|\b(first|second|third|fourth|last) (option|choice|answer)\b/i.test(it.explanation ?? '')) problems.push(`${tag}: explanation names an option position`)
+  if (section === 'reading') {
+    if (!GENRES.includes(it.genre)) problems.push(`${tag}: genre "${it.genre}" is not one of ${GENRES.join(' | ')}`)
+    if (/\blines?\s+\d+/i.test(it.prompt)) problems.push(`${tag}: stem cites a line number — cite the paragraph or quote the phrase`)
+  }
+  if (section === 'english') {
+    /* The SAT convention: nothing is underlined on screen, so the stem
+       itself must LOCATE what is being asked about — a quoted span, a
+       paragraph number, a placement point, or the essay as a whole. The
+       first draft exempted any stem containing "transition" or "writer",
+       which let 'Which transition is most logical in context?' through
+       with no way for the student to know which transition. */
+    const located = /["“][^"”]{2,}["”]/.test(it.prompt)
+      || /\bparagraph\s*\d|\bPoint\s*\[?[A-D]\]?|\bessay as a whole|\bpreceding passage|\bsequence of sentences/i.test(it.prompt)
+    if (!located) problems.push(`${tag}: stem neither quotes a span nor names a paragraph/point/whole essay — the student cannot locate what is being revised`)
+  }
+  if (section === 'reading' && /most nearly means/i.test(it.prompt)) {
+    /* The B5 finding, made decidable: a vocab stem whose target word
+       occurs more than once in the passage must quote a longer phrase
+       that pins ONE occurrence. Nine repaired items and thirteen found. */
+    // Strip trailing punctuation that American quoting puts INSIDE the
+    // quote: "the ledger was patient work," must match the passage's
+    // "the ledger was patient work." The self-test caught this too.
+    const quoted = [...it.prompt.matchAll(/["“]([^"”]{1,})["”]/g)].map(m => flat(m[1]).replace(/[,.;:!?]+$/, ''))
+    if (!quoted.length) problems.push(`${tag}: vocab stem quotes no target word`)
+    else {
+      const target = quoted.slice().sort((a, b) => a.length - b.length)[0]
+      const passage = flat(it.passage).toLowerCase()
+      const esc = target.toLowerCase().replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+      const hits = (passage.match(new RegExp(`\\b${esc}\\b`, 'g')) ?? []).length
+      if (hits === 0) problems.push(`${tag}: vocab target "${target}" does not occur in the passage`)
+      else if (hits > 1) {
+        const pin = quoted.find(q => q !== target && q.split(' ').length >= 4 && q.toLowerCase().includes(target.toLowerCase())
+          && passage.split(q.toLowerCase()).length - 1 === 1)
+        if (!pin) problems.push(`${tag}: vocab target "${target}" occurs ${hits}x in the passage and the stem quotes no unique 4+-word phrase containing it`)
+      }
+    }
+  }
+}
+
+/* ---- per-passage checks ---- */
+const groups = {}
+for (const it of batch) (groups[it.passage_id] = groups[it.passage_id] ?? []).push(it)
+for (const [pid, g] of Object.entries(groups)) {
+  const want = PER_PASSAGE[section]
+  if (g.length !== want) problems.push(`passage ${pid}: ${g.length} items, section needs exactly ${want}`)
+  // RAW comparison. The client's passageKey() canonicalises whitespace
+  // before grouping, so it would survive a stray space - but byte identity
+  // is what the authoring brief promised, it is free to demand, and a
+  // batch whose ten copies differ at all has been edited by hand somewhere.
+  // The first draft compared normalized text and the self-test caught it.
+  if (new Set(g.map(i => String(i.passage))).size !== 1) problems.push(`passage ${pid}: items do not share IDENTICAL passage text — the client would render them as separate passages`)
+  if (section === 'reading' && new Set(g.map(i => i.genre)).size !== 1) problems.push(`passage ${pid}: mixed genres within one passage`)
+  if (section === 'reading') {
+    const paired = !!g[0].paired
+    const hasAB = /Passage A/.test(g[0].passage) && /Passage B/.test(g[0].passage)
+    if (paired !== hasAB) problems.push(`passage ${pid}: paired=${paired} but passage ${hasAB ? 'has' : 'lacks'} "Passage A"/"Passage B" headers`)
+  }
+  const ids = g.map(i => i.id)
+  if (new Set(ids).size !== ids.length) problems.push(`passage ${pid}: duplicate item ids`)
+}
+
+const total = batch.length
+const dom = {}
+for (const it of batch) dom[it.domain] = (dom[it.domain] ?? 0) + 1
+console.log(`${total} items in ${Object.keys(groups).length} passage(s)`)
+console.log('domain mix:', Object.entries(dom).map(([k, v]) => `${k} ${v} (${(100 * v / total).toFixed(0)}%)`).join(' | '))
+if (section === 'reading') {
+  const gen = {}; for (const g of Object.values(groups)) gen[g[0].genre] = (gen[g[0].genre] ?? 0) + 1
+  console.log('genres:', JSON.stringify(gen), ' paired passages:', Object.values(groups).filter(g => g[0].paired).length)
+}
+
+if (problems.length) {
+  console.error(`\nREFUSED — ${problems.length} problem(s):\n  ` + problems.slice(0, 40).join('\n  ') + (problems.length > 40 ? `\n  ...and ${problems.length - 40} more` : ''))
+  process.exit(1)
+}
+console.log('\nstructure OK')
+if (cmd === 'check') process.exit(0)
+if (!APPLY) { console.log('DRY RUN — pass --apply to write'); process.exit(0) }
+
+/* ---- insert ---- */
+const env = Object.fromEntries(readFileSync('.env.local', 'utf8').split('\n')
+  .filter(l => l.includes('=') && !l.startsWith('#'))
+  .map(l => [l.slice(0, l.indexOf('=')), l.slice(l.indexOf('=') + 1).trim()]))
+const db = createClient(env.NEXT_PUBLIC_SUPABASE_URL, env.SUPABASE_SERVICE_ROLE_KEY, { auth: { persistSession: false } })
+const norm = s => String(s).trim().replace(/\s+/g, ' ').toLowerCase()
+const hashOf = it => createHash('md5').update([norm(it.prompt), (it.choices || []).map(norm).join('|')].join('~~')).digest('hex')
+
+const { data: existing } = await db.from('study_item_bank').select('content_hash').eq('family', 'act').eq('section', section)
+const seen = new Set((existing ?? []).map(r => r.content_hash))
+
+let inserted = 0, dup = 0
+for (const it of batch) {
+  const item = {
+    type: 'multiple_choice', passage: it.passage, prompt: it.prompt, choices: it.choices,
+    correct_answer: it.correct_answer, explanation: it.explanation, difficulty: it.difficulty,
+    passageGroupId: `${cohort}:${it.passage_id}`,
+    ...(it.passage_title ? { passage_title: it.passage_title } : {}),
+  }
+  const content_hash = hashOf(item)
+  if (seen.has(content_hash)) { console.log(`DUP ${it.id}`); dup++; continue }
+  const { error } = await db.from('study_item_bank').insert({
+    family: 'act', section, domain: it.domain, subskill: it.subskill ?? null,
+    // `task` carries the GENRE for reading (the assembler draws one passage
+    // per genre off it) and the item type for english. NOT NULL since 068.
+    task: section === 'reading' ? it.genre : 'multiple_choice',
+    item_type: 'multiple_choice', difficulty: it.difficulty, topic_tag: it.subskill ?? null,
+    item, content_hash, passage_group_id: `${cohort}:${it.passage_id}`,
+    word_count: null, verified: true, archived: false, source: 'hand', cohort,
+    verify_meta: {
+      method: 'claude-authored; structure-checked by act-bank-helper before insert',
+      localId: it.id, passage_id: it.passage_id, ...(section === 'reading' ? { genre: it.genre, paired: !!it.paired } : {}),
+      difficulty_ungraded: true,
+      author_reported_difficulty: it.difficulty,
+      note: 'Difficulty is the author\'s own label, not an independent grade. Not yet blind-attacked, not yet read by a human.',
+    },
+  })
+  if (error) { console.error(`ERR ${it.id}: ${error.message}`); process.exit(1) }
+  seen.add(content_hash); inserted++
+}
+console.log(`inserted ${inserted}, dup-skipped ${dup}`)
+
+/* CHECK the write, do not trust it. */
+const { data: after } = await db.from('study_item_bank').select('passage_group_id,task').eq('cohort', cohort)
+const g2 = {}; for (const r of after ?? []) g2[r.passage_group_id] = (g2[r.passage_group_id] ?? 0) + 1
+const short = Object.entries(g2).filter(([, n]) => n !== PER_PASSAGE[section])
+console.log(`verified in DB: ${after?.length ?? 0} rows in ${Object.keys(g2).length} passage groups`)
+if (short.length) { console.error(`FAIL: ${short.length} group(s) not at ${PER_PASSAGE[section]}: ${short.map(([k, n]) => `${k}=${n}`).join(', ')}`); process.exit(1) }
+if (section === 'reading') {
+  const tg = {}; for (const r of after ?? []) tg[r.task] = (tg[r.task] ?? 0) + 1
+  console.log('task (genre) in DB:', JSON.stringify(tg))
+}
