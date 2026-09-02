@@ -32,23 +32,22 @@ describe('every startable admission section has exactly one topic slug', () => {
   })
 
   it('resolves a slug to the section carrying the right counts', () => {
-    const r = admissionSectionForSlug('ssat-quant-1')
+    const r = admissionSectionForSlug('ssat-math')
     expect(r?.family).toBe('ssat')
-    expect(r?.section.key).toBe('quant1')
-    expect(r?.section.questions).toBe(25)
+    expect(r?.section.key).toBe('math')
+    expect(r?.section.questions).toBe(50)
     expect(r?.section.bankSection).toBe('math')
   })
 
-  it('distinguishes the two SSAT quantitative blocks', () => {
-    // The whole reason the topic map cannot be a section-name lookup:
-    // both blocks draw from the same bank section and differ only by key.
-    const one = admissionSectionForSlug('ssat-quant-1')
-    const two = admissionSectionForSlug('ssat-quant-2')
-    expect(one?.section.key).not.toBe(two?.section.key)
-    expect(one?.section.bankSection).toBe(two?.section.bankSection)
+  it('no longer resolves the two retired quantitative slugs', () => {
+    // ssat-quant-1 was RENAMED to ssat-math and ssat-quant-2 deleted on
+    // 2026-09-02; a stale deep link must not open the AI sheet or a
+    // half-length block.
+    expect(admissionSectionForSlug('ssat-quant-1')).toBeNull()
+    expect(admissionSectionForSlug('ssat-quant-2')).toBeNull()
   })
 
-  it('refuses ssat-experimental, which has a topic row but no blueprint section', () => {
+  it('refuses ssat-experimental, which has no blueprint section (and, since 2026-09-02, no topic row)', () => {
     // Unscored on the real exam and deliberately excluded. A student who
     // deep-links here must not be given 15 minutes of questions that do
     // not count.
@@ -179,15 +178,21 @@ describe('the price shown is the price charged', () => {
     expect(route).toMatch(/\? \(block \? block\.key : null\)/)
   })
 
-  it('still catches the two sections the old derivation mispriced', () => {
-    // If this ever stops finding a disagreement, the old bug became
-    // invisible rather than fixed — and this whole test would go quiet.
-    const broken = Object.keys(ADMISSION_TOPIC_SLUGS).filter(slug => {
-      const a = admissionSectionForSlug(slug)!
-      return creditCostForTest(a.family, titleCased(slug))
-          !== creditCostForTest(a.family, a.section.key)
-    })
-    expect(broken.sort()).toEqual(['isee-math-achievement', 'isee-quant-reasoning'])
+  it('the old derivation still produces the WRONG KEY for two ISEE slugs', () => {
+    // The original bug: title-casing the slug as the section key. Since the
+    // 2026-09-02 repricing every ISEE block costs 1, so the wrong key now
+    // happens to PRICE the same as the right one - which is exactly how a
+    // bug goes quiet. So this pins the key mismatch itself, not the price:
+    // if someone reintroduces the derivation, these two slugs resolve to
+    // keys the blueprint does not define, and the source-regex test above
+    // is what keeps the derivation out of the page.
+    const wrongKey = Object.keys(ADMISSION_TOPIC_SLUGS).filter(slug =>
+      titleCased(slug) !== admissionSectionForSlug(slug)!.section.key)
+    expect(wrongKey.sort()).toEqual(['isee-math-achievement', 'isee-quant-reasoning'])
+    for (const slug of wrongKey) {
+      const fam = admissionSectionForSlug(slug)!.family
+      expect(ADMISSION_BLUEPRINT[fam].some(b => b.key === titleCased(slug))).toBe(false)
+    }
   })
 
   it('prices every scored, drawable block above zero', () => {

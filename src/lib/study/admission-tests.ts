@@ -39,15 +39,25 @@ export interface AdmissionSection {
  */
 export const ADMISSION_BLUEPRINT: Record<AdmissionFamily, AdmissionSection[]> = {
   ssat: [
-    { key: 'writing',   name: 'Writing Sample',           bankSection: 'writing', questions: 1,  minutes: 25, choiceCount: 0, scored: false },
-    { key: 'quant1',    name: 'Quantitative Section 1',   bankSection: 'math',    questions: 25, minutes: 30, choiceCount: 5, scored: true },
+    /*
+     * FOUR blocks, not the real exam's five-plus-experimental. Decided by
+     * the co-founder on 2026-09-02: the two 25-question Quantitative
+     * sections are served as ONE 50-question Math block (their clocks
+     * summed), the unscored Experimental section is not served at all,
+     * and the delivery order is Math, Reading, Verbal, Writing. The
+     * scored total is unchanged at 150; the guessing penalty, the
+     * five-choice format and every per-item rule are untouched.
+     */
+    { key: 'math',      name: 'Math',                     bankSection: 'math',    questions: 50, minutes: 60, choiceCount: 5, scored: true },
     { key: 'reading',   name: 'Reading Comprehension',    bankSection: 'reading', questions: 40, minutes: 40, choiceCount: 5, scored: true },
     { key: 'verbal',    name: 'Verbal',                   bankSection: 'verbal',  questions: 60, minutes: 30, choiceCount: 5, scored: true },
-    { key: 'quant2',    name: 'Quantitative Section 2',   bankSection: 'math',    questions: 25, minutes: 30, choiceCount: 5, scored: true },
+    { key: 'writing',   name: 'Writing Sample',           bankSection: 'writing', questions: 1,  minutes: 25, choiceCount: 0, scored: false },
   ],
   isee: [
-    { key: 'verbal',    name: 'Verbal Reasoning',         bankSection: 'verbal',  questions: 40, minutes: 20, choiceCount: 4, scored: true },
+    // Order is the co-founder's (2026-09-02): Quantitative Reasoning,
+    // Verbal Reasoning, Reading, Mathematics Achievement, Essay.
     { key: 'quant',     name: 'Quantitative Reasoning',   bankSection: 'math',    questions: 37, minutes: 35, choiceCount: 4, scored: true },
+    { key: 'verbal',    name: 'Verbal Reasoning',         bankSection: 'verbal',  questions: 40, minutes: 20, choiceCount: 4, scored: true },
     { key: 'reading',   name: 'Reading Comprehension',    bankSection: 'reading', questions: 36, minutes: 35, choiceCount: 4, scored: true },
     { key: 'mathach',   name: 'Mathematics Achievement',  bankSection: 'math',    questions: 47, minutes: 40, choiceCount: 4, scored: true },
     { key: 'essay',     name: 'Essay',                    bankSection: 'writing', questions: 1,  minutes: 30, choiceCount: 0, scored: false },
@@ -310,13 +320,14 @@ export function spreadAcrossPassages<T extends { passageGroupId: string | null }
  * refuses to start, which is the intended behaviour, not an oversight.
  * ------------------------------------------------------------------ */
 export const ADMISSION_TOPIC_SLUGS: Record<string, { family: AdmissionFamily; key: string }> = {
-  'ssat-writing':          { family: 'ssat', key: 'writing' },
-  'ssat-quant-1':          { family: 'ssat', key: 'quant1' },
+  // `ssat-math` is the renamed ssat-quant-1 topic row; ssat-quant-2 and
+  // ssat-experimental were deleted on 2026-09-02 (zero sessions on either).
+  'ssat-math':             { family: 'ssat', key: 'math' },
   'ssat-reading':          { family: 'ssat', key: 'reading' },
   'ssat-verbal':           { family: 'ssat', key: 'verbal' },
-  'ssat-quant-2':          { family: 'ssat', key: 'quant2' },
-  'isee-verbal':           { family: 'isee', key: 'verbal' },
+  'ssat-writing':          { family: 'ssat', key: 'writing' },
   'isee-quant-reasoning':  { family: 'isee', key: 'quant' },
+  'isee-verbal':           { family: 'isee', key: 'verbal' },
   'isee-reading':          { family: 'isee', key: 'reading' },
   'isee-math-achievement': { family: 'isee', key: 'mathach' },
   'isee-essay':            { family: 'isee', key: 'essay' },

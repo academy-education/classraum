@@ -34,10 +34,9 @@ const MAX_PER_PASSAGE = 6
 const BLUEPRINT = {
   ssat: [
     { key: 'writing', bankSection: 'writing', questions: 1 },
-    { key: 'quant1',  bankSection: 'math',    questions: 25 },
+    { key: 'math',    bankSection: 'math',    questions: 50 },
     { key: 'reading', bankSection: 'reading', questions: 40 },
     { key: 'verbal',  bankSection: 'verbal',  questions: 60 },
-    { key: 'quant2',  bankSection: 'math',    questions: 25 },
   ],
   isee: [
     { key: 'verbal',  bankSection: 'verbal',  questions: 40 },
@@ -105,7 +104,7 @@ function drawable(rows, cap) {
 let failed = false
 for (const [family, sections] of Object.entries(BLUEPRINT)) {
   console.log(`\n=== ${family.toUpperCase()} ===`)
-  // Two blocks can draw from the same bank section (SSAT quant1+quant2,
+  // Two blocks can draw from the same bank section (SSAT once did with quant1+quant2, now one math block;
   // ISEE quant+mathach). They must be summed, not checked separately —
   // checking each alone would pass a bank that cannot serve both.
   const need = {}

@@ -27,9 +27,19 @@ describe('blueprint matches the published format', () => {
   // The spec file is the source of truth for the exam's shape. If someone
   // edits one and not the other, the served test stops matching the real
   // one and nothing else would notice.
-  it('SSAT sections match TEST_SPECS counts and timings', () => {
+  it('SSAT sections match TEST_SPECS counts and timings, with math as the SUM of the two quantitative specs', () => {
+    // The spec describes the real exam (two 25-question quantitative
+    // sections). We serve them as one block, so the block must equal
+    // their sum - not either one, and not a number typed by hand.
     const spec = TEST_SPECS.ssat!.sections
+    const quant = spec.filter(x => /^Quantitative/.test(x.name_en))
+    expect(quant).toHaveLength(2)
     for (const b of ADMISSION_BLUEPRINT.ssat) {
+      if (b.key === 'math') {
+        expect(b.questions).toBe(quant.reduce((n, x) => n + x.questionsPerSection, 0))
+        expect(b.minutes).toBe(quant.reduce((n, x) => n + x.minutesPerSection, 0))
+        continue
+      }
       const s = spec.find(x => x.name_en === b.name)
       expect(s).toBeDefined()
       expect(b.questions).toBe(s!.questionsPerSection)
@@ -66,16 +76,18 @@ describe('blueprint matches the published format', () => {
   })
 
   it('counts only scored blocks toward the form total', () => {
-    // SSAT 25 + 40 + 60 + 25; the Writing Sample is unscored.
+    // SSAT 50 (both quantitative sections as one block) + 40 + 60; the Writing Sample is unscored.
     expect(scoredQuestionCount('ssat')).toBe(150)
     // ISEE 40 + 37 + 36 + 47; the Essay is unscored.
     expect(scoredQuestionCount('isee')).toBe(160)
   })
 
-  it('delivers the two SSAT quantitative blocks at opposite ends', () => {
-    const keys = ADMISSION_BLUEPRINT.ssat.map(s => s.key)
-    expect(keys.indexOf('quant1')).toBeLessThan(keys.indexOf('reading'))
-    expect(keys.indexOf('quant2')).toBeGreaterThan(keys.indexOf('verbal'))
+  it('delivers SSAT in the co-founder\'s order: Math, Reading, Verbal, Writing', () => {
+    expect(ADMISSION_BLUEPRINT.ssat.map(s => s.key)).toEqual(['math', 'reading', 'verbal', 'writing'])
+  })
+
+  it('delivers ISEE in the co-founder\'s order: Quant, Verbal, Reading, Math Achievement, Essay', () => {
+    expect(ADMISSION_BLUEPRINT.isee.map(s => s.key)).toEqual(['quant', 'verbal', 'reading', 'mathach', 'essay'])
   })
 })
 
@@ -167,7 +179,7 @@ describe('the live-bank verifier mirrors this blueprint', () => {
   })
 
   it('sums blocks that share a bank section rather than checking them apart', () => {
-    // SSAT quant1+quant2 and ISEE quant+mathach both draw from `math`.
+    // ISEE quant+mathach both draw from `math` (SSAT's two quant sections are now one block).
     // Checking each alone would pass a bank that cannot serve both.
     expect(src).toMatch(/need\[s\.bankSection\] = \(need\[s\.bankSection\] \?\? 0\) \+ s\.questions/)
   })

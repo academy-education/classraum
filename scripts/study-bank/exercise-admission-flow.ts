@@ -102,7 +102,7 @@ async function run() {
   /* The routing that decides WHICH of the two rules above runs. */
   console.log('\n=== family routing ===')
   for (const [slug, want] of [
-    ['ssat-quant-1', 'ssat'], ['ssat-reading', 'ssat'],
+    ['ssat-math', 'ssat'], ['ssat-reading', 'ssat'],
     ['isee-math-achievement', 'isee'], ['sat-math', 'sat'], ['toefl-reading', 'toefl'],
   ] as [string, string][]) {
     const got = familyFromTopicSlug(slug)

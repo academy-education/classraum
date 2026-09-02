@@ -31,17 +31,22 @@ describe('every blueprint block can be routed', () => {
     }
   })
 
-  it('maps the two same-bank-section blocks to DIFFERENT topics', () => {
+  it('maps the two same-bank-section ISEE blocks to DIFFERENT topics', () => {
     // The whole reason these maps are keyed by block rather than section.
-    expect(SECTION_TOPIC.ssat!.quant1).not.toBe(SECTION_TOPIC.ssat!.quant2)
+    // SSAT no longer has such a pair: its two quantitative sections are
+    // served as ONE 50-question math block (co-founder, 2026-09-02).
     expect(SECTION_TOPIC.isee!.quant).not.toBe(SECTION_TOPIC.isee!.mathach)
-    // …and they really do share a bank section, or the test above is vacuous.
-    const ssat = ADMISSION_BLUEPRINT.ssat
-    expect(ssat.find(b => b.key === 'quant1')!.bankSection)
-      .toBe(ssat.find(b => b.key === 'quant2')!.bankSection)
     const isee = ADMISSION_BLUEPRINT.isee
     expect(isee.find(b => b.key === 'quant')!.bankSection)
       .toBe(isee.find(b => b.key === 'mathach')!.bankSection)
+  })
+
+  it('SSAT serves exactly one math block, of both quantitative sections combined', () => {
+    const math = ADMISSION_BLUEPRINT.ssat.filter(b => b.bankSection === 'math')
+    expect(math).toHaveLength(1)
+    expect(math[0]!.key).toBe('math')
+    expect(math[0]!.questions).toBe(50)   // 25 + 25
+    expect(math[0]!.minutes).toBe(60)     // 30 + 30
   })
 
   it('gives every topic id a distinct row', () => {
@@ -88,15 +93,26 @@ describe('credits are priced per block', () => {
     }
   })
 
-  it('charges the short SSAT quantitative blocks less than the long ones', () => {
-    expect(creditCostForTest('ssat', 'quant1')).toBe(1)
-    expect(creditCostForTest('ssat', 'verbal')).toBe(2)
+  it('prices as the co-founder set on 2026-09-02: SSAT math 2, everything else 1', () => {
+    // Not the length rule the SAT/TOEFL/ACT rows follow. Reversion to the
+    // length rule (reading 2, verbal 2) fails here.
+    expect(creditCostForTest('ssat', 'math')).toBe(2)
+    expect(creditCostForTest('ssat', 'reading')).toBe(1)
+    expect(creditCostForTest('ssat', 'verbal')).toBe(1)
+    expect(creditCostForTest('ssat', 'writing')).toBe(1)
+    for (const b of ADMISSION_BLUEPRINT.isee) expect(creditCostForTest('isee', b.key)).toBe(1)
+  })
+
+  it('lists the unscored blocks explicitly too, so 1 is a price and not a fallback', () => {
+    const table = plansSrc.slice(plansSrc.indexOf('const SECTION_CREDIT_COST'))
+    expect(table.slice(table.indexOf('ssat: {'), table.indexOf('}', table.indexOf('ssat: {')))).toContain('writing:')
+    expect(table.slice(table.indexOf('isee: {'), table.indexOf('}', table.indexOf('isee: {')))).toContain('essay:')
   })
 
   it('does not accidentally price a bank section that is not a block key', () => {
-    // 'math' is a bank section, never a request section, for these families.
-    expect(creditCostForTest('ssat', 'math')).toBe(1)  // falls back
-    expect(ADMISSION_BLUEPRINT.ssat.some(b => b.key === 'math')).toBe(false)
+    // For ISEE, 'math' is a bank section, never a request section.
+    expect(creditCostForTest('isee', 'math')).toBe(1)  // falls back
+    expect(ADMISSION_BLUEPRINT.isee.some(b => b.key === 'math')).toBe(false)
   })
 })
 
@@ -123,7 +139,7 @@ describe('the route accepts block keys, not bank sections', () => {
     ADMISSION_BLUEPRINT[fam].some(b => b.key === key && b.bankSection !== null)
 
   it('accepts every bank-backed block', () => {
-    expect(routable('ssat', 'quant1')).toBe(true)
+    expect(routable('ssat', 'math')).toBe(true)
     expect(routable('ssat', 'reading')).toBe(true)
     expect(routable('isee', 'mathach')).toBe(true)
   })
@@ -143,7 +159,8 @@ describe('the route accepts block keys, not bank sections', () => {
   })
 
   it('refuses a bank section passed where a block key belongs', () => {
-    expect(routable('ssat', 'math')).toBe(false)
+    expect(routable('isee', 'math')).toBe(false)     // ISEE's math blocks are quant / mathach
+    expect(routable('ssat', 'math')).toBe(true)      // SSAT's block IS named math since 2026-09-02
     expect(routable('isee', 'verbal')).toBe(true)   // ISEE's block IS named verbal
     expect(routable('ssat', 'reading_writing')).toBe(false)
   })

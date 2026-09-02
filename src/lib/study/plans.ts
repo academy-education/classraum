@@ -325,11 +325,14 @@ const SECTION_CREDIT_COST: Record<string, Record<string, number>> = {
   sat: { reading_writing: 2, math: 2 },
   toefl: { reading: 1, writing: 1, speaking: 2, listening: 2 },
   // SSAT / ISEE, keyed by blueprint block key (see SECTION_TOPIC for why
-  // block key rather than bank section). Priced on length, the same rule
-  // the SAT and TOEFL rows follow: the long blocks cost 2, the two short
-  // 25-question SSAT quantitative blocks cost 1.
-  ssat: { quant1: 1, reading: 2, verbal: 2, quant2: 1 },
-  isee: { verbal: 2, quant: 2, reading: 2, mathach: 2 },
+  // block key rather than bank section). Prices set by the co-founder on
+  // 2026-09-02 and NOT by the length rule the other rows follow: SSAT
+  // Math is 2 because it is the two real quantitative sections served as
+  // one block; every other SSAT and ISEE block, essays included, is 1.
+  // Listed explicitly so "priced 1" and "unlisted, defaulted to 1" stay
+  // distinguishable in the source (admission-wiring.test.ts reads it).
+  ssat: { math: 2, reading: 1, verbal: 1, writing: 1 },
+  isee: { quant: 1, verbal: 1, reading: 1, mathach: 1, essay: 1 },
   // ACT, keyed by blueprint section key. Every multiple-choice section is
   // long (36-50 questions, 35-50 minutes), so all price at 2 under the
   // same length rule the rows above follow. Writing is free-response and

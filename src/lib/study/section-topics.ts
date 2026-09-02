@@ -27,11 +27,13 @@ export const SECTION_TOPIC: Record<string, Record<string, string>> = {
    * a student's two SSAT quant sittings would attach to one topic.
    */
   ssat: {
-    writing: 'ba85cab2-ef6d-40fa-b7e1-32a7c3ec2d95',  // ssat-writing
-    quant1:  'f893611f-6cb3-44ce-a89d-0e08fdb5c9fd',  // ssat-quant-1
+    // 2026-09-02: the ssat-quant-1 row was RENAMED to ssat-math and now
+    // backs the single 50-question Math block; ssat-quant-2 and
+    // ssat-experimental rows were deleted.
+    math:    'f893611f-6cb3-44ce-a89d-0e08fdb5c9fd',  // ssat-math
     reading: '279e6668-d9a2-4ea9-900e-fbf5fc18222e',  // ssat-reading
     verbal:  '28834e18-d204-4ecc-883d-29628ff718c8',  // ssat-verbal
-    quant2:  '0c9bc853-9f42-4f33-a79f-206bbd183398',  // ssat-quant-2
+    writing: 'ba85cab2-ef6d-40fa-b7e1-32a7c3ec2d95',  // ssat-writing
   },
   /*
    * ACT, keyed by blueprint section key. The five topic rows predate the
