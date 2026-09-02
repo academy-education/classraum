@@ -4,7 +4,7 @@
  * into K files such that no file holds two items from the same passage.
  *
  *   node attack-split.mjs <run-prefix> --family act --cohort act-english-v1 \
- *        --domain "Production of Writing" [--domain "..."] --files 4 [--seed 7]
+ *        --domain "Production of Writing" [--domain "..."] --files 4 [--seed 7] [--only-fresh]
  *
  * Writes <run-prefix>-f1.blind.json / .key.json ... -fK, in the same shape
  * attack-cohort.mjs writes, so `attack-cohort.mjs ingest <run-prefix>-fN
@@ -48,8 +48,20 @@ for (let from = 0; ; from += 1000) {
   if (error) { console.error(error.message); process.exit(1) }
   rows.push(...(data ?? [])); if (!data || data.length < 1000) break
 }
+// --only-fresh: drop items that already hold a CURRENT attack result (the
+// same view prepare uses; a repaired item's sha changes, so it re-enters).
+let pool = rows
+if (rest.includes('--only-fresh')) {
+  const done = new Set()
+  for (let from = 0; ; from += 1000) {
+    const { data } = await db.from('study_item_attacks_fresh').select('item_id').range(from, from + 999)
+    for (const r of data ?? []) done.add(r.item_id); if (!data || data.length < 1000) break
+  }
+  pool = rows.filter(r => !done.has(r.id))
+  console.log(`only-fresh: ${rows.length - pool.length} already measured at current content, ${pool.length} to attack`)
+}
 const groups = {}
-for (const r of rows) (groups[r.passage_group_id ?? r.id] ??= []).push(r)
+for (const r of pool) (groups[r.passage_group_id ?? r.id] ??= []).push(r)
 const files = Array.from({ length: K }, () => [])
 let dropped = 0
 for (const g of Object.values(groups)) {
@@ -73,4 +85,4 @@ files.forEach((list, fi) => {
   const spread = {}; for (const k of Object.values(key)) spread[k.letter] = (spread[k.letter] ?? 0) + 1
   console.log(`${prefix}-f${fi + 1}: ${list.length} items from ${passages} passages (one each: ${passages === list.length}) key spread ${JSON.stringify(spread)}`)
 })
-console.log(`${rows.length} items in ${Object.keys(groups).length} passages -> ${K} files; ${dropped} not drawn (beyond ${K} per passage)`)
+console.log(`${pool.length} items in ${Object.keys(groups).length} passages -> ${K} files; ${dropped} not drawn (beyond ${K} per passage)`)
