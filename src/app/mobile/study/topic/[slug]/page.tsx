@@ -28,6 +28,7 @@ import { LandingDataProvider } from '../../LandingDataProvider'
 import { defaultsForTestSection } from '@/lib/test-specs'
 import { creditCostForTest } from '@/lib/study/plans'
 import { admissionSectionForSlug, type AdmissionSection } from '@/lib/study/admission-tests'
+import { actSectionForSlug, type ActSection } from '@/lib/study/act-test'
 import { passCreditLabel } from '../../_shared/pass-label'
 import type { TestFamily } from '@/lib/study-prompt-context'
 import type { Json } from '@/lib/database.types'
@@ -454,6 +455,8 @@ function TopicInner({ slug }: { slug: string }) {
     const slugNow = forSlug ?? effectiveTopic?.slug ?? slug
     const admission = admissionSectionForSlug(slugNow)
     if (admission) return creditCostForTest(admission.family, admission.section.key)
+    const act = actSectionForSlug(slugNow)
+    if (act) return creditCostForTest('act', act.key)
     const parsed = parseTestSlug(slugNow)
     return creditCostForTest(parsed.family, parsed.section?.toLowerCase().replace(/\s+/g, '_') ?? null)
   }
@@ -580,6 +583,40 @@ function TopicInner({ slug }: { slug: string }) {
     }
   }
 
+  /*
+   * Start one ACT section. Same contract as startAdmissionSection: the
+   * request carries the blueprint section KEY and nothing else the server
+   * would otherwise have to trust. Never adaptive — the ACT is linear.
+   */
+  const startActSection = async (section: ActSection) => {
+    setBankBusy(true)
+    try {
+      const headers = await authHeaders()
+      const res = await fetch('/api/study/test/assemble', {
+        method: 'POST',
+        headers: { ...headers, 'Content-Type': 'application/json' },
+        body: JSON.stringify({ family: 'act', section: section.key, adaptive: false, creditSource }),
+      })
+      if (res.status === 402) { setBankBusy(false); setCreditConfirmOpen(false); setNoCreditsOpen(true); return }
+      if (res.status === 409) {
+        const json = await res.json().catch(() => ({})) as { reason?: string; unseen?: number }
+        setBankBusy(false)
+        setCreditConfirmOpen(false)
+        setExhausted({
+          reason: json.reason === 'no_bank_coverage' ? 'no_bank_coverage' : 'pool_exhausted',
+          unseen: json.unseen ?? 0,
+        })
+        return
+      }
+      if (!res.ok) { setBankBusy(false); showError(startFailedMessage(ko)); return }
+      const json = await res.json()
+      router.push(`/mobile/study/session/${json.sessionId}`)
+    } catch {
+      setBankBusy(false)
+      showError(startFailedMessage(ko))
+    }
+  }
+
   const startBankTest = async () => {
     const target = effectiveTopic
     if (!target || bankBusy) return
@@ -598,6 +635,11 @@ function TopicInner({ slug }: { slug: string }) {
     const admission = admissionSectionForSlug(target.slug)
     if (admission) {
       await startAdmissionSection(admission.family, admission.section)
+      return
+    }
+    const act = actSectionForSlug(target.slug)
+    if (act) {
+      await startActSection(act)
       return
     }
 
@@ -1055,7 +1097,7 @@ function TopicInner({ slug }: { slug: string }) {
                          * bare `return` in startBankTest.
                          */
                         const fam = effectiveTopic ? parseTestSlug(effectiveTopic.slug).family : null
-                        if (fam === 'sat' || fam === 'ssat' || fam === 'isee') {
+                        if (fam === 'sat' || fam === 'ssat' || fam === 'isee' || fam === 'act') {
                           requestBankStart()
                         } else {
                           openTestSheet()

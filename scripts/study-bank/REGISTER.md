@@ -8,8 +8,8 @@
 renders on /admin/bank-qc, from the same source, so the two cannot
 disagree.
 
-Generated 2026-09-01. Live items: 5,021.
-Open work: 2 — 0 mine, 2 need you.
+Generated 2026-09-02. Live items: 5,021.
+Open work: 3 — 1 mine, 2 need you.
 
 ---
 
@@ -121,7 +121,7 @@ produce.
 - `craft-and-structure-2026-08-06` — 14/14 (100.0%)
 - `academic-passage-2026-08-06` — 13/20 (65.0%)
 
-**79.4% assisted vs 19.4% by hand.** That gap is
+**79.4% assisted vs 19.5% by hand.** That gap is
 the point: a model reading four options scores far above a person doing
 the same, which is exactly why one of the two instruments has to stay
 human. Unfiltered, SAT Craft and Structure read *CONFIRMED BROKEN — both
@@ -138,7 +138,7 @@ Nothing is blocked — every open item can start today.
 
 | id | what | size | blocked by | why |
 |---|---|---|---|---|
-
+| A21 | ACT — bank the Composite (English, Math, Reading), then Science | three forms of 131 items = ~400 items, plus Science later | — | Andy supplied ACT's own 2025-26 forms (25MC1, 25MC5) and asked for the test to be built. Format verified against them, not against prep material: this is the ENHANCED ACT - English 50/35, Math 45/50 and FOUR choices, Reading 36/40 at nine per passage, Science 40/40 and optional, Composite = E+M+R only. The repo's generation-prompt text still described the legacy test (five-choice Math, 60 questions) and was corrected. Blueprint, scoring (rights-only, 1-36 and Composite null with the reason), slug map, topic ids, credit cost, family routing, assembler with per-genre reading and per-passage English, and the topic-page start path are in. NOT in the shipped gate: the bank holds zero ACT items, and the gate flips when forms clear, exactly as SSAT/ISEE did. _Decisions taken with Andy 2026-09-02: scope is Composite first, Science second, Writing last. Reading items cite PARAGRAPHS and quoted phrases, never line numbers - text reflows on a phone, so a line number is a lie. English edit-in-place uses the SAT convention already in the bank (blank the span, quote it in the stem) rather than a new underline renderer. One contradiction in ACT's own materials is recorded, not resolved: form 25MC5 ships two Conflicting Viewpoints passages (30% of items) against a published 18-21% share; a test asserts they disagree so nobody bends one to fit._ |
 
 ## 3. Open work — needs you
 

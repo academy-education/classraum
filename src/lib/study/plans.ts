@@ -330,6 +330,12 @@ const SECTION_CREDIT_COST: Record<string, Record<string, number>> = {
   // 25-question SSAT quantitative blocks cost 1.
   ssat: { quant1: 1, reading: 2, verbal: 2, quant2: 1 },
   isee: { verbal: 2, quant: 2, reading: 2, mathach: 2 },
+  // ACT, keyed by blueprint section key. Every multiple-choice section is
+  // long (36-50 questions, 35-50 minutes), so all price at 2 under the
+  // same length rule the rows above follow. Writing is free-response and
+  // not yet served; listed at 1 so an unlisted key cannot silently price
+  // it differently from the sheet.
+  act: { english: 2, math: 2, reading: 2, science: 2, writing: 1 },
 }
 
 /** Credit cost to start one full test for (family, section). */

@@ -37,6 +37,7 @@
  *               open-response items. Lives in study_sessions.total_count.
  *  Every label rendering one of these must name its unit. */
 import { scoreAdmission, type AdmissionScore } from './admission-tests'
+import { scoreActSection, type ActSectionKey, type ActSectionScore } from './act-test'
 export type ResultUnit = 'card' | 'delivered' | 'scored'
 
 /** Minimal shape of a stored question. Structural rather than the submit
@@ -151,6 +152,7 @@ export interface ResultCardInput {
 
 export interface TestResultModel {
   family: TestFamily
+  actSectionKey: ActSectionKey | null
   /** SCORED unit. Straight from the caller — see the weightedScore note. */
   correctCount: number
   totalScored: number
@@ -173,6 +175,11 @@ export interface TestResultModel {
  */
 export function buildResultModel(input: {
   family: TestFamily
+  /** Which ACT section this was, so the result screen can score it by
+   *  the right blueprint block. The model carries no section otherwise:
+   *  SSAT/ISEE score identically across their blocks and never needed
+   *  one. Only meaningful when family === 'act'. */
+  actSectionKey?: ActSectionKey | null
   correctCount: number
   totalScored: number
   scorePercent: number
@@ -182,6 +189,7 @@ export function buildResultModel(input: {
   const { ranges, deliveredTotal } = reviewRanges(input.cards.map(c => c.question))
   return {
     family: input.family,
+    actSectionKey: input.actSectionKey ?? null,
     correctCount: input.correctCount,
     totalScored: input.totalScored,
     scorePercent: input.scorePercent,
@@ -280,6 +288,24 @@ export function admissionScoreFromRows(
 }
 
 /**
+ * ACT: rights only, no penalty, so `omitted` changes nothing about the
+ * raw score — but it is still surfaced, because "27 right, 9 blank" and
+ * "27 right, 9 wrong" are different diagnostic facts even when they are
+ * the same score. Same clamp as the admission bridge, for the same
+ * reason: a negative `wrong` must never be able to appear.
+ */
+export function actScoreFromRows(
+  key: ActSectionKey,
+  rows: ResultRow[],
+  correctCount: number,
+): ActSectionScore {
+  const tally = tallyRows(rows)
+  const omitted = tally.skippedWithinCounted
+  const wrong = Math.max(0, tally.counted - correctCount - omitted)
+  return scoreActSection(key, { correct: correctCount, wrong, omitted })
+}
+
+/**
  * Where a score sits on its own scale, 0..1, for a meter.
  *
  * The floor matters and is easy to drop. TOEFL bands run 1..6, not 0..6:
@@ -292,7 +318,7 @@ export function scaleFraction(value: number, min: number, max: number): number {
   return Math.max(0, Math.min(1, (value - min) / (max - min)))
 }
 
-export type TestFamily = 'toefl' | 'sat' | 'ssat' | 'isee' | 'other'
+export type TestFamily = 'toefl' | 'sat' | 'ssat' | 'isee' | 'act' | 'other'
 export type SatSection = 'math' | 'reading_writing'
 
 /**
@@ -314,6 +340,11 @@ export function familyFromTopicSlug(slugOrFamily: string | null | undefined): Te
   // suffix and a careless startsWith would collide.
   if (s === 'ssat' || s.startsWith('ssat-')) return 'ssat'
   if (s === 'isee' || s.startsWith('isee-')) return 'isee'
+  // 'act-' shares no prefix with 'sat-' or 'ssat-', so order is not
+  // load-bearing here the way it is for ssat/sat — but it sits before the
+  // sat line anyway so the block reads as "every family, then the
+  // fallthrough", and a future 'satact-' style slug cannot surprise it.
+  if (s === 'act' || s.startsWith('act-')) return 'act'
   if (s === 'sat' || s.startsWith('sat-')) return 'sat'
   return 'other'
 }

@@ -33,6 +33,19 @@ export const SECTION_TOPIC: Record<string, Record<string, string>> = {
     verbal:  '28834e18-d204-4ecc-883d-29628ff718c8',  // ssat-verbal
     quant2:  '0c9bc853-9f42-4f33-a79f-206bbd183398',  // ssat-quant-2
   },
+  /*
+   * ACT, keyed by blueprint section key. The five topic rows predate the
+   * bank work (they were seeded with the other test_prep parents) and are
+   * reused rather than recreated; verify-section-topics.mjs checks each
+   * uuid still resolves to the slug in its comment.
+   */
+  act: {
+    english: 'c68f82a5-4b50-4235-9b41-aa94c4ab829b',  // act-english
+    math:    '3b5f147b-3ba4-4be3-9515-06f9a9fd3799',  // act-math
+    reading: '859131cb-f125-4d3e-861e-ba81821ee5f5',  // act-reading
+    science: '8671e406-e939-4c30-8513-3a99fccac065',  // act-science
+    writing: '21fcb0a0-7246-42c0-80f9-6728567d0780',  // act-writing
+  },
   isee: {
     verbal:  '0d1696f0-de6e-4370-97ba-756e6cacea9f',  // isee-verbal
     quant:   '68a96b37-a37b-43aa-bc45-5e8451cb432c',  // isee-quant-reasoning

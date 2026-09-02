@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import { useTranslation } from '@/hooks/useTranslation'
 import { buildResultModel, familyFromTopicSlug } from '@/lib/study/test-result'
+import { ACT_BLUEPRINT } from '@/lib/study/act-test'
 import { TestResultView } from './TestResultView'
 import type { SpeechSignals, SubmitResult, TestPayload } from './types'
 
@@ -46,6 +47,13 @@ export function ReviewView({
     // SAT?" identically — reading it raw on one screen only is what put a
     // College Board 200-800 score on a TOEFL result.
     family: familyFromTopicSlug(test.family),
+    // ACT only. The payload carries the block NAME ("English") that the
+    // assembler set as `section`; the result model wants the KEY. Gated on
+    // family because TOEFL also serves a section literally named
+    // "Reading" and must not pick up an ACT block by coincidence.
+    actSectionKey: familyFromTopicSlug(test.family) === 'act'
+      ? (ACT_BLUEPRINT.find(b => b.name === test.section)?.key ?? null)
+      : null,
     correctCount: result.correctCount,
     totalScored: result.totalQuestions,
     scorePercent: result.scorePercent,

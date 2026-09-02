@@ -315,6 +315,16 @@ export const WORK: WorkItem[] = [
     doc: 'scripts/study-bank/RW5-ATTACK-RESULT.md',
   },
   {
+    id: 'A21',
+    title: 'ACT — bank the Composite (English, Math, Reading), then Science',
+    size: 'three forms of 131 items = ~400 items, plus Science later',
+    state: 'open',
+    owner: 'claude',
+    why: 'Andy supplied ACT\'s own 2025-26 forms (25MC1, 25MC5) and asked for the test to be built. Format verified against them, not against prep material: this is the ENHANCED ACT - English 50/35, Math 45/50 and FOUR choices, Reading 36/40 at nine per passage, Science 40/40 and optional, Composite = E+M+R only. The repo\'s generation-prompt text still described the legacy test (five-choice Math, 60 questions) and was corrected. Blueprint, scoring (rights-only, 1-36 and Composite null with the reason), slug map, topic ids, credit cost, family routing, assembler with per-genre reading and per-passage English, and the topic-page start path are in. NOT in the shipped gate: the bank holds zero ACT items, and the gate flips when forms clear, exactly as SSAT/ISEE did.',
+    note: 'Decisions taken with Andy 2026-09-02: scope is Composite first, Science second, Writing last. Reading items cite PARAGRAPHS and quoted phrases, never line numbers - text reflows on a phone, so a line number is a lie. English edit-in-place uses the SAT convention already in the bank (blank the span, quote it in the stem) rather than a new underline renderer. One contradiction in ACT\'s own materials is recorded, not resolved: form 25MC5 ships two Conflicting Viewpoints passages (30% of items) against a published 18-21% share; a test asserts they disagree so nobody bends one to fit.',
+    doc: 'src/lib/study/act-test.ts (blueprint + quotas + scoring, every number cited) + act-blueprint.test.ts (every legacy regression break-tested)',
+  },
+  {
     id: 'B6',
     title: 'Second reader on the two cohorts B2 left inconclusive',
     size: '~20 minutes, plus a calibration first',

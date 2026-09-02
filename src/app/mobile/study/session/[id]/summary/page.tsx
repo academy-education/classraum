@@ -17,6 +17,7 @@ import {
   satSectionFromTopicSlug, familyFromTopicSlug, buildResultModel,
   type ResultRowQuestion,
 } from '@/lib/study/test-result'
+import { actSectionForSlug } from '@/lib/study/act-test'
 import { TestResultView } from '../test/TestResultView'
 
 interface SessionRow {
@@ -245,6 +246,7 @@ function SummaryInner({ id }: { id: string }) {
       // Derived from the topic slug, by the same helper the post-submit
       // screen runs on the payload's family label.
       family: familyFromTopicSlug(session.topic?.slug),
+      actSectionKey: actSectionForSlug(session.topic?.slug ?? '')?.key ?? null,
       // From the SESSION ROW, never counted off the attempt rows: rows are
       // CARDS and these are SCORED QUESTIONS. Counting gives 10/30 where
       // submit recorded 6/35.

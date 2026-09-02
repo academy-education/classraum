@@ -99,7 +99,10 @@ describe('the client cannot choose which pool a block draws from', () => {
   })
 
   it('looks the block up in the blueprint by key', () => {
-    expect(route).toMatch(/ADMISSION_BLUEPRINT\[family\]\.find\(b => b\.key === body\.section/)
+    // The cast on `family` is allowed: the invariant is "looked up in the
+    // blueprint by key", and a widened family union (ACT joined it on
+    // 2026-09-02) needs the narrowing without changing the lookup.
+    expect(route).toMatch(/ADMISSION_BLUEPRINT\[family(?: as [^\]]+)?\]\.find\(b => b\.key === body\.section/)
   })
 
   it('refuses a block that draws from no bank pool', () => {
@@ -154,8 +157,11 @@ describe('the price shown is the price charged', () => {
     const calls = sheet.split('\n')
       .filter(l => !l.trim().startsWith('*') && !l.trim().startsWith('//'))
       .filter(l => l.includes('creditCostForTest(')).length
-    // both inside bankCreditCost: the admission branch and the fallback
-    expect(calls).toBe(2)
+    // ALL inside bankCreditCost: the admission branch, the ACT branch and
+    // the generic fallback. Adding a family adds one call HERE and nowhere
+    // else - that is the invariant; the number is its current value, and
+    // act-topic-slugs.test.ts pins the same 3 so the two cannot drift.
+    expect(calls).toBe(3)
     expect(sheet).not.toMatch(/cost=\{\(\(\) => \{/)
   })
 

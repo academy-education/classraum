@@ -1,6 +1,7 @@
 "use client"
 
 import type { Question } from './types'
+import { actLettersFor } from '@/lib/study/act-test'
 
 /**
  * Normalize display text so students don't see raw \n or **bold**
@@ -67,7 +68,15 @@ export function normalizeDisplayText(text: string | null | undefined): string {
 /** Test-format-aware choice label. KSAT uses circled digits ①-⑤,
  *  everything else uses Latin letters A-F. Falls back to numeric
  *  index if `family` is unknown or index out of range. */
-export function choiceLabel(family: string | null | undefined, index: number): string {
+export function choiceLabel(family: string | null | undefined, index: number, questionIdx?: number): string {
+  /* ACT alternates by QUESTION position: odd-numbered questions are A-D,
+     even-numbered F-J, on every section of every form. It is the most
+     visible thing about the paper test and a student who has practised
+     on real material expects it. Falls through to the ordinary A-D when
+     the caller has no question index to give. */
+  if (family === 'act' && typeof questionIdx === 'number') {
+    return actLettersFor(questionIdx + 1)[index] ?? String.fromCharCode(65 + index)
+  }
   if (family === 'ksat') {
     const circled = ['①', '②', '③', '④', '⑤', '⑥']
     return circled[index] ?? `${index + 1}.`

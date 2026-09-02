@@ -276,3 +276,26 @@ export function actFormTotals(opts: { science: boolean; writing: boolean }) {
     minutes: blocks.reduce((n, b) => n + b.minutes, 0),
   }
 }
+
+/* ------------------------------------------------------------------ *
+ * Topic slug -> blueprint section
+ *
+ * Same reason ADMISSION_TOPIC_SLUGS exists: the topic page's generic
+ * parseTestSlug title-cases a slug into a section NAME, and a name
+ * lookup is exactly what mispriced two ISEE sections on 2026-09-01. The
+ * mapping is explicit and tested; the topic rows already exist.
+ * ------------------------------------------------------------------ */
+export const ACT_TOPIC_SLUGS: Readonly<Record<string, ActSectionKey>> = {
+  'act-english': 'english',
+  'act-math':    'math',
+  'act-reading': 'reading',
+  'act-science': 'science',
+  'act-writing': 'writing',
+}
+
+/** The blueprint section a topic slug names, or null for `test-act` and
+ *  anything unknown. */
+export function actSectionForSlug(slug: string): ActSection | null {
+  const key = ACT_TOPIC_SLUGS[slug]
+  return key ? actSection(key) : null
+}

@@ -2,6 +2,10 @@ import { dbAdmin } from '@/lib/supabase-admin'
 import {
   ADMISSION_BLUEPRINT, drawByPassage, ITEMS_PER_PASSAGE, type AdmissionFamily,
 } from './admission-tests'
+import {
+  actSection, ENGLISH_PASSAGES, ENGLISH_ITEMS_PER_PASSAGE,
+  READING_GENRE_ORDER, READING_ITEMS_PER_PASSAGE, type ActSectionKey, type ReadingGenre,
+} from './act-test'
 import type { Question, QuestionType } from '@/lib/test-verify'
 import { shuffleChoices } from '@/lib/test-verify'
 import { capWarmupItems } from '@/lib/study/toefl-warmup'
@@ -1702,5 +1706,124 @@ export async function assembleFromBank(p: AssembleParams, seed = 'bank'): Promis
     family,
     questions: shuffleDrawnChoices(mixed, seed).map(r => r.item),
     composition,
+  }
+}
+
+
+/* ------------------------------------------------------------------ *
+ * ACT — draw one blueprint section from the bank.
+ *
+ * Linear like SSAT/ISEE, so it follows assembleAdmissionSection rather
+ * than the SAT adaptive path. It differs in what a COUNT cannot express
+ * and the published format insists on:
+ *
+ *   English  five passages of exactly ten questions, in authored order.
+ *   Reading  four passages of nine, ONE PER GENRE in a fixed order —
+ *            literary narrative, social science, humanities, natural
+ *            science. Genre lives in the row's `task`. A form with four
+ *            natural-science passages has 36 correct items and is not
+ *            an ACT Reading section.
+ *   Math     one item per group, shuffled; no passage structure.
+ *
+ * Passage-bound sections keep AUTHORED item order within a passage (real
+ * forms order items roughly by position in the text) and keep passages in
+ * the format's order. Only choices are shuffled. Math is shuffled freely.
+ *
+ * SHORT is loud, never silent, for the same reason as the admission
+ * assembler: a short section is a different denominator than the one the
+ * student was told.
+ * ------------------------------------------------------------------ */
+type ActRow = { id: string; item: Question; passageGroupId: string | null; task: string | null }
+
+function groupsOf(rows: ActRow[]): Map<string, ActRow[]> {
+  const g = new Map<string, ActRow[]>()
+  for (const r of rows) {
+    const k = r.passageGroupId ?? `__solo__${r.id}`
+    const arr = g.get(k)
+    if (arr) arr.push(r); else g.set(k, [r])
+  }
+  return g
+}
+
+/** Take `want` full passages of `per` items from `ranked` (already
+ *  unseen-first). Optional `accept` filters groups, e.g. by genre. */
+function takePassages(
+  ranked: ActRow[], want: number, per: number, accept?: (g: ActRow[]) => boolean,
+): ActRow[][] {
+  const out: ActRow[][] = []
+  for (const g of groupsOf(ranked).values()) {
+    if (out.length >= want) break
+    if (g.length < per) continue
+    if (accept && !accept(g)) continue
+    out.push(g.slice(0, per))
+  }
+  return out
+}
+
+export async function assembleActSection(p: {
+  sectionKey: ActSectionKey
+  studentId?: string
+}, seed = 'act'): Promise<AssembledTest> {
+  const block = actSection(p.sectionKey)
+  if (!block.bankSection || block.choiceCount === 0) {
+    throw new Error(`act/${p.sectionKey} is free-response, not drawn from the bank`)
+  }
+
+  const { data, error } = await dbAdmin
+    .from('study_item_bank')
+    .select('id, difficulty, item, passage_group_id, task')
+    .eq('family', 'act')
+    .eq('section', block.bankSection)
+    .eq('verified', true)
+    .eq('archived', false)
+  if (error) throw new Error(`assemble query failed: ${error.message}`)
+
+  const rows: ActRow[] = (data ?? []).flatMap(row => {
+    const item = readBankItem(row.item)
+    if (!item) {
+      console.error('[assemble] skipping malformed study_item_bank row', row.id)
+      return []
+    }
+    return [{ id: row.id, item, passageGroupId: row.passage_group_id as string | null, task: row.task as string | null }]
+  })
+  if (rows.length === 0) throw new Error(`no verified items for act/${block.bankSection}`)
+
+  const exposures = p.studentId ? await loadExposures(p.studentId) : new Map<string, string>()
+  const ranked = unseenFirst(rows, exposures, seed + block.key)
+
+  let picked: ActRow[]
+  if (block.key === 'english') {
+    picked = takePassages(ranked, ENGLISH_PASSAGES, ENGLISH_ITEMS_PER_PASSAGE).flat()
+  } else if (block.key === 'reading') {
+    /* One passage per genre, in the published order. A genre with no full
+       passage in the bank is skipped — and reported SHORT below — rather
+       than back-filled from another genre, because the back-fill is the
+       defect this branch exists to prevent. */
+    const byGenre: ActRow[][] = []
+    const used = new Set<string>()
+    for (const genre of READING_GENRE_ORDER as readonly ReadingGenre[]) {
+      const [g] = takePassages(ranked, 1, READING_ITEMS_PER_PASSAGE,
+        grp => grp[0].task === genre && !used.has(grp[0].passageGroupId ?? ''))
+      if (g) { byGenre.push(g); used.add(g[0].passageGroupId ?? '') }
+      else console.warn(`[assemble] act/reading has no full ${genre} passage`)
+    }
+    picked = byGenre.flat()
+  } else {
+    picked = seededShuffle(drawByPassage(ranked, block.questions, 1), seed + ':order')
+  }
+
+  if (picked.length < block.questions) {
+    console.warn(`[assemble] act/${block.key} SHORT — wanted ${block.questions}, drew ${picked.length}`)
+  }
+
+  if (p.studentId) await recordExposures(p.studentId, picked.map(r => r.id), 'full_test', seed)
+
+  return {
+    title: `ACT — ${block.name}`,
+    timeLimitMinutes: block.minutes,
+    section: block.name,
+    family: 'act',
+    questions: shuffleDrawnChoices(picked, seed).map(r => r.item),
+    composition: { [block.name]: picked.length },
   }
 }

@@ -2422,7 +2422,7 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
           <div className="space-y-2">
             {q.choices.map((choice, i) => {
               const selected = answers[currentIdx] === choice
-              const label = choiceLabel(test.family, i)
+              const label = choiceLabel(test.family, i, currentIdx)
               return (
                 <button
                   key={choice}

@@ -1,8 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { dbAdmin } from '@/lib/supabase-admin'
 import { enforceRateLimit } from '@/lib/rate-limit'
-import { assembleFromBank, assembleToeflFromBank, assembleAdmissionSection, type ToeflSection } from '@/lib/study/assemble'
+import { assembleFromBank, assembleToeflFromBank, assembleAdmissionSection, assembleActSection, type ToeflSection } from '@/lib/study/assemble'
 import { ADMISSION_BLUEPRINT } from '@/lib/study/admission-tests'
+import { ACT_BLUEPRINT, type ActSectionKey } from '@/lib/study/act-test'
 import { SAT_MODULE_CONFIG } from '@/lib/study/sat-adaptive'
 import { toeflAdaptiveConfig } from '@/lib/toefl-adaptive'
 import { requireStudyUser } from '@/lib/study/auth'
@@ -74,9 +75,15 @@ export async function POST(req: NextRequest) {
   const family = body.family === 'toefl' ? 'toefl'
     : body.family === 'ssat' ? 'ssat'
     : body.family === 'isee' ? 'isee'
+    : body.family === 'act' ? 'act'
     : 'sat'
   const isToefl = family === 'toefl'
   const isAdmission = family === 'ssat' || family === 'isee'
+  /* ACT is linear with a published blueprint, like SSAT/ISEE, and the
+     request's `section` is likewise a BLUEPRINT KEY ('english', 'math',
+     'reading', 'science'). bankSection comes from the blueprint, never
+     from the client - same server-authoritative rule as admission. */
+  const isAct = family === 'act'
 
   /*
    * For SSAT/ISEE the request's `section` is a BLUEPRINT BLOCK KEY
@@ -89,22 +96,32 @@ export async function POST(req: NextRequest) {
    * one, and would size the coverage gate against the wrong pool.
    */
   const block = isAdmission
-    ? ADMISSION_BLUEPRINT[family].find(b => b.key === body.section && b.bankSection !== null)
+    ? ADMISSION_BLUEPRINT[family as 'ssat' | 'isee'].find(b => b.key === body.section && b.bankSection !== null)
+    : null
+  // Multiple-choice ACT sections only: the essay is free-response and
+  // has no bank draw, so 'writing' is rejected here rather than reaching
+  // the assembler to throw.
+  const actBlock = isAct
+    ? ACT_BLUEPRINT.find(b => b.key === body.section && b.bankSection !== null && b.choiceCount > 0)
     : null
   const section = isToefl
     ? (TOEFL_SECTIONS.includes(body.section as ToeflSection) ? (body.section as ToeflSection) : null)
     : isAdmission
       ? (block ? block.key : null)
-      : (body.section === 'math' || body.section === 'reading_writing' ? body.section : null)
+      : isAct
+        ? (actBlock ? actBlock.key : null)
+        : (body.section === 'math' || body.section === 'reading_writing' ? body.section : null)
   if (!section) {
     const valid = isToefl ? 'reading, listening, writing or speaking'
       : isAdmission
-        ? ADMISSION_BLUEPRINT[family].filter(b => b.bankSection).map(b => b.key).join(', ')
-        : 'math or reading_writing'
+        ? ADMISSION_BLUEPRINT[family as 'ssat' | 'isee'].filter(b => b.bankSection).map(b => b.key).join(', ')
+        : isAct
+          ? ACT_BLUEPRINT.filter(b => b.bankSection && b.choiceCount > 0).map(b => b.key).join(', ')
+          : 'math or reading_writing'
     return NextResponse.json({ error: `section must be ${valid}` }, { status: 400 })
   }
-  /** What the BANK is queried by. Equal to `section` except on SSAT/ISEE. */
-  const bankSection = block ? block.bankSection! : section
+  /** What the BANK is queried by. Equal to `section` except on SSAT/ISEE/ACT. */
+  const bankSection = block ? block.bankSection! : actBlock ? actBlock.bankSection! : section
 
   // Test-scoped access: block a pass holder scoped to a different test
   // before any session/credit work. Free/plan/all-access users pass
@@ -139,12 +156,13 @@ export async function POST(req: NextRequest) {
   // fixed clocks, with no module branching to model. `adaptive` is forced
   // off rather than left to the caller so a stray adaptive:true cannot
   // halve a section and silently change the test's shape.
-  const adaptive = isAdmission ? false
+  const adaptive = (isAdmission || isAct) ? false
     : isToefl ? (toeflCfg != null && body.adaptive !== false)
     : body.adaptive === true
   // The block's published question count, NOT body.count: the whole point
   // of a fixed-form test is that the caller does not choose its length.
   const count = isAdmission ? block!.questions
+    : isAct ? actBlock!.questions
     : isToefl ? 0
     : adaptive
       ? SAT_MODULE_CONFIG[section as 'math' | 'reading_writing'].moduleSize
@@ -271,7 +289,12 @@ export async function POST(req: NextRequest) {
         )
       : isAdmission
         ? await assembleAdmissionSection(
-            { family, sectionKey: section, studentId: user.id },
+            { family: family as 'ssat' | 'isee', sectionKey: section, studentId: user.id },
+            sess.id,
+          )
+      : isAct
+        ? await assembleActSection(
+            { sectionKey: section as ActSectionKey, studentId: user.id },
             sess.id,
           )
         // SAT Module 1 is mixed difficulty → no difficulty filter, blueprint-weighted.

@@ -17,6 +17,8 @@ import {
   admissionScoreFromRows,
   type ResultRow, type RubricGrade, type TestResultModel,
 } from '@/lib/study/test-result'
+import { actScoreFromRows } from '@/lib/study/test-result'
+import { ACT_SCALE_NOTE } from '@/lib/study/act-test'
 import { authHeaders } from '@/lib/auth-headers'
 import {
   scoreToeflSection, bandFromProportion, detectToeflSection, WEIGHTS_FOR,
@@ -143,6 +145,13 @@ export function TestResultView({
      this needed no schema change and no second source of truth. */
   const admission = (model.family === 'ssat' || model.family === 'isee')
     ? admissionScoreFromRows(model.family, model.rows, model.correctCount)
+    : null
+  /* ACT raw score. Rights only - the form's own directions say there is
+     no penalty for guessing - so the raw IS the correct count; the block
+     exists to show wrong vs blank (different diagnostic facts at the
+     same score) and to say in words why there is no 1-36. */
+  const act = model.family === 'act' && model.actSectionKey
+    ? actScoreFromRows(model.actSectionKey, model.rows, model.correctCount)
     : null
 
   /* Module 1 vs Module 2, and per-passage-set accuracy. Both are in
@@ -384,6 +393,28 @@ export function TestResultView({
               </div>
               <p className="text-[12px] leading-relaxed text-white/70 max-w-prose">
                 {admission.scaleNote}
+              </p>
+            </div>
+          )}
+          {model.family === 'act' && act && scoreReady && (
+            <div className="mt-5 space-y-2.5">
+              <ScaleRow
+                label={ko ? '원점수' : 'Raw score'}
+                value={String(act.raw)}
+                min={0}
+                max={act.maxRaw}
+                fraction={scaleFraction(act.raw, 0, Math.max(1, act.maxRaw))}
+                note={ko ? 'ACT는 정답만 셉니다. 오답 감점이 없으니 모든 문항에 답하세요.'
+                         : 'ACT counts right answers only - no penalty, so answer everything.'}
+              />
+              <div className="flex flex-wrap gap-x-5 gap-y-1 text-[12.5px] text-white/80 tabular-nums">
+                <span>{ko ? '정답' : 'Correct'} {act.correct}</span>
+                <span>{ko ? '오답' : 'Wrong'} {act.wrong}</span>
+                <span>{ko ? '무응답' : 'Blank'} {act.omitted}</span>
+                <span>{ko ? '정답률' : 'Accuracy'} {act.percentCorrect}%</span>
+              </div>
+              <p className="text-[12px] leading-relaxed text-white/70 max-w-prose">
+                {ACT_SCALE_NOTE}
               </p>
             </div>
           )}
