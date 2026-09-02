@@ -6,6 +6,10 @@
  *
  *   node act-bank-helper.mjs check  english|reading <batch.json>
  *   node act-bank-helper.mjs insert english|reading <batch.json> <cohort> [--apply]
+ *   node act-bank-helper.mjs update english|reading <batch.json> <cohort> [--apply]
+ *       - after a repair: rewrites prompt/choices/key/explanation of rows already
+ *         in the bank, matched by verify_meta.localId within the cohort. The
+ *         batch file stays the source of truth; passages are never changed here.
  *
  * REFUSES THE BATCH, NOT THE ITEM. An ACT section is a fixed structure —
  * English is five passages of exactly ten, Reading is four passages of
@@ -157,7 +161,7 @@ if (problems.length) {
 }
 console.log('\nstructure OK')
 if (cmd === 'check') process.exit(0)
-if (!APPLY) { console.log('DRY RUN — pass --apply to write'); process.exit(0) }
+if (!APPLY && cmd !== 'update') { console.log('DRY RUN — pass --apply to write'); process.exit(0) }
 
 /* ---- insert ---- */
 const env = Object.fromEntries(readFileSync('.env.local', 'utf8').split('\n')
@@ -166,6 +170,8 @@ const env = Object.fromEntries(readFileSync('.env.local', 'utf8').split('\n')
 const db = createClient(env.NEXT_PUBLIC_SUPABASE_URL, env.SUPABASE_SERVICE_ROLE_KEY, { auth: { persistSession: false } })
 const norm = s => String(s).trim().replace(/\s+/g, ' ').toLowerCase()
 const hashOf = it => createHash('md5').update([norm(it.prompt), (it.choices || []).map(norm).join('|')].join('~~')).digest('hex')
+
+if (cmd === 'update') { await updateExisting(); process.exit(0) }
 
 const { data: existing } = await db.from('study_item_bank').select('content_hash').eq('family', 'act').eq('section', section)
 const seen = new Set((existing ?? []).map(r => r.content_hash))
@@ -210,4 +216,32 @@ if (short.length) { console.error(`FAIL: ${short.length} group(s) not at ${PER_P
 if (section === 'reading') {
   const tg = {}; for (const r of after ?? []) tg[r.task] = (tg[r.task] ?? 0) + 1
   console.log('task (genre) in DB:', JSON.stringify(tg))
+}
+
+/* ---- update (post-repair) ---- */
+async function updateExisting() {
+  const { data: rows, error } = await db.from('study_item_bank').select('id, item, verify_meta, content_hash').eq('cohort', cohort)
+  if (error) { console.error(error.message); process.exit(1) }
+  const byLocal = Object.fromEntries((rows ?? []).map(r => [r.verify_meta?.localId, r]))
+  let changed = 0, same = 0, missing = 0, passageDrift = 0
+  const drifted = []
+  for (const it of batch) {
+    const row = byLocal[it.id]
+    if (!row) { missing++; continue }
+    if (String(row.item.passage) !== String(it.passage)) { passageDrift++; drifted.push(it.id); continue }
+    const next = { ...row.item, prompt: it.prompt, choices: it.choices, correct_answer: it.correct_answer, explanation: it.explanation, difficulty: it.difficulty }
+    const hash = hashOf(next)
+    if (hash === row.content_hash) { same++; continue }
+    const before = { prompt: row.item.prompt, choices: row.item.choices, correct_answer: row.item.correct_answer }
+    if (!APPLY) { changed++; continue }
+    const { error: e } = await db.from('study_item_bank').update({
+      item: next, content_hash: hash, domain: it.domain, subskill: it.subskill ?? null, topic_tag: it.subskill ?? null, difficulty: it.difficulty,
+      verify_meta: { ...row.verify_meta, repaired_at: new Date().toISOString(), repaired_from: before,
+        repair_why: process.env.REPAIR_WHY ?? 'distractor rewrite after blind attack' },
+    }).eq('id', row.id)
+    if (e) { console.error(`ERR ${it.id}: ${e.message}`); process.exit(1) }
+    changed++
+  }
+  console.log(`${APPLY ? 'updated' : 'WOULD update (dry run)'} ${changed}, unchanged ${same}, not in bank ${missing}`)
+  if (passageDrift) { console.error(`REFUSED ${passageDrift} item(s) whose PASSAGE differs from the bank row - passages are not repaired here: ${drifted.join(', ')}`); process.exit(1) }
 }

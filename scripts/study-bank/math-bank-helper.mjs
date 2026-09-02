@@ -168,7 +168,9 @@ async function main() {
   }
   console.log(`inserting as family=${FAMILY} cohort=${COHORT}`)
   const qc = JSON.parse(readFileSync(qcPath, 'utf8'))
-  const { data: existing } = await admin.from('study_item_bank').select('content_hash').eq('section', 'math')
+  // Scoped to FAMILY: unscoped, this select spans >1000 math rows and PostgREST
+  // silently truncates it, so the dedupe set was incomplete for every family.
+  const { data: existing } = await admin.from('study_item_bank').select('content_hash').eq('section', 'math').eq('family', FAMILY)
   const seen = new Set((existing || []).map(r => r.content_hash))
 
   let inserted = 0
@@ -208,10 +210,10 @@ async function main() {
     console.log(`INSERT ${label} — ${raw.difficulty}, computed ${r.computed}`)
   }
 
-  const { data: after } = await admin.from('study_item_bank').select('domain').eq('section', 'math').eq('verified', true)
+  const { data: after } = await admin.from('study_item_bank').select('domain').eq('section', 'math').eq('family', FAMILY).eq('verified', true)
   const by = {}
   for (const r of after) by[r.domain] = (by[r.domain] || 0) + 1
-  console.log(`\nInserted ${inserted}. Math verified now: ${after.length}`)
+  console.log(`\nInserted ${inserted}. ${FAMILY} math verified now: ${after.length}`)
   for (const [d, c] of Object.entries(by).sort()) console.log(`  ${d}: ${c}`)
 }
 
