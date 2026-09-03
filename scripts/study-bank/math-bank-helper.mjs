@@ -210,7 +210,13 @@ async function main() {
     console.log(`INSERT ${label} — ${raw.difficulty}, computed ${r.computed}`)
   }
 
-  const { data: after } = await admin.from('study_item_bank').select('domain').eq('section', 'math').eq('family', FAMILY).eq('verified', true)
+  // Paginated: the family's math rows passed 1000 on 2026-09-03 and the
+  // after-count printed exactly 1000 with a domain missing - the PostgREST cap.
+  const after = []
+  for (let from = 0; ; from += 1000) {
+    const { data } = await admin.from('study_item_bank').select('domain').eq('section', 'math').eq('family', FAMILY).eq('verified', true).eq('archived', false).range(from, from + 999)
+    after.push(...(data ?? [])); if (!data || data.length < 1000) break
+  }
   const by = {}
   for (const r of after) by[r.domain] = (by[r.domain] || 0) + 1
   console.log(`\nInserted ${inserted}. ${FAMILY} math verified now: ${after.length}`)

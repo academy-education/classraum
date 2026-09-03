@@ -1,0 +1,514 @@
+[
+  {
+    "id": "PSDA-H-01",
+    "domain": "Problem-Solving and Data Analysis",
+    "subskill": "unit conversion and multi-step quantitative reasoning",
+    "difficulty": "hard",
+    "prompt": "A rectangular room measures 14 feet by 18 feet. Flooring tile is sold by the square meter at 38 dollars per square meter, and 1 foot is equal to 0.3048 meter. To the nearest dollar, what is the cost of the tile needed to cover the floor exactly?",
+    "choices": [
+      "890",
+      "1064",
+      "2919",
+      "9576"
+    ],
+    "correct_answer": "890",
+    "explanation": "The floor area is 14 * 18 = 252 square feet. Since 1 square foot is 0.3048^2 = 0.09290304 square meter, the area is 252 * 0.09290304 = 23.41 square meters, and the cost is 23.41 * 38 = 889.6, or 890 dollars to the nearest dollar. Converting the area with the linear factor 0.3048 only once gives 2919, not converting at all gives 9576, and using 1 meter = 3 feet gives 1064.",
+    "solve": "const ft1=14, ft2=18, price=38, mPerFt=0.3048;\nreturn Math.round(ft1*ft2*mPerFt*mPerFt*price);"
+  },
+  {
+    "id": "PSDA-H-02",
+    "domain": "Problem-Solving and Data Analysis",
+    "subskill": "inference from sample statistics and margin of error",
+    "difficulty": "hard",
+    "prompt": "In a random sample of 400 registered voters in a town, 55 percent said they support a ballot measure, with a margin of error of 4.9 percentage points at the 95 percent confidence level. The town has 12000 registered voters. Based on the interval defined by this margin of error, what is the smallest plausible number of the town's registered voters who support the measure?",
+    "choices": [
+      "5424",
+      "6012",
+      "6600",
+      "7188"
+    ],
+    "correct_answer": "6012",
+    "explanation": "The plausible interval for the proportion is 55 - 4.9 = 50.1 percent to 55 + 4.9 = 59.9 percent. The lower bound applied to 12000 voters is 0.501 * 12000 = 6012. Applying the point estimate gives 6600, applying the upper bound gives 7188, and subtracting twice the margin, as if 4.9 points were the interval's half-width doubled, gives 5424.",
+    "solve": "const p=0.55, moe=0.049, N=12000;\nreturn Math.round((p-moe)*N*1e6)/1e6;"
+  },
+  {
+    "id": "PSDA-H-03",
+    "domain": "Problem-Solving and Data Analysis",
+    "subskill": "evaluating statistical claims",
+    "difficulty": "hard",
+    "prompt": "A study of 80 cities found a correlation coefficient of -0.6 between the number of public libraries per 10000 residents and the number of reported burglaries per 10000 residents. A city council member concluded that building more libraries would reduce burglaries in the city. Which of the following is the best evaluation of this conclusion?",
+    "choices": [
+      "The conclusion is not justified because the study was observational, and a factor such as a city's wealth could influence both the number of libraries and the number of burglaries.",
+      "The conclusion is justified because a correlation coefficient of -0.6 indicates a strong negative linear association across a large number of cities.",
+      "The conclusion is not justified because a correlation coefficient must be less than -0.9 before any association can be considered meaningful.",
+      "The conclusion is justified because the study included 80 cities, which is enough to rule out the possibility that the association was due to chance."
+    ],
+    "correct_answer": "The conclusion is not justified because the study was observational, and a factor such as a city's wealth could influence both the number of libraries and the number of burglaries.",
+    "explanation": "The data come from an observational study of cities, not an experiment in which libraries were assigned, so the negative association does not establish that libraries cause fewer burglaries. A confounding variable such as a city's wealth could plausibly increase library funding and decrease burglaries at the same time. The strength of the correlation and the number of cities bear on how reliable the association is, not on whether it is causal, and there is no threshold such as -0.9 for an association to be meaningful.",
+    "solve": "const observational=true, randomAssignment=false;\nreturn (observational && !randomAssignment)\n ? 'The conclusion is not justified because the study was observational, and a factor such as a city\\'s wealth could influence both the number of libraries and the number of burglaries.'\n : 'The conclusion is justified because a correlation coefficient of -0.6 indicates a strong negative linear association across a large number of cities.';"
+  },
+  {
+    "id": "PSDA-H-04",
+    "domain": "Problem-Solving and Data Analysis",
+    "subskill": "inference from sample statistics and margin of error",
+    "difficulty": "hard",
+    "prompt": "From a random sample of 100 commuters, a transit agency estimated the mean one-way commute time and reported a plausible interval from 41 minutes to 49 minutes, centered at the sample mean. The agency then takes a second random sample of 400 commuters from the same population and obtains the same sample mean and the same sample standard deviation. The margin of error is inversely proportional to the square root of the sample size. What is the upper bound, in minutes, of the plausible interval from the second sample?",
+    "choices": [
+      "46",
+      "47",
+      "49",
+      "53"
+    ],
+    "correct_answer": "47",
+    "explanation": "The first interval has center 45 and margin of error 4. Quadrupling the sample size halves the margin of error to 2, so the second interval is 43 to 47 and its upper bound is 47. Dividing the margin by 4 instead of 2 gives 46, leaving it unchanged gives 49, and doubling it gives 53.",
+    "solve": "const lo=41, hi=49, n1=100, n2=400;\nconst center=(lo+hi)/2, moe=(hi-lo)/2;\nreturn center+moe*Math.sqrt(n1/n2);"
+  },
+  {
+    "id": "PSDA-H-05",
+    "domain": "Problem-Solving and Data Analysis",
+    "subskill": "percentages and percent change",
+    "difficulty": "hard",
+    "prompt": "A store marks a bicycle down by 15 percent from its original price. A sales tax of 8 percent is then applied to the marked-down price. A customer pays a total of 275.40 dollars. What was the original price of the bicycle, in dollars?",
+    "choices": [
+      "255",
+      "293.25",
+      "296.13",
+      "300"
+    ],
+    "correct_answer": "300",
+    "explanation": "Removing the tax gives the marked-down price 275.40/1.08 = 255 dollars, and that is 85 percent of the original price, so the original price is 255/0.85 = 300 dollars. Stopping after removing the tax, dividing by 0.93 as if the two percents netted out, or multiplying 255 by 1.15 produce the other values.",
+    "solve": "const paid=275.40, disc=0.15, tax=0.08;\nreturn Math.round(paid/(1+tax)/(1-disc)*100)/100;"
+  },
+  {
+    "id": "PSDA-H-06",
+    "domain": "Problem-Solving and Data Analysis",
+    "subskill": "unit conversion and multi-step quantitative reasoning",
+    "difficulty": "hard",
+    "prompt": "A machine produces 1440 parts per 8-hour shift. Inspection rejects 12.5 percent of the parts produced. An order requires 18900 parts that pass inspection. How many full shifts must the machine run to fill the order?",
+    "choices": [
+      "12",
+      "14",
+      "15",
+      "120"
+    ],
+    "correct_answer": "15",
+    "explanation": "Each shift yields 1440 * (1 - 0.125) = 1260 parts that pass inspection, so the order needs 18900/1260 = 15 shifts. Ignoring the rejected parts gives 18900/1440 = 13.125, which rounds up to 14 shifts; adding 12.5 percent to the output instead of removing it leads to 12 shifts; and 120 is the number of hours in 15 shifts, not the number of shifts.",
+    "solve": "const perShift=1440, reject=0.125, need=18900;\nreturn Math.ceil(need/(perShift*(1-reject)));"
+  },
+  {
+    "id": "PSDA-H-07",
+    "domain": "Problem-Solving and Data Analysis",
+    "subskill": "evaluating statistical claims",
+    "difficulty": "hard",
+    "prompt": "A fitness center recruited 120 of its members who volunteered for a study. The volunteers were randomly assigned to one of two exercise programs, and after 12 weeks the volunteers in Program 1 had a significantly greater average improvement in endurance than those in Program 2. Which of the following is the most appropriate conclusion?",
+    "choices": [
+      "Program 1 caused a greater average improvement in endurance than Program 2 among the volunteers, but the result should not be generalized to all adults.",
+      "Program 1 caused a greater average improvement in endurance than Program 2, and the result can be generalized to all adults.",
+      "Program 1 is associated with a greater average improvement in endurance than Program 2 among all adults, but no cause-and-effect conclusion can be drawn.",
+      "No conclusion about cause and effect or about the population can be drawn because the volunteers were not a random sample."
+    ],
+    "correct_answer": "Program 1 caused a greater average improvement in endurance than Program 2 among the volunteers, but the result should not be generalized to all adults.",
+    "explanation": "Random assignment of the participants to the two programs supports a cause-and-effect conclusion about the programs for those participants. However, the participants were volunteers from a single fitness center rather than a random sample of adults, so the result cannot reasonably be generalized to all adults. A conclusion that generalizes to all adults, or one that denies the causal inference the random assignment supports, is not appropriate.",
+    "solve": "const randomAssignment=true, randomSample=false;\nconst cause=randomAssignment?'caused':'is associated with';\nconst scope=randomSample?'and the result can be generalized to all adults':'among the volunteers, but the result should not be generalized to all adults';\nreturn 'Program 1 '+cause+' a greater average improvement in endurance than Program 2 '+scope+'.';"
+  },
+  {
+    "id": "PSDA-H-08",
+    "domain": "Problem-Solving and Data Analysis",
+    "subskill": "inference from sample statistics and margin of error",
+    "difficulty": "hard",
+    "prompt": "A researcher surveyed a random sample of n adults and reported that the plausible interval for the proportion of all adults who have read a book in the past month is from 0.62 to 0.70, where the interval is centered at the sample proportion. If 264 adults in the sample had read a book in the past month, what is the value of n?",
+    "choices": [
+      "377",
+      "400",
+      "426",
+      "6600"
+    ],
+    "correct_answer": "400",
+    "explanation": "The interval is centered at the sample proportion, so the sample proportion is (0.62 + 0.70)/2 = 0.66. Then 264/n = 0.66 gives n = 400. Dividing 264 by the upper bound gives about 377, dividing by the lower bound gives about 426, and dividing by the margin of error 0.04 instead of the sample proportion gives 6600.",
+    "solve": "const lo=0.62, hi=0.70, yes=264;\nreturn Math.round(yes/((lo+hi)/2)*1e6)/1e6;"
+  },
+  {
+    "id": "PSDA-H-09",
+    "domain": "Problem-Solving and Data Analysis",
+    "subskill": "probability and conditional probability",
+    "difficulty": "hard",
+    "prompt": "A survey asked 240 residents of a city whether they own a pet and whether they live in an apartment or a house. Of the residents surveyed, 96 live in apartments and 150 own a pet. Exactly 42 of the apartment residents do not own a pet. If one of the surveyed residents who owns a pet is selected at random, what is the probability that the resident lives in an apartment?",
+    "choices": [
+      "9/25",
+      "3/8",
+      "9/16",
+      "2/3"
+    ],
+    "correct_answer": "9/25",
+    "explanation": "Apartment residents who own a pet number 96 - 42 = 54, so the probability is 54/150 = 9/25. Dividing 54 by the 96 apartment residents gives 9/16; dividing by the 144 house residents gives 3/8; 2/3 is the probability that a house resident owns a pet (96/144).",
+    "solve": "const apt=96, pet=150, aptNoPet=42;\nconst aptPet=apt-aptNoPet;\nreturn aptPet/pet;"
+  },
+  {
+    "id": "PSDA-H-10",
+    "domain": "Problem-Solving and Data Analysis",
+    "subskill": "probability and conditional probability",
+    "difficulty": "hard",
+    "prompt": "A company manufactures devices at two plants. Plant A produces 70 percent of the devices and Plant B produces the remaining 30 percent. Quality testing finds that 2 percent of the devices from Plant A and 5 percent of the devices from Plant B are defective. If a device selected at random from the company's total production is defective, what is the probability that it was produced at Plant A?",
+    "choices": [
+      "7/500",
+      "2/7",
+      "14/29",
+      "15/29"
+    ],
+    "correct_answer": "14/29",
+    "explanation": "The probability that a device is from Plant A and defective is 0.70 * 0.02 = 0.014; from Plant B and defective, 0.30 * 0.05 = 0.015. Defective devices are therefore 0.029 of production, and the fraction of those from Plant A is 0.014/0.029 = 14/29. The value 7/500 is the joint probability 0.014 itself, 2/7 ignores the plants' production shares, and 15/29 is the probability for Plant B.",
+    "solve": "const pA=0.70, dA=0.02, dB=0.05;\nconst jA=pA*dA, jB=(1-pA)*dB;\nreturn jA/(jA+jB);"
+  },
+  {
+    "id": "PSDA-H-11",
+    "domain": "Problem-Solving and Data Analysis",
+    "subskill": "probability and conditional probability",
+    "difficulty": "hard",
+    "prompt": "The table shows how the 200 students at a school travel to school, by grade.\nGrade 11: Bus 45, Car 27, Walk 18\nGrade 12: Bus 36, Car 54, Walk 20\nIf a student who travels by car is selected at random, what is the probability that the student is in Grade 12?",
+    "choices": [
+      "27/100",
+      "27/55",
+      "2/3",
+      "81/200"
+    ],
+    "correct_answer": "2/3",
+    "explanation": "There are 27 + 54 = 81 students who travel by car, and 54 of them are in Grade 12, so the probability is 54/81 = 2/3. Dividing by the whole school gives 27/100; dividing by all Grade 12 students gives 27/55; 81/200 is the probability that a randomly chosen student travels by car.",
+    "solve": "const car11=27, car12=54;\nreturn car12/(car11+car12);"
+  },
+  {
+    "id": "PSDA-H-12",
+    "domain": "Problem-Solving and Data Analysis",
+    "subskill": "ratios/rates/proportions",
+    "difficulty": "hard",
+    "prompt": "Town A has a population of 12600 and a land area of 18 square kilometers. Town B has a population density of 400 people per square kilometer, and its land area is 40 percent greater than the land area of Town A. If the two towns merge into a single town, what is the population density of the merged town, in people per square kilometer?",
+    "choices": [
+      "525",
+      "550",
+      "587.5",
+      "630"
+    ],
+    "correct_answer": "525",
+    "explanation": "Town B's area is 1.4 * 18 = 25.2 square kilometers, so its population is 400 * 25.2 = 10080. The merged town has 12600 + 10080 = 22680 people on 18 + 25.2 = 43.2 square kilometers, a density of 22680/43.2 = 525 people per square kilometer. Averaging the two densities (700 and 400) without weighting by area, or taking Town B's area as 40 percent less than Town A's, gives the other values.",
+    "solve": "const popA=12600, areaA=18, densB=400, areaB=areaA*1.4;\nconst popB=densB*areaB;\nreturn Math.round((popA+popB)/(areaA+areaB)*1e6)/1e6;"
+  },
+  {
+    "id": "PSDA-H-13",
+    "domain": "Problem-Solving and Data Analysis",
+    "subskill": "one-variable data: center, spread, shape",
+    "difficulty": "hard",
+    "prompt": "The mean of a list of 8 numbers is 45. When two of the numbers are removed from the list, the mean of the remaining 6 numbers is 42. The two removed numbers differ by 10. What is the smaller of the two removed numbers?",
+    "choices": [
+      "44",
+      "49",
+      "54",
+      "59"
+    ],
+    "correct_answer": "49",
+    "explanation": "The original sum is 8 * 45 = 360 and the remaining sum is 6 * 42 = 252, so the two removed numbers sum to 108. If they are a and a + 10, then 2a + 10 = 108 and a = 49. Halving 108 gives 54, the mean of the two; subtracting the full difference from that mean gives 44; the larger removed number is 59.",
+    "solve": "const n=8, m=45, k=6, m2=42, diff=10;\nconst sumRemoved=n*m-k*m2;\nreturn (sumRemoved-diff)/2;"
+  },
+  {
+    "id": "PSDA-H-14",
+    "domain": "Problem-Solving and Data Analysis",
+    "subskill": "percentages and percent change",
+    "difficulty": "hard",
+    "prompt": "Last year, 60 percent of a store's revenue came from clothing and the rest came from accessories. This year, clothing revenue is 10 percent greater than last year and accessories revenue is 20 percent less than last year. By what percent did the store's total revenue change from last year to this year? (A negative value indicates a decrease.)",
+    "choices": [
+      "-10",
+      "-5",
+      "-2",
+      "2"
+    ],
+    "correct_answer": "-2",
+    "explanation": "Taking last year's total as 1, this year's total is 0.6(1.10) + 0.4(0.80) = 0.66 + 0.32 = 0.98, a decrease of 2 percent. Averaging the two percent changes without weighting (giving -5), netting them (giving -10), or dropping the sign gives the other values.",
+    "solve": "const c=0.6, a=0.4, cChange=0.10, aChange=-0.20;\nconst now=c*(1+cChange)+a*(1+aChange);\nreturn Math.round((now-1)*100*1e6)/1e6;"
+  },
+  {
+    "id": "PSDA-H-15",
+    "domain": "Problem-Solving and Data Analysis",
+    "subskill": "percentages and percent change",
+    "difficulty": "hard",
+    "prompt": "The price of a jacket was increased by 25 percent. Later the new price was decreased by p percent, and the resulting price was 5 percent less than the original price. What is the value of p?",
+    "choices": [
+      "5",
+      "20",
+      "24",
+      "30"
+    ],
+    "correct_answer": "24",
+    "explanation": "Let the original price be 1. After the increase the price is 1.25. Reducing that by p percent gives 1.25(1 - p/100) = 0.95, so 1 - p/100 = 0.76 and p = 24. Subtracting the percents directly (25 + 5), or taking 1 - 0.95/1.25 incorrectly as 1 - 0.8, gives other values.",
+    "solve": "const up=25, endBelow=5;\nconst factor=(1-endBelow/100)/(1+up/100);\nreturn Math.round((1-factor)*100*1e6)/1e6;"
+  },
+  {
+    "id": "PSDA-H-16",
+    "domain": "Problem-Solving and Data Analysis",
+    "subskill": "unit conversion and multi-step quantitative reasoning",
+    "difficulty": "hard",
+    "prompt": "A cyclist rides at an average speed of 24 kilometers per hour for 45 minutes, then rides at an average speed of 18 kilometers per hour for the next 20 kilometers. What is the cyclist's average speed, in kilometers per hour, for the entire ride? (Round to the nearest tenth.)",
+    "choices": [
+      "20.4",
+      "20.8",
+      "21",
+      "22.2"
+    ],
+    "correct_answer": "20.4",
+    "explanation": "The first part covers 24 * 0.75 = 18 kilometers in 0.75 hour. The second part covers 20 kilometers in 20/18 hours, about 1.111 hours. The total distance is 38 kilometers and the total time is about 1.861 hours, so the average speed is 38/1.861, which rounds to 20.4 kilometers per hour. Averaging the two speeds gives 21; weighting the speeds by distance instead of time gives 20.8; treating the 20 kilometers as 20 minutes gives about 22.2.",
+    "solve": "const v1=24, min1=45, v2=18, d2=20;\nconst t1=min1/60, d1=v1*t1, t2=d2/v2;\nreturn Math.round((d1+d2)/(t1+t2)*10)/10;"
+  },
+  {
+    "id": "PSDA-H-17",
+    "domain": "Problem-Solving and Data Analysis",
+    "subskill": "one-variable data: center, spread, shape",
+    "difficulty": "hard",
+    "prompt": "A data set consists of the ten values 3, 7, 8, 12, 15, 18, 21, 26, 30, 40. Using the convention that the first quartile is the median of the lower five values and the third quartile is the median of the upper five values, a value is called an outlier if it is more than 1.5 times the interquartile range above the third quartile. The value 40 is replaced by a value v that is greater than 26 and lies exactly at that upper boundary. What is the value of v?",
+    "choices": [
+      "40.5",
+      "43.5",
+      "44",
+      "53"
+    ],
+    "correct_answer": "53",
+    "explanation": "The lower five values are 3, 7, 8, 12, 15, so the first quartile is 8. After the replacement the upper five values are 18, 21, 26, 30, v with v greater than 26, so the third quartile remains 26 and the interquartile range is 18. The upper boundary is 26 + 1.5(18) = 53. Using 21 as the third quartile, measuring from the median 16.5 instead of the third quartile, or adding one interquartile range instead of 1.5 gives the other values.",
+    "solve": "const d=[3,7,8,12,15,18,21,26,30,40];\nconst lo=d.slice(0,5), hi=d.slice(5);\nconst q1=lo[2], q3=hi[2];\nreturn q3+1.5*(q3-q1);"
+  },
+  {
+    "id": "PSDA-H-18",
+    "domain": "Problem-Solving and Data Analysis",
+    "subskill": "two-variable data: models and scatterplots",
+    "difficulty": "hard",
+    "prompt": "The value, in dollars, of a collectible t years after it was purchased is modeled by an exponential function. The value was 250 dollars at t = 0 and 500 dollars at t = 3. According to the model, what is the value of the collectible, in dollars, at t = 9?",
+    "choices": [
+      "1000",
+      "1500",
+      "2000",
+      "128000"
+    ],
+    "correct_answer": "2000",
+    "explanation": "The value doubles every 3 years, since 500/250 = 2. From t = 0 to t = 9 there are three such intervals, so the value is 250 * 2^3 = 2000 dollars. A linear model with the same two points gives 1000; multiplying by 3 because 9 is 3 times 3 gives 1500; doubling every year instead of every 3 years gives 128000.",
+    "solve": "const v0=250, v3=500, t3=3, t=9;\nconst b=Math.pow(v3/v0,1/t3);\nreturn Math.round(v0*Math.pow(b,t)*1e6)/1e6;"
+  },
+  {
+    "id": "PSDA-H-19",
+    "domain": "Problem-Solving and Data Analysis",
+    "subskill": "evaluating statistical claims",
+    "difficulty": "hard",
+    "prompt": "A bakery claims that the mean mass of its loaves is 40 ounces. A consumer group weighed a random sample of 50 loaves and found a sample mean of 43.6 ounces with a margin of error of 3.2 ounces. The group states that the bakery's claimed mean is not consistent with the sample. By how many ounces would the bakery's claimed mean need to increase for the claim to fall exactly at the edge of the plausible interval implied by the sample?",
+    "choices": [
+      "0.4",
+      "3.2",
+      "3.6",
+      "6.8"
+    ],
+    "correct_answer": "0.4",
+    "explanation": "The plausible interval for the population mean is 43.6 - 3.2 = 40.4 ounces to 43.6 + 3.2 = 46.8 ounces. The claim of 40 ounces lies 0.4 ounce below the lower bound, so the claim would need to rise by 0.4 ounce. The 3.6 is the gap between the claim and the sample mean, 3.2 is the margin itself, and 6.8 is the gap to the upper bound.",
+    "solve": "const claim=40, xbar=43.6, moe=3.2;\nreturn Math.round((xbar-moe-claim)*1e6)/1e6;"
+  },
+  {
+    "id": "PSDA-H-20",
+    "domain": "Problem-Solving and Data Analysis",
+    "subskill": "one-variable data: center, spread, shape",
+    "difficulty": "hard",
+    "prompt": "A class of 24 students took a test, and the mean score for the class was 78. The 15 students in Section 1 had a mean score of 84. What was the mean score of the 9 students in Section 2?",
+    "choices": [
+      "68",
+      "72",
+      "74.4",
+      "81"
+    ],
+    "correct_answer": "68",
+    "explanation": "The class total is 24 * 78 = 1872 and Section 1's total is 15 * 84 = 1260, so Section 2's total is 612 and its mean is 612/9 = 68. Assuming the sections were equal in size (78 - 6 = 72), weighting the deviation by the wrong section size (78 - 6 * 9/15 = 74.4), or averaging the two given means (81) gives the other values.",
+    "solve": "const n=24, mean=78, n1=15, m1=84;\nreturn Math.round((n*mean-n1*m1)/(n-n1)*1e6)/1e6;"
+  },
+  {
+    "id": "PSDA-H-21",
+    "domain": "Problem-Solving and Data Analysis",
+    "subskill": "ratios/rates/proportions",
+    "difficulty": "hard",
+    "prompt": "Working alone, printing press A can complete a print run in 6 hours, and printing press B can complete the same run in 9 hours. Both presses work together on the run for 2 hours, after which press A is shut down for maintenance and press B finishes the run alone. How many minutes does press B work alone to finish the run?",
+    "choices": [
+      "160",
+      "240",
+      "300",
+      "540"
+    ],
+    "correct_answer": "240",
+    "explanation": "Together the presses complete 1/6 + 1/9 = 5/18 of the run per hour, so in 2 hours they complete 10/18 = 5/9 of the run, leaving 4/9. Press B alone completes 1/9 per hour, so the remainder takes (4/9)/(1/9) = 4 hours, which is 240 minutes. Finishing at press A's rate, treating the remaining fraction as 5/9, or using B's full-run time produce the other values.",
+    "solve": "const a=6,b=9,together=2;\nconst done=together*(1/a+1/b);\nconst hours=(1-done)/(1/b);\nreturn Math.round(hours*60*1e6)/1e6;"
+  },
+  {
+    "id": "PSDA-H-22",
+    "domain": "Problem-Solving and Data Analysis",
+    "subskill": "two-variable data: models and scatterplots",
+    "difficulty": "hard",
+    "prompt": "A scatterplot shows the number of pages, x, in each of several reports and the time, y, in minutes that an editor took to review each report. The line of best fit passes through the points (10, 39) and (30, 87). One report had 20 pages and took 58 minutes to review. What is the residual, in minutes, for that report, where residual is defined as the actual value minus the predicted value?",
+    "choices": [
+      "-5",
+      "5",
+      "58",
+      "63"
+    ],
+    "correct_answer": "-5",
+    "explanation": "The slope of the line is (87 - 39)/(30 - 10) = 2.4 minutes per page, so the line is y = 2.4x + 15. For 20 pages the predicted time is 2.4(20) + 15 = 63 minutes, and the residual is 58 - 63 = -5. Subtracting in the reverse order gives 5; 63 is the prediction itself and 58 the observed value.",
+    "solve": "const x1=10,y1=39,x2=30,y2=87,x=20,y=58;\nconst m=(y2-y1)/(x2-x1), b=y1-m*x1;\nreturn Math.round((y-(m*x+b))*1e6)/1e6;"
+  },
+  {
+    "id": "PSDA-H-23",
+    "domain": "Problem-Solving and Data Analysis",
+    "subskill": "probability and conditional probability",
+    "difficulty": "hard",
+    "prompt": "A bag contains only red and blue marbles, and the ratio of red marbles to blue marbles is 3:5. After 6 red marbles are added to the bag, the probability of drawing a red marble at random is exactly 1/2. How many marbles were in the bag before the red marbles were added?",
+    "choices": [
+      "15",
+      "24",
+      "30",
+      "36"
+    ],
+    "correct_answer": "24",
+    "explanation": "Let the bag hold 3x red and 5x blue marbles. After adding 6 red marbles, (3x + 6)/(8x + 6) = 1/2, so 6x + 12 = 8x + 6 and x = 3. The bag originally held 9 red and 15 blue marbles, 24 in total. The 15 is the number of blue marbles, 30 is the total after the addition, and 36 comes from assuming both colors must number 18.",
+    "solve": "const r=3, b=5, add=6;\n// (r x + add)/((r+b) x + add) = 1/2  -> 2 r x + 2 add = (r+b) x + add\nconst x=add/((r+b)-2*r);\nreturn (r+b)*x;"
+  },
+  {
+    "id": "PSDA-H-24",
+    "domain": "Problem-Solving and Data Analysis",
+    "subskill": "ratios/rates/proportions",
+    "difficulty": "hard",
+    "prompt": "In a debate club, the ratio of seniors to juniors is 5:3. After 12 juniors join the club and 4 seniors leave, the ratio of seniors to juniors becomes 4:3. How many members did the club have before these changes?",
+    "choices": [
+      "20",
+      "100",
+      "160",
+      "168"
+    ],
+    "correct_answer": "160",
+    "explanation": "Let the original numbers be 5x seniors and 3x juniors. After the changes, (5x - 4)/(3x + 12) = 4/3, so 15x - 12 = 12x + 48 and x = 20. The club originally had 5(20) + 3(20) = 160 members. Reporting x itself, only the seniors, or the total after the changes gives the other values.",
+    "solve": "const s=5,j=3,jIn=12,sOut=4,ns=4,nj=3;\n// (s x - sOut)/(j x + jIn) = ns/nj  ->  nj(s x - sOut) = ns(j x + jIn)\nconst x=(ns*jIn+nj*sOut)/(nj*s-ns*j);\nreturn (s+j)*x;"
+  },
+  {
+    "id": "PSDA-H-25",
+    "domain": "Problem-Solving and Data Analysis",
+    "subskill": "percentages and percent change",
+    "difficulty": "hard",
+    "prompt": "In a survey, 40 percent of the respondents were students and the rest were not students. Of the students, 60 percent supported a proposal; of the non-students, 20 percent supported it. To the nearest tenth of a percent, what percent of all respondents who supported the proposal were students?",
+    "choices": [
+      "24",
+      "36",
+      "60",
+      "66.7"
+    ],
+    "correct_answer": "66.7",
+    "explanation": "Students who supported the proposal are 0.40 * 0.60 = 24 percent of all respondents; non-student supporters are 0.60 * 0.20 = 12 percent. Supporters total 36 percent of respondents, and students make up 24/36 = 66.7 percent of them. The 24 and 36 are the intermediate shares of all respondents, and 60 is the support rate among students, not the students' share of supporters.",
+    "solve": "const st=0.40, stYes=0.60, nonYes=0.20;\nconst a=st*stYes, b=(1-st)*nonYes;\nreturn Math.round(a/(a+b)*1000)/10;"
+  },
+  {
+    "id": "PSDA-H-26",
+    "domain": "Problem-Solving and Data Analysis",
+    "subskill": "unit conversion and multi-step quantitative reasoning",
+    "difficulty": "hard",
+    "prompt": "A car's fuel consumption is 6.5 liters per 100 kilometers. Fuel costs 1.62 dollars per liter. What is the fuel cost, in dollars, of driving this car 384 kilometers?",
+    "choices": [
+      "24.96",
+      "40.44",
+      "95.70",
+      "4043.52"
+    ],
+    "correct_answer": "40.44",
+    "explanation": "Driving 384 kilometers uses 384 * (6.5/100) = 24.96 liters, which costs 24.96 * 1.62 = 40.44 dollars. The value 24.96 is the number of liters, not the cost; dividing 384 by 6.5 instead of multiplying by 6.5/100 gives 95.70; and forgetting the \"per 100 kilometers\" gives 4043.52.",
+    "solve": "const lPer100=6.5, price=1.62, km=384;\nreturn Math.round(km*lPer100/100*price*100)/100;"
+  },
+  {
+    "id": "PSDA-H-27",
+    "domain": "Problem-Solving and Data Analysis",
+    "subskill": "two-variable data: models and scatterplots",
+    "difficulty": "hard",
+    "prompt": "The table shows five data points from an experiment and the line y = 1.85x + 3.8 is used to model them.\nx = 2, y = 7.4\nx = 4, y = 11.0\nx = 6, y = 14.8\nx = 8, y = 18.6\nx = 10, y = 22.8\nFor which value of x does the data point have the residual with the greatest absolute value?",
+    "choices": [
+      "4",
+      "6",
+      "8",
+      "10"
+    ],
+    "correct_answer": "10",
+    "explanation": "The predicted values are 7.5, 11.2, 14.9, 18.6, and 22.3, so the residuals (actual minus predicted) are -0.1, -0.2, -0.1, 0, and 0.5. The residual of 0.5 at x = 10 has the greatest absolute value. The point at x = 4 has the largest negative residual, and the point at x = 8 lies on the line.",
+    "solve": "const xs=[2,4,6,8,10], ys=[7.4,11.0,14.8,18.6,22.8], m=1.85, b=3.8;\nlet best=null, bestAbs=-1;\nxs.forEach((x,i)=>{const r=Math.abs(ys[i]-(m*x+b)); if(r>bestAbs+1e-9){bestAbs=r;best=x}});\nreturn best;"
+  },
+  {
+    "id": "PSDA-H-28",
+    "domain": "Problem-Solving and Data Analysis",
+    "subskill": "two-variable data: models and scatterplots",
+    "difficulty": "hard",
+    "prompt": "For a certain species of shrub, a line of best fit relating height h, in centimeters, to mass w, in kilograms, is w = 0.62h - 48. According to this model, a shrub that is 10 percent taller than a 150-centimeter shrub has a predicted mass that is what percent greater than the predicted mass of the 150-centimeter shrub? (Round to the nearest tenth of a percent.)",
+    "choices": [
+      "6.2",
+      "9.3",
+      "10",
+      "20.7"
+    ],
+    "correct_answer": "20.7",
+    "explanation": "The 150-centimeter shrub has predicted mass 0.62(150) - 48 = 45 kilograms. A shrub 10 percent taller is 165 centimeters, with predicted mass 0.62(165) - 48 = 54.3 kilograms. The increase is 9.3 kilograms, which is 9.3/45 = 20.7 percent of the smaller mass. Because the intercept is negative, the percent change in mass is not the same 10 percent as the change in height; 9.3 is the change in kilograms and 6.2 is the change in kilograms for a 10-centimeter change.",
+    "solve": "const a=0.62, b=-48, h=150, pct=0.10;\nconst w1=a*h+b, w2=a*h*(1+pct)+b;\nreturn Math.round((w2/w1-1)*1000)/10;"
+  },
+  {
+    "id": "PSDA-H-29",
+    "domain": "Problem-Solving and Data Analysis",
+    "subskill": "evaluating statistical claims",
+    "difficulty": "hard",
+    "prompt": "A sports news website posted an online poll asking visitors whether a city should build a new stadium using public funds. Of the 12000 visitors who chose to respond, 78 percent answered yes. A columnist concluded that about 78 percent of the city's residents support using public funds for the stadium. Which of the following best explains why the columnist's conclusion is not justified?",
+    "choices": [
+      "The respondents chose to participate and were visitors to a sports website, so the sample is unlikely to be representative of the city's residents, regardless of its size.",
+      "The sample of 12000 is too small a fraction of the city's population to estimate the residents' opinion.",
+      "The poll should have been repeated on several days so that the results could be averaged.",
+      "The percent is not reliable because the poll did not report a margin of error."
+    ],
+    "correct_answer": "The respondents chose to participate and were visitors to a sports website, so the sample is unlikely to be representative of the city's residents, regardless of its size.",
+    "explanation": "The respondents were self-selected visitors to a sports website, not a random sample of the city's residents, so the poll suffers from selection bias that a large number of responses does not correct. A sample of 12000 would be more than adequate if it were random; repeating the poll or reporting a margin of error would not fix a biased sampling method.",
+    "solve": "const selfSelected=true, randomSample=false;\nreturn (selfSelected && !randomSample)\n ? 'The respondents chose to participate and were visitors to a sports website, so the sample is unlikely to be representative of the city\\'s residents, regardless of its size.'\n : 'The percent is not reliable because the poll did not report a margin of error.';"
+  },
+  {
+    "id": "PSDA-H-30",
+    "domain": "Problem-Solving and Data Analysis",
+    "subskill": "one-variable data: center, spread, shape",
+    "difficulty": "hard",
+    "prompt": "The table shows the number of books read last month by each of the 20 students in a reading group.\nBooks read: 0 | Number of students: 3\nBooks read: 1 | Number of students: 5\nBooks read: 2 | Number of students: 7\nBooks read: 3 | Number of students: 4\nBooks read: 4 | Number of students: 1\nA 21st student joins the group and reports having read x books last month. If the mean number of books read by the 21 students equals the median number of books read by the 21 students, what is the value of x?",
+    "choices": [
+      "2",
+      "4",
+      "5",
+      "7"
+    ],
+    "correct_answer": "7",
+    "explanation": "The 20 listed values total 0(3) + 1(5) + 2(7) + 3(4) + 4(1) = 35. With 21 values the median is the 11th value in order; the cumulative counts 3, 8, 15 show the 11th value is 2 whatever x is, so the median is 2. Setting the mean equal to 2 gives (35 + x)/21 = 2, so x = 7. Choosing x equal to the median, solving 35 + x = 40 as if there were still 20 students, or taking the largest listed value gives the other values.",
+    "solve": "const vals=[0,1,2,3,4], freq=[3,5,7,4,1];\nconst n=freq.reduce((a,b)=>a+b,0), total=vals.reduce((a,v,i)=>a+v*freq[i],0);\n// median of n+1 values: (n+2)/2-th value; find it from cumulative counts (x may be any value; check it doesn't move the median)\nconst pos=(n+2)/2; let cum=0, med=null;\nfor(let i=0;i<vals.length;i++){cum+=freq[i]; if(cum>=pos){med=vals[i];break}}\nconst x=med*(n+1)-total;\n// x>=med so the median position is unaffected by x\nreturn x;"
+  },
+  {
+    "id": "PSDA-H-31",
+    "domain": "Problem-Solving and Data Analysis",
+    "subskill": "inference from sample statistics and margin of error",
+    "difficulty": "hard",
+    "prompt": "A polling organization found that a random sample of 250 adults produced a margin of error of 6 percentage points for the estimated proportion who favor a policy. Assuming the same population proportion and confidence level, and that the margin of error is inversely proportional to the square root of the sample size, approximately how many adults would need to be sampled for the margin of error to be 2 percentage points?",
+    "choices": [
+      "750",
+      "1000",
+      "2250",
+      "6750"
+    ],
+    "correct_answer": "2250",
+    "explanation": "Reducing the margin of error by a factor of 3 requires a sample 3^2 = 9 times as large, so 9 * 250 = 2250 adults. Scaling the sample linearly with the factor gives 750, multiplying by the new margin squared (4) gives 1000, and cubing the factor gives 6750.",
+    "solve": "const n=250, moe1=6, moe2=2;\nreturn n*Math.pow(moe1/moe2,2);"
+  },
+  {
+    "id": "PSDA-H-32",
+    "domain": "Problem-Solving and Data Analysis",
+    "subskill": "ratios/rates/proportions",
+    "difficulty": "hard",
+    "prompt": "Solution X is a mixture of acid and water in the ratio 3:5 by volume. Solution Y is a mixture of acid and water in the ratio 7:3 by volume. A chemist combines 400 milliliters of Solution X with 250 milliliters of Solution Y, then plans to add pure water until the ratio of acid to water in the final mixture is 5:8. How many milliliters of pure water must be added?",
+    "choices": [
+      "195",
+      "270",
+      "429",
+      "520"
+    ],
+    "correct_answer": "195",
+    "explanation": "Solution X is 3/8 acid, so 400 mL of X contributes 150 mL acid and 250 mL water. Solution Y is 7/10 acid, so 250 mL of Y contributes 175 mL acid and 75 mL water. The combined mixture has 325 mL acid and 325 mL water. For a 5:8 acid-to-water ratio with 325 mL acid, the water must total 325 * 8/5 = 520 mL, so 520 - 325 = 195 mL of water must be added. Using 3/5 and 7/10 as the acid fractions, or subtracting only Solution X's water, gives the other values.",
+    "solve": "const xa=3,xw=5,ya=7,yw=3,vx=400,vy=250,ta=5,tw=8;\nconst acid=vx*xa/(xa+xw)+vy*ya/(ya+yw);\nconst water=vx*xw/(xa+xw)+vy*yw/(ya+yw);\nreturn acid*tw/ta-water;"
+  }
+]
