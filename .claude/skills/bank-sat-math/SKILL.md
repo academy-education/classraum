@@ -27,7 +27,19 @@ Brief essentials:
 - Numeric answers must be exactly computable; the sandbox recomputes them.
 - Distractors bracket the key with named errors (sign slip, wrong formula, unit) - the bank is middle-heavy by design, which is why choices are shuffled at draw.
 - Figure items must NEED the figure. The figure-blind attack found 80.6% of maths figures decorative (`FIGURE-BLIND-RESULT.md`); cover the graphic and try the item.
-- Do not repeat the derivational hub: options must not be a chain of `a, 2a, a+1, a-1` (`verify-*hub*` scripts exist; the population check is exact, use it).
+- Do not repeat the derivational hub: options must not be a chain of `a, 2a, a+1, a-1`, nor a set of expressions where the key is the unique one every distractor is one token-edit from. Derive each distractor from a DIFFERENT wrong path; two distractors being one edit from each other is fine.
+
+**The two hub checkers take different inputs and are not interchangeable:**
+
+| | reads | argument |
+|---|---|---|
+| `check-symbolic-hub.mjs` | a BATCH FILE (or `--bank`) | batch paths |
+| `check-math-hub.mjs` | the LIVE BANK only | a DOMAIN name, e.g. `"Advanced Math"` |
+
+Passing a batch path to `check-math-hub.mjs` used to match zero rows and
+print `0 items ... margin -25.0pts`, which reads like a pass. It now exits
+2 on a path or an empty population. Use `check-symbolic-hub.mjs` for a
+batch; `verify` runs it for you.
 
 ## 3. QC: sandbox key check
 

@@ -195,6 +195,20 @@ if (process.argv.includes('--selftest')) {
 const validate = process.argv.includes('--validate')
 const onlyDomain = process.argv.slice(2).find(a => !a.startsWith('--')) ?? null
 
+// This script reads the LIVE bank and treats its positional argument as a
+// DOMAIN FILTER. Passed a batch path it matched zero rows and printed
+// "0 items ... margin -25.0pts", which reads like a pass — a check that
+// read nothing and still reported a number. Both guards below exist so it
+// cannot do that again. For a batch file use check-symbolic-hub.mjs, which
+// takes batch paths and covers expression options this script cannot see.
+if (onlyDomain && (onlyDomain.endsWith('.json') || onlyDomain.includes('/'))) {
+  console.error(`check-math-hub.mjs reads the LIVE bank; its argument is a DOMAIN, not a file.\n` +
+    `  got: ${onlyDomain}\n` +
+    `  for a batch file:  node scripts/study-bank/check-symbolic-hub.mjs ${onlyDomain}\n` +
+    `  for a live domain: node scripts/study-bank/check-math-hub.mjs "Advanced Math"`)
+  process.exit(2)
+}
+
 const env = Object.fromEntries(readFileSync(process.cwd() + '/.env.local', 'utf8').split('\n')
   .filter(l => l.includes('=') && !l.startsWith('#'))
   .map(l => [l.slice(0, l.indexOf('=')), l.slice(l.indexOf('=') + 1).trim()]))
@@ -217,6 +231,11 @@ const repaired = r => !!r.verify_meta &&
 
 let pool = rows.filter(r => !r.archived && MATH_DOMAINS.includes(r.domain))
 if (onlyDomain) pool = pool.filter(r => r.domain === onlyDomain)
+if (onlyDomain && pool.length === 0) {
+  console.error(`no live rows in domain ${JSON.stringify(onlyDomain)}. Known domains: ${MATH_DOMAINS.join(', ')}.\n` +
+    `A checker that read nothing must not go on to print a number.`)
+  process.exit(2)
+}
 pool = pool.filter(r => (validate ? repaired(r) : !repaired(r)))
 
 console.log(validate

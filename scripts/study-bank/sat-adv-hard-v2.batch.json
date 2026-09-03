@@ -1,0 +1,722 @@
+[
+  {
+    "id": "AM2-01",
+    "domain": "Advanced Math",
+    "subskill": "radical equations and extraneous solutions",
+    "difficulty": "hard",
+    "prompt": "What is the sum of all solutions to the equation sqrt(3x + 10) = x + 2 ?",
+    "choices": [
+      "-1",
+      "2",
+      "-3",
+      "3"
+    ],
+    "correct_answer": "2",
+    "explanation": "Squaring both sides gives 3x + 10 = x^2 + 4x + 4, so x^2 + x - 6 = 0 and (x + 3)(x - 2) = 0, giving x = -3 or x = 2. The squared equation is not equivalent to the original: at x = -3 the left side is sqrt(1) = 1 while the right side is -1, so x = -3 is extraneous. Only x = 2 satisfies the original equation, so the sum is 2.",
+    "distractor_steps": [
+      {
+        "choice": "-1",
+        "mis_step": "Adds both roots of the squared equation without substituting them back, so the extraneous root is counted."
+      },
+      {
+        "choice": "-3",
+        "mis_step": "Keeps the extraneous root and discards the valid one, as if a radical equation always loses its positive solution."
+      },
+      {
+        "choice": "3",
+        "mis_step": "Misfactors x^2 + x - 6 as (x + 2)(x - 3) and reports the root 3."
+      }
+    ],
+    "solve": "const roots = [];\nfor (const r of [(-1 + Math.sqrt(25)) / 2, (-1 - Math.sqrt(25)) / 2]) {\n  if (3 * r + 10 >= 0 && Math.abs(Math.sqrt(3 * r + 10) - (r + 2)) < 1e-9) roots.push(r);\n}\nreturn roots.reduce((a, b) => a + b, 0);"
+  },
+  {
+    "id": "AM2-02",
+    "domain": "Advanced Math",
+    "subskill": "quadratic and linear systems with one intersection",
+    "difficulty": "medium",
+    "prompt": "In the xy-plane, the graph of y = x^2 + 4x + c intersects the line y = 2x + 3 at exactly one point. What is the value of c ?",
+    "choices": [
+      "3",
+      "2",
+      "7",
+      "4"
+    ],
+    "correct_answer": "4",
+    "explanation": "Setting the expressions equal gives x^2 + 4x + c = 2x + 3, so x^2 + 2x + (c - 3) = 0. Exactly one intersection means this quadratic has one real solution, so its discriminant 2^2 - 4(c - 3) is 0, giving c - 3 = 1 and c = 4.",
+    "distractor_steps": [
+      {
+        "choice": "3",
+        "mis_step": "Sets the constant term c - 3 equal to 0, treating \"one solution\" as \"the constant term vanishes\"."
+      },
+      {
+        "choice": "2",
+        "mis_step": "Solves 4 - 4(c - 3) = 0 with a sign slip, getting c - 3 = -1."
+      },
+      {
+        "choice": "7",
+        "mis_step": "Uses the discriminant of x^2 + 4x + (c - 3), never combining 4x with the line’s 2x: 16 - 4(c - 3) = 0."
+      }
+    ],
+    "solve": "let ans = null;\nfor (let i = -200; i <= 200; i++) { const c = i / 4; if (Math.abs(2 * 2 - 4 * (c - 3)) < 1e-9) ans = c; }\nreturn ans;"
+  },
+  {
+    "id": "AM2-03",
+    "domain": "Advanced Math",
+    "subskill": "equations in quadratic form with a domain restriction",
+    "difficulty": "hard",
+    "prompt": "If sqrt(x) - 6/sqrt(x) = 1, what is the value of x ?",
+    "choices": [
+      "9",
+      "4",
+      "3",
+      "36"
+    ],
+    "correct_answer": "9",
+    "explanation": "Let u = sqrt(x). The equation becomes u - 6/u = 1, so u^2 - u - 6 = 0 and (u - 3)(u + 2) = 0, giving u = 3 or u = -2. Because u = sqrt(x) denotes the principal square root, u cannot be negative, so u = -2 is rejected. Then sqrt(x) = 3 and x = 9.",
+    "distractor_steps": [
+      {
+        "choice": "4",
+        "mis_step": "Squares the rejected root u = -2 without noticing that sqrt(x) cannot be negative."
+      },
+      {
+        "choice": "3",
+        "mis_step": "Stops at u = sqrt(x) = 3 and reports u instead of x."
+      },
+      {
+        "choice": "36",
+        "mis_step": "Misfactors u^2 - u - 6 as (u - 6)(u + 1) and squares u = 6."
+      }
+    ],
+    "solve": "const us = [(1 + Math.sqrt(25)) / 2, (1 - Math.sqrt(25)) / 2].filter(u => u > 0);\nconst u = us[0];\nreturn u * u;"
+  },
+  {
+    "id": "AM2-04",
+    "domain": "Advanced Math",
+    "subskill": "evaluating a quadratic function",
+    "difficulty": "easy",
+    "prompt": "The function f is defined by f(x) = x^2 - 5x. What is the value of f(-3) ?",
+    "choices": [
+      "6",
+      "-6",
+      "24",
+      "-24"
+    ],
+    "correct_answer": "24",
+    "explanation": "Substituting gives f(-3) = (-3)^2 - 5(-3) = 9 + 15 = 24.",
+    "distractor_steps": [
+      {
+        "choice": "6",
+        "mis_step": "Evaluates (-3)^2 as -9, then -9 + 15."
+      },
+      {
+        "choice": "-6",
+        "mis_step": "Takes -5x as -5(3) = -15 instead of +15, giving 9 - 15."
+      },
+      {
+        "choice": "-24",
+        "mis_step": "Makes both sign errors: -9 - 15."
+      }
+    ],
+    "solve": "const f = x => x * x - 5 * x;\nreturn f(-3);"
+  },
+  {
+    "id": "AM2-05",
+    "domain": "Advanced Math",
+    "subskill": "integer solutions of a quadratic with a parameter",
+    "difficulty": "hard",
+    "prompt": "For how many integer values of k does the equation x^2 + kx + 36 = 0 have two distinct integer solutions?",
+    "choices": [
+      "4",
+      "5",
+      "10",
+      "8"
+    ],
+    "correct_answer": "8",
+    "explanation": "If the solutions are integers p and q, then pq = 36 and p + q = -k. The unordered pairs of integers with product 36 are {1, 36}, {2, 18}, {3, 12}, {4, 9}, {6, 6} and the four negatives of the first four, plus {-6, -6}. The pairs {6, 6} and {-6, -6} give a repeated solution and are excluded by \"distinct\", leaving 8 pairs and the 8 values k = -37, -20, -15, -13, 13, 15, 20, 37.",
+    "distractor_steps": [
+      {
+        "choice": "4",
+        "mis_step": "Counts only the pairs of positive factors, ignoring that both solutions may be negative."
+      },
+      {
+        "choice": "5",
+        "mis_step": "Counts the positive factor pairs and includes {6, 6}, missing the distinctness requirement."
+      },
+      {
+        "choice": "10",
+        "mis_step": "Counts all factor pairs of both signs but keeps {6, 6} and {-6, -6}."
+      }
+    ],
+    "solve": "const ks = new Set();\nfor (let p = -60; p <= 60; p++) {\n  if (p === 0 || 36 % p !== 0) continue;\n  const q = 36 / p;\n  if (p === q) continue;\n  ks.add(-(p + q));\n}\nreturn ks.size;"
+  },
+  {
+    "id": "AM2-06",
+    "domain": "Advanced Math",
+    "subskill": "minimum of a quadratic on a restricted interval",
+    "difficulty": "hard",
+    "prompt": "The function f is defined by f(x) = x^2 - 8x + 21. What is the minimum value of f(x) for 0 <= x <= 3 ?",
+    "choices": [
+      "4",
+      "6",
+      "5",
+      "21"
+    ],
+    "correct_answer": "6",
+    "explanation": "The vertex is at x = -(-8)/2 = 4, which lies outside the interval 0 <= x <= 3. On that interval the parabola is still decreasing, so the least value occurs at the right endpoint: f(3) = 9 - 24 + 21 = 6.",
+    "distractor_steps": [
+      {
+        "choice": "4",
+        "mis_step": "Reports the x-coordinate of the vertex rather than a value of f."
+      },
+      {
+        "choice": "5",
+        "mis_step": "Computes f(4) = 5, the unrestricted minimum, without checking that x = 4 is outside the interval."
+      },
+      {
+        "choice": "21",
+        "mis_step": "Evaluates at the left endpoint f(0) = 21, which is the maximum on the interval, not the minimum."
+      }
+    ],
+    "solve": "const f = x => x * x - 8 * x + 21;\nlet m = Infinity;\nfor (let i = 0; i <= 30000; i++) { const x = i / 10000; if (f(x) < m) m = f(x); }\nreturn Math.round(m * 1e6) / 1e6;"
+  },
+  {
+    "id": "AM2-07",
+    "domain": "Advanced Math",
+    "subskill": "relationships between the solutions of a quadratic",
+    "difficulty": "medium",
+    "prompt": "If r and s are the two solutions of 2x^2 - 7x + 3 = 0, what is the value of 1/r + 1/s ?",
+    "choices": [
+      "3/7",
+      "7/2",
+      "3/2",
+      "7/3"
+    ],
+    "correct_answer": "7/3",
+    "explanation": "For 2x^2 - 7x + 3 = 0 the sum of the solutions is 7/2 and the product is 3/2. Writing 1/r + 1/s over a common denominator gives (r + s)/(rs) = (7/2)/(3/2) = 7/3.",
+    "distractor_steps": [
+      {
+        "choice": "3/7",
+        "mis_step": "Computes rs/(r + s), inverting the required ratio."
+      },
+      {
+        "choice": "7/2",
+        "mis_step": "Reports r + s, stopping before dividing by the product."
+      },
+      {
+        "choice": "3/2",
+        "mis_step": "Reports rs, using the product where the quotient is needed."
+      }
+    ],
+    "solve": "const a = 2, b = -7, c = 3;\nconst d = Math.sqrt(b * b - 4 * a * c);\nconst r = (-b + d) / (2 * a), s = (-b - d) / (2 * a);\nreturn 1 / r + 1 / s;"
+  },
+  {
+    "id": "AM2-08",
+    "domain": "Advanced Math",
+    "subskill": "inverse functions and order of composition",
+    "difficulty": "medium",
+    "prompt": "The function f is defined by f(x) = 3x - 5, and the function h is defined by h(x) = f^-1(2x), where f^-1 is the inverse of f. What is the value of h(4) ?",
+    "choices": [
+      "13/3",
+      "6",
+      "19",
+      "3"
+    ],
+    "correct_answer": "13/3",
+    "explanation": "Solving y = 3x - 5 for x gives f^-1(y) = (y + 5)/3. The input is doubled before the inverse is applied, so h(4) = f^-1(8) = (8 + 5)/3 = 13/3.",
+    "distractor_steps": [
+      {
+        "choice": "6",
+        "mis_step": "Applies the inverse first and doubles afterwards: 2 * f^-1(4) = 2 * 3."
+      },
+      {
+        "choice": "19",
+        "mis_step": "Uses f itself instead of its inverse: f(8) = 19."
+      },
+      {
+        "choice": "3",
+        "mis_step": "Computes f^-1(4) = 3, dropping the factor of 2 entirely."
+      }
+    ],
+    "solve": "const finv = y => (y + 5) / 3;\nreturn finv(2 * 4);"
+  },
+  {
+    "id": "AM2-09",
+    "domain": "Advanced Math",
+    "subskill": "rational equations and excluded values",
+    "difficulty": "hard",
+    "prompt": "What is the solution to the equation 3/(x - 1) - 2/(x + 1) = 4/(x^2 - 1) ?",
+    "choices": [
+      "x = -1",
+      "x = 1",
+      "There is no solution.",
+      "x = 3"
+    ],
+    "correct_answer": "There is no solution.",
+    "explanation": "Because x^2 - 1 = (x - 1)(x + 1), multiplying through by (x - 1)(x + 1) gives 3(x + 1) - 2(x - 1) = 4, so 3x + 3 - 2x + 2 = 4 and x = -1. But x = -1 makes the denominators x + 1 and x^2 - 1 equal to 0, so it is not in the domain of the original equation and must be rejected. The equation therefore has no solution.",
+    "distractor_steps": [
+      {
+        "choice": "x = -1",
+        "mis_step": "Solves the cleared equation correctly but never checks the value against the excluded values x = 1 and x = -1."
+      },
+      {
+        "choice": "x = 1",
+        "mis_step": "Notices that a value must be excluded but excludes the wrong one and keeps x = 1 as the answer."
+      },
+      {
+        "choice": "x = 3",
+        "mis_step": "Fails to distribute the subtraction: 3x + 3 - 2x - 2 = 4 gives x = 3."
+      }
+    ],
+    "solve": "const lhs = x => 3 / (x - 1) - 2 / (x + 1);\nconst rhs = x => 4 / (x * x - 1);\nconst sols = [];\nfor (let i = -2000; i <= 2000; i++) {\n  const x = i / 100;\n  if (x === 1 || x === -1) continue;\n  if (Math.abs(lhs(x) - rhs(x)) < 1e-9) sols.push(x);\n}\nreturn sols.length === 0 ? 'There is no solution.' : ('x = ' + sols[0]);"
+  },
+  {
+    "id": "AM2-10",
+    "domain": "Advanced Math",
+    "subskill": "intersections of a parabola and a line",
+    "difficulty": "medium",
+    "prompt": "In the xy-plane, the graph of y = x^2 - 4x + 3 intersects the line y = -x + 3 at two points. What is the sum of the x-coordinates of those two points?",
+    "choices": [
+      "0",
+      "6",
+      "3",
+      "4"
+    ],
+    "correct_answer": "3",
+    "explanation": "Setting x^2 - 4x + 3 = -x + 3 gives x^2 - 3x = 0, so x(x - 3) = 0 and the x-coordinates are 0 and 3. Their sum is 3.",
+    "distractor_steps": [
+      {
+        "choice": "0",
+        "mis_step": "Reports one of the two x-coordinates instead of the sum."
+      },
+      {
+        "choice": "6",
+        "mis_step": "Adds all four coordinates of the two points, (0, 3) and (3, 0)."
+      },
+      {
+        "choice": "4",
+        "mis_step": "Drops the -x from the line, solving x^2 - 4x = 0 and summing 0 and 4."
+      }
+    ],
+    "solve": "const sols = [];\nfor (let i = -1000; i <= 1000; i++) {\n  const x = i / 100;\n  if (Math.abs((x * x - 4 * x + 3) - (-x + 3)) < 1e-9) sols.push(x);\n}\nreturn sols.reduce((a, b) => a + b, 0);"
+  },
+  {
+    "id": "AM2-11",
+    "domain": "Advanced Math",
+    "subskill": "equations in quadratic form and real solution counts",
+    "difficulty": "hard",
+    "prompt": "How many distinct real solutions does the equation x^4 + 3x^2 - 4 = 0 have?",
+    "choices": [
+      "2",
+      "4",
+      "1",
+      "3"
+    ],
+    "correct_answer": "2",
+    "explanation": "Let u = x^2. Then u^2 + 3u - 4 = 0, so (u + 4)(u - 1) = 0 and u = -4 or u = 1. Since u = x^2 cannot be negative for real x, u = -4 contributes no real solutions. From u = 1 we get x = 1 and x = -1, so there are 2 distinct real solutions.",
+    "distractor_steps": [
+      {
+        "choice": "4",
+        "mis_step": "Assumes each value of u yields two values of x, counting the negative u as if it did."
+      },
+      {
+        "choice": "1",
+        "mis_step": "Takes only the positive square root of u = 1."
+      },
+      {
+        "choice": "3",
+        "mis_step": "Counts x = 1 and x = -1 and adds one more solution from u = -4."
+      }
+    ],
+    "solve": "const us = [(-3 + Math.sqrt(9 + 16)) / 2, (-3 - Math.sqrt(9 + 16)) / 2];\nlet n = 0;\nfor (const u of us) { if (u > 0) n += 2; else if (u === 0) n += 1; }\nreturn n;"
+  },
+  {
+    "id": "AM2-12",
+    "domain": "Advanced Math",
+    "subskill": "nonlinear systems with a sign constraint",
+    "difficulty": "hard",
+    "prompt": "The system of equations x^2 + y^2 = 25 and y = x + 1 has two solutions. If x > 0 and y > 0, what is the value of x + y ?",
+    "choices": [
+      "-7",
+      "1",
+      "-1",
+      "7"
+    ],
+    "correct_answer": "7",
+    "explanation": "Substituting y = x + 1 gives x^2 + (x + 1)^2 = 25, so 2x^2 + 2x - 24 = 0 and x^2 + x - 12 = 0, giving x = 3 or x = -4. The second solution is the point (-4, -3), where both coordinates are negative, so the constraints x > 0 and y > 0 leave (3, 4). Then x + y = 7.",
+    "distractor_steps": [
+      {
+        "choice": "-7",
+        "mis_step": "Uses the point (-4, -3), ignoring the constraint that both coordinates are positive."
+      },
+      {
+        "choice": "1",
+        "mis_step": "Computes y - x = 1, the difference given directly by the line, instead of the sum."
+      },
+      {
+        "choice": "-1",
+        "mis_step": "Computes x - y for the point that the constraint rules out."
+      }
+    ],
+    "solve": "let ans = null;\nfor (let i = -1000; i <= 1000; i++) {\n  const x = i / 100, y = x + 1;\n  if (Math.abs(x * x + y * y - 25) < 1e-9 && x > 0 && y > 0) ans = x + y;\n}\nreturn ans;"
+  },
+  {
+    "id": "AM2-13",
+    "domain": "Advanced Math",
+    "subskill": "polynomial zeros and unknown coefficients",
+    "difficulty": "medium",
+    "prompt": "The polynomial p is defined by p(x) = 2x^3 + ax^2 - 5x + b, where a and b are constants. If p(1) = 0 and p(-2) = 0, what is the value of b ?",
+    "choices": [
+      "1",
+      "2",
+      "3",
+      "6"
+    ],
+    "correct_answer": "2",
+    "explanation": "From p(1) = 2 + a - 5 + b = 0 we get a + b = 3. From p(-2) = -16 + 4a + 10 + b = 0 we get 4a + b = 6. Subtracting gives 3a = 3, so a = 1 and b = 3 - 1 = 2.",
+    "distractor_steps": [
+      {
+        "choice": "1",
+        "mis_step": "Reports a rather than b."
+      },
+      {
+        "choice": "3",
+        "mis_step": "Reports a + b from the first condition, treating it as the value of b alone."
+      },
+      {
+        "choice": "6",
+        "mis_step": "Reports 4a + b from the second condition without solving the system."
+      }
+    ],
+    "solve": "const p = (x, a, b) => 2 * x * x * x + a * x * x - 5 * x + b;\nfor (let a = -10; a <= 10; a++) for (let b = -10; b <= 10; b++) {\n  if (p(1, a, b) === 0 && p(-2, a, b) === 0) return b;\n}\nreturn null;"
+  },
+  {
+    "id": "AM2-14",
+    "domain": "Advanced Math",
+    "subskill": "exponential models and changes of time unit",
+    "difficulty": "medium",
+    "prompt": "A sample of a substance has a mass of 8000 grams and loses 12 percent of its mass each year. Which of the following expressions gives the mass of the sample, in grams, m months after the sample is measured?",
+    "choices": [
+      "8000(0.88)^(m/12)",
+      "8000(0.88)^(12m)",
+      "8000(0.99)^m",
+      "8000(0.88/12)^m"
+    ],
+    "correct_answer": "8000(0.88)^(m/12)",
+    "explanation": "Losing 12 percent per year multiplies the mass by 1 - 0.12 = 0.88 each year. Since m months is m/12 years, the number of yearly periods elapsed is m/12, and the mass is 8000(0.88)^(m/12).",
+    "distractor_steps": [
+      {
+        "choice": "8000(0.88)^(12m)",
+        "mis_step": "Multiplies by 12 instead of dividing, treating m as a count of years to be converted into months."
+      },
+      {
+        "choice": "8000(0.99)^m",
+        "mis_step": "Divides the 12 percent rate by 12 to get a 1 percent monthly rate, which compounding makes incorrect."
+      },
+      {
+        "choice": "8000(0.88/12)^m",
+        "mis_step": "Puts the time conversion inside the base instead of in the exponent."
+      }
+    ],
+    "solve": "const base = 1 - 0.12, per = 12;\nreturn '8000(' + base + ')^(m/' + per + ')';"
+  },
+  {
+    "id": "AM2-15",
+    "domain": "Advanced Math",
+    "subskill": "absolute value inequalities over the integers",
+    "difficulty": "hard",
+    "prompt": "How many integer values of x satisfy the inequality |x^2 - 10| <= 6 ?",
+    "choices": [
+      "3",
+      "2",
+      "6",
+      "9"
+    ],
+    "correct_answer": "6",
+    "explanation": "The inequality means -6 <= x^2 - 10 <= 6, so 4 <= x^2 <= 16. Both bounds bind: x^2 must be at least 4 and at most 16, so 2 <= |x| <= 4 and x is one of -4, -3, -2, 2, 3, 4. That is 6 integers.",
+    "distractor_steps": [
+      {
+        "choice": "3",
+        "mis_step": "Counts only the positive values 2, 3, 4 and forgets the negatives."
+      },
+      {
+        "choice": "2",
+        "mis_step": "Reads both inequalities as strict, which excludes x = -4, -2, 2 and 4 and leaves only -3 and 3."
+      },
+      {
+        "choice": "9",
+        "mis_step": "Uses only the upper bound x^2 <= 16, counting every integer from -4 to 4."
+      }
+    ],
+    "solve": "let n = 0;\nfor (let x = -100; x <= 100; x++) if (Math.abs(x * x - 10) <= 6) n++;\nreturn n;"
+  },
+  {
+    "id": "AM2-16",
+    "domain": "Advanced Math",
+    "subskill": "exponential equations with a common base",
+    "difficulty": "medium",
+    "prompt": "If 4^(x + 1) = 8^(x - 1), what is the value of x ?",
+    "choices": [
+      "2",
+      "5",
+      "-3",
+      "3"
+    ],
+    "correct_answer": "5",
+    "explanation": "Writing both sides in base 2 gives 2^(2(x + 1)) = 2^(3(x - 1)), so 2x + 2 = 3x - 3 and x = 5.",
+    "distractor_steps": [
+      {
+        "choice": "2",
+        "mis_step": "Rewrites in base 2 but fails to distribute the exponents: x + 1 doubled only in its first term, giving 2x + 1 = 3x - 1."
+      },
+      {
+        "choice": "-3",
+        "mis_step": "Solves 2x + 2 = 3x - 3 by moving terms with a sign error, reaching -x = 3."
+      },
+      {
+        "choice": "3",
+        "mis_step": "Treats the bases as coefficients: 4(x + 1) = 8(x - 1) gives 4x + 4 = 8x - 8."
+      }
+    ],
+    "solve": "let ans = null;\nfor (let i = -1000; i <= 1000; i++) {\n  const x = i / 100;\n  if (Math.abs(Math.pow(4, x + 1) - Math.pow(8, x - 1)) < 1e-6) ans = x;\n}\nreturn ans;"
+  },
+  {
+    "id": "AM2-17",
+    "domain": "Advanced Math",
+    "subskill": "absolute value equations and extraneous solutions",
+    "difficulty": "hard",
+    "prompt": "What is the sum of all solutions to the equation |x - 3| = 2x + 1 ?",
+    "choices": [
+      "-10/3",
+      "-4",
+      "0",
+      "2/3"
+    ],
+    "correct_answer": "2/3",
+    "explanation": "The two cases are x - 3 = 2x + 1, giving x = -4, and x - 3 = -(2x + 1), giving 3x = 2 and x = 2/3. An absolute value cannot equal a negative number, so any solution needs 2x + 1 >= 0. At x = -4 the right side is -7, so that case is rejected; at x = 2/3 the right side is 7/3, which equals |2/3 - 3|. The only solution is 2/3, so the sum is 2/3.",
+    "distractor_steps": [
+      {
+        "choice": "-10/3",
+        "mis_step": "Adds both case results without checking that the right side is nonnegative."
+      },
+      {
+        "choice": "-4",
+        "mis_step": "Keeps the rejected case and drops the valid one."
+      },
+      {
+        "choice": "0",
+        "mis_step": "Rejects both cases, over-applying the nonnegativity check to the valid solution as well."
+      }
+    ],
+    "solve": "const sols = [];\nfor (let i = -3000; i <= 3000; i++) {\n  const x = i / 300;\n  if (Math.abs(Math.abs(x - 3) - (2 * x + 1)) < 1e-9) sols.push(x);\n}\nreturn sols.reduce((a, b) => a + b, 0);"
+  },
+  {
+    "id": "AM2-18",
+    "domain": "Advanced Math",
+    "subskill": "discriminant conditions with a strict inequality",
+    "difficulty": "hard",
+    "prompt": "The equation x^2 - 6x + k = 0, where k is a constant, has no real solutions. What is the least integer value of k ?",
+    "choices": [
+      "9",
+      "37",
+      "10",
+      "3"
+    ],
+    "correct_answer": "10",
+    "explanation": "There are no real solutions exactly when the discriminant is negative: 36 - 4k < 0, so k > 9. The inequality is strict, so k = 9 is not allowed (it gives the repeated real solution x = 3). The least integer greater than 9 is 10.",
+    "distractor_steps": [
+      {
+        "choice": "9",
+        "mis_step": "Solves 36 - 4k <= 0 and takes the boundary, where the equation has one real solution rather than none."
+      },
+      {
+        "choice": "37",
+        "mis_step": "Drops the factor of 4, solving 36 - k < 0."
+      },
+      {
+        "choice": "3",
+        "mis_step": "Reports the x-coordinate of the vertex instead of a value of k."
+      }
+    ],
+    "solve": "let least = null;\nfor (let k = -100; k <= 100; k++) { if (36 - 4 * k < 0) { least = k; break; } }\nreturn least;"
+  },
+  {
+    "id": "AM2-19",
+    "domain": "Advanced Math",
+    "subskill": "minimum value of a quadratic function",
+    "difficulty": "medium",
+    "prompt": "The function f is defined by f(x) = 2x^2 - 12x + 7. What is the minimum value of f(x) ?",
+    "choices": [
+      "-11",
+      "3",
+      "7",
+      "11"
+    ],
+    "correct_answer": "-11",
+    "explanation": "Completing the square gives f(x) = 2(x^2 - 6x) + 7 = 2(x - 3)^2 - 18 + 7 = 2(x - 3)^2 - 11, so the minimum value is -11, reached at x = 3.",
+    "distractor_steps": [
+      {
+        "choice": "3",
+        "mis_step": "Reports the x-coordinate of the vertex instead of the minimum value."
+      },
+      {
+        "choice": "7",
+        "mis_step": "Reports f(0), the y-intercept."
+      },
+      {
+        "choice": "11",
+        "mis_step": "Forgets to subtract the 18 introduced by completing the square, reaching 2(x - 3)^2 + 11."
+      }
+    ],
+    "solve": "const f = x => 2 * x * x - 12 * x + 7;\nlet m = Infinity;\nfor (let i = -10000; i <= 10000; i++) { const x = i / 100; if (f(x) < m) m = f(x); }\nreturn Math.round(m * 1e6) / 1e6;"
+  },
+  {
+    "id": "AM2-20",
+    "domain": "Advanced Math",
+    "subskill": "expanding a product of binomials",
+    "difficulty": "easy",
+    "prompt": "In the expansion of (2x + 3)(x - 5), what is the coefficient of x ?",
+    "choices": [
+      "7",
+      "-7",
+      "13",
+      "-13"
+    ],
+    "correct_answer": "-7",
+    "explanation": "Expanding gives 2x^2 - 10x + 3x - 15, so the x-terms combine to -10x + 3x = -7x and the coefficient is -7.",
+    "distractor_steps": [
+      {
+        "choice": "7",
+        "mis_step": "Combines the magnitudes 10 and 3 and drops the sign."
+      },
+      {
+        "choice": "13",
+        "mis_step": "Adds 10 and 3, treating -5 as +5."
+      },
+      {
+        "choice": "-13",
+        "mis_step": "Adds -10 and -3, taking the +3 as negative."
+      }
+    ],
+    "solve": "const a = 2, b = 3, c = 1, d = -5;\nreturn a * d + b * c;"
+  },
+  {
+    "id": "AM2-21",
+    "domain": "Advanced Math",
+    "subskill": "factoring a difference of squares over the integers",
+    "difficulty": "hard",
+    "prompt": "The positive integers x and y satisfy x^2 - y^2 = 45. What is the greatest possible value of x ?",
+    "choices": [
+      "9",
+      "45",
+      "22",
+      "23"
+    ],
+    "correct_answer": "23",
+    "explanation": "Since x^2 - y^2 = (x - y)(x + y) = 45, the factors x - y and x + y are positive integers with product 45 and x + y the larger. The possibilities are (1, 45), (3, 15) and (5, 9), giving (x, y) = (23, 22), (9, 6) and (7, 2). The greatest value of x is 23, from the most lopsided factor pair.",
+    "distractor_steps": [
+      {
+        "choice": "9",
+        "mis_step": "Uses the factor pair (3, 15) and stops, missing the pair (1, 45) that makes x largest."
+      },
+      {
+        "choice": "45",
+        "mis_step": "Reads 45 itself as a value of x, as if x - y = 1 forced x = 45."
+      },
+      {
+        "choice": "22",
+        "mis_step": "Reports y for the pair that maximizes x."
+      }
+    ],
+    "solve": "let best = 0;\nfor (let y = 1; y < 500; y++) {\n  const s = y * y + 45, x = Math.round(Math.sqrt(s));\n  if (x * x === s && x > y) best = Math.max(best, x);\n}\nreturn best;"
+  },
+  {
+    "id": "AM2-22",
+    "domain": "Advanced Math",
+    "subskill": "percent change implied by an exponential model",
+    "difficulty": "medium",
+    "prompt": "The number of bacteria in a culture is modeled by N(h) = 300 * 2^(h/4), where h is the number of hours after the culture is prepared. By what percent does the number of bacteria increase every 8 hours?",
+    "choices": [
+      "300",
+      "400",
+      "200",
+      "100"
+    ],
+    "correct_answer": "300",
+    "explanation": "Over 8 hours the factor is 2^(8/4) = 2^2 = 4, so the population is multiplied by 4. An increase to 4 times the previous amount is an increase of 4 - 1 = 3 times, or 300 percent.",
+    "distractor_steps": [
+      {
+        "choice": "400",
+        "mis_step": "Reports the growth factor 4 as 400 percent, confusing the multiplier with the increase."
+      },
+      {
+        "choice": "200",
+        "mis_step": "Doubles the 100 percent increase that occurs over 4 hours, adding rates instead of compounding them."
+      },
+      {
+        "choice": "100",
+        "mis_step": "Gives the increase over one doubling period of 4 hours rather than over 8 hours."
+      }
+    ],
+    "solve": "const factor = Math.pow(2, 8 / 4);\nreturn Math.round((factor - 1) * 100);"
+  },
+  {
+    "id": "AM2-23",
+    "domain": "Advanced Math",
+    "subskill": "rational functions, removable and nonremovable discontinuities",
+    "difficulty": "hard",
+    "prompt": "The function g is defined by g(x) = (x^2 - x - 6)/(x^2 - 9). In the xy-plane, the graph of y = g(x) has a vertical asymptote at one value of x and a hole, a single removed point, at another value of x. At which value of x is the hole?",
+    "choices": [
+      "x = -2",
+      "x = 3",
+      "x = -3",
+      "x = 2"
+    ],
+    "correct_answer": "x = 3",
+    "explanation": "Factoring gives g(x) = (x - 3)(x + 2)/((x - 3)(x + 3)). The denominator is 0 at x = 3 and x = -3, so both are outside the domain. At x = 3 the numerator is also 0, so the factor x - 3 cancels and the graph has a removable discontinuity, a hole. At x = -3 only the denominator is 0, so that is the vertical asymptote.",
+    "distractor_steps": [
+      {
+        "choice": "x = -2",
+        "mis_step": "Gives the zero of the numerator, which is an x-intercept rather than a discontinuity."
+      },
+      {
+        "choice": "x = -3",
+        "mis_step": "Gives the vertical asymptote, the more familiar of the two excluded values, without checking which one the numerator also kills."
+      },
+      {
+        "choice": "x = 2",
+        "mis_step": "Misfactors x^2 - x - 6 as (x - 2)(x + 3), which cancels the wrong factor."
+      }
+    ],
+    "solve": "const num = x => x * x - x - 6, den = x => x * x - 9;\nconst holes = [];\nfor (let x = -20; x <= 20; x++) if (den(x) === 0 && num(x) === 0) holes.push(x);\nreturn 'x = ' + holes[0];"
+  },
+  {
+    "id": "AM2-24",
+    "domain": "Advanced Math",
+    "subskill": "transformations of the graph of a function",
+    "difficulty": "medium",
+    "prompt": "The graph of y = f(x) in the xy-plane has its minimum at the point (1, -4). At what value of x does the graph of y = f(x + 3) - 2 have its minimum?",
+    "choices": [
+      "4",
+      "1",
+      "-2",
+      "-5"
+    ],
+    "correct_answer": "-2",
+    "explanation": "Replacing x with x + 3 shifts the graph 3 units to the left, so the minimum moves from x = 1 to x = 1 - 3 = -2. Subtracting 2 moves the graph down and changes the minimum value but not the x-value at which it occurs.",
+    "distractor_steps": [
+      {
+        "choice": "4",
+        "mis_step": "Shifts right instead of left, reading x + 3 as adding 3 to the x-coordinate."
+      },
+      {
+        "choice": "1",
+        "mis_step": "Assumes the horizontal position is unchanged, applying only the vertical shift."
+      },
+      {
+        "choice": "-5",
+        "mis_step": "Applies both constants horizontally: 1 - 3 - 2."
+      }
+    ],
+    "solve": "const f = x => (x - 1) * (x - 1) - 4;\nconst g = x => f(x + 3) - 2;\nlet bx = null, bv = Infinity;\nfor (let i = -1000; i <= 1000; i++) { const x = i / 100, v = g(x); if (v < bv) { bv = v; bx = x; } }\nreturn bx;"
+  }
+]

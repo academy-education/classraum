@@ -1,0 +1,549 @@
+[
+  {
+    "id": "ACT-M-G01",
+    "domain": "Geometry",
+    "subskill": "similar triangles and correspondence",
+    "difficulty": "hard",
+    "prompt": "In the figure, triangle ABC is similar to triangle DEF, with vertex A corresponding to vertex D, vertex B corresponding to vertex E, and vertex C corresponding to vertex F. All lengths are in centimeters. What is the length of EF, in centimeters?",
+    "graphic": {
+      "type": "svg",
+      "svg": "<svg viewBox=\"0 0 350 250\" xmlns=\"http://www.w3.org/2000/svg\" font-family=\"system-ui,sans-serif\" font-size=\"13\" fill=\"#12151C\"> <polygon points=\"20,170 150,170 55,45\" fill=\"none\" stroke=\"#2B3A8C\" stroke-width=\"2\"/> <text x=\"10\" y=\"187\">A</text><text x=\"146\" y=\"187\">B</text><text x=\"46\" y=\"38\">C</text> <text x=\"78\" y=\"188\">12</text><text x=\"112\" y=\"108\">18</text><text x=\"14\" y=\"112\">24</text> <polygon points=\"205,170 295,170 240,95\" fill=\"none\" stroke=\"#2B3A8C\" stroke-width=\"2\"/> <text x=\"195\" y=\"187\">D</text><text x=\"292\" y=\"187\">E</text><text x=\"233\" y=\"88\">F</text> <text x=\"245\" y=\"188\">8</text><text x=\"276\" y=\"138\" font-style=\"italic\">?</text><text x=\"204\" y=\"138\">16</text> <text x=\"20\" y=\"228\" font-size=\"11\" fill=\"#5A6474\">Figures not drawn to scale.</text></svg>",
+      "caption": "Figures not drawn to scale."
+    },
+    "choices": [
+      "12",
+      "14",
+      "16",
+      "27"
+    ],
+    "correct_answer": "12",
+    "explanation": "DE corresponds to AB, so the scale factor from ABC to DEF is 8/12 = 2/3. EF corresponds to BC, so EF = 18 * 2/3 = 12. Applying the factor upside down, 18 * 3/2, gives 27. Scaling AC instead of BC gives the length of DF, 24 * 2/3 = 16, which is the answer to a different question. Treating the similarity as a constant subtraction, since 12 - 4 = 8, gives 18 - 4 = 14.",
+    "solve": "const AB=12, BC=18, DE=8;\nreturn BC*(DE/AB);"
+  },
+  {
+    "id": "ACT-M-G02",
+    "domain": "Geometry",
+    "subskill": "triangle inequality with an ambiguous case",
+    "difficulty": "hard",
+    "prompt": "An isosceles triangle has one side of length 10 inches and another side of length 24 inches. What is the perimeter, in inches, of the triangle?",
+    "choices": [
+      "34",
+      "44",
+      "48",
+      "58"
+    ],
+    "correct_answer": "58",
+    "explanation": "Isosceles means two of the three sides are equal, so the sides are either 10, 10, 24 or 10, 24, 24. The first fails the triangle inequality, because 10 + 10 = 20 is not greater than 24, so no such triangle exists; only 10, 24, 24 is possible, and its perimeter is 58. Taking the rejected 10, 10, 24 gives 44. Adding only the two given lengths gives 34. Doubling the 24 and forgetting the 10 gives 48.",
+    "solve": "const a=10, b=24;\nconst sets=[[a,a,b],[a,b,b]].filter(t=>{const s=t.slice().sort((x,y)=>x-y); return s[0]+s[1]>s[2];});\nif(sets.length!==1) throw new Error('not unique');\nreturn sets[0].reduce((x,y)=>x+y,0);"
+  },
+  {
+    "id": "ACT-M-G03",
+    "domain": "Geometry",
+    "subskill": "scale drawings and squared units",
+    "difficulty": "medium",
+    "prompt": "On a scale drawing of a patio, 1 centimeter represents 4 meters. The patio is drawn as a rectangle measuring 6 centimeters by 2.5 centimeters. What is the actual area of the patio, in square meters?",
+    "choices": [
+      "15",
+      "60",
+      "68",
+      "240"
+    ],
+    "correct_answer": "240",
+    "explanation": "The actual patio is 6 * 4 = 24 meters by 2.5 * 4 = 10 meters, so its area is 240 square meters. Equivalently, a linear scale of 4 scales area by 4^2 = 16, and 15 * 16 = 240. Applying the linear factor to the drawn area once gives 15 * 4 = 60. Reading the drawn area as the answer gives 15. Adding the actual side lengths instead of multiplying gives the perimeter, 2(24 + 10) = 68.",
+    "solve": "const w=6, h=2.5, k=4;\nreturn w*k*h*k;"
+  },
+  {
+    "id": "ACT-M-G04",
+    "domain": "Geometry",
+    "subskill": "angles of a cyclic quadrilateral",
+    "difficulty": "medium",
+    "prompt": "In the figure, quadrilateral ABCD is inscribed in a circle. What is the measure, in degrees, of angle D?",
+    "graphic": {
+      "type": "svg",
+      "svg": "<svg viewBox=\"0 0 350 250\" xmlns=\"http://www.w3.org/2000/svg\" font-family=\"system-ui,sans-serif\" font-size=\"13\" fill=\"#12151C\"> <circle cx=\"175\" cy=\"120\" r=\"90\" fill=\"none\" stroke=\"#2B3A8C\" stroke-width=\"2\"/> <polygon points=\"97,75 244,62 233,189 101,172\" fill=\"none\" stroke=\"#0E7A5F\" stroke-width=\"2\"/> <text x=\"80\" y=\"70\">A</text><text x=\"252\" y=\"58\">B</text><text x=\"240\" y=\"204\">C</text><text x=\"84\" y=\"184\">D</text> <text x=\"110\" y=\"95\" font-size=\"12\" fill=\"#0A5C48\">74&#176;</text> <text x=\"214\" y=\"82\" font-size=\"12\" fill=\"#0A5C48\">95&#176;</text> <text x=\"112\" y=\"162\" font-size=\"12\" fill=\"#0A5C48\">x&#176;</text> <text x=\"20\" y=\"235\" font-size=\"11\" fill=\"#5A6474\">Figure not drawn to scale.</text></svg>",
+      "caption": "Figure not drawn to scale."
+    },
+    "choices": [
+      "74",
+      "85",
+      "95",
+      "106"
+    ],
+    "correct_answer": "85",
+    "explanation": "Opposite angles of a quadrilateral inscribed in a circle are supplementary, and D is opposite B, so D = 180 - 95 = 85. Pairing D with A instead of B gives 180 - 74 = 106. Assuming opposite angles are equal gives 95, and assuming D equals the other marked angle gives 74.",
+    "solve": "const B=95;\nreturn 180-B;"
+  },
+  {
+    "id": "ACT-M-G05",
+    "domain": "Geometry",
+    "subskill": "altitude to the hypotenuse of a right triangle",
+    "difficulty": "hard",
+    "prompt": "In the figure, angle ABC is a right angle and BD is perpendicular to AC. All lengths are in inches. What is the length of BD, in inches?",
+    "graphic": {
+      "type": "svg",
+      "svg": "<svg viewBox=\"0 0 350 250\" xmlns=\"http://www.w3.org/2000/svg\" font-family=\"system-ui,sans-serif\" font-size=\"13\" fill=\"#12151C\"> <polygon points=\"40,190 40,60 220,190\" fill=\"none\" stroke=\"#2B3A8C\" stroke-width=\"2\"/> <line x1=\"40\" y1=\"190\" x2=\"102\" y2=\"105\" stroke=\"#0E7A5F\" stroke-width=\"2\"/> <path d=\"M40,175 L55,175 L55,190\" fill=\"none\" stroke=\"#5A6474\" stroke-width=\"1.4\"/> <path d=\"M102,105 L112,112 L105,122\" fill=\"none\" stroke=\"#5A6474\" stroke-width=\"1.4\"/> <text x=\"28\" y=\"55\">A</text><text x=\"24\" y=\"204\">B</text><text x=\"226\" y=\"204\">C</text><text x=\"104\" y=\"98\">D</text> <text x=\"22\" y=\"128\">9</text><text x=\"126\" y=\"208\">12</text> <text x=\"20\" y=\"235\" font-size=\"11\" fill=\"#5A6474\">Figure not drawn to scale.</text></svg>",
+      "caption": "Figure not drawn to scale."
+    },
+    "choices": [
+      "6",
+      "7.2",
+      "7.5",
+      "10.5"
+    ],
+    "correct_answer": "7.2",
+    "explanation": "AC = sqrt(9^2 + 12^2) = 15. The area of triangle ABC can be written two ways, (1/2)(9)(12) and (1/2)(15)(BD), so BD = 108/15 = 7.2. The figure is not drawn to scale and the triangle is not isosceles, so BD is not half of AC; taking it as 15/2 gives 7.5. Averaging the legs gives 10.5, and halving the longer leg gives 6.",
+    "solve": "const a=9, b=12;\nconst c=Math.sqrt(a*a+b*b);\nreturn Math.round(a*b/c*1000)/1000;"
+  },
+  {
+    "id": "ACT-M-G06",
+    "domain": "Geometry",
+    "subskill": "volume of cylinders",
+    "difficulty": "medium",
+    "prompt": "A cylindrical container with a radius of 4 inches is filled with water to a depth of 9 inches. All of the water is then poured into an empty cylindrical container with a radius of 6 inches. What is the depth of the water, in inches, in the second container?",
+    "choices": [
+      "4",
+      "6",
+      "13.5",
+      "20.25"
+    ],
+    "correct_answer": "4",
+    "explanation": "The volume is pi * 4^2 * 9 = 144pi. In the second container the same volume gives depth 144pi / (pi * 6^2) = 4. Scaling the depth by the ratio of the radii rather than the ratio of their squares gives 9 * 4/6 = 6. Using the reciprocal ratio gives 9 * 6/4 = 13.5, and using the reciprocal squared gives 20.25.",
+    "solve": "const r1=4, h1=9, r2=6;\nreturn r1*r1*h1/(r2*r2);"
+  },
+  {
+    "id": "ACT-M-G07",
+    "domain": "Geometry",
+    "subskill": "angles formed by parallel lines and a transversal",
+    "difficulty": "easy",
+    "prompt": "In the figure, lines l and m are parallel and line t is a transversal. What is the value of x?",
+    "graphic": {
+      "type": "svg",
+      "svg": "<svg viewBox=\"0 0 350 250\" xmlns=\"http://www.w3.org/2000/svg\" font-family=\"system-ui,sans-serif\" font-size=\"13\" fill=\"#12151C\"> <line x1=\"30\" y1=\"80\" x2=\"320\" y2=\"80\" stroke=\"#2B3A8C\" stroke-width=\"2\"/> <line x1=\"30\" y1=\"170\" x2=\"320\" y2=\"170\" stroke=\"#2B3A8C\" stroke-width=\"2\"/> <line x1=\"90\" y1=\"35\" x2=\"255\" y2=\"212\" stroke=\"#0E7A5F\" stroke-width=\"2\"/> <text x=\"326\" y=\"84\">l</text><text x=\"326\" y=\"174\">m</text><text x=\"258\" y=\"224\">t</text> <text x=\"140\" y=\"102\" font-size=\"12\">(3x + 10)&#176;</text> <text x=\"118\" y=\"160\" font-size=\"12\">(5x &#8722; 30)&#176;</text></svg>",
+      "caption": null
+    },
+    "choices": [
+      "2.5",
+      "20",
+      "25",
+      "70"
+    ],
+    "correct_answer": "20",
+    "explanation": "The two marked angles are alternate interior angles for parallel lines, so they are equal: 3x + 10 = 5x - 30 gives 2x = 40 and x = 20. Treating them as co-interior and setting the sum to 180 gives 8x - 20 = 180 and x = 25. Moving the terms with a sign slip, 8x = 20, gives x = 2.5. Reporting the measure of the angle rather than x gives 3(20) + 10 = 70.",
+    "solve": "return (30+10)/(5-3);"
+  },
+  {
+    "id": "ACT-M-G08",
+    "domain": "Geometry",
+    "subskill": "area and perimeter of a square",
+    "difficulty": "easy",
+    "prompt": "The area of a square is 121 square inches. What is the perimeter of the square, in inches?",
+    "choices": [
+      "11",
+      "44",
+      "121",
+      "484"
+    ],
+    "correct_answer": "44",
+    "explanation": "The side length is sqrt(121) = 11 inches, so the perimeter is 4 * 11 = 44 inches. Stopping at the side length gives 11, restating the area gives 121, and multiplying the area rather than the side by 4 gives 484.",
+    "solve": "const A=121;\nreturn 4*Math.sqrt(A);"
+  },
+  {
+    "id": "ACT-M-G09",
+    "domain": "Geometry",
+    "subskill": "equation of a circle",
+    "difficulty": "medium",
+    "prompt": "In the standard (x,y) coordinate plane, the graph of x^2 + y^2 - 6x + 8y - 11 = 0 is a circle. What is the radius of this circle?",
+    "choices": [
+      "5",
+      "6",
+      "12",
+      "25"
+    ],
+    "correct_answer": "6",
+    "explanation": "Completing the square gives (x - 3)^2 + (y + 4)^2 = 11 + 9 + 16 = 36, so the radius is 6. Adding only the two completing-the-square constants and ignoring the 11 gives r^2 = 25 and r = 5; reporting that r^2 as the radius gives 25. Reporting the diameter gives 12.",
+    "solve": "const D=-6, E=8, F=-11;\nreturn Math.sqrt((D/2)*(D/2)+(E/2)*(E/2)-F);"
+  },
+  {
+    "id": "ACT-M-G10",
+    "domain": "Geometry",
+    "subskill": "right triangle trigonometry and altitudes",
+    "difficulty": "hard",
+    "prompt": "In right triangle ABC, the right angle is at C, the hypotenuse AB has length 20 centimeters, and sin A = 3/5. What is the length, in centimeters, of the altitude drawn from C to AB?",
+    "choices": [
+      "9.6",
+      "10",
+      "12",
+      "16"
+    ],
+    "correct_answer": "9.6",
+    "explanation": "sin A = BC/AB, so BC = 12 and AC = sqrt(400 - 144) = 16. The area is (1/2)(12)(16), and also (1/2)(20)(h), so h = 192/20 = 9.6. The altitude from the right angle equals half the hypotenuse only when the legs are equal, which they are not here, so 10 is wrong. Reporting a leg instead of the altitude gives 12 or 16.",
+    "solve": "const hyp=20, sinA=3/5;\nconst opp=sinA*hyp, adj=Math.sqrt(hyp*hyp-opp*opp);\nreturn Math.round(opp*adj/hyp*1000)/1000;"
+  },
+  {
+    "id": "ACT-M-G11",
+    "domain": "Geometry",
+    "subskill": "area of a trapezoid with an unknown height",
+    "difficulty": "medium",
+    "prompt": "The figure shows a quadrilateral with two parallel sides and two right angles, as marked. All lengths are in meters. What is the area of the quadrilateral, in square meters?",
+    "graphic": {
+      "type": "svg",
+      "svg": "<svg viewBox=\"0 0 350 250\" xmlns=\"http://www.w3.org/2000/svg\" font-family=\"system-ui,sans-serif\" font-size=\"13\" fill=\"#12151C\"> <polygon points=\"40,190 250,190 160,70 40,70\" fill=\"none\" stroke=\"#2B3A8C\" stroke-width=\"2\"/> <path d=\"M40,178 L52,178 L52,190\" fill=\"none\" stroke=\"#5A6474\" stroke-width=\"1.4\"/> <path d=\"M40,82 L52,82 L52,70\" fill=\"none\" stroke=\"#5A6474\" stroke-width=\"1.4\"/> <text x=\"138\" y=\"209\">14</text><text x=\"95\" y=\"62\">8</text><text x=\"212\" y=\"128\">10</text> <text x=\"20\" y=\"235\" font-size=\"11\" fill=\"#5A6474\">Figure not drawn to scale.</text></svg>",
+      "caption": "Figure not drawn to scale."
+    },
+    "choices": [
+      "88",
+      "110",
+      "112",
+      "176"
+    ],
+    "correct_answer": "88",
+    "explanation": "Dropping a perpendicular from the end of the shorter parallel side leaves a right triangle with horizontal leg 14 - 8 = 6 and hypotenuse 10, so the height is sqrt(100 - 36) = 8. The area is (1/2)(8 + 14)(8) = 88. Using the slanted side 10 as the height gives 110. Omitting the factor of 1/2 gives 176. Multiplying the two parallel sides gives 112.",
+    "solve": "const b1=8, b2=14, leg=10;\nconst h=Math.sqrt(leg*leg-(b2-b1)*(b2-b1));\nreturn (b1+b2)/2*h;"
+  },
+  {
+    "id": "ACT-M-G12",
+    "domain": "Geometry",
+    "subskill": "sector arc length and area",
+    "difficulty": "medium",
+    "prompt": "A sector of a circle of radius 9 inches has an arc length of 6pi inches. To the nearest square inch, what is the area of this sector?",
+    "choices": [
+      "19",
+      "42",
+      "85",
+      "254"
+    ],
+    "correct_answer": "85",
+    "explanation": "The full circumference is 18pi, so the sector is 6pi/18pi = 1/3 of the circle. Its area is (1/3)(pi)(81) = 27pi, about 85 square inches. Taking the area of the whole circle gives 254. Reporting the arc length 6pi as if it were an area gives 19. Dividing the full area by 6 rather than by 3 gives 13.5pi, about 42.",
+    "solve": "const r=9, arc=6*Math.PI;\nconst frac=arc/(2*Math.PI*r);\nreturn Math.round(frac*Math.PI*r*r);"
+  },
+  {
+    "id": "ACT-M-G13",
+    "domain": "Geometry",
+    "subskill": "interior and exterior angles of regular polygons",
+    "difficulty": "medium",
+    "prompt": "The figure shows a regular polygon with one of its sides extended. What is the value of x?",
+    "graphic": {
+      "type": "svg",
+      "svg": "<svg viewBox=\"0 0 350 250\" xmlns=\"http://www.w3.org/2000/svg\" font-family=\"system-ui,sans-serif\" font-size=\"13\" fill=\"#12151C\"> <polygon points=\"239,86 199,46 141,46 101,86 101,144 141,184 199,184 239,144\" fill=\"none\" stroke=\"#2B3A8C\" stroke-width=\"2\"/> <line x1=\"199\" y1=\"184\" x2=\"285\" y2=\"98\" stroke=\"#0E7A5F\" stroke-width=\"2\" stroke-dasharray=\"5 4\"/> <path d=\"M254,129 A 22 22 0 0 0 261,116\" fill=\"none\" stroke=\"#0A5C48\" stroke-width=\"1.6\"/> <text x=\"256\" y=\"112\" font-size=\"12\" fill=\"#0A5C48\">x&#176;</text> <text x=\"20\" y=\"235\" font-size=\"11\" fill=\"#5A6474\">Figure not drawn to scale.</text></svg>",
+      "caption": "Figure not drawn to scale."
+    },
+    "choices": [
+      "40",
+      "45",
+      "135",
+      "1080"
+    ],
+    "correct_answer": "45",
+    "explanation": "The marked angle is an exterior angle of the regular polygon in the figure, which has 8 sides. The exterior angles sum to 360 degrees, so each is 360/8 = 45. Reporting the interior angle instead gives 135. Miscounting the figure as a nonagon gives 360/9 = 40. Reporting the sum of the interior angles, (8 - 2)(180), gives 1080.",
+    "solve": "const n=8;\nreturn 360/n;"
+  },
+  {
+    "id": "ACT-M-G14",
+    "domain": "Geometry",
+    "subskill": "triangle inequality",
+    "difficulty": "medium",
+    "prompt": "Two sides of a triangle have lengths 7 centimeters and 11 centimeters. How many different integer values are possible for the length, in centimeters, of the third side?",
+    "choices": [
+      "12",
+      "13",
+      "15",
+      "17"
+    ],
+    "correct_answer": "13",
+    "explanation": "The third side x must satisfy 11 - 7 < x < 11 + 7, that is 4 < x < 18, so x ranges over the integers 5 through 17: that is 13 values. Subtracting the endpoints instead of counting them, 17 - 5, gives 12. Including the excluded endpoints 4 and 18 gives 15. Reporting the largest possible value rather than the count gives 17.",
+    "solve": "const a=7, b=11;\nlet c=0;\nfor(let t=1;t<=100;t++) if(a+b>t && a+t>b && b+t>a) c++;\nreturn c;"
+  },
+  {
+    "id": "ACT-M-G15",
+    "domain": "Geometry",
+    "subskill": "diagonals and surface area of a cube",
+    "difficulty": "hard",
+    "prompt": "The length of a diagonal running from one corner of a cube to the opposite corner, through the interior of the cube, is 12 centimeters. What is the total surface area of the cube, in square centimeters?",
+    "choices": [
+      "96",
+      "288",
+      "432",
+      "864"
+    ],
+    "correct_answer": "288",
+    "explanation": "For a cube of edge s the interior diagonal is s*sqrt(3), so s = 12/sqrt(3) and s^2 = 144/3 = 48. The surface area is 6 * 48 = 288. Using the face diagonal relation s*sqrt(2) gives s^2 = 72 and 432. Treating 12 as the edge gives 6 * 144 = 864. Dropping the radical entirely and taking s = 4 gives 6 * 16 = 96.",
+    "solve": "const d=12;\nconst s2=d*d/3;\nreturn Math.round(6*s2);"
+  },
+  {
+    "id": "ACT-M-G16",
+    "domain": "Geometry",
+    "subskill": "area of a figure in the coordinate plane",
+    "difficulty": "medium",
+    "prompt": "In the standard (x,y) coordinate plane shown, what is the area, in square units, of quadrilateral PQRS?",
+    "graphic": {
+      "type": "svg",
+      "svg": "<svg viewBox=\"0 0 350 250\" xmlns=\"http://www.w3.org/2000/svg\" font-family=\"system-ui,sans-serif\" font-size=\"13\" fill=\"#12151C\"> <g stroke=\"#D8DCE6\" stroke-width=\"1\"> <line x1=\"40\" y1=\"30\" x2=\"40\" y2=\"225\"/><line x1=\"80\" y1=\"30\" x2=\"80\" y2=\"225\"/><line x1=\"120\" y1=\"30\" x2=\"120\" y2=\"225\"/><line x1=\"160\" y1=\"30\" x2=\"160\" y2=\"225\"/><line x1=\"200\" y1=\"30\" x2=\"200\" y2=\"225\"/><line x1=\"240\" y1=\"30\" x2=\"240\" y2=\"225\"/> <line x1=\"20\" y1=\"210\" x2=\"260\" y2=\"210\"/><line x1=\"20\" y1=\"190\" x2=\"260\" y2=\"190\"/><line x1=\"20\" y1=\"170\" x2=\"260\" y2=\"170\"/><line x1=\"20\" y1=\"150\" x2=\"260\" y2=\"150\"/><line x1=\"20\" y1=\"130\" x2=\"260\" y2=\"130\"/><line x1=\"20\" y1=\"110\" x2=\"260\" y2=\"110\"/> </g> <line x1=\"20\" y1=\"210\" x2=\"275\" y2=\"210\" stroke=\"#5A6474\" stroke-width=\"1.6\"/> <line x1=\"40\" y1=\"230\" x2=\"40\" y2=\"40\" stroke=\"#5A6474\" stroke-width=\"1.6\"/> <polygon points=\"40,210 160,210 200,110 80,110\" fill=\"none\" stroke=\"#2B3A8C\" stroke-width=\"2\"/> <text x=\"14\" y=\"226\" font-size=\"11\">P(0, 0)</text><text x=\"150\" y=\"226\" font-size=\"11\">Q(6, 0)</text> <text x=\"204\" y=\"106\" font-size=\"11\">R(8, 5)</text><text x=\"52\" y=\"104\" font-size=\"11\">S(2, 5)</text></svg>",
+      "caption": null
+    },
+    "choices": [
+      "20",
+      "30",
+      "35",
+      "40"
+    ],
+    "correct_answer": "30",
+    "explanation": "PQ runs from (0,0) to (6,0), so it has length 6, and SR runs from (2,5) to (8,5), so it also has length 6: PQRS is a parallelogram with base 6 and height 5, and its area is 30. Reading the bases as 6 and 8 and using the trapezoid formula gives 35. Using the x-coordinate 8 as a base gives 40, and halving that as if the figure were a triangle gives 20.",
+    "solve": "const p=[[0,0],[6,0],[8,5],[2,5]];\nlet s=0;\nfor(let i=0;i<4;i++){const a=p[i], b=p[(i+1)%4]; s+=a[0]*b[1]-b[0]*a[1];}\nreturn Math.abs(s)/2;"
+  },
+  {
+    "id": "ACT-M-I01",
+    "domain": "Integrating Essential Skills",
+    "subskill": "successive percent change",
+    "difficulty": "hard",
+    "prompt": "A jacket has a list price of 80 dollars. During a sale the price is reduced by 25 percent. After the sale ends, the reduced price is increased by 20 percent. A sales tax of 8 percent is then applied to the resulting price. What is the final amount paid, in dollars?",
+    "choices": [
+      "64.80",
+      "72.00",
+      "77.76",
+      "82.08"
+    ],
+    "correct_answer": "77.76",
+    "explanation": "The successive factors multiply: 80 * 0.75 = 60, then 60 * 1.20 = 72, then 72 * 1.08 = 77.76. Stopping before the tax gives 72.00. Netting the percents as a single 5 percent decrease, 80 * 0.95 * 1.08, gives 82.08. Omitting the 20 percent increase, 80 * 0.75 * 1.08, gives 64.80.",
+    "solve": "const p=80;\nreturn (Math.round(p*0.75*1.20*1.08*100)/100).toFixed(2);"
+  },
+  {
+    "id": "ACT-M-I02",
+    "domain": "Integrating Essential Skills",
+    "subskill": "combined rates and time units",
+    "difficulty": "hard",
+    "prompt": "Printer A prints one page every 4 seconds and printer B prints one page every 6 seconds. The two printers run at the same time on the same job of 1,200 pages, each printing a share of the job, until the job is finished. How many minutes does the job take?",
+    "choices": [
+      "48",
+      "100",
+      "200",
+      "2880"
+    ],
+    "correct_answer": "48",
+    "explanation": "Add the rates, not the times: 1/4 + 1/6 = 5/12 of a page per second, so 1,200 pages take 1,200 / (5/12) = 2,880 seconds, which is 48 minutes. Reporting the 2,880 seconds without converting gives 2880. Averaging the two times to 5 seconds per page gives 6,000 seconds, or 100 minutes. Adding the times to 10 seconds per page gives 200 minutes.",
+    "solve": "const t1=4, t2=6, pages=1200;\nreturn pages/(1/t1+1/t2)/60;"
+  },
+  {
+    "id": "ACT-M-I03",
+    "domain": "Integrating Essential Skills",
+    "subskill": "mean of a data set",
+    "difficulty": "medium",
+    "prompt": "The mean of a list of 6 numbers is 14. When a seventh number is added to the list, the mean of the 7 numbers is 16. What is the seventh number?",
+    "choices": [
+      "2",
+      "16",
+      "26",
+      "28"
+    ],
+    "correct_answer": "28",
+    "explanation": "The six numbers total 6 * 14 = 84 and the seven numbers total 7 * 16 = 112, so the seventh number is 112 - 84 = 28. Taking the difference of the means gives 2. Assuming the new number equals the new mean gives 16. Adding the 2-point shift for each of the six original numbers, 14 + 2 * 6, gives 26.",
+    "solve": "return 7*16-6*14;"
+  },
+  {
+    "id": "ACT-M-I04",
+    "domain": "Integrating Essential Skills",
+    "subskill": "proportional reasoning",
+    "difficulty": "easy",
+    "prompt": "A recipe that serves 8 people calls for 3/4 cup of sugar. At the same rate, how many cups of sugar are needed to serve 20 people?",
+    "choices": [
+      "0.3",
+      "1.875",
+      "2.5",
+      "3.75"
+    ],
+    "correct_answer": "1.875",
+    "explanation": "The scale factor is 20/8 = 2.5, so the sugar needed is 0.75 * 2.5 = 1.875 cups. Reporting the scale factor itself gives 2.5. Setting the proportion up upside down, 0.75 * 8/20, gives 0.3. Using 20/4 as the scale factor gives 0.75 * 5 = 3.75.",
+    "solve": "return 0.75*20/8;"
+  },
+  {
+    "id": "ACT-M-I05",
+    "domain": "Integrating Essential Skills",
+    "subskill": "mixture and concentration",
+    "difficulty": "hard",
+    "prompt": "A chemist has 60 milliliters of a solution that is 15 percent acid. How many milliliters of pure acid must be added so that the resulting solution is 25 percent acid?",
+    "choices": [
+      "6",
+      "8",
+      "9",
+      "15"
+    ],
+    "correct_answer": "8",
+    "explanation": "The solution already contains 9 milliliters of acid. Adding x milliliters of pure acid changes both the acid and the total: (9 + x)/(60 + x) = 0.25, so 9 + x = 15 + 0.25x, 0.75x = 6, and x = 8. Holding the total at 60 gives (9 + x)/60 = 0.25 and x = 6. Reporting the total acid the final mixture must contain gives 15, and reporting the acid already present gives 9.",
+    "solve": "const V=60, c0=0.15, c1=0.25;\nreturn (c1*V-c0*V)/(1-c1);"
+  },
+  {
+    "id": "ACT-M-I06",
+    "domain": "Integrating Essential Skills",
+    "subskill": "percent of a percent",
+    "difficulty": "medium",
+    "prompt": "At a certain school, 60 percent of the students take Spanish, and 25 percent of the students who take Spanish are seniors. There are 45 seniors who take Spanish. How many students are at the school?",
+    "choices": [
+      "6.75",
+      "75",
+      "180",
+      "300"
+    ],
+    "correct_answer": "300",
+    "explanation": "Seniors who take Spanish are 0.60 * 0.25 = 0.15 of the school, so the school has 45/0.15 = 300 students. Dividing by 0.25 alone gives 180, which is the number who take Spanish. Dividing by 0.60 alone gives 75. Multiplying by 0.15 instead of dividing gives 6.75.",
+    "solve": "return 45/(0.60*0.25);"
+  },
+  {
+    "id": "ACT-M-I07",
+    "domain": "Integrating Essential Skills",
+    "subskill": "weighted average",
+    "difficulty": "hard",
+    "prompt": "Class A has 20 students and their mean score on a test is 78. Class B has 10 students. When the scores of both classes are combined, the mean of all 30 scores is 82. What is the mean score of class B?",
+    "choices": [
+      "84",
+      "86",
+      "90",
+      "94"
+    ],
+    "correct_answer": "90",
+    "explanation": "The 30 scores total 30 * 82 = 2,460 and class A totals 20 * 78 = 1,560, so class B totals 900 and its mean is 90. Ignoring the unequal class sizes and treating 82 as the midpoint of the two means gives 2 * 82 - 78 = 86. Swapping the two class sizes gives (2,460 - 10 * 78)/20 = 84. Scaling the 4-point gap by 30/10 instead of 20/10 gives 82 + 12 = 94.",
+    "solve": "const nA=20, mA=78, nB=10, mAll=82;\nreturn ((nA+nB)*mAll-nA*mA)/nB;"
+  },
+  {
+    "id": "ACT-M-I08",
+    "domain": "Integrating Essential Skills",
+    "subskill": "ratio and proportional parts",
+    "difficulty": "medium",
+    "prompt": "A sum of money is divided among Ana, Ben, and Cara in the ratio 2:3:7, respectively. Cara receives 60 dollars more than Ben. How many dollars were divided in all?",
+    "choices": [
+      "45",
+      "105",
+      "180",
+      "720"
+    ],
+    "correct_answer": "180",
+    "explanation": "Cara exceeds Ben by 7 - 3 = 4 parts, so one part is 60/4 = 15 dollars. The total is 2 + 3 + 7 = 12 parts, or 180 dollars. Treating 60 dollars as one part gives 12 * 60 = 720. Reporting Cara's share gives 7 * 15 = 105, and reporting Ben's share gives 45.",
+    "solve": "const unit=60/(7-3);\nreturn unit*(2+3+7);"
+  },
+  {
+    "id": "ACT-M-I09",
+    "domain": "Integrating Essential Skills",
+    "subskill": "mean and median together",
+    "difficulty": "hard",
+    "prompt": "The five numbers 3, 8, x, 12, and 15 have a mean that is equal to their median. What is the greatest possible value of x?",
+    "choices": [
+      "2",
+      "9.5",
+      "12",
+      "22"
+    ],
+    "correct_answer": "22",
+    "explanation": "Which number is the median depends on where x falls, so all three cases must be checked. If x is at least 12 the median is 12, and (38 + x)/5 = 12 gives x = 22, which is consistent. If x is between 8 and 12 the median is x, and (38 + x)/5 = x gives x = 9.5, also consistent. If x is at most 8 the median is 8, and x = 2, again consistent. All three work, so the greatest value is 22. Stopping at the first case found gives 9.5 or 2, and reporting the median rather than x gives 12.",
+    "solve": "const known=[3,8,12,15];\nconst S=known.reduce((a,b)=>a+b,0);\nlet best=null;\nfor(let i=-4000;i<=4000;i++){const x=i/2; const v=known.concat([x]).sort((a,b)=>a-b); if(Math.abs((S+x)/5-v[2])<1e-9) best=(best===null||x>best)?x:best;}\nreturn best;"
+  },
+  {
+    "id": "ACT-M-I10",
+    "domain": "Integrating Essential Skills",
+    "subskill": "volume and scaling",
+    "difficulty": "medium",
+    "prompt": "A cylinder has a radius of 4 centimeters and a height of 25 centimeters. A second cylinder has the same volume as the first and a radius of 10 centimeters. What is the height, in centimeters, of the second cylinder?",
+    "choices": [
+      "4",
+      "10",
+      "62.5",
+      "156.25"
+    ],
+    "correct_answer": "4",
+    "explanation": "Equal volumes give 4^2 * 25 = 10^2 * h, so h = 400/100 = 4. Scaling the height by the ratio of the radii, 25 * 4/10, gives 10. Using the reciprocal ratio gives 25 * 10/4 = 62.5, and using the reciprocal ratio squared gives 156.25.",
+    "solve": "const r1=4, h1=25, r2=10;\nreturn r1*r1*h1/(r2*r2);"
+  },
+  {
+    "id": "ACT-M-I11",
+    "domain": "Integrating Essential Skills",
+    "subskill": "rates and unit analysis",
+    "difficulty": "medium",
+    "prompt": "A car travels 210 miles using 8.4 gallons of gasoline. At this same rate, how many gallons of gasoline are needed for a trip of 360 miles?",
+    "choices": [
+      "4.9",
+      "6",
+      "14.4",
+      "25"
+    ],
+    "correct_answer": "14.4",
+    "explanation": "The car travels 210/8.4 = 25 miles per gallon, so 360 miles need 360/25 = 14.4 gallons. Reporting the miles per gallon instead of the gallons gives 25. Setting the proportion up upside down, 8.4 * 210/360, gives 4.9. Finding the gasoline for only the additional 150 miles gives 6.",
+    "solve": "const mi=210, gal=8.4, trip=360;\nreturn Math.round(trip/(mi/gal)*1000)/1000;"
+  },
+  {
+    "id": "ACT-M-I12",
+    "domain": "Integrating Essential Skills",
+    "subskill": "percent change",
+    "difficulty": "easy",
+    "prompt": "A town's population grew from 4,800 to 6,000 over a decade. By what percent did the population increase?",
+    "choices": [
+      "20",
+      "25",
+      "125",
+      "1200"
+    ],
+    "correct_answer": "25",
+    "explanation": "The increase is 1,200, and as a percent of the original 4,800 that is 1,200/4,800 = 0.25, or 25 percent. Dividing by the new population instead of the original gives 20 percent. Reporting the ratio 6,000/4,800 as a percent gives 125. Reporting the raw increase gives 1,200.",
+    "solve": "return (6000-4800)/4800*100;"
+  },
+  {
+    "id": "ACT-M-I13",
+    "domain": "Integrating Essential Skills",
+    "subskill": "multi-step rates with a whole-unit constraint",
+    "difficulty": "hard",
+    "prompt": "A machine fills 3 bottles every 4 seconds. Filled bottles are packed into cases that hold 24 bottles each, and a case is shipped only when it is full. Working without interruption for 1 hour, how many full cases does the machine produce?",
+    "choices": [
+      "1",
+      "112",
+      "113",
+      "150"
+    ],
+    "correct_answer": "112",
+    "explanation": "In 3,600 seconds the machine fills 3,600 * 3/4 = 2,700 bottles, and 2,700/24 = 112.5 cases. Only full cases count, so the answer is 112. Rounding up instead of down gives 113. Forgetting to convert the hour to seconds and using 60 seconds gives 45 bottles, or 1 full case. Dividing the 3,600 seconds by 24 gives 150.",
+    "solve": "const bottles=3600*3/4;\nreturn Math.floor(bottles/24);"
+  },
+  {
+    "id": "ACT-M-I14",
+    "domain": "Integrating Essential Skills",
+    "subskill": "surface area and whole-unit rounding",
+    "difficulty": "medium",
+    "prompt": "A closed rectangular box measures 3 feet by 4 feet by 5 feet. Paint is sold only in whole quarts, and 1 quart covers 15 square feet. What is the least number of quarts that must be bought to paint the entire outside of the box?",
+    "choices": [
+      "4",
+      "5",
+      "6",
+      "7"
+    ],
+    "correct_answer": "7",
+    "explanation": "The surface area is 2(3*4 + 3*5 + 4*5) = 94 square feet, and 94/15 = 6.27, so 7 whole quarts are needed. Rounding down gives 6. Painting only the four side faces, 2(3*5 + 4*5) = 70 square feet, gives 5 quarts. Using the volume, 60 cubic feet, instead of the surface area gives 4.",
+    "solve": "const l=3, w=4, h=5, cov=15;\nconst SA=2*(l*w+l*h+w*h);\nreturn Math.ceil(SA/cov);"
+  },
+  {
+    "id": "ACT-M-I15",
+    "domain": "Integrating Essential Skills",
+    "subskill": "scale and mixed numbers",
+    "difficulty": "medium",
+    "prompt": "On a map, 1 inch represents 18 miles. Two towns are 4 and 3/8 inches apart on the map. How many miles apart are the two towns?",
+    "choices": [
+      "72",
+      "78.75",
+      "81",
+      "90"
+    ],
+    "correct_answer": "78.75",
+    "explanation": "The distance is 4.375 * 18 = 78.75 miles. Dropping the fractional part and using 4 inches gives 72. Rounding the mixed number to 4.5 inches gives 81, and rounding it to 5 inches gives 90.",
+    "solve": "return (4+3/8)*18;"
+  },
+  {
+    "id": "ACT-M-I16",
+    "domain": "Integrating Essential Skills",
+    "subskill": "opposing rates of work",
+    "difficulty": "hard",
+    "prompt": "A pipe can fill an empty tank in 6 hours. A drain at the bottom of the same tank can empty a full tank in 10 hours. If the tank starts empty and both the pipe and the drain are open the whole time, how many hours does it take to fill the tank?",
+    "choices": [
+      "3.75",
+      "15",
+      "16",
+      "60"
+    ],
+    "correct_answer": "15",
+    "explanation": "The pipe adds 1/6 of the tank per hour and the drain removes 1/10, so the net rate is 1/6 - 1/10 = 1/15 of the tank per hour and the tank fills in 15 hours. Adding the rates instead of subtracting gives 1/(4/15) = 3.75 hours. Adding the two times gives 16, and multiplying them gives 60.",
+    "solve": "const fill=6, drain=10;\nreturn 1/(1/fill-1/drain);"
+  }
+]

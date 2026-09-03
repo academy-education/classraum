@@ -1,0 +1,560 @@
+[
+  {
+    "id": "ACTM2A-NQ-01",
+    "domain": "Number and Quantity",
+    "subskill": "integer solutions to a linear Diophantine condition",
+    "difficulty": "hard",
+    "prompt": "A bakery packs every one of its 100 cookies into containers with none left over. Each box holds exactly 12 cookies and each tin holds exactly 7 cookies, and the bakery uses at least one box and at least one tin. What is the total number of containers the bakery uses?",
+    "choices": [
+      "4",
+      "6",
+      "10",
+      "12"
+    ],
+    "correct_answer": "10",
+    "explanation": "If b is the number of boxes and t the number of tins, 12b + 7t = 100 with b and t both at least 1. Testing b = 1 through 8, only b = 6 leaves 100 - 72 = 28 cookies, which is exactly 4 tins, so b = 6 and t = 4 and the total is 10 containers. Answering 6 reports only the boxes and answering 4 reports only the tins. Answering 12 comes from filling as many boxes as possible (8 boxes, 96 cookies) and then putting each of the 4 remaining cookies in its own tin, which does not fill the tins.",
+    "solve": "for(var b=1;b*12<100;b++){var r=100-12*b; if(r>0 && r%7===0) return b + r/7;} return 'none';"
+  },
+  {
+    "id": "ACTM2A-NQ-02",
+    "domain": "Number and Quantity",
+    "subskill": "square roots of a complex number with a sign restriction",
+    "difficulty": "hard",
+    "prompt": "Let a and b be real numbers with a > 0 such that (a + bi)^2 = 7 - 24i, where i^2 = -1. What is the value of a + b?",
+    "choices": [
+      "-1",
+      "1",
+      "7",
+      "25"
+    ],
+    "correct_answer": "1",
+    "explanation": "Expanding gives a^2 - b^2 = 7 and 2ab = -24, so ab = -12. Then a^2(a^2 - 7) = 144, so a^4 - 7a^2 - 144 = 0 and a^2 = 16. Since a > 0, a = 4, and ab = -12 forces b = -3, so a + b = 1. Taking b = 3 and ignoring that the imaginary part is negative gives 7; swapping the roles of a and b gives 3 + (-4) = -1; and 25 is the modulus of 7 - 24i, not a + b.",
+    "solve": "var re=7, im=-24;\nvar a2=(re+Math.sqrt(re*re+im*im))/2;\nvar a=Math.sqrt(a2), b=im/(2*a);\nreturn Math.round((a+b)*1e6)/1e6;"
+  },
+  {
+    "id": "ACTM2A-NQ-03",
+    "domain": "Number and Quantity",
+    "subskill": "scientific notation with a capacity reservation and a whole-unit count",
+    "difficulty": "hard",
+    "prompt": "A data center must archive 4.8 x 10^15 bytes. Each archive tape has a raw capacity of 2.5 x 10^11 bytes, but 8% of every tape's raw capacity is reserved for error correction and cannot hold archived data. Tapes cannot be split. What is the least number of tapes needed?",
+    "choices": [
+      "17,778",
+      "19,200",
+      "20,869",
+      "20,870"
+    ],
+    "correct_answer": "20,870",
+    "explanation": "Each tape holds 0.92(2.5 x 10^11) = 2.3 x 10^11 bytes of archived data, and 4.8 x 10^15 / 2.3 x 10^11 = 20,869.56..., so 20,870 tapes are needed. Ignoring the reservation gives 19,200; multiplying the capacity by 1.08 instead of 0.92 gives 17,778; and rounding 20,869.56 down instead of up gives 20,869, which leaves part of the archive unstored.",
+    "solve": "var total=4.8e15, raw=2.5e11, usable=raw*0.92;\nvar n=Math.ceil(total/usable);\nreturn n.toLocaleString('en-US');"
+  },
+  {
+    "id": "ACTM2A-NQ-04",
+    "domain": "Number and Quantity",
+    "subskill": "matrix multiplication: locating a single entry of a product",
+    "difficulty": "medium",
+    "prompt": "Matrix A = [[2, -1], [3, 4]] and matrix B = [[1, 0], [-2, 5]], where each inner list is a row. What is the entry in row 2, column 1 of the product AB?",
+    "choices": [
+      "-6",
+      "-5",
+      "3",
+      "11"
+    ],
+    "correct_answer": "-5",
+    "explanation": "The entry in row 2, column 1 of AB is the dot product of row 2 of A with column 1 of B: 3(1) + 4(-2) = -5. Multiplying the matrices in the other order gives the row 2, column 1 entry of BA, which is -2(2) + 5(3) = 11. Multiplying corresponding entries instead of rows by columns gives 3(-2) = -6. Pairing row 2 of A with row 1 of B gives 3(1) + 4(0) = 3.",
+    "solve": "var A=[[2,-1],[3,4]], B=[[1,0],[-2,5]];\nreturn A[1][0]*B[0][0] + A[1][1]*B[1][0];"
+  },
+  {
+    "id": "ACTM2A-NQ-05",
+    "domain": "Number and Quantity",
+    "subskill": "sum of a finite arithmetic sequence",
+    "difficulty": "medium",
+    "prompt": "The first term of an arithmetic sequence is 7 and the 14th term is 59. What is the sum of the first 14 terms of the sequence?",
+    "choices": [
+      "403",
+      "436",
+      "462",
+      "924"
+    ],
+    "correct_answer": "462",
+    "explanation": "The sum of the first n terms is n times the average of the first and last terms: 14(7 + 59)/2 = 7(66) = 462. Omitting the division by 2 gives 924. Summing only the first 13 terms, whose last term is 55, gives 13(7 + 55)/2 = 403. Using a common difference of 52/14 instead of 52/13 gives 7(14 + 13(52/14)) = 436.",
+    "solve": "var a1=7,a14=59,n=14;\nreturn n*(a1+a14)/2;"
+  },
+  {
+    "id": "ACTM2A-NQ-06",
+    "domain": "Number and Quantity",
+    "subskill": "entries of the inverse of a 2x2 matrix",
+    "difficulty": "medium",
+    "prompt": "Matrix M = [[4, 7], [1, 2]], where each inner list is a row. What is the entry in row 1, column 2 of M^-1?",
+    "choices": [
+      "-7",
+      "-7/8",
+      "-1",
+      "7"
+    ],
+    "correct_answer": "-7",
+    "explanation": "For M = [[a, b], [c, d]], M^-1 = (1/(ad - bc))[[d, -b], [-c, a]]. Here ad - bc = 8 - 7 = 1, so M^-1 = [[2, -7], [-1, 4]] and the row 1, column 2 entry is -7. Using the product of the diagonal, 8, as the determinant gives -7/8. Omitting the sign change on the off-diagonal entry gives 7. The entry -1 is in row 2, column 1 of M^-1, not row 1, column 2.",
+    "solve": "var a=4,b=7,c=1,d=2;\nvar det=a*d-b*c;\nvar v=-b/det;\nreturn v;"
+  },
+  {
+    "id": "ACTM2A-NQ-07",
+    "domain": "Number and Quantity",
+    "subskill": "vector components of a velocity with a required resultant direction",
+    "difficulty": "hard",
+    "prompt": "A boat travels at 13 kilometers per hour relative to the water. It must cross a river 1.2 kilometers wide and land at the point directly opposite its starting point. The river current flows at a constant 5 kilometers per hour parallel to the banks. To the nearest tenth of a minute, how long does the crossing take?",
+    "choices": [
+      "4.0",
+      "5.5",
+      "6.0",
+      "9.0"
+    ],
+    "correct_answer": "6.0",
+    "explanation": "To land directly opposite, the boat must aim upstream so that the component of its velocity along the current cancels the 5 km/h current. Its across-river speed is then the remaining component, sqrt(13^2 - 5^2) = 12 km/h, and the crossing takes 1.2/12 = 0.1 hour = 6.0 minutes. Using the full 13 km/h across the river gives 5.5 minutes, adding the current to the boat's speed gives 1.2/18 hour = 4.0 minutes, and subtracting it gives 1.2/8 hour = 9.0 minutes.",
+    "solve": "var v=13,c=5,w=1.2;\nvar across=Math.sqrt(v*v-c*c);\nreturn (Math.round(w/across*60*10)/10).toFixed(1);"
+  },
+  {
+    "id": "ACTM2A-NQ-08",
+    "domain": "Number and Quantity",
+    "subskill": "rational exponents applied to a product",
+    "difficulty": "medium",
+    "prompt": "For x > 0, which of the following is equivalent to (16x^6)^(3/4) divided by (2x)^2?",
+    "choices": [
+      "2x^(5/2)",
+      "3x^(5/2)",
+      "4x^(5/2)",
+      "8x^(5/2)"
+    ],
+    "correct_answer": "2x^(5/2)",
+    "explanation": "(16x^6)^(3/4) = 16^(3/4) x^(9/2) = 8x^(9/2), and (2x)^2 = 4x^2, so the quotient is (8/4)x^(9/2 - 2) = 2x^(5/2). Treating (2x)^2 as 2x^2 leaves 4x^(5/2); dividing by x^2 alone and never by the coefficient leaves 8x^(5/2); and evaluating 16^(3/4) as 16(3/4) = 12 leaves 3x^(5/2).",
+    "solve": "var coef=Math.pow(16,3/4)/Math.pow(2,2);\nvar ex=6*(3/4)-2;\nreturn coef + 'x^(' + (ex*2) + '/2)';"
+  },
+  {
+    "id": "ACTM2A-NQ-09",
+    "domain": "Number and Quantity",
+    "subskill": "products in scientific notation",
+    "difficulty": "easy",
+    "prompt": "What is the value of (3.0 x 10^5)(4.0 x 10^8), expressed in scientific notation?",
+    "choices": [
+      "1.2 x 10^13",
+      "1.2 x 10^14",
+      "1.2 x 10^40",
+      "7.0 x 10^13"
+    ],
+    "correct_answer": "1.2 x 10^14",
+    "explanation": "Multiply the decimal parts and add the exponents: (3.0)(4.0) = 12 and 10^5 times 10^8 = 10^13, giving 12 x 10^13 = 1.2 x 10^14. Writing 12 x 10^13 as 1.2 x 10^13 fails to increase the exponent when the decimal point moves. Adding the decimal parts gives 7.0 x 10^13, and multiplying the exponents gives 1.2 x 10^40.",
+    "solve": "var m=3.0*4.0, e=5+8;\nwhile(m>=10){m/=10;e++;}\nreturn m.toFixed(1)+' x 10^'+e;"
+  },
+  {
+    "id": "ACTM2A-NQ-10",
+    "domain": "Number and Quantity",
+    "subskill": "least common multiple with an endpoint condition",
+    "difficulty": "medium",
+    "prompt": "Three lighthouses flash at regular intervals of 12 seconds, 18 seconds, and 30 seconds. All three flash together at exactly 8:00:00 p.m. After 8:00:00 p.m. and up to and including 9:00:00 p.m., how many times do all three flash together?",
+    "choices": [
+      "12",
+      "20",
+      "21",
+      "60"
+    ],
+    "correct_answer": "20",
+    "explanation": "The lighthouses flash together every LCM(12, 18, 30) = 180 seconds, or every 3 minutes. In the 3,600 seconds after 8:00:00 p.m. there are 3600/180 = 20 such moments, the last of which is 9:00:00 p.m. Counting the 8:00:00 p.m. flash as well gives 21, but that flash is excluded. Using 300 seconds instead of 180 as the common interval gives 12, and treating the interval as one minute gives 60.",
+    "solve": "function g(a,b){return b?g(b,a%b):a;}\nfunction l(a,b){return a/g(a,b)*b;}\nvar per=l(l(12,18),30);\nreturn 3600/per;"
+  },
+  {
+    "id": "ACTM2A-NQ-11",
+    "domain": "Number and Quantity",
+    "subskill": "counting integers satisfying two simultaneous remainder conditions",
+    "difficulty": "hard",
+    "prompt": "How many positive integers less than 200 leave a remainder of 3 when divided by 7 AND leave a remainder of 2 when divided by 5?",
+    "choices": [
+      "5",
+      "6",
+      "29",
+      "40"
+    ],
+    "correct_answer": "6",
+    "explanation": "An integer satisfying both conditions must be 17 more than a multiple of 35, since 17 is the smallest positive integer that is 3 more than a multiple of 7 and 2 more than a multiple of 5, and 35 is the least common multiple of 7 and 5. The values below 200 are 17, 52, 87, 122, 157, and 192, so there are 6. Counting only the integers that leave remainder 3 when divided by 7 gives 29, counting only those that leave remainder 2 when divided by 5 gives 40, and counting the multiples of 35 below 200 gives 5.",
+    "solve": "var c=0;\nfor(var n=1;n<200;n++){ if(n%7===3 && n%5===2) c++; }\nreturn c;"
+  },
+  {
+    "id": "ACTM2A-NQ-12",
+    "domain": "Number and Quantity",
+    "subskill": "quotient of complex numbers in standard form",
+    "difficulty": "medium",
+    "prompt": "The complex number (4 + 7i)/(2 + i) can be written as a + bi, where a and b are real numbers and i^2 = -1. What is the value of ab?",
+    "choices": [
+      "-6",
+      "2/5",
+      "6",
+      "14"
+    ],
+    "correct_answer": "6",
+    "explanation": "Multiplying numerator and denominator by the conjugate 2 - i gives (4 + 7i)(2 - i)/5 = (8 - 4i + 14i + 7)/5 = (15 + 10i)/5 = 3 + 2i, so ab = 6. Dividing the real and imaginary parts separately gives 2 + 7i and a product of 14. Treating i^2 as +1 in the numerator gives (1 + 10i)/5 = 0.2 + 2i and a product of 2/5. A sign error in the final quotient gives 3 - 2i and a product of -6.",
+    "solve": "var ar=4,ai=7,br=2,bi=1;\nvar d=br*br+bi*bi;\nvar a=(ar*br+ai*bi)/d, b=(ai*br-ar*bi)/d;\nreturn a*b;"
+  },
+  {
+    "id": "ACTM2A-NQ-13",
+    "domain": "Number and Quantity",
+    "subskill": "unit rate applied across a change of time unit",
+    "difficulty": "easy",
+    "prompt": "A machine fills 6 bottles every 5 seconds. At this constant rate, how many bottles does the machine fill in 4 minutes?",
+    "choices": [
+      "24",
+      "200",
+      "288",
+      "1,200"
+    ],
+    "correct_answer": "288",
+    "explanation": "Four minutes is 240 seconds, and the machine fills 6/5 bottles per second, so it fills (6/5)(240) = 288 bottles. Inverting the rate gives (5/6)(240) = 200, treating the 4 minutes as 4 seconds' worth of the stated rate gives 6(4) = 24, and multiplying 240 by 5 instead of by 6/5 gives 1,200.",
+    "solve": "var bottles=6, per=5, secs=4*60;\nvar n=bottles/per*secs;\nreturn n.toLocaleString('en-US');"
+  },
+  {
+    "id": "ACTM2A-NQ-14",
+    "domain": "Number and Quantity",
+    "subskill": "a missing term of a geometric sequence with a sign restriction",
+    "difficulty": "medium",
+    "prompt": "In a geometric sequence, the 3rd term is 12 and the 5th term is 27. Every term of the sequence is positive. What is the 4th term?",
+    "choices": [
+      "-18",
+      "13.5",
+      "18",
+      "19.5"
+    ],
+    "correct_answer": "18",
+    "explanation": "If r is the common ratio, 12r^2 = 27, so r^2 = 9/4 and r = 3/2 or r = -3/2. Because every term is positive, r = 3/2 and the 4th term is 12(3/2) = 18. Taking r = -3/2 gives -18. Averaging the 3rd and 5th terms treats the sequence as arithmetic and gives 19.5, and halving the 5th term gives 13.5.",
+    "solve": "var t3=12,t5=27;\nvar r=Math.sqrt(t5/t3);\nreturn t3*r;"
+  },
+  {
+    "id": "ACTM2A-NQ-15",
+    "domain": "Number and Quantity",
+    "subskill": "scaling a vector to a given magnitude",
+    "difficulty": "medium",
+    "prompt": "Vector u has x-component 6 and y-component -8. Vector v points in the same direction as u and has magnitude 15. What is the y-component of v?",
+    "choices": [
+      "-12",
+      "-8",
+      "9",
+      "12"
+    ],
+    "correct_answer": "-12",
+    "explanation": "The magnitude of u is sqrt(36 + 64) = 10, so v = (15/10)u, whose components are 9 and -12, and its y-component is -12. The value 9 is the x-component of v, -8 is the y-component of u itself, and 12 comes from scaling correctly but dropping the negative sign that the direction of u requires.",
+    "solve": "var ux=6,uy=-8,mag=15;\nvar k=mag/Math.sqrt(ux*ux+uy*uy);\nreturn k*uy;"
+  },
+  {
+    "id": "ACTM2A-NQ-16",
+    "domain": "Number and Quantity",
+    "subskill": "multi-step conversion between measurement systems with a partial fill",
+    "difficulty": "hard",
+    "prompt": "A holding tank has a capacity of 3,600 liters and is currently 20% full. A pipeline delivers water into the tank at a constant 45 gallons per minute. Given that 1 gallon = 3.785 liters, to the nearest tenth of a minute, how long will it take to fill the tank?",
+    "choices": [
+      "4.2",
+      "16.9",
+      "21.1",
+      "242.2"
+    ],
+    "correct_answer": "16.9",
+    "explanation": "The tank still needs 0.80(3,600) = 2,880 liters, which is 2,880/3.785 = 760.9 gallons, and 760.9/45 = 16.9 minutes. Filling the whole 3,600 liters instead of the remaining 80% gives 21.1 minutes, using only the 20% already in the tank gives 4.2 minutes, and multiplying by 3.785 instead of dividing gives 242.2 minutes.",
+    "solve": "var cap=3600, frac=0.20, gpm=45, LperGal=3.785;\nvar need=cap*(1-frac);\nvar mins=need/LperGal/gpm;\nreturn (Math.round(mins*10)/10).toFixed(1);"
+  },
+  {
+    "id": "ACTM2A-SP-01",
+    "domain": "Statistics and Probability",
+    "subskill": "probability of at least k successes drawing without replacement",
+    "difficulty": "hard",
+    "prompt": "A box contains 5 red marbles, 4 blue marbles, and 3 green marbles. Three marbles are drawn at random from the box without replacement. What is the probability that at least 2 of the 3 marbles drawn are red?",
+    "choices": [
+      "1/22",
+      "4/11",
+      "7/22",
+      "37/44"
+    ],
+    "correct_answer": "4/11",
+    "explanation": "There are 12C3 = 220 equally likely sets of 3 marbles. Exactly 2 red occurs in (5C2)(7C1) = 10(7) = 70 of them and exactly 3 red in 5C3 = 10 of them, so at least 2 red occurs in 80, and 80/220 = 4/11. Counting only exactly 2 red gives 7/22 and only exactly 3 red gives 1/22. Subtracting from 1 the probability of no red gives 37/44, which is the probability of at least 1 red, not at least 2.",
+    "solve": "function C(n,k){var r=1;for(var i=0;i<k;i++){r=r*(n-i)/(i+1);}return Math.round(r);}\nvar tot=C(12,3);\nvar fav=C(5,2)*C(7,1)+C(5,3);\nfunction g(a,b){return b?g(b,a%b):a;}\nvar d=g(fav,tot);\nreturn (fav/d)+'/'+(tot/d);"
+  },
+  {
+    "id": "ACTM2A-SP-02",
+    "domain": "Statistics and Probability",
+    "subskill": "reasoning from a mean to an extreme value under an integer constraint",
+    "difficulty": "hard",
+    "prompt": "A list of 8 positive integers has a mean of 12. When one of the integers is removed from the list, the remaining 7 integers have a mean of 13. What is the greatest possible value of an integer that remains in the list after the removal?",
+    "choices": [
+      "5",
+      "84",
+      "85",
+      "91"
+    ],
+    "correct_answer": "85",
+    "explanation": "The original 8 integers sum to 96 and the remaining 7 sum to 91, so the integer removed was 5. To make one of the 7 remaining integers as large as possible, the other 6 must be as small as possible, and because every integer in the list is positive each of them is at least 1. The largest remaining integer is therefore 91 - 6 = 85. Answering 91 ignores the 6 other integers entirely, answering 84 subtracts 7 rather than 6, and 5 is the integer that was removed.",
+    "solve": "var sum8=8*12, sum7=7*13;\nreturn sum7-6*1;"
+  },
+  {
+    "id": "ACTM2A-SP-03",
+    "domain": "Statistics and Probability",
+    "subskill": "median of data given in a frequency table",
+    "difficulty": "medium",
+    "prompt": "The table shows the number of siblings reported by each of the 30 students in a class. What is the median number of siblings for these 30 students?",
+    "graphic": {
+      "type": "table",
+      "rowLabels": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4"
+      ],
+      "colLabels": [
+        "Number of students"
+      ],
+      "cells": [
+        [
+          6
+        ],
+        [
+          9
+        ],
+        [
+          7
+        ],
+        [
+          5
+        ],
+        [
+          3
+        ]
+      ],
+      "caption": "Number of siblings reported (rows) and the number of students reporting that many siblings."
+    },
+    "choices": [
+      "1",
+      "1.5",
+      "1.7",
+      "2"
+    ],
+    "correct_answer": "1.5",
+    "explanation": "With 30 values, the median is the mean of the 15th and 16th values in order. The running totals are 6 students at 0 siblings, 15 students at 0 or 1, and 22 students at 0, 1, or 2, so the 15th value is 1 and the 16th value is 2, and the median is 1.5. Reading off only the 15th value gives 1 and only the 16th gives 2. The value 1.7 is the mean, 50/30, not the median.",
+    "solve": "var vals=[0,1,2,3,4], f=[6,9,7,5,3], a=[];\nfor(var i=0;i<vals.length;i++){for(var j=0;j<f[i];j++)a.push(vals[i]);}\na.sort(function(x,y){return x-y;});\nvar n=a.length;\nreturn (a[n/2-1]+a[n/2])/2;"
+  },
+  {
+    "id": "ACTM2A-SP-04",
+    "domain": "Statistics and Probability",
+    "subskill": "probability of a committee meeting two simultaneous requirements",
+    "difficulty": "hard",
+    "prompt": "A committee of 4 people is selected at random from a group of 6 women and 5 men. What is the probability that the committee includes at least 1 woman AND at least 1 man?",
+    "choices": [
+      "2/33",
+      "21/22",
+      "31/33",
+      "65/66"
+    ],
+    "correct_answer": "31/33",
+    "explanation": "There are 11C4 = 330 equally likely committees. A committee fails the requirement only if it is all women, 6C4 = 15 ways, or all men, 5C4 = 5 ways, so 330 - 20 = 310 committees qualify and 310/330 = 31/33. Excluding only the all-women committees gives 21/22, excluding only the all-men committees gives 65/66, and 2/33 is the probability that the committee fails the requirement.",
+    "solve": "function C(n,k){var r=1;for(var i=0;i<k;i++){r=r*(n-i)/(i+1);}return Math.round(r);}\nvar tot=C(11,4), bad=C(6,4)+C(5,4), fav=tot-bad;\nfunction g(a,b){return b?g(b,a%b):a;}\nvar d=g(fav,tot);\nreturn (fav/d)+'/'+(tot/d);"
+  },
+  {
+    "id": "ACTM2A-SP-05",
+    "domain": "Statistics and Probability",
+    "subskill": "counting selections for two roles that cannot overlap",
+    "difficulty": "medium",
+    "prompt": "From a club of 9 students, one student will be chosen as president and 3 other students will be chosen to form a subcommittee. No student may serve as president and also serve on the subcommittee, and the order in which the subcommittee members are chosen does not matter. In how many different ways can this be done?",
+    "choices": [
+      "126",
+      "504",
+      "756",
+      "3,024"
+    ],
+    "correct_answer": "504",
+    "explanation": "There are 9 choices of president, and then the subcommittee is any 3 of the 8 remaining students, 8C3 = 56 ways, so there are 9(56) = 504 ways. Choosing the subcommittee from all 9 students gives 9(9C3) = 756 and ignores the restriction. Treating the president and the subcommittee as one group of 4 gives 9C4 = 126, and treating all four selections as ordered gives 9(8)(7)(6) = 3,024.",
+    "solve": "function C(n,k){var r=1;for(var i=0;i<k;i++){r=r*(n-i)/(i+1);}return Math.round(r);}\nvar n=9*C(8,3);\nreturn n.toLocaleString('en-US');"
+  },
+  {
+    "id": "ACTM2A-SP-06",
+    "domain": "Statistics and Probability",
+    "subskill": "probability read from a two-way frequency table",
+    "difficulty": "easy",
+    "prompt": "The table shows how the 80 students in a school program travel to school. If one of these 80 students is selected at random, what is the probability that the student walks to school?",
+    "graphic": {
+      "type": "table",
+      "rowLabels": [
+        "Freshmen",
+        "Sophomores"
+      ],
+      "colLabels": [
+        "Bus",
+        "Walk"
+      ],
+      "cells": [
+        [
+          24,
+          16
+        ],
+        [
+          18,
+          22
+        ]
+      ],
+      "caption": "Number of students in each grade by method of travel."
+    },
+    "choices": [
+      "11/40",
+      "2/5",
+      "19/40",
+      "21/40"
+    ],
+    "correct_answer": "19/40",
+    "explanation": "A total of 16 + 22 = 38 of the 80 students walk, and 38/80 = 19/40. The value 21/40 is the probability that a student rides the bus, 11/40 uses only the 22 sophomores who walk out of all 80 students, and 2/5 is the probability that a student walks given that the student is a freshman, 16/40.",
+    "solve": "var cells=[[24,16],[18,22]];\nvar walk=cells[0][1]+cells[1][1];\nvar tot=0; for(var i=0;i<2;i++) for(var j=0;j<2;j++) tot+=cells[i][j];\nfunction g(a,b){return b?g(b,a%b):a;}\nvar d=g(walk,tot);\nreturn (walk/d)+'/'+(tot/d);"
+  },
+  {
+    "id": "ACTM2A-SP-07",
+    "domain": "Statistics and Probability",
+    "subskill": "expected value including the cost to play",
+    "difficulty": "medium",
+    "prompt": "A carnival game costs 3 dollars to play. A player draws exactly one chip at random from a bag containing 20 chips: 2 chips pay 10 dollars, 3 chips pay 5 dollars, and the other 15 chips pay nothing. What is the player's expected net gain, in dollars, per play?",
+    "choices": [
+      "-3.00",
+      "-1.25",
+      "1.75",
+      "4.00"
+    ],
+    "correct_answer": "-1.25",
+    "explanation": "The expected payout is (2(10) + 3(5) + 15(0))/20 = 35/20 = 1.75 dollars, and subtracting the 3 dollar cost gives an expected net gain of -1.25 dollars. Reporting 1.75 omits the cost to play, reporting -3.00 omits the payout, and averaging the payout over only the 5 winning chips gives 7 dollars and a net of 4.00.",
+    "solve": "var pay=(2*10+3*5+15*0)/20;\nreturn (pay-3).toFixed(2);"
+  },
+  {
+    "id": "ACTM2A-SP-08",
+    "domain": "Statistics and Probability",
+    "subskill": "a value constrained simultaneously by a median and by an integer mean",
+    "difficulty": "hard",
+    "prompt": "The five numbers 4, 7, 9, 12, and n have a median of 9, and their mean is an integer. If n is a positive integer, what is the least possible value of n?",
+    "choices": [
+      "3",
+      "8",
+      "9",
+      "13"
+    ],
+    "correct_answer": "13",
+    "explanation": "For the median of the five numbers to be 9, n must be at least 9; any smaller value of n makes 9 the fourth number in order and pushes a smaller value into the middle. For the mean to be an integer, 32 + n must be divisible by 5, so n must be 3, 8, 13, 18, and so on. The least value satisfying both conditions is 13. Using only the divisibility condition gives 3, and 8 satisfies the divisibility condition but makes the median 8. Using only the median condition gives 9, whose sum of 41 is not divisible by 5.",
+    "solve": "var base=[4,7,9,12];\nfor(var n=1;n<200;n++){\n var a=base.concat([n]).sort(function(x,y){return x-y;});\n var s=0; for(var i=0;i<5;i++) s+=a[i];\n if(a[2]===9 && s%5===0) return n;\n}\nreturn 'none';"
+  },
+  {
+    "id": "ACTM2A-SP-09",
+    "domain": "Statistics and Probability",
+    "subskill": "arrangements of a word with repeated letters",
+    "difficulty": "medium",
+    "prompt": "How many distinguishable arrangements are there of all five letters of the word LEVEL?",
+    "choices": [
+      "20",
+      "30",
+      "60",
+      "120"
+    ],
+    "correct_answer": "30",
+    "explanation": "The word has 5 letters with L repeated twice and E repeated twice, so the number of distinguishable arrangements is 5!/(2!2!) = 120/4 = 30. Dividing by only one of the two repeats gives 60, treating all five letters as distinct gives 120, and counting ordered pairs of letters, 5(4), gives 20.",
+    "solve": "function f(n){var r=1;for(var i=2;i<=n;i++)r*=i;return r;}\nreturn f(5)/(f(2)*f(2));"
+  },
+  {
+    "id": "ACTM2A-SP-10",
+    "domain": "Statistics and Probability",
+    "subskill": "conditional probability with a strict inequality",
+    "difficulty": "hard",
+    "prompt": "Two standard 6-sided dice, each with faces numbered 1 through 6, are rolled. Given that at least one of the dice shows a 5, what is the probability that the sum of the two dice is greater than 9?",
+    "choices": [
+      "1/12",
+      "1/6",
+      "3/11",
+      "5/11"
+    ],
+    "correct_answer": "3/11",
+    "explanation": "Of the 36 equally likely outcomes, 11 have at least one 5. Among those 11, the sums greater than 9 come from (5,5), (5,6), and (6,5), so the conditional probability is 3/11. Including the sums equal to 9, from (5,4) and (4,5), gives 5/11. Ignoring the condition gives 6/36 = 1/6, and using 36 rather than 11 as the denominator gives 3/36 = 1/12.",
+    "solve": "var cond=0, both=0;\nfor(var a=1;a<=6;a++)for(var b=1;b<=6;b++){ if(a===5||b===5){cond++; if(a+b>9) both++;} }\nfunction g(x,y){return y?g(y,x%y):x;}\nvar d=g(both,cond);\nreturn (both/d)+'/'+(cond/d);"
+  },
+  {
+    "id": "ACTM2A-SP-11",
+    "domain": "Statistics and Probability",
+    "subskill": "solving for a missing value given the mean",
+    "difficulty": "easy",
+    "prompt": "The mean of the four numbers 6, 11, x, and 16 is 12. What is the value of x?",
+    "choices": [
+      "11",
+      "12",
+      "15",
+      "48"
+    ],
+    "correct_answer": "15",
+    "explanation": "The four numbers must total 4(12) = 48, and 6 + 11 + 16 = 33, so x = 48 - 33 = 15. The value 48 is the required total rather than the missing number, 12 assumes the missing number equals the mean, and 11 is the mean of only the three given numbers.",
+    "solve": "var known=[6,11,16], mean=12, n=4;\nvar s=0; for(var i=0;i<known.length;i++) s+=known[i];\nreturn mean*n-s;"
+  },
+  {
+    "id": "ACTM2A-SP-12",
+    "domain": "Statistics and Probability",
+    "subskill": "conditional percent from a two-way table, in the stated direction",
+    "difficulty": "medium",
+    "prompt": "The table shows the snack preferences of 210 students. Of the students who chose chips, what percent are in Grade 10?",
+    "graphic": {
+      "type": "table",
+      "rowLabels": [
+        "Grade 9",
+        "Grade 10"
+      ],
+      "colLabels": [
+        "Fruit",
+        "Chips",
+        "Yogurt"
+      ],
+      "cells": [
+        [
+          30,
+          45,
+          25
+        ],
+        [
+          20,
+          55,
+          35
+        ]
+      ],
+      "caption": "Number of students in each grade choosing each snack."
+    },
+    "choices": [
+      "26.2%",
+      "47.6%",
+      "50%",
+      "55%"
+    ],
+    "correct_answer": "55%",
+    "explanation": "A total of 45 + 55 = 100 students chose chips, and 55 of them are in Grade 10, so the percent is 55/100 = 55%. Dividing by the 110 Grade 10 students instead gives 50%, which answers the reversed question of what percent of Grade 10 students chose chips. Dividing 55 by the 210 students gives 26.2%, and dividing the 100 chip-choosers by 210 gives 47.6%.",
+    "solve": "var cells=[[30,45,25],[20,55,35]];\nvar chips=cells[0][1]+cells[1][1];\nvar pct=cells[1][1]/chips*100;\nreturn (Math.round(pct*10)/10===Math.round(pct) ? Math.round(pct) : Math.round(pct*10)/10) + '%';"
+  },
+  {
+    "id": "ACTM2A-SP-13",
+    "domain": "Statistics and Probability",
+    "subskill": "recovering a group size from a combined mean",
+    "difficulty": "hard",
+    "prompt": "At a conference, the 30 people who attended the morning session had a mean age of 42. The people who attended the evening session had a mean age of 36. Every attendee went to exactly one of the two sessions, and the mean age of all the attendees was 38. How many people attended the evening session?",
+    "choices": [
+      "15",
+      "20",
+      "60",
+      "90"
+    ],
+    "correct_answer": "60",
+    "explanation": "If e people attended the evening session, then (30(42) + 36e)/(30 + e) = 38, so 1,260 + 36e = 1,140 + 38e and e = 60. Equivalently, the morning group is 4 years above the overall mean and the evening group is 2 years below it, so the evening group must be twice as large: 2(30) = 60. Inverting that ratio gives 15, and interchanging the morning mean with the overall mean gives 20. The value 90 is the total number of attendees, not the evening attendance.",
+    "solve": "var nm=30, mm=42, me=36, mo=38;\nreturn nm*(mm-mo)/(mo-me);"
+  },
+  {
+    "id": "ACTM2A-SP-14",
+    "domain": "Statistics and Probability",
+    "subskill": "effect of shifting and scaling a data set on its standard deviation",
+    "difficulty": "medium",
+    "prompt": "Data set X consists of the values 10, 20, 30, 40, and 50. Data set Y is formed by adding 12 to each value in X. Data set Z is formed by multiplying each value in X by 2. Which of the following statements about the standard deviations of X, Y, and Z is true?",
+    "choices": [
+      "Y has the same standard deviation as X, and Z has twice the standard deviation of X.",
+      "Y has the same standard deviation as X, and Z has the same standard deviation as X.",
+      "Y has a standard deviation 12 greater than that of X, and Z has twice the standard deviation of X.",
+      "Y has twice the standard deviation of X, and Z has a standard deviation 4 times that of X."
+    ],
+    "correct_answer": "Y has the same standard deviation as X, and Z has twice the standard deviation of X.",
+    "explanation": "Adding the same constant to every value slides the whole data set without changing how spread out the values are, so Y has the same standard deviation as X. Multiplying every value by 2 doubles every distance between values, so Z has twice the standard deviation of X. The standard deviation is not increased by the amount added, and doubling the values doubles rather than quadruples the standard deviation.",
+    "solve": "function sd(a){var n=a.length,m=0;for(var i=0;i<n;i++)m+=a[i];m/=n;var s=0;for(var j=0;j<n;j++)s+=(a[j]-m)*(a[j]-m);return Math.sqrt(s/n);}\nvar X=[10,20,30,40,50];\nvar Y=X.map(function(v){return v+12;});\nvar Z=X.map(function(v){return v*2;});\nvar sx=sd(X), sy=sd(Y), sz=sd(Z);\nvar ySame=Math.abs(sy-sx)<1e-9, zDouble=Math.abs(sz-2*sx)<1e-9;\nif(ySame&&zDouble) return 'Y has the same standard deviation as X, and Z has twice the standard deviation of X.';\nif(ySame) return 'Y has the same standard deviation as X, and Z has the same standard deviation as X.';\nreturn 'Y has a standard deviation 12 greater than that of X, and Z has twice the standard deviation of X.';"
+  }
+]
