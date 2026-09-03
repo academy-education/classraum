@@ -276,16 +276,16 @@
     "domain": "Statistics and Probability",
     "subskill": "reasoning from a mean to an extreme value under an integer constraint",
     "difficulty": "hard",
-    "prompt": "A list of 8 positive integers has a mean of 12. When one of the integers is removed from the list, the remaining 7 integers have a mean of 13. What is the greatest possible value of an integer that remains in the list after the removal?",
+    "prompt": "A list of 9 positive integers has a mean of 12. When one of the integers is removed from the list, the remaining 8 integers have a mean of 13. What is the greatest possible value of an integer that remains in the list after the removal?",
     "choices": [
-      "5",
-      "84",
-      "85",
-      "91"
+      "4",
+      "96",
+      "97",
+      "104"
     ],
-    "correct_answer": "85",
-    "explanation": "The original 8 integers sum to 96 and the remaining 7 sum to 91, so the integer removed was 5. To make one of the 7 remaining integers as large as possible, the other 6 must be as small as possible, and because every integer in the list is positive each of them is at least 1. The largest remaining integer is therefore 91 - 6 = 85. Answering 91 ignores the 6 other integers entirely, answering 84 subtracts 7 rather than 6, and 5 is the integer that was removed.",
-    "solve": "var sum8=8*12, sum7=7*13;\nreturn sum7-6*1;"
+    "correct_answer": "97",
+    "explanation": "The original 9 integers sum to 108 and the remaining 8 sum to 104, so the integer removed was 4. To make one of the 8 remaining integers as large as possible, the other 7 must be as small as possible, and because every integer in the list is positive each of them is at least 1. The largest remaining integer is therefore 104 - 7 = 97. Answering 104 ignores the 7 other integers entirely, answering 96 subtracts 8 rather than 7, and 4 is the integer that was removed.",
+    "solve": "var sum9=9*12, sum8=8*13;\nvar removed=sum9-sum8;\nreturn sum8-7*1;"
   },
   {
     "id": "ACTM2A-SP-03",

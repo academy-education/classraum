@@ -1,0 +1,410 @@
+[
+  {
+    "id": "SEC-HD-01",
+    "domain": "Standard English Conventions",
+    "subskill": "form: subject-verb agreement across a dashed supplement, with aspect fixed by an open time frame",
+    "difficulty": "hard",
+    "passage": "The archive's card catalog—a wall of oak drawers that generations of librarians filled with handwritten entries for pamphlets, broadsides, and playbills—______ since the last of those librarians retired in 1994, though the drawers themselves remain in the reading room, admired by patrons who have never pulled one open.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "have been drifting steadily out of date",
+      "has been drifting steadily out of date",
+      "was drifting steadily out of date",
+      "drifted steadily out of date"
+    ],
+    "correct_answer": "has been drifting steadily out of date",
+    "explanation": "The subject is the singular noun \"catalog\"; everything between the dashes—drawers, librarians, pamphlets, broadsides, playbills—is a supplement and cannot supply the number of the verb, so \"have been drifting\" agrees with the wrong noun. The second requirement is aspect: the time frame runs from a point in the past (\"since the last of those librarians retired in 1994\") to a present in which the drawers \"remain\" in the reading room, and only a present perfect form spans it. \"was drifting\" and \"drifted\" both close the action off in the past and leave the present-tense \"remain\" stranded in a different time frame.",
+    "topic_tag": "library cataloguing"
+  },
+  {
+    "id": "SEC-HD-02",
+    "domain": "Standard English Conventions",
+    "subskill": "form: future perfect required by a 'by the time' frame",
+    "difficulty": "medium",
+    "passage": "The seed vault at Svalbard is cut into permafrost so that its contents stay frozen even if the power fails. Permafrost, however, is not permanent. The engineers who maintain the site now expect that by the time the vault's second century begins, the rock around the entrance ______, and the tunnel has already been rebuilt once for exactly that reason.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "will have gone through at least one summer of thaw",
+      "will go through at least one summer of thaw",
+      "has gone through at least one summer of thaw",
+      "would have gone through at least one summer of thaw"
+    ],
+    "correct_answer": "will have gone through at least one summer of thaw",
+    "explanation": "The clause \"by the time the vault's second century begins\" sets a point in the future and asks what will already be finished when that point arrives, which is what the future perfect \"will have gone\" expresses. The simple future \"will go\" places the thaw at that moment rather than before it, so it contradicts \"by the time.\" The second requirement is that the subordinate clause states a future event with the present-tense \"begins,\" so the main clause must carry the future marking itself: \"has gone\" puts the thaw in a period reaching up to now, and \"would have gone\" describes something that did not in fact happen.",
+    "topic_tag": "seed banking"
+  },
+  {
+    "id": "SEC-HD-03",
+    "domain": "Standard English Conventions",
+    "subskill": "form: opening participial phrase must attach to the subject, with number fixed later in the sentence",
+    "difficulty": "hard",
+    "passage": "Fired at a temperature low enough to leave the clay body slightly porous and then buried for a decade in a bed of oak ash, ______ that no two of them carry in quite the same proportion and that potters in the region still cannot reproduce from a written recipe alone, though several have spent whole careers trying.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "potters find a glaze",
+      "the jars' acquisition of a glaze",
+      "the jars acquire a glaze",
+      "on each jar appears a glaze"
+    ],
+    "correct_answer": "the jars acquire a glaze",
+    "explanation": "Only the jars are fired and buried, so the participial phrase that opens the sentence has to be followed directly by the jars as subject. \"potters find a glaze\" makes the potters the ones fired and buried. \"on each jar appears a glaze\" both misattaches the phrase and makes the subject singular, which the later clause \"that no two of them carry in quite the same proportion\" rules out: \"them\" needs a plural antecedent. \"the jars' acquisition of a glaze\" supplies no finite verb at all, so the sentence never reaches a main clause.",
+    "topic_tag": "ceramics"
+  },
+  {
+    "id": "SEC-HD-04",
+    "domain": "Standard English Conventions",
+    "subskill": "form: agreement with a compound gerund subject, with tense fixed by the contrasting clause",
+    "difficulty": "medium",
+    "passage": "Restoring a wetland is not the same thing as leaving one alone, though policy documents often treat the two as interchangeable. Digging channels to reconnect a floodplain to its river, planting the sedges that used to grow along it, and fencing out the deer that would otherwise eat them ______, whereas letting a drained field flood costs nothing at all and produces something else entirely.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "takes years of work and a standing budget",
+      "take years of work and a standing budget",
+      "taking years of work and a standing budget",
+      "has taken years of work and a standing budget"
+    ],
+    "correct_answer": "take years of work and a standing budget",
+    "explanation": "Three gerund phrases are joined by \"and\" to form one compound subject, and a compound subject joined by \"and\" is plural, so \"take years of work and a standing budget\" is required; \"takes years of work and a standing budget\" agrees with none of the three and is invited only by the singular \"budget\" nearby. The second requirement is tense. The contrast that closes the sentence is stated in the present—\"costs nothing at all and produces something else entirely\"—so the main verb must be present as well, which rules out \"has taken years of work and a standing budget.\" \"taking years of work and a standing budget\" opens with a participle, not a finite verb, and leaves the long subject with nothing to predicate.",
+    "topic_tag": "wetland restoration"
+  },
+  {
+    "id": "SEC-HD-05",
+    "domain": "Standard English Conventions",
+    "subskill": "form: comparison must be completed with a pronoun matching the number of the compared term",
+    "difficulty": "hard",
+    "passage": "Sea otters have no blubber. A coat so dense that a square inch of it holds more hairs than a human head holds altogether does the work instead, trapping a film of air against the skin. The arrangement is expensive to run: the daily energy budgets of otters, measured against body mass, come to roughly three times ______, and an otter kept from feeding for a single day may not survive the night.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "that of seals of similar size",
+      "seals of similar size",
+      "those of a similarly sized seal's",
+      "those of seals of similar size"
+    ],
+    "correct_answer": "those of seals of similar size",
+    "explanation": "What is being compared is budgets with budgets, so the comparison has to be completed with a stand-in for the plural \"budgets\": \"those of seals of similar size.\" \"that of seals of similar size\" substitutes a singular pronoun for a plural noun. \"seals of similar size\" compares budgets to animals rather than to animals' budgets, an illogical comparison. \"those of a similarly sized seal's\" gets the number right but stacks a possessive on the preposition \"of,\" producing a double possessive that no convention of edited English allows here.",
+    "topic_tag": "marine mammals"
+  },
+  {
+    "id": "SEC-HD-06",
+    "domain": "Standard English Conventions",
+    "subskill": "form: counterfactual sequence in an inverted conditional, with voice fixed by the agent phrase",
+    "difficulty": "hard",
+    "passage": "The bridge stood for eleven years and then fell in a wind of forty-two miles an hour, well below what its designer had allowed for. The failure was not one of strength. Had the deck been stiffened with an open truss rather than with solid plate girders, the oscillation that destroyed it ______ by the drag of air moving through the structure, and the engineers who rebuilt the crossing added exactly that.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "would have been damped",
+      "would have damped out",
+      "would be damped",
+      "had been damped"
+    ],
+    "correct_answer": "would have been damped",
+    "explanation": "The inverted conditional \"Had the deck been stiffened\" describes something that did not happen in the past, and the clause that answers it must be \"would have\" plus a past participle; \"would be damped\" answers a present or future condition instead, and \"had been damped\" states the result as fact rather than as a consequence of the unfulfilled condition. The second requirement is voice. The agent phrase \"by the drag of air moving through the structure\" can attach only to a passive verb, so the active \"would have damped out\" cannot take it, and it makes the oscillation the thing that does the damping rather than the thing damped.",
+    "topic_tag": "structural engineering"
+  },
+  {
+    "id": "SEC-HD-07",
+    "domain": "Standard English Conventions",
+    "subskill": "form: correlative construction completed in parallel",
+    "difficulty": "medium",
+    "passage": "The winter diet of the ptarmigan is a study in narrow margins. The bird strips buds and catkins from dwarf birch, food that is abundant enough but so poor in protein that it barely covers the cost of digesting it. Whether a given bird lives until spring depends ______ on the length of the nights, which decide how many hours it cannot feed at all.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "not only on the quality of the food than",
+      "as much the quality of the food as",
+      "not so much on the quality of the food as",
+      "not so much on the quality of the food but"
+    ],
+    "correct_answer": "not so much on the quality of the food as",
+    "explanation": "The correlative pair here is \"not so much ... as,\" and the sentence supplies the second half as \"on the length of the nights,\" so the first half must be \"not so much on the quality of the food as.\" \"not so much on the quality of the food but\" mixes two different correlatives, pairing \"not so much\" with the \"but\" that belongs to \"not only.\" \"not only on the quality of the food than\" makes the same mistake in the other direction and adds a comparative word with nothing to compare. \"as much the quality of the food as\" drops the preposition, so the two halves of the comparison are no longer parallel: a bare noun phrase on one side and \"on the length of the nights\" on the other.",
+    "topic_tag": "arctic birds"
+  },
+  {
+    "id": "SEC-HD-08",
+    "domain": "Standard English Conventions",
+    "subskill": "form: finite verb required for parallelism in a series of predicates",
+    "difficulty": "medium",
+    "passage": "The lighthouse keeper's logbooks are dull for pages at a time and then abruptly not. Between routine entries about wicks and weather, the keeper recorded the wreck of a coal brig, described the four hours he spent in the surf with a line around his chest, and ______ he could not reach, names that appear nowhere in the official casualty list.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "listed the names of the two men",
+      "listing the names of the two men",
+      "would list the names of the two men",
+      "lists the names of the two men"
+    ],
+    "correct_answer": "listed the names of the two men",
+    "explanation": "The sentence names three things the keeper did, and the first two are finite past-tense verbs, \"recorded\" and \"described,\" so the third must match: \"listed the names of the two men.\" \"listing the names of the two men\" offers a participle instead and breaks the series, leaving the third item without a verb of the same kind as the first two. The other two choices are finite but shift the time frame the first two established: \"lists the names of the two men\" moves to the present in a sentence whose other verbs are past, and \"would list the names of the two men\" turns a single completed entry into a habitual or hypothetical one, which the following clause about names that \"appear nowhere in the official casualty list\" contradicts.",
+    "topic_tag": "lighthouse keeping"
+  },
+  {
+    "id": "SEC-HD-09",
+    "domain": "Standard English Conventions",
+    "subskill": "form: relative pronoun case governed by a preposition, with the antecedent's animacy also at issue",
+    "difficulty": "hard",
+    "passage": "Two recipe books kept in the same parish differ so sharply that historians once assumed they came from different centuries. The difference is one of audience. The elder cook wrote for a mistress who read Latin and kept the household accounts; the younger wrote for a household of servants ______ she could not assume would read at all, and her instructions accordingly measure by handfuls rather than by weight.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "most of which",
+      "most of them",
+      "most of who",
+      "most of whom"
+    ],
+    "correct_answer": "most of whom",
+    "explanation": "The relative pronoun here is the object of the preposition \"of,\" so it takes the objective form: \"most of whom.\" The subject form in \"most of who\" is a common error because the phrase goes on to serve as the subject of \"would read,\" but it is the whole phrase, not the pronoun alone, that does that work. \"most of which\" uses the pronoun reserved for things to refer to the servants. \"most of them\" is not a relative pronoun at all, so it opens a second independent clause with no conjunction and runs it into the first.",
+    "topic_tag": "early modern cookery"
+  },
+  {
+    "id": "SEC-HD-10",
+    "domain": "Standard English Conventions",
+    "subskill": "boundaries: colon introducing a list, with the clause before it required to be complete",
+    "difficulty": "medium",
+    "passage": "The chemistry of medieval ink is simple enough to reconstruct in a kitchen, and the reconstruction explains why so many charters have eaten through their own parchment. Three ingredients do nearly all of the ______ oak galls, which supply tannin; iron sulfate, which reacts with the tannin to form a black precipitate; and gum arabic, which holds the precipitate in suspension long enough for it to reach the page.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "work, including:",
+      "work:",
+      "work;",
+      "work, which are:"
+    ],
+    "correct_answer": "work:",
+    "explanation": "What follows the blank is a list of three noun phrases, not an independent clause, and \"Three ingredients do nearly all of the work\" is complete on its own, so the mark that introduces the list is a colon: \"work:.\" \"work;\" uses a semicolon, which joins two independent clauses and cannot introduce a list. \"work, including:\" and \"work, which are:\" both place a colon after a fragment—after the preposition \"including\" in one and after the linking verb \"are\" in the other—and a colon may not separate a preposition or a verb from what completes it.",
+    "topic_tag": "manuscript chemistry"
+  },
+  {
+    "id": "SEC-HD-11",
+    "domain": "Standard English Conventions",
+    "subskill": "boundaries: participial opener must be followed by a main clause, with pronoun number fixed later",
+    "difficulty": "medium",
+    "passage": "Cheese caves in the Jura are cut into limestone that holds a steady temperature all year, and the wheels stored in them are turned by hand every few days for as long as eighteen months. The racks are the expensive part. Built of spruce because spruce does not taint the rind, ______ nearly four tons apiece when full, and the affineur replaces them on a fixed schedule rather than waiting for one of them to fail.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "they hold",
+      "which hold",
+      "holding",
+      "it holds"
+    ],
+    "correct_answer": "they hold",
+    "explanation": "The opening participial phrase \"Built of spruce\" must be followed by a subject and a finite verb, and \"they hold\" supplies both. \"which hold\" turns what follows into a relative clause with no main clause for it to attach to, and \"holding\" is a participle, so both leave the sentence a fragment. \"it holds\" is finite but singular, and the sentence later refers to the same things as \"them\" and to \"one of them,\" which only a plural subject can support.",
+    "topic_tag": "cheese ageing"
+  },
+  {
+    "id": "SEC-HD-12",
+    "domain": "Standard English Conventions",
+    "subskill": "boundaries: semicolons separating series items that contain internal commas",
+    "difficulty": "medium",
+    "passage": "The 1911 catalogue lists the three presses that had agreed to print the pamphlet in translation: a cooperative in Turin, run by former typesetters from the arsenal; a family firm in Ghent, whose owner had been jailed twice ______ a single compositor in Valparaiso who set the whole text himself over four months and was paid in copies.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "for sedition; and",
+      "for sedition, and",
+      "for sedition and",
+      "for sedition; while"
+    ],
+    "correct_answer": "for sedition; and",
+    "explanation": "Each item in this series already contains a comma of its own, so the items are separated from one another by semicolons, and the last item still needs the conjunction: \"for sedition; and.\" \"for sedition, and\" adds a fourth comma to a series whose internal commas are already doing other work, so the boundaries between items disappear. \"for sedition and\" marks no boundary at all. \"for sedition; while\" replaces the conjunction with a subordinator, which cannot join a noun phrase like \"a single compositor in Valparaiso\" to the two items before it.",
+    "topic_tag": "printing history"
+  },
+  {
+    "id": "SEC-HD-13",
+    "domain": "Standard English Conventions",
+    "subskill": "form: agreement with a compound subject split by a singular appositive, with tense fixed by the frame",
+    "difficulty": "hard",
+    "passage": "A pilot's checklist and a surgeon's checklist look alike on paper and work differently in practice. The list itself and the culture that decides who may call a stop, a pairing that aviation spent forty years building and that medicine has only recently begun to copy, ______ what makes a procedure safer; either one on its own changes very little.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "together is",
+      "together are",
+      "together were",
+      "together being"
+    ],
+    "correct_answer": "together are",
+    "explanation": "The subject is compound—\"The list itself and the culture that decides who may call a stop\"—so the verb is plural, but the appositive standing between the subject and the verb is the singular \"a pairing,\" which is what makes \"together is\" look right. The second requirement is tense: the surrounding verbs are present (\"look alike,\" \"work differently,\" \"changes very little\"), so the past \"together were\" breaks the frame even though it gets the number right. \"together being\" is not a finite verb and leaves the sentence without a predicate.",
+    "topic_tag": "safety procedure"
+  },
+  {
+    "id": "SEC-HD-14",
+    "domain": "Standard English Conventions",
+    "subskill": "form: singular noun required after 'every', within a series that must be punctuated",
+    "difficulty": "medium",
+    "passage": "Nineteenth-century fire-insurance maps were drawn for underwriters, not for historians, which is why they record what burns and ignore what does not. A single sheet may give the height of every ______ the material of every roof, and the distance from each building to the nearest hydrant, information that no census of the period thought to collect.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "party walls,",
+      "party wall",
+      "party wall,",
+      "party wall's"
+    ],
+    "correct_answer": "party wall,",
+    "explanation": "\"every\" takes a singular noun, so \"party walls,\" is wrong however the series is punctuated, and \"party wall's\" adds a possessive where nothing is possessed. The second requirement is the series itself: \"the height of every party wall,\" is the first of three parallel items, and the two that follow are separated by commas, so the first must be too. \"party wall\" is singular but unpunctuated, which runs the first item straight into the second and makes \"the material of every roof\" read as a continuation of the same phrase.",
+    "topic_tag": "insurance cartography"
+  },
+  {
+    "id": "SEC-HD-15",
+    "domain": "Standard English Conventions",
+    "subskill": "boundaries: a supplement opened with a parenthesis must be closed with one, and the main verb must survive",
+    "difficulty": "hard",
+    "passage": "The standard account credits an English workshop with the Bayeux Tapestry, on the evidence of the embroidery stitches and the spelling of the inscriptions. A second line of evidence points the same way. The plant dyes (three of which appear in no surviving Norman ______ the recipes in a manuscript kept at Canterbury, and that manuscript predates the conquest by a generation.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "account) match",
+      "account, match",
+      "account match",
+      "account) which match"
+    ],
+    "correct_answer": "account) match",
+    "explanation": "The supplement begins with the parenthesis before \"three,\" so it has to end with a parenthesis: \"account) match.\" \"account, match\" closes with a comma, which does not pair with an opening parenthesis, and \"account match\" leaves the supplement open, so the reader never learns where the interruption ends. The second requirement is that the sentence still needs its main verb. \"account) which match\" closes the parenthesis correctly but turns \"match the recipes in a manuscript kept at Canterbury\" into a relative clause, leaving \"The plant dyes\" with nothing to predicate.",
+    "topic_tag": "textile history"
+  },
+  {
+    "id": "SEC-HD-16",
+    "domain": "Standard English Conventions",
+    "subskill": "form: base form required after a verb of requiring, and by parallelism with a following verb",
+    "difficulty": "hard",
+    "passage": "Ravens that cache food will move a cache if another raven watched them hide it, and they do so more readily when the watcher is a bird that has robbed them before. The behavior is easier to describe than to explain, since accounting for it seems to require that the cacher ______ rather than simply react to the presence of a competitor, and the experiments designed to separate those two possibilities have not settled the matter.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "models what another bird knows",
+      "is modeling what another bird knows",
+      "modeling what another bird knows",
+      "model what another bird knows"
+    ],
+    "correct_answer": "model what another bird knows",
+    "explanation": "\"require that\" introduces a clause in the subjunctive, where the verb takes its base form regardless of the subject, so \"models what another bird knows\" and \"is modeling what another bird knows\" both inflect a verb that should not be inflected. The second requirement points the same way from the other side of the blank: the alternative offered after \"rather than\" is the base form \"react,\" and the two must be parallel. \"modeling what another bird knows\" is parallel with nothing in the sentence and leaves the clause introduced by \"that\" without a verb.",
+    "topic_tag": "animal cognition"
+  },
+  {
+    "id": "SEC-HD-17",
+    "domain": "Standard English Conventions",
+    "subskill": "form: agreement with the nearer subject in an either/or pair, with no comma before the verb",
+    "difficulty": "hard",
+    "passage": "The failure is easy to diagnose afterward and nearly impossible to predict. Either a single overloaded transformer or ______ within the first two seconds, and everything that follows—the cascade across three states, the blackout that reaches the coast—is a consequence of that opening fault rather than of the load the grid was carrying.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "the protective relays that should isolate it trips",
+      "the protective relays that should isolate it trip",
+      "the protective relay that should isolate it trip",
+      "the protective relays that should isolate it, trip"
+    ],
+    "correct_answer": "the protective relays that should isolate it trip",
+    "explanation": "When two subjects are joined by \"either ... or,\" the verb agrees with whichever one stands nearer to it, and here that is the plural \"the protective relays,\" so the plural \"trip\" is required; \"the protective relays that should isolate it trips\" agrees with the more distant \"a single overloaded transformer\" instead. \"the protective relay that should isolate it trip\" reverses both, pairing a singular subject with a plural verb. \"the protective relays that should isolate it, trip\" gets the agreement right but puts a comma between the subject and its verb, which nothing in the sentence licenses.",
+    "topic_tag": "power systems"
+  },
+  {
+    "id": "SEC-HD-18",
+    "domain": "Standard English Conventions",
+    "subskill": "form: participial opener and the subject it modifies, with a finite verb required",
+    "difficulty": "medium",
+    "passage": "Cormorants stand with their wings spread after a dive because their feathers wet through, which looks like a design flaw until the physics is worked out. Waterlogged plumage traps less air and gives the bird less buoyancy. ______ on every stroke, and a bird that floats high has to fight the water all the way down.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "Sinking more easily, less energy is spent by the diving cormorant",
+      "By sinking more easily, the energy the cormorant spends is less",
+      "The cormorant, sinking more easily, spending less energy",
+      "Sinking more easily, the diving cormorant spends less energy"
+    ],
+    "correct_answer": "Sinking more easily, the diving cormorant spends less energy",
+    "explanation": "A participial phrase at the head of a sentence describes whatever the following clause takes as its subject, and the thing that sinks is the bird, so the clause must begin with the bird: \"Sinking more easily, the diving cormorant spends less energy.\" In \"Sinking more easily, less energy is spent by the diving cormorant\" the subject is \"less energy,\" which is not what sinks, and \"By sinking more easily, the energy the cormorant spends is less\" makes the same substitution behind a preposition. \"The cormorant, sinking more easily, spending less energy\" avoids the misattachment but offers only participles, so the sentence has no finite verb.",
+    "topic_tag": "seabird physiology"
+  },
+  {
+    "id": "SEC-HD-19",
+    "domain": "Standard English Conventions",
+    "subskill": "form: 'along with' does not create a compound subject, and the supplement must be closed",
+    "difficulty": "hard",
+    "passage": "The library's copy of the atlas is one of four known and the only one still in its original binding. The maps, along with the two blank leaves the binder inserted at the front and the strip of parchment used to reinforce the ______ from a single mill near Basel, which is how the sheets were dated even though no watermark in the volume is legible.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "spine comes",
+      "spine, comes",
+      "spine, come",
+      "spine, coming"
+    ],
+    "correct_answer": "spine, come",
+    "explanation": "A phrase introduced by \"along with\" adds information without adding to the subject, so the verb still answers to the plural \"The maps\" and must be \"come\"; \"spine, comes\" and \"spine comes\" both agree with the singular nouns inside the added phrase. The second requirement is the punctuation of that phrase: it opens with the comma after \"maps,\" so it closes with a comma before the verb, which \"spine comes\" omits, leaving the reader with no signal that the interruption has ended. \"spine, coming\" punctuates correctly but supplies a participle, so the sentence never reaches a main verb.",
+    "topic_tag": "book history"
+  },
+  {
+    "id": "SEC-HD-20",
+    "domain": "Standard English Conventions",
+    "subskill": "boundaries: comma after an introductory dependent clause, with no comma between subject and verb",
+    "difficulty": "medium",
+    "passage": "The paint on a Greek temple has almost never survived, but traces of pigment left in tool marks show that the sculpture was colored, sometimes garishly. Ultraviolet light makes the evidence easier to find. When a raking ultraviolet beam is played over a surface that looks entirely ______ show up as faint shadows, because the pigments weathered the marble beneath them at a different rate than the bare stone weathered.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "white; patterns",
+      "white patterns",
+      "white, patterns",
+      "white, patterns,"
+    ],
+    "correct_answer": "white, patterns",
+    "explanation": "\"When a raking ultraviolet beam is played over a surface that looks entirely white\" is a dependent clause, so it is set off from the main clause with a comma: \"white, patterns.\" \"white; patterns\" uses a semicolon, which requires an independent clause on both sides and has a dependent one on its left. \"white patterns\" marks no boundary, so \"white\" is read as a modifier of \"patterns\" and the introductory clause never closes. \"white, patterns,\" opens the main clause correctly and then inserts a comma between the subject \"patterns\" and its verb \"show,\" which no convention permits.",
+    "topic_tag": "classical sculpture"
+  },
+  {
+    "id": "SEC-HD-21",
+    "domain": "Standard English Conventions",
+    "subskill": "form: subject-auxiliary inversion after a fronted 'not only', with the auxiliary agreeing",
+    "difficulty": "hard",
+    "passage": "Sourdough is a partnership rather than a single organism, and the partnership is unusually tight. Not only ______ in the culture, but neither can do without the other: the yeasts cannot use the maltose that flour supplies in quantity, and the bacteria, which can use it, release the glucose that the yeasts then take up.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "wild yeasts and lactic acid bacteria live together",
+      "does wild yeasts and lactic acid bacteria both live",
+      "have wild yeasts and lactic acid bacteria both live",
+      "do wild yeasts and lactic acid bacteria both live"
+    ],
+    "correct_answer": "do wild yeasts and lactic acid bacteria both live",
+    "explanation": "When \"Not only\" is fronted to the head of a clause, the subject and an auxiliary change places, so the clause has to open with an auxiliary: \"do wild yeasts and lactic acid bacteria both live.\" \"wild yeasts and lactic acid bacteria live together\" keeps the ordinary order and leaves the fronted \"Not only\" unaccounted for. The second requirement is that the auxiliary agree with the compound plural subject, which \"does wild yeasts and lactic acid bacteria both live\" fails. \"have wild yeasts and lactic acid bacteria both live\" inverts with an auxiliary that cannot take a bare base form after it.",
+    "topic_tag": "fermentation"
+  },
+  {
+    "id": "SEC-HD-22",
+    "domain": "Standard English Conventions",
+    "subskill": "boundaries: a state name after a city is enclosed in commas, and a compound predicate is not split",
+    "difficulty": "medium",
+    "passage": "The type foundry that cast the roman face used in the first American edition of the poems operated for only nine years. It opened in Chambersburg, ______ and closed after the presses were burned during a cavalry raid in 1864, which is why fewer than a dozen sheets printed from the original matrices survive anywhere.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "Pennsylvania in 1855",
+      "Pennsylvania, in 1855,",
+      "Pennsylvania in 1855,",
+      "Pennsylvania, in 1855"
+    ],
+    "correct_answer": "Pennsylvania, in 1855",
+    "explanation": "A state name following a city is a supplement and takes a comma on each side, so \"Pennsylvania\" needs the comma that already precedes it and one after it: \"Pennsylvania, in 1855.\" \"Pennsylvania in 1855\" and \"Pennsylvania in 1855,\" leave the supplement open on its right. The second requirement is that \"opened\" and \"closed\" share the subject \"It\" and form a single compound predicate, not two clauses, so no comma belongs before \"and closed\"; \"Pennsylvania, in 1855,\" punctuates the state correctly and then inserts that comma anyway.",
+    "topic_tag": "type founding"
+  },
+  {
+    "id": "SEC-HD-23",
+    "domain": "Standard English Conventions",
+    "subskill": "form: past perfect for an event anterior to a past frame, with voice fixed by the agent phrase",
+    "difficulty": "hard",
+    "passage": "The transatlantic cable of 1858 worked for three weeks and then went dead, and at least one engineer knew why before it was laid. By the time the final splice was made off Valentia, the insulation on the shore end ______ twice in the sun by crews who had no reason to think it mattered, and gutta-percha that has once been overheated does not recover its resistance.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "had already grown soft",
+      "has already been softened",
+      "had already been softened",
+      "was already softening"
+    ],
+    "correct_answer": "had already been softened",
+    "explanation": "\"By the time the final splice was made\" sets a point in the past and asks what had happened before it, which is the work of the past perfect, so \"has already been softened\" is in the wrong frame and \"was already softening\" describes something still going on at that point rather than finished. The second requirement is voice: the agent phrase \"by crews who had no reason to think it mattered\" can attach only to a passive verb. \"had already grown soft\" has the right tense but is active, so the agent phrase has nothing to attach to and the crews drop out of the sentence entirely.",
+    "topic_tag": "submarine telegraphy"
+  },
+  {
+    "id": "SEC-HD-24",
+    "domain": "Standard English Conventions",
+    "subskill": "form: agreement with a singular subject standing apart from a plural quantity phrase",
+    "difficulty": "medium",
+    "passage": "A cathedral organ's pipes are tuned to a temperature as much as to a pitch, and the temperature that matters is the one the building holds with a congregation in it rather than the one it holds when empty. The difference between the two ______ to be audible from the back of the nave, which is why tuners work in a heated church and why the first hour of a winter service can sound sour.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "often grow wide enough",
+      "often grows wide enough",
+      "often growing wide enough",
+      "have often grown wide enough"
+    ],
+    "correct_answer": "often grows wide enough",
+    "explanation": "The subject is the singular noun \"difference\"; \"between the two\" says what the difference is measured across and does not make it plural, so \"often grow wide enough\" and \"have often grown wide enough\" agree with the quantity phrase rather than with the subject. The second requirement is that the sentence needs a finite verb in the present, since the clauses that follow are present (\"tuners work in a heated church,\" \"the first hour of a winter service can sound sour\"): \"have often grown wide enough\" shifts the frame even apart from its number, and \"often growing wide enough\" is a participle, which leaves the sentence a fragment.",
+    "topic_tag": "organ tuning"
+  }
+]

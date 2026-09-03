@@ -66,6 +66,15 @@ function oneEditApart(a, b) {
 export function scoreItem(choices, key) {
   const toks = choices.map(tokens)
   if (toks.some(t => t.length === 0)) return null
+  // A set of four BARE NUMBERS tokenizes to four one-token arrays, and any two
+  // single-token arrays are one substitution apart. So every all-numeric set
+  // came out fully connected: deg 3, ties 4, credit exactly 0.25 — the control
+  // value — no matter what the numbers were. Four unrelated integers scored the
+  // same as a deliberate hub, and a whole numeric batch printed "margin 0.0pts",
+  // which reads like a pass. This checker measures SYMBOLIC structure and has
+  // nothing to say about bare values; numeric option sets belong to
+  // check-math-hub.mjs, whose detector compares them arithmetically.
+  if (toks.every(t => t.length <= 1)) return null
   const deg = toks.map((t, i) => toks.filter((u, j) => j !== i && oneEditApart(t, u)).length)
   const best = Math.max(...deg)
   if (best === 0) return null                    // unstructured set: not scored
@@ -99,6 +108,24 @@ function selftest() {
   const ctrlOk = Math.abs(total - 1) < 1e-9
   if (!ctrlOk) ok = false
   console.log(`${ctrlOk ? 'ok  ' : 'FAIL'}  credits over all four key positions sum to ${total.toFixed(4)} (must be 1.0000 = a 25% control)`)
+  // The vacuity guard. Before it, any four bare numbers came back deg 3 /
+  // ties 4 / credit 0.25 — the control value — because two single-token
+  // arrays are always one substitution apart. A whole numeric batch printed
+  // "margin 0.0pts", which reads like a pass on a checker that had measured
+  // nothing. Numeric sets belong to check-math-hub.mjs.
+  const vac = [
+    { name: 'four unrelated bare numbers are not symbolic structure', ch: ['7', '41', '93', '1288'] },
+    { name: 'a genuine NUMERIC hub is still not this checker\'s job', ch: ['5', '6', '12', '25'] },
+  ]
+  for (const v of vac) {
+    const pass = scoreItem(v.ch, v.ch[0]) === null
+    if (!pass) ok = false
+    console.log(`${pass ? 'ok  ' : 'FAIL'}  ${v.name}`)
+  }
+  const mixed = scoreItem(['x + 1', 'x + 2', '3', '4'], 'x + 1') !== null
+  if (!mixed) ok = false
+  console.log(`${mixed ? 'ok  ' : 'FAIL'}  a set with real expressions is still scored`)
+
   console.log(ok ? '\nself-test passed.' : '\nSELF-TEST FAILED.')
   process.exit(ok ? 0 : 1)
 }
