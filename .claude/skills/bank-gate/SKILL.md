@@ -64,6 +64,7 @@ Read the number against the family bar in `scripts/study-bank/ledger.json`
 | choose_response | margin <= +25.5 (+4 tolerance) | cr-v7 shipped at +1.4; cr-v10 at +9.2 |
 | daily_life / announcement (TOEFL MC) | at or below control | dl-fresh -1.4; announcement-v4 HELD at +58 |
 | sat_rw | <= published +36.2 | |
+| sat_math (options-only) | <= +5.6 | the LIVE shipped bank measures +5.6 on this instrument; alg-hard-v1 banked at -6.9, adv-hard-v1 and v2 held at +26.4 and +20.8 |
 | ACT English/Reading/Science | model number is a SCREEN only | model 71-79%, human 10% |
 
 Read the solvers' heuristic reports. If every solver names the same
