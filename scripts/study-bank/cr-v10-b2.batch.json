@@ -1,0 +1,342 @@
+[
+  {
+    "id": "CR10-B2-01",
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Nobody can swap shifts this week, manager says.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Sure, as long as I'm out of here by eleven.",
+      "Good, I was about to offer to take it.",
+      "Then I'll ask her about the week after.",
+      "I paid him back with the Sunday brunch shift."
+    ],
+    "correct_answer": "Then I'll ask her about the week after.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The speaker is relaying that a swap has been refused for this week. Asking the manager about the following week takes the refusal as given and moves to the next option. The reply agreeing to cover with a condition answers a request to cover a shift, which nobody made; the reply saying they were about to offer assumes someone else has already stepped in, when nobody can swap at all; the reply about paying someone back with a brunch shift answers a reminder about a shift owed, which nobody raised."
+  },
+  {
+    "id": "CR10-B2-02",
+    "type": "multiple_choice",
+    "passage": "Transcript: \"There's an old tag on this one.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Oh, right, let me pull that off.",
+      "I'll move some books into my backpack.",
+      "No, I added a second one online last night.",
+      "Then I'll check it, if that's still free."
+    ],
+    "correct_answer": "Oh, right, let me pull that off.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The agent is pointing out a leftover routing tag that has to come off before the bag is checked. Offering to remove it is the reply that does what the remark is asking. The reply about moving books into a backpack answers an overweight warning; the reply about having added a second bag online answers being told only one bag has been paid for; the reply about checking it if that is free answers being told the bag is too big for the cabin."
+  },
+  {
+    "id": "CR10-B2-03",
+    "type": "multiple_choice",
+    "passage": "Transcript: \"The plumber can only come Tuesday between nine and one.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "So is the valve something you'll be replacing?",
+      "Oh, good, I'll turn it on tonight.",
+      "Any afternoon this week works for me.",
+      "I'll leave a key with the neighbor, then."
+    ],
+    "correct_answer": "I'll leave a key with the neighbor, then.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The landlord is giving a single, narrow visit window on a weekday morning. Arranging a key with a neighbour accepts that window and solves the access problem it creates. The reply asking whether the valve will be replaced assumes a diagnosis that has not been given; the reply about turning the heating on tonight assumes the repair is already done; the reply offering any afternoon ignores that the plumber can only come between nine and one."
+  },
+  {
+    "id": "CR10-B2-04",
+    "type": "multiple_choice",
+    "passage": "Transcript: \"You've still got two refills on this.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Oh, fine, what's the earliest slot you've got?",
+      "Oh, I thought I'd used them both.",
+      "Which pharmacy did it go to this time?",
+      "It was written in July, that's not expired."
+    ],
+    "correct_answer": "Oh, I thought I'd used them both.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The pharmacist is correcting the customer's belief that the prescription had run out. Admitting the mistaken assumption is the reply that takes up the correction. The reply asking for the earliest slot answers being told the doctor must see them first; the reply asking which pharmacy it went to answers being told the order is waiting elsewhere; the reply about it being written in July answers being told the prescription has expired."
+  },
+  {
+    "id": "CR10-B2-05",
+    "type": "multiple_choice",
+    "passage": "Transcript: \"This one's been worn, there's makeup on the collar.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "That's fine, I'll spend it today anyway.",
+      "That was there when I bought it.",
+      "Ten days? Last time it was back by Friday.",
+      "Ah, that explains why the sleeves were so long."
+    ],
+    "correct_answer": "That was there when I bought it.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The assistant is refusing the return on the grounds that the jacket has been worn, citing a mark. Saying the mark was already there when it was bought disputes that premise directly. The reply accepting store credit answers being told there is no receipt; the reply objecting to ten days answers being told how long a refund takes; the reply about the sleeves answers being told it is the wrong cut."
+  },
+  {
+    "id": "CR10-B2-06",
+    "type": "multiple_choice",
+    "passage": "Transcript: \"We're getting the floors done next week.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "That was the movers, not the floor guys.",
+      "No problem, I'm not going anywhere till noon.",
+      "A crew from Lakeside, I'll text you the number.",
+      "Don't worry about it, we're away till the twentieth."
+    ],
+    "correct_answer": "Don't worry about it, we're away till the twentieth.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The neighbour is warning about noise to come. Saying they will be away puts the neighbour at ease about the disruption. The reply blaming the movers answers a complaint about a previous crew blocking the hall; the reply about not going anywhere till noon answers an apology for a blocked driveway; the reply naming the crew answers being asked who did the floors."
+  },
+  {
+    "id": "CR10-B2-07",
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Could you wipe the old one before you hand it back to us?\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Do I need to back anything up first?",
+      "That's fine, I mostly use the external monitor.",
+      "Then can someone look at this fan noise meanwhile?",
+      "Strange, my manager approved it back in June."
+    ],
+    "correct_answer": "Do I need to back anything up first?",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "IT is asking for the old machine to be wiped before it comes back. Asking whether anything needs backing up first is the practical question that request raises. The reply about mostly using an external monitor answers being told the new laptop is a smaller screen; the reply about the fan noise answers being told the new laptops are delayed; the reply about the manager approving it answers being told they are not on the list."
+  },
+  {
+    "id": "CR10-B2-08",
+    "type": "multiple_choice",
+    "passage": "Transcript: \"We've put you on the fourth floor, facing the courtyard.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Is there somewhere to wait until then?",
+      "The double, please, the twin was a mistake.",
+      "That's fine, is that the quiet side?",
+      "It was when I booked through the website."
+    ],
+    "correct_answer": "That's fine, is that the quiet side?",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The receptionist is telling the guest where the room is. Accepting and asking whether that side is quiet responds to the placement being described. The reply asking where to wait until then answers being told the room is not ready yet; the reply choosing the double answers a question about room type; the reply about what the website offered answers being told breakfast is not included."
+  },
+  {
+    "id": "CR10-B2-09",
+    "type": "multiple_choice",
+    "passage": "Transcript: \"It's yours if you sign by Friday.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "My last place was my uncle's, does that count?",
+      "Could you let me know if they fall through?",
+      "The listing didn't mention any agency fee.",
+      "That works, I'll bring the deposit with me."
+    ],
+    "correct_answer": "That works, I'll bring the deposit with me.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The agent is offering the flat on a deadline. Agreeing to the deadline and mentioning the deposit closes the offer. The reply about the uncle answers a demand for landlord references; the reply asking to be told if they fall through answers being told someone else applied first; the reply about the listing answers being told there is an agency fee on top of the rent."
+  },
+  {
+    "id": "CR10-B2-10",
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Nothing to eat till the numbness wears off.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "I floss every night, the back ones bleed anyway.",
+      "That's a lot longer than the last one managed.",
+      "Roughly how long does that usually take?",
+      "Should I change it out every twenty minutes?"
+    ],
+    "correct_answer": "Roughly how long does that usually take?",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The dentist is giving an instruction whose end point is the numbness wearing off. Asking how long that takes is the question the instruction leaves open. The reply insisting they floss answers a remark that they have not been flossing; the reply comparing it to the last one answers being told how long the filling should last; the reply about changing it out answers being told to bite on gauze."
+  },
+  {
+    "id": "CR10-B2-11",
+    "type": "multiple_choice",
+    "passage": "Transcript: \"You'll want the two-meter cable, honestly, the short one's useless in a car.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "It's for my desk, so the short one's fine.",
+      "Then which one do I need for this phone?",
+      "I need it tonight, so I'll pay the difference.",
+      "Then it should be marked down, surely."
+    ],
+    "correct_answer": "It's for my desk, so the short one's fine.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The assistant is recommending the longer cable on the assumption it is for a car. Declining because it is for a desk removes the reason behind the recommendation. The reply asking which one fits this phone answers being told the cable is for an older model; the reply about paying the difference answers being told it is cheaper online; the reply about marking it down answers being told the last one has an opened box."
+  },
+  {
+    "id": "CR10-B2-12",
+    "type": "multiple_choice",
+    "passage": "Transcript: \"The courier left your parcel out on the front step, in the rain.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Thanks, I'll come by after dinner if that's okay.",
+      "Not again, they never ring the bell.",
+      "It's been there one night, not days.",
+      "Tell him I'll be down there in a second."
+    ],
+    "correct_answer": "Not again, they never ring the bell.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The neighbour is reporting that the delivery was dumped outside in bad weather. Complaining that the courier never rings the bell reacts to what happened. The reply about coming by after dinner answers being told the neighbour took the parcel in; the reply about it being there one night answers a complaint that the parcel has blocked the hall for days; the reply asking to tell him they are coming down assumes the courier is still there."
+  },
+  {
+    "id": "CR10-B2-13",
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Why don't the numbers on slide six match the summary?\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "The summary's right, six still has the draft figures.",
+      "Design only sent the new one this morning.",
+      "Then I'll blur them out for tomorrow.",
+      "Who over there should I send it to?"
+    ],
+    "correct_answer": "The summary's right, six still has the draft figures.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The manager has spotted a discrepancy and wants it explained. Saying which figures are current and where the stale ones sit answers that question. The reply about design only sending it this morning answers being told the old template was used; the reply about blurring names answers being told legal has not cleared them; the reply asking who to send it to answers being told finance wants to see it."
+  },
+  {
+    "id": "CR10-B2-14",
+    "type": "multiple_choice",
+    "passage": "Transcript: \"That's an 8:40 ticket, not 8:10.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "It says first class on the ticket, look.",
+      "Sorry, is there a fee to change it?",
+      "Right, I'll walk down at the next stop.",
+      "Okay, which stop do I switch at?"
+    ],
+    "correct_answer": "Sorry, is there a fee to change it?",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The conductor is pointing out that the passenger is on an earlier train than the ticket allows. Apologising and asking about a change fee deals with that. The reply pointing to first class on the ticket answers being told they are in the wrong class of carriage; the reply about walking down at the next stop answers being told they are in the wrong coach; the reply asking which stop to switch at answers being told the train does not stop at their station."
+  },
+  {
+    "id": "CR10-B2-15",
+    "type": "multiple_choice",
+    "passage": "Transcript: \"The deposit goes back in full within ten days.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "Could I paint over them myself this weekend?",
+      "Then I'll get the movers here by eight.",
+      "It should go to Sam, he paid it originally.",
+      "Tell them fifty and they can have it."
+    ],
+    "correct_answer": "It should go to Sam, he paid it originally.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The landlord is confirming a full refund. Pointing out who actually paid the deposit redirects the refund to the right person. The reply about painting over them answers being told money will be withheld for marks; the reply about booking the van for the morning answers being told to be out by noon; the reply about fifty answers being asked whether they will sell the bookcase."
+  },
+  {
+    "id": "CR10-B2-16",
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Is this a follow-up or something new?\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "That's fine, as long as it's still Thursday.",
+      "I'll take it, I'm up early anyway.",
+      "I cancelled that one a week in advance.",
+      "My knee this time, it's never been looked at."
+    ],
+    "correct_answer": "My knee this time, it's never been looked at.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The receptionist needs to know what kind of appointment to book. Naming a new complaint that has not been seen before answers that. The reply accepting as long as it is still Thursday answers being offered a different doctor; the reply taking it because they are up early answers being offered an early slot; the reply about cancelling in advance answers being told a missed-appointment fee applies."
+  },
+  {
+    "id": "CR10-B2-17",
+    "type": "multiple_choice",
+    "passage": "Transcript: \"We can do the cake, but not the writing in gold.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "I definitely wrote Saturday on the form.",
+      "Chocolate, please, half of them can't stand sponge.",
+      "White icing's fine, as long as it says Maya.",
+      "Is Friday evening an option for pickup?"
+    ],
+    "correct_answer": "White icing's fine, as long as it says Maya.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The baker is accepting the order minus one detail. Dropping the gold and keeping the name accepts the order on the terms offered. The reply insisting Saturday was written on the form answers being told the order is down for a different day; the reply choosing chocolate answers a question about the base; the reply asking about Friday evening answers being told Saturday orders are closed."
+  },
+  {
+    "id": "CR10-B2-18",
+    "type": "multiple_choice",
+    "passage": "Transcript: \"The maple's roots are lifting your path.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "I'll clear them out for you this weekend.",
+      "Shame, the shade was lovely in August.",
+      "Then half the pruning bill is yours too.",
+      "So that's why the pavers went crooked."
+    ],
+    "correct_answer": "So that's why the pavers went crooked.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The neighbour is pointing out a cause the listener had not connected to a problem they already had. Recognising that this explains the crooked pavers takes up the observation. The reply about clearing them out answers a complaint about leaves in the gutters; the reply about missing the shade answers being told the tree is coming down; the reply about the pruning bill answers a claim that half the tree is on the neighbour's side."
+  },
+  {
+    "id": "CR10-B2-19",
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Anything over fifty needs your director's sign-off first.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "The hotel emailed it the day after checkout.",
+      "Her signature's already on the second page.",
+      "Right, I'll take it off the form.",
+      "Perfect, that's a lot sooner than I expected."
+    ],
+    "correct_answer": "Her signature's already on the second page.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "Finance is holding the claim for a missing approval. Pointing out that the approval is already on the form corrects that. The reply about the hotel emailing it after checkout answers being told a receipt is dated after the trip; the reply about taking it off the form answers being told the item was paid on the company card; the reply about it being sooner than expected answers being told the claim has gone through."
+  },
+  {
+    "id": "CR10-B2-20",
+    "type": "multiple_choice",
+    "passage": "Transcript: \"Weren't you due back yesterday? That's an extra day.\"",
+    "passageGroupId": null,
+    "prompt": "[Choose a Response] Which is the most natural reply?",
+    "choices": [
+      "The booking ran through today, check the contract.",
+      "Can I top it up at the station first?",
+      "That's on the pickup photos from Monday.",
+      "Then I'll walk, it's only across the road."
+    ],
+    "correct_answer": "The booking ran through today, check the contract.",
+    "difficulty": "hard",
+    "listeningTask": "choose_response",
+    "explanation": "The agent is charging for a late return that the customer believes is not late. Pointing to the booking dates in the contract disputes the extra day. The reply offering to top it up and come back answers being told the tank is under a quarter; the reply about the pickup photos answers being shown a scratch; the reply about walking answers being told the shuttle has just left."
+  }
+]
