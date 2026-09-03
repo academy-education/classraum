@@ -96,6 +96,10 @@ for (const [di, domain] of domains.entries()) {
     let q = db.from('study_item_bank').select('id, item')
       .eq('domain', domain).neq('archived', true).order('id', { ascending: true }).range(f, f + 999)
     if (FAMILY) q = q.eq('family', FAMILY)
+    // DRAW_COHORT=cr-v10 restricts to one cohort: "Choose a Response" is a
+    // domain shared by cr-v7 (human-tested) and cr-v10 (not), and a sitting
+    // that mixes them cannot answer the question about the new one.
+    if (process.env.DRAW_COHORT) q = q.eq('cohort', process.env.DRAW_COHORT)
     const { data, error } = await q
     if (error) throw new Error(error.message)
     pool.push(...data); if (data.length < 1000) break
