@@ -1616,6 +1616,35 @@ export async function assembleFromItemIds(
   }
 }
 
+/**
+ * Order one domain's items for a draw that PREFERS a difficulty band.
+ *
+ *   1. unseen items in the requested band(s)   (seeded order)
+ *   2. unseen items in the neighbouring bands   (hard route: medium, then
+ *                                                easy; easy/medium route:
+ *                                                hard last)
+ *   3. seen items in the requested band(s)      (oldest exposure first)
+ *   4. seen items in the other bands
+ *
+ * With no band requested it is plain unseen-first. Exported for tests.
+ */
+export function rankByBand<T extends { id: string; difficulty: 'easy' | 'medium' | 'hard' }>(
+  items: T[],
+  wanted: Array<'easy' | 'medium' | 'hard'> | null,
+  exposures: Map<string, string>,
+  seed: string,
+): T[] {
+  if (!wanted || wanted.length === 0) return unseenFirst(items, exposures, seed)
+  const order = wanted.includes('hard') ? ['medium', 'easy'] : ['medium', 'hard', 'easy']
+  const primary = items.filter(r => wanted.includes(r.difficulty))
+  const rest = items.filter(r => !wanted.includes(r.difficulty))
+    .sort((a, b) => order.indexOf(a.difficulty) - order.indexOf(b.difficulty))
+  const p = unseenFirst(primary, exposures, seed)
+  const r = unseenFirst(rest, exposures, seed + ':fallback')
+  const seen = (x: T) => exposures.has(x.id)
+  return [...p.filter(x => !seen(x)), ...r.filter(x => !seen(x)), ...p.filter(seen), ...r.filter(seen)]
+}
+
 export async function assembleFromBank(p: AssembleParams, seed = 'bank'): Promise<AssembledTest> {
   const family = p.family ?? 'sat'
   let query = dbAdmin
@@ -1625,8 +1654,15 @@ export async function assembleFromBank(p: AssembleParams, seed = 'bank'): Promis
     .eq('section', p.section)
     .eq('verified', true)
     .eq('archived', false)
-  if (p.difficulties?.length) query = query.in('difficulty', p.difficulties)
-
+  // `difficulties` used to be a SQL filter here. On the SAT R&W hard route
+  // that meant a domain whose HARD band is thin (Standard English
+  // Conventions: 12 hard items against a 7-per-form quota, 2026-09-03) ran
+  // dry on a student's second form: unseen-first then handed back the same
+  // items, and the domain-fill loop below topped the module up with OTHER
+  // domains' hard items, bending the blueprint without a word. The whole
+  // section is read now and the band is a PREFERENCE within each domain -
+  // see rankByBand - so a thin band costs difficulty inside its own domain
+  // rather than repeats or a different domain mix.
   const { data, error } = await query
   if (error) throw new Error(`assemble query failed: ${error.message}`)
   const rows = (data ?? []).flatMap(row => {
@@ -1635,22 +1671,20 @@ export async function assembleFromBank(p: AssembleParams, seed = 'bank'): Promis
       console.error('[assemble] skipping malformed study_item_bank row', row.id)
       return []
     }
-    return [{ id: row.id, domain: row.domain, difficulty: row.difficulty, item }]
+    return [{ id: row.id, domain: row.domain, difficulty: (row.difficulty ?? 'medium') as 'easy' | 'medium' | 'hard', item }]
   })
   if (rows.length === 0) throw new Error(`no verified items for ${family}/${p.section}`)
 
-  // Bucket by domain; within each bucket unseen items come first (in
-  // seeded-shuffle order), then already-seen items oldest-first, so a
-  // repeat can only happen once the student has exhausted a domain.
+  // Bucket by domain; within each bucket the requested band's unseen items
+  // come first, then the neighbouring band's unseen items, then repeats -
+  // a repeat is worse than a medium item on a hard route.
   const exposures = p.studentId ? await loadExposures(p.studentId) : new Map<string, string>()
   type Row = { id: string; item: Question }
   const byDomain = new Map<string, Row[]>()
-  for (const r of rows) {
-    const list = byDomain.get(r.domain) ?? []
-    list.push({ id: r.id, item: r.item })
-    byDomain.set(r.domain, list)
+  for (const d of new Set(rows.map(r => r.domain))) {
+    const inDomain = rows.filter(r => r.domain === d).map(r => ({ id: r.id, item: r.item, difficulty: r.difficulty }))
+    byDomain.set(d, rankByBand(inDomain, p.difficulties ?? null, exposures, seed + d))
   }
-  for (const d of byDomain.keys()) byDomain.set(d, unseenFirst(byDomain.get(d)!, exposures, seed + d))
 
   // Draw per-domain quotas from the College Board blueprint so the test
   // mirrors the real exam's weighting. Fall back to whatever domains
@@ -1808,6 +1842,25 @@ export async function assembleActSection(p: {
       else console.warn(`[assemble] act/reading has no full ${genre} passage`)
     }
     picked = byGenre.flat()
+  } else if (block.key === 'science') {
+    /* Seven passages in ACT's own sequence on form 25MC5 (DR, CV, RS, RS,
+       CV, RS, DR), sized as that form sizes them: DR 5, RS 6, CV 6 -> 40.
+       A passage's format is in `task` (act-bank-helper writes it). A
+       format with too few full passages is reported SHORT, never
+       back-filled from another format - a form with four Research
+       Summaries is not an ACT Science section. */
+    const SEQUENCE: Array<['data_representation' | 'research_summaries' | 'conflicting_viewpoints', number]> = [
+      ['data_representation', 5], ['conflicting_viewpoints', 6], ['research_summaries', 6],
+      ['research_summaries', 6], ['conflicting_viewpoints', 6], ['research_summaries', 6], ['data_representation', 5],
+    ]
+    const used = new Set<string>()
+    const out: ActRow[][] = []
+    for (const [format, per] of SEQUENCE) {
+      const [g] = takePassages(ranked, 1, per, grp => grp[0].task === format && !used.has(grp[0].passageGroupId ?? ''))
+      if (g) { out.push(g); used.add(g[0].passageGroupId ?? '') }
+      else console.warn(`[assemble] act/science has no full ${format} passage left`)
+    }
+    picked = out.flat()
   } else {
     picked = seededShuffle(drawByPassage(ranked, block.questions, 1), seed + ':order')
   }

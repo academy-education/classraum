@@ -51,15 +51,25 @@ if (!cmd || !section || !file || (cmd === 'insert' && !cohort)) {
   console.error('usage: act-bank-helper.mjs check|insert english|reading <batch.json> [cohort] [--apply]')
   process.exit(1)
 }
-if (!['english', 'reading'].includes(section)) { console.error(`section must be english or reading (math uses math-bank-helper.mjs)`); process.exit(1) }
+if (!['english', 'reading', 'science'].includes(section)) { console.error(`section must be english, reading or science (math uses math-bank-helper.mjs)`); process.exit(1) }
 
 /* Mirrors src/lib/study/act-test.ts. Kept literal here so this script
    has no TS import path to break; act-blueprint.test.ts pins the source. */
 const PER_PASSAGE = { english: 10, reading: 9 }
 const GENRES = ['literary_narrative', 'social_science', 'humanities', 'natural_science']
+/* Science: seven passages per form in three formats, sized as ACT ships
+   them on form 25MC5 (DR 5, RS 6, CV 6 -> 10 + 18 + 12 = 40). A passage's
+   `format` drives the draw (assembleActSection takes 2 DR, 3 RS, 2 CV) and
+   is stored in the row's `task`, the way reading stores its genre. Every
+   item of a Data Representation or Research Summaries passage must carry
+   the same `graphic` (a table, bar, line or svg figure) - a science item
+   with no data to read is a reading item. Conflicting Viewpoints is prose
+   and may omit it. */
+const SCIENCE_FORMATS = { data_representation: 5, research_summaries: 6, conflicting_viewpoints: 6 }
 const DOMAINS = {
   english: ['Production of Writing', 'Knowledge of Language', 'Conventions of Standard English'],
   reading: ['Key Ideas and Details', 'Craft and Structure', 'Integration of Knowledge and Ideas'],
+  science: ['Interpretation of Data', 'Scientific Investigation', 'Evaluation of Models, Inferences, and Experimental Results'],
 }
 
 const batch = JSON.parse(readFileSync(file, 'utf8'))
@@ -99,6 +109,14 @@ for (const it of batch) {
       || /\bparagraph\s*\d|\bPoint\s*\[?[A-D]\]?|\bessay as a whole|\bpreceding passage|\bsequence of sentences/i.test(it.prompt)
     if (!located) problems.push(`${tag}: stem neither quotes a span nor names a paragraph/point/whole essay — the student cannot locate what is being revised`)
   }
+  if (section === 'science') {
+    if (!(it.format in SCIENCE_FORMATS)) problems.push(`${tag}: format "${it.format}" is not one of ${Object.keys(SCIENCE_FORMATS).join(' | ')}`)
+    if (/\b(figure|table)\s+\d/i.test(it.prompt) && !it.graphic) problems.push(`${tag}: stem cites a figure or table but the item carries no graphic`)
+    if (it.format !== 'conflicting_viewpoints' && !it.graphic) problems.push(`${tag}: ${it.format} item has no graphic - nothing for the student to read data from`)
+    if (it.graphic && !['table', 'twowaytable', 'bar', 'histogram', 'line', 'scatter', 'svg'].includes(String(it.graphic.type ?? '').toLowerCase())) problems.push(`${tag}: graphic.type "${it.graphic.type}" is not one the runner renders`)
+    if (it.graphic?.type === 'svg' && !/^<svg[\s>]/.test(String(it.graphic.svg ?? '').trim())) problems.push(`${tag}: graphic.type svg but graphic.svg is not an <svg> element`)
+    if (/\blines?\s+\d+/i.test(it.prompt)) problems.push(`${tag}: stem cites a line number`)
+  }
   if (section === 'reading' && /most nearly means/i.test(it.prompt)) {
     /* The B5 finding, made decidable: a vocab stem whose target word
        occurs more than once in the passage must quote a longer phrase
@@ -127,8 +145,13 @@ for (const it of batch) {
 const groups = {}
 for (const it of batch) (groups[it.passage_id] = groups[it.passage_id] ?? []).push(it)
 for (const [pid, g] of Object.entries(groups)) {
-  const want = PER_PASSAGE[section]
-  if (g.length !== want) problems.push(`passage ${pid}: ${g.length} items, section needs exactly ${want}`)
+  const want = section === 'science' ? SCIENCE_FORMATS[g[0].format] : PER_PASSAGE[section]
+  if (g.length !== want) problems.push(`passage ${pid}: ${g.length} items, ${section === 'science' ? `a ${g[0].format} passage` : 'section'} needs exactly ${want}`)
+  if (section === 'science') {
+    if (new Set(g.map(i => i.format)).size !== 1) problems.push(`passage ${pid}: mixed formats within one passage`)
+    if (g[0].format !== 'conflicting_viewpoints' && new Set(g.map(i => JSON.stringify(i.graphic ?? null))).size !== 1) problems.push(`passage ${pid}: items do not share an IDENTICAL graphic - the runner shows the figure under every question of the passage`)
+    if (g[0].format === 'conflicting_viewpoints' && !/(Scientist|Student|Hypothesis|Theory)\s+[12AB]/.test(g[0].passage)) problems.push(`passage ${pid}: conflicting_viewpoints passage has no labelled viewpoints (Scientist 1 / Scientist 2 ...)`)
+  }
   // RAW comparison. The client's passageKey() canonicalises whitespace
   // before grouping, so it would survive a stray space - but byte identity
   // is what the authoring brief promised, it is free to demand, and a
@@ -153,6 +176,10 @@ console.log('domain mix:', Object.entries(dom).map(([k, v]) => `${k} ${v} (${(10
 if (section === 'reading') {
   const gen = {}; for (const g of Object.values(groups)) gen[g[0].genre] = (gen[g[0].genre] ?? 0) + 1
   console.log('genres:', JSON.stringify(gen), ' paired passages:', Object.values(groups).filter(g => g[0].paired).length)
+}
+if (section === 'science') {
+  const fm = {}; for (const g of Object.values(groups)) fm[g[0].format] = (fm[g[0].format] ?? 0) + 1
+  console.log('formats (passages):', JSON.stringify(fm), ' - a form needs DR 2, RS 3, CV 2')
 }
 
 if (problems.length) {
@@ -183,6 +210,9 @@ for (const it of batch) {
     correct_answer: it.correct_answer, explanation: it.explanation, difficulty: it.difficulty,
     passageGroupId: `${cohort}:${it.passage_id}`,
     ...(it.passage_title ? { passage_title: it.passage_title } : {}),
+    // Science figures/tables ride on the item (QuestionGraphicView renders
+    // item.graphic under the stem); the helper refuses DR/RS items without one.
+    ...(it.graphic ? { graphic: it.graphic } : {}),
   }
   const content_hash = hashOf(item)
   if (seen.has(content_hash)) { console.log(`DUP ${it.id}`); dup++; continue }
@@ -190,13 +220,13 @@ for (const it of batch) {
     family: 'act', section, domain: it.domain, subskill: it.subskill ?? null,
     // `task` carries the GENRE for reading (the assembler draws one passage
     // per genre off it) and the item type for english. NOT NULL since 068.
-    task: section === 'reading' ? it.genre : 'multiple_choice',
+    task: section === 'reading' ? it.genre : section === 'science' ? it.format : 'multiple_choice',
     item_type: 'multiple_choice', difficulty: it.difficulty, topic_tag: it.subskill ?? null,
     item, content_hash, passage_group_id: `${cohort}:${it.passage_id}`,
     word_count: null, verified: true, archived: false, source: 'hand', cohort,
     verify_meta: {
       method: 'claude-authored; structure-checked by act-bank-helper before insert',
-      localId: it.id, passage_id: it.passage_id, ...(section === 'reading' ? { genre: it.genre, paired: !!it.paired } : {}),
+      localId: it.id, passage_id: it.passage_id, ...(section === 'reading' ? { genre: it.genre, paired: !!it.paired } : {}), ...(section === 'science' ? { format: it.format } : {}),
       difficulty_ungraded: true,
       author_reported_difficulty: it.difficulty,
       note: 'Difficulty is the author\'s own label, not an independent grade. Not yet blind-attacked, not yet read by a human.',
@@ -210,7 +240,7 @@ console.log(`inserted ${inserted}, dup-skipped ${dup}`)
 /* CHECK the write, do not trust it. */
 const { data: after } = await db.from('study_item_bank').select('passage_group_id,task').eq('cohort', cohort)
 const g2 = {}; for (const r of after ?? []) g2[r.passage_group_id] = (g2[r.passage_group_id] ?? 0) + 1
-const short = Object.entries(g2).filter(([, n]) => n !== PER_PASSAGE[section])
+const short = Object.entries(g2).filter(([pid, n]) => n !== (section === 'science' ? SCIENCE_FORMATS[groups[pid][0].format] : PER_PASSAGE[section]))
 console.log(`verified in DB: ${after?.length ?? 0} rows in ${Object.keys(g2).length} passage groups`)
 if (short.length) { console.error(`FAIL: ${short.length} group(s) not at ${PER_PASSAGE[section]}: ${short.map(([k, n]) => `${k}=${n}`).join(', ')}`); process.exit(1) }
 if (section === 'reading') {
