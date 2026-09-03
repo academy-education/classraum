@@ -14,6 +14,11 @@
 //   node check-grant-frame.mjs --bank [section]     (needs .env.local sourced)
 import { readFileSync } from 'node:fs'
 
+// These checkers are imported by math-bank-helper.mjs, so the CLI below must
+// not run on import — it reads process.argv and would try to open the host's
+// arguments as batch files.
+const RUN_AS_CLI = process.argv[1] && import.meta.url.endsWith(process.argv[1].split('/').pop())
+
 const GRANT = /\b(grant(?:ing|s|ed)?|conced(?:e|ing|es|ed)|accept(?:ing|s|ed)?|allow(?:ing|s|ed)?|acknowledg(?:e|ing|es|ed)|admit(?:ting|s|ted)?)\b/i
 // A frame needs the grant AND a limiting pivot; a bare "accepts the offer"
 // is not a concession frame.
@@ -49,7 +54,7 @@ function report(label, rows) {
   return rate
 }
 
-if (process.argv.includes('--selftest')) {
+if (RUN_AS_CLI && process.argv.includes('--selftest')) {
   const G = 'By granting that the rule ends the bargaining while contending that it also ends the record'
   const G2 = 'By accepting the finding but noting that it covers one season only'
   const F = 'By disputing that the rule ends the bargaining at all'
@@ -69,7 +74,7 @@ if (process.argv.includes('--selftest')) {
   console.log(ok ? '\nself-test PASSED' : '\nself-test FAILED'); process.exit(ok ? 0 : 1)
 }
 
-const bankIdx = process.argv.indexOf('--bank')
+const bankIdx = RUN_AS_CLI ? process.argv.indexOf('--bank') : -1
 if (bankIdx >= 0) {
   const { createClient } = await import('@supabase/supabase-js')
   const db = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL, process.env.SUPABASE_SERVICE_ROLE_KEY)
@@ -91,7 +96,7 @@ if (bankIdx >= 0) {
   const all = []
   for (const [d, rs] of Object.entries(byDomain).sort()) { report(d, rs); all.push(...rs) }
   console.log(); report('ALL', all)
-} else {
+} else if (RUN_AS_CLI) {
   const files = process.argv.slice(2).filter(a => !a.startsWith('--'))
   const all = []
   for (const f of files) {

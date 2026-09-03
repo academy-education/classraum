@@ -38,6 +38,11 @@
  */
 import { readFileSync } from 'node:fs'
 
+// These checkers are imported by math-bank-helper.mjs, so the CLI below must
+// not run on import — it reads process.argv and would try to open the host's
+// arguments as batch files.
+const RUN_AS_CLI = process.argv[1] && import.meta.url.endsWith(process.argv[1].split('/').pop())
+
 const tokens = s => String(s).toLowerCase()
   .replace(/\s+/g, '')
   .match(/\d+\.?\d*|[a-z]+(?:\^\d+)?|[-+*/()^,]/g) ?? []
@@ -113,8 +118,9 @@ function report(label, rows) {
   return { structured, pct }
 }
 
-const args = process.argv.slice(2)
-if (args[0] === '--selftest') selftest()
+const args = RUN_AS_CLI ? process.argv.slice(2) : null
+if (!RUN_AS_CLI) { /* imported: expose scoreItem only */ }
+else if (args[0] === '--selftest') selftest()
 else if (args[0] === '--bank') {
   const { createClient } = await import('@supabase/supabase-js')
   const env = Object.fromEntries(readFileSync('.env.local', 'utf8').split('\n')

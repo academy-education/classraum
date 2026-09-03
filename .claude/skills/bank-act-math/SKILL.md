@@ -20,6 +20,11 @@ derivational-hub rule.
 
 ## 2. QC and insert
 
+`verify` prints a **symbolic hub** line as well as the sandbox result: the
+sandbox proves the key is right, the hub line says whether it is guessable
+from the options alone. Above a 10-point margin, fix the items rather than
+inserting.
+
 ```bash
 cd /Users/andylee/Downloads/saas/classraum
 BANK_FAMILY=act node scripts/study-bank/math-bank-helper.mjs verify <batch.json>

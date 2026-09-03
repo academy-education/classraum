@@ -36,6 +36,16 @@ cd /Users/andylee/Downloads/saas/classraum
 node scripts/study-bank/math-bank-helper.mjs verify <batch.json>      # recomputes every key in a sandbox; refuses mismatches
 ```
 
+`verify` also prints a **symbolic hub** line, because the sandbox proves the
+key is RIGHT and says nothing about whether it is GUESSABLE. A held batch
+(`sat-adv-hard-v1`) prints `Sandbox: 24/24` directly above `margin 23.9pts`
+— all keys correct, and three solvers shown only the options scored 51.4%.
+**Above 10 points, fix the items; do not insert on that number.** The
+mechanism is that the key is the unique option every distractor is one
+token-edit from; derive distractors from different wrong paths instead.
+`check-math-hub.mjs` pulls one NUMBER per option and is blind to this, so
+run `check-symbolic-hub.mjs` for expression options.
+
 Mutation-test the sandbox on any new item type: change one key by hand and
 confirm the check fails. A grader that cannot fail is not a grader.
 

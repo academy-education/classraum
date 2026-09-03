@@ -148,6 +148,19 @@ async function main() {
       else console.log(`FAIL   id${raw.id} [${raw.domain}] key=${raw.correct_answer}  ✗computed ${r.computed}`)
     }
     console.log(`\nSandbox: ${pass}/${batch.length} recompute to their key.`)
+    // The sandbox proves the key is RIGHT. It says nothing about whether the
+    // key is GUESSABLE from the options with the stem covered — a separate
+    // defect that held a 24-item Advanced Math batch on 2026-09-04 while all
+    // 24 of its keys recomputed correctly. Run the hub checks here rather
+    // than leaving them to an author's memory.
+    const { scoreItem: symScore } = await import('./check-symbolic-hub.mjs')
+    const scored = batch.map(r => symScore(r.choices, r.correct_answer)).filter(Boolean)
+    if (scored.length) {
+      const rate = 100 * scored.reduce((a, x) => a + x.credit, 0) / scored.length
+      const margin = rate - 25
+      console.log(`Symbolic hub: ${scored.length} structured of ${batch.length}, key-is-hub ${rate.toFixed(1)}% vs 25.0% control, margin ${margin.toFixed(1)}pts`)
+      if (margin > 10) console.log(`  ^ ABOVE THE 10-POINT PRE-FLIGHT BAR. The key is the unique option each\n    distractor is one edit from; derive distractors from different wrong\n    paths instead. Do not insert on this number.`)
+    } else console.log('Symbolic hub: no structured option sets (nothing to check)')
     return
   }
 
