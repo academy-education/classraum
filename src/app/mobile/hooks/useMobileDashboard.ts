@@ -293,6 +293,11 @@ export const useMobileDashboard = (user: User | null | any, studentId: string | 
       }
 
       const results = await Promise.all(fetchPromises)
+      // A PostgREST failure comes back as { data: null, error } and does not
+      // reject, so `data?.length || 0` printed a pending count of 0 whenever
+      // the grades query failed. Treat any failed query as a failed load.
+      const failed = (results as Array<{ error?: { message?: string } | null }>).find(r => r && r.error)
+      if (failed?.error) throw new Error(failed.error.message || 'dashboard query failed')
 
       // Extract results based on whether classrooms exist
       const recentInvoicesResult = results[0]

@@ -115,7 +115,7 @@ export default function MobilePage() {
   }, [user?.userName, clientUserName])
 
   // Use new dashboard pattern hook (sessionStorage-based, no skeleton flash)
-  const { data: dashboardData, loading: dashboardLoading, refetch: refetchDashboard } = useMobileDashboard(user, effectiveUserId)
+  const { data: dashboardData, loading: dashboardLoading, error: dashboardError, refetch: refetchDashboard } = useMobileDashboard(user, effectiveUserId)
 
   // Debug flag for mobile calendar logs - only enabled in development
   const ENABLE_MOBILE_DEBUG = process.env.NODE_ENV === 'development'
@@ -1510,6 +1510,14 @@ export default function MobilePage() {
               <AnimatedStatSkeleton />
               <AnimatedStatSkeleton />
             </>
+          ) : (dashboardError && !dashboardData) ? (
+            /* A failed load used to render both tiles as 0. Say so and offer a retry. */
+            <Card className="p-4 col-span-2 flex items-center justify-between gap-3">
+              <p className="text-sm text-gray-600">{String(t('common.error'))}</p>
+              <button type="button" onClick={() => refetchDashboard()} className="inline-flex items-center gap-1.5 text-sm font-semibold text-primary">
+                <RefreshCw className="w-4 h-4" />{String(t('common.retry'))}
+              </button>
+            </Card>
           ) : (
             <>
               <Card className="p-4">

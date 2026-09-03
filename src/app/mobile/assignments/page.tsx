@@ -1227,8 +1227,9 @@ function MobileAssignmentsPageContent() {
       // console.log('✅ [ASSIGNMENTS FETCHER] Result count:', result?.length || 0)
       return result || []
     } catch (error) {
+      // Rethrow - see the grades fetcher.
       console.error('🚨 [ASSIGNMENTS FETCHER] Error caught:', error)
-      return []
+      throw error
     }
   }, [effectiveUserId, hasAcademyIds, fetchAssignmentsOptimized, isReady])
 
@@ -1239,8 +1240,12 @@ function MobileAssignmentsPageContent() {
       const result = await fetchGradesOptimized()
       return result || []
     } catch (error) {
+      // Rethrow: returning [] here turned a failed fetch into the "no
+      // assignments" empty state (and a pending count of 0 on the tile) -
+      // the reassuring wrong answer. refetchAllData's catch surfaces an
+      // error card with a retry instead.
       console.error('🚨 [GRADES FETCHER] Error caught:', error)
-      return []
+      throw error
     }
   }, [effectiveUserId, hasAcademyIds, fetchGradesOptimized])
 
