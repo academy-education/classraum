@@ -1,0 +1,472 @@
+{
+  "1": {
+    "pick": "D",
+    "confident": false,
+    "tell": "1.5 is the median of the run 1/1.5/2; 1.7 is the lone off-form decimal"
+  },
+  "2": {
+    "pick": "C",
+    "confident": false,
+    "tell": "consecutive run 4,5,6,7 - no hub; picked interior value"
+  },
+  "3": {
+    "pick": "B",
+    "confident": false,
+    "tell": "15 = 6+9 is the sum-distractor, 9 is the hub the others slip from"
+  },
+  "4": {
+    "pick": "C",
+    "confident": false,
+    "tell": "3.75 is the hub: 1.875 = half, 2.5 = x2/3, 0.3 = decimal slip"
+  },
+  "5": {
+    "pick": "C",
+    "confident": false,
+    "tell": "4 is the interior value; -12 is the far outlier"
+  },
+  "6": {
+    "pick": "D",
+    "confident": true,
+    "tell": "15 is the exact hub: 3.75=15/4, 60=15x4, 16=15+1"
+  },
+  "7": {
+    "pick": "D",
+    "confident": false,
+    "tell": "two sign-flip pairs; took the larger magnitude"
+  },
+  "8": {
+    "pick": "A",
+    "confident": true,
+    "tell": "median of the arithmetic run 30,36,42 (d=6); 21 = 42/2"
+  },
+  "9": {
+    "pick": "D",
+    "confident": false,
+    "tell": "6.75 is a decimal-point slip, 300/75 a x4 pair; 180 is the odd one that must be computed"
+  },
+  "10": {
+    "pick": "C",
+    "confident": false,
+    "tell": "90 is the round hub every other option is a percentage of"
+  },
+  "11": {
+    "pick": "C",
+    "confident": true,
+    "tell": "coefficient hub: 4 -> half 2, double 8; 3 is the odd form"
+  },
+  "12": {
+    "pick": "A",
+    "confident": false,
+    "tell": "5/6 off-by-one pair; took the lower"
+  },
+  "13": {
+    "pick": "A",
+    "confident": false,
+    "tell": "median of the run -22,-12,-2 (d=10)"
+  },
+  "14": {
+    "pick": "A",
+    "confident": false,
+    "tell": "72.00 is the round no-change trap; 77.76 = 72x1.08 is the computed value"
+  },
+  "15": {
+    "pick": "A",
+    "confident": false,
+    "tell": "30 = 6x5 is the product-distractor; 6 is the hub"
+  },
+  "16": {
+    "pick": "B",
+    "confident": true,
+    "tell": "60 is the hub: 30 = half, 120 = double, 20 = /3"
+  },
+  "17": {
+    "pick": "C",
+    "confident": true,
+    "tell": "difference-quotient form: 4a+2h-1 is the complete answer, others drop h or halve it"
+  },
+  "18": {
+    "pick": "D",
+    "confident": false,
+    "tell": "110 is near the mean of 90 and 130 and is the hub"
+  },
+  "19": {
+    "pick": "A",
+    "confident": false,
+    "tell": "12 is the hub: 6 = half, 4 = third, 10 = -2"
+  },
+  "20": {
+    "pick": "B",
+    "confident": false,
+    "tell": "48 = 2880/60 unit conversion pair; 200/100 is the other family"
+  },
+  "21": {
+    "pick": "A",
+    "confident": true,
+    "tell": "4000 is the hub: 8000 double, 1000 quarter"
+  },
+  "22": {
+    "pick": "D",
+    "confident": false,
+    "tell": "30 = 12+18 is the sum-distractor; 18 is the hub, 0 is the throwaway"
+  },
+  "23": {
+    "pick": "D",
+    "confident": false,
+    "tell": "14 = (12+16)/2, median of the run; 27 is the outlier"
+  },
+  "24": {
+    "pick": "C",
+    "confident": true,
+    "tell": "121 = 11^2 perfect square; 484 = 4x121, 44 = 4x11 both derive from it"
+  },
+  "25": {
+    "pick": "C",
+    "confident": false,
+    "tell": "near-arithmetic run 74,85,95,106; took an interior value"
+  },
+  "26": {
+    "pick": "A",
+    "confident": false,
+    "tell": "25 is the round trap and 6 the bare integer; 14.4 is the computed messy value"
+  },
+  "27": {
+    "pick": "A",
+    "confident": false,
+    "tell": "-1.25 = 1.75 + (-3.00), exact sum of two other options"
+  },
+  "28": {
+    "pick": "A",
+    "confident": false,
+    "tell": "geometric x1.5 chain 4,6,(9),13.5,20.25; 13.5 is the interior term"
+  },
+  "29": {
+    "pick": "C",
+    "confident": false,
+    "tell": "6.8 = 408/60 unit conversion; 480/408 is a digit-transposition trap pair"
+  },
+  "30": {
+    "pick": "D",
+    "confident": false,
+    "tell": "7/22 sits between 1/22 and 8/22(=4/11); 37/44 is the odd denominator"
+  },
+  "31": {
+    "pick": "D",
+    "confident": false,
+    "tell": "5.25 = (4.5+6)/2, exact average of two other options"
+  },
+  "32": {
+    "pick": "A",
+    "confident": false,
+    "tell": "35 is the lone non-multiple-of-10; 20/40 is a doubling trap pair"
+  },
+  "33": {
+    "pick": "A",
+    "confident": false,
+    "tell": "-5/-6 off-by-one pair; took the one that is also a clean root"
+  },
+  "34": {
+    "pick": "C",
+    "confident": false,
+    "tell": "2.6 = 2x1.3 doubling pair, took the hub"
+  },
+  "35": {
+    "pick": "C",
+    "confident": true,
+    "tell": "60 is the hub: /3 = 20, /4 = 15, x1.5 = 90"
+  },
+  "36": {
+    "pick": "B",
+    "confident": true,
+    "tell": "9 is the hub: -81 = -9^2, -18 = -2x9; 7 is the throwaway"
+  },
+  "37": {
+    "pick": "D",
+    "confident": false,
+    "tell": "12 is the hub: 11 = -1, 15 = +3, 48 = x4"
+  },
+  "38": {
+    "pick": "D",
+    "confident": false,
+    "tell": "7.5 is the hub; 7.2 is the near-miss twin"
+  },
+  "39": {
+    "pick": "A",
+    "confident": false,
+    "tell": "8 is the hub: 6 = -2, -2 = the difference itself"
+  },
+  "40": {
+    "pick": "B",
+    "confident": true,
+    "tell": "median of the run 6,9,12 (d=3); 90 = 10x9 decimal slip"
+  },
+  "41": {
+    "pick": "C",
+    "confident": false,
+    "tell": "two prose options plus 4/0; extraneous-root structure points to 'no solution'"
+  },
+  "42": {
+    "pick": "B",
+    "confident": false,
+    "tell": "62.5 is the interior computed value; 156.25 = 12.5^2 square trap, 4/10 bare integers"
+  },
+  "43": {
+    "pick": "C",
+    "confident": false,
+    "tell": "25 = 5^2 with 125 = 5^3 as the power slip"
+  },
+  "44": {
+    "pick": "A",
+    "confident": false,
+    "tell": "two sign-flip pairs, no hub; guessed"
+  },
+  "45": {
+    "pick": "D",
+    "confident": false,
+    "tell": "11/-11 sign pair; took the positive"
+  },
+  "46": {
+    "pick": "C",
+    "confident": false,
+    "tell": "288 = 24x12 product family; 200/1200 is the other x6 pair"
+  },
+  "47": {
+    "pick": "A",
+    "confident": false,
+    "tell": "sign pair 3/-3 with -2 and 5 as noise; guessed the negative"
+  },
+  "48": {
+    "pick": "C",
+    "confident": false,
+    "tell": "27 is the hub: 13.5 = half, 18 = x2/3"
+  },
+  "49": {
+    "pick": "C",
+    "confident": false,
+    "tell": "6/8 near pair; 20 and -2 are the far distractors"
+  },
+  "50": {
+    "pick": "A",
+    "confident": false,
+    "tell": "85 is the hub: 42 is roughly half; 254 and 19 are outliers"
+  },
+  "51": {
+    "pick": "B",
+    "confident": true,
+    "tell": "126 = C(9,4) with 3024 = P(9,4), 504 = P(9,3), 756 = 6x126 - the combination is the key and the permutations are the classic slips"
+  },
+  "52": {
+    "pick": "B",
+    "confident": false,
+    "tell": "0.0192 is a decimal-place slip of 192, making 192 the hub; 96 = half"
+  },
+  "53": {
+    "pick": "C",
+    "confident": false,
+    "tell": "50% is the round trap, 55% the near-round one; 47.6% is the messy computed value"
+  },
+  "54": {
+    "pick": "C",
+    "confident": false,
+    "tell": "recursive run 6,14,30 (x2+2); 150 = 5x30 is the multiple trap"
+  },
+  "55": {
+    "pick": "C",
+    "confident": false,
+    "tell": "720/180/45 are all the round angle traps; 105 is the lone computed value"
+  },
+  "56": {
+    "pick": "B",
+    "confident": false,
+    "tell": "44/48 near pair, 34/58 straddle; took the lower of the pair"
+  },
+  "57": {
+    "pick": "D",
+    "confident": false,
+    "tell": "60 = LCM of 12 and 20 which both appear; 21 is the off-by-one on 20"
+  },
+  "58": {
+    "pick": "D",
+    "confident": true,
+    "tell": "median of the run 79,83,87 (d=4); 131 is the outlier"
+  },
+  "59": {
+    "pick": "D",
+    "confident": true,
+    "tell": "22 is the hub: 484 = 22^2"
+  },
+  "60": {
+    "pick": "D",
+    "confident": false,
+    "tell": "9.5 is the lone decimal, the computed mean; 12 = (2+22)/2 and 22 the range"
+  },
+  "61": {
+    "pick": "C",
+    "confident": false,
+    "tell": "8 = (3+13)/2, exact average of two other options"
+  },
+  "62": {
+    "pick": "C",
+    "confident": true,
+    "tell": "polygon family: 1080 sum, 45 exterior, 135 interior - 135 is the per-angle hub, 40 the throwaway"
+  },
+  "63": {
+    "pick": "C",
+    "confident": false,
+    "tell": "432 sits mid-chain in the x1.5/x2 scaling family 96,288,432,864"
+  },
+  "64": {
+    "pick": "C",
+    "confident": false,
+    "tell": "88 and 176 are a doubling pair, 110/112 the near-miss pair; took the circumference-shaped value"
+  },
+  "65": {
+    "pick": "D",
+    "confident": false,
+    "tell": "21.1 = 16.9 + 4.2, exact sum of two other options; 242.2 is the outlier"
+  },
+  "66": {
+    "pick": "B",
+    "confident": false,
+    "tell": "4 is the hub: 16 = 4^2, -14 and -5 are sign/off-by traps"
+  },
+  "67": {
+    "pick": "D",
+    "confident": false,
+    "tell": "run 84,86,90,94; 90 is the round trap so took the adjacent computed value"
+  },
+  "68": {
+    "pick": "B",
+    "confident": false,
+    "tell": "3/11 vs 5/11 same denominator pair; 1/6 and 1/12 are a halving trap pair"
+  },
+  "69": {
+    "pick": "B",
+    "confident": false,
+    "tell": "two sign-flip pairs (7/-7, 1/-1); guessed the larger positive"
+  },
+  "70": {
+    "pick": "B",
+    "confident": false,
+    "tell": "5 and 2 are the small pair, -19/17 the far ones; guessed"
+  },
+  "71": {
+    "pick": "C",
+    "confident": false,
+    "tell": "-7/8 is the hub: 7/8 is the sign flip, -7 the dropped denominator, -1 the rounding"
+  },
+  "72": {
+    "pick": "A",
+    "confident": true,
+    "tell": "20869/20870 off-by-one pair - a ceiling/round-up structure, so the higher one is the key"
+  },
+  "73": {
+    "pick": "A",
+    "confident": false,
+    "tell": "12 is the hub: 9.6 = x0.8, 16 = x4/3"
+  },
+  "74": {
+    "pick": "C",
+    "confident": false,
+    "tell": "26/28 off-by-two pair; 16 and 2 are the throwaways"
+  },
+  "75": {
+    "pick": "B",
+    "confident": false,
+    "tell": "25 is the hub: 2.5 is the decimal slip, 20 the x0.8"
+  },
+  "76": {
+    "pick": "C",
+    "confident": true,
+    "tell": "1.2x10^13 vs 10^14 is a normalization off-by-one; the normalized 10^14 is the key, 10^40 is the exponent-multiply error"
+  },
+  "77": {
+    "pick": "A",
+    "confident": false,
+    "tell": "all /40; 19 and 21 are complements, 9/11 are the -10 slips of each; took 19/40"
+  },
+  "78": {
+    "pick": "C",
+    "confident": true,
+    "tell": "only option matching the real rule: adding a constant leaves sd unchanged, scaling by 2 doubles it"
+  },
+  "79": {
+    "pick": "B",
+    "confident": false,
+    "tell": "median of the run -1,1,3 (d=2); 7 is the outlier"
+  },
+  "80": {
+    "pick": "A",
+    "confident": false,
+    "tell": "two sign-flip pairs 6/-6 and 2/-2; guessed the largest positive"
+  },
+  "81": {
+    "pick": "C",
+    "confident": false,
+    "tell": "96/97 off-by-one pair, inclusive-count structure favours the higher; 4 and 104 are noise"
+  },
+  "82": {
+    "pick": "A",
+    "confident": true,
+    "tell": "(x^2-9)/(x-3) vs x+3 gives a removable hole at (3,6); the other three are the standard misreads"
+  },
+  "83": {
+    "pick": "C",
+    "confident": false,
+    "tell": "462 = C(11,6); 924 = 2x462 is the doubling trap"
+  },
+  "84": {
+    "pick": "C",
+    "confident": false,
+    "tell": "run 12,13,15,17; took an interior value"
+  },
+  "85": {
+    "pick": "B",
+    "confident": false,
+    "tell": "5.5 is the lone half-value, shaped like a median of an even-sized set; 9.0/4.0/6.0 are round traps"
+  },
+  "86": {
+    "pick": "B",
+    "confident": true,
+    "tell": "112/113 off-by-one pair, inclusive counting favours 113; 1 and 150 are throwaways"
+  },
+  "87": {
+    "pick": "A",
+    "confident": false,
+    "tell": "122 vs -110 sign/magnitude pair; guessed the positive large one"
+  },
+  "88": {
+    "pick": "C",
+    "confident": false,
+    "tell": "all negative, run -1,-2,-3,-5; took an interior value"
+  },
+  "89": {
+    "pick": "D",
+    "confident": true,
+    "tell": "21/22 is the exact complement of the 1/22 option - the complement pair is the key/trap structure"
+  },
+  "90": {
+    "pick": "C",
+    "confident": false,
+    "tell": "doubling chain 11,22,44 with 22 in the middle; 5 is the throwaway"
+  },
+  "91": {
+    "pick": "B",
+    "confident": true,
+    "tell": "x^9/y^2 family appears twice with coefficients 8 and 2; 2 is the classic 'forgot to cube the coefficient' slip so 8 is the key"
+  },
+  "92": {
+    "pick": "B",
+    "confident": false,
+    "tell": "374/375 off-by-one pair; took the round one"
+  },
+  "93": {
+    "pick": "B",
+    "confident": true,
+    "tell": "60 is the hub: 240 = x4, 15 = /4; 68 is the throwaway"
+  },
+  "94": {
+    "pick": "B",
+    "confident": false,
+    "tell": "36 and 25 are perfect squares and 11 = 36-25, the difference that must be computed"
+  }
+}

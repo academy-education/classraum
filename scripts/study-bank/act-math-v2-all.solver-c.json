@@ -1,0 +1,472 @@
+{
+  "1": {
+    "pick": "D",
+    "confident": false,
+    "tell": "1/1.5/2 is a step-0.5 run with 1.7 hanging off it; 1.5 is the run's centre so the +/- perturbations were made around it"
+  },
+  "2": {
+    "pick": "C",
+    "confident": false,
+    "tell": "pure 4-5-6-7 ladder, structurally mute; guessed an interior value"
+  },
+  "3": {
+    "pick": "A",
+    "confident": true,
+    "tell": "6 is the derivational hub: 9=6x1.5, 15=6x2.5, 8=6x4/3; nothing else reaches three others"
+  },
+  "4": {
+    "pick": "C",
+    "confident": false,
+    "tell": "3.75 sits between 1.875 (half) and 2.5 (x2/3); 0.3 is unreachable, so 3.75 is the most central generator"
+  },
+  "5": {
+    "pick": "B",
+    "confident": true,
+    "tell": "-2 is the only node one edit from all three: 8=-2+10, 4=-2x(-2), -12=-2x6"
+  },
+  "6": {
+    "pick": "D",
+    "confident": true,
+    "tell": "15 is the hub: 3.75=15/4, 60=15x4, 16=15+1 - a textbook centre-and-satellites"
+  },
+  "7": {
+    "pick": "D",
+    "confident": false,
+    "tell": "symmetric quad {+-2,+-5}, closed under sign flip and structurally mute; forced guess"
+  },
+  "8": {
+    "pick": "A",
+    "confident": false,
+    "tell": "30/36/42 is a step-6 run and 36 is its centre; 21 is the 42/2 satellite"
+  },
+  "9": {
+    "pick": "A",
+    "confident": false,
+    "tell": "only relation is 300=4x75; picked the larger of the pair as the un-divided value"
+  },
+  "10": {
+    "pick": "A",
+    "confident": false,
+    "tell": "72/81/90 is a step-9 ladder centred on 81; 78.75 is the off-ladder alternative-method value"
+  },
+  "11": {
+    "pick": "C",
+    "confident": true,
+    "tell": "coefficients 2,3,4,8: 4 is the hub (x2 -> 8, /2 -> 2, -1 -> 3) and 4x^(5/2) is the correct sqrt(16x^5) form"
+  },
+  "12": {
+    "pick": "A",
+    "confident": false,
+    "tell": "5 reaches 40 (x8) and 6 (+1); 29 is unreachable from anything"
+  },
+  "13": {
+    "pick": "A",
+    "confident": false,
+    "tell": "-22/-12/-2 is a step-10 ladder centred on -12"
+  },
+  "14": {
+    "pick": "A",
+    "confident": false,
+    "tell": "72.00 is the round base every other option is a percent-multiple of, so it is the given value not the answer; 77.76 = 72x1.08 is the one computed step"
+  },
+  "15": {
+    "pick": "A",
+    "confident": true,
+    "tell": "6 is the hub: -3=6x(-1/2), 5=6-1, 30=6x5"
+  },
+  "16": {
+    "pick": "B",
+    "confident": true,
+    "tell": "60 generates all three by the simplest factors: 30=/2, 120=x2, 20=/3"
+  },
+  "17": {
+    "pick": "C",
+    "confident": true,
+    "tell": "content tell, not structure: this is a difference quotient; 4a+2h-1 is the key and 4a+h-1 (h halved), 4a-1 (h->0 derivative), 2a+h-1 are the standard slips"
+  },
+  "18": {
+    "pick": "A",
+    "confident": false,
+    "tell": "115 and 110 differ by 5, 90 is the round trap; picked the member of the close pair with a satellite"
+  },
+  "19": {
+    "pick": "A",
+    "confident": false,
+    "tell": "mutual ladder, but 12 generates the others most simply: 6=/2, 4=/3, 10=-2"
+  },
+  "20": {
+    "pick": "A",
+    "confident": false,
+    "tell": "only structure is 200/100 (a doubling slip); took the doubled value"
+  },
+  "21": {
+    "pick": "B",
+    "confident": false,
+    "tell": "powers-of-two family around a cube scaling; 8000=20^3 with 1000=10^3 and 128000 the over-scaled trap"
+  },
+  "22": {
+    "pick": "C",
+    "confident": false,
+    "tell": "composition set: 12+18=30, so 30 is the composed total and 12/18 the parts; 0 is the no-solution trap"
+  },
+  "23": {
+    "pick": "D",
+    "confident": false,
+    "tell": "12/14/16 step-2 run centred on 14; 27 is off-family"
+  },
+  "24": {
+    "pick": "C",
+    "confident": true,
+    "tell": "classic square item: 44=perimeter, 11=side, 121=area, 484=(44/2)^2 the half-perimeter-as-side error; the key is the area 121"
+  },
+  "25": {
+    "pick": "C",
+    "confident": false,
+    "tell": "two supplementary pairs (85+95=180, 74+106=180) - structurally mute; guessed inside the tighter pair"
+  },
+  "26": {
+    "pick": "A",
+    "confident": false,
+    "tell": "no relation between any pair; opaque, forced guess"
+  },
+  "27": {
+    "pick": "A",
+    "confident": false,
+    "tell": "-1.25 and 1.75 are the quarter-valued pair against two integers; guessed inside the pair"
+  },
+  "28": {
+    "pick": "C",
+    "confident": false,
+    "tell": "the four are terms of a 4,6,9,13.5,20.25 geometric run (ratio 1.5) with 9 missing = the given term; took the far term over the off-by-one 13.5"
+  },
+  "29": {
+    "pick": "D",
+    "confident": false,
+    "tell": "two x60 pairs (8/480 and 6.8/408); took the round hours-to-minutes conversion"
+  },
+  "30": {
+    "pick": "B",
+    "confident": false,
+    "tell": "37/44 is the only large probability among three small ones - the complement/at-least-one shape"
+  },
+  "31": {
+    "pick": "B",
+    "confident": false,
+    "tell": "6 is the only node with two satellites (4.5=x3/4, 5=-1)"
+  },
+  "32": {
+    "pick": "B",
+    "confident": false,
+    "tell": "20/30/40 step-10 run centred on 30; 35 is the off-ladder value"
+  },
+  "33": {
+    "pick": "B",
+    "confident": false,
+    "tell": "-6 reaches -5 (+1) and 3 (x-1/2); 11 is unreachable"
+  },
+  "34": {
+    "pick": "C",
+    "confident": false,
+    "tell": "only relation is 2.6=2x1.3; took the doubled value"
+  },
+  "35": {
+    "pick": "C",
+    "confident": false,
+    "tell": "60 divides cleanly to both 20 (/3) and 15 (/4) and to 90 (x1.5) - simplest generator"
+  },
+  "36": {
+    "pick": "B",
+    "confident": false,
+    "tell": "9 is the hub: -18=9x(-2), 7=9-2, -81=9x(-9)"
+  },
+  "37": {
+    "pick": "D",
+    "confident": true,
+    "tell": "12 is the unique degree-3 hub: 11=-1, 15=+3, 48=x4"
+  },
+  "38": {
+    "pick": "B",
+    "confident": false,
+    "tell": "7.2 and 7.5 are the close pair; 7.2 is the non-round computed-looking one"
+  },
+  "39": {
+    "pick": "A",
+    "confident": true,
+    "tell": "8 is the unique hub: 6=x3/4, -2=8-10, 11=8+3"
+  },
+  "40": {
+    "pick": "B",
+    "confident": true,
+    "tell": "9 is the unique hub: 6=x2/3, 12=x4/3, 90=x10"
+  },
+  "41": {
+    "pick": "B",
+    "confident": true,
+    "tell": "verbal set for a rational equation; 'all reals except x=4' is the sophisticated key and 4, 0, 'no solution' are the three standard slips"
+  },
+  "42": {
+    "pick": "B",
+    "confident": false,
+    "tell": "62.5 and 156.25 are a x2.5 pair as are 4 and 10; took the messy central value"
+  },
+  "43": {
+    "pick": "C",
+    "confident": false,
+    "tell": "25 reaches 20 (-5) and 125 (x5)"
+  },
+  "44": {
+    "pick": "C",
+    "confident": false,
+    "tell": "symmetric quad {+-3,+-5}, mute; forced guess"
+  },
+  "45": {
+    "pick": "D",
+    "confident": false,
+    "tell": "+-11 is the sign-flip pair; took the positive member"
+  },
+  "46": {
+    "pick": "C",
+    "confident": false,
+    "tell": "24/288 is a x12 pair and 200/1200 a x6 pair; took the composed larger value of the tighter pair"
+  },
+  "47": {
+    "pick": "B",
+    "confident": true,
+    "tell": "3 is the unique hub: -3=neg, -2=3-5, 5=3+2"
+  },
+  "48": {
+    "pick": "B",
+    "confident": false,
+    "tell": "18 generates 27 (x1.5) and 13.5 (x3/4); 19.5 is off-family"
+  },
+  "49": {
+    "pick": "C",
+    "confident": true,
+    "tell": "8 is the unique hub: 20=x2.5, -2=8-10, 6=x3/4"
+  },
+  "50": {
+    "pick": "A",
+    "confident": false,
+    "tell": "opaque - no pair is one edit apart; forced guess"
+  },
+  "51": {
+    "pick": "B",
+    "confident": false,
+    "tell": "9-choose/permute family: 126=C(9,4), 3024=P(9,4), 504=9x8x7; the combination is the usual key and the permutation the usual trap"
+  },
+  "52": {
+    "pick": "C",
+    "confident": false,
+    "tell": "96 reaches 192 (x2) and 12 (/8); 0.0192 is the decimal-place trap"
+  },
+  "53": {
+    "pick": "C",
+    "confident": false,
+    "tell": "55% and 50% are round traps; 47.6% is the computed-looking percentage"
+  },
+  "54": {
+    "pick": "C",
+    "confident": false,
+    "tell": "30 is central: 6=/5, 150=x5"
+  },
+  "55": {
+    "pick": "D",
+    "confident": false,
+    "tell": "180 sits between 720 (x4) and 45 (/4) - polygon-angle family with 180 the generator"
+  },
+  "56": {
+    "pick": "B",
+    "confident": false,
+    "tell": "44 and 48 are the close pair with 34/58 as +-10 satellites; guessed inside the pair"
+  },
+  "57": {
+    "pick": "B",
+    "confident": false,
+    "tell": "20 has the off-by-one satellite 21 and the x3 satellite 60"
+  },
+  "58": {
+    "pick": "D",
+    "confident": true,
+    "tell": "83 is the centre: 87=+4, 79=-4; 131 is the far outlier"
+  },
+  "59": {
+    "pick": "D",
+    "confident": false,
+    "tell": "484=22^2, so 22 is the pre-squared value the trap was built from"
+  },
+  "60": {
+    "pick": "C",
+    "confident": false,
+    "tell": "12 reaches 22 (+10) and 2 (/6)"
+  },
+  "61": {
+    "pick": "C",
+    "confident": true,
+    "tell": "8 is the exact centre: 3=-5, 13=+5, 9=+1"
+  },
+  "62": {
+    "pick": "C",
+    "confident": false,
+    "tell": "regular-octagon family: 1080 sum, 135 interior angle, 45 exterior, 40 stray; the interior angle is the usual ask"
+  },
+  "63": {
+    "pick": "D",
+    "confident": false,
+    "tell": "288 generates 96 (/3), 864 (x3), 432 (x1.5) with the simplest factor set"
+  },
+  "64": {
+    "pick": "C",
+    "confident": false,
+    "tell": "88 with 176 as the diameter-for-radius doubling error; the un-doubled value is the key"
+  },
+  "65": {
+    "pick": "D",
+    "confident": false,
+    "tell": "composition set: 16.9+4.2=21.1, so 21.1 is the composed total and the other two the parts"
+  },
+  "66": {
+    "pick": "B",
+    "confident": false,
+    "tell": "4 with 16=4^2 as the square-it trap; -5 and -14 are unreachable"
+  },
+  "67": {
+    "pick": "D",
+    "confident": false,
+    "tell": "84/86/90/94 cluster with 90 the round trap; picked the non-round near-centre value"
+  },
+  "68": {
+    "pick": "A",
+    "confident": false,
+    "tell": "two denominator families (11ths and 12ths); guessed inside the larger family"
+  },
+  "69": {
+    "pick": "B",
+    "confident": false,
+    "tell": "symmetric quad {+-7,+-1}, mute; forced guess"
+  },
+  "70": {
+    "pick": "B",
+    "confident": false,
+    "tell": "only relation is 5/2 (x2.5); took the larger"
+  },
+  "71": {
+    "pick": "C",
+    "confident": true,
+    "tell": "-7/8 is the hub: 7/8 is its sign flip and -7 is it times 8 - the two standard slope slips"
+  },
+  "72": {
+    "pick": "A",
+    "confident": false,
+    "tell": "20870/20869 is a rounding off-by-one pair; took the rounded-up value"
+  },
+  "73": {
+    "pick": "A",
+    "confident": false,
+    "tell": "12 reaches 10 (-2) and 16 (x4/3); 9.6 is off-family"
+  },
+  "74": {
+    "pick": "C",
+    "confident": false,
+    "tell": "composition: 2+26=28; took the ingredient adjacent to the composed value"
+  },
+  "75": {
+    "pick": "B",
+    "confident": false,
+    "tell": "25 reaches 20 (-5) and 2.5 (/10)"
+  },
+  "76": {
+    "pick": "C",
+    "confident": true,
+    "tell": "scientific-notation set: mantissa 1.2 appears three times so it is correct and 7.0 is the added-mantissas trap; between 10^13 and 10^14 the key is the carried exponent 10^14"
+  },
+  "77": {
+    "pick": "D",
+    "confident": false,
+    "tell": "all fortieths; 19/40 and 21/40 are complements. Guessed the larger complement"
+  },
+  "78": {
+    "pick": "C",
+    "confident": true,
+    "tell": "content tell: adding a constant leaves the SD unchanged and multiplying doubles it, so 'Y same as X, Z twice X' is the key; the other three each break one of those two rules"
+  },
+  "79": {
+    "pick": "C",
+    "confident": true,
+    "tell": "3 is the unique hub: -1=3-4, 1=/3, 7=+4"
+  },
+  "80": {
+    "pick": "A",
+    "confident": false,
+    "tell": "symmetric quad {+-6,+-2}, mute; forced guess"
+  },
+  "81": {
+    "pick": "B",
+    "confident": false,
+    "tell": "96/97 is a fencepost off-by-one pair; 4 and 104 are far. Took the round member"
+  },
+  "82": {
+    "pick": "A",
+    "confident": true,
+    "tell": "content tell: cancelling (x-3) from (x^2-9)/(x-3) leaves a hole at (3,6); the asymptote, the identical-graph and the (-3,0) hole are the three standard misreads"
+  },
+  "83": {
+    "pick": "C",
+    "confident": false,
+    "tell": "462/924 is a doubling pair; took the un-doubled value"
+  },
+  "84": {
+    "pick": "C",
+    "confident": false,
+    "tell": "12/13/15/17 mutual near-ladder, effectively mute; guessed an interior value"
+  },
+  "85": {
+    "pick": "B",
+    "confident": false,
+    "tell": "4/6/9 form a ratio-1.5 run, so they are the manufactured family; 5.5 is the one off-family value"
+  },
+  "86": {
+    "pick": "B",
+    "confident": false,
+    "tell": "112/113 inclusive-counting off-by-one; the +1 member is the key in that pairing"
+  },
+  "87": {
+    "pick": "A",
+    "confident": false,
+    "tell": "opaque - no pair is one edit apart; forced guess"
+  },
+  "88": {
+    "pick": "C",
+    "confident": false,
+    "tell": "all four negative and mutually related; -3 has the simplest factor set to the others (-1=/3, -5=-2, -2=x2/3)"
+  },
+  "89": {
+    "pick": "D",
+    "confident": false,
+    "tell": "1/22 and 21/22 are exact complements - the at-least-one shape, where the complement is the key and the direct value the trap"
+  },
+  "90": {
+    "pick": "B",
+    "confident": false,
+    "tell": "11 generates 22 (x2) and 44 (x4); 5 is off-family"
+  },
+  "91": {
+    "pick": "B",
+    "confident": false,
+    "tell": "8x^9 vs 2x^9 is the forgot-to-cube-the-coefficient pair; the correctly cubed 8 is the key"
+  },
+  "92": {
+    "pick": "B",
+    "confident": false,
+    "tell": "375/374 off-by-one pair; took the round member"
+  },
+  "93": {
+    "pick": "B",
+    "confident": false,
+    "tell": "60 generates 240 (x4) and 15 (/4); 68 is off-family"
+  },
+  "94": {
+    "pick": "A",
+    "confident": false,
+    "tell": "composition: 25+11=36 (and 36=6^2), so 36 is the composed value"
+  }
+}

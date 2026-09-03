@@ -1,0 +1,472 @@
+{
+  "1": {
+    "pick": "B",
+    "confident": false,
+    "tell": "ugly non-clean decimal among three clean values = the computed statistic (mean), clean ones are median/mode traps"
+  },
+  "2": {
+    "pick": "C",
+    "confident": false,
+    "tell": "four consecutive integers, no derivational structure; guessed an interior value"
+  },
+  "3": {
+    "pick": "B",
+    "confident": false,
+    "tell": "15 is the sum of 6 and 9 (total trap); 9 is the hub of the ratio pair with 8 as an off-by-one shadow"
+  },
+  "4": {
+    "pick": "C",
+    "confident": true,
+    "tell": "3.75 is the derivational hub: x2 to 1.875, x1.5 to 2.5, and the decimal-slip source of 0.3"
+  },
+  "5": {
+    "pick": "C",
+    "confident": false,
+    "tell": "4 is the clean designed value; -2 is its sqrt/sign shadow and 8 its double"
+  },
+  "6": {
+    "pick": "D",
+    "confident": true,
+    "tell": "15 is the hub: /4 to 3.75, x4 to 60, off-by-one to 16"
+  },
+  "7": {
+    "pick": "B",
+    "confident": false,
+    "tell": "two sign-flip pairs, no hub; pure guess"
+  },
+  "8": {
+    "pick": "C",
+    "confident": false,
+    "tell": "21 with 42 as its double reads as a designed combinatorial answer; 36/30 are context fillers"
+  },
+  "9": {
+    "pick": "B",
+    "confident": false,
+    "tell": "75 is the small clean value with 300 as its x4 slip; 6.75 is a decimal by-product"
+  },
+  "10": {
+    "pick": "C",
+    "confident": true,
+    "tell": "90 is the hub (x0.9 to 81, x0.8 to 72); 78.75 is the average-instead-of-target trap"
+  },
+  "11": {
+    "pick": "C",
+    "confident": false,
+    "tell": "coefficient 4 sits between the 2 (halved) and 8 (doubled) slips"
+  },
+  "12": {
+    "pick": "B",
+    "confident": false,
+    "tell": "29 looks computed while 5/6 are the off-by-one seed pair"
+  },
+  "13": {
+    "pick": "A",
+    "confident": false,
+    "tell": "-12 is the x6 parent of -2; 26 is a sign by-product"
+  },
+  "14": {
+    "pick": "A",
+    "confident": true,
+    "tell": "77.76 = 72 x 1.08 = 64.80 x 1.2: the two-step compound result, 72 is the one-step trap"
+  },
+  "15": {
+    "pick": "C",
+    "confident": true,
+    "tell": "5 is the hub: off-by-one to 6, x6 to 30, -3 the sign slip"
+  },
+  "16": {
+    "pick": "B",
+    "confident": true,
+    "tell": "60 is the maximal hub (half of 120, double of 30, complement of 30, triple of 20)"
+  },
+  "17": {
+    "pick": "C",
+    "confident": true,
+    "tell": "4a + 2h - 1 is the full difference quotient; the other three drop the 2 or halve the a-term"
+  },
+  "18": {
+    "pick": "A",
+    "confident": false,
+    "tell": "115 = 180 - 65 with 130 as the doubled central angle; 90 is filler"
+  },
+  "19": {
+    "pick": "A",
+    "confident": false,
+    "tell": "12 is the hub (/2, /3, off-by-two to all others)"
+  },
+  "20": {
+    "pick": "A",
+    "confident": false,
+    "tell": "200/100 is the halving pair; 48 and 2880 are a unit-conversion family; chose the clean hub"
+  },
+  "21": {
+    "pick": "A",
+    "confident": true,
+    "tell": "4000 is the hub: x2 to 8000, /4 to 1000; 128000 is a stray magnitude slip"
+  },
+  "22": {
+    "pick": "D",
+    "confident": false,
+    "tell": "30 is the sum of 12 and 18 (total trap), 18 the x1.5 partner; 0 is filler"
+  },
+  "23": {
+    "pick": "D",
+    "confident": true,
+    "tell": "14 is off-by-two from both 16 and 12, the classic centre of a manufactured trio"
+  },
+  "24": {
+    "pick": "C",
+    "confident": true,
+    "tell": "121 is the hub: sqrt to 11, x4 to 484; 44 is the perimeter cross-trap"
+  },
+  "25": {
+    "pick": "C",
+    "confident": false,
+    "tell": "two supplementary pairs; picked the smaller of the pair that also reads as a designed angle"
+  },
+  "26": {
+    "pick": "A",
+    "confident": false,
+    "tell": "no structure at all; 14.4 is the only value that looks computed rather than given"
+  },
+  "27": {
+    "pick": "A",
+    "confident": true,
+    "tell": "-1.25 is exactly (-3.00) + 1.75, i.e. computed from the two clean seeds"
+  },
+  "28": {
+    "pick": "A",
+    "confident": false,
+    "tell": "geometric chain 4, 6, 9, 13.5, 20.25 at ratio 1.5; 13.5 is the interior term with 20.25 as the over-step"
+  },
+  "29": {
+    "pick": "C",
+    "confident": false,
+    "tell": "6.8 is the unique computed-looking value; 408 and 480 are minute/second conversions of it"
+  },
+  "30": {
+    "pick": "C",
+    "confident": true,
+    "tell": "4/11 = 1/22 + 7/22 exactly: the key is the sum of two disjoint-event seeds"
+  },
+  "31": {
+    "pick": "D",
+    "confident": false,
+    "tell": "statistics set: 5.25 is the ugly computed mean, 5 and 6 are median/mode traps"
+  },
+  "32": {
+    "pick": "D",
+    "confident": false,
+    "tell": "20 is the hub (x2 to 40, x1.5 to 30); 35 is unrelated filler"
+  },
+  "33": {
+    "pick": "A",
+    "confident": false,
+    "tell": "-5/-6 is the off-by-one pair; picked the rounder of the two"
+  },
+  "34": {
+    "pick": "C",
+    "confident": false,
+    "tell": "2.6 is the x2 parent of 1.3; 0.4 and 2.1 are unrelated fillers"
+  },
+  "35": {
+    "pick": "C",
+    "confident": true,
+    "tell": "60 is the maximal hub: /3 to 20, /4 to 15, x1.5 to 90"
+  },
+  "36": {
+    "pick": "B",
+    "confident": false,
+    "tell": "9 is the parent: squared and sign-flipped gives -81, doubled and flipped gives -18"
+  },
+  "37": {
+    "pick": "D",
+    "confident": true,
+    "tell": "12 is the hub: x4 to 48, x1.25 to 15, off-by-one to 11"
+  },
+  "38": {
+    "pick": "D",
+    "confident": false,
+    "tell": "7.5 pairs with 6 by x1.25; 7.2 is the near-miss decoy planted beside the key"
+  },
+  "39": {
+    "pick": "B",
+    "confident": false,
+    "tell": "6 = 8 + (-2), the key computed from the two seeds"
+  },
+  "40": {
+    "pick": "B",
+    "confident": false,
+    "tell": "9 sits between 6 (x2/3) and 90 (x10 magnitude slip)"
+  },
+  "41": {
+    "pick": "C",
+    "confident": true,
+    "tell": "rational-equation set with an extraneous root: no solution is the designed outcome, 4 the extraneous value"
+  },
+  "42": {
+    "pick": "B",
+    "confident": false,
+    "tell": "62.5 is the parent of 156.25 (x2.5); 4 and 10 are the seeds"
+  },
+  "43": {
+    "pick": "C",
+    "confident": false,
+    "tell": "25 pairs with 20 by 1.25; 125 and 1200 are magnitude by-products"
+  },
+  "44": {
+    "pick": "A",
+    "confident": false,
+    "tell": "fully symmetric sign/off-by-two set, no hub; pure guess"
+  },
+  "45": {
+    "pick": "D",
+    "confident": false,
+    "tell": "11/-11 sign pair, positive taken as the designed answer"
+  },
+  "46": {
+    "pick": "A",
+    "confident": false,
+    "tell": "200 and 1200 are the x6 pair; 24/288 the other family; picked the clean hub"
+  },
+  "47": {
+    "pick": "B",
+    "confident": true,
+    "tell": "3 touches every other option (sign flip, complement to 1, off-by-two, and equals -2 + 5)"
+  },
+  "48": {
+    "pick": "C",
+    "confident": true,
+    "tell": "27 is the hub: x1.5 from 18, x2 from 13.5; 19.5 is unrelated"
+  },
+  "49": {
+    "pick": "D",
+    "confident": false,
+    "tell": "6 = 8 + (-2) and off-by-two from 8: computed from the seeds"
+  },
+  "50": {
+    "pick": "A",
+    "confident": false,
+    "tell": "no relations anywhere; guessed the value that reads most like a designed total"
+  },
+  "51": {
+    "pick": "A",
+    "confident": false,
+    "tell": "504 is the hub of the permutation family (x6 to 3024, /4 to 126, x1.5 to 756)"
+  },
+  "52": {
+    "pick": "B",
+    "confident": true,
+    "tell": "192 is the parent: /2 gives 96 and the decimal shift gives 0.0192"
+  },
+  "53": {
+    "pick": "C",
+    "confident": false,
+    "tell": "47.6% is the only non-round percent, i.e. an actual computed probability; 50/55 are round traps"
+  },
+  "54": {
+    "pick": "C",
+    "confident": false,
+    "tell": "30/150 supplementary pair; took the acute member as designed"
+  },
+  "55": {
+    "pick": "C",
+    "confident": false,
+    "tell": "105 is the unique computed angle; 720 is the polygon sum and 180 an implausible key"
+  },
+  "56": {
+    "pick": "B",
+    "confident": false,
+    "tell": "no structure; pure guess"
+  },
+  "57": {
+    "pick": "B",
+    "confident": true,
+    "tell": "20 is the hub with 21 as its off-by-one shadow and 60 as its x3"
+  },
+  "58": {
+    "pick": "D",
+    "confident": false,
+    "tell": "83 sits inside the tight 79/87 cluster; 131 is a stray"
+  },
+  "59": {
+    "pick": "D",
+    "confident": true,
+    "tell": "22 is the sqrt parent of 484 (forgetting to take the root is the classic slip)"
+  },
+  "60": {
+    "pick": "D",
+    "confident": false,
+    "tell": "9.5 is the ugly computed value; 2, 12, 22 are clean manufactured shadows"
+  },
+  "61": {
+    "pick": "D",
+    "confident": true,
+    "tell": "9 is the hub: squared from 3, off-by-one to 8"
+  },
+  "62": {
+    "pick": "C",
+    "confident": true,
+    "tell": "135 interior with 45 exterior and 1080 the octagon angle sum: 135 is the parent of both"
+  },
+  "63": {
+    "pick": "D",
+    "confident": true,
+    "tell": "288 is the hub: x3 to 864, /3 to 96, x1.5 to 432"
+  },
+  "64": {
+    "pick": "C",
+    "confident": false,
+    "tell": "88 is the hub: x2 to 176, x1.25 to 110"
+  },
+  "65": {
+    "pick": "D",
+    "confident": false,
+    "tell": "21.1 = 16.9 + 4.2 exactly, the value computed from the two seeds"
+  },
+  "66": {
+    "pick": "B",
+    "confident": false,
+    "tell": "4 is the parent whose square is 16; -5 and -14 are sign by-products"
+  },
+  "67": {
+    "pick": "D",
+    "confident": false,
+    "tell": "86 is the hub (supplement of 94, off-by-two from 84); 90 is filler"
+  },
+  "68": {
+    "pick": "B",
+    "confident": false,
+    "tell": "two denominator families; picked the 11-family member that reads as a without-replacement result"
+  },
+  "69": {
+    "pick": "B",
+    "confident": false,
+    "tell": "symmetric sign set with 1/-1; no hub, guessed the larger magnitude"
+  },
+  "70": {
+    "pick": "B",
+    "confident": false,
+    "tell": "no relations; pure guess"
+  },
+  "71": {
+    "pick": "C",
+    "confident": true,
+    "tell": "-7/8 is the parent: 7/8 is the sign slip and -7 the dropped-denominator slip"
+  },
+  "72": {
+    "pick": "A",
+    "confident": false,
+    "tell": "20870/20869 rounding pair; took the rounded-up member as the designed answer"
+  },
+  "73": {
+    "pick": "B",
+    "confident": false,
+    "tell": "9.6 is the ugly computed rate; 12, 10, 16 are the clean shadows"
+  },
+  "74": {
+    "pick": "B",
+    "confident": false,
+    "tell": "28 = 26 + 2 and off-by-two from 26: computed from the seeds"
+  },
+  "75": {
+    "pick": "A",
+    "confident": false,
+    "tell": "20/70 complementary pair; 25 and 2.5 are decimal by-products"
+  },
+  "76": {
+    "pick": "A",
+    "confident": true,
+    "tell": "1.2 x 10^13 is the parent of both exponent slips (10^14, 10^40); 7.0 x 10^13 is the mantissa decoy"
+  },
+  "77": {
+    "pick": "A",
+    "confident": false,
+    "tell": "19/40 and 21/40 are complements; picked the one whose neighbours 9/40 and 11/40 read as subtraction slips"
+  },
+  "78": {
+    "pick": "C",
+    "confident": true,
+    "tell": "adding a constant leaves the standard deviation unchanged, multiplying scales it: only C states that pair"
+  },
+  "79": {
+    "pick": "B",
+    "confident": false,
+    "tell": "1 is the hub: sign flip, square, off-by-two, and /3 of 3"
+  },
+  "80": {
+    "pick": "A",
+    "confident": false,
+    "tell": "fully symmetric x3 and sign-flip lattice; pure guess"
+  },
+  "81": {
+    "pick": "B",
+    "confident": false,
+    "tell": "96 with 97 as its off-by-one and 4 as the complement to 100"
+  },
+  "82": {
+    "pick": "A",
+    "confident": true,
+    "tell": "a removable factor gives a hole at the cancelled point; (3, 6) is the computed coordinate, the others are its shadows"
+  },
+  "83": {
+    "pick": "C",
+    "confident": true,
+    "tell": "462 is the parent, 924 its doubled shadow; 436/403 are arithmetic near-misses"
+  },
+  "84": {
+    "pick": "B",
+    "confident": true,
+    "tell": "15 is the hub: x0.8 to 12, off-by-two to 13 and 17"
+  },
+  "85": {
+    "pick": "D",
+    "confident": true,
+    "tell": "6.0 is the hub: x1.5 from 4.0, x2/3 to 9.0"
+  },
+  "86": {
+    "pick": "B",
+    "confident": false,
+    "tell": "113 = 112 + 1, the fencepost-computed value with 112 as the off-by-one trap"
+  },
+  "87": {
+    "pick": "A",
+    "confident": false,
+    "tell": "no relations; guessed the largest positive as the designed total"
+  },
+  "88": {
+    "pick": "C",
+    "confident": true,
+    "tell": "-3 touches every other option (x2/3, /3, off-by-two, and equals -2 + -1)"
+  },
+  "89": {
+    "pick": "B",
+    "confident": true,
+    "tell": "65/66 = 1/22 + 31/33 exactly: the key is the sum of the two component probabilities"
+  },
+  "90": {
+    "pick": "C",
+    "confident": false,
+    "tell": "11/22/44 doubling chain; 22 is the interior member with 5 as a stray"
+  },
+  "91": {
+    "pick": "D",
+    "confident": true,
+    "tell": "4x^4/y^2 is the parent: A is its reciprocal-exponent slip, B/C are coefficient slips"
+  },
+  "92": {
+    "pick": "B",
+    "confident": false,
+    "tell": "375/374 off-by-one pair; took the rounder member"
+  },
+  "93": {
+    "pick": "B",
+    "confident": true,
+    "tell": "60 is the hub: x4 to 240, /4 to 15; 68 is the stray"
+  },
+  "94": {
+    "pick": "A",
+    "confident": true,
+    "tell": "36 is the hub: square of 6 and also 11 + 25, so both other options are manufactured from it"
+  }
+}
