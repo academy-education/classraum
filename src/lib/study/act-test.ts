@@ -135,10 +135,18 @@ export const SCIENCE_ITEMS_PER_PASSAGE = { min: 5, max: 6 } as const
  * ------------------------------------------------------------------ */
 export type QuotaRange = readonly [min: number, max: number]
 
+// Corrected 2026-09-04. These read [38,23,38] until an authoring agent
+// noticed that no form it could write would satisfy them. Conventions is
+// the MAJORITY category on the English test, not co-equal with Production
+// of Writing; the old numbers made it a third. Nothing consumed this
+// constant, which is why a wrong blueprint sat here unnoticed — the three
+// places that DO drive behaviour (test-specs.ts patterns_en/ko and the
+// generate route's 0.305 split) all carried the right shares, so the
+// contradiction was between a live spec and a dead one.
 export const ENGLISH_QUOTAS: Readonly<Record<string, QuotaRange>> = {
-  'Production of Writing':            [38, 43],
-  'Knowledge of Language':            [18, 23],
-  'Conventions of Standard English':  [38, 43],
+  'Production of Writing':            [29, 32],
+  'Knowledge of Language':            [13, 19],
+  'Conventions of Standard English':  [51, 56],
 }
 
 /**

@@ -133,7 +133,7 @@ const items = [
     `the receipts stored under it could not be moved without it.`,
   ],
   key: `a repairman had told their grandfather it would outlast anything with a cord.`,
-  explanation: `Passage A says the register was "kept because a repairman had once told him it would outlast anything with a cord, and it had." Nothing is said about the wiring. The father in that paragraph is attached to the store's name, not to the register, so "bought it when the store opened" borrows the wrong detail; the receipts were found under the register but were carried out on their own.`,
+  explanation: `Passage A says the register was "kept because a repairman had once told him it would outlast anything with a cord, and it had," so "a repairman had told their grandfather it would outlast anything with a cord" is exact. Nothing is said about the wiring. The father in that paragraph is attached to the store's name, not to the register, so "bought it when the store opened" borrows the wrong detail; the receipts were found under the register but were carried out on their own.`,
 },
 {
   slot: 1, domain: 'Key Ideas and Details', subskill: 'inference', difficulty: 'medium',
@@ -166,7 +166,7 @@ const items = [
     `attributes the remark to Nell rather than to their mother.`,
     `reports that their grandmother disputed the remark.`,
   ],
-  explanation: `Theo repeats the remark and then sets against it the year "a contractor wanted forty and he had eleven," concluding "He was making sure the store could answer" — an occasion that gives the hinges a different motive. He quotes the remark rather than denying it, and assigns it to their mother; the uncertainty over who asked ("Nell asked, or I asked") is about the question, not the remark. Their grandmother is cited only for how long he stood in the doorway.`,
+  explanation: `Theo repeats the remark and then sets against it the year "a contractor wanted forty and he had eleven," concluding "He was making sure the store could answer" — that is, Passage B "supplies an occasion that gives the hinges a different motive." He quotes the remark rather than denying it, and assigns it to their mother; the uncertainty over who asked ("Nell asked, or I asked") is about the question, not the remark. Their grandmother is cited only for how long he stood in the doorway.`,
 },
 {
   slot: 2, domain: 'Integration of Knowledge and Ideas', subskill: 'compare paired passages', difficulty: 'hard',
@@ -177,7 +177,7 @@ const items = [
   ],
   key: `Nell holds that somebody had to decide, while Theo doubts the family had the standing to.`,
   distractors2: [],
-  explanation: `Nell writes "Somebody has to be the one who decides what the day is for"; Theo grants her that — "My sister was right that somebody had to decide" — and then adds "I have never been sure it was ours to decide," which is doubt about standing, not about necessity. He never assigns the decision to the customers, never proposes mourning as the day's purpose, and expresses no regret on Nell's behalf.`,
+  explanation: `Nell writes "Somebody has to be the one who decides what the day is for"; Theo grants her that — "My sister was right that somebody had to decide" — and then adds "I have never been sure it was ours to decide," which makes it exactly the case that "Nell holds that somebody had to decide, while Theo doubts the family had the standing to." He never assigns the decision to the customers, never proposes mourning as the day's purpose, and expresses no regret on Nell's behalf.`,
   extraDistractor: `Nell now regrets having decided, while Theo has come to think the decision necessary and right.`,
 },
 {
@@ -224,7 +224,7 @@ const items = [
     `none of the volunteers in the sample.`,
   ],
   key: `about a fifth of the departing volunteers.`,
-  explanation: `The second paragraph states that "Only about a fifth of the departures named work or family schedule as the primary reason." Seventy percent is the share of calls that are medical emergencies, not a share of departures; "nearly all" is the busyness story the data are used to qualify; and the passage says a fifth, not none.`,
+  explanation: `The second paragraph states that "Only about a fifth of the departures named work or family schedule as the primary reason" — "about a fifth of the departing volunteers." Seventy percent is the share of calls that are medical emergencies, not a share of departures; "nearly all" is the busyness story the data are used to qualify; and the passage says a fifth, not none.`,
 },
 {
   slot: 0, domain: 'Key Ideas and Details', subskill: 'explicit detail', difficulty: 'medium',
@@ -235,7 +235,7 @@ const items = [
     `the certifications expire faster than a volunteer holding a full-time job can renew them.`,
     `districts had stopped paying for the certification courses.`,
   ],
-  explanation: `The third paragraph gives their objection directly: the standards "had been written for a career workforce and then handed to an unpaid one without anyone asking what a volunteer's calendar could absorb." The passage explicitly forecloses the stricter-than-necessary reading — "Nobody in Etheredge's sample argued that the standards were wrong." Annual refreshers are listed as a burden, not as expiring too fast, and who pays for the courses never comes up.`,
+  explanation: `The third paragraph gives their objection directly: the standards "had been written for a career workforce and then handed to an unpaid one without anyone asking what a volunteer's calendar could absorb" — "the standards were written for a career workforce and then handed to an unpaid one." The passage explicitly forecloses the stricter-than-necessary reading — "Nobody in Etheredge's sample argued that the standards were wrong." Annual refreshers are listed as a burden, not as expiring too fast, and who pays for the courses never comes up.`,
 },
 {
   slot: 2, domain: 'Craft and Structure', subskill: 'function of a detail', difficulty: 'medium',
@@ -292,7 +292,7 @@ const items = [
     `establish that districts with falling populations cannot use tiered rosters.`,
     `urge other districts to adopt the tiered roster without delay.`,
   ],
-  explanation: `The paragraph keeps the growth figures and then narrows the claim: the intervention and the demographics "arrived together," and what Callowhill demonstrates "is narrower but still useful" — that is, it limits what the result can be taken to prove. It does not withdraw the growth, and it does not settle the falling-population case either way, since "no one has yet run the tiered model" there; a call for immediate copying is what the paragraph's first sentence warns against.`,
+  explanation: `The paragraph keeps the growth figures and then narrows the claim: the intervention and the demographics "arrived together," and what Callowhill demonstrates "is narrower but still useful" — the paragraph works to "limit what the Callowhill result can be taken to prove." It does not withdraw the growth, and it does not settle the falling-population case either way, since "no one has yet run the tiered model" there; a call for immediate copying is what the paragraph's first sentence warns against.`,
 },
 {
   slot: 3, domain: 'Integration of Knowledge and Ideas', subskill: 'evaluate evidence', difficulty: 'hard',
@@ -340,7 +340,7 @@ const items = [
   ],
   key: `state what the rule guards against, rather than merely reporting the rule.`,
   extraDistractor: `propose that museums be allowed to sell during a fiscal emergency.`,
-  explanation: `The remark follows the sentence "The rule is not a technicality," and supplies the reason behind it — a collection becomes spendable "the moment anyone is allowed to spend it" — so it states what the rule guards against rather than merely reporting the rule. It is the opposite of a concession that museums are ordinary financial institutions, it names no paintings, and it argues against, not for, an emergency exception.`,
+  explanation: `The remark follows the sentence "The rule is not a technicality," and supplies the reason behind it — a collection becomes spendable "the moment anyone is allowed to spend it" — so its work is to "state what the rule guards against, rather than merely reporting the rule." It is the opposite of a concession that museums are ordinary financial institutions, it names no paintings, and it argues against, not for, an emergency exception.`,
 },
 {
   slot: 0, domain: 'Key Ideas and Details', subskill: 'explicit detail', difficulty: 'medium',
@@ -386,7 +386,7 @@ const items = [
     `a community had asked for it to be returned.`,
     `the 1931 accession record turned out to be complete after all.`,
   ],
-  explanation: `The sixth paragraph gives the reason exactly: the museum's inability to say what the object is "tells us nothing about the object. It tells us about the museum." The passage says the reverse of the other three: it cannot be researched "because there is nothing to research it from," it cannot be repatriated "because there is no one named to return it to," and the 1931 hand "recorded nothing else."`,
+  explanation: `The sixth paragraph gives the reason exactly: the museum's inability to say what the object is "tells us nothing about the object. It tells us about the museum" — "the museum's failure to identify it is evidence about the museum, not the object." The passage says the reverse of the other three: it cannot be researched "because there is nothing to research it from," it cannot be repatriated "because there is no one named to return it to," and the 1931 hand "recorded nothing else."`,
 },
 {
   slot: 2, domain: 'Integration of Knowledge and Ideas', subskill: 'apply a principle', difficulty: 'hard',
@@ -410,7 +410,7 @@ const items = [
     `The proceeds rule already keeps a museum from treating a sale as income.`,
     `Donors who gave before the 1970s were operating under an entirely different set of rules.`,
   ],
-  explanation: `The essay's answer to the donor argument is the cost of keeping everything: a museum that removes nothing "is not preserving its collection equally. It is spreading a fixed budget across a growing number of things." The point about private hands is part of the donors' side of the case, not a reply to it; the proceeds rule governs the money rather than the promise; and the essay makes no claim about what rules earlier donors understood.`,
+  explanation: `The essay's answer to the donor argument is the cost of keeping everything: a museum that removes nothing "is not preserving its collection equally. It is spreading a fixed budget across a growing number of things," so "A museum that removes nothing spreads a fixed budget over a growing collection." The point about private hands is part of the donors' side of the case, not a reply to it; the proceeds rule governs the money rather than the promise; and the essay makes no claim about what rules earlier donors understood.`,
 },
 
 /* ===== P4 — natural science, biocrusts ===== */
@@ -482,7 +482,7 @@ const items = [
     `argue that the hot-desert studies were carried out incorrectly.`,
     `propose replacing the term with a more exact one.`,
   ],
-  explanation: `The remark closes a paragraph in which two opposite infiltration results are both accepted because different crusts were measured, so it warns that a finding about crusts may hold only for the type studied. The passage insists in its first paragraph that the surface is alive; it calls both sets of results real rather than faulty; and it uses the term throughout without proposing a replacement.`,
+  explanation: `The remark closes a paragraph in which two opposite infiltration results are both accepted because different crusts were measured, so it serves to "warn that a finding about crusts may hold only for the type studied." The passage insists in its first paragraph that the surface is alive; it calls both sets of results real rather than faulty; and it uses the term throughout without proposing a replacement.`,
 },
 {
   slot: 0, domain: 'Craft and Structure', subskill: 'text structure', difficulty: 'medium',
