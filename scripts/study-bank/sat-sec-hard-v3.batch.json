@@ -4,7 +4,7 @@
     "domain": "Standard English Conventions",
     "subskill": "form: subject-verb agreement across a dashed supplement, with aspect fixed by an open time frame",
     "difficulty": "hard",
-    "passage": "The archive's card catalog—a wall of oak drawers that generations of librarians filled with handwritten entries for pamphlets, broadsides, and playbills—______ since the last of those librarians retired in 1994, though the drawers themselves remain in the reading room, admired by patrons who have never pulled one open.",
+    "passage": "The archive's card catalog—a wall of oak drawers that generations of librarians filled with handwritten entries for pamphlets, broadsides, and playbills—______ in the thirty years since the last of those librarians retired, though the drawers themselves remain in the reading room, admired by patrons who have never pulled one open.",
     "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
     "choices": [
       "have been drifting steadily out of date",
@@ -13,7 +13,7 @@
       "drifted steadily out of date"
     ],
     "correct_answer": "has been drifting steadily out of date",
-    "explanation": "The subject is the singular noun \"catalog\"; everything between the dashes—drawers, librarians, pamphlets, broadsides, playbills—is a supplement and cannot supply the number of the verb, so \"have been drifting\" agrees with the wrong noun. The second requirement is aspect: the time frame runs from a point in the past (\"since the last of those librarians retired in 1994\") to a present in which the drawers \"remain\" in the reading room, and only a present perfect form spans it. \"was drifting\" and \"drifted\" both close the action off in the past and leave the present-tense \"remain\" stranded in a different time frame.",
+    "explanation": "The subject is the singular noun \"catalog\"; everything between the dashes—drawers, librarians, pamphlets, broadsides, playbills—is a supplement and cannot supply the number of the verb, so \"have been drifting\" agrees with the wrong noun. The second requirement is aspect: the time frame runs from a point in the past (\"in the thirty years since the last of those librarians retired\") to a present in which the drawers \"remain\" in the reading room, and only a present perfect form spans it. \"was drifting\" and \"drifted\" both close the action off in the past and leave the present-tense \"remain\" stranded in a different time frame.",
     "topic_tag": "library cataloguing"
   },
   {
@@ -89,7 +89,7 @@
     "domain": "Standard English Conventions",
     "subskill": "form: counterfactual sequence in an inverted conditional, with voice fixed by the agent phrase",
     "difficulty": "hard",
-    "passage": "The bridge stood for eleven years and then fell in a wind of forty-two miles an hour, well below what its designer had allowed for. The failure was not one of strength. Had the deck been stiffened with an open truss rather than with solid plate girders, the oscillation that destroyed it ______ by the drag of air moving through the structure, and the engineers who rebuilt the crossing added exactly that.",
+    "passage": "The bridge stood for eleven years and then fell in a wind of forty-two miles an hour, well below what its designer had allowed for. The failure was not one of strength. Had the deck been stiffened with an open truss rather than with solid plate girders, the oscillation that destroyed it ______ within a few seconds by the drag of air moving through the structure, and the engineers who rebuilt the crossing added exactly that.",
     "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
     "choices": [
       "would have been damped",
@@ -106,16 +106,16 @@
     "domain": "Standard English Conventions",
     "subskill": "form: correlative construction completed in parallel",
     "difficulty": "medium",
-    "passage": "The winter diet of the ptarmigan is a study in narrow margins. The bird strips buds and catkins from dwarf birch, food that is abundant enough but so poor in protein that it barely covers the cost of digesting it. Whether a given bird lives until spring depends ______ on the length of the nights, which decide how many hours it cannot feed at all.",
+    "passage": "The winter diet of the ptarmigan is a study in narrow margins. The bird strips buds and catkins from dwarf birch, food that is abundant enough but so poor in protein that it barely covers the cost of digesting it. Whether a given bird lives until spring depends not so much on the quality of the food ______, which decide how many hours the bird cannot feed at all.",
     "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
     "choices": [
-      "not only on the quality of the food than",
-      "as much the quality of the food as",
-      "not so much on the quality of the food as",
-      "not so much on the quality of the food but"
+      "than on the length of the nights",
+      "but on the length of the nights",
+      "as on the length of the nights",
+      "as does the length of the nights"
     ],
-    "correct_answer": "not so much on the quality of the food as",
-    "explanation": "The correlative pair here is \"not so much ... as,\" and the sentence supplies the second half as \"on the length of the nights,\" so the first half must be \"not so much on the quality of the food as.\" \"not so much on the quality of the food but\" mixes two different correlatives, pairing \"not so much\" with the \"but\" that belongs to \"not only.\" \"not only on the quality of the food than\" makes the same mistake in the other direction and adds a comparative word with nothing to compare. \"as much the quality of the food as\" drops the preposition, so the two halves of the comparison are no longer parallel: a bare noun phrase on one side and \"on the length of the nights\" on the other.",
+    "correct_answer": "as on the length of the nights",
+    "explanation": "The clause opens with \"not so much,\" and the only word that completes that correlative is \"as,\" so \"than on the length of the nights\" and \"but on the length of the nights\" pair it with the second half of a different construction: \"than\" belongs to a comparative and \"but\" to \"not only.\" The second requirement is that what follows \"as\" be parallel with what followed \"not so much,\" which was the prepositional phrase \"on the quality of the food.\" \"as does the length of the nights\" uses the right correlative word but answers a prepositional phrase with a clause, so the two halves of the comparison no longer match.",
     "topic_tag": "arctic birds"
   },
   {
@@ -259,7 +259,7 @@
     "domain": "Standard English Conventions",
     "subskill": "form: base form required after a verb of requiring, and by parallelism with a following verb",
     "difficulty": "hard",
-    "passage": "Ravens that cache food will move a cache if another raven watched them hide it, and they do so more readily when the watcher is a bird that has robbed them before. The behavior is easier to describe than to explain, since accounting for it seems to require that the cacher ______ rather than simply react to the presence of a competitor, and the experiments designed to separate those two possibilities have not settled the matter.",
+    "passage": "Ravens that cache food will move a cache if another raven watched them hide it, and they do so more readily when the watcher is a bird that has robbed them before. The behavior is easier to describe than to explain, since accounting for it seems to require that the cacher ______ rather than, as the leaner account would have it, react to the presence of a competitor, and the experiments designed to separate those two possibilities have not settled the matter.",
     "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
     "choices": [
       "models what another bird knows",
@@ -268,7 +268,7 @@
       "model what another bird knows"
     ],
     "correct_answer": "model what another bird knows",
-    "explanation": "\"require that\" introduces a clause in the subjunctive, where the verb takes its base form regardless of the subject, so \"models what another bird knows\" and \"is modeling what another bird knows\" both inflect a verb that should not be inflected. The second requirement points the same way from the other side of the blank: the alternative offered after \"rather than\" is the base form \"react,\" and the two must be parallel. \"modeling what another bird knows\" is parallel with nothing in the sentence and leaves the clause introduced by \"that\" without a verb.",
+    "explanation": "\"require that\" introduces a clause in the subjunctive, where the verb takes its base form regardless of the subject, so \"models what another bird knows\" and \"is modeling what another bird knows\" both inflect a verb that should not be inflected. The second requirement points the same way from the other side of the blank: the alternative offered later in the sentence is the base form \"react,\" and the two must be parallel. \"modeling what another bird knows\" is parallel with nothing in the sentence and leaves the clause introduced by \"that\" without a verb.",
     "topic_tag": "animal cognition"
   },
   {
@@ -291,18 +291,18 @@
   {
     "id": "SEC-HD-18",
     "domain": "Standard English Conventions",
-    "subskill": "form: participial opener and the subject it modifies, with a finite verb required",
+    "subskill": "form: participial opener and the subject the following clause must take",
     "difficulty": "medium",
-    "passage": "Cormorants stand with their wings spread after a dive because their feathers wet through, which looks like a design flaw until the physics is worked out. Waterlogged plumage traps less air and gives the bird less buoyancy. ______ on every stroke, and a bird that floats high has to fight the water all the way down.",
+    "passage": "Cormorants stand with their wings spread after a dive because their feathers wet through, which looks like a design flaw until the physics is worked out. Waterlogged plumage traps less air and gives the bird less buoyancy. Sinking more easily on the descent, ______ on every stroke down, and a bird that floats high has to fight the water the whole way.",
     "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
     "choices": [
-      "Sinking more easily, less energy is spent by the diving cormorant",
-      "By sinking more easily, the energy the cormorant spends is less",
-      "The cormorant, sinking more easily, spending less energy",
-      "Sinking more easily, the diving cormorant spends less energy"
+      "less energy is spent by the diving cormorant",
+      "the energy the diving cormorant spends is less",
+      "there is less energy for the cormorant to spend",
+      "the diving cormorant spends less energy"
     ],
-    "correct_answer": "Sinking more easily, the diving cormorant spends less energy",
-    "explanation": "A participial phrase at the head of a sentence describes whatever the following clause takes as its subject, and the thing that sinks is the bird, so the clause must begin with the bird: \"Sinking more easily, the diving cormorant spends less energy.\" In \"Sinking more easily, less energy is spent by the diving cormorant\" the subject is \"less energy,\" which is not what sinks, and \"By sinking more easily, the energy the cormorant spends is less\" makes the same substitution behind a preposition. \"The cormorant, sinking more easily, spending less energy\" avoids the misattachment but offers only participles, so the sentence has no finite verb.",
+    "correct_answer": "the diving cormorant spends less energy",
+    "explanation": "A participial phrase at the head of a sentence describes whatever the clause that follows it takes as its subject, and the thing that sinks is the bird, so the clause has to begin with the bird: \"the diving cormorant spends less energy.\" In \"less energy is spent by the diving cormorant\" the subject is \"less energy,\" which is not what sinks; the bird has been demoted to an agent phrase. \"the energy the diving cormorant spends is less\" makes the same substitution with the bird buried inside a relative clause. \"there is less energy for the cormorant to spend\" has no subject at all that the participle could describe, since \"there\" names nothing.",
     "topic_tag": "seabird physiology"
   },
   {
@@ -327,7 +327,7 @@
     "domain": "Standard English Conventions",
     "subskill": "boundaries: comma after an introductory dependent clause, with no comma between subject and verb",
     "difficulty": "medium",
-    "passage": "The paint on a Greek temple has almost never survived, but traces of pigment left in tool marks show that the sculpture was colored, sometimes garishly. Ultraviolet light makes the evidence easier to find. When a raking ultraviolet beam is played over a surface that looks entirely ______ show up as faint shadows, because the pigments weathered the marble beneath them at a different rate than the bare stone weathered.",
+    "passage": "The paint on a Greek temple has almost never survived, but traces of pigment left in tool marks show that the sculpture was colored, sometimes garishly. Ultraviolet light makes the evidence easier to find. When a raking ultraviolet beam is played over a surface that looks entirely ______ show up as faint shadows, because the pigments shielded the marble beneath them from two thousand years of weather that scoured the stone around them.",
     "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
     "choices": [
       "white; patterns",

@@ -50,6 +50,11 @@
 import { createClient } from '@supabase/supabase-js'
 import { readFileSync } from 'node:fs'
 
+// Guard so math-bank-helper.mjs can import scoreItem without this file's CLI
+// running against the host's argv. Without it, importing here made `verify`
+// try to open its own subcommand as a batch file.
+const RUN_AS_CLI = process.argv[1] && process.argv[1].endsWith('check-math-hub.mjs')
+
 const MATH_DOMAINS = [
   'Algebra', 'Advanced Math',
   'Geometry and Trigonometry', 'Problem-Solving and Data Analysis',
@@ -157,7 +162,7 @@ export function scoreItem(choices, key) {
 }
 
 // ── self-test ────────────────────────────────────────────────────────
-if (process.argv.includes('--selftest')) {
+if (RUN_AS_CLI && process.argv.includes('--selftest')) {
   const cases = [
     // The defect, exactly: every distractor is one slip off the key.
     ['classic hub: -12, 24, 6 around 12', true, ['12', '-12', '24', '6'], '12'],
@@ -192,6 +197,8 @@ if (process.argv.includes('--selftest')) {
 }
 
 // ── live ─────────────────────────────────────────────────────────────
+if (!RUN_AS_CLI) { /* imported for scoreItem only; the live path below is CLI-only */ }
+else {
 const validate = process.argv.includes('--validate')
 const onlyDomain = process.argv.slice(2).find(a => !a.startsWith('--')) ?? null
 
@@ -206,7 +213,7 @@ const onlyDomain = process.argv.slice(2).find(a => !a.startsWith('--')) ?? null
  * this mode scores the file with the SAME scoring rule as the live path and
  * refuses to print a rate when nothing was scorable.
  */
-if (process.argv.slice(2).some(a => a.endsWith('.json'))) {
+if (RUN_AS_CLI && process.argv.slice(2).some(a => a.endsWith('.json'))) {
   const files = process.argv.slice(2).filter(a => a.endsWith('.json'))
   let bad = false
   for (const f of files) {
@@ -341,3 +348,5 @@ for (const w of worst.slice(0, 10)) {
   console.log(`  ${w.id}  [${w.domain}]  key ${w.key}  ->  ${w.detail.map(h => `${h.name}=${h.o}`).join(', ')}`)
 }
 if (worst.length > 10) console.log(`  … and ${worst.length - 10} more`)
+
+}

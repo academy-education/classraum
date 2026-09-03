@@ -160,7 +160,17 @@ async function main() {
       const margin = rate - 25
       console.log(`Symbolic hub: ${scored.length} structured of ${batch.length}, key-is-hub ${rate.toFixed(1)}% vs 25.0% control, margin ${margin.toFixed(1)}pts`)
       if (margin > 10) console.log(`  ^ ABOVE THE 10-POINT PRE-FLIGHT BAR. The key is the unique option each\n    distractor is one edit from; derive distractors from different wrong\n    paths instead. Do not insert on this number.`)
-    } else console.log('Symbolic hub: no structured option sets (nothing to check)')
+    } else console.log('Symbolic hub: no structured option sets (numeric batch - see the numeric line)')
+    // The symbolic checker returns null for all-numeric sets, which is most of
+    // this bank. Without this second line a fully numeric batch printed
+    // "nothing to check" and went through completely unchecked.
+    const { scoreItem: numScore } = await import('./check-math-hub.mjs')
+    const nums = batch.map(r => numScore(r.choices, r.correct_answer)).filter(x => x && x.structured)
+    if (nums.length) {
+      const nrate = 100 * nums.reduce((a, x) => a + x.credit, 0) / nums.length
+      console.log(`Numeric hub:  ${nums.length} structured of ${batch.length}, key-is-hub ${nrate.toFixed(1)}% vs 25.0% control, margin ${(nrate - 25).toFixed(1)}pts`)
+      if (nrate - 25 > 10) console.log(`  ^ ABOVE THE 10-POINT PRE-FLIGHT BAR. Do not insert on this number.`)
+    } else console.log(`Numeric hub:  no derivational structure in any option set`)
     return
   }
 
