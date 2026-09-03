@@ -1,0 +1,614 @@
+[
+  {
+    "id": "ANN4-01-1",
+    "type": "multiple_choice",
+    "passage": "Transcript: Attention library patrons. Beginning Monday the fourteenth, the main library will move to extended hours for the exam period, staying open until two a.m. on weeknights instead of the usual midnight. Weekend hours do not change. Please note that after ten p.m., entry is through the north doors only, and you will need to show a current student or staff card; visitor passes are not valid after ten. The third-floor group study rooms can still be reserved online, but reservations made for the extended-hours window are limited to two hours instead of the usual four, so that more groups get a turn. The café on the ground floor will close at nine as usual, though the vending machines near the north entrance will be restocked every night. Extended hours end on Friday the twenty-fifth, the last day of exams. If you leave a bag unattended after ten, security will move it to the front desk, so please keep your belongings with you. Thank you, and good luck with your exams.",
+    "passageGroupId": "announcement-v4-01",
+    "prompt": "[Announcement — University library] Who is able to enter the library after ten p.m. during the exam period?",
+    "choices": [
+      "Anyone holding a visitor pass issued that same day",
+      "Students and staff who show a current card",
+      "Only groups holding a study room reservation",
+      "Patrons who came in before the café closed"
+    ],
+    "correct_answer": "Students and staff who show a current card",
+    "difficulty": "hard",
+    "listeningTask": "announcement",
+    "explanation": "After ten, entry is by current student or staff card and visitor passes are not valid, so \"students and staff who show a current card\" is right. The visitor-pass option contradicts the exception; the study-room option and the café option attach conditions from elsewhere in the announcement to entry."
+  },
+  {
+    "id": "ANN4-01-2",
+    "type": "multiple_choice",
+    "passage": "Transcript: Attention library patrons. Beginning Monday the fourteenth, the main library will move to extended hours for the exam period, staying open until two a.m. on weeknights instead of the usual midnight. Weekend hours do not change. Please note that after ten p.m., entry is through the north doors only, and you will need to show a current student or staff card; visitor passes are not valid after ten. The third-floor group study rooms can still be reserved online, but reservations made for the extended-hours window are limited to two hours instead of the usual four, so that more groups get a turn. The café on the ground floor will close at nine as usual, though the vending machines near the north entrance will be restocked every night. Extended hours end on Friday the twenty-fifth, the last day of exams. If you leave a bag unattended after ten, security will move it to the front desk, so please keep your belongings with you. Thank you, and good luck with your exams.",
+    "passageGroupId": "announcement-v4-01",
+    "prompt": "[Announcement — University library] How long can a group study room be reserved during the extended-hours window?",
+    "choices": [
+      "For up to two hours at a time",
+      "For up to four hours at a time",
+      "Until the building closes at two a.m.",
+      "Until the café closes at nine p.m."
+    ],
+    "correct_answer": "For up to two hours at a time",
+    "difficulty": "hard",
+    "listeningTask": "announcement",
+    "explanation": "Reservations in the extended-hours window are limited to two hours \"instead of the usual four\", so \"for up to two hours at a time\" is right. Four hours is the normal limit being replaced; two a.m. and nine p.m. are the building and café closing times, not reservation limits."
+  },
+  {
+    "id": "ANN4-01-3",
+    "type": "multiple_choice",
+    "passage": "Transcript: Attention library patrons. Beginning Monday the fourteenth, the main library will move to extended hours for the exam period, staying open until two a.m. on weeknights instead of the usual midnight. Weekend hours do not change. Please note that after ten p.m., entry is through the north doors only, and you will need to show a current student or staff card; visitor passes are not valid after ten. The third-floor group study rooms can still be reserved online, but reservations made for the extended-hours window are limited to two hours instead of the usual four, so that more groups get a turn. The café on the ground floor will close at nine as usual, though the vending machines near the north entrance will be restocked every night. Extended hours end on Friday the twenty-fifth, the last day of exams. If you leave a bag unattended after ten, security will move it to the front desk, so please keep your belongings with you. Thank you, and good luck with your exams.",
+    "passageGroupId": "announcement-v4-01",
+    "prompt": "[Announcement — University library] Why does the speaker mention the vending machines?",
+    "choices": [
+      "To explain why the café will close earlier than it normally does",
+      "To warn patrons that unattended bags will be taken away",
+      "To point out where food is available late at night",
+      "To direct patrons toward the north doors after ten p.m."
+    ],
+    "correct_answer": "To point out where food is available late at night",
+    "difficulty": "hard",
+    "listeningTask": "announcement",
+    "explanation": "The café closes at nine as usual, so the restocked vending machines are offered as the late-night alternative — \"where food is available late at night\". The café is not closing earlier; the bag warning and the north-door rule are separate points, not the reason the machines come up."
+  },
+  {
+    "id": "ANN4-02-1",
+    "type": "multiple_choice",
+    "passage": "Transcript: This is a service notice for riders of the number twelve and number forty bus routes. Starting this Saturday, and continuing for about six weeks, Harbor Street will be closed between Fifth and Ninth Avenues for water main replacement. During the closure, the number twelve will detour along Mill Road and will not serve the stops at Sixth and Eighth, although it will still stop at Fifth, at the edge of the closure, before turning off. Riders for those stops should use the temporary stop on Mill Road at Seventh, which is about a five-minute walk away. The number forty is affected only on weekdays; on weekends it keeps its regular route, because the contractor is not working then and one lane is reopened. Both routes are expected to run about ten minutes behind schedule during peak hours, so please allow extra time. Fares and transfers are unchanged, and the detour will be shown on the real-time map in the transit app. If the work finishes early, regular service will resume without further notice. We apologize for the inconvenience.",
+    "passageGroupId": "announcement-v4-02",
+    "prompt": "[Announcement — City bus detour] Which stops will the number twelve bus not serve during the closure?",
+    "choices": [
+      "The stops at Sixth and Eighth on Harbor Street",
+      "The temporary stop on Mill Road at Seventh",
+      "All of the stops between Fifth and Ninth Avenues",
+      "The stops it normally shares with the number forty"
+    ],
+    "correct_answer": "The stops at Sixth and Eighth on Harbor Street",
+    "difficulty": "hard",
+    "listeningTask": "announcement",
+    "explanation": "The number twelve \"will not serve the stops at Sixth and Eighth\", so that option is right. The Mill Road stop at Seventh is the replacement, not a skipped stop; the bus still stops at Fifth, so not every stop between Fifth and Ninth is skipped; the shared-stops option is not stated."
+  },
+  {
+    "id": "ANN4-02-2",
+    "type": "multiple_choice",
+    "passage": "Transcript: This is a service notice for riders of the number twelve and number forty bus routes. Starting this Saturday, and continuing for about six weeks, Harbor Street will be closed between Fifth and Ninth Avenues for water main replacement. During the closure, the number twelve will detour along Mill Road and will not serve the stops at Sixth and Eighth, although it will still stop at Fifth, at the edge of the closure, before turning off. Riders for those stops should use the temporary stop on Mill Road at Seventh, which is about a five-minute walk away. The number forty is affected only on weekdays; on weekends it keeps its regular route, because the contractor is not working then and one lane is reopened. Both routes are expected to run about ten minutes behind schedule during peak hours, so please allow extra time. Fares and transfers are unchanged, and the detour will be shown on the real-time map in the transit app. If the work finishes early, regular service will resume without further notice. We apologize for the inconvenience.",
+    "passageGroupId": "announcement-v4-02",
+    "prompt": "[Announcement — City bus detour] When does the number forty bus follow its regular route?",
+    "choices": [
+      "On weekdays, outside of the peak hours",
+      "Once the six weeks of work are finished",
+      "On weekdays, while traveling along Mill Road",
+      "On weekends, while the closure is in effect"
+    ],
+    "correct_answer": "On weekends, while the closure is in effect",
+    "difficulty": "hard",
+    "listeningTask": "announcement",
+    "explanation": "The forty \"is affected only on weekdays; on weekends it keeps its regular route\", so \"on weekends, while the closure is in effect\" is right. Weekdays are exactly when it is diverted; Mill Road is the twelve's detour; waiting for the work to finish ignores the weekend exception."
+  },
+  {
+    "id": "ANN4-02-3",
+    "type": "multiple_choice",
+    "passage": "Transcript: This is a service notice for riders of the number twelve and number forty bus routes. Starting this Saturday, and continuing for about six weeks, Harbor Street will be closed between Fifth and Ninth Avenues for water main replacement. During the closure, the number twelve will detour along Mill Road and will not serve the stops at Sixth and Eighth, although it will still stop at Fifth, at the edge of the closure, before turning off. Riders for those stops should use the temporary stop on Mill Road at Seventh, which is about a five-minute walk away. The number forty is affected only on weekdays; on weekends it keeps its regular route, because the contractor is not working then and one lane is reopened. Both routes are expected to run about ten minutes behind schedule during peak hours, so please allow extra time. Fares and transfers are unchanged, and the detour will be shown on the real-time map in the transit app. If the work finishes early, regular service will resume without further notice. We apologize for the inconvenience.",
+    "passageGroupId": "announcement-v4-02",
+    "prompt": "[Announcement — City bus detour] What does the speaker imply about the end of the detour?",
+    "choices": [
+      "Riders will be told before regular service resumes",
+      "It could end before the six weeks are finished",
+      "It will be extended if the contractor falls behind",
+      "It depends on when the transit app is updated"
+    ],
+    "correct_answer": "It could end before the six weeks are finished",
+    "difficulty": "hard",
+    "listeningTask": "announcement",
+    "explanation": "\"About six weeks\" plus \"if the work finishes early, regular service will resume without further notice\" implies the detour \"could end before the six weeks are finished\". A prior notice is exactly what the speaker rules out; an extension is never mentioned; the app shows the detour but does not determine it."
+  },
+  {
+    "id": "ANN4-03-1",
+    "type": "multiple_choice",
+    "passage": "Transcript: Good morning, everyone. A quick notice from facilities about the parking garage. Levels two and three will be resurfaced over the next two weekends, beginning this Friday evening at six. During that time those levels will be closed, and the roughly one hundred vehicles normally assigned there will need to park elsewhere. Staff with a level-two or level-three permit may use the overflow lot on Carter Street at no charge; just show your permit to the attendant. Level one and the surface lot remain open, but they are reserved for visitors and for staff with accessibility permits, as usual, so please do not park there even if you see a space. Any vehicle left on levels two or three after six on Friday will be towed at the owner's expense. Motorcycles and bicycles are not affected; the bike cage on level one stays open. Work should finish by Sunday night each weekend, and the levels will reopen on Monday morning. If rain delays the work, we will send an email on Sunday afternoon. Thanks for your patience.",
+    "passageGroupId": "announcement-v4-03",
+    "prompt": "[Announcement — Office parking garage] Where should an employee with a level-three permit park while the work is going on?",
+    "choices": [
+      "In the surface lot beside the garage",
+      "On level one, next to the bike cage",
+      "In the overflow lot on Carter Street",
+      "On level two, once it has been resurfaced"
+    ],
+    "correct_answer": "In the overflow lot on Carter Street",
+    "difficulty": "hard",
+    "listeningTask": "announcement",
+    "explanation": "Level-two and level-three permit holders \"may use the overflow lot on Carter Street\", so that option is right. The surface lot and level one stay reserved for visitors and accessibility permits; level two is closed for both weekends, not reopened after the first."
+  },
+  {
+    "id": "ANN4-03-2",
+    "type": "multiple_choice",
+    "passage": "Transcript: Good morning, everyone. A quick notice from facilities about the parking garage. Levels two and three will be resurfaced over the next two weekends, beginning this Friday evening at six. During that time those levels will be closed, and the roughly one hundred vehicles normally assigned there will need to park elsewhere. Staff with a level-two or level-three permit may use the overflow lot on Carter Street at no charge; just show your permit to the attendant. Level one and the surface lot remain open, but they are reserved for visitors and for staff with accessibility permits, as usual, so please do not park there even if you see a space. Any vehicle left on levels two or three after six on Friday will be towed at the owner's expense. Motorcycles and bicycles are not affected; the bike cage on level one stays open. Work should finish by Sunday night each weekend, and the levels will reopen on Monday morning. If rain delays the work, we will send an email on Sunday afternoon. Thanks for your patience.",
+    "passageGroupId": "announcement-v4-03",
+    "prompt": "[Announcement — Office parking garage] What will happen to a car that is still parked on level two at seven on Friday evening?",
+    "choices": [
+      "It will be towed, and the owner will pay the cost",
+      "It will be moved down to level one by facilities staff",
+      "It will be allowed to stay until Sunday night",
+      "It will be left there until the levels reopen on Monday"
+    ],
+    "correct_answer": "It will be towed, and the owner will pay the cost",
+    "difficulty": "hard",
+    "listeningTask": "announcement",
+    "explanation": "Any vehicle left on levels two or three after six on Friday \"will be towed at the owner's expense\", so \"it will be towed, and the owner will pay the cost\" is right. Facilities does not move cars, and level one is reserved; Sunday night is when the work finishes and Monday is when the levels reopen, but a car is not allowed to wait there for either."
+  },
+  {
+    "id": "ANN4-03-3",
+    "type": "multiple_choice",
+    "passage": "Transcript: Good morning, everyone. A quick notice from facilities about the parking garage. Levels two and three will be resurfaced over the next two weekends, beginning this Friday evening at six. During that time those levels will be closed, and the roughly one hundred vehicles normally assigned there will need to park elsewhere. Staff with a level-two or level-three permit may use the overflow lot on Carter Street at no charge; just show your permit to the attendant. Level one and the surface lot remain open, but they are reserved for visitors and for staff with accessibility permits, as usual, so please do not park there even if you see a space. Any vehicle left on levels two or three after six on Friday will be towed at the owner's expense. Motorcycles and bicycles are not affected; the bike cage on level one stays open. Work should finish by Sunday night each weekend, and the levels will reopen on Monday morning. If rain delays the work, we will send an email on Sunday afternoon. Thanks for your patience.",
+    "passageGroupId": "announcement-v4-03",
+    "prompt": "[Announcement — Office parking garage] What does the speaker imply about an empty space on level one?",
+    "choices": [
+      "Staff may take it if they arrive before six on Friday evening",
+      "It is being kept clear for the contractor's equipment",
+      "It will be marked with a sign before Friday evening",
+      "It is off limits to most staff even when unoccupied"
+    ],
+    "correct_answer": "It is off limits to most staff even when unoccupied",
+    "difficulty": "hard",
+    "listeningTask": "announcement",
+    "explanation": "\"Please do not park there even if you see a space\" means level one \"is off limits to most staff even when unoccupied\". No exception is offered for arriving early; the contractor's equipment and signs are never mentioned."
+  },
+  {
+    "id": "ANN4-04-1",
+    "type": "multiple_choice",
+    "passage": "Transcript: Attention shoppers. Please note some changes for the holiday period. From now until the end of December, our regular thirty-day return window is extended: anything bought from today onward can be returned until January thirty-first with a receipt. Items bought before today keep the standard thirty days from the date of purchase. Gift receipts are available at every register. A return made with a gift receipt is normally issued as store credit; it can be refunded to the original payment card instead, but only if the person returning it shows photo identification, since the card itself will not be present. Electronics and opened software still need to be returned within fourteen days regardless of when they were bought, and that has not changed. Also, starting this Friday, the store will open at eight a.m. instead of nine and stay open until ten p.m., except on Sundays, when we keep our usual hours of ten to six. On the twenty-fourth we will close early, at four. The pharmacy inside the store follows its own schedule, which is posted at the pharmacy counter. Thank you for shopping with us.",
+    "passageGroupId": "announcement-v4-04",
+    "prompt": "[Announcement — Department store] Until when can a sweater bought today be returned?",
+    "choices": [
+      "For thirty days from the date of purchase",
+      "For fourteen days from the date of purchase",
+      "Until the end of December, with a receipt",
+      "Until January thirty-first, with a receipt"
+    ],
+    "correct_answer": "Until January thirty-first, with a receipt",
+    "difficulty": "hard",
+    "listeningTask": "announcement",
+    "explanation": "Anything bought from today onward can be returned \"until January thirty-first with a receipt\", so that option is right. Thirty days is the rule for items bought before today; fourteen days applies to electronics and opened software; the end of December is when the extended policy stops applying to new purchases, not the return deadline."
+  },
+  {
+    "id": "ANN4-04-2",
+    "type": "multiple_choice",
+    "passage": "Transcript: Attention shoppers. Please note some changes for the holiday period. From now until the end of December, our regular thirty-day return window is extended: anything bought from today onward can be returned until January thirty-first with a receipt. Items bought before today keep the standard thirty days from the date of purchase. Gift receipts are available at every register. A return made with a gift receipt is normally issued as store credit; it can be refunded to the original payment card instead, but only if the person returning it shows photo identification, since the card itself will not be present. Electronics and opened software still need to be returned within fourteen days regardless of when they were bought, and that has not changed. Also, starting this Friday, the store will open at eight a.m. instead of nine and stay open until ten p.m., except on Sundays, when we keep our usual hours of ten to six. On the twenty-fourth we will close early, at four. The pharmacy inside the store follows its own schedule, which is posted at the pharmacy counter. Thank you for shopping with us.",
+    "passageGroupId": "announcement-v4-04",
+    "prompt": "[Announcement — Department store] What must a person returning a gift with a gift receipt do to have the money refunded to the card it was bought with?",
+    "choices": [
+      "Bring the item back within fourteen days",
+      "Show photo identification at the register",
+      "Have the original purchaser come to the store with them",
+      "Present the original payment card along with the receipt"
+    ],
+    "correct_answer": "Show photo identification at the register",
+    "difficulty": "hard",
+    "listeningTask": "announcement",
+    "explanation": "A gift-receipt return is normally store credit, and a refund to the original card is allowed \"only if the person returning it shows photo identification\", so the identification option is right. Fourteen days is the electronics rule; the purchaser does not need to come, and the speaker notes the card itself \"will not be present\", so presenting it is not the condition."
+  },
+  {
+    "id": "ANN4-04-3",
+    "type": "multiple_choice",
+    "passage": "Transcript: Attention shoppers. Please note some changes for the holiday period. From now until the end of December, our regular thirty-day return window is extended: anything bought from today onward can be returned until January thirty-first with a receipt. Items bought before today keep the standard thirty days from the date of purchase. Gift receipts are available at every register. A return made with a gift receipt is normally issued as store credit; it can be refunded to the original payment card instead, but only if the person returning it shows photo identification, since the card itself will not be present. Electronics and opened software still need to be returned within fourteen days regardless of when they were bought, and that has not changed. Also, starting this Friday, the store will open at eight a.m. instead of nine and stay open until ten p.m., except on Sundays, when we keep our usual hours of ten to six. On the twenty-fourth we will close early, at four. The pharmacy inside the store follows its own schedule, which is posted at the pharmacy counter. Thank you for shopping with us.",
+    "passageGroupId": "announcement-v4-04",
+    "prompt": "[Announcement — Department store] What does the speaker imply about the pharmacy?",
+    "choices": [
+      "It will open at eight a.m. along with the store",
+      "It keeps the store's usual hours of ten to six",
+      "Its hours may not match the store's new schedule",
+      "It is closed on Sundays when the store opens late"
+    ],
+    "correct_answer": "Its hours may not match the store's new schedule",
+    "difficulty": "hard",
+    "listeningTask": "announcement",
+    "explanation": "Saying the pharmacy \"follows its own schedule\" right after listing the new store hours implies \"its hours may not match the store's new schedule\". The eight a.m. opening and the usual ten-to-six hours are store hours the speaker is separating the pharmacy from; Sunday closure is not stated."
+  },
+  {
+    "id": "ANN4-05-1",
+    "type": "multiple_choice",
+    "passage": "Transcript: Hello, this is a message for patients of the Westbrook family practice. Flu vaccinations are now available. Patients over sixty-five and anyone with a chronic condition on file can walk in on any weekday between nine and eleven in the morning without an appointment; just check in at the front desk. All other patients need to book a slot, either online through the patient portal or by calling the office, and appointments are available on weekday afternoons and on Saturday mornings. Please bring your insurance card; most plans cover the vaccine fully, and for those that do not, the cost is twenty-five dollars, payable by card only. If you have had a fever in the past forty-eight hours, please wait until you have been well for two full days before coming in. Children under nine who are getting the vaccine for the first time will need a second dose four weeks later, and we will schedule that before you leave. Our supply is limited this month, so we ask that you keep your appointment or cancel at least a day ahead.",
+    "passageGroupId": "announcement-v4-05",
+    "prompt": "[Announcement — Family clinic] Who can get the vaccine without booking an appointment?",
+    "choices": [
+      "Anyone who has been free of fever for two full days",
+      "Patients over sixty-five and those with a chronic condition on file",
+      "Children under nine who are receiving their first dose",
+      "Patients whose insurance plan covers the vaccine fully"
+    ],
+    "correct_answer": "Patients over sixty-five and those with a chronic condition on file",
+    "difficulty": "hard",
+    "listeningTask": "announcement",
+    "explanation": "Only \"patients over sixty-five and anyone with a chronic condition on file can walk in\", so that option is right. Being fever-free is a condition for everyone, not what qualifies a walk-in; children under nine are mentioned for the second dose; insurance coverage affects the cost, not booking."
+  },
+  {
+    "id": "ANN4-05-2",
+    "type": "multiple_choice",
+    "passage": "Transcript: Hello, this is a message for patients of the Westbrook family practice. Flu vaccinations are now available. Patients over sixty-five and anyone with a chronic condition on file can walk in on any weekday between nine and eleven in the morning without an appointment; just check in at the front desk. All other patients need to book a slot, either online through the patient portal or by calling the office, and appointments are available on weekday afternoons and on Saturday mornings. Please bring your insurance card; most plans cover the vaccine fully, and for those that do not, the cost is twenty-five dollars, payable by card only. If you have had a fever in the past forty-eight hours, please wait until you have been well for two full days before coming in. Children under nine who are getting the vaccine for the first time will need a second dose four weeks later, and we will schedule that before you leave. Our supply is limited this month, so we ask that you keep your appointment or cancel at least a day ahead.",
+    "passageGroupId": "announcement-v4-05",
+    "prompt": "[Announcement — Family clinic] When can a patient who must book an appointment come in?",
+    "choices": [
+      "On weekday mornings between nine and eleven",
+      "On any weekday, by calling the office first",
+      "On weekday afternoons and Saturday mornings",
+      "On Saturday mornings only, through the portal"
+    ],
+    "correct_answer": "On weekday afternoons and Saturday mornings",
+    "difficulty": "hard",
+    "listeningTask": "announcement",
+    "explanation": "Appointments \"are available on weekday afternoons and on Saturday mornings\", so that option is right. Weekday mornings from nine to eleven are the walk-in window for eligible patients; calling the office is a booking method, not a schedule; Saturday-only is narrower than what was said."
+  },
+  {
+    "id": "ANN4-05-3",
+    "type": "multiple_choice",
+    "passage": "Transcript: Hello, this is a message for patients of the Westbrook family practice. Flu vaccinations are now available. Patients over sixty-five and anyone with a chronic condition on file can walk in on any weekday between nine and eleven in the morning without an appointment; just check in at the front desk. All other patients need to book a slot, either online through the patient portal or by calling the office, and appointments are available on weekday afternoons and on Saturday mornings. Please bring your insurance card; most plans cover the vaccine fully, and for those that do not, the cost is twenty-five dollars, payable by card only. If you have had a fever in the past forty-eight hours, please wait until you have been well for two full days before coming in. Children under nine who are getting the vaccine for the first time will need a second dose four weeks later, and we will schedule that before you leave. Our supply is limited this month, so we ask that you keep your appointment or cancel at least a day ahead.",
+    "passageGroupId": "announcement-v4-05",
+    "prompt": "[Announcement — Family clinic] Why does the speaker ask patients to cancel at least a day ahead?",
+    "choices": [
+      "So that a reserved dose can go to another patient",
+      "So that the office can order more vaccine before it runs out",
+      "So that walk-ins can be seen before booked patients",
+      "So that the front desk can check insurance coverage first"
+    ],
+    "correct_answer": "So that a reserved dose can go to another patient",
+    "difficulty": "hard",
+    "listeningTask": "announcement",
+    "explanation": "\"Our supply is limited this month\" leads directly into the request, so the point is that \"a reserved dose can go to another patient\". Ordering more vaccine is not mentioned; walk-ins have their own morning window; insurance is checked at the visit, not by cancelling."
+  },
+  {
+    "id": "ANN4-06-1",
+    "type": "multiple_choice",
+    "passage": "Transcript: Attention passengers in Terminal B. Because of construction at the north security checkpoint, only two lanes are open there this morning, and the wait is currently around forty minutes. Passengers with flights departing before ten a.m. should proceed directly to the south checkpoint, near the food court, where the wait is about fifteen minutes; show your boarding pass to the staff at the rope line and they will direct you. Passengers on later flights are asked to remain in the north queue so that the south checkpoint does not become congested. Expedited-screening members can use their dedicated lane at either checkpoint. Please note that once you pass through the south checkpoint, you will need to take the shuttle to reach gates B twenty through B thirty-five; the shuttle runs every six minutes and the ride is about four minutes. Passengers needing wheelchair assistance should ask at the airline desk rather than at the checkpoint. We expect the north checkpoint to return to full capacity by noon. Thank you.",
+    "passageGroupId": "announcement-v4-06",
+    "prompt": "[Announcement — Airport terminal] Which passengers are being sent to the south checkpoint?",
+    "choices": [
+      "Those who are members of the expedited-screening program",
+      "Those whose flights depart after the checkpoint reopens at noon",
+      "Those who need wheelchair assistance to reach their gate",
+      "Those whose flights are scheduled to leave before ten a.m."
+    ],
+    "correct_answer": "Those whose flights are scheduled to leave before ten a.m.",
+    "difficulty": "hard",
+    "listeningTask": "announcement",
+    "explanation": "\"Passengers with flights departing before ten a.m. should proceed directly to the south checkpoint\", so that option is right. Expedited-screening members may use either checkpoint; later flights are told to stay in the north queue; wheelchair assistance is arranged at the airline desk."
+  },
+  {
+    "id": "ANN4-06-2",
+    "type": "multiple_choice",
+    "passage": "Transcript: Attention passengers in Terminal B. Because of construction at the north security checkpoint, only two lanes are open there this morning, and the wait is currently around forty minutes. Passengers with flights departing before ten a.m. should proceed directly to the south checkpoint, near the food court, where the wait is about fifteen minutes; show your boarding pass to the staff at the rope line and they will direct you. Passengers on later flights are asked to remain in the north queue so that the south checkpoint does not become congested. Expedited-screening members can use their dedicated lane at either checkpoint. Please note that once you pass through the south checkpoint, you will need to take the shuttle to reach gates B twenty through B thirty-five; the shuttle runs every six minutes and the ride is about four minutes. Passengers needing wheelchair assistance should ask at the airline desk rather than at the checkpoint. We expect the north checkpoint to return to full capacity by noon. Thank you.",
+    "passageGroupId": "announcement-v4-06",
+    "prompt": "[Announcement — Airport terminal] What must a passenger do after clearing the south checkpoint to reach gate B twenty-eight?",
+    "choices": [
+      "Take the shuttle, which runs every six minutes",
+      "Walk back through the food court to the north side",
+      "Wait at the rope line for staff to direct them",
+      "Check in again at the airline desk near the gates"
+    ],
+    "correct_answer": "Take the shuttle, which runs every six minutes",
+    "difficulty": "hard",
+    "listeningTask": "announcement",
+    "explanation": "From the south checkpoint, gates B twenty through B thirty-five are reached by shuttle, so \"take the shuttle, which runs every six minutes\" is right. The food court is where the south checkpoint is, not the way to the gates; the rope line is before screening; the airline desk handles wheelchair requests."
+  },
+  {
+    "id": "ANN4-06-3",
+    "type": "multiple_choice",
+    "passage": "Transcript: Attention passengers in Terminal B. Because of construction at the north security checkpoint, only two lanes are open there this morning, and the wait is currently around forty minutes. Passengers with flights departing before ten a.m. should proceed directly to the south checkpoint, near the food court, where the wait is about fifteen minutes; show your boarding pass to the staff at the rope line and they will direct you. Passengers on later flights are asked to remain in the north queue so that the south checkpoint does not become congested. Expedited-screening members can use their dedicated lane at either checkpoint. Please note that once you pass through the south checkpoint, you will need to take the shuttle to reach gates B twenty through B thirty-five; the shuttle runs every six minutes and the ride is about four minutes. Passengers needing wheelchair assistance should ask at the airline desk rather than at the checkpoint. We expect the north checkpoint to return to full capacity by noon. Thank you.",
+    "passageGroupId": "announcement-v4-06",
+    "prompt": "[Announcement — Airport terminal] Why does the speaker ask some passengers to remain in the north queue?",
+    "choices": [
+      "Because the south checkpoint will close at noon",
+      "Because they still have enough time to wait there",
+      "Because the expedited lane is only open there",
+      "Because the shuttle to the gates leaves from there"
+    ],
+    "correct_answer": "Because they still have enough time to wait there",
+    "difficulty": "hard",
+    "listeningTask": "announcement",
+    "explanation": "Only passengers with imminent departures are sent to the shorter line, and the stated aim is to keep the south checkpoint from becoming congested, so the rest are held back \"because they still have enough time to wait there\". Noon is when the north checkpoint recovers, not a south closing time; the expedited lane exists at either checkpoint; the shuttle leaves from the south side, not the north."
+  },
+  {
+    "id": "ANN4-07-1",
+    "type": "multiple_choice",
+    "passage": "Transcript: Good evening, residents. This is a notice from building management about a scheduled water shutoff. On Wednesday the plumbing contractor will replace the main shutoff valve, and water to the entire building will be off from nine in the morning until approximately three in the afternoon. Please fill any containers you will need beforehand, and avoid running dishwashers or washing machines that morning; if a cycle is interrupted, the machine can be damaged when pressure returns. When the water comes back on, run your cold tap for two or three minutes to clear any discoloration before drinking, and hold off on using hot water until the cold runs clear, so that sediment is not drawn into the water heater. Residents on floors ten and above may notice lower pressure for the rest of the day; that is normal and should resolve by evening. If it has not by Thursday morning, please submit a maintenance request through the resident portal rather than calling the office, so that we can track it. The garage and elevators are not affected. We apologize for the inconvenience.",
+    "passageGroupId": "announcement-v4-07",
+    "prompt": "[Announcement — Apartment building] How long is the water expected to be off on Wednesday?",
+    "choices": [
+      "From nine in the morning until about three in the afternoon",
+      "From nine in the morning until sometime in the evening",
+      "From early morning until the pressure is normal on every floor",
+      "For two or three minutes after the valve is replaced"
+    ],
+    "correct_answer": "From nine in the morning until about three in the afternoon",
+    "difficulty": "hard",
+    "listeningTask": "announcement",
+    "explanation": "Water will be off \"from nine in the morning until approximately three in the afternoon\", so that option is right. Evening is when upper-floor pressure should recover; normal pressure on every floor is not the end point given for the outage; two or three minutes is how long to run the tap afterwards."
+  },
+  {
+    "id": "ANN4-07-2",
+    "type": "multiple_choice",
+    "passage": "Transcript: Good evening, residents. This is a notice from building management about a scheduled water shutoff. On Wednesday the plumbing contractor will replace the main shutoff valve, and water to the entire building will be off from nine in the morning until approximately three in the afternoon. Please fill any containers you will need beforehand, and avoid running dishwashers or washing machines that morning; if a cycle is interrupted, the machine can be damaged when pressure returns. When the water comes back on, run your cold tap for two or three minutes to clear any discoloration before drinking, and hold off on using hot water until the cold runs clear, so that sediment is not drawn into the water heater. Residents on floors ten and above may notice lower pressure for the rest of the day; that is normal and should resolve by evening. If it has not by Thursday morning, please submit a maintenance request through the resident portal rather than calling the office, so that we can track it. The garage and elevators are not affected. We apologize for the inconvenience.",
+    "passageGroupId": "announcement-v4-07",
+    "prompt": "[Announcement — Apartment building] What should a resident on the twelfth floor do if the pressure is still low on Thursday?",
+    "choices": [
+      "Fill containers and wait for the contractor to return",
+      "Wait until evening for it to resolve on its own",
+      "Call the management office as soon as possible",
+      "Submit a request through the resident portal"
+    ],
+    "correct_answer": "Submit a request through the resident portal",
+    "difficulty": "hard",
+    "listeningTask": "announcement",
+    "explanation": "If low pressure persists into Thursday morning, residents should \"submit a maintenance request through the resident portal rather than calling the office\", so the portal option is right. Filling containers is preparation for the shutoff, and no return visit is mentioned; waiting until evening is Wednesday's advice; calling the office is what the speaker asks residents not to do."
+  },
+  {
+    "id": "ANN4-07-3",
+    "type": "multiple_choice",
+    "passage": "Transcript: Good evening, residents. This is a notice from building management about a scheduled water shutoff. On Wednesday the plumbing contractor will replace the main shutoff valve, and water to the entire building will be off from nine in the morning until approximately three in the afternoon. Please fill any containers you will need beforehand, and avoid running dishwashers or washing machines that morning; if a cycle is interrupted, the machine can be damaged when pressure returns. When the water comes back on, run your cold tap for two or three minutes to clear any discoloration before drinking, and hold off on using hot water until the cold runs clear, so that sediment is not drawn into the water heater. Residents on floors ten and above may notice lower pressure for the rest of the day; that is normal and should resolve by evening. If it has not by Thursday morning, please submit a maintenance request through the resident portal rather than calling the office, so that we can track it. The garage and elevators are not affected. We apologize for the inconvenience.",
+    "passageGroupId": "announcement-v4-07",
+    "prompt": "[Announcement — Apartment building] What does the speaker imply about using hot water once the supply returns?",
+    "choices": [
+      "It should be done first, to flush the sediment out quickly",
+      "It will not be available on upper floors until evening",
+      "It should wait until the cold water is running clear",
+      "It should be reported if it comes out discolored"
+    ],
+    "correct_answer": "It should wait until the cold water is running clear",
+    "difficulty": "hard",
+    "listeningTask": "announcement",
+    "explanation": "Residents are told to run the cold tap until the discoloration clears and to \"hold off on using hot water until the cold runs clear\", so \"it should wait until the cold water is running clear\" is right. Running hot first is the opposite of the advice; upper floors get lower pressure, not a loss of hot water; discoloration is cleared by running the tap, not reported."
+  },
+  {
+    "id": "ANN4-08-1",
+    "type": "multiple_choice",
+    "passage": "Transcript: Welcome to the museum. A few notes for today's visitors. The special exhibition on the second floor uses timed entry. Your general admission ticket does not include it; you will need a separate timed ticket, which is free for members and eight dollars for everyone else. Timed tickets can be picked up at the information desk, and the last entry to the exhibition is at four thirty, one hour before the museum closes. Groups of ten or more must book their entry time in advance through the group sales office and cannot be accommodated at the desk. Photography without flash is allowed in the permanent galleries but not inside the special exhibition, where all cameras and phones must be put away. Large bags, umbrellas, and backpacks must be checked in the coat room on the lower level before you enter the special exhibition; they are allowed in the rest of the building. The café is open until four, and the museum shop stays open until closing. Children under twelve must be accompanied by an adult on the second floor. Enjoy your visit.",
+    "passageGroupId": "announcement-v4-08",
+    "prompt": "[Announcement — Art museum] What does a museum member need in order to see the special exhibition?",
+    "choices": [
+      "A ticket bought for eight dollars at the desk",
+      "Nothing beyond a general admission ticket",
+      "A free timed ticket from the information desk",
+      "A timed ticket purchased at the desk before four thirty"
+    ],
+    "correct_answer": "A free timed ticket from the information desk",
+    "difficulty": "hard",
+    "listeningTask": "announcement",
+    "explanation": "The exhibition needs \"a separate timed ticket, which is free for members\", picked up at the information desk, so \"a free timed ticket from the information desk\" is right. Eight dollars is the non-member price; general admission alone does not include the exhibition; members do not pay for the timed ticket, so the purchased-ticket option is wrong even though four thirty is the last entry."
+  },
+  {
+    "id": "ANN4-08-2",
+    "type": "multiple_choice",
+    "passage": "Transcript: Welcome to the museum. A few notes for today's visitors. The special exhibition on the second floor uses timed entry. Your general admission ticket does not include it; you will need a separate timed ticket, which is free for members and eight dollars for everyone else. Timed tickets can be picked up at the information desk, and the last entry to the exhibition is at four thirty, one hour before the museum closes. Groups of ten or more must book their entry time in advance through the group sales office and cannot be accommodated at the desk. Photography without flash is allowed in the permanent galleries but not inside the special exhibition, where all cameras and phones must be put away. Large bags, umbrellas, and backpacks must be checked in the coat room on the lower level before you enter the special exhibition; they are allowed in the rest of the building. The café is open until four, and the museum shop stays open until closing. Children under twelve must be accompanied by an adult on the second floor. Enjoy your visit.",
+    "passageGroupId": "announcement-v4-08",
+    "prompt": "[Announcement — Art museum] Where is a visitor allowed to carry a backpack?",
+    "choices": [
+      "In the special exhibition, but not in the permanent galleries",
+      "In the permanent galleries, but not in the special exhibition",
+      "On the lower level only, near the coat room and café",
+      "In the café and museum shop, but not in the galleries"
+    ],
+    "correct_answer": "In the permanent galleries, but not in the special exhibition",
+    "difficulty": "hard",
+    "listeningTask": "announcement",
+    "explanation": "Backpacks must be checked before the special exhibition but \"are allowed in the rest of the building\", so \"in the permanent galleries, but not in the special exhibition\" is right. The exhibition is the one place they are barred, so the reversed option is wrong; the lower level is where they are checked, not the only place they may go; the café and shop are not singled out."
+  },
+  {
+    "id": "ANN4-08-3",
+    "type": "multiple_choice",
+    "passage": "Transcript: Welcome to the museum. A few notes for today's visitors. The special exhibition on the second floor uses timed entry. Your general admission ticket does not include it; you will need a separate timed ticket, which is free for members and eight dollars for everyone else. Timed tickets can be picked up at the information desk, and the last entry to the exhibition is at four thirty, one hour before the museum closes. Groups of ten or more must book their entry time in advance through the group sales office and cannot be accommodated at the desk. Photography without flash is allowed in the permanent galleries but not inside the special exhibition, where all cameras and phones must be put away. Large bags, umbrellas, and backpacks must be checked in the coat room on the lower level before you enter the special exhibition; they are allowed in the rest of the building. The café is open until four, and the museum shop stays open until closing. Children under twelve must be accompanied by an adult on the second floor. Enjoy your visit.",
+    "passageGroupId": "announcement-v4-08",
+    "prompt": "[Announcement — Art museum] What does the speaker imply about a group of twelve that arrives without a booking?",
+    "choices": [
+      "They will be admitted if each child has an adult with them",
+      "They can wait in the café until a slot opens",
+      "They must check their bags and cameras at the coat room",
+      "They will not be able to see the exhibition"
+    ],
+    "correct_answer": "They will not be able to see the exhibition",
+    "difficulty": "hard",
+    "listeningTask": "announcement",
+    "explanation": "Groups of ten or more \"must book in advance ... and cannot be accommodated at the desk\", so an unbooked group of twelve \"will not be able to see the exhibition\". The adult-accompaniment rule is about children, not groups; waiting in the café and checking bags do not create a booking."
+  },
+  {
+    "id": "ANN4-09-1",
+    "type": "multiple_choice",
+    "passage": "Transcript: Attention members. The lap pool will be closed for retiling from Monday the third through Sunday the sixteenth. The hot tub and sauna, which share the same water system, will also be closed, but only for the first week, and should reopen on Monday the tenth. All aqua-fitness classes move to the outdoor pool at our Riverside branch during the closure; your membership card will get you in there, but you will need to register for each class through the app, because the outdoor pool has fewer lanes and class sizes are capped at twelve. Swim lessons for children are cancelled for the two weeks and will be made up the following month at no extra charge; instructors will contact families directly. Members who hold a pool-only membership can have the two weeks credited to their account by asking at the front desk before the thirtieth. Locker rooms remain open, and the steam room, which is on a separate system, is not affected. Thank you for your understanding.",
+    "passageGroupId": "announcement-v4-09",
+    "prompt": "[Announcement — Fitness center] When is the hot tub expected to reopen?",
+    "choices": [
+      "On Monday the third, when the retiling begins",
+      "On Monday the tenth, after the first week of work",
+      "On Sunday the sixteenth, together with the lap pool",
+      "By the thirtieth, at the end of the month"
+    ],
+    "correct_answer": "On Monday the tenth, after the first week of work",
+    "difficulty": "hard",
+    "listeningTask": "announcement",
+    "explanation": "The hot tub and sauna close \"only for the first week, and should reopen on Monday the tenth\", so that option is right. The third is when closures start; the sixteenth is the lap pool's last closed day; the thirtieth is the deadline for requesting a credit."
+  },
+  {
+    "id": "ANN4-09-2",
+    "type": "multiple_choice",
+    "passage": "Transcript: Attention members. The lap pool will be closed for retiling from Monday the third through Sunday the sixteenth. The hot tub and sauna, which share the same water system, will also be closed, but only for the first week, and should reopen on Monday the tenth. All aqua-fitness classes move to the outdoor pool at our Riverside branch during the closure; your membership card will get you in there, but you will need to register for each class through the app, because the outdoor pool has fewer lanes and class sizes are capped at twelve. Swim lessons for children are cancelled for the two weeks and will be made up the following month at no extra charge; instructors will contact families directly. Members who hold a pool-only membership can have the two weeks credited to their account by asking at the front desk before the thirtieth. Locker rooms remain open, and the steam room, which is on a separate system, is not affected. Thank you for your understanding.",
+    "passageGroupId": "announcement-v4-09",
+    "prompt": "[Announcement — Fitness center] Which members can have the two weeks credited to their account?",
+    "choices": [
+      "Those whose children take the swim lessons",
+      "Those who are enrolled in aqua-fitness classes",
+      "Those who regularly use the hot tub and sauna",
+      "Those who hold a pool-only membership plan"
+    ],
+    "correct_answer": "Those who hold a pool-only membership plan",
+    "difficulty": "hard",
+    "listeningTask": "announcement",
+    "explanation": "Only \"members who hold a pool-only membership can have the two weeks credited\", so that option is right. Families with children in lessons get make-up sessions rather than a credit; class members are moved to Riverside; hot tub users lose one week and are offered nothing."
+  },
+  {
+    "id": "ANN4-09-3",
+    "type": "multiple_choice",
+    "passage": "Transcript: Attention members. The lap pool will be closed for retiling from Monday the third through Sunday the sixteenth. The hot tub and sauna, which share the same water system, will also be closed, but only for the first week, and should reopen on Monday the tenth. All aqua-fitness classes move to the outdoor pool at our Riverside branch during the closure; your membership card will get you in there, but you will need to register for each class through the app, because the outdoor pool has fewer lanes and class sizes are capped at twelve. Swim lessons for children are cancelled for the two weeks and will be made up the following month at no extra charge; instructors will contact families directly. Members who hold a pool-only membership can have the two weeks credited to their account by asking at the front desk before the thirtieth. Locker rooms remain open, and the steam room, which is on a separate system, is not affected. Thank you for your understanding.",
+    "passageGroupId": "announcement-v4-09",
+    "prompt": "[Announcement — Fitness center] Why does the speaker mention that the outdoor pool has fewer lanes?",
+    "choices": [
+      "To explain why class places must be reserved in advance",
+      "To warn that lap swimming is not offered at Riverside",
+      "To justify moving the classes to the Riverside branch",
+      "To explain why children's lessons have been cancelled"
+    ],
+    "correct_answer": "To explain why class places must be reserved in advance",
+    "difficulty": "hard",
+    "listeningTask": "announcement",
+    "explanation": "The fewer lanes are given as the reason class sizes are capped and registration is required, so the option about reserving class places is right. Lap swimming at Riverside is not discussed; the move to Riverside is caused by the retiling, not by lane counts; the cancelled lessons are made up later for a different reason."
+  },
+  {
+    "id": "ANN4-10-1",
+    "type": "multiple_choice",
+    "passage": "Transcript: This is a notice from the city permits office. Starting on the first of next month, all applications for residential building permits must be submitted online through the city's permit portal; paper applications will no longer be accepted at the counter. Applications already submitted on paper before that date will continue to be processed as usual and do not need to be resubmitted. Commercial permits and sign permits are not part of this change yet and will still be accepted at the counter until further notice. To use the portal you will need to create an account with a valid email address, and you will then be able to track your application's status and upload revised drawings without coming in. Payment can be made online by card, or, if you prefer to pay by check, you can still bring the check to the counter and reference your application number. Staff will be available at the counter on Tuesday and Thursday mornings to help first-time users set up an account and upload documents. Review times are expected to shorten by about a week once the change takes effect.",
+    "passageGroupId": "announcement-v4-10",
+    "prompt": "[Announcement — City permits office] Which applications must be submitted through the online portal starting next month?",
+    "choices": [
+      "Applications for signs on commercial buildings",
+      "Applications for commercial building permits",
+      "Applications for residential building permits",
+      "Applications submitted on paper before the first"
+    ],
+    "correct_answer": "Applications for residential building permits",
+    "difficulty": "hard",
+    "listeningTask": "announcement",
+    "explanation": "\"All applications for residential building permits must be submitted online\", so that option is right. Commercial and sign permits are explicitly excluded for now, and paper applications filed before the date continue to be processed without resubmission."
+  },
+  {
+    "id": "ANN4-10-2",
+    "type": "multiple_choice",
+    "passage": "Transcript: This is a notice from the city permits office. Starting on the first of next month, all applications for residential building permits must be submitted online through the city's permit portal; paper applications will no longer be accepted at the counter. Applications already submitted on paper before that date will continue to be processed as usual and do not need to be resubmitted. Commercial permits and sign permits are not part of this change yet and will still be accepted at the counter until further notice. To use the portal you will need to create an account with a valid email address, and you will then be able to track your application's status and upload revised drawings without coming in. Payment can be made online by card, or, if you prefer to pay by check, you can still bring the check to the counter and reference your application number. Staff will be available at the counter on Tuesday and Thursday mornings to help first-time users set up an account and upload documents. Review times are expected to shorten by about a week once the change takes effect.",
+    "passageGroupId": "announcement-v4-10",
+    "prompt": "[Announcement — City permits office] What should an applicant who wants to pay by check do?",
+    "choices": [
+      "Bring the check to the counter with the application number",
+      "Submit the whole application on paper at the counter instead",
+      "Come in on a Tuesday or Thursday morning to pay",
+      "Set up a portal account using a different email address"
+    ],
+    "correct_answer": "Bring the check to the counter with the application number",
+    "difficulty": "hard",
+    "listeningTask": "announcement",
+    "explanation": "Check payers can \"bring the check to the counter and reference your application number\", so that option is right. Paper applications are no longer accepted for residential permits; Tuesday and Thursday mornings are help sessions, not payment times; the email address is for creating an account, not paying."
+  },
+  {
+    "id": "ANN4-10-3",
+    "type": "multiple_choice",
+    "passage": "Transcript: This is a notice from the city permits office. Starting on the first of next month, all applications for residential building permits must be submitted online through the city's permit portal; paper applications will no longer be accepted at the counter. Applications already submitted on paper before that date will continue to be processed as usual and do not need to be resubmitted. Commercial permits and sign permits are not part of this change yet and will still be accepted at the counter until further notice. To use the portal you will need to create an account with a valid email address, and you will then be able to track your application's status and upload revised drawings without coming in. Payment can be made online by card, or, if you prefer to pay by check, you can still bring the check to the counter and reference your application number. Staff will be available at the counter on Tuesday and Thursday mornings to help first-time users set up an account and upload documents. Review times are expected to shorten by about a week once the change takes effect.",
+    "passageGroupId": "announcement-v4-10",
+    "prompt": "[Announcement — City permits office] What does the speaker imply about applications submitted online?",
+    "choices": [
+      "They will be handled after the paper backlog is cleared",
+      "They will be reviewed faster than paper ones were",
+      "They can only be paid for by card, not by check",
+      "They cannot be changed once they have been submitted"
+    ],
+    "correct_answer": "They will be reviewed faster than paper ones were",
+    "difficulty": "hard",
+    "listeningTask": "announcement",
+    "explanation": "\"Review times are expected to shorten by about a week once the change takes effect\" implies online applications \"will be reviewed faster than paper ones were\". Paper applications are processed as usual, not ahead of online ones; checks are still accepted; revised drawings can be uploaded."
+  },
+  {
+    "id": "ANN4-11-1",
+    "type": "multiple_choice",
+    "passage": "Transcript: Good afternoon, families. This is a reminder from the front office about Thursday's early dismissal. Because of parent-teacher conferences, all students will be dismissed at twelve fifteen instead of three. Lunch will still be served, starting at eleven, so students will eat before they leave. Bus riders will be picked up at twelve fifteen on the regular routes, about two hours and forty-five minutes earlier than usual; please make sure someone is at the stop, because drivers will bring younger children back to the school if no one is there to meet them. The after-school program will open at twelve fifteen rather than three and will run until its normal closing time of six, but only for students who are already enrolled; we cannot accept drop-ins on Thursday. Car-line pickup also begins at twelve fifteen; please do not arrive before noon, as the lot will be in use for the lunch period. Conferences run from one to seven, and families who have not yet signed up can still do so on the school website until Wednesday evening. Thank you.",
+    "passageGroupId": "announcement-v4-11",
+    "prompt": "[Announcement — Elementary school] What time will the buses leave the school on Thursday?",
+    "choices": [
+      "At eleven, when lunch is served",
+      "At noon, when the parking lot opens",
+      "At three, on the regular routes",
+      "At twelve fifteen, on the regular routes"
+    ],
+    "correct_answer": "At twelve fifteen, on the regular routes",
+    "difficulty": "hard",
+    "listeningTask": "announcement",
+    "explanation": "\"Bus riders will be picked up at twelve fifteen on the regular routes\", so that option is right. Eleven is when lunch starts; noon is the earliest car-line arrival; three is the normal dismissal time being replaced."
+  },
+  {
+    "id": "ANN4-11-2",
+    "type": "multiple_choice",
+    "passage": "Transcript: Good afternoon, families. This is a reminder from the front office about Thursday's early dismissal. Because of parent-teacher conferences, all students will be dismissed at twelve fifteen instead of three. Lunch will still be served, starting at eleven, so students will eat before they leave. Bus riders will be picked up at twelve fifteen on the regular routes, about two hours and forty-five minutes earlier than usual; please make sure someone is at the stop, because drivers will bring younger children back to the school if no one is there to meet them. The after-school program will open at twelve fifteen rather than three and will run until its normal closing time of six, but only for students who are already enrolled; we cannot accept drop-ins on Thursday. Car-line pickup also begins at twelve fifteen; please do not arrive before noon, as the lot will be in use for the lunch period. Conferences run from one to seven, and families who have not yet signed up can still do so on the school website until Wednesday evening. Thank you.",
+    "passageGroupId": "announcement-v4-11",
+    "prompt": "[Announcement — Elementary school] Who may attend the after-school program on Thursday?",
+    "choices": [
+      "Any student whose family asks for it that morning",
+      "Students whose families have a conference that afternoon",
+      "Students who were already enrolled in the program",
+      "Younger children whose bus stops were unattended"
+    ],
+    "correct_answer": "Students who were already enrolled in the program",
+    "difficulty": "hard",
+    "listeningTask": "announcement",
+    "explanation": "The program runs \"only for students who are already enrolled; we cannot accept drop-ins\", so that option is right. Same-day requests and conference families are not given access; children returned by the bus come back to the school, not into the program."
+  },
+  {
+    "id": "ANN4-11-3",
+    "type": "multiple_choice",
+    "passage": "Transcript: Good afternoon, families. This is a reminder from the front office about Thursday's early dismissal. Because of parent-teacher conferences, all students will be dismissed at twelve fifteen instead of three. Lunch will still be served, starting at eleven, so students will eat before they leave. Bus riders will be picked up at twelve fifteen on the regular routes, about two hours and forty-five minutes earlier than usual; please make sure someone is at the stop, because drivers will bring younger children back to the school if no one is there to meet them. The after-school program will open at twelve fifteen rather than three and will run until its normal closing time of six, but only for students who are already enrolled; we cannot accept drop-ins on Thursday. Car-line pickup also begins at twelve fifteen; please do not arrive before noon, as the lot will be in use for the lunch period. Conferences run from one to seven, and families who have not yet signed up can still do so on the school website until Wednesday evening. Thank you.",
+    "passageGroupId": "announcement-v4-11",
+    "prompt": "[Announcement — Elementary school] What does the speaker imply about a family that has not yet signed up for a conference?",
+    "choices": [
+      "They can still get a time if they act by Wednesday evening",
+      "They must sign up in person at the front office",
+      "They should call the front office on Thursday morning",
+      "They will be contacted by their child's teacher with a time"
+    ],
+    "correct_answer": "They can still get a time if they act by Wednesday evening",
+    "difficulty": "hard",
+    "listeningTask": "announcement",
+    "explanation": "Families \"can still do so on the school website until Wednesday evening\", so \"they can still get a time if they act by Wednesday evening\" is right. Sign-up is online, not in person or by phone, and it closes Wednesday evening; no teacher contact is mentioned."
+  },
+  {
+    "id": "ANN4-12-1",
+    "type": "multiple_choice",
+    "passage": "Transcript: May I have your attention, please. Because of high winds forecast for this afternoon, the ferry schedule is changing. The two o'clock and four o'clock sailings to Pine Island are cancelled. The noon sailing will depart as scheduled and is now the last departure to Pine Island today. Passengers holding tickets for the cancelled sailings may board the noon ferry on a space-available basis; walk-on passengers will be boarded first, and vehicles only if space remains after the noon reservations. Tickets for the cancelled sailings can also be used on any sailing tomorrow, or refunded in full at the ticket office or online within thirty days. Service to Cedar Point is not affected at this time, though the six o'clock Cedar Point sailing may be delayed; please check the departure board. The terminal café will remain open until the last sailing departs. If you are traveling with a vehicle and cannot be accommodated today, overnight parking in the terminal lot is free with a valid ferry ticket. Thank you for your patience.",
+    "passageGroupId": "announcement-v4-12",
+    "prompt": "[Announcement — Ferry terminal] Which is the last sailing to Pine Island today?",
+    "choices": [
+      "The one leaving at two o'clock",
+      "The one leaving at four o'clock",
+      "The one leaving at twelve noon",
+      "The one leaving at six o'clock"
+    ],
+    "correct_answer": "The one leaving at twelve noon",
+    "difficulty": "hard",
+    "listeningTask": "announcement",
+    "explanation": "\"The noon sailing will depart as scheduled and is now the last departure to Pine Island today\", so \"the one leaving at twelve noon\" is right. The two and four o'clock sailings are cancelled outright; the six o'clock sailing goes to Cedar Point."
+  },
+  {
+    "id": "ANN4-12-2",
+    "type": "multiple_choice",
+    "passage": "Transcript: May I have your attention, please. Because of high winds forecast for this afternoon, the ferry schedule is changing. The two o'clock and four o'clock sailings to Pine Island are cancelled. The noon sailing will depart as scheduled and is now the last departure to Pine Island today. Passengers holding tickets for the cancelled sailings may board the noon ferry on a space-available basis; walk-on passengers will be boarded first, and vehicles only if space remains after the noon reservations. Tickets for the cancelled sailings can also be used on any sailing tomorrow, or refunded in full at the ticket office or online within thirty days. Service to Cedar Point is not affected at this time, though the six o'clock Cedar Point sailing may be delayed; please check the departure board. The terminal café will remain open until the last sailing departs. If you are traveling with a vehicle and cannot be accommodated today, overnight parking in the terminal lot is free with a valid ferry ticket. Thank you for your patience.",
+    "passageGroupId": "announcement-v4-12",
+    "prompt": "[Announcement — Ferry terminal] Among passengers from the cancelled sailings, who will be boarded first on the remaining ferry?",
+    "choices": [
+      "Those who are traveling with a vehicle",
+      "Those who are traveling on foot",
+      "Those who booked their tickets online",
+      "Those who are continuing to Cedar Point"
+    ],
+    "correct_answer": "Those who are traveling on foot",
+    "difficulty": "hard",
+    "listeningTask": "announcement",
+    "explanation": "\"Walk-on passengers will be boarded first, and vehicles only if space remains\", so \"those who are traveling on foot\" is right. Vehicles come last; online booking is mentioned only for refunds; Cedar Point is a separate route."
+  },
+  {
+    "id": "ANN4-12-3",
+    "type": "multiple_choice",
+    "passage": "Transcript: May I have your attention, please. Because of high winds forecast for this afternoon, the ferry schedule is changing. The two o'clock and four o'clock sailings to Pine Island are cancelled. The noon sailing will depart as scheduled and is now the last departure to Pine Island today. Passengers holding tickets for the cancelled sailings may board the noon ferry on a space-available basis; walk-on passengers will be boarded first, and vehicles only if space remains after the noon reservations. Tickets for the cancelled sailings can also be used on any sailing tomorrow, or refunded in full at the ticket office or online within thirty days. Service to Cedar Point is not affected at this time, though the six o'clock Cedar Point sailing may be delayed; please check the departure board. The terminal café will remain open until the last sailing departs. If you are traveling with a vehicle and cannot be accommodated today, overnight parking in the terminal lot is free with a valid ferry ticket. Thank you for your patience.",
+    "passageGroupId": "announcement-v4-12",
+    "prompt": "[Announcement — Ferry terminal] What does the speaker imply about a driver holding a four o'clock ticket?",
+    "choices": [
+      "They will receive a refund without having to ask",
+      "They should switch to the Cedar Point route instead",
+      "They must leave their vehicle in the lot overnight",
+      "They might not be able to reach Pine Island today"
+    ],
+    "correct_answer": "They might not be able to reach Pine Island today",
+    "difficulty": "hard",
+    "listeningTask": "announcement",
+    "explanation": "Vehicles board \"only if space remains after the noon reservations\", and free overnight parking is offered for those who \"cannot be accommodated today\", so a driver \"might not be able to reach Pine Island today\". Refunds must be requested; Cedar Point is a different destination; overnight parking is an option, not a requirement."
+  }
+]

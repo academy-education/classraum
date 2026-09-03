@@ -1630,6 +1630,129 @@
      "verdict": "The attacker noted that because numeric options print ascending, the key-letter spread and the key-RANK spread are the same statistic - so a flat letter spread here is one fact, not two."
     }
    }
+  },
+  {
+   "id": "announcement-v4-2026-09-03",
+   "createdAt": "2026-09-03",
+   "targetTest": "toefl",
+   "section": "listening",
+   "task": "announcement",
+   "family": "mc_hidden_source",
+   "spec": {
+    "n": 36,
+    "authors": 1,
+    "method": "12 announcements x 3 questions, ANNOUNCEMENT brief with load-bearing variety; author self-attacked for sibling leaks, then a repair pass on 9 sets after the first attack named the leaks it missed"
+   },
+   "contentSha": "a6257b5b0397ac367dbac6fa5ed52fda1c88ac9af6b6f05c6defe9628329746b",
+   "status": "qc",
+   "cohort": null,
+   "note": "HELD. Not inserted. The insert path refused it for want of this entry, and this entry records a FAILED no-source stage, so the refusal stands. Path to pass is the dl-fresh atypical-fact / flat-prior brief (DL-FRESH-PREREGISTERED.md), which is what took daily_life from +44 to -1.4.",
+   "stages": {
+    "shape": {
+     "passed": true,
+     "verdict": "36/36: 4 unique choices, key present, listeningTask=announcement, passage identical within each set, blind renderer prints 36 blocks. Key slots 9/9/9/9."
+    },
+    "withsource": {
+     "passed": true,
+     "verdict": "Grader (transcript + 4 options, key unmarked) matched the key 36/36 on the PRE-repair file; 1 second-defensible (02 Q1, repaired by a transcript edit), 2 answerable from prior knowledge (04 Q2, 07 Q3, both re-keyed to the non-default policy). Difficulty easy 23 / medium 10 / hard 3. Not re-run on the final sha because the batch is blocked on nosource anyway."
+    },
+    "nosource": {
+     "passed": false,
+     "n": 36,
+     "mean": 83.3,
+     "control": 25,
+     "margin": 58.3,
+     "solvers": [
+      {
+       "score": 9,
+       "pct": 75,
+       "confident": 4
+      },
+      {
+       "score": 10,
+       "pct": 83.3,
+       "confident": 7
+      },
+      {
+       "score": 11,
+       "pct": 91.7,
+       "confident": 8
+      }
+     ],
+     "verdict": "Interleaved attack (36 in one file, pre-repair): 83.3 / 86.1 / 88.9, mean 86.1 (+61.1); ten of twelve sets had an option restating a sibling key. After the repair, SIBLING-FREE split (make-attack.mjs SPLIT=3, one item per transcript per file, a different solver per file): 75.0 / 83.3 / 91.7, mean 83.3 (+58.3), confident picks 19/19 right. Solvers named real-world policy priors and the hedged option on imply stems. The listening_lecture baseline (official ETS items) sits at +68.8, so this is below official items, but the family bar that shipped dl-fresh and dl-siblings was at or below control and cr-v7 used a +30 kill bar. FAIL."
+    },
+    "elimination": {
+     "passed": false,
+     "verdict": "Not run as a separate probe; the split attack already shows the options carry the answer without the transcript, which is the elimination defect in aggregate."
+    },
+    "tells": {
+     "passed": true,
+     "verdict": "Slots 9/9/9/9; key length rank 4/14/12/6 (max 39%); uniquely longest 3 + uniquely shortest 6 = 9 of 36, at the cap; per-item length ratio <= 1.40."
+    }
+   }
+  },
+  {
+   "id": "cr-v10-2026-09-03",
+   "createdAt": "2026-09-03",
+   "targetTest": "toefl",
+   "section": "listening",
+   "task": "choose_response",
+   "family": "mc_hidden_source",
+   "spec": {
+    "n": 40,
+    "authors": 2,
+    "method": "cr-v7 kill-quote standard (each distractor the natural reply to a neighbouring line, killable by a quotable span); batch 2 fixed world and slot sequences before writing options, batch 1 did not use seeded world selection"
+   },
+   "contentSha": "b67b01cefcaeb26478c3ab416b7152fe8e261c2ba247e1182d4dd83ea23b5122+c2489f8d109acb012a75a230f38de85e8e3f571ccf4e7fc2b1916b2a01081613",
+   "status": "qc",
+   "cohort": null,
+   "note": "HELD pending repair. Two files; shas recorded pre-repair and must be re-taken after. Authored as cr-v8-* and renamed because a shipped cr-v8 exists. Detail in CR-V10-RESULT.md.",
+   "stages": {
+    "shape": {
+     "passed": true,
+     "verdict": "40/40: 4 choices, key present, listeningTask=choose_response, blind renderer 20+20 blocks; authored slots 5/5/5/5 per file."
+    },
+    "withsource": {
+     "passed": false,
+     "verdict": "Exclusivity grader (line + 4 options, key unmarked) agreed with the key 37/40; 6 items with a second acceptable reply (B1-02, B1-14, B1-16, B1-17, B1-19, B2-19), 2 with a self-contradictory spoken line (B1-03, B1-10), 3 stilted or logically inverted distractors. Difficulty easy 20 / medium 18 / hard 2. Repairs requested from both authors; re-grade on the new sha required."
+    },
+    "nosource": {
+     "passed": true,
+     "n": 40,
+     "mean": 35,
+     "control": 25,
+     "margin": 10,
+     "solvers": [
+      {
+       "score": 15,
+       "pct": 37.5,
+       "confident": 2,
+       "spread": "5/10/14/11"
+      },
+      {
+       "score": 14,
+       "pct": 35,
+       "confident": 4,
+       "spread": "6/9/13/12"
+      },
+      {
+       "score": 13,
+       "pct": 32.5,
+       "confident": 19,
+       "spread": "11/7/13/9"
+      }
+     ],
+     "verdict": "Options only, keys dealt flat 10/10/10/10: 37.5 / 35.0 / 32.5, mean 35.0, margin +10.0. Passes the calibrated choose_response bar (published +25.5, +4 tolerance) and is worse than cr-v7 (+1.4). 7 of 40 solved by all three. All solvers named the same heuristic: the reply to the canonical complication for the named setting."
+    },
+    "elimination": {
+     "passed": false,
+     "verdict": "Not probed separately; blocked on withsource repairs first."
+    },
+    "tells": {
+     "passed": true,
+     "verdict": "No length, slot or punctuation tell found by any solver; per-file key length rank <= 30%; near-dup scan against cr-v7/v8/v9 clean (batch 2)."
+    }
+   }
   }
  ],
  "auditedCohorts": [

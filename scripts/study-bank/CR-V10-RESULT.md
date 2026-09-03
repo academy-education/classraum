@@ -50,3 +50,15 @@ selection, which is the method that cleared.
 Files: cr-v10-b1.batch.json, cr-v10-b2.batch.json, cr-v10-attack.{blind,key}.json,
 cr-v10-attack.solver-{a,b,c}.json, cr-v10-withsource.json, cr-v10-withsource.grader-a.json.
 Score with: node scripts/study-bank/score-attack.mjs cr-v10-attack
+
+## Addendum, same day — the ledger's calibrated bar
+
+The insert gate (gate.mjs / ledger.json) prices choose_response no-source
+against the ETS official sample: +25.5 published, +4 tolerance. cr-v10's
++10.0 PASSES that bar; cr-v7's +1.4 was measured against a stricter +30
+kill bar it set for itself. What blocks cr-v10 is the WITH-SOURCE stage:
+6 two-acceptable items, 2 incoherent lines, 3 free distractors. Both
+authors have the grader's list; after repair the file sha changes, the
+with-source grade is re-run on the new bytes, and if it is clean the
+batch can ship at +10 under the ledger's own rule. Ledger entry:
+cr-v10-2026-09-03 (status qc).
