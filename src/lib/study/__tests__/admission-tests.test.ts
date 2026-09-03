@@ -40,7 +40,8 @@ describe('blueprint matches the published format', () => {
         expect(b.minutes).toBe(quant.reduce((n, x) => n + x.minutesPerSection, 0))
         continue
       }
-      const s = spec.find(x => x.name_en === b.name)
+      // The card says "Writing"; the official spec says "Writing Sample".
+      const s = spec.find(x => x.name_en === b.name) ?? (b.key === 'writing' ? spec.find(x => /^Writing/.test(x.name_en)) : undefined)
       expect(s).toBeDefined()
       expect(b.questions).toBe(s!.questionsPerSection)
       expect(b.minutes).toBe(s!.minutesPerSection)

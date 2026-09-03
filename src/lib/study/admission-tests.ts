@@ -51,7 +51,9 @@ export const ADMISSION_BLUEPRINT: Record<AdmissionFamily, AdmissionSection[]> = 
     { key: 'math',      name: 'Math',                     bankSection: 'math',    questions: 50, minutes: 60, choiceCount: 5, scored: true },
     { key: 'reading',   name: 'Reading Comprehension',    bankSection: 'reading', questions: 40, minutes: 40, choiceCount: 5, scored: true },
     { key: 'verbal',    name: 'Verbal',                   bankSection: 'verbal',  questions: 60, minutes: 30, choiceCount: 5, scored: true },
-    { key: 'writing',   name: 'Writing Sample',           bankSection: 'writing', questions: 1,  minutes: 25, choiceCount: 0, scored: false },
+    // Card and section title are plain "Writing" (co-founder, 2026-09-03);
+    // TEST_SPECS keeps the official "Writing Sample" name.
+    { key: 'writing',   name: 'Writing',                  bankSection: 'writing', questions: 1,  minutes: 25, choiceCount: 0, scored: false },
   ],
   isee: [
     // Order is the co-founder's (2026-09-02): Quantitative Reasoning,
