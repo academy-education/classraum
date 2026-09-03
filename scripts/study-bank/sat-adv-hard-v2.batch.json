@@ -249,7 +249,7 @@
       "x = -1",
       "x = 1",
       "There is no solution.",
-      "x = 3"
+      "There are infinitely many solutions."
     ],
     "correct_answer": "There is no solution.",
     "explanation": "Because x^2 - 1 = (x - 1)(x + 1), multiplying through by (x - 1)(x + 1) gives 3(x + 1) - 2(x - 1) = 4, so 3x + 3 - 2x + 2 = 4 and x = -1. But x = -1 makes the denominators x + 1 and x^2 - 1 equal to 0, so it is not in the domain of the original equation and must be rejected. The equation therefore has no solution.",
@@ -263,8 +263,8 @@
         "mis_step": "Notices that a value must be excluded but excludes the wrong one and keeps x = 1 as the answer."
       },
       {
-        "choice": "x = 3",
-        "mis_step": "Fails to distribute the subtraction: 3x + 3 - 2x - 2 = 4 gives x = 3."
+        "choice": "There are infinitely many solutions.",
+        "mis_step": "Clears the denominators, sees the identity 3(x + 1) - 2(x - 1) = 4 hold at the value found, and concludes the equation is true for every x in the domain."
       }
     ],
     "solve": "const lhs = x => 3 / (x - 1) - 2 / (x + 1);\nconst rhs = x => 4 / (x * x - 1);\nconst sols = [];\nfor (let i = -2000; i <= 2000; i++) {\n  const x = i / 100;\n  if (x === 1 || x === -1) continue;\n  if (Math.abs(lhs(x) - rhs(x)) < 1e-9) sols.push(x);\n}\nreturn sols.length === 0 ? 'There is no solution.' : ('x = ' + sols[0]);"
@@ -399,7 +399,7 @@
       "8000(0.88)^(m/12)",
       "8000(0.88)^(12m)",
       "8000(0.99)^m",
-      "8000(0.88/12)^m"
+      "8000(0.12)^(m/12)"
     ],
     "correct_answer": "8000(0.88)^(m/12)",
     "explanation": "Losing 12 percent per year multiplies the mass by 1 - 0.12 = 0.88 each year. Since m months is m/12 years, the number of yearly periods elapsed is m/12, and the mass is 8000(0.88)^(m/12).",
@@ -413,8 +413,8 @@
         "mis_step": "Divides the 12 percent rate by 12 to get a 1 percent monthly rate, which compounding makes incorrect."
       },
       {
-        "choice": "8000(0.88/12)^m",
-        "mis_step": "Puts the time conversion inside the base instead of in the exponent."
+        "choice": "8000(0.12)^(m/12)",
+        "mis_step": "Uses the 12 percent LOST as the multiplier instead of the 88 percent retained, so the model decays far too fast."
       }
     ],
     "solve": "const base = 1 - 0.12, per = 12;\nreturn '8000(' + base + ')^(m/' + per + ')';"

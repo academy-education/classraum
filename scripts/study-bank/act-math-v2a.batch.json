@@ -20,16 +20,16 @@
     "domain": "Number and Quantity",
     "subskill": "square roots of a complex number with a sign restriction",
     "difficulty": "hard",
-    "prompt": "Let a and b be real numbers with a > 0 such that (a + bi)^2 = 7 - 24i, where i^2 = -1. What is the value of a + b?",
+    "prompt": "Let a and b be real numbers with b > 0 such that (a + bi)^2 = -5 + 12i, where i^2 = -1. What is the value of a + b?",
     "choices": [
-      "-1",
-      "1",
-      "7",
-      "25"
+      "-5",
+      "-2",
+      "2",
+      "5"
     ],
-    "correct_answer": "1",
-    "explanation": "Expanding gives a^2 - b^2 = 7 and 2ab = -24, so ab = -12. Then a^2(a^2 - 7) = 144, so a^4 - 7a^2 - 144 = 0 and a^2 = 16. Since a > 0, a = 4, and ab = -12 forces b = -3, so a + b = 1. Taking b = 3 and ignoring that the imaginary part is negative gives 7; swapping the roles of a and b gives 3 + (-4) = -1; and 25 is the modulus of 7 - 24i, not a + b.",
-    "solve": "var re=7, im=-24;\nvar a2=(re+Math.sqrt(re*re+im*im))/2;\nvar a=Math.sqrt(a2), b=im/(2*a);\nreturn Math.round((a+b)*1e6)/1e6;"
+    "correct_answer": "5",
+    "explanation": "Expanding gives a^2 - b^2 = -5 and 2ab = 12, so ab = 6. Substituting b = 6/a gives a^4 + 5a^2 - 36 = 0, so a^2 = 4 and a = 2 or a = -2. Because ab = 6 is positive, a and b have the same sign, and b > 0 forces a = 2 and b = 3, so a + b = 5. Taking the other root, a = -2 and b = -3, violates b > 0 and gives -5. Stopping at the value of a gives 2, and stopping at the other value of a gives -2.",
+    "solve": "var re=-5, im=12;\nvar a2=(re+Math.sqrt(re*re+im*im))/2;\nvar a=Math.sqrt(a2), b=im/(2*a);\nreturn Math.round((a+b)*1e6)/1e6;"
   },
   {
     "id": "ACTM2A-NQ-03",
@@ -38,14 +38,14 @@
     "difficulty": "hard",
     "prompt": "A data center must archive 4.8 x 10^15 bytes. Each archive tape has a raw capacity of 2.5 x 10^11 bytes, but 8% of every tape's raw capacity is reserved for error correction and cannot hold archived data. Tapes cannot be split. What is the least number of tapes needed?",
     "choices": [
-      "17,778",
-      "19,200",
-      "20,869",
-      "20,870"
+      "17778",
+      "19200",
+      "20869",
+      "20870"
     ],
-    "correct_answer": "20,870",
-    "explanation": "Each tape holds 0.92(2.5 x 10^11) = 2.3 x 10^11 bytes of archived data, and 4.8 x 10^15 / 2.3 x 10^11 = 20,869.56..., so 20,870 tapes are needed. Ignoring the reservation gives 19,200; multiplying the capacity by 1.08 instead of 0.92 gives 17,778; and rounding 20,869.56 down instead of up gives 20,869, which leaves part of the archive unstored.",
-    "solve": "var total=4.8e15, raw=2.5e11, usable=raw*0.92;\nvar n=Math.ceil(total/usable);\nreturn n.toLocaleString('en-US');"
+    "correct_answer": "20870",
+    "explanation": "Each tape holds 0.92(2.5 x 10^11) = 2.3 x 10^11 bytes of archived data, and 4.8 x 10^15 / 2.3 x 10^11 = 20869.56..., so 20870 tapes are needed. Ignoring the reservation gives 19200; multiplying the capacity by 1.08 instead of 0.92 gives 17778; and rounding 20869.56 down instead of up gives 20869, which leaves part of the archive unstored.",
+    "solve": "var total=4.8e15, raw=2.5e11, usable=raw*0.92;\nreturn Math.ceil(total/usable);"
   },
   {
     "id": "ACTM2A-NQ-04",
@@ -87,12 +87,12 @@
     "prompt": "Matrix M = [[4, 7], [1, 2]], where each inner list is a row. What is the entry in row 1, column 2 of M^-1?",
     "choices": [
       "-7",
-      "-7/8",
       "-1",
-      "7"
+      "-7/8",
+      "7/8"
     ],
     "correct_answer": "-7",
-    "explanation": "For M = [[a, b], [c, d]], M^-1 = (1/(ad - bc))[[d, -b], [-c, a]]. Here ad - bc = 8 - 7 = 1, so M^-1 = [[2, -7], [-1, 4]] and the row 1, column 2 entry is -7. Using the product of the diagonal, 8, as the determinant gives -7/8. Omitting the sign change on the off-diagonal entry gives 7. The entry -1 is in row 2, column 1 of M^-1, not row 1, column 2.",
+    "explanation": "For M = [[a, b], [c, d]], M^-1 = (1/(ad - bc))[[d, -b], [-c, a]]. Here ad - bc = 8 - 7 = 1, so M^-1 = [[2, -7], [-1, 4]] and the row 1, column 2 entry is -7. The entry -1 is in row 2, column 1 of M^-1, not row 1, column 2. Using the product of the diagonal, 8, as the determinant gives -7/8, and doing that while also omitting the sign change on the off-diagonal entry gives 7/8.",
     "solve": "var a=4,b=7,c=1,d=2;\nvar det=a*d-b*c;\nvar v=-b/det;\nreturn v;"
   },
   {
@@ -182,13 +182,13 @@
     "difficulty": "medium",
     "prompt": "The complex number (4 + 7i)/(2 + i) can be written as a + bi, where a and b are real numbers and i^2 = -1. What is the value of ab?",
     "choices": [
-      "-6",
-      "2/5",
       "6",
-      "14"
+      "14",
+      "30",
+      "150"
     ],
     "correct_answer": "6",
-    "explanation": "Multiplying numerator and denominator by the conjugate 2 - i gives (4 + 7i)(2 - i)/5 = (8 - 4i + 14i + 7)/5 = (15 + 10i)/5 = 3 + 2i, so ab = 6. Dividing the real and imaginary parts separately gives 2 + 7i and a product of 14. Treating i^2 as +1 in the numerator gives (1 + 10i)/5 = 0.2 + 2i and a product of 2/5. A sign error in the final quotient gives 3 - 2i and a product of -6.",
+    "explanation": "Multiplying numerator and denominator by the conjugate 2 - i gives (4 + 7i)(2 - i)/5 = (8 - 4i + 14i + 7)/5 = (15 + 10i)/5 = 3 + 2i, so ab = 6. Dividing the real and imaginary parts separately gives 2 + 7i and a product of 14. Stopping at 15 + 10i without dividing by 5 gives a product of 150, and dividing by the modulus sqrt(5) instead of by 5 gives 3sqrt(5) + 2sqrt(5)i and a product of 30.",
     "solve": "var ar=4,ai=7,br=2,bi=1;\nvar d=br*br+bi*bi;\nvar a=(ar*br+ai*bi)/d, b=(ai*br-ar*bi)/d;\nreturn a*b;"
   },
   {
@@ -201,11 +201,11 @@
       "24",
       "200",
       "288",
-      "1,200"
+      "1200"
     ],
     "correct_answer": "288",
-    "explanation": "Four minutes is 240 seconds, and the machine fills 6/5 bottles per second, so it fills (6/5)(240) = 288 bottles. Inverting the rate gives (5/6)(240) = 200, treating the 4 minutes as 4 seconds' worth of the stated rate gives 6(4) = 24, and multiplying 240 by 5 instead of by 6/5 gives 1,200.",
-    "solve": "var bottles=6, per=5, secs=4*60;\nvar n=bottles/per*secs;\nreturn n.toLocaleString('en-US');"
+    "explanation": "Four minutes is 240 seconds, and the machine fills 6/5 bottles per second, so it fills (6/5)(240) = 288 bottles. Inverting the rate gives (5/6)(240) = 200, treating the 4 minutes as 4 seconds' worth of the stated rate gives 6(4) = 24, and multiplying 240 by 5 instead of by 6/5 gives 1200.",
+    "solve": "var bottles=6, per=5, secs=4*60;\nreturn bottles/per*secs;"
   },
   {
     "id": "ACTM2A-NQ-14",
@@ -214,13 +214,13 @@
     "difficulty": "medium",
     "prompt": "In a geometric sequence, the 3rd term is 12 and the 5th term is 27. Every term of the sequence is positive. What is the 4th term?",
     "choices": [
-      "-18",
       "13.5",
       "18",
-      "19.5"
+      "19.5",
+      "27"
     ],
     "correct_answer": "18",
-    "explanation": "If r is the common ratio, 12r^2 = 27, so r^2 = 9/4 and r = 3/2 or r = -3/2. Because every term is positive, r = 3/2 and the 4th term is 12(3/2) = 18. Taking r = -3/2 gives -18. Averaging the 3rd and 5th terms treats the sequence as arithmetic and gives 19.5, and halving the 5th term gives 13.5.",
+    "explanation": "If r is the common ratio, 12r^2 = 27, so r^2 = 9/4 and r = 3/2 or r = -3/2. Because every term is positive, r = 3/2 and the 4th term is 12(3/2) = 18. Using 27/12 = 9/4 as the ratio itself rather than as its square gives 12(9/4) = 27, which is the 5th term. Averaging the 3rd and 5th terms treats the sequence as arithmetic and gives 19.5, and halving the 5th term gives 13.5.",
     "solve": "var t3=12,t5=27;\nvar r=Math.sqrt(t5/t3);\nreturn t3*r;"
   },
   {
@@ -228,16 +228,16 @@
     "domain": "Number and Quantity",
     "subskill": "scaling a vector to a given magnitude",
     "difficulty": "medium",
-    "prompt": "Vector u has x-component 6 and y-component -8. Vector v points in the same direction as u and has magnitude 15. What is the y-component of v?",
+    "prompt": "Vector u has x-component 6 and y-component -8. Vector v points in the same direction as u and has magnitude 15. What is the x-component of v?",
     "choices": [
-      "-12",
-      "-8",
+      "6",
       "9",
-      "12"
+      "12",
+      "90"
     ],
-    "correct_answer": "-12",
-    "explanation": "The magnitude of u is sqrt(36 + 64) = 10, so v = (15/10)u, whose components are 9 and -12, and its y-component is -12. The value 9 is the x-component of v, -8 is the y-component of u itself, and 12 comes from scaling correctly but dropping the negative sign that the direction of u requires.",
-    "solve": "var ux=6,uy=-8,mag=15;\nvar k=mag/Math.sqrt(ux*ux+uy*uy);\nreturn k*uy;"
+    "correct_answer": "9",
+    "explanation": "The magnitude of u is sqrt(36 + 64) = 10, so v is (15/10)u and its components are 9 and -12. The x-component is therefore 9. The value 6 is the x-component of u itself, left unscaled. The value 12 is the size of the y-component of v, the wrong component. Multiplying the x-component of u by the magnitude 15 instead of by 15/10 gives 90.",
+    "solve": "var ux=6,uy=-8,mag=15;\nvar k=mag/Math.sqrt(ux*ux+uy*uy);\nreturn k*ux;"
   },
   {
     "id": "ACTM2A-NQ-16",
@@ -341,13 +341,13 @@
     "difficulty": "hard",
     "prompt": "A committee of 4 people is selected at random from a group of 6 women and 5 men. What is the probability that the committee includes at least 1 woman AND at least 1 man?",
     "choices": [
-      "2/33",
+      "1/22",
       "21/22",
       "31/33",
       "65/66"
     ],
     "correct_answer": "31/33",
-    "explanation": "There are 11C4 = 330 equally likely committees. A committee fails the requirement only if it is all women, 6C4 = 15 ways, or all men, 5C4 = 5 ways, so 330 - 20 = 310 committees qualify and 310/330 = 31/33. Excluding only the all-women committees gives 21/22, excluding only the all-men committees gives 65/66, and 2/33 is the probability that the committee fails the requirement.",
+    "explanation": "There are 11C4 = 330 equally likely committees. A committee fails the requirement only if it is all women, 6C4 = 15 ways, or all men, 5C4 = 5 ways, so 330 - 20 = 310 committees qualify and 310/330 = 31/33. Excluding only the all-women committees gives 21/22 and excluding only the all-men committees gives 65/66. The value 1/22 is the probability that the committee is all women, which is one of the two cases being excluded rather than the answer.",
     "solve": "function C(n,k){var r=1;for(var i=0;i<k;i++){r=r*(n-i)/(i+1);}return Math.round(r);}\nvar tot=C(11,4), bad=C(6,4)+C(5,4), fav=tot-bad;\nfunction g(a,b){return b?g(b,a%b):a;}\nvar d=g(fav,tot);\nreturn (fav/d)+'/'+(tot/d);"
   },
   {
@@ -360,11 +360,11 @@
       "126",
       "504",
       "756",
-      "3,024"
+      "3024"
     ],
     "correct_answer": "504",
-    "explanation": "There are 9 choices of president, and then the subcommittee is any 3 of the 8 remaining students, 8C3 = 56 ways, so there are 9(56) = 504 ways. Choosing the subcommittee from all 9 students gives 9(9C3) = 756 and ignores the restriction. Treating the president and the subcommittee as one group of 4 gives 9C4 = 126, and treating all four selections as ordered gives 9(8)(7)(6) = 3,024.",
-    "solve": "function C(n,k){var r=1;for(var i=0;i<k;i++){r=r*(n-i)/(i+1);}return Math.round(r);}\nvar n=9*C(8,3);\nreturn n.toLocaleString('en-US');"
+    "explanation": "There are 9 choices of president, and then the subcommittee is any 3 of the 8 remaining students, 8C3 = 56 ways, so there are 9(56) = 504 ways. Choosing the subcommittee from all 9 students gives 9(9C3) = 756 and ignores the restriction. Treating the president and the subcommittee as one group of 4 gives 9C4 = 126, and treating all four selections as ordered gives 9(8)(7)(6) = 3024.",
+    "solve": "function C(n,k){var r=1;for(var i=0;i<k;i++){r=r*(n-i)/(i+1);}return Math.round(r);}\nreturn 9*C(8,3);"
   },
   {
     "id": "ACTM2A-SP-06",
@@ -395,13 +395,13 @@
       "caption": "Number of students in each grade by method of travel."
     },
     "choices": [
+      "9/40",
       "11/40",
-      "2/5",
       "19/40",
       "21/40"
     ],
     "correct_answer": "19/40",
-    "explanation": "A total of 16 + 22 = 38 of the 80 students walk, and 38/80 = 19/40. The value 21/40 is the probability that a student rides the bus, 11/40 uses only the 22 sophomores who walk out of all 80 students, and 2/5 is the probability that a student walks given that the student is a freshman, 16/40.",
+    "explanation": "A total of 16 + 22 = 38 of the 80 students walk, and 38/80 = 19/40. The value 21/40 is the probability that a student rides the bus. The values 11/40 and 9/40 come from reading a single cell of the table, the 22 sophomores who walk and the 18 sophomores who ride the bus, instead of the column total.",
     "solve": "var cells=[[24,16],[18,22]];\nvar walk=cells[0][1]+cells[1][1];\nvar tot=0; for(var i=0;i<2;i++) for(var j=0;j<2;j++) tot+=cells[i][j];\nfunction g(a,b){return b?g(b,a%b):a;}\nvar d=g(walk,tot);\nreturn (walk/d)+'/'+(tot/d);"
   },
   {
@@ -549,12 +549,12 @@
     "prompt": "Data set X consists of the values 10, 20, 30, 40, and 50. Data set Y is formed by adding 12 to each value in X. Data set Z is formed by multiplying each value in X by 2. Which of the following statements about the standard deviations of X, Y, and Z is true?",
     "choices": [
       "Y has the same standard deviation as X, and Z has twice the standard deviation of X.",
-      "Y has the same standard deviation as X, and Z has the same standard deviation as X.",
+      "Both Y and Z have the same standard deviation as X.",
       "Y has a standard deviation 12 greater than that of X, and Z has twice the standard deviation of X.",
       "Y has twice the standard deviation of X, and Z has a standard deviation 4 times that of X."
     ],
     "correct_answer": "Y has the same standard deviation as X, and Z has twice the standard deviation of X.",
     "explanation": "Adding the same constant to every value slides the whole data set without changing how spread out the values are, so Y has the same standard deviation as X. Multiplying every value by 2 doubles every distance between values, so Z has twice the standard deviation of X. The standard deviation is not increased by the amount added, and doubling the values doubles rather than quadruples the standard deviation.",
-    "solve": "function sd(a){var n=a.length,m=0;for(var i=0;i<n;i++)m+=a[i];m/=n;var s=0;for(var j=0;j<n;j++)s+=(a[j]-m)*(a[j]-m);return Math.sqrt(s/n);}\nvar X=[10,20,30,40,50];\nvar Y=X.map(function(v){return v+12;});\nvar Z=X.map(function(v){return v*2;});\nvar sx=sd(X), sy=sd(Y), sz=sd(Z);\nvar ySame=Math.abs(sy-sx)<1e-9, zDouble=Math.abs(sz-2*sx)<1e-9;\nif(ySame&&zDouble) return 'Y has the same standard deviation as X, and Z has twice the standard deviation of X.';\nif(ySame) return 'Y has the same standard deviation as X, and Z has the same standard deviation as X.';\nreturn 'Y has a standard deviation 12 greater than that of X, and Z has twice the standard deviation of X.';"
+    "solve": "function sd(a){var n=a.length,m=0;for(var i=0;i<n;i++)m+=a[i];m/=n;var s=0;for(var j=0;j<n;j++)s+=(a[j]-m)*(a[j]-m);return Math.sqrt(s/n);}\nvar X=[10,20,30,40,50];\nvar Y=X.map(function(v){return v+12;});\nvar Z=X.map(function(v){return v*2;});\nvar sx=sd(X), sy=sd(Y), sz=sd(Z);\nvar ySame=Math.abs(sy-sx)<1e-9, zDouble=Math.abs(sz-2*sx)<1e-9;\nif(ySame&&zDouble) return \"Y has the same standard deviation as X, and Z has twice the standard deviation of X.\";\nif(ySame) return \"Both Y and Z have the same standard deviation as X.\";\nreturn \"Y has a standard deviation 12 greater than that of X, and Z has twice the standard deviation of X.\";"
   }
 ]

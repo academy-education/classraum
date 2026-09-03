@@ -195,6 +195,49 @@ if (process.argv.includes('--selftest')) {
 const validate = process.argv.includes('--validate')
 const onlyDomain = process.argv.slice(2).find(a => !a.startsWith('--')) ?? null
 
+/*
+ * BATCH MODE (added 2026-09-04). A batch path used to be refused outright,
+ * because the positional argument is a DOMAIN filter and a path matched zero
+ * rows while still printing a number. The refusal pointed at
+ * check-symbolic-hub.mjs — but that script's token metric treats every pair
+ * of bare numbers ("5" vs "3") as one edit, so a purely numeric option set
+ * comes back as a four-way tie at exactly the 25% control and carries no
+ * information. The numeric OPS here are the instrument for those sets, so
+ * this mode scores the file with the SAME scoring rule as the live path and
+ * refuses to print a rate when nothing was scorable.
+ */
+if (process.argv.slice(2).some(a => a.endsWith('.json'))) {
+  const files = process.argv.slice(2).filter(a => a.endsWith('.json'))
+  let bad = false
+  for (const f of files) {
+    const rows = JSON.parse(readFileSync(f, 'utf8'))
+    let structured = 0, unscorable = 0, credit = 0
+    const hubs = []
+    for (const it of rows) {
+      const s = scoreItem(it.choices, it.correct_answer)
+      if (!s) { unscorable++; continue }
+      if (!s.structured) continue
+      structured++; credit += s.credit
+      if (s.keyIsHub) hubs.push(`${it.id} (deg ${s.best}, ties ${s.ties})`)
+    }
+    const noStructure = rows.length - structured - unscorable
+    if (structured === 0) {
+      console.error(`${f}: 0 of ${rows.length} option sets have a derivational structure this ` +
+        `checker can read (${unscorable} unscorable, ${noStructure} with no hub). No rate reported — ` +
+        `a rate over zero items is not a pass.`)
+      bad = true
+      continue
+    }
+    const pct = 100 * credit / structured
+    console.log(`${f}`)
+    console.log(`  scorable ${rows.length - unscorable} of ${rows.length}   with a hub reaching >=2 of 3: ${structured}` +
+      `   unscorable (non-numeric or duplicate values) ${unscorable}   no hub ${noStructure}`)
+    console.log(`  key-is-hub ${pct.toFixed(1)}%   control 25.0%   margin ${(pct - 25).toFixed(1)}pts   (over the ${structured} structured sets)`)
+    if (hubs.length) console.log(`  hubs: ${hubs.join(', ')}`)
+  }
+  process.exit(bad ? 2 : 0)
+}
+
 // This script reads the LIVE bank and treats its positional argument as a
 // DOMAIN FILTER. Passed a batch path it matched zero rows and printed
 // "0 items ... margin -25.0pts", which reads like a pass — a check that

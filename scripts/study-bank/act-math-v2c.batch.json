@@ -154,13 +154,13 @@
     "difficulty": "medium",
     "prompt": "In the standard (x,y) coordinate plane, the graph of x^2 + y^2 - 6x + 8y - 11 = 0 is a circle. What is the radius of this circle?",
     "choices": [
-      "5",
       "6",
-      "12",
-      "25"
+      "11",
+      "25",
+      "36"
     ],
     "correct_answer": "6",
-    "explanation": "Completing the square gives (x - 3)^2 + (y + 4)^2 = 11 + 9 + 16 = 36, so the radius is 6. Adding only the two completing-the-square constants and ignoring the 11 gives r^2 = 25 and r = 5; reporting that r^2 as the radius gives 25. Reporting the diameter gives 12.",
+    "explanation": "Completing the square gives (x - 3)^2 + (y + 4)^2 = 11 + 9 + 16 = 36, so the radius is sqrt(36) = 6. Reporting r^2 as the radius gives 36. Ignoring the constant term and adding only the two completing-the-square constants gives r^2 = 25, and reporting that gives 25. Reading the constant 11 in the equation as r^2 gives 11.",
     "solve": "const D=-6, E=8, F=-11;\nreturn Math.sqrt((D/2)*(D/2)+(E/2)*(E/2)-F);"
   },
   {
