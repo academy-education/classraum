@@ -131,3 +131,36 @@ is one more reason the model number is a screen, not a verdict.
 
 Decision taken: the shipped gate flips for ACT (English, Math, Reading;
 Science has no items and is optional). shipped-tests.ts, 2026-09-03.
+
+## Science v1 — first attack, 2026-09-03
+
+80 items, 14 passages (DR 4 x 5, RS 6 x 6, CV 4 x 6), authored by four
+agents to one brief each, inserted as cohort act-science-v1 under the
+HIDDEN act-science topic. No-passage attack, sibling-free (make-attack.mjs
+SPLIT=6: one item per passage per file, a different solver per file):
+
+    f1 9/14  f2 9/13  f3 9/13  f4 11/13  f5 10/13  f6 9/14
+    TOTAL 57/80 = 71.3%   confident picks 37/38 right (97%)
+    solved by format: DR 12/20  RS 26/36  CV 19/24
+
+Same territory as English PoW (76%) and Reading (79%), which a person
+then scored at 10%. What the solvers used, in their own words: general
+science knowledge (RC time constants, germination optimum curves,
+autoclaving kills microbes), experimental-design logic that the stem
+states in full (which control isolates X), option structure (the one
+option that performs the comparison the stem asks for; two options
+sharing a number), and viewpoint role-mapping in CV sets. Several of
+these are legitimate ACT Science skills - a control-purpose item IS
+answerable by a student who knows what a control is - so this number is
+not a defect count. The structural tells named by more than one solver
+are worth reading regardless of the sitting: shared numbers between two
+options (RSB-02 capacitor items reconstruct the E-series resistor set),
+a single option that "performs the comparison" (DR-01-5), and design
+items whose stem states the whole logic.
+
+Decision: no rewrite brief (the rule). The gate is the co-founder's
+Science sitting, drawn as act-science-cofounder-2026-09-03 once his
+cr-v10 sitting closes (the draw tool holds one open run per reviewer):
+20 items, 7 / 6 / 7 across the three reporting categories, same
+<=40 / >=60 rule as B7. A with-source key check (two graders, passage +
+graphic + options, key unmarked) runs in parallel.
