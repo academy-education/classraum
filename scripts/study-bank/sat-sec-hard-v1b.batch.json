@@ -1,0 +1,354 @@
+[
+  {
+    "id": "SEC-HB-01",
+    "domain": "Standard English Conventions",
+    "subskill": "form: subject-verb agreement with an inverted subject",
+    "difficulty": "hard",
+    "passage": "Among the artifacts recovered from the shipwreck, which sank off the western coast of Sicily during the First Punic War, ______ several bronze rams, each of which once armored the prow of a warship.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "was",
+      "were",
+      "is",
+      "being"
+    ],
+    "correct_answer": "were",
+    "explanation": "The sentence is inverted: the subject comes after the verb. That subject is \"several bronze rams,\" which is plural, and the surrounding narrative is in the past tense (\"sank,\" \"once armored\"), so a plural past-tense verb is required. The singular past-tense and singular present-tense forms agree with nothing in the sentence, because \"shipwreck\" and \"War\" sit inside a modifying clause and cannot serve as the subject. The bare participle leaves the sentence with no finite verb at all, producing a fragment."
+  },
+  {
+    "id": "SEC-HB-02",
+    "domain": "Standard English Conventions",
+    "subskill": "form: subject-verb agreement with subjects joined by neither/nor",
+    "difficulty": "hard",
+    "passage": "Neither the seismographs installed along the fault nor the satellite-based survey conducted the following year ______ any sign of the slow-slip event that geologists later inferred from tide-gauge records.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "are revealing",
+      "have revealed",
+      "revealed",
+      "revealing"
+    ],
+    "correct_answer": "revealed",
+    "explanation": "When two subjects are joined by \"neither ... nor,\" the verb agrees with the subject nearer to it. Here that is \"the satellite-based survey,\" which is singular, and the sentence recounts completed past events (\"conducted,\" \"later inferred\"), so the singular past-tense form is required. The plural progressive and plural present-perfect forms agree with the more distant \"seismographs\" rather than with the nearer subject, and both also shift the time frame away from the completed past. The bare participle leaves the main clause without a finite verb."
+  },
+  {
+    "id": "SEC-HB-03",
+    "domain": "Standard English Conventions",
+    "subskill": "form: subject-verb agreement across an appositive and relative clause",
+    "difficulty": "hard",
+    "passage": "The migratory routes of the bar-tailed godwit, a shorebird whose nonstop flight from Alaska to New Zealand is the longest ever recorded for a land bird, ______ mapped using satellite tags light enough to be carried without impairing flight.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "were",
+      "was",
+      "is",
+      "has been"
+    ],
+    "correct_answer": "were",
+    "explanation": "The subject of the sentence is \"routes,\" which is plural; \"godwit,\" \"shorebird,\" \"flight,\" and \"bird\" all sit inside the appositive and its relative clause and cannot govern the verb. Only the plural form agrees with \"routes.\" Each of the singular forms has been drawn toward one of the nearby singular nouns inside the interrupting phrase rather than toward the actual subject."
+  },
+  {
+    "id": "SEC-HB-04",
+    "domain": "Standard English Conventions",
+    "subskill": "form: subject-verb agreement with a compound subject separated by an appositive",
+    "difficulty": "hard",
+    "passage": "The pigment's chemical stability and its resistance to fading under ultraviolet light, properties that made it especially valuable to fresco painters, ______ explained by the same unusual crystal structure.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "is",
+      "was",
+      "has been",
+      "are"
+    ],
+    "correct_answer": "are",
+    "explanation": "The subject is compound, \"stability and its resistance,\" and two things joined by \"and\" take a plural verb. The appositive \"properties that made it especially valuable to fresco painters\" separates that compound subject from its verb and ends with singular-looking nouns, which is what makes the singular forms tempting; none of them agrees with a plural subject. The sentence describes a standing chemical fact in the present tense (\"properties that made it valuable\" is past, but the explanation still holds), so the plural present-tense form is the one that fits."
+  },
+  {
+    "id": "SEC-HB-05",
+    "domain": "Standard English Conventions",
+    "subskill": "form: verb tense sequence with a past-perfect requirement",
+    "difficulty": "hard",
+    "passage": "By the time the expedition's botanist reached the summit plateau in 1911, local guides ______ specimens of the flowering plant she would later describe as a new species, though none of their names for it entered the scientific record.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "have collected",
+      "had collected",
+      "are collecting",
+      "will collect"
+    ],
+    "correct_answer": "had collected",
+    "explanation": "The phrase \"by the time the botanist reached\" fixes a point in the past, and the guides' collecting was completed before that point, so the past perfect is required to show the earlier of two past actions. The present perfect describes an action with relevance to the present moment, which contradicts the 1911 frame. The present progressive and the future form both place the collecting at or after the time of speaking, which is impossible in a sentence anchored in 1911 and continued in the past tense (\"would later describe,\" \"entered\")."
+  },
+  {
+    "id": "SEC-HB-06",
+    "domain": "Standard English Conventions",
+    "subskill": "form: present tense for a habitual mechanism, with agreement",
+    "difficulty": "hard",
+    "passage": "The enzyme ______ into a shape that blocks its own active site whenever copper levels in the cell rise, a response that researchers now believe protects the cell from oxidative damage rather than signaling that the protein is being degraded.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "fold",
+      "had folded",
+      "folds",
+      "folding"
+    ],
+    "correct_answer": "folds",
+    "explanation": "The sentence describes a recurring mechanism in the present tense (\"whenever copper levels rise,\" \"researchers now believe,\" \"is being degraded\"), and its subject, \"the enzyme,\" is singular, so the singular present-tense verb is needed. The plural present-tense form does not agree with a singular subject. The past perfect places the folding before some other past event, which conflicts with the habitual \"whenever\" and the present-tense frame. The participle leaves the main clause without a finite verb, so the sentence becomes a fragment."
+  },
+  {
+    "id": "SEC-HB-07",
+    "domain": "Standard English Conventions",
+    "subskill": "form: present perfect with a 'since' time frame",
+    "difficulty": "hard",
+    "passage": "Since the 1970s, when satellite altimetry first made it possible to measure the height of the ocean's surface from orbit, the rate at which global sea level rises ______, a trend that most models attribute to accelerating ice loss from Greenland and West Antarctica.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "has roughly doubled",
+      "roughly doubles",
+      "had roughly doubled",
+      "is roughly doubling"
+    ],
+    "correct_answer": "has roughly doubled",
+    "explanation": "A span that begins at a past point and continues to the present (\"Since the 1970s\") calls for the present perfect, which connects that starting point to the current state. The simple present describes a general or repeated fact and cannot be measured from a starting date. The past perfect would require a later past event that the change preceded, and none is given. The present progressive describes something in progress right now, which does not combine with a starting point decades ago. The subject is \"the rate,\" which is singular, so number is not what separates the options."
+  },
+  {
+    "id": "SEC-HB-08",
+    "domain": "Standard English Conventions",
+    "subskill": "form: pronoun-antecedent agreement with a plural interrupter",
+    "difficulty": "hard",
+    "passage": "A single colony of leafcutter ants, which may contain several million workers sorted into castes by size, can strip a tree of its foliage overnight, yet ______ does not eat the leaves directly and instead uses them to cultivate a fungus.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "they",
+      "these",
+      "which",
+      "it"
+    ],
+    "correct_answer": "it",
+    "explanation": "The pronoun refers back to the subject of the sentence, \"a single colony,\" which is singular; the plural nouns \"ants\" and \"workers\" belong to the modifying phrases and are not the antecedent. The two plural pronouns fail to agree with \"colony\" and would also clash with the singular verbs \"does\" and \"uses.\" The relative pronoun cannot follow the coordinating conjunction \"yet,\" because it converts what should be an independent clause into a dependent one and leaves the coordination with nothing to join."
+  },
+  {
+    "id": "SEC-HB-09",
+    "domain": "Standard English Conventions",
+    "subskill": "form: pronoun-antecedent agreement across a singular appositive",
+    "difficulty": "hard",
+    "passage": "Once female fig wasps have squeezed through the narrow opening of a fig, an enclosed structure that houses hundreds of tiny flowers, ______ cannot leave, and the pollen carried in on their bodies reaches flowers that no other insect can access.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "they",
+      "it",
+      "she",
+      "which"
+    ],
+    "correct_answer": "they",
+    "explanation": "The pronoun must refer to \"female fig wasps,\" the plural subject of the opening clause, and the later possessive \"their bodies\" confirms the plural reference. The neuter singular pronoun points to \"a fig\" or \"structure,\" neither of which can leave anything. The feminine singular pronoun is tempted by \"female\" but does not agree with a plural antecedent. The relative pronoun turns the main clause into a dependent one, so the sentence has no independent clause and becomes a fragment."
+  },
+  {
+    "id": "SEC-HB-10",
+    "domain": "Standard English Conventions",
+    "subskill": "form: pronoun reference to an antecedent inside a relative clause",
+    "difficulty": "hard",
+    "passage": "Anyone who has tried to identify a sparrow in winter plumage knows how easily ______ can be mistaken for a related species, since the bold head stripes that distinguish males in spring fade to an even brown by October.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "they",
+      "one",
+      "it",
+      "you"
+    ],
+    "correct_answer": "it",
+    "explanation": "The thing that can be \"mistaken for a related species\" is the bird, so the pronoun must refer to \"a sparrow,\" a singular noun inside the relative clause. The plural pronoun has no plural antecedent; read as referring to \"anyone,\" it would make the observer the thing mistaken for a species. The generic pronoun and the second-person pronoun likewise shift the reference from the bird to a person, which the rest of the sentence, about fading head stripes, cannot support."
+  },
+  {
+    "id": "SEC-HB-11",
+    "domain": "Standard English Conventions",
+    "subskill": "form: plural possessive",
+    "difficulty": "hard",
+    "passage": "Although the two ______ differed sharply on how quickly the ice sheet had retreated, both teams had relied on the same set of cores drilled at a single site in West Antarctica.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "studies conclusions",
+      "study's conclusions",
+      "studies' conclusions",
+      "studies's conclusions"
+    ],
+    "correct_answer": "studies' conclusions",
+    "explanation": "The conclusions belong to two studies, so a plural possessive is needed: the plural \"studies\" takes an apostrophe after its final s. Writing the two nouns side by side with no apostrophe shows no possession and leaves \"studies conclusions\" ungrammatical. The singular possessive conflicts with \"the two.\" Adding \"'s\" to a regular plural that already ends in s is not a standard possessive form."
+  },
+  {
+    "id": "SEC-HB-12",
+    "domain": "Standard English Conventions",
+    "subskill": "form: possessive relative pronoun",
+    "difficulty": "hard",
+    "passage": "The composer, ______ early works were dismissed by critics as derivative of her teacher's, later developed an approach to rhythm that those same critics would credit with reshaping the concerto.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "who's",
+      "whose",
+      "of whom",
+      "which"
+    ],
+    "correct_answer": "whose",
+    "explanation": "The relative clause needs a possessive to show that the early works belong to the composer, and the possessive relative pronoun does that. The contraction of \"who is\" is not a possessive and produces \"who is early works were dismissed.\" The prepositional form cannot stand directly before a noun as a possessive; it would need a different construction such as \"the early works of whom.\" The non-possessive relative pronoun for things neither refers to a person nor shows possession."
+  },
+  {
+    "id": "SEC-HB-13",
+    "domain": "Standard English Conventions",
+    "subskill": "boundaries: closing a dash-opened interrupter",
+    "difficulty": "hard",
+    "passage": "The survey's most striking finding—that respondents who described themselves as frequent library users had rarely borrowed a physical ______ the system to reconsider how it measured use.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "book, prompted",
+      "book; prompted",
+      "book: prompted",
+      "book—prompted"
+    ],
+    "correct_answer": "book—prompted",
+    "explanation": "An interrupting appositive that is opened with a dash must be closed with a matching dash so that the reader can return to the main clause, \"The survey's most striking finding ... prompted the system.\" A comma does not pair with the opening dash and leaves the interrupter unbalanced. A semicolon or a colon cannot close an interrupter at all; each would cut the subject \"finding\" off from its verb \"prompted\" and leave a fragment on one side of the mark."
+  },
+  {
+    "id": "SEC-HB-14",
+    "domain": "Standard English Conventions",
+    "subskill": "boundaries: colon introducing an elaborating clause",
+    "difficulty": "hard",
+    "passage": "The reef, once dismissed as too deep to support reef-building corals, ______ forty species have been recorded there, several of them previously unknown to science.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "harbors a surprising diversity of corals: more than",
+      "harbors a surprising diversity of corals, more than",
+      "harbors: a surprising diversity of corals, more than",
+      "harbors a surprising diversity: of corals, more than"
+    ],
+    "correct_answer": "harbors a surprising diversity of corals: more than",
+    "explanation": "A colon may follow a complete independent clause to introduce an elaboration, and \"The reef ... harbors a surprising diversity of corals\" is complete, so the colon correctly sets up the clause that spells out the diversity. Using only a comma between that clause and the second independent clause, \"more than forty species have been recorded there,\" creates a comma splice. Placing the colon directly after the verb separates it from its object, and placing it after \"diversity\" separates the noun from the prepositional phrase that completes it; in both cases the words before the colon do not form a complete clause."
+  },
+  {
+    "id": "SEC-HB-15",
+    "domain": "Standard English Conventions",
+    "subskill": "boundaries: introducing a semicolon-separated series",
+    "difficulty": "hard",
+    "passage": "The exhibition brings together instruments from three ______ Cremona, where the Amati family worked; Brescia, home to Gasparo da Salò; and Venice, whose makers supplied the city's opera houses.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "cities;",
+      "cities:",
+      "cities,",
+      "cities"
+    ],
+    "correct_answer": "cities:",
+    "explanation": "The independent clause \"The exhibition brings together instruments from three cities\" is followed by a list naming them, and a colon is the mark that introduces a list after a complete clause. Because the items themselves contain commas, they are separated by semicolons, so a semicolon after \"cities\" would wrongly make the whole opening clause read as the first item of the series. A comma neither introduces the list nor matches the semicolons used within it. Omitting punctuation runs \"three cities\" straight into \"Cremona\" with no boundary."
+  },
+  {
+    "id": "SEC-HB-16",
+    "domain": "Standard English Conventions",
+    "subskill": "boundaries: semicolons within a series whose items contain commas",
+    "difficulty": "hard",
+    "passage": "The study's authors—an ecologist based in Nairobi, Kenya; a statistician from Leiden, the ______ a hydrologist working in Perth, Australia—reached their conclusion only after three seasons of fieldwork.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "Netherlands, and",
+      "Netherlands and",
+      "Netherlands; and,",
+      "Netherlands; and"
+    ],
+    "correct_answer": "Netherlands; and",
+    "explanation": "When the items in a series contain internal commas, semicolons separate the items, and that includes the boundary before the final \"and.\" A comma at that point would make \"the Netherlands\" look like the end of one item and the start of another, since commas are already doing a different job inside each item. Omitting punctuation altogether runs the second and third authors together. The version with a comma after \"and\" places the semicolon correctly but then splits the conjunction from the item it introduces, which is not a standard use of the comma."
+  },
+  {
+    "id": "SEC-HB-17",
+    "domain": "Standard English Conventions",
+    "subskill": "form: dangling participial modifier",
+    "difficulty": "hard",
+    "passage": "Having been stored in a damp cellar for nearly a century, ______",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "conservators found the manuscript's pages fused into a brittle block.",
+      "it was found that the manuscript's pages had fused into a brittle block.",
+      "the manuscript's pages had fused into a single brittle block of vellum.",
+      "the fusion of the manuscript's pages into a brittle block was complete."
+    ],
+    "correct_answer": "the manuscript's pages had fused into a single brittle block of vellum.",
+    "explanation": "An introductory participial phrase modifies the subject of the clause that follows, so that subject must be the thing that was stored in the cellar: the manuscript's pages. The version beginning with \"conservators\" makes the conservators the thing stored for a century. The version beginning with the expletive \"it\" gives the modifier no logical subject at all. The version whose subject is \"the fusion\" says that the fusion, rather than the pages, spent a century in the cellar."
+  },
+  {
+    "id": "SEC-HB-18",
+    "domain": "Standard English Conventions",
+    "subskill": "form: introductory comparative modifier (unlike X, Y)",
+    "difficulty": "hard",
+    "passage": "Unlike the earlier surveys, which relied on volunteers counting birds at fixed points for a few hours each spring, ______",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "the new census uses acoustic sensors to record calls all season.",
+      "acoustic sensors record the calls continuously in the new census.",
+      "the new census's acoustic sensors record the calls continually.",
+      "the calls are recorded continuously by sensors in the new census."
+    ],
+    "correct_answer": "the new census uses acoustic sensors to record calls all season.",
+    "explanation": "A phrase beginning \"Unlike the earlier surveys\" must be followed immediately by the thing being contrasted with those surveys, and the logical counterpart of a survey is the new census. Making \"acoustic sensors\" the subject contrasts the surveys with pieces of equipment. Making \"the new census's acoustic sensors\" the subject still contrasts the surveys with sensors, since the possessive only modifies the true subject. Making \"the calls\" the subject contrasts the surveys with the bird calls themselves."
+  },
+  {
+    "id": "SEC-HB-19",
+    "domain": "Standard English Conventions",
+    "subskill": "form: modifier placement with an opening participial phrase",
+    "difficulty": "hard",
+    "passage": "Measuring less than a millimeter across, ______ escaped notice until high-resolution scans of the fossil were made in 2017.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "paleontologists found that the embryonic teeth",
+      "the embryonic teeth found inside the fossil egg",
+      "the paleontologists' discovery of embryonic teeth",
+      "the egg in which the embryonic teeth had formed"
+    ],
+    "correct_answer": "the embryonic teeth found inside the fossil egg",
+    "explanation": "The opening phrase \"Measuring less than a millimeter across\" must describe the subject that directly follows it, and the only thing that small is the embryonic teeth. Beginning with \"paleontologists\" makes the researchers the objects that measure under a millimeter, and it also leaves the sentence with a dangling that-clause. Beginning with \"the paleontologists' discovery\" makes an abstract event the thing being measured. Beginning with \"the egg\" attaches the measurement to an object that must be far larger than the teeth it contains."
+  },
+  {
+    "id": "SEC-HB-20",
+    "domain": "Standard English Conventions",
+    "subskill": "form: parallel structure in a list of subjunctive verbs",
+    "difficulty": "hard",
+    "passage": "The report recommends that the agency expand its monitoring of groundwater, ______ and publish its raw data within a year of collection.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "revising its thresholds for contaminants,",
+      "revise its thresholds for contaminants,",
+      "to revise thresholds for contaminants,",
+      "its thresholds for contaminants be revised,"
+    ],
+    "correct_answer": "revise its thresholds for contaminants,",
+    "explanation": "The list after \"recommends that the agency\" consists of base-form verbs, \"expand ... and publish,\" so the middle item must also be a base-form verb with the agency as its subject. The participle form breaks that parallel by turning the second item into a modifying phrase. The infinitive form introduces \"to,\" which neither of the other items has. The passive clause switches the subject from \"the agency\" to \"its thresholds\" midway through the list and then leaves \"publish\" with no subject that could perform it."
+  },
+  {
+    "id": "SEC-HB-21",
+    "domain": "Standard English Conventions",
+    "subskill": "form: parallel structure in a comparison",
+    "difficulty": "hard",
+    "passage": "The magnetic field of Uranus is tilted far more steeply relative to the planet's axis of rotation than ______.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "any other planet in the solar system is tilted",
+      "any of the solar system's other planets are",
+      "those of any other planet in the solar system",
+      "that of any other planet in the solar system"
+    ],
+    "correct_answer": "that of any other planet in the solar system",
+    "explanation": "The sentence compares the magnetic field of Uranus with the magnetic fields of other planets, so the second half of the comparison needs a singular pronoun standing in for \"the magnetic field\": \"that of any other planet.\" The two versions ending in a verb compare the tilt of a field with the tilt of a planet, which is a different quantity entirely. The plural pronoun does refer to fields, but \"any other planet\" has only one field, so the plural does not agree with its own phrase."
+  },
+  {
+    "id": "SEC-HB-22",
+    "domain": "Standard English Conventions",
+    "subskill": "form: parallel structure with correlative conjunctions",
+    "difficulty": "hard",
+    "passage": "The ink used in the charter matches neither the formula recorded in the monastery's own recipe book ______ any of the samples taken from documents produced in the same decade.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "or",
+      "and",
+      "nor with",
+      "nor"
+    ],
+    "correct_answer": "nor",
+    "explanation": "The correlative \"neither\" must be completed by \"nor,\" and the two elements it joins must be parallel: here, two noun phrases that are both objects of \"matches.\" The conjunction that pairs with \"either\" does not complete \"neither.\" The conjunction that pairs with \"both\" does not either, and it reverses the intended negative sense. Adding a preposition after the correct conjunction breaks the parallel, because the first element, \"the formula,\" is a direct object of \"matches\" while the second would become the object of \"with.\""
+  }
+]

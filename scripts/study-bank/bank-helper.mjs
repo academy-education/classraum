@@ -161,8 +161,17 @@ async function main() {
   const batch = JSON.parse(readFileSync(batchPath, 'utf8'))
   const qc = JSON.parse(readFileSync(qcPath, 'utf8'))
 
-  const { data: existing } = await admin.from('study_item_bank').select('content_hash').eq('section', 'reading_writing')
-  const seen = new Set((existing || []).map(r => r.content_hash))
+  // PostgREST caps a select at 1000 rows; R&W passed that, so page.
+  const pageAll = async (cols) => {
+    const out = []
+    for (let from = 0; ; from += 1000) {
+      const { data, error } = await admin.from('study_item_bank').select(cols).eq('section', 'reading_writing').range(from, from + 999)
+      if (error) throw new Error(error.message)
+      out.push(...(data || [])); if (!data || data.length < 1000) break
+    }
+    return out
+  }
+  const seen = new Set((await pageAll('content_hash')).map(r => r.content_hash))
 
   let inserted = 0
   for (const raw of batch) {
@@ -213,7 +222,7 @@ async function main() {
     console.log(`INSERT ${label} — ${q.difficulty}, key ${q.key_votes}/3`)
   }
 
-  const { data: after } = await admin.from('study_item_bank').select('domain').eq('section', 'reading_writing').eq('verified', true)
+  const after = (await pageAll('domain,verified')).filter(r => r.verified)
   const by = {}
   for (const r of after) by[r.domain] = (by[r.domain] || 0) + 1
   console.log(`\nInserted ${inserted}. R&W verified now: ${after.length}`)

@@ -1,0 +1,354 @@
+[
+  {
+    "id": "SEC-HA-01",
+    "domain": "Standard English Conventions",
+    "subskill": "boundaries: restrictive vs nonrestrictive",
+    "difficulty": "hard",
+    "passage": "Among the thousands of trace fossils catalogued at the site, ______ rather than in coarse sandstone preserve the clearest impressions of the animals' footpads.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "those that formed in fine-grained siltstone",
+      "those, which formed in fine-grained siltstone,",
+      "those; they formed in fine-grained siltstone",
+      "those, forming in fine-grained siltstone,"
+    ],
+    "correct_answer": "those that formed in fine-grained siltstone",
+    "explanation": "The pronoun \"those\" has no meaning on its own; the clause that follows it is what identifies which fossils are meant, so the clause is restrictive and must attach with \"that\" and no commas. The version set off with commas and \"which\" treats the clause as removable, and removing it leaves \"those rather than in coarse sandstone preserve,\" which is not a sentence. The comma-enclosed participial phrase fails for the same reason: strip the nonessential phrase and the subject is stranded before \"rather than.\" The semicolon version breaks the sentence into \"those\" with no verb on one side and a clause that never returns to the main verb \"preserve\" on the other."
+  },
+  {
+    "id": "SEC-HA-02",
+    "domain": "Standard English Conventions",
+    "subskill": "form: subject-verb agreement across interrupters",
+    "difficulty": "hard",
+    "passage": "The collection of letters, ledgers, and shipping manifests that the merchant's descendants donated to the archive in 1931 ______ historians to reconstruct the seasonal rhythm of the Baltic grain trade.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "have allowed",
+      "allowing",
+      "has allowed",
+      "having allowed"
+    ],
+    "correct_answer": "has allowed",
+    "explanation": "The subject of the sentence is the singular noun \"collection\"; \"of letters, ledgers, and shipping manifests\" and the long relative clause about the donation only describe it. A singular subject takes the singular verb \"has allowed.\" The plural \"have allowed\" agrees with the nearby plural nouns rather than with the actual subject. The two participle forms, \"allowing\" and \"having allowed,\" are not finite verbs, so either one leaves the sentence with a subject and no main verb, producing a fragment."
+  },
+  {
+    "id": "SEC-HA-03",
+    "domain": "Standard English Conventions",
+    "subskill": "boundaries: semicolon and colon",
+    "difficulty": "hard",
+    "passage": "Early cartographers of the Nile delta faced a recurring problem: the channels they mapped shifted with every ______ a chart that was accurate in spring could be useless by autumn.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "flood,",
+      "flood;",
+      "flood",
+      "flood, thus"
+    ],
+    "correct_answer": "flood;",
+    "explanation": "\"The channels they mapped shifted with every flood\" and \"a chart that was accurate in spring could be useless by autumn\" are both independent clauses, so they need a semicolon, a period, or a comma plus a coordinating conjunction between them. A semicolon does the job. A comma alone creates a comma splice. Nothing at all between them creates a run-on. \"Thus\" is a conjunctive adverb, not a coordinating conjunction, so a comma before \"thus\" still leaves two independent clauses joined by only a comma, which is again a splice."
+  },
+  {
+    "id": "SEC-HA-04",
+    "domain": "Standard English Conventions",
+    "subskill": "boundaries: dashes and parentheticals",
+    "difficulty": "hard",
+    "passage": "The composer's late quartets—dismissed by one contemporary reviewer as 'the ramblings of a deaf ______ now regarded as the summit of the form.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "man,' are",
+      "man'; are",
+      "man'—are",
+      "man'—and are"
+    ],
+    "correct_answer": "man'—are",
+    "explanation": "The interruption that begins after \"quartets\" is opened with a dash, so it must be closed with a matching dash before the sentence returns to its main verb \"are.\" Closing the interruption with a comma mismatches the pair, and a semicolon cannot close a parenthetical at all, because it would split the subject \"quartets\" from its verb. Adding \"and\" after the closing dash turns the main verb into the second half of a compound predicate that has no first half: without the interruption the sentence would read \"The composer's late quartets and are now regarded.\""
+  },
+  {
+    "id": "SEC-HA-05",
+    "domain": "Standard English Conventions",
+    "subskill": "boundaries: comma splice / run-on",
+    "difficulty": "hard",
+    "passage": "Because the glacier's meltwater carries so much suspended rock flour, the lake it feeds is an opaque turquoise, ______ downstream lakes, fed by the same water after the sediment has settled, are a transparent deep blue.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "thus the",
+      "whereas the",
+      "meanwhile the",
+      "in contrast the"
+    ],
+    "correct_answer": "whereas the",
+    "explanation": "What follows the blank is a full independent clause: \"the downstream lakes ... are a transparent deep blue.\" Since it is joined to the preceding independent clause by only a comma, the blank must supply a subordinating conjunction that turns the second clause into a dependent one. \"Whereas\" is such a conjunction and also expresses the intended contrast. \"Thus,\" \"meanwhile,\" and \"in contrast\" are all adverbs; an adverb cannot join two independent clauses, so each of those versions is a comma splice regardless of how sensible the connector's meaning is."
+  },
+  {
+    "id": "SEC-HA-06",
+    "domain": "Standard English Conventions",
+    "subskill": "form: verb tense and aspect consistency",
+    "difficulty": "hard",
+    "passage": "By the time the expedition's second ship reached the strait in 1846, the first ______ its provisions and turned back, leaving only a cairn of stones and a tin of notes to mark its passage.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "has already exhausted",
+      "would already exhaust",
+      "is already exhausting",
+      "had already exhausted"
+    ],
+    "correct_answer": "had already exhausted",
+    "explanation": "The sentence describes two past events in sequence: the second ship's arrival, in the simple past, and the first ship's exhausting its provisions, which was complete before that arrival. An action finished before another past action takes the past perfect, \"had already exhausted,\" and this form also sits correctly beside the coordinated past-tense verb \"turned back.\" The present perfect \"has already exhausted\" and the present progressive \"is already exhausting\" both place the event in the present, which contradicts the 1846 time frame and clashes with \"turned back.\" The conditional \"would already exhaust\" describes a hypothetical or future-in-the-past action rather than one that had been completed."
+  },
+  {
+    "id": "SEC-HA-07",
+    "domain": "Standard English Conventions",
+    "subskill": "form: pronoun-antecedent agreement",
+    "difficulty": "hard",
+    "passage": "The colony of bacteria that Fleming left uncovered on his bench, though it has been described in countless textbooks, owes ______ fame less to the mold that killed it than to the man who noticed.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "their",
+      "its",
+      "it's",
+      "his"
+    ],
+    "correct_answer": "its",
+    "explanation": "The possessive pronoun must refer back to the subject of \"owes,\" which is the singular noun \"colony\"; the sentence itself confirms this with the singular \"it\" in the intervening clause and in \"killed it.\" The singular possessive is \"its.\" \"Their\" agrees with the nearby plural \"bacteria\" rather than with the actual subject. \"It's\" is the contraction of \"it is,\" not a possessive. \"His\" points to Fleming, but Fleming is not the subject that owes anything; the colony cannot owe Fleming's fame to the man who noticed it, so that pronoun has no logical antecedent in the structure."
+  },
+  {
+    "id": "SEC-HA-08",
+    "domain": "Standard English Conventions",
+    "subskill": "form: modifier placement",
+    "difficulty": "hard",
+    "passage": "______ the manuscript's marginal drawings reveal a scribe who was bored by his text and delighted by the birds outside his window.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "Examining them under raking light,",
+      "After examining them in raking light,",
+      "When examined under a raking light,",
+      "To examine them under raking light,"
+    ],
+    "correct_answer": "When examined under a raking light,",
+    "explanation": "An introductory modifier attaches to the subject that immediately follows it, and here that subject is \"the manuscript's marginal drawings.\" The drawings are the thing being examined, so the passive \"when examined\" describes them correctly. The active participle \"examining,\" the phrase \"after examining them,\" and the infinitive of purpose \"to examine them\" all require a subject who does the examining; attached to \"drawings,\" each one says that the drawings examined something, and the pronoun \"them\" in those versions is left with nothing to refer to. Those three are dangling modifiers."
+  },
+  {
+    "id": "SEC-HA-09",
+    "domain": "Standard English Conventions",
+    "subskill": "form: parallel structure",
+    "difficulty": "hard",
+    "passage": "The treaty required the losing side to dismantle its coastal forts, to surrender the ships anchored at Cádiz, and ______ within a decade.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "to pay a war indemnity",
+      "paying a war indemnity",
+      "that it pay an indemnity",
+      "an indemnity payment"
+    ],
+    "correct_answer": "to pay a war indemnity",
+    "explanation": "The sentence lists three things the treaty required, and the first two are infinitive phrases: \"to dismantle\" and \"to surrender.\" The third item must match that form, so \"to pay a war indemnity\" is required. The gerund \"paying\" breaks the series with a different verb form. The clause \"that it pay\" shifts the construction from \"required the losing side to do X\" to \"required that it do X\" midway through the list. The noun phrase \"an indemnity payment\" makes the third item an object where the first two are infinitives, so \"required the losing side ... and an indemnity payment\" no longer reads as one grammatical structure."
+  },
+  {
+    "id": "SEC-HA-10",
+    "domain": "Standard English Conventions",
+    "subskill": "form: possessive vs plural vs contraction",
+    "difficulty": "hard",
+    "passage": "The two rival ______ correspondence, preserved in a single bound volume, shows that their public feud concealed a warm private friendship.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "physicists",
+      "physicist's",
+      "physicists's",
+      "physicists'"
+    ],
+    "correct_answer": "physicists'",
+    "explanation": "The correspondence belongs to the physicists, and \"two rival\" tells us there are more than one, so the word needs to be a plural possessive. A regular plural ending in s forms its possessive by adding only an apostrophe: \"physicists'.\" The bare plural \"physicists\" shows no possession, so \"the two rival physicists correspondence\" strings two nouns together with nothing linking them. \"Physicist's\" is a singular possessive and contradicts \"two.\" \"Physicists's\" attaches the singular possessive ending to a plural, which is not a standard form."
+  },
+  {
+    "id": "SEC-HA-11",
+    "domain": "Standard English Conventions",
+    "subskill": "boundaries: comma splice / run-on",
+    "difficulty": "hard",
+    "passage": "Bristlecone pines grow so slowly at the tree line that a trunk barely wider than a dinner plate may be four thousand years old, ______ some specimens is thinner than a sheet of paper.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "a single ring in",
+      "with a single ring in",
+      "and a single ring in",
+      "and a single ring that in"
+    ],
+    "correct_answer": "and a single ring in",
+    "explanation": "\"A single ring in some specimens is thinner than a sheet of paper\" is an independent clause with its own subject and verb, so attaching it to the preceding independent clause with a comma requires a coordinating conjunction: \"and.\" Without the conjunction, the comma alone produces a comma splice. Beginning with \"with\" turns the words up to \"specimens\" into a prepositional phrase, which leaves the verb \"is thinner\" with no subject. Adding \"that\" after \"ring\" converts \"in some specimens is thinner than a sheet of paper\" into a relative clause modifying \"ring,\" so the noun phrase introduced by \"and\" never receives a verb of its own and the sentence trails off as a fragment."
+  },
+  {
+    "id": "SEC-HA-12",
+    "domain": "Standard English Conventions",
+    "subskill": "boundaries: semicolon and colon",
+    "difficulty": "hard",
+    "passage": "Three factors, the report concluded, explained the dam's ______ a faulty spillway gate, an unusually wet spring, and a warning system that no one on the night shift knew how to operate.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "failure:",
+      "failure;",
+      "failure,",
+      "failure, being"
+    ],
+    "correct_answer": "failure:",
+    "explanation": "The words before the blank form a complete independent clause, and what follows is a list that spells out the \"three factors\" just mentioned. A colon is the mark that introduces such a list after a complete clause. A semicolon must have an independent clause on both sides, and a list of noun phrases is not a clause. A comma alone leaves it unclear whether \"a faulty spillway gate\" is the first of the factors or an appositive renaming \"failure,\" and it does not signal that the list is coming. \"Being\" produces a dangling participial phrase with nothing for the factors to modify grammatically."
+  },
+  {
+    "id": "SEC-HA-13",
+    "domain": "Standard English Conventions",
+    "subskill": "form: subject-verb agreement across interrupters",
+    "difficulty": "hard",
+    "passage": "Neither the surviving account books nor the shipwright's private diary ______ any mention of the vessel's second voyage, a silence that some historians read as evidence the ship never sailed again.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "make",
+      "makes",
+      "making",
+      "have made"
+    ],
+    "correct_answer": "makes",
+    "explanation": "With a compound subject joined by \"neither ... nor,\" the verb agrees with the part of the subject nearest to it. The nearer part here is the singular \"diary,\" so the verb must be the singular \"makes.\" The plural \"make\" and \"have made\" agree instead with the more distant plural \"account books,\" which is the tempting but wrong choice. \"Making\" is a participle rather than a finite verb, so it would leave the sentence with no main verb at all."
+  },
+  {
+    "id": "SEC-HA-14",
+    "domain": "Standard English Conventions",
+    "subskill": "form: verb tense and aspect consistency",
+    "difficulty": "hard",
+    "passage": "In her 1962 study of coral atolls, the geologist ______ that the reefs grow upward at almost exactly the rate at which the volcanic islands beneath them subside, and she supported the claim with core samples drilled through more than a thousand feet of limestone.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "argues",
+      "has argued",
+      "argued",
+      "will argue"
+    ],
+    "correct_answer": "argued",
+    "explanation": "The sentence is anchored to a specific past moment, \"her 1962 study,\" and its second main verb, \"supported,\" is in the simple past. The verb in the blank is coordinated with \"supported,\" so it must also be the simple past: \"argued.\" The present \"argues\" and the future \"will argue\" contradict the 1962 setting and clash with \"supported.\" The present perfect \"has argued\" describes an action with present relevance and an unspecified time, which conflicts with the dated study and again fails to match the past-tense verb it is paired with. (The present-tense \"grow\" and \"subside\" inside the reported claim are fine, because they state a general geological fact.)"
+  },
+  {
+    "id": "SEC-HA-15",
+    "domain": "Standard English Conventions",
+    "subskill": "form: pronoun-antecedent agreement",
+    "difficulty": "hard",
+    "passage": "The consortium of museums that jointly purchased the archive has announced that ______ digitize the letters before any physical exhibition is mounted.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "they will",
+      "who will",
+      "which will",
+      "it will"
+    ],
+    "correct_answer": "it will",
+    "explanation": "The pronoun refers to the subject of \"has announced,\" which is the singular collective noun \"consortium\"; the sentence has already treated it as singular with \"has.\" The matching pronoun is therefore \"it.\" \"They\" agrees with the nearby plural \"museums\" rather than with the subject. \"Who\" and \"which\" are relative pronouns, and the clause after \"announced that\" needs an ordinary subject, not a relative clause; either of them leaves \"announced that ... digitize the letters\" with no subject for its verb."
+  },
+  {
+    "id": "SEC-HA-16",
+    "domain": "Standard English Conventions",
+    "subskill": "form: modifier placement",
+    "difficulty": "hard",
+    "passage": "A native of the Andean highlands, ______ at elevations where few other food crops survive.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "quinoa grows readily",
+      "quinoa's roots grow",
+      "it is quinoa that grows",
+      "there is quinoa growing"
+    ],
+    "correct_answer": "quinoa grows readily",
+    "explanation": "The opening appositive \"a native of the Andean highlands\" must be followed directly by the noun it renames. Quinoa is the native, so \"quinoa\" must be the subject that comes next. In the version beginning with \"quinoa's roots,\" the subject is \"roots,\" and roots are not a native of the highlands. In the cleft construction \"it is quinoa that grows\" and the existential \"there is quinoa growing,\" the word immediately after the modifier is the empty placeholder \"it\" or \"there,\" so the appositive is left dangling with nothing it can logically describe."
+  },
+  {
+    "id": "SEC-HA-17",
+    "domain": "Standard English Conventions",
+    "subskill": "form: parallel structure",
+    "difficulty": "hard",
+    "passage": "The reviewer praised the biography not only for the documents it uncovered ______ the questions it asked of familiar ones.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "but for also",
+      "but also for",
+      "and also for",
+      "as well as for"
+    ],
+    "correct_answer": "but also for",
+    "explanation": "\"Not only\" is a correlative that must be completed by \"but also,\" and the two elements it links must be in the same form. Because the first element is the prepositional phrase \"for the documents it uncovered,\" the second must begin the same way: \"but also for the questions.\" \"And also for\" and \"as well as for\" break the correlative pair, leaving \"not only\" without its partner. \"But for also\" contains the right words in the wrong order: \"also\" must sit next to \"but\" to complete the pair, not be wedged between the preposition and its object."
+  },
+  {
+    "id": "SEC-HA-18",
+    "domain": "Standard English Conventions",
+    "subskill": "form: possessive vs plural vs contraction",
+    "difficulty": "hard",
+    "passage": "The species ______ range has contracted most sharply is not the one biologists expected: a common wetland frog, not any of the region's rarer amphibians.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "who's",
+      "which",
+      "whose",
+      "that's"
+    ],
+    "correct_answer": "whose",
+    "explanation": "The relative clause needs a possessive to show that the range belongs to the species: \"the species whose range has contracted.\" \"Whose\" is the possessive relative pronoun and, despite its resemblance to \"who,\" is standard for things as well as people. \"Who's\" and \"that's\" are contractions of \"who is\" and \"that is,\" producing the nonsense \"the species who is range\" and \"the species that is range.\" \"Which\" is not possessive, so \"the species which range has contracted\" leaves \"range\" with no grammatical link to \"species.\""
+  },
+  {
+    "id": "SEC-HA-19",
+    "domain": "Standard English Conventions",
+    "subskill": "boundaries: dashes and parentheticals",
+    "difficulty": "hard",
+    "passage": "The instrument's tuning (a system of unequal intervals ______ allowed keyboard players to modulate into distant keys without the harsh 'wolf' fifth that plagued earlier temperaments.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "that theorists called 'well-tempered'—",
+      "that theorists called 'well-tempered',",
+      "that theorists called 'well-tempered'),",
+      "that theorists called 'well-tempered')"
+    ],
+    "correct_answer": "that theorists called 'well-tempered')",
+    "explanation": "The aside that begins with an opening parenthesis after \"tuning\" must be closed with a closing parenthesis, and nothing else, before the sentence continues with its main verb \"allowed.\" Closing the aside with a dash or a comma instead leaves the parenthesis unmatched. Adding a comma after the closing parenthesis places a lone comma between the subject \"tuning\" and its verb \"allowed,\" which is a boundary error: once the parenthetical is removed, \"The instrument's tuning, allowed keyboard players\" has a comma splitting subject from predicate."
+  },
+  {
+    "id": "SEC-HA-20",
+    "domain": "Standard English Conventions",
+    "subskill": "boundaries: restrictive vs nonrestrictive",
+    "difficulty": "hard",
+    "passage": "The expedition's only botanist, ______ as a physician before turning to plants, kept the sole journal in which the crew's illnesses are recorded day by day.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "who had trained",
+      "that had trained",
+      "he had trained",
+      "and had trained"
+    ],
+    "correct_answer": "who had trained",
+    "explanation": "\"The expedition's only botanist\" is already fully identified, so the information about medical training is nonessential and is correctly set off by the commas already in the sentence. A nonessential clause about a person is introduced by \"who.\" \"That\" cannot introduce a clause set off by commas; it is reserved for restrictive clauses. \"He had trained\" is an independent clause, and dropping it between the subject \"botanist\" and the verb \"kept\" with only commas produces a splice inside the sentence. \"And had trained\" creates a compound predicate before the subject has reached any first verb, so \"botanist, and had trained ... , kept\" has no coherent structure."
+  },
+  {
+    "id": "SEC-HA-21",
+    "domain": "Standard English Conventions",
+    "subskill": "form: subject-verb agreement across interrupters",
+    "difficulty": "hard",
+    "passage": "Among the artifacts recovered from the wreck ______ of navigational dividers whose brass, pitted by three centuries of seawater, still bears the maker's stamp.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "were a set",
+      "was a set",
+      "being a set",
+      "are a set"
+    ],
+    "correct_answer": "was a set",
+    "explanation": "The sentence is inverted: the opening prepositional phrase \"among the artifacts\" is not the subject. The subject comes after the verb and is the singular \"a set,\" so the verb must be singular. \"Was\" fits both the number and the past-time frame set by \"recovered from the wreck.\" \"Were\" and \"are\" are plural, agreeing wrongly with the nearby plurals \"artifacts\" and \"dividers.\" \"Being\" is a participle, not a finite verb, so it would leave the sentence without a main verb."
+  },
+  {
+    "id": "SEC-HA-22",
+    "domain": "Standard English Conventions",
+    "subskill": "boundaries: semicolon and colon",
+    "difficulty": "hard",
+    "passage": "The mill's owners insisted that the new looms were perfectly ______ who worked beside them twelve hours a day, counted eleven serious injuries in the first year.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "safe, the weavers,",
+      "safe the weavers,",
+      "safe, still the weavers,",
+      "safe; the weavers,"
+    ],
+    "correct_answer": "safe; the weavers,",
+    "explanation": "\"The mill's owners insisted that the new looms were perfectly safe\" is a complete independent clause, and \"the weavers, who worked beside them twelve hours a day, counted eleven serious injuries\" is another. Two independent clauses with no coordinating conjunction between them must be separated by a semicolon. A comma alone creates a comma splice, and no punctuation at all creates a run-on. \"Still\" is an adverb rather than a conjunction, so a comma followed by \"still\" is likewise a splice; the connector's contrastive meaning does not repair the punctuation."
+  }
+]
