@@ -1,0 +1,506 @@
+#!/usr/bin/env node
+/**
+ * gen-act-reading-v5.mjs — emit scripts/study-bank/act-reading-v5.batch.json
+ *
+ * One ACT Reading form: 4 passages x 9 items = 36.
+ *   rd5-p1 literary_narrative   "First Winter on the Kestrel Point Run"
+ *   rd5-p2 social_science       "The Rules of Sang-hwa Street"
+ *   rd5-p3 humanities           "What a Revival Revives"
+ *   rd5-p4 natural_science      "Why Some Caves Glow"  (PAIRED)
+ *
+ * Every passage string is written ONCE here and stamped onto its nine
+ * items, so the checker's byte-identity rule cannot be broken by hand
+ * editing. All four passages are original prose.
+ *
+ *   node scripts/study-bank/gen-act-reading-v5.mjs
+ */
+import { writeFileSync } from 'node:fs'
+
+/* ------------------------------------------------------------------ *
+ * Passages
+ * ------------------------------------------------------------------ */
+
+const P1 = `[1] The Kestrel Point ferry made eleven crossings a day, and by the middle of November it was crossing a different strait than the one Ines had hired onto in September. The water had gone the colour of a nickel left out in the rain. The gulls, which all summer had followed the stern for whatever the tourists dropped, quit the boat entirely, and their absence made the deck feel wider and less forgiving.
+
+[2] She had been the newest deckhand for two months, which on the Kestrel Point run meant that she was the one who tied up. Summer had taught her the motions. You waited at the rail with the eye of the line already flaked out at your feet; you stepped off before the boat had quite finished arriving; you dropped the eye over the bollard, and the mate above you took up the slack. In August she had done it four hundred times without once thinking about any of it.
+
+[3] By December the same four hundred motions had grown a set of consequences. The bollard wore a collar of ice. The deck plates, merely wet at the top of the hour, were glazed by the bottom of it. Bell, the mate, stopped telling Ines she was slow and began telling her where to put her feet, which Ines understood to be worse.
+
+[4] "You're still stepping off like it's July," Bell said one afternoon, hands in her jacket, watching the ramp come up. "In July the worst thing that happens is you look foolish."
+
+[5] Ines wanted to say that she had not fallen, that she had not once dropped a line, that in two months she had made no mistake anybody could name. She had the sentence assembled and ready in her mouth. What she said instead was, "Where should I be putting them?"
+
+[6] Bell showed her. It was not a lecture; she simply went down to the freight deck at the next landing, took the line herself, and did the thing slowly, twice, with Ines standing where she could watch the feet and not the hands. The trick, it turned out, was that you did not step off at all. You waited half a second longer than felt right, until the hull had kissed the fenders and stopped kissing them, and then you moved, and the half second was the whole of it.
+
+[7] It cost nothing. It was not a strength, or a courage, or a knack a person had to be born with. It was half a second. Ines had spent the autumn braced for winter to ask something enormous of her, and here was the whole of the asking: wait, then go.
+
+[8] Knowing it and doing it were separate projects. For three weeks her body went at the ordinary moment, the July moment, and she had to hold it back the way you hold a dog by the collar, and the holding tired her in a way the work itself never had. Then one grey Thursday she noticed, somewhere around the eighth crossing, that she had stopped holding anything at all. The half second had gone into her without asking permission.
+
+[9] By January she could tell the shape of a landing from the sound of the engines two minutes out, the way Bell could. She learned that the ice on the bollard came away with a single strike of the hammer if you hit it at the seam, and stayed on all day if you beat at the middle of it. She learned to eat her lunch standing at the aft rail with her back against the stack, where the heat came through the plating. She learned to stop pretending she was not cold, because the pretending used something she wanted for other purposes.
+
+[10] There were mornings when the run was cancelled and she stood on the pier with the other three, watching the strait do something that had nothing to do with them. Those mornings she liked least. She had assumed that a winter of hard crossings would be the difficult part, and instead the difficult part was a day that offered her nothing to be careful about.
+
+[11] In March the gulls came back. Ines was at the rail with the eye of the line flaked out at her feet, and one of them took up its old station off the stern, and she was surprised to find that she resented it a little: the return of the easy season, the arrival of a crossing that would not require the half second of her. She tied up. She struck the bollard at the seam out of habit, though there had been no ice on it for a week.
+
+[12] Bell, from the deck above, said nothing at all, which by then Ines had learned to read correctly.`
+
+const P2 = `[1] For four blocks every evening, Sang-hwa Street stops being a road. The barricades go up at six, the first carts arrive at ten past, and by seven the Puyeong night market is a small city of a hundred and twenty stalls with its own streets, its own rush hour and its own quiet. No municipal officer assigns the positions. No map of the market exists in any office. And yet a photograph taken this year and a photograph taken five years ago would show the fish-cake seller in the same eight feet of asphalt, with the same two neighbours on either side of her.
+
+[2] Researchers arriving at such a scene generally expect a scramble: congestion at the entrances, a race for the corner pitches where the foot traffic is heaviest, and a slow decay into whoever is willing to arrive earliest and shout loudest. What they find instead is an arrangement that is orderly, stable across years, and maintained entirely by the vendors themselves, under rules that nobody has written down and no authority can enforce with a fine.
+
+[3] The first rule is that positions are inherited rather than claimed. A pitch belongs to the vendor who holds it, and when she goes she names her successor: a daughter, a cousin, an assistant who has worked the cart four seasons. The market's memory of who stood where is long and unanimous, and a vendor who tried to set up on ground that was not hers would find the crowd itself steering around her stall. Someone with no such claim joins a queue that in recent years has run to six years.
+
+[4] The second rule governs what may be sold. No vendor may take up the principal item of either immediate neighbour. The enforcement is worth attention, because it is not dramatic and it is not collective. Nobody is expelled. What happens to a violator is that the small services stop: the neighbour who used to break a large note has no change tonight, the neighbour who watched the cart during a trip to the toilet is busy, the shared ice arrives late or not at all. A stall is a two-person job run by one person, and it is the neighbours who make up the difference. Withdraw them and the evening becomes unworkable long before it becomes unprofitable.
+
+[5] The third rule is the Wednesday board. Nine vendors, elected by a show of hands and serving as long as nobody objects, meet in the back of a shoe shop on Wednesday afternoons and hear whatever has gone wrong: a cart creeping a foot a week into the aisle, a dispute over a successor, a generator that fouls the air of the stalls downwind. The board's authority has no purchase in law; it can levy nothing, and no finding it makes could be taken to a court. What it can do is move you. A vendor who ignores it twice finds himself at the thin end of the fourth block, where the crowd has already turned for home, and a season there is a persuasive document.
+
+[6] Why do the rules hold? The usual answer, and probably the right one, is that everybody expects to be here next year. A vendor's position, her suppliers, her regulars and her eventual successor are all bound up in a place she cannot sell and cannot carry away, so a night's advantage bought at a neighbour's expense is a bad trade on any horizon longer than a night.
+
+[7] It would be easy to turn this into a fable about the wisdom of communities left alone, and the market does not support the fable. The features that make it stable are the features that make it closed. The six-year queue is not a fault the system has developed; it is the system, working as designed. The rules that protect the fish-cake seller from her neighbours protect her just as efficiently from anyone new. And the arrangement handles shocks badly: it has no way to decide anything at all about a fire, a redevelopment order or a change in the bus routes, because every one of its instruments assumes that next year will look like this year.
+
+[8] The city tested the arrangement in 2011 with a licensing scheme: numbered pitches, an annual fee, and a permit guaranteeing its holder's place. On paper this changed very little, since it formalised an order that already existed. In practice it took the neighbours out of the guarantee. A vendor whose pitch came from the city no longer needed anything from the stall beside her, and within two seasons the rule about principal items had frayed: three noodle carts stood in a row on the second block, all three doing worse than one of them had done alone. The permits were quietly allowed to lapse. What the episode demonstrated was not that formal rules fail, but something narrower and more useful: the sanction holding the market together had been the neighbour's dependence, and a licence that made every vendor secure had made that dependence optional.`
+
+const P3 = `[1] A type revival is usually described as bringing an old typeface back, which is a comfortable phrase and a misleading one. Nothing comes back. What the reviver has is a handful of printed pages, four or five centuries old, and what she makes is a new typeface that a modern press or a screen can set. Between the two lies a gap that no amount of care will close, and the interesting question in the field is not how to close it but what to do about it honestly.
+
+[2] Begin with the evidence. In most cases the punches are lost. A punch is the steel letter that a punchcutter filed by hand, and it is the only object in the whole process that carries his intention directly; from it a matrix was struck, and from the matrix the type was cast, and the type was inked and pressed hard into damp paper that swelled and then dried. The ink spread. It gathered in the inner corners, thickened the thin strokes, filled the small enclosed spaces and rounded everything the cutter had left sharp. So the form on the page is not the form of the letter. It is the form of the letter plus a history of pressure, moisture and ink, and the reviver cannot subtract that history because she was not there to measure it.
+
+[3] This leaves two defensible ways to work, and they yield different typefaces from the same source. One reviver draws what she sees: the swelling, the softened corners, the page-to-page irregularity. Her result feels like the old book, and set with modern ink on modern coated paper, which absorbs almost nothing, it can look bloated, since the spread that the paper used to supply is now drawn in and then supplied again on top. The other reviver draws what she infers: the letter as she believes it stood on the punch, crisp, and lets the modern press add whatever it adds. Her result is often cleaner than any page the original ever printed, and readers who know the source complain that it does not look like it.
+
+[4] The Sarto foundry's 1924 Venetian roman is the standard example of a third path, and the third path is the wrong one. Its designers photographed one page, enlarged it, and traced what they found, blots and all, including a chipped e that occurs on that page and nowhere else in the book. Period-correct and unreadable is a bargain nobody has to make, and the face was withdrawn within four years.
+
+[5] Then there is size. A punchcutter cut every size separately, and cut them differently, because a letter that must survive at eight points is not a small copy of one designed for twenty: the thin strokes are thickened, the counters opened, the spacing loosened. A revival that ships a single drawing scaled to all sizes has quietly discarded an entire dimension of the original. A digital reviver can recover that dimension, since drawing several optical sizes is cheap again, and many now do. Even here, though, she is inferring rather than copying, because the small sizes she is matching were themselves cut to survive an inking she has no intention of using.
+
+[6] The honest word for the whole business is translation. A translator does not pretend that her sentences are the author's sentences; she claims something more modest and more defensible, that she has carried over what she judged to be carrying. What she owes the reader is not invisibility but disclosure. The reviver's version of that duty is a note saying which pages were measured, which sizes were drawn, which forms were reconstructed from fragments, and which were simply invented, since the sixteenth century had no need of a bold weight, an italic ampersand or a euro sign.
+
+[7] The purist objection to all of this is that translation licenses anything, and that once fidelity is admitted to be impossible the reviver may as well draw whatever pleases her. The reply is that the constraint has not disappeared; it has moved. A revival can still be shown to be wrong about its source. Measurements can be taken from more copies, other books from the same shop can be compared, and the few surviving punches can be examined, as they have been, to the embarrassment of more than one confident reviver. What a revival cannot be is uniquely right, and a designer who understands the difference will spend her time on the choices that show rather than on a fidelity that was never available.`
+
+const P4 = `Passage A
+
+[1] Visitors to the Marrow Creek caves describe the ceiling of the lower stream passage as a false sky: several thousand small blue-green points, steady, faintly cold. The lights are animals. They are the larvae of a small fly related to the fungus gnats, and each spends some nine months of its life hanging from the limestone inside a horizontal tube of mucus.
+
+[2] The light comes from a chemical reaction in a swollen organ at the end of the larva's body, a modified excretory structure in which a substrate is oxidised in the presence of an enzyme. The reaction is under the animal's control, which is the first useful fact about it. An alarmed larva goes dark within seconds, and a whole stretch of ceiling can be switched off by a shout or by a torch played across it, and will take some twenty minutes to come back.
+
+[3] What the light is for is settled by what hangs beneath it. Each larva lets down between twenty and seventy vertical threads, beaded at intervals with droplets of adhesive mucus, so that the colony is a curtain of fishing lines. Midges and mayflies emerging from the water below fly toward the light, strike a thread, and are hauled up. Larvae kept without food glow harder and for longer than fed ones: the lure is turned up when the animal is hungry.
+
+[4] Two further patterns follow from the animal, and neither is what one would expect of a rock. The colonies track water. They are dense over the stream and thin to nothing in the dry side galleries, because the stream is where the prey hatch. And the spacing is regular, because a larva that is crowded eats its neighbour, so that the surviving scatter on the ceiling has the evenness of a territorial population rather than the banding of a mineral deposit.
+
+[5] A caution about the reports themselves. I have learned to discount the colours in them, because the dark-adapted eye judges hue badly and visitors describe as green a great many lights that are not.
+
+Passage B
+
+[1] Not every glowing cave holds an animal. Limestone is largely calcite, and calcite is a common host for luminescence: manganese ions sitting in the crystal lattice absorb energy and release it again as light, usually at a warm yellow-orange wavelength that shifts with whatever other impurities are present. Nothing in this is exotic. It is the same behaviour that makes a tray of museum specimens shine under an ultraviolet lamp, and it can be produced in a laboratory from a chip of the cave's own wall.
+
+[2] The distinction that matters here is between fluorescence, which stops the instant the exciting light stops, and phosphorescence, in which the crystal holds the energy in traps and lets it out slowly afterward. It is phosphorescence that produces reports of glowing walls. A lamp is played over a flowstone curtain and switched off, and the curtain goes on shining in the dark for anything from a few seconds to several minutes, before the store is spent.
+
+[3] Such a glow is easy to tell from a living one if the observer knows what to look at. It follows the mineral rather than the ecology, appearing as bands and sheets along a single depositional layer and glowing continuously across the whole of it rather than as separate points. It is brightest immediately after illumination and fades along a smooth curve. And it depends on the visitor's own lamp: a genuinely unlit passage, unentered for a season, has nothing stored to release. Nothing about it is under any creature's control, and no shout will alter it by so much as a flicker.
+
+[4] I raise all this because reports of luminous caves are collected uncritically, and several of the classic accounts come from dry upper galleries with no stream and no insect life, where a biological explanation has nothing to stand on. Both explanations are sound, and they are not really competing for the same caves so much as for the same anecdotes. I would add that the colours in those anecdotes deserve the least trust of anything in them: the eye is a poor instrument for hue in the dark, and a glow that a meter records as orange is reported as green.`
+
+/* ------------------------------------------------------------------ *
+ * Items. `k` is the index of the key within `opts` — the slot plan is
+ * 9/9/9/9 across the form and is asserted below.
+ * ------------------------------------------------------------------ */
+
+const KID = 'Key Ideas and Details'
+const CS = 'Craft and Structure'
+const IKI = 'Integration of Knowledge and Ideas'
+
+const P1_ITEMS = [
+  { q: `In the third paragraph, Ines takes Bell's shift from telling her she was slow to telling her where to put her feet as a change for the worse most likely because:`,
+    opts: [
+      `the correction has moved from her pace to her footing, which means the deck has become dangerous and not merely demanding.`,
+      `Bell has decided that Ines's pace cannot be improved by any amount of telling, and has moved on to the smaller matters a slow deckhand can still be taught.`,
+      `Ines has begun making errors that anyone on the crew could have named.`,
+      `Bell is assembling a case for having Ines taken off the winter run.`,
+    ], k: 0, dom: KID, sub: 'inference', diff: 'medium',
+    exp: `The paragraph pairs the new kind of correction with a deck that has changed under her: the bollard "wore a collar of ice" and plates "merely wet at the top of the hour, were glazed by the bottom of it." Being told where to put her feet is worse because "the deck has become dangerous and not merely demanding." That Bell "has stopped trying to correct it" inverts the paragraph, which shows her correcting more closely; the fifth paragraph says outright that Ines "had made no mistake anybody could name," so she has not "begun making errors"; and nothing in the passage supports a case for removing her from the run.` },
+
+  { q: `The narrator's description in the fifth paragraph of a sentence "assembled and ready in her mouth" chiefly serves to:`,
+    opts: [
+      `establish that Ines resents being supervised by a mate who is only a few years older than she is, and that she is about to say so.`,
+      `explain why Ines has not fallen or dropped a line in two months.`,
+      `mark the moment at which Ines sets aside her defence of her record and asks for instruction instead.`,
+      `show that Ines has been rehearsing complaints about the crew throughout the autumn.`,
+    ], k: 2, dom: CS, sub: 'function of a detail', diff: 'medium',
+    exp: `The sentence Ines has ready is a defence — she has not fallen, has not dropped a line — and the passage sets it against what she actually says, a question about where to put her feet, so the detail "mark[s] the moment at which Ines sets aside her defence of her record and asks for instruction instead." She does not "say so," which is the point of the contrast; her clean record is the content of the unsaid sentence, not something the detail explains; and nothing suggests a rehearsed grievance against "the crew."` },
+
+  { q: `According to the sixth paragraph, when Bell takes the line herself at the next landing she:`,
+    opts: [
+      `talks Ines through the sequence step by step while Ines handles the line.`,
+      `performs the tie-up twice, slowly, with Ines standing where she can watch the feet.`,
+      `waits for the hull to stop and then has Ines step off beside her.`,
+      `corrects Ines's grip on the eye of the line before the ramp comes up.`,
+    ], k: 1, dom: KID, sub: 'explicit detail', diff: 'easy',
+    exp: `The paragraph says it "was not a lecture" and that Bell "did the thing slowly, twice, with Ines standing where she could watch the feet and not the hands" — she "performs the tie-up twice, slowly, with Ines standing where she can watch the feet." A step-by-step talk-through is what the passage denies; Ines does not handle the line or step off at this landing; and the grip is never mentioned.` },
+
+  { q: `The seventh paragraph indicates that what strikes Ines about the half second is that:`,
+    opts: [
+      `she has not been told which landings require it and which do not.`,
+      `it is a knack she believes only someone with Bell's years could have.`,
+      `it contradicts what she was taught about tying up in August.`,
+      `it asks so much less of her than the winter she had braced for.`,
+    ], k: 3, dom: KID, sub: 'inference', diff: 'medium',
+    exp: `The paragraph insists the half second "cost nothing" and was "not a strength, or a courage, or a knack a person had to be born with," then contrasts that with an autumn spent "braced for winter to ask something enormous of her" — it "asks so much less of her than the winter she had braced for." The passage says the opposite of a knack one must be born with; no landing-by-landing rule is at issue; and August taught motions rather than a doctrine the half second contradicts.` },
+
+  { q: `As it is used in the next-to-last paragraph, the word "station" in "took up its old station off the stern" most nearly means:`,
+    opts: [
+      `customary position.`,
+      `assigned duty.`,
+      `resting place ashore.`,
+      `rank among the other gulls.`,
+    ], k: 0, dom: CS, sub: 'vocabulary in context', diff: 'medium',
+    exp: `The gull returns to the place the gulls had held "all summer," following the stern; "customary position" is the sense. No duty is assigned to a gull, the spot is off the stern rather than ashore, and nothing in the passage compares one gull's standing with another's.` },
+
+  { q: `The tenth paragraph indicates that Ines liked the cancelled mornings least because:`,
+    opts: [
+      `standing on the pier with the other three made her feel like the newest deckhand again.`,
+      `the cancellations cost her the crossings on which she had been improving.`,
+      `a day that asked nothing of her care was harder for her than a hard crossing.`,
+      `she could not tell from the pier what the strait was doing.`,
+    ], k: 2, dom: KID, sub: 'inference', diff: 'medium',
+    exp: `The paragraph ends by naming the difficulty exactly: "the difficult part was a day that offered her nothing to be careful about," so "a day that asked nothing of her care was harder for her than a hard crossing." Her newness and her improvement are elsewhere in the passage and are not given as the reason here, and she watches the strait from the pier rather than failing to read it.` },
+
+  { q: `The gulls' departure in the first paragraph and their return in the next-to-last paragraph function in the passage primarily to:`,
+    opts: [
+      `suggest that the tourists' return will make the deckhands' work easier.`,
+      `explain why the deck felt wider and less forgiving in November, once the tourists and the scraps they dropped were both gone.`,
+      `mark the end of Ines's formal apprenticeship on the run.`,
+      `bracket the winter and register, through Ines's changed reaction to them, what it did to her.`,
+    ], k: 3, dom: CS, sub: 'structure', diff: 'hard',
+    exp: `The gulls leave as the hard season starts and come back with "the return of the easy season," which Ines finds she "resented," so they "bracket the winter and register, through Ines's changed reaction to them, what it did to her." Their absence is offered as making the deck feel wider, not the other way round; the passage says nothing about tourists easing the work or about a formal apprenticeship.` },
+
+  { q: `The passage states that the ice on the bollard comes away in a single strike when:`,
+    opts: [
+      `the hammer falls on the middle of the collar.`,
+      `the hammer is aimed at the seam.`,
+      `the plates have been glazed since the top of the hour.`,
+      `the strike comes before the ramp is raised.`,
+    ], k: 1, dom: KID, sub: 'explicit detail', diff: 'easy',
+    exp: `The ninth paragraph says the ice "came away with a single strike of the hammer if you hit it at the seam," so the ice yields when "the hammer is aimed at the seam." Beating "at the middle of it" is precisely what leaves the ice on all day; the glazed plates and the ramp belong to other paragraphs and are not conditions on the strike.` },
+
+  { q: `Suppose a sentence were added at the very end of the passage. Which of the following would most weaken the impression that the winter changed Ines?`,
+    opts: [
+      `"The gull kept its station all the way across, and she let it."`,
+      `"Bell went below without a word, as she had all winter."`,
+      `"By June she had stopped waiting for the fenders, and nobody could have told her from the girl of the previous August."`,
+      `"She put the hammer back in its bracket, checked the freight, and went up to see whether Bell wanted her for the next crossing."`,
+    ], k: 2, dom: IKI, sub: 'evaluating evidence', diff: 'hard',
+    exp: `The winter's mark on Ines is the half second and the habits that came with it, so a sentence in which "she had stopped waiting for the fenders" and was indistinguishable from "the girl of the previous August" undoes the change directly. Letting the gull keep its station, Bell's silence and stowing the hammer are all consistent with the passage as it stands and leave the change untouched.` },
+]
+
+const P2_ITEMS = [
+  { q: `The passage's central claim about the Puyeong night market is that its stable arrangement is produced by:`,
+    opts: [
+      `the barricades and the evening schedule the city imposes on Sang-hwa Street.`,
+      `rules the vendors maintain among themselves, unwritten and without legal force.`,
+      `the long queue, which holds the number of stalls near a hundred and twenty.`,
+      `a licensing scheme that formalised an order the vendors had already reached.`,
+    ], k: 1, dom: KID, sub: 'central idea', diff: 'medium',
+    exp: `The second paragraph states that the order is "maintained entirely by the vendors themselves, under rules that nobody has written down and no authority can enforce with a fine" — "rules the vendors maintain among themselves, unwritten and without legal force." The barricades open the market but assign nothing; the queue is a consequence of the inheritance rule rather than the mechanism; and the licence is the intervention the last paragraph says undid part of the order.` },
+
+  { q: `The passage indicates that a vendor who takes up the principal item of an immediate neighbour is punished when:`,
+    opts: [
+      `the Wednesday board levies a penalty against her at its next afternoon meeting in the back of the shoe shop.`,
+      `the vendors on either side of her have her expelled from the market.`,
+      `her claim to name a successor to the pitch is struck from the market's memory.`,
+      `the neighbours stop supplying the change, the watching and the shared ice she depends on.`,
+    ], k: 3, dom: KID, sub: 'explicit detail', diff: 'medium',
+    exp: `The fourth paragraph says "Nobody is expelled" and that instead "the small services stop," listing the change, the watching of the cart and the shared ice — "the neighbours stop supplying the change, the watching and the shared ice she depends on." The board "can levy nothing," expulsion is ruled out in the same paragraph, and the inheritance of a pitch is a separate rule that the passage never makes a sanction.` },
+
+  { q: `As it is used in the fifth paragraph, the word "purchase" in "has no purchase in law" most nearly means:`,
+    opts: [
+      `force.`,
+      `precedent.`,
+      `expense.`,
+      `acquisition.`,
+    ], k: 0, dom: CS, sub: 'vocabulary in context', diff: 'medium',
+    exp: `The sentence goes on to say that the board "can levy nothing, and no finding it makes could be taken to a court," so what it lacks is legal "force." The passage is not describing case law, a cost, or something the board has bought.` },
+
+  { q: `The final paragraph's account of the 2011 licensing scheme functions in the passage chiefly to:`,
+    opts: [
+      `concede that the market's informal rules were already failing before the city intervened.`,
+      `demonstrate that rules imposed from outside a community are generally ineffective.`,
+      `identify, by removing it, the sanction on which the informal order depended.`,
+      `explain why the queue for a pitch has lengthened to six years.`,
+    ], k: 2, dom: CS, sub: 'function of a paragraph', diff: 'hard',
+    exp: `The paragraph ends by drawing "something narrower and more useful" from the episode — that the sanction had been "the neighbour's dependence" and the licence made it optional — so the account serves to "identify, by removing it, the sanction on which the informal order depended." The author explicitly declines the broad moral that "formal rules fail"; the rules were working, not failing, before 2011; and the queue is discussed in a different paragraph and is not attributed to the permits.` },
+
+  { q: `The author regards the six-year queue for a pitch as:`,
+    opts: [
+      `evidence that demand for pitches has outgrown what four blocks can hold.`,
+      `not a fault the arrangement has developed but a direct product of how it works.`,
+      `the one feature of the market that the 2011 permits successfully repaired.`,
+      `a waiting period the Wednesday board imposes on vendors who arrive late.`,
+    ], k: 1, dom: KID, sub: 'inference', diff: 'medium',
+    exp: `The seventh paragraph says the queue "is not a fault the system has developed; it is the system, working as designed" — "not a fault the arrangement has developed but a direct product of how it works." Crowding is never given as the cause; the permits are said to have frayed the rule about principal items rather than to have shortened the queue; and the board hears disputes rather than administering the queue.` },
+
+  { q: `According to the last paragraph, the licence weakened the rule about principal items because it:`,
+    opts: [
+      `let three noodle carts register for pitches on the same block.`,
+      `replaced the Wednesday board's authority over disputes with an annual fee and a numbered pitch issued by the city.`,
+      `gave the city the power to move a vendor to the thin end of the fourth block.`,
+      `made each vendor's place secure without her neighbours, so their help stopped being worth keeping.`,
+    ], k: 3, dom: KID, sub: 'cause and effect', diff: 'hard',
+    exp: `The paragraph says the permit "took the neighbours out of the guarantee" and that a vendor holding one "no longer needed anything from the stall beside her" — it "made each vendor's place secure without her neighbours, so their help stopped being worth keeping." The three noodle carts are the result rather than the mechanism; the board is not said to have been replaced; and moving a vendor down the fourth block is the board's device, not the city's.` },
+
+  { q: `The author's attitude toward the market's self-regulation is best described as:`,
+    opts: [
+      `appreciative of the order it produces and explicit about whom that order shuts out.`,
+      `impressed by the vendors' fairness but doubtful that the arrangement can last.`,
+      `unconvinced that the vendors' rules explain the market's stability at all.`,
+      `sorry that the city let the licensing scheme lapse after two seasons.`,
+    ], k: 0, dom: CS, sub: 'authorial stance', diff: 'hard',
+    exp: `The author calls the order stable and impressive but refuses "a fable about the wisdom of communities left alone," noting that the rules "protect her just as efficiently from anyone new" — "appreciative of the order it produces and explicit about whom that order shuts out." Stability is the one thing never doubted, the rules are credited with producing it, and the lapse of the permits is reported without regret.` },
+
+  { q: `The passage indicates that the Wednesday board's effective power over a vendor lies in its ability to:`,
+    opts: [
+      `withdraw the pitch she inherited from the vendor before her.`,
+      `bring its findings before a court when a vendor ignores them twice.`,
+      `move her to the thin end of the fourth block.`,
+      `decide which item each stall on a block is allowed to sell.`,
+    ], k: 2, dom: KID, sub: 'explicit detail', diff: 'medium',
+    exp: `The fifth paragraph says of the board that "What it can do is move you," and that a vendor who ignores it twice ends up where "the crowd has already turned for home" — its power is to "move her to the thin end of the fourth block." Court is closed to it; the passage never gives it power over inheritance; and what may be sold is settled by the neighbours' rule, not by the board.` },
+
+  { q: `Which of the following findings, if reported by a later study of Sang-hwa Street, would most undermine the author's explanation of why the vendors' rules are obeyed?`,
+    opts: [
+      `Most vendors could not name a single member of the Wednesday board or say when it had last met.`,
+      `The queue for a pitch had shortened from six years to four.`,
+      `Most vendors sell items unrelated to those of their immediate neighbours.`,
+      `Most vendors expect to leave the market within a year and follow the rules anyway.`,
+    ], k: 3, dom: IKI, sub: 'evaluating an explanation', diff: 'hard',
+    exp: `The author's explanation is that "everybody expects to be here next year," which makes a night's advantage a bad trade; vendors who "expect to leave the market within a year and follow the rules anyway" obey without that expectation and so cut the explanation out from under it. Not knowing the board's members, a shorter queue, and neighbours selling different items are all compatible with the account as given.` },
+]
+
+const P3_ITEMS = [
+  { q: `The passage's main argument about type revivals is that a revival:`,
+    opts: [
+      `is impossible in principle once the punchcutter's punches have been lost.`,
+      `should reproduce the printed page as it stands, spread ink and all.`,
+      `is a new design made from evidence, and its maker owes the reader an account of her choices.`,
+      `has at last become a matter of recovery rather than interpretation, thanks to digital tools.`,
+    ], k: 2, dom: KID, sub: 'central idea', diff: 'medium',
+    exp: `The essay calls the work "translation" and says what the reviver owes is "not invisibility but disclosure," a note of what was measured, reconstructed and invented — a revival "is a new design made from evidence, and its maker owes the reader an account of her choices." The author holds that defensible revivals are possible without the punches; tracing the page is the path the Sarto example condemns; and the digital section stresses that optical sizes are still "inferring rather than copying."` },
+
+  { q: `According to the second paragraph, printed pages are difficult evidence because the form on the page records:`,
+    opts: [
+      `the letter together with the effects of ink, pressure and damp paper.`,
+      `one size that the punchcutter intended to be scaled to all the others.`,
+      `a punch that had been recut several times over the life of the book.`,
+      `the absorbency of the paper rather than any property of the metal type.`,
+    ], k: 0, dom: KID, sub: 'explicit detail', diff: 'easy',
+    exp: `The paragraph concludes that the printed form "is the form of the letter plus a history of pressure, moisture and ink" — "the letter together with the effects of ink, pressure and damp paper." Sizes cut separately is the fifth paragraph's point and the opposite of scaling from one; no recutting is mentioned; and the paper's behaviour distorts the letter rather than replacing it.` },
+
+  { q: `As it is used in the fourth paragraph, the word "bargain" in "Period-correct and unreadable is a bargain nobody has to make" most nearly means:`,
+    opts: [
+      `an agreement between rivals.`,
+      `an unusually cheap purchase.`,
+      `an advantage quietly seized.`,
+      `a trade-off.`,
+    ], k: 3, dom: CS, sub: 'vocabulary in context', diff: 'medium',
+    exp: `The sentence weighs one good against one cost — period correctness bought at the price of readability — and denies that the exchange is necessary, so the sense is "a trade-off." No parties are contracting, no price is being praised, and nothing is being seized.` },
+
+  { q: `The paragraph about the Sarto foundry's 1924 Venetian roman serves chiefly to:`,
+    opts: [
+      `credit the foundry with the first revival made from photographic evidence.`,
+      `give a case in which copying one page reproduced its accidents as though they were the design.`,
+      `show that revivals attempted before digital drawing tools existed were bound to fail in the same way.`,
+      `illustrate the claim that optical sizes cannot be recovered by scaling.`,
+    ], k: 1, dom: CS, sub: 'function of a paragraph', diff: 'medium',
+    exp: `The designers traced "blots and all, including a chipped e that occurs on that page and nowhere else in the book," which is exactly "a case in which copying one page reproduced its accidents as though they were the design." The paragraph calls the method the wrong path rather than crediting it, blames the method rather than the era, and says nothing about size.` },
+
+  { q: `The third paragraph most strongly suggests that two revivals drawn from the same book may differ sharply because:`,
+    opts: [
+      `the revivers are working from copies that were inked differently.`,
+      `one reviver has surviving punches to consult and the other does not.`,
+      `each must decide whether to draw the printed impression or the letter inferred behind it.`,
+      `modern coated paper spreads ink less than the damp paper of the original did.`,
+    ], k: 2, dom: KID, sub: 'inference', diff: 'medium',
+    exp: `The paragraph sets out "two defensible ways to work" that "yield different typefaces from the same source" — one draws "what she sees," the other "what she infers" — so the divergence is that "each must decide whether to draw the printed impression or the letter inferred behind it." Comparing copies is offered later as a check on error; the punches are described as lost in most cases; and the coated paper explains why one result looks bloated, not why the two approaches exist.` },
+
+  { q: `The author calls a revival a "translation" primarily in order to:`,
+    opts: [
+      `insist that something is always carried over by choice rather than transferred whole.`,
+      `suggest that revivals are better judged by scholars of language than by designers.`,
+      `argue that a revival made abroad will differ from one made in the source's own country.`,
+      `concede that a revival can only be measured against the taste of its own century.`,
+    ], k: 0, dom: CS, sub: 'function of a word', diff: 'hard',
+    exp: `The sixth paragraph's translator "does not pretend that her sentences are the author's sentences" but claims "she has carried over what she judged to be carrying," which is the point of the word: something "is always carried over by choice rather than transferred whole." The essay assigns the judging to designers with measurements, raises no question of nationality, and denies that only taste remains, since a revival "can still be shown to be wrong about its source."` },
+
+  { q: `The passage indicates that a revival shipping a single drawing scaled to every size has:`,
+    opts: [
+      `smoothed out an inconsistency in the punchcutter's own work.`,
+      `discarded a dimension that the original cut separately into each size.`,
+      `followed the practice of the digital foundries the author approves of.`,
+      `made its small sizes survive heavy inking better than the original did.`,
+    ], k: 1, dom: KID, sub: 'explicit detail', diff: 'medium',
+    exp: `The fifth paragraph says such a revival "has quietly discarded an entire dimension of the original," since "a punchcutter cut every size separately, and cut them differently" — it has "discarded a dimension that the original cut separately into each size." The differences between sizes are deliberate rather than an inconsistency; the digital revivers the author credits are the ones drawing several optical sizes; and heavy inking is what the original small sizes were cut to survive.` },
+
+  { q: `Which discovery would most strongly support the author's claim that a printed page is a misleading witness to the punchcutter's letter?`,
+    opts: [
+      `a second copy of the same book, inked more lightly throughout`,
+      `a contract showing that the punchcutter was paid by the size rather than by the font, at a rate fixed before he began`,
+      `a nineteenth-century revival that traced the same page the Sarto foundry used`,
+      `a surviving set of punches whose filed forms are markedly sharper than the pages they printed`,
+    ], k: 3, dom: IKI, sub: 'evaluating evidence', diff: 'hard',
+    exp: `The claim is that ink and pressure add to the letter, so the decisive evidence is a comparison of a letter with its own printed impression: "a surviving set of punches whose filed forms are markedly sharper than the pages they printed." A lighter-inked copy shows variation between printings without reaching the punch; the payment terms bear on sizes rather than on shape; and an earlier tracing repeats the error instead of testing it.` },
+
+  { q: `Based on the passage, the author would most likely regard a revival advertised as "a photographic reproduction of the 1495 page" as:`,
+    opts: [
+      `claiming a fidelity that no reproduction of a page can deliver.`,
+      `acceptable so long as the foundry also publishes the measurements it took.`,
+      `the most defensible of the working methods the essay describes.`,
+      `a sound method that failed only because the Sarto face was withdrawn early.`,
+    ], k: 0, dom: IKI, sub: 'applying the author’s view', diff: 'hard',
+    exp: `Since the page carries "a history of pressure, moisture and ink" that cannot be subtracted, an advertisement of photographic reproduction is "claiming a fidelity that no reproduction of a page can deliver." Published measurements are the author's remedy for undisclosed choices, not a licence for the claim; tracing a page is the path the essay calls wrong; and the Sarto face is faulted for its method, not for the timing of its withdrawal.` },
+]
+
+const P4_ITEMS = [
+  { q: `According to Passage A, the larvae's light functions primarily to:`,
+    opts: [
+      `warn other larvae away from an occupied stretch of ceiling.`,
+      `light the threads so that the larva can find its own snare in the dark.`,
+      `signal to adults of the species emerging from the water below.`,
+      `draw flying insects into the beaded threads hanging beneath it.`,
+    ], k: 3, dom: KID, sub: 'explicit detail', diff: 'easy',
+    exp: `Passage A settles the question "by what hangs beneath it": midges and mayflies "fly toward the light, strike a thread, and are hauled up," and hungry larvae glow harder, so the light serves to "draw flying insects into the beaded threads hanging beneath it." Spacing is kept by cannibalism rather than by a warning signal; the larva does not need to see its own threads; and what rises from the water is prey, not adults of the larva's own kind.` },
+
+  { q: `As it is used in Passage B, the word "spent" in "before the store is spent" most nearly means:`,
+    opts: [
+      `paid for.`,
+      `exhausted.`,
+      `wasted.`,
+      `released all at once.`,
+    ], k: 1, dom: CS, sub: 'vocabulary in context', diff: 'medium',
+    exp: `The curtain shines "for anything from a few seconds to several minutes" until the trapped energy runs out, so the store is "exhausted." Nothing is bought; the energy is emitted as the light that is being described rather than wasted; and the whole point of phosphorescence in the paragraph is that the crystal "lets it out slowly" instead of all at once.` },
+
+  { q: `Passage B indicates that a mineral glow can be told from a living one because the mineral glow:`,
+    opts: [
+      `appears only in passages through which a stream has recently run.`,
+      `takes some twenty minutes to come back after a shout or a torch beam has disturbed the stretch of ceiling.`,
+      `spreads continuously along a single depositional band and fades along a smooth curve.`,
+      `is recorded by a meter as green rather than as orange.`,
+    ], k: 2, dom: KID, sub: 'explicit detail', diff: 'medium',
+    exp: `Passage B's marks of a mineral glow are that it appears "as bands and sheets along a single depositional layer," glows "continuously across the whole of it," and "fades along a smooth curve" — it "spreads continuously along a single depositional band and fades along a smooth curve." Streams belong to Passage A's account of where larvae are dense; the twenty-minute recovery is Passage A's alarmed ceiling; and Passage B says a meter records orange where visitors report green.` },
+
+  { q: `The last paragraph of Passage B chiefly serves to:`,
+    opts: [
+      `explain what the author takes the mineral account to be needed for.`,
+      `concede that the biological explanation covers most reported cases.`,
+      `propose a measurement that would settle which explanation is correct.`,
+      `argue that luminous caves are reported far more often than they occur.`,
+    ], k: 0, dom: CS, sub: 'function of a paragraph', diff: 'hard',
+    exp: `The paragraph opens "I raise all this because reports of luminous caves are collected uncritically" and locates the contest in "the same anecdotes," which is an account of what the mineral explanation is for. Passage B grants that both explanations are sound without conceding the majority of cases to the animal, offers no measurement procedure, and complains about how reports are handled rather than about how many there are.` },
+
+  { q: `Both authors would most likely agree that:`,
+    opts: [
+      `a glow that survives a shout is more likely to be mineral than living.`,
+      `the caves that glow most brightly are the ones with the most insect life.`,
+      `a cave left unentered for a season will not glow at all.`,
+      `the colours given in visitors' reports of glowing caves should not be relied on.`,
+    ], k: 3, dom: IKI, sub: 'comparing two texts', diff: 'medium',
+    exp: `Passage A "learned to discount the colours" because the dark-adapted eye "judges hue badly," and Passage B says those colours "deserve the least trust of anything in them," so both hold that "the colours given in visitors' reports of glowing caves should not be relied on." The shout test is Passage A's alone and neither author draws that conclusion from it; brightness is nowhere ranked by insect abundance; and Passage A's larvae go on glowing in an unentered cave, which is precisely what Passage B says a mineral cannot do.` },
+
+  { q: `The author of Passage B would most likely respond to Passage A's observation that a shouted-at ceiling goes dark and takes twenty minutes to return by:`,
+    opts: [
+      `denying that the larvae Passage A describes are found in limestone caves.`,
+      `treating it as a clean test between the two explanations, since a mineral glow behaves the other way round.`,
+      `attributing the delay to the time a manganese-bearing crystal needs to trap fresh energy once its store has been emptied.`,
+      `blaming the darkness on the visitor's lamp rather than on the shout.`,
+    ], k: 1, dom: IKI, sub: 'comparing two texts', diff: 'hard',
+    exp: `Passage B says a mineral glow "depends on the visitor's own lamp" and is "brightest immediately after illumination," so a light that goes out when disturbed and returns slowly points the opposite way, and the author would treat it as "a clean test between the two explanations." Passage B never disputes that the animals exist, does not describe recharging in the dark, and reserves the lamp for producing a glow rather than for quenching one.` },
+
+  { q: `A visitor reports a dry upper gallery with no stream that is wholly dark on entry, shines for two minutes after her lamp is switched off, and shows the light as a single sheet along one layer of flowstone. This report:`,
+    opts: [
+      `favours Passage A, because the light comes back after a disturbance.`,
+      `favours Passage A, because the light is steady rather than flickering.`,
+      `favours Passage B on each of the marks the two passages use to tell the explanations apart.`,
+      `fits both accounts equally, since neither excludes a dry gallery.`,
+    ], k: 2, dom: IKI, sub: 'comparing two texts', diff: 'hard',
+    exp: `Every feature of the report is on Passage B's list: no stream and no insects, darkness until a lamp has been played over the rock, a few minutes of afterglow, and a continuous sheet along one depositional layer instead of separate points, so it "favours Passage B on each of the marks the two passages use to tell the explanations apart." Passage A's ceiling glows before anyone arrives and its colonies "thin to nothing in the dry side galleries," which is why the dry gallery does not fit both accounts equally; steadiness is common to both and settles nothing.` },
+
+  { q: `Passage A cites the even spacing of the lights on the ceiling as evidence that:`,
+    opts: [
+      `the pattern is made by animals that compete for room, since a crowded larva eats its neighbour.`,
+      `the colony is distributed by the stream below, which carries the midges and mayflies the larvae feed on.`,
+      `the passage has been occupied for at least nine months.`,
+      `the banding of the limestone has no effect on where larvae settle.`,
+    ], k: 0, dom: KID, sub: 'evidence and claim', diff: 'medium',
+    exp: `Passage A explains the regular spacing by cannibalism — "a larva that is crowded eats its neighbour" — leaving a scatter with "the evenness of a territorial population," so the spacing shows "the pattern is made by animals that compete for room." The stream explains where colonies are dense, which is the other of the two patterns; nine months is the length of a larva's life rather than an inference from the pattern; and the contrast with mineral banding is the conclusion drawn, not a claim about where larvae settle.` },
+
+  { q: `Which question, if it could be answered for one glowing passage, would do most to decide between the two explanations?`,
+    opts: [
+      `What colour do visitors say the glow is?`,
+      `Does the glow appear in a passage that has been left unlit and unentered?`,
+      `Is the limestone of the passage rich in manganese?`,
+      `Does the passage lie above or below the level of the stream?`,
+    ], k: 1, dom: IKI, sub: 'comparing two texts', diff: 'hard',
+    exp: `Passage B states that "a genuinely unlit passage, unentered for a season, has nothing stored to release," while Passage A's larvae glow on their own account, so asking whether the glow "appear[s] in a passage that has been left unlit and unentered" separates the explanations directly. Both authors dismiss visitors' colour reports as unreliable; manganese may be present in limestone that is not glowing; and height relative to the stream bears on where larvae are likely without deciding what a particular light is.` },
+]
+
+/* ------------------------------------------------------------------ *
+ * Assembly
+ * ------------------------------------------------------------------ */
+
+const PASSAGES = [
+  { pid: 'rd5-p1', title: 'First Winter on the Kestrel Point Run', genre: 'literary_narrative', paired: false, text: P1, items: P1_ITEMS },
+  { pid: 'rd5-p2', title: 'The Rules of Sang-hwa Street',          genre: 'social_science',     paired: false, text: P2, items: P2_ITEMS },
+  { pid: 'rd5-p3', title: 'What a Revival Revives',                genre: 'humanities',         paired: false, text: P3, items: P3_ITEMS },
+  { pid: 'rd5-p4', title: 'Why Some Caves Glow',                   genre: 'natural_science',    paired: true,  text: P4, items: P4_ITEMS },
+]
+
+const batch = []
+PASSAGES.forEach((p, pi) => {
+  p.items.forEach((it, qi) => {
+    batch.push({
+      id: `ACT-RD5-P${pi + 1}-Q${qi + 1}`,
+      passage_id: p.pid,
+      passage_title: p.title,
+      genre: p.genre,
+      paired: p.paired,
+      passage: p.text,          // one string object, stamped nine times
+      prompt: it.q,
+      choices: it.opts,
+      correct_answer: it.opts[it.k],
+      explanation: it.exp,
+      domain: it.dom,
+      subskill: it.sub,
+      difficulty: it.diff,
+    })
+  })
+})
+
+/* ---- self-checks the bank checker does not make ---- */
+const fail = []
+const slots = [0, 0, 0, 0]
+let longest = 0, shortest = 0
+for (const p of PASSAGES) for (const it of p.items) {
+  slots[it.k]++
+  const lens = it.opts.map(o => o.length)
+  const max = Math.max(...lens), min = Math.min(...lens)
+  if (lens[it.k] === max && lens.filter(l => l === max).length === 1) longest++
+  if (lens[it.k] === min && lens.filter(l => l === min).length === 1) shortest++
+}
+if (slots.some(s => s !== 9)) fail.push(`key slots ${slots.join('/')} — want 9/9/9/9`)
+if (longest > 9) fail.push(`key is the longest option in ${longest} items (max 9)`)
+if (shortest > 9) fail.push(`key is the shortest option in ${shortest} items (max 9)`)
+const dom = {}
+for (const it of batch) dom[it.domain] = (dom[it.domain] ?? 0) + 1
+const wantDom = { 'Key Ideas and Details': 17, 'Craft and Structure': 11, 'Integration of Knowledge and Ideas': 8 }
+for (const [k, v] of Object.entries(wantDom)) if (dom[k] !== v) fail.push(`domain ${k}: ${dom[k] ?? 0}, want ${v}`)
+for (const p of PASSAGES) {
+  if (p.items.length !== 9) fail.push(`${p.pid}: ${p.items.length} items`)
+  const words = p.text.split(/\s+/).length
+  if (!p.paired && (words < 700 || words > 850)) fail.push(`${p.pid}: ${words} words (want 700-850)`)
+}
+const cmp = P4_ITEMS.filter(i => /Passage A/.test(i.q) && /Passage B/.test(i.q) || /Both authors/.test(i.q) || /both/i.test(i.q) || /two explanations|two passages|the two/.test(i.q + i.opts.join(' '))).length
+if (cmp < 3) fail.push(`only ${cmp} items compare the paired passages`)
+
+const out = 'scripts/study-bank/act-reading-v5.batch.json'
+writeFileSync(out, JSON.stringify(batch, null, 2) + '\n')
+console.log(`wrote ${out}: ${batch.length} items`)
+console.log('key slots:', slots.join('/'), '| key longest:', longest, '| key shortest:', shortest)
+console.log('domains:', JSON.stringify(dom))
+console.log('passage words:', PASSAGES.map(p => `${p.pid} ${p.text.split(/\s+/).length}`).join(', '))
+console.log('paired-comparison items:', cmp)
+if (fail.length) { console.error('\nSELF-CHECK FAILED:\n  ' + fail.join('\n  ')); process.exit(1) }
+console.log('self-checks OK')

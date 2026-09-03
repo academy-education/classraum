@@ -22,16 +22,21 @@ for (const it of items) {
   const flagged = votes.filter(v => v.second_defensible).map((v, i) => v.note)
   const difficulty = maj(votes.map(v => v.difficulty))
   const distractor_quality = maj(votes.map(v => v.distractor_quality))
+  // Solvers report passage_needed per item; a hardcoded `true` here was a
+  // check that could not fail. Majority vote, and a majority of "no" drops
+  // the item: an R&W item answerable without its passage is not an R&W item.
+  const passage_needed = maj(votes.map(v => String(v.passage_needed !== false))) === 'true'
   const why = []
   if (key_votes < 2) why.push(`key_votes ${key_votes} (picks ${votes.map(v => v.pick).join('')}, key ${keyLetter})`)
   if (flagged.length) why.push(`second defensible: ${flagged.join(' | ')}`)
   if (difficulty === 'easy') why.push('majority easy')
   if (distractor_quality === 'weak') why.push('majority weak distractors')
+  if (!passage_needed) why.push('majority say answerable without the passage')
   if (DROP.has(it.id)) why.push('near-duplicate stem of a sibling item')
   const ok = why.length === 0
   if (ok) pass++
-  qc[it.id] = { key_votes: ok ? key_votes : 0, difficulty, distractor_quality, passage_needed: true }
-  reasons[it.id] = { ok, key_votes, picks: votes.map(v => v.pick).join(''), difficulty, distractor_quality, why }
+  qc[it.id] = { key_votes: ok ? key_votes : 0, difficulty, distractor_quality, passage_needed }
+  reasons[it.id] = { ok, key_votes, picks: votes.map(v => v.pick).join(''), difficulty, distractor_quality, passage_needed, why }
 }
 writeFileSync(`scripts/study-bank/${TAG}.qc.json`, JSON.stringify(qc, null, 1))
 writeFileSync(`scripts/study-bank/${TAG}.qc-reasons.json`, JSON.stringify(reasons, null, 1))

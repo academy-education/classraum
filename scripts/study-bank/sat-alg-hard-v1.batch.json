@@ -3,7 +3,7 @@
     "id": "AL-H-01",
     "domain": "Algebra",
     "subskill": "linear equations in one variable with a parameter",
-    "difficulty": "hard",
+    "difficulty": "medium",
     "prompt": "In the equation a(4x - 3) + 5x = 3(7x + 2) - 8, a is a constant. If the equation has no solution, what is the value of a?",
     "choices": [
       "4",
@@ -19,7 +19,7 @@
     "id": "AL-H-02",
     "domain": "Algebra",
     "subskill": "linear equations in one variable with a parameter",
-    "difficulty": "hard",
+    "difficulty": "medium",
     "prompt": "In the equation b(x - 3) + 4(2x + 5) = 10x + c, b and c are constants. If the equation has infinitely many solutions, what is the value of c?",
     "choices": [
       "-34",
@@ -35,7 +35,7 @@
     "id": "AL-H-03",
     "domain": "Algebra",
     "subskill": "linear equations in one variable with a parameter",
-    "difficulty": "hard",
+    "difficulty": "medium",
     "prompt": "In the equation 4(kx - 2) - 3x = 5(x + 6) - 3, k is a constant. If the equation has no solution, what is the value of k?",
     "choices": [
       "0.5",
@@ -51,7 +51,7 @@
     "id": "AL-H-04",
     "domain": "Algebra",
     "subskill": "linear equations in one variable with a parameter",
-    "difficulty": "hard",
+    "difficulty": "medium",
     "prompt": "In the equation 2(kx - 5) + 7x = 6(x + 1) - 16, k is a constant. If the equation has infinitely many solutions, what is the value of k?",
     "choices": [
       "3",
@@ -67,7 +67,7 @@
     "id": "AL-H-05",
     "domain": "Algebra",
     "subskill": "linear equations in one variable with a parameter",
-    "difficulty": "hard",
+    "difficulty": "medium",
     "prompt": "In the equation 3(x - a) + 2(2x + 1) = 7x - 10, a is a constant. If the equation has infinitely many solutions, what is the value of a?",
     "choices": [
       "4",
@@ -83,7 +83,7 @@
     "id": "AL-H-06",
     "domain": "Algebra",
     "subskill": "linear equations in one variable with a parameter",
-    "difficulty": "hard",
+    "difficulty": "medium",
     "prompt": "In the equation 5(wx - 2) - 4x = 26x + 9, w is a constant. If the equation has no solution, what is the value of w?",
     "choices": [
       "2.6",
@@ -99,7 +99,7 @@
     "id": "AL-H-07",
     "domain": "Algebra",
     "subskill": "linear functions from context",
-    "difficulty": "hard",
+    "difficulty": "medium",
     "prompt": "A repair shop models the total charge C, in dollars, for a job as C = 85h + 240, where h is the number of hours the technician works. Based on this model, how many more dollars is the total charge for a job that takes 3 hours 45 minutes than for a job that takes 2 hours 15 minutes?",
     "choices": [
       "110.50",
@@ -115,7 +115,7 @@
     "id": "AL-H-08",
     "domain": "Algebra",
     "subskill": "linear functions from context",
-    "difficulty": "hard",
+    "difficulty": "medium",
     "prompt": "A full tank holds 620 liters of water. As the tank drains, the volume W, in liters, remaining in the tank is modeled by W = 620 - 6.5t, where t is the number of minutes since draining began. To the nearest tenth of an hour, how long does the tank take to go from full to 100 liters remaining?",
     "choices": [
       "0.8",
@@ -131,7 +131,7 @@
     "id": "AL-H-09",
     "domain": "Algebra",
     "subskill": "linear functions from context",
-    "difficulty": "hard",
+    "difficulty": "medium",
     "prompt": "The cost C, in cents, of producing n grams of a chemical compound is modeled by C = 0.85n + 1250. Based on this model, what is the cost, in dollars, of producing 1 kilogram of the compound?",
     "choices": [
       "21.00",
@@ -147,7 +147,7 @@
     "id": "AL-H-10",
     "domain": "Algebra",
     "subskill": "linear functions from context",
-    "difficulty": "hard",
+    "difficulty": "medium",
     "prompt": "A shipping company models the fee F, in dollars, for a package as F = 0.42w + 6.75, where w is the weight of the package in ounces. A customer ships a package that weighs 3 pounds 4 ounces. There are 16 ounces in 1 pound. What is the fee, in dollars, for this package?",
     "choices": [
       "8.12",
@@ -163,7 +163,7 @@
     "id": "AL-H-11",
     "domain": "Algebra",
     "subskill": "linear functions from context",
-    "difficulty": "hard",
+    "difficulty": "easy",
     "prompt": "A bottling machine's output is modeled by B = 12.5m, where B is the number of bottles filled and m is the number of minutes the machine runs. Based on this model, how many bottles does the machine fill in 3 hours 12 minutes of continuous operation?",
     "choices": [
       "40",
@@ -179,7 +179,7 @@
     "id": "AL-H-12",
     "domain": "Algebra",
     "subskill": "linear functions from context",
-    "difficulty": "hard",
+    "difficulty": "medium",
     "prompt": "A gym models a member's total cost C, in dollars, as C = 39.5w + 65, where w is the number of weeks of membership and the 65 dollars is a one-time joining fee. A member keeps the membership for exactly 52 weeks. To the nearest cent, what is the member's average cost per day over those 52 weeks?",
     "choices": [
       "5.89",
@@ -195,7 +195,7 @@
     "id": "AL-H-13",
     "domain": "Algebra",
     "subskill": "systems of two linear equations",
-    "difficulty": "hard",
+    "difficulty": "medium",
     "prompt": "In the system of equations 6x - 4y = 10 and cx + 6y = 21, c is a constant. If the system has no solution, what is the value of c?",
     "choices": [
       "-9",
@@ -211,7 +211,7 @@
     "id": "AL-H-14",
     "domain": "Algebra",
     "subskill": "systems of two linear equations",
-    "difficulty": "hard",
+    "difficulty": "medium",
     "prompt": "In the system of equations 3x + ky = 12 and 9x + 15y = m, k and m are constants. If the system has infinitely many solutions, what is the value of k + m?",
     "choices": [
       "9",
@@ -227,7 +227,7 @@
     "id": "AL-H-15",
     "domain": "Algebra",
     "subskill": "systems of two linear equations",
-    "difficulty": "hard",
+    "difficulty": "medium",
     "prompt": "A theater sold only adult tickets and student tickets for a performance. Adult tickets cost 18 dollars each and student tickets cost 11 dollars each. The theater sold 480 tickets in all and collected 7,170 dollars. How many more adult tickets than student tickets did the theater sell?",
     "choices": [
       "210",
@@ -243,7 +243,7 @@
     "id": "AL-H-16",
     "domain": "Algebra",
     "subskill": "systems of two linear equations",
-    "difficulty": "hard",
+    "difficulty": "medium",
     "prompt": "In the system of equations kx + 8y = 20 and 3x - 2y = 7, k is a constant. The system has exactly one solution for every value of k except one. What is that value of k?",
     "choices": [
       "-16/3",
@@ -259,7 +259,7 @@
     "id": "AL-H-17",
     "domain": "Algebra",
     "subskill": "systems of two linear equations",
-    "difficulty": "hard",
+    "difficulty": "medium",
     "prompt": "At a farm stand, 3 pounds of apples and 2 pounds of pears cost 14.20 dollars, and 5 pounds of apples and 4 pounds of pears cost 25.40 dollars. Every pound of apples costs the same amount, and every pound of pears costs the same amount. What is the cost, in dollars, of 1 pound of pears?",
     "choices": [
       "2.60",
@@ -275,7 +275,7 @@
     "id": "AL-H-18",
     "domain": "Algebra",
     "subskill": "systems of two linear equations",
-    "difficulty": "hard",
+    "difficulty": "easy",
     "prompt": "A factory's two production lines are described by the system of equations 2x + 5y = 40 and 6x + ny = 96, where n is a constant. For what value of n does the system have no solution?",
     "choices": [
       "5/3",
@@ -291,7 +291,7 @@
     "id": "AL-H-19",
     "domain": "Algebra",
     "subskill": "linear inequalities",
-    "difficulty": "hard",
+    "difficulty": "medium",
     "prompt": "A delivery van can carry a total load of at most 1,800 pounds, including the driver. The driver weighs 190 pounds, and the van is already loaded with 14 crates that weigh 65 pounds each. Boxes weighing 24 pounds each will also be loaded. What is the greatest number of these boxes the van can carry?",
     "choices": [
       "30",
@@ -307,7 +307,7 @@
     "id": "AL-H-20",
     "domain": "Algebra",
     "subskill": "linear inequalities",
-    "difficulty": "hard",
+    "difficulty": "medium",
     "prompt": "In the inequality 7x - 4 ≥ 3(x + 2) + k, k is a constant, and the solution set is x ≥ 9. What is the value of k?",
     "choices": [
       "30",
@@ -355,7 +355,7 @@
     "id": "AL-H-23",
     "domain": "Algebra",
     "subskill": "linear inequalities",
-    "difficulty": "hard",
+    "difficulty": "medium",
     "prompt": "A vendor sells bracelets for 7 dollars each and necklaces for 12 dollars each. She needs to take in at least 500 dollars, and she can display no more than 55 items in total. If she sells exactly 10 bracelets, what is the least number of necklaces she must sell to reach her revenue goal?",
     "choices": [
       "35",
@@ -371,7 +371,7 @@
     "id": "AL-H-24",
     "domain": "Algebra",
     "subskill": "linear inequalities",
-    "difficulty": "hard",
+    "difficulty": "medium",
     "prompt": "In the inequality -3(x - 2) + 5x ≥ 4x + k, k is a constant, and the solution set is x ≤ -8. What is the value of k?",
     "choices": [
       "-22",

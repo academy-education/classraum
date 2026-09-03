@@ -1,0 +1,170 @@
+{
+  "AL-H-01": {
+    "difficulty": "medium",
+    "single_defensible": true,
+    "distractor_quality": "plausible",
+    "ambiguous_stem": false,
+    "note": "Routine no-solution parameter template: expand, match x-coefficients, divide. Not module-2 hard. Distractor 21 (copy the RHS coefficient) is not an error a strong student commits; the other two are real."
+  },
+  "AL-H-02": {
+    "difficulty": "medium",
+    "single_defensible": true,
+    "distractor_quality": "plausible",
+    "ambiguous_stem": false,
+    "note": "Two-stage (solve b, then c) lifts it above the others in 01-06 but it is still template execution. Distractor -34 comes from 'solving b + 8 = 10 backwards as b = 18', which is arithmetic nobody actually does; 2 and 26 are genuine traps."
+  },
+  "AL-H-03": {
+    "difficulty": "medium",
+    "single_defensible": true,
+    "distractor_quality": "strong",
+    "ambiguous_stem": false,
+    "note": "Same template as AL-H-01/06; medium, not hard. Distractors are clean: sign slip, dropped -3x, reported 4k."
+  },
+  "AL-H-04": {
+    "difficulty": "medium",
+    "single_defensible": true,
+    "distractor_quality": "plausible",
+    "ambiguous_stem": false,
+    "note": "The constants already agree so only the coefficient condition binds - a mild twist, still medium. Distractor 6 (copy the RHS coefficient) is weak; 3 and 6.5 are real."
+  },
+  "AL-H-05": {
+    "difficulty": "medium",
+    "single_defensible": true,
+    "distractor_quality": "strong",
+    "ambiguous_stem": false,
+    "note": "Inverse of AL-H-04 (coefficients pre-matched, constants decide). Medium. Distractor rationale for -4 is garbled in the explanation ('-3a = -10 - 2 as 3a = -12') though the value is a genuine sign slip."
+  },
+  "AL-H-06": {
+    "difficulty": "medium",
+    "single_defensible": true,
+    "distractor_quality": "plausible",
+    "ambiguous_stem": false,
+    "note": "Medium template item. Distractor 2.6 requires matching an x-coefficient to a constant, which is not a real student error; 4.4 and 5.2 are."
+  },
+  "AL-H-07": {
+    "difficulty": "medium",
+    "single_defensible": true,
+    "distractor_quality": "strong",
+    "ambiguous_stem": false,
+    "note": "Convert two clock times and multiply by the rate; the only real content is that the fixed 240 cancels. Medium at best."
+  },
+  "AL-H-08": {
+    "difficulty": "medium",
+    "single_defensible": true,
+    "distractor_quality": "strong",
+    "ambiguous_stem": false,
+    "note": "Solve a one-step linear equation, then convert minutes to hours. Medium."
+  },
+  "AL-H-09": {
+    "difficulty": "medium",
+    "single_defensible": true,
+    "distractor_quality": "strong",
+    "ambiguous_stem": false,
+    "note": "Two unit traps (kg to g in, cents to dollars out) keep it at medium; still a single substitution."
+  },
+  "AL-H-10": {
+    "difficulty": "medium",
+    "single_defensible": true,
+    "distractor_quality": "strong",
+    "ambiguous_stem": false,
+    "note": "Medium. Note the stem hands the student the conversion factor ('There are 16 ounces in 1 pound'), which removes the only obstacle a hard item would keep."
+  },
+  "AL-H-11": {
+    "difficulty": "easy",
+    "single_defensible": true,
+    "distractor_quality": "strong",
+    "ambiguous_stem": false,
+    "note": "One conversion and one multiplication with no second condition - easy however the numbers look. The weakest item in the batch on difficulty."
+  },
+  "AL-H-12": {
+    "difficulty": "medium",
+    "single_defensible": true,
+    "distractor_quality": "strong",
+    "ambiguous_stem": false,
+    "note": "Medium: evaluate, then convert weeks to days. Distractors are all named and all tempting."
+  },
+  "AL-H-13": {
+    "difficulty": "medium",
+    "single_defensible": true,
+    "distractor_quality": "plausible",
+    "ambiguous_stem": false,
+    "note": "Single cross-multiplication with a negative coefficient. Distractor -4 (copy the y-coefficient) and 12.6 (use the constants) are mechanical rather than tempting; 9 is the real trap."
+  },
+  "AL-H-14": {
+    "difficulty": "medium",
+    "single_defensible": true,
+    "distractor_quality": "plausible",
+    "ambiguous_stem": false,
+    "note": "Asking for k + m adds a step over AL-H-18 but stays medium. 36 (report m alone) is the strong trap; 9 assumes dividing 12 by 3, which is contrived."
+  },
+  "AL-H-15": {
+    "difficulty": "medium",
+    "single_defensible": true,
+    "distractor_quality": "strong",
+    "ambiguous_stem": false,
+    "note": "Standard two-variable word system; the 'how many more' twist is the only lift. Medium. Distractors 270/210/480 are exactly the three stopping points students stop at."
+  },
+  "AL-H-16": {
+    "difficulty": "medium",
+    "single_defensible": true,
+    "distractor_quality": "plausible",
+    "ambiguous_stem": false,
+    "note": "Indirect wording ('one solution for every value except one') is good, but the computation is identical to AL-H-13. Distractor 60/7 is mechanical; 12 and -16/3 are real."
+  },
+  "AL-H-17": {
+    "difficulty": "medium",
+    "single_defensible": true,
+    "distractor_quality": "strong",
+    "ambiguous_stem": false,
+    "note": "Elimination with a scaling step - medium. Distractor 5.60 is the true value of a + p, a genuinely attractive wrong quantity."
+  },
+  "AL-H-18": {
+    "difficulty": "easy",
+    "single_defensible": true,
+    "distractor_quality": "plausible",
+    "ambiguous_stem": false,
+    "note": "n = 3 x 5 in one step once the multiplier is seen; the distinctness check is not needed to answer. Easy. Distractor 12 (scale by the constant ratio) is mechanical."
+  },
+  "AL-H-19": {
+    "difficulty": "medium",
+    "single_defensible": true,
+    "distractor_quality": "strong",
+    "ambiguous_stem": false,
+    "note": "Multi-part load with a floor; the stem correctly pre-empts ambiguity with 'including the driver'. Medium. Explanation's sentence about the 30th box is word-ordered confusingly but arithmetically right."
+  },
+  "AL-H-20": {
+    "difficulty": "medium",
+    "single_defensible": true,
+    "distractor_quality": "plausible",
+    "ambiguous_stem": false,
+    "note": "Boundary-matching with no sign reversal, so it is the easy half of the 20/24 pair. Distractor 46 ('slipping the sign when moving the 10') is contrived; 30 and 36 are real."
+  },
+  "AL-H-21": {
+    "difficulty": "hard",
+    "single_defensible": true,
+    "distractor_quality": "strong",
+    "ambiguous_stem": false,
+    "note": "Genuinely hard: two competing constraints where the non-algebraic one binds, so the student who does the algebra correctly still gets 17. Best item in the batch."
+  },
+  "AL-H-22": {
+    "difficulty": "hard",
+    "single_defensible": true,
+    "distractor_quality": "strong",
+    "ambiguous_stem": false,
+    "note": "Genuinely hard: the variable cancels and the inequality becomes a statement about c, plus a strict-versus-nonstrict boundary. Distractor 8 is a true off-by-one on that boundary."
+  },
+  "AL-H-23": {
+    "difficulty": "medium",
+    "single_defensible": true,
+    "distractor_quality": "strong",
+    "ambiguous_stem": false,
+    "note": "Medium. The 55-item cap is inert - it exists only to generate distractor 45 - and it quietly assumes items sold cannot exceed items displayed. Non-binding here (46 <= 55), so the key is unaffected."
+  },
+  "AL-H-24": {
+    "difficulty": "medium",
+    "single_defensible": true,
+    "distractor_quality": "strong",
+    "ambiguous_stem": false,
+    "note": "The division by -2 and the inequality flip push this to the top of medium but not to hard. Distractor -10 (no reversal) is the correct central trap."
+  }
+}
