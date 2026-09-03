@@ -5,9 +5,12 @@
 // listed drop id => excluded (recorded in the qc as key_votes 0 so the
 // helper rejects it, plus a reasons file for the register).
 import { readFileSync, writeFileSync } from 'node:fs'
-const files = ['a', 'b'].map(x => `scripts/study-bank/sat-sec-hard-v1${x}.batch.json`)
+// BATCHES = comma-separated batch files; TAG = prefix of the solver files
+// (<TAG>.solver-a/b/c.json) and of the qc outputs. Defaults reproduce v1.
+const TAG = process.env.TAG ?? 'sat-sec-hard-v1'
+const files = (process.env.BATCHES ?? 'scripts/study-bank/sat-sec-hard-v1a.batch.json,scripts/study-bank/sat-sec-hard-v1b.batch.json').split(',')
 const items = files.flatMap(f => JSON.parse(readFileSync(f, 'utf8')))
-const solvers = ['a', 'b', 'c'].map(s => JSON.parse(readFileSync(`scripts/study-bank/sat-sec-hard-v1.solver-${s}.json`, 'utf8')))
+const solvers = ['a', 'b', 'c'].map(s => JSON.parse(readFileSync(`scripts/study-bank/${TAG}.solver-${s}.json`, 'utf8')))
 const DROP = new Set((process.env.DROP ?? '').split(',').filter(Boolean))   // near-duplicate stems etc.
 const maj = arr => { const c = {}; for (const v of arr) c[v] = (c[v] ?? 0) + 1; return Object.entries(c).sort((x, y) => y[1] - x[1])[0][0] }
 const qc = {}, reasons = {}
@@ -30,8 +33,8 @@ for (const it of items) {
   qc[it.id] = { key_votes: ok ? key_votes : 0, difficulty, distractor_quality, passage_needed: true }
   reasons[it.id] = { ok, key_votes, picks: votes.map(v => v.pick).join(''), difficulty, distractor_quality, why }
 }
-writeFileSync('scripts/study-bank/sat-sec-hard-v1.qc.json', JSON.stringify(qc, null, 1))
-writeFileSync('scripts/study-bank/sat-sec-hard-v1.qc-reasons.json', JSON.stringify(reasons, null, 1))
+writeFileSync(`scripts/study-bank/${TAG}.qc.json`, JSON.stringify(qc, null, 1))
+writeFileSync(`scripts/study-bank/${TAG}.qc-reasons.json`, JSON.stringify(reasons, null, 1))
 console.log(`${pass}/${items.length} pass`)
 for (const [id, r] of Object.entries(reasons)) if (!r.ok) console.log('  drop', id, '-', r.why.join('; '))
 const d = {}; for (const [id, r] of Object.entries(reasons)) if (r.ok) d[r.difficulty] = (d[r.difficulty] ?? 0) + 1

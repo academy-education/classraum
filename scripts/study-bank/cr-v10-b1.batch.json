@@ -19,36 +19,36 @@
   {
     "id": "CR10-B1-02",
     "type": "multiple_choice",
-    "passage": "Transcript: \"Room four's free, but the piano's in bits, the tuner's got the action out.\"",
+    "passage": "Transcript: \"Room four's free, but it's no good for your piano slot, the action's out.\"",
     "passageGroupId": null,
     "prompt": "[Choose a Response] Which is the most natural reply?",
     "choices": [
       "I'll take it then, is the key at the desk?",
-      "Could you put me down for three o'clock, then?",
+      "Half an hour's enough for the scales, then.",
       "That's fine, I've brought my own stand.",
       "I'll wait for the next one to open, then."
     ],
     "correct_answer": "I'll wait for the next one to open, then.",
     "difficulty": "hard",
     "listeningTask": "choose_response",
-    "explanation": "The speaker offers a room whose piano cannot be played. Choosing to wait for another room is the reply that fits a room being open but useless for practice. The reply taking the room ignores that the piano is out of action; the reply asking to be booked for three assumes no room is open; the reply about a music stand answers a problem the speaker never raised."
+    "explanation": "The desk offers a room while saying it is useless for the piano practice the speaker knows the student wants. Choosing to wait for another room is the reply that fits. The reply taking the room and asking for the key ignores that it is no good for a piano slot; the reply about half an hour being enough assumes a time limit was the problem; the reply about a music stand answers a problem the speaker never raised."
   },
   {
     "id": "CR10-B1-03",
     "type": "multiple_choice",
-    "passage": "Transcript: \"It's a third edition, so ten, full price is anything third or newer.\"",
+    "passage": "Transcript: \"That's the third edition, so ten, full price is fourth or newer.\"",
     "passageGroupId": null,
     "prompt": "[Choose a Response] Which is the most natural reply?",
     "choices": [
-      "Then this one should get full price by that rule.",
+      "This is the fourth, though, the third's the blue one.",
       "Fair enough, the spine is a bit cracked.",
       "Great, can you put that on my store account?",
       "Is there anywhere else on campus that buys them?"
     ],
-    "correct_answer": "Then this one should get full price by that rule.",
+    "correct_answer": "This is the fourth, though, the third's the blue one.",
     "difficulty": "hard",
     "listeningTask": "choose_response",
-    "explanation": "The clerk's own rule, full price for third edition or newer, covers the third edition in hand, so the low offer contradicts it. Pointing that out is the natural move. The reply about a cracked spine accepts a reason the clerk did not give; the reply about the store account assumes full price was offered; the reply asking about other buyers assumes the book was refused."
+    "explanation": "The clerk has identified the edition wrongly and priced it low on that basis. Correcting the edition is the reply that addresses the offer. The reply about a cracked spine accepts a reason the clerk did not give; the reply about the store account assumes full price was offered; the reply asking about other buyers assumes the book was refused."
   },
   {
     "id": "CR10-B1-04",
@@ -111,12 +111,12 @@
       "Take one from the second shelf and log it.",
       "The receipt gets emailed once finance processes it.",
       "That's really the demonstrator's call rather than mine.",
-      "Only if it's over the twenty-dollar allowance."
+      "Anything under twenty dollars never reaches your deposit."
     ],
     "correct_answer": "That's really the demonstrator's call rather than mine.",
     "difficulty": "hard",
     "listeningTask": "choose_response",
-    "explanation": "The student asks the stores technician to sign off a breakage, which is not the technician's decision to make; pointing them to the demonstrator is the right move. The reply about taking one from the shelf answers a request for a replacement; the reply about an emailed receipt assumes a payment was made; the reply about the allowance answers a question about whether a charge applies rather than the request for a signature."
+    "explanation": "The student asks the stores technician to sign off a breakage, which is not the technician's decision to make; pointing them to the demonstrator is the right move. The reply about taking one from the shelf answers a request for a replacement; the reply about an emailed receipt assumes a payment was made; the reply about small breakages never reaching the deposit answers a question about whether a charge applies rather than the request for a signature."
   },
   {
     "id": "CR10-B1-08",
@@ -155,24 +155,24 @@
   {
     "id": "CR10-B1-10",
     "type": "multiple_choice",
-    "passage": "Transcript: \"The ticket's from lot B and your permit's for lot B, so it stands.\"",
+    "passage": "Transcript: \"Ticket's from lot B and your permit only covers lot C, so it stands.\"",
     "passageGroupId": null,
     "prompt": "[Choose a Response] Which is the most natural reply?",
     "choices": [
-      "Fair enough, I'll pay the fine before the deadline.",
-      "Thanks, could I get that cancellation in writing?",
-      "I've got the lot B permit receipt right here somewhere.",
-      "But if the permit's for lot B, why would it stand?"
+      "The lines were under snow that morning, honestly.",
+      "Thanks, can I have that cancellation in writing?",
+      "I've got the receipt for the permit right here.",
+      "It covers B as well, that's on the sticker."
     ],
-    "correct_answer": "But if the permit's for lot B, why would it stand?",
+    "correct_answer": "It covers B as well, that's on the sticker.",
     "difficulty": "hard",
     "listeningTask": "choose_response",
-    "explanation": "The clerk says the permit covers the same lot the ticket was issued in and then upholds the ticket, which contradicts itself. Querying that contradiction is the natural reply. The reply agreeing to pay accepts a ticket the clerk's own words undermine; the reply asking for written confirmation assumes the ticket was cancelled; the reply producing a receipt assumes the office has no record of the permit."
+    "explanation": "The clerk upholds the ticket on the basis that the permit does not cover the lot it was issued in. Correcting what the permit covers is the reply that answers that reasoning. The reply about snow on the lines answers a ticket for straddling bays; the reply asking for written confirmation assumes the ticket was cancelled; the reply producing a receipt assumes the office has no record of the permit at all."
   },
   {
     "id": "CR10-B1-11",
     "type": "multiple_choice",
-    "passage": "Transcript: \"River's up, so it's ergs at seven instead.\"",
+    "passage": "Transcript: \"River's up, so ergs at seven.\"",
     "passageGroupId": null,
     "prompt": "[Choose a Response] Which is the most natural reply?",
     "choices": [
@@ -189,7 +189,7 @@
   {
     "id": "CR10-B1-12",
     "type": "multiple_choice",
-    "passage": "Transcript: \"Nobody's free to walk the engineering firm in from the car park.\"",
+    "passage": "Transcript: \"Nobody's free to bring the engineering people up from the car park.\"",
     "passageGroupId": null,
     "prompt": "[Choose a Response] Which is the most natural reply?",
     "choices": [
@@ -206,7 +206,7 @@
   {
     "id": "CR10-B1-13",
     "type": "multiple_choice",
-    "passage": "Transcript: \"Rain wrecked my black shoes, I've only got brown.\"",
+    "passage": "Transcript: \"Rain wrecked my black shoes, only brown left.\"",
     "passageGroupId": null,
     "prompt": "[Choose a Response] Which is the most natural reply?",
     "choices": [
@@ -223,7 +223,7 @@
   {
     "id": "CR10-B1-14",
     "type": "multiple_choice",
-    "passage": "Transcript: \"Could you print the bank letter for my visa?\"",
+    "passage": "Transcript: \"Can the international office print the bank letter for my visa?\"",
     "passageGroupId": null,
     "prompt": "[Choose a Response] Which is the most natural reply?",
     "choices": [
@@ -261,7 +261,7 @@
     "passageGroupId": null,
     "prompt": "[Choose a Response] Which is the most natural reply?",
     "choices": [
-      "That's two forty then, tap when you're ready.",
+      "The end-of-day deal doesn't start till five.",
       "Sorry, I need to see the card for the till.",
       "I'll keep it behind the counter for you.",
       "Staff get the same rate as students, actually."
@@ -269,38 +269,38 @@
     "correct_answer": "Sorry, I need to see the card for the till.",
     "difficulty": "hard",
     "listeningTask": "choose_response",
-    "explanation": "The customer asks for a discount without the card that proves eligibility, and the barista has to refuse. The reply quoting a price assumes the card was shown; the reply about keeping something behind the counter answers a request to collect later; the reply about staff rates answers a member of staff, not a student."
+    "explanation": "The customer asks for a discount without the card that proves eligibility, and the barista has to refuse. The reply about the end-of-day deal answers a request for a different discount; the reply about keeping something behind the counter answers a request to collect later; the reply about staff rates answers a member of staff, not a student."
   },
   {
     "id": "CR10-B1-17",
     "type": "multiple_choice",
-    "passage": "Transcript: \"Confirmation's through, so the motors are in the workshop.\"",
+    "passage": "Transcript: \"The motors are in, on the workshop bench.\"",
     "passageGroupId": null,
     "prompt": "[Choose a Response] Which is the most natural reply?",
     "choices": [
       "Right, I'll check the shaft sizes against the drawing.",
-      "I'll chase the supplier before they close for the day.",
+      "I'll chase the supplier before they shut for the day.",
       "March is far too late, we'll need another supplier.",
-      "Confirmed means they've charged us, not shipped."
+      "Friday's fine, as long as they clear customs."
     ],
-    "correct_answer": "Confirmed means they've charged us, not shipped.",
+    "correct_answer": "Right, I'll check the shaft sizes against the drawing.",
     "difficulty": "hard",
     "listeningTask": "choose_response",
-    "explanation": "The teammate treats an order confirmation as proof that the parts have arrived, which does not follow. Correcting that inference is the natural reply. The reply about checking shaft sizes accepts that the motors are there; the reply about chasing the supplier assumes no confirmation came; the reply about March assumes a delay was announced."
+    "explanation": "The teammate reports that the parts have physically arrived. Going to check them against the drawing is the reply that follows. The reply about chasing the supplier assumes nothing has arrived; the reply about March assumes a long delay was announced; the reply about Friday and customs assumes the motors are still in transit."
   },
   {
     "id": "CR10-B1-18",
     "type": "multiple_choice",
-    "passage": "Transcript: \"The left dryer eats coins, use the window one.\"",
+    "passage": "Transcript: \"Left dryer eats coins, use the other one.\"",
     "passageGroupId": null,
     "prompt": "[Choose a Response] Which is the most natural reply?",
     "choices": [
-      "I'll grab the left one before someone else does.",
-      "Go and tell the porter, they refund the coins.",
-      "Thanks, I'll stick to the window one then.",
+      "I'll grab the left one before someone else gets it.",
+      "Go and tell the porter, they refund the coins for you.",
+      "Thanks, I'll stick to the one by the window then.",
       "I'll hang mine in the drying room then."
     ],
-    "correct_answer": "Thanks, I'll stick to the window one then.",
+    "correct_answer": "Thanks, I'll stick to the one by the window then.",
     "difficulty": "hard",
     "listeningTask": "choose_response",
     "explanation": "The neighbour warns against one dryer and recommends another. Taking the advice is the reply that fits. The reply about grabbing the left one ignores the warning; the reply about the porter treats the remark as a complaint about lost coins; the reply about the drying room assumes both dryers are out of use."
@@ -308,19 +308,19 @@
   {
     "id": "CR10-B1-19",
     "type": "multiple_choice",
-    "passage": "Transcript: \"Tuesday's arrivals briefing has lost its Mandarin interpreter, so half of them won't follow.\"",
+    "passage": "Transcript: \"Tuesday's briefing has lost its Mandarin interpreter.\"",
     "passageGroupId": null,
     "prompt": "[Choose a Response] Which is the most natural reply?",
     "choices": [
       "The society budget could probably stretch to paying her.",
       "I could sit in and interpret, my Mandarin's decent.",
       "What's the new date, then, so I can tell my flatmates?",
-      "Honestly, most of them will follow English fine."
+      "The seminar room next door should be free Tuesday."
     ],
     "correct_answer": "I could sit in and interpret, my Mandarin's decent.",
     "difficulty": "hard",
     "listeningTask": "choose_response",
-    "explanation": "The coordinator describes a missing interpreter and its consequence. Volunteering to interpret is the reply that meets the need. The reply about the budget assumes the interpreter asked to be paid; the reply asking for a new date assumes the briefing was moved; the reply saying most will follow English contradicts what the coordinator has just said."
+    "explanation": "The coordinator reports that the interpreter for Tuesday has dropped out. Volunteering to interpret is the reply that meets the need. The reply about the budget assumes the interpreter asked to be paid; the reply asking for a new date assumes the briefing was moved; the reply about the seminar room answers a lost room, not a lost interpreter."
   },
   {
     "id": "CR10-B1-20",
@@ -329,14 +329,14 @@
     "passageGroupId": null,
     "prompt": "[Choose a Response] Which is the most natural reply?",
     "choices": [
-      "You're fine, there's a week's grace after expiry.",
       "We can print a replacement in five minutes.",
-      "You can renew up to a month ahead.",
-      "Bring the fine notice in and we'll waive it."
+      "No rush, it's valid till midnight tonight.",
+      "Bring the fine notice in and we'll waive it.",
+      "You're fine, there's a week's grace after expiry."
     ],
     "correct_answer": "You're fine, there's a week's grace after expiry.",
     "difficulty": "hard",
     "listeningTask": "choose_response",
-    "explanation": "The student is worried about travelling on an expired pass. Telling them a grace period applies is the reply that addresses it. The reply about printing a replacement assumes the card was lost; the reply about renewing ahead assumes the pass has not yet expired; the reply about a fine assumes a penalty has already been issued."
+    "explanation": "The student is worried about travelling on an expired pass. Telling them a grace period applies is the reply that addresses it. The reply about printing a replacement assumes the card was lost; the reply saying it is valid until midnight assumes the pass has not yet expired, when the student said it ran out yesterday; the reply about a fine assumes a penalty has already been issued."
   }
 ]

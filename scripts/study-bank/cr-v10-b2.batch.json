@@ -104,19 +104,19 @@
   {
     "id": "CR10-B2-07",
     "type": "multiple_choice",
-    "passage": "Transcript: \"Could you wipe the old one before you hand it back to us?\"",
+    "passage": "Transcript: \"Your profile's moving to the new server over the weekend.\"",
     "passageGroupId": null,
     "prompt": "[Choose a Response] Which is the most natural reply?",
     "choices": [
       "Do I need to back anything up first?",
       "That's fine, I mostly use the external monitor.",
       "Then can someone look at this fan noise meanwhile?",
-      "Strange, my manager approved it back in June."
+      "It's wiped already, I did it this morning."
     ],
     "correct_answer": "Do I need to back anything up first?",
     "difficulty": "hard",
     "listeningTask": "choose_response",
-    "explanation": "IT is asking for the old machine to be wiped before it comes back. Asking whether anything needs backing up first is the practical question that request raises. The reply about mostly using an external monitor answers being told the new laptop is a smaller screen; the reply about the fan noise answers being told the new laptops are delayed; the reply about the manager approving it answers being told they are not on the list."
+    "explanation": "IT is announcing a migration that will happen to the listener's account. Asking whether anything needs backing up first is the practical question that announcement raises. The reply about having already wiped it answers a request to wipe the old machine, which was not made; the reply about mostly using an external monitor answers being told the new laptop is a smaller screen; the reply about the fan noise answers being told the new laptops are delayed."
   },
   {
     "id": "CR10-B2-08",
@@ -155,36 +155,36 @@
   {
     "id": "CR10-B2-10",
     "type": "multiple_choice",
-    "passage": "Transcript: \"Nothing to eat till the numbness wears off.\"",
+    "passage": "Transcript: \"We'll take an impression today, and the crown comes later.\"",
     "passageGroupId": null,
     "prompt": "[Choose a Response] Which is the most natural reply?",
     "choices": [
       "I floss every night, the back ones bleed anyway.",
-      "That's a lot longer than the last one managed.",
+      "Then I'll hold off on lunch till the feeling's back.",
       "Roughly how long does that usually take?",
       "Should I change it out every twenty minutes?"
     ],
     "correct_answer": "Roughly how long does that usually take?",
     "difficulty": "hard",
     "listeningTask": "choose_response",
-    "explanation": "The dentist is giving an instruction whose end point is the numbness wearing off. Asking how long that takes is the question the instruction leaves open. The reply insisting they floss answers a remark that they have not been flossing; the reply comparing it to the last one answers being told how long the filling should last; the reply about changing it out answers being told to bite on gauze."
+    "explanation": "The dentist is describing a two-stage treatment without saying when the second stage happens. Asking how long that usually takes is the question the plan leaves open. The reply about holding off on lunch until the feeling is back answers a warning about numbness, which was not given; the reply insisting they floss answers a remark that they have not been flossing; the reply about changing it out answers being told to bite on gauze."
   },
   {
     "id": "CR10-B2-11",
     "type": "multiple_choice",
-    "passage": "Transcript: \"You'll want the two-meter cable, honestly, the short one's useless in a car.\"",
+    "passage": "Transcript: \"The two-meter one's the same price, if that helps.\"",
     "passageGroupId": null,
     "prompt": "[Choose a Response] Which is the most natural reply?",
     "choices": [
       "It's for my desk, so the short one's fine.",
-      "Then which one do I need for this phone?",
+      "Good point, the outlet's way down by the console.",
       "I need it tonight, so I'll pay the difference.",
       "Then it should be marked down, surely."
     ],
     "correct_answer": "It's for my desk, so the short one's fine.",
     "difficulty": "hard",
     "listeningTask": "choose_response",
-    "explanation": "The assistant is recommending the longer cable on the assumption it is for a car. Declining because it is for a desk removes the reason behind the recommendation. The reply asking which one fits this phone answers being told the cable is for an older model; the reply about paying the difference answers being told it is cheaper online; the reply about marking it down answers being told the last one has an opened box."
+    "explanation": "The assistant is offering the longer cable at no extra cost. Declining because it is for a desk answers the offer with the reason it is not needed. The reply agreeing that the outlet is down by the console answers being told the short one is useless in a car, which was not said; the reply about paying the difference assumes a price gap the line rules out; the reply about marking it down answers being told the last one has an opened box."
   },
   {
     "id": "CR10-B2-12",
@@ -229,13 +229,13 @@
     "choices": [
       "It says first class on the ticket, look.",
       "Sorry, is there a fee to change it?",
-      "Right, I'll walk down at the next stop.",
+      "Right, I'll move down to coach C at the stop.",
       "Okay, which stop do I switch at?"
     ],
     "correct_answer": "Sorry, is there a fee to change it?",
     "difficulty": "hard",
     "listeningTask": "choose_response",
-    "explanation": "The conductor is pointing out that the passenger is on an earlier train than the ticket allows. Apologising and asking about a change fee deals with that. The reply pointing to first class on the ticket answers being told they are in the wrong class of carriage; the reply about walking down at the next stop answers being told they are in the wrong coach; the reply asking which stop to switch at answers being told the train does not stop at their station."
+    "explanation": "The conductor is pointing out that the passenger is on an earlier train than the ticket allows. Apologising and asking about a change fee deals with that. The reply pointing to first class on the ticket answers being told they are in the wrong class of carriage; the reply about moving down to coach C answers being told they are in the wrong coach; the reply asking which stop to switch at answers being told the train does not stop at their station."
   },
   {
     "id": "CR10-B2-15",
@@ -278,7 +278,7 @@
     "passageGroupId": null,
     "prompt": "[Choose a Response] Which is the most natural reply?",
     "choices": [
-      "I definitely wrote Saturday on the form.",
+      "Four's too late, unless someone can drop it off.",
       "Chocolate, please, half of them can't stand sponge.",
       "White icing's fine, as long as it says Maya.",
       "Is Friday evening an option for pickup?"
@@ -286,7 +286,7 @@
     "correct_answer": "White icing's fine, as long as it says Maya.",
     "difficulty": "hard",
     "listeningTask": "choose_response",
-    "explanation": "The baker is accepting the order minus one detail. Dropping the gold and keeping the name accepts the order on the terms offered. The reply insisting Saturday was written on the form answers being told the order is down for a different day; the reply choosing chocolate answers a question about the base; the reply asking about Friday evening answers being told Saturday orders are closed."
+    "explanation": "The baker is accepting the order minus one detail. Dropping the gold and keeping the name accepts the order on the terms offered. The reply that four is too late unless it can be delivered answers being told the pickup time has moved; the reply choosing chocolate answers a question about the base; the reply asking about Friday evening answers being told Saturday orders are closed."
   },
   {
     "id": "CR10-B2-18",
@@ -314,13 +314,13 @@
     "choices": [
       "The hotel emailed it the day after checkout.",
       "Her signature's already on the second page.",
-      "Right, I'll take it off the form.",
+      "I used the rate the bank actually charged me.",
       "Perfect, that's a lot sooner than I expected."
     ],
     "correct_answer": "Her signature's already on the second page.",
     "difficulty": "hard",
     "listeningTask": "choose_response",
-    "explanation": "Finance is holding the claim for a missing approval. Pointing out that the approval is already on the form corrects that. The reply about the hotel emailing it after checkout answers being told a receipt is dated after the trip; the reply about taking it off the form answers being told the item was paid on the company card; the reply about it being sooner than expected answers being told the claim has gone through."
+    "explanation": "Finance is holding the claim for a missing approval. Pointing out that the approval is already on the form corrects that. The reply about the hotel emailing it after checkout answers being told a receipt is dated after the trip; the reply about the bank's rate answers a query about which exchange rate was used; the reply about it being sooner than expected answers being told the claim has gone through."
   },
   {
     "id": "CR10-B2-20",

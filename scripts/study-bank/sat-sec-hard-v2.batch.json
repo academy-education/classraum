@@ -1,0 +1,410 @@
+[
+  {
+    "id": "SEC-HC-01",
+    "domain": "Standard English Conventions",
+    "subskill": "boundaries: independent clauses joined with a conjunctive adverb",
+    "difficulty": "hard",
+    "passage": "Biological soil crusts are easy to overlook and slow to replace. The crust of cyanobacteria, lichens, and mosses that forms on undisturbed desert floors ______ a single footprint can take decades to heal, and vehicle tracks laid down during the Second World War are still visible from the air in parts of the Mojave.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "anchors the soil against wind; however,",
+      "anchor the soil against wind; however,",
+      "anchors the soil against wind, however,",
+      "anchor the soil against wind, however,"
+    ],
+    "correct_answer": "anchors the soil against wind; however,",
+    "explanation": "Two rules apply at once. First, the subject of the verb is \"the crust,\" a singular noun; \"of cyanobacteria, lichens, and mosses\" and the clause \"that forms on undisturbed desert floors\" only describe it, so the verb must be \"anchors,\" not \"anchor.\" Second, \"a single footprint can take decades to heal\" is an independent clause, and \"however\" is a conjunctive adverb, not a coordinating conjunction; joining two independent clauses with a comma and \"however\" is a comma splice. Only \"anchors the soil against wind; however,\" satisfies both: singular verb, semicolon before the second clause. \"anchor the soil against wind; however,\" punctuates the boundary correctly but agrees with the nearby plural nouns rather than the subject. \"anchors the soil against wind, however,\" has the right verb but splices the clauses. \"anchor the soil against wind, however,\" fails on both counts.",
+    "topic_tag": "desert soil crusts"
+  },
+  {
+    "id": "SEC-HC-02",
+    "domain": "Standard English Conventions",
+    "subskill": "boundaries: independent clauses joined with a conjunctive adverb",
+    "difficulty": "hard",
+    "passage": "Medieval glaziers colored their panes by stirring metal oxides into the molten batch rather than by painting a finished surface. The color therefore runs through the full thickness of each ______ cannot simply scrape away centuries of grime and candle soot without thinning the glass itself, and every millimeter removed is a millimeter of original material lost.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "pane, consequently, restorers",
+      "pane; consequently, modern restorers",
+      "pane; consequently, modern restorers who",
+      "pane, which is why modern restorers who"
+    ],
+    "correct_answer": "pane; consequently, modern restorers",
+    "explanation": "The clause that follows the blank, \"cannot simply scrape away centuries of grime,\" needs a subject and must be joined to the preceding independent clause with more than a comma. \"pane; consequently, modern restorers\" does both: the semicolon separates two independent clauses, and \"modern restorers\" is the subject of \"cannot scrape.\" \"pane, consequently, restorers\" uses a comma with the conjunctive adverb \"consequently,\" which is a comma splice. The two versions ending in \"who\" fail a second rule: a relative pronoun turns \"cannot simply scrape away ... itself\" into a subordinate clause describing the restorers, so \"modern restorers who cannot ... itself\" is left with no main verb. So \"pane; consequently, modern restorers who\" produces a fragment after the semicolon, and \"pane, which is why modern restorers who\" leaves the \"which\" clause without a completed predicate.",
+    "topic_tag": "stained glass restoration"
+  },
+  {
+    "id": "SEC-HC-03",
+    "domain": "Standard English Conventions",
+    "subskill": "boundaries: independent clauses joined with a conjunctive adverb",
+    "difficulty": "hard",
+    "passage": "The scaly-foot snail plates its shell and the sides of its foot with iron sulfide, a trick no other known animal has managed, and the armor deters the crabs that prey on its softer relatives. The armor is ______ only a few meters in its lifetime, so the cost of carrying it is small.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "heavy, the snail, though, travels",
+      "heavy; the snail, however, traveling",
+      "heavy; the snail, however, travels",
+      "heavy; the snail, however, which travels"
+    ],
+    "correct_answer": "heavy; the snail, however, travels",
+    "explanation": "The first independent clause ends at \"heavy,\" and what follows must be a second independent clause attached with a semicolon. \"heavy; the snail, however, travels\" does this correctly: the semicolon joins the clauses, the conjunctive adverb \"however\" sits inside the second clause set off by a pair of commas, and \"travels\" is that clause's finite verb. \"heavy, the snail, though, travels\" joins two independent clauses with only a comma, a comma splice; the conjunctive adverb \"though\" does not license the comma. The other two versions get the semicolon right but leave the second half without a main verb, which is a separate rule: \"heavy; the snail, however, traveling\" has only a participle, and \"heavy; the snail, however, which travels\" buries the only verb inside a relative clause, so \"the snail\" never receives a predicate before \"so the cost.\"",
+    "topic_tag": "hydrothermal vent snail"
+  },
+  {
+    "id": "SEC-HC-04",
+    "domain": "Standard English Conventions",
+    "subskill": "boundaries: colon or dash introducing a list or elaboration after an independent clause",
+    "difficulty": "hard",
+    "passage": "Cities that have coated their rooftops with reflective white paint report a modest but measurable ______ by as much as two degrees on the hottest afternoons, though the gain disappears within a few blocks of the treated area, where dark asphalt and untreated roofs resume their work of absorbing sunlight.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "effect, the air temperature in the treated districts falls",
+      "effect: air temperatures in the treated districts falls",
+      "effect: the air temperature in the treated districts falls",
+      "effect, which is: the air temperature in the treated districts falls"
+    ],
+    "correct_answer": "effect: the air temperature in the treated districts falls",
+    "explanation": "A colon may introduce an elaboration only when the words before it form a complete sentence, and the clause after it must be internally correct. \"Cities ... report a modest but measurable effect\" is complete, so \"effect: the air temperature in the treated districts falls\" is right on both counts: the colon follows an independent clause, and the singular subject \"temperature\" takes \"falls.\" \"effect, the air temperature in the treated districts falls\" puts only a comma between two independent clauses, a comma splice. \"effect: air temperatures in the treated districts falls\" punctuates the boundary correctly but pairs the plural \"temperatures\" with the singular verb \"falls.\" \"effect, which is: the air temperature in the treated districts falls\" places the colon after \"which is,\" a subordinate fragment rather than an independent clause, so the colon has nothing complete to follow.",
+    "topic_tag": "reflective roofs and urban heat"
+  },
+  {
+    "id": "SEC-HC-05",
+    "domain": "Standard English Conventions",
+    "subskill": "boundaries: colon or dash introducing a list or elaboration after an independent clause",
+    "difficulty": "hard",
+    "passage": "Archaeologists who catalog hoards buried during the invasions of the seventh century have noticed that the deposits tend to share three ______ a container of ordinary kitchenware, and a location just outside a settlement's walls, as if the owners had expected to return within days rather than never.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "features—a preponderance of freshly minted gold;",
+      "features, such as: a preponderance of freshly minted gold,",
+      "features: that the gold is freshly minted,",
+      "features: a preponderance of freshly minted gold,"
+    ],
+    "correct_answer": "features: a preponderance of freshly minted gold,",
+    "explanation": "Two conventions govern this list: the punctuation that introduces it must follow an independent clause, and the items must be parallel and consistently separated. \"the deposits tend to share three features\" is a complete clause, so \"features: a preponderance of freshly minted gold,\" correctly opens the list with a colon, and the first item is a noun phrase matching \"a container\" and \"a location,\" separated by commas like the rest. \"features—a preponderance of freshly minted gold;\" opens with an acceptable dash but then separates the first item with a semicolon while the passage separates the others with commas, mixing separators within one series. \"features, such as: a preponderance of freshly minted gold,\" puts the colon after \"such as,\" a phrase that is not a complete clause. \"features: that the gold is freshly minted,\" punctuates correctly but makes the first item a \"that\" clause alongside two noun phrases, breaking the parallelism of the series.",
+    "topic_tag": "early medieval coin hoards"
+  },
+  {
+    "id": "SEC-HC-06",
+    "domain": "Standard English Conventions",
+    "subskill": "boundaries: colon or dash introducing a list or elaboration after an independent clause",
+    "difficulty": "hard",
+    "passage": "Ornithologists recording white-crowned sparrows along the Pacific coast can often name a bird's home valley from a few notes. Young sparrows raised within earshot of ______ a bird moved to a new valley as an adult keeps the song of its birthplace for life, even when no other bird around it sings that way.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "adults, reproducing the local dialect with remarkable fidelity:",
+      "adults reproduce the local dialect with remarkable fidelity:",
+      "adults reproduce the local dialect with fidelity,",
+      "adults, which reproduce the local dialect with remarkable fidelity:"
+    ],
+    "correct_answer": "adults reproduce the local dialect with remarkable fidelity:",
+    "explanation": "The clause after the blank, \"a bird moved to a new valley ... keeps the song,\" is an independent clause that explains the claim before it, so a colon is appropriate, but only if the words before the colon themselves form a complete sentence. \"adults reproduce the local dialect with remarkable fidelity:\" gives the subject \"Young sparrows\" its finite verb \"reproduce\" and then places the colon after that complete clause. \"adults reproduce the local dialect with fidelity,\" has the same complete clause but joins it to the next with only a comma, a comma splice. The other two versions leave the sentence before the colon without a main verb: \"adults, reproducing the local dialect with remarkable fidelity:\" offers only a participle, and \"adults, which reproduce the local dialect with remarkable fidelity:\" moves the verb into a relative clause about the adults, so \"Young sparrows raised within earshot of adults\" is a fragment on the left side of the colon.",
+    "topic_tag": "birdsong dialects"
+  },
+  {
+    "id": "SEC-HC-07",
+    "domain": "Standard English Conventions",
+    "subskill": "boundaries: restrictive clause versus nonrestrictive addition, with agreement",
+    "difficulty": "hard",
+    "passage": "Credit for reconstructing the last glacial cycle usually goes to the modelers who turned raw measurements into climate curves. Yet the glaciologists whose cores ______ not the modelers who later interpreted them, deserve recognition for the discovery of abrupt warming events, several of which were dismissed as instrument error until the cores were drilled a second time.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "supplied the record of the last glacial cycle,",
+      ", which supplied the record of the last glacial cycle,",
+      ", supplying the record of the last glacial cycle,",
+      "supplies the record of the glacial cycle,"
+    ],
+    "correct_answer": "supplied the record of the last glacial cycle,",
+    "explanation": "\"whose cores\" opens a restrictive relative clause that identifies which glaciologists are meant, and a relative clause needs its own finite verb; separately, that verb must agree with its subject, the plural \"cores.\" \"supplied the record of the last glacial cycle,\" gives the clause the past-tense verb it needs, agrees with \"cores,\" and the comma that follows correctly sets off the contrasting interrupter \"not the modelers who later interpreted them.\" \", which supplied the record of the last glacial cycle,\" treats the material as a nonrestrictive addition about the cores, which strands \"whose cores\" with no verb of its own, so \"the glaciologists whose cores ... deserve recognition\" no longer holds together; \", supplying the record of the last glacial cycle,\" does the same with a participle. \"supplies the record of the glacial cycle,\" keeps the restrictive structure but pairs the plural \"cores\" with a singular verb.",
+    "topic_tag": "polar ice-core science"
+  },
+  {
+    "id": "SEC-HC-08",
+    "domain": "Standard English Conventions",
+    "subskill": "boundaries: restrictive clause versus nonrestrictive addition, with agreement",
+    "difficulty": "hard",
+    "passage": "Of the several type designs cut in Venice during the 1490s, the punchcutter's roman ______ in use today, its proportions copied by nearly every text face designed since, while the blackletter types that outsold it at the time survive mainly in the titles of newspapers.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "typeface, together with the italic cut to accompany it, remain",
+      "typeface and the italic cut to accompany it remains",
+      "typeface and the italic cut to accompany it, remain",
+      "typeface, together with the italic cut to accompany it, remains"
+    ],
+    "correct_answer": "typeface, together with the italic cut to accompany it, remains",
+    "explanation": "The choice turns on whether the italic is added as a nonrestrictive aside or joined into a compound subject, and the verb must agree with whichever structure is chosen. In \"typeface, together with the italic cut to accompany it, remains,\" the phrase beginning \"together with\" is set off by a pair of commas as a nonessential addition, so the subject stays the singular \"roman typeface\" and \"remains\" is correct. \"typeface, together with the italic cut to accompany it, remain\" keeps the parenthetical structure but uses a plural verb, as though \"together with\" created a compound subject; it does not. \"typeface and the italic cut to accompany it remains\" does create a compound subject with \"and,\" which requires the plural \"remain,\" not \"remains.\" \"typeface and the italic cut to accompany it, remain\" has the right verb for a compound subject but inserts a comma between that subject and its verb, and a lone comma may not separate a subject from its verb.",
+    "topic_tag": "Renaissance typefounding"
+  },
+  {
+    "id": "SEC-HC-09",
+    "domain": "Standard English Conventions",
+    "subskill": "boundaries: restrictive clause versus nonrestrictive addition, with agreement",
+    "difficulty": "hard",
+    "passage": "The strait's array of tidal turbines ______ nearly a fifth less power than conventional rotors of the same diameter, a sacrifice the island's fishing cooperative insisted on before it would allow the cables to cross its grounds, and one the operator now advertises to visitors as proof of good faith.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      ", whose blades turn slowly enough for fish to pass between them, produce",
+      "whose blades turn slowly enough for fish to pass, produces",
+      ", whose blades turn slowly enough for fish to pass between them produces",
+      "whose blades turn slowly enough for fish to pass between them produces"
+    ],
+    "correct_answer": "whose blades turn slowly enough for fish to pass between them produces",
+    "explanation": "Two rules interact: a relative clause is either restrictive, with no commas, or nonrestrictive, with a comma on each side; and the main verb must agree with the head of the subject, \"array,\" not with the nearer plural nouns \"turbines,\" \"blades,\" or \"them.\" \"whose blades turn slowly enough for fish to pass between them produces\" is a restrictive clause identifying the array, with no commas, followed by the singular \"produces,\" which agrees with \"array.\" \", whose blades turn slowly enough for fish to pass between them, produce\" is correctly punctuated as nonrestrictive but chooses the plural \"produce,\" agreeing with \"turbines\" instead of \"array.\" \"whose blades turn slowly enough for fish to pass, produces\" has the right verb but puts a single comma between the subject and its verb, which is neither restrictive nor nonrestrictive punctuation. \", whose blades turn slowly enough for fish to pass between them produces\" opens a nonrestrictive comma and never closes it.",
+    "topic_tag": "tidal-stream energy"
+  },
+  {
+    "id": "SEC-HC-10",
+    "domain": "Standard English Conventions",
+    "subskill": "form: subject-verb agreement across a relative clause containing plural nouns",
+    "difficulty": "hard",
+    "passage": "The black pigment that the cave's painters ground from manganese ores ______ an element the surrounding limestone lacks; the ore must therefore have been carried in from deposits some forty kilometers away, which makes the paintings evidence of trade as well as of art.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "contain trace amounts of barium,",
+      "contains trace amounts of barium;",
+      "contains trace amounts of barium,",
+      "containing trace amounts of barium,"
+    ],
+    "correct_answer": "contains trace amounts of barium,",
+    "explanation": "The subject is the singular \"pigment\"; \"that the cave's painters ground from manganese ores\" is a relative clause describing it, and the plural nouns inside that clause, \"painters\" and \"ores,\" do not govern the verb. So the verb must be \"contains,\" which rules out \"contain trace amounts of barium,\" and it must be a finite verb, which rules out \"containing trace amounts of barium,\" a participle that leaves the sentence with no main verb before the semicolon. The second rule concerns the punctuation after \"barium\": \"an element the surrounding limestone lacks\" is an appositive renaming barium, not an independent clause, so it must be attached with a comma. \"contains trace amounts of barium;\" has the right verb but uses a semicolon, which can only stand between two independent clauses. Only \"contains trace amounts of barium,\" satisfies both the agreement and the boundary.",
+    "topic_tag": "prehistoric cave pigments"
+  },
+  {
+    "id": "SEC-HC-11",
+    "domain": "Standard English Conventions",
+    "subskill": "form: subject-verb agreement across a relative clause containing plural nouns",
+    "difficulty": "hard",
+    "passage": "In hives kept in total darkness, the dance that a returning forager performs for the workers clustered around her ______ the direction of food relative to the sun, which the bee tracks even when she cannot see it, and the duration of each waggle run reports the distance.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "encodes, with surprising precision,",
+      "encode, with surprising precision,",
+      "encodes, with surprising precision",
+      "encoding, with surprising precision,"
+    ],
+    "correct_answer": "encodes, with surprising precision,",
+    "explanation": "The subject of the sentence is \"the dance,\" a singular noun; \"that a returning forager performs for the workers clustered around her\" is a relative clause, and its plural \"workers\" is not the subject. The verb must therefore be the singular finite \"encodes.\" \"encode, with surprising precision,\" agrees with \"workers\" rather than with \"dance,\" and \"encoding, with surprising precision,\" is a participle that leaves the sentence without a main verb. A second rule decides between the remaining two: \"with surprising precision\" interrupts the verb and its object, and an interrupting phrase must be set off by a pair of commas or by none. \"encodes, with surprising precision\" opens a comma before the phrase and never closes it, which leaves a single comma between the verb and its object \"the direction.\" \"encodes, with surprising precision,\" closes the pair.",
+    "topic_tag": "honeybee communication"
+  },
+  {
+    "id": "SEC-HC-12",
+    "domain": "Standard English Conventions",
+    "subskill": "form: subject-verb agreement across a relative clause containing plural nouns",
+    "difficulty": "hard",
+    "passage": "Each of the harbor walls that Roman engineers poured between wooden forms two thousand years ago ______ modern marine concrete, which begins to crack within decades of immersion, conspicuously lacks: seawater percolating through the mix keeps growing new mineral crystals that seal the cracks as they form.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "have grown stronger with age, a property that",
+      "has grown stronger with age, a property that",
+      "has grown stronger; a property that",
+      "have grown stronger with age—a property that"
+    ],
+    "correct_answer": "has grown stronger with age, a property that",
+    "explanation": "The subject is \"Each,\" which is singular; \"of the harbor walls that Roman engineers poured between wooden forms\" contains three plural nouns, \"walls,\" \"engineers,\" and \"forms,\" but none of them is the subject. The verb must be \"has grown.\" \"have grown stronger with age, a property that\" agrees with the nearby plurals, and \"have grown stronger with age—a property that\" makes the same error while dressing the boundary in a dash that would otherwise be acceptable. The second rule concerns what follows \"age\": \"a property that modern marine concrete ... conspicuously lacks\" is a noun phrase in apposition to the whole preceding claim, not an independent clause, so it must be attached with a comma or a dash, never a semicolon. \"has grown stronger; a property that\" has the right verb but sets off a fragment with a semicolon. \"has grown stronger with age, a property that\" gets both right.",
+    "topic_tag": "Roman marine concrete"
+  },
+  {
+    "id": "SEC-HC-13",
+    "domain": "Standard English Conventions",
+    "subskill": "form: verb tense sequence in a reporting frame with a distant time cue",
+    "difficulty": "hard",
+    "passage": "When the survey team returned to the delta in 2019, a decade after the first saplings went in, the ecologist who had warned that trees set out in straight rows would fail ______ the survivors were precisely those planted haphazardly among the remaining natural stands, where the tangle of older roots broke the force of the tide.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "has reported that",
+      "reporting that",
+      "have reported that",
+      "reported that"
+    ],
+    "correct_answer": "reported that",
+    "explanation": "The time frame is fixed at the start of the sentence: \"When the survey team returned to the delta in 2019.\" A main verb tied to a completed past moment must be in the simple past, so \"reported that\" is correct. \"has reported that\" is present perfect, which cannot be anchored to a finished past occasion introduced by a \"when\" clause. A second rule eliminates the other two: the subject \"the ecologist\" is singular and needs a finite verb. \"reporting that\" is a participle, so the long subject \"the ecologist who had warned ... would fail\" never receives a main verb and the sentence is a fragment. \"have reported that\" is both the wrong tense for the 2019 frame and a plural verb attached to a singular subject; \"trees\" and \"rows\" inside the relative clause do not govern it.",
+    "topic_tag": "mangrove restoration"
+  },
+  {
+    "id": "SEC-HC-14",
+    "domain": "Standard English Conventions",
+    "subskill": "form: verb tense sequence in a reporting frame with a distant time cue",
+    "difficulty": "hard",
+    "passage": "Since the palm-leaf manuscripts were first photographed in the 1930s, scholars comparing those images with the originals ______ that the leaves, which insects chew at the edges and which handling wears at the folds, lose roughly a line of text per century, a rate that makes the old photographs the more complete witness.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "has consistently found",
+      "consistently found",
+      "have consistently found",
+      "had consistently found"
+    ],
+    "correct_answer": "have consistently found",
+    "explanation": "The opening \"Since the palm-leaf manuscripts were first photographed in the 1930s\" defines a span that begins in the past and continues to the present, and an action spread across such a span takes the present perfect: \"have consistently found.\" \"consistently found\" is simple past, which would confine the finding to a finished moment and cannot pair with a \"since\" span reaching the present; \"had consistently found\" is past perfect, which would place the finding before some other past event that the sentence never supplies. The second rule is agreement: the subject is the plural \"scholars,\" and \"comparing those images with the originals\" is a participial phrase describing them, not a clause that changes the subject. \"has consistently found\" has the right tense but is singular, as though \"originals\" or the images were the subject.",
+    "topic_tag": "palm-leaf manuscript decay"
+  },
+  {
+    "id": "SEC-HC-15",
+    "domain": "Standard English Conventions",
+    "subskill": "form: verb tense sequence in a reporting frame with a distant time cue",
+    "difficulty": "hard",
+    "passage": "By the time the orbiting telescope's first spectra of the planet were released in 2022, teams working from mountaintop observatories ______ that its atmosphere contained water vapor, so the new detection confirmed rather than surprised, and the argument shifted to how much of the vapor was locked in clouds.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "had already shown",
+      "have already shown",
+      "already showed",
+      "had already showed"
+    ],
+    "correct_answer": "had already shown",
+    "explanation": "The phrase \"By the time the orbiting telescope's first spectra ... were released in 2022\" sets a past reference point, and an action completed before that point must be in the past perfect: \"had already shown.\" \"already showed\" is simple past, which does not mark the ground-based result as preceding the 2022 release; the sentence's own logic, \"confirmed rather than surprised,\" depends on that ordering. \"have already shown\" is present perfect, which cannot be measured against a finished past moment. A second rule, verb form, eliminates the last version: the past participle of \"show\" is \"shown,\" so \"had already showed\" combines the correct auxiliary with the simple-past form instead of the participle.",
+    "topic_tag": "exoplanet atmospheres"
+  },
+  {
+    "id": "SEC-HC-16",
+    "domain": "Standard English Conventions",
+    "subskill": "form: pronoun case decided by the pronoun's role inside its own clause",
+    "difficulty": "hard",
+    "passage": "The crimson that made the workshop famous is usually credited to the master dyer, but the apprentice, ______ trained the next generation, left the only notebook that records the full recipe, including the mordant the master's own treatise never mentions and without which the color fades within a decade.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "whom the guild's own records say",
+      "who the guild's own records say",
+      "which the guild's own records say",
+      "who the guild's own records says"
+    ],
+    "correct_answer": "who the guild's own records say",
+    "explanation": "Both \"the master dyer\" and \"the apprentice\" are singular, so number cannot tell the reader whom the relative clause describes; case does. The pronoun is the subject of \"trained\" in \"______ trained the next generation,\" and the inserted \"the guild's own records say\" is a parenthetical that does not change that role, so the subject form \"who\" is required. \"whom the guild's own records say\" uses the object form for a subject, a hypercorrection invited by the following words \"the guild's own records say.\" \"which the guild's own records say\" uses the pronoun reserved for things to refer to a person. The second rule is agreement inside the parenthetical: its subject is the plural \"records,\" so \"who the guild's own records says\" pairs a plural subject with a singular verb, even though it gets the case of \"who\" right.",
+    "topic_tag": "silk dyeing"
+  },
+  {
+    "id": "SEC-HC-17",
+    "domain": "Standard English Conventions",
+    "subskill": "form: pronoun case decided by the pronoun's role inside its own clause",
+    "difficulty": "hard",
+    "passage": "The biologist who first described how the frog hides its red blood cells in its liver during sleep insisted that the credit was hers; the photographer accompanying her disagreed. The dispute between her and ______ had first noticed the vanishing color outlasted their fieldwork by a decade.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "he over who",
+      "himself over who",
+      "him over whom",
+      "him over who"
+    ],
+    "correct_answer": "him over who",
+    "explanation": "Two case decisions are packed into the blank, and both are settled by grammatical role rather than by which person is meant. First, the pronoun after \"between her and\" is an object of the preposition \"between,\" so it must be \"him\"; \"he over who\" uses a subject form there, and \"himself over who\" uses a reflexive, which requires the same person to be the subject of the clause, and the subject here is \"The dispute.\" Second, the pronoun after \"over\" is the subject of \"had first noticed\" inside its own clause; the whole clause \"who had first noticed the vanishing color\" is the object of \"over,\" so the pronoun itself stays in the subject form \"who.\" \"him over whom\" gets the first pronoun right but supplies \"whom\" because a preposition precedes it, ignoring the pronoun's role as the subject of \"had noticed.\" Only \"him over who\" satisfies both.",
+    "topic_tag": "glass-frog camouflage"
+  },
+  {
+    "id": "SEC-HC-18",
+    "domain": "Standard English Conventions",
+    "subskill": "form: pronoun case decided by the pronoun's role inside its own clause",
+    "difficulty": "hard",
+    "passage": "Two applicants had kept lamps on the mainland and one had never seen a lens up close, yet the harbor board resolved to award the post to ______, in its own judgment, could keep the light burning through a full winter without a supply boat, and it devised a trial to find out.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "whoever among the three applicants",
+      "whomever among the three applicants",
+      "whoever among the three applicants that",
+      "whom among the three applicants"
+    ],
+    "correct_answer": "whoever among the three applicants",
+    "explanation": "The pronoun's case is decided by its role in its own clause, not by the preposition \"to\" in front of it. The entire clause \"______ ... could keep the light burning\" is the object of \"to\"; inside that clause the pronoun is the subject of \"could keep,\" separated from its verb only by the parenthetical \"in its own judgment.\" So the subject form \"whoever among the three applicants\" is required. \"whomever among the three applicants\" and \"whom among the three applicants\" choose the object form because a preposition precedes the blank, which is the wrong test. The second rule eliminates \"whoever among the three applicants that\": \"whoever\" already contains its own relative element, so adding \"that\" gives the clause two subjects for one verb, \"whoever ... that ... could keep,\" which is not a permitted construction.",
+    "topic_tag": "lighthouse keeping"
+  },
+  {
+    "id": "SEC-HC-19",
+    "domain": "Standard English Conventions",
+    "subskill": "form: opening participial modifier that fixes the subject, with agreement",
+    "difficulty": "hard",
+    "passage": "Trained on sixty years of sea-surface temperatures rather than on the pressure readings that meteorologists once relied on, ______ predicts the onset of the monsoon to within three days, a margin the older statistical models rarely achieved and one that gives farmers time to move sowing forward or back.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "the agency's newest forecasting systems",
+      "the agency, whose newest system",
+      "the agency's newest forecasting system",
+      "it is the newest forecasting system that"
+    ],
+    "correct_answer": "the agency's newest forecasting system",
+    "explanation": "An opening participial phrase describes the subject of the clause that follows, so whatever fills the blank must be the thing \"trained on sixty years of sea-surface temperatures\" and must also agree with the verb \"predicts\" that comes next. \"the agency's newest forecasting system\" satisfies both: a system is trained on data, and \"system\" is singular. \"the agency's newest forecasting systems\" is a sensible subject for the modifier but is plural, so it cannot take \"predicts.\" \"the agency, whose newest system\" attaches the modifier to the agency and, worse, gives \"predicts\" to the relative clause \"whose newest system predicts,\" leaving \"the agency\" with no main verb. \"it is the newest forecasting system that\" makes the dummy pronoun \"it\" the subject of the main clause, so the participial phrase dangles with nothing it can describe; a cleft sentence does not rescue a misplaced modifier.",
+    "topic_tag": "monsoon forecasting"
+  },
+  {
+    "id": "SEC-HC-20",
+    "domain": "Standard English Conventions",
+    "subskill": "form: opening participial modifier that fixes the subject, with agreement",
+    "difficulty": "hard",
+    "passage": "Sealed inside clay envelopes that were never opened by the officials they were addressed to, ______ survive intact only because the fire that destroyed the archive baked them as hard as pottery, whereas the unsealed tablets in the same room crumbled to dust within a few centuries.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "the tablet that records the palace's grain accounts",
+      "the tablets that record the palace's grain accounts",
+      "the tablets, which record the palace's grain accounts and",
+      "there are tablets recording the palace's grain accounts that"
+    ],
+    "correct_answer": "the tablets that record the palace's grain accounts",
+    "explanation": "Whatever follows the opening phrase \"Sealed inside clay envelopes\" must be the thing that was sealed, and it must agree with the verb \"survive\" that follows the blank. \"the tablets that record the palace's grain accounts\" is plural, so \"survive\" agrees, and the tablets are what the envelopes held. \"the tablet that records the palace's grain accounts\" makes an acceptable subject for the modifier but is singular, and \"the tablet ... survive\" fails agreement. \"the tablets, which record the palace's grain accounts and\" pulls \"survive\" into the relative clause, \"which record ... and survive,\" so the main subject \"the tablets\" never gets a verb and the sentence is a fragment. \"there are tablets recording the palace's grain accounts that\" opens the clause with the expletive \"there,\" which cannot be the thing sealed in envelopes, so the participial phrase dangles, and the \"that\" clause again absorbs \"survive.\"",
+    "topic_tag": "cuneiform palace archives"
+  },
+  {
+    "id": "SEC-HC-21",
+    "domain": "Standard English Conventions",
+    "subskill": "form: opening participial modifier that fixes the subject, with agreement",
+    "difficulty": "hard",
+    "passage": "Lacking the oxygen that decomposers require, ______ preserves skin, hair, and even stomach contents for millennia while dissolving bone almost entirely, which is why the bodies recovered from such sites are recognizably human in the face yet collapse like emptied garments when lifted.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "the acidic, nearly still waters of a raised bog",
+      "in the acidic, nearly still water of a raised bog",
+      "a raised bog's acidic water, which",
+      "the acidic, nearly still water of a raised bog"
+    ],
+    "correct_answer": "the acidic, nearly still water of a raised bog",
+    "explanation": "The opening phrase \"Lacking the oxygen that decomposers require\" must describe the subject of the following clause, and that subject must agree with the singular verb \"preserves.\" \"the acidic, nearly still water of a raised bog\" is a singular subject that lacks oxygen and takes \"preserves.\" \"the acidic, nearly still waters of a raised bog\" is also a possible subject for the modifier, but the plural \"waters\" cannot take \"preserves.\" \"in the acidic, nearly still water of a raised bog\" is a prepositional phrase, which cannot serve as a subject, so \"preserves\" is left with no subject and the modifier with nothing to describe. \"a raised bog's acidic water, which\" supplies a singular noun but then hands \"preserves\" to the relative clause \"which preserves,\" so the main clause has no verb and the sentence is a fragment.",
+    "topic_tag": "peat-bog preservation"
+  },
+  {
+    "id": "SEC-HC-22",
+    "domain": "Standard English Conventions",
+    "subskill": "form: parallel structure in a series whose items contain prepositional phrases",
+    "difficulty": "hard",
+    "passage": "The engineer's innovations—placing a single microphone above the band rather than in front of it, recording in a hall with a long natural reverberation, and ______ the sessions their unusual warmth, a sound that rival labels spent the next decade trying to copy with far more elaborate equipment.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "cutting the master at a slower speed than usual—gave",
+      "to cut the master at a slower speed than usual—gave",
+      "cutting the master at a slower speed than usual, gave",
+      "cutting the master at a slower speed than usual—giving"
+    ],
+    "correct_answer": "cutting the master at a slower speed than usual—gave",
+    "explanation": "Two rules meet at the end of this dash-enclosed series. First, the items are gerund phrases, \"placing ... above the band\" and \"recording in a hall,\" so the third must be a gerund phrase too: \"cutting the master at a slower speed.\" \"to cut the master at a slower speed than usual—gave\" breaks the parallelism with an infinitive. Second, an interruption opened with a dash must be closed with a dash, and the sentence needs a main verb after it. \"cutting the master at a slower speed than usual, gave\" keeps the parallelism but closes the dash-opened interruption with a comma, so the punctuation is mismatched. \"cutting the master at a slower speed than usual—giving\" closes the dash correctly but replaces the main verb with a participle, so \"The engineer's innovations ... giving the sessions their unusual warmth\" is a fragment. Only \"cutting the master at a slower speed than usual—gave\" satisfies both.",
+    "topic_tag": "jazz recording engineering"
+  },
+  {
+    "id": "SEC-HC-23",
+    "domain": "Standard English Conventions",
+    "subskill": "form: parallel structure in a series whose items contain prepositional phrases",
+    "difficulty": "hard",
+    "passage": "Geneticists sampling wild and cultivated olives ______ to reconstruct how a single domestication event on the eastern Mediterranean shore spread westward, and the pattern they recovered suggests that farmers grafted local wild stock onto imported cultivars rather than carrying whole trees from grove to grove.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "in the Levant, the Aegean, and in Andalusia have used the trees' chloroplast DNA",
+      "in the Levant, in the Aegean, and in Andalusia has used the trees' chloroplast DNA",
+      "in the Levant, in the Aegean, and in Andalusia have used the trees' chloroplast DNA",
+      "in the Levant, in the Aegean, and in Andalusia, have used the trees' chloroplast DNA"
+    ],
+    "correct_answer": "in the Levant, in the Aegean, and in Andalusia have used the trees' chloroplast DNA",
+    "explanation": "A series of prepositional phrases may repeat the preposition before every item or state it only before the first, but not mix the two patterns; and the main verb after the series must agree with the sentence's subject, the plural \"Geneticists.\" \"in the Levant, in the Aegean, and in Andalusia have used the trees' chloroplast DNA\" repeats \"in\" consistently and uses the plural \"have used.\" \"in the Levant, the Aegean, and in Andalusia have used the trees' chloroplast DNA\" drops the preposition from the middle item only, so the three items are no longer parallel. \"in the Levant, in the Aegean, and in Andalusia has used the trees' chloroplast DNA\" is parallel but pairs the plural subject with the singular \"has used,\" as though the nearest noun \"Andalusia\" or \"olives\" governed the verb. \"in the Levant, in the Aegean, and in Andalusia, have used the trees' chloroplast DNA\" is parallel and agrees, but the comma after \"Andalusia\" falls between the complete subject and its verb, which a lone comma may not do.",
+    "topic_tag": "olive domestication genetics"
+  },
+  {
+    "id": "SEC-HC-24",
+    "domain": "Standard English Conventions",
+    "subskill": "form: parallel structure in a series whose items contain prepositional phrases",
+    "difficulty": "hard",
+    "passage": "Designers of the alert system had to detect the first tremor within a second of its arrival, distinguish it from the rumble of a passing truck, and ______ the whole sequence must finish before the strongest shaking begins, which at the closest towns leaves a margin of under ten seconds.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "relaying a warning to phones across the region;",
+      "relay a warning to phones across the region;",
+      "relay a warning to phones across the region,",
+      "to relay a warning to phones across the region;"
+    ],
+    "correct_answer": "relay a warning to phones across the region;",
+    "explanation": "The series after \"had to\" consists of bare verb phrases, \"detect the first tremor within a second\" and \"distinguish it from the rumble,\" so the third item must be a bare verb phrase as well: \"relay a warning to phones across the region.\" \"relaying a warning to phones across the region;\" switches to a gerund, and \"to relay a warning to phones across the region;\" adds an infinitive marker that the first two items do not carry, since the \"to\" belongs to \"had to\" and governs all three. The second rule is the boundary after the series: \"the whole sequence must finish before the strongest shaking begins\" is an independent clause, so it must be separated from the first clause by a semicolon, not a comma. \"relay a warning to phones across the region,\" is parallel but creates a comma splice. \"relay a warning to phones across the region;\" is parallel and correctly punctuated.",
+    "topic_tag": "earthquake early warning"
+  }
+]
