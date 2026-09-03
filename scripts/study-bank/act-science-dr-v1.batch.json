@@ -1,0 +1,1027 @@
+[
+  {
+    "id": "SCI-DR-01-1",
+    "passage_id": "sci-dr-01",
+    "passage_title": "Seed Germination and Soil Conditions",
+    "format": "data_representation",
+    "passage": "Seed germination in a perennial grass species depends on both soil temperature and soil moisture. To measure these effects, researchers placed 50 seeds in each of several dishes filled with sterilized soil. Soil moisture was set by adding water equal to a fixed percentage of the dry soil mass (for example, 20% moisture means 20 g of water per 100 g of dry soil) and was maintained daily by weighing each dish and replacing any water lost. Dishes were kept in dark incubators, each held at a single constant temperature, across a range of temperatures and soil-moisture levels. Three dishes were prepared for every combination of temperature and moisture.\n\nA seed was counted as germinated once its root had emerged at least 2 mm from the seed coat. After 14 days, the number of germinated seeds in each dish was recorded, and the percent germination for each combination was calculated as the total number of germinated seeds divided by the total number of seeds, multiplied by 100. The results are shown in Table 1.",
+    "graphic": {
+      "type": "table",
+      "rowLabels": [
+        "10 °C",
+        "15 °C",
+        "20 °C",
+        "25 °C",
+        "30 °C",
+        "35 °C"
+      ],
+      "colLabels": [
+        "10% moisture",
+        "20% moisture",
+        "30% moisture"
+      ],
+      "cells": [
+        [
+          12,
+          18,
+          15
+        ],
+        [
+          34,
+          47,
+          41
+        ],
+        [
+          61,
+          78,
+          70
+        ],
+        [
+          73,
+          92,
+          84
+        ],
+        [
+          58,
+          81,
+          69
+        ],
+        [
+          21,
+          39,
+          30
+        ]
+      ],
+      "caption": "Table 1. Percent germination after 14 days at each soil temperature (rows) and soil-moisture level (columns)."
+    },
+    "prompt": "According to Table 1, at a soil temperature of 25 °C and a soil-moisture level of 20%, the percent germination was:",
+    "choices": [
+      "73%",
+      "78%",
+      "84%",
+      "92%"
+    ],
+    "correct_answer": "92%",
+    "explanation": "In the 25 °C row of Table 1, the value under 20% moisture is 92%. The values 73% and 84% are the 10% and 30% moisture results in the same row, and 78% is the 20% moisture result at 20 °C.",
+    "domain": "Interpretation of Data",
+    "subskill": "read a value from a table",
+    "difficulty": "easy"
+  },
+  {
+    "id": "SCI-DR-01-2",
+    "passage_id": "sci-dr-01",
+    "passage_title": "Seed Germination and Soil Conditions",
+    "format": "data_representation",
+    "passage": "Seed germination in a perennial grass species depends on both soil temperature and soil moisture. To measure these effects, researchers placed 50 seeds in each of several dishes filled with sterilized soil. Soil moisture was set by adding water equal to a fixed percentage of the dry soil mass (for example, 20% moisture means 20 g of water per 100 g of dry soil) and was maintained daily by weighing each dish and replacing any water lost. Dishes were kept in dark incubators, each held at a single constant temperature, across a range of temperatures and soil-moisture levels. Three dishes were prepared for every combination of temperature and moisture.\n\nA seed was counted as germinated once its root had emerged at least 2 mm from the seed coat. After 14 days, the number of germinated seeds in each dish was recorded, and the percent germination for each combination was calculated as the total number of germinated seeds divided by the total number of seeds, multiplied by 100. The results are shown in Table 1.",
+    "graphic": {
+      "type": "table",
+      "rowLabels": [
+        "10 °C",
+        "15 °C",
+        "20 °C",
+        "25 °C",
+        "30 °C",
+        "35 °C"
+      ],
+      "colLabels": [
+        "10% moisture",
+        "20% moisture",
+        "30% moisture"
+      ],
+      "cells": [
+        [
+          12,
+          18,
+          15
+        ],
+        [
+          34,
+          47,
+          41
+        ],
+        [
+          61,
+          78,
+          70
+        ],
+        [
+          73,
+          92,
+          84
+        ],
+        [
+          58,
+          81,
+          69
+        ],
+        [
+          21,
+          39,
+          30
+        ]
+      ],
+      "caption": "Table 1. Percent germination after 14 days at each soil temperature (rows) and soil-moisture level (columns)."
+    },
+    "prompt": "According to Table 1, at a soil-moisture level of 10%, as the soil temperature increased from 10 °C to 35 °C, the percent germination:",
+    "choices": [
+      "increased, then decreased.",
+      "decreased, then increased.",
+      "increased only.",
+      "decreased only."
+    ],
+    "correct_answer": "increased, then decreased.",
+    "explanation": "Reading down the 10% moisture column, germination rises from 12% to 34%, 61%, and 73%, then falls to 58% and 21%, so it \"increased, then decreased.\"",
+    "domain": "Interpretation of Data",
+    "subskill": "identify a trend in a table",
+    "difficulty": "easy"
+  },
+  {
+    "id": "SCI-DR-01-3",
+    "passage_id": "sci-dr-01",
+    "passage_title": "Seed Germination and Soil Conditions",
+    "format": "data_representation",
+    "passage": "Seed germination in a perennial grass species depends on both soil temperature and soil moisture. To measure these effects, researchers placed 50 seeds in each of several dishes filled with sterilized soil. Soil moisture was set by adding water equal to a fixed percentage of the dry soil mass (for example, 20% moisture means 20 g of water per 100 g of dry soil) and was maintained daily by weighing each dish and replacing any water lost. Dishes were kept in dark incubators, each held at a single constant temperature, across a range of temperatures and soil-moisture levels. Three dishes were prepared for every combination of temperature and moisture.\n\nA seed was counted as germinated once its root had emerged at least 2 mm from the seed coat. After 14 days, the number of germinated seeds in each dish was recorded, and the percent germination for each combination was calculated as the total number of germinated seeds divided by the total number of seeds, multiplied by 100. The results are shown in Table 1.",
+    "graphic": {
+      "type": "table",
+      "rowLabels": [
+        "10 °C",
+        "15 °C",
+        "20 °C",
+        "25 °C",
+        "30 °C",
+        "35 °C"
+      ],
+      "colLabels": [
+        "10% moisture",
+        "20% moisture",
+        "30% moisture"
+      ],
+      "cells": [
+        [
+          12,
+          18,
+          15
+        ],
+        [
+          34,
+          47,
+          41
+        ],
+        [
+          61,
+          78,
+          70
+        ],
+        [
+          73,
+          92,
+          84
+        ],
+        [
+          58,
+          81,
+          69
+        ],
+        [
+          21,
+          39,
+          30
+        ]
+      ],
+      "caption": "Table 1. Percent germination after 14 days at each soil temperature (rows) and soil-moisture level (columns)."
+    },
+    "prompt": "Based on Table 1, which soil-moisture level produced the highest percent germination at every temperature tested?",
+    "choices": [
+      "10%",
+      "20%",
+      "30%",
+      "The highest level varied with temperature."
+    ],
+    "correct_answer": "20%",
+    "explanation": "In every row of Table 1 the largest value is in the 20% moisture column (18, 47, 78, 92, 81, and 39), so \"20%\" gave the highest germination at every temperature and the answer did not vary with temperature.",
+    "domain": "Interpretation of Data",
+    "subskill": "compare conditions across a table",
+    "difficulty": "medium"
+  },
+  {
+    "id": "SCI-DR-01-4",
+    "passage_id": "sci-dr-01",
+    "passage_title": "Seed Germination and Soil Conditions",
+    "format": "data_representation",
+    "passage": "Seed germination in a perennial grass species depends on both soil temperature and soil moisture. To measure these effects, researchers placed 50 seeds in each of several dishes filled with sterilized soil. Soil moisture was set by adding water equal to a fixed percentage of the dry soil mass (for example, 20% moisture means 20 g of water per 100 g of dry soil) and was maintained daily by weighing each dish and replacing any water lost. Dishes were kept in dark incubators, each held at a single constant temperature, across a range of temperatures and soil-moisture levels. Three dishes were prepared for every combination of temperature and moisture.\n\nA seed was counted as germinated once its root had emerged at least 2 mm from the seed coat. After 14 days, the number of germinated seeds in each dish was recorded, and the percent germination for each combination was calculated as the total number of germinated seeds divided by the total number of seeds, multiplied by 100. The results are shown in Table 1.",
+    "graphic": {
+      "type": "table",
+      "rowLabels": [
+        "10 °C",
+        "15 °C",
+        "20 °C",
+        "25 °C",
+        "30 °C",
+        "35 °C"
+      ],
+      "colLabels": [
+        "10% moisture",
+        "20% moisture",
+        "30% moisture"
+      ],
+      "cells": [
+        [
+          12,
+          18,
+          15
+        ],
+        [
+          34,
+          47,
+          41
+        ],
+        [
+          61,
+          78,
+          70
+        ],
+        [
+          73,
+          92,
+          84
+        ],
+        [
+          58,
+          81,
+          69
+        ],
+        [
+          21,
+          39,
+          30
+        ]
+      ],
+      "caption": "Table 1. Percent germination after 14 days at each soil temperature (rows) and soil-moisture level (columns)."
+    },
+    "prompt": "Based on Table 1, how many different combinations of soil temperature and soil-moisture level were tested?",
+    "choices": [
+      "3",
+      "6",
+      "9",
+      "18"
+    ],
+    "correct_answer": "18",
+    "explanation": "Table 1 has 6 temperature rows and 3 moisture columns, so 6 × 3 = 18 combinations were tested. The values 3 and 6 are the numbers of moisture levels and temperatures alone.",
+    "domain": "Scientific Investigation",
+    "subskill": "identify the experimental design from the data layout",
+    "difficulty": "medium"
+  },
+  {
+    "id": "SCI-DR-01-5",
+    "passage_id": "sci-dr-01",
+    "passage_title": "Seed Germination and Soil Conditions",
+    "format": "data_representation",
+    "passage": "Seed germination in a perennial grass species depends on both soil temperature and soil moisture. To measure these effects, researchers placed 50 seeds in each of several dishes filled with sterilized soil. Soil moisture was set by adding water equal to a fixed percentage of the dry soil mass (for example, 20% moisture means 20 g of water per 100 g of dry soil) and was maintained daily by weighing each dish and replacing any water lost. Dishes were kept in dark incubators, each held at a single constant temperature, across a range of temperatures and soil-moisture levels. Three dishes were prepared for every combination of temperature and moisture.\n\nA seed was counted as germinated once its root had emerged at least 2 mm from the seed coat. After 14 days, the number of germinated seeds in each dish was recorded, and the percent germination for each combination was calculated as the total number of germinated seeds divided by the total number of seeds, multiplied by 100. The results are shown in Table 1.",
+    "graphic": {
+      "type": "table",
+      "rowLabels": [
+        "10 °C",
+        "15 °C",
+        "20 °C",
+        "25 °C",
+        "30 °C",
+        "35 °C"
+      ],
+      "colLabels": [
+        "10% moisture",
+        "20% moisture",
+        "30% moisture"
+      ],
+      "cells": [
+        [
+          12,
+          18,
+          15
+        ],
+        [
+          34,
+          47,
+          41
+        ],
+        [
+          61,
+          78,
+          70
+        ],
+        [
+          73,
+          92,
+          84
+        ],
+        [
+          58,
+          81,
+          69
+        ],
+        [
+          21,
+          39,
+          30
+        ]
+      ],
+      "caption": "Table 1. Percent germination after 14 days at each soil temperature (rows) and soil-moisture level (columns)."
+    },
+    "prompt": "A student claims that, over the ranges tested, soil moisture had a greater effect on percent germination than soil temperature did. Do the data in Table 1 support this claim?",
+    "choices": [
+      "Yes; at 25 °C, percent germination rose from 73% to 92% as soil moisture increased from 10% to 20%.",
+      "Yes; the highest value in Table 1, 92%, occurred at the middle soil-moisture level.",
+      "No; at any one temperature, germination differed by at most 23 percentage points across moisture levels, whereas at 20% moisture it differed by 74 points across temperatures.",
+      "No; germination was the same at all three soil-moisture levels at 10 °C."
+    ],
+    "correct_answer": "No; at any one temperature, germination differed by at most 23 percentage points across moisture levels, whereas at 20% moisture it differed by 74 points across temperatures.",
+    "explanation": "Within any row of Table 1 the spread across moisture levels is small (the largest is 81% − 58% = 23 points at 30 °C), while within the 20% column germination ranges from 18% to 92%, a 74-point spread, so the data do not support the claim. The claim that germination \"was the same at all three soil-moisture levels at 10 °C\" is false (12%, 18%, 15%).",
+    "domain": "Evaluation of Models, Inferences, and Experimental Results",
+    "subskill": "evaluate a claim against tabulated data",
+    "difficulty": "hard"
+  },
+  {
+    "id": "SCI-DR-02-1",
+    "passage_id": "sci-dr-02",
+    "passage_title": "Solubility of Three Salts",
+    "format": "data_representation",
+    "passage": "The solubility of a salt in water is the maximum mass of the salt that will dissolve in 100 g of water at a given temperature, producing a saturated solution. Chemists measured the solubility of three salts, Salt X, Salt Y, and Salt Z, at each of several temperatures.\n\nFor each measurement, 100 g of distilled water was placed in a flask held in a water bath at the chosen temperature. The salt was added in small portions with stirring until a small amount of undissolved solid remained at the bottom of the flask for 10 minutes. The solution was then quickly filtered at the same temperature to remove the undissolved solid, and the filtered solution was heated to evaporate the water. The mass of the dry salt left behind was recorded as the solubility at that temperature, in grams of salt per 100 g of water. Each measurement was repeated three times, and the averages are shown in Table 1.",
+    "graphic": {
+      "type": "table",
+      "rowLabels": [
+        "0 °C",
+        "20 °C",
+        "40 °C",
+        "60 °C",
+        "80 °C"
+      ],
+      "colLabels": [
+        "Salt X (g/100 g water)",
+        "Salt Y (g/100 g water)",
+        "Salt Z (g/100 g water)"
+      ],
+      "cells": [
+        [
+          35.6,
+          13.2,
+          1.8
+        ],
+        [
+          36,
+          31.5,
+          1.2
+        ],
+        [
+          36.5,
+          63.8,
+          0.7
+        ],
+        [
+          37.1,
+          110.2,
+          0.4
+        ],
+        [
+          38,
+          168.9,
+          0.2
+        ]
+      ],
+      "caption": "Table 1. Solubility of three salts in water at each temperature."
+    },
+    "prompt": "According to Table 1, the solubility of Salt Y at 40 °C was:",
+    "choices": [
+      "31.5 g per 100 g of water.",
+      "36.5 g per 100 g of water.",
+      "63.8 g per 100 g of water.",
+      "110.2 g per 100 g of water."
+    ],
+    "correct_answer": "63.8 g per 100 g of water.",
+    "explanation": "In the 40 °C row of Table 1, the Salt Y column reads 63.8, so the solubility was \"63.8 g per 100 g of water.\" The value 36.5 is Salt X at the same temperature; 31.5 and 110.2 are Salt Y at 20 °C and 60 °C.",
+    "domain": "Interpretation of Data",
+    "subskill": "read a value from a table",
+    "difficulty": "easy"
+  },
+  {
+    "id": "SCI-DR-02-2",
+    "passage_id": "sci-dr-02",
+    "passage_title": "Solubility of Three Salts",
+    "format": "data_representation",
+    "passage": "The solubility of a salt in water is the maximum mass of the salt that will dissolve in 100 g of water at a given temperature, producing a saturated solution. Chemists measured the solubility of three salts, Salt X, Salt Y, and Salt Z, at each of several temperatures.\n\nFor each measurement, 100 g of distilled water was placed in a flask held in a water bath at the chosen temperature. The salt was added in small portions with stirring until a small amount of undissolved solid remained at the bottom of the flask for 10 minutes. The solution was then quickly filtered at the same temperature to remove the undissolved solid, and the filtered solution was heated to evaporate the water. The mass of the dry salt left behind was recorded as the solubility at that temperature, in grams of salt per 100 g of water. Each measurement was repeated three times, and the averages are shown in Table 1.",
+    "graphic": {
+      "type": "table",
+      "rowLabels": [
+        "0 °C",
+        "20 °C",
+        "40 °C",
+        "60 °C",
+        "80 °C"
+      ],
+      "colLabels": [
+        "Salt X (g/100 g water)",
+        "Salt Y (g/100 g water)",
+        "Salt Z (g/100 g water)"
+      ],
+      "cells": [
+        [
+          35.6,
+          13.2,
+          1.8
+        ],
+        [
+          36,
+          31.5,
+          1.2
+        ],
+        [
+          36.5,
+          63.8,
+          0.7
+        ],
+        [
+          37.1,
+          110.2,
+          0.4
+        ],
+        [
+          38,
+          168.9,
+          0.2
+        ]
+      ],
+      "caption": "Table 1. Solubility of three salts in water at each temperature."
+    },
+    "prompt": "Based on Table 1, the solubility of each salt was measured at how many temperatures, and over what range of temperatures?",
+    "choices": [
+      "4 temperatures, from 0 °C to 60 °C",
+      "5 temperatures, from 20 °C to 80 °C",
+      "3 temperatures, from 0 °C to 80 °C",
+      "5 temperatures, from 0 °C to 80 °C"
+    ],
+    "correct_answer": "5 temperatures, from 0 °C to 80 °C",
+    "explanation": "Table 1 has five rows, labeled 0 °C, 20 °C, 40 °C, 60 °C, and 80 °C, so each salt was measured at \"5 temperatures, from 0 °C to 80 °C.\" Three is the number of salts, not temperatures.",
+    "domain": "Scientific Investigation",
+    "subskill": "identify the experimental design from the data layout",
+    "difficulty": "medium"
+  },
+  {
+    "id": "SCI-DR-02-3",
+    "passage_id": "sci-dr-02",
+    "passage_title": "Solubility of Three Salts",
+    "format": "data_representation",
+    "passage": "The solubility of a salt in water is the maximum mass of the salt that will dissolve in 100 g of water at a given temperature, producing a saturated solution. Chemists measured the solubility of three salts, Salt X, Salt Y, and Salt Z, at each of several temperatures.\n\nFor each measurement, 100 g of distilled water was placed in a flask held in a water bath at the chosen temperature. The salt was added in small portions with stirring until a small amount of undissolved solid remained at the bottom of the flask for 10 minutes. The solution was then quickly filtered at the same temperature to remove the undissolved solid, and the filtered solution was heated to evaporate the water. The mass of the dry salt left behind was recorded as the solubility at that temperature, in grams of salt per 100 g of water. Each measurement was repeated three times, and the averages are shown in Table 1.",
+    "graphic": {
+      "type": "table",
+      "rowLabels": [
+        "0 °C",
+        "20 °C",
+        "40 °C",
+        "60 °C",
+        "80 °C"
+      ],
+      "colLabels": [
+        "Salt X (g/100 g water)",
+        "Salt Y (g/100 g water)",
+        "Salt Z (g/100 g water)"
+      ],
+      "cells": [
+        [
+          35.6,
+          13.2,
+          1.8
+        ],
+        [
+          36,
+          31.5,
+          1.2
+        ],
+        [
+          36.5,
+          63.8,
+          0.7
+        ],
+        [
+          37.1,
+          110.2,
+          0.4
+        ],
+        [
+          38,
+          168.9,
+          0.2
+        ]
+      ],
+      "caption": "Table 1. Solubility of three salts in water at each temperature."
+    },
+    "prompt": "Based on Table 1, if the solubility of Salt Y had been measured at 50 °C, it would most likely have been closest to:",
+    "choices": [
+      "37 g per 100 g of water.",
+      "64 g per 100 g of water.",
+      "87 g per 100 g of water.",
+      "110 g per 100 g of water."
+    ],
+    "correct_answer": "87 g per 100 g of water.",
+    "explanation": "At 40 °C and 60 °C the solubility of Salt Y was 63.8 g and 110.2 g, so at 50 °C it would fall between those values, closest to \"87 g per 100 g of water.\" The values 64 g and 110 g are the bracketing measurements themselves, and 37 g is close to Salt X.",
+    "domain": "Interpretation of Data",
+    "subskill": "interpolate between tabulated values",
+    "difficulty": "medium"
+  },
+  {
+    "id": "SCI-DR-02-4",
+    "passage_id": "sci-dr-02",
+    "passage_title": "Solubility of Three Salts",
+    "format": "data_representation",
+    "passage": "The solubility of a salt in water is the maximum mass of the salt that will dissolve in 100 g of water at a given temperature, producing a saturated solution. Chemists measured the solubility of three salts, Salt X, Salt Y, and Salt Z, at each of several temperatures.\n\nFor each measurement, 100 g of distilled water was placed in a flask held in a water bath at the chosen temperature. The salt was added in small portions with stirring until a small amount of undissolved solid remained at the bottom of the flask for 10 minutes. The solution was then quickly filtered at the same temperature to remove the undissolved solid, and the filtered solution was heated to evaporate the water. The mass of the dry salt left behind was recorded as the solubility at that temperature, in grams of salt per 100 g of water. Each measurement was repeated three times, and the averages are shown in Table 1.",
+    "graphic": {
+      "type": "table",
+      "rowLabels": [
+        "0 °C",
+        "20 °C",
+        "40 °C",
+        "60 °C",
+        "80 °C"
+      ],
+      "colLabels": [
+        "Salt X (g/100 g water)",
+        "Salt Y (g/100 g water)",
+        "Salt Z (g/100 g water)"
+      ],
+      "cells": [
+        [
+          35.6,
+          13.2,
+          1.8
+        ],
+        [
+          36,
+          31.5,
+          1.2
+        ],
+        [
+          36.5,
+          63.8,
+          0.7
+        ],
+        [
+          37.1,
+          110.2,
+          0.4
+        ],
+        [
+          38,
+          168.9,
+          0.2
+        ]
+      ],
+      "caption": "Table 1. Solubility of three salts in water at each temperature."
+    },
+    "prompt": "A chemist wants to purify a salt by dissolving it in hot water and then cooling the solution so that most of the salt crystallizes out. Based on Table 1, which salt is best suited to this method, and why?",
+    "choices": [
+      "Salt X, because its solubility changed very little between 0 °C and 80 °C.",
+      "Salt Y, because its solubility increased greatly as temperature increased.",
+      "Salt Z, because its solubility decreased as temperature increased.",
+      "Salt X, because it had the highest solubility of the three salts at 0 °C."
+    ],
+    "correct_answer": "Salt Y, because its solubility increased greatly as temperature increased.",
+    "explanation": "Crystallization on cooling requires a salt that is far more soluble in hot water than in cold water. Table 1 shows Salt Y rising from 13.2 g at 0 °C to 168.9 g at 80 °C, so \"Salt Y, because its solubility increased greatly as temperature increased\" is the best choice; Salt X barely changes, and Salt Z becomes more soluble, not less, as it cools.",
+    "domain": "Evaluation of Models, Inferences, and Experimental Results",
+    "subskill": "apply data to a new situation",
+    "difficulty": "medium"
+  },
+  {
+    "id": "SCI-DR-02-5",
+    "passage_id": "sci-dr-02",
+    "passage_title": "Solubility of Three Salts",
+    "format": "data_representation",
+    "passage": "The solubility of a salt in water is the maximum mass of the salt that will dissolve in 100 g of water at a given temperature, producing a saturated solution. Chemists measured the solubility of three salts, Salt X, Salt Y, and Salt Z, at each of several temperatures.\n\nFor each measurement, 100 g of distilled water was placed in a flask held in a water bath at the chosen temperature. The salt was added in small portions with stirring until a small amount of undissolved solid remained at the bottom of the flask for 10 minutes. The solution was then quickly filtered at the same temperature to remove the undissolved solid, and the filtered solution was heated to evaporate the water. The mass of the dry salt left behind was recorded as the solubility at that temperature, in grams of salt per 100 g of water. Each measurement was repeated three times, and the averages are shown in Table 1.",
+    "graphic": {
+      "type": "table",
+      "rowLabels": [
+        "0 °C",
+        "20 °C",
+        "40 °C",
+        "60 °C",
+        "80 °C"
+      ],
+      "colLabels": [
+        "Salt X (g/100 g water)",
+        "Salt Y (g/100 g water)",
+        "Salt Z (g/100 g water)"
+      ],
+      "cells": [
+        [
+          35.6,
+          13.2,
+          1.8
+        ],
+        [
+          36,
+          31.5,
+          1.2
+        ],
+        [
+          36.5,
+          63.8,
+          0.7
+        ],
+        [
+          37.1,
+          110.2,
+          0.4
+        ],
+        [
+          38,
+          168.9,
+          0.2
+        ]
+      ],
+      "caption": "Table 1. Solubility of three salts in water at each temperature."
+    },
+    "prompt": "A solution was prepared by dissolving 30.0 g of Salt Y in 100 g of water at 20 °C. Based on Table 1, if this solution were cooled to 0 °C, approximately what mass of Salt Y would crystallize out of the solution?",
+    "choices": [
+      "0 g",
+      "1.5 g",
+      "13.2 g",
+      "16.8 g"
+    ],
+    "correct_answer": "16.8 g",
+    "explanation": "At 0 °C only 13.2 g of Salt Y can stay dissolved in 100 g of water, so of the 30.0 g originally dissolved, 30.0 − 13.2 = \"16.8 g\" would crystallize out. The value 13.2 g is the amount that remains dissolved, and 1.5 g is the unused capacity at 20 °C (31.5 − 30.0).",
+    "domain": "Interpretation of Data",
+    "subskill": "calculate from tabulated values",
+    "difficulty": "hard"
+  },
+  {
+    "id": "SCI-DR-03-1",
+    "passage_id": "sci-dr-03",
+    "passage_title": "Sound Reduction by Panels",
+    "format": "data_representation",
+    "passage": "Sound intensity is the power carried by a sound wave per unit area. Sound level, measured in decibels (dB), is a logarithmic scale of intensity: every decrease of 10 dB corresponds to a tenfold decrease in sound intensity, so a decrease of 20 dB corresponds to a decrease in intensity by a factor of 100.\n\nStudents investigated how well flat panels of different materials block sound. A speaker in one chamber produced a steady 1,000 Hz tone, and a sound-level meter was placed in a second chamber, 1.0 m from the speaker. The two chambers were separated by a rigid wall with a square opening into which a panel could be clamped. With the opening empty, the meter read 90 dB. The students then clamped panels of foam, pine wood, and steel, each made in more than one thickness, into the opening one at a time. For each panel, the sound reduction was calculated as 90 dB minus the sound level read by the meter with that panel in place. The speaker's volume setting, the tone frequency, and the meter's position were the same for every panel. The results are shown in Figure 1.",
+    "graphic": {
+      "type": "bar",
+      "xLabel": "Panel (material, thickness)",
+      "yLabel": "Sound reduction (dB)",
+      "bars": [
+        {
+          "label": "Foam, 2 cm",
+          "value": 15
+        },
+        {
+          "label": "Foam, 4 cm",
+          "value": 22
+        },
+        {
+          "label": "Pine, 2 cm",
+          "value": 24
+        },
+        {
+          "label": "Pine, 4 cm",
+          "value": 30
+        },
+        {
+          "label": "Steel, 2 cm",
+          "value": 34
+        },
+        {
+          "label": "Steel, 4 cm",
+          "value": 41
+        }
+      ],
+      "caption": "Figure 1. Sound reduction, in dB, for each panel tested."
+    },
+    "prompt": "According to Figure 1, the sound reduction produced by the 4 cm pine panel was:",
+    "choices": [
+      "22 dB",
+      "24 dB",
+      "30 dB",
+      "34 dB"
+    ],
+    "correct_answer": "30 dB",
+    "explanation": "The bar labeled \"Pine, 4 cm\" in Figure 1 reaches \"30 dB.\" The 24 dB bar is the 2 cm pine panel, 22 dB is the 4 cm foam panel, and 34 dB is the 2 cm steel panel.",
+    "domain": "Interpretation of Data",
+    "subskill": "read a value from a bar graph",
+    "difficulty": "easy"
+  },
+  {
+    "id": "SCI-DR-03-2",
+    "passage_id": "sci-dr-03",
+    "passage_title": "Sound Reduction by Panels",
+    "format": "data_representation",
+    "passage": "Sound intensity is the power carried by a sound wave per unit area. Sound level, measured in decibels (dB), is a logarithmic scale of intensity: every decrease of 10 dB corresponds to a tenfold decrease in sound intensity, so a decrease of 20 dB corresponds to a decrease in intensity by a factor of 100.\n\nStudents investigated how well flat panels of different materials block sound. A speaker in one chamber produced a steady 1,000 Hz tone, and a sound-level meter was placed in a second chamber, 1.0 m from the speaker. The two chambers were separated by a rigid wall with a square opening into which a panel could be clamped. With the opening empty, the meter read 90 dB. The students then clamped panels of foam, pine wood, and steel, each made in more than one thickness, into the opening one at a time. For each panel, the sound reduction was calculated as 90 dB minus the sound level read by the meter with that panel in place. The speaker's volume setting, the tone frequency, and the meter's position were the same for every panel. The results are shown in Figure 1.",
+    "graphic": {
+      "type": "bar",
+      "xLabel": "Panel (material, thickness)",
+      "yLabel": "Sound reduction (dB)",
+      "bars": [
+        {
+          "label": "Foam, 2 cm",
+          "value": 15
+        },
+        {
+          "label": "Foam, 4 cm",
+          "value": 22
+        },
+        {
+          "label": "Pine, 2 cm",
+          "value": 24
+        },
+        {
+          "label": "Pine, 4 cm",
+          "value": 30
+        },
+        {
+          "label": "Steel, 2 cm",
+          "value": 34
+        },
+        {
+          "label": "Steel, 4 cm",
+          "value": 41
+        }
+      ],
+      "caption": "Figure 1. Sound reduction, in dB, for each panel tested."
+    },
+    "prompt": "According to Figure 1, as panel thickness increased from 2 cm to 4 cm, the sound reduction:",
+    "choices": [
+      "increased for foam only.",
+      "stayed the same for all three materials.",
+      "decreased for all three materials.",
+      "increased for all three materials."
+    ],
+    "correct_answer": "increased for all three materials.",
+    "explanation": "In Figure 1 the 4 cm bar is taller than the 2 cm bar for every material: foam 15 dB to 22 dB, pine 24 dB to 30 dB, and steel 34 dB to 41 dB, so the reduction \"increased for all three materials.\"",
+    "domain": "Interpretation of Data",
+    "subskill": "identify a trend across bars",
+    "difficulty": "easy"
+  },
+  {
+    "id": "SCI-DR-03-3",
+    "passage_id": "sci-dr-03",
+    "passage_title": "Sound Reduction by Panels",
+    "format": "data_representation",
+    "passage": "Sound intensity is the power carried by a sound wave per unit area. Sound level, measured in decibels (dB), is a logarithmic scale of intensity: every decrease of 10 dB corresponds to a tenfold decrease in sound intensity, so a decrease of 20 dB corresponds to a decrease in intensity by a factor of 100.\n\nStudents investigated how well flat panels of different materials block sound. A speaker in one chamber produced a steady 1,000 Hz tone, and a sound-level meter was placed in a second chamber, 1.0 m from the speaker. The two chambers were separated by a rigid wall with a square opening into which a panel could be clamped. With the opening empty, the meter read 90 dB. The students then clamped panels of foam, pine wood, and steel, each made in more than one thickness, into the opening one at a time. For each panel, the sound reduction was calculated as 90 dB minus the sound level read by the meter with that panel in place. The speaker's volume setting, the tone frequency, and the meter's position were the same for every panel. The results are shown in Figure 1.",
+    "graphic": {
+      "type": "bar",
+      "xLabel": "Panel (material, thickness)",
+      "yLabel": "Sound reduction (dB)",
+      "bars": [
+        {
+          "label": "Foam, 2 cm",
+          "value": 15
+        },
+        {
+          "label": "Foam, 4 cm",
+          "value": 22
+        },
+        {
+          "label": "Pine, 2 cm",
+          "value": 24
+        },
+        {
+          "label": "Pine, 4 cm",
+          "value": 30
+        },
+        {
+          "label": "Steel, 2 cm",
+          "value": 34
+        },
+        {
+          "label": "Steel, 4 cm",
+          "value": 41
+        }
+      ],
+      "caption": "Figure 1. Sound reduction, in dB, for each panel tested."
+    },
+    "prompt": "Based on Figure 1, which panel produced the greater sound reduction, the 4 cm foam panel or the 2 cm pine panel, and by how much?",
+    "choices": [
+      "The 4 cm foam panel, by 2 dB",
+      "The 2 cm pine panel, by 2 dB",
+      "The 4 cm foam panel, by 7 dB",
+      "The 2 cm pine panel, by 9 dB"
+    ],
+    "correct_answer": "The 2 cm pine panel, by 2 dB",
+    "explanation": "Figure 1 shows 24 dB for the 2 cm pine panel and 22 dB for the 4 cm foam panel, so the answer is \"The 2 cm pine panel, by 2 dB.\" A 7 dB difference is the gap between the two foam panels, and 9 dB is the gap between 2 cm pine and 2 cm foam.",
+    "domain": "Interpretation of Data",
+    "subskill": "compare two conditions",
+    "difficulty": "medium"
+  },
+  {
+    "id": "SCI-DR-03-4",
+    "passage_id": "sci-dr-03",
+    "passage_title": "Sound Reduction by Panels",
+    "format": "data_representation",
+    "passage": "Sound intensity is the power carried by a sound wave per unit area. Sound level, measured in decibels (dB), is a logarithmic scale of intensity: every decrease of 10 dB corresponds to a tenfold decrease in sound intensity, so a decrease of 20 dB corresponds to a decrease in intensity by a factor of 100.\n\nStudents investigated how well flat panels of different materials block sound. A speaker in one chamber produced a steady 1,000 Hz tone, and a sound-level meter was placed in a second chamber, 1.0 m from the speaker. The two chambers were separated by a rigid wall with a square opening into which a panel could be clamped. With the opening empty, the meter read 90 dB. The students then clamped panels of foam, pine wood, and steel, each made in more than one thickness, into the opening one at a time. For each panel, the sound reduction was calculated as 90 dB minus the sound level read by the meter with that panel in place. The speaker's volume setting, the tone frequency, and the meter's position were the same for every panel. The results are shown in Figure 1.",
+    "graphic": {
+      "type": "bar",
+      "xLabel": "Panel (material, thickness)",
+      "yLabel": "Sound reduction (dB)",
+      "bars": [
+        {
+          "label": "Foam, 2 cm",
+          "value": 15
+        },
+        {
+          "label": "Foam, 4 cm",
+          "value": 22
+        },
+        {
+          "label": "Pine, 2 cm",
+          "value": 24
+        },
+        {
+          "label": "Pine, 4 cm",
+          "value": 30
+        },
+        {
+          "label": "Steel, 2 cm",
+          "value": 34
+        },
+        {
+          "label": "Steel, 4 cm",
+          "value": 41
+        }
+      ],
+      "caption": "Figure 1. Sound reduction, in dB, for each panel tested."
+    },
+    "prompt": "Suppose the students tested a 6 cm foam panel under the same conditions. Based on the trend in Figure 1, the sound reduction for this panel would most likely be:",
+    "choices": [
+      "less than 15 dB.",
+      "between 15 dB and 22 dB.",
+      "between 22 dB and 34 dB.",
+      "greater than 41 dB."
+    ],
+    "correct_answer": "between 22 dB and 34 dB.",
+    "explanation": "Foam reduction rose from 15 dB at 2 cm to 22 dB at 4 cm, so a thicker 6 cm foam panel should exceed 22 dB; a further increase of about 7 dB would put it near 29 dB, which is \"between 22 dB and 34 dB.\" Values below 22 dB would contradict the trend, and exceeding 41 dB would require foam to outperform the thickest steel panel.",
+    "domain": "Evaluation of Models, Inferences, and Experimental Results",
+    "subskill": "extrapolate a trend to a new trial",
+    "difficulty": "medium"
+  },
+  {
+    "id": "SCI-DR-03-5",
+    "passage_id": "sci-dr-03",
+    "passage_title": "Sound Reduction by Panels",
+    "format": "data_representation",
+    "passage": "Sound intensity is the power carried by a sound wave per unit area. Sound level, measured in decibels (dB), is a logarithmic scale of intensity: every decrease of 10 dB corresponds to a tenfold decrease in sound intensity, so a decrease of 20 dB corresponds to a decrease in intensity by a factor of 100.\n\nStudents investigated how well flat panels of different materials block sound. A speaker in one chamber produced a steady 1,000 Hz tone, and a sound-level meter was placed in a second chamber, 1.0 m from the speaker. The two chambers were separated by a rigid wall with a square opening into which a panel could be clamped. With the opening empty, the meter read 90 dB. The students then clamped panels of foam, pine wood, and steel, each made in more than one thickness, into the opening one at a time. For each panel, the sound reduction was calculated as 90 dB minus the sound level read by the meter with that panel in place. The speaker's volume setting, the tone frequency, and the meter's position were the same for every panel. The results are shown in Figure 1.",
+    "graphic": {
+      "type": "bar",
+      "xLabel": "Panel (material, thickness)",
+      "yLabel": "Sound reduction (dB)",
+      "bars": [
+        {
+          "label": "Foam, 2 cm",
+          "value": 15
+        },
+        {
+          "label": "Foam, 4 cm",
+          "value": 22
+        },
+        {
+          "label": "Pine, 2 cm",
+          "value": 24
+        },
+        {
+          "label": "Pine, 4 cm",
+          "value": 30
+        },
+        {
+          "label": "Steel, 2 cm",
+          "value": 34
+        },
+        {
+          "label": "Steel, 4 cm",
+          "value": 41
+        }
+      ],
+      "caption": "Figure 1. Sound reduction, in dB, for each panel tested."
+    },
+    "prompt": "Based on Figure 1 and the information in the passage, the sound intensity transmitted through the 2 cm steel panel was approximately what fraction of the sound intensity transmitted through the 2 cm pine panel?",
+    "choices": [
+      "1/10",
+      "1/2",
+      "1/100",
+      "1/1,000"
+    ],
+    "correct_answer": "1/10",
+    "explanation": "Figure 1 shows a reduction of 34 dB for 2 cm steel and 24 dB for 2 cm pine, a 10 dB difference; the passage states that each 10 dB decrease corresponds to a tenfold decrease in intensity, so the steel panel transmitted about \"1/10\" as much intensity. A fraction of 1/100 would require a 20 dB difference.",
+    "domain": "Evaluation of Models, Inferences, and Experimental Results",
+    "subskill": "combine a graph reading with a stated relationship",
+    "difficulty": "hard"
+  },
+  {
+    "id": "SCI-DR-04-1",
+    "passage_id": "sci-dr-04",
+    "passage_title": "Lake Temperature Profiles",
+    "format": "data_representation",
+    "passage": "In many deep lakes in temperate regions, water temperature changes with depth, and the pattern of change shifts through the year. Limnologists describe a stratified lake in three layers: the epilimnion, a warm upper layer of nearly uniform temperature; the thermocline, the depth range over which temperature changes most rapidly with depth; and the hypolimnion, a cold bottom layer of nearly uniform temperature.\n\nTo study a 20 m deep lake, researchers anchored a boat over the deepest point and lowered a temperature probe on a marked cable, recording the water temperature at regular depth intervals from the surface to the bottom. The same procedure was carried out at midday on one day in July and again on one day in October of the same year. Air temperature and wind speed were also recorded but are not shown. Figure 1 shows the water temperature, in °C, measured at each depth on the two dates.",
+    "graphic": {
+      "type": "svg",
+      "svg": "<svg viewBox=\"0 0 350 250\" width=\"320\" role=\"img\" aria-label=\"Line graph of water temperature versus depth for July and October\" font-family=\"sans-serif\"><rect width=\"350\" height=\"250\" fill=\"#fff\"/><text x=\"50\" y=\"12\" font-size=\"10\" font-weight=\"bold\">Figure 1</text><path d=\"M50,202.4H330M50,194.8H330M50,187.2H330M50,179.6H330M50,164.4H330M50,156.8H330M50,149.2H330M50,141.6H330M50,126.4H330M50,118.8H330M50,111.2H330M50,103.6H330M50,88.4H330M50,80.8H330M50,73.2H330M50,65.6H330M50,50.4H330M50,42.8H330M50,35.2H330M50,27.6H330\" stroke=\"#eee\" stroke-width=\"0.4\" fill=\"none\"/><line x1=\"50\" y1=\"20\" x2=\"50\" y2=\"210\" stroke=\"#ddd\" stroke-width=\"0.5\"/><line x1=\"120\" y1=\"20\" x2=\"120\" y2=\"210\" stroke=\"#ddd\" stroke-width=\"0.5\"/><line x1=\"190\" y1=\"20\" x2=\"190\" y2=\"210\" stroke=\"#ddd\" stroke-width=\"0.5\"/><line x1=\"260\" y1=\"20\" x2=\"260\" y2=\"210\" stroke=\"#ddd\" stroke-width=\"0.5\"/><line x1=\"330\" y1=\"20\" x2=\"330\" y2=\"210\" stroke=\"#ddd\" stroke-width=\"0.5\"/><line x1=\"50\" y1=\"210\" x2=\"330\" y2=\"210\" stroke=\"#ddd\" stroke-width=\"0.5\"/><line x1=\"50\" y1=\"172\" x2=\"330\" y2=\"172\" stroke=\"#ddd\" stroke-width=\"0.5\"/><line x1=\"50\" y1=\"134\" x2=\"330\" y2=\"134\" stroke=\"#ddd\" stroke-width=\"0.5\"/><line x1=\"50\" y1=\"96\" x2=\"330\" y2=\"96\" stroke=\"#ddd\" stroke-width=\"0.5\"/><line x1=\"50\" y1=\"58\" x2=\"330\" y2=\"58\" stroke=\"#ddd\" stroke-width=\"0.5\"/><line x1=\"50\" y1=\"20\" x2=\"330\" y2=\"20\" stroke=\"#ddd\" stroke-width=\"0.5\"/><line x1=\"50\" y1=\"210\" x2=\"330\" y2=\"210\" stroke=\"#000\" stroke-width=\"1\"/><line x1=\"50\" y1=\"20\" x2=\"50\" y2=\"210\" stroke=\"#000\" stroke-width=\"1\"/><text x=\"50\" y=\"224\" font-size=\"9\" text-anchor=\"middle\">0</text><text x=\"120\" y=\"224\" font-size=\"9\" text-anchor=\"middle\">5</text><text x=\"190\" y=\"224\" font-size=\"9\" text-anchor=\"middle\">10</text><text x=\"260\" y=\"224\" font-size=\"9\" text-anchor=\"middle\">15</text><text x=\"330\" y=\"224\" font-size=\"9\" text-anchor=\"middle\">20</text><text x=\"45\" y=\"213\" font-size=\"9\" text-anchor=\"end\">0</text><text x=\"45\" y=\"175\" font-size=\"9\" text-anchor=\"end\">5</text><text x=\"45\" y=\"137\" font-size=\"9\" text-anchor=\"end\">10</text><text x=\"45\" y=\"99\" font-size=\"9\" text-anchor=\"end\">15</text><text x=\"45\" y=\"61\" font-size=\"9\" text-anchor=\"end\">20</text><text x=\"45\" y=\"23\" font-size=\"9\" text-anchor=\"end\">25</text><text x=\"190\" y=\"240\" font-size=\"10\" text-anchor=\"middle\">Depth (m)</text><text x=\"14\" y=\"115\" font-size=\"10\" text-anchor=\"middle\" transform=\"rotate(-90 14 115)\">Temperature (°C)</text><polyline points=\"50,42.8 78,42.8 106,50.4 134,80.8 162,118.8 190,141.6 218,156.8 246,164.4 274,168.2 302,172 330,172\" fill=\"none\" stroke=\"#000\" stroke-width=\"1.5\"/><polyline points=\"50,118.8 78,118.8 106,118.8 134,118.8 162,122.6 190,126.4 218,134 246,149.2 274,164.4 302,172 330,172\" fill=\"none\" stroke=\"#000\" stroke-width=\"1.5\" stroke-dasharray=\"4 3\"/><circle cx=\"50\" cy=\"42.8\" r=\"3\" fill=\"#000\"/><circle cx=\"78\" cy=\"42.8\" r=\"3\" fill=\"#000\"/><circle cx=\"106\" cy=\"50.4\" r=\"3\" fill=\"#000\"/><circle cx=\"134\" cy=\"80.8\" r=\"3\" fill=\"#000\"/><circle cx=\"162\" cy=\"118.8\" r=\"3\" fill=\"#000\"/><circle cx=\"190\" cy=\"141.6\" r=\"3\" fill=\"#000\"/><circle cx=\"218\" cy=\"156.8\" r=\"3\" fill=\"#000\"/><circle cx=\"246\" cy=\"164.4\" r=\"3\" fill=\"#000\"/><circle cx=\"274\" cy=\"168.2\" r=\"3\" fill=\"#000\"/><circle cx=\"302\" cy=\"172\" r=\"3\" fill=\"#000\"/><circle cx=\"330\" cy=\"172\" r=\"3\" fill=\"#000\"/><rect x=\"47\" y=\"115.8\" width=\"6\" height=\"6\" fill=\"#fff\" stroke=\"#000\" stroke-width=\"1.2\"/><rect x=\"75\" y=\"115.8\" width=\"6\" height=\"6\" fill=\"#fff\" stroke=\"#000\" stroke-width=\"1.2\"/><rect x=\"103\" y=\"115.8\" width=\"6\" height=\"6\" fill=\"#fff\" stroke=\"#000\" stroke-width=\"1.2\"/><rect x=\"131\" y=\"115.8\" width=\"6\" height=\"6\" fill=\"#fff\" stroke=\"#000\" stroke-width=\"1.2\"/><rect x=\"159\" y=\"119.6\" width=\"6\" height=\"6\" fill=\"#fff\" stroke=\"#000\" stroke-width=\"1.2\"/><rect x=\"187\" y=\"123.4\" width=\"6\" height=\"6\" fill=\"#fff\" stroke=\"#000\" stroke-width=\"1.2\"/><rect x=\"215\" y=\"131\" width=\"6\" height=\"6\" fill=\"#fff\" stroke=\"#000\" stroke-width=\"1.2\"/><rect x=\"243\" y=\"146.2\" width=\"6\" height=\"6\" fill=\"#fff\" stroke=\"#000\" stroke-width=\"1.2\"/><rect x=\"271\" y=\"161.4\" width=\"6\" height=\"6\" fill=\"#fff\" stroke=\"#000\" stroke-width=\"1.2\"/><rect x=\"299\" y=\"169\" width=\"6\" height=\"6\" fill=\"#fff\" stroke=\"#000\" stroke-width=\"1.2\"/><rect x=\"327\" y=\"169\" width=\"6\" height=\"6\" fill=\"#fff\" stroke=\"#000\" stroke-width=\"1.2\"/><rect x=\"232\" y=\"26\" width=\"94\" height=\"34\" fill=\"#fff\" stroke=\"#000\" stroke-width=\"0.8\"/><line x1=\"240\" y1=\"36\" x2=\"262\" y2=\"36\" stroke=\"#000\" stroke-width=\"1.5\"/><circle cx=\"251\" cy=\"36\" r=\"3\" fill=\"#000\"/><text x=\"268\" y=\"39\" font-size=\"9\">July</text><line x1=\"240\" y1=\"50\" x2=\"262\" y2=\"50\" stroke=\"#000\" stroke-width=\"1.5\" stroke-dasharray=\"4 3\"/><rect x=\"248\" y=\"47\" width=\"6\" height=\"6\" fill=\"#fff\" stroke=\"#000\" stroke-width=\"1.2\"/><text x=\"268\" y=\"53\" font-size=\"9\">October</text></svg>",
+      "caption": "Figure 1. Water temperature versus depth in the lake in July (solid line, circles) and October (dashed line, squares)."
+    },
+    "prompt": "According to Figure 1, in July the water temperature at a depth of 12 m was:",
+    "choices": [
+      "7 °C",
+      "9 °C",
+      "12 °C",
+      "17 °C"
+    ],
+    "correct_answer": "7 °C",
+    "explanation": "On the solid July line in Figure 1, the point at 12 m depth is plotted at \"7 °C.\" The value 9 °C is the July reading at 10 m, 12 °C is the July reading at 8 m, and 17 °C is the July reading at 6 m.",
+    "domain": "Interpretation of Data",
+    "subskill": "read a value from a line graph",
+    "difficulty": "easy"
+  },
+  {
+    "id": "SCI-DR-04-2",
+    "passage_id": "sci-dr-04",
+    "passage_title": "Lake Temperature Profiles",
+    "format": "data_representation",
+    "passage": "In many deep lakes in temperate regions, water temperature changes with depth, and the pattern of change shifts through the year. Limnologists describe a stratified lake in three layers: the epilimnion, a warm upper layer of nearly uniform temperature; the thermocline, the depth range over which temperature changes most rapidly with depth; and the hypolimnion, a cold bottom layer of nearly uniform temperature.\n\nTo study a 20 m deep lake, researchers anchored a boat over the deepest point and lowered a temperature probe on a marked cable, recording the water temperature at regular depth intervals from the surface to the bottom. The same procedure was carried out at midday on one day in July and again on one day in October of the same year. Air temperature and wind speed were also recorded but are not shown. Figure 1 shows the water temperature, in °C, measured at each depth on the two dates.",
+    "graphic": {
+      "type": "svg",
+      "svg": "<svg viewBox=\"0 0 350 250\" width=\"320\" role=\"img\" aria-label=\"Line graph of water temperature versus depth for July and October\" font-family=\"sans-serif\"><rect width=\"350\" height=\"250\" fill=\"#fff\"/><text x=\"50\" y=\"12\" font-size=\"10\" font-weight=\"bold\">Figure 1</text><path d=\"M50,202.4H330M50,194.8H330M50,187.2H330M50,179.6H330M50,164.4H330M50,156.8H330M50,149.2H330M50,141.6H330M50,126.4H330M50,118.8H330M50,111.2H330M50,103.6H330M50,88.4H330M50,80.8H330M50,73.2H330M50,65.6H330M50,50.4H330M50,42.8H330M50,35.2H330M50,27.6H330\" stroke=\"#eee\" stroke-width=\"0.4\" fill=\"none\"/><line x1=\"50\" y1=\"20\" x2=\"50\" y2=\"210\" stroke=\"#ddd\" stroke-width=\"0.5\"/><line x1=\"120\" y1=\"20\" x2=\"120\" y2=\"210\" stroke=\"#ddd\" stroke-width=\"0.5\"/><line x1=\"190\" y1=\"20\" x2=\"190\" y2=\"210\" stroke=\"#ddd\" stroke-width=\"0.5\"/><line x1=\"260\" y1=\"20\" x2=\"260\" y2=\"210\" stroke=\"#ddd\" stroke-width=\"0.5\"/><line x1=\"330\" y1=\"20\" x2=\"330\" y2=\"210\" stroke=\"#ddd\" stroke-width=\"0.5\"/><line x1=\"50\" y1=\"210\" x2=\"330\" y2=\"210\" stroke=\"#ddd\" stroke-width=\"0.5\"/><line x1=\"50\" y1=\"172\" x2=\"330\" y2=\"172\" stroke=\"#ddd\" stroke-width=\"0.5\"/><line x1=\"50\" y1=\"134\" x2=\"330\" y2=\"134\" stroke=\"#ddd\" stroke-width=\"0.5\"/><line x1=\"50\" y1=\"96\" x2=\"330\" y2=\"96\" stroke=\"#ddd\" stroke-width=\"0.5\"/><line x1=\"50\" y1=\"58\" x2=\"330\" y2=\"58\" stroke=\"#ddd\" stroke-width=\"0.5\"/><line x1=\"50\" y1=\"20\" x2=\"330\" y2=\"20\" stroke=\"#ddd\" stroke-width=\"0.5\"/><line x1=\"50\" y1=\"210\" x2=\"330\" y2=\"210\" stroke=\"#000\" stroke-width=\"1\"/><line x1=\"50\" y1=\"20\" x2=\"50\" y2=\"210\" stroke=\"#000\" stroke-width=\"1\"/><text x=\"50\" y=\"224\" font-size=\"9\" text-anchor=\"middle\">0</text><text x=\"120\" y=\"224\" font-size=\"9\" text-anchor=\"middle\">5</text><text x=\"190\" y=\"224\" font-size=\"9\" text-anchor=\"middle\">10</text><text x=\"260\" y=\"224\" font-size=\"9\" text-anchor=\"middle\">15</text><text x=\"330\" y=\"224\" font-size=\"9\" text-anchor=\"middle\">20</text><text x=\"45\" y=\"213\" font-size=\"9\" text-anchor=\"end\">0</text><text x=\"45\" y=\"175\" font-size=\"9\" text-anchor=\"end\">5</text><text x=\"45\" y=\"137\" font-size=\"9\" text-anchor=\"end\">10</text><text x=\"45\" y=\"99\" font-size=\"9\" text-anchor=\"end\">15</text><text x=\"45\" y=\"61\" font-size=\"9\" text-anchor=\"end\">20</text><text x=\"45\" y=\"23\" font-size=\"9\" text-anchor=\"end\">25</text><text x=\"190\" y=\"240\" font-size=\"10\" text-anchor=\"middle\">Depth (m)</text><text x=\"14\" y=\"115\" font-size=\"10\" text-anchor=\"middle\" transform=\"rotate(-90 14 115)\">Temperature (°C)</text><polyline points=\"50,42.8 78,42.8 106,50.4 134,80.8 162,118.8 190,141.6 218,156.8 246,164.4 274,168.2 302,172 330,172\" fill=\"none\" stroke=\"#000\" stroke-width=\"1.5\"/><polyline points=\"50,118.8 78,118.8 106,118.8 134,118.8 162,122.6 190,126.4 218,134 246,149.2 274,164.4 302,172 330,172\" fill=\"none\" stroke=\"#000\" stroke-width=\"1.5\" stroke-dasharray=\"4 3\"/><circle cx=\"50\" cy=\"42.8\" r=\"3\" fill=\"#000\"/><circle cx=\"78\" cy=\"42.8\" r=\"3\" fill=\"#000\"/><circle cx=\"106\" cy=\"50.4\" r=\"3\" fill=\"#000\"/><circle cx=\"134\" cy=\"80.8\" r=\"3\" fill=\"#000\"/><circle cx=\"162\" cy=\"118.8\" r=\"3\" fill=\"#000\"/><circle cx=\"190\" cy=\"141.6\" r=\"3\" fill=\"#000\"/><circle cx=\"218\" cy=\"156.8\" r=\"3\" fill=\"#000\"/><circle cx=\"246\" cy=\"164.4\" r=\"3\" fill=\"#000\"/><circle cx=\"274\" cy=\"168.2\" r=\"3\" fill=\"#000\"/><circle cx=\"302\" cy=\"172\" r=\"3\" fill=\"#000\"/><circle cx=\"330\" cy=\"172\" r=\"3\" fill=\"#000\"/><rect x=\"47\" y=\"115.8\" width=\"6\" height=\"6\" fill=\"#fff\" stroke=\"#000\" stroke-width=\"1.2\"/><rect x=\"75\" y=\"115.8\" width=\"6\" height=\"6\" fill=\"#fff\" stroke=\"#000\" stroke-width=\"1.2\"/><rect x=\"103\" y=\"115.8\" width=\"6\" height=\"6\" fill=\"#fff\" stroke=\"#000\" stroke-width=\"1.2\"/><rect x=\"131\" y=\"115.8\" width=\"6\" height=\"6\" fill=\"#fff\" stroke=\"#000\" stroke-width=\"1.2\"/><rect x=\"159\" y=\"119.6\" width=\"6\" height=\"6\" fill=\"#fff\" stroke=\"#000\" stroke-width=\"1.2\"/><rect x=\"187\" y=\"123.4\" width=\"6\" height=\"6\" fill=\"#fff\" stroke=\"#000\" stroke-width=\"1.2\"/><rect x=\"215\" y=\"131\" width=\"6\" height=\"6\" fill=\"#fff\" stroke=\"#000\" stroke-width=\"1.2\"/><rect x=\"243\" y=\"146.2\" width=\"6\" height=\"6\" fill=\"#fff\" stroke=\"#000\" stroke-width=\"1.2\"/><rect x=\"271\" y=\"161.4\" width=\"6\" height=\"6\" fill=\"#fff\" stroke=\"#000\" stroke-width=\"1.2\"/><rect x=\"299\" y=\"169\" width=\"6\" height=\"6\" fill=\"#fff\" stroke=\"#000\" stroke-width=\"1.2\"/><rect x=\"327\" y=\"169\" width=\"6\" height=\"6\" fill=\"#fff\" stroke=\"#000\" stroke-width=\"1.2\"/><rect x=\"232\" y=\"26\" width=\"94\" height=\"34\" fill=\"#fff\" stroke=\"#000\" stroke-width=\"0.8\"/><line x1=\"240\" y1=\"36\" x2=\"262\" y2=\"36\" stroke=\"#000\" stroke-width=\"1.5\"/><circle cx=\"251\" cy=\"36\" r=\"3\" fill=\"#000\"/><text x=\"268\" y=\"39\" font-size=\"9\">July</text><line x1=\"240\" y1=\"50\" x2=\"262\" y2=\"50\" stroke=\"#000\" stroke-width=\"1.5\" stroke-dasharray=\"4 3\"/><rect x=\"248\" y=\"47\" width=\"6\" height=\"6\" fill=\"#fff\" stroke=\"#000\" stroke-width=\"1.2\"/><text x=\"268\" y=\"53\" font-size=\"9\">October</text></svg>",
+      "caption": "Figure 1. Water temperature versus depth in the lake in July (solid line, circles) and October (dashed line, squares)."
+    },
+    "prompt": "Based on Figure 1 and the definition given in the passage, in July the thermocline was located between depths of approximately:",
+    "choices": [
+      "0 m and 4 m.",
+      "4 m and 10 m.",
+      "10 m and 16 m.",
+      "16 m and 20 m."
+    ],
+    "correct_answer": "4 m and 10 m.",
+    "explanation": "The thermocline is where temperature changes most rapidly with depth. On the July line, temperature falls from 21 °C at 4 m to 9 °C at 10 m, a 12 °C drop, whereas it changes by only about 1 °C between 0 m and 4 m and by less than 4 °C over each of the deeper ranges, so the thermocline was between \"4 m and 10 m.\"",
+    "domain": "Interpretation of Data",
+    "subskill": "apply a definition to a graph",
+    "difficulty": "medium"
+  },
+  {
+    "id": "SCI-DR-04-3",
+    "passage_id": "sci-dr-04",
+    "passage_title": "Lake Temperature Profiles",
+    "format": "data_representation",
+    "passage": "In many deep lakes in temperate regions, water temperature changes with depth, and the pattern of change shifts through the year. Limnologists describe a stratified lake in three layers: the epilimnion, a warm upper layer of nearly uniform temperature; the thermocline, the depth range over which temperature changes most rapidly with depth; and the hypolimnion, a cold bottom layer of nearly uniform temperature.\n\nTo study a 20 m deep lake, researchers anchored a boat over the deepest point and lowered a temperature probe on a marked cable, recording the water temperature at regular depth intervals from the surface to the bottom. The same procedure was carried out at midday on one day in July and again on one day in October of the same year. Air temperature and wind speed were also recorded but are not shown. Figure 1 shows the water temperature, in °C, measured at each depth on the two dates.",
+    "graphic": {
+      "type": "svg",
+      "svg": "<svg viewBox=\"0 0 350 250\" width=\"320\" role=\"img\" aria-label=\"Line graph of water temperature versus depth for July and October\" font-family=\"sans-serif\"><rect width=\"350\" height=\"250\" fill=\"#fff\"/><text x=\"50\" y=\"12\" font-size=\"10\" font-weight=\"bold\">Figure 1</text><path d=\"M50,202.4H330M50,194.8H330M50,187.2H330M50,179.6H330M50,164.4H330M50,156.8H330M50,149.2H330M50,141.6H330M50,126.4H330M50,118.8H330M50,111.2H330M50,103.6H330M50,88.4H330M50,80.8H330M50,73.2H330M50,65.6H330M50,50.4H330M50,42.8H330M50,35.2H330M50,27.6H330\" stroke=\"#eee\" stroke-width=\"0.4\" fill=\"none\"/><line x1=\"50\" y1=\"20\" x2=\"50\" y2=\"210\" stroke=\"#ddd\" stroke-width=\"0.5\"/><line x1=\"120\" y1=\"20\" x2=\"120\" y2=\"210\" stroke=\"#ddd\" stroke-width=\"0.5\"/><line x1=\"190\" y1=\"20\" x2=\"190\" y2=\"210\" stroke=\"#ddd\" stroke-width=\"0.5\"/><line x1=\"260\" y1=\"20\" x2=\"260\" y2=\"210\" stroke=\"#ddd\" stroke-width=\"0.5\"/><line x1=\"330\" y1=\"20\" x2=\"330\" y2=\"210\" stroke=\"#ddd\" stroke-width=\"0.5\"/><line x1=\"50\" y1=\"210\" x2=\"330\" y2=\"210\" stroke=\"#ddd\" stroke-width=\"0.5\"/><line x1=\"50\" y1=\"172\" x2=\"330\" y2=\"172\" stroke=\"#ddd\" stroke-width=\"0.5\"/><line x1=\"50\" y1=\"134\" x2=\"330\" y2=\"134\" stroke=\"#ddd\" stroke-width=\"0.5\"/><line x1=\"50\" y1=\"96\" x2=\"330\" y2=\"96\" stroke=\"#ddd\" stroke-width=\"0.5\"/><line x1=\"50\" y1=\"58\" x2=\"330\" y2=\"58\" stroke=\"#ddd\" stroke-width=\"0.5\"/><line x1=\"50\" y1=\"20\" x2=\"330\" y2=\"20\" stroke=\"#ddd\" stroke-width=\"0.5\"/><line x1=\"50\" y1=\"210\" x2=\"330\" y2=\"210\" stroke=\"#000\" stroke-width=\"1\"/><line x1=\"50\" y1=\"20\" x2=\"50\" y2=\"210\" stroke=\"#000\" stroke-width=\"1\"/><text x=\"50\" y=\"224\" font-size=\"9\" text-anchor=\"middle\">0</text><text x=\"120\" y=\"224\" font-size=\"9\" text-anchor=\"middle\">5</text><text x=\"190\" y=\"224\" font-size=\"9\" text-anchor=\"middle\">10</text><text x=\"260\" y=\"224\" font-size=\"9\" text-anchor=\"middle\">15</text><text x=\"330\" y=\"224\" font-size=\"9\" text-anchor=\"middle\">20</text><text x=\"45\" y=\"213\" font-size=\"9\" text-anchor=\"end\">0</text><text x=\"45\" y=\"175\" font-size=\"9\" text-anchor=\"end\">5</text><text x=\"45\" y=\"137\" font-size=\"9\" text-anchor=\"end\">10</text><text x=\"45\" y=\"99\" font-size=\"9\" text-anchor=\"end\">15</text><text x=\"45\" y=\"61\" font-size=\"9\" text-anchor=\"end\">20</text><text x=\"45\" y=\"23\" font-size=\"9\" text-anchor=\"end\">25</text><text x=\"190\" y=\"240\" font-size=\"10\" text-anchor=\"middle\">Depth (m)</text><text x=\"14\" y=\"115\" font-size=\"10\" text-anchor=\"middle\" transform=\"rotate(-90 14 115)\">Temperature (°C)</text><polyline points=\"50,42.8 78,42.8 106,50.4 134,80.8 162,118.8 190,141.6 218,156.8 246,164.4 274,168.2 302,172 330,172\" fill=\"none\" stroke=\"#000\" stroke-width=\"1.5\"/><polyline points=\"50,118.8 78,118.8 106,118.8 134,118.8 162,122.6 190,126.4 218,134 246,149.2 274,164.4 302,172 330,172\" fill=\"none\" stroke=\"#000\" stroke-width=\"1.5\" stroke-dasharray=\"4 3\"/><circle cx=\"50\" cy=\"42.8\" r=\"3\" fill=\"#000\"/><circle cx=\"78\" cy=\"42.8\" r=\"3\" fill=\"#000\"/><circle cx=\"106\" cy=\"50.4\" r=\"3\" fill=\"#000\"/><circle cx=\"134\" cy=\"80.8\" r=\"3\" fill=\"#000\"/><circle cx=\"162\" cy=\"118.8\" r=\"3\" fill=\"#000\"/><circle cx=\"190\" cy=\"141.6\" r=\"3\" fill=\"#000\"/><circle cx=\"218\" cy=\"156.8\" r=\"3\" fill=\"#000\"/><circle cx=\"246\" cy=\"164.4\" r=\"3\" fill=\"#000\"/><circle cx=\"274\" cy=\"168.2\" r=\"3\" fill=\"#000\"/><circle cx=\"302\" cy=\"172\" r=\"3\" fill=\"#000\"/><circle cx=\"330\" cy=\"172\" r=\"3\" fill=\"#000\"/><rect x=\"47\" y=\"115.8\" width=\"6\" height=\"6\" fill=\"#fff\" stroke=\"#000\" stroke-width=\"1.2\"/><rect x=\"75\" y=\"115.8\" width=\"6\" height=\"6\" fill=\"#fff\" stroke=\"#000\" stroke-width=\"1.2\"/><rect x=\"103\" y=\"115.8\" width=\"6\" height=\"6\" fill=\"#fff\" stroke=\"#000\" stroke-width=\"1.2\"/><rect x=\"131\" y=\"115.8\" width=\"6\" height=\"6\" fill=\"#fff\" stroke=\"#000\" stroke-width=\"1.2\"/><rect x=\"159\" y=\"119.6\" width=\"6\" height=\"6\" fill=\"#fff\" stroke=\"#000\" stroke-width=\"1.2\"/><rect x=\"187\" y=\"123.4\" width=\"6\" height=\"6\" fill=\"#fff\" stroke=\"#000\" stroke-width=\"1.2\"/><rect x=\"215\" y=\"131\" width=\"6\" height=\"6\" fill=\"#fff\" stroke=\"#000\" stroke-width=\"1.2\"/><rect x=\"243\" y=\"146.2\" width=\"6\" height=\"6\" fill=\"#fff\" stroke=\"#000\" stroke-width=\"1.2\"/><rect x=\"271\" y=\"161.4\" width=\"6\" height=\"6\" fill=\"#fff\" stroke=\"#000\" stroke-width=\"1.2\"/><rect x=\"299\" y=\"169\" width=\"6\" height=\"6\" fill=\"#fff\" stroke=\"#000\" stroke-width=\"1.2\"/><rect x=\"327\" y=\"169\" width=\"6\" height=\"6\" fill=\"#fff\" stroke=\"#000\" stroke-width=\"1.2\"/><rect x=\"232\" y=\"26\" width=\"94\" height=\"34\" fill=\"#fff\" stroke=\"#000\" stroke-width=\"0.8\"/><line x1=\"240\" y1=\"36\" x2=\"262\" y2=\"36\" stroke=\"#000\" stroke-width=\"1.5\"/><circle cx=\"251\" cy=\"36\" r=\"3\" fill=\"#000\"/><text x=\"268\" y=\"39\" font-size=\"9\">July</text><line x1=\"240\" y1=\"50\" x2=\"262\" y2=\"50\" stroke=\"#000\" stroke-width=\"1.5\" stroke-dasharray=\"4 3\"/><rect x=\"248\" y=\"47\" width=\"6\" height=\"6\" fill=\"#fff\" stroke=\"#000\" stroke-width=\"1.2\"/><text x=\"268\" y=\"53\" font-size=\"9\">October</text></svg>",
+      "caption": "Figure 1. Water temperature versus depth in the lake in July (solid line, circles) and October (dashed line, squares)."
+    },
+    "prompt": "According to Figure 1, at which of the following depths was the difference between the July and October water temperatures greatest?",
+    "choices": [
+      "2 m",
+      "6 m",
+      "10 m",
+      "14 m"
+    ],
+    "correct_answer": "2 m",
+    "explanation": "At 2 m the July and October readings were 22 °C and 12 °C, a difference of 10 °C. The differences at the other listed depths are smaller: 5 °C at 6 m (17 °C versus 12 °C), 2 °C at 10 m (9 °C versus 11 °C), and 2 °C at 14 m (6 °C versus 8 °C). So the greatest difference among these was at \"2 m.\"",
+    "domain": "Interpretation of Data",
+    "subskill": "compare two data series",
+    "difficulty": "hard"
+  },
+  {
+    "id": "SCI-DR-04-4",
+    "passage_id": "sci-dr-04",
+    "passage_title": "Lake Temperature Profiles",
+    "format": "data_representation",
+    "passage": "In many deep lakes in temperate regions, water temperature changes with depth, and the pattern of change shifts through the year. Limnologists describe a stratified lake in three layers: the epilimnion, a warm upper layer of nearly uniform temperature; the thermocline, the depth range over which temperature changes most rapidly with depth; and the hypolimnion, a cold bottom layer of nearly uniform temperature.\n\nTo study a 20 m deep lake, researchers anchored a boat over the deepest point and lowered a temperature probe on a marked cable, recording the water temperature at regular depth intervals from the surface to the bottom. The same procedure was carried out at midday on one day in July and again on one day in October of the same year. Air temperature and wind speed were also recorded but are not shown. Figure 1 shows the water temperature, in °C, measured at each depth on the two dates.",
+    "graphic": {
+      "type": "svg",
+      "svg": "<svg viewBox=\"0 0 350 250\" width=\"320\" role=\"img\" aria-label=\"Line graph of water temperature versus depth for July and October\" font-family=\"sans-serif\"><rect width=\"350\" height=\"250\" fill=\"#fff\"/><text x=\"50\" y=\"12\" font-size=\"10\" font-weight=\"bold\">Figure 1</text><path d=\"M50,202.4H330M50,194.8H330M50,187.2H330M50,179.6H330M50,164.4H330M50,156.8H330M50,149.2H330M50,141.6H330M50,126.4H330M50,118.8H330M50,111.2H330M50,103.6H330M50,88.4H330M50,80.8H330M50,73.2H330M50,65.6H330M50,50.4H330M50,42.8H330M50,35.2H330M50,27.6H330\" stroke=\"#eee\" stroke-width=\"0.4\" fill=\"none\"/><line x1=\"50\" y1=\"20\" x2=\"50\" y2=\"210\" stroke=\"#ddd\" stroke-width=\"0.5\"/><line x1=\"120\" y1=\"20\" x2=\"120\" y2=\"210\" stroke=\"#ddd\" stroke-width=\"0.5\"/><line x1=\"190\" y1=\"20\" x2=\"190\" y2=\"210\" stroke=\"#ddd\" stroke-width=\"0.5\"/><line x1=\"260\" y1=\"20\" x2=\"260\" y2=\"210\" stroke=\"#ddd\" stroke-width=\"0.5\"/><line x1=\"330\" y1=\"20\" x2=\"330\" y2=\"210\" stroke=\"#ddd\" stroke-width=\"0.5\"/><line x1=\"50\" y1=\"210\" x2=\"330\" y2=\"210\" stroke=\"#ddd\" stroke-width=\"0.5\"/><line x1=\"50\" y1=\"172\" x2=\"330\" y2=\"172\" stroke=\"#ddd\" stroke-width=\"0.5\"/><line x1=\"50\" y1=\"134\" x2=\"330\" y2=\"134\" stroke=\"#ddd\" stroke-width=\"0.5\"/><line x1=\"50\" y1=\"96\" x2=\"330\" y2=\"96\" stroke=\"#ddd\" stroke-width=\"0.5\"/><line x1=\"50\" y1=\"58\" x2=\"330\" y2=\"58\" stroke=\"#ddd\" stroke-width=\"0.5\"/><line x1=\"50\" y1=\"20\" x2=\"330\" y2=\"20\" stroke=\"#ddd\" stroke-width=\"0.5\"/><line x1=\"50\" y1=\"210\" x2=\"330\" y2=\"210\" stroke=\"#000\" stroke-width=\"1\"/><line x1=\"50\" y1=\"20\" x2=\"50\" y2=\"210\" stroke=\"#000\" stroke-width=\"1\"/><text x=\"50\" y=\"224\" font-size=\"9\" text-anchor=\"middle\">0</text><text x=\"120\" y=\"224\" font-size=\"9\" text-anchor=\"middle\">5</text><text x=\"190\" y=\"224\" font-size=\"9\" text-anchor=\"middle\">10</text><text x=\"260\" y=\"224\" font-size=\"9\" text-anchor=\"middle\">15</text><text x=\"330\" y=\"224\" font-size=\"9\" text-anchor=\"middle\">20</text><text x=\"45\" y=\"213\" font-size=\"9\" text-anchor=\"end\">0</text><text x=\"45\" y=\"175\" font-size=\"9\" text-anchor=\"end\">5</text><text x=\"45\" y=\"137\" font-size=\"9\" text-anchor=\"end\">10</text><text x=\"45\" y=\"99\" font-size=\"9\" text-anchor=\"end\">15</text><text x=\"45\" y=\"61\" font-size=\"9\" text-anchor=\"end\">20</text><text x=\"45\" y=\"23\" font-size=\"9\" text-anchor=\"end\">25</text><text x=\"190\" y=\"240\" font-size=\"10\" text-anchor=\"middle\">Depth (m)</text><text x=\"14\" y=\"115\" font-size=\"10\" text-anchor=\"middle\" transform=\"rotate(-90 14 115)\">Temperature (°C)</text><polyline points=\"50,42.8 78,42.8 106,50.4 134,80.8 162,118.8 190,141.6 218,156.8 246,164.4 274,168.2 302,172 330,172\" fill=\"none\" stroke=\"#000\" stroke-width=\"1.5\"/><polyline points=\"50,118.8 78,118.8 106,118.8 134,118.8 162,122.6 190,126.4 218,134 246,149.2 274,164.4 302,172 330,172\" fill=\"none\" stroke=\"#000\" stroke-width=\"1.5\" stroke-dasharray=\"4 3\"/><circle cx=\"50\" cy=\"42.8\" r=\"3\" fill=\"#000\"/><circle cx=\"78\" cy=\"42.8\" r=\"3\" fill=\"#000\"/><circle cx=\"106\" cy=\"50.4\" r=\"3\" fill=\"#000\"/><circle cx=\"134\" cy=\"80.8\" r=\"3\" fill=\"#000\"/><circle cx=\"162\" cy=\"118.8\" r=\"3\" fill=\"#000\"/><circle cx=\"190\" cy=\"141.6\" r=\"3\" fill=\"#000\"/><circle cx=\"218\" cy=\"156.8\" r=\"3\" fill=\"#000\"/><circle cx=\"246\" cy=\"164.4\" r=\"3\" fill=\"#000\"/><circle cx=\"274\" cy=\"168.2\" r=\"3\" fill=\"#000\"/><circle cx=\"302\" cy=\"172\" r=\"3\" fill=\"#000\"/><circle cx=\"330\" cy=\"172\" r=\"3\" fill=\"#000\"/><rect x=\"47\" y=\"115.8\" width=\"6\" height=\"6\" fill=\"#fff\" stroke=\"#000\" stroke-width=\"1.2\"/><rect x=\"75\" y=\"115.8\" width=\"6\" height=\"6\" fill=\"#fff\" stroke=\"#000\" stroke-width=\"1.2\"/><rect x=\"103\" y=\"115.8\" width=\"6\" height=\"6\" fill=\"#fff\" stroke=\"#000\" stroke-width=\"1.2\"/><rect x=\"131\" y=\"115.8\" width=\"6\" height=\"6\" fill=\"#fff\" stroke=\"#000\" stroke-width=\"1.2\"/><rect x=\"159\" y=\"119.6\" width=\"6\" height=\"6\" fill=\"#fff\" stroke=\"#000\" stroke-width=\"1.2\"/><rect x=\"187\" y=\"123.4\" width=\"6\" height=\"6\" fill=\"#fff\" stroke=\"#000\" stroke-width=\"1.2\"/><rect x=\"215\" y=\"131\" width=\"6\" height=\"6\" fill=\"#fff\" stroke=\"#000\" stroke-width=\"1.2\"/><rect x=\"243\" y=\"146.2\" width=\"6\" height=\"6\" fill=\"#fff\" stroke=\"#000\" stroke-width=\"1.2\"/><rect x=\"271\" y=\"161.4\" width=\"6\" height=\"6\" fill=\"#fff\" stroke=\"#000\" stroke-width=\"1.2\"/><rect x=\"299\" y=\"169\" width=\"6\" height=\"6\" fill=\"#fff\" stroke=\"#000\" stroke-width=\"1.2\"/><rect x=\"327\" y=\"169\" width=\"6\" height=\"6\" fill=\"#fff\" stroke=\"#000\" stroke-width=\"1.2\"/><rect x=\"232\" y=\"26\" width=\"94\" height=\"34\" fill=\"#fff\" stroke=\"#000\" stroke-width=\"0.8\"/><line x1=\"240\" y1=\"36\" x2=\"262\" y2=\"36\" stroke=\"#000\" stroke-width=\"1.5\"/><circle cx=\"251\" cy=\"36\" r=\"3\" fill=\"#000\"/><text x=\"268\" y=\"39\" font-size=\"9\">July</text><line x1=\"240\" y1=\"50\" x2=\"262\" y2=\"50\" stroke=\"#000\" stroke-width=\"1.5\" stroke-dasharray=\"4 3\"/><rect x=\"248\" y=\"47\" width=\"6\" height=\"6\" fill=\"#fff\" stroke=\"#000\" stroke-width=\"1.2\"/><text x=\"268\" y=\"53\" font-size=\"9\">October</text></svg>",
+      "caption": "Figure 1. Water temperature versus depth in the lake in July (solid line, circles) and October (dashed line, squares)."
+    },
+    "prompt": "Which of the following conclusions about the change in the lake between July and October is best supported by Figure 1?",
+    "choices": [
+      "The surface water cooled, and the thermocline moved to a greater depth.",
+      "The surface water warmed, and the thermocline moved to a greater depth.",
+      "The surface water cooled, and the thermocline moved to a shallower depth.",
+      "The water at a depth of 20 m warmed by more than 5 °C."
+    ],
+    "correct_answer": "The surface water cooled, and the thermocline moved to a greater depth.",
+    "explanation": "Figure 1 shows the surface reading falling from 22 °C in July to 12 °C in October, and the steepest part of the profile shifting from about 4-10 m in July to about 12-18 m in October, so \"The surface water cooled, and the thermocline moved to a greater depth.\" The reading at 20 m was 5 °C on both dates, so the bottom water did not warm.",
+    "domain": "Evaluation of Models, Inferences, and Experimental Results",
+    "subskill": "identify the conclusion supported by the data",
+    "difficulty": "hard"
+  },
+  {
+    "id": "SCI-DR-04-5",
+    "passage_id": "sci-dr-04",
+    "passage_title": "Lake Temperature Profiles",
+    "format": "data_representation",
+    "passage": "In many deep lakes in temperate regions, water temperature changes with depth, and the pattern of change shifts through the year. Limnologists describe a stratified lake in three layers: the epilimnion, a warm upper layer of nearly uniform temperature; the thermocline, the depth range over which temperature changes most rapidly with depth; and the hypolimnion, a cold bottom layer of nearly uniform temperature.\n\nTo study a 20 m deep lake, researchers anchored a boat over the deepest point and lowered a temperature probe on a marked cable, recording the water temperature at regular depth intervals from the surface to the bottom. The same procedure was carried out at midday on one day in July and again on one day in October of the same year. Air temperature and wind speed were also recorded but are not shown. Figure 1 shows the water temperature, in °C, measured at each depth on the two dates.",
+    "graphic": {
+      "type": "svg",
+      "svg": "<svg viewBox=\"0 0 350 250\" width=\"320\" role=\"img\" aria-label=\"Line graph of water temperature versus depth for July and October\" font-family=\"sans-serif\"><rect width=\"350\" height=\"250\" fill=\"#fff\"/><text x=\"50\" y=\"12\" font-size=\"10\" font-weight=\"bold\">Figure 1</text><path d=\"M50,202.4H330M50,194.8H330M50,187.2H330M50,179.6H330M50,164.4H330M50,156.8H330M50,149.2H330M50,141.6H330M50,126.4H330M50,118.8H330M50,111.2H330M50,103.6H330M50,88.4H330M50,80.8H330M50,73.2H330M50,65.6H330M50,50.4H330M50,42.8H330M50,35.2H330M50,27.6H330\" stroke=\"#eee\" stroke-width=\"0.4\" fill=\"none\"/><line x1=\"50\" y1=\"20\" x2=\"50\" y2=\"210\" stroke=\"#ddd\" stroke-width=\"0.5\"/><line x1=\"120\" y1=\"20\" x2=\"120\" y2=\"210\" stroke=\"#ddd\" stroke-width=\"0.5\"/><line x1=\"190\" y1=\"20\" x2=\"190\" y2=\"210\" stroke=\"#ddd\" stroke-width=\"0.5\"/><line x1=\"260\" y1=\"20\" x2=\"260\" y2=\"210\" stroke=\"#ddd\" stroke-width=\"0.5\"/><line x1=\"330\" y1=\"20\" x2=\"330\" y2=\"210\" stroke=\"#ddd\" stroke-width=\"0.5\"/><line x1=\"50\" y1=\"210\" x2=\"330\" y2=\"210\" stroke=\"#ddd\" stroke-width=\"0.5\"/><line x1=\"50\" y1=\"172\" x2=\"330\" y2=\"172\" stroke=\"#ddd\" stroke-width=\"0.5\"/><line x1=\"50\" y1=\"134\" x2=\"330\" y2=\"134\" stroke=\"#ddd\" stroke-width=\"0.5\"/><line x1=\"50\" y1=\"96\" x2=\"330\" y2=\"96\" stroke=\"#ddd\" stroke-width=\"0.5\"/><line x1=\"50\" y1=\"58\" x2=\"330\" y2=\"58\" stroke=\"#ddd\" stroke-width=\"0.5\"/><line x1=\"50\" y1=\"20\" x2=\"330\" y2=\"20\" stroke=\"#ddd\" stroke-width=\"0.5\"/><line x1=\"50\" y1=\"210\" x2=\"330\" y2=\"210\" stroke=\"#000\" stroke-width=\"1\"/><line x1=\"50\" y1=\"20\" x2=\"50\" y2=\"210\" stroke=\"#000\" stroke-width=\"1\"/><text x=\"50\" y=\"224\" font-size=\"9\" text-anchor=\"middle\">0</text><text x=\"120\" y=\"224\" font-size=\"9\" text-anchor=\"middle\">5</text><text x=\"190\" y=\"224\" font-size=\"9\" text-anchor=\"middle\">10</text><text x=\"260\" y=\"224\" font-size=\"9\" text-anchor=\"middle\">15</text><text x=\"330\" y=\"224\" font-size=\"9\" text-anchor=\"middle\">20</text><text x=\"45\" y=\"213\" font-size=\"9\" text-anchor=\"end\">0</text><text x=\"45\" y=\"175\" font-size=\"9\" text-anchor=\"end\">5</text><text x=\"45\" y=\"137\" font-size=\"9\" text-anchor=\"end\">10</text><text x=\"45\" y=\"99\" font-size=\"9\" text-anchor=\"end\">15</text><text x=\"45\" y=\"61\" font-size=\"9\" text-anchor=\"end\">20</text><text x=\"45\" y=\"23\" font-size=\"9\" text-anchor=\"end\">25</text><text x=\"190\" y=\"240\" font-size=\"10\" text-anchor=\"middle\">Depth (m)</text><text x=\"14\" y=\"115\" font-size=\"10\" text-anchor=\"middle\" transform=\"rotate(-90 14 115)\">Temperature (°C)</text><polyline points=\"50,42.8 78,42.8 106,50.4 134,80.8 162,118.8 190,141.6 218,156.8 246,164.4 274,168.2 302,172 330,172\" fill=\"none\" stroke=\"#000\" stroke-width=\"1.5\"/><polyline points=\"50,118.8 78,118.8 106,118.8 134,118.8 162,122.6 190,126.4 218,134 246,149.2 274,164.4 302,172 330,172\" fill=\"none\" stroke=\"#000\" stroke-width=\"1.5\" stroke-dasharray=\"4 3\"/><circle cx=\"50\" cy=\"42.8\" r=\"3\" fill=\"#000\"/><circle cx=\"78\" cy=\"42.8\" r=\"3\" fill=\"#000\"/><circle cx=\"106\" cy=\"50.4\" r=\"3\" fill=\"#000\"/><circle cx=\"134\" cy=\"80.8\" r=\"3\" fill=\"#000\"/><circle cx=\"162\" cy=\"118.8\" r=\"3\" fill=\"#000\"/><circle cx=\"190\" cy=\"141.6\" r=\"3\" fill=\"#000\"/><circle cx=\"218\" cy=\"156.8\" r=\"3\" fill=\"#000\"/><circle cx=\"246\" cy=\"164.4\" r=\"3\" fill=\"#000\"/><circle cx=\"274\" cy=\"168.2\" r=\"3\" fill=\"#000\"/><circle cx=\"302\" cy=\"172\" r=\"3\" fill=\"#000\"/><circle cx=\"330\" cy=\"172\" r=\"3\" fill=\"#000\"/><rect x=\"47\" y=\"115.8\" width=\"6\" height=\"6\" fill=\"#fff\" stroke=\"#000\" stroke-width=\"1.2\"/><rect x=\"75\" y=\"115.8\" width=\"6\" height=\"6\" fill=\"#fff\" stroke=\"#000\" stroke-width=\"1.2\"/><rect x=\"103\" y=\"115.8\" width=\"6\" height=\"6\" fill=\"#fff\" stroke=\"#000\" stroke-width=\"1.2\"/><rect x=\"131\" y=\"115.8\" width=\"6\" height=\"6\" fill=\"#fff\" stroke=\"#000\" stroke-width=\"1.2\"/><rect x=\"159\" y=\"119.6\" width=\"6\" height=\"6\" fill=\"#fff\" stroke=\"#000\" stroke-width=\"1.2\"/><rect x=\"187\" y=\"123.4\" width=\"6\" height=\"6\" fill=\"#fff\" stroke=\"#000\" stroke-width=\"1.2\"/><rect x=\"215\" y=\"131\" width=\"6\" height=\"6\" fill=\"#fff\" stroke=\"#000\" stroke-width=\"1.2\"/><rect x=\"243\" y=\"146.2\" width=\"6\" height=\"6\" fill=\"#fff\" stroke=\"#000\" stroke-width=\"1.2\"/><rect x=\"271\" y=\"161.4\" width=\"6\" height=\"6\" fill=\"#fff\" stroke=\"#000\" stroke-width=\"1.2\"/><rect x=\"299\" y=\"169\" width=\"6\" height=\"6\" fill=\"#fff\" stroke=\"#000\" stroke-width=\"1.2\"/><rect x=\"327\" y=\"169\" width=\"6\" height=\"6\" fill=\"#fff\" stroke=\"#000\" stroke-width=\"1.2\"/><rect x=\"232\" y=\"26\" width=\"94\" height=\"34\" fill=\"#fff\" stroke=\"#000\" stroke-width=\"0.8\"/><line x1=\"240\" y1=\"36\" x2=\"262\" y2=\"36\" stroke=\"#000\" stroke-width=\"1.5\"/><circle cx=\"251\" cy=\"36\" r=\"3\" fill=\"#000\"/><text x=\"268\" y=\"39\" font-size=\"9\">July</text><line x1=\"240\" y1=\"50\" x2=\"262\" y2=\"50\" stroke=\"#000\" stroke-width=\"1.5\" stroke-dasharray=\"4 3\"/><rect x=\"248\" y=\"47\" width=\"6\" height=\"6\" fill=\"#fff\" stroke=\"#000\" stroke-width=\"1.2\"/><text x=\"268\" y=\"53\" font-size=\"9\">October</text></svg>",
+      "caption": "Figure 1. Water temperature versus depth in the lake in July (solid line, circles) and October (dashed line, squares)."
+    },
+    "prompt": "Based on Figure 1, the researchers recorded the water temperature at depth intervals of:",
+    "choices": [
+      "1 m",
+      "2 m",
+      "4 m",
+      "5 m"
+    ],
+    "correct_answer": "2 m",
+    "explanation": "The plotted points on each line in Figure 1 fall at 0 m, 2 m, 4 m, and so on to 20 m, so the readings were taken every \"2 m.\" The axis tick marks are 5 m apart, but the data points are spaced more closely than that.",
+    "domain": "Scientific Investigation",
+    "subskill": "infer the measurement procedure from the plotted data",
+    "difficulty": "medium"
+  }
+]

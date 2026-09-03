@@ -1,0 +1,1136 @@
+[
+  {
+    "id": "SCI-RSA-01-1",
+    "passage_id": "sci-rsa-01",
+    "passage_title": "Dissolution of Calcium Carbonate Tablets",
+    "passage": "Calcium carbonate (CaCO3) tablets react with hydrochloric acid (HCl) to produce carbon dioxide gas, water, and dissolved calcium chloride. The rate of this reaction can be compared by measuring the time required for a tablet to dissolve completely. Students performed three experiments using tablets that each had a mass of 1.0 g. In every trial, the tablet was added to 100 mL of HCl in a beaker, the acid was stirred at 200 rpm, and the time from when the tablet entered the acid until no solid remained was recorded as the dissolution time.\n\nExperiment 1\nA whole tablet was dropped into 1.0 mol/L HCl that had been brought to 10 °C in a water bath. The procedure was repeated with fresh acid at 20 °C, 30 °C, and 40 °C. The results are shown in Table 1.\n\nExperiment 2\nThe procedure of Experiment 1 was repeated at 20 °C only, except that the tablet was used in one of three forms: whole, broken into 4 roughly equal pieces, or crushed into a powder. The results are shown in Table 1.\n\nExperiment 3\nThe procedure of Experiment 1 was repeated at 20 °C with whole tablets, except that the concentration of the HCl was 0.25 mol/L, 0.50 mol/L, 1.0 mol/L, or 2.0 mol/L. The results are shown in Table 1.",
+    "format": "research_summaries",
+    "graphic": {
+      "type": "table",
+      "rowLabels": [
+        "Exp. 1",
+        "Exp. 1",
+        "Exp. 1",
+        "Exp. 1",
+        "Exp. 2",
+        "Exp. 2",
+        "Exp. 2",
+        "Exp. 3",
+        "Exp. 3",
+        "Exp. 3",
+        "Exp. 3"
+      ],
+      "colLabels": [
+        "Temperature (°C)",
+        "Tablet form",
+        "HCl concentration (mol/L)",
+        "Dissolution time (s)"
+      ],
+      "cells": [
+        [
+          10,
+          "whole",
+          "1.0",
+          148
+        ],
+        [
+          20,
+          "whole",
+          "1.0",
+          96
+        ],
+        [
+          30,
+          "whole",
+          "1.0",
+          61
+        ],
+        [
+          40,
+          "whole",
+          "1.0",
+          40
+        ],
+        [
+          20,
+          "whole",
+          "1.0",
+          96
+        ],
+        [
+          20,
+          "4 pieces",
+          "1.0",
+          58
+        ],
+        [
+          20,
+          "powder",
+          "1.0",
+          22
+        ],
+        [
+          20,
+          "whole",
+          "0.25",
+          310
+        ],
+        [
+          20,
+          "whole",
+          "0.50",
+          172
+        ],
+        [
+          20,
+          "whole",
+          "1.0",
+          96
+        ],
+        [
+          20,
+          "whole",
+          "2.0",
+          51
+        ]
+      ],
+      "caption": "Table 1. Dissolution time of a 1.0 g CaCO3 tablet in 100 mL of HCl stirred at 200 rpm."
+    },
+    "prompt": "Which of the following factors was varied in Experiment 2 but held constant in both Experiment 1 and Experiment 3?",
+    "choices": [
+      "The temperature of the HCl solution",
+      "The form of the tablet",
+      "The concentration of the HCl solution",
+      "The stirring rate"
+    ],
+    "correct_answer": "The form of the tablet",
+    "explanation": "Only Experiment 2 tested whole, 4-piece, and powdered tablets; Experiments 1 and 3 used whole tablets throughout. Temperature was varied in Experiment 1, HCl concentration in Experiment 3, and the stirring rate was 200 rpm in every trial.",
+    "domain": "Scientific Investigation",
+    "subskill": "identify the independent variable of an experiment",
+    "difficulty": "easy"
+  },
+  {
+    "id": "SCI-RSA-01-2",
+    "passage_id": "sci-rsa-01",
+    "passage_title": "Dissolution of Calcium Carbonate Tablets",
+    "passage": "Calcium carbonate (CaCO3) tablets react with hydrochloric acid (HCl) to produce carbon dioxide gas, water, and dissolved calcium chloride. The rate of this reaction can be compared by measuring the time required for a tablet to dissolve completely. Students performed three experiments using tablets that each had a mass of 1.0 g. In every trial, the tablet was added to 100 mL of HCl in a beaker, the acid was stirred at 200 rpm, and the time from when the tablet entered the acid until no solid remained was recorded as the dissolution time.\n\nExperiment 1\nA whole tablet was dropped into 1.0 mol/L HCl that had been brought to 10 °C in a water bath. The procedure was repeated with fresh acid at 20 °C, 30 °C, and 40 °C. The results are shown in Table 1.\n\nExperiment 2\nThe procedure of Experiment 1 was repeated at 20 °C only, except that the tablet was used in one of three forms: whole, broken into 4 roughly equal pieces, or crushed into a powder. The results are shown in Table 1.\n\nExperiment 3\nThe procedure of Experiment 1 was repeated at 20 °C with whole tablets, except that the concentration of the HCl was 0.25 mol/L, 0.50 mol/L, 1.0 mol/L, or 2.0 mol/L. The results are shown in Table 1.",
+    "format": "research_summaries",
+    "graphic": {
+      "type": "table",
+      "rowLabels": [
+        "Exp. 1",
+        "Exp. 1",
+        "Exp. 1",
+        "Exp. 1",
+        "Exp. 2",
+        "Exp. 2",
+        "Exp. 2",
+        "Exp. 3",
+        "Exp. 3",
+        "Exp. 3",
+        "Exp. 3"
+      ],
+      "colLabels": [
+        "Temperature (°C)",
+        "Tablet form",
+        "HCl concentration (mol/L)",
+        "Dissolution time (s)"
+      ],
+      "cells": [
+        [
+          10,
+          "whole",
+          "1.0",
+          148
+        ],
+        [
+          20,
+          "whole",
+          "1.0",
+          96
+        ],
+        [
+          30,
+          "whole",
+          "1.0",
+          61
+        ],
+        [
+          40,
+          "whole",
+          "1.0",
+          40
+        ],
+        [
+          20,
+          "whole",
+          "1.0",
+          96
+        ],
+        [
+          20,
+          "4 pieces",
+          "1.0",
+          58
+        ],
+        [
+          20,
+          "powder",
+          "1.0",
+          22
+        ],
+        [
+          20,
+          "whole",
+          "0.25",
+          310
+        ],
+        [
+          20,
+          "whole",
+          "0.50",
+          172
+        ],
+        [
+          20,
+          "whole",
+          "1.0",
+          96
+        ],
+        [
+          20,
+          "whole",
+          "2.0",
+          51
+        ]
+      ],
+      "caption": "Table 1. Dissolution time of a 1.0 g CaCO3 tablet in 100 mL of HCl stirred at 200 rpm."
+    },
+    "prompt": "Based on the results of Experiment 1, if a whole tablet had been added to 100 mL of 1.0 mol/L HCl at 25 °C, the dissolution time would most likely have been:",
+    "choices": [
+      "more than 148 s.",
+      "between 96 s and 148 s.",
+      "between 61 s and 96 s.",
+      "less than 61 s."
+    ],
+    "correct_answer": "between 61 s and 96 s.",
+    "explanation": "In Table 1, the dissolution time was 96 s at 20 °C and 61 s at 30 °C, and it decreased steadily as temperature rose, so at 25 °C the time would fall \"between 61 s and 96 s.\"",
+    "domain": "Interpretation of Data",
+    "subskill": "interpolate between tabulated values",
+    "difficulty": "medium"
+  },
+  {
+    "id": "SCI-RSA-01-3",
+    "passage_id": "sci-rsa-01",
+    "passage_title": "Dissolution of Calcium Carbonate Tablets",
+    "passage": "Calcium carbonate (CaCO3) tablets react with hydrochloric acid (HCl) to produce carbon dioxide gas, water, and dissolved calcium chloride. The rate of this reaction can be compared by measuring the time required for a tablet to dissolve completely. Students performed three experiments using tablets that each had a mass of 1.0 g. In every trial, the tablet was added to 100 mL of HCl in a beaker, the acid was stirred at 200 rpm, and the time from when the tablet entered the acid until no solid remained was recorded as the dissolution time.\n\nExperiment 1\nA whole tablet was dropped into 1.0 mol/L HCl that had been brought to 10 °C in a water bath. The procedure was repeated with fresh acid at 20 °C, 30 °C, and 40 °C. The results are shown in Table 1.\n\nExperiment 2\nThe procedure of Experiment 1 was repeated at 20 °C only, except that the tablet was used in one of three forms: whole, broken into 4 roughly equal pieces, or crushed into a powder. The results are shown in Table 1.\n\nExperiment 3\nThe procedure of Experiment 1 was repeated at 20 °C with whole tablets, except that the concentration of the HCl was 0.25 mol/L, 0.50 mol/L, 1.0 mol/L, or 2.0 mol/L. The results are shown in Table 1.",
+    "format": "research_summaries",
+    "graphic": {
+      "type": "table",
+      "rowLabels": [
+        "Exp. 1",
+        "Exp. 1",
+        "Exp. 1",
+        "Exp. 1",
+        "Exp. 2",
+        "Exp. 2",
+        "Exp. 2",
+        "Exp. 3",
+        "Exp. 3",
+        "Exp. 3",
+        "Exp. 3"
+      ],
+      "colLabels": [
+        "Temperature (°C)",
+        "Tablet form",
+        "HCl concentration (mol/L)",
+        "Dissolution time (s)"
+      ],
+      "cells": [
+        [
+          10,
+          "whole",
+          "1.0",
+          148
+        ],
+        [
+          20,
+          "whole",
+          "1.0",
+          96
+        ],
+        [
+          30,
+          "whole",
+          "1.0",
+          61
+        ],
+        [
+          40,
+          "whole",
+          "1.0",
+          40
+        ],
+        [
+          20,
+          "whole",
+          "1.0",
+          96
+        ],
+        [
+          20,
+          "4 pieces",
+          "1.0",
+          58
+        ],
+        [
+          20,
+          "powder",
+          "1.0",
+          22
+        ],
+        [
+          20,
+          "whole",
+          "0.25",
+          310
+        ],
+        [
+          20,
+          "whole",
+          "0.50",
+          172
+        ],
+        [
+          20,
+          "whole",
+          "1.0",
+          96
+        ],
+        [
+          20,
+          "whole",
+          "2.0",
+          51
+        ]
+      ],
+      "caption": "Table 1. Dissolution time of a 1.0 g CaCO3 tablet in 100 mL of HCl stirred at 200 rpm."
+    },
+    "prompt": "The students stirred the HCl at 200 rpm in every trial of Experiments 1-3 most likely in order to:",
+    "choices": [
+      "keep the temperature of the HCl the same in every trial.",
+      "break the whole tablets into pieces during each trial.",
+      "increase the concentration of the HCl during each trial.",
+      "ensure that differences in dissolution time were not caused by differences in mixing."
+    ],
+    "correct_answer": "ensure that differences in dissolution time were not caused by differences in mixing.",
+    "explanation": "Stirring rate affects how quickly fresh acid reaches the tablet, so holding it at 200 rpm lets the students attribute changes in dissolution time to the variable each experiment changed; the passage lists the same stirring rate as a constant condition. Stirring cannot change the acid's concentration, temperature was set by the water bath, and tablets were broken only in Experiment 2 before being added.",
+    "domain": "Scientific Investigation",
+    "subskill": "purpose of a controlled variable",
+    "difficulty": "medium"
+  },
+  {
+    "id": "SCI-RSA-01-4",
+    "passage_id": "sci-rsa-01",
+    "passage_title": "Dissolution of Calcium Carbonate Tablets",
+    "passage": "Calcium carbonate (CaCO3) tablets react with hydrochloric acid (HCl) to produce carbon dioxide gas, water, and dissolved calcium chloride. The rate of this reaction can be compared by measuring the time required for a tablet to dissolve completely. Students performed three experiments using tablets that each had a mass of 1.0 g. In every trial, the tablet was added to 100 mL of HCl in a beaker, the acid was stirred at 200 rpm, and the time from when the tablet entered the acid until no solid remained was recorded as the dissolution time.\n\nExperiment 1\nA whole tablet was dropped into 1.0 mol/L HCl that had been brought to 10 °C in a water bath. The procedure was repeated with fresh acid at 20 °C, 30 °C, and 40 °C. The results are shown in Table 1.\n\nExperiment 2\nThe procedure of Experiment 1 was repeated at 20 °C only, except that the tablet was used in one of three forms: whole, broken into 4 roughly equal pieces, or crushed into a powder. The results are shown in Table 1.\n\nExperiment 3\nThe procedure of Experiment 1 was repeated at 20 °C with whole tablets, except that the concentration of the HCl was 0.25 mol/L, 0.50 mol/L, 1.0 mol/L, or 2.0 mol/L. The results are shown in Table 1.",
+    "format": "research_summaries",
+    "graphic": {
+      "type": "table",
+      "rowLabels": [
+        "Exp. 1",
+        "Exp. 1",
+        "Exp. 1",
+        "Exp. 1",
+        "Exp. 2",
+        "Exp. 2",
+        "Exp. 2",
+        "Exp. 3",
+        "Exp. 3",
+        "Exp. 3",
+        "Exp. 3"
+      ],
+      "colLabels": [
+        "Temperature (°C)",
+        "Tablet form",
+        "HCl concentration (mol/L)",
+        "Dissolution time (s)"
+      ],
+      "cells": [
+        [
+          10,
+          "whole",
+          "1.0",
+          148
+        ],
+        [
+          20,
+          "whole",
+          "1.0",
+          96
+        ],
+        [
+          30,
+          "whole",
+          "1.0",
+          61
+        ],
+        [
+          40,
+          "whole",
+          "1.0",
+          40
+        ],
+        [
+          20,
+          "whole",
+          "1.0",
+          96
+        ],
+        [
+          20,
+          "4 pieces",
+          "1.0",
+          58
+        ],
+        [
+          20,
+          "powder",
+          "1.0",
+          22
+        ],
+        [
+          20,
+          "whole",
+          "0.25",
+          310
+        ],
+        [
+          20,
+          "whole",
+          "0.50",
+          172
+        ],
+        [
+          20,
+          "whole",
+          "1.0",
+          96
+        ],
+        [
+          20,
+          "whole",
+          "2.0",
+          51
+        ]
+      ],
+      "caption": "Table 1. Dissolution time of a 1.0 g CaCO3 tablet in 100 mL of HCl stirred at 200 rpm."
+    },
+    "prompt": "Suppose Experiment 2 had been performed at 40 °C rather than at 20 °C. Based on the results of Experiments 1 and 2, the powdered tablet would most likely have dissolved in:",
+    "choices": [
+      "less than 22 s.",
+      "between 22 s and 40 s.",
+      "between 40 s and 96 s.",
+      "more than 96 s."
+    ],
+    "correct_answer": "less than 22 s.",
+    "explanation": "In Experiment 2 the powdered tablet dissolved in 22 s at 20 °C, and Experiment 1 shows that raising the temperature from 20 °C to 40 °C shortened the dissolution time (96 s to 40 s), so a powdered tablet at 40 °C would dissolve in \"less than 22 s.\"",
+    "domain": "Evaluation of Models, Inferences, and Experimental Results",
+    "subskill": "predict a result under a new combination of conditions",
+    "difficulty": "hard"
+  },
+  {
+    "id": "SCI-RSA-01-5",
+    "passage_id": "sci-rsa-01",
+    "passage_title": "Dissolution of Calcium Carbonate Tablets",
+    "passage": "Calcium carbonate (CaCO3) tablets react with hydrochloric acid (HCl) to produce carbon dioxide gas, water, and dissolved calcium chloride. The rate of this reaction can be compared by measuring the time required for a tablet to dissolve completely. Students performed three experiments using tablets that each had a mass of 1.0 g. In every trial, the tablet was added to 100 mL of HCl in a beaker, the acid was stirred at 200 rpm, and the time from when the tablet entered the acid until no solid remained was recorded as the dissolution time.\n\nExperiment 1\nA whole tablet was dropped into 1.0 mol/L HCl that had been brought to 10 °C in a water bath. The procedure was repeated with fresh acid at 20 °C, 30 °C, and 40 °C. The results are shown in Table 1.\n\nExperiment 2\nThe procedure of Experiment 1 was repeated at 20 °C only, except that the tablet was used in one of three forms: whole, broken into 4 roughly equal pieces, or crushed into a powder. The results are shown in Table 1.\n\nExperiment 3\nThe procedure of Experiment 1 was repeated at 20 °C with whole tablets, except that the concentration of the HCl was 0.25 mol/L, 0.50 mol/L, 1.0 mol/L, or 2.0 mol/L. The results are shown in Table 1.",
+    "format": "research_summaries",
+    "graphic": {
+      "type": "table",
+      "rowLabels": [
+        "Exp. 1",
+        "Exp. 1",
+        "Exp. 1",
+        "Exp. 1",
+        "Exp. 2",
+        "Exp. 2",
+        "Exp. 2",
+        "Exp. 3",
+        "Exp. 3",
+        "Exp. 3",
+        "Exp. 3"
+      ],
+      "colLabels": [
+        "Temperature (°C)",
+        "Tablet form",
+        "HCl concentration (mol/L)",
+        "Dissolution time (s)"
+      ],
+      "cells": [
+        [
+          10,
+          "whole",
+          "1.0",
+          148
+        ],
+        [
+          20,
+          "whole",
+          "1.0",
+          96
+        ],
+        [
+          30,
+          "whole",
+          "1.0",
+          61
+        ],
+        [
+          40,
+          "whole",
+          "1.0",
+          40
+        ],
+        [
+          20,
+          "whole",
+          "1.0",
+          96
+        ],
+        [
+          20,
+          "4 pieces",
+          "1.0",
+          58
+        ],
+        [
+          20,
+          "powder",
+          "1.0",
+          22
+        ],
+        [
+          20,
+          "whole",
+          "0.25",
+          310
+        ],
+        [
+          20,
+          "whole",
+          "0.50",
+          172
+        ],
+        [
+          20,
+          "whole",
+          "1.0",
+          96
+        ],
+        [
+          20,
+          "whole",
+          "2.0",
+          51
+        ]
+      ],
+      "caption": "Table 1. Dissolution time of a 1.0 g CaCO3 tablet in 100 mL of HCl stirred at 200 rpm."
+    },
+    "prompt": "Suppose the students wanted to determine whether the stirring rate affects the dissolution time of a whole tablet. Which of the following changes to the procedure of Experiment 1 would best allow them to do so?",
+    "choices": [
+      "Hold the temperature at 20 °C and test the tablets at several different stirring rates.",
+      "Hold the stirring rate at 200 rpm and test the tablets at additional temperatures.",
+      "Hold the temperature at 20 °C and test 4-piece and powdered tablets at 200 rpm.",
+      "Hold the stirring rate at 200 rpm and test the tablets in HCl of several concentrations."
+    ],
+    "correct_answer": "Hold the temperature at 20 °C and test the tablets at several different stirring rates.",
+    "explanation": "To test stirring rate, it must be the only factor that changes, so the students should \"hold the temperature at 20 °C and test the tablets at several different stirring rates.\" Testing additional temperatures, tablet forms, or HCl concentrations at a fixed 200 rpm repeats Experiments 1, 2, and 3 and reveals nothing about stirring.",
+    "domain": "Scientific Investigation",
+    "subskill": "modify a design to test a new variable",
+    "difficulty": "medium"
+  },
+  {
+    "id": "SCI-RSA-01-6",
+    "passage_id": "sci-rsa-01",
+    "passage_title": "Dissolution of Calcium Carbonate Tablets",
+    "passage": "Calcium carbonate (CaCO3) tablets react with hydrochloric acid (HCl) to produce carbon dioxide gas, water, and dissolved calcium chloride. The rate of this reaction can be compared by measuring the time required for a tablet to dissolve completely. Students performed three experiments using tablets that each had a mass of 1.0 g. In every trial, the tablet was added to 100 mL of HCl in a beaker, the acid was stirred at 200 rpm, and the time from when the tablet entered the acid until no solid remained was recorded as the dissolution time.\n\nExperiment 1\nA whole tablet was dropped into 1.0 mol/L HCl that had been brought to 10 °C in a water bath. The procedure was repeated with fresh acid at 20 °C, 30 °C, and 40 °C. The results are shown in Table 1.\n\nExperiment 2\nThe procedure of Experiment 1 was repeated at 20 °C only, except that the tablet was used in one of three forms: whole, broken into 4 roughly equal pieces, or crushed into a powder. The results are shown in Table 1.\n\nExperiment 3\nThe procedure of Experiment 1 was repeated at 20 °C with whole tablets, except that the concentration of the HCl was 0.25 mol/L, 0.50 mol/L, 1.0 mol/L, or 2.0 mol/L. The results are shown in Table 1.",
+    "format": "research_summaries",
+    "graphic": {
+      "type": "table",
+      "rowLabels": [
+        "Exp. 1",
+        "Exp. 1",
+        "Exp. 1",
+        "Exp. 1",
+        "Exp. 2",
+        "Exp. 2",
+        "Exp. 2",
+        "Exp. 3",
+        "Exp. 3",
+        "Exp. 3",
+        "Exp. 3"
+      ],
+      "colLabels": [
+        "Temperature (°C)",
+        "Tablet form",
+        "HCl concentration (mol/L)",
+        "Dissolution time (s)"
+      ],
+      "cells": [
+        [
+          10,
+          "whole",
+          "1.0",
+          148
+        ],
+        [
+          20,
+          "whole",
+          "1.0",
+          96
+        ],
+        [
+          30,
+          "whole",
+          "1.0",
+          61
+        ],
+        [
+          40,
+          "whole",
+          "1.0",
+          40
+        ],
+        [
+          20,
+          "whole",
+          "1.0",
+          96
+        ],
+        [
+          20,
+          "4 pieces",
+          "1.0",
+          58
+        ],
+        [
+          20,
+          "powder",
+          "1.0",
+          22
+        ],
+        [
+          20,
+          "whole",
+          "0.25",
+          310
+        ],
+        [
+          20,
+          "whole",
+          "0.50",
+          172
+        ],
+        [
+          20,
+          "whole",
+          "1.0",
+          96
+        ],
+        [
+          20,
+          "whole",
+          "2.0",
+          51
+        ]
+      ],
+      "caption": "Table 1. Dissolution time of a 1.0 g CaCO3 tablet in 100 mL of HCl stirred at 200 rpm."
+    },
+    "prompt": "A student claimed that doubling the concentration of the HCl always cuts the dissolution time of a whole tablet in half. Do the results of Experiment 3 support this claim?",
+    "choices": [
+      "Yes; each time the concentration was doubled, the dissolution time fell to exactly half of its previous value, as the student claimed.",
+      "Yes; the dissolution time decreased each time the concentration was increased.",
+      "No; the dissolution time increased each time the concentration was increased.",
+      "No; each time the concentration was doubled, the dissolution time fell to more than half of its previous value."
+    ],
+    "correct_answer": "No; each time the concentration was doubled, the dissolution time fell to more than half of its previous value.",
+    "explanation": "In Table 1, doubling the concentration changed the time from 310 s to 172 s, 172 s to 96 s, and 96 s to 51 s; half of those starting values would be 155 s, 86 s, and 48 s, so each time \"fell to more than half of its previous value\" and the claim is not supported. That the time decreased with each increase does not by itself show halving.",
+    "domain": "Evaluation of Models, Inferences, and Experimental Results",
+    "subskill": "evaluate a quantitative claim against tabulated data",
+    "difficulty": "hard"
+  },
+  {
+    "id": "SCI-RSA-02-1",
+    "passage_id": "sci-rsa-02",
+    "passage_title": "Soil Infiltration Rates",
+    "passage": "The infiltration rate of a soil is the rate at which water on the soil surface enters the soil. Students measured infiltration rates in a field that contained plots of three soil textures: sand, loam, and clay. In each trial, a metal ring 15 cm in diameter was pushed 5 cm into the soil, 500 mL of water was poured into the ring, and the time until no water remained on the surface was recorded. The infiltration rate, in millimeters per hour (mm/h), was calculated from the depth of water in the ring and the recorded time. Each trial was repeated 3 times at nearby locations within the same area, and the average is reported.\n\nExperiment 1\nNo rain had fallen for 7 days before the trials, and none of the plots had been walked on or driven over during the previous month. One trial was performed on each of the sand, loam, and clay plots. The results are shown in Figure 1.\n\nExperiment 2\nOn the same day as Experiment 1, three additional areas of the loam plot were selected. A lawn roller with a mass of 50 kg was pushed across one area 10 times and across another area 20 times; the third area received 0 passes. A trial was then performed on each area. The results are shown in Figure 1.\n\nExperiment 3\nOn the same day, an additional area of the loam plot that had not been compacted was pre-wetted by pouring 2 L of water evenly over it. One hour later, a trial was performed on this area. The results are shown in Figure 1.",
+    "format": "research_summaries",
+    "graphic": {
+      "type": "bar",
+      "xLabel": "Trial",
+      "yLabel": "Infiltration rate (mm/h)",
+      "bars": [
+        {
+          "label": "Sand",
+          "value": 200
+        },
+        {
+          "label": "Loam",
+          "value": 75
+        },
+        {
+          "label": "Clay",
+          "value": 25
+        },
+        {
+          "label": "L-0",
+          "value": 75
+        },
+        {
+          "label": "L-10",
+          "value": 40
+        },
+        {
+          "label": "L-20",
+          "value": 20
+        },
+        {
+          "label": "L-wet",
+          "value": 30
+        }
+      ],
+      "caption": "Figure 1. Average infiltration rate for each trial. Experiment 1: Sand, Loam, Clay. Experiment 2: loam after 0, 10, and 20 roller passes (L-0, L-10, L-20). Experiment 3: pre-wetted loam (L-wet)."
+    },
+    "prompt": "Based on the results of Experiment 1, the infiltration rate of the loam plot was approximately how many times the infiltration rate of the clay plot?",
+    "choices": [
+      "2",
+      "3",
+      "8",
+      "12"
+    ],
+    "correct_answer": "3",
+    "explanation": "In Figure 1, the loam bar in Experiment 1 is about 75 mm/h and the clay bar about 25 mm/h, so loam infiltrated about \"3\" times as fast as clay.",
+    "domain": "Interpretation of Data",
+    "subskill": "compare bar heights as a ratio",
+    "difficulty": "easy"
+  },
+  {
+    "id": "SCI-RSA-02-2",
+    "passage_id": "sci-rsa-02",
+    "passage_title": "Soil Infiltration Rates",
+    "passage": "The infiltration rate of a soil is the rate at which water on the soil surface enters the soil. Students measured infiltration rates in a field that contained plots of three soil textures: sand, loam, and clay. In each trial, a metal ring 15 cm in diameter was pushed 5 cm into the soil, 500 mL of water was poured into the ring, and the time until no water remained on the surface was recorded. The infiltration rate, in millimeters per hour (mm/h), was calculated from the depth of water in the ring and the recorded time. Each trial was repeated 3 times at nearby locations within the same area, and the average is reported.\n\nExperiment 1\nNo rain had fallen for 7 days before the trials, and none of the plots had been walked on or driven over during the previous month. One trial was performed on each of the sand, loam, and clay plots. The results are shown in Figure 1.\n\nExperiment 2\nOn the same day as Experiment 1, three additional areas of the loam plot were selected. A lawn roller with a mass of 50 kg was pushed across one area 10 times and across another area 20 times; the third area received 0 passes. A trial was then performed on each area. The results are shown in Figure 1.\n\nExperiment 3\nOn the same day, an additional area of the loam plot that had not been compacted was pre-wetted by pouring 2 L of water evenly over it. One hour later, a trial was performed on this area. The results are shown in Figure 1.",
+    "format": "research_summaries",
+    "graphic": {
+      "type": "bar",
+      "xLabel": "Trial",
+      "yLabel": "Infiltration rate (mm/h)",
+      "bars": [
+        {
+          "label": "Sand",
+          "value": 200
+        },
+        {
+          "label": "Loam",
+          "value": 75
+        },
+        {
+          "label": "Clay",
+          "value": 25
+        },
+        {
+          "label": "L-0",
+          "value": 75
+        },
+        {
+          "label": "L-10",
+          "value": 40
+        },
+        {
+          "label": "L-20",
+          "value": 20
+        },
+        {
+          "label": "L-wet",
+          "value": 30
+        }
+      ],
+      "caption": "Figure 1. Average infiltration rate for each trial. Experiment 1: Sand, Loam, Clay. Experiment 2: loam after 0, 10, and 20 roller passes (L-0, L-10, L-20). Experiment 3: pre-wetted loam (L-wet)."
+    },
+    "prompt": "Which of the following best describes a difference between the procedures of Experiment 1 and Experiment 2?",
+    "choices": [
+      "In Experiment 1, the soil texture was varied; in Experiment 2, the number of roller passes was varied.",
+      "In Experiment 1, the number of roller passes was varied; in Experiment 2, the soil texture was varied.",
+      "In Experiment 1, the plots were pre-wetted; in Experiment 2, the plots were dry.",
+      "In Experiment 1, the volume of water was varied; in Experiment 2, the volume of water was held constant."
+    ],
+    "correct_answer": "In Experiment 1, the soil texture was varied; in Experiment 2, the number of roller passes was varied.",
+    "explanation": "Experiment 1 tested sand, loam, and clay plots with no compaction, whereas Experiment 2 used only the loam plot and changed the number of roller passes. Pre-wetting was done only in Experiment 3, and 500 mL of water was used in every trial.",
+    "domain": "Scientific Investigation",
+    "subskill": "compare the designs of two experiments",
+    "difficulty": "easy"
+  },
+  {
+    "id": "SCI-RSA-02-3",
+    "passage_id": "sci-rsa-02",
+    "passage_title": "Soil Infiltration Rates",
+    "passage": "The infiltration rate of a soil is the rate at which water on the soil surface enters the soil. Students measured infiltration rates in a field that contained plots of three soil textures: sand, loam, and clay. In each trial, a metal ring 15 cm in diameter was pushed 5 cm into the soil, 500 mL of water was poured into the ring, and the time until no water remained on the surface was recorded. The infiltration rate, in millimeters per hour (mm/h), was calculated from the depth of water in the ring and the recorded time. Each trial was repeated 3 times at nearby locations within the same area, and the average is reported.\n\nExperiment 1\nNo rain had fallen for 7 days before the trials, and none of the plots had been walked on or driven over during the previous month. One trial was performed on each of the sand, loam, and clay plots. The results are shown in Figure 1.\n\nExperiment 2\nOn the same day as Experiment 1, three additional areas of the loam plot were selected. A lawn roller with a mass of 50 kg was pushed across one area 10 times and across another area 20 times; the third area received 0 passes. A trial was then performed on each area. The results are shown in Figure 1.\n\nExperiment 3\nOn the same day, an additional area of the loam plot that had not been compacted was pre-wetted by pouring 2 L of water evenly over it. One hour later, a trial was performed on this area. The results are shown in Figure 1.",
+    "format": "research_summaries",
+    "graphic": {
+      "type": "bar",
+      "xLabel": "Trial",
+      "yLabel": "Infiltration rate (mm/h)",
+      "bars": [
+        {
+          "label": "Sand",
+          "value": 200
+        },
+        {
+          "label": "Loam",
+          "value": 75
+        },
+        {
+          "label": "Clay",
+          "value": 25
+        },
+        {
+          "label": "L-0",
+          "value": 75
+        },
+        {
+          "label": "L-10",
+          "value": 40
+        },
+        {
+          "label": "L-20",
+          "value": 20
+        },
+        {
+          "label": "L-wet",
+          "value": 30
+        }
+      ],
+      "caption": "Figure 1. Average infiltration rate for each trial. Experiment 1: Sand, Loam, Clay. Experiment 2: loam after 0, 10, and 20 roller passes (L-0, L-10, L-20). Experiment 3: pre-wetted loam (L-wet)."
+    },
+    "prompt": "Before Experiment 1, the students waited until no rain had fallen for 7 days. The most likely reason for this was to ensure that:",
+    "choices": [
+      "the soil in each plot had been compacted by rainfall.",
+      "differences among the plots were not caused by differences in how wet the soils were at the start of the trials.",
+      "the same volume of water could be poured into each ring.",
+      "the infiltration rate of the clay plot would be greater than that of the sand plot."
+    ],
+    "correct_answer": "differences among the plots were not caused by differences in how wet the soils were at the start of the trials.",
+    "explanation": "Experiment 3 shows that pre-wetting lowered the infiltration rate of loam, so starting with all plots equally dry ensures that \"differences among the plots were not caused by differences in how wet the soils were at the start of the trials.\" The 500 mL volume was fixed by the procedure, not by the weather.",
+    "domain": "Scientific Investigation",
+    "subskill": "purpose of a control condition",
+    "difficulty": "medium"
+  },
+  {
+    "id": "SCI-RSA-02-4",
+    "passage_id": "sci-rsa-02",
+    "passage_title": "Soil Infiltration Rates",
+    "passage": "The infiltration rate of a soil is the rate at which water on the soil surface enters the soil. Students measured infiltration rates in a field that contained plots of three soil textures: sand, loam, and clay. In each trial, a metal ring 15 cm in diameter was pushed 5 cm into the soil, 500 mL of water was poured into the ring, and the time until no water remained on the surface was recorded. The infiltration rate, in millimeters per hour (mm/h), was calculated from the depth of water in the ring and the recorded time. Each trial was repeated 3 times at nearby locations within the same area, and the average is reported.\n\nExperiment 1\nNo rain had fallen for 7 days before the trials, and none of the plots had been walked on or driven over during the previous month. One trial was performed on each of the sand, loam, and clay plots. The results are shown in Figure 1.\n\nExperiment 2\nOn the same day as Experiment 1, three additional areas of the loam plot were selected. A lawn roller with a mass of 50 kg was pushed across one area 10 times and across another area 20 times; the third area received 0 passes. A trial was then performed on each area. The results are shown in Figure 1.\n\nExperiment 3\nOn the same day, an additional area of the loam plot that had not been compacted was pre-wetted by pouring 2 L of water evenly over it. One hour later, a trial was performed on this area. The results are shown in Figure 1.",
+    "format": "research_summaries",
+    "graphic": {
+      "type": "bar",
+      "xLabel": "Trial",
+      "yLabel": "Infiltration rate (mm/h)",
+      "bars": [
+        {
+          "label": "Sand",
+          "value": 200
+        },
+        {
+          "label": "Loam",
+          "value": 75
+        },
+        {
+          "label": "Clay",
+          "value": 25
+        },
+        {
+          "label": "L-0",
+          "value": 75
+        },
+        {
+          "label": "L-10",
+          "value": 40
+        },
+        {
+          "label": "L-20",
+          "value": 20
+        },
+        {
+          "label": "L-wet",
+          "value": 30
+        }
+      ],
+      "caption": "Figure 1. Average infiltration rate for each trial. Experiment 1: Sand, Loam, Clay. Experiment 2: loam after 0, 10, and 20 roller passes (L-0, L-10, L-20). Experiment 3: pre-wetted loam (L-wet)."
+    },
+    "prompt": "Suppose Experiment 2 had included an area of the loam plot that received 30 roller passes. Based on the results of Experiment 2, the infiltration rate of that area would most likely have been:",
+    "choices": [
+      "greater than 75 mm/h.",
+      "between 40 mm/h and 75 mm/h.",
+      "between 20 mm/h and 40 mm/h.",
+      "less than 20 mm/h."
+    ],
+    "correct_answer": "less than 20 mm/h.",
+    "explanation": "In Figure 1, the infiltration rate of loam fell from 75 mm/h at 0 passes to 40 mm/h at 10 passes and 20 mm/h at 20 passes, so continuing the trend to 30 passes gives a rate \"less than 20 mm/h.\"",
+    "domain": "Interpretation of Data",
+    "subskill": "extrapolate a trend beyond the tested range",
+    "difficulty": "medium"
+  },
+  {
+    "id": "SCI-RSA-02-5",
+    "passage_id": "sci-rsa-02",
+    "passage_title": "Soil Infiltration Rates",
+    "passage": "The infiltration rate of a soil is the rate at which water on the soil surface enters the soil. Students measured infiltration rates in a field that contained plots of three soil textures: sand, loam, and clay. In each trial, a metal ring 15 cm in diameter was pushed 5 cm into the soil, 500 mL of water was poured into the ring, and the time until no water remained on the surface was recorded. The infiltration rate, in millimeters per hour (mm/h), was calculated from the depth of water in the ring and the recorded time. Each trial was repeated 3 times at nearby locations within the same area, and the average is reported.\n\nExperiment 1\nNo rain had fallen for 7 days before the trials, and none of the plots had been walked on or driven over during the previous month. One trial was performed on each of the sand, loam, and clay plots. The results are shown in Figure 1.\n\nExperiment 2\nOn the same day as Experiment 1, three additional areas of the loam plot were selected. A lawn roller with a mass of 50 kg was pushed across one area 10 times and across another area 20 times; the third area received 0 passes. A trial was then performed on each area. The results are shown in Figure 1.\n\nExperiment 3\nOn the same day, an additional area of the loam plot that had not been compacted was pre-wetted by pouring 2 L of water evenly over it. One hour later, a trial was performed on this area. The results are shown in Figure 1.",
+    "format": "research_summaries",
+    "graphic": {
+      "type": "bar",
+      "xLabel": "Trial",
+      "yLabel": "Infiltration rate (mm/h)",
+      "bars": [
+        {
+          "label": "Sand",
+          "value": 200
+        },
+        {
+          "label": "Loam",
+          "value": 75
+        },
+        {
+          "label": "Clay",
+          "value": 25
+        },
+        {
+          "label": "L-0",
+          "value": 75
+        },
+        {
+          "label": "L-10",
+          "value": 40
+        },
+        {
+          "label": "L-20",
+          "value": 20
+        },
+        {
+          "label": "L-wet",
+          "value": 30
+        }
+      ],
+      "caption": "Figure 1. Average infiltration rate for each trial. Experiment 1: Sand, Loam, Clay. Experiment 2: loam after 0, 10, and 20 roller passes (L-0, L-10, L-20). Experiment 3: pre-wetted loam (L-wet)."
+    },
+    "prompt": "Based on the results of Experiments 2 and 3, which of the following had the greater effect on the infiltration rate of loam: 10 roller passes or pre-wetting?",
+    "choices": [
+      "Ten roller passes, because 40 mm/h is greater than 30 mm/h.",
+      "Ten roller passes, because compaction reduces the space between soil particles.",
+      "Pre-wetting, because the decrease from 75 mm/h to 30 mm/h is greater than the decrease from 75 mm/h to 40 mm/h.",
+      "Pre-wetting, because the pre-wetted area received a greater total volume of water than any of the compacted areas did."
+    ],
+    "correct_answer": "Pre-wetting, because the decrease from 75 mm/h to 30 mm/h is greater than the decrease from 75 mm/h to 40 mm/h.",
+    "explanation": "Both treatments started from the uncompacted, dry loam value of 75 mm/h; pre-wetting reduced it to 30 mm/h and 10 passes reduced it to 40 mm/h, so \"the decrease from 75 mm/h to 30 mm/h is greater than the decrease from 75 mm/h to 40 mm/h.\" That 40 mm/h is greater than 30 mm/h means 10 passes had the smaller effect, not the larger one.",
+    "domain": "Evaluation of Models, Inferences, and Experimental Results",
+    "subskill": "compare effect sizes across experiments",
+    "difficulty": "hard"
+  },
+  {
+    "id": "SCI-RSA-02-6",
+    "passage_id": "sci-rsa-02",
+    "passage_title": "Soil Infiltration Rates",
+    "passage": "The infiltration rate of a soil is the rate at which water on the soil surface enters the soil. Students measured infiltration rates in a field that contained plots of three soil textures: sand, loam, and clay. In each trial, a metal ring 15 cm in diameter was pushed 5 cm into the soil, 500 mL of water was poured into the ring, and the time until no water remained on the surface was recorded. The infiltration rate, in millimeters per hour (mm/h), was calculated from the depth of water in the ring and the recorded time. Each trial was repeated 3 times at nearby locations within the same area, and the average is reported.\n\nExperiment 1\nNo rain had fallen for 7 days before the trials, and none of the plots had been walked on or driven over during the previous month. One trial was performed on each of the sand, loam, and clay plots. The results are shown in Figure 1.\n\nExperiment 2\nOn the same day as Experiment 1, three additional areas of the loam plot were selected. A lawn roller with a mass of 50 kg was pushed across one area 10 times and across another area 20 times; the third area received 0 passes. A trial was then performed on each area. The results are shown in Figure 1.\n\nExperiment 3\nOn the same day, an additional area of the loam plot that had not been compacted was pre-wetted by pouring 2 L of water evenly over it. One hour later, a trial was performed on this area. The results are shown in Figure 1.",
+    "format": "research_summaries",
+    "graphic": {
+      "type": "bar",
+      "xLabel": "Trial",
+      "yLabel": "Infiltration rate (mm/h)",
+      "bars": [
+        {
+          "label": "Sand",
+          "value": 200
+        },
+        {
+          "label": "Loam",
+          "value": 75
+        },
+        {
+          "label": "Clay",
+          "value": 25
+        },
+        {
+          "label": "L-0",
+          "value": 75
+        },
+        {
+          "label": "L-10",
+          "value": 40
+        },
+        {
+          "label": "L-20",
+          "value": 20
+        },
+        {
+          "label": "L-wet",
+          "value": 30
+        }
+      ],
+      "caption": "Figure 1. Average infiltration rate for each trial. Experiment 1: Sand, Loam, Clay. Experiment 2: loam after 0, 10, and 20 roller passes (L-0, L-10, L-20). Experiment 3: pre-wetted loam (L-wet)."
+    },
+    "prompt": "Suppose the students wanted to determine whether the effect of compaction on infiltration rate depends on soil texture. Which of the following changes to Experiment 2 would best allow them to do so?",
+    "choices": [
+      "Repeat Experiment 2 on sand and clay plots as well as loam.",
+      "Repeat Experiment 2 on the loam plot using 30 and 40 roller passes.",
+      "Pre-wet the loam plot before each level of compaction.",
+      "Pour 1,000 mL of water rather than 500 mL into each ring."
+    ],
+    "correct_answer": "Repeat Experiment 2 on sand and clay plots as well as loam.",
+    "explanation": "Experiment 2 compacted only loam, so to learn whether texture changes the effect of compaction the students must \"repeat Experiment 2 on sand and clay plots as well as loam.\" More passes, pre-wetting, or a larger water volume would still leave texture untested.",
+    "domain": "Scientific Investigation",
+    "subskill": "modify a design to test an interaction",
+    "difficulty": "medium"
+  },
+  {
+    "id": "SCI-RSA-03-1",
+    "passage_id": "sci-rsa-03",
+    "passage_title": "Yeast Fermentation",
+    "passage": "Yeast cells break down glucose (C6H12O6) by fermentation, producing ethanol and carbon dioxide (CO2). Students measured CO2 production by connecting each flask to a tube that led into an inverted, water-filled graduated cylinder; the volume of water displaced from the cylinder equaled the volume of CO2 collected. Each flask contained 5 g of dry yeast in 200 mL of water at pH 6.5 and was kept in a water bath whose temperature was checked every 10 min. The volume of CO2 collected was recorded every 10 min for 60 min.\n\nExperiment 1\nFour flasks were prepared, and all four were kept at 30 °C. Glucose was added to three of the flasks so that the glucose concentrations were 2%, 5%, and 10% (grams of glucose per 100 mL of water). No glucose was added to the fourth flask. The results are shown in Figure 1.\n\nExperiment 2\nThree flasks, each with a glucose concentration of 5%, were prepared as in Experiment 1, except that one flask was kept at 20 °C, one at 30 °C, and one at 40 °C. The results are shown in Figure 1.",
+    "format": "research_summaries",
+    "graphic": {
+      "type": "svg",
+      "svg": "<svg viewBox=\"0 0 360 260\" width=\"340\" role=\"img\" aria-label=\"Volume of CO2 collected versus time for Experiments 1 and 2\"><path d=\"M50 200H290M50 180H290M50 160H290M50 140H290M50 120H290M50 100H290M50 80H290M50 60H290M50 40H290M50 20H290\" stroke=\"#ddd\" stroke-width=\"0.6\"/><path d=\"M50 20V220H290M46 220H50M46 180H50M46 140H50M46 100H50M46 60H50M46 20H50M50 220v4M90 220v4M130 220v4M170 220v4M210 220v4M250 220v4M290 220v4\" stroke=\"black\" stroke-width=\"1\" fill=\"none\"/><g font-size=\"10\" fill=\"black\"><text x=\"42\" y=\"223.5\" text-anchor=\"end\">0</text><text x=\"42\" y=\"183.5\" text-anchor=\"end\">20</text><text x=\"42\" y=\"143.5\" text-anchor=\"end\">40</text><text x=\"42\" y=\"103.5\" text-anchor=\"end\">60</text><text x=\"42\" y=\"63.5\" text-anchor=\"end\">80</text><text x=\"42\" y=\"23.5\" text-anchor=\"end\">100</text><text x=\"50\" y=\"236\" text-anchor=\"middle\">0</text><text x=\"90\" y=\"236\" text-anchor=\"middle\">10</text><text x=\"130\" y=\"236\" text-anchor=\"middle\">20</text><text x=\"170\" y=\"236\" text-anchor=\"middle\">30</text><text x=\"210\" y=\"236\" text-anchor=\"middle\">40</text><text x=\"250\" y=\"236\" text-anchor=\"middle\">50</text><text x=\"290\" y=\"236\" text-anchor=\"middle\">60</text><text x=\"170\" y=\"252\" font-size=\"11\" text-anchor=\"middle\" font-style=\"italic\">Time (min)</text><text x=\"14\" y=\"120\" font-size=\"11\" text-anchor=\"middle\" font-style=\"italic\" transform=\"rotate(-90 14 120)\">Volume of CO2 collected (mL)</text></g><g fill=\"none\" stroke=\"black\" stroke-width=\"1.5\"><polyline points=\"50,220 90,220 130,220 170,220 210,220 250,220 290,220\"/><polyline points=\"50,220 90,204 130,184 170,168 210,158 250,154 290,152\"/><polyline points=\"50,220 90,200 130,176 170,150 210,124 250,100 290,80\"/><polyline points=\"50,220 90,198 130,172 170,144 210,116 250,88 290,60\"/><polyline points=\"50,220 90,214 130,206 170,196 210,186 250,176 290,166\" stroke-dasharray=\"5,3\"/><polyline points=\"50,220 90,188 130,154 170,124 210,94 250,66 290,40\" stroke-dasharray=\"5,3\"/></g><g fill=\"black\"><circle cx=\"50\" cy=\"220\" r=\"2.5\"/><circle cx=\"90\" cy=\"220\" r=\"2.5\"/><circle cx=\"130\" cy=\"220\" r=\"2.5\"/><circle cx=\"170\" cy=\"220\" r=\"2.5\"/><circle cx=\"210\" cy=\"220\" r=\"2.5\"/><circle cx=\"250\" cy=\"220\" r=\"2.5\"/><circle cx=\"290\" cy=\"220\" r=\"2.5\"/><circle cx=\"50\" cy=\"220\" r=\"2.5\"/><circle cx=\"90\" cy=\"204\" r=\"2.5\"/><circle cx=\"130\" cy=\"184\" r=\"2.5\"/><circle cx=\"170\" cy=\"168\" r=\"2.5\"/><circle cx=\"210\" cy=\"158\" r=\"2.5\"/><circle cx=\"250\" cy=\"154\" r=\"2.5\"/><circle cx=\"290\" cy=\"152\" r=\"2.5\"/><circle cx=\"50\" cy=\"220\" r=\"2.5\"/><circle cx=\"90\" cy=\"200\" r=\"2.5\"/><circle cx=\"130\" cy=\"176\" r=\"2.5\"/><circle cx=\"170\" cy=\"150\" r=\"2.5\"/><circle cx=\"210\" cy=\"124\" r=\"2.5\"/><circle cx=\"250\" cy=\"100\" r=\"2.5\"/><circle cx=\"290\" cy=\"80\" r=\"2.5\"/><circle cx=\"50\" cy=\"220\" r=\"2.5\"/><circle cx=\"90\" cy=\"198\" r=\"2.5\"/><circle cx=\"130\" cy=\"172\" r=\"2.5\"/><circle cx=\"170\" cy=\"144\" r=\"2.5\"/><circle cx=\"210\" cy=\"116\" r=\"2.5\"/><circle cx=\"250\" cy=\"88\" r=\"2.5\"/><circle cx=\"290\" cy=\"60\" r=\"2.5\"/></g><g fill=\"white\" stroke=\"black\"><rect x=\"47.5\" y=\"217.5\" width=\"5\" height=\"5\"/><rect x=\"87.5\" y=\"211.5\" width=\"5\" height=\"5\"/><rect x=\"127.5\" y=\"203.5\" width=\"5\" height=\"5\"/><rect x=\"167.5\" y=\"193.5\" width=\"5\" height=\"5\"/><rect x=\"207.5\" y=\"183.5\" width=\"5\" height=\"5\"/><rect x=\"247.5\" y=\"173.5\" width=\"5\" height=\"5\"/><rect x=\"287.5\" y=\"163.5\" width=\"5\" height=\"5\"/><rect x=\"47.5\" y=\"217.5\" width=\"5\" height=\"5\"/><rect x=\"87.5\" y=\"185.5\" width=\"5\" height=\"5\"/><rect x=\"127.5\" y=\"151.5\" width=\"5\" height=\"5\"/><rect x=\"167.5\" y=\"121.5\" width=\"5\" height=\"5\"/><rect x=\"207.5\" y=\"91.5\" width=\"5\" height=\"5\"/><rect x=\"247.5\" y=\"63.5\" width=\"5\" height=\"5\"/><rect x=\"287.5\" y=\"37.5\" width=\"5\" height=\"5\"/></g><g font-size=\"9.5\" fill=\"black\"><text x=\"294\" y=\"223.5\">0%</text><text x=\"294\" y=\"155.5\">2%</text><text x=\"294\" y=\"83.5\">5% (30 °C)</text><text x=\"294\" y=\"63.5\">10%</text><text x=\"294\" y=\"169.5\">20 °C</text><text x=\"294\" y=\"43.5\">40 °C</text></g><rect x=\"56\" y=\"26\" width=\"132\" height=\"30\" fill=\"white\" stroke=\"#999\" stroke-width=\"0.6\"/><path d=\"M62 36H82M62 49H82\" stroke=\"black\" stroke-width=\"1.5\"/><path d=\"M62 49H82\" stroke=\"white\" stroke-width=\"1.5\" stroke-dasharray=\"3,5\" stroke-dashoffset=\"-5\"/><circle cx=\"72\" cy=\"36\" r=\"2.5\" fill=\"black\"/><rect x=\"69.5\" y=\"46.5\" width=\"5\" height=\"5\" fill=\"white\" stroke=\"black\"/><g font-size=\"9\" fill=\"black\"><text x=\"87\" y=\"39.5\">Exp. 1 (all at 30 °C)</text><text x=\"87\" y=\"52.5\">Exp. 2 (all 5% glucose)</text></g></svg>",
+      "caption": "Figure 1. Volume of CO2 collected over 60 min. Solid lines: Experiment 1 flasks (0%, 2%, 5%, 10% glucose at 30 °C). Dashed lines: Experiment 2 flasks (5% glucose at 20 °C and 40 °C). The 5% glucose flask at 30 °C was used in both experiments."
+    },
+    "prompt": "According to the results of Experiment 1, the volume of CO2 collected from the flask containing 5% glucose at 60 min was closest to:",
+    "choices": [
+      "34 mL",
+      "70 mL",
+      "80 mL",
+      "90 mL"
+    ],
+    "correct_answer": "70 mL",
+    "explanation": "In Figure 1, the solid 5% glucose curve reaches about \"70 mL\" at 60 min; 34 mL is the 2% flask, 80 mL is the 10% flask, and 90 mL is the 40 °C flask from Experiment 2.",
+    "domain": "Interpretation of Data",
+    "subskill": "read a value from a multi-series line graph",
+    "difficulty": "easy"
+  },
+  {
+    "id": "SCI-RSA-03-2",
+    "passage_id": "sci-rsa-03",
+    "passage_title": "Yeast Fermentation",
+    "passage": "Yeast cells break down glucose (C6H12O6) by fermentation, producing ethanol and carbon dioxide (CO2). Students measured CO2 production by connecting each flask to a tube that led into an inverted, water-filled graduated cylinder; the volume of water displaced from the cylinder equaled the volume of CO2 collected. Each flask contained 5 g of dry yeast in 200 mL of water at pH 6.5 and was kept in a water bath whose temperature was checked every 10 min. The volume of CO2 collected was recorded every 10 min for 60 min.\n\nExperiment 1\nFour flasks were prepared, and all four were kept at 30 °C. Glucose was added to three of the flasks so that the glucose concentrations were 2%, 5%, and 10% (grams of glucose per 100 mL of water). No glucose was added to the fourth flask. The results are shown in Figure 1.\n\nExperiment 2\nThree flasks, each with a glucose concentration of 5%, were prepared as in Experiment 1, except that one flask was kept at 20 °C, one at 30 °C, and one at 40 °C. The results are shown in Figure 1.",
+    "format": "research_summaries",
+    "graphic": {
+      "type": "svg",
+      "svg": "<svg viewBox=\"0 0 360 260\" width=\"340\" role=\"img\" aria-label=\"Volume of CO2 collected versus time for Experiments 1 and 2\"><path d=\"M50 200H290M50 180H290M50 160H290M50 140H290M50 120H290M50 100H290M50 80H290M50 60H290M50 40H290M50 20H290\" stroke=\"#ddd\" stroke-width=\"0.6\"/><path d=\"M50 20V220H290M46 220H50M46 180H50M46 140H50M46 100H50M46 60H50M46 20H50M50 220v4M90 220v4M130 220v4M170 220v4M210 220v4M250 220v4M290 220v4\" stroke=\"black\" stroke-width=\"1\" fill=\"none\"/><g font-size=\"10\" fill=\"black\"><text x=\"42\" y=\"223.5\" text-anchor=\"end\">0</text><text x=\"42\" y=\"183.5\" text-anchor=\"end\">20</text><text x=\"42\" y=\"143.5\" text-anchor=\"end\">40</text><text x=\"42\" y=\"103.5\" text-anchor=\"end\">60</text><text x=\"42\" y=\"63.5\" text-anchor=\"end\">80</text><text x=\"42\" y=\"23.5\" text-anchor=\"end\">100</text><text x=\"50\" y=\"236\" text-anchor=\"middle\">0</text><text x=\"90\" y=\"236\" text-anchor=\"middle\">10</text><text x=\"130\" y=\"236\" text-anchor=\"middle\">20</text><text x=\"170\" y=\"236\" text-anchor=\"middle\">30</text><text x=\"210\" y=\"236\" text-anchor=\"middle\">40</text><text x=\"250\" y=\"236\" text-anchor=\"middle\">50</text><text x=\"290\" y=\"236\" text-anchor=\"middle\">60</text><text x=\"170\" y=\"252\" font-size=\"11\" text-anchor=\"middle\" font-style=\"italic\">Time (min)</text><text x=\"14\" y=\"120\" font-size=\"11\" text-anchor=\"middle\" font-style=\"italic\" transform=\"rotate(-90 14 120)\">Volume of CO2 collected (mL)</text></g><g fill=\"none\" stroke=\"black\" stroke-width=\"1.5\"><polyline points=\"50,220 90,220 130,220 170,220 210,220 250,220 290,220\"/><polyline points=\"50,220 90,204 130,184 170,168 210,158 250,154 290,152\"/><polyline points=\"50,220 90,200 130,176 170,150 210,124 250,100 290,80\"/><polyline points=\"50,220 90,198 130,172 170,144 210,116 250,88 290,60\"/><polyline points=\"50,220 90,214 130,206 170,196 210,186 250,176 290,166\" stroke-dasharray=\"5,3\"/><polyline points=\"50,220 90,188 130,154 170,124 210,94 250,66 290,40\" stroke-dasharray=\"5,3\"/></g><g fill=\"black\"><circle cx=\"50\" cy=\"220\" r=\"2.5\"/><circle cx=\"90\" cy=\"220\" r=\"2.5\"/><circle cx=\"130\" cy=\"220\" r=\"2.5\"/><circle cx=\"170\" cy=\"220\" r=\"2.5\"/><circle cx=\"210\" cy=\"220\" r=\"2.5\"/><circle cx=\"250\" cy=\"220\" r=\"2.5\"/><circle cx=\"290\" cy=\"220\" r=\"2.5\"/><circle cx=\"50\" cy=\"220\" r=\"2.5\"/><circle cx=\"90\" cy=\"204\" r=\"2.5\"/><circle cx=\"130\" cy=\"184\" r=\"2.5\"/><circle cx=\"170\" cy=\"168\" r=\"2.5\"/><circle cx=\"210\" cy=\"158\" r=\"2.5\"/><circle cx=\"250\" cy=\"154\" r=\"2.5\"/><circle cx=\"290\" cy=\"152\" r=\"2.5\"/><circle cx=\"50\" cy=\"220\" r=\"2.5\"/><circle cx=\"90\" cy=\"200\" r=\"2.5\"/><circle cx=\"130\" cy=\"176\" r=\"2.5\"/><circle cx=\"170\" cy=\"150\" r=\"2.5\"/><circle cx=\"210\" cy=\"124\" r=\"2.5\"/><circle cx=\"250\" cy=\"100\" r=\"2.5\"/><circle cx=\"290\" cy=\"80\" r=\"2.5\"/><circle cx=\"50\" cy=\"220\" r=\"2.5\"/><circle cx=\"90\" cy=\"198\" r=\"2.5\"/><circle cx=\"130\" cy=\"172\" r=\"2.5\"/><circle cx=\"170\" cy=\"144\" r=\"2.5\"/><circle cx=\"210\" cy=\"116\" r=\"2.5\"/><circle cx=\"250\" cy=\"88\" r=\"2.5\"/><circle cx=\"290\" cy=\"60\" r=\"2.5\"/></g><g fill=\"white\" stroke=\"black\"><rect x=\"47.5\" y=\"217.5\" width=\"5\" height=\"5\"/><rect x=\"87.5\" y=\"211.5\" width=\"5\" height=\"5\"/><rect x=\"127.5\" y=\"203.5\" width=\"5\" height=\"5\"/><rect x=\"167.5\" y=\"193.5\" width=\"5\" height=\"5\"/><rect x=\"207.5\" y=\"183.5\" width=\"5\" height=\"5\"/><rect x=\"247.5\" y=\"173.5\" width=\"5\" height=\"5\"/><rect x=\"287.5\" y=\"163.5\" width=\"5\" height=\"5\"/><rect x=\"47.5\" y=\"217.5\" width=\"5\" height=\"5\"/><rect x=\"87.5\" y=\"185.5\" width=\"5\" height=\"5\"/><rect x=\"127.5\" y=\"151.5\" width=\"5\" height=\"5\"/><rect x=\"167.5\" y=\"121.5\" width=\"5\" height=\"5\"/><rect x=\"207.5\" y=\"91.5\" width=\"5\" height=\"5\"/><rect x=\"247.5\" y=\"63.5\" width=\"5\" height=\"5\"/><rect x=\"287.5\" y=\"37.5\" width=\"5\" height=\"5\"/></g><g font-size=\"9.5\" fill=\"black\"><text x=\"294\" y=\"223.5\">0%</text><text x=\"294\" y=\"155.5\">2%</text><text x=\"294\" y=\"83.5\">5% (30 °C)</text><text x=\"294\" y=\"63.5\">10%</text><text x=\"294\" y=\"169.5\">20 °C</text><text x=\"294\" y=\"43.5\">40 °C</text></g><rect x=\"56\" y=\"26\" width=\"132\" height=\"30\" fill=\"white\" stroke=\"#999\" stroke-width=\"0.6\"/><path d=\"M62 36H82M62 49H82\" stroke=\"black\" stroke-width=\"1.5\"/><path d=\"M62 49H82\" stroke=\"white\" stroke-width=\"1.5\" stroke-dasharray=\"3,5\" stroke-dashoffset=\"-5\"/><circle cx=\"72\" cy=\"36\" r=\"2.5\" fill=\"black\"/><rect x=\"69.5\" y=\"46.5\" width=\"5\" height=\"5\" fill=\"white\" stroke=\"black\"/><g font-size=\"9\" fill=\"black\"><text x=\"87\" y=\"39.5\">Exp. 1 (all at 30 °C)</text><text x=\"87\" y=\"52.5\">Exp. 2 (all 5% glucose)</text></g></svg>",
+      "caption": "Figure 1. Volume of CO2 collected over 60 min. Solid lines: Experiment 1 flasks (0%, 2%, 5%, 10% glucose at 30 °C). Dashed lines: Experiment 2 flasks (5% glucose at 20 °C and 40 °C). The 5% glucose flask at 30 °C was used in both experiments."
+    },
+    "prompt": "The students most likely included a flask with no added glucose in Experiment 1 in order to:",
+    "choices": [
+      "measure the largest volume of gas the graduated cylinder could hold.",
+      "determine whether the yeast produced CO2 without added glucose.",
+      "test the effect of temperature on the production of CO2.",
+      "provide a flask in which the glucose concentration was the greatest."
+    ],
+    "correct_answer": "determine whether the yeast produced CO2 without added glucose.",
+    "explanation": "The flask with 0% glucose is a control: it shows whether the yeast and water alone give off CO2, so any gas in the other flasks can be attributed to the added glucose. Temperature was varied only in Experiment 2, and the highest concentration was the 10% flask.",
+    "domain": "Scientific Investigation",
+    "subskill": "purpose of a control group",
+    "difficulty": "easy"
+  },
+  {
+    "id": "SCI-RSA-03-3",
+    "passage_id": "sci-rsa-03",
+    "passage_title": "Yeast Fermentation",
+    "passage": "Yeast cells break down glucose (C6H12O6) by fermentation, producing ethanol and carbon dioxide (CO2). Students measured CO2 production by connecting each flask to a tube that led into an inverted, water-filled graduated cylinder; the volume of water displaced from the cylinder equaled the volume of CO2 collected. Each flask contained 5 g of dry yeast in 200 mL of water at pH 6.5 and was kept in a water bath whose temperature was checked every 10 min. The volume of CO2 collected was recorded every 10 min for 60 min.\n\nExperiment 1\nFour flasks were prepared, and all four were kept at 30 °C. Glucose was added to three of the flasks so that the glucose concentrations were 2%, 5%, and 10% (grams of glucose per 100 mL of water). No glucose was added to the fourth flask. The results are shown in Figure 1.\n\nExperiment 2\nThree flasks, each with a glucose concentration of 5%, were prepared as in Experiment 1, except that one flask was kept at 20 °C, one at 30 °C, and one at 40 °C. The results are shown in Figure 1.",
+    "format": "research_summaries",
+    "graphic": {
+      "type": "svg",
+      "svg": "<svg viewBox=\"0 0 360 260\" width=\"340\" role=\"img\" aria-label=\"Volume of CO2 collected versus time for Experiments 1 and 2\"><path d=\"M50 200H290M50 180H290M50 160H290M50 140H290M50 120H290M50 100H290M50 80H290M50 60H290M50 40H290M50 20H290\" stroke=\"#ddd\" stroke-width=\"0.6\"/><path d=\"M50 20V220H290M46 220H50M46 180H50M46 140H50M46 100H50M46 60H50M46 20H50M50 220v4M90 220v4M130 220v4M170 220v4M210 220v4M250 220v4M290 220v4\" stroke=\"black\" stroke-width=\"1\" fill=\"none\"/><g font-size=\"10\" fill=\"black\"><text x=\"42\" y=\"223.5\" text-anchor=\"end\">0</text><text x=\"42\" y=\"183.5\" text-anchor=\"end\">20</text><text x=\"42\" y=\"143.5\" text-anchor=\"end\">40</text><text x=\"42\" y=\"103.5\" text-anchor=\"end\">60</text><text x=\"42\" y=\"63.5\" text-anchor=\"end\">80</text><text x=\"42\" y=\"23.5\" text-anchor=\"end\">100</text><text x=\"50\" y=\"236\" text-anchor=\"middle\">0</text><text x=\"90\" y=\"236\" text-anchor=\"middle\">10</text><text x=\"130\" y=\"236\" text-anchor=\"middle\">20</text><text x=\"170\" y=\"236\" text-anchor=\"middle\">30</text><text x=\"210\" y=\"236\" text-anchor=\"middle\">40</text><text x=\"250\" y=\"236\" text-anchor=\"middle\">50</text><text x=\"290\" y=\"236\" text-anchor=\"middle\">60</text><text x=\"170\" y=\"252\" font-size=\"11\" text-anchor=\"middle\" font-style=\"italic\">Time (min)</text><text x=\"14\" y=\"120\" font-size=\"11\" text-anchor=\"middle\" font-style=\"italic\" transform=\"rotate(-90 14 120)\">Volume of CO2 collected (mL)</text></g><g fill=\"none\" stroke=\"black\" stroke-width=\"1.5\"><polyline points=\"50,220 90,220 130,220 170,220 210,220 250,220 290,220\"/><polyline points=\"50,220 90,204 130,184 170,168 210,158 250,154 290,152\"/><polyline points=\"50,220 90,200 130,176 170,150 210,124 250,100 290,80\"/><polyline points=\"50,220 90,198 130,172 170,144 210,116 250,88 290,60\"/><polyline points=\"50,220 90,214 130,206 170,196 210,186 250,176 290,166\" stroke-dasharray=\"5,3\"/><polyline points=\"50,220 90,188 130,154 170,124 210,94 250,66 290,40\" stroke-dasharray=\"5,3\"/></g><g fill=\"black\"><circle cx=\"50\" cy=\"220\" r=\"2.5\"/><circle cx=\"90\" cy=\"220\" r=\"2.5\"/><circle cx=\"130\" cy=\"220\" r=\"2.5\"/><circle cx=\"170\" cy=\"220\" r=\"2.5\"/><circle cx=\"210\" cy=\"220\" r=\"2.5\"/><circle cx=\"250\" cy=\"220\" r=\"2.5\"/><circle cx=\"290\" cy=\"220\" r=\"2.5\"/><circle cx=\"50\" cy=\"220\" r=\"2.5\"/><circle cx=\"90\" cy=\"204\" r=\"2.5\"/><circle cx=\"130\" cy=\"184\" r=\"2.5\"/><circle cx=\"170\" cy=\"168\" r=\"2.5\"/><circle cx=\"210\" cy=\"158\" r=\"2.5\"/><circle cx=\"250\" cy=\"154\" r=\"2.5\"/><circle cx=\"290\" cy=\"152\" r=\"2.5\"/><circle cx=\"50\" cy=\"220\" r=\"2.5\"/><circle cx=\"90\" cy=\"200\" r=\"2.5\"/><circle cx=\"130\" cy=\"176\" r=\"2.5\"/><circle cx=\"170\" cy=\"150\" r=\"2.5\"/><circle cx=\"210\" cy=\"124\" r=\"2.5\"/><circle cx=\"250\" cy=\"100\" r=\"2.5\"/><circle cx=\"290\" cy=\"80\" r=\"2.5\"/><circle cx=\"50\" cy=\"220\" r=\"2.5\"/><circle cx=\"90\" cy=\"198\" r=\"2.5\"/><circle cx=\"130\" cy=\"172\" r=\"2.5\"/><circle cx=\"170\" cy=\"144\" r=\"2.5\"/><circle cx=\"210\" cy=\"116\" r=\"2.5\"/><circle cx=\"250\" cy=\"88\" r=\"2.5\"/><circle cx=\"290\" cy=\"60\" r=\"2.5\"/></g><g fill=\"white\" stroke=\"black\"><rect x=\"47.5\" y=\"217.5\" width=\"5\" height=\"5\"/><rect x=\"87.5\" y=\"211.5\" width=\"5\" height=\"5\"/><rect x=\"127.5\" y=\"203.5\" width=\"5\" height=\"5\"/><rect x=\"167.5\" y=\"193.5\" width=\"5\" height=\"5\"/><rect x=\"207.5\" y=\"183.5\" width=\"5\" height=\"5\"/><rect x=\"247.5\" y=\"173.5\" width=\"5\" height=\"5\"/><rect x=\"287.5\" y=\"163.5\" width=\"5\" height=\"5\"/><rect x=\"47.5\" y=\"217.5\" width=\"5\" height=\"5\"/><rect x=\"87.5\" y=\"185.5\" width=\"5\" height=\"5\"/><rect x=\"127.5\" y=\"151.5\" width=\"5\" height=\"5\"/><rect x=\"167.5\" y=\"121.5\" width=\"5\" height=\"5\"/><rect x=\"207.5\" y=\"91.5\" width=\"5\" height=\"5\"/><rect x=\"247.5\" y=\"63.5\" width=\"5\" height=\"5\"/><rect x=\"287.5\" y=\"37.5\" width=\"5\" height=\"5\"/></g><g font-size=\"9.5\" fill=\"black\"><text x=\"294\" y=\"223.5\">0%</text><text x=\"294\" y=\"155.5\">2%</text><text x=\"294\" y=\"83.5\">5% (30 °C)</text><text x=\"294\" y=\"63.5\">10%</text><text x=\"294\" y=\"169.5\">20 °C</text><text x=\"294\" y=\"43.5\">40 °C</text></g><rect x=\"56\" y=\"26\" width=\"132\" height=\"30\" fill=\"white\" stroke=\"#999\" stroke-width=\"0.6\"/><path d=\"M62 36H82M62 49H82\" stroke=\"black\" stroke-width=\"1.5\"/><path d=\"M62 49H82\" stroke=\"white\" stroke-width=\"1.5\" stroke-dasharray=\"3,5\" stroke-dashoffset=\"-5\"/><circle cx=\"72\" cy=\"36\" r=\"2.5\" fill=\"black\"/><rect x=\"69.5\" y=\"46.5\" width=\"5\" height=\"5\" fill=\"white\" stroke=\"black\"/><g font-size=\"9\" fill=\"black\"><text x=\"87\" y=\"39.5\">Exp. 1 (all at 30 °C)</text><text x=\"87\" y=\"52.5\">Exp. 2 (all 5% glucose)</text></g></svg>",
+      "caption": "Figure 1. Volume of CO2 collected over 60 min. Solid lines: Experiment 1 flasks (0%, 2%, 5%, 10% glucose at 30 °C). Dashed lines: Experiment 2 flasks (5% glucose at 20 °C and 40 °C). The 5% glucose flask at 30 °C was used in both experiments."
+    },
+    "prompt": "In Experiment 1, the volume of CO2 collected from the flask containing 2% glucose leveled off after about 40 min. Which of the following is the most likely explanation?",
+    "choices": [
+      "The yeast had consumed nearly all of the glucose in that flask.",
+      "The temperature of that flask had fallen below 30 °C.",
+      "The yeast in that flask did not begin producing CO2 until after 40 min.",
+      "The graduated cylinder used with that flask was larger than the others."
+    ],
+    "correct_answer": "The yeast had consumed nearly all of the glucose in that flask.",
+    "explanation": "The 2% flask held the least glucose, and the flasks with more glucose kept producing CO2 through 60 min, so the leveling off is best explained because \"the yeast had consumed nearly all of the glucose in that flask.\" All Experiment 1 flasks were kept at 30 °C in a checked water bath, and the 2% curve rose steadily before 40 min.",
+    "domain": "Evaluation of Models, Inferences, and Experimental Results",
+    "subskill": "infer the cause of a trend from experimental design",
+    "difficulty": "medium"
+  },
+  {
+    "id": "SCI-RSA-03-4",
+    "passage_id": "sci-rsa-03",
+    "passage_title": "Yeast Fermentation",
+    "passage": "Yeast cells break down glucose (C6H12O6) by fermentation, producing ethanol and carbon dioxide (CO2). Students measured CO2 production by connecting each flask to a tube that led into an inverted, water-filled graduated cylinder; the volume of water displaced from the cylinder equaled the volume of CO2 collected. Each flask contained 5 g of dry yeast in 200 mL of water at pH 6.5 and was kept in a water bath whose temperature was checked every 10 min. The volume of CO2 collected was recorded every 10 min for 60 min.\n\nExperiment 1\nFour flasks were prepared, and all four were kept at 30 °C. Glucose was added to three of the flasks so that the glucose concentrations were 2%, 5%, and 10% (grams of glucose per 100 mL of water). No glucose was added to the fourth flask. The results are shown in Figure 1.\n\nExperiment 2\nThree flasks, each with a glucose concentration of 5%, were prepared as in Experiment 1, except that one flask was kept at 20 °C, one at 30 °C, and one at 40 °C. The results are shown in Figure 1.",
+    "format": "research_summaries",
+    "graphic": {
+      "type": "svg",
+      "svg": "<svg viewBox=\"0 0 360 260\" width=\"340\" role=\"img\" aria-label=\"Volume of CO2 collected versus time for Experiments 1 and 2\"><path d=\"M50 200H290M50 180H290M50 160H290M50 140H290M50 120H290M50 100H290M50 80H290M50 60H290M50 40H290M50 20H290\" stroke=\"#ddd\" stroke-width=\"0.6\"/><path d=\"M50 20V220H290M46 220H50M46 180H50M46 140H50M46 100H50M46 60H50M46 20H50M50 220v4M90 220v4M130 220v4M170 220v4M210 220v4M250 220v4M290 220v4\" stroke=\"black\" stroke-width=\"1\" fill=\"none\"/><g font-size=\"10\" fill=\"black\"><text x=\"42\" y=\"223.5\" text-anchor=\"end\">0</text><text x=\"42\" y=\"183.5\" text-anchor=\"end\">20</text><text x=\"42\" y=\"143.5\" text-anchor=\"end\">40</text><text x=\"42\" y=\"103.5\" text-anchor=\"end\">60</text><text x=\"42\" y=\"63.5\" text-anchor=\"end\">80</text><text x=\"42\" y=\"23.5\" text-anchor=\"end\">100</text><text x=\"50\" y=\"236\" text-anchor=\"middle\">0</text><text x=\"90\" y=\"236\" text-anchor=\"middle\">10</text><text x=\"130\" y=\"236\" text-anchor=\"middle\">20</text><text x=\"170\" y=\"236\" text-anchor=\"middle\">30</text><text x=\"210\" y=\"236\" text-anchor=\"middle\">40</text><text x=\"250\" y=\"236\" text-anchor=\"middle\">50</text><text x=\"290\" y=\"236\" text-anchor=\"middle\">60</text><text x=\"170\" y=\"252\" font-size=\"11\" text-anchor=\"middle\" font-style=\"italic\">Time (min)</text><text x=\"14\" y=\"120\" font-size=\"11\" text-anchor=\"middle\" font-style=\"italic\" transform=\"rotate(-90 14 120)\">Volume of CO2 collected (mL)</text></g><g fill=\"none\" stroke=\"black\" stroke-width=\"1.5\"><polyline points=\"50,220 90,220 130,220 170,220 210,220 250,220 290,220\"/><polyline points=\"50,220 90,204 130,184 170,168 210,158 250,154 290,152\"/><polyline points=\"50,220 90,200 130,176 170,150 210,124 250,100 290,80\"/><polyline points=\"50,220 90,198 130,172 170,144 210,116 250,88 290,60\"/><polyline points=\"50,220 90,214 130,206 170,196 210,186 250,176 290,166\" stroke-dasharray=\"5,3\"/><polyline points=\"50,220 90,188 130,154 170,124 210,94 250,66 290,40\" stroke-dasharray=\"5,3\"/></g><g fill=\"black\"><circle cx=\"50\" cy=\"220\" r=\"2.5\"/><circle cx=\"90\" cy=\"220\" r=\"2.5\"/><circle cx=\"130\" cy=\"220\" r=\"2.5\"/><circle cx=\"170\" cy=\"220\" r=\"2.5\"/><circle cx=\"210\" cy=\"220\" r=\"2.5\"/><circle cx=\"250\" cy=\"220\" r=\"2.5\"/><circle cx=\"290\" cy=\"220\" r=\"2.5\"/><circle cx=\"50\" cy=\"220\" r=\"2.5\"/><circle cx=\"90\" cy=\"204\" r=\"2.5\"/><circle cx=\"130\" cy=\"184\" r=\"2.5\"/><circle cx=\"170\" cy=\"168\" r=\"2.5\"/><circle cx=\"210\" cy=\"158\" r=\"2.5\"/><circle cx=\"250\" cy=\"154\" r=\"2.5\"/><circle cx=\"290\" cy=\"152\" r=\"2.5\"/><circle cx=\"50\" cy=\"220\" r=\"2.5\"/><circle cx=\"90\" cy=\"200\" r=\"2.5\"/><circle cx=\"130\" cy=\"176\" r=\"2.5\"/><circle cx=\"170\" cy=\"150\" r=\"2.5\"/><circle cx=\"210\" cy=\"124\" r=\"2.5\"/><circle cx=\"250\" cy=\"100\" r=\"2.5\"/><circle cx=\"290\" cy=\"80\" r=\"2.5\"/><circle cx=\"50\" cy=\"220\" r=\"2.5\"/><circle cx=\"90\" cy=\"198\" r=\"2.5\"/><circle cx=\"130\" cy=\"172\" r=\"2.5\"/><circle cx=\"170\" cy=\"144\" r=\"2.5\"/><circle cx=\"210\" cy=\"116\" r=\"2.5\"/><circle cx=\"250\" cy=\"88\" r=\"2.5\"/><circle cx=\"290\" cy=\"60\" r=\"2.5\"/></g><g fill=\"white\" stroke=\"black\"><rect x=\"47.5\" y=\"217.5\" width=\"5\" height=\"5\"/><rect x=\"87.5\" y=\"211.5\" width=\"5\" height=\"5\"/><rect x=\"127.5\" y=\"203.5\" width=\"5\" height=\"5\"/><rect x=\"167.5\" y=\"193.5\" width=\"5\" height=\"5\"/><rect x=\"207.5\" y=\"183.5\" width=\"5\" height=\"5\"/><rect x=\"247.5\" y=\"173.5\" width=\"5\" height=\"5\"/><rect x=\"287.5\" y=\"163.5\" width=\"5\" height=\"5\"/><rect x=\"47.5\" y=\"217.5\" width=\"5\" height=\"5\"/><rect x=\"87.5\" y=\"185.5\" width=\"5\" height=\"5\"/><rect x=\"127.5\" y=\"151.5\" width=\"5\" height=\"5\"/><rect x=\"167.5\" y=\"121.5\" width=\"5\" height=\"5\"/><rect x=\"207.5\" y=\"91.5\" width=\"5\" height=\"5\"/><rect x=\"247.5\" y=\"63.5\" width=\"5\" height=\"5\"/><rect x=\"287.5\" y=\"37.5\" width=\"5\" height=\"5\"/></g><g font-size=\"9.5\" fill=\"black\"><text x=\"294\" y=\"223.5\">0%</text><text x=\"294\" y=\"155.5\">2%</text><text x=\"294\" y=\"83.5\">5% (30 °C)</text><text x=\"294\" y=\"63.5\">10%</text><text x=\"294\" y=\"169.5\">20 °C</text><text x=\"294\" y=\"43.5\">40 °C</text></g><rect x=\"56\" y=\"26\" width=\"132\" height=\"30\" fill=\"white\" stroke=\"#999\" stroke-width=\"0.6\"/><path d=\"M62 36H82M62 49H82\" stroke=\"black\" stroke-width=\"1.5\"/><path d=\"M62 49H82\" stroke=\"white\" stroke-width=\"1.5\" stroke-dasharray=\"3,5\" stroke-dashoffset=\"-5\"/><circle cx=\"72\" cy=\"36\" r=\"2.5\" fill=\"black\"/><rect x=\"69.5\" y=\"46.5\" width=\"5\" height=\"5\" fill=\"white\" stroke=\"black\"/><g font-size=\"9\" fill=\"black\"><text x=\"87\" y=\"39.5\">Exp. 1 (all at 30 °C)</text><text x=\"87\" y=\"52.5\">Exp. 2 (all 5% glucose)</text></g></svg>",
+      "caption": "Figure 1. Volume of CO2 collected over 60 min. Solid lines: Experiment 1 flasks (0%, 2%, 5%, 10% glucose at 30 °C). Dashed lines: Experiment 2 flasks (5% glucose at 20 °C and 40 °C). The 5% glucose flask at 30 °C was used in both experiments."
+    },
+    "prompt": "Suppose a flask containing 5% glucose had been tested at 35 °C in Experiment 2. Based on the results of Experiment 2, the volume of CO2 collected from this flask at 60 min would most likely have been:",
+    "choices": [
+      "less than 27 mL.",
+      "between 27 mL and 70 mL.",
+      "between 70 mL and 90 mL.",
+      "greater than 90 mL."
+    ],
+    "correct_answer": "between 70 mL and 90 mL.",
+    "explanation": "In Experiment 2, the 60 min volumes were about 27 mL at 20 °C, 70 mL at 30 °C, and 90 mL at 40 °C, increasing with temperature, so a 35 °C flask would fall \"between 70 mL and 90 mL.\"",
+    "domain": "Interpretation of Data",
+    "subskill": "interpolate between tested conditions",
+    "difficulty": "medium"
+  },
+  {
+    "id": "SCI-RSA-03-5",
+    "passage_id": "sci-rsa-03",
+    "passage_title": "Yeast Fermentation",
+    "passage": "Yeast cells break down glucose (C6H12O6) by fermentation, producing ethanol and carbon dioxide (CO2). Students measured CO2 production by connecting each flask to a tube that led into an inverted, water-filled graduated cylinder; the volume of water displaced from the cylinder equaled the volume of CO2 collected. Each flask contained 5 g of dry yeast in 200 mL of water at pH 6.5 and was kept in a water bath whose temperature was checked every 10 min. The volume of CO2 collected was recorded every 10 min for 60 min.\n\nExperiment 1\nFour flasks were prepared, and all four were kept at 30 °C. Glucose was added to three of the flasks so that the glucose concentrations were 2%, 5%, and 10% (grams of glucose per 100 mL of water). No glucose was added to the fourth flask. The results are shown in Figure 1.\n\nExperiment 2\nThree flasks, each with a glucose concentration of 5%, were prepared as in Experiment 1, except that one flask was kept at 20 °C, one at 30 °C, and one at 40 °C. The results are shown in Figure 1.",
+    "format": "research_summaries",
+    "graphic": {
+      "type": "svg",
+      "svg": "<svg viewBox=\"0 0 360 260\" width=\"340\" role=\"img\" aria-label=\"Volume of CO2 collected versus time for Experiments 1 and 2\"><path d=\"M50 200H290M50 180H290M50 160H290M50 140H290M50 120H290M50 100H290M50 80H290M50 60H290M50 40H290M50 20H290\" stroke=\"#ddd\" stroke-width=\"0.6\"/><path d=\"M50 20V220H290M46 220H50M46 180H50M46 140H50M46 100H50M46 60H50M46 20H50M50 220v4M90 220v4M130 220v4M170 220v4M210 220v4M250 220v4M290 220v4\" stroke=\"black\" stroke-width=\"1\" fill=\"none\"/><g font-size=\"10\" fill=\"black\"><text x=\"42\" y=\"223.5\" text-anchor=\"end\">0</text><text x=\"42\" y=\"183.5\" text-anchor=\"end\">20</text><text x=\"42\" y=\"143.5\" text-anchor=\"end\">40</text><text x=\"42\" y=\"103.5\" text-anchor=\"end\">60</text><text x=\"42\" y=\"63.5\" text-anchor=\"end\">80</text><text x=\"42\" y=\"23.5\" text-anchor=\"end\">100</text><text x=\"50\" y=\"236\" text-anchor=\"middle\">0</text><text x=\"90\" y=\"236\" text-anchor=\"middle\">10</text><text x=\"130\" y=\"236\" text-anchor=\"middle\">20</text><text x=\"170\" y=\"236\" text-anchor=\"middle\">30</text><text x=\"210\" y=\"236\" text-anchor=\"middle\">40</text><text x=\"250\" y=\"236\" text-anchor=\"middle\">50</text><text x=\"290\" y=\"236\" text-anchor=\"middle\">60</text><text x=\"170\" y=\"252\" font-size=\"11\" text-anchor=\"middle\" font-style=\"italic\">Time (min)</text><text x=\"14\" y=\"120\" font-size=\"11\" text-anchor=\"middle\" font-style=\"italic\" transform=\"rotate(-90 14 120)\">Volume of CO2 collected (mL)</text></g><g fill=\"none\" stroke=\"black\" stroke-width=\"1.5\"><polyline points=\"50,220 90,220 130,220 170,220 210,220 250,220 290,220\"/><polyline points=\"50,220 90,204 130,184 170,168 210,158 250,154 290,152\"/><polyline points=\"50,220 90,200 130,176 170,150 210,124 250,100 290,80\"/><polyline points=\"50,220 90,198 130,172 170,144 210,116 250,88 290,60\"/><polyline points=\"50,220 90,214 130,206 170,196 210,186 250,176 290,166\" stroke-dasharray=\"5,3\"/><polyline points=\"50,220 90,188 130,154 170,124 210,94 250,66 290,40\" stroke-dasharray=\"5,3\"/></g><g fill=\"black\"><circle cx=\"50\" cy=\"220\" r=\"2.5\"/><circle cx=\"90\" cy=\"220\" r=\"2.5\"/><circle cx=\"130\" cy=\"220\" r=\"2.5\"/><circle cx=\"170\" cy=\"220\" r=\"2.5\"/><circle cx=\"210\" cy=\"220\" r=\"2.5\"/><circle cx=\"250\" cy=\"220\" r=\"2.5\"/><circle cx=\"290\" cy=\"220\" r=\"2.5\"/><circle cx=\"50\" cy=\"220\" r=\"2.5\"/><circle cx=\"90\" cy=\"204\" r=\"2.5\"/><circle cx=\"130\" cy=\"184\" r=\"2.5\"/><circle cx=\"170\" cy=\"168\" r=\"2.5\"/><circle cx=\"210\" cy=\"158\" r=\"2.5\"/><circle cx=\"250\" cy=\"154\" r=\"2.5\"/><circle cx=\"290\" cy=\"152\" r=\"2.5\"/><circle cx=\"50\" cy=\"220\" r=\"2.5\"/><circle cx=\"90\" cy=\"200\" r=\"2.5\"/><circle cx=\"130\" cy=\"176\" r=\"2.5\"/><circle cx=\"170\" cy=\"150\" r=\"2.5\"/><circle cx=\"210\" cy=\"124\" r=\"2.5\"/><circle cx=\"250\" cy=\"100\" r=\"2.5\"/><circle cx=\"290\" cy=\"80\" r=\"2.5\"/><circle cx=\"50\" cy=\"220\" r=\"2.5\"/><circle cx=\"90\" cy=\"198\" r=\"2.5\"/><circle cx=\"130\" cy=\"172\" r=\"2.5\"/><circle cx=\"170\" cy=\"144\" r=\"2.5\"/><circle cx=\"210\" cy=\"116\" r=\"2.5\"/><circle cx=\"250\" cy=\"88\" r=\"2.5\"/><circle cx=\"290\" cy=\"60\" r=\"2.5\"/></g><g fill=\"white\" stroke=\"black\"><rect x=\"47.5\" y=\"217.5\" width=\"5\" height=\"5\"/><rect x=\"87.5\" y=\"211.5\" width=\"5\" height=\"5\"/><rect x=\"127.5\" y=\"203.5\" width=\"5\" height=\"5\"/><rect x=\"167.5\" y=\"193.5\" width=\"5\" height=\"5\"/><rect x=\"207.5\" y=\"183.5\" width=\"5\" height=\"5\"/><rect x=\"247.5\" y=\"173.5\" width=\"5\" height=\"5\"/><rect x=\"287.5\" y=\"163.5\" width=\"5\" height=\"5\"/><rect x=\"47.5\" y=\"217.5\" width=\"5\" height=\"5\"/><rect x=\"87.5\" y=\"185.5\" width=\"5\" height=\"5\"/><rect x=\"127.5\" y=\"151.5\" width=\"5\" height=\"5\"/><rect x=\"167.5\" y=\"121.5\" width=\"5\" height=\"5\"/><rect x=\"207.5\" y=\"91.5\" width=\"5\" height=\"5\"/><rect x=\"247.5\" y=\"63.5\" width=\"5\" height=\"5\"/><rect x=\"287.5\" y=\"37.5\" width=\"5\" height=\"5\"/></g><g font-size=\"9.5\" fill=\"black\"><text x=\"294\" y=\"223.5\">0%</text><text x=\"294\" y=\"155.5\">2%</text><text x=\"294\" y=\"83.5\">5% (30 °C)</text><text x=\"294\" y=\"63.5\">10%</text><text x=\"294\" y=\"169.5\">20 °C</text><text x=\"294\" y=\"43.5\">40 °C</text></g><rect x=\"56\" y=\"26\" width=\"132\" height=\"30\" fill=\"white\" stroke=\"#999\" stroke-width=\"0.6\"/><path d=\"M62 36H82M62 49H82\" stroke=\"black\" stroke-width=\"1.5\"/><path d=\"M62 49H82\" stroke=\"white\" stroke-width=\"1.5\" stroke-dasharray=\"3,5\" stroke-dashoffset=\"-5\"/><circle cx=\"72\" cy=\"36\" r=\"2.5\" fill=\"black\"/><rect x=\"69.5\" y=\"46.5\" width=\"5\" height=\"5\" fill=\"white\" stroke=\"black\"/><g font-size=\"9\" fill=\"black\"><text x=\"87\" y=\"39.5\">Exp. 1 (all at 30 °C)</text><text x=\"87\" y=\"52.5\">Exp. 2 (all 5% glucose)</text></g></svg>",
+      "caption": "Figure 1. Volume of CO2 collected over 60 min. Solid lines: Experiment 1 flasks (0%, 2%, 5%, 10% glucose at 30 °C). Dashed lines: Experiment 2 flasks (5% glucose at 20 °C and 40 °C). The 5% glucose flask at 30 °C was used in both experiments."
+    },
+    "prompt": "Based on the results of Experiment 2, the average rate of CO2 production in the flask kept at 40 °C during the first 30 min was closest to:",
+    "choices": [
+      "0.5 mL/min",
+      "1.2 mL/min",
+      "1.6 mL/min",
+      "3.0 mL/min"
+    ],
+    "correct_answer": "1.6 mL/min",
+    "explanation": "In Figure 1, the dashed 40 °C curve is at about 48 mL at 30 min, so the average rate was 48 mL / 30 min, or about \"1.6 mL/min.\" The 20 °C and 30 °C flasks give about 0.4 mL/min and 1.2 mL/min, and 3.0 mL/min would require dividing the 60 min volume by 30 min.",
+    "domain": "Interpretation of Data",
+    "subskill": "compute a rate from a line graph",
+    "difficulty": "hard"
+  },
+  {
+    "id": "SCI-RSA-03-6",
+    "passage_id": "sci-rsa-03",
+    "passage_title": "Yeast Fermentation",
+    "passage": "Yeast cells break down glucose (C6H12O6) by fermentation, producing ethanol and carbon dioxide (CO2). Students measured CO2 production by connecting each flask to a tube that led into an inverted, water-filled graduated cylinder; the volume of water displaced from the cylinder equaled the volume of CO2 collected. Each flask contained 5 g of dry yeast in 200 mL of water at pH 6.5 and was kept in a water bath whose temperature was checked every 10 min. The volume of CO2 collected was recorded every 10 min for 60 min.\n\nExperiment 1\nFour flasks were prepared, and all four were kept at 30 °C. Glucose was added to three of the flasks so that the glucose concentrations were 2%, 5%, and 10% (grams of glucose per 100 mL of water). No glucose was added to the fourth flask. The results are shown in Figure 1.\n\nExperiment 2\nThree flasks, each with a glucose concentration of 5%, were prepared as in Experiment 1, except that one flask was kept at 20 °C, one at 30 °C, and one at 40 °C. The results are shown in Figure 1.",
+    "format": "research_summaries",
+    "graphic": {
+      "type": "svg",
+      "svg": "<svg viewBox=\"0 0 360 260\" width=\"340\" role=\"img\" aria-label=\"Volume of CO2 collected versus time for Experiments 1 and 2\"><path d=\"M50 200H290M50 180H290M50 160H290M50 140H290M50 120H290M50 100H290M50 80H290M50 60H290M50 40H290M50 20H290\" stroke=\"#ddd\" stroke-width=\"0.6\"/><path d=\"M50 20V220H290M46 220H50M46 180H50M46 140H50M46 100H50M46 60H50M46 20H50M50 220v4M90 220v4M130 220v4M170 220v4M210 220v4M250 220v4M290 220v4\" stroke=\"black\" stroke-width=\"1\" fill=\"none\"/><g font-size=\"10\" fill=\"black\"><text x=\"42\" y=\"223.5\" text-anchor=\"end\">0</text><text x=\"42\" y=\"183.5\" text-anchor=\"end\">20</text><text x=\"42\" y=\"143.5\" text-anchor=\"end\">40</text><text x=\"42\" y=\"103.5\" text-anchor=\"end\">60</text><text x=\"42\" y=\"63.5\" text-anchor=\"end\">80</text><text x=\"42\" y=\"23.5\" text-anchor=\"end\">100</text><text x=\"50\" y=\"236\" text-anchor=\"middle\">0</text><text x=\"90\" y=\"236\" text-anchor=\"middle\">10</text><text x=\"130\" y=\"236\" text-anchor=\"middle\">20</text><text x=\"170\" y=\"236\" text-anchor=\"middle\">30</text><text x=\"210\" y=\"236\" text-anchor=\"middle\">40</text><text x=\"250\" y=\"236\" text-anchor=\"middle\">50</text><text x=\"290\" y=\"236\" text-anchor=\"middle\">60</text><text x=\"170\" y=\"252\" font-size=\"11\" text-anchor=\"middle\" font-style=\"italic\">Time (min)</text><text x=\"14\" y=\"120\" font-size=\"11\" text-anchor=\"middle\" font-style=\"italic\" transform=\"rotate(-90 14 120)\">Volume of CO2 collected (mL)</text></g><g fill=\"none\" stroke=\"black\" stroke-width=\"1.5\"><polyline points=\"50,220 90,220 130,220 170,220 210,220 250,220 290,220\"/><polyline points=\"50,220 90,204 130,184 170,168 210,158 250,154 290,152\"/><polyline points=\"50,220 90,200 130,176 170,150 210,124 250,100 290,80\"/><polyline points=\"50,220 90,198 130,172 170,144 210,116 250,88 290,60\"/><polyline points=\"50,220 90,214 130,206 170,196 210,186 250,176 290,166\" stroke-dasharray=\"5,3\"/><polyline points=\"50,220 90,188 130,154 170,124 210,94 250,66 290,40\" stroke-dasharray=\"5,3\"/></g><g fill=\"black\"><circle cx=\"50\" cy=\"220\" r=\"2.5\"/><circle cx=\"90\" cy=\"220\" r=\"2.5\"/><circle cx=\"130\" cy=\"220\" r=\"2.5\"/><circle cx=\"170\" cy=\"220\" r=\"2.5\"/><circle cx=\"210\" cy=\"220\" r=\"2.5\"/><circle cx=\"250\" cy=\"220\" r=\"2.5\"/><circle cx=\"290\" cy=\"220\" r=\"2.5\"/><circle cx=\"50\" cy=\"220\" r=\"2.5\"/><circle cx=\"90\" cy=\"204\" r=\"2.5\"/><circle cx=\"130\" cy=\"184\" r=\"2.5\"/><circle cx=\"170\" cy=\"168\" r=\"2.5\"/><circle cx=\"210\" cy=\"158\" r=\"2.5\"/><circle cx=\"250\" cy=\"154\" r=\"2.5\"/><circle cx=\"290\" cy=\"152\" r=\"2.5\"/><circle cx=\"50\" cy=\"220\" r=\"2.5\"/><circle cx=\"90\" cy=\"200\" r=\"2.5\"/><circle cx=\"130\" cy=\"176\" r=\"2.5\"/><circle cx=\"170\" cy=\"150\" r=\"2.5\"/><circle cx=\"210\" cy=\"124\" r=\"2.5\"/><circle cx=\"250\" cy=\"100\" r=\"2.5\"/><circle cx=\"290\" cy=\"80\" r=\"2.5\"/><circle cx=\"50\" cy=\"220\" r=\"2.5\"/><circle cx=\"90\" cy=\"198\" r=\"2.5\"/><circle cx=\"130\" cy=\"172\" r=\"2.5\"/><circle cx=\"170\" cy=\"144\" r=\"2.5\"/><circle cx=\"210\" cy=\"116\" r=\"2.5\"/><circle cx=\"250\" cy=\"88\" r=\"2.5\"/><circle cx=\"290\" cy=\"60\" r=\"2.5\"/></g><g fill=\"white\" stroke=\"black\"><rect x=\"47.5\" y=\"217.5\" width=\"5\" height=\"5\"/><rect x=\"87.5\" y=\"211.5\" width=\"5\" height=\"5\"/><rect x=\"127.5\" y=\"203.5\" width=\"5\" height=\"5\"/><rect x=\"167.5\" y=\"193.5\" width=\"5\" height=\"5\"/><rect x=\"207.5\" y=\"183.5\" width=\"5\" height=\"5\"/><rect x=\"247.5\" y=\"173.5\" width=\"5\" height=\"5\"/><rect x=\"287.5\" y=\"163.5\" width=\"5\" height=\"5\"/><rect x=\"47.5\" y=\"217.5\" width=\"5\" height=\"5\"/><rect x=\"87.5\" y=\"185.5\" width=\"5\" height=\"5\"/><rect x=\"127.5\" y=\"151.5\" width=\"5\" height=\"5\"/><rect x=\"167.5\" y=\"121.5\" width=\"5\" height=\"5\"/><rect x=\"207.5\" y=\"91.5\" width=\"5\" height=\"5\"/><rect x=\"247.5\" y=\"63.5\" width=\"5\" height=\"5\"/><rect x=\"287.5\" y=\"37.5\" width=\"5\" height=\"5\"/></g><g font-size=\"9.5\" fill=\"black\"><text x=\"294\" y=\"223.5\">0%</text><text x=\"294\" y=\"155.5\">2%</text><text x=\"294\" y=\"83.5\">5% (30 °C)</text><text x=\"294\" y=\"63.5\">10%</text><text x=\"294\" y=\"169.5\">20 °C</text><text x=\"294\" y=\"43.5\">40 °C</text></g><rect x=\"56\" y=\"26\" width=\"132\" height=\"30\" fill=\"white\" stroke=\"#999\" stroke-width=\"0.6\"/><path d=\"M62 36H82M62 49H82\" stroke=\"black\" stroke-width=\"1.5\"/><path d=\"M62 49H82\" stroke=\"white\" stroke-width=\"1.5\" stroke-dasharray=\"3,5\" stroke-dashoffset=\"-5\"/><circle cx=\"72\" cy=\"36\" r=\"2.5\" fill=\"black\"/><rect x=\"69.5\" y=\"46.5\" width=\"5\" height=\"5\" fill=\"white\" stroke=\"black\"/><g font-size=\"9\" fill=\"black\"><text x=\"87\" y=\"39.5\">Exp. 1 (all at 30 °C)</text><text x=\"87\" y=\"52.5\">Exp. 2 (all 5% glucose)</text></g></svg>",
+      "caption": "Figure 1. Volume of CO2 collected over 60 min. Solid lines: Experiment 1 flasks (0%, 2%, 5%, 10% glucose at 30 °C). Dashed lines: Experiment 2 flasks (5% glucose at 20 °C and 40 °C). The 5% glucose flask at 30 °C was used in both experiments."
+    },
+    "prompt": "A student hypothesized that, at any given time, doubling the glucose concentration in a flask would double the volume of CO2 collected. Are the results of Experiment 1 consistent with this hypothesis?",
+    "choices": [
+      "Yes; the flask containing 10% glucose produced more CO2 than the flask containing 5% glucose at every time after 0 min.",
+      "Yes; at 60 min, the flask containing 2% glucose had produced about half as much CO2 as the flask containing 5% glucose.",
+      "No; the flask containing 2% glucose produced almost no additional CO2 after 40 min.",
+      "No; at 60 min, the flask containing 10% glucose had produced only 10 mL more CO2 than the flask containing 5% glucose."
+    ],
+    "correct_answer": "No; at 60 min, the flask containing 10% glucose had produced only 10 mL more CO2 than the flask containing 5% glucose.",
+    "explanation": "Doubling the concentration from 5% to 10% would have to double the volume, but at 60 min the volumes were about 70 mL and 80 mL, so \"the flask containing 10% glucose had produced only 10 mL more CO2 than the flask containing 5% glucose\" and the hypothesis is not consistent with the results. That 10% produced more than 5% at every time shows an increase, not a doubling, and 2% to 5% is not a doubling of concentration.",
+    "domain": "Evaluation of Models, Inferences, and Experimental Results",
+    "subskill": "test a quantitative hypothesis against graphed data",
+    "difficulty": "hard"
+  }
+]

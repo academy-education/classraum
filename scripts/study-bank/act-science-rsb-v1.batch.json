@@ -1,0 +1,1328 @@
+[
+  {
+    "id": "SCI-RSB-01-1",
+    "passage_id": "sci-rsb-01",
+    "passage_title": "Soil Respiration",
+    "passage": "Soil respiration is the release of carbon dioxide (CO₂) from soil, mostly by microorganisms that break down organic matter. Students investigated how temperature, moisture, and the supply of organic carbon affect the rate of soil respiration.\n\nIn each trial, a 200 g core of soil collected from a single meadow was placed in a sealed 1 L glass jar. After 24 hours, the CO₂ concentration in the air inside the jar was measured with an infrared gas analyzer and converted to a CO₂ flux, in milligrams of CO₂ per kilogram of soil per hour (mg/kg/h).\n\nStudy 1\nFour cores were adjusted to a moisture content of 25% by mass and incubated at 5 °C, 15 °C, 25 °C, or 35 °C (Trials 1-4, Table 1).\n\nStudy 2\nFive cores were incubated at 25 °C after being adjusted to a moisture content of 5%, 15%, 25%, 35%, or 45% by mass (Trials 5-9).\n\nStudy 3\nFour cores were adjusted to 25% moisture and incubated at 25 °C. Before incubation, 1.0 g of glucose dissolved in 5 mL of water was mixed into two of the cores; 5 mL of water alone was mixed into the other two. One core from each pair was first autoclaved (heated under pressure to 121 °C for 30 min) and allowed to cool before anything was mixed in (Trials 10-13).",
+    "format": "research_summaries",
+    "graphic": {
+      "type": "table",
+      "rowLabels": [
+        "Trial 1",
+        "Trial 2",
+        "Trial 3",
+        "Trial 4",
+        "Trial 5",
+        "Trial 6",
+        "Trial 7",
+        "Trial 8",
+        "Trial 9",
+        "Trial 10",
+        "Trial 11",
+        "Trial 12",
+        "Trial 13"
+      ],
+      "colLabels": [
+        "Study",
+        "Temperature (°C)",
+        "Moisture (% by mass)",
+        "Treatment",
+        "CO₂ flux (mg/kg/h)"
+      ],
+      "cells": [
+        [
+          "1",
+          "5",
+          "25",
+          "none",
+          "0.8"
+        ],
+        [
+          "1",
+          "15",
+          "25",
+          "none",
+          "1.9"
+        ],
+        [
+          "1",
+          "25",
+          "25",
+          "none",
+          "4.1"
+        ],
+        [
+          "1",
+          "35",
+          "25",
+          "none",
+          "6.2"
+        ],
+        [
+          "2",
+          "25",
+          "5",
+          "none",
+          "0.6"
+        ],
+        [
+          "2",
+          "25",
+          "15",
+          "none",
+          "2.7"
+        ],
+        [
+          "2",
+          "25",
+          "25",
+          "none",
+          "4.0"
+        ],
+        [
+          "2",
+          "25",
+          "35",
+          "none",
+          "3.3"
+        ],
+        [
+          "2",
+          "25",
+          "45",
+          "none",
+          "1.2"
+        ],
+        [
+          "3",
+          "25",
+          "25",
+          "water only",
+          "4.1"
+        ],
+        [
+          "3",
+          "25",
+          "25",
+          "glucose in water",
+          "9.8"
+        ],
+        [
+          "3",
+          "25",
+          "25",
+          "autoclaved; water only",
+          "0.2"
+        ],
+        [
+          "3",
+          "25",
+          "25",
+          "autoclaved; glucose in water",
+          "0.3"
+        ]
+      ],
+      "caption": "Table 1. Conditions and measured CO₂ flux for each trial of Studies 1-3."
+    },
+    "prompt": "Which of the following factors was varied in Study 1 but held constant in Study 2?",
+    "choices": [
+      "Moisture content of the soil",
+      "Incubation temperature",
+      "Mass of each soil core",
+      "Length of the incubation"
+    ],
+    "correct_answer": "Incubation temperature",
+    "explanation": "Study 1 incubated cores at four temperatures (5 °C to 35 °C) with moisture fixed at 25%; Study 2 held the temperature at 25 °C and varied moisture, so \"Incubation temperature\" is the factor varied only in Study 1. Core mass (200 g) and incubation time (24 hours) were the same in every trial.",
+    "domain": "Scientific Investigation",
+    "subskill": "identify the independent variable of a study",
+    "difficulty": "easy"
+  },
+  {
+    "id": "SCI-RSB-01-2",
+    "passage_id": "sci-rsb-01",
+    "passage_title": "Soil Respiration",
+    "passage": "Soil respiration is the release of carbon dioxide (CO₂) from soil, mostly by microorganisms that break down organic matter. Students investigated how temperature, moisture, and the supply of organic carbon affect the rate of soil respiration.\n\nIn each trial, a 200 g core of soil collected from a single meadow was placed in a sealed 1 L glass jar. After 24 hours, the CO₂ concentration in the air inside the jar was measured with an infrared gas analyzer and converted to a CO₂ flux, in milligrams of CO₂ per kilogram of soil per hour (mg/kg/h).\n\nStudy 1\nFour cores were adjusted to a moisture content of 25% by mass and incubated at 5 °C, 15 °C, 25 °C, or 35 °C (Trials 1-4, Table 1).\n\nStudy 2\nFive cores were incubated at 25 °C after being adjusted to a moisture content of 5%, 15%, 25%, 35%, or 45% by mass (Trials 5-9).\n\nStudy 3\nFour cores were adjusted to 25% moisture and incubated at 25 °C. Before incubation, 1.0 g of glucose dissolved in 5 mL of water was mixed into two of the cores; 5 mL of water alone was mixed into the other two. One core from each pair was first autoclaved (heated under pressure to 121 °C for 30 min) and allowed to cool before anything was mixed in (Trials 10-13).",
+    "format": "research_summaries",
+    "graphic": {
+      "type": "table",
+      "rowLabels": [
+        "Trial 1",
+        "Trial 2",
+        "Trial 3",
+        "Trial 4",
+        "Trial 5",
+        "Trial 6",
+        "Trial 7",
+        "Trial 8",
+        "Trial 9",
+        "Trial 10",
+        "Trial 11",
+        "Trial 12",
+        "Trial 13"
+      ],
+      "colLabels": [
+        "Study",
+        "Temperature (°C)",
+        "Moisture (% by mass)",
+        "Treatment",
+        "CO₂ flux (mg/kg/h)"
+      ],
+      "cells": [
+        [
+          "1",
+          "5",
+          "25",
+          "none",
+          "0.8"
+        ],
+        [
+          "1",
+          "15",
+          "25",
+          "none",
+          "1.9"
+        ],
+        [
+          "1",
+          "25",
+          "25",
+          "none",
+          "4.1"
+        ],
+        [
+          "1",
+          "35",
+          "25",
+          "none",
+          "6.2"
+        ],
+        [
+          "2",
+          "25",
+          "5",
+          "none",
+          "0.6"
+        ],
+        [
+          "2",
+          "25",
+          "15",
+          "none",
+          "2.7"
+        ],
+        [
+          "2",
+          "25",
+          "25",
+          "none",
+          "4.0"
+        ],
+        [
+          "2",
+          "25",
+          "35",
+          "none",
+          "3.3"
+        ],
+        [
+          "2",
+          "25",
+          "45",
+          "none",
+          "1.2"
+        ],
+        [
+          "3",
+          "25",
+          "25",
+          "water only",
+          "4.1"
+        ],
+        [
+          "3",
+          "25",
+          "25",
+          "glucose in water",
+          "9.8"
+        ],
+        [
+          "3",
+          "25",
+          "25",
+          "autoclaved; water only",
+          "0.2"
+        ],
+        [
+          "3",
+          "25",
+          "25",
+          "autoclaved; glucose in water",
+          "0.3"
+        ]
+      ],
+      "caption": "Table 1. Conditions and measured CO₂ flux for each trial of Studies 1-3."
+    },
+    "prompt": "Based on the results of Study 2, if a core had been adjusted to 20% moisture and incubated at 25 °C, the CO₂ flux would most likely have been:",
+    "choices": [
+      "less than 0.6 mg/kg/h.",
+      "between 0.6 and 2.7 mg/kg/h.",
+      "greater than 4.0 mg/kg/h.",
+      "between 2.7 and 4.0 mg/kg/h."
+    ],
+    "correct_answer": "between 2.7 and 4.0 mg/kg/h.",
+    "explanation": "In Table 1, Trial 6 (15% moisture) gave 2.7 mg/kg/h and Trial 7 (25% moisture) gave 4.0 mg/kg/h, so a core at 20% moisture would most likely fall \"between 2.7 and 4.0 mg/kg/h.\"",
+    "domain": "Interpretation of Data",
+    "subskill": "interpolate between tabulated values",
+    "difficulty": "medium"
+  },
+  {
+    "id": "SCI-RSB-01-3",
+    "passage_id": "sci-rsb-01",
+    "passage_title": "Soil Respiration",
+    "passage": "Soil respiration is the release of carbon dioxide (CO₂) from soil, mostly by microorganisms that break down organic matter. Students investigated how temperature, moisture, and the supply of organic carbon affect the rate of soil respiration.\n\nIn each trial, a 200 g core of soil collected from a single meadow was placed in a sealed 1 L glass jar. After 24 hours, the CO₂ concentration in the air inside the jar was measured with an infrared gas analyzer and converted to a CO₂ flux, in milligrams of CO₂ per kilogram of soil per hour (mg/kg/h).\n\nStudy 1\nFour cores were adjusted to a moisture content of 25% by mass and incubated at 5 °C, 15 °C, 25 °C, or 35 °C (Trials 1-4, Table 1).\n\nStudy 2\nFive cores were incubated at 25 °C after being adjusted to a moisture content of 5%, 15%, 25%, 35%, or 45% by mass (Trials 5-9).\n\nStudy 3\nFour cores were adjusted to 25% moisture and incubated at 25 °C. Before incubation, 1.0 g of glucose dissolved in 5 mL of water was mixed into two of the cores; 5 mL of water alone was mixed into the other two. One core from each pair was first autoclaved (heated under pressure to 121 °C for 30 min) and allowed to cool before anything was mixed in (Trials 10-13).",
+    "format": "research_summaries",
+    "graphic": {
+      "type": "table",
+      "rowLabels": [
+        "Trial 1",
+        "Trial 2",
+        "Trial 3",
+        "Trial 4",
+        "Trial 5",
+        "Trial 6",
+        "Trial 7",
+        "Trial 8",
+        "Trial 9",
+        "Trial 10",
+        "Trial 11",
+        "Trial 12",
+        "Trial 13"
+      ],
+      "colLabels": [
+        "Study",
+        "Temperature (°C)",
+        "Moisture (% by mass)",
+        "Treatment",
+        "CO₂ flux (mg/kg/h)"
+      ],
+      "cells": [
+        [
+          "1",
+          "5",
+          "25",
+          "none",
+          "0.8"
+        ],
+        [
+          "1",
+          "15",
+          "25",
+          "none",
+          "1.9"
+        ],
+        [
+          "1",
+          "25",
+          "25",
+          "none",
+          "4.1"
+        ],
+        [
+          "1",
+          "35",
+          "25",
+          "none",
+          "6.2"
+        ],
+        [
+          "2",
+          "25",
+          "5",
+          "none",
+          "0.6"
+        ],
+        [
+          "2",
+          "25",
+          "15",
+          "none",
+          "2.7"
+        ],
+        [
+          "2",
+          "25",
+          "25",
+          "none",
+          "4.0"
+        ],
+        [
+          "2",
+          "25",
+          "35",
+          "none",
+          "3.3"
+        ],
+        [
+          "2",
+          "25",
+          "45",
+          "none",
+          "1.2"
+        ],
+        [
+          "3",
+          "25",
+          "25",
+          "water only",
+          "4.1"
+        ],
+        [
+          "3",
+          "25",
+          "25",
+          "glucose in water",
+          "9.8"
+        ],
+        [
+          "3",
+          "25",
+          "25",
+          "autoclaved; water only",
+          "0.2"
+        ],
+        [
+          "3",
+          "25",
+          "25",
+          "autoclaved; glucose in water",
+          "0.3"
+        ]
+      ],
+      "caption": "Table 1. Conditions and measured CO₂ flux for each trial of Studies 1-3."
+    },
+    "prompt": "In Study 3, some cores were autoclaved most likely so that the students could determine whether:",
+    "choices": [
+      "the CO₂ released from the soil was produced by living microorganisms.",
+      "the glucose would dissolve completely in 5 mL of water.",
+      "the soil cores had the same moisture content as in Study 1.",
+      "incubation at 25 °C was warm enough to release CO₂ from the soil."
+    ],
+    "correct_answer": "the CO₂ released from the soil was produced by living microorganisms.",
+    "explanation": "Autoclaving heats the soil to 121 °C under pressure, which kills microorganisms; comparing autoclaved and nonautoclaved cores tests whether \"the CO₂ released from the soil was produced by living microorganisms.\" Moisture and temperature were already fixed at 25% and 25 °C in Study 3.",
+    "domain": "Scientific Investigation",
+    "subskill": "purpose of a control treatment",
+    "difficulty": "medium"
+  },
+  {
+    "id": "SCI-RSB-01-4",
+    "passage_id": "sci-rsb-01",
+    "passage_title": "Soil Respiration",
+    "passage": "Soil respiration is the release of carbon dioxide (CO₂) from soil, mostly by microorganisms that break down organic matter. Students investigated how temperature, moisture, and the supply of organic carbon affect the rate of soil respiration.\n\nIn each trial, a 200 g core of soil collected from a single meadow was placed in a sealed 1 L glass jar. After 24 hours, the CO₂ concentration in the air inside the jar was measured with an infrared gas analyzer and converted to a CO₂ flux, in milligrams of CO₂ per kilogram of soil per hour (mg/kg/h).\n\nStudy 1\nFour cores were adjusted to a moisture content of 25% by mass and incubated at 5 °C, 15 °C, 25 °C, or 35 °C (Trials 1-4, Table 1).\n\nStudy 2\nFive cores were incubated at 25 °C after being adjusted to a moisture content of 5%, 15%, 25%, 35%, or 45% by mass (Trials 5-9).\n\nStudy 3\nFour cores were adjusted to 25% moisture and incubated at 25 °C. Before incubation, 1.0 g of glucose dissolved in 5 mL of water was mixed into two of the cores; 5 mL of water alone was mixed into the other two. One core from each pair was first autoclaved (heated under pressure to 121 °C for 30 min) and allowed to cool before anything was mixed in (Trials 10-13).",
+    "format": "research_summaries",
+    "graphic": {
+      "type": "table",
+      "rowLabels": [
+        "Trial 1",
+        "Trial 2",
+        "Trial 3",
+        "Trial 4",
+        "Trial 5",
+        "Trial 6",
+        "Trial 7",
+        "Trial 8",
+        "Trial 9",
+        "Trial 10",
+        "Trial 11",
+        "Trial 12",
+        "Trial 13"
+      ],
+      "colLabels": [
+        "Study",
+        "Temperature (°C)",
+        "Moisture (% by mass)",
+        "Treatment",
+        "CO₂ flux (mg/kg/h)"
+      ],
+      "cells": [
+        [
+          "1",
+          "5",
+          "25",
+          "none",
+          "0.8"
+        ],
+        [
+          "1",
+          "15",
+          "25",
+          "none",
+          "1.9"
+        ],
+        [
+          "1",
+          "25",
+          "25",
+          "none",
+          "4.1"
+        ],
+        [
+          "1",
+          "35",
+          "25",
+          "none",
+          "6.2"
+        ],
+        [
+          "2",
+          "25",
+          "5",
+          "none",
+          "0.6"
+        ],
+        [
+          "2",
+          "25",
+          "15",
+          "none",
+          "2.7"
+        ],
+        [
+          "2",
+          "25",
+          "25",
+          "none",
+          "4.0"
+        ],
+        [
+          "2",
+          "25",
+          "35",
+          "none",
+          "3.3"
+        ],
+        [
+          "2",
+          "25",
+          "45",
+          "none",
+          "1.2"
+        ],
+        [
+          "3",
+          "25",
+          "25",
+          "water only",
+          "4.1"
+        ],
+        [
+          "3",
+          "25",
+          "25",
+          "glucose in water",
+          "9.8"
+        ],
+        [
+          "3",
+          "25",
+          "25",
+          "autoclaved; water only",
+          "0.2"
+        ],
+        [
+          "3",
+          "25",
+          "25",
+          "autoclaved; glucose in water",
+          "0.3"
+        ]
+      ],
+      "caption": "Table 1. Conditions and measured CO₂ flux for each trial of Studies 1-3."
+    },
+    "prompt": "A student claimed that, for the soil tested, CO₂ flux increases as temperature increases regardless of the soil's moisture content. Is this claim supported by the results of Study 1?",
+    "choices": [
+      "No; every trial in Study 1 was conducted at the same moisture content.",
+      "No; the CO₂ flux decreased between Trials 3 and 4.",
+      "Yes; the CO₂ flux increased from Trial 1 through Trial 4.",
+      "Yes; the cores in Study 1 were adjusted to five different moisture contents."
+    ],
+    "correct_answer": "No; every trial in Study 1 was conducted at the same moisture content.",
+    "explanation": "Study 1 does show flux rising with temperature, but all four cores were at 25% moisture, so the study says nothing about other moisture contents: \"No; every trial in Study 1 was conducted at the same moisture content.\" The flux rose, not fell, between Trials 3 and 4.",
+    "domain": "Evaluation of Models, Inferences, and Experimental Results",
+    "subskill": "recognize a claim that overreaches the design",
+    "difficulty": "hard"
+  },
+  {
+    "id": "SCI-RSB-01-5",
+    "passage_id": "sci-rsb-01",
+    "passage_title": "Soil Respiration",
+    "passage": "Soil respiration is the release of carbon dioxide (CO₂) from soil, mostly by microorganisms that break down organic matter. Students investigated how temperature, moisture, and the supply of organic carbon affect the rate of soil respiration.\n\nIn each trial, a 200 g core of soil collected from a single meadow was placed in a sealed 1 L glass jar. After 24 hours, the CO₂ concentration in the air inside the jar was measured with an infrared gas analyzer and converted to a CO₂ flux, in milligrams of CO₂ per kilogram of soil per hour (mg/kg/h).\n\nStudy 1\nFour cores were adjusted to a moisture content of 25% by mass and incubated at 5 °C, 15 °C, 25 °C, or 35 °C (Trials 1-4, Table 1).\n\nStudy 2\nFive cores were incubated at 25 °C after being adjusted to a moisture content of 5%, 15%, 25%, 35%, or 45% by mass (Trials 5-9).\n\nStudy 3\nFour cores were adjusted to 25% moisture and incubated at 25 °C. Before incubation, 1.0 g of glucose dissolved in 5 mL of water was mixed into two of the cores; 5 mL of water alone was mixed into the other two. One core from each pair was first autoclaved (heated under pressure to 121 °C for 30 min) and allowed to cool before anything was mixed in (Trials 10-13).",
+    "format": "research_summaries",
+    "graphic": {
+      "type": "table",
+      "rowLabels": [
+        "Trial 1",
+        "Trial 2",
+        "Trial 3",
+        "Trial 4",
+        "Trial 5",
+        "Trial 6",
+        "Trial 7",
+        "Trial 8",
+        "Trial 9",
+        "Trial 10",
+        "Trial 11",
+        "Trial 12",
+        "Trial 13"
+      ],
+      "colLabels": [
+        "Study",
+        "Temperature (°C)",
+        "Moisture (% by mass)",
+        "Treatment",
+        "CO₂ flux (mg/kg/h)"
+      ],
+      "cells": [
+        [
+          "1",
+          "5",
+          "25",
+          "none",
+          "0.8"
+        ],
+        [
+          "1",
+          "15",
+          "25",
+          "none",
+          "1.9"
+        ],
+        [
+          "1",
+          "25",
+          "25",
+          "none",
+          "4.1"
+        ],
+        [
+          "1",
+          "35",
+          "25",
+          "none",
+          "6.2"
+        ],
+        [
+          "2",
+          "25",
+          "5",
+          "none",
+          "0.6"
+        ],
+        [
+          "2",
+          "25",
+          "15",
+          "none",
+          "2.7"
+        ],
+        [
+          "2",
+          "25",
+          "25",
+          "none",
+          "4.0"
+        ],
+        [
+          "2",
+          "25",
+          "35",
+          "none",
+          "3.3"
+        ],
+        [
+          "2",
+          "25",
+          "45",
+          "none",
+          "1.2"
+        ],
+        [
+          "3",
+          "25",
+          "25",
+          "water only",
+          "4.1"
+        ],
+        [
+          "3",
+          "25",
+          "25",
+          "glucose in water",
+          "9.8"
+        ],
+        [
+          "3",
+          "25",
+          "25",
+          "autoclaved; water only",
+          "0.2"
+        ],
+        [
+          "3",
+          "25",
+          "25",
+          "autoclaved; glucose in water",
+          "0.3"
+        ]
+      ],
+      "caption": "Table 1. Conditions and measured CO₂ flux for each trial of Studies 1-3."
+    },
+    "prompt": "Which of the following statements about the soil cores in Study 3 is best supported by the results in Table 1?",
+    "choices": [
+      "Adding glucose increased the CO₂ flux of both the autoclaved and the nonautoclaved cores by about the same amount.",
+      "Autoclaving increased the CO₂ flux of cores that received water only.",
+      "Adding glucose increased the CO₂ flux only in cores that had not been autoclaved.",
+      "The cores that received water only had the same CO₂ flux whether or not they were autoclaved."
+    ],
+    "correct_answer": "Adding glucose increased the CO₂ flux only in cores that had not been autoclaved.",
+    "explanation": "Glucose raised the flux of the nonautoclaved core from 4.1 to 9.8 mg/kg/h but changed the autoclaved core only from 0.2 to 0.3 mg/kg/h, so \"Adding glucose increased the CO₂ flux only in cores that had not been autoclaved.\" Autoclaving lowered, not raised, the water-only flux (4.1 to 0.2).",
+    "domain": "Evaluation of Models, Inferences, and Experimental Results",
+    "subskill": "draw a conclusion from a factorial comparison",
+    "difficulty": "hard"
+  },
+  {
+    "id": "SCI-RSB-01-6",
+    "passage_id": "sci-rsb-01",
+    "passage_title": "Soil Respiration",
+    "passage": "Soil respiration is the release of carbon dioxide (CO₂) from soil, mostly by microorganisms that break down organic matter. Students investigated how temperature, moisture, and the supply of organic carbon affect the rate of soil respiration.\n\nIn each trial, a 200 g core of soil collected from a single meadow was placed in a sealed 1 L glass jar. After 24 hours, the CO₂ concentration in the air inside the jar was measured with an infrared gas analyzer and converted to a CO₂ flux, in milligrams of CO₂ per kilogram of soil per hour (mg/kg/h).\n\nStudy 1\nFour cores were adjusted to a moisture content of 25% by mass and incubated at 5 °C, 15 °C, 25 °C, or 35 °C (Trials 1-4, Table 1).\n\nStudy 2\nFive cores were incubated at 25 °C after being adjusted to a moisture content of 5%, 15%, 25%, 35%, or 45% by mass (Trials 5-9).\n\nStudy 3\nFour cores were adjusted to 25% moisture and incubated at 25 °C. Before incubation, 1.0 g of glucose dissolved in 5 mL of water was mixed into two of the cores; 5 mL of water alone was mixed into the other two. One core from each pair was first autoclaved (heated under pressure to 121 °C for 30 min) and allowed to cool before anything was mixed in (Trials 10-13).",
+    "format": "research_summaries",
+    "graphic": {
+      "type": "table",
+      "rowLabels": [
+        "Trial 1",
+        "Trial 2",
+        "Trial 3",
+        "Trial 4",
+        "Trial 5",
+        "Trial 6",
+        "Trial 7",
+        "Trial 8",
+        "Trial 9",
+        "Trial 10",
+        "Trial 11",
+        "Trial 12",
+        "Trial 13"
+      ],
+      "colLabels": [
+        "Study",
+        "Temperature (°C)",
+        "Moisture (% by mass)",
+        "Treatment",
+        "CO₂ flux (mg/kg/h)"
+      ],
+      "cells": [
+        [
+          "1",
+          "5",
+          "25",
+          "none",
+          "0.8"
+        ],
+        [
+          "1",
+          "15",
+          "25",
+          "none",
+          "1.9"
+        ],
+        [
+          "1",
+          "25",
+          "25",
+          "none",
+          "4.1"
+        ],
+        [
+          "1",
+          "35",
+          "25",
+          "none",
+          "6.2"
+        ],
+        [
+          "2",
+          "25",
+          "5",
+          "none",
+          "0.6"
+        ],
+        [
+          "2",
+          "25",
+          "15",
+          "none",
+          "2.7"
+        ],
+        [
+          "2",
+          "25",
+          "25",
+          "none",
+          "4.0"
+        ],
+        [
+          "2",
+          "25",
+          "35",
+          "none",
+          "3.3"
+        ],
+        [
+          "2",
+          "25",
+          "45",
+          "none",
+          "1.2"
+        ],
+        [
+          "3",
+          "25",
+          "25",
+          "water only",
+          "4.1"
+        ],
+        [
+          "3",
+          "25",
+          "25",
+          "glucose in water",
+          "9.8"
+        ],
+        [
+          "3",
+          "25",
+          "25",
+          "autoclaved; water only",
+          "0.2"
+        ],
+        [
+          "3",
+          "25",
+          "25",
+          "autoclaved; glucose in water",
+          "0.3"
+        ]
+      ],
+      "caption": "Table 1. Conditions and measured CO₂ flux for each trial of Studies 1-3."
+    },
+    "prompt": "Suppose the students hypothesized that the low CO₂ flux in Trial 9 occurred because water filled the pore spaces of the soil and limited the supply of oxygen to microorganisms. Which of the following additional trials would best test this hypothesis?",
+    "choices": [
+      "A core at 45% moisture incubated at 35 °C",
+      "A core at 45% moisture that was autoclaved and cooled before incubation",
+      "A core at 45% moisture sealed in a jar filled with pure oxygen",
+      "A core at 5% moisture with 1.0 g of glucose added"
+    ],
+    "correct_answer": "A core at 45% moisture sealed in a jar filled with pure oxygen",
+    "explanation": "To test whether oxygen was the limiting factor, the moisture must stay at 45% while the oxygen supply is changed, which is what \"A core at 45% moisture sealed in a jar filled with pure oxygen\" does. Changing the temperature, autoclaving, or using a 5% core changes a different factor or removes the microorganisms altogether.",
+    "domain": "Scientific Investigation",
+    "subskill": "design a trial that isolates one factor",
+    "difficulty": "medium"
+  },
+  {
+    "id": "SCI-RSB-02-1",
+    "passage_id": "sci-rsb-02",
+    "passage_title": "Capacitor Discharge",
+    "passage": "A capacitor stores electric charge. When a charged capacitor is connected across a resistor, charge flows through the resistor and the voltage across the capacitor decreases over time. Students studied how the rate of this decrease depends on the resistance R, the capacitance C, and the initial voltage V₀.\n\nIn each trial, a capacitor was charged to V₀ with a power supply, then disconnected from the supply and connected across a resistor at time t = 0. A data logger recorded the capacitor voltage every 0.1 s. The discharge time, t_d, was defined as the time at which the voltage had fallen to 37% of V₀. Each trial was repeated three times, and the average t_d was recorded.\n\nStudy 1\nA 470 μF capacitor was charged to V₀ = 9.0 V and discharged through a resistor of 10 kΩ, 22 kΩ, 47 kΩ, or 100 kΩ (Figure 1).\n\nStudy 2\nA 47 kΩ resistor was used with a 100 μF, 220 μF, 470 μF, or 1,000 μF capacitor, each charged to V₀ = 9.0 V (Figure 1).\n\nStudy 3\nThe 470 μF capacitor was discharged through the 47 kΩ resistor after being charged to V₀ = 3.0 V, 6.0 V, 9.0 V, or 12.0 V. The values of t_d were 22.2 s, 22.0 s, 22.3 s, and 22.1 s, respectively.",
+    "format": "research_summaries",
+    "graphic": {
+      "type": "bar",
+      "xLabel": "Trial (study: component varied)",
+      "yLabel": "Average discharge time, t_d (s)",
+      "bars": [
+        {
+          "label": "S1: 10 kΩ",
+          "value": 4.8
+        },
+        {
+          "label": "S1: 22 kΩ",
+          "value": 10.2
+        },
+        {
+          "label": "S1: 47 kΩ",
+          "value": 22.3
+        },
+        {
+          "label": "S1: 100 kΩ",
+          "value": 46.8
+        },
+        {
+          "label": "S2: 100 μF",
+          "value": 4.6
+        },
+        {
+          "label": "S2: 220 μF",
+          "value": 10.5
+        },
+        {
+          "label": "S2: 470 μF",
+          "value": 22.3
+        },
+        {
+          "label": "S2: 1,000 μF",
+          "value": 47.4
+        }
+      ],
+      "caption": "Figure 1. Average discharge time t_d for each trial of Study 1 (S1: 470 μF capacitor, resistance varied) and Study 2 (S2: 47 kΩ resistor, capacitance varied)."
+    },
+    "prompt": "According to Figure 1, in Study 1, t_d for the 47 kΩ resistor was approximately how many times as great as t_d for the 10 kΩ resistor?",
+    "choices": [
+      "2",
+      "10",
+      "20",
+      "5"
+    ],
+    "correct_answer": "5",
+    "explanation": "Figure 1 gives t_d of about 22.3 s for 47 kΩ and 4.8 s for 10 kΩ; 22.3 ÷ 4.8 is about 4.6, so the closest value is \"5.\"",
+    "domain": "Interpretation of Data",
+    "subskill": "ratio of two bar values",
+    "difficulty": "easy"
+  },
+  {
+    "id": "SCI-RSB-02-2",
+    "passage_id": "sci-rsb-02",
+    "passage_title": "Capacitor Discharge",
+    "passage": "A capacitor stores electric charge. When a charged capacitor is connected across a resistor, charge flows through the resistor and the voltage across the capacitor decreases over time. Students studied how the rate of this decrease depends on the resistance R, the capacitance C, and the initial voltage V₀.\n\nIn each trial, a capacitor was charged to V₀ with a power supply, then disconnected from the supply and connected across a resistor at time t = 0. A data logger recorded the capacitor voltage every 0.1 s. The discharge time, t_d, was defined as the time at which the voltage had fallen to 37% of V₀. Each trial was repeated three times, and the average t_d was recorded.\n\nStudy 1\nA 470 μF capacitor was charged to V₀ = 9.0 V and discharged through a resistor of 10 kΩ, 22 kΩ, 47 kΩ, or 100 kΩ (Figure 1).\n\nStudy 2\nA 47 kΩ resistor was used with a 100 μF, 220 μF, 470 μF, or 1,000 μF capacitor, each charged to V₀ = 9.0 V (Figure 1).\n\nStudy 3\nThe 470 μF capacitor was discharged through the 47 kΩ resistor after being charged to V₀ = 3.0 V, 6.0 V, 9.0 V, or 12.0 V. The values of t_d were 22.2 s, 22.0 s, 22.3 s, and 22.1 s, respectively.",
+    "format": "research_summaries",
+    "graphic": {
+      "type": "bar",
+      "xLabel": "Trial (study: component varied)",
+      "yLabel": "Average discharge time, t_d (s)",
+      "bars": [
+        {
+          "label": "S1: 10 kΩ",
+          "value": 4.8
+        },
+        {
+          "label": "S1: 22 kΩ",
+          "value": 10.2
+        },
+        {
+          "label": "S1: 47 kΩ",
+          "value": 22.3
+        },
+        {
+          "label": "S1: 100 kΩ",
+          "value": 46.8
+        },
+        {
+          "label": "S2: 100 μF",
+          "value": 4.6
+        },
+        {
+          "label": "S2: 220 μF",
+          "value": 10.5
+        },
+        {
+          "label": "S2: 470 μF",
+          "value": 22.3
+        },
+        {
+          "label": "S2: 1,000 μF",
+          "value": 47.4
+        }
+      ],
+      "caption": "Figure 1. Average discharge time t_d for each trial of Study 1 (S1: 470 μF capacitor, resistance varied) and Study 2 (S2: 47 kΩ resistor, capacitance varied)."
+    },
+    "prompt": "Which of the following best describes a difference between the procedures of Study 1 and Study 2?",
+    "choices": [
+      "The resistance was varied in Study 1, whereas the capacitance was varied in Study 2.",
+      "The initial voltage was varied in Study 1, whereas the resistance was varied in Study 2.",
+      "The capacitor was charged to 9.0 V in Study 1 but not in Study 2.",
+      "A data logger was used in Study 1, whereas a voltmeter read by eye was used in Study 2."
+    ],
+    "correct_answer": "The resistance was varied in Study 1, whereas the capacitance was varied in Study 2.",
+    "explanation": "Study 1 used one 470 μF capacitor with four resistors, and Study 2 used one 47 kΩ resistor with four capacitors: \"The resistance was varied in Study 1, whereas the capacitance was varied in Study 2.\" Both studies charged to 9.0 V and used the data logger; only Study 3 varied the initial voltage.",
+    "domain": "Scientific Investigation",
+    "subskill": "compare the designs of two studies",
+    "difficulty": "easy"
+  },
+  {
+    "id": "SCI-RSB-02-3",
+    "passage_id": "sci-rsb-02",
+    "passage_title": "Capacitor Discharge",
+    "passage": "A capacitor stores electric charge. When a charged capacitor is connected across a resistor, charge flows through the resistor and the voltage across the capacitor decreases over time. Students studied how the rate of this decrease depends on the resistance R, the capacitance C, and the initial voltage V₀.\n\nIn each trial, a capacitor was charged to V₀ with a power supply, then disconnected from the supply and connected across a resistor at time t = 0. A data logger recorded the capacitor voltage every 0.1 s. The discharge time, t_d, was defined as the time at which the voltage had fallen to 37% of V₀. Each trial was repeated three times, and the average t_d was recorded.\n\nStudy 1\nA 470 μF capacitor was charged to V₀ = 9.0 V and discharged through a resistor of 10 kΩ, 22 kΩ, 47 kΩ, or 100 kΩ (Figure 1).\n\nStudy 2\nA 47 kΩ resistor was used with a 100 μF, 220 μF, 470 μF, or 1,000 μF capacitor, each charged to V₀ = 9.0 V (Figure 1).\n\nStudy 3\nThe 470 μF capacitor was discharged through the 47 kΩ resistor after being charged to V₀ = 3.0 V, 6.0 V, 9.0 V, or 12.0 V. The values of t_d were 22.2 s, 22.0 s, 22.3 s, and 22.1 s, respectively.",
+    "format": "research_summaries",
+    "graphic": {
+      "type": "bar",
+      "xLabel": "Trial (study: component varied)",
+      "yLabel": "Average discharge time, t_d (s)",
+      "bars": [
+        {
+          "label": "S1: 10 kΩ",
+          "value": 4.8
+        },
+        {
+          "label": "S1: 22 kΩ",
+          "value": 10.2
+        },
+        {
+          "label": "S1: 47 kΩ",
+          "value": 22.3
+        },
+        {
+          "label": "S1: 100 kΩ",
+          "value": 46.8
+        },
+        {
+          "label": "S2: 100 μF",
+          "value": 4.6
+        },
+        {
+          "label": "S2: 220 μF",
+          "value": 10.5
+        },
+        {
+          "label": "S2: 470 μF",
+          "value": 22.3
+        },
+        {
+          "label": "S2: 1,000 μF",
+          "value": 47.4
+        }
+      ],
+      "caption": "Figure 1. Average discharge time t_d for each trial of Study 1 (S1: 470 μF capacitor, resistance varied) and Study 2 (S2: 47 kΩ resistor, capacitance varied)."
+    },
+    "prompt": "Suppose an additional trial of Study 1 had been conducted with a 68 kΩ resistor. Based on Figure 1, t_d would most likely have been:",
+    "choices": [
+      "between 10.2 s and 22.3 s.",
+      "between 22.3 s and 46.8 s.",
+      "greater than 46.8 s.",
+      "less than 10.2 s."
+    ],
+    "correct_answer": "between 22.3 s and 46.8 s.",
+    "explanation": "In Study 1, t_d increased with resistance, and 68 kΩ lies between the 47 kΩ resistor (22.3 s) and the 100 kΩ resistor (46.8 s), so t_d would most likely have been \"between 22.3 s and 46.8 s.\"",
+    "domain": "Interpretation of Data",
+    "subskill": "interpolate from a bar chart trend",
+    "difficulty": "medium"
+  },
+  {
+    "id": "SCI-RSB-02-4",
+    "passage_id": "sci-rsb-02",
+    "passage_title": "Capacitor Discharge",
+    "passage": "A capacitor stores electric charge. When a charged capacitor is connected across a resistor, charge flows through the resistor and the voltage across the capacitor decreases over time. Students studied how the rate of this decrease depends on the resistance R, the capacitance C, and the initial voltage V₀.\n\nIn each trial, a capacitor was charged to V₀ with a power supply, then disconnected from the supply and connected across a resistor at time t = 0. A data logger recorded the capacitor voltage every 0.1 s. The discharge time, t_d, was defined as the time at which the voltage had fallen to 37% of V₀. Each trial was repeated three times, and the average t_d was recorded.\n\nStudy 1\nA 470 μF capacitor was charged to V₀ = 9.0 V and discharged through a resistor of 10 kΩ, 22 kΩ, 47 kΩ, or 100 kΩ (Figure 1).\n\nStudy 2\nA 47 kΩ resistor was used with a 100 μF, 220 μF, 470 μF, or 1,000 μF capacitor, each charged to V₀ = 9.0 V (Figure 1).\n\nStudy 3\nThe 470 μF capacitor was discharged through the 47 kΩ resistor after being charged to V₀ = 3.0 V, 6.0 V, 9.0 V, or 12.0 V. The values of t_d were 22.2 s, 22.0 s, 22.3 s, and 22.1 s, respectively.",
+    "format": "research_summaries",
+    "graphic": {
+      "type": "bar",
+      "xLabel": "Trial (study: component varied)",
+      "yLabel": "Average discharge time, t_d (s)",
+      "bars": [
+        {
+          "label": "S1: 10 kΩ",
+          "value": 4.8
+        },
+        {
+          "label": "S1: 22 kΩ",
+          "value": 10.2
+        },
+        {
+          "label": "S1: 47 kΩ",
+          "value": 22.3
+        },
+        {
+          "label": "S1: 100 kΩ",
+          "value": 46.8
+        },
+        {
+          "label": "S2: 100 μF",
+          "value": 4.6
+        },
+        {
+          "label": "S2: 220 μF",
+          "value": 10.5
+        },
+        {
+          "label": "S2: 470 μF",
+          "value": 22.3
+        },
+        {
+          "label": "S2: 1,000 μF",
+          "value": 47.4
+        }
+      ],
+      "caption": "Figure 1. Average discharge time t_d for each trial of Study 1 (S1: 470 μF capacitor, resistance varied) and Study 2 (S2: 47 kΩ resistor, capacitance varied)."
+    },
+    "prompt": "Consider the hypothesis that t_d is directly proportional to the product of R and C. Are the results of Studies 1 and 2 consistent with this hypothesis?",
+    "choices": [
+      "No; in Study 1, t_d decreased as R increased.",
+      "No; in Study 2, t_d was the same for every capacitance.",
+      "Yes; in both studies, t_d was greatest when the product of R and C was smallest.",
+      "Yes; in both studies, approximately doubling either R or C approximately doubled t_d."
+    ],
+    "correct_answer": "Yes; in both studies, approximately doubling either R or C approximately doubled t_d.",
+    "explanation": "Going from 10 kΩ to 22 kΩ raised t_d from 4.8 s to 10.2 s and from 47 kΩ to 100 kΩ raised it from 22.3 s to 46.8 s; the capacitance steps 100 to 220 μF and 470 to 1,000 μF did the same. That is what \"Yes; in both studies, approximately doubling either R or C approximately doubled t_d\" states; t_d rose, not fell, with R.",
+    "domain": "Evaluation of Models, Inferences, and Experimental Results",
+    "subskill": "test a proportionality model against two studies",
+    "difficulty": "hard"
+  },
+  {
+    "id": "SCI-RSB-02-5",
+    "passage_id": "sci-rsb-02",
+    "passage_title": "Capacitor Discharge",
+    "passage": "A capacitor stores electric charge. When a charged capacitor is connected across a resistor, charge flows through the resistor and the voltage across the capacitor decreases over time. Students studied how the rate of this decrease depends on the resistance R, the capacitance C, and the initial voltage V₀.\n\nIn each trial, a capacitor was charged to V₀ with a power supply, then disconnected from the supply and connected across a resistor at time t = 0. A data logger recorded the capacitor voltage every 0.1 s. The discharge time, t_d, was defined as the time at which the voltage had fallen to 37% of V₀. Each trial was repeated three times, and the average t_d was recorded.\n\nStudy 1\nA 470 μF capacitor was charged to V₀ = 9.0 V and discharged through a resistor of 10 kΩ, 22 kΩ, 47 kΩ, or 100 kΩ (Figure 1).\n\nStudy 2\nA 47 kΩ resistor was used with a 100 μF, 220 μF, 470 μF, or 1,000 μF capacitor, each charged to V₀ = 9.0 V (Figure 1).\n\nStudy 3\nThe 470 μF capacitor was discharged through the 47 kΩ resistor after being charged to V₀ = 3.0 V, 6.0 V, 9.0 V, or 12.0 V. The values of t_d were 22.2 s, 22.0 s, 22.3 s, and 22.1 s, respectively.",
+    "format": "research_summaries",
+    "graphic": {
+      "type": "bar",
+      "xLabel": "Trial (study: component varied)",
+      "yLabel": "Average discharge time, t_d (s)",
+      "bars": [
+        {
+          "label": "S1: 10 kΩ",
+          "value": 4.8
+        },
+        {
+          "label": "S1: 22 kΩ",
+          "value": 10.2
+        },
+        {
+          "label": "S1: 47 kΩ",
+          "value": 22.3
+        },
+        {
+          "label": "S1: 100 kΩ",
+          "value": 46.8
+        },
+        {
+          "label": "S2: 100 μF",
+          "value": 4.6
+        },
+        {
+          "label": "S2: 220 μF",
+          "value": 10.5
+        },
+        {
+          "label": "S2: 470 μF",
+          "value": 22.3
+        },
+        {
+          "label": "S2: 1,000 μF",
+          "value": 47.4
+        }
+      ],
+      "caption": "Figure 1. Average discharge time t_d for each trial of Study 1 (S1: 470 μF capacitor, resistance varied) and Study 2 (S2: 47 kΩ resistor, capacitance varied)."
+    },
+    "prompt": "A student predicted that the higher the voltage to which the 470 μF capacitor was charged, the longer it would take to discharge to 37% of that voltage. Do the results of Study 3 support this prediction?",
+    "choices": [
+      "Yes; t_d increased from 22.0 s at 3.0 V to 22.3 s at 12.0 V.",
+      "No; t_d varied by only 0.3 s across the four values of V₀.",
+      "Yes; the largest t_d was measured for the largest value of V₀.",
+      "No; t_d was greatest at V₀ = 3.0 V and least at V₀ = 12.0 V."
+    ],
+    "correct_answer": "No; t_d varied by only 0.3 s across the four values of V₀.",
+    "explanation": "The four values in Study 3 were 22.2 s, 22.0 s, 22.3 s, and 22.1 s with no trend in V₀, so the prediction is not supported: \"No; t_d varied by only 0.3 s across the four values of V₀.\" The largest value (22.3 s) was at 9.0 V, not 12.0 V.",
+    "domain": "Evaluation of Models, Inferences, and Experimental Results",
+    "subskill": "judge a prediction against reported results",
+    "difficulty": "medium"
+  },
+  {
+    "id": "SCI-RSB-02-6",
+    "passage_id": "sci-rsb-02",
+    "passage_title": "Capacitor Discharge",
+    "passage": "A capacitor stores electric charge. When a charged capacitor is connected across a resistor, charge flows through the resistor and the voltage across the capacitor decreases over time. Students studied how the rate of this decrease depends on the resistance R, the capacitance C, and the initial voltage V₀.\n\nIn each trial, a capacitor was charged to V₀ with a power supply, then disconnected from the supply and connected across a resistor at time t = 0. A data logger recorded the capacitor voltage every 0.1 s. The discharge time, t_d, was defined as the time at which the voltage had fallen to 37% of V₀. Each trial was repeated three times, and the average t_d was recorded.\n\nStudy 1\nA 470 μF capacitor was charged to V₀ = 9.0 V and discharged through a resistor of 10 kΩ, 22 kΩ, 47 kΩ, or 100 kΩ (Figure 1).\n\nStudy 2\nA 47 kΩ resistor was used with a 100 μF, 220 μF, 470 μF, or 1,000 μF capacitor, each charged to V₀ = 9.0 V (Figure 1).\n\nStudy 3\nThe 470 μF capacitor was discharged through the 47 kΩ resistor after being charged to V₀ = 3.0 V, 6.0 V, 9.0 V, or 12.0 V. The values of t_d were 22.2 s, 22.0 s, 22.3 s, and 22.1 s, respectively.",
+    "format": "research_summaries",
+    "graphic": {
+      "type": "bar",
+      "xLabel": "Trial (study: component varied)",
+      "yLabel": "Average discharge time, t_d (s)",
+      "bars": [
+        {
+          "label": "S1: 10 kΩ",
+          "value": 4.8
+        },
+        {
+          "label": "S1: 22 kΩ",
+          "value": 10.2
+        },
+        {
+          "label": "S1: 47 kΩ",
+          "value": 22.3
+        },
+        {
+          "label": "S1: 100 kΩ",
+          "value": 46.8
+        },
+        {
+          "label": "S2: 100 μF",
+          "value": 4.6
+        },
+        {
+          "label": "S2: 220 μF",
+          "value": 10.5
+        },
+        {
+          "label": "S2: 470 μF",
+          "value": 22.3
+        },
+        {
+          "label": "S2: 1,000 μF",
+          "value": 47.4
+        }
+      ],
+      "caption": "Figure 1. Average discharge time t_d for each trial of Study 1 (S1: 470 μF capacitor, resistance varied) and Study 2 (S2: 47 kΩ resistor, capacitance varied)."
+    },
+    "prompt": "Based on the results of Study 2, to obtain a t_d of approximately 100 s using the 47 kΩ resistor, the students should use a capacitor with a capacitance closest to which of the following?",
+    "choices": [
+      "470 μF",
+      "1,000 μF",
+      "2,200 μF",
+      "4,700 μF"
+    ],
+    "correct_answer": "2,200 μF",
+    "explanation": "In Study 2, t_d roughly doubled each time the capacitance roughly doubled, and 1,000 μF gave 47.4 s; doubling again to about \"2,200 μF\" would give a t_d near 100 s, whereas 4,700 μF would give well over 200 s.",
+    "domain": "Interpretation of Data",
+    "subskill": "extrapolate a proportional trend",
+    "difficulty": "hard"
+  },
+  {
+    "id": "SCI-RSB-03-1",
+    "passage_id": "sci-rsb-03",
+    "passage_title": "Heat and Enzyme Activity",
+    "passage": "Enzymes are proteins that speed up chemical reactions. Heating an enzyme can increase the rate of the reaction it catalyzes, but heat can also unfold the protein and permanently destroy its activity. Researchers studied the effect of temperature on an esterase, an enzyme isolated from a soil fungus that converts a colorless ester into a yellow product.\n\nIn each trial, 2.0 mL of buffer solution (pH 7.0) containing 0.10 mg of the enzyme was placed in a water bath at a set temperature. After a pre-incubation period at that temperature, 0.10 mL of ester solution was added, and the increase in yellow color over the next 60 s was measured with a spectrophotometer. From this measurement, the initial reaction rate, in micromoles of product per minute (μmol/min), was calculated.\n\nStudy 1\nThe pre-incubation period was 1 min. Trials were conducted at 20 °C, 30 °C, 40 °C, 50 °C, 60 °C, and 70 °C (Figure 1).\n\nStudy 2\nThe procedure of Study 1 was repeated, except that the pre-incubation period was 30 min (Figure 1).\n\nStudy 3\nThe procedure of Study 2 was repeated, except that the buffer solution also contained 20% glycerol by volume, a compound thought to stabilize protein structure (Figure 1).",
+    "format": "research_summaries",
+    "graphic": {
+      "type": "svg",
+      "svg": "<svg viewBox=\"0 0 350 250\" width=\"320\" role=\"img\" aria-label=\"Initial reaction rate versus temperature for Studies 1, 2, and 3\"><style>text{font-family:sans-serif;font-size:10px;fill:currentColor}.ax{stroke:currentColor;stroke-width:1;fill:none}.s1{stroke:#1f4e9c;fill:#1f4e9c}.s2{stroke:#c0392b;fill:#c0392b}.s3{stroke:#2e8b57;fill:#2e8b57}.ln{fill:none;stroke-width:1.6}</style><g class=\"ax\"><line x1=\"50\" y1=\"20\" x2=\"50\" y2=\"200\"/><line x1=\"50\" y1=\"200\" x2=\"330\" y2=\"200\"/><line x1=\"50\" y1=\"200\" x2=\"50\" y2=\"205\"/><line x1=\"106\" y1=\"200\" x2=\"106\" y2=\"205\"/><line x1=\"162\" y1=\"200\" x2=\"162\" y2=\"205\"/><line x1=\"218\" y1=\"200\" x2=\"218\" y2=\"205\"/><line x1=\"274\" y1=\"200\" x2=\"274\" y2=\"205\"/><line x1=\"330\" y1=\"200\" x2=\"330\" y2=\"205\"/><line x1=\"45\" y1=\"200\" x2=\"50\" y2=\"200\"/><line x1=\"45\" y1=\"174.3\" x2=\"50\" y2=\"174.3\"/><line x1=\"45\" y1=\"148.6\" x2=\"50\" y2=\"148.6\"/><line x1=\"45\" y1=\"122.9\" x2=\"50\" y2=\"122.9\"/><line x1=\"45\" y1=\"97.1\" x2=\"50\" y2=\"97.1\"/><line x1=\"45\" y1=\"71.4\" x2=\"50\" y2=\"71.4\"/><line x1=\"45\" y1=\"45.7\" x2=\"50\" y2=\"45.7\"/><line x1=\"45\" y1=\"20\" x2=\"50\" y2=\"20\"/></g><text x=\"50\" y=\"218\" text-anchor=\"middle\">20</text><text x=\"106\" y=\"218\" text-anchor=\"middle\">30</text><text x=\"162\" y=\"218\" text-anchor=\"middle\">40</text><text x=\"218\" y=\"218\" text-anchor=\"middle\">50</text><text x=\"274\" y=\"218\" text-anchor=\"middle\">60</text><text x=\"330\" y=\"218\" text-anchor=\"middle\">70</text><text x=\"40\" y=\"203.5\" text-anchor=\"end\">0</text><text x=\"40\" y=\"177.8\" text-anchor=\"end\">2</text><text x=\"40\" y=\"152.1\" text-anchor=\"end\">4</text><text x=\"40\" y=\"126.4\" text-anchor=\"end\">6</text><text x=\"40\" y=\"100.6\" text-anchor=\"end\">8</text><text x=\"40\" y=\"74.9\" text-anchor=\"end\">10</text><text x=\"40\" y=\"49.2\" text-anchor=\"end\">12</text><text x=\"40\" y=\"23.5\" text-anchor=\"end\">14</text><text x=\"190\" y=\"235\" text-anchor=\"middle\">Temperature (°C)</text><text transform=\"translate(12,110) rotate(-90)\" text-anchor=\"middle\">Initial rate (μmol/min)</text><polyline class=\"s1 ln\" points=\"50,174.3 106,151.1 162,111.3 218,66.3 274,44.4 330,144.7\"/><polyline class=\"s2 ln\" stroke-dasharray=\"5,3\" points=\"50,174.3 106,152.4 162,116.4 218,122.9 274,185.9 330,200\"/><polyline class=\"s3 ln\" stroke-dasharray=\"2,2\" points=\"50,175.6 106,153.7 162,115.1 218,74 274,65 330,176.9\"/><g class=\"s1\"><circle cx=\"50\" cy=\"174.3\" r=\"3.5\"/><circle cx=\"106\" cy=\"151.1\" r=\"3.5\"/><circle cx=\"162\" cy=\"111.3\" r=\"3.5\"/><circle cx=\"218\" cy=\"66.3\" r=\"3.5\"/><circle cx=\"274\" cy=\"44.4\" r=\"3.5\"/><circle cx=\"330\" cy=\"144.7\" r=\"3.5\"/></g><g class=\"s2\"><rect x=\"46.5\" y=\"170.8\" width=\"7\" height=\"7\"/><rect x=\"102.5\" y=\"148.9\" width=\"7\" height=\"7\"/><rect x=\"158.5\" y=\"112.9\" width=\"7\" height=\"7\"/><rect x=\"214.5\" y=\"119.4\" width=\"7\" height=\"7\"/><rect x=\"270.5\" y=\"182.4\" width=\"7\" height=\"7\"/><rect x=\"326.5\" y=\"196.5\" width=\"7\" height=\"7\"/></g><g class=\"s3\"><polygon points=\"50,171.1 46,178.6 54,178.6\"/><polygon points=\"106,149.2 102,156.7 110,156.7\"/><polygon points=\"162,110.6 158,118.1 166,118.1\"/><polygon points=\"218,69.5 214,77 222,77\"/><polygon points=\"274,60.5 270,68 278,68\"/><polygon points=\"330,172.4 326,179.9 334,179.9\"/></g><g><rect x=\"56\" y=\"24\" width=\"96\" height=\"44\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"0.5\"/><line class=\"s1 ln\" x1=\"62\" y1=\"34\" x2=\"80\" y2=\"34\"/><circle class=\"s1\" cx=\"71\" cy=\"34\" r=\"3.5\"/><text x=\"86\" y=\"37.5\">Study 1</text><line class=\"s2 ln\" stroke-dasharray=\"5,3\" x1=\"62\" y1=\"48\" x2=\"80\" y2=\"48\"/><rect class=\"s2\" x=\"67.5\" y=\"44.5\" width=\"7\" height=\"7\"/><text x=\"86\" y=\"51.5\">Study 2</text><line class=\"s3 ln\" stroke-dasharray=\"2,2\" x1=\"62\" y1=\"62\" x2=\"80\" y2=\"62\"/><polygon class=\"s3\" points=\"71,57.5 67,65 75,65\"/><text x=\"86\" y=\"65.5\">Study 3</text></g></svg>",
+      "caption": "Figure 1. Initial reaction rate versus temperature for Study 1 (1 min pre-incubation), Study 2 (30 min pre-incubation), and Study 3 (30 min pre-incubation with 20% glycerol)."
+    },
+    "prompt": "According to Figure 1, in Study 1, the initial reaction rate was greatest at a temperature of:",
+    "choices": [
+      "40 °C.",
+      "50 °C.",
+      "60 °C.",
+      "70 °C."
+    ],
+    "correct_answer": "60 °C.",
+    "explanation": "The Study 1 curve in Figure 1 rises to its highest point, about 12 μmol/min, at \"60 °C.\" and then falls sharply at 70 °C.",
+    "domain": "Interpretation of Data",
+    "subskill": "locate the maximum of a plotted series",
+    "difficulty": "easy"
+  },
+  {
+    "id": "SCI-RSB-03-2",
+    "passage_id": "sci-rsb-03",
+    "passage_title": "Heat and Enzyme Activity",
+    "passage": "Enzymes are proteins that speed up chemical reactions. Heating an enzyme can increase the rate of the reaction it catalyzes, but heat can also unfold the protein and permanently destroy its activity. Researchers studied the effect of temperature on an esterase, an enzyme isolated from a soil fungus that converts a colorless ester into a yellow product.\n\nIn each trial, 2.0 mL of buffer solution (pH 7.0) containing 0.10 mg of the enzyme was placed in a water bath at a set temperature. After a pre-incubation period at that temperature, 0.10 mL of ester solution was added, and the increase in yellow color over the next 60 s was measured with a spectrophotometer. From this measurement, the initial reaction rate, in micromoles of product per minute (μmol/min), was calculated.\n\nStudy 1\nThe pre-incubation period was 1 min. Trials were conducted at 20 °C, 30 °C, 40 °C, 50 °C, 60 °C, and 70 °C (Figure 1).\n\nStudy 2\nThe procedure of Study 1 was repeated, except that the pre-incubation period was 30 min (Figure 1).\n\nStudy 3\nThe procedure of Study 2 was repeated, except that the buffer solution also contained 20% glycerol by volume, a compound thought to stabilize protein structure (Figure 1).",
+    "format": "research_summaries",
+    "graphic": {
+      "type": "svg",
+      "svg": "<svg viewBox=\"0 0 350 250\" width=\"320\" role=\"img\" aria-label=\"Initial reaction rate versus temperature for Studies 1, 2, and 3\"><style>text{font-family:sans-serif;font-size:10px;fill:currentColor}.ax{stroke:currentColor;stroke-width:1;fill:none}.s1{stroke:#1f4e9c;fill:#1f4e9c}.s2{stroke:#c0392b;fill:#c0392b}.s3{stroke:#2e8b57;fill:#2e8b57}.ln{fill:none;stroke-width:1.6}</style><g class=\"ax\"><line x1=\"50\" y1=\"20\" x2=\"50\" y2=\"200\"/><line x1=\"50\" y1=\"200\" x2=\"330\" y2=\"200\"/><line x1=\"50\" y1=\"200\" x2=\"50\" y2=\"205\"/><line x1=\"106\" y1=\"200\" x2=\"106\" y2=\"205\"/><line x1=\"162\" y1=\"200\" x2=\"162\" y2=\"205\"/><line x1=\"218\" y1=\"200\" x2=\"218\" y2=\"205\"/><line x1=\"274\" y1=\"200\" x2=\"274\" y2=\"205\"/><line x1=\"330\" y1=\"200\" x2=\"330\" y2=\"205\"/><line x1=\"45\" y1=\"200\" x2=\"50\" y2=\"200\"/><line x1=\"45\" y1=\"174.3\" x2=\"50\" y2=\"174.3\"/><line x1=\"45\" y1=\"148.6\" x2=\"50\" y2=\"148.6\"/><line x1=\"45\" y1=\"122.9\" x2=\"50\" y2=\"122.9\"/><line x1=\"45\" y1=\"97.1\" x2=\"50\" y2=\"97.1\"/><line x1=\"45\" y1=\"71.4\" x2=\"50\" y2=\"71.4\"/><line x1=\"45\" y1=\"45.7\" x2=\"50\" y2=\"45.7\"/><line x1=\"45\" y1=\"20\" x2=\"50\" y2=\"20\"/></g><text x=\"50\" y=\"218\" text-anchor=\"middle\">20</text><text x=\"106\" y=\"218\" text-anchor=\"middle\">30</text><text x=\"162\" y=\"218\" text-anchor=\"middle\">40</text><text x=\"218\" y=\"218\" text-anchor=\"middle\">50</text><text x=\"274\" y=\"218\" text-anchor=\"middle\">60</text><text x=\"330\" y=\"218\" text-anchor=\"middle\">70</text><text x=\"40\" y=\"203.5\" text-anchor=\"end\">0</text><text x=\"40\" y=\"177.8\" text-anchor=\"end\">2</text><text x=\"40\" y=\"152.1\" text-anchor=\"end\">4</text><text x=\"40\" y=\"126.4\" text-anchor=\"end\">6</text><text x=\"40\" y=\"100.6\" text-anchor=\"end\">8</text><text x=\"40\" y=\"74.9\" text-anchor=\"end\">10</text><text x=\"40\" y=\"49.2\" text-anchor=\"end\">12</text><text x=\"40\" y=\"23.5\" text-anchor=\"end\">14</text><text x=\"190\" y=\"235\" text-anchor=\"middle\">Temperature (°C)</text><text transform=\"translate(12,110) rotate(-90)\" text-anchor=\"middle\">Initial rate (μmol/min)</text><polyline class=\"s1 ln\" points=\"50,174.3 106,151.1 162,111.3 218,66.3 274,44.4 330,144.7\"/><polyline class=\"s2 ln\" stroke-dasharray=\"5,3\" points=\"50,174.3 106,152.4 162,116.4 218,122.9 274,185.9 330,200\"/><polyline class=\"s3 ln\" stroke-dasharray=\"2,2\" points=\"50,175.6 106,153.7 162,115.1 218,74 274,65 330,176.9\"/><g class=\"s1\"><circle cx=\"50\" cy=\"174.3\" r=\"3.5\"/><circle cx=\"106\" cy=\"151.1\" r=\"3.5\"/><circle cx=\"162\" cy=\"111.3\" r=\"3.5\"/><circle cx=\"218\" cy=\"66.3\" r=\"3.5\"/><circle cx=\"274\" cy=\"44.4\" r=\"3.5\"/><circle cx=\"330\" cy=\"144.7\" r=\"3.5\"/></g><g class=\"s2\"><rect x=\"46.5\" y=\"170.8\" width=\"7\" height=\"7\"/><rect x=\"102.5\" y=\"148.9\" width=\"7\" height=\"7\"/><rect x=\"158.5\" y=\"112.9\" width=\"7\" height=\"7\"/><rect x=\"214.5\" y=\"119.4\" width=\"7\" height=\"7\"/><rect x=\"270.5\" y=\"182.4\" width=\"7\" height=\"7\"/><rect x=\"326.5\" y=\"196.5\" width=\"7\" height=\"7\"/></g><g class=\"s3\"><polygon points=\"50,171.1 46,178.6 54,178.6\"/><polygon points=\"106,149.2 102,156.7 110,156.7\"/><polygon points=\"162,110.6 158,118.1 166,118.1\"/><polygon points=\"218,69.5 214,77 222,77\"/><polygon points=\"274,60.5 270,68 278,68\"/><polygon points=\"330,172.4 326,179.9 334,179.9\"/></g><g><rect x=\"56\" y=\"24\" width=\"96\" height=\"44\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"0.5\"/><line class=\"s1 ln\" x1=\"62\" y1=\"34\" x2=\"80\" y2=\"34\"/><circle class=\"s1\" cx=\"71\" cy=\"34\" r=\"3.5\"/><text x=\"86\" y=\"37.5\">Study 1</text><line class=\"s2 ln\" stroke-dasharray=\"5,3\" x1=\"62\" y1=\"48\" x2=\"80\" y2=\"48\"/><rect class=\"s2\" x=\"67.5\" y=\"44.5\" width=\"7\" height=\"7\"/><text x=\"86\" y=\"51.5\">Study 2</text><line class=\"s3 ln\" stroke-dasharray=\"2,2\" x1=\"62\" y1=\"62\" x2=\"80\" y2=\"62\"/><polygon class=\"s3\" points=\"71,57.5 67,65 75,65\"/><text x=\"86\" y=\"65.5\">Study 3</text></g></svg>",
+      "caption": "Figure 1. Initial reaction rate versus temperature for Study 1 (1 min pre-incubation), Study 2 (30 min pre-incubation), and Study 3 (30 min pre-incubation with 20% glycerol)."
+    },
+    "prompt": "The procedure of Study 2 differed from that of Study 1 in that, in Study 2:",
+    "choices": [
+      "the enzyme was held at the set temperature for 30 min rather than 1 min.",
+      "the buffer solution contained 20% glycerol by volume.",
+      "the mass of enzyme in each buffer solution was reduced from 0.10 mg.",
+      "the increase in yellow color was measured over 30 min rather than over 60 s."
+    ],
+    "correct_answer": "the enzyme was held at the set temperature for 30 min rather than 1 min.",
+    "explanation": "Study 2 repeated Study 1 with a 30 min pre-incubation instead of 1 min, so \"the enzyme was held at the set temperature for 30 min rather than 1 min.\" Glycerol was added only in Study 3, and the enzyme mass and 60 s measurement were unchanged.",
+    "domain": "Scientific Investigation",
+    "subskill": "identify the single procedural change between studies",
+    "difficulty": "easy"
+  },
+  {
+    "id": "SCI-RSB-03-3",
+    "passage_id": "sci-rsb-03",
+    "passage_title": "Heat and Enzyme Activity",
+    "passage": "Enzymes are proteins that speed up chemical reactions. Heating an enzyme can increase the rate of the reaction it catalyzes, but heat can also unfold the protein and permanently destroy its activity. Researchers studied the effect of temperature on an esterase, an enzyme isolated from a soil fungus that converts a colorless ester into a yellow product.\n\nIn each trial, 2.0 mL of buffer solution (pH 7.0) containing 0.10 mg of the enzyme was placed in a water bath at a set temperature. After a pre-incubation period at that temperature, 0.10 mL of ester solution was added, and the increase in yellow color over the next 60 s was measured with a spectrophotometer. From this measurement, the initial reaction rate, in micromoles of product per minute (μmol/min), was calculated.\n\nStudy 1\nThe pre-incubation period was 1 min. Trials were conducted at 20 °C, 30 °C, 40 °C, 50 °C, 60 °C, and 70 °C (Figure 1).\n\nStudy 2\nThe procedure of Study 1 was repeated, except that the pre-incubation period was 30 min (Figure 1).\n\nStudy 3\nThe procedure of Study 2 was repeated, except that the buffer solution also contained 20% glycerol by volume, a compound thought to stabilize protein structure (Figure 1).",
+    "format": "research_summaries",
+    "graphic": {
+      "type": "svg",
+      "svg": "<svg viewBox=\"0 0 350 250\" width=\"320\" role=\"img\" aria-label=\"Initial reaction rate versus temperature for Studies 1, 2, and 3\"><style>text{font-family:sans-serif;font-size:10px;fill:currentColor}.ax{stroke:currentColor;stroke-width:1;fill:none}.s1{stroke:#1f4e9c;fill:#1f4e9c}.s2{stroke:#c0392b;fill:#c0392b}.s3{stroke:#2e8b57;fill:#2e8b57}.ln{fill:none;stroke-width:1.6}</style><g class=\"ax\"><line x1=\"50\" y1=\"20\" x2=\"50\" y2=\"200\"/><line x1=\"50\" y1=\"200\" x2=\"330\" y2=\"200\"/><line x1=\"50\" y1=\"200\" x2=\"50\" y2=\"205\"/><line x1=\"106\" y1=\"200\" x2=\"106\" y2=\"205\"/><line x1=\"162\" y1=\"200\" x2=\"162\" y2=\"205\"/><line x1=\"218\" y1=\"200\" x2=\"218\" y2=\"205\"/><line x1=\"274\" y1=\"200\" x2=\"274\" y2=\"205\"/><line x1=\"330\" y1=\"200\" x2=\"330\" y2=\"205\"/><line x1=\"45\" y1=\"200\" x2=\"50\" y2=\"200\"/><line x1=\"45\" y1=\"174.3\" x2=\"50\" y2=\"174.3\"/><line x1=\"45\" y1=\"148.6\" x2=\"50\" y2=\"148.6\"/><line x1=\"45\" y1=\"122.9\" x2=\"50\" y2=\"122.9\"/><line x1=\"45\" y1=\"97.1\" x2=\"50\" y2=\"97.1\"/><line x1=\"45\" y1=\"71.4\" x2=\"50\" y2=\"71.4\"/><line x1=\"45\" y1=\"45.7\" x2=\"50\" y2=\"45.7\"/><line x1=\"45\" y1=\"20\" x2=\"50\" y2=\"20\"/></g><text x=\"50\" y=\"218\" text-anchor=\"middle\">20</text><text x=\"106\" y=\"218\" text-anchor=\"middle\">30</text><text x=\"162\" y=\"218\" text-anchor=\"middle\">40</text><text x=\"218\" y=\"218\" text-anchor=\"middle\">50</text><text x=\"274\" y=\"218\" text-anchor=\"middle\">60</text><text x=\"330\" y=\"218\" text-anchor=\"middle\">70</text><text x=\"40\" y=\"203.5\" text-anchor=\"end\">0</text><text x=\"40\" y=\"177.8\" text-anchor=\"end\">2</text><text x=\"40\" y=\"152.1\" text-anchor=\"end\">4</text><text x=\"40\" y=\"126.4\" text-anchor=\"end\">6</text><text x=\"40\" y=\"100.6\" text-anchor=\"end\">8</text><text x=\"40\" y=\"74.9\" text-anchor=\"end\">10</text><text x=\"40\" y=\"49.2\" text-anchor=\"end\">12</text><text x=\"40\" y=\"23.5\" text-anchor=\"end\">14</text><text x=\"190\" y=\"235\" text-anchor=\"middle\">Temperature (°C)</text><text transform=\"translate(12,110) rotate(-90)\" text-anchor=\"middle\">Initial rate (μmol/min)</text><polyline class=\"s1 ln\" points=\"50,174.3 106,151.1 162,111.3 218,66.3 274,44.4 330,144.7\"/><polyline class=\"s2 ln\" stroke-dasharray=\"5,3\" points=\"50,174.3 106,152.4 162,116.4 218,122.9 274,185.9 330,200\"/><polyline class=\"s3 ln\" stroke-dasharray=\"2,2\" points=\"50,175.6 106,153.7 162,115.1 218,74 274,65 330,176.9\"/><g class=\"s1\"><circle cx=\"50\" cy=\"174.3\" r=\"3.5\"/><circle cx=\"106\" cy=\"151.1\" r=\"3.5\"/><circle cx=\"162\" cy=\"111.3\" r=\"3.5\"/><circle cx=\"218\" cy=\"66.3\" r=\"3.5\"/><circle cx=\"274\" cy=\"44.4\" r=\"3.5\"/><circle cx=\"330\" cy=\"144.7\" r=\"3.5\"/></g><g class=\"s2\"><rect x=\"46.5\" y=\"170.8\" width=\"7\" height=\"7\"/><rect x=\"102.5\" y=\"148.9\" width=\"7\" height=\"7\"/><rect x=\"158.5\" y=\"112.9\" width=\"7\" height=\"7\"/><rect x=\"214.5\" y=\"119.4\" width=\"7\" height=\"7\"/><rect x=\"270.5\" y=\"182.4\" width=\"7\" height=\"7\"/><rect x=\"326.5\" y=\"196.5\" width=\"7\" height=\"7\"/></g><g class=\"s3\"><polygon points=\"50,171.1 46,178.6 54,178.6\"/><polygon points=\"106,149.2 102,156.7 110,156.7\"/><polygon points=\"162,110.6 158,118.1 166,118.1\"/><polygon points=\"218,69.5 214,77 222,77\"/><polygon points=\"274,60.5 270,68 278,68\"/><polygon points=\"330,172.4 326,179.9 334,179.9\"/></g><g><rect x=\"56\" y=\"24\" width=\"96\" height=\"44\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"0.5\"/><line class=\"s1 ln\" x1=\"62\" y1=\"34\" x2=\"80\" y2=\"34\"/><circle class=\"s1\" cx=\"71\" cy=\"34\" r=\"3.5\"/><text x=\"86\" y=\"37.5\">Study 1</text><line class=\"s2 ln\" stroke-dasharray=\"5,3\" x1=\"62\" y1=\"48\" x2=\"80\" y2=\"48\"/><rect class=\"s2\" x=\"67.5\" y=\"44.5\" width=\"7\" height=\"7\"/><text x=\"86\" y=\"51.5\">Study 2</text><line class=\"s3 ln\" stroke-dasharray=\"2,2\" x1=\"62\" y1=\"62\" x2=\"80\" y2=\"62\"/><polygon class=\"s3\" points=\"71,57.5 67,65 75,65\"/><text x=\"86\" y=\"65.5\">Study 3</text></g></svg>",
+      "caption": "Figure 1. Initial reaction rate versus temperature for Study 1 (1 min pre-incubation), Study 2 (30 min pre-incubation), and Study 3 (30 min pre-incubation with 20% glycerol)."
+    },
+    "prompt": "Which of the following hypotheses is best supported by the results of Studies 1 and 2 together?",
+    "choices": [
+      "Pre-incubation time has no effect on the initial reaction rate at any temperature below 70 °C.",
+      "The enzyme catalyzes the reaction faster at 60 °C than at 50 °C regardless of how long it is held at that temperature.",
+      "The ester decomposes at temperatures above 50 °C whether or not the enzyme is present.",
+      "At temperatures of 50 °C and above, the enzyme loses activity the longer it is held at that temperature."
+    ],
+    "correct_answer": "At temperatures of 50 °C and above, the enzyme loses activity the longer it is held at that temperature.",
+    "explanation": "At 20 °C to 40 °C the two studies nearly coincide, but at 50 °C, 60 °C, and 70 °C the 30 min pre-incubation gave much lower rates (6.0, 1.1, and 0 μmol/min) than the 1 min pre-incubation, supporting \"At temperatures of 50 °C and above, the enzyme loses activity the longer it is held at that temperature.\" In Study 2 the rate at 60 °C was below that at 50 °C, and no trial was run without the enzyme.",
+    "domain": "Evaluation of Models, Inferences, and Experimental Results",
+    "subskill": "select the hypothesis consistent with two data series",
+    "difficulty": "hard"
+  },
+  {
+    "id": "SCI-RSB-03-4",
+    "passage_id": "sci-rsb-03",
+    "passage_title": "Heat and Enzyme Activity",
+    "passage": "Enzymes are proteins that speed up chemical reactions. Heating an enzyme can increase the rate of the reaction it catalyzes, but heat can also unfold the protein and permanently destroy its activity. Researchers studied the effect of temperature on an esterase, an enzyme isolated from a soil fungus that converts a colorless ester into a yellow product.\n\nIn each trial, 2.0 mL of buffer solution (pH 7.0) containing 0.10 mg of the enzyme was placed in a water bath at a set temperature. After a pre-incubation period at that temperature, 0.10 mL of ester solution was added, and the increase in yellow color over the next 60 s was measured with a spectrophotometer. From this measurement, the initial reaction rate, in micromoles of product per minute (μmol/min), was calculated.\n\nStudy 1\nThe pre-incubation period was 1 min. Trials were conducted at 20 °C, 30 °C, 40 °C, 50 °C, 60 °C, and 70 °C (Figure 1).\n\nStudy 2\nThe procedure of Study 1 was repeated, except that the pre-incubation period was 30 min (Figure 1).\n\nStudy 3\nThe procedure of Study 2 was repeated, except that the buffer solution also contained 20% glycerol by volume, a compound thought to stabilize protein structure (Figure 1).",
+    "format": "research_summaries",
+    "graphic": {
+      "type": "svg",
+      "svg": "<svg viewBox=\"0 0 350 250\" width=\"320\" role=\"img\" aria-label=\"Initial reaction rate versus temperature for Studies 1, 2, and 3\"><style>text{font-family:sans-serif;font-size:10px;fill:currentColor}.ax{stroke:currentColor;stroke-width:1;fill:none}.s1{stroke:#1f4e9c;fill:#1f4e9c}.s2{stroke:#c0392b;fill:#c0392b}.s3{stroke:#2e8b57;fill:#2e8b57}.ln{fill:none;stroke-width:1.6}</style><g class=\"ax\"><line x1=\"50\" y1=\"20\" x2=\"50\" y2=\"200\"/><line x1=\"50\" y1=\"200\" x2=\"330\" y2=\"200\"/><line x1=\"50\" y1=\"200\" x2=\"50\" y2=\"205\"/><line x1=\"106\" y1=\"200\" x2=\"106\" y2=\"205\"/><line x1=\"162\" y1=\"200\" x2=\"162\" y2=\"205\"/><line x1=\"218\" y1=\"200\" x2=\"218\" y2=\"205\"/><line x1=\"274\" y1=\"200\" x2=\"274\" y2=\"205\"/><line x1=\"330\" y1=\"200\" x2=\"330\" y2=\"205\"/><line x1=\"45\" y1=\"200\" x2=\"50\" y2=\"200\"/><line x1=\"45\" y1=\"174.3\" x2=\"50\" y2=\"174.3\"/><line x1=\"45\" y1=\"148.6\" x2=\"50\" y2=\"148.6\"/><line x1=\"45\" y1=\"122.9\" x2=\"50\" y2=\"122.9\"/><line x1=\"45\" y1=\"97.1\" x2=\"50\" y2=\"97.1\"/><line x1=\"45\" y1=\"71.4\" x2=\"50\" y2=\"71.4\"/><line x1=\"45\" y1=\"45.7\" x2=\"50\" y2=\"45.7\"/><line x1=\"45\" y1=\"20\" x2=\"50\" y2=\"20\"/></g><text x=\"50\" y=\"218\" text-anchor=\"middle\">20</text><text x=\"106\" y=\"218\" text-anchor=\"middle\">30</text><text x=\"162\" y=\"218\" text-anchor=\"middle\">40</text><text x=\"218\" y=\"218\" text-anchor=\"middle\">50</text><text x=\"274\" y=\"218\" text-anchor=\"middle\">60</text><text x=\"330\" y=\"218\" text-anchor=\"middle\">70</text><text x=\"40\" y=\"203.5\" text-anchor=\"end\">0</text><text x=\"40\" y=\"177.8\" text-anchor=\"end\">2</text><text x=\"40\" y=\"152.1\" text-anchor=\"end\">4</text><text x=\"40\" y=\"126.4\" text-anchor=\"end\">6</text><text x=\"40\" y=\"100.6\" text-anchor=\"end\">8</text><text x=\"40\" y=\"74.9\" text-anchor=\"end\">10</text><text x=\"40\" y=\"49.2\" text-anchor=\"end\">12</text><text x=\"40\" y=\"23.5\" text-anchor=\"end\">14</text><text x=\"190\" y=\"235\" text-anchor=\"middle\">Temperature (°C)</text><text transform=\"translate(12,110) rotate(-90)\" text-anchor=\"middle\">Initial rate (μmol/min)</text><polyline class=\"s1 ln\" points=\"50,174.3 106,151.1 162,111.3 218,66.3 274,44.4 330,144.7\"/><polyline class=\"s2 ln\" stroke-dasharray=\"5,3\" points=\"50,174.3 106,152.4 162,116.4 218,122.9 274,185.9 330,200\"/><polyline class=\"s3 ln\" stroke-dasharray=\"2,2\" points=\"50,175.6 106,153.7 162,115.1 218,74 274,65 330,176.9\"/><g class=\"s1\"><circle cx=\"50\" cy=\"174.3\" r=\"3.5\"/><circle cx=\"106\" cy=\"151.1\" r=\"3.5\"/><circle cx=\"162\" cy=\"111.3\" r=\"3.5\"/><circle cx=\"218\" cy=\"66.3\" r=\"3.5\"/><circle cx=\"274\" cy=\"44.4\" r=\"3.5\"/><circle cx=\"330\" cy=\"144.7\" r=\"3.5\"/></g><g class=\"s2\"><rect x=\"46.5\" y=\"170.8\" width=\"7\" height=\"7\"/><rect x=\"102.5\" y=\"148.9\" width=\"7\" height=\"7\"/><rect x=\"158.5\" y=\"112.9\" width=\"7\" height=\"7\"/><rect x=\"214.5\" y=\"119.4\" width=\"7\" height=\"7\"/><rect x=\"270.5\" y=\"182.4\" width=\"7\" height=\"7\"/><rect x=\"326.5\" y=\"196.5\" width=\"7\" height=\"7\"/></g><g class=\"s3\"><polygon points=\"50,171.1 46,178.6 54,178.6\"/><polygon points=\"106,149.2 102,156.7 110,156.7\"/><polygon points=\"162,110.6 158,118.1 166,118.1\"/><polygon points=\"218,69.5 214,77 222,77\"/><polygon points=\"274,60.5 270,68 278,68\"/><polygon points=\"330,172.4 326,179.9 334,179.9\"/></g><g><rect x=\"56\" y=\"24\" width=\"96\" height=\"44\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"0.5\"/><line class=\"s1 ln\" x1=\"62\" y1=\"34\" x2=\"80\" y2=\"34\"/><circle class=\"s1\" cx=\"71\" cy=\"34\" r=\"3.5\"/><text x=\"86\" y=\"37.5\">Study 1</text><line class=\"s2 ln\" stroke-dasharray=\"5,3\" x1=\"62\" y1=\"48\" x2=\"80\" y2=\"48\"/><rect class=\"s2\" x=\"67.5\" y=\"44.5\" width=\"7\" height=\"7\"/><text x=\"86\" y=\"51.5\">Study 2</text><line class=\"s3 ln\" stroke-dasharray=\"2,2\" x1=\"62\" y1=\"62\" x2=\"80\" y2=\"62\"/><polygon class=\"s3\" points=\"71,57.5 67,65 75,65\"/><text x=\"86\" y=\"65.5\">Study 3</text></g></svg>",
+      "caption": "Figure 1. Initial reaction rate versus temperature for Study 1 (1 min pre-incubation), Study 2 (30 min pre-incubation), and Study 3 (30 min pre-incubation with 20% glycerol)."
+    },
+    "prompt": "Based on Figure 1, if a trial of Study 2 had been conducted at 55 °C, the initial reaction rate would most likely have been:",
+    "choices": [
+      "less than 1.1 μmol/min.",
+      "greater than 6.5 μmol/min.",
+      "between 1.1 and 6.0 μmol/min.",
+      "between 6.0 and 6.5 μmol/min."
+    ],
+    "correct_answer": "between 1.1 and 6.0 μmol/min.",
+    "explanation": "In Study 2 the rate was 6.0 μmol/min at 50 °C and 1.1 μmol/min at 60 °C, so at 55 °C it would most likely have been \"between 1.1 and 6.0 μmol/min.\"",
+    "domain": "Interpretation of Data",
+    "subskill": "interpolate on a line graph",
+    "difficulty": "medium"
+  },
+  {
+    "id": "SCI-RSB-03-5",
+    "passage_id": "sci-rsb-03",
+    "passage_title": "Heat and Enzyme Activity",
+    "passage": "Enzymes are proteins that speed up chemical reactions. Heating an enzyme can increase the rate of the reaction it catalyzes, but heat can also unfold the protein and permanently destroy its activity. Researchers studied the effect of temperature on an esterase, an enzyme isolated from a soil fungus that converts a colorless ester into a yellow product.\n\nIn each trial, 2.0 mL of buffer solution (pH 7.0) containing 0.10 mg of the enzyme was placed in a water bath at a set temperature. After a pre-incubation period at that temperature, 0.10 mL of ester solution was added, and the increase in yellow color over the next 60 s was measured with a spectrophotometer. From this measurement, the initial reaction rate, in micromoles of product per minute (μmol/min), was calculated.\n\nStudy 1\nThe pre-incubation period was 1 min. Trials were conducted at 20 °C, 30 °C, 40 °C, 50 °C, 60 °C, and 70 °C (Figure 1).\n\nStudy 2\nThe procedure of Study 1 was repeated, except that the pre-incubation period was 30 min (Figure 1).\n\nStudy 3\nThe procedure of Study 2 was repeated, except that the buffer solution also contained 20% glycerol by volume, a compound thought to stabilize protein structure (Figure 1).",
+    "format": "research_summaries",
+    "graphic": {
+      "type": "svg",
+      "svg": "<svg viewBox=\"0 0 350 250\" width=\"320\" role=\"img\" aria-label=\"Initial reaction rate versus temperature for Studies 1, 2, and 3\"><style>text{font-family:sans-serif;font-size:10px;fill:currentColor}.ax{stroke:currentColor;stroke-width:1;fill:none}.s1{stroke:#1f4e9c;fill:#1f4e9c}.s2{stroke:#c0392b;fill:#c0392b}.s3{stroke:#2e8b57;fill:#2e8b57}.ln{fill:none;stroke-width:1.6}</style><g class=\"ax\"><line x1=\"50\" y1=\"20\" x2=\"50\" y2=\"200\"/><line x1=\"50\" y1=\"200\" x2=\"330\" y2=\"200\"/><line x1=\"50\" y1=\"200\" x2=\"50\" y2=\"205\"/><line x1=\"106\" y1=\"200\" x2=\"106\" y2=\"205\"/><line x1=\"162\" y1=\"200\" x2=\"162\" y2=\"205\"/><line x1=\"218\" y1=\"200\" x2=\"218\" y2=\"205\"/><line x1=\"274\" y1=\"200\" x2=\"274\" y2=\"205\"/><line x1=\"330\" y1=\"200\" x2=\"330\" y2=\"205\"/><line x1=\"45\" y1=\"200\" x2=\"50\" y2=\"200\"/><line x1=\"45\" y1=\"174.3\" x2=\"50\" y2=\"174.3\"/><line x1=\"45\" y1=\"148.6\" x2=\"50\" y2=\"148.6\"/><line x1=\"45\" y1=\"122.9\" x2=\"50\" y2=\"122.9\"/><line x1=\"45\" y1=\"97.1\" x2=\"50\" y2=\"97.1\"/><line x1=\"45\" y1=\"71.4\" x2=\"50\" y2=\"71.4\"/><line x1=\"45\" y1=\"45.7\" x2=\"50\" y2=\"45.7\"/><line x1=\"45\" y1=\"20\" x2=\"50\" y2=\"20\"/></g><text x=\"50\" y=\"218\" text-anchor=\"middle\">20</text><text x=\"106\" y=\"218\" text-anchor=\"middle\">30</text><text x=\"162\" y=\"218\" text-anchor=\"middle\">40</text><text x=\"218\" y=\"218\" text-anchor=\"middle\">50</text><text x=\"274\" y=\"218\" text-anchor=\"middle\">60</text><text x=\"330\" y=\"218\" text-anchor=\"middle\">70</text><text x=\"40\" y=\"203.5\" text-anchor=\"end\">0</text><text x=\"40\" y=\"177.8\" text-anchor=\"end\">2</text><text x=\"40\" y=\"152.1\" text-anchor=\"end\">4</text><text x=\"40\" y=\"126.4\" text-anchor=\"end\">6</text><text x=\"40\" y=\"100.6\" text-anchor=\"end\">8</text><text x=\"40\" y=\"74.9\" text-anchor=\"end\">10</text><text x=\"40\" y=\"49.2\" text-anchor=\"end\">12</text><text x=\"40\" y=\"23.5\" text-anchor=\"end\">14</text><text x=\"190\" y=\"235\" text-anchor=\"middle\">Temperature (°C)</text><text transform=\"translate(12,110) rotate(-90)\" text-anchor=\"middle\">Initial rate (μmol/min)</text><polyline class=\"s1 ln\" points=\"50,174.3 106,151.1 162,111.3 218,66.3 274,44.4 330,144.7\"/><polyline class=\"s2 ln\" stroke-dasharray=\"5,3\" points=\"50,174.3 106,152.4 162,116.4 218,122.9 274,185.9 330,200\"/><polyline class=\"s3 ln\" stroke-dasharray=\"2,2\" points=\"50,175.6 106,153.7 162,115.1 218,74 274,65 330,176.9\"/><g class=\"s1\"><circle cx=\"50\" cy=\"174.3\" r=\"3.5\"/><circle cx=\"106\" cy=\"151.1\" r=\"3.5\"/><circle cx=\"162\" cy=\"111.3\" r=\"3.5\"/><circle cx=\"218\" cy=\"66.3\" r=\"3.5\"/><circle cx=\"274\" cy=\"44.4\" r=\"3.5\"/><circle cx=\"330\" cy=\"144.7\" r=\"3.5\"/></g><g class=\"s2\"><rect x=\"46.5\" y=\"170.8\" width=\"7\" height=\"7\"/><rect x=\"102.5\" y=\"148.9\" width=\"7\" height=\"7\"/><rect x=\"158.5\" y=\"112.9\" width=\"7\" height=\"7\"/><rect x=\"214.5\" y=\"119.4\" width=\"7\" height=\"7\"/><rect x=\"270.5\" y=\"182.4\" width=\"7\" height=\"7\"/><rect x=\"326.5\" y=\"196.5\" width=\"7\" height=\"7\"/></g><g class=\"s3\"><polygon points=\"50,171.1 46,178.6 54,178.6\"/><polygon points=\"106,149.2 102,156.7 110,156.7\"/><polygon points=\"162,110.6 158,118.1 166,118.1\"/><polygon points=\"218,69.5 214,77 222,77\"/><polygon points=\"274,60.5 270,68 278,68\"/><polygon points=\"330,172.4 326,179.9 334,179.9\"/></g><g><rect x=\"56\" y=\"24\" width=\"96\" height=\"44\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"0.5\"/><line class=\"s1 ln\" x1=\"62\" y1=\"34\" x2=\"80\" y2=\"34\"/><circle class=\"s1\" cx=\"71\" cy=\"34\" r=\"3.5\"/><text x=\"86\" y=\"37.5\">Study 1</text><line class=\"s2 ln\" stroke-dasharray=\"5,3\" x1=\"62\" y1=\"48\" x2=\"80\" y2=\"48\"/><rect class=\"s2\" x=\"67.5\" y=\"44.5\" width=\"7\" height=\"7\"/><text x=\"86\" y=\"51.5\">Study 2</text><line class=\"s3 ln\" stroke-dasharray=\"2,2\" x1=\"62\" y1=\"62\" x2=\"80\" y2=\"62\"/><polygon class=\"s3\" points=\"71,57.5 67,65 75,65\"/><text x=\"86\" y=\"65.5\">Study 3</text></g></svg>",
+      "caption": "Figure 1. Initial reaction rate versus temperature for Study 1 (1 min pre-incubation), Study 2 (30 min pre-incubation), and Study 3 (30 min pre-incubation with 20% glycerol)."
+    },
+    "prompt": "Suppose the researchers wanted to determine whether glycerol itself affects the initial reaction rate, apart from any protection it provides during a long pre-incubation. Which of the following additional trials would be most useful?",
+    "choices": [
+      "Repeating Study 3 with a pre-incubation period of 60 min",
+      "Repeating Study 1 with 20% glycerol in the buffer",
+      "Repeating Study 2 with a buffer solution of pH 5.0",
+      "Repeating Study 3 with 0.20 mg of enzyme instead of 0.10 mg"
+    ],
+    "correct_answer": "Repeating Study 1 with 20% glycerol in the buffer",
+    "explanation": "With only a 1 min pre-incubation, heat has little time to inactivate the enzyme, so \"Repeating Study 1 with 20% glycerol in the buffer\" would isolate any direct effect of glycerol on the rate; comparing it with Study 1 differs by glycerol alone.",
+    "domain": "Scientific Investigation",
+    "subskill": "choose a control that isolates a reagent effect",
+    "difficulty": "medium"
+  },
+  {
+    "id": "SCI-RSB-03-6",
+    "passage_id": "sci-rsb-03",
+    "passage_title": "Heat and Enzyme Activity",
+    "passage": "Enzymes are proteins that speed up chemical reactions. Heating an enzyme can increase the rate of the reaction it catalyzes, but heat can also unfold the protein and permanently destroy its activity. Researchers studied the effect of temperature on an esterase, an enzyme isolated from a soil fungus that converts a colorless ester into a yellow product.\n\nIn each trial, 2.0 mL of buffer solution (pH 7.0) containing 0.10 mg of the enzyme was placed in a water bath at a set temperature. After a pre-incubation period at that temperature, 0.10 mL of ester solution was added, and the increase in yellow color over the next 60 s was measured with a spectrophotometer. From this measurement, the initial reaction rate, in micromoles of product per minute (μmol/min), was calculated.\n\nStudy 1\nThe pre-incubation period was 1 min. Trials were conducted at 20 °C, 30 °C, 40 °C, 50 °C, 60 °C, and 70 °C (Figure 1).\n\nStudy 2\nThe procedure of Study 1 was repeated, except that the pre-incubation period was 30 min (Figure 1).\n\nStudy 3\nThe procedure of Study 2 was repeated, except that the buffer solution also contained 20% glycerol by volume, a compound thought to stabilize protein structure (Figure 1).",
+    "format": "research_summaries",
+    "graphic": {
+      "type": "svg",
+      "svg": "<svg viewBox=\"0 0 350 250\" width=\"320\" role=\"img\" aria-label=\"Initial reaction rate versus temperature for Studies 1, 2, and 3\"><style>text{font-family:sans-serif;font-size:10px;fill:currentColor}.ax{stroke:currentColor;stroke-width:1;fill:none}.s1{stroke:#1f4e9c;fill:#1f4e9c}.s2{stroke:#c0392b;fill:#c0392b}.s3{stroke:#2e8b57;fill:#2e8b57}.ln{fill:none;stroke-width:1.6}</style><g class=\"ax\"><line x1=\"50\" y1=\"20\" x2=\"50\" y2=\"200\"/><line x1=\"50\" y1=\"200\" x2=\"330\" y2=\"200\"/><line x1=\"50\" y1=\"200\" x2=\"50\" y2=\"205\"/><line x1=\"106\" y1=\"200\" x2=\"106\" y2=\"205\"/><line x1=\"162\" y1=\"200\" x2=\"162\" y2=\"205\"/><line x1=\"218\" y1=\"200\" x2=\"218\" y2=\"205\"/><line x1=\"274\" y1=\"200\" x2=\"274\" y2=\"205\"/><line x1=\"330\" y1=\"200\" x2=\"330\" y2=\"205\"/><line x1=\"45\" y1=\"200\" x2=\"50\" y2=\"200\"/><line x1=\"45\" y1=\"174.3\" x2=\"50\" y2=\"174.3\"/><line x1=\"45\" y1=\"148.6\" x2=\"50\" y2=\"148.6\"/><line x1=\"45\" y1=\"122.9\" x2=\"50\" y2=\"122.9\"/><line x1=\"45\" y1=\"97.1\" x2=\"50\" y2=\"97.1\"/><line x1=\"45\" y1=\"71.4\" x2=\"50\" y2=\"71.4\"/><line x1=\"45\" y1=\"45.7\" x2=\"50\" y2=\"45.7\"/><line x1=\"45\" y1=\"20\" x2=\"50\" y2=\"20\"/></g><text x=\"50\" y=\"218\" text-anchor=\"middle\">20</text><text x=\"106\" y=\"218\" text-anchor=\"middle\">30</text><text x=\"162\" y=\"218\" text-anchor=\"middle\">40</text><text x=\"218\" y=\"218\" text-anchor=\"middle\">50</text><text x=\"274\" y=\"218\" text-anchor=\"middle\">60</text><text x=\"330\" y=\"218\" text-anchor=\"middle\">70</text><text x=\"40\" y=\"203.5\" text-anchor=\"end\">0</text><text x=\"40\" y=\"177.8\" text-anchor=\"end\">2</text><text x=\"40\" y=\"152.1\" text-anchor=\"end\">4</text><text x=\"40\" y=\"126.4\" text-anchor=\"end\">6</text><text x=\"40\" y=\"100.6\" text-anchor=\"end\">8</text><text x=\"40\" y=\"74.9\" text-anchor=\"end\">10</text><text x=\"40\" y=\"49.2\" text-anchor=\"end\">12</text><text x=\"40\" y=\"23.5\" text-anchor=\"end\">14</text><text x=\"190\" y=\"235\" text-anchor=\"middle\">Temperature (°C)</text><text transform=\"translate(12,110) rotate(-90)\" text-anchor=\"middle\">Initial rate (μmol/min)</text><polyline class=\"s1 ln\" points=\"50,174.3 106,151.1 162,111.3 218,66.3 274,44.4 330,144.7\"/><polyline class=\"s2 ln\" stroke-dasharray=\"5,3\" points=\"50,174.3 106,152.4 162,116.4 218,122.9 274,185.9 330,200\"/><polyline class=\"s3 ln\" stroke-dasharray=\"2,2\" points=\"50,175.6 106,153.7 162,115.1 218,74 274,65 330,176.9\"/><g class=\"s1\"><circle cx=\"50\" cy=\"174.3\" r=\"3.5\"/><circle cx=\"106\" cy=\"151.1\" r=\"3.5\"/><circle cx=\"162\" cy=\"111.3\" r=\"3.5\"/><circle cx=\"218\" cy=\"66.3\" r=\"3.5\"/><circle cx=\"274\" cy=\"44.4\" r=\"3.5\"/><circle cx=\"330\" cy=\"144.7\" r=\"3.5\"/></g><g class=\"s2\"><rect x=\"46.5\" y=\"170.8\" width=\"7\" height=\"7\"/><rect x=\"102.5\" y=\"148.9\" width=\"7\" height=\"7\"/><rect x=\"158.5\" y=\"112.9\" width=\"7\" height=\"7\"/><rect x=\"214.5\" y=\"119.4\" width=\"7\" height=\"7\"/><rect x=\"270.5\" y=\"182.4\" width=\"7\" height=\"7\"/><rect x=\"326.5\" y=\"196.5\" width=\"7\" height=\"7\"/></g><g class=\"s3\"><polygon points=\"50,171.1 46,178.6 54,178.6\"/><polygon points=\"106,149.2 102,156.7 110,156.7\"/><polygon points=\"162,110.6 158,118.1 166,118.1\"/><polygon points=\"218,69.5 214,77 222,77\"/><polygon points=\"274,60.5 270,68 278,68\"/><polygon points=\"330,172.4 326,179.9 334,179.9\"/></g><g><rect x=\"56\" y=\"24\" width=\"96\" height=\"44\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"0.5\"/><line class=\"s1 ln\" x1=\"62\" y1=\"34\" x2=\"80\" y2=\"34\"/><circle class=\"s1\" cx=\"71\" cy=\"34\" r=\"3.5\"/><text x=\"86\" y=\"37.5\">Study 1</text><line class=\"s2 ln\" stroke-dasharray=\"5,3\" x1=\"62\" y1=\"48\" x2=\"80\" y2=\"48\"/><rect class=\"s2\" x=\"67.5\" y=\"44.5\" width=\"7\" height=\"7\"/><text x=\"86\" y=\"51.5\">Study 2</text><line class=\"s3 ln\" stroke-dasharray=\"2,2\" x1=\"62\" y1=\"62\" x2=\"80\" y2=\"62\"/><polygon class=\"s3\" points=\"71,57.5 67,65 75,65\"/><text x=\"86\" y=\"65.5\">Study 3</text></g></svg>",
+      "caption": "Figure 1. Initial reaction rate versus temperature for Study 1 (1 min pre-incubation), Study 2 (30 min pre-incubation), and Study 3 (30 min pre-incubation with 20% glycerol)."
+    },
+    "prompt": "Suppose a manufacturer must hold the enzyme at the reaction temperature for 30 min before adding the ester. Based on the results of Studies 2 and 3, which of the following conditions would most likely produce the highest initial reaction rate?",
+    "choices": [
+      "60 °C without glycerol",
+      "40 °C without glycerol",
+      "50 °C with 20% glycerol",
+      "60 °C with 20% glycerol"
+    ],
+    "correct_answer": "60 °C with 20% glycerol",
+    "explanation": "After a 30 min pre-incubation, the highest rate in Figure 1 is about 10.5 μmol/min at \"60 °C with 20% glycerol\" (Study 3); without glycerol the best rate after 30 min is only about 6.5 μmol/min at 40 °C, and 60 °C without glycerol gives about 1.1 μmol/min.",
+    "domain": "Evaluation of Models, Inferences, and Experimental Results",
+    "subskill": "apply results to a new practical condition",
+    "difficulty": "medium"
+  }
+]

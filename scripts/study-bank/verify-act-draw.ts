@@ -9,7 +9,7 @@ import { ACT_BLUEPRINT } from '@/lib/study/act-test'
 
 async function main() {
 let short = 0
-for (const key of ['english', 'math', 'reading'] as const) {
+for (const key of ['english', 'math', 'reading', 'science'] as const) {
   const want = ACT_BLUEPRINT.find(b => b.key === key)!.questions
   const t = await assembleActSection({ sectionKey: key }, 'verify-' + Date.now())
   const q = t.questions as Array<{ choices: Array<string | { text: string }>; correct_answer: string }>

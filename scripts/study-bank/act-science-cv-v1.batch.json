@@ -1,0 +1,458 @@
+[
+  {
+    "id": "SCI-CV-01-1",
+    "passage_id": "sci-cv-01",
+    "passage_title": "Origin of a Narrow Ring",
+    "passage": "A space probe surveyed the narrow ring that circles a giant planet. The ring orbits 1.6 planetary radii from the planet's center, inside the distance at which tidal forces prevent loose material from gathering into a moon. Its particles are more than 90% water ice by mass, its total mass is about 10^16 kg, and two small moons orbit just inside and just outside its edges. Two scientists discuss how the ring formed.\n\nScientist 1\n\nThe ring is young, no more than 10 million years old. A small icy moon drifted inside the tidal limit and was torn apart; the two moons at the ring's edges are its largest surviving pieces, and they keep the ring narrow. Fresh debris is bright, nearly pure ice, and it darkens as meteoroid dust settles on it at a known rate. The probe measured the ring's reflectivity at 0.6, comparable to fresh frost, whereas the planet's oldest icy moons reflect less than 0.3. At the known dust rate, a surface that bright cannot have been exposed for more than a few tens of millions of years.\n\nScientist 2\n\nThe ring is primordial: material left over from the planet's formation 4.5 billion years ago that never gathered into a moon because it lies inside the tidal limit. The edge moons formed at the same time and have confined the ring ever since, so its narrowness says nothing about its age. Neither does its brightness. Ring particles collide constantly, and each collision chips off the darkened outer layer and exposes clean ice, so a continually resurfaced ring stays bright indefinitely. Dust that fell on the ring over billions of years should instead be mixed through the particles' interiors. The probe's spectrometer found about 2% silicate dust by mass distributed through the ring particles, several times more than a 10-million-year-old ring could have collected.",
+    "format": "conflicting_viewpoints",
+    "prompt": "Scientist 1 and Scientist 2 would most likely agree with which of the following statements about the ring?",
+    "choices": [
+      "It formed when an icy moon was torn apart inside the tidal limit.",
+      "The two small moons at its edges keep it from spreading.",
+      "Its brightness shows that its particles were exposed recently.",
+      "It contains more silicate dust than a young ring could have collected."
+    ],
+    "correct_answer": "The two small moons at its edges keep it from spreading.",
+    "explanation": "Scientist 1 says the edge moons \"keep the ring narrow\" and Scientist 2 says they \"have confined the ring ever since.\" The shattered-moon origin and the reading of the brightness as youth belong to Scientist 1 alone; the dust argument belongs to Scientist 2 alone.",
+    "domain": "Evaluation of Models, Inferences, and Experimental Results",
+    "subskill": "point of agreement",
+    "difficulty": "easy"
+  },
+  {
+    "id": "SCI-CV-01-2",
+    "passage_id": "sci-cv-01",
+    "passage_title": "Origin of a Narrow Ring",
+    "passage": "A space probe surveyed the narrow ring that circles a giant planet. The ring orbits 1.6 planetary radii from the planet's center, inside the distance at which tidal forces prevent loose material from gathering into a moon. Its particles are more than 90% water ice by mass, its total mass is about 10^16 kg, and two small moons orbit just inside and just outside its edges. Two scientists discuss how the ring formed.\n\nScientist 1\n\nThe ring is young, no more than 10 million years old. A small icy moon drifted inside the tidal limit and was torn apart; the two moons at the ring's edges are its largest surviving pieces, and they keep the ring narrow. Fresh debris is bright, nearly pure ice, and it darkens as meteoroid dust settles on it at a known rate. The probe measured the ring's reflectivity at 0.6, comparable to fresh frost, whereas the planet's oldest icy moons reflect less than 0.3. At the known dust rate, a surface that bright cannot have been exposed for more than a few tens of millions of years.\n\nScientist 2\n\nThe ring is primordial: material left over from the planet's formation 4.5 billion years ago that never gathered into a moon because it lies inside the tidal limit. The edge moons formed at the same time and have confined the ring ever since, so its narrowness says nothing about its age. Neither does its brightness. Ring particles collide constantly, and each collision chips off the darkened outer layer and exposes clean ice, so a continually resurfaced ring stays bright indefinitely. Dust that fell on the ring over billions of years should instead be mixed through the particles' interiors. The probe's spectrometer found about 2% silicate dust by mass distributed through the ring particles, several times more than a 10-million-year-old ring could have collected.",
+    "format": "conflicting_viewpoints",
+    "prompt": "Which of the following findings, if confirmed, would most weaken Scientist 1's viewpoint?",
+    "choices": [
+      "The ring's reflectivity is remeasured at 0.65 rather than 0.6.",
+      "Silicate dust is concentrated on the surfaces of ring particles rather than mixed through them.",
+      "The two edge moons have heavily cratered surfaces indicating ages of billions of years.",
+      "The ring's total mass is about half of the earlier estimate."
+    ],
+    "correct_answer": "The two edge moons have heavily cratered surfaces indicating ages of billions of years.",
+    "explanation": "Scientist 1 calls the edge moons the \"largest surviving pieces\" of a moon torn apart no more than 10 million years ago, so edge moons billions of years old contradict that origin. A higher reflectivity and surface-concentrated dust would both favor a young ring, and the mass estimate bears on neither argument.",
+    "domain": "Evaluation of Models, Inferences, and Experimental Results",
+    "subskill": "finding that weakens a viewpoint",
+    "difficulty": "medium"
+  },
+  {
+    "id": "SCI-CV-01-3",
+    "passage_id": "sci-cv-01",
+    "passage_title": "Origin of a Narrow Ring",
+    "passage": "A space probe surveyed the narrow ring that circles a giant planet. The ring orbits 1.6 planetary radii from the planet's center, inside the distance at which tidal forces prevent loose material from gathering into a moon. Its particles are more than 90% water ice by mass, its total mass is about 10^16 kg, and two small moons orbit just inside and just outside its edges. Two scientists discuss how the ring formed.\n\nScientist 1\n\nThe ring is young, no more than 10 million years old. A small icy moon drifted inside the tidal limit and was torn apart; the two moons at the ring's edges are its largest surviving pieces, and they keep the ring narrow. Fresh debris is bright, nearly pure ice, and it darkens as meteoroid dust settles on it at a known rate. The probe measured the ring's reflectivity at 0.6, comparable to fresh frost, whereas the planet's oldest icy moons reflect less than 0.3. At the known dust rate, a surface that bright cannot have been exposed for more than a few tens of millions of years.\n\nScientist 2\n\nThe ring is primordial: material left over from the planet's formation 4.5 billion years ago that never gathered into a moon because it lies inside the tidal limit. The edge moons formed at the same time and have confined the ring ever since, so its narrowness says nothing about its age. Neither does its brightness. Ring particles collide constantly, and each collision chips off the darkened outer layer and exposes clean ice, so a continually resurfaced ring stays bright indefinitely. Dust that fell on the ring over billions of years should instead be mixed through the particles' interiors. The probe's spectrometer found about 2% silicate dust by mass distributed through the ring particles, several times more than a 10-million-year-old ring could have collected.",
+    "format": "conflicting_viewpoints",
+    "prompt": "Which of the following measurements would best distinguish between the two viewpoints?",
+    "choices": [
+      "Whether the silicate dust lies on the surfaces of the ring particles or is mixed through their interiors.",
+      "Whether the ratio of deuterium to hydrogen in the ice of the ring particles matches that of the planet's oldest icy moons.",
+      "Whether the ring's total mass is closer to 10^16 kg or to 10^15 kg.",
+      "Whether the two edge moons orbit inside or outside the tidal limit."
+    ],
+    "correct_answer": "Whether the silicate dust lies on the surfaces of the ring particles or is mixed through their interiors.",
+    "explanation": "Scientist 1 says dust \"settles on\" fresh debris, while Scientist 2 says dust that fell over billions of years \"should instead be mixed through the particles' interiors,\" so where the dust sits separates the models. A moon torn apart would carry the same isotopic ratio as material that formed with the planet, and the ring's mass and position are already known and predicted by neither model.",
+    "domain": "Scientific Investigation",
+    "subskill": "measurement that discriminates between models",
+    "difficulty": "hard"
+  },
+  {
+    "id": "SCI-CV-01-4",
+    "passage_id": "sci-cv-01",
+    "passage_title": "Origin of a Narrow Ring",
+    "passage": "A space probe surveyed the narrow ring that circles a giant planet. The ring orbits 1.6 planetary radii from the planet's center, inside the distance at which tidal forces prevent loose material from gathering into a moon. Its particles are more than 90% water ice by mass, its total mass is about 10^16 kg, and two small moons orbit just inside and just outside its edges. Two scientists discuss how the ring formed.\n\nScientist 1\n\nThe ring is young, no more than 10 million years old. A small icy moon drifted inside the tidal limit and was torn apart; the two moons at the ring's edges are its largest surviving pieces, and they keep the ring narrow. Fresh debris is bright, nearly pure ice, and it darkens as meteoroid dust settles on it at a known rate. The probe measured the ring's reflectivity at 0.6, comparable to fresh frost, whereas the planet's oldest icy moons reflect less than 0.3. At the known dust rate, a surface that bright cannot have been exposed for more than a few tens of millions of years.\n\nScientist 2\n\nThe ring is primordial: material left over from the planet's formation 4.5 billion years ago that never gathered into a moon because it lies inside the tidal limit. The edge moons formed at the same time and have confined the ring ever since, so its narrowness says nothing about its age. Neither does its brightness. Ring particles collide constantly, and each collision chips off the darkened outer layer and exposes clean ice, so a continually resurfaced ring stays bright indefinitely. Dust that fell on the ring over billions of years should instead be mixed through the particles' interiors. The probe's spectrometer found about 2% silicate dust by mass distributed through the ring particles, several times more than a 10-million-year-old ring could have collected.",
+    "format": "conflicting_viewpoints",
+    "prompt": "According to Scientist 1, the reflectivity of the planet's oldest icy moons is:",
+    "choices": [
+      "about 0.6.",
+      "greater than 0.6.",
+      "about 2%.",
+      "less than 0.3."
+    ],
+    "correct_answer": "less than 0.3.",
+    "explanation": "Scientist 1 contrasts the ring's reflectivity of 0.6 with the oldest icy moons, which \"reflect less than 0.3.\" The figure 2% is the silicate fraction reported by Scientist 2.",
+    "domain": "Interpretation of Data",
+    "subskill": "locate a stated value",
+    "difficulty": "easy"
+  },
+  {
+    "id": "SCI-CV-01-5",
+    "passage_id": "sci-cv-01",
+    "passage_title": "Origin of a Narrow Ring",
+    "passage": "A space probe surveyed the narrow ring that circles a giant planet. The ring orbits 1.6 planetary radii from the planet's center, inside the distance at which tidal forces prevent loose material from gathering into a moon. Its particles are more than 90% water ice by mass, its total mass is about 10^16 kg, and two small moons orbit just inside and just outside its edges. Two scientists discuss how the ring formed.\n\nScientist 1\n\nThe ring is young, no more than 10 million years old. A small icy moon drifted inside the tidal limit and was torn apart; the two moons at the ring's edges are its largest surviving pieces, and they keep the ring narrow. Fresh debris is bright, nearly pure ice, and it darkens as meteoroid dust settles on it at a known rate. The probe measured the ring's reflectivity at 0.6, comparable to fresh frost, whereas the planet's oldest icy moons reflect less than 0.3. At the known dust rate, a surface that bright cannot have been exposed for more than a few tens of millions of years.\n\nScientist 2\n\nThe ring is primordial: material left over from the planet's formation 4.5 billion years ago that never gathered into a moon because it lies inside the tidal limit. The edge moons formed at the same time and have confined the ring ever since, so its narrowness says nothing about its age. Neither does its brightness. Ring particles collide constantly, and each collision chips off the darkened outer layer and exposes clean ice, so a continually resurfaced ring stays bright indefinitely. Dust that fell on the ring over billions of years should instead be mixed through the particles' interiors. The probe's spectrometer found about 2% silicate dust by mass distributed through the ring particles, several times more than a 10-million-year-old ring could have collected.",
+    "format": "conflicting_viewpoints",
+    "prompt": "Scientist 2's explanation of the ring's brightness depends on which of the following assumptions?",
+    "choices": [
+      "Meteoroid dust no longer reaches the ring.",
+      "Collisions expose clean ice faster than falling dust darkens it.",
+      "The edge moons formed after the ring particles did.",
+      "A moon torn apart inside the tidal limit would produce dark debris."
+    ],
+    "correct_answer": "Collisions expose clean ice faster than falling dust darkens it.",
+    "explanation": "Scientist 2 claims that \"a continually resurfaced ring stays bright indefinitely,\" which holds only if resurfacing outpaces darkening. Scientist 2 accepts that dust has fallen on the ring for billions of years and says the edge moons \"formed at the same time\" as the ring.",
+    "domain": "Evaluation of Models, Inferences, and Experimental Results",
+    "subskill": "assumption underlying a model",
+    "difficulty": "medium"
+  },
+  {
+    "id": "SCI-CV-01-6",
+    "passage_id": "sci-cv-01",
+    "passage_title": "Origin of a Narrow Ring",
+    "passage": "A space probe surveyed the narrow ring that circles a giant planet. The ring orbits 1.6 planetary radii from the planet's center, inside the distance at which tidal forces prevent loose material from gathering into a moon. Its particles are more than 90% water ice by mass, its total mass is about 10^16 kg, and two small moons orbit just inside and just outside its edges. Two scientists discuss how the ring formed.\n\nScientist 1\n\nThe ring is young, no more than 10 million years old. A small icy moon drifted inside the tidal limit and was torn apart; the two moons at the ring's edges are its largest surviving pieces, and they keep the ring narrow. Fresh debris is bright, nearly pure ice, and it darkens as meteoroid dust settles on it at a known rate. The probe measured the ring's reflectivity at 0.6, comparable to fresh frost, whereas the planet's oldest icy moons reflect less than 0.3. At the known dust rate, a surface that bright cannot have been exposed for more than a few tens of millions of years.\n\nScientist 2\n\nThe ring is primordial: material left over from the planet's formation 4.5 billion years ago that never gathered into a moon because it lies inside the tidal limit. The edge moons formed at the same time and have confined the ring ever since, so its narrowness says nothing about its age. Neither does its brightness. Ring particles collide constantly, and each collision chips off the darkened outer layer and exposes clean ice, so a continually resurfaced ring stays bright indefinitely. Dust that fell on the ring over billions of years should instead be mixed through the particles' interiors. The probe's spectrometer found about 2% silicate dust by mass distributed through the ring particles, several times more than a 10-million-year-old ring could have collected.",
+    "format": "conflicting_viewpoints",
+    "prompt": "Scientist 1 would most likely respond to the spectrometer's finding of 2% silicate dust by claiming that the silicate:",
+    "choices": [
+      "was buried by collisions that exposed clean ice.",
+      "is several times more than a young ring could have collected.",
+      "came from the rocky interior of the moon that was torn apart.",
+      "shows that the ring particles were never part of a moon."
+    ],
+    "correct_answer": "came from the rocky interior of the moon that was torn apart.",
+    "explanation": "Scientist 1's ring is the debris of a moon, and a moon's rock is a source of silicate that does not depend on slow dust accumulation. Burial by collisions and the claim that the dust is \"several times more than a 10-million-year-old ring could have collected\" are Scientist 2's positions.",
+    "domain": "Evaluation of Models, Inferences, and Experimental Results",
+    "subskill": "how a scientist would explain a counter-observation",
+    "difficulty": "medium"
+  },
+  {
+    "id": "SCI-CV-02-1",
+    "passage_id": "sci-cv-02",
+    "passage_title": "A Summer Fever in a Farming Valley",
+    "passage": "For six summers, residents of a farming valley have suffered an illness marked by fever, joint pain, and rash. Cases occur only from July through September; nearly all patients live within 2 km of the valley's river; a previously unknown virus can be isolated from patients' blood; and the same virus is present in the blood of the valley's cattle, which show no signs of disease. Three scientists propose how the virus reaches people.\n\nScientist 1\n\nThe virus is carried by biting midges that breed in flooded irrigation ditches along the river. Midges feed on cattle and on people at dusk, and the virus multiplies in a midge for several days. Cases should be fewest in years when the ditches are drained early, and people who spend evenings outdoors should be at greatest risk. Traps set within 500 m of the ditches collected 20 times as many midges as traps set 2 km away, and pooled midges from the ditch-side traps contained the virus.\n\nScientist 2\n\nThe virus is carried by ticks that feed on cattle. A tick picks up the virus from a cow and passes it to a person who handles cattle or walks through pasture. The late-summer timing of cases matches the activity peak of the tick's adult stage. Cases should concentrate in households that keep cattle, whatever their water source. Of the patients' households, 80% keep cattle within 100 m of the house, and ticks removed from those cattle carried the virus.\n\nScientist 3\n\nNo animal carries the virus. Infected cattle shed the virus in urine, which is washed into the river and into shallow household wells when fields are irrigated in summer. People are infected by drinking or bathing in that water. Households supplied with piped water from outside the valley should have few cases, however many cattle they keep. Virus genetic material was detected in 12 of 30 shallow wells sampled in August but in none of the same wells in March.",
+    "format": "conflicting_viewpoints",
+    "prompt": "All three scientists would agree that:",
+    "choices": [
+      "biting midges pass the virus to people.",
+      "the virus is present in shallow wells in summer.",
+      "households that keep cattle are at greatest risk.",
+      "the valley's cattle carry the virus."
+    ],
+    "correct_answer": "the valley's cattle carry the virus.",
+    "explanation": "Every viewpoint starts from the established fact that the virus \"is present in the blood of the valley's cattle\": Scientist 1's midges and Scientist 2's ticks feed on cattle, and Scientist 3's cattle shed the virus in urine. Midges, wells, and cattle-keeping households are each one scientist's claim.",
+    "domain": "Evaluation of Models, Inferences, and Experimental Results",
+    "subskill": "point of agreement",
+    "difficulty": "easy"
+  },
+  {
+    "id": "SCI-CV-02-2",
+    "passage_id": "sci-cv-02",
+    "passage_title": "A Summer Fever in a Farming Valley",
+    "passage": "For six summers, residents of a farming valley have suffered an illness marked by fever, joint pain, and rash. Cases occur only from July through September; nearly all patients live within 2 km of the valley's river; a previously unknown virus can be isolated from patients' blood; and the same virus is present in the blood of the valley's cattle, which show no signs of disease. Three scientists propose how the virus reaches people.\n\nScientist 1\n\nThe virus is carried by biting midges that breed in flooded irrigation ditches along the river. Midges feed on cattle and on people at dusk, and the virus multiplies in a midge for several days. Cases should be fewest in years when the ditches are drained early, and people who spend evenings outdoors should be at greatest risk. Traps set within 500 m of the ditches collected 20 times as many midges as traps set 2 km away, and pooled midges from the ditch-side traps contained the virus.\n\nScientist 2\n\nThe virus is carried by ticks that feed on cattle. A tick picks up the virus from a cow and passes it to a person who handles cattle or walks through pasture. The late-summer timing of cases matches the activity peak of the tick's adult stage. Cases should concentrate in households that keep cattle, whatever their water source. Of the patients' households, 80% keep cattle within 100 m of the house, and ticks removed from those cattle carried the virus.\n\nScientist 3\n\nNo animal carries the virus. Infected cattle shed the virus in urine, which is washed into the river and into shallow household wells when fields are irrigated in summer. People are infected by drinking or bathing in that water. Households supplied with piped water from outside the valley should have few cases, however many cattle they keep. Virus genetic material was detected in 12 of 30 shallow wells sampled in August but in none of the same wells in March.",
+    "format": "conflicting_viewpoints",
+    "prompt": "Which of the following findings would most weaken Scientist 3's viewpoint?",
+    "choices": [
+      "Piped-water households had the same case rate as households using shallow wells.",
+      "The virus was detected in river water sampled in August.",
+      "People who stayed indoors after dusk had far fewer cases than people who spent their evenings outdoors.",
+      "Cattle blood sampled in March contained the virus."
+    ],
+    "correct_answer": "Piped-water households had the same case rate as households using shallow wells.",
+    "explanation": "Scientist 3 predicts that households with piped water from outside the valley \"should have few cases,\" so equal case rates contradict the prediction directly. Virus in the river supports Scientist 3, the dusk finding bears on Scientist 1, and all three accept that cattle carry the virus year-round.",
+    "domain": "Evaluation of Models, Inferences, and Experimental Results",
+    "subskill": "finding that weakens a viewpoint",
+    "difficulty": "medium"
+  },
+  {
+    "id": "SCI-CV-02-3",
+    "passage_id": "sci-cv-02",
+    "passage_title": "A Summer Fever in a Farming Valley",
+    "passage": "For six summers, residents of a farming valley have suffered an illness marked by fever, joint pain, and rash. Cases occur only from July through September; nearly all patients live within 2 km of the valley's river; a previously unknown virus can be isolated from patients' blood; and the same virus is present in the blood of the valley's cattle, which show no signs of disease. Three scientists propose how the virus reaches people.\n\nScientist 1\n\nThe virus is carried by biting midges that breed in flooded irrigation ditches along the river. Midges feed on cattle and on people at dusk, and the virus multiplies in a midge for several days. Cases should be fewest in years when the ditches are drained early, and people who spend evenings outdoors should be at greatest risk. Traps set within 500 m of the ditches collected 20 times as many midges as traps set 2 km away, and pooled midges from the ditch-side traps contained the virus.\n\nScientist 2\n\nThe virus is carried by ticks that feed on cattle. A tick picks up the virus from a cow and passes it to a person who handles cattle or walks through pasture. The late-summer timing of cases matches the activity peak of the tick's adult stage. Cases should concentrate in households that keep cattle, whatever their water source. Of the patients' households, 80% keep cattle within 100 m of the house, and ticks removed from those cattle carried the virus.\n\nScientist 3\n\nNo animal carries the virus. Infected cattle shed the virus in urine, which is washed into the river and into shallow household wells when fields are irrigated in summer. People are infected by drinking or bathing in that water. Households supplied with piped water from outside the valley should have few cases, however many cattle they keep. Virus genetic material was detected in 12 of 30 shallow wells sampled in August but in none of the same wells in March.",
+    "format": "conflicting_viewpoints",
+    "prompt": "Which of the following comparisons would best distinguish Scientist 2's explanation from Scientist 3's?",
+    "choices": [
+      "Case rates in July versus case rates in March.",
+      "Numbers of midges trapped near the ditches versus 2 km away.",
+      "Case rates among cattle-keeping households with piped water versus those with well water.",
+      "Presence of the virus in the blood of cattle kept near houses versus cattle kept in distant pasture."
+    ],
+    "correct_answer": "Case rates among cattle-keeping households with piped water versus those with well water.",
+    "explanation": "Scientist 2 expects cases to concentrate in cattle-keeping households \"whatever their water source,\" while Scientist 3 expects piped-water households to have few cases \"however many cattle they keep,\" so holding cattle constant and varying water source pits the two predictions against each other. Seasonal timing and virus in cattle are accepted by all three, and the midge counts test Scientist 1.",
+    "domain": "Scientific Investigation",
+    "subskill": "design a discriminating comparison",
+    "difficulty": "hard"
+  },
+  {
+    "id": "SCI-CV-02-4",
+    "passage_id": "sci-cv-02",
+    "passage_title": "A Summer Fever in a Farming Valley",
+    "passage": "For six summers, residents of a farming valley have suffered an illness marked by fever, joint pain, and rash. Cases occur only from July through September; nearly all patients live within 2 km of the valley's river; a previously unknown virus can be isolated from patients' blood; and the same virus is present in the blood of the valley's cattle, which show no signs of disease. Three scientists propose how the virus reaches people.\n\nScientist 1\n\nThe virus is carried by biting midges that breed in flooded irrigation ditches along the river. Midges feed on cattle and on people at dusk, and the virus multiplies in a midge for several days. Cases should be fewest in years when the ditches are drained early, and people who spend evenings outdoors should be at greatest risk. Traps set within 500 m of the ditches collected 20 times as many midges as traps set 2 km away, and pooled midges from the ditch-side traps contained the virus.\n\nScientist 2\n\nThe virus is carried by ticks that feed on cattle. A tick picks up the virus from a cow and passes it to a person who handles cattle or walks through pasture. The late-summer timing of cases matches the activity peak of the tick's adult stage. Cases should concentrate in households that keep cattle, whatever their water source. Of the patients' households, 80% keep cattle within 100 m of the house, and ticks removed from those cattle carried the virus.\n\nScientist 3\n\nNo animal carries the virus. Infected cattle shed the virus in urine, which is washed into the river and into shallow household wells when fields are irrigated in summer. People are infected by drinking or bathing in that water. Households supplied with piped water from outside the valley should have few cases, however many cattle they keep. Virus genetic material was detected in 12 of 30 shallow wells sampled in August but in none of the same wells in March.",
+    "format": "conflicting_viewpoints",
+    "prompt": "According to Scientist 1, traps set within 500 m of the irrigation ditches collected how many times as many midges as traps set 2 km away?",
+    "choices": [
+      "2",
+      "20",
+      "80",
+      "500"
+    ],
+    "correct_answer": "20",
+    "explanation": "Scientist 1 reports that ditch-side traps \"collected 20 times as many midges as traps set 2 km away.\" The values 80 and 500 come from Scientist 2's household figure and the distance of the traps from the ditches.",
+    "domain": "Interpretation of Data",
+    "subskill": "locate a stated value",
+    "difficulty": "easy"
+  },
+  {
+    "id": "SCI-CV-02-5",
+    "passage_id": "sci-cv-02",
+    "passage_title": "A Summer Fever in a Farming Valley",
+    "passage": "For six summers, residents of a farming valley have suffered an illness marked by fever, joint pain, and rash. Cases occur only from July through September; nearly all patients live within 2 km of the valley's river; a previously unknown virus can be isolated from patients' blood; and the same virus is present in the blood of the valley's cattle, which show no signs of disease. Three scientists propose how the virus reaches people.\n\nScientist 1\n\nThe virus is carried by biting midges that breed in flooded irrigation ditches along the river. Midges feed on cattle and on people at dusk, and the virus multiplies in a midge for several days. Cases should be fewest in years when the ditches are drained early, and people who spend evenings outdoors should be at greatest risk. Traps set within 500 m of the ditches collected 20 times as many midges as traps set 2 km away, and pooled midges from the ditch-side traps contained the virus.\n\nScientist 2\n\nThe virus is carried by ticks that feed on cattle. A tick picks up the virus from a cow and passes it to a person who handles cattle or walks through pasture. The late-summer timing of cases matches the activity peak of the tick's adult stage. Cases should concentrate in households that keep cattle, whatever their water source. Of the patients' households, 80% keep cattle within 100 m of the house, and ticks removed from those cattle carried the virus.\n\nScientist 3\n\nNo animal carries the virus. Infected cattle shed the virus in urine, which is washed into the river and into shallow household wells when fields are irrigated in summer. People are infected by drinking or bathing in that water. Households supplied with piped water from outside the valley should have few cases, however many cattle they keep. Virus genetic material was detected in 12 of 30 shallow wells sampled in August but in none of the same wells in March.",
+    "format": "conflicting_viewpoints",
+    "prompt": "Suppose laboratory tests showed that the virus does not multiply in ticks and becomes undetectable in a tick within 3 days of feeding. This result would most weaken the viewpoint of:",
+    "choices": [
+      "Scientist 1, because midges, like ticks, feed on cattle.",
+      "Scientist 2, because adult ticks are most active in late summer.",
+      "Scientist 3, because a virus this unstable outside cattle could not survive in well water for long.",
+      "Scientist 2, because a tick that cannot maintain the virus is unlikely to pass it to a person."
+    ],
+    "correct_answer": "Scientist 2, because a tick that cannot maintain the virus is unlikely to pass it to a person.",
+    "explanation": "Scientist 2's mechanism requires a tick to pick up the virus from a cow and later pass it to a person; a virus that disappears from the tick within days undermines that step. The late-summer activity of ticks is part of Scientist 2's support, not a reason the result weakens it, and Scientist 1's midges are described as multiplying the virus for several days.",
+    "domain": "Evaluation of Models, Inferences, and Experimental Results",
+    "subskill": "evaluate a new result against a mechanism",
+    "difficulty": "hard"
+  },
+  {
+    "id": "SCI-CV-02-6",
+    "passage_id": "sci-cv-02",
+    "passage_title": "A Summer Fever in a Farming Valley",
+    "passage": "For six summers, residents of a farming valley have suffered an illness marked by fever, joint pain, and rash. Cases occur only from July through September; nearly all patients live within 2 km of the valley's river; a previously unknown virus can be isolated from patients' blood; and the same virus is present in the blood of the valley's cattle, which show no signs of disease. Three scientists propose how the virus reaches people.\n\nScientist 1\n\nThe virus is carried by biting midges that breed in flooded irrigation ditches along the river. Midges feed on cattle and on people at dusk, and the virus multiplies in a midge for several days. Cases should be fewest in years when the ditches are drained early, and people who spend evenings outdoors should be at greatest risk. Traps set within 500 m of the ditches collected 20 times as many midges as traps set 2 km away, and pooled midges from the ditch-side traps contained the virus.\n\nScientist 2\n\nThe virus is carried by ticks that feed on cattle. A tick picks up the virus from a cow and passes it to a person who handles cattle or walks through pasture. The late-summer timing of cases matches the activity peak of the tick's adult stage. Cases should concentrate in households that keep cattle, whatever their water source. Of the patients' households, 80% keep cattle within 100 m of the house, and ticks removed from those cattle carried the virus.\n\nScientist 3\n\nNo animal carries the virus. Infected cattle shed the virus in urine, which is washed into the river and into shallow household wells when fields are irrigated in summer. People are infected by drinking or bathing in that water. Households supplied with piped water from outside the valley should have few cases, however many cattle they keep. Virus genetic material was detected in 12 of 30 shallow wells sampled in August but in none of the same wells in March.",
+    "format": "conflicting_viewpoints",
+    "prompt": "Which of the following comparisons would most directly test a prediction made by Scientist 1?",
+    "choices": [
+      "Case counts in years of early ditch drainage versus years of late drainage.",
+      "Case counts in households with cattle versus households without cattle.",
+      "Virus levels in wells sampled in August versus wells sampled in March.",
+      "Case counts among people who bathe in the river versus people who do not."
+    ],
+    "correct_answer": "Case counts in years of early ditch drainage versus years of late drainage.",
+    "explanation": "Scientist 1 predicts that cases \"should be fewest in years when the ditches are drained early,\" which a comparison of early- and late-drainage years tests directly. Cattle ownership is Scientist 2's prediction, and well sampling and river bathing follow from Scientist 3's.",
+    "domain": "Scientific Investigation",
+    "subskill": "identify the test of a stated prediction",
+    "difficulty": "medium"
+  },
+  {
+    "id": "SCI-CV-03-1",
+    "passage_id": "sci-cv-03",
+    "passage_title": "Depressions on a Limestone Plateau",
+    "passage": "Several hundred circular depressions, 20 to 80 m across and 2 to 6 m deep, dot the surface of a plateau in a cold temperate region. Surveys have established that the bedrock is limestone lying beneath 2 to 4 m of glacial till deposited about 15,000 years ago; that the depressions form chains aligned northeast-southwest; that each has a flat floor of fine silt; and that permafrost was present in the region until about 12,000 years ago but is absent today. Two scientists explain how the depressions formed.\n\nScientist 1\n\nThe depressions are sinkholes. Groundwater moving along fractures in the limestone dissolves the rock and opens cavities; when a cavity grows large enough, the till above it collapses into it. The chains follow the fracture sets, which strike northeast-southwest where the limestone is exposed nearby. Because dissolution continues today, new depressions should keep appearing, and each depression should be underlain by broken rock. A borehole drilled at the center of one depression passed through 3 m of silt and then 4 m of limestone rubble before reaching solid rock, and aerial photographs show two depressions that were absent 40 years ago.\n\nScientist 2\n\nThe depressions are the collapsed remains of ice-cored mounds that grew in the till when the region had permafrost. When the permafrost thawed about 12,000 years ago, the ice cores melted and the mounds slumped into hollows, leaving the low rims of displaced till that surround many of the depressions today. The chains follow the direction of ice flow recorded by striations and elongated hills in the till, not any feature of the bedrock. Under the present climate no new depressions should form, and the limestone beneath the till should be intact. Silt from the floors of two depressions has been radiocarbon dated to 11,500 and 10,800 years, consistent with hollows that formed as the permafrost disappeared.",
+    "format": "conflicting_viewpoints",
+    "prompt": "Scientist 1 and Scientist 2 would both agree that the depressions:",
+    "choices": [
+      "formed after the glacial till was deposited.",
+      "are still forming under the present climate.",
+      "are floored by silt about 11,000 years old.",
+      "lie above cavities dissolved in the limestone."
+    ],
+    "correct_answer": "formed after the glacial till was deposited.",
+    "explanation": "Scientist 1's depressions form when \"the till above it collapses,\" and Scientist 2's form when ice cores \"that grew in the till\" melt; both require the till to be in place first. Continued formation and cavities belong to Scientist 1, and the silt dates to Scientist 2.",
+    "domain": "Evaluation of Models, Inferences, and Experimental Results",
+    "subskill": "point of agreement",
+    "difficulty": "medium"
+  },
+  {
+    "id": "SCI-CV-03-2",
+    "passage_id": "sci-cv-03",
+    "passage_title": "Depressions on a Limestone Plateau",
+    "passage": "Several hundred circular depressions, 20 to 80 m across and 2 to 6 m deep, dot the surface of a plateau in a cold temperate region. Surveys have established that the bedrock is limestone lying beneath 2 to 4 m of glacial till deposited about 15,000 years ago; that the depressions form chains aligned northeast-southwest; that each has a flat floor of fine silt; and that permafrost was present in the region until about 12,000 years ago but is absent today. Two scientists explain how the depressions formed.\n\nScientist 1\n\nThe depressions are sinkholes. Groundwater moving along fractures in the limestone dissolves the rock and opens cavities; when a cavity grows large enough, the till above it collapses into it. The chains follow the fracture sets, which strike northeast-southwest where the limestone is exposed nearby. Because dissolution continues today, new depressions should keep appearing, and each depression should be underlain by broken rock. A borehole drilled at the center of one depression passed through 3 m of silt and then 4 m of limestone rubble before reaching solid rock, and aerial photographs show two depressions that were absent 40 years ago.\n\nScientist 2\n\nThe depressions are the collapsed remains of ice-cored mounds that grew in the till when the region had permafrost. When the permafrost thawed about 12,000 years ago, the ice cores melted and the mounds slumped into hollows, leaving the low rims of displaced till that surround many of the depressions today. The chains follow the direction of ice flow recorded by striations and elongated hills in the till, not any feature of the bedrock. Under the present climate no new depressions should form, and the limestone beneath the till should be intact. Silt from the floors of two depressions has been radiocarbon dated to 11,500 and 10,800 years, consistent with hollows that formed as the permafrost disappeared.",
+    "format": "conflicting_viewpoints",
+    "prompt": "Which of the following findings would most strongly support Scientist 2's viewpoint over Scientist 1's?",
+    "choices": [
+      "Two depressions that were absent 40 years ago now appear in aerial photographs.",
+      "Fractures in nearby exposed limestone strike northeast-southwest.",
+      "Depression floors lie between 2 and 6 m below the surrounding surface.",
+      "Boreholes in ten more depressions reach solid limestone directly beneath the till."
+    ],
+    "correct_answer": "Boreholes in ten more depressions reach solid limestone directly beneath the till.",
+    "explanation": "Scientist 2 predicts that \"the limestone beneath the till should be intact,\" whereas Scientist 1 predicts that each depression \"should be underlain by broken rock,\" so intact bedrock under many depressions favors Scientist 2. Recent depressions and northeast-southwest fractures are Scientist 1's evidence, and the depth range is an agreed observation.",
+    "domain": "Evaluation of Models, Inferences, and Experimental Results",
+    "subskill": "finding that supports one model over another",
+    "difficulty": "medium"
+  },
+  {
+    "id": "SCI-CV-03-3",
+    "passage_id": "sci-cv-03",
+    "passage_title": "Depressions on a Limestone Plateau",
+    "passage": "Several hundred circular depressions, 20 to 80 m across and 2 to 6 m deep, dot the surface of a plateau in a cold temperate region. Surveys have established that the bedrock is limestone lying beneath 2 to 4 m of glacial till deposited about 15,000 years ago; that the depressions form chains aligned northeast-southwest; that each has a flat floor of fine silt; and that permafrost was present in the region until about 12,000 years ago but is absent today. Two scientists explain how the depressions formed.\n\nScientist 1\n\nThe depressions are sinkholes. Groundwater moving along fractures in the limestone dissolves the rock and opens cavities; when a cavity grows large enough, the till above it collapses into it. The chains follow the fracture sets, which strike northeast-southwest where the limestone is exposed nearby. Because dissolution continues today, new depressions should keep appearing, and each depression should be underlain by broken rock. A borehole drilled at the center of one depression passed through 3 m of silt and then 4 m of limestone rubble before reaching solid rock, and aerial photographs show two depressions that were absent 40 years ago.\n\nScientist 2\n\nThe depressions are the collapsed remains of ice-cored mounds that grew in the till when the region had permafrost. When the permafrost thawed about 12,000 years ago, the ice cores melted and the mounds slumped into hollows, leaving the low rims of displaced till that surround many of the depressions today. The chains follow the direction of ice flow recorded by striations and elongated hills in the till, not any feature of the bedrock. Under the present climate no new depressions should form, and the limestone beneath the till should be intact. Silt from the floors of two depressions has been radiocarbon dated to 11,500 and 10,800 years, consistent with hollows that formed as the permafrost disappeared.",
+    "format": "conflicting_viewpoints",
+    "prompt": "How would Scientist 2 most likely explain the 4 m of limestone rubble found in the borehole described by Scientist 1?",
+    "choices": [
+      "The rubble fell from the roof of a cavity dissolved by groundwater.",
+      "The rubble is broken rock that was carried in the till by glacial ice.",
+      "The rubble shows that the depression is one of the two that formed recently.",
+      "The rubble was washed into the depression after the till collapsed."
+    ],
+    "correct_answer": "The rubble is broken rock that was carried in the till by glacial ice.",
+    "explanation": "Scientist 2 holds that the bedrock is intact and that the depressions are features of the till, so broken limestone must be part of the till itself rather than collapsed bedrock. A dissolved cavity, collapse of the till, and depressions that formed recently are all Scientist 1's claims.",
+    "domain": "Evaluation of Models, Inferences, and Experimental Results",
+    "subskill": "how a scientist would explain a counter-observation",
+    "difficulty": "hard"
+  },
+  {
+    "id": "SCI-CV-03-4",
+    "passage_id": "sci-cv-03",
+    "passage_title": "Depressions on a Limestone Plateau",
+    "passage": "Several hundred circular depressions, 20 to 80 m across and 2 to 6 m deep, dot the surface of a plateau in a cold temperate region. Surveys have established that the bedrock is limestone lying beneath 2 to 4 m of glacial till deposited about 15,000 years ago; that the depressions form chains aligned northeast-southwest; that each has a flat floor of fine silt; and that permafrost was present in the region until about 12,000 years ago but is absent today. Two scientists explain how the depressions formed.\n\nScientist 1\n\nThe depressions are sinkholes. Groundwater moving along fractures in the limestone dissolves the rock and opens cavities; when a cavity grows large enough, the till above it collapses into it. The chains follow the fracture sets, which strike northeast-southwest where the limestone is exposed nearby. Because dissolution continues today, new depressions should keep appearing, and each depression should be underlain by broken rock. A borehole drilled at the center of one depression passed through 3 m of silt and then 4 m of limestone rubble before reaching solid rock, and aerial photographs show two depressions that were absent 40 years ago.\n\nScientist 2\n\nThe depressions are the collapsed remains of ice-cored mounds that grew in the till when the region had permafrost. When the permafrost thawed about 12,000 years ago, the ice cores melted and the mounds slumped into hollows, leaving the low rims of displaced till that surround many of the depressions today. The chains follow the direction of ice flow recorded by striations and elongated hills in the till, not any feature of the bedrock. Under the present climate no new depressions should form, and the limestone beneath the till should be intact. Silt from the floors of two depressions has been radiocarbon dated to 11,500 and 10,800 years, consistent with hollows that formed as the permafrost disappeared.",
+    "format": "conflicting_viewpoints",
+    "prompt": "Scientist 1 predicts that depressions should be most numerous where the till is thinnest. Which of the following studies would most directly test this prediction?",
+    "choices": [
+      "Radiocarbon dating silt from the floors of additional depressions.",
+      "Measuring the orientation of glacial striations in the till at several sites across the plateau.",
+      "Mapping till thickness across the plateau and comparing it with depression density.",
+      "Recording the depth of each depression relative to its rim."
+    ],
+    "correct_answer": "Mapping till thickness across the plateau and comparing it with depression density.",
+    "explanation": "The prediction relates depression density to till thickness, so both quantities must be measured across the plateau and compared. Silt dates and striation directions are Scientist 2's lines of evidence, and depression depth is not part of the prediction.",
+    "domain": "Scientific Investigation",
+    "subskill": "identify the test of a stated prediction",
+    "difficulty": "medium"
+  },
+  {
+    "id": "SCI-CV-03-5",
+    "passage_id": "sci-cv-03",
+    "passage_title": "Depressions on a Limestone Plateau",
+    "passage": "Several hundred circular depressions, 20 to 80 m across and 2 to 6 m deep, dot the surface of a plateau in a cold temperate region. Surveys have established that the bedrock is limestone lying beneath 2 to 4 m of glacial till deposited about 15,000 years ago; that the depressions form chains aligned northeast-southwest; that each has a flat floor of fine silt; and that permafrost was present in the region until about 12,000 years ago but is absent today. Two scientists explain how the depressions formed.\n\nScientist 1\n\nThe depressions are sinkholes. Groundwater moving along fractures in the limestone dissolves the rock and opens cavities; when a cavity grows large enough, the till above it collapses into it. The chains follow the fracture sets, which strike northeast-southwest where the limestone is exposed nearby. Because dissolution continues today, new depressions should keep appearing, and each depression should be underlain by broken rock. A borehole drilled at the center of one depression passed through 3 m of silt and then 4 m of limestone rubble before reaching solid rock, and aerial photographs show two depressions that were absent 40 years ago.\n\nScientist 2\n\nThe depressions are the collapsed remains of ice-cored mounds that grew in the till when the region had permafrost. When the permafrost thawed about 12,000 years ago, the ice cores melted and the mounds slumped into hollows, leaving the low rims of displaced till that surround many of the depressions today. The chains follow the direction of ice flow recorded by striations and elongated hills in the till, not any feature of the bedrock. Under the present climate no new depressions should form, and the limestone beneath the till should be intact. Silt from the floors of two depressions has been radiocarbon dated to 11,500 and 10,800 years, consistent with hollows that formed as the permafrost disappeared.",
+    "format": "conflicting_viewpoints",
+    "prompt": "According to Scientist 1, the borehole drilled at the center of a depression passed through which of the following before reaching solid rock?",
+    "choices": [
+      "3 m of silt and then 4 m of limestone rubble",
+      "2 to 4 m of glacial till only",
+      "4 m of silt and then 3 m of limestone rubble",
+      "3 m of silt resting directly on solid limestone"
+    ],
+    "correct_answer": "3 m of silt and then 4 m of limestone rubble",
+    "explanation": "Scientist 1 reports that the borehole \"passed through 3 m of silt and then 4 m of limestone rubble before reaching solid rock.\" Silt resting directly on solid limestone is what Scientist 2 would predict.",
+    "domain": "Interpretation of Data",
+    "subskill": "locate a stated observation",
+    "difficulty": "easy"
+  },
+  {
+    "id": "SCI-CV-03-6",
+    "passage_id": "sci-cv-03",
+    "passage_title": "Depressions on a Limestone Plateau",
+    "passage": "Several hundred circular depressions, 20 to 80 m across and 2 to 6 m deep, dot the surface of a plateau in a cold temperate region. Surveys have established that the bedrock is limestone lying beneath 2 to 4 m of glacial till deposited about 15,000 years ago; that the depressions form chains aligned northeast-southwest; that each has a flat floor of fine silt; and that permafrost was present in the region until about 12,000 years ago but is absent today. Two scientists explain how the depressions formed.\n\nScientist 1\n\nThe depressions are sinkholes. Groundwater moving along fractures in the limestone dissolves the rock and opens cavities; when a cavity grows large enough, the till above it collapses into it. The chains follow the fracture sets, which strike northeast-southwest where the limestone is exposed nearby. Because dissolution continues today, new depressions should keep appearing, and each depression should be underlain by broken rock. A borehole drilled at the center of one depression passed through 3 m of silt and then 4 m of limestone rubble before reaching solid rock, and aerial photographs show two depressions that were absent 40 years ago.\n\nScientist 2\n\nThe depressions are the collapsed remains of ice-cored mounds that grew in the till when the region had permafrost. When the permafrost thawed about 12,000 years ago, the ice cores melted and the mounds slumped into hollows, leaving the low rims of displaced till that surround many of the depressions today. The chains follow the direction of ice flow recorded by striations and elongated hills in the till, not any feature of the bedrock. Under the present climate no new depressions should form, and the limestone beneath the till should be intact. Silt from the floors of two depressions has been radiocarbon dated to 11,500 and 10,800 years, consistent with hollows that formed as the permafrost disappeared.",
+    "format": "conflicting_viewpoints",
+    "prompt": "Scientist 2's use of the radiocarbon dates as support for the viewpoint depends on the assumption that:",
+    "choices": [
+      "groundwater moving along fractures cannot dissolve limestone that lies beneath glacial till.",
+      "the till contains no fragments of limestone.",
+      "ice-cored mounds grow only above fractures in bedrock.",
+      "silt began accumulating on a depression's floor soon after the depression formed."
+    ],
+    "correct_answer": "silt began accumulating on a depression's floor soon after the depression formed.",
+    "explanation": "The dates of 11,500 and 10,800 years are offered as \"consistent with hollows that formed as the permafrost disappeared,\" which follows only if the silt records the time of formation rather than some later episode. Scientist 2 makes no claim about dissolution under till, denies that the bedrock controls the mounds, and does not need the till to be free of limestone.",
+    "domain": "Evaluation of Models, Inferences, and Experimental Results",
+    "subskill": "assumption underlying an inference",
+    "difficulty": "hard"
+  },
+  {
+    "id": "SCI-CV-04-1",
+    "passage_id": "sci-cv-04",
+    "passage_title": "Cracking Glass on a Building Facade",
+    "passage": "Three years after an office building opened, its tempered glass facade panels began cracking without being struck; within two years, 14 of 900 panels broke. All 14 were on the sun-facing south and west faces; an aluminum fin shades part of each panel for hours daily; 11 of the 14 failures occurred between 8 a.m. and noon; and all panels came from one production batch. Because tempered glass shatters completely, fracture origins were inferred from fragments left in the frame. Two students propose causes.\n\nStudent 1\n\nThe panels contain nickel sulfide inclusions, tiny stones formed in molten glass. Tempering freezes each stone in a high-temperature form; over several years it converts to a low-temperature form about 4% larger, and a stone in the panel's tensile core that expands this much cracks the glass. Warmth speeds the conversion, which is why the sunlit faces failed first. A stone that has nearly finished converting can be pushed over the threshold by any small added stress, including morning warming, so the hour of a break says little about its cause. Fragments from three failed panels showed a butterfly-shaped fracture origin near the panel's center around a dark particle, and 2 of 50 unbroken panels from the batch shattered when heated uniformly in an oven.\n\nStudent 2\n\nThe failures are thermal. Morning sun heats the exposed part of a panel while the fin-shaded strip and frame-covered edge stay cool; the hot center expands and pulls the cool edge into tension. Tempered glass resists this unless an edge was chipped during installation; the chip concentrates stress. Fracture origins should therefore lie at the edge nearest the fin's shadow, failures should peak in the morning, when the difference is greatest, and removing the fins should end the failures. Only sunlit faces experience such differences, which is why the north and east faces have no failures. Thermocouples on an intact south-facing panel recorded a 30 °C difference between its sunlit center and shaded edge at 10 a.m.",
+    "format": "conflicting_viewpoints",
+    "prompt": "According to Student 2, the temperature difference recorded between the sunlit center and the shaded edge of an intact panel at 10 a.m. was:",
+    "choices": [
+      "4 °C.",
+      "11 °C.",
+      "30 °C.",
+      "14 °C."
+    ],
+    "correct_answer": "30 °C.",
+    "explanation": "Student 2 reports that thermocouples \"recorded a 30 °C difference between its sunlit center and shaded edge at 10 a.m.\" The numbers 4, 11, and 14 are the inclusion's percent expansion, the morning failures, and the total failures.",
+    "domain": "Interpretation of Data",
+    "subskill": "locate a stated value",
+    "difficulty": "easy"
+  },
+  {
+    "id": "SCI-CV-04-2",
+    "passage_id": "sci-cv-04",
+    "passage_title": "Cracking Glass on a Building Facade",
+    "passage": "Three years after an office building opened, its tempered glass facade panels began cracking without being struck; within two years, 14 of 900 panels broke. All 14 were on the sun-facing south and west faces; an aluminum fin shades part of each panel for hours daily; 11 of the 14 failures occurred between 8 a.m. and noon; and all panels came from one production batch. Because tempered glass shatters completely, fracture origins were inferred from fragments left in the frame. Two students propose causes.\n\nStudent 1\n\nThe panels contain nickel sulfide inclusions, tiny stones formed in molten glass. Tempering freezes each stone in a high-temperature form; over several years it converts to a low-temperature form about 4% larger, and a stone in the panel's tensile core that expands this much cracks the glass. Warmth speeds the conversion, which is why the sunlit faces failed first. A stone that has nearly finished converting can be pushed over the threshold by any small added stress, including morning warming, so the hour of a break says little about its cause. Fragments from three failed panels showed a butterfly-shaped fracture origin near the panel's center around a dark particle, and 2 of 50 unbroken panels from the batch shattered when heated uniformly in an oven.\n\nStudent 2\n\nThe failures are thermal. Morning sun heats the exposed part of a panel while the fin-shaded strip and frame-covered edge stay cool; the hot center expands and pulls the cool edge into tension. Tempered glass resists this unless an edge was chipped during installation; the chip concentrates stress. Fracture origins should therefore lie at the edge nearest the fin's shadow, failures should peak in the morning, when the difference is greatest, and removing the fins should end the failures. Only sunlit faces experience such differences, which is why the north and east faces have no failures. Thermocouples on an intact south-facing panel recorded a 30 °C difference between its sunlit center and shaded edge at 10 a.m.",
+    "format": "conflicting_viewpoints",
+    "prompt": "Both students use which of the following observations as support for their own explanation?",
+    "choices": [
+      "Fragments showed a butterfly-shaped fracture origin with a dark particle inside it.",
+      "All 14 failures occurred on the south and west faces.",
+      "Eleven of the 14 failures occurred between 8 a.m. and noon.",
+      "Two of 50 unbroken panels shattered when heated uniformly in an oven."
+    ],
+    "correct_answer": "All 14 failures occurred on the south and west faces.",
+    "explanation": "Student 1 says warmth speeds the conversion, \"which is why the sunlit faces failed first,\" and Student 2 says only the sunlit faces experience the temperature difference, \"which is why the north and east faces have no failures.\" The butterfly origin and the oven test are Student 1's evidence; the morning timing is Student 2's, and Student 1 says the hour \"says little about its cause.\"",
+    "domain": "Evaluation of Models, Inferences, and Experimental Results",
+    "subskill": "shared evidence",
+    "difficulty": "medium"
+  },
+  {
+    "id": "SCI-CV-04-3",
+    "passage_id": "sci-cv-04",
+    "passage_title": "Cracking Glass on a Building Facade",
+    "passage": "Three years after an office building opened, its tempered glass facade panels began cracking without being struck; within two years, 14 of 900 panels broke. All 14 were on the sun-facing south and west faces; an aluminum fin shades part of each panel for hours daily; 11 of the 14 failures occurred between 8 a.m. and noon; and all panels came from one production batch. Because tempered glass shatters completely, fracture origins were inferred from fragments left in the frame. Two students propose causes.\n\nStudent 1\n\nThe panels contain nickel sulfide inclusions, tiny stones formed in molten glass. Tempering freezes each stone in a high-temperature form; over several years it converts to a low-temperature form about 4% larger, and a stone in the panel's tensile core that expands this much cracks the glass. Warmth speeds the conversion, which is why the sunlit faces failed first. A stone that has nearly finished converting can be pushed over the threshold by any small added stress, including morning warming, so the hour of a break says little about its cause. Fragments from three failed panels showed a butterfly-shaped fracture origin near the panel's center around a dark particle, and 2 of 50 unbroken panels from the batch shattered when heated uniformly in an oven.\n\nStudent 2\n\nThe failures are thermal. Morning sun heats the exposed part of a panel while the fin-shaded strip and frame-covered edge stay cool; the hot center expands and pulls the cool edge into tension. Tempered glass resists this unless an edge was chipped during installation; the chip concentrates stress. Fracture origins should therefore lie at the edge nearest the fin's shadow, failures should peak in the morning, when the difference is greatest, and removing the fins should end the failures. Only sunlit faces experience such differences, which is why the north and east faces have no failures. Thermocouples on an intact south-facing panel recorded a 30 °C difference between its sunlit center and shaded edge at 10 a.m.",
+    "format": "conflicting_viewpoints",
+    "prompt": "Student 1 would most likely attribute the concentration of failures on the sunlit faces to:",
+    "choices": [
+      "a larger temperature difference between a panel's center and its edge.",
+      "stress concentrated at edges chipped during installation.",
+      "the slow buildup of stress in the tensile core regardless of temperature.",
+      "faster conversion of the inclusions at higher temperatures."
+    ],
+    "correct_answer": "faster conversion of the inclusions at higher temperatures.",
+    "explanation": "Student 1 states that \"warmth speeds the conversion, which is why the sunlit faces failed first.\" The center-to-edge temperature difference and chipped edges are Student 2's mechanism, and a buildup \"regardless of temperature\" would not single out the sunlit faces.",
+    "domain": "Evaluation of Models, Inferences, and Experimental Results",
+    "subskill": "apply a mechanism to an observation",
+    "difficulty": "medium"
+  },
+  {
+    "id": "SCI-CV-04-4",
+    "passage_id": "sci-cv-04",
+    "passage_title": "Cracking Glass on a Building Facade",
+    "passage": "Three years after an office building opened, its tempered glass facade panels began cracking without being struck; within two years, 14 of 900 panels broke. All 14 were on the sun-facing south and west faces; an aluminum fin shades part of each panel for hours daily; 11 of the 14 failures occurred between 8 a.m. and noon; and all panels came from one production batch. Because tempered glass shatters completely, fracture origins were inferred from fragments left in the frame. Two students propose causes.\n\nStudent 1\n\nThe panels contain nickel sulfide inclusions, tiny stones formed in molten glass. Tempering freezes each stone in a high-temperature form; over several years it converts to a low-temperature form about 4% larger, and a stone in the panel's tensile core that expands this much cracks the glass. Warmth speeds the conversion, which is why the sunlit faces failed first. A stone that has nearly finished converting can be pushed over the threshold by any small added stress, including morning warming, so the hour of a break says little about its cause. Fragments from three failed panels showed a butterfly-shaped fracture origin near the panel's center around a dark particle, and 2 of 50 unbroken panels from the batch shattered when heated uniformly in an oven.\n\nStudent 2\n\nThe failures are thermal. Morning sun heats the exposed part of a panel while the fin-shaded strip and frame-covered edge stay cool; the hot center expands and pulls the cool edge into tension. Tempered glass resists this unless an edge was chipped during installation; the chip concentrates stress. Fracture origins should therefore lie at the edge nearest the fin's shadow, failures should peak in the morning, when the difference is greatest, and removing the fins should end the failures. Only sunlit faces experience such differences, which is why the north and east faces have no failures. Thermocouples on an intact south-facing panel recorded a 30 °C difference between its sunlit center and shaded edge at 10 a.m.",
+    "format": "conflicting_viewpoints",
+    "prompt": "Which of the following findings would most strongly support Student 2's explanation over Student 1's?",
+    "choices": [
+      "Fragments left in the frames show fracture origins at the edge nearest the fin's shadow.",
+      "Panels heated uniformly in an oven fail at a rate of about 2 in 50.",
+      "A dark particle is found at the fracture origin of a newly failed panel.",
+      "Failures are recorded at all hours of the day and night."
+    ],
+    "correct_answer": "Fragments left in the frames show fracture origins at the edge nearest the fin's shadow.",
+    "explanation": "Student 2 predicts that \"fracture origins should therefore lie at the edge nearest the fin's shadow,\" whereas Student 1 places the origin near the panel's center. Oven failures and a dark particle at the origin support Student 1, and failures at all hours would count against Student 2.",
+    "domain": "Evaluation of Models, Inferences, and Experimental Results",
+    "subskill": "finding that supports one model over another",
+    "difficulty": "medium"
+  },
+  {
+    "id": "SCI-CV-04-5",
+    "passage_id": "sci-cv-04",
+    "passage_title": "Cracking Glass on a Building Facade",
+    "passage": "Three years after an office building opened, its tempered glass facade panels began cracking without being struck; within two years, 14 of 900 panels broke. All 14 were on the sun-facing south and west faces; an aluminum fin shades part of each panel for hours daily; 11 of the 14 failures occurred between 8 a.m. and noon; and all panels came from one production batch. Because tempered glass shatters completely, fracture origins were inferred from fragments left in the frame. Two students propose causes.\n\nStudent 1\n\nThe panels contain nickel sulfide inclusions, tiny stones formed in molten glass. Tempering freezes each stone in a high-temperature form; over several years it converts to a low-temperature form about 4% larger, and a stone in the panel's tensile core that expands this much cracks the glass. Warmth speeds the conversion, which is why the sunlit faces failed first. A stone that has nearly finished converting can be pushed over the threshold by any small added stress, including morning warming, so the hour of a break says little about its cause. Fragments from three failed panels showed a butterfly-shaped fracture origin near the panel's center around a dark particle, and 2 of 50 unbroken panels from the batch shattered when heated uniformly in an oven.\n\nStudent 2\n\nThe failures are thermal. Morning sun heats the exposed part of a panel while the fin-shaded strip and frame-covered edge stay cool; the hot center expands and pulls the cool edge into tension. Tempered glass resists this unless an edge was chipped during installation; the chip concentrates stress. Fracture origins should therefore lie at the edge nearest the fin's shadow, failures should peak in the morning, when the difference is greatest, and removing the fins should end the failures. Only sunlit faces experience such differences, which is why the north and east faces have no failures. Thermocouples on an intact south-facing panel recorded a 30 °C difference between its sunlit center and shaded edge at 10 a.m.",
+    "format": "conflicting_viewpoints",
+    "prompt": "Which of the following tests would most directly distinguish between the two students' explanations?",
+    "choices": [
+      "Compare the number of failures on the south face with the number on the west face.",
+      "Measure the center and edge temperatures of intact panels at noon.",
+      "Remove the fins from half of the remaining south-facing panels and compare failure rates over two years.",
+      "Replace the 14 broken panels with new panels from the same production batch and record whether they fail."
+    ],
+    "correct_answer": "Remove the fins from half of the remaining south-facing panels and compare failure rates over two years.",
+    "explanation": "Student 2 predicts that \"removing the fins should end the failures,\" while Student 1's inclusions convert whether or not a fin is present, so fin-free and fin-shaded panels from the same batch should diverge only under Student 2's explanation. Both students expect failures on both sunlit faces, a temperature reading alone breaks no panel, and replacement panels from the same batch would be expected to fail under either explanation.",
+    "domain": "Scientific Investigation",
+    "subskill": "design a discriminating test",
+    "difficulty": "hard"
+  },
+  {
+    "id": "SCI-CV-04-6",
+    "passage_id": "sci-cv-04",
+    "passage_title": "Cracking Glass on a Building Facade",
+    "passage": "Three years after an office building opened, its tempered glass facade panels began cracking without being struck; within two years, 14 of 900 panels broke. All 14 were on the sun-facing south and west faces; an aluminum fin shades part of each panel for hours daily; 11 of the 14 failures occurred between 8 a.m. and noon; and all panels came from one production batch. Because tempered glass shatters completely, fracture origins were inferred from fragments left in the frame. Two students propose causes.\n\nStudent 1\n\nThe panels contain nickel sulfide inclusions, tiny stones formed in molten glass. Tempering freezes each stone in a high-temperature form; over several years it converts to a low-temperature form about 4% larger, and a stone in the panel's tensile core that expands this much cracks the glass. Warmth speeds the conversion, which is why the sunlit faces failed first. A stone that has nearly finished converting can be pushed over the threshold by any small added stress, including morning warming, so the hour of a break says little about its cause. Fragments from three failed panels showed a butterfly-shaped fracture origin near the panel's center around a dark particle, and 2 of 50 unbroken panels from the batch shattered when heated uniformly in an oven.\n\nStudent 2\n\nThe failures are thermal. Morning sun heats the exposed part of a panel while the fin-shaded strip and frame-covered edge stay cool; the hot center expands and pulls the cool edge into tension. Tempered glass resists this unless an edge was chipped during installation; the chip concentrates stress. Fracture origins should therefore lie at the edge nearest the fin's shadow, failures should peak in the morning, when the difference is greatest, and removing the fins should end the failures. Only sunlit faces experience such differences, which is why the north and east faces have no failures. Thermocouples on an intact south-facing panel recorded a 30 °C difference between its sunlit center and shaded edge at 10 a.m.",
+    "format": "conflicting_viewpoints",
+    "prompt": "Student 1 would most likely explain the 11 failures that occurred between 8 a.m. and noon by claiming that:",
+    "choices": [
+      "the difference between a panel's center and edge temperatures is greatest in the morning hours.",
+      "morning warming tipped panels whose inclusions had nearly finished converting.",
+      "edge chips open wider when the glass is cool.",
+      "the inclusions convert to their larger form only during daylight hours."
+    ],
+    "correct_answer": "morning warming tipped panels whose inclusions had nearly finished converting.",
+    "explanation": "Student 1 says a nearly converted stone \"can be pushed over the threshold by any small added stress, including morning warming.\" A morning peak in the temperature difference and chipped edges are Student 2's account, and Student 1 describes the conversion as taking place over several years, not only in daylight.",
+    "domain": "Evaluation of Models, Inferences, and Experimental Results",
+    "subskill": "how a scientist would explain a counter-observation",
+    "difficulty": "hard"
+  }
+]

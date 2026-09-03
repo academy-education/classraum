@@ -240,7 +240,11 @@ console.log(`inserted ${inserted}, dup-skipped ${dup}`)
 /* CHECK the write, do not trust it. */
 const { data: after } = await db.from('study_item_bank').select('passage_group_id,task').eq('cohort', cohort)
 const g2 = {}; for (const r of after ?? []) g2[r.passage_group_id] = (g2[r.passage_group_id] ?? 0) + 1
-const short = Object.entries(g2).filter(([pid, n]) => n !== (section === 'science' ? SCIENCE_FORMATS[groups[pid][0].format] : PER_PASSAGE[section]))
+// DB passage_group_id is "<cohort>:<passage_id>"; strip the cohort to find the
+// authored group (the first science insert wrote all 80 rows and then crashed
+// HERE on groups[undefined] - the data was right, the check was not).
+const authored = pid => groups[String(pid).replace(`${cohort}:`, '')] ?? []
+const short = Object.entries(g2).filter(([pid, n]) => n !== (section === 'science' ? SCIENCE_FORMATS[authored(pid)[0]?.format] : PER_PASSAGE[section]))
 console.log(`verified in DB: ${after?.length ?? 0} rows in ${Object.keys(g2).length} passage groups`)
 if (short.length) { console.error(`FAIL: ${short.length} group(s) not at ${PER_PASSAGE[section]}: ${short.map(([k, n]) => `${k}=${n}`).join(', ')}`); process.exit(1) }
 if (section === 'reading') {

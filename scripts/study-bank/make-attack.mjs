@@ -19,7 +19,7 @@ const shuffle = (a, r) => { a = [...a]; for (let i = a.length - 1; i > 0; i--) {
 const items = files.flatMap(f => JSON.parse(readFileSync(f, 'utf8')))
 if (SPLIT > 1) {
   const groups = {}
-  for (const it of items) (groups[it.passageGroupId ?? it.id] ??= []).push(it)
+  for (const it of items) (groups[it.passageGroupId ?? it.passage_id ?? it.id] ??= []).push(it)
   const parts = Array.from({ length: SPLIT }, () => [])
   const gr = rnd(tag + ':split')
   for (const g of Object.values(groups)) {
@@ -47,7 +47,7 @@ order.forEach((it, i) => {
   const choices = []; let k = 0
   for (let j = 0; j < 4; j++) choices.push(j === slot ? it.correct_answer : rest[k++])
   blind.push({ id, question: it.prompt.replace(/^\s*\[[^\]]*\]\s*/, ''), options: Object.fromEntries(choices.map((c, k) => [letters[k], c])) })
-  key[id] = { letter: letters[choices.indexOf(it.correct_answer)], localId: it.id, group: it.passageGroupId ?? null }
+  key[id] = { letter: letters[choices.indexOf(it.correct_answer)], localId: it.id, group: it.passageGroupId ?? it.passage_id ?? null }
 })
 writeFileSync(`scripts/study-bank/${tag}.blind.json`, JSON.stringify(blind, null, 2))
 writeFileSync(`scripts/study-bank/${tag}.key.json`, JSON.stringify(key, null, 2))
