@@ -152,11 +152,11 @@ export function DashboardCard({
           >
             {metrics.map((metric, i) => (
               <div key={i} className="min-w-0">
-                <p className="text-[10px] font-medium uppercase tracking-wider text-gray-400 mb-0.5 break-words">
+                <p className="text-[10px] font-medium uppercase tracking-wider text-gray-400 mb-0.5 break-keep">
                   {metric.label}
                 </p>
                 <p className={cn(
-                  'text-sm font-semibold text-gray-900 break-words',
+                  'text-sm font-semibold text-gray-900 break-keep',
                   // Opt-in truncate (rarely needed now that wrap is default)
                   metric.truncate && 'truncate'
                 )}>

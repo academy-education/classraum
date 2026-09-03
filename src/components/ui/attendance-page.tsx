@@ -1274,7 +1274,7 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
                     metrics={[
                       { label: t('attendance.date') as string, value: formatDate(r.session_date || '') },
                       { label: t('attendance.present') as string, value: `${totalPresent}/${total}` },
-                      { label: t('attendance.attendanceRate') as string, value: `${rate}%` }
+                      { label: t('attendance.rate') as string, value: `${rate}%` }
                     ]}
                     onClick={() => handleViewDetails(r)}
                   />
@@ -1313,7 +1313,7 @@ export function AttendancePage({ academyId, filterSessionId }: AttendancePagePro
                 metrics={[
                   { label: t('attendance.date') as string, value: formatDate(record.session_date || '') },
                   { label: t('attendance.present') as string, value: `${totalPresent}/${totalStudents}` },
-                  { label: t('attendance.attendanceRate') as string, value: `${attendanceRate}%` }
+                  { label: t('attendance.rate') as string, value: `${attendanceRate}%` }
                 ]}
                 meta={
                   <>

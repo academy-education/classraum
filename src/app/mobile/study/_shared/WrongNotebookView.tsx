@@ -682,7 +682,9 @@ function NotebookEntryCard({ entry, index, ko, onToggleReviewed }: {
                       ? 'bg-amber-50 text-amber-700 ring-1 ring-amber-200'
                       : 'bg-gray-50 text-gray-600 ring-1 ring-gray-200'
                 }`}>
-                  {entry.difficulty}
+                  {ko
+                    ? ({ hard: '어려움', medium: '보통', easy: '쉬움' }[entry.difficulty.toLowerCase()] ?? entry.difficulty)
+                    : entry.difficulty}
                 </span>
               )}
               {onToggleReviewed && (

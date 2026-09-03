@@ -2362,8 +2362,14 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
             </div>
             <p className="text-[11px] font-semibold uppercase tracking-[0.1em] text-gray-500">{t('payments.totalRevenue')}</p>
           </div>
-          <p className="text-xl sm:text-3xl font-semibold tracking-tight text-gray-900 tabular-nums truncate">
-            {formatCurrency(allTimeRevenue)}
+          {/* A nine-digit total ("₩433,745,000") does not fit a quarter-width
+              card at tablet widths and used to render as "₩433,745,0...".
+              Compact notation keeps the magnitude readable; the exact
+              figure is in the title attribute. */}
+          <p className="text-xl sm:text-3xl font-semibold tracking-tight text-gray-900 tabular-nums" title={formatCurrency(allTimeRevenue)}>
+            {allTimeRevenue >= 100_000_000
+              ? new Intl.NumberFormat(language === 'korean' ? 'ko-KR' : 'en-US', { style: 'currency', currency: 'KRW', notation: 'compact', maximumFractionDigits: 1 }).format(allTimeRevenue)
+              : formatCurrency(allTimeRevenue)}
           </p>
         </Card>
 

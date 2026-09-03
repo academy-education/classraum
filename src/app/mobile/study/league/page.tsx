@@ -647,7 +647,7 @@ function TierBanner({ tier, ko, myRank, myXp, resetSeconds, seasonHigh, promoteC
         {[
           { label: ko ? '내 순위' : 'My rank', node: <span className="tabular-nums">#{myRank ?? '—'}</span> },
           { label: 'XP', node: <span className="tabular-nums">{myXp}</span> },
-          { label: ko ? '마감' : 'Resets', node: <span className="inline-flex items-center gap-1 text-[15px]"><Clock className="w-3.5 h-3.5" />{formatCountdown(resetSeconds, ko)}</span> },
+          { label: ko ? '마감' : 'Resets', node: <span className="inline-flex items-center gap-1 text-[15px] whitespace-nowrap break-keep"><Clock className="w-3.5 h-3.5" />{formatCountdown(resetSeconds, ko)}</span> },
         ].map((s, i) => (
           <div key={i} className="rounded-2xl bg-white/12 ring-1 ring-white/15 px-3 py-2.5">
             <div className="text-[9.5px] uppercase tracking-[0.12em] opacity-70">{s.label}</div>

@@ -2563,7 +2563,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
   // Loading skeleton — matches DataTable chrome used by sessions / payments / etc.
   const TableSkeleton = () => (
     <div className="overflow-x-auto min-h-[640px]">
-      <table className="w-full min-w-[900px] text-sm">
+      <table className="w-full min-w-[860px] text-sm">
         <thead className="bg-gray-50/60">
           <tr>
             <th className="w-10 px-4 py-3"><div className="h-3 w-3 bg-gray-200 rounded" /></th>
@@ -2943,7 +2943,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
       ) : (
       <div className="bg-white rounded-2xl ring-1 ring-gray-100/80 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_12px_-4px_rgba(0,0,0,0.06)] overflow-hidden">
         <div className="overflow-x-auto min-h-[640px] flex flex-col">
-          <table className="w-full min-w-[900px]">
+          <table className="w-full min-w-[860px]">
             <thead className="bg-gray-50/60">
               <tr>
                 <th className="text-left p-3 sm:p-4 text-[10px] font-semibold uppercase tracking-[0.1em] text-gray-500 whitespace-nowrap w-10">

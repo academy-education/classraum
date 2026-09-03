@@ -594,11 +594,11 @@ function MobileInvoicesPageContent() {
       <MobilePageErrorBoundary>
         <div className="p-4">
           {/* Header - same as loaded state */}
-          <div className="flex items-center justify-between mb-6">
-            <div className="flex items-center gap-3">
+          <div className="flex items-center justify-between gap-3 mb-6">
+            <div className="flex items-center gap-3 min-w-0">
               <MobileBackButton />
-              <div>
-                <h1 className="text-2xl font-semibold tracking-tight text-gray-900 flex items-center gap-2">
+              <div className="min-w-0">
+                <h1 className="text-2xl font-semibold tracking-tight text-gray-900 flex items-center gap-2 min-w-0">
                   <Receipt className="w-6 h-6" />
                   {t('mobile.invoices.allInvoices')}
                 </h1>
@@ -660,11 +660,11 @@ function MobileInvoicesPageContent() {
       <MobilePageErrorBoundary>
         <div className="p-4">
           {/* Header - same as loaded state */}
-          <div className="flex items-center justify-between mb-6">
-            <div className="flex items-center gap-3">
+          <div className="flex items-center justify-between gap-3 mb-6">
+            <div className="flex items-center gap-3 min-w-0">
               <MobileBackButton />
-              <div>
-                <h1 className="text-2xl font-semibold tracking-tight text-gray-900 flex items-center gap-2">
+              <div className="min-w-0">
+                <h1 className="text-2xl font-semibold tracking-tight text-gray-900 flex items-center gap-2 min-w-0">
                   <Receipt className="w-6 h-6" />
                   {t('mobile.invoices.allInvoices')}
                 </h1>
@@ -752,11 +752,11 @@ function MobileInvoicesPageContent() {
 
       <div style={{ transform: MOBILE_FEATURES.ENABLE_PULL_TO_REFRESH ? `translateY(${pullDistance}px)` : 'none' }} className="transition-transform">
       {/* Header */}
-      <div className="flex items-center justify-between mb-6">
+      <div className="flex items-center justify-between gap-3 mb-6">
         <div className="flex items-center gap-3">
           <MobileBackButton />
           <div>
-            <h1 className="text-2xl font-semibold tracking-tight text-gray-900 flex items-center gap-2">
+            <h1 className="text-2xl font-semibold tracking-tight text-gray-900 flex items-center gap-2 min-w-0">
               <Receipt className="w-6 h-6" />
               {t('mobile.invoices.allInvoices')}
             </h1>

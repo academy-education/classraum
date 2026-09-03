@@ -275,7 +275,10 @@ function TrendChart({
         {/* Rounded: centring the window on the data yields fractional
             bounds, and "45.5–65.5%" reads as false precision on a chart
             whose points are whole percents. */}
-        <span className="text-gray-300">{Math.round(yMin)}–{Math.round(yMax)}%</span>
+        {/* Flat data (every point the same percent) still gets a padded
+            window, and "2–89%" under two 89% points reads as a bug, not a
+            band. Label the band only when there is a band to label. */}
+        <span className="text-gray-300">{Math.round(yMax) - Math.round(yMin) > 0 && Math.min(...percents) !== Math.max(...percents) ? `${Math.round(yMin)}–${Math.round(yMax)}%` : ''}</span>
         <span>{formatDay(latest.at, ko)}</span>
       </div>
 
