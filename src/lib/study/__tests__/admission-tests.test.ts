@@ -51,7 +51,10 @@ describe('blueprint matches the published format', () => {
   it('ISEE sections match TEST_SPECS counts and timings', () => {
     const spec = TEST_SPECS.isee!.sections
     for (const b of ADMISSION_BLUEPRINT.isee) {
-      const s = spec.find(x => x.name_en === b.name)
+      // Cards say "Mathematics" and "Writing"; the official spec says
+      // "Mathematics Achievement" and "Essay".
+      const alias: Record<string, RegExp> = { mathach: /^Mathematics/, essay: /^Essay/ }
+      const s = spec.find(x => x.name_en === b.name) ?? (alias[b.key] ? spec.find(x => alias[b.key]!.test(x.name_en)) : undefined)
       expect(s).toBeDefined()
       expect(b.questions).toBe(s!.questionsPerSection)
       expect(b.minutes).toBe(s!.minutesPerSection)

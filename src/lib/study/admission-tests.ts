@@ -61,8 +61,10 @@ export const ADMISSION_BLUEPRINT: Record<AdmissionFamily, AdmissionSection[]> = 
     { key: 'quant',     name: 'Quantitative Reasoning',   bankSection: 'math',    questions: 37, minutes: 35, choiceCount: 4, scored: true },
     { key: 'verbal',    name: 'Verbal Reasoning',         bankSection: 'verbal',  questions: 40, minutes: 20, choiceCount: 4, scored: true },
     { key: 'reading',   name: 'Reading Comprehension',    bankSection: 'reading', questions: 36, minutes: 35, choiceCount: 4, scored: true },
-    { key: 'mathach',   name: 'Mathematics Achievement',  bankSection: 'math',    questions: 47, minutes: 40, choiceCount: 4, scored: true },
-    { key: 'essay',     name: 'Essay',                    bankSection: 'writing', questions: 1,  minutes: 30, choiceCount: 0, scored: false },
+    // Titles are "Mathematics" and "Writing" (co-founder, 2026-09-03);
+    // TEST_SPECS keeps the official "Mathematics Achievement" / "Essay".
+    { key: 'mathach',   name: 'Mathematics',              bankSection: 'math',    questions: 47, minutes: 40, choiceCount: 4, scored: true },
+    { key: 'essay',     name: 'Writing',                  bankSection: 'writing', questions: 1,  minutes: 30, choiceCount: 0, scored: false },
   ],
 }
 
