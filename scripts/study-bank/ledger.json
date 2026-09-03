@@ -1839,6 +1839,49 @@
      "verdict": "Key longest in 8, shortest in 5 (within cap) but the hedged/absolute asymmetry is present on at least 5 items per the grader (16, 26, 28, 33, 27)."
     }
    }
+  },
+  {
+   "id": "act-english-v4-2026-09-04",
+   "createdAt": "2026-09-04",
+   "targetTest": "act",
+   "section": "english",
+   "task": "multiple_choice",
+   "family": "mc_hidden_source",
+   "spec": {
+    "n": 50,
+    "authors": 1,
+    "method": "bank-act-english skill brief"
+   },
+   "contentSha": "a661ee3cb6aea12f6071a4f04fcdb8823b3df41dc2629af04b8fcac5a982eaf5",
+   "status": "qc",
+   "cohort": "act-english-v4",
+   "note": "STAGED (BANK_VERIFIED=false). Sibling-free attack 90.0% (45/50, confident 34/34): Conventions 27/27 - inherent, the quoted sentence carries the whole problem, same as the shipped forms; Production of Writing 10/15 (67%) vs 76% on the shipped forms; KoL 8/8. Grader 50/50 on key after one punctuation fix to the P5-Q10 key; two soft second-defensibles (P2-Q06 kept/insulated, P2-Q07 cooled/was used to cool) judged standard ACT precision/concision logic and kept. Flip verified after a human sample.",
+   "stages": {
+    "shape": {
+     "passed": true,
+     "verdict": "structure OK; 5x10; No Change at choices[0]; key slots 11/12/12/15; no ABCD window."
+    },
+    "withsource": {
+     "passed": true,
+     "verdict": "Grader 50/50 (key unmarked, options shuffled in the render - the grader's \"No Change not first\" note is a render artefact); difficulty easy 23 / medium 25 / hard 2."
+    },
+    "nosource": {
+     "passed": false,
+     "n": 50,
+     "mean": 90,
+     "control": 25,
+     "margin": 65,
+     "verdict": "Ten passage-disjoint files, ten solvers: 45/50. Screen only for this family (B7)."
+    },
+    "elimination": {
+     "passed": false,
+     "verdict": "Not probed separately."
+    },
+    "tells": {
+     "passed": true,
+     "verdict": "Key longest 8 / shortest 7 of 50; PoW keys longest in 4 of 5 yes/no items (grader)."
+    }
+   }
   }
  ],
  "auditedCohorts": [
