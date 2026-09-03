@@ -80,8 +80,11 @@ function toTopic(row: {
 // Slugs that have been hidden behind a "Coming soon" lock on the
 // landing grid — must also block deep-link access here so users
 // can't bypass the lock with a direct URL or back-button.
+// 'test-act' left this list 2026-09-03 (B7: ACT Composite shipped). The
+// real gate is SHIPPED_TEST_SLUGS in shipped-tests.ts; this set only has
+// to agree with it for the families that are NOT shipped.
 const LOCKED_TOPIC_SLUGS = new Set([
-  'test-ksat', 'test-toeic', 'test-ielts', 'test-act', 'test-ap', 'test-gre',
+  'test-ksat', 'test-toeic', 'test-ielts', 'test-ap', 'test-gre',
 ])
 
 export default function TopicPage({ params }: { params: Promise<{ slug: string }> }) {
@@ -286,7 +289,13 @@ function TopicInner({ slug }: { slug: string }) {
       // rhetorical-analysis rubric / prompts. Keeping the row in the
       // DB so it's easy to re-enable later, just filtering it out of
       // the category picker.
-      const HIDDEN_SUBTOPIC_SLUGS = new Set(['sat-essay'])
+      //
+      // act-science / act-writing (2026-09-03): ACT shipped as the
+      // Composite (English, Math, Reading). Science is optional and has
+      // no bank yet - assembleActSection throws "no verified items" for
+      // it - and Writing is free-response and not built. Hide both until
+      // they have items; the topic rows stay so nothing has to be re-seeded.
+      const HIDDEN_SUBTOPIC_SLUGS = new Set(['sat-essay', 'act-science', 'act-writing'])
       const kids = (childRows ?? [])
         .flatMap(c => {
           const kid = toTopic(c)
