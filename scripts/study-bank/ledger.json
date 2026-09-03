@@ -1905,8 +1905,8 @@
      "verdict": "structure OK; DR 2, RS 3, CV 2; identical per-item graphics; key slots 10/10/10/10; key longest 6 / shortest 4."
     },
     "withsource": {
-     "passed": false,
-     "verdict": "Grader pending at time of entry; update when act-sc2-withsource.grader-a.json lands."
+     "passed": true,
+     "verdict": "Grader (graphics decoded numerically) agreed with the key on all 40 checked; 1 second-defensible (interpolation vs extrapolation at a missing 15 m point, ACT convention favours the key); 8 items answerable from design logic alone; difficulty easy 20 / medium 18 / hard 2. No key/data mismatches, no scientific errors."
     },
     "nosource": {
      "passed": false,

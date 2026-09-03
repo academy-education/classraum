@@ -1,0 +1,322 @@
+{
+  "1": {
+    "pick": "D",
+    "second_defensible": false,
+    "also": "",
+    "no_source_needed": false,
+    "difficulty": "easy",
+    "note": "Fig1 at 5 m: B 7.9 vs A 7.4 mg/L; at 10/20/30 m B is lower (6.2<7.0, 2.8<5.6, 1.1<4.7). Numbers check."
+  },
+  "2": {
+    "pick": "D",
+    "second_defensible": false,
+    "also": "",
+    "no_source_needed": false,
+    "difficulty": "medium",
+    "note": "0.5 g curve: 45% at 30 min, 54% at 45 min; 50% reached ~38 min -> 40 min. 30 min (45%) is the trap but 38 is clearly nearer 40."
+  },
+  "3": {
+    "pick": "C",
+    "second_defensible": false,
+    "also": "",
+    "no_source_needed": false,
+    "difficulty": "medium",
+    "note": "p=0.55, q=0.45, q^2=0.2025, 1-q^2=0.80. B (55%) is the allele-frequency trap."
+  },
+  "4": {
+    "pick": "C",
+    "second_defensible": false,
+    "also": "",
+    "no_source_needed": false,
+    "difficulty": "easy",
+    "note": "4 mm=6.0 s, 6 mm=1.2 s; 5 mm lies between. Interpolation."
+  },
+  "5": {
+    "pick": "D",
+    "second_defensible": false,
+    "also": "",
+    "no_source_needed": false,
+    "difficulty": "hard",
+    "note": "3 mm: 40% glycerol 70 s; 2 mm/3 mm water ratio 96/19=5.05; 70x5.05=354 -> 350 s. Table is Poiseuille-consistent (d^4 and viscosity ratios match). Additive error would give ~150-170 (B) but not defensible."
+  },
+  "6": {
+    "pick": "C",
+    "second_defensible": false,
+    "also": "",
+    "no_source_needed": false,
+    "difficulty": "easy",
+    "note": "Sci 1 haze scattering, Sci 2 dust scattering; Sci 3 cooler surface emission."
+  },
+  "7": {
+    "pick": "B",
+    "second_defensible": false,
+    "also": "",
+    "no_source_needed": false,
+    "difficulty": "easy",
+    "note": "Doppler shift below prior limit but nonzero, period 11.3 d -> orbiting body of small mass (Sci 1)."
+  },
+  "8": {
+    "pick": "B",
+    "second_defensible": false,
+    "also": "",
+    "no_source_needed": false,
+    "difficulty": "medium",
+    "note": "Exp 3 shows moisture drives mass loss (27/42/49 at 90 d); 0.05 mm bags were drier, so moisture confounds mesh effect."
+  },
+  "9": {
+    "pick": "C",
+    "second_defensible": false,
+    "also": "",
+    "no_source_needed": false,
+    "difficulty": "easy",
+    "note": "2000/80 = 25. Arithmetic on passage numbers."
+  },
+  "10": {
+    "pick": "B",
+    "second_defensible": false,
+    "also": "",
+    "no_source_needed": false,
+    "difficulty": "medium",
+    "note": "Sci 1 predicts nickel-iron metal droplets; Sci 2 nickel via sulfur-rich fluids in magma (dispersed). Gas-bubble test would also work but is not offered."
+  },
+  "11": {
+    "pick": "A",
+    "second_defensible": false,
+    "also": "",
+    "no_source_needed": false,
+    "difficulty": "easy",
+    "note": "1.0 g pH 7 at 30 min = 72% (svg y=71.8 -> 72.0)."
+  },
+  "12": {
+    "pick": "D",
+    "second_defensible": false,
+    "also": "",
+    "no_source_needed": true,
+    "difficulty": "easy",
+    "note": "Design-logic item; A/B/C are absurd, D follows from the stem+passage sentence on post-spray decline."
+  },
+  "13": {
+    "pick": "B",
+    "second_defensible": false,
+    "also": "",
+    "no_source_needed": true,
+    "difficulty": "easy",
+    "note": "Standard control-for-treatment-artifact logic; answerable without the table."
+  },
+  "14": {
+    "pick": "B",
+    "second_defensible": false,
+    "also": "",
+    "no_source_needed": false,
+    "difficulty": "easy",
+    "note": "Lignin 12/24/30% vs 90-d loss 58/41/24 -> inverse; maple lowest lignin, most loss. Only B is internally true."
+  },
+  "15": {
+    "pick": "C",
+    "second_defensible": false,
+    "also": "",
+    "no_source_needed": false,
+    "difficulty": "easy",
+    "note": "Station A 20 m = 5.6 mg/L (svg y=100.4)."
+  },
+  "16": {
+    "pick": "B",
+    "second_defensible": false,
+    "also": "",
+    "no_source_needed": true,
+    "difficulty": "medium",
+    "note": "Control valley without spraying isolates spraying from west-east gradient. D (June data) is a plausible distractor but does not address the geographic confound."
+  },
+  "17": {
+    "pick": "A",
+    "second_defensible": false,
+    "also": "",
+    "no_source_needed": false,
+    "difficulty": "easy",
+    "note": "Direct restatement of Sci 2's sinkhole claim."
+  },
+  "18": {
+    "pick": "B",
+    "second_defensible": false,
+    "also": "",
+    "no_source_needed": false,
+    "difficulty": "medium",
+    "note": "Station A 15 m: DO 6.5 mg/L, temp 15.0 C -> saturation 8.1 -> 6.5/8.1 = 80.2%. Numbers check on both figures."
+  },
+  "19": {
+    "pick": "A",
+    "second_defensible": false,
+    "also": "",
+    "no_source_needed": false,
+    "difficulty": "easy",
+    "note": "Direct restatement of Sci 2's prediction."
+  },
+  "20": {
+    "pick": "C",
+    "second_defensible": false,
+    "also": "",
+    "no_source_needed": false,
+    "difficulty": "hard",
+    "note": "At pH 11 absorbance is 15% low for a given concentration; pH 7 calibration therefore under-reads remaining dye, over-states removal; actual removal is LOWER. B has the right mechanism direction inverted; A's dilution is 'a few drops'."
+  },
+  "21": {
+    "pick": "D",
+    "second_defensible": false,
+    "also": "",
+    "no_source_needed": false,
+    "difficulty": "easy",
+    "note": "390, 205, 118, 72 s: decreased only."
+  },
+  "22": {
+    "pick": "A",
+    "second_defensible": false,
+    "also": "",
+    "no_source_needed": false,
+    "difficulty": "easy",
+    "note": "20 km bar = 0.15."
+  },
+  "23": {
+    "pick": "C",
+    "second_defensible": false,
+    "also": "",
+    "no_source_needed": true,
+    "difficulty": "medium",
+    "note": "Follows from stem's own premise (cloud spreading along orbit -> longer transit). Passage adds little."
+  },
+  "24": {
+    "pick": "D",
+    "second_defensible": false,
+    "also": "",
+    "no_source_needed": false,
+    "difficulty": "medium",
+    "note": "2.0 g pH 7 at 20 min = 84%; pH 3 raises 1.0 g from 60% to 72%; so 2.0 g at pH 3 > 84%."
+  },
+  "25": {
+    "pick": "A",
+    "second_defensible": false,
+    "also": "",
+    "no_source_needed": false,
+    "difficulty": "medium",
+    "note": "At 25 m and 30 m both stations are 10 C and 9 C, yet DO B 1.6/1.1 vs A 5.0/4.7 (3.4-3.6 lower). C is false: at 20 m B (11 C) is cooler than A (12 C). Numbers check."
+  },
+  "26": {
+    "pick": "D",
+    "second_defensible": false,
+    "also": "",
+    "no_source_needed": false,
+    "difficulty": "medium",
+    "note": "Both describe molten droplets cooling into spheres; A/B/C are one-sided."
+  },
+  "27": {
+    "pick": "A",
+    "second_defensible": false,
+    "also": "",
+    "no_source_needed": true,
+    "difficulty": "easy",
+    "note": "General lab knowledge: filter removes suspended charcoal before spectrophotometry."
+  },
+  "28": {
+    "pick": "A",
+    "second_defensible": false,
+    "also": "",
+    "no_source_needed": false,
+    "difficulty": "easy",
+    "note": "0.80, 0.70, 0.55, 0.30, 0.15, 0.10: decreased only."
+  },
+  "29": {
+    "pick": "D",
+    "second_defensible": false,
+    "also": "",
+    "no_source_needed": false,
+    "difficulty": "easy",
+    "note": "1 mm mesh, 60 d = 22%."
+  },
+  "30": {
+    "pick": "A",
+    "second_defensible": false,
+    "also": "",
+    "no_source_needed": false,
+    "difficulty": "medium",
+    "note": "A thick layer in a lake 30 km away cannot be explained by marine current concentration. D is weak but not a real second answer."
+  },
+  "31": {
+    "pick": "C",
+    "second_defensible": false,
+    "also": "",
+    "no_source_needed": false,
+    "difficulty": "easy",
+    "note": "3 mm / 60% / 20 C = 205 s appears in both Exp 2 and Exp 3."
+  },
+  "32": {
+    "pick": "C",
+    "second_defensible": false,
+    "also": "",
+    "no_source_needed": false,
+    "difficulty": "medium",
+    "note": "6 h / (11.3 x 24 = 271.2 h) = 2.2%."
+  },
+  "33": {
+    "pick": "B",
+    "second_defensible": false,
+    "also": "",
+    "no_source_needed": false,
+    "difficulty": "medium",
+    "note": "5 mm oak: 15, 29, 41 -> intervals 15, 14, 12 points. 0-30 d largest; margins are small (1 pt) so needs care."
+  },
+  "34": {
+    "pick": "D",
+    "second_defensible": false,
+    "also": "",
+    "no_source_needed": true,
+    "difficulty": "medium",
+    "note": "A surface spot on a rotating star is on the visible hemisphere ~half the rotation (~5.6 d), not 6 h. A overstates ('entire rotation'). Deducible from stem+basic geometry."
+  },
+  "35": {
+    "pick": "C",
+    "second_defensible": true,
+    "also": "B",
+    "no_source_needed": false,
+    "difficulty": "medium",
+    "note": "Station B: 6.2 at 10 m, 2.8 at 20 m; linear midpoint 4.5. B (3.5) is arguable if a student extrapolates the accelerating decline 5->10 m (7.9->6.2); ACT convention is linear interpolation, so C stands but the gap to B is a judgment call."
+  },
+  "36": {
+    "pick": "D",
+    "second_defensible": false,
+    "also": "",
+    "no_source_needed": false,
+    "difficulty": "medium",
+    "note": "Maple at 25% moisture = 58%; oak rises 42->49 from 25% to 35%; so maple at 35% > 58%."
+  },
+  "37": {
+    "pick": "A",
+    "second_defensible": false,
+    "also": "",
+    "no_source_needed": false,
+    "difficulty": "medium",
+    "note": "Room-temp tube cools the 40 C liquid, raising viscosity; heated tube removes that -> shorter than 72 s. D inverts viscosity-temperature relation; C is false physics."
+  },
+  "38": {
+    "pick": "B",
+    "second_defensible": false,
+    "also": "",
+    "no_source_needed": true,
+    "difficulty": "easy",
+    "note": "Hydrostatic head fixed by fill mark; general physics + stem."
+  },
+  "39": {
+    "pick": "A",
+    "second_defensible": false,
+    "also": "",
+    "no_source_needed": false,
+    "difficulty": "medium",
+    "note": "Mass before each reuse tests the charcoal-loss alternative directly. C (rinse-water absorbance) tests whether dye was rinsed off, not whether charcoal was lost; A is the better fit."
+  },
+  "40": {
+    "pick": "B",
+    "second_defensible": false,
+    "also": "",
+    "no_source_needed": true,
+    "difficulty": "easy",
+    "note": "Stem restates the prediction; B is the only direct test. Answerable from stem alone."
+  }
+}
