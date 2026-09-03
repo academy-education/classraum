@@ -1882,6 +1882,49 @@
      "verdict": "Key longest 8 / shortest 7 of 50; PoW keys longest in 4 of 5 yes/no items (grader)."
     }
    }
+  },
+  {
+   "id": "act-science-v2-2026-09-04",
+   "createdAt": "2026-09-04",
+   "targetTest": "act",
+   "section": "science",
+   "task": "multiple_choice",
+   "family": "mc_hidden_source",
+   "spec": {
+    "n": 40,
+    "authors": 1,
+    "method": "bank-act-science skill brief; hard items 11 by author"
+   },
+   "contentSha": "4d9f2253278fb5fd3e580ddd0db1be8e2cba22edcc87cb92c598c6851e7d600c",
+   "status": "qc",
+   "cohort": "act-science-v2",
+   "note": "Inserted under the HIDDEN act-science topic (not servable until the topic unhides after the co-founder sitting). Sibling-free attack 70.0% (28/40, confident 21/21): DR 6/10, RS 12/18, CV 10/12 - same band as v1 (71.3%). Solvers again named design-rationale stems whose logic is in the stem, option-pair mirroring, and general knowledge.",
+   "stages": {
+    "shape": {
+     "passed": true,
+     "verdict": "structure OK; DR 2, RS 3, CV 2; identical per-item graphics; key slots 10/10/10/10; key longest 6 / shortest 4."
+    },
+    "withsource": {
+     "passed": false,
+     "verdict": "Grader pending at time of entry; update when act-sc2-withsource.grader-a.json lands."
+    },
+    "nosource": {
+     "passed": false,
+     "n": 40,
+     "mean": 70,
+     "control": 25,
+     "margin": 45,
+     "verdict": "Six passage-disjoint files, six solvers: 28/40. Screen only (B7)."
+    },
+    "elimination": {
+     "passed": false,
+     "verdict": "Not probed separately."
+    },
+    "tells": {
+     "passed": true,
+     "verdict": "Key-longest items all sit at Q4 of their passage (author-reported cross-item pattern; not student-exploitable)."
+    }
+   }
   }
  ],
  "auditedCohorts": [
