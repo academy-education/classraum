@@ -33,7 +33,7 @@ Brief essentials:
 
 ```bash
 cd /Users/andylee/Downloads/saas/classraum
-node scripts/study-bank/math-bank-helper.mjs check <batch.json>       # recomputes every key in a sandbox; refuses mismatches
+node scripts/study-bank/math-bank-helper.mjs verify <batch.json>      # recomputes every key in a sandbox; refuses mismatches
 ```
 
 Mutation-test the sandbox on any new item type: change one key by hand and

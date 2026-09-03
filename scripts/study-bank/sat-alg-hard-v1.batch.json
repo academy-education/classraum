@@ -1,0 +1,386 @@
+[
+  {
+    "id": "AL-H-01",
+    "domain": "Algebra",
+    "subskill": "linear equations in one variable with a parameter",
+    "difficulty": "hard",
+    "prompt": "In the equation a(4x - 3) + 5x = 3(7x + 2) - 8, a is a constant. If the equation has no solution, what is the value of a?",
+    "choices": [
+      "4",
+      "5.25",
+      "6.5",
+      "21"
+    ],
+    "correct_answer": "4",
+    "explanation": "Expanding the left side gives 4ax - 3a + 5x, which is (4a + 5)x - 3a. Expanding the right side gives 21x + 6 - 8, which is 21x - 2. A linear equation has no solution exactly when the two sides have the same coefficient of x but different constants, so 4a + 5 = 21, giving 4a = 16 and a = 4; the constants are then -12 and -2, which differ, so there is indeed no solution. Dropping the 5x on the left and solving 4a = 21 gives 5.25. Slipping the sign when moving the 5 and solving 4a - 5 = 21 gives 6.5. Reading the coefficient of x on the right side off directly as the value of a gives 21.",
+    "solve": "const rhsCoef=3*7, leftExtra=5, aCoef=4;\nreturn (rhsCoef-leftExtra)/aCoef;"
+  },
+  {
+    "id": "AL-H-02",
+    "domain": "Algebra",
+    "subskill": "linear equations in one variable with a parameter",
+    "difficulty": "hard",
+    "prompt": "In the equation b(x - 3) + 4(2x + 5) = 10x + c, b and c are constants. If the equation has infinitely many solutions, what is the value of c?",
+    "choices": [
+      "-34",
+      "14",
+      "2",
+      "26"
+    ],
+    "correct_answer": "14",
+    "explanation": "Expanding the left side gives bx - 3b + 8x + 20, which is (b + 8)x + (20 - 3b). An equation has infinitely many solutions only when the two sides are identical, so the coefficients must match, b + 8 = 10, giving b = 2, and then the constants must match, c = 20 - 3(2) = 14. Stopping after solving for b and reporting that constant gives 2. Slipping the sign on the -3b term and computing 20 + 3(2) gives 26. Solving b + 8 = 10 backwards as b = 18 and then computing 20 - 3(18) gives -34.",
+    "solve": "const b=10-8;\nreturn 20-3*b;"
+  },
+  {
+    "id": "AL-H-03",
+    "domain": "Algebra",
+    "subskill": "linear equations in one variable with a parameter",
+    "difficulty": "hard",
+    "prompt": "In the equation 4(kx - 2) - 3x = 5(x + 6) - 3, k is a constant. If the equation has no solution, what is the value of k?",
+    "choices": [
+      "0.5",
+      "1.25",
+      "2",
+      "8"
+    ],
+    "correct_answer": "2",
+    "explanation": "The left side becomes 4kx - 8 - 3x, which is (4k - 3)x - 8, and the right side becomes 5x + 30 - 3, which is 5x + 27. No solution requires equal coefficients of x with unequal constants, so 4k - 3 = 5, giving 4k = 8 and k = 2; the constants -8 and 27 differ, so there is no solution. Slipping the sign and solving 4k + 3 = 5 gives 0.5. Dropping the -3x on the left and solving 4k = 5 gives 1.25. Solving as far as 4k = 8 and reporting that quantity instead of k gives 8.",
+    "solve": "const lhsExtra=-3, rhsCoef=5, kCoef=4;\nreturn (rhsCoef-lhsExtra)/kCoef;"
+  },
+  {
+    "id": "AL-H-04",
+    "domain": "Algebra",
+    "subskill": "linear equations in one variable with a parameter",
+    "difficulty": "hard",
+    "prompt": "In the equation 2(kx - 5) + 7x = 6(x + 1) - 16, k is a constant. If the equation has infinitely many solutions, what is the value of k?",
+    "choices": [
+      "3",
+      "6",
+      "6.5",
+      "-0.5"
+    ],
+    "correct_answer": "-0.5",
+    "explanation": "The left side becomes 2kx - 10 + 7x, which is (2k + 7)x - 10, and the right side becomes 6x + 6 - 16, which is 6x - 10. Infinitely many solutions requires the two sides to be identical. The constants already agree, both -10, so the coefficients must satisfy 2k + 7 = 6, giving 2k = -1 and k = -0.5. Dropping the 7x on the left and solving 2k = 6 gives 3. Slipping the sign and solving 2k - 7 = 6 gives 6.5. Reading the coefficient of x on the right side off directly as the value of k gives 6.",
+    "solve": "const rhsCoef=6, leftExtra=7, kCoef=2;\nreturn (rhsCoef-leftExtra)/kCoef;"
+  },
+  {
+    "id": "AL-H-05",
+    "domain": "Algebra",
+    "subskill": "linear equations in one variable with a parameter",
+    "difficulty": "hard",
+    "prompt": "In the equation 3(x - a) + 2(2x + 1) = 7x - 10, a is a constant. If the equation has infinitely many solutions, what is the value of a?",
+    "choices": [
+      "4",
+      "-4",
+      "10/3",
+      "12"
+    ],
+    "correct_answer": "4",
+    "explanation": "Expanding the left side gives 3x - 3a + 4x + 2, which is 7x + (2 - 3a). The coefficients of x are already equal on both sides, so the equation has infinitely many solutions exactly when the constants also match: 2 - 3a = -10, so -3a = -12 and a = 4. Slipping the sign and solving -3a = -10 - 2 as 3a = -12 gives -4. Dropping the +2 that comes from 2(2x + 1) and solving -3a = -10 gives 10/3. Solving as far as 3a = 12 and reporting that quantity rather than a gives 12.",
+    "solve": "const constLeft=2, constRight=-10;\nreturn (constLeft-constRight)/3;"
+  },
+  {
+    "id": "AL-H-06",
+    "domain": "Algebra",
+    "subskill": "linear equations in one variable with a parameter",
+    "difficulty": "hard",
+    "prompt": "In the equation 5(wx - 2) - 4x = 26x + 9, w is a constant. If the equation has no solution, what is the value of w?",
+    "choices": [
+      "2.6",
+      "6",
+      "4.4",
+      "5.2"
+    ],
+    "correct_answer": "6",
+    "explanation": "The left side becomes 5wx - 10 - 4x, which is (5w - 4)x - 10. No solution requires the coefficients of x to be equal while the constants differ, so 5w - 4 = 26, giving 5w = 30 and w = 6; the constants -10 and 9 differ, so the equation has no solution. Slipping the sign and solving 5w + 4 = 26 gives 4.4. Dropping the -4x on the left and solving 5w = 26 gives 5.2. Matching the coefficient on the left to the constant on the right and solving 5w - 4 = 9 gives 2.6.",
+    "solve": "const rhsCoef=26, leftExtra=-4, wCoef=5;\nreturn (rhsCoef-leftExtra)/wCoef;"
+  },
+  {
+    "id": "AL-H-07",
+    "domain": "Algebra",
+    "subskill": "linear functions from context",
+    "difficulty": "hard",
+    "prompt": "A repair shop models the total charge C, in dollars, for a job as C = 85h + 240, where h is the number of hours the technician works. Based on this model, how many more dollars is the total charge for a job that takes 3 hours 45 minutes than for a job that takes 2 hours 15 minutes?",
+    "choices": [
+      "110.50",
+      "367.50",
+      "127.50",
+      "7650.00"
+    ],
+    "correct_answer": "127.50",
+    "explanation": "The variable h is measured in hours, so the two times must be written in hours: 3 hours 45 minutes is 3.75 and 2 hours 15 minutes is 2.25, a difference of 1.5 hours. The 240 is a fixed charge that appears in both totals and cancels in the difference, so the difference is 85(1.5) = 127.50. Subtracting the clock readings as decimals, treating the difference as 1.30 hours, gives 110.50. Adding the fixed 240 into the difference as well, 127.50 + 240, gives 367.50. Leaving the 90-minute difference in minutes and computing 85(90) gives 7650.00.",
+    "solve": "const rate=85, t1=3+45/60, t2=2+15/60;\nreturn rate*(t1-t2);"
+  },
+  {
+    "id": "AL-H-08",
+    "domain": "Algebra",
+    "subskill": "linear functions from context",
+    "difficulty": "hard",
+    "prompt": "A full tank holds 620 liters of water. As the tank drains, the volume W, in liters, remaining in the tank is modeled by W = 620 - 6.5t, where t is the number of minutes since draining began. To the nearest tenth of an hour, how long does the tank take to go from full to 100 liters remaining?",
+    "choices": [
+      "0.8",
+      "1.6",
+      "80",
+      "1.3"
+    ],
+    "correct_answer": "1.3",
+    "explanation": "Setting W = 100 gives 100 = 620 - 6.5t, so 6.5t = 520 and t = 80. The model measures t in minutes while the question asks for hours, so 80 minutes is 80/60 = 1.33 hours, which is 1.3 to the nearest tenth. Reporting the value of t without converting to hours gives 80. Dividing the full 620 liters rather than the 520-liter drop, 620/6.5 = 95.4 minutes, then converting, gives 1.6. Converting 80 minutes by dividing by 100 instead of 60 gives 0.8.",
+    "solve": "const full=620, end=100, rate=6.5;\nconst minutes=(full-end)/rate;\nreturn Math.round(minutes/60*10)/10;"
+  },
+  {
+    "id": "AL-H-09",
+    "domain": "Algebra",
+    "subskill": "linear functions from context",
+    "difficulty": "hard",
+    "prompt": "The cost C, in cents, of producing n grams of a chemical compound is modeled by C = 0.85n + 1250. Based on this model, what is the cost, in dollars, of producing 1 kilogram of the compound?",
+    "choices": [
+      "21.00",
+      "12.50",
+      "210.00",
+      "2100.00"
+    ],
+    "correct_answer": "21.00",
+    "explanation": "The model takes n in grams, so 1 kilogram must be entered as 1000: C = 0.85(1000) + 1250 = 850 + 1250 = 2100 cents. The question asks for dollars, and 2100 cents is 2100/100 = 21.00 dollars. Reporting the model's output without converting cents to dollars gives 2100.00. Dividing by 10 rather than 100 gives 210.00. Converting only the fixed 1250 cents and ignoring the 850 cents of variable cost gives 12.50.",
+    "solve": "const rate=0.85, fixed=1250, grams=1000;\nreturn (rate*grams+fixed)/100;"
+  },
+  {
+    "id": "AL-H-10",
+    "domain": "Algebra",
+    "subskill": "linear functions from context",
+    "difficulty": "hard",
+    "prompt": "A shipping company models the fee F, in dollars, for a package as F = 0.42w + 6.75, where w is the weight of the package in ounces. A customer ships a package that weighs 3 pounds 4 ounces. There are 16 ounces in 1 pound. What is the fee, in dollars, for this package?",
+    "choices": [
+      "8.12",
+      "28.59",
+      "21.03",
+      "26.91"
+    ],
+    "correct_answer": "28.59",
+    "explanation": "The weight must be expressed in ounces before it is used in the model: 3 pounds is 3(16) = 48 ounces, and with the extra 4 ounces the package weighs 52 ounces. Then F = 0.42(52) + 6.75 = 21.84 + 6.75 = 28.59. Entering the weight in pounds as 3.25 gives 0.42(3.25) + 6.75, or 8.12. Converting only the 3 pounds and dropping the extra 4 ounces gives 0.42(48) + 6.75, or 26.91. Reading 3 pounds 4 ounces as 34 ounces gives 0.42(34) + 6.75, or 21.03.",
+    "solve": "const rate=0.42, base=6.75, lb=3, extraOz=4, ozPerLb=16;\nreturn Math.round((rate*(lb*ozPerLb+extraOz)+base)*100)/100;"
+  },
+  {
+    "id": "AL-H-11",
+    "domain": "Algebra",
+    "subskill": "linear functions from context",
+    "difficulty": "hard",
+    "prompt": "A bottling machine's output is modeled by B = 12.5m, where B is the number of bottles filled and m is the number of minutes the machine runs. Based on this model, how many bottles does the machine fill in 3 hours 12 minutes of continuous operation?",
+    "choices": [
+      "40",
+      "192",
+      "2400",
+      "2250"
+    ],
+    "correct_answer": "2400",
+    "explanation": "The model measures m in minutes, so 3 hours 12 minutes must be converted: 3(60) + 12 = 192 minutes. Then B = 12.5(192) = 2400 bottles. Entering the time in hours as 3.2 gives 12.5(3.2), or 40. Converting only the 3 hours and dropping the extra 12 minutes gives 12.5(180), or 2250. Reporting the converted running time rather than the number of bottles gives 192.",
+    "solve": "const rate=12.5, hours=3, mins=12;\nreturn rate*(hours*60+mins);"
+  },
+  {
+    "id": "AL-H-12",
+    "domain": "Algebra",
+    "subskill": "linear functions from context",
+    "difficulty": "hard",
+    "prompt": "A gym models a member's total cost C, in dollars, as C = 39.5w + 65, where w is the number of weeks of membership and the 65 dollars is a one-time joining fee. A member keeps the membership for exactly 52 weeks. To the nearest cent, what is the member's average cost per day over those 52 weeks?",
+    "choices": [
+      "5.89",
+      "40.75",
+      "2119.00",
+      "5.82"
+    ],
+    "correct_answer": "5.82",
+    "explanation": "The total cost for 52 weeks is C = 39.5(52) + 65 = 2054 + 65 = 2119 dollars. The model counts weeks, but the question asks per day, and 52 weeks is 52(7) = 364 days, so the average is 2119/364 = 5.82 dollars per day. Using 360 days for the year gives 2119/360, or 5.89. Dividing by 52 and reporting a weekly rather than a daily average gives 40.75. Reporting the total cost instead of the average gives 2119.00.",
+    "solve": "const rate=39.5, fee=65, weeks=52;\nreturn Math.round((rate*weeks+fee)/(weeks*7)*100)/100;"
+  },
+  {
+    "id": "AL-H-13",
+    "domain": "Algebra",
+    "subskill": "systems of two linear equations",
+    "difficulty": "hard",
+    "prompt": "In the system of equations 6x - 4y = 10 and cx + 6y = 21, c is a constant. If the system has no solution, what is the value of c?",
+    "choices": [
+      "-9",
+      "-4",
+      "9",
+      "12.6"
+    ],
+    "correct_answer": "-9",
+    "explanation": "Two linear equations have no solution when their graphs are parallel but distinct, which requires the coefficients to be proportional: 6(6) = (-4)(c), so 36 = -4c and c = -9. Checking, multiplying 6x - 4y = 10 by -1.5 gives -9x + 6y = -15, which has the same left side as -9x + 6y = 21 but a different constant, so the lines are parallel and distinct. Slipping the sign in 36 = -4c gives 9. Copying the y-coefficient of the first equation across gives -4. Using the constants instead of the coefficients, 6(21)/10, gives 12.6.",
+    "solve": "const a1=6, b1=-4, b2=6;\nreturn a1*b2/b1;"
+  },
+  {
+    "id": "AL-H-14",
+    "domain": "Algebra",
+    "subskill": "systems of two linear equations",
+    "difficulty": "hard",
+    "prompt": "In the system of equations 3x + ky = 12 and 9x + 15y = m, k and m are constants. If the system has infinitely many solutions, what is the value of k + m?",
+    "choices": [
+      "9",
+      "41",
+      "36",
+      "81"
+    ],
+    "correct_answer": "41",
+    "explanation": "Infinitely many solutions means the two equations describe the same line, so the second must be a constant multiple of the first. The x-coefficients give the multiplier: 9/3 = 3. Then 3k = 15, so k = 5, and m = 3(12) = 36, which makes k + m = 5 + 36 = 41. Dividing 12 by 3 instead of multiplying, so that m = 4, gives 5 + 4, or 9. Reporting m alone rather than the requested sum gives 36. Multiplying 15 by 3 to get k = 45 instead of dividing gives 45 + 36, or 81.",
+    "solve": "const scale=9/3, kScaled=15, c1=12;\nconst k=kScaled/scale, m=c1*scale;\nreturn k+m;"
+  },
+  {
+    "id": "AL-H-15",
+    "domain": "Algebra",
+    "subskill": "systems of two linear equations",
+    "difficulty": "hard",
+    "prompt": "A theater sold only adult tickets and student tickets for a performance. Adult tickets cost 18 dollars each and student tickets cost 11 dollars each. The theater sold 480 tickets in all and collected 7,170 dollars. How many more adult tickets than student tickets did the theater sell?",
+    "choices": [
+      "210",
+      "270",
+      "60",
+      "480"
+    ],
+    "correct_answer": "60",
+    "explanation": "Let a be the number of adult tickets and s the number of student tickets. Then a + s = 480 and 18a + 11s = 7170. Substituting s = 480 - a gives 18a + 11(480 - a) = 7170, so 7a + 5280 = 7170, 7a = 1890, and a = 270; then s = 480 - 270 = 210. The question asks how many more adult tickets were sold, which is 270 - 210 = 60. Stopping at the number of adult tickets gives 270. Solving for the other variable and stopping there gives 210. Reporting the total number of tickets rather than the difference gives 480.",
+    "solve": "const total=480, revenue=7170, pa=18, ps=11;\nconst a=(revenue-ps*total)/(pa-ps);\nreturn a-(total-a);"
+  },
+  {
+    "id": "AL-H-16",
+    "domain": "Algebra",
+    "subskill": "systems of two linear equations",
+    "difficulty": "hard",
+    "prompt": "In the system of equations kx + 8y = 20 and 3x - 2y = 7, k is a constant. The system has exactly one solution for every value of k except one. What is that value of k?",
+    "choices": [
+      "-16/3",
+      "12",
+      "60/7",
+      "-12"
+    ],
+    "correct_answer": "-12",
+    "explanation": "A system of two linear equations fails to have exactly one solution only when the two lines have the same slope, which happens when k(-2) - 8(3) = 0. That gives -2k = 24, so k = -12. Slipping the sign and solving -2k = -24 gives 12. Setting up the proportion with the coefficients swapped, k/8 = -2/3, gives -16/3. Using the constants instead of the coefficients, k/3 = 20/7, gives 60/7.",
+    "solve": "const b1=8, a2=3, b2=-2;\nreturn b1*a2/b2;"
+  },
+  {
+    "id": "AL-H-17",
+    "domain": "Algebra",
+    "subskill": "systems of two linear equations",
+    "difficulty": "hard",
+    "prompt": "At a farm stand, 3 pounds of apples and 2 pounds of pears cost 14.20 dollars, and 5 pounds of apples and 4 pounds of pears cost 25.40 dollars. Every pound of apples costs the same amount, and every pound of pears costs the same amount. What is the cost, in dollars, of 1 pound of pears?",
+    "choices": [
+      "2.60",
+      "3.00",
+      "5.60",
+      "11.20"
+    ],
+    "correct_answer": "2.60",
+    "explanation": "Let a be the cost per pound of apples and p the cost per pound of pears, so 3a + 2p = 14.20 and 5a + 4p = 25.40. Doubling the first equation gives 6a + 4p = 28.40, and subtracting the second from it eliminates the pears: a = 3.00. Substituting back, 3(3.00) + 2p = 14.20, so 2p = 5.20 and p = 2.60. Solving for the price of apples and stopping there gives 3.00. Subtracting the two given equations without first scaling, which yields 2a + 2p = 11.20, and reporting that gives 11.20; dividing that result by 2 gives the cost of one pound of each together, 5.60.",
+    "solve": "const a=(2*14.20-25.40)/(2*3-5);\nreturn Math.round((14.20-3*a)/2*100)/100;"
+  },
+  {
+    "id": "AL-H-18",
+    "domain": "Algebra",
+    "subskill": "systems of two linear equations",
+    "difficulty": "hard",
+    "prompt": "A factory's two production lines are described by the system of equations 2x + 5y = 40 and 6x + ny = 96, where n is a constant. For what value of n does the system have no solution?",
+    "choices": [
+      "5/3",
+      "15",
+      "5",
+      "12"
+    ],
+    "correct_answer": "15",
+    "explanation": "No solution means the two lines are parallel and distinct, so the coefficients must be proportional. The x-coefficients give the multiplier 6/2 = 3, so n = 3(5) = 15. Checking that the lines are distinct, multiplying the first equation by 3 gives 6x + 15y = 120, whose constant 120 differs from 96, so the lines are parallel and never meet. Copying the y-coefficient of the first equation across without scaling gives 5. Scaling by the ratio of the constants, 96/40 = 2.4, and computing 2.4(5) gives 12. Dividing by 3 instead of multiplying gives 5/3.",
+    "solve": "const scale=6/2, b1=5;\nreturn scale*b1;"
+  },
+  {
+    "id": "AL-H-19",
+    "domain": "Algebra",
+    "subskill": "linear inequalities",
+    "difficulty": "hard",
+    "prompt": "A delivery van can carry a total load of at most 1,800 pounds, including the driver. The driver weighs 190 pounds, and the van is already loaded with 14 crates that weigh 65 pounds each. Boxes weighing 24 pounds each will also be loaded. What is the greatest number of these boxes the van can carry?",
+    "choices": [
+      "30",
+      "37",
+      "29",
+      "67"
+    ],
+    "correct_answer": "29",
+    "explanation": "The crates weigh 14(65) = 910 pounds, and with the 190-pound driver the load already on board is 1100 pounds. If b is the number of boxes, then 24b + 1100 must be at most 1800, so 24b is at most 700 and b is at most 700/24 = 29.17. Since b counts whole boxes, the greatest possible value is 29; a 30th box would bring the total to 1820 pounds, above the limit, so rounding 29.17 up gives 30. Leaving the driver's weight out of the load gives 890/24 = 37.08, or 37. Leaving the crates out gives 1610/24 = 67.08, or 67.",
+    "solve": "const cap=1800, driver=190, crates=14*65, box=24;\nreturn Math.floor((cap-driver-crates)/box);"
+  },
+  {
+    "id": "AL-H-20",
+    "domain": "Algebra",
+    "subskill": "linear inequalities",
+    "difficulty": "hard",
+    "prompt": "In the inequality 7x - 4 ≥ 3(x + 2) + k, k is a constant, and the solution set is x ≥ 9. What is the value of k?",
+    "choices": [
+      "30",
+      "36",
+      "46",
+      "26"
+    ],
+    "correct_answer": "26",
+    "explanation": "Expanding the right side gives 7x - 4 ≥ 3x + 6 + k. Subtracting 3x from both sides and adding 4 gives 4x ≥ 10 + k, so x ≥ (10 + k)/4. For this to be the same as x ≥ 9, the boundary must satisfy (10 + k)/4 = 9, so 10 + k = 36 and k = 26. Dropping the -4 on the left, so that the boundary reads (6 + k)/4 = 9, gives 30. Solving only as far as 4x ≥ 36 and reporting that right-hand value gives 36. Slipping the sign when moving the 10, solving (k - 10)/4 = 9, gives 46.",
+    "solve": "const boundary=9;\nreturn 4*boundary-(6+4);"
+  },
+  {
+    "id": "AL-H-21",
+    "domain": "Algebra",
+    "subskill": "linear inequalities",
+    "difficulty": "hard",
+    "prompt": "A technician charges a 120-dollar service fee plus 45 dollars for each hour worked. A customer will pay no more than 900 dollars in total, and the technician can work at most 2 workdays of 8 hours each on the job. What is the greatest whole number of hours the technician can work on this job?",
+    "choices": [
+      "16",
+      "17",
+      "18",
+      "20"
+    ],
+    "correct_answer": "16",
+    "explanation": "If h is the number of hours, the cost condition is 45h + 120 no greater than 900, so 45h is at most 780 and h is at most 780/45 = 17.33. The schedule condition is a separate limit: 2 workdays of 8 hours is at most 16 hours. Both conditions must hold, so h is at most the smaller of 17.33 and 16, and the greatest whole number of hours is 16. Using only the cost condition and rounding 17.33 down gives 17, and rounding it up instead gives 18. Leaving the 120-dollar service fee out of the cost condition gives 900/45 = 20.",
+    "solve": "const fee=120, rate=45, budget=900, dayCap=2*8;\nreturn Math.min(Math.floor((budget-fee)/rate), dayCap);"
+  },
+  {
+    "id": "AL-H-22",
+    "domain": "Algebra",
+    "subskill": "linear inequalities",
+    "difficulty": "hard",
+    "prompt": "In the inequality 3(2x + 5) - 4x ≤ 2(x + c), c is a constant. What is the greatest integer value of c for which the inequality has no solution?",
+    "choices": [
+      "8",
+      "7",
+      "15",
+      "30"
+    ],
+    "correct_answer": "7",
+    "explanation": "The left side becomes 6x + 15 - 4x, which is 2x + 15, and the right side is 2x + 2c, so the inequality reads 2x + 15 ≤ 2x + 2c. Subtracting 2x from both sides removes the variable entirely and leaves 15 ≤ 2c, a statement about c alone: if it is true the inequality holds for every x, and if it is false no value of x works. So there is no solution exactly when 2c < 15, that is c < 7.5, and the greatest integer satisfying that is 7. Taking the smallest integer for which the inequality does have solutions gives 8. Forgetting to divide by 2 and reading the condition as c < 15 gives 15. Multiplying by 2 instead of dividing gives 30.",
+    "solve": "const constLeft=3*5;\nreturn Math.ceil(constLeft/2)-1;"
+  },
+  {
+    "id": "AL-H-23",
+    "domain": "Algebra",
+    "subskill": "linear inequalities",
+    "difficulty": "hard",
+    "prompt": "A vendor sells bracelets for 7 dollars each and necklaces for 12 dollars each. She needs to take in at least 500 dollars, and she can display no more than 55 items in total. If she sells exactly 10 bracelets, what is the least number of necklaces she must sell to reach her revenue goal?",
+    "choices": [
+      "35",
+      "42",
+      "36",
+      "45"
+    ],
+    "correct_answer": "36",
+    "explanation": "The 10 bracelets bring in 10(7) = 70 dollars, so if n is the number of necklaces, the revenue condition is 70 + 12n at least 500, giving 12n at least 430 and n at least 430/12 = 35.83. Since n counts whole necklaces, the least value is 36, which brings the total to 70 + 432 = 502 dollars and uses 10 + 36 = 46 items, within the 55-item limit. Rounding 35.83 down gives 35, which yields only 70 + 420 = 490 dollars and misses the goal. Ignoring the 70 dollars from the bracelets and solving 12n at least 500 gives 41.67, or 42. Filling the display to its 55-item limit, 55 - 10, gives 45.",
+    "solve": "const goal=500, bPrice=7, bSold=10, nPrice=12;\nreturn Math.ceil((goal-bPrice*bSold)/nPrice);"
+  },
+  {
+    "id": "AL-H-24",
+    "domain": "Algebra",
+    "subskill": "linear inequalities",
+    "difficulty": "hard",
+    "prompt": "In the inequality -3(x - 2) + 5x ≥ 4x + k, k is a constant, and the solution set is x ≤ -8. What is the value of k?",
+    "choices": [
+      "-22",
+      "-10",
+      "16",
+      "22"
+    ],
+    "correct_answer": "22",
+    "explanation": "The left side becomes -3x + 6 + 5x, which is 2x + 6, so the inequality reads 2x + 6 ≥ 4x + k. Subtracting 4x and 6 from both sides gives -2x ≥ k - 6, and dividing by -2 reverses the inequality to x ≤ (6 - k)/2. For this to match x ≤ -8, the boundary must satisfy (6 - k)/2 = -8, so 6 - k = -16 and k = 22. Failing to reverse the inequality and solving (k - 6)/2 = -8 gives -10. Dropping the +6 from the expanded left side and solving -k/2 = -8 gives 16. Slipping the sign on the constant and solving (6 + k)/2 = -8 gives -22.",
+    "solve": "const boundary=-8, constLeft=6;\nreturn constLeft-2*boundary;"
+  }
+]

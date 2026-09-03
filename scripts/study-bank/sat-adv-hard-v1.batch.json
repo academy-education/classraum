@@ -1,0 +1,386 @@
+[
+  {
+    "id": "AM-H-01",
+    "domain": "Advanced Math",
+    "subskill": "equivalent expressions",
+    "difficulty": "hard",
+    "prompt": "The expression (6x^2 - 7x - 18)/(2x - 5), where x > 5/2, is equivalent to which of the following?",
+    "choices": [
+      "3x + 4 - 2/(2x - 5)",
+      "3x - 4 + 2/(2x - 5)",
+      "3x + 4 + 2/(2x - 5)",
+      "3x + 4 + 2/(2x + 5)"
+    ],
+    "correct_answer": "3x + 4 + 2/(2x - 5)",
+    "explanation": "Dividing 6x^2 - 7x - 18 by 2x - 5 gives a quotient of 3x + 4, since (3x + 4)(2x - 5) = 6x^2 - 7x - 20, and a remainder of (-18) - (-20) = 2. A quotient with remainder is written as the quotient plus the remainder over the divisor, so the expression equals 3x + 4 + 2/(2x - 5). The form 3x + 4 - 2/(2x - 5) attaches the remainder with the wrong sign, which would require the product to be 6x^2 - 7x - 16. The form 3x - 4 + 2/(2x - 5) uses -4 in the quotient, giving 6x^2 - 23x + 20 instead. The form 3x + 4 + 2/(2x + 5) places the remainder over a divisor the problem never uses.",
+    "solve": "const orig = x => (6*x*x - 7*x - 18)/(2*x - 5);\nconst cands = [{t:'3x + 4 - 2/(2x - 5)', f:x=>3*x+4-2/(2*x-5)},\n {t:'3x - 4 + 2/(2x - 5)', f:x=>3*x-4+2/(2*x-5)},\n {t:'3x + 4 + 2/(2x - 5)', f:x=>3*x+4+2/(2*x-5)},\n {t:'3x + 4 + 2/(2x + 5)', f:x=>3*x+4+2/(2*x+5)}];\nconst xs = [3, 4, 6, 9.5, 12];\nconst hits = cands.filter(c => xs.every(x => Math.abs(c.f(x) - orig(x)) < 1e-9));\nif (hits.length !== 1) return 'AMBIGUOUS(' + hits.length + ')';\nreturn hits[0].t;"
+  },
+  {
+    "id": "AM-H-02",
+    "domain": "Advanced Math",
+    "subskill": "equivalent expressions",
+    "difficulty": "hard",
+    "prompt": "For x > 0, which of the following is equivalent to (1/(x + 3) - 1/x)/3 ?",
+    "choices": [
+      "-1/(x^2 + 3x)",
+      "1/(x^2 + 3x)",
+      "-1/(3x^2 + 9x)",
+      "-3/(x^2 + 3x)"
+    ],
+    "correct_answer": "-1/(x^2 + 3x)",
+    "explanation": "Over the common denominator x(x + 3) the numerator is x - (x + 3) = -3, so 1/(x + 3) - 1/x = -3/(x^2 + 3x). Dividing that by 3 cancels the 3 in the numerator and leaves -1/(x^2 + 3x). The form 1/(x^2 + 3x) drops the negative that comes from subtracting the larger fraction 1/x. The form -1/(3x^2 + 9x) divides by 3 a second time, once in the numerator and again in the denominator. The form -3/(x^2 + 3x) is the difference before it is divided by 3.",
+    "solve": "const orig = x => ((1/(x + 3)) - (1/x))/3;\nconst cands = [{t:'-1/(x^2 + 3x)', f:x=>-1/(x*x+3*x)},\n {t:'1/(x^2 + 3x)', f:x=>1/(x*x+3*x)},\n {t:'-1/(3x^2 + 9x)', f:x=>-1/(3*x*x+9*x)},\n {t:'-3/(x^2 + 3x)', f:x=>-3/(x*x+3*x)}];\nconst xs = [1, 2, 4.5, 7, 11.25];\nconst hits = cands.filter(c => xs.every(x => Math.abs(c.f(x) - orig(x)) < 1e-9));\nif (hits.length !== 1) return 'AMBIGUOUS(' + hits.length + ')';\nreturn hits[0].t;"
+  },
+  {
+    "id": "AM-H-03",
+    "domain": "Advanced Math",
+    "subskill": "equivalent expressions",
+    "difficulty": "hard",
+    "prompt": "For x > 5, which of the following is equivalent to 3/(sqrt(x) + sqrt(5)) ?",
+    "choices": [
+      "(sqrt(x) - sqrt(5))/(x - 5)",
+      "3(sqrt(x) + sqrt(5))/(x - 5)",
+      "3(sqrt(x) - sqrt(5))/(x + 5)",
+      "3(sqrt(x) - sqrt(5))/(x - 5)"
+    ],
+    "correct_answer": "3(sqrt(x) - sqrt(5))/(x - 5)",
+    "explanation": "Multiplying numerator and denominator by the conjugate sqrt(x) - sqrt(5) turns the denominator into (sqrt(x))^2 - (sqrt(5))^2 = x - 5 and the numerator into 3(sqrt(x) - sqrt(5)), giving 3(sqrt(x) - sqrt(5))/(x - 5). The form (sqrt(x) - sqrt(5))/(x - 5) loses the factor of 3 that was already in the numerator. The form 3(sqrt(x) + sqrt(5))/(x - 5) multiplies by the original denominator rather than its conjugate, so the middle terms do not cancel. The form 3(sqrt(x) - sqrt(5))/(x + 5) records the product of the conjugates as a sum instead of a difference.",
+    "solve": "const orig = x => 3/(Math.sqrt(x) + Math.sqrt(5));\nconst cands = [{t:'(sqrt(x) - sqrt(5))/(x - 5)', f:x=>(Math.sqrt(x)-Math.sqrt(5))/(x-5)},\n {t:'3(sqrt(x) + sqrt(5))/(x - 5)', f:x=>3*(Math.sqrt(x)+Math.sqrt(5))/(x-5)},\n {t:'3(sqrt(x) - sqrt(5))/(x + 5)', f:x=>3*(Math.sqrt(x)-Math.sqrt(5))/(x+5)},\n {t:'3(sqrt(x) - sqrt(5))/(x - 5)', f:x=>3*(Math.sqrt(x)-Math.sqrt(5))/(x-5)}];\nconst xs = [6, 9, 14, 20.5, 31];\nconst hits = cands.filter(c => xs.every(x => Math.abs(c.f(x) - orig(x)) < 1e-9));\nif (hits.length !== 1) return 'AMBIGUOUS(' + hits.length + ')';\nreturn hits[0].t;"
+  },
+  {
+    "id": "AM-H-04",
+    "domain": "Advanced Math",
+    "subskill": "equivalent expressions",
+    "difficulty": "hard",
+    "prompt": "For x > 0, which of the following is equivalent to ((16x^8)^(3/4))/((2x)^2) ?",
+    "choices": [
+      "3x^4",
+      "2x^4",
+      "2x^6",
+      "4x^4"
+    ],
+    "correct_answer": "2x^4",
+    "explanation": "Raising 16x^8 to the 3/4 power raises each factor: 16^(3/4) = (16^(1/4))^3 = 2^3 = 8 and (x^8)^(3/4) = x^6, so the numerator is 8x^6. The denominator (2x)^2 squares both factors and equals 4x^2. Dividing gives (8/4)x^(6-2) = 2x^4. The form 2x^6 applies the 3/4 power to 16 but leaves x^8 untouched before dividing. The form 4x^4 squares only the x in (2x)^2, treating the denominator as 2x^2. The form 3x^4 multiplies 16 by 3/4 instead of raising it to the 3/4 power, giving 12 in the numerator.",
+    "solve": "const orig = x => Math.pow(16*Math.pow(x,8), 3/4)/Math.pow(2*x, 2);\nconst cands = [{t:'3x^4', f:x=>3*Math.pow(x,4)},\n {t:'2x^4', f:x=>2*Math.pow(x,4)},\n {t:'2x^6', f:x=>2*Math.pow(x,6)},\n {t:'4x^4', f:x=>4*Math.pow(x,4)}];\nconst xs = [0.5, 1.5, 2, 3.25, 5];\nconst hits = cands.filter(c => xs.every(x => Math.abs(c.f(x) - orig(x)) < 1e-9));\nif (hits.length !== 1) return 'AMBIGUOUS(' + hits.length + ')';\nreturn hits[0].t;"
+  },
+  {
+    "id": "AM-H-05",
+    "domain": "Advanced Math",
+    "subskill": "equivalent expressions",
+    "difficulty": "hard",
+    "prompt": "For x > 3, which of the following is equivalent to 2x/(x^2 - 9) - 1/(x - 3) ?",
+    "choices": [
+      "(3x + 3)/(x^2 - 9)",
+      "1/(x - 3)",
+      "-1/(x + 3)",
+      "1/(x + 3)"
+    ],
+    "correct_answer": "1/(x + 3)",
+    "explanation": "Since x^2 - 9 = (x - 3)(x + 3), the second fraction becomes (x + 3)/((x - 3)(x + 3)), so the difference is (2x - (x + 3))/((x - 3)(x + 3)) = (x - 3)/((x - 3)(x + 3)). Cancelling the common factor x - 3 leaves 1/(x + 3). The form (3x + 3)/(x^2 - 9) adds x + 3 to 2x instead of subtracting it. The form -1/(x + 3) subtracts in the reverse order, giving 3 - x in the numerator. The form 1/(x - 3) cancels the factor x + 3, which is not the factor shared by the numerator.",
+    "solve": "const orig = x => 2*x/(x*x - 9) - 1/(x - 3);\nconst cands = [{t:'(3x + 3)/(x^2 - 9)', f:x=>(3*x+3)/(x*x-9)},\n {t:'1/(x - 3)', f:x=>1/(x-3)},\n {t:'-1/(x + 3)', f:x=>-1/(x+3)},\n {t:'1/(x + 3)', f:x=>1/(x+3)}];\nconst xs = [4, 5.5, 8, 12, 20];\nconst hits = cands.filter(c => xs.every(x => Math.abs(c.f(x) - orig(x)) < 1e-9));\nif (hits.length !== 1) return 'AMBIGUOUS(' + hits.length + ')';\nreturn hits[0].t;"
+  },
+  {
+    "id": "AM-H-06",
+    "domain": "Advanced Math",
+    "subskill": "equivalent expressions",
+    "difficulty": "hard",
+    "prompt": "For x < 0, which of the following is equivalent to sqrt(9x^4) * sqrt(4x^2) ?",
+    "choices": [
+      "-6x^3",
+      "6x^3",
+      "-36x^3",
+      "-6x^6"
+    ],
+    "correct_answer": "-6x^3",
+    "explanation": "The product of the radicals is sqrt(36x^6) = 6 times the nonnegative square root of x^6, which is 6|x|^3. For x < 0 the quantity x^3 is negative, so |x|^3 = -x^3 and the expression equals -6x^3, a positive quantity as a square root must be. The form 6x^3 takes the even root as x^3 itself and so reports a negative value for x < 0, dropping the negative sign the domain requires. The form -36x^3 multiplies the radicands 9 and 4 without taking the square root of 36. The form -6x^6 takes the square root of 36 but leaves x^6 under no root at all.",
+    "solve": "const xs = [-0.4, -1.3, -2, -3.7, -5.25];\nconst orig = x => Math.sqrt(9*Math.pow(x,4)) * Math.sqrt(4*x*x);\nconst cands = [{t:'-6x^3', f:x=>-6*Math.pow(x,3)},\n {t:'6x^3', f:x=>6*Math.pow(x,3)},\n {t:'-36x^3', f:x=>-36*Math.pow(x,3)},\n {t:'-6x^6', f:x=>-6*Math.pow(x,6)}];\nconst hits = cands.filter(c => xs.every(x => Math.abs(c.f(x) - orig(x)) < 1e-9));\nif (hits.length !== 1) return 'AMBIGUOUS(' + hits.length + ')';\nreturn hits[0].t;"
+  },
+  {
+    "id": "AM-H-07",
+    "domain": "Advanced Math",
+    "subskill": "nonlinear equations in one variable",
+    "difficulty": "hard",
+    "prompt": "In the equation kx^2 + 5 = -12x, k is a nonzero constant. If the equation has exactly one real solution, what is the value of k?",
+    "choices": [
+      "3/5",
+      "36/5",
+      "9/5",
+      "144/5"
+    ],
+    "correct_answer": "36/5",
+    "explanation": "Written in standard form the equation is kx^2 + 12x + 5 = 0. It has exactly one real solution when the discriminant is zero: 12^2 - 4(k)(5) = 0, so 144 - 20k = 0 and k = 144/20 = 36/5. The value 3/5 comes from setting 12 - 20k = 0, using b rather than b^2. The value 144/5 omits the factor of 4, solving 144 - 5k = 0. The value 9/5 divides by 4 a second time, solving 36 - 20k = 0.",
+    "solve": "const b = 12, c = 5;\nconst k = (b*b)/(4*c);\nreturn Math.round(k*1e6)/1e6;"
+  },
+  {
+    "id": "AM-H-08",
+    "domain": "Advanced Math",
+    "subskill": "nonlinear equations in one variable",
+    "difficulty": "hard",
+    "prompt": "In the equation x^2 - 8x + c = 3x - 12, c is a constant. If the equation has exactly one real solution, what is the value of c?",
+    "choices": [
+      "4",
+      "121/4",
+      "73/4",
+      "169/4"
+    ],
+    "correct_answer": "73/4",
+    "explanation": "Collecting all terms on one side gives x^2 - 11x + (c + 12) = 0. Exactly one real solution requires (-11)^2 - 4(1)(c + 12) = 0, so c + 12 = 121/4 and c = 121/4 - 12 = 121/4 - 48/4 = 73/4. The value 121/4 stops at c + 12 and never subtracts the 12. The value 169/4 adds 12 instead of subtracting it. The value 4 uses the original coefficient -8 rather than -11, solving 64 - 4(c + 12) = 0.",
+    "solve": "const b = -11, shift = 12;\nconst c = (b*b)/4 - shift;\nreturn Math.round(c*1e6)/1e6;"
+  },
+  {
+    "id": "AM-H-09",
+    "domain": "Advanced Math",
+    "subskill": "nonlinear equations in one variable",
+    "difficulty": "hard",
+    "prompt": "In the equation 3x^2 + 12x + c = 0, c is a constant. If the equation has exactly one real solution, what is that solution?",
+    "choices": [
+      "-2",
+      "2",
+      "-4",
+      "12"
+    ],
+    "correct_answer": "-2",
+    "explanation": "When a quadratic has exactly one real solution, that solution is the vertex value x = -b/(2a) = -12/(2 times 3) = -2. Checking, the discriminant 144 - 12c is zero when c = 12, and 3x^2 + 12x + 12 = 3(x + 2)^2, whose only zero is -2. The value 2 uses b/(2a) without the leading negative sign. The value -4 divides by a alone, computing -12/3. The value 12 is the constant c that makes the single solution occur, not the solution itself.",
+    "solve": "const a = 3, b = 12;\nreturn -b/(2*a);"
+  },
+  {
+    "id": "AM-H-10",
+    "domain": "Advanced Math",
+    "subskill": "nonlinear equations in one variable",
+    "difficulty": "hard",
+    "prompt": "What is the sum of all values of x that satisfy sqrt(2x + 15) = x ?",
+    "choices": [
+      "-3",
+      "2",
+      "3",
+      "5"
+    ],
+    "correct_answer": "5",
+    "explanation": "Squaring both sides gives 2x + 15 = x^2, so x^2 - 2x - 15 = 0 and (x - 5)(x + 3) = 0, with candidates 5 and -3. Substituting -3 into the original equation gives sqrt(9) = 3 on the left and -3 on the right, so -3 is extraneous: the square root symbol denotes the nonnegative root, and x must therefore be nonnegative. Only 5 satisfies the equation, so the sum of all solutions is 5. The value 2 adds both candidates without testing them. The value -3 reports the extraneous candidate. The value 3 is the left side evaluated at the extraneous candidate.",
+    "solve": "const roots = [];\nfor (const r of [(2 + Math.sqrt(4 + 60))/2, (2 - Math.sqrt(4 + 60))/2]) {\n  if (2*r + 15 >= 0 && Math.abs(Math.sqrt(2*r + 15) - r) < 1e-9) roots.push(r);\n}\nreturn roots.reduce((s, r) => s + r, 0);"
+  },
+  {
+    "id": "AM-H-11",
+    "domain": "Advanced Math",
+    "subskill": "nonlinear equations in one variable",
+    "difficulty": "hard",
+    "prompt": "What is the sum of all values of x that satisfy sqrt(3x + 1) = x - 3 ?",
+    "choices": [
+      "1",
+      "5",
+      "8",
+      "9"
+    ],
+    "correct_answer": "8",
+    "explanation": "Squaring both sides gives 3x + 1 = x^2 - 6x + 9, so x^2 - 9x + 8 = 0 and (x - 1)(x - 8) = 0, with candidates 1 and 8. At x = 1 the left side is sqrt(4) = 2 while the right side is -2, so 1 is extraneous; the right side must be nonnegative, which requires x at least 3. At x = 8 the left side is sqrt(25) = 5 and the right side is 5, so 8 is the only solution and the sum is 8. The value 9 adds both candidates without checking either. The value 1 reports the extraneous candidate. The value 5 is the common value of the two sides at the solution rather than the solution.",
+    "solve": "const roots = [];\nfor (const r of [(9 + Math.sqrt(81 - 32))/2, (9 - Math.sqrt(81 - 32))/2]) {\n  if (3*r + 1 >= 0 && Math.abs(Math.sqrt(3*r + 1) - (r - 3)) < 1e-9) roots.push(r);\n}\nreturn roots.reduce((s, r) => s + r, 0);"
+  },
+  {
+    "id": "AM-H-12",
+    "domain": "Advanced Math",
+    "subskill": "nonlinear equations in one variable",
+    "difficulty": "hard",
+    "prompt": "To solve sqrt(x + 5) = x - 1, a student squares both sides and obtains x^2 - 3x - 4 = 0. Which of the following correctly describes the solutions?",
+    "choices": [
+      "The solutions of x^2 - 3x - 4 = 0 are 1 and -4, and only 1 satisfies the original equation.",
+      "The solutions of x^2 - 3x - 4 = 0 are -1 and 4, and only 4 satisfies the original equation.",
+      "The solutions of x^2 - 3x - 4 = 0 are -1 and 4, and both satisfy the original equation.",
+      "The solutions of x^2 - 3x - 4 = 0 are -1 and 4, and only -1 satisfies the original equation."
+    ],
+    "correct_answer": "The solutions of x^2 - 3x - 4 = 0 are -1 and 4, and only 4 satisfies the original equation.",
+    "explanation": "Squaring gives x + 5 = x^2 - 2x + 1, so x^2 - 3x - 4 = 0, which factors as (x - 4)(x + 1) and has candidates -1 and 4. Substituting -1 gives sqrt(4) = 2 on the left and -2 on the right, so -1 is extraneous; substituting 4 gives sqrt(9) = 3 on both sides. Hence the statement that the solutions are -1 and 4 and only 4 satisfies the original equation is correct. The statement that both satisfy skips the check that squaring makes necessary. The statement that only -1 satisfies keeps the candidate the check rejects. The statement that the solutions are 1 and -4 factors x^2 - 3x - 4 with the signs reversed, since (x - 1)(x + 4) expands to x^2 + 3x - 4.",
+    "solve": "const roots = [(3 + Math.sqrt(9 + 16))/2, (3 - Math.sqrt(9 + 16))/2].sort((a,b)=>a-b);\nconst valid = roots.filter(r => r + 5 >= 0 && Math.abs(Math.sqrt(r + 5) - (r - 1)) < 1e-9);\nconst cands = [\n  {t:'The solutions of x^2 - 3x - 4 = 0 are 1 and -4, and only 1 satisfies the original equation.', roots:[-4,1], valid:[1]},\n  {t:'The solutions of x^2 - 3x - 4 = 0 are -1 and 4, and only 4 satisfies the original equation.', roots:[-1,4], valid:[4]},\n  {t:'The solutions of x^2 - 3x - 4 = 0 are -1 and 4, and both satisfy the original equation.', roots:[-1,4], valid:[-1,4]},\n  {t:'The solutions of x^2 - 3x - 4 = 0 are -1 and 4, and only -1 satisfies the original equation.', roots:[-1,4], valid:[-1]}];\nconst same = (a,b) => a.length === b.length && a.every((v,i) => Math.abs(v - b[i]) < 1e-9);\nconst hits = cands.filter(c => same(c.roots, roots) && same(c.valid, valid));\nif (hits.length !== 1) return 'AMBIGUOUS(' + hits.length + ')';\nreturn hits[0].t;"
+  },
+  {
+    "id": "AM-H-13",
+    "domain": "Advanced Math",
+    "subskill": "nonlinear functions",
+    "difficulty": "hard",
+    "prompt": "The height above the ground, in feet, of a ball t seconds after it is thrown is modeled by h(t) = -16t^2 + 56t + 32. What is the maximum height, in feet, that the ball reaches?",
+    "choices": [
+      "-115",
+      "32",
+      "130",
+      "81"
+    ],
+    "correct_answer": "81",
+    "explanation": "The graph of h is a downward-opening parabola, so the maximum occurs at the vertex t = -b/(2a) = -56/(2 times -16) = 7/4 seconds. Then h(7/4) = -16(49/16) + 56(7/4) + 32 = -49 + 98 + 32 = 81, which is the vertex form h(t) = -16(t - 7/4)^2 + 81. The value 32 is h(0), the height at which the ball is released, not the maximum. The value 130 evaluates 56t + 32 at t = 7/4 and never subtracts the -16t^2 term. The value -115 uses t = -7/4, taking b/(2a) without the sign, and evaluates h there.",
+    "solve": "const a = -16, b = 56, c = 32;\nconst t = -b/(2*a);\nreturn a*t*t + b*t + c;"
+  },
+  {
+    "id": "AM-H-14",
+    "domain": "Advanced Math",
+    "subskill": "nonlinear functions",
+    "difficulty": "hard",
+    "prompt": "The daily profit, in dollars, of a shop that sells x items per day is P(x) = -2x^2 + 96x - 700. The function can be written in the form P(x) = -2(x - h)^2 + k, where h and k are constants. What is the value of h + k?",
+    "choices": [
+      "476",
+      "24",
+      "428",
+      "452"
+    ],
+    "correct_answer": "476",
+    "explanation": "Factoring -2 from the first two terms gives -2(x^2 - 48x) - 700, and completing the square inside the parentheses adds and subtracts 576: -2((x - 24)^2 - 576) - 700 = -2(x - 24)^2 + 1152 - 700 = -2(x - 24)^2 + 452. So h = 24 and k = 452, and h + k = 476. The value 452 is k alone, the maximum daily profit. The value 24 is h alone, the number of items that produces that profit. The value 428 subtracts h from k instead of adding.",
+    "solve": "const a = -2, b = 96, c = -700;\nconst h = -b/(2*a);\nconst k = a*h*h + b*h + c;\nreturn h + k;"
+  },
+  {
+    "id": "AM-H-15",
+    "domain": "Advanced Math",
+    "subskill": "nonlinear functions",
+    "difficulty": "hard",
+    "prompt": "A theater estimates that its weekly revenue, in dollars, is R(p) = p(240 - 4p) when a ticket costs p dollars. What is the maximum possible weekly revenue, in dollars?",
+    "choices": [
+      "0",
+      "3600",
+      "30",
+      "7200"
+    ],
+    "correct_answer": "3600",
+    "explanation": "Expanding gives R(p) = -4p^2 + 240p, a downward-opening parabola whose vertex is at p = -240/(2 times -4) = 30 dollars. The revenue there is R(30) = 30(240 - 120) = 30 times 120 = 3600 dollars. The value 30 is the ticket price that maximizes revenue, not the revenue itself. The value 7200 multiplies 30 by 240 without subtracting the 4p inside the parentheses. The value 0 evaluates R at p = 60, a zero of the function rather than its vertex.",
+    "solve": "const a = -4, b = 240;\nconst p = -b/(2*a);\nreturn p*(240 - 4*p);"
+  },
+  {
+    "id": "AM-H-16",
+    "domain": "Advanced Math",
+    "subskill": "nonlinear functions",
+    "difficulty": "hard",
+    "prompt": "A bacteria culture contains 500 cells and the number of cells increases by 6 percent each hour. Which of the following functions gives the number of cells m minutes after the count of 500?",
+    "choices": [
+      "500(1.06)^(60m)",
+      "500(1.06/60)^m",
+      "500(1.06)^(m/60)",
+      "500(1.001)^m"
+    ],
+    "correct_answer": "500(1.06)^(m/60)",
+    "explanation": "A 6 percent increase per hour multiplies the population by 1.06 once per hour. Since m minutes is m/60 hours, the multiplier is applied m/60 times, giving 500(1.06)^(m/60). The form 500(1.06)^(60m) applies the hourly multiplier 60 times per minute, mixing the two units in the opposite direction. The form 500(1.001)^m divides the 6 percent by 60 and applies 1.001 each minute, which is not the same as taking the 60th root of 1.06 and compounds to about 6.2 percent per hour. The form 500(1.06/60)^m divides the growth factor itself by 60, producing a base less than 1 and a population that collapses.",
+    "solve": "const orig = m => 500*Math.pow(1.06, m/60);\nconst cands = [{t:'500(1.06)^(60m)', f:m=>500*Math.pow(1.06, 60*m)},\n {t:'500(1.06/60)^m', f:m=>500*Math.pow(1.06/60, m)},\n {t:'500(1.06)^(m/60)', f:m=>500*Math.pow(1.06, m/60)},\n {t:'500(1.001)^m', f:m=>500*Math.pow(1.001, m)}];\nconst ms = [1, 20, 60, 150, 600];\nconst hits = cands.filter(c => ms.every(m => Math.abs(c.f(m) - orig(m)) < 1e-9));\nif (hits.length !== 1) return 'AMBIGUOUS(' + hits.length + ')';\nreturn hits[0].t;"
+  },
+  {
+    "id": "AM-H-17",
+    "domain": "Advanced Math",
+    "subskill": "nonlinear functions",
+    "difficulty": "hard",
+    "prompt": "A machine purchased for 42000 dollars loses 18 percent of its value each year. To the nearest dollar, what is the value of the machine 30 months after it is purchased?",
+    "choices": [
+      "25573",
+      "109",
+      "23100",
+      "63526"
+    ],
+    "correct_answer": "25573",
+    "explanation": "Losing 18 percent per year multiplies the value by 0.82 once per year. Thirty months is 30/12 = 2.5 years, so the value is 42000(0.82)^2.5, which is about 25573.13, or 25573 dollars to the nearest dollar. The value 109 applies the yearly factor 0.82 thirty times, treating the 18 percent as a monthly rate. The value 63526 uses 1.18 as the factor, treating an 18 percent loss as an 18 percent gain. The value 23100 subtracts 18 percent times 2.5, or 45 percent, all at once instead of compounding.",
+    "solve": "const P = 42000, rate = 0.18, months = 30;\nreturn Math.round(P*Math.pow(1 - rate, months/12));"
+  },
+  {
+    "id": "AM-H-18",
+    "domain": "Advanced Math",
+    "subskill": "nonlinear functions",
+    "difficulty": "hard",
+    "prompt": "The number of members of a club triples every 8 years. Assuming the membership grows exponentially, by what percent does the membership increase each year, to the nearest tenth of a percent?",
+    "choices": [
+      "12.5",
+      "25.0",
+      "37.5",
+      "14.7"
+    ],
+    "correct_answer": "14.7",
+    "explanation": "If the yearly growth factor is r, then r^8 = 3, so r = 3^(1/8), which is about 1.14720. The yearly increase is therefore about 0.14720, or 14.7 percent to the nearest tenth. The value 37.5 divides the 300 percent of the tripled amount by 8, treating compounded growth as if it accumulated in equal yearly pieces. The value 25.0 divides the 200 percent increase by 8 in the same way. The value 12.5 divides 100 percent by 8, using the original amount rather than the increase.",
+    "solve": "const factor = 3, years = 8;\nconst r = Math.pow(factor, 1/years);\nreturn Math.round((r - 1)*1000)/10;"
+  },
+  {
+    "id": "AM-H-19",
+    "domain": "Advanced Math",
+    "subskill": "systems of equations with one nonlinear equation",
+    "difficulty": "hard",
+    "prompt": "In the xy-plane, the graph of y = x^2 - 6x + 13 and the line y = c, where c is a constant, intersect at exactly one point. What is the value of c?",
+    "choices": [
+      "3",
+      "22",
+      "4",
+      "13"
+    ],
+    "correct_answer": "4",
+    "explanation": "Setting the equations equal gives x^2 - 6x + 13 = c, or x^2 - 6x + (13 - c) = 0, which has exactly one solution when 36 - 4(13 - c) = 0, so 13 - c = 9 and c = 4. Equivalently, completing the square gives y = (x - 3)^2 + 4, so the parabola has vertex (3, 4) and a horizontal line meets it once only at the vertex height. The value 3 is the x-coordinate of that vertex rather than its height. The value 13 is the y-intercept, the height at x = 0, where the line would cross the parabola twice. The value 22 comes from writing (x - 3)^2 + 9 + 13, adding 9 when completing the square instead of subtracting it.",
+    "solve": "const b = -6, k = 13;\nconst c = k - (b*b)/4;\nreturn c;"
+  },
+  {
+    "id": "AM-H-20",
+    "domain": "Advanced Math",
+    "subskill": "systems of equations with one nonlinear equation",
+    "difficulty": "hard",
+    "prompt": "In the xy-plane, the graph of y = 2x^2 + 5x + k, where k is a constant, and the line y = 3x - 4 intersect at exactly one point. What is the value of k?",
+    "choices": [
+      "-9/2",
+      "-7/2",
+      "1/2",
+      "7/2"
+    ],
+    "correct_answer": "-7/2",
+    "explanation": "Setting the expressions equal gives 2x^2 + 5x + k = 3x - 4, so 2x^2 + 2x + (k + 4) = 0. One intersection point means the discriminant is zero: 2^2 - 4(2)(k + 4) = 0, so 4 = 8(k + 4), k + 4 = 1/2, and k = 1/2 - 4 = -7/2. The value 1/2 stops at k + 4 and never subtracts the 4. The value 7/2 keeps the magnitude but not the sign, as if k = 4 - 1/2. The value -9/2 subtracts 1/2 from -4 rather than adding it.",
+    "solve": "const A = 2, B = 2;\nconst kPlus4 = (B*B)/(4*A);\nreturn Math.round((kPlus4 - 4)*1e6)/1e6;"
+  },
+  {
+    "id": "AM-H-21",
+    "domain": "Advanced Math",
+    "subskill": "systems of equations with one nonlinear equation",
+    "difficulty": "hard",
+    "prompt": "For which of the following values of the constant c does the system of equations x^2 + y^2 = 25 and y = x + c have no real solutions?",
+    "choices": [
+      "c = 0",
+      "c = -5",
+      "c = 7",
+      "c = 10"
+    ],
+    "correct_answer": "c = 10",
+    "explanation": "Substituting y = x + c into the circle gives x^2 + (x + c)^2 = 25, or 2x^2 + 2cx + (c^2 - 25) = 0. Its discriminant is (2c)^2 - 8(c^2 - 25) = 200 - 4c^2, which is negative exactly when c^2 > 50, that is when the absolute value of c exceeds about 7.07. Of the values offered, only c = 10 satisfies that, since 200 - 400 = -200. For c = 7 the discriminant is 200 - 196 = 4, still positive, so that line cuts the circle twice even though it passes close to the edge. For c = -5 the discriminant is 100 and for c = 0 it is 200, both giving two intersection points.",
+    "solve": "const cands = [{t:'c = 0', c:0}, {t:'c = -5', c:-5}, {t:'c = 7', c:7}, {t:'c = 10', c:10}];\nconst disc = c => 200 - 4*c*c;\nconst hits = cands.filter(o => disc(o.c) < 0);\nif (hits.length !== 1) return 'AMBIGUOUS(' + hits.length + ')';\nreturn hits[0].t;"
+  },
+  {
+    "id": "AM-H-22",
+    "domain": "Advanced Math",
+    "subskill": "systems of equations with one nonlinear equation",
+    "difficulty": "hard",
+    "prompt": "In the xy-plane, the graph of y = x^2 - 4x + c, where c is a constant, and the line y = 2x - 7 are given. For how many values of c does this system have exactly two distinct real solutions?",
+    "choices": [
+      "Infinitely many",
+      "None",
+      "Exactly one",
+      "Exactly two"
+    ],
+    "correct_answer": "Infinitely many",
+    "explanation": "Setting the expressions equal gives x^2 - 4x + c = 2x - 7, so x^2 - 6x + (c + 7) = 0. Two distinct real solutions require a positive discriminant: 36 - 4(c + 7) > 0, so c + 7 < 9 and c < 2. Every constant less than 2 works, and there is no smallest such constant, so infinitely many values of c produce two intersection points. The answer Exactly one describes the single value c = 2, which is where the discriminant is zero and the line is tangent, giving one solution rather than two. The answer Exactly two treats the strict inequality as if it were the two-value solution of an equation. The answer None would require the discriminant to be at most zero for every c, which fails already at c = 0.",
+    "solve": "const disc = c => 36 - 4*(c + 7);\nlet n = 0;\nfor (let c = -500; c <= 500; c += 0.25) if (disc(c) > 0) n++;\nconst unbounded = disc(-1e9) > 0 && disc(-1e12) > 0;\nif (n === 0) return 'None';\nif (n === 1) return 'Exactly one';\nif (n === 2) return 'Exactly two';\nreturn unbounded ? 'Infinitely many' : 'Exactly two';"
+  },
+  {
+    "id": "AM-H-23",
+    "domain": "Advanced Math",
+    "subskill": "systems of equations with one nonlinear equation",
+    "difficulty": "hard",
+    "prompt": "In the xy-plane, the graph of y = -x^2 + 6x - 5 and the line y = mx, where m is a constant, are given. For how many values of m does this system have exactly one real solution?",
+    "choices": [
+      "Zero",
+      "Two",
+      "One",
+      "Infinitely many"
+    ],
+    "correct_answer": "Two",
+    "explanation": "Setting the expressions equal gives -x^2 + 6x - 5 = mx, or x^2 + (m - 6)x + 5 = 0. Exactly one real solution requires (m - 6)^2 - 20 = 0, so m - 6 = plus or minus the square root of 20 and m = 6 + 2 times the square root of 5 or m = 6 - 2 times the square root of 5. These are two distinct real values, so the answer is Two. The answer One would follow from treating (m - 6)^2 = 20 as having only the positive square root, the same slip that loses a solution to any squared quantity. The answer Zero would require (m - 6)^2 = 20 to have no real solution, which is true only when the right side is negative. The answer Infinitely many confuses the count of constants with the count of lines through the origin that meet the parabola at all.",
+    "solve": "const target = 20;\nconst ms = [];\nif (target > 0) { ms.push(6 + Math.sqrt(target), 6 - Math.sqrt(target)); }\nelse if (target === 0) { ms.push(6); }\nconst n = new Set(ms.map(v => Math.round(v*1e6)/1e6)).size;\nreturn ['Zero','One','Two'][n] || 'Infinitely many';"
+  },
+  {
+    "id": "AM-H-24",
+    "domain": "Advanced Math",
+    "subskill": "systems of equations with one nonlinear equation",
+    "difficulty": "hard",
+    "prompt": "In the xy-plane, the graph of x^2 + y^2 - 6x + 4y = 12 and the line y = k, where k is a constant, intersect at exactly one point. What is the sum of all possible values of k?",
+    "choices": [
+      "10",
+      "-2",
+      "-4",
+      "4"
+    ],
+    "correct_answer": "-4",
+    "explanation": "Completing the square in both variables gives (x - 3)^2 + (y + 2)^2 = 12 + 9 + 4 = 25, a circle with center (3, -2) and radius 5. A horizontal line meets a circle exactly once only at the top or the bottom, where k = -2 + 5 = 3 or k = -2 - 5 = -7. Their sum is 3 + (-7) = -4, which is twice the y-coordinate of the center. The value -2 is the y-coordinate of the center itself, the height of the line through the middle, which meets the circle twice. The value 4 keeps the magnitude but not the sign, as if the center were at y = 2. The value 10 is the distance between the two tangent lines, that is the diameter, rather than the sum of their heights.",
+    "solve": "const cy = 4/(-2);\nconst r = Math.sqrt(12 + 9 + 4);\nreturn (cy + r) + (cy - r);"
+  }
+]

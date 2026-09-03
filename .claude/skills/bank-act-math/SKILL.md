@@ -22,7 +22,7 @@ derivational-hub rule.
 
 ```bash
 cd /Users/andylee/Downloads/saas/classraum
-BANK_FAMILY=act node scripts/study-bank/math-bank-helper.mjs check <batch.json>
+BANK_FAMILY=act node scripts/study-bank/math-bank-helper.mjs verify <batch.json>
 BANK_FAMILY=act BANK_COHORT=act-math-v<n> node scripts/study-bank/math-bank-helper.mjs insert <batch.json> <qc.json>
 set -a; source .env.local; set +a
 npx tsx scripts/study-bank/verify-act-draw.ts
