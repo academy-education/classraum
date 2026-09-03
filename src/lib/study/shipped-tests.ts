@@ -38,6 +38,16 @@ export const SHIPPED_TEST_SLUGS: ReadonlySet<string> = new Set([
   // archive — archiving items is what would silently take it back to one.
   'test-ssat',
   'test-isee',
+  // ACT Composite (English, Math, Reading) as of 2026-09-03 (A21/B7).
+  // The bank holds three Composite forms: English 150 (15 full passages),
+  // Math 134, Reading 108 (3 full passages per genre). Math is
+  // sandbox-verified; English and Reading FAILED the AI blind attack at
+  // 76% / 79% and were decided by the pre-registered human sitting (B7):
+  // the co-founder scored 4/40 = 10.0% blind against a 27.5% control
+  // (PoW 2/20, Reading 2/20), below the ~40% "clean" bar fixed before
+  // the number existed. Science is optional, out of the Composite, and
+  // has NO items yet - the topic page must not offer it until it does.
+  'test-act',
 ])
 
 export const SHIPPED_TEST_FAMILIES: ReadonlySet<string> = new Set([
@@ -45,6 +55,7 @@ export const SHIPPED_TEST_FAMILIES: ReadonlySet<string> = new Set([
   'toefl',
   'ssat',
   'isee',
+  'act',
 ])
 
 export function isShippedTestSlug(slug: string | null | undefined): boolean {

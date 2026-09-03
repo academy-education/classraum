@@ -125,6 +125,11 @@ describe('shipped gate', () => {
     }
   })
 
+  it('ships ACT (B7: human sitting 4/40 blind, gate flipped 2026-09-03)', () => {
+    expect(isShippedTestFamily('act')).toBe(true)
+    expect(SHIPPED_TEST_SLUGS.has('test-act')).toBe(true)
+  })
+
   it('still fails closed for a family with no bank', () => {
     expect(isShippedTestFamily('gre')).toBe(false)
     expect(isShippedTestFamily('ielts')).toBe(false)

@@ -95,3 +95,39 @@ real wrong answers) rather than another pass of the same one.
 
 The shipped gate stays off until that sitting is read. Math can ship
 independently once forms are drawn and the assembler is exercised.
+
+## The human sitting (B7) — 2026-09-02, scored 2026-09-03
+
+Run `act-cofounder-2026-09-02`: 40 items, blind (no passage), the
+co-founder (support@classraum.com, reviewer_kind human), 15:33-16:14 UTC,
+median 46 s per item, no notes left, every verdict "unique / authentic".
+
+    Production of Writing               2/20   10.0%   control 25.0%
+    Key Ideas and Details               1/7    14.3%
+    Craft and Structure                 1/7    14.3%
+    Integration of Knowledge and Ideas  0/6     0.0%
+    Reading (all three)                 2/20   10.0%
+    OVERALL                             4/40   10.0%   control 27.5%
+
+Scoring frame checked before believing it: for all 40 rows key_slot equals
+the displayed position of the bank key under shown_order (40/40 under the
+hypothesis "shown_order[k] is the bank index at slot k"; 21/40 under the
+other reading), and blind_pick is in the same displayed frame. Pick spread
+A10/B11/C10/D9 against key spread A11/B11/C10/D8 — no slot habit.
+
+Against the pre-registered rule (at or below ~40% = clean; ~60% or more =
+archive; between = second reader): CLEAN, by a wide margin. The AI attack
+said 76% (PoW) and 79% (Reading) with leakage removed; a person scored 10%.
+This is the eighth cohort in the register where the model attack and a
+human disagree by 60 points or more in the same direction, and it settles
+the ACT question the way the rule said it would.
+
+10% is below the 27.5% control (p ≈ 0.006 under uniform guessing). That
+is consistent with the round-2 solver reports — the key became "the
+plain, short, neutral option" and the fillers over-commit — being a tell
+a model exploits and a person is repelled by: humans pick the committed
+distractor. It is not evidence of a scoring fault (checked above), but it
+is one more reason the model number is a screen, not a verdict.
+
+Decision taken: the shipped gate flips for ACT (English, Math, Reading;
+Science has no items and is optional). shipped-tests.ts, 2026-09-03.
