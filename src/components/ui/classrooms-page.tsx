@@ -1954,8 +1954,12 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
               <div className="p-4 sm:p-5 flex flex-col flex-1">
                 <div className="flex items-start justify-between mb-3">
                   <div className="min-w-0">
-                    <div className="flex items-center gap-1.5 mb-1 min-w-0">
-                      <p className={`text-[10px] font-semibold uppercase tracking-[0.1em] whitespace-nowrap shrink-0 ${stateColor}`}>
+                    {/* Status on its own line, camp tag on the next: side by
+                        side they fought for width against the action icons
+                        (the camp name under the icons, and in Korean the
+                        status wrapped to one character per line). */}
+                    <div className="flex flex-col items-start gap-1 mb-1 min-w-0">
+                      <p className={`text-[10px] font-semibold uppercase tracking-[0.1em] whitespace-nowrap ${stateColor}`}>
                         {stateLabel}
                       </p>
                       {/* Camp classrooms look identical to ordinary ones
