@@ -1753,6 +1753,49 @@
      "verdict": "No length, slot or punctuation tell found by any solver; per-file key length rank <= 30%; near-dup scan against cr-v7/v8/v9 clean (batch 2)."
     }
    }
+  },
+  {
+   "id": "act-science-v1-2026-09-03",
+   "createdAt": "2026-09-03",
+   "targetTest": "act",
+   "section": "science",
+   "task": "multiple_choice",
+   "family": "mc_hidden_source",
+   "spec": {
+    "n": 80,
+    "authors": 4,
+    "method": "one brief per format (DR 4x5, RS 3x6 + 3x6, CV 4x6), per-item graphic identical within a passage, act-bank-helper science branch"
+   },
+   "contentSha": "91574a55b2efb7449ef1c83bd1ac6231c5c62a3a5eb18dc6d53504fd98c3b51c",
+   "status": "qc",
+   "cohort": "act-science-v1",
+   "note": "INSERTED under the hidden act-science topic (HIDDEN_SUBTOPIC_SLUGS) so nothing is served; the topic unhides only after the co-founder sitting act-science-cofounder-2026-09-03 clears the B7 rule. Model attack numbers are a screen for ACT verbal/data cohorts (B7: model 76-79%, human 10%).",
+   "stages": {
+    "shape": {
+     "passed": true,
+     "verdict": "80/80 structure OK: 14 passages, format per passage, 5/6/6 sizes, identical per-item graphics on DR/RS, key slots 20/20/20/20, domain mix IoD 35 / SI 26 / EMIER 39 (published 38-50 / 18-32 / 24-38: IoD 3 points under, EMIER 1 over)."
+    },
+    "withsource": {
+     "passed": true,
+     "verdict": "Two graders (passage + graphic + options, key unmarked; SVGs decoded numerically): 80/80 agree with the key, 0 second-defensible, 0 data mismatches, 0 scientific errors. 11 items flagged answerable from the stem's own design logic or general knowledge (control-purpose stems). Difficulty easy 49 / medium 28 / hard 3 - lighter than a real section."
+    },
+    "nosource": {
+     "passed": false,
+     "n": 80,
+     "mean": 71.3,
+     "control": 25,
+     "margin": 46.3,
+     "verdict": "Sibling-free split (6 files, one item per passage per file, a solver each): 57/80 = 71.3%, confident picks 37/38. Same band as ACT English PoW (76) and Reading (79), which a person then scored at 10%. Recorded as FAIL against the family bar; not the gate for this family."
+    },
+    "elimination": {
+     "passed": false,
+     "verdict": "Not probed separately; solver reports name shared numbers between two options (RSB-02) and a lone comparison-shaped option (DR-01-5) as structural tells."
+    },
+    "tells": {
+     "passed": true,
+     "verdict": "Key slots 20/20/20/20; per-batch key-longest <= 5 and key-shortest <= 5; no letter pattern per passage forms a bare ABCD permutation (authors reported)."
+    }
+   }
   }
  ],
  "auditedCohorts": [
