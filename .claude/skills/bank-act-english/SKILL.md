@@ -38,10 +38,16 @@ node scripts/study-bank/act-bank-helper.mjs check english <batch.json>
 - With-source key grader on the full batch (passage + options, key unmarked): 100% agreement expected; disagreements are dropped.
 - Ledger entry (family `mc_hidden_source`).
 
-## 3. Insert and verify
+## 3. Insert STAGED, then verify
+
+New forms go in unverified (not servable) until a human sample clears them;
+the model attack on this task type is a screen, and forms authored after B7
+have measured LOUDER than the shipped ones (reading v4: 91.7%, every
+confident pick right).
 
 ```bash
-node scripts/study-bank/act-bank-helper.mjs insert english <batch.json> act-english-v<n> --apply
+BANK_VERIFIED=false node scripts/study-bank/act-bank-helper.mjs insert english <batch.json> act-english-v<n> --apply
+# after the sitting clears: update study_item_bank set verified = true where cohort = 'act-english-v<n>';
 set -a; source .env.local; set +a
 npx tsx scripts/study-bank/verify-act-draw.ts      # must draw 50/45/36/40
 ```

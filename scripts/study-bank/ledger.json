@@ -1796,6 +1796,49 @@
      "verdict": "Key slots 20/20/20/20; per-batch key-longest <= 5 and key-shortest <= 5; no letter pattern per passage forms a bare ABCD permutation (authors reported)."
     }
    }
+  },
+  {
+   "id": "act-reading-v4-2026-09-04",
+   "createdAt": "2026-09-04",
+   "targetTest": "act",
+   "section": "reading",
+   "task": "multiple_choice",
+   "family": "mc_hidden_source",
+   "spec": {
+    "n": 36,
+    "authors": 1,
+    "method": "bank-act-reading skill brief; humanities paired"
+   },
+   "contentSha": "d620e574dec0250afd644d6aefec8667161fa55a31de0b0db52715e0d90a59c9",
+   "status": "qc",
+   "cohort": "act-reading-v4",
+   "note": "STAGED: inserted with BANK_VERIFIED=false (36 rows, verified=false, not servable). Flip verified after a human sample clears the B7 rule. The sibling-free attack read 91.7% with every confident pick right; solvers named the round-1 tell in full (hedged key among absolutes, the longest three-part list as main-purpose key, stems that quote a line whose speech act one option paraphrases). B7 says the model number is a screen for ACT verbal cohorts, and a person scored 10% on forms the model read at 79%; this one is louder than those, so it waits for a person.",
+   "stages": {
+    "shape": {
+     "passed": true,
+     "verdict": "act-bank-helper check reading: structure OK; 4 passages, 1 paired (humanities), genres in order, vocab targets unique, key slots 9/9/9/9."
+    },
+    "withsource": {
+     "passed": true,
+     "verdict": "Grader (passage + options, key unmarked) 36/36 on key; 1 second-defensible (P3 conservator item, B vs D); difficulty easy 20 / medium 14 / hard 2."
+    },
+    "nosource": {
+     "passed": false,
+     "n": 36,
+     "mean": 91.7,
+     "control": 25,
+     "margin": 66.7,
+     "verdict": "Nine passage-disjoint files, nine solvers: 33/36, confident 24/24. Shipped forms v1 measured 76-79% by the same instrument and a person scored 10%."
+    },
+    "elimination": {
+     "passed": false,
+     "verdict": "Not probed; the solver reports already name option-shape elimination."
+    },
+    "tells": {
+     "passed": false,
+     "verdict": "Key longest in 8, shortest in 5 (within cap) but the hedged/absolute asymmetry is present on at least 5 items per the grader (16, 26, 28, 33, 27)."
+    }
+   }
   }
  ],
  "auditedCohorts": [

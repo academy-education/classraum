@@ -223,7 +223,12 @@ for (const it of batch) {
     task: section === 'reading' ? it.genre : section === 'science' ? it.format : 'multiple_choice',
     item_type: 'multiple_choice', difficulty: it.difficulty, topic_tag: it.subskill ?? null,
     item, content_hash, passage_group_id: `${cohort}:${it.passage_id}`,
-    word_count: null, verified: true, archived: false, source: 'hand', cohort,
+    // BANK_VERIFIED=false stages a cohort: rows exist, the assembler ignores
+    // them (it filters verified=true), and a later human sitting flips the
+    // flag. Used for ACT English/Reading forms whose model attack reads as a
+    // louder tell than the shipped forms had (B7 says the model number is a
+    // screen, not a verdict - but a screen still screens).
+    word_count: null, verified: process.env.BANK_VERIFIED !== 'false', archived: false, source: 'hand', cohort,
     verify_meta: {
       method: 'claude-authored; structure-checked by act-bank-helper before insert',
       localId: it.id, passage_id: it.passage_id, ...(section === 'reading' ? { genre: it.genre, paired: !!it.paired } : {}), ...(section === 'science' ? { format: it.format } : {}),

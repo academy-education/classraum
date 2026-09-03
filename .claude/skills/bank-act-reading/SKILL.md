@@ -34,13 +34,15 @@ the English skill and apply here.
 node scripts/study-bank/act-bank-helper.mjs check reading <batch.json>
 ```
 
-## 2. Gate, insert, verify
+## 2. Gate, insert STAGED, verify
 
-Same as `/bank-act-english`: `SPLIT=4` attack (one item per passage per
-file), with-source key grader, ledger entry, then
+Same as `/bank-act-english`: `SPLIT=9` attack (nine items per passage, so
+nine files with one item per passage each, nine solvers), with-source key
+grader, ledger entry, then stage:
 
 ```bash
-node scripts/study-bank/act-bank-helper.mjs insert reading <batch.json> act-reading-v<n> --apply
+BANK_VERIFIED=false node scripts/study-bank/act-bank-helper.mjs insert reading <batch.json> act-reading-v<n> --apply
+# flip verified=true for the cohort only after a human sample clears the B7 rule
 npx tsx scripts/study-bank/verify-act-draw.ts
 ```
 
