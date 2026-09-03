@@ -1055,10 +1055,14 @@ function MobileAssignmentsPageContent() {
             }
             
             gradeData = allGrades
-            error = allGrades.length === 0 ? batchError : null
+            // A failed batch beside successful ones used to count as success (error only
+            // when NOTHING loaded), so up to 20 grades per failed batch vanished silently.
+            // Any failed batch is an error, and a partial result is never cached.
+            error = batchError
+            if (batchError) gradeData = []
             
             // Cache successful results
-            if (allGrades.length > 0) {
+            if (!batchError && allGrades.length > 0) {
               gradesCache.set(cacheKey, { data: allGrades, timestamp: Date.now() })
             }
           } catch (err) {
