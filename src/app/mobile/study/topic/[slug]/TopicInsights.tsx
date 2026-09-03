@@ -278,7 +278,7 @@ function TrendChart({
         {/* Flat data (every point the same percent) still gets a padded
             window, and "2–89%" under two 89% points reads as a bug, not a
             band. Label the band only when there is a band to label. */}
-        <span className="text-gray-300">{Math.round(yMax) - Math.round(yMin) > 0 && Math.min(...percents) !== Math.max(...percents) ? `${Math.round(yMin)}–${Math.round(yMax)}%` : ''}</span>
+        <span className="text-gray-300">{Math.round(yMax) - Math.round(yMin) > 0 && Math.min(...percents) !== Math.max(...percents) ? `${ko ? '범위' : 'range'} ${Math.round(yMin)}–${Math.round(yMax)}%` : ''}</span>
         <span>{formatDay(latest.at, ko)}</span>
       </div>
 

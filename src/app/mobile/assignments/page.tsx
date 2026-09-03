@@ -717,23 +717,30 @@ function MobileAssignmentsPageContent() {
           batches.push(assignmentIds.slice(i, i + batchSize))
         }
 
-        // Execute all batches in parallel
-        const batchResults = await Promise.all(
-          batches.map(batch =>
-            db
-              .from('assignment_grades')
-              .select('assignment_id, status, score, submitted_date')
-              .eq('student_id', effectiveUserId)
-              .in('assignment_id', batch)
-          )
-        )
+        // Execute all batches in parallel. A batch that FAILS must not be
+        // dropped on the floor: every assignment in it would then read as
+        // "pending"/"overdue" (status is derived from the absence of a grade
+        // row), and the pending count would come out anywhere between the
+        // true value and the whole list - observed 10 / 75 / 170 / 200 / 220
+        // for the same student on 2026-09-03 under a flaky network. Retry a
+        // failed batch once, then throw so the page shows an error instead of
+        // a wrong number.
+        const fetchBatch = (batch: string[]) => db
+          .from('assignment_grades')
+          .select('assignment_id, status, score, submitted_date')
+          .eq('student_id', effectiveUserId)
+          .in('assignment_id', batch)
+        const batchResults = await Promise.all(batches.map(async batch => {
+          let result = await fetchBatch(batch)
+          if (result.error) result = await fetchBatch(batch)
+          if (result.error) throw new Error(`grades: ${result.error.message}`)
+          return result
+        }))
 
         const allGrades = batchResults.flatMap(result => result.data || [])
 
-        // Cache successful results
-        if (allGrades.length > 0) {
-          gradesCache.set(gradesCacheKey, { data: allGrades, timestamp: Date.now() })
-        }
+        // Cache only a COMPLETE result (every batch answered).
+        gradesCache.set(gradesCacheKey, { data: allGrades, timestamp: Date.now() })
 
         return allGrades
       }

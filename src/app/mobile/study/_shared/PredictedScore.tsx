@@ -296,7 +296,7 @@ function DiagnosticCard({ ko, isPremium, starting, onStart, doneCount, totalCoun
           return (
             <div key={i} className="rounded-xl bg-white/10 ring-1 ring-white/15 px-1.5 py-2 text-center">
               <Icon className="w-3.5 h-3.5 mx-auto text-white/70" />
-              <div className="text-[13px] font-bold tabular-nums leading-none mt-1">{f.value}</div>
+              <div className="text-[13px] font-bold tabular-nums leading-none mt-1 whitespace-nowrap break-keep">{f.value}</div>
               <div className="text-[9px] uppercase tracking-wide text-white/55 mt-0.5">{f.label}</div>
             </div>
           )

@@ -2961,7 +2961,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                     </button>
                   </div>
                 </th>
-                <th className="text-left p-3 sm:p-4 text-[11px] font-semibold uppercase tracking-wider text-gray-500 whitespace-nowrap min-w-[120px]">
+                <th className="text-left p-3 sm:p-4 text-[11px] font-semibold uppercase tracking-wider text-gray-500 whitespace-nowrap min-w-[100px]">
                   <div className="flex items-center gap-2">
                     {t('reports.student')}
                     <button onClick={() => handleSort('student')} className="text-gray-400 hover:text-primary">
@@ -2969,7 +2969,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                     </button>
                   </div>
                 </th>
-                <th className="text-left p-3 sm:p-4 text-[11px] font-semibold uppercase tracking-wider text-gray-500 whitespace-nowrap min-w-[120px]">
+                <th className="text-left p-3 sm:p-4 text-[11px] font-semibold uppercase tracking-wider text-gray-500 whitespace-nowrap min-w-[100px]">
                   <div className="flex items-center gap-2">
                     {t('reports.school')}
                     <button onClick={() => handleSort('school')} className="text-gray-400 hover:text-primary">
@@ -2977,7 +2977,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                     </button>
                   </div>
                 </th>
-                <th className="text-left p-3 sm:p-4 text-[11px] font-semibold uppercase tracking-wider text-gray-500 whitespace-nowrap min-w-[120px]">
+                <th className="text-left p-3 sm:p-4 text-[11px] font-semibold uppercase tracking-wider text-gray-500 whitespace-nowrap min-w-[100px]">
                   <div className="flex items-center gap-2">
                     {t('reports.createdDate')}
                     <button onClick={() => handleSort('created_date')} className="text-gray-400 hover:text-primary">
@@ -2985,7 +2985,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                     </button>
                   </div>
                 </th>
-                <th className="text-left p-3 sm:p-4 text-[11px] font-semibold uppercase tracking-wider text-gray-500 whitespace-nowrap min-w-[120px]">
+                <th className="text-left p-3 sm:p-4 text-[11px] font-semibold uppercase tracking-wider text-gray-500 whitespace-nowrap min-w-[100px]">
                   <div className="flex items-center gap-2">
                     {t('reports.updatedDate')}
                     <button onClick={() => handleSort('updated_date')} className="text-gray-400 hover:text-primary">

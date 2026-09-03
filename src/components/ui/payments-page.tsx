@@ -3549,7 +3549,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                           )}
                         </td>
                         <td className="p-4">
-                          <div className="text-sm text-gray-700">
+                          <div className="text-sm text-gray-700 whitespace-nowrap">
                             {invoice.due_date ? formatDate(invoice.due_date) : '-'}
                           </div>
                         </td>
@@ -3561,7 +3561,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                         <td className="p-4">
                           <div className="flex items-center gap-2">
                             {getStatusIcon(invoice.status)}
-                            <span className={`px-2 py-1 rounded-full text-xs font-medium capitalize ${getStatusColor(invoice.status)}`}>
+                            <span className={`px-2 py-1 rounded-full text-xs font-medium capitalize whitespace-nowrap ${getStatusColor(invoice.status)}`}>
                               {t(`payments.${invoice.status}`)}
                             </span>
                           </div>
