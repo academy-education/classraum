@@ -1699,54 +1699,54 @@
    "task": "choose_response",
    "family": "mc_hidden_source",
    "spec": {
-    "n": 40,
+    "n": 35,
     "authors": 2,
     "method": "cr-v7 kill-quote standard (each distractor the natural reply to a neighbouring line, killable by a quotable span); batch 2 fixed world and slot sequences before writing options, batch 1 did not use seeded world selection"
    },
-   "contentSha": "b67b01cefcaeb26478c3ab416b7152fe8e261c2ba247e1182d4dd83ea23b5122+c2489f8d109acb012a75a230f38de85e8e3f571ccf4e7fc2b1916b2a01081613",
-   "status": "qc",
-   "cohort": null,
-   "note": "HELD pending repair. Two files; shas recorded pre-repair and must be re-taken after. Authored as cr-v8-* and renamed because a shipped cr-v8 exists. Detail in CR-V10-RESULT.md.",
+   "contentSha": "7d6eaf2729b33f56037b640dffeb4c3dbd62d1e228542e516874854971755290",
+   "status": "shipped",
+   "cohort": "cr-v10",
+   "note": "sha = sha256 over cr-v10-b1.batch.json then cr-v10-b2.batch.json concatenated (gateBatch hashes the file list in order). 40 authored; after one repair round the with-source grader still found 5 with two acceptable replies (CR10-B1-03, B1-07, B1-11, B1-14, B2-11) - four of them repaired items, i.e. the repair moved the defect - so those 5 are DROPPED via cr-v10.keep.json rather than repaired again (agent-rewrite-inverts-the-tell rule). 35 inserted. Detail in CR-V10-RESULT.md. Not a human-tested cohort; the next CR human sitting should sample it.",
    "stages": {
     "shape": {
      "passed": true,
      "verdict": "40/40: 4 choices, key present, listeningTask=choose_response, blind renderer 20+20 blocks; authored slots 5/5/5/5 per file."
     },
     "withsource": {
-     "passed": false,
-     "verdict": "Exclusivity grader (line + 4 options, key unmarked) agreed with the key 37/40; 6 items with a second acceptable reply (B1-02, B1-14, B1-16, B1-17, B1-19, B2-19), 2 with a self-contradictory spoken line (B1-03, B1-10), 3 stilted or logically inverted distractors. Difficulty easy 20 / medium 18 / hard 2. Repairs requested from both authors; re-grade on the new sha required."
+     "passed": true,
+     "verdict": "Post-repair exclusivity grader (line + 4 options, key unmarked) agreed with the key 40/40; 5 items with a second acceptable reply are excluded by the keep list, so every INSERTED item is sole-acceptable. Difficulty easy 21 / medium 17 / hard 2 (grader), lighter than real TOEFL."
     },
     "nosource": {
      "passed": true,
      "n": 40,
-     "mean": 35,
+     "mean": 34.2,
      "control": 25,
-     "margin": 10,
+     "margin": 9.2,
      "solvers": [
       {
-       "score": 15,
-       "pct": 37.5,
-       "confident": 2,
-       "spread": "5/10/14/11"
+       "score": 11,
+       "pct": 27.5,
+       "confident": 0,
+       "spread": "7/5/12/16"
       },
       {
-       "score": 14,
-       "pct": 35,
-       "confident": 4,
-       "spread": "6/9/13/12"
+       "score": 18,
+       "pct": 45,
+       "confident": 5,
+       "spread": "11/6/12/11"
       },
       {
-       "score": 13,
-       "pct": 32.5,
-       "confident": 19,
+       "score": 12,
+       "pct": 30,
+       "confident": 7,
        "spread": "11/7/13/9"
       }
      ],
-     "verdict": "Options only, keys dealt flat 10/10/10/10: 37.5 / 35.0 / 32.5, mean 35.0, margin +10.0. Passes the calibrated choose_response bar (published +25.5, +4 tolerance) and is worse than cr-v7 (+1.4). 7 of 40 solved by all three. All solvers named the same heuristic: the reply to the canonical complication for the named setting."
+     "verdict": "POST-REPAIR attack on the final bytes, options only, keys dealt flat 10/10/10/10: 27.5 / 45.0 / 30.0, mean 34.2, margin +9.2 (pre-repair +10.0 - the repair changed nothing measurable). Passes the calibrated choose_response bar (published +25.5, +4 tolerance). 6 of 40 solved by all three; all solvers named \"the reply to the typical complication for the setting\" and none found a structural tell."
     },
     "elimination": {
-     "passed": false,
-     "verdict": "Not probed separately; blocked on withsource repairs first."
+     "passed": true,
+     "verdict": "Options-only elimination probe (10-to-1 certain-reject standard) on the final bytes: 0 of 40 items carry an on-sight reject; no formal tell, topical breadth but no topical distance."
     },
     "tells": {
      "passed": true,
