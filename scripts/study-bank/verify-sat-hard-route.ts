@@ -14,7 +14,17 @@ async function main() {
   const section = (process.argv[2] ?? 'reading_writing') as 'reading_writing' | 'math'
   // A real test account (FK on study_item_exposures.student_id). Only the
   // rows written under this run's session ids are deleted afterwards.
-  const studentId = process.env.VERIFY_STUDENT_ID ?? '153e9944-3a2d-4f27-9c47-7f2d0d3f8a01'
+  // The hardcoded default here was an id no longer present in `users`, so
+  // every exposure write failed with a foreign-key error, unseen-first saw
+  // an empty history, and the run reported repeats that were an artefact of
+  // the broken id rather than a property of the draw. A verifier whose own
+  // write fails must not go on to report a number. Resolve a real student
+  // and abort if the id does not exist.
+  const studentId = process.env.VERIFY_STUDENT_ID
+    ?? (await dbAdmin.from('students').select('user_id').limit(1).single()).data?.user_id
+  if (!studentId) throw new Error('no student id: set VERIFY_STUDENT_ID')
+  const { data: whoami } = await dbAdmin.from('users').select('id').eq('id', studentId).maybeSingle()
+  if (!whoami) throw new Error(`student ${studentId} is not in users; exposures would fail and the result would be meaningless`)
   const sessions: string[] = []
   const n = SAT_MODULE_CONFIG[section].moduleSize
   const seenIds = new Set<string>()
