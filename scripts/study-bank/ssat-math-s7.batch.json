@@ -1,0 +1,1402 @@
+[
+  {
+    "id": "SM7-01",
+    "domain": "Math",
+    "subskill": "percent of an amount in a tax context",
+    "difficulty": "easy",
+    "prompt": "A jacket is priced at $60.00 and the sales tax rate is 8 percent. How many dollars is the sales tax on the jacket?",
+    "choices": [
+      "4.80",
+      "6.00",
+      "7.50",
+      "52.80",
+      "64.80"
+    ],
+    "correct_answer": "4.80",
+    "explanation": "The tax is 8 percent of $60.00, that is 0.08 x 60 = $4.80. The question asks for the tax itself, not the total the shopper pays.",
+    "solve": "const p=60, r=0.08; return (p*r).toFixed(2);",
+    "distractor_steps": [
+      {
+        "choice": "6.00",
+        "mis_step": "used 10 percent instead of 8 percent"
+      },
+      {
+        "choice": "7.50",
+        "mis_step": "divided 60 by 8 instead of taking 8 percent of 60"
+      },
+      {
+        "choice": "52.80",
+        "mis_step": "subtracted the tax from the price and gave the discounted price"
+      },
+      {
+        "choice": "64.80",
+        "mis_step": "gave the total price including tax rather than the tax"
+      }
+    ]
+  },
+  {
+    "id": "SM7-02",
+    "domain": "Math",
+    "subskill": "mean of a small data set",
+    "difficulty": "easy",
+    "prompt": "What is the mean of the five numbers 12, 15, 9, 21 and 13?",
+    "choices": [
+      "9",
+      "11.67",
+      "12",
+      "13",
+      "14"
+    ],
+    "correct_answer": "14",
+    "explanation": "The five numbers add to 12 + 15 + 9 + 21 + 13 = 70, and 70 divided by 5 is 14.",
+    "solve": "const d=[12,15,9,21,13]; return d.reduce((a,b)=>a+b,0)/d.length;",
+    "distractor_steps": [
+      {
+        "choice": "9",
+        "mis_step": "reported the smallest value in the list"
+      },
+      {
+        "choice": "11.67",
+        "mis_step": "divided the total of 70 by 6 instead of 5"
+      },
+      {
+        "choice": "12",
+        "mis_step": "reported the range, 21 - 9"
+      },
+      {
+        "choice": "13",
+        "mis_step": "reported the median of the sorted list rather than the mean"
+      }
+    ]
+  },
+  {
+    "id": "SM7-03",
+    "domain": "Math",
+    "subskill": "solving a two-step linear equation",
+    "difficulty": "easy",
+    "prompt": "If 4(x - 3) = 20, what is the value of x?",
+    "choices": [
+      "2",
+      "5",
+      "5.75",
+      "8",
+      "23"
+    ],
+    "correct_answer": "8",
+    "explanation": "Dividing both sides by 4 gives x - 3 = 5, so x = 8. Checking, 4(8 - 3) = 4 x 5 = 20.",
+    "solve": "return 20/4 + 3;",
+    "distractor_steps": [
+      {
+        "choice": "2",
+        "mis_step": "divided by 4 and then subtracted 3 instead of adding it"
+      },
+      {
+        "choice": "5",
+        "mis_step": "stopped at x - 3 = 5 and reported that value as x"
+      },
+      {
+        "choice": "5.75",
+        "mis_step": "distributed only the x, solving 4x - 3 = 20"
+      },
+      {
+        "choice": "23",
+        "mis_step": "added 3 to 20 without dividing by 4 first"
+      }
+    ]
+  },
+  {
+    "id": "SM7-04",
+    "domain": "Math",
+    "subskill": "area of a triangle",
+    "difficulty": "easy",
+    "prompt": "A triangle has a base of 16 centimetres and a height of 7 centimetres. What is its area, in square centimetres?",
+    "choices": [
+      "8",
+      "23",
+      "46",
+      "56",
+      "112"
+    ],
+    "correct_answer": "56",
+    "explanation": "The area of a triangle is one half of base times height: 0.5 x 16 x 7 = 56 square centimetres.",
+    "solve": "return 0.5*16*7;",
+    "distractor_steps": [
+      {
+        "choice": "8",
+        "mis_step": "reported half the base rather than the area"
+      },
+      {
+        "choice": "23",
+        "mis_step": "added the base and the height"
+      },
+      {
+        "choice": "46",
+        "mis_step": "doubled the sum of the base and the height, as for a rectangle's perimeter"
+      },
+      {
+        "choice": "112",
+        "mis_step": "multiplied base by height and omitted the factor of one half"
+      }
+    ]
+  },
+  {
+    "id": "SM7-05",
+    "domain": "Math",
+    "subskill": "complement of a fractional part of a group",
+    "difficulty": "easy",
+    "prompt": "Of the 48 students in a year group, 3/8 walk to school. How many of the students do NOT walk to school?",
+    "choices": [
+      "6",
+      "18",
+      "30",
+      "40",
+      "45"
+    ],
+    "correct_answer": "30",
+    "explanation": "One eighth of 48 is 6, so 3/8 of 48 is 18 students who walk. The rest, 48 - 18 = 30, do not walk. Equivalently 5/8 of 48 is 30.",
+    "solve": "const n=48; return n - n*3/8;",
+    "distractor_steps": [
+      {
+        "choice": "6",
+        "mis_step": "found one eighth of 48 and stopped"
+      },
+      {
+        "choice": "18",
+        "mis_step": "gave the number who DO walk"
+      },
+      {
+        "choice": "40",
+        "mis_step": "subtracted the denominator 8 from 48"
+      },
+      {
+        "choice": "45",
+        "mis_step": "subtracted the numerator 3 from 48"
+      }
+    ]
+  },
+  {
+    "id": "SM7-06",
+    "domain": "Math",
+    "subskill": "converting a map distance using a scale",
+    "difficulty": "easy",
+    "prompt": "On a map, 1 centimetre represents 25 kilometres. Two towns are 7.5 centimetres apart on the map. How many kilometres apart are the towns?",
+    "choices": [
+      "3.33",
+      "17.5",
+      "32.5",
+      "187.5",
+      "200"
+    ],
+    "correct_answer": "187.5",
+    "explanation": "Each centimetre stands for 25 kilometres, so 7.5 centimetres stands for 7.5 x 25 = 187.5 kilometres.",
+    "solve": "return 7.5*25;",
+    "distractor_steps": [
+      {
+        "choice": "3.33",
+        "mis_step": "divided 25 by 7.5 instead of multiplying"
+      },
+      {
+        "choice": "17.5",
+        "mis_step": "subtracted 7.5 from 25"
+      },
+      {
+        "choice": "32.5",
+        "mis_step": "added 7.5 to 25"
+      },
+      {
+        "choice": "200",
+        "mis_step": "rounded 7.5 centimetres up to 8 before multiplying"
+      }
+    ]
+  },
+  {
+    "id": "SM7-07",
+    "domain": "Math",
+    "subskill": "reversing two successive percent changes",
+    "difficulty": "medium",
+    "prompt": "The price of a share fell 20 percent one week and then rose 30 percent the following week, ending at $260. What was the price of the share before the fall?",
+    "choices": [
+      "200",
+      "236.36",
+      "250",
+      "270.40",
+      "325"
+    ],
+    "correct_answer": "250",
+    "explanation": "Falling 20 percent multiplies the price by 0.80 and rising 30 percent multiplies it by 1.30, so the original price was multiplied by 0.80 x 1.30 = 1.04. Undoing that, 260 divided by 1.30 is 200 and 200 divided by 0.80 is $250. The two percents act on different amounts, so they do not cancel.",
+    "solve": "const fin=260; const orig=fin/1.3/0.8; return Math.round(orig*100)/100;",
+    "distractor_steps": [
+      {
+        "choice": "200",
+        "mis_step": "undid only the 30 percent rise and stopped"
+      },
+      {
+        "choice": "236.36",
+        "mis_step": "treated the two changes as a single 10 percent rise and divided by 1.10"
+      },
+      {
+        "choice": "270.40",
+        "mis_step": "multiplied 260 by the net factor 1.04 instead of dividing by it"
+      },
+      {
+        "choice": "325",
+        "mis_step": "undid only the 20 percent fall and stopped"
+      }
+    ]
+  },
+  {
+    "id": "SM7-08",
+    "domain": "Math",
+    "subskill": "comparing unit prices across different mass units",
+    "difficulty": "medium",
+    "prompt": "Brand A sells 750 grams of oats for $4.50. Brand B sells 1.2 kilograms of the same oats for $6.96. How many CENTS less per 100 grams does the cheaper brand cost?",
+    "choices": [
+      "2",
+      "2.46",
+      "20",
+      "58",
+      "60"
+    ],
+    "correct_answer": "2",
+    "explanation": "Brand A costs 450 cents for 7.5 hundred-gram units, that is 60 cents per 100 grams. Brand B is 1,200 grams, so 696 cents for 12 hundred-gram units, that is 58 cents per 100 grams. Brand B is cheaper by 60 - 58 = 2 cents per 100 grams.",
+    "solve": "const a=4.50/750*100, b=6.96/1200*100; return Math.round((a-b)*100);",
+    "distractor_steps": [
+      {
+        "choice": "2.46",
+        "mis_step": "gave the difference between the two package prices in dollars"
+      },
+      {
+        "choice": "20",
+        "mis_step": "gave the difference per KILOGRAM rather than per 100 grams"
+      },
+      {
+        "choice": "58",
+        "mis_step": "gave brand B's price per 100 grams instead of the difference"
+      },
+      {
+        "choice": "60",
+        "mis_step": "gave brand A's price per 100 grams instead of the difference"
+      }
+    ]
+  },
+  {
+    "id": "SM7-09",
+    "domain": "Math",
+    "subskill": "probability of a complementary event",
+    "difficulty": "medium",
+    "prompt": "A bag contains 4 red marbles, 6 green marbles and 5 blue marbles. One marble is drawn at random. What is the probability that it is NOT green?",
+    "choices": [
+      "4/15",
+      "1/3",
+      "2/5",
+      "3/5",
+      "3/2"
+    ],
+    "correct_answer": "3/5",
+    "explanation": "There are 15 marbles in all, and 15 - 6 = 9 of them are not green, so the probability is 9/15 = 3/5.",
+    "solve": "return (4+5)/15;",
+    "distractor_steps": [
+      {
+        "choice": "4/15",
+        "mis_step": "gave the probability of drawing a red marble"
+      },
+      {
+        "choice": "1/3",
+        "mis_step": "gave the probability of drawing a blue marble"
+      },
+      {
+        "choice": "2/5",
+        "mis_step": "gave the probability that the marble IS green"
+      },
+      {
+        "choice": "3/2",
+        "mis_step": "gave the odds against green, 9 to 6, rather than a probability"
+      }
+    ]
+  },
+  {
+    "id": "SM7-10",
+    "domain": "Math",
+    "subskill": "evaluating a line through two given points",
+    "difficulty": "medium",
+    "prompt": "A line passes through the points (-2, 9) and (4, -3). What is the value of y on this line when x = 6?",
+    "choices": [
+      "-7",
+      "-2",
+      "3",
+      "5",
+      "25"
+    ],
+    "correct_answer": "-7",
+    "explanation": "The slope is (-3 - 9) / (4 - (-2)) = -12/6 = -2. Starting from (-2, 9) and moving 8 units right to x = 6 lowers y by 2 x 8 = 16, so y = 9 - 16 = -7.",
+    "solve": "const m=(-3-9)/(4-(-2)); return 9 + m*(6-(-2));",
+    "distractor_steps": [
+      {
+        "choice": "-2",
+        "mis_step": "gave the slope of the line rather than a value of y"
+      },
+      {
+        "choice": "3",
+        "mis_step": "gave the y-coordinate of the midpoint of the two given points"
+      },
+      {
+        "choice": "5",
+        "mis_step": "gave the y-intercept of the line"
+      },
+      {
+        "choice": "25",
+        "mis_step": "computed the slope as +2, losing the sign in the numerator"
+      }
+    ]
+  },
+  {
+    "id": "SM7-11",
+    "domain": "Math",
+    "subskill": "system of equations from a coin total",
+    "difficulty": "medium",
+    "prompt": "A jar contains only nickels, worth 5 cents each, and dimes, worth 10 cents each. There are 32 coins in the jar with a total value of $2.45. How many dimes are in the jar?",
+    "choices": [
+      "15",
+      "17",
+      "24.5",
+      "49",
+      "85"
+    ],
+    "correct_answer": "17",
+    "explanation": "If all 32 coins were nickels the total would be 160 cents. The actual total is 245 cents, which is 85 cents more, and each dime replacing a nickel adds 5 cents, so there are 85 / 5 = 17 dimes.",
+    "solve": "let ans=null; for(let d=0;d<=32;d++){ if(5*(32-d)+10*d===245) ans=d; } return ans;",
+    "distractor_steps": [
+      {
+        "choice": "15",
+        "mis_step": "gave the number of nickels rather than the number of dimes"
+      },
+      {
+        "choice": "24.5",
+        "mis_step": "divided 245 by 10, as if every coin were a dime"
+      },
+      {
+        "choice": "49",
+        "mis_step": "divided 245 by 5, as if every coin were a nickel"
+      },
+      {
+        "choice": "85",
+        "mis_step": "stopped at the 85-cent excess without dividing by 5"
+      }
+    ]
+  },
+  {
+    "id": "SM7-12",
+    "domain": "Math",
+    "subskill": "radius of a circle from its area",
+    "difficulty": "medium",
+    "prompt": "A circular garden has an area of 154 square metres. Using pi = 22/7, what is the radius of the garden, in metres?",
+    "choices": [
+      "7",
+      "22",
+      "44",
+      "49",
+      "77"
+    ],
+    "correct_answer": "7",
+    "explanation": "From area = pi x r squared, r squared = 154 divided by 22/7 = 154 x 7 / 22 = 49, so the radius is the square root of 49, which is 7 metres.",
+    "solve": "const A=154, pi=22/7; return Math.sqrt(A/pi);",
+    "distractor_steps": [
+      {
+        "choice": "22",
+        "mis_step": "divided the area by 7 instead of by 22/7"
+      },
+      {
+        "choice": "44",
+        "mis_step": "computed the circumference, 2 x 22/7 x 7, instead of the radius"
+      },
+      {
+        "choice": "49",
+        "mis_step": "found r squared = 49 and did not take the square root"
+      },
+      {
+        "choice": "77",
+        "mis_step": "halved the area"
+      }
+    ]
+  },
+  {
+    "id": "SM7-13",
+    "domain": "Math",
+    "subskill": "term of a recursively defined sequence",
+    "difficulty": "medium",
+    "prompt": "The first term of a sequence is 5, and each term after the first is 3 more than twice the term before it. What is the fourth term of the sequence?",
+    "choices": [
+      "14",
+      "29",
+      "40",
+      "61",
+      "125"
+    ],
+    "correct_answer": "61",
+    "explanation": "The terms are 5, then 2(5) + 3 = 13, then 2(13) + 3 = 29, then 2(29) + 3 = 61.",
+    "solve": "let t=5; for(let i=1;i<4;i++) t=2*t+3; return t;",
+    "distractor_steps": [
+      {
+        "choice": "14",
+        "mis_step": "added 3 each time instead of doubling and adding 3"
+      },
+      {
+        "choice": "29",
+        "mis_step": "stopped at the third term"
+      },
+      {
+        "choice": "40",
+        "mis_step": "doubled each time and never added the 3"
+      },
+      {
+        "choice": "125",
+        "mis_step": "went one term too far and gave the fifth term"
+      }
+    ]
+  },
+  {
+    "id": "SM7-14",
+    "domain": "Math",
+    "subskill": "effect of scaling an edge on volume",
+    "difficulty": "medium",
+    "prompt": "The edge length of a cube is increased by 50 percent. The volume of the new cube is what percent of the volume of the original cube?",
+    "choices": [
+      "150",
+      "225",
+      "237.5",
+      "250",
+      "337.5"
+    ],
+    "correct_answer": "337.5",
+    "explanation": "Each edge is multiplied by 1.5, and volume depends on three edges, so the volume is multiplied by 1.5 cubed = 3.375. The new volume is 337.5 percent of the original.",
+    "solve": "return Math.pow(1.5,3)*100;",
+    "distractor_steps": [
+      {
+        "choice": "150",
+        "mis_step": "gave the factor for a single edge rather than for the volume"
+      },
+      {
+        "choice": "225",
+        "mis_step": "used 1.5 squared, the factor for an area rather than a volume"
+      },
+      {
+        "choice": "237.5",
+        "mis_step": "gave the percent INCREASE rather than the percent OF the original"
+      },
+      {
+        "choice": "250",
+        "mis_step": "added 150 percent to the original 100 percent"
+      }
+    ]
+  },
+  {
+    "id": "SM7-15",
+    "domain": "Math",
+    "subskill": "recovering a value that changes a mean",
+    "difficulty": "medium",
+    "prompt": "The mean of eight numbers is 12. When a ninth number is included, the mean of the nine numbers is 13. What is the ninth number?",
+    "choices": [
+      "1",
+      "8",
+      "13",
+      "21",
+      "117"
+    ],
+    "correct_answer": "21",
+    "explanation": "The eight numbers total 8 x 12 = 96, and the nine numbers total 9 x 13 = 117. The ninth number is 117 - 96 = 21; adding a number one above the old mean does not raise the mean by one.",
+    "solve": "return 9*13 - 8*12;",
+    "distractor_steps": [
+      {
+        "choice": "1",
+        "mis_step": "gave the change in the mean rather than the new number"
+      },
+      {
+        "choice": "8",
+        "mis_step": "computed 8 x 13 - 8 x 12, using eight numbers on both sides"
+      },
+      {
+        "choice": "13",
+        "mis_step": "gave the new mean"
+      },
+      {
+        "choice": "117",
+        "mis_step": "gave the total of the nine numbers without subtracting the old total"
+      }
+    ]
+  },
+  {
+    "id": "SM7-16",
+    "domain": "Math",
+    "subskill": "counting with the inclusion-exclusion principle",
+    "difficulty": "medium",
+    "prompt": "How many of the integers from 1 to 200 inclusive are divisible by 4 or by 6?",
+    "choices": [
+      "16",
+      "33",
+      "50",
+      "67",
+      "83"
+    ],
+    "correct_answer": "67",
+    "explanation": "There are 50 multiples of 4 and 33 multiples of 6 up to 200, and 16 multiples of 12, which are counted in both lists. So the count is 50 + 33 - 16 = 67.",
+    "solve": "let c=0; for(let n=1;n<=200;n++) if(n%4===0||n%6===0) c++; return c;",
+    "distractor_steps": [
+      {
+        "choice": "16",
+        "mis_step": "counted only the integers divisible by both"
+      },
+      {
+        "choice": "33",
+        "mis_step": "counted only the multiples of 6"
+      },
+      {
+        "choice": "50",
+        "mis_step": "counted only the multiples of 4"
+      },
+      {
+        "choice": "83",
+        "mis_step": "added the two counts without removing the overlap"
+      }
+    ]
+  },
+  {
+    "id": "SM7-17",
+    "domain": "Math",
+    "subskill": "inverse proportion between workers and time",
+    "difficulty": "medium",
+    "prompt": "A job takes 6 workers 15 days to finish. Working at the same rate, how many days would 9 workers take to finish the same job?",
+    "choices": [
+      "9",
+      "10",
+      "12",
+      "22.5",
+      "90"
+    ],
+    "correct_answer": "10",
+    "explanation": "The job needs 6 x 15 = 90 worker-days. Divided among 9 workers that is 90 / 9 = 10 days. More workers means fewer days, so the two quantities are inversely, not directly, proportional.",
+    "solve": "return 6*15/9;",
+    "distractor_steps": [
+      {
+        "choice": "9",
+        "mis_step": "gave the number of workers rather than a number of days"
+      },
+      {
+        "choice": "12",
+        "mis_step": "subtracted one day for each of the three extra workers"
+      },
+      {
+        "choice": "22.5",
+        "mis_step": "treated the relationship as direct, computing 15 x 9 / 6"
+      },
+      {
+        "choice": "90",
+        "mis_step": "gave the total worker-days without dividing by 9"
+      }
+    ]
+  },
+  {
+    "id": "SM7-18",
+    "domain": "Math",
+    "subskill": "distance between two points in the plane",
+    "difficulty": "medium",
+    "prompt": "What is the distance between the points (-3, 2) and (5, -4) in the coordinate plane?",
+    "choices": [
+      "10",
+      "14",
+      "28",
+      "48",
+      "100"
+    ],
+    "correct_answer": "10",
+    "explanation": "The horizontal separation is 8 and the vertical separation is 6, so the distance is the square root of 8 squared plus 6 squared, which is the square root of 100, or 10.",
+    "solve": "return Math.hypot(5-(-3), -4-2);",
+    "distractor_steps": [
+      {
+        "choice": "14",
+        "mis_step": "added the horizontal and vertical separations"
+      },
+      {
+        "choice": "28",
+        "mis_step": "doubled the sum of the two separations"
+      },
+      {
+        "choice": "48",
+        "mis_step": "multiplied the two separations"
+      },
+      {
+        "choice": "100",
+        "mis_step": "computed 64 + 36 and did not take the square root"
+      }
+    ]
+  },
+  {
+    "id": "SM7-19",
+    "domain": "Math",
+    "subskill": "finding a total from a percent difference",
+    "difficulty": "medium",
+    "prompt": "In a survey, 45 percent of the respondents chose option A and 30 percent chose option B. If 108 more respondents chose A than chose B, how many people responded to the survey in total?",
+    "choices": [
+      "144",
+      "216",
+      "240",
+      "360",
+      "720"
+    ],
+    "correct_answer": "720",
+    "explanation": "The gap between the two options is 45 - 30 = 15 percent of the total, and that gap is 108 people. So the total is 108 divided by 0.15 = 720.",
+    "solve": "return 108/(0.45-0.30);",
+    "distractor_steps": [
+      {
+        "choice": "144",
+        "mis_step": "divided 108 by 0.75, the sum of the two percents"
+      },
+      {
+        "choice": "216",
+        "mis_step": "doubled the difference of 108"
+      },
+      {
+        "choice": "240",
+        "mis_step": "divided 108 by 0.45, using only option A's share"
+      },
+      {
+        "choice": "360",
+        "mis_step": "divided 108 by 0.30, using only option B's share"
+      }
+    ]
+  },
+  {
+    "id": "SM7-20",
+    "domain": "Math",
+    "subskill": "sum of the solutions of an absolute-value equation",
+    "difficulty": "medium",
+    "prompt": "If |2x - 5| = 9, what is the sum of all possible values of x?",
+    "choices": [
+      "-2",
+      "4.5",
+      "5",
+      "7",
+      "14"
+    ],
+    "correct_answer": "5",
+    "explanation": "Either 2x - 5 = 9, giving x = 7, or 2x - 5 = -9, giving x = -2. The sum of the two solutions is 7 + (-2) = 5.",
+    "solve": "const a=(9+5)/2, b=(-9+5)/2; return a+b;",
+    "distractor_steps": [
+      {
+        "choice": "-2",
+        "mis_step": "gave only the solution from the negative case"
+      },
+      {
+        "choice": "4.5",
+        "mis_step": "solved 2x = 9, dropping the -5"
+      },
+      {
+        "choice": "7",
+        "mis_step": "gave only the solution from the positive case"
+      },
+      {
+        "choice": "14",
+        "mis_step": "solved 2x = 14 and reported 14 without dividing by 2"
+      }
+    ]
+  },
+  {
+    "id": "SM7-21",
+    "domain": "Math",
+    "subskill": "height of a solid from its volume",
+    "difficulty": "medium",
+    "prompt": "A box with a square base has a base edge of 4 centimetres and a volume of 96 cubic centimetres. What is the height of the box, in centimetres?",
+    "choices": [
+      "6",
+      "12",
+      "16",
+      "24",
+      "384"
+    ],
+    "correct_answer": "6",
+    "explanation": "The base area is 4 x 4 = 16 square centimetres, so the height is 96 / 16 = 6 centimetres.",
+    "solve": "return 96/(4*4);",
+    "distractor_steps": [
+      {
+        "choice": "12",
+        "mis_step": "divided 96 by 8, using twice the edge rather than the square of the edge"
+      },
+      {
+        "choice": "16",
+        "mis_step": "gave the area of the base rather than the height"
+      },
+      {
+        "choice": "24",
+        "mis_step": "divided 96 by the edge length instead of by the base area"
+      },
+      {
+        "choice": "384",
+        "mis_step": "multiplied the volume by the edge length"
+      }
+    ]
+  },
+  {
+    "id": "SM7-22",
+    "domain": "Math",
+    "subskill": "equal perimeters of two different regular figures",
+    "difficulty": "medium",
+    "prompt": "A square and an equilateral triangle have the same perimeter. Each side of the square is 9 centimetres. What is the length, in centimetres, of each side of the triangle?",
+    "choices": [
+      "6.75",
+      "9",
+      "12",
+      "18",
+      "36"
+    ],
+    "correct_answer": "12",
+    "explanation": "The square's perimeter is 4 x 9 = 36 centimetres. The triangle has the same perimeter spread over three sides, so each side is 36 / 3 = 12 centimetres.",
+    "solve": "return 4*9/3;",
+    "distractor_steps": [
+      {
+        "choice": "6.75",
+        "mis_step": "divided 27 by 4, exchanging the roles of the two figures"
+      },
+      {
+        "choice": "9",
+        "mis_step": "repeated the side of the square"
+      },
+      {
+        "choice": "18",
+        "mis_step": "halved the perimeter instead of dividing it by 3"
+      },
+      {
+        "choice": "36",
+        "mis_step": "gave the shared perimeter rather than one side"
+      }
+    ]
+  },
+  {
+    "id": "SM7-23",
+    "domain": "Math",
+    "subskill": "counting unordered selections",
+    "difficulty": "medium",
+    "prompt": "In how many different ways can a committee of 3 people be chosen from a group of 8 people?",
+    "choices": [
+      "56",
+      "84",
+      "112",
+      "336",
+      "512"
+    ],
+    "correct_answer": "56",
+    "explanation": "There are 8 x 7 x 6 = 336 ordered ways to pick three people, and each committee of three is counted 3 x 2 x 1 = 6 times among them, so the number of committees is 336 / 6 = 56.",
+    "solve": "function C(n,k){let r=1;for(let i=0;i<k;i++) r=r*(n-i)/(i+1); return r;} return C(8,3);",
+    "distractor_steps": [
+      {
+        "choice": "84",
+        "mis_step": "divided the 336 ordered picks by 4 rather than by 3 x 2 x 1"
+      },
+      {
+        "choice": "112",
+        "mis_step": "divided the 336 ordered picks by 3 rather than by 3 x 2 x 1"
+      },
+      {
+        "choice": "336",
+        "mis_step": "counted ordered selections, treating a reordering as a new committee"
+      },
+      {
+        "choice": "512",
+        "mis_step": "computed 8 cubed, allowing the same person to fill more than one seat"
+      }
+    ]
+  },
+  {
+    "id": "SM7-24",
+    "domain": "Math",
+    "subskill": "interior angle of a regular polygon",
+    "difficulty": "medium",
+    "prompt": "A regular polygon has 12 sides. What is the measure, in degrees, of each of its interior angles?",
+    "choices": [
+      "30",
+      "150",
+      "165",
+      "180",
+      "1800"
+    ],
+    "correct_answer": "150",
+    "explanation": "The interior angles of a 12-sided polygon total (12 - 2) x 180 = 1,800 degrees, and the polygon is regular, so each angle is 1,800 / 12 = 150 degrees.",
+    "solve": "const n=12; return (n-2)*180/n;",
+    "distractor_steps": [
+      {
+        "choice": "30",
+        "mis_step": "gave the exterior angle, 360 / 12"
+      },
+      {
+        "choice": "165",
+        "mis_step": "used (12 - 1) x 180 / 12, subtracting 1 instead of 2"
+      },
+      {
+        "choice": "180",
+        "mis_step": "gave the angle on a straight line"
+      },
+      {
+        "choice": "1800",
+        "mis_step": "gave the total of all twelve interior angles without dividing"
+      }
+    ]
+  },
+  {
+    "id": "SM7-25",
+    "domain": "Math",
+    "subskill": "a two-variable purchase with only whole-number solutions",
+    "difficulty": "hard",
+    "prompt": "Adult tickets cost $7 each and child tickets cost $4 each. A group spent exactly $61 on tickets and bought more child tickets than adult tickets. How many child tickets did the group buy?",
+    "choices": [
+      "3",
+      "5",
+      "10",
+      "13",
+      "15"
+    ],
+    "correct_answer": "10",
+    "explanation": "If a is the number of adult tickets, 61 - 7a must be a positive multiple of 4. That happens for a = 3, giving 40/4 = 10 child tickets, and for a = 7, giving 3 child tickets. Only the first has more child tickets than adult tickets, so the group bought 10 child tickets.",
+    "solve": "let ans=null; for(let a=1;a<=8;a++){ const rem=61-7*a; if(rem>0 && rem%4===0){ const c=rem/4; if(c>a) ans=c; } } return ans;",
+    "distractor_steps": [
+      {
+        "choice": "3",
+        "mis_step": "gave the number of adult tickets in the solution that was used"
+      },
+      {
+        "choice": "5",
+        "mis_step": "assumed equal numbers of each kind, dividing 61 by the $11 cost of a pair"
+      },
+      {
+        "choice": "13",
+        "mis_step": "assumed exactly one adult ticket and divided the remaining $54 by 4"
+      },
+      {
+        "choice": "15",
+        "mis_step": "ignored the adult tickets and divided $61 by 4"
+      }
+    ]
+  },
+  {
+    "id": "SM7-26",
+    "domain": "Math",
+    "subskill": "maximising a side length under the triangle inequality",
+    "difficulty": "hard",
+    "prompt": "An isosceles triangle has a perimeter of 40 centimetres, and every side length is a whole number of centimetres. What is the greatest possible length, in centimetres, of the side that is not one of the two equal sides?",
+    "choices": [
+      "12",
+      "18",
+      "19",
+      "20",
+      "38"
+    ],
+    "correct_answer": "18",
+    "explanation": "If each equal side is s, the third side is 40 - 2s, which is even. For the three lengths to form a triangle, the two equal sides must together exceed the third: 2s > 40 - 2s, so s > 10. The smallest whole value is s = 11, giving a third side of 40 - 22 = 18 centimetres.",
+    "solve": "let best=0; for(let s=1;s<20;s++){ const b=40-2*s; if(b>0 && 2*s>b) best=Math.max(best,b); } return best;",
+    "distractor_steps": [
+      {
+        "choice": "12",
+        "mis_step": "required the third side to be shorter than each equal side rather than shorter than their sum"
+      },
+      {
+        "choice": "19",
+        "mis_step": "ignored that 40 - 2s must be even"
+      },
+      {
+        "choice": "20",
+        "mis_step": "allowed 2s = 40 - 2s, which flattens the triangle into a line"
+      },
+      {
+        "choice": "38",
+        "mis_step": "ignored the triangle inequality entirely and took s = 1"
+      }
+    ]
+  },
+  {
+    "id": "SM7-27",
+    "domain": "Math",
+    "subskill": "filling a volume at a given rate, with a unit change",
+    "difficulty": "hard",
+    "prompt": "A rectangular swimming pool measures 8 metres by 5 metres and is 1.2 metres deep. Water is pumped in at 400 litres per minute. How many hours does it take to fill the pool? (1 cubic metre = 1,000 litres)",
+    "choices": [
+      "0.12",
+      "1.67",
+      "2",
+      "120",
+      "7200"
+    ],
+    "correct_answer": "2",
+    "explanation": "The pool holds 8 x 5 x 1.2 = 48 cubic metres, which is 48,000 litres. At 400 litres per minute that takes 48,000 / 400 = 120 minutes, and 120 minutes is 2 hours.",
+    "solve": "const vol=8*5*1.2*1000; const min=vol/400; return min/60;",
+    "distractor_steps": [
+      {
+        "choice": "0.12",
+        "mis_step": "treated the 48 cubic metres as 48 litres"
+      },
+      {
+        "choice": "1.67",
+        "mis_step": "used only the 8 by 5 surface, ignoring the depth"
+      },
+      {
+        "choice": "120",
+        "mis_step": "gave the time in minutes rather than in hours"
+      },
+      {
+        "choice": "7200",
+        "mis_step": "converted the 120 minutes into seconds instead of hours"
+      }
+    ]
+  },
+  {
+    "id": "SM7-28",
+    "domain": "Math",
+    "subskill": "a radical equation with an extraneous solution",
+    "difficulty": "hard",
+    "prompt": "If the square root of (x + 12) is equal to x, what is the value of x?",
+    "choices": [
+      "-12",
+      "-3",
+      "1",
+      "3",
+      "4"
+    ],
+    "correct_answer": "4",
+    "explanation": "Squaring both sides gives x + 12 = x squared, so x squared - x - 12 = 0 and (x - 4)(x + 3) = 0. That offers x = 4 and x = -3, but a square root is never negative, so x = -3 fails the original equation and only x = 4 works.",
+    "solve": "let ans=null; for(let x=-20;x<=20;x++){ if(x+12>=0 && Math.abs(Math.sqrt(x+12)-x)<1e-9) ans=x; } return ans;",
+    "distractor_steps": [
+      {
+        "choice": "-12",
+        "mis_step": "gave the product of the two roots of the quadratic"
+      },
+      {
+        "choice": "-3",
+        "mis_step": "kept the root that squaring introduced but that the original equation rejects"
+      },
+      {
+        "choice": "1",
+        "mis_step": "gave the sum of the two roots of the quadratic"
+      },
+      {
+        "choice": "3",
+        "mis_step": "read the factors (x - 4)(x + 3) with both signs reversed"
+      }
+    ]
+  },
+  {
+    "id": "SM7-29",
+    "domain": "Math",
+    "subskill": "simultaneous remainder conditions above a bound",
+    "difficulty": "hard",
+    "prompt": "When a positive integer n is divided by 7 the remainder is 4, and when n is divided by 5 the remainder is 3. What is the least such integer that is greater than 50?",
+    "choices": [
+      "18",
+      "24",
+      "35",
+      "39",
+      "53"
+    ],
+    "correct_answer": "53",
+    "explanation": "The integers leaving remainder 4 on division by 7 are 4, 11, 18, 25, ... and of these the ones leaving remainder 3 on division by 5 are 18, 53, 88, ..., spaced 35 apart. The least one greater than 50 is 53.",
+    "solve": "let ans=null; for(let n=51;n<300;n++){ if(n%7===4 && n%5===3){ ans=n; break; } } return ans;",
+    "distractor_steps": [
+      {
+        "choice": "18",
+        "mis_step": "found the least integer meeting both conditions but ignored the requirement that it exceed 50"
+      },
+      {
+        "choice": "24",
+        "mis_step": "swapped the two remainders, solving for remainder 3 on division by 7 and 4 on division by 5"
+      },
+      {
+        "choice": "35",
+        "mis_step": "gave the common period, the least common multiple of 7 and 5"
+      },
+      {
+        "choice": "39",
+        "mis_step": "added just one of the remainders to 35"
+      }
+    ]
+  },
+  {
+    "id": "SM7-30",
+    "domain": "Math",
+    "subskill": "a shared cost that changes with group size",
+    "difficulty": "hard",
+    "prompt": "A group of friends shared a $96 restaurant bill equally. If two more friends had been present and the bill had been shared equally among all of them, each person would have paid $4 less. How many friends were in the original group?",
+    "choices": [
+      "4",
+      "6",
+      "8",
+      "12",
+      "16"
+    ],
+    "correct_answer": "6",
+    "explanation": "With n friends each pays 96/n, and with n + 2 each pays 96/(n + 2). Setting 96/n - 96/(n + 2) = 4 gives 192 = 4n(n + 2), so n squared + 2n - 48 = 0 and n = 6 (the other root, -8, is not a count of people).",
+    "solve": "let ans=null; for(let n=1;n<=50;n++){ if(Math.abs(96/n - 96/(n+2) - 4) < 1e-9) ans=n; } return ans;",
+    "distractor_steps": [
+      {
+        "choice": "4",
+        "mis_step": "repeated the $4 difference given in the problem"
+      },
+      {
+        "choice": "8",
+        "mis_step": "gave the size of the larger group rather than the original group"
+      },
+      {
+        "choice": "12",
+        "mis_step": "gave what each person in the larger group would have paid"
+      },
+      {
+        "choice": "16",
+        "mis_step": "gave what each person in the original group actually paid"
+      }
+    ]
+  },
+  {
+    "id": "SM7-31",
+    "domain": "Math",
+    "subskill": "finishing a shared job alone, answered in minutes",
+    "difficulty": "hard",
+    "prompt": "Alex can paint a room alone in 5 hours, and Blake can paint the same room alone in 3 hours. They paint together for 1 hour, and then Alex stops. How many MINUTES does Blake need to finish the room alone?",
+    "choices": [
+      "1.4",
+      "52.5",
+      "84",
+      "140",
+      "180"
+    ],
+    "correct_answer": "84",
+    "explanation": "In one hour together they paint 1/5 + 1/3 = 8/15 of the room, leaving 7/15. Blake paints 1/3 of a room per hour, so he needs (7/15) divided by (1/3) = 7/5 hours, and 7/5 hours is 84 minutes.",
+    "solve": "const rem = 1 - (1/5 + 1/3); return rem/(1/3)*60;",
+    "distractor_steps": [
+      {
+        "choice": "1.4",
+        "mis_step": "gave the time in hours where the question asks for minutes"
+      },
+      {
+        "choice": "52.5",
+        "mis_step": "let both painters continue, using the combined rate for the remaining 7/15"
+      },
+      {
+        "choice": "140",
+        "mis_step": "used Alex's rate of 1/5 per hour for the remaining 7/15"
+      },
+      {
+        "choice": "180",
+        "mis_step": "gave Blake's time for a whole room, ignoring the hour already worked"
+      }
+    ]
+  },
+  {
+    "id": "SM7-32",
+    "domain": "Math",
+    "subskill": "a stepped charge that rounds each part-unit up",
+    "difficulty": "hard",
+    "prompt": "A courier charges $8 for the first 2 kilograms of a parcel and $3 for each additional kilogram or part of a kilogram. What does it cost, in dollars, to send a parcel weighing 7.4 kilograms?",
+    "choices": [
+      "8",
+      "22.2",
+      "23",
+      "24.2",
+      "26"
+    ],
+    "correct_answer": "26",
+    "explanation": "Beyond the first 2 kilograms there are 5.4 kilograms, and a part of a kilogram is charged as a whole one, so 6 additional kilograms are billed. The cost is 8 + 6 x 3 = $26.",
+    "solve": "const w=7.4; return 8 + 3*Math.ceil(w-2);",
+    "distractor_steps": [
+      {
+        "choice": "8",
+        "mis_step": "charged only the base rate and ignored the extra weight"
+      },
+      {
+        "choice": "22.2",
+        "mis_step": "charged $3 for every kilogram of the parcel and omitted the $8 base"
+      },
+      {
+        "choice": "23",
+        "mis_step": "rounded the extra 5.4 kilograms down to 5"
+      },
+      {
+        "choice": "24.2",
+        "mis_step": "charged the extra 5.4 kilograms exactly, without rounding a part-kilogram up"
+      }
+    ]
+  },
+  {
+    "id": "SM7-33",
+    "domain": "Math",
+    "subskill": "a symmetric expression evaluated from a given sum",
+    "difficulty": "hard",
+    "prompt": "If x is a positive number and x + 1/x = 10/3, what is the value of x squared plus 1 over x squared?",
+    "choices": [
+      "4/3",
+      "64/9",
+      "82/9",
+      "100/9",
+      "118/9"
+    ],
+    "correct_answer": "82/9",
+    "explanation": "Squaring x + 1/x gives x squared + 2 + 1 over x squared, because the cross terms multiply to 1. So x squared plus 1 over x squared is (10/3) squared minus 2 = 100/9 - 18/9 = 82/9.",
+    "solve": "const s=10/3; return s*s - 2;",
+    "distractor_steps": [
+      {
+        "choice": "4/3",
+        "mis_step": "subtracted 2 from 10/3 rather than squaring first"
+      },
+      {
+        "choice": "64/9",
+        "mis_step": "subtracted 4 instead of 2, using the identity for x minus 1/x"
+      },
+      {
+        "choice": "100/9",
+        "mis_step": "squared the sum but forgot to remove the cross term 2"
+      },
+      {
+        "choice": "118/9",
+        "mis_step": "added 2 to the square instead of subtracting it"
+      }
+    ]
+  },
+  {
+    "id": "SM7-34",
+    "domain": "Math",
+    "subskill": "raising a concentration by adding pure solute",
+    "difficulty": "hard",
+    "prompt": "A 40-litre mixture is 25 percent acid. How many litres of pure acid must be added so that the new mixture is 40 percent acid?",
+    "choices": [
+      "6",
+      "10",
+      "16",
+      "24",
+      "26.67"
+    ],
+    "correct_answer": "10",
+    "explanation": "The mixture already contains 10 litres of acid. After adding x litres of acid there are 10 + x litres of acid in 40 + x litres of mixture, so 10 + x = 0.4(40 + x). That gives 0.6x = 6 and x = 10 litres; adding acid raises the total volume as well as the acid.",
+    "solve": "const V=40,c=0.25,t=0.40; return V*(t-c)/(1-t);",
+    "distractor_steps": [
+      {
+        "choice": "6",
+        "mis_step": "took 15 percent of 40, treating the total volume as unchanged"
+      },
+      {
+        "choice": "16",
+        "mis_step": "gave the amount of acid the new mixture must contain, not the amount added"
+      },
+      {
+        "choice": "24",
+        "mis_step": "gave the 60 percent of the original 40 litres that is not acid"
+      },
+      {
+        "choice": "26.67",
+        "mis_step": "set up the proportion upside down, computing 40 x 0.4 / 0.6"
+      }
+    ]
+  },
+  {
+    "id": "SM7-35",
+    "domain": "Math",
+    "subskill": "counting integers in a compound absolute-value range",
+    "difficulty": "hard",
+    "prompt": "How many integers n satisfy 3 < |n - 4| <= 6?",
+    "choices": [
+      "6",
+      "7",
+      "8",
+      "11",
+      "13"
+    ],
+    "correct_answer": "6",
+    "explanation": "The condition means n - 4 lies in [-6, -3) or (3, 6], so n lies in [-2, 1) or (7, 10]. The integers are -2, -1, 0, 8, 9 and 10, which is 6 of them. The lower bound is strict, so n = 1 and n = 7 do not count.",
+    "solve": "let c=0; for(let n=-50;n<=50;n++){ const v=Math.abs(n-4); if(v>3 && v<=6) c++; } return c;",
+    "distractor_steps": [
+      {
+        "choice": "7",
+        "mis_step": "treated the strict lower bound as <= on one branch, admitting n = 1"
+      },
+      {
+        "choice": "8",
+        "mis_step": "treated the strict lower bound as <= on both branches, admitting n = 1 and n = 7"
+      },
+      {
+        "choice": "11",
+        "mis_step": "dropped the lower bound and counted |n - 4| < 6"
+      },
+      {
+        "choice": "13",
+        "mis_step": "dropped the lower bound entirely and counted |n - 4| <= 6"
+      }
+    ]
+  },
+  {
+    "id": "SM7-36",
+    "domain": "Math",
+    "subskill": "undoing a chain of percent changes on different bases",
+    "difficulty": "hard",
+    "prompt": "A shop's revenue in March was 20 percent higher than in February. Its revenue in April was 25 percent lower than in March. April's revenue was $18,000. What was February's revenue, in dollars?",
+    "choices": [
+      "13500",
+      "15000",
+      "16200",
+      "17280",
+      "20000"
+    ],
+    "correct_answer": "20000",
+    "explanation": "February's revenue is multiplied by 1.20 to reach March and then by 0.75 to reach April, an overall factor of 0.90. So February's revenue is 18,000 / 0.90 = $20,000, and March's was $24,000.",
+    "solve": "const apr=18000; return apr/(1.2*0.75);",
+    "distractor_steps": [
+      {
+        "choice": "13500",
+        "mis_step": "applied the 25 percent fall a second time, to April"
+      },
+      {
+        "choice": "15000",
+        "mis_step": "undid only the 20 percent rise"
+      },
+      {
+        "choice": "16200",
+        "mis_step": "multiplied by the overall factor 0.90 instead of dividing by it"
+      },
+      {
+        "choice": "17280",
+        "mis_step": "applied both changes forward from April instead of working backwards"
+      }
+    ]
+  },
+  {
+    "id": "SM7-37",
+    "domain": "Math",
+    "subskill": "probability under two simultaneous divisibility conditions",
+    "difficulty": "hard",
+    "prompt": "An integer is chosen at random from the integers 1 to 50 inclusive. What is the probability that it is divisible by 3 AND leaves a remainder of 1 when divided by 4?",
+    "choices": [
+      "1/25",
+      "2/25",
+      "13/50",
+      "8/25",
+      "29/50"
+    ],
+    "correct_answer": "2/25",
+    "explanation": "An integer divisible by 3 that leaves remainder 1 on division by 4 must be 9 more than a multiple of 12. Up to 50 those are 9, 21, 33 and 45, so the probability is 4/50 = 2/25.",
+    "solve": "let c=0; for(let n=1;n<=50;n++) if(n%3===0 && n%4===1) c++; return c/50;",
+    "distractor_steps": [
+      {
+        "choice": "1/25",
+        "mis_step": "found only two of the four qualifying integers"
+      },
+      {
+        "choice": "13/50",
+        "mis_step": "counted every integer leaving remainder 1 on division by 4"
+      },
+      {
+        "choice": "8/25",
+        "mis_step": "counted every multiple of 3 up to 50"
+      },
+      {
+        "choice": "29/50",
+        "mis_step": "counted integers satisfying either condition rather than both"
+      }
+    ]
+  },
+  {
+    "id": "SM7-38",
+    "domain": "Math",
+    "subskill": "integer solutions of a quadratic across all values of a coefficient",
+    "difficulty": "hard",
+    "prompt": "For how many integer values of k does the equation x squared + kx + 36 = 0 have two DIFFERENT integer solutions?",
+    "choices": [
+      "5",
+      "8",
+      "9",
+      "10",
+      "20"
+    ],
+    "correct_answer": "8",
+    "explanation": "The two solutions multiply to 36 and add to -k. The unordered pairs of integers multiplying to 36 are (1,36), (2,18), (3,12), (4,9) and (6,6), plus the same pairs with both signs negative. The pair (6,6) is excluded because the solutions must differ, leaving 4 positive pairs and 4 negative pairs, so 8 values of k.",
+    "solve": "const s=new Set(); for(let a=-40;a<=40;a++){ for(let b=-40;b<=40;b++){ if(a!==b && a*b===36) s.add(-(a+b)); } } return s.size;",
+    "distractor_steps": [
+      {
+        "choice": "5",
+        "mis_step": "counted the five factor pairs of 36 once each and ignored the negative pairs"
+      },
+      {
+        "choice": "9",
+        "mis_step": "added back the repeated pair 6 and 6 with one sign"
+      },
+      {
+        "choice": "10",
+        "mis_step": "counted both sign versions of all five pairs, including 6 and 6"
+      },
+      {
+        "choice": "20",
+        "mis_step": "counted each of the ten signed pairs in both orders"
+      }
+    ]
+  },
+  {
+    "id": "SM7-39",
+    "domain": "Math",
+    "subskill": "a filling rate expressed in different time units",
+    "difficulty": "hard",
+    "prompt": "A machine fills 3 bottles every 8 seconds. At this rate, how many MINUTES does it take to fill 1,350 bottles?",
+    "choices": [
+      "7.5",
+      "60",
+      "450",
+      "3600",
+      "10800"
+    ],
+    "correct_answer": "60",
+    "explanation": "Filling 1,350 bottles takes 1,350 / 3 = 450 eight-second intervals, which is 450 x 8 = 3,600 seconds. That is 3,600 / 60 = 60 minutes.",
+    "solve": "return (1350/3)*8/60;",
+    "distractor_steps": [
+      {
+        "choice": "7.5",
+        "mis_step": "divided the 450 intervals by 60, as if each interval were a second"
+      },
+      {
+        "choice": "450",
+        "mis_step": "gave the number of eight-second intervals rather than a time"
+      },
+      {
+        "choice": "3600",
+        "mis_step": "gave the answer in seconds rather than minutes"
+      },
+      {
+        "choice": "10800",
+        "mis_step": "multiplied all 1,350 bottles by 8 seconds, ignoring that 3 fill at a time"
+      }
+    ]
+  },
+  {
+    "id": "SM7-40",
+    "domain": "Math",
+    "subskill": "maximising one value under a mean and a distinctness condition",
+    "difficulty": "hard",
+    "prompt": "Five different positive integers have a mean of 20, and the largest of them is 60. What is the greatest possible value of the second largest?",
+    "choices": [
+      "20",
+      "28",
+      "33",
+      "34",
+      "40"
+    ],
+    "correct_answer": "34",
+    "explanation": "The five integers total 5 x 20 = 100, so the four below the largest total 40. To make the second largest as big as possible the other three must be as small as they can be, and because the integers are different positive integers that is 1, 2 and 3. The second largest is 40 - 6 = 34.",
+    "solve": "return 5*20 - 60 - (1+2+3);",
+    "distractor_steps": [
+      {
+        "choice": "20",
+        "mis_step": "gave the mean rather than a value from the list"
+      },
+      {
+        "choice": "28",
+        "mis_step": "used 3, 4 and 5 as the three smallest values"
+      },
+      {
+        "choice": "33",
+        "mis_step": "used 1, 2 and 4 as the three smallest values"
+      },
+      {
+        "choice": "40",
+        "mis_step": "treated the remaining four as if the other three could be zero"
+      }
+    ]
+  }
+]

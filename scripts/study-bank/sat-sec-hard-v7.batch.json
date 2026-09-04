@@ -1,0 +1,410 @@
+[
+  {
+    "id": "SEC-HD-V7-01",
+    "domain": "Standard English Conventions",
+    "subskill": "form: verb in a relative clause whose antecedent is the plural noun in a 'one of those' frame, with the perfect blocked by a closed past frame",
+    "difficulty": "hard",
+    "passage": "Fewer than a dozen finds from the 1928 season were recorded on glass plates while the trenches lay open. The bronze mirror is one of those few objects that ______, and the plates, which show a wooden handle long since crumbled to powder, are the better record of it: the mirror itself came up in a block of soil and has never been cleaned.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "was photographed intact",
+      "were photographed intact",
+      "has been photographed intact",
+      "have been photographed intact"
+    ],
+    "correct_answer": "were photographed intact",
+    "explanation": "The relative pronoun \"that\" points back to \"those few objects,\" not to \"one,\" so the verb is plural: \"were photographed intact.\" \"was photographed intact\" and \"has been photographed intact\" take their number from \"one\" instead, which is the natural misreading the frame invites. \"have been photographed intact\" gets the number right but fails on the second requirement: the photographing belongs to \"the 1928 season,\" a closed past frame, and the present perfect cannot be anchored to a finished span of past time.",
+    "topic_tag": "excavation photography"
+  },
+  {
+    "id": "SEC-HD-V7-02",
+    "domain": "Standard English Conventions",
+    "subskill": "boundaries: a supplement opened with a dash closes with a dash, and the sentence must still reach a finite verb",
+    "difficulty": "medium",
+    "passage": "Every season the hurricane forecast cone is read as a picture of the storm's size, and every season the forecasters say again that it is not. The cone—drawn wide enough that the center of the storm stays inside it about two-thirds of the ______ the accumulated error of past forecasts at each lead time, and it would be exactly this wide next week if no storm had formed at all.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "time—which describes",
+      "time, describes",
+      "time describes",
+      "time—describes"
+    ],
+    "correct_answer": "time—describes",
+    "explanation": "The supplement opens with the dash before \"drawn,\" so it has to close with a dash: \"time—describes.\" \"time, describes\" closes the interruption with a comma, which does not pair with an opening dash, and \"time describes\" leaves the supplement open, so the reader is never told where the interruption ended. The second requirement is that \"The cone\" still needs a predicate: \"time—which describes\" pairs the dashes correctly and then turns everything after them into a relative clause, so the subject is left with nothing to predicate.",
+    "topic_tag": "hurricane forecasting"
+  },
+  {
+    "id": "SEC-HD-V7-03",
+    "domain": "Standard English Conventions",
+    "subskill": "form: 'the number of' takes a singular verb, with anteriority to a stated past point fixed by a 'by the time' clause",
+    "difficulty": "hard",
+    "passage": "Before 1844 an English country bank could print its own notes, and hundreds did. The number of banks whose paper circulated in the market towns ______ from the peak it reached in the year of the panic, so that by the time the Bank Charter Act closed the privilege to new entrants, most of the surviving issuers had already given up the expense of printing at all.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "had been falling steadily",
+      "have been falling steadily",
+      "were falling steadily",
+      "has been falling steadily"
+    ],
+    "correct_answer": "had been falling steadily",
+    "explanation": "The head of the subject is \"The number,\" which is singular however many banks it counts, so \"have been falling steadily\" and \"were falling steadily\" agree with the wrong word—the plural \"banks\" standing next to the verb. The second requirement is where the fall sits in time: the sentence supplies a past point, the closing of the privilege, and says the decline was already under way before it, so the past perfect is needed. \"has been falling steadily\" has the number right but runs the decline up to the present, which a frame that ends in 1844 will not hold.",
+    "topic_tag": "country banking"
+  },
+  {
+    "id": "SEC-HD-V7-04",
+    "domain": "Standard English Conventions",
+    "subskill": "form: parallelism between two objects of the same verb, with the only finite anchors ruled out by agreement",
+    "difficulty": "hard",
+    "passage": "Modern pentathlon was built around a story rather than around a sport: an officer carrying a message behind enemy lines rides a strange horse, fences, shoots, swims a river, and runs the rest of the way. Defenders of the fencing round have argued for a century that dropping it would mean giving up the story ______ the contest to five exercises with nothing but a scoring table to hold them together.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "and to reduce",
+      "and it reduces",
+      "and reducing",
+      "and reduces"
+    ],
+    "correct_answer": "and reducing",
+    "explanation": "What follows \"and\" has to match \"giving up the story,\" the first of two objects of \"would mean,\" so the gerund is required: \"and reducing.\" \"and to reduce\" swaps an infinitive for the gerund the verb takes. The other two options try to make the phrase a second predicate instead, and the second requirement defeats them: the only finite verbs available are \"have argued,\" which is plural, and \"would mean,\" which is modal, so \"and reduces\" agrees with neither. \"and it reduces\" builds a whole independent clause and runs it into the first with no comma before \"and.\"",
+    "topic_tag": "modern pentathlon"
+  },
+  {
+    "id": "SEC-HD-V7-05",
+    "domain": "Standard English Conventions",
+    "subskill": "form: agreement with a plural head separated from its verb by a singular of-phrase, with voice fixed by an agent phrase",
+    "difficulty": "medium",
+    "passage": "Radiocarbon dates from the shell midden did not settle the argument; they started a new one. The samples taken from the lowest layer of the deposit ______ by a laboratory that had been told nothing about the site, and the range it returned was eight centuries wider than the excavator's published estimate, which had rested on the style of the pottery alone.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "has been measured",
+      "were measuring",
+      "was measured",
+      "were measured"
+    ],
+    "correct_answer": "were measured",
+    "explanation": "The subject is \"The samples,\" a plural, and \"of the deposit\" is only a modifier, so \"has been measured\" and \"was measured\" agree with the singular noun nearest the verb rather than with the noun that governs it. The second requirement is voice: the sentence names the agent in \"by a laboratory that had been told nothing about the site,\" and only a passive verb can take that phrase. \"were measuring\" gets the number right and then makes the samples do the measuring.",
+    "topic_tag": "shell middens"
+  },
+  {
+    "id": "SEC-HD-V7-06",
+    "domain": "Standard English Conventions",
+    "subskill": "boundaries: two independent clauses may not be joined by a comma, and a conjunctive adverb opening the second takes a comma after it",
+    "difficulty": "medium",
+    "passage": "Sea breezes are among the few features a forecaster can time almost to the minute, because they depend on the heat capacity of water rather than on the day's synoptic pattern. How far inland the front gets is set by the strength of the opposing gradient ______ a light offshore flow can hold the boundary at the beach all afternoon, and a strong one can keep it from forming at all.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "wind, however,",
+      "wind; however,",
+      "wind; however",
+      "wind. However"
+    ],
+    "correct_answer": "wind; however,",
+    "explanation": "Two independent clauses meet at the blank, and \"however\" is an adverb rather than a conjunction, so it cannot hold them together across a comma: \"wind, however,\" is a splice. The mark has to be a semicolon or a period, and the second requirement is that a conjunctive adverb opening a clause is followed by a comma—which is what \"wind; however\" and \"wind. However\" both omit. Only \"wind; however,\" satisfies both.",
+    "topic_tag": "sea breezes"
+  },
+  {
+    "id": "SEC-HD-V7-07",
+    "domain": "Standard English Conventions",
+    "subskill": "form: plural possessive required by a reciprocal, with the verb agreeing with the singular head of the possessed noun phrase",
+    "difficulty": "hard",
+    "passage": "Historians present the gold standard as a story about metal; in practice it was a story about credit. In the decades before 1914 the discount houses stood between the Bank of England and the rest of the market, buying commercial bills from merchants they had never met, holding them for ninety days, and selling them on to whoever wanted a short asset. Because such paper could always be sold at a price, the ______ tested in a crisis, and when it was finally tested, in August of that year, the market shut in a week and did not reopen until the government had guaranteed the bills itself.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "house's confidence in one another was never",
+      "houses' confidence in one another has never been",
+      "houses' confidence in one another was never",
+      "houses' confidence in one another were never"
+    ],
+    "correct_answer": "houses' confidence in one another was never",
+    "explanation": "Three things have to come out right at once. The possessor is plural, as \"in one another\" makes plain—confidence running between several houses, not inside one—so \"house's confidence in one another was never\" puts the apostrophe where a single house would need it. The verb answers to \"confidence,\" a singular noun, and not to the plural possessor standing in front of it, so \"houses' confidence in one another were never\" agrees with the wrong word. And the sentence closes the episode off—the confidence was tested \"in August of that year\" and the market shut in a week—so \"houses' confidence in one another has never been\" runs a finished state up to the present, contradicting the clause that follows it.",
+    "topic_tag": "discount houses"
+  },
+  {
+    "id": "SEC-HD-V7-08",
+    "domain": "Standard English Conventions",
+    "subskill": "form: correlative construction whose second limb must match the first in kind",
+    "difficulty": "medium",
+    "passage": "For several seasons after the forward pass became legal, nobody used it seriously, because the penalty for an incomplete one was severe enough to make the risk absurd. The 1912 rules committee removed not only the loss of possession on an incompleted pass ______, and within two years the play had reorganized the sport around the space behind the line rather than the yard in front of it.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "but also the restriction on where the ball could cross the line",
+      "but also restricted the point at which the ball could cross",
+      "and also restricting where the ball was allowed to cross the line",
+      "but it also restricted where the ball could cross the line"
+    ],
+    "correct_answer": "but also the restriction on where the ball could cross the line",
+    "explanation": "\"not only\" is already in place before \"the loss of possession,\" a noun phrase serving as the object of \"removed,\" so its partner has to be \"but also\" followed by a second noun phrase: \"but also the restriction on where the ball could cross the line.\" \"but also restricted the point at which the ball could cross\" answers a noun phrase with a finite verb, and \"and also restricting where the ball was allowed to cross the line\" answers it with a participle and abandons \"but also\" for \"and also,\" which does not pair with \"not only.\" \"but it also restricted where the ball could cross the line\" turns the second limb into a clause, leaving the correlative half-built.",
+    "topic_tag": "forward pass"
+  },
+  {
+    "id": "SEC-HD-V7-09",
+    "domain": "Standard English Conventions",
+    "subskill": "form: fraction subject takes its number from the object of 'of', with aspect fixed by a completed past frame",
+    "difficulty": "medium",
+    "passage": "Nine hundred pages of site report settled almost nothing about the hillfort. Of the forty radiocarbon samples the excavator submitted, only a quarter of the charcoal fragments ______ that the report describes as secure; the rest came from ploughsoil, into which material of any date could have worked its way.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "has come from contexts",
+      "comes from contexts",
+      "were coming from contexts",
+      "came from contexts"
+    ],
+    "correct_answer": "came from contexts",
+    "explanation": "After a fraction the verb takes its number from what follows \"of,\" here the plural \"charcoal fragments,\" so \"has come from contexts\" and \"comes from contexts\" agree with \"a quarter\" instead. The second requirement is aspect: everything around the blank is finished past—the excavator \"submitted\" the samples and the rest \"came from ploughsoil\"—so the simple past is what the sentence is in. \"were coming from contexts\" has the number right and then puts a completed fact into a progressive, as though the fragments were on their way.",
+    "topic_tag": "hillfort dating"
+  },
+  {
+    "id": "SEC-HD-V7-10",
+    "domain": "Standard English Conventions",
+    "subskill": "form: verb agrees with a 'what'-clause subject rather than with the plural complement, and the tense must reach the present",
+    "difficulty": "hard",
+    "passage": "Forecasts have gained about a day of lead time every decade since the 1980s, and the gain is unevenly spread. What has improved most over that period ______ the large-scale flow at five days rather than the timing of a shower at five hours, and a public that judges the service by the shower will go on finding it no better than it was.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "are the predictions of",
+      "have been the predictions of",
+      "is the prediction of",
+      "was the prediction of"
+    ],
+    "correct_answer": "is the prediction of",
+    "explanation": "The subject is the clause \"What has improved most over that period,\" which is singular, so the verb is \"is\"; what follows the verb is a complement and cannot lend it a number. \"are the predictions of\" and \"have been the predictions of\" take the number backward, from the complement, which is the reading the sentence invites. The second requirement is that the improvement runs from the 1980s to a present in which \"a public…will go on finding it no better,\" so \"was the prediction of\" closes off in the past a state the rest of the sentence treats as current.",
+    "topic_tag": "forecast skill"
+  },
+  {
+    "id": "SEC-HD-V7-11",
+    "domain": "Standard English Conventions",
+    "subskill": "form: 'neither...nor' agreement with the nearer subject, where the nearer subject is the singular one",
+    "difficulty": "medium",
+    "passage": "Runs are not judgments about banks. They are judgments about what the other depositors in line are about to do, which is why a rumor with no basis can close a solvent institution in an afternoon. Neither the size of the reserve nor the quality of the loans behind it ______ once the line has formed, and deposit insurance works less by covering losses than by making the line pointless.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "decides the outcome of a run",
+      "decide the outcome of a run",
+      "has decided the outcome of a run",
+      "is deciding the outcome of a run"
+    ],
+    "correct_answer": "decides the outcome of a run",
+    "explanation": "With subjects joined by \"neither…nor\" the verb agrees with whichever subject stands nearer, and here that is \"the quality,\" a singular, so \"decides the outcome of a run\" is required even though the plural \"loans\" is the last word before the blank. \"decide the outcome of a run\" agrees with that plural instead. The second requirement is that the sentence is making a general claim, stated in the present throughout—\"is a judgment,\" \"can close,\" \"works\"—so \"has decided the outcome of a run\" reports a completed episode and \"is deciding the outcome of a run\" puts a standing truth into a run of events now under way.",
+    "topic_tag": "bank runs"
+  },
+  {
+    "id": "SEC-HD-V7-12",
+    "domain": "Standard English Conventions",
+    "subskill": "form: agreement with a singular head across a long modifier, with the tense fixed by a closed past event and a live present",
+    "difficulty": "medium",
+    "passage": "Cricket's laws let a bowler run out a batter who leaves the crease early at the non-striker's end, and for a century the sport treated doing so as a discourtesy rather than as a dismissal. The governing body's decision to move the clause out of the section on unfair play in 2022 ______ the argument, since the players who objected to the practice objected to it as manners and not as law, and the argument has gone on in those terms ever since.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "have not ended",
+      "did not end",
+      "had not ended",
+      "were not ending"
+    ],
+    "correct_answer": "did not end",
+    "explanation": "The subject is \"The governing body's decision,\" a singular noun; \"to move the clause out of the section on unfair play in 2022\" only modifies it, and the plural nouns inside that modifier are what make \"have not ended\" and \"were not ending\" look right. The second requirement is tense. The decision is a single completed event with a date on it, and the sentence supplies no later past moment for anything to be earlier than, so \"had not ended\" has no reference point to be anterior to; the argument that followed \"has gone on ever since,\" which is what rules out treating the failure to end it as still in progress.",
+    "topic_tag": "cricket laws"
+  },
+  {
+    "id": "SEC-HD-V7-13",
+    "domain": "Standard English Conventions",
+    "subskill": "form: parallelism in a chain of participial adjuncts, where the competing anchor is a finite predicate",
+    "difficulty": "hard",
+    "passage": "A wall painting cannot be moved without being changed, and one detachment method changes it more than most: the top layer of paint is pulled away on a cloth, and the wall keeps everything beneath. Conservators worked through the winter after the Florence flood, stripping the paint from walls that had not dried, ______, and returning it to the same wall a decade later on a new support.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "they carried the cloths to a warehouse in the suburbs",
+      "carried the cloths to a warehouse in the suburbs",
+      "carrying the cloths to a warehouse in the suburbs",
+      "to carry the cloths to a warehouse in the suburbs"
+    ],
+    "correct_answer": "carrying the cloths to a warehouse in the suburbs",
+    "explanation": "The blank is the middle term of a chain of participial adjuncts hanging off \"worked\": \"stripping the paint…,\" \"carrying the cloths to a warehouse in the suburbs,\" \"and returning it….\" \"carried the cloths to a warehouse in the suburbs\" is the option that looks right, because it can be read as a second predicate for \"Conservators\"—until the third element arrives as \"and returning,\" which cannot join a compound predicate. \"to carry the cloths to a warehouse in the suburbs\" substitutes an infinitive for the participle the chain requires, and \"they carried the cloths to a warehouse in the suburbs\" drops a full clause into the middle of the chain with only commas around it.",
+    "topic_tag": "fresco detachment"
+  },
+  {
+    "id": "SEC-HD-V7-14",
+    "domain": "Standard English Conventions",
+    "subskill": "boundaries: nothing separates a long clausal subject from its verb, and that subject is singular",
+    "difficulty": "medium",
+    "passage": "Because the Fujita scale rates a tornado by what it destroys, a violent storm crossing open prairie is rated low. That the strongest winds ever measured at the surface were recorded by a mobile radar rather than inferred from a wrecked ______ how loose the connection is between the number the public hears and the physics of the storm.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "building, shows",
+      "building show",
+      "building is showing",
+      "building shows"
+    ],
+    "correct_answer": "building shows",
+    "explanation": "The subject here is the whole clause beginning \"That the strongest winds ever measured at the surface…,\" and no punctuation may stand between a subject and its verb however long the subject runs, so \"building, shows\" inserts a comma the sentence does not license. A clausal subject is singular, so \"building show\" agrees with the plural \"winds\" buried inside it rather than with the clause itself. \"building is showing\" gets both of those right and then puts a standing observation into the progressive, as though the connection were being demonstrated at this moment.",
+    "topic_tag": "tornado rating"
+  },
+  {
+    "id": "SEC-HD-V7-15",
+    "domain": "Standard English Conventions",
+    "subskill": "form: relative pronoun in the objective case across an intervening clause, with animacy and fused-relative traps",
+    "difficulty": "hard",
+    "passage": "Branch managers at the Medici bank were not employees in the modern sense; each held a share of his branch's capital and a share of its losses. Cosimo chose them himself, and the man ______ trust with the Rome branch, the most profitable and the most exposed, was a Florentine of no family who had begun as a clerk in the Venice office.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "who he chose to",
+      "whom he chose to",
+      "which he chose to",
+      "whomever he chose to"
+    ],
+    "correct_answer": "whom he chose to",
+    "explanation": "The pronoun is the object of \"trust,\" not the subject of anything, so it takes the objective form: \"whom he chose to.\" \"who he chose to\" is the natural error, because \"he chose\" intervenes and the pronoun feels like the subject of the clause it opens; it is not, and the second feature settles it—the verb \"trust\" is left with no object unless the pronoun supplies one. \"which he chose to\" uses the pronoun reserved for things to refer to a man. \"whomever he chose to\" has the case right but is a fused relative, which supplies its own antecedent and therefore cannot follow \"the man.\"",
+    "topic_tag": "Medici branches"
+  },
+  {
+    "id": "SEC-HD-V7-16",
+    "domain": "Standard English Conventions",
+    "subskill": "form: past perfect for a state already established at a stated past point, with voice fixed by the subject's role",
+    "difficulty": "medium",
+    "passage": "In 1896 the first Olympic marathon was run over a course chosen to fit a story that its ancient source never tells. By the time the modern distance was fixed at 26.2 miles in 1921, the race ______, and the figure that stuck was the one that had put the finish of the 1908 race in front of the royal box.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "had already been run at four different lengths",
+      "has already been run at four different lengths",
+      "was already run at four different lengths",
+      "had already been running at four different lengths"
+    ],
+    "correct_answer": "had already been run at four different lengths",
+    "explanation": "The sentence gives a past reference point, 1921, and says the varied lengths were behind the race by then, so the verb must be a past perfect: \"had already been run.\" \"has already been run at four different lengths\" reaches the present instead, which a sentence anchored to 1921 cannot support, and \"was already run at four different lengths\" collapses the earlier running into the same past moment as the fixing of the distance, so \"already\" has nothing to be earlier than. The second requirement is voice: the race is what gets run, not what does the running, so \"had already been running at four different lengths\" makes the race the agent.",
+    "topic_tag": "marathon distance"
+  },
+  {
+    "id": "SEC-HD-V7-17",
+    "domain": "Standard English Conventions",
+    "subskill": "form: verb of a counterfactual if-clause, with the consequent fixing the time reference",
+    "difficulty": "medium",
+    "passage": "Acid sand dissolved everything organic in the Sutton Hoo burial and left a stain in the shape of the hull. The excavator recorded that stain by exposing it a plank at a time and photographing it from a tower, and if he ______ the ship would be known today from its rivets alone, since the sand slumped back into the trench within a season of its being opened.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "would not have worked in that order,",
+      "did not work in that order,",
+      "has not worked in that order,",
+      "had not worked in that order,"
+    ],
+    "correct_answer": "had not worked in that order,",
+    "explanation": "In a counterfactual the \"if\" clause carries the past perfect and the consequent carries the modal, not the other way round, so \"would not have worked in that order,\" puts \"would have\" on the wrong side of the sentence. The second requirement is the time reference the consequent establishes: \"the ship would be known today\" is a claim about the present that depends on something not done in the past, and only a past-perfect antecedent spans that. \"did not work in that order,\" makes the antecedent an ordinary past indicative, and \"has not worked in that order,\" attaches a present perfect to an excavation long finished.",
+    "topic_tag": "Sutton Hoo"
+  },
+  {
+    "id": "SEC-HD-V7-18",
+    "domain": "Standard English Conventions",
+    "subskill": "boundaries: no mark may stand between a linking verb and its complement, with the verb agreeing with a plural head",
+    "difficulty": "hard",
+    "passage": "A radiosonde weighs less than a paperback and reports for about two hours. The four quantities it sends down every second or two ______ temperature, humidity, and a position from which the wind can be worked out by difference, and nothing else is measured at all.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "are: pressure,",
+      "is pressure,",
+      "are pressure,",
+      "is, pressure,"
+    ],
+    "correct_answer": "are pressure,",
+    "explanation": "\"The four quantities it sends down every second or two are\" is not a complete sentence, and a colon may only follow one, so \"are: pressure,\" fails however much the list after it looks like something a colon should introduce. A comma is no better: \"is, pressure,\" separates a linking verb from its complement, which nothing licenses. The second requirement is agreement, and the singular \"every second or two\" sitting next to the blank is what makes \"is pressure,\" tempting; the subject is the plural \"The four quantities.\"",
+    "topic_tag": "radiosondes"
+  },
+  {
+    "id": "SEC-HD-V7-19",
+    "domain": "Standard English Conventions",
+    "subskill": "boundaries: an introductory dependent clause is closed by a comma, and no comma precedes a restrictive relative",
+    "difficulty": "medium",
+    "passage": "Deposit insurance was introduced in the United States in 1933 over the objection of the president who signed it into law, and it has been copied almost everywhere since. Because a run is driven by what a depositor believes the other depositors will ______ costs almost nothing to honor, and the American fund spent less in its first fifty years than the Treasury lost in a single bad month of the crisis it was created to prevent.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "do, a guarantee that is never tested",
+      "do a guarantee that is never tested",
+      "do, a guarantee, that is never tested",
+      "do; a guarantee that is never tested"
+    ],
+    "correct_answer": "do, a guarantee that is never tested",
+    "explanation": "The sentence opens with a dependent clause running from \"Because\" to \"will do,\" and such a clause is closed with a comma before the main clause begins: \"do, a guarantee that is never tested.\" \"do a guarantee that is never tested\" marks no boundary at all, and \"do; a guarantee that is never tested\" uses a mark reserved for joining independent clauses, which the opening \"Because\" clause is not. The second requirement lies inside the main clause: \"that is never tested\" identifies which guarantee is meant rather than adding an aside about it, so \"do, a guarantee, that is never tested\" cuts a restrictive clause off with a comma it must not have.",
+    "topic_tag": "deposit insurance"
+  },
+  {
+    "id": "SEC-HD-V7-20",
+    "domain": "Standard English Conventions",
+    "subskill": "form: a series of predicates must be completed with a finite verb in the same tense",
+    "difficulty": "medium",
+    "passage": "Scoring tables in the decathlon are not a ranking of athletes but a set of curves fitted to performances, and they are redrawn about once a generation. Each revision changes the event slightly. The 1985 tables raised the reward for the pole vault, flattened the curve for the fifteen hundred meters, and ______ so that a specialist could no longer win the whole competition on one event alone.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "narrowing the spread across the throws",
+      "narrowed the spread across the throws",
+      "the spread across the throws was narrowed",
+      "they narrowed the spread across the throws"
+    ],
+    "correct_answer": "narrowed the spread across the throws",
+    "explanation": "The blank is the third of three things the 1985 tables did, and the first two are \"raised the reward for the pole vault\" and \"flattened the curve for the fifteen hundred meters,\" so the third must be a finite past verb sharing that subject: \"narrowed the spread across the throws.\" \"narrowing the spread across the throws\" drops out of the series into a participle. The other two break the series a second way, by supplying a subject of their own: \"the spread across the throws was narrowed\" and \"they narrowed the spread across the throws\" each turn the final item into a clause, which leaves the sentence coordinating two predicates and a clause under one \"and.\"",
+    "topic_tag": "decathlon scoring"
+  },
+  {
+    "id": "SEC-HD-V7-21",
+    "domain": "Standard English Conventions",
+    "subskill": "boundaries: independent clauses need a conjunction as well as a comma, and the joined clause must have a finite verb",
+    "difficulty": "medium",
+    "passage": "Dendrochronology dates a timber by matching its ring pattern against a master sequence, and the match is exact to the year when the outermost ring survives. Most excavated timbers have been trimmed of their sapwood, ______, and the report gives a range of decades.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "the last ring that survives is not the last ring grown",
+      "the last ring present, however, is not the ring grown last",
+      "so the last ring present is not the last ring grown",
+      "and the last ring present not the last ring grown"
+    ],
+    "correct_answer": "so the last ring present is not the last ring grown",
+    "explanation": "The blank is the middle of three clauses strung together, and a comma alone cannot join independent clauses: \"the last ring that survives is not the last ring grown\" is a splice, and \"the last ring present, however, is not the ring grown last\" is the same splice with an adverb in it, since \"however\" joins nothing. A conjunction is required, and \"so\" is the one the sense supports. The second requirement is a finite verb, which \"and the last ring present not the last ring grown\" never supplies.",
+    "topic_tag": "tree-ring dating"
+  },
+  {
+    "id": "SEC-HD-V7-22",
+    "domain": "Standard English Conventions",
+    "subskill": "form: agreement with a singular head noun across a plural relative clause, with tense fixed by the surrounding past",
+    "difficulty": "hard",
+    "passage": "Verification treats a bust as information, and the busts that teach most are the ones a whole ensemble missed together. A string of five December storms that every operational model steered south of the Alps ______ the way the models handle a blocking high, and the correction that followed came out of those five days rather than out of the thousands of ordinary ones on which the forecasts were right, which is roughly the ratio of useful days to comfortable ones in the whole enterprise and the reason the archive of failures is kept at all.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "did more than any field campaign to change",
+      "have done more than any field campaign to change",
+      "do more than any field campaign to change",
+      "does more than any field campaign to change"
+    ],
+    "correct_answer": "did more than any field campaign to change",
+    "explanation": "The subject is \"A string,\" a singular noun; \"of five December storms that every operational model steered south of the Alps\" only modifies it, and the plural \"storms\" and \"models\" inside that modifier are what make \"have done more than any field campaign to change\" and \"do more than any field campaign to change\" look right. The second requirement is tense: the storms were steered and the correction \"came\" out of them, so the sentence is in the past. \"does more than any field campaign to change\" gets the number right and then reports a finished episode in the present.",
+    "topic_tag": "forecast busts"
+  },
+  {
+    "id": "SEC-HD-V7-23",
+    "domain": "Standard English Conventions",
+    "subskill": "boundaries: series items containing internal commas are divided by semicolons, and the conjunction belongs before the last item only",
+    "difficulty": "hard",
+    "passage": "Three issuers of paper money operated in the colonies before 1750, and none of them answered to any authority across the Atlantic: a land bank in Massachusetts, whose notes were secured on mortgages the directors ______ a loan office in Pennsylvania that lent to farmers at five percent and used the interest to run the province; and a Rhode Island scheme that issued nine times its reserve and collapsed within four years.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "themselves valued,",
+      "themselves valued;",
+      "themselves valued",
+      "themselves valued; and"
+    ],
+    "correct_answer": "themselves valued;",
+    "explanation": "Each item in this series carries commas of its own, so the items are divided from one another by semicolons: \"themselves valued;\" is the boundary between the first item and the second. \"themselves valued,\" adds one more comma to a string of commas already doing other work, so the reader cannot tell where the land bank ends, and \"themselves valued\" marks no boundary at all. The second requirement is where the conjunction goes: it belongs before the final item, which the sentence already supplies in \"and a Rhode Island scheme,\" so \"themselves valued; and\" puts a second one in the middle of the list.",
+    "topic_tag": "colonial paper money"
+  },
+  {
+    "id": "SEC-HD-V7-24",
+    "domain": "Standard English Conventions",
+    "subskill": "form: agreement with a plural subject across a singular modifier, with voice and tense both fixed by the surrounding sentence",
+    "difficulty": "medium",
+    "passage": "Swimming records fell in a mass in 2008 and 2009 and then stopped falling, because the polyurethane suits that produced them were banned at the end of that second season. The times set in the season before the ban ______ with a footnote, and a swimmer chasing one of them today is racing a garment as much as a predecessor.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "were still carried in the record books",
+      "is still carried in the record books",
+      "still carry in the record books",
+      "are still carried in the record books"
+    ],
+    "correct_answer": "are still carried in the record books",
+    "explanation": "Three things have to hold. The subject is \"The times,\" a plural, so \"is still carried in the record books\" agrees with the singular \"season\" standing next to the blank. The times are what the books carry, not what does the carrying, so \"still carry in the record books\" reverses the voice and leaves the times carrying something unnamed. And the sentence closes on a present—\"a swimmer chasing one of them today is racing a garment\"—so \"were still carried in the record books\" puts into the past a fact the rest of the sentence treats as current.",
+    "topic_tag": "swimming records"
+  }
+]

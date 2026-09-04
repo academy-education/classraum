@@ -1,0 +1,722 @@
+[
+ {
+  "id": "AM4-01",
+  "domain": "Advanced Math",
+  "subskill": "logarithmic equations and domain restrictions",
+  "difficulty": "hard",
+  "prompt": "What is the solution to the equation log₂(x) + log₂(x + 6) = 4 ?",
+  "choices": [
+   "-8",
+   "2",
+   "8",
+   "16"
+  ],
+  "correct_answer": "2",
+  "explanation": "Combining the logarithms gives log₂(x(x + 6)) = 4, so x(x + 6) = 16 and x² + 6x − 16 = 0, whose roots are x = 2 and x = −8. A logarithm is defined only for a positive argument, and at x = −8 both log₂(x) and log₂(x + 6) are undefined. Only x = 2 survives: log₂(2) + log₂(8) = 1 + 3 = 4.",
+  "distractor_steps": [
+   {
+    "choice": "-8",
+    "mis_step": "Reports the root of the quadratic that puts a negative number inside both logarithms, solving the cleared equation without checking either root against the domain."
+   },
+   {
+    "choice": "8",
+    "mis_step": "Takes the magnitude of the discarded root −8, reading the rejection as a sign error to be repaired rather than a candidate to be thrown out."
+   },
+   {
+    "choice": "16",
+    "mis_step": "Reports 2⁴, the value of the product x(x + 6), stopping at the cleared equation without solving the quadratic for x."
+   }
+  ],
+  "solve": "const d=Math.sqrt(36+64);\nconst rs=[(-6-d)/2,(-6+d)/2];\nconst ok=rs.filter(x=>x>0&&x+6>0&&Math.abs(Math.log2(x)+Math.log2(x+6)-4)<1e-9);\nif(ok.length!==1)return 'EXPECTED EXACTLY ONE SOLUTION';\nreturn ok[0];"
+ },
+ {
+  "id": "AM4-02",
+  "domain": "Advanced Math",
+  "subskill": "exponential decay with a strict threshold",
+  "difficulty": "hard",
+  "prompt": "A radioactive substance has a half-life of 12 years. A sample of the substance has a mass of 200 grams. What is the least whole number of years after the measurement at which the mass of the sample is less than 25 grams?",
+  "choices": [
+   "12",
+   "24",
+   "36",
+   "37"
+  ],
+  "correct_answer": "37",
+  "explanation": "After t years the mass is 200(1/2)^(t/12). Setting 200(1/2)^(t/12) = 25 gives (1/2)^(t/12) = 1/8, so t/12 = 3 and t = 36. At t = 36 the mass is exactly 25 grams, which is not less than 25, so t = 36 does not satisfy the condition. The mass is below 25 grams for every t greater than 36, and the least whole number is 37.",
+  "distractor_steps": [
+   {
+    "choice": "36",
+    "mis_step": "Finds the time at which the mass equals 25 grams and reports it, treating the strict inequality 'less than 25' as though it allowed equality."
+   },
+   {
+    "choice": "24",
+    "mis_step": "Counts two half-lives, reaching 50 grams, and stops there without checking the mass against 25."
+   },
+   {
+    "choice": "12",
+    "mis_step": "Reports the half-life itself as the answer, taking the single period given in the question as the time asked for."
+   }
+  ],
+  "solve": "let t=0;\nwhile(200*Math.pow(0.5,t/12)>=25)t++;\nif(200*Math.pow(0.5,(t-1)/12)<25)return 'BOUNDARY CHECK FAILED';\nreturn t;"
+ },
+ {
+  "id": "AM4-03",
+  "domain": "Advanced Math",
+  "subskill": "equivalent exponential forms: annual growth factor",
+  "difficulty": "medium",
+  "prompt": "The number of members of a club is modeled by f(t) = 340(1.44)^(t/2), where t is the number of years since 2010. Which of the following is an equivalent form of f that displays the annual growth factor as a constant or coefficient?",
+  "choices": [
+   "340(1.2)^t",
+   "340(1.22)^t",
+   "340(1.44)^t",
+   "340(0.72)^t"
+  ],
+  "correct_answer": "340(1.2)^t",
+  "explanation": "One year is half of the two-year period, so the annual factor is the square root of 1.44, which is 1.2. Then 340(1.44)^(t/2) = 340((1.44)^(1/2))^t = 340(1.2)^t. Checking at t = 2 both forms give 340(1.44) = 489.6.",
+  "distractor_steps": [
+   {
+    "choice": "340(1.44)^t",
+    "mis_step": "Reads 1.44 as the annual factor, dropping the division by 2 in the exponent instead of moving it into the base."
+   },
+   {
+    "choice": "340(0.72)^t",
+    "mis_step": "Halves the growth factor 1.44 to get the one-year factor, dividing the base by 2 where the exponent calls for a square root."
+   },
+   {
+    "choice": "340(1.22)^t",
+    "mis_step": "Halves the 44 percent increase instead, spreading it as 22 percent per year, which treats repeated multiplication as though it accumulated linearly."
+   }
+  ],
+  "solve": "const f=t=>340*Math.pow(1.44,t/2);\nconst c={'340(1.2)^t':t=>340*Math.pow(1.2,t),'340(1.22)^t':t=>340*Math.pow(1.22,t),'340(1.44)^t':t=>340*Math.pow(1.44,t),'340(0.72)^t':t=>340*Math.pow(0.72,t)};\nlet found=null;\nfor(const k of Object.keys(c)){let ok=true;for(const t of [0,1,2,3,5,7])if(Math.abs(f(t)-c[k](t))>1e-6)ok=false;if(ok){if(found)return 'MORE THAN ONE MATCH';found=k;}}\nreturn found||'none';"
+ },
+ {
+  "id": "AM4-04",
+  "domain": "Advanced Math",
+  "subskill": "exponential growth: least whole number of periods",
+  "difficulty": "medium",
+  "prompt": "The value of a collectible coin increases by 25 percent each year. The coin is worth $4,000 today. What is the least whole number of years from today after which the coin is worth more than $12,000 ?",
+  "choices": [
+   "3",
+   "4",
+   "5",
+   "8"
+  ],
+  "correct_answer": "5",
+  "explanation": "After n years the value is 4000(1.25)^n, so the condition is (1.25)^n > 3. At n = 4 the value is 4000(2.4414) ≈ $9,766, still below $12,000; at n = 5 it is 4000(3.0518) ≈ $12,207. The least whole number of years is 5.",
+  "distractor_steps": [
+   {
+    "choice": "4",
+    "mis_step": "Stops at the last year for which the value is still below $12,000, reporting the year before the value first passes the target."
+   },
+   {
+    "choice": "3",
+    "mis_step": "Reports the multiple 3 by which the value must grow, using the growth factor as though it were a number of years."
+   },
+   {
+    "choice": "8",
+    "mis_step": "Divides the required 200 percent increase by the 25 percent annual rate, treating the growth as a fixed dollar amount added each year."
+   }
+  ],
+  "solve": "let n=0;\nwhile(4000*Math.pow(1.25,n)<=12000)n++;\nif(4000*Math.pow(1.25,n-1)>12000)return 'BOUNDARY CHECK FAILED';\nreturn n;"
+ },
+ {
+  "id": "AM4-05",
+  "domain": "Advanced Math",
+  "subskill": "exponential equations in quadratic form with a rejected branch",
+  "difficulty": "hard",
+  "prompt": "What is the solution to the equation 4ˣ − 3(2ˣ) − 4 = 0 ?",
+  "choices": [
+   "-1",
+   "2",
+   "4",
+   "16"
+  ],
+  "correct_answer": "2",
+  "explanation": "Since 4ˣ = (2ˣ)², setting u = 2ˣ gives u² − 3u − 4 = 0, so u = 4 or u = −1. The quantity 2ˣ is positive for every real x, so u = −1 is impossible. From 2ˣ = 4 we get x = 2, and 4² − 3(2²) − 4 = 16 − 12 − 4 = 0.",
+  "distractor_steps": [
+   {
+    "choice": "-1",
+    "mis_step": "Accepts the branch u = −1, which no power of 2 can equal, and reads the −1 directly as the value of x."
+   },
+   {
+    "choice": "4",
+    "mis_step": "Reports the surviving substitution value u = 2ˣ rather than solving 2ˣ = 4 for x."
+   },
+   {
+    "choice": "16",
+    "mis_step": "Squares that substitution value, solving 2ˣ = u² instead of 2ˣ = u after the substitution is undone."
+   }
+  ],
+  "solve": "const d=Math.sqrt(9+16);\nconst us=[(3-d)/2,(3+d)/2].filter(u=>u>0);\nconst xs=us.map(u=>Math.log(u)/Math.log(2)).filter(x=>Math.abs(Math.pow(4,x)-3*Math.pow(2,x)-4)<1e-6);\nif(xs.length!==1)return 'EXPECTED EXACTLY ONE SOLUTION';\nreturn Math.round(xs[0]*1e6)/1e6;"
+ },
+ {
+  "id": "AM4-06",
+  "domain": "Advanced Math",
+  "subskill": "exponential expressions: rewriting an exponent",
+  "difficulty": "medium",
+  "prompt": "If 3ˣ = 7, what is the value of 3^(2x + 1) ?",
+  "choices": [
+   "15",
+   "21",
+   "49",
+   "147"
+  ],
+  "correct_answer": "147",
+  "explanation": "3^(2x + 1) = (3ˣ)² · 3¹ = 7² · 3 = 49 · 3 = 147.",
+  "distractor_steps": [
+   {
+    "choice": "49",
+    "mis_step": "Computes (3ˣ)² = 49 and stops, dropping the factor of 3 that the +1 in the exponent contributes."
+   },
+   {
+    "choice": "21",
+    "mis_step": "Multiplies 7 by 3, treating the whole exponent 2x + 1 as though it only scaled the value once."
+   },
+   {
+    "choice": "15",
+    "mis_step": "Substitutes 7 for x-free arithmetic on the exponent, computing 2(7) + 1 rather than raising 3 to that exponent."
+   }
+  ],
+  "solve": "const x=Math.log(7)/Math.log(3);\nif(Math.abs(Math.pow(3,x)-7)>1e-9)return 'BASE CHECK FAILED';\nreturn Math.round(Math.pow(3,2*x+1));"
+ },
+ {
+  "id": "AM4-07",
+  "domain": "Advanced Math",
+  "subskill": "exponential models from two points",
+  "difficulty": "hard",
+  "prompt": "The function f is an exponential function defined by f(x) = a·bˣ, where a and b are constants. If f(0) = 5 and f(2) = 45, what is the value of f(3) ?",
+  "choices": [
+   "-135",
+   "15",
+   "135",
+   "405"
+  ],
+  "correct_answer": "135",
+  "explanation": "f(0) = a = 5, so 5b² = 45 and b² = 9, giving b = 3 or b = −3. The base of an exponential function must be positive, so b = 3 and f(x) = 5(3ˣ). Then f(3) = 5(27) = 135.",
+  "distractor_steps": [
+   {
+    "choice": "-135",
+    "mis_step": "Takes b = −3 from b² = 9, keeping the negative root that an exponential base cannot have, and evaluates 5(−3)³."
+   },
+   {
+    "choice": "15",
+    "mis_step": "Evaluates f(1) = 5(3) = 15 rather than f(3), advancing one step from f(0) instead of three."
+   },
+   {
+    "choice": "405",
+    "mis_step": "Multiplies f(2) by 9 again, advancing by the two-step factor a second time instead of by the one-step factor of 3."
+   }
+  ],
+  "solve": "const a=5;\nconst bs=[Math.sqrt(45/a),-Math.sqrt(45/a)].filter(b=>b>0);\nif(bs.length!==1)return 'EXPECTED EXACTLY ONE POSITIVE BASE';\nconst b=bs[0];\nif(Math.abs(a-5)>1e-9||Math.abs(a*b*b-45)>1e-9)return 'CONDITIONS NOT MET';\nreturn a*Math.pow(b,3);"
+ },
+ {
+  "id": "AM4-08",
+  "domain": "Advanced Math",
+  "subskill": "remainders with a quadratic divisor",
+  "difficulty": "hard",
+  "prompt": "When the polynomial p(x) is divided by x² − 4, the remainder is 3x + 1. What is the value of p(2) ?",
+  "choices": [
+   "-5",
+   "1",
+   "4",
+   "7"
+  ],
+  "correct_answer": "7",
+  "explanation": "Write p(x) = q(x)(x² − 4) + 3x + 1. Since x² − 4 is zero at x = 2, the quotient term vanishes there and p(2) = 3(2) + 1 = 7, whatever q happens to be.",
+  "distractor_steps": [
+   {
+    "choice": "-5",
+    "mis_step": "Evaluates the remainder at x = −2, the other zero of the divisor, giving p(−2) instead of p(2)."
+   },
+   {
+    "choice": "1",
+    "mis_step": "Takes the remainder to be the constant 1, as it would be for a linear divisor, and reports it without evaluating 3x + 1 anywhere."
+   },
+   {
+    "choice": "4",
+    "mis_step": "Reports the constant 4 from the divisor x² − 4, reading the divisor rather than the remainder as the source of the value."
+   }
+  ],
+  "solve": "const r=x=>3*x+1;\nconst q=x=>5*x*x*x-2*x+7;\nconst p=x=>q(x)*(x*x-4)+r(x);\nfor(const z of [2,-2])if(Math.abs(p(z)-r(z))>1e-9)return 'DIVISOR CHECK FAILED';\nreturn p(2);"
+ },
+ {
+  "id": "AM4-09",
+  "domain": "Advanced Math",
+  "subskill": "factor theorem with a second condition",
+  "difficulty": "hard",
+  "prompt": "The polynomial p is defined by p(x) = x³ − 4x² + ax + b, where a and b are constants. If x − 1 is a factor of p and p(−1) = −12, what is the value of a ?",
+  "choices": [
+   "-7",
+   "-2",
+   "3",
+   "5"
+  ],
+  "correct_answer": "5",
+  "explanation": "Because x − 1 is a factor, p(1) = 0, so 1 − 4 + a + b = 0 and a + b = 3. From p(−1) = −1 − 4 − a + b = −12 we get −a + b = −7. Subtracting the second from the first gives 2a = 10, so a = 5 and b = −2. Checking, p(x) = x³ − 4x² + 5x − 2 has p(1) = 0 and p(−1) = −12.",
+  "distractor_steps": [
+   {
+    "choice": "-2",
+    "mis_step": "Solves the system correctly and reports b, the other constant, rather than a."
+   },
+   {
+    "choice": "3",
+    "mis_step": "Reports the right side of a + b = 3, treating the factor condition as though it gave a on its own."
+   },
+   {
+    "choice": "-7",
+    "mis_step": "Reports the right side of −a + b = −7, reading the second condition the same way and stopping before combining the two equations."
+   }
+  ],
+  "solve": "const b=(3+(-7))/2, a=3-b;\nconst p=x=>x*x*x-4*x*x+a*x+b;\nif(Math.abs(p(1))>1e-9||Math.abs(p(-1)+12)>1e-9)return 'CONDITIONS NOT MET';\nreturn a;"
+ },
+ {
+  "id": "AM4-10",
+  "domain": "Advanced Math",
+  "subskill": "polynomial division: identifying the remainder",
+  "difficulty": "medium",
+  "prompt": "The expression (2x³ + 3x² − 11x + 5)/(x + 3) can be written as q(x) + r/(x + 3), where q is a polynomial and r is a constant. What is the value of r ?",
+  "choices": [
+   "-11",
+   "5",
+   "11",
+   "53"
+  ],
+  "correct_answer": "11",
+  "explanation": "By the remainder theorem, r is the value of the dividend at the zero of x + 3, namely x = −3. That gives 2(−27) + 3(9) − 11(−3) + 5 = −54 + 27 + 33 + 5 = 11.",
+  "distractor_steps": [
+   {
+    "choice": "53",
+    "mis_step": "Evaluates the dividend at x = 3 rather than at x = −3, using the constant in the divisor without changing its sign."
+   },
+   {
+    "choice": "5",
+    "mis_step": "Reports the constant term of the dividend, reading the last coefficient as the remainder without carrying out the division."
+   },
+   {
+    "choice": "-11",
+    "mis_step": "Reports the coefficient of x in the dividend, picking the term that shares the numeral with the correct remainder but keeping its sign."
+   }
+  ],
+  "solve": "const p=x=>2*x*x*x+3*x*x-11*x+5;\nconst r=p(-3);\nconst q=x=>2*x*x-3*x-2;\nfor(const x of [0,1,2,5,-1,-5])if(Math.abs(p(x)/(x+3)-(q(x)+r/(x+3)))>1e-9)return 'DIVISION IDENTITY FAILED';\nreturn r;"
+ },
+ {
+  "id": "AM4-11",
+  "domain": "Advanced Math",
+  "subskill": "polynomial coefficients from two values",
+  "difficulty": "medium",
+  "prompt": "The polynomial p is defined by p(x) = x³ + cx + d, where c and d are constants. If p(1) = 6 and p(−2) = −9, what is the value of p(−3) ?",
+  "choices": [
+   "-30",
+   "-27",
+   "5",
+   "36"
+  ],
+  "correct_answer": "-30",
+  "explanation": "p(1) = 1 + c + d = 6 gives c + d = 5, and p(−2) = −8 − 2c + d = −9 gives −2c + d = −1. Subtracting, 3c = 6, so c = 2 and d = 3. Then p(−3) = −27 + 2(−3) + 3 = −27 − 6 + 3 = −30.",
+  "distractor_steps": [
+   {
+    "choice": "-27",
+    "mis_step": "Computes (−3)³ and stops, omitting the c(−3) and d terms once the cube is on the page."
+   },
+   {
+    "choice": "5",
+    "mis_step": "Reports c + d from the first condition, stopping at the intermediate sum instead of finding c and d separately."
+   },
+   {
+    "choice": "36",
+    "mis_step": "Evaluates p(3) instead of p(−3), dropping the sign on the input."
+   }
+  ],
+  "solve": "const c=(5-(-1))/3, d=5-c;\nconst p=x=>x*x*x+c*x+d;\nif(Math.abs(p(1)-6)>1e-9||Math.abs(p(-2)+9)>1e-9)return 'CONDITIONS NOT MET';\nreturn p(-3);"
+ },
+ {
+  "id": "AM4-12",
+  "domain": "Advanced Math",
+  "subskill": "polynomial division and the remaining zeros",
+  "difficulty": "hard",
+  "prompt": "The polynomial p is defined by p(x) = 2x³ + 5x² − 14x − 8, and p(2) = 0. What is the sum of the other two zeros of p ?",
+  "choices": [
+   "-9",
+   "-9/2",
+   "-5/2",
+   "2"
+  ],
+  "correct_answer": "-9/2",
+  "explanation": "Dividing p by x − 2 gives the quotient 2x² + 9x + 4, whose zeros are the other two zeros of p. Their sum is −9/2. (Checking: 2x² + 9x + 4 factors as (2x + 1)(x + 4), so the other zeros are −1/2 and −4, which sum to −9/2.)",
+  "distractor_steps": [
+   {
+    "choice": "-9",
+    "mis_step": "Reads the sum of the zeros of 2x² + 9x + 4 as −9, using −b without dividing by the leading coefficient 2."
+   },
+   {
+    "choice": "-5/2",
+    "mis_step": "Reports the sum of all three zeros, adding the given zero 2 back into a total the question excludes it from."
+   },
+   {
+    "choice": "2",
+    "mis_step": "Reports the zero the question supplies, reading 'the other two zeros' as a description of the value already given."
+   }
+  ],
+  "solve": "const co=[2,5,-14,-8];\nconst p=x=>co[0]*x*x*x+co[1]*x*x+co[2]*x+co[3];\nif(Math.abs(p(2))>1e-9)return 'GIVEN ZERO IS NOT A ZERO';\nconst q=[co[0]];\nfor(let i=1;i<co.length;i++)q.push(co[i]+2*q[i-1]);\nconst rem=q.pop();\nif(Math.abs(rem)>1e-9)return 'NONZERO REMAINDER';\nconst [A,B,C]=q, disc=B*B-4*A*C;\nif(disc<=0)return 'NO TWO REAL ZEROS';\nconst r1=(-B-Math.sqrt(disc))/(2*A), r2=(-B+Math.sqrt(disc))/(2*A);\nfor(const r of [r1,r2])if(Math.abs(p(r))>1e-9)return 'QUOTIENT ROOT IS NOT A ZERO OF p';\nreturn Math.round((r1+r2)*2)+'/2';"
+ },
+ {
+  "id": "AM4-13",
+  "domain": "Advanced Math",
+  "subskill": "rational functions: the removed point",
+  "difficulty": "hard",
+  "prompt": "The function f is defined by f(x) = (x³ + 2x² − 5x − 6)/(x + 3). In the xy-plane, the graph of y = f(x) is a parabola with one point removed. What is the y-coordinate of the removed point?",
+  "choices": [
+   "-3",
+   "-2",
+   "0",
+   "10"
+  ],
+  "correct_answer": "10",
+  "explanation": "The numerator is zero at x = −3, so x + 3 divides it: x³ + 2x² − 5x − 6 = (x + 3)(x² − x − 2). For every x other than −3, f(x) = x² − x − 2, which is a parabola. The point removed is the one at x = −3, where the parabola has y = 9 + 3 − 2 = 10.",
+  "distractor_steps": [
+   {
+    "choice": "-3",
+    "mis_step": "Reports the x-coordinate of the removed point rather than its y-coordinate."
+   },
+   {
+    "choice": "0",
+    "mis_step": "Notes that the numerator is zero at x = −3 and concludes the graph passes through height 0 there, reading a hole as a zero of the function."
+   },
+   {
+    "choice": "-2",
+    "mis_step": "Reports the constant term of the reduced parabola x² − x − 2, that is the value at x = 0 rather than at x = −3."
+   }
+  ],
+  "solve": "const n=x=>x*x*x+2*x*x-5*x-6;\nif(Math.abs(n(-3))>1e-9)return 'x+3 IS NOT A FACTOR';\nconst g=x=>x*x-x-2;\nfor(const x of [0,1,2,5,-1,-5])if(Math.abs(n(x)/(x+3)-g(x))>1e-9)return 'SIMPLIFICATION MISMATCH';\nreturn g(-3);"
+ },
+ {
+  "id": "AM4-14",
+  "domain": "Advanced Math",
+  "subskill": "systems with a radical equation and an extraneous solution",
+  "difficulty": "hard",
+  "prompt": "In the xy-plane, the graph of y = √(x + 4) and the graph of y = x − 2 intersect at exactly one point, (a, b). What is the value of b ?",
+  "choices": [
+   "-2",
+   "0",
+   "3",
+   "5"
+  ],
+  "correct_answer": "3",
+  "explanation": "Setting √(x + 4) = x − 2 and squaring gives x + 4 = x² − 4x + 4, so x² − 5x = 0 and x = 0 or x = 5. At x = 0 the left side is √4 = 2 while the right side is −2, so x = 0 is not an intersection: a principal square root is never negative. At x = 5 both sides equal 3, so a = 5 and b = 3.",
+  "distractor_steps": [
+   {
+    "choice": "5",
+    "mis_step": "Reports a, the x-coordinate of the intersection, rather than b."
+   },
+   {
+    "choice": "0",
+    "mis_step": "Reports the x-value introduced by squaring, taking the root that satisfies the squared equation but not the original one."
+   },
+   {
+    "choice": "-2",
+    "mis_step": "Substitutes that rejected x-value into y = x − 2 and reports the resulting y, carrying the extraneous candidate one step further."
+   }
+  ],
+  "solve": "const d=Math.sqrt(25);\nconst cands=[(5-d)/2,(5+d)/2];\nconst ok=cands.filter(x=>x+4>=0&&Math.abs(Math.sqrt(x+4)-(x-2))<1e-9);\nif(ok.length!==1)return 'EXPECTED EXACTLY ONE INTERSECTION';\nreturn ok[0]-2;"
+ },
+ {
+  "id": "AM4-15",
+  "domain": "Advanced Math",
+  "subskill": "systems with one nonlinear equation: two intersections",
+  "difficulty": "hard",
+  "prompt": "In the xy-plane, the graph of y = x² + 4x + 7 and the graph of y = 2x + k intersect at exactly two points, where k is a constant. What is the least integer value of k ?",
+  "choices": [
+   "3",
+   "6",
+   "7",
+   "24"
+  ],
+  "correct_answer": "7",
+  "explanation": "Setting the expressions equal gives x² + 2x + (7 − k) = 0. Two distinct intersections require a positive discriminant: 4 − 4(7 − k) > 0, that is 4k − 24 > 0 and k > 6. The inequality is strict, so k = 6 gives a single point of tangency, not two points. The least integer value is 7.",
+  "distractor_steps": [
+   {
+    "choice": "6",
+    "mis_step": "Solves 4k − 24 ≥ 0 instead of > 0 and reports the endpoint, where the line is tangent and the graphs meet at one point rather than two."
+   },
+   {
+    "choice": "24",
+    "mis_step": "Stops at 4k = 24 and reports 24, one line before dividing by the coefficient."
+   },
+   {
+    "choice": "3",
+    "mis_step": "Reports the y-coordinate of the parabola's vertex, (−2, 3), treating the height of the vertex as the value k must take."
+   }
+  ],
+  "solve": "const disc=k=>4-4*(7-k);\nlet k=-100;\nwhile(disc(k)<=0)k++;\nif(disc(k)<=0||disc(k-1)>0)return 'BOUNDARY CHECK FAILED';\nreturn k;"
+ },
+ {
+  "id": "AM4-16",
+  "domain": "Advanced Math",
+  "subskill": "systems with one nonlinear equation: combining the solutions",
+  "difficulty": "medium",
+  "prompt": "The graph of y = x² − 4x and the graph of y = 3x − 10 intersect at two points in the xy-plane. What is the sum of the y-coordinates of those two points?",
+  "choices": [
+   "1",
+   "5",
+   "7",
+   "10"
+  ],
+  "correct_answer": "1",
+  "explanation": "Setting x² − 4x = 3x − 10 gives x² − 7x + 10 = 0, so x = 2 or x = 5. The corresponding y-values are 3(2) − 10 = −4 and 3(5) − 10 = 5, and their sum is 1.",
+  "distractor_steps": [
+   {
+    "choice": "7",
+    "mis_step": "Reports the sum of the x-coordinates, 2 + 5, rather than the sum of the y-coordinates."
+   },
+   {
+    "choice": "5",
+    "mis_step": "Finds both y-values and reports only the positive one, dropping the negative y-coordinate from the sum."
+   },
+   {
+    "choice": "10",
+    "mis_step": "Reports the product of the x-coordinates, the constant term of x² − 7x + 10, read off the quadratic without finding either point."
+   }
+  ],
+  "solve": "const d=Math.sqrt(49-40);\nconst xs=[(7-d)/2,(7+d)/2];\nconst ys=xs.map(x=>3*x-10);\nfor(let i=0;i<xs.length;i++)if(Math.abs(xs[i]*xs[i]-4*xs[i]-ys[i])>1e-9)return 'NOT ON THE PARABOLA';\nreturn ys[0]+ys[1];"
+ },
+ {
+  "id": "AM4-17",
+  "domain": "Advanced Math",
+  "subskill": "quadratic model intersected with a constant",
+  "difficulty": "hard",
+  "prompt": "The height, in feet, of a ball t seconds after it is thrown is given by h(t) = −16t² + 48t + 4. A camera is mounted at a fixed height of 36 feet. For how many seconds is the ball higher than the camera?",
+  "choices": [
+   "1",
+   "1.5",
+   "2",
+   "3"
+  ],
+  "correct_answer": "1",
+  "explanation": "The ball is at the camera's height when −16t² + 48t + 4 = 36, that is −16t² + 48t − 32 = 0, or t² − 3t + 2 = 0, so t = 1 and t = 2. The parabola opens downward, so the ball is above 36 feet between those two times. The question asks for a length of time, so the answer is 2 − 1 = 1 second.",
+  "distractor_steps": [
+   {
+    "choice": "2",
+    "mis_step": "Reports the later of the two times at which the ball is at the camera's height, giving an instant rather than the length of the interval."
+   },
+   {
+    "choice": "3",
+    "mis_step": "Adds the two times, 1 + 2, instead of subtracting them to get the length of the interval."
+   },
+   {
+    "choice": "1.5",
+    "mis_step": "Reports the time at which the ball reaches its greatest height, halfway between the two crossings."
+   }
+  ],
+  "solve": "const d=Math.sqrt(9-8);\nconst ts=[(3-d)/2,(3+d)/2];\nconst h=t=>-16*t*t+48*t+4;\nfor(const t of ts)if(Math.abs(h(t)-36)>1e-9)return 'NOT AT THE CAMERA HEIGHT';\nif(h((ts[0]+ts[1])/2)<=36)return 'BALL IS NOT ABOVE BETWEEN THE TIMES';\nif(h(ts[0]-0.1)>36||h(ts[1]+0.1)>36)return 'INTERVAL IS NOT BOUNDED BY THE CROSSINGS';\nreturn ts[1]-ts[0];"
+ },
+ {
+  "id": "AM4-18",
+  "domain": "Advanced Math",
+  "subskill": "systems with one nonlinear equation: distance between intersections",
+  "difficulty": "medium",
+  "prompt": "In the xy-plane, the graph of y = x² − 6x + 11 and the graph of y = 6 intersect at (a, 6) and (b, 6), where a < b. What is the value of b − a ?",
+  "choices": [
+   "4",
+   "5",
+   "6",
+   "11"
+  ],
+  "correct_answer": "4",
+  "explanation": "Setting x² − 6x + 11 = 6 gives x² − 6x + 5 = 0, so x = 1 or x = 5. Then a = 1, b = 5, and b − a = 4.",
+  "distractor_steps": [
+   {
+    "choice": "5",
+    "mis_step": "Reports b, the larger x-coordinate, rather than the difference between the two."
+   },
+   {
+    "choice": "6",
+    "mis_step": "Reports a + b, the sum of the x-coordinates, adding where the question subtracts."
+   },
+   {
+    "choice": "11",
+    "mis_step": "Reports the constant term of the quadratic, the value of the parabola at x = 0, without solving for the intersections at all."
+   }
+  ],
+  "solve": "const d=Math.sqrt(36-20);\nconst xs=[(6-d)/2,(6+d)/2];\nfor(const x of xs)if(Math.abs(x*x-6*x+11-6)>1e-9)return 'NOT AN INTERSECTION';\nreturn xs[1]-xs[0];"
+ },
+ {
+  "id": "AM4-19",
+  "domain": "Advanced Math",
+  "subskill": "systems with one nonlinear equation: difference of squares",
+  "difficulty": "medium",
+  "prompt": "The numbers x and y satisfy x² − y² = 40 and x − y = 4. What is the value of x ?",
+  "choices": [
+   "3",
+   "7",
+   "10",
+   "40"
+  ],
+  "correct_answer": "7",
+  "explanation": "Since x² − y² = (x + y)(x − y), the first equation becomes (x + y)(4) = 40, so x + y = 10. With x − y = 4, adding gives 2x = 14, so x = 7 (and y = 3).",
+  "distractor_steps": [
+   {
+    "choice": "3",
+    "mis_step": "Solves the system correctly and reports y rather than x."
+   },
+   {
+    "choice": "10",
+    "mis_step": "Reports x + y, the factor obtained from dividing 40 by 4, and stops before separating x from y."
+   },
+   {
+    "choice": "40",
+    "mis_step": "Reports the value of x² − y² given in the question, reading the difference of squares as though it were x itself."
+   }
+  ],
+  "solve": "const s=40/4;\nconst x=(s+4)/2, y=(s-4)/2;\nif(Math.abs(x*x-y*y-40)>1e-9||Math.abs(x-y-4)>1e-9)return 'CONDITIONS NOT MET';\nreturn x;"
+ },
+ {
+  "id": "AM4-20",
+  "domain": "Advanced Math",
+  "subskill": "horizontal scaling of a graph",
+  "difficulty": "hard",
+  "prompt": "In the xy-plane, the graph of y = f(x) has x-intercepts at x = −2 and x = 6 and no others. The graph of y = f(2x) has x-intercepts at x = p and x = q. What is the value of p + q ?",
+  "choices": [
+   "-4",
+   "2",
+   "4",
+   "8"
+  ],
+  "correct_answer": "2",
+  "explanation": "f(2x) is zero exactly when 2x is an x-intercept of f, so 2x = −2 or 2x = 6, giving x = −1 and x = 3. Their sum is 2. Replacing x by 2x halves each intercept rather than doubling it.",
+  "distractor_steps": [
+   {
+    "choice": "4",
+    "mis_step": "Reports −2 + 6, the sum of the original intercepts, treating y = f(2x) as though it left the x-intercepts where they were."
+   },
+   {
+    "choice": "8",
+    "mis_step": "Doubles each intercept instead of halving it, using −4 and 12 and reporting their sum."
+   },
+   {
+    "choice": "-4",
+    "mis_step": "Doubles only the left intercept, −2, and reports that value as the answer, applying the same inverted scaling to a single point."
+   }
+  ],
+  "solve": "const f=x=>(x+2)*(x-6);\nconst rs=[];\nfor(let i=-2000;i<=2000;i++){const x=i/100;if(Math.abs(f(2*x))<1e-12)rs.push(x);}\nif(rs.length!==2)return 'EXPECTED TWO INTERCEPTS';\nreturn rs[0]+rs[1];"
+ },
+ {
+  "id": "AM4-21",
+  "domain": "Advanced Math",
+  "subskill": "translations of a graph: locating the minimum",
+  "difficulty": "medium",
+  "prompt": "The graph of y = f(x) in the xy-plane has its minimum at the point (1, −5). The function g is defined by g(x) = f(x − 3) + 4. At which point does the graph of y = g(x) have its minimum?",
+  "choices": [
+   "(4, -1)",
+   "(-2, -1)",
+   "(4, -9)",
+   "(-2, -9)"
+  ],
+  "correct_answer": "(4, -1)",
+  "explanation": "Replacing x by x − 3 shifts the graph 3 units to the right, and adding 4 shifts it 4 units up. The minimum moves from (1, −5) to (1 + 3, −5 + 4) = (4, −1).",
+  "distractor_steps": [
+   {
+    "choice": "(-2, -1)",
+    "mis_step": "Shifts the graph 3 units to the left, reading the minus sign inside f(x − 3) as a leftward move."
+   },
+   {
+    "choice": "(4, -9)",
+    "mis_step": "Shifts the graph 4 units down, reading the +4 outside f as a downward move."
+   },
+   {
+    "choice": "(-2, -9)",
+    "mis_step": "Reverses both directions, combining the leftward horizontal error with the downward vertical one."
+   }
+  ],
+  "solve": "const f=x=>(x-1)*(x-1)-5;\nconst g=x=>f(x-3)+4;\nlet bx=0,by=Infinity;\nfor(let i=-20000;i<=20000;i++){const x=i/1000;const y=g(x);if(y<by){by=y;bx=x;}}\nif(Math.abs(f(1)+5)>1e-9)return 'f MINIMUM IS NOT (1, -5)';\nreturn '(' + Math.round(bx) + ', ' + Math.round(by) + ')';"
+ },
+ {
+  "id": "AM4-22",
+  "domain": "Advanced Math",
+  "subskill": "order of transformations: reflection then translation",
+  "difficulty": "hard",
+  "prompt": "The graph of y = f(x) is reflected across the x-axis, and the resulting graph is then shifted up 5 units to produce the graph of y = g(x). If f(3) = −2, what is the value of g(3) ?",
+  "choices": [
+   "-3",
+   "2",
+   "3",
+   "7"
+  ],
+  "correct_answer": "7",
+  "explanation": "Reflecting across the x-axis replaces f(x) by −f(x), and the later upward shift adds 5 to that, so g(x) = −f(x) + 5. Then g(3) = −(−2) + 5 = 2 + 5 = 7.",
+  "distractor_steps": [
+   {
+    "choice": "-3",
+    "mis_step": "Applies the shift first and reflects afterwards, computing −(f(3) + 5) and reversing the order the question gives."
+   },
+   {
+    "choice": "3",
+    "mis_step": "Adds 5 to f(3) without reflecting, dropping the first transformation entirely."
+   },
+   {
+    "choice": "2",
+    "mis_step": "Reflects and stops at −f(3), reporting the intermediate value before the upward shift is applied."
+   }
+  ],
+  "solve": "const f=x=>x-5;\nif(f(3)!==-2)return 'f(3) IS NOT -2';\nconst g=x=>-f(x)+5;\nfor(const x of [0,1,3,7])if(Math.abs(g(x)-(-(f(x))+5))>1e-9)return 'TRANSFORMATION MISMATCH';\nreturn g(3);"
+ },
+ {
+  "id": "AM4-23",
+  "domain": "Advanced Math",
+  "subskill": "writing a translation in function notation",
+  "difficulty": "medium",
+  "prompt": "The graph of y = f(x) in the xy-plane is shifted 4 units to the right and 2 units down to produce the graph of y = g(x). Which of the following defines g in terms of f ?",
+  "choices": [
+   "f(x - 4) - 2",
+   "f(x + 4) - 2",
+   "f(x + 4) + 2",
+   "f(x - 2) - 4"
+  ],
+  "correct_answer": "f(x - 4) - 2",
+  "explanation": "A shift of 4 units to the right replaces x by x − 4 inside the function, and a shift of 2 units down subtracts 2 outside it. So g(x) = f(x − 4) − 2.",
+  "distractor_steps": [
+   {
+    "choice": "f(x + 4) - 2",
+    "mis_step": "Adds 4 inside the function for a rightward shift, using the sign of the direction rather than its opposite."
+   },
+   {
+    "choice": "f(x + 4) + 2",
+    "mis_step": "Makes that same inside-sign error and also adds 2 outside, moving the graph up where the question moves it down."
+   },
+   {
+    "choice": "f(x - 2) - 4",
+    "mis_step": "Swaps the two shift amounts, subtracting 2 inside and 4 outside, so the horizontal and vertical moves are exchanged."
+   }
+  ],
+  "solve": "const f=x=>x*x*x-2*x+1;\nconst g=x=>f(x-4)-2;\nconst c={'f(x - 4) - 2':x=>f(x-4)-2,'f(x + 4) - 2':x=>f(x+4)-2,'f(x + 4) + 2':x=>f(x+4)+2,'f(x - 2) - 4':x=>f(x-2)-4};\nlet found=null;\nfor(const k of Object.keys(c)){let ok=true;for(const x of [-3,-1,0,1,2,5,7])if(Math.abs(g(x)-c[k](x))>1e-9)ok=false;if(ok){if(found)return 'MORE THAN ONE MATCH';found=k;}}\nreturn found||'none';"
+ },
+ {
+  "id": "AM4-24",
+  "domain": "Advanced Math",
+  "subskill": "transformations and the range of a function",
+  "difficulty": "hard",
+  "prompt": "The range of the function f is −1 ≤ f(x) ≤ 4. The function g is defined by g(x) = −2f(x) + 5. What is the greatest value of g(x) ?",
+  "choices": [
+   "-3",
+   "5",
+   "7",
+   "13"
+  ],
+  "correct_answer": "7",
+  "explanation": "Multiplying by −2 reverses the order of the values, so the greatest value of g comes from the least value of f. With f(x) = −1, g(x) = −2(−1) + 5 = 7. The other endpoint, f(x) = 4, gives −2(4) + 5 = −3, which is the least value of g.",
+  "distractor_steps": [
+   {
+    "choice": "-3",
+    "mis_step": "Substitutes the greatest value of f, 4, without noticing that the negative coefficient reverses which endpoint produces the greatest output; this is g's minimum."
+   },
+   {
+    "choice": "13",
+    "mis_step": "Substitutes that same endpoint and drops the negative sign on the coefficient, computing 2(4) + 5."
+   },
+   {
+    "choice": "5",
+    "mis_step": "Reports the constant 5, reading the vertical shift as the top of the range of g."
+   }
+  ],
+  "solve": "let best=-Infinity, worst=Infinity;\nfor(let i=0;i<=5000;i++){const v=-1+5*i/5000;const gv=-2*v+5;if(gv>best)best=gv;if(gv<worst)worst=gv;}\nif(Math.abs(worst-(-3))>1e-6)return 'RANGE ENDPOINT CHECK FAILED';\nreturn Math.round(best*1e6)/1e6;"
+ }
+]

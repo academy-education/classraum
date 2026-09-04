@@ -1,0 +1,1052 @@
+[
+  {
+    "id": "SM8-01",
+    "domain": "Math",
+    "subskill": "order of operations with a negative factor",
+    "difficulty": "easy",
+    "prompt": "What is the value of 24 - 6 x (-2) + 8 / 4 ?",
+    "choices": [
+      "-7",
+      "14",
+      "34",
+      "36",
+      "38"
+    ],
+    "correct_answer": "38",
+    "explanation": "Multiplication and division come first: 6 x (-2) = -12 and 8 / 4 = 2. So the expression is 24 - (-12) + 2 = 24 + 12 + 2 = 38.",
+    "solve": "return 24 - 6*(-2) + 8/4;",
+    "distractor_steps": [
+      {
+        "choice": "-7",
+        "mis_step": "worked strictly left to right, giving ((24 - 6) x (-2) + 8) / 4"
+      },
+      {
+        "choice": "14",
+        "mis_step": "treated 6 x (-2) as a positive 12 to be subtracted: 24 - 12 + 2"
+      },
+      {
+        "choice": "34",
+        "mis_step": "subtracted the 2 from the division instead of adding it: 24 + 12 - 2"
+      },
+      {
+        "choice": "36",
+        "mis_step": "dropped the division term altogether: 24 + 12"
+      }
+    ]
+  },
+  {
+    "id": "SM8-02",
+    "domain": "Math",
+    "subskill": "median of a small data set",
+    "difficulty": "easy",
+    "prompt": "The high temperatures, in degrees, on five days were 12, 19, 7, 19 and 16. What is the median of these five temperatures?",
+    "choices": [
+      "12",
+      "14.6",
+      "16",
+      "17.5",
+      "19"
+    ],
+    "correct_answer": "16",
+    "explanation": "In order the temperatures are 7, 12, 16, 19, 19. The median is the third value, 16.",
+    "solve": "const d=[12,19,7,19,16].slice().sort((a,b)=>a-b); return d[2];",
+    "distractor_steps": [
+      {
+        "choice": "12",
+        "mis_step": "took the middle number of the list as written, without ordering it"
+      },
+      {
+        "choice": "14.6",
+        "mis_step": "gave the mean, 73 divided by 5"
+      },
+      {
+        "choice": "17.5",
+        "mis_step": "averaged the two largest distinct values, 16 and 19"
+      },
+      {
+        "choice": "19",
+        "mis_step": "gave the value that occurs most often"
+      }
+    ]
+  },
+  {
+    "id": "SM8-03",
+    "domain": "Math",
+    "subskill": "percent decrease",
+    "difficulty": "easy",
+    "prompt": "The price of a coat falls from $250 to $200. By what percent does the price fall?",
+    "choices": [
+      "20",
+      "25",
+      "50",
+      "80",
+      "125"
+    ],
+    "correct_answer": "20",
+    "explanation": "The fall is $50, and 50 divided by the ORIGINAL price 250 is 0.20, so the price falls by 20 percent.",
+    "solve": "return 100*(250-200)/250;",
+    "distractor_steps": [
+      {
+        "choice": "25",
+        "mis_step": "divided the $50 fall by the NEW price, 200, instead of the original"
+      },
+      {
+        "choice": "50",
+        "mis_step": "gave the fall in dollars rather than as a percent"
+      },
+      {
+        "choice": "80",
+        "mis_step": "gave the new price as a percent of the old price"
+      },
+      {
+        "choice": "125",
+        "mis_step": "gave the old price as a percent of the new price"
+      }
+    ]
+  },
+  {
+    "id": "SM8-04",
+    "domain": "Math",
+    "subskill": "area of a rectangle from its perimeter and one side",
+    "difficulty": "medium",
+    "prompt": "A rectangle has a perimeter of 46 cm, and one of its sides is 14 cm long. What is the area of the rectangle, in square centimeters?",
+    "choices": [
+      "9",
+      "18",
+      "126",
+      "252",
+      "322"
+    ],
+    "correct_answer": "126",
+    "explanation": "Half the perimeter is one length plus one width: 23 cm. The other side is 23 - 14 = 9 cm, so the area is 14 x 9 = 126 square centimeters.",
+    "solve": "const P=46,a=14; const b=P/2-a; return a*b;",
+    "distractor_steps": [
+      {
+        "choice": "9",
+        "mis_step": "found the missing side but stopped there and did not multiply"
+      },
+      {
+        "choice": "18",
+        "mis_step": "gave 46 - 14 - 14 = 18, which is the TOTAL of the two unknown sides, not one of them"
+      },
+      {
+        "choice": "252",
+        "mis_step": "used that 18 as the other side: 14 x 18"
+      },
+      {
+        "choice": "322",
+        "mis_step": "used half the perimeter, 23, as the other side: 14 x 23"
+      }
+    ]
+  },
+  {
+    "id": "SM8-05",
+    "domain": "Math",
+    "subskill": "evaluating a quadratic expression at a negative value",
+    "difficulty": "easy",
+    "prompt": "If x = -4, what is the value of 2x^2 - 5x ?",
+    "choices": [
+      "-12",
+      "12",
+      "36",
+      "44",
+      "52"
+    ],
+    "correct_answer": "52",
+    "explanation": "x^2 = 16, so 2x^2 = 32, and -5x = -5(-4) = +20. The value is 32 + 20 = 52.",
+    "solve": "const x=-4; return 2*x*x - 5*x;",
+    "distractor_steps": [
+      {
+        "choice": "-12",
+        "mis_step": "took (-4)^2 to be -16, giving -32 + 20"
+      },
+      {
+        "choice": "12",
+        "mis_step": "kept -5x negative: 32 - 20"
+      },
+      {
+        "choice": "36",
+        "mis_step": "squared x but forgot the factor 2: 16 + 20"
+      },
+      {
+        "choice": "44",
+        "mis_step": "squared 2x rather than x, giving 64, and then subtracted 20"
+      }
+    ]
+  },
+  {
+    "id": "SM8-06",
+    "domain": "Math",
+    "subskill": "multiplying a fraction by a fraction",
+    "difficulty": "easy",
+    "prompt": "A recipe calls for 3/4 of a cup of sugar. Ravi makes 2/3 of the recipe. How many cups of sugar does he use?",
+    "choices": [
+      "1/4",
+      "5/12",
+      "1/2",
+      "9/8",
+      "17/12"
+    ],
+    "correct_answer": "1/2",
+    "explanation": "Two thirds OF three quarters means 2/3 x 3/4 = 6/12 = 1/2 of a cup.",
+    "solve": "return (3/4)*(2/3);",
+    "distractor_steps": [
+      {
+        "choice": "1/4",
+        "mis_step": "took one third of the sugar instead of two thirds"
+      },
+      {
+        "choice": "5/12",
+        "mis_step": "subtracted 1/3 from 3/4 instead of multiplying by 2/3"
+      },
+      {
+        "choice": "9/8",
+        "mis_step": "divided by 2/3 instead of multiplying"
+      },
+      {
+        "choice": "17/12",
+        "mis_step": "added the two fractions"
+      }
+    ]
+  },
+  {
+    "id": "SM8-07",
+    "domain": "Math",
+    "subskill": "working backward from an end time",
+    "difficulty": "easy",
+    "prompt": "A film that runs for 2 hours 40 minutes ends at 9:25 p.m. At what time did it begin?",
+    "choices": [
+      "6:45 p.m.",
+      "6:55 p.m.",
+      "7:05 p.m.",
+      "7:45 p.m.",
+      "12:05 a.m."
+    ],
+    "correct_answer": "6:45 p.m.",
+    "explanation": "Going back 2 hours from 9:25 p.m. gives 7:25 p.m., and going back 40 more minutes gives 6:45 p.m.",
+    "solve": "const end=9*60+25, run=2*60+40; const t=end-run; const h=Math.floor(t/60), m=t%60; return h+':'+String(m).padStart(2,'0')+' p.m.';",
+    "distractor_steps": [
+      {
+        "choice": "6:55 p.m.",
+        "mis_step": "treated 2 hours 40 minutes as 2.5 hours"
+      },
+      {
+        "choice": "7:05 p.m.",
+        "mis_step": "subtracted 2 hours 20 minutes, mis-reading the 40 as 20"
+      },
+      {
+        "choice": "7:45 p.m.",
+        "mis_step": "subtracted only 1 hour 40 minutes"
+      },
+      {
+        "choice": "12:05 a.m.",
+        "mis_step": "added the running time instead of subtracting it"
+      }
+    ]
+  },
+  {
+    "id": "SM8-08",
+    "domain": "Math",
+    "subskill": "rounding a decimal to a named place",
+    "difficulty": "easy",
+    "prompt": "What is 5.0748 rounded to the nearest hundredth?",
+    "choices": [
+      "5.0",
+      "5.07",
+      "5.075",
+      "5.08",
+      "5.1"
+    ],
+    "correct_answer": "5.07",
+    "explanation": "The hundredths digit is 7, and the digit after it is 4, so the 7 stays: 5.07.",
+    "solve": "return (Math.round(5.0748*100)/100).toFixed(2);",
+    "distractor_steps": [
+      {
+        "choice": "5.0",
+        "mis_step": "rounded to the nearest whole number and wrote it with one decimal place"
+      },
+      {
+        "choice": "5.075",
+        "mis_step": "rounded to the nearest thousandth instead"
+      },
+      {
+        "choice": "5.08",
+        "mis_step": "rounded to 5.075 first and then rounded that up again"
+      },
+      {
+        "choice": "5.1",
+        "mis_step": "rounded to the nearest tenth instead"
+      }
+    ]
+  },
+  {
+    "id": "SM8-09",
+    "domain": "Math",
+    "subskill": "subtracting lengths given in different units",
+    "difficulty": "easy",
+    "prompt": "A ribbon is 2.4 meters long. Mei cuts off a piece 85 centimeters long. How many centimeters of ribbon are left?",
+    "choices": [
+      "1.55",
+      "15.5",
+      "85",
+      "155",
+      "325"
+    ],
+    "correct_answer": "155",
+    "explanation": "2.4 meters is 240 centimeters, and 240 - 85 = 155 centimeters.",
+    "solve": "return 2.4*100 - 85;",
+    "distractor_steps": [
+      {
+        "choice": "1.55",
+        "mis_step": "answered in meters when the question asks for centimeters"
+      },
+      {
+        "choice": "15.5",
+        "mis_step": "converted 2.4 meters to 24 centimeters instead of 240"
+      },
+      {
+        "choice": "85",
+        "mis_step": "gave the length cut off rather than the length left"
+      },
+      {
+        "choice": "325",
+        "mis_step": "added the two lengths instead of subtracting"
+      }
+    ]
+  },
+  {
+    "id": "SM8-10",
+    "domain": "Math",
+    "subskill": "evaluating a defined operation",
+    "difficulty": "medium",
+    "prompt": "For all numbers a and b, a @ b = 3a - b^2. What is the value of 4 @ (-2) ?",
+    "choices": [
+      "-22",
+      "3",
+      "8",
+      "14",
+      "16"
+    ],
+    "correct_answer": "8",
+    "explanation": "3a = 12 and b^2 = (-2)^2 = 4, so 4 @ (-2) = 12 - 4 = 8.",
+    "solve": "const f=(a,b)=>3*a-b*b; return f(4,-2);",
+    "distractor_steps": [
+      {
+        "choice": "-22",
+        "mis_step": "used the numbers in the wrong order: 3(-2) - 4^2"
+      },
+      {
+        "choice": "3",
+        "mis_step": "read 3a as a + 3, giving 7 - 4"
+      },
+      {
+        "choice": "14",
+        "mis_step": "subtracted b instead of b^2: 12 - (-2)"
+      },
+      {
+        "choice": "16",
+        "mis_step": "took (-2)^2 to be -4, giving 12 + 4"
+      }
+    ]
+  },
+  {
+    "id": "SM8-11",
+    "domain": "Math",
+    "subskill": "summing a repeating pattern",
+    "difficulty": "medium",
+    "prompt": "The pattern 4, 7, 1, 3, 8 repeats over and over: 4, 7, 1, 3, 8, 4, 7, 1, 3, 8, ... What is the sum of the first 52 terms?",
+    "choices": [
+      "230",
+      "234",
+      "237",
+      "241",
+      "253"
+    ],
+    "correct_answer": "241",
+    "explanation": "One repeat of 4, 7, 1, 3, 8 sums to 23. There are 10 complete repeats in 50 terms (230), and the 51st and 52nd terms are 4 and 7, so the total is 230 + 11 = 241.",
+    "solve": "const c=[4,7,1,3,8]; const s=c.reduce((a,b)=>a+b,0); const n=52; let t=Math.floor(n/5)*s; for(let i=0;i<n%5;i++) t+=c[i]; return t;",
+    "distractor_steps": [
+      {
+        "choice": "230",
+        "mis_step": "counted only the 10 complete repeats and ignored the 2 leftover terms"
+      },
+      {
+        "choice": "234",
+        "mis_step": "added only the first leftover term"
+      },
+      {
+        "choice": "237",
+        "mis_step": "added only the second leftover term"
+      },
+      {
+        "choice": "253",
+        "mis_step": "rounded up to 11 complete repeats"
+      }
+    ]
+  },
+  {
+    "id": "SM8-12",
+    "domain": "Math",
+    "subskill": "greatest integer satisfying a linear inequality",
+    "difficulty": "medium",
+    "prompt": "What is the greatest integer n for which 9 - 4n > -23 ?",
+    "choices": [
+      "-8",
+      "7",
+      "8",
+      "28",
+      "32"
+    ],
+    "correct_answer": "7",
+    "explanation": "9 - 4n > -23 gives -4n > -32, and dividing by -4 REVERSES the inequality: n < 8. The greatest integer less than 8 is 7.",
+    "solve": "let best=null; for(let n=-100;n<=100;n++){ if(9-4*n > -23) best = (best===null? n : Math.max(best,n)); } return best;",
+    "distractor_steps": [
+      {
+        "choice": "-8",
+        "mis_step": "divided -32 by 4 rather than by -4 and reported that value"
+      },
+      {
+        "choice": "8",
+        "mis_step": "gave the boundary value, where the two sides are equal rather than unequal"
+      },
+      {
+        "choice": "28",
+        "mis_step": "subtracted 4 from 32 instead of dividing by it"
+      },
+      {
+        "choice": "32",
+        "mis_step": "stopped at 4n < 32 and reported the 32"
+      }
+    ]
+  },
+  {
+    "id": "SM8-13",
+    "domain": "Math",
+    "subskill": "number of diagonals of a polygon",
+    "difficulty": "medium",
+    "prompt": "How many diagonals does a convex polygon with 10 sides have?",
+    "choices": [
+      "35",
+      "45",
+      "70",
+      "90",
+      "100"
+    ],
+    "correct_answer": "35",
+    "explanation": "Each of the 10 vertices joins to 7 others by a diagonal, and each diagonal is counted twice, so there are 10 x 7 / 2 = 35.",
+    "solve": "const n=10; return n*(n-3)/2;",
+    "distractor_steps": [
+      {
+        "choice": "45",
+        "mis_step": "counted every segment joining two vertices, so included the 10 sides"
+      },
+      {
+        "choice": "70",
+        "mis_step": "counted 10 x 7 but forgot that each diagonal is counted from both ends"
+      },
+      {
+        "choice": "90",
+        "mis_step": "counted every ordered pair of distinct vertices, 10 x 9"
+      },
+      {
+        "choice": "100",
+        "mis_step": "multiplied 10 by 10"
+      }
+    ]
+  },
+  {
+    "id": "SM8-14",
+    "domain": "Math",
+    "subskill": "corresponding angles on parallel lines",
+    "difficulty": "medium",
+    "prompt": "Two parallel lines are cut by a transversal. One angle measures (2x + 10) degrees, and the angle corresponding to it at the other intersection measures (3x - 25) degrees. What is the measure, in degrees, of that angle?",
+    "choices": [
+      "35",
+      "39",
+      "80",
+      "88",
+      "100"
+    ],
+    "correct_answer": "80",
+    "explanation": "Corresponding angles on parallel lines are equal, so 2x + 10 = 3x - 25 and x = 35. The angle is 2(35) + 10 = 80 degrees.",
+    "solve": "const x=(10+25)/(3-2); return 2*x+10;",
+    "distractor_steps": [
+      {
+        "choice": "35",
+        "mis_step": "solved for x correctly but reported x instead of the angle"
+      },
+      {
+        "choice": "39",
+        "mis_step": "treated the two angles as supplementary, giving 5x - 15 = 180, and reported that x"
+      },
+      {
+        "choice": "88",
+        "mis_step": "treated the two angles as supplementary and evaluated the angle from that x"
+      },
+      {
+        "choice": "100",
+        "mis_step": "found the angle correctly and then gave its supplement"
+      }
+    ]
+  },
+  {
+    "id": "SM8-15",
+    "domain": "Math",
+    "subskill": "base angles of an isosceles triangle",
+    "difficulty": "medium",
+    "prompt": "In an isosceles triangle, the angle between the two sides of equal length measures 34 degrees. What is the measure, in degrees, of each of the other two angles?",
+    "choices": [
+      "56",
+      "68",
+      "73",
+      "112",
+      "146"
+    ],
+    "correct_answer": "73",
+    "explanation": "The other two angles are equal and together measure 180 - 34 = 146 degrees, so each measures 73 degrees.",
+    "solve": "return (180-34)/2;",
+    "distractor_steps": [
+      {
+        "choice": "68",
+        "mis_step": "took the other two angles to total 2 x 34 rather than working from 180"
+      },
+      {
+        "choice": "112",
+        "mis_step": "treated 34 as one of the two EQUAL angles, giving 180 - 68"
+      },
+      {
+        "choice": "56",
+        "mis_step": "halved that 112"
+      },
+      {
+        "choice": "146",
+        "mis_step": "found the total of the other two angles but did not halve it"
+      }
+    ]
+  },
+  {
+    "id": "SM8-16",
+    "domain": "Math",
+    "subskill": "diagonal of a rectangle",
+    "difficulty": "medium",
+    "prompt": "A rectangle is 24 cm long and 10 cm wide. How long, in centimeters, is a diagonal of the rectangle?",
+    "choices": [
+      "14",
+      "26",
+      "34",
+      "68",
+      "240"
+    ],
+    "correct_answer": "26",
+    "explanation": "The diagonal is the hypotenuse of a right triangle with legs 24 and 10: the square root of 576 + 100 = 676, which is 26.",
+    "solve": "return Math.sqrt(24*24+10*10);",
+    "distractor_steps": [
+      {
+        "choice": "14",
+        "mis_step": "subtracted the two sides"
+      },
+      {
+        "choice": "34",
+        "mis_step": "added the two sides"
+      },
+      {
+        "choice": "68",
+        "mis_step": "gave the perimeter"
+      },
+      {
+        "choice": "240",
+        "mis_step": "gave the area"
+      }
+    ]
+  },
+  {
+    "id": "SM8-17",
+    "domain": "Math",
+    "subskill": "area between a square and its inscribed circle",
+    "difficulty": "medium",
+    "prompt": "A circle of radius 5 is inscribed in a square, touching all four sides. What is the area of the region inside the square but outside the circle?",
+    "choices": [
+      "100 - 100π",
+      "100 - 25π",
+      "100 - 10π",
+      "100 - 5π",
+      "400 - 100π"
+    ],
+    "correct_answer": "100 - 25π",
+    "explanation": "The circle touches all four sides, so the square's side is the diameter, 10, and its area is 100. The circle's area is 25π, so the region left over is 100 - 25π.",
+    "solve": "const r=5, s=2*r; return (s*s)+' - '+(r*r)+'\\u03c0';",
+    "distractor_steps": [
+      {
+        "choice": "100 - 10π",
+        "mis_step": "used 2πr, the circumference formula, for the circle's area"
+      },
+      {
+        "choice": "100 - 5π",
+        "mis_step": "used πr rather than πr^2"
+      },
+      {
+        "choice": "100 - 100π",
+        "mis_step": "used the square's side, 10, as the radius of the circle"
+      },
+      {
+        "choice": "400 - 100π",
+        "mis_step": "took the radius 5 to be a quarter of the side, making the square 20 by 20"
+      }
+    ]
+  },
+  {
+    "id": "SM8-18",
+    "domain": "Math",
+    "subskill": "multiplying numbers in scientific notation",
+    "difficulty": "medium",
+    "prompt": "What is (3 x 10^5)(4 x 10^-2) expressed in scientific notation?",
+    "choices": [
+      "7 x 10^3",
+      "1.2 x 10^3",
+      "1.2 x 10^4",
+      "1.2 x 10^8",
+      "12 x 10^-10"
+    ],
+    "correct_answer": "1.2 x 10^4",
+    "explanation": "3 x 4 = 12 and 10^5 x 10^-2 = 10^3, giving 12 x 10^3. Writing 12 as 1.2 x 10 raises the exponent by one: 1.2 x 10^4.",
+    "solve": "const m=3*4, e=5+(-2); const mm=m/10, ee=e+1; return mm+' x 10^'+ee;",
+    "distractor_steps": [
+      {
+        "choice": "7 x 10^3",
+        "mis_step": "added the front numbers instead of multiplying them"
+      },
+      {
+        "choice": "1.2 x 10^3",
+        "mis_step": "rewrote 12 as 1.2 without raising the exponent to compensate"
+      },
+      {
+        "choice": "1.2 x 10^8",
+        "mis_step": "subtracted the exponents instead of adding them"
+      },
+      {
+        "choice": "12 x 10^-10",
+        "mis_step": "multiplied the exponents instead of adding them"
+      }
+    ]
+  },
+  {
+    "id": "SM8-19",
+    "domain": "Math",
+    "subskill": "negative and zero exponents",
+    "difficulty": "medium",
+    "prompt": "What is the value of 2^-3 + 3^0 ?",
+    "choices": [
+      "-8",
+      "-7",
+      "1/8",
+      "9/8",
+      "25/8"
+    ],
+    "correct_answer": "9/8",
+    "explanation": "2^-3 is 1/2^3 = 1/8, and any nonzero number to the power 0 is 1. So the sum is 1/8 + 1 = 9/8.",
+    "solve": "return Math.pow(2,-3) + Math.pow(3,0);",
+    "distractor_steps": [
+      {
+        "choice": "-8",
+        "mis_step": "read 2^-3 as -8 and 3^0 as 0"
+      },
+      {
+        "choice": "-7",
+        "mis_step": "read 2^-3 as -8 but handled 3^0 correctly"
+      },
+      {
+        "choice": "1/8",
+        "mis_step": "took 3^0 to be 0"
+      },
+      {
+        "choice": "25/8",
+        "mis_step": "took 3^0 to be 3"
+      }
+    ]
+  },
+  {
+    "id": "SM8-20",
+    "domain": "Math",
+    "subskill": "effect on the mean of replacing one value",
+    "difficulty": "medium",
+    "prompt": "The five numbers 20, 22, 24, 26 and 28 have a mean of 24. The 28 is replaced by 78. By how much does the mean of the five numbers increase?",
+    "choices": [
+      "10",
+      "12.5",
+      "34",
+      "50",
+      "78"
+    ],
+    "correct_answer": "10",
+    "explanation": "The total rises by 78 - 28 = 50, and that is shared over 5 numbers, so the mean rises by 50 / 5 = 10.",
+    "solve": "const a=[20,22,24,26,28], b=[20,22,24,26,78]; const m=x=>x.reduce((p,q)=>p+q,0)/x.length; return m(b)-m(a);",
+    "distractor_steps": [
+      {
+        "choice": "12.5",
+        "mis_step": "divided the increase of 50 by 4 instead of 5"
+      },
+      {
+        "choice": "34",
+        "mis_step": "gave the new mean rather than the increase"
+      },
+      {
+        "choice": "50",
+        "mis_step": "gave the increase in the one value rather than in the mean"
+      },
+      {
+        "choice": "78",
+        "mis_step": "gave the new value itself"
+      }
+    ]
+  },
+  {
+    "id": "SM8-21",
+    "domain": "Math",
+    "subskill": "using a conversion formula",
+    "difficulty": "medium",
+    "prompt": "Celsius temperature is given by C = (5/9)(F - 32). A temperature of 77 degrees Fahrenheit is how many degrees Celsius?",
+    "choices": [
+      "25",
+      "42.8",
+      "45",
+      "81",
+      "170.6"
+    ],
+    "correct_answer": "25",
+    "explanation": "F - 32 = 45, and (5/9)(45) = 25 degrees Celsius.",
+    "solve": "return (5/9)*(77-32);",
+    "distractor_steps": [
+      {
+        "choice": "42.8",
+        "mis_step": "multiplied by 5/9 without first subtracting 32, giving about 42.8"
+      },
+      {
+        "choice": "45",
+        "mis_step": "subtracted 32 but never multiplied by 5/9"
+      },
+      {
+        "choice": "81",
+        "mis_step": "used 9/5 in place of 5/9"
+      },
+      {
+        "choice": "170.6",
+        "mis_step": "used the reverse formula, (9/5)(77) + 32"
+      }
+    ]
+  },
+  {
+    "id": "SM8-22",
+    "domain": "Math",
+    "subskill": "perpendicular slope through the origin",
+    "difficulty": "hard",
+    "prompt": "Line k passes through (-2, 5) and (4, 1). Line m passes through the origin and is perpendicular to line k. What is the y-coordinate of the point on line m whose x-coordinate is 6?",
+    "choices": [
+      "-9",
+      "-4",
+      "4",
+      "6",
+      "9"
+    ],
+    "correct_answer": "9",
+    "explanation": "The slope of k is (1 - 5)/(4 - (-2)) = -2/3, so the slope of m is 3/2. Line m is y = (3/2)x, and at x = 6 that gives y = 9.",
+    "solve": "const s=(1-5)/(4-(-2)); const p=-1/s; return p*6;",
+    "distractor_steps": [
+      {
+        "choice": "-9",
+        "mis_step": "used -3/2 as the perpendicular slope, keeping the sign of k's slope"
+      },
+      {
+        "choice": "-4",
+        "mis_step": "used the slope of k itself, -2/3"
+      },
+      {
+        "choice": "4",
+        "mis_step": "used 2/3, dropping the sign of k's slope"
+      },
+      {
+        "choice": "6",
+        "mis_step": "gave the x-coordinate back"
+      }
+    ]
+  },
+  {
+    "id": "SM8-23",
+    "domain": "Math",
+    "subskill": "areas of circles from a ratio of circumferences",
+    "difficulty": "hard",
+    "prompt": "The circumferences of two circles are in the ratio 2 to 5. The area of the smaller circle is 12. What is the area of the larger circle?",
+    "choices": [
+      "1.92",
+      "4.8",
+      "30",
+      "48",
+      "75"
+    ],
+    "correct_answer": "75",
+    "explanation": "Circumference is proportional to the radius, so the radii are in the ratio 2 to 5 and the AREAS are in the ratio 4 to 25. The larger area is 12 x 25/4 = 75.",
+    "solve": "return 12*(5*5)/(2*2);",
+    "distractor_steps": [
+      {
+        "choice": "1.92",
+        "mis_step": "multiplied by 4/25, the area ratio the wrong way round"
+      },
+      {
+        "choice": "4.8",
+        "mis_step": "multiplied by 2/5, the length ratio the wrong way round"
+      },
+      {
+        "choice": "30",
+        "mis_step": "multiplied by 5/2, using the length ratio where the area ratio is needed"
+      },
+      {
+        "choice": "48",
+        "mis_step": "multiplied by 4 rather than by 25/4"
+      }
+    ]
+  },
+  {
+    "id": "SM8-24",
+    "domain": "Math",
+    "subskill": "effect on volume of scaling a cylinder",
+    "difficulty": "hard",
+    "prompt": "A cylinder has a volume of 90 cubic inches. A second cylinder has twice the radius of the first and one third its height. What is the volume, in cubic inches, of the second cylinder?",
+    "choices": [
+      "30",
+      "60",
+      "120",
+      "360",
+      "1080"
+    ],
+    "correct_answer": "120",
+    "explanation": "Volume is πr^2h. Doubling the radius multiplies the volume by 4, and one third the height divides it by 3, so the volume is 90 x 4 / 3 = 120 cubic inches.",
+    "solve": "return 90*(2*2)*(1/3);",
+    "distractor_steps": [
+      {
+        "choice": "30",
+        "mis_step": "applied the one third height but ignored the change in radius"
+      },
+      {
+        "choice": "60",
+        "mis_step": "multiplied by 2 for the radius rather than by 2^2"
+      },
+      {
+        "choice": "360",
+        "mis_step": "multiplied by 4 for the radius but ignored the change in height"
+      },
+      {
+        "choice": "1080",
+        "mis_step": "multiplied by 3 for the height instead of dividing by 3"
+      }
+    ]
+  },
+  {
+    "id": "SM8-25",
+    "domain": "Math",
+    "subskill": "a value that makes the mean equal the median",
+    "difficulty": "hard",
+    "prompt": "The four numbers 8, 12, 20 and n have a mean equal to their median, and n > 20. What is n?",
+    "choices": [
+      "12",
+      "14",
+      "16",
+      "24",
+      "44"
+    ],
+    "correct_answer": "24",
+    "explanation": "Since n > 20 the ordered list is 8, 12, 20, n, so the median is (12 + 20)/2 = 16. Setting (40 + n)/4 = 16 gives 40 + n = 64 and n = 24.",
+    "solve": "for(let n=21;n<=500;n++){ const s=[8,12,20,n].slice().sort((a,b)=>a-b); const med=(s[1]+s[2])/2, mean=(40+n)/4; if(Math.abs(mean-med)<1e-9) return n; } return 'none';",
+    "distractor_steps": [
+      {
+        "choice": "16",
+        "mis_step": "found the median but reported it instead of solving for n"
+      },
+      {
+        "choice": "12",
+        "mis_step": "took the median to be 12, the second number listed, rather than the average of the middle two"
+      },
+      {
+        "choice": "14",
+        "mis_step": "took the median to be the average of the smallest and largest known values"
+      },
+      {
+        "choice": "44",
+        "mis_step": "reached 4 x 16 = 64 but then subtracted only the largest known value"
+      }
+    ]
+  },
+  {
+    "id": "SM8-26",
+    "domain": "Math",
+    "subskill": "similar triangles from shadow lengths",
+    "difficulty": "medium",
+    "prompt": "At the same time of day, a pole 5 feet tall casts a shadow 4 feet long, and a flagpole casts a shadow 32 feet long. How tall, in feet, is the flagpole?",
+    "choices": [
+      "8",
+      "25.6",
+      "31",
+      "33",
+      "40"
+    ],
+    "correct_answer": "40",
+    "explanation": "Height and shadow are in the same ratio for both: 5/4 = h/32, so h = 5 x 32 / 4 = 40 feet.",
+    "solve": "return 5*32/4;",
+    "distractor_steps": [
+      {
+        "choice": "8",
+        "mis_step": "gave how many times longer the flagpole's shadow is, 32 divided by 4"
+      },
+      {
+        "choice": "25.6",
+        "mis_step": "inverted the ratio, computing 32 x 4/5"
+      },
+      {
+        "choice": "31",
+        "mis_step": "subtracted the 1-foot gap between the pole and its shadow from 32"
+      },
+      {
+        "choice": "33",
+        "mis_step": "added that 1-foot gap to 32"
+      }
+    ]
+  },
+  {
+    "id": "SM8-27",
+    "domain": "Math",
+    "subskill": "profit as a percent of cost after a markup and a discount",
+    "difficulty": "hard",
+    "prompt": "A shop buys a chair for $80 and marks it up 60 percent. It then sells the chair at 25 percent off the marked price. The shop's profit is what percent of the $80 it paid?",
+    "choices": [
+      "20",
+      "35",
+      "48",
+      "60",
+      "120"
+    ],
+    "correct_answer": "20",
+    "explanation": "The marked price is 80 x 1.6 = $128, and 25 percent off that is 128 x 0.75 = $96. The profit is $16, and 16/80 = 20 percent of the cost.",
+    "solve": "const c=80, m=c*1.6, s=m*0.75; return 100*(s-c)/c;",
+    "distractor_steps": [
+      {
+        "choice": "35",
+        "mis_step": "subtracted the two percents, 60 - 25"
+      },
+      {
+        "choice": "48",
+        "mis_step": "gave the markup in dollars, 60 percent of 80"
+      },
+      {
+        "choice": "60",
+        "mis_step": "gave the markup rate and ignored the discount"
+      },
+      {
+        "choice": "120",
+        "mis_step": "gave the selling price as a percent of the cost rather than the profit"
+      }
+    ]
+  },
+  {
+    "id": "SM8-28",
+    "domain": "Math",
+    "subskill": "a filling rate opposed by a draining rate",
+    "difficulty": "hard",
+    "prompt": "A pipe fills an empty tank in 6 hours. A drain empties the full tank in 10 hours. If the tank starts empty and both are open, how many hours does it take to fill the tank?",
+    "choices": [
+      "1/15",
+      "3.75",
+      "8",
+      "15",
+      "60"
+    ],
+    "correct_answer": "15",
+    "explanation": "In one hour the pipe adds 1/6 of the tank and the drain removes 1/10, a net 1/6 - 1/10 = 1/15 of the tank per hour. Filling one tank therefore takes 15 hours.",
+    "solve": "return 1/(1/6 - 1/10);",
+    "distractor_steps": [
+      {
+        "choice": "1/15",
+        "mis_step": "gave the net rate in tanks per hour rather than the time in hours"
+      },
+      {
+        "choice": "3.75",
+        "mis_step": "added the two rates instead of subtracting the drain's"
+      },
+      {
+        "choice": "8",
+        "mis_step": "averaged the two times"
+      },
+      {
+        "choice": "60",
+        "mis_step": "multiplied the two times"
+      }
+    ]
+  },
+  {
+    "id": "SM8-29",
+    "domain": "Math",
+    "subskill": "probability of an odd product on two spins",
+    "difficulty": "hard",
+    "prompt": "A spinner has five equal sections numbered 1, 2, 3, 4 and 5. It is spun twice. What is the probability that the PRODUCT of the two numbers is odd?",
+    "choices": [
+      "4/25",
+      "9/25",
+      "12/25",
+      "1/2",
+      "3/5"
+    ],
+    "correct_answer": "9/25",
+    "explanation": "A product is odd only when both numbers are odd. Three of the five sections are odd, so the probability is (3/5)(3/5) = 9/25.",
+    "solve": "let f=0,t=0; for(let a=1;a<=5;a++) for(let b=1;b<=5;b++){ t++; if((a*b)%2===1) f++; } return f/t;",
+    "distractor_steps": [
+      {
+        "choice": "4/25",
+        "mis_step": "counted the spins where both numbers are EVEN"
+      },
+      {
+        "choice": "12/25",
+        "mis_step": "counted the spins with exactly one odd number"
+      },
+      {
+        "choice": "1/2",
+        "mis_step": "assumed an odd product and an even product are equally likely"
+      },
+      {
+        "choice": "3/5",
+        "mis_step": "gave the probability for a single spin"
+      }
+    ]
+  },
+  {
+    "id": "SM8-30",
+    "domain": "Math",
+    "subskill": "summing a run of consecutive odd integers",
+    "difficulty": "hard",
+    "prompt": "The sum of the first n positive odd integers is n^2. What is the sum of the odd integers from 21 through 99?",
+    "choices": [
+      "1600",
+      "2400",
+      "2420",
+      "2500",
+      "3000"
+    ],
+    "correct_answer": "2400",
+    "explanation": "The odd integers from 1 through 99 are the first 50 of them and sum to 50^2 = 2500. The odd integers from 1 through 19 are the first 10 and sum to 10^2 = 100. The sum from 21 through 99 is 2500 - 100 = 2400.",
+    "solve": "let s=0; for(let k=21;k<=99;k+=2) s+=k; return s;",
+    "distractor_steps": [
+      {
+        "choice": "2500",
+        "mis_step": "summed every odd integer from 1 through 99 and never removed the first ten"
+      },
+      {
+        "choice": "2420",
+        "mis_step": "used 100 rather than 99 as the last term, giving 40 x 60.5"
+      },
+      {
+        "choice": "1600",
+        "mis_step": "squared the number of terms, 40, instead of using the two square sums"
+      },
+      {
+        "choice": "3000",
+        "mis_step": "counted 50 terms instead of 40"
+      }
+    ]
+  }
+]

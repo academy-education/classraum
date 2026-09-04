@@ -1,0 +1,410 @@
+[
+ {
+  "id": "GEO-H1-01",
+  "subskill": "circles: equation of a circle in the xy-plane",
+  "difficulty": "hard",
+  "prompt": "In the xy-plane, the graph of 3x² + 3y² − 12x + 30y − 21 = 0 is a circle. What is the radius of the circle?",
+  "choices": [
+   "4.7",
+   "6",
+   "16.8",
+   "36"
+  ],
+  "correct_answer": "6",
+  "explanation": "Dividing every term by 3 first gives x² + y² − 4x + 10y − 7 = 0. Completing the square gives (x − 2)² + (y + 5)² = 7 + 4 + 25 = 36, so the radius is 6. Choice 16.8 completes the square on the original equation without dividing by 3, giving (x − 6)² + (y + 15)² = 282 and √282 ≈ 16.8. Choice 4.7 divides correctly but carries the constant across with the wrong sign, giving 4 + 25 − 7 = 22 and √22 ≈ 4.7. Choice 36 is the value of r², the square of the radius rather than the radius.",
+  "solve": "const A=3,Dc=-12,E=30,F=-21;\nconst d=Dc/A,e=E/A,f=F/A;\nreturn String(Math.sqrt(d*d/4+e*e/4-f));",
+  "domain": "Geometry and Trigonometry"
+ },
+ {
+  "id": "GEO-H1-02",
+  "subskill": "area and volume: similar solids",
+  "difficulty": "hard",
+  "prompt": "Cone A and cone B are similar right circular cones. The ratio of the lateral surface area of cone A to the lateral surface area of cone B is 4 to 9. The volume of cone A is 32 cubic centimeters. What is the volume of cone B, in cubic centimeters?",
+  "choices": [
+   "9.5",
+   "48",
+   "72",
+   "108"
+  ],
+  "correct_answer": "108",
+  "explanation": "Areas of similar solids are in the ratio of the square of the scale factor, so the scale factor from A to B is √(4/9) = 2/3 and the volumes are in the ratio (2/3)³ = 8/27. Then the volume of B is 32 ÷ (8/27) = 108. Choice 72 applies the area ratio directly to the volumes, 32(9/4). Choice 48 applies only the scale factor, 32(3/2). Choice 9.5 cubes the scale factor in the wrong direction, 32(8/27) ≈ 9.5, which treats cone B as the smaller solid.",
+  "solve": "const vA=32, areaRatio=4/9;\nconst lin=Math.sqrt(areaRatio);\nreturn String(vA/Math.pow(lin,3));",
+  "domain": "Geometry and Trigonometry"
+ },
+ {
+  "id": "GEO-H1-03",
+  "subskill": "triangles: a line parallel to one side",
+  "difficulty": "medium",
+  "prompt": "In the figure, D lies on AB, E lies on AC, and DE is parallel to BC. What is the length of BC?",
+  "graphic": {
+   "type": "svg",
+   "svg": "<svg viewBox=\"0 0 350 250\" xmlns=\"http://www.w3.org/2000/svg\" font-family=\"system-ui,sans-serif\" font-size=\"13\" fill=\"#12151C\"><polygon points=\"60,25 20,205 300,205\" fill=\"none\" stroke=\"#2B3A8C\" stroke-width=\"2\"/> <line x1=\"44\" y1=\"97\" x2=\"156\" y2=\"97\" stroke=\"#0E7A5F\" stroke-width=\"2\"/> <text x=\"54\" y=\"20\">A</text><text x=\"8\" y=\"219\">B</text><text x=\"304\" y=\"219\">C</text><text x=\"26\" y=\"95\">D</text><text x=\"160\" y=\"94\">E</text> <text x=\"36\" y=\"64\">8</text><text x=\"14\" y=\"158\">12</text><text x=\"96\" y=\"90\">10</text></svg>"
+  },
+  "choices": [
+   "4",
+   "15",
+   "16.7",
+   "25"
+  ],
+  "correct_answer": "25",
+  "explanation": "Because DE is parallel to BC, triangle ADE is similar to triangle ABC, and the scale factor compares AD to the WHOLE side AB, not to DB. AB = 8 + 12 = 20, so BC = 10(20/8) = 25. Choice 15 uses the part-to-part ratio DB/AD = 12/8. Choice 16.7 uses AB/DB = 20/12. Choice 4 inverts the correct scale factor, 10(8/20).",
+  "solve": "const AD=8,DB=12,DE=10;\nreturn String(DE*(AD+DB)/AD);",
+  "domain": "Geometry and Trigonometry"
+ },
+ {
+  "id": "GEO-H1-04",
+  "subskill": "right triangles: trigonometric ratios and side lengths",
+  "difficulty": "hard",
+  "prompt": "In right triangle ABC, the measure of angle C is 90°, sin A = 5/13, and AC = 36. What is the length of BC?",
+  "choices": [
+   "13.8",
+   "15",
+   "39",
+   "86.4"
+  ],
+  "correct_answer": "15",
+  "explanation": "Angle C is the right angle, so AB is the hypotenuse and AC is the leg adjacent to angle A. From sin A = 5/13, cos A = 12/13, so AB = 36 ÷ (12/13) = 39 and BC = 39(5/13) = 15. Choice 39 is the hypotenuse AB, the intermediate result rather than the requested leg. Choice 13.8 treats the given 36 as the hypotenuse and computes 36(5/13). Choice 86.4 uses the adjacent side with the ratio 12/5, computing 36(12/5), which applies a tangent ratio upside down.",
+  "solve": "const sinA=5/13, AC=36;\nconst cosA=Math.sqrt(1-sinA*sinA);\nreturn String(Math.round((AC/cosA)*sinA));",
+  "domain": "Geometry and Trigonometry"
+ },
+ {
+  "id": "GEO-H1-05",
+  "subskill": "circles: points on a circle in the xy-plane",
+  "difficulty": "medium",
+  "prompt": "In the xy-plane, a circle with center (3, 2) has radius 10. Point P lies on this circle and has x-coordinate 9. Which of the following could be the y-coordinate of P?",
+  "choices": [
+   "-8",
+   "6",
+   "8",
+   "10"
+  ],
+  "correct_answer": "10",
+  "explanation": "Substituting x = 9 into (x − 3)² + (y − 2)² = 100 gives 36 + (y − 2)² = 100, so (y − 2)² = 64 and y − 2 = ±8. The two possible y-coordinates are 10 and −6, and 10 is listed. Choices 8 and −8 come from taking ±√64 as the y-coordinate itself, which ignores the vertical shift of the center. Choice 6 subtracts the shift instead of adding it, 8 − 2.",
+  "solve": "const cx=3,cy=2,r=10,x=9;\nreturn String(cy+Math.sqrt(r*r-Math.pow(x-cx,2)));",
+  "domain": "Geometry and Trigonometry"
+ },
+ {
+  "id": "GEO-H1-06",
+  "subskill": "circles: arc length and sector area",
+  "difficulty": "hard",
+  "prompt": "The figure shows a circle with center O. What is the area of the shaded sector?",
+  "graphic": {
+   "type": "svg",
+   "svg": "<svg viewBox=\"0 0 350 250\" xmlns=\"http://www.w3.org/2000/svg\" font-family=\"system-ui,sans-serif\" font-size=\"13\" fill=\"#12151C\"><circle cx=\"175\" cy=\"125\" r=\"85\" fill=\"none\" stroke=\"#2B3A8C\" stroke-width=\"2\"/> <path d=\"M175,125 L260,125 A85,85 0 0,0 240.1,70.4 Z\" fill=\"#DCE6FA\" stroke=\"#2B3A8C\" stroke-width=\"2\"/> <text x=\"166\" y=\"142\">O</text> <text x=\"192\" y=\"115\" font-size=\"12\" fill=\"#0A5C48\">40°</text> <text x=\"266\" y=\"88\" font-size=\"12\" fill=\"#0A5C48\">arc = 6π</text></svg>"
+  },
+  "choices": [
+   "81π",
+   "162π",
+   "324π",
+   "729π"
+  ],
+  "correct_answer": "81π",
+  "explanation": "The arc is 40/360 = 1/9 of the circumference, so (1/9)(2πr) = 6π gives r = 27. The sector is the same fraction of the area: (1/9)π(27)² = 81π. Choice 162π uses the fraction 40/180 in the area formula instead of 40/360. Choice 324π comes from solving (1/9)(πr) = 6π for the radius, omitting the factor of 2 in the circumference and getting r = 54. Choice 729π is the area of the whole circle rather than of the sector.",
+  "solve": "const deg=40,L=6;\nconst r=L*Math.PI/((deg/360)*2*Math.PI);\nconst area=(deg/360)*Math.PI*r*r;\nreturn Math.round(area/Math.PI)+\"\\u03c0\";",
+  "domain": "Geometry and Trigonometry"
+ },
+ {
+  "id": "GEO-H1-07",
+  "subskill": "area and volume: volume with mixed units",
+  "difficulty": "hard",
+  "prompt": "A rectangular tank has interior dimensions 1.2 meters by 80 centimeters by 50 centimeters. Given that 1 liter is equal to 1,000 cubic centimeters, what is the capacity of the tank, in liters?",
+  "choices": [
+   "0.48",
+   "4.8",
+   "480",
+   "4800"
+  ],
+  "correct_answer": "480",
+  "explanation": "Converting the first dimension gives 120 cm by 80 cm by 50 cm, a volume of 480,000 cubic centimeters, which is 480,000 ÷ 1,000 = 480 liters. Choice 4.8 multiplies 1.2 × 80 × 50 without converting the meters, treating 4,800 as a count of cubic centimeters. Choice 0.48 reports the volume in cubic meters, 0.48, as though cubic meters and liters were the same unit. Choice 4800 divides the 480,000 cubic centimeters by 100 rather than by 1,000.",
+  "solve": "const cm3=120*80*50;\nreturn String(cm3/1000);",
+  "domain": "Geometry and Trigonometry"
+ },
+ {
+  "id": "GEO-H1-08",
+  "subskill": "right triangles: angles of elevation",
+  "difficulty": "hard",
+  "prompt": "A vertical pole stands on level ground. From point A on the ground the angle of elevation to the top of the pole is 52°. From point B, which is on the same straight line as A and the base of the pole and is 18 meters farther from the base than A is, the angle of elevation to the top is 34°. What is the height of the pole, to the nearest meter?",
+  "choices": [
+   "12",
+   "23",
+   "26",
+   "30"
+  ],
+  "correct_answer": "26",
+  "explanation": "If h is the height, the two ground distances are h/tan 52° and h/tan 34°, and they differ by 18: h(1/tan 34° − 1/tan 52°) = 18, so h ≈ 18/0.7013 ≈ 25.7, or 26 meters. Choice 23 uses 18 tan 52°, treating 18 as the distance from A to the base. Choice 12 uses 18 tan 34°, making the same substitution at the other point. Choice 30 subtracts the tangents instead of their reciprocals, 18/(tan 52° − tan 34°).",
+  "solve": "const t=d=>Math.tan(d*Math.PI/180);\nreturn String(Math.round(18/(1/t(34)-1/t(52))));",
+  "domain": "Geometry and Trigonometry"
+ },
+ {
+  "id": "GEO-H1-09",
+  "subskill": "circles: tangent lines and radii",
+  "difficulty": "hard",
+  "prompt": "In the figure, PA and PB are tangent to the circle with center O at points A and B, respectively. What is the area of quadrilateral PAOB?",
+  "graphic": {
+   "type": "svg",
+   "svg": "<svg viewBox=\"0 0 350 250\" xmlns=\"http://www.w3.org/2000/svg\" font-family=\"system-ui,sans-serif\" font-size=\"13\" fill=\"#12151C\"><circle cx=\"110\" cy=\"150\" r=\"45\" fill=\"none\" stroke=\"#2B3A8C\" stroke-width=\"2\"/> <line x1=\"300\" y1=\"110\" x2=\"111.2\" y2=\"105\" stroke=\"#0E7A5F\" stroke-width=\"2\"/> <line x1=\"300\" y1=\"110\" x2=\"129.2\" y2=\"190.7\" stroke=\"#0E7A5F\" stroke-width=\"2\"/> <line x1=\"110\" y1=\"150\" x2=\"111.2\" y2=\"105\" stroke=\"#12151C\" stroke-width=\"1.6\"/> <line x1=\"110\" y1=\"150\" x2=\"129.2\" y2=\"190.7\" stroke=\"#12151C\" stroke-width=\"1.6\"/> <line x1=\"110\" y1=\"150\" x2=\"300\" y2=\"110\" stroke=\"#5A6474\" stroke-width=\"1.2\" stroke-dasharray=\"4 3\"/> <text x=\"96\" y=\"155\">O</text><text x=\"306\" y=\"112\">P</text><text x=\"104\" y=\"98\">A</text><text x=\"132\" y=\"204\">B</text> <text x=\"116\" y=\"130\">9</text><text x=\"198\" y=\"146\">41</text><text x=\"18\" y=\"240\" font-size=\"11\" fill=\"#5A6474\">Figure not drawn to scale.</text></svg>"
+  },
+  "choices": [
+   "180",
+   "360",
+   "369",
+   "378"
+  ],
+  "correct_answer": "360",
+  "explanation": "A radius meets a tangent at a right angle, so triangles PAO and PBO are right triangles with legs OA = 9 and PA, and hypotenuse OP = 41. Then PA = √(41² − 9²) = 40 and the quadrilateral is the two congruent right triangles together: 2(½)(9)(40) = 360. Choice 180 is the area of only one of the two triangles. Choice 369 multiplies the two given lengths, 9 × 41, treating the figure as a rectangle. Choice 378 adds inside the radical instead of subtracting, √(41² + 9²) ≈ 42, giving 2(½)(9)(42).",
+  "solve": "const r=9,OP=41;\nconst t=Math.sqrt(OP*OP-r*r);\nreturn String(2*(0.5*r*t));",
+  "domain": "Geometry and Trigonometry"
+ },
+ {
+  "id": "GEO-H1-10",
+  "subskill": "area and volume: area of a trapezoid",
+  "difficulty": "medium",
+  "prompt": "The figure shows trapezoid WXYZ, in which WX is parallel to ZY. What is the area of the trapezoid?",
+  "graphic": {
+   "type": "svg",
+   "svg": "<svg viewBox=\"0 0 350 250\" xmlns=\"http://www.w3.org/2000/svg\" font-family=\"system-ui,sans-serif\" font-size=\"13\" fill=\"#12151C\"><polygon points=\"40,190 300,190 244.6,115.6 95.8,115.6\" fill=\"none\" stroke=\"#2B3A8C\" stroke-width=\"2\"/> <text x=\"30\" y=\"206\">Z</text><text x=\"304\" y=\"206\">Y</text><text x=\"88\" y=\"108\">W</text><text x=\"246\" y=\"108\">X</text> <text x=\"164\" y=\"208\">14</text><text x=\"166\" y=\"108\">8</text><text x=\"52\" y=\"156\">5</text><text x=\"278\" y=\"156\">5</text></svg>"
+  },
+  "choices": [
+   "44",
+   "55",
+   "56",
+   "88"
+  ],
+  "correct_answer": "44",
+  "explanation": "The two bases differ by 14 − 8 = 6, so each end of the longer base extends 3 beyond the shorter one and the height is √(5² − 3²) = 4. The area is ½(14 + 8)(4) = 44. Choice 55 uses the slant side 5 as the height, ½(22)(5). Choice 88 omits the factor of ½, (14 + 8)(4). Choice 56 finds the height correctly but multiplies it by the longer base alone, 14 × 4, as though the figure were a rectangle.",
+  "solve": "const a=14,b=8,leg=5;\nconst h=Math.sqrt(leg*leg-Math.pow((a-b)/2,2));\nreturn String(0.5*(a+b)*h);",
+  "domain": "Geometry and Trigonometry"
+ },
+ {
+  "id": "GEO-H1-11",
+  "subskill": "triangles: the triangle inequality",
+  "difficulty": "hard",
+  "prompt": "Two sides of a triangle have lengths 9 and 14. Which of the following CANNOT be the perimeter of the triangle?",
+  "choices": [
+   "28",
+   "34",
+   "40",
+   "45"
+  ],
+  "correct_answer": "28",
+  "explanation": "The third side x must satisfy 14 − 9 < x < 14 + 9, that is 5 < x < 23, so the perimeter 23 + x must satisfy 28 < perimeter < 46. A perimeter of 28 would make the third side exactly 5, and a side of 5 with sides 9 and 14 gives three collinear points, not a triangle. Perimeters of 34, 40 and 45 give third sides of 11, 17 and 22, all strictly between 5 and 23. A solver who checks only the upper bound of 46 finds nothing wrong with any of the four.",
+  "solve": "const p=[28,34,40,45],s1=9,s2=14;\nconst bad=p.filter(P=>{const x=P-s1-s2;return !(x>Math.abs(s2-s1)&&x<s1+s2);});\nreturn String(bad[0]);",
+  "domain": "Geometry and Trigonometry"
+ },
+ {
+  "id": "GEO-H1-12",
+  "subskill": "triangles: area of an equilateral triangle",
+  "difficulty": "medium",
+  "prompt": "An equilateral triangle has a perimeter of 36 centimeters. What is the area of the triangle, in square centimeters, to the nearest tenth?",
+  "choices": [
+   "62.4",
+   "72.0",
+   "124.7",
+   "561.2"
+  ],
+  "correct_answer": "62.4",
+  "explanation": "Each side is 36/3 = 12, the altitude is 12√3/2 = 6√3, and the area is ½(12)(6√3) = 36√3 ≈ 62.4. Choice 124.7 omits the factor of ½, using base times height. Choice 72.0 takes the altitude to equal the side, ½(12)(12). Choice 561.2 uses the perimeter 36 in place of the side length, (√3/4)(36)².",
+  "solve": "const s=36/3;\nreturn (Math.sqrt(3)/4*s*s).toFixed(1);",
+  "domain": "Geometry and Trigonometry"
+ },
+ {
+  "id": "GEO-H1-13",
+  "subskill": "coordinate geometry: perpendicular bisectors",
+  "difficulty": "medium",
+  "prompt": "In the xy-plane, line l is the perpendicular bisector of the segment with endpoints (−5, 2) and (7, 8). At what value of x does line l cross the x-axis?",
+  "choices": [
+   "-9",
+   "1",
+   "3.5",
+   "7"
+  ],
+  "correct_answer": "3.5",
+  "explanation": "The midpoint is (1, 5) and the segment has slope 6/12 = 1/2, so line l has slope −2 and equation y = −2(x − 1) + 5 = −2x + 7. Setting y = 0 gives x = 3.5. Choice 1 reports the x-coordinate of the midpoint, stopping before the line is used. Choice 7 is the y-intercept of line l rather than its x-intercept. Choice −9 keeps the slope 1/2 instead of taking the negative reciprocal.",
+  "solve": "const A=[-5,2],B=[7,8];\nconst mx=(A[0]+B[0])/2,my=(A[1]+B[1])/2;\nconst p=-1/((B[1]-A[1])/(B[0]-A[0]));\nreturn String(mx-my/p);",
+  "domain": "Geometry and Trigonometry"
+ },
+ {
+  "id": "GEO-H1-14",
+  "subskill": "area and volume: similar cones and partial filling",
+  "difficulty": "hard",
+  "prompt": "A right circular cone with height 15 centimeters is held with its vertex pointing down and its axis vertical. Water is poured in until the depth of the water, measured from the vertex, is 10 centimeters. What fraction of the cone’s volume is filled with water?",
+  "choices": [
+   "8/27",
+   "4/9",
+   "2/3",
+   "19/27"
+  ],
+  "correct_answer": "8/27",
+  "explanation": "The surface of the water is a circle, and the water forms a cone similar to the whole cone with scale factor 10/15 = 2/3, so its radius shrinks in the same proportion as its height. Volumes scale as the cube of the scale factor, so the fraction is (2/3)³ = 8/27. Choice 2/3 uses the ratio of the depths, treating volume as proportional to height. Choice 4/9 squares the scale factor instead of cubing it. Choice 19/27 is the fraction of the cone that is empty rather than the fraction filled.",
+  "solve": "const Hh=15,h=10;\nconst num=Math.pow(h,3),den=Math.pow(Hh,3);\nconst g=(a,b)=>b?g(b,a%b):a;\nconst k=g(num,den);\nreturn (num/k)+\"/\"+(den/k);",
+  "domain": "Geometry and Trigonometry"
+ },
+ {
+  "id": "GEO-H1-15",
+  "subskill": "lines and angles: parallel lines cut by a transversal",
+  "difficulty": "hard",
+  "prompt": "In the figure, lines l and m are parallel and line t is a transversal. What is the value of x?",
+  "graphic": {
+   "type": "svg",
+   "svg": "<svg viewBox=\"0 0 350 250\" xmlns=\"http://www.w3.org/2000/svg\" font-family=\"system-ui,sans-serif\" font-size=\"13\" fill=\"#12151C\"><line x1=\"30\" y1=\"80\" x2=\"320\" y2=\"80\" stroke=\"#2B3A8C\" stroke-width=\"2\"/> <line x1=\"30\" y1=\"170\" x2=\"320\" y2=\"170\" stroke=\"#2B3A8C\" stroke-width=\"2\"/> <line x1=\"90\" y1=\"35\" x2=\"255\" y2=\"212\" stroke=\"#0E7A5F\" stroke-width=\"2\"/> <text x=\"326\" y=\"84\">l</text><text x=\"326\" y=\"174\">m</text><text x=\"258\" y=\"224\">t</text> <text x=\"150\" y=\"102\" font-size=\"12\">(3x + 10)°</text> <text x=\"228\" y=\"158\" font-size=\"12\">(5x − 30)°</text><text x=\"18\" y=\"240\" font-size=\"11\" fill=\"#5A6474\">Figure not drawn to scale.</text></svg>"
+  },
+  "choices": [
+   "13.75",
+   "20",
+   "25",
+   "85"
+  ],
+  "correct_answer": "25",
+  "explanation": "The two marked angles lie on the same side of the transversal and between the parallel lines, so they are supplementary: (3x + 10) + (5x − 30) = 180, giving 8x = 200 and x = 25. Choice 20 sets the two expressions equal, which would hold for corresponding or alternate angles but not for these two. Choice 13.75 makes them add to 90 instead of 180. Choice 85 is the measure of the first angle, 3(25) + 10, rather than the value of x.",
+  "solve": "return String((180+30-10)/8);",
+  "domain": "Geometry and Trigonometry"
+ },
+ {
+  "id": "GEO-H1-16",
+  "subskill": "right triangles: complementary sine and cosine",
+  "difficulty": "hard",
+  "prompt": "For a value of x, sin(3x + 10)° = cos(x + 20)°, where 3x + 10 and x + 20 are the degree measures of two acute angles. What is the value of x?",
+  "choices": [
+   "5",
+   "15",
+   "26.7",
+   "37.5"
+  ],
+  "correct_answer": "15",
+  "explanation": "The sine of an angle equals the cosine of its complement, so the two angle measures must add to 90: (3x + 10) + (x + 20) = 90, giving 4x = 60 and x = 15. Choice 5 sets the two expressions equal, which is what sin A = sin B would require, not sin A = cos B. Choice 37.5 makes them add to 180. Choice 26.7 comes from setting 3x + 10 = 90, treating the sine as though it were the whole right angle.",
+  "solve": "return String((90-30)/4);",
+  "domain": "Geometry and Trigonometry"
+ },
+ {
+  "id": "GEO-H1-17",
+  "subskill": "area and volume: rectangles from perimeter and diagonal",
+  "difficulty": "medium",
+  "prompt": "A rectangle has a perimeter of 34 centimeters and a diagonal of length 13 centimeters. What is the area of the rectangle, in square centimeters?",
+  "choices": [
+   "60",
+   "72.25",
+   "84.5",
+   "120"
+  ],
+  "correct_answer": "60",
+  "explanation": "If the sides are l and w, then l + w = 17 and l² + w² = 169. Squaring the first gives l² + 2lw + w² = 289, so 2lw = 289 − 169 = 120 and the area lw is 60. Choice 120 reports 2lw, stopping one step early. Choice 72.25 assumes the rectangle is a square with side 34/4 = 8.5. Choice 84.5 uses ½(13)(13), the area of a triangle on the diagonal.",
+  "solve": "const P=34,d=13;\nconst s=P/2;\nreturn String((s*s-d*d)/2);",
+  "domain": "Geometry and Trigonometry"
+ },
+ {
+  "id": "GEO-H1-18",
+  "subskill": "area and volume: recasting a solid",
+  "difficulty": "hard",
+  "prompt": "A solid right circular cylinder with radius 4 centimeters and height 9 centimeters is melted down, and the metal is used to make solid spheres of radius 2 centimeters. What is the greatest number of such spheres that can be made?",
+  "choices": [
+   "1",
+   "13",
+   "14",
+   "18"
+  ],
+  "correct_answer": "13",
+  "explanation": "The cylinder has volume π(4²)(9) = 144π and each sphere has volume (4/3)π(2³) = 32π/3, so the metal is enough for 144 ÷ (32/3) = 13.5 spheres. Only whole spheres can be made, so the answer is 13. Choice 14 rounds 13.5 up, which would require more metal than there is. Choice 18 omits the factor 4/3 from the sphere volume, dividing 144π by 8π. Choice 1 uses the cylinder’s radius 4 in the sphere formula, giving 256π/3 per sphere.",
+  "solve": "const V=Math.PI*16*9;\nconst s=(4/3)*Math.PI*8;\nreturn String(Math.floor(V/s));",
+  "domain": "Geometry and Trigonometry"
+ },
+ {
+  "id": "GEO-H1-19",
+  "subskill": "circles: a circle meeting an axis",
+  "difficulty": "hard",
+  "prompt": "In the xy-plane, the graph of x² + y² − 6x + 8y = 0 is a circle. The circle intersects the x-axis at two points. What is the distance between those two points?",
+  "choices": [
+   "3",
+   "6",
+   "8",
+   "10"
+  ],
+  "correct_answer": "6",
+  "explanation": "Setting y = 0 gives x² − 6x = 0, so x = 0 or x = 6 and the two intersection points are 6 units apart. Choice 8 is the distance between the circle’s two intersections with the y-axis, from y² + 8y = 0. Choice 10 is the diameter of the circle, which is the longest chord, not this one. Choice 3 is the x-coordinate of the center, which is half of the chord in question.",
+  "solve": "const Dc=-6,F=0;\nreturn String(Math.sqrt(Dc*Dc-4*F));",
+  "domain": "Geometry and Trigonometry"
+ },
+ {
+  "id": "GEO-H1-20",
+  "subskill": "area and volume: diagonal of a rectangular solid",
+  "difficulty": "medium",
+  "prompt": "A rectangular box has edge lengths 6 inches, 8 inches, and 24 inches. What is the length, in inches, of the longest straight segment that fits inside the box?",
+  "choices": [
+   "10",
+   "24.7",
+   "25.3",
+   "26"
+  ],
+  "correct_answer": "26",
+  "explanation": "The longest segment is the space diagonal, √(6² + 8² + 24²) = √676 = 26. Choice 10 is the diagonal of the 6-by-8 face, which is the longest segment lying in that face but not in the box. Choice 25.3 is √(8² + 24²), the diagonal of the 8-by-24 face, and choice 24.7 is √(6² + 24²), the diagonal of the 6-by-24 face; each omits one of the three edges.",
+  "solve": "return String(Math.sqrt(6*6+8*8+24*24));",
+  "domain": "Geometry and Trigonometry"
+ },
+ {
+  "id": "GEO-H1-21",
+  "subskill": "circles: inscribed quadrilaterals",
+  "difficulty": "medium",
+  "prompt": "In the figure, quadrilateral ABCD is inscribed in a circle. What is the value of y?",
+  "graphic": {
+   "type": "svg",
+   "svg": "<svg viewBox=\"0 0 350 250\" xmlns=\"http://www.w3.org/2000/svg\" font-family=\"system-ui,sans-serif\" font-size=\"13\" fill=\"#12151C\"><circle cx=\"175\" cy=\"120\" r=\"90\" fill=\"none\" stroke=\"#2B3A8C\" stroke-width=\"2\"/> <polygon points=\"97,75 259.6,89.2 220,197.9 101.3,171.6\" fill=\"none\" stroke=\"#0E7A5F\" stroke-width=\"2\"/> <text x=\"80\" y=\"70\">A</text><text x=\"266\" y=\"86\">B</text><text x=\"226\" y=\"212\">C</text><text x=\"84\" y=\"184\">D</text> <text x=\"108\" y=\"96\" font-size=\"12\" fill=\"#0A5C48\">78°</text> <text x=\"232\" y=\"106\" font-size=\"12\" fill=\"#0A5C48\">95°</text> <text x=\"112\" y=\"164\" font-size=\"12\" fill=\"#0A5C48\">y°</text><text x=\"18\" y=\"240\" font-size=\"11\" fill=\"#5A6474\">Figure not drawn to scale.</text></svg>"
+  },
+  "choices": [
+   "85",
+   "95",
+   "102",
+   "173"
+  ],
+  "correct_answer": "85",
+  "explanation": "Opposite angles of a quadrilateral inscribed in a circle are supplementary. In the order A, B, C, D around the circle, the vertex opposite D is B, so y = 180 − 95 = 85. Choice 102 pairs the angle at D with the angle at A, 180 − 78, but A and D are adjacent vertices, not opposite ones; 102 is in fact the measure of the angle at C. Choice 95 assumes opposite angles are equal rather than supplementary. Choice 173 adds the two given measures.",
+  "solve": "return String(180-95);",
+  "domain": "Geometry and Trigonometry"
+ },
+ {
+  "id": "GEO-H1-22",
+  "subskill": "circles: area of an annulus",
+  "difficulty": "medium",
+  "prompt": "A circular flower bed has a radius of 10 meters. It is surrounded by a paved path of uniform width 2 meters, whose outer edge is also a circle. What is the area of the path, in square meters?",
+  "choices": [
+   "4π",
+   "40π",
+   "44π",
+   "144π"
+  ],
+  "correct_answer": "44π",
+  "explanation": "The outer circle has radius 12, so the path is the region between the two circles: π(12²) − π(10²) = 144π − 100π = 44π. Choice 144π is the area enclosed by the outer circle, which still includes the flower bed. Choice 40π multiplies the inner circumference by the width, 2π(10)(2), which would be exact only for a path of vanishing width. Choice 4π is the area of a circle of radius 2, treating the width as a radius.",
+  "solve": "const R=12,r=10;\nreturn Math.round(Math.PI*(R*R-r*r)/Math.PI)+\"\\u03c0\";",
+  "domain": "Geometry and Trigonometry"
+ },
+ {
+  "id": "GEO-H1-23",
+  "subskill": "trigonometry: angles in standard position",
+  "difficulty": "medium",
+  "prompt": "In the xy-plane, an angle in standard position has its terminal ray passing through the point (−8, 15). What is the sine of the angle?",
+  "choices": [
+   "-15/17",
+   "-8/17",
+   "8/17",
+   "15/17"
+  ],
+  "correct_answer": "15/17",
+  "explanation": "The distance from the origin to (−8, 15) is √(64 + 225) = 17, and the sine of an angle in standard position is y/r = 15/17. The point is in the second quadrant, where the sine is positive. Choice −15/17 attaches the sign of the x-coordinate to the sine. Choice −8/17 is the cosine, x/r. Choice 8/17 is the cosine with its sign dropped.",
+  "solve": "const x=-8,y=15;\nreturn y+\"/\"+Math.hypot(x,y);",
+  "domain": "Geometry and Trigonometry"
+ },
+ {
+  "id": "GEO-H1-24",
+  "subskill": "area and volume: surface area of a composite solid",
+  "difficulty": "hard",
+  "prompt": "A solid right rectangular prism measures 10 centimeters by 6 centimeters by 4 centimeters. A cylindrical hole of radius 1 centimeter is drilled all the way through the solid, perpendicular to the two 10-by-6 faces, so the hole is 4 centimeters long. What is the total surface area of the resulting solid, in square centimeters, to the nearest square centimeter?",
+  "choices": [
+   "242",
+   "248",
+   "267",
+   "273"
+  ],
+  "correct_answer": "267",
+  "explanation": "The prism alone has surface area 2(60 + 40 + 24) = 248. Drilling removes a circle of area π from each of the two 10-by-6 faces and exposes the curved wall of the hole, 2π(1)(4) = 8π. The total is 248 − 2π + 8π = 248 + 6π ≈ 267. Choice 248 leaves the surface area unchanged, as though drilling neither removed nor added surface. Choice 242 removes the two circles but never counts the wall of the hole. Choice 273 counts the wall but forgets to remove the two circles.",
+  "solve": "const SA=2*(10*6+10*4+6*4);\nconst r=1,h=4;\nreturn String(Math.round(SA-2*Math.PI*r*r+2*Math.PI*r*h));",
+  "domain": "Geometry and Trigonometry"
+ }
+]

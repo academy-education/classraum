@@ -1,0 +1,471 @@
+[
+ {
+  "id": "GEO-H2-01",
+  "subskill": "similar triangles: a segment parallel to a side",
+  "difficulty": "hard",
+  "prompt": "A surveyor mapping a lakeshore lays out the triangle shown, in which segment DE is parallel to segment BC. All lengths are in meters. What is the length of segment BC, in meters?",
+  "graphic": {
+   "type": "svg",
+   "svg": "<svg viewBox=\"0 0 350 250\" xmlns=\"http://www.w3.org/2000/svg\" font-family=\"system-ui,sans-serif\" font-size=\"13\" fill=\"#12151C\"><polygon points=\"60,30 30,210 300,210\" fill=\"none\" stroke=\"#2B3A8C\" stroke-width=\"2\"/><line x1=\"48\" y1=\"102\" x2=\"156\" y2=\"102\" stroke=\"#0E7A5F\" stroke-width=\"2\"/><circle cx=\"48\" cy=\"102\" r=\"3\" fill=\"#0E7A5F\"/><circle cx=\"156\" cy=\"102\" r=\"3\" fill=\"#0E7A5F\"/><text x=\"56\" y=\"22\">A</text><text x=\"16\" y=\"224\">B</text><text x=\"304\" y=\"224\">C</text><text x=\"30\" y=\"100\">D</text><text x=\"162\" y=\"100\">E</text><text x=\"36\" y=\"70\">18</text><text x=\"20\" y=\"165\">27</text><text x=\"96\" y=\"94\" fill=\"#0A5C48\">24</text><text x=\"160\" y=\"232\">?</text><text x=\"196\" y=\"120\" font-size=\"11\" fill=\"#5A6474\">DE is parallel to BC</text><text x=\"196\" y=\"136\" font-size=\"11\" fill=\"#5A6474\">Figure not drawn to scale.</text></svg>",
+   "caption": "Figure not drawn to scale."
+  },
+  "choices": [
+   "16",
+   "36",
+   "40.5",
+   "60"
+  ],
+  "correct_answer": "60",
+  "explanation": "Because DE is parallel to BC, triangle ADE is similar to triangle ABC with AD corresponding to AB. The figure gives AD = 18 and DB = 27, so AB = 18 + 27 = 45, and the scale factor from ADE to ABC is 45/18 = 5/2. Therefore BC = 24(5/2) = 60. Choice 36 uses 27 as the whole side AB, giving 24(27/18). Choice 16 reverses that same correspondence, 24(18/27). Choice 40.5 scales the wrong segment, applying the factor 27/18 to 27 rather than to DE.",
+  "solve": "const AD=18, DB=27, DE=24;\nconst AB=AD+DB;\nreturn DE*(AB/AD);",
+  "domain": "Geometry and Trigonometry"
+ },
+ {
+  "id": "GEO-H2-02",
+  "subskill": "right-triangle trigonometry: which leg a ratio names",
+  "difficulty": "hard",
+  "prompt": "A surveyor's sketch of a right triangular plot is shown; the right angle is at C and the length shown is in meters. If cos B = 5/13, what is the length of BC, in meters?",
+  "graphic": {
+   "type": "svg",
+   "svg": "<svg viewBox=\"0 0 350 250\" xmlns=\"http://www.w3.org/2000/svg\" font-family=\"system-ui,sans-serif\" font-size=\"13\" fill=\"#12151C\"><polygon points=\"50,200 250,200 50,60\" fill=\"none\" stroke=\"#2B3A8C\" stroke-width=\"2\"/><polyline points=\"50,186 64,186 64,200\" fill=\"none\" stroke=\"#2B3A8C\" stroke-width=\"1.5\"/><text x=\"36\" y=\"216\">C</text><text x=\"256\" y=\"216\">B</text><text x=\"38\" y=\"52\">A</text><text x=\"146\" y=\"140\">78</text><text x=\"152\" y=\"218\" fill=\"#0A5C48\">?</text><text x=\"20\" y=\"240\" font-size=\"11\" fill=\"#5A6474\">Figure not drawn to scale.</text></svg>",
+   "caption": "Figure not drawn to scale."
+  },
+  "choices": [
+   "30",
+   "32.5",
+   "72",
+   "187.2"
+  ],
+  "correct_answer": "30",
+  "explanation": "The right angle is at C, so AB = 78 is the hypotenuse and BC is the leg adjacent to angle B. Then cos B = BC/AB, so BC = 78(5/13) = 30. Choice 72 gives AC, the leg opposite angle B, from sin B = 12/13. Choice 32.5 reads 5/13 as a tangent ratio and multiplies the hypotenuse by 5/12. Choice 187.2 takes that same tangent misreading the other way up, multiplying the hypotenuse by 12/5, so it is longer than the hypotenuse and could be ruled out on that ground alone.",
+  "solve": "const AB=78, cosB=5/13;\nreturn AB*cosB;",
+  "domain": "Geometry and Trigonometry"
+ },
+ {
+  "id": "GEO-H2-03",
+  "subskill": "circles: arc length and the perimeter of a sector",
+  "difficulty": "medium",
+  "prompt": "A surveyor is pricing the fence around the shaded wedge of a circular field shown in the figure. The fence runs along the two straight boundaries and along the curved boundary. What is the total length of the fence, in meters, to the nearest tenth?",
+  "graphic": {
+   "type": "svg",
+   "svg": "<svg viewBox=\"0 0 350 250\" xmlns=\"http://www.w3.org/2000/svg\" font-family=\"system-ui,sans-serif\" font-size=\"13\" fill=\"#12151C\"><circle cx=\"170\" cy=\"125\" r=\"95\" fill=\"none\" stroke=\"#9AA3B2\" stroke-width=\"1.5\" stroke-dasharray=\"4 4\"/><path d=\"M170 125 L265 125 A95 95 0 0 0 199.4 34.6 Z\" fill=\"#DCE6F7\" stroke=\"#2B3A8C\" stroke-width=\"2\"/><text x=\"212\" y=\"120\">45</text><text x=\"186\" y=\"106\" font-size=\"12\" fill=\"#0A5C48\">2&#960;/5</text><text x=\"20\" y=\"238\" font-size=\"11\" fill=\"#5A6474\">The shaded region is the fenced wedge. The angle shown is in radians.</text></svg>",
+   "caption": "The shaded wedge of a circular field."
+  },
+  "choices": [
+   "56.5",
+   "101.5",
+   "146.5",
+   "372.7"
+  ],
+  "correct_answer": "146.5",
+  "explanation": "The arc has length r*theta = 45(2*pi/5) = 18*pi, about 56.5 meters, and the two straight boundaries are radii of 45 meters each, so the fence measures 18*pi + 90, about 146.5 meters. Choice 56.5 is the arc alone. Choice 101.5 adds only one radius to that arc. Choice 372.7 uses the whole circumference, 2*pi(45), in place of the arc and then adds the two radii.",
+  "solve": "const r=45, th=2*Math.PI/5;\nreturn (r*th + 2*r).toFixed(1);",
+  "domain": "Geometry and Trigonometry"
+ },
+ {
+  "id": "GEO-H2-04",
+  "subskill": "circles in the plane: completing the square, then a grid scale",
+  "difficulty": "hard",
+  "prompt": "On a surveyor's coordinate grid, one unit represents 4 meters. A circular easement is the set of points satisfying x^2 + y^2 - 14x + 8y = 56. What is the diameter of the easement, in meters?",
+  "choices": [
+   "22",
+   "44",
+   "88",
+   "121"
+  ],
+  "correct_answer": "88",
+  "explanation": "Completing the square gives (x - 7)^2 + (y + 4)^2 = 56 + 49 + 16 = 121, so the radius is 11 grid units and the diameter is 22 grid units. At 4 meters per unit that is 88 meters. Choice 22 is the diameter in grid units, with the scale never applied. Choice 44 applies the scale to the radius instead of the diameter. Choice 121 reports the value of r^2, treating the squared constant as a length.",
+  "solve": "const r2=56+49+16, r=Math.sqrt(r2), scale=4;\nreturn 2*r*scale;",
+  "domain": "Geometry and Trigonometry"
+ },
+ {
+  "id": "GEO-H2-05",
+  "subskill": "area of a trapezoid when the height must be found",
+  "difficulty": "hard",
+  "prompt": "The figure shows a parcel of land bounded on the left by a fence that meets the two parallel boundaries at right angles. All lengths are in meters. What is the area of the parcel, in square meters?",
+  "graphic": {
+   "type": "svg",
+   "svg": "<svg viewBox=\"0 0 350 250\" xmlns=\"http://www.w3.org/2000/svg\" font-family=\"system-ui,sans-serif\" font-size=\"13\" fill=\"#12151C\"><polygon points=\"50,200 290,200 242,60 50,60\" fill=\"#EEF2FA\" stroke=\"#2B3A8C\" stroke-width=\"2\"/><polyline points=\"50,186 64,186 64,200\" fill=\"none\" stroke=\"#2B3A8C\" stroke-width=\"1.5\"/><polyline points=\"50,74 64,74 64,60\" fill=\"none\" stroke=\"#2B3A8C\" stroke-width=\"1.5\"/><text x=\"160\" y=\"218\">80</text><text x=\"140\" y=\"52\">64</text><text x=\"278\" y=\"132\">34</text><line x1=\"242\" y1=\"60\" x2=\"242\" y2=\"200\" stroke=\"#9AA3B2\" stroke-width=\"1.2\" stroke-dasharray=\"4 3\"/><text x=\"254\" y=\"215\">16</text><text x=\"20\" y=\"240\" font-size=\"11\" fill=\"#5A6474\">Figure not drawn to scale.</text></svg>",
+   "caption": "Figure not drawn to scale."
+  },
+  "choices": [
+   "2160",
+   "2400",
+   "2448",
+   "2880"
+  ],
+  "correct_answer": "2160",
+  "explanation": "The slanted boundary is the hypotenuse of a right triangle with horizontal leg 16 and hypotenuse 34, so the height of the parcel is sqrt(34^2 - 16^2) = 30. The area is ((80 + 64)/2)(30) = 2,160 square meters. Choice 2448 uses the slant length 34 as the height, ((80 + 64)/2)(34). Choice 2400 treats the parcel as a rectangle on the longer boundary, 80(30). Choice 2880 adds the 16 to the longer boundary before averaging, ((96 + 96)/2)(30), which double counts the offset.",
+  "solve": "const b1=80,b2=64,slant=34,run=16;\nconst h=Math.sqrt(slant*slant-run*run);\nreturn (b1+b2)/2*h;",
+  "domain": "Geometry and Trigonometry"
+ },
+ {
+  "id": "GEO-H2-06",
+  "subskill": "angles: a transversal across parallel boundaries",
+  "difficulty": "medium",
+  "prompt": "In the figure, a straight access road crosses two parallel property boundaries. What is the value of x?",
+  "graphic": {
+   "type": "svg",
+   "svg": "<svg viewBox=\"0 0 350 250\" xmlns=\"http://www.w3.org/2000/svg\" font-family=\"system-ui,sans-serif\" font-size=\"13\" fill=\"#12151C\"><line x1=\"20\" y1=\"80\" x2=\"330\" y2=\"80\" stroke=\"#2B3A8C\" stroke-width=\"2\"/><line x1=\"20\" y1=\"185\" x2=\"330\" y2=\"185\" stroke=\"#2B3A8C\" stroke-width=\"2\"/><line x1=\"90\" y1=\"225\" x2=\"250\" y2=\"40\" stroke=\"#0E7A5F\" stroke-width=\"2\"/><polygon points=\"325,76 333,80 325,84\" fill=\"#2B3A8C\"/><polygon points=\"325,181 333,185 325,189\" fill=\"#2B3A8C\"/><text x=\"196\" y=\"104\" fill=\"#0A5C48\">(3x + 8)&#176;</text><text x=\"92\" y=\"172\" fill=\"#0A5C48\">(2x + 12)&#176;</text><text x=\"20\" y=\"240\" font-size=\"11\" fill=\"#5A6474\">The two horizontal boundaries are parallel. Figure not drawn to scale.</text></svg>",
+   "caption": "Figure not drawn to scale."
+  },
+  "choices": [
+   "4",
+   "32",
+   "76",
+   "104"
+  ],
+  "correct_answer": "32",
+  "explanation": "The two marked angles are interior angles on the same side of the road, so they are supplementary: (3x + 8) + (2x + 12) = 180, giving 5x + 20 = 180 and x = 32. Choice 4 comes from setting the two expressions equal, which would hold only if the marked angles were alternate interior angles. Choice 76 is the measure of the lower marked angle, 2(32) + 12, rather than the value of x. Choice 104 is the measure of the upper marked angle, 3(32) + 8, the same slip on the other angle.",
+  "solve": "return (180-20)/5;",
+  "domain": "Geometry and Trigonometry"
+ },
+ {
+  "id": "GEO-H2-07",
+  "subskill": "right-triangle trigonometry: the tangent of a roof pitch",
+  "difficulty": "hard",
+  "prompt": "The figure shows the outline of a symmetric gable roof, with the ridge directly above the midpoint of the span. All lengths are in feet. What is the measure of angle P, in degrees, to the nearest tenth?",
+  "graphic": {
+   "type": "svg",
+   "svg": "<svg viewBox=\"0 0 350 250\" xmlns=\"http://www.w3.org/2000/svg\" font-family=\"system-ui,sans-serif\" font-size=\"13\" fill=\"#12151C\"><polygon points=\"35,185 315,185 175,95\" fill=\"none\" stroke=\"#2B3A8C\" stroke-width=\"2\"/><line x1=\"175\" y1=\"95\" x2=\"175\" y2=\"185\" stroke=\"#0E7A5F\" stroke-width=\"1.8\" stroke-dasharray=\"5 3\"/><polyline points=\"175,171 189,171 189,185\" fill=\"none\" stroke=\"#0E7A5F\" stroke-width=\"1.4\"/><path d=\"M67 185 A32 32 0 0 0 55.5 165\" fill=\"none\" stroke=\"#B4442E\" stroke-width=\"1.6\"/><text x=\"64\" y=\"176\" font-size=\"12\" fill=\"#B4442E\">P</text><text x=\"166\" y=\"205\">36</text><text x=\"182\" y=\"146\" fill=\"#0A5C48\">7.5</text><text x=\"20\" y=\"235\" font-size=\"11\" fill=\"#5A6474\">The 36 is the full span from eave to eave. Figure not drawn to scale.</text></svg>",
+   "caption": "Figure not drawn to scale."
+  },
+  "choices": [
+   "11.8",
+   "22.6",
+   "24.6",
+   "67.4"
+  ],
+  "correct_answer": "22.6",
+  "explanation": "The dashed rise meets the span at its midpoint, so the right triangle at P has opposite side 7.5 and adjacent side 36/2 = 18. Then tan P = 7.5/18 and P = 22.6 degrees. Choice 11.8 uses the full span, tan P = 7.5/36, forgetting that the rise stands over the midpoint. Choice 24.6 treats 18 as the hypotenuse, giving arcsin(7.5/18). Choice 67.4 is the angle at the ridge, the complement of P, which is the angle the same rise makes with the vertical rather than with the span.",
+  "solve": "const rise=7.5, run=36/2;\nreturn (Math.atan(rise/run)*180/Math.PI).toFixed(1);",
+  "domain": "Geometry and Trigonometry"
+ },
+ {
+  "id": "GEO-H2-08",
+  "subskill": "similar triangles formed by an altitude to the hypotenuse",
+  "difficulty": "hard",
+  "prompt": "In the truss shown, the two rafters AB and AC meet at a right angle at the peak A, and the vertical post AD is perpendicular to the horizontal bottom chord BC. All lengths are in feet. What is the length of rafter AB, in feet?",
+  "graphic": {
+   "type": "svg",
+   "svg": "<svg viewBox=\"0 0 350 250\" xmlns=\"http://www.w3.org/2000/svg\" font-family=\"system-ui,sans-serif\" font-size=\"13\" fill=\"#12151C\"><polygon points=\"40,200 300,200 133.6,70\" fill=\"none\" stroke=\"#2B3A8C\" stroke-width=\"2\"/><line x1=\"133.6\" y1=\"70\" x2=\"133.6\" y2=\"200\" stroke=\"#0E7A5F\" stroke-width=\"1.8\"/><polyline points=\"133.6,186 147.6,186 147.6,200\" fill=\"none\" stroke=\"#0E7A5F\" stroke-width=\"1.4\"/><polyline points=\"124.8,80.5 133.6,89 142.4,80.5\" fill=\"none\" stroke=\"#B4442E\" stroke-width=\"1.4\"/><text x=\"128\" y=\"62\">A</text><text x=\"26\" y=\"216\">B</text><text x=\"304\" y=\"216\">C</text><text x=\"128\" y=\"218\">D</text><text x=\"80\" y=\"218\">9</text><text x=\"212\" y=\"218\">16</text><text x=\"66\" y=\"128\" fill=\"#B4442E\">?</text><text x=\"20\" y=\"240\" font-size=\"11\" fill=\"#5A6474\">The angle at A is a right angle. Figure not drawn to scale.</text></svg>",
+   "caption": "Figure not drawn to scale."
+  },
+  "choices": [
+   "12",
+   "15",
+   "18.4",
+   "20"
+  ],
+  "correct_answer": "15",
+  "explanation": "Triangle ABD is similar to triangle CBA, so AB/BC = BD/AB and AB^2 = BD(BC) = 9(9 + 16) = 225, giving AB = 15. Choice 12 is the post AD, which satisfies AD^2 = BD(DC) = 9(16); it is the other geometric mean available in the same figure. Choice 20 applies the correct relation to the other rafter, AC^2 = DC(BC) = 16(25), and so answers the mirror question. Choice 18.4 treats 9 and 16 as the legs of a right triangle and returns sqrt(9^2 + 16^2).",
+  "solve": "const BD=9, DC=16;\nreturn Math.sqrt(BD*(BD+DC));",
+  "domain": "Geometry and Trigonometry"
+ },
+ {
+  "id": "GEO-H2-09",
+  "subskill": "surface area on a slope, then a whole-unit count",
+  "difficulty": "hard",
+  "prompt": "A builder is sheathing both sloping planes of a symmetric gable roof on a building 14 meters long. The cross section of the roof is shown, with lengths in meters. Sheathing panels each cover 3 square meters and cannot be pieced together from offcuts, so only whole panels are counted. What is the least number of panels needed to cover both planes?",
+  "graphic": {
+   "type": "svg",
+   "svg": "<svg viewBox=\"0 0 350 250\" xmlns=\"http://www.w3.org/2000/svg\" font-family=\"system-ui,sans-serif\" font-size=\"13\" fill=\"#12151C\"><polygon points=\"40,190 310,190 175,88\" fill=\"none\" stroke=\"#2B3A8C\" stroke-width=\"2\"/><line x1=\"175\" y1=\"88\" x2=\"175\" y2=\"190\" stroke=\"#0E7A5F\" stroke-width=\"1.6\" stroke-dasharray=\"5 3\"/><polyline points=\"175,176 189,176 189,190\" fill=\"none\" stroke=\"#0E7A5F\" stroke-width=\"1.4\"/><text x=\"100\" y=\"208\">7.2</text><text x=\"240\" y=\"208\">7.2</text><text x=\"182\" y=\"146\" fill=\"#0A5C48\">3.0</text><text x=\"86\" y=\"126\" fill=\"#B4442E\">7.8</text><text x=\"250\" y=\"126\" fill=\"#B4442E\">7.8</text><text x=\"20\" y=\"236\" font-size=\"11\" fill=\"#5A6474\">Cross section of the roof. Figure not drawn to scale.</text></svg>",
+   "caption": "Cross section of the roof."
+  },
+  "choices": [
+   "37",
+   "68",
+   "72",
+   "73"
+  ],
+  "correct_answer": "73",
+  "explanation": "Each sloping plane is a rectangle 7.8 by 14, so the two planes cover 2(7.8)(14) = 218.4 square meters. Dividing by 3 gives 72.8 panels, and since only whole panels count the builder needs 73. Choice 72 divides correctly but drops the fraction instead of rounding up, leaving 2.4 square meters bare. Choice 68 uses the horizontal half span 7.2 rather than the slope length 7.8, giving 201.6/3 = 67.2 rounded up. Choice 37 covers only one of the two planes, 109.2/3 = 36.4 rounded up.",
+  "solve": "const slope=7.8, len=14;\nreturn Math.ceil(2*slope*len/3);",
+  "domain": "Geometry and Trigonometry"
+ },
+ {
+  "id": "GEO-H2-10",
+  "subskill": "right-triangle trigonometry: choosing the ratio for the run",
+  "difficulty": "medium",
+  "prompt": "A rafter rises from the top of a wall to the ridge of a roof, making a 30 degree angle with the horizontal. The figure shows the vertical rise, in meters. What is the horizontal run r, in meters, to the nearest tenth?",
+  "graphic": {
+   "type": "svg",
+   "svg": "<svg viewBox=\"0 0 350 250\" xmlns=\"http://www.w3.org/2000/svg\" font-family=\"system-ui,sans-serif\" font-size=\"13\" fill=\"#12151C\"><polygon points=\"45,195 300,195 300,90\" fill=\"none\" stroke=\"#2B3A8C\" stroke-width=\"2\"/><polyline points=\"286,195 286,181 300,181\" fill=\"none\" stroke=\"#2B3A8C\" stroke-width=\"1.4\"/><path d=\"M85 195 A40 40 0 0 0 79.5 178\" fill=\"none\" stroke=\"#B4442E\" stroke-width=\"1.6\"/><text x=\"88\" y=\"188\" font-size=\"12\" fill=\"#B4442E\">30&#176;</text><text x=\"308\" y=\"148\" fill=\"#0A5C48\">5.4</text><text x=\"165\" y=\"213\">r</text><text x=\"20\" y=\"236\" font-size=\"11\" fill=\"#5A6474\">Figure not drawn to scale.</text></svg>",
+   "caption": "Figure not drawn to scale."
+  },
+  "choices": [
+   "2.7",
+   "3.1",
+   "9.4",
+   "10.8"
+  ],
+  "correct_answer": "9.4",
+  "explanation": "The 5.4 is opposite the 30 degree angle and r is adjacent to it, so tan 30 = 5.4/r and r = 5.4/tan 30 = 9.4 meters. Choice 10.8 is the length of the rafter itself, 5.4/sin 30, which is the slanted side rather than the run. Choice 3.1 inverts the tangent relation, computing 5.4 tan 30. Choice 2.7 uses the cosine of the 60 degree angle at the ridge on the wrong side, 5.4 cos 60.",
+  "solve": "const rise=5.4, th=30*Math.PI/180;\nreturn (rise/Math.tan(th)).toFixed(1);",
+  "domain": "Geometry and Trigonometry"
+ },
+ {
+  "id": "GEO-H2-11",
+  "subskill": "triangle angle sum with algebraic angle measures",
+  "difficulty": "medium",
+  "prompt": "The three angles of the triangular truss shown have the measures given in the figure, in degrees. What is the measure, in degrees, of the largest angle of the truss?",
+  "graphic": {
+   "type": "svg",
+   "svg": "<svg viewBox=\"0 0 350 250\" xmlns=\"http://www.w3.org/2000/svg\" font-family=\"system-ui,sans-serif\" font-size=\"13\" fill=\"#12151C\"><polygon points=\"45,195 305,195 150,75\" fill=\"none\" stroke=\"#2B3A8C\" stroke-width=\"2\"/><text x=\"56\" y=\"185\" font-size=\"12\" fill=\"#0A5C48\">(2x + 5)&#176;</text><text x=\"222\" y=\"185\" font-size=\"12\" fill=\"#0A5C48\">(x + 15)&#176;</text><text x=\"118\" y=\"104\" font-size=\"12\" fill=\"#0A5C48\">(3x &#8722; 20)&#176;</text><text x=\"20\" y=\"236\" font-size=\"11\" fill=\"#5A6474\">Figure not drawn to scale.</text></svg>",
+   "caption": "Figure not drawn to scale."
+  },
+  "choices": [
+   "30",
+   "45",
+   "65",
+   "70"
+  ],
+  "correct_answer": "70",
+  "explanation": "The angle measures sum to 180, so (2x + 5) + (3x - 20) + (x + 15) = 180, which gives 6x = 180 and x = 30. The three angles then measure 65, 70 and 45 degrees, and the largest is 70. Choice 30 reports the value of x rather than an angle measure. Choice 65 is the angle at the left eave, largest only if the coefficient 3 is misread as belonging to that expression. Choice 45 is the smallest of the three angles.",
+  "solve": "const x=180/6;\nreturn Math.max(2*x+5, 3*x-20, x+15);",
+  "domain": "Geometry and Trigonometry"
+ },
+ {
+  "id": "GEO-H2-12",
+  "subskill": "volume of a prism with a similar cross section removed",
+  "difficulty": "hard",
+  "prompt": "The attic of a building 16 meters long has the triangular cross section shown, with lengths in meters. Storage is allowed only in the part of the attic where the clearance from the floor to the sloping roof is at least 1.5 meters. What is the volume, in cubic meters, of the region where storage is allowed?",
+  "graphic": {
+   "type": "svg",
+   "svg": "<svg viewBox=\"0 0 350 250\" xmlns=\"http://www.w3.org/2000/svg\" font-family=\"system-ui,sans-serif\" font-size=\"13\" fill=\"#12151C\"><polygon points=\"45,200 285,200 165,120\" fill=\"#EEF2FA\" stroke=\"#2B3A8C\" stroke-width=\"2\"/><line x1=\"120\" y1=\"170\" x2=\"210\" y2=\"170\" stroke=\"#B4442E\" stroke-width=\"1.8\"/><line x1=\"165\" y1=\"120\" x2=\"165\" y2=\"200\" stroke=\"#0E7A5F\" stroke-width=\"1.5\" stroke-dasharray=\"5 3\"/><polyline points=\"165,186 179,186 179,200\" fill=\"none\" stroke=\"#0E7A5F\" stroke-width=\"1.3\"/><text x=\"160\" y=\"218\">12</text><text x=\"172\" y=\"152\" fill=\"#0A5C48\">4</text><text x=\"222\" y=\"176\" font-size=\"12\" fill=\"#B4442E\">clearance 1.5 here</text><text x=\"20\" y=\"236\" font-size=\"11\" fill=\"#5A6474\">Cross section of the attic. Figure not drawn to scale.</text></svg>",
+   "caption": "Cross section of the attic."
+  },
+  "choices": [
+   "54",
+   "150",
+   "240",
+   "384"
+  ],
+  "correct_answer": "150",
+  "explanation": "Above the 1.5 meter line the cross section is a triangle similar to the whole one, with height 4 - 1.5 = 2.5, so its base is 12(2.5/4) = 7.5 and its area is (1/2)(7.5)(2.5) = 9.375 square meters. The volume is 9.375(16) = 150 cubic meters. Choice 384 is the volume of the whole attic, (1/2)(12)(4)(16), ignoring the clearance rule. Choice 240 keeps the height 2.5 but the full base 12, so it does not shrink the cross section along with the height. Choice 54 measures the 1.5 meters down from the ridge instead of up from the floor, using height 1.5 and base 4.5.",
+  "solve": "const B=12,H=4,cut=1.5,L=16;\nconst h=H-cut, b=B*(h/H);\nreturn 0.5*b*h*L;",
+  "domain": "Geometry and Trigonometry"
+ },
+ {
+  "id": "GEO-H2-13",
+  "subskill": "similar triangles: a mirror on level ground",
+  "difficulty": "hard",
+  "prompt": "A technician measures the height of a light standard by placing a small mirror flat on level ground and stepping back until the top of the standard appears at the mirror. In the figure, the two marked angles are equal and all lengths are in meters. What is h, the height of the light standard, in meters?",
+  "graphic": {
+   "type": "svg",
+   "svg": "<svg viewBox=\"0 0 350 250\" xmlns=\"http://www.w3.org/2000/svg\" font-family=\"system-ui,sans-serif\" font-size=\"13\" fill=\"#12151C\"><line x1=\"30\" y1=\"200\" x2=\"335\" y2=\"200\" stroke=\"#5A6474\" stroke-width=\"2\"/><line x1=\"70\" y1=\"200\" x2=\"70\" y2=\"140\" stroke=\"#2B3A8C\" stroke-width=\"2\"/><line x1=\"270\" y1=\"200\" x2=\"270\" y2=\"55\" stroke=\"#2B3A8C\" stroke-width=\"2.5\"/><line x1=\"70\" y1=\"140\" x2=\"110\" y2=\"200\" stroke=\"#B4442E\" stroke-width=\"1.8\"/><line x1=\"110\" y1=\"200\" x2=\"270\" y2=\"55\" stroke=\"#B4442E\" stroke-width=\"1.8\"/><rect x=\"100\" y=\"197\" width=\"20\" height=\"5\" fill=\"#0E7A5F\"/><path d=\"M96 200 A14 14 0 0 0 100.6 190\" fill=\"none\" stroke=\"#B4442E\" stroke-width=\"1.3\"/><path d=\"M124 200 A14 14 0 0 0 121.5 191.5\" fill=\"none\" stroke=\"#B4442E\" stroke-width=\"1.3\"/><text x=\"40\" y=\"172\">1.6</text><text x=\"82\" y=\"218\">1.2</text><text x=\"186\" y=\"218\">4.8</text><text x=\"278\" y=\"130\" fill=\"#0A5C48\">h</text><text x=\"96\" y=\"236\" font-size=\"11\" fill=\"#5A6474\">mirror</text><text x=\"150\" y=\"236\" font-size=\"11\" fill=\"#5A6474\">Figure not drawn to scale.</text></svg>",
+   "caption": "Figure not drawn to scale."
+  },
+  "choices": [
+   "0.4",
+   "3.6",
+   "6.4",
+   "8"
+  ],
+  "correct_answer": "6.4",
+  "explanation": "The equal angles make the two right triangles similar, with the technician's 1.2 corresponding to the standard's 4.8 and the eye height 1.6 corresponding to h. So h = 1.6(4.8/1.2) = 6.4 meters. Choice 0.4 reverses the correspondence, computing 1.6(1.2/4.8). Choice 8 uses the technician's distance from the base of the standard, 1.2 + 4.8 = 6, in place of the mirror distance, giving 1.6(6/1.2). Choice 3.6 pairs the lengths across the two triangles instead of within them, computing 1.2(4.8/1.6).",
+  "solve": "const eye=1.6, dNear=1.2, dFar=4.8;\nreturn eye*(dFar/dNear);",
+  "domain": "Geometry and Trigonometry"
+ },
+ {
+  "id": "GEO-H2-14",
+  "subskill": "angles: a triangle formed between two mirrors",
+  "difficulty": "medium",
+  "prompt": "In the figure, two plane mirrors meet at a 72 degree angle. A beam strikes the first mirror at A and reflects to point B on the second mirror; at each mirror the beam leaves at the same angle to the mirror at which it arrives. What is the measure, in degrees, of the marked angle at B?",
+  "graphic": {
+   "type": "svg",
+   "svg": "<svg viewBox=\"0 0 350 250\" xmlns=\"http://www.w3.org/2000/svg\" font-family=\"system-ui,sans-serif\" font-size=\"13\" fill=\"#12151C\"><line x1=\"60\" y1=\"210\" x2=\"330\" y2=\"210\" stroke=\"#2B3A8C\" stroke-width=\"2.5\"/><line x1=\"60\" y1=\"210\" x2=\"122\" y2=\"20\" stroke=\"#2B3A8C\" stroke-width=\"2.5\"/><path d=\"M110 210 A50 50 0 0 0 75.5 163\" fill=\"none\" stroke=\"#5A6474\" stroke-width=\"1.4\"/><text x=\"78\" y=\"200\" font-size=\"12\">72&#176;</text><line x1=\"296\" y1=\"165\" x2=\"200\" y2=\"210\" stroke=\"#B4442E\" stroke-width=\"1.8\"/><line x1=\"200\" y1=\"210\" x2=\"78.4\" y2=\"153.2\" stroke=\"#B4442E\" stroke-width=\"1.8\"/><line x1=\"78.4\" y1=\"153.2\" x2=\"198\" y2=\"176\" stroke=\"#B4442E\" stroke-width=\"1.8\" stroke-dasharray=\"6 4\"/><text x=\"196\" y=\"226\">A</text><text x=\"58\" y=\"146\">B</text><text x=\"166\" y=\"202\" font-size=\"12\" fill=\"#B4442E\">25&#176;</text><text x=\"92\" y=\"172\" font-size=\"12\" fill=\"#B4442E\">?</text><text x=\"20\" y=\"242\" font-size=\"11\" fill=\"#5A6474\">The 25 degree angle is measured from the mirror surface. Figure not drawn to scale.</text></svg>",
+   "caption": "Figure not drawn to scale."
+  },
+  "choices": [
+   "25",
+   "65",
+   "72",
+   "83"
+  ],
+  "correct_answer": "83",
+  "explanation": "The beam from A to B, together with the two mirrors, forms a triangle whose angle at the vertex where the mirrors meet is 72 degrees and whose angle at A is 25 degrees, the reflected beam leaving the first mirror at the same 25 degrees at which it arrived. The remaining angle, at B, is 180 - 72 - 25 = 83 degrees. Choice 65 measures the beam at A from the normal rather than from the mirror, 90 - 25. Choice 25 assumes the angle at B repeats the angle at A, which would require the mirrors to be parallel. Choice 72 reports the angle between the mirrors.",
+  "solve": "return 180-72-25;",
+  "domain": "Geometry and Trigonometry"
+ },
+ {
+  "id": "GEO-H2-15",
+  "subskill": "circles: chord, radius and the depth of an arc",
+  "difficulty": "medium",
+  "prompt": "The reflecting surface of a curved mirror is the arc shown, part of a circle with center O. All lengths are in centimeters. What is d, the greatest depth of the mirror below the line joining its two rim points?",
+  "graphic": {
+   "type": "svg",
+   "svg": "<svg viewBox=\"0 0 350 250\" xmlns=\"http://www.w3.org/2000/svg\" font-family=\"system-ui,sans-serif\" font-size=\"13\" fill=\"#12151C\"><circle cx=\"175\" cy=\"110\" r=\"90\" fill=\"none\" stroke=\"#9AA3B2\" stroke-width=\"1.2\" stroke-dasharray=\"4 4\"/><path d=\"M91.9 144.6 A90 90 0 0 0 258.1 144.6\" fill=\"none\" stroke=\"#2B3A8C\" stroke-width=\"3\"/><line x1=\"91.9\" y1=\"144.6\" x2=\"258.1\" y2=\"144.6\" stroke=\"#5A6474\" stroke-width=\"1.6\"/><line x1=\"175\" y1=\"110\" x2=\"258.1\" y2=\"144.6\" stroke=\"#0E7A5F\" stroke-width=\"1.6\"/><line x1=\"175\" y1=\"144.6\" x2=\"175\" y2=\"200\" stroke=\"#B4442E\" stroke-width=\"1.6\"/><circle cx=\"175\" cy=\"110\" r=\"3\" fill=\"#12151C\"/><text x=\"166\" y=\"104\">O</text><text x=\"216\" y=\"120\" fill=\"#0A5C48\">26</text><text x=\"162\" y=\"138\">48</text><text x=\"182\" y=\"178\" fill=\"#B4442E\">d</text><text x=\"20\" y=\"238\" font-size=\"11\" fill=\"#5A6474\">The 48 is the full distance between the rim points. Figure not drawn to scale.</text></svg>",
+   "caption": "Figure not drawn to scale."
+  },
+  "choices": [
+   "2",
+   "10",
+   "16",
+   "24"
+  ],
+  "correct_answer": "16",
+  "explanation": "The segment from O perpendicular to the 48 centimeter chord bisects it, so it forms a right triangle with legs 24 and that perpendicular distance and hypotenuse 26. The distance from O to the chord is sqrt(26^2 - 24^2) = 10, and d is the rest of the radius, 26 - 10 = 16. Choice 10 is that perpendicular distance from the center to the chord, one step short of d. Choice 24 is half the chord, used in the right triangle rather than produced by it. Choice 2 subtracts the half chord from the radius, 26 - 24, treating the chord as if it lay along a radius.",
+  "solve": "const r=26, half=48/2;\nreturn r-Math.sqrt(r*r-half*half);",
+  "domain": "Geometry and Trigonometry"
+ },
+ {
+  "id": "GEO-H2-16",
+  "subskill": "area under a scale change",
+  "difficulty": "hard",
+  "prompt": "A circular mirror is replaced by a larger circular mirror whose diameter is 25 percent greater. The area of the new mirror is greater than the area of the old mirror by what percent?",
+  "choices": [
+   "25",
+   "50",
+   "56.25",
+   "156.25"
+  ],
+  "correct_answer": "56.25",
+  "explanation": "Every length scales by 1.25, so the area scales by 1.25^2 = 1.5625. The new area is 156.25 percent of the old, which is an increase of 56.25 percent. Choice 25 applies the length scale directly to the area. Choice 156.25 reports the new area as a percent of the old rather than the percent increase. Choice 50 doubles the 25 percent on the ground that area involves two dimensions, treating the scaling as additive rather than multiplicative.",
+  "solve": "return (Math.pow(1.25,2)-1)*100;",
+  "domain": "Geometry and Trigonometry"
+ },
+ {
+  "id": "GEO-H2-17",
+  "subskill": "coordinate geometry: distance along a reflected path",
+  "difficulty": "medium",
+  "prompt": "In the xy-plane, a mirror lies along the x-axis. A beam leaves the point A(2, 7), strikes the mirror at a point M on the x-axis, and passes through the point B(10, 3), leaving the mirror at the same angle to the x-axis at which it arrives. What is the total length AM + MB, to the nearest tenth?",
+  "choices": [
+   "8.9",
+   "12.8",
+   "13.1",
+   "18"
+  ],
+  "correct_answer": "12.8",
+  "explanation": "Reflecting A across the x-axis gives A'(2, -7), and the equal-angle condition puts M on the straight segment from A' to B, so AM + MB = A'B = sqrt((10 - 2)^2 + (3 + 7)^2) = sqrt(164), about 12.8. Choice 8.9 is the direct distance AB, sqrt(64 + 16), the path if there were no mirror. Choice 13.1 places M midway between the two x-coordinates, at x = 6, which is not where the angles are equal. Choice 18 adds the horizontal separation 8 to the two heights 7 and 3 instead of using the distance formula.",
+  "solve": "return Math.sqrt(Math.pow(10-2,2)+Math.pow(3+7,2)).toFixed(1);",
+  "domain": "Geometry and Trigonometry"
+ },
+ {
+  "id": "GEO-H2-18",
+  "subskill": "lateral surface area of a cone from its depth",
+  "difficulty": "hard",
+  "prompt": "The figure shows the cross section through the axis of a cone-shaped reflector. All lengths are in centimeters. The inside of the reflector, not counting the flat opening, is to be coated. What is the area of the coated surface, in square centimeters, to the nearest tenth?",
+  "graphic": {
+   "type": "svg",
+   "svg": "<svg viewBox=\"0 0 350 250\" xmlns=\"http://www.w3.org/2000/svg\" font-family=\"system-ui,sans-serif\" font-size=\"13\" fill=\"#12151C\"><polygon points=\"70,70 280,70 175,200\" fill=\"#EEF2FA\" stroke=\"#2B3A8C\" stroke-width=\"2\"/><line x1=\"175\" y1=\"70\" x2=\"175\" y2=\"200\" stroke=\"#0E7A5F\" stroke-width=\"1.5\" stroke-dasharray=\"5 3\"/><polyline points=\"175,84 189,84 189,70\" fill=\"none\" stroke=\"#0E7A5F\" stroke-width=\"1.3\"/><line x1=\"70\" y1=\"56\" x2=\"280\" y2=\"56\" stroke=\"#5A6474\" stroke-width=\"1.2\"/><text x=\"168\" y=\"48\">24</text><text x=\"184\" y=\"140\" fill=\"#0A5C48\">9</text><text x=\"20\" y=\"232\" font-size=\"11\" fill=\"#5A6474\">The 24 is the full width of the opening and the 9 is the depth measured</text><text x=\"20\" y=\"246\" font-size=\"11\" fill=\"#5A6474\">along the axis. Figure not drawn to scale.</text></svg>",
+   "caption": "Cross section through the axis of the reflector."
+  },
+  "choices": [
+   "339.3",
+   "424.1",
+   "452.4",
+   "565.5"
+  ],
+  "correct_answer": "565.5",
+  "explanation": "The opening has radius 12 and the depth is 9, so the slant height is sqrt(12^2 + 9^2) = 15 and the lateral area is pi(12)(15) = 180*pi, about 565.5 square centimeters. Choice 339.3 uses the depth 9 as the slant height, pi(12)(9). Choice 424.1 exchanges the radius and the depth, pi(9)(15). Choice 452.4 is the area of the flat opening, pi(12^2), the one surface the question excludes.",
+  "solve": "const r=12,h=9;\nconst l=Math.sqrt(r*r+h*h);\nreturn (Math.PI*r*l).toFixed(1);",
+  "domain": "Geometry and Trigonometry"
+ },
+ {
+  "id": "GEO-H2-19",
+  "subskill": "volume of a box formed from a net",
+  "difficulty": "hard",
+  "prompt": "A designer makes an open tray by cutting a square of side 6 centimeters from each corner of the rectangular sheet of cardboard shown and folding up the four flaps along the dashed lines. All lengths are in centimeters. What is the volume of the tray, in cubic centimeters?",
+  "graphic": {
+   "type": "svg",
+   "svg": "<svg viewBox=\"0 0 350 250\" xmlns=\"http://www.w3.org/2000/svg\" font-family=\"system-ui,sans-serif\" font-size=\"13\" fill=\"#12151C\"><rect x=\"45\" y=\"50\" width=\"260\" height=\"160\" fill=\"#EEF2FA\" stroke=\"#2B3A8C\" stroke-width=\"2\"/><rect x=\"45\" y=\"50\" width=\"39\" height=\"34\" fill=\"#F6D9D2\" stroke=\"#B4442E\" stroke-width=\"1.4\"/><rect x=\"266\" y=\"50\" width=\"39\" height=\"34\" fill=\"#F6D9D2\" stroke=\"#B4442E\" stroke-width=\"1.4\"/><rect x=\"45\" y=\"176\" width=\"39\" height=\"34\" fill=\"#F6D9D2\" stroke=\"#B4442E\" stroke-width=\"1.4\"/><rect x=\"266\" y=\"176\" width=\"39\" height=\"34\" fill=\"#F6D9D2\" stroke=\"#B4442E\" stroke-width=\"1.4\"/><line x1=\"84\" y1=\"50\" x2=\"84\" y2=\"210\" stroke=\"#5A6474\" stroke-width=\"1.2\" stroke-dasharray=\"5 3\"/><line x1=\"266\" y1=\"50\" x2=\"266\" y2=\"210\" stroke=\"#5A6474\" stroke-width=\"1.2\" stroke-dasharray=\"5 3\"/><line x1=\"45\" y1=\"84\" x2=\"305\" y2=\"84\" stroke=\"#5A6474\" stroke-width=\"1.2\" stroke-dasharray=\"5 3\"/><line x1=\"45\" y1=\"176\" x2=\"305\" y2=\"176\" stroke=\"#5A6474\" stroke-width=\"1.2\" stroke-dasharray=\"5 3\"/><text x=\"168\" y=\"228\">40</text><text x=\"24\" y=\"134\">28</text><text x=\"52\" y=\"72\" font-size=\"11\" fill=\"#B4442E\">6</text><text x=\"20\" y=\"244\" font-size=\"11\" fill=\"#5A6474\">The shaded corner squares are removed. Figure not drawn to scale.</text></svg>",
+   "caption": "Figure not drawn to scale."
+  },
+  "choices": [
+   "2688",
+   "3696",
+   "4488",
+   "6720"
+  ],
+  "correct_answer": "2688",
+  "explanation": "A corner square is cut from both ends of each side, so the base of the tray measures 40 - 2(6) = 28 by 28 - 2(6) = 16, and the depth is 6. The volume is 28(16)(6) = 2,688 cubic centimeters. Choice 4488 subtracts one 6 from each dimension rather than two, 34(22)(6). Choice 3696 subtracts twice from the length but only once from the width, 28(22)(6). Choice 6720 uses the uncut sheet, 40(28)(6), as though folding removed nothing.",
+  "solve": "const L=40,W=28,c=6;\nreturn (L-2*c)*(W-2*c)*c;",
+  "domain": "Geometry and Trigonometry"
+ },
+ {
+  "id": "GEO-H2-20",
+  "subskill": "volume of a cylinder with a stated headspace",
+  "difficulty": "medium",
+  "prompt": "A cylindrical container has an inside diameter of 9 centimeters and an inside height of 14 centimeters. It is filled with sauce to a level 2 centimeters below the top rim. What is the volume of the sauce, in cubic centimeters, to the nearest tenth?",
+  "choices": [
+   "763.4",
+   "890.6",
+   "1017.9",
+   "3053.6"
+  ],
+  "correct_answer": "763.4",
+  "explanation": "The radius is 9/2 = 4.5 and the depth of the sauce is 14 - 2 = 12, so the volume is pi(4.5^2)(12), about 763.4 cubic centimeters. Choice 890.6 fills the container to the rim, pi(4.5^2)(14). Choice 1017.9 adds the 2 centimeters instead of subtracting, pi(4.5^2)(16). Choice 3053.6 uses the diameter 9 in place of the radius, pi(9^2)(12), which multiplies the correct answer by four.",
+  "solve": "const r=9/2, h=14-2;\nreturn (Math.PI*r*r*h).toFixed(1);",
+  "domain": "Geometry and Trigonometry"
+ },
+ {
+  "id": "GEO-H2-21",
+  "subskill": "similar solids: how volume scales with length",
+  "difficulty": "medium",
+  "prompt": "A display carton and a shipping crate are similar rectangular boxes: every dimension of the crate is 3 times the corresponding dimension of the carton. The carton holds 2.5 liters. How many liters does the crate hold?",
+  "choices": [
+   "7.5",
+   "22.5",
+   "67.5",
+   "202.5"
+  ],
+  "correct_answer": "67.5",
+  "explanation": "Each of the three dimensions is multiplied by 3, so the volume is multiplied by 3^3 = 27, giving 2.5(27) = 67.5 liters. Choice 7.5 multiplies by 3 once, scaling as a length. Choice 22.5 multiplies by 3^2 = 9, scaling as an area. Choice 202.5 multiplies by 3^4, applying the factor once for each dimension and then once more to the volume itself.",
+  "solve": "return 2.5*Math.pow(3,3);",
+  "domain": "Geometry and Trigonometry"
+ },
+ {
+  "id": "GEO-H2-22",
+  "subskill": "packing whole solids into a rectangular space",
+  "difficulty": "hard",
+  "prompt": "The inside of a shipping carton measures 60 centimeters by 45 centimeters by 40 centimeters. Cubical gift boxes with edge 14 centimeters are to be packed inside it. The gift boxes must sit upright with their faces parallel to the faces of the carton, and none may be cut or crushed. What is the greatest number of gift boxes that fit?",
+  "choices": [
+   "24",
+   "36",
+   "39",
+   "45"
+  ],
+  "correct_answer": "24",
+  "explanation": "Along each edge only a whole number of boxes fits: 60/14 allows 4, 45/14 allows 3, and 40/14 allows 2, so at most 4(3)(2) = 24 boxes fit. Choice 39 divides the volumes, 108,000/2,744, which would require filling the leftover 4, 3 and 12 centimeter gaps with pieces of a box. Choice 36 rounds 40/14 = 2.86 up to 3, counting a layer that is 2 centimeters too tall to exist. Choice 45 rounds 60/14 up to 5 as well, counting two impossible partial layers.",
+  "solve": "return Math.floor(60/14)*Math.floor(45/14)*Math.floor(40/14);",
+  "domain": "Geometry and Trigonometry"
+ },
+ {
+  "id": "GEO-H2-23",
+  "subskill": "lateral surface of a cylinder as a flat rectangle",
+  "difficulty": "medium",
+  "prompt": "A paper label is wrapped once around the side of a cylindrical tube of radius 5 centimeters and height 18 centimeters, covering the whole side. The label is 2 centimeters longer than one time around the tube, so that one end overlaps the other. What is the area of the label, in square centimeters, to the nearest tenth?",
+  "choices": [
+   "216",
+   "314.2",
+   "565.5",
+   "601.5"
+  ],
+  "correct_answer": "601.5",
+  "explanation": "Unrolled, the label is a rectangle whose height is 18 and whose length is the circumference plus the overlap, 2*pi(5) + 2, about 33.42. The area is about 601.5 square centimeters. Choice 565.5 is the side of the tube alone, 2*pi(5)(18), with no overlap. Choice 216 uses the diameter plus the overlap, (10 + 2)(18), as the length, dropping pi entirely. Choice 314.2 is the area of a circular end of the tube, pi(10^2) with the diameter used as the radius, which is not a surface the label covers.",
+  "solve": "const r=5,h=18,ov=2;\nreturn ((2*Math.PI*r+ov)*h).toFixed(1);",
+  "domain": "Geometry and Trigonometry"
+ },
+ {
+  "id": "GEO-H2-24",
+  "subskill": "the space diagonal of a rectangular box",
+  "difficulty": "hard",
+  "prompt": "The figure shows a rectangular carton, with the diagonal of its front face marked. All lengths are in centimeters. What is the length, in centimeters, of the longest straight rod that fits inside the carton, to the nearest tenth?",
+  "graphic": {
+   "type": "svg",
+   "svg": "<svg viewBox=\"0 0 350 250\" xmlns=\"http://www.w3.org/2000/svg\" font-family=\"system-ui,sans-serif\" font-size=\"13\" fill=\"#12151C\"><polygon points=\"60,80 240,80 240,190 60,190\" fill=\"#EEF2FA\" stroke=\"#2B3A8C\" stroke-width=\"2\"/><polyline points=\"60,80 110,45 290,45 240,80\" fill=\"none\" stroke=\"#2B3A8C\" stroke-width=\"2\"/><line x1=\"290\" y1=\"45\" x2=\"290\" y2=\"155\" stroke=\"#2B3A8C\" stroke-width=\"2\"/><line x1=\"240\" y1=\"190\" x2=\"290\" y2=\"155\" stroke=\"#2B3A8C\" stroke-width=\"2\"/><line x1=\"60\" y1=\"190\" x2=\"240\" y2=\"80\" stroke=\"#B4442E\" stroke-width=\"1.8\"/><text x=\"144\" y=\"208\">24</text><text x=\"262\" y=\"78\">18</text><text x=\"136\" y=\"128\" fill=\"#B4442E\">26</text><text x=\"20\" y=\"236\" font-size=\"11\" fill=\"#5A6474\">The 26 is the diagonal of the front face. Figure not drawn to scale.</text></svg>",
+   "caption": "Figure not drawn to scale."
+  },
+  "choices": [
+   "26",
+   "30",
+   "31.6",
+   "39.7"
+  ],
+  "correct_answer": "31.6",
+  "explanation": "The front face is 24 wide and its diagonal is 26, so the height is sqrt(26^2 - 24^2) = 10. The longest rod is the space diagonal, sqrt(24^2 + 18^2 + 10^2) = sqrt(1,000), about 31.6. Choice 30 is the diagonal of the base, sqrt(24^2 + 18^2), which ignores the height. Choice 39.7 uses the given 26 as the height rather than deriving 10, giving sqrt(24^2 + 18^2 + 26^2). Choice 26 repeats the face diagonal, which is not the longest segment in the carton.",
+  "solve": "const w=24,d=18,fd=26;\nconst h=Math.sqrt(fd*fd-w*w);\nreturn Math.sqrt(w*w+d*d+h*h).toFixed(1);",
+  "domain": "Geometry and Trigonometry"
+ }
+]

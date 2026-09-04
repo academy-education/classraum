@@ -28,6 +28,7 @@
 import { createClient } from '@supabase/supabase-js'
 import { createHash } from 'node:crypto'
 import { readFileSync } from 'node:fs'
+import { gateBatch, overrideReason } from './gate.mjs'
 
 const LETTERS = ['A', 'B', 'C', 'D', 'E']
 const normHash = s => (s || '').toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim()
@@ -145,11 +146,31 @@ function shapeOk(raw) {
     && typeof raw.solve === 'string'
 }
 
-function toItem(raw) {
+/*
+ * DIFFICULTY IS THE GRADER'S, NOT THE AUTHOR'S — fixed 2026-09-04.
+ *
+ * This helper banked `raw.difficulty`, the label the AUTHOR gave the item,
+ * while using the grader's label only to gate ("easy is out") and to fill
+ * `verify_meta.grader_difficulty`. The R&W helper has always banked the
+ * grader's. So an item the author called hard and a grader called medium
+ * was rejected only if the grader said EASY, and otherwise entered the bank
+ * carrying the author's optimistic label.
+ *
+ * That is not cosmetic: the module-2 hard route draws on this column. On
+ * the five batches landed on 2026-09-04 it would have banked 47 items as
+ * hard that the with-source grader had called medium — a hard band inflated
+ * by the very self-assessment the grader exists to check. The gate did its
+ * work and the result was thrown away at the write.
+ *
+ * `content_hash` is over prompt+choices, so this changes no hash.
+ */
+const difficultyOf = (raw, q) => (q && q.difficulty) || raw.difficulty
+
+function toItem(raw, difficulty) {
   return {
     passage: null, passageGroupId: null, prompt: raw.prompt, type: 'multiple_choice',
     choices: raw.choices, correct_answer: raw.correct_answer, correct_answers: null,
-    acceptable_answers: null, difficulty: raw.difficulty, explanation: raw.explanation || '',
+    acceptable_answers: null, difficulty, explanation: raw.explanation || '',
     distractor_rationales: raw.choices.filter(c => c !== raw.correct_answer).map(c => ({
       choice: c,
       reason: (raw.distractor_steps || []).find(d => d.choice === c)?.mis_step || '',
@@ -249,22 +270,75 @@ async function main() {
   if (FAMILY !== 'sat' && COHORT === 'v2') {
     console.error('refusing: a non-SAT batch must name its own BANK_COHORT, not fall back to the SAT default'); process.exit(1)
   }
+
+  /*
+   * THE QC GATE, WIRED 2026-09-04.
+   *
+   * gate.mjs existed, gate-contract.json existed, bank-qc.ts existed, and
+   * the only inserter that consulted any of them was the TOEFL one. Both
+   * SAT inserters — this file and bank-helper.mjs — wrote straight to the
+   * bank. The bank-gate skill says in so many words that "the inserters
+   * refuse a batch with no ledger entry"; for maths and SAT R&W that
+   * sentence was simply false, and had been since the gate was written.
+   * A documented gate nobody calls is an instruction, and this project's
+   * whole thesis is that instructions do not hold and gates do.
+   */
+  const g = gateBatch({ task: 'multiple_choice', family: FAMILY, section: 'math', itemFiles: [batchPath] })
+  if (!g.canInsert) {
+    const why = overrideReason()
+    if (!why) { console.error(`REFUSING to insert ${batchPath}: ${g.reason}`); process.exit(1) }
+    console.log(`GATE OVERRIDDEN (BANK_GATE_OVERRIDE): ${why}\n  the gate said: ${g.reason}`)
+  } else {
+    console.log(`gate: ${g.batch} — ${g.reason}`)
+  }
   console.log(`inserting as family=${FAMILY} cohort=${COHORT}`)
   const qc = JSON.parse(readFileSync(qcPath, 'utf8'))
-  // Scoped to FAMILY: unscoped, this select spans >1000 math rows and PostgREST
-  // silently truncates it, so the dedupe set was incomplete for every family.
-  const { data: existing } = await admin.from('study_item_bank').select('content_hash').eq('section', 'math').eq('family', FAMILY)
-  const seen = new Set((existing || []).map(r => r.content_hash))
+  /*
+   * Scoped to FAMILY: unscoped, this select spans >1000 math rows and
+   * PostgREST silently truncates it, so the dedupe set was incomplete for
+   * every family.
+   *
+   * SCOPING WAS NOT ENOUGH, and the note above outlived its own fix — this
+   * was still a SINGLE un-paged select, and sat/math passed 1000 rows on its
+   * own during 2026-09-03. So the very defect this comment describes had
+   * come back inside the family it was narrowed to. Now paged AND ORDERED:
+   * `range()` without an ORDER BY pages an unordered relation and returns
+   * duplicates in place of unseen rows (measured on the R&W section the same
+   * day: 1222 fetched, 1057 distinct).
+   */
+  const existing = []
+  for (let from = 0; ; from += 1000) {
+    const { data, error } = await admin.from('study_item_bank').select('content_hash')
+      .eq('section', 'math').eq('family', FAMILY).order('id').range(from, from + 999)
+    if (error) throw new Error(error.message)
+    existing.push(...(data || [])); if (!data || data.length < 1000) break
+  }
+  const seen = new Set(existing.map(r => r.content_hash))
 
   let inserted = 0
   for (const raw of batch) {
-    const q = qc[String(raw.id)] || {}
+    const q = qc[String(raw.id)]
     const label = `id${raw.id} [${raw.domain} / ${raw.subskill}]`
+    /*
+     * A MISSING QC ROW IS A DROP, NOT A PASS — fixed 2026-09-04, after it bit.
+     *
+     * This read `qc[raw.id] || {}`, so an item the grader had CONDEMNED and
+     * that had therefore been left out of the qc file sailed straight in:
+     * with no `q.difficulty` the difficulty check is skipped, and nothing
+     * else consults qc at all. On 2026-09-04 that inserted GEO-H1-09 (a
+     * second defensible answer that lands on printed option C) and
+     * GEO-H1-21 (a figure drawn at ~105 degrees against a 95 label, next to
+     * the 102 distractor) into the live bank; both had to be deleted by id
+     * afterwards. The whole point of the qc file is to name the survivors,
+     * and the default for an unnamed item has to be "no".
+     */
+    if (!q) { console.log(`DROP   ${label} — no qc row (dropped at the with-source grade)`); continue }
     if (!shapeOk(raw)) { console.log(`SKIP   ${label} — bad shape`); continue }
     const r = sandbox(raw)                                   // hard gate: code must recompute the key
     if (!r.ok) { console.log(`REJECT ${label} — sandbox mismatch (computed ${r.computed}, key ${raw.correct_answer})`); continue }
     if (q.difficulty && !['hard', 'medium'].includes(q.difficulty)) { console.log(`REJECT ${label} — difficulty ${q.difficulty}`); continue }
-    const it = toItem(raw)
+    const difficulty = difficultyOf(raw, q)
+    const it = toItem(raw, difficulty)
     const content_hash = hashOf(it)
     if (seen.has(content_hash)) { console.log(`DUP    ${label}`); continue }
     const { error } = await admin.from('study_item_bank').insert({
@@ -278,7 +352,7 @@ async function main() {
       family: FAMILY, section: 'math', domain: raw.domain, subskill: raw.subskill,
       // migration 068 made task NOT NULL; math rows all carry 'multiple_choice'.
       task: 'multiple_choice',
-      difficulty: raw.difficulty, topic_tag: raw.topic_tag || null, item_type: 'multiple_choice',
+      difficulty, topic_tag: raw.topic_tag || null, item_type: 'multiple_choice',
       passage_group_id: null, item: it, content_hash, word_count: null, verified: true,
       verify_meta: {
         method: 'claude-authored+sandbox', computed: r.computed, grader_difficulty: q.difficulty || null,
@@ -290,14 +364,14 @@ async function main() {
     })
     if (error) { console.log(`ERR    ${label}: ${error.message}`); continue }
     seen.add(content_hash); inserted++
-    console.log(`INSERT ${label} — ${raw.difficulty}, computed ${r.computed}`)
+    console.log(`INSERT ${label} — ${difficulty}${difficulty === raw.difficulty ? '' : ` (author said ${raw.difficulty})`}, computed ${r.computed}`)
   }
 
   // Paginated: the family's math rows passed 1000 on 2026-09-03 and the
   // after-count printed exactly 1000 with a domain missing - the PostgREST cap.
   const after = []
   for (let from = 0; ; from += 1000) {
-    const { data } = await admin.from('study_item_bank').select('domain').eq('section', 'math').eq('family', FAMILY).eq('verified', true).eq('archived', false).range(from, from + 999)
+    const { data } = await admin.from('study_item_bank').select('domain').eq('section', 'math').eq('family', FAMILY).eq('verified', true).eq('archived', false).order('id').range(from, from + 999)
     after.push(...(data ?? [])); if (!data || data.length < 1000) break
   }
   const by = {}

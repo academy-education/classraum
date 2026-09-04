@@ -1,0 +1,410 @@
+[
+  {
+    "id": "SEC-HD-V6-01",
+    "domain": "Standard English Conventions",
+    "subskill": "form: agreement with a singular head noun buried under a long participial modifier, with no comma admitted between subject and verb",
+    "difficulty": "hard",
+    "passage": "A whale carcass that reaches the seafloor feeds three communities in succession, and the third is the one that lasts. The mat of sulfur-oxidizing bacteria now spreading across the stripped ______ the hagfish and the bone-eating worms by decades, which is why such a site can still be identified from its chemistry long after the skeleton itself has scattered.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "bones outlast",
+      "bones, outlasts",
+      "bones outlasts",
+      "bones, outlasting"
+    ],
+    "correct_answer": "bones outlasts",
+    "explanation": "The subject of the sentence is the singular noun mat; bacteria, bones, hagfish, and worms all sit inside a modifier or the object, so bones outlast takes its number from the wrong word. Number alone does not finish the item, because two options carry a singular or nonfinite form: a subject and its verb are never separated by a comma, however long the modifier standing between them, which rules out bones, outlasts, and bones, outlasting leaves the sentence with no main verb at all.",
+    "topic_tag": "deep-sea ecology"
+  },
+  {
+    "id": "SEC-HD-V6-02",
+    "domain": "Standard English Conventions",
+    "subskill": "boundaries: a nominative absolute rather than a second finite clause, with no comma inside the absolute",
+    "difficulty": "hard",
+    "passage": "The Cassini survey of France ran from Dunkirk to Perpignan and took four generations to finish. All of it rested on a single baseline, measured on the plain south of Paris in 1740 and measured again, with a different set of rods, in 1756, the second ______ from the first by less than a foot over seven miles.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "result differed",
+      "result differing",
+      "result, differing",
+      "result differs"
+    ],
+    "correct_answer": "result differing",
+    "explanation": "The sentence already has its main verb in rested, so what follows the last comma is a nominative absolute: a noun followed by a participle. Result differing supplies exactly that. Result differed and result differs each hang a second finite clause on a comma, which is a splice, and result differs also puts a present-tense verb into a sentence set in the eighteenth century. Result, differing gets the participle right but drops a comma between the absolute's own subject and that participle, where nothing may intervene.",
+    "topic_tag": "geodetic survey"
+  },
+  {
+    "id": "SEC-HD-V6-03",
+    "domain": "Standard English Conventions",
+    "subskill": "form: neither/nor agreement with the nearer element, with finiteness and time frame settling the survivors",
+    "difficulty": "hard",
+    "passage": "The story of childbed fever is usually told as a story about hand washing, and the counting came first. Semmelweis had two wards and one building: the ward staffed by medical students lost three women in a hundred, and the ward staffed by midwives lost one. Neither the professor who supervised the ward nor the students who walked over from the dissecting room ______ anything at all before an examination, and the midwives had no dissecting room to walk from.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "were in the habit of washing",
+      "was in the habit of washing",
+      "having been in the habit of washing",
+      "have been in the habit of washing"
+    ],
+    "correct_answer": "were in the habit of washing",
+    "explanation": "With neither ... nor, the verb agrees with whichever element stands nearer to it, and that element is the plural the students who walked over from the dissecting room, so was in the habit of washing agrees with the professor instead. Two options survive that test, and the sentence settles them on other grounds: having been in the habit of washing is a participle and would leave the clause with no predicate, while have been in the habit of washing ties a closed episode to the present, against the past narrative of lost three women and had no dissecting room.",
+    "topic_tag": "puerperal fever"
+  },
+  {
+    "id": "SEC-HD-V6-04",
+    "domain": "Standard English Conventions",
+    "subskill": "form: agreement governed by the noun in a fraction-of phrase, with tense fixed by the generic frame",
+    "difficulty": "hard",
+    "passage": "A honeybee colony does not divide its labor by talent. Age decides almost everything: a bee cleans cells for three days, feeds larvae for a week, guards the entrance for a few days, and only then flies. The sequence can also run backward when a hive is damaged, and roughly a third of the foragers in a colony that has lost its nurse bees ______ to brood work within a day, a reversal no other insect society is known to manage.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "reverts",
+      "reverted",
+      "has reverted",
+      "revert"
+    ],
+    "correct_answer": "revert",
+    "explanation": "In a fraction-of phrase the verb takes its number from the noun inside the of phrase, and that noun is the plural foragers, so reverts and has reverted agree with a third instead. The surviving question is tense: everything around the blank is generic present, from the sequence can also run backward to no other insect society is known to manage, and reverted closes the behavior off in a past the passage never enters.",
+    "topic_tag": "division of labor in bees"
+  },
+  {
+    "id": "SEC-HD-V6-05",
+    "domain": "Standard English Conventions",
+    "subskill": "form: a clause used as subject is singular, and the option must not turn the only verb into a relative clause",
+    "difficulty": "hard",
+    "passage": "The Sargasso Sea has no coasts. It is bounded by currents, and the weed that gives it its name drifts in windrows a ship can follow for a day. Eels breed there and nowhere else, a fact established only in 1922, when a Danish vessel found larvae small enough to have hatched nearby. Where the adults go once they have left the ______ still unsettled, and no adult eel has ever been caught in open water on its way there.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "rivers of Europe are",
+      "rivers of Europe is",
+      "rivers of Europe, which is",
+      "rivers of Europe, which are"
+    ],
+    "correct_answer": "rivers of Europe is",
+    "explanation": "The subject is the whole clause Where the adults go once they have left the rivers of Europe, and a clause serving as a subject is singular, so rivers of Europe are agrees with the nearest plural noun rather than with the subject. Number does not finish the item, since rivers of Europe, which is carries a singular verb too; what rules that option out is which, which buries the sentence's only verb inside a relative clause and leaves a fragment. Rivers of Europe, which are fails on both counts.",
+    "topic_tag": "eel migration"
+  },
+  {
+    "id": "SEC-HD-V6-06",
+    "domain": "Standard English Conventions",
+    "subskill": "boundaries: comma after a long introductory dependent clause, with no comma between the subject and its verb",
+    "difficulty": "hard",
+    "passage": "The Vienna wards are the classic case because they controlled for almost everything by accident. Women were admitted to the two of them on alternating days, from the same trades and the same streets, and the wards stood in one building. Because the day of the week decided which ward a woman entered and nothing else ______ could not be blamed on the patients, and the explanation the hospital preferred, that the students frightened them, did not survive the alternation either.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "did the difference in mortality",
+      "did, the difference in mortality,",
+      "did; the difference in mortality",
+      "did, the difference in mortality"
+    ],
+    "correct_answer": "did, the difference in mortality",
+    "explanation": "Because the day of the week decided which ward a woman entered and nothing else did is a dependent clause, and a clause of that length is closed with a comma before the main clause begins, which is what did the difference in mortality omits. A semicolon cannot do the job either, since a semicolon joins independent clauses and did; the difference in mortality leaves a fragment on its left. Did, the difference in mortality, gets the first comma right and then adds a second one between the subject and its verb, where none belongs.",
+    "topic_tag": "hospital mortality statistics"
+  },
+  {
+    "id": "SEC-HD-V6-07",
+    "domain": "Standard English Conventions",
+    "subskill": "structure: an opening participial phrase must attach to the subject, and the clause that follows must be finite",
+    "difficulty": "hard",
+    "passage": "Beeswax is secreted, not gathered. A worker hangs motionless in a cluster for a day and flakes of wax appear on the underside of her abdomen; she scrapes them off and chews them into place. Secreted at a cost of something like eight pounds of honey for every pound of it, ______ the most expensive material in the hive, and a beekeeper who gives a swarm drawn comb can shorten its first season by weeks.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "wax is by some distance",
+      "colonies treat wax as",
+      "wax being by some distance",
+      "the cost of wax makes it"
+    ],
+    "correct_answer": "wax is by some distance",
+    "explanation": "An opening participial phrase attaches to the subject of the clause that follows it, and the thing secreted at a cost of eight pounds of honey is the wax, so colonies treat wax as and the cost of wax makes it both leave the phrase modifying something that was never secreted. Naming wax is not sufficient by itself: wax being by some distance offers a participle where a finite verb is required, and the sentence would run to its end without a main clause.",
+    "topic_tag": "wax secretion"
+  },
+  {
+    "id": "SEC-HD-V6-08",
+    "domain": "Standard English Conventions",
+    "subskill": "structure: parallelism of the third element in a series, with the comma before a coordinating conjunction joining clauses",
+    "difficulty": "medium",
+    "passage": "A chart is a set of decisions about what to leave out. The men who compiled the 1855 sheet for the Bay of Fundy recorded the depth at low water, the character of the bottom under every sounding, and ______ they left out the height of the cliffs, the names of the farms behind them, and everything else a traveler might have wanted to know.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "how the tide sets, but",
+      "how the tide sets but",
+      "the set of the tide, but",
+      "the set of the tide but"
+    ],
+    "correct_answer": "the set of the tide, but",
+    "explanation": "The series already contains two noun phrases, the depth at low water and the character of the bottom under every sounding, so its third element must be a noun phrase as well; how the tide sets is a clause and breaks the pattern. Parallelism leaves the punctuation to decide: what follows but is a complete clause with its own subject and verb in they left out the height of the cliffs, and two independent clauses joined by but take a comma before it, which the set of the tide but omits.",
+    "topic_tag": "hydrographic survey"
+  },
+  {
+    "id": "SEC-HD-V6-09",
+    "domain": "Standard English Conventions",
+    "subskill": "form: present perfect required by a since-frame, with number fixed by a singular head noun",
+    "difficulty": "hard",
+    "passage": "The germ theory did not win by argument. It won by surgery: carbolic dressings cut the death rate after amputation from nearly one in two to one in seven, and the figures were printed where surgeons would see them. Since that paper appeared, the practice of dressing a wound with an antiseptic ______ from a contested novelty into something so ordinary that no surgeon now records having done it.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "passed",
+      "has passed",
+      "have passed",
+      "passes"
+    ],
+    "correct_answer": "has passed",
+    "explanation": "A span that opens at a point in the past and runs to the present takes the present perfect, and this sentence marks both ends of it, from Since that paper appeared to no surgeon now records having done it; passed shuts the change off in the past and passes denies that it took time at all. The other requirement is number: the subject is the singular the practice, not the plural surgeons, figures, or dressings standing nearby, so have passed agrees with the wrong noun.",
+    "topic_tag": "antisepsis"
+  },
+  {
+    "id": "SEC-HD-V6-10",
+    "domain": "Standard English Conventions",
+    "subskill": "form: two verbs in one clause taking their number from different nouns",
+    "difficulty": "hard",
+    "passage": "A colony's decision to swarm is taken over several days and can be read off the comb. The workers stop feeding the queen so that she is light enough to fly, and they build queen cups along the lower edge of the frames. The number of those cups that the bees actually ______ small, rarely more than a dozen out of the fifty they prepare, and a beekeeper who counts cups rather than eggs will misread the hive.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "stocks with eggs stays",
+      "stock with eggs stay",
+      "stocks with eggs stay",
+      "stock with eggs stays"
+    ],
+    "correct_answer": "stock with eggs stays",
+    "explanation": "Two verbs are at issue and they take their number from different words. The verb inside the relative clause belongs to the bees, which is plural, so stocks with eggs stays and stocks with eggs stay attach a singular verb to a plural subject. The main verb belongs to the number of those cups, and the number of is singular however many cups it counts, so stock with eggs stay makes the main verb agree with cups instead of with number.",
+    "topic_tag": "swarm preparation"
+  },
+  {
+    "id": "SEC-HD-V6-11",
+    "domain": "Standard English Conventions",
+    "subskill": "boundaries: a supplement opened with a dash must be closed with one, with the verb agreeing across it",
+    "difficulty": "hard",
+    "passage": "Sound travels four and a half times faster in seawater than in air, and about a kilometer down it stops travelling in straight lines. A layer where the effects of pressure and temperature cancel bends sound back toward itself, so that the calls entering the layer—a whale's song, or the click of a seismic survey ______ instead of spreading, and a sound that would fade within a mile at the surface can be heard a thousand miles from its source.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "gun—are held",
+      "gun, are held",
+      "gun is held",
+      "gun—is held"
+    ],
+    "correct_answer": "gun—are held",
+    "explanation": "A supplement opened with a dash is closed with a dash, so gun, are held swaps the closing mark and gun is held omits it, leaving the interruption open. Closing the supplement is only half the item: the subject of the clause is the plural the calls, not the singular song, click, or gun standing next to the verb, so gun—is held agrees with the nearest noun rather than with the subject.",
+    "topic_tag": "underwater acoustics"
+  },
+  {
+    "id": "SEC-HD-V6-12",
+    "domain": "Standard English Conventions",
+    "subskill": "boundaries: semicolon between independent clauses, with a gerund rather than a bare verb as the second subject",
+    "difficulty": "medium",
+    "passage": "The Broad Street outbreak is remembered for a map and a pump handle, and neither did what the story says. Snow had reached his conclusion before he drew the map, and the outbreak was already in decline when the handle came off. What the episode did accomplish was slower: it taught a parish vestry that a board of health could go out and count cases in the street rather than wait for them in a ______ that lesson into a statute took another twenty years.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "hospital, turn",
+      "hospital, turning",
+      "hospital; turning",
+      "hospital; turn"
+    ],
+    "correct_answer": "hospital; turning",
+    "explanation": "Two independent clauses meet at the blank, and the second of them, which ends took another twenty years, cannot be joined to the first with a comma alone; that is what hospital, turning and hospital, turn attempt. The subject of that second clause also has to be a noun phrase, and the gerund does the work: hospital; turn puts a bare verb where a subject belongs and leaves took without anything to take.",
+    "topic_tag": "cholera epidemiology"
+  },
+  {
+    "id": "SEC-HD-V6-13",
+    "domain": "Standard English Conventions",
+    "subskill": "form: each-of takes a singular verb, with the general present required by the surrounding frame",
+    "difficulty": "hard",
+    "passage": "A beekeeper opening a hive in July is looking for four things and can miss three of them in a minute. Eggs standing on end at the bottom of a cell mean a queen was laying yesterday; a slab of sealed brood means she has been laying for three weeks. Each of the frames in the brood nest ______ own history, and a frame read out of order tells the wrong story about the colony as a whole.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "carry their",
+      "carries its",
+      "carried its",
+      "carry its"
+    ],
+    "correct_answer": "carries its",
+    "explanation": "Each is the subject and each is singular however many frames the of phrase goes on to count, so carry their and carry its both take their number from frames. That leaves the tense to settle, and the sentences around the blank are in the general present, from a frame read out of order tells the wrong story to means she has been laying; carried its shifts to a past that nothing in the passage supports.",
+    "topic_tag": "hive inspection"
+  },
+  {
+    "id": "SEC-HD-V6-14",
+    "domain": "Standard English Conventions",
+    "subskill": "form: an embedded question keeps statement word order, with agreement inside it",
+    "difficulty": "medium",
+    "passage": "The first hydrothermal vents were found in 1977 by geologists who were not looking for animals. The submersible had gone down to measure temperature anomalies along the Galapagos Rift, and it came up with photographs of clams the size of a hand. Nobody aboard could say ______ that evening, and the biologists ashore argued about it for a decade, because nothing in the food web could be running on sunlight.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "what were the clams eating",
+      "what was the clams eating",
+      "what the clams was eating",
+      "what the clams were eating"
+    ],
+    "correct_answer": "what the clams were eating",
+    "explanation": "A question folded into a statement keeps statement word order, so what were the clams eating and what was the clams eating preserve an inversion that belongs only in a direct question. Word order is not the whole item: the subject of the embedded clause is the plural the clams, which rules out what the clams was eating as well as the inverted was.",
+    "topic_tag": "hydrothermal vents"
+  },
+  {
+    "id": "SEC-HD-V6-15",
+    "domain": "Standard English Conventions",
+    "subskill": "form: two singular noun phrases joined by and make a plural subject, with tense fixed by the clause after the colon",
+    "difficulty": "hard",
+    "passage": "A rhumb line and a great circle agree only on the equator and the meridians. Everywhere else the great circle is shorter, sometimes by hundreds of miles, and holding it obliges a navigator to change bearing continuously. The projection an officer used in 1900 and the one his successor uses today ______ this difference in opposite ways: the older sheet makes the easy course straight, and the newer one makes the short course straight.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "handle",
+      "handles",
+      "handled",
+      "is handling"
+    ],
+    "correct_answer": "handle",
+    "explanation": "Two singular noun phrases joined by and make one plural subject, so handles and is handling agree with the second phrase alone rather than with the pair. The colon then fixes the tense: what follows it is present, in the older sheet makes the easy course straight and the newer one makes the short course straight, and handled would place the two projections in a past that the rest of the sentence has already left.",
+    "topic_tag": "map projections"
+  },
+  {
+    "id": "SEC-HD-V6-16",
+    "domain": "Standard English Conventions",
+    "subskill": "boundaries: a colon may introduce a list of noun phrases where a semicolon or a relative clause cannot",
+    "difficulty": "medium",
+    "passage": "Antarctic icefish have no hemoglobin. Their blood runs clear, their hearts are several times the size of a comparable fish's, and they move oxygen by dissolving it in plasma, which works only because very cold water holds a great deal of it. The arrangement costs the fish something that has been measured only ______ the impossibility of a sprint, a heart that fails a few degrees above ambient, and a range that has not moved in four million years.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "recently;",
+      "recently. Namely",
+      "recently:",
+      "recently, which are"
+    ],
+    "correct_answer": "recently:",
+    "explanation": "What follows the blank is a list of noun phrases, not a sentence, so recently; and recently. Namely both put a fragment where an independent clause would be required. The relative option fails on a different ground: the antecedent is the singular something, so recently, which are does not agree with it, and the list elaborates that something rather than making a claim about it.",
+    "topic_tag": "polar fish physiology"
+  },
+  {
+    "id": "SEC-HD-V6-17",
+    "domain": "Standard English Conventions",
+    "subskill": "boundaries: a main verb, not a modifier, must follow the subject, with number fixed by the head noun",
+    "difficulty": "medium",
+    "passage": "The Mason and Dixon line was run with a zenith sector and a chain by two men who had not seen America before they were hired to divide it. Their instructions were arithmetic: fix a point fifteen miles south of the southernmost house in Philadelphia, run west from it, and correct for the curvature of the earth every eleven miles. The line they left ______ by about a hundred feet over two hundred and thirty miles, an error no later survey has bothered to correct.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "missing its intended parallel",
+      "misses its intended parallel",
+      "which misses its intended parallel",
+      "miss its intended parallel"
+    ],
+    "correct_answer": "misses its intended parallel",
+    "explanation": "The subject the line they left needs a main verb, and both missing its intended parallel and which misses its intended parallel supply a modifier instead, leaving a fragment that runs to the end of the sentence. Supplying a verb is not enough on its own: the subject is the singular the line, not the two men or the later surveys standing nearby, so miss its intended parallel agrees with the wrong noun.",
+    "topic_tag": "boundary survey"
+  },
+  {
+    "id": "SEC-HD-V6-18",
+    "domain": "Standard English Conventions",
+    "subskill": "structure: a not-because correlative completed in parallel, with the number of the subject inside it fixed later in the sentence",
+    "difficulty": "medium",
+    "passage": "The Admiralty issued lemon juice in 1795, forty-eight years after Lind ran his trial, and the delay is usually blamed on conservatism. The records suggest something duller. Lind buried the trial in a book of four hundred pages in which it occupies four, and he hedged it with a theory of blocked perspiration that he never gave up. The ration came when it did not because the evidence had improved ______ of lemons in the Mediterranean was falling faster than any argument about perspiration could be settled.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "and because the price",
+      "but because the prices",
+      "but because of the price",
+      "but because the price"
+    ],
+    "correct_answer": "but because the price",
+    "explanation": "The sentence opens a correlative with not because the evidence had improved, and a correlative of that shape is closed with but and a matching because clause, so and because the price abandons the not-but pairing and but because of the price swaps in a preposition that takes a noun phrase where a full clause follows. Getting the connective right leaves the subject to settle: the verb later in the sentence is was falling, so but because the prices puts a plural subject under a singular verb.",
+    "topic_tag": "naval medicine"
+  },
+  {
+    "id": "SEC-HD-V6-19",
+    "domain": "Standard English Conventions",
+    "subskill": "boundaries: comma before a coordinating conjunction joining two clauses, with the number of the second subject fixed by its verbs",
+    "difficulty": "medium",
+    "passage": "The smoker works on a misunderstanding that has never quite been corrected. Smoke does not calm bees; it makes them gorge on honey, and a bee heavy with honey is slow to sting and slower still to fly. The gorging lasts about ten ______ that work a hive for half an hour on a single puff of smoke are stung in the second half of it and blame the weather.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "minutes, so the beekeepers",
+      "minutes so the beekeepers",
+      "minutes, so the beekeeper",
+      "minutes; so that the beekeepers"
+    ],
+    "correct_answer": "minutes, so the beekeepers",
+    "explanation": "Two independent clauses meet at the blank, and joining them with the coordinating conjunction so requires a comma in front of it, which minutes so the beekeepers leaves out; minutes; so that the beekeepers turns the second clause into a purpose clause and so leaves a fragment after a semicolon, which can only join independent clauses. The punctuation settles only half the item, because the second clause carries the plural verbs are stung and blame, and minutes, so the beekeeper gives them a singular subject.",
+    "topic_tag": "hive management"
+  },
+  {
+    "id": "SEC-HD-V6-20",
+    "domain": "Standard English Conventions",
+    "subskill": "structure: the third element of a series of infinitives must keep the form of the first two",
+    "difficulty": "medium",
+    "passage": "A sailing direction is a genre with one rule: never describe a coast without saying how it looks from the deck. The 1815 directions for the Skeleton Coast tell a master to keep the swell on his quarter, to sound every glass, and ______ the shore before the sun has burned the fog off, because the current sets onshore and the lead is the only instrument that works.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "never closing with",
+      "he should never close with",
+      "never to close with",
+      "never closes with"
+    ],
+    "correct_answer": "never to close with",
+    "explanation": "The series is a list of infinitives governed by tell a master, and its first two members are to keep the swell on his quarter and to sound every glass, so the third has to take the same form. Never closing with and never closes with change the verb form, and he should never close with changes the construction altogether, turning the third element into a clause with a subject of its own while the first two remain infinitives.",
+    "topic_tag": "sailing directions"
+  },
+  {
+    "id": "SEC-HD-V6-21",
+    "domain": "Standard English Conventions",
+    "subskill": "boundaries: a participial phrase, not a second finite clause, after a complete clause and a comma",
+    "difficulty": "medium",
+    "passage": "Roentgen photographed his wife's hand six weeks after he noticed the fluorescence, and the picture did more for the discovery than the paper did. Within a year there were machines in shoe shops and at fairgrounds. Dose was not measured, because there was nothing to measure it with, and the tubes ran for hours at a time, ______ their operators to something that could not be seen and that few thought worth recording.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "exposed",
+      "exposing",
+      "they exposed",
+      "and exposing"
+    ],
+    "correct_answer": "exposing",
+    "explanation": "The clause the tubes ran for hours at a time is already complete, so a comma followed by exposed or they exposed hangs a second finite clause on that comma with nothing to join the two. Exposing their operators works as a participial phrase describing what the running did, whereas and exposing places a conjunction where there is no second element of the right kind for it to join.",
+    "topic_tag": "early radiology"
+  },
+  {
+    "id": "SEC-HD-V6-22",
+    "domain": "Standard English Conventions",
+    "subskill": "form: past perfect for a span already under way at a stated past point, with number and voice ruling out the rest",
+    "difficulty": "medium",
+    "passage": "The near-collapse of commercial beekeeping in the 1980s is usually dated to the arrival of the tracheal mite, and the date is out by a decade. When the mite was first identified in Texas in 1984, the number of managed colonies ______ for fifteen years, pushed down by the price of sugar and the cost of trucking hives, and the parasite arrived in an industry that was already contracting.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "was falling",
+      "have been falling",
+      "has been falling",
+      "had been falling"
+    ],
+    "correct_answer": "had been falling",
+    "explanation": "The sentence fixes a point in the past with When the mite was first identified in Texas in 1984 and then describes a fifteen-year decline that was already under way at that point, which is what the past perfect is for; was falling puts the decline alongside the identification rather than before it. The two present perfect options fail twice over: the subject is the singular the number of managed colonies, so have been falling does not agree with it, and has been falling runs a closed period up to the present the passage has left.",
+    "topic_tag": "beekeeping economics"
+  },
+  {
+    "id": "SEC-HD-V6-23",
+    "domain": "Standard English Conventions",
+    "subskill": "form: a fused relative takes its case from its own clause, not from the preceding preposition, and that clause needs a finite verb",
+    "difficulty": "hard",
+    "passage": "The Louisiana boundary survey of 1806 produced two sets of figures and one lawsuit. The dispute was not about the astronomy, which both parties accepted, but about who was to be paid for it, and the court divided the fee between the Spanish commissioner and ______ done the observing, a phrase that has caused trouble ever since, because two men had held the sextant on the American side.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "whoever had",
+      "whomever had",
+      "whoever having",
+      "whomever having"
+    ],
+    "correct_answer": "whoever had",
+    "explanation": "The pronoun looks like a second object of between, but it is the subject of its own clause, had done the observing, and a subject takes whoever; whomever had and whomever having take their case from the preposition instead. Case settles only half the item: the clause needs a finite verb for the pronoun to be the subject of, so whoever having and whomever having leave the phrase with no predicate at all.",
+    "topic_tag": "boundary astronomy"
+  },
+  {
+    "id": "SEC-HD-V6-24",
+    "domain": "Standard English Conventions",
+    "subskill": "form: and inside a prepositional phrase does not make a compound subject, with a coordinated verb requiring a finite form",
+    "difficulty": "hard",
+    "passage": "The deep scattering layer confused sonar operators for a decade because it moved. Echoes came back from a false bottom four hundred meters down by day and from just under the surface at night, and no chart showed either. The nightly rise of the lanternfish and of the shrimp that travel with them ______ the largest movement of animal biomass on the planet and has never been counted to better than an order of magnitude.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "remain",
+      "have remained",
+      "remains",
+      "remaining"
+    ],
+    "correct_answer": "remains",
+    "explanation": "The subject is the singular the nightly rise; the and inside the phrase joins two of phrases, of the lanternfish and of the shrimp, rather than two subjects, so remain and have remained agree with the animals instead of with the movement. Number leaves two options standing, and the verb coordinated later in the sentence settles them: has never been counted needs a finite verb to pair with, and the participle remaining cannot supply one.",
+    "topic_tag": "diel vertical migration"
+  }
+]

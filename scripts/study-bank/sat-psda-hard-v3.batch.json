@@ -1,0 +1,677 @@
+[
+ {
+  "id": "PSDA-H3-01",
+  "subskill": "percentages: a percent of a percent with a shifting base",
+  "difficulty": "hard",
+  "prompt": "A grain cooperative harvested 25 percent more wheat in 2025 than it harvested in 2024. It exported 42 percent of its 2024 harvest and 36 percent of its 2025 harvest, and the mass it exported in 2025 was 1,200 metric tons greater than the mass it exported in 2024. How many metric tons of wheat did the cooperative harvest in 2024?",
+  "choices": [
+   "16800",
+   "20000",
+   "40000",
+   "50000"
+  ],
+  "correct_answer": "40000",
+  "explanation": "Let H be the 2024 harvest. The 2025 harvest is 1.25H, so the 2025 export is 0.36(1.25H) = 0.45H and the 2024 export is 0.42H. Then 0.45H - 0.42H = 0.03H = 1,200, so H = 40,000 metric tons. Choice 20000 compares the two export percents on the same harvest, solving 0.42H - 0.36H = 1,200, and so never applies the 25 percent growth. Choice 50000 is the 2025 harvest, 1.25(40,000), which answers for the wrong year. Choice 16800 is the mass exported in 2024, 0.42(40,000), which reports an export rather than a harvest.",
+  "solve": "const H = 1200/(0.36*1.25 - 0.42);\nreturn Math.round(H);",
+  "domain": "Problem-Solving and Data Analysis"
+ },
+ {
+  "id": "PSDA-H3-02",
+  "subskill": "one-variable data: median of a frequency distribution after values are added",
+  "difficulty": "hard",
+  "prompt": "The table shows the number of fields in a growers' association that produced each of five yields, in bushels per acre, last season. Four additional fields, each of which produced 52 bushels per acre, were reported after the table was compiled. What is the median yield, in bushels per acre, for all of these fields?",
+  "graphic": {
+   "type": "table",
+   "rowLabels": [
+    "38 bushels per acre",
+    "42 bushels per acre",
+    "46 bushels per acre",
+    "50 bushels per acre",
+    "54 bushels per acre"
+   ],
+   "colLabels": [
+    "Number of fields"
+   ],
+   "cells": [
+    [
+     "5"
+    ],
+    [
+     "6"
+    ],
+    [
+     "4"
+    ],
+    [
+     "3"
+    ],
+    [
+     "1"
+    ]
+   ],
+   "caption": "Yields reported by the association last season"
+  },
+  "choices": [
+   "42",
+   "44",
+   "46",
+   "52"
+  ],
+  "correct_answer": "46",
+  "explanation": "There are 19 fields in the table and 4 more, so 23 values in all and the median is the 12th in order. The cumulative counts are 5 through 38 bushels, 11 through 42 bushels and 15 through 46 bushels, so the 12th value is 46. Choice 42 is the median of the 19 fields in the table alone, the 10th of 19 values, and so ignores the four new fields. Choice 44 averages the 11th and 12th values, 42 and 46, which is the rule for an even count and there are 23 values, not 22. Choice 52 is the yield of each of the four added fields.",
+  "solve": "const rows=[[38,5],[42,6],[46,4],[50,3],[54,1]];\nconst v=[];\nfor(const [y,f] of rows) for(let i=0;i<f;i++) v.push(y);\nfor(let i=0;i<4;i++) v.push(52);\nv.sort((a,b)=>a-b);\nconst n=v.length;\nreturn n%2 ? v[(n-1)/2] : (v[n/2-1]+v[n/2])/2;",
+  "domain": "Problem-Solving and Data Analysis"
+ },
+ {
+  "id": "PSDA-H3-03",
+  "subskill": "ratios and rates: comparing unit rates across unequal package sizes",
+  "difficulty": "medium",
+  "prompt": "The table shows the mass of one sack of animal feed and the price of that sack for each of four suppliers. A farm will buy all of its feed from the one supplier whose feed costs the least per kilogram. From which supplier should the farm buy?",
+  "graphic": {
+   "type": "table",
+   "rowLabels": [
+    "Aldenfield",
+    "Brookmere",
+    "Carrow",
+    "Dunmore"
+   ],
+   "colLabels": [
+    "Mass of one sack (kilograms)",
+    "Price of one sack (dollars)"
+   ],
+   "cells": [
+    [
+     "12.5",
+     "28.75"
+    ],
+    [
+     "18",
+     "40.50"
+    ],
+    [
+     "25",
+     "55.00"
+    ],
+    [
+     "8",
+     "18.00"
+    ]
+   ],
+   "caption": "Sack mass and price, by supplier"
+  },
+  "choices": [
+   "Aldenfield",
+   "Brookmere",
+   "Carrow",
+   "Dunmore"
+  ],
+  "correct_answer": "Carrow",
+  "explanation": "The costs per kilogram are 28.75/12.5 = 2.30, 40.50/18 = 2.25, 55.00/25 = 2.20 and 18.00/8 = 2.25 dollars. Carrow is the lowest, at 2.20 dollars per kilogram, even though its sack carries the highest price of the four and is the largest. Dunmore has the lowest price per sack and Aldenfield the second lowest, but both cost more per kilogram than Carrow; Brookmere and Dunmore tie at 2.25 dollars per kilogram, so neither is second cheapest on its own.",
+  "solve": "const s=[['Aldenfield',12.5,28.75],['Brookmere',18,40.50],['Carrow',25,55.00],['Dunmore',8,18.00]];\nlet bn='', br=Infinity;\nfor(const [n,m,p] of s){const r=p/m; if(r<br){br=r;bn=n;}}\nreturn bn;",
+  "domain": "Problem-Solving and Data Analysis"
+ },
+ {
+  "id": "PSDA-H3-04",
+  "subskill": "rates: a chain of rates with a unit conversion",
+  "difficulty": "medium",
+  "prompt": "A packing line fills 45 crates of apples per hour, and each crate holds 18 kilograms of apples. The line runs for 7.5 hours each day. How many days does the line take to pack 121,500 kilograms of apples?",
+  "choices": [
+   "6.25",
+   "20",
+   "150",
+   "360"
+  ],
+  "correct_answer": "20",
+  "explanation": "The line packs 45(18) = 810 kilograms per hour and 810(7.5) = 6,075 kilograms per day, so it needs 121,500/6,075 = 20 days. Choice 360 is 121,500/(45 x 7.5), which treats the 121,500 as a number of crates and so never uses the 18 kilograms. Choice 150 is 121,500/(45 x 18), the number of HOURS the job takes, reported as though it were days. Choice 6.25 divides those 150 hours by 24 rather than by the 7.5 hours the line actually runs each day.",
+  "solve": "const cph=45, kgc=18, hpd=7.5, total=121500;\nreturn total/(cph*kgc*hpd);",
+  "domain": "Problem-Solving and Data Analysis"
+ },
+ {
+  "id": "PSDA-H3-05",
+  "subskill": "one-variable data: recovering a group mean from a weighted overall mean",
+  "difficulty": "hard",
+  "prompt": "The table shows the number of sacks of potatoes in each of two lots delivered to a co-packer and the mean mass of a sack in that lot. A third lot, Lot C, contains 200 sacks. The mean mass of a sack across all 600 sacks in the three lots is 24.0 kilograms. What is the mean mass of a sack in Lot C, in kilograms?",
+  "graphic": {
+   "type": "table",
+   "rowLabels": [
+    "Lot A",
+    "Lot B"
+   ],
+   "colLabels": [
+    "Number of sacks",
+    "Mean mass per sack (kilograms)"
+   ],
+   "cells": [
+    [
+     "250",
+     "24.4"
+    ],
+    [
+     "150",
+     "26.0"
+    ]
+   ],
+   "caption": "Sacks delivered in Lot A and Lot B"
+  },
+  "choices": [
+   "21.6",
+   "22.0",
+   "23.0",
+   "25.0"
+  ],
+  "correct_answer": "22.0",
+  "explanation": "Lots A and B hold 250(24.4) + 150(26.0) = 10,000 kilograms, and all 600 sacks hold 600(24.0) = 14,400 kilograms, so Lot C holds 4,400 kilograms in 200 sacks, a mean of 22.0 kilograms per sack. Choice 21.6 averages the three lot means without weighting, solving (24.4 + 26.0 + m)/3 = 24.0, which would be right only if the three lots were the same size. Choice 25.0 is the mean mass of a sack across Lots A and B, 10,000/400, which answers about the wrong group. Choice 23.0 starts from that 25.0, notes it is 1.0 kilogram above the overall mean, and subtracts 1.0 from 24.0, spreading the excess over one sack instead of over the 200 sacks that must absorb it.",
+  "solve": "const totalAll = 600*24.0;\nconst ab = 250*24.4 + 150*26.0;\nreturn ((totalAll - ab)/200).toFixed(1);",
+  "domain": "Problem-Solving and Data Analysis"
+ },
+ {
+  "id": "PSDA-H3-06",
+  "subskill": "percentages: percent of a quantity read from a graph, with a chosen base",
+  "difficulty": "medium",
+  "prompt": "The bar graph shows the number of hectares a farm planted in each of four crops this season. The number of hectares planted in soy is what percent of the number of hectares planted in maize?",
+  "graphic": {
+   "type": "bar",
+   "xLabel": "Crop",
+   "yLabel": "Hectares planted",
+   "bars": [
+    {
+     "label": "Maize",
+     "value": 600
+    },
+    {
+     "label": "Soy",
+     "value": 450
+    },
+    {
+     "label": "Barley",
+     "value": 300
+    },
+    {
+     "label": "Canola",
+     "value": 150
+    }
+   ]
+  },
+  "choices": [
+   "25",
+   "30",
+   "75",
+   "133"
+  ],
+  "correct_answer": "75",
+  "explanation": "The farm planted 450 hectares in soy and 600 in maize, and 450/600 = 0.75, or 75 percent. Choice 30 uses the 1,500 hectares planted in all four crops as the base, 450/1,500, rather than the maize alone that the question names. Choice 133 inverts the comparison, reporting maize as a percent of soy, 600/450, rounded. Choice 25 compares the wrong bar to maize, 150/600, using canola in place of soy.",
+  "solve": "const soy=450, maize=600;\nreturn Math.round(100*soy/maize);",
+  "domain": "Problem-Solving and Data Analysis"
+ },
+ {
+  "id": "PSDA-H3-07",
+  "subskill": "rates: a total produced by two rates changing at once",
+  "difficulty": "hard",
+  "prompt": "Last year a freight carrier's trucks traveled 90,000 kilometers and averaged 6.0 kilometers per liter of diesel. This year the trucks traveled 50 percent more kilometers and averaged 7.5 kilometers per liter. By what percent did the carrier's total diesel consumption increase from last year to this year?",
+  "choices": [
+   "20",
+   "25",
+   "50",
+   "120"
+  ],
+  "correct_answer": "20",
+  "explanation": "Last year the trucks used 90,000/6.0 = 15,000 liters. This year they traveled 135,000 kilometers and used 135,000/7.5 = 18,000 liters, an increase of 3,000/15,000 = 20 percent. Choice 50 is the increase in distance alone, which is the answer only if efficiency had not changed. Choice 25 starts from that 50 percent and subtracts the 25 percent gain in efficiency, treating two multiplicative changes as though they added. Choice 120 is 18,000/15,000 expressed as a percent, this year's consumption as a percent OF last year's rather than the increase.",
+  "solve": "const L1 = 90000/6.0, L2 = 90000*1.5/7.5;\nreturn Math.round(100*(L2-L1)/L1);",
+  "domain": "Problem-Solving and Data Analysis"
+ },
+ {
+  "id": "PSDA-H3-08",
+  "subskill": "inference from sample statistics: what a margin of error describes",
+  "difficulty": "hard",
+  "prompt": "A logistics company selected a random sample of 400 of the 12,000 parcels it delivered last month. The mean transit time for the parcels in the sample was 3.4 days, and the margin of error for this estimate is 0.2 days at the 95 percent confidence level. Which of the following is the most appropriate conclusion?",
+  "choices": [
+   "It is plausible that the mean transit time for all 12,000 parcels delivered last month is between 3.2 days and 3.6 days.",
+   "It is plausible that the mean transit time for the 400 parcels in the sample is between 3.2 days and 3.6 days.",
+   "It is plausible that the mean transit time for every parcel the company delivers in the month after this one is between 3.2 days and 3.6 days.",
+   "The transit time for each of the 12,000 parcels the company delivered last month is between 3.2 days and 3.6 days."
+  ],
+  "correct_answer": "It is plausible that the mean transit time for all 12,000 parcels delivered last month is between 3.2 days and 3.6 days.",
+  "explanation": "A margin of error gives an interval of plausible values for the POPULATION mean, here 3.4 - 0.2 = 3.2 to 3.4 + 0.2 = 3.6 days for all 12,000 parcels delivered last month. The choice about the 400 sampled parcels attaches the interval to the sample, whose mean is already known exactly to be 3.4 days. The choice about the following month generalizes to parcels that were never in the population sampled. The remaining choice describes each individual parcel rather than the mean, a far stronger claim: a margin of error says nothing about the spread of individual transit times.",
+  "solve": "const m=3.4, e=0.2, N='12,000';\nreturn 'It is plausible that the mean transit time for all '+N+' parcels delivered last month is between '+(m-e).toFixed(1)+' days and '+(m+e).toFixed(1)+' days.';",
+  "domain": "Problem-Solving and Data Analysis"
+ },
+ {
+  "id": "PSDA-H3-09",
+  "subskill": "two-way tables: a conditional proportion taken over the wrong total",
+  "difficulty": "hard",
+  "prompt": "The table summarizes the 880 shipments that two carriers handled for a distributor last month. Two entries have been omitted. Of the shipments that did not arrive on time, what fraction was handled by Carrier R? Round to the nearest hundredth.",
+  "graphic": {
+   "type": "twowaytable",
+   "rowLabels": [
+    "Carrier R",
+    "Carrier S",
+    "Total"
+   ],
+   "colLabels": [
+    "On time",
+    "1 to 2 days late",
+    "3 or more days late",
+    "Total"
+   ],
+   "cells": [
+    [
+     "380",
+     "",
+     "45",
+     "500"
+    ],
+    [
+     "260",
+     "78",
+     "42",
+     "380"
+    ],
+    [
+     "640",
+     "",
+     "87",
+     "880"
+    ]
+   ],
+   "caption": "Arrival outcome by carrier"
+  },
+  "choices": [
+   "0.24",
+   "0.27",
+   "0.31",
+   "0.50"
+  ],
+  "correct_answer": "0.50",
+  "explanation": "Carrier R's omitted entry is 500 - 380 - 45 = 75 shipments 1 to 2 days late, so Carrier R was late on 75 + 45 = 120 shipments. Shipments that did not arrive on time number 880 - 640 = 240, and 120/240 = 0.50. Choice 0.24 is 120/500, which conditions on the carrier rather than on the outcome the question names. Choice 0.31 is 75/240, which uses the right total but counts only the 1-to-2-day cell and drops the 45 shipments that were 3 or more days late. Choice 0.27 is 240/880, the share of all shipments that were late, which answers a question about outcomes and never mentions a carrier.",
+  "solve": "const rTot=500, rOn=380, r3=45, grand=880, onTime=640;\nconst r12 = rTot - rOn - r3;\nconst late = grand - onTime;\nreturn ((r12 + r3)/late).toFixed(2);",
+  "domain": "Problem-Solving and Data Analysis"
+ },
+ {
+  "id": "PSDA-H3-10",
+  "subskill": "two-variable data: comparing observed values with a line of best fit",
+  "difficulty": "medium",
+  "prompt": "The table shows the distance and the fuel cost for each of four delivery routes. For these data the line of best fit is y = 0.18x + 24, where x is the distance in kilometers and y is the fuel cost in dollars. For which route is the actual fuel cost closest to the cost the line of best fit predicts?",
+  "graphic": {
+   "type": "table",
+   "rowLabels": [
+    "Route P",
+    "Route Q",
+    "Route R",
+    "Route S"
+   ],
+   "colLabels": [
+    "Distance (kilometers)",
+    "Fuel cost (dollars)"
+   ],
+   "cells": [
+    [
+     "200",
+     "62"
+    ],
+    [
+     "350",
+     "84"
+    ],
+    [
+     "500",
+     "115"
+    ],
+    [
+     "650",
+     "146"
+    ]
+   ],
+   "caption": "Distance and fuel cost, by route"
+  },
+  "choices": [
+   "Route P",
+   "Route Q",
+   "Route R",
+   "Route S"
+  ],
+  "correct_answer": "Route R",
+  "explanation": "The predicted costs are 0.18(200) + 24 = 60, 0.18(350) + 24 = 87, 0.18(500) + 24 = 114 and 0.18(650) + 24 = 141 dollars. The differences between actual and predicted cost are 2, -3, 1 and 5 dollars, so Route R is closest to the line. Route P has the smallest actual cost and the smallest predicted cost but is off by 2 dollars; Route Q is the only route the line overpredicts, and its 3-dollar gap is larger than Route R's; Route S has the largest values on both axes and the largest gap of the four.",
+  "solve": "const r=[['Route P',200,62],['Route Q',350,84],['Route R',500,115],['Route S',650,146]];\nlet bn='', bd=Infinity;\nfor(const [n,x,y] of r){const d=Math.abs(y-(0.18*x+24)); if(d<bd){bd=d;bn=n;}}\nreturn bn;",
+  "domain": "Problem-Solving and Data Analysis"
+ },
+ {
+  "id": "PSDA-H3-11",
+  "subskill": "percentages: percent increase read from a graph",
+  "difficulty": "medium",
+  "prompt": "The graph shows the number of pallets in a distribution warehouse at the end of each of five weeks. By what percent did the number of pallets increase from the end of week 2 to the end of week 3?",
+  "graphic": {
+   "type": "line",
+   "xLabel": "Week",
+   "yLabel": "Number of pallets in the warehouse",
+   "series": [
+    {
+     "label": "Pallets",
+     "points": [
+      [
+       1,
+       1000
+      ],
+      [
+       2,
+       500
+      ],
+      [
+       3,
+       1500
+      ],
+      [
+       4,
+       1500
+      ],
+      [
+       5,
+       2000
+      ]
+     ]
+    }
+   ]
+  },
+  "choices": [
+   "67",
+   "200",
+   "300",
+   "1000"
+  ],
+  "correct_answer": "200",
+  "explanation": "The count rose from 500 pallets to 1,500 pallets, an increase of 1,000, and 1,000/500 = 2.00, or 200 percent. Choice 300 is 1,500/500 as a percent, the later count as a percent OF the earlier one rather than the increase. Choice 67 divides the same 1,000-pallet increase by the later count, 1,000/1,500, using the wrong base. Choice 1000 is the increase in pallets itself, which is a count and not a percent.",
+  "solve": "const w2=500, w3=1500;\nreturn Math.round(100*(w3-w2)/w2);",
+  "domain": "Problem-Solving and Data Analysis"
+ },
+ {
+  "id": "PSDA-H3-12",
+  "subskill": "rates: recovering a quantity from a two-tier rate",
+  "difficulty": "medium",
+  "prompt": "A freight forwarder bills 2.40 dollars per kilogram for the first 500 kilograms of a shipment and 3.20 dollars per kilogram for the portion of the shipment above 500 kilograms. One shipment was billed 2,400 dollars. What was the mass of that shipment, in kilograms?",
+  "choices": [
+   "375",
+   "750",
+   "875",
+   "1000"
+  ],
+  "correct_answer": "875",
+  "explanation": "The first 500 kilograms cost 500(2.40) = 1,200 dollars, leaving 1,200 dollars billed at 3.20 dollars per kilogram, which covers 375 kilograms. The shipment was 500 + 375 = 875 kilograms. Choice 375 is only the portion above 500 kilograms, so it stops before the first 500 are added back. Choice 1000 is 2,400/2.40, billing the whole shipment at the lower rate. Choice 750 is 2,400/3.20, billing the whole shipment at the higher rate instead.",
+  "solve": "const bill=2400, base=500, r1=2.40, r2=3.20;\nreturn base + (bill - base*r1)/r2;",
+  "domain": "Problem-Solving and Data Analysis"
+ },
+ {
+  "id": "PSDA-H3-13",
+  "subskill": "percentages: a percent of a percent applied to two different totals",
+  "difficulty": "hard",
+  "prompt": "Last year a regional grid generated 48,000 gigawatt-hours of electricity. Wind farms produced 35 percent of that total, and 8 percent of the electricity the wind farms produced was curtailed rather than delivered to customers. This year the grid generated 15 percent more electricity than last year, wind farms produced 40 percent of the total, and 5 percent of wind generation was curtailed. How many more gigawatt-hours of wind electricity were delivered to customers this year than last year?",
+  "choices": [
+   "5280",
+   "5520",
+   "7200",
+   "20976"
+  ],
+  "correct_answer": "5520",
+  "explanation": "Last year wind produced 0.35(48,000) = 16,800 gigawatt-hours and delivered 0.92(16,800) = 15,456. This year the grid generated 1.15(48,000) = 55,200, wind produced 0.40(55,200) = 22,080 and delivered 0.95(22,080) = 20,976. The increase is 20,976 - 15,456 = 5,520. Choice 5280 is 22,080 - 16,800, the increase in wind GENERATION, which never removes the curtailed electricity from either year. Choice 20976 is this year's delivered wind on its own, omitting the subtraction. Choice 7200 is 55,200 - 48,000, the increase in the whole grid's generation, which answers a question about every source rather than about wind.",
+  "solve": "const last = 48000*0.35*0.92;\nconst thisYear = 48000*1.15*0.40*0.95;\nreturn Math.round(thisYear - last);",
+  "domain": "Problem-Solving and Data Analysis"
+ },
+ {
+  "id": "PSDA-H3-14",
+  "subskill": "rates: a percent change in a rate whose denominators differ",
+  "difficulty": "hard",
+  "prompt": "A solar array produced 4,650 kilowatt-hours of electricity in March, which has 31 days, and 5,400 kilowatt-hours in April, which has 30 days. By what percent did the array's mean daily output increase from March to April?",
+  "choices": [
+   "16",
+   "20",
+   "30",
+   "120"
+  ],
+  "correct_answer": "20",
+  "explanation": "The mean daily output was 4,650/31 = 150 kilowatt-hours in March and 5,400/30 = 180 in April, an increase of 30/150 = 20 percent. Choice 16 is (5,400 - 4,650)/4,650, the percent increase in the monthly TOTALS, which compares 31 days of production against 30. Choice 30 is 180 - 150, the increase in mean daily output in kilowatt-hours, which is not a percent. Choice 120 is 180/150 as a percent, April's mean daily output as a percent of March's rather than the increase over it.",
+  "solve": "const mar = 4650/31, apr = 5400/30;\nreturn Math.round(100*(apr-mar)/mar);",
+  "domain": "Problem-Solving and Data Analysis"
+ },
+ {
+  "id": "PSDA-H3-15",
+  "subskill": "percentages: recovering a total from two subgroup rates",
+  "difficulty": "hard",
+  "prompt": "An energy retailer's customers are on either a fixed tariff or a variable tariff, and 60 percent of them are on the fixed tariff. During the past year, 10 percent of the customers on the fixed tariff and 30 percent of the customers on the variable tariff switched to a different retailer. In all, 3,600 customers switched. How many customers did the retailer have?",
+  "choices": [
+   "12000",
+   "18000",
+   "20000",
+   "36000"
+  ],
+  "correct_answer": "20000",
+  "explanation": "If the retailer had N customers, then 0.60(0.10)N + 0.40(0.30)N = 0.06N + 0.12N = 0.18N switched, so 0.18N = 3,600 and N = 20,000. Choice 18000 is 3,600/0.20, averaging the two switching rates as though the two tariff groups were the same size; they are 60 percent and 40 percent of the customers. Choice 36000 is 3,600/0.10, applying the fixed-tariff rate to every customer. Choice 12000 is 3,600/0.30, making that same one-rate-for-everyone error with the variable-tariff rate.",
+  "solve": "const fixed=0.60, rF=0.10, rV=0.30, switched=3600;\nreturn Math.round(switched/(fixed*rF + (1-fixed)*rV));",
+  "domain": "Problem-Solving and Data Analysis"
+ },
+ {
+  "id": "PSDA-H3-16",
+  "subskill": "probability from a frequency table",
+  "difficulty": "medium",
+  "prompt": "The table shows the number of days in a 90-day period on which a wind farm's daily output, in megawatt-hours, fell in each of five ranges. If one of these 90 days is selected at random, what is the probability that the wind farm's output on that day was 40 megawatt-hours or more?",
+  "graphic": {
+   "type": "table",
+   "rowLabels": [
+    "0 to 19",
+    "20 to 39",
+    "40 to 59",
+    "60 to 79",
+    "80 or more"
+   ],
+   "colLabels": [
+    "Number of days"
+   ],
+   "cells": [
+    [
+     "12"
+    ],
+    [
+     "30"
+    ],
+    [
+     "27"
+    ],
+    [
+     "15"
+    ],
+    [
+     "6"
+    ]
+   ],
+   "caption": "Daily output of a wind farm, in megawatt-hours, over 90 days"
+  },
+  "choices": [
+   "3/10",
+   "7/15",
+   "8/15",
+   "2/3"
+  ],
+  "correct_answer": "8/15",
+  "explanation": "The output was 40 megawatt-hours or more on 27 + 15 + 6 = 48 of the 90 days, and 48/90 = 8/15. Choice 7/15 is 42/90, the number of days on which the output was BELOW 40, which is the complement of the event asked about. Choice 3/10 is 27/90, counting only the 40-to-59 range and dropping the two ranges above it. Choice 2/3 is 60/90, which also counts the 20-to-39 range and so answers for 20 megawatt-hours or more.",
+  "solve": "const d=[12,30,27,15,6];\nconst num=d[2]+d[3]+d[4], den=d.reduce((a,b)=>a+b,0);\nconst g=(a,b)=>b?g(b,a%b):a;\nconst k=g(num,den);\nreturn (num/k)+'/'+(den/k);",
+  "domain": "Problem-Solving and Data Analysis"
+ },
+ {
+  "id": "PSDA-H3-17",
+  "subskill": "percentages: reversing successive percent decreases",
+  "difficulty": "medium",
+  "prompt": "A utility's residential electricity rate decreased by 20 percent one year and then decreased by a further 12 percent the next year, leaving it at 17.60 cents per kilowatt-hour. What was the rate, in cents per kilowatt-hour, before the first decrease?",
+  "choices": [
+   "20.00",
+   "22.00",
+   "24.00",
+   "25.00"
+  ],
+  "correct_answer": "25.00",
+  "explanation": "If r was the original rate, then r(0.80)(0.88) = 17.60, so r = 17.60/0.704 = 25.00 cents. Choice 22.00 is 17.60/0.80, which reverses only the first decrease. Choice 20.00 is 17.60/0.88, which reverses only the second and so reports the rate after the first year. Choice 24.00 takes that 20.00 and adds 20 percent back to it, 20.00(1.20), rather than dividing by 0.80; multiplying by 1.20 does not undo a multiplication by 0.80.",
+  "solve": "const final=17.60, d1=0.20, d2=0.12;\nreturn (final/((1-d1)*(1-d2))).toFixed(2);",
+  "domain": "Problem-Solving and Data Analysis"
+ },
+ {
+  "id": "PSDA-H3-18",
+  "subskill": "inference from sample statistics: scaling a sample proportion to the right population",
+  "difficulty": "hard",
+  "prompt": "A utility maintains 15,000 distribution transformers, 9,000 of which are in its coastal region. In a random sample of 240 transformers selected from the coastal region, 42 were found to be due for replacement. Which of the following is the best estimate of the number of transformers in the coastal region that are due for replacement?",
+  "choices": [
+   "1575",
+   "2625",
+   "3780",
+   "7425"
+  ],
+  "correct_answer": "1575",
+  "explanation": "The sample proportion is 42/240 = 0.175, and the sample was drawn from the coastal region, so the estimate is 0.175(9,000) = 1,575. Choice 2625 is 0.175(15,000), applying the coastal rate to every transformer the utility maintains, though only coastal transformers were sampled. Choice 7425 is (198/240)(9,000), the estimated number NOT due for replacement. Choice 3780 is 0.42(9,000), reading the 42 transformers in the sample as 42 percent.",
+  "solve": "const x=42, n=240, coastal=9000;\nreturn Math.round(x/n*coastal);",
+  "domain": "Problem-Solving and Data Analysis"
+ },
+ {
+  "id": "PSDA-H3-19",
+  "subskill": "percentages: conditioning on an outcome rather than on a treatment group",
+  "difficulty": "hard",
+  "prompt": "The table summarizes the results of a clinical trial. Of the participants who had a relapse, what percent received the drug?",
+  "graphic": {
+   "type": "table",
+   "rowLabels": [
+    "Drug",
+    "Placebo"
+   ],
+   "colLabels": [
+    "Number of participants",
+    "Percent who had a relapse"
+   ],
+   "cells": [
+    [
+     "600",
+     "16%"
+    ],
+    [
+     "480",
+     "30%"
+    ]
+   ],
+   "caption": "Relapse rate by treatment group"
+  },
+  "choices": [
+   "16",
+   "22",
+   "30",
+   "40"
+  ],
+  "correct_answer": "40",
+  "explanation": "The drug group had 0.16(600) = 96 relapses and the placebo group had 0.30(480) = 144, so 240 participants relapsed in all and 96/240 = 40 percent of them received the drug. Choice 16 is the percent of the DRUG GROUP that relapsed, which the table already gives; the question conditions on relapse, not on treatment. Choice 30 is the placebo group's relapse rate, taken from the table for the same reason. Choice 22 is 240/1,080, the percent of all participants who relapsed, which conditions on nothing at all.",
+  "solve": "const drug=600*0.16, placebo=480*0.30;\nreturn Math.round(100*drug/(drug+placebo));",
+  "domain": "Problem-Solving and Data Analysis"
+ },
+ {
+  "id": "PSDA-H3-20",
+  "subskill": "ratios and rates: a rate per unit of body mass divided across doses",
+  "difficulty": "medium",
+  "prompt": "A trial protocol specifies a daily dose of 12 milligrams of a drug per kilogram of body mass, given as 3 equal doses spread through the day. How many milligrams of the drug should a participant with a body mass of 68 kilograms receive in each dose?",
+  "choices": [
+   "272",
+   "408",
+   "816",
+   "2448"
+  ],
+  "correct_answer": "272",
+  "explanation": "The daily dose is 12(68) = 816 milligrams, and 816/3 = 272 milligrams per dose. Choice 816 is the full daily dose, before it is divided among the three doses. Choice 408 divides that daily dose into two doses rather than three, 816/2. Choice 2448 is 816(3), multiplying by the number of doses instead of dividing by it.",
+  "solve": "const perKg=12, mass=68, doses=3;\nreturn perKg*mass/doses;",
+  "domain": "Problem-Solving and Data Analysis"
+ },
+ {
+  "id": "PSDA-H3-21",
+  "subskill": "evaluating statistical claims: what random assignment licenses and what it does not",
+  "difficulty": "hard",
+  "prompt": "Nine hundred adults with chronic knee pain volunteered for a study after seeing advertisements posted at clinics in one province. The researchers randomly assigned 450 of the volunteers to a 12-week exercise program and the other 450 to usual care. At the end of the 12 weeks, the exercise group reported significantly greater improvement in pain than the usual-care group. Which of the following is the most appropriate conclusion?",
+  "choices": [
+   "The exercise program is likely to cause greater improvement in pain for people like these volunteers, but not necessarily for every adult with chronic knee pain.",
+   "The exercise program is likely to cause greater improvement in pain for all adults in the province who have chronic knee pain, whether or not they would volunteer.",
+   "There is an association between the exercise program and improvement in pain among people like these volunteers, but this study cannot support a cause-and-effect conclusion.",
+   "Adults with chronic knee pain who choose to exercise tend to report greater improvement in pain than adults with chronic knee pain who do not choose to exercise."
+  ],
+  "correct_answer": "The exercise program is likely to cause greater improvement in pain for people like these volunteers, but not necessarily for every adult with chronic knee pain.",
+  "explanation": "Random ASSIGNMENT to the two groups licenses a cause-and-effect conclusion, but the participants volunteered in response to advertisements rather than being randomly SELECTED, so the result describes people like these volunteers and cannot be extended to every adult with chronic knee pain. The choice that reaches all adults in the province keeps the causal claim but ignores how the sample was recruited. The choice reporting only an association limits the population correctly but withholds causation, which is exactly what the random assignment supports. The last choice both withholds causation and recasts a randomized assignment as a comparison between people who chose to exercise and people who did not, which is the design the randomization replaced.",
+  "solve": "const randomlyAssigned=true, randomlySelected=false;\nconst cause = randomlyAssigned ? 'is likely to cause' : 'is associated with';\nconst scope = randomlySelected ? 'for every adult with chronic knee pain in the province.' : 'for people like these volunteers, but not necessarily for every adult with chronic knee pain.';\nreturn 'The exercise program '+cause+' greater improvement in pain '+scope;",
+  "domain": "Problem-Solving and Data Analysis"
+ },
+ {
+  "id": "PSDA-H3-22",
+  "subskill": "percentages: a rate applied to a surviving subgroup",
+  "difficulty": "medium",
+  "prompt": "Of the 800 participants enrolled in a clinical trial, 12.5 percent withdrew before the final visit. Of the participants who completed the trial, 36 percent met the primary endpoint. How many participants completed the trial without meeting the primary endpoint?",
+  "choices": [
+   "100",
+   "252",
+   "288",
+   "448"
+  ],
+  "correct_answer": "448",
+  "explanation": "The trial was completed by 800(1 - 0.125) = 700 participants, of whom 0.36(700) = 252 met the primary endpoint, so 700 - 252 = 448 completed it without meeting the endpoint. Choice 252 is the number who completed the trial AND met the endpoint, the complement of the group asked about. Choice 100 is 0.125(800), the number who withdrew. Choice 288 is 0.36(800), which applies the endpoint rate to everyone enrolled rather than to the 700 who completed.",
+  "solve": "const n=800, wd=0.125, hit=0.36;\nconst completed = n*(1-wd);\nreturn Math.round(completed - completed*hit);",
+  "domain": "Problem-Solving and Data Analysis"
+ },
+ {
+  "id": "PSDA-H3-23",
+  "subskill": "one-variable data: median and mean of a frequency distribution",
+  "difficulty": "medium",
+  "prompt": "The table shows the number of participants in a clinical trial who first reported relief of symptoms on each of five days. What is the median number of days until a participant first reported relief?",
+  "graphic": {
+   "type": "table",
+   "rowLabels": [
+    "2 days",
+    "3 days",
+    "4 days",
+    "5 days",
+    "6 days"
+   ],
+   "colLabels": [
+    "Number of participants"
+   ],
+   "cells": [
+    [
+     "12"
+    ],
+    [
+     "10"
+    ],
+    [
+     "8"
+    ],
+    [
+     "6"
+    ],
+    [
+     "4"
+    ]
+   ],
+   "caption": "Days until first reported relief"
+  },
+  "choices": [
+   "3",
+   "3.5",
+   "4",
+   "8"
+  ],
+  "correct_answer": "3",
+  "explanation": "There are 40 participants, so the median is the mean of the 20th and 21st values in order. The cumulative counts are 12 through 2 days and 22 through 3 days, so both the 20th and the 21st value are 3 days and the median is 3. Choice 3.5 is the MEAN, 140/40, which is pulled up by the participants who waited 5 and 6 days. Choice 4 is the middle of the five day-values listed, which treats each row as a single observation rather than as a group of participants. Choice 8 is 40/5, the mean number of participants per row.",
+  "solve": "const rows=[[2,12],[3,10],[4,8],[5,6],[6,4]];\nconst v=[];\nfor(const [d,f] of rows) for(let i=0;i<f;i++) v.push(d);\nv.sort((a,b)=>a-b);\nconst n=v.length;\nreturn n%2 ? v[(n-1)/2] : (v[n/2-1]+v[n/2])/2;",
+  "domain": "Problem-Solving and Data Analysis"
+ },
+ {
+  "id": "PSDA-H3-24",
+  "subskill": "probability: two selections without replacement",
+  "difficulty": "medium",
+  "prompt": "At one trial site 16 participants enrolled, and 10 of them received the drug. Two of the 16 participants are selected at random, one after the other and without replacement, for a follow-up interview. What is the probability that both of the selected participants received the drug?",
+  "choices": [
+   "3/8",
+   "25/64",
+   "5/12",
+   "5/8"
+  ],
+  "correct_answer": "3/8",
+  "explanation": "The probability that the first participant selected received the drug is 10/16, and given that, the probability for the second is 9/15, so the probability both did is (10/16)(9/15) = 90/240 = 3/8. Choice 25/64 is (10/16) squared, the answer if the first participant were returned to the pool before the second selection. Choice 5/12 is (10/16)(10/15), which shrinks the pool for the second selection but forgets to remove the participant from the count of those who received the drug. Choice 5/8 is 10/16, the probability for the first selection alone.",
+  "solve": "const drug=10, n=16;\nconst num=drug*(drug-1), den=n*(n-1);\nconst g=(a,b)=>b?g(b,a%b):a;\nconst k=g(num,den);\nreturn (num/k)+'/'+(den/k);",
+  "domain": "Problem-Solving and Data Analysis"
+ }
+]

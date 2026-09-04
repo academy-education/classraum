@@ -1,0 +1,692 @@
+[
+  {
+    "id": "SVV2-01",
+    "subskill": "synonym",
+    "difficulty": "easy",
+    "prompt": "MEAGER",
+    "choices": [
+      "empty",
+      "harsh",
+      "scanty",
+      "quick",
+      "tidy"
+    ],
+    "correct_answer": "scanty",
+    "explanation": "MEAGER means lacking in quantity or quality; SCANTY is the closest match.",
+    "distractor_rationales": [
+      "\"empty\" read as \"small in amount\" — a container word, not a quantity word",
+      "borrows the unpleasantness of the word rather than its meaning",
+      "KEY",
+      "no relation; chosen by students who read MEAGER as a word about speed",
+      "\"small and neat\" — the size half is right, the neatness half is imported"
+    ],
+    "set_id": "SET-A"
+  },
+  {
+    "id": "SVV2-02",
+    "subskill": "analogy",
+    "difficulty": "easy",
+    "prompt": "PUPPY is to DOG as",
+    "choices": [
+      "kitten is to cat",
+      "cat is to kitten",
+      "calf is to herd",
+      "foal is to stable",
+      "lamb is to wool"
+    ],
+    "correct_answer": "kitten is to cat",
+    "explanation": "puppy : dog — the young of an animal to the adult of the same animal. Kitten : cat is the same pair.",
+    "distractor_rationales": [
+      "KEY",
+      "the right pair, stated the wrong way round",
+      "the young paired with a group rather than with the adult",
+      "the young paired with where it is kept",
+      "an animal paired with what it yields"
+    ],
+    "set_id": "SET-A"
+  },
+  {
+    "id": "SVV2-03",
+    "subskill": "synonym",
+    "difficulty": "easy",
+    "prompt": "CANDID",
+    "choices": [
+      "cautious",
+      "cheerful",
+      "polite",
+      "frank",
+      "clever"
+    ],
+    "correct_answer": "frank",
+    "explanation": "CANDID means saying openly what one really thinks, i.e. FRANK.",
+    "distractor_rationales": [
+      "reads \"open\" as \"careful about what one says\" — the opposite habit",
+      "confuses openness with good humour",
+      "candid speech is often NOT polite; this is the courteous misreading",
+      "KEY",
+      "openness mistaken for quickness of mind"
+    ],
+    "set_id": "SET-A"
+  },
+  {
+    "id": "SVV2-04",
+    "subskill": "analogy",
+    "difficulty": "easy",
+    "prompt": "LIBRARY is to BOOKS as",
+    "choices": [
+      "gallery is to paintings",
+      "kitchen is to cook",
+      "orchestra is to conductor",
+      "chapter is to book",
+      "author is to novel"
+    ],
+    "correct_answer": "gallery is to paintings",
+    "explanation": "library : books — a place and the collection it houses. Gallery : paintings is the same.",
+    "distractor_rationales": [
+      "KEY",
+      "a place paired with the person who works there",
+      "a group paired with the person who leads it",
+      "a part paired with its whole",
+      "a maker paired with what is made"
+    ],
+    "set_id": "SET-A"
+  },
+  {
+    "id": "SVV2-05",
+    "subskill": "synonym",
+    "difficulty": "medium",
+    "prompt": "ABATE",
+    "choices": [
+      "assist",
+      "condemn",
+      "discard",
+      "wager",
+      "subside"
+    ],
+    "correct_answer": "subside",
+    "explanation": "ABATE means to lessen or die down; SUBSIDE is the match.",
+    "distractor_rationales": [
+      "sound-association with \"aid\"/\"abet\" — the near-homophone trap",
+      "the ab- prefix read as a word of disapproval",
+      "\"do away with\" read as \"get rid of entirely\" rather than \"lessen\"",
+      "confusion with \"a bet\" read out of the letters",
+      "KEY"
+    ],
+    "set_id": "SET-A"
+  },
+  {
+    "id": "SVV2-06",
+    "subskill": "analogy",
+    "difficulty": "medium",
+    "prompt": "THIRST is to DRINK as",
+    "choices": [
+      "hunger is to famine",
+      "fatigue is to sleep",
+      "medicine is to illness",
+      "cold is to shiver",
+      "sleep is to dream"
+    ],
+    "correct_answer": "fatigue is to sleep",
+    "explanation": "thirst : drink — a bodily need and the thing that relieves it. Fatigue : sleep is the same need-and-relief pair.",
+    "distractor_rationales": [
+      "a need paired with its large-scale cause, not its relief",
+      "KEY",
+      "the relief paired with the need — the right relation reversed",
+      "a state paired with an involuntary reaction, not a remedy",
+      "a state paired with something that happens during it"
+    ],
+    "set_id": "SET-B"
+  },
+  {
+    "id": "SVV2-07",
+    "subskill": "synonym",
+    "difficulty": "medium",
+    "prompt": "PRUDENT",
+    "choices": [
+      "eager to please others",
+      "generous with money",
+      "quick to change plans",
+      "careful about consequences",
+      "proud of one's learning"
+    ],
+    "correct_answer": "careful about consequences",
+    "explanation": "PRUDENT means showing care and thought for the future.",
+    "distractor_rationales": [
+      "caution confused with deference",
+      "the opposite of the thrift often implied by prudence",
+      "caution confused with indecision — a prudent person may hold firm",
+      "KEY",
+      "confusion with a general air of seriousness or learnedness"
+    ],
+    "set_id": "SET-B"
+  },
+  {
+    "id": "SVV2-08",
+    "subskill": "analogy",
+    "difficulty": "medium",
+    "prompt": "DROUGHT is to WATER as",
+    "choices": [
+      "flood is to rain",
+      "famine is to food",
+      "desert is to camel",
+      "blizzard is to snow",
+      "thirst is to drought"
+    ],
+    "correct_answer": "famine is to food",
+    "explanation": "drought : water — a prolonged shortage of the named thing. Famine : food is a shortage of food.",
+    "distractor_rationales": [
+      "an EXCESS of the named thing, not a shortage",
+      "KEY",
+      "a place paired with an animal that lives there",
+      "an excess of the named thing again, in weather form",
+      "an effect paired with its cause"
+    ],
+    "set_id": "SET-B"
+  },
+  {
+    "id": "SVV2-09",
+    "subskill": "synonym",
+    "difficulty": "easy",
+    "prompt": "OBSTINATE",
+    "choices": [
+      "jolly",
+      "rash",
+      "stubborn",
+      "meek",
+      "curious"
+    ],
+    "correct_answer": "stubborn",
+    "explanation": "OBSTINATE means refusing to change one's mind; STUBBORN is the match.",
+    "distractor_rationales": [
+      "no relation; chosen on the sound of the word alone",
+      "firmness confused with impulsiveness",
+      "KEY",
+      "the direct opposite — the trap for students who guess from \"ob-\" as a compliance prefix",
+      "firmness confused with interest"
+    ],
+    "set_id": "SET-B"
+  },
+  {
+    "id": "SVV2-10",
+    "subskill": "analogy",
+    "difficulty": "medium",
+    "prompt": "WHISPER is to SPEAK as",
+    "choices": [
+      "glance is to look",
+      "shout is to speak",
+      "sing is to hum",
+      "run is to walk",
+      "listen is to hear"
+    ],
+    "correct_answer": "glance is to look",
+    "explanation": "whisper : speak — a reduced, lesser form of the general action. Glance : look is a brief, lesser form of looking.",
+    "distractor_rationales": [
+      "KEY",
+      "an INTENSIFIED form of the same action, not a reduced one",
+      "the reduced form given second rather than first",
+      "the more strenuous form given first",
+      "a deliberate act paired with its passive counterpart"
+    ],
+    "set_id": "SET-B"
+  },
+  {
+    "id": "SVV2-11",
+    "subskill": "synonym",
+    "difficulty": "medium",
+    "prompt": "LUCID",
+    "choices": [
+      "lively",
+      "damp",
+      "lucky",
+      "wealthy",
+      "clear"
+    ],
+    "correct_answer": "clear",
+    "explanation": "LUCID means easy to understand, i.e. CLEAR.",
+    "distractor_rationales": [
+      "confusion with \"lucent\"/\"lively\" — brightness read as energy",
+      "sound-association with \"liquid\"",
+      "sound-association with \"luck\"",
+      "no relation; chosen when the word is unknown and the option sounds substantial",
+      "KEY"
+    ],
+    "set_id": "SET-C"
+  },
+  {
+    "id": "SVV2-12",
+    "subskill": "analogy",
+    "difficulty": "hard",
+    "prompt": "EMBER is to BLAZE as",
+    "choices": [
+      "ash is to fire",
+      "log is to hearth",
+      "crumb is to loaf",
+      "seed is to orchard",
+      "dough is to bread"
+    ],
+    "correct_answer": "crumb is to loaf",
+    "explanation": "ember : blaze — a small piece left over from something much larger. Crumb : loaf is the same leftover-fragment relation.",
+    "distractor_rationales": [
+      "the residue that remains when nothing is left, not a still-burning piece",
+      "the fuel paired with the place it is burned",
+      "KEY",
+      "the origin of the larger thing rather than a remnant of it",
+      "the material a thing is made FROM, not a fragment left of it"
+    ],
+    "set_id": "SET-C"
+  },
+  {
+    "id": "SVV2-13",
+    "subskill": "synonym",
+    "difficulty": "easy",
+    "prompt": "FRUGAL",
+    "choices": [
+      "fruitful",
+      "fragile",
+      "gloomy",
+      "impatient",
+      "thrifty"
+    ],
+    "correct_answer": "thrifty",
+    "explanation": "FRUGAL means careful not to waste money or food; THRIFTY is the match.",
+    "distractor_rationales": [
+      "sound-association with \"fruit\"",
+      "sound-association with the fr- opening",
+      "thrift misread as joylessness",
+      "no relation; a general negative-trait guess",
+      "KEY"
+    ],
+    "set_id": "SET-C"
+  },
+  {
+    "id": "SVV2-14",
+    "subskill": "analogy",
+    "difficulty": "medium",
+    "prompt": "CARTOGRAPHER is to MAP as",
+    "choices": [
+      "chemist is to laboratory",
+      "composer is to symphony",
+      "editor is to manuscript",
+      "sailor is to compass",
+      "critic is to play"
+    ],
+    "correct_answer": "composer is to symphony",
+    "explanation": "cartographer : map — a specialist and the thing he or she creates. Composer : symphony is maker to made thing.",
+    "distractor_rationales": [
+      "a specialist paired with the place of work",
+      "KEY",
+      "a specialist paired with what is worked ON, not what is created",
+      "a person paired with an instrument he uses",
+      "a person paired with what is judged, not what is produced"
+    ],
+    "set_id": "SET-C"
+  },
+  {
+    "id": "SVV2-15",
+    "subskill": "synonym",
+    "difficulty": "easy",
+    "prompt": "RESILIENT",
+    "choices": [
+      "unwilling to obey",
+      "stubbornly silent",
+      "unwilling to admit a mistake",
+      "able to recover quickly",
+      "difficult to please"
+    ],
+    "correct_answer": "able to recover quickly",
+    "explanation": "RESILIENT means able to recover quickly from difficulty.",
+    "distractor_rationales": [
+      "toughness confused with defiance",
+      "toughness confused with reticence",
+      "toughness confused with obstinacy",
+      "KEY",
+      "no relation; a general character-flaw guess"
+    ],
+    "set_id": "SET-C"
+  },
+  {
+    "id": "SVV2-16",
+    "subskill": "analogy",
+    "difficulty": "hard",
+    "prompt": "ANTIDOTE is to POISON as",
+    "choices": [
+      "levee is to flood",
+      "venom is to snake",
+      "splint is to bone",
+      "tonic is to health",
+      "barometer is to storm"
+    ],
+    "correct_answer": "levee is to flood",
+    "explanation": "antidote : poison — a thing made to counteract a specific danger. A levee is built to counteract a flood.",
+    "distractor_rationales": [
+      "KEY",
+      "a substance paired with its source, not with what opposes it",
+      "a device that supports an injured part rather than counteracting an agent",
+      "a thing that PROMOTES the named condition rather than opposing it",
+      "a device that MEASURES or forecasts the danger rather than counteracting it"
+    ],
+    "set_id": "SET-D"
+  },
+  {
+    "id": "SVV2-17",
+    "subskill": "synonym",
+    "difficulty": "hard",
+    "prompt": "PARSIMONIOUS",
+    "choices": [
+      "wandering",
+      "forgiving",
+      "incomplete",
+      "wordy",
+      "stingy"
+    ],
+    "correct_answer": "stingy",
+    "explanation": "PARSIMONIOUS means extremely unwilling to spend; STINGY is the plain equivalent.",
+    "distractor_rationales": [
+      "sound-association with \"peripatetic\"",
+      "confusion with \"pardon\" from the par- opening",
+      "confusion with \"partial\"",
+      "confusion with \"parlance\"/\"parley\" — a word about speech",
+      "KEY"
+    ],
+    "set_id": "SET-D"
+  },
+  {
+    "id": "SVV2-18",
+    "subskill": "analogy",
+    "difficulty": "easy",
+    "prompt": "PETAL is to FLOWER as",
+    "choices": [
+      "vase is to flower",
+      "root is to soil",
+      "branch is to tree",
+      "seed is to sprout",
+      "garden is to gardener"
+    ],
+    "correct_answer": "branch is to tree",
+    "explanation": "petal : flower — a part and the whole it belongs to. Branch : tree is part to whole.",
+    "distractor_rationales": [
+      "a container paired with what it holds",
+      "a part paired with the medium it sits in, not with its whole",
+      "KEY",
+      "an earlier stage paired with a later one",
+      "a place paired with the person who tends it"
+    ],
+    "set_id": "SET-D"
+  },
+  {
+    "id": "SVV2-19",
+    "subskill": "synonym",
+    "difficulty": "medium",
+    "prompt": "EPHEMERAL",
+    "choices": [
+      "recurring at regular intervals",
+      "impossible to explain",
+      "hidden from view",
+      "lasting only a short time",
+      "light in weight"
+    ],
+    "correct_answer": "lasting only a short time",
+    "explanation": "EPHEMERAL means lasting for a very short time.",
+    "distractor_rationales": [
+      "brevity confused with recurrence — the two often go together but are not the same",
+      "confusion with \"ethereal\", a near-homophone",
+      "brevity confused with obscurity — a short-lived thing may be perfectly visible",
+      "KEY",
+      "\"insubstantial\" imported from the sound of the word"
+    ],
+    "set_id": "SET-D"
+  },
+  {
+    "id": "SVV2-20",
+    "subskill": "analogy",
+    "difficulty": "hard",
+    "prompt": "SKEPTIC is to DOUBT as",
+    "choices": [
+      "philanthropist is to give",
+      "recluse is to companionship",
+      "critic is to praise",
+      "novice is to expertise",
+      "traitor is to loyalty"
+    ],
+    "correct_answer": "philanthropist is to give",
+    "explanation": "skeptic : doubt — a person named for the action that characterises him. A philanthropist is named for giving.",
+    "distractor_rationales": [
+      "KEY",
+      "a person paired with what he AVOIDS, not with what he does",
+      "a person paired with what he characteristically withholds",
+      "a person paired with what he lacks",
+      "a person paired with the quality he betrays"
+    ],
+    "set_id": "SET-D"
+  },
+  {
+    "id": "SVV2-21",
+    "subskill": "synonym",
+    "difficulty": "hard",
+    "prompt": "INCHOATE",
+    "choices": [
+      "carried out in complete secrecy",
+      "begun but not yet given form",
+      "expressed without the use of words",
+      "opposed on grounds of principle",
+      "repeated so often as to be habitual"
+    ],
+    "correct_answer": "begun but not yet given form",
+    "explanation": "INCHOATE means just started and not yet fully formed.",
+    "distractor_rationales": [
+      "confusion with \"incognito\" from the in- opening",
+      "KEY",
+      "the in- opening read as a negative attached to speech",
+      "the in- prefix read as opposition",
+      "confusion with \"inveterate\""
+    ],
+    "set_id": "SET-E"
+  },
+  {
+    "id": "SVV2-22",
+    "subskill": "analogy",
+    "difficulty": "medium",
+    "prompt": "MINUTE is to HOUR as",
+    "choices": [
+      "clock is to hour",
+      "calendar is to month",
+      "ruler is to inch",
+      "inch is to yard",
+      "mile is to speed"
+    ],
+    "correct_answer": "inch is to yard",
+    "explanation": "minute : hour — a small unit and the larger unit it combines into. Inch : yard is the same unit-to-larger-unit relation.",
+    "distractor_rationales": [
+      "an instrument paired with what it measures",
+      "an instrument paired with what it records",
+      "an instrument paired with its unit — the relation inverted",
+      "KEY",
+      "a unit paired with a quantity it does not itself measure"
+    ],
+    "set_id": "SET-E"
+  },
+  {
+    "id": "SVV2-23",
+    "subskill": "synonym",
+    "difficulty": "hard",
+    "prompt": "TRUCULENT",
+    "choices": [
+      "eager to fight",
+      "slow to move",
+      "given to boasting",
+      "easily deceived",
+      "excessively neat"
+    ],
+    "correct_answer": "eager to fight",
+    "explanation": "TRUCULENT means aggressively defiant and quick to fight.",
+    "distractor_rationales": [
+      "KEY",
+      "confusion with \"truculent\" as heavy or lumbering, from \"truck\"",
+      "aggression slid into self-display — a neighbouring but distinct fault",
+      "confusion with \"credulous\", which shares the -ulent/-ulous ending",
+      "no relation; chosen on the Latinate look of the word"
+    ],
+    "set_id": "SET-E"
+  },
+  {
+    "id": "SVV2-24",
+    "subskill": "analogy",
+    "difficulty": "hard",
+    "prompt": "PARCHED is to DRY as",
+    "choices": [
+      "damp is to wet",
+      "frigid is to cold",
+      "warm is to hot",
+      "hungry is to starving",
+      "brittle is to hard"
+    ],
+    "correct_answer": "frigid is to cold",
+    "explanation": "parched : dry — the extreme degree of the ordinary quality. Frigid is the extreme degree of cold.",
+    "distractor_rationales": [
+      "a WEAKER degree of the quality, not a stronger one",
+      "KEY",
+      "the ordinary quality first and the intense one second — reversed",
+      "reversed again, and the pair are states rather than qualities",
+      "a related but different property, not a degree of the same one"
+    ],
+    "set_id": "SET-E"
+  },
+  {
+    "id": "SVV2-25",
+    "subskill": "synonym",
+    "difficulty": "hard",
+    "prompt": "SALUTARY",
+    "choices": [
+      "respectful",
+      "salty",
+      "beneficial",
+      "customary",
+      "required"
+    ],
+    "correct_answer": "beneficial",
+    "explanation": "SALUTARY means producing a good effect, especially on health or conduct.",
+    "distractor_rationales": [
+      "confusion with \"salute\"",
+      "confusion with \"saline\"",
+      "KEY",
+      "confusion with \"customary\" through the sense of a formal greeting",
+      "confusion with \"obligatory\" — a rule word rather than an effect word"
+    ],
+    "set_id": "SET-E"
+  },
+  {
+    "id": "SVV2-26",
+    "subskill": "analogy",
+    "difficulty": "medium",
+    "prompt": "COMPASS is to DIRECTION as",
+    "choices": [
+      "map is to traveler",
+      "telescope is to astronomer",
+      "clock is to alarm",
+      "microscope is to laboratory",
+      "scale is to weight"
+    ],
+    "correct_answer": "scale is to weight",
+    "explanation": "compass : direction — an instrument and the quantity it determines. A scale determines weight.",
+    "distractor_rationales": [
+      "an instrument paired with the person who uses it",
+      "an instrument paired with the specialist who uses it",
+      "an instrument paired with one of its features",
+      "an instrument paired with the place it is kept",
+      "KEY"
+    ],
+    "set_id": "SET-F"
+  },
+  {
+    "id": "SVV2-27",
+    "subskill": "synonym",
+    "difficulty": "medium",
+    "prompt": "VENERATE",
+    "choices": [
+      "tolerate",
+      "poison",
+      "revere",
+      "postpone",
+      "envy"
+    ],
+    "correct_answer": "revere",
+    "explanation": "VENERATE means to regard with deep respect, i.e. REVERE.",
+    "distractor_rationales": [
+      "respect weakened into mere endurance",
+      "confusion with \"venom\"",
+      "KEY",
+      "confusion with \"defer\" in its delaying sense rather than its respectful one",
+      "admiration slid into resentment"
+    ],
+    "set_id": "SET-F"
+  },
+  {
+    "id": "SVV2-28",
+    "subskill": "analogy",
+    "difficulty": "hard",
+    "prompt": "INDELIBLE is to ERASE as",
+    "choices": [
+      "invisible is to conceal",
+      "insoluble is to dissolve",
+      "inaudible is to whisper",
+      "flexible is to bend",
+      "transportable is to carry"
+    ],
+    "correct_answer": "insoluble is to dissolve",
+    "explanation": "indelible : erase — the adjective names what CANNOT be done to the thing. Insoluble names what cannot be dissolved.",
+    "distractor_rationales": [
+      "the in- word is there, but concealing is not the action it negates",
+      "KEY",
+      "the in- word is there, but whispering is not the action it negates",
+      "an adjective naming what CAN be done, not what cannot",
+      "an adjective naming what CAN be done, not what cannot"
+    ],
+    "set_id": "SET-F"
+  },
+  {
+    "id": "SVV2-29",
+    "subskill": "synonym",
+    "difficulty": "medium",
+    "prompt": "MUNDANE",
+    "choices": [
+      "worldwide",
+      "monthly",
+      "gloomy",
+      "generous",
+      "ordinary"
+    ],
+    "correct_answer": "ordinary",
+    "explanation": "MUNDANE means dull and everyday, i.e. ORDINARY.",
+    "distractor_rationales": [
+      "the Latin mundus (\"world\") taken literally instead of idiomatically",
+      "confusion with \"Monday\"/\"month\"",
+      "dullness confused with sadness",
+      "no relation; a positive-trait guess",
+      "KEY"
+    ],
+    "set_id": "SET-F"
+  },
+  {
+    "id": "SVV2-30",
+    "subskill": "synonym",
+    "difficulty": "hard",
+    "prompt": "PERFIDIOUS",
+    "choices": [
+      "thoroughly stubborn",
+      "full of holes",
+      "excessively cautious in speech",
+      "deliberately disloyal",
+      "hard to please"
+    ],
+    "correct_answer": "deliberately disloyal",
+    "explanation": "PERFIDIOUS means treacherous — deliberately breaking faith.",
+    "distractor_rationales": [
+      "the per- intensifier attached to the wrong trait",
+      "confusion with \"perforated\"",
+      "no relation; chosen when only the prefix is recognised",
+      "KEY",
+      "confusion with \"fastidious\", which shares the -idious ending"
+    ],
+    "set_id": "SET-F"
+  }
+]

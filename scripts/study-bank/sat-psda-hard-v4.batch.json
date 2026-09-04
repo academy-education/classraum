@@ -1,0 +1,690 @@
+[
+ {
+  "id": "PSDA-H4-01",
+  "subskill": "percentages: a percent of a percent with two different growth rates",
+  "difficulty": "hard",
+  "prompt": "Last year 84,000 people visited a city museum, and 25 percent of them were under 18 years old. This year the museum's total attendance was 15 percent greater than last year's, and the number of visitors under 18 was 44 percent greater than last year's. To the nearest tenth of a percent, what percent of this year's visitors were under 18 years old?",
+  "choices": [
+   "20.0",
+   "28.8",
+   "31.3",
+   "36.0"
+  ],
+  "correct_answer": "31.3",
+  "explanation": "Last year 0.25(84,000) = 21,000 visitors were under 18. This year there were 1.44(21,000) = 30,240 such visitors out of 1.15(84,000) = 96,600 visitors in total, and 30,240/96,600 = 31.3 percent. Choice 36.0 divides this year's 30,240 by LAST year's total of 84,000, so it grows the numerator and leaves the denominator behind. Choice 28.8 grows the 25 percent share by the total attendance rate, 25(1.15), which uses the rate belonging to the denominator on the numerator. Choice 20.0 swaps the two rates the other way, 25(1.15)/1.44, so it shrinks the share instead of growing it.",
+  "solve": "const N=84000, share=0.25, gTotal=1.15, gUnder=1.44;\nconst under=N*share*gUnder, total=N*gTotal;\nreturn (Math.round(1000*under/total)/10).toFixed(1);",
+  "domain": "Problem-Solving and Data Analysis"
+ },
+ {
+  "id": "PSDA-H4-02",
+  "subskill": "two-way tables: a conditional proportion with an omitted cell",
+  "difficulty": "hard",
+  "prompt": "A museum surveyed 750 of its visitors on one weekend. The table summarizes the results by membership status and by whether the visitor attended the special exhibition. Two entries have been omitted. Of the visitors surveyed who did not attend the special exhibition, what fraction were members? Round your answer to the nearest hundredth.",
+  "graphic": {
+   "type": "twowaytable",
+   "rowLabels": [
+    "Member",
+    "Not a member",
+    "Total"
+   ],
+   "colLabels": [
+    "Attended",
+    "Did not attend",
+    "Total"
+   ],
+   "cells": [
+    [
+     "168",
+     "132",
+     "300"
+    ],
+    [
+     "252",
+     "",
+     "450"
+    ],
+    [
+     "420",
+     "",
+     "750"
+    ]
+   ],
+   "caption": "Surveyed visitors by membership and attendance at the special exhibition"
+  },
+  "choices": [
+   "0.18",
+   "0.40",
+   "0.44",
+   "0.60"
+  ],
+  "correct_answer": "0.40",
+  "explanation": "The number of visitors who did not attend is 750 - 420 = 330, of whom 132 were members, so the fraction is 132/330 = 0.40. Choice 0.44 divides that same 132 by 300, the member row total, which conditions on membership rather than on attendance. Choice 0.18 divides 132 by all 750 surveyed visitors, giving the share of the whole survey that were members who did not attend rather than a fraction of the non-attenders. Choice 0.60 is 198/330, the fraction of the non-attenders who were NOT members, which is the complement of what the question asks for.",
+  "solve": "const grand=750, attendedTotal=420, memberDidNot=132;\nconst didNotTotal=grand-attendedTotal;\nreturn (Math.round(100*memberDidNot/didNotTotal)/100).toFixed(2);",
+  "domain": "Problem-Solving and Data Analysis"
+ },
+ {
+  "id": "PSDA-H4-03",
+  "subskill": "percentages: percent increase applied to a value read from a graph",
+  "difficulty": "medium",
+  "prompt": "The bar graph shows the number of visitors to each of four museums in one city during 2023. In 2024 the number of visitors to the Maritime Museum was 35 percent greater than in 2023. How many people visited the Maritime Museum in 2024?",
+  "graphic": {
+   "type": "bar",
+   "xLabel": "Museum",
+   "yLabel": "Visitors in 2023",
+   "bars": [
+    {
+     "label": "City",
+     "value": 240000
+    },
+    {
+     "label": "Maritime",
+     "value": 180000
+    },
+    {
+     "label": "Textile",
+     "value": 120000
+    },
+    {
+     "label": "Riverside",
+     "value": 60000
+    }
+   ]
+  },
+  "choices": [
+   "63,000",
+   "81,000",
+   "117,000",
+   "243,000"
+  ],
+  "correct_answer": "243,000",
+  "explanation": "The Maritime Museum had 180,000 visitors in 2023, and 1.35(180,000) = 243,000. Choice 63,000 is the size of the increase, 0.35(180,000), rather than the 2024 total. Choice 117,000 decreases the 2023 figure by 35 percent instead of increasing it, 0.65(180,000). Choice 81,000 applies the correct 35 percent increase to the Riverside Museum's 60,000 visitors, the wrong bar.",
+  "solve": "const bars={City:240000,Maritime:180000,Textile:120000,Riverside:60000};\nconst v=Math.round(bars.Maritime*1.35);\nreturn v.toLocaleString('en-US');",
+  "domain": "Problem-Solving and Data Analysis"
+ },
+ {
+  "id": "PSDA-H4-04",
+  "subskill": "percentages: a second percent change applied to what remains",
+  "difficulty": "hard",
+  "prompt": "Water entering a treatment plant carries 240 milligrams of sediment per liter. The first stage of treatment removes 65 percent of the sediment. The second stage removes 45 percent of the sediment that is still in the water when it leaves the first stage. How many milligrams of sediment per liter does the water carry after the second stage?",
+  "choices": [
+   "37.8",
+   "46.2",
+   "108",
+   "132"
+  ],
+  "correct_answer": "46.2",
+  "explanation": "After the first stage the water carries 240(0.35) = 84 milligrams per liter, and the second stage leaves 55 percent of that, so 84(0.55) = 46.2 milligrams per liter remain. Choice 37.8 is 84(0.45), which treats the second stage as keeping 45 percent rather than removing it. Choice 108 is 240(0.45), the second stage's rate applied to the sediment the water started with rather than to what reached that stage. Choice 132 is 240 - 108, the amount left when only the second stage is applied and applied to that same wrong starting amount.",
+  "solve": "const start=240, r1=0.65, r2=0.45;\nreturn start*(1-r1)*(1-r2);",
+  "domain": "Problem-Solving and Data Analysis"
+ },
+ {
+  "id": "PSDA-H4-05",
+  "subskill": "rates: reading a constant rate from a graph and converting units",
+  "difficulty": "medium",
+  "prompt": "A sampling pump at a river monitoring station draws water at a constant rate. The graph shows the total volume of water, in liters, that has passed through the pump t minutes after it was switched on. At this rate, how many liters of water pass through the pump in one hour?",
+  "graphic": {
+   "type": "line",
+   "xLabel": "Time since the pump was switched on (minutes)",
+   "yLabel": "Total volume drawn (liters)",
+   "series": [
+    {
+     "label": "Volume drawn",
+     "points": [
+      [
+       0,
+       0
+      ],
+      [
+       2,
+       90
+      ],
+      [
+       4,
+       180
+      ],
+      [
+       6,
+       270
+      ],
+      [
+       8,
+       360
+      ]
+     ]
+    }
+   ]
+  },
+  "choices": [
+   "45",
+   "360",
+   "2,700",
+   "21,600"
+  ],
+  "correct_answer": "2,700",
+  "explanation": "The graph rises 360 liters over 8 minutes, a rate of 45 liters per minute, so in 60 minutes the pump draws 45(60) = 2,700 liters. Choice 45 is that rate in liters per MINUTE, the unit the graph supports rather than the one the question asks for. Choice 360 is the total volume the graph itself shows, which covers 8 minutes, not an hour. Choice 21,600 multiplies that 360 by 60, treating the graph's 8-minute total as though it were a per-minute rate.",
+  "solve": "const v1=360, t1=8;\nreturn (v1/t1*60).toLocaleString('en-US');",
+  "domain": "Problem-Solving and Data Analysis"
+ },
+ {
+  "id": "PSDA-H4-06",
+  "subskill": "one-variable data: mean and median after an additional value",
+  "difficulty": "hard",
+  "prompt": "The table shows the nitrate concentration, in milligrams per liter, recorded at a monitoring station on each of nine consecutive days. A tenth reading, taken the day after a storm, was 6.4 milligrams per liter. For all ten readings, by how much does the mean exceed the median?",
+  "graphic": {
+   "type": "table",
+   "rowLabels": [
+    "Day 1",
+    "Day 2",
+    "Day 3",
+    "Day 4",
+    "Day 5",
+    "Day 6",
+    "Day 7",
+    "Day 8",
+    "Day 9"
+   ],
+   "colLabels": [
+    "Nitrate (mg per liter)"
+   ],
+   "cells": [
+    [
+     "2.4"
+    ],
+    [
+     "1.6"
+    ],
+    [
+     "3.2"
+    ],
+    [
+     "1.2"
+    ],
+    [
+     "2.8"
+    ],
+    [
+     "2.2"
+    ],
+    [
+     "3.8"
+    ],
+    [
+     "1.8"
+    ],
+    [
+     "2.6"
+    ]
+   ],
+   "caption": "Nitrate concentration on nine consecutive days"
+  },
+  "choices": [
+   "0",
+   "0.2",
+   "0.3",
+   "0.4"
+  ],
+  "correct_answer": "0.3",
+  "explanation": "The ten readings total 21.6 + 6.4 = 28.0, so the mean is 2.8. In order the ten readings are 1.2, 1.6, 1.8, 2.2, 2.4, 2.6, 2.8, 3.2, 3.8, 6.4, and the median is the average of the fifth and sixth, (2.4 + 2.6)/2 = 2.5. The mean exceeds the median by 2.8 - 2.5 = 0.3. Choice 0 is the answer for the nine original readings alone, whose mean and median are both 2.4, so it discards the tenth reading. Choice 0.4 pairs the new mean with that original median of 2.4. Choice 0.2 pairs the new mean with 2.6, the sixth reading taken by itself, as though ten values had a single middle one.",
+  "solve": "const nine=[2.4,1.6,3.2,1.2,2.8,2.2,3.8,1.8,2.6];\nconst all=nine.concat([6.4]).sort((a,b)=>a-b);\nconst mean=all.reduce((a,b)=>a+b,0)/all.length;\nconst med=(all[4]+all[5])/2;\nreturn Math.round(10*(mean-med))/10;",
+  "domain": "Problem-Solving and Data Analysis"
+ },
+ {
+  "id": "PSDA-H4-07",
+  "subskill": "ratios: a ratio combined with two unit prices",
+  "difficulty": "medium",
+  "prompt": "One day a museum sold adult tickets and child tickets in the ratio 7 to 3. Each adult ticket cost $16 and each child ticket cost $6, and the museum collected $6,240 from ticket sales that day. How many child tickets did the museum sell?",
+  "choices": [
+   "144",
+   "336",
+   "1,040",
+   "1,872"
+  ],
+  "correct_answer": "144",
+  "explanation": "Writing the numbers sold as 7k adult and 3k child tickets gives 16(7k) + 6(3k) = 130k = 6,240, so k = 48 and the museum sold 3(48) = 144 child tickets. Choice 336 is 7(48), the number of ADULT tickets. Choice 1,040 is 6,240/6, which divides all of the revenue by the child ticket price as though every ticket sold were a child ticket. Choice 1,872 is 0.3(6,240), which takes three tenths of the money collected rather than three tenths of the tickets sold.",
+  "solve": "const rA=7,rC=3,pA=16,pC=6,total=6240;\nconst k=total/(rA*pA+rC*pC);\nreturn rC*k;",
+  "domain": "Problem-Solving and Data Analysis"
+ },
+ {
+  "id": "PSDA-H4-08",
+  "subskill": "inference from sample statistics: a margin of error carried to a population total",
+  "difficulty": "hard",
+  "prompt": "A bicycle sharing scheme has 12,500 members. A random sample of 400 of these members was surveyed, and the members in the sample took a mean of 8.4 trips during June, with an associated margin of error of 0.6 trips at the 95 percent confidence level. Which of the following is the most appropriate estimate of the total number of trips taken during June by all 12,500 members of the scheme?",
+  "choices": [
+   "Between 3,120 and 3,600 trips",
+   "Between 7.8 and 9.0 trips",
+   "Between 97,500 and 112,500 trips",
+   "Between 105,000 and 112,500 trips"
+  ],
+  "correct_answer": "Between 97,500 and 112,500 trips",
+  "explanation": "The interval of plausible values for the mean number of trips per member is 8.4 - 0.6 = 7.8 to 8.4 + 0.6 = 9.0, and each endpoint scales to the whole membership: 12,500(7.8) = 97,500 and 12,500(9.0) = 112,500. The choice between 3,120 and 3,600 scales the same interval by 400, the size of the sample, so it estimates a total for the people surveyed rather than for the membership. The choice between 7.8 and 9.0 leaves the interval as a per-member figure and never converts it to a total. The choice between 105,000 and 112,500 uses 12,500(8.4) as the lower endpoint, keeping the upper half of the interval and discarding the lower half.",
+  "solve": "const N=12500, mean=8.4, moe=0.6;\nconst lo=N*(mean-moe), hi=N*(mean+moe);\nreturn 'Between '+lo.toLocaleString('en-US')+' and '+hi.toLocaleString('en-US')+' trips';",
+  "domain": "Problem-Solving and Data Analysis"
+ },
+ {
+  "id": "PSDA-H4-09",
+  "subskill": "one-variable data: mean from a frequency graph",
+  "difficulty": "medium",
+  "prompt": "The bar graph shows how many schools in a district serve 200, 400, 600 or 800 lunches on a typical day. What is the mean number of lunches served per school on a typical day?",
+  "graphic": {
+   "type": "bar",
+   "xLabel": "Lunches served on a typical day",
+   "yLabel": "Number of schools",
+   "bars": [
+    {
+     "label": "200",
+     "value": 12
+    },
+    {
+     "label": "400",
+     "value": 9
+    },
+    {
+     "label": "600",
+     "value": 6
+    },
+    {
+     "label": "800",
+     "value": 3
+    }
+   ]
+  },
+  "choices": [
+   "400",
+   "500",
+   "3,000",
+   "12,000"
+  ],
+  "correct_answer": "400",
+  "explanation": "The district's 30 schools serve 200(12) + 400(9) + 600(6) + 800(3) = 12,000 lunches, so the mean is 12,000/30 = 400 lunches per school. Choice 500 averages the four labels 200, 400, 600 and 800 without weighting them by how many schools serve each amount. Choice 12,000 is the district's total, the numerator on its own. Choice 3,000 divides that total by 4, the number of bars, giving a mean per bar rather than a mean per school.",
+  "solve": "const b=[[200,12],[400,9],[600,6],[800,3]];\nconst tot=b.reduce((a,[v,f])=>a+v*f,0), n=b.reduce((a,[,f])=>a+f,0);\nreturn tot/n;",
+  "domain": "Problem-Solving and Data Analysis"
+ },
+ {
+  "id": "PSDA-H4-10",
+  "subskill": "rates: matching a per-unit rate, with the change taken over the wrong base",
+  "difficulty": "hard",
+  "prompt": "Last year a bicycle sharing scheme in Alder recorded 486,000 trips using its 5,400 bicycles, and a scheme in Brixmoor recorded 360,000 trips using its 3,000 bicycles. Alder plans to retire some of its bicycles while keeping the same number of trips, so that its number of trips per bicycle will equal Brixmoor's number of trips per bicycle last year. How many bicycles must Alder retire?",
+  "choices": [
+   "1,350",
+   "1,800",
+   "2,400",
+   "4,050"
+  ],
+  "correct_answer": "1,350",
+  "explanation": "Brixmoor recorded 360,000/3,000 = 120 trips per bicycle. To reach that rate on 486,000 trips Alder needs 486,000/120 = 4,050 bicycles, so it must retire 5,400 - 4,050 = 1,350. Choice 4,050 is the number of bicycles Alder would keep, not the number it retires. Choice 1,800 comes from (120 - 90)/90 times 5,400: the gap of 30 trips per bicycle is divided by Alder's own rate of 90 rather than by the target rate of 120, so the reduction is measured against the wrong base. Choice 2,400 is 5,400 - 3,000, which matches Brixmoor's NUMBER of bicycles instead of its trips per bicycle.",
+  "solve": "const tA=486000,bA=5400,tB=360000,bB=3000;\nconst target=tB/bB;\nreturn (bA-tA/target).toLocaleString('en-US');",
+  "domain": "Problem-Solving and Data Analysis"
+ },
+ {
+  "id": "PSDA-H4-11",
+  "subskill": "percentages: comparing percent change across intervals",
+  "difficulty": "medium",
+  "prompt": "The table shows the mean chloride concentration, in milligrams per liter, measured in a stream in each of five consecutive months. Between which two consecutive months listed did the concentration decrease by the greatest percent?",
+  "graphic": {
+   "type": "table",
+   "rowLabels": [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May"
+   ],
+   "colLabels": [
+    "Chloride (mg per liter)"
+   ],
+   "cells": [
+    [
+     "4.0"
+    ],
+    [
+     "3.4"
+    ],
+    [
+     "3.0"
+    ],
+    [
+     "2.4"
+    ],
+    [
+     "2.2"
+    ]
+   ],
+   "caption": "Mean monthly chloride concentration"
+  },
+  "choices": [
+   "January to February",
+   "February to March",
+   "March to April",
+   "April to May"
+  ],
+  "correct_answer": "March to April",
+  "explanation": "The percent decreases are 0.6/4.0 = 15.0%, 0.4/3.4 = 11.8%, 0.6/3.0 = 20.0% and 0.2/2.4 = 8.3%. The greatest is March to April, at 20.0%. January to February has exactly the same decrease in milligrams per liter, 0.6, but starts from the largest value in the table, so its percent decrease is smaller. February to March has neither the largest drop nor the smallest base. April to May is the smallest decrease of the four in both milligrams and percent.",
+  "solve": "const m=['January','February','March','April','May'];\nconst v=[4.0,3.4,3.0,2.4,2.2];\nlet bi=0,bp=-Infinity;\nfor(let i=0;i<v.length-1;i++){const p=(v[i]-v[i+1])/v[i]; if(p>bp){bp=p;bi=i;}}\nreturn m[bi]+' to '+m[bi+1];",
+  "domain": "Problem-Solving and Data Analysis"
+ },
+ {
+  "id": "PSDA-H4-12",
+  "subskill": "percentages: undoing two percent increases before comparing totals",
+  "difficulty": "hard",
+  "prompt": "A school district now serves 5,400 lunches each day, which is 20 percent more than it served each day last year, and it now pays $3.24 for each lunch, which is 8 percent more than it paid last year. By how much has the district's daily spending on lunches increased since last year?",
+  "choices": [
+   "$1,080",
+   "$1,296",
+   "$3,780",
+   "$3,996"
+  ],
+  "correct_answer": "$3,996",
+  "explanation": "Last year the district served 5,400/1.20 = 4,500 lunches each day at 3.24/1.08 = $3.00 each, spending $13,500 a day. It now spends 3.24(5,400) = $17,496 a day, an increase of $3,996. Choice $3,780 applies 28 percent to last year's $13,500, adding the two percent increases instead of compounding them, which leaves out the extra lunches bought at the higher price. Choice $1,080 is 0.24(4,500), the price rise on last year's number of lunches only, so it treats the number served as unchanged. Choice $1,296 is 0.24(5,400), the price rise on this year's number of lunches, which counts the extra 900 lunches only through the 24 cents and not through the $3.00 the district already paid.",
+  "solve": "const nowQ=5400, nowP=3.24, gQ=1.20, gP=1.08;\nconst wasQ=nowQ/gQ, wasP=nowP/gP;\nreturn '$'+Math.round(nowQ*nowP-wasQ*wasP).toLocaleString('en-US');",
+  "domain": "Problem-Solving and Data Analysis"
+ },
+ {
+  "id": "PSDA-H4-13",
+  "subskill": "probability: two selections without replacement",
+  "difficulty": "medium",
+  "prompt": "A bicycle sharing station holds 15 bicycles, of which 9 are standard bicycles and 6 are electric bicycles. Two members arrive one after the other and each takes a bicycle at random from those still at the station. What is the probability that both members take an electric bicycle?",
+  "choices": [
+   "2/15",
+   "1/7",
+   "4/25",
+   "2/5"
+  ],
+  "correct_answer": "1/7",
+  "explanation": "The first member takes an electric bicycle with probability 6/15, and 5 of the 14 bicycles that remain are then electric, so the probability is (6/15)(5/14) = 30/210 = 1/7. Choice 2/15 is (6/15)(5/15), which reduces the count of electric bicycles for the second pick but not the number of bicycles left at the station. Choice 4/25 is (6/15)(6/15), the probability if the first bicycle were returned before the second member arrived. Choice 2/5 is 6/15, the probability for the first member alone.",
+  "solve": "const s=9,e=6;\nreturn (e/(s+e))*((e-1)/(s+e-1));",
+  "domain": "Problem-Solving and Data Analysis"
+ },
+ {
+  "id": "PSDA-H4-14",
+  "subskill": "one-variable data: a weighted mean with one group's mean unknown",
+  "difficulty": "hard",
+  "prompt": "The table shows the number of lunches served on one day at each of the three schools in a district and the mean cost per lunch at two of them. Across all three schools that day, the mean cost per lunch was $3.20. What was the mean cost per lunch at Kestrel School?",
+  "graphic": {
+   "type": "table",
+   "rowLabels": [
+    "Alder School",
+    "Brixmoor School",
+    "Kestrel School"
+   ],
+   "colLabels": [
+    "Lunches served",
+    "Mean cost per lunch"
+   ],
+   "cells": [
+    [
+     "1,600",
+     "$3.50"
+    ],
+    [
+     "1,200",
+     "$3.15"
+    ],
+    [
+     "1,400",
+     ""
+    ]
+   ],
+   "caption": "Lunches served and mean cost per lunch, by school"
+  },
+  "choices": [
+   "$2.90",
+   "$2.95",
+   "$3.20",
+   "$3.38"
+  ],
+  "correct_answer": "$2.90",
+  "explanation": "The three schools served 4,200 lunches at a mean of $3.20, so they spent 4,200(3.20) = $13,440 in total. Alder spent 1,600(3.50) = $5,600 and Brixmoor spent 1,200(3.15) = $3,780, leaving Kestrel with 13,440 - 9,380 = $4,060 for 1,400 lunches, a mean of $2.90. Choice $2.95 solves (3.50 + 3.15 + x)/3 = 3.20, averaging the three school means without weighting them by the number of lunches each school served. Choice $3.38 divides Kestrel's $4,060 by 1,200, Brixmoor's number of lunches rather than Kestrel's. Choice $3.20 assumes the third school must match the district's overall mean.",
+  "solve": "const rows=[[1600,3.50],[1200,3.15]], kQ=1400, allMean=3.20;\nconst allQ=rows.reduce((a,[q])=>a+q,0)+kQ;\nconst spent=allQ*allMean-rows.reduce((a,[q,c])=>a+q*c,0);\nreturn '$'+(Math.round(100*spent/kQ)/100).toFixed(2);",
+  "domain": "Problem-Solving and Data Analysis"
+ },
+ {
+  "id": "PSDA-H4-15",
+  "subskill": "two-variable data: residuals from a line of best fit",
+  "difficulty": "medium",
+  "prompt": "The table shows the annual attendance, in thousands of visitors, and the annual shop revenue, in thousands of dollars, at each of four museums. For these data the line of best fit is y = 1.4x + 30, where x is the attendance in thousands and y is the shop revenue in thousands of dollars. For which museum does the line of best fit give a predicted shop revenue that falls the farthest below the museum's actual shop revenue?",
+  "graphic": {
+   "type": "table",
+   "rowLabels": [
+    "Ashby",
+    "Belwood",
+    "Carrow",
+    "Dunmore"
+   ],
+   "colLabels": [
+    "Attendance (thousands)",
+    "Shop revenue (thousands of dollars)"
+   ],
+   "cells": [
+    [
+     "40",
+     "95"
+    ],
+    [
+     "60",
+     "108"
+    ],
+    [
+     "90",
+     "170"
+    ],
+    [
+     "120",
+     "183"
+    ]
+   ],
+   "caption": "Attendance and shop revenue at four museums"
+  },
+  "choices": [
+   "Ashby",
+   "Belwood",
+   "Carrow",
+   "Dunmore"
+  ],
+  "correct_answer": "Carrow",
+  "explanation": "The predicted revenues are 1.4(40) + 30 = 86, 1.4(60) + 30 = 114, 1.4(90) + 30 = 156 and 1.4(120) + 30 = 198. Subtracting each prediction from the actual revenue gives 9, -6, 14 and -15, so the prediction falls farthest below the actual revenue for Carrow, by 14 thousand dollars. Dunmore has the largest gap between prediction and actual in size, 15 thousand dollars, but there the prediction is above the actual revenue, not below it. Ashby is also underpredicted, by 9, which is less than Carrow's 14. Belwood is overpredicted by 6.",
+  "solve": "const s=[['Ashby',40,95],['Belwood',60,108],['Carrow',90,170],['Dunmore',120,183]];\nlet bn='',bd=-Infinity;\nfor(const [n,x,y] of s){const d=y-(1.4*x+30); if(d>bd){bd=d;bn=n;}}\nreturn bn;",
+  "domain": "Problem-Solving and Data Analysis"
+ },
+ {
+  "id": "PSDA-H4-16",
+  "subskill": "percentages: percent change of a count given as a share of a changing total",
+  "difficulty": "hard",
+  "prompt": "In 2022 a museum recorded 250,000 visits, of which 60,000 were made by members. In 2024 the museum recorded 310,000 visits, and 21 percent of them were made by members. What was the percent change in the number of visits made by members from 2022 to 2024?",
+  "choices": [
+   "-12.5",
+   "-3.0",
+   "7.8",
+   "8.5"
+  ],
+  "correct_answer": "8.5",
+  "explanation": "In 2024 members made 0.21(310,000) = 65,100 visits, an increase of 5,100 over the 60,000 they made in 2022, and 5,100/60,000 = 8.5 percent. Choice 7.8 divides that same increase of 5,100 by 65,100, the 2024 figure, so the change is measured against the new value rather than the original one. Choice -12.5 is the percent change in the member SHARE of visits, from 60,000/250,000 = 24 percent down to 21 percent, which falls even though the number of member visits rose. Choice -3.0 reports the same fall as a change of 3 percentage points in that share.",
+  "solve": "const v22=250000,m22=60000,v24=310000,p24=0.21;\nconst m24=v24*p24;\nreturn (Math.round(1000*(m24-m22)/m22)/10).toFixed(1);",
+  "domain": "Problem-Solving and Data Analysis"
+ },
+ {
+  "id": "PSDA-H4-17",
+  "subskill": "evaluating statistical claims: generalizing from a random sample",
+  "difficulty": "medium",
+  "prompt": "A school district selected a random sample of 300 of the 8,400 students enrolled at its twelve schools and asked each student whether they would choose a vegetarian main course at lunch if one were offered. In the sample, 46 percent said they would. Which of the following is the most appropriate conclusion?",
+  "choices": [
+   "It is reasonable to conclude that about 46 percent of the 8,400 students in the district would choose a vegetarian main course at lunch.",
+   "It is reasonable to conclude that about 46 percent of the 300 students in the sample would choose a vegetarian main course at lunch.",
+   "It is reasonable to conclude that about 46 percent of the students at each of the twelve schools would choose a vegetarian main course at lunch.",
+   "It is reasonable to conclude that offering a vegetarian main course would cause about 46 percent of the district's students to eat less meat at home."
+  ],
+  "correct_answer": "It is reasonable to conclude that about 46 percent of the 8,400 students in the district would choose a vegetarian main course at lunch.",
+  "explanation": "The 300 students were selected at random from the whole district, so the result generalizes to the 8,400 students in the district. The choice about the 300 students in the sample states something already known exactly rather than an inference: 46 percent of that sample said yes, so no conclusion is needed. The choice about each of the twelve schools claims the same rate holds school by school, which a district-wide sample does not support, since the sample was not drawn separately within each school. The last choice makes a causal claim about eating at home, an outcome the survey never measured.",
+  "solve": "return 'It is reasonable to conclude that about 46 percent of the 8,400 students in the district would choose a vegetarian main course at lunch.';",
+  "domain": "Problem-Solving and Data Analysis"
+ },
+ {
+  "id": "PSDA-H4-18",
+  "subskill": "percentages: recovering a total from rates applied to two subgroups",
+  "difficulty": "hard",
+  "prompt": "In a school district, 40 percent of the students qualify for free meals, and 75 percent of the students who qualify take a school lunch each day. Of the students who do not qualify, 20 percent buy a school lunch each day. If 2,100 school lunches are taken or bought each day, how many students are enrolled in the district?",
+  "choices": [
+   "2,800",
+   "5,000",
+   "7,000",
+   "17,500"
+  ],
+  "correct_answer": "5,000",
+  "explanation": "Out of every student, 0.40(0.75) = 0.30 takes a free lunch and 0.60(0.20) = 0.12 buys one, so 0.42 of the students have a school lunch each day. Then 0.42n = 2,100 gives n = 5,000. Choice 2,800 is 2,100/0.75, which uses the take-up rate among qualifying students as though it applied to every student. Choice 7,000 is 2,100/0.30, which keeps only the free-lunch half of the calculation and drops the students who buy. Choice 17,500 is 2,100/0.12, the same omission made the other way round, keeping only the paying students.",
+  "solve": "const qual=0.40, takeQ=0.75, takeN=0.20, meals=2100;\nconst rate=qual*takeQ+(1-qual)*takeN;\nreturn (meals/rate).toLocaleString('en-US');",
+  "domain": "Problem-Solving and Data Analysis"
+ },
+ {
+  "id": "PSDA-H4-19",
+  "subskill": "rates: a percent of a time interval converted to a count",
+  "difficulty": "medium",
+  "prompt": "A bicycle in a sharing scheme is available for hire an average of 22 hours each day, and it is out on hire for 18 percent of that time. The mean length of a hire is 12 minutes. On average, how many hires does one bicycle make each day?",
+  "choices": [
+   "0.33",
+   "3.96",
+   "19.8",
+   "110"
+  ],
+  "correct_answer": "19.8",
+  "explanation": "The bicycle is available for 22(60) = 1,320 minutes a day and is out on hire for 0.18(1,320) = 237.6 of them, so at 12 minutes a hire it makes 237.6/12 = 19.8 hires. Choice 110 is 1,320/12, the number of hires the bicycle would make if it were out for the whole time it is available, which drops the 18 percent. Choice 3.96 is 0.18(22), the number of HOURS the bicycle spends on hire, not a count of hires. Choice 0.33 divides those 3.96 hours by 12 without converting the hours to minutes first.",
+  "solve": "const hours=22, share=0.18, tripMin=12;\nreturn hours*60*share/tripMin;",
+  "domain": "Problem-Solving and Data Analysis"
+ },
+ {
+  "id": "PSDA-H4-20",
+  "subskill": "inference from sample statistics: a bound from a margin of error, scaled to the population",
+  "difficulty": "hard",
+  "prompt": "A county tested the water in a random sample of 250 of the 4,000 private wells in the county. In the sample, 18 percent of the wells had a nitrate level above the safe limit, with an associated margin of error of 4.8 percentage points at the 95 percent confidence level. Based on this result, what is the greatest number of the county's private wells that could plausibly have a nitrate level above the safe limit?",
+  "choices": [
+   "57",
+   "528",
+   "720",
+   "912"
+  ],
+  "correct_answer": "912",
+  "explanation": "The interval of plausible values for the percent of all wells above the limit is 18 - 4.8 = 13.2 percent to 18 + 4.8 = 22.8 percent, and 0.228(4,000) = 912 wells. Choice 528 uses 13.2 percent, the low end of the interval, so it answers for the fewest rather than the most. Choice 720 is 0.18(4,000), which uses the sample percent alone and so ignores the margin of error entirely. Choice 57 is 0.228(250), which applies the upper bound to the 250 wells that were tested rather than to the 4,000 wells in the county.",
+  "solve": "const N=4000, p=0.18, moe=0.048;\nreturn Math.round(N*(p+moe));",
+  "domain": "Problem-Solving and Data Analysis"
+ },
+ {
+  "id": "PSDA-H4-21",
+  "subskill": "rates: a concentration and a flow rate combined, with unit conversion",
+  "difficulty": "medium",
+  "prompt": "Water flows past a monitoring station at a rate of 0.45 cubic meters per second, and the water contains 12 milligrams of phosphate per liter. There are 1,000 liters in one cubic meter and 1,000 milligrams in one gram. How many grams of phosphate flow past the station each minute?",
+  "choices": [
+   "0.324",
+   "5.4",
+   "27",
+   "324"
+  ],
+  "correct_answer": "324",
+  "explanation": "The flow is 0.45(1,000) = 450 liters per second, carrying 450(12) = 5,400 milligrams, or 5.4 grams, of phosphate per second. In one minute that is 5.4(60) = 324 grams. Choice 5.4 is the mass per SECOND, so it stops one conversion short. Choice 0.324 is the correct mass expressed in kilograms rather than grams. Choice 27 is 0.45(60), the volume of water in cubic meters that flows past each minute, which is the flow of water rather than the mass of phosphate it carries.",
+  "solve": "const m3s=0.45, mgPerL=12;\nconst gPerSec=m3s*1000*mgPerL/1000;\nreturn gPerSec*60;",
+  "domain": "Problem-Solving and Data Analysis"
+ },
+ {
+  "id": "PSDA-H4-22",
+  "subskill": "probability: a conditional probability whose denominator must be built from three rates",
+  "difficulty": "hard",
+  "prompt": "The table shows the number of students at each of the three schools in a district and the percent of the students at each school who take a school lunch. One student who takes a school lunch is selected at random from the district. What is the probability that the student attends Brixmoor School? Round your answer to the nearest hundredth.",
+  "graphic": {
+   "type": "table",
+   "rowLabels": [
+    "Alder School",
+    "Brixmoor School",
+    "Kestrel School"
+   ],
+   "colLabels": [
+    "Number of students",
+    "Percent who take a school lunch"
+   ],
+   "cells": [
+    [
+     "800",
+     "45%"
+    ],
+    [
+     "500",
+     "60%"
+    ],
+    [
+     "700",
+     "20%"
+    ]
+   ],
+   "caption": "Enrollment and school lunch take-up, by school"
+  },
+  "choices": [
+   "0.25",
+   "0.38",
+   "0.40",
+   "0.60"
+  ],
+  "correct_answer": "0.38",
+  "explanation": "The three schools have 0.45(800) = 360, 0.60(500) = 300 and 0.20(700) = 140 students taking a school lunch, for 800 in the district. The probability is therefore 300/800 = 0.38. Choice 0.25 is 500/2,000, Brixmoor's share of all students in the district, which ignores that the student was chosen from among those taking a lunch. Choice 0.60 is Brixmoor's own take-up rate, the probability that a student chosen from Brixmoor takes a lunch, which reverses the condition. Choice 0.40 is 800/2,000, the district-wide take-up rate, which says nothing about which school a lunch-taking student attends.",
+  "solve": "const r=[[800,0.45],[500,0.60],[700,0.20]];\nconst takers=r.map(([n,p])=>n*p);\nconst tot=takers.reduce((a,b)=>a+b,0);\nreturn (Math.round(100*takers[1]/tot)/100).toFixed(2);",
+  "domain": "Problem-Solving and Data Analysis"
+ },
+ {
+  "id": "PSDA-H4-23",
+  "subskill": "one-variable data: median of a frequency distribution after values are added",
+  "difficulty": "medium",
+  "prompt": "The table shows the number of bicycles held at each of the 15 docking stations in a bicycle sharing scheme. Three new docking stations, each holding 26 bicycles, are then added to the scheme. What is the median number of bicycles per docking station for all 18 stations?",
+  "graphic": {
+   "type": "table",
+   "rowLabels": [
+    "12 bicycles",
+    "18 bicycles",
+    "24 bicycles",
+    "30 bicycles",
+    "36 bicycles"
+   ],
+   "colLabels": [
+    "Number of docking stations"
+   ],
+   "cells": [
+    [
+     "4"
+    ],
+    [
+     "5"
+    ],
+    [
+     "3"
+    ],
+    [
+     "2"
+    ],
+    [
+     "1"
+    ]
+   ],
+   "caption": "Bicycles held at the 15 original docking stations"
+  },
+  "choices": [
+   "18",
+   "20.4",
+   "21",
+   "24"
+  ],
+  "correct_answer": "21",
+  "explanation": "With 18 stations the median is the average of the ninth and tenth values in order. The cumulative counts are 4 stations through 12 bicycles and 9 through 18 bicycles, so the ninth value is 18 and the tenth is 24, giving a median of 21. Choice 18 is the median of the original 15 stations, the eighth value, so it leaves the three new stations out. Choice 24 takes the tenth value alone rather than averaging it with the ninth. Choice 20.4 is the mean of the original 15 stations, 306/15, rather than a median.",
+  "solve": "const rows=[[12,4],[18,5],[24,3],[30,2],[36,1]];\nconst v=[];\nfor(const [b,f] of rows) for(let i=0;i<f;i++) v.push(b);\nfor(let i=0;i<3;i++) v.push(26);\nv.sort((a,b)=>a-b);\nconst n=v.length;\nreturn n%2 ? v[(n-1)/2] : (v[n/2-1]+v[n/2])/2;",
+  "domain": "Problem-Solving and Data Analysis"
+ },
+ {
+  "id": "PSDA-H4-24",
+  "subskill": "rates: a per-unit charge applied to part of each unit",
+  "difficulty": "medium",
+  "prompt": "Members of a bicycle sharing scheme pay nothing for the first 30 minutes of a trip and $0.15 for each minute after that. During June, members made 180,000 trips. Of these, 42,000 lasted longer than 30 minutes and had a mean length of 47 minutes; every other trip lasted 30 minutes or less. How much did the scheme collect in per-minute charges during June?",
+  "choices": [
+   "$107,100",
+   "$296,100",
+   "$459,000",
+   "$1,269,000"
+  ],
+  "correct_answer": "$107,100",
+  "explanation": "Only the 42,000 long trips are charged, and only for the minutes past the first 30, a mean of 47 - 30 = 17 minutes each. The scheme collected 42,000(17)(0.15) = $107,100. Choice $296,100 charges those trips for all 47 minutes, so it bills the free half hour as well. Choice $459,000 charges 17 minutes on all 180,000 trips, including the ones that never passed 30 minutes. Choice $1,269,000 makes both errors at once, charging 47 minutes on every trip.",
+  "solve": "const longTrips=42000, meanLen=47, free=30, rate=0.15;\nreturn '$'+(longTrips*(meanLen-free)*rate).toLocaleString('en-US');",
+  "domain": "Problem-Solving and Data Analysis"
+ }
+]

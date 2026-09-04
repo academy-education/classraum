@@ -1,0 +1,600 @@
+[
+  {
+    "id": "ACT-M-V4G01",
+    "domain": "Geometry",
+    "subskill": "intersecting chords with an extraneous root",
+    "difficulty": "hard",
+    "prompt": "In the figure below, chords AC and BD of the circle intersect at point E. All lengths are in centimeters. What is the length of AC, in centimeters?",
+    "graphic": {
+      "type": "svg",
+      "svg": "<svg viewBox=\"0 0 350 250\" xmlns=\"http://www.w3.org/2000/svg\" font-family=\"system-ui,sans-serif\" font-size=\"13\" fill=\"#12151C\"><circle cx=\"175\" cy=\"120\" r=\"95\" fill=\"none\" stroke=\"#2B3A8C\" stroke-width=\"2\"/><line x1=\"93\" y1=\"73\" x2=\"257\" y2=\"167\" stroke=\"#0A5C48\" stroke-width=\"2\"/><line x1=\"248\" y1=\"59\" x2=\"102\" y2=\"181\" stroke=\"#0A5C48\" stroke-width=\"2\"/><circle cx=\"175\" cy=\"120\" r=\"3.2\" fill=\"#12151C\"/><text x=\"76\" y=\"68\">A</text><text x=\"253\" y=\"52\">B</text><text x=\"262\" y=\"180\">C</text><text x=\"86\" y=\"193\">D</text><text x=\"178\" y=\"112\">E</text><text x=\"122\" y=\"106\" font-style=\"italic\">x</text><text x=\"206\" y=\"152\">x + 9</text><text x=\"212\" y=\"82\">4</text><text x=\"146\" y=\"168\">9</text><text x=\"16\" y=\"240\" font-size=\"11\" fill=\"#5A6474\">Figure not drawn to scale.</text></svg>",
+      "caption": "Figure not drawn to scale."
+    },
+    "choices": [
+      "12",
+      "13",
+      "15",
+      "24"
+    ],
+    "correct_answer": "15",
+    "explanation": "Where two chords meet, AE*EC = BE*ED, so x(x + 9) = 4*9 = 36, which is x^2 + 9x - 36 = 0, or (x + 12)(x - 3) = 0. The root x = -12 gives negative lengths and is discarded, so x = 3 and AC = AE + EC = 3 + 12 = 15. Answering EC alone, after solving for x correctly, gives 12. Adding the two known segments instead of multiplying them, 4 + 9 = 13, gives 13. Reading E as the midpoint of AC and doubling EC gives 24.",
+    "solve": "const roots=[];for(let x=-200;x<=200;x++){if(Math.abs(x*(x+9)-4*9)<1e-9)roots.push(x);}\nconst ok=roots.filter(r=>r>0&&r+9>0);\nif(ok.length!==1)throw new Error('root not unique');\nreturn ok[0]+(ok[0]+9);"
+  },
+  {
+    "id": "ACT-M-V4G02",
+    "domain": "Geometry",
+    "subskill": "parallel cut with a part-to-whole ratio",
+    "difficulty": "hard",
+    "prompt": "In triangle ABC below, D lies on side AB, E lies on side AC, and DE is parallel to BC. All lengths are in inches. What is the length of BC, in inches?",
+    "graphic": {
+      "type": "svg",
+      "svg": "<svg viewBox=\"0 0 350 250\" xmlns=\"http://www.w3.org/2000/svg\" font-family=\"system-ui,sans-serif\" font-size=\"13\" fill=\"#12151C\"><polygon points=\"110,30 25,205 250,205\" fill=\"none\" stroke=\"#2B3A8C\" stroke-width=\"2\"/><line x1=\"78\" y1=\"96\" x2=\"163\" y2=\"96\" stroke=\"#0A5C48\" stroke-width=\"2\"/><text x=\"112\" y=\"24\">A</text><text x=\"10\" y=\"217\">B</text><text x=\"253\" y=\"217\">C</text><text x=\"60\" y=\"93\">D</text><text x=\"167\" y=\"93\">E</text><text x=\"96\" y=\"68\">6</text><text x=\"28\" y=\"158\">10</text><text x=\"112\" y=\"90\">15</text><text x=\"132\" y=\"224\" font-style=\"italic\">?</text><text x=\"16\" y=\"240\" font-size=\"11\" fill=\"#5A6474\">Figure not drawn to scale.</text></svg>",
+      "caption": "Figure not drawn to scale."
+    },
+    "choices": [
+      "24",
+      "25",
+      "30",
+      "40"
+    ],
+    "correct_answer": "40",
+    "explanation": "Triangle ADE is similar to triangle ABC, and the sides that correspond are AD and AB, not AD and DB. AB = 6 + 10 = 16, so the scale factor is 16/6 = 8/3 and BC = 15 * 8/3 = 40. Scaling by DB/AD = 10/6 gives 25. Matching DE with the whole side and DB with the part, 15 * 16/10, gives 24. Treating DE as a midsegment and doubling it gives 30.",
+    "solve": "const AD=6,DB=10,DE=15;\nreturn DE*((AD+DB)/AD);"
+  },
+  {
+    "id": "ACT-M-V4G03",
+    "domain": "Geometry",
+    "subskill": "right triangle with the hypotenuse identified indirectly",
+    "difficulty": "hard",
+    "prompt": "In a certain right triangle, the longest side measures 15 centimeters and one of the other sides measures 9 centimeters. What is the area, in square centimeters, of this triangle?",
+    "choices": [
+      "54",
+      "67.5",
+      "90",
+      "108"
+    ],
+    "correct_answer": "54",
+    "explanation": "The longest side of a right triangle is the hypotenuse, so 15 is the hypotenuse and 9 is a leg. The other leg is sqrt(15^2 - 9^2) = sqrt(144) = 12, and the area is (1/2)(9)(12) = 54. Treating 9 and 15 as the two legs gives (1/2)(9)(15) = 67.5. Finding the missing leg correctly but pairing it with the hypotenuse gives (1/2)(12)(15) = 90. Multiplying the two legs without halving gives 108.",
+    "solve": "const c=15,a=9;\nconst b=Math.sqrt(c*c-a*a);\nreturn 0.5*a*b;"
+  },
+  {
+    "id": "ACT-M-V4G04",
+    "domain": "Geometry",
+    "subskill": "similar solids, volume ratio to area ratio",
+    "difficulty": "hard",
+    "prompt": "Two right circular cones are similar. The volume of the larger cone is 27/8 times the volume of the smaller cone. The total surface area of the smaller cone is 32 square inches. What is the total surface area, in square inches, of the larger cone?",
+    "choices": [
+      "48",
+      "72",
+      "96",
+      "108"
+    ],
+    "correct_answer": "72",
+    "explanation": "Volumes of similar solids are in the ratio k^3, so k^3 = 27/8 and the linear ratio is k = 3/2. Areas are in the ratio k^2 = 9/4, so the larger surface area is 32 * 9/4 = 72. Applying the linear ratio to the area gives 32 * 3/2 = 48. Applying the volume ratio directly to the area gives 32 * 27/8 = 108. Taking the linear ratio as 3 rather than 3/2 gives 32 * 3 = 96.",
+    "solve": "const rv=27/8,Ssmall=32;\nconst k=Math.cbrt(rv);\nreturn Ssmall*k*k;"
+  },
+  {
+    "id": "ACT-M-V4G05",
+    "domain": "Geometry",
+    "subskill": "equal perimeters, unequal areas",
+    "difficulty": "hard",
+    "prompt": "An equilateral triangle and a regular hexagon have equal perimeters. The area of the triangle is 36√3 square centimeters. What is the area, in square centimeters, of the hexagon?",
+    "choices": [
+      "27√3",
+      "54√3",
+      "72√3",
+      "108√3"
+    ],
+    "correct_answer": "54√3",
+    "explanation": "If the triangle has side a, its perimeter is 3a, so the hexagon's perimeter is also 3a and its side is 3a/6 = a/2. From (√3/4)a^2 = 36√3, a^2 = 144 and a = 12, so the hexagon has side 6 and area (3√3/2)(36) = 54√3. Assuming the hexagon has the same side as the triangle, and then that its area is simply twice the triangle's because it has twice as many sides, gives 72√3. Counting the hexagon as three copies of the given triangle gives 108√3. Using the correct 3/2 area factor but also halving for the shorter side, (3/2)(1/2)(36√3), gives 27√3.",
+    "solve": "const triArea=36;\nconst a2=triArea*4;\nconst a=Math.sqrt(a2);\nconst s=a/2;\nconst hex=(3/2)*s*s;\nreturn String(hex)+'√3';"
+  },
+  {
+    "id": "ACT-M-V4G06",
+    "domain": "Geometry",
+    "subskill": "right-triangle trigonometry with a missing hypotenuse",
+    "difficulty": "hard",
+    "prompt": "A skateboard ramp rises 7 feet vertically over a horizontal distance of 24 feet. What is the sine of the angle the ramp makes with the level ground, to the nearest hundredth?",
+    "choices": [
+      "0.28",
+      "0.29",
+      "0.96",
+      "3.43"
+    ],
+    "correct_answer": "0.28",
+    "explanation": "The sine of the angle is the opposite side over the hypotenuse, and the hypotenuse is not one of the given lengths. It is sqrt(7^2 + 24^2) = 25, so the sine is 7/25 = 0.28. Dividing the rise by the horizontal distance gives the tangent, 7/24, or 0.29. The cosine, 24/25, is 0.96. Inverting the rise-to-run ratio gives 24/7, about 3.43.",
+    "solve": "const opp=7,adj=24;\nconst hyp=Math.hypot(opp,adj);\nreturn (Math.round(100*opp/hyp)/100).toFixed(2);"
+  },
+  {
+    "id": "ACT-M-V4G07",
+    "domain": "Geometry",
+    "subskill": "chord length from the distance to the centre",
+    "difficulty": "medium",
+    "prompt": "In the figure below, O is the center of the circle and OM is perpendicular to chord AB. All lengths are in inches. What is the length of AB, in inches?",
+    "graphic": {
+      "type": "svg",
+      "svg": "<svg viewBox=\"0 0 350 250\" xmlns=\"http://www.w3.org/2000/svg\" font-family=\"system-ui,sans-serif\" font-size=\"13\" fill=\"#12151C\"><circle cx=\"175\" cy=\"118\" r=\"92\" fill=\"none\" stroke=\"#2B3A8C\" stroke-width=\"2\"/><line x1=\"97\" y1=\"167\" x2=\"253\" y2=\"167\" stroke=\"#0A5C48\" stroke-width=\"2\"/><line x1=\"175\" y1=\"118\" x2=\"175\" y2=\"167\" stroke=\"#12151C\" stroke-width=\"1.5\"/><line x1=\"175\" y1=\"118\" x2=\"97\" y2=\"167\" stroke=\"#12151C\" stroke-width=\"1.5\"/><path d=\"M175,157 L165,157 L165,167\" fill=\"none\" stroke=\"#12151C\" stroke-width=\"1.2\"/><circle cx=\"175\" cy=\"118\" r=\"3\" fill=\"#12151C\"/><text x=\"180\" y=\"114\">O</text><text x=\"82\" y=\"180\">A</text><text x=\"256\" y=\"180\">B</text><text x=\"172\" y=\"184\">M</text><text x=\"181\" y=\"148\">7</text><text x=\"118\" y=\"132\">25</text><text x=\"16\" y=\"240\" font-size=\"11\" fill=\"#5A6474\">Figure not drawn to scale.</text></svg>",
+      "caption": "Figure not drawn to scale."
+    },
+    "choices": [
+      "18",
+      "24",
+      "32",
+      "48"
+    ],
+    "correct_answer": "48",
+    "explanation": "Triangle OMA is a right triangle with hypotenuse OA = 25 and leg OM = 7, so AM = sqrt(625 - 49) = 24. The perpendicular from the center bisects the chord, so AB = 2(24) = 48. Stopping at AM gives 24. Subtracting the two given lengths gives 18, and adding them gives 32.",
+    "solve": "const r=25,d=7;\nreturn 2*Math.sqrt(r*r-d*d);"
+  },
+  {
+    "id": "ACT-M-V4G08",
+    "domain": "Geometry",
+    "subskill": "composite area with unlabelled sides",
+    "difficulty": "medium",
+    "prompt": "The shaded region below is made of two rectangles and every angle in it is a right angle. All lengths are in feet. What is the area, in square feet, of the shaded region?",
+    "graphic": {
+      "type": "svg",
+      "svg": "<svg viewBox=\"0 0 350 250\" xmlns=\"http://www.w3.org/2000/svg\" font-family=\"system-ui,sans-serif\" font-size=\"13\" fill=\"#12151C\"><polygon points=\"30,40 270,40 270,150 174,150 174,210 30,210\" fill=\"#EEF1FA\" stroke=\"#2B3A8C\" stroke-width=\"2\"/><text x=\"142\" y=\"32\">20</text><text x=\"276\" y=\"100\">9</text><text x=\"96\" y=\"226\">12</text><text x=\"12\" y=\"130\">14</text><text x=\"16\" y=\"243\" font-size=\"11\" fill=\"#5A6474\">All angles are right angles.</text></svg>",
+      "caption": "All angles are right angles."
+    },
+    "choices": [
+      "108",
+      "180",
+      "240",
+      "280"
+    ],
+    "correct_answer": "240",
+    "explanation": "The two unlabeled sides follow from the labeled ones: the short horizontal side is 20 - 12 = 8 and the short vertical side is 14 - 9 = 5. Splitting the region into a 20 by 9 rectangle and a 12 by 5 rectangle gives 180 + 60 = 240; equivalently, 20*14 - 8*5 = 240. Taking the whole enclosing rectangle gives 280. Using only the 20 by 9 piece gives 180. Multiplying the two labeled sides that meet at the notch, 12 * 9, gives 108.",
+    "solve": "const W=20,H=14,b=12,rr=9;\nreturn W*rr + b*(H-rr);"
+  },
+  {
+    "id": "ACT-M-V4G09",
+    "domain": "Geometry",
+    "subskill": "tangent segment from an external point",
+    "difficulty": "medium",
+    "prompt": "Point P lies outside a circle with center O and radius 8 centimeters. Segment PA is tangent to the circle at point A, and OP = 17 centimeters. What is the length of PA, in centimeters?",
+    "choices": [
+      "9",
+      "15",
+      "25",
+      "30"
+    ],
+    "correct_answer": "15",
+    "explanation": "A tangent is perpendicular to the radius drawn to the point of tangency, so triangle OAP has a right angle at A with hypotenuse OP = 17 and leg OA = 8. Then PA = sqrt(289 - 64) = 15. Subtracting the lengths, 17 - 8, gives 9, and adding them gives 25. There are two tangent segments from P, each 15 long; reporting their combined length gives 30.",
+    "solve": "const r=8,OP=17;\nreturn Math.sqrt(OP*OP-r*r);"
+  },
+  {
+    "id": "ACT-M-V4G10",
+    "domain": "Geometry",
+    "subskill": "cone and cylinder of equal base and height",
+    "difficulty": "medium",
+    "prompt": "A right circular cone and a right circular cylinder have the same radius and the same height. The volume of the cylinder is 96 cubic inches. What is the volume, in cubic inches, of the cone?",
+    "choices": [
+      "32",
+      "48",
+      "64",
+      "288"
+    ],
+    "correct_answer": "32",
+    "explanation": "The cone's volume is one third of the cylinder's when the radius and height match, so it is 96/3 = 32. Halving instead of taking a third gives 48. Subtracting a third from the cylinder rather than taking a third of it gives 96 - 32 = 64. Multiplying by 3 instead of dividing gives 288.",
+    "solve": "const cyl=96;\nreturn cyl/3;"
+  },
+  {
+    "id": "ACT-M-V4G11",
+    "domain": "Geometry",
+    "subskill": "exterior angle theorem with an algebraic expression",
+    "difficulty": "medium",
+    "prompt": "In the figure below, side PQ of triangle PQR is extended past Q, and the angle measures shown are in degrees. What is the value of x?",
+    "graphic": {
+      "type": "svg",
+      "svg": "<svg viewBox=\"0 0 350 250\" xmlns=\"http://www.w3.org/2000/svg\" font-family=\"system-ui,sans-serif\" font-size=\"13\" fill=\"#12151C\"><line x1=\"40\" y1=\"195\" x2=\"322\" y2=\"195\" stroke=\"#5A6474\" stroke-width=\"1.5\" stroke-dasharray=\"5 4\"/><polygon points=\"40,195 240,195 150,45\" fill=\"none\" stroke=\"#2B3A8C\" stroke-width=\"2\"/><text x=\"26\" y=\"211\">P</text><text x=\"236\" y=\"212\">Q</text><text x=\"146\" y=\"37\">R</text><text x=\"56\" y=\"186\">(2x)&#176;</text><text x=\"146\" y=\"108\" text-anchor=\"middle\" font-size=\"12\">(3x + 10)&#176;</text><text x=\"252\" y=\"185\">130&#176;</text><text x=\"16\" y=\"240\" font-size=\"11\" fill=\"#5A6474\">Figure not drawn to scale.</text></svg>",
+      "caption": "Figure not drawn to scale."
+    },
+    "choices": [
+      "12",
+      "24",
+      "26",
+      "34"
+    ],
+    "correct_answer": "24",
+    "explanation": "An exterior angle equals the sum of the two remote interior angles, so 2x + (3x + 10) = 130, giving 5x = 120 and x = 24. Setting the three expressions equal to 180 instead, 5x + 10 = 180, gives x = 34. Dropping the constant and solving 5x = 130 gives 26. Combining 2x and 3x as 10x gives 12.",
+    "solve": "const ext=130,c=10;\nreturn (ext-c)/5;"
+  },
+  {
+    "id": "ACT-M-V4G12",
+    "domain": "Geometry",
+    "subskill": "midsegment of a trapezoid",
+    "difficulty": "medium",
+    "prompt": "In a trapezoid, the segment joining the midpoints of the two nonparallel sides is 17 meters long. One of the parallel sides is 23 meters long. How many meters long is the other parallel side?",
+    "choices": [
+      "11",
+      "20",
+      "34",
+      "40"
+    ],
+    "correct_answer": "11",
+    "explanation": "That segment is the average of the two parallel sides, so (23 + b)/2 = 17, giving b = 34 - 23 = 11. Averaging the midsegment with the known side, (17 + 23)/2, gives 20. Doubling the midsegment and stopping there gives 34. Adding the midsegment to the known side gives 40.",
+    "solve": "const m=17,a=23;\nreturn 2*m-a;"
+  },
+  {
+    "id": "ACT-M-V4G13",
+    "domain": "Geometry",
+    "subskill": "endpoint from a midpoint",
+    "difficulty": "medium",
+    "prompt": "In the standard (x,y) coordinate plane, M(3,-1) is the midpoint of segment AB, and A has coordinates (-4,6). What is the x-coordinate of B?",
+    "choices": [
+      "-11",
+      "-0.5",
+      "7",
+      "10"
+    ],
+    "correct_answer": "10",
+    "explanation": "The midpoint's x-coordinate is the average of the endpoints', so (-4 + b)/2 = 3 and b = 6 + 4 = 10. Averaging the two given x-coordinates, (3 + (-4))/2, gives -0.5. Treating A as the midpoint and M as an endpoint gives 2(-4) - 3 = -11. Reporting the horizontal distance from A to M gives 7.",
+    "solve": "const mx=3,ax=-4;\nreturn 2*mx-ax;"
+  },
+  {
+    "id": "ACT-M-V4G14",
+    "domain": "Geometry",
+    "subskill": "perimeter of a rhombus from its diagonals",
+    "difficulty": "medium",
+    "prompt": "In the figure below, WXYZ is a rhombus and its diagonals are shown as dashed segments. All lengths are in centimeters. What is the perimeter, in centimeters, of rhombus WXYZ?",
+    "graphic": {
+      "type": "svg",
+      "svg": "<svg viewBox=\"0 0 350 250\" xmlns=\"http://www.w3.org/2000/svg\" font-family=\"system-ui,sans-serif\" font-size=\"13\" fill=\"#12151C\"><polygon points=\"175,35 295,120 175,205 55,120\" fill=\"none\" stroke=\"#2B3A8C\" stroke-width=\"2\"/><line x1=\"175\" y1=\"35\" x2=\"175\" y2=\"205\" stroke=\"#0A5C48\" stroke-width=\"1.5\" stroke-dasharray=\"5 4\"/><line x1=\"55\" y1=\"120\" x2=\"295\" y2=\"120\" stroke=\"#0A5C48\" stroke-width=\"1.5\" stroke-dasharray=\"5 4\"/><path d=\"M175,108 L187,108 L187,120\" fill=\"none\" stroke=\"#12151C\" stroke-width=\"1.2\"/><text x=\"172\" y=\"28\">W</text><text x=\"300\" y=\"125\">X</text><text x=\"172\" y=\"222\">Y</text><text x=\"42\" y=\"125\">Z</text><text x=\"150\" y=\"78\">16</text><text x=\"100\" y=\"113\">30</text><text x=\"16\" y=\"240\" font-size=\"11\" fill=\"#5A6474\">Figure not drawn to scale.</text></svg>",
+      "caption": "Figure not drawn to scale."
+    },
+    "choices": [
+      "23",
+      "46",
+      "68",
+      "92"
+    ],
+    "correct_answer": "68",
+    "explanation": "The diagonals of a rhombus bisect each other at right angles, so each side is the hypotenuse of a right triangle with legs 8 and 15, giving a side of 17 and a perimeter of 4(17) = 68. Adding the legs of that right triangle, 8 + 15, gives 23. Adding the two diagonals gives 46, and taking twice that sum, the perimeter of the rectangle the diagonals fit inside, gives 92.",
+    "solve": "const d1=16,d2=30;\nconst side=Math.hypot(d1/2,d2/2);\nreturn 4*side;"
+  },
+  {
+    "id": "ACT-M-V4G15",
+    "domain": "Geometry",
+    "subskill": "area of a circle from the diameter",
+    "difficulty": "easy",
+    "prompt": "A circle has a diameter of 14 inches. What is the area, in square inches, of this circle?",
+    "choices": [
+      "14π",
+      "28π",
+      "49π",
+      "196π"
+    ],
+    "correct_answer": "49π",
+    "explanation": "The radius is 14/2 = 7, so the area is π(7^2) = 49π. Squaring the diameter instead of the radius gives 196π. Using the circumference formula πd gives 14π, and using 2πr gives 28π.",
+    "solve": "const d=14;\nconst r=d/2;\nreturn String(r*r)+'π';"
+  },
+  {
+    "id": "ACT-M-V4G16",
+    "domain": "Geometry",
+    "subskill": "rectangle area from its perimeter",
+    "difficulty": "easy",
+    "prompt": "The perimeter of a rectangle is 54 centimeters, and its length is twice its width. What is the area, in square centimeters, of this rectangle?",
+    "choices": [
+      "27",
+      "81",
+      "162",
+      "648"
+    ],
+    "correct_answer": "162",
+    "explanation": "With width w and length 2w, the perimeter is 2(w + 2w) = 6w = 54, so w = 9, the length is 18, and the area is 162. Reading 54 as the sum of one length and one width gives w = 18 and an area of 648. Taking the figure to be a square of side 9 gives 81. Reporting half the perimeter gives 27.",
+    "solve": "const P=54;\nconst w=P/6;\nreturn w*(2*w);"
+  },
+  {
+    "id": "ACT-M-V4I01",
+    "domain": "Integrating Essential Skills",
+    "subskill": "greatest common factor in a tiling context",
+    "difficulty": "hard",
+    "prompt": "A rectangular floor measures 156 inches by 108 inches. The floor is to be covered completely by identical square tiles whose side length, in inches, is a whole number, and no tile may be cut. What is the smallest number of tiles that can be used?",
+    "choices": [
+      "117",
+      "234",
+      "468",
+      "1053"
+    ],
+    "correct_answer": "117",
+    "explanation": "Fewest tiles means largest tiles, and a square tile of side s fits exactly only when s divides both 156 and 108, so s is the greatest common factor, 12. That gives (156/12)(108/12) = 13 * 9 = 117 tiles. Using 12 by 6 pieces, which tile the floor but are not square, gives 234. Taking the common factor as 6 gives 26 * 18 = 468, and taking it as 4 gives 39 * 27 = 1053.",
+    "solve": "const a=156,b=108;\nlet s=0;\nfor(let k=1;k<=Math.min(a,b);k++){if(a%k===0&&b%k===0)s=k;}\nreturn (a/s)*(b/s);"
+  },
+  {
+    "id": "ACT-M-V4I02",
+    "domain": "Integrating Essential Skills",
+    "subskill": "reversing a percent deduction",
+    "difficulty": "hard",
+    "prompt": "A gallery sells a painting for an artist and keeps 12% of the sale price as its commission. The artist receives the rest, which is $1,540. What was the sale price of the painting, in dollars?",
+    "choices": [
+      "1355.20",
+      "1724.80",
+      "1750.00",
+      "1925.00"
+    ],
+    "correct_answer": "1750.00",
+    "explanation": "The artist receives 88% of the sale price, so 0.88p = 1540 and p = 1540/0.88 = 1750. Taking 12% off the artist's share instead, 1540(0.88), gives 1355.20. Adding 12% to the artist's share, 1540(1.12), gives 1724.80. Dividing by 0.8, as though the commission were 20%, gives 1925.00.",
+    "solve": "const net=1540,rate=0.12;\nreturn (net/(1-rate)).toFixed(2);"
+  },
+  {
+    "id": "ACT-M-V4I03",
+    "domain": "Integrating Essential Skills",
+    "subskill": "average speed over a round trip",
+    "difficulty": "hard",
+    "prompt": "A cyclist rides from her home to a lake at an average speed of 12 miles per hour and returns home along the same route at an average speed of 24 miles per hour. What is her average speed, in miles per hour, for the entire ride?",
+    "choices": [
+      "12",
+      "16",
+      "18",
+      "24"
+    ],
+    "correct_answer": "16",
+    "explanation": "Average speed is total distance over total time, and the two halves take different times, so the two rates cannot simply be averaged. For a one-way distance d, the time is d/12 + d/24 = d/8, and 2d divided by d/8 is 16. Averaging the two speeds gives 18. The two given rates, 12 and 24, are each the speed for only one leg.",
+    "solve": "const v1=12,v2=24,d=1;\nreturn (2*d)/(d/v1+d/v2);"
+  },
+  {
+    "id": "ACT-M-V4I04",
+    "domain": "Integrating Essential Skills",
+    "subskill": "probability without replacement",
+    "difficulty": "hard",
+    "prompt": "A quiz bowl team has 4 seniors and 6 juniors and no other members. Two different members of the team are selected at random, one after the other, to answer a question. What is the probability that both members selected are seniors?",
+    "choices": [
+      "3/25",
+      "2/15",
+      "4/25",
+      "2/5"
+    ],
+    "correct_answer": "2/15",
+    "explanation": "The first member selected is a senior with probability 4/10. That senior is then no longer available, so the second is a senior with probability 3/9. The product is (4/10)(3/9) = 2/15. Treating the two selections as independent gives (4/10)(4/10) = 4/25. Reducing the numerator but not the denominator gives (4/10)(3/10) = 3/25. The probability that only the first selection is a senior is 4/10 = 2/5.",
+    "solve": "const r=4,b=6;\nconst n=r+b;\nreturn (r/n)*((r-1)/(n-1));"
+  },
+  {
+    "id": "ACT-M-V4I05",
+    "domain": "Integrating Essential Skills",
+    "subskill": "fractions of a changing remainder",
+    "difficulty": "medium",
+    "prompt": "Marcus spent 1/3 of his savings on a bicycle and then spent 1/4 of what was left on a helmet. He has $90 remaining. How many dollars did he have in savings before these purchases?",
+    "choices": [
+      "135",
+      "180",
+      "216",
+      "270"
+    ],
+    "correct_answer": "180",
+    "explanation": "After the bicycle he has 2/3 of his savings, and after the helmet he has 3/4 of that, so he keeps (2/3)(3/4) = 1/2. Then 90 is half the original amount and the original is 180. Taking both fractions off the original amount, 1 - 1/3 - 1/4 = 5/12, gives 90(12/5) = 216. Applying only the bicycle's 1/3 gives 90/(2/3) = 135. Tripling the remaining 90 gives 270.",
+    "solve": "const left=90;\nconst frac=(2/3)*(3/4);\nreturn left/frac;"
+  },
+  {
+    "id": "ACT-M-V4I06",
+    "domain": "Integrating Essential Skills",
+    "subskill": "a ratio that changes when members join",
+    "difficulty": "hard",
+    "prompt": "At an animal shelter the ratio of cats to dogs is 5:3. After 12 more dogs arrive and no animals leave, the ratio of cats to dogs is 5:4. How many cats are at the shelter?",
+    "choices": [
+      "12",
+      "36",
+      "60",
+      "108"
+    ],
+    "correct_answer": "60",
+    "explanation": "Let the original counts be 5k cats and 3k dogs. Then 5k/(3k + 12) = 5/4, so 20k = 15k + 60 and k = 12, making the number of cats 5(12) = 60. The multiplier k itself is 12. The original number of dogs, 3(12), is 36. The shelter's total after the 12 dogs arrive, 60 + 48, is 108.",
+    "solve": "let k=null;\nfor(let t=1;t<=1000;t++){if(Math.abs(5*t/(3*t+12)-5/4)<1e-12){k=t;break;}}\nif(k===null)throw new Error('no k');\nreturn 5*k;"
+  },
+  {
+    "id": "ACT-M-V4I07",
+    "domain": "Integrating Essential Skills",
+    "subskill": "means before and after a removal",
+    "difficulty": "medium",
+    "prompt": "The average (arithmetic mean) of 5 numbers is 12. One of the 5 numbers is removed, and the average of the 4 numbers that remain is 13. What is the value of the number that was removed?",
+    "choices": [
+      "8",
+      "11",
+      "12",
+      "25"
+    ],
+    "correct_answer": "8",
+    "explanation": "The five numbers total 5(12) = 60 and the four that remain total 4(13) = 52, so the number removed is 60 - 52 = 8. Reasoning that the removed value must sit one unit below the old mean gives 11. Assuming the removed number equals the original mean gives 12. Adding the two averages gives 25.",
+    "solve": "return 5*12-4*13;"
+  },
+  {
+    "id": "ACT-M-V4I08",
+    "domain": "Integrating Essential Skills",
+    "subskill": "rounding up in a purchasing context",
+    "difficulty": "medium",
+    "prompt": "A bakery buys eggs only in cartons of 18 eggs. Each cake it bakes uses 5 eggs, and the bakery has to bake 43 cakes. What is the smallest number of cartons of eggs the bakery must buy?",
+    "choices": [
+      "3",
+      "11",
+      "12",
+      "215"
+    ],
+    "correct_answer": "12",
+    "explanation": "The cakes need 43(5) = 215 eggs, and 215/18 is about 11.9. Eggs come only in whole cartons, so 11 cartons hold 198 eggs, which is not enough, and 12 cartons are needed. Dropping the fractional part gives 11. Dividing 43 by 18 without accounting for the 5 eggs per cake gives about 2.4, or 3 cartons. The total number of eggs is 215.",
+    "solve": "const cakes=43,per=5,carton=18;\nreturn Math.ceil(cakes*per/carton);"
+  },
+  {
+    "id": "ACT-M-V4I09",
+    "domain": "Integrating Essential Skills",
+    "subskill": "mixed units in a unit-price calculation",
+    "difficulty": "medium",
+    "prompt": "A hardware store sells rope for $0.85 per foot. What is the cost, in dollars, of 4 yards 2 feet of rope?",
+    "choices": [
+      "5.10",
+      "8.50",
+      "10.20",
+      "11.90"
+    ],
+    "correct_answer": "11.90",
+    "explanation": "4 yards 2 feet is 4(3) + 2 = 14 feet, and 14(0.85) = 11.90. Adding the two numbers as though both were feet, 4 + 2 = 6, gives 5.10. Using only the 4 yards, 12 feet, gives 10.20. Reading the length as 4 feet 2 yards, which is 10 feet, gives 8.50.",
+    "solve": "const yd=4,ft=2,rate=0.85;\nreturn (yd*3+ft)*rate;"
+  },
+  {
+    "id": "ACT-M-V4I10",
+    "domain": "Integrating Essential Skills",
+    "subskill": "simple interest over part of a year",
+    "difficulty": "medium",
+    "prompt": "An account pays 5% simple annual interest and does not compound. How much interest, in dollars, does a deposit of $3,600 earn in 9 months?",
+    "choices": [
+      "15",
+      "135",
+      "180",
+      "1620"
+    ],
+    "correct_answer": "135",
+    "explanation": "Nine months is 9/12 = 0.75 of a year, so the interest is 3600(0.05)(0.75) = 135. Charging a full year of interest gives 180. Reading 9 months as 9 years gives 3600(0.05)(9) = 1620. Taking one month's interest, 3600(0.05)/12, gives 15.",
+    "solve": "const P=3600,r=0.05,months=9;\nreturn P*r*(months/12);"
+  },
+  {
+    "id": "ACT-M-V4I11",
+    "domain": "Integrating Essential Skills",
+    "subskill": "repeated doubling over a time span",
+    "difficulty": "medium",
+    "prompt": "The area of a pond covered by algae doubles every 3 days. Today the algae cover 800 square feet of the pond. If this pattern continues, how many square feet will the algae cover 15 days from today?",
+    "choices": [
+      "4000",
+      "8000",
+      "12800",
+      "25600"
+    ],
+    "correct_answer": "25600",
+    "explanation": "Fifteen days is 15/3 = 5 doubling periods, so the area is 800(2^5) = 800(32) = 25,600 square feet. Counting only 4 periods gives 800(16) = 12,800. Multiplying by the number of periods instead of doubling gives 800(5) = 4,000, and doubling that once gives 8,000.",
+    "solve": "const start=800,everyDays=3,days=15;\nconst periods=days/everyDays;\nreturn start*Math.pow(2,periods);"
+  },
+  {
+    "id": "ACT-M-V4I12",
+    "domain": "Integrating Essential Skills",
+    "subskill": "rate scaled in two directions at once",
+    "difficulty": "medium",
+    "prompt": "Three identical machines working together produce 240 parts in 4 hours. Each machine works at that same constant rate. How many parts will 5 of these machines produce in 6 hours?",
+    "choices": [
+      "216",
+      "360",
+      "400",
+      "600"
+    ],
+    "correct_answer": "600",
+    "explanation": "One machine makes 240/(3*4) = 20 parts per hour, so 5 machines in 6 hours make 5(6)(20) = 600. Scaling the time but not the number of machines gives (240/4)(6) = 360. Scaling the machines but not the time gives (240/3)(5) = 400. Inverting both scale factors, 240(3/5)(6/4), gives 216.",
+    "solve": "const parts=240,m0=3,h0=4,m1=5,h1=6;\nconst per=parts/(m0*h0);\nreturn per*m1*h1;"
+  },
+  {
+    "id": "ACT-M-V4I13",
+    "domain": "Integrating Essential Skills",
+    "subskill": "median from a frequency table",
+    "difficulty": "hard",
+    "prompt": "Each student in one class reported the number of siblings he or she has, and the results are summarized in the table below. What is the median number of siblings reported?",
+    "graphic": {
+      "type": "table",
+      "rowLabels": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4"
+      ],
+      "colLabels": [
+        "Number of students"
+      ],
+      "cells": [
+        [
+          7
+        ],
+        [
+          11
+        ],
+        [
+          6
+        ],
+        [
+          9
+        ],
+        [
+          3
+        ]
+      ],
+      "caption": "Table 1. Number of siblings reported by the students in a class."
+    },
+    "choices": [
+      "1",
+      "1.5",
+      "1.72",
+      "2"
+    ],
+    "correct_answer": "1.5",
+    "explanation": "The table describes 7 + 11 + 6 + 9 + 3 = 36 students, so the median is the average of the 18th and 19th values in order. The first 7 values are 0 and values 8 through 18 are 1, so the 18th value is 1; values 19 through 24 are 2, so the 19th value is 2. The median is (1 + 2)/2 = 1.5. Taking the middle of the sibling counts listed in the left column gives 2. The mode, 1, is the most frequent count, not the median. The mean, 62/36, is about 1.72.",
+    "solve": "const vals=[0,1,2,3,4],f=[7,11,6,9,3];\nconst all=[];\nvals.forEach((v,i)=>{for(let k=0;k<f[i];k++)all.push(v);});\nall.sort((a,b)=>a-b);\nconst n=all.length;\nreturn n%2?all[(n-1)/2]:(all[n/2-1]+all[n/2])/2;"
+  },
+  {
+    "id": "ACT-M-V4I14",
+    "domain": "Integrating Essential Skills",
+    "subskill": "a conditional percent from a two-way table",
+    "difficulty": "medium",
+    "prompt": "Every student in Grades 11 and 12 at a school chose exactly one elective, and the table below shows the results. Of the students who chose music, what percent are in Grade 12? (Round to the nearest tenth of a percent.)",
+    "graphic": {
+      "type": "table",
+      "rowLabels": [
+        "Grade 11",
+        "Grade 12"
+      ],
+      "colLabels": [
+        "Art",
+        "Music",
+        "Drama"
+      ],
+      "cells": [
+        [
+          24,
+          30,
+          26
+        ],
+        [
+          21,
+          15,
+          24
+        ]
+      ],
+      "caption": "Table 1. Elective chosen, by grade."
+    },
+    "choices": [
+      "10.7%",
+      "25.0%",
+      "33.3%",
+      "66.7%"
+    ],
+    "correct_answer": "33.3%",
+    "explanation": "The students who chose music number 30 + 15 = 45, and 15 of them are in Grade 12, so the percent is 15/45 = 33.3%. Dividing by the Grade 12 total of 60 instead gives 25.0%. Dividing by all 140 students gives 10.7%. Reporting the Grade 11 share of the music students, 30/45, gives 66.7%.",
+    "solve": "const g11=[24,30,26],g12=[21,15,24];\nconst music=g11[1]+g12[1];\nreturn (Math.round(1000*g12[1]/music)/10)+'%';"
+  },
+  {
+    "id": "ACT-M-V4I15",
+    "domain": "Integrating Essential Skills",
+    "subskill": "percent discount",
+    "difficulty": "easy",
+    "prompt": "A backpack regularly priced at $60 is on sale for 15% off the regular price. What is the sale price, in dollars?",
+    "choices": [
+      "9",
+      "45",
+      "51",
+      "69"
+    ],
+    "correct_answer": "51",
+    "explanation": "The discount is 0.15(60) = 9, so the sale price is 60 - 9 = 51. Reporting the discount itself gives 9. Subtracting 15 dollars rather than 15 percent gives 45. Adding 15% to the regular price instead of subtracting gives 69.",
+    "solve": "const p=60,d=0.15;\nreturn p*(1-d);"
+  },
+  {
+    "id": "ACT-M-V4I16",
+    "domain": "Integrating Essential Skills",
+    "subskill": "a rate with a unit change in the answer",
+    "difficulty": "medium",
+    "prompt": "A printer prints 90 pages every 4 minutes. Working at this rate without stopping, how many hours will the printer take to print 8,100 pages?",
+    "choices": [
+      "1.5",
+      "6",
+      "22.5",
+      "360"
+    ],
+    "correct_answer": "6",
+    "explanation": "The printer needs 8100/90 = 90 sets of 4 minutes, or 360 minutes, and 360/60 = 6 hours. Leaving the answer in minutes gives 360. Reading the rate as 90 pages per minute gives 90 minutes, or 1.5 hours. Dividing the pages by both 4 and 90, 8100/(4*90), gives 22.5.",
+    "solve": "const pages=8100,per=90,mins=4;\nreturn (pages/per)*mins/60;"
+  }
+]

@@ -39,7 +39,25 @@ export function shaOfFile(path) {
 /** Family for a task, mirroring familyForTask() in bank-qc.ts via the shared
  *  contract. SAT is decided by section, TOEFL by task. */
 export function familyFor(task, family, section) {
-  if (family === 'sat') return section === 'math' ? 'mc_stem_source' : 'mc_hidden_source'
+  /*
+   * MATHS IS DECIDED BY SECTION, NOT BY FAMILY — fixed 2026-09-04.
+   *
+   * This read `if (family === 'sat')`, so only SAT maths resolved to
+   * mc_stem_source. ACT, ISEE and SSAT maths fell through to the task map,
+   * missed it (their rows carry task 'multiple_choice'), and defaulted to
+   * mc_hidden_source — which requires an `elimination` stage. Elimination
+   * is a probe for "can you reject an option with the SOURCE hidden", and a
+   * maths item's source is its stem: there is nothing to hide. So the gate
+   * demanded, of every non-SAT maths batch, a stage that cannot be run on
+   * it, and would have refused every one. Caught when act-math-v4gi and
+   * isee-math-s8 were gated with all four mc_stem_source stages recorded
+   * and passing.
+   *
+   * The rule that is actually true: the maths stem IS the source, whoever
+   * writes the exam.
+   */
+  if (section === 'math') return 'mc_stem_source'
+  if (family === 'sat') return 'mc_hidden_source'
   return contract.taskFamily[task] ?? 'mc_hidden_source'
 }
 

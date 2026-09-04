@@ -1,0 +1,410 @@
+[
+  {
+    "id": "II2-01",
+    "domain": "Information and Ideas",
+    "subskill": "Central Ideas and Details",
+    "difficulty": "medium",
+    "topic_tag": "archaeology",
+    "passage": "A shell midden beside an estuary contains oyster shells whose average size falls sharply through its upper layers, a pattern usually read as overharvesting by a growing settlement. Sediment cores from the estuary, however, show that the channel silted in over exactly those centuries, and oysters raised in silt-laden water reach smaller adult sizes wherever they have been measured. The midden's shells also become no less numerous as they shrink: the same number of animals was brought back each season, and each animal was smaller. Middens on nearby channels that did not silt hold shells of unchanged size through the same centuries.",
+    "prompt": "Which choice best states the main idea of the text?",
+    "choices": [
+      "The steady number of shells through the midden's upper layers shows that the settlement stopped growing during the centuries the channel silted in.",
+      "Silt entering the estuary reduced the size the oysters reached during the centuries the midden was accumulating.",
+      "The size decline can be attributed to the estuary only if the intensity of harvesting held steady, and the midden's shells leave that question open.",
+      "Oysters taken from silt-laden water were of poorer quality, which led the settlement to rely increasingly on other estuary species."
+    ],
+    "correct_answer": "Silt entering the estuary reduced the size the oysters reached during the centuries the midden was accumulating.",
+    "explanation": "The text supplies a cause outside the settlement — the channel \"silted in over exactly those centuries,\" and oysters in silty water \"reach smaller adult sizes\" — and then closes off the harvesting explanation twice over: the shells \"become no less numerous as they shrink,\" and middens on channels that did not silt \"hold shells of unchanged size.\" Saying the settlement \"stopped growing\" misreads those constant shell counts, which measure how much was taken, not how many people took it. The claim that the shells \"leave that question open\" names the one question they settle. And nothing in the text mentions \"other estuary species\" or the oysters' desirability."
+  },
+  {
+    "id": "II2-02",
+    "domain": "Information and Ideas",
+    "subskill": "Central Ideas and Details",
+    "difficulty": "hard",
+    "topic_tag": "palaeoclimate",
+    "passage": "Tree rings from a mountain range record a cool century that lake sediments in the same valleys do not, a disagreement often read as a failure of one archive or the other. But the rings come from trees at the upper treeline, where growth is limited by summer warmth alone, while the lake record is dominated by the thickness of layers laid down in the spring meltwater pulse, which follows winter snowfall. The two archives were never registering the same season.",
+    "prompt": "Which choice best states the main idea of the text?",
+    "choices": [
+      "The two archives agree once the lake layers are read as a record of summer melt rather than of the previous winter's snowfall.",
+      "Trees at the treeline and lakes fed by meltwater take up a climate signal at different rates, so a cool century reaches one archive later than the other.",
+      "The two archives disagree because each registers a different season, so both can be recording their own signal correctly.",
+      "The cool century recorded by the rings was confined to the treeline, where summer warmth is scarcest, and did not extend to the valley floors."
+    ],
+    "correct_answer": "The two archives disagree because each registers a different season, so both can be recording their own signal correctly.",
+    "explanation": "The text names what the two archives measure — treeline growth \"limited by summer warmth alone,\" lake layers laid down in a meltwater pulse \"which follows winter snowfall\" — and concludes that they \"were never registering the same season.\" Reading the lake layers as a record of \"summer melt\" reverses the text, which ties the pulse to the preceding winter. A difference in the rate at which a signal is taken up would make the cool century arrive late in one archive rather than absent from it, and the text describes no such lag. And a cool century \"confined to the treeline\" would explain the lake record only by leaving the valleys warm, which the text never suggests; it locates the difference in season, not in altitude."
+  },
+  {
+    "id": "II2-03",
+    "domain": "Information and Ideas",
+    "subskill": "Central Ideas and Details",
+    "difficulty": "hard",
+    "topic_tag": "materials science",
+    "passage": "A copper alloy cast for bells at a group of foundries becomes markedly more resistant to cracking after about 1450, a change credited to a new molding practice recorded in the foundries' account books. Microscopy tells a narrower story: the later bells' finer grain structure appears only within a few millimeters of the outer surface, where a mold's chill would act, and their interiors match the earlier bells throughout. Cracks in bells of this shape initiate at the surface and travel inward.",
+    "prompt": "Which choice best states the main idea of the text?",
+    "choices": [
+      "The molding practice changed the metal only within a few millimeters of the surface, which is where cracking in these bells begins.",
+      "The microscopy locates the change at the bells' surface, while the cracks that destroy such bells begin in the interior and work outward.",
+      "The finer grain of the later bells reaches deep enough into the metal to account for the interiors' resistance to cracking.",
+      "The account books describe a practice whose effect the microscopy finds in the bells' interiors rather than at their surface."
+    ],
+    "correct_answer": "The molding practice changed the metal only within a few millimeters of the surface, which is where cracking in these bells begins.",
+    "explanation": "Two facts have to be joined: the microscopy confines the change to \"a few millimeters of the outer surface,\" and the last sentence says cracks \"initiate at the surface and travel inward.\" Together they make a shallow change sufficient. Putting the cracks in the interior reverses that sentence. Saying the finer grain \"reaches deep enough into the metal\" contradicts interiors that \"match the earlier bells throughout,\" which is also why nothing can be credited to \"the interiors' resistance.\" And locating the practice's effect \"in the bells' interiors rather than at their surface\" inverts the one thing the microscopy establishes."
+  },
+  {
+    "id": "II2-04",
+    "domain": "Information and Ideas",
+    "subskill": "Central Ideas and Details",
+    "difficulty": "medium",
+    "topic_tag": "history of measurement",
+    "passage": "Two neighboring towns kept grain measures of the same name, and surviving vessels show that the measures differed by about a seventh. Historians have often blamed careless copying of a shared standard. The towns' own ordinances suggest otherwise: one defined the measure struck level with a rod, the other heaped, and each specified the rod's shape and how it was to be passed. A heaped measure of the form described exceeds a leveled one by close to a seventh.",
+    "prompt": "Which choice best states the main idea of the text?",
+    "choices": [
+      "Each town was reproducing its own standard accurately; the vessels differ because the towns' rules for filling them differed.",
+      "The two towns worked to one filling rule, so the difference between their vessels records how unevenly the shared standard was copied.",
+      "The towns' ordinances define the same quantity of grain, and the difference of a seventh follows from the different striking rods they specify.",
+      "One town's ordinance defines a measure a seventh larger than its neighbor's, and the surviving vessels record that difference faithfully."
+    ],
+    "correct_answer": "Each town was reproducing its own standard accurately; the vessels differ because the towns' rules for filling them differed.",
+    "explanation": "The ordinances describe two different filling rules, and the arithmetic makes them sufficient: a heaped measure of that form \"exceeds a leveled one by close to a seventh,\" which is the observed gap. Nothing is left for careless copying to explain, so a shared filling rule and uneven copies is the reading the text sets aside. The difference does not follow \"from the different striking rods,\" since the rods serve the level-and-heaped rules the ordinances lay down. And the ordinances do not \"define a measure a seventh larger\": they define how each vessel was to be filled, and the size difference is a consequence of that."
+  },
+  {
+    "id": "II2-05",
+    "domain": "Information and Ideas",
+    "subskill": "Central Ideas and Details",
+    "difficulty": "medium",
+    "topic_tag": "archaeology",
+    "passage": "Obsidian tools at an inland site come overwhelmingly from one distant source, which excavators cite as evidence of a long-distance exchange partnership. The tools from that source, however, are almost all exhausted cores and worn-down flakes, whereas the small quantity of obsidian from three nearer sources arrives as unworked nodules. Material acquired through exchange in this period is received unworked, since a partner sends stone, not stubs; material carried by a traveling party is used up along the way.",
+    "prompt": "Which choice best states the main idea of the text?",
+    "choices": [
+      "The obsidian from the three nearer sources came to the site through exchange, and the distant obsidian came the same way.",
+      "The distant obsidian reached the site with people who had carried it from that source, and not through an exchange partnership.",
+      "The distant source supplied the site through exchange, and its stone arrived worn because it had passed through many hands before reaching the site.",
+      "The three nearer sources were worked by traveling parties from the site, while the distant source was reached through an exchange partnership."
+    ],
+    "correct_answer": "The distant obsidian reached the site with people who had carried it from that source, and not through an exchange partnership.",
+    "explanation": "The text gives a rule for telling two histories apart — exchanged stone is \"received unworked,\" since \"a partner sends stone, not stubs,\" while carried stone \"is used up along the way\" — and reports the distant material as \"exhausted cores and worn-down flakes.\" Only the traveling history fits that condition, so it cannot have come \"the same way\" as the unworked nodules from the nearer sources. Wear accumulated \"through many hands\" is precisely what the text's rule excludes, since each partner would still be sending stone rather than stubs. And it is the nearer sources whose stone arrives unworked, so assigning them to traveling parties and the distant source to exchange reverses the evidence."
+  },
+  {
+    "id": "II2-06",
+    "domain": "Information and Ideas",
+    "subskill": "Central Ideas and Details",
+    "difficulty": "hard",
+    "topic_tag": "history of measurement",
+    "passage": "Ship logs give sea-surface temperatures back to the 1850s, and the series shows a pronounced warm step in the 1940s that some read as a real ocean event. Records of instrument type complicate this: through those years the fleet shifted rapidly from uninsulated canvas buckets, which lose heat while being hauled, to intake measurements taken in a warm engine room. The shift is documented for most vessels but not all, and each instrument's bias has been estimated rather than measured.",
+    "prompt": "Which choice best states the main idea of the text?",
+    "choices": [
+      "The 1940s step reflects a change in how the temperatures were taken, but how much of it does so cannot be fixed from the surviving records.",
+      "The 1940s step reflects a real warming of the ocean, though the surviving records cannot establish how large that warming was.",
+      "The bucket and intake methods returned the same readings on the vessels that used both, which leaves the 1940s step to be explained by the ocean.",
+      "The fleet's shift from buckets to engine-room intakes came after the 1940s step and so cannot have produced it."
+    ],
+    "correct_answer": "The 1940s step reflects a change in how the temperatures were taken, but how much of it does so cannot be fixed from the surviving records.",
+    "explanation": "The text builds a mechanism — buckets that \"lose heat while being hauled\" giving way to readings taken \"in a warm engine room\" — and then limits what can be concluded from it, since the shift is documented \"for most vessels but not all\" and each bias has been \"estimated rather than measured.\" Both halves are needed, and both attach to the method, not to the ocean, so the reading that keeps the step real inverts the text's point. The text reports no vessel comparison and no agreement between the two methods; the whole difficulty is that the methods differ. And the shift runs \"through those years,\" not after them."
+  },
+  {
+    "id": "II2-07",
+    "domain": "Information and Ideas",
+    "subskill": "Command of Evidence (textual)",
+    "difficulty": "medium",
+    "topic_tag": "archaeology",
+    "passage": "A stone building at a highland site has long been called a granary because its floor stood on piers. An archaeologist proposes instead that it stored salt: the nearest springs are brine, and a raised floor also protects a cargo that draws water from the air. The building has yielded no salt residue, which she blames on rain.",
+    "prompt": "Which finding, if true, would most strongly support the archaeologist's proposal?",
+    "choices": [
+      "Sediment from the building's open floor has the same chloride content as the soil outside it.",
+      "Sediment sealed beneath the building's collapsed roof, where rain could not reach it, has a chloride content many times that of the soil outside.",
+      "The building's floor timbers show the warping typical of storage kept dry by ventilation from below.",
+      "Brine from the springs nearest the site was carried in sealed jars to a settlement on the far side of the valley."
+    ],
+    "correct_answer": "Sediment sealed beneath the building's collapsed roof, where rain could not reach it, has a chloride content many times that of the soil outside.",
+    "explanation": "The proposal's weak point is the missing residue, and the archaeologist has said why an exposed floor would keep none: rain dissolves it away. Sediment \"where rain could not reach it\" is therefore the one place her account predicts salt would survive, and a chloride content \"many times that of the soil outside\" is that prediction met. Sediment from \"the building's open floor\" matching the soil outside is what her excuse already anticipates, so it adds nothing. Timbers warped by storage \"kept dry by ventilation from below\" fit the granary reading she is arguing against. And brine carried \"to a settlement on the far side of the valley\" concerns a different building."
+  },
+  {
+    "id": "II2-08",
+    "domain": "Information and Ideas",
+    "subskill": "Command of Evidence (textual)",
+    "difficulty": "hard",
+    "topic_tag": "palaeoclimate",
+    "passage": "Pollen cores from a lowland basin show oak giving way to grass about four thousand years ago. One team attributes the change to a drying climate. A second team attributes it to clearance by farmers. The first team points out that a drier forest burns readily without anyone setting fire to it, so the charcoal that rises through the same interval cannot by itself separate the two accounts.",
+    "prompt": "Which finding, if true, would most strongly support the second team's account?",
+    "choices": [
+      "Lake levels in basins across the region fell by several meters over the same few centuries.",
+      "Charcoal fragments through the interval come from oak rather than from the grass that replaced it.",
+      "The charcoal rise is confined to a few centimeters of core and is accompanied by pollen from a cereal that does not grow wild in the basin.",
+      "Granting that one core could mislead, three separate cores taken across the basin still place the oak decline at the same depth."
+    ],
+    "correct_answer": "The charcoal rise is confined to a few centimeters of core and is accompanied by pollen from a cereal that does not grow wild in the basin.",
+    "explanation": "A cereal \"that does not grow wild in the basin\" can only have arrived with people who planted it, so charcoal in the same few centimeters is fire that came with farming — which is what the first team's objection said charcoal alone could not show. Lake levels that \"fell by several meters over the same few centuries\" bear on the climate and support the drying account. Charcoal from oak \"rather than from the grass that replaced it\" is what a forest fire of any origin would leave. And an oak decline placed \"at the same depth\" by three separate cores confirms that the change happened, not what caused it."
+  },
+  {
+    "id": "II2-09",
+    "domain": "Information and Ideas",
+    "subskill": "Command of Evidence (textual)",
+    "difficulty": "hard",
+    "topic_tag": "materials science",
+    "passage": "Ancient marine concrete survives in seawater far better than modern Portland concrete, and a materials scientist attributes this to a rare mineral that grows in the ancient mortar as seawater percolates through it. Skeptics answer that the surviving harbor blocks are also unusually massive, and that mass by itself slows seawater's reach into a structure's interior. On their account the mineral is a byproduct of survival rather than its cause.",
+    "prompt": "Which finding, if true, would most strongly support the materials scientist's account?",
+    "choices": [
+      "Modern blocks cast to the dimensions of the ancient ones outlast thin modern specimens in seawater by a wide margin.",
+      "Ancient blocks recovered from the harbor contain the mineral at the same concentration whatever their size.",
+      "Thin samples of the ancient mortar, no more massive than modern specimens, outlast them in seawater and contain the mineral.",
+      "Even when modern Portland concrete is allowed to cure in seawater, it still develops no mineral of this kind and decays at its usual rate."
+    ],
+    "correct_answer": "Thin samples of the ancient mortar, no more massive than modern specimens, outlast them in seawater and contain the mineral.",
+    "explanation": "The question is whether mass or the mineral does the work, so the finding that settles it holds mass fixed: samples \"no more massive than modern specimens\" that nevertheless outlast them, and that contain the mineral, leave the skeptics' factor with nothing to explain. Modern blocks \"cast to the dimensions of the ancient ones\" outlasting thin ones is the same test run the other way, and it supports the skeptics. A mineral present \"whatever their size\" says where the mineral is, not what it does. And modern concrete that \"develops no mineral of this kind\" differs from the ancient mortar in more ways than one, so its decay cannot be laid to the mineral's absence alone."
+  },
+  {
+    "id": "II2-10",
+    "domain": "Information and Ideas",
+    "subskill": "Command of Evidence (textual)",
+    "difficulty": "medium",
+    "topic_tag": "history of measurement",
+    "passage": "A treatise of 1680 gives a nearly correct value for the length of a degree of the meridian, decades before the surveys usually credited with establishing it. One historian argues the author had seen unpublished results of a foreign expedition. Another argues he measured it himself.",
+    "prompt": "Which finding, if true, would most strongly support the second historian's account?",
+    "choices": [
+      "The treatise's figure agrees with the foreign expedition's to the last digit either of them gives.",
+      "The author's surviving papers include a copy of the foreign expedition's baseline measurement.",
+      "A degree of the meridian was first measured to the precision of the treatise's figure only after 1700.",
+      "The treatise's figure differs from the foreign expedition's by more than either differs from the modern value."
+    ],
+    "correct_answer": "The treatise's figure differs from the foreign expedition's by more than either differs from the modern value.",
+    "explanation": "A copied number would match its source. A figure that \"differs from the foreign expedition's by more than either differs from the modern value\" cannot have been taken from it, which leaves the author's own measurement. Agreement \"to the last digit either of them gives\" is the opposite finding and supports the first historian, as does a copy of the expedition's \"baseline measurement\" among his papers. And the claim that such precision was first reached \"only after 1700\" would make the treatise's figure impossible on either account rather than favoring one of them."
+  },
+  {
+    "id": "II2-11",
+    "domain": "Information and Ideas",
+    "subskill": "Command of Evidence (textual)",
+    "difficulty": "hard",
+    "topic_tag": "archaeology",
+    "passage": "Skeletons from a cemetery show high rates of a bone lesion associated with childhood malnutrition, and the excavators infer recurrent famine. A bioarchaeologist objects that the lesion is visible only in individuals who survived childhood long enough for it to heal and be recorded, so a community in which few children survived hardship would leave adults with fewer such lesions, not more.",
+    "prompt": "Which finding, if true, would most strongly support the bioarchaeologist's objection?",
+    "choices": [
+      "The share of adults carrying the lesion rose steadily across the three centuries the cemetery was in use.",
+      "Accepting that other stresses can mark bone, this lesion still forms only after severe hunger and stays visible for life.",
+      "Individuals at this cemetery who carry the lesion died on average later in life than those who do not.",
+      "A nearby cemetery whose community is documented as having suffered severe famine shows the lesion in a smaller share of its adults than this one does."
+    ],
+    "correct_answer": "A nearby cemetery whose community is documented as having suffered severe famine shows the lesion in a smaller share of its adults than this one does.",
+    "explanation": "The objection predicts that the worse the hardship, the fewer marked adults survive to be counted. A documented famine community showing the lesion \"in a smaller share of its adults\" is that prediction met and the excavators' reading contradicted; A share that \"rose steadily across the three centuries\" tracks worsening conditions in the way the excavators read the evidence. A lesion that \"forms only after severe hunger\" and \"stays visible for life\" is a durable record of hunger, which supports reading the rate straightforwardly. And carriers dying \"later in life than those who do not\" bears on the health of survivors rather than on who survived to be recorded."
+  },
+  {
+    "id": "II2-12",
+    "domain": "Information and Ideas",
+    "subskill": "Command of Evidence (textual)",
+    "difficulty": "medium",
+    "topic_tag": "palaeoclimate",
+    "passage": "Ice from a high plateau contains dust layers whose thickness has been used to reconstruct the strength of past windstorms. A glaciologist cautions that the plateau's ice thins with depth under its own weight, so an old layer and a young one deposited equally thick will not be measured equally thick now. She proposes that the reconstruction be redone with a correction for this flow thinning applied before any storm strengths are read off.",
+    "prompt": "Which finding, if true, would most strongly support the glaciologist's proposal?",
+    "choices": [
+      "Dust from one documented storm, buried at several depths where the ice folds on itself, measures thinner the deeper it lies.",
+      "The dust layers used in the reconstruction all lie within the upper third of the core.",
+      "Storms of recorded strength over the past fifty years left dust layers whose thickness matches their measured wind speeds.",
+      "The plateau's ice is three times thicker at its center, where the core was drilled, than at its margins."
+    ],
+    "correct_answer": "Dust from one documented storm, buried at several depths where the ice folds on itself, measures thinner the deeper it lies.",
+    "explanation": "One storm laid down one thickness of dust, so if that dust now \"measures thinner the deeper it lies,\" the difference cannot be in the storm and must be in the ice — the glaciologist's mechanism observed with the wind held constant. Dust layers lying \"within the upper third of the core\" sit where the ice has borne the least weight, which is where the correction would matter least. Layers whose thickness \"matches their measured wind speeds\" over fifty years validate the uncorrected reconstruction across a span too shallow for thinning to have acted. And how much thicker the ice is at its center than at its margins says nothing about how a buried layer is measured."
+  },
+  {
+    "id": "II2-13",
+    "domain": "Information and Ideas",
+    "subskill": "Command of Evidence (quantitative)",
+    "difficulty": "medium",
+    "topic_tag": "archaeology",
+    "passage": "At four quarries, some stone blanks were finished into tools and others abandoned where they were struck. At the first quarry 22 percent of blanks were abandoned and its finished tools are found on average 8 kilometers away. The second quarry gives 34 percent and 21 kilometers, the third 47 percent and 39 kilometers, and the fourth 58 percent and 62 kilometers. The stone worked is the same at all four. An archaeologist argues that knappers culled doubtful blanks more strictly when a tool would have to be carried farther, since carrying a blank that later failed was wasted effort. The figures support her because ____",
+    "prompt": "Which choice most effectively uses data from the text to complete the text?",
+    "choices": [
+      "the abandonment rate rises with distance at every step, from 22 percent at 8 kilometers to 58 percent at 62 kilometers.",
+      "the fourth quarry's abandonment rate is not quite three times the first's, though the distance its tools traveled is nearly eight times as great.",
+      "the two nearest quarries have abandonment rates below 35 percent, while the two farthest have rates above 45 percent.",
+      "the abandonment rate at the second quarry, 34 percent, lies closer to the third quarry's rate than to the first's."
+    ],
+    "correct_answer": "the abandonment rate rises with distance at every step, from 22 percent at 8 kilometers to 58 percent at 62 kilometers.",
+    "explanation": "The argument predicts stricter culling wherever the carry is longer, and the statement covering all four quarries in order — the rate \"rises with distance at every step, from 22 percent at 8 kilometers to 58 percent at 62 kilometers\" — is the full form of that prediction. That one rate is \"not quite three times the first's\" while the distance is \"nearly eight times as great\" is true, but it concerns proportionality, which the argument never claims and which would if anything work against it. Sorting the quarries into two pairs establishes less than the whole ordering does. And comparing 34 percent with the other rates leaves distance, the variable at issue, out of the comparison."
+  },
+  {
+    "id": "II2-14",
+    "domain": "Information and Ideas",
+    "subskill": "Command of Evidence (quantitative)",
+    "difficulty": "medium",
+    "topic_tag": "palaeoclimate",
+    "passage": "Pollen from a bog records a shrub that tolerates cold but not the competition of closed woodland. Across five intervals ordered from coldest and wettest to warmest and driest, the shrub's share of the pollen sum is 4 percent, 11 percent, 19 percent, 9 percent, and 3 percent. Each interval's pollen sum exceeds two thousand grains. A palaeoecologist argues that the shrub is held back by cold at one end of the range and crowded out by trees at the other, so its abundance should be greatest in the middle rather than at either extreme. The figures bear this out, since ____",
+    "prompt": "Which choice most effectively uses data from the text to complete the text?",
+    "choices": [
+      "the shrub stands at 11 percent at the second interval and 9 percent at the fourth, close to each other on either side of its highest value.",
+      "the shrub is more abundant at the third interval, 19 percent, than at the second, 11 percent, or the fourth, 9 percent.",
+      "the shrub's share falls from 19 percent to 9 percent and then to 3 percent as conditions warm and dry.",
+      "the shrub reaches 19 percent at the third interval and drops to 4 percent and 3 percent at the coldest and warmest intervals."
+    ],
+    "correct_answer": "the shrub reaches 19 percent at the third interval and drops to 4 percent and 3 percent at the coldest and warmest intervals.",
+    "explanation": "The prediction has two ends and a middle, so the supporting sentence has to reach both extremes: \"19 percent at the third interval\" against \"4 percent and 3 percent at the coldest and warmest intervals.\" Pairing 11 percent with 9 percent describes the shape either side of the peak but names neither extreme. Comparing the third interval only with the second and the fourth stays inside the range and so leaves both limits untested. And the fall \"from 19 percent to 9 percent and then to 3 percent\" documents the crowding-out half of the argument while saying nothing about the cold end."
+  },
+  {
+    "id": "II2-15",
+    "domain": "Information and Ideas",
+    "subskill": "Command of Evidence (quantitative)",
+    "difficulty": "medium",
+    "topic_tag": "materials science",
+    "passage": "Two annealing schedules were compared for a magnesium alloy. Under the slow schedule, tensile strength averaged 268 megapascals and elongation at failure 9.1 percent. Under the fast schedule, tensile strength averaged 271 megapascals and elongation 4.2 percent. A metallurgist concludes that the fast schedule buys almost nothing in strength while costing a great deal of ductility, and that a shop choosing it for the sake of throughput should not expect a stronger part. The measurements bear her out: ____",
+    "prompt": "Which choice most effectively uses data from the text to complete the text?",
+    "choices": [
+      "the slow schedule reached 268 megapascals with 9.1 percent elongation, and the fast schedule 271 megapascals with 4.2 percent.",
+      "elongation at failure fell by 4.9 percentage points under the fast schedule while tensile strength rose by more than 1 percent.",
+      "the fast schedule reached 271 megapascals against 268, a gain of about 1 percent, while its elongation was less than half the slow schedule's.",
+      "the slow schedule's elongation of 9.1 percent is more than twice the fast schedule's 4.2 percent."
+    ],
+    "correct_answer": "the fast schedule reached 271 megapascals against 268, a gain of about 1 percent, while its elongation was less than half the slow schedule's.",
+    "explanation": "The conclusion has two parts — a negligible strength gain and a large ductility loss — and only one sentence sizes both: a gain of \"about 1 percent\" set against an elongation \"less than half the slow schedule's.\" Listing all four averages reports the measurements without comparing them, so it supports nothing in particular. Saying strength \"rose by more than 1 percent\" presents the gain as a gain, which is the half of the conclusion the metallurgist is denying. And the elongation ratio on its own covers the cost while leaving the claim about strength unsupported."
+  },
+  {
+    "id": "II2-16",
+    "domain": "Information and Ideas",
+    "subskill": "Command of Evidence (quantitative)",
+    "difficulty": "hard",
+    "topic_tag": "history of measurement",
+    "passage": "In 1824 a metrologist checked four workshops' yardsticks against a national standard. All four worked in the same seasoned boxwood. The first workshop's sticks were on average 1.4 millimeters short, with 0.3 millimeters between its shortest and longest. The second's were 0.2 short with a spread of 2.9. The third's were 1.3 short with a spread of 2.7, and the fourth's 0.1 short with a spread of 0.4. He argued that copying a length consistently is a skill separate from hitting the standard, and that a workshop good at one need not be good at the other. His figures show this because ____",
+    "prompt": "Which choice most effectively uses data from the text to complete the text?",
+    "choices": [
+      "the fourth workshop was the closest to the standard, at 0.1 millimeters short, and also among the most consistent, with a spread of 0.4 millimeters.",
+      "the third workshop was among the least accurate, at 1.3 millimeters short, and among the least consistent, with a spread of 2.7 millimeters.",
+      "the first workshop was 1.4 millimeters short with a spread of 0.3, while the second was 0.2 short with a spread of 2.9.",
+      "the spreads run from 0.3 millimeters at the first workshop to 2.9 at the second, a range of more than two and a half millimeters."
+    ],
+    "correct_answer": "the first workshop was 1.4 millimeters short with a spread of 0.3, while the second was 0.2 short with a spread of 2.9.",
+    "explanation": "For the two skills to come apart, some workshop has to be good at one and bad at the other, and two must point opposite ways: 1.4 millimeters short with a spread of 0.3 beside 0.2 short with a spread of 2.9. A workshop that is both \"the closest to the standard\" and \"among the most consistent\" is what a single combined skill would also produce, and a workshop poor on both counts is the same case inverted; neither separates the skills. And reporting that \"the spreads run from 0.3 millimeters at the first workshop to 2.9 at the second\" describes the consistency column alone, which cannot show that consistency and accuracy vary independently of each other."
+  },
+  {
+    "id": "II2-17",
+    "domain": "Information and Ideas",
+    "subskill": "Command of Evidence (quantitative)",
+    "difficulty": "medium",
+    "topic_tag": "archaeology",
+    "passage": "Isotope values in tooth enamel indicate where a person spent childhood. Beside a trading town, 31 of 96 adults fall outside the local range. At a farming village 20 kilometers inland, 4 of 88 do, and at a second inland village, 6 of 71. A researcher argues that movement into the region was funneled through the town. The results support this in that ____",
+    "prompt": "Which choice most effectively uses data from the text to complete the text?",
+    "choices": [
+      "the two inland villages together yield 10 nonlocal individuals, fewer than a third of the 31 counted beside the town.",
+      "nonlocal values appear in roughly a third of the town's adults but in fewer than one in ten of the adults at each inland village.",
+      "nonlocal values appear in fewer than one in ten of the adults at each inland village, and the two villages differ by under five percentage points.",
+      "the town's 96 adults include 31 with nonlocal values, more than the 10 found among the 159 adults of the two villages together."
+    ],
+    "correct_answer": "nonlocal values appear in roughly a third of the town's adults but in fewer than one in ten of the adults at each inland village.",
+    "explanation": "The three samples are of different sizes, so the comparison that carries the argument is between shares: \"roughly a third\" of the town's adults against \"fewer than one in ten\" at each inland village. Setting 10 nonlocal individuals beside 31 compares raw counts drawn from unequal samples, and so does the count of 31 among 96 set against 10 among 159, which converts nothing. The remaining choice does give rates, but only for the two villages, and how alike the villages are says nothing about the town the argument is about."
+  },
+  {
+    "id": "II2-18",
+    "domain": "Information and Ideas",
+    "subskill": "Command of Evidence (quantitative)",
+    "difficulty": "hard",
+    "topic_tag": "palaeoclimate",
+    "passage": "A coral core yields two proxies, both read from the same annual bands: skeletal density, which responds mainly to water temperature, and a trace-metal ratio, which responds to temperature and salinity together. Across the twentieth century, density implies a warming of 0.8 degrees Celsius. The trace-metal ratio implies 1.6 degrees if salinity is held constant, and 0.9 degrees once the region's documented freshening is applied. An oceanographer argues that the two proxies agree once salinity is handled properly, and the figures bear her out: ____",
+    "prompt": "Which choice most effectively uses data from the text to complete the text?",
+    "choices": [
+      "density implies 0.8 degrees of warming while the trace-metal ratio implies 1.6 degrees, twice as much.",
+      "the trace-metal estimate rises from 0.9 degrees to 1.6 degrees when salinity is held constant, twice density's 0.8 degrees.",
+      "density's 0.8 degrees and the corrected trace-metal estimate of 0.9 degrees both fall well short of the uncorrected 1.6 degrees.",
+      "the trace-metal estimate falls from 1.6 degrees to 0.9 degrees once freshening is applied, within 0.1 degrees of density's 0.8."
+    ],
+    "correct_answer": "the trace-metal estimate falls from 1.6 degrees to 0.9 degrees once freshening is applied, within 0.1 degrees of density's 0.8.",
+    "explanation": "The claim is that the proxies agree once salinity is handled, so the sentence has to end on the corrected figure beside density's: 0.9 degrees against 0.8, \"within 0.1 degrees.\" Reporting 0.8 against 1.6 states the disagreement she is answering. Running the correction backwards, so that the estimate \"rises from 0.9 degrees to 1.6,\" makes the uncorrected number the destination and the corrected one the starting point. And noting that both smaller figures \"fall well short of the uncorrected 1.6\" is true, but it groups them by what they are not, which is a weaker relation than the tenth of a degree that separates them."
+  },
+  {
+    "id": "II2-19",
+    "domain": "Information and Ideas",
+    "subskill": "Inferences",
+    "difficulty": "medium",
+    "topic_tag": "materials science",
+    "passage": "The iron nails from one building fall into two groups: those with slag stringers along the shank and those with none. Slag marks bloomery iron, worked from a spongy mass. Nails without it match iron from a refining process that reached no workshop in the region until decades after the building's timbers were felled. It follows that the slag-free nails ____",
+    "prompt": "Which choice most logically completes the text?",
+    "choices": [
+      "were driven into the building at some point after its timbers had already been felled and raised.",
+      "came from the same workshop as the slag-bearing nails, from a different batch of the same bloomery iron.",
+      "were the earlier of the two groups, and the slag-bearing nails were driven in to replace them.",
+      "came from a refining process the region had taken up by the time the building's timbers were felled."
+    ],
+    "correct_answer": "were driven into the building at some point after its timbers had already been felled and raised.",
+    "explanation": "A nail cannot be made by a process that did not yet exist, and the text puts that process in the region only \"decades after the building's timbers were felled.\" The slag-free nails are therefore later than the timbers, which is all the dating supports. They cannot be \"the same bloomery iron,\" since slag is what marks bloomery iron and these have none. Being \"the earlier of the two groups\" puts them before the timbers rather than after. And a process \"the region had taken up by the time the building's timbers were felled\" contradicts the date the text gives outright."
+  },
+  {
+    "id": "II2-20",
+    "domain": "Information and Ideas",
+    "subskill": "Inferences",
+    "difficulty": "hard",
+    "topic_tag": "history of measurement",
+    "passage": "A city's foot was embodied in an iron bar set in the wall of its market hall, and between 1540 and 1700 the bar was recopied three times, each copy taken from the bar then in place. Surviving copies of each generation run longer than those of the generation before, by a fraction of a millimeter each time. Nothing indicates a deliberate change, and the copyists are recorded as following one procedure with one set of tools. The pattern indicates that the procedure ____",
+    "prompt": "Which choice most logically completes the text?",
+    "choices": [
+      "was applied to a bar that had been recut between the second and third copyings.",
+      "erred in one direction rather than scattering to either side of the bar it copied.",
+      "produced errors that were larger in the first copying than in any of the later ones.",
+      "reproduced each bar to within the accuracy of the tools, and the copies differ for some other reason."
+    ],
+    "correct_answer": "erred in one direction rather than scattering to either side of the bar it copied.",
+    "explanation": "Errors that fell on either side of the mark would leave the generations scattered around the original length. Three generations each longer than the last means the mistakes ran one way, which the surviving copies show by \"a fraction of a millimeter each time.\" A bar \"recut between the second and third copyings\" is the deliberate change the text says nothing indicates. Errors \"larger in the first copying\" would give an uneven series rather than the even step the copies record. And a procedure accurate \"to within the accuracy of the tools\" leaves the steady growth unexplained, which is the thing to be explained."
+  },
+  {
+    "id": "II2-21",
+    "domain": "Information and Ideas",
+    "subskill": "Inferences",
+    "difficulty": "hard",
+    "topic_tag": "archaeology",
+    "passage": "A radiocarbon date on charcoal gives the year the wood grew, not the year it burned. The only fuel at this coastal site was driftwood of one slow-growing species, and nearby timbers, dated by their rings, were felled as much as four centuries after their outermost wood formed. No rings survive in the hearth charcoal. The site's radiocarbon dates therefore ____",
+    "prompt": "Which choice most logically completes the text?",
+    "choices": [
+      "give a year that may fall centuries before or centuries after a hearth's burning.",
+      "overstate the age of each hearth by roughly four centuries, the largest gap the nearby timbers record.",
+      "fix an earliest possible date for a hearth's burning and leave the latest date open.",
+      "date a hearth's burning to within the interval the nearby timbers' rings establish."
+    ],
+    "correct_answer": "fix an earliest possible date for a hearth's burning and leave the latest date open.",
+    "explanation": "Wood cannot burn before it grows, so the radiocarbon year is a floor for the burning. How far above that floor the burning sits varies — the timbers show the gap reaching \"as much as four centuries\" — and the charcoal has no rings to measure it, so nothing caps the other end. A year that might fall \"centuries after\" the burning reverses the one direction the physics fixes. Four centuries is the largest gap observed, not the gap that applies to each hearth, so it cannot be used as a fixed correction. And the timbers' rings measure the timbers, not the charcoal, which is why \"no rings survive\" matters."
+  },
+  {
+    "id": "II2-22",
+    "domain": "Information and Ideas",
+    "subskill": "Inferences",
+    "difficulty": "hard",
+    "topic_tag": "palaeoclimate",
+    "passage": "Layers in a cave stalagmite grow thicker in wetter years, and one long stalagmite has been read as a rainfall record. Its chamber lies beneath a hillside that a landslide stripped of soil in the seventeenth century, after which water reached the chamber through bare rock. Layer thickness depends both on how much water arrives and on how much carbon dioxide that water has taken up from soil on the way down. So the record's ____",
+    "prompt": "Which choice most logically completes the text?",
+    "choices": [
+      "later layers grew thicker than the earlier ones for reasons unconnected to how much rain fell.",
+      "thickness after the landslide reflects the water arriving at the chamber and nothing else.",
+      "date of the landslide can be read off the stalagmite as the point at which layer thickness changes.",
+      "later layers and earlier layers stand on two different rainfall scales, not one."
+    ],
+    "correct_answer": "later layers and earlier layers stand on two different rainfall scales, not one.",
+    "explanation": "Thickness has two inputs, and the landslide changed one of them: afterward the water reached the chamber \"through bare rock\" rather than through soil, so the same thickness no longer means the same rainfall. That is a change of scale, not a change of direction, so nothing licenses the claim that the later layers grew thicker, or that they grew for reasons \"unconnected to how much rain fell.\" Nor does thickness after the landslide reflect \"the water arriving at the chamber and nothing else,\" since the text makes carbon dioxide the second input and the bare rock changes how much of it the water carries. And reading the landslide's date off the stalagmite assumes the thickness change is visible and has no other cause, which the text does not establish."
+  },
+  {
+    "id": "II2-23",
+    "domain": "Information and Ideas",
+    "subskill": "Inferences",
+    "difficulty": "medium",
+    "topic_tag": "materials science",
+    "passage": "A pigment has faded in some panels from a single workshop and not in others. The fading is confined to passages where the pigment was laid directly on a chalk ground. Where a layer of lead white intervenes, the pigment is intact, including in panels that hung in the same rooms as faded ones. Laboratory exposure finds the pigment stable in strong light on its own and unstable in contact with chalk. The fading therefore depends on ____",
+    "prompt": "Which choice most logically completes the text?",
+    "choices": [
+      "how long a panel hung in a room with direct sunlight, which differed from room to room.",
+      "what the pigment was laid upon and not on how much light a given panel has received.",
+      "the thickness of the chalk ground, which differs between the faded and the intact passages.",
+      "whether the pigment was applied before or after the lead-white layer had dried."
+    ],
+    "correct_answer": "what the pigment was laid upon and not on how much light a given panel has received.",
+    "explanation": "Two facts settle it. The fading tracks the ground: it is confined to passages laid \"directly on a chalk ground,\" and the laboratory finds the pigment \"unstable in contact with chalk.\" And light is held constant by the panels \"that hung in the same rooms as faded ones\" without fading, so how long a panel hung \"in a room with direct sunlight\" cannot be what decides it. The thickness of the chalk ground is never measured or compared. And the order in which the layers dried is not mentioned; what matters is whether lead white lies between the pigment and the chalk at all."
+  },
+  {
+    "id": "II2-24",
+    "domain": "Information and Ideas",
+    "subskill": "Inferences",
+    "difficulty": "hard",
+    "topic_tag": "history of measurement",
+    "passage": "An eighteenth-century observatory rated its clock against transits of a star, and the log's recorded daily errors are remarkably small. The clock's pendulum, however, was uncompensated for temperature, and the observing room was unheated; across a year the pendulum's length would have swung enough to produce daily errors many times those the log records. One assistant made every transit observation and also kept the log. This suggests that the log's daily errors ____",
+    "prompt": "Which choice most logically completes the text?",
+    "choices": [
+      "reflect the pendulum's response to the room's temperature rather than any lapse in the assistant's timing.",
+      "understate the clock's true performance during the coldest part of the year.",
+      "are trustworthy for the summer months, when the room stood closest to the temperature at which the pendulum had been set.",
+      "were brought into line with what the assistant expected rather than set down as they were found."
+    ],
+    "correct_answer": "were brought into line with what the assistant expected rather than set down as they were found.",
+    "explanation": "The physics and the log disagree: an uncompensated pendulum in an unheated room must have drifted by \"many times\" the errors written down. One person both observed and recorded, so the discrepancy points at the record rather than at the clock. Attributing the entries to \"the pendulum's response to the room's temperature\" would predict large errors, and the logged ones are small. To \"understate the clock's true performance\" means recording errors larger than the truth, which is the opposite of what the log does. And singling out \"the summer months\" rescues part of a log kept all year by one hand, with nothing in the text to prefer one season's entries."
+  }
+]

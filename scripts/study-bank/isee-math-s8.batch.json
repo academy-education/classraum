@@ -1,0 +1,642 @@
+[
+  {
+    "id": "IM8-01",
+    "domain": "Math",
+    "subskill": "percent of attempts made from a made-and-attempted count",
+    "difficulty": "easy",
+    "prompt": "In a basketball game a player attempted 25 free throws and made 17 of them. What percent of her free throws did she make?",
+    "choices": [
+      "8",
+      "17",
+      "32",
+      "68"
+    ],
+    "correct_answer": "68",
+    "explanation": "She made 17 of 25 attempts, and 17 divided by 25 is 0.68, which is 68 percent. The 8 is the number she missed and the 32 is the percent she missed, neither of which is what the question asks for.",
+    "solve": "const att=25, made=17; return 100*made/att;"
+  },
+  {
+    "id": "IM8-02",
+    "domain": "Math",
+    "subskill": "weighted mean across two unequal groups of games",
+    "difficulty": "medium",
+    "prompt": "A player averaged 12 points per game over her first 15 games and 20 points per game over her next 10 games. What was her average, in points per game, over all 25 games?",
+    "choices": [
+      "15.2",
+      "16",
+      "16.8",
+      "18"
+    ],
+    "correct_answer": "15.2",
+    "explanation": "She scored 12 times 15, or 180 points, then 20 times 10, or 200 points, for 380 points in 25 games. Dividing gives 15.2 points per game. Averaging 12 and 20 directly gives 16, which is wrong because she played more games at the lower average.",
+    "solve": "const a=12,na=15,b=20,nb=10; return (a*na+b*nb)/(na+nb);"
+  },
+  {
+    "id": "IM8-03",
+    "domain": "Math",
+    "subskill": "part of a total split in a given ratio",
+    "difficulty": "medium",
+    "prompt": "A hockey player's goals and assists are in the ratio 2 to 3. Her goals and assists together total 45. How many goals did she have?",
+    "choices": [
+      "15",
+      "18",
+      "27",
+      "30"
+    ],
+    "correct_answer": "18",
+    "explanation": "The 45 points split into 2 plus 3, or 5 equal parts, so one part is 9 and the goals, 2 parts, are 18. The 27 is the number of assists, and 15 comes from dividing 45 by 3 rather than by the 5 parts the ratio actually makes.",
+    "solve": "const g=2,a=3,tot=45; return tot*g/(g+a);"
+  },
+  {
+    "id": "IM8-04",
+    "domain": "Math",
+    "subskill": "recovering one value from a change in the mean",
+    "difficulty": "medium",
+    "prompt": "Through 8 matches a tennis player averaged 4.5 aces per match. After her 9th match her average over all 9 matches was exactly 5 aces per match. How many aces did she serve in the 9th match?",
+    "choices": [
+      "5",
+      "9",
+      "36",
+      "40.5"
+    ],
+    "correct_answer": "9",
+    "explanation": "Her total after 8 matches was 4.5 times 8, or 36 aces, and her total after 9 matches was 5 times 9, or 45 aces. The difference, 45 minus 36, is 9 aces in the 9th match. The 36 is the earlier total, 40.5 is the old average carried across 9 matches, and 5 is the new average rather than the single match.",
+    "solve": "const m1=4.5,n1=8,m2=5,n2=9; return m2*n2-m1*n1;"
+  },
+  {
+    "id": "IM8-05",
+    "domain": "Math",
+    "subskill": "fraction of a total after both parts change",
+    "difficulty": "medium",
+    "prompt": "A team has won 18 games and lost 12. If it then wins each of its next 6 games, what fraction of all the games it has played will be wins?",
+    "choices": [
+      "1/2",
+      "3/5",
+      "2/3",
+      "4/5"
+    ],
+    "correct_answer": "2/3",
+    "explanation": "The team ends with 18 plus 6, or 24 wins, out of 30 plus 6, or 36 games played. That is 24 over 36, which reduces to 2 over 3. Using 24 over 30 gives 4 fifths and forgets that the 6 new games also count in the total, while 18 over 36 forgets that they were wins.",
+    "solve": "const w=18,l=12,extra=6; return (w+extra)/(w+l+extra);"
+  },
+  {
+    "id": "IM8-06",
+    "domain": "Math",
+    "subskill": "counting selections from two independent groups",
+    "difficulty": "medium",
+    "prompt": "A coach must pick a starting group of 2 guards from the 5 guards on her roster and 3 forwards from the 4 forwards on her roster. The order in which players are picked does not matter. How many different starting groups are possible?",
+    "choices": [
+      "40",
+      "60",
+      "80",
+      "126"
+    ],
+    "correct_answer": "40",
+    "explanation": "There are 10 ways to choose 2 of the 5 guards and 4 ways to choose 3 of the 4 forwards, and the choices are independent, so there are 10 times 4, or 40 groups. Choosing 5 players from all 9 without regard to position gives 126, a different question.",
+    "solve": "const C=(n,k)=>{let r=1;for(let i=0;i<k;i++) r=r*(n-i)/(i+1); return Math.round(r);}; return C(5,2)*C(4,3);"
+  },
+  {
+    "id": "IM8-07",
+    "domain": "Math",
+    "subskill": "least whole number of further wins to pass a strict percent threshold",
+    "difficulty": "hard",
+    "prompt": "A team has won 22 of the 40 games it has played this season. The season is 60 games long. The team qualifies for the playoffs only if it wins more than 60 percent of all 60 games. What is the least number of its remaining games the team must win in order to qualify?",
+    "choices": [
+      "14",
+      "15",
+      "20",
+      "37"
+    ],
+    "correct_answer": "15",
+    "explanation": "Sixty percent of 60 games is 36 wins, but the team must win more than that, so 36 wins is not enough and it needs at least 37 wins in total. It already has 22, so it needs 15 more. Fourteen more would give exactly 36 wins, which is 60 percent and not more than 60 percent.",
+    "solve": "const played=40,won=22,total=60; for(let k=0;k<=total-played;k++){ if((won+k)/total > 0.6) return k; } return null;"
+  },
+  {
+    "id": "IM8-08",
+    "domain": "Math",
+    "subskill": "constant rate across a change of both distance and time units",
+    "difficulty": "hard",
+    "prompt": "A runner finishes a 5-kilometer race in 22 minutes 30 seconds. Running at that same constant pace, how many seconds would she take to run 800 meters?",
+    "choices": [
+      "3.6",
+      "211.2",
+      "216",
+      "270"
+    ],
+    "correct_answer": "216",
+    "explanation": "The race took 22 times 60 plus 30, or 1350 seconds, for 5000 meters. Since 800 meters is 800 over 5000, or 0.16, of the race, the time is 0.16 times 1350, which is 216 seconds. The 3.6 is that same time expressed in minutes rather than seconds.",
+    "solve": "const secs=22*60+30, dist=5000, target=800; return secs*target/dist;"
+  },
+  {
+    "id": "IM8-09",
+    "domain": "Math",
+    "subskill": "least whole total needed to push a mean strictly above a target",
+    "difficulty": "hard",
+    "prompt": "Through 6 games a team has averaged 74 points per game. The coach wants the team's average over 8 games to be greater than 78 points per game. What is the least number of points, in total, the team can score in its last two games and still meet the coach's goal?",
+    "choices": [
+      "148",
+      "157",
+      "180",
+      "181"
+    ],
+    "correct_answer": "181",
+    "explanation": "The team has 6 times 74, or 444 points. To average more than 78 over 8 games it needs more than 8 times 78, or 624 points, so it needs at least 625. That leaves 625 minus 444, or 181 points across the last two games. A total of 180 gives exactly 624 points, an average of exactly 78, which is not greater than 78.",
+    "solve": "const n=6,m=74,N=8,target=78; const cur=n*m; for(let t=0;t<2000;t++){ if((cur+t)/N > target) return t; } return null;"
+  },
+  {
+    "id": "IM8-10",
+    "domain": "Math",
+    "subskill": "perimeter from a quadratic area relationship with one root discarded",
+    "difficulty": "hard",
+    "prompt": "A rectangular training field is 20 meters longer than it is wide, and its area is 4800 square meters. What is the perimeter of the field, in meters?",
+    "choices": [
+      "80",
+      "140",
+      "240",
+      "280"
+    ],
+    "correct_answer": "280",
+    "explanation": "If the width is w, then w times w plus 20 equals 4800, which factors as w plus 80 times w minus 60. A width cannot be negative, so w is 60 and the length is 80. The perimeter is 2 times 60 plus 80, or 280 meters. The 140 is the length plus the width, half the perimeter, and 240 is the perimeter of a 60 by 60 square, which ignores the extra 20 meters of length.",
+    "solve": "const diff=20,area=4800; for(let w=1;w<=2000;w++){ if(w*(w+diff)===area) return 2*(w+(w+diff)); } return null;"
+  },
+  {
+    "id": "IM8-11",
+    "domain": "Math",
+    "subskill": "direct proportion between servings and an ingredient amount",
+    "difficulty": "easy",
+    "prompt": "A bread recipe that makes 4 servings calls for 300 grams of flour. How many grams of flour are needed to make 10 servings of the same bread?",
+    "choices": [
+      "120",
+      "600",
+      "750",
+      "3000"
+    ],
+    "correct_answer": "750",
+    "explanation": "One serving needs 300 divided by 4, or 75 grams, so 10 servings need 75 times 10, or 750 grams. Multiplying 300 by 10 without first dividing by 4 gives 3000, which is the amount for 40 servings.",
+    "solve": "const g=300,s=4,t=10; return g*t/s;"
+  },
+  {
+    "id": "IM8-12",
+    "domain": "Math",
+    "subskill": "how many whole units fit, with a unit conversion",
+    "difficulty": "easy",
+    "prompt": "A pot holds 2.5 liters of soup. Bowls each hold 200 milliliters. How many bowls can be filled completely from the pot?",
+    "choices": [
+      "12",
+      "12.5",
+      "13",
+      "125"
+    ],
+    "correct_answer": "12",
+    "explanation": "The pot holds 2.5 times 1000, or 2500 milliliters, and 2500 divided by 200 is 12.5. Only whole bowls can be filled completely, so the answer is 12; the leftover 100 milliliters is not enough for a thirteenth full bowl.",
+    "solve": "const L=2.5, ml=200; return Math.floor(L*1000/ml);"
+  },
+  {
+    "id": "IM8-13",
+    "domain": "Math",
+    "subskill": "scaling a fractional ingredient amount by a ratio of yields",
+    "difficulty": "medium",
+    "prompt": "Three quarters of a cup of sugar is enough for 12 cookies. At the same rate, how many cups of sugar are needed for 30 cookies?",
+    "choices": [
+      "5/8",
+      "3/2",
+      "15/8",
+      "15/4"
+    ],
+    "correct_answer": "15/8",
+    "explanation": "Thirty cookies is 30 over 12, or 5 halves, as many as 12 cookies, so the sugar needed is 3 fourths times 5 halves, which is 15 eighths of a cup. Multiplying 3 fourths by 5, as if each cookie in a batch of 6 needed its own share, gives 15 fourths, and multiplying by 2 gives 3 halves, the amount for 24 cookies.",
+    "solve": "const cups=3/4, per=12, want=30; return cups*want/per;"
+  },
+  {
+    "id": "IM8-14",
+    "domain": "Math",
+    "subskill": "one part of a two-part mixture given the total volume",
+    "difficulty": "medium",
+    "prompt": "A soup base is mixed from water and stock in the ratio 2 to 3 by volume. A cook wants to make 15 liters of the base. How many liters of stock are needed?",
+    "choices": [
+      "4.5",
+      "6",
+      "7.5",
+      "9"
+    ],
+    "correct_answer": "9",
+    "explanation": "The mixture divides into 2 plus 3, or 5 equal parts of 3 liters each. Stock is 3 of those parts, or 9 liters. The 6 liters is the water and the 7.5 liters would be half the mixture, which is not the 3 to 5 share.",
+    "solve": "const w=2,s=3,tot=15; return tot*s/(w+s);"
+  },
+  {
+    "id": "IM8-15",
+    "domain": "Math",
+    "subskill": "how many whole batches from a supply given in a different unit",
+    "difficulty": "hard",
+    "prompt": "A pastry cook has 1.4 kilograms of butter. Each batch of pastry uses 150 grams of butter. How many complete batches of pastry can the cook make?",
+    "choices": [
+      "9",
+      "9.33",
+      "10",
+      "93"
+    ],
+    "correct_answer": "9",
+    "explanation": "The 1.4 kilograms is 1400 grams, and 1400 divided by 150 is 9.33. A batch either has its full 150 grams or it is not a batch, so only 9 complete batches are possible, using 1350 grams and leaving 50 grams over.",
+    "solve": "const kg=1.4, per=150; return Math.floor(kg*1000/per);"
+  },
+  {
+    "id": "IM8-16",
+    "domain": "Math",
+    "subskill": "reduction where one component's mass stays fixed",
+    "difficulty": "hard",
+    "prompt": "A cook has 300 grams of syrup that is 40 percent sugar by mass, the rest being water. She boils the syrup until it is 60 percent sugar by mass. What is the mass, in grams, of the syrup that remains?",
+    "choices": [
+      "100",
+      "120",
+      "180",
+      "200"
+    ],
+    "correct_answer": "200",
+    "explanation": "Boiling drives off water, so the sugar stays at 40 percent of 300, or 120 grams, the whole time. If those 120 grams are 60 percent of the final syrup, the final syrup is 120 divided by 0.6, or 200 grams. The 100 grams is the water that evaporated and the 180 grams is 60 percent of the original mass, which is not what is being asked.",
+    "solve": "const m=300,p1=0.40,p2=0.60; const sugar=m*p1; return sugar/p2;"
+  },
+  {
+    "id": "IM8-17",
+    "domain": "Math",
+    "subskill": "scaling a recipe and then buying a whole number of packages",
+    "difficulty": "hard",
+    "prompt": "A rice dish that serves 6 people uses 2.25 cups of rice. A cook is serving 40 people. Rice is sold only in bags holding 2 cups each. How many bags must the cook buy?",
+    "choices": [
+      "7",
+      "8",
+      "20",
+      "30"
+    ],
+    "correct_answer": "8",
+    "explanation": "Serving 40 people needs 2.25 times 40 divided by 6, or 15 cups of rice, and 15 divided by 2 is 7.5 bags. Since rice comes only in whole bags, the cook must buy 8; seven bags would give only 14 cups. The 30 comes from multiplying the 15 cups by the bag size instead of dividing, and 20 from dividing the 40 servings by that bag size.",
+    "solve": "const cups=2.25, serves=6, want=40, bag=2; return Math.ceil(cups*want/serves/bag);"
+  },
+  {
+    "id": "IM8-18",
+    "domain": "Math",
+    "subskill": "yield from a limited ingredient at a fixed rate",
+    "difficulty": "medium",
+    "prompt": "A muffin recipe makes 24 muffins from 150 grams of flour, and the batter can be scaled to any amount. A baker has 500 grams of flour and everything else she needs. How many muffins can she make?",
+    "choices": [
+      "48",
+      "72",
+      "80",
+      "96"
+    ],
+    "correct_answer": "80",
+    "explanation": "Each gram of flour makes 24 divided by 150, or 0.16, of a muffin, so 500 grams makes 500 times 0.16, or 80 muffins. Rounding down to 3 full recipes gives 72 and rounding up to 4 gives 96, but the batter scales, so neither rounding is needed.",
+    "solve": "const muff=24, fl=150, have=500; return have/fl*muff;"
+  },
+  {
+    "id": "IM8-19",
+    "domain": "Math",
+    "subskill": "perimeter from a quadratic area relationship with one root discarded",
+    "difficulty": "hard",
+    "prompt": "A rectangular baking tray is 4 centimeters longer than it is wide, and the flat bottom of the tray has an area of 320 square centimeters. What is the perimeter of the bottom of the tray, in centimeters?",
+    "choices": [
+      "36",
+      "68",
+      "72",
+      "80"
+    ],
+    "correct_answer": "72",
+    "explanation": "If the width is w, then w times w plus 4 equals 320, which factors as w plus 20 times w minus 16. A width cannot be negative, so w is 16 and the length is 20. The perimeter is 2 times 16 plus 20, or 72 centimeters; the 36 is the length plus the width.",
+    "solve": "const d=4,A=320; for(let w=1;w<=2000;w++){ if(w*(w+d)===A) return 2*(2*w+d); } return null;"
+  },
+  {
+    "id": "IM8-20",
+    "domain": "Math",
+    "subskill": "successive subtraction of a fractional part and a fixed amount",
+    "difficulty": "medium",
+    "prompt": "A cook starts with 3 1/2 cups of oats. She uses 2/3 of the oats for granola, then uses another 1/2 cup for porridge. How many cups of oats are left?",
+    "choices": [
+      "2/3",
+      "5/6",
+      "7/6",
+      "7/3"
+    ],
+    "correct_answer": "2/3",
+    "explanation": "Using two thirds leaves one third of 7 halves, which is 7 sixths of a cup. Taking away another half cup, or 3 sixths, leaves 4 sixths, which is 2 thirds of a cup. The 7 sixths is the amount left before the porridge, 7 thirds is the amount used for the granola, and 5 sixths comes from taking away a third of a cup instead of a half.",
+    "solve": "const start=3.5; const after=start*(1/3); return after-0.5;"
+  },
+  {
+    "id": "IM8-21",
+    "domain": "Math",
+    "subskill": "fraction of a whole applied to a count",
+    "difficulty": "easy",
+    "prompt": "A packet holds 24 lettuce seeds. Three quarters of the seeds in the packet germinate. How many seeds germinate?",
+    "choices": [
+      "18",
+      "21",
+      "24",
+      "32"
+    ],
+    "correct_answer": "18",
+    "explanation": "Three quarters of 24 is 24 divided by 4, which is 6, times 3, which is 18. The 6 seeds that do not germinate are the remaining quarter, and 32 comes from multiplying by 4 thirds instead of 3 fourths.",
+    "solve": "const n=24; return n*3/4;"
+  },
+  {
+    "id": "IM8-22",
+    "domain": "Math",
+    "subskill": "when two linear growths become equal",
+    "difficulty": "medium",
+    "prompt": "One vine is 12 centimeters tall and grows 5 centimeters each week. A second vine is 54 centimeters tall and grows 2 centimeters each week. After how many weeks will the two vines be the same height?",
+    "choices": [
+      "6",
+      "14",
+      "21",
+      "42"
+    ],
+    "correct_answer": "14",
+    "explanation": "The shorter vine starts 42 centimeters behind and closes the gap by 5 minus 2, or 3 centimeters each week, so it catches up after 42 divided by 3, or 14 weeks, when both are 82 centimeters tall. Dividing the 42 centimeter gap by a single vine's rate, rather than by the difference of the rates, gives 21 or about 8.",
+    "solve": "let a=12,b=54,w=0; while(a<b){ a+=5; b+=2; w++; } return w;"
+  },
+  {
+    "id": "IM8-23",
+    "domain": "Math",
+    "subskill": "counting objects placed at intervals along a fixed length",
+    "difficulty": "medium",
+    "prompt": "A gardener plants bulbs in a straight row 12 meters long, placing one bulb every 1.5 meters, with a bulb at each end of the row. How many bulbs does she plant?",
+    "choices": [
+      "8",
+      "9",
+      "12",
+      "24"
+    ],
+    "correct_answer": "9",
+    "explanation": "Dividing 12 by 1.5 gives 8, but that counts the gaps between bulbs, not the bulbs. A row with 8 gaps and a bulb at each end has 9 bulbs. The 24 comes from dividing by 0.5 instead of 1.5.",
+    "solve": "const L=12,s=1.5; return L/s+1;"
+  },
+  {
+    "id": "IM8-24",
+    "domain": "Math",
+    "subskill": "percent increase relative to the original amount",
+    "difficulty": "medium",
+    "prompt": "A tomato plant was 40 centimeters tall on June 1 and 70 centimeters tall on July 1. By what percent did its height increase over that month?",
+    "choices": [
+      "30",
+      "43",
+      "57",
+      "75"
+    ],
+    "correct_answer": "75",
+    "explanation": "The increase is 70 minus 40, or 30 centimeters, and a percent increase compares that to the original height: 30 divided by 40 is 0.75, or 75 percent. Dividing the 30 by the new height, 70, gives about 43 percent, which is a comparison to the wrong amount.",
+    "solve": "const a=40,b=70; return 100*(b-a)/a;"
+  },
+  {
+    "id": "IM8-25",
+    "domain": "Math",
+    "subskill": "volume in one unit converted to whole containers in another",
+    "difficulty": "hard",
+    "prompt": "A planter box measures 90 centimeters by 40 centimeters by 25 centimeters. Potting soil is sold in bags holding 50 liters each, and 1 liter fills 1000 cubic centimeters. How many bags must a gardener buy to fill the box completely?",
+    "choices": [
+      "1",
+      "1.8",
+      "2",
+      "90"
+    ],
+    "correct_answer": "2",
+    "explanation": "The box holds 90 times 40 times 25, or 90000 cubic centimeters, which is 90 liters. Dividing 90 by 50 gives 1.8 bags, and since bags are sold whole, the gardener must buy 2. One bag supplies only 50 of the 90 liters needed.",
+    "solve": "const v=90*40*25; const litres=v/1000; return Math.ceil(litres/50);"
+  },
+  {
+    "id": "IM8-26",
+    "domain": "Math",
+    "subskill": "side length from an enlarged area, with one root discarded",
+    "difficulty": "hard",
+    "prompt": "A square vegetable plot is enlarged by extending one pair of opposite sides by 3 meters and the other pair by 2 meters. The enlarged plot is a rectangle with an area of 90 square meters. What was the side length, in meters, of the original square plot?",
+    "choices": [
+      "7",
+      "9",
+      "10",
+      "84"
+    ],
+    "correct_answer": "7",
+    "explanation": "If the original side is s, the enlarged plot is s plus 3 by s plus 2, so s plus 3 times s plus 2 equals 90. Expanding gives s squared plus 5s minus 84 equals 0, which factors as s plus 12 times s minus 7. A length cannot be negative, so s is 7. The 10 and the 9 are the sides of the enlarged rectangle and 84 is the constant in the equation.",
+    "solve": "for(let s=1;s<=500;s++){ if((s+3)*(s+2)===90) return s; } return null;"
+  },
+  {
+    "id": "IM8-27",
+    "domain": "Math",
+    "subskill": "least whole value that pushes a mean strictly above a target",
+    "difficulty": "hard",
+    "prompt": "A gardener has five seedlings and wants their mean height to be greater than 20 centimeters. Four of them measure 17, 19, 22 and 18 centimeters. What is the least whole number of centimeters the fifth seedling can measure for the gardener's goal to be met?",
+    "choices": [
+      "19",
+      "20",
+      "24",
+      "25"
+    ],
+    "correct_answer": "25",
+    "explanation": "The four known seedlings total 76 centimeters. For the mean of five to be greater than 20, the total must be greater than 100, so the fifth must be greater than 24 centimeters. The least whole number greater than 24 is 25; a fifth seedling of 24 centimeters gives a mean of exactly 20, which is not greater than 20.",
+    "solve": "const h=[17,19,22,18]; const s=h.reduce((a,b)=>a+b,0); for(let x=0;x<500;x++){ if((s+x)/5 > 20) return x; } return null;"
+  },
+  {
+    "id": "IM8-28",
+    "domain": "Math",
+    "subskill": "total demand over several units and days, rounded to whole containers",
+    "difficulty": "hard",
+    "prompt": "A gardener waters 3 raised beds, and each bed needs 8 liters of water every day. She carries water in containers that hold 20 liters each. How many containers of water does she need in total for one 7-day week?",
+    "choices": [
+      "8",
+      "9",
+      "12",
+      "14"
+    ],
+    "correct_answer": "9",
+    "explanation": "The beds need 3 times 8 times 7, or 168 liters for the week, and 168 divided by 20 is 8.4. Since a container is either filled or not, she needs 9 containers; 8 containers hold only 160 liters. The 14 comes from rounding each single day up to 2 containers.",
+    "solve": "const beds=3,per=8,days=7,cont=20; return Math.ceil(beds*per*days/cont);"
+  },
+  {
+    "id": "IM8-29",
+    "domain": "Math",
+    "subskill": "total of a ratio mixture from one known part",
+    "difficulty": "medium",
+    "prompt": "A potting mix is made from soil and compost in the ratio 5 to 2 by volume. A gardener has 14 liters of compost and plenty of soil, and she uses all of the compost. How many liters of potting mix does she make?",
+    "choices": [
+      "19.6",
+      "28",
+      "35",
+      "49"
+    ],
+    "correct_answer": "49",
+    "explanation": "The 14 liters of compost is 2 parts, so one part is 7 liters. The mix is 5 plus 2, or 7 parts, which is 7 times 7, or 49 liters. The 35 liters is the soil alone, 28 is twice the compost, and 19.6 comes from treating the 14 liters as the 5-part share instead of the 2-part share.",
+    "solve": "const soil=5,comp=2,have=14; const part=have/comp; return (soil+comp)*part;"
+  },
+  {
+    "id": "IM8-30",
+    "domain": "Math",
+    "subskill": "repeated doubling over a fixed interval",
+    "difficulty": "medium",
+    "prompt": "A patch of duckweed doubles its area every 3 days. Today it covers 5 square meters of a pond. In how many days will it first cover at least 80 square meters?",
+    "choices": [
+      "9",
+      "12",
+      "16",
+      "48"
+    ],
+    "correct_answer": "12",
+    "explanation": "The area goes 5, then 10, 20, 40, 80, so it takes 4 doublings to reach 80 square meters. Each doubling takes 3 days, so 4 doublings take 12 days. Three doublings, or 9 days, reach only 40 square meters.",
+    "solve": "let a=5,d=0; while(a<80){ a*=2; d+=3; } return d;"
+  },
+  {
+    "id": "IM8-31",
+    "domain": "Math",
+    "subskill": "total revenue from two items at different unit prices",
+    "difficulty": "easy",
+    "prompt": "At a school bake sale a club sold 60 cupcakes at 2.50 dollars each and 40 cookies at 1.25 dollars each, and everything was sold. How many dollars did the bake sale raise?",
+    "choices": [
+      "125",
+      "150",
+      "175",
+      "200"
+    ],
+    "correct_answer": "200",
+    "explanation": "The cupcakes brought in 60 times 2.50, or 150 dollars, and the cookies brought in 40 times 1.25, or 50 dollars, for 200 dollars altogether. Averaging the two prices and multiplying by the 100 items gives 187.50, and 175 comes from a similar shortcut that ignores how many of each were sold.",
+    "solve": "return 60*2.5+40*1.25;"
+  },
+  {
+    "id": "IM8-32",
+    "domain": "Math",
+    "subskill": "percent of a goal still remaining",
+    "difficulty": "easy",
+    "prompt": "A school club's fundraising goal is 2400 dollars. So far it has raised 1560 dollars. What percent of its goal has the club still to raise?",
+    "choices": [
+      "21",
+      "35",
+      "54",
+      "65"
+    ],
+    "correct_answer": "35",
+    "explanation": "The club still needs 2400 minus 1560, or 840 dollars, and 840 divided by the 2400 goal is 0.35, or 35 percent. The 65 percent is the share already raised, and 54 percent comes from comparing the 840 to the 1560 already raised rather than to the goal.",
+    "solve": "const goal=2400,raised=1560; return 100*(goal-raised)/goal;"
+  },
+  {
+    "id": "IM8-33",
+    "domain": "Math",
+    "subskill": "cheapest combination of a bundle price and a single price",
+    "difficulty": "medium",
+    "prompt": "A school raffle sells tickets either singly for 2 dollars each or in packs of 3 for 5 dollars. A parent wants at least 10 tickets and wants to spend as little as possible. How many dollars does she spend?",
+    "choices": [
+      "15",
+      "17",
+      "19",
+      "20"
+    ],
+    "correct_answer": "17",
+    "explanation": "Packs are cheaper per ticket, so she should buy as many as she can: 3 packs give 9 tickets for 15 dollars, and one single ticket brings her to 10 tickets for 17 dollars. Four packs would cost 20 dollars, and buying all 10 singly costs 20 dollars as well.",
+    "solve": "let best=Infinity; for(let b=0;b<=10;b++){ const t=3*b; const singles=Math.max(0,10-t); best=Math.min(best, 5*b+2*singles); } return best;"
+  },
+  {
+    "id": "IM8-34",
+    "domain": "Math",
+    "subskill": "profit when not all purchased stock is sold",
+    "difficulty": "medium",
+    "prompt": "A club bought 200 candles for 1.80 dollars each to sell at a fundraiser. It sold 150 of them at 4.50 dollars each and gave the rest away. How many dollars of profit did the club make?",
+    "choices": [
+      "315",
+      "405",
+      "540",
+      "675"
+    ],
+    "correct_answer": "315",
+    "explanation": "Sales brought in 150 times 4.50, or 675 dollars, but the club paid for all 200 candles, which cost 200 times 1.80, or 360 dollars. The profit is 675 minus 360, or 315 dollars. Charging only the 150 sold candles against the revenue gives 405 dollars and ignores the 50 that were paid for and given away.",
+    "solve": "const bought=200,cost=1.8,sold=150,price=4.5; return sold*price - bought*cost;"
+  },
+  {
+    "id": "IM8-35",
+    "domain": "Math",
+    "subskill": "proportional matching gift limited by a maximum",
+    "difficulty": "hard",
+    "prompt": "A donor promises to give a school 2 dollars for every 3 dollars the students raise, but he will give no more than 500 dollars in total. The students raise 900 dollars. Including the donor's gift, how many dollars does the school receive?",
+    "choices": [
+      "900",
+      "1350",
+      "1400",
+      "1500"
+    ],
+    "correct_answer": "1400",
+    "explanation": "Two dollars for every 3 dollars of the 900 raised would be 600 dollars, but the donor gives at most 500, so his gift is 500 dollars. The school receives 900 plus 500, or 1400 dollars. The 1500 dollars ignores the maximum, and 1350 comes from matching 3 dollars for every 2.",
+    "solve": "const raised=900, cap=500; const match=Math.min(cap, raised*2/3); return raised+match;"
+  },
+  {
+    "id": "IM8-36",
+    "domain": "Math",
+    "subskill": "least whole number of packs needed to reach a profit target",
+    "difficulty": "hard",
+    "prompt": "A club buys T-shirts for 7 dollars each and sells them for 12 dollars each. The supplier sells T-shirts only in cases of 24. If the club sells every shirt it buys, what is the least number of cases it must buy in order to make a profit of at least 400 dollars?",
+    "choices": [
+      "3",
+      "4",
+      "17",
+      "80"
+    ],
+    "correct_answer": "4",
+    "explanation": "Each shirt earns 12 minus 7, or 5 dollars, so each case of 24 earns 120 dollars. Three cases earn 360 dollars, which falls short, so the club needs 4 cases, earning 480 dollars. The 80 is the number of shirts that would be needed if shirts could be bought one at a time.",
+    "solve": "const c=7,p=12,cs=24,goal=400; for(let n=1;n<=1000;n++){ if(n*cs*(p-c) >= goal) return n; } return null;"
+  },
+  {
+    "id": "IM8-37",
+    "domain": "Math",
+    "subskill": "pledge per lap from a distance given in other units",
+    "difficulty": "hard",
+    "prompt": "In a walkathon, sponsors pledge 0.75 dollars for each lap a student walks. One lap of the track is 400 meters. A student walks 12 kilometers. How many dollars has the student raised?",
+    "choices": [
+      "22.50",
+      "30",
+      "40",
+      "300"
+    ],
+    "correct_answer": "22.50",
+    "explanation": "Twelve kilometers is 12000 meters, which is 12000 divided by 400, or 30 laps. At 0.75 dollars a lap that is 30 times 0.75, or 22.50 dollars. The 30 is the number of laps rather than an amount of money, and 40 comes from dividing the 12000 meters by 0.75 times 400.",
+    "solve": "const perLap=0.75, lapM=400, km=12; const laps=km*1000/lapM; return laps*perLap;"
+  },
+  {
+    "id": "IM8-38",
+    "domain": "Math",
+    "subskill": "two ticket prices with a known count and total",
+    "difficulty": "medium",
+    "prompt": "A school play sold 120 tickets in all, some to adults at 9 dollars each and the rest to students at 5 dollars each, taking in 848 dollars. How many adult tickets were sold?",
+    "choices": [
+      "58",
+      "62",
+      "94",
+      "106"
+    ],
+    "correct_answer": "62",
+    "explanation": "If every one of the 120 tickets had been a student ticket the take would be 600 dollars. Each adult ticket adds 4 dollars to that, and 848 minus 600 is 248, so there were 248 divided by 4, or 62 adult tickets and 58 student tickets. Dividing 848 by 9 gives 94, which ignores the student tickets entirely.",
+    "solve": "const total=120, money=848, pa=9, ps=5; for(let a=0;a<=total;a++){ if(pa*a+ps*(total-a)===money) return a; } return null;"
+  },
+  {
+    "id": "IM8-39",
+    "domain": "Math",
+    "subskill": "net amount after a percent fee and a per-item fee",
+    "difficulty": "hard",
+    "prompt": "An online fundraising site keeps 5 percent of each donation and also keeps 0.30 dollars for each donation processed. A school receives 40 separate donations of 25 dollars each through the site. How many dollars does the school actually keep?",
+    "choices": [
+      "938",
+      "950",
+      "988",
+      "1000"
+    ],
+    "correct_answer": "938",
+    "explanation": "The donations total 40 times 25, or 1000 dollars. The site keeps 5 percent of that, which is 50 dollars, and also 0.30 times 40, which is 12 dollars, for 62 dollars in all. The school keeps 1000 minus 62, or 938 dollars; 950 counts only the percent fee and 988 counts only the per-donation fee.",
+    "solve": "const n=40, amt=25; const gross=n*amt; return gross - gross*0.05 - n*0.30;"
+  },
+  {
+    "id": "IM8-40",
+    "domain": "Math",
+    "subskill": "applying the same percent increase a second time",
+    "difficulty": "medium",
+    "prompt": "A school's fundraising total rose from 4500 dollars two years ago to 5400 dollars last year. If this year's total rises from last year's by the same percent, how many dollars will the school raise this year?",
+    "choices": [
+      "5940",
+      "6300",
+      "6480",
+      "6750"
+    ],
+    "correct_answer": "6480",
+    "explanation": "The increase was 900 dollars on 4500, which is 20 percent, so this year's total is 5400 times 1.20, or 6480 dollars. Adding the same 900 dollars again gives 6300, but a percent increase is taken on the new, larger amount.",
+    "solve": "const a=4500,b=5400; return b*(b/a);"
+  }
+]

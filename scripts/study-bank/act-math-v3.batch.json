@@ -1,0 +1,784 @@
+[
+  {
+    "id": "ACT-M-V3A01",
+    "domain": "Algebra",
+    "difficulty": "easy",
+    "subskill": "linear equation with a parenthesised negative term",
+    "prompt": "If 5(x − 6) = 2x + 6, what is the value of x ?",
+    "choices": [
+      "-8",
+      "0",
+      "4",
+      "12"
+    ],
+    "correct_answer": "12",
+    "explanation": "Distributing gives 5x − 30 = 2x + 6, so 3x = 36 and x = 12. 4 is what you get by writing the left side as 5x − 6 instead of 5x − 30, which leaves 3x = 12. 0 is that same undistributed line with the 6 moved to the right by adding rather than subtracting: 3x = 6 − 6. −8 comes from distributing correctly but adding the 30 to the left instead of the right, giving 3x = 6 − 30 = −24.",
+    "distractor_steps": [
+      {
+        "choice": "4",
+        "mis_step": "did not distribute the 5 over the −6, giving 5x − 6 = 2x + 6"
+      },
+      {
+        "choice": "0",
+        "mis_step": "the undistributed line above, then moved the constant the wrong way (derived from the 4 path, not from the key)"
+      },
+      {
+        "choice": "-8",
+        "mis_step": "distributed correctly but subtracted 30 from the right side twice over"
+      }
+    ],
+    "solve": "let x = null\nfor (let k = -2000; k <= 2000; k++) { if (Math.abs(5 * (k - 6) - (2 * k + 6)) < 1e-9) { x = k; break } }\nif (x === null) throw new Error('no integer root')\nreturn x"
+  },
+  {
+    "id": "ACT-M-V3A02",
+    "domain": "Algebra",
+    "difficulty": "medium",
+    "subskill": "subtracting a polynomial from a product",
+    "prompt": "Which of the following expressions is equivalent to (2x − 5)(x + 4) − (x² − 3x) ?",
+    "choices": [
+      "x^2 - 20",
+      "x^2 + 3x - 20",
+      "x^2 + 3x + 20",
+      "x^2 + 6x - 20"
+    ],
+    "correct_answer": "x^2 + 6x - 20",
+    "explanation": "The product is 2x² + 8x − 5x − 20 = 2x² + 3x − 20. Subtracting x² − 3x means subtracting x² and adding 3x, so the result is x² + 6x − 20. x² + 3x − 20 is what you get by multiplying only the first terms and only the last terms of the two binomials, so the 8x − 5x middle term never appears. x² + 3x + 20 is that same shortened product with the sign of the constant taken from the +4 rather than from (−5)(+4). x² − 20 comes from distributing the minus sign over x² only, so the −3x is subtracted instead of added and the 3x cancels the 3x already there.",
+    "distractor_steps": [
+      {
+        "choice": "x^2 + 3x - 20",
+        "mis_step": "multiplied only the first and last terms of the binomials, losing the 8x − 5x middle term"
+      },
+      {
+        "choice": "x^2 + 3x + 20",
+        "mis_step": "the shortened product above with the constant sign taken from +4 (derived from the x^2 + 3x - 20 path, not from the key)"
+      },
+      {
+        "choice": "x^2 - 20",
+        "mis_step": "did not distribute the minus sign over the −3x"
+      }
+    ],
+    "solve": "// Expand numerically at several x and fit a quadratic, then print it.\nconst f = x => (2 * x - 5) * (x + 4) - (x * x - 3 * x)\n// f(x) = a x^2 + b x + c\nconst c = f(0)\nconst a = (f(1) + f(-1) - 2 * c) / 2\nconst b = (f(1) - f(-1)) / 2\nif (a !== 1) throw new Error('unexpected leading coefficient ' + a)\nconst term = (co, s) => co === 0 ? '' : (co > 0 ? ' + ' : ' - ') + Math.abs(co) + s\nreturn 'x^2' + term(b, 'x') + term(c, '')"
+  },
+  {
+    "id": "ACT-M-V3A03",
+    "domain": "Algebra",
+    "difficulty": "medium",
+    "subskill": "inequality from a capacity constraint with a fixed load",
+    "prompt": "A van can carry a load of at most 1,790 pounds. It is already carrying 240 pounds of equipment. Each crate to be loaded weighs 65 pounds. What is the greatest number of crates the van can carry?",
+    "choices": [
+      "23",
+      "24",
+      "27",
+      "28"
+    ],
+    "correct_answer": "23",
+    "explanation": "The crates may weigh at most 1,790 − 240 = 1,550 pounds, and 1,550 ÷ 65 = 23.8, so 23 crates fit and a 24th would put the van over the limit. 24 is that quotient rounded up rather than down. 27 comes from dividing the full 1,790 by 65 without first setting aside the equipment, giving 27.5. 28 is that same quotient rounded up.",
+    "distractor_steps": [
+      {
+        "choice": "24",
+        "mis_step": "rounded 23.8 up instead of down"
+      },
+      {
+        "choice": "27",
+        "mis_step": "divided the full capacity by 65 without subtracting the 240 pounds of equipment"
+      },
+      {
+        "choice": "28",
+        "mis_step": "the 27.5 above rounded up (derived from the 27 path, not from the key)"
+      }
+    ],
+    "solve": "let n = 0\nwhile (240 + 65 * (n + 1) <= 1790) n++\nreturn n"
+  },
+  {
+    "id": "ACT-M-V3A04",
+    "domain": "Algebra",
+    "difficulty": "hard",
+    "subskill": "system of equations where the question asks for a combination of the unknowns",
+    "prompt": "At a bakery, 3 muffins and 2 scones cost $16.50, and 5 muffins and 4 scones cost $29.50. At these prices, what do 2 muffins and 1 scone cost?",
+    "choices": [
+      "6.50",
+      "9.50",
+      "10.00",
+      "13.00"
+    ],
+    "correct_answer": "10.00",
+    "explanation": "Doubling the first equation gives 6m + 4s = 33.00; subtracting 5m + 4s = 29.50 gives m = 3.50, and then 3(3.50) + 2s = 16.50 gives s = 3.00. So 2m + s = 7.00 + 3.00 = $10.00. $13.00 is what you get by subtracting the two given equations as they stand, which yields 2m + 2s = 13.00, and then reading that as 2 muffins and 1 scone. $6.50 is m + s. $9.50 is 2s + m, the answer with the two prices interchanged.",
+    "distractor_steps": [
+      {
+        "choice": "13.00",
+        "mis_step": "subtracted the given equations without scaling, getting 2m + 2s, and read it as 2m + s"
+      },
+      {
+        "choice": "6.50",
+        "mis_step": "found both prices but added one of each instead of two muffins and one scone"
+      },
+      {
+        "choice": "9.50",
+        "mis_step": "interchanged the muffin and scone prices (derived from the 6.50 path, one step further)"
+      }
+    ],
+    "solve": "// solve 3m + 2s = 16.5, 5m + 4s = 29.5 by elimination\nconst det = 3 * 4 - 2 * 5\nconst m = (16.5 * 4 - 2 * 29.5) / det\nconst s = (3 * 29.5 - 16.5 * 5) / det\nreturn (2 * m + s).toFixed(2)"
+  },
+  {
+    "id": "ACT-M-V3A05",
+    "domain": "Algebra",
+    "difficulty": "hard",
+    "subskill": "the value of a parameter that makes a line meet a parabola exactly once",
+    "prompt": "In the standard (x,y) coordinate plane, the graph of y = x² − 6x + 11 and the graph of the horizontal line y = k intersect in exactly one point. What is the value of k ?",
+    "choices": [
+      "-25",
+      "2",
+      "3",
+      "11"
+    ],
+    "correct_answer": "2",
+    "explanation": "A horizontal line meets an upward parabola once only at the vertex. Completing the square, x² − 6x + 11 = (x − 3)² + 2, so the vertex is (3, 2) and k = 2. 3 is the x-coordinate of the vertex rather than the y-coordinate. 11 is the constant term, which is the value at x = 0, not the minimum. −25 comes from completing the square with the full −6 instead of half of it: writing (x − 6)² and correcting by 11 − 36.",
+    "distractor_steps": [
+      {
+        "choice": "3",
+        "mis_step": "gave the x-coordinate of the vertex"
+      },
+      {
+        "choice": "11",
+        "mis_step": "took the constant term to be the minimum value"
+      },
+      {
+        "choice": "-25",
+        "mis_step": "completed the square using −6 rather than −3, giving 11 − 36"
+      }
+    ],
+    "solve": "// the single intersection height is the minimum of the quadratic\nlet best = Infinity\nfor (let i = -100000; i <= 100000; i++) { const x = i / 1000; const y = x * x - 6 * x + 11; if (y < best) best = y }\nreturn Math.round(best * 1000) / 1000"
+  },
+  {
+    "id": "ACT-M-V3F01",
+    "domain": "Functions",
+    "difficulty": "easy",
+    "subskill": "solving an equation in which a function value appears on both sides",
+    "prompt": "The function f is defined by f(x) = 7 − 2x. For what value of x is f(x) = f(1) + 6 ?",
+    "choices": [
+      "-2",
+      "1",
+      "2",
+      "11"
+    ],
+    "correct_answer": "-2",
+    "explanation": "f(1) = 7 − 2 = 5, so the equation is 7 − 2x = 11, giving −2x = 4 and x = −2. 2 comes from solving 7 − 2x = 11 as 2x = 11 − 7. 11 is the right-hand side f(1) + 6 itself, reported instead of the x that produces it. 1 comes from dropping the + 6 and solving f(x) = f(1).",
+    "distractor_steps": [
+      {
+        "choice": "2",
+        "mis_step": "sign error isolating x: wrote 2x = 11 − 7"
+      },
+      {
+        "choice": "11",
+        "mis_step": "reported the value f(1) + 6 rather than x"
+      },
+      {
+        "choice": "1",
+        "mis_step": "ignored the + 6 and solved f(x) = f(1)"
+      }
+    ],
+    "solve": "const f = x => 7 - 2 * x\nconst target = f(1) + 6\nlet x = null\nfor (let k = -100; k <= 100; k++) { if (Math.abs(f(k) - target) < 1e-9) { x = k; break } }\nif (x === null) throw new Error('no integer solution')\nreturn x"
+  },
+  {
+    "id": "ACT-M-V3F02",
+    "domain": "Functions",
+    "difficulty": "medium",
+    "subskill": "inverse variation with a squared variable",
+    "prompt": "The quantity y varies inversely as the square of x. When x = 6, y = 2. What is the value of y when x = 3 ?",
+    "choices": [
+      "1/2",
+      "1",
+      "4",
+      "8"
+    ],
+    "correct_answer": "8",
+    "explanation": "Inverse variation with the square means y = k/x², so k = 2(36) = 72 and y = 72/9 = 8. 4 comes from using y = k/x without the square: k = 12 and y = 12/3. 1/2 comes from treating the relationship as direct with the square, y = 2(9/36). 1 is that same direct reading without the square, y = 2(3/6).",
+    "distractor_steps": [
+      {
+        "choice": "4",
+        "mis_step": "used inverse variation without squaring x"
+      },
+      {
+        "choice": "1/2",
+        "mis_step": "treated the variation as direct rather than inverse, keeping the square"
+      },
+      {
+        "choice": "1",
+        "mis_step": "treated it as direct and dropped the square (derived from the 1/2 path)"
+      }
+    ],
+    "solve": "const k = 2 * 6 * 6\nreturn k / (3 * 3)"
+  },
+  {
+    "id": "ACT-M-V3F03",
+    "domain": "Functions",
+    "difficulty": "medium",
+    "subskill": "values excluded from the domain of a rational function that has a common factor",
+    "prompt": "The function h is defined by h(x) = (x² − 9)/(x² − 2x − 3). For which values of x is h undefined?",
+    "choices": [
+      "-1 only",
+      "-3 and 3",
+      "-1 and 3",
+      "-3, -1, and 3"
+    ],
+    "correct_answer": "-1 and 3",
+    "explanation": "h is undefined exactly where the denominator is 0. Since x² − 2x − 3 = (x − 3)(x + 1), that happens at x = 3 and x = −1. The numerator also has a factor of x − 3, but cancelling it does not put x = 3 back into the domain, so both values are excluded. \"−1 only\" is the answer you get by cancelling x − 3 first and then reading the reduced expression. \"−3 and 3\" are the zeros of the numerator, where h equals 0 rather than being undefined. \"−3, −1, and 3\" collects the zeros of the numerator together with those of the denominator.",
+    "distractor_steps": [
+      {
+        "choice": "-1 only",
+        "mis_step": "cancelled the common factor x − 3 and stopped excluding x = 3"
+      },
+      {
+        "choice": "-3 and 3",
+        "mis_step": "set the numerator to zero instead of the denominator"
+      },
+      {
+        "choice": "-3, -1, and 3",
+        "mis_step": "took the union of the two previous answers (derived from the other distractors, not from the key)"
+      }
+    ],
+    "solve": "const den = x => x * x - 2 * x - 3\nconst bad = []\nfor (let k = -20; k <= 20; k++) if (Math.abs(den(k)) < 1e-9) bad.push(k)\nbad.sort((a, b) => a - b)\nreturn bad.length === 3 ? bad.join(', ') : bad.join(' and ')"
+  },
+  {
+    "id": "ACT-M-V3F04",
+    "domain": "Functions",
+    "difficulty": "medium",
+    "subskill": "a term of a recursively defined sequence",
+    "prompt": "A sequence is defined by a₁ = 5 and, for each integer n > 1, aₙ = 3aₙ₋₁ − 4. What is the value of a₄ ?",
+    "choices": [
+      "-21",
+      "8",
+      "29",
+      "83"
+    ],
+    "correct_answer": "83",
+    "explanation": "a₂ = 3(5) − 4 = 11, a₃ = 3(11) − 4 = 29, and a₄ = 3(29) − 4 = 83. 29 is a₃, one term short. 8 comes from reading the rule as aₙ = 3n − 4 and evaluating at n = 4. −21 comes from grouping the rule as 3(aₙ₋₁ − 4), which gives 3, −3, and then −21.",
+    "distractor_steps": [
+      {
+        "choice": "29",
+        "mis_step": "stopped at a₃"
+      },
+      {
+        "choice": "8",
+        "mis_step": "read the recursion as the explicit rule 3n − 4"
+      },
+      {
+        "choice": "-21",
+        "mis_step": "grouped the rule as 3(aₙ₋₁ − 4)"
+      }
+    ],
+    "solve": "let a = 5\nfor (let n = 2; n <= 4; n++) a = 3 * a - 4\nreturn a"
+  },
+  {
+    "id": "ACT-M-V3F05",
+    "domain": "Functions",
+    "difficulty": "medium",
+    "subskill": "minimum value of a sinusoidal model from its amplitude and midline",
+    "prompt": "The depth of the water at a pier, in feet, is modeled by d(t) = 4.5 cos(πt/6) + 12.5, where t is the number of hours after midnight. What is the depth of the water at low tide?",
+    "choices": [
+      "8",
+      "12",
+      "12.5",
+      "17"
+    ],
+    "correct_answer": "8",
+    "explanation": "The cosine factor ranges from −1 to 1, so d ranges from 12.5 − 4.5 = 8 to 12.5 + 4.5 = 17 feet. Low tide is the smallest value, 8 feet. 17 is high tide, the largest value. 12.5 is the midline, the average depth rather than the least depth. 12 is the period of the model, 2π ÷ (π/6), which is a number of hours rather than a depth.",
+    "distractor_steps": [
+      {
+        "choice": "17",
+        "mis_step": "added the amplitude instead of subtracting it, giving high tide"
+      },
+      {
+        "choice": "12.5",
+        "mis_step": "reported the midline as the minimum"
+      },
+      {
+        "choice": "12",
+        "mis_step": "computed the period of the model rather than a depth"
+      }
+    ],
+    "solve": "let lo = Infinity\nfor (let i = 0; i <= 240000; i++) { const t = i / 10000; const d = 4.5 * Math.cos(Math.PI * t / 6) + 12.5; if (d < lo) lo = d }\nreturn Math.round(lo * 1000) / 1000"
+  },
+  {
+    "id": "ACT-M-V3N01",
+    "domain": "Number and Quantity",
+    "difficulty": "easy",
+    "subskill": "a high power of the imaginary unit",
+    "prompt": "Given i² = −1, what is the value of i²⁷ ?",
+    "choices": [
+      "-1",
+      "-i",
+      "1",
+      "i"
+    ],
+    "correct_answer": "-i",
+    "explanation": "The powers of i repeat with period 4: i¹ = i, i² = −1, i³ = −i, i⁴ = 1. Since 27 = 4(6) + 3, i²⁷ = i³ = −i. i is the answer you get by using a remainder of 1, which is what 28 rather than 27 would give. −1 comes from using a remainder of 2. 1 comes from writing i²⁷ = (i⁴)⁶ · i³ and then taking the leftover i³ to be 1 along with the (i⁴)⁶.",
+    "distractor_steps": [
+      {
+        "choice": "i",
+        "mis_step": "used a remainder of 1 instead of 3 when dividing 27 by 4"
+      },
+      {
+        "choice": "-1",
+        "mis_step": "used a remainder of 2 instead of 3"
+      },
+      {
+        "choice": "1",
+        "mis_step": "reduced (i⁴)⁶ to 1 and dropped the remaining i³ (derived from the remainder mistakes above)"
+      }
+    ],
+    "solve": "// multiply out the complex power directly\nlet re = 1, im = 0\nfor (let n = 0; n < 27; n++) { const nr = -im, ni = re; re = nr; im = ni }\nre = Math.round(re); im = Math.round(im)\nif (re !== 0) return String(re)\nreturn im === 1 ? 'i' : im === -1 ? '-i' : 'ERR'"
+  },
+  {
+    "id": "ACT-M-V3N02",
+    "domain": "Number and Quantity",
+    "difficulty": "medium",
+    "subskill": "least common multiple in a repeating-event context",
+    "prompt": "One lighthouse flashes every 18 seconds and another flashes every 24 seconds. The two flash at the same instant. How many seconds later do they next flash at the same instant?",
+    "choices": [
+      "6",
+      "42",
+      "72",
+      "432"
+    ],
+    "correct_answer": "72",
+    "explanation": "The next simultaneous flash is at the least common multiple of 18 and 24. Since 18 = 2·3² and 24 = 2³·3, the least common multiple is 2³·3² = 72 seconds. 432 is the product 18 × 24, which is a common multiple but not the least one. 6 is the greatest common factor rather than the least common multiple. 42 is the sum of the two intervals.",
+    "distractor_steps": [
+      {
+        "choice": "432",
+        "mis_step": "multiplied the two intervals without dividing by their common factor"
+      },
+      {
+        "choice": "6",
+        "mis_step": "found the greatest common factor instead of the least common multiple"
+      },
+      {
+        "choice": "42",
+        "mis_step": "added the two intervals"
+      }
+    ],
+    "solve": "let t = 1\nwhile (!(t % 18 === 0 && t % 24 === 0)) t++\nreturn t"
+  },
+  {
+    "id": "ACT-M-V3N03",
+    "domain": "Number and Quantity",
+    "difficulty": "medium",
+    "subskill": "solving for an unknown exponent using the laws of exponents",
+    "prompt": "For what value of n is (2ⁿ · 2⁵)/2³ = 2¹² ?",
+    "choices": [
+      "4",
+      "10",
+      "14",
+      "20"
+    ],
+    "correct_answer": "10",
+    "explanation": "Multiplying adds exponents and dividing subtracts them, so n + 5 − 3 = 12 and n = 10. 4 comes from subtracting both 5 and 3 from 12, that is, treating the division as though it also removed the 5. 14 comes from moving both constants to the right with the wrong signs, giving n = 12 + 5 − 3. 20 comes from adding every exponent in sight: 12 + 5 + 3.",
+    "distractor_steps": [
+      {
+        "choice": "4",
+        "mis_step": "wrote n = 12 − 5 − 3, subtracting the numerator exponent as well"
+      },
+      {
+        "choice": "14",
+        "mis_step": "wrote n = 12 + 5 − 3, reversing both signs"
+      },
+      {
+        "choice": "20",
+        "mis_step": "added all three exponents, 12 + 5 + 3 (derived from the 14 path taken one sign further)"
+      }
+    ],
+    "solve": "let n = null\nfor (let k = -50; k <= 50; k++) { if (Math.abs((Math.pow(2, k) * Math.pow(2, 5)) / Math.pow(2, 3) - Math.pow(2, 12)) < 1e-6) { n = k; break } }\nif (n === null) throw new Error('no solution')\nreturn n"
+  },
+  {
+    "id": "ACT-M-V3N04",
+    "domain": "Number and Quantity",
+    "difficulty": "hard",
+    "subskill": "counting integers meeting one divisibility condition but not another",
+    "prompt": "How many integers n with 1 ≤ n ≤ 200 are divisible by 6 but NOT divisible by 8 ?",
+    "choices": [
+      "8",
+      "25",
+      "29",
+      "33"
+    ],
+    "correct_answer": "25",
+    "explanation": "There are ⌊200/6⌋ = 33 multiples of 6. Those also divisible by 8 are the multiples of the least common multiple of 6 and 8, which is 24, and there are ⌊200/24⌋ = 8 of them. So 33 − 8 = 25 qualify. 33 counts every multiple of 6 and never removes any. 29 uses 48 = 6 × 8 in place of the least common multiple, removing only ⌊200/48⌋ = 4. 8 reports the number removed rather than the number remaining.",
+    "distractor_steps": [
+      {
+        "choice": "33",
+        "mis_step": "ignored the \"not divisible by 8\" condition"
+      },
+      {
+        "choice": "29",
+        "mis_step": "used 6 × 8 = 48 instead of the least common multiple 24 for the overlap"
+      },
+      {
+        "choice": "8",
+        "mis_step": "reported the size of the overlap rather than the difference"
+      }
+    ],
+    "solve": "let c = 0\nfor (let n = 1; n <= 200; n++) if (n % 6 === 0 && n % 8 !== 0) c++\nreturn c"
+  },
+  {
+    "id": "ACT-M-V3S01",
+    "domain": "Statistics and Probability",
+    "difficulty": "easy",
+    "subskill": "probability of two events with replacement",
+    "prompt": "A bag contains 4 red marbles, 5 blue marbles, and 6 green marbles. A marble is drawn at random, its color is recorded, and it is returned to the bag. A second marble is then drawn at random. What is the probability that both marbles drawn are green?",
+    "choices": [
+      "1/7",
+      "4/25",
+      "2/5",
+      "4/5"
+    ],
+    "correct_answer": "4/25",
+    "explanation": "There are 15 marbles, 6 of them green, and the first marble is returned, so each draw is green with probability 6/15 = 2/5. The probability both are green is (2/5)(2/5) = 4/25. 1/7 is the answer for drawing without replacement, (6/15)(5/14). 2/5 is the probability for a single draw. 4/5 comes from adding the two single-draw probabilities instead of multiplying them.",
+    "distractor_steps": [
+      {
+        "choice": "1/7",
+        "mis_step": "computed the without-replacement probability (6/15)(5/14)"
+      },
+      {
+        "choice": "2/5",
+        "mis_step": "gave the probability for one draw only"
+      },
+      {
+        "choice": "4/5",
+        "mis_step": "added 2/5 and 2/5 instead of multiplying (derived from the 2/5 path)"
+      }
+    ],
+    "solve": "const p = 6 / 15\nreturn p * p"
+  },
+  {
+    "id": "ACT-M-V3S02",
+    "domain": "Statistics and Probability",
+    "difficulty": "medium",
+    "subskill": "counting arrangements into distinct roles",
+    "prompt": "A club has 9 members. In how many different ways can the club fill the three distinct offices of president, vice-president, and treasurer, if no member may hold more than one office?",
+    "choices": [
+      "27",
+      "72",
+      "84",
+      "504"
+    ],
+    "correct_answer": "504",
+    "explanation": "There are 9 choices for president, then 8 for vice-president, then 7 for treasurer: 9 × 8 × 7 = 504. 84 is the number of unordered groups of three, 9!/(3!6!), which ignores that the three offices are different. 72 is 9 × 8, stopping one office short. 27 is 9 × 3, multiplying the number of members by the number of offices.",
+    "distractor_steps": [
+      {
+        "choice": "84",
+        "mis_step": "counted unordered groups of 3, treating the offices as interchangeable"
+      },
+      {
+        "choice": "72",
+        "mis_step": "multiplied 9 × 8 and stopped, filling only two offices"
+      },
+      {
+        "choice": "27",
+        "mis_step": "multiplied members by offices, 9 × 3"
+      }
+    ],
+    "solve": "return 9 * 8 * 7"
+  },
+  {
+    "id": "ACT-M-V3S03",
+    "domain": "Statistics and Probability",
+    "difficulty": "medium",
+    "subskill": "the score needed on one more test to reach a target mean",
+    "prompt": "A student's mean score on 5 tests is 82. What score on a 6th test would make the mean of all 6 tests equal to 84 ?",
+    "choices": [
+      "84",
+      "86",
+      "94",
+      "96"
+    ],
+    "correct_answer": "94",
+    "explanation": "The 5 tests total 5(82) = 410, and 6 tests averaging 84 must total 6(84) = 504, so the 6th score is 504 − 410 = 94. Equivalently, the 5 earlier tests each need to be lifted by 2, so the new score must be 84 + 5(2) = 94. 96 uses 6 rather than 5 in that lifting count, giving 84 + 6(2). 86 assumes the new score need only be 2 above the target, 84 + 2. 84 assumes the new score must equal the new mean.",
+    "distractor_steps": [
+      {
+        "choice": "96",
+        "mis_step": "lifted 6 tests rather than the 5 already taken, giving 84 + 6(2)"
+      },
+      {
+        "choice": "86",
+        "mis_step": "added the 2-point rise once, giving 84 + 2"
+      },
+      {
+        "choice": "84",
+        "mis_step": "took the new score to be the new mean"
+      }
+    ],
+    "solve": "return 6 * 84 - 5 * 82"
+  },
+  {
+    "id": "ACT-M-V3S04",
+    "domain": "Statistics and Probability",
+    "difficulty": "hard",
+    "subskill": "effect of removing the largest value on the mean and on the median",
+    "prompt": "The dot plot shows the number of pets owned by each of the 15 students in a class. The student who owns the most pets moves away and that student's data value is removed. Which of the following describes the effect on the mean and the median of the remaining 14 values?",
+    "choices": [
+      "Neither the mean nor the median changes.",
+      "The mean changes but the median does not.",
+      "The median changes but the mean does not.",
+      "Both the mean and the median change."
+    ],
+    "correct_answer": "The mean changes but the median does not.",
+    "explanation": "Read from the plot, the 15 values are three 0s, five 1s, four 2s, two 3s, and one 6. Their sum is 25, so the mean is 25/15 ≈ 1.67. Removing the 6 leaves 14 values summing to 19, a mean of 19/14 ≈ 1.36, so the mean falls. The median of the 15 values is the 8th, which is 1; after the removal the median is the average of the 7th and 8th of the remaining 14, and both are 1, so the median stays at 1. A mean is built from every value and so responds to the loss of an extreme one; a median depends only on position, and removing a value from the far right of a data set this crowded near 1 does not move it.",
+    "distractor_steps": [
+      {
+        "choice": "The median changes but the mean does not.",
+        "mis_step": "assumed an extreme value pulls the median and that one of fifteen values cannot move the mean"
+      },
+      {
+        "choice": "Both the mean and the median change.",
+        "mis_step": "assumed any change to a data set changes both measures"
+      },
+      {
+        "choice": "Neither the mean nor the median changes.",
+        "mis_step": "assumed a single value out of fifteen is too small a share to matter (derived from the second half of the previous mistake)"
+      }
+    ],
+    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 400 220\" width=\"400\" height=\"220\" role=\"img\" aria-label=\"Dot plot of the number of pets owned by 15 students\"><rect x=\"0\" y=\"0\" width=\"400\" height=\"220\" fill=\"#ffffff\"/><line x1=\"40\" y1=\"168\" x2=\"370\" y2=\"168\" stroke=\"#111111\" stroke-width=\"1.5\"/><line x1=\"60\" y1=\"168\" x2=\"60\" y2=\"173\" stroke=\"#111111\" stroke-width=\"1.5\"/><text x=\"60\" y=\"188\" font-family=\"Helvetica, Arial, sans-serif\" font-size=\"13\" fill=\"#111111\" text-anchor=\"middle\">0</text><circle cx=\"60\" cy=\"156\" r=\"7\" fill=\"#111111\"/><circle cx=\"60\" cy=\"138\" r=\"7\" fill=\"#111111\"/><circle cx=\"60\" cy=\"120\" r=\"7\" fill=\"#111111\"/><line x1=\"108\" y1=\"168\" x2=\"108\" y2=\"173\" stroke=\"#111111\" stroke-width=\"1.5\"/><text x=\"108\" y=\"188\" font-family=\"Helvetica, Arial, sans-serif\" font-size=\"13\" fill=\"#111111\" text-anchor=\"middle\">1</text><circle cx=\"108\" cy=\"156\" r=\"7\" fill=\"#111111\"/><circle cx=\"108\" cy=\"138\" r=\"7\" fill=\"#111111\"/><circle cx=\"108\" cy=\"120\" r=\"7\" fill=\"#111111\"/><circle cx=\"108\" cy=\"102\" r=\"7\" fill=\"#111111\"/><circle cx=\"108\" cy=\"84\" r=\"7\" fill=\"#111111\"/><line x1=\"156\" y1=\"168\" x2=\"156\" y2=\"173\" stroke=\"#111111\" stroke-width=\"1.5\"/><text x=\"156\" y=\"188\" font-family=\"Helvetica, Arial, sans-serif\" font-size=\"13\" fill=\"#111111\" text-anchor=\"middle\">2</text><circle cx=\"156\" cy=\"156\" r=\"7\" fill=\"#111111\"/><circle cx=\"156\" cy=\"138\" r=\"7\" fill=\"#111111\"/><circle cx=\"156\" cy=\"120\" r=\"7\" fill=\"#111111\"/><circle cx=\"156\" cy=\"102\" r=\"7\" fill=\"#111111\"/><line x1=\"204\" y1=\"168\" x2=\"204\" y2=\"173\" stroke=\"#111111\" stroke-width=\"1.5\"/><text x=\"204\" y=\"188\" font-family=\"Helvetica, Arial, sans-serif\" font-size=\"13\" fill=\"#111111\" text-anchor=\"middle\">3</text><circle cx=\"204\" cy=\"156\" r=\"7\" fill=\"#111111\"/><circle cx=\"204\" cy=\"138\" r=\"7\" fill=\"#111111\"/><line x1=\"252\" y1=\"168\" x2=\"252\" y2=\"173\" stroke=\"#111111\" stroke-width=\"1.5\"/><text x=\"252\" y=\"188\" font-family=\"Helvetica, Arial, sans-serif\" font-size=\"13\" fill=\"#111111\" text-anchor=\"middle\">4</text><line x1=\"300\" y1=\"168\" x2=\"300\" y2=\"173\" stroke=\"#111111\" stroke-width=\"1.5\"/><text x=\"300\" y=\"188\" font-family=\"Helvetica, Arial, sans-serif\" font-size=\"13\" fill=\"#111111\" text-anchor=\"middle\">5</text><line x1=\"348\" y1=\"168\" x2=\"348\" y2=\"173\" stroke=\"#111111\" stroke-width=\"1.5\"/><text x=\"348\" y=\"188\" font-family=\"Helvetica, Arial, sans-serif\" font-size=\"13\" fill=\"#111111\" text-anchor=\"middle\">6</text><circle cx=\"348\" cy=\"156\" r=\"7\" fill=\"#111111\"/><text x=\"205\" y=\"212\" font-family=\"Helvetica, Arial, sans-serif\" font-size=\"13\" fill=\"#111111\" text-anchor=\"middle\">Number of pets</text></svg>",
+    "caption": "Number of pets owned by each of 15 students.",
+    "solve": "const data = [0,0,0,1,1,1,1,1,2,2,2,2,3,3,6]\nconst mean = a => a.reduce((x, y) => x + y, 0) / a.length\nconst median = a => { const s = [...a].sort((x, y) => x - y); const n = s.length\n  return n % 2 ? s[(n - 1) / 2] : (s[n / 2 - 1] + s[n / 2]) / 2 }\nconst after = [...data]\nafter.splice(after.indexOf(Math.max(...data)), 1)\nconst dMean = Math.abs(mean(after) - mean(data)) > 1e-9\nconst dMed = Math.abs(median(after) - median(data)) > 1e-9\nif (dMean && !dMed) return 'The mean changes but the median does not.'\nif (!dMean && dMed) return 'The median changes but the mean does not.'\nif (dMean && dMed) return 'Both the mean and the median change.'\nreturn 'Neither the mean nor the median changes.'"
+  },
+  {
+    "id": "ACT-M-V3G01",
+    "domain": "Geometry",
+    "difficulty": "easy",
+    "subskill": "distance between two points in the coordinate plane",
+    "prompt": "In the standard (x,y) coordinate plane, what is the distance between the points (−3, 2) and (5, 8) ?",
+    "choices": [
+      "2",
+      "10",
+      "14",
+      "100"
+    ],
+    "correct_answer": "10",
+    "explanation": "The horizontal separation is 5 − (−3) = 8 and the vertical separation is 8 − 2 = 6, so the distance is √(8² + 6²) = √100 = 10. 100 is that value before the square root is taken. 14 comes from adding the two separations, 8 + 6, which is the distance travelled along the axes rather than the straight-line distance. 2 comes from subtracting them, 8 − 6.",
+    "distractor_steps": [
+      {
+        "choice": "100",
+        "mis_step": "stopped at 8² + 6² without taking the square root"
+      },
+      {
+        "choice": "14",
+        "mis_step": "added the horizontal and vertical separations"
+      },
+      {
+        "choice": "2",
+        "mis_step": "subtracted the separations (derived from the 14 path with the operation reversed)"
+      }
+    ],
+    "solve": "const dx = 5 - (-3), dy = 8 - 2\nreturn Math.sqrt(dx * dx + dy * dy)"
+  },
+  {
+    "id": "ACT-M-V3G02",
+    "domain": "Geometry",
+    "difficulty": "medium",
+    "subskill": "volume of a sphere",
+    "prompt": "A solid ball has a radius of 3 centimeters. What is the volume of the ball, in cubic centimeters?",
+    "choices": [
+      "9π",
+      "12π",
+      "27π",
+      "36π"
+    ],
+    "correct_answer": "36π",
+    "explanation": "The volume of a sphere is (4/3)πr³ = (4/3)π(27) = 36π cubic centimeters. 27π comes from using πr³ and dropping the factor 4/3. 12π comes from squaring the radius rather than cubing it, (4/3)π(9). 9π is πr², the area of the great circle through the center, which is an area rather than a volume.",
+    "distractor_steps": [
+      {
+        "choice": "27π",
+        "mis_step": "used πr³, omitting the 4/3"
+      },
+      {
+        "choice": "12π",
+        "mis_step": "used (4/3)πr², squaring instead of cubing"
+      },
+      {
+        "choice": "9π",
+        "mis_step": "computed πr², the area of the great circle (derived from the 12π path with the 4/3 also dropped)"
+      }
+    ],
+    "solve": "const r = 3\nconst coeff = (4 / 3) * r * r * r\nif (Math.abs(coeff - Math.round(coeff)) > 1e-9) throw new Error('non-integer coefficient')\nreturn Math.round(coeff) + 'π'"
+  },
+  {
+    "id": "ACT-M-V3G03",
+    "domain": "Geometry",
+    "difficulty": "medium",
+    "subskill": "area of an equilateral triangle from its perimeter",
+    "prompt": "An equilateral triangle has a perimeter of 24 centimeters. What is its area, in square centimeters?",
+    "choices": [
+      "16√3",
+      "32",
+      "36√3",
+      "72"
+    ],
+    "correct_answer": "16√3",
+    "explanation": "Each side is 24/3 = 8 cm. The altitude to a side splits the triangle into two 30-60-90 triangles with legs 4 and 4√3, so the area is (1/2)(8)(4√3) = 16√3. 32 comes from using the side length 8 as the height as well, giving (1/2)(8)(8). 36√3 comes from taking the side to be 24/2 = 12 and then applying the correct formula, (√3/4)(144). 72 is that same side length 12 used with the incorrect (1/2)s² area, (1/2)(144).",
+    "distractor_steps": [
+      {
+        "choice": "32",
+        "mis_step": "used the side length as the altitude, (1/2)(8)(8)"
+      },
+      {
+        "choice": "36√3",
+        "mis_step": "divided the perimeter by 2 instead of 3 to get the side"
+      },
+      {
+        "choice": "72",
+        "mis_step": "that same side length 12 with the height taken to be the side (derived from the 36√3 path)"
+      }
+    ],
+    "solve": "const s = 24 / 3\nconst area = (Math.sqrt(3) / 4) * s * s\nconst coeff = area / Math.sqrt(3)\nif (Math.abs(coeff - Math.round(coeff)) > 1e-9) throw new Error('non-integer radical coefficient')\nreturn Math.round(coeff) + '√3'"
+  },
+  {
+    "id": "ACT-M-V3G04",
+    "domain": "Geometry",
+    "difficulty": "hard",
+    "subskill": "the space diagonal of a rectangular solid",
+    "prompt": "A closed rectangular box has inside dimensions 6 centimeters by 6 centimeters by 7 centimeters. What is the length, in centimeters, of the longest straight rod that will fit inside the box?",
+    "choices": [
+      "6√2",
+      "11",
+      "13",
+      "19"
+    ],
+    "correct_answer": "11",
+    "explanation": "The longest rod lies along the space diagonal, whose length is √(6² + 6² + 7²) = √(36 + 36 + 49) = √121 = 11 cm. 6√2 ≈ 8.5 is the diagonal of the 6-by-6 face only, which ignores the third dimension. 13 comes from adding the two edges of a face, 6 + 7, instead of combining them under a square root. 19 adds all three dimensions, 6 + 6 + 7.",
+    "distractor_steps": [
+      {
+        "choice": "6√2",
+        "mis_step": "used the diagonal of the square face and ignored the 7 cm edge"
+      },
+      {
+        "choice": "13",
+        "mis_step": "added two edge lengths instead of using the Pythagorean theorem"
+      },
+      {
+        "choice": "19",
+        "mis_step": "added all three edge lengths (derived from the 13 path with the third edge included)"
+      }
+    ],
+    "solve": "const d = Math.sqrt(6 * 6 + 6 * 6 + 7 * 7)\nif (Math.abs(d - Math.round(d)) > 1e-9) throw new Error('diagonal is not an integer')\nreturn Math.round(d)"
+  },
+  {
+    "id": "ACT-M-V3I01",
+    "domain": "Integrating Essential Skills",
+    "difficulty": "easy",
+    "subskill": "scaling a recipe by a non-integer factor",
+    "prompt": "A recipe that makes 18 cookies calls for 3/4 cup of sugar. At the same rate, how many cups of sugar are needed to make 48 cookies?",
+    "choices": [
+      "9/32",
+      "3/4",
+      "2",
+      "8/3"
+    ],
+    "correct_answer": "2",
+    "explanation": "The batch is scaled by 48/18 = 8/3, so the sugar needed is (3/4)(8/3) = 2 cups. 8/3 is the scale factor itself, reported instead of the amount of sugar. 9/32 comes from scaling by 18/48 rather than 48/18, that is, (3/4)(3/8). 3/4 is the original amount, left unscaled.",
+    "distractor_steps": [
+      {
+        "choice": "8/3",
+        "mis_step": "reported the scale factor rather than the quantity of sugar"
+      },
+      {
+        "choice": "9/32",
+        "mis_step": "inverted the scale factor, multiplying by 18/48"
+      },
+      {
+        "choice": "3/4",
+        "mis_step": "did not scale at all"
+      }
+    ],
+    "solve": "return (3 / 4) * (48 / 18)"
+  },
+  {
+    "id": "ACT-M-V3I02",
+    "domain": "Integrating Essential Skills",
+    "difficulty": "medium",
+    "subskill": "a difference between two shares of a three-part ratio",
+    "prompt": "A prize of $3,600 is divided among three people in the ratio 2 : 3 : 7. How many more dollars does the person with the largest share receive than the person with the smallest share?",
+    "choices": [
+      "300",
+      "1200",
+      "1500",
+      "2100"
+    ],
+    "correct_answer": "1500",
+    "explanation": "The ratio has 2 + 3 + 7 = 12 parts, so one part is $3,600/12 = $300. The largest share is 7 parts and the smallest is 2 parts, a difference of 5 parts, or 5($300) = $1,500. 2100 is the largest share itself, 7 parts. 1200 comes from taking the gap between the ratio numbers 2 and 7 to be 4 parts rather than 5. 300 is the value of a single part.",
+    "distractor_steps": [
+      {
+        "choice": "2100",
+        "mis_step": "reported the largest share instead of the difference"
+      },
+      {
+        "choice": "1200",
+        "mis_step": "counted the gap from 2 to 7 as 4 parts"
+      },
+      {
+        "choice": "300",
+        "mis_step": "reported the value of one part"
+      }
+    ],
+    "solve": "const parts = [2, 3, 7]\nconst unit = 3600 / parts.reduce((a, b) => a + b, 0)\nreturn (Math.max(...parts) - Math.min(...parts)) * unit"
+  },
+  {
+    "id": "ACT-M-V3I03",
+    "domain": "Integrating Essential Skills",
+    "difficulty": "medium",
+    "subskill": "recovering the variable part of a fixed-fee-plus-rate total",
+    "prompt": "A plumber charges a $90 call-out fee plus $45 for each hour of work. A repair job cost $225 in total. For how many hours did the plumber work?",
+    "choices": [
+      "1",
+      "3",
+      "5",
+      "7"
+    ],
+    "correct_answer": "3",
+    "explanation": "The hourly charges account for $225 − $90 = $135, and $135/$45 = 3 hours. 5 comes from dividing the whole $225 by $45 and never setting the call-out fee aside. 7 comes from that same student adding the fee back in hours, 90/45 = 2, instead of subtracting it: 5 + 2. 1 comes from subtracting the $90 fee twice, leaving $45.",
+    "distractor_steps": [
+      {
+        "choice": "5",
+        "mis_step": "divided the total by the hourly rate, ignoring the call-out fee"
+      },
+      {
+        "choice": "7",
+        "mis_step": "took the 5 above and added the fee expressed in hours instead of subtracting it (derived from the 5 path)"
+      },
+      {
+        "choice": "1",
+        "mis_step": "subtracted the call-out fee twice"
+      }
+    ],
+    "solve": "let h = null\nfor (let k = 0; k <= 100; k++) { if (Math.abs(90 + 45 * k - 225) < 1e-9) { h = k; break } }\nif (h === null) throw new Error('no whole number of hours')\nreturn h"
+  },
+  {
+    "id": "ACT-M-V3I04",
+    "domain": "Integrating Essential Skills",
+    "difficulty": "hard",
+    "subskill": "profit after a markup and a later discount on the marked price",
+    "prompt": "A store buys a notebook for $2.00 and marks it up 60% to set the selling price. During a sale, the notebook is sold at 25% off the marked price. How much profit does the store make on each notebook sold at the sale price?",
+    "choices": [
+      "0.40",
+      "0.70",
+      "0.90",
+      "1.20"
+    ],
+    "correct_answer": "0.40",
+    "explanation": "The marked price is 2.00(1.60) = $3.20, and 25% off that is 3.20(0.75) = $2.40, so the profit is 2.40 − 2.00 = $0.40. $1.20 is the profit at the full marked price, with the discount never applied. $0.90 is that $1.20 profit reduced by 25%, which discounts the profit rather than the price. $0.70 comes from combining the percentages as 60% − 25% = 35% and computing 2.00(1.35) − 2.00.",
+    "distractor_steps": [
+      {
+        "choice": "1.20",
+        "mis_step": "ignored the sale and used the marked price"
+      },
+      {
+        "choice": "0.90",
+        "mis_step": "applied the 25% discount to the profit rather than to the price (derived from the 1.20 path)"
+      },
+      {
+        "choice": "0.70",
+        "mis_step": "netted the two percentages as a single 35% markup"
+      }
+    ],
+    "solve": "const cost = 2.00\nconst marked = cost * 1.60\nconst sale = marked * 0.75\nreturn (sale - cost).toFixed(2)"
+  }
+]

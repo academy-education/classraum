@@ -103,8 +103,24 @@ export const FAMILY_STAGES = contract.familyStages as Record<ItemFamily, readonl
  *  reads — item->>'listeningTask' / 'readingTask', or item->>'type' for the
  *  types that carry neither. Never the `domain` column: the two disagree,
  *  and a served item once escaped an audit because of it. */
-export function familyForTask(task: string, family: 'toefl' | 'sat', section: string): ItemFamily {
-  if (family === 'sat') return section === 'math' ? 'mc_stem_source' : 'mc_hidden_source'
+export function familyForTask(
+  task: string,
+  family: 'toefl' | 'sat' | 'act' | 'isee' | 'ssat',
+  section: string,
+): ItemFamily {
+  /*
+   * MATHS IS DECIDED BY SECTION, NOT BY FAMILY — widened 2026-09-04, and
+   * the family union with it. This read `if (family === 'sat')`, so only
+   * SAT maths reached mc_stem_source; ACT, ISEE and SSAT maths fell through
+   * to the task switch, missed it (those rows carry task 'multiple_choice')
+   * and defaulted to mc_hidden_source, which requires an `elimination`
+   * stage. Elimination probes "can you reject an option with the SOURCE
+   * hidden", and a maths item's source is its stem — there is nothing to
+   * hide, so the gate was demanding a stage that cannot be run. Mirrored in
+   * familyFor() in scripts/study-bank/gate.mjs, which is the insert path.
+   */
+  if (section === 'math') return 'mc_stem_source'
+  if (family === 'sat') return 'mc_hidden_source'
   switch (task) {
     case 'fill_in_blanks':
       return 'cloze'

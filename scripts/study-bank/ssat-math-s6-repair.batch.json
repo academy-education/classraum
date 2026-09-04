@@ -1,0 +1,346 @@
+[
+  {
+    "id": "SM6-01",
+    "bank_id": "dd21e2ec-7256-4eac-a97a-f7462017bb2b",
+    "domain": "Math",
+    "subskill": "solving an equation containing reciprocals",
+    "difficulty": "medium",
+    "prompt": "If 1/x + 1/y = 5/12 and x = 4, what is the value of y?",
+    "choices": [
+      "1.5",
+      "2",
+      "2.4",
+      "6",
+      "8"
+    ],
+    "correct_answer": "6",
+    "explanation": "Substituting x = 4 gives 1/4 + 1/y = 5/12. Since 1/4 is 3/12, the remaining 1/y is 5/12 - 3/12 = 2/12 = 1/6, so y = 6.",
+    "solve": "const x=4; const inv=5/12 - 1/x; return 1/inv;",
+    "previous_choices": [
+      "2.4",
+      "3",
+      "4",
+      "6",
+      "12"
+    ],
+    "distractor_steps": [
+      {
+        "choice": "1.5",
+        "mis_step": "Added the fractions instead of subtracting: 1/y = 5/12 + 3/12 = 2/3, so y = 3/2."
+      },
+      {
+        "choice": "2",
+        "mis_step": "Subtracted numerator and denominator separately: (5-1)/(12-4) = 4/8 = 1/2, then inverted to y = 2."
+      },
+      {
+        "choice": "2.4",
+        "mis_step": "Inverted the right-hand side first and stopped: y = 12/5 = 2.4."
+      },
+      {
+        "choice": "8",
+        "mis_step": "Read 5/12 as \"the denominators add to 12\", so y = 12 - 4 = 8."
+      }
+    ]
+  },
+  {
+    "id": "SM6-08",
+    "bank_id": "09826fad-9d7e-447b-afb5-3f895174191f",
+    "domain": "Math",
+    "subskill": "rate conversion across units of time and volume",
+    "difficulty": "medium",
+    "prompt": "A dripping tap loses 3 millilitres of water every 4 seconds. At this rate, how many LITRES of water does it lose in one hour? (1 litre = 1,000 millilitres)",
+    "choices": [
+      "0.045",
+      "2.7",
+      "3.6",
+      "4.8",
+      "2700"
+    ],
+    "correct_answer": "2.7",
+    "explanation": "The tap loses 3/4 = 0.75 millilitres per second. One hour is 3,600 seconds, so the loss is 0.75 x 3,600 = 2,700 millilitres, which is 2,700 divided by 1,000 = 2.7 litres.",
+    "solve": "const perSec=3/4; const mlPerHour=perSec*3600; return mlPerHour/1000;",
+    "previous_choices": [
+      "0.045",
+      "0.27",
+      "1.35",
+      "2.7",
+      "27"
+    ],
+    "distractor_steps": [
+      {
+        "choice": "0.045",
+        "mis_step": "Used one minute (60 seconds) instead of one hour: 0.75 x 60 = 45 ml = 0.045 L."
+      },
+      {
+        "choice": "3.6",
+        "mis_step": "Rounded the rate to 1 ml per second: 3,600 ml = 3.6 L."
+      },
+      {
+        "choice": "4.8",
+        "mis_step": "Inverted the rate to 4/3 ml per second: (4/3) x 3,600 = 4,800 ml = 4.8 L."
+      },
+      {
+        "choice": "2700",
+        "mis_step": "Correct in millilitres but never converted to litres."
+      }
+    ]
+  },
+  {
+    "id": "SM6-22",
+    "bank_id": "fb1d2ad4-7390-4276-86ae-86fd8017157d",
+    "domain": "Math",
+    "subskill": "y-intercept of a line through two points",
+    "difficulty": "medium",
+    "prompt": "A line in the coordinate plane passes through the points (2, 5) and (6, 13). At what value of y does the line cross the y-axis?",
+    "choices": [
+      "-11",
+      "1",
+      "4",
+      "5",
+      "9"
+    ],
+    "correct_answer": "1",
+    "explanation": "The slope is (13 - 5) divided by (6 - 2), which is 8/4 = 2. Starting from (2, 5) and stepping back 2 units in x lowers y by 2 x 2 = 4, so the line crosses the y-axis at y = 5 - 4 = 1.",
+    "solve": "const x1=2,y1=5,x2=6,y2=13; const m=(y2-y1)/(x2-x1); return y1-m*x1;",
+    "previous_choices": [
+      "-1",
+      "1",
+      "2",
+      "5",
+      "13"
+    ],
+    "distractor_steps": [
+      {
+        "choice": "-11",
+        "mis_step": "Used the rise alone as the slope (13 - 5 = 8): 5 - 8 x 2 = -11."
+      },
+      {
+        "choice": "4",
+        "mis_step": "Inverted the slope to (6-2)/(13-5) = 1/2: 5 - (1/2)(2) = 4."
+      },
+      {
+        "choice": "5",
+        "mis_step": "Took the y-coordinate of the given point (2, 5) as the intercept."
+      },
+      {
+        "choice": "9",
+        "mis_step": "Stepped toward the y-axis in the wrong direction: 5 + 2 x 2 = 9."
+      }
+    ]
+  },
+  {
+    "id": "SM6-24",
+    "bank_id": "05ea01b1-1ca7-459e-8e83-321bb1b64420",
+    "domain": "Math",
+    "subskill": "counting multiples with an exclusion",
+    "difficulty": "hard",
+    "prompt": "How many positive integers less than 100 are multiples of 6 but are NOT multiples of 4?",
+    "choices": [
+      "8",
+      "12",
+      "16",
+      "24",
+      "33"
+    ],
+    "correct_answer": "8",
+    "explanation": "The multiples of 6 below 100 run 6, 12, ..., 96, which is 16 numbers. Those that are also multiples of 4 are the multiples of 12: 12, 24, ..., 96, which is 8 numbers. Removing them leaves 16 - 8 = 8.",
+    "solve": "let c=0; for(let n=1;n<100;n++) if(n%6===0 && n%4!==0) c++; return c;",
+    "previous_choices": [
+      "7",
+      "8",
+      "16",
+      "25",
+      "33"
+    ],
+    "distractor_steps": [
+      {
+        "choice": "12",
+        "mis_step": "Excluded only the multiples of 24 (24, 48, 72, 96): 16 - 4 = 12."
+      },
+      {
+        "choice": "16",
+        "mis_step": "Counted the multiples of 6 and forgot the exclusion entirely."
+      },
+      {
+        "choice": "24",
+        "mis_step": "Counted the multiples of 4 below 100 instead."
+      },
+      {
+        "choice": "33",
+        "mis_step": "Used 3 instead of 6: the multiples of 3 below 100 number 33."
+      }
+    ]
+  },
+  {
+    "id": "SM6-31",
+    "bank_id": "cd05ef06-b653-4017-a741-40bbe7c0f010",
+    "domain": "Math",
+    "subskill": "arrangements with a position restriction",
+    "difficulty": "hard",
+    "prompt": "Four friends line up in a row for a photograph. Ravi insists on standing at one of the two ends. In how many different orders can the four friends stand?",
+    "choices": [
+      "4",
+      "6",
+      "8",
+      "12",
+      "48"
+    ],
+    "correct_answer": "12",
+    "explanation": "Ravi has 2 choices of position. The other three friends then fill the remaining three spots in 3 x 2 x 1 = 6 orders, so the total is 2 x 6 = 12 arrangements.",
+    "solve": "const people=[0,1,2,3]; let c=0; const perm=(arr,cur)=>{ if(!arr.length){ if(cur[0]===0||cur[3]===0) c++; return; } arr.forEach((p,i)=>perm(arr.filter((_,j)=>j!==i), cur.concat(p))); }; perm(people,[]); return c;",
+    "previous_choices": [
+      "6",
+      "8",
+      "12",
+      "18",
+      "24"
+    ],
+    "distractor_steps": [
+      {
+        "choice": "4",
+        "mis_step": "Stopped after placing Ravi and one neighbour: 2 x 2."
+      },
+      {
+        "choice": "6",
+        "mis_step": "Fixed Ravi at a single end and arranged the other three: 3! = 6, forgetting the second end."
+      },
+      {
+        "choice": "8",
+        "mis_step": "Added the two end choices to the 3! arrangements instead of multiplying: 2 + 6."
+      },
+      {
+        "choice": "48",
+        "mis_step": "Multiplied the two end choices by all 4! arrangements, counting Ravi twice: 2 x 24."
+      }
+    ]
+  },
+  {
+    "id": "SM6-39",
+    "bank_id": "e962c649-2c63-4e35-adde-baa6d3f9873c",
+    "domain": "Math",
+    "subskill": "surface area of a cube from its volume",
+    "difficulty": "medium",
+    "prompt": "A cube has a volume of 125 cubic centimetres. What is its total surface area, in square centimetres?",
+    "choices": [
+      "5",
+      "25",
+      "100",
+      "150",
+      "750"
+    ],
+    "correct_answer": "150",
+    "explanation": "The edge length is the number whose cube is 125, namely 5 centimetres. Each of the six faces is a 5 by 5 square of area 25, so the surface area is 6 x 25 = 150 square centimetres.",
+    "solve": "const v=125; const s=Math.round(Math.cbrt(v)); return 6*s*s;",
+    "previous_choices": [
+      "25",
+      "30",
+      "75",
+      "150",
+      "625"
+    ],
+    "distractor_steps": [
+      {
+        "choice": "5",
+        "mis_step": "Gave the edge length rather than the surface area."
+      },
+      {
+        "choice": "25",
+        "mis_step": "Gave the area of a single face."
+      },
+      {
+        "choice": "100",
+        "mis_step": "Used only the four side faces and forgot the top and bottom: 4 x 25."
+      },
+      {
+        "choice": "750",
+        "mis_step": "Multiplied the volume by six instead of the face area: 6 x 125."
+      }
+    ]
+  },
+  {
+    "id": "SM6-41",
+    "bank_id": "d5bc8ae0-29a2-4180-9825-fa8717c3d218",
+    "domain": "Math",
+    "subskill": "least common multiple in a repeating-events setting",
+    "difficulty": "medium",
+    "prompt": "Two lighthouse lamps flash at regular intervals: one every 12 seconds and the other every 18 seconds. They flash together at midnight. How many seconds pass before they next flash at the same instant?",
+    "choices": [
+      "6",
+      "24",
+      "30",
+      "36",
+      "216"
+    ],
+    "correct_answer": "36",
+    "explanation": "They coincide at times that are multiples of both 12 and 18. Since 12 = 2 x 2 x 3 and 18 = 2 x 3 x 3, the least common multiple is 2 x 2 x 3 x 3 = 36 seconds.",
+    "solve": "function g(a,b){while(b){[a,b]=[b,a%b];}return a;} return 12*18/g(12,18);",
+    "previous_choices": [
+      "6",
+      "12",
+      "18",
+      "30",
+      "36"
+    ],
+    "distractor_steps": [
+      {
+        "choice": "6",
+        "mis_step": "Gave the greatest common factor of 12 and 18 instead of the least common multiple."
+      },
+      {
+        "choice": "24",
+        "mis_step": "Took the next multiple of 12 without checking it is also a multiple of 18."
+      },
+      {
+        "choice": "30",
+        "mis_step": "Added the two intervals: 12 + 18."
+      },
+      {
+        "choice": "216",
+        "mis_step": "Multiplied the two intervals without dividing by their common factor: 12 x 18."
+      }
+    ]
+  },
+  {
+    "id": "SM6-42",
+    "bank_id": "9a1225e5-3d1d-4b6e-a505-e1a0ca031d52",
+    "domain": "Math",
+    "subskill": "solving for an exponent with equal bases",
+    "difficulty": "medium",
+    "prompt": "If 3 raised to the power x, multiplied by 9, equals 3 raised to the power 7, what is the value of x?",
+    "choices": [
+      "3.5",
+      "4",
+      "5",
+      "7",
+      "9"
+    ],
+    "correct_answer": "5",
+    "explanation": "Since 9 = 3 squared, the left side is 3 to the power x + 2. Equal powers of the same base require equal exponents, so x + 2 = 7 and x = 5.",
+    "solve": "let ans=null; for(let x=0;x<=20;x++) if(Math.pow(3,x)*9===Math.pow(3,7)) ans=x; return ans;",
+    "previous_choices": [
+      "2",
+      "4",
+      "5",
+      "6",
+      "9"
+    ],
+    "distractor_steps": [
+      {
+        "choice": "3.5",
+        "mis_step": "Treated the product as 3 to the power 2x and halved the exponent: 2x = 7."
+      },
+      {
+        "choice": "4",
+        "mis_step": "Read 9 as 3 cubed, giving x + 3 = 7."
+      },
+      {
+        "choice": "7",
+        "mis_step": "Ignored the factor of 9 and read the exponent straight off."
+      },
+      {
+        "choice": "9",
+        "mis_step": "Answered with the 9 from the equation."
+      }
+    ]
+  }
+]

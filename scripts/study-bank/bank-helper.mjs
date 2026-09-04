@@ -32,6 +32,7 @@
 import { createClient } from '@supabase/supabase-js'
 import { createHash } from 'node:crypto'
 import { readFileSync } from 'node:fs'
+import { gateBatch, overrideReason } from './gate.mjs'
 
 const LETTERS = ['A', 'B', 'C', 'D', 'E']
 const norm = s => (s || '').toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim()
@@ -156,16 +157,52 @@ async function main() {
     process.exit(1)
   }
 
+  /*
+   * THE QC GATE, WIRED 2026-09-04 — see the twin note in math-bank-helper.mjs.
+   * gate.mjs, gate-contract.json and bank-qc.ts all existed and only the
+   * TOEFL inserter called any of them; this one wrote straight to the bank
+   * while the bank-gate skill claimed the inserters refuse an ungated batch.
+   */
+  const g = gateBatch({ task: 'multiple_choice', family: 'sat', section: 'reading_writing', itemFiles: [batchPath] })
+  if (!g.canInsert) {
+    const why = overrideReason()
+    if (!why) { console.error(`REFUSING to insert ${batchPath}: ${g.reason}`); process.exit(1) }
+    console.log(`GATE OVERRIDDEN (BANK_GATE_OVERRIDE): ${why}\n  the gate said: ${g.reason}`)
+  } else {
+    console.log(`gate: ${g.batch} — ${g.reason}`)
+  }
+
   const env = loadEnv()
   const admin = createClient(env.NEXT_PUBLIC_SUPABASE_URL, env.SUPABASE_SERVICE_ROLE_KEY, { auth: { persistSession: false } })
   const batch = JSON.parse(readFileSync(batchPath, 'utf8'))
   const qc = JSON.parse(readFileSync(qcPath, 'utf8'))
 
-  // PostgREST caps a select at 1000 rows; R&W passed that, so page.
+  /*
+   * PostgREST caps a select at 1000 rows; R&W passed that, so page — AND
+   * ORDER, which was missing until 2026-09-04 and is the load-bearing half.
+   *
+   * `range()` without an ORDER BY is paging over an unordered relation, so
+   * page 2 is not "the rows page 1 did not return". Measured on this table:
+   * three unordered runs each fetched 1222 rows of which only 1057 were
+   * DISTINCT — 165 duplicates and 165 rows never seen at all — and reported
+   * 1190 live R&W items against a true 1025. Ordered runs return 1222
+   * distinct rows and 1025 every time.
+   *
+   * Two consequences, and the second is worse than the wrong number:
+   *   1. the after-insert count printed 1190, and that is the figure that
+   *      gets quoted onward (this same line already carries a note about a
+   *      previous inflated number, from a different cause);
+   *   2. the DEDUPE set is built from this same read, so 165 existing
+   *      content_hashes were absent from it and a re-insert of any of those
+   *      items would not have been caught.
+   *
+   * `id` is the primary key, so ordering on it is total and stable.
+   */
   const pageAll = async (cols) => {
     const out = []
     for (let from = 0; ; from += 1000) {
-      const { data, error } = await admin.from('study_item_bank').select(cols).eq('section', 'reading_writing').range(from, from + 999)
+      const { data, error } = await admin.from('study_item_bank').select(cols)
+        .eq('section', 'reading_writing').order('id').range(from, from + 999)
       if (error) throw new Error(error.message)
       out.push(...(data || [])); if (!data || data.length < 1000) break
     }

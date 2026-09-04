@@ -377,6 +377,30 @@ export const WORK: WorkItem[] = [
     owner: 'you',
     state: 'done',
   },
+  {
+    id: 'A22',
+    title: 'Six more checkers return numbers about input they were not given',
+    size: '6 scripts',
+    why: 'check-explanation-option-refs, check-explanation-ordinals, check-verbatim-key, check-vocab-ambiguity, check-svg-viewbox and check-graphic-leak each ignore a batch path and print a whole-bank report instead. Handed two DIFFERENT batch files they print byte-identical output. That is the defect already fixed six times over on 2026-09-04; the sweep that fixed those searched for checkers and did not reach these. Each must exit non-zero on input it cannot process, and none may fall back to a default population.',
+    owner: 'claude',
+    state: 'open',
+  },
+  {
+    id: 'A23',
+    title: 'Set a real elimination bar for SAT R&W, then revisit two overrides',
+    size: '1 decision + 2 ledger entries',
+    why: 'The elimination stage was run on SAT R&W for the first time on 2026-09-04 and both batches failed its stated bar of ZERO confidently rejectable options — a bar no cohort in this bank meets and arguably no real SAT item meets either. rw-v8-cs-hard (16 of 24 items) and rw-v8-sec-hard (5 of 24) shipped under BANK_GATE_OVERRIDE with the reason written into their ledger entries. Either the bar is wrong for this family and should be restated as a rate against a matched live control, or it is right and those two cohorts should be reconsidered. Leaving it as an override that nobody revisits is the one outcome that is definitely wrong.',
+    owner: 'claude',
+    state: 'open',
+  },
+  {
+    id: 'A24',
+    title: 'Extend the per-group key check to ungrouped cohorts',
+    size: '1 check',
+    why: 'verify-answer-key-spread.ts guards against tell #2 — every four-question set a complete ABCD permutation — but only inspects PASSAGE-GROUPED sets. sat-cs-hard-v3 and sat-sec-hard-v6 are both 6-of-6 complete permutations over sequential quadruples, sec-v6 fully periodic after item 05, and the guard passes both because R&W items are ungrouped. Two graders spotted it from their own answer sequences; the designated checker could not. Harmless today because choice order is randomised at draw time, which is exactly why nothing else will catch it if that ever changes.',
+    owner: 'claude',
+    state: 'open',
+  },
 ]
 
 export interface Settled {
@@ -439,6 +463,51 @@ export interface Found {
 }
 
 export const FOUND_WHILE_FIXING: Found[] = [
+  {
+    date: '2026-09-04',
+    what: 'SEVEN BATCHES TAKEN THROUGH THE REMAINING GATE STEPS AND INSERTED: 144 items across five families, 24 dropped or rejected on the way in. Cohorts are deliberately distinct so the v2 repair can select them out: math-v6-adv-hard 21, math-v6-psda-hard 20, math-v6-geo-hard 18, act-math-v4gi 18, isee-math-s8 29, rw-v8-cs-hard 16, rw-v8-sec-hard 22. THE WITH-SOURCE GRADE EARNED ITS PLACE: 11 graders, every key correct on all seven batches (24/24, 24/24, 24/24, 32/32, 40/40, and 3x24/24 twice), and yet SEVEN ITEMS WERE DROPPED FOR NON-EXCLUSIVITY, six of them named independently by every grader who saw them. CS3-H-03 (D "vernacular" survives the same refutation as the key), CS3-H-07 (B "discretionary" is stated almost verbatim in the passage), CS3-H-16 (a near-paraphrase separated only by emphasis), SEC-HD-V6-08 (A and C are punctuated identically and differ only by parallelism among nominals, which is style not rule), SEC-HD-V6-19 (resolved by "that work" two words after the blank), GEO-H1-09 (a "41" label sitting between the dashed radius and the tangent; the tangent reading gives 369, which is printed as option C), IM8-28 (containers refilled daily vs carried over: 9 or 14, and 14 is option D). GEO-H1-21 was dropped as well for a figure drawn at ~105 degrees against a 95 label, next to the 102 distractor. NONE of these is a wrong key, which is why no key-checking instrument could have found them, and none was visible to the no-source attack that had already passed all seven.',
+    landedAs: 'fixed',
+  },
+  {
+    date: '2026-09-04',
+    what: 'THE TWO SAT INSERTERS NEVER CALLED THE GATE, AND THE SKILL SAID THEY DID. gate.mjs, gate-contract.json and bank-qc.ts all existed; the only inserter that imported any of them was the TOEFL one. bank-helper.mjs and math-bank-helper.mjs wrote straight to study_item_bank, while the bank-gate skill states in so many words that "the inserters refuse a batch with no ledger entry". For SAT maths and SAT R&W that sentence had been false since the gate was written — the same finding already recorded for insertRepeat/insertWriting, one family over. Both are now wired and break-tested against real batches: sat-psda-hard-v4 (deliberately not entered in the ledger, and the batch the brief says must NOT ship) is REFUSED by name and hash, and so were the two R&W batches until their entries existed.',
+    landedAs: 'fixed',
+  },
+  {
+    date: '2026-09-04',
+    what: 'THE GATE DEMANDED, OF EVERY NON-SAT MATHS BATCH, A STAGE THAT CANNOT BE RUN ON IT. familyFor() in gate.mjs (and familyForTask() in bank-qc.ts) read `if (family === "sat") return section === "math" ? mc_stem_source : ...`, so ONLY SAT maths reached mc_stem_source. ACT, ISEE and SSAT maths fell through to the task map, missed it because those rows carry task "multiple_choice", and defaulted to mc_hidden_source — which requires an `elimination` stage. Elimination probes whether an option can be rejected with the SOURCE hidden, and a maths item\'s source is its stem: there is nothing to hide. Found the moment act-math-v4gi and isee-math-s8 were gated with all four mc_stem_source stages recorded and passing and were refused anyway. Both copies now decide on SECTION first, the family union in the .ts widened to match, 45 tests green.',
+    landedAs: 'fixed',
+  },
+  {
+    date: '2026-09-04',
+    what: 'A MISSING QC ROW WAS READ AS A PASS, AND IT PUT TWO CONDEMNED ITEMS IN THE LIVE BANK. math-bank-helper.mjs read `const q = qc[raw.id] || {}`, and the only thing it consults qc for is the difficulty gate — so an item the grader had CONDEMNED, and which had therefore been left out of the qc file, inserted with no check at all. GEO-H1-09 and GEO-H1-21 went live and had to be deleted by id afterwards. The whole point of a qc file is to name the survivors; the default for an unnamed item has to be "no". Now prints `DROP ... no qc row` and continues. Break-tested by re-running the same insert: the two print DROP, the 18 real rows print DUP, 0 inserted. bank-helper.mjs was never exposed — accepts() returns "no qc row" for a missing entry — which is why the two helpers disagreed silently.',
+    landedAs: 'fixed',
+  },
+  {
+    date: '2026-09-04',
+    what: 'PostgREST `range()` PAGING WITHOUT AN `order()` IS NOT PAGING, and it inflated the live R&W count by 165. bank-helper.mjs pages study_item_bank with .range(from, from+999) and no ORDER BY, so page 2 is not "the rows page 1 did not return". Measured, three times, deterministically: 1222 rows fetched, only 1057 DISTINCT, and the after-insert line printed "R&W drawable now: 1190" against a true 1025 — the wrong figure being exactly the one that gets quoted onward. Ordered, it returns 1222 distinct rows and 1025 every time. The worse half is that the DEDUPE set is built from the same read, so 165 existing content_hashes were absent from it and a re-insert of any of those items would not have been caught. math-bank-helper.mjs had the sibling defect: its dedupe select was a SINGLE un-paged query whose own comment says it was scoped to one family to avoid the 1000-row cap — and sat/math passed 1000 rows on 2026-09-03, so the cap had come back inside the scope that was supposed to prevent it. Both now paged AND ordered on the primary key.',
+    landedAs: 'fixed',
+  },
+  {
+    date: '2026-09-04',
+    what: 'THE MATHS HELPER THREW AWAY THE GRADER\'S DIFFICULTY AND BANKED THE AUTHOR\'S. math-bank-helper.mjs wrote `difficulty: raw.difficulty` — the author\'s own label — using the grader\'s only to gate ("easy is out") and to fill verify_meta. bank-helper.mjs has always banked the grader\'s. So an item the author called hard and the grader called medium entered the bank as hard, and the module-2 hard route draws on that column. Across today\'s five maths batches that would have banked 47 items as hard that the with-source grader had called medium. The gate did its work and the write discarded the result. Now banks the grader\'s label and prints "medium (author said hard)" when they differ; content_hash is over prompt+choices so no hash moved. Verified against the live rows afterwards: every inserted row\'s difficulty equals its verify_meta.grader_difficulty.',
+    landedAs: 'fixed',
+  },
+  {
+    date: '2026-09-04',
+    what: 'SIX MORE CHECKERS PRINTED LIVE-BANK NUMBERS FOR A BATCH PATH — the same defect, now at twelve coats. check-explanation-option-refs, check-explanation-ordinals, check-verbatim-key and check-vocab-ambiguity were each handed sat-cs-hard-v3.batch.json and sat-sec-hard-v6.batch.json and each printed a whole-bank report (5,886 live items, four families) BYTE-IDENTICAL for the two different files; check-svg-viewbox and check-graphic-leak did the same on act-math-v4gi ("live rawsvg items: 86", "0 rows read ... nothing to check"). Every one reads as a result. None was caught by reading the verdict — all six were caught by the item count not matching the file. Their output was discarded and the structural numbers for these batches computed directly. The rule is already written down; what is new is that the sweep which fixed six of these in the morning did not reach these six.',
+    landedAs: 'A22',
+  },
+  {
+    date: '2026-09-04',
+    what: 'BOTH R&W BATCHES SHIPPED WITH A RECORDED GATE FAILURE, UNDER A WRITTEN OVERRIDE — flagged here because it is a judgement call, not a clean pass. The `elimination` stage (one reader, options only, "PASS: zero items with any confidently rejectable option") was run for the first time on any SAT R&W cohort and both failed: sat-cs-hard-v3 has 16 of 24 items with at least one confidently rejectable option (19 options), sat-sec-hard-v6 has 5 of 24 (8 options). sat-cs-hard-v3 also fails the SEMANTIC key-shape sub-measure of `tells`: four readers — three with-source graders and the elimination reader, independently and unprompted — described the correct-answer shape as the single concede-then-qualify option among flat denials, over-attributions and unprompted recommendations. Inserted anyway, with BANK_GATE_OVERRIDE carrying the reason and the reason recorded in the ledger entries, because (a) the stage had never been run for this family, so this is a bar applied for the first time rather than one these batches fell below, (b) the instrument that has ranked batches correctly is the no-source attack, on which they are -41.7 and -11.1 against MATCHED LIVE controls, and (c) the alternative is not "nothing": the live C&S cohort students draw today measures 97.5-100% blind. The elimination probe is worth keeping for its diagnostics: it named the C&S denial-vs-hedge asymmetry and, on SEC, one mechanical authoring rule — never put a co-varying noun+verb pair inside a single option, which is what makes items 11 and 12 half-solvable.',
+    landedAs: 'A23',
+  },
+  {
+    date: '2026-09-04',
+    what: 'TELL #2 IS IN BOTH NEW R&W BATCHES AND NO GUARD COULD SEE IT. The 24 stored keys of sat-sec-hard-v6 run CBAD then BDAC five times — fully periodic after item 05 — and sat-cs-hard-v3 is ABCD/BADC/CDAB/DCBA/ACBD/CADB: every group of four a complete ABCD permutation in both, so the per-cohort histogram is a flawless 6/6/6/6. Two SEC graders spotted it from the regularity of their OWN answer sequences and said so before knowing the key. verify-answer-key-spread.ts passes both, because its per-group check only inspects PASSAGE-GROUPED sets and R&W items are ungrouped — the guard written for this exact tell cannot reach the cohorts where it recurred. It is invisible to a student, because choice order is randomised per session at draw time (shuffleDrawnChoices, all seven serve paths in assemble.ts), which is why both batches shipped; it is still an authoring habit to break, and a cohort where the serve-time shuffle were ever bypassed would hand the key to anyone who solved four items.',
+    landedAs: 'A24',
+  },
   {
     date: '2026-09-01',
     what: 'THE PRICE SHOWN WAS NOT THE PRICE CHARGED, on two live ISEE sections. The assemble route reserves creditCostForTest(family, block.key) — the blueprint block key. The topic sheet derived its own key by title-casing the topic slug and lowercasing it back, which for two sections produced a string that is not in SECTION_CREDIT_COST at all: isee-quant-reasoning -> "quant_reasoning" against the route\'s "quant", and isee-math-achievement -> "math_achievement" against "mathach". Both fell through to the `?? 1` default, so the sheet displayed 1 credit while the route reserved 2. Two paths computing one number differently, each internally consistent — the same shape as the band-vs-percent bug in CLAUDE.md. Both sides now read the same block key, pinned by a test over the two source files. HOW IT WAS FOUND MATTERS MORE THAN THE BUG: a break-test came back GREEN. Removing ssat/isee from parseTestSlug failed nothing, which looked like dead code and was actually a coverage gap — that family feeds credit pricing and the path card, and neither had a test. A reversion that breaks nothing is evidence about the TESTS, not about the code.',
