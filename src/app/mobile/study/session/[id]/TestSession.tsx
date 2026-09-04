@@ -1642,9 +1642,34 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
           rail spends that column on the one thing a test-taker keeps asking.
           Below lg nothing changes — the dropdown is still the right control
           on a phone, and both render the same cells. */}
+      {/* Desktop stage 2 — the panes OWN the viewport height.
+       *
+       * Stage 1 left a single page-level scroller: the passage box and the
+       * option list were each as tall as their own text, the page ended
+       * wherever the taller of the two ended, and at 1440 that put ~400px of
+       * nothing under both columns. A test runner is a workspace, not an
+       * article, so on lg the outer scroller is DISABLED and each pane
+       * scrolls itself between the header and the footer — the Bluebook /
+       * TOEFL desktop shape. Nothing is off-screen that was on-screen; the
+       * content that used to run past the fold now runs past the fold of its
+       * own pane.
+       *
+       * ONLY under `twoPane`. A single-column item (Math, Complete-the-
+       * Words, Writing editor, Speaking) has one body that can legitimately
+       * be taller than the viewport, and capping the height there with
+       * nothing to scroll inside would CLIP it. Those keep the page
+       * scroller exactly as they have it today.
+       *
+       * Below lg every one of these classes is inert: the phone keeps the
+       * one page-level scroller and the stacked single column. */}
       <div className="flex-1 min-h-0 flex flex-row">
-      <div key={currentIdx} className="flex-1 min-w-0 overflow-y-auto animate-fade-in">
-       <div className="w-full px-5 lg:px-8 py-5 lg:py-8 lg:max-w-4xl lg:mx-auto">
+      <div
+        key={currentIdx}
+        className={`flex-1 min-w-0 overflow-y-auto animate-fade-in${twoPane ? ' lg:overflow-hidden' : ''}`}
+      >
+       <div className={`w-full px-5 lg:px-8 py-5 lg:py-8 lg:max-w-4xl lg:mx-auto${
+         twoPane ? ' lg:h-full lg:flex lg:flex-col lg:min-h-0' : ''
+       }`}>
         {/* Module chip.
           *
           * The difficulty chip that used to sit beside it is gone. On a
@@ -1832,8 +1857,24 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
             so short items (Math, Writing) don't stretch the full shell.
             The transparent `contents` wrappers let the single-column case
             flow passage+prompt+answers inside the one max-w-3xl box. */}
-        <div className={twoPane ? 'lg:grid lg:grid-cols-[1.1fr_1fr] lg:gap-8 lg:items-start' : 'max-w-3xl'}>
-        <div className={twoPane ? 'lg:min-w-0 lg:sticky lg:top-4' : 'contents'}>
+        {/* `lg:flex-1 lg:min-h-0` + stretched grid items: the two panes are
+            the same height as each other and as the space between header and
+            footer, every question, so a SHORT passage no longer leaves a
+            ragged column beside a long option list — it leaves a full-height
+            reading panel. Replaces `lg:items-start` (each pane its own
+            content height) and the left pane's `lg:sticky lg:top-4`, which
+            only existed because the page, not the pane, was the scroller. */}
+        <div className={twoPane ? 'lg:flex-1 lg:min-h-0 lg:grid lg:grid-cols-[1.1fr_1fr]' : 'max-w-3xl'}>
+        {/* A DIVIDER, not a card. The passage keeps its rounded box on the
+            phone, where it is one element in a scrolling column and the box
+            is what separates it from the prompt. On desktop it becomes the
+            left half of a split workspace: full-height, chrome removed, a
+            hairline between the panes. That is the difference between "a
+            short passage leaves a tall empty CARD" and "a short passage
+            leaves a tall pane" — the same whitespace stops reading as an
+            unfilled container. `lg:gap-8` is replaced by pr-8/pl-8 either
+            side of the rule so the divider sits centred between them. */}
+        <div className={twoPane ? 'lg:min-w-0 lg:min-h-0 lg:h-full lg:flex lg:flex-col lg:pr-8 lg:border-r lg:border-gray-200/70' : 'contents'}>
         {q.passage
           && q.type !== 'fill_in_blanks'
           // Speaking items handle their OWN audio + no-transcript
@@ -1909,7 +1950,16 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
                   <WritingScenario text={q.passage} kind={q.type === 'writing_email' ? 'email' : 'discussion'} />
                 </div>
               ) : (
-                <div className="mb-4 rounded-2xl ring-1 ring-gray-200/70 bg-gradient-to-b from-gray-50 to-white px-4 py-3.5 text-[14px] text-gray-800 leading-relaxed shadow-[0_1px_2px_rgba(0,0,0,0.03)]">
+                /* Desktop: the passage box IS the left pane — it fills the
+                   column and scrolls its own overflow, instead of ending
+                   wherever the text ends. Inert below lg. */
+                <div className={`mb-4 rounded-2xl ring-1 ring-gray-200/70 bg-gradient-to-b from-gray-50 to-white px-4 py-3.5 text-[14px] text-gray-800 leading-relaxed shadow-[0_1px_2px_rgba(0,0,0,0.03)]${
+                  twoPane
+                    ? ' lg:mb-0 lg:flex-1 lg:min-h-0 lg:overflow-y-auto'
+                      + ' lg:rounded-none lg:ring-0 lg:bg-none lg:bg-transparent'
+                      + ' lg:shadow-none lg:px-0 lg:py-0 lg:pr-4 lg:text-[15px]'
+                    : ''
+                }`}>
                   <PassageParagraphs text={q.passage} />
                 </div>
               )}
@@ -1917,7 +1967,11 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
           )
         })()}
         </div>{/* /left pane */}
-        <div className={twoPane ? 'lg:min-w-0 mt-4 lg:mt-0' : 'contents'}>
+        {/* Right pane scrolls itself on desktop for the same reason — a
+            long option set (multi_select, arrange_words) must stay reachable
+            now that the page scroller is off. `contents`/`mt-4` below lg is
+            unchanged. */}
+        <div className={twoPane ? 'lg:min-w-0 mt-4 lg:mt-0 lg:pl-8 lg:min-h-0 lg:h-full lg:overflow-y-auto' : 'contents'}>
         {q.type !== 'speaking_repeat' && q.type !== 'speaking_interview' && (
           // Skip the prompt text for Speaking — the interview question
           // and repeat sentence are audio-only. Showing the text
@@ -2612,7 +2666,24 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
         // isn't stuck if auto-record silently fails).
         if (isSpeakingItem && !isLast && !interviewNextReady[speakingKey]) return null
         return (
-          <div className="flex-shrink-0 px-5 lg:px-8 py-3 border-t border-gray-100 bg-white flex items-center gap-2 w-full lg:justify-end">
+          /* Footer.
+           *
+           * Phone: unchanged — a full-bleed bar with a hairline above it and
+           * the primary action spanning the width, which is the thumb-reach
+           * affordance it should be.
+           *
+           * Desktop: the same controls, but the BAR stops being a bar. The
+           * outer box reserves the rail's width (`lg:pr-60` mirrors the
+           * `w-60` aside below — the two must stay in step), and the inner
+           * row takes the same `lg:max-w-4xl lg:mx-auto` box as the question
+           * column above it, so the hairline and the buttons line up with the
+           * option cards' own edges instead of running the full 1440 under a
+           * rail they have nothing to do with. Splitting the old single div
+           * in two is what allows a padded outer and a centred inner; below
+           * lg the pair renders exactly the same pixels as the one div did.
+           */
+          <div className="flex-shrink-0 border-t border-gray-100 bg-white lg:border-t-0 lg:pr-60">
+          <div className="px-5 lg:px-8 py-3 flex items-center gap-2 w-full lg:max-w-4xl lg:mx-auto lg:justify-end lg:border-t lg:border-gray-100">
             {!isSpeakingItem && (
               <button
                 type="button"
@@ -2629,7 +2700,7 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
             )}
             {atModule1End ? (
               // End of Module 1 → grade + draw the routed Module 2.
-              <div className="flex-1 flex flex-col gap-1">
+              <div className="flex-1 lg:flex-none lg:min-w-[240px] flex flex-col gap-1">
                 <button
                   type="button"
                   onClick={() => {
@@ -2665,7 +2736,14 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
                   type="button"
                   onClick={() => setConfirmOpen(true)}
                   disabled={phase === 'submitting' || audioPlaying || speechBusy}
-                  className="flex-1 h-11 rounded-full bg-primary text-white text-sm font-semibold inline-flex items-center justify-center gap-1.5 disabled:opacity-60"
+                  // Same fullWidth→natural rule studyButtonClass applies
+                  // (`w-full lg:w-auto lg:min-w-[200px]`), expressed for a
+                  // flex child. Deliberately NOT swapped onto the helper:
+                  // its primary variant differs from this hand-rolled one in
+                  // ring, focus ring and disabled opacity, and adopting it
+                  // here would change the PHONE runner, which this pass is
+                  // required to leave untouched.
+                  className="flex-1 lg:flex-none lg:min-w-[220px] lg:px-6 h-11 rounded-full bg-primary text-white text-sm font-semibold inline-flex items-center justify-center gap-1.5 disabled:opacity-60"
                 >
                   {(phase === 'submitting' || speechBusy)
                     ? <Loader2 className="w-4 h-4 animate-spin" />
@@ -2696,6 +2774,7 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
                 <ArrowRight className="w-4 h-4" />
               </button>
             )}
+          </div>
           </div>
         )
       })()}
