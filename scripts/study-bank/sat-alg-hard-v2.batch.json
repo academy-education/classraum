@@ -1,0 +1,386 @@
+[
+ {
+  "id": "ALG-H2-01",
+  "subskill": "linear models: piecewise rate, which case applies",
+  "difficulty": "hard",
+  "prompt": "A shipping company charges $0.90 per kilogram for the first 20 kilograms of a package and $1.50 per kilogram for each kilogram over 20. A customer was charged $45.00 to ship one package. What was the mass, in kilograms, of that package?",
+  "choices": [
+   "18",
+   "30",
+   "38",
+   "50"
+  ],
+  "correct_answer": "38",
+  "explanation": "The first 20 kilograms cost 0.90(20) = $18, leaving 45 - 18 = $27 at $1.50 per kilogram, which is 18 more kilograms, so the mass is 20 + 18 = 38 kilograms. Choice 50 solves 0.90m = 45, which is a clean number and is exactly why it is wrong: the $0.90 rate applies only while m is at most 20, and 50 is not. Choice 30 uses the $1.50 rate for the whole package, 45/1.5. Choice 18 stops at the number of kilograms past 20 and never adds the first 20 back.",
+  "solve": "let ans=null;\nfor(let m=0;m<=400;m+=0.5){const c=m<=20?0.9*m:0.9*20+1.5*(m-20);if(Math.abs(c-45)<1e-9)ans=m;}\nreturn ans;",
+  "domain": "Algebra"
+ },
+ {
+  "id": "ALG-H2-02",
+  "subskill": "systems of two linear equations: parameter giving no solution",
+  "difficulty": "hard",
+  "prompt": "ax + 3y = 9\n12x + ay = 18\n\nIn the system of equations above, a is a constant. If the system has no solution, what is the value of a?",
+  "choices": [
+   "-6",
+   "3",
+   "6",
+   "12"
+  ],
+  "correct_answer": "-6",
+  "explanation": "The coefficients are proportional when a(a) = 3(12), so a = 6 or a = -6. Those two values do not behave the same way. When a = 6 the second equation is exactly twice the first, 12x + 6y = 18, so the system has infinitely many solutions, not none. When a = -6 the second equation is -2 times the first on the left but not on the right, since -2(9) = -18 while the constant is 18, so the system is inconsistent and has no solution. Choice 12 sets a equal to the x-coefficient of the other equation; choice 3 reads a off the y-coefficient of the first.",
+  "solve": "const out=[];\nfor(let a=-100;a<=100;a++){const det=a*a-3*12;if(det!==0)continue;const f=12/a;if(Math.abs(f*9-18)>1e-9)out.push(a);}\nreturn out.length===1?out[0]:out.join(',');",
+  "domain": "Algebra"
+ },
+ {
+  "id": "ALG-H2-03",
+  "subskill": "absolute value equations: solutions of the two cases",
+  "difficulty": "hard",
+  "prompt": "What is the sum of all values of x that satisfy |x + 7| = 3x - 13?",
+  "choices": [
+   "1.5",
+   "8.5",
+   "10",
+   "11.5"
+  ],
+  "correct_answer": "10",
+  "explanation": "The two cases give x + 7 = 3x - 13, so x = 10, and x + 7 = -(3x - 13), so x = 1.5. Substituting 1.5 makes the right side 3(1.5) - 13 = -8.5, and an absolute value is never negative, so 1.5 is not a solution and the sum is just 10. Choice 11.5 adds both case results without substituting either back. Choice 8.5 subtracts the second result instead of discarding it. Choice 1.5 reports the case result that fails the check.",
+  "solve": "const cands=[(13+7)/(3-1),(13-7)/(3+1)];\nconst ok=cands.filter(x=>Math.abs(Math.abs(x+7)-(3*x-13))<1e-9);\nreturn ok.reduce((s,x)=>s+x,0);",
+  "domain": "Algebra"
+ },
+ {
+  "id": "ALG-H2-04",
+  "subskill": "linear inequalities in one variable: modeling a limit",
+  "difficulty": "hard",
+  "prompt": "An empty delivery truck weighs 8,500 pounds. A driver loads 700 pounds of equipment and some crates that weigh 240 pounds each. A bridge on the route may be crossed only by vehicles whose total weight is less than 20,000 pounds. What is the greatest number of crates the truck can carry across the bridge?",
+  "choices": [
+   "44",
+   "45",
+   "47",
+   "48"
+  ],
+  "correct_answer": "44",
+  "explanation": "The loaded truck weighs 8,500 + 700 + 240n pounds, so 9,200 + 240n < 20,000 gives 240n < 10,800 and n < 45. The division comes out to exactly 45, which is not allowed: 45 crates put the truck at exactly 20,000 pounds and the bridge requires less than that, so the greatest whole number is 44. Choice 45 takes the boundary value as attainable. Choice 47 leaves the 700 pounds of equipment out, giving n < 47.9. Choice 48 rounds that same figure up rather than down.",
+  "solve": "let n=0;\nwhile(8500+700+240*(n+1)<20000)n++;\nreturn n;",
+  "domain": "Algebra"
+ },
+ {
+  "id": "ALG-H2-05",
+  "subskill": "linear equations in two variables: whole-number solutions",
+  "difficulty": "hard",
+  "prompt": "Tickets to a school play cost $5 for each student ticket and $8 for each adult ticket. One family bought at least one ticket of each type and paid exactly $43. How many student tickets did the family buy?",
+  "choices": [
+   "1",
+   "5",
+   "7",
+   "8"
+  ],
+  "correct_answer": "7",
+  "explanation": "With s student tickets and a adult tickets, 5s + 8a = 43. The counts are whole numbers and at least one of each type was bought, and the only pair that fits is s = 7, a = 1, since 43 - 8a is a multiple of 5 only for a = 1. Choice 8 is 43/5 rounded down, which spends the whole $43 on student tickets. Choice 5 is 43/8 rounded down, dividing by the adult price. Choice 1 comes from swapping the two prices, 8s + 5a = 43, which gives s = 1 and a = 7.",
+  "solve": "const out=[];\nfor(let s=1;s<=20;s++)for(let a=1;a<=20;a++)if(5*s+8*a===43)out.push(s);\nreturn out.length===1?out[0]:out.join(',');",
+  "domain": "Algebra"
+ },
+ {
+  "id": "ALG-H2-06",
+  "subskill": "absolute value models on a restricted interval",
+  "difficulty": "hard",
+  "prompt": "A robot moves along a straight track. Its distance from a sensor, in meters, t seconds after it starts moving is given by d(t) = |45 - 9t|, where 0 <= t <= 4. At what value of t is the robot 18 meters from the sensor?",
+  "choices": [
+   "2",
+   "3",
+   "5",
+   "7"
+  ],
+  "correct_answer": "3",
+  "explanation": "The equation |45 - 9t| = 18 gives 45 - 9t = 18, so t = 3, and 45 - 9t = -18, so t = 7. The model is defined only for t between 0 and 4, and 7 is outside that interval, so t = 3 is the only value. Choice 7 is the case result that the interval rules out. Choice 5 is when the robot reaches the sensor, d = 0. Choice 2 is 18/9, dividing the distance by the rate and ignoring the 45.",
+  "solve": "const cands=[(45-18)/9,(45+18)/9];\nconst ok=cands.filter(t=>t>=0&&t<=4&&Math.abs(Math.abs(45-9*t)-18)<1e-9);\nreturn ok.length===1?ok[0]:ok.join(',');",
+  "domain": "Algebra"
+ },
+ {
+  "id": "ALG-H2-07",
+  "subskill": "systems of linear inequalities in two variables",
+  "difficulty": "hard",
+  "prompt": "y > 2x - 5\n3x + 2y <= 18\n\nWhich ordered pair (x, y) is a solution to the system of inequalities above?",
+  "choices": [
+   "(1, 9)",
+   "(2, 6)",
+   "(4, 3)",
+   "(5, 2)"
+  ],
+  "correct_answer": "(2, 6)",
+  "explanation": "For (2, 6): 6 > 2(2) - 5 = -1 is true, and 3(2) + 2(6) = 18 is at most 18, so both are satisfied. For (4, 3): 3(4) + 2(3) = 18 satisfies the second inequality, but 2(4) - 5 = 3 and 3 > 3 is false, so the point lies on the first boundary line rather than above it. For (1, 9): the first holds but 3(1) + 2(9) = 21 exceeds 18. For (5, 2): 2 > 5 is false and 3(5) + 2(2) = 19 exceeds 18.",
+  "solve": "const pts=[[1,9],[2,6],[4,3],[5,2]];\nconst ok=pts.filter(([x,y])=>y>2*x-5&&3*x+2*y<=18);\nreturn '('+ok[0][0]+', '+ok[0][1]+')';",
+  "domain": "Algebra"
+ },
+ {
+  "id": "ALG-H2-08",
+  "subskill": "linear equations in two variables: graphs in the xy-plane",
+  "difficulty": "hard",
+  "prompt": "In the xy-plane, line k is given by the equation 6x - 4y = 10, and line m passes through the point (1, -1) and has slope 3/2. How many points do lines k and m have in common?",
+  "choices": [
+   "None",
+   "Exactly one",
+   "Exactly two",
+   "Infinitely many"
+  ],
+  "correct_answer": "Infinitely many",
+  "explanation": "Line m in point-slope form is y + 1 = (3/2)(x - 1), which rearranges to 3x - 2y = 5. Multiplying by 2 gives 6x - 4y = 10, the equation of line k, so k and m are the same line and every point on it is common to both. Choice None comes from matching the slopes, 6/4 = 3/2, and concluding the lines are parallel without checking whether the constant term matches as well. Choice Exactly one assumes two named lines must cross once. Choice Exactly two is impossible for two lines.",
+  "solve": "const A=[6,-4,10];\nconst m=1.5,x0=1,y0=-1;\nconst B=[m,-1,m*x0-y0];\nconst k=A[0]/B[0];\nconst same=Math.abs(A[1]-k*B[1])<1e-9&&Math.abs(A[2]-k*B[2])<1e-9;\nconst par=Math.abs(A[0]*B[1]-A[1]*B[0])<1e-9;\nreturn same?'Infinitely many':(par?'None':'Exactly one');",
+  "domain": "Algebra"
+ },
+ {
+  "id": "ALG-H2-09",
+  "subskill": "systems with an absolute value equation",
+  "difficulty": "hard",
+  "prompt": "If the ordered pair (x, y) satisfies both y = 2x + 1 and y = |x| + 4, what is the value of x + y?",
+  "choices": [
+   "4",
+   "7",
+   "10",
+   "14"
+  ],
+  "correct_answer": "10",
+  "explanation": "For x >= 0 the second equation is y = x + 4, and 2x + 1 = x + 4 gives x = 3, which is indeed at least 0, so y = 7 and x + y = 10. For x < 0 the second equation is y = -x + 4, and 2x + 1 = -x + 4 gives x = 1, which is not negative, so that branch produces nothing. Choice 4 uses x = 1 with y = 3 from the branch that requires x < 0. Choice 14 adds the totals from both branches. Choice 7 reports y alone.",
+  "solve": "let ans=null;\nfor(let x=-50;x<=50;x+=0.5)if(Math.abs((2*x+1)-(Math.abs(x)+4))<1e-9)ans=x;\nreturn ans+(2*ans+1);",
+  "domain": "Algebra"
+ },
+ {
+  "id": "ALG-H2-10",
+  "subskill": "linear models: comparing two piecewise cost plans",
+  "difficulty": "hard",
+  "prompt": "Gym A charges $45 per month for each of the first 3 months of a membership and $20 per month for every month after that. Gym B charges $28 per month for the whole membership. For a membership of n whole months, what is the least value of n for which the total cost at Gym A is less than the total cost at Gym B?",
+  "choices": [
+   "3",
+   "4",
+   "9",
+   "10"
+  ],
+  "correct_answer": "10",
+  "explanation": "For n greater than 3 the total at Gym A is 135 + 20(n - 3) = 75 + 20n and the total at Gym B is 28n, so 75 + 20n < 28n gives 8n > 75 and n > 9.375. Because n counts whole months and the inequality is strict, the least value is 10; at n = 9 the totals are $255 and $252, so Gym A is still more expensive. Choice 9 rounds 9.375 down. Choice 4 is the first month in which Gym A's monthly rate of $20 is below $28, comparing rates rather than totals. Choice 3 is the month the rate changes.",
+  "solve": "const A=n=>n<=3?45*n:135+20*(n-3),B=n=>28*n;\nfor(let n=1;n<=200;n++)if(A(n)<B(n))return n;\nreturn null;",
+  "domain": "Algebra"
+ },
+ {
+  "id": "ALG-H2-11",
+  "subskill": "linear equations in one variable: identities and contradictions",
+  "difficulty": "hard",
+  "prompt": "5(3x + k) = 15x + 60\n\nIn the equation above, k is a constant. For what value of k does the equation have at least one solution?",
+  "choices": [
+   "4",
+   "12",
+   "15",
+   "60"
+  ],
+  "correct_answer": "12",
+  "explanation": "Distributing gives 15x + 5k = 15x + 60. The x terms cancel for every k, leaving 5k = 60. If k = 12 the two sides are the identical expression 15x + 60 and every real number is a solution; for any other k the equation reduces to a false numerical statement and has no solution at all. Choice 60 reads k off the constant term without dividing by 5. Choice 15 sets k equal to the coefficient of x. Choice 4 divides that constant by 15 rather than by 5, using the coefficient of x as the divisor.",
+  "solve": "const out=[];\nfor(let k=-100;k<=100;k+=0.5){let has=false;\n for(let x=-20;x<=20;x+=0.5)if(Math.abs(5*(3*x+k)-(15*x+60))<1e-9)has=true;\n if(has)out.push(k);}\nreturn out.length===1?out[0]:out.join(',');",
+  "domain": "Algebra"
+ },
+ {
+  "id": "ALG-H2-12",
+  "subskill": "linear models: interpreting a decreasing quantity",
+  "difficulty": "hard",
+  "prompt": "The number of members of a club w weeks after the start of a school year is modeled by M = 340 - 12w. According to this model, in which week does the club first have fewer than 100 members?",
+  "choices": [
+   "20",
+   "21",
+   "28",
+   "240"
+  ],
+  "correct_answer": "21",
+  "explanation": "Solving 340 - 12w < 100 gives 12w > 240 and w > 20. The division is exact, so week 20 leaves the club with exactly 100 members, which is not fewer than 100, and the first week below 100 is week 21. Choice 20 treats the boundary week as one that satisfies the condition. Choice 28 is where the model reaches zero members, 340/12 rounded down. Choice 240 is the drop in membership, 340 - 100, reported as though it were a number of weeks.",
+  "solve": "for(let w=0;w<=1000;w++)if(340-12*w<100)return w;\nreturn null;",
+  "domain": "Algebra"
+ },
+ {
+  "id": "ALG-H2-13",
+  "subskill": "linear models: two quantities changing at constant rates",
+  "difficulty": "hard",
+  "prompt": "Tank A contains 500 liters of water and is draining at a constant rate of 10 liters per minute. Tank B contains 140 liters and is being filled at a constant rate of 5 liters per minute until it holds 200 liters, its capacity, after which it stays full. How many minutes after the two processes begin do the tanks contain the same amount of water?",
+  "choices": [
+   "12",
+   "20",
+   "24",
+   "30"
+  ],
+  "correct_answer": "30",
+  "explanation": "Tank B reaches its 200-liter capacity after (200 - 140)/5 = 12 minutes and holds 200 liters from then on, so the tanks are equal when 500 - 10t = 200, which gives t = 30. Choice 24 solves 500 - 10t = 140 + 5t, treating Tank B as still filling at 24 minutes, when it has been full for 12. Choice 12 is the time Tank B fills. Choice 20 keeps the combined 15 liters per minute after Tank B stops filling, solving 500 - 15t = 200.",
+  "solve": "for(let t=0;t<=2000;t+=0.5){const A=500-10*t,B=Math.min(140+5*t,200);if(Math.abs(A-B)<1e-9)return t;}\nreturn null;",
+  "domain": "Algebra"
+ },
+ {
+  "id": "ALG-H2-14",
+  "subskill": "absolute value inequalities within a model's interval",
+  "difficulty": "hard",
+  "prompt": "The temperature inside a chamber, in degrees Celsius, t hours after a test begins is given by T(t) = |84 - 12t| + 6, where 0 <= t <= 7. For how many hours during the test is the temperature at most 30 degrees Celsius?",
+  "choices": [
+   "2",
+   "4",
+   "7",
+   "9"
+  ],
+  "correct_answer": "2",
+  "explanation": "T(t) <= 30 means |84 - 12t| <= 24, so -24 <= 84 - 12t <= 24 and 5 <= t <= 9. The test runs only to t = 7, so the temperature is at most 30 degrees from t = 5 to t = 7, which is 2 hours. Choice 4 is the length of 5 <= t <= 9 and counts two hours that occur after the test has ended. Choice 9 is the upper solution of the inequality, a time reported as a duration. Choice 7 is the length of the whole test.",
+  "solve": "const lo=(84-24)/12,hi=(84+24)/12;\nconst a=Math.max(lo,0),b=Math.min(hi,7);\nreturn Math.max(0,b-a);",
+  "domain": "Algebra"
+ },
+ {
+  "id": "ALG-H2-15",
+  "subskill": "systems of two linear equations: value of an expression",
+  "difficulty": "medium",
+  "prompt": "4x + 3y = 27\n2x - y = 1\n\nIf (x, y) is the solution to the system of equations above, what is the value of x + y?",
+  "choices": [
+   "3",
+   "5",
+   "8",
+   "15"
+  ],
+  "correct_answer": "8",
+  "explanation": "Substituting y = 2x - 1 into the first equation gives 4x + 6x - 3 = 27, so x = 3 and y = 5, and x + y = 8. Choice 3 stops at x and choice 5 stops at y, each answering for one coordinate instead of the sum. Choice 15 is the product xy rather than the sum.",
+  "solve": "let ans=null;\nfor(let x=-50;x<=50;x+=0.5)for(let y=-50;y<=50;y+=0.5)if(Math.abs(4*x+3*y-27)<1e-9&&Math.abs(2*x-y-1)<1e-9)ans=x+y;\nreturn ans;",
+  "domain": "Algebra"
+ },
+ {
+  "id": "ALG-H2-16",
+  "subskill": "linear functions: slope and intercepts from two points",
+  "difficulty": "medium",
+  "prompt": "A line in the xy-plane passes through the points (2, 9) and (6, 3). What is the y-coordinate of the y-intercept of this line?",
+  "choices": [
+   "3",
+   "6",
+   "8",
+   "12"
+  ],
+  "correct_answer": "12",
+  "explanation": "The slope is (3 - 9)/(6 - 2) = -1.5, so y = 9 - 1.5(x - 2) and at x = 0 the value is 9 + 3 = 12. Choice 6 uses a positive slope, computing 9 - 1.5(2). Choice 8 is the x-intercept, 12/1.5, which answers for the wrong axis. Choice 3 is the y-coordinate of the given point (6, 3), read as though a listed point were the intercept.",
+  "solve": "const m=(3-9)/(6-2);\nreturn 9-m*2;",
+  "domain": "Algebra"
+ },
+ {
+  "id": "ALG-H2-17",
+  "subskill": "linear inequalities in one variable",
+  "difficulty": "medium",
+  "prompt": "If 5 - 2x >= 3(x - 4), what is the greatest possible value of x?",
+  "choices": [
+   "1.8",
+   "3.4",
+   "8.5",
+   "17"
+  ],
+  "correct_answer": "3.4",
+  "explanation": "Expanding gives 5 - 2x >= 3x - 12, so 17 >= 5x and x <= 3.4, making 3.4 the greatest value. Choice 1.8 distributes the 3 only to x, solving 5 - 2x >= 3x - 4. Choice 17 stops at 17 >= 5x and reports the value of 5x. Choice 8.5 divides that same 17 by 2, the coefficient on the left, instead of by 5.",
+  "solve": "const x=(5+12)/(2+3);\nif(!(5-2*x>=3*(x-4)-1e-9))return 'boundary fails';\nif(5-2*(x+0.1)>=3*((x+0.1)-4))return 'not the greatest';\nreturn x;",
+  "domain": "Algebra"
+ },
+ {
+  "id": "ALG-H2-18",
+  "subskill": "systems of two linear equations: word problem",
+  "difficulty": "medium",
+  "prompt": "A fitness center sold a total of 40 passes in one week: day passes for $12 each and month passes for $65 each. The passes sold that week brought in $1,381. How many month passes were sold?",
+  "choices": [
+   "17",
+   "21",
+   "23",
+   "40"
+  ],
+  "correct_answer": "17",
+  "explanation": "With m month passes and 40 - m day passes, 12(40 - m) + 65m = 1,381 gives 480 + 53m = 1,381, so m = 17. Choice 23 is the number of day passes, the other unknown. Choice 21 is 1,381/65 rounded down, which ignores the day passes entirely. Choice 40 is the total number of passes sold.",
+  "solve": "for(let m=0;m<=40;m++)if(12*(40-m)+65*m===1381)return m;\nreturn null;",
+  "domain": "Algebra"
+ },
+ {
+  "id": "ALG-H2-19",
+  "subskill": "linear equations in two variables: solving a literal equation",
+  "difficulty": "medium",
+  "prompt": "The volume of a pyramid is given by V = (1/3)Bh, where B is the area of its base and h is its height. Which of the following gives B in terms of V and h?",
+  "choices": [
+   "3V/h",
+   "V/(3h)",
+   "Vh/3",
+   "3h/V"
+  ],
+  "correct_answer": "3V/h",
+  "explanation": "Multiplying both sides of V = (1/3)Bh by 3 gives 3V = Bh, and dividing by h gives B = 3V/h. Choice V/(3h) divides by 3 instead of multiplying. Choice Vh/3 multiplies by h instead of dividing, undoing neither operation correctly. Choice 3h/V inverts the ratio, solving for h/B rather than B.",
+  "solve": "const B=12,h=5,V=B*h/3;\nconst c={'3V/h':3*V/h,'V/(3h)':V/(3*h),'Vh/3':V*h/3,'3h/V':3*h/V};\nconst hit=Object.keys(c).filter(k=>Math.abs(c[k]-B)<1e-9);\nreturn hit.length===1?hit[0]:hit.join(',');",
+  "domain": "Algebra"
+ },
+ {
+  "id": "ALG-H2-20",
+  "subskill": "linear functions: interpreting slope in context",
+  "difficulty": "medium",
+  "prompt": "A moving company charges C = 0.14m + 45 dollars for a job, where m is the number of miles driven. Which of the following is the best interpretation of the number 0.14 in this equation?",
+  "choices": [
+   "The cost, in dollars, of each mile driven",
+   "The amount charged, in dollars, before any miles are driven",
+   "The number of miles that can be driven for one dollar",
+   "The total cost, in dollars, of moving a household 45 miles"
+  ],
+  "correct_answer": "The cost, in dollars, of each mile driven",
+  "explanation": "Increasing m by one mile increases C by 0.14 dollars, so 0.14 is the charge per mile. The amount charged before any miles are driven is C(0) = 45, the constant term, not 0.14. The number of miles per dollar would be 1/0.14, about 7.1 miles. The total cost of a 45-mile job is 0.14(45) + 45 = $51.30, which treats the fixed charge of 45 as a mileage.",
+  "solve": "const f=m=>0.14*m+45;\nconst perMile=Math.round((f(101)-f(100))*100)/100;\nconst atZero=f(0);\nif(perMile!==0.14||atZero!==45)return 'model mismatch';\nreturn 'The cost, in dollars, of each mile driven';",
+  "domain": "Algebra"
+ },
+ {
+  "id": "ALG-H2-21",
+  "subskill": "absolute value equations",
+  "difficulty": "medium",
+  "prompt": "What is the sum of the solutions of the equation |2x - 9| = 5?",
+  "choices": [
+   "2",
+   "5",
+   "7",
+   "9"
+  ],
+  "correct_answer": "9",
+  "explanation": "The equation gives 2x - 9 = 5, so x = 7, and 2x - 9 = -5, so x = 2. Both check, and their sum is 9. Choice 7 is the greater solution and choice 2 the lesser, each a solution rather than the sum. Choice 5 is the right-hand side of the equation.",
+  "solve": "const cands=[(9+5)/2,(9-5)/2];\nconst ok=cands.filter(x=>Math.abs(Math.abs(2*x-9)-5)<1e-9);\nreturn ok.reduce((s,x)=>s+x,0);",
+  "domain": "Algebra"
+ },
+ {
+  "id": "ALG-H2-22",
+  "subskill": "linear models: constant rate of change",
+  "difficulty": "medium",
+  "prompt": "A seedling is 12 centimeters tall and grows 1.8 centimeters each week. After how many weeks will the seedling be 39 centimeters tall?",
+  "choices": [
+   "15",
+   "21",
+   "27",
+   "39"
+  ],
+  "correct_answer": "15",
+  "explanation": "The seedling must grow 39 - 12 = 27 centimeters, and at 1.8 centimeters per week that takes 27/1.8 = 15 weeks. Choice 27 is that growth in centimeters, reported as a number of weeks. Choice 21 is 39/1.8 rounded down, which starts the seedling from a height of 0. Choice 39 is the target height itself.",
+  "solve": "const w=(39-12)/1.8;\nreturn Math.round(w*1e6)/1e6;",
+  "domain": "Algebra"
+ },
+ {
+  "id": "ALG-H2-23",
+  "subskill": "linear equations in one variable",
+  "difficulty": "medium",
+  "prompt": "What value of x satisfies 3(2x - 5) = 4x + 7?",
+  "choices": [
+   "4",
+   "5.5",
+   "6",
+   "11"
+  ],
+  "correct_answer": "11",
+  "explanation": "Distributing gives 6x - 15 = 4x + 7, so 2x = 22 and x = 11. Choice 6 distributes the 3 only to the first term, solving 6x - 5 = 4x + 7. Choice 4 slips a sign on the right side, solving 6x - 15 = 4x - 7. Choice 5.5 divides 22 by 4, the sum of the two x-coefficients, instead of by their difference.",
+  "solve": "for(let x=-50;x<=50;x+=0.5)if(Math.abs(3*(2*x-5)-(4*x+7))<1e-9)return x;\nreturn null;",
+  "domain": "Algebra"
+ },
+ {
+  "id": "ALG-H2-24",
+  "subskill": "linear inequalities in one variable: modeling",
+  "difficulty": "medium",
+  "prompt": "A tank already contains 120 gallons of water and is being filled at a constant rate of 15 gallons per minute. The tank holds at most 500 gallons. Which inequality gives the possible numbers of minutes, t, that water can be added to the tank?",
+  "choices": [
+   "15t + 120 ≤ 500",
+   "15t + 120 ≥ 500",
+   "120t + 15 ≤ 500",
+   "15(t + 120) ≤ 500"
+  ],
+  "correct_answer": "15t + 120 ≤ 500",
+  "explanation": "After t minutes the tank holds 120 + 15t gallons, and that amount can be at most 500, so 15t + 120 ≤ 500. The choice with ≥ describes times when the tank would be at least full, which is the complement of what is asked. The choice 120t + 15 ≤ 500 uses 120 as the rate and 15 as the starting amount, swapping the two. The choice 15(t + 120) ≤ 500 multiplies the starting amount by the rate instead of adding it.",
+  "solve": "const vol=t=>120+15*t;\nconst opts={'15t + 120 ≤ 500':t=>15*t+120<=500,'15t + 120 ≥ 500':t=>15*t+120>=500,'120t + 15 ≤ 500':t=>120*t+15<=500,'15(t + 120) ≤ 500':t=>15*(t+120)<=500};\nconst good=Object.keys(opts).filter(k=>{for(let t=0;t<=60;t+=0.5)if((vol(t)<=500)!==opts[k](t))return false;return true;});\nreturn good.length===1?good[0]:good.join(',');",
+  "domain": "Algebra"
+ }
+]

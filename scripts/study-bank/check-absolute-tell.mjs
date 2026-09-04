@@ -18,6 +18,26 @@
  * uses. A strategy that only ties the control has found nothing.
  */
 import { readFileSync } from 'node:fs'
+
+/* This script measures the LIVE BANK and takes no arguments. It was given a
+ * batch path by four authoring agents on 2026-09-04 and silently reported the
+ * live bank's numbers as if they described the file — one author noticed and
+ * said so, which is the only reason it was caught. A checker that ignores its
+ * argument and prints a plausible number is the same defect as the one that
+ * printed "margin -25.0pts" over an empty population. Refuse instead. */
+{
+  const stray = process.argv.slice(2).filter(a => !a.startsWith('--'))
+  if (stray.length) {
+    console.error(
+      `check-absolute-tell.mjs measures the LIVE BANK and takes no file argument.\n` +
+      `  got: ${stray.join(' ')}\n` +
+      `  It would otherwise print the bank's numbers as though they described your file.\n` +
+      `  For a single batch, apply the rule yourself: count items where exactly one\n` +
+      `  option lacks an absolute (always / only / never / entirely / solely) and check\n` +
+      `  how often that option is the key, against a 1-in-N control.`)
+    process.exit(2)
+  }
+}
 import { createClient } from '@supabase/supabase-js'
 const env=Object.fromEntries(readFileSync('.env.local','utf8').split('\n').filter(l=>l.includes('=')&&!l.startsWith('#')).map(l=>[l.slice(0,l.indexOf('=')),l.slice(l.indexOf('=')+1).trim()]))
 const db=createClient(env.NEXT_PUBLIC_SUPABASE_URL,env.SUPABASE_SERVICE_ROLE_KEY,{auth:{persistSession:false}})

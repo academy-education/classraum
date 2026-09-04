@@ -1,0 +1,514 @@
+[
+  {
+    "id": "ACT-M-AF01",
+    "domain": "Algebra",
+    "subskill": "radical equation whose squared form gains a root",
+    "difficulty": "hard",
+    "prompt": "What is the value of x that satisfies √(4x + 5) = x ?",
+    "choices": [
+      "-1",
+      "5",
+      "9",
+      "25"
+    ],
+    "correct_answer": "5",
+    "explanation": "Squaring gives 4x + 5 = x², so x² − 4x − 5 = 0 and (x − 5)(x + 1) = 0. At x = −1 the left side is √1 = 1 while the right side is −1, so only x = 5 satisfies the original equation. −1 is the root the squared equation adds. 9 comes from rewriting x² − 4x = 5 as x(x − 4) = 5 and setting the second factor equal to 5. 25 is the radicand 4x + 5 at the solution, not x.",
+    "solve": "const roots=[(4+Math.sqrt(16+20))/2,(4-Math.sqrt(16+20))/2];\nconst ok=roots.filter(x=>4*x+5>=0 && Math.abs(Math.sqrt(4*x+5)-x)<1e-9);\nif(ok.length!==1) throw new Error('not unique');\nreturn ok[0];"
+  },
+  {
+    "id": "ACT-M-AF02",
+    "domain": "Algebra",
+    "subskill": "rational equation whose only algebraic root is excluded",
+    "difficulty": "hard",
+    "prompt": "What are all the real values of x that satisfy 3/(x − 2) − 1/(x + 2) = 12/(x² − 4) ?",
+    "choices": [
+      "-2",
+      "2",
+      "4",
+      "There is no such value of x."
+    ],
+    "correct_answer": "There is no such value of x.",
+    "explanation": "Multiplying through by (x − 2)(x + 2) gives 3(x + 2) − (x − 2) = 12, so 2x + 8 = 12 and x = 2. But x = 2 makes two of the three denominators zero, so it is not a value of x for which the equation is true, and there is no other candidate. 2 is that rejected candidate. −2 is the other value excluded by the denominators. 4 comes from stopping at 2x = 4.",
+    "solve": "let sols=[];\nfor(let k=-100000;k<=100000;k++){\n  const x=k/100;\n  if(Math.abs(x-2)<1e-9||Math.abs(x+2)<1e-9) continue;\n  const v=3/(x-2)-1/(x+2)-12/(x*x-4);\n  if(Math.abs(v)<1e-9) sols.push(x);\n}\nreturn sols.length===0?'There is no such value of x.':String(sols[0]);"
+  },
+  {
+    "id": "ACT-M-AF03",
+    "domain": "Algebra",
+    "subskill": "linear inequality with a strict bound and an integer answer",
+    "difficulty": "hard",
+    "prompt": "What is the least integer value of x for which 5 − 4x < 3x − 30 ?",
+    "choices": [
+      "4",
+      "5",
+      "6",
+      "35"
+    ],
+    "correct_answer": "6",
+    "explanation": "5 − 4x < 3x − 30 gives 35 < 7x, so x > 5. Since 5 itself gives 35 < 35, which is false, the least integer that works is 6. 5 is the boundary value. 4 comes from dividing −7x < −35 without reversing the inequality, reading the answer off the wrong end. 35 is the value of 7x at the boundary.",
+    "solve": "for(let x=-1000;x<=1000;x++) if(5-4*x < 3*x-30) return x;\nthrow new Error('no solution');"
+  },
+  {
+    "id": "ACT-M-AF04",
+    "domain": "Algebra",
+    "subskill": "quadratic from a rectangle, one root not a length",
+    "difficulty": "hard",
+    "prompt": "A rectangular garden is 4 meters longer than it is wide, and its area is 320 square meters. What is the perimeter of the garden, in meters?",
+    "choices": [
+      "20",
+      "36",
+      "64",
+      "72"
+    ],
+    "correct_answer": "72",
+    "explanation": "If w is the width, w(w + 4) = 320, so w² + 4w − 320 = 0 and (w − 16)(w + 20) = 0. The width is 16 and the length is 20, so the perimeter is 2(16 + 20) = 72. 20 is the length alone. 36 is w + l, half the perimeter. 64 is 4 × 16, the perimeter of a 16 by 16 square, which ignores the extra 4 meters.",
+    "solve": "const A=320,d=4;\nconst w=(-d+Math.sqrt(d*d+4*A))/2;\nif(w<=0) throw new Error('bad width');\nreturn 2*(w+(w+d));"
+  },
+  {
+    "id": "ACT-M-AF05",
+    "domain": "Algebra",
+    "subskill": "system of two linear equations from a ticket context",
+    "difficulty": "medium",
+    "prompt": "A school sold 3 adult tickets and 2 student tickets for a total of 61 dollars, and 5 adult tickets and 4 student tickets for a total of 107 dollars. What is the price, in dollars, of one student ticket?",
+    "choices": [
+      "8",
+      "15",
+      "16",
+      "30"
+    ],
+    "correct_answer": "8",
+    "explanation": "Doubling the first equation gives 6a + 4s = 122; subtracting 5a + 4s = 107 gives a = 15, and then 2s = 61 − 45 = 16, so s = 8. 15 is the adult price, the answer to a different question. 16 is the cost of two student tickets, one step short. 30 is twice the adult price, from doubling a again after the elimination step.",
+    "solve": "const a1=3,b1=2,c1=61,a2=5,b2=4,c2=107;\nconst det=a1*b2-a2*b1;\nif(det===0) throw new Error('singular');\nreturn (a1*c2-a2*c1)/det;"
+  },
+  {
+    "id": "ACT-M-AF06",
+    "domain": "Algebra",
+    "subskill": "exponential equation solved by matching powers of a common base",
+    "difficulty": "medium",
+    "prompt": "If 8^(2x − 1) = 16^(x + 3), what is the value of x ?",
+    "choices": [
+      "3",
+      "4",
+      "6.5",
+      "7.5"
+    ],
+    "correct_answer": "7.5",
+    "explanation": "8 = 2³ and 16 = 2⁴, so 3(2x − 1) = 4(x + 3), giving 6x − 3 = 4x + 12, 2x = 15, and x = 7.5. 6.5 comes from multiplying only the leading term (6x − 1 = 4x + 12). 4 comes from setting the exponents equal without converting the bases (2x − 1 = x + 3). 3 comes from distributing on the right as 4x + 3 instead of 4x + 12.",
+    "solve": "const L=(x)=>3*(2*x-1), R=(x)=>4*(x+3);\nlet lo=-100,hi=100;\nfor(let i=0;i<200;i++){const m=(lo+hi)/2; if((L(m)-R(m))*(L(lo)-R(lo))<=0) hi=m; else lo=m;}\nreturn Math.round(((lo+hi)/2)*1e6)/1e6;"
+  },
+  {
+    "id": "ACT-M-AF07",
+    "domain": "Algebra",
+    "subskill": "linear equation with the distributive property",
+    "difficulty": "easy",
+    "prompt": "If 7(2x − 3) = 5x + 15, what is the value of x ?",
+    "choices": [
+      "2",
+      "4",
+      "12",
+      "36"
+    ],
+    "correct_answer": "4",
+    "explanation": "14x − 21 = 5x + 15, so 9x = 36 and x = 4. 36 is the value of 9x, one step short of the answer. 12 comes from collecting 14x − 5x as 3x and dividing 36 by 3. 2 comes from distributing the 7 to the first term only, 14x − 3 = 5x + 15.",
+    "solve": "const f=(x)=>7*(2*x-3)-(5*x+15);\nlet lo=-1000,hi=1000;\nfor(let i=0;i<200;i++){const m=(lo+hi)/2; if(f(lo)*f(m)<=0) hi=m; else lo=m;}\nreturn Math.round(((lo+hi)/2)*1e6)/1e6;"
+  },
+  {
+    "id": "ACT-M-AF08",
+    "domain": "Algebra",
+    "subskill": "line through two points, y-intercept",
+    "difficulty": "easy",
+    "prompt": "In the standard (x, y) coordinate plane, a line passes through (−2, 9) and (4, −3). What is the y-coordinate of the point at which this line crosses the y-axis?",
+    "choices": [
+      "-11",
+      "-2",
+      "5",
+      "13"
+    ],
+    "correct_answer": "5",
+    "explanation": "The slope is (−3 − 9)/(4 − (−2)) = −12/6 = −2, and 9 = −2(−2) + b gives b = 5. −2 is the slope, not the intercept. 13 comes from using slope +2 (a sign slip on the rise). −11 comes from solving −3 = −2(4) + b as b = −3 − 8.",
+    "solve": "const x1=-2,y1=9,x2=4,y2=-3;\nconst m=(y2-y1)/(x2-x1);\nreturn y1-m*x1;"
+  },
+  {
+    "id": "ACT-M-AF09",
+    "domain": "Algebra",
+    "subskill": "one entry of a 2 by 2 matrix product",
+    "difficulty": "medium",
+    "prompt": "Matrix A is the 2 by 2 matrix with first row 3, −2 and second row 1, 4. Matrix B is the 2 by 2 matrix with first row 2, 0 and second row −1, 5. What is the entry in row 1, column 2 of the product AB ?",
+    "choices": [
+      "-13",
+      "-10",
+      "-4",
+      "8"
+    ],
+    "correct_answer": "-10",
+    "explanation": "The row 1, column 2 entry is row 1 of A times column 2 of B: 3(0) + (−2)(5) = −10. 8 is the row 1, column 1 entry, 3(2) + (−2)(−1). −4 is the row 1, column 2 entry of BA, 2(−2) + 0(4), the product taken in the other order. −13 comes from pairing row 1 of A with row 2 of B, 3(−1) + (−2)(5).",
+    "solve": "const A=[[3,-2],[1,4]], B=[[2,0],[-1,5]];\nlet s=0;\nfor(let k=0;k<2;k++) s+=A[0][k]*B[k][1];\nreturn s;"
+  },
+  {
+    "id": "ACT-M-AF10",
+    "domain": "Algebra",
+    "subskill": "arithmetic sequence: a later term from two given terms",
+    "difficulty": "medium",
+    "prompt": "In an arithmetic sequence, the 5th term is 23 and the 12th term is 65. What is the 30th term?",
+    "choices": [
+      "143",
+      "167",
+      "173",
+      "179"
+    ],
+    "correct_answer": "173",
+    "explanation": "There are 7 steps from the 5th term to the 12th, so d = (65 − 23)/7 = 6, and the 30th term is 65 + 18(6) = 173. 167 comes from taking the first term as 23 − 5(6) = −7, five steps back instead of four. 179 comes from counting 19 steps from the 12th term. 143 comes from counting 20 steps from the 5th term instead of 25.",
+    "solve": "const a5=23,a12=65;\nconst d=(a12-a5)/(12-5);\nreturn a12+(30-12)*d;"
+  },
+  {
+    "id": "ACT-M-AF11",
+    "domain": "Algebra",
+    "subskill": "repeated percent increase over several years",
+    "difficulty": "medium",
+    "prompt": "An investment of 18,500 dollars increases in value by 12 percent each year. To the nearest dollar, what is the value of the investment after 3 years?",
+    "choices": [
+      "20720",
+      "23206",
+      "25160",
+      "25991"
+    ],
+    "correct_answer": "25991",
+    "explanation": "18,500(1.12)³ = 25,991.17, which is 25,991 to the nearest dollar. 20,720 is the value after 1 year and 23,206 the value after 2 years. 25,160 comes from treating the growth as a single 36 percent increase, 18,500(1.36).",
+    "solve": "let v=18500;\nfor(let i=0;i<3;i++) v=v*1.12;\nreturn Math.round(v);"
+  },
+  {
+    "id": "ACT-M-AF12",
+    "domain": "Algebra",
+    "subskill": "quadratic in a geometric setting where one root exceeds the figure",
+    "difficulty": "hard",
+    "prompt": "A rectangular sheet of metal measures 20 centimeters by 14 centimeters. A strip of uniform width is trimmed from one 14-centimeter side and from one 20-centimeter side, leaving a rectangle of area 216 square centimeters. What is the width of the strip, in centimeters?",
+    "choices": [
+      "2",
+      "8",
+      "17",
+      "32"
+    ],
+    "correct_answer": "2",
+    "explanation": "The remaining rectangle is (20 − w) by (14 − w), so (20 − w)(14 − w) = 216, giving w² − 34w + 64 = 0 and (w − 2)(w − 32) = 0. A 32-centimeter strip cannot be trimmed from a sheet 14 centimeters across, so w = 2. 32 is that impossible root. 8 is the square root of the removed area, 280 − 216 = 64, which would be the width only if the removed piece were a square. 17 is half of 34, the average of the two roots.",
+    "solve": "const L=20,W=14,A=216;\nconst b=-(L+W), c=L*W-A;\nconst disc=Math.sqrt(b*b-4*c);\nconst ok=[(-b+disc)/2,(-b-disc)/2].filter(w=>w>0&&w<W);\nif(ok.length!==1) throw new Error('not unique');\nreturn ok[0];"
+  },
+  {
+    "id": "ACT-M-AF13",
+    "domain": "Algebra",
+    "subskill": "solving a reciprocal relation for one variable",
+    "difficulty": "medium",
+    "prompt": "The numbers p, q, and f satisfy 1/f = 1/p + 1/q. If f = 4.8 and p = 12, what is the value of q ?",
+    "choices": [
+      "3.43",
+      "4.8",
+      "7.2",
+      "8"
+    ],
+    "correct_answer": "8",
+    "explanation": "1/q = 1/4.8 − 1/12 = 0.125, so q = 8. 7.2 is p − f, from subtracting the numbers instead of their reciprocals. 3.43 is pf/(p + f), which is what the relation gives for f when the other two numbers are 12 and 4.8. 4.8 repeats f.",
+    "solve": "const f=4.8,p=12;\nreturn Math.round((1/(1/f-1/p))*1e6)/1e6;"
+  },
+  {
+    "id": "ACT-M-AF14",
+    "domain": "Algebra",
+    "subskill": "absolute value inequality, greatest integer in the solution set",
+    "difficulty": "hard",
+    "prompt": "What is the greatest integer value of x for which |3x − 7| < 14 ?",
+    "choices": [
+      "-2",
+      "6",
+      "7",
+      "21"
+    ],
+    "correct_answer": "6",
+    "explanation": "|3x − 7| < 14 means −14 < 3x − 7 < 14, so −7 < 3x < 21 and −7/3 < x < 7. At x = 7 the expression equals 14, which is not less than 14, so the greatest integer that works is 6. 7 is the boundary itself. −2 is the least integer in the solution set, the other end. 21 is the value of 3x at the upper boundary.",
+    "solve": "let best=null;\nfor(let x=-1000;x<=1000;x++) if(Math.abs(3*x-7)<14) best=x;\nif(best===null) throw new Error('empty');\nreturn best;"
+  },
+  {
+    "id": "ACT-M-AF15",
+    "domain": "Algebra",
+    "subskill": "combining radicals with a common simplified factor",
+    "difficulty": "medium",
+    "prompt": "For a certain integer a, 3√12 + √75 − √48 = a√3. What is the value of a ?",
+    "choices": [
+      "-3",
+      "5",
+      "6",
+      "7"
+    ],
+    "correct_answer": "7",
+    "explanation": "3√12 = 3(2√3) = 6√3, √75 = 5√3, and √48 = 4√3, so the expression is (6 + 5 − 4)√3 = 7√3 and a = 7. 6 and 5 are single terms taken alone. −3 comes from subtracting both of the last two terms, 6 − 5 − 4.",
+    "solve": "const v=3*Math.sqrt(12)+Math.sqrt(75)-Math.sqrt(48);\nreturn Math.round(v/Math.sqrt(3));"
+  },
+  {
+    "id": "ACT-M-AF16",
+    "domain": "Algebra",
+    "subskill": "combined rates of two workers",
+    "difficulty": "medium",
+    "prompt": "Pump A alone fills a tank in 6 hours, and pump B alone fills the same tank in 9 hours. Working together at these rates, how many hours do the two pumps take to fill the tank?",
+    "choices": [
+      "3.6",
+      "4.5",
+      "7.5",
+      "15"
+    ],
+    "correct_answer": "3.6",
+    "explanation": "Together the pumps fill 1/6 + 1/9 = 5/18 of the tank per hour, so the tank takes 18/5 = 3.6 hours. 7.5 is the average of 6 and 9, and 15 is their sum; both ignore that two pumps are faster than either one. 4.5 is half of the slower time.",
+    "solve": "const rate=1/6+1/9;\nreturn Math.round((1/rate)*1e6)/1e6;"
+  },
+  {
+    "id": "ACT-M-FN01",
+    "domain": "Functions",
+    "subskill": "piecewise function evaluated at the boundary and away from it",
+    "difficulty": "hard",
+    "prompt": "The function f is defined by f(x) = 2x + 5 for x < 3 and f(x) = x² − 4 for x ≥ 3. What is the value of f(3) − f(−2) ?",
+    "choices": [
+      "4",
+      "5",
+      "10",
+      "11"
+    ],
+    "correct_answer": "4",
+    "explanation": "Because the second rule carries x ≥ 3, f(3) = 3² − 4 = 5, and because −2 < 3, f(−2) = 2(−2) + 5 = 1. So f(3) − f(−2) = 4. 10 comes from using the first rule at x = 3, giving 11 − 1. 11 comes from using the first rule at 3 and the second at −2, giving 11 − 0. 5 is f(3) alone.",
+    "solve": "const f=x=>(x<3? 2*x+5 : x*x-4);\nreturn f(3)-f(-2);"
+  },
+  {
+    "id": "ACT-M-FN02",
+    "domain": "Functions",
+    "subskill": "inverse value of a function defined on a restricted domain",
+    "difficulty": "hard",
+    "prompt": "The function f is defined by f(x) = (x + 2)² for x ≤ −2. What is the value of f⁻¹(49) ?",
+    "choices": [
+      "-9",
+      "5",
+      "7",
+      "47"
+    ],
+    "correct_answer": "-9",
+    "explanation": "(x + 2)² = 49 gives x + 2 = 7 or x + 2 = −7, so x = 5 or x = −9. Only −9 lies in the domain x ≤ −2, and f(−9) = 49. 5 is the other solution of the equation, a value at which f is not defined. 7 is √49. 47 is 49 − 2.",
+    "solve": "const y=49;\nconst cand=[-2+Math.sqrt(y),-2-Math.sqrt(y)].filter(x=>x<=-2);\nif(cand.length!==1) throw new Error('not unique');\nreturn cand[0];"
+  },
+  {
+    "id": "ACT-M-FN03",
+    "domain": "Functions",
+    "subskill": "logarithmic equation with a root outside the domain",
+    "difficulty": "hard",
+    "prompt": "What is the value of x that satisfies log₃(x + 1) + log₃(x − 5) = 3 ?",
+    "choices": [
+      "-4",
+      "5",
+      "8",
+      "15.5"
+    ],
+    "correct_answer": "8",
+    "explanation": "The equation becomes log₃[(x + 1)(x − 5)] = 3, so (x + 1)(x − 5) = 27, x² − 4x − 32 = 0, and (x − 8)(x + 4) = 0. At x = −4 both logarithms are undefined, so x = 8. −4 is that root. 15.5 comes from adding the arguments rather than multiplying them, (x + 1) + (x − 5) = 27. 5 is the value that makes x − 5 zero, the edge of the domain.",
+    "solve": "const roots=[(4+Math.sqrt(16+128))/2,(4-Math.sqrt(16+128))/2];\nconst ok=roots.filter(x=>x+1>0&&x-5>0);\nif(ok.length!==1) throw new Error('not unique');\nreturn ok[0];"
+  },
+  {
+    "id": "ACT-M-FN04",
+    "domain": "Functions",
+    "subskill": "domain of a composition of a radical and a quadratic",
+    "difficulty": "hard",
+    "prompt": "The functions f and g are defined by f(x) = √(5 − x) and g(x) = x² + 1. For how many integer values of x is f(g(x)) a real number?",
+    "choices": [
+      "3",
+      "4",
+      "5",
+      "11"
+    ],
+    "correct_answer": "5",
+    "explanation": "f(g(x)) = √(5 − (x² + 1)) = √(4 − x²), which is real when x² ≤ 4, that is −2 ≤ x ≤ 2. The integers are −2, −1, 0, 1, and 2, so there are 5. 4 comes from taking 2 − (−2) without counting both endpoints. 3 comes from reading the inequality as strict and counting only −1, 0, 1. 11 comes from applying the condition to f alone, x ≤ 5, together with −5 ≤ x.",
+    "solve": "let n=0;\nfor(let x=-1000;x<=1000;x++) if(5-(x*x+1)>=0) n++;\nreturn n;"
+  },
+  {
+    "id": "ACT-M-FN05",
+    "domain": "Functions",
+    "subskill": "unknown coefficient recovered from a minimum value",
+    "difficulty": "hard",
+    "prompt": "The function f is defined by f(x) = x² + bx + 20, where b is a constant, and b < 0. The minimum value of f is 4. What is the value of f(2) ?",
+    "choices": [
+      "4",
+      "8",
+      "24",
+      "40"
+    ],
+    "correct_answer": "8",
+    "explanation": "The minimum of x² + bx + 20 is 20 − b²/4, so 20 − b²/4 = 4 gives b² = 64 and b = 8 or b = −8; since b < 0, b = −8. Then f(2) = 4 − 16 + 20 = 8. 40 uses b = 8, the value the condition rules out. 24 drops the bx term, computing 4 + 20. 4 repeats the minimum value of f, which occurs at x = 4, not at x = 2.",
+    "solve": "const bs=[8,-8].filter(b=>b<0 && Math.abs((20-b*b/4)-4)<1e-9);\nif(bs.length!==1) throw new Error('not unique');\nconst b=bs[0];\nreturn 2*2+b*2+20;"
+  },
+  {
+    "id": "ACT-M-FN06",
+    "domain": "Functions",
+    "subskill": "geometric sequence in which the sign of a term fixes the ratio",
+    "difficulty": "hard",
+    "prompt": "In a geometric sequence, the 2nd term is −6, the 4th term is −54, and the 3rd term is negative. What is the 5th term?",
+    "choices": [
+      "-486",
+      "-162",
+      "162",
+      "486"
+    ],
+    "correct_answer": "-162",
+    "explanation": "The 4th term is the 2nd times r², so r² = 9 and r = 3 or r = −3. With r = −3 the 3rd term would be 18, which is positive, so r = 3, the 3rd term is −18, and the 5th term is −54(3) = −162. 162 is what r = −3 would give. −486 is the 6th term, one ratio too far. 486 applies r² to the 4th term and then drops the sign.",
+    "solve": "const a2=-6,a4=-54;\nconst rs=[Math.sqrt(a4/a2),-Math.sqrt(a4/a2)].filter(r=>a2*r<0);\nif(rs.length!==1) throw new Error('not unique');\nreturn a4*rs[0];"
+  },
+  {
+    "id": "ACT-M-FN07",
+    "domain": "Functions",
+    "subskill": "average rate of change of a cubic over an interval",
+    "difficulty": "medium",
+    "prompt": "What is the average rate of change of f(x) = x³ − 2x as x increases from −1 to 3 ?",
+    "choices": [
+      "5",
+      "5.5",
+      "10",
+      "20"
+    ],
+    "correct_answer": "5",
+    "explanation": "f(3) = 27 − 6 = 21 and f(−1) = −1 + 2 = 1, so the average rate of change is (21 − 1)/(3 − (−1)) = 20/4 = 5. 20 is the change in f without dividing. 10 divides by 3 − 1 = 2 instead of by 4. 5.5 comes from (21 + 1)/4, adding the two values.",
+    "solve": "const f=x=>x*x*x-2*x;\nreturn (f(3)-f(-1))/(3-(-1));"
+  },
+  {
+    "id": "ACT-M-FN08",
+    "domain": "Functions",
+    "subskill": "minimum value of a transformed sine function",
+    "difficulty": "medium",
+    "prompt": "What is the minimum value of y = 5 − 3 sin(2x − π/4) ?",
+    "choices": [
+      "-8",
+      "-2",
+      "2",
+      "8"
+    ],
+    "correct_answer": "2",
+    "explanation": "sin takes every value from −1 to 1, so −3 sin(2x − π/4) ranges from −3 to 3 and y ranges from 2 to 8. The minimum is 2, reached when the sine equals 1. 8 is the maximum. −2 comes from computing 3 − 5. −8 comes from −(5 + 3), treating the amplitude as a downward shift of the midline.",
+    "solve": "let m=Infinity;\nfor(let k=0;k<=200000;k++){const x=-10+20*k/200000; m=Math.min(m,5-3*Math.sin(2*x-Math.PI/4));}\nreturn Math.round(m*1e4)/1e4;"
+  },
+  {
+    "id": "ACT-M-FN09",
+    "domain": "Functions",
+    "subskill": "point tracked through a horizontal shift and a vertical stretch",
+    "difficulty": "medium",
+    "prompt": "The graph of y = f(x) passes through the point (−4, 6). Which of the following points must lie on the graph of y = 2f(x + 3) − 5 ?",
+    "choices": [
+      "(-7, 7)",
+      "(-1, 7)",
+      "(-4, 12)",
+      "(-1, 1)"
+    ],
+    "correct_answer": "(-7, 7)",
+    "explanation": "The new graph uses f(x + 3), so x + 3 = −4 and x = −7; the output is 2(6) − 5 = 7, giving (−7, 7). (−1, 7) shifts the point 3 units right instead of left. (−4, 12) leaves the x-coordinate unchanged and doubles the output without subtracting 5. (−1, 1) shifts the wrong way and subtracts 5 before doubling is applied at all.",
+    "solve": "const x0=-4,y0=6;\nconst x=x0-3, y=2*y0-5;\nreturn '(' + x + ', ' + y + ')';"
+  },
+  {
+    "id": "ACT-M-FN10",
+    "domain": "Functions",
+    "subskill": "exponential decay with a half-life that does not divide the elapsed time",
+    "difficulty": "medium",
+    "prompt": "A culture starts with 4,000 cells, and the number of cells is halved every 9 hours. To the nearest whole number, how many cells are in the culture after 30 hours?",
+    "choices": [
+      "397",
+      "444",
+      "500",
+      "1333"
+    ],
+    "correct_answer": "397",
+    "explanation": "After 30 hours the count is 4,000(1/2)^(30/9) = 396.9, or 397 cells. 500 halves three times and stops at 27 hours, ignoring the last 3 hours. 1,333 divides 4,000 by the 3 whole 9-hour periods. 444 divides 4,000 by 9.",
+    "solve": "return Math.round(4000*Math.pow(0.5,30/9));"
+  },
+  {
+    "id": "ACT-M-FN11",
+    "domain": "Functions",
+    "subskill": "sum of the zeros of a cubic with a common factor",
+    "difficulty": "medium",
+    "prompt": "What is the sum of all the zeros of the function f(x) = 2x³ − 5x² − 12x ?",
+    "choices": [
+      "2.5",
+      "4",
+      "5",
+      "6"
+    ],
+    "correct_answer": "2.5",
+    "explanation": "f(x) = x(2x² − 5x − 12) = x(2x + 3)(x − 4), so the zeros are 0, −1.5, and 4, and their sum is 2.5. 4 is the greatest zero alone. 5 is −b/a read off the quadratic factor as if its leading coefficient were 1 rather than 2. 6 is 12/2, taken from the constant term instead.",
+    "solve": "const a=2,b=-5,c=-12;\nconst d=Math.sqrt(b*b-4*a*c);\nconst zeros=[0,(-b+d)/(2*a),(-b-d)/(2*a)];\nreturn zeros.reduce((s,v)=>s+v,0);"
+  },
+  {
+    "id": "ACT-M-FN12",
+    "domain": "Functions",
+    "subskill": "linear function extrapolated from two values",
+    "difficulty": "medium",
+    "prompt": "A function f is linear, f(3) = −2, and f(7) = 10. What is the value of f(12) ?",
+    "choices": [
+      "15",
+      "19",
+      "22",
+      "25"
+    ],
+    "correct_answer": "25",
+    "explanation": "The slope is (10 − (−2))/(7 − 3) = 3, so f(12) = 10 + 3(12 − 7) = 25. 22 comes from counting 8 steps from x = 3 instead of 9, giving −2 + 24. 19 comes from using 7 as the number of steps from f(3), giving −2 + 21. 15 uses a slope of 1, giving 10 + 5.",
+    "solve": "const m=(10-(-2))/(7-3);\nreturn 10+m*(12-7);"
+  },
+  {
+    "id": "ACT-M-FN13",
+    "domain": "Functions",
+    "subskill": "composition of two functions in a stated order",
+    "difficulty": "easy",
+    "prompt": "The functions f and g are defined by f(x) = x² − 4x and g(x) = 3 − x. What is the value of g(f(5)) ?",
+    "choices": [
+      "-22",
+      "-2",
+      "5",
+      "12"
+    ],
+    "correct_answer": "-2",
+    "explanation": "f(5) = 25 − 20 = 5, so g(f(5)) = g(5) = 3 − 5 = −2. 5 is f(5), stopping one step early. 12 is f(g(5)) = f(−2) = 4 + 8, the composition in the other order. −22 comes from taking f(5) as 25, dropping the −4x term, and then 3 − 25.",
+    "solve": "const f=x=>x*x-4*x, g=x=>3-x;\nreturn g(f(5));"
+  },
+  {
+    "id": "ACT-M-FN14",
+    "domain": "Functions",
+    "subskill": "evaluating a quadratic function at a negative input",
+    "difficulty": "easy",
+    "prompt": "The function h is defined by h(x) = 2x² + x. What is the value of h(−4) − h(2) ?",
+    "choices": [
+      "-46",
+      "18",
+      "26",
+      "38"
+    ],
+    "correct_answer": "18",
+    "explanation": "h(−4) = 2(16) − 4 = 28 and h(2) = 2(4) + 2 = 10, so the difference is 18. 38 adds the two values instead of subtracting. 26 comes from h(−4) = 32 + 4 = 36, dropping the sign in the linear term. −46 comes from h(−4) = −32 − 4 = −36, squaring after the sign is attached to the coefficient.",
+    "solve": "const h=x=>2*x*x+x;\nreturn h(-4)-h(2);"
+  },
+  {
+    "id": "ACT-M-FN15",
+    "domain": "Functions",
+    "subskill": "value of an inverse function",
+    "difficulty": "easy",
+    "prompt": "The function f is defined by f(x) = (2x − 5)/4. What is the value of f⁻¹(2) ?",
+    "choices": [
+      "-0.25",
+      "6.5",
+      "13",
+      "14"
+    ],
+    "correct_answer": "6.5",
+    "explanation": "Setting (2x − 5)/4 = 2 gives 2x − 5 = 8, so 2x = 13 and x = 6.5. 13 stops at 2x. 14 comes from dividing only the first term by 4, solving 2 = x/2 − 5. −0.25 is f(2), evaluating the function instead of inverting it.",
+    "solve": "const finv=y=>(4*y+5)/2;\nreturn finv(2);"
+  },
+  {
+    "id": "ACT-M-FN16",
+    "domain": "Functions",
+    "subskill": "period of a sine function, then a value at a fraction of the period",
+    "difficulty": "medium",
+    "prompt": "The function y = 4 sin(πx/6) has period p. What is the value of y when x = 3p/4 ?",
+    "choices": [
+      "-4",
+      "4",
+      "6",
+      "12"
+    ],
+    "correct_answer": "-4",
+    "explanation": "The period is 2π/(π/6) = 12, so 3p/4 = 9 and y = 4 sin(3π/2) = −4. 4 is the value at x = p/4, a quarter period in from the other side. 12 is the period itself. 6 comes from taking the period as π/(π/6) = 6.",
+    "solve": "const p=2*Math.PI/(Math.PI/6);\nconst y=4*Math.sin(Math.PI*(3*p/4)/6);\nreturn Math.round(y*1e6)/1e6;"
+  }
+]

@@ -1,0 +1,122 @@
+{
+  "1": {
+    "pick": "A",
+    "confident": false,
+    "tell": "unstructured: no centre, no sign-pair, no arithmetic relation. -8/-9 look like an off-by-one pair, 15 like a product. Pure guess on -13 as the 'two-step' value."
+  },
+  "2": {
+    "pick": "A",
+    "confident": false,
+    "tell": "ladder 9 -> 31 -> 97 under x*3+4, with 5/3 a stray. Chain members are the stem value and intermediates; took the low endpoint as the requested unknown, 97 being the value most likely quoted in the stem."
+  },
+  "3": {
+    "pick": "D",
+    "confident": true,
+    "tell": "composition set {a=5, b=3, a+b=8, b-a=-2}: two ingredients plus their sum and difference. Key is the composed value, ingredients are the stop-early distractors."
+  },
+  "4": {
+    "pick": "D",
+    "confident": false,
+    "tell": "symmetric triple 3/0/-3 is structurally mute; the one option not in the symmetry (verbal 'no solution') is the only option carrying information, and an extraneous-root item is the reason a symmetric numeric triple would be built."
+  },
+  "5": {
+    "pick": "C",
+    "confident": true,
+    "tell": "composition set {3, 4, 3+4=7, -3}: sum is the composed value; 4 and 3 are ingredients, -3 the sign slip."
+  },
+  "6": {
+    "pick": "D",
+    "confident": true,
+    "tell": "composition: 1 and 6 are ingredients, 7 = 1+6 the composed value; 3 is a stray (6/2)."
+  },
+  "7": {
+    "pick": "D",
+    "confident": false,
+    "tell": "8 = 2*4 marks a real computed chain (x=4, then 2x=8), so the item resolves to a value rather than to 'no solution'; -4 is the extraneous/sign root, 8 the one-step-too-far value."
+  },
+  "8": {
+    "pick": "A",
+    "confident": false,
+    "tell": "symmetric quad (+-5, +-3), closed under sign flip, structurally mute. Guess."
+  },
+  "9": {
+    "pick": "A",
+    "confident": true,
+    "tell": "composition/square set {4, -4, 4^2=16, -1}: 16 is the composed value, 4 the stop-early ingredient, -4 the sign slip, -1 a stray."
+  },
+  "10": {
+    "pick": "C",
+    "confident": false,
+    "tell": "doubling ladder 4 -> 8 -> 16 with 3 a stray exponent; took the interior rung, since both endpoints look like stem values (16 given, 4 a root of it)."
+  },
+  "11": {
+    "pick": "B",
+    "confident": true,
+    "tell": "0.9625 = 1 - 0.15/4 is the linearise-the-rate error, which only arises if the stated decay is 15% per 4 time-units; the correct compound form of that is 0.85^(t/4). 0.85^(4t) is the multiply-instead-of-divide slip and 0.15^(4t) the complement slip. Deliberately did NOT take the token-edit centre (D), which is one edit from both B and C."
+  },
+  "12": {
+    "pick": "C",
+    "confident": false,
+    "tell": "2x2 grid over numerator sign and denominator sign: structurally mute. Content decides the denominator - conjugate rationalisation gives x-2 by difference of squares, so A and B (x+2) are the sign error. Chose the (+) numerator, i.e. original denominator sqrt(x)-sqrt(2). Numerator sign is a coin flip."
+  },
+  "13": {
+    "pick": "D",
+    "confident": true,
+    "tell": "composition {5, -5, 3, 5*3=15}: product is the composed value, 5 the stop-early ingredient, 3 the loose factor, -5 the sign slip. Note a and ab both have degree 2, so this shape does not have a unique centre - lower confidence."
+  },
+  "14": {
+    "pick": "C",
+    "confident": false,
+    "tell": "symmetric quad (+-3, +-13), closed under sign flip, structurally mute. Guess."
+  },
+  "15": {
+    "pick": "D",
+    "confident": true,
+    "tell": "three perfect squares 4, 25, 49 with 45 a near-miss of 49; 49 = (2+5)^2 composes the other two bases, 4 and 25 are the stop-early ingredients, 45 the drop-a-term slip."
+  },
+  "16": {
+    "pick": "B",
+    "confident": true,
+    "tell": "composition 13 * 5 = 65; 13 and 5 are the ingredients, 36 a stray square."
+  },
+  "17": {
+    "pick": "A",
+    "confident": false,
+    "tell": "tight cluster 24/25/27/28 - two off-by-one pairs, no unique centre and no composition. Guess, weighted to the only cube (27)."
+  },
+  "18": {
+    "pick": "A",
+    "confident": true,
+    "tell": "composition 9 + 7 = 16; 9 and 7 are the ingredients, 15 an off-by-one near-miss of the key."
+  },
+  "19": {
+    "pick": "B",
+    "confident": false,
+    "tell": "ladder 3 -> 12 -> 39 under x*3+3, with 5 a stray. No unique centre, so this shape is not exploitable; took the interior rung as the guess."
+  },
+  "20": {
+    "pick": "C",
+    "confident": true,
+    "tell": "A = (x+6)/4 is exactly the illegal-cancellation product of (x^2-x-6)/(x^2-4), which factors to (x-3)/(x-2). B and D are the sign variants. Note B is the token-edit centre (one edit from C and from D) - the shape points at B and the content says C; went with content, as the earlier batch was rejected for making the edit-centre the key."
+  },
+  "21": {
+    "pick": "D",
+    "confident": false,
+    "tell": "symmetric quad (+-5, +-1), closed under sign flip, structurally mute. Guess."
+  },
+  "22": {
+    "pick": "C",
+    "confident": true,
+    "tell": "centre-and-satellites: 60 is one multiplicative edit from 20 (x3) and from 300 (x5); 25 is isolated. Took the centre."
+  },
+  "23": {
+    "pick": "B",
+    "confident": true,
+    "tell": "composition set {a=4, b=6, a+b=10, b-a=2} - same shape as item 3. Key is the sum."
+  },
+  "24": {
+    "pick": "B",
+    "confident": false,
+    "tell": "symmetric quad (+-3, +-4), closed under sign flip, structurally mute. Guess."
+  }
+}

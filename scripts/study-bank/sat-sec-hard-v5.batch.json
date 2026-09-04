@@ -1,0 +1,410 @@
+[
+  {
+    "id": "SEC-V5-01",
+    "domain": "Standard English Conventions",
+    "subskill": "form: subject-verb agreement across a singular appositive, with tense fixed by a generic frame",
+    "difficulty": "medium",
+    "passage": "A breastshot wheel takes water at axle height and turns on the weight of that water rather than on its speed. The buckets, each one a shallow trough of elm no deeper than a hand's breadth, ______ for the whole of the arc between the sluice and the tailrace, and a millwright who sets them a degree too steep gives away the advantage the design was built to provide.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "has to stay full",
+      "have to stay full",
+      "having to stay full",
+      "had to stay full"
+    ],
+    "correct_answer": "have to stay full",
+    "explanation": "The subject is the plural noun \"buckets,\" so the verb has to be plural: \"have to stay full.\" The appositive \"each one a shallow trough of elm\" is a supplement and cannot supply the number of the verb, which is the noun \"has to stay full\" agrees with. The second requirement is finiteness and time frame: the sentence describes how the wheel works in general (\"takes water,\" \"gives away the advantage\"), so \"had to stay full\" shifts the description into a closed past the rest of the sentence does not share, and \"having to stay full\" supplies no main verb at all.",
+    "topic_tag": "milling machinery"
+  },
+  {
+    "id": "SEC-V5-02",
+    "domain": "Standard English Conventions",
+    "subskill": "form: plural possessive where the unpunctuated plural also reads as a subject and verb",
+    "difficulty": "medium",
+    "passage": "The copper works at Swansea kept two sets of books, and only one of them has ever been printed. The printed set records what the company paid out to the eighty men who worked the furnaces; the manuscript set records what was taken back for coal, for tools, and for goods bought at the company store. A historian working only from the printed volumes will report the ______ as though it were a wage, and in some months the gap between the two figures runs to a third of the total.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "smelter's gross credit",
+      "smelters gross credit",
+      "smelters' gross credit",
+      "smelters gross credits"
+    ],
+    "correct_answer": "smelters' gross credit",
+    "explanation": "The phrase names one figure belonging to more than one man, since the printed set covers \"the eighty men who worked the furnaces,\" so the possessive has to be plural: \"smelters' gross credit.\" \"smelter's gross credit\" assigns the figure to a single smelter. \"smelters gross credit\" drops the apostrophe, leaving \"smelters\" as a bare plural noun the sentence has no room for, and \"smelters gross credits\" makes the same omission while also pluralizing the figure the following clause calls \"it.\"",
+    "topic_tag": "copper smelting"
+  },
+  {
+    "id": "SEC-V5-03",
+    "domain": "Standard English Conventions",
+    "subskill": "boundaries: a participial modifier where a finite clause would splice",
+    "difficulty": "medium",
+    "passage": "Before 1841 a screw thread was cut to whatever pitch its maker preferred, so a bolt and its nut were a matched pair and a broken bolt meant a new nut as well. Joseph Whitworth collected samples from workshops across the north of England, measured the threads on all of them, and published an average, ______ that a repair could be made out of a drawer of stock rather than at a forge.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "at last made it possible",
+      "having at last made it possible",
+      "the average at last made it possible",
+      "at last making it possible"
+    ],
+    "correct_answer": "at last making it possible",
+    "explanation": "What follows the comma has to be a modifier, because the sentence already has its subject and its three coordinated verbs (\"collected,\" \"measured,\" and \"published\"), and \"at last making it possible\" attaches to the act of publishing the average, which is what created the possibility. \"the average at last made it possible\" is a second independent clause joined by nothing but a comma; \"at last made it possible\" is a finite verb with no subject and no conjunction to license it; and \"having at last made it possible\" places the possibility before the publication that produced it.",
+    "topic_tag": "machine tools"
+  },
+  {
+    "id": "SEC-V5-04",
+    "domain": "Standard English Conventions",
+    "subskill": "boundaries: restrictive versus nonrestrictive relative clause, with the scope settled by a later clause",
+    "difficulty": "hard",
+    "passage": "Bessemer's converter blew cold air up through molten pig iron and burned the carbon out of it in twenty minutes, and for two years it ruined nearly every charge it was given. The trouble was phosphorus, which the process leaves behind and which makes steel brittle. The ______ came from a single Swedish deposit, and the ironmasters who bought licenses in Yorkshire and in Pennsylvania were working ore that no amount of blowing would clean.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "ores that Bessemer had tested",
+      "ores, which Bessemer had tested,",
+      "ores, that Bessemer had tested,",
+      "ores which Bessemer had tested,"
+    ],
+    "correct_answer": "ores that Bessemer had tested",
+    "explanation": "The clause is restrictive, so it takes no commas and takes \"that\": \"ores that Bessemer had tested.\" It is not extra information about ores in general but the thing separating the ores Bessemer worked with from the ore his licensees were stuck with, which the sentence calls \"ore that no amount of blowing would clean.\" \"ores, which Bessemer had tested,\" sets the clause off as a supplement and so claims every ore came from the Swedish deposit; \"ores, that Bessemer had tested,\" punctuates a restrictive clause as a supplement; and \"ores which Bessemer had tested,\" closes with a comma that was never opened.",
+    "topic_tag": "steelmaking"
+  },
+  {
+    "id": "SEC-V5-05",
+    "domain": "Standard English Conventions",
+    "subskill": "boundaries: a long dependent clause that reads as complete, followed by the main clause",
+    "difficulty": "hard",
+    "passage": "Portland cement is not a mixture but a reaction product, and the reaction does not begin until water is added at the site. Because the clinker that comes out of the kiln has already been heated past the point at which its limestone gives up carbon dioxide and its clay gives up ______ a powder that will not set until it is wetted and that is worth nothing at all once a bag has been left open in a damp shed.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "water. The finished cement is",
+      "water, the finished cement being",
+      "water, the finished cement is",
+      "water; the finished cement is"
+    ],
+    "correct_answer": "water, the finished cement is",
+    "explanation": "Everything from \"Because\" to \"water\" is one dependent clause, however long it runs and however many finite verbs it contains, so it can only be followed by a comma and then the main clause: \"water, the finished cement is.\" \"water; the finished cement is\" and \"water. The finished cement is\" both treat that dependent clause as though it could stand alone, leaving a fragment to the left of the punctuation. \"water, the finished cement being\" offers a participle where the sentence needs its only main verb.",
+    "topic_tag": "cement manufacture"
+  },
+  {
+    "id": "SEC-V5-06",
+    "domain": "Standard English Conventions",
+    "subskill": "form: agreement with a fraction of a mass noun, with tense fixed by a generic frame",
+    "difficulty": "medium",
+    "passage": "Air is separated by chilling it until it liquefies and then boiling it off again, since nitrogen boils some thirteen degrees below oxygen and comes away first. The economics are unforgiving. Roughly nine-tenths of the electricity a plant draws ______ before a single liter of product leaves the column, and a plant run even slightly below its design pressure never earns that outlay back.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "is spent on refrigeration",
+      "were spent on refrigeration",
+      "have been spent on refrigeration",
+      "are spent on refrigeration"
+    ],
+    "correct_answer": "is spent on refrigeration",
+    "explanation": "A fraction takes its number from what it is a fraction of, and here that is \"the electricity a plant draws,\" a mass noun, so the singular \"is spent on refrigeration\" is required and \"are spent on refrigeration\" agrees with the plural-looking \"nine-tenths\" instead. The second requirement is the time frame: the sentence describes how any such plant behaves, as \"never earns that outlay back\" confirms, so \"were spent on refrigeration\" closes the description off in the past and \"have been spent on refrigeration\" reports a completed accumulation as well as taking the wrong number.",
+    "topic_tag": "air separation"
+  },
+  {
+    "id": "SEC-V5-07",
+    "domain": "Standard English Conventions",
+    "subskill": "form: parallelism in a compound predicate governed by a shared auxiliary",
+    "difficulty": "medium",
+    "passage": "A ropewalk is a shed a quarter of a mile long, because rope was laid in a single length and a splice is a weak point. The spinner walked backward away from the wheel with a bundle of hemp about his waist, and the yarn he paid out behind him had to be ______, which is why the trade took years to learn and why a boy began as a turner of the wheel.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "kept at an even tension and it was twisted evenly",
+      "kept at an even tension and twisted evenly",
+      "kept at an even tension and twisting evenly",
+      "keeping an even tension and twisted evenly"
+    ],
+    "correct_answer": "kept at an even tension and twisted evenly",
+    "explanation": "\"had to be\" governs both halves of the compound, so both have to be past participles: \"kept at an even tension and twisted evenly.\" \"kept at an even tension and twisting evenly\" switches to a present participle halfway through, which would have the yarn doing the twisting rather than receiving it. \"keeping an even tension and twisted evenly\" makes the same break in the first half instead of the second, and \"kept at an even tension and it was twisted evenly\" hangs a full clause off an auxiliary that cannot take one.",
+    "topic_tag": "ropemaking"
+  },
+  {
+    "id": "SEC-V5-08",
+    "domain": "Standard English Conventions",
+    "subskill": "form: agreement with the nearer of two subjects joined by 'neither ... nor', with the possessive matching",
+    "difficulty": "hard",
+    "passage": "A silver-gelatin emulsion is ripened by heating, and the ripening fixes the size of the grains and so the speed of the plate. Two candidates were blamed for the variation between batches for the better part of a decade. Neither the purity of the gelatin nor the trace sulfur compounds it carries out of the animal ______ the effect the early manufacturers assigned to them, as anyone can demonstrate by holding one of the two constant and varying the other.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "produces on their own",
+      "produce on its own",
+      "produces on its own",
+      "produce on their own"
+    ],
+    "correct_answer": "produce on their own",
+    "explanation": "With \"neither ... nor\" the verb agrees with the subject nearer to it, and that subject is \"the trace sulfur compounds,\" so the plural \"produce on their own\" is required; \"produces on its own\" and \"produces on their own\" both reach past the nearer subject to the singular \"purity.\" The possessive has to match that same nearer subject, which is why \"produce on its own\" fails even though its verb is right, and the later clause confirms the plural by calling the two candidates \"them.\"",
+    "topic_tag": "photographic chemistry"
+  },
+  {
+    "id": "SEC-V5-09",
+    "domain": "Standard English Conventions",
+    "subskill": "form: an opening participial phrase must attach to the subject of the clause that follows",
+    "difficulty": "hard",
+    "passage": "A Hoffmann kiln is a ring of chambers, and the fire travels around the ring while the bricks stand still. Air drawn over a chamber that is cooling reaches the fire already hot; the flue gases leaving the fire pass over the chambers that are still to be burned. Recovered twice over before it ever goes up the ______ a third less coal than the intermittent kilns it replaced, and the design outlived its patent by a century.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "chimney, a kiln of this kind burns",
+      "chimney, burning in a kiln of this kind consumes",
+      "chimney, it is possible to burn in a kiln of this kind",
+      "chimney, the waste heat lets a kiln of this kind burn"
+    ],
+    "correct_answer": "chimney, the waste heat lets a kiln of this kind burn",
+    "explanation": "\"Recovered twice over before it ever goes up the chimney\" describes the heat, not the kiln, and the pronoun \"it\" inside that phrase points at the same thing, so the clause has to open as \"chimney, the waste heat lets a kiln of this kind burn.\" \"chimney, a kiln of this kind burns\" makes the kiln the thing recovered and sent up the chimney; \"chimney, burning in a kiln of this kind consumes\" makes it the burning; and \"chimney, it is possible to burn in a kiln of this kind\" leaves the participle attached to an empty \"it\" standing for nothing the sentence has named.",
+    "topic_tag": "brick kilns"
+  },
+  {
+    "id": "SEC-V5-10",
+    "domain": "Standard English Conventions",
+    "subskill": "form: parallelism between the two halves of a correlative pair",
+    "difficulty": "medium",
+    "passage": "The Ordnance Survey's early sheets are admired for their hachures, the fine tapering strokes that stand for slope, and cursed by anyone who has tried to read them by lamplight. A hachure carries no number at all. Steepness is shown not only by the spacing of the strokes but also by ______, so that a reader has to hold two quantities in mind at once and can recover neither of them exactly.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "how thickly each one is drawn",
+      "the thickness of each one",
+      "drawing each one more thickly",
+      "each one being drawn thickly"
+    ],
+    "correct_answer": "the thickness of each one",
+    "explanation": "\"not only ... but also\" joins elements of the same kind, and the first element is the noun phrase \"the spacing of the strokes,\" so the second has to be a noun phrase built the same way: \"the thickness of each one.\" \"how thickly each one is drawn\" substitutes an embedded question, \"drawing each one more thickly\" a gerund phrase, and \"each one being drawn thickly\" a whole participial clause, none of which will pair with a simple noun phrase after the shared preposition \"by.\"",
+    "topic_tag": "cartography"
+  },
+  {
+    "id": "SEC-V5-11",
+    "domain": "Standard English Conventions",
+    "subskill": "boundaries: a supplement opened with a dash must be closed with one, and the main verb must survive",
+    "difficulty": "hard",
+    "passage": "The triode amplifies because a small voltage on the grid controls a large current between the cathode and the plate, and the grid draws almost no current of its own. The tube's weakness is capacitance. The grid and the plate—two pieces of metal a few millimeters apart with nothing but vacuum between ______ a capacitor whether the designer wants one or not, and at radio frequencies that stray capacitance feeds the output back into the input.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "them—form",
+      "them, form",
+      "them form",
+      "them—forming"
+    ],
+    "correct_answer": "them—form",
+    "explanation": "The supplement \"two pieces of metal a few millimeters apart with nothing but vacuum between them\" is opened with a dash, so it has to be closed with a dash before the verb returns: \"them—form.\" \"them, form\" closes with a comma the dash never opened, and \"them form\" does not close the supplement at all, which leaves the reader no way to tell where the subject ends. \"them—forming\" punctuates correctly but replaces the sentence's only main verb with a participle.",
+    "topic_tag": "vacuum tubes"
+  },
+  {
+    "id": "SEC-V5-12",
+    "domain": "Standard English Conventions",
+    "subskill": "form: present tense in a subordinate time clause with future reference",
+    "difficulty": "medium",
+    "passage": "A salt pan is worked in sequence: brine is let into the first pond and moved on as it thickens, so that gypsum drops out in one pond and sodium chloride in the next. The last stage cannot be hurried and cannot be left. When the density in the crystallizer ______, the salter closes the gate and takes what is on the floor, because past that point the magnesium salts come down as well and the crop is spoiled for the table.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "is reaching the figure he wants",
+      "will reach the figure he wants",
+      "reaches the figure he wants",
+      "would reach the figure he wants"
+    ],
+    "correct_answer": "reaches the figure he wants",
+    "explanation": "A clause opened by \"When\" that looks forward to something not yet done takes the present tense in edited English: \"reaches the figure he wants.\" \"will reach the figure he wants\" doubles a futurity the conjunction has already supplied. \"would reach the figure he wants\" puts the description into a hypothetical or past-habitual frame that the main clause's \"closes the gate\" does not share, and \"is reaching the figure he wants\" describes the density as still on its way rather than at the point that triggers the salter's action.",
+    "topic_tag": "salt production"
+  },
+  {
+    "id": "SEC-V5-13",
+    "domain": "Standard English Conventions",
+    "subskill": "form: agreement with a singular collective head followed by a plural of-phrase, with tense fixed by the frame",
+    "difficulty": "hard",
+    "passage": "A lever escapement gives the balance a push twice a swing and locks it in between, which is why a watch ticks rather than hisses. Delivering the push is the difficulty. A train of five wheels, each of them cut and polished and set on pivots no thicker than a hair, ______ the mainspring from the pallet, and every one of those bearings takes its share of the energy in passing.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "separates",
+      "separated",
+      "separating",
+      "separate"
+    ],
+    "correct_answer": "separates",
+    "explanation": "The head of the subject is the singular noun \"train,\" so the verb is \"separates\"; \"of five wheels\" and the appositive \"each of them cut and polished\" sit between the head and the verb without changing its number, and \"separate\" agrees with the wheels instead. The second requirement is the time frame: the passage describes how any such watch works, as \"takes its share of the energy in passing\" shows, so \"separated\" moves the description into a closed past, and \"separating\" is not a finite verb at all.",
+    "topic_tag": "horology"
+  },
+  {
+    "id": "SEC-V5-14",
+    "domain": "Standard English Conventions",
+    "subskill": "form: parallelism among items in a series of predicates",
+    "difficulty": "medium",
+    "passage": "Frederic Tudor shipped pond ice from Massachusetts to Martinique in 1806 and lost nearly all of it, and the loss happened after the ship had docked rather than at sea. His second attempt worked because he had spent the intervening winters on the parts of the trade that were not the ice itself: he built double-walled icehouses at both ends of the route, ______, and persuaded a Havana cafe to give away chilled drinks for a season until the habit took.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "contracting for sawdust from the mills of Maine",
+      "he contracted for sawdust from the mills of Maine",
+      "had contracted for sawdust from the mills of Maine",
+      "contracted for sawdust from the mills of Maine"
+    ],
+    "correct_answer": "contracted for sawdust from the mills of Maine",
+    "explanation": "The series hangs off one subject and one auxiliary-free frame, \"he built ... and persuaded,\" so the middle item has to be a simple past verb phrase like the two around it: \"contracted for sawdust from the mills of Maine.\" \"contracting for sawdust from the mills of Maine\" breaks the series with a participle, \"he contracted for sawdust from the mills of Maine\" inserts a second subject into a list that already has one, and \"had contracted for sawdust from the mills of Maine\" shifts the middle item alone into the past perfect.",
+    "topic_tag": "the ice trade"
+  },
+  {
+    "id": "SEC-V5-15",
+    "domain": "Standard English Conventions",
+    "subskill": "boundaries: no comma may separate a long subject from its verb",
+    "difficulty": "medium",
+    "passage": "Rag paper is made from cloth that has already been worn out, which is why a paper mill of the eighteenth century was built near a city rather than near a forest. The sorting room decided the grade. Women who could tell hemp from flax by the feel of a seam and who worked at a rate of forty pounds a ______ the stock into grades before it ever reached the beaters, and a sheet of the best writing paper began as somebody's linen shirt.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "day, sorted,",
+      "day sorted,",
+      "day sorted",
+      "day, sorted"
+    ],
+    "correct_answer": "day sorted",
+    "explanation": "The subject runs from \"Women\" through the two relative clauses to \"forty pounds a day,\" and no comma may stand between that subject and its verb, however long the subject has grown: \"day sorted.\" \"day, sorted\" cuts the subject off from the verb, \"day, sorted,\" fences the verb off on both sides as though it were a supplement, and \"day sorted,\" separates the verb from the object \"the stock\" that it needs.",
+    "topic_tag": "papermaking"
+  },
+  {
+    "id": "SEC-V5-16",
+    "domain": "Standard English Conventions",
+    "subskill": "form: agreement with a singular abstract head buried among plurals, with tense fixed by a later clause",
+    "difficulty": "hard",
+    "passage": "Before the float process, plate glass was cast on an iron table, ground flat with sand, and polished—three operations that between them wasted about a fifth of the glass as swarf. Pilkington's answer was to float the ribbon on molten tin, which is flat because it is a liquid. The saving in labor and in wasted stock at the two works that first ran the line ______ the whole of the development cost inside four years, and the licenses paid for everything after that.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "were enough to cover",
+      "was enough to cover",
+      "have been enough to cover",
+      "are enough to cover"
+    ],
+    "correct_answer": "was enough to cover",
+    "explanation": "The subject is the singular noun \"saving,\" so the verb is \"was enough to cover\"; \"in labor and in wasted stock\" and \"at the two works that first ran the line\" are modifiers, and \"were enough to cover\" and \"have been enough to cover\" take their number from nouns inside them. The second requirement is the time frame: the coordinate clause \"the licenses paid for everything after that\" places the account in a finished past, so \"are enough to cover\" reports as a standing fact something the sentence has already closed off.",
+    "topic_tag": "flat glass"
+  },
+  {
+    "id": "SEC-V5-17",
+    "domain": "Standard English Conventions",
+    "subskill": "form: a modifying phrase must sit next to what it modifies",
+    "difficulty": "medium",
+    "passage": "Oak-bark tanning is slow because tannin enters a hide only by diffusion, and nothing in the yard can hurry it. A butt for sole leather passes through fourteen pits of rising strength over fourteen months, and a pit that is allowed to weaken lets the hide case-harden at the surface so that it stops taking tannin altogether. ______, because a hide that has cased over cannot be opened up again by any later treatment.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "The foreman therefore tops up on a schedule he keeps in his head the pits with ground bark",
+      "The foreman therefore tops up the pits with ground bark on a schedule he keeps in his head",
+      "Kept in his head, the foreman therefore tops up the pits with ground bark on a schedule",
+      "On a schedule, the foreman therefore tops up the pits kept in his head with ground bark"
+    ],
+    "correct_answer": "The foreman therefore tops up the pits with ground bark on a schedule he keeps in his head",
+    "explanation": "What is kept in the foreman's head is the schedule, so the phrase has to sit beside the noun it modifies: \"The foreman therefore tops up the pits with ground bark on a schedule he keeps in his head.\" \"Kept in his head, the foreman therefore tops up the pits with ground bark on a schedule\" puts the foreman inside his own head, and \"On a schedule, the foreman therefore tops up the pits kept in his head with ground bark\" does the same to the pits. \"The foreman therefore tops up on a schedule he keeps in his head the pits with ground bark\" attaches the modifier correctly but drives a long phrase between the verb and the object that completes it.",
+    "topic_tag": "leather tanning"
+  },
+  {
+    "id": "SEC-V5-18",
+    "domain": "Standard English Conventions",
+    "subskill": "form: a counterfactual whose condition is past and whose consequence is present",
+    "difficulty": "hard",
+    "passage": "Steel in concrete does not rust, because the cement paste around it is strongly alkaline and holds a passive film on the metal. Carbon dioxide from the air undoes that slowly, neutralizing the paste from the surface inward at a rate that falls off as the square root of time. The cover over the bars on the Chaudiere viaduct was specified at twenty millimeters and poured at twelve. Had the specification been met, the deck ______, and the repair that was made in its fiftieth year would not have been needed at all.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "would still be sound today",
+      "would still have been sound today",
+      "will still be sound today",
+      "had still been sound today"
+    ],
+    "correct_answer": "would still be sound today",
+    "explanation": "The condition lies in the past, but the consequence the sentence asks about is a present one, fixed by \"today\": \"would still be sound today.\" \"would still have been sound today\" puts the consequence into a completed past that \"today\" contradicts, matching the tense of the condition rather than the time of the result. \"will still be sound today\" treats an unmet condition as though it were still open, and \"had still been sound today\" is the tense of the condition itself, which cannot also serve as its consequence.",
+    "topic_tag": "reinforced concrete"
+  },
+  {
+    "id": "SEC-V5-19",
+    "domain": "Standard English Conventions",
+    "subskill": "boundaries: joining two independent clauses with a comma and a coordinating conjunction",
+    "difficulty": "medium",
+    "passage": "A locomotive boiler is a bundle of tubes carrying the fire's gases to the chimney through the water they heat, and the tubes are also the weakness. Each one is expanded into its holes in the tubeplates rather than welded, so it has to seal against two hundred pounds of steam and still be free to move as the metal grows in the ______ joint was the commonest single cause of an engine being stopped in the nineteenth century, and a shed with a good tube man kept its locomotives out on the road.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "heat, the tube",
+      "heat; and the tube",
+      "heat the tube",
+      "heat; the tube"
+    ],
+    "correct_answer": "heat; the tube",
+    "explanation": "Two independent clauses meet at the blank, and a semicolon is what joins them without a conjunction: \"heat; the tube.\" \"heat, the tube\" leaves a comma to do that work alone, which is a splice; \"heat the tube\" runs the clauses together with nothing between them at all; and \"heat; and the tube\" doubles the join, adding a coordinating conjunction to a semicolon that has already done the whole job.",
+    "topic_tag": "locomotive boilers"
+  },
+  {
+    "id": "SEC-V5-20",
+    "domain": "Standard English Conventions",
+    "subskill": "form: relative pronoun choice for an inanimate antecedent inside a supplement",
+    "difficulty": "medium",
+    "passage": "A marine chronometer is not an accurate clock so much as a predictable one. The navigator does not need the instrument to keep true time; he needs it to gain or lose the same amount each day, because a known daily rate can be subtracted from the reading. Harrison's fourth timekeeper, ______ over eighty-one days at sea, lost five seconds in the first ten days and went on losing them at very nearly that rate, and it was the steadiness of the error rather than its size that won the award.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "whom the Board of Longitude tested",
+      "the Board of Longitude tested it",
+      "which the Board of Longitude tested",
+      "that the Board of Longitude tested"
+    ],
+    "correct_answer": "which the Board of Longitude tested",
+    "explanation": "The clause is set off by commas, so it is a supplement, and a supplementary relative clause takes \"which\" rather than \"that\": \"which the Board of Longitude tested.\" \"whom the Board of Longitude tested\" is the form used for people, and the antecedent here is a timekeeper. \"the Board of Longitude tested it\" is a complete clause with its own subject and object, which cannot be dropped between commas into the middle of another clause.",
+    "topic_tag": "marine chronometers"
+  },
+  {
+    "id": "SEC-V5-21",
+    "domain": "Standard English Conventions",
+    "subskill": "form: voice in a reduced relative, with the agent named after the verb",
+    "difficulty": "medium",
+    "passage": "Aluminum is won by passing a current through alumina dissolved in molten cryolite, and the carbon anodes are eaten away as they work, since the oxygen freed at their surfaces burns the carbon. Two men reached the method in the same year on opposite sides of the Atlantic, and neither knew of the other. The patent fight ______ by a laboratory notebook whose entries had been witnessed and dated, and the process still carries both of their names.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "that followed, was settled",
+      "that followed had settled",
+      "that followed was settled",
+      "that followed was settling"
+    ],
+    "correct_answer": "that followed was settled",
+    "explanation": "The notebook is what did the settling, and the sentence marks that with \"by,\" so the fight has to be the thing settled rather than the thing settling: \"that followed was settled.\" \"that followed was settling\" and \"that followed had settled\" both put the fight in the active voice, which leaves \"by a laboratory notebook\" attached to a verb that already has an agent of its own. \"that followed, was settled\" gets the voice right but puts a comma between the subject and its verb.",
+    "topic_tag": "aluminum smelting"
+  },
+  {
+    "id": "SEC-V5-22",
+    "domain": "Standard English Conventions",
+    "subskill": "form: a gerund-phrase subject takes a singular verb however many objects it contains",
+    "difficulty": "hard",
+    "passage": "The armory practice that made muskets from interchangeable parts is usually credited to a demonstration in which a stand of arms was taken apart, the pieces mixed in a bin, and new muskets assembled from the heap. The demonstration proves less than it seems to. Filing a lock plate, a hammer, and a sear until each of them will go into any of a hundred guns ______ rather than replacing it, and the real change came later, with gauges and machines that made the fitting unnecessary.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "multiplying the hand fitting",
+      "have multiplied the hand fitting",
+      "multiply the hand fitting",
+      "multiplies the hand fitting"
+    ],
+    "correct_answer": "multiplies the hand fitting",
+    "explanation": "The subject is a single activity, \"Filing a lock plate, a hammer, and a sear,\" and a gerund phrase stays singular however many objects the gerund takes, so the verb is \"multiplies the hand fitting\" and \"multiply the hand fitting\" agrees with the list of parts instead. The second requirement is the frame: the clause states what such filing does in general, and the sentence marks the historical change separately in \"the real change came later,\" so \"have multiplied the hand fitting\" reports a completed accumulation, and \"multiplying the hand fitting\" is not a finite verb.",
+    "topic_tag": "interchangeable parts"
+  },
+  {
+    "id": "SEC-V5-23",
+    "domain": "Standard English Conventions",
+    "subskill": "boundaries: a supplement opened with a comma must be closed before the verb",
+    "difficulty": "medium",
+    "passage": "A camera in an aircraft photographs the ground obliquely unless the aircraft is level, and the ground is not level either, so a single frame cannot be laid over a map without distortion. The correction is geometric and was worked out long before it could be done quickly. Two overlapping frames, taken a few seconds apart from a known ______ enough information to fix the height of every point that appears in both, and a machine built in the 1920s did the arithmetic optically.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "baseline containing",
+      "baseline, contain",
+      "baseline contain",
+      "baseline, contain,"
+    ],
+    "correct_answer": "baseline, contain",
+    "explanation": "\"taken a few seconds apart from a known baseline\" is a supplement opened by the comma after \"frames,\" so it has to be closed by a comma before the verb: \"baseline, contain.\" \"baseline contain\" leaves the supplement open, so the subject appears to run on into the predicate. \"baseline, contain,\" closes the supplement and then puts a second comma between the verb and its object \"enough information,\" and \"baseline containing\" removes the sentence's only main verb.",
+    "topic_tag": "aerial photography"
+  },
+  {
+    "id": "SEC-V5-24",
+    "domain": "Standard English Conventions",
+    "subskill": "form: past perfect for a state established before a past reference point",
+    "difficulty": "medium",
+    "passage": "Graphite slows neutrons without absorbing many of them, which is why the first piles were built of it. Bombardment also knocks carbon atoms out of the lattice, where they lodge as defects and store energy that comes back out as heat if the block is warmed. By the time the Windscale pile caught fire in 1957, the effect ______ for fifteen years, and the schedule of controlled anneals meant to release the stored energy safely was itself what set the graphite alight.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "had been known to the physicists",
+      "has been known to the physicists",
+      "would be known to the physicists",
+      "was known to the physicists"
+    ],
+    "correct_answer": "had been known to the physicists",
+    "explanation": "The reference point is a moment in the past, \"the time the Windscale pile caught fire in 1957,\" and the knowing reaches back fifteen years from it, so the verb has to be past perfect: \"had been known to the physicists.\" \"was known to the physicists\" places the knowing at the reference point instead of before it and will not carry the fifteen-year stretch. \"has been known to the physicists\" measures the fifteen years back from the present, and \"would be known to the physicists\" places the knowledge after 1957 rather than before it.",
+    "topic_tag": "nuclear graphite"
+  }
+]

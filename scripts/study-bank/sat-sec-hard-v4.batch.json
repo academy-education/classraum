@@ -1,0 +1,410 @@
+[
+  {
+    "id": "SEC-V4-01",
+    "domain": "Standard English Conventions",
+    "subskill": "boundaries: an appositive with a restrictive relative clause, where the clause after the blank supplies the verb",
+    "difficulty": "medium",
+    "passage": "Nets strung across a ridge above the coastal desert of Peru catch fog that would otherwise blow inland and evaporate. The engineering is trivial; the siting is not. Fog moves in a band that shifts by tens of meters with the season, and mesh hung a little below that band collects nothing at all. Crews therefore survey a candidate ridge for a full ______ costs about as much as the nets it protects.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "year, a delay that",
+      "year; a delay that",
+      "year. A delay that",
+      "year, a delay"
+    ],
+    "correct_answer": "year, a delay that",
+    "explanation": "The words after the blank, \"costs about as much as the nets it protects,\" are a verb without a subject, so the blank has to supply one: \"year, a delay that\" adds an appositive and a relative pronoun for that verb to attach to. \"year, a delay\" leaves \"costs\" with nothing to agree with. \"year; a delay that\" and \"year. A delay that\" both put a boundary in front of a group of words that never becomes an independent clause.",
+    "topic_tag": "fog collection"
+  },
+  {
+    "id": "SEC-V4-02",
+    "domain": "Standard English Conventions",
+    "subskill": "possessives: plural possessive required, with the number of the possessors recoverable only from an earlier sentence",
+    "difficulty": "hard",
+    "passage": "A single administrative tablet from a Sumerian granary was written by one man and gone over by another some months later, and the two hands are easy to tell apart: the first cuts its wedges deep and square, the second shallow and quick. What makes the tablet unusual is that the second man reworked the whole account rather than the disputed lines alone. The passages where the ______ overlap show a reckoning being argued out rather than copied.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "scribes corrections",
+      "scribe's corrections",
+      "scribes' corrections",
+      "scribes' correction"
+    ],
+    "correct_answer": "scribes' corrections",
+    "explanation": "Two men wrote on the tablet and both left corrections, so the possessor is plural and the apostrophe follows the s: \"scribes' corrections\". \"scribe's corrections\" makes one man the only corrector, which the earlier sentences rule out. \"scribes corrections\" marks no possession at all. \"scribes' correction\" leaves a single correction, which cannot \"overlap\" with anything.",
+    "topic_tag": "cuneiform accounting"
+  },
+  {
+    "id": "SEC-V4-03",
+    "domain": "Standard English Conventions",
+    "subskill": "boundaries: a participial phrase, not a second independent clause, may follow the comma",
+    "difficulty": "medium",
+    "passage": "A raised bog preserves what a grave destroys and destroys what a grave preserves. The sphagnum releases an acid that tans skin into something close to leather, and the same acid pulls the calcium out of bone over a few centuries, ______ , which is why a body two thousand years old is lifted from the peat on a pallet of frozen ground rather than by hand.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "it leaves a face and fingerprints above a skeleton that is no longer there",
+      "leaving a face and fingerprints above a skeleton that is no longer there",
+      "a face and fingerprints are left above a skeleton that is no longer there",
+      "to leave a face and fingerprints above a skeleton that is no longer there"
+    ],
+    "correct_answer": "leaving a face and fingerprints above a skeleton that is no longer there",
+    "explanation": "The blank sits between two commas inside a sentence that continues with \"which is why,\" so it cannot be a second independent clause. \"leaving a face and fingerprints\" is a participial phrase modifying the acid's action. \"it leaves a face and fingerprints\" and \"a face and fingerprints are left\" are both full clauses spliced in with a comma. \"to leave a face and fingerprints\" is nonfinite but makes the outcome a purpose the acid pursues rather than a result it produces, and an infinitive cannot be coordinated with the finite \"pulls\" across a comma.",
+    "topic_tag": "bog chemistry"
+  },
+  {
+    "id": "SEC-V4-04",
+    "domain": "Standard English Conventions",
+    "subskill": "form: 'neither of' takes a singular verb and a singular pronoun, with the tense fixed by the preceding clause",
+    "difficulty": "medium",
+    "passage": "A hive that has lost its queen will sometimes accept a queen raised elsewhere, though not one taken from just any colony. Guards at the entrance sample the wax scent of every bee that lands, and a colony working a different nectar flow smells wrong to them. Both hives in the orchard trial had been foraging the same clover for a month before the frames were exchanged. Neither of the two ______ , and the beekeepers took the shared diet to be the reason.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "were rejecting their new brood",
+      "rejected their new brood",
+      "reject its new brood",
+      "rejected its new brood"
+    ],
+    "correct_answer": "rejected its new brood",
+    "explanation": "\"Neither\" is the subject and is singular, so both the verb and the pronoun that refers back to it are singular: \"rejected its new brood\". \"rejected their new brood\" and \"were rejecting their new brood\" agree with \"the two\" rather than with \"Neither,\" and the second is plural in the verb as well. \"reject its new brood\" is singular but present, which strands the clause in a different time frame from \"the frames were exchanged\" and \"the beekeepers took\".",
+    "topic_tag": "apiculture"
+  },
+  {
+    "id": "SEC-V4-05",
+    "domain": "Standard English Conventions",
+    "subskill": "form: agreement with a plural subject separated by a relative clause about a singular noun, with tense fixed by the adverbial clause",
+    "difficulty": "hard",
+    "passage": "Roman harbor concrete grows stronger in seawater, which is the reverse of what modern concrete does. The mineral responsible grows inside the cracks as seawater works through the volcanic ash in the mix. Cores drilled from a breakwater that has stood in the surf since the first century settle a long argument about how far the process runs: the crystals in the deepest of those cores ______ , and the mineral is now being grown deliberately in a laboratory.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "was still forming when the samples came ashore",
+      "were still forming when the samples came ashore",
+      "is still forming when the samples came ashore",
+      "has still been forming when the samples came ashore"
+    ],
+    "correct_answer": "were still forming when the samples came ashore",
+    "explanation": "The subject is \"the crystals\"; \"in the deepest of those cores\" and the earlier clause about \"a breakwater that has stood\" supply singular nouns but not the subject, so the verb must be plural. Number alone does not finish the item: the clause \"when the samples came ashore\" fixes a past frame, so \"is still forming\" fails on tense as well as number and \"has still been forming\" runs an unfinished span up against a closed one. \"was still forming\" has the right tense and the wrong number.",
+    "topic_tag": "Roman engineering"
+  },
+  {
+    "id": "SEC-V4-06",
+    "domain": "Standard English Conventions",
+    "subskill": "form: an opening participial phrase must modify the subject of the clause that follows it",
+    "difficulty": "hard",
+    "passage": "Every eel in a European river hatched somewhere in the western Atlantic and drifted for a year or more as a transparent larva before turning into the finger-length glass eel that arrives at the coast. No one has ever found an adult on the spawning ground. Tagged with pop-up satellite floats as they left the continental shelf, ______ , and the floats surfaced hundreds of kilometers short of the water where the larvae are found.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "researchers tracked the adults only as far as the mid-ocean ridge",
+      "the tracking of the adults stopped at the mid-ocean ridge",
+      "the adults were tracked only as far as the mid-ocean ridge",
+      "only the mid-ocean ridge was reached by the adults being tracked"
+    ],
+    "correct_answer": "the adults were tracked only as far as the mid-ocean ridge",
+    "explanation": "The eels, not the scientists, were \"Tagged with pop-up satellite floats as they left the continental shelf,\" so the subject of the main clause has to be the fish: \"the adults were tracked\". \"researchers tracked the adults\" makes the researchers the tagged ones. \"the tracking of the adults stopped\" makes an activity the tagged one. \"only the mid-ocean ridge was reached\" makes the ridge the tagged one; burying \"the adults\" in a later phrase does not repair the opening modifier.",
+    "topic_tag": "eel migration"
+  },
+  {
+    "id": "SEC-V4-07",
+    "domain": "Standard English Conventions",
+    "subskill": "form: a closed date range requires the simple past, against a nearby 'since' that is causal rather than temporal",
+    "difficulty": "hard",
+    "passage": "The sea trials that decided the longitude prize were not a fair contest and were not designed to be one. Between 1761 and 1764 the board ______ , since the only instrument anyone was willing to hand over twice was the one its maker had built himself. The rules were rewritten after the second voyage, and the standard they set has governed marine timekeeping ever since.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "has been comparing four designs on paper and exactly one at sea",
+      "has compared four designs on paper and exactly one at sea",
+      "compares four designs on paper and exactly one at sea",
+      "compared four designs on paper and exactly one at sea"
+    ],
+    "correct_answer": "compared four designs on paper and exactly one at sea",
+    "explanation": "\"Between 1761 and 1764\" closes the period off, and a closed period takes the simple past: \"compared four designs\". The two words that pull the other way are not time markers for this verb. The \"since\" that follows the blank means because, not ever since, and the \"ever since\" at the end of the passage belongs to a different verb, \"has governed,\" whose span really does reach the present. \"has compared\" and \"has been comparing\" force the trials into an open span; \"compares\" puts an eighteenth-century sequence in the present.",
+    "topic_tag": "marine chronometers"
+  },
+  {
+    "id": "SEC-V4-08",
+    "domain": "Standard English Conventions",
+    "subskill": "form: a perfect participle is required where the modifying event precedes the one in the main clause",
+    "difficulty": "hard",
+    "passage": "Only one medieval copy of the saga survives, and it survives by accident: it had been sent to the capital for rebinding when the farmhouse holding the rest of the library burned. ______ , the copy then sat for two centuries in a private collection that no one catalogued, and it came to light only when the collection was sold and moved.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "Having escaped the fire by three weeks",
+      "Escaping the fire by three weeks",
+      "It escaped the fire by three weeks",
+      "The escape from the fire came three weeks earlier"
+    ],
+    "correct_answer": "Having escaped the fire by three weeks",
+    "explanation": "The adverb \"then\" in the main clause places the sitting after the escape, and a modifier for an event that is already over when the main clause begins takes the perfect participle: \"Having escaped the fire by three weeks\". \"Escaping the fire by three weeks\" reads the two events as simultaneous, which contradicts \"then\". \"It escaped the fire by three weeks\" and \"The escape from the fire came three weeks earlier\" are both independent clauses joined to the next one by a comma.",
+    "topic_tag": "manuscript survival"
+  },
+  {
+    "id": "SEC-V4-09",
+    "domain": "Standard English Conventions",
+    "subskill": "form: a present-tense condition describing a general case takes a present-tense result clause",
+    "difficulty": "medium",
+    "passage": "A beaver dam holds less water than it appears to. The pond is the visible part, but most of the stored water is underground, pushed sideways into the floodplain gravel by the raised head of the pond. That is why the effect outlasts a dry summer, and it is also why the effect ends so abruptly. If a colony is trapped out and the dam is left to breach, ______ , and the wells that ranchers downstream had learned to count on go dry in the same season.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "the gravel drained within weeks",
+      "the gravel would drain within weeks",
+      "the gravel drains within weeks",
+      "the gravel will have drained within weeks"
+    ],
+    "correct_answer": "the gravel drains within weeks",
+    "explanation": "The condition is stated in the present (\"If a colony is trapped out\") and describes what happens in general, so the result clause is present too: \"the gravel drains within weeks\". The clause after the blank confirms it, since the wells \"go dry\" rather than went or would go. \"would drain\" belongs to a hypothetical condition, \"drained\" to a particular past event, and \"will have drained\" to a frame that has an endpoint the sentence never sets.",
+    "topic_tag": "beaver hydrology"
+  },
+  {
+    "id": "SEC-V4-10",
+    "domain": "Standard English Conventions",
+    "subskill": "boundaries: the second half of a coordination needs a conjunction and a finite verb that agrees with its own subject",
+    "difficulty": "hard",
+    "passage": "Reeling is the step between the cocoon and the thread, and it has resisted mechanization longer than any other part of the trade. The reeler drops cocoons into near-boiling water, catches the loose end of each filament with a stiff brush, and draws six or eight ends together onto a turning wheel, where the softened gum sets them into one strand. Machines can do the drawing. A cocoon whose end breaks in the finding will not reel at all, ______ the wheel and stops the reeling for as long as it takes to clear.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "and a filament that snaps midway fouling",
+      "and a filament that snaps midway fouls",
+      "then a filament that snaps midway fouls",
+      "and a filament that snaps midway foul"
+    ],
+    "correct_answer": "and a filament that snaps midway fouls",
+    "explanation": "The words after the blank end in two finite verbs, \"fouls\" and \"stops,\" that belong to a new subject, so the blank has to supply that subject and a conjunction to join it: \"and a filament that snaps midway fouls\". \"and a filament that snaps midway foul\" is joined correctly but agrees with the plural-looking \"cocoons\" of the earlier sentences rather than with the singular \"a filament\". \"and a filament that snaps midway fouling\" leaves the second half with no finite verb. \"then a filament that snaps midway fouls\" is a second independent clause joined to the first by nothing but a comma.",
+    "topic_tag": "silk reeling"
+  },
+  {
+    "id": "SEC-V4-11",
+    "domain": "Standard English Conventions",
+    "subskill": "form: an adverb modifies the adjective that follows a linking verb, and 'than' requires the comparative",
+    "difficulty": "medium",
+    "passage": "A whale's earwax is never shed. It builds into a plug, one band laid down while the animal is feeding and another while it is fasting, and the plug can be read like a stump. The fasting band is the one that dates the plug, because it turns ______ than any band a feeding season produces, and a technician can count the pairs across a cut plug with the naked eye.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "noticeably dark",
+      "noticeably more darkly",
+      "noticeable darker",
+      "noticeably darker"
+    ],
+    "correct_answer": "noticeably darker",
+    "explanation": "\"turns\" is a linking verb here, so what follows describes the band and must be an adjective, and the \"than\" after the blank requires that adjective to be comparative: \"noticeably darker\". \"noticeably more darkly\" supplies an adverb, which would describe the manner of turning rather than the band. \"noticeable darker\" uses an adjective where an adverb is needed to modify \"darker\". \"noticeably dark\" is the right part of speech in the wrong degree and leaves \"than\" with nothing to compare.",
+    "topic_tag": "cetacean biology"
+  },
+  {
+    "id": "SEC-V4-12",
+    "domain": "Standard English Conventions",
+    "subskill": "boundaries: a semicolon requires an independent clause after it, where the sentence supplies only a phrase",
+    "difficulty": "medium",
+    "passage": "A bleached coral is not a dead coral. The animal expels the algae that live in its tissue and become a liability at high temperature, and it can take them back if the water cools within a few weeks. What kills a reef is the second event in a short interval. A colony that has bleached twice in three years starves before it can rebuild its ______ the same heat a healthy colony shrugs off.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "reserves, dying in",
+      "reserves; dying in",
+      "reserves, it dies in",
+      "reserves and dying in"
+    ],
+    "correct_answer": "reserves, dying in",
+    "explanation": "What follows the blank is a phrase, not a clause, so a comma plus a participle is the only punctuation that fits: \"reserves, dying in\". \"reserves; dying in\" puts a semicolon in front of a phrase, and a semicolon needs an independent clause on both sides. \"reserves, it dies in\" splices a second clause on with a comma. \"reserves and dying in\" coordinates a participle with the finite verb \"starves\".",
+    "topic_tag": "coral reefs"
+  },
+  {
+    "id": "SEC-V4-13",
+    "domain": "Standard English Conventions",
+    "subskill": "form: parallel finite verbs in a both-and pair, with the number of those verbs fixed by a singular subject",
+    "difficulty": "hard",
+    "passage": "Many chaparral seeds will not germinate until they have been through a fire, and the cue is not the heat. Smoke does it, and one compound in the smoke does most of it. A seed coat exposed to that compound both ______ , and the two changes run on different timescales, which is why rain three weeks after a burn brings up more seedlings than rain three days after one.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "become permeable to water and lose a germination inhibitor",
+      "becomes permeable to water and the germination inhibitor in it is lost",
+      "becomes permeable to water and loses a germination inhibitor",
+      "becoming permeable to water and losing a germination inhibitor"
+    ],
+    "correct_answer": "becomes permeable to water and loses a germination inhibitor",
+    "explanation": "\"both\" promises two elements of the same kind, so both halves are finite present-tense verbs, and the subject is the singular \"A seed coat,\" not the plural \"chaparral seeds\" of the opening sentence: \"becomes permeable to water and loses a germination inhibitor\". \"become permeable to water and lose a germination inhibitor\" is parallel but plural. \"and the germination inhibitor in it is lost\" pairs a verb with a whole clause. \"becoming permeable to water and losing a germination inhibitor\" is parallel and nonfinite, which leaves the sentence with no main verb.",
+    "topic_tag": "fire ecology"
+  },
+  {
+    "id": "SEC-V4-14",
+    "domain": "Standard English Conventions",
+    "subskill": "boundaries: a subordinator, not an adverb, is needed to attach the following clause",
+    "difficulty": "medium",
+    "passage": "A lock keeper on a summit canal spends the dry months rationing water rather than passing boats. Every boat that goes up takes a lockful off the summit and every boat that comes down takes another, so a busy afternoon can empty a reservoir that took a winter to fill. On the older canals the keeper simply closed the gates at a fixed hour ______ the traffic was queued a mile back, and the queue was treated as the boatman's problem.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "even then",
+      "even when",
+      "even, when",
+      "even; when"
+    ],
+    "correct_answer": "even when",
+    "explanation": "The material after the blank is a full clause that has to be subordinated to \"the keeper simply closed the gates,\" and \"even when\" does that with no punctuation, since the clause is restrictive. \"even then\" is an adverb, which leaves two independent clauses running together. \"even, when\" breaks the adverb off from the clause it introduces. \"even; when\" puts a semicolon before a dependent clause.",
+    "topic_tag": "canal engineering"
+  },
+  {
+    "id": "SEC-V4-15",
+    "domain": "Standard English Conventions",
+    "subskill": "form: an appositive must match the number of the noun it renames",
+    "difficulty": "medium",
+    "passage": "Two stacks off the same headland hold the only puffin colonies in the county, and they have diverged since a survey in 1971 recorded them as equal. The northern stack has lost four-fifths of its burrows; the southern has gained a tenth. The stacks, ______ , differ in one respect that nobody thought to record in 1971: rats reached the north stack from a wreck in 1983 and have never reached the south.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "both a wedge of turf over granite",
+      "a single wedge of turf over granite",
+      "each wedges of turf over granite",
+      "each a wedge of turf over granite"
+    ],
+    "correct_answer": "each a wedge of turf over granite",
+    "explanation": "The appositive renames \"The stacks,\" which is plural, and \"each a wedge of turf over granite\" distributes a singular description across the two. \"a single wedge of turf over granite\" renames a plural noun with a singular phrase. \"each wedges of turf over granite\" puts a plural noun after a word that requires a singular one. \"both a wedge of turf over granite\" does the reverse, following a plural quantifier with a singular noun.",
+    "topic_tag": "seabird colonies"
+  },
+  {
+    "id": "SEC-V4-16",
+    "domain": "Standard English Conventions",
+    "subskill": "form: a clause introduced by 'after' takes the present for future time",
+    "difficulty": "medium",
+    "passage": "Cores raised from the floor of an ocean trench begin to change the moment they reach the deck: the sediment warms, the gas in it comes out of solution, and the layering slumps. A slumped core can still be dated, but it can no longer be read for anything finer than a century. The protocol now is to seal each section on deck and open it only after the ship ______ , which is why a cruise returns with more unopened tubes than results.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "reaches a laboratory that has a cold room",
+      "will reach a laboratory that has a cold room",
+      "would reach a laboratory that has a cold room",
+      "will have reached a cold room ashore"
+    ],
+    "correct_answer": "reaches a laboratory that has a cold room",
+    "explanation": "A clause introduced by \"after\" uses the present for time still to come, so \"reaches a laboratory that has a cold room\" is the form that fits under \"The protocol now is\". \"will reach a laboratory that has a cold room\" and \"will have reached a cold room ashore\" put a future auxiliary inside a clause that does not take one. \"would reach a laboratory that has a cold room\" makes the arrival hypothetical, which the standing protocol is not.",
+    "topic_tag": "marine sediment coring"
+  },
+  {
+    "id": "SEC-V4-17",
+    "domain": "Standard English Conventions",
+    "subskill": "form: 'the number of' is a singular subject, with the number confirmed by the pronoun in the following clause",
+    "difficulty": "hard",
+    "passage": "Uranium-series dating measures the calcite crust that grows over a painted wall rather than the paint, so what it yields is a date the art must be older than. Crusts vary, and so do the dates: pigments a meter apart in one cave came back ten thousand years apart. Because each sample destroys a few square millimeters of crust, the number of dates a curator will allow from one panel ______ , and it has not risen even as the amount of material a laboratory needs has fallen.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "remain small",
+      "remains small",
+      "have remained small",
+      "have been small"
+    ],
+    "correct_answer": "remains small",
+    "explanation": "The subject is \"the number,\" not \"dates,\" and \"the number of\" is singular however many things are counted, so the verb is \"remains small\". The clause after the blank settles it a second time: the sentence continues \"and it has not risen,\" with a singular pronoun standing for the same subject. \"remain small,\" \"have remained small,\" and \"have been small\" all agree with the plural noun nearest the blank.",
+    "topic_tag": "rock art dating"
+  },
+  {
+    "id": "SEC-V4-18",
+    "domain": "Standard English Conventions",
+    "subskill": "form: a verb inside a relative clause agrees with the antecedent, not with the nearer noun",
+    "difficulty": "hard",
+    "passage": "A city is not uniformly hot. On a still night the difference between a treeless intersection and a park four blocks away can reach eight degrees, and the pattern shifts with the wind, so fixed weather stations miss nearly all of it. The network the university strung from lampposts uses sensors, each no larger than a matchbox and run off a coin cell, that ______ , and the resulting map looks less like an island of heat than like an archipelago.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "logging a temperature every ninety seconds",
+      "logs a temperature every ninety seconds",
+      "has logged a temperature every ninety seconds",
+      "log a temperature every ninety seconds"
+    ],
+    "correct_answer": "log a temperature every ninety seconds",
+    "explanation": "The relative pronoun \"that\" stands for \"sensors,\" so the verb inside the clause is plural: \"log a temperature every ninety seconds\". The two singular nouns in between, \"a matchbox\" and \"a coin cell,\" sit in a supplement and cannot govern the verb. \"logs\" and \"has logged\" agree with them instead, and \"has logged\" also reports a finished span where the passage describes what the network does. \"logging a temperature every ninety seconds\" leaves the relative clause with no finite verb.",
+    "topic_tag": "urban climatology"
+  },
+  {
+    "id": "SEC-V4-19",
+    "domain": "Standard English Conventions",
+    "subskill": "boundaries: no punctuation belongs between a subject and its verb, however long the modifier",
+    "difficulty": "hard",
+    "passage": "A reservoir starts filling with sediment the day the dam is closed, and the sediment settles where the current stops, which is the head of the reservoir rather than the face of the dam. Engineers who plan for a hundred years of storage often plan for the wrong hundred years. The delta that builds at the head of even a well-sited ______ the intake works long before the dam loses much of its capacity, and it is the pumps rather than the wall that fail first.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "reservoir reach",
+      "reservoir, reaches",
+      "reservoir reaches",
+      "reservoir, reaching"
+    ],
+    "correct_answer": "reservoir reaches",
+    "explanation": "The subject is the singular \"The delta,\" the relative clause \"that builds at the head of even a well-sited reservoir\" modifies it, and the verb follows with nothing between them: \"reservoir reaches\". The length of the modifier is what makes a comma feel due, but a comma there would cut the subject off from its verb. \"reservoir reach\" is punctuated correctly and agrees with \"reservoir\" instead of with \"The delta\". \"reservoir, reaching\" removes the sentence's only finite verb and leaves a fragment.",
+    "topic_tag": "reservoir sedimentation"
+  },
+  {
+    "id": "SEC-V4-20",
+    "domain": "Standard English Conventions",
+    "subskill": "form: a possessive pronoun agrees with its antecedent rather than with the plural nouns nearest it",
+    "difficulty": "hard",
+    "passage": "Rubber was being made in Mesoamerica more than a thousand years before it was vulcanized in Connecticut, and the recipe was not the same. Latex from the rubber tree was mixed with juice pressed from a morning glory vine, which cross-links the polymer and turns a sticky gum into a solid. The proportions decide the product: more juice yields a ball that bounces, less a sandal sole that wears. The technique, which the colonial sources describe in passages about balls, sandals, and adhesives, owes ______ to a ratio rather than to any secret ingredient.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "its entire range",
+      "the entire range of them",
+      "their entire range",
+      "their own range"
+    ],
+    "correct_answer": "its entire range",
+    "explanation": "The pronoun stands for \"The technique,\" a singular noun, so the possessive is singular: \"its entire range\". Everything between the subject and the verb is plural, and \"balls, sandals, and adhesives\" sits immediately before the verb, which is what makes the plural forms feel right. \"their entire range\" and \"their own range\" agree with those nouns instead. \"the entire range of them\" leaves the phrase with no possessor at all and points at the products rather than at the technique.",
+    "topic_tag": "Mesoamerican materials"
+  },
+  {
+    "id": "SEC-V4-21",
+    "domain": "Standard English Conventions",
+    "subskill": "form: 'as well as' adds a supplement rather than creating a compound subject, with the tense fixed by the following clause",
+    "difficulty": "hard",
+    "passage": "The varnish on an old Italian violin has been analyzed more often than almost any other coating, and the result is usually a disappointment: oil, resin, and nothing exotic. Attention has moved to what lies beneath it. The ground layer, a thin mineral wash the maker brushed onto bare wood, as well as the varnish above it, ______ the rate at which the plate loses energy, and a plate that loses energy slowly sounds bright.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "measurably change",
+      "have measurably changed",
+      "was measurably changing",
+      "measurably changes"
+    ],
+    "correct_answer": "measurably changes",
+    "explanation": "\"as well as the varnish above it\" is a supplement set off by commas, not a second subject, so the verb agrees with \"The ground layer\" alone and is singular. Number is only half of it: the clause after the blank is a general statement in the present (\"a plate that loses energy slowly sounds bright\"), so \"measurably changes\" is the form that matches. \"measurably change\" and \"have measurably changed\" treat the supplement as part of a compound subject, and \"was measurably changing\" is singular but confines a standing physical fact to a stretch of past time.",
+    "topic_tag": "instrument making"
+  },
+  {
+    "id": "SEC-V4-22",
+    "domain": "Standard English Conventions",
+    "subskill": "form: a relative pronoun that is the subject of an embedded clause takes the subject form",
+    "difficulty": "hard",
+    "passage": "The wax anatomical figures in an eighteenth-century Florentine museum were modeled from dissections, one figure to a body, and the wax modeler mattered to the result as much as the anatomist did. The workshop records name both men on most of the figures. On the celebrated pregnant figure they name only the modeler, ______ , and the attribution stood unchallenged until the account books were read again in the 1970s.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "whom the catalogues for two centuries said was an anatomist",
+      "who the catalogues for two centuries said was an anatomist",
+      "whom the catalogues for two centuries had said was an anatomist",
+      "who the catalogues for two centuries said to be an anatomist"
+    ],
+    "correct_answer": "who the catalogues for two centuries said was an anatomist",
+    "explanation": "The pronoun is the subject of the embedded clause \"was an anatomist,\" so it takes the subject form even though \"the catalogues ... said\" comes between: \"who the catalogues for two centuries said was an anatomist\". \"whom the catalogues for two centuries said was an anatomist\" and \"whom the catalogues for two centuries had said was an anatomist\" put an object form in a subject slot, and the second also uses a past perfect with no later past event to be anterior to. \"who the catalogues for two centuries said to be an anatomist\" changes the structure so that the pronoun becomes the object of \"said,\" which is the one arrangement that would require whom.",
+    "topic_tag": "anatomical models"
+  },
+  {
+    "id": "SEC-V4-23",
+    "domain": "Standard English Conventions",
+    "subskill": "form: 'a series of' is a singular subject, and an open time span requires the present perfect",
+    "difficulty": "medium",
+    "passage": "A tide mill runs on the difference between a pond filled at high water and a creek that has drained at low, and it works for perhaps five hours in twelve, at an hour that walks through the day. Millers accepted the inconvenience because the head was reliable in the droughts that stopped every river mill in the county. Along one estuary eleven were built and eleven fell out of use. A series of storm surges since the 1950s ______ the wheels that were still turning, and the estuary now carries none at all.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "has taken out",
+      "have taken out",
+      "is taking out",
+      "was taking out"
+    ],
+    "correct_answer": "has taken out",
+    "explanation": "The subject is \"A series,\" which is singular no matter how many surges the series contains, and \"since the 1950s\" opens a span that runs up to the \"now\" of the final clause, so the verb is a singular present perfect: \"has taken out\". \"have taken out\" has the right aspect and agrees with \"storm surges\". \"is taking out\" and \"was taking out\" agree correctly but describe an action in progress rather than one accumulated across the span the sentence measures.",
+    "topic_tag": "tide mills"
+  },
+  {
+    "id": "SEC-V4-24",
+    "domain": "Standard English Conventions",
+    "subskill": "boundaries and form: an embedded question keeps statement word order",
+    "difficulty": "medium",
+    "passage": "The layers in an ice core thin with depth because the ice below is squeezed by the ice above, and the thinning can be modeled. Past a certain depth the model stops working: layers turn up out of order, and in one Greenland core a band of ice older than the ice beneath it sits in the middle of the last interglacial. From the core alone the drillers could not tell ______ , and the section went undated for eleven years.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "was the band folded in or refrozen in place",
+      "did the band fold in or refreeze in place",
+      "whether the band had been folded in or refrozen in place",
+      "whether had the band been folded in or refrozen in place"
+    ],
+    "correct_answer": "whether the band had been folded in or refrozen in place",
+    "explanation": "A question reported inside a statement keeps statement word order and needs a word to introduce it: \"whether the band had been folded in or refrozen in place\". \"did the band fold in or refreeze in place\" and \"was the band folded in or refrozen in place\" keep the inversion of a direct question, which cannot follow \"could not tell\". \"whether had the band been folded in or refrozen in place\" supplies the introducing word and then inverts anyway.",
+    "topic_tag": "ice cores"
+  }
+]

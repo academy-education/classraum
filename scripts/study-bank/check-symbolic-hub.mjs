@@ -63,6 +63,14 @@ function oneEditApart(a, b) {
   return true
 }
 
+
+/** A plain number, a decimal, a signed value, or a simple fraction — the
+ *  things check-math-hub.mjs compares arithmetically. Not symbolic. */
+export function isPlainNumber(s) {
+  const t = String(s ?? '').trim().replace(/[\s,$%]/g, '')
+  return /^-?\d+\/-?\d+$/.test(t) || /^-?\d*\.?\d+$/.test(t)
+}
+
 export function scoreItem(choices, key) {
   const toks = choices.map(tokens)
   if (toks.some(t => t.length === 0)) return null
@@ -74,6 +82,13 @@ export function scoreItem(choices, key) {
   // which reads like a pass. This checker measures SYMBOLIC structure and has
   // nothing to say about bare values; numeric option sets belong to
   // check-math-hub.mjs, whose detector compares them arithmetically.
+  // The guard must ask "is every option a NUMBER?", not "is every option one
+  // token?". `-6` tokenizes to ['-','6'] and `1/2` to ['1','/','2'], so the
+  // first version of this check let a set of bare numbers through whenever one
+  // of them was negative or written as a fraction — and it then scored as
+  // fully-connected symbolic structure. An author rewrote three sound option
+  // sets to satisfy that number before reporting the gap.
+  if (choices.every(c => isPlainNumber(c))) return null
   if (toks.every(t => t.length <= 1)) return null
   const deg = toks.map((t, i) => toks.filter((u, j) => j !== i && oneEditApart(t, u)).length)
   const best = Math.max(...deg)
@@ -116,6 +131,12 @@ function selftest() {
   const vac = [
     { name: 'four unrelated bare numbers are not symbolic structure', ch: ['7', '41', '93', '1288'] },
     { name: 'a genuine NUMERIC hub is still not this checker\'s job', ch: ['5', '6', '12', '25'] },
+    // These three escaped the first guard, which counted tokens: '-6' is two
+    // tokens and '1/2' is three, so a numeric set containing either scored as
+    // symbolic structure and cost an author three needless rewrites.
+    { name: 'bare numbers with a NEGATIVE are still not symbolic', ch: ['-6', '41', '93', '1288'] },
+    { name: 'bare numbers with a FRACTION are still not symbolic', ch: ['1/2', '3', '7', '11'] },
+    { name: 'a sign-closed quad is not symbolic', ch: ['-5', '5', '-3', '3'] },
   ]
   for (const v of vac) {
     const pass = scoreItem(v.ch, v.ch[0]) === null

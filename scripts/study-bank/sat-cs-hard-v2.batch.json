@@ -1,0 +1,386 @@
+[
+ {
+  "id": "CS2-H-01",
+  "domain": "Craft and Structure",
+  "subskill": "words in context",
+  "difficulty": "medium",
+  "passage": "Field botanists long treated the orchid's narrow range as ______. The species grows on two limestone ridges and nowhere else, and the soil chemistry of those ridges is peculiar enough to account for the restriction without help. Transplant trials complicated that view: seedlings raised in ordinary garden loam flourished, while seedlings on the ridges died in every plot from which the resident ant colonies had been removed.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+   "self-explanatory",
+   "anomalous",
+   "provisional",
+   "immaterial"
+  ],
+  "correct_answer": "self-explanatory",
+  "explanation": "The second sentence says the ridge soils account for the orchid's confinement \"without help,\" which is exactly the position that the range is \"self-explanatory\": it needs nothing further said about it. \"Anomalous\" names a property the botanists attributed to the soil, not the attitude they took toward the range; the oddity of the chemistry is what supplied their explanation rather than what made the range puzzling. \"Provisional\" reverses the order of the text, since the view becomes tentative only after the transplant trials, and the blank reports what botanists held before them. \"Immaterial\" cannot stand because the narrow range is the fact the botanists are explaining, not one they set aside."
+ },
+ {
+  "id": "CS2-H-02",
+  "domain": "Craft and Structure",
+  "subskill": "words in context",
+  "difficulty": "hard",
+  "passage": "The composer's late revisions to the symphony have been called ______, and the manuscripts encourage the description: whole passages are struck through, and the replacements are entered in a hurried hand. Yet every excision removes a phrase that the printed program of the first performance had singled out for praise, and every replacement restores material the reviewers had passed over in silence.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+   "deferential",
+   "cosmetic",
+   "calculated",
+   "impulsive"
+  ],
+  "correct_answer": "calculated",
+  "explanation": "The \"Yet\" turns the manuscript's appearance against itself: the cuts fall on the praised phrases and the replacements recover the ignored ones, a correspondence too exact to be accidental, so the revisions are \"calculated.\" \"Impulsive\" is the reading the hurried hand and the struck-through pages invite, and it is the strongest wrong answer, but an impulse does not sort a score into what critics admired and what they overlooked. \"Deferential\" mistakes the direction of the response, since the composer removes what the reviewers liked instead of preserving it. \"Cosmetic\" is ruled out by the scale of the change, whole passages rather than surface retouching."
+ },
+ {
+  "id": "CS2-H-03",
+  "domain": "Craft and Structure",
+  "subskill": "words in context",
+  "difficulty": "hard",
+  "passage": "Municipal fire insurance maps are prized for their precision, but the surveyors' field notes make plain that the block-by-block detail was ______. Premiums turned on the distance from a building to the nearest hydrant, so blocks that held policies were paced out and checked twice a year, while blocks that held none were sketched from the end of the street and left as drawn for decades.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+   "deliberately falsified",
+   "unevenly distributed",
+   "beyond verification",
+   "gradually eroded"
+  ],
+  "correct_answer": "unevenly distributed",
+  "explanation": "The notes describe two standards applied at once, blocks paced and rechecked against blocks sketched from a distance, so the precision varies across the map: it is \"unevenly distributed.\" \"Gradually eroded\" is the most defensible alternative, since a sketch \"left as drawn for decades\" does go stale, but the disparity is present the day the survey is made and does not depend on the passage of time. \"Deliberately falsified\" overstates the notes, which record inattention where there was no premium at stake rather than any false entry. \"Beyond verification\" contradicts the routine the notes describe, in which the blocks that mattered commercially were checked twice a year."
+ },
+ {
+  "id": "CS2-H-04",
+  "domain": "Craft and Structure",
+  "subskill": "words in context",
+  "difficulty": "hard",
+  "passage": "A reviewer's charge that the study ______ its own data is easy to test and, on the numbers, unfounded: every table in the appendix reproduces what the authors say it does. The charge is better read as an objection to the summary paragraph, where three findings are called robust although only one of the three survived the second sample.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+   "double-counts",
+   "misreports",
+   "withholds",
+   "overstates"
+  ],
+  "correct_answer": "misreports",
+  "explanation": "The charge is refuted by checking the tables against the text, so the blank must name something the tables can settle: whether the study \"misreports\" the numbers it prints. \"Overstates\" is the trap, because overstatement is precisely what the passage goes on to find in the summary paragraph, but the sentence sets the charge apart from that better reading, and a claim about how findings are characterized is not one an appendix table could refute. \"Withholds\" would concern what is absent from the appendix rather than whether what is there is accurate, and the text speaks only to accuracy. \"Double-counts\" names a fault an appendix could indeed expose, but the tables are said to reproduce exactly what the authors claim for them, and no quantity is anywhere said to appear twice."
+ },
+ {
+  "id": "CS2-H-05",
+  "domain": "Craft and Structure",
+  "subskill": "words in context",
+  "difficulty": "medium",
+  "passage": "The seed bank's collection policy is often described as ______, since the curators accept material from any donor and set no ceiling on how many samples of one variety they will hold. The catalogue records something narrower: two thirds of the accessions arrived from four research stations, and the staff who assess viability reject about half of what those stations send.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+   "exhaustive",
+   "provisional",
+   "opportunistic",
+   "indiscriminate"
+  ],
+  "correct_answer": "indiscriminate",
+  "explanation": "The clause after \"since\" gives the description its content: no donor is turned away and no duplicate is refused, which is what it means for a policy to be \"indiscriminate.\" \"Opportunistic\" is close, and a bank that takes whatever arrives may look like one, but the word implies seizing the chance occasion, whereas the policy described is a standing rule applied to everyone alike. \"Exhaustive\" is a claim about coverage that the catalogue immediately denies, since two thirds of the holdings come from four sources. \"Provisional\" would make the policy temporary, and nothing in the passage suggests the curators regard it as an interim arrangement."
+ },
+ {
+  "id": "CS2-H-06",
+  "domain": "Craft and Structure",
+  "subskill": "words in context",
+  "difficulty": "hard",
+  "passage": "Counsel for the defense asked no questions of six consecutive witnesses in the trial's second week, and historians have read the silence as a sign of exhaustion. It looks more like ______: each of those six had been called to establish a fact that the defense had already conceded in writing before the term opened.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+   "an economy",
+   "a concession",
+   "an oversight",
+   "a provocation"
+  ],
+  "correct_answer": "an economy",
+  "explanation": "Cross-examination on facts already granted would buy the defense nothing, so declining it spends no effort where none could be repaid, which is what makes the silence \"an economy.\" \"A concession\" is the strongest distractor, since a concession is indeed in the passage, but it was made in writing before the term opened; the silence is a consequence of that earlier concession rather than a further one. \"An oversight\" restates the exhaustion reading the sentence is replacing, and a lapse cannot be reconciled with a written position taken in advance. \"A provocation\" attributes to counsel an aim the passage never raises, since nothing suggests the silence was meant to be noticed."
+ },
+ {
+  "id": "CS2-H-07",
+  "domain": "Craft and Structure",
+  "subskill": "words in context",
+  "difficulty": "medium",
+  "passage": "Restoration of the fresco was delayed nine years by a dispute that the committee's minutes render ______. Each entry names the two positions and the vote each drew, so a reader can follow the disagreement from session to session; not one entry records what was said, so the same reader never learns why either camp held the view it did.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+   "negligible",
+   "contentious",
+   "unintelligible",
+   "traceable"
+  ],
+  "correct_answer": "traceable",
+  "explanation": "The minutes let a reader follow the dispute session by session without recovering a single argument, and \"traceable\" is the word for a record that yields the course of a thing but not its substance. \"Unintelligible\" is too strong for the same reason: the positions and the votes are perfectly legible, and only the reasoning is missing. \"Contentious\" describes the dispute rather than what the minutes do with it, and the blank belongs to the verb \"render,\" which asks how the record presents the quarrel. \"Negligible\" is contradicted by the nine-year delay the dispute produced."
+ },
+ {
+  "id": "CS2-H-08",
+  "domain": "Craft and Structure",
+  "subskill": "words in context",
+  "difficulty": "hard",
+  "passage": "The engineer's report calls the bridge's original iron ______, a judgment that reads as faint praise until one notices what it excludes. Nineteenth-century foundries varied so widely that the behavior of a batch under load could not be predicted from the name of the works that poured it. This batch, sampled at forty points along the span, differed from itself by less than the modern specification allows.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+   "obsolete",
+   "unremarkable",
+   "uniform",
+   "serviceable"
+  ],
+  "correct_answer": "uniform",
+  "explanation": "The final sentence measures the iron against itself at forty points and finds the variation inside a modern tolerance, so the report is claiming that the batch is \"uniform,\" which in an age of unpredictable foundries is a strong claim wearing a plain word. \"Unremarkable\" is the reading the phrase \"faint praise\" invites and is the most defensible wrong answer, but the sentence says the praise only seems faint until one sees what the word rules out. \"Serviceable\" is faint in the same way and adds nothing about consistency, which is the property the forty samples establish. \"Obsolete\" is not praise of any strength and is unsupported by a passage concerned with how the iron performs, not with whether it is still made."
+ },
+ {
+  "id": "CS2-H-09",
+  "domain": "Craft and Structure",
+  "subskill": "text structure and purpose",
+  "difficulty": "hard",
+  "passage": "Coastal marshes bury carbon faster per hectare than any forest, a fact often cited in support of protecting them. Whether the buried carbon stays buried depends on how high the marsh sits above the tide. Cores taken from twelve marshes along one estuary show that the lowest sites lose more than half of each year's accumulation within a decade of burial. The loss is not decay in place; the sediment is carried out on the ebb to deeper water, where its fate has not been traced.",
+  "prompt": "Which choice best describes the function of the third sentence in the text as a whole?",
+  "choices": [
+   "It qualifies the claim about burial rates with which the text opens.",
+   "It supplies the measurement that bears out the text's claim about elevation.",
+   "It states the hypothesis that the twelve cores from the estuary were collected to test.",
+   "It raises the objection that the text's final sentence goes on to answer."
+  ],
+  "correct_answer": "It supplies the measurement that bears out the text's claim about elevation.",
+  "explanation": "The second sentence asserts that retention depends on elevation, and the third puts a number to that dependence at the low end of the range, so it \"supplies the measurement that bears out the text's claim about elevation.\" The reading that \"it qualifies the claim about burial rates with which the text opens\" is the most defensible alternative and still fails on a second feature: the opening claim concerns how fast carbon is buried, while this sentence concerns how much of it stays, and a fact about retention leaves the burial rate untouched. It does not \"state the hypothesis that the twelve cores from the estuary were collected to test,\" because a hypothesis is something a measurement is set against, and this sentence is the measurement. And it cannot \"raise the objection that the text's final sentence goes on to answer,\" since the final sentence extends the finding by naming the mechanism of loss rather than disposing of anything."
+ },
+ {
+  "id": "CS2-H-10",
+  "domain": "Craft and Structure",
+  "subskill": "text structure and purpose",
+  "difficulty": "hard",
+  "passage": "A much-reprinted map of the 1854 outbreak clusters the deaths around a single pump, and the map is usually described as the argument that settled the question. The physician who drew it did not think so. His notebooks show him hunting, for weeks after the pump was closed, for households inside the cluster that had drawn no water from it. He found eleven, and each of the eleven proved to have taken water from the pump by a route he had not anticipated.",
+  "prompt": "Which choice best describes the function of the last sentence of the text?",
+  "choices": [
+   "It reports that the exceptions the physician found did not survive inspection.",
+   "It concedes a limit on the map's evidence that the rest of the text leaves unresolved.",
+   "It explains why the pump was closed before the notebooks were begun.",
+   "It restates the conclusion that the map is usually said to have established."
+  ],
+  "correct_answer": "It reports that the exceptions the physician found did not survive inspection.",
+  "explanation": "The sentence gives the outcome of the hunt the previous sentence describes, and the outcome is double: eleven candidate exceptions were found, and every one of them dissolved on inspection, so it \"reports that the exceptions the physician found did not survive inspection.\" Reading it as a sentence that \"concedes a limit on the map's evidence that the rest of the text leaves unresolved\" is defensible if one stops at \"He found eleven,\" but the clause that follows resolves each of the eleven, so nothing is left standing as a limit. It does not \"explain why the pump was closed,\" since the closing is mentioned only as a time marker for the physician's search and no reason for it is given anywhere. And it does not \"restate the conclusion that the map is usually said to have established\": the sentence adds evidence the map does not contain, which is why the physician kept looking after everyone else had stopped."
+ },
+ {
+  "id": "CS2-H-11",
+  "domain": "Craft and Structure",
+  "subskill": "text structure and purpose",
+  "difficulty": "medium",
+  "passage": "For a century the standard account held that the technique reached the coastal workshops from the interior. The direction of travel was inferred from dates: the earliest interior pieces are older than the earliest coastal ones by roughly sixty years. Excavation of a flooded coastal quarry has now yielded fragments older than anything known from the interior. The quarry had never been hidden; it was underwater, and no one had thought to look there. The dates have reversed, but nothing has been found wrong with the reasoning that produced the old account.",
+  "prompt": "Which choice best describes the overall structure of the text?",
+  "choices": [
+   "It reports a discovery, explains why it was made so late, and argues that the method behind the old account was unsound.",
+   "It presents a long-held account, sets out two competing explanations of it, and endorses the older of the two.",
+   "It describes a technique, traces its spread in the order the evidence gives, and predicts where the next find will appear.",
+   "It gives a long-held account and the basis for it, reports a find that reverses it, and observes that the basis still holds."
+  ],
+  "correct_answer": "It gives a long-held account and the basis for it, reports a find that reverses it, and observes that the basis still holds.",
+  "explanation": "The text moves through four stages that the last option collects: the standard account, the dated evidence it rested on, the quarry fragments that reverse the direction of travel, and the closing observation that the old inference was sound as far as it went. The option that \"reports a discovery, explains why it was made so late, and argues that the method behind the old account was unsound\" gets two of three stages right and fails on the third, which is the whole point of the final clause: the dates reversed while the reasoning was left intact. Nothing in the text \"sets out two competing explanations,\" since only one account is ever advanced and then corrected by new material. And the text does not \"predict where the next find will appear\"; its last sentence looks back at a method rather than forward to a site."
+ },
+ {
+  "id": "CS2-H-12",
+  "domain": "Craft and Structure",
+  "subskill": "text structure and purpose",
+  "difficulty": "medium",
+  "passage": "Readers of the 1911 edition complained that the novel's middle section moved too slowly. The author's reply, printed in a magazine that spring, granted the charge and declined to act on it. The serialized version, she wrote, had run the same section at twice the pace, and the letters that arrived then had all asked what had become of the characters. The 1911 text was the slower one on purpose.",
+  "prompt": "Which choice best describes the function of the second sentence in the text as a whole?",
+  "choices": [
+   "It sets out a position that the remainder of the text goes on to explain.",
+   "It records the evidence that led the author to revise the middle section.",
+   "It restates the readers' complaint in terms the author would accept.",
+   "It draws the conclusion that the text's final sentence had already established."
+  ],
+  "correct_answer": "It sets out a position that the remainder of the text goes on to explain.",
+  "explanation": "The sentence announces a two-part stance, agreement with the complaint and refusal to change anything, and the sentences after it supply the reason for both halves, so it \"sets out a position that the remainder of the text goes on to explain.\" It does not \"restate the readers' complaint in terms the author would accept\": the restating is only half of what the sentence does, and the half it omits, the refusal, is what the rest of the passage is written to justify. It cannot \"record the evidence that led the author to revise the middle section,\" because she declined to revise it and the evidence appears in the next sentence rather than this one. And it does not \"draw the conclusion that the text's final sentence had already established,\" which inverts the order: the final sentence states the upshot of a case this sentence opens."
+ },
+ {
+  "id": "CS2-H-13",
+  "domain": "Craft and Structure",
+  "subskill": "text structure and purpose",
+  "difficulty": "hard",
+  "passage": "Two crews measured the same stretch of fault with instruments of different design. Their estimates of annual slip differed by a factor of three, and each crew published without reference to the other. A later review found that the crews had defined the fault's trace differently, one following the surface rupture and the other the deeper alignment shown by microearthquakes. Neither definition is wrong, and the two figures are not in competition. What the episode cost was a decade in which every synthesis had to adopt one number and discard the other.",
+  "prompt": "Which choice best describes the function of the fourth sentence in the text as a whole?",
+  "choices": [
+   "It concedes that the review could not determine which crew had measured correctly.",
+   "It offers a rule for choosing between two incompatible measurements of a single quantity.",
+   "It states what follows from the review's finding: the disagreement was never real.",
+   "It introduces the cost that the text's closing sentence goes on to dispute."
+  ],
+  "correct_answer": "It states what follows from the review's finding: the disagreement was never real.",
+  "explanation": "The review's finding is that the crews measured two different things, and this sentence draws the consequence, that there was no disagreement to settle, so it \"states what follows from the review's finding: the disagreement was never real.\" Reading it as a sentence that \"concedes that the review could not determine which crew had measured correctly\" is the strongest alternative, because no crew is declared correct; it fails because a concession would leave the question open, and the sentence closes the question by denying that a question was ever posed. It does not \"offer a rule for choosing between two incompatible measurements,\" since its content is that these two are not incompatible and no choice is required. And it does not \"introduce the cost that the text's closing sentence goes on to dispute\": the closing sentence states the cost rather than disputing it."
+ },
+ {
+  "id": "CS2-H-14",
+  "domain": "Craft and Structure",
+  "subskill": "text structure and purpose",
+  "difficulty": "medium",
+  "passage": "Nothing about a hummingbird's flight is settled by the size of its wings. The same wingspan turns up in species that hover for minutes at a time and in species that cannot hover at all, and in both the wing is driven by muscles anchored at the same points. What separates them is the shoulder joint, which rotates through nearly a half turn in the hovering species and through a quarter turn in the others. The joint cannot be seen in a museum skin, which is why the character was described only after high-speed film became available.",
+  "prompt": "Which choice best describes the function of the first sentence in the text as a whole?",
+  "choices": [
+   "It states the conclusion that the high-speed film mentioned in the final sentence establishes.",
+   "It concedes an objection to the account of hovering that the text then develops.",
+   "It introduces a comparison between two species that the text sustains throughout.",
+   "It dismisses the feature a reader expects to matter, making room for the one the text names."
+  ],
+  "correct_answer": "It dismisses the feature a reader expects to matter, making room for the one the text names.",
+  "explanation": "Wingspan is the obvious candidate for explaining flight, and the sentence dismisses it before the passage names the shoulder joint instead, so it \"dismisses the feature a reader expects to matter, making room for the one the text names.\" The option that \"introduces a comparison between two species that the text sustains throughout\" is defensible, since hoverers and non-hoverers are compared for three sentences, but the comparison is set up in the second sentence; the first introduces a negative claim about a single character. It does not \"state the conclusion that the high-speed film mentioned in the final sentence establishes,\" because the film established the role of the joint, not the irrelevance of the wingspan. And nothing in the sentence \"concedes an objection,\" which would require granting a point to an opposing view the text nowhere reports."
+ },
+ {
+  "id": "CS2-H-15",
+  "domain": "Craft and Structure",
+  "subskill": "text structure and purpose",
+  "difficulty": "hard",
+  "passage": "An accountant's manual printed in 1698 carries a table for converting among four regional bushels. The table is not consistent: the conversions do not compose, so a quantity carried through all four measures does not come back to itself. Later editions reprinted it unchanged for eighty years. The likeliest explanation is that nobody used it as we would, in chains; a merchant needed one conversion at a time, and each single row is accurate.",
+  "prompt": "Which choice best describes the overall structure of the text?",
+  "choices": [
+   "It reports an error in a printed source and traces the harm the error did to merchants.",
+   "It describes a document, identifies a defect, notes that the defect persisted, and proposes why it went unremarked.",
+   "It presents a puzzle about a table, advances two explanations of it, and rejects both in turn.",
+   "It describes a document, defends it against a charge of inaccuracy, and explains how that charge came to be made against it."
+  ],
+  "correct_answer": "It describes a document, identifies a defect, notes that the defect persisted, and proposes why it went unremarked.",
+  "explanation": "The passage runs through four moves in order, and the second option names all four: the manual, the failure of the conversions to compose, the eighty years of unaltered reprinting, and the explanation offered for the silence. The option that says the text \"defends it against a charge of inaccuracy\" is the strongest wrong answer, because the last clause does assert that \"each single row is accurate\"; it fails on a second feature, since the text never withdraws the defect it identified, and what the closing sentence explains is why an admitted inconsistency was tolerated rather than why the table is sound. Nothing in the text \"traces the harm the error did to merchants\"; the explanation offered is precisely that merchants were not harmed. And the text \"advances two explanations\" of nothing, offering one and rejecting none."
+ },
+ {
+  "id": "CS2-H-16",
+  "domain": "Craft and Structure",
+  "subskill": "text structure and purpose",
+  "difficulty": "hard",
+  "passage": "A city's bicycle counters register every wheel that passes, and the annual totals are the figure the transport committee cites. Riders using the two bridges, however, cross a counter twice on a round trip and only once on a commute made in one direction. The committee's own auditors put the double-counted share at between eleven and nineteen percent, a range wide enough that the growth reported in two of the last five years falls inside it. Nobody proposes discarding the counts; the proposal on the table is a second counter at each bridge approach.",
+  "prompt": "Which choice best describes the function of the third sentence in the text as a whole?",
+  "choices": [
+   "It grants that the counters are imprecise while maintaining that the totals are still usable.",
+   "It identifies the cause of the double counting described in the sentence before it.",
+   "It measures the problem raised just before it and shows that the problem is large enough to matter.",
+   "It reports the auditors' recommendation for correcting the counts."
+  ],
+  "correct_answer": "It measures the problem raised just before it and shows that the problem is large enough to matter.",
+  "explanation": "The sentence does two things in sequence, putting a range on the double count and then comparing that range with the reported growth, so it \"measures the problem raised just before it and shows that the problem is large enough to matter.\" The option that \"grants that the counters are imprecise while maintaining that the totals are still usable\" describes the position the text as a whole arrives at, since nobody proposes discarding the counts, but that concession is made in the last sentence; this sentence only presses the difficulty. It does not \"identify the cause of the double counting,\" which the previous sentence has already given as the round trip across a bridge. And it does not \"report the auditors' recommendation,\" since the auditors are cited for a number and the only proposal in the text appears at the end and is not attributed to them."
+ },
+ {
+  "id": "CS2-H-17",
+  "domain": "Craft and Structure",
+  "subskill": "cross-text connections",
+  "difficulty": "hard",
+  "passage": "Text 1\n\nHospitals that moved nursing staff from eight-hour to twelve-hour shifts report fewer handovers, and handover is where most of what is known about a patient is lost. Error logs from four such hospitals show a drop of about a fifth in the year after the change. A shorter chain of custody is the obvious explanation, and no other change to practice accompanied the switch.\n\nText 2\n\nThe twelve-hour shift is popular with staff because it yields more consecutive days off, and the hospitals that adopt it first are those whose nurses have the standing to ask for it. Those are also the hospitals with the fewest vacancies. Error logs, besides, are filled in by whoever notices the error; a unit held by one nurse for twelve hours has fewer witnesses than a unit that changes hands three times.",
+  "prompt": "Based on the texts, how would the author of Text 2 most likely respond to Text 1's explanation?",
+  "choices": [
+   "By granting that handovers cost information while arguing that long shifts lose more of it to fatigue.",
+   "By denying that the number of handovers bears at all on how much is known about a patient.",
+   "By pointing out that the hospitals differ both in staffing and in who records an error.",
+   "By recommending that error logs be completed by someone other than the nurse involved."
+  ],
+  "correct_answer": "By pointing out that the hospitals differ both in staffing and in who records an error.",
+  "explanation": "Text 2 raises two facts that would move the error figure without any change in handover: the early adopters are the best-staffed hospitals, and a lone nurse on a long shift has fewer witnesses to her own mistakes. That is the response that \"points out that the hospitals differ both in staffing and in who records an error,\" and it directly denies Text 1's parenthetical claim that nothing else changed. Fatigue appears nowhere in Text 2, so it would not argue \"that long shifts lose more of it to fatigue,\" and the option's grant of the handover point is not the ground of any objection Text 2 makes. Text 2 never questions that information is lost at handover, so it would not be \"denying that the number of handovers bears at all\" on what is known. And the last sentence explains why the logs are unreliable rather than proposing a remedy, so \"recommending that error logs be completed by someone other than the nurse involved\" attributes to Text 2 a proposal it does not make."
+ },
+ {
+  "id": "CS2-H-18",
+  "domain": "Craft and Structure",
+  "subskill": "cross-text connections",
+  "difficulty": "hard",
+  "passage": "Text 1\n\nNo-till fields hold more carbon in their top ten centimeters than plowed fields do, and the difference is large: in one thirty-year trial it reached forty percent. Since the practice also cuts fuel use, no-till is now recommended in most regional climate plans on the strength of the soil figure alone.\n\nText 2\n\nAlmost every comparison of tillage systems samples to twenty or thirty centimeters. Plowing does not destroy carbon; it moves it, and the carbon that leaves the surface layer of a plowed field turns up again at forty to sixty centimeters, below where the corers stop. The few trials that sample deep find the two systems within a few percent of one another.",
+  "prompt": "Based on the texts, how would the author of Text 2 most likely respond to Text 1's soil figure?",
+  "choices": [
+   "By accepting the forty percent difference but denying that fuel savings should be counted alongside it.",
+   "By questioning whether thirty years is long enough for soil carbon to reach equilibrium.",
+   "By maintaining that plowing releases carbon that no depth of sampling would recover.",
+   "By denying that a measurement of the surface layer captures the carbon in the whole field."
+  ],
+  "correct_answer": "By denying that a measurement of the surface layer captures the carbon in the whole field.",
+  "explanation": "Text 2's whole case is that the surface deficit in plowed fields is matched by a surplus below the sampling depth, so the forty percent describes a redistribution: the response \"denies that a measurement of the surface layer captures the carbon in the whole field.\" The option that has Text 2 \"maintaining that plowing releases carbon that no depth of sampling would recover\" is the sharpest trap and is flatly reversed, since Text 2 opens by saying that plowing does not destroy carbon but moves it. Fuel use is mentioned only by Text 1 and is not what Text 2 disputes, so \"denying that fuel savings should be counted alongside it\" answers a point nobody is making. And nothing in Text 2 turns on trial length; its objection would apply to a shallow survey of any duration, so \"questioning whether thirty years is long enough\" misplaces the criticism."
+ },
+ {
+  "id": "CS2-H-19",
+  "domain": "Craft and Structure",
+  "subskill": "cross-text connections",
+  "difficulty": "medium",
+  "passage": "Text 1\n\nJournals that conceal author identities from reviewers publish a higher share of papers from institutions outside the top rank. The effect shows up within a year of the change and vanishes when the policy is dropped, which is hard to attribute to anything but the concealment.\n\nText 2\n\nConcealment is rarely complete. In a small field a reviewer can often name the author from the citations, and the papers hardest to place are those that cite little prior work, typically the first papers out of a new group. A policy that helps chiefly the unaffiliated newcomer is worth having. It is not the policy the journals believe they have adopted, which is one that treats every submission alike.",
+  "prompt": "Based on the texts, how would the author of Text 2 most likely respond to Text 1's finding?",
+  "choices": [
+   "By granting that the policy changes who is published while denying that it works evenly.",
+   "By denying that a reviewer's judgment is affected by the author's institution at all.",
+   "By arguing that the effect fades because reviewers gradually learn to identify the authors.",
+   "By insisting that the effect must be smaller in large fields than in small ones."
+  ],
+  "correct_answer": "By granting that the policy changes who is published while denying that it works evenly.",
+  "explanation": "Text 2 says outright that a policy helping the unaffiliated newcomer \"is worth having,\" so it does not dispute Text 1's result; what it disputes is the uniformity the journals assume, since concealment holds only for papers whose citations do not give the author away. That is the response that \"grants that the policy changes who is published while denying that it works evenly.\" It cannot be \"denying that a reviewer's judgment is affected by the author's institution at all,\" a denial that would undo the very effect Text 2 accepts. Text 1 reports that the effect vanishes when the policy is dropped, not that it fades while in force, so \"arguing that the effect fades because reviewers gradually learn to identify the authors\" answers a claim neither text makes. And Text 2 observes only that a reviewer in a small field can often name an author, which is not a claim about how the effect compares across fields, so \"insisting that the effect must be smaller in large fields than in small ones\" states a conclusion the passage does not reach."
+ },
+ {
+  "id": "CS2-H-20",
+  "domain": "Craft and Structure",
+  "subskill": "cross-text connections",
+  "difficulty": "hard",
+  "passage": "Text 1\n\nThe narrows are the obvious site for a tidal barrage: the range there is the largest on the coast, and the channel is short enough to close with a structure of modest length. The energy available from a barrage scales with the square of the range, so the narrows promise roughly four times what the next site could deliver.\n\nText 2\n\nA barrage draws energy from the tide, and the tide it draws from is the one the barrage itself alters. Closing a short channel raises the water on one side and lowers it on the other, and the range across the structure settles well below the range measured in the open channel. Every barrage yet built produces less than its pre-construction survey promised, and the shortfall is largest where the channel is narrowest.",
+  "prompt": "Based on the texts, how would the author of Text 2 most likely respond to Text 1's estimate?",
+  "choices": [
+   "By questioning whether a structure of modest length could withstand the currents at the narrows.",
+   "By observing that energy scales with the square of the range rather than with the range itself.",
+   "By arguing that the range the estimate relies on will not survive the structure built to exploit it.",
+   "By recommending the next site along the coast on the ground that its range is the more stable."
+  ],
+  "correct_answer": "By arguing that the range the estimate relies on will not survive the structure built to exploit it.",
+  "explanation": "Text 1 computes from a range measured in the open channel, and Text 2's point is that closing the channel changes that range, so the response \"argues that the range the estimate relies on will not survive the structure built to exploit it.\" The recommendation of \"the next site along the coast\" is the most tempting alternative, because Text 2 does say the shortfall grows as the channel narrows; it fails because Text 2 reports that every barrage yet built has underperformed, which makes its objection general rather than a case for one site over another, and it advises nothing. The squaring is Text 1's own premise, stated in its second sentence, so \"observing that energy scales with the square of the range\" is not a response at all. And nothing in Text 2 concerns the strength of the structure, only the water on either side of it."
+ },
+ {
+  "id": "CS2-H-21",
+  "domain": "Craft and Structure",
+  "subskill": "cross-text connections",
+  "difficulty": "hard",
+  "passage": "Text 1\n\nWillows along the river returned within a decade of the wolves' reintroduction, after sixty years of failing to regenerate. Elk browse willow shoots to the ground, and elk in a valley that holds wolves keep off the open ground beside water. The chain from predator to plant is short, and the timing is exact.\n\nText 2\n\nBeaver were returned to the same drainage six years after the wolves. Willow does not regenerate where the water table has dropped below the root zone, which is what happens when beaver dams are gone and reverses when they are rebuilt. Willow in this valley recovered first and furthest in the reaches the beaver reoccupied, and not at all in two reaches where elk numbers fell just as sharply but no dams were built.",
+  "prompt": "Based on the texts, how would the author of Text 2 most likely respond to Text 1's account?",
+  "choices": [
+   "By citing reaches in which browsing pressure fell but the willow did not return.",
+   "By accepting that wolves reduced elk browsing while arguing that the beaver were themselves drawn back by the wolves.",
+   "By denying that elk browse willow shoots closely enough to prevent regeneration.",
+   "By dating the willow's return to the year the wolves arrived rather than to the beaver's."
+  ],
+  "correct_answer": "By citing reaches in which browsing pressure fell but the willow did not return.",
+  "explanation": "Text 2 ends on the case that decides the matter: two reaches where elk numbers dropped as far as anywhere and no willow came back, which is what \"citing reaches in which browsing pressure fell but the willow did not return\" names. Those reaches show that removing the browsers is not sufficient, which is exactly what Text 1's short chain requires. The option that has Text 2 \"arguing that the beaver were themselves drawn back by the wolves\" would rescue Text 1's chain rather than break it, and no such connection appears in Text 2, which dates the beaver's return to a reintroduction. Text 2 never disputes that elk suppress willow, so \"denying that elk browse willow shoots closely enough\" contradicts a premise it shares. And \"dating the willow's return to the year the wolves arrived\" reverses Text 2's own chronology, in which recovery tracks the dams."
+ },
+ {
+  "id": "CS2-H-22",
+  "domain": "Craft and Structure",
+  "subskill": "cross-text connections",
+  "difficulty": "hard",
+  "passage": "Text 1\n\nA classifier trained on securely attributed letters assigns the disputed will to the nephew's hand with 94 percent confidence. The training set is large, the features are legible ones such as letter slant, pen lifts, and the shape of the terminal s, and the model's errors on held-out letters are few and evenly spread across writers.\n\nText 2\n\nEvery letter in that corpus was written with a steel nib on laid paper. The will was written with a quill on vellum, and a quill lifted from vellum leaves a different terminal stroke in any hand whatever. Where a model is asked about a document produced under conditions absent from its training, an evenly spread error rate on held-out material tells you nothing about the error it will make here.",
+  "prompt": "Based on the texts, how would the author of Text 2 most likely respond to the figure in Text 1?",
+  "choices": [
+   "By accepting the attribution but noting that a will and a letter are written for different purposes.",
+   "By granting that the model does well on letters while denying that its record reaches this will.",
+   "By arguing that letter slant and pen lifts are too coarse to tell two hands apart.",
+   "By concluding that the nephew is unlikely to have written the will."
+  ],
+  "correct_answer": "By granting that the model does well on letters while denying that its record reaches this will.",
+  "explanation": "Text 2 does not dispute the model's performance on the corpus; it argues that the corpus and the will differ in nib and surface, so the held-out error rate does not transfer. That is the response that \"grants that the model does well on letters while denying that its record reaches this will.\" The option that has Text 2 \"concluding that the nephew is unlikely to have written the will\" is the strongest wrong answer and overshoots by exactly one step: Text 2's final sentence says the figure is uninformative, and an uninformative figure is not evidence against the attribution. Text 2 objects to the writing conditions rather than to the features chosen, so \"arguing that letter slant and pen lifts are too coarse\" misplaces the complaint. And the purposes for which a will and a letter are written are nowhere at issue, so accepting the attribution on that basis answers neither text."
+ },
+ {
+  "id": "CS2-H-23",
+  "domain": "Craft and Structure",
+  "subskill": "cross-text connections",
+  "difficulty": "hard",
+  "passage": "Text 1\n\nSince the library began lending e-books, total circulation has risen by a third, and print circulation has not fallen. The two formats therefore appear to serve different occasions rather than to compete for one reader, and the board has approved a second e-book contract on that basis.\n\nText 2\n\nPrint circulation counts a renewal as a fresh loan; the e-book platform does not, because its loans expire on their own. A patron who once renewed a novel twice contributed three to the print figure and now contributes one to the electronic figure. The library's registration data show the number of distinct borrowers flat across the whole period.",
+  "prompt": "Based on the texts, how would the author of Text 2 most likely respond to Text 1's inference?",
+  "choices": [
+   "By granting that e-books have brought in new readers while predicting that print will decline in time.",
+   "By showing that the two figures count loans differently, so their movement cannot be compared.",
+   "By denying that any patron of the library reads in both formats.",
+   "By attributing the rise in total circulation to patrons who borrow in both formats."
+  ],
+  "correct_answer": "By showing that the two figures count loans differently, so their movement cannot be compared.",
+  "explanation": "Text 1 reasons from two numbers moving in different directions, and Text 2 shows that the numbers are built on different rules, one counting renewals and one unable to, so the response \"shows that the two figures count loans differently, so their movement cannot be compared.\" It would not grant \"that e-books have brought in new readers,\" since its last sentence reports the borrower count flat, and the prediction about print appears in neither text. It never asserts anything about individual patrons' habits, so \"denying that any patron of the library reads in both formats\" goes beyond what the counting argument supports. And Text 2 explains the rise by the change in how loans are tallied and reports the borrower count flat, so \"attributing the rise in total circulation to patrons who borrow in both formats\" supplies a cause it has just ruled out."
+ },
+ {
+  "id": "CS2-H-24",
+  "domain": "Craft and Structure",
+  "subskill": "cross-text connections",
+  "difficulty": "medium",
+  "passage": "Text 1\n\nCorals raised from parents that survived the 2016 bleaching endure laboratory heating at twice the rate of corals from reefs the event spared. The tolerance is inherited, then, and a restoration program that draws its fragments from surviving colonies should yield reefs able to withstand the next event.\n\nText 2\n\nSurviving colonies were not a random sample of the reef. They sat on the deeper margins and in the channels where cool water is drawn in twice a day, and a coral's heat tolerance is reset within weeks by the temperature swings it has lately met. The laboratory stock came from those same margins; nothing in the design separates what the parents transmitted from what the site supplied.",
+  "prompt": "Based on the texts, how would the author of Text 2 most likely respond to Text 1's proposal?",
+  "choices": [
+   "By denying that corals differ from one another in their tolerance of laboratory heating.",
+   "By predicting that transplanted fragments will die wherever they are placed on the deeper margins.",
+   "By recommending that fragments be drawn from the channels where cool water enters.",
+   "By arguing that the study cannot separate what the survivors inherited from the conditions they lived in."
+  ],
+  "correct_answer": "By arguing that the study cannot separate what the survivors inherited from the conditions they lived in.",
+  "explanation": "Text 2 accepts the measured difference and attacks the inference from it: the survivors and the laboratory stock come from the same cool margins, and tolerance is reset by recent conditions, so the response \"argues that the study cannot separate what the survivors inherited from the conditions they lived in.\" The recommendation to draw \"fragments from the channels where cool water enters\" is the most defensible alternative, since Text 2 does identify those channels as the source of the effect, but a tolerance that lasts only weeks and belongs to the site would not travel with a transplanted fragment, which is why Text 2 treats the channels as a confound rather than a supply. Text 2 does not deny \"that corals differ from one another in their tolerance,\" a difference it explains rather than doubts. And it makes no forecast about transplant mortality on the margins."
+ }
+]

@@ -1,0 +1,722 @@
+[
+ {
+  "id": "AM3-01",
+  "domain": "Advanced Math",
+  "subskill": "radical equations and extraneous solutions",
+  "difficulty": "hard",
+  "prompt": "What is the sum of all solutions to the equation √(2x + 22) = x − 1 ?",
+  "choices": [
+   "-3",
+   "3",
+   "4",
+   "7"
+  ],
+  "correct_answer": "7",
+  "explanation": "Squaring gives 2x + 22 = x^2 − 2x + 1, so x^2 − 4x − 21 = 0 and the candidates are x = 7 and x = −3. Substituting x = −3 gives √16 = 4 on the left and −4 on the right, so −3 is not a solution of the original equation: the principal square root cannot be negative. Only x = 7 survives, so the sum of all solutions is 7.",
+  "distractor_steps": [
+   {
+    "choice": "4",
+    "mis_step": "Adds both roots of the quadratic, 7 + (−3), without substituting either back into the radical equation."
+   },
+   {
+    "choice": "-3",
+    "mis_step": "Reports the root introduced by squaring, choosing the one that satisfies the quadratic but not the original equation."
+   },
+   {
+    "choice": "3",
+    "mis_step": "Takes the magnitude of the discarded root −3, reading the rejection as a sign error to be corrected rather than a solution to be thrown away."
+   }
+  ],
+  "solve": "const b=-4,c=-21;\nconst d=Math.sqrt(b*b-4*c);\nconst rs=[(-b-d)/2,(-b+d)/2];\nconst ok=rs.filter(x=>2*x+22>=0&&Math.abs(Math.sqrt(2*x+22)-(x-1))<1e-9);\nreturn ok.reduce((s,x)=>s+x,0);"
+ },
+ {
+  "id": "AM3-02",
+  "domain": "Advanced Math",
+  "subskill": "rational equations and excluded values",
+  "difficulty": "hard",
+  "prompt": "Which of the following describes the solutions to the equation 2x/(x − 4) = 8/(x − 4) + 1 ?",
+  "choices": [
+   "-4",
+   "4",
+   "8",
+   "There is no solution."
+  ],
+  "correct_answer": "There is no solution.",
+  "explanation": "Multiplying through by x − 4 gives 2x = 8 + (x − 4), so x = 4. But x = 4 makes both denominators zero, so it is not in the domain of the equation and cannot be a solution. Equivalently, (2x − 8)/(x − 4) equals 2 for every x in the domain, and 2 is never 1. The equation has no solution.",
+  "distractor_steps": [
+   {
+    "choice": "4",
+    "mis_step": "Clears the denominators and reports the resulting value without checking it against the domain of the original equation."
+   },
+   {
+    "choice": "8",
+    "mis_step": "Solves 2x = 8 by cancelling the denominators on the left and the first term on the right, dropping the +1 entirely."
+   },
+   {
+    "choice": "-4",
+    "mis_step": "Takes the value 4 obtained by clearing denominators and negates it, mistaking the excluded value x = 4 for a sign that the root should be reflected."
+   }
+  ],
+  "solve": "let n=0;\nfor(let i=-4000;i<=4000;i++){const x=i/4;if(Math.abs(x-4)<1e-12)continue;const l=2*x/(x-4),r=8/(x-4)+1;if(Math.abs(l-r)<1e-9)n++;}\nreturn n===0?'There is no solution.':'Some value of x satisfies the equation.';"
+ },
+ {
+  "id": "AM3-03",
+  "domain": "Advanced Math",
+  "subskill": "equations in quadratic form with a domain restriction",
+  "difficulty": "hard",
+  "prompt": "What is the solution to the equation x − 5√x − 14 = 0 ?",
+  "choices": [
+   "4",
+   "25",
+   "45",
+   "49"
+  ],
+  "correct_answer": "49",
+  "explanation": "Let u = √x, so u^2 − 5u − 14 = 0 and u = 7 or u = −2. A principal square root is never negative, so u = −2 is impossible and only u = 7 gives a solution, x = 49. Checking: 49 − 5(7) − 14 = 0.",
+  "distractor_steps": [
+   {
+    "choice": "4",
+    "mis_step": "Squares the rejected value u = −2 as though a negative square root were allowed, giving x = 4."
+   },
+   {
+    "choice": "25",
+    "mis_step": "Squares the sum of the two u-values, 7 + (−2) = 5, treating the substitution as though the two branches combine."
+   },
+   {
+    "choice": "45",
+    "mis_step": "Subtracts the discarded candidate from the true one, 49 − 4, keeping both branches of the substitution in play."
+   }
+  ],
+  "solve": "const b=-5,c=-14;\nconst d=Math.sqrt(b*b-4*c);\nconst us=[(-b-d)/2,(-b+d)/2].filter(u=>u>=0);\nconst xs=us.map(u=>u*u).filter(x=>Math.abs(x-5*Math.sqrt(x)-14)<1e-9);\nreturn xs[0];"
+ },
+ {
+  "id": "AM3-04",
+  "domain": "Advanced Math",
+  "subskill": "absolute value equations and extraneous solutions",
+  "difficulty": "hard",
+  "prompt": "What is the solution to the equation |x − 3| = 2x − 9 ?",
+  "choices": [
+   "2",
+   "4",
+   "6",
+   "10"
+  ],
+  "correct_answer": "6",
+  "explanation": "The two cases give x − 3 = 2x − 9, so x = 6, and x − 3 = −(2x − 9), so x = 4. An absolute value is never negative, so any solution needs 2x − 9 ≥ 0. At x = 4 the right side is −1, so x = 4 fails; at x = 6 both sides equal 3. The solution is x = 6.",
+  "distractor_steps": [
+   {
+    "choice": "4",
+    "mis_step": "Solves the negative case and reports it without checking that the right side is nonnegative there."
+   },
+   {
+    "choice": "10",
+    "mis_step": "Adds the two case results, 6 + 4, as though the equation had two solutions whose sum was wanted."
+   },
+   {
+    "choice": "2",
+    "mis_step": "Takes the difference of the two case results, 6 − 4, treating the extraneous candidate as a correction to subtract."
+   }
+  ],
+  "solve": "const cands=[];\nfor(const s of [1,-1]){const den=1-2*s;if(den===0)continue;cands.push((3-9*s)/den);}\nconst ok=cands.filter(x=>Math.abs(Math.abs(x-3)-(2*x-9))<1e-9);\nreturn ok[0];"
+ },
+ {
+  "id": "AM3-05",
+  "domain": "Advanced Math",
+  "subskill": "systems with one nonlinear equation: circle and line",
+  "difficulty": "medium",
+  "prompt": "In the xy-plane, the graph of x^2 + y^2 = 25 and the graph of y = x + 1 intersect at the points (a, b) and (c, d), where a < c. What is the value of b ?",
+  "choices": [
+   "-4",
+   "-3",
+   "3",
+   "4"
+  ],
+  "correct_answer": "-3",
+  "explanation": "Substituting gives x^2 + (x + 1)^2 = 25, so 2x^2 + 2x − 24 = 0 and x = 3 or x = −4. Since a < c, a = −4, and b = a + 1 = −3.",
+  "distractor_steps": [
+   {
+    "choice": "-4",
+    "mis_step": "Reports the x-coordinate a rather than the y-coordinate b."
+   },
+   {
+    "choice": "4",
+    "mis_step": "Reports the x-coordinate of the point with a < c but drops the sign while substituting into y = x + 1."
+   },
+   {
+    "choice": "3",
+    "mis_step": "Uses the other intersection, taking the larger x-value as a, and then reports its x-coordinate."
+   }
+  ],
+  "solve": "const d=Math.sqrt(2*2-4*2*(-24));\nconst xs=[(-2-d)/4,(-2+d)/4].sort((p,q)=>p-q);\nreturn xs[0]+1;"
+ },
+ {
+  "id": "AM3-06",
+  "domain": "Advanced Math",
+  "subskill": "exponential equations in quadratic form",
+  "difficulty": "hard",
+  "prompt": "What is the solution to the equation 2^(2x) − 2^(x + 2) − 32 = 0 ?",
+  "choices": [
+   "-2",
+   "3",
+   "5",
+   "8"
+  ],
+  "correct_answer": "3",
+  "explanation": "Write 2^(2x) as u^2 and 2^(x + 2) as 4u, where u = 2^x. Then u^2 − 4u − 32 = 0, so u = 8 or u = −4. An exponential 2^x is positive for every real x, so u = −4 is impossible. From 2^x = 8, x = 3.",
+  "distractor_steps": [
+   {
+    "choice": "8",
+    "mis_step": "Reports the value of the substitution u = 2^x rather than solving 2^x = 8 for x."
+   },
+   {
+    "choice": "-2",
+    "mis_step": "Accepts the impossible branch u = −4 and reads 2^x = −4 as x = −2, treating the negative as an exponent sign."
+   },
+   {
+    "choice": "5",
+    "mis_step": "Combines the two quantities it has on the page, subtracting the answer x = 3 from the substitution value u = 8 rather than choosing between them."
+   }
+  ],
+  "solve": "const d=Math.sqrt(16+128);\nconst us=[(4-d)/2,(4+d)/2].filter(u=>u>0);\nconst xs=us.map(u=>Math.log(u)/Math.log(2)).filter(x=>Math.abs(Math.pow(2,2*x)-Math.pow(2,x+2)-32)<1e-6);\nreturn Math.round(xs[0]*1e6)/1e6;"
+ },
+ {
+  "id": "AM3-07",
+  "domain": "Advanced Math",
+  "subskill": "quadratics with a parameter and a rejected case",
+  "difficulty": "hard",
+  "prompt": "In the equation x^2 + (k + 3)x + k + 6 = 0, k is a positive constant and the equation has exactly one real solution. What is the value of k ?",
+  "choices": [
+   "-5",
+   "3",
+   "5",
+   "15"
+  ],
+  "correct_answer": "3",
+  "explanation": "Exactly one real solution means the discriminant is zero: (k + 3)^2 − 4(k + 6) = 0, so k^2 + 2k − 15 = 0 and k = 3 or k = −5. Only k = 3 is positive. Checking, x^2 + 6x + 9 = 0 has the single solution x = −3.",
+  "distractor_steps": [
+   {
+    "choice": "-5",
+    "mis_step": "Solves the discriminant equation correctly and reports the root that is not positive."
+   },
+   {
+    "choice": "5",
+    "mis_step": "Takes the magnitude of the negative root, reading the constraint as an instruction to drop the sign."
+   },
+   {
+    "choice": "15",
+    "mis_step": "Reads the constant term of k^2 + 2k − 15 = 0 as the product of the two roots and reports it as k."
+   }
+  ],
+  "solve": "const d=Math.sqrt(4+60);\nconst ks=[(-2-d)/2,(-2+d)/2].filter(k=>k>0);\nconst ok=ks.filter(k=>Math.abs(Math.pow(k+3,2)-4*(k+6))<1e-9);\nreturn ok[0];"
+ },
+ {
+  "id": "AM3-08",
+  "domain": "Advanced Math",
+  "subskill": "exponential models with a change of time unit",
+  "difficulty": "hard",
+  "prompt": "A bacterial culture starts with 400 cells and the number of cells doubles every 6 hours. What is the least whole number of hours after the start at which the number of cells is greater than 10,000 ?",
+  "choices": [
+   "24",
+   "25",
+   "27",
+   "28"
+  ],
+  "correct_answer": "28",
+  "explanation": "The count after t hours is 400 · 2^(t/6), so the condition is 2^(t/6) > 25, that is t > 6 log2(25) ≈ 27.86. At t = 27 the count is about 9,051, still below 10,000; at t = 28 it is about 10,159. The least whole number of hours is 28.",
+  "distractor_steps": [
+   {
+    "choice": "24",
+    "mis_step": "Counts four doublings, 400 · 2^4 = 6,400, and stops at the fourth doubling time without checking that 6,400 is under 10,000."
+   },
+   {
+    "choice": "25",
+    "mis_step": "Reads 2^(t/6) > 25 as t > 25, using the number 25 as though it were the time rather than the required growth factor."
+   },
+   {
+    "choice": "27",
+    "mis_step": "Rounds 27.86 down, or takes the largest whole hour at which the count is still below 10,000 instead of the first one above it."
+   }
+  ],
+  "solve": "let t=0;\nwhile(400*Math.pow(2,t/6)<=10000)t++;\nreturn t;"
+ },
+ {
+  "id": "AM3-09",
+  "domain": "Advanced Math",
+  "subskill": "rational functions: removable and nonremovable discontinuities",
+  "difficulty": "hard",
+  "prompt": "The function f is defined by f(x) = (x^2 − 4x − 5)/(x^2 − 6x + 5). The graph of y = f(x) in the xy-plane has a vertical asymptote at x = k. What is the value of k ?",
+  "choices": [
+   "-5",
+   "-1",
+   "1",
+   "5"
+  ],
+  "correct_answer": "1",
+  "explanation": "Factoring gives f(x) = (x − 5)(x + 1) / ((x − 5)(x − 1)). The factor x − 5 cancels, so x = 5 is a removable discontinuity, a hole, not an asymptote. What is left is (x + 1)/(x − 1), whose denominator is zero at x = 1 while the numerator is 2 there. The vertical asymptote is at x = 1.",
+  "distractor_steps": [
+   {
+    "choice": "5",
+    "mis_step": "Reports a zero of the original denominator without noticing that the same factor divides the numerator, so the graph has a hole there rather than an asymptote."
+   },
+   {
+    "choice": "-1",
+    "mis_step": "Reports the zero of the numerator, x = −1, which is an x-intercept of the graph rather than an asymptote."
+   },
+   {
+    "choice": "-5",
+    "mis_step": "Reverses the signs when factoring x^2 − 6x + 5, taking the cancelled factor to be x + 5 and reporting that value."
+   }
+  ],
+  "solve": "const d=Math.sqrt(36-20);\nconst dz=[(6-d)/2,(6+d)/2];\nconst as=dz.filter(x=>Math.abs(x*x-4*x-5)>1e-9);\nreturn as[0];"
+ },
+ {
+  "id": "AM3-10",
+  "domain": "Advanced Math",
+  "subskill": "inverse functions applied twice",
+  "difficulty": "medium",
+  "prompt": "The function f is defined by f(x) = 3x + 4. What is the value of f⁻¹(f⁻¹(31)) ?",
+  "choices": [
+   "5/3",
+   "9",
+   "31",
+   "97"
+  ],
+  "correct_answer": "5/3",
+  "explanation": "Since f(x) = 3x + 4, the inverse is f⁻¹(y) = (y − 4)/3. Then f⁻¹(31) = 27/3 = 9 and f⁻¹(9) = 5/3.",
+  "distractor_steps": [
+   {
+    "choice": "9",
+    "mis_step": "Applies the inverse once and stops, reporting f⁻¹(31) instead of applying it a second time."
+   },
+   {
+    "choice": "31",
+    "mis_step": "Treats the two inverses as cancelling, as though f⁻¹(f⁻¹(x)) were the identity the way f⁻¹(f(x)) is."
+   },
+   {
+    "choice": "97",
+    "mis_step": "Applies f rather than f⁻¹ to the value 31, giving 3(31) + 4."
+   }
+  ],
+  "solve": "const finv=y=>(y-4)/3;\nreturn finv(finv(31));"
+ },
+ {
+  "id": "AM3-11",
+  "domain": "Advanced Math",
+  "subskill": "systems with one nonlinear equation: tangency",
+  "difficulty": "medium",
+  "prompt": "In the xy-plane, the graph of y = x^2 − 6x + 13 and the graph of y = 2x + k intersect at exactly one point. What is the value of k ?",
+  "choices": [
+   "-13",
+   "-3",
+   "3",
+   "13"
+  ],
+  "correct_answer": "-3",
+  "explanation": "Setting the expressions equal gives x^2 − 8x + (13 − k) = 0. Exactly one intersection means the discriminant is zero: 64 − 4(13 − k) = 0, so 13 − k = 16 and k = −3.",
+  "distractor_steps": [
+   {
+    "choice": "3",
+    "mis_step": "Solves 13 − k = 16 as k = 16 − 13, reversing the subtraction."
+   },
+   {
+    "choice": "13",
+    "mis_step": "Reports the constant term of the parabola, treating the y-intercept of the quadratic as the y-intercept the line must have."
+   },
+   {
+    "choice": "-13",
+    "mis_step": "Negates that constant term, applying the sign of the correct answer to the wrong quantity."
+   }
+  ],
+  "solve": "const count=k=>{const d=64-4*(13-k);return d>1e-12?2:(Math.abs(d)<1e-12?1:0)};\nlet k=null;\nfor(let i=-2000;i<=2000;i++){const t=i/100;if(count(t)===1){k=t;break;}}\nreturn k;"
+ },
+ {
+  "id": "AM3-12",
+  "domain": "Advanced Math",
+  "subskill": "minimum of a quadratic on a restricted interval",
+  "difficulty": "hard",
+  "prompt": "The function f is defined by f(x) = x^2 − 4x + 7 for 5 ≤ x ≤ 8. What is the minimum value of f ?",
+  "choices": [
+   "3",
+   "5",
+   "12",
+   "39"
+  ],
+  "correct_answer": "12",
+  "explanation": "The vertex of y = x^2 − 4x + 7 is at x = 2, where the value is 3, but x = 2 is outside the interval 5 ≤ x ≤ 8. On that interval the parabola is increasing, so the minimum occurs at the left endpoint: f(5) = 25 − 20 + 7 = 12.",
+  "distractor_steps": [
+   {
+    "choice": "3",
+    "mis_step": "Completes the square and reports the vertex value without checking whether the vertex lies inside the given interval."
+   },
+   {
+    "choice": "5",
+    "mis_step": "Reports the x-value at which the minimum occurs rather than the minimum value of the function."
+   },
+   {
+    "choice": "39",
+    "mis_step": "Evaluates at the other endpoint, f(8) = 39, which is the maximum on the interval, not the minimum."
+   }
+  ],
+  "solve": "let m=Infinity;\nfor(let i=0;i<=3000;i++){const x=5+3*i/3000;const y=x*x-4*x+7;if(y<m)m=y;}\nreturn Math.round(m*1e6)/1e6;"
+ },
+ {
+  "id": "AM3-13",
+  "domain": "Advanced Math",
+  "subskill": "equivalent expressions: rational expressions",
+  "difficulty": "medium",
+  "prompt": "For x ≠ 2 and x ≠ −2, which expression is equivalent to (x^2 − x − 6)/(x^2 − 4) ?",
+  "choices": [
+   "(x - 3)/(x - 2)",
+   "(x + 3)/(x + 2)",
+   "(x + 6)/4",
+   "(x - 3)/(x + 2)"
+  ],
+  "correct_answer": "(x - 3)/(x - 2)",
+  "explanation": "The numerator factors as (x − 3)(x + 2) and the denominator as (x − 2)(x + 2). The common factor x + 2 cancels, leaving (x − 3)/(x − 2).",
+  "distractor_steps": [
+   {
+    "choice": "(x + 3)/(x + 2)",
+    "mis_step": "Factors the numerator as (x + 3)(x − 2) and the denominator as (x − 2)(x + 2), reversing the signs in both factorizations."
+   },
+   {
+    "choice": "(x + 6)/4",
+    "mis_step": "Cancels the x^2 terms in numerator and denominator as though they were factors, leaving (−x − 6)/(−4)."
+   },
+   {
+    "choice": "(x - 3)/(x + 2)",
+    "mis_step": "Cancels the factor x + 2 from the numerator but leaves it in the denominator, cancelling from the wrong copy of the pair produced by the previous mis-factoring."
+   }
+  ],
+  "solve": "const f=x=>(x*x-x-6)/(x*x-4);\nconst c={'(x - 3)/(x - 2)':x=>(x-3)/(x-2),'(x + 3)/(x + 2)':x=>(x+3)/(x+2),'(x + 6)/4':x=>(x+6)/4,'(x - 3)/(x + 2)':x=>(x-3)/(x+2)};\nfor(const k of Object.keys(c)){let ok=true;for(const x of [0.5,1,3,5,7.5,-1,-3.5])if(Math.abs(f(x)-c[k](x))>1e-9)ok=false;if(ok)return k;}\nreturn 'none';"
+ },
+ {
+  "id": "AM3-14",
+  "domain": "Advanced Math",
+  "subskill": "exponential models and changes of time unit",
+  "difficulty": "medium",
+  "prompt": "A population of 6,000 decreases by 15 percent every 4 years. Which function gives the population t years after the count of 6,000 ?",
+  "choices": [
+   "6000(0.85)^(t/4)",
+   "6000(0.85)^(4t)",
+   "6000(0.15)^(4t)",
+   "6000(0.9625)^t"
+  ],
+  "correct_answer": "6000(0.85)^(t/4)",
+  "explanation": "Each 4-year period multiplies the population by 1 − 0.15 = 0.85, and t years contain t/4 such periods, so the population is 6000(0.85)^(t/4). At t = 4 this gives 5,100 and at t = 8 it gives 4,335, as required.",
+  "distractor_steps": [
+   {
+    "choice": "6000(0.85)^(4t)",
+    "mis_step": "Multiplies the time by 4 instead of dividing, applying the decay four times per year rather than once per four years."
+   },
+   {
+    "choice": "6000(0.15)^(4t)",
+    "mis_step": "Uses the percent decrease 0.15 as the multiplier instead of 0.85, on top of the same inverted time unit."
+   },
+   {
+    "choice": "6000(0.9625)^t",
+    "mis_step": "Spreads the 15 percent evenly over four years as 3.75 percent per year, treating the decay as though it were linear in the exponent."
+   }
+  ],
+  "solve": "const data=[[0,6000],[4,6000*0.85],[8,6000*0.85*0.85],[12,6000*0.85*0.85*0.85]];\nconst c={'6000(0.85)^(t/4)':t=>6000*Math.pow(0.85,t/4),'6000(0.85)^(4t)':t=>6000*Math.pow(0.85,4*t),'6000(0.15)^(4t)':t=>6000*Math.pow(0.15,4*t),'6000(0.9625)^t':t=>6000*Math.pow(0.9625,t)};\nfor(const k of Object.keys(c)){let ok=true;for(const [t,v] of data)if(Math.abs(c[k](t)-v)>1e-6)ok=false;if(ok)return k;}\nreturn 'none';"
+ },
+ {
+  "id": "AM3-15",
+  "domain": "Advanced Math",
+  "subskill": "systems with one nonlinear equation: selecting a solution",
+  "difficulty": "medium",
+  "prompt": "The ordered pair (x, y) satisfies x^2 + y^2 = 34 and x − y = 8. What is the greatest possible value of x ?",
+  "choices": [
+   "-5",
+   "-3",
+   "3",
+   "5"
+  ],
+  "correct_answer": "5",
+  "explanation": "Substituting x = y + 8 gives (y + 8)^2 + y^2 = 34, so 2y^2 + 16y + 30 = 0 and y = −3 or y = −5. The corresponding x-values are 5 and 3, so the greatest possible value of x is 5.",
+  "distractor_steps": [
+   {
+    "choice": "3",
+    "mis_step": "Finds both solutions and reports the smaller x-value."
+   },
+   {
+    "choice": "-3",
+    "mis_step": "Reports a y-value of the system rather than an x-value, taking the larger of the two y-values."
+   },
+   {
+    "choice": "-5",
+    "mis_step": "Reports the other y-value, taking the y that pairs with the x it was asked for."
+   }
+  ],
+  "solve": "const d=Math.sqrt(16*16-4*2*30);\nconst ys=[(-16-d)/4,(-16+d)/4];\nreturn Math.max(...ys.map(y=>y+8));"
+ },
+ {
+  "id": "AM3-16",
+  "domain": "Advanced Math",
+  "subskill": "polynomial coefficients from two conditions",
+  "difficulty": "hard",
+  "prompt": "The polynomial p is defined by p(x) = 2x^3 + ax^2 − 13x + b, where a and b are constants. If p(2) = 0 and p(−1) = 18, what is the value of a ?",
+  "choices": [
+   "1",
+   "3",
+   "6",
+   "7"
+  ],
+  "correct_answer": "1",
+  "explanation": "p(2) = 16 + 4a − 26 + b = 0 gives 4a + b = 10, and p(−1) = −2 + a + 13 + b = 18 gives a + b = 7. Subtracting, 3a = 3, so a = 1 and b = 6. Checking: p(x) = 2x^3 + x^2 − 13x + 6 has p(2) = 0 and p(−1) = 18.",
+  "distractor_steps": [
+   {
+    "choice": "6",
+    "mis_step": "Solves the system correctly but reports b instead of a."
+   },
+   {
+    "choice": "7",
+    "mis_step": "Reports the right side of a + b = 7, treating the second condition as though it gave a directly."
+   },
+   {
+    "choice": "3",
+    "mis_step": "Stops at 3a = 3 and reports the coefficient 3, one line before dividing."
+   }
+  ],
+  "solve": "const det=4*1-1*1;\nconst a=(10*1-1*7)/det;\nconst b=(4*7-10*1)/det;\nconst p=x=>2*x*x*x+a*x*x-13*x+b;\nif(Math.abs(p(2))>1e-9||Math.abs(p(-1)-18)>1e-9)return 'CONDITIONS NOT MET';\nreturn a;"
+ },
+ {
+  "id": "AM3-17",
+  "domain": "Advanced Math",
+  "subskill": "systems with one nonlinear equation: no real solutions",
+  "difficulty": "hard",
+  "prompt": "In the xy-plane, the graph of y = x^2 + 4 and the graph of y = mx have no points of intersection, where m is a constant. What is the greatest integer value of m ?",
+  "choices": [
+   "3",
+   "4",
+   "8",
+   "16"
+  ],
+  "correct_answer": "3",
+  "explanation": "Setting the expressions equal gives x^2 − mx + 4 = 0, which has no real solution exactly when m^2 − 16 < 0, that is −4 < m < 4. The inequality is strict, so m = 4 gives a single point of intersection and is not allowed. The greatest integer value is 3.",
+  "distractor_steps": [
+   {
+    "choice": "4",
+    "mis_step": "Solves m^2 − 16 ≤ 0 rather than < 0 and reports the endpoint, where the graphs are tangent and do intersect."
+   },
+   {
+    "choice": "16",
+    "mis_step": "Reports the constant in m^2 = 16 without taking the square root."
+   },
+   {
+    "choice": "8",
+    "mis_step": "Halves that constant instead of taking its square root, an arithmetic route to the same misread of m^2 = 16."
+   }
+  ],
+  "solve": "let m=100;\nwhile(m*m-16>=0)m--;\nreturn m;"
+ },
+ {
+  "id": "AM3-18",
+  "domain": "Advanced Math",
+  "subskill": "equivalent expressions: rationalizing a denominator",
+  "difficulty": "medium",
+  "prompt": "For x > 0 and x ≠ 2, which expression is equivalent to 6/(√x + √2) ?",
+  "choices": [
+   "6(sqrt(x) - sqrt(2))/(x - 2)",
+   "6(sqrt(x) + sqrt(2))/(x - 2)",
+   "6(sqrt(x) - sqrt(2))/(x + 2)",
+   "6(sqrt(x) + sqrt(2))/(x + 2)"
+  ],
+  "correct_answer": "6(sqrt(x) - sqrt(2))/(x - 2)",
+  "explanation": "Multiply numerator and denominator by the conjugate √x − √2. The denominator becomes (√x)^2 − (√2)^2 = x − 2 and the numerator becomes 6(√x − √2).",
+  "distractor_steps": [
+   {
+    "choice": "6(sqrt(x) + sqrt(2))/(x - 2)",
+    "mis_step": "Uses √x + √2 itself as the multiplier, keeping the correct difference of squares in the denominator but the wrong factor on top."
+   },
+   {
+    "choice": "6(sqrt(x) - sqrt(2))/(x + 2)",
+    "mis_step": "Multiplies by the conjugate but expands (√x + √2)(√x − √2) as x + 2, adding the squares instead of subtracting."
+   },
+   {
+    "choice": "6(sqrt(x) + sqrt(2))/(x + 2)",
+    "mis_step": "Squares the denominator term by term and leaves the numerator factor unchanged, combining the two errors above."
+   }
+  ],
+  "solve": "const f=x=>6/(Math.sqrt(x)+Math.sqrt(2));\nconst c={'6(sqrt(x) - sqrt(2))/(x - 2)':x=>6*(Math.sqrt(x)-Math.sqrt(2))/(x-2),'6(sqrt(x) + sqrt(2))/(x - 2)':x=>6*(Math.sqrt(x)+Math.sqrt(2))/(x-2),'6(sqrt(x) - sqrt(2))/(x + 2)':x=>6*(Math.sqrt(x)-Math.sqrt(2))/(x+2),'6(sqrt(x) + sqrt(2))/(x + 2)':x=>6*(Math.sqrt(x)+Math.sqrt(2))/(x+2)};\nfor(const k of Object.keys(c)){let ok=true;for(const x of [0.5,1,3,5,9,16])if(Math.abs(f(x)-c[k](x))>1e-9)ok=false;if(ok)return k;}\nreturn 'none';"
+ },
+ {
+  "id": "AM3-19",
+  "domain": "Advanced Math",
+  "subskill": "equations in quadratic form: real solutions only",
+  "difficulty": "hard",
+  "prompt": "What is the product of all distinct real solutions to the equation x^4 − 3x^2 − 4 = 0 ?",
+  "choices": [
+   "-4",
+   "-1",
+   "4",
+   "16"
+  ],
+  "correct_answer": "-4",
+  "explanation": "Let u = x^2, so u^2 − 3u − 4 = 0 and u = 4 or u = −1. Since u = x^2 is never negative for real x, only u = 4 gives real solutions, x = 2 and x = −2. Their product is −4.",
+  "distractor_steps": [
+   {
+    "choice": "-1",
+    "mis_step": "Reports the rejected substitution value u = −1, or the product of all four roots of the quartic including the imaginary pair."
+   },
+   {
+    "choice": "4",
+    "mis_step": "Reports the surviving substitution value u = 4 rather than the product of the x-values it produces."
+   },
+   {
+    "choice": "16",
+    "mis_step": "Squares that substitution value, multiplying 4 by itself instead of multiplying 2 by −2."
+   }
+  ],
+  "solve": "const d=Math.sqrt(9+16);\nconst us=[(3-d)/2,(3+d)/2].filter(u=>u>=0);\nconst xs=[];\nfor(const u of us){const r=Math.sqrt(u);if(r===0)xs.push(0);else xs.push(r,-r);}\nconst ok=xs.filter(x=>Math.abs(Math.pow(x,4)-3*x*x-4)<1e-9);\nreturn ok.reduce((p,x)=>p*x,1);"
+ },
+ {
+  "id": "AM3-20",
+  "domain": "Advanced Math",
+  "subskill": "transformations of a quadratic graph",
+  "difficulty": "medium",
+  "prompt": "The function f is defined by f(x) = x^2 − 6x. In the xy-plane, the graph of y = f(x + 2) − 5 has its minimum at the point (a, b). What is the value of a + b ?",
+  "choices": [
+   "-13",
+   "-9",
+   "-8",
+   "15"
+  ],
+  "correct_answer": "-13",
+  "explanation": "f(x + 2) = (x + 2)^2 − 6(x + 2) = x^2 − 2x − 8, so y = x^2 − 2x − 13. The vertex is at x = 1, where y = 1 − 2 − 13 = −14. So a = 1, b = −14, and a + b = −13.",
+  "distractor_steps": [
+   {
+    "choice": "-8",
+    "mis_step": "Omits the −5, taking the minimum of y = f(x + 2) alone at (1, −9), and reports 1 + (−9)."
+   },
+   {
+    "choice": "-9",
+    "mis_step": "Shifts the graph the wrong way, using f(x − 2) − 5 with minimum (5, −14), and reports 5 + (−14)."
+   },
+   {
+    "choice": "15",
+    "mis_step": "Computes a − b instead of a + b, giving 1 − (−14)."
+   }
+  ],
+  "solve": "const g=x=>Math.pow(x+2,2)-6*(x+2)-5;\nlet bx=0,by=Infinity;\nfor(let i=-100000;i<=100000;i++){const x=i/1000;const y=g(x);if(y<by){by=y;bx=x;}}\nreturn Math.round((bx+by)*1e6)/1e6;"
+ },
+ {
+  "id": "AM3-21",
+  "domain": "Advanced Math",
+  "subskill": "exponential models: rate over a different period",
+  "difficulty": "medium",
+  "prompt": "A quantity triples every 5 years. To the nearest whole percent, by what percent does the quantity increase each year?",
+  "choices": [
+   "20",
+   "25",
+   "60",
+   "300"
+  ],
+  "correct_answer": "25",
+  "explanation": "If r is the annual growth factor then r⁵ = 3, so r = 3^(1/5) ≈ 1.2457. The annual increase is about 24.57 percent, which to the nearest whole percent is 25 percent.",
+  "distractor_steps": [
+   {
+    "choice": "60",
+    "mis_step": "Divides the 300 percent total by the 5 years, treating repeated multiplication as though it accumulated linearly."
+   },
+   {
+    "choice": "20",
+    "mis_step": "Divides 100 percent by 5 years, using the base rather than the tripled amount in the same linear division."
+   },
+   {
+    "choice": "300",
+    "mis_step": "Reports the size of the quantity after 5 years as a percent of the original, rather than the annual rate of increase."
+   }
+  ],
+  "solve": "const r=Math.pow(3,1/5)-1;\nreturn Math.round(r*100);"
+ },
+ {
+  "id": "AM3-22",
+  "domain": "Advanced Math",
+  "subskill": "rational equations and excluded values",
+  "difficulty": "hard",
+  "prompt": "What is the solution to the equation x^2/(x − 3) = 9/(x − 3) ?",
+  "choices": [
+   "-3",
+   "0",
+   "3",
+   "There is no solution."
+  ],
+  "correct_answer": "-3",
+  "explanation": "Multiplying by x − 3 gives x^2 = 9, so x = 3 or x = −3. But x = 3 makes the denominators zero, so it is outside the domain of the equation. Only x = −3 is a solution, and substituting it gives 9/(−6) on both sides.",
+  "distractor_steps": [
+   {
+    "choice": "3",
+    "mis_step": "Solves x^2 = 9 and reports the positive root without checking it against the excluded value x = 3."
+   },
+   {
+    "choice": "0",
+    "mis_step": "Adds the two roots of x^2 = 9, treating the pair as a sum to be reported."
+   },
+   {
+    "choice": "There is no solution.",
+    "mis_step": "Notices that x = 3 is excluded and concludes that the equation is empty, discarding the second root along with the first."
+   }
+  ],
+  "solve": "const sols=[];\nfor(let i=-1000;i<=1000;i++){const x=i/10;if(Math.abs(x-3)<1e-12)continue;const l=x*x/(x-3),r=9/(x-3);if(Math.abs(l-r)<1e-9)sols.push(x);}\nreturn sols.length===1?String(sols[0]):'There is no solution.';"
+ },
+ {
+  "id": "AM3-23",
+  "domain": "Advanced Math",
+  "subskill": "quadratic models: area and perimeter",
+  "difficulty": "medium",
+  "prompt": "The length of a rectangle is 3 more than twice its width, and the area of the rectangle is 65 square centimeters. What is the perimeter of the rectangle, in centimeters?",
+  "choices": [
+   "5",
+   "13",
+   "36",
+   "65"
+  ],
+  "correct_answer": "36",
+  "explanation": "If w is the width then w(2w + 3) = 65, so 2w^2 + 3w − 65 = 0 and w = 5 or w = −13/2. A width is positive, so w = 5 and the length is 13. The perimeter is 2(5 + 13) = 36.",
+  "distractor_steps": [
+   {
+    "choice": "5",
+    "mis_step": "Reports the width rather than the perimeter, stopping at the quadratic."
+   },
+   {
+    "choice": "13",
+    "mis_step": "Reports the length, 2(5) + 3, one step past the width and still short of the perimeter."
+   },
+   {
+    "choice": "65",
+    "mis_step": "Reports the area given in the question as though it were the requested measurement."
+   }
+  ],
+  "solve": "const d=Math.sqrt(9+8*65);\nconst ws=[(-3-d)/4,(-3+d)/4].filter(w=>w>0);\nconst w=ws[0],l=2*w+3;\nif(Math.abs(w*l-65)>1e-9)return 'AREA MISMATCH';\nreturn 2*(w+l);"
+ },
+ {
+  "id": "AM3-24",
+  "domain": "Advanced Math",
+  "subskill": "quadratic zeros under two constraints",
+  "difficulty": "hard",
+  "prompt": "The function f is defined by f(x) = x^2 − 8x + k, where k is an integer. The function has two distinct real zeros, and both zeros are greater than 1. What is the greatest possible value of k ?",
+  "choices": [
+   "7",
+   "9",
+   "15",
+   "16"
+  ],
+  "correct_answer": "15",
+  "explanation": "Two distinct real zeros requires 64 − 4k > 0, so k < 16. Both zeros greater than 1 requires f(1) > 0, since the parabola opens upward and its vertex is at x = 4; that gives 1 − 8 + k > 0, so k > 7. The integers satisfying both are 8 through 15, and the greatest is 15. At k = 15 the zeros are 3 and 5.",
+  "distractor_steps": [
+   {
+    "choice": "16",
+    "mis_step": "Uses only the discriminant and takes 64 − 4k ≥ 0, reporting the endpoint where the two zeros coincide at x = 4."
+   },
+   {
+    "choice": "7",
+    "mis_step": "Reports the other boundary, the value of k at which f(1) = 0 and one zero sits exactly at 1 rather than above it."
+   },
+   {
+    "choice": "9",
+    "mis_step": "Takes the boundary 7 from f(1) = 0 and adds 2 to make the zeros integers, adjusting the wrong endpoint upward instead of the discriminant endpoint downward."
+   }
+  ],
+  "solve": "let best=null;\nfor(let k=-200;k<=200;k++){const d=64-4*k;if(d<=0)continue;const r1=(8-Math.sqrt(d))/2,r2=(8+Math.sqrt(d))/2;if(r1>1&&r2>1)best=k;}\nreturn best;"
+ }
+]
