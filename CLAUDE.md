@@ -211,6 +211,54 @@ So, before treating a check as evidence:
 
 Applies to any check: tests, model graders, SQL audits, scripts.
 
+### The one predictor that has held: can the OPTION SET alone decide it?
+
+Six independent measurements on 2026-09-04, across four families and three
+instruments, split the same way — and the split is by stratum, not by batch,
+which is why per-batch means kept hiding it:
+
+    CLEAN (at or below chance blind)        LEAKY (well above)
+    transitions          1/12               rhetorical synthesis   7/12
+    words in context     12.5% / 33.3%      cross-text            75.0%
+    numeric maths        24-29%             text structure        87.5%
+    (options-only)                          prose-option PSDA     50-100%
+                                            SEC punctuation       85.7%
+                                            analogies             69.0%
+
+The rule that fits all of it: **an item is safe when several options are
+legal in the abstract and only the withheld material discriminates between
+them.** It leaks when the option set alone settles the answer — by either
+of two routes, and both must be checked:
+
+1. **The options carry propositional content.** Prose claims are readable
+   as claims. Rhetorical synthesis, cross-text, text structure, and the
+   PSDA statistical-inference items all present four full assertions; the
+   stem adds nothing they do not already carry. A solver ranks them for
+   plausibility and never needs the source.
+2. **A general rule picks one.** This is the trap that looks safe. SEC
+   punctuation is a closed system — exactly the property that makes
+   transitions clean — but only one member of each punctuation grid is
+   legal in *any* English sentence, so no passage is required. Closed
+   system is not sufficient; what matters is whether several members
+   survive without the context.
+
+Numeric maths is clean for the strongest version of the reason: four bare
+values are meaningless until the stem says what they measure.
+
+**Consequences for authoring.** Do not ask "is this domain hard?" — ask
+"with the source covered, how many options remain legal?" If the answer is
+one, the item is broken however hard it looks with the passage. This is
+also why the fix is almost never the key: in every leaky stratum measured,
+solvers named a DISTRACTOR-family formula (one concede-then-qualify option
+among absolutes; the key's relation duplicated and reversed; four-role
+option casts). Rewriting keys or shuffling letters cannot reach any of it.
+
+**Where this is weakest.** It is a rule inferred from one day's data, and
+the strata were not chosen to test it. Treat it as the best current
+hypothesis for WHERE to look, never as a substitute for the attack — the
+whole point of the previous corollary is that cheap proxies for semantic
+tells do not exist.
+
 ### Corollary: a check that cannot read its input must not return a number
 
 On 2026-09-04 six separate checkers were found emitting confident verdicts
