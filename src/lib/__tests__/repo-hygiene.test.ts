@@ -88,6 +88,10 @@ describe('environment variables', () => {
     // Injected by Next.js and by GitHub Actions respectively — never
     // set by hand, so documenting them would be misleading.
     'NEXT_RUNTIME', 'GITHUB_REF_NAME', 'GITHUB_SHA',
+    // Provided by the OS. scripts/shots/desktop.mjs reads it only to locate
+    // the output directory; listing it in .env.example would invite someone
+    // to set it, which is worse than leaving it out.
+    'HOME',
   ])
 
   it('every env var read in src/ or scripts/ is documented in .env.example', () => {
