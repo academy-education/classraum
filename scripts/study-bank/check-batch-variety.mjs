@@ -137,6 +137,32 @@ const unwrap = s => s.replace(/^\s*Transcript:\s*/i, '').replace(/^["“]|["”]
 
 function measure(stimuli) {
   const n = stimuli.length
+  /*
+   * REFUSE EMPTY INPUT — do not score it.
+   *
+   * This script reads `stimulus ?? passage`. Item types that carry neither
+   * (SSAT/ISEE Verbal: synonyms and analogies, where `passage` is null on
+   * all 180 live rows) filtered down to an empty array, and every measure
+   * then compared NaN against its threshold. NaN fails every comparison,
+   * so the script printed a confident "4 measure(s) failed" over data it
+   * had never read — and printed the IDENTICAL output for a batch under
+   * test and for a matched sample of the shipped live bank, because
+   * neither was measured.
+   *
+   * Two authors hit this independently on 2026-09-04. It is the same shape
+   * as the verifier that reported "0 problems" over a bank truncated at
+   * 1000 rows: a check that cannot process its input must say so, not
+   * emit a number. check-absolute-tell.mjs already exits 2 on misuse;
+   * this now does the same rather than failing loudly and meaninglessly.
+   */
+  if (n === 0) {
+    console.error(`${label} — 0 stimuli: this batch has no 'stimulus' or 'passage' field.`)
+    console.error(`  Every measure here reads one of those two. With none, each threshold`)
+    console.error(`  compares against NaN and reports FAIL, which is not a measurement.`)
+    console.error(`  This script does not apply to item types without a stimulus`)
+    console.error(`  (synonyms, analogies, standalone sentence completions).`)
+    process.exit(2)
+  }
   const bare = stimuli.map(unwrap)
   const pivot = bare.filter(s => PIVOT.test(s)).length
   const brit = bare.filter(s => BRITISH.test(s)).length
