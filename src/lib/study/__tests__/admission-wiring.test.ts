@@ -87,20 +87,37 @@ describe('credits are priced per block', () => {
     for (const fam of FAMILIES) {
       for (const b of ADMISSION_BLUEPRINT[fam].filter(x => x.scored)) {
         const cost = creditCostForTest(fam, b.key)
-        expect(cost).toBeGreaterThanOrEqual(1)
-        expect(cost).toBeLessThanOrEqual(2)
+        // Lower bound is 2, not 1, since the 2026-09-04 reprice. That
+        // matters: 1 is the FALLBACK, so a scored block priced 1 is
+        // almost certainly a key that fell through rather than a price
+        // anyone chose. This bound is what turns that silent
+        // undercharge into a test failure.
+        expect(cost).toBeGreaterThanOrEqual(2)
+        expect(cost).toBeLessThanOrEqual(3)
       }
     }
   })
 
-  it('prices as the co-founder set on 2026-09-02: SSAT math 2, everything else 1', () => {
-    // Not the length rule the SAT/TOEFL/ACT rows follow. Reversion to the
-    // length rule (reading 2, verbal 2) fails here.
-    expect(creditCostForTest('ssat', 'math')).toBe(2)
-    expect(creditCostForTest('ssat', 'reading')).toBe(1)
-    expect(creditCostForTest('ssat', 'verbal')).toBe(1)
-    expect(creditCostForTest('ssat', 'writing')).toBe(1)
-    for (const b of ADMISSION_BLUEPRINT.isee) expect(creditCostForTest('isee', b.key)).toBe(1)
+  it('prices as Andy set on 2026-09-04', () => {
+    // The whole table, pinned to the instruction rather than to a rule,
+    // because this reprice follows no rule: it is not the length rule
+    // that priced SAT/TOEFL/ACT before, and it discards the co-founder's
+    // 2026-09-02 SSAT/ISEE table. Only the literals can pin it.
+    expect(creditCostForTest('sat', 'reading_writing')).toBe(3)
+    expect(creditCostForTest('sat', 'math')).toBe(3)
+
+    // TOEFL is the ONLY family that splits, so it is the only place a
+    // "price the whole family alike" edit would silently pass.
+    expect(creditCostForTest('toefl', 'reading')).toBe(2)
+    expect(creditCostForTest('toefl', 'writing')).toBe(2)
+    expect(creditCostForTest('toefl', 'speaking')).toBe(3)
+    expect(creditCostForTest('toefl', 'listening')).toBe(3)
+
+    for (const b of ADMISSION_BLUEPRINT.ssat) expect(creditCostForTest('ssat', b.key)).toBe(2)
+    for (const b of ADMISSION_BLUEPRINT.isee) expect(creditCostForTest('isee', b.key)).toBe(2)
+    for (const k of ['english', 'math', 'reading', 'science', 'writing']) {
+      expect(creditCostForTest('act', k)).toBe(3)
+    }
   })
 
   it('lists the unscored blocks explicitly too, so 1 is a price and not a fallback', () => {
@@ -111,6 +128,9 @@ describe('credits are priced per block', () => {
 
   it('does not accidentally price a bank section that is not a block key', () => {
     // For ISEE, 'math' is a bank section, never a request section.
+    // Since the reprice this is a sharper test than it was: every real
+    // ISEE block costs 2, so the fallback value 1 can no longer be
+    // confused with a genuine price.
     expect(creditCostForTest('isee', 'math')).toBe(1)  // falls back
     expect(ADMISSION_BLUEPRINT.isee.some(b => b.key === 'math')).toBe(false)
   })

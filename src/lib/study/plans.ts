@@ -5,8 +5,9 @@
  * subscription UI all read from here so a price change is one edit.
  *
  * Credits: every full mock test consumes credits per section (see
- * SECTION_CREDIT_COST — e.g. SAT R&W/Math 2, TOEFL Reading/Writing 1,
- * Speaking/Listening 2). Retakes, resume, review, and FAILED starts
+ * SECTION_CREDIT_COST — SAT R&W/Math 3, TOEFL Reading/Writing 2,
+ * Speaking/Listening 3, ACT all 3, SSAT/ISEE all 2). Retakes, resume,
+ * review, and FAILED starts
  * never consume a credit (routes reserve at start and refund on any
  * failure path).
  */
@@ -43,9 +44,12 @@ export const STUDY_PLANS: Record<string, StudyPlan> = {
     name_en: 'Free',
     name_ko: '무료',
   },
-  // 2026-07 credit-system relaunch: sections cost 1-2 credits each (see
-  // SECTION_CREDIT_COST below) and the good-better-best ladder is
-  // Basic 10 / Premium 20 / Premium Plus 30 credits.
+  // 2026-07 credit-system relaunch: sections cost 2-3 credits each (see
+  // SECTION_CREDIT_COST below, repriced 2026-09-04) and the
+  // good-better-best ladder is Basic 10 / Premium 20 / Premium Plus 30
+  // credits. NOTE the grants did NOT change with the reprice, so tests
+  // per month fell by roughly a third at every rung: Basic buys 3 SAT
+  // sections where it used to buy 5.
   general_v1: {
     id: 'general_v1',
     tier: 'general',
@@ -310,35 +314,48 @@ export const CREDIT_PACK = CREDIT_PACKS[0]!
 export const TRIAL_CREDITS = 3
 
 /** One-time test credits granted with the auto-provisioned Free plan.
- *  Since the 2026-07 relaunch EVERY full mock test consumes credits
- *  (bank SAT included), so this is enough for exactly one SAT section
- *  test (2 credits). */
+ *  WARNING, unchanged by the 2026-09-04 reprice and no longer what its
+ *  old comment claimed: 2 credits used to buy exactly one SAT section.
+ *  SAT is now 3, so a free user can no longer try SAT, ACT, or TOEFL
+ *  Speaking/Listening at all — only the 2-credit sections (TOEFL Reading
+ *  or Writing, any SSAT, any ISEE). Raising this to 3 is a one-line
+ *  change; it is left alone because it is a pricing decision, not a
+ *  wiring one. */
 export const FREE_CREDITS = 2
 
 /**
- * Per-section full-test credit costs (2026-07 credit relaunch). EVERY
- * full mock test now consumes credits — including bank-assembled SAT
- * tests, which were previously free. Longer / costlier-to-serve
- * sections price at 2; shorter ones at 1. Anything unlisted costs 1.
+ * Per-section full-test credit costs. EVERY full mock test consumes
+ * credits, bank-assembled SAT included.
+ *
+ * Repriced 2026-09-04 on Andy's instruction: SAT 3, TOEFL Reading and
+ * Writing 2 with Speaking and Listening 3, ACT 3, SSAT and ISEE 2. This
+ * replaces both earlier schemes — the length rule that priced SAT/TOEFL/
+ * ACT, and the co-founder's 2026-09-02 SSAT/ISEE table. No section costs
+ * 1 any more.
+ *
+ * THE FALLBACK IS NOW THE CHEAPEST PRICE IN THE SYSTEM. creditCostForTest
+ * returns 1 for an unlisted key, and 1 is below every real price, so a
+ * key that falls through undercharges instead of merely mispricing. That
+ * is exactly the ISEE bug of 2026-08 (sheet showed 1, route reserved 2)
+ * with a wider gap, so every scored block key is listed explicitly and
+ * admission-wiring.test.ts asserts the literals are present.
  */
 const SECTION_CREDIT_COST: Record<string, Record<string, number>> = {
-  sat: { reading_writing: 2, math: 2 },
-  toefl: { reading: 1, writing: 1, speaking: 2, listening: 2 },
+  sat: { reading_writing: 3, math: 3 },
+  toefl: { reading: 2, writing: 2, speaking: 3, listening: 3 },
   // SSAT / ISEE, keyed by blueprint block key (see SECTION_TOPIC for why
-  // block key rather than bank section). Prices set by the co-founder on
-  // 2026-09-02 and NOT by the length rule the other rows follow: SSAT
-  // Math is 2 because it is the two real quantitative sections served as
-  // one block; every other SSAT and ISEE block, essays included, is 1.
-  // Listed explicitly so "priced 1" and "unlisted, defaulted to 1" stay
-  // distinguishable in the source (admission-wiring.test.ts reads it).
-  ssat: { math: 2, reading: 1, verbal: 1, writing: 1 },
-  isee: { quant: 1, verbal: 1, reading: 1, mathach: 1, essay: 1 },
-  // ACT, keyed by blueprint section key. Every multiple-choice section is
-  // long (36-50 questions, 35-50 minutes), so all price at 2 under the
-  // same length rule the rows above follow. Writing is free-response and
-  // not yet served; listed at 1 so an unlisted key cannot silently price
-  // it differently from the sheet.
-  act: { english: 2, math: 2, reading: 2, science: 2, writing: 1 },
+  // block key rather than bank section). Every block is 2, essays and
+  // SSAT Writing included. Listed explicitly so "priced 2" and "unlisted,
+  // defaulted to 1" stay distinguishable in the source — that distinction
+  // is now load-bearing, because the fallback (1) is CHEAPER than every
+  // real price, so a key that falls through undercharges silently.
+  // admission-wiring.test.ts reads these literals.
+  ssat: { math: 2, reading: 2, verbal: 2, writing: 2 },
+  isee: { quant: 2, verbal: 2, reading: 2, mathach: 2, essay: 2 },
+  // ACT, keyed by blueprint section key. All 3, Writing included — even
+  // though Writing is free-response and not yet served, so that when it
+  // ships it cannot be the one section priced by a stale literal.
+  act: { english: 3, math: 3, reading: 3, science: 3, writing: 3 },
 }
 
 /** Credit cost to start one full test for (family, section). */
