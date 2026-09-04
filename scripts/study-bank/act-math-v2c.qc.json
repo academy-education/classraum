@@ -1,0 +1,226 @@
+{
+  "ACT-M-G01": {
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "key_correct": true,
+    "single_defensible": true,
+    "note": "Key 12 confirmed independently (DF=16 printed in the figure cross-checks the 2/3 factor). Not hard: the stem states the correspondence A-D, B-E, C-F in prose, so the ratio is not reversible by an attentive reader, and DE=8<AB=12 settles the direction without the figure. 14 (constant subtraction) is filler; 16 is the already-printed DF, so a student who checks what is being asked can eliminate it. File label hard -> medium."
+  },
+  "ACT-M-G02": {
+    "difficulty": "hard",
+    "distractor_quality": "strong",
+    "key_correct": true,
+    "single_defensible": true,
+    "note": "Key 58 confirmed: 10,10,24 fails 10+10>24, so 10,24,24 is the only existing triangle. Genuinely hard by the second-constraint test - flawless arithmetic on the rejected case gives 44, which is an option, and only the triangle inequality kills it. Unique because a third side equal to neither given value would not be isosceles."
+  },
+  "ACT-M-G03": {
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "key_correct": true,
+    "single_defensible": true,
+    "note": "Key 240 confirmed via 24x10 and via 15x4^2. The squared-units trap (60) is real, but converting each dimension first - the natural route - avoids it without noticing anything extra, so medium. 68 (perimeter of the actual patio) is dimensionally wrong and weak."
+  },
+  "ACT-M-G04": {
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "key_correct": true,
+    "single_defensible": true,
+    "note": "Key 85 confirmed: D is opposite B, 180-95. Figure label positions check out (74 at A, 95 at B, x at D) and A=74 implies C=106 with no contradiction. 106 (pairing D with A) is a strong trap. Standard cyclic-quadrilateral recall, so medium."
+  },
+  "ACT-M-G05": {
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "key_correct": true,
+    "single_defensible": true,
+    "note": "Key 7.2 confirmed by a different route: AD = AB^2/AC = 5.4, BD = sqrt(81-29.16) = 7.2. Medium, not hard - the work is Pythagoras plus the area-two-ways identity, which is technique rather than a second binding constraint; 7.5 only catches a student who assumes D is the midpoint despite the not-to-scale caption. 10.5 (average of the legs) and 6 (half a leg) are filler. File label hard -> medium. See the G05/G10 duplication note."
+  },
+  "ACT-M-G06": {
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "key_correct": true,
+    "single_defensible": true,
+    "note": "Key 4 confirmed (144pi / 36pi). Distractors are a clean ratio ladder (6, 13.5, 20.25). Medium. This item and ACT-M-I10 are the same item - see the cross-item note."
+  },
+  "ACT-M-G07": {
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "key_correct": true,
+    "single_defensible": true,
+    "note": "Key 20 confirmed: the two labels sit below l right of t and above m left of t, so they are alternate interior angles; 3x+10 = 5x-30 gives x=20 and both angles measure 70. Above easy: the co-interior misread (25) and reporting the angle instead of x (70) are both live, and identifying the angle pair from the figure is the whole item. File label easy -> medium."
+  },
+  "ACT-M-G08": {
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "key_correct": true,
+    "single_defensible": true,
+    "note": "Key 44 confirmed. Single-step recall; 484 (4 x area) is filler."
+  },
+  "ACT-M-G09": {
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "key_correct": true,
+    "single_defensible": true,
+    "note": "Key 6 confirmed by completing the square independently: r = sqrt((D/2)^2+(E/2)^2-F) = sqrt(9+16+11) = 6. 36 (reporting r^2) and 25 (dropping the constant) are both standard errors."
+  },
+  "ACT-M-G10": {
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "key_correct": true,
+    "single_defensible": true,
+    "note": "Key 9.6 confirmed a different way: AC = 16, altitude = AC sin A = 16(0.6) = 9.6. Medium for the same reason as G05 - the altitude identity is technique, and 10 (half the hypotenuse, i.e. the median) only catches a specific confusion. File label hard -> medium. Substantively duplicates G05: the same 3-4-5 triangle scaled 4/3 (9-12-15 vs 12-16-20)."
+  },
+  "ACT-M-G11": {
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "key_correct": true,
+    "single_defensible": true,
+    "note": "Key 88 confirmed by decomposition: 8x8 rectangle plus a 6-8-10 right triangle = 64+24. The figure is internally consistent and, despite the caption, actually drawn to scale (15 px per unit throughout). 110, 176 and 112 all map to specific errors."
+  },
+  "ACT-M-G12": {
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "key_correct": true,
+    "single_defensible": true,
+    "note": "Key 85 confirmed via radians: theta = arc/r = 2pi/3, area = r^2 theta/2 = 27pi = 84.82 -> 85. 254 (whole circle) is strong; 19 (arc length read as an area) and 42 (dividing by 6) are weak."
+  },
+  "ACT-M-G13": {
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "key_correct": true,
+    "single_defensible": true,
+    "note": "Key 45 confirmed: the figure is an 8-vertex regular polygon and the dashed ray extends the side through the marked vertex, so x is an exterior angle, 360/8. Single answer, but the angle arc is drawn sloppily - it spans only about 45 to 52 degrees off the vertex and never reaches the vertical side, so it hints at the wedge rather than delimiting it. The x label does sit inside the correct wedge. Worth tightening the arc, because 40 (nonagon) is a distractor and any ambiguity about which angle is marked compounds it."
+  },
+  "ACT-M-G14": {
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "key_correct": true,
+    "single_defensible": true,
+    "note": "Key 13 confirmed by enumeration of 5..17. All three distractors are the standard off-by-one/endpoint/wrong-quantity errors."
+  },
+  "ACT-M-G15": {
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "key_correct": true,
+    "single_defensible": true,
+    "note": "Key 288 confirmed: s = 12/sqrt(3) = 6.928, s^2 = 48, 6(48) = 288 - and computing s numerically first still lands on 288, so there is no rounding trap. Medium not hard: 432 requires misremembering the space diagonal as s*sqrt(2), which is a formula error rather than a missed constraint, and the stem says 'through the interior' explicitly. File label hard -> medium."
+  },
+  "ACT-M-G16": {
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "key_correct": true,
+    "single_defensible": true,
+    "note": "Key 30 confirmed by shoelace (60/2) and by base 6 x height 5. PQRS is a parallelogram because SR = 8-2 = 6 = PQ; the 35 distractor is the trapezoid misread that treats 8 as a base. The grid is drawn to scale, so the parallelogram is visible, which softens that trap."
+  },
+  "ACT-M-I01": {
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "key_correct": true,
+    "single_defensible": true,
+    "note": "Key 77.76 confirmed (80 x 0.75 x 1.2 x 1.08). Distractors are strong - 72 (stopping before tax) and 82.08 (netting the percents) are both real - but the item is three multiplications with no hidden constraint. File label hard -> medium."
+  },
+  "ACT-M-I02": {
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "key_correct": true,
+    "single_defensible": true,
+    "note": "Key 48 confirmed by a unit-block method: 5 pages per 12 seconds, so 1200 pages = 2880 s = 48 min. Wording is tight - both printers run the whole time, so the split does not matter. Medium: the only second constraint is the unit conversion, which the question asks for explicitly. File label hard -> medium."
+  },
+  "ACT-M-I03": {
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "key_correct": true,
+    "single_defensible": true,
+    "note": "Key 28 confirmed (112-84). Distractors 2, 16 and 26 each map to a named error."
+  },
+  "ACT-M-I04": {
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "key_correct": true,
+    "single_defensible": true,
+    "note": "Key 1.875 confirmed. Single proportion; distractors are the usual inverted-ratio set."
+  },
+  "ACT-M-I05": {
+    "difficulty": "hard",
+    "distractor_quality": "strong",
+    "key_correct": true,
+    "single_defensible": true,
+    "note": "Key 8 confirmed by a different route: the non-acid 51 mL must be 75 percent of the final volume, so the total is 68 and x = 8. Genuinely hard - a student who executes flawlessly but holds the denominator at 60 gets 6, which is an option, and only noticing that pure acid changes both numerator and denominator kills it."
+  },
+  "ACT-M-I06": {
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "key_correct": true,
+    "single_defensible": true,
+    "note": "Key 300 confirmed (45/0.15). 180 is a strong trap (the number taking Spanish); 6.75 is filler."
+  },
+  "ACT-M-I07": {
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "key_correct": true,
+    "single_defensible": true,
+    "note": "Key 90 confirmed by deviations: class A is 4 below the combined mean over 20 students, a deficit of 80, so class B must be 80/10 = 8 above, i.e. 90. Standard weighted average, and 86 (treating 82 as a midpoint) is the expected trap - but the unequal sizes are stated plainly. File label hard -> medium."
+  },
+  "ACT-M-I08": {
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "key_correct": true,
+    "single_defensible": true,
+    "note": "Key 180 confirmed: 4 parts = 60, so one part is 15 and 12 parts is 180. Distractors are the part/share confusions."
+  },
+  "ACT-M-I09": {
+    "difficulty": "hard",
+    "distractor_quality": "strong",
+    "key_correct": true,
+    "single_defensible": true,
+    "note": "Key 22 confirmed by checking all three cases independently: x=22 gives median 12 and mean 12; x=9.5 gives median 9.5 and mean 9.5; x=2 gives median 8 and mean 8. All three are consistent, so the item turns entirely on 'greatest possible' plus the case split - the strongest item in the batch. 9.5 and 2 are not errors but genuine solutions to a stopped-early search, which is what makes them work."
+  },
+  "ACT-M-I10": {
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "key_correct": true,
+    "single_defensible": true,
+    "note": "Key 4 confirmed (16x25/100). Distractor ladder is clean. Medium. Duplicates ACT-M-G06 - same formula, same key value 4, near-verbatim explanation prose. See the cross-item note."
+  },
+  "ACT-M-I11": {
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "key_correct": true,
+    "single_defensible": true,
+    "note": "Key 14.4 confirmed (25 mpg, 360/25). 25 mpg being an option is a good trap for reporting the intermediate."
+  },
+  "ACT-M-I12": {
+    "difficulty": "easy",
+    "distractor_quality": "strong",
+    "key_correct": true,
+    "single_defensible": true,
+    "note": "Key 25 confirmed (1200/4800). One-step percent change; 20 (dividing by the new value) is the only real trap."
+  },
+  "ACT-M-I13": {
+    "difficulty": "hard",
+    "distractor_quality": "plausible",
+    "key_correct": true,
+    "single_defensible": true,
+    "note": "Key 112 confirmed (2700 bottles, 112.5 cases, floor). Hard by the second-constraint test: flawless arithmetic yields 112.5 and both 112 and 113 are on the list, so the 'shipped only when full' clause is load-bearing and the trap runs against the habitual round-up. 1 (using 60 seconds) is weak, 150 is arbitrary."
+  },
+  "ACT-M-I14": {
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "key_correct": true,
+    "single_defensible": true,
+    "note": "Key 7 confirmed: SA = 2(12+15+20) = 94, 94/15 = 6.27, ceil to 7. Not hard - unlike I13 the rounding runs in the habitual direction for a 'how much must I buy' question, so 6 catches only a careless reader. 4 (using the volume) is weak."
+  },
+  "ACT-M-I15": {
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "key_correct": true,
+    "single_defensible": true,
+    "note": "Key 78.75 confirmed (4.375 x 18). One multiplication; every distractor is a rounding-the-mixed-number variant, which a student with a calculator never generates. File label medium -> easy."
+  },
+  "ACT-M-I16": {
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "key_correct": true,
+    "single_defensible": true,
+    "note": "Key 15 confirmed a different way: over 30 hours the pipe fills 5 tanks and the drain empties 3, a net 2 tanks per 30 hours, so 15 hours per tank. Medium: the stem plainly says the drain empties, so subtracting rather than adding is not a hidden constraint. 16 and 60 are filler. File label hard -> medium."
+  }
+}

@@ -49,3 +49,40 @@ describe('rankByBand', () => {
     expect(out[out.length - 1]!.id).toBe('h0')
   })
 })
+
+// Regression, 2026-09-04. The original tests in this file all ran with an
+// EMPTY exposure map, where unseenFirst is effectively a no-op and the band
+// sort applied to the fallback pool survived by accident. Live, a student's
+// third hard form has exposures, unseenFirst reordered the pool, and
+// Standard English Conventions fell from hard straight to EASY past 181
+// available medium items. The exposures are the whole point of this test.
+describe('band fallback with exposures present', () => {
+  const mk = (id: string, difficulty: 'easy' | 'medium' | 'hard') => ({ id, difficulty })
+
+  it('prefers medium over easy when the hard band is dry AND items are seen', () => {
+    const items = [
+      ...Array.from({ length: 2 }, (_, i) => mk(`h${i}`, 'hard')),
+      ...Array.from({ length: 12 }, (_, i) => mk(`m${i}`, 'medium')),
+      ...Array.from({ length: 12 }, (_, i) => mk(`e${i}`, 'easy')),
+    ]
+    // seen: both hard items, plus a scattering of medium and easy
+    const exposures = new Map<string, string>([
+      ['h0', 's'], ['h1', 's'], ['m0', 's'], ['m1', 's'], ['e0', 's'], ['e1', 's'],
+    ])
+    const out = rankByBand(items, ['hard'], exposures, 'seed')
+    const unseen = out.filter(x => !exposures.has(x.id))
+    const firstEasy = unseen.findIndex(x => x.difficulty === 'easy')
+    const lastMedium = unseen.map(x => x.difficulty).lastIndexOf('medium')
+    expect(firstEasy).toBeGreaterThan(lastMedium)
+    // every unseen medium must precede every unseen easy
+    expect(unseen.filter(x => x.difficulty === 'medium')).toHaveLength(10)
+  })
+
+  it('keeps the same preference among already-seen items', () => {
+    const items = [mk('m0', 'medium'), mk('e0', 'easy'), mk('h0', 'hard')]
+    const exposures = new Map<string, string>([['m0', 's'], ['e0', 's'], ['h0', 's']])
+    const out = rankByBand(items, ['hard'], exposures, 'seed')
+    const bands = out.map(x => x.difficulty)
+    expect(bands.indexOf('medium')).toBeLessThan(bands.indexOf('easy'))
+  })
+})

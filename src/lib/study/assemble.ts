@@ -1642,7 +1642,20 @@ export function rankByBand<T extends { id: string; difficulty: 'easy' | 'medium'
   const p = unseenFirst(primary, exposures, seed)
   const r = unseenFirst(rest, exposures, seed + ':fallback')
   const seen = (x: T) => exposures.has(x.id)
-  return [...p.filter(x => !seen(x)), ...r.filter(x => !seen(x)), ...p.filter(seen), ...r.filter(seen)]
+  // unseenFirst REORDERS, so it discards the band sort applied to `rest`
+  // above. With empty exposures it happens to be a no-op, which is why the
+  // original unit test passed while the live draw fell back from hard
+  // straight to EASY for Standard English Conventions on a student's third
+  // form - past 181 available medium items. Re-apply the band order inside
+  // each partition; Array.sort is stable, so the seeded shuffle survives as
+  // the tie-break within a band.
+  const byBand = (a: T, b: T) => order.indexOf(a.difficulty) - order.indexOf(b.difficulty)
+  return [
+    ...p.filter(x => !seen(x)),
+    ...r.filter(x => !seen(x)).sort(byBand),
+    ...p.filter(seen),
+    ...r.filter(seen).sort(byBand),
+  ]
 }
 
 export async function assembleFromBank(p: AssembleParams, seed = 'bank'): Promise<AssembledTest> {

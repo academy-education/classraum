@@ -3,7 +3,7 @@
     "id": "ACT-M-G01",
     "domain": "Geometry",
     "subskill": "similar triangles and correspondence",
-    "difficulty": "hard",
+    "difficulty": "medium",
     "prompt": "In the figure, triangle ABC is similar to triangle DEF, with vertex A corresponding to vertex D, vertex B corresponding to vertex E, and vertex C corresponding to vertex F. All lengths are in centimeters. What is the length of EF, in centimeters?",
     "graphic": {
       "type": "svg",
@@ -77,7 +77,7 @@
     "id": "ACT-M-G05",
     "domain": "Geometry",
     "subskill": "altitude to the hypotenuse of a right triangle",
-    "difficulty": "hard",
+    "difficulty": "medium",
     "prompt": "In the figure, angle ABC is a right angle and BD is perpendicular to AC. All lengths are in inches. What is the length of BD, in inches?",
     "graphic": {
       "type": "svg",
@@ -114,7 +114,7 @@
     "id": "ACT-M-G07",
     "domain": "Geometry",
     "subskill": "angles formed by parallel lines and a transversal",
-    "difficulty": "easy",
+    "difficulty": "medium",
     "prompt": "In the figure, lines l and m are parallel and line t is a transversal. What is the value of x?",
     "graphic": {
       "type": "svg",
@@ -162,22 +162,6 @@
     "correct_answer": "6",
     "explanation": "Completing the square gives (x - 3)^2 + (y + 4)^2 = 11 + 9 + 16 = 36, so the radius is sqrt(36) = 6. Reporting r^2 as the radius gives 36. Ignoring the constant term and adding only the two completing-the-square constants gives r^2 = 25, and reporting that gives 25. Reading the constant 11 in the equation as r^2 gives 11.",
     "solve": "const D=-6, E=8, F=-11;\nreturn Math.sqrt((D/2)*(D/2)+(E/2)*(E/2)-F);"
-  },
-  {
-    "id": "ACT-M-G10",
-    "domain": "Geometry",
-    "subskill": "right triangle trigonometry and altitudes",
-    "difficulty": "hard",
-    "prompt": "In right triangle ABC, the right angle is at C, the hypotenuse AB has length 20 centimeters, and sin A = 3/5. What is the length, in centimeters, of the altitude drawn from C to AB?",
-    "choices": [
-      "9.6",
-      "10",
-      "12",
-      "16"
-    ],
-    "correct_answer": "9.6",
-    "explanation": "sin A = BC/AB, so BC = 12 and AC = sqrt(400 - 144) = 16. The area is (1/2)(12)(16), and also (1/2)(20)(h), so h = 192/20 = 9.6. The altitude from the right angle equals half the hypotenuse only when the legs are equal, which they are not here, so 10 is wrong. Reporting a leg instead of the altitude gives 12 or 16.",
-    "solve": "const hyp=20, sinA=3/5;\nconst opp=sinA*hyp, adj=Math.sqrt(hyp*hyp-opp*opp);\nreturn Math.round(opp*adj/hyp*1000)/1000;"
   },
   {
     "id": "ACT-M-G11",
@@ -257,7 +241,7 @@
     "id": "ACT-M-G15",
     "domain": "Geometry",
     "subskill": "diagonals and surface area of a cube",
-    "difficulty": "hard",
+    "difficulty": "medium",
     "prompt": "The length of a diagonal running from one corner of a cube to the opposite corner, through the interior of the cube, is 12 centimeters. What is the total surface area of the cube, in square centimeters?",
     "choices": [
       "96",
@@ -294,7 +278,7 @@
     "id": "ACT-M-I01",
     "domain": "Integrating Essential Skills",
     "subskill": "successive percent change",
-    "difficulty": "hard",
+    "difficulty": "medium",
     "prompt": "A jacket has a list price of 80 dollars. During a sale the price is reduced by 25 percent. After the sale ends, the reduced price is increased by 20 percent. A sales tax of 8 percent is then applied to the resulting price. What is the final amount paid, in dollars?",
     "choices": [
       "64.80",
@@ -310,7 +294,7 @@
     "id": "ACT-M-I02",
     "domain": "Integrating Essential Skills",
     "subskill": "combined rates and time units",
-    "difficulty": "hard",
+    "difficulty": "medium",
     "prompt": "Printer A prints one page every 4 seconds and printer B prints one page every 6 seconds. The two printers run at the same time on the same job of 1,200 pages, each printing a share of the job, until the job is finished. How many minutes does the job take?",
     "choices": [
       "48",
@@ -390,7 +374,7 @@
     "id": "ACT-M-I07",
     "domain": "Integrating Essential Skills",
     "subskill": "weighted average",
-    "difficulty": "hard",
+    "difficulty": "medium",
     "prompt": "Class A has 20 students and their mean score on a test is 78. Class B has 10 students. When the scores of both classes are combined, the mean of all 30 scores is 82. What is the mean score of class B?",
     "choices": [
       "84",
@@ -433,22 +417,6 @@
     "correct_answer": "22",
     "explanation": "Which number is the median depends on where x falls, so all three cases must be checked. If x is at least 12 the median is 12, and (38 + x)/5 = 12 gives x = 22, which is consistent. If x is between 8 and 12 the median is x, and (38 + x)/5 = x gives x = 9.5, also consistent. If x is at most 8 the median is 8, and x = 2, again consistent. All three work, so the greatest value is 22. Stopping at the first case found gives 9.5 or 2, and reporting the median rather than x gives 12.",
     "solve": "const known=[3,8,12,15];\nconst S=known.reduce((a,b)=>a+b,0);\nlet best=null;\nfor(let i=-4000;i<=4000;i++){const x=i/2; const v=known.concat([x]).sort((a,b)=>a-b); if(Math.abs((S+x)/5-v[2])<1e-9) best=(best===null||x>best)?x:best;}\nreturn best;"
-  },
-  {
-    "id": "ACT-M-I10",
-    "domain": "Integrating Essential Skills",
-    "subskill": "volume and scaling",
-    "difficulty": "medium",
-    "prompt": "A cylinder has a radius of 4 centimeters and a height of 25 centimeters. A second cylinder has the same volume as the first and a radius of 10 centimeters. What is the height, in centimeters, of the second cylinder?",
-    "choices": [
-      "4",
-      "10",
-      "62.5",
-      "156.25"
-    ],
-    "correct_answer": "4",
-    "explanation": "Equal volumes give 4^2 * 25 = 10^2 * h, so h = 400/100 = 4. Scaling the height by the ratio of the radii, 25 * 4/10, gives 10. Using the reciprocal ratio gives 25 * 10/4 = 62.5, and using the reciprocal ratio squared gives 156.25.",
-    "solve": "const r1=4, h1=25, r2=10;\nreturn r1*r1*h1/(r2*r2);"
   },
   {
     "id": "ACT-M-I11",
@@ -518,7 +486,7 @@
     "id": "ACT-M-I15",
     "domain": "Integrating Essential Skills",
     "subskill": "scale and mixed numbers",
-    "difficulty": "medium",
+    "difficulty": "easy",
     "prompt": "On a map, 1 inch represents 18 miles. Two towns are 4 and 3/8 inches apart on the map. How many miles apart are the two towns?",
     "choices": [
       "72",
@@ -534,7 +502,7 @@
     "id": "ACT-M-I16",
     "domain": "Integrating Essential Skills",
     "subskill": "opposing rates of work",
-    "difficulty": "hard",
+    "difficulty": "medium",
     "prompt": "A pipe can fill an empty tank in 6 hours. A drain at the bottom of the same tank can empty a full tank in 10 hours. If the tank starts empty and both the pipe and the drain are open the whole time, how many hours does it take to fill the tank?",
     "choices": [
       "3.75",
