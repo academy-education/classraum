@@ -2,641 +2,641 @@
   {
     "id": "IM7-01",
     "domain": "Math",
-    "subskill": "integer solutions to a two-item purchase",
-    "difficulty": "hard",
-    "prompt": "Pens cost 4 dollars each and notebooks cost 7 dollars each. Maria buys at least one pen and at least one notebook and spends exactly 53 dollars. What is the greatest number of pens she could have bought?",
+    "subskill": "Ratio: scaling one part to find another",
+    "difficulty": "medium",
+    "prompt": "A bread recipe uses flour and sugar in the ratio 7 : 3 by weight. A baker uses 9 kilograms of sugar. How many kilograms of flour does the recipe call for?",
     "choices": [
-      "1",
-      "7",
-      "8",
-      "11"
+      "16",
+      "21",
+      "30",
+      "63"
     ],
-    "correct_answer": "8",
-    "explanation": "The money left after buying n notebooks is 53 minus 7n, and that amount must be a positive multiple of 4 because pens cost 4 dollars each. Only n equal to 3 and n equal to 7 work, giving 8 pens or 1 pen, so the greatest number of pens is 8. Buying one notebook and spending the remaining 46 dollars on pens would give 11 pens, but 46 is not a multiple of 4, so that purchase cannot come to exactly 53 dollars.",
-    "solve": "let best=null; for(let n=1;n<=7;n++){ const rem=53-7*n; if(rem>0 && rem%4===0){ const p=rem/4; if(best===null||p>best) best=p; } } return best;"
+    "correct_answer": "21",
+    "explanation": "The sugar part of the ratio is 3, and 9 kilograms of sugar means each ratio part is 9 divided by 3, or 3 kilograms. Flour is 7 parts, so it weighs 7 times 3, which is 21 kilograms.",
+    "solve": "const sugar = 9, fPart = 7, sPart = 3; const unit = sugar / sPart; return String(unit * fPart);"
   },
   {
     "id": "IM7-02",
     "domain": "Math",
-    "subskill": "radical equation with an extraneous root",
-    "difficulty": "hard",
-    "prompt": "If the square root of x + 7 is equal to x - 5, what is the value of x?",
+    "subskill": "Least common multiple in context",
+    "difficulty": "medium",
+    "prompt": "One lighthouse flashes every 12 seconds and another flashes every 18 seconds. They flash at the same instant right now. How many seconds pass before they next flash at the same instant?",
     "choices": [
-      "2",
-      "5",
-      "7",
-      "9"
+      "6",
+      "24",
+      "30",
+      "36"
     ],
-    "correct_answer": "9",
-    "explanation": "Squaring both sides gives x + 7 equal to x squared minus 10x plus 25, so x squared minus 11x plus 18 equals 0 and x is 2 or 9. Only 9 can be checked back into the original equation: the square root of 16 is 4, and 9 minus 5 is also 4. For x equal to 2 the left side is 3 and the right side is negative 3, so 2 is an extraneous root introduced by the squaring step.",
-    "solve": "for(let x=0;x<=100;x+=0.5){ if(Math.abs(Math.sqrt(x+7)-(x-5))<1e-9) return x; } return null;"
+    "correct_answer": "36",
+    "explanation": "The next simultaneous flash happens at the first time that is a multiple of both 12 and 18. Multiples of 12 are 12, 24, 36; the first of these that 18 also divides is 36 seconds.",
+    "solve": "const a = 12, b = 18; let n = a; while (n % b !== 0) n += a; return String(n);"
   },
   {
     "id": "IM7-03",
     "domain": "Math",
-    "subskill": "counting triangles under the triangle inequality",
-    "difficulty": "hard",
-    "prompt": "A triangle has a perimeter of 20 centimeters. Exactly two of its sides are equal in length, and all three side lengths are whole numbers of centimeters. How many different such triangles are possible?",
+    "subskill": "Division with a remainder in context",
+    "difficulty": "medium",
+    "prompt": "A school seats 3,425 students in rows of 9. Every row is filled completely before a new row is started. How many students sit in the last, incomplete row?",
     "choices": [
-      "4",
       "5",
-      "9",
-      "10"
+      "14",
+      "380",
+      "381"
     ],
-    "correct_answer": "4",
-    "explanation": "If the two equal sides each measure a, the third side is 20 minus 2a, which must be positive and must be shorter than the sum of the other two, so 2a is greater than 20 minus 2a and a is greater than 5. That leaves a equal to 6, 7, 8, or 9, giving the triangles 6-6-8, 7-7-6, 8-8-4, and 9-9-2, so there are 4. Simply requiring the third side to be positive would allow a from 1 to 9 and give 9, but sets such as 3-3-14 do not close into a triangle.",
-    "solve": "let c=0; for(let a=1;a<20;a++){ const b=20-2*a; if(b>0 && b!==a && 2*a>b) c++; } return c;"
+    "correct_answer": "5",
+    "explanation": "Dividing 3,425 by 9 gives 380 complete rows, which hold 3,420 students. The 5 students left over form the last incomplete row.",
+    "solve": "const total = 3425, per = 9; return String(total % per);"
   },
   {
     "id": "IM7-04",
     "domain": "Math",
-    "subskill": "minimizing the largest of several distinct integers",
-    "difficulty": "hard",
-    "prompt": "Five different positive integers have an average of 10. What is the least possible value of the largest of the five integers?",
+    "subskill": "Percent increase from two prices",
+    "difficulty": "medium",
+    "prompt": "The price of a shirt rose from $40 to $46. By what percent did the price increase?",
     "choices": [
-      "10",
-      "11",
-      "12",
-      "14"
+      "6%",
+      "13%",
+      "15%",
+      "87%"
     ],
-    "correct_answer": "12",
-    "explanation": "The five integers add to 50. To keep the largest one small, the other four should be as large as they can be, which means the four values just below it. If the largest is m, the greatest possible total is m plus m minus 1 plus m minus 2 plus m minus 3 plus m minus 4, which is 5m minus 10. This must be at least 50, so m is at least 12, and 12, 11, 10, 9, 8 does add to 50. A largest value of 11 caps the total at 45, which is short of 50.",
-    "solve": "for(let m=1;m<=100;m++){ let s=0; for(let k=0;k<5;k++) s+=m-k; if(m-4>=1 && s>=50) return m; } return null;"
+    "correct_answer": "15%",
+    "explanation": "The increase is $6, and a percent increase compares that rise to the ORIGINAL price: 6 divided by 40 equals 0.15, which is 15 percent.",
+    "solve": "const oldP = 40, newP = 46; return String((newP - oldP) / oldP * 100) + '%';"
   },
   {
     "id": "IM7-05",
     "domain": "Math",
-    "subskill": "packing with both a minimum and a maximum capacity",
-    "difficulty": "hard",
-    "prompt": "A worker packs 500 cans into boxes. Each box must hold at least 8 cans and no more than 12 cans, and every can must be packed. What is the greatest number of boxes she can use?",
+    "subskill": "Two-part cost: fixed fee plus hourly rate",
+    "difficulty": "medium",
+    "prompt": "A plumber charges a flat $45 visit fee plus $30 for each hour of work. What is the total charge for a job that takes 3.5 hours?",
     "choices": [
-      "41",
-      "42",
-      "50",
-      "62"
+      "$75",
+      "$105",
+      "$135",
+      "$150"
     ],
-    "correct_answer": "62",
-    "explanation": "To use as many boxes as possible, each box should hold as few cans as it is allowed to hold, which is 8. Sixty-two boxes account for 496 cans, and the 4 remaining cans can be added to four of the boxes, bringing them to 9 each, which is still within the limit of 12. Sixty-three boxes would need at least 504 cans. Dividing 500 by the maximum of 12 gives about 41 boxes, but that is the fewest boxes, not the most.",
-    "solve": "for(let b=Math.floor(500/8);b>=1;b--){ if(8*b<=500 && 12*b>=500) return b; } return null;"
+    "correct_answer": "$150",
+    "explanation": "The hourly part is 30 times 3.5, which is $105, and the flat fee of $45 is charged once in addition to it, giving $150 in all.",
+    "solve": "const fee = 45, rate = 30, hrs = 3.5; return '$' + String(fee + rate * hrs);"
   },
   {
     "id": "IM7-06",
     "domain": "Math",
-    "subskill": "average of the values removed from a data set",
-    "difficulty": "hard",
-    "prompt": "The 20 students in a class had a mean score of 78 on a test. When the two lowest scores are left out, the mean of the remaining 18 scores is 81. What is the mean of the two scores that were left out?",
+    "subskill": "Simple probability from a collection",
+    "difficulty": "medium",
+    "prompt": "A bag holds 4 red marbles, 5 blue marbles, and 6 green marbles. One marble is drawn without looking. What is the probability that it is red?",
     "choices": [
-      "48",
-      "51",
-      "60",
-      "102"
+      "4/15",
+      "1/3",
+      "4/11",
+      "2/5"
     ],
-    "correct_answer": "51",
-    "explanation": "All 20 scores add to 20 times 78, or 1560, and the 18 remaining scores add to 18 times 81, or 1458. The two removed scores therefore add to 102, so their mean is 51. The value 102 is their total rather than their average, and the mean cannot be found by subtracting the two means.",
-    "solve": "const t=20*78, r=18*81; return (t-r)/2;"
+    "correct_answer": "4/15",
+    "explanation": "There are 4 red marbles out of 4 + 5 + 6 = 15 marbles altogether, so the probability is 4 out of 15.",
+    "solve": "const r = 4, b = 5, g = 6; return r + '/' + (r + b + g);"
   },
   {
     "id": "IM7-07",
     "domain": "Math",
-    "subskill": "areas of similar figures scale as the square of the ratio",
-    "difficulty": "hard",
-    "prompt": "Two similar triangles have perimeters of 12 centimeters and 30 centimeters. The area of the smaller triangle is 20 square centimeters. What is the area of the larger triangle, in square centimeters?",
+    "subskill": "Area of a triangle",
+    "difficulty": "medium",
+    "prompt": "A triangle has a base of 14 centimeters and a height of 9 centimeters. What is its area, in square centimeters?",
     "choices": [
-      "3.2",
-      "38",
-      "50",
-      "125"
+      "23",
+      "46",
+      "63",
+      "126"
     ],
-    "correct_answer": "125",
-    "explanation": "Perimeter scales the same way as any length, so the ratio of the larger triangle to the smaller one is 30 to 12, or 5 to 2. Area scales as the square of that ratio, which is 25 to 4, so the larger area is 20 times 25 divided by 4, or 125. Multiplying 20 by 5 halves, which gives 50, applies the length ratio to an area and undercounts the growth.",
-    "solve": "const k=30/12; return 20*k*k;"
+    "correct_answer": "63",
+    "explanation": "The area of a triangle is half the base times the height: half of 14 times 9 equals 63 square centimeters.",
+    "solve": "const b = 14, h = 9; return String(b * h / 2);"
   },
   {
     "id": "IM7-08",
     "domain": "Math",
-    "subskill": "probability of a matching pair drawn without replacement",
-    "difficulty": "hard",
-    "prompt": "A drawer contains 5 black socks and 3 white socks. Two socks are taken out at random, one after the other, without replacement. What is the probability that the two socks are the same color?",
+    "subskill": "Finding a missing value from a mean",
+    "difficulty": "medium",
+    "prompt": "Devon's four test scores average 84. Three of the scores are 78, 88, and 91. What is the fourth score?",
     "choices": [
-      "3/8",
-      "5/14",
-      "13/28",
-      "17/32"
+      "76",
+      "79",
+      "84",
+      "86"
     ],
-    "correct_answer": "13/28",
-    "explanation": "There are 8 times 7, or 56, ordered ways to draw two socks. Two black socks can be drawn in 5 times 4, or 20, ways and two white socks in 3 times 2, or 6, ways, for 26 favorable ways out of 56, which reduces to 13 out of 28. Keeping the denominator at 8 for the second draw treats the first sock as replaced and gives 17 out of 32, while 5 out of 14 counts only the black pair and 3 out of 8 is just the chance that one single sock is white.",
-    "solve": "return (5*4+3*2)/(8*7);"
+    "correct_answer": "79",
+    "explanation": "Four scores averaging 84 must total 4 times 84, or 336. The three known scores total 257, so the missing score is 336 minus 257, which is 79.",
+    "solve": "const avg = 84, n = 4, known = [78, 88, 91]; return String(avg * n - known.reduce((a, c) => a + c, 0));"
   },
   {
     "id": "IM7-09",
     "domain": "Math",
-    "subskill": "counting two-digit integers under two digit conditions",
-    "difficulty": "hard",
-    "prompt": "How many two-digit positive integers are odd and have a tens digit that is greater than the units digit?",
+    "subskill": "Multi-addend sum compared to a target",
+    "difficulty": "medium",
+    "prompt": "Over the summer Mia read three books of 214, 198, and 232 pages. Her goal was 700 pages. How many pages short of her goal was she?",
     "choices": [
-      "20",
-      "24",
-      "25",
-      "45"
+      "56",
+      "66",
+      "156",
+      "644"
     ],
-    "correct_answer": "20",
-    "explanation": "The units digit must be odd, so it is 1, 3, 5, 7, or 9, and the tens digit must be larger. A units digit of 1 allows 8 tens digits, a units digit of 3 allows 6, a units digit of 5 allows 4, a units digit of 7 allows 2, and a units digit of 9 allows none, for a total of 20. Counting every two-digit number whose tens digit exceeds its units digit, without the odd condition, gives 45.",
-    "solve": "let c=0; for(let n=10;n<=99;n++){ const t=Math.floor(n/10), u=n%10; if(n%2===1 && t>u) c++; } return c;"
+    "correct_answer": "56",
+    "explanation": "The three books total 644 pages, and the question asks for the shortfall, not the total: 700 minus 644 leaves 56 pages.",
+    "solve": "const goal = 700, pages = [214, 198, 232]; return String(goal - pages.reduce((a, c) => a + c, 0));"
   },
   {
     "id": "IM7-10",
     "domain": "Math",
-    "subskill": "catching up to a head start, with a unit change",
+    "subskill": "Maximum area for a fixed perimeter",
     "difficulty": "hard",
-    "prompt": "Ann leaves home jogging at a constant 6 kilometers per hour. Twenty minutes later Ben leaves the same spot along the same route, cycling at a constant 14 kilometers per hour. How many minutes after Ben leaves does he catch up to Ann?",
+    "prompt": "A rectangle has a perimeter of 30 centimeters and side lengths that are whole numbers of centimeters. What is the greatest possible area of the rectangle, in square centimeters?",
     "choices": [
-      "10",
-      "15",
-      "20",
-      "35"
+      "30",
+      "44",
+      "54",
+      "56"
     ],
-    "correct_answer": "15",
-    "explanation": "In 20 minutes, which is one third of an hour, Ann covers 2 kilometers. Ben closes that gap at 14 minus 6, or 8 kilometers per hour, so he needs 2 divided by 8, or one quarter of an hour, which is 15 minutes. Answering 35 minutes measures the time from Ann's departure rather than from Ben's, which is what the question asks for.",
-    "solve": "const lead=6*(20/60); const t=lead/(14-6); return t*60;"
+    "correct_answer": "56",
+    "explanation": "A perimeter of 30 means the length and width add to 15. Among whole-number pairs adding to 15, the pair closest to equal, 7 and 8, gives the largest product, 56.",
+    "solve": "const per = 30, half = per / 2; let best = 0; for (let w = 1; w < half; w++) { const a = w * (half - w); if (a > best) best = a; } return String(best);"
   },
   {
     "id": "IM7-11",
     "domain": "Math",
-    "subskill": "least cost when a purchase earns free items",
-    "difficulty": "hard",
-    "prompt": "A theater sells tickets for 12 dollars each, and for every 5 tickets bought the buyer receives 1 additional ticket free. What is the least amount of money, in dollars, needed to obtain 32 tickets?",
+    "subskill": "Constant rate: distance over a new time",
+    "difficulty": "medium",
+    "prompt": "A car travels 245 miles in 3.5 hours. Travelling at the same constant rate, how many miles does it cover in 6 hours?",
     "choices": [
-      "324",
-      "336",
-      "360",
-      "384"
+      "70",
+      "245",
+      "420",
+      "490"
     ],
-    "correct_answer": "324",
-    "explanation": "Buying k tickets also yields the whole number of free tickets in k divided by 5. With 27 bought tickets the buyer earns 5 free ones, for exactly 32, and 27 times 12 is 324 dollars. Buying 26 gives only 31 tickets, so 27 is the smallest workable number. Paying for all 32 tickets costs 384 dollars and ignores the offer entirely.",
-    "solve": "for(let k=1;k<=32;k++){ if(k+Math.floor(k/5)>=32) return 12*k; } return null;"
+    "correct_answer": "420",
+    "explanation": "The rate is 245 divided by 3.5, or 70 miles per hour, and 70 miles per hour for 6 hours covers 420 miles.",
+    "solve": "const d = 245, t = 3.5, t2 = 6; return String(d / t * t2);"
   },
   {
     "id": "IM7-12",
     "domain": "Math",
-    "subskill": "concentration raised by evaporating the solvent",
-    "difficulty": "hard",
-    "prompt": "A tank holds 40 liters of a solution that is 15 percent salt. The tank is left open until the solution is 20 percent salt. No salt is lost, only water. How many liters of water evaporate?",
+    "subskill": "Supplementary angles with a stated difference",
+    "difficulty": "medium",
+    "prompt": "Two angles are supplementary. One angle measures 34 degrees more than the other. What is the measure, in degrees, of the smaller angle?",
     "choices": [
-      "2",
-      "5",
-      "10",
-      "30"
+      "28",
+      "73",
+      "90",
+      "107"
     ],
-    "correct_answer": "10",
-    "explanation": "The salt content stays fixed at 15 percent of 40 liters, which is 6 liters. For 6 liters of salt to make up 20 percent of the solution, the solution must measure 6 divided by 0.20, or 30 liters, so 40 minus 30, or 10 liters, of water evaporate. The value 30 is the volume that remains rather than the volume that leaves.",
-    "solve": "const salt=40*0.15; const fin=salt/0.20; return 40-fin;"
+    "correct_answer": "73",
+    "explanation": "Supplementary angles sum to 180. Calling the smaller angle x, the two measures are x and x + 34, so 2x + 34 = 180, giving x = 73 degrees.",
+    "solve": "const total = 180, diff = 34; return String((total - diff) / 2);"
   },
   {
     "id": "IM7-13",
     "domain": "Math",
-    "subskill": "arithmetic sequence term found from two given terms",
+    "subskill": "Successive percent increases",
     "difficulty": "hard",
-    "prompt": "In an arithmetic sequence the 4th term is 19 and the 9th term is 44. What is the 20th term?",
+    "prompt": "A town's population of 2,500 grew by 20 percent during one year and then by 10 percent during the next year. What was the population at the end of the two years?",
     "choices": [
-      "94",
-      "99",
-      "104",
-      "119"
+      "2,750",
+      "3,000",
+      "3,250",
+      "3,300"
     ],
-    "correct_answer": "99",
-    "explanation": "There are 5 steps from the 4th term to the 9th term, so the common difference is 44 minus 19 divided by 5, which is 5. From the 9th term to the 20th term there are 11 more steps, so the 20th term is 44 plus 55, or 99. Counting 20 steps from the first term rather than 19 gives 104.",
-    "solve": "const d=(44-19)/(9-4); const a1=19-3*d; return a1+19*d;"
+    "correct_answer": "3,300",
+    "explanation": "After the first year the population is 2,500 times 1.20, or 3,000. The second year's 10 percent applies to that new total, giving 3,000 times 1.10, which is 3,300.",
+    "solve": "const p = 2500 * 1.2 * 1.1; return p.toLocaleString('en-US');"
   },
   {
     "id": "IM7-14",
     "domain": "Math",
-    "subskill": "ratio restored after an amount is added to one part",
-    "difficulty": "hard",
-    "prompt": "A jar holds red and blue counters in the ratio 5 to 3. After 12 more blue counters are put in, the ratio of red counters to blue counters becomes 5 to 4. How many counters were in the jar before the 12 were added?",
+    "subskill": "Finding the amount of a percent discount",
+    "difficulty": "medium",
+    "prompt": "A backpack that normally costs $64 is on sale for 25 percent off. By how many dollars is the price reduced?",
     "choices": [
-      "60",
-      "84",
-      "96",
-      "108"
+      "16",
+      "25",
+      "39",
+      "48"
     ],
-    "correct_answer": "96",
-    "explanation": "Writing the original counts as 5x and 3x, the new ratio gives 5x over 3x plus 12 equal to 5 over 4, so 20x equals 15x plus 60 and x is 12. The jar originally held 60 red and 36 blue counters, or 96 in all. The value 108 counts the jar after the 12 counters were added.",
-    "solve": "for(let x=1;x<=100;x++){ const r=5*x,b=3*x; if(Math.abs(r/(b+12)-5/4)<1e-9) return r+b; } return null;"
+    "correct_answer": "16",
+    "explanation": "The question asks for the size of the discount, not the sale price: 25 percent of 64 is 16 dollars.",
+    "solve": "const price = 64, pct = 25; return String(price * pct / 100);"
   },
   {
     "id": "IM7-15",
     "domain": "Math",
-    "subskill": "multiples of one number that are not multiples of another",
-    "difficulty": "hard",
-    "prompt": "How many positive integers less than 500 are multiples of 7 but not multiples of 5?",
+    "subskill": "Order of operations with parentheses and a power",
+    "difficulty": "medium",
+    "prompt": "What is the value of 3 + 4 × (6 − 2)² ÷ 8 ?",
     "choices": [
+      "8",
+      "11",
       "14",
-      "57",
-      "71",
-      "85"
+      "23"
     ],
-    "correct_answer": "57",
-    "explanation": "There are 71 multiples of 7 below 500, since 7 times 71 is 497. Of those, the ones that are also multiples of 5 are the multiples of 35, and there are 14 of them below 500. Subtracting gives 57. Reporting 71 counts every multiple of 7 and ignores the exclusion.",
-    "solve": "let c=0; for(let n=1;n<500;n++){ if(n%7===0 && n%5!==0) c++; } return c;"
+    "correct_answer": "11",
+    "explanation": "Work inside the parentheses first: 6 − 2 = 4, and 4 squared is 16. Then 4 × 16 = 64 and 64 ÷ 8 = 8. Adding 3 last gives 11.",
+    "solve": "return String(3 + 4 * Math.pow(6 - 2, 2) / 8);"
   },
   {
     "id": "IM7-16",
     "domain": "Math",
-    "subskill": "least perimeter for a fixed area with whole-number sides",
-    "difficulty": "hard",
-    "prompt": "A rectangle has an area of 48 square meters, and both of its side lengths are whole numbers of meters. What is the least possible perimeter of the rectangle, in meters?",
+    "subskill": "Linear equation with a variable on both sides",
+    "difficulty": "medium",
+    "prompt": "If 6(x − 2) = 4x + 10, what is the value of x ?",
     "choices": [
-      "28",
-      "32",
-      "44",
-      "98"
+      "-1",
+      "6",
+      "11",
+      "22"
     ],
-    "correct_answer": "28",
-    "explanation": "The whole-number side pairs with product 48 are 1 by 48, 2 by 24, 3 by 16, 4 by 12, and 6 by 8, with perimeters 98, 52, 38, 32, and 28. The perimeter shrinks as the rectangle gets closer to a square, so the least perimeter is 28 meters. A 4 by 12 rectangle gives 32 and is the trap for anyone who stops at the first fairly square-looking pair.",
-    "solve": "let best=null; for(let w=1;w<=48;w++){ if(48%w===0){ const p=2*(w+48/w); if(best===null||p<best) best=p; } } return best;"
+    "correct_answer": "11",
+    "explanation": "Distributing gives 6x − 12 = 4x + 10. Subtracting 4x and adding 12 to both sides gives 2x = 22, so x = 11.",
+    "solve": "const x = (10 + 12) / (6 - 4); return String(x);"
   },
   {
     "id": "IM7-17",
     "domain": "Math",
-    "subskill": "rate converted across two units",
-    "difficulty": "medium",
-    "prompt": "A pump moves 8 liters of water every 12 seconds. At this rate, how many kiloliters of water does it move in 2 hours? (1 kiloliter = 1,000 liters)",
+    "subskill": "Least number meeting a divisibility and remainder condition",
+    "difficulty": "hard",
+    "prompt": "What is the least positive integer that is divisible by 4 and leaves a remainder of 3 when divided by 7?",
     "choices": [
-      "2.4",
-      "4.8",
-      "10.8",
-      "4800"
+      "24",
+      "31",
+      "52",
+      "80"
     ],
-    "correct_answer": "4.8",
-    "explanation": "Two hours is 7,200 seconds, which is 600 stretches of 12 seconds, so the pump moves 600 times 8, or 4,800 liters. Dividing by 1,000 gives 4.8 kiloliters. The value 4,800 is the answer in liters and skips the final conversion.",
-    "solve": "const lps=8/12; const liters=lps*7200; return liters/1000;"
+    "correct_answer": "24",
+    "explanation": "Checking multiples of 4 in order, 4, 8, 12, 16, and 20 leave remainders of 4, 1, 5, 2, and 6 when divided by 7, while 24 leaves a remainder of 3. It is therefore the least such number.",
+    "solve": "let n = 4; while (!(n % 4 === 0 && n % 7 === 3)) n += 4; return String(n);"
   },
   {
     "id": "IM7-18",
     "domain": "Math",
-    "subskill": "recovering a price from a discount and then a coupon",
+    "subskill": "Comparing fractions and decimals",
     "difficulty": "medium",
-    "prompt": "A shirt is marked down by 20 percent, and then a 6-dollar coupon is taken off the reduced price. The final price is 18 dollars. What was the price of the shirt before the markdown, in dollars?",
+    "prompt": "Which of the following has the greatest value?",
     "choices": [
-      "22.5",
-      "24",
-      "28.5",
-      "30"
+      "7/12",
+      "3/5",
+      "0.61",
+      "5/8"
     ],
-    "correct_answer": "30",
-    "explanation": "Undo the steps in reverse order. Adding the coupon back gives the reduced price, 24 dollars, and that is 80 percent of the original, so the original price is 24 divided by 0.8, or 30 dollars. Dividing 18 by 0.8 first gives 22.5 and applies the coupon in the wrong place.",
-    "solve": "return (18+6)/0.8;"
+    "correct_answer": "5/8",
+    "explanation": "Written as decimals the four values are about 0.583, 0.600, 0.610, and 0.625, so five eighths is the largest.",
+    "solve": "const opts = [['7/12', 7 / 12], ['3/5', 3 / 5], ['0.61', 0.61], ['5/8', 5 / 8]]; let best = opts[0]; for (const o of opts) if (o[1] > best[1]) best = o; return best[0];"
   },
   {
     "id": "IM7-19",
     "domain": "Math",
-    "subskill": "overlap found from a total that includes neither category",
-    "difficulty": "medium",
-    "prompt": "Of the 120 students in a grade, 70 study Spanish, 55 study art, and 20 study neither subject. How many students study both Spanish and art?",
+    "subskill": "Counting arrangements without repetition",
+    "difficulty": "hard",
+    "prompt": "How many different three-letter arrangements can be made from the letters A, B, C, D, and E if no letter may be used more than once in an arrangement?",
     "choices": [
-      "25",
-      "30",
-      "45",
-      "100"
+      "20",
+      "60",
+      "120",
+      "125"
     ],
-    "correct_answer": "25",
-    "explanation": "Since 20 students study neither subject, 100 students study at least one of them. Adding 70 and 55 gives 125, which counts each student who studies both subjects twice, so the overlap is 125 minus 100, or 25. The value 100 is the number who study at least one subject.",
-    "solve": "const u=120-20; return 70+55-u;"
+    "correct_answer": "60",
+    "explanation": "There are 5 choices for the first letter, 4 remaining for the second, and 3 for the third, and 5 × 4 × 3 equals 60 arrangements.",
+    "solve": "let n = 1; for (let k = 5; k > 5 - 3; k--) n *= k; return String(n);"
   },
   {
     "id": "IM7-20",
     "domain": "Math",
-    "subskill": "a percent increase and a percent decrease on different bases",
+    "subskill": "Volume of a rectangular solid",
     "difficulty": "medium",
-    "prompt": "A town had 4,000 residents at the start of 2021. During 2021 the population rose by 15 percent, and during 2022 it fell by 15 percent. What was the population at the end of 2022?",
+    "prompt": "A closed box is 8 inches long, 5 inches wide, and 3 inches tall. What is its volume, in cubic inches?",
     "choices": [
-      "3910",
-      "4000",
-      "4600",
-      "5290"
+      "16",
+      "40",
+      "120",
+      "158"
     ],
-    "correct_answer": "3910",
-    "explanation": "The rise gives 4,000 times 1.15, or 4,600. The fall of 15 percent is then taken on 4,600, not on 4,000, so the population ends at 4,600 times 0.85, or 3,910. Because the decrease acts on a larger base than the increase did, the two changes do not cancel and the population does not return to 4,000.",
-    "solve": "return 4000*1.15*0.85;"
+    "correct_answer": "120",
+    "explanation": "Volume is length times width times height: 8 times 5 times 3 equals 120 cubic inches.",
+    "solve": "const l = 8, w = 5, h = 3; return String(l * w * h);"
   },
   {
     "id": "IM7-21",
     "domain": "Math",
-    "subskill": "absolute value equation with two solutions",
-    "difficulty": "medium",
-    "prompt": "If the absolute value of 2x - 5 is equal to 9, what is the positive difference between the two possible values of x?",
+    "subskill": "Greatest sum from digits used once each",
+    "difficulty": "hard",
+    "prompt": "The digits 2, 4, 7, and 9 are each used exactly once to form two two-digit numbers. What is the greatest possible sum of the two numbers?",
     "choices": [
-      "4.5",
-      "5",
-      "7",
-      "9"
+      "103",
+      "121",
+      "139",
+      "166"
     ],
-    "correct_answer": "9",
-    "explanation": "The expression 2x minus 5 is either 9 or negative 9, giving x equal to 7 or x equal to negative 2. The positive difference between 7 and negative 2 is 9. Reporting 7 answers with the larger solution rather than the difference, and treating the smaller solution as positive 2 leaves a difference of 5.",
-    "solve": "const a=(9+5)/2, b=(-9+5)/2; return Math.abs(a-b);"
+    "correct_answer": "166",
+    "explanation": "The tens digits count ten times each, so the two largest digits, 9 and 7, belong in the tens places and the other two in the ones places. For example 92 + 74 gives the greatest sum, 166.",
+    "solve": "const d = [2, 4, 7, 9]; let best = 0; for (let a = 0; a < 4; a++) for (let b = 0; b < 4; b++) for (let c = 0; c < 4; c++) for (let e = 0; e < 4; e++) { const s = new Set([a, b, c, e]); if (s.size !== 4) continue; const t = (d[a] * 10 + d[b]) + (d[c] * 10 + d[e]); if (t > best) best = t; } return String(best);"
   },
   {
     "id": "IM7-22",
     "domain": "Math",
-    "subskill": "y-intercept of a line through two points",
+    "subskill": "Adding and subtracting signed integers",
     "difficulty": "medium",
-    "prompt": "A line in the coordinate plane passes through the points (-2, 7) and (4, -5). What is the y-coordinate of the point where the line crosses the y-axis?",
+    "prompt": "At 6 a.m. the temperature was −8 degrees Celsius. By noon it had risen 13 degrees, and by 9 p.m. it had fallen 6 degrees from its noon reading. What was the temperature, in degrees Celsius, at 9 p.m.?",
     "choices": [
-      "1",
-      "3",
-      "7",
-      "11"
+      "-1",
+      "5",
+      "15",
+      "27"
     ],
-    "correct_answer": "3",
-    "explanation": "The slope is negative 5 minus 7, over 4 minus negative 2, which is negative 12 over 6, or negative 2. Moving from (-2, 7) two units right to the y-axis lowers y by 4, so the line crosses at y equal to 3. Using a slope of positive 2 gives 7 minus 2 times negative 2, or 11, and averaging the two given y-coordinates gives 1, which has nothing to do with where the line meets the axis.",
-    "solve": "const m=(-5-7)/(4-(-2)); return 7+m*(0-(-2));"
+    "correct_answer": "-1",
+    "explanation": "Starting at −8 and rising 13 degrees gives 5 degrees at noon; falling 6 degrees from 5 gives −1 degree at 9 p.m.",
+    "solve": "return String(-8 + 13 - 6);"
   },
   {
     "id": "IM7-23",
     "domain": "Math",
-    "subskill": "median found after solving for a missing value",
-    "difficulty": "medium",
-    "prompt": "The five numbers 4, 9, x, 15, and 22 have a mean of 12. What is their median?",
+    "subskill": "Map scale proportion",
+    "difficulty": "hard",
+    "prompt": "On a map, 2 centimeters represents 15 kilometers of actual distance. Two towns are 6 centimeters apart on the map. How many kilometers apart are they in reality?",
     "choices": [
-      "9",
-      "10",
-      "12",
-      "15"
+      "7.5",
+      "30",
+      "45",
+      "90"
     ],
-    "correct_answer": "10",
-    "explanation": "The five numbers add to 5 times 12, or 60, and the four known numbers add to 50, so x is 10. In increasing order the numbers are 4, 9, 10, 15, 22, and the middle one is 10. The mean, 12, is not the median, and neither is the middle number of the list as it was originally printed.",
-    "solve": "const x=5*12-(4+9+15+22); const s=[4,9,x,15,22].sort((a,b)=>a-b); return s[2];"
+    "correct_answer": "45",
+    "explanation": "Six centimeters is three times the 2-centimeter unit, and each unit stands for 15 kilometers, so the real distance is 3 times 15, or 45 kilometers.",
+    "solve": "const mapUnit = 2, realUnit = 15, mapDist = 6; return String(mapDist / mapUnit * realUnit);"
   },
   {
     "id": "IM7-24",
     "domain": "Math",
-    "subskill": "solving an exponential equation and evaluating another power",
-    "difficulty": "medium",
-    "prompt": "If 2 raised to the power x + 3 equals 32, what is the value of 3 raised to the power x?",
+    "subskill": "Recursive sequence rule",
+    "difficulty": "hard",
+    "prompt": "In a sequence, each term after the first is 5 less than twice the term before it. The first term is 7. What is the fourth term?",
     "choices": [
-      "9",
-      "27",
-      "81",
-      "243"
+      "13",
+      "21",
+      "26",
+      "37"
     ],
-    "correct_answer": "9",
-    "explanation": "Since 32 is 2 to the fifth power, x plus 3 is 5 and x is 2, so 3 to the power x is 9. Reading the exponent 5 straight off 32 and using it as x gives 3 to the fifth, or 243.",
-    "solve": "let x=null; for(let t=-10;t<=10;t++){ if(Math.pow(2,t+3)===32) x=t; } return Math.pow(3,x);"
+    "correct_answer": "21",
+    "explanation": "From 7 the terms run 2(7) − 5 = 9, then 2(9) − 5 = 13, then 2(13) − 5 = 21, so the fourth term is 21.",
+    "solve": "let t = 7; for (let i = 1; i < 4; i++) t = 2 * t - 5; return String(t);"
   },
   {
     "id": "IM7-25",
     "domain": "Math",
-    "subskill": "volume of a right circular cylinder",
+    "subskill": "Greatest common factor in context",
     "difficulty": "medium",
-    "prompt": "A right circular cylinder has a radius of 3 centimeters and a height of 10 centimeters. What is its volume, in cubic centimeters? (Use 3.14 for pi.)",
+    "prompt": "Three ribbons measure 24, 36, and 60 centimeters. Each ribbon is cut into pieces that are all the same whole-number length, with no ribbon left over. What is the greatest possible length, in centimeters, of one piece?",
     "choices": [
-      "94.2",
-      "188.4",
-      "282.6",
-      "942"
+      "12",
+      "18",
+      "24",
+      "360"
     ],
-    "correct_answer": "282.6",
-    "explanation": "The volume is pi times the radius squared times the height, or 3.14 times 9 times 10, which is 282.6 cubic centimeters. Using 3.14 times 3 times 10 leaves the radius unsquared and gives 94.2, while 2 times 3.14 times 3 times 10 is the curved surface area, 188.4, not a volume.",
-    "solve": "const r=3,h=10,pi=3.14; return pi*r*r*h;"
+    "correct_answer": "12",
+    "explanation": "The piece length must divide 24, 36, and 60. The common factors are 1, 2, 3, 4, 6, and 12, and the greatest of these is 12 centimeters.",
+    "solve": "const g = (a, b) => b === 0 ? a : g(b, a % b); return String([24, 36, 60].reduce((a, c) => g(a, c)));"
   },
   {
     "id": "IM7-26",
     "domain": "Math",
-    "subskill": "map scale followed by a travel time",
-    "difficulty": "medium",
-    "prompt": "On a map, 1 centimeter represents 24 kilometers. Two towns are 7.5 centimeters apart on the map. A bus travels between them at an average speed of 60 kilometers per hour. How many hours does the trip take?",
+    "subskill": "Percent tip added before a flat fee",
+    "difficulty": "hard",
+    "prompt": "A restaurant meal costs $32.00. A tip of 15 percent of the meal price is added, and then a flat $4.00 delivery fee is added. What is the total charge?",
     "choices": [
-      "3",
-      "3.5",
-      "4.5",
-      "180"
+      "$36.00",
+      "$36.80",
+      "$39.20",
+      "$40.80"
     ],
-    "correct_answer": "3",
-    "explanation": "The real distance is 7.5 times 24, or 180 kilometers, and 180 divided by 60 is 3 hours. The value 180 is the distance in kilometers rather than the time.",
-    "solve": "const km=7.5*24; return km/60;"
+    "correct_answer": "$40.80",
+    "explanation": "Fifteen percent of $32.00 is $4.80, making the meal with tip $36.80, and the $4.00 delivery fee brings the total to $40.80.",
+    "solve": "const meal = 32, tip = 0.15, fee = 4; return '$' + (meal * (1 + tip) + fee).toFixed(2);"
   },
   {
     "id": "IM7-27",
     "domain": "Math",
-    "subskill": "scaling a fractional amount in a proportion",
+    "subskill": "Finding the whole from a percent",
     "difficulty": "medium",
-    "prompt": "A recipe that serves 8 people uses 3/4 cup of sugar. At the same rate, how many cups of sugar are needed to serve 10 people?",
+    "prompt": "The number 18 is 45 percent of what number?",
     "choices": [
-      "3/5",
-      "3/4",
-      "1",
-      "15/16"
+      "8.1",
+      "40",
+      "63",
+      "250"
     ],
-    "correct_answer": "15/16",
-    "explanation": "Serving 10 people instead of 8 multiplies every amount by 10 over 8, or 5 over 4. Three quarters times 5 fourths is 15 over 16 cups. Multiplying by 8 over 10 instead inverts the scale factor and gives 3 over 5, an amount smaller than the recipe started with, and rounding the answer up to a whole cup is not what the stated rate gives.",
-    "solve": "return (3/4)*(10/8);"
+    "correct_answer": "40",
+    "explanation": "If 45 percent of a number is 18, the number is 18 divided by 0.45, which is 40.",
+    "solve": "return String(18 / 0.45);"
   },
   {
     "id": "IM7-28",
     "domain": "Math",
-    "subskill": "probability that one of two divisibility conditions holds",
-    "difficulty": "medium",
-    "prompt": "One integer is chosen at random from the integers 1 through 30, inclusive. What is the probability that it is a multiple of 3 or a multiple of 5?",
+    "subskill": "Rectangle dimensions from a perimeter equation",
+    "difficulty": "hard",
+    "prompt": "The length of a rectangle is 3 centimeters more than twice its width. The perimeter is 36 centimeters. What is the length, in centimeters?",
     "choices": [
-      "1/5",
-      "1/3",
-      "7/15",
-      "1/2"
+      "5",
+      "10",
+      "13",
+      "18"
     ],
-    "correct_answer": "7/15",
-    "explanation": "There are 10 multiples of 3 and 6 multiples of 5 in the list, and 15 and 30 belong to both groups, so there are 10 plus 6 minus 2, or 14, favorable integers out of 30, which reduces to 7 out of 15. Subtracting only one of the two double-counted numbers leaves 15 out of 30, or one half, and 1 out of 3 and 1 out of 5 count only one of the two conditions.",
-    "solve": "let c=0; for(let n=1;n<=30;n++){ if(n%3===0||n%5===0) c++; } return c/30;"
+    "correct_answer": "13",
+    "explanation": "With width w the length is 2w + 3, so the perimeter is 2(w + 2w + 3) = 6w + 6 = 36, giving w = 5 and a length of 2(5) + 3 = 13 centimeters.",
+    "solve": "const per = 36; const w = (per / 2 - 3) / 3; return String(2 * w + 3);"
   },
   {
     "id": "IM7-29",
     "domain": "Math",
-    "subskill": "total edge length of a cube from its volume",
-    "difficulty": "medium",
-    "prompt": "A cube has a volume of 216 cubic centimeters. What is the total length of all of its edges, in centimeters?",
+    "subskill": "Sum of an arithmetic sequence of savings",
+    "difficulty": "hard",
+    "prompt": "Anna saves $12 in her first week and, in each week after that, $3 more than she saved the week before. How many dollars has she saved in total after 6 weeks?",
     "choices": [
-      "6",
-      "24",
-      "36",
-      "72"
+      "27",
+      "72",
+      "90",
+      "117"
     ],
-    "correct_answer": "72",
-    "explanation": "The edge of the cube is the cube root of 216, which is 6 centimeters, and a cube has 12 edges, so the total edge length is 12 times 6, or 72 centimeters. The value 6 is the length of a single edge, 24 is the perimeter of a single face, and 36 is the area of a single face.",
-    "solve": "const s=Math.round(Math.cbrt(216)); return 12*s;"
+    "correct_answer": "117",
+    "explanation": "Her weekly amounts are 12, 15, 18, 21, 24, and 27 dollars, and those six amounts add to 117 dollars.",
+    "solve": "let amt = 12, total = 0; for (let w = 0; w < 6; w++) { total += amt; amt += 3; } return String(total);"
   },
   {
     "id": "IM7-30",
     "domain": "Math",
-    "subskill": "altitude to the hypotenuse of a right triangle",
+    "subskill": "Time required at a given rate",
     "difficulty": "medium",
-    "prompt": "In a right triangle the two legs measure 9 centimeters and 12 centimeters. What is the length of the altitude drawn to the hypotenuse, in centimeters?",
+    "prompt": "A machine fills 45 bottles each minute. How many minutes does it take the machine to fill 900 bottles?",
     "choices": [
-      "6",
-      "7.2",
-      "10.5",
-      "15"
+      "20",
+      "45",
+      "855",
+      "40,500"
     ],
-    "correct_answer": "7.2",
-    "explanation": "The hypotenuse measures 15 centimeters, since 9 and 12 give 81 plus 144, or 225. The area of the triangle can be written two ways: half of 9 times 12, which is 54, and half of 15 times the altitude. Setting those equal gives an altitude of 108 divided by 15, or 7.2 centimeters. The value 10.5 is the average of the two legs and 15 is the hypotenuse itself.",
-    "solve": "const h=Math.sqrt(9*9+12*12); return (9*12)/h;"
+    "correct_answer": "20",
+    "explanation": "The time is the number of bottles divided by the number filled per minute: 900 divided by 45 equals 20 minutes.",
+    "solve": "const total = 900, rate = 45; return String(total / rate);"
   },
   {
     "id": "IM7-31",
     "domain": "Math",
-    "subskill": "fuel cost from an efficiency and a distance",
+    "subskill": "Comparing the mean with the median",
     "difficulty": "medium",
-    "prompt": "A car travels 15 kilometers on each liter of fuel, and fuel costs 1,600 won per liter. What is the cost of the fuel used on a 240-kilometer trip, in won?",
+    "prompt": "For the list of numbers 4, 9, 9, 12, and 21, by how much does the mean exceed the median?",
     "choices": [
-      "16000",
-      "24000",
-      "25600",
-      "36000"
+      "0",
+      "2",
+      "3",
+      "11"
     ],
-    "correct_answer": "25600",
-    "explanation": "The trip uses 240 divided by 15, or 16 liters, and 16 times 1,600 is 25,600 won. Multiplying 15 by 1,600 gives 24,000, which is the cost of the fuel for 15 kilometers of driving rather than for 240.",
-    "solve": "const L=240/15; return L*1600;"
+    "correct_answer": "2",
+    "explanation": "The five numbers total 55, so the mean is 11, and the middle number of the ordered list is 9, so the mean exceeds the median by 2.",
+    "solve": "const v = [4, 9, 9, 12, 21].slice().sort((a, b) => a - b); const mean = v.reduce((a, c) => a + c, 0) / v.length; const med = v[(v.length - 1) / 2]; return String(mean - med);"
   },
   {
     "id": "IM7-32",
     "domain": "Math",
-    "subskill": "number of sides from an interior angle sum",
-    "difficulty": "medium",
-    "prompt": "The interior angles of a polygon add up to 1,260 degrees. How many sides does the polygon have?",
+    "subskill": "Counting the factors of a number",
+    "difficulty": "hard",
+    "prompt": "How many different positive whole numbers divide 36 with no remainder?",
     "choices": [
-      "7",
+      "6",
       "8",
       "9",
-      "11"
+      "18"
     ],
     "correct_answer": "9",
-    "explanation": "For a polygon with n sides the interior angles add to n minus 2, times 180 degrees. Setting that equal to 1,260 gives n minus 2 equal to 7, so n is 9. Reporting 7 answers n minus 2 and forgets to add the 2 back.",
-    "solve": "for(let n=3;n<=20;n++){ if((n-2)*180===1260) return n; } return null;"
+    "explanation": "The divisors of 36 are 1, 2, 3, 4, 6, 9, 12, 18, and 36. Because 6 pairs with itself, the count is odd, and there are 9 of them.",
+    "solve": "let c = 0; for (let d = 1; d <= 36; d++) if (36 % d === 0) c++; return String(c);"
   },
   {
     "id": "IM7-33",
     "domain": "Math",
-    "subskill": "total hours from pay at two different rates",
+    "subskill": "Probability of a compound coin event",
     "difficulty": "medium",
-    "prompt": "A worker is paid 18 dollars per hour for the first 40 hours of a week and 1.5 times that rate for each hour beyond 40. One week she was paid 828 dollars. How many hours did she work that week?",
+    "prompt": "A fair coin is flipped three times. What is the probability that all three flips land heads?",
     "choices": [
-      "40",
-      "44",
-      "46",
-      "48"
+      "1/8",
+      "1/6",
+      "1/3",
+      "3/8"
     ],
-    "correct_answer": "44",
-    "explanation": "The first 40 hours pay 40 times 18, or 720 dollars, leaving 108 dollars earned at the overtime rate of 27 dollars per hour, which is 4 hours. She worked 44 hours. Dividing 828 by 18 gives 46 and treats every hour as a regular hour.",
-    "solve": "const base=40*18; const extra=828-base; return 40+extra/(18*1.5);"
+    "correct_answer": "1/8",
+    "explanation": "Each flip lands heads with probability one half, and the three flips are independent, so the probability of three heads is one half multiplied by itself three times, which is one eighth.",
+    "solve": "const outcomes = Math.pow(2, 3); return '1/' + outcomes;"
   },
   {
     "id": "IM7-34",
     "domain": "Math",
-    "subskill": "solving for a coordinate of a point on a line",
+    "subskill": "Comparing powers with different bases",
     "difficulty": "medium",
-    "prompt": "The point (a, 5) lies on the line whose equation is y = 2x - 3. What is the value of a?",
+    "prompt": "Which of the following expressions has the greatest value?",
     "choices": [
-      "1",
-      "2",
-      "2.5",
-      "4"
+      "4²",
+      "5²",
+      "3³",
+      "2⁵"
     ],
-    "correct_answer": "4",
-    "explanation": "Substituting y equal to 5 gives 5 equal to 2a minus 3, so 2a is 8 and a is 4. Dropping the constant and solving 5 equal to 2a gives 2.5, subtracting before dividing gives 1, and answering 5 minus 3 gives 2, none of which put the point on the line.",
-    "solve": "return (5+3)/2;"
+    "correct_answer": "2⁵",
+    "explanation": "The four expressions equal 16, 25, 27, and 32, so two raised to the fifth power is the largest.",
+    "solve": "const opts = [['4²', Math.pow(4, 2)], ['5²', Math.pow(5, 2)], ['3³', Math.pow(3, 3)], ['2⁵', Math.pow(2, 5)]]; let best = opts[0]; for (const o of opts) if (o[1] > best[1]) best = o; return best[0];"
   },
   {
     "id": "IM7-35",
     "domain": "Math",
-    "subskill": "unit rate applied to a larger quantity",
-    "difficulty": "easy",
-    "prompt": "Notebooks are sold at 3 for 5 dollars. At this rate, how much do 21 notebooks cost, in dollars?",
+    "subskill": "Two rates working together",
+    "difficulty": "hard",
+    "prompt": "One hose can fill a tank in 6 hours, and a second hose can fill the same tank in 12 hours. Working together at these rates, how many hours do the two hoses take to fill the tank?",
     "choices": [
-      "7",
-      "35",
-      "63",
-      "105"
+      "2",
+      "3",
+      "4",
+      "9"
     ],
-    "correct_answer": "35",
-    "explanation": "Twenty-one notebooks is 7 groups of 3, and each group costs 5 dollars, so the total is 7 times 5, or 35 dollars. Multiplying 21 by 5 gives 105 and prices every notebook at 5 dollars.",
-    "solve": "return (21/3)*5;"
+    "correct_answer": "4",
+    "explanation": "In one hour the hoses fill one sixth and one twelfth of the tank, together one quarter of it, so filling the whole tank takes 4 hours.",
+    "solve": "const a = 6, b = 12; return String(1 / (1 / a + 1 / b));"
   },
   {
     "id": "IM7-36",
     "domain": "Math",
-    "subskill": "finding a percent of a number",
-    "difficulty": "easy",
-    "prompt": "What is 15 percent of 240?",
+    "subskill": "Fraction of a remainder after a percent",
+    "difficulty": "hard",
+    "prompt": "A bag holds 30 candies. Exactly 40 percent of them are cherry, and one third of the candies that are NOT cherry are lime. How many candies are neither cherry nor lime?",
     "choices": [
-      "3.6",
-      "16",
-      "24",
-      "36"
+      "6",
+      "12",
+      "18",
+      "20"
     ],
-    "correct_answer": "36",
-    "explanation": "Fifteen percent is 0.15, and 0.15 times 240 is 36. Ten percent of 240 is 24, and half of that, 12, brings the total to 36; stopping at 24 answers only 10 percent.",
-    "solve": "return 0.15*240;"
+    "correct_answer": "12",
+    "explanation": "Cherry candies number 12, leaving 18 others; a third of those 18, or 6, are lime, so 18 minus 6 leaves 12 candies that are neither.",
+    "solve": "const total = 30; const cherry = total * 0.4; const rest = total - cherry; const lime = rest / 3; return String(rest - lime);"
   },
   {
     "id": "IM7-37",
     "domain": "Math",
-    "subskill": "adding and subtracting with a negative starting value",
-    "difficulty": "easy",
-    "prompt": "At 6 a.m. the temperature was -6 degrees Celsius. By noon it had risen 11 degrees, and by evening it had fallen 4 degrees from its noon value. What was the evening temperature, in degrees Celsius?",
+    "subskill": "Consecutive even integers with a given sum",
+    "difficulty": "hard",
+    "prompt": "The sum of three consecutive even integers is 84. What is the greatest of the three integers?",
     "choices": [
-      "1",
-      "9",
-      "13",
-      "21"
+      "26",
+      "28",
+      "29",
+      "30"
     ],
-    "correct_answer": "1",
-    "explanation": "Starting at negative 6 and rising 11 degrees gives 5 degrees at noon, and falling 4 degrees from there gives 1 degree in the evening. Treating the fall as another rise gives 9, and dropping the negative sign on the starting temperature gives 13.",
-    "solve": "return -6+11-4;"
+    "correct_answer": "30",
+    "explanation": "The middle integer is 84 divided by 3, or 28, so the three integers are 26, 28, and 30, and the greatest is 30.",
+    "solve": "const mid = 84 / 3; return String(mid + 2);"
   },
   {
     "id": "IM7-38",
     "domain": "Math",
-    "subskill": "dividing one fraction by another",
-    "difficulty": "easy",
-    "prompt": "What is the value of 3/4 divided by 9/8?",
+    "subskill": "Percent decrease and the correct base",
+    "difficulty": "medium",
+    "prompt": "A store sold 250 umbrellas in April and 200 umbrellas in May. By what percent did umbrella sales decrease from April to May?",
     "choices": [
-      "8/27",
-      "1/2",
-      "2/3",
-      "27/32"
+      "20%",
+      "25%",
+      "80%",
+      "125%"
     ],
-    "correct_answer": "2/3",
-    "explanation": "Dividing by 9 over 8 is the same as multiplying by 8 over 9, so the value is 3 times 8 over 4 times 9, or 24 over 36, which is 2 over 3. Multiplying the two fractions as they stand gives 27 over 32.",
-    "solve": "return (3/4)/(9/8);"
+    "correct_answer": "20%",
+    "explanation": "Sales fell by 50 umbrellas, and a percent decrease compares that drop to the earlier figure: 50 divided by 250 is 0.20, or 20 percent.",
+    "solve": "const before = 250, after = 200; return String((before - after) / before * 100) + '%';"
   },
   {
     "id": "IM7-39",
     "domain": "Math",
-    "subskill": "side of a square with a given perimeter",
-    "difficulty": "easy",
-    "prompt": "A rectangle is 9 centimeters long and 4 centimeters wide. A square has the same perimeter as this rectangle. What is the length of one side of the square, in centimeters?",
+    "subskill": "Area of a circle given its diameter",
+    "difficulty": "hard",
+    "prompt": "A circle has a diameter of 10 inches. What is its area, in square inches, in terms of π?",
     "choices": [
-      "3.25",
-      "4.5",
-      "6",
-      "6.5"
+      "10π",
+      "20π",
+      "25π",
+      "100π"
     ],
-    "correct_answer": "6.5",
-    "explanation": "The rectangle's perimeter is 2 times 9 plus 4, or 26 centimeters. A square with that perimeter has sides of 26 divided by 4, or 6.5 centimeters. Dividing 13, which is only half the perimeter, by 4 gives 3.25.",
-    "solve": "const p=2*(9+4); return p/4;"
+    "correct_answer": "25π",
+    "explanation": "The radius is half the diameter, or 5 inches, and the area is π times the radius squared, which is 25π square inches.",
+    "solve": "const d = 10, r = d / 2; return String(r * r) + 'π';"
   },
   {
     "id": "IM7-40",
     "domain": "Math",
-    "subskill": "two-step equation followed by an expression",
-    "difficulty": "easy",
-    "prompt": "If 4x + 7 = 31, what is the value of x + 5?",
+    "subskill": "Capacity from a change in fractional part",
+    "difficulty": "hard",
+    "prompt": "A water tank is 3/8 full. After 15 more liters are poured in, the tank is 5/8 full. What is the tank's full capacity, in liters?",
     "choices": [
-      "6",
-      "9.5",
-      "11",
-      "24"
+      "40",
+      "60",
+      "75",
+      "120"
     ],
-    "correct_answer": "11",
-    "explanation": "Subtracting 7 from both sides gives 4x equal to 24, so x is 6 and x plus 5 is 11. Stopping at 24 answers 4x, and stopping at 6 answers x rather than the expression the question asks for.",
-    "solve": "const x=(31-7)/4; return x+5;"
+    "correct_answer": "60",
+    "explanation": "The 15 liters raised the level by 5/8 − 3/8 = 2/8, that is one quarter of the tank, so the full capacity is 4 times 15, or 60 liters.",
+    "solve": "const added = 15, frac = 5 / 8 - 3 / 8; return String(added / frac);"
   }
 ]
