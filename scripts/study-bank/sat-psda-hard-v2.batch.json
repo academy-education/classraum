@@ -1,726 +1,659 @@
 [
-  {
-    "id": "PSDA-H2-01",
-    "subskill": "percentages: a rate applied to a subgroup",
-    "difficulty": "hard",
-    "prompt": "At a college, 62 percent of the 4,000 students live on campus. Of the students who live on campus, 45 percent have a meal plan. Of the students who do not live on campus, 15 percent have a meal plan. How many students who do not live on campus have a meal plan?",
-    "choices": [
-      "228",
-      "600",
-      "684",
-      "1116"
+ {
+  "id": "PSDA-H2-01",
+  "subskill": "percentages: a rate applied to a subgroup",
+  "difficulty": "medium",
+  "prompt": "At a college, 62 percent of the 4,000 students live on campus. Of the students who live on campus, 45 percent have a meal plan. Of the students who do not live on campus, 15 percent have a meal plan. How many students who do not live on campus have a meal plan?",
+  "choices": [
+   "228",
+   "600",
+   "684",
+   "1116"
+  ],
+  "correct_answer": "228",
+  "explanation": "The number of students who do not live on campus is (1 - 0.62)(4,000) = 1,520, and 15 percent of that group is 0.15(1,520) = 228. Choice 600 applies the 15 percent rate to all 4,000 students, ignoring the split. Choice 684 keeps the right group but applies the on-campus rate, 0.45(1,520). Choice 1116 makes that same rate error on the other group, 0.45(2,480), so it answers a question about on-campus students at the on-campus rate.",
+  "solve": "const N=4000,on=0.62,rOff=0.15;\nreturn Math.round((1-on)*N*rOff);",
+  "domain": "Problem-Solving and Data Analysis"
+ },
+ {
+  "id": "PSDA-H2-02",
+  "subskill": "one-variable data: median of a frequency distribution",
+  "difficulty": "medium",
+  "prompt": "The table shows the distribution of the number of hours of community service completed by the 25 members of a school club. Six additional members, each of whom completed 24 hours of service, then joined the club. What is the median number of hours of service for all 31 members?",
+  "graphic": {
+   "type": "table",
+   "rowLabels": [
+    "4 hours",
+    "8 hours",
+    "12 hours",
+    "16 hours",
+    "20 hours"
+   ],
+   "colLabels": [
+    "Number of members"
+   ],
+   "cells": [
+    [
+     "6"
     ],
-    "correct_answer": "228",
-    "explanation": "The number of students who do not live on campus is (1 - 0.62)(4,000) = 1,520, and 15 percent of that group is 0.15(1,520) = 228. Choice 600 applies the 15 percent rate to all 4,000 students, ignoring the split. Choice 684 keeps the right group but applies the on-campus rate, 0.45(1,520). Choice 1116 makes that same rate error on the other group, 0.45(2,480), so it answers a question about on-campus students at the on-campus rate.",
-    "solve": "const N=4000,on=0.62,rOff=0.15;\nreturn Math.round((1-on)*N*rOff);",
-    "domain": "Problem-Solving and Data Analysis"
+    [
+     "9"
+    ],
+    [
+     "5"
+    ],
+    [
+     "3"
+    ],
+    [
+     "2"
+    ]
+   ],
+   "caption": "Hours of community service completed by the 25 original members"
   },
-  {
-    "id": "PSDA-H2-02",
-    "subskill": "one-variable data: median of a frequency distribution",
-    "difficulty": "hard",
-    "prompt": "The table shows the distribution of the number of hours of community service completed by the 25 members of a school club. Six additional members, each of whom completed 24 hours of service, then joined the club. What is the median number of hours of service for all 31 members?",
-    "graphic": {
-      "type": "table",
-      "rowLabels": [
-        "4 hours",
-        "8 hours",
-        "12 hours",
-        "16 hours",
-        "20 hours"
-      ],
-      "colLabels": [
-        "Number of members"
-      ],
-      "cells": [
-        [
-          "6"
-        ],
-        [
-          "9"
-        ],
-        [
-          "5"
-        ],
-        [
-          "3"
-        ],
-        [
-          "2"
-        ]
-      ],
-      "caption": "Hours of community service completed by the 25 original members"
+  "choices": [
+   "8",
+   "12",
+   "12.5",
+   "16"
+  ],
+  "correct_answer": "12",
+  "explanation": "With 31 values the median is the 16th value in order. The cumulative counts are 6 (through 4 hours), 15 (through 8 hours) and 20 (through 12 hours), so the 16th value is 12. Choice 8 is the median of the original 25 members, which ignores the six new values. Choice 16 reports the POSITION of the median, 16th, as though it were the value. Choice 12.5 is the mean of all 31 values, 388/31, not the median.",
+  "solve": "const vals=[];\nconst rows=[[4,6],[8,9],[12,5],[16,3],[20,2]];\nfor(const [h,f] of rows) for(let i=0;i<f;i++) vals.push(h);\nfor(let i=0;i<6;i++) vals.push(24);\nvals.sort((a,b)=>a-b);\nconst n=vals.length;\nreturn n%2 ? vals[(n-1)/2] : (vals[n/2-1]+vals[n/2])/2;",
+  "domain": "Problem-Solving and Data Analysis"
+ },
+ {
+  "id": "PSDA-H2-03",
+  "subskill": "one-variable data: weighted mean across groups",
+  "difficulty": "medium",
+  "prompt": "The table shows the number of workers on each of three shifts at a plant and the mean number of units produced per worker on that shift during one week. What is the mean number of units produced per worker for all 75 workers that week, to the nearest tenth?",
+  "graphic": {
+   "type": "table",
+   "rowLabels": [
+    "Morning",
+    "Afternoon",
+    "Night"
+   ],
+   "colLabels": [
+    "Number of workers",
+    "Mean units per worker"
+   ],
+   "cells": [
+    [
+     "24",
+     "31"
+    ],
+    [
+     "36",
+     "27"
+    ],
+    [
+     "15",
+     "20"
+    ]
+   ],
+   "caption": "Units produced per worker, by shift"
+  },
+  "choices": [
+   "25.6",
+   "26.0",
+   "26.9",
+   "27.4"
+  ],
+  "correct_answer": "26.9",
+  "explanation": "The total output is 24(31) + 36(27) + 15(20) = 2,016 units, so the mean per worker is 2,016/75 = 26.88, or 26.9. Choice 26.0 averages the three shift means without weighting, (31 + 27 + 20)/3. Choice 25.6 weights correctly in form but pairs the morning and night worker counts with the wrong shifts. Choice 27.4 weights each shift mean by that shift's total OUTPUT rather than by its number of workers, which over-counts the large productive shifts.",
+  "solve": "const r=[[24,31],[36,27],[15,20]];\nconst tot=r.reduce((a,[w,m])=>a+w*m,0), n=r.reduce((a,[w])=>a+w,0);\nreturn (Math.round(10*tot/n)/10).toFixed(1);",
+  "domain": "Problem-Solving and Data Analysis"
+ },
+ {
+  "id": "PSDA-H2-04",
+  "subskill": "inference from sample statistics and margin of error",
+  "difficulty": "medium",
+  "prompt": "A polling organization selected a random sample of 350 adults from the 90,000 adults living in a city. In the sample, 42% reported having visited a public library in the past year. The margin of error for this estimate is 5.2 percentage points at the 95% confidence level. Which of the following is the most appropriate conclusion?",
+  "choices": [
+   "It is plausible that the percent of all 90,000 adults in the city who visited a public library in the past year is between 36.8% and 47.2%.",
+   "It is plausible that the percent of the 350 surveyed adults who visited a public library in the past year is between 36.8% and 47.2%.",
+   "The percent of all 90,000 adults in the city who visited a public library in the past year must be between 36.8% and 47.2%.",
+   "At least 36.8% of all 90,000 adults in the city visited a public library in the past year."
+  ],
+  "correct_answer": "It is plausible that the percent of all 90,000 adults in the city who visited a public library in the past year is between 36.8% and 47.2%.",
+  "explanation": "A margin of error describes an interval of plausible values for the POPULATION quantity, here 42% - 5.2% = 36.8% to 42% + 5.2% = 47.2% for all 90,000 adults. The second choice attaches the interval to the sample, but the sample percent is known exactly: it is 42%, not an interval. The third choice states the interval as a certainty, which a 95% confidence level does not license. The fourth choice keeps that unwarranted certainty and additionally discards the upper bound, reporting a one-sided claim.",
+  "solve": "const p=42, m=5.2;\nreturn 'It is plausible that the percent of all 90,000 adults in the city who visited a public library in the past year is between '+(p-m).toFixed(1)+'% and '+(p+m).toFixed(1)+'%.';",
+  "domain": "Problem-Solving and Data Analysis"
+ },
+ {
+  "id": "PSDA-H2-06",
+  "subskill": "percentages: successive percent change",
+  "difficulty": "medium",
+  "prompt": "A jacket that costs a store 80 dollars is priced at a 35 percent markup over that cost. The jacket is later put on sale for 25 percent off its marked price. What is the sale price of the jacket, in dollars?",
+  "choices": [
+   "60.00",
+   "81.00",
+   "88.00",
+   "108.00"
+  ],
+  "correct_answer": "81.00",
+  "explanation": "The marked price is 80(1.35) = 108 dollars, and the sale price is 108(0.75) = 81 dollars. Choice 108.00 stops after the markup. Choice 60.00 makes the mirror-image error, applying only the 25 percent discount to the 80-dollar cost. Choice 88.00 combines the two percents additively, treating a 35 percent increase followed by a 25 percent decrease as a net 10 percent increase on 80 dollars.",
+  "solve": "const c=80, up=0.35, off=0.25;\nreturn (c*(1+up)*(1-off)).toFixed(2);",
+  "domain": "Problem-Solving and Data Analysis"
+ },
+ {
+  "id": "PSDA-H2-07",
+  "subskill": "percentages: percent change versus percentage points",
+  "difficulty": "medium",
+  "prompt": "The table gives the percent of the households in a county that subscribed to at least one streaming service in each of four years. The percent of households that subscribed in 2021 is what percent greater than the percent that subscribed in 2020?",
+  "graphic": {
+   "type": "table",
+   "rowLabels": [
+    "2019",
+    "2020",
+    "2021",
+    "2022"
+   ],
+   "colLabels": [
+    "Percent of households subscribing"
+   ],
+   "cells": [
+    [
+     "24%"
+    ],
+    [
+     "30%"
+    ],
+    [
+     "39%"
+    ],
+    [
+     "45%"
+    ]
+   ],
+   "caption": "Household streaming subscriptions, by year"
+  },
+  "choices": [
+   "9",
+   "23",
+   "30",
+   "63"
+  ],
+  "correct_answer": "30",
+  "explanation": "The percent increase is (39 - 30)/30 = 0.30, or 30 percent. Choice 9 reports the change in percentage points, 39 - 30, which is not a percent increase. Choice 23 divides that same 9-point change by the later value, 9/39, using the wrong base. Choice 63 uses the correct method on the wrong interval, (39 - 24)/24, the change from 2019 to 2021.",
+  "solve": "const y2020=30, y2021=39;\nreturn Math.round(100*(y2021-y2020)/y2020);",
+  "domain": "Problem-Solving and Data Analysis"
+ },
+ {
+  "id": "PSDA-H2-08",
+  "subskill": "percentages: reversing successive percent change",
+  "difficulty": "medium",
+  "prompt": "A bicycle was sold at a 20 percent discount off its list price, and a 10 percent sales tax was then applied to the discounted price. The customer paid 162.80 dollars in total. What was the list price of the bicycle, in dollars?",
+  "choices": [
+   "148.00",
+   "177.60",
+   "185.00",
+   "203.50"
+  ],
+  "correct_answer": "185.00",
+  "explanation": "If L is the list price, then L(0.80)(1.10) = 162.80, so L = 162.80/0.88 = 185 dollars. Choice 148.00 removes only the tax, 162.80/1.10, and so reports the discounted price rather than the list price. Choice 177.60 starts from that 148.00 and then ADDS 20 percent back, 148(1.20), instead of dividing by 0.80. Choice 203.50 removes only the discount, 162.80/0.80, leaving the tax in the answer.",
+  "solve": "const paid=162.80, disc=0.20, tax=0.10;\nreturn (paid/((1-disc)*(1+tax))).toFixed(2);",
+  "domain": "Problem-Solving and Data Analysis"
+ },
+ {
+  "id": "PSDA-H2-09",
+  "subskill": "ratios, rates and proportional relationships",
+  "difficulty": "medium",
+  "prompt": "On a map, 2.5 centimeters represents 4 kilometers of actual distance. Two towns are 17.5 centimeters apart on the map. A cyclist travels between the two towns along a route whose length equals the actual distance between them, at an average speed of 14 kilometers per hour. How many hours does the trip take?",
+  "choices": [
+   "1.25",
+   "2",
+   "5",
+   "28"
+  ],
+  "correct_answer": "2",
+  "explanation": "The map distance corresponds to (17.5/2.5)(4) = 28 kilometers, and 28/14 = 2 hours. Choice 1.25 treats the 17.5 centimeters as 17.5 kilometers and divides by 14. Choice 5 multiplies 17.5 by 4 but never divides by 2.5, giving 70/14. Choice 28 is the actual distance between the towns in kilometers, which is the quantity the scale produces, not the travel time the question asks for.",
+  "solve": "const cmPerUnit=2.5, kmPerUnit=4, mapCm=17.5, speed=14;\nreturn (mapCm/cmPerUnit)*kmPerUnit/speed;",
+  "domain": "Problem-Solving and Data Analysis"
+ },
+ {
+  "id": "PSDA-H2-10",
+  "subskill": "rates: average rate over a round trip",
+  "difficulty": "medium",
+  "prompt": "A cyclist rides 60 kilometers from a town to a lake at an average speed of 30 kilometers per hour and then returns along the same 60-kilometer route at an average speed of 20 kilometers per hour. What is the cyclist's average speed, in kilometers per hour, for the entire round trip?",
+  "choices": [
+   "24",
+   "25",
+   "40",
+   "60"
+  ],
+  "correct_answer": "24",
+  "explanation": "The trip out takes 60/30 = 2 hours and the return takes 60/20 = 3 hours, so 120 kilometers are covered in 5 hours and the average speed is 120/5 = 24 kilometers per hour. Choice 25 averages the two speeds, which would be correct only if equal TIMES, not equal distances, were spent at each speed. Choice 40 divides the full 120 kilometers by the 3-hour return time alone, and choice 60 divides it by the 2-hour outbound time alone.",
+  "solve": "const d=60, v1=30, v2=20;\nreturn 2*d/(d/v1+d/v2);",
+  "domain": "Problem-Solving and Data Analysis"
+ },
+ {
+  "id": "PSDA-H2-11",
+  "subskill": "percentages: comparing percent change across intervals",
+  "difficulty": "hard",
+  "prompt": "The table shows a company's revenue, in thousands of dollars, in each of six consecutive months. Between which two consecutive months listed did the revenue increase by the greatest percent?",
+  "graphic": {
+   "type": "table",
+   "rowLabels": [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June"
+   ],
+   "colLabels": [
+    "Revenue (thousands of dollars)"
+   ],
+   "cells": [
+    [
+     "40"
+    ],
+    [
+     "50"
+    ],
+    [
+     "62"
+    ],
+    [
+     "78"
+    ],
+    [
+     "96"
+    ],
+    [
+     "112"
+    ]
+   ],
+   "caption": "Monthly revenue"
+  },
+  "choices": [
+   "January to February",
+   "March to April",
+   "April to May",
+   "May to June"
+  ],
+  "correct_answer": "March to April",
+  "explanation": "The percent increases are (50 - 40)/40 = 25.0%, (62 - 50)/50 = 24.0%, (78 - 62)/62 = 25.8%, (96 - 78)/78 = 23.1% and (112 - 96)/96 = 16.7%. The greatest is March to April, at about 25.8%. May to June has the greatest increase in DOLLARS, 16 thousand, but the largest base, so it is the smallest percent increase of the five. January to February is a clean 25% and is the trap for a student who stops at the first round number; April to May has a larger dollar increase than March to April but a larger base as well.",
+  "solve": "const m=['January','February','March','April','May','June'];\nconst v=[40,50,62,78,96,112];\nlet bi=0,bp=-Infinity;\nfor(let i=0;i<v.length-1;i++){const p=(v[i+1]-v[i])/v[i]; if(p>bp){bp=p;bi=i;}}\nreturn m[bi]+' to '+m[bi+1];",
+  "domain": "Problem-Solving and Data Analysis"
+ },
+ {
+  "id": "PSDA-H2-12",
+  "subskill": "rates: comparing counts against per-capita rates",
+  "difficulty": "medium",
+  "prompt": "The table shows the population of each of four counties and the number of cases of a disease reported in each county last year. Which county had the greatest number of reported cases per 100,000 residents?",
+  "graphic": {
+   "type": "table",
+   "rowLabels": [
+    "Ashby",
+    "Brill",
+    "Corte",
+    "Doyle"
+   ],
+   "colLabels": [
+    "Population",
+    "Reported cases"
+   ],
+   "cells": [
+    [
+     "240,000",
+     "312"
+    ],
+    [
+     "150,000",
+     "210"
+    ],
+    [
+     "480,000",
+     "576"
+    ],
+    [
+     "90,000",
+     "135"
+    ]
+   ],
+   "caption": "Population and reported cases, by county"
+  },
+  "choices": [
+   "Ashby",
+   "Brill",
+   "Corte",
+   "Doyle"
+  ],
+  "correct_answer": "Doyle",
+  "explanation": "The rates per 100,000 residents are Ashby 312/2.4 = 130, Brill 210/1.5 = 140, Corte 576/4.8 = 120, and Doyle 135/0.9 = 150. Doyle is the greatest. Corte has by far the most reported cases, 576, but also the largest population, and it has the LOWEST rate. Brill has the second-highest rate but neither the most cases nor the smallest population, and Ashby has the second-highest case count.",
+  "solve": "const c=[['Ashby',240000,312],['Brill',150000,210],['Corte',480000,576],['Doyle',90000,135]];\nlet bn='',br=-Infinity;\nfor(const [n,p,k] of c){const r=k/(p/100000); if(r>br){br=r;bn=n;}}\nreturn bn;",
+  "domain": "Problem-Solving and Data Analysis"
+ },
+ {
+  "id": "PSDA-H2-13",
+  "subskill": "percentages: percent decrease of a quantity read from a graph",
+  "difficulty": "easy",
+  "prompt": "The bar graph shows the number of people who registered for each of four workshops. After registration closed, 15 percent of the people who registered for the robotics workshop cancelled. How many people remained registered for the robotics workshop?",
+  "graphic": {
+   "type": "bar",
+   "xLabel": "Workshop",
+   "yLabel": "Number of people registered",
+   "bars": [
+    {
+     "label": "Robotics",
+     "value": 240
     },
-    "choices": [
-      "8",
-      "12",
-      "12.5",
-      "16"
-    ],
-    "correct_answer": "12",
-    "explanation": "With 31 values the median is the 16th value in order. The cumulative counts are 6 (through 4 hours), 15 (through 8 hours) and 20 (through 12 hours), so the 16th value is 12. Choice 8 is the median of the original 25 members, which ignores the six new values. Choice 16 reports the POSITION of the median, 16th, as though it were the value. Choice 12.5 is the mean of all 31 values, 388/31, not the median.",
-    "solve": "const vals=[];\nconst rows=[[4,6],[8,9],[12,5],[16,3],[20,2]];\nfor(const [h,f] of rows) for(let i=0;i<f;i++) vals.push(h);\nfor(let i=0;i<6;i++) vals.push(24);\nvals.sort((a,b)=>a-b);\nconst n=vals.length;\nreturn n%2 ? vals[(n-1)/2] : (vals[n/2-1]+vals[n/2])/2;",
-    "domain": "Problem-Solving and Data Analysis"
-  },
-  {
-    "id": "PSDA-H2-03",
-    "subskill": "one-variable data: weighted mean across groups",
-    "difficulty": "medium",
-    "prompt": "The table shows the number of workers on each of three shifts at a plant and the mean number of units produced per worker on that shift during one week. What is the mean number of units produced per worker for all 75 workers that week, to the nearest tenth?",
-    "graphic": {
-      "type": "table",
-      "rowLabels": [
-        "Morning",
-        "Afternoon",
-        "Night"
-      ],
-      "colLabels": [
-        "Number of workers",
-        "Mean units per worker"
-      ],
-      "cells": [
-        [
-          "24",
-          "31"
-        ],
-        [
-          "36",
-          "27"
-        ],
-        [
-          "15",
-          "20"
-        ]
-      ],
-      "caption": "Units produced per worker, by shift"
+    {
+     "label": "Coding",
+     "value": 180
     },
-    "choices": [
-      "25.6",
-      "26.0",
-      "26.9",
-      "27.4"
-    ],
-    "correct_answer": "26.9",
-    "explanation": "The total output is 24(31) + 36(27) + 15(20) = 2,016 units, so the mean per worker is 2,016/75 = 26.88, or 26.9. Choice 26.0 averages the three shift means without weighting, (31 + 27 + 20)/3. Choice 25.6 weights correctly in form but pairs the morning and night worker counts with the wrong shifts. Choice 27.4 weights each shift mean by that shift's total OUTPUT rather than by its number of workers, which over-counts the large productive shifts.",
-    "solve": "const r=[[24,31],[36,27],[15,20]];\nconst tot=r.reduce((a,[w,m])=>a+w*m,0), n=r.reduce((a,[w])=>a+w,0);\nreturn (Math.round(10*tot/n)/10).toFixed(1);",
-    "domain": "Problem-Solving and Data Analysis"
-  },
-  {
-    "id": "PSDA-H2-04",
-    "subskill": "inference from sample statistics and margin of error",
-    "difficulty": "hard",
-    "prompt": "A polling organization selected a random sample of 350 adults from the 90,000 adults living in a city. In the sample, 42% reported having visited a public library in the past year. The margin of error for this estimate is 5.2 percentage points at the 95% confidence level. Which of the following is the most appropriate conclusion?",
-    "choices": [
-      "It is plausible that the percent of all 90,000 adults in the city who visited a public library in the past year is between 36.8% and 47.2%.",
-      "It is plausible that the percent of the 350 surveyed adults who visited a public library in the past year is between 36.8% and 47.2%.",
-      "The percent of all 90,000 adults in the city who visited a public library in the past year must be between 36.8% and 47.2%.",
-      "At least 36.8% of all 90,000 adults in the city visited a public library in the past year."
-    ],
-    "correct_answer": "It is plausible that the percent of all 90,000 adults in the city who visited a public library in the past year is between 36.8% and 47.2%.",
-    "explanation": "A margin of error describes an interval of plausible values for the POPULATION quantity, here 42% - 5.2% = 36.8% to 42% + 5.2% = 47.2% for all 90,000 adults. The second choice attaches the interval to the sample, but the sample percent is known exactly: it is 42%, not an interval. The third choice states the interval as a certainty, which a 95% confidence level does not license. The fourth choice keeps that unwarranted certainty and additionally discards the upper bound, reporting a one-sided claim.",
-    "solve": "const p=42, m=5.2;\nreturn 'It is plausible that the percent of all 90,000 adults in the city who visited a public library in the past year is between '+(p-m).toFixed(1)+'% and '+(p+m).toFixed(1)+'%.';",
-    "domain": "Problem-Solving and Data Analysis"
-  },
-  {
-    "id": "PSDA-H2-05",
-    "subskill": "two-way tables: conditional probability",
-    "difficulty": "medium",
-    "prompt": "The table summarizes the primary commuting method and age group of the 200 people who responded to a survey. Of the respondents who do not commute by car, what fraction are under 40 years old? Round to the nearest hundredth.",
-    "graphic": {
-      "type": "twowaytable",
-      "rowLabels": [
-        "Under 40",
-        "40 or older",
-        "Total"
-      ],
-      "colLabels": [
-        "Car",
-        "Public transit",
-        "Bicycle",
-        "Total"
-      ],
-      "cells": [
-        [
-          "44",
-          "58",
-          "28",
-          "130"
-        ],
-        [
-          "52",
-          "14",
-          "4",
-          "70"
-        ],
-        [
-          "96",
-          "72",
-          "32",
-          "200"
-        ]
-      ],
-      "caption": "Primary commuting method by age group"
+    {
+     "label": "Design",
+     "value": 120
     },
-    "choices": [
-      "0.43",
-      "0.52",
-      "0.66",
-      "0.83"
-    ],
-    "correct_answer": "0.83",
-    "explanation": "Respondents who do not commute by car number 72 + 32 = 104, and 58 + 28 = 86 of them are under 40, so the fraction is 86/104 = 0.83. Choice 0.66 divides the same 86 by 130, the under-40 total, which conditions on age instead of on commuting method. Choice 0.43 is 86/200, the joint proportion rather than a conditional one. Choice 0.52 keeps that same denominator of 200 but uses the non-car total, 104/200, so it reports how common non-car commuting is rather than anything about age.",
-    "solve": "const u40=[44,58,28], o40=[52,14,4];\nconst nonCarU=u40[1]+u40[2], nonCar=nonCarU+o40[1]+o40[2];\nreturn (Math.round(100*nonCarU/nonCar)/100).toFixed(2);",
-    "domain": "Problem-Solving and Data Analysis"
+    {
+     "label": "Photography",
+     "value": 60
+    }
+   ]
   },
-  {
-    "id": "PSDA-H2-06",
-    "subskill": "percentages: successive percent change",
-    "difficulty": "medium",
-    "prompt": "A jacket that costs a store 80 dollars is priced at a 35 percent markup over that cost. The jacket is later put on sale for 25 percent off its marked price. What is the sale price of the jacket, in dollars?",
-    "choices": [
-      "60.00",
-      "81.00",
-      "88.00",
-      "108.00"
-    ],
-    "correct_answer": "81.00",
-    "explanation": "The marked price is 80(1.35) = 108 dollars, and the sale price is 108(0.75) = 81 dollars. Choice 108.00 stops after the markup. Choice 60.00 makes the mirror-image error, applying only the 25 percent discount to the 80-dollar cost. Choice 88.00 combines the two percents additively, treating a 35 percent increase followed by a 25 percent decrease as a net 10 percent increase on 80 dollars.",
-    "solve": "const c=80, up=0.35, off=0.25;\nreturn (c*(1+up)*(1-off)).toFixed(2);",
-    "domain": "Problem-Solving and Data Analysis"
-  },
-  {
-    "id": "PSDA-H2-07",
-    "subskill": "percentages: percent change versus percentage points",
-    "difficulty": "medium",
-    "prompt": "The table gives the percent of the households in a county that subscribed to at least one streaming service in each of four years. The percent of households that subscribed in 2021 is what percent greater than the percent that subscribed in 2020?",
-    "graphic": {
-      "type": "table",
-      "rowLabels": [
-        "2019",
-        "2020",
-        "2021",
-        "2022"
+  "choices": [
+   "36",
+   "204",
+   "225",
+   "276"
+  ],
+  "correct_answer": "204",
+  "explanation": "The robotics workshop had 240 registrations, and 240(1 - 0.15) = 204 people remained. Choice 36 is the number who cancelled, 0.15(240), rather than the number remaining. Choice 225 subtracts 15 people instead of 15 percent. Choice 276 adds 15 percent instead of subtracting it, 240(1.15).",
+  "solve": "const reg=240, rate=0.15;\nreturn Math.round(reg*(1-rate));",
+  "domain": "Problem-Solving and Data Analysis"
+ },
+ {
+  "id": "PSDA-H2-14",
+  "subskill": "inference from sample statistics: scaling a sample proportion",
+  "difficulty": "easy",
+  "prompt": "In a random sample of 250 shoppers at a store, 90 bought fresh produce. If 4,000 shoppers visit the store in a week, which of the following is the best estimate of the number of those shoppers who buy fresh produce?",
+  "choices": [
+   "1440",
+   "1600",
+   "2560",
+   "3600"
+  ],
+  "correct_answer": "1440",
+  "explanation": "The sample proportion is 90/250 = 0.36, so the estimate is 0.36(4,000) = 1,440. Choice 2560 estimates the shoppers who do NOT buy fresh produce, (160/250)(4,000). Choice 3600 treats 90 as 90 out of 100, applying 90 percent to 4,000. Choice 1600 rounds the sample proportion to 40 percent before scaling, which is a coarser reading of the same 90-out-of-250 ratio.",
+  "solve": "const s=250, x=90, N=4000;\nreturn Math.round(x/s*N);",
+  "domain": "Problem-Solving and Data Analysis"
+ },
+ {
+  "id": "PSDA-H2-15",
+  "subskill": "probability: two selections without replacement",
+  "difficulty": "medium",
+  "prompt": "A bag contains 5 red marbles, 7 blue marbles and 8 green marbles. Two marbles are selected at random from the bag, one after the other, without replacement. What is the probability that both marbles selected are green?",
+  "choices": [
+   "7/50",
+   "14/95",
+   "4/25",
+   "7/19"
+  ],
+  "correct_answer": "14/95",
+  "explanation": "The probability the first marble is green is 8/20, and given that, the probability the second is green is 7/19, so the probability both are green is (8/20)(7/19) = 56/380 = 14/95. Choice 7/50 reduces the numerator to 7 but leaves the denominator at 20, (8/20)(7/20), so it removes the marble from the favorable count but not from the bag. Choice 4/25 is (8/20)^2, the with-replacement answer, which does not remove the marble at all. Choice 7/19 is only the conditional probability for the second draw, treating the first green marble as already given rather than as an event with its own probability.",
+  "solve": "const g=8, n=20;\nreturn g/n*(g-1)/(n-1);",
+  "domain": "Problem-Solving and Data Analysis"
+ },
+ {
+  "id": "PSDA-H2-16",
+  "subskill": "ratios and rates: mixture concentration",
+  "difficulty": "medium",
+  "prompt": "A chemist has 24 milliliters of a solution that is 25 percent acid by volume. She will add some amount of a solution that is 60 percent acid by volume. How many milliliters of the 60 percent solution must she add so that the resulting mixture is 45 percent acid by volume?",
+  "choices": [
+   "8",
+   "18",
+   "32",
+   "56"
+  ],
+  "correct_answer": "32",
+  "explanation": "If x milliliters are added, then 0.25(24) + 0.60x = 0.45(24 + x), so 6 + 0.60x = 10.8 + 0.45x, 0.15x = 4.8 and x = 32. Choice 8 omits x from the volume of the mixture, solving 6 + 0.60x = 0.45(24) and so requiring the added acid to fill a gap in a container that never grows. Choice 18 sets up the correct alligation but inverts the ratio, using 24(15/20) instead of 24(20/15). Choice 56 is the total volume of the finished mixture rather than the amount added.",
+  "solve": "const V=24, c0=0.25, c1=0.60, ct=0.45;\nreturn V*(ct-c0)/(c1-ct);",
+  "domain": "Problem-Solving and Data Analysis"
+ },
+ {
+  "id": "PSDA-H2-17",
+  "subskill": "rates: interpreting a linear graph with unit conversion",
+  "difficulty": "medium",
+  "prompt": "The graph shows the volume of water, in liters, remaining in a tank t hours after a drain valve is opened. The water drains at a constant rate. At what rate is water leaving the tank, in liters per minute?",
+  "graphic": {
+   "type": "line",
+   "xLabel": "Time since the valve was opened (hours)",
+   "yLabel": "Water remaining (liters)",
+   "series": [
+    {
+     "label": "Water remaining",
+     "points": [
+      [
+       0,
+       1200
       ],
-      "colLabels": [
-        "Percent of households subscribing"
+      [
+       1,
+       1050
       ],
-      "cells": [
-        [
-          "24%"
-        ],
-        [
-          "30%"
-        ],
-        [
-          "39%"
-        ],
-        [
-          "45%"
-        ]
+      [
+       2,
+       900
       ],
-      "caption": "Household streaming subscriptions, by year"
-    },
-    "choices": [
-      "9",
-      "23",
-      "30",
-      "63"
-    ],
-    "correct_answer": "30",
-    "explanation": "The percent increase is (39 - 30)/30 = 0.30, or 30 percent. Choice 9 reports the change in percentage points, 39 - 30, which is not a percent increase. Choice 23 divides that same 9-point change by the later value, 9/39, using the wrong base. Choice 63 uses the correct method on the wrong interval, (39 - 24)/24, the change from 2019 to 2021.",
-    "solve": "const y2020=30, y2021=39;\nreturn Math.round(100*(y2021-y2020)/y2020);",
-    "domain": "Problem-Solving and Data Analysis"
-  },
-  {
-    "id": "PSDA-H2-08",
-    "subskill": "percentages: reversing successive percent change",
-    "difficulty": "hard",
-    "prompt": "A bicycle was sold at a 20 percent discount off its list price, and a 10 percent sales tax was then applied to the discounted price. The customer paid 162.80 dollars in total. What was the list price of the bicycle, in dollars?",
-    "choices": [
-      "148.00",
-      "177.60",
-      "185.00",
-      "203.50"
-    ],
-    "correct_answer": "185.00",
-    "explanation": "If L is the list price, then L(0.80)(1.10) = 162.80, so L = 162.80/0.88 = 185 dollars. Choice 148.00 removes only the tax, 162.80/1.10, and so reports the discounted price rather than the list price. Choice 177.60 starts from that 148.00 and then ADDS 20 percent back, 148(1.20), instead of dividing by 0.80. Choice 203.50 removes only the discount, 162.80/0.80, leaving the tax in the answer.",
-    "solve": "const paid=162.80, disc=0.20, tax=0.10;\nreturn (paid/((1-disc)*(1+tax))).toFixed(2);",
-    "domain": "Problem-Solving and Data Analysis"
-  },
-  {
-    "id": "PSDA-H2-09",
-    "subskill": "ratios, rates and proportional relationships",
-    "difficulty": "medium",
-    "prompt": "On a map, 2.5 centimeters represents 4 kilometers of actual distance. Two towns are 17.5 centimeters apart on the map. A cyclist travels between the two towns along a route whose length equals the actual distance between them, at an average speed of 14 kilometers per hour. How many hours does the trip take?",
-    "choices": [
-      "1.25",
-      "2",
-      "5",
-      "28"
-    ],
-    "correct_answer": "2",
-    "explanation": "The map distance corresponds to (17.5/2.5)(4) = 28 kilometers, and 28/14 = 2 hours. Choice 1.25 treats the 17.5 centimeters as 17.5 kilometers and divides by 14. Choice 5 multiplies 17.5 by 4 but never divides by 2.5, giving 70/14. Choice 28 is the actual distance between the towns in kilometers, which is the quantity the scale produces, not the travel time the question asks for.",
-    "solve": "const cmPerUnit=2.5, kmPerUnit=4, mapCm=17.5, speed=14;\nreturn (mapCm/cmPerUnit)*kmPerUnit/speed;",
-    "domain": "Problem-Solving and Data Analysis"
-  },
-  {
-    "id": "PSDA-H2-10",
-    "subskill": "rates: average rate over a round trip",
-    "difficulty": "hard",
-    "prompt": "A cyclist rides 60 kilometers from a town to a lake at an average speed of 30 kilometers per hour and then returns along the same 60-kilometer route at an average speed of 20 kilometers per hour. What is the cyclist's average speed, in kilometers per hour, for the entire round trip?",
-    "choices": [
-      "24",
-      "25",
-      "40",
-      "60"
-    ],
-    "correct_answer": "24",
-    "explanation": "The trip out takes 60/30 = 2 hours and the return takes 60/20 = 3 hours, so 120 kilometers are covered in 5 hours and the average speed is 120/5 = 24 kilometers per hour. Choice 25 averages the two speeds, which would be correct only if equal TIMES, not equal distances, were spent at each speed. Choice 40 divides the full 120 kilometers by the 3-hour return time alone, and choice 60 divides it by the 2-hour outbound time alone.",
-    "solve": "const d=60, v1=30, v2=20;\nreturn 2*d/(d/v1+d/v2);",
-    "domain": "Problem-Solving and Data Analysis"
-  },
-  {
-    "id": "PSDA-H2-11",
-    "subskill": "percentages: comparing percent change across intervals",
-    "difficulty": "hard",
-    "prompt": "The table shows a company's revenue, in thousands of dollars, in each of six consecutive months. Between which two consecutive months listed did the revenue increase by the greatest percent?",
-    "graphic": {
-      "type": "table",
-      "rowLabels": [
-        "January",
-        "February",
-        "March",
-        "April",
-        "May",
-        "June"
+      [
+       3,
+       750
       ],
-      "colLabels": [
-        "Revenue (thousands of dollars)"
+      [
+       4,
+       600
       ],
-      "cells": [
-        [
-          "40"
-        ],
-        [
-          "50"
-        ],
-        [
-          "62"
-        ],
-        [
-          "78"
-        ],
-        [
-          "96"
-        ],
-        [
-          "112"
-        ]
+      [
+       5,
+       450
       ],
-      "caption": "Monthly revenue"
-    },
-    "choices": [
-      "January to February",
-      "March to April",
-      "April to May",
-      "May to June"
-    ],
-    "correct_answer": "March to April",
-    "explanation": "The percent increases are (50 - 40)/40 = 25.0%, (62 - 50)/50 = 24.0%, (78 - 62)/62 = 25.8%, (96 - 78)/78 = 23.1% and (112 - 96)/96 = 16.7%. The greatest is March to April, at about 25.8%. May to June has the greatest increase in DOLLARS, 16 thousand, but the largest base, so it is the smallest percent increase of the five. January to February is a clean 25% and is the trap for a student who stops at the first round number; April to May has a larger dollar increase than March to April but a larger base as well.",
-    "solve": "const m=['January','February','March','April','May','June'];\nconst v=[40,50,62,78,96,112];\nlet bi=0,bp=-Infinity;\nfor(let i=0;i<v.length-1;i++){const p=(v[i+1]-v[i])/v[i]; if(p>bp){bp=p;bi=i;}}\nreturn m[bi]+' to '+m[bi+1];",
-    "domain": "Problem-Solving and Data Analysis"
-  },
-  {
-    "id": "PSDA-H2-12",
-    "subskill": "rates: comparing counts against per-capita rates",
-    "difficulty": "medium",
-    "prompt": "The table shows the population of each of four counties and the number of cases of a disease reported in each county last year. Which county had the greatest number of reported cases per 100,000 residents?",
-    "graphic": {
-      "type": "table",
-      "rowLabels": [
-        "Ashby",
-        "Brill",
-        "Corte",
-        "Doyle"
-      ],
-      "colLabels": [
-        "Population",
-        "Reported cases"
-      ],
-      "cells": [
-        [
-          "240,000",
-          "312"
-        ],
-        [
-          "150,000",
-          "210"
-        ],
-        [
-          "480,000",
-          "576"
-        ],
-        [
-          "90,000",
-          "135"
-        ]
-      ],
-      "caption": "Population and reported cases, by county"
-    },
-    "choices": [
-      "Ashby",
-      "Brill",
-      "Corte",
-      "Doyle"
-    ],
-    "correct_answer": "Doyle",
-    "explanation": "The rates per 100,000 residents are Ashby 312/2.4 = 130, Brill 210/1.5 = 140, Corte 576/4.8 = 120, and Doyle 135/0.9 = 150. Doyle is the greatest. Corte has by far the most reported cases, 576, but also the largest population, and it has the LOWEST rate. Brill has the second-highest rate but neither the most cases nor the smallest population, and Ashby has the second-highest case count.",
-    "solve": "const c=[['Ashby',240000,312],['Brill',150000,210],['Corte',480000,576],['Doyle',90000,135]];\nlet bn='',br=-Infinity;\nfor(const [n,p,k] of c){const r=k/(p/100000); if(r>br){br=r;bn=n;}}\nreturn bn;",
-    "domain": "Problem-Solving and Data Analysis"
-  },
-  {
-    "id": "PSDA-H2-13",
-    "subskill": "percentages: percent decrease of a quantity read from a graph",
-    "difficulty": "easy",
-    "prompt": "The bar graph shows the number of people who registered for each of four workshops. After registration closed, 15 percent of the people who registered for the robotics workshop cancelled. How many people remained registered for the robotics workshop?",
-    "graphic": {
-      "type": "bar",
-      "xLabel": "Workshop",
-      "yLabel": "Number of people registered",
-      "bars": [
-        {
-          "label": "Robotics",
-          "value": 240
-        },
-        {
-          "label": "Coding",
-          "value": 180
-        },
-        {
-          "label": "Design",
-          "value": 120
-        },
-        {
-          "label": "Photography",
-          "value": 60
-        }
+      [
+       6,
+       300
       ]
+     ]
+    }
+   ]
+  },
+  "choices": [
+   "2.5",
+   "3.3",
+   "150",
+   "200"
+  ],
+  "correct_answer": "2.5",
+  "explanation": "The volume falls from 1,200 liters to 300 liters over 6 hours, so 900 liters drain in 6 hours, or 150 liters per hour, which is 150/60 = 2.5 liters per minute. Choice 150 is that rate in liters per HOUR, the unit the graph uses rather than the unit the question asks for. Choice 200 assumes the tank is empty at t = 6 and divides the full 1,200 liters by 6 hours. Choice 3.3 converts that same 200 liters per hour to liters per minute, so it carries the emptying assumption through to the right units.",
+  "solve": "const v0=1200, v6=300, hours=6;\nreturn (v0-v6)/hours/60;",
+  "domain": "Problem-Solving and Data Analysis"
+ },
+ {
+  "id": "PSDA-H2-18",
+  "subskill": "inference from sample statistics: estimating across unequal groups",
+  "difficulty": "hard",
+  "prompt": "A school has 480 students in the ninth grade and 320 students in the tenth grade. A random sample of 50 ninth graders was surveyed, and 25 percent said they plan to join a club. A separate random sample of 50 tenth graders was surveyed, and 60 percent said they plan to join a club. Based on these samples, which of the following is the best estimate of the total number of ninth and tenth graders at the school who plan to join a club?",
+  "choices": [
+   "200",
+   "312",
+   "340",
+   "480"
+  ],
+  "correct_answer": "312",
+  "explanation": "Each rate must be applied to its own grade: 0.25(480) = 120 and 0.60(320) = 192, for a total of 312. Choice 340 pools the two samples first, getting a combined sample rate of 42.5 percent, and applies it to all 800 students; that is wrong because the two grades are equally represented in the samples but not in the school. Choice 200 applies the ninth-grade rate to all 800 students, and choice 480 makes the same one-rate-for-everyone error using the tenth-grade rate instead.",
+  "solve": "const p9=480,p10=320,r9=0.25,r10=0.60;\nreturn Math.round(p9*r9+p10*r10);",
+  "domain": "Problem-Solving and Data Analysis"
+ },
+ {
+  "id": "PSDA-H2-19",
+  "subskill": "one-variable data: mean from a frequency graph",
+  "difficulty": "medium",
+  "prompt": "The bar graph shows the number of games in which a soccer team scored 0, 1, 2 or 3 goals during a 20-game season. What was the mean number of goals the team scored per game?",
+  "graphic": {
+   "type": "bar",
+   "xLabel": "Goals scored in a game",
+   "yLabel": "Number of games",
+   "bars": [
+    {
+     "label": "0",
+     "value": 2
     },
-    "choices": [
-      "36",
-      "204",
-      "225",
-      "276"
-    ],
-    "correct_answer": "204",
-    "explanation": "The robotics workshop had 240 registrations, and 240(1 - 0.15) = 204 people remained. Choice 36 is the number who cancelled, 0.15(240), rather than the number remaining. Choice 225 subtracts 15 people instead of 15 percent. Choice 276 adds 15 percent instead of subtracting it, 240(1.15).",
-    "solve": "const reg=240, rate=0.15;\nreturn Math.round(reg*(1-rate));",
-    "domain": "Problem-Solving and Data Analysis"
-  },
-  {
-    "id": "PSDA-H2-14",
-    "subskill": "inference from sample statistics: scaling a sample proportion",
-    "difficulty": "easy",
-    "prompt": "In a random sample of 250 shoppers at a store, 90 bought fresh produce. If 4,000 shoppers visit the store in a week, which of the following is the best estimate of the number of those shoppers who buy fresh produce?",
-    "choices": [
-      "1440",
-      "1600",
-      "2560",
-      "3600"
-    ],
-    "correct_answer": "1440",
-    "explanation": "The sample proportion is 90/250 = 0.36, so the estimate is 0.36(4,000) = 1,440. Choice 2560 estimates the shoppers who do NOT buy fresh produce, (160/250)(4,000). Choice 3600 treats 90 as 90 out of 100, applying 90 percent to 4,000. Choice 1600 rounds the sample proportion to 40 percent before scaling, which is a coarser reading of the same 90-out-of-250 ratio.",
-    "solve": "const s=250, x=90, N=4000;\nreturn Math.round(x/s*N);",
-    "domain": "Problem-Solving and Data Analysis"
-  },
-  {
-    "id": "PSDA-H2-15",
-    "subskill": "probability: two selections without replacement",
-    "difficulty": "medium",
-    "prompt": "A bag contains 5 red marbles, 7 blue marbles and 8 green marbles. Two marbles are selected at random from the bag, one after the other, without replacement. What is the probability that both marbles selected are green?",
-    "choices": [
-      "7/50",
-      "14/95",
-      "4/25",
-      "7/19"
-    ],
-    "correct_answer": "14/95",
-    "explanation": "The probability the first marble is green is 8/20, and given that, the probability the second is green is 7/19, so the probability both are green is (8/20)(7/19) = 56/380 = 14/95. Choice 7/50 reduces the numerator to 7 but leaves the denominator at 20, (8/20)(7/20), so it removes the marble from the favorable count but not from the bag. Choice 4/25 is (8/20)^2, the with-replacement answer, which does not remove the marble at all. Choice 7/19 is only the conditional probability for the second draw, treating the first green marble as already given rather than as an event with its own probability.",
-    "solve": "const g=8, n=20;\nreturn g/n*(g-1)/(n-1);",
-    "domain": "Problem-Solving and Data Analysis"
-  },
-  {
-    "id": "PSDA-H2-16",
-    "subskill": "ratios and rates: mixture concentration",
-    "difficulty": "hard",
-    "prompt": "A chemist has 24 milliliters of a solution that is 25 percent acid by volume. She will add some amount of a solution that is 60 percent acid by volume. How many milliliters of the 60 percent solution must she add so that the resulting mixture is 45 percent acid by volume?",
-    "choices": [
-      "8",
-      "18",
-      "32",
-      "56"
-    ],
-    "correct_answer": "32",
-    "explanation": "If x milliliters are added, then 0.25(24) + 0.60x = 0.45(24 + x), so 6 + 0.60x = 10.8 + 0.45x, 0.15x = 4.8 and x = 32. Choice 8 omits x from the volume of the mixture, solving 6 + 0.60x = 0.45(24) and so requiring the added acid to fill a gap in a container that never grows. Choice 18 sets up the correct alligation but inverts the ratio, using 24(15/20) instead of 24(20/15). Choice 56 is the total volume of the finished mixture rather than the amount added.",
-    "solve": "const V=24, c0=0.25, c1=0.60, ct=0.45;\nreturn V*(ct-c0)/(c1-ct);",
-    "domain": "Problem-Solving and Data Analysis"
-  },
-  {
-    "id": "PSDA-H2-17",
-    "subskill": "rates: interpreting a linear graph with unit conversion",
-    "difficulty": "medium",
-    "prompt": "The graph shows the volume of water, in liters, remaining in a tank t hours after a drain valve is opened. The water drains at a constant rate. At what rate is water leaving the tank, in liters per minute?",
-    "graphic": {
-      "type": "line",
-      "xLabel": "Time since the valve was opened (hours)",
-      "yLabel": "Water remaining (liters)",
-      "series": [
-        {
-          "label": "Water remaining",
-          "points": [
-            [
-              0,
-              1200
-            ],
-            [
-              1,
-              1050
-            ],
-            [
-              2,
-              900
-            ],
-            [
-              3,
-              750
-            ],
-            [
-              4,
-              600
-            ],
-            [
-              5,
-              450
-            ],
-            [
-              6,
-              300
-            ]
-          ]
-        }
-      ]
+    {
+     "label": "1",
+     "value": 8
     },
-    "choices": [
-      "2.5",
-      "3.3",
-      "150",
-      "200"
-    ],
-    "correct_answer": "2.5",
-    "explanation": "The volume falls from 1,200 liters to 300 liters over 6 hours, so 900 liters drain in 6 hours, or 150 liters per hour, which is 150/60 = 2.5 liters per minute. Choice 150 is that rate in liters per HOUR, the unit the graph uses rather than the unit the question asks for. Choice 200 assumes the tank is empty at t = 6 and divides the full 1,200 liters by 6 hours. Choice 3.3 converts that same 200 liters per hour to liters per minute, so it carries the emptying assumption through to the right units.",
-    "solve": "const v0=1200, v6=300, hours=6;\nreturn (v0-v6)/hours/60;",
-    "domain": "Problem-Solving and Data Analysis"
-  },
-  {
-    "id": "PSDA-H2-18",
-    "subskill": "inference from sample statistics: estimating across unequal groups",
-    "difficulty": "hard",
-    "prompt": "A school has 480 students in the ninth grade and 320 students in the tenth grade. A random sample of 50 ninth graders was surveyed, and 25 percent said they plan to join a club. A separate random sample of 50 tenth graders was surveyed, and 60 percent said they plan to join a club. Based on these samples, which of the following is the best estimate of the total number of ninth and tenth graders at the school who plan to join a club?",
-    "choices": [
-      "200",
-      "312",
-      "340",
-      "480"
-    ],
-    "correct_answer": "312",
-    "explanation": "Each rate must be applied to its own grade: 0.25(480) = 120 and 0.60(320) = 192, for a total of 312. Choice 340 pools the two samples first, getting a combined sample rate of 42.5 percent, and applies it to all 800 students; that is wrong because the two grades are equally represented in the samples but not in the school. Choice 200 applies the ninth-grade rate to all 800 students, and choice 480 makes the same one-rate-for-everyone error using the tenth-grade rate instead.",
-    "solve": "const p9=480,p10=320,r9=0.25,r10=0.60;\nreturn Math.round(p9*r9+p10*r10);",
-    "domain": "Problem-Solving and Data Analysis"
-  },
-  {
-    "id": "PSDA-H2-19",
-    "subskill": "one-variable data: mean from a frequency graph",
-    "difficulty": "medium",
-    "prompt": "The bar graph shows the number of games in which a soccer team scored 0, 1, 2 or 3 goals during a 20-game season. What was the mean number of goals the team scored per game?",
-    "graphic": {
-      "type": "bar",
-      "xLabel": "Goals scored in a game",
-      "yLabel": "Number of games",
-      "bars": [
-        {
-          "label": "0",
-          "value": 2
-        },
-        {
-          "label": "1",
-          "value": 8
-        },
-        {
-          "label": "2",
-          "value": 6
-        },
-        {
-          "label": "3",
-          "value": 4
-        }
-      ]
+    {
+     "label": "2",
+     "value": 6
     },
-    "choices": [
-      "1.5",
-      "1.6",
-      "5",
-      "32"
-    ],
-    "correct_answer": "1.6",
-    "explanation": "The team scored 0(2) + 1(8) + 2(6) + 3(4) = 32 goals in 20 games, so the mean is 32/20 = 1.6. Choice 1.5 is the median: with 20 games the median is the average of the 10th and 11th values, which are 1 and 2. Choice 5 divides the 20 games by the 4 bars, giving the mean number of games per bar rather than goals per game. Choice 32 is the total number of goals, the numerator alone.",
-    "solve": "const b=[[0,2],[1,8],[2,6],[3,4]];\nconst tot=b.reduce((a,[g,f])=>a+g*f,0), n=b.reduce((a,[,f])=>a+f,0);\nreturn tot/n;",
-    "domain": "Problem-Solving and Data Analysis"
+    {
+     "label": "3",
+     "value": 4
+    }
+   ]
   },
-  {
-    "id": "PSDA-H2-20",
-    "subskill": "two-variable data: residuals from a line of best fit",
-    "difficulty": "hard",
-    "prompt": "The table shows the number of hours each of four students spent preparing for an exam and the score each earned. For these data, the line of best fit is y = 4.2x + 51, where x is the number of hours spent preparing and y is the score. For which student does the line of best fit give a predicted score that exceeds the student's actual score by the greatest amount?",
-    "graphic": {
-      "type": "table",
-      "rowLabels": [
-        "Ana",
-        "Ben",
-        "Cai",
-        "Dev"
-      ],
-      "colLabels": [
-        "Hours preparing",
-        "Score"
-      ],
-      "cells": [
-        [
-          "4",
-          "70"
-        ],
-        [
-          "6",
-          "70"
-        ],
-        [
-          "9",
-          "82"
-        ],
-        [
-          "11",
-          "92"
-        ]
-      ],
-      "caption": "Preparation time and exam score"
-    },
-    "choices": [
-      "Ana",
-      "Ben",
-      "Cai",
-      "Dev"
+  "choices": [
+   "1.5",
+   "1.6",
+   "5",
+   "32"
+  ],
+  "correct_answer": "1.6",
+  "explanation": "The team scored 0(2) + 1(8) + 2(6) + 3(4) = 32 goals in 20 games, so the mean is 32/20 = 1.6. Choice 1.5 is the median: with 20 games the median is the average of the 10th and 11th values, which are 1 and 2. Choice 5 divides the 20 games by the 4 bars, giving the mean number of games per bar rather than goals per game. Choice 32 is the total number of goals, the numerator alone.",
+  "solve": "const b=[[0,2],[1,8],[2,6],[3,4]];\nconst tot=b.reduce((a,[g,f])=>a+g*f,0), n=b.reduce((a,[,f])=>a+f,0);\nreturn tot/n;",
+  "domain": "Problem-Solving and Data Analysis"
+ },
+ {
+  "id": "PSDA-H2-20",
+  "subskill": "two-variable data: residuals from a line of best fit",
+  "difficulty": "medium",
+  "prompt": "The table shows the number of hours each of four students spent preparing for an exam and the score each earned. For these data, the line of best fit is y = 4.2x + 51, where x is the number of hours spent preparing and y is the score. For which student does the line of best fit give a predicted score that exceeds the student's actual score by the greatest amount?",
+  "graphic": {
+   "type": "table",
+   "rowLabels": [
+    "Ana",
+    "Ben",
+    "Cai",
+    "Dev"
+   ],
+   "colLabels": [
+    "Hours preparing",
+    "Score"
+   ],
+   "cells": [
+    [
+     "4",
+     "70"
     ],
-    "correct_answer": "Cai",
-    "explanation": "The predicted scores are 4.2(4) + 51 = 67.8, 4.2(6) + 51 = 76.2, 4.2(9) + 51 = 88.8 and 4.2(11) + 51 = 97.2. Subtracting each actual score gives -2.2, 6.2, 6.8 and 5.2, so the prediction exceeds the actual score by the most for Cai. Ana is the only student the line UNDERpredicts, and she is the trap for a student who compares scores rather than residuals; Ben ties Ana's low score of 70 but is overpredicted by 6.2, and Dev has the largest predicted score but is overpredicted by only 5.2.",
-    "solve": "const s=[['Ana',4,70],['Ben',6,70],['Cai',9,82],['Dev',11,92]];\nlet bn='',bd=-Infinity;\nfor(const [n,x,y] of s){const d=(4.2*x+51)-y; if(d>bd){bd=d;bn=n;}}\nreturn bn;",
-    "domain": "Problem-Solving and Data Analysis"
+    [
+     "6",
+     "70"
+    ],
+    [
+     "9",
+     "82"
+    ],
+    [
+     "11",
+     "92"
+    ]
+   ],
+   "caption": "Preparation time and exam score"
   },
-  {
-    "id": "PSDA-H2-21",
-    "subskill": "percentages: repeated percent growth",
-    "difficulty": "medium",
-    "prompt": "An online forum had 12,800 members at the start of 2021, and the number of members increased by 25 percent each year for the next two years. How many more members did the forum have at the start of 2023 than at the start of 2021?",
-    "choices": [
-      "4000",
-      "6400",
-      "7200",
-      "20000"
+  "choices": [
+   "Ana",
+   "Ben",
+   "Cai",
+   "Dev"
+  ],
+  "correct_answer": "Cai",
+  "explanation": "The predicted scores are 4.2(4) + 51 = 67.8, 4.2(6) + 51 = 76.2, 4.2(9) + 51 = 88.8 and 4.2(11) + 51 = 97.2. Subtracting each actual score gives -2.2, 6.2, 6.8 and 5.2, so the prediction exceeds the actual score by the most for Cai. Ana is the only student the line UNDERpredicts, and she is the trap for a student who compares scores rather than residuals; Ben ties Ana's low score of 70 but is overpredicted by 6.2, and Dev has the largest predicted score but is overpredicted by only 5.2.",
+  "solve": "const s=[['Ana',4,70],['Ben',6,70],['Cai',9,82],['Dev',11,92]];\nlet bn='',bd=-Infinity;\nfor(const [n,x,y] of s){const d=(4.2*x+51)-y; if(d>bd){bd=d;bn=n;}}\nreturn bn;",
+  "domain": "Problem-Solving and Data Analysis"
+ },
+ {
+  "id": "PSDA-H2-21",
+  "subskill": "percentages: repeated percent growth",
+  "difficulty": "medium",
+  "prompt": "An online forum had 12,800 members at the start of 2021, and the number of members increased by 25 percent each year for the next two years. How many more members did the forum have at the start of 2023 than at the start of 2021?",
+  "choices": [
+   "4000",
+   "6400",
+   "7200",
+   "20000"
+  ],
+  "correct_answer": "7200",
+  "explanation": "The membership was 12,800(1.25)^2 = 20,000 at the start of 2023, an increase of 20,000 - 12,800 = 7,200. Choice 20000 is the 2023 membership itself rather than the increase. Choice 6400 treats the growth as simple, applying 25 + 25 = 50 percent to 12,800. Choice 4000 is only the second year's increase, 0.25(16,000), and so counts one of the two years.",
+  "solve": "const m0=12800, r=0.25, yrs=2;\nreturn Math.round(m0*Math.pow(1+r,yrs)-m0);",
+  "domain": "Problem-Solving and Data Analysis"
+ },
+ {
+  "id": "PSDA-H2-22",
+  "subskill": "evaluating statistical claims: study design and generalizability",
+  "difficulty": "medium",
+  "prompt": "A researcher randomly selected 200 of the 5,000 employees at a large company. She randomly assigned 100 of them to use a standing desk for six months and the other 100 to use a conventional desk for six months. At the end of the study, the standing desk group reported significantly less back pain than the conventional-desk group. Which of the following is the most appropriate conclusion?",
+  "choices": [
+   "Using a standing desk is likely to cause a reduction in reported back pain for employees at this company.",
+   "Using a standing desk is likely to cause a reduction in reported back pain for all adults who work at a desk.",
+   "An association between standing desk use and reported back pain exists among employees at this company but no causal conclusion can be drawn from these data.",
+   "Employees at this company who choose to use a standing desk tend to report less back pain than employees who do not."
+  ],
+  "correct_answer": "Using a standing desk is likely to cause a reduction in reported back pain for employees at this company.",
+  "explanation": "Because the treatment was randomly ASSIGNED, a cause-and-effect conclusion is justified, and because the participants were randomly SELECTED from this company's employees, the conclusion extends to that population and no further. The second choice keeps the causal claim but generalizes past the population that was sampled. The choice that reports only an association correctly limits the population but withholds causation, which random assignment is precisely what licenses. The fourth choice repeats that refusal to conclude causation and additionally recasts a randomized assignment as a self-selected comparison, which is what the design was built to avoid.",
+  "solve": "const randomlyAssigned=true, randomlySelectedFrom='employees at this company';\nconst claim = randomlyAssigned ? 'is likely to cause a reduction in' : 'is associated with a reduction in';\nreturn 'Using a standing desk '+claim+' reported back pain for '+randomlySelectedFrom+'.';",
+  "domain": "Problem-Solving and Data Analysis"
+ },
+ {
+  "id": "PSDA-H2-24",
+  "subskill": "two-way tables: conditional probability with an unknown cell",
+  "difficulty": "hard",
+  "prompt": "The table summarizes the outcomes for the 250 patients in a clinical trial. Two entries have been omitted. Of the patients whose condition did not improve, what fraction received the drug? Round to the nearest hundredth.",
+  "graphic": {
+   "type": "twowaytable",
+   "rowLabels": [
+    "Drug",
+    "Placebo",
+    "Total"
+   ],
+   "colLabels": [
+    "Improved",
+    "No change",
+    "Worsened",
+    "Total"
+   ],
+   "cells": [
+    [
+     "84",
+     "",
+     "14",
+     "140"
     ],
-    "correct_answer": "7200",
-    "explanation": "The membership was 12,800(1.25)^2 = 20,000 at the start of 2023, an increase of 20,000 - 12,800 = 7,200. Choice 20000 is the 2023 membership itself rather than the increase. Choice 6400 treats the growth as simple, applying 25 + 25 = 50 percent to 12,800. Choice 4000 is only the second year's increase, 0.25(16,000), and so counts one of the two years.",
-    "solve": "const m0=12800, r=0.25, yrs=2;\nreturn Math.round(m0*Math.pow(1+r,yrs)-m0);",
-    "domain": "Problem-Solving and Data Analysis"
+    [
+     "46",
+     "52",
+     "12",
+     "110"
+    ],
+    [
+     "130",
+     "",
+     "26",
+     "250"
+    ]
+   ],
+   "caption": "Trial outcome by treatment group"
   },
-  {
-    "id": "PSDA-H2-22",
-    "subskill": "evaluating statistical claims: study design and generalizability",
-    "difficulty": "medium",
-    "prompt": "A researcher randomly selected 200 of the 5,000 employees at a large company. She randomly assigned 100 of them to use a standing desk for six months and the other 100 to use a conventional desk for six months. At the end of the study, the standing desk group reported significantly less back pain than the conventional-desk group. Which of the following is the most appropriate conclusion?",
-    "choices": [
-      "Using a standing desk is likely to cause a reduction in reported back pain for employees at this company.",
-      "Using a standing desk is likely to cause a reduction in reported back pain for all adults who work at a desk.",
-      "An association between standing desk use and reported back pain exists among employees at this company but no causal conclusion can be drawn from these data.",
-      "Employees at this company who choose to use a standing desk tend to report less back pain than employees who do not."
-    ],
-    "correct_answer": "Using a standing desk is likely to cause a reduction in reported back pain for employees at this company.",
-    "explanation": "Because the treatment was randomly ASSIGNED, a cause-and-effect conclusion is justified, and because the participants were randomly SELECTED from this company's employees, the conclusion extends to that population and no further. The second choice keeps the causal claim but generalizes past the population that was sampled. The choice that reports only an association correctly limits the population but withholds causation, which random assignment is precisely what licenses. The fourth choice repeats that refusal to conclude causation and additionally recasts a randomized assignment as a self-selected comparison, which is what the design was built to avoid.",
-    "solve": "const randomlyAssigned=true, randomlySelectedFrom='employees at this company';\nconst claim = randomlyAssigned ? 'is likely to cause a reduction in' : 'is associated with a reduction in';\nreturn 'Using a standing desk '+claim+' reported back pain for '+randomlySelectedFrom+'.';",
-    "domain": "Problem-Solving and Data Analysis"
-  },
-  {
-    "id": "PSDA-H2-23",
-    "subskill": "rates and unit conversion",
-    "difficulty": "medium",
-    "prompt": "A pump moves water at a constant rate of 3.5 gallons every 4 seconds. A tank holds 1,890 gallons. Working at this rate, how many minutes does the pump take to fill the tank?",
-    "choices": [
-      "9",
-      "36",
-      "540",
-      "2160"
-    ],
-    "correct_answer": "36",
-    "explanation": "The pump moves 3.5/4 = 0.875 gallon per second, so filling 1,890 gallons takes 1,890/0.875 = 2,160 seconds, which is 2,160/60 = 36 minutes. Choice 2160 is that time in seconds, the unit the rate is given in rather than the unit requested. Choice 540 treats the rate as 3.5 gallons per minute, 1,890/3.5. Choice 9 treats it as 3.5 gallons per second, so it makes the same drop-the-4 error and then converts the resulting 540 seconds to 9 minutes.",
-    "solve": "const gal=3.5, sec=4, cap=1890;\nreturn cap/(gal/sec)/60;",
-    "domain": "Problem-Solving and Data Analysis"
-  },
-  {
-    "id": "PSDA-H2-24",
-    "subskill": "two-way tables: conditional probability with an unknown cell",
-    "difficulty": "hard",
-    "prompt": "The table summarizes the outcomes for the 250 patients in a clinical trial. Two entries have been omitted. Of the patients whose condition did not improve, what fraction received the drug? Round to the nearest hundredth.",
-    "graphic": {
-      "type": "twowaytable",
-      "rowLabels": [
-        "Drug",
-        "Placebo",
-        "Total"
-      ],
-      "colLabels": [
-        "Improved",
-        "No change",
-        "Worsened",
-        "Total"
-      ],
-      "cells": [
-        [
-          "84",
-          "",
-          "14",
-          "140"
-        ],
-        [
-          "46",
-          "52",
-          "12",
-          "110"
-        ],
-        [
-          "130",
-          "",
-          "26",
-          "250"
-        ]
-      ],
-      "caption": "Trial outcome by treatment group"
-    },
-    "choices": [
-      "0.35",
-      "0.40",
-      "0.47",
-      "0.48"
-    ],
-    "correct_answer": "0.47",
-    "explanation": "The omitted entry is 140 - 84 - 14 = 42 patients in the drug group whose condition did not change. Patients whose condition did not improve number 250 - 130 = 120, and 42 + 14 = 56 of them received the drug, so the fraction is 56/120 = 0.47. Choice 0.40 divides that same 56 by 140, the drug-group total, conditioning on treatment instead of on outcome. Choice 0.35 is 42/120, which counts only the recovered cell and forgets the 14 patients who worsened. Choice 0.48 is 120/250, the share of all patients who did not improve, which answers a question about outcome rates rather than about treatment.",
-    "solve": "const drugTotal=140, drugImproved=84, drugWorsened=14;\nconst grand=250, improvedTotal=130;\nconst drugNoChange=drugTotal-drugImproved-drugWorsened;\nconst notImproved=grand-improvedTotal;\nconst drugNotImproved=drugNoChange+drugWorsened;\nreturn (Math.round(100*drugNotImproved/notImproved)/100).toFixed(2);",
-    "domain": "Problem-Solving and Data Analysis"
-  }
+  "choices": [
+   "0.35",
+   "0.40",
+   "0.47",
+   "0.48"
+  ],
+  "correct_answer": "0.47",
+  "explanation": "The omitted entry is 140 - 84 - 14 = 42 patients in the drug group whose condition did not change. Patients whose condition did not improve number 250 - 130 = 120, and 42 + 14 = 56 of them received the drug, so the fraction is 56/120 = 0.47. Choice 0.40 divides that same 56 by 140, the drug-group total, conditioning on treatment instead of on outcome. Choice 0.35 is 42/120, which counts only the recovered cell and forgets the 14 patients who worsened. Choice 0.48 is 120/250, the share of all patients who did not improve, which answers a question about outcome rates rather than about treatment.",
+  "solve": "const drugTotal=140, drugImproved=84, drugWorsened=14;\nconst grand=250, improvedTotal=130;\nconst drugNoChange=drugTotal-drugImproved-drugWorsened;\nconst notImproved=grand-improvedTotal;\nconst drugNotImproved=drugNoChange+drugWorsened;\nreturn (Math.round(100*drugNotImproved/notImproved)/100).toFixed(2);",
+  "domain": "Problem-Solving and Data Analysis"
+ }
 ]

@@ -1,0 +1,170 @@
+{
+  "ACT-M-SP01": {
+    "difficulty": "easy",
+    "distractor_quality": "strong",
+    "key_correct": true,
+    "single_defensible": true,
+    "note": "Sorted 10,15,15,20,25,30,40 -> 4th = 20. Graphic is load-bearing (values appear nowhere else). READABILITY: bar max 40 puts ticks at 0/10/20/30/40; the 15 and 25 bars fall halfway between gridlines, so ordering survives but two of seven values must be eyeballed. Acceptable, not clean."
+  },
+  "ACT-M-SP02": {
+    "difficulty": "easy",
+    "distractor_quality": "strong",
+    "key_correct": true,
+    "single_defensible": true,
+    "note": "(12-4)/12 = 2/3."
+  },
+  "ACT-M-SP03": {
+    "difficulty": "easy",
+    "distractor_quality": "strong",
+    "key_correct": true,
+    "single_defensible": true,
+    "note": "3 of 8 sequences have exactly two heads. On the author's doubt: 1/2 is P(at least two heads)=4/8, and the stem says 'exactly 2', capitalised in the explanation and unambiguous in the prompt. The stem is tight; single_defensible holds."
+  },
+  "ACT-M-SP04": {
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "key_correct": true,
+    "single_defensible": true,
+    "note": "(24+18)/120 = 0.35. Table renders values, so the graphic is load-bearing and readable. The 0.25 distractor ('silver row read by mistake') has no real cognitive route."
+  },
+  "ACT-M-SP05": {
+    "difficulty": "easy",
+    "distractor_quality": "strong",
+    "key_correct": true,
+    "single_defensible": true,
+    "note": "(5/6)^2 = 25/36. One multiplication of independent events."
+  },
+  "ACT-M-SP06": {
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "key_correct": true,
+    "single_defensible": true,
+    "note": "8 values: (15+19)/2 = 17. Even-count median rule is the whole item."
+  },
+  "ACT-M-SP07": {
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "key_correct": true,
+    "single_defensible": true,
+    "note": "100-(55+30-20) = 35. Inclusion-exclusion, one line."
+  },
+  "ACT-M-SP08": {
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "key_correct": true,
+    "single_defensible": true,
+    "note": "C(6,2)C(5,3) = 15*10 = 150. Verified 462=C(11,5) and 1800=P(6,2)P(5,3); all three distractors map to real errors."
+  },
+  "ACT-M-SP09": {
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "key_correct": true,
+    "single_defensible": true,
+    "note": "3(40)-5 = 115; sd scales but does not shift, 3(6) = 18. Every distractor probes a distinct half of that rule. The 'shift leaves sd alone' fact is the item's subject rather than a hidden second constraint, so medium."
+  },
+  "ACT-M-SP10": {
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "key_correct": true,
+    "single_defensible": true,
+    "note": "(42-18)/150 * 5000 = 800. The base (dog-only, not all dogs) is the trap and 1400 is offered; still a single proportion step."
+  },
+  "ACT-M-SP11": {
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "key_correct": true,
+    "single_defensible": true,
+    "note": "(600+500)/500 = 2.20 expected prize; 2.20-4 = -1.80. Net-of-cost is telegraphed by 'net gain'."
+  },
+  "ACT-M-SP12": {
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "key_correct": true,
+    "single_defensible": true,
+    "note": "Q1=13, Q3=27 from the two halves of 10 values; IQR 14. Verified by hand, not by the index shortcut in the solve."
+  },
+  "ACT-M-SP13": {
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "key_correct": true,
+    "single_defensible": true,
+    "note": "Sum 80, x=20; sorted 9,12,18,20,21 -> median 18. Two-step, with 20 (the intermediate) offered."
+  },
+  "ACT-M-SP14": {
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "key_correct": true,
+    "single_defensible": true,
+    "note": "(250-75)/250 = 0.70. Table is load-bearing and readable. The 0.19 distractor (blue row) has no cognitive route."
+  },
+  "ACT-M-SP15": {
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "key_correct": true,
+    "single_defensible": true,
+    "note": "Sorted 20,30,40,50,60,80 -> (40+50)/2 = 45. KEY CORRECT but two problems. READABILITY: bar max 80 puts ticks at 0/20/40/60/80, so the 30 and 50 bars land between gridlines and the answer depends on reading 50 exactly. REDUNDANCY: see batch note; SP06 already carries the even-median rule and SP01 already carries bar-graph median, so this item's only unique content is the intersection of the two."
+  },
+  "ACT-M-SP16": {
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "key_correct": true,
+    "single_defensible": true,
+    "note": "1-0.9^3 = 0.271. Complement of independent trials, canonical."
+  },
+  "ACT-M-SP17": {
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "key_correct": true,
+    "single_defensible": true,
+    "note": "(40*78-24*81)/16 = 1176/16 = 73.5. The 75 distractor needs an equal-size assumption the stem contradicts explicitly, so a careful solver is not caught; medium."
+  },
+  "ACT-M-SP18": {
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "key_correct": true,
+    "single_defensible": true,
+    "note": "21/84 = 1/4. Table is internally consistent (49+67=116, 21+63=84, 70+130=200). Conditional-vs-joint is the point, but 'selected at random from among those who did NOT pass' hands the student the denominator; medium."
+  },
+  "ACT-M-SP19": {
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "key_correct": true,
+    "single_defensible": true,
+    "note": "20/C(9,2) = 20/36 = 5/9; also verified as 2*(4/9)(5/8). 13/18=26/36 (at least one white) and 1/6=C(4,2)/36 both check out. Both traps are named in the stem ('EXACTLY ONE', 'without replacement'), so medium."
+  },
+  "ACT-M-SP20": {
+    "difficulty": "hard",
+    "distractor_quality": "strong",
+    "key_correct": true,
+    "single_defensible": true,
+    "note": "Because n>18 the median is pinned at (12+15)/2 = 13.5 independent of n, so (60+n)/6 = 13.5 gives n=21 (>18, consistent). Verified: mean 81/6 = 13.5 = median. The insight that the median does not depend on n is a genuine second constraint and 12/30 are exactly where an assume-n-is-in-the-middle solver lands. Hard."
+  },
+  "ACT-M-SP21": {
+    "difficulty": "hard",
+    "distractor_quality": "strong",
+    "key_correct": true,
+    "single_defensible": true,
+    "note": "36 total days / 25 students = 1.44. All three distractors come from treating the bar heights as values rather than frequencies. Reading a frequency distribution as a distribution is the real second constraint. READABILITY: bar max 8 puts ticks at 0/2/4/6/8, so the 5-student bar sits between gridlines and is needed for both numerator and denominator."
+  },
+  "ACT-M-SP22": {
+    "difficulty": "hard",
+    "distractor_quality": "strong",
+    "key_correct": true,
+    "single_defensible": true,
+    "note": "P(1st blue | 2nd red) = 12/18 = 2/3, confirmed by ordered-pair counting: 7*6=42 orders, 18 have red second, 12 of those have blue first. The conditioning is genuinely reversed relative to the draw order and all three distractors are the un-reversed quantities. Hard."
+  },
+  "ACT-M-SP23": {
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "key_correct": true,
+    "single_defensible": true,
+    "note": "900 - 8*9*9 = 900-648 = 252, matching the brute-force scan. The complement is the standard route and is not hidden; 280 catches only a student who tries direct counting without inclusion-exclusion."
+  },
+  "ACT-M-SP24": {
+    "difficulty": "hard",
+    "distractor_quality": "plausible",
+    "key_correct": true,
+    "single_defensible": true,
+    "note": "Verified all four: A mean 18 (fails), B mean 14 but SS 10<40 (fails), C mean 14 and SS 104>40 (KEY), D mean 16 (fails). Two conditions must hold jointly and D satisfies one, which is what makes it hard. On the author's doubt: yes, 'Add 4 to every value' is close to free to eliminate, since shifting every value obviously moves the mean; it survives only as bait for a student who thinks a shift increases spread. Treat this as an effectively 3-option item."
+  }
+}

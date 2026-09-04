@@ -1,0 +1,170 @@
+{
+  "ACT-M-NQ01": {
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "key_correct": true,
+    "single_defensible": true,
+    "note": "Key -20 confirmed by complex multiplication (4i)(5i)=20i^2. Trap (sqrt(a)sqrt(b)=sqrt(ab) fails when both radicands are negative) is a genuine domain restriction, but converting each radical to a i-form first is the taught first step, so this sits at the top of medium, not hard."
+  },
+  "ACT-M-NQ02": {
+    "difficulty": "easy",
+    "distractor_quality": "strong",
+    "key_correct": true,
+    "single_defensible": true,
+    "note": "3(4r3)-3r3=9r3, k=9. One simplification, one subtraction."
+  },
+  "ACT-M-NQ03": {
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "key_correct": true,
+    "single_defensible": true,
+    "note": "5*4-(-2)(3)=26. The 8 distractor (add down the columns) is contrived; the other two are real sign slips."
+  },
+  "ACT-M-NQ04": {
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "key_correct": true,
+    "single_defensible": true,
+    "note": "floor(400/7)-floor(99/7)=57-14=43, matches the brute-force count. Inclusive-count +1 is the only subtlety."
+  },
+  "ACT-M-NQ05": {
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "key_correct": true,
+    "single_defensible": true,
+    "note": "(2+3i)^2=-5+12i by direct expansion; a+b=7. Two steps, both standard."
+  },
+  "ACT-M-NQ06": {
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "key_correct": true,
+    "single_defensible": true,
+    "note": "gcd(168,252)=84 by Euclid (252=168+84, 168=2*84); 2x3=6 tiles. Recognising that fewest tiles means largest tile is the one idea. The '2' distractor is a throwaway."
+  },
+  "ACT-M-NQ07": {
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "key_correct": true,
+    "single_defensible": true,
+    "note": "Independent derivation without using the stem mantissa: 8000/3.2e-5 = (8000/3.2)e5 = 2500e5 = 2.5e8, so k=8. The author's worry about the solve dividing by the stem's 2.5 is not load-bearing: a wrong mantissa would make log10(n/2.5) non-integral and produce a value matching no choice, i.e. a loud failure."
+  },
+  "ACT-M-NQ08": {
+    "difficulty": "hard",
+    "distractor_quality": "strong",
+    "key_correct": true,
+    "single_defensible": true,
+    "note": "11a+7c=131 => 4a=5 (mod 7) => a=3 (mod 7); with 11a<131 that gives a in {3,10}, greatest 10. The integrality-plus-positivity restriction is what decides it and 11 (=floor(131/11)) is exactly where flawless division lands. Genuinely hard."
+  },
+  "ACT-M-NQ09": {
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "key_correct": true,
+    "single_defensible": true,
+    "note": "720 L at 0.25 L / 3 s = 8640 s = 144 min. Long unit chain but one technique; the minutes-vs-seconds trap is telegraphed by 'how many minutes'. The 60 distractor (multiply instead of divide) is contrived."
+  },
+  "ACT-M-NQ10": {
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "key_correct": true,
+    "single_defensible": true,
+    "note": "67 by CRT: mod 72 the solution is unique, and 67 satisfies 67=8*8+3, 67=9*7+4. Two simultaneous conditions, but resolvable by listing one residue class and testing; single canonical technique."
+  },
+  "ACT-M-NQ11": {
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "key_correct": true,
+    "single_defensible": true,
+    "note": "4<=x<=16 gives 16-4+1=13. Content is essentially the inclusive count."
+  },
+  "ACT-M-NQ12": {
+    "difficulty": "hard",
+    "distractor_quality": "strong",
+    "key_correct": true,
+    "single_defensible": true,
+    "note": "|x-3|+|x+5| is the sum of distances to 3 and -5, which are 8 apart, so equality holds on the whole closed interval [-5,3]: 9 integers. A student who solves the two sign cases flawlessly gets the two endpoints and answers 2. The middle case collapsing to an identity is the second constraint. Hard."
+  },
+  "ACT-M-NQ13": {
+    "difficulty": "hard",
+    "distractor_quality": "strong",
+    "key_correct": true,
+    "single_defensible": true,
+    "note": "(m-n)(m+n)=40 with m-n, m+n of equal parity leaves only 2x20 and 4x10, giving n=9 and n=3; max 9. Verified by exhaustive n. The parity restriction is exactly the binding constraint and 20 (the larger factor) is offered."
+  },
+  "ACT-M-NQ14": {
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "key_correct": true,
+    "single_defensible": true,
+    "note": "36-k^2=0 => k=+/-6, sum 0. One quadratic; 'sum of all possible values' is a mild second reading, well short of hard."
+  },
+  "ACT-M-NQ15": {
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "key_correct": true,
+    "single_defensible": true,
+    "note": "4-3(2)=-2. Two log rules, small numbers."
+  },
+  "ACT-M-NQ16": {
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "key_correct": true,
+    "single_defensible": true,
+    "note": "0.4555... = 0.4 + (5/100)/(9/10) = 2/5 + 1/18 = 41/90; 41/90 = 0.45555 confirms. Standard repeating-decimal algebra."
+  },
+  "ACT-M-NQ17": {
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "key_correct": true,
+    "single_defensible": true,
+    "note": "20 batches x 3/4 cup = 15 cups = 120 fl oz; 120/16 = 7.5 -> 8 bottles. The ceiling is the trap and 7.5 is offered, but 'sold only in bottles' plus 'least number of bottles that must be bought' telegraphs it heavily. Medium."
+  },
+  "ACT-M-NQ18": {
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "key_correct": true,
+    "single_defensible": true,
+    "note": "5r^3=320 => r=4; third term 5r^2=80. Checked by walking the sequence 5,20,80,320."
+  },
+  "ACT-M-NQ19": {
+    "difficulty": "easy",
+    "distractor_quality": "strong",
+    "key_correct": true,
+    "single_defensible": true,
+    "note": "B=2A-C; (2,1) entry 6-5=1. One subtraction once the rearrangement is seen."
+  },
+  "ACT-M-NQ20": {
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "key_correct": true,
+    "single_defensible": true,
+    "note": "x=5 only: at x=-3, sqrt(9)=3 != -3. Extraneous-root rejection is a real domain restriction and -3 is offered, but 'square then check' is the canonical drilled procedure. Borderline medium/hard; graded medium."
+  },
+  "ACT-M-NQ21": {
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "key_correct": true,
+    "single_defensible": true,
+    "note": "(24+x)/(80+x)=1/2 => x=32; check 56/112=0.5. The growing denominator is the trap and 16 is offered, but this is the standard mixture setup. On the author's worry about the 0.001 grid search: a non-terminating root would make the loop throw 'no solution', a loud failure, not a silent wrong answer."
+  },
+  "ACT-M-NQ22": {
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "key_correct": true,
+    "single_defensible": true,
+    "note": "2*25+0+3=53. The 28 distractor (drop the leading 2 but keep 5^2) is contrived."
+  },
+  "ACT-M-NQ23": {
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "key_correct": true,
+    "single_defensible": true,
+    "note": "6!/(3!2!)=60. One formula."
+  },
+  "ACT-M-NQ24": {
+    "difficulty": "hard",
+    "distractor_quality": "strong",
+    "key_correct": true,
+    "single_defensible": true,
+    "note": "a^2-b^2=21, 2ab=-20 => a^4-21a^2-100=0 => a^2=25 => a=5, b=-2 (a>0), sum 3. Solved by substitution, not by the batch's search. The a>0 side condition is what eliminates -3, and both signed pairs are offered. Hard."
+  }
+}

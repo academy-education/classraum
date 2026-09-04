@@ -1,0 +1,170 @@
+{
+  "PSDA-H2-01": {
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "key_correct": true,
+    "single_defensible": true,
+    "note": "0.38*4000 = 1520; 0.15*1520 = 228. Rate on the correct subgroup is the point, but the stem states the subgroup for each rate explicitly, so a careful reader is not trapped. Two multiplications."
+  },
+  "PSDA-H2-02": {
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "key_correct": true,
+    "single_defensible": true,
+    "note": "31 values, 16th in order; cumulative 6, 15, 20 puts the 16th at 12. Confirmed 12.5 = 388/31. Graphic is a table and readable. The '16' distractor (position reported as value) is a weak route."
+  },
+  "PSDA-H2-03": {
+    "difficulty": "medium",
+    "distractor_quality": "plausible",
+    "key_correct": true,
+    "single_defensible": true,
+    "note": "2016/75 = 26.88 -> 26.9. Verified 25.6 = 1917/75 and 27.4 = 55308/2016. The mis-paired-counts distractor (25.6) has no natural cognitive route."
+  },
+  "PSDA-H2-04": {
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "key_correct": true,
+    "single_defensible": true,
+    "note": "Key re-derived by reading, not by the solve's string template: 42 +/- 5.2 gives 36.8 to 47.2 for the POPULATION, stated as plausible. B misattaches the interval to the sample (whose percent is known exactly), C upgrades plausible to must, D drops the upper bound. Unique. NOTE the solve hard-codes the 'It is plausible that the percent of all ... adults' wording, so it only checks the two endpoints, not the inference; the inference is confirmed here by inspection. Canonical drilled item, so medium."
+  },
+  "PSDA-H2-05": {
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "key_correct": true,
+    "single_defensible": true,
+    "note": "(58+28)/(72+32) = 86/104 = 0.827 -> 0.83. Table internally consistent (rows 130/70, columns 96/72/32, grand 200). Conditioning on a column union is telegraphed by 'Of the respondents who do not commute by car'."
+  },
+  "PSDA-H2-06": {
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "key_correct": true,
+    "single_defensible": true,
+    "note": "80*1.35*0.75 = 81. Two chained percents; 88 (additive net +10%) is the real trap."
+  },
+  "PSDA-H2-07": {
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "key_correct": true,
+    "single_defensible": true,
+    "note": "(39-30)/30 = 30%. Points-vs-percent is the point and 9 is offered, but the phrasing 'what percent greater' is the standard cue."
+  },
+  "PSDA-H2-08": {
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "key_correct": true,
+    "single_defensible": true,
+    "note": "162.80/0.88 = 185; checked forward, 185*0.8 = 148, *1.1 = 162.80. Reverse compound percent is a single canonical technique."
+  },
+  "PSDA-H2-09": {
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "key_correct": true,
+    "single_defensible": true,
+    "note": "17.5/2.5 = 7 scale units; 7*4 = 28 km; 28/14 = 2 h. Three steps, all forced."
+  },
+  "PSDA-H2-10": {
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "key_correct": true,
+    "single_defensible": true,
+    "note": "2(60)/(2+3) = 24, i.e. the harmonic mean of 30 and 20. Answering the author's question directly: this is canonical enough for medium. Equal distances, round times, and 25 (the naive average) is the single famous trap that every prep course names; the item adds no second twist on top of it."
+  },
+  "PSDA-H2-11": {
+    "difficulty": "hard",
+    "distractor_quality": "strong",
+    "key_correct": true,
+    "single_defensible": true,
+    "note": "Percent increases 25.0, 24.0, 25.81, 23.08, 16.67; March-April wins. Hard because the base, not the size of the change, decides it: May-June has the largest dollar increase and the smallest percent, and the winner beats the clean-looking 25.0% of January-February by only 0.8 points, so the answer survives no eyeballing. Table is readable."
+  },
+  "PSDA-H2-12": {
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "key_correct": true,
+    "single_defensible": true,
+    "note": "Rates per 100k: 130, 140, 120, 150 -> Doyle. Same wrong-base idea as H2-11 but the four divisions are clean and the margin is wide."
+  },
+  "PSDA-H2-13": {
+    "difficulty": "easy",
+    "distractor_quality": "strong",
+    "key_correct": true,
+    "single_defensible": true,
+    "note": "240*0.85 = 204. Graphic load-bearing and cleanly readable: max 240 puts ticks at 0/60/120/180/240 and all four bars land exactly on ticks."
+  },
+  "PSDA-H2-14": {
+    "difficulty": "easy",
+    "distractor_quality": "plausible",
+    "key_correct": true,
+    "single_defensible": true,
+    "note": "(90/250)*4000 = 1440. One proportion. The 3600 distractor (read 90/250 as 90%) is a weak route."
+  },
+  "PSDA-H2-15": {
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "key_correct": true,
+    "single_defensible": true,
+    "note": "(8/20)(7/19) = 56/380 = 14/95. Standard without-replacement pair; 4/25 and 7/50 are the two real slips."
+  },
+  "PSDA-H2-16": {
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "key_correct": true,
+    "single_defensible": true,
+    "note": "24(0.45-0.25)/(0.60-0.45) = 32; checked forward, (6+19.2)/56 = 0.45. The growing total is the trap and 8 is offered, but this is the standard alligation setup (same shape as ACT-M-NQ21, graded the same)."
+  },
+  "PSDA-H2-17": {
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "key_correct": true,
+    "single_defensible": true,
+    "note": "(1200-300)/6 = 150 L/h = 2.5 L/min. Graphic is load-bearing and READABLE: the line renderer forces yMin to 0, so ticks fall at 0/300/600/900/1200 and both endpoints (0,1200) and (6,300) land exactly on ticks. Note the line renderer draws tick marks but no gridlines, so the read is tight at 300x220px though not ambiguous."
+  },
+  "PSDA-H2-18": {
+    "difficulty": "hard",
+    "distractor_quality": "strong",
+    "key_correct": true,
+    "single_defensible": true,
+    "note": "0.25(480)+0.60(320) = 120+192 = 312. Hard for the right reason: the samples are equal-sized but the grades are not, so pooling to 42.5% and scaling 800 gives 340, which is what flawless arithmetic on the wrong base produces. The stem does not flag the mismatch anywhere."
+  },
+  "PSDA-H2-19": {
+    "difficulty": "medium",
+    "distractor_quality": "weak",
+    "key_correct": true,
+    "single_defensible": true,
+    "note": "32 goals / 20 games = 1.6, and the bar values (2,8,6,4 against max 8) all land on ticks, so the figure is readable. Confirming the author's doubt: WITHOUT the graph this narrows to two on plausibility alone, since 5 and 32 are not credible as goals per game, so the item is worth about one bit blind. The live discrimination is entirely 1.5 (median) vs 1.6 (mean), which is a fine distinction but a thin item. Recommend replacing one of the two impossible distractors with a second frequency-weighting error (e.g. 2.0, the unweighted mean of the labels, as ACT-M-SP21 does)."
+  },
+  "PSDA-H2-20": {
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "key_correct": true,
+    "single_defensible": true,
+    "note": "Predicted 67.8/76.2/88.8/97.2, residuals -2.2/6.2/6.8/5.2 -> Cai. Key correct. Downgraded from hard because the signed reading is NOT binding: |residual| gives 6.8 for Cai as well, so a student who ignores 'exceeds' still answers Cai. What remains is four evaluations of a linear expression, i.e. more steps."
+  },
+  "PSDA-H2-21": {
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "key_correct": true,
+    "single_defensible": true,
+    "note": "12800(1.25)^2 = 20000; increase 7200. The 6400 (simple 50%) and 20000 (final value, not the increase) traps are both standard."
+  },
+  "PSDA-H2-22": {
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "key_correct": true,
+    "single_defensible": true,
+    "note": "Key re-derived by reading, not by the solve: random ASSIGNMENT licenses causation, random SELECTION from this company's employees bounds the population to this company. B over-generalises, C withholds the causation that random assignment licenses, D recasts the design as self-selected. Unique. NOTE the solve is a string template whose causal branch is set by a hand-set boolean, so it verifies nothing about the inference; confirmed here by inspection. Canonical SAT study-design item, so medium."
+  },
+  "PSDA-H2-23": {
+    "difficulty": "medium",
+    "distractor_quality": "strong",
+    "key_correct": true,
+    "single_defensible": true,
+    "note": "0.875 gal/s; 1890/0.875 = 2160 s = 36 min. Clean unit chain; near-identical in shape to ACT-M-NQ09."
+  },
+  "PSDA-H2-24": {
+    "difficulty": "hard",
+    "distractor_quality": "strong",
+    "key_correct": true,
+    "single_defensible": true,
+    "note": "Missing drug/no-change cell = 140-84-14 = 42; not-improved = 250-130 = 120; drug and not improved = 42+14 = 56; 56/120 = 0.467 -> 0.47. Table checks out (placebo row 110, columns 130/94/26, grand 250). Hard: the student must recover a hidden cell, then realise 'did not improve' spans TWO columns, and 0.35 (the recovered cell alone) is exactly where a solver who stops at the hard part lands."
+  }
+}

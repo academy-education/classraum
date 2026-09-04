@@ -29,6 +29,8 @@ Brief essentials:
 - Figure items must NEED the figure. The figure-blind attack found 80.6% of maths figures decorative (`FIGURE-BLIND-RESULT.md`); cover the graphic and try the item.
 - Do not repeat the derivational hub: options must not be a chain of `a, 2a, a+1, a-1`, nor a set of expressions where the key is the unique one every distractor is one token-edit from. Derive each distractor from a DIFFERENT wrong path; two distractors being one edit from each other is fine.
 
+- Vary which direction an incomplete answer points. The "forgot the last step" distractor is naturally LARGER than the key, and doing that every time made the key the largest option in 11% of a batch against a 25% control. Measured bank-wide at 17/33/32/17 by value rank — the key avoids both extremes everywhere. Unlike a letter tell this one SURVIVES the draw shuffle, because a student eliminates the largest number wherever it sits. Check with `check-key-magnitude.mjs`.
+
 **The two hub checkers take different inputs and are not interchangeable:**
 
 | | reads | argument |
