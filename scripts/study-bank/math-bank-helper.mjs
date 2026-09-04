@@ -90,7 +90,29 @@ function asNumber(s) {
  * normHash itself is NOT changed: it also produces content_hash, and
  * touching it would rewrite every dedup hash in the bank.
  */
+/*
+ * Normalise an answer for comparison.
+ *
+ * THE UNICODE MINUS MUST BE FOLDED TO ASCII **BEFORE** THE STRIP, and that
+ * ordering is the whole bug. The strip keeps `-` but not U+2212 MINUS SIGN,
+ * so without this fold U+2212 was simply deleted, and that failed in BOTH
+ * directions at once:
+ *
+ *     '\u22125' vs '5'    sign flip      -> compared EQUAL   (false pass)
+ *     '\u22125' vs '-5'   same value     -> compared UNEQUAL (false fail)
+ *
+ * The first is the dangerous one: the sandbox is the real gate for maths,
+ * and it would have certified an item whose key had the wrong sign. This is
+ * the second time this function has been sign-blind — it was fixed once for
+ * the ASCII case, and the Unicode case survived that fix because the probe
+ * only used ASCII. 12 live choices across 11 items carry U+2212, one of
+ * them a key.
+ *
+ * Only true minus signs are folded. En and em dashes are punctuation and
+ * are left to the strip, since they appear in prose options.
+ */
 const normAnswer = s => (s || '').toLowerCase()
+  .replace(/[\u2212\u2796]/g, '-')        // Unicode minus -> ASCII, BEFORE the strip
   .replace(/[^a-z0-9+\-/^.]+/g, ' ')      // keep sign, slash, caret, point
   .replace(/\s+/g, ' ').trim()
 function answersMatch(computed, key) {
