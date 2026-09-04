@@ -222,10 +222,15 @@ async function main() {
     console.log(`INSERT ${label} — ${q.difficulty}, key ${q.key_votes}/3`)
   }
 
-  const after = (await pageAll('domain,verified')).filter(r => r.verified)
+  // ARCHIVED must be excluded here. It was not, so this line reported 1206
+  // when the drawable count was 1009 - 197 retired rows counted as live, and
+  // that inflated number was quoted onward all through 2026-09-04. The dedup
+  // set above deliberately still spans archived rows, so a retired item
+  // cannot be silently re-inserted; only the report was wrong.
+  const after = (await pageAll('domain,verified,archived')).filter(r => r.verified && !r.archived)
   const by = {}
   for (const r of after) by[r.domain] = (by[r.domain] || 0) + 1
-  console.log(`\nInserted ${inserted}. R&W verified now: ${after.length}`)
+  console.log(`\nInserted ${inserted}. R&W drawable now (verified, unarchived): ${after.length}`)
   for (const [d, c] of Object.entries(by).sort()) console.log(`  ${d}: ${c}`)
 }
 
