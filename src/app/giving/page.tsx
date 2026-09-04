@@ -24,9 +24,9 @@ import { languages } from "@/locales"
 type Entry = {
   key: "occ" | "victree"
   href: string
-  /** Drop the real file at public/giving/<this>.png and it appears. */
-  logo: string
-  /** Fallback monogram, shown only until that file exists. */
+  /** null when the organisation has no mark of its own to show. */
+  logo: string | null
+  /** Used when `logo` is null, and as the fallback if a file goes missing. */
   monogram: string
 }
 
@@ -34,13 +34,20 @@ const ENTRIES: readonly Entry[] = [
   {
     key: "occ",
     href: "https://www.samaritanspurse.org/operation-christmas-child/",
+    // Official file from Samaritan's Purse's own printable-resources page,
+    // used with their written permission (2026-09-04). Downscaled
+    // proportionally 1200 -> 192; their style guide forbids distorting the
+    // mark or changing its proportions, and requires the (R), which is part
+    // of the artwork itself rather than something we add.
     logo: "/giving/samaritans-purse.png",
     monogram: "SP",
   },
   {
     key: "victree",
     href: "http://victree.or.kr/",
-    logo: "/giving/victree.png",
+    // Victree has no logo of its own, so the monogram is the intended
+    // presentation here, not a placeholder waiting on a file.
+    logo: null,
     monogram: "빅",
   },
 ]
@@ -53,7 +60,7 @@ const ENTRIES: readonly Entry[] = [
  * the `logo` path above (their press or brand-assets page usually states the
  * usage terms) and it replaces the monogram with no other change.
  */
-function OrgMark({ src, monogram, name }: { src: string; monogram: string; name: string }) {
+function OrgMark({ src, monogram, name }: { src: string | null; monogram: string; name: string }) {
   const [failed, setFailed] = useState(false)
   // onError ALONE is not enough. The browser fetches the image from the
   // server-rendered HTML and fires its error event before hydration attaches
@@ -63,7 +70,7 @@ function OrgMark({ src, monogram, name }: { src: string; monogram: string; name:
   const check = (el: HTMLImageElement | null) => {
     if (el && el.complete && el.naturalWidth === 0) setFailed(true)
   }
-  if (failed) {
+  if (!src || failed) {
     return (
       <div
         aria-hidden
