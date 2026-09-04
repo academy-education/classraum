@@ -123,13 +123,21 @@ function reach(c, others) {
  * four options, or an option this parser will not commit to.
  */
 export function scoreItem(choices, key) {
-  if (!Array.isArray(choices) || choices.length !== 4) return null
+  // Four OR five options. Refusing five made every SSAT item "unscorable",
+  // and that line reads as a clean run rather than as ZERO COVERAGE — the
+  // live ssat-math-s6 cohort went in unmeasured for exactly this reason, and
+  // a generalisation of this same rule later put it at +16.1 over a 20%
+  // control. Found by an SSAT author who read the denominator, not the colour.
+  if (!Array.isArray(choices) || (choices.length !== 4 && choices.length !== 5)) return null
   const vals = choices.map(valueOf)
   if (vals.some(v => v === null)) return null
   const keyIdx = choices.indexOf(key)
   if (keyIdx < 0) return null
   // Distinct values only: a duplicated option makes "reachable" trivial.
-  if (new Set(vals).size !== 4) return null
+  // Compare against the SET SIZE, not a literal 4 — the literal was the second
+  // four-choice assumption in this function and it kept every five-choice item
+  // unscorable even after the length guard was widened.
+  if (new Set(vals).size !== choices.length) return null
 
   const counts = vals.map((c, i) => reach(c, vals.filter((_, j) => j !== i)).length)
   const best = Math.max(...counts)
@@ -239,7 +247,12 @@ if (RUN_AS_CLI && process.argv.slice(2).some(a => a.endsWith('.json'))) {
     console.log(`${f}`)
     console.log(`  scorable ${rows.length - unscorable} of ${rows.length}   with a hub reaching >=2 of 3: ${structured}` +
       `   unscorable (non-numeric or duplicate values) ${unscorable}   no hub ${noStructure}`)
-    console.log(`  key-is-hub ${pct.toFixed(1)}%   control 25.0%   margin ${(pct - 25).toFixed(1)}pts   (over the ${structured} structured sets)`)
+    // The control is 1/N, not a literal 25% — an SSAT five-choice batch was
+    // being judged against the wrong bar even once it became scorable.
+    const widths = [...new Set(rows.filter(r => Array.isArray(r.choices)).map(r => r.choices.length))]
+    const k = widths.length ? Math.max(...widths) : 4
+    const ctrl = 100 / k
+    console.log(`  key-is-hub ${pct.toFixed(1)}%   control ${ctrl.toFixed(1)}%   margin ${(pct - ctrl).toFixed(1)}pts   (over the ${structured} structured sets${widths.length > 1 ? `, MIXED widths ${widths.sort().join('/')}` : ''})`)
     if (hubs.length) console.log(`  hubs: ${hubs.join(', ')}`)
   }
   process.exit(bad ? 2 : 0)

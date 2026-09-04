@@ -49,13 +49,21 @@ function report(label, rows) {
   const n = scored.length
   const hist = {}
   for (const s of scored) hist[s.rank] = (hist[s.rank] ?? 0) + 1
-  const ctrl = 100 / 4
+  // Option count comes from the DATA, not a hardcoded 4. This printed ranks
+  // 1-4 against a 25% control for SSAT, which is five-choice: rank 5 was
+  // silently dropped and the percentages summed to 83%, not 100. Found by an
+  // SSAT author who noticed the columns did not add up.
+  const widths = [...new Set(scored.map(s => s.n))].sort()
+  const k = Math.max(...widths)
+  const ctrl = 100 / k
   const pct = r => (100 * (hist[r] ?? 0) / n)
-  const worst = [1, 2, 3, 4].reduce((a, r) => Math.abs(pct(r) - ctrl) > Math.abs(pct(a) - ctrl) ? r : a, 1)
+  const ranks = Array.from({ length: k }, (_, i) => i + 1)
+  const worst = ranks.reduce((a, r) => Math.abs(pct(r) - ctrl) > Math.abs(pct(a) - ctrl) ? r : a, 1)
+  const mixed = widths.length > 1 ? `  MIXED widths ${widths.join('/')}` : ''
   console.log(`${label.padEnd(34)} ${String(n).padStart(4)} numeric   ranks ` +
-    [1, 2, 3, 4].map(r => `${r}:${pct(r).toFixed(0)}%`).join(' ') +
-    `   worst rank ${worst} at ${pct(worst).toFixed(1)}% vs 25.0%`)
-  return { n, hist }
+    ranks.map(r => `${r}:${pct(r).toFixed(0)}%`).join(' ') +
+    `   worst rank ${worst} at ${pct(worst).toFixed(1)}% vs ${ctrl.toFixed(1)}%${mixed}`)
+  return { n, hist, k }
 }
 
 if (RUN_AS_CLI && process.argv.includes('--selftest')) {
