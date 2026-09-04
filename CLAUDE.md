@@ -131,6 +131,38 @@ The AuthWrapper component includes dev auth detection - ensure dev auth is disab
 - **React Query** for server state management
 - Context providers for language and command palette functionality
 
+## Before stating any bank fact, run bank-state.mjs
+
+    node scripts/study-bank/bank-state.mjs [counts|sittings|open|held|all]
+
+On 2026-09-04 the same class of error happened three times in one session,
+each time from a fresh ad-hoc query against `study_item_bank` /
+`study_item_reviews` with a plausible-looking column picked by name:
+
+- "SAT R&W has never had a human blind sitting" — false, and sourced to
+  nothing but my own earlier sentence. `b2-all-cohorts-2026-08-15` is
+  `reviewer_kind='human'`, 80 SAT items at 26.3%.
+- "the co-founder has six open runs blocking the draw" — false; I counted
+  null `blind_pick`, the guard uses `blind_at`. He had one.
+- a 20/20 read as a person scoring full marks — it is `model_assisted`.
+
+The columns do not mean what their names suggest, so read them from the
+one script rather than re-deriving them:
+
+    verified=false  row exists, assembler IGNORES it (staged)
+    blind_at        reviewer SAW it - this is what "open run" means
+    blind_pick      their letter; can be null while blind_at is set
+    key_slot        score blind_pick against THIS, not the item
+    reviewer_kind   'human' | 'model_assisted' - a model run is NOT a sitting
+
+Three states are distinct and are printed separately: **staged** (in the
+bank, assembler ignores), **drawable** (assembler serves), and
+**reachable** (the subtopic is not hidden and the topic is not locked —
+ACT Science is 120 drawable items no student can open). And never map a
+bank row by `prompt`: making C&S stems positional gave 8 of 18 rows in one
+cohort the identical prompt, and a prompt-keyed lookup silently returned a
+sibling's row the same day. Key on prompt+passage.
+
 ## Verification standard: break the check
 
 A passing check is evidence only if it would have failed. On 2026-07-28 three
