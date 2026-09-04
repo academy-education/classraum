@@ -47,7 +47,9 @@ SPLIT=6 node scripts/study-bank/make-attack.mjs <tag> <batch.json>   # writes <t
 ```
 
 Launch one blind-solver agent per file. The prompt must: name ONLY the
-blind file, forbid opening anything else, ask for a pick + basis
+blind file, forbid opening anything else (a 2026-09-04 control run omitted
+this; the transcripts had to be grepped afterwards to prove no solver had
+opened the adjacent .key.json), ask for a pick + basis
 ("confident"/"guess") per item, and ask for the heuristics used and how
 many picks each decided. Solver files: `<tag>.solver-a.json` (or
 `<tag>-fN.solver-a.json`), shape `{"1":{"pick":"A","basis":"guess"}}`.
@@ -66,6 +68,8 @@ Read the number against the family bar in `scripts/study-bank/ledger.json`
 | sat_rw | <= published +36.2 | |
 | sat_math (options-only) | at or below the LIVE bank, which measures 30.6% | alg-hard-v1 banked at 18.1%; adv-hard-v1 and v2 held at 51.4% and 45.8% |
 | act_math (options-only) | at or below the LIVE bank, which measures 29.2% | v2c inserted at 34.4%; v2a and v2b held at 43.3% and 40.6% |
+| sat_rw Craft and Structure | at or below the LIVE bank, which measures **100.0%** | the shipped bank is fully model-solvable blind; cs-hard-v1 is 27.8 points BETTER at 72.2% |
+| sat_rw Information and Ideas | at or below the LIVE bank, which measures **94.4%** | ii-hard-v1 at 93.0% is marginally better than shipped |
 | sat_sec (grammar) | at or below the LIVE bank, which measures **72.2%** | NOT the 25% control - options-solvability is intrinsic to this skill. v3 passed at 68.1%, i.e. 4.1 points better than shipped |
 
 **Before reading any margin, ask whether 25% is the right control.** For
