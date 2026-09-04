@@ -7,7 +7,7 @@ import { useState, useEffect } from "react"
 import { useTranslation } from "@/hooks/useTranslation"
 
 interface HeaderProps {
-  currentPage?: 'home' | 'about' | 'pricing' | 'faqs' | 'features' | 'study' | 'camp'
+  currentPage?: 'home' | 'about' | 'pricing' | 'faqs' | 'features' | 'study' | 'camp' | 'giving'
 }
 
 // Nav model shared by the desktop row and the mobile panel so the two
@@ -23,6 +23,7 @@ const NAV: Array<{ href: string; page: NonNullable<HeaderProps['currentPage']>; 
   { href: "/pricing", page: "pricing", tKey: "pricing" },
   { href: "/about", page: "about", tKey: "about" },
   { href: "/faqs", page: "faqs", tKey: "faqs" },
+  { href: "/giving", page: "giving", tKey: "giving" },
 ]
 
 export default function Header({ currentPage = 'home' }: HeaderProps) {

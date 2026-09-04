@@ -2,7 +2,8 @@
 
 import Header from "@/components/shared/Header"
 import Footer from "@/components/shared/Footer"
-import { Gift, Heart, Check, ArrowUpRight } from "lucide-react"
+import { Check, ArrowUpRight } from "lucide-react"
+import { useState } from "react"
 import { useTranslation } from "@/hooks/useTranslation"
 import { languages } from "@/locales"
 
@@ -22,14 +23,68 @@ import { languages } from "@/locales"
 
 type Entry = {
   key: "occ" | "victree"
-  Icon: typeof Gift
   href: string
+  /** Drop the real file at public/giving/<this>.png and it appears. */
+  logo: string
+  /** Fallback monogram, shown only until that file exists. */
+  monogram: string
 }
 
 const ENTRIES: readonly Entry[] = [
-  { key: "occ", Icon: Gift, href: "https://www.samaritanspurse.org/operation-christmas-child/" },
-  { key: "victree", Icon: Heart, href: "http://victree.or.kr/" },
+  {
+    key: "occ",
+    href: "https://www.samaritanspurse.org/operation-christmas-child/",
+    logo: "/giving/samaritans-purse.png",
+    monogram: "SP",
+  },
+  {
+    key: "victree",
+    href: "http://victree.or.kr/",
+    logo: "/giving/victree.png",
+    monogram: "빅",
+  },
 ]
+
+/* An organisation's own mark, or a neutral monogram until we have it.
+ *
+ * These are other people's trademarks and we do not have the files, so
+ * nothing here draws an approximation of one — a made-up mark misrepresents
+ * a real charity more than an honest placeholder does. Put the real asset at
+ * the `logo` path above (their press or brand-assets page usually states the
+ * usage terms) and it replaces the monogram with no other change.
+ */
+function OrgMark({ src, monogram, name }: { src: string; monogram: string; name: string }) {
+  const [failed, setFailed] = useState(false)
+  // onError ALONE is not enough. The browser fetches the image from the
+  // server-rendered HTML and fires its error event before hydration attaches
+  // the React handler, so a missing file left a broken-image box on screen
+  // with `failed` still false. The ref callback catches that case: an image
+  // that is already `complete` with `naturalWidth === 0` has failed.
+  const check = (el: HTMLImageElement | null) => {
+    if (el && el.complete && el.naturalWidth === 0) setFailed(true)
+  }
+  if (failed) {
+    return (
+      <div
+        aria-hidden
+        className="flex-shrink-0 w-12 h-12 rounded-xl bg-gray-100 ring-1 ring-gray-200 flex items-center justify-center text-[15px] font-semibold text-gray-500 select-none"
+      >
+        {monogram}
+      </div>
+    )
+  }
+  return (
+    // A plain img, not next/image: this needs an onError fallback for a file
+    // that may not exist yet, and next/image renders its own broken-image box.
+    <img
+      ref={check}
+      src={src}
+      alt={`${name} logo`}
+      onError={() => setFailed(true)}
+      className="flex-shrink-0 w-12 h-12 rounded-xl object-contain bg-white ring-1 ring-gray-200 p-1.5"
+    />
+  )
+}
 
 export default function GivingPage() {
   const { t, language } = useTranslation()
@@ -54,7 +109,7 @@ export default function GivingPage() {
 
   return (
     <>
-      <Header />
+      <Header currentPage="giving" />
       <div className="min-h-screen bg-background">
         <main className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20">
           {/* Hero */}
@@ -81,15 +136,13 @@ export default function GivingPage() {
 
           {/* Entries */}
           <div className="space-y-5">
-            {ENTRIES.map(({ key, Icon, href }) => (
+            {ENTRIES.map(({ key, href, logo, monogram }) => (
               <section
                 key={key}
                 className="rounded-2xl bg-white ring-1 ring-gray-200 shadow-[0_1px_2px_rgba(0,0,0,0.03)] p-6 sm:p-8"
               >
                 <div className="flex items-start gap-4 mb-4">
-                  <div className="flex-shrink-0 w-11 h-11 rounded-2xl bg-primary/10 flex items-center justify-center">
-                    <Icon className="w-5 h-5 text-primary" strokeWidth={1.9} />
-                  </div>
+                  <OrgMark src={logo} monogram={monogram} name={t(`landing.giving.${key}.org`)} />
                   <div className="min-w-0 pt-0.5">
                     <h2 className="text-lg font-semibold text-gray-900 leading-snug">
                       {t(`landing.giving.${key}.org`)}

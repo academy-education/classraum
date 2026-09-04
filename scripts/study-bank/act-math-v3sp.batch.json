@@ -1,0 +1,571 @@
+[
+  {
+    "id": "ACT-M-SP01",
+    "subskill": "median read from a bar graph",
+    "difficulty": "easy",
+    "prompt": "The bar graph shows the amount of rainfall recorded at a weather station on each of 7 days. What is the median of the 7 daily rainfall amounts, in millimeters?",
+    "graphic": {
+      "type": "bar",
+      "xLabel": "Day",
+      "yLabel": "Rainfall (mm)",
+      "bars": [
+        {
+          "label": "Mon",
+          "value": 20
+        },
+        {
+          "label": "Tue",
+          "value": 15
+        },
+        {
+          "label": "Wed",
+          "value": 40
+        },
+        {
+          "label": "Thu",
+          "value": 15
+        },
+        {
+          "label": "Fri",
+          "value": 25
+        },
+        {
+          "label": "Sat",
+          "value": 30
+        },
+        {
+          "label": "Sun",
+          "value": 10
+        }
+      ],
+      "caption": "Figure 1. Daily rainfall, in millimeters, for one week."
+    },
+    "choices": [
+      "15",
+      "20",
+      "25",
+      "30"
+    ],
+    "correct_answer": "20",
+    "explanation": "Ordered, the seven amounts are 10, 15, 15, 20, 25, 30, 40, and the fourth of seven is the median, 20. 15 is the mode, the amount that occurs twice. 25 is the midrange, the average of the least and greatest amounts, (10 + 40)/2. 30 is the range, 40 - 10.",
+    "solve": "const v=[20,15,40,15,25,30,10].sort((a,b)=>a-b);\nreturn v[3];",
+    "domain": "Statistics and Probability"
+  },
+  {
+    "id": "ACT-M-SP02",
+    "subskill": "probability of a complement in a single draw",
+    "difficulty": "easy",
+    "prompt": "A jar contains 3 green marbles, 4 yellow marbles, and 5 red marbles, and nothing else. One marble is drawn at random. What is the probability that the marble is NOT yellow?",
+    "choices": [
+      "1/3",
+      "5/12",
+      "5/8",
+      "2/3"
+    ],
+    "correct_answer": "2/3",
+    "explanation": "There are 12 marbles, of which 12 - 4 = 8 are not yellow, so the probability is 8/12 = 2/3. 1/3 is the probability the marble IS yellow, 4/12. 5/12 is the probability the marble is red, answering about the wrong color. 5/8 is the probability a marble is red GIVEN that it is not yellow, which conditions on an event the question does not assume.",
+    "solve": "const g=3,y=4,r=5,t=g+y+r;\nreturn (t-y)/t;",
+    "domain": "Statistics and Probability"
+  },
+  {
+    "id": "ACT-M-SP03",
+    "subskill": "counting outcomes: exactly two heads in three flips",
+    "difficulty": "easy",
+    "prompt": "A fair coin is flipped 3 times. What is the probability that exactly 2 of the 3 flips land heads?",
+    "choices": [
+      "1/8",
+      "1/4",
+      "3/8",
+      "1/2"
+    ],
+    "correct_answer": "3/8",
+    "explanation": "Of the 8 equally likely sequences, 3 have exactly two heads: HHT, HTH, THH. So the probability is 3/8. 1/8 is the probability of one particular sequence, such as HHT, counting only one of the three arrangements. 1/4 is the probability that the first two flips are both heads, ignoring the third flip. 1/2 is the probability of heads on a single flip.",
+    "solve": "let c=0;\nfor(let i=0;i<8;i++){const b=i.toString(2).padStart(3,'0');if([...b].filter(x=>x==='1').length===2)c++;}\nreturn c/8;",
+    "domain": "Statistics and Probability"
+  },
+  {
+    "id": "ACT-M-SP04",
+    "subskill": "probability of a union of two categories from a table",
+    "difficulty": "easy",
+    "prompt": "The table shows the colors of the 120 cars parked in a lot. One of these cars is selected at random. What is the probability that the selected car is red or blue?",
+    "graphic": {
+      "type": "table",
+      "rowLabels": [
+        "Red",
+        "Blue",
+        "Silver",
+        "Black",
+        "White"
+      ],
+      "colLabels": [
+        "Number of cars"
+      ],
+      "cells": [
+        [
+          24
+        ],
+        [
+          18
+        ],
+        [
+          30
+        ],
+        [
+          15
+        ],
+        [
+          33
+        ]
+      ],
+      "caption": "Table 1. Cars in the lot, by color."
+    },
+    "choices": [
+      "0.20",
+      "0.25",
+      "0.35",
+      "0.65"
+    ],
+    "correct_answer": "0.35",
+    "explanation": "There are 24 + 18 = 42 red or blue cars out of 120, and 42/120 = 0.35. 0.20 is 24/120, the red cars only. 0.25 is 30/120, the silver row read by mistake. 0.65 is 78/120, the probability the car is NEITHER red nor blue.",
+    "solve": "const c={red:24,blue:18,silver:30,black:15,white:33};\nconst t=Object.values(c).reduce((a,b)=>a+b,0);\nreturn (c.red+c.blue)/t;",
+    "domain": "Statistics and Probability"
+  },
+  {
+    "id": "ACT-M-SP05",
+    "subskill": "probability of independent repeated trials",
+    "difficulty": "medium",
+    "prompt": "A fair 6-sided die, with faces numbered 1 through 6, is rolled twice. What is the probability that NEITHER roll shows a 1?",
+    "choices": [
+      "1/6",
+      "11/36",
+      "5/6",
+      "25/36"
+    ],
+    "correct_answer": "25/36",
+    "explanation": "Each roll avoids a 1 with probability 5/6, and the rolls are independent, so the probability is (5/6)(5/6) = 25/36. 1/6 is the probability a single roll shows a 1. 11/36 is the probability that at least one roll shows a 1, the complement of the answer. 5/6 is the result of stopping after one roll.",
+    "solve": "const p=5/6;\nreturn p*p;",
+    "domain": "Statistics and Probability"
+  },
+  {
+    "id": "ACT-M-SP06",
+    "subskill": "how the median responds to an added value",
+    "difficulty": "medium",
+    "prompt": "The 7 values 12, 15, 15, 19, 22, 26, and 31 have a median of 19. An eighth value, 8, is then added to the data set. What is the median of the 8 values?",
+    "choices": [
+      "15",
+      "17",
+      "18.5",
+      "19"
+    ],
+    "correct_answer": "17",
+    "explanation": "With 8 values, 8, 12, 15, 15, 19, 22, 26, 31, the median is the average of the 4th and 5th, (15 + 19)/2 = 17. 15 is the 4th value alone, taken as though 8 values had a single middle value. 18.5 is the MEAN of the 8 values, 148/8. 19 is the original median, kept on the assumption that adding one value below the middle leaves the median alone.",
+    "solve": "const v=[12,15,15,19,22,26,31,8].sort((a,b)=>a-b);\nreturn (v[3]+v[4])/2;",
+    "domain": "Statistics and Probability"
+  },
+  {
+    "id": "ACT-M-SP07",
+    "subskill": "percent in neither of two overlapping groups",
+    "difficulty": "medium",
+    "prompt": "At a certain high school, 55% of the students play a sport, 30% of the students play an instrument, and 20% of the students do both. What percent of the students at the school play NEITHER a sport nor an instrument?",
+    "choices": [
+      "15%",
+      "35%",
+      "45%",
+      "65%"
+    ],
+    "correct_answer": "35%",
+    "explanation": "The percent doing at least one is 55 + 30 - 20 = 65, so the percent doing neither is 100 - 65 = 35. 15% comes from 100 - 55 - 30, subtracting the 20% overlap twice. 45% is 100 - 55, the percent who do not play a sport, which still includes instrument players. 65% is the percent who play a sport or an instrument, the complement of the answer.",
+    "solve": "const s=55,i=30,both=20;\nreturn 100-(s+i-both);",
+    "domain": "Statistics and Probability"
+  },
+  {
+    "id": "ACT-M-SP08",
+    "subskill": "counting: independent choices from two groups",
+    "difficulty": "medium",
+    "prompt": "A debate team must consist of exactly 2 of the 6 sophomores and exactly 3 of the 5 juniors who tried out. The order in which team members are chosen does not matter. How many different teams are possible?",
+    "choices": [
+      "25",
+      "150",
+      "462",
+      "1800"
+    ],
+    "correct_answer": "150",
+    "explanation": "There are C(6,2) = 15 ways to choose the sophomores and C(5,3) = 10 ways to choose the juniors, and the two choices are independent, so there are 15 * 10 = 150 teams. 25 is 15 + 10, adding the two counts instead of multiplying. 462 is C(11,5), choosing any 5 of the 11 students and ignoring the requirement about class. 1800 is P(6,2) * P(5,3) = 30 * 60, treating the order of selection as significant.",
+    "solve": "const C=(n,k)=>{let r=1;for(let i=0;i<k;i++)r=r*(n-i)/(i+1);return Math.round(r)};\nreturn C(6,2)*C(5,3);",
+    "domain": "Statistics and Probability"
+  },
+  {
+    "id": "ACT-M-SP09",
+    "subskill": "effect of a linear transformation on mean and standard deviation",
+    "difficulty": "medium",
+    "prompt": "A data set has a mean of 40 and a standard deviation of 6. Each value in the data set is multiplied by 3, and then 5 is subtracted from each result. What are the mean and the standard deviation of the new data set?",
+    "choices": [
+      "Mean 105, standard deviation 13",
+      "Mean 115, standard deviation 18",
+      "Mean 120, standard deviation 6",
+      "Mean 120, standard deviation 13"
+    ],
+    "correct_answer": "Mean 115, standard deviation 18",
+    "explanation": "Multiplying every value by 3 multiplies both the mean and the standard deviation by 3, giving 120 and 18. Subtracting 5 from every value shifts the mean down by 5, to 115, but leaves the spread unchanged, so the standard deviation stays 18. Mean 120, standard deviation 6 applies neither the shift to the mean nor the scaling to the spread. Mean 120, standard deviation 13 omits the shift from the mean but wrongly applies it to the standard deviation, 3(6) - 5. Mean 105, standard deviation 13 subtracts before multiplying, 3(40 - 5), and again shifts the standard deviation.",
+    "solve": "const m=40,s=6;\nreturn 'Mean '+(3*m-5)+', standard deviation '+(3*s);",
+    "domain": "Statistics and Probability"
+  },
+  {
+    "id": "ACT-M-SP10",
+    "subskill": "scaling a sample proportion to a population",
+    "difficulty": "medium",
+    "prompt": "In a random sample of 150 households in a town, 42 households own a dog and 18 of those 42 households own both a dog and a cat. The town has 5,000 households. Based on this sample, how many households in the town own a dog but NOT a cat?",
+    "choices": [
+      "600",
+      "800",
+      "1400",
+      "3600"
+    ],
+    "correct_answer": "800",
+    "explanation": "In the sample, 42 - 18 = 24 of the 150 households own a dog but not a cat, a rate of 24/150, and (24/150)(5,000) = 800. 600 scales 18/150, the households owning both. 1400 scales 42/150, all dog owners, without removing those who also own a cat. 3600 scales (150 - 42)/150, the households that own no dog at all.",
+    "solve": "const sample=150,dogs=42,both=18,town=5000;\nreturn (dogs-both)/sample*town;",
+    "domain": "Statistics and Probability"
+  },
+  {
+    "id": "ACT-M-SP11",
+    "subskill": "expected value net of a cost",
+    "difficulty": "medium",
+    "prompt": "A club sells exactly 500 raffle tickets at $4 each. One ticket will be drawn to win a $600 prize, and 5 other tickets will each win a $100 prize. What is the expected net gain for a person who buys 1 ticket?",
+    "choices": [
+      "-$2.80",
+      "-$1.80",
+      "$1.20",
+      "$2.20"
+    ],
+    "correct_answer": "-$1.80",
+    "explanation": "The prizes total 600 + 5(100) = $1,100 spread over 500 tickets, so the expected prize per ticket is $2.20. Subtracting the $4 cost gives an expected net gain of 2.20 - 4 = -$1.80. $2.20 is the expected prize with the cost of the ticket left out. $1.20 counts only the $600 prize, 600/500. -$2.80 counts only the $600 prize and then subtracts the $4 cost.",
+    "solve": "const n=500,price=4,prizes=[600,100,100,100,100,100];\nconst ev=prizes.reduce((a,b)=>a+b,0)/n;\nconst net=ev-price;\nreturn (net<0?'-$':'$')+Math.abs(net).toFixed(2);",
+    "domain": "Statistics and Probability"
+  },
+  {
+    "id": "ACT-M-SP12",
+    "subskill": "interquartile range of an even-sized data set",
+    "difficulty": "medium",
+    "prompt": "What is the interquartile range of the data set 8, 11, 13, 17, 21, 25, 26, 27, 31, 34 ?",
+    "choices": [
+      "13",
+      "14",
+      "23",
+      "26"
+    ],
+    "correct_answer": "14",
+    "explanation": "With 10 values, the lower half is 8, 11, 13, 17, 21, whose median is Q1 = 13, and the upper half is 25, 26, 27, 31, 34, whose median is Q3 = 27. The interquartile range is 27 - 13 = 14. 13 is Q1 by itself. 23 is the median of the full data set, (21 + 25)/2. 26 is the range, 34 - 8.",
+    "solve": "const d=[8,11,13,17,21,25,26,27,31,34];\nreturn d[7]-d[2];",
+    "domain": "Statistics and Probability"
+  },
+  {
+    "id": "ACT-M-SP13",
+    "subskill": "recovering a missing value from the mean, then finding the median",
+    "difficulty": "medium",
+    "prompt": "The mean of the 5 numbers 9, 12, x, 18, and 21 is 16. What is the MEDIAN of these 5 numbers?",
+    "choices": [
+      "15",
+      "16",
+      "18",
+      "20"
+    ],
+    "correct_answer": "18",
+    "explanation": "The five numbers total 5(16) = 80, and the four known numbers total 60, so x = 20. Ordered, the numbers are 9, 12, 18, 20, 21, and the middle one is 18. 20 is x itself, which is the answer to the previous step, not to the question asked. 16 is the mean, mistaken for the median. 15 is the median of only the four given numbers, (12 + 18)/2, leaving x out.",
+    "solve": "const known=[9,12,18,21],mean=16,n=5;\nconst x=mean*n-known.reduce((a,b)=>a+b,0);\nconst all=[...known,x].sort((a,b)=>a-b);\nreturn all[2];",
+    "domain": "Statistics and Probability"
+  },
+  {
+    "id": "ACT-M-SP14",
+    "subskill": "experimental probability from a frequency table",
+    "difficulty": "medium",
+    "prompt": "A spinner with 4 sections was spun 250 times. The table shows how many times it landed on each section. Based on these results, what is the probability that the next spin lands on a section OTHER than green?",
+    "graphic": {
+      "type": "table",
+      "rowLabels": [
+        "Red",
+        "Green",
+        "Blue",
+        "Yellow"
+      ],
+      "colLabels": [
+        "Number of spins"
+      ],
+      "cells": [
+        [
+          62
+        ],
+        [
+          75
+        ],
+        [
+          48
+        ],
+        [
+          65
+        ]
+      ],
+      "caption": "Table 1. Results of 250 spins."
+    },
+    "choices": [
+      "0.19",
+      "0.30",
+      "0.70",
+      "0.75"
+    ],
+    "correct_answer": "0.70",
+    "explanation": "The spinner landed on green 75 times, so it landed elsewhere 250 - 75 = 175 times, and 175/250 = 0.70. 0.30 is 75/250, the probability of green itself. 0.75 treats the 4 sections as equally likely, giving 3 of 4. 0.19 is 48/250, the blue row read by mistake.",
+    "solve": "const c={red:62,green:75,blue:48,yellow:65};\nconst t=Object.values(c).reduce((a,b)=>a+b,0);\nreturn ((t-c.green)/t).toFixed(2);",
+    "domain": "Statistics and Probability"
+  },
+  {
+    "id": "ACT-M-SP15",
+    "subskill": "median read from a bar graph of six values",
+    "difficulty": "medium",
+    "prompt": "The bar graph shows the number of umbrellas sold by each of 6 stores during one week. What is the median number of umbrellas sold by these stores?",
+    "graphic": {
+      "type": "bar",
+      "xLabel": "Store",
+      "yLabel": "Umbrellas sold",
+      "bars": [
+        {
+          "label": "A",
+          "value": 40
+        },
+        {
+          "label": "B",
+          "value": 60
+        },
+        {
+          "label": "C",
+          "value": 30
+        },
+        {
+          "label": "D",
+          "value": 80
+        },
+        {
+          "label": "E",
+          "value": 50
+        },
+        {
+          "label": "F",
+          "value": 20
+        }
+      ],
+      "caption": "Figure 1. Umbrellas sold in one week, by store."
+    },
+    "choices": [
+      "40",
+      "45",
+      "46.7",
+      "50"
+    ],
+    "correct_answer": "45",
+    "explanation": "Ordered, the six values are 20, 30, 40, 50, 60, 80. With an even number of values the median is the average of the 3rd and 4th, (40 + 50)/2 = 45. 40 is the 3rd value alone, taken as though six values had a single middle value. 46.7 is the mean, 280/6. 50 is the midrange, (20 + 80)/2.",
+    "solve": "const v=[40,60,30,80,50,20].sort((a,b)=>a-b);\nreturn (v[2]+v[3])/2;",
+    "domain": "Statistics and Probability"
+  },
+  {
+    "id": "ACT-M-SP16",
+    "subskill": "probability that at least one of several independent events occurs",
+    "difficulty": "medium",
+    "prompt": "A machine has 3 components that operate independently. On any given day, each component fails with probability 0.1. What is the probability that AT LEAST ONE of the 3 components fails on a given day?",
+    "choices": [
+      "0.001",
+      "0.271",
+      "0.300",
+      "0.729"
+    ],
+    "correct_answer": "0.271",
+    "explanation": "Each component works with probability 0.9, so all three work with probability 0.9^3 = 0.729, and at least one fails with probability 1 - 0.729 = 0.271. 0.729 is the probability that NO component fails. 0.300 adds 0.1 three times, which double counts the days on which more than one component fails. 0.001 is 0.1^3, the probability that all three fail.",
+    "solve": "const p=0.1;\nreturn (1-Math.pow(1-p,3)).toFixed(3);",
+    "domain": "Statistics and Probability"
+  },
+  {
+    "id": "ACT-M-SP17",
+    "subskill": "weighted mean: recovering one group mean from the combined mean",
+    "difficulty": "hard",
+    "prompt": "A biology class of 24 students and a chemistry class of 16 students took the same exam. The mean score of all 40 students was 78. The mean score of the 24 biology students alone was 81. What was the mean score of the 16 chemistry students alone?",
+    "choices": [
+      "73.5",
+      "75",
+      "76",
+      "79.5"
+    ],
+    "correct_answer": "73.5",
+    "explanation": "All 40 scores total 40(78) = 3,120 and the biology scores total 24(81) = 1,944, so the chemistry scores total 1,176 and their mean is 1,176/16 = 73.5. 75 treats the two classes as equally large, so that chemistry must be as far below 78 as biology is above it, 78 - 3. 76 divides by the wrong class size, (3,120 - 16(81))/24. 79.5 averages the two given means, (78 + 81)/2, which answers nothing the question asks.",
+    "solve": "const nAll=40,mAll=78,nB=24,mB=81;\nconst nC=nAll-nB;\nreturn (nAll*mAll-nB*mB)/nC;",
+    "domain": "Statistics and Probability"
+  },
+  {
+    "id": "ACT-M-SP18",
+    "subskill": "conditional probability from a two-way table",
+    "difficulty": "hard",
+    "prompt": "The table shows the students at a school classified by whether they passed a certification exam and whether they worked with a tutor. One student is selected at random from among those who did NOT pass. What is the probability that the selected student worked with a tutor?",
+    "graphic": {
+      "type": "twowaytable",
+      "rowLabels": [
+        "Passed",
+        "Did not pass",
+        "Total"
+      ],
+      "colLabels": [
+        "Worked with a tutor",
+        "Did not work with a tutor",
+        "Total"
+      ],
+      "cells": [
+        [
+          49,
+          67,
+          116
+        ],
+        [
+          21,
+          63,
+          84
+        ],
+        [
+          70,
+          130,
+          200
+        ]
+      ],
+      "caption": "Table 1. Students by exam result and tutoring."
+    },
+    "choices": [
+      "1/4",
+      "3/10",
+      "21/200",
+      "21/50"
+    ],
+    "correct_answer": "1/4",
+    "explanation": "The selection is made from the 84 students who did not pass, and 21 of them worked with a tutor, so the probability is 21/84 = 1/4. 3/10 is 21/70, which conditions on working with a tutor instead of on not passing, reversing the two events. 21/200 is the joint probability that a student both did not pass and worked with a tutor, using the whole school as the denominator. 21/50 is 84/200, the probability that a student did not pass, which ignores the tutoring column entirely.",
+    "solve": "const cells=[[49,67],[21,63]];\nconst fail=cells[1][0]+cells[1][1];\nreturn cells[1][0]/fail;",
+    "domain": "Statistics and Probability"
+  },
+  {
+    "id": "ACT-M-SP19",
+    "subskill": "exactly one success versus at least one, without replacement",
+    "difficulty": "hard",
+    "prompt": "A drawer contains 5 black socks and 4 white socks. Two socks are drawn at random from the drawer, without replacement. What is the probability that EXACTLY ONE of the 2 socks drawn is white?",
+    "choices": [
+      "1/6",
+      "40/81",
+      "5/9",
+      "13/18"
+    ],
+    "correct_answer": "5/9",
+    "explanation": "There are C(9,2) = 36 equally likely pairs, and 4 * 5 = 20 of them pair one white sock with one black sock, so the probability is 20/36 = 5/9. 13/18 is 26/36, the probability that AT LEAST ONE sock is white, which also counts the pairs with two white socks. 1/6 is 6/36, the probability that BOTH socks are white. 40/81 is 2(4/9)(5/9), the answer if the first sock were replaced before the second draw, so the second draw would still face 9 socks.",
+    "solve": "const C=(n,k)=>{let r=1;for(let i=0;i<k;i++)r=r*(n-i)/(i+1);return Math.round(r)};\nreturn (C(4,1)*C(5,1))/C(9,2);",
+    "domain": "Statistics and Probability"
+  },
+  {
+    "id": "ACT-M-SP20",
+    "subskill": "a value added so that the mean equals the median",
+    "difficulty": "hard",
+    "prompt": "A number n greater than 18 is added to the data set 6, 9, 12, 15, 18, forming a set of 6 numbers whose mean is equal to its median. What is the value of n?",
+    "choices": [
+      "12",
+      "13.5",
+      "21",
+      "30"
+    ],
+    "correct_answer": "21",
+    "explanation": "Because n > 18, the ordered set is 6, 9, 12, 15, 18, n, so the median is the average of the 3rd and 4th values, (12 + 15)/2 = 13.5, no matter what n is. Setting the mean equal to it gives (60 + n)/6 = 13.5, so n = 21, which is indeed greater than 18. 13.5 is that median, reported instead of n. 12 comes from taking 12 as the median and solving (60 + n)/6 = 12. 30 comes from taking 15 as the median and solving (60 + n)/6 = 15.",
+    "solve": "const s=[6,9,12,15,18];\nfor(let n=19;n<=500;n++){const all=[...s,n].sort((a,b)=>a-b);const med=(all[2]+all[3])/2;const mean=all.reduce((a,b)=>a+b,0)/6;if(Math.abs(mean-med)<1e-9)return n;}\nthrow new Error('no such n');",
+    "domain": "Statistics and Probability"
+  },
+  {
+    "id": "ACT-M-SP21",
+    "subskill": "mean of a distribution shown as a frequency bar graph",
+    "difficulty": "hard",
+    "prompt": "The bar graph shows how many students in one class were absent 0, 1, 2, 3, or 4 days last month. Every student in the class is represented exactly once. What is the mean number of days absent per student?",
+    "graphic": {
+      "type": "bar",
+      "xLabel": "Days absent",
+      "yLabel": "Number of students",
+      "bars": [
+        {
+          "label": "0",
+          "value": 8
+        },
+        {
+          "label": "1",
+          "value": 6
+        },
+        {
+          "label": "2",
+          "value": 5
+        },
+        {
+          "label": "3",
+          "value": 4
+        },
+        {
+          "label": "4",
+          "value": 2
+        }
+      ],
+      "caption": "Figure 1. Number of students by days absent last month."
+    },
+    "choices": [
+      "1.44",
+      "2.00",
+      "5.00",
+      "7.20"
+    ],
+    "correct_answer": "1.44",
+    "explanation": "The bars give how MANY students had each number of absences, so the total days absent is 0(8) + 1(6) + 2(5) + 3(4) + 4(2) = 36 and the number of students is 8 + 6 + 5 + 4 + 2 = 25, giving a mean of 36/25 = 1.44. 5.00 is the mean of the five bar HEIGHTS, 25/5, which is students per category, not days per student. 2.00 is the mean of the five labels 0, 1, 2, 3, 4, weighting every category equally instead of by how many students it holds. 7.20 divides the 36 total days by the 5 categories rather than by the 25 students.",
+    "solve": "const f=[8,6,5,4,2];\nconst students=f.reduce((a,b)=>a+b,0);\nconst days=f.reduce((a,v,i)=>a+v*i,0);\nreturn (days/students).toFixed(2);",
+    "domain": "Statistics and Probability"
+  },
+  {
+    "id": "ACT-M-SP22",
+    "subskill": "reversing the order of conditioning in a two-stage draw",
+    "difficulty": "hard",
+    "prompt": "A box contains 3 red chips and 4 blue chips. One chip is drawn at random and is NOT replaced, and then a second chip is drawn at random. Given that the second chip drawn is red, what is the probability that the first chip drawn was blue?",
+    "choices": [
+      "2/7",
+      "1/2",
+      "4/7",
+      "2/3"
+    ],
+    "correct_answer": "2/3",
+    "explanation": "The second chip is red in two ways: blue then red, with probability (4/7)(3/6) = 12/42, and red then red, with probability (3/7)(2/6) = 6/42. The conditional probability is (12/42)/(18/42) = 2/3. 4/7 is the probability the first chip is blue before anything is known about the second draw. 2/7 is the joint probability of blue then red, 12/42, without dividing by the probability that the second chip is red. 1/2 is the probability that the second chip is red GIVEN that the first was blue, which reverses which event is conditioned on.",
+    "solve": "const blueThenRed=(4/7)*(3/6);\nconst redThenRed=(3/7)*(2/6);\nreturn blueThenRed/(blueThenRed+redThenRed);",
+    "domain": "Statistics and Probability"
+  },
+  {
+    "id": "ACT-M-SP23",
+    "subskill": "counting by complement with overlapping cases",
+    "difficulty": "hard",
+    "prompt": "How many of the integers from 100 through 999 have at least one digit equal to 7 ?",
+    "choices": [
+      "225",
+      "252",
+      "280",
+      "648"
+    ],
+    "correct_answer": "252",
+    "explanation": "There are 900 such integers. Those with NO digit equal to 7 number 8 * 9 * 9 = 648, since the hundreds digit has 8 choices and each of the other two has 9, so 900 - 648 = 252 have at least one 7. 648 is that count of integers with no 7, the complement of the answer. 225 counts the integers with EXACTLY one 7, 81 + 72 + 72, omitting those with two or three 7s. 280 adds the three cases 100 + 90 + 90 without removing the integers counted twice because they hold a 7 in more than one place.",
+    "solve": "let c=0;\nfor(let n=100;n<=999;n++) if(String(n).includes('7')) c++;\nreturn c;",
+    "domain": "Statistics and Probability"
+  },
+  {
+    "id": "ACT-M-SP24",
+    "subskill": "a change that preserves the mean while increasing the spread",
+    "difficulty": "hard",
+    "prompt": "The data set 10, 12, 14, 16, 18 has a mean of 14. Which of the following changes produces a set of 5 values whose mean is still 14 and whose standard deviation is GREATER than that of the original set?",
+    "choices": [
+      "Add 4 to every value",
+      "Replace 10 and 18 with 13 and 15",
+      "Replace 12 and 16 with 8 and 20",
+      "Replace 14 with 24"
+    ],
+    "correct_answer": "Replace 12 and 16 with 8 and 20",
+    "explanation": "Replacing 12 and 16 with 8 and 20 leaves the total at 70, so the mean is still 14, and it moves both values farther from 14, so the standard deviation grows. Replacing 10 and 18 with 13 and 15 also keeps the mean at 14 but pulls the values toward it, decreasing the standard deviation. Adding 4 to every value leaves the standard deviation unchanged and raises the mean to 18. Replacing 14 with 24 does increase the standard deviation, but it raises the total to 80 and the mean to 16, so it fails the condition the question also imposes.",
+    "solve": "const base=[10,12,14,16,18];\nconst mean=a=>a.reduce((x,y)=>x+y,0)/a.length;\nconst ss=a=>{const m=mean(a);return a.reduce((x,y)=>x+(y-m)*(y-m),0)};\nconst opts=[['Add 4 to every value',[14,16,18,20,22]],['Replace 10 and 18 with 13 and 15',[13,12,14,16,15]],['Replace 12 and 16 with 8 and 20',[10,8,14,20,18]],['Replace 14 with 24',[10,12,24,16,18]]];\nconst good=opts.filter(([,a])=>Math.abs(mean(a)-mean(base))<1e-9 && ss(a)>ss(base));\nif(good.length!==1) throw new Error('not unique: '+good.length);\nreturn good[0][0];",
+    "domain": "Statistics and Probability"
+  }
+]
