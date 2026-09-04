@@ -63,6 +63,9 @@ export default function Footer() {
               <Link href="/faqs" className="block text-gray-400 hover:text-white transition-colors text-sm">
                 {t('landing.footer.faqs')}
               </Link>
+              <Link href="/giving" className="block text-gray-400 hover:text-white transition-colors text-sm">
+                {t('landing.footer.giving')}
+              </Link>
               <Link href="/terms" className="block text-gray-400 hover:text-white transition-colors text-sm">
                 {t('landing.footer.terms')}
               </Link>
