@@ -447,3 +447,24 @@ structural checks are pre-flight only. See CLAUDE.md.
   **Recorded and NOT counted:** PSDA statistical-inference items are options-only solvable by construction — four full-sentence conclusions where the stem adds nothing — and the LIVE bank behaves the same way (3 such control items at 55.6% vs 23.8% for numeric). That is the "nothing withheld" category, not a defect.
 
   **The flagged solver anomaly was audited and is benign.** `ctl-sat-geo` solver-a used 5 tool calls against everyone else's 2, and the coordinator correctly refused to drop it post-hoc (dropping it moves geo to +9.0). The transcript shows one Read of its own blind file then four retries writing its own answer file after a malformed heredoc — no keyed file, no batch, no sibling, no web. The geo PASS stands. **Recording the audit because "an anomaly nobody could explain" is how a real contamination would look too, and the difference is whether anyone went and read the transcript.** _(five batches now need the with-source grade and a ledger entry before insert; psda-v4 needs a second read)_
+
+- **2026-09-04** — **THE LIVE CRAFT & STRUCTURE COHORT IS BROKEN IN BULK: ~200 ITEMS STUDENTS CAN DRAW TODAY ARE ANSWERABLE WITHOUT READING THE PASSAGE.** This is the opposite of the Math-hub outcome, and it is exactly why the population was measured before anything was repaired.
+
+      population   228 live C&S items: 210 in cohort `v2`, 18 in `rw-v7-cs-hard`
+      stratified   72 fresh items, 9 solvers, keys dealt exactly 6/6/6/6
+      pooled       90.3%  (+65.3 over a 25.0% dealt control), no identical strings
+      by cohort    v2 97.5% (n=54)   vs   rw-v7-cs-hard 68.5% (n=18)
+
+  With this morning's 24 folded in, **78 of the 210 v2 items are measured at 98.3% pooled, 76 of 78 solved by all three solvers.**
+
+  **The subskill hypothesis is REFUTED for the live bank.** This morning's candidate showed words-in-context below chance at 12.5%, which looked like "some subskills are fine". It replicates in the new cohort (rw-v7-cs-hard words-in-context 33.3%, n=6) and is **inverted in v2**: v2 holds only 9 Words in Context items, all 9 are now enumerated, and **all 9 were solved by all three solvers.** That is a population fact, not a sample. Every v2 subskill except Command of Evidence (87.9%) sits at a clean 100%. What varies is the COHORT, not the subskill.
+
+  **Scope, stated plainly: 40 items is definitely too small.** Strict reading (every item all three solvers get) projects ~200 of the 210 v2 items. Conservative reading (repair only subskills at or near ceiling) is 178, leaving the 32 Command of Evidence items as the only arguable survivors. **This is a rewrite-the-cohort finding.** The 18 `rw-v7-cs-hard` items should NOT be lumped in — at 68.5% they are meaningfully better and their words-in-context third is the only genuinely clean stratum anywhere in live C&S.
+
+  **The tell, named independently by all nine solvers:** the key is the single hedged, two-part, concede-then-qualify option; the distractors are absolutes, flat denials or strawmen ("only", "every", "permanently", "sole", "no measurable effect"). Two solvers found a second independent leak: v2 passages sit on canonical academic set-pieces (Allen's high-wage thesis, crowding-out, Göbekli Tepe, Kahneman-Klein), so background knowledge alone fixes several. **No letter-level or key-shuffling remedy touches either.**
+
+  **NEXT AND LARGER: Information and Ideas is also cohort `v2`, is 240 live items, and re-scored at 94.4% through the same scorer.** Standard English Conventions 72.2%. Advanced Math 30.6% and ACT Math 29.2% are fine.
+
+  Method notes: scorer break-tested first (synthetic perfect -> 100% and trips the identical-string detector; always-A -> exactly 25.0%; a file missing one answer -> REFUSING, exit 2). All 9 transcripts audited: two tool calls each, own blind file in, own answers out, no key/meta/batch/sibling/web/database. All 228 items have distinct passages, so no cross-item leakage can explain the score away.
+
+  **One identification error in the source report, corrected here:** it called the 18-item `rw-v7-cs-hard` cohort "this is `sat-cs-hard-v3`, landed after passing". It is not — v3 has 24 items and shares ZERO passages with it; the live 18 are the C&S v1 batch banked earlier in the session. The report matched them on `prompt`, and 11 prompts collide because C&S stems are near-identical boilerplate. That is precisely the failure this file already documents ("never map a bank row by `prompt` ... key on prompt+passage"), reappearing in the middle of an otherwise careful measurement. **No batch attacked today has been inserted.** _(the v2 C&S rewrite is now the largest open item on the bank; I&I is next to measure)_
