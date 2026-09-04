@@ -136,3 +136,37 @@ another brief revision:
    entirely but needs rights.
 
 Do not attempt a reading v3 under the authored-key design.
+
+## A v3 was commissioned anyway (2026-09-04) — and the tell relocated a FOURTH time
+
+Two authors were briefed for SSAT and ISEE reading under the authored-key
+design, ~280k tokens, without this file being read first. Line 138 of it
+already said not to. Both files are in `quarantine/` and neither should be
+graded or inserted; they are kept only for the finding below.
+
+The SSAT author found the kill record on his own, wrote the batch as asked,
+and then reported the reason it would die — which is the useful part:
+
+    qualifier -> moderation -> tension -> ALTITUDE
+
+On every abstraction-type stem (*chiefly concerned with*, *implies that*,
+*serves to*) his key was the SECOND-ORDER option — about the inquiry, the
+evidence, or the observer — while all four distractors were first-order
+claims about the world. Nameable without reading a passage, and it landed
+10 of 36 cold; scoring the rest at chance gives ~42% against a 22.2%
+control.
+
+Every previous fix moved the tell SIDEWAYS in phrasing. This one moved it
+UP a level, which is why the v2 remediation list (key-slot spread,
+key-is-longest, tone neutralisation) was all clean while the batch was
+still solvable. That is now four relocations from four different briefs,
+and it is the strongest evidence yet that the authored-key reading design
+does not have a fixable version: constrain the key's phrasing and the
+distinguishing property simply migrates to a property the constraint does
+not name.
+
+**Procedural fix, which is the real lesson:** this file was not consulted
+because the brief was written from the register's open-work list, and the
+register pointed at "SSAT/ISEE reading thin" without linking the kill.
+The register now links here from both reading rows. Before commissioning
+ANY batch, grep this directory for a KILLED file naming that section.
