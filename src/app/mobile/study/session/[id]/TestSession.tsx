@@ -1481,6 +1481,51 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
   const timeCritical = remainingMs < 60_000
   const timeWarning = !timeCritical && remainingMs < 5 * 60_000
 
+  /* One question-map renderer, used by BOTH the phone dropdown and the
+   * desktop rail. Written as a function rather than copied into two places:
+   * this file already carried a second inline copy of the chip-display rule
+   * that drifted from the tested one, and the lock rules here (Module 1 is
+   * unreachable from Module 2; only the current Writing block is jumpable)
+   * are exactly the kind that must not exist twice.
+   */
+  const renderQuestionMap = (cols: string) => (
+    <div className={`grid ${cols} gap-1.5`}>
+      {test.questions.map((_, i) => {
+              const isCurrent = i === currentIdx
+              const isAnswered = isItemAnswered(i)
+              const range = questionRanges[i]
+              const cellLabel = range
+                ? (range.startAt === range.endAt ? String(range.startAt) : `${range.startAt}–${range.endAt}`)
+                : String(i + 1)
+              const anyRecording = Object.values(interviewRecordingActive).some(Boolean)
+              // In Module 2, Module 1 cells are locked — no jumping back.
+              const moduleLocked = inModule2 && i < test.moduleBreakIdx!
+              // TOEFL Writing task blocks: earlier blocks are one-way
+              // (their time is spent), later blocks' clocks haven't
+              // started — so only the CURRENT block is jumpable.
+              const sectionLocked = !!currentWritingSection
+                && (i < currentWritingSection.startIdx || i >= currentWritingSection.endIdx)
+              return (
+                <button
+                  key={i}
+                  type="button"
+                  disabled={anyRecording || moduleLocked || sectionLocked}
+                  onClick={() => { if (moduleLocked || sectionLocked) return; setCurrentIdx(i); setGridOpen(false) }}
+                  className={`h-11 rounded-md text-xs font-medium transition-colors tabular-nums disabled:opacity-40 ${
+                    isCurrent
+                      ? 'bg-primary text-white'
+                      : isAnswered
+                        ? 'bg-emerald-50 text-emerald-700 ring-1 ring-emerald-200'
+                        : 'bg-white text-gray-700 ring-1 ring-gray-200'
+                  }`}
+                >
+                  {cellLabel}
+                </button>
+              )
+            })}
+    </div>
+  )
+
   return (
     <div className="flex-1 flex flex-col min-h-0 relative">
       {/* Keyboard hint bar — desktop only, opened with "?".
@@ -1582,50 +1627,24 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
           mid-recording would upload the audio against the wrong
           question. */}
       {gridOpen && (
-        <div className="flex-shrink-0 border-b border-gray-100 bg-gray-50/60 px-3 py-3">
-          <div className="grid grid-cols-7 gap-1.5">
-            {test.questions.map((_, i) => {
-              const isCurrent = i === currentIdx
-              const isAnswered = isItemAnswered(i)
-              const range = questionRanges[i]
-              const cellLabel = range
-                ? (range.startAt === range.endAt ? String(range.startAt) : `${range.startAt}–${range.endAt}`)
-                : String(i + 1)
-              const anyRecording = Object.values(interviewRecordingActive).some(Boolean)
-              // In Module 2, Module 1 cells are locked — no jumping back.
-              const moduleLocked = inModule2 && i < test.moduleBreakIdx!
-              // TOEFL Writing task blocks: earlier blocks are one-way
-              // (their time is spent), later blocks' clocks haven't
-              // started — so only the CURRENT block is jumpable.
-              const sectionLocked = !!currentWritingSection
-                && (i < currentWritingSection.startIdx || i >= currentWritingSection.endIdx)
-              return (
-                <button
-                  key={i}
-                  type="button"
-                  disabled={anyRecording || moduleLocked || sectionLocked}
-                  onClick={() => { if (moduleLocked || sectionLocked) return; setCurrentIdx(i); setGridOpen(false) }}
-                  className={`h-11 rounded-md text-xs font-medium transition-colors tabular-nums disabled:opacity-40 ${
-                    isCurrent
-                      ? 'bg-primary text-white'
-                      : isAnswered
-                        ? 'bg-emerald-50 text-emerald-700 ring-1 ring-emerald-200'
-                        : 'bg-white text-gray-700 ring-1 ring-gray-200'
-                  }`}
-                >
-                  {cellLabel}
-                </button>
-              )
-            })}
-          </div>
+        <div className="lg:hidden flex-shrink-0 border-b border-gray-100 bg-gray-50/60 px-3 py-3">
+          {renderQuestionMap('grid-cols-7')}
         </div>
       )}
 
       {/* Question + answer choices. Keyed by question index so each
           Next/Prev remounts the body: scroll resets to the top and the
           fade-in makes navigation read as movement, not a text swap. */}
-      <div key={currentIdx} className="flex-1 overflow-y-auto animate-fade-in">
-       <div className="w-full px-5 lg:px-8 py-5 lg:py-8">
+      {/* Desktop: the question map becomes a PERSISTENT rail instead of a
+          dropdown, and the answer column stops running the full 1440. At
+          1440 the runner was about 40% empty below the answers with no way
+          to see where you are in 27 questions without opening a menu; the
+          rail spends that column on the one thing a test-taker keeps asking.
+          Below lg nothing changes — the dropdown is still the right control
+          on a phone, and both render the same cells. */}
+      <div className="flex-1 min-h-0 flex flex-row">
+      <div key={currentIdx} className="flex-1 min-w-0 overflow-y-auto animate-fade-in">
+       <div className="w-full px-5 lg:px-8 py-5 lg:py-8 lg:max-w-4xl lg:mx-auto">
         {/* Module chip.
           *
           * The difficulty chip that used to sit beside it is gone. On a
@@ -2530,6 +2549,33 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
        </div>
       </div>
 
+      {/* Question map rail — desktop only. Same cells as the phone
+          dropdown, from the one renderer. Four columns keeps a 27-question
+          section to seven rows, so the whole test is visible without
+          scrolling the rail. */}
+      <aside className="hidden lg:flex lg:flex-col w-60 flex-shrink-0 border-l border-gray-100 bg-gray-50/40 overflow-y-auto">
+        <div className="px-4 pt-4 pb-2 text-[11px] font-semibold uppercase tracking-[0.09em] text-gray-500">
+          {ko ? '문항' : 'Questions'}
+        </div>
+        <div className="px-3 pb-3">{renderQuestionMap('grid-cols-4')}</div>
+        <div className="mt-auto px-4 py-3 border-t border-gray-100 flex flex-col gap-1.5 text-[11px] text-gray-500">
+          <span className="inline-flex items-center gap-2">
+            <span className="w-3 h-3 rounded-sm bg-primary" />{ko ? '현재 문항' : 'Current'}
+          </span>
+          <span className="inline-flex items-center gap-2">
+            <span className="w-3 h-3 rounded-sm bg-emerald-50 ring-1 ring-emerald-200" />{ko ? '답변함' : 'Answered'}
+          </span>
+          <button
+            type="button"
+            onClick={() => setKeyHelpOpen(v => !v)}
+            className="mt-1 text-left text-gray-400 hover:text-gray-600"
+          >
+            {ko ? '단축키 ?' : 'Shortcuts  ?'}
+          </button>
+        </div>
+      </aside>
+      </div>{/* /content + rail */}
+
       {/* Footer — prev / next / submit. Speaking items: Next appears
           ONLY after both the audio finished AND the recording is done.
           audioFinished flips true from `onFirstPlayEnd`. recordingDone
@@ -2566,7 +2612,7 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
         // isn't stuck if auto-record silently fails).
         if (isSpeakingItem && !isLast && !interviewNextReady[speakingKey]) return null
         return (
-          <div className="flex-shrink-0 px-5 py-3 border-t border-gray-100 bg-white flex items-center gap-2 w-full">
+          <div className="flex-shrink-0 px-5 lg:px-8 py-3 border-t border-gray-100 bg-white flex items-center gap-2 w-full lg:justify-end">
             {!isSpeakingItem && (
               <button
                 type="button"
@@ -2644,7 +2690,7 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
                   setCurrentIdx(i => Math.min(test.questions.length - 1, i + 1))
                 }}
                 disabled={audioPlaying}
-                className="flex-1 h-11 rounded-full bg-gradient-to-b from-primary to-primary/90 text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_2px_8px_rgba(40,133,232,0.28)] text-sm font-semibold inline-flex items-center justify-center gap-1.5 disabled:opacity-60"
+                className="flex-1 lg:flex-none lg:min-w-[220px] h-11 rounded-full bg-gradient-to-b from-primary to-primary/90 text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_2px_8px_rgba(40,133,232,0.28)] text-sm font-semibold inline-flex items-center justify-center gap-1.5 disabled:opacity-60"
               >
                 {t('study.test.next')}
                 <ArrowRight className="w-4 h-4" />
