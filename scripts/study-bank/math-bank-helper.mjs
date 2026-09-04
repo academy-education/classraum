@@ -76,10 +76,27 @@ function asNumber(s) {
   if (/^-?\d*\.?\d+$/.test(t)) return Number(t)
   return null
 }
+/*
+ * Answer comparison for NON-numeric keys.
+ *
+ * This used to fall back to normHash, which strips every non-alphanumeric
+ * character — INCLUDING THE MINUS SIGN. So for any key that is not a plain
+ * number or simple fraction, a sign error passed the sandbox silently:
+ * "-20i" matched "20i", "x = -4" matched "x = 4", and
+ * "-1/(x^2 + 3x)" matched "1/(x^2 + 3x)" — the exact option shape of the
+ * Advanced Math batch. Math has no blind attack; this sandbox IS the gate,
+ * so a comparison that cannot see a sign is a gate that cannot fail on one.
+ *
+ * normHash itself is NOT changed: it also produces content_hash, and
+ * touching it would rewrite every dedup hash in the bank.
+ */
+const normAnswer = s => (s || '').toLowerCase()
+  .replace(/[^a-z0-9+\-/^.]+/g, ' ')      // keep sign, slash, caret, point
+  .replace(/\s+/g, ' ').trim()
 function answersMatch(computed, key) {
   const a = asNumber(computed), b = asNumber(key)
   if (a !== null && b !== null) return Math.abs(a - b) < 1e-6
-  return normHash(computed) === normHash(key)
+  return normAnswer(computed) === normAnswer(key)
 }
 
 // Run one item's solve snippet in-process. It's Claude-authored code we

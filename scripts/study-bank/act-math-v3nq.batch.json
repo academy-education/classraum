@@ -1,0 +1,386 @@
+[
+  {
+    "id": "ACT-M-NQ01",
+    "domain": "Number and Quantity",
+    "subskill": "products of square roots of negative numbers",
+    "difficulty": "medium",
+    "prompt": "For i = √(−1), what is the value of √(−16) · √(−25)?",
+    "choices": [
+      "-20",
+      "-20i",
+      "20",
+      "20i"
+    ],
+    "correct_answer": "-20",
+    "explanation": "Each radical must be rewritten before multiplying: √(−16) = 4i and √(−25) = 5i, so the product is 20i² = −20. Multiplying the radicands first, as √((−16)(−25)) = √400, gives 20; that rule holds only when at most one radicand is negative. Rewriting both radicals but then treating i² as 1 gives 20 as well by a different route, so 20 collects two common errors. Carrying a single factor of i through the product gives 20i, and pairing that slip with the sign of i² gives −20i.",
+    "solve": "const a={re:0,im:4}, b={re:0,im:5};\nconst re=a.re*b.re-a.im*b.im, im=a.re*b.im+a.im*b.re;\nif(im!==0) throw new Error('unexpected imaginary part');\nreturn String(re);"
+  },
+  {
+    "id": "ACT-M-NQ02",
+    "domain": "Number and Quantity",
+    "subskill": "simplifying and combining radicals with a coefficient",
+    "difficulty": "easy",
+    "prompt": "The expression 3√48 − √27 is equal to k√3 for some integer k. What is the value of k?",
+    "choices": [
+      "1",
+      "3",
+      "9",
+      "15"
+    ],
+    "correct_answer": "9",
+    "explanation": "√48 = 4√3 and √27 = 3√3, so the expression is 3(4√3) − 3√3 = 12√3 − 3√3 = 9√3, and k = 9. Dropping the coefficient 3 and simplifying only the radicals gives 4√3 − 3√3 = √3, or k = 1. Factoring the 3 out of both terms first, as 3(√48 − √27) = 3(√3), gives k = 3; the 3 multiplies only the first term. Adding the like radicals instead of subtracting gives 12 + 3 = 15.",
+    "solve": "const k=(3*Math.sqrt(48)-Math.sqrt(27))/Math.sqrt(3);\nreturn String(k);"
+  },
+  {
+    "id": "ACT-M-NQ03",
+    "domain": "Number and Quantity",
+    "subskill": "determinant of a 2x2 matrix",
+    "difficulty": "easy",
+    "prompt": "What is the determinant of the 2×2 matrix whose first row is (5, −2) and whose second row is (3, 4)?",
+    "choices": [
+      "-14",
+      "8",
+      "14",
+      "26"
+    ],
+    "correct_answer": "26",
+    "explanation": "The determinant is (5)(4) − (−2)(3) = 20 − (−6) = 26. Dropping the sign of the −2 and computing 20 − 6 gives 14, and reversing which product is subtracted on that same path gives 6 − 20 = −14. Adding down the columns instead of multiplying along the diagonals gives (5 + 4) − (−2 + 3) = 9 − 1 = 8.",
+    "solve": "const a=5,b=-2,c=3,d=4;\nreturn String(a*d-b*c);"
+  },
+  {
+    "id": "ACT-M-NQ04",
+    "domain": "Number and Quantity",
+    "subskill": "counting multiples in a closed interval",
+    "difficulty": "medium",
+    "prompt": "How many integers n with 100 ≤ n ≤ 400 are multiples of 7?",
+    "choices": [
+      "14",
+      "42",
+      "43",
+      "57"
+    ],
+    "correct_answer": "43",
+    "explanation": "The multiples run from 105 to 399, so the count is (399 − 105)/7 + 1 = 43. Counting all multiples of 7 up to 400 and forgetting to remove those below 100 gives 57. Counting the multiples of 7 below 100 gives 14, the quantity that must be subtracted, not the answer. Subtracting 57 − 14 and then removing one more for the endpoint gives 42; the endpoint has already been handled by the subtraction.",
+    "solve": "let c=0;\nfor(let n=100;n<=400;n++) if(n%7===0) c++;\nreturn String(c);"
+  },
+  {
+    "id": "ACT-M-NQ05",
+    "domain": "Number and Quantity",
+    "subskill": "squaring a complex number",
+    "difficulty": "medium",
+    "prompt": "For i = √(−1), the number (2 + 3i)² can be written in the form a + bi, where a and b are real numbers. What is the value of a + b?",
+    "choices": [
+      "-17",
+      "-5",
+      "7",
+      "25"
+    ],
+    "correct_answer": "7",
+    "explanation": "(2 + 3i)² = 4 + 12i + 9i² = (4 − 9) + 12i, so a = −5, b = 12, and a + b = 7. Treating i² as 1 gives a = 13 and a + b = 25. Squaring only the two terms and losing the middle term gives a = −5 with b = 0, so a + b = −5. Reading the question as a − b on the correct values gives −5 − 12 = −17.",
+    "solve": "const x=2,y=3;\nconst a=x*x-y*y, b=2*x*y;\nreturn String(a+b);"
+  },
+  {
+    "id": "ACT-M-NQ06",
+    "domain": "Number and Quantity",
+    "subskill": "greatest common factor in a tiling context",
+    "difficulty": "medium",
+    "prompt": "A rectangular floor measures 168 centimeters by 252 centimeters. It is to be covered completely, with no overlap and no cutting, by identical square tiles whose side length is a whole number of centimeters. What is the smallest number of tiles that can be used?",
+    "choices": [
+      "2",
+      "6",
+      "24",
+      "84"
+    ],
+    "correct_answer": "6",
+    "explanation": "The tile side must divide both 168 and 252, and the fewest tiles come from the largest such side, the greatest common factor 84. The floor is then 2 tiles by 3 tiles, or 6 tiles. Reporting the side length itself gives 84. Counting only along the 168-centimeter side gives 2. Using 42, a common factor but not the greatest, gives a 4-by-6 layout and 24 tiles, which is a valid tiling but not the smallest number.",
+    "solve": "const g=(a,b)=>b?g(b,a%b):a;\nconst L=168,W=252,s=g(L,W);\nreturn String((L/s)*(W/s));"
+  },
+  {
+    "id": "ACT-M-NQ07",
+    "domain": "Number and Quantity",
+    "subskill": "scientific notation across a unit change",
+    "difficulty": "medium",
+    "prompt": "A single grain of a certain sand has a mass of 3.2 × 10⁻⁵ kilogram. A pile of this sand has a mass of 8 metric tons, where 1 metric ton = 1,000 kilograms. The number of grains in the pile is 2.5 × 10ᵏ. What is the value of k?",
+    "choices": [
+      "3",
+      "5",
+      "8",
+      "11"
+    ],
+    "correct_answer": "8",
+    "explanation": "The pile is 8 × 1,000 = 8,000 kilograms, and 8,000 ÷ (3.2 × 10⁻⁵) = 2,500 × 10⁵ = 2.5 × 10⁸, so k = 8. Dividing by 3.2 but dropping the 10⁻⁵ entirely gives 2.5 × 10³ and k = 3. Using 8 kilograms rather than 8 metric tons gives 2.5 × 10⁵ and k = 5. Converting the pile to grams (8 × 10⁶) while leaving the grain in kilograms gives 2.5 × 10¹¹ and k = 11; the two masses must be in the same unit.",
+    "solve": "const pile=8*1000, grain=3.2e-5;\nconst n=pile/grain;\nreturn String(Math.log10(n/2.5));"
+  },
+  {
+    "id": "ACT-M-NQ08",
+    "domain": "Number and Quantity",
+    "subskill": "linear Diophantine equation with a positivity constraint",
+    "difficulty": "hard",
+    "prompt": "At a school play, child tickets cost $7 each and adult tickets cost $11 each. A group bought at least one ticket of each type and paid exactly $131. What is the greatest number of adult tickets the group could have bought?",
+    "choices": [
+      "3",
+      "10",
+      "11",
+      "14"
+    ],
+    "correct_answer": "10",
+    "explanation": "If a is the number of adult tickets and c the number of child tickets, 11a + 7c = 131 with a and c positive integers. The whole-number requirement is what decides this: only a = 3 (with c = 14) and a = 10 (with c = 3) work, so the greatest is 10. Dividing 131 by 11 and taking the whole part gives 11, but 131 − 121 = 10 is not a multiple of 7. Stopping at the first solution found while counting upward gives 3, and reporting that solution's child count gives 14.",
+    "solve": "let best=null;\nfor(let a=1;11*a<131;a++){const r=131-11*a; if(r>0&&r%7===0) best=a;}\nif(best===null) throw new Error('no solution');\nreturn String(best);"
+  },
+  {
+    "id": "ACT-M-NQ09",
+    "domain": "Number and Quantity",
+    "subskill": "rate conversion through cubic and metric units",
+    "difficulty": "medium",
+    "prompt": "A pump delivers 250 milliliters of water every 3 seconds. A tank holds 0.72 cubic meter. At this rate, how many minutes does it take the pump to fill the tank? (1 cubic meter = 1,000 liters)",
+    "choices": [
+      "36",
+      "60",
+      "144",
+      "8640"
+    ],
+    "correct_answer": "144",
+    "explanation": "The tank holds 0.72 × 1,000 = 720 liters, and the pump delivers 0.25 liter every 3 seconds, so filling takes (720 ÷ 0.25) × 3 = 8,640 seconds, which is 8,640 ÷ 60 = 144 minutes. Stopping at 8,640 answers in seconds rather than minutes. Reading the rate as 1 liter every 3 seconds gives 2,160 seconds, or 36 minutes. Multiplying by the rate instead of dividing, as 720 × 0.25 ÷ 3, gives 60.",
+    "solve": "const liters=0.72*1000, perFill=0.25, secs=3;\nreturn String(liters/perFill*secs/60);"
+  },
+  {
+    "id": "ACT-M-NQ10",
+    "domain": "Number and Quantity",
+    "subskill": "simultaneous remainder conditions",
+    "difficulty": "hard",
+    "prompt": "What is the least positive integer that leaves a remainder of 3 when divided by 8 and a remainder of 4 when divided by 9?",
+    "choices": [
+      "7",
+      "13",
+      "35",
+      "67"
+    ],
+    "correct_answer": "67",
+    "explanation": "Both conditions must hold at once. The integers leaving remainder 3 on division by 8 are 3, 11, 19, 27, 35, 43, 51, 59, 67, and the first of these that also leaves remainder 4 on division by 9 is 67. Checking only the second condition and stopping gives 13, which fails the first (13 = 8 + 5). Checking only the first gives 35, which fails the second (35 = 27 + 8). Adding the two remainders gives 7, which satisfies neither.",
+    "solve": "for(let n=1;n<10000;n++) if(n%8===3&&n%9===4) return String(n);\nthrow new Error('none found');"
+  },
+  {
+    "id": "ACT-M-NQ11",
+    "domain": "Number and Quantity",
+    "subskill": "domain of a sum of square roots",
+    "difficulty": "medium",
+    "prompt": "For how many integer values of x is the expression √(x − 4) + √(16 − x) a real number?",
+    "choices": [
+      "11",
+      "12",
+      "13",
+      "20"
+    ],
+    "correct_answer": "13",
+    "explanation": "Both radicands must be nonnegative, so x ≥ 4 and x ≤ 16, giving the integers 4 through 16: that is 16 − 4 + 1 = 13 values. Subtracting the endpoints without adding one gives 12. Excluding both endpoints, as though the radicands had to be positive, leaves 11 values from 5 through 15. Adding the two constants gives 20, which counts nothing in the interval.",
+    "solve": "let c=0;\nfor(let x=-500;x<=500;x++) if(x-4>=0&&16-x>=0) c++;\nreturn String(c);"
+  },
+  {
+    "id": "ACT-M-NQ12",
+    "domain": "Number and Quantity",
+    "subskill": "an absolute-value equation with an interval of solutions",
+    "difficulty": "hard",
+    "prompt": "How many integer values of x satisfy |x − 3| + |x + 5| = 8?",
+    "choices": [
+      "0",
+      "2",
+      "7",
+      "9"
+    ],
+    "correct_answer": "9",
+    "explanation": "The quantity |x − 3| + |x + 5| is the total distance from x to 3 and to −5, and those two points are 8 apart, so every x between −5 and 3, endpoints included, gives exactly 8. The integers −5 through 3 number 9. Solving the two sign cases and reporting the two boundary points gives 2. Counting only the integers strictly between gives 7. Concluding from |x − 3| + |x + 5| ≥ 8 that equality is impossible gives 0.",
+    "solve": "let c=0;\nfor(let x=-200;x<=200;x++) if(Math.abs(x-3)+Math.abs(x+5)===8) c++;\nreturn String(c);"
+  },
+  {
+    "id": "ACT-M-NQ13",
+    "domain": "Number and Quantity",
+    "subskill": "when a quadratic expression is a perfect square",
+    "difficulty": "hard",
+    "prompt": "For certain positive integers n, the value of n² + 40 is the square of an integer. What is the greatest such n?",
+    "choices": [
+      "3",
+      "9",
+      "11",
+      "20"
+    ],
+    "correct_answer": "9",
+    "explanation": "Write n² + 40 = m², so (m − n)(m + n) = 40. The two factors must have the same parity, which leaves 2 × 20 and 4 × 10 only: these give n = 9 (with m = 11) and n = 3 (with m = 7). The greatest is 9. Reporting the smaller solution gives 3, and reporting the matching m rather than n gives 11. Taking the larger factor of the pair 2 × 20 as the answer gives 20.",
+    "solve": "let best=null;\nfor(let n=1;n<=2000;n++){const m=Math.sqrt(n*n+40); if(Number.isInteger(m)) best=n;}\nif(best===null) throw new Error('none');\nreturn String(best);"
+  },
+  {
+    "id": "ACT-M-NQ14",
+    "domain": "Number and Quantity",
+    "subskill": "singular matrix: all values of a parameter",
+    "difficulty": "hard",
+    "prompt": "The 2×2 matrix A has first row (3, k) and second row (k, 12). Matrix A does NOT have an inverse. What is the sum of all possible values of k?",
+    "choices": [
+      "-6",
+      "0",
+      "6",
+      "36"
+    ],
+    "correct_answer": "0",
+    "explanation": "A has no inverse exactly when its determinant is zero: 36 − k² = 0, so k² = 36 and k = 6 or k = −6. Both values are possible, so their sum is 0. Taking only the positive square root gives 6, and taking only the negative root gives −6. Stopping at k² = 36 and reporting 36 answers for k² rather than for the sum of the values of k.",
+    "solve": "const roots=[];\nfor(let k=-100;k<=100;k++) if(3*12-k*k===0) roots.push(k);\nif(roots.length!==2) throw new Error('expected two roots');\nreturn String(roots[0]+roots[1]);"
+  },
+  {
+    "id": "ACT-M-NQ15",
+    "domain": "Number and Quantity",
+    "subskill": "logarithm rules on a quotient with a power",
+    "difficulty": "medium",
+    "prompt": "If log₃ x = 4 and log₃ y = 2, what is the value of log₃ (x / y³)?",
+    "choices": [
+      "-2",
+      "2/3",
+      "2",
+      "6"
+    ],
+    "correct_answer": "-2",
+    "explanation": "log₃(x / y³) = log₃ x − 3 log₃ y = 4 − 3(2) = −2. Forgetting that the exponent 3 multiplies the logarithm gives 4 − 2 = 2. Computing 3 log₃ y alone gives 6, which is the quantity being subtracted rather than the answer. Dividing the logarithms instead of subtracting them gives 4/6 = 2/3.",
+    "solve": "const lx=4, ly=2;\nreturn String(lx-3*ly);"
+  },
+  {
+    "id": "ACT-M-NQ16",
+    "domain": "Number and Quantity",
+    "subskill": "a decimal with one repeating digit as a fraction",
+    "difficulty": "medium",
+    "prompt": "The decimal 0.4555…, in which only the digit 5 repeats, is equal to which of the following fractions?",
+    "choices": [
+      "41/90",
+      "5/11",
+      "5/9",
+      "9/20"
+    ],
+    "correct_answer": "41/90",
+    "explanation": "Let x = 0.4555… Then 100x = 45.555… and 10x = 4.555…, so 90x = 41 and x = 41/90. Treating the block 45 as the repeating part gives 45/99 = 5/11 = 0.4545… Treating only the 5 as the whole decimal, as 0.555…, gives 5/9. Truncating the decimal at 0.45 gives 9/20.",
+    "solve": "const x=0.4 + (5/100)/(1-1/10);\nreturn String(x);"
+  },
+  {
+    "id": "ACT-M-NQ17",
+    "domain": "Number and Quantity",
+    "subskill": "multi-unit rate with a whole-container requirement",
+    "difficulty": "hard",
+    "prompt": "A recipe uses 3/4 cup of syrup for every 10 pancakes. Syrup is sold only in bottles containing 16 fluid ounces, and 1 cup = 8 fluid ounces. What is the least number of bottles that must be bought to make 200 pancakes?",
+    "choices": [
+      "4",
+      "7.5",
+      "8",
+      "15"
+    ],
+    "correct_answer": "8",
+    "explanation": "200 pancakes is 20 batches of 10, which needs 20 × 3/4 = 15 cups, or 15 × 8 = 120 fluid ounces. Since 120 ÷ 16 = 7.5 and bottles are sold whole, 8 bottles are needed. Reporting 7.5 ignores that a bottle cannot be split. Reporting 15 answers in cups rather than bottles. Using 1 cup = 4 fluid ounces gives 60 fluid ounces, or 3.75 bottles, which rounds up to 4.",
+    "solve": "const cups=(200/10)*(3/4), oz=cups*8;\nreturn String(Math.ceil(oz/16));"
+  },
+  {
+    "id": "ACT-M-NQ18",
+    "domain": "Number and Quantity",
+    "subskill": "a term of a geometric sequence",
+    "difficulty": "medium",
+    "prompt": "The first term of a geometric sequence is 5 and the fourth term is 320. What is the third term?",
+    "choices": [
+      "20",
+      "80",
+      "215",
+      "1280"
+    ],
+    "correct_answer": "80",
+    "explanation": "The fourth term is 5r³ = 320, so r³ = 64 and r = 4. The third term is 5r² = 80. Reporting the second term, 5r = 20, stops one step early, and reporting the fifth term, 5r⁴ = 1,280, goes one step too far. Treating the sequence as arithmetic gives a common difference of (320 − 5)/3 = 105 and a third term of 5 + 2(105) = 215.",
+    "solve": "const a=5, t4=320, r=Math.cbrt(t4/a);\nreturn String(a*r*r);"
+  },
+  {
+    "id": "ACT-M-NQ19",
+    "domain": "Number and Quantity",
+    "subskill": "solving a matrix equation entry by entry",
+    "difficulty": "easy",
+    "prompt": "Matrix A has first row (1, 2) and second row (3, 4). Matrix B satisfies 2A − B = C, where C has first row (0, 1) and second row (5, 2). What is the entry in the second row, first column of B?",
+    "choices": [
+      "1",
+      "2",
+      "6",
+      "11"
+    ],
+    "correct_answer": "1",
+    "explanation": "B = 2A − C, and the entry in the second row, first column is 2(3) − 5 = 1. Adding instead of subtracting gives 6 + 5 = 11. Reporting the corresponding entry of 2A gives 6, which is only the first half of the calculation. Computing the first-row, first-column entry, 2(1) − 0 = 2, answers for the wrong position in the matrix.",
+    "solve": "const A=[[1,2],[3,4]], C=[[0,1],[5,2]];\nreturn String(2*A[1][0]-C[1][0]);"
+  },
+  {
+    "id": "ACT-M-NQ20",
+    "domain": "Number and Quantity",
+    "subskill": "a radical equation with an extraneous root",
+    "difficulty": "hard",
+    "prompt": "What is the value of x that satisfies √(2x + 15) = x ?",
+    "choices": [
+      "-15",
+      "-3",
+      "2",
+      "5"
+    ],
+    "correct_answer": "5",
+    "explanation": "Squaring gives 2x + 15 = x², so x² − 2x − 15 = 0 and x = 5 or x = −3. Both come out of the algebra, but a square root is never negative, so x = −3 fails the original equation and only x = 5 survives. Reporting the rejected root gives −3. Reporting the sum of the two roots gives 2. Setting the radicand equal to x without squaring, as 2x + 15 = x, gives −15.",
+    "solve": "const roots=[];\nfor(let x=-100;x<=100;x++) if(2*x+15>=0 && Math.abs(Math.sqrt(2*x+15)-x)<1e-9) roots.push(x);\nif(roots.length!==1) throw new Error('not unique');\nreturn String(roots[0]);"
+  },
+  {
+    "id": "ACT-M-NQ21",
+    "domain": "Number and Quantity",
+    "subskill": "concentration when the added substance changes the total",
+    "difficulty": "medium",
+    "prompt": "An alloy weighing 80 kilograms is 30% copper by mass. How many kilograms of pure copper must be added so that the resulting alloy is 50% copper by mass?",
+    "choices": [
+      "16",
+      "24",
+      "32",
+      "40"
+    ],
+    "correct_answer": "32",
+    "explanation": "The alloy starts with 0.30(80) = 24 kilograms of copper. Adding x kilograms of copper changes both the copper and the total, so (24 + x)/(80 + x) = 0.50, giving 24 + x = 40 + 0.5x and x = 32. Holding the total at 80 gives 24 + x = 40 and x = 16, the most common slip. Reporting the copper the alloy must end up with gives 40, and reporting the copper it starts with gives 24.",
+    "solve": "const total=80, cu=0.30*total, target=0.50;\nlet x=null;\nfor(let t=0;t<=200000;t++){const v=t/1000; if(Math.abs((cu+v)-target*(total+v))<1e-9){x=v;break;}}\nif(x===null) throw new Error('no solution');\nreturn String(x);"
+  },
+  {
+    "id": "ACT-M-NQ22",
+    "domain": "Number and Quantity",
+    "subskill": "converting from base 5 to base 10",
+    "difficulty": "easy",
+    "prompt": "The number 203 is written in base 5. What is this number written in base 10?",
+    "choices": [
+      "13",
+      "28",
+      "53",
+      "203"
+    ],
+    "correct_answer": "53",
+    "explanation": "In base 5 the digits stand for 2(5²) + 0(5¹) + 3(5⁰) = 50 + 0 + 3 = 53. Using only the last two digits, as 2(5) + 3, gives 13. Writing 5² + 0 + 3 and forgetting the leading digit 2 gives 28. Reading the numeral as though it were already base 10 gives 203.",
+    "solve": "const digits=[2,0,3], b=5;\nreturn String(digits.reduce((acc,d)=>acc*b+d,0));"
+  },
+  {
+    "id": "ACT-M-NQ23",
+    "domain": "Number and Quantity",
+    "subskill": "permutations of a word with repeated letters",
+    "difficulty": "medium",
+    "prompt": "How many distinct arrangements are there of all six letters of the word BANANA?",
+    "choices": [
+      "60",
+      "120",
+      "360",
+      "720"
+    ],
+    "correct_answer": "60",
+    "explanation": "There are 6 letters with A repeated 3 times and N repeated twice, so the count is 6! / (3! 2!) = 720 / 12 = 60. Treating all six letters as distinct gives 6! = 720. Dividing by 3! only, and ignoring the repeated N, gives 120. Dividing by 2! only, and ignoring the repeated A, gives 360.",
+    "solve": "const f=n=>n<=1?1:n*f(n-1);\nreturn String(f(6)/(f(3)*f(2)));"
+  },
+  {
+    "id": "ACT-M-NQ24",
+    "domain": "Number and Quantity",
+    "subskill": "square roots of a complex number under a sign constraint",
+    "difficulty": "hard",
+    "prompt": "For i = √(−1), the complex number z = a + bi, where a and b are integers and a > 0, satisfies z² = 21 − 20i. What is the value of a + b?",
+    "choices": [
+      "-7",
+      "-3",
+      "3",
+      "7"
+    ],
+    "correct_answer": "3",
+    "explanation": "Expanding, z² = (a² − b²) + 2abi, so a² − b² = 21 and 2ab = −20. The integer pairs satisfying both are (5, −2) and (−5, 2); the condition a > 0 selects (5, −2), so a + b = 3. Taking the rejected pair gives −3. Reading 2ab = −20 as 2ab = 20 makes b positive and gives 5 + 2 = 7, and doing that on the rejected pair gives −5 − 2 = −7.",
+    "solve": "const out=[];\nfor(let a=1;a<=200;a++) for(let b=-200;b<=200;b++){ if(a*a-b*b===21 && 2*a*b===-20) out.push(a+b); }\nif(out.length!==1) throw new Error('not unique: '+out.join(','));\nreturn String(out[0]);"
+  }
+]
