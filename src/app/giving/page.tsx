@@ -45,20 +45,22 @@ const ENTRIES: readonly Entry[] = [
   {
     key: "victree",
     href: "http://victree.or.kr/",
-    // Victree has no logo of its own, so the monogram is the intended
-    // presentation here, not a placeholder waiting on a file.
-    logo: null,
+    // Their own header wordmark from victree.or.kr, at native 269x54. Not
+    // upscaled: it is already small and enlarging it would only soften it.
+    // The ~5:1 shape against OCC's 1:1 is why OrgMark constrains height.
+    logo: "/giving/victree.png",
     monogram: "빅",
   },
 ]
 
-/* An organisation's own mark, or a neutral monogram until we have it.
+/* An organisation's own mark, rendered as a LOCKUP.
  *
- * These are other people's trademarks and we do not have the files, so
- * nothing here draws an approximation of one — a made-up mark misrepresents
- * a real charity more than an honest placeholder does. Put the real asset at
- * the `logo` path above (their press or brand-assets page usually states the
- * usage terms) and it replaces the monogram with no other change.
+ * The two marks have very different shapes — Operation Christmas Child is a
+ * 1:1 roundel, Victree is a ~5:1 horizontal wordmark — so the box constrains
+ * HEIGHT and lets width fall out. Forcing both into the same square made the
+ * wordmark render as a sliver, which is the usual reason logo rows look
+ * broken. Nothing is boxed, ringed or padded: a mark on its own ground reads
+ * as the organisation's, a mark in our chrome reads as our badge for them.
  */
 function OrgMark({ src, monogram, name }: { src: string | null; monogram: string; name: string }) {
   const [failed, setFailed] = useState(false)
@@ -74,21 +76,21 @@ function OrgMark({ src, monogram, name }: { src: string | null; monogram: string
     return (
       <div
         aria-hidden
-        className="flex-shrink-0 w-12 h-12 rounded-xl bg-gray-100 ring-1 ring-gray-200 flex items-center justify-center text-[15px] font-semibold text-gray-500 select-none"
+        className="h-14 min-w-[56px] px-4 rounded-xl bg-gray-100 ring-1 ring-gray-200 inline-flex items-center justify-center text-lg font-semibold text-gray-500 select-none"
       >
         {monogram}
       </div>
     )
   }
   return (
-    // A plain img, not next/image: this needs an onError fallback for a file
-    // that may not exist yet, and next/image renders its own broken-image box.
+    // A plain img, not next/image: the fallback needs onError, and next/image
+    // renders its own broken-image box on a missing file.
     <img
       ref={check}
       src={src}
       alt={`${name} logo`}
       onError={() => setFailed(true)}
-      className="flex-shrink-0 w-12 h-12 rounded-xl object-contain bg-white ring-1 ring-gray-200 p-1.5"
+      className="h-14 w-auto max-w-[260px] object-contain object-left"
     />
   )
 }
@@ -139,7 +141,20 @@ export default function GivingPage() {
             ))}
           </div>
 
-          <hr className="my-10 h-0.5 w-16 border-0 bg-primary rounded-full" />
+          {/* Summary strip. A giving page's first question is "how much, when,
+              to whom" — the prose answers it in the third sentence, this
+              answers it at a glance. Values sit above labels, tabular so the
+              figures align. */}
+          <dl className="mt-10 mb-9 grid grid-cols-3 gap-px overflow-hidden rounded-2xl bg-gray-200 ring-1 ring-gray-200">
+            {facts("landing.giving.stats").map(([value, label]) => (
+              <div key={label} className="flex flex-col-reverse bg-white px-4 py-4 sm:px-5 sm:py-5">
+                <dt className="text-[11.5px] text-gray-500 leading-snug mt-1">{label}</dt>
+                <dd className="text-[17px] sm:text-[19px] font-semibold text-gray-900 leading-tight tabular-nums">
+                  {value}
+                </dd>
+              </div>
+            ))}
+          </dl>
 
           {/* Entries */}
           <div className="space-y-5">
@@ -148,17 +163,21 @@ export default function GivingPage() {
                 key={key}
                 className="rounded-2xl bg-white ring-1 ring-gray-200 shadow-[0_1px_2px_rgba(0,0,0,0.03)] p-6 sm:p-8"
               >
-                <div className="flex items-start gap-4 mb-4">
+                {/* The mark gets its own row rather than a slot beside the
+                    heading: the two are different shapes, and a row lets each
+                    sit at its natural width without the heading jumping. */}
+                <div className="flex items-center justify-between gap-4 pb-5 mb-5 border-b border-gray-100">
                   <OrgMark src={logo} monogram={monogram} name={t(`landing.giving.${key}.org`)} />
-                  <div className="min-w-0 pt-0.5">
-                    <h2 className="text-lg font-semibold text-gray-900 leading-snug">
-                      {t(`landing.giving.${key}.org`)}
-                    </h2>
-                    <p className="text-[13px] text-gray-500 mt-0.5">
-                      {t(`landing.giving.${key}.sub`)}
-                    </p>
-                  </div>
+                  <span className="flex-shrink-0 text-[10.5px] font-semibold uppercase tracking-[0.1em] text-gray-400">
+                    {t("landing.giving.orgLabel")}
+                  </span>
                 </div>
+                <h2 className="text-[19px] font-semibold text-gray-900 leading-snug">
+                  {t(`landing.giving.${key}.org`)}
+                </h2>
+                <p className="text-[13px] text-gray-500 mt-1 mb-4">
+                  {t(`landing.giving.${key}.sub`)}
+                </p>
 
                 <p className="text-[14.5px] leading-relaxed text-gray-600 mb-3">
                   {t(`landing.giving.${key}.body`)}
