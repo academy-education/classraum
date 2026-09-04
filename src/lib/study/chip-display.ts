@@ -47,10 +47,23 @@ export function poolChips(choices: readonly string[], placed: readonly string[])
 
 /**
  * The assembled sentence: slot 0 capitalised so it reads as a sentence,
- * every later chip left as authored so proper nouns keep their capitals.
+ * EVERY LATER CHIP LOWERCASED, for the same reason the pool is lowercased.
+ *
+ * This used to leave later chips "as authored so proper nouns keep their
+ * capitals", and that reopened the exact tell the pool exists to close. A
+ * user found it on 2026-09-04: place any chunk into slot 0 and the real
+ * opener, now sitting in slot 1, still shows its stored capital — so the
+ * capitalised chip in the assembled row is the answer, and the student can
+ * read it off without solving anything. Re-measured over the live cohort
+ * that day: 87 of 165 items (53%) carry a capital on the correct opener,
+ * and 2 more carry one on a NON-opener, which is worse than no tell.
+ *
+ * The proper-noun cost is real and accepted, exactly as it is for the pool:
+ * a mid-sentence "maria" reads slightly oddly, and that is the correct
+ * trade against handing over the opener on half the cohort.
  */
 export function assembledChips(placed: readonly string[]): string[] {
-  return placed.map((chip, i) => (i === 0 ? ucFirst(chip) : chip))
+  return placed.map((chip, i) => (i === 0 ? ucFirst(chip) : lcFirst(chip)))
 }
 
 /**

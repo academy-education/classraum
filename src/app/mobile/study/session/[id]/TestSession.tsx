@@ -11,7 +11,7 @@ import {
 import { useTranslation } from '@/hooks/useTranslation'
 import { useAuth } from '@/contexts/AuthContext'
 import { buyCreditPack } from '@/lib/study/purchase-credits'
-import { lcFirst, ucFirst, endPunctuation } from '@/lib/study/chip-display'
+import { lcFirst, assembledChips, endPunctuation } from '@/lib/study/chip-display'
 import { CREDIT_PACKS, MICRO_PACK } from '@/lib/study/plans'
 import { authHeaders } from '@/lib/auth-headers'
 import { OPEN_RESPONSE_TYPES } from '@/lib/study/openResponse'
@@ -2025,12 +2025,19 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
                 return out
               })
             }
-            // lcFirst/ucFirst and the punctuation rule live in
-            // @/lib/study/chip-display, pinned by chip-display.test.ts.
-            // The pool-lowercase is the ONLY thing hiding a positional
-            // tell that 44 of 108 live items carry (measured 2026-08-09),
-            // and inline it had no test.
+            // The chip-display policy lives in @/lib/study/chip-display and
+            // is pinned by chip-display.test.ts. BOTH rows go through it now:
+            // the pool via lcFirst and the assembled row via assembledChips.
+            // Until 2026-09-04 the assembled row inlined its own rule and
+            // left later chips as authored, which handed the student the
+            // opener on 87 of 165 live items — the tested helper existed and
+            // nothing called it.
             const complete = current.length === q.choices.length && q.choices.length > 0
+            // Computed once, not per chip. assembledChips capitalises slot 0
+            // and lowercases the rest, so the real opener cannot be read off
+            // by its stored capital when the student places it anywhere but
+            // first — the leak a user hit on 2026-09-04.
+            const placedLabels = assembledChips(current.map(normalizeDisplayText))
             // Infer ending punctuation from the correct answer. If the
             // model didn't emit one, default to a period.
             const endPunct = endPunctuation(q.correct_answer)
@@ -2050,9 +2057,7 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
                           onClick={() => setOrder(current.filter((_, j) => j !== i))}
                           className="px-3 py-1.5 rounded-lg bg-primary text-white text-[13px] font-medium hover:opacity-90"
                         >
-                          {i === 0
-                            ? ucFirst(normalizeDisplayText(chip))
-                            : normalizeDisplayText(chip)}
+                          {placedLabels[i]}
                         </button>
                       ))}
                   {complete && (
