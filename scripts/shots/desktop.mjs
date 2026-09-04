@@ -44,7 +44,7 @@ const SHOTS = [
   ['01-home',   '/mobile/study'],
   ['05-review', '/mobile/study/review'],
   ['06-stats',  '/mobile/study/stats'],
-  ['08-test',   '/mobile/study/session/ff4cb5b1-7895-4407-bcc6-23bf5f470bb2'],
+  ['08-test',   '/mobile/study/session/36d4ee42-abf4-49d9-b10d-ac9de231cd26'],
   ['09-result', '/mobile/study/session/75336910-e2d1-4070-a037-8098676ea873/summary'],
 ]
 
