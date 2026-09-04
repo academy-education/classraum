@@ -85,7 +85,7 @@ Two qualifications, both learned the hard way:
 | ISEE | Math | 254 | — | — | never measured — the attack does not apply |
 | SAT | Algebra | 244 | 100% | — | **unconfirmed** — model only |
 | SAT | Expression of Ideas | 244 | 100% | 11.1% (n=18) | human says maybe — needs more |
-| SAT | Information and Ideas | 240 | 95.8% | no usable sitting — 37.5% / 29.4% | **sitting not interpretable** — the reader abstained on most of it |
+| SAT | Information and Ideas | 250 live (240 `v2` + 10 `rw-v7-ii-hard`) | 95.8% | **89.9% blind live (n=96 unique, +64.9); v2 91.9% (n=86), rw-v7-ii-hard 73.3% (n=10, fully enumerated)** | MEASURED 2026-09-04 — **broken cohort-wide, no clean stratum**; strict scope ~207 of 240, conservative 142. See `SAT-II-LIVE-RESULT-2026-09-04.md`. Earlier note: no usable sitting (37.5% / 29.4%), reader abstained on most of it |
 | SAT | Geometry and Trigonometry | 234 | 100% | — | **unconfirmed** — model only |
 | SAT | Advanced Math | 233 | 100% | — | **unconfirmed** — model only |
 | SAT | Standard English Conventions | 224 | 65% | 15% (n=20) | **cleared by hand** — the model was wrong |
@@ -448,6 +448,24 @@ structural checks are pre-flight only. See CLAUDE.md.
 
   **The flagged solver anomaly was audited and is benign.** `ctl-sat-geo` solver-a used 5 tool calls against everyone else's 2, and the coordinator correctly refused to drop it post-hoc (dropping it moves geo to +9.0). The transcript shows one Read of its own blind file then four retries writing its own answer file after a malformed heredoc — no keyed file, no batch, no sibling, no web. The geo PASS stands. **Recording the audit because "an anomaly nobody could explain" is how a real contamination would look too, and the difference is whether anyone went and read the transcript.** _(five batches now need the with-source grade and a ledger entry before insert; psda-v4 needs a second read)_
 
+- **2026-09-04** — **INFORMATION AND IDEAS GENERALISES, AND IT IS WORSE THAN CRAFT & STRUCTURE: THERE IS NO CLEAN SUB-POPULATION ANYWHERE IN LIVE I&I.** Full write-up in `SAT-II-LIVE-RESULT-2026-09-04.md`. This was measured before anything was repaired precisely because the Math-hub precedent went the other way; it does not go the other way here.
+
+      population   250 live I&I items: 240 in `v2`, 10 in `rw-v7-ii-hard`
+      stratified   72 fresh items + the earlier 24 = 96 unique measured
+      pooled       89.9%  (+64.9 over a 25.0% dealt control)
+      by cohort    v2 91.9% (n=86, 76 of 86 solved by all three)
+                   rw-v7-ii-hard 73.3% (n=10, FULLY ENUMERATED, 6 of 10 all-three)
+
+  **The C&S rescue does not exist here.** In C&S the 18-item newer cohort scored 68.5% and its words-in-context third was genuinely clean, which is what stopped a sound sub-population being rewritten. `rw-v7-ii-hard` is the analogue and it is **not clean**: all 10 items are enumerated, so 73.3% is a population fact, not a sample. **Four of seven `v2` subskills sit at a literal 100%** (Text Structure and Purpose n=11, Cross-Text Connections n=9, Central Ideas and Details n=9, plus Inferences 98.8% over n=27). The two evidence subskills are the only ones under 80% — Command of Evidence 79.4%, Command of Textual Evidence 70.8% — and that is still 45–55 points over chance. Difficulty does not separate it either (v2 medium 92.3%, hard 83.3%). **Scope: strict reading ~207 of 240 `v2` items, conservative reading 142.** With C&S, **the live SAT R&W `v2` prose bank is ~450 items across two domains, not 240.**
+
+  **The C&S tell reproduces exactly** — all twelve solvers, independently and unprompted: the key is the single hedged, concede-then-qualify option and the distractors are absolutes, flat denials or strawmen, quoted back as *only / never / every / at all / no basis whatsoever / at any scale / proves* against *rather than / not X but Y / too sweeping since / do not compel*. One solver stated the diagnosis exactly: **"the options were written from the answer rather than from a passage — the key is a careful precis of a position and the three distractors are that same position deliberately coarsened."** Canonical set-pieces reproduce too (Wegener, MOND vs dark matter, Snowball Earth, faint young Sun, Yellowstone, hygiene hypothesis, monopsony, Zeigarnik, glass-flows).
+
+  **TWO MECHANISMS C&S DID NOT SHOW.** (1) **Topic twins.** Four solvers independently noticed items pairing on a subject with *different* passages, so one item's options disclose the other's position. A whole-population Jaccard check (self-tested on known-identical and known-unrelated text first) confirms it: **I&I 16 twin pairs, 23 items, 9.2%; C&S 1 pair, 2 items, 0.9%.** All 250 passages are byte-distinct, so the existing distinctness check does not see this. **A repair that rewrites options without diversifying subjects leaves it in place.** (2) **The evidence subskills leak differently** — every solver called the strengthen/weaken items a research-methods quiz where the key is the only option that controls the rival explanation or supplies a comparison group, "the topic is decoration". That is why they score *lowest* and still sit 45 points over chance: **a fix aimed at the hedge tell will not reach them.**
+
+  **`iilive-f2`'s first three solvers returned byte-identical 24-letter pick-strings — the pre-registered void condition — and were re-run rather than reported.** Fresh solvers d/e/f gave three distinct strings at 93.1%, within 2.7 points of the voided run. Six independent solvers converging is the finding; the transcript audit is what separates that from contamination, and it was done: all twelve transcripts show exactly two tool calls, and the only `study-bank/` paths in any of them are that solver's own blind file and its own answer file.
+
+  **A sixth structural proxy was built and it does not work.** "Key is the uniquely hedged option, distractors are absolutes", run over the whole live population: I&I v2 23.3%, C&S v2 19.5%, C&S rw-v7 0.0%, SEC/Math ~0%. It separates prose from non-prose, which is trivial, and it fires on 23% of items where solvers succeed on 92% — **under-detecting by a factor of four.** Recorded here so nobody builds it a seventh time. Also: 21 of 250 I&I prompts collide, so the prompt+passage rule was load-bearing again. Scorer break-tested before use (perfect->100% and trips the identical-string detector; always-A->exactly 25.0%; missing answer->REFUSING exit 2). **Nothing was written to the database.** _(the v2 prose rewrite, C&S + I&I together, is now the largest open item on the bank)_
+
 - **2026-09-04** — **THE LIVE CRAFT & STRUCTURE COHORT IS BROKEN IN BULK: ~200 ITEMS STUDENTS CAN DRAW TODAY ARE ANSWERABLE WITHOUT READING THE PASSAGE.** This is the opposite of the Math-hub outcome, and it is exactly why the population was measured before anything was repaired.
 
       population   228 live C&S items: 210 in cohort `v2`, 18 in `rw-v7-cs-hard`
@@ -482,3 +500,29 @@ structural checks are pre-flight only. See CLAUDE.md.
   Mechanism, named unprompted in every file: the option slate is built as the key's relation DUPLICATED and the key's relation REVERSED, so a duplicated relation cannot be the key and a reversal names the key's direction. Exposure is in the analogies (69.0% blind vs 56.3% synonym) against a live control that is flat (42.9%/47.9%).
 
   Both previously flagged specifics reproduced on fresh dealt data: `SVV2-28` is the only item in 30 with a shared morphological prefix family of >=3 containing the key (`in-`; zero such items in the live control) and scored **3/3**, the solver naming the prefix polarity and shared `solv-` root unprompted; and "never pick the longest or shortest" measured **+8.2 on the candidate against -6.8 on the matched live sample** (previous run: +7.9 vs -0.2). The contrast is the evidence, not the absolute — it is an authoring habit of this batch, not a property of five-choice verbal items. _(FAIL; per the one-failed-rewrite rule this batch does not get a v3)_
+
+- **2026-09-04** — **SIZING THE WHOLE OF LIVE SAT R&W AGAINST THE TWO MEASUREMENTS.** The bank holds **1,009 live R&W items**. The `v2` authoring label — the one carrying the defect in both domains measured so far — spans **740 of them**:
+
+      MEASURED BROKEN
+        Information and Ideas :: v2    240    91.9% blind  (n=86 measured)
+        Craft and Structure   :: v2    210    97.5% blind  (n=54, +24 earlier)
+                                       ---
+                                       450 items, both domains rewrite-scale
+
+      SAME COHORT, NOT YET MEASURED AT POPULATION SCALE
+        Standard English Conv :: v2    224    72.2% on a 24-item sample
+        Expression of Ideas   :: v2     66    never sampled
+
+      NEWER COHORTS, SMALL, MEASURED OR PARTLY SO
+        rw-v6/v7-sec-hard               63    v7 held at 69.4%, v6 passed 61.1%
+        eoi-v3..v6 + rsw                178    unmeasured as live cohorts
+        rw-v7-cs-hard                   18    68.5% - the only partly-clean stratum
+        rw-v7-ii-hard                   10    73.3% - FULLY enumerated, not clean
+
+  **I&I is worse than C&S in the way that matters for scoping: there is no clean sub-population.** In C&S the newer 18-item cohort was meaningfully better and its words-in-context third genuinely clean, which spared it. `rw-v7-ii-hard` is the exact analogue, it is **fully enumerated at 10 of 10**, and it is **not clean** — 73.3%, 6 of 10 solved by all three. The lowest figure anywhere in live I&I is 66.7% against a per-stratum fixed-letter ceiling of 40-50%. **Nothing in I&I should be exempted.** Repair scope: ~207 of 240 strict, 142 conservative (leaving 98 evidence items as arguable survivors, though neither reading is defensible as good).
+
+  **Two mechanisms C&S did not show.** (1) **Topic twins** — items pairing on one subject with *different* passages: a whole-population Jaccard check, self-tested first, gives **I&I 16 pairs / 23 items / 9.2% against C&S 1 pair / 0.9%**. The existing passage-distinctness check cannot see this, and an options-only rewrite leaves it in place. (2) **The evidence subskills leak by a different route** — every solver called them a research-methods quiz where the key is the only option controlling the rival explanation and "the topic is decoration". That is why they score *lowest* (70.8-79.4%) and still sit ~45 points over chance: **a fix aimed at the hedge tell will not reach them.**
+
+  **Method integrity, and one thing done right that is worth copying:** `iilive-f2`'s first three solvers returned byte-identical pick-strings — the pre-registered void condition. The agent **re-ran the file with three fresh solvers rather than reporting the number**; d/e/f gave three distinct strings at 93.1%, within 2.7 points of the voided run, and the aggregate uses the re-run. Scorer break-tested four ways (perfect -> 100% + trips detector; always-A -> exactly 25.0%; missing answer -> REFUSING exit 2; non-ABCD -> REFUSING exit 2). All twelve transcripts audited from raw JSONL: exactly two tool calls each, and the only `study-bank/` paths in any transcript are that solver's own blind and answer file.
+
+  **A sixth structural proxy was built and DOES NOT WORK, recorded so nobody builds a seventh:** "the key is the uniquely hedged option" fires on 23% of items where solvers succeed on 92% — under-detecting fourfold. The tell the solvers use is semantic; the marker is not the mechanism. This is the same negative result as `OPTION-BALANCE-RESULT.md`. _(the v2 R&W prose rewrite, ~450 measured items, is the largest open item on the bank; SEC v2 at 224 and EoI v2 at 66 are unmeasured at population scale and are the obvious next two)_
