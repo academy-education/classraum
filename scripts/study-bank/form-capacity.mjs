@@ -154,5 +154,24 @@ for (const section of ['reading_writing', 'math']) {
   }
   console.log(`  ${pad(section === 'reading_writing' ? 'SAT R&W' : 'SAT Math', 12)} ${num(worst, 2)} hard forms   capped by ${binding}`)
 }
+/* Gap to a target, so "we want N forms" turns into an item count. */
+const TARGET = Number(process.env.TARGET ?? 0)
+if (TARGET > 0) {
+  console.log(`\nITEMS NEEDED TO REACH ${TARGET} NON-REPEATING FORMS\n`)
+  console.log(pad('test', 24) + num('have', 7) + num('need', 8) + num('to write', 10))
+  console.log('-'.repeat(52))
+  let total = 0
+  for (const [family, section, label, perForm] of SECTIONS) {
+    const b = bank[`${family}/${section}`]
+    if (!b) continue
+    const need = TARGET * perForm
+    const gap = Math.max(0, need - b.total)
+    total += gap
+    console.log(pad(label, 24) + num(b.total, 7) + num(need, 8) + num(gap.toLocaleString(), 10))
+  }
+  console.log('-'.repeat(52))
+  console.log(pad('TOTAL', 24) + num('', 7) + num('', 8) + num(total.toLocaleString(), 10))
+}
+
 for (const n of notes) console.log(`\nnote: ${n}`)
 console.log()

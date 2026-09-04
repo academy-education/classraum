@@ -35,13 +35,16 @@ Brief essentials:
 
 | | reads | argument |
 |---|---|---|
-| `check-symbolic-hub.mjs` | a BATCH FILE (or `--bank`) | batch paths |
-| `check-math-hub.mjs` | the LIVE BANK only | a DOMAIN name, e.g. `"Advanced Math"` |
+| `check-symbolic-hub.mjs` | a batch file, or `--bank` | batch paths |
+| `check-math-hub.mjs` | a batch file, or the live bank | batch paths, or a DOMAIN name |
 
-Passing a batch path to `check-math-hub.mjs` used to match zero rows and
-print `0 items ... margin -25.0pts`, which reads like a pass. It now exits
-2 on a path or an empty population. Use `check-symbolic-hub.mjs` for a
-batch; `verify` runs it for you.
+Both take batch paths now. `check-math-hub.mjs` gained a batch mode on
+2026-09-04; before that a batch path matched zero live rows and printed
+`0 items ... margin -25.0pts`, which reads like a pass. It refuses to
+report a rate over an empty population rather than printing a
+reassuring number. `verify` runs BOTH for you — symbolic and numeric —
+because the symbolic one returns null on all-numeric sets and a purely
+numeric batch would otherwise go through unchecked.
 
 ## 3. QC: sandbox key check
 
