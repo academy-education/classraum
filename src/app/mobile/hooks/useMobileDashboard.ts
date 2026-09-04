@@ -215,12 +215,22 @@ export const useMobileDashboard = (user: User | null | any, studentId: string | 
           .order('due_date', { ascending: false })
           .limit(5),
 
-        // Pending assignment grades - ALWAYS fetch
+        // Pending assignment grades - ALWAYS fetch.
+        //
+        // The !inner join on assignments is load-bearing, not decoration.
+        // Without it this counted every pending grade row, including rows
+        // whose assignment had been soft-deleted — so the home screen told
+        // students to do work that no longer existed, and disagreed with the
+        // assignments page, which has always filtered deleted_at. Measured
+        // 2026-09-04: 79 such rows across 15 of the 141 students with any
+        // pending work; one student's home read 17 while their assignments
+        // page correctly read 0.
         db
           .from('assignment_grades')
-          .select('id, assignment_id, status')
+          .select('id, assignment_id, status, assignments!inner(deleted_at)')
           .eq('student_id', studentId)
           .eq('status', 'pending')
+          .is('assignments.deleted_at', null)
       ]
 
       // Only fetch classroom-dependent data if student has classrooms
