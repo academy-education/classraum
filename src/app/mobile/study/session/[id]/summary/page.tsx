@@ -305,7 +305,7 @@ function SummaryInner({ id }: { id: string }) {
                 {session.topic && !session.config?.dailyChallenge && (
                   <Link
                     href={`/mobile/study/topic/${session.topic.slug}`}
-                    className={`${studyButtonClass({ variant: 'primary', size: 'lg', fullWidth: true })} lg:w-auto lg:min-w-[240px]`}
+                    className={studyButtonClass({ variant: 'primary', size: 'lg', fullWidth: true })}
                   >
                     <RotateCcw className="w-4 h-4" />
                     {/* This branch only renders for mode === 'full_test',
@@ -318,7 +318,7 @@ function SummaryInner({ id }: { id: string }) {
                 )}
                 <Link
                   href="/mobile/study/wrong-notebook"
-                  className={`${studyButtonClass({ variant: 'secondary', size: 'lg', fullWidth: true })} lg:w-auto lg:min-w-[200px]`}
+                  className={studyButtonClass({ variant: 'secondary', size: 'lg', fullWidth: true })}
                 >
                   {ko ? '오답노트' : 'Wrong notebook'}
                   <ArrowRight className="w-4 h-4" />
@@ -482,7 +482,7 @@ function SummaryInner({ id }: { id: string }) {
       <section className="space-y-2 pt-2 lg:space-y-0 lg:flex lg:flex-row-reverse lg:items-center lg:justify-start lg:gap-3 animate-fade-in-up" style={{ animationDelay: '240ms', animationFillMode: 'both' }}>
         <Link
           href="/mobile/study"
-          className={`${studyButtonClass({ variant: 'secondary', size: 'lg', fullWidth: true })} lg:w-auto lg:min-w-[200px]`}
+          className={studyButtonClass({ variant: 'secondary', size: 'lg', fullWidth: true })}
         >
           {String(t('study.summary.backToStudy'))}
           <ArrowRight className="w-4 h-4" />

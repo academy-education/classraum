@@ -89,7 +89,7 @@ export function ReviewView({
         footer={
           <Link
             href="/mobile/study"
-            className="w-full inline-flex items-center justify-center h-11 rounded-full bg-white ring-1 ring-gray-200/70 text-sm font-medium text-gray-700"
+            className="w-full lg:w-auto lg:min-w-[200px] inline-flex items-center justify-center h-11 rounded-full bg-white ring-1 ring-gray-200/70 text-sm font-medium text-gray-700"
           >
             {t('study.test.backToStudy')}
           </Link>

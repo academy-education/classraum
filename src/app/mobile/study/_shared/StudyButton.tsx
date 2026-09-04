@@ -60,7 +60,11 @@ export function studyButtonClass(opts: {
     'transition-all active:scale-[0.98] disabled:cursor-not-allowed disabled:active:scale-100',
     'focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-offset-1',
     square ? 'rounded-xl' : 'rounded-full',
-    fullWidth && 'w-full',
+    // A full-width button is a THUMB-REACH affordance: on a phone the
+    // primary action spans the screen so it is reachable and unmissable.
+    // With a mouse the same button reads as a banner, and at 1440 it is a
+    // 1500px pill holding two words. Full width to lg, natural width above.
+    fullWidth && 'w-full lg:w-auto lg:min-w-[200px]',
     SIZES[size],
     VARIANTS[variant],
     className,

@@ -290,14 +290,14 @@ export function PracticeSession({ sessionId, language, topicId, daily = false }:
         <div className="w-full max-w-xs flex flex-col gap-2 mt-2">
           <Link
             href="/mobile/study/subscription"
-            className="w-full inline-flex items-center justify-center gap-1.5 h-11 rounded-full bg-primary text-white text-sm font-semibold"
+            className="w-full lg:w-auto lg:min-w-[200px] inline-flex items-center justify-center gap-1.5 h-11 rounded-full bg-primary text-white text-sm font-semibold"
           >
             {ko ? '프리미엄 보기' : 'See Premium'}
             <ArrowRight className="w-4 h-4" />
           </Link>
           <Link
             href="/mobile/study"
-            className="w-full inline-flex items-center justify-center h-11 rounded-full bg-white border border-gray-200 text-sm font-medium text-gray-700"
+            className="w-full lg:w-auto lg:min-w-[200px] inline-flex items-center justify-center h-11 rounded-full bg-white border border-gray-200 text-sm font-medium text-gray-700"
           >
             {t('study.practice.backToStudy')}
           </Link>
@@ -323,14 +323,14 @@ export function PracticeSession({ sessionId, language, topicId, daily = false }:
         <div className="w-full max-w-xs flex flex-col gap-2 mt-2">
           <Link
             href="/mobile/study/review"
-            className="w-full inline-flex items-center justify-center gap-1.5 h-11 rounded-full bg-primary text-white text-sm font-semibold"
+            className="w-full lg:w-auto lg:min-w-[200px] inline-flex items-center justify-center gap-1.5 h-11 rounded-full bg-primary text-white text-sm font-semibold"
           >
             {ko ? '복습하러 가기' : 'Go to review'}
             <ArrowRight className="w-4 h-4" />
           </Link>
           <Link
             href="/mobile/study"
-            className="w-full inline-flex items-center justify-center h-11 rounded-full bg-white border border-gray-200 text-sm font-medium text-gray-700"
+            className="w-full lg:w-auto lg:min-w-[200px] inline-flex items-center justify-center h-11 rounded-full bg-white border border-gray-200 text-sm font-medium text-gray-700"
           >
             {t('study.practice.backToStudy')}
           </Link>
@@ -385,7 +385,7 @@ export function PracticeSession({ sessionId, language, topicId, daily = false }:
               type="button"
               onClick={() => void startNewSet()}
               disabled={startingNew}
-              className="w-full inline-flex items-center justify-center gap-1.5 h-11 rounded-full bg-primary text-white text-sm font-semibold disabled:opacity-60 active:scale-[0.98] transition"
+              className="w-full lg:w-auto lg:min-w-[200px] inline-flex items-center justify-center gap-1.5 h-11 rounded-full bg-primary text-white text-sm font-semibold disabled:opacity-60 active:scale-[0.98] transition"
             >
               {startingNew ? <Loader2 className="w-4 h-4 animate-spin" /> : <RefreshCw className="w-4 h-4" />}
               {t('study.practice.moreQuestions')}
@@ -394,7 +394,7 @@ export function PracticeSession({ sessionId, language, topicId, daily = false }:
           {!daily && results.some(r => r === false) && (
             <Link
               href={`/mobile/study/session/${sessionId}/summary`}
-              className="w-full inline-flex items-center justify-center gap-1.5 h-11 rounded-full bg-white border border-gray-200 text-sm font-medium text-gray-700 hover:border-primary/40 hover:text-primary transition"
+              className="w-full lg:w-auto lg:min-w-[200px] inline-flex items-center justify-center gap-1.5 h-11 rounded-full bg-white border border-gray-200 text-sm font-medium text-gray-700 hover:border-primary/40 hover:text-primary transition"
             >
               {language === 'ko' ? '틀린 문제 보기' : 'Review mistakes'}
               <ArrowRight className="w-4 h-4" />
@@ -402,7 +402,7 @@ export function PracticeSession({ sessionId, language, topicId, daily = false }:
           )}
           <Link
             href="/mobile/study"
-            className={`w-full inline-flex items-center justify-center h-11 rounded-full text-sm font-medium transition ${
+            className={`w-full lg:w-auto lg:min-w-[200px] inline-flex items-center justify-center h-11 rounded-full text-sm font-medium transition ${
               daily
                 ? 'bg-primary text-white font-semibold active:scale-[0.98]'
                 : 'bg-white border border-gray-200 text-gray-700'

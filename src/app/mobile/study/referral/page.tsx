@@ -271,7 +271,7 @@ function ShareCard({ code, signupReward, premiumReward, ko }: { code: string; si
           <button
             type="button"
             onClick={() => void doShare()}
-            className="w-full inline-flex items-center justify-center gap-2 h-12 rounded-xl bg-[#FEE500] text-[#191600] text-[14px] font-semibold ring-1 ring-[#FEE500] hover:brightness-95 active:scale-[0.99] transition"
+            className="w-full lg:w-auto lg:min-w-[200px] inline-flex items-center justify-center gap-2 h-12 rounded-xl bg-[#FEE500] text-[#191600] text-[14px] font-semibold ring-1 ring-[#FEE500] hover:brightness-95 active:scale-[0.99] transition"
           >
             <KakaoIcon className="w-[18px] h-[18px]" />
             {ko ? '카카오톡으로 공유' : 'Share on KakaoTalk'}
@@ -282,7 +282,7 @@ function ShareCard({ code, signupReward, premiumReward, ko }: { code: string; si
             disabled
             aria-disabled="true"
             title={ko ? '곧 제공됩니다' : 'Coming soon'}
-            className="w-full inline-flex items-center justify-center gap-2 h-12 rounded-xl bg-[#FEE500]/60 text-[#3C1E1E]/70 text-[14px] font-semibold ring-1 ring-[#FEE500]/70 cursor-not-allowed"
+            className="w-full lg:w-auto lg:min-w-[200px] inline-flex items-center justify-center gap-2 h-12 rounded-xl bg-[#FEE500]/60 text-[#3C1E1E]/70 text-[14px] font-semibold ring-1 ring-[#FEE500]/70 cursor-not-allowed"
           >
             <KakaoIcon className="w-[18px] h-[18px]" />
             {ko ? '카카오톡으로 공유' : 'Share on KakaoTalk'}

@@ -48,6 +48,8 @@ const SHOTS = [
   ['09-result', '/mobile/study/session/75336910-e2d1-4070-a037-8098676ea873/summary'],
 ]
 
+let failures = 0
+
 async function main() {
   const { data: link, error } = await admin.auth.admin.generateLink({ type: 'magiclink', email: ACCOUNT })
   if (error) throw new Error(`generateLink: ${error.message}`)
@@ -77,21 +79,34 @@ async function main() {
 
     for (const [name, path] of SHOTS) {
       if (ONLY.length && !ONLY.includes(name)) continue
-      await page.goto(BASE + path, { waitUntil: 'networkidle0', timeout: 60000 }).catch(() => {})
+      // A navigation failure is a FAILURE, not something to swallow. The
+      // version that did `.catch(() => {})` here reported `ok` for a dead
+      // dev server, because the next check only counted characters and
+      // Chrome's "This site can't be reached" page has plenty of them.
+      let navErr = null
+      await page.goto(BASE + path, { waitUntil: 'networkidle0', timeout: 60000 })
+        .catch(e => { navErr = String(e.message || e).slice(0, 80) })
       await new Promise(r => setTimeout(r, SETTLE))
-      // A shot of a page that has not loaded is worse than no shot: wait for
-      // real content, and say so rather than capturing a skeleton silently.
-      const loaded = await page.evaluate(() => {
+      // Check for OUR app, not for "some text". A length threshold passes on
+      // any error page; the app chrome only exists if the app rendered.
+      const state = await page.evaluate(() => {
         const t = document.body.innerText || ''
-        return t.length > 120 && !/^\s*$/.test(t)
-      }).catch(() => false)
+        if (/ERR_|refused to connect|This site can.t be reached/i.test(t)) return 'ERROR'
+        if (/^\s*$/.test(t) || t.length < 120) return 'THIN'
+        // The study surface always renders its nav; a skeleton does not.
+        const hasChrome = !!document.querySelector('nav, [data-study-shell], aside')
+        return hasChrome ? 'ok' : 'THIN'
+      }).catch(() => 'ERROR')
+      const verdict = navErr ? 'ERROR' : state
       const file = join(dir, `${name}.png`)
       await page.screenshot({ path: file, fullPage: false })
-      console.log(`${loaded ? 'ok  ' : 'THIN'}  ${width}  ${name.padEnd(10)} ${path}`)
+      console.log(`${verdict.padEnd(5)} ${width}  ${name.padEnd(10)} ${path}${navErr ? '   nav: ' + navErr : ''}`)
+      if (verdict !== 'ok') failures++
     }
     await page.close()
   }
   await browser.close()
   console.log(`\nwrote to ${OUT}`)
+  if (failures) { console.error(`${failures} capture(s) did not render — treat those PNGs as invalid`); process.exitCode = 2 }
 }
 main().catch(e => { console.error(e.message); process.exit(1) })

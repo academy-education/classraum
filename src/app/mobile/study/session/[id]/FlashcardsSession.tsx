@@ -270,10 +270,10 @@ export function FlashcardsSession({ sessionId, language, completed = false }: { 
           </p>
         </div>
         <div className="w-full max-w-xs flex flex-col gap-2 mt-2">
-          <Link href="/mobile/study/subscription" className="w-full inline-flex items-center justify-center h-11 rounded-full bg-primary text-white text-sm font-semibold">
+          <Link href="/mobile/study/subscription" className="w-full lg:w-auto lg:min-w-[200px] inline-flex items-center justify-center h-11 rounded-full bg-primary text-white text-sm font-semibold">
             {ko ? '프리미엄 보기' : 'See Premium'}
           </Link>
-          <Link href="/mobile/study" className="w-full inline-flex items-center justify-center h-11 rounded-full bg-white border border-gray-200 text-sm font-medium text-gray-700">
+          <Link href="/mobile/study" className="w-full lg:w-auto lg:min-w-[200px] inline-flex items-center justify-center h-11 rounded-full bg-white border border-gray-200 text-sm font-medium text-gray-700">
             {t('study.flashcards.backToStudy')}
           </Link>
         </div>
@@ -338,12 +338,12 @@ export function FlashcardsSession({ sessionId, language, completed = false }: { 
           <button
             type="button"
             onClick={() => void startFreshDeck()}
-            className="w-full inline-flex items-center justify-center gap-1.5 h-11 rounded-full bg-primary text-white text-sm font-semibold"
+            className="w-full lg:w-auto lg:min-w-[200px] inline-flex items-center justify-center gap-1.5 h-11 rounded-full bg-primary text-white text-sm font-semibold"
           >
             <RefreshCw className="w-4 h-4" />
             {t('study.flashcards.newDeck')}
           </button>
-          <Link href="/mobile/study" className="w-full inline-flex items-center justify-center h-11 rounded-full bg-white border border-gray-200 text-sm font-medium text-gray-700">
+          <Link href="/mobile/study" className="w-full lg:w-auto lg:min-w-[200px] inline-flex items-center justify-center h-11 rounded-full bg-white border border-gray-200 text-sm font-medium text-gray-700">
             {t('study.flashcards.backToStudy')}
           </Link>
         </div>
@@ -453,7 +453,7 @@ export function FlashcardsSession({ sessionId, language, completed = false }: { 
           <button
             type="button"
             onClick={() => void startFreshDeck()}
-            className="w-full inline-flex items-center justify-center gap-1.5 h-11 rounded-full bg-primary text-white text-sm font-semibold active:scale-[0.98] transition"
+            className="w-full lg:w-auto lg:min-w-[200px] inline-flex items-center justify-center gap-1.5 h-11 rounded-full bg-primary text-white text-sm font-semibold active:scale-[0.98] transition"
           >
             <RefreshCw className="w-4 h-4" />
             {t('study.flashcards.newDeck')}
@@ -461,14 +461,14 @@ export function FlashcardsSession({ sessionId, language, completed = false }: { 
           {marked.again > 0 && (
             <Link
               href={`/mobile/study/session/${sessionId}/summary`}
-              className="w-full inline-flex items-center justify-center gap-1.5 h-11 rounded-full bg-white border border-gray-200 text-sm font-medium text-gray-700 hover:border-primary/40 hover:text-primary transition"
+              className="w-full lg:w-auto lg:min-w-[200px] inline-flex items-center justify-center gap-1.5 h-11 rounded-full bg-white border border-gray-200 text-sm font-medium text-gray-700 hover:border-primary/40 hover:text-primary transition"
             >
               {language === 'ko' ? '어려웠던 카드 보기' : 'Review tough cards'}
             </Link>
           )}
           <Link
             href="/mobile/study"
-            className="w-full inline-flex items-center justify-center h-11 rounded-full bg-white border border-gray-200 text-sm font-medium text-gray-700"
+            className="w-full lg:w-auto lg:min-w-[200px] inline-flex items-center justify-center h-11 rounded-full bg-white border border-gray-200 text-sm font-medium text-gray-700"
           >
             {t('study.flashcards.backToStudy')}
           </Link>
