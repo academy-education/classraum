@@ -12,6 +12,7 @@ import { useTranslation } from '@/hooks/useTranslation'
 import { useAuth } from '@/contexts/AuthContext'
 import { buyCreditPack } from '@/lib/study/purchase-credits'
 import { lcFirst, assembledChips, endPunctuation } from '@/lib/study/chip-display'
+import { useRunnerKeys } from './useRunnerKeys'
 import { CREDIT_PACKS, MICRO_PACK } from '@/lib/study/plans'
 import { authHeaders } from '@/lib/auth-headers'
 import { OPEN_RESPONSE_TYPES } from '@/lib/study/openResponse'
@@ -782,6 +783,40 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
    *  that still has unanswered items — the boundary is one-way, same
    *  precedent as the Module 1 → Module 2 confirm. */
   const [sectionAdvanceConfirmOpen, setSectionAdvanceConfirmOpen] = useState(false)
+
+  /* Keyboard control for the runner (desktop plan, stage 1).
+   *
+   * Placed HERE, above the `phase` early returns, because hooks must run in
+   * the same order on every render — the first version sat next to the
+   * values it needed, several early returns below, and lint caught it as a
+   * conditional hook. Everything it needs is therefore derived locally from
+   * state declared above this point rather than reusing the later consts.
+   *
+   * Anything that ENDS something stays unbound. At the Module 1 boundary
+   * Next grades and draws Module 2; at a Writing block boundary it crosses a
+   * one-way seam. The keyboard refuses both and the student must click. A key
+   * that ends a timed section by accident is worse than no keyboard at all.
+   */
+  const [keyHelpOpen, setKeyHelpOpen] = useState(false)
+  const kbSection = writingSections && currentWritingSectionIdx != null
+    ? writingSections[currentWritingSectionIdx]! : null
+  const kbCount = test?.questions.length ?? 0
+  const kbBreak = typeof test?.moduleBreakIdx === 'number' ? test.moduleBreakIdx : null
+  const kbIsLast = kbCount > 0 && currentIdx === kbCount - 1
+  const kbAtModule1End = !!test?.adaptive && kbBreak != null
+    && kbCount <= kbBreak && currentIdx === kbBreak - 1
+  const kbInModule2 = !!test?.adaptive && kbBreak != null && currentIdx >= kbBreak
+  const kbNavFloor = kbSection ? kbSection.startIdx : (kbInModule2 ? kbBreak! : 0)
+  const kbAtSectionEnd = !!kbSection && !kbIsLast && currentIdx === kbSection.endIdx - 1
+  useRunnerKeys({
+    enabled: !!test && !audioPlaying && !gridOpen && !sectionAdvanceConfirmOpen,
+    onPrev: () => setCurrentIdx(i => Math.max(kbNavFloor, i - 1)),
+    onNext: () => {
+      if (kbIsLast || kbAtModule1End || kbAtSectionEnd) return
+      setCurrentIdx(i => Math.min(kbCount - 1, i + 1))
+    },
+    onToggleHelp: () => setKeyHelpOpen(v => !v),
+  })
   // ── Submission path (used by manual Submit + timer expiry) ─────
   const submit = useCallback(async () => {
     if (!test || phase !== 'taking') return
@@ -1326,6 +1361,7 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
   // module's remaining time and resets when Module 2 begins.
   const isAdaptiveTest = !!test.adaptive && typeof test.moduleBreakIdx === 'number'
   const inModule2 = isAdaptiveTest && currentIdx >= test.moduleBreakIdx!
+
   // `now` in deps forces this to re-derive every tick.
   // TOEFL Writing shows the CURRENT task block's own countdown (6 / 7 /
   // 10 min); the start-mark fallback covers the single render between
@@ -1447,6 +1483,36 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
 
   return (
     <div className="flex-1 flex flex-col min-h-0 relative">
+      {/* Keyboard hint bar — desktop only, opened with "?".
+          Hidden below lg because there is no keyboard to hint at on a phone,
+          and it would cover the answer area at that width. */}
+      {keyHelpOpen && (
+        <div
+          role="dialog"
+          aria-label={ko ? '키보드 단축키' : 'Keyboard shortcuts'}
+          className="hidden lg:flex absolute bottom-20 left-1/2 -translate-x-1/2 z-30 items-center gap-4 rounded-xl bg-gray-900/92 backdrop-blur px-4 py-2.5 text-white shadow-lg"
+        >
+          {([
+            ['1–9', ko ? '보기 선택' : 'choose an option'],
+            ['←  →', ko ? '이전 / 다음' : 'previous / next'],
+            ['Enter', ko ? '다음' : 'next'],
+            ['?', ko ? '이 도움말' : 'this bar'],
+          ] as const).map(([k, label]) => (
+            <span key={k} className="inline-flex items-center gap-1.5 text-[12px] whitespace-nowrap">
+              <kbd className="rounded bg-white/15 px-1.5 py-0.5 font-mono text-[11px] leading-none">{k}</kbd>
+              <span className="text-white/75">{label}</span>
+            </span>
+          ))}
+          <button
+            type="button"
+            onClick={() => setKeyHelpOpen(false)}
+            className="ml-1 text-white/50 hover:text-white text-[12px]"
+            aria-label={ko ? '닫기' : 'Close'}
+          >
+            ✕
+          </button>
+        </div>
+      )}
       {/* Sticky progress + controls strip. Single top-of-screen bar
           is the primary signal (Duolingo pattern); N/M label + timer
           are demoted to small pills underneath. */}
@@ -1901,6 +1967,7 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
                       <button
                         key={choice}
                         type="button"
+                        data-runner-option
                         onClick={() => { hapticSelection(); toggle(choice) }}
                         className={`w-full text-left px-4 py-3 rounded-xl border text-sm transition-colors active:scale-[0.99] flex items-start gap-3 ${
                           selected
@@ -2432,6 +2499,7 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
                 <button
                   key={choice}
                   type="button"
+                  data-runner-option
                   onClick={() => {
                     hapticSelection()
                     setAnswers(prev => {
