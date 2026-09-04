@@ -225,22 +225,41 @@ which is why per-batch means kept hiding it:
                                             SEC punctuation       85.7%
                                             analogies             69.0%
 
-The rule that fits all of it: **an item is safe when several options are
-legal in the abstract and only the withheld material discriminates between
-them.** It leaks when the option set alone settles the answer — by either
-of two routes, and both must be checked:
+**CORRECTED 2026-09-04, same day, by the run that was written to test it.**
+The first version of this rule said an item leaks when the options "carry
+propositional content". A seventh measurement refused it: **Rhetorical
+Synthesis, one subskill with identical stems and identical option shape,
+split 80 points by COHORT** — `v2` at 100.0% blind against `rsw2` at 30.6%
+and `rsw-v1` at 19.0% fully enumerated. Prose options are not sufficient
+for a leak.
+
+The rule that fits all seven strata: **an item leaks when the options
+differ along the axis the stem names.** The clean `rsw` sets hold all four
+options in one frame varying only a number, so every option satisfies the
+stem equally and only the source discriminates. The `v2` sets have each
+option performing a DIFFERENT rhetorical act, so the one the stem asks for
+is identifiable without reading anything.
+
+Read the older framing below as the two ways that axis-alignment usually
+shows up, not as the test itself:
 
 1. **The options carry propositional content.** Prose claims are readable
    as claims. Rhetorical synthesis, cross-text, text structure, and the
    PSDA statistical-inference items all present four full assertions; the
    stem adds nothing they do not already carry. A solver ranks them for
    plausibility and never needs the source.
-2. **A general rule picks one.** This is the trap that looks safe. SEC
-   punctuation is a closed system — exactly the property that makes
-   transitions clean — but only one member of each punctuation grid is
-   legal in *any* English sentence, so no passage is required. Closed
-   system is not sufficient; what matters is whether several members
-   survive without the context.
+2. **A general rule picks one.** A closed system is not automatically
+   safe: what matters is whether several members survive without the
+   context.
+
+   **The example first given here was WRONG and is kept as a warning.**
+   It claimed SEC punctuation leaks while SEC form does not, on an
+   85.7%/62.7% split. Measured on the live bank the two families are
+   71.8% and 64.6% — 7.2 points, not significant on 39 vs 96 picks, and
+   it inverts on the newer cohorts. The original split came from
+   `sat-sec-hard-v7`, **a candidate batch that was never inserted**. A
+   pattern from one un-shipped batch was generalised into a rule about
+   the live bank without anyone measuring the live bank.
 
 Numeric maths is clean for the strongest version of the reason: four bare
 values are meaningless until the stem says what they measure.
@@ -253,11 +272,14 @@ solvers named a DISTRACTOR-family formula (one concede-then-qualify option
 among absolutes; the key's relation duplicated and reversed; four-role
 option casts). Rewriting keys or shuffling letters cannot reach any of it.
 
-**Where this is weakest.** It is a rule inferred from one day's data, and
-the strata were not chosen to test it. Treat it as the best current
-hypothesis for WHERE to look, never as a substitute for the attack — the
-whole point of the previous corollary is that cheap proxies for semantic
-tells do not exist.
+**Where this is weakest.** One prediction from this rule held (transitions
+clean, 38.3% vs 71.4%), one was refuted as stated (prose options), and one
+was simply false (the SEC split). That is the correct use of it: a
+hypothesis about WHERE to look that gets pointed at data chosen to break
+it. Never a substitute for the attack — cheap proxies for semantic tells
+do not exist, and a seventh was built the same day and failed too ("the
+key is the uniquely hedged option" fires on 23% of items where solvers
+succeed on 92%).
 
 ### Corollary: a check that cannot read its input must not return a number
 
