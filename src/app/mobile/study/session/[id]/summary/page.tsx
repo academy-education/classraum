@@ -301,11 +301,11 @@ function SummaryInner({ id }: { id: string }) {
               ? { breakIdx: session.module1_total, module1CorrectCards: session.module1_correct }
               : null}
             footer={
-              <section className="space-y-2 pt-2">
+              <section className="space-y-2 pt-2 lg:space-y-0 lg:flex lg:flex-row-reverse lg:items-center lg:justify-start lg:gap-3">
                 {session.topic && !session.config?.dailyChallenge && (
                   <Link
                     href={`/mobile/study/topic/${session.topic.slug}`}
-                    className={studyButtonClass({ variant: 'primary', size: 'lg', fullWidth: true })}
+                    className={`${studyButtonClass({ variant: 'primary', size: 'lg', fullWidth: true })} lg:w-auto lg:min-w-[240px]`}
                   >
                     <RotateCcw className="w-4 h-4" />
                     {/* This branch only renders for mode === 'full_test',
@@ -318,7 +318,7 @@ function SummaryInner({ id }: { id: string }) {
                 )}
                 <Link
                   href="/mobile/study/wrong-notebook"
-                  className={studyButtonClass({ variant: 'secondary', size: 'lg', fullWidth: true })}
+                  className={`${studyButtonClass({ variant: 'secondary', size: 'lg', fullWidth: true })} lg:w-auto lg:min-w-[200px]`}
                 >
                   {ko ? '오답노트' : 'Wrong notebook'}
                   <ArrowRight className="w-4 h-4" />
@@ -479,10 +479,10 @@ function SummaryInner({ id }: { id: string }) {
           ahead of the per-question re-attempt below, which actually
           re-asks the questions they got wrong. Re-running a whole topic
           is still one tap away from the topic page. */}
-      <section className="space-y-2 pt-2 animate-fade-in-up" style={{ animationDelay: '240ms', animationFillMode: 'both' }}>
+      <section className="space-y-2 pt-2 lg:space-y-0 lg:flex lg:flex-row-reverse lg:items-center lg:justify-start lg:gap-3 animate-fade-in-up" style={{ animationDelay: '240ms', animationFillMode: 'both' }}>
         <Link
           href="/mobile/study"
-          className={studyButtonClass({ variant: 'secondary', size: 'lg', fullWidth: true })}
+          className={`${studyButtonClass({ variant: 'secondary', size: 'lg', fullWidth: true })} lg:w-auto lg:min-w-[200px]`}
         >
           {String(t('study.summary.backToStudy'))}
           <ArrowRight className="w-4 h-4" />

@@ -187,6 +187,54 @@ export function StudyScrollShell({
 }
 
 // ─────────────────────────────────────────────────────────────────────
+// StudyColumns / StudyMain / StudyAside — the desktop two-column layout.
+//
+// WHY THIS EXISTS. StudyScrollShell already widened to max-w-6xl at lg and
+// 1600px at 2xl, but its children are a `space-y-6` STACK. Widening a
+// single column does not make a desktop layout — it makes a phone page in
+// a wide window, with 1500px-wide cards holding one sentence and a result
+// screen that still does not fit on a 1440x900 display. Width without a
+// second column is the whole defect.
+//
+// These are a NO-OP below `lg`: the outer container keeps `space-y-6`, and
+// StudyMain/StudyAside are plain divs whose own children stack with the
+// same spacing. So the mobile render — order, spacing, everything — is
+// byte-identical to before, and only lg+ gets the grid. That property is
+// what makes this safe to drop into an existing page.
+//
+// The aside is sticky because on desktop the primary actions should not
+// require scrolling past the content to reach; on a phone they stay in
+// document order where a thumb expects them.
+// ─────────────────────────────────────────────────────────────────────
+export function StudyColumns({ children, className = '' }: { children: ReactNode; className?: string }) {
+  return (
+    <div className={`space-y-6 lg:space-y-0 lg:grid lg:grid-cols-12 lg:gap-6 lg:items-start ${className}`}>
+      {children}
+    </div>
+  )
+}
+
+/** The reading column. 7 of 12 at lg — wide enough for a hero and a chart,
+ *  narrow enough that prose does not run to a 1400px measure. */
+export function StudyMain({ children, span = 7 }: { children: ReactNode; span?: 6 | 7 | 8 }) {
+  const col = span === 6 ? 'lg:col-span-6' : span === 8 ? 'lg:col-span-8' : 'lg:col-span-7'
+  return <div className={`space-y-6 ${col} min-w-0`}>{children}</div>
+}
+
+/** The companion column: context, actions, secondary detail. Sticky at lg
+ *  so the actions stay reachable; `top-4` clears the sticky page header. */
+export function StudyAside({ children, span = 5, sticky = true }: {
+  children: ReactNode; span?: 4 | 5 | 6; sticky?: boolean
+}) {
+  const col = span === 4 ? 'lg:col-span-4' : span === 6 ? 'lg:col-span-6' : 'lg:col-span-5'
+  return (
+    <div className={`space-y-6 ${col} min-w-0 ${sticky ? 'lg:sticky lg:top-4' : ''}`}>
+      {children}
+    </div>
+  )
+}
+
+// ─────────────────────────────────────────────────────────────────────
 // StudyPager — prev / "Page X of Y · N total" / next. One shape for
 // every paginated list (sessions, tests, wrong-notebook, library). Pass
 // 0-based `page`. Self-hides on a single page.

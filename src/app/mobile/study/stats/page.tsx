@@ -7,7 +7,7 @@ import { authHeaders } from '@/lib/auth-headers'
 import { useTranslation } from '@/hooks/useTranslation'
 import { StudySubscriptionGate } from '../SubscriptionGate'
 import { SkeletonBlock, SkeletonMetricGrid, SkeletonRowList, SkeletonHeader } from '../skeletons'
-import { StudyMetric, NumberRoll, StudyPageHeader, StudyScrollShell } from '../_shared/primitives'
+import { StudyMetric, NumberRoll, StudyPageHeader, StudyScrollShell, StudyColumns, StudyMain, StudyAside } from '../_shared/primitives'
 import { StudyButton } from '../_shared/StudyButton'
 
 interface Achievement {
@@ -166,6 +166,15 @@ function StatsInner() {
   return (
     <StudyScrollShell header={header} onRefresh={refresh}>
 
+      {/* DESKTOP: charts left, lists right. The split is chosen to PRESERVE
+          DOM ORDER — everything above Achievements goes in the reading
+          column, everything from Achievements down goes in the aside — so
+          the phone render is unchanged. Reordering to put, say, "This week"
+          in a right rail would have read better on desktop and silently
+          reshuffled the mobile page, which is not a trade worth making. */}
+      <StudyColumns>
+      <StudyMain span={8}>
+
       {/* This week — XP + active days + league rank. Visible only
           when the student has done something this week. */}
       {stats.week && (stats.week.xp > 0 || stats.week.activeDays > 0) && (
@@ -258,6 +267,12 @@ function StatsInner() {
         </section>
       )}
 
+      </StudyMain>
+
+      {/* The aside carries the LISTS — achievements, strongest and weakest
+          topics. They are narrow by nature and were stretching to 1500px. */}
+      <StudyAside span={4} sticky={false}>
+
       {/* Achievements — unlock badges from existing stats data, no
           new schema. Sorted by unlocked first, then locked greyed-out
           so the student can see what's next to chase. */}
@@ -322,6 +337,9 @@ function StatsInner() {
           </div>
         </section>
       )}
+
+      </StudyAside>
+      </StudyColumns>
     </StudyScrollShell>
   )
 }

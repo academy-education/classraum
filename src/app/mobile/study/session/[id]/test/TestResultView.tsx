@@ -1,6 +1,7 @@
 "use client"
 
 import { useEffect, useState } from 'react'
+import { StudyColumns, StudyMain, StudyAside } from '@/app/mobile/study/_shared/primitives'
 import {
   CheckCircle2, XCircle, AlertTriangle, ChevronDown, Sparkles, ListChecks,
   ArrowRight, BookOpen,
@@ -252,6 +253,14 @@ export function TestResultView({
   return (
     <div className="px-5 py-6 space-y-5">
       {header}
+
+      {/* DESKTOP: two columns. Below lg this is a no-op and the page
+          renders exactly as it did — same order, same spacing. At lg the
+          numbers and the diagnosis sit in the reading column while the
+          explanatory panels move beside them instead of 1500px below, so
+          the result fits one screen instead of three scrolls. */}
+      <StudyColumns>
+      <StudyMain span={7}>
 
       {/* Hero — the score as a moment, not a table cell. Raumi reacts to
           how it went, and the gradient follows accuracy so a rough session
@@ -597,6 +606,14 @@ export function TestResultView({
         </div>
       )}
 
+      </StudyMain>
+
+      {/* The aside carries the META — how the score was computed and what
+          it does not cover. On a phone this belongs below the numbers; on
+          a desktop it belongs beside them. Not sticky: it is taller than
+          the viewport once the per-question detail is open. */}
+      <StudyAside span={5} sticky={false}>
+
       {/* How the answers were counted.
         *
         * This was headed "Where your 30 cards went", which is our word,
@@ -767,6 +784,9 @@ export function TestResultView({
           </div>
         )}
       </section>
+
+      </StudyAside>
+      </StudyColumns>
 
       {footer}
     </div>
