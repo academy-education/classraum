@@ -1,0 +1,202 @@
+{
+  "1": {
+    "pick": "C",
+    "confident": false,
+    "tell": "ladder 4,6,9 (geometric) + 18=2*9; picked the interior hub 6 as the value the doubles/thirds hang off"
+  },
+  "2": {
+    "pick": "B",
+    "confident": false,
+    "tell": "pi-ladder 2,4,12,24; 12pi is the node with both a double (24pi) and a third (4pi)"
+  },
+  "3": {
+    "pick": "D",
+    "confident": false,
+    "tell": "sign-flip pair 6/-6 means one of them was the source of the negation distractor; positive branch"
+  },
+  "4": {
+    "pick": "D",
+    "confident": false,
+    "tell": "symmetric quad {1,-2,-1,2}, closed under sign flip - structurally mute, forced guess"
+  },
+  "5": {
+    "pick": "C",
+    "confident": false,
+    "tell": "0 and 1 are degenerate junk; 11=2*5+1 derives from 5, so 5 is the hub"
+  },
+  "6": {
+    "pick": "B",
+    "confident": false,
+    "tell": "two mirror pairs (4/-4, 11/22); mute, took the 11 that 22 doubles"
+  },
+  "7": {
+    "pick": "D",
+    "confident": true,
+    "tell": "0.28 = 1/3.6 exactly - reciprocal-error distractor, which is minted FROM the key, so 3.6 is the source; 15/7.5 is a separate halving pair"
+  },
+  "8": {
+    "pick": "D",
+    "confident": false,
+    "tell": "5 is the hub: 25=5^2 and 13 is the 5-12-13 hypotenuse; 1 is filler"
+  },
+  "9": {
+    "pick": "B",
+    "confident": true,
+    "tell": "centre-and-satellites: 3 reaches 6 (x2), 1.5 (/2) and 3.5 (+0.5); every other option is one edit from it"
+  },
+  "10": {
+    "pick": "C",
+    "confident": true,
+    "tell": "centre 72 with 144 (x2) and 36 (/2); 60 unattached"
+  },
+  "11": {
+    "pick": "A",
+    "confident": false,
+    "tell": "two pairs 3/6 and 5/10; no unique centre, took 6 which is both the double of 3 and adjacent to 5"
+  },
+  "12": {
+    "pick": "B",
+    "confident": true,
+    "tell": "12 is the hub: 24=x2, 15=+3, 18=x1.5; the other three do not form a centre"
+  },
+  "13": {
+    "pick": "C",
+    "confident": false,
+    "tell": "composition set 8 + 12 = 20 with 4 as the difference; 12 is the middle ingredient reachable from all"
+  },
+  "14": {
+    "pick": "A",
+    "confident": true,
+    "tell": "composition: 8/15 = (2/3)(4/5), and 1/3, 2/3 are the complement ingredients; the product is the computed answer"
+  },
+  "15": {
+    "pick": "C",
+    "confident": false,
+    "tell": "ladder 2, 2.5, 2.75, 3; picked the non-round interior value typical of a mean/weighted answer"
+  },
+  "16": {
+    "pick": "A",
+    "confident": true,
+    "tell": "20/40/80 is a pure doubling ladder of naive answers; 34.6 = 40*cos30 = 20*sqrt3 is the only option carrying the 30-60-90 radical"
+  },
+  "17": {
+    "pick": "B",
+    "confident": false,
+    "tell": "two pairs 86/88 and 94/96, no centre; guessed the higher-branch value"
+  },
+  "18": {
+    "pick": "C",
+    "confident": true,
+    "tell": "4.77, 19.10, 76.39 is a x4 ladder (all 15k/pi); 19.10 is its centre, 15 is the given"
+  },
+  "19": {
+    "pick": "D",
+    "confident": false,
+    "tell": "+/-3 sign pair plus {0} and 'No real solution'; extraneous-root shape, positive branch"
+  },
+  "20": {
+    "pick": "B",
+    "confident": false,
+    "tell": "powers of i - symmetric quad, structurally mute, forced guess"
+  },
+  "21": {
+    "pick": "A",
+    "confident": false,
+    "tell": "r=5 family: 5pi, 10pi, 25pi; 25pi is the area term the circumference distractor is derived from"
+  },
+  "22": {
+    "pick": "C",
+    "confident": false,
+    "tell": "composition 6 * 90 = 540; the product is the computed answer, 6 and 90 are the ingredients"
+  },
+  "23": {
+    "pick": "B",
+    "confident": false,
+    "tell": "two parallel doubling ladders (3/6 and pi/3, 2pi/3); mute, took the radian branch's upper term"
+  },
+  "24": {
+    "pick": "A",
+    "confident": false,
+    "tell": "arithmetic run 63,67,71,75 (+4) - no unique centre, guessed an interior term"
+  },
+  "25": {
+    "pick": "D",
+    "confident": false,
+    "tell": "unit-conversion family: 194.4 = 15*3.6^2 (double-converted) and 900 = 15*60; 15 is the source value"
+  },
+  "26": {
+    "pick": "B",
+    "confident": false,
+    "tell": "mixed-denominator ladder 11/3, 7, 26/3, 19/2 with no centre; guessed"
+  },
+  "27": {
+    "pick": "B",
+    "confident": true,
+    "tell": "composition of legs: 58=7^2+3^2, 82=9^2+1^2, and sqrt130 = sqrt(7^2+9^2) recombines the two legs"
+  },
+  "28": {
+    "pick": "D",
+    "confident": true,
+    "tell": "centre 40: 35 and 45 are +/-5 satellites and 80 is the double; strongest hub in the set"
+  },
+  "29": {
+    "pick": "A",
+    "confident": true,
+    "tell": "centre 4 with -4 (sign flip) and 8 (double) both one edit away"
+  },
+  "30": {
+    "pick": "B",
+    "confident": false,
+    "tell": "13.8 + 86.2 = 100 percent-complement pair; took the change rather than the remainder"
+  },
+  "31": {
+    "pick": "D",
+    "confident": false,
+    "tell": "composition 12 + 13 = 25 (the 5-12-13 ingredients); the sum is the computed value"
+  },
+  "32": {
+    "pick": "B",
+    "confident": true,
+    "tell": "centre-and-satellites in a 5-12-13 ratio family: 5/13 reaches 13/5 (flip), 12/13 (numerator edit) and 5/12 (denominator edit)"
+  },
+  "33": {
+    "pick": "C",
+    "confident": false,
+    "tell": "two pairs 80/84 and 100/104 offset by 20 - no centre, forced guess"
+  },
+  "34": {
+    "pick": "C",
+    "confident": false,
+    "tell": "13, 15, 19 plus 46; no clean hub, took the median of the small cluster"
+  },
+  "35": {
+    "pick": "C",
+    "confident": true,
+    "tell": "57.60 is the hub of the percent chain: *0.9 gives 51.84, *1.08 gives 62.21; 61.44 unattached"
+  },
+  "36": {
+    "pick": "A",
+    "confident": false,
+    "tell": "composition: 4 and 5 are ingredients, 9 their sum, 20 their product; the sum is the usual ask"
+  },
+  "37": {
+    "pick": "A",
+    "confident": false,
+    "tell": "symmetric quad +/-7, +/-13 - structurally mute, forced guess"
+  },
+  "38": {
+    "pick": "D",
+    "confident": false,
+    "tell": "8.5 is the clean centre (+/-0.5 to 8 and 9); 8.8 is the off-ladder distractor"
+  },
+  "39": {
+    "pick": "D",
+    "confident": true,
+    "tell": "composition: 25/64 = (5/8)^2 is the with-replacement error, 5/14 = (5/8)(4/7) is the without-replacement product"
+  },
+  "40": {
+    "pick": "A",
+    "confident": false,
+    "tell": "4,2,5,-1 - weak ladder, 4 doubles 2 and is adjacent to 5; guessed"
+  }
+}

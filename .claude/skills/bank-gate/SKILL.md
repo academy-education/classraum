@@ -64,7 +64,19 @@ Read the number against the family bar in `scripts/study-bank/ledger.json`
 | choose_response | margin <= +25.5 (+4 tolerance) | cr-v7 shipped at +1.4; cr-v10 at +9.2 |
 | daily_life / announcement (TOEFL MC) | at or below control | dl-fresh -1.4; announcement-v4 HELD at +58 |
 | sat_rw | <= published +36.2 | |
-| sat_math (options-only) | <= +5.6 | the LIVE shipped bank measures +5.6 on this instrument; alg-hard-v1 banked at -6.9, adv-hard-v1 and v2 held at +26.4 and +20.8 |
+| sat_math (options-only) | at or below the LIVE bank, which measures 30.6% | alg-hard-v1 banked at 18.1%; adv-hard-v1 and v2 held at 51.4% and 45.8% |
+| act_math (options-only) | at or below the LIVE bank, which measures 29.2% | v2c inserted at 34.4%; v2a and v2b held at 43.3% and 40.6% |
+| sat_sec (grammar) | at or below the LIVE bank, which measures **72.2%** | NOT the 25% control - options-solvability is intrinsic to this skill. v3 passed at 68.1%, i.e. 4.1 points better than shipped |
+
+**Before reading any margin, ask whether 25% is the right control.** For
+`mc_stem_source` and grammar tasks it is not: judging the option set IS the
+skill, so the floor is set by the item type. Draw a matched sample of LIVE
+verified items, render it through the SAME script, and give the solvers the
+SAME briefs. Two traps found doing this on 2026-09-04: some live items keep
+the sentence in `item.prompt` rather than `passage`, so the control render
+leaks stems the candidate withholds (compare question-field LENGTHS to
+detect it - a regex for the instruction text does not); and a control drawn
+with a buggy filter came back mixed-domain (print the domain histogram).
 | ACT English/Reading/Science | model number is a SCREEN only | model 71-79%, human 10% |
 
 Read the solvers' heuristic reports. If every solver names the same
