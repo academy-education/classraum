@@ -192,12 +192,33 @@ async function main() {
     // defect that held a 24-item Advanced Math batch on 2026-09-04 while all
     // 24 of its keys recomputed correctly. Run the hub checks here rather
     // than leaving them to an author's memory.
+    /*
+     * THE CONTROL IS DERIVED FROM THE DATA, NEVER HARDCODED.
+     *
+     * Both hub lines below printed a literal "25.0% control" and subtracted
+     * a literal 25. On a FIVE-choice batch (SSAT) that is wrong by five
+     * points in the flattering direction — it hands the batch free credit.
+     * This is the same assumption that let ssat-math-s6 ship live at +16.1
+     * unmeasured: three separate checkers each assumed four options. The
+     * standalone checkers were fixed then; this helper was missed, because
+     * the fix went looking for checkers and this is an author tool.
+     *
+     * Modal option count, so one malformed row cannot move the control.
+     */
+    const widths = batch.map(r => (r.choices ?? []).length).filter(n => n > 0)
+    const tally = new Map()
+    for (const n of widths) tally.set(n, (tally.get(n) ?? 0) + 1)
+    const k = [...tally].sort((a, b) => b[1] - a[1])[0]?.[0] ?? 4
+    const CTL = 100 / k
+    if (tally.size > 1) {
+      console.log(`  note: mixed option counts ${[...tally.keys()].sort().join('/')}; control uses the modal ${k}`)
+    }
     const { scoreItem: symScore } = await import('./check-symbolic-hub.mjs')
     const scored = batch.map(r => symScore(r.choices, r.correct_answer)).filter(Boolean)
     if (scored.length) {
       const rate = 100 * scored.reduce((a, x) => a + x.credit, 0) / scored.length
-      const margin = rate - 25
-      console.log(`Symbolic hub: ${scored.length} structured of ${batch.length}, key-is-hub ${rate.toFixed(1)}% vs 25.0% control, margin ${margin.toFixed(1)}pts`)
+      const margin = rate - CTL
+      console.log(`Symbolic hub: ${scored.length} structured of ${batch.length}, key-is-hub ${rate.toFixed(1)}% vs ${CTL.toFixed(1)}% control, margin ${margin.toFixed(1)}pts`)
       if (margin > 10) console.log(`  ^ ABOVE THE 10-POINT PRE-FLIGHT BAR. The key is the unique option each\n    distractor is one edit from; derive distractors from different wrong\n    paths instead. Do not insert on this number.`)
     } else console.log('Symbolic hub: no structured option sets (numeric batch - see the numeric line)')
     // The symbolic checker returns null for all-numeric sets, which is most of
@@ -207,8 +228,8 @@ async function main() {
     const nums = batch.map(r => numScore(r.choices, r.correct_answer)).filter(x => x && x.structured)
     if (nums.length) {
       const nrate = 100 * nums.reduce((a, x) => a + x.credit, 0) / nums.length
-      console.log(`Numeric hub:  ${nums.length} structured of ${batch.length}, key-is-hub ${nrate.toFixed(1)}% vs 25.0% control, margin ${(nrate - 25).toFixed(1)}pts`)
-      if (nrate - 25 > 10) console.log(`  ^ ABOVE THE 10-POINT PRE-FLIGHT BAR. Do not insert on this number.`)
+      console.log(`Numeric hub:  ${nums.length} structured of ${batch.length}, key-is-hub ${nrate.toFixed(1)}% vs ${CTL.toFixed(1)}% control, margin ${(nrate - CTL).toFixed(1)}pts`)
+      if (nrate - CTL > 10) console.log(`  ^ ABOVE THE 10-POINT PRE-FLIGHT BAR. Do not insert on this number.`)
     } else console.log(`Numeric hub:  no derivational structure in any option set`)
     return
   }

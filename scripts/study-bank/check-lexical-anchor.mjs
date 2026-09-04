@@ -52,8 +52,35 @@ const overlap = (a, b) => {
 }
 
 const base = new URL('./rotation-v1', import.meta.url).pathname
+/*
+ * REFUSE A FILE THIS SCRIPT CANNOT READ, rather than silently substituting
+ * the default cohort.
+ *
+ * This only accepts `*.withsource-input.json`. Passed any other path it used
+ * to fall through to rotation-v1 and print ITS numbers — so an author who
+ * ran it on a 24-item batch got "SOLVABLE BY PURE WORD OVERLAP: 13.0/16 =
+ * 81.3% FAIL", a confident failure describing an unrelated TOEFL cohort,
+ * byte-identical to running the script with no argument at all. Caught by an
+ * Expression of Ideas author who noticed the item count did not match.
+ *
+ * Same class as check-absolute-tell printing live-bank numbers for a batch
+ * path, and check-batch-variety reporting four FAILs over zero stimuli. A
+ * check that cannot process its input must say so, never emit a number.
+ */
+const fileArgs = process.argv.slice(2).filter(a => a.endsWith('.json'))
+const bad = fileArgs.filter(a => !a.endsWith('.withsource-input.json') && !a.endsWith('-key.json'))
+if (bad.length) {
+  console.error(`check-lexical-anchor.mjs reads only *.withsource-input.json (plus an optional *-key.json).`)
+  console.error(`  got: ${bad.join(', ')}`)
+  console.error(`  Without this guard it would ignore that path and print the default`)
+  console.error(`  cohort's numbers as though they described your file.`)
+  process.exit(2)
+}
 const path = process.argv.find(a => a.endsWith('.withsource-input.json'))
   ?? `${base}.withsource-input.json`
+if (!process.argv.find(a => a.endsWith('.withsource-input.json'))) {
+  console.error(`note: no input given — reading the default cohort ${path.split('/').pop()}`)
+}
 const keyPath = process.argv.find(a => a.endsWith('-key.json'))
   ?? `${base}.withsource-key.json`
 
