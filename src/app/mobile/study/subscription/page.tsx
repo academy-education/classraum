@@ -660,7 +660,7 @@ export default function SubscriptionPage() {
             {[0, 1, 2].map(i => <SkeletonBlock key={i} className="h-[86px] rounded-xl" />)}
           </div>
         </SkeletonCard>
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
           {[0, 1, 2].map(i => (
             <SkeletonCard key={i} className="p-5 space-y-4 min-h-[280px]">
               <SkeletonBlock className="h-3 w-20 rounded-full" />
@@ -678,11 +678,21 @@ export default function SubscriptionPage() {
 
   return (
     <StudyScrollShell header={header}>
+      {/* DESKTOP: the cards above the plan grid FLOW into two columns
+          rather than being split into a fixed main/aside pair. Which of
+          them exist depends on the account — a student with no exam pass
+          has only two — and a fixed aside would have left half the page
+          blank for them. Auto-flow keeps DOM order (so the phone stack is
+          unchanged) and fills whatever is there. The plan cards keep the
+          full width below: their sm/lg 3-up grid already used it. */}
+      <div className="space-y-6 lg:space-y-0 lg:grid lg:grid-cols-2 lg:gap-6 lg:items-start">
         {/* Action feedback lives directly under the header — at the old
             bottom-of-page spot it rendered off-screen after cancel/
             checkout and the page looked like nothing happened. */}
         {(error || successMessage) && (
-          <div className={`rounded-2xl px-4 py-3 text-[13.5px] flex items-start gap-2.5 ring-1 ${
+          /* Full-bleed across both desktop columns — an error about the
+             purchase you just attempted is not a sidebar item. */
+          <div className={`lg:col-span-2 rounded-2xl px-4 py-3 text-[13.5px] flex items-start gap-2.5 ring-1 ${
             error ? 'bg-rose-50/80 ring-rose-200/60 text-rose-700' : 'bg-emerald-50/80 ring-emerald-200/60 text-emerald-700'
           }`}>
             {error ? <AlertCircle className="w-4 h-4 mt-0.5 flex-shrink-0" /> : <CheckCircle2 className="w-4 h-4 mt-0.5 flex-shrink-0" />}
@@ -975,10 +985,12 @@ export default function SubscriptionPage() {
           </div>
         )}
 
+      </div>
+
         {/* Plan cards — visible even while on a pass, so a pass holder can
             upgrade to a recurring plan, which unlocks every SHIPPED test
             (SAT + TOEFL) rather than only the pass's own family. */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
           {displayedPlans.map(plan => {
             const isCurrent = currentPlanId === plan.id
             const isPending = pendingSwitch === plan.id
@@ -1243,7 +1255,9 @@ export default function SubscriptionPage() {
 
         {/* Secondary actions */}
         {!onPass && (
-        <div className="space-y-2.5">
+        /* lg: prose-width. A cancel confirmation stretched across 1400px
+           reads as a system banner rather than a decision to make. */
+        <div className="space-y-2.5 lg:max-w-2xl">
           {sub && (isTrial || isActive) && !sub.cancel_at_period_end && (
             confirmingCancel ? (
               // Confirm step — cancelling a paid plan must never be one

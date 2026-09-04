@@ -3,7 +3,7 @@
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import Link from 'next/link'
 import { MessageCircle, ChevronRight, ListChecks, Layers, ClipboardList, Mic, History as HistoryIcon, Search, X, Flame } from '@/app/mobile/study/_shared/icons'
-import { StudyPageHeader, StudyScrollShell, StudyEmptyState, StudyPager } from '../_shared/primitives'
+import { StudyPageHeader, StudyScrollShell, StudyEmptyState, StudyPager, StudyColumns, StudyMain, StudyAside } from '../_shared/primitives'
 import { StudyButton } from '../_shared/StudyButton'
 import { groupByDate, formatTimeAgo } from '../_shared/dateGroups'
 import { SkeletonRowList } from '../skeletons'
@@ -152,6 +152,13 @@ function HistoryInner() {
         />
       }
     >
+      {/* DESKTOP: search + mode filter become a left rail, the session
+          list takes the wide column. Split at the existing source cut
+          (controls, then list) so DOM order — and therefore the phone
+          render — is unchanged. */}
+      <StudyColumns>
+      <StudyAside span={4}>
+
         <label className="relative block">
           <Search className="w-4 h-4 text-gray-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
           <input
@@ -174,6 +181,9 @@ function HistoryInner() {
         </label>
 
         <ModeFilter value={modeFilter} onSelect={setModeFilter} counts={modeCounts} ko={ko} />
+
+      </StudyAside>
+      <StudyMain span={8}>
 
         {loading ? (
           <SkeletonRowList count={6} />
@@ -208,7 +218,7 @@ function HistoryInner() {
                   <h3 className="text-[11px] font-bold uppercase tracking-[0.10em] text-gray-500 mb-2 px-1">
                     {group.bucket.label(ko)}
                   </h3>
-                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-2">
+                  <div className="grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 gap-2">
                     {group.rows.map(row => {
                       const Icon = MODE_ICONS[row.mode] ?? MessageCircle
                       // Journey sessions get their node name ("Info &
@@ -270,6 +280,9 @@ function HistoryInner() {
             />
           </>
         )}
+
+      </StudyMain>
+      </StudyColumns>
     </StudyScrollShell>
   )
 }
@@ -293,8 +306,10 @@ function ModeFilter({ value, onSelect, counts, ko }: {
     { key: 'response', label: ko ? '말하기·작문' : 'Response' },
   ]
   return (
-    <div className="-mx-5 overflow-x-auto scrollbar-hide">
-      <div className="flex gap-2 pl-5 pt-1 pb-1">
+    /* lg: the rail is narrow, so the -mx-5 bleed and the horizontal
+       scroller both stop making sense — the chips wrap into a block. */
+    <div className="-mx-5 overflow-x-auto scrollbar-hide lg:mx-0 lg:overflow-visible">
+      <div className="flex gap-2 pl-5 pt-1 pb-1 lg:flex-wrap lg:gap-1.5 lg:pl-0">
         {items.map(item => {
           const active = value === item.key
           const count = counts[item.key] ?? 0
@@ -319,8 +334,9 @@ function ModeFilter({ value, onSelect, counts, ko }: {
         })}
         {/* Trailing spacer — browsers drop the scroll container's
             padding-right at the end of an overflow-x row, so the last
-            chip touches the edge. A shrink-0 spacer reliably reserves it. */}
-        <div aria-hidden className="shrink-0 w-[15px]" />
+            chip touches the edge. A shrink-0 spacer reliably reserves it.
+            Not needed once the row wraps in the lg rail. */}
+        <div aria-hidden className="shrink-0 w-[15px] lg:hidden" />
       </div>
     </div>
   )

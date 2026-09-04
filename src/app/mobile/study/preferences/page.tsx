@@ -6,7 +6,7 @@ import { authHeaders } from '@/lib/auth-headers'
 import { useTranslation } from '@/hooks/useTranslation'
 import { StudySubscriptionGate } from '../SubscriptionGate'
 import { SkeletonBlock, SkeletonCard, SkeletonSettingsGroup } from '../skeletons'
-import { StudyPageHeader, StudyScrollShell } from '../_shared/primitives'
+import { StudyPageHeader, StudyScrollShell, StudyColumns, StudyMain, StudyAside } from '../_shared/primitives'
 import { StudyButton } from '../_shared/StudyButton'
 import { SegmentedTabs } from '../_shared/SegmentedTabs'
 import { GOAL_SCALES, goalTestsFor } from '@/lib/study/goal-scales'
@@ -196,6 +196,15 @@ function PreferencesInner() {
           every preset, and avatars.test.tsx fails if either locale keeps
           a name for a preset that no longer exists. */}
 
+      {/* DESKTOP: the exam-facing settings (which tests, what score) in
+          the reading column; the study defaults (grade, daily goal,
+          language, difficulty) in the aside. The cut is the existing
+          source boundary between the two groups, so nothing moves on a
+          phone — six full-width groups of chips stacked down a 1500px
+          page was the whole problem here. */}
+      <StudyColumns>
+      <StudyMain span={7}>
+
       {/* Target test — multi-select. A student can prep for more than one
           test (SAT + TOEFL). Tapping a chip ADDS it (and focuses it); it
           never removes on the same tap — that used to read as an
@@ -312,6 +321,9 @@ function PreferencesInner() {
         })
       })()}
 
+      </StudyMain>
+      <StudyAside span={5} sticky={false}>
+
       {/* Grade level */}
       <SettingGroup icon={GraduationCap} label={String(t('study.prefs.gradeLevel'))} saving={saving === 'grade_level'}>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-1.5">
@@ -367,6 +379,8 @@ function PreferencesInner() {
         />
       </SettingGroup>
 
+      </StudyAside>
+      </StudyColumns>
     </StudyScrollShell>
   )
 }

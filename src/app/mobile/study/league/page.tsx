@@ -9,7 +9,7 @@ import { validateNickname, NICKNAME_MAX } from '@/lib/study/nickname'
 import { PODIUM_CREDITS, PROMOTION_CREDITS, MILESTONE_CREDITS } from '@/lib/study/league-reward-values'
 import { promoteZoneFor, relegateStartFor, bandFor, type LeagueBand } from '@/lib/study/league-bands'
 import { StudySubscriptionGate } from '../SubscriptionGate'
-import { StudyPageHeader, StudyEmptyState, StudySectionHeader as _StudySectionHeader, StudyPageTransition, StudyScrollShell } from '../_shared/primitives'
+import { StudyPageHeader, StudyEmptyState, StudySectionHeader as _StudySectionHeader, StudyPageTransition, StudyScrollShell, StudyColumns, StudyMain, StudyAside } from '../_shared/primitives'
 import { SkeletonCard, SkeletonBlock, SkeletonRowList } from '../skeletons'
 import { SegmentedTabs } from '../_shared/SegmentedTabs'
 import { StudyButton, studyButtonClass } from '@/app/mobile/study/_shared/StudyButton'
@@ -146,7 +146,9 @@ function LeagueInner() {
       }
       contentClassName="max-w-3xl lg:max-w-6xl 2xl:max-w-[1600px] mx-auto px-5 lg:px-8 pt-6 pb-14"
     >
-        <div className="mb-5">
+        {/* lg: a two-option switch stretched to the full 1400px reads as
+            a toolbar, not a control. Cap it; the page below is a grid. */}
+        <div className="mb-5 lg:max-w-sm">
           <SegmentedTabs
             options={[
               { value: 'league', label: ko ? '리그' : 'League' },
@@ -199,18 +201,30 @@ function LeagueInner() {
             </StudyButton>
           </div>
         ) : data ? (
-          <div className="space-y-6">
-            {data.promotionNotice && (
-              <PromotionBanner notice={data.promotionNotice} ko={ko} />
-            )}
-            <CollectRewards ko={ko} />
-            <TierBanner tier={tier} ko={ko} myRank={data.myRank} myXp={data.myXp} resetSeconds={data.resetSeconds} seasonHigh={data.seasonHigh ?? null} promoteCount={promoteZoneFor(memberCount)} />
-            <PromotionZone tier={tier} ko={ko} myRank={data.myRank} memberCount={memberCount} />
-            <Leaderboard rows={data.leaderboard} ko={ko} memberCount={memberCount} />
-            <RewardsPanel ko={ko} tier={tier} myRank={data.myRank} memberCount={memberCount} seasonHigh={data.seasonHigh ?? null} />
-            <TierLadder activeKey={data.tier ?? 'bronze'} ko={ko} />
-            <EarnXpPanel ko={ko} />
-          </div>
+          /* DESKTOP: "where I stand" (notice, rewards to collect, tier
+             banner, promotion zone, the board itself) in the reading
+             column; the reference panels (season rewards, the tier
+             ladder, how to earn XP) in the aside. The cut is exactly
+             where it already falls in the source — the board and
+             everything above it, then the three explainers — so DOM
+             order and the phone stack are untouched. The leaderboard was
+             the worst offender for the "short rows at 1500px" problem. */
+          <StudyColumns>
+            <StudyMain span={8}>
+              {data.promotionNotice && (
+                <PromotionBanner notice={data.promotionNotice} ko={ko} />
+              )}
+              <CollectRewards ko={ko} />
+              <TierBanner tier={tier} ko={ko} myRank={data.myRank} myXp={data.myXp} resetSeconds={data.resetSeconds} seasonHigh={data.seasonHigh ?? null} promoteCount={promoteZoneFor(memberCount)} />
+              <PromotionZone tier={tier} ko={ko} myRank={data.myRank} memberCount={memberCount} />
+              <Leaderboard rows={data.leaderboard} ko={ko} memberCount={memberCount} />
+            </StudyMain>
+            <StudyAside span={4} sticky={false}>
+              <RewardsPanel ko={ko} tier={tier} myRank={data.myRank} memberCount={memberCount} seasonHigh={data.seasonHigh ?? null} />
+              <TierLadder activeKey={data.tier ?? 'bronze'} ko={ko} />
+              <EarnXpPanel ko={ko} />
+            </StudyAside>
+          </StudyColumns>
         ) : null}
         </StudyPageTransition>
         )}
@@ -798,10 +812,12 @@ function TierLadder({ activeKey, ko }: { activeKey: string; ko: boolean }) {
   return (
     <section>
       <h3 className="text-[13px] font-semibold text-gray-900 mb-3 px-1">{ko ? '리그 단계' : 'Tier ladder'}</h3>
-      <div className="-mx-5 px-5">
+      {/* lg: the ladder now lives in a narrow aside, so the -mx-5 bleed
+          and the horizontal scroller give way to a wrapped block. */}
+      <div className="-mx-5 px-5 lg:mx-0 lg:px-0">
         {/* pt-1 gives the pills' top ring/shadow headroom — overflow-x-auto
             forces overflow-y to clip, which was shaving the top edge. */}
-        <div className="flex gap-1.5 overflow-x-auto pt-1 pb-2 scrollbar-hide">
+        <div className="flex gap-1.5 overflow-x-auto pt-1 pb-2 scrollbar-hide lg:flex-wrap lg:overflow-visible">
           {TIERS.map((tier, i) => (
             <div key={tier.key}
               className={`flex-shrink-0 px-3 py-1.5 rounded-full text-[11px] font-bold uppercase tracking-wider whitespace-nowrap transition ${

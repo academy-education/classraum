@@ -267,7 +267,13 @@ function PickerStage({ ko, onCameraClick, onUploadClick, onOpenCapture }: {
   }, [])
 
   return (
-    <div className="space-y-4">
+    /* DESKTOP: the pitch + the two capture actions in the reading column,
+       the shooting tips and the recent-capture grid alongside. Split at
+       the existing source boundary (actions, then reference), and the
+       outer space-y-4 is kept for the phone stack, so nothing below lg
+       moves. */
+    <div className="space-y-4 lg:space-y-0 lg:grid lg:grid-cols-12 lg:gap-6 lg:items-start">
+      <div className="space-y-4 lg:col-span-7 min-w-0">
       <div className="rounded-2xl bg-gradient-to-br from-amber-500 via-orange-500 to-rose-500 text-white p-5 shadow-[0_8px_24px_-8px_rgba(251,146,60,0.45)]">
         <Sparkles className="w-6 h-6 mb-2 opacity-90" />
         <h2 className="text-[17px] font-semibold leading-snug">
@@ -296,6 +302,9 @@ function PickerStage({ ko, onCameraClick, onUploadClick, onOpenCapture }: {
           <div className="text-[11px] text-gray-500 mt-1">{ko ? '저장된 이미지' : 'Pick an image'}</div>
         </button>
       </div>
+
+      </div>
+      <div className="space-y-4 lg:col-span-5 min-w-0 lg:sticky lg:top-4">
 
       <div className="rounded-xl bg-gray-50 ring-1 ring-gray-200 p-3 text-[12px] text-gray-600 leading-relaxed">
         <span className="font-medium text-gray-800">{ko ? '팁: ' : 'Tips: '}</span>
@@ -341,6 +350,8 @@ function PickerStage({ ko, onCameraClick, onUploadClick, onOpenCapture }: {
           </div>
         </section>
       )}
+
+      </div>
     </div>
   )
 }
@@ -461,7 +472,13 @@ function ResultStage({ result, captureId, previewUrl, onAnother, ko, languageHin
     )
   }
   return (
-    <div className="space-y-4">
+    /* DESKTOP: the capture, the transcribed question and the worked
+       solution read down the left; the final answer and the two next
+       actions sit alongside so they don't need a scroll to reach. The
+       cut follows source order exactly, and space-y-4 is preserved for
+       the phone. */
+    <div className="space-y-4 lg:space-y-0 lg:grid lg:grid-cols-12 lg:gap-6 lg:items-start">
+      <div className="space-y-4 lg:col-span-7 min-w-0">
       {/* Compact preview thumbnail of the captured image. */}
       <details className="rounded-xl bg-white ring-1 ring-gray-200/70 overflow-hidden">
         <summary className="cursor-pointer px-3 py-2 text-[12px] font-medium text-gray-700 inline-flex items-center gap-1.5">
@@ -521,6 +538,9 @@ function ResultStage({ result, captureId, previewUrl, onAnother, ko, languageHin
         </ol>
       </section>
 
+      </div>
+      <div className="space-y-4 lg:col-span-5 min-w-0 lg:sticky lg:top-4">
+
       <section>
         <h3 className="text-[11px] font-semibold tracking-[0.12em] uppercase text-emerald-700 mb-2">
           {ko ? '정답' : 'Final answer'}
@@ -546,6 +566,8 @@ function ResultStage({ result, captureId, previewUrl, onAnother, ko, languageHin
         className="w-full h-11 rounded-xl bg-white ring-1 ring-gray-200 text-gray-800 text-[14px] font-semibold inline-flex items-center justify-center gap-1.5 hover:bg-gray-50 transition">
         <Camera className="w-4 h-4" />{ko ? '다른 문제 찍기' : 'Snap another'}
       </button>
+
+      </div>
     </div>
   )
 }

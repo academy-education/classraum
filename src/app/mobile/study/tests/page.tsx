@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useState } from 'react'
 import { ClipboardList, Search, X } from '@/app/mobile/study/_shared/icons'
-import { StudyPageHeader, StudyScrollShell, StudyEmptyState, StudyPager, StudyTodayCard } from '../_shared/primitives'
+import { StudyPageHeader, StudyScrollShell, StudyEmptyState, StudyPager, StudyTodayCard, StudyColumns, StudyMain, StudyAside } from '../_shared/primitives'
 import { groupByDate } from '../_shared/dateGroups'
 import { TEST_STATE_META, type TestState } from '../_shared/testState'
 import { SkeletonRowList } from '../skeletons'
@@ -122,6 +122,15 @@ function TestsInner() {
         />
       }
     >
+      {/* DESKTOP: the search + state filter become a left rail and the
+          list takes the wide column. The split is at the EXISTING cut in
+          the source (controls, then list), so DOM order is unchanged and
+          the phone render is the same stack it was. A list of 80px rows
+          stretched to 1500px was the specific defect; here it is a
+          2-up (3-up at 2xl) grid in an 8-column main. */}
+      <StudyColumns>
+      <StudyAside span={4}>
+
         <label className="relative block">
           <Search className="w-4 h-4 text-gray-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
           <input
@@ -150,6 +159,9 @@ function TestsInner() {
           ko={ko}
         />
 
+      </StudyAside>
+      <StudyMain span={8}>
+
         {loading ? (
           <SkeletonRowList count={6} />
         ) : filtered.length === 0 ? (
@@ -172,7 +184,7 @@ function TestsInner() {
                   <h3 className="text-[11px] font-bold uppercase tracking-[0.10em] text-gray-500 mb-2 px-1">
                     {group.bucket.label(ko)}
                   </h3>
-                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-2">
+                  <div className="grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 gap-2">
                     {group.rows.map(row => <TestRow key={row.id} row={row} ko={ko} />)}
                   </div>
                 </section>
@@ -186,6 +198,9 @@ function TestsInner() {
             />
           </>
         )}
+
+      </StudyMain>
+      </StudyColumns>
     </StudyScrollShell>
   )
 }
@@ -205,11 +220,13 @@ function StateFilter({ value, onSelect, counts, ko }: {
     { key: 'failed', label: ko ? '실패' : 'Failed' },
   ]
   return (
-    <div className="-mx-5 overflow-x-auto scrollbar-hide">
+    /* lg: the rail is narrow, so the -mx-5 bleed and the horizontal
+       scroller both stop making sense — the chips wrap into a block. */
+    <div className="-mx-5 overflow-x-auto scrollbar-hide lg:mx-0 lg:overflow-visible">
       {/* pt-1 gives the active chip's ring headroom — overflow-x:auto
           forces overflow-y to compute to auto, which clipped the top of
           the ring when chips sat flush against y=0. */}
-      <div className="flex gap-2 pl-5 pt-1 pb-1">
+      <div className="flex gap-2 pl-5 pt-1 pb-1 lg:flex-wrap lg:gap-1.5 lg:pl-0">
         {items.map(item => {
           const active = value === item.key
           const count = counts[item.key]
@@ -231,8 +248,9 @@ function StateFilter({ value, onSelect, counts, ko }: {
           )
         })}
         {/* Trailing spacer — overflow-x drops the row's padding-right,
-            leaving the last chip flush to the edge. */}
-        <div aria-hidden className="shrink-0 w-[15px]" />
+            leaving the last chip flush to the edge. Not needed once the
+            row wraps in the lg rail. */}
+        <div aria-hidden className="shrink-0 w-[15px] lg:hidden" />
       </div>
     </div>
   )

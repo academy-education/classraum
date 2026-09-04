@@ -9,7 +9,7 @@ import {
   Select, SelectContent, SelectItem, SelectTrigger, SelectValue,
 } from '@/components/ui/select'
 import { authHeaders } from '@/lib/auth-headers'
-import { StudyPageHeader, StudyScrollShell, StudyEmptyState, StudyPageTransition } from './primitives'
+import { StudyPageHeader, StudyScrollShell, StudyEmptyState, StudyPageTransition, StudyColumns, StudyMain, StudyAside } from './primitives'
 import { groupByDate } from './dateGroups'
 import { ExplainMore } from './ExplainMore'
 import { SkeletonCard, SkeletonIconTile, SkeletonBlock } from '../skeletons'
@@ -275,6 +275,17 @@ export function WrongNotebookInner({ asTab = false }: { asTab?: boolean } = {}) 
         />
       }
     >
+      {/* DESKTOP: search, the annotated count, the bookmarked snaps and
+          the three filter dropdowns become a left rail; the notebook
+          entries, their pager and the reviewed drawer take the wide
+          column. The split follows the EXISTING source order exactly
+          (controls before list), and the branches it spans are mutually
+          exclusive — when the snaps/filters render, the skeleton/error/
+          empty states do not — so every state renders in the same DOM
+          order it did before and the phone stack is unchanged. */}
+      <StudyColumns>
+      <StudyAside span={4}>
+
         {/* Search — mirrors the history page pattern so the two list
             surfaces feel like siblings. Client-side across prompt,
             answers, and the student's own note. */}
@@ -300,10 +311,6 @@ export function WrongNotebookInner({ asTab = false }: { asTab?: boolean } = {}) 
         </label>
 
         <StudyPageTransition>
-          {/* space-y-6 re-applied INSIDE the transition wrapper — the
-              wrapper is a single child of the outer space-y-6 column,
-              so without this the filter row, date groups, pagination,
-              and reviewed section all stacked with no gaps. */}
           <div className="space-y-6">
           {/* Annotated count chip (only when > 0). */}
           {annotated > 0 && (
@@ -314,7 +321,83 @@ export function WrongNotebookInner({ asTab = false }: { asTab?: boolean } = {}) 
               </span>
             </div>
           )}
+          {/* Bookmarked snaps + the filter dropdowns are hoisted here out
+              of the loaded branch below. Their guards are the exact
+              conditions that branch reached them under, so nothing
+              renders in a state it did not render in before. */}
+          {!loading && !loadFailed && bookmarkedSnaps.length > 0 && (
+            <BookmarkedSnapsSection snaps={bookmarkedSnaps} ko={ko} />
+          )}
+          {!loading && !loadFailed && entries.length > 0 && (
+            <>
+                  {/* Topic + difficulty + sort as DROPDOWNS.
+                      They were three rows of chips, which grew with the
+                      data — a student with a dozen topics got a dozen
+                      wrapping pills pushing the actual notebook below the
+                      fold. A select is fixed-height whatever the topic
+                      count, and it is the control the rest of the app
+                      already uses (see the language and theme rows on
+                      the profile page), so this stops being the one
+                      screen with a bespoke filter idiom.
 
+                      Counts stay in the option labels: they are the
+                      reason to pick one, and a disabled zero-count
+                      difficulty could only ever show an empty list. */}
+                  <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-1 gap-2 px-1">
+                    {topics.length > 0 && (
+                      <FilterSelect
+                        label={ko ? '주제' : 'Topic'}
+                        value={selectedTopicId ?? '__all'}
+                        onChange={v => setSelectedTopicId(v === '__all' ? null : v)}
+                        className="col-span-2 sm:col-span-1 lg:col-span-1"
+                        options={[
+                          {
+                            value: '__all',
+                            label: `${String(t('study.wrongNotebook.allTopics'))} (${topics.reduce((n, x) => n + x.count, 0)})`,
+                          },
+                          ...topics.map(x => ({
+                            value: x.id,
+                            label: `${ko ? x.name_ko : x.name_en} (${x.count})`,
+                          })),
+                        ]}
+                      />
+                    )}
+                    <FilterSelect
+                      label={ko ? '난이도' : 'Difficulty'}
+                      value={difficultyFilter}
+                      onChange={v => setDifficultyFilter(v as DifficultyKey)}
+                      options={([
+                        { key: 'all', label: ko ? '전체' : 'All' },
+                        { key: 'easy', label: ko ? '쉬움' : 'Easy' },
+                        { key: 'medium', label: ko ? '보통' : 'Medium' },
+                        { key: 'hard', label: ko ? '어려움' : 'Hard' },
+                      ] as Array<{ key: DifficultyKey; label: string }>).map(item => ({
+                        value: item.key,
+                        label: `${item.label} (${difficultyCounts[item.key]})`,
+                        disabled: item.key !== 'all' && difficultyCounts[item.key] === 0,
+                      }))}
+                    />
+                    <FilterSelect
+                      label={ko ? '정렬' : 'Sort'}
+                      value={sortKey}
+                      onChange={v => setSortKey(v as SortKey)}
+                      options={[
+                        { value: 'newest', label: ko ? '최신순' : 'Newest' },
+                        { value: 'oldest', label: ko ? '오래된순' : 'Oldest' },
+                        { value: 'hardest', label: ko ? '어려운순' : 'Hardest' },
+                      ]}
+                    />
+                  </div>
+            </>
+          )}
+          </div>
+        </StudyPageTransition>
+
+      </StudyAside>
+      <StudyMain span={8}>
+
+        <StudyPageTransition>
+          <div className="space-y-6">
           {loading ? (
             <div className="space-y-3">
               {[0,1,2].map(i => (
@@ -356,69 +439,8 @@ export function WrongNotebookInner({ asTab = false }: { asTab?: boolean } = {}) 
             />
           ) : (
             <>
-              {bookmarkedSnaps.length > 0 && (
-                <BookmarkedSnapsSection snaps={bookmarkedSnaps} ko={ko} />
-              )}
               {entries.length > 0 && (
                 <>
-                  {/* Topic + difficulty + sort as DROPDOWNS.
-                      They were three rows of chips, which grew with the
-                      data — a student with a dozen topics got a dozen
-                      wrapping pills pushing the actual notebook below the
-                      fold. A select is fixed-height whatever the topic
-                      count, and it is the control the rest of the app
-                      already uses (see the language and theme rows on
-                      the profile page), so this stops being the one
-                      screen with a bespoke filter idiom.
-
-                      Counts stay in the option labels: they are the
-                      reason to pick one, and a disabled zero-count
-                      difficulty could only ever show an empty list. */}
-                  <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 px-1">
-                    {topics.length > 0 && (
-                      <FilterSelect
-                        label={ko ? '주제' : 'Topic'}
-                        value={selectedTopicId ?? '__all'}
-                        onChange={v => setSelectedTopicId(v === '__all' ? null : v)}
-                        className="col-span-2 sm:col-span-1"
-                        options={[
-                          {
-                            value: '__all',
-                            label: `${String(t('study.wrongNotebook.allTopics'))} (${topics.reduce((n, x) => n + x.count, 0)})`,
-                          },
-                          ...topics.map(x => ({
-                            value: x.id,
-                            label: `${ko ? x.name_ko : x.name_en} (${x.count})`,
-                          })),
-                        ]}
-                      />
-                    )}
-                    <FilterSelect
-                      label={ko ? '난이도' : 'Difficulty'}
-                      value={difficultyFilter}
-                      onChange={v => setDifficultyFilter(v as DifficultyKey)}
-                      options={([
-                        { key: 'all', label: ko ? '전체' : 'All' },
-                        { key: 'easy', label: ko ? '쉬움' : 'Easy' },
-                        { key: 'medium', label: ko ? '보통' : 'Medium' },
-                        { key: 'hard', label: ko ? '어려움' : 'Hard' },
-                      ] as Array<{ key: DifficultyKey; label: string }>).map(item => ({
-                        value: item.key,
-                        label: `${item.label} (${difficultyCounts[item.key]})`,
-                        disabled: item.key !== 'all' && difficultyCounts[item.key] === 0,
-                      }))}
-                    />
-                    <FilterSelect
-                      label={ko ? '정렬' : 'Sort'}
-                      value={sortKey}
-                      onChange={v => setSortKey(v as SortKey)}
-                      options={[
-                        { value: 'newest', label: ko ? '최신순' : 'Newest' },
-                        { value: 'oldest', label: ko ? '오래된순' : 'Oldest' },
-                        { value: 'hardest', label: ko ? '어려운순' : 'Hardest' },
-                      ]}
-                    />
-                  </div>
 
                   {visibleActive.length > 0 && (
                     <div className="space-y-6">
@@ -432,7 +454,7 @@ export function WrongNotebookInner({ asTab = false }: { asTab?: boolean } = {}) 
                               <h3 className="text-[11px] font-bold uppercase tracking-[0.10em] text-gray-500 mb-2 px-1">
                                 {group.bucket.label(ko)}
                               </h3>
-                              <ol className="grid grid-cols-1 lg:grid-cols-2 gap-3">
+                              <ol className="grid grid-cols-1 2xl:grid-cols-2 gap-3">
                                 {group.rows.map((e, i) => (
                                   <div key={e.attempt_id} style={{ animationDelay: `${Math.min(i, 8) * 40}ms` }} className="animate-card-in opacity-0">
                                     <NotebookEntryCard entry={e} index={startIdx + i + 1} ko={ko} onToggleReviewed={toggleReviewed} />
@@ -497,7 +519,7 @@ export function WrongNotebookInner({ asTab = false }: { asTab?: boolean } = {}) 
                           {showReviewed ? (ko ? '숨기기' : 'Hide') : (ko ? '보기' : 'Show')}
                         </span>
                       </summary>
-                      <ol className={`px-4 grid grid-cols-1 lg:grid-cols-2 gap-3 ${reviewedTotalPages > 1 ? '' : 'pb-4'}`}>
+                      <ol className={`px-4 grid grid-cols-1 2xl:grid-cols-2 gap-3 ${reviewedTotalPages > 1 ? '' : 'pb-4'}`}>
                         {visibleReviewed.map((e, i) => (
                           <NotebookEntryCard key={e.attempt_id} entry={e} index={clampedReviewedPage * PAGE_SIZE + i + 1} ko={ko} onToggleReviewed={toggleReviewed} />
                         ))}
@@ -537,6 +559,9 @@ export function WrongNotebookInner({ asTab = false }: { asTab?: boolean } = {}) 
           )}
         </div>
         </StudyPageTransition>
+
+      </StudyMain>
+      </StudyColumns>
     </StudyScrollShell>
   )
 }
