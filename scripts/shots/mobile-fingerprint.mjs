@@ -49,7 +49,7 @@ const page = await browser.newPage()
 await page.setViewport({ width: 390, height: 844, deviceScaleFactor: 1 })
 await page.emulateTimezone('Asia/Seoul')
 await page.evaluateOnNewDocument((k, v) => { try { localStorage.setItem(k, v) } catch {} }, STORAGE_KEY, JSON.stringify(s.session))
-await page.goto('http://localhost:3000' + PATH, { waitUntil: 'networkidle0', timeout: 60000 })
+await page.goto((process.env.BASE ?? 'http://localhost:3000') + PATH, { waitUntil: 'networkidle0', timeout: 60000 })
 await new Promise(r => setTimeout(r, 12000))
 
 const fp = await page.evaluate(() => {
@@ -82,6 +82,17 @@ const fp = await page.evaluate(() => {
   }
   walk2(el)
   return {
+    // POSITIVE CONTROL. A dev server can serve a stale compiled bundle after a
+    // file swap, which makes a before/after run silently compare one variant
+    // against itself — it did, the first time this was used. This records which
+    // variant actually rendered: the two-column split puts lg:col-span-* on a
+    // wrapper, the flat stack does not. A before/after pair whose hasColumns
+    // values match is not a measurement.
+    // NOT [class*="col-span-"] — the test-prep cards carry col-span-2, so that
+    // version of this control returned true for the flat stack too and passed
+    // a self-comparison off as a before/after. Only StudyMain/StudyAside emit
+    // the lg: prefix.
+    hasColumns: !!el.querySelector('[class*="lg:col-span-"]'),
     containerClass: el.className,
     containerHeight: Math.round(el.getBoundingClientRect().height),
     scrollHeight: scroller ? scroller.scrollHeight : null,
