@@ -211,6 +211,46 @@ So, before treating a check as evidence:
 
 Applies to any check: tests, model graders, SQL audits, scripts.
 
+### Corollary: a check that cannot read its input must not return a number
+
+On 2026-09-04 six separate checkers were found emitting confident verdicts
+about data they had never read. One defect, six coats:
+
+    check-absolute-tell     printed LIVE BANK numbers for a batch path
+    check-math-hub          "0 items ... margin -25.0pts" over an empty set
+    check-batch-variety     four FAILs over ZERO stimuli - and identical
+                            output for a candidate batch and the shipped
+                            bank, because neither was measured
+    check-key-rank-spread   cleared a prose batch by ranking zero items
+    math-bank-helper        a hardcoded 25% control on five-choice data
+    check-lexical-anchor    fell back to a default cohort and reported its
+                            81.3% FAIL as though it described your file
+
+Every one of these READS AS A RESULT. Three read as passes and three as
+failures, which is why "it failed, so it must have run" is not an
+inference: a NaN comparison fails every threshold, and an empty population
+divides to a clean-looking margin.
+
+**Not one was caught by reading the verdict.** Each was caught by someone
+noticing an item count that did not match the file they passed in — 16
+items reported for a 24-item batch, 0 stimuli, 1 structured set of 24.
+
+So:
+
+1. **A check that cannot process its input exits non-zero.** It never
+   returns a number, and never falls back to a default input.
+2. **Read the denominator before the verdict.** `scorable N of M` and
+   `n=` are the load-bearing fields; the margin is downstream of them.
+   A rate over 1 item is the absence of a measurement, not a pass.
+3. **Derive the control from the data, never a literal.** A hardcoded 25%
+   on five-choice data is five free points, always in the flattering
+   direction, and it survived the sweep that was specifically looking for
+   it because the sweep searched for checkers and missed an author tool.
+4. **Break-test in the band that matters, not with a blowout.** A rigged
+   batch at 85.7% fires under a broken control and a correct one alike.
+   The exposure was at 33.3%: +13.3 against the right control, +8.3
+   against the wrong one, which is silent. Construct the marginal case.
+
 ### Corollary: a batch built to one brief develops a cross-item tell
 
 Three distinct positional/structural tells have now reached the bank, each
