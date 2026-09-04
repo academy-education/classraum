@@ -163,6 +163,21 @@ bank row by `prompt`: making C&S stems positional gave 8 of 18 rows in one
 cohort the identical prompt, and a prompt-keyed lookup silently returned a
 sibling's row the same day. Key on prompt+passage.
 
+## Form capacity is not total / form size
+
+    node scripts/study-bank/form-capacity.mjs
+
+A form is drawn to per-domain quotas, so the binding constraint is the
+THINNEST domain, not the total. SAT R&W holds 1,009 items at 54 per form
+— 18 by division, 15 once domains are respected, and **2** for a strong
+student, because module 2 on the hard route wants ~7 Standard English
+Conventions hard items and the bank holds 20. Quote the route-aware
+number when the question is "how many tests can a student take".
+
+The script deliberately does NOT model passage cohesion (ACT and TOEFL
+draw whole passages), the easy/medium route, or exposure already
+recorded, and it says so — all three would push the number up.
+
 ## Verification standard: break the check
 
 A passing check is evidence only if it would have failed. On 2026-07-28 three
