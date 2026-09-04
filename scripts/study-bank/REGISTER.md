@@ -93,15 +93,15 @@ Two qualifications, both learned the hard way:
 | TOEFL | Choose a Response | 214 | — | 20% (n=40) | never measured — the attack does not apply |
 | SAT | Craft and Structure | 210 | 97.9% | 26.7% (n=15) | human says maybe — needs more |
 | TOEFL | Conversation | 193 | 86.8% | 20% (n=15) | human says maybe — needs more |
-| SSAT | Verbal | 180 | — | — | never measured — the attack does not apply |
+| SSAT | Verbal | 180 | — | **65.6% live (n=90, 3 solvers, +45.6)** | MEASURED 2026-09-04 — the attack DOES apply; 16 of 30 shipped items solved by all three with no headword |
 | TOEFL | Build a Sentence | 165 | — | — | never measured — the attack does not apply |
 | SSAT | Math | 153 | — | — | never measured — the attack does not apply |
 | SSAT | Reading Comprehension | 138 | — | — | never measured — the attack does not apply |
 | TOEFL | Listen and Repeat | 136 | — | — | never measured — the attack does not apply |
-| ISEE | Verbal | 128 | — | — | never measured — the attack does not apply |
+| ISEE | Verbal | 128 | — | **50.0% live (n=90, 3 solvers, +23.3)** | MEASURED 2026-09-04 — the attack DOES apply |
 | TOEFL | Announcement | 121 | 100% | 15% (n=20) | **cleared by hand** — the model was wrong |
 | ISEE | Reading Comprehension | 117 | — | — | never measured — the attack does not apply |
-| TOEFL | Complete the Words | 93 | — | — | never measured — the attack does not apply |
+| TOEFL | Complete the Words | 93 | — | **91.7% live (n=48, 3 solvers)** | MEASURED 2026-09-04 — the passage is near-decoration; a 5+ letter stub plus one clause has one English completion |
 | TOEFL | Academic Discussion | 92 | — | — | never measured — the attack does not apply |
 | TOEFL | Email | 90 | — | — | never measured — the attack does not apply |
 | TOEFL | Interview | 80 | — | — | never measured — the attack does not apply |
@@ -423,3 +423,17 @@ structural checks are pre-flight only. See CLAUDE.md.
   The v3 per-item split is the actionable part and it is unusually clean: words-in-context 8 items at **12.5%, below chance**; cross-text 75.0%; text-structure 87.5%. All three solvers independently named the same cause — the cross-text sets contain exactly one concede-then-reframe option against flat denials and procedural recommendations. **The formula is in the DISTRACTOR FAMILY, not the key**, so no letter-level or key-level remedy can reach it; the fix is letting a flat denial sometimes be correct. v7's hold is localised the same way: 7 punctuation items at 85.7% against 17 form items at 62.7%, because only one member of a punctuation grid is legal in *any* English sentence.
 
   Transcripts were audited for all nine solvers — exactly two tool calls each, one read of their own blind file and one write of their own answers, zero reads of any batch, key or sibling file. That check exists because a previous 100% result had to be confirmed the same way. _(v3 and v6 clear the attack; the with-source exclusivity grade and a ledger entry still stand between them and insert)_
+
+- **2026-09-04** — **"NEVER MEASURED - THE ATTACK DOES NOT APPLY" WAS WRONG ON THREE ROWS, AND ONE OF THEM HIDES A WORSE LIVE BANK THAN ANY CANDIDATE WE HAVE HELD.** SSAT Verbal, ISEE Verbal and TOEFL Complete the Words all carried that note. The attack applies to all three — these are not bijective sets, each item carries its own option pool — and all three are now measured. The note was a statement about nobody having built the right render, not about the task type, and it sat in the table long enough to read as settled.
+
+      SSAT Verbal   shipped   65.6%  (n=90, 3 solvers)   +45.6 over a 20.0% dealt control
+      ISEE Verbal   shipped   50.0%  (n=90)              +23.3 over 26.7%
+      TOEFL CtW     shipped   91.7%  (n=48)              passage is near-decoration
+
+  **16 of 30 shipped SSAT Verbal items were solved by all three solvers with the headword withheld entirely.** The mechanism was named repeatedly and independently: a distractor set that reconstructs the missing headword — `fragrant` only sits next to *fragile*, `valiant` next to *vacant*, `depth` next to *dearth*, `monk` next to *novice* — plus analogy sets where three options share one relation, so none of those three can be the key.
+
+  **Candidate results, and note the asymmetry with the live numbers.** `ssat-verbal-v2` is **NO VERDICT**: two of five files produced independent solvers with byte-identical 12/12 pick sequences, which is the pre-registered void condition, and I am not adjusting the rule after seeing the data. Its raw 55.6% (+35.6) is *better* than the shipped bank's +45.6, but a voided run is voided. `isee-verbal-v2` is **PASS-RELATIVE** at 41.1% (+14.4) against a live +23.3 — guessable, but less guessable than what ships.
+
+  **The scorer was break-tested before it was believed**, which is why these numbers are worth anything: a synthetic always-A solver run through the real scorer returned exactly the dealt control (20.0% SSAT, 26.7% ISEE — exact flatness is impossible at n=30 with four slots, so the bar uses 26.7, not 25), and a synthetic perfect solver returned 100% and correctly tripped the identical-pick-string detector.
+
+  **Two author-flagged risks confirmed, one to the point.** "Never pick the longest or shortest option" was estimated at +7 by the SSAT author; measured at **+7.9** (SSAT) and **+11.7** (ISEE) on the candidates — and **-0.2 and -1.2 on the shipped banks**. That contrast is the evidence it is a real authoring habit rather than a property of the item type. And `SVV2-28` is the only item in 60 with a shared morphological prefix family of three or more containing the key (`in-`): all three solvers who saw it got it, two naming the prefix unprompted. _(SSAT needs a re-run with fresh solvers; the shipped-bank numbers are the larger open item)_
