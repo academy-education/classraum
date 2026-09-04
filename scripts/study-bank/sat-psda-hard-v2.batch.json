@@ -644,15 +644,15 @@
     "id": "PSDA-H2-22",
     "subskill": "evaluating statistical claims: study design and generalizability",
     "difficulty": "medium",
-    "prompt": "A researcher randomly selected 200 of the 5,000 employees at a large company. She randomly assigned 100 of them to use a standing desk for six months and the other 100 to use a conventional desk for six months. At the end of the study, the standing-desk group reported significantly less back pain than the conventional-desk group. Which of the following is the most appropriate conclusion?",
+    "prompt": "A researcher randomly selected 200 of the 5,000 employees at a large company. She randomly assigned 100 of them to use a standing desk for six months and the other 100 to use a conventional desk for six months. At the end of the study, the standing desk group reported significantly less back pain than the conventional-desk group. Which of the following is the most appropriate conclusion?",
     "choices": [
       "Using a standing desk is likely to cause a reduction in reported back pain for employees at this company.",
       "Using a standing desk is likely to cause a reduction in reported back pain for all adults who work at a desk.",
-      "There is an association between standing-desk use and reported back pain among employees at this company, but no cause-and-effect conclusion can be drawn.",
+      "An association between standing desk use and reported back pain exists among employees at this company but no causal conclusion can be drawn from these data.",
       "Employees at this company who choose to use a standing desk tend to report less back pain than employees who do not."
     ],
     "correct_answer": "Using a standing desk is likely to cause a reduction in reported back pain for employees at this company.",
-    "explanation": "Because the treatment was randomly ASSIGNED, a cause-and-effect conclusion is justified, and because the participants were randomly SELECTED from this company's employees, the conclusion extends to that population and no further. The second choice keeps the causal claim but generalizes past the population that was sampled. The third choice correctly limits the population but withholds causation, which random assignment is precisely what licenses. The fourth choice repeats that refusal to conclude causation and additionally recasts a randomized assignment as a self-selected comparison, which is what the design was built to avoid.",
+    "explanation": "Because the treatment was randomly ASSIGNED, a cause-and-effect conclusion is justified, and because the participants were randomly SELECTED from this company's employees, the conclusion extends to that population and no further. The second choice keeps the causal claim but generalizes past the population that was sampled. The choice that reports only an association correctly limits the population but withholds causation, which random assignment is precisely what licenses. The fourth choice repeats that refusal to conclude causation and additionally recasts a randomized assignment as a self-selected comparison, which is what the design was built to avoid.",
     "solve": "const randomlyAssigned=true, randomlySelectedFrom='employees at this company';\nconst claim = randomlyAssigned ? 'is likely to cause a reduction in' : 'is associated with a reduction in';\nreturn 'Using a standing desk '+claim+' reported back pain for '+randomlySelectedFrom+'.';",
     "domain": "Problem-Solving and Data Analysis"
   },

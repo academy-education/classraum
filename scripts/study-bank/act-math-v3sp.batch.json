@@ -74,12 +74,12 @@
     "prompt": "A fair coin is flipped 3 times. What is the probability that exactly 2 of the 3 flips land heads?",
     "choices": [
       "1/8",
-      "1/4",
       "3/8",
-      "1/2"
+      "1/2",
+      "7/8"
     ],
     "correct_answer": "3/8",
-    "explanation": "Of the 8 equally likely sequences, 3 have exactly two heads: HHT, HTH, THH. So the probability is 3/8. 1/8 is the probability of one particular sequence, such as HHT, counting only one of the three arrangements. 1/4 is the probability that the first two flips are both heads, ignoring the third flip. 1/2 is the probability of heads on a single flip.",
+    "explanation": "Of the 8 equally likely sequences of three flips, 3 have exactly two heads: HHT, HTH, and THH, so the probability is 3/8. 1/8 is the probability of one particular sequence such as HHT, counting a single arrangement instead of all three. 1/2 is the probability of heads on one flip, the result of never considering the three flips together. 7/8 is the probability of AT LEAST ONE head, 1 - 1/8, which counts every outcome except TTT.",
     "solve": "let c=0;\nfor(let i=0;i<8;i++){const b=i.toString(2).padStart(3,'0');if([...b].filter(x=>x==='1').length===2)c++;}\nreturn c/8;",
     "domain": "Statistics and Probability"
   },
@@ -216,13 +216,13 @@
     "difficulty": "medium",
     "prompt": "In a random sample of 150 households in a town, 42 households own a dog and 18 of those 42 households own both a dog and a cat. The town has 5,000 households. Based on this sample, how many households in the town own a dog but NOT a cat?",
     "choices": [
-      "600",
       "800",
       "1400",
+      "1600",
       "3600"
     ],
     "correct_answer": "800",
-    "explanation": "In the sample, 42 - 18 = 24 of the 150 households own a dog but not a cat, a rate of 24/150, and (24/150)(5,000) = 800. 600 scales 18/150, the households owning both. 1400 scales 42/150, all dog owners, without removing those who also own a cat. 3600 scales (150 - 42)/150, the households that own no dog at all.",
+    "explanation": "In the sample, 42 - 18 = 24 of the 150 households own a dog but not a cat, a rate of 24/150, and (24/150)(5,000) = 800. 1400 scales 42/150, every dog owner, without removing those who also own a cat. 1600 starts from the same 42 dog owners but ADDS the 18 two-pet households, (42 + 18)/150, counting them a second time instead of removing them. 3600 scales (150 - 42)/150, the households that own no dog at all.",
     "solve": "const sample=150,dogs=42,both=18,town=5000;\nreturn (dogs-both)/sample*town;",
     "domain": "Statistics and Probability"
   },
