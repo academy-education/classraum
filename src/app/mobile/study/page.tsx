@@ -21,7 +21,7 @@ import { creditCostForTest } from '@/lib/study/plans'
 import { SHIPPED_TEST_SLUGS } from '@/lib/study/shipped-tests'
 import { admissionFormTotals } from '@/lib/study/admission-tests'
 import { passCreditLabel } from './_shared/pass-label'
-import { StudyTodayCard } from './_shared/primitives'
+import { StudyTodayCard, StudyColumns, StudyMain, StudyAside } from './_shared/primitives'
 import { ResumableShelf } from './ResumableShelf'
 import { CampAssignmentsShelf } from './CampAssignmentsShelf'
 import { GeneratingTestsChip } from './GeneratingTestsChip'
@@ -549,6 +549,22 @@ function StudyLandingInner() {
         className="pointer-events-none absolute inset-x-0 top-0 h-72 -z-10 bg-gradient-to-b from-primary/[0.04] via-violet-500/[0.025] to-transparent"
       />
       <div className="max-w-3xl lg:max-w-6xl 2xl:max-w-[1600px] mx-auto px-5 lg:px-8 pt-6 pb-14 space-y-8">
+
+        {/* DESKTOP: two columns. The split point is a single index in the
+            EXISTING order — hero / Today / This week on the left, the browse
+            and shelf bands on the right — so the phone render keeps its DOM
+            order and its space-y-8 rhythm exactly (hence space={8}). A split
+            that put the test-prep grid on the left and the narrow Today cards
+            on the right would look better on desktop and would silently
+            reorder the phone page, which is not a trade worth making.
+
+            What this buys: at 1440 the whole "act now" half of the landing
+            (greeting, today's progress, Today cards, the week plan) sits in
+            one screen NEXT TO the browse grid, instead of the browse grid
+            living 1200px below the fold. */}
+        <StudyColumns space={8}>
+        <StudyMain span={7} space={8}>
+
         {/* Dark hero band renders its own top-right action row
             (search + overflow) on a light-on-dark treatment so both
             elements share one visual layer. */}
@@ -648,6 +664,15 @@ function StudyLandingInner() {
           </div>
         </section>
 
+        </StudyMain>
+
+        {/* The aside carries the BROWSE half — teacher work, resumable
+            sessions, and the test-prep grid. These are the bands a student
+            scrolls TO; on desktop they should be visible without scrolling
+            at all. Not sticky: it is the taller column, so pinning it would
+            fight the page scroll. */}
+        <StudyAside span={5} sticky={false} space={8}>
+
         {/* Snap-to-solve CTA removed from the landing — discoverable
             via the bottom-nav "사진 풀이" tab. Removing the orange hero
             here keeps the landing focused on time-sensitive items
@@ -678,7 +703,12 @@ function StudyLandingInner() {
           {/* No loading branch here: the page early-returns its full
               skeleton while `loading` is true, so this only renders loaded. */}
           {(
-            <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3">
+            // The cards carry `col-span-2`, so the track count is twice the
+            // cards per row: 2 tracks = 1 card per row, 4 tracks = 2 per row.
+            // Inside the desktop aside (5 of 12) the old lg:grid-cols-3 left a
+            // dead third of a row at lg; two-up only once xl gives the column
+            // real width.
+            <div className="grid grid-cols-2 xl:grid-cols-4 gap-3">
               {sortedTests.filter(t => OPEN_TEST_SLUGS.has(t.slug)).map((test, i) => {
                 const theme = themeForTest(test.slug)
                 const Icon = theme.Icon
@@ -939,6 +969,9 @@ function StudyLandingInner() {
           </p>
         </section>
         )}
+
+        </StudyAside>
+        </StudyColumns>
       </div>
 
       {/* First-visit onboarding wizard — bottom-sheet that gates the
@@ -970,10 +1003,14 @@ function SectionGroup({ label, children, cols }: { label: string; children: Reac
       <h2 className="text-[17px] font-semibold tracking-tight text-gray-900">
         {label}
       </h2>
-      {/* `cols` flows the cards into a 2-up grid on wide screens so a
-          band of full-width phone cards doesn't stretch across the
-          desktop content column. */}
-      <div className={cols ? 'grid gap-3 lg:grid-cols-2 items-start' : 'space-y-3'}>
+      {/* `cols` flows the cards into a 2-up grid so a band of full-width
+          phone cards doesn't stretch across the desktop content column.
+          It fires at 2xl, not lg: since the band moved into the 7-of-12
+          reading column, 2-up at lg gave ~300px cards and truncated
+          "Digital SAT — Reading & Writing" to "Digital SAT — Reading & …".
+          The column is only wide enough for two legible cards once 2xl
+          opens the shell to 1600px. */}
+      <div className={cols ? 'grid gap-3 2xl:grid-cols-2 items-start' : 'space-y-3'}>
         {children}
       </div>
     </section>

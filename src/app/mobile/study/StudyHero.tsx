@@ -95,11 +95,17 @@ export function StudyHero({ onOpenSearch, overflowMenu }: Props) {
   const pct = Math.round(fraction * 100)
 
   return (
-    <section className="-mx-5 -mt-6 mb-2 lg:mx-0 lg:mt-0">
+    // DESKTOP: the phone shape is a tall band with a white card pulled up
+    // over its bottom edge (pb-24 + -mt-16), which costs ~450px of a 900px
+    // display to show a greeting and three zeroes. At lg the two stop
+    // overlapping and sit SIDE BY SIDE — greeting left, progress right —
+    // which is ~230px for the same content. DOM order is untouched; only
+    // the flex direction and the negative offsets change.
+    <section className="-mx-5 -mt-6 mb-2 lg:mx-0 lg:mt-0 lg:flex lg:items-stretch lg:gap-4">
       {/* Full-bleed banner on phones; on desktop it becomes a rounded
           hero card aligned with the content cards below (no stray edge
           padding), so the whole page shares one left/right edge. */}
-      <div className="relative overflow-hidden lg:rounded-3xl bg-gradient-to-br from-primary via-primary to-indigo-700 px-5 lg:px-8 pt-5 lg:pt-7 pb-24 text-white">
+      <div className="relative overflow-hidden lg:rounded-3xl bg-gradient-to-br from-primary via-primary to-indigo-700 px-5 lg:px-6 pt-5 lg:pt-5 pb-24 lg:pb-5 text-white lg:w-[38%] lg:flex-shrink-0 lg:flex lg:flex-col">
         <div aria-hidden className="pointer-events-none absolute -top-8 -right-8 w-40 h-40 rounded-full bg-white/10 blur-3xl" />
         <div aria-hidden className="pointer-events-none absolute -bottom-10 -left-6 w-32 h-32 rounded-full bg-indigo-300/20 blur-2xl" />
 
@@ -119,7 +125,9 @@ export function StudyHero({ onOpenSearch, overflowMenu }: Props) {
           </div>
         )}
 
-        <div className="relative flex items-end justify-between gap-3">
+        {/* lg: the narrow greeting column stacks name over streak chip and
+            fills the remaining band height, so the band matches the card. */}
+        <div className="relative flex items-end justify-between gap-3 lg:flex-1 lg:flex-col lg:items-start lg:justify-center lg:gap-3">
           <div className="min-w-0">
             <p className="text-[11px] font-medium text-white/70 tabular-nums">{dateStr}</p>
             <h1 className="mt-1 text-[22px] leading-tight font-bold tracking-tight text-white">
@@ -143,7 +151,7 @@ export function StudyHero({ onOpenSearch, overflowMenu }: Props) {
         </div>
       </div>
 
-      <div className="relative -mt-16 mx-5">
+      <div className="relative -mt-16 mx-5 lg:mt-0 lg:mx-0 lg:flex-1 lg:min-w-0">
         {loadingProgress ? (
           <div className="rounded-2xl bg-white ring-1 ring-gray-200 shadow-[0_8px_24px_-12px_rgba(15,23,42,0.20)] p-5 min-h-[164px] space-y-3">
             <SkeletonBlock className="h-3 w-24 rounded-full" />

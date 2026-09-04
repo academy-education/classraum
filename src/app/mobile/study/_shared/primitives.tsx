@@ -206,9 +206,23 @@ export function StudyScrollShell({
 // require scrolling past the content to reach; on a phone they stay in
 // document order where a thumb expects them.
 // ─────────────────────────────────────────────────────────────────────
-export function StudyColumns({ children, className = '' }: { children: ReactNode; className?: string }) {
+// `space` is the MOBILE stack gap, and it exists solely so dropping these
+// into a page cannot change that page's phone spacing. A page whose band
+// rhythm is `space-y-8` (the study landing) must pass space={8}; passing
+// nothing keeps the `space-y-6` the stats + result pages were built with.
+// Getting this wrong is invisible on desktop and shifts every band on a
+// phone, which is exactly the silent regression the split is meant to avoid.
+// At lg the columns tighten to 24px regardless — desktop wants density, and
+// there the gap is between column-internal cards, not full-bleed bands.
+type StudySpace = 6 | 8
+const stackClass = (space: StudySpace) => (space === 8 ? 'space-y-8' : 'space-y-6')
+const columnStackClass = (space: StudySpace) => (space === 8 ? 'space-y-8 lg:space-y-6' : 'space-y-6')
+
+export function StudyColumns({ children, className = '', space = 6 }: {
+  children: ReactNode; className?: string; space?: StudySpace
+}) {
   return (
-    <div className={`space-y-6 lg:space-y-0 lg:grid lg:grid-cols-12 lg:gap-6 lg:items-start ${className}`}>
+    <div className={`${stackClass(space)} lg:space-y-0 lg:grid lg:grid-cols-12 lg:gap-6 lg:items-start ${className}`}>
       {children}
     </div>
   )
@@ -216,19 +230,21 @@ export function StudyColumns({ children, className = '' }: { children: ReactNode
 
 /** The reading column. 7 of 12 at lg — wide enough for a hero and a chart,
  *  narrow enough that prose does not run to a 1400px measure. */
-export function StudyMain({ children, span = 7 }: { children: ReactNode; span?: 6 | 7 | 8 }) {
+export function StudyMain({ children, span = 7, space = 6 }: {
+  children: ReactNode; span?: 6 | 7 | 8; space?: StudySpace
+}) {
   const col = span === 6 ? 'lg:col-span-6' : span === 8 ? 'lg:col-span-8' : 'lg:col-span-7'
-  return <div className={`space-y-6 ${col} min-w-0`}>{children}</div>
+  return <div className={`${columnStackClass(space)} ${col} min-w-0`}>{children}</div>
 }
 
 /** The companion column: context, actions, secondary detail. Sticky at lg
  *  so the actions stay reachable; `top-4` clears the sticky page header. */
-export function StudyAside({ children, span = 5, sticky = true }: {
-  children: ReactNode; span?: 4 | 5 | 6; sticky?: boolean
+export function StudyAside({ children, span = 5, sticky = true, space = 6 }: {
+  children: ReactNode; span?: 4 | 5 | 6; sticky?: boolean; space?: StudySpace
 }) {
   const col = span === 4 ? 'lg:col-span-4' : span === 6 ? 'lg:col-span-6' : 'lg:col-span-5'
   return (
-    <div className={`space-y-6 ${col} min-w-0 ${sticky ? 'lg:sticky lg:top-4' : ''}`}>
+    <div className={`${columnStackClass(space)} ${col} min-w-0 ${sticky ? 'lg:sticky lg:top-4' : ''}`}>
       {children}
     </div>
   )
