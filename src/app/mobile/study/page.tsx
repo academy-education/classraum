@@ -18,7 +18,7 @@ import { StudySubscriptionGate } from './SubscriptionGate'
 import { StudyButton } from './_shared/StudyButton'
 import { CreditConfirmSheet, NoCreditsSheet } from './_shared/CreditConfirmSheet'
 import { creditCostForTest } from '@/lib/study/plans'
-import { SHIPPED_TEST_SLUGS } from '@/lib/study/shipped-tests'
+import { SHIPPED_TEST_SLUGS, COMING_SOON_HIDDEN_SLUGS, COMING_SOON_EXTRA } from '@/lib/study/shipped-tests'
 import { admissionFormTotals } from '@/lib/study/admission-tests'
 import { passCreditLabel } from './_shared/pass-label'
 import { StudyTodayCard, StudyColumns, StudyMain, StudyAside } from './_shared/primitives'
@@ -462,6 +462,17 @@ function StudyLandingInner() {
     return [...tests].sort((a, b) => rank(a) - rank(b))
   }, [tests, targetTest])
 
+  // Coming-soon strip: catalog rows that are not shipped, minus the ones
+  // we have decided not to announce, plus families announced ahead of a
+  // topic row. See shipped-tests.ts for why this is config, not data.
+  const comingSoon = useMemo(() => {
+    const fromCatalog = sortedTests
+      .filter(t => !OPEN_TEST_SLUGS.has(t.slug) && !COMING_SOON_HIDDEN_SLUGS.has(t.slug))
+      .map(t => ({ slug: t.slug, name_en: t.name_en, name_ko: t.name_ko }))
+    const have = new Set(fromCatalog.map(t => t.slug))
+    return [...fromCatalog, ...COMING_SOON_EXTRA.filter(t => !have.has(t.slug))]
+  }, [sortedTests])
+
 
   const name = (s: { name_en: string; name_ko: string }) => ko ? s.name_ko : s.name_en
 
@@ -834,15 +845,15 @@ function StudyLandingInner() {
           {/* Coming-soon tests as a compact chip strip — the old 2x4
               grid of locked cards spent ~700px of scroll on things
               that can't be tapped. */}
-          {!loading && sortedTests.some(t => !OPEN_TEST_SLUGS.has(t.slug)) && (
+          {!loading && comingSoon.length > 0 && (
             <div className="mt-3 flex flex-wrap items-center gap-1.5">
               <span className="inline-flex items-center gap-1 text-[11px] font-semibold text-gray-400 mr-0.5">
                 <Lock className="w-3 h-3" />
                 {ko ? '준비 중' : 'Coming soon'}
               </span>
-              {sortedTests.filter(t => !OPEN_TEST_SLUGS.has(t.slug)).map(test => (
+              {comingSoon.map(test => (
                 <span
-                  key={test.id}
+                  key={test.slug}
                   className="px-2.5 py-1 rounded-full bg-white ring-1 ring-gray-200/70 text-[11.5px] font-medium text-gray-400"
                 >
                   {name(test)}

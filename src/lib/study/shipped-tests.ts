@@ -71,3 +71,27 @@ export function isShippedTestFamily(family: string | null | undefined): boolean 
   if (!family) return true
   return SHIPPED_TEST_FAMILIES.has(family.toLowerCase())
 }
+
+/**
+ * The coming-soon strip on the study landing page is what we are willing
+ * to ADVERTISE, which is a product decision rather than a bank fact, so it
+ * is edited here and not in study_topics:
+ *
+ *  - HIDDEN: families that have a topic row but that we are not announcing
+ *    (2026-09-07: IELTS, TOEIC and GRE came off the strip).
+ *  - EXTRA: families announced before any topic row exists. They render as
+ *    locked chips only; nothing links to them and the API gate above still
+ *    refuses them, so adding one here creates no generate path.
+ */
+export const COMING_SOON_HIDDEN_SLUGS: ReadonlySet<string> = new Set([
+  'test-ielts',
+  'test-toeic',
+  'test-gre',
+])
+
+export const COMING_SOON_EXTRA: ReadonlyArray<{ slug: string; name_en: string; name_ko: string }> = [
+  { slug: 'test-map',   name_en: 'MAP Test', name_ko: 'MAP 테스트' },
+  { slug: 'test-ib',    name_en: 'IB',       name_ko: 'IB' },
+  { slug: 'test-igcse', name_en: 'IGCSE',    name_ko: 'IGCSE' },
+  { slug: 'test-ged',   name_en: 'GED',      name_ko: 'GED' },
+]
