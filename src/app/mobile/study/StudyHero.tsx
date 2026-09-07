@@ -89,6 +89,10 @@ export function StudyHero({ onOpenSearch, overflowMenu }: Props) {
   const dateStr = now.toLocaleDateString(ko ? 'ko-KR' : 'en-US', {
     month: 'short', day: 'numeric', weekday: 'short',
   })
+  // The chip is the only way into /mobile/study/stats, so it renders as soon
+  // as the streak is known — at zero as well. Hiding it at zero left a new or
+  // lapsed student with no entry point to their stats at all (2026-09-08).
+  const streakKnown = streak !== null
   const streakActive = (streak ?? 0) > 0
   const fraction = progress ? Math.min(1, progress.minutesToday / Math.max(1, progress.goalMinutes)) : 0
   const goalMet = fraction >= 1
@@ -136,12 +140,13 @@ export function StudyHero({ onOpenSearch, overflowMenu }: Props) {
             </h1>
           </div>
 
-          {streakActive && (
+          {streakKnown && (
             <Link
               href="/mobile/study/stats"
+              aria-label={ko ? '학습 통계 보기' : 'View your study stats'}
               className="flex-shrink-0 inline-flex items-baseline gap-1.5 rounded-full bg-white/15 backdrop-blur-sm ring-1 ring-white/20 px-3 py-1.5 hover:bg-white/25 transition"
             >
-              <Flame className="w-4 h-4 self-center text-orange-300" fill="currentColor" />
+              <Flame className={`w-4 h-4 self-center ${streakActive ? 'text-orange-300' : 'text-white/55'}`} fill="currentColor" />
               <span className="text-[14px] font-bold tabular-nums text-white">{streak}</span>
               <span className="text-[11px] text-white/80">{ko ? '일 연속' : 'day streak'}</span>
               {/* Streak freezes are disabled for now — the badge stays hidden
