@@ -99,7 +99,12 @@ export const StatsCard = React.memo<StatsCardProps>(function StatsCard({
       {/* Two-up on phones leaves ~150px per tile. A full won amount does not
           fit, so on phones a long value shows compactly (₩2,398만 / ₩23.98M)
           and a tap toggles the exact figure; the exact figure is always in
-          the title and the accessible name. */}
+          the title and the accessible name.
+
+          When it IS tappable it gets a 44px min-height: the figure's own line
+          box measured 31px, one pixel under the 32px floor the layout audit
+          enforces and well under the 44px a thumb wants. Only the toggleable
+          case pays for it - a plain figure is not a target. */}
       {(() => {
         const exact = typeof value === 'number' ? value.toLocaleString() : String(value)
         const compact = narrow && !expanded && exact.length > 8 ? compactMoney(exact, language) : null
@@ -107,7 +112,7 @@ export const StatsCard = React.memo<StatsCardProps>(function StatsCard({
         const toggleable = narrow && exact.length > 8
         return (
           <div
-            className={`${expanded ? 'text-base' : 'text-xl'} sm:text-4xl font-semibold tracking-tight text-gray-900 tabular-nums mb-1 sm:mb-2 ${expanded ? 'whitespace-nowrap' : 'truncate'} ${toggleable ? 'cursor-pointer select-none' : ''}`}
+            className={`${expanded ? 'text-base' : 'text-xl'} sm:text-4xl font-semibold tracking-tight text-gray-900 tabular-nums mb-1 sm:mb-2 ${expanded ? 'whitespace-nowrap' : 'truncate'} ${toggleable ? 'cursor-pointer select-none min-h-[44px] flex items-center' : ''}`}
             title={exact}
             aria-label={exact}
             role={toggleable ? 'button' : undefined}

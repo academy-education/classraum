@@ -45,9 +45,9 @@ export function CampOverviewPanel({
   if (overview === null) {
     return (
     <div className="space-y-4">
-      <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4">
+      <div className="grid grid-cols-2 xl:grid-cols-4 gap-3 sm:gap-4">
         {[...Array(4)].map((_, i) => (
-          <Card key={i} className="p-5 animate-pulse">
+          <Card key={i} className="p-4 sm:p-5 animate-pulse">
             <div className="flex items-center gap-2 mb-3">
               <div className="w-7 h-7 rounded-lg bg-gray-200" />
               <div className="h-3 bg-gray-200 rounded w-24" />
@@ -58,7 +58,7 @@ export function CampOverviewPanel({
       </div>
       <div className="grid grid-cols-1 lg:grid-cols-[1.4fr_1fr] gap-4">
         {[...Array(2)].map((_, i) => (
-          <Card key={i} className="p-5 animate-pulse">
+          <Card key={i} className="p-4 sm:p-5 animate-pulse">
             <div className="h-3 bg-gray-200 rounded w-32 mb-4" />
             <div className="h-40 bg-gray-100 rounded" />
           </Card>
@@ -70,8 +70,8 @@ export function CampOverviewPanel({
 
   return (
     <div className="space-y-4">
-      <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4">
-        <Card className="p-5">
+      <div className="grid grid-cols-2 xl:grid-cols-4 gap-3 sm:gap-4">
+        <Card className="p-4 sm:p-5">
           <div className="flex items-center gap-2 mb-3">
             <div className="w-7 h-7 rounded-lg bg-primary/10 flex items-center justify-center">
               <Users className="w-3.5 h-3.5 text-primary" strokeWidth={2.25} />
@@ -81,8 +81,8 @@ export function CampOverviewPanel({
             </p>
             <span aria-hidden className={`ml-auto w-1.5 h-1.5 rounded-full ${accent.dot}`} />
           </div>
-          <div className="flex items-baseline gap-2">
-            <p className="text-4xl font-semibold tracking-tight text-gray-900 tabular-nums">
+          <div className="flex items-baseline gap-1.5 flex-wrap">
+            <p className="text-2xl sm:text-4xl font-semibold tracking-tight text-gray-900 tabular-nums">
               {overview.studentsEnrolled}
             </p>
             <p className="text-sm text-gray-400">
@@ -91,7 +91,7 @@ export function CampOverviewPanel({
           </div>
         </Card>
 
-        <Card className="p-5">
+        <Card className="p-4 sm:p-5">
           <div className="flex items-center gap-2 mb-3">
             <div className="w-7 h-7 rounded-lg bg-primary/10 flex items-center justify-center">
               <CheckCircle2 className="w-3.5 h-3.5 text-primary" strokeWidth={2.25} />
@@ -101,8 +101,8 @@ export function CampOverviewPanel({
             </p>
             <span aria-hidden className={`ml-auto w-1.5 h-1.5 rounded-full ${accent.dot}`} />
           </div>
-          <div className="flex items-baseline gap-2">
-            <p className="text-4xl font-semibold tracking-tight text-gray-900 tabular-nums">
+          <div className="flex items-baseline gap-1.5 flex-wrap">
+            <p className="text-2xl sm:text-4xl font-semibold tracking-tight text-gray-900 tabular-nums">
               {overview.completion.pct}%
             </p>
             <p className="text-sm text-gray-400">
@@ -114,7 +114,7 @@ export function CampOverviewPanel({
           </div>
         </Card>
 
-        <Card className="p-5">
+        <Card className="p-4 sm:p-5">
           <div className="flex items-center gap-2 mb-3">
             <div className="w-7 h-7 rounded-lg bg-primary/10 flex items-center justify-center">
               <Target className="w-3.5 h-3.5 text-primary" strokeWidth={2.25} />
@@ -124,8 +124,8 @@ export function CampOverviewPanel({
             </p>
             <span aria-hidden className={`ml-auto w-1.5 h-1.5 rounded-full ${accent.dot}`} />
           </div>
-          <div className="flex items-baseline gap-2">
-            <p className="text-4xl font-semibold tracking-tight text-gray-900 tabular-nums">
+          <div className="flex items-baseline gap-1.5 flex-wrap">
+            <p className="text-2xl sm:text-4xl font-semibold tracking-tight text-gray-900 tabular-nums">
               {overview.averageScorePct !== null ? `${overview.averageScorePct}%` : '—'}
             </p>
             <p className="text-sm text-gray-400">
@@ -136,7 +136,7 @@ export function CampOverviewPanel({
           </div>
         </Card>
 
-        <Card className="p-5">
+        <Card className="p-4 sm:p-5">
           <div className="flex items-center gap-2 mb-3">
             <div className="w-7 h-7 rounded-lg bg-primary/10 flex items-center justify-center">
               <AlertTriangle className="w-3.5 h-3.5 text-primary" strokeWidth={2.25} />
@@ -146,8 +146,8 @@ export function CampOverviewPanel({
             </p>
             <span aria-hidden className={`ml-auto w-1.5 h-1.5 rounded-full ${accent.dot}`} />
           </div>
-          <div className="flex items-baseline gap-2">
-            <p className="text-4xl font-semibold tracking-tight text-gray-900 tabular-nums">
+          <div className="flex items-baseline gap-1.5 flex-wrap">
+            <p className="text-2xl sm:text-4xl font-semibold tracking-tight text-gray-900 tabular-nums">
               {overview.skillsToReview.count}
             </p>
             <p className="text-sm text-gray-400">
@@ -159,7 +159,7 @@ export function CampOverviewPanel({
 
       {/* Trend + status donut, the mock's middle row */}
       <div className="grid grid-cols-1 lg:grid-cols-[1.4fr_1fr] gap-4">
-        <Card className="p-5">
+        <Card className="p-4 sm:p-5">
           <div className="flex items-center justify-between gap-3 mb-3">
             <h3 className="text-sm font-semibold text-gray-900">{t('camp.overview.trendTitle')}</h3>
             <span className="text-[11px] text-gray-400 whitespace-nowrap tabular-nums">
@@ -219,7 +219,7 @@ export function CampOverviewPanel({
           )}
         </Card>
 
-        <Card className="p-5">
+        <Card className="p-4 sm:p-5">
           <h3 className="text-sm font-semibold text-gray-900 mb-3">{t('camp.overview.assignmentStatus')}</h3>
           {donut}
         </Card>
@@ -227,7 +227,7 @@ export function CampOverviewPanel({
 
       {/* Suggested topics for teacher review — the itemised
           skills-to-review list, domain chips like the mock rows */}
-      <Card className="p-5">
+      <Card className="p-4 sm:p-5">
         <div className="flex items-center justify-between gap-3 mb-1">
           <h3 className="text-sm font-semibold text-gray-900">{t('camp.overview.suggestedTopics')}</h3>
           <span className="text-[11px] text-gray-400 whitespace-nowrap">

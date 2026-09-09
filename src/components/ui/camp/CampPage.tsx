@@ -1731,7 +1731,12 @@ function ProgramSummary({ program, formatDate, quotaLabel, large = false }: {
               {formatDate(program.starts_on)} – {formatDate(program.ends_on)}
             </span>
           )}
-          <span className="inline-flex items-center rounded-md bg-gray-100 px-1.5 py-0.5 text-[11px] font-medium text-gray-600 tabular-nums">
+          {/* `large` means this is the CURRENT program, not a row in the
+              dropdown. On a phone the quota card renders the same number
+              with a progress bar directly below this, so the chip is a
+              duplicate there and only the dropdown rows still need it -
+              those compare programs against each other. */}
+          <span className={`${large ? 'hidden sm:inline-flex' : 'inline-flex'} items-center rounded-md bg-gray-100 px-1.5 py-0.5 text-[11px] font-medium text-gray-600 tabular-nums`}>
             {quotaLabel}
           </span>
         </div>
