@@ -278,11 +278,11 @@ export function LevelTestsPage({ academyId }: LevelTestsPageProps) {
             visual jump on first paint. Every other manager/teacher page
             does this; level-tests was the only outlier replacing the
             title + description with gray rectangles. */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
+        <div className="flex flex-row items-center justify-between gap-3 mb-4 sm:gap-4 sm:mb-8">
           <div>
             <p className="hidden sm:block text-2xs font-semibold uppercase tracking-[0.12em] text-primary mb-1.5">{String(t('eyebrows.levelTests'))}</p>
             <h1 className="text-xl sm:text-3xl font-semibold tracking-tight text-gray-900">{String(t('levelTests.title'))}</h1>
-            <p className="text-gray-500">{String(t('levelTests.description'))}</p>
+            <p className="hidden sm:block text-gray-500">{String(t('levelTests.description'))}</p>
           </div>
           <Button
             disabled
@@ -346,11 +346,11 @@ export function LevelTestsPage({ academyId }: LevelTestsPageProps) {
   return (
     <div className="p-4">
       {/* Header - matches other pages */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
+      <div className="flex flex-row items-center justify-between gap-3 mb-4 sm:gap-4 sm:mb-8">
         <div>
           <p className="hidden sm:block text-2xs font-semibold uppercase tracking-[0.12em] text-primary mb-1.5">{String(t('eyebrows.levelTests'))}</p>
           <h1 className="text-xl sm:text-3xl font-semibold tracking-tight text-gray-900">{String(t('levelTests.title'))}</h1>
-          <p className="text-gray-500">{String(t('levelTests.description'))}</p>
+          <p className="hidden sm:block text-gray-500">{String(t('levelTests.description'))}</p>
         </div>
         <div className="flex items-center gap-2 sm:gap-3">
           <Button

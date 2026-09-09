@@ -764,7 +764,7 @@ export function AnnouncementsPage({ academyId }: AnnouncementsPageProps) {
   return (
     <div className="p-4">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
+      <div className="flex flex-row items-center justify-between gap-3 mb-4 sm:gap-4 sm:mb-8">
         <div>
           <p className="hidden sm:block text-2xs font-semibold uppercase tracking-[0.12em] text-primary mb-1.5">{t('eyebrows.announcements')}</p>
           <h1 className="text-xl sm:text-3xl font-semibold tracking-tight text-gray-900">

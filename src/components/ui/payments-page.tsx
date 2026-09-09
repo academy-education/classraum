@@ -2329,7 +2329,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
   return (
     <div className="p-4">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
+      <div className="flex flex-row items-center justify-between gap-3 mb-4 sm:gap-4 sm:mb-8">
         <div>
           <p className="hidden sm:block text-2xs font-semibold uppercase tracking-[0.12em] text-primary mb-1.5">{t('eyebrows.payments')}</p>
           <h1 className="text-xl sm:text-3xl font-semibold tracking-tight text-gray-900">{t('payments.title')}</h1>
@@ -2353,14 +2353,14 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
       {/* Stats Dashboard */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 mb-6 sm:mb-8">
         {/* Total Revenue */}
-        <Card className="p-4 sm:p-5">
-          <div className="flex items-center gap-2 mb-3">
-            <div className="w-7 h-7 rounded-lg bg-emerald-50 flex items-center justify-center">
+        <Card className="p-3 sm:p-5">
+          <div className="flex items-center gap-2 mb-1.5 sm:mb-3">
+            <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-lg bg-emerald-50 flex items-center justify-center">
               <svg className="w-3.5 h-3.5 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2.25}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1" />
               </svg>
             </div>
-            <p className="text-[11px] font-semibold uppercase tracking-[0.1em] text-gray-500">{t('payments.totalRevenue')}</p>
+            <p className="text-[10px] sm:text-[11px] font-semibold uppercase tracking-[0.08em] sm:tracking-[0.1em] text-gray-500 leading-tight">{t('payments.totalRevenue')}</p>
           </div>
           {/* A nine-digit total ("₩433,745,000") does not fit a quarter-width
               card at tablet widths and used to render as "₩433,745,0...".
@@ -2374,14 +2374,14 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
         </Card>
 
         {/* Pending Payments */}
-        <Card className="p-4 sm:p-5">
-          <div className="flex items-center gap-2 mb-3">
-            <div className="w-7 h-7 rounded-lg bg-amber-50 flex items-center justify-center">
+        <Card className="p-3 sm:p-5">
+          <div className="flex items-center gap-2 mb-1.5 sm:mb-3">
+            <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-lg bg-amber-50 flex items-center justify-center">
               <svg className="w-3.5 h-3.5 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2.25}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
             </div>
-            <p className="text-[11px] font-semibold uppercase tracking-[0.1em] text-gray-500">{t('payments.pendingAmount')}</p>
+            <p className="text-[10px] sm:text-[11px] font-semibold uppercase tracking-[0.08em] sm:tracking-[0.1em] text-gray-500 leading-tight">{t('payments.pendingAmount')}</p>
           </div>
           <p className="text-xl sm:text-3xl font-semibold tracking-tight text-gray-900 tabular-nums truncate">
             {formatCurrency(allTimePending)}
@@ -2389,14 +2389,14 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
         </Card>
 
         {/* Active Templates */}
-        <Card className="p-4 sm:p-5">
-          <div className="flex items-center gap-2 mb-3">
+        <Card className="p-3 sm:p-5">
+          <div className="flex items-center gap-2 mb-1.5 sm:mb-3">
             <div className="w-7 h-7 rounded-lg bg-primary/10 flex items-center justify-center">
               <svg className="w-3.5 h-3.5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2.25}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
               </svg>
             </div>
-            <p className="text-[11px] font-semibold uppercase tracking-[0.1em] text-gray-500">{t('payments.activeTemplates')}</p>
+            <p className="text-[10px] sm:text-[11px] font-semibold uppercase tracking-[0.08em] sm:tracking-[0.1em] text-gray-500 leading-tight">{t('payments.activeTemplates')}</p>
           </div>
           <p className="text-xl sm:text-3xl font-semibold tracking-tight text-gray-900 tabular-nums truncate">
             {paymentTemplates.filter(t => t.is_active).length}
@@ -2404,14 +2404,14 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
         </Card>
 
         {/* Monthly Recurring Revenue */}
-        <Card className="p-4 sm:p-5">
-          <div className="flex items-center gap-2 mb-3">
-            <div className="w-7 h-7 rounded-lg bg-violet-50 flex items-center justify-center">
+        <Card className="p-3 sm:p-5">
+          <div className="flex items-center gap-2 mb-1.5 sm:mb-3">
+            <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-lg bg-violet-50 flex items-center justify-center">
               <svg className="w-3.5 h-3.5 text-violet-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2.25}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
               </svg>
             </div>
-            <p className="text-[11px] font-semibold uppercase tracking-[0.1em] text-gray-500">{t('payments.monthlyRecurringRevenue')}</p>
+            <p className="text-[10px] sm:text-[11px] font-semibold uppercase tracking-[0.08em] sm:tracking-[0.1em] text-gray-500 leading-tight">{t('payments.monthlyRecurringRevenue')}</p>
           </div>
           <p className="text-xl sm:text-3xl font-semibold tracking-tight text-gray-900 tabular-nums truncate">
             {formatCurrency(
