@@ -5903,13 +5903,20 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                             ) : (
                               filteredAttendance.map((attendance) => (
                                 <div key={attendance.id} className="p-3 bg-white rounded-lg ring-1 ring-gray-100 space-y-2">
-                                  <div className="flex items-center justify-between">
-                                    <span className="text-sm font-medium text-gray-900">{attendance.student_name}</span>
+                                  {/* Two columns, the same rhythm as Date|Status and
+                                      Location|Room above, so the attendance status
+                                      select lines up with them and is the same width.
+                                      It used to be max-w-[140px] against a 352px status
+                                      select doing the same job one screen up, which
+                                      read as two different design systems in one
+                                      dialog. */}
+                                  <div className="grid grid-cols-2 gap-4 items-center">
+                                    <span className="text-sm font-medium text-gray-900 truncate">{attendance.student_name}</span>
                                     <Select 
                                       value={attendance.status} 
                                       onValueChange={(value) => updateAttendanceStatus(attendance.student_id, value as Attendance['status'])}
                                     >
-                                      <SelectTrigger className="!h-10 w-full max-w-[140px] rounded-lg border border-border bg-transparent focus:border-primary focus-visible:border-primary focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=open]:border-primary py-2 px-3">
+                                      <SelectTrigger className="!h-10 w-full rounded-lg border border-border bg-transparent focus:border-primary focus-visible:border-primary focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=open]:border-primary py-2 px-3">
                                         <SelectValue placeholder={String(t("sessions.selectStatus"))} />
                                       </SelectTrigger>
                                       <SelectContent className="z-[90]">
@@ -5927,7 +5934,9 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
                                       placeholder={String(t("sessions.addNoteForStudent"))}
                                       value={attendance.note || ''}
                                       onChange={(e) => handleAttendanceNoteUpdate(attendance.student_id, e.target.value)}
-                                      className="h-9 text-sm"
+                                      /* h-10, not h-9: every other control in this
+                                         dialog is 40px and this one was 36px. */
+                                      className="h-10 text-sm"
                                     />
                                   </div>
                                 </div>
