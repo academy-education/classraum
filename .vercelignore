@@ -38,6 +38,21 @@ coverage/
 .pnpm-store/
 
 # Package manager files
-package-lock.json
+#
+# package-lock.json is deliberately NOT ignored. It used to be, and that is
+# what "builds locally, fails on Vercel" meant: without the lockfile Vercel
+# re-resolved every caret range from scratch, so it built a dependency set
+# nobody had ever type-checked. On 2026-09-09 that set was
+# @supabase/supabase-js 2.116.0 against the 2.52.0 we develop on -- 64 minor
+# versions of drift in the library that generates our database types -- plus
+# TypeScript 5.9 against 5.8. `npx tsc --noEmit` passed locally with 0 errors
+# and the same command over Vercel's resolution produced 122.
+#
+# That is also why next.config.js survived since July with
+# ignoreBuildErrors: true. The errors it was suppressing were never in our
+# code; they were in a dependency tree that only ever existed on Vercel.
+#
+# Ignoring a lockfile does not save a meaningful amount of upload; it only
+# removes the guarantee that CI builds what you tested. Do not re-add it.
 yarn.lock
 pnpm-lock.yaml
