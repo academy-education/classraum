@@ -66,7 +66,7 @@ const DEFAULT_CARDS: DashboardCard[] = [
 ]
 
 // Default layouts for different breakpoints (12 column grid)
-const DEFAULT_LAYOUTS: Layouts = {
+export const DEFAULT_LAYOUTS: Layouts = {
   lg: [
     // Stats row - 4 cards, 3 cols each
     { i: 'stats-revenue', x: 0, y: 0, w: 3, h: 3 },
@@ -108,16 +108,18 @@ const DEFAULT_LAYOUTS: Layouts = {
     { i: 'bottom-students', x: 0, y: 24, w: 6, h: 5 },
   ],
   xs: [
-    // Single column
-    { i: 'stats-revenue', x: 0, y: 0, w: 4, h: 3 },
-    { i: 'stats-users', x: 0, y: 3, w: 4, h: 3 },
-    { i: 'stats-classrooms', x: 0, y: 6, w: 4, h: 3 },
-    { i: 'stats-sessions', x: 0, y: 9, w: 4, h: 3 },
-    { i: 'todays-sessions', x: 0, y: 12, w: 4, h: 4 },
-    { i: 'recent-activity', x: 0, y: 16, w: 4, h: 4 },
-    { i: 'classroom-rankings', x: 0, y: 20, w: 4, h: 5 },
-    { i: 'top-students', x: 0, y: 25, w: 4, h: 5 },
-    { i: 'bottom-students', x: 0, y: 30, w: 4, h: 5 },
+    // Phone: the four stat widgets sit two-up (2 of 4 columns, 2 rows each)
+    // so the numbers a manager opens the app for share one screen; the
+    // list widgets keep the full width below them.
+    { i: 'stats-revenue', x: 0, y: 0, w: 2, h: 2 },
+    { i: 'stats-users', x: 2, y: 0, w: 2, h: 2 },
+    { i: 'stats-classrooms', x: 0, y: 2, w: 2, h: 2 },
+    { i: 'stats-sessions', x: 2, y: 2, w: 2, h: 2 },
+    { i: 'todays-sessions', x: 0, y: 4, w: 4, h: 4 },
+    { i: 'recent-activity', x: 0, y: 8, w: 4, h: 4 },
+    { i: 'classroom-rankings', x: 0, y: 12, w: 4, h: 5 },
+    { i: 'top-students', x: 0, y: 17, w: 4, h: 5 },
+    { i: 'bottom-students', x: 0, y: 22, w: 4, h: 5 },
   ],
 }
 

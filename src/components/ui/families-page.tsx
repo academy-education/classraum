@@ -34,7 +34,7 @@ import { cn } from '@/lib/utils'
 import { DashboardCard, BulkActionBar, TableCheckbox } from '@/components/ui/dashboard'
 import { useCreateShortcut } from '@/hooks/useCreateShortcut'
 import { useTranslation } from '@/hooks/useTranslation'
-import { useResponsiveViewMode } from '@/hooks/useResponsiveViewMode'
+import { useResponsiveViewMode, useIsNarrowViewport } from '@/hooks/useResponsiveViewMode'
 import { ModalShell } from '@/components/ui/common/ModalShell'
 import { EmptyState } from '@/components/ui/common/EmptyState'
 import { useToast } from '@/hooks/use-toast'
@@ -111,6 +111,8 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
 
 
   const [viewMode, setViewMode] = useResponsiveViewMode<'card' | 'table'>('table', 'card')
+  // Phones get the shared compact row; the full card below is the desktop one.
+  const isNarrowViewport = useIsNarrowViewport()
   const [selectedFamilies, setSelectedFamilies] = useState<Set<string>>(new Set())
   const [sortField, setSortField] = useState<string | null>(null)
   const [sortDirection, setSortDirection] = useState<'asc' | 'desc'>('asc')
@@ -1213,7 +1215,7 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
 
       {/* View Mode Toggle */}
       <div className="flex justify-end mb-4">
-        <div className="flex items-center gap-1 border border-border rounded-lg p-1 bg-white">
+        <div className="hidden md:flex items-center gap-1 border border-border rounded-lg p-1 bg-white">
           <Button
             variant={viewMode === 'table' ? 'default' : 'ghost'}
             size="sm"
@@ -1244,7 +1246,7 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
           placeholder={String(t("families.searchPlaceholder"))}
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
-          className="h-12 pl-12 pr-12 rounded-lg border border-border bg-white focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0 text-sm shadow-sm"
+          className="h-11 md:h-10 pl-12 pr-12 rounded-lg border border-border bg-white focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0 text-base shadow-sm"
         />
         <SearchKbdHint />
       </div>
@@ -1310,6 +1312,35 @@ export function FamiliesPage({ academyId }: FamiliesPageProps) {
               const parents = family.members.filter(m => m.user_role === 'parent')
               const students = family.members.filter(m => m.user_role === 'student')
               const primaryParent = parents[0]
+              if (isNarrowViewport) return (
+                <DashboardCard
+                  key={family.id}
+                  accentColor="var(--color-primary, #2885e8)"
+                  statusLabel={t('families.family') as string}
+                  statusToneClass="text-primary"
+                  title={family.name || `${t('families.family')} ${family.id.slice(0, 8)}`}
+                  subtitle={primaryParent ? (
+                    <>
+                      <Mail className="w-3.5 h-3.5 flex-shrink-0 mt-0.5" strokeWidth={1.75} />
+                      <span>{primaryParent.email || primaryParent.name}</span>
+                    </>
+                  ) : null}
+                  metrics={[
+                    { label: t('families.parents') as string, value: String(parents.length) },
+                    { label: t('families.students') as string, value: String(students.length) },
+                  ]}
+                  actions={
+                    <>
+                      <Button variant="ghost" size="icon" onClick={(e) => { e.stopPropagation(); handleEditClick(family) }} title={String(t('common.edit'))}>
+                        <Edit className="w-4 h-4" strokeWidth={1.75} />
+                      </Button>
+                      <Button variant="ghost" size="icon" className="text-rose-600" onClick={(e) => { e.stopPropagation(); handleDeleteClick(family) }} title={String(t('common.delete'))}>
+                        <Trash2 className="w-4 h-4" strokeWidth={1.75} />
+                      </Button>
+                    </>
+                  }
+                />
+              )
               return (
                 <Card
                   key={family.id}

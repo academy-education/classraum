@@ -848,3 +848,9 @@
     min-width: 44px;
   }
 }
+
+/* Phone list pages: DashboardCard renders a compact row below md, and the
+   page grids' gap-6 was sized for full cards. Tighten the gap around rows. */
+@media (max-width: 767.98px) {
+  .grid:has(> [data-compact-card]) { gap: 0.5rem; }
+}

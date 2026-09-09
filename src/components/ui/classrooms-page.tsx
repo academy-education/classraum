@@ -3,8 +3,10 @@
 import { useState, useEffect, useRef, useCallback, useMemo } from 'react'
 import { useListPageShortcuts } from '@/hooks/useListPageShortcuts'
 import { SearchKbdHint } from '@/components/ui/search-kbd-hint'
+import { FilterBar } from '@/components/ui/common/FilterBar'
 import { db } from '@/lib/supabase'
 import { useClassroomsData } from '@/components/ui/classrooms/hooks/useClassroomsData'
+import { useIsNarrowViewport } from '@/hooks/useResponsiveViewMode'
 import type { Classroom, Schedule } from '@/components/ui/classrooms/hooks/useClassroomsData'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
@@ -282,6 +284,9 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
   const searchInputRef = useRef<HTMLInputElement>(null)
   const [teacherSearchQuery, setTeacherSearchQuery] = useState('')
   const [pauseFilter, setPauseFilter] = useState<'active' | 'paused' | 'all'>('active')
+  // Phone card view goes through the shared DashboardCard (compact row below md)
+  // instead of this page's full card, which repeats every field per classroom.
+  const isNarrowViewport = useIsNarrowViewport()
 
   // Student tooltip state
   const [hoveredStudent, setHoveredStudent] = useState<string | null>(null)
@@ -1717,7 +1722,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
           Hidden on phones: its two numbers are in the header line above. */}
       <div className="mb-8 hidden sm:block">
         <Card className="w-full sm:w-80 p-5">
-          <div className="flex items-center gap-2 mb-3">
+          <div className="flex items-center gap-2 mb-1.5 sm:mb-3">
             <div className="w-7 h-7 rounded-lg bg-primary/10 flex items-center justify-center">
               <School className="w-3.5 h-3.5 text-primary" strokeWidth={2.25} />
             </div>
@@ -1725,8 +1730,8 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
               {classroomSearchQuery || pauseFilter !== 'active' ? String(t("common.searchResults")) : t("classrooms.totalActiveClassrooms")}
             </p>
           </div>
-          <div className="flex items-baseline gap-2 mb-3">
-            <p className="text-4xl sm:text-5xl font-semibold tracking-tight text-gray-900 tabular-nums">
+          <div className="flex items-baseline gap-2 mb-1 sm:mb-3">
+            <p className="text-2xl sm:text-5xl font-semibold tracking-tight text-gray-900 tabular-nums">
               {filteredTotalCount}
             </p>
             <p className="text-sm text-gray-400">
@@ -1745,7 +1750,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
 
       {/* View Mode Toggle */}
       <div className="flex justify-end mb-4">
-        <div className="flex items-center gap-1 border border-border rounded-lg p-1 bg-white">
+        <div className="hidden md:flex items-center gap-1 border border-border rounded-lg p-1 bg-white">
           <Button
             variant={viewMode === 'table' ? 'default' : 'ghost'}
             size="sm"
@@ -1768,7 +1773,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
       </div>
 
       {/* Search Bar and Filters */}
-      <div className="flex flex-col sm:flex-row gap-4 mb-4">
+      <FilterBar activeCount={pauseFilter !== 'active' ? 1 : 0}>
         <div className="relative flex-1 max-w-md">
           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5 pointer-events-none" />
           <Input
@@ -1777,7 +1782,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
             placeholder={String(t("classrooms.searchClassrooms"))}
             value={classroomSearchQuery}
             onChange={(e) => setClassroomSearchQuery(e.target.value)}
-            className="h-12 pl-12 pr-12 rounded-lg border border-border bg-white focus:border-primary focus-visible:border-primary focus-visible:ring-0 focus-visible:ring-offset-0 text-sm shadow-sm"
+            className="h-11 md:h-10 pl-12 pr-12 rounded-lg border border-border bg-white focus:border-primary focus-visible:border-primary focus-visible:ring-0 focus-visible:ring-offset-0 text-base shadow-sm"
           />
         <SearchKbdHint />
         </div>
@@ -1790,7 +1795,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
             setCurrentPage(1)
           }}
         >
-          <SelectTrigger className="[&[data-size=default]]:h-12 h-12 min-h-[3rem] w-full sm:w-60 rounded-lg border border-border bg-white focus:border-primary focus-visible:border-primary focus-visible:ring-0 focus-visible:ring-offset-0 text-sm shadow-sm">
+          <SelectTrigger className="[&[data-size=default]]:h-11 md:[&[data-size=default]]:h-10 h-11 md:h-10 w-full sm:w-60 rounded-lg border border-border bg-white focus:border-primary focus-visible:border-primary focus-visible:ring-0 focus-visible:ring-offset-0 text-base shadow-sm">
             <SelectValue placeholder={String(t("classrooms.allClassrooms"))} />
           </SelectTrigger>
           <SelectContent>
@@ -1799,7 +1804,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
             <SelectItem value="all">{t("classrooms.allClassrooms")}</SelectItem>
           </SelectContent>
         </Select>
-      </div>
+      </FilterBar>
 
       {/* Bulk Action Bar */}
       {viewMode === 'table' && selectedClassroomIds.size > 0 && (
@@ -1944,6 +1949,38 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
           const accentColor = classroom.color || '#6B7280'
           const stateLabel = classroom.paused ? t('classrooms.paused') : t('classrooms.active')
           const stateColor = classroom.paused ? 'text-amber-600' : 'text-emerald-600'
+          if (isNarrowViewport) return (
+            <DashboardCard
+              key={classroom.id}
+              paused={classroom.paused ?? false}
+              accentColor={accentColor}
+              statusLabel={stateLabel}
+              statusToneClass={stateColor}
+              title={classroom.name}
+              subtitle={classroom.teacher_name ? (
+                <>
+                  <GraduationCap className="w-3.5 h-3.5 flex-shrink-0 mt-0.5" strokeWidth={1.75} />
+                  <span>{classroom.teacher_name}</span>
+                </>
+              ) : null}
+              metrics={[
+                { label: t('classrooms.students') as string, value: String(classroom.student_count || 0) },
+                { label: t('classrooms.grade') as string, value: classroom.grade && classroom.grade.trim() ? classroom.grade : '—' },
+                { label: t('classrooms.subject') as string, value: classroom.subject_name && classroom.subject_name.trim() ? classroom.subject_name : '—' },
+              ]}
+              actions={
+                <>
+                  <Button variant="ghost" size="icon" onClick={(e) => { e.stopPropagation(); handleTogglePause(classroom) }} title={String(classroom.paused ? t('classrooms.resume') : t('classrooms.pause'))}>
+                    {classroom.paused ? <Play className="w-4 h-4 text-emerald-600" strokeWidth={1.75} /> : <Pause className="w-4 h-4" strokeWidth={1.75} />}
+                  </Button>
+                  <Button variant="ghost" size="icon" onClick={(e) => { e.stopPropagation(); handleEditClick(classroom) }}>
+                    <Edit className="w-4 h-4" strokeWidth={1.75} />
+                  </Button>
+                </>
+              }
+              onClick={() => handleDetailsClick(classroom)}
+            />
+          )
           return (
             <Card
               key={classroom.id}

@@ -25,6 +25,7 @@ const CardVisibilityPanel = dynamic(
 )
 import { useDashboardStats, useTodaysSessions, useRecentActivities, useClassroomPerformance, useAssignmentsAwaitingGrades } from './hooks'
 import { useDashboardLayoutStore, getVisibleLayouts } from '@/stores'
+import { DEFAULT_LAYOUTS } from '@/stores/useDashboardLayoutStore'
 import { simpleTabDetection } from '@/utils/simpleTabDetection'
 import styles from './dashboard.module.css'
 
@@ -290,7 +291,11 @@ export default function DashboardPage() {
   // Get visible cards and their layouts with constraints merged
   const visibleCards = useMemo(() => cards.filter(c => c.visible), [cards])
   const visibleLayouts = useMemo(() => {
-    const filtered = getVisibleLayouts(layouts, cards)
+    // The phone breakpoint is never edited (edit mode is a desktop
+    // affordance), but a layout saved from a desktop edit carries an xs
+    // entry from whatever defaults were current then. Render xs from the
+    // shipped defaults so every phone gets the two-up stat row.
+    const filtered = getVisibleLayouts({ ...layouts, xs: DEFAULT_LAYOUTS.xs }, cards)
     // Merge card constraints (minW, minH, maxW, maxH) into layout items
     // Only include defined constraints to avoid overwriting valid values with undefined
     const cardConstraints = new Map(cards.map(c => {

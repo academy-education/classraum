@@ -782,7 +782,7 @@ export function AnnouncementsPage({ academyId }: AnnouncementsPageProps) {
 
       {/* View Mode Toggle */}
       <div className="flex justify-end mb-4">
-        <div className="flex items-center gap-1 border border-border rounded-lg p-1 bg-white">
+        <div className="hidden md:flex items-center gap-1 border border-border rounded-lg p-1 bg-white">
           <Button
             variant={viewMode === 'table' ? 'default' : 'ghost'}
             size="sm"
@@ -817,7 +817,7 @@ export function AnnouncementsPage({ academyId }: AnnouncementsPageProps) {
               setSearchQuery(e.target.value)
               setCurrentPage(1)
             }}
-            className="h-12 pl-12 pr-12 rounded-lg border border-border bg-white focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0 text-sm shadow-sm"
+            className="h-11 md:h-10 pl-12 pr-12 rounded-lg border border-border bg-white focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0 text-base shadow-sm"
           />
         <SearchKbdHint />
         </div>

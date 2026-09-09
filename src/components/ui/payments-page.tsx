@@ -2250,7 +2250,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
         </div>
         
         {/* Stats Cards Skeleton */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6">
           <StatCardSkeleton delay={0} />
           <StatCardSkeleton delay={100} />
           <StatCardSkeleton delay={200} />
@@ -2351,9 +2351,9 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
       </div>
 
       {/* Stats Dashboard */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 mb-6 sm:mb-8">
         {/* Total Revenue */}
-        <Card className="p-5">
+        <Card className="p-4 sm:p-5">
           <div className="flex items-center gap-2 mb-3">
             <div className="w-7 h-7 rounded-lg bg-emerald-50 flex items-center justify-center">
               <svg className="w-3.5 h-3.5 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2.25}>
@@ -2374,7 +2374,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
         </Card>
 
         {/* Pending Payments */}
-        <Card className="p-5">
+        <Card className="p-4 sm:p-5">
           <div className="flex items-center gap-2 mb-3">
             <div className="w-7 h-7 rounded-lg bg-amber-50 flex items-center justify-center">
               <svg className="w-3.5 h-3.5 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2.25}>
@@ -2389,7 +2389,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
         </Card>
 
         {/* Active Templates */}
-        <Card className="p-5">
+        <Card className="p-4 sm:p-5">
           <div className="flex items-center gap-2 mb-3">
             <div className="w-7 h-7 rounded-lg bg-primary/10 flex items-center justify-center">
               <svg className="w-3.5 h-3.5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2.25}>
@@ -2404,7 +2404,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
         </Card>
 
         {/* Monthly Recurring Revenue */}
-        <Card className="p-5">
+        <Card className="p-4 sm:p-5">
           <div className="flex items-center gap-2 mb-3">
             <div className="w-7 h-7 rounded-lg bg-violet-50 flex items-center justify-center">
               <svg className="w-3.5 h-3.5 text-violet-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2.25}>
@@ -2490,7 +2490,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
                 placeholder={String(t('payments.searchPaymentPlans'))}
                 value={planSearchQuery}
                 onChange={(e) => setPlanSearchQuery(e.target.value)}
-                className="h-12 pl-12 rounded-lg border border-border bg-white focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0 text-sm shadow-sm"
+                className="h-11 md:h-10 pl-12 rounded-lg border border-border bg-white focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0 text-base shadow-sm"
               />
             </div>
             <Button onClick={() => setShowAddPlanModal(true)} className="flex items-center gap-2 ml-4">
@@ -2641,7 +2641,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
         <div>
           {/* View Mode Toggle */}
           <div className="flex justify-end mb-4">
-            <div className="flex items-center gap-1 border border-border rounded-lg p-1 bg-white">
+            <div className="hidden md:flex items-center gap-1 border border-border rounded-lg p-1 bg-white">
               <Button
                 variant={viewMode === 'table' ? 'default' : 'ghost'}
                 size="sm"
@@ -2678,7 +2678,7 @@ export function PaymentsPage({ academyId }: PaymentsPageProps) {
               placeholder={String(t('payments.searchByStatusEmailAmount'))}
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="h-12 pl-12 pr-12 rounded-lg border border-border bg-white focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0 text-sm shadow-sm"
+              className="h-11 md:h-10 pl-12 pr-12 rounded-lg border border-border bg-white focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0 text-base shadow-sm"
             />
               <SearchKbdHint />
           </div>

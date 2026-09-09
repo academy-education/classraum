@@ -4,6 +4,7 @@ import * as React from 'react'
 import { Card } from '@/components/ui/card'
 import { Eyebrow } from '@/components/ui/eyebrow'
 import { cn } from '@/lib/utils'
+import { useIsNarrowViewport } from '@/hooks/useResponsiveViewMode'
 
 /**
  * Shared dashboard card pattern, modeled on the classrooms-page card so
@@ -91,6 +92,64 @@ export function DashboardCard({
   className,
   onClick,
 }: DashboardCardProps) {
+  const narrow = useIsNarrowViewport()
+
+  /* Phone layout: one compact row per record instead of a full card.
+     A manager scanning 150 students on a 390px screen was paging through
+     cards that repeated every field; the row keeps the accent, status,
+     title, one subtitle line and up to three metrics, and hands the rest
+     (meta, notes, footer actions) to the details view the tap already
+     opens. Actions stay as small trailing controls. */
+  if (narrow) {
+    return (
+      <Card
+        data-compact-card=""
+        className={cn(
+          '!gap-0 !py-0 flex flex-row items-stretch overflow-hidden rounded-xl',
+          paused && 'opacity-60',
+          virtual && 'border-dashed opacity-70',
+          onClick && 'cursor-pointer active:bg-gray-50',
+          className
+        )}
+        onClick={onClick}
+      >
+        {accentColor && <div className="w-1 flex-shrink-0" style={{ backgroundColor: accentColor }} aria-hidden="true" />}
+        <div className="flex-1 min-w-0 px-3.5 py-3">
+          <div className="flex items-start justify-between gap-2">
+            <div className="min-w-0 flex-1">
+              <div className="flex items-baseline gap-2 min-w-0">
+                <h3 className="text-[15px] font-semibold text-gray-900 tracking-tight truncate">{title}</h3>
+                {statusLabel && <span className={cn('text-[11px] font-semibold whitespace-nowrap flex-shrink-0', statusToneClass)}>{statusLabel}</span>}
+              </div>
+              {subtitle && (
+                <div className="text-xs text-gray-500 flex items-center gap-1.5 mt-0.5 min-w-0 [&>span]:truncate">{subtitle}</div>
+              )}
+            </div>
+            {actions && <div className="flex items-center gap-0.5 -mr-1.5 -mt-1 flex-shrink-0 [&_button]:h-9 [&_button]:w-9 [&_button]:p-0">{actions}</div>}
+          </div>
+          {metrics && metrics.length > 0 && (
+            <div className="mt-2 flex flex-wrap gap-x-4 gap-y-1">
+              {metrics.slice(0, 3).map((metric, i) => (
+                <div key={i} className="flex items-baseline gap-1 min-w-0">
+                  <span className="text-[10px] font-medium uppercase tracking-wider text-gray-400 break-keep">{metric.label}</span>
+                  <span className="text-[13px] font-semibold text-gray-900 break-keep truncate">{metric.value}</span>
+                </div>
+              ))}
+            </div>
+          )}
+          {/* Pages whose card is not itself tappable (Students, Reports…) reach
+              their details through footer buttons; on a phone those stay, as a
+              compact row, or the record would have no way in. */}
+          {footerActions && (
+            <div className="mt-2.5 flex flex-wrap gap-1.5 [&_button]:h-8 [&_button]:min-h-0 [&_button]:px-2.5 [&_button]:text-xs [&_button]:rounded-md [&_button]:whitespace-nowrap">
+              {footerActions}
+            </div>
+          )}
+        </div>
+      </Card>
+    )
+  }
+
   return (
     <Card
       className={cn(

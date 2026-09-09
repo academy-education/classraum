@@ -543,7 +543,7 @@ export function StudentsPageOriginalUI({ academyId }: StudentsPageOriginalUIProp
 
       {/* View Mode Toggle */}
       <div className="flex justify-end mb-4">
-        <div className="flex items-center gap-1 border border-border rounded-lg p-1 bg-white">
+        <div className="hidden md:flex items-center gap-1 border border-border rounded-lg p-1 bg-white">
           <Button
             variant={viewMode === 'table' ? 'default' : 'ghost'}
             size="sm"
@@ -574,7 +574,7 @@ export function StudentsPageOriginalUI({ academyId }: StudentsPageOriginalUIProp
           placeholder={String(t("students.searchPlaceholder"))}
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
-          className="h-12 pl-12 pr-12 rounded-lg border border-border bg-white focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0 text-sm shadow-sm"
+          className="h-11 md:h-10 pl-12 pr-12 rounded-lg border border-border bg-white focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0 text-base shadow-sm"
         />
         <SearchKbdHint />
       </div>
@@ -791,10 +791,47 @@ export function StudentsPageOriginalUI({ academyId }: StudentsPageOriginalUIProp
           onActivateClick={handleActivateClick}
         />
 
-        {/* Pagination Controls */}
-        {effectiveTotalCount > 0 && (
-          <div className="mt-4 flex items-center justify-between border-t border-gray-200 bg-white px-4 py-3 sm:px-6">
-            <div className="flex flex-1 justify-between sm:hidden">
+        </>
+        )}
+      </div>
+      )}
+
+      {/* Pagination lives OUTSIDE the card/table branch: it used to sit inside
+          the table side only, so a phone (always card view) showed page 1 of
+          150 students with no way forward. Its own markup already had a
+          mobile prev/next — it just never rendered. */}
+      {/* Pagination Controls */}
+      {effectiveTotalCount > 0 && (
+        <div className="mt-4 flex items-center justify-between border-t border-gray-200 bg-white px-4 py-3 sm:px-6">
+          <div className="flex flex-1 justify-between sm:hidden">
+            <Button
+              onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
+              disabled={currentPage === 1}
+              variant="outline"
+            >
+              {t("students.pagination.previous")}
+            </Button>
+            <Button
+              onClick={() => setCurrentPage(p => Math.min(Math.ceil(effectiveTotalCount / itemsPerPage), p + 1))}
+              disabled={currentPage >= Math.ceil(effectiveTotalCount / itemsPerPage)}
+              variant="outline"
+            >
+              {t("students.pagination.next")}
+            </Button>
+          </div>
+          <div className="hidden sm:flex sm:flex-1 sm:items-center sm:justify-between">
+            <div>
+              <p className="text-sm text-gray-700">
+                {t("students.pagination.showing")}
+                <span className="font-medium"> {((currentPage - 1) * itemsPerPage) + 1} </span>
+                {t("students.pagination.to")}
+                <span className="font-medium"> {Math.min(currentPage * itemsPerPage, effectiveTotalCount)} </span>
+                {t("students.pagination.of")}
+                <span className="font-medium"> {effectiveTotalCount} </span>
+                {t("students.pagination.students")}
+              </p>
+            </div>
+            <div className="flex gap-2">
               <Button
                 onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
                 disabled={currentPage === 1}
@@ -810,40 +847,8 @@ export function StudentsPageOriginalUI({ academyId }: StudentsPageOriginalUIProp
                 {t("students.pagination.next")}
               </Button>
             </div>
-            <div className="hidden sm:flex sm:flex-1 sm:items-center sm:justify-between">
-              <div>
-                <p className="text-sm text-gray-700">
-                  {t("students.pagination.showing")}
-                  <span className="font-medium"> {((currentPage - 1) * itemsPerPage) + 1} </span>
-                  {t("students.pagination.to")}
-                  <span className="font-medium"> {Math.min(currentPage * itemsPerPage, effectiveTotalCount)} </span>
-                  {t("students.pagination.of")}
-                  <span className="font-medium"> {effectiveTotalCount} </span>
-                  {t("students.pagination.students")}
-                </p>
-              </div>
-              <div className="flex gap-2">
-                <Button
-                  onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
-                  disabled={currentPage === 1}
-                  variant="outline"
-                >
-                  {t("students.pagination.previous")}
-                </Button>
-                <Button
-                  onClick={() => setCurrentPage(p => Math.min(Math.ceil(effectiveTotalCount / itemsPerPage), p + 1))}
-                  disabled={currentPage >= Math.ceil(effectiveTotalCount / itemsPerPage)}
-                  variant="outline"
-                >
-                  {t("students.pagination.next")}
-                </Button>
-              </div>
-            </div>
           </div>
-        )}
-        </>
-        )}
-      </div>
+        </div>
       )}
 
       {/* Modals */}

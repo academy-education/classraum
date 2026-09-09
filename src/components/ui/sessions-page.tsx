@@ -27,6 +27,7 @@ import { simpleTabDetection } from '@/utils/simpleTabDetection'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { DashboardCard, DataTable, BulkActionBar, TableCheckbox, type DataTableColumn, type DataTableSortState } from '@/components/ui/dashboard'
+import { FilterBar } from '@/components/ui/common/FilterBar'
 import { StatusPill, type StatusPillTone } from '@/components/ui/status-pill'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
@@ -4470,7 +4471,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
         </div>
 
         {/* Stats Cards Skeletons */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mb-8">
+        <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6 mb-6 sm:mb-8">
           <Card className="w-full p-4 sm:p-6 animate-pulse border-l-4 border-gray-300">
             <div className="space-y-3">
               <div className="h-4 bg-gray-300 rounded w-32"></div>
@@ -4649,9 +4650,9 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
       </div>
 
       {/* Stats Cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mb-8">
-        <Card className="w-full p-5">
-          <div className="flex items-center gap-2 mb-3">
+      <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6 mb-6 sm:mb-8">
+        <Card className="w-full p-3 sm:p-5">
+          <div className="flex items-center gap-2 mb-1.5 sm:mb-3">
             <div className="w-7 h-7 rounded-lg bg-primary/10 flex items-center justify-center">
               <Calendar className="w-3.5 h-3.5 text-primary" strokeWidth={2.25} />
             </div>
@@ -4659,8 +4660,8 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
               {debouncedSessionSearchQuery ? t("sessions.filteredResults") : t("sessions.totalSessions")}
             </p>
           </div>
-          <div className="flex items-baseline gap-2 mb-3">
-            <p className="text-4xl sm:text-5xl font-semibold tracking-tight text-gray-900 tabular-nums">
+          <div className="flex items-baseline gap-2 mb-1 sm:mb-3">
+            <p className="text-2xl sm:text-5xl font-semibold tracking-tight text-gray-900 tabular-nums">
               {filteredTotalCount}
             </p>
             <p className="text-sm text-gray-400">
@@ -4677,7 +4678,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
           )}
         </Card>
         <Card
-          className={`w-full p-5 cursor-pointer transition-all ${
+          className={`w-full p-3 sm:p-5 cursor-pointer transition-all ${
             showTodayOnly ? 'ring-2 ring-emerald-300' : 'hover:-translate-y-0.5'
           }`}
           onClick={() => {
@@ -4695,7 +4696,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
             }
           }}
         >
-          <div className="flex items-center gap-2 mb-3">
+          <div className="flex items-center gap-2 mb-1.5 sm:mb-3">
             <div className="w-7 h-7 rounded-lg bg-emerald-50 flex items-center justify-center">
               <Filter className="w-3.5 h-3.5 text-emerald-600" strokeWidth={2.25} />
             </div>
@@ -4703,8 +4704,8 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
               {t("sessions.todaysSessions")}
             </p>
           </div>
-          <div className="flex items-baseline gap-2 mb-3">
-            <p className="text-4xl sm:text-5xl font-semibold tracking-tight text-gray-900 tabular-nums">
+          <div className="flex items-baseline gap-2 mb-1 sm:mb-3">
+            <p className="text-2xl sm:text-5xl font-semibold tracking-tight text-gray-900 tabular-nums">
               {todaySessionCount}
             </p>
             <p className="text-sm text-gray-400">
@@ -4721,7 +4722,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
           )}
         </Card>
         <Card
-          className={`w-full p-5 cursor-pointer transition-all ${
+          className={`w-full p-3 sm:p-5 cursor-pointer transition-all ${
             showUpcomingOnly ? 'ring-2 ring-violet-300' : 'hover:-translate-y-0.5'
           }`}
           onClick={() => {
@@ -4739,7 +4740,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
             }
           }}
         >
-          <div className="flex items-center gap-2 mb-3">
+          <div className="flex items-center gap-2 mb-1.5 sm:mb-3">
             <div className="w-7 h-7 rounded-lg bg-violet-50 flex items-center justify-center">
               <Filter className="w-3.5 h-3.5 text-violet-600" strokeWidth={2.25} />
             </div>
@@ -4747,8 +4748,8 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
               {t("sessions.upcomingSessions")}
             </p>
           </div>
-          <div className="flex items-baseline gap-2 mb-3">
-            <p className="text-4xl sm:text-5xl font-semibold tracking-tight text-gray-900 tabular-nums">
+          <div className="flex items-baseline gap-2 mb-1 sm:mb-3">
+            <p className="text-2xl sm:text-5xl font-semibold tracking-tight text-gray-900 tabular-nums">
               {upcomingSessionCount}
             </p>
             <p className="text-sm text-gray-400">
@@ -4768,7 +4769,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
 
       {/* View Toggle — 3-state: calendar / cards / table */}
       <div className="flex justify-end mb-4">
-        <div className="flex items-center gap-1 ring-1 ring-gray-200 rounded-lg p-1 bg-white">
+        <div className="hidden md:flex items-center gap-1 ring-1 ring-gray-200 rounded-lg p-1 bg-white">
           <Button
             variant={viewMode === 'calendar' ? 'default' : 'ghost'}
             size="sm"
@@ -4806,7 +4807,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
       </div>
 
       {/* Search Bar and Filters */}
-      <div className="flex flex-wrap gap-4 mb-4">
+      <FilterBar activeCount={[classroomFilter !== 'all', teacherFilter !== 'all', statusFilter !== 'all', !!startDateFilter || !!endDateFilter].filter(Boolean).length}>
         <div className="relative flex-1 min-w-[180px] sm:min-w-[250px] sm:max-w-md">
           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5 pointer-events-none" />
           <Input
@@ -4815,7 +4816,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
             placeholder={String(t("sessions.searchSessions"))}
             value={sessionSearchQuery}
             onChange={handleSessionSearchChange}
-            className="h-12 pl-12 pr-12 rounded-lg border border-border bg-white focus:border-primary focus-visible:border-primary focus-visible:ring-0 focus-visible:ring-offset-0 text-sm shadow-sm"
+            className="h-11 md:h-10 pl-12 pr-12 rounded-lg border border-border bg-white focus:border-primary focus-visible:border-primary focus-visible:ring-0 focus-visible:ring-offset-0 text-base shadow-sm"
           />
         <SearchKbdHint />
         </div>
@@ -4839,7 +4840,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
             }
           }}
         >
-          <SelectTrigger className="[&[data-size=default]]:h-12 h-12 min-h-[3rem] w-full sm:w-60 rounded-lg border border-border bg-white focus:border-primary focus-visible:border-primary focus-visible:ring-0 focus-visible:ring-offset-0 text-sm shadow-sm">
+          <SelectTrigger className="[&[data-size=default]]:h-11 md:[&[data-size=default]]:h-10 h-11 md:h-10 w-full sm:w-60 rounded-lg border border-border bg-white focus:border-primary focus-visible:border-primary focus-visible:ring-0 focus-visible:ring-offset-0 text-base shadow-sm">
             <SelectValue placeholder={String(t("sessions.allClassrooms"))} />
           </SelectTrigger>
           <SelectContent>
@@ -4873,7 +4874,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
             setCurrentPage(1)
           }}
         >
-          <SelectTrigger className="[&[data-size=default]]:h-12 h-12 min-h-[3rem] w-full sm:w-60 rounded-lg border border-border bg-white focus:border-primary focus-visible:border-primary focus-visible:ring-0 focus-visible:ring-offset-0 text-sm shadow-sm">
+          <SelectTrigger className="[&[data-size=default]]:h-11 md:[&[data-size=default]]:h-10 h-11 md:h-10 w-full sm:w-60 rounded-lg border border-border bg-white focus:border-primary focus-visible:border-primary focus-visible:ring-0 focus-visible:ring-offset-0 text-base shadow-sm">
             <SelectValue placeholder={String(t("sessions.allTeachers"))} />
           </SelectTrigger>
           <SelectContent>
@@ -4894,7 +4895,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
             setCurrentPage(1)
           }}
         >
-          <SelectTrigger className="[&[data-size=default]]:h-12 h-12 min-h-[3rem] w-full sm:w-60 rounded-lg border border-border bg-white focus:border-primary focus-visible:border-primary focus-visible:ring-0 focus-visible:ring-offset-0 text-sm shadow-sm">
+          <SelectTrigger className="[&[data-size=default]]:h-11 md:[&[data-size=default]]:h-10 h-11 md:h-10 w-full sm:w-60 rounded-lg border border-border bg-white focus:border-primary focus-visible:border-primary focus-visible:ring-0 focus-visible:ring-offset-0 text-base shadow-sm">
             <SelectValue placeholder={String(t("sessions.allStatuses"))} />
           </SelectTrigger>
           <SelectContent>
@@ -4938,7 +4939,7 @@ export function SessionsPage({ academyId, filterClassroomId, filterDate, onNavig
             </Button>
           )}
         </div>
-      </div>
+      </FilterBar>
 
       {/* Bulk Action Bar — only renders in table view when rows are selected */}
       {viewMode === 'table' && selectedSessionIds.size > 0 && (

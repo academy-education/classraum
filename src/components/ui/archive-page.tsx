@@ -1011,7 +1011,7 @@ export function ArchivePage({ academyId }: ArchivePageProps) {
           placeholder={String(t("archive.searchPlaceholder"))}
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
-          className="h-12 pl-12 pr-12 rounded-lg border border-border bg-white focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0 text-sm shadow-sm"
+          className="h-11 md:h-10 pl-12 pr-12 rounded-lg border border-border bg-white focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0 text-base shadow-sm"
         />
         <SearchKbdHint />
       </div>
@@ -1020,7 +1020,7 @@ export function ArchivePage({ academyId }: ArchivePageProps) {
       {/* Mobile Dropdown */}
       <div className="sm:hidden mb-4">
         <Select value={typeFilter} onValueChange={(value) => setTypeFilter(value as typeof typeFilter)}>
-          <SelectTrigger className="[&[data-size=default]]:h-12 h-12 min-h-[3rem] w-full rounded-lg border border-border bg-white focus:border-primary focus-visible:border-primary focus-visible:ring-0 focus-visible:ring-offset-0 text-sm shadow-sm">
+          <SelectTrigger className="[&[data-size=default]]:h-11 md:[&[data-size=default]]:h-10 h-11 md:h-10 w-full rounded-lg border border-border bg-white focus:border-primary focus-visible:border-primary focus-visible:ring-0 focus-visible:ring-offset-0 text-base shadow-sm">
             <SelectValue />
           </SelectTrigger>
           <SelectContent>

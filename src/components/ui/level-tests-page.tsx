@@ -367,7 +367,7 @@ export function LevelTestsPage({ academyId }: LevelTestsPageProps) {
           Matches the convention used by sessions / classrooms / students / etc. */}
       {tests.length > 0 && (
         <div className="flex justify-end mb-4">
-          <div className="flex items-center gap-1 border border-border rounded-lg p-1 bg-white">
+          <div className="hidden md:flex items-center gap-1 border border-border rounded-lg p-1 bg-white">
             <Button
               variant={viewMode === 'list' ? 'default' : 'ghost'}
               size="sm"

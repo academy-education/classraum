@@ -87,7 +87,7 @@ export function ClassroomsListDemo() {
 
         {/* View toggle */}
         <div className="flex justify-end mb-3">
-          <div className="flex items-center gap-1 border border-border rounded-lg p-1 bg-white">
+          <div className="hidden md:flex items-center gap-1 border border-border rounded-lg p-1 bg-white">
             <Button
               variant={view === 'table' ? 'default' : 'ghost'}
               size="sm"

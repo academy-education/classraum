@@ -85,7 +85,12 @@ export function useResponsiveViewMode<T extends string>(
 ): [T, (next: T) => void] {
   const isNarrow = useIsNarrowViewport()
   const [override, setOverride] = useState<T | null>(null)
-  const viewMode = override ?? (isNarrow ? narrowDefault : wideDefault)
+  /* On a phone the narrow default WINS over an override. The wide views are
+     desktop artefacts: /students rendered a real <table> at 390px, and
+     /sessions' calendar rendered nothing at all. An override can only be set
+     on a wide screen (the toggle is hidden below md), but it survives a
+     resize or a rotation, which is exactly how a phone reached those states. */
+  const viewMode = isNarrow ? narrowDefault : (override ?? wideDefault)
   const setViewMode = useCallback((next: T) => setOverride(next), [])
   return [viewMode, setViewMode]
 }

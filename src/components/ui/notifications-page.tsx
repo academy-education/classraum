@@ -411,7 +411,7 @@ export function NotificationsPage({ userId, onNavigate }: NotificationsPageProps
             placeholder={String(t("notifications.searchNotifications"))}
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="h-12 pl-12 rounded-lg border border-border bg-white focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0 text-sm shadow-sm"
+            className="h-11 md:h-10 pl-12 rounded-lg border border-border bg-white focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0 text-base shadow-sm"
           />
         </div>
       </div>
@@ -489,7 +489,7 @@ export function NotificationsPage({ userId, onNavigate }: NotificationsPageProps
                             }`}>
                               {getNotificationContent(notification).title}
                             </h4>
-                            <p className={`text-sm mt-1 ${
+                            <p className={`text-sm mt-1 line-clamp-3 ${
                               !notification.is_read ? 'text-gray-700' : 'text-gray-500'
                             }`}>
                               {getNotificationContent(notification).message}
