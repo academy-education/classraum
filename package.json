@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev --turbo",
     "build": "next build && node scripts/fix-client-manifest.js",
     "build:fix": "rm -rf .next && npm run dev & DEV_PID=$! && sleep 8 && npm run build && kill $DEV_PID",
     "start": "next start",
@@ -25,7 +25,8 @@
     "mobile:android:prod": "npm run mobile:sync:prod && npm run cap:android",
     "seed:demo": "npx tsx scripts/seed-demo.ts",
     "seed:demo:reset": "npx tsx scripts/seed-demo.ts --reset",
-    "seed:demo:delete": "npx tsx scripts/seed-demo.ts --delete"
+    "seed:demo:delete": "npx tsx scripts/seed-demo.ts --delete",
+    "dev:webpack": "next dev"
   },
   "dependencies": {
     "@ai-sdk/openai": "^2.0.30",

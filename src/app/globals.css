@@ -713,7 +713,8 @@
 
    camp-in is a plain keyframe with fill-mode both: it runs on load and
    ends visible no matter what. Worst case is "no animation", never "no
-   content" — the same correction the About page's week bar needed. */
+   content" — the same correction the About page's week bar needed.
+
    REVISION, same day: the first camp-in still animated OPACITY from 0
    with fill-mode both. A paused animation holds its `from` state, so a
    backgrounded tab — or any environment that throttles animations —
