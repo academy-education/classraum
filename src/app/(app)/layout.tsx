@@ -259,8 +259,16 @@ export default function AppLayout({
 
   // Memoize notification dropdown toggle
   const handleNotificationToggle = useCallback(() => {
+    /* Phones get the page, not the popover. The dropdown is a 380px panel
+       anchored to the bell; on a 390px screen it covered the view it was
+       anchored to, and every item in it navigated away anyway. */
+    if (typeof window !== 'undefined' && window.matchMedia('(max-width: 1023.98px)').matches) {
+      router.push('/notifications')
+      setNotificationDropdownOpen(false)
+      return
+    }
     setNotificationDropdownOpen(prev => !prev)
-  }, [])
+  }, [router])
 
   // Get Help button now lands users on the help center (docs) instead
   // of opening the chat widget directly. The help center has its own

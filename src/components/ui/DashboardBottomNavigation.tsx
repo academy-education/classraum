@@ -148,10 +148,13 @@ export function DashboardBottomNavigation({ userRole, onHelpClick }: DashboardBo
         id: 'home',
         icon: Home,
         labelKey: 'dashboard.shelf.home',
+        /* One item, so handleNavClick navigates straight to the dashboard
+           instead of opening a shelf. Notifications and Messages used to sit
+           here too; both are one tap away from the top bar on every screen,
+           and a shelf holding one real destination plus two duplicates made
+           Home the only tab that did not go where its icon said. */
         subItems: [
-          { id: 'dashboard', href: '/dashboard', icon: Home, labelKey: 'navigation.dashboard' },
-          { id: 'notifications', href: '/notifications', icon: Bell, labelKey: 'navigation.notifications' },
-          { id: 'messages', href: '/messages', icon: MessageSquare, labelKey: 'navigation.messages' }
+          { id: 'dashboard', href: '/dashboard', icon: Home, labelKey: 'navigation.dashboard' }
         ]
       },
       {
