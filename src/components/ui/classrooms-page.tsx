@@ -1970,7 +1970,7 @@ export function ClassroomsPage({ academyId, onNavigateToSessions }: ClassroomsPa
               ]}
               actions={
                 <>
-                  <Button variant="ghost" size="icon" onClick={(e) => { e.stopPropagation(); handleTogglePause(classroom) }} title={String(classroom.paused ? t('classrooms.resume') : t('classrooms.pause'))}>
+                  <Button variant="ghost" size="icon" onClick={(e) => { e.stopPropagation(); handleTogglePause(classroom) }} title={String(classroom.paused ? t('classrooms.unpause') : t('classrooms.pause'))}>
                     {classroom.paused ? <Play className="w-4 h-4 text-emerald-600" strokeWidth={1.75} /> : <Pause className="w-4 h-4" strokeWidth={1.75} />}
                   </Button>
                   <Button variant="ghost" size="icon" onClick={(e) => { e.stopPropagation(); handleEditClick(classroom) }}>
