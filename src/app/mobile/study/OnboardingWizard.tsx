@@ -48,15 +48,21 @@ const TOTAL_STEPS = 5
 // `available` mirrors AVAILABLE_TARGET_TESTS rather than repeating it:
 // the camp auto-answer in useOnboardingGate reads the same list, and a
 // private copy here is how GOAL_SCALES drifted before it was shared.
+// The coming-soon half of this list is a PROMISE, so it tracks the
+// introduction document sent to schools rather than being chosen here.
+// TOEIC, IELTS and GRE came off that document on 2026-09-09 and MAP Test,
+// IB, IGCSE and GED went on; a student onboarding today should not be
+// offered three tests we have stopped saying we will build.
 const TESTS = [
-  { value: 'sat',   label_en: 'SAT',         label_ko: 'SAT'    },
-  { value: 'toefl', label_en: 'TOEFL',       label_ko: 'TOEFL'  },
-  { value: 'ksat',  label_en: 'KSAT (수능)', label_ko: '수능'   },
-  { value: 'toeic', label_en: 'TOEIC',       label_ko: 'TOEIC'  },
-  { value: 'ielts', label_en: 'IELTS',       label_ko: 'IELTS'  },
-  { value: 'act',   label_en: 'ACT',         label_ko: 'ACT'    },
-  { value: 'ap',    label_en: 'AP Exams',    label_ko: 'AP 시험' },
-  { value: 'gre',   label_en: 'GRE',         label_ko: 'GRE'    },
+  { value: 'sat',   label_en: 'SAT',         label_ko: 'SAT'      },
+  { value: 'toefl', label_en: 'TOEFL',       label_ko: 'TOEFL'    },
+  { value: 'ksat',  label_en: 'KSAT (수능)', label_ko: '수능'     },
+  { value: 'act',   label_en: 'ACT',         label_ko: 'ACT'      },
+  { value: 'ap',    label_en: 'AP Exams',    label_ko: 'AP 시험'  },
+  { value: 'map',   label_en: 'MAP Test',    label_ko: 'MAP 테스트' },
+  { value: 'ib',    label_en: 'IB',          label_ko: 'IB'       },
+  { value: 'igcse', label_en: 'IGCSE',       label_ko: 'IGCSE'    },
+  { value: 'ged',   label_en: 'GED',         label_ko: 'GED'      },
 ].map(x => ({ ...x, available: isAvailableTargetTest(x.value) }))
 
 const GRADES = [

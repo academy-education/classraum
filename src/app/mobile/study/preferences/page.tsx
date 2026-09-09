@@ -27,15 +27,20 @@ interface Prefs {
 // journey's target picker writes, so one test never appears twice as
 // 'sat' vs 'SAT'. Only open tests are selectable; the rest render as
 // coming-soon.
+// Same list as the onboarding wizard, in the same order, and for the same
+// reason: the coming-soon entries mirror the introduction document, which
+// dropped TOEIC/IELTS/GRE for MAP Test/IB/IGCSE/GED on 2026-09-09. These
+// two arrays have drifted apart before — if you edit one, edit both.
 const TESTS = [
-  { value: 'SAT',   ko: 'SAT',         en: 'SAT',      available: true },
-  { value: 'TOEFL', ko: 'TOEFL',       en: 'TOEFL',    available: true },
-  { value: 'KSAT',  ko: '수능',         en: 'KSAT',     available: false },
-  { value: 'TOEIC', ko: 'TOEIC',       en: 'TOEIC',    available: false },
-  { value: 'IELTS', ko: 'IELTS',       en: 'IELTS',    available: false },
-  { value: 'ACT',   ko: 'ACT',         en: 'ACT',      available: false },
-  { value: 'AP',    ko: 'AP 시험',     en: 'AP Exams', available: false },
-  { value: 'GRE',   ko: 'GRE',         en: 'GRE',      available: false },
+  { value: 'SAT',   ko: 'SAT',          en: 'SAT',       available: true },
+  { value: 'TOEFL', ko: 'TOEFL',        en: 'TOEFL',     available: true },
+  { value: 'KSAT',  ko: '수능',          en: 'KSAT',      available: false },
+  { value: 'ACT',   ko: 'ACT',          en: 'ACT',       available: false },
+  { value: 'AP',    ko: 'AP 시험',      en: 'AP Exams',  available: false },
+  { value: 'MAP',   ko: 'MAP 테스트',    en: 'MAP Test',  available: false },
+  { value: 'IB',    ko: 'IB',           en: 'IB',        available: false },
+  { value: 'IGCSE', ko: 'IGCSE',        en: 'IGCSE',     available: false },
+  { value: 'GED',   ko: 'GED',          en: 'GED',       available: false },
 ]
 
 const GRADES = [
@@ -214,10 +219,21 @@ function PreferencesInner() {
           tolerate legacy mixed-case rows ('sat' vs 'SAT'). */}
       <SettingGroup icon={Target} label={String(t('study.prefs.targetTest'))} saving={saving === 'target_tests' || saving === 'target_test'}>
         <div className="grid grid-cols-2 gap-2">
-          {TESTS.map(test => {
+          {(() => {
             const targeted = new Set((prefs.target_tests ?? []).map(s => s.toUpperCase()))
             // Fall back to the single focus pointer for older rows that only
             // set target_test.
+            if (targeted.size === 0 && prefs.target_test) targeted.add(prefs.target_test.toUpperCase())
+            // A test this student already picked that is no longer offered --
+            // TOEIC, IELTS and GRE were dropped from the list on 2026-09-09.
+            // Without this it would still sit in their saved prefs while
+            // rendering nowhere, so they could neither see it nor remove it.
+            const legacy = [...targeted]
+              .filter(v => !TESTS.some(t => t.value === v))
+              .map(v => ({ value: v, ko: v, en: v, available: false }))
+            return [...TESTS, ...legacy]
+          })().map(test => {
+            const targeted = new Set((prefs.target_tests ?? []).map(s => s.toUpperCase()))
             if (targeted.size === 0 && prefs.target_test) targeted.add(prefs.target_test.toUpperCase())
             const selected = targeted.has(test.value)
             const focused = (prefs.target_test ?? '').toUpperCase() === test.value
