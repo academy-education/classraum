@@ -166,7 +166,7 @@ function HistoryInner() {
             value={query}
             onChange={e => setQuery(e.target.value)}
             placeholder={ko ? '제목·주제·모드로 검색' : 'Search by title, topic, or mode'}
-            className="w-full h-11 pl-10 pr-10 rounded-2xl bg-white ring-1 ring-gray-200/70 text-[14px] text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/40 transition"
+            className="w-full h-11 md:h-10 pl-10 pr-10 rounded-2xl bg-white ring-1 ring-gray-200/70 text-base text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/40 transition"
           />
           {query && (
             <button

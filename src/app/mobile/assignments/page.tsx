@@ -2325,7 +2325,7 @@ function MobileAssignmentsPageContent() {
                 placeholder={String(t('common.search'))}
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-10 pr-4 py-2 min-h-[44px] bg-white ring-1 ring-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary border-0"
+                className="w-full pl-10 pr-4 h-11 md:h-10 text-base bg-white ring-1 ring-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary border-0"
               />
             </div>
           </div>
@@ -3009,7 +3009,7 @@ function MobileAssignmentsPageContent() {
               placeholder={String(t('common.search'))}
               value={gradesSearchQuery}
               onChange={(e) => setGradesSearchQuery(e.target.value)}
-              className="w-full pl-10 pr-4 py-2 min-h-[44px] bg-white ring-1 ring-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary border-0"
+              className="w-full pl-10 pr-4 h-11 md:h-10 text-base bg-white ring-1 ring-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary border-0"
             />
           </div>
 

@@ -738,7 +738,7 @@ function MobileMessagesPageContent() {
               placeholder={String(t('messages.searchConversations'))}
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="h-10 pl-10 rounded-lg border border-gray-200 bg-white"
+              className="h-11 md:h-10 pl-10 rounded-lg border border-gray-200 bg-white"
             />
           </div>
         </div>
@@ -1055,7 +1055,7 @@ function MobileMessagesPageContent() {
               placeholder={String(t('messages.searchContacts'))}
               value={contactSearchQuery}
               onChange={(e) => setContactSearchQuery(e.target.value)}
-              className="h-10 pl-10 rounded-lg border border-gray-200 bg-white"
+              className="h-11 md:h-10 pl-10 rounded-lg border border-gray-200 bg-white"
             />
           </div>
         </div>

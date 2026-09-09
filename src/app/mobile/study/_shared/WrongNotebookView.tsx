@@ -296,7 +296,7 @@ export function WrongNotebookInner({ asTab = false }: { asTab?: boolean } = {}) 
             value={query}
             onChange={e => setQuery(e.target.value)}
             placeholder={ko ? '문제·정답·메모로 검색' : 'Search question, answer, or note'}
-            className="w-full h-11 pl-10 pr-10 rounded-2xl bg-white ring-1 ring-gray-200/70 shadow-[0_1px_2px_rgba(0,0,0,0.03)] text-[14px] text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/40 transition"
+            className="w-full h-11 md:h-10 pl-10 pr-10 rounded-2xl bg-white ring-1 ring-gray-200/70 shadow-[0_1px_2px_rgba(0,0,0,0.03)] text-base text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/40 transition"
           />
           {query && (
             <button
@@ -625,7 +625,7 @@ function FilterSelect({
         {label}
       </span>
       <Select value={value} onValueChange={onChange}>
-        <SelectTrigger className="tap-target-y w-full h-9 rounded-xl bg-white ring-1 ring-gray-200/70 border-0 text-[13px] font-medium text-gray-700 shadow-none">
+        <SelectTrigger className="tap-target-y w-full h-11 md:h-10 rounded-xl bg-white ring-1 ring-gray-200/70 border-0 text-base font-medium text-gray-700 shadow-none">
           <SelectValue />
         </SelectTrigger>
         <SelectContent>
@@ -800,7 +800,7 @@ function NotebookEntryCard({ entry, index, ko, onToggleReviewed }: {
           onChange={e => setNote(e.target.value)}
           placeholder={String(t('study.wrongNotebook.notePlaceholder'))}
           rows={2}
-          className="w-full rounded-xl bg-white ring-1 ring-gray-200/70 px-3 py-2 text-[13px] text-gray-900 leading-relaxed focus:outline-none focus:ring-2 focus:ring-indigo-400 resize-none"
+          className="w-full rounded-xl bg-white ring-1 ring-gray-200/70 px-3 py-2 text-base text-gray-900 leading-relaxed focus:outline-none focus:ring-2 focus:ring-indigo-400 resize-none"
         />
       </div>
     </li>

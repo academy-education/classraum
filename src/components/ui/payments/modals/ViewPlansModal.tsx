@@ -76,7 +76,7 @@ export function ViewPlansModal({
                 placeholder={String(t('payments.searchPaymentPlans'))}
                 value={planSearchQuery}
                 onChange={(e) => setPlanSearchQuery(e.target.value)}
-                className="h-12 pl-12 rounded-lg border border-border bg-white focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0 text-sm shadow-sm"
+                className="h-11 md:h-10 pl-12 rounded-lg border border-border bg-white focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0 text-base shadow-sm"
               />
             </div>
 

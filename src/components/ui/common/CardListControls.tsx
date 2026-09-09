@@ -85,7 +85,7 @@ export interface CardListFilter {
 /** The house trigger, verbatim from /classrooms and /assignments so the
  *  card-mode filter is visually the same control as the toolbar one. */
 const TRIGGER_CLASS =
-  "[&[data-size=default]]:h-12 h-12 min-h-[3rem] rounded-lg border border-border bg-white focus:border-primary focus-visible:border-primary focus-visible:ring-0 focus-visible:ring-offset-0 text-sm shadow-sm"
+  "[&[data-size=default]]:h-11 md:[&[data-size=default]]:h-10 h-11 md:h-10 rounded-lg border border-border bg-white focus:border-primary focus-visible:border-primary focus-visible:ring-0 focus-visible:ring-offset-0 text-base shadow-sm"
 
 /** Radix treats '' as "no value" and throws on an empty SelectItem, so
  *  "no sort" needs a real sentinel rather than the natural `null`. */
@@ -163,7 +163,7 @@ export function CardListControls({
             onClick={() =>
               onSortDirectionChange(sortDirection === 'asc' ? 'desc' : 'asc')
             }
-            className={`h-12 w-12 shrink-0 rounded-lg border flex items-center justify-center transition-colors shadow-sm bg-white ${
+            className={`h-11 w-11 md:h-10 md:w-10 shrink-0 rounded-lg border flex items-center justify-center transition-colors shadow-sm bg-white ${
               sortField
                 ? 'border-primary text-primary'
                 : 'border-border text-gray-400 cursor-not-allowed opacity-60'

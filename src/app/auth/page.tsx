@@ -1485,11 +1485,11 @@ export default function AuthPage() {
               /* Segmented door toggle — mirrors the shared TabsList /
                  TabsTrigger styling (muted track, white active pill) so
                  it reads as the same control family as the rest of the
-                 app. Height matches the h-10 inputs below. */
+                 app. Height follows the inputs below (h-11 on phones, h-10 from md). */
               <div
                 role="radiogroup"
                 aria-label={String(t('auth.signup.intentLabel'))}
-                className="bg-muted text-muted-foreground inline-flex h-10 w-full items-center justify-center rounded-lg p-[3px]"
+                className="bg-muted text-muted-foreground inline-flex h-11 md:h-10 w-full items-center justify-center rounded-lg p-[3px]"
               >
                 {([
                   { key: 'study' as const, icon: BookOpen, title: t('auth.signup.intentStudy') },
@@ -1723,7 +1723,7 @@ export default function AuthPage() {
                 <div className="space-y-2">
                   <Label className="text-sm font-medium text-foreground/80">{t('auth.form.labels.role')} <span className="text-rose-500">*</span></Label>
                   <Select value={role} onValueChange={setRole} required disabled={isRoleFromUrl}>
-                    <SelectTrigger className={`!h-10 w-full ${isRoleFromUrl ? 'opacity-60 cursor-not-allowed' : ''}`} size="default">
+                    <SelectTrigger className={`!h-11 md:!h-10 w-full ${isRoleFromUrl ? 'opacity-60 cursor-not-allowed' : ''}`} size="default">
                       <SelectValue placeholder={String(t('auth.form.placeholders.role'))} />
                     </SelectTrigger>
                     <SelectContent>
@@ -1745,7 +1745,7 @@ export default function AuthPage() {
                       onChange={(e) => setAcademyId(e.target.value)}
                       placeholder={String(t('auth.form.placeholders.academyId'))}
                       disabled={isAcademyIdFromUrl}
-                      className={`h-10 pl-10 rounded-lg border border-border bg-transparent focus:!border-primary focus-visible:!ring-0 focus-visible:!ring-offset-0 focus-visible:!border-primary focus:!ring-0 focus:!ring-offset-0 [&:focus-visible]:!border-primary [&:focus]:!border-primary ${isAcademyIdFromUrl ? 'opacity-60 cursor-not-allowed' : ''}`}
+                      className={`h-11 md:h-10 pl-10 rounded-lg border border-border bg-transparent focus:!border-primary focus-visible:!ring-0 focus-visible:!ring-offset-0 focus-visible:!border-primary focus:!ring-0 focus:!ring-offset-0 [&:focus-visible]:!border-primary [&:focus]:!border-primary ${isAcademyIdFromUrl ? 'opacity-60 cursor-not-allowed' : ''}`}
                     />
                   </div>
                 </div>
@@ -1806,7 +1806,7 @@ export default function AuthPage() {
             <Button
               type="submit"
               disabled={loading || (activeTab === "forgotPassword" && resetSent) || (activeTab === "signup" && !isSignupFormValid)}
-              className="w-full h-10"
+              className="w-full"
             >
               {loading ? (
                 activeTab === "signin" ? t('auth.buttons.signingIn') :
