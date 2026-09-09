@@ -605,22 +605,39 @@ export function usePaymentsData(academyId: string, activeTab: string) {
         }
       }
 
-      // Get student count for each template
-      const templatesWithCounts = await Promise.all(
-        (validatedData || []).map(async (template) => {
-          const { count } = await db
-            .from('recurring_payment_template_students')
-            .select('*', { count: 'exact', head: true })
-            .eq('template_id', template.id)
-            .eq('status', 'active')
+      /* Student counts in ONE query, not one per template.
+       *
+       * This was a Promise.all issuing a `count` query per template. It is
+       * invisible in a URL log because a head:true count has no distinct query
+       * string — 11 templates read as 11 identical requests. Measured on the
+       * demo academy: the payments page issued ~37 requests to this table and
+       * took 7.1s to show its first row on a phone.
+       *
+       * One row per active membership is cheap (the whole academy's set is
+       * already fetched by fetchRecurringStudents), so tally client-side. */
+      const templateIdList = (validatedData || []).map(tpl => tpl.id)
+      const countByTemplate = new Map<string, number>()
+      if (templateIdList.length > 0) {
+        const { data: membershipRows, error: membershipError } = await db
+          .from('recurring_payment_template_students')
+          .select('template_id')
+          .in('template_id', templateIdList)
+          .eq('status', 'active')
 
-          return {
-            ...template,
-            recurrence_type: toRecurrenceType(template.recurrence_type),
-            student_count: count || 0
+        if (membershipError) {
+          console.error('Error counting recurring template students:', membershipError)
+        } else {
+          for (const row of (membershipRows || []) as { template_id: string }[]) {
+            countByTemplate.set(row.template_id, (countByTemplate.get(row.template_id) || 0) + 1)
           }
-        })
-      )
+        }
+      }
+
+      const templatesWithCounts = (validatedData || []).map(template => ({
+        ...template,
+        recurrence_type: toRecurrenceType(template.recurrence_type),
+        student_count: countByTemplate.get(template.id) || 0
+      }))
 
       setPaymentTemplates(templatesWithCounts)
 
