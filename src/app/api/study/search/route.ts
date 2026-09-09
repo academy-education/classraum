@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { dbAdmin } from '@/lib/supabase-admin'
+import { COMING_SOON_HIDDEN_SLUGS } from '@/lib/study/shipped-tests'
 import { enforceRateLimit } from '@/lib/rate-limit'
 import { requireStudyUser } from '@/lib/study/auth'
 
@@ -82,7 +83,22 @@ export async function GET(req: NextRequest) {
   ])
 
   const results: SearchResults = {
-    topics: (topics.data ?? []).map(t => ({
+    // Drop the families we have stopped advertising. They still have topic
+    // rows, and the landing page already hides them (COMING_SOON_HIDDEN_SLUGS),
+    // but search read study_topics directly -- so typing "IELTS" surfaced a
+    // topic whose page then refuses to assemble anything, because the API gate
+    // is SHIPPED_TEST_FAMILIES. A result that can only end in a refusal is
+    // worse than no result. Sub-topics go too (ielts-reading, gre-quant, ...),
+    // which is why this is a prefix match rather than a set lookup.
+    topics: (topics.data ?? [])
+      .filter(t => {
+        const slug = String(t.slug ?? '')
+        return ![...COMING_SOON_HIDDEN_SLUGS].some(hidden => {
+          const family = hidden.replace(/^test-/, '')
+          return slug === hidden || slug.startsWith(`${family}-`)
+        })
+      })
+      .map(t => ({
       id: t.id as string,
       slug: t.slug as string,
       name: (t.name_ko as string) ?? (t.name_en as string),
