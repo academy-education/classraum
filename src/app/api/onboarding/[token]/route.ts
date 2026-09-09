@@ -291,14 +291,16 @@ export async function POST(
     if (typeof body.academyAddress === 'string' && body.academyAddress.trim()) {
       academyUpdates.address = body.academyAddress.trim().slice(0, 500)
     }
-    // academyEmail / academyPhone are NOT written here, and the form no
-    // longer collects them. `academies` has no email or phone column and
-    // never has, so this update was rejected outright whenever either field
-    // was filled in -- taking the token clear and onboarding_completed_at
-    // down with it, because they are in the same statement. A school that
-    // typed a phone number could not finish onboarding; one that left both
-    // blank could. See database/migrations/106_academy_contact_details.sql
-    // to give them a home and switch the fields back on.
+    // academies.email / .phone exist as of migration 106. Before it, this
+    // update was rejected outright whenever either field was filled in --
+    // taking the token clear and onboarding_completed_at down with it,
+    // because they are in the same statement.
+    if (typeof body.academyEmail === 'string' && body.academyEmail.trim()) {
+      academyUpdates.email = body.academyEmail.trim().toLowerCase().slice(0, 255)
+    }
+    if (typeof body.academyPhone === 'string' && body.academyPhone.trim()) {
+      academyUpdates.phone = body.academyPhone.trim().slice(0, 50)
+    }
 
     const { error: academyError } = await supabase
       .from('academies')

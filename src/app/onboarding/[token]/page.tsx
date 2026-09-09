@@ -260,9 +260,8 @@ export default function OnboardingPage({ params }: { params: Promise<{ token: st
   const [phone, setPhone] = useState('')
   const [academyName, setAcademyName] = useState('')
   const [academyAddress, setAcademyAddress] = useState('')
-  // Academy email/phone are not collected: `academies` has no column for
-  // either, so sending them made PostgREST reject the whole onboarding
-  // update. See database/migrations/106_academy_contact_details.sql.
+  const [academyEmail, setAcademyEmail] = useState('')
+  const [academyPhone, setAcademyPhone] = useState('')
 
   useEffect(() => {
     setLang(detectLang())
@@ -350,6 +349,8 @@ export default function OnboardingPage({ params }: { params: Promise<{ token: st
           phone: phone || undefined,
           academyName,
           academyAddress: academyAddress || undefined,
+          academyEmail: academyEmail || undefined,
+          academyPhone: academyPhone || undefined,
           // Language preference picked on the language step. Maps EN→english,
           // KO→korean to match the user_preferences enum.
           language: lang === 'ko' ? 'korean' : 'english',
@@ -605,6 +606,8 @@ export default function OnboardingPage({ params }: { params: Promise<{ token: st
                     lang={lang}
                     academyName={academyName} setAcademyName={setAcademyName}
                     academyAddress={academyAddress} setAcademyAddress={setAcademyAddress}
+                    academyEmail={academyEmail} setAcademyEmail={setAcademyEmail}
+                    academyPhone={academyPhone} setAcademyPhone={setAcademyPhone}
                   />
                 )}
                 {step === 'review' && (
@@ -612,6 +615,7 @@ export default function OnboardingPage({ params }: { params: Promise<{ token: st
                     lang={lang}
                     familyName={familyName} givenName={givenName} email={email} phone={phone}
                     academyName={academyName} academyAddress={academyAddress}
+                    academyEmail={academyEmail} academyPhone={academyPhone}
                     onEdit={goTo}
                   />
                 )}
@@ -927,6 +931,8 @@ interface AcademyStepProps {
   lang: Lang
   academyName: string; setAcademyName: (v: string) => void
   academyAddress: string; setAcademyAddress: (v: string) => void
+  academyEmail: string; setAcademyEmail: (v: string) => void
+  academyPhone: string; setAcademyPhone: (v: string) => void
 }
 function AcademyStep(p: AcademyStepProps) {
   const tt = T[p.lang]
@@ -939,6 +945,12 @@ function AcademyStep(p: AcademyStepProps) {
         <Field id="academy-address" label={tt.addressOptional} icon={<MapPin className="w-4 h-4" />}
                value={p.academyAddress} onChange={p.setAcademyAddress} placeholder={tt.addressPh}
                optionalLabel={tt.optional} delay={180} />
+        <Field id="academy-email" label={tt.contactEmailOptional} type="email" icon={<Mail className="w-4 h-4" />}
+               value={p.academyEmail} onChange={p.setAcademyEmail} placeholder={tt.contactEmailPh}
+               helperText={tt.contactEmailHelp} optionalLabel={tt.optional} delay={240} />
+        <Field id="academy-phone" label={tt.academyPhoneOptional} icon={<Phone className="w-4 h-4" />}
+               value={p.academyPhone} onChange={p.setAcademyPhone} placeholder={tt.phonePh}
+               optionalLabel={tt.optional} delay={300} />
       </div>
     </div>
   )
@@ -947,7 +959,7 @@ function AcademyStep(p: AcademyStepProps) {
 interface ReviewStepProps {
   lang: Lang
   familyName: string; givenName: string; email: string; phone: string
-  academyName: string; academyAddress: string
+  academyName: string; academyAddress: string; academyEmail: string; academyPhone: string
   onEdit: (target: Step) => void
 }
 function ReviewStep(p: ReviewStepProps) {
@@ -980,6 +992,8 @@ function ReviewStep(p: ReviewStepProps) {
           rows={[
             { label: tt.academyName, value: p.academyName },
             { label: tt.address, value: p.academyAddress || tt.notProvided, muted: !p.academyAddress },
+            { label: tt.contactEmail, value: p.academyEmail || tt.notProvided, muted: !p.academyEmail },
+            { label: tt.academyPhone, value: p.academyPhone || tt.notProvided, muted: !p.academyPhone },
           ]}
           delay={220}
         />

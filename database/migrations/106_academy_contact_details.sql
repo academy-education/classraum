@@ -1,7 +1,7 @@
 -- 106: academies.email / academies.phone
 --
--- NOT YET APPLIED. This is the follow-up to a bug, and applying it is a
--- product decision Andy has to make — see the note at the bottom.
+-- APPLIED 2026-09-09. Purely additive: two nullable columns on 12 rows, no
+-- default and no table rewrite, plus a GRANT that only adds privileges.
 --
 -- The onboarding form (src/app/onboarding/[token]/page.tsx) has always
 -- collected an academy email and phone, labelled "Optional. Shown to parents
@@ -37,11 +37,11 @@ comment on column academies.phone is
 -- widening it to the whole row.
 grant select (id, name, logo_url, camp_only, email, phone) on academies to authenticated;
 
--- TO APPLY:
---   1. run this file
---   2. regenerate src/lib/database.types.ts
---   3. revert the two "column does not exist" guards — the removed inputs in
---      src/app/onboarding/[token]/page.tsx and the two writes in
---      src/app/api/onboarding/[token]/route.ts. Both are one commit.
---   4. re-run `npx tsc --noEmit`; the typed client will confirm the writes
---      match the schema, which is the check that caught this in the first place.
+-- APPLIED, and the follow-through is done: types regenerated, the two writes
+-- restored in src/app/api/onboarding/[token]/route.ts, the two inputs restored
+-- in src/app/onboarding/[token]/page.tsx.
+--
+-- Verified by running the exact statement that used to fail -- email, phone,
+-- the token clear and onboarding_completed_at in ONE update -- against a
+-- throwaway academy row, which succeeded and was then deleted. `npx tsc
+-- --noEmit` is the standing check that the writes still match the schema.

@@ -22,6 +22,7 @@ export type Database = {
           camp_only: boolean
           closure_notice_sent_at: string | null
           created_at: string | null
+          email: string | null
           id: string
           is_suspended: boolean | null
           is_test: boolean
@@ -30,6 +31,7 @@ export type Database = {
           onboarding_completed_at: string | null
           onboarding_token: string | null
           onboarding_token_expires_at: string | null
+          phone: string | null
           portone_contract_id: string | null
           portone_partner_id: string | null
           subscription_tier: string | null
@@ -46,6 +48,7 @@ export type Database = {
           camp_only?: boolean
           closure_notice_sent_at?: string | null
           created_at?: string | null
+          email?: string | null
           id?: string
           is_suspended?: boolean | null
           is_test?: boolean
@@ -54,6 +57,7 @@ export type Database = {
           onboarding_completed_at?: string | null
           onboarding_token?: string | null
           onboarding_token_expires_at?: string | null
+          phone?: string | null
           portone_contract_id?: string | null
           portone_partner_id?: string | null
           subscription_tier?: string | null
@@ -70,6 +74,7 @@ export type Database = {
           camp_only?: boolean
           closure_notice_sent_at?: string | null
           created_at?: string | null
+          email?: string | null
           id?: string
           is_suspended?: boolean | null
           is_test?: boolean
@@ -78,6 +83,7 @@ export type Database = {
           onboarding_completed_at?: string | null
           onboarding_token?: string | null
           onboarding_token_expires_at?: string | null
+          phone?: string | null
           portone_contract_id?: string | null
           portone_partner_id?: string | null
           subscription_tier?: string | null
