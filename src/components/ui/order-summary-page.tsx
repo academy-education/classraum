@@ -707,12 +707,12 @@ export function OrderSummaryPage({ academyId, selectedPlan, onBack }: OrderSumma
       <div className="p-4">
         <div className="flex items-center justify-between mb-8">
           <div>
-            <h1 className="text-2xl font-bold text-gray-900">Order Summary</h1>
-            <p className="text-gray-500">Review your plan details and complete your upgrade</p>
+            <h1 className="text-2xl font-bold text-gray-900">{t('orderSummary.title')}</h1>
+            <p className="text-gray-500">{t('orderSummary.subtitle')}</p>
           </div>
           <Button onClick={handleBack} variant="outline" className="flex items-center gap-2">
             <ArrowLeft className="w-4 h-4" />
-            Back to Plans
+            {t('orderSummary.backToPlans')}
           </Button>
         </div>
 
