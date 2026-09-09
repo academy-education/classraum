@@ -137,11 +137,18 @@ export function useClassroomsData(academyId: string) {
 
       if (timeDiff < cacheValidFor) {
         const parsed = JSON.parse(cachedData)
-        setClassrooms(parsed.classrooms)
-        setTotalCount(parsed.totalCount || 0)
-        setInitialized(true)
-        setLoading(false)
-        return parsed.classrooms
+        // A stale cache shape (or a partial write) must never hand the page a
+        // non-array: every consumer calls .filter on it and the route crashes.
+        // Drop the bad entry and fall through to the network fetch below.
+        if (Array.isArray(parsed?.classrooms)) {
+          setClassrooms(parsed.classrooms)
+          setTotalCount(parsed.totalCount || 0)
+          setInitialized(true)
+          setLoading(false)
+          return parsed.classrooms
+        }
+        sessionStorage.removeItem(cacheKey)
+        sessionStorage.removeItem(`${cacheKey}-timestamp`)
       }
     }
 
