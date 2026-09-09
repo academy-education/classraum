@@ -1660,7 +1660,7 @@ export function rankByBand<T extends { id: string; difficulty: 'easy' | 'medium'
 
 export async function assembleFromBank(p: AssembleParams, seed = 'bank'): Promise<AssembledTest> {
   const family = p.family ?? 'sat'
-  let query = dbAdmin
+  const query = dbAdmin
     .from('study_item_bank')
     .select('id, domain, difficulty, item')
     .eq('family', family)

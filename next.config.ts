@@ -1,5 +1,4 @@
 import type { NextConfig } from "next";
-import { withSentryConfig } from "@sentry/nextjs";
 
 // SINGLE config file. There used to be a parallel next.config.js which
 // silently WON Next's config lookup (js > mjs > ts), so everything in
@@ -149,15 +148,18 @@ if (process.env.ANALYZE === 'true') {
   withBundleAnalyzer = require('@next/bundle-analyzer')({ enabled: true });
 }
 
-// Sentry build-time options. Source maps are uploaded automatically when
-// SENTRY_AUTH_TOKEN is set; safe to leave unset in dev (Sentry just skips
-// the upload step). See docs/SENTRY_SETUP.md for the full env-var checklist.
-export default withSentryConfig(withBundleAnalyzer(nextConfig), {
-  org: process.env.SENTRY_ORG,
-  project: process.env.SENTRY_PROJECT,
-  silent: !process.env.CI,           // quiet builds locally, verbose in CI
-  widenClientFileUpload: true,       // upload more source maps for better stack traces
-  sourcemaps: { disable: false },    // upload source maps so stack traces resolve
-  disableLogger: true,               // tree-shake Sentry's verbose console logger
-  automaticVercelMonitors: true,     // auto-create Vercel cron monitors
-});
+/* The Sentry build wrapper is OFF while we are not using Sentry (2026-09-09).
+ *
+ * It mattered because it was the prime suspect in the July deploy failure that
+ * put next.config.js back: builds passed locally and failed on Vercel, and
+ * source-map upload with a stale SENTRY_AUTH_TOKEN was the leading theory. We
+ * could not confirm it — the Vercel logs were in a team that session could not
+ * read — so the shadow config stayed and took the security headers, strict
+ * build-time type checking and Sentry itself dormant with it.
+ *
+ * Removing the wrapper removes that suspect, which is what lets next.config.js
+ * go. Sentry's app-side code stays and is already a no-op while
+ * NEXT_PUBLIC_SENTRY_DSN is unset, so nothing else has to change to turn it
+ * back on later: restore this wrapper and set the env vars.
+ */
+export default withBundleAnalyzer(nextConfig);
