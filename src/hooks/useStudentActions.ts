@@ -11,6 +11,38 @@ export interface StudentFormData {
   active: boolean
 }
 
+/**
+ * Point a student at a family, or detach them.
+ *
+ * `students` has NO family_id column and never has -- membership lives in
+ * `family_members` (user_id, family_id, role), which is what
+ * useStudentData reads back to render the Family column. Both createStudent
+ * and updateStudent used to put `family_id` in the students payload, so
+ * PostgREST answered every call with
+ *
+ *     Could not find the 'family_id' column of 'students' in the schema cache
+ *
+ * and the whole save threw. The old generated types let it through; the
+ * typed client rejects it, which is how it was found.
+ *
+ * One family per student here, matching the picker, which is single-select.
+ */
+async function setStudentFamily(userId: string, familyId: string | null) {
+  const { error: clearError } = await db
+    .from('family_members')
+    .delete()
+    .eq('user_id', userId)
+    .eq('role', 'student')
+  if (clearError) throw clearError
+
+  if (!familyId) return
+
+  const { error: linkError } = await db
+    .from('family_members')
+    .insert({ user_id: userId, family_id: familyId, role: 'student' })
+  if (linkError) throw linkError
+}
+
 export function useStudentActions() {
   
   const createStudent = useCallback(async (
@@ -59,13 +91,14 @@ export function useStudentActions() {
           phone: formData.phone,
           school_name: formData.school_name,
           academy_id: academyId,
-          family_id: formData.family_id || null,
           active: formData.active
         })
         .select()
         .single()
 
       if (studentError) throw studentError
+
+      await setStudentFamily(userData.id, formData.family_id || null)
 
       // Send welcome notification to new student
       try {
@@ -105,7 +138,6 @@ export function useStudentActions() {
         .update({
           phone: formData.phone,
           school_name: formData.school_name,
-          family_id: formData.family_id || null,
           active: formData.active
         })
         .eq('user_id', studentId)
@@ -114,6 +146,8 @@ export function useStudentActions() {
         .single()
 
       if (studentError) throw studentError
+
+      await setStudentFamily(studentId, formData.family_id || null)
 
       return { success: true, data: studentData }
     } catch (error) {
@@ -290,14 +324,19 @@ export function useStudentActions() {
     updates: Array<{ studentId: string; active?: boolean; family_id?: string }>
   ) => {
     try {
-      const promises = updates.map(({ studentId, active, family_id }) => {
-        const updateData: Record<string, boolean | string | null> = {}
-        if (active !== undefined) updateData.active = active
-        if (family_id !== undefined) updateData.family_id = family_id
+      // `active` is the only students column here. family_id is NOT one --
+      // see setStudentFamily above -- so it is reconciled against
+      // family_members instead of being smuggled into this payload, which is
+      // what made every bulk update carrying a family fail outright.
+      const promises = updates.map(async ({ studentId, active, family_id }) => {
+        if (family_id !== undefined) {
+          await setStudentFamily(studentId, family_id || null)
+        }
+        if (active === undefined) return { error: null }
 
         return db
           .from('students')
-          .update(updateData)
+          .update({ active })
           .eq('user_id', studentId)
           .eq('academy_id', academyId)
       })

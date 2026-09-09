@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { dbAdmin } from '@/lib/supabase-admin'
 import { getUserFromRequest } from '@/lib/api-auth'
+import type { Database } from '@/lib/database.types'
 
 async function isManagerForTest(userId: string, testId: string): Promise<boolean> {
   const { data: test } = await dbAdmin
@@ -86,7 +87,7 @@ export async function PATCH(
     }
 
     const body = await request.json()
-    const updates: Record<string, unknown> = {}
+    const updates: Database['public']['Tables']['level_tests']['Update'] = {}
 
     if (typeof body.share_enabled === 'boolean') {
       updates.share_enabled = body.share_enabled

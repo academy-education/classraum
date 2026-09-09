@@ -52,6 +52,7 @@ import {
 import { useToast } from '@/hooks/use-toast'
 import { resetWelcomeSeen } from '@/components/ui/welcome-modal'
 import { startSetupTour } from '@/components/ui/onboarding/SetupTour'
+import type { Database } from '@/lib/database.types'
 
 // Mirrors public.user_preferences: every column except user_id is nullable,
 // and the three settings blobs are jsonb (Json), not narrower shapes.
@@ -601,7 +602,7 @@ export function SettingsPage({ userId }: SettingsPageProps) {
       // every row whose split columns are NULL, and it is the string all 8
       // PortOne call sites hand to the card issuer.
       const nameUpdate = buildNameUpdate(familyName, givenName)
-      const updateData: Record<string, unknown> = { ...nameUpdate }
+      const updateData: Database['public']['Tables']['users']['Update'] = { ...nameUpdate }
 
       // Only add updated_at if it exists in the original data
       if ('updated_at' in userData) {

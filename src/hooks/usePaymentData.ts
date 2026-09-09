@@ -1,6 +1,7 @@
 import { useState, useCallback, useEffect } from 'react'
 import { db } from '@/lib/supabase'
 import { queryCache, CACHE_TTL } from '@/lib/queryCache'
+import type { Database } from '@/lib/database.types'
 
 // Mirrors invoices_status_check.
 const INVOICE_STATUSES = ['pending', 'paid', 'failed', 'refunded'] as const
@@ -230,7 +231,7 @@ export function usePaymentData(academyId: string) {
   }, [academyId, fetchInvoices])
 
   // Update invoice
-  const updateInvoice = useCallback(async (invoiceId: string, updates: Partial<Invoice>) => {
+  const updateInvoice = useCallback(async (invoiceId: string, updates: Database['public']['Tables']['invoices']['Update']) => {
     try {
       const { data, error } = await db
         .from('invoices')
@@ -298,7 +299,7 @@ export function usePaymentData(academyId: string) {
   }, [academyId, fetchPaymentTemplates])
 
   // Update payment template
-  const updatePaymentTemplate = useCallback(async (templateId: string, updates: Partial<PaymentTemplate>) => {
+  const updatePaymentTemplate = useCallback(async (templateId: string, updates: Database['public']['Tables']['recurring_payment_templates']['Update']) => {
     try {
       const { data, error } = await db
         .from('recurring_payment_templates')
@@ -345,7 +346,7 @@ export function usePaymentData(academyId: string) {
   // Bulk update invoice status
   const bulkUpdateInvoiceStatus = useCallback(async (invoiceIds: string[], status: string) => {
     try {
-      const updates: Record<string, string> = { status }
+      const updates: Database['public']['Tables']['invoices']['Update'] = { status }
       
       if (status === 'paid') {
         updates.paid_at = new Date().toISOString()

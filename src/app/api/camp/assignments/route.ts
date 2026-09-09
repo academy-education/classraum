@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { dbAdmin } from '@/lib/supabase-admin'
 import { getUserFromRequest } from '@/lib/api-auth'
+import type { Database } from '@/lib/database.types'
 import {
   CAMP_PROGRAM_COLUMNS,
   type CampProgramRow,
@@ -383,7 +384,7 @@ export async function PATCH(req: NextRequest) {
     return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
   }
 
-  const patch: Record<string, unknown> = {}
+  const patch: Database['public']['Tables']['camp_assignments']['Update'] = {}
 
   if (body.title !== undefined) {
     const title = typeof body.title === 'string' ? body.title.trim() : ''

@@ -196,7 +196,13 @@ describe('supabase client construction', () => {
         // Only direct constructions from the supabase packages need the
         // generic. `createClient` imported from '@/lib/supabase/server' is
         // our own already-typed wrapper, and its callers must NOT pass one.
-        if (!/from '@supabase\/(supabase-js|ssr)'/.test(code)) continue
+        // A TYPE-ONLY import constructs nothing, so it must not drag a file
+        // into this rule. `import type { SupabaseClient } from
+        // '@supabase/supabase-js'` alongside a call to our own already-typed
+        // createClient() wrapper is correct code, and counting it reported
+        // the wrapper's caller as an offender.
+        const valueImports = code.replace(/^\s*import\s+type\s[^\n]*$/gm, '')
+        if (!/from '@supabase\/(supabase-js|ssr)'/.test(valueImports)) continue
         // A CALL is the identifier followed by '('. `function createClient()`
         // is the local wrapper's declaration, not a client construction.
         const re = /(?<!function\s)\b(createClient|createServerClient)\s*\(/g

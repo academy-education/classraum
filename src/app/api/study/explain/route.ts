@@ -125,17 +125,36 @@ export async function POST(req: NextRequest) {
           // The catch below can't see a rejected write (supabase-js
           // resolves with { error }), so a failed save silently cost the
           // student their explanation on the next notebook reload.
-          const { error: saveErr } = await dbAdmin
-            .from('study_attempt_explanations')
-            .upsert(
-              {
-                student_id: user.id, attempt_id: attemptId,
-                [mode]: clean, [`${mode}_lang`]: ko ? 'ko' : 'en',
-                updated_at: new Date().toISOString(),
-              },
-              { onConflict: 'student_id,attempt_id' },
-            )
-          if (saveErr) console.error('[study/explain] save failed', { attemptId, mode, error: saveErr })
+          // Concrete keys, not [mode] / [`${mode}_lang`]. The computed form
+          // widened to an index signature, which hid that
+          // study_attempt_explanations has columns for exactly TWO modes:
+          // steps and simpler. 'followup' has never had one, so every
+          // follow-up save was rejected with
+          //   Could not find the 'followup' column ... in the schema cache
+          // and the student's follow-up was gone on the next notebook
+          // reload -- the precise failure the comment above was added to
+          // stop being silent. Written out, the compiler enforces it.
+          //
+          // Follow-ups are deliberately not persisted rather than persisted
+          // into a column that does not exist. To keep them, add
+          // followup / followup_lang and extend this switch.
+          const columns =
+            mode === 'steps'   ? { steps: clean,   steps_lang: ko ? 'ko' : 'en' } :
+            mode === 'simpler' ? { simpler: clean, simpler_lang: ko ? 'ko' : 'en' } :
+            null
+          if (columns) {
+            const { error: saveErr } = await dbAdmin
+              .from('study_attempt_explanations')
+              .upsert(
+                {
+                  student_id: user.id, attempt_id: attemptId,
+                  ...columns,
+                  updated_at: new Date().toISOString(),
+                },
+                { onConflict: 'student_id,attempt_id' },
+              )
+            if (saveErr) console.error('[study/explain] save failed', { attemptId, mode, error: saveErr })
+          }
         }
       } catch (e) {
         console.error('[study/explain] save failed', e)

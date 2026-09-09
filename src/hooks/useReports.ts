@@ -2,6 +2,7 @@ import { useState, useCallback, useEffect } from 'react'
 import { db } from '@/lib/supabase'
 import { queryCache, CACHE_TTL } from '@/lib/queryCache'
 import { triggerStudentReportCompletedNotifications } from '@/lib/notification-triggers'
+import type { Database } from '@/lib/database.types'
 
 export interface ReportData {
   id: string
@@ -259,7 +260,7 @@ export function useReports(academyId: string) {
   }, [fetchReports])
 
   // Update report
-  const updateReport = useCallback(async (reportId: string, updates: Partial<ReportData>) => {
+  const updateReport = useCallback(async (reportId: string, updates: Database['public']['Tables']['student_reports']['Update']) => {
     try {
       // Get the old status before updating
       const { data: oldRecord } = await db

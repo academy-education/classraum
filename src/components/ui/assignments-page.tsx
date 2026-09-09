@@ -55,6 +55,7 @@ import { invalidateSessionsCache, invalidateArchiveCache } from '@/lib/cache'
 // combined plus the AssignmentsDatePicker and shared modal/select deps)
 // until the user actually opens one.
 import dynamic from 'next/dynamic'
+import type { Database } from '@/lib/database.types'
 const AssignmentCreateEditModal = dynamic(() => import('@/components/ui/assignments/modals/AssignmentCreateEditModal').then(m => m.AssignmentCreateEditModal), { ssr: false })
 const AssignmentDeleteModal = dynamic(() => import('@/components/ui/assignments/modals/AssignmentDeleteModal').then(m => m.AssignmentDeleteModal), { ssr: false })
 const AssignmentDetailsModal = dynamic(() => import('@/components/ui/assignments/modals/AssignmentDetailsModal').then(m => m.AssignmentDetailsModal), { ssr: false })
@@ -956,7 +957,7 @@ export function AssignmentsPage({ academyId, filterSessionId }: AssignmentsPageP
           try {
             
             // Prepare update data, excluding null values that might cause issues
-            const updateData: Partial<SubmissionGrade> = {
+            const updateData: Database['public']['Tables']['assignment_grades']['Update'] = {
               status: grade.status,
               updated_at: new Date().toISOString()
             }

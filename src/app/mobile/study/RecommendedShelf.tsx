@@ -13,6 +13,7 @@ import type { StudyMode } from './modes'
 import { useStudyErrorToast, startFailedMessage } from './_shared/useStudyErrorToast'
 import { useLandingData } from './LandingDataProvider'
 import { studyButtonClass } from './_shared/StudyButton'
+import type { Database } from '@/lib/database.types'
 
 interface Card {
   reason: 'weak' | 'recent' | 'snap_followup'
@@ -89,7 +90,8 @@ export function RecommendedShelf({ hideUpsell = false }: { hideUpsell?: boolean 
     setCreating(key)
     // Snap follow-up cards create a freeform practice session seeded
     // from the OCR'd problem; topic cards create a normal session.
-    const insertBody = card.reason === 'snap_followup' && card.snap
+    const insertBody: Database['public']['Tables']['study_sessions']['Insert'] | null =
+      card.reason === 'snap_followup' && card.snap
       ? {
           student_id: user.userId,
           topic_id: null,

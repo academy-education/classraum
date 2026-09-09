@@ -97,11 +97,31 @@ export async function GET(request: NextRequest) {
   const academyScope = <Q extends { in: (c: string, v: string[]) => Q }>(q: Q, column: string): Q =>
     realIds === null ? q : q.in(column, realIds)
 
-  const head = (table: TableName) =>
+  /**
+   * One table's head-count query.
+   *
+   * GENERIC on purpose. Non-generic, this returned a UNION of a builder per
+   * TableName, so `.eq('status', ...)` had to name a column present in ALL
+   * six tables — which supabase-js 2.116 narrows to `'id' | 'created_at'`.
+   * That is what broke the deploy: seven calls in this file stopped
+   * compiling at once. Generic, each call site gets exactly the table it
+   * asked for, so 'status' is checked against academy_subscriptions and a
+   * typo is still a compile error — the guarantee the comment above wants.
+   */
+  const head = <T extends TableName>(table: T) =>
     dbAdmin.from(table).select('*', { count: 'exact', head: true })
 
+  type HeadQuery<T extends TableName> = ReturnType<typeof head<T>>
+
+  /**
+   * What countRows actually consumes — it reads `count` and `error` and
+   * nothing else. Naming the builder type here would rebuild the same union
+   * this function exists to avoid.
+   */
+  type CountQuery = PromiseLike<{ count: number | null; error: { message: string } | null }>
+
   /** A count that retries a transient fault before giving up. */
-  const count = (build: () => ReturnType<typeof head>, label: string) =>
+  const count = (build: () => CountQuery, label: string) =>
     withRetry(() => countRows(build, label), { label })
 
   // ---- 10-day trend window (shared by three sections) ----
@@ -111,9 +131,9 @@ export async function GET(request: NextRequest) {
     return d.toISOString().split('T')[0]
   })
 
-  const cumulativeTrend = (
-    table: TableName,
-    apply?: (q: ReturnType<typeof head>) => ReturnType<typeof head>
+  const cumulativeTrend = <T extends TableName>(
+    table: T,
+    apply?: (q: HeadQuery<T>) => HeadQuery<T>
   ) =>
     Promise.all(
       last10Days.map(date =>

@@ -8,12 +8,20 @@ import {
 } from '@/lib/proration';
 import { raiseAlert } from '@/lib/ops/alert';
 import type { Database } from '@/lib/database.types';
+import type { SupabaseClient } from '@supabase/supabase-js';
 
 export async function POST(request: NextRequest) {
   try {
     // Check for Authorization header first (for client-side calls)
     const authHeader = request.headers.get('authorization');
-    let supabase;
+    // Explicitly typed. This is assigned from two places -- a bearer-token
+    // client built by supabase-js, and the cookie client from
+    // @supabase/ssr -- and on an untyped `let` supabase-js 2.116 infers a
+    // union whose two `.from` signatures no longer unify, so every query in
+    // this route failed with "This expression is not callable". Both
+    // constructors produce a SupabaseClient<Database>; saying so once fixes
+    // all ten call sites.
+    let supabase: SupabaseClient<Database>;
     let user = null;
     let authError = null;
 
