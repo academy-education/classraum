@@ -483,10 +483,10 @@ export function SetupTour({ userRole }: { userRole: string | null }) {
                 {index + 1}/{total}
               </span>
             </p>
-            <p className="text-[13px] font-semibold text-gray-900 mt-1 leading-snug">
+            <p className="text-sm font-semibold text-gray-900 mt-1 leading-snug">
               {String(t(`${step.i18n}.title`))}
             </p>
-            <p className="text-[12px] text-gray-600 leading-relaxed mt-0.5">
+            <p className="text-xs text-gray-600 leading-relaxed mt-0.5">
               {String(t(`${step.i18n}.hint`))}
             </p>
           </div>
@@ -620,7 +620,7 @@ export function SetupTour({ userRole }: { userRole: string | null }) {
                     ? String(t('setupTour.stepCounter', { current: index + 1, total }))
                     : String(t('setupTour.finish.eyebrow'))}
               </p>
-              <h2 id="setup-tour-title" className="text-[17px] font-semibold tracking-tight text-gray-900 leading-snug mt-0.5">
+              <h2 id="setup-tour-title" className="text-lg font-semibold tracking-tight text-gray-900 leading-snug mt-0.5">
                 {celebratedStep
                   ? String(t(`${celebratedStep.i18n}.title`))
                   : step
@@ -630,7 +630,7 @@ export function SetupTour({ userRole }: { userRole: string | null }) {
             </div>
           </div>
 
-          <p className="text-[12.5px] text-gray-500 leading-relaxed mt-2">
+          <p className="text-xs text-gray-500 leading-relaxed mt-2">
             {celebratedStep
               ? String(t(`${celebratedStep.i18n}.praise`))
               : step
@@ -647,7 +647,7 @@ export function SetupTour({ userRole }: { userRole: string | null }) {
           {step && !celebratedStep && (
             <div
               key={stepDone ? 'some' : 'none'}
-              className={`mt-3 inline-flex items-center gap-1.5 rounded-full pl-1 pr-2.5 py-1 text-[12px] font-medium ring-1 ${
+              className={`mt-3 inline-flex items-center gap-1.5 rounded-full pl-1 pr-2.5 py-1 text-xs font-medium ring-1 ${
                 stepDone
                   ? `bg-emerald-50 text-emerald-700 ring-emerald-200 shadow-[0_0_0_3px_rgba(16,185,129,0.08)] ${
                       reducedMotion ? '' : 'animate-in zoom-in-95 fade-in duration-300'
@@ -691,13 +691,13 @@ export function SetupTour({ userRole }: { userRole: string | null }) {
               <span className="w-6 h-6 rounded-lg bg-primary text-white flex items-center justify-center flex-shrink-0 shadow-[0_2px_6px_-1px_rgba(40,133,232,0.5)]">
                 <MousePointerClick className="w-3.5 h-3.5" strokeWidth={2.2} />
               </span>
-              <p className="text-[12px] font-semibold text-primary leading-snug">
+              <p className="text-xs font-semibold text-primary leading-snug">
                 {String(t('setupTour.useHighlighted'))}
               </p>
             </div>
           )}
           {step && !celebratedStep && onRoute && !rect && (
-            <p className="mt-3 text-[12px] text-amber-800 bg-amber-50 ring-1 ring-amber-200/70 rounded-xl px-2.5 py-2 leading-relaxed">
+            <p className="mt-3 text-xs text-amber-800 bg-amber-50 ring-1 ring-amber-200/70 rounded-xl px-2.5 py-2 leading-relaxed">
               {String(t('setupTour.anchorMissing'))}
             </p>
           )}
@@ -753,7 +753,7 @@ export function SetupTour({ userRole }: { userRole: string | null }) {
                           }`}
                         />
                       )}
-                      <span className={`relative w-5 h-5 rounded-full flex items-center justify-center text-[9px] font-semibold tabular-nums ${
+                      <span className={`relative w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-semibold tabular-nums ${
                         isCurrent ? 'mt-[7px]' : 'mt-1.5'
                       } ${
                         item.state === 'done'
@@ -783,12 +783,12 @@ export function SetupTour({ userRole }: { userRole: string | null }) {
                     }`}>
                       <span className={`truncate ${
                         item.state === 'done'
-                          ? 'text-[12px] text-gray-400'
+                          ? 'text-xs text-gray-400'
                           : isCurrent
-                            ? 'text-[12.5px] text-gray-900 font-semibold'
+                            ? 'text-xs text-gray-900 font-semibold'
                             : item.state === 'locked'
-                              ? 'text-[12px] text-gray-400'
-                              : 'text-[12px] text-gray-600'
+                              ? 'text-xs text-gray-400'
+                              : 'text-xs text-gray-600'
                       }`}>
                         {String(t(`${item.step.i18n}.rail`))}
                       </span>

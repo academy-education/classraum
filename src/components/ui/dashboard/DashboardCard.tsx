@@ -118,7 +118,7 @@ export function DashboardCard({
           <div className="flex items-start justify-between gap-2">
             <div className="min-w-0 flex-1">
               <div className="flex items-baseline gap-2 min-w-0">
-                <h3 className="text-[15px] font-semibold text-gray-900 tracking-tight truncate">{title}</h3>
+                <h3 className="text-base font-semibold text-gray-900 tracking-tight truncate">{title}</h3>
                 {statusLabel && <span className={cn('text-[11px] font-semibold whitespace-nowrap flex-shrink-0', statusToneClass)}>{statusLabel}</span>}
               </div>
               {subtitle && (
@@ -132,7 +132,7 @@ export function DashboardCard({
               {metrics.slice(0, 3).map((metric, i) => (
                 <div key={i} className="flex items-baseline gap-1 min-w-0">
                   <span className="text-[10px] font-medium uppercase tracking-wider text-gray-400 break-keep">{metric.label}</span>
-                  <span className="text-[13px] font-semibold text-gray-900 break-keep truncate">{metric.value}</span>
+                  <span className="text-sm font-semibold text-gray-900 break-keep truncate">{metric.value}</span>
                 </div>
               ))}
             </div>

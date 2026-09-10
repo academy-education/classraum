@@ -46,7 +46,7 @@ export function StudySidebar() {
             onClick={() => { if (!active) { hapticTap(); router.push(item.href) } }}
             aria-current={active ? 'page' : undefined}
             className={cn(
-              'group flex items-center gap-3 rounded-xl px-3 h-11 text-[14px] font-medium transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/40',
+              'group flex items-center gap-3 rounded-xl px-3 h-11 text-sm font-medium transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/40',
               active
                 ? 'bg-primary/[0.08] text-primary'
                 : 'text-gray-500 hover:bg-gray-50 hover:text-gray-800',

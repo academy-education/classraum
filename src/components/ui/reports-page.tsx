@@ -4620,7 +4620,7 @@ export default function ReportsPage({ academyId }: ReportsPageProps) {
                                               <text
                                                 x={x}
                                                 y={baseY + 22}
-                                                className="text-[9px] fill-gray-600"
+                                                className="text-[10px] fill-gray-600"
                                                 textAnchor="middle"
                                               >
                                                 {percentile}%

@@ -218,7 +218,7 @@ function SessionReviewCard({ row, index, total }: {
       {open && (
         <div className="px-4 pb-4 space-y-2 border-t border-gray-100 pt-3 text-sm">
           {q.passage && (
-            <div className="rounded-xl ring-1 ring-gray-200/70 bg-gray-50 px-3 py-2 text-[13px] text-gray-800">
+            <div className="rounded-xl ring-1 ring-gray-200/70 bg-gray-50 px-3 py-2 text-sm text-gray-800">
               <PassageParagraphs text={q.passage} />
             </div>
           )}
@@ -292,11 +292,11 @@ function SessionReviewCard({ row, index, total }: {
 
           {q.explanation && (
             <div className="rounded-xl bg-gradient-to-br from-primary/[0.05] to-transparent ring-1 ring-primary/15 px-3 py-2.5 mt-3">
-              <div className="flex items-center gap-1.5 text-[10.5px] font-semibold uppercase tracking-[0.10em] text-primary mb-1">
+              <div className="flex items-center gap-1.5 text-[10px] font-semibold uppercase tracking-[0.10em] text-primary mb-1">
                 <Sparkles className="w-3 h-3" />
                 {t('camp.studentSession.explanation')}
               </div>
-              <p className="text-[12.5px] text-gray-700 leading-relaxed">
+              <p className="text-xs text-gray-700 leading-relaxed">
                 {normalizeDisplayText(q.explanation)}
               </p>
             </div>

@@ -142,7 +142,7 @@ export function ModeSwitcherSheet({ open, currentMode, onClose }: ModeSwitcherSh
           <div className="w-16 h-16 rounded-3xl bg-white/15 ring-1 ring-white/25 backdrop-blur-sm flex items-center justify-center shadow-[inset_0_1px_0_rgba(255,255,255,0.25)] animate-in zoom-in-75 fade-in duration-300">
             <SwitchIcon className="w-8 h-8 text-white" />
           </div>
-          <div className="text-white text-[15px] font-semibold tracking-tight animate-in fade-in slide-in-from-bottom-2 duration-300">
+          <div className="text-white text-base font-semibold tracking-tight animate-in fade-in slide-in-from-bottom-2 duration-300">
             {t(MODE_META[switching].titleKey)}
           </div>
         </div>
@@ -173,7 +173,7 @@ export function ModeSwitcherSheet({ open, currentMode, onClose }: ModeSwitcherSh
 
             <div className="px-5 pt-2 pb-5">
               <div className="flex items-center justify-between mb-3">
-                <h2 className="text-[15px] font-semibold text-gray-900">
+                <h2 className="text-base font-semibold text-gray-900">
                   {t('mobile.mode.sheetTitle')}
                 </h2>
                 <button
@@ -205,8 +205,8 @@ export function ModeSwitcherSheet({ open, currentMode, onClose }: ModeSwitcherSh
                         <Icon className="w-5 h-5" />
                       </div>
                       <div className="min-w-0 flex-1">
-                        <div className="text-[14px] font-semibold text-gray-900">{t(opt.titleKey)}</div>
-                        <div className="text-[12px] text-gray-600 mt-0.5 leading-relaxed">{t(opt.blurbKey)}</div>
+                        <div className="text-sm font-semibold text-gray-900">{t(opt.titleKey)}</div>
+                        <div className="text-xs text-gray-600 mt-0.5 leading-relaxed">{t(opt.blurbKey)}</div>
                       </div>
                       {active && (
                         <span className="flex-shrink-0 inline-flex items-center justify-center w-6 h-6 rounded-full bg-primary text-white">

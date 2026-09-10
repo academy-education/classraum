@@ -87,8 +87,8 @@ export function EnergyChip() {
       >
         <Zap className={`w-4 h-4 ${low ? 'text-rose-500' : 'text-amber-500'}`} weight="fill" />
         <span className={`inline-flex items-baseline tabular-nums ${low ? 'text-rose-600' : 'text-amber-700'}`}>
-          <span className="text-[13px] font-bold leading-none">{state.energy}</span>
-          <span className="text-[12px] font-medium opacity-70 leading-none">/{state.cap}</span>
+          <span className="text-sm font-bold leading-none">{state.energy}</span>
+          <span className="text-xs font-medium opacity-70 leading-none">/{state.cap}</span>
         </span>
       </button>
 
@@ -105,20 +105,20 @@ export function EnergyChip() {
                 <Zap className={`w-4 h-4 ${low ? 'text-rose-500' : 'text-amber-500'}`} weight="fill" />
               </span>
               <div className="leading-tight">
-                <div className="text-[14px] font-bold text-gray-900 tabular-nums">
+                <div className="text-sm font-bold text-gray-900 tabular-nums">
                   {state.energy}<span className="text-gray-400 font-medium">/{state.cap}</span> {ko ? '에너지' : 'energy'}
                 </div>
-                <div className="text-[11.5px] text-gray-500">{ko ? '연습·플래시카드에 사용' : 'For practice & flashcards'}</div>
+                <div className="text-[11px] text-gray-500">{ko ? '연습·플래시카드에 사용' : 'For practice & flashcards'}</div>
               </div>
             </div>
             <div className="mt-3 rounded-xl bg-gray-50 px-3 py-2.5">
               {full ? (
-                <p className="text-[12.5px] font-medium text-emerald-600">{ko ? '에너지가 가득 찼어요' : 'Energy is full'}</p>
+                <p className="text-xs font-medium text-emerald-600">{ko ? '에너지가 가득 찼어요' : 'Energy is full'}</p>
               ) : (
                 <>
                   <p className="text-[11px] uppercase tracking-[0.08em] text-gray-400 font-semibold">{ko ? '다음 에너지까지' : 'Next energy in'}</p>
-                  <p className="mt-0.5 text-[15px] font-bold text-gray-900 tabular-nums">{fmt(remaining, ko)}</p>
-                  <p className="mt-0.5 text-[11.5px] text-gray-400">{ko ? `${state.refillHours}시간마다 +1` : `+1 every ${state.refillHours}h`}</p>
+                  <p className="mt-0.5 text-base font-bold text-gray-900 tabular-nums">{fmt(remaining, ko)}</p>
+                  <p className="mt-0.5 text-[11px] text-gray-400">{ko ? `${state.refillHours}시간마다 +1` : `+1 every ${state.refillHours}h`}</p>
                 </>
               )}
             </div>
