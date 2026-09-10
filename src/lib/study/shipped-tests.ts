@@ -21,21 +21,35 @@
 export const SHIPPED_TEST_SLUGS: ReadonlySet<string> = new Set([
   'test-sat',
   'test-toefl',
-  // SSAT and ISEE each serve TWO full forms as of 2026-08-31 (A17).
-  // The tightest sections, measured by verify-admission-forms.mjs:
+  // SSAT and ISEE, re-measured with verify-admission-forms.mjs on
+  // 2026-09-12. Every delivered section fills, with these margins:
   //
-  //     SSAT reading   83 drawable / 40 needed = 2.08 forms
-  //     ISEE math     174 drawable / 84 needed = 2.07
-  //     SSAT verbal   124 drawable / 60 needed = 2.07
+  //     SSAT reading  138 drawable / 40 needed   (31 passages, 6/passage)
+  //     SSAT verbal   180 / 60      SSAT math   153 / 50
+  //     ISEE reading  117 / 36      (29 passages, 6/passage)
+  //     ISEE verbal   128 / 40      ISEE math   283 / 84
   //
-  // Reading counts are AFTER the 3-items-per-passage cap (SSAT reading
-  // holds 138 items but only 83 are drawable in one form), so do not
-  // read repeatability off the raw bank count.
+  // THE READING NUMBERS ABOVE REPLACE A STALE AND MISLEADING PAIR. This
+  // block used to say reading counts were "AFTER the 3-items-per-passage
+  // cap (SSAT reading holds 138 items but only 83 are drawable)". That
+  // cap was reversed: `MAX_ITEMS_PER_PASSAGE_FOR_SAMPLING = 3` is QC
+  // sampling only and carries its own "Do not use this to draw a
+  // student's test", while delivery is `ITEMS_PER_PASSAGE = 6` for both
+  // families. Capping delivery at 3 discarded half the bank, so the
+  // faithful format yields MORE distinct forms, not fewer.
   //
-  // This block previously said "EXACTLY ONE full form each"; that was
-  // true on 2026-08-29 and stopped being true two days later. Re-run the
-  // script rather than trusting this comment, and re-run it after any
-  // archive — archiving items is what would silently take it back to one.
+  // The stale version was quoted as fact on 2026-09-12 to brief an
+  // authoring agent, and the instruction it produced -- "write more
+  // passages with fewer questions each" -- was exactly backwards:
+  // drawByPassage sorts passages that can supply a full six ahead of
+  // everything else, so a 3-item passage is reached only as degraded
+  // fallback. The author checked the source instead of believing the
+  // brief. Note this comment had ALREADY said "re-run the script rather
+  // than trusting this comment" and was trusted anyway; that sentence
+  // is not a substitute for the numbers being right.
+  //
+  // Re-run after any archive — archiving items is what would silently
+  // reduce these.
   'test-ssat',
   'test-isee',
   // ACT Composite (English, Math, Reading) as of 2026-09-03 (A21/B7).
