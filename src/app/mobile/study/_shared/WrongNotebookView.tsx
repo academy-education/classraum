@@ -54,6 +54,9 @@ interface Entry {
   saved_simpler: string | null
   saved_steps_lang: string | null
   saved_simpler_lang: string | null
+  saved_followup: string | null
+  saved_followup_lang: string | null
+  saved_followup_question: string | null
 }
 
 interface TopicSummary {
@@ -771,6 +774,9 @@ function NotebookEntryCard({ entry, index, ko, onToggleReviewed }: {
           savedSimpler={entry.saved_simpler}
           savedStepsLang={entry.saved_steps_lang}
           savedSimplerLang={entry.saved_simpler_lang}
+          savedFollowup={entry.saved_followup}
+          savedFollowupLang={entry.saved_followup_lang}
+          savedFollowupQuestion={entry.saved_followup_question}
         />
       </div>
 

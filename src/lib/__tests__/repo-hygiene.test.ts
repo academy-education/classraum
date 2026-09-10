@@ -92,6 +92,11 @@ describe('environment variables', () => {
     // the output directory; listing it in .env.example would invite someone
     // to set it, which is worse than leaving it out.
     'HOME',
+    // Also OS-provided. scripts/android-gradle.mjs passes the terminal locale
+    // through to Gradle; CocoaPods and Gradle both misbehave on a non-UTF-8
+    // one. Same reasoning as HOME — putting it in .env.example would suggest
+    // it is app configuration, which it is not.
+    'LANG',
   ])
 
   it('every env var read in src/ or scripts/ is documented in .env.example', () => {

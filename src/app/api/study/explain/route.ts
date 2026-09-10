@@ -11,21 +11,22 @@ import { dbAdmin } from '@/lib/supabase-admin'
  *
  * This is the interactive layer on top of the static grader explanation:
  * the student can ask for a step-by-step walkthrough, a simpler
- * re-explanation. One short model call per tap.
+ * re-explanation, or ask their own question about it. One short model call
+ * per tap.
  *
  * Modes:
  *   steps    → numbered worked solution
  *   simpler  → plain-language re-explanation, no jargon
+ *   followup → answers the student's own typed question about this item
  *
- * A third mode, a free-text "ask about this question" follow-up, shipped on
- * 2026-07-14 and was switched off a week later in a3cbff44 ("hide the
- * free-form follow-up for now"). Its server half outlived the input by two
- * months and is removed here: nothing could reach it, and a branch that
- * reads as working is one somebody eventually builds storage for. The
- * prompts and the capped input JSX are both recoverable from that commit.
+ * The follow-up shipped on 2026-07-14, was hidden a week later in a3cbff44
+ * ("hide the free-form follow-up for now"), and came back on 2026-09-10 with
+ * the columns it always needed (migration 107). While it was hidden the
+ * server half stayed and could not be reached from anywhere, which is how it
+ * nearly earned a migration to store output nothing produced.
  */
 
-type Mode = 'steps' | 'simpler'
+type Mode = 'steps' | 'simpler' | 'followup'
 
 interface Body {
   prompt?: string
@@ -34,6 +35,8 @@ interface Body {
   studentAnswer?: string
   priorExplanation?: string
   mode?: Mode
+  /** The student's own question, for mode 'followup'. */
+  followup?: string
   language?: 'en' | 'ko'
   /** When present, the generated steps/simpler text is persisted against
    *  this attempt so it survives a reload of the wrong-answer notebook. */
@@ -44,6 +47,10 @@ const MODE_INSTRUCTION: Record<Mode, { en: string; ko: string }> = {
   steps: {
     en: 'Give a numbered, step-by-step walkthrough that shows exactly how to arrive at the correct answer. Start from what the question is actually asking, then one concrete action per step, showing the reasoning that moves you forward. Where relevant, name why the tempting wrong choice fails. End with a one-line statement of the final answer. No preamble — start at step 1.',
     ko: '정답에 도달하는 방법을 번호를 매겨 단계별로 정확히 보여주세요. 문제가 실제로 무엇을 묻는지에서 시작해, 각 단계마다 구체적인 행동 하나와 그 근거를 제시하세요. 필요하면 헷갈리기 쉬운 오답이 왜 틀린지도 짚어주세요. 마지막 줄에 최종 정답을 한 줄로 정리하세요. 서론 없이 1단계부터 시작하세요.',
+  },
+  followup: {
+    en: "Answer the student's follow-up question about this specific item directly and briefly. Answer the question they actually asked -- do not restate the whole solution unless that IS the question.",
+    ko: '이 문항에 대한 학생의 추가 질문에 직접적이고 간결하게 답하세요. 학생이 실제로 물어본 것에 답하고, 그것이 질문이 아닌 이상 풀이 전체를 다시 설명하지 마세요.',
   },
   simpler: {
     en: 'Explain why the correct answer is right in the plainest language possible — as if to a younger student who just got it wrong and feels stuck. No jargon (or define it in plain words the moment you must use it). Use one short, concrete everyday analogy that maps cleanly onto the idea. Get to the "aha" in 2–4 short sentences; do not restate the whole question.',
@@ -70,11 +77,18 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'bad json' }, { status: 400 })
   }
 
-  const mode: Mode = body.mode === 'simpler' ? 'simpler' : 'steps'
+  const mode: Mode =
+    body.mode === 'simpler' || body.mode === 'followup' ? body.mode : 'steps'
   const ko = body.language === 'ko'
   const prompt = (body.prompt ?? '').slice(0, 4000)
   if (!prompt.trim()) {
     return NextResponse.json({ error: 'missing prompt' }, { status: 400 })
+  }
+  // Clamped here, and the same clamp is what gets stored, so the saved
+  // question always matches the one the model was actually given.
+  const followup = (body.followup ?? '').trim().slice(0, 500)
+  if (mode === 'followup' && !followup) {
+    return NextResponse.json({ error: 'missing followup' }, { status: 400 })
   }
 
   const context = [
@@ -83,6 +97,7 @@ export async function POST(req: NextRequest) {
     body.correctAnswer ? `CORRECT ANSWER: ${body.correctAnswer}` : '',
     body.studentAnswer ? `STUDENT ANSWERED: ${body.studentAnswer}` : '',
     body.priorExplanation ? `EXPLANATION ALREADY SHOWN:\n${body.priorExplanation.slice(0, 1200)}` : '',
+    mode === 'followup' ? `STUDENT'S FOLLOW-UP QUESTION: ${followup}` : '',
   ].filter(Boolean).join('\n\n')
 
   const system = [
@@ -127,9 +142,12 @@ export async function POST(req: NextRequest) {
           // that this table has columns for exactly the two modes above.
           // Written out, adding a third mode without a column for it is a
           // compile error rather than a runtime rejection nobody reads.
-          const columns = mode === 'steps'
-            ? { steps: clean,   steps_lang: ko ? 'ko' : 'en' }
-            : { simpler: clean, simpler_lang: ko ? 'ko' : 'en' }
+          const columns =
+            mode === 'steps'   ? { steps: clean,   steps_lang: ko ? 'ko' : 'en' } :
+            mode === 'simpler' ? { simpler: clean, simpler_lang: ko ? 'ko' : 'en' } :
+            // The question is stored beside the answer. Without it the saved
+            // follow-up is a reply to nothing when the notebook reloads.
+            { followup: clean, followup_lang: ko ? 'ko' : 'en', followup_question: followup }
           const { error: saveErr } = await dbAdmin
             .from('study_attempt_explanations')
             .upsert(

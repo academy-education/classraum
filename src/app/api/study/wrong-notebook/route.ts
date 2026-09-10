@@ -48,6 +48,10 @@ interface NotebookEntry {
   saved_simpler: string | null
   saved_steps_lang: string | null
   saved_simpler_lang: string | null
+  saved_followup: string | null
+  saved_followup_lang: string | null
+  /** What the student asked. The answer is unreadable without it. */
+  saved_followup_question: string | null
 }
 
 export async function GET(req: NextRequest) {
@@ -99,17 +103,24 @@ export async function GET(req: NextRequest) {
   const { data: explanations } = attemptIds.length > 0
     ? await dbAdmin
         .from('study_attempt_explanations')
-        .select('attempt_id, steps, simpler, steps_lang, simpler_lang')
+        .select('attempt_id, steps, simpler, steps_lang, simpler_lang, followup, followup_lang, followup_question')
         .eq('student_id', user.id)
         .in('attempt_id', attemptIds)
     : { data: [] }
-  const explainMap = new Map<string, { steps: string | null; simpler: string | null; stepsLang: string | null; simplerLang: string | null }>()
+  const explainMap = new Map<string, {
+    steps: string | null; simpler: string | null
+    stepsLang: string | null; simplerLang: string | null
+    followup: string | null; followupLang: string | null; followupQuestion: string | null
+  }>()
   for (const e of (explanations ?? [])) {
     explainMap.set(e.attempt_id as string, {
       steps: (e.steps as string | null) ?? null,
       simpler: (e.simpler as string | null) ?? null,
       stepsLang: (e.steps_lang as string | null) ?? null,
       simplerLang: (e.simpler_lang as string | null) ?? null,
+      followup: (e.followup as string | null) ?? null,
+      followupLang: (e.followup_lang as string | null) ?? null,
+      followupQuestion: (e.followup_question as string | null) ?? null,
     })
   }
 
@@ -150,6 +161,9 @@ export async function GET(req: NextRequest) {
       saved_simpler: explainMap.get(row.id as string)?.simpler ?? null,
       saved_steps_lang: explainMap.get(row.id as string)?.stepsLang ?? null,
       saved_simpler_lang: explainMap.get(row.id as string)?.simplerLang ?? null,
+      saved_followup: explainMap.get(row.id as string)?.followup ?? null,
+      saved_followup_lang: explainMap.get(row.id as string)?.followupLang ?? null,
+      saved_followup_question: explainMap.get(row.id as string)?.followupQuestion ?? null,
     })
   }
 

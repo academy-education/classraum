@@ -1,15 +1,16 @@
 "use client"
 
 import { useState } from 'react'
-import { Sparkles, ListOrdered, Baby, Loader2, Check } from '@/app/mobile/study/_shared/icons'
+import { Sparkles, ListOrdered, Baby, Loader2, Check, Send } from '@/app/mobile/study/_shared/icons'
 import { authHeaders } from '@/lib/auth-headers'
 import { hapticSelection } from '@/lib/nativeHaptics'
 
 /**
  * On-demand follow-up explanations for a single graded question. Sits
  * under the grader's static explanation (practice feedback, wrong
- * notebook) and lets the student pull a step-by-step walkthrough or a
- * simpler re-explanation — each one short model call to /api/study/explain.
+ * notebook) and lets the student pull a step-by-step walkthrough, a simpler
+ * re-explanation, or ask their own question — each one short model call to
+ * /api/study/explain.
  *
  * The student picks the explanation language (English / 한국어) via a small
  * toggle; it defaults to the app language. The per-question cap is per
@@ -37,9 +38,19 @@ interface Props {
   savedSimpler?: string | null
   savedStepsLang?: string | null
   savedSimplerLang?: string | null
+  savedFollowup?: string | null
+  savedFollowupLang?: string | null
+  /** The question that produced `savedFollowup`; shown as its label. */
+  savedFollowupQuestion?: string | null
 }
 
-type Mode = 'steps' | 'simpler'
+type Mode = 'steps' | 'simpler' | 'followup'
+
+/** The canned modes are one billed call each, so they are allowed once per
+ *  question and language. A free-text follow-up is open-ended, so it gets a
+ *  low hard cap instead — enough to actually get unstuck, not enough for a
+ *  bored student to melt tokens. A failed call does not count. */
+const FOLLOWUP_LIMIT = 3
 interface Item { id: number; mode: Mode; lang: Lang; label: string; text: string; loading: boolean; error?: boolean }
 
 let seq = 0
@@ -49,9 +60,14 @@ const asLang = (v: string | null | undefined, fallback: Lang): Lang => (v === 'k
 export function ExplainMore({
   prompt, choices, correctAnswer, studentAnswer, priorExplanation, language,
   attemptId, savedSteps, savedSimpler, savedStepsLang, savedSimplerLang,
+  savedFollowup, savedFollowupLang, savedFollowupQuestion,
 }: Props) {
-  const label = (mode: Mode, l: Lang) =>
-    mode === 'steps' ? (l === 'ko' ? '단계별 풀이' : 'Step-by-step') : (l === 'ko' ? '더 쉽게' : 'Explain simply')
+  const label = (mode: Mode, l: Lang, question?: string) =>
+    mode === 'steps'   ? (l === 'ko' ? '단계별 풀이' : 'Step-by-step')
+    : mode === 'simpler' ? (l === 'ko' ? '더 쉽게' : 'Explain simply')
+    // A follow-up is labelled with what was asked — the answer alone reads
+    // as a reply to nothing once the page has been reloaded.
+    : (question?.trim() || (l === 'ko' ? '추가 질문' : 'Your question'))
 
   // The language the student wants explanations in — defaults to the app
   // language, but seed from any saved output so a revisit reflects it.
@@ -70,9 +86,16 @@ export function ExplainMore({
       const l = asLang(savedSimplerLang, language)
       out.push({ id: ++seq, mode: 'simpler', lang: l, label: label('simpler', l), text: savedSimpler, loading: false })
     }
+    if (savedFollowup) {
+      const l = asLang(savedFollowupLang, language)
+      out.push({ id: ++seq, mode: 'followup', lang: l, label: label('followup', l, savedFollowupQuestion ?? undefined), text: savedFollowup, loading: false })
+    }
     return out
   })
   const [busy, setBusy] = useState(false)
+  const [followup, setFollowup] = useState('')
+  const followupsUsed = items.filter(it => it.mode === 'followup' && !it.error).length
+  const followupsLeft = Math.max(0, FOLLOWUP_LIMIT - followupsUsed)
 
   // "Spent" per (mode, language): a non-errored item exists for this mode
   // in the selected language. Switching language re-enables the buttons.
@@ -81,13 +104,15 @@ export function ExplainMore({
   const simplerUsed = spent('simpler')
   const ko = lang === 'ko'
 
-  const run = async (mode: Mode) => {
-    if (busy || spent(mode)) return
+  const run = async (mode: Mode, question?: string) => {
+    // Canned modes are once per (mode, language); follow-ups use their own cap.
+    if (busy) return
+    if (mode === 'followup' ? followupsLeft <= 0 : spent(mode)) return
     hapticSelection()
     setBusy(true)
     const id = ++seq
     const itemLang = lang
-    setItems(prev => [...prev, { id, mode, lang: itemLang, label: label(mode, itemLang), text: '', loading: true }])
+    setItems(prev => [...prev, { id, mode, lang: itemLang, label: label(mode, itemLang, question), text: '', loading: true }])
     try {
       const headers = await authHeaders()
       const res = await fetch('/api/study/explain', {
@@ -95,7 +120,7 @@ export function ExplainMore({
         headers: { ...headers, 'Content-Type': 'application/json' },
         body: JSON.stringify({
           prompt, choices, correctAnswer, studentAnswer, priorExplanation,
-          mode, language: itemLang, attemptId,
+          mode, followup: question, language: itemLang, attemptId,
         }),
       })
       if (!res.ok) throw new Error('failed')
@@ -106,6 +131,14 @@ export function ExplainMore({
     } finally {
       setBusy(false)
     }
+  }
+
+  const submitFollowup = (e: React.FormEvent) => {
+    e.preventDefault()
+    const q = followup.trim()
+    if (!q || followupsLeft <= 0 || busy) return
+    setFollowup('')
+    void run('followup', q)
   }
 
   return (
@@ -157,6 +190,37 @@ export function ExplainMore({
           {label('simpler', lang)}
         </button>
       </div>
+
+      {/* Free-form follow-up. Sits UNDER the chips and ABOVE the answer
+          stack so the thing you type is next to the thing you tapped, and
+          new answers appear below both. Sizes are the study scale: 13px is
+          the `small` step, and h-11 matches the shared button. */}
+      {followupsLeft > 0 ? (
+        <form onSubmit={submitFollowup} className="relative">
+          <input
+            type="text"
+            value={followup}
+            onChange={e => setFollowup(e.target.value)}
+            disabled={busy}
+            enterKeyHint="send"
+            aria-label={ko ? '이 문제에 대해 물어보기' : 'Ask about this question'}
+            placeholder={ko ? '이 문제에 대해 물어보기…' : 'Ask about this question…'}
+            className="w-full h-11 pl-3.5 pr-12 rounded-xl bg-white ring-1 ring-gray-200/70 text-[13px] placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/30 transition-all disabled:opacity-50"
+          />
+          <button
+            type="submit"
+            disabled={busy || !followup.trim()}
+            aria-label={ko ? '보내기' : 'Send'}
+            className="absolute right-1.5 top-1/2 -translate-y-1/2 w-8 h-8 rounded-lg bg-primary text-white inline-flex items-center justify-center disabled:opacity-40 active:scale-95 transition-all"
+          >
+            <Send className="w-3.5 h-3.5" />
+          </button>
+        </form>
+      ) : (
+        <p className="text-[11px] text-gray-400 px-1">
+          {ko ? '이 문제의 추가 질문 한도에 도달했어요.' : "You've reached the follow-up limit for this question."}
+        </p>
+      )}
 
       {/* Answer stack */}
       {items.map(it => (

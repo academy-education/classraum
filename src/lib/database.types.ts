@@ -3016,6 +3016,9 @@ export type Database = {
       study_attempt_explanations: {
         Row: {
           attempt_id: string
+          followup: string | null
+          followup_lang: string | null
+          followup_question: string | null
           simpler: string | null
           simpler_lang: string | null
           steps: string | null
@@ -3025,6 +3028,9 @@ export type Database = {
         }
         Insert: {
           attempt_id: string
+          followup?: string | null
+          followup_lang?: string | null
+          followup_question?: string | null
           simpler?: string | null
           simpler_lang?: string | null
           steps?: string | null
@@ -3034,6 +3040,9 @@ export type Database = {
         }
         Update: {
           attempt_id?: string
+          followup?: string | null
+          followup_lang?: string | null
+          followup_question?: string | null
           simpler?: string | null
           simpler_lang?: string | null
           steps?: string | null
