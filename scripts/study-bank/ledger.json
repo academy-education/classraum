@@ -2215,6 +2215,70 @@
         "method": "bank-gate 2026-09-04: structural pre-flight + no-source attack vs matched live control + three-grader with-source exclusivity + options-only elimination probe"
       },
       "status": "shipped"
+    },
+    {
+      "id": "act-math-v2-alg-2026-09-12",
+      "targetTest": "act",
+      "section": "math",
+      "task": "act_math",
+      "family": "mc_stem_source",
+      "cohort": "act-math-v2-alg",
+      "contentSha": "01e3f856f0ecbcfd33fff7bb629e7f975cbb6696409df6abd57707d5f51edb25",
+      "note": "ACT Algebra, 24 authored, 16 inserted. Authored because form-capacity.mjs was fixed today to read the published ACT quotas: it had named Geometry (47) as the binding domain when the real caps are Algebra (25) and Functions (24). EIGHT DROPPED, all on weak distractors, none on exclusivity and none on a wrong key. Every drop is the same defect - an option eliminable by kind or magnitude before any algebra (a stem saying \"odd\" beside an even option; a message count exceeding the stated bill; a negative width). Three graders, 19 of 24 agreeing with the author on difficulty.",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "verdict": "Sandbox 24/24 recompute. Distractors 72/72 recompute to their stated derivation (distractor_solve, new today). Key letters 6/6/6/6 with no consecutive group of four a complete ABCD permutation; key magnitude rank 6/5/5/5 over 22 numeric items and 0 of 22 choice arrays in ascending order, so letter and rank are decorrelated by construction. Symbolic hub 2 structured of 24 and numeric hub 7 of 24, key-is-hub 0.0% on both."
+        },
+        "withsource": {
+          "passed": true,
+          "verdict": "Three independent graders. Difficulty easy 6 / medium 15 / hard 2-4 (median-aggregated: easy 2, medium 11, hard 3 among survivors). All 24 exclusive and stem-complete on all three graders. Distractor quality decided the batch: 8 dropped. Graders independently reported the intermediate-value distractor at 42-46%, but ALSO reported it is not positionally slotted, so it cannot be used without first doing the work."
+        },
+        "nosource": {
+          "passed": true,
+          "n": 16,
+          "mean": 25,
+          "control": 27.1,
+          "margin": -2.1,
+          "verdict": "Options-only render, keys dealt flat 4/4/4/4, three solvers. 25.0% (12/48) against a matched LIVE ACT Algebra control of 27.1% (13/48, drawn from a live pool of 20). Delta -2.1, PASS under the rule pre-registered in MATH-ATTACK-PREREG-2026-09-12.md and committed before any solver ran. MATH-ATTACK-RESULT-2026-09-12.md."
+        },
+        "tells": {
+          "passed": true,
+          "verdict": "Six solvers across the run independently found an \"arithmetic run plus one outlier\" shape and bet the key sits at the run centre; the confident subset scored 3/12, exactly chance, so the shape does not locate the key. Two symbolic items (AM2A-12, AM2A-13) were flagged by two graders as odd-one-out readable with the stem covered; both survive the attack and are recorded rather than repaired."
+        }
+      }
+    },
+    {
+      "id": "sat-alg-hard-v4-2026-09-12",
+      "targetTest": "sat",
+      "section": "math",
+      "task": "sat_math",
+      "family": "mc_stem_source",
+      "cohort": "math-v9-alg-hard",
+      "contentSha": "eadbf931680d7bb361e59c2ced463f7126e049178b9c9510e92d7dff867d55de",
+      "note": "SAT Algebra, 24 authored as hard, 19 inserted and only ONE banks as hard. Three graders; five dropped as majority-easy on a hard-routed section. THE YIELD IS THE FINDING: two items were graded hard by all three graders and both were defective - ALG-H4-22 non-exclusive 3/3 (unbounded month count made 4 reachable by a legitimate reading AND by the intended error path), ALG-H4-11 weak distractors (two options below the 30 the stem already forces). Both were REPAIRED per unanimous grader advice to fix the framing rather than the key, then re-graded by three graders who had not seen the originals: all three called both MEDIUM. The two items were hard partly because they were broken. Combined with sat-sec-hard-v8 (1 hard of 24), authoring is not the instrument for relieving a hard band.",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "verdict": "Sandbox 24/24 recompute. Key letters 6/6/6/6, no period 1-12, 0 of 6 consecutive groups a complete ABCD permutation. Key magnitude rank 6/6/6/6 over 24 numeric items (check-key-magnitude: worst rank 25.0% vs 25.0% control). Numeric hub 4 structured of 24, key-is-hub 12.5% vs 25.0% control - note the small denominator, that margin is over 4 items and is close to no evidence either way. distractor_solve on the two repaired items, 6/6 recompute."
+        },
+        "withsource": {
+          "passed": true,
+          "verdict": "Three graders on 22 items, three DIFFERENT graders on the two repaired items (the originals judged different option sets and, for one, a different stem, so the earlier grade could not carry). Survivors: 18 medium, 1 hard (ALG-H4-04). All three graders independently described the same uniform distractor brief - the other variable, the value before the final division, the sign-flipped key - at roughly 42%. One grader retracted its own options-only finding after measuring the rule across all 24 and finding it picks a non-key on 4 of the 7 it fires on."
+        },
+        "nosource": {
+          "passed": true,
+          "n": 19,
+          "mean": 21.1,
+          "control": 40.4,
+          "margin": -19.3,
+          "verdict": "Options-only render, keys dealt flat, three solvers. 21.1% (12/57) against a matched LIVE SAT Algebra HARD control of 40.4% (23/57, from a live pool of 46). Delta -19.3, the largest clean margin in the run. THE CONTROL IS THE FINDING: six of nineteen shipped items were solved by all three solvers, by one mechanism every solver named unprompted - one distractor is an order-of-magnitude outlier and the key is never it. Recorded as a backlog entry, NOT acted on: 19 of 46 sampled, three SAT Math domains unmeasured."
+        },
+        "tells": {
+          "passed": true,
+          "verdict": "The 40.4% live control is also the evidence this instrument could fail today - three of six files sat at 25-27%, and a flat line across every file would have meant no verdict was available. Solvers confident-subset scored at chance."
+        }
+      }
     }
   ],
   "auditedCohorts": [
