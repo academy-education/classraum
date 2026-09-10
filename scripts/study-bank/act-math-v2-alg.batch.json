@@ -1,0 +1,506 @@
+[
+  {
+    "id": "AM2A-01",
+    "domain": "Algebra",
+    "subskill": "Consecutive odd integers: the largest of three with a given sum",
+    "difficulty": "easy",
+    "prompt": "The sum of three consecutive odd integers is 111. What is the largest of the three integers?",
+    "choices": [
+      "37",
+      "35",
+      "38",
+      "39"
+    ],
+    "correct_answer": "39",
+    "explanation": "Let the smallest integer be n. Then n + (n + 2) + (n + 4) = 111, so 3n + 6 = 111 and n = 35. The three integers are 35, 37, and 39. '35' reports the smallest of the three and '37' the middle one. '38' comes from treating the integers as consecutive rather than consecutive odd: 3n + 3 = 111 gives n = 36 and a largest value of 38.",
+    "solve": "var sum=111, k=3, step=2;\nvar n=(sum-step*(0+1+2))/k;\nreturn n+step*(k-1);",
+    "distractor_solve": {
+      "35": "var sum=111,k=3,step=2;var n=(sum-step*(0+1+2))/k;return n;",
+      "37": "var sum=111,k=3,step=2;var n=(sum-step*(0+1+2))/k;return n+step;",
+      "38": "var sum=111,k=3,step=1;var n=(sum-step*(0+1+2))/k;return n+step*(k-1);"
+    }
+  },
+  {
+    "id": "AM2A-02",
+    "domain": "Algebra",
+    "subskill": "Linear inequality in context: the greatest whole number of units under a cap",
+    "difficulty": "medium",
+    "prompt": "An empty delivery van weighs 3,200 pounds. Loaded, the van must weigh no more than 8,000 pounds. Each crate loaded into the van weighs 145 pounds. What is the greatest number of crates the van can carry?",
+    "choices": [
+      "55",
+      "34",
+      "33",
+      "22"
+    ],
+    "correct_answer": "33",
+    "explanation": "The crates may account for at most 8,000 - 3,200 = 4,800 pounds, and 4,800 / 145 is about 33.1, so 33 crates fit and a 34th does not. '34' rounds that quotient up, which puts the van over the cap. '55' divides 8,000 by 145 and ignores the van's own weight. '22' divides the empty weight 3,200 by 145 instead of dividing the remaining capacity.",
+    "solve": "var empty=3200, cap=8000, crate=145;\nreturn Math.floor((cap-empty)/crate);",
+    "distractor_solve": {
+      "22": "var empty=3200,crate=145;return Math.floor(empty/crate);",
+      "34": "var empty=3200,cap=8000,crate=145;return Math.ceil((cap-empty)/crate);",
+      "55": "var cap=8000,crate=145;return Math.floor(cap/crate);"
+    }
+  },
+  {
+    "id": "AM2A-03",
+    "domain": "Algebra",
+    "subskill": "System of two linear equations: the value of a combination of the unknowns",
+    "difficulty": "medium",
+    "prompt": "If 3x + 2y = 19 and x + 4y = 13, what is the value of x + y?",
+    "choices": [
+      "7",
+      "5",
+      "2",
+      "3"
+    ],
+    "correct_answer": "7",
+    "explanation": "Multiplying the second equation by 3 gives 3x + 12y = 39; subtracting the first equation leaves 10y = 20, so y = 2 and x = 5, and x + y = 7. '5' is x alone and '2' is y alone. '3' is x - y, the difference of the two unknowns rather than their sum.",
+    "solve": "var a1=3,b1=2,c1=19,a2=1,b2=4,c2=13;\nvar det=a1*b2-a2*b1;\nvar x=(c1*b2-c2*b1)/det, y=(a1*c2-a2*c1)/det;\nreturn x+y;",
+    "distractor_solve": {
+      "2": "var a1=3,b1=2,c1=19,a2=1,b2=4,c2=13;var det=a1*b2-a2*b1;return (a1*c2-a2*c1)/det;",
+      "3": "var a1=3,b1=2,c1=19,a2=1,b2=4,c2=13;var det=a1*b2-a2*b1;return (c1*b2-c2*b1)/det-(a1*c2-a2*c1)/det;",
+      "5": "var a1=3,b1=2,c1=19,a2=1,b2=4,c2=13;var det=a1*b2-a2*b1;return (c1*b2-c2*b1)/det;"
+    }
+  },
+  {
+    "id": "AM2A-04",
+    "domain": "Algebra",
+    "subskill": "Absolute value equation: the sum of the solutions",
+    "difficulty": "medium",
+    "prompt": "What is the sum of all values of x that satisfy |2x - 5| = 9?",
+    "choices": [
+      "5",
+      "9",
+      "14",
+      "7"
+    ],
+    "correct_answer": "5",
+    "explanation": "The equation splits into 2x - 5 = 9, giving x = 7, and 2x - 5 = -9, giving x = -2. The sum is 7 + (-2) = 5. '7' reports only the solution from the positive branch. '14' stops at 2x = 14 and reports 2x rather than x. '9' simply repeats the number on the right-hand side.",
+    "solve": "var a=2,b=-5,r=9;\nvar x1=(r-b)/a, x2=(-r-b)/a;\nreturn x1+x2;",
+    "distractor_solve": {
+      "7": "var a=2,b=-5,r=9;return (r-b)/a;",
+      "9": "var r=9;return r;",
+      "14": "var b=-5,r=9;return r-b;"
+    }
+  },
+  {
+    "id": "AM2A-05",
+    "domain": "Algebra",
+    "subskill": "Quadratic from a rectangle: choosing the root that can be a length",
+    "difficulty": "medium",
+    "prompt": "The length of a rectangle is 3 meters more than twice its width. The area of the rectangle is 65 square meters. What is the width, in meters, of the rectangle?",
+    "choices": [
+      "13",
+      "5",
+      "6.5",
+      "-6.5"
+    ],
+    "correct_answer": "5",
+    "explanation": "With width w the length is 2w + 3, so w(2w + 3) = 65 and 2w^2 + 3w - 65 = 0, which factors as (2w + 13)(w - 5) = 0. The roots are 5 and -6.5, and a width cannot be negative, so the width is 5 meters. '13' is the length, 2(5) + 3. '-6.5' is the root the context rules out, and '6.5' is that same rejected root with its sign dropped.",
+    "solve": "var A=65, m=2, k=3;\nvar a=m,b=k,c=-A;\nvar d=Math.sqrt(b*b-4*a*c);\nreturn Math.max((-b+d)/(2*a),(-b-d)/(2*a));",
+    "distractor_solve": {
+      "13": "var A=65,m=2,k=3;var d=Math.sqrt(k*k+4*m*A);var w=(-k+d)/(2*m);return m*w+k;",
+      "6.5": "var A=65,m=2,k=3;var d=Math.sqrt(k*k+4*m*A);return Math.abs((-k-d)/(2*m));",
+      "-6.5": "var A=65,m=2,k=3;var d=Math.sqrt(k*k+4*m*A);return (-k-d)/(2*m);"
+    }
+  },
+  {
+    "id": "AM2A-06",
+    "domain": "Algebra",
+    "subskill": "Exponential growth: counting the number of growth periods",
+    "difficulty": "medium",
+    "prompt": "A population of insects triples every 4 days. If there are 40 insects on day 0, how many insects are there on day 12?",
+    "choices": [
+      "360",
+      "120",
+      "480",
+      "1080"
+    ],
+    "correct_answer": "1080",
+    "explanation": "Twelve days is 12 / 4 = 3 growth periods, so the count is 40 times 3 cubed, which is 40(27) = 1080. '360' uses only two periods, 40 times 3 squared. '120' treats the whole 12 days as a single tripling, 40 times 3. '480' multiplies 40 by 3 and then by the 4 days instead of raising 3 to the number of periods.",
+    "solve": "var start=40, factor=3, per=4, days=12;\nreturn start*Math.pow(factor,days/per);",
+    "distractor_solve": {
+      "120": "var start=40,factor=3;return start*factor;",
+      "360": "var start=40,factor=3,per=4,days=12;return start*Math.pow(factor,days/per-1);",
+      "480": "var start=40,factor=3,per=4;return start*factor*per;"
+    }
+  },
+  {
+    "id": "AM2A-07",
+    "domain": "Algebra",
+    "subskill": "Percent: recovering an original price from a discounted price",
+    "difficulty": "easy",
+    "prompt": "After a 15% discount, the price of a jacket is $68.00. What was the price of the jacket before the discount?",
+    "choices": [
+      "78.20",
+      "57.80",
+      "80",
+      "453.33"
+    ],
+    "correct_answer": "80",
+    "explanation": "The sale price is 85% of the original price, so the original price is 68.00 / 0.85 = $80.00. '78.20' adds 15% of the sale price to the sale price, 68.00(1.15), instead of undoing a discount taken on the larger original. '57.80' takes a further 15% off the sale price, 68.00(0.85). '453.33' divides by the discount rate 0.15 rather than by the 0.85 of the price actually paid.",
+    "solve": "var sale=68.00, disc=0.15;\nreturn Math.round(sale/(1-disc)*100)/100;",
+    "distractor_solve": {
+      "78.20": "var sale=68.00,disc=0.15;return Math.round(sale*(1+disc)*100)/100;",
+      "57.80": "var sale=68.00,disc=0.15;return Math.round(sale*(1-disc)*100)/100;",
+      "453.33": "var sale=68.00,disc=0.15;return Math.round(sale/disc*100)/100;"
+    }
+  },
+  {
+    "id": "AM2A-08",
+    "domain": "Algebra",
+    "subskill": "Radical equation: rejecting the root that fails the original equation",
+    "difficulty": "hard",
+    "prompt": "What is the solution to the equation sqrt(2x + 7) = x - 4?",
+    "choices": [
+      "1",
+      "10",
+      "9",
+      "5"
+    ],
+    "correct_answer": "9",
+    "explanation": "Squaring both sides gives 2x + 7 = x^2 - 8x + 16, so x^2 - 10x + 9 = 0 and (x - 1)(x - 9) = 0. Checking in the original equation, x = 1 gives sqrt(9) = 3 on the left but 1 - 4 = -3 on the right, so it is extraneous; x = 9 gives sqrt(25) = 5 on both sides. '1' is the extraneous root that the check rejects. '10' is the sum of the two candidate roots. '5' is the common value of the two sides when x = 9, not the value of x.",
+    "solve": "var a=2,b=7,c=4;\nvar A=1,B=-(2*c+a),C=c*c-b;\nvar d=Math.sqrt(B*B-4*A*C);\nvar r=[(-B+d)/(2*A),(-B-d)/(2*A)];\nfor(var i=0;i<r.length;i++){var x=r[i]; if(Math.abs(Math.sqrt(a*x+b)-(x-c))<1e-9) return x;}\nreturn null;",
+    "distractor_solve": {
+      "1": "var a=2,b=7,c=4;var B=-(2*c+a),C=c*c-b;var d=Math.sqrt(B*B-4*C);return Math.min((-B+d)/2,(-B-d)/2);",
+      "5": "var a=2,b=7,c=4;var B=-(2*c+a),C=c*c-b;var d=Math.sqrt(B*B-4*C);var x=Math.max((-B+d)/2,(-B-d)/2);return Math.sqrt(a*x+b);",
+      "10": "var a=2,b=7,c=4;var B=-(2*c+a);return -B;"
+    }
+  },
+  {
+    "id": "AM2A-09",
+    "domain": "Algebra",
+    "subskill": "Arithmetic sequence: the first term from two given terms",
+    "difficulty": "medium",
+    "prompt": "In an arithmetic sequence, the 4th term is 17 and the 9th term is 42. What is the 1st term?",
+    "choices": [
+      "2",
+      "12",
+      "5",
+      "7"
+    ],
+    "correct_answer": "2",
+    "explanation": "Five steps separate the 4th and 9th terms, so the common difference is (42 - 17)/5 = 5. The 1st term is three steps before the 4th: 17 - 3(5) = 2. '5' is the common difference itself. '12' steps back only once, 17 - 5, and '7' steps back only twice, 17 - 10.",
+    "solve": "var n1=4,t1=17,n2=9,t2=42;\nvar d=(t2-t1)/(n2-n1);\nreturn t1-(n1-1)*d;",
+    "distractor_solve": {
+      "5": "var n1=4,t1=17,n2=9,t2=42;return (t2-t1)/(n2-n1);",
+      "7": "var n1=4,t1=17,n2=9,t2=42;var d=(t2-t1)/(n2-n1);return t1-2*d;",
+      "12": "var n1=4,t1=17,n2=9,t2=42;var d=(t2-t1)/(n2-n1);return t1-d;"
+    }
+  },
+  {
+    "id": "AM2A-10",
+    "domain": "Algebra",
+    "subskill": "Inverse variation with a square: evaluating at a new input",
+    "difficulty": "medium",
+    "prompt": "The quantity y varies inversely as the square of x. When x = 3, y = 8. What is the value of y when x = 6?",
+    "choices": [
+      "4",
+      "2",
+      "16",
+      "32"
+    ],
+    "correct_answer": "2",
+    "explanation": "Inverse variation with the square means y = k/x^2, so k = 8(3^2) = 72 and at x = 6, y = 72/36 = 2. '4' varies inversely with x rather than with x^2, giving k = 24 and 24/6. '16' treats the relationship as direct and doubles y when x doubles. '32' multiplies by 2^2 instead of dividing by it.",
+    "solve": "var x1=3,y1=8,x2=6;\nvar k=y1*x1*x1;\nreturn k/(x2*x2);",
+    "distractor_solve": {
+      "4": "var x1=3,y1=8,x2=6;var k=y1*x1;return k/x2;",
+      "16": "var x1=3,y1=8,x2=6;return y1*(x2/x1);",
+      "32": "var x1=3,y1=8,x2=6;return y1*Math.pow(x2/x1,2);"
+    }
+  },
+  {
+    "id": "AM2A-11",
+    "domain": "Algebra",
+    "subskill": "Linear model with a fixed fee: solving for the number of units",
+    "difficulty": "medium",
+    "prompt": "A phone plan charges a flat fee of $18.00 per month plus $0.06 for each text message sent. In a month when the total charge was $32.40, how many text messages were sent?",
+    "choices": [
+      "540",
+      "1440",
+      "300",
+      "240"
+    ],
+    "correct_answer": "240",
+    "explanation": "The text messages account for $32.40 - $18.00 = $14.40, and 14.40 / 0.06 = 240 messages. '540' divides the whole $32.40 by $0.06 and ignores the flat fee. '1440' divides the $14.40 by $0.01 rather than by $0.06. '300' divides the flat $18.00 by $0.06 instead of dividing the variable part of the bill.",
+    "solve": "var flat=18.00, rate=0.06, total=32.40;\nreturn Math.round((total-flat)/rate);",
+    "distractor_solve": {
+      "300": "var flat=18.00,rate=0.06;return Math.round(flat/rate);",
+      "540": "var rate=0.06,total=32.40;return Math.round(total/rate);",
+      "1440": "var flat=18.00,total=32.40;return Math.round((total-flat)/0.01);"
+    }
+  },
+  {
+    "id": "AM2A-12",
+    "domain": "Algebra",
+    "subskill": "Multiplying two binomials: the equivalent expanded expression",
+    "difficulty": "easy",
+    "prompt": "Which of the following expressions is equivalent to (2x - 3)(x + 5)?",
+    "choices": [
+      "2x² + 13x - 15",
+      "2x² + 7x - 15",
+      "2x² - 13x - 15",
+      "2x² - 13x + 15"
+    ],
+    "correct_answer": "2x² + 7x - 15",
+    "explanation": "The outer and inner products are 10x and -3x, which combine to 7x, and (-3)(5) = -15, so the product is '2x² + 7x - 15'. '2x² + 13x - 15' adds 10x and 3x instead of subtracting, ignoring the sign of the -3. '2x² - 13x - 15' makes that same addition and then attaches the wrong sign to the whole middle term. '2x² - 13x + 15' compounds it further by taking (-3)(5) as +15.",
+    "solve": "var a=2,b=-3,c=1,d=5;\nvar A=a*c, B=a*d+b*c, C=b*d;\nreturn A+'x² + '+B+'x - '+Math.abs(C);",
+    "distractor_solve": {
+      "2x² + 13x - 15": "var a=2,b=-3,c=1,d=5;return (a*c)+'x² + '+(a*d+Math.abs(b)*c)+'x - '+Math.abs(b*d);",
+      "2x² - 13x - 15": "var a=2,b=-3,c=1,d=5;return (a*c)+'x² - '+(a*d+Math.abs(b)*c)+'x - '+Math.abs(b*d);",
+      "2x² - 13x + 15": "var a=2,b=-3,c=1,d=5;return (a*c)+'x² - '+(a*d+Math.abs(b)*c)+'x + '+Math.abs(b*d);"
+    }
+  },
+  {
+    "id": "AM2A-13",
+    "domain": "Algebra",
+    "subskill": "Simplifying a rational expression by factoring a difference of squares",
+    "difficulty": "easy",
+    "prompt": "For all x ≠ 3, the expression (x^2 - 9)/(x - 3) is equivalent to which of the following?",
+    "choices": [
+      "x - 3",
+      "x - 9",
+      "x^2 - 3",
+      "x + 3"
+    ],
+    "correct_answer": "x + 3",
+    "explanation": "The numerator factors as (x + 3)(x - 3), and the (x - 3) cancels with the denominator, leaving 'x + 3'. 'x - 3' cancels the wrong factor, dividing out (x + 3) instead. 'x - 9' cancels the x of the denominator against the x^2 of the numerator and leaves the -9 alone. 'x^2 - 3' divides term by term and takes -9 divided by 3, treating the denominator as if it were 3 rather than x - 3.",
+    "solve": "var A=9,B=3;\nvar x=A;\nvar t=(x*x-A)/(x-B);\nvar c={'x + 3':x+B,'x - 3':x-B,'x - 9':x-A,'x^2 - 3':x*x-B};\nfor(var k in c){ if(c[k]===t) return k; }\nreturn null;",
+    "distractor_solve": {
+      "x - 3": "var A=9,B=3,x=A;var v=x-B;var c={'x + 3':x+B,'x - 3':x-B,'x - 9':x-A,'x^2 - 3':x*x-B};for(var k in c){if(c[k]===v)return k;}return null;",
+      "x - 9": "var A=9,B=3,x=A;var v=x-A;var c={'x + 3':x+B,'x - 3':x-B,'x - 9':x-A,'x^2 - 3':x*x-B};for(var k in c){if(c[k]===v)return k;}return null;",
+      "x^2 - 3": "var A=9,B=3,x=A;var v=x*x-B;var c={'x + 3':x+B,'x - 3':x-B,'x - 9':x-A,'x^2 - 3':x*x-B};for(var k in c){if(c[k]===v)return k;}return null;"
+    }
+  },
+  {
+    "id": "AM2A-14",
+    "domain": "Algebra",
+    "subskill": "Exponential equation solved by rewriting both sides with a common base",
+    "difficulty": "hard",
+    "prompt": "If 4^(2x) = 8^(x + 1), what is the value of x?",
+    "choices": [
+      "3",
+      "1",
+      "3/7",
+      "-3"
+    ],
+    "correct_answer": "3",
+    "explanation": "Rewriting in base 2, 4^(2x) = 2^(4x) and 8^(x + 1) = 2^(3x + 3), so 4x = 3x + 3 and x = 3. '1' sets the exponents equal without first rewriting the bases, solving 2x = x + 1. '3/7' adds 3x to 4x instead of subtracting, giving 7x = 3. '-3' subtracts in the wrong direction, solving 3x - 4x = 3.",
+    "solve": "var b1=4,e1=2,b2=8,k=1;\nvar L1=Math.log(b1), L2=Math.log(b2);\nreturn Math.round((k*L2/(e1*L1-L2))*1e6)/1e6;",
+    "distractor_solve": {
+      "1": "var e1=2,k=1;return k/(e1-1);",
+      "3/7": "var b1=4,e1=2,b2=8,k=1;var L1=Math.log(b1),L2=Math.log(b2);return k*L2/(e1*L1+L2);",
+      "-3": "var b1=4,e1=2,b2=8,k=1;var L1=Math.log(b1),L2=Math.log(b2);return Math.round((k*L2/(L2-e1*L1))*1e6)/1e6;"
+    }
+  },
+  {
+    "id": "AM2A-15",
+    "domain": "Algebra",
+    "subskill": "Direct variation with a unit conversion inside the problem",
+    "difficulty": "medium",
+    "prompt": "The cost of a ribbon varies directly with its length. A piece of ribbon 8 feet long costs $6.00. What is the cost, in dollars, of a piece of ribbon 5 yards long? (1 yard = 3 feet)",
+    "choices": [
+      "3.75",
+      "33.75",
+      "11.25",
+      "20.00"
+    ],
+    "correct_answer": "11.25",
+    "explanation": "Five yards is 5(3) = 15 feet, and the ribbon costs 6.00/8 = $0.75 per foot, so 15 feet costs 15(0.75) = $11.25. '3.75' skips the yards-to-feet conversion and prices 5 feet. '33.75' converts to feet correctly and then multiplies the result by 3 a second time. '20.00' inverts the rate, using 8/6 feet per dollar in place of 6/8 dollars per foot.",
+    "solve": "var ft=8, cost=6.00, yd=5, ftPerYd=3;\nreturn Math.round(cost/ft*(yd*ftPerYd)*100)/100;",
+    "distractor_solve": {
+      "3.75": "var ft=8,cost=6.00,yd=5;return Math.round(cost/ft*yd*100)/100;",
+      "33.75": "var ft=8,cost=6.00,yd=5,ftPerYd=3;return Math.round(cost/ft*(yd*ftPerYd)*ftPerYd*100)/100;",
+      "20.00": "var ft=8,cost=6.00,yd=5,ftPerYd=3;return Math.round((ft/cost)*(yd*ftPerYd)*100)/100;"
+    }
+  },
+  {
+    "id": "AM2A-16",
+    "domain": "Algebra",
+    "subskill": "Absolute value inequality: counting the integers in the solution set",
+    "difficulty": "hard",
+    "prompt": "How many integer values of x satisfy the inequality |x - 4| ≤ 6?",
+    "choices": [
+      "13",
+      "17",
+      "11",
+      "12"
+    ],
+    "correct_answer": "13",
+    "explanation": "The inequality is equivalent to -6 ≤ x - 4 ≤ 6, so -2 ≤ x ≤ 10, and the integers from -2 through 10 number 10 - (-2) + 1 = 13. '12' is the width of the interval, 10 - (-2), and so misses one endpoint. '11' excludes both endpoints, as though the inequality were strict. '17' writes the left branch as x ≥ -6 rather than x ≥ -2 and counts -6 through 10.",
+    "solve": "var c=4,r=6;\nvar lo=c-r, hi=c+r;\nreturn hi-lo+1;",
+    "distractor_solve": {
+      "11": "var c=4,r=6;return (c+r)-(c-r)-1;",
+      "12": "var c=4,r=6;return (c+r)-(c-r);",
+      "17": "var c=4,r=6;return (c+r)-(-r)+1;"
+    }
+  },
+  {
+    "id": "AM2A-17",
+    "domain": "Algebra",
+    "subskill": "Rational equation: solving for x after isolating its reciprocal",
+    "difficulty": "hard",
+    "prompt": "If 1/x + 1/4 = 1/3, what is the value of x?",
+    "choices": [
+      "1/12",
+      "12",
+      "-1",
+      "12/7"
+    ],
+    "correct_answer": "12",
+    "explanation": "Subtracting gives 1/x = 1/3 - 1/4 = 1/12, so x = 12. '1/12' stops at the value of 1/x and never takes the reciprocal. '-1' comes from cross-multiplying as though the equation read x + 4 = 3. '12/7' adds 1/4 instead of subtracting it, giving 1/x = 7/12.",
+    "solve": "var b=4,c=3;\nvar inv=1/c-1/b;\nreturn Math.round((1/inv)*1e6)/1e6;",
+    "distractor_solve": {
+      "1/12": "var b=4,c=3;return 1/c-1/b;",
+      "-1": "var b=4,c=3;return c-b;",
+      "12/7": "var b=4,c=3;return 1/(1/c+1/b);"
+    }
+  },
+  {
+    "id": "AM2A-18",
+    "domain": "Algebra",
+    "subskill": "System of linear equations: the parameter that makes the system inconsistent",
+    "difficulty": "hard",
+    "prompt": "For what value of k does the system of equations 3x + ky = 12 and 6x + 10y = 7 have no solution?",
+    "choices": [
+      "10",
+      "20",
+      "30",
+      "5"
+    ],
+    "correct_answer": "5",
+    "explanation": "A system has no solution when the lines are parallel but distinct, which requires the x- and y-coefficients to share the same ratio: 6/3 = 10/k, so k = 10/2 = 5. With k = 5 the left sides are proportional while 12 and 7 are not, so the lines really are parallel. '10' copies the y-coefficient of the second equation. '20' multiplies 10 by the ratio 2 rather than dividing by it. '30' multiplies 10 by 3, the x-coefficient of the first equation.",
+    "solve": "var a1=3,a2=6,b2=10;\nreturn b2/(a2/a1);",
+    "distractor_solve": {
+      "10": "var b2=10;return b2;",
+      "20": "var a1=3,a2=6,b2=10;return b2*(a2/a1);",
+      "30": "var a1=3,b2=10;return b2*a1;"
+    }
+  },
+  {
+    "id": "AM2A-19",
+    "domain": "Algebra",
+    "subskill": "Mixture: how much pure solvent to add to reach a target concentration",
+    "difficulty": "medium",
+    "prompt": "A chemist has 12 liters of a solution that is 30% acid. How many liters of pure water must be added to produce a solution that is 20% acid?",
+    "choices": [
+      "18",
+      "6",
+      "3.6",
+      "1.2"
+    ],
+    "correct_answer": "6",
+    "explanation": "The acid is 0.30(12) = 3.6 liters and does not change when water is added. If w liters of water are added, 3.6/(12 + w) = 0.20, so 12 + w = 18 and w = 6. '18' is the volume of the finished solution rather than the water added. '3.6' is the amount of acid in the original solution. '1.2' subtracts the two percents and applies the 10% difference to the original 12 liters.",
+    "solve": "var V=12,p1=0.30,p2=0.20;\nreturn Math.round((V*p1/p2-V)*1e6)/1e6;",
+    "distractor_solve": {
+      "18": "var V=12,p1=0.30,p2=0.20;return Math.round((V*p1/p2)*1e6)/1e6;",
+      "3.6": "var V=12,p1=0.30;return Math.round((V*p1)*1e6)/1e6;",
+      "1.2": "var V=12,p1=0.30,p2=0.20;return Math.round((V*(p1-p2))*1e6)/1e6;"
+    }
+  },
+  {
+    "id": "AM2A-20",
+    "domain": "Algebra",
+    "subskill": "Quadratic: the product of the solutions from the coefficients",
+    "difficulty": "medium",
+    "prompt": "The equation 4x² - 7x - 6 = 0 has two real solutions. What is the product of those two solutions?",
+    "choices": [
+      "-3/2",
+      "7/4",
+      "-6",
+      "3/2"
+    ],
+    "correct_answer": "-3/2",
+    "explanation": "For ax² + bx + c = 0 the product of the solutions is c/a, here -6/4 = -3/2. '7/4' is -b/a, the sum of the solutions rather than their product. '-6' uses the constant term without dividing by the leading coefficient 4. '3/2' has the right magnitude but drops the negative sign that c = -6 carries.",
+    "solve": "var a=4,b=-7,c=-6;\nreturn c/a;",
+    "distractor_solve": {
+      "7/4": "var a=4,b=-7;return -b/a;",
+      "-6": "var c=-6;return c;",
+      "3/2": "var a=4,c=-6;return Math.abs(c/a);"
+    }
+  },
+  {
+    "id": "AM2A-21",
+    "domain": "Algebra",
+    "subskill": "Linear model with a constant rate of decrease: solving for the time",
+    "difficulty": "easy",
+    "prompt": "A tank contains 60 gallons of water and drains at a constant rate of 2.5 gallons per minute. After how many minutes does the tank contain 15 gallons of water?",
+    "choices": [
+      "45",
+      "24",
+      "18",
+      "37.5"
+    ],
+    "correct_answer": "18",
+    "explanation": "The tank must lose 60 - 15 = 45 gallons, and 45/2.5 = 18 minutes. '45' is the number of gallons drained, not the number of minutes. '24' is the time to empty the tank completely, 60/2.5. '37.5' multiplies the 15 gallons remaining by the rate instead of dividing the 45 gallons drained by it.",
+    "solve": "var start=60,rate=2.5,left=15;\nreturn (start-left)/rate;",
+    "distractor_solve": {
+      "24": "var start=60,rate=2.5;return start/rate;",
+      "45": "var start=60,left=15;return start-left;",
+      "37.5": "var rate=2.5,left=15;return left*rate;"
+    }
+  },
+  {
+    "id": "AM2A-22",
+    "domain": "Algebra",
+    "subskill": "Linear equation with the distributive property on both sides",
+    "difficulty": "medium",
+    "prompt": "What value of x satisfies 4(x - 2) + 3 = 2(x + 5) - 1?",
+    "choices": [
+      "10",
+      "4",
+      "7",
+      "4.5"
+    ],
+    "correct_answer": "7",
+    "explanation": "Distributing gives 4x - 8 + 3 = 2x + 10 - 1, so 4x - 5 = 2x + 9, then 2x = 14 and x = 7. '4' fails to distribute the 4 to the -2, solving 4x - 2 + 3 = 2x + 9. '4.5' fails to distribute the 2 to the 5, solving 4x - 5 = 2x + 4. '10' combines -8 + 3 as -11, solving 4x - 11 = 2x + 9.",
+    "solve": "var a=4,b=-2,c=3,d=2,e=5,f=-1;\nreturn (d*e+f-(a*b+c))/(a-d);",
+    "distractor_solve": {
+      "4": "var a=4,b=-2,c=3,d=2,e=5,f=-1;return (d*e+f-(b+c))/(a-d);",
+      "10": "var a=4,b=-2,c=3,d=2,e=5,f=-1;return (d*e+f-(a*b-c))/(a-d);",
+      "4.5": "var a=4,b=-2,c=3,d=2,e=5,f=-1;return (e+f-(a*b+c))/(a-d);"
+    }
+  },
+  {
+    "id": "AM2A-23",
+    "domain": "Algebra",
+    "subskill": "Linear inequality: the greatest integer after dividing by a negative",
+    "difficulty": "easy",
+    "prompt": "What is the greatest integer value of x for which 5 - 2x ≥ 11?",
+    "choices": [
+      "3",
+      "-3",
+      "-8",
+      "6"
+    ],
+    "correct_answer": "-3",
+    "explanation": "Subtracting 5 from both sides gives -2x ≥ 6, and dividing by -2 reverses the inequality, so x ≤ -3 and the greatest integer that works is -3. '3' divides 6 by -2 but reports the quotient as positive, and it also keeps the inequality pointing the original way. '-8' adds 5 to 11 instead of subtracting, giving -2x ≥ 16. '6' stops at -2x ≥ 6 and reports the right-hand side without ever dividing by -2.",
+    "solve": "var a=5,b=-2,c=11;\nreturn Math.floor((c-a)/b);",
+    "distractor_solve": {
+      "3": "var a=5,b=-2,c=11;return Math.abs((c-a)/b);",
+      "6": "var a=5,c=11;return c-a;",
+      "-8": "var a=5,b=-2,c=11;return (c+a)/b;"
+    }
+  },
+  {
+    "id": "AM2A-24",
+    "domain": "Algebra",
+    "subskill": "Combined rates: two workers finishing one job together",
+    "difficulty": "medium",
+    "prompt": "Working alone, Maya can paint a room in 6 hours and Tomas can paint the same room in 9 hours. Working together at those rates, how many hours does it take them to paint the room?",
+    "choices": [
+      "7.5",
+      "15",
+      "5/18",
+      "3.6"
+    ],
+    "correct_answer": "3.6",
+    "explanation": "Together they complete 1/6 + 1/9 = 5/18 of the room each hour, so the room takes 18/5 = 3.6 hours. '5/18' is that combined rate in rooms per hour, not the time. '7.5' averages the two individual times. '15' adds them.",
+    "solve": "var t1=6,t2=9;\nvar r=1/t1+1/t2;\nreturn Math.round((1/r)*1e6)/1e6;",
+    "distractor_solve": {
+      "15": "var t1=6,t2=9;return t1+t2;",
+      "7.5": "var t1=6,t2=9;return (t1+t2)/2;",
+      "5/18": "var t1=6,t2=9;return 1/t1+1/t2;"
+    }
+  }
+]

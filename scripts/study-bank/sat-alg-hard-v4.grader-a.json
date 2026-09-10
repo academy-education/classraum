@@ -1,0 +1,288 @@
+{
+  "ALG-H4-01": {
+    "difficulty": "medium",
+    "exclusive": true,
+    "exclusive_note": "k=5 makes 6x+10y exactly 2(3x+5y)=24 while the constant is 7, so parallel and distinct. No other option produces a parallel pair.",
+    "distractor_quality": "plausible",
+    "stem_complete": true,
+    "note": "The single most-drilled no-solution setup. One ratio equation, one step. '2' (ratio of x-coefficients reported as k) is the weakest of the three but a real slip. Module-2 hard route sees this as routine."
+  },
+  "ALG-H4-02": {
+    "difficulty": "easy",
+    "exclusive": true,
+    "exclusive_note": "'without exceeding' plus 'whole hours' pins floor(255/18)=14. 45+18(14)=297<=300, 45+18(15)=315>300.",
+    "distractor_quality": "strong",
+    "stem_complete": true,
+    "note": "Fixed fee + rate + floor. This is a module-1 item; on the hard route it is a giveaway."
+  },
+  "ALG-H4-03": {
+    "difficulty": "medium",
+    "exclusive": true,
+    "exclusive_note": "Determinant 3*4-2*5=2 is nonzero, unique solution a=23, p=14.",
+    "distractor_quality": "strong",
+    "stem_complete": true,
+    "note": "Clean 2x2 with the classic 'wrong variable' trap at 23 and the 'stopped at 2p' trap at 28. Solid medium; the numbers are friendly and elimination is one doubling."
+  },
+  "ALG-H4-04": {
+    "difficulty": "hard",
+    "exclusive": true,
+    "exclusive_note": "Linearity is stated, so slope 14/4 is forced and f(9)=5+8(3.5)=33 uniquely.",
+    "distractor_quality": "strong",
+    "stem_complete": true,
+    "note": "The one item where the abstraction genuinely bites: the interval statement must be converted to a rate, and 117 (treating 14 as per-unit) is the error most students actually make. Real module-2 hard difficulty."
+  },
+  "ALG-H4-05": {
+    "difficulty": "medium",
+    "exclusive": true,
+    "exclusive_note": "det = -4-15 = -19, unique (2,4), x+y=6.",
+    "distractor_quality": "plausible",
+    "stem_complete": true,
+    "note": "Standard elimination with a combination asked at the end. '-2' (x-y) is the contrived one; 2 and 4 are the real traps. See template note: the option set contains 2, 4 and their sum 6."
+  },
+  "ALG-H4-06": {
+    "difficulty": "medium",
+    "exclusive": true,
+    "exclusive_note": "Multiplier is forced to -3 by both coefficients, so c=-24 only.",
+    "distractor_quality": "plausible",
+    "stem_complete": true,
+    "note": "Mirror image of ALG-H4-01. '-72' and '-32' are engineered rather than natural errors; '24' (sign dropped) is the only strong one."
+  },
+  "ALG-H4-07": {
+    "difficulty": "medium",
+    "exclusive": true,
+    "exclusive_note": "|2x-9|<=13 gives exactly [-2,11]; a and b are named as the endpoints so a+b=9 is unambiguous. The non-strict inequality removes any open/closed boundary question.",
+    "distractor_quality": "strong",
+    "stem_complete": true,
+    "note": "Absolute-value-to-compound conversion, the only item of its kind in the batch. Two endpoints then a sum; a strong student does it in under a minute."
+  },
+  "ALG-H4-08": {
+    "difficulty": "medium",
+    "exclusive": true,
+    "exclusive_note": "Unique (a,b)=(4,-1); 5a-4b=24.",
+    "distractor_quality": "plausible",
+    "stem_complete": true,
+    "note": "'-21' (5b-4a) is the weak leg - swapping the variables in the target expression is not a common student error. 16 and 20 are strong."
+  },
+  "ALG-H4-09": {
+    "difficulty": "medium",
+    "exclusive": true,
+    "exclusive_note": "Unique. Assumes the bill is exactly base + overage; no tax or fee is mentioned, which is the standard SAT convention.",
+    "distractor_quality": "strong",
+    "stem_complete": true,
+    "note": "Two-piece cost model with an allowance to add back. 280 is the best distractor in the batch - it is the correct arithmetic stopped one step early. Would sit at the easier end of a hard module."
+  },
+  "ALG-H4-10": {
+    "difficulty": "medium",
+    "exclusive": true,
+    "exclusive_note": "b+c=16, b-c=12 gives the unique c=2. 'Speed of the current' is unambiguous.",
+    "distractor_quality": "strong",
+    "stem_complete": true,
+    "note": "Classic downstream/upstream. The conversion from times to rates is the only real step; once b+c and b-c are written the rest is arithmetic. Medium."
+  },
+  "ALG-H4-11": {
+    "difficulty": "hard",
+    "exclusive": true,
+    "exclusive_note": "Maximizing the larger means minimizing the smaller, s>=18 gives larger<=42, attained at equality (54 = 42+12). The implicit constraint that the 'smaller' really is the smaller (s<=30) does not bind here.",
+    "distractor_quality": "weak",
+    "stem_complete": true,
+    "note": "FLAG. Genuinely hard algebra - reversing the optimization direction is the real skill - but the option set is broken. The larger of two numbers summing to 60 must be at least 30, so 12 and 18 are eliminable with no work at all. The item is effectively 30 vs 42, a coin flip for a student who has read the first sentence. Recommend replacing both sub-30 distractors with values above 30 (e.g. 36, 48)."
+  },
+  "ALG-H4-12": {
+    "difficulty": "easy",
+    "exclusive": true,
+    "exclusive_note": "x>=11, least integer 11.",
+    "distractor_quality": "plausible",
+    "stem_complete": true,
+    "note": "Distribute, collect, divide by a positive. No trap beyond arithmetic. Module-1 material."
+  },
+  "ALG-H4-13": {
+    "difficulty": "medium",
+    "exclusive": true,
+    "exclusive_note": "Both inequalities are non-strict, so x=5 is attained (the point (5,10) satisfies both with equality). Greatest x is exactly 5.",
+    "distractor_quality": "plausible",
+    "stem_complete": true,
+    "note": "Requires seeing that the two boundaries must cross for a solution to exist - a decent insight step. '20' (constant read off) is the weak leg; '10' (the y of the intersection) is the strong one."
+  },
+  "ALG-H4-14": {
+    "difficulty": "easy",
+    "exclusive": true,
+    "exclusive_note": "floor(1200/45)=26; 27 boxes weighs 1615 > 1600.",
+    "distractor_quality": "strong",
+    "stem_complete": true,
+    "note": "Same mould as ALG-H4-02 with a second fixed load bolted on. The extra load raises the bookkeeping, not the difficulty. Minor unstated assumption: the equipment and dolly count against the 1600, which 'already carrying' does establish."
+  },
+  "ALG-H4-15": {
+    "difficulty": "medium",
+    "exclusive": true,
+    "exclusive_note": "Unique line, unique k=1.",
+    "distractor_quality": "strong",
+    "stem_complete": true,
+    "note": "Slope from two points, then solve for x given y. Three well-chosen errors (wrong slope sign, dropped intercept, swapped coordinates). Comfortable medium."
+  },
+  "ALG-H4-16": {
+    "difficulty": "easy",
+    "exclusive": true,
+    "exclusive_note": "det = -20-6 = -26, unique y=-3.",
+    "distractor_quality": "strong",
+    "stem_complete": true,
+    "note": "Bare elimination asking for one variable, no wrinkle at all. The lightest item in the batch alongside 12."
+  },
+  "ALG-H4-17": {
+    "difficulty": "medium",
+    "exclusive": true,
+    "exclusive_note": "Parallel forces slope 3; unique intercept -6.",
+    "distractor_quality": "plausible",
+    "stem_complete": true,
+    "note": "The 9 in 6x-2y=9 forcing a non-integer intercept for line k is a nice touch - it stops students from pattern-matching the intercept. '6' (the point's own y) is a genuine trap. See options-only note: the key is the only negative value in the set."
+  },
+  "ALG-H4-18": {
+    "difficulty": "medium",
+    "exclusive": true,
+    "exclusive_note": "n=8 uniquely; 8, 10, 12 are consecutive even integers as required.",
+    "distractor_quality": "plausible",
+    "stem_complete": true,
+    "note": "'-4' requires misreading 'smallest' as 'largest' AND carrying it through, which is a two-stage error - the weakest leg. 8 (the variable solved for) and 30 (the sum) are strong."
+  },
+  "ALG-H4-19": {
+    "difficulty": "medium",
+    "exclusive": true,
+    "exclusive_note": "Unique a=110, c=100; both counts non-negative and revenue checks at 1320+700=2020.",
+    "distractor_quality": "plausible",
+    "stem_complete": true,
+    "note": "'404' exceeds the 210 tickets stated in the stem and is eliminable by a reader who has done no algebra. 100/105/110 are all strong, so the item still discriminates - but it is really a three-option item."
+  },
+  "ALG-H4-20": {
+    "difficulty": "easy",
+    "exclusive": true,
+    "exclusive_note": "Unique a=8, b=4.",
+    "distractor_quality": "strong",
+    "stem_complete": true,
+    "note": "Clear the denominator, add, divide. The fraction is cosmetic. Note the coincidence flagged in the explanation - b=4 equals the given difference - which makes '4' a slightly luckier distractor than it deserves to be."
+  },
+  "ALG-H4-21": {
+    "difficulty": "medium",
+    "exclusive": true,
+    "exclusive_note": "Unique d=20, q=24; 2.00 + 6.00 = 8.00 checks. Total requested, so 44.",
+    "distractor_quality": "strong",
+    "stem_complete": true,
+    "note": "Offset-count value equation asking for the total rather than a part - the best-constructed word problem here. But see options-only: 20 + 24 = 44 is visible in the option set itself."
+  },
+  "ALG-H4-22": {
+    "difficulty": "hard",
+    "exclusive": false,
+    "exclusive_note": "FLAG. '4' is defensible. The inequality 60+45m > 60m holds for all m < 4, and the whole-number values of m in [0,4) are 0, 1, 2, 3 - four of them. The intended answer excludes m=0 on the reading that zero months is not 'months of membership', which is reasonable but not stated. A student who treats m=0 as a valid whole-month count (at m=0 the first club has cost 60 and the second 0, so the first IS greater) answers 4, and '4' is on the list. The stem needs 'for how many whole values of m, where m >= 1' or 'after how many complete months', or the distractor 4 has to go.",
+    "distractor_quality": "plausible",
+    "stem_complete": false,
+    "stem_complete_note": "The domain of m is never stated. Whether m starts at 0 or 1 is exactly what separates the key from an available option.",
+    "note": "Genuinely hard - two models, a strict inequality, and a count rather than a value. Also the only item where I would not defend the key against a challenge. Fix the domain wording and this is the best hard item in the batch; leave it and it is a coin flip between the two smallest options for the strongest students, who are precisely the ones who think about m=0."
+  },
+  "ALG-H4-23": {
+    "difficulty": "medium",
+    "exclusive": true,
+    "exclusive_note": "s=10, larger=20; 40 = 30+10 checks, and 20 > 10 so the labels are consistent.",
+    "distractor_quality": "plausible",
+    "stem_complete": true,
+    "note": "Near-duplicate of ALG-H4-11's structure with the inequality removed. '10' is eliminable without solving (the larger of two numbers summing to 30 must be at least 15), leaving a three-way. '16' is the contrived leg."
+  },
+  "ALG-H4-24": {
+    "difficulty": "medium",
+    "exclusive": true,
+    "exclusive_note": "12c-6 = 8c-2 gives the unique c=1.",
+    "distractor_quality": "plausible",
+    "stem_complete": true,
+    "note": "Looks harder than it is: once g(3c) and 2g(c) are written out it is a one-line linear solve. The '4' distractor (3g(c) instead of g(3c)) is the good one and is the conceptual point of the item. 2.5 is the only non-integer and is not the key."
+  },
+
+  "options_only_exceptions": [
+    {
+      "id": "ALG-H4-17",
+      "why": "Key -6 is the ONLY negative value in {-6, 2, 6, 18}. Odd-one-out by sign is a cheap heuristic and it lands on the key. Not the roundest, not the middle - the outlier.",
+      "strength": "the clearest single-item exception in the batch"
+    },
+    {
+      "id": "ALG-H4-21",
+      "why": "The option set is {20, 24, 40, 44} and 20 + 24 = 44, the key. The set announces internally that two parts and their total are present, and the key is the total. 44 is the unique sum-of-two-others in this set.",
+      "strength": "real, and it is the intended structure leaking"
+    },
+    {
+      "id": "ALG-H4-16",
+      "why": "{-6, -3, 2, 3}. -3 (the key) is the unique value expressible as the sum of two others (-6 + 3). It is also the only value whose double and whose negation are both present - a 'centre of gravity' signature.",
+      "strength": "real but weaker; needs the solver to be looking for it"
+    },
+    {
+      "id": "ALG-H4-11",
+      "why": "Reachable options-only only after eliminating 12 and 18 for a reason that does need the stem. Listed for the related defect: with the stem VISIBLE the item is two-way, which is worse than an options-only leak.",
+      "strength": "not an options-only leak; a distractor-range defect. Recorded here so it is not lost."
+    },
+    {
+      "id": "ALG-H4-15 / ALG-H4-24",
+      "why": "Both sets contain exactly one non-integer (0.5 and 2.5 respectively) which is NOT the key, and in both the key is the smallest-magnitude simple integer (1 in both cases). 'Discard the odd decimal, take the simplest survivor' picks the key twice. Two items is not a pattern, but they are the two decimal-bearing sets in the batch and both behave the same way.",
+      "strength": "weak; flagged because it is consistent across both instances"
+    }
+  ],
+  "options_only_verdict": "No reliable options-only route. I tested the obvious cross-batch heuristics explicitly rather than asserting them. (a) 'Key is the roundest number': fails on 02 (14 over 16/19), 03, 06, 09, 14, 19 (100 is rounder than the key 110) - no better than chance. (b) 'Key is the middle value': the key is the largest option on 05, 08, 11, 21 and the smallest on 10, 22, so this is actively wrong. (c) 'Key is the value the other three cluster around': fires only on 19 where 404 is the outlier, and it picks 105, not the key 110. (d) The one heuristic that looked promising - 'the key is the sum of two other options' - was measured across all 24. It has a unique candidate in five sets (03->37, 16->-3, 18->8, 20->24, 21->44) and is correct in two of those five, with three further ambiguous multi-candidate sets (05, 07, 11) where the key happens to be among the candidates. 2/5 on the decidable cases is not a tell; I am recording the negative so nobody re-derives it. (e) 'The key is exactly half of another option' fires on 03, 10, 16, 20 (correct) and misfires on 21 and 05 - also not a tell. This batch behaves the way CLAUDE.md predicts for bare numeric options: four values are meaningless until the stem says what they measure. The genuine exceptions are 17 and 21, both single-item accidents of construction, and both cheap to fix (17: make one distractor negative, e.g. -18 for the slope-sign error; 21: replace 40 with a value that is not 2x a part, so the parts and the total are not all visible together).",
+
+  "template_groups": [
+    {
+      "group": "A. Coefficient-matching for a degenerate system",
+      "ids": ["ALG-H4-01", "ALG-H4-06"],
+      "severity": "high",
+      "why": "These are the same item with the sign of the conclusion flipped. Both: find the scale factor between two equations from the coefficients, then apply it (01 to the y-coefficient, 06 to the constant). A student who solves either has the whole method for the other, and the distractor briefs match too - both include a sign-flipped key and a 'used the wrong number as the multiplier' option."
+    },
+    {
+      "group": "B1. Bare-symbol 2x2 system, then report a variable or a combination",
+      "ids": ["ALG-H4-05", "ALG-H4-08", "ALG-H4-16", "ALG-H4-20"],
+      "severity": "high",
+      "why": "Four items, identical shape: two linear equations in two letters, no context, eliminate, then read off y (16), a (20), x+y (05), or 5a-4b (08). Only the final expression varies. The distractor brief is also shared and predictable: in 05, 08, 16 and 20 the wrong options are drawn from {the other variable, the combination before the last division, the sign-flipped key}. A student who learns that this batch's wrong answers are 'the value you get if you stop one step early' can improve on three of these four without solving them."
+    },
+    {
+      "group": "B2. Word-dressed 2x2 system, then report a part or the total",
+      "ids": ["ALG-H4-03", "ALG-H4-10", "ALG-H4-19", "ALG-H4-21"],
+      "severity": "medium-high",
+      "why": "Same algebra as B1 with a context layer: two conditions on two unknown quantities (crate weights, boat/current speeds, ticket counts, coin counts), solve, then report either the second variable (03, 10), the first (19), or the sum (21). The surfaces differ enough that solving one does not hand you another, but the SKILL sampled is identical, so B1 and B2 together are 8 of 24 items - one third of the batch measuring one thing."
+    },
+    {
+      "group": "C. Sum of two numbers plus a multiple-and-offset comparison",
+      "ids": ["ALG-H4-11", "ALG-H4-23", "ALG-H4-18"],
+      "severity": "high for the 11/23 pair",
+      "why": "11 and 23 are the same item. Both: two numbers with a given sum, a condition of the form 'k times one is c more than the other', report the larger. 11 makes the condition an inequality and asks for an extreme value, which is the only difference and is what makes 11 the harder of the two. Both even share the 'the two numbers are equal' distractor (30 in 11, 15 in 23) and the 'you reported the smaller' distractor (18 in 11, 10 in 23). 18 is a cousin: sum of a consecutive run compared against a multiple of one member, report a different member - same translate-then-return-to-the-right-quantity move."
+    },
+    {
+      "group": "D. Fixed load/fee subtracted, then floor a per-unit division",
+      "ids": ["ALG-H4-02", "ALG-H4-14"],
+      "severity": "high",
+      "why": "Identical mould. Budget or capacity, subtract the fixed part(s), divide by the per-unit amount, take the floor. 14 adds a second fixed load, which is bookkeeping not difficulty. Both distractor sets are built the same way: round up instead of down, and omit one of the fixed amounts. Solving one gives you the other outright."
+    },
+    {
+      "group": "D'. Two-piece linear cost model, inverted or compared",
+      "ids": ["ALG-H4-09", "ALG-H4-22"],
+      "severity": "low-medium",
+      "why": "Same cost-model family as D but run in a different direction: 09 goes from total back to units and must add the allowance back, 22 compares two models and counts periods on one side of the crossing. Related to D by content, not by solution path."
+    },
+    {
+      "group": "E. Line in the xy-plane: slope plus a point, solve for a coordinate",
+      "ids": ["ALG-H4-15", "ALG-H4-17"],
+      "severity": "medium",
+      "why": "Get a slope (from two points in 15, from standard form plus parallelism in 17), write the line through a known point, evaluate at a specified coordinate. 15 asks for an x given a y, 17 asks for the y-intercept. Both include a 'wrong slope sign' distractor and a 'used the given point's own coordinate' distractor."
+    },
+    {
+      "group": "F. Linear inequality reduced to a boundary value",
+      "ids": ["ALG-H4-12", "ALG-H4-13"],
+      "severity": "low-medium",
+      "why": "12 solves one inequality and reads the least integer; 13 reduces two half-planes to a single inequality and reads the greatest value. 13 has a genuine extra step (recognising the boundaries must cross), so this is a weak pairing - but the closing move is the same."
+    },
+    {
+      "group": "G. Linear function evaluated at a transformed input",
+      "ids": ["ALG-H4-04", "ALG-H4-24"],
+      "severity": "medium",
+      "why": "Both give a linear function via a relation rather than a value and ask you to handle a transformed argument: f(x+4) in 04, g(3c) in 24. Both distractor sets include 'applied the transformation to the output instead of the input' (117 in 04, 4 in 24), which is the same conceptual error dressed twice."
+    },
+    {
+      "group": "Singleton",
+      "ids": ["ALG-H4-07"],
+      "severity": "none",
+      "why": "The only absolute-value item. No sibling."
+    }
+  ],
+  "template_verdict": "Nine moulds across 24 items. The concentration is real but not as bad as the 37.5% sibling batch: the largest genuinely-same-skill cluster is the 2x2 linear system (B1 + B2), 8 items = 33.3%, and within it B1's four bare-symbol systems are close to interchangeable. Three pairs are effectively duplicates - 01/06, 02/14, 11/23 - where solving one hands over the other's method and often its distractor brief as well. That is 6 items, 25% of the batch, carrying 3 items' worth of information. The cross-item tell worth naming separately is the DISTRACTOR BRIEF, not the stems: across at least 12 items the wrong options are drawn from the same three slots - the other variable, the value one step before the final division, and the sign-flipped key. A student who sits two or three of these learns that 'the answer is never the number you had two lines ago', which is guidance from the authoring spec rather than from the mathematics. Per CLAUDE.md's corollary on rigid briefs, the fix is to let the load-bearing element vary: on some items make the key BE the intermediate value, and vary which slot the trap occupies."
+}

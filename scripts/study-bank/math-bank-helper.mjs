@@ -111,10 +111,41 @@ function asNumber(s) {
  *
  * Only true minus signs are folded. En and em dashes are punctuation and
  * are left to the strip, since they appear in prose options.
+ *
+ * THIRD FIX, 2026-09-11, and this one is not about signs. The character
+ * class kept only `a-z0-9+-/^.`, so every RELATION and every mathematical
+ * symbol was stripped to a space. Measured, not guessed — five classes of
+ * option collided, meaning the sandbox certified those items while unable
+ * to tell the key from the distractor:
+ *
+ *     'x <= -3' vs 'x >= -3'   inequality DIRECTION   -> EQUAL
+ *     'x < 5'   vs 'x > 5'     same, ASCII            -> EQUAL
+ *     '2x >= 7' vs '2x <= 7'   same                   -> EQUAL
+ *     'x = 4'   vs 'x != 4'    equality vs negation   -> EQUAL
+ *     'sqrt2'   vs '2'         radical dropped        -> EQUAL
+ *     '3pi'     vs '3'         constant dropped       -> EQUAL
+ *
+ * Found by an author break-testing a batch EXHAUSTIVELY — promoting every
+ * distractor to key on every item — rather than on a sample. Two items
+ * survived promotion with a green 24/24, which is what an ungated item
+ * looks like from the outside. A sampled break-test would have missed both.
+ *
+ * Superscripts do NOT collide ('x^2+3' and 'x²+3' both keep the x), so the
+ * fix here is about relations and constants, and the reported superscript
+ * case is not reproduced.
+ *
+ * Relations and constants are now folded to ASCII spellings and KEPT, so
+ * a direction flip is a real difference. asNumber still short-circuits
+ * genuinely numeric pairs, so this only affects symbolic options.
  */
 const normAnswer = s => (s || '').toLowerCase()
   .replace(/[\u2212\u2796]/g, '-')        // Unicode minus -> ASCII, BEFORE the strip
-  .replace(/[^a-z0-9+\-/^.]+/g, ' ')      // keep sign, slash, caret, point
+  // Relations and constants, folded to ASCII BEFORE the strip so they survive it.
+  .replace(/\u2264/g, '<=').replace(/\u2265/g, '>=')
+  .replace(/\u2260/g, '!=').replace(/\u2248/g, '~=')
+  .replace(/\u221a/g, 'sqrt').replace(/\u03c0/g, 'pi')
+  .replace(/\u00b2/g, '^2').replace(/\u00b3/g, '^3')
+  .replace(/[^a-z0-9+\-/^.<>=!~]+/g, ' ')  // keep sign, slash, caret, point, RELATIONS
   .replace(/\s+/g, ' ').trim()
 function answersMatch(computed, key) {
   const a = asNumber(computed), b = asNumber(key)

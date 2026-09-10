@@ -1,0 +1,351 @@
+{
+  "ALG-H4-01": {
+    "difficulty": "medium",
+    "exclusive": true,
+    "distractor_quality": "plausible",
+    "stem_complete": true,
+    "note": "Standard parallel-lines/no-solution parameter item. On the module-2 hard route a strong student writes 3/6=k/10 immediately; the only extra beat is confirming 7 != 2*12, which the item does not force you to check because no distractor rewards skipping it. Distractors are real slips (inverted ratio 20, coefficient ratio 2, sign slip -5) though -5 is contrived. Options-only concern: see exceptions."
+  },
+  "ALG-H4-02": {
+    "difficulty": "easy",
+    "exclusive": true,
+    "distractor_quality": "plausible",
+    "stem_complete": true,
+    "note": "Fixed fee + per-hour, floor. This is a module-1 / easy-route item; 'whole hours' and 'without exceeding' remove every boundary ambiguity. 19 (adding the fee to the budget) is the weakest distractor but is a documented student error."
+  },
+  "ALG-H4-03": {
+    "difficulty": "medium",
+    "exclusive": true,
+    "distractor_quality": "strong",
+    "stem_complete": true,
+    "note": "Word-dressed 2x2 elimination asking for the second variable. Distractors are excellent: 23=a (other variable), 28=2p (pre-division intermediate), 37=a+p. Mechanically routine, so medium not hard. Options-only: 28=2*14 and 37=14+23, key sits in two derivational relations (soft exception)."
+  },
+  "ALG-H4-04": {
+    "difficulty": "medium",
+    "exclusive": true,
+    "distractor_quality": "strong",
+    "stem_complete": true,
+    "note": "Strongest of the mediums. Abstract functional equation f(x+4)=f(x)+14 is genuine hard-route flavour, but the execution is two additions and the distractor set (19 one step, 61 wrong step size, 117 per-unit rate) is exactly the error ladder a strong student has already internalised. Grade held at medium on execution length."
+  },
+  "ALG-H4-05": {
+    "difficulty": "easy",
+    "exclusive": true,
+    "distractor_quality": "strong",
+    "stem_complete": true,
+    "note": "Bare 2x2 solved for x+y. Small integers, clean elimination. Distractors x, y, x-y are the right ones but the item is easy on the hard route. Options-only: every one of {-2,2,4,6} is a sum/difference of two others, so no tell."
+  },
+  "ALG-H4-06": {
+    "difficulty": "medium",
+    "exclusive": true,
+    "distractor_quality": "plausible",
+    "stem_complete": true,
+    "note": "Mirror of ALG-H4-01 (infinitely-many instead of no-solution). Same single insight. -72 and -32 are contrived multipliers; only 24 (sign dropped) is a live error. Options-only: real exception, see below."
+  },
+  "ALG-H4-07": {
+    "difficulty": "medium",
+    "exclusive": true,
+    "distractor_quality": "strong",
+    "stem_complete": true,
+    "note": "Absolute-value compound inequality, endpoints summed. The a+b framing is the only thing lifting it above easy. Distractors -2 and 11 are the endpoints, 13 is b-a and doubles as the stem constant, which is a nice trap. Only structurally singular item in the batch."
+  },
+  "ALG-H4-08": {
+    "difficulty": "easy",
+    "exclusive": true,
+    "distractor_quality": "plausible",
+    "stem_complete": true,
+    "note": "a+b=3 makes substitution one line; a=4, b=-1 fall out instantly. -21 (5b-4a) is a distractor no student produces. Easy on the hard route."
+  },
+  "ALG-H4-09": {
+    "difficulty": "medium",
+    "exclusive": true,
+    "distractor_quality": "strong",
+    "stem_complete": true,
+    "note": "Fixed charge plus an allowance that must be added back at the end. The 'add 400 back' step is the real discriminator and 280 punishes skipping it; 530 and 930 punish not removing the 30. Genuinely well-built medium. Assumes no tax on the bill, which is the ordinary SAT convention."
+  },
+  "ALG-H4-10": {
+    "difficulty": "medium",
+    "exclusive": true,
+    "distractor_quality": "strong",
+    "stem_complete": true,
+    "note": "Two rate conversions then a sum/difference system. Three real steps, but each is short. Distractors 4=2c, 14=b, 28=16+12 are all live. Downstream = still-water + current is assumed rather than stated, but that is universal convention and the stem does say both speeds are constant."
+  },
+  "ALG-H4-11": {
+    "difficulty": "hard",
+    "exclusive": true,
+    "distractor_quality": "weak",
+    "stem_complete": true,
+    "note": "Hard: an at-least constraint, a smaller/larger labelling, and the requested extreme is on the variable you did NOT solve for. Answering 18 is a trap a strong student falls into. But the distractor set leaks by kind: two numbers summing to 60 force the larger to be at least 30, so 12 and 18 are eliminable in one line without touching the inequality, halving the option set. 12 in particular is a bare stem constant no student would produce as an answer. Also note the stem does not require the two numbers to be integers or distinct; neither affects the key (42 is attained at s=18)."
+  },
+  "ALG-H4-12": {
+    "difficulty": "easy",
+    "exclusive": true,
+    "distractor_quality": "plausible",
+    "stem_complete": true,
+    "note": "Distribute, collect, divide by a positive. No trap beyond arithmetic; the 'least integer' step is free because 11 is already an integer. Easy on the hard route."
+  },
+  "ALG-H4-13": {
+    "difficulty": "hard",
+    "exclusive": true,
+    "distractor_quality": "plausible",
+    "stem_complete": true,
+    "note": "Hard, and the best-conceived item here: the required move is recognising that a feasible point exists only where the lower boundary does not exceed the upper one, i.e. eliminating y rather than solving for it. Students who find the intersection point and report its y get 10, which is offered. 20 (a bare stem constant) is the weak member of the set; 3 is contrived."
+  },
+  "ALG-H4-14": {
+    "difficulty": "easy",
+    "exclusive": true,
+    "distractor_quality": "plausible",
+    "stem_complete": true,
+    "note": "Same mould as ALG-H4-02 with a second fixed load. The dolly is the only added step. Distractors 27/28/34 are each a specific omission or a wrong rounding, which is good construction, but the item is easy. Options-only: 26/27/28 cluster against a 34 outlier, narrowing a blind guess to three."
+  },
+  "ALG-H4-15": {
+    "difficulty": "medium",
+    "exclusive": true,
+    "distractor_quality": "plausible",
+    "stem_complete": true,
+    "note": "Slope from two points, then invert for x at a given y. The inversion is the only wrinkle. 0.5 (dropping the intercept) and 3 (swapped coordinates) are live; -5 requires a sign error on the slope. Options-only: 0.5 is the odd-one-out by kind but is not the key, which is mildly protective."
+  },
+  "ALG-H4-16": {
+    "difficulty": "easy",
+    "exclusive": true,
+    "distractor_quality": "strong",
+    "stem_complete": true,
+    "note": "Bare 2x2 asking for y. Distractors are the canonical three (x, 2y, sign dropped) and are strong, but the solve is mechanical. Options-only: real exception, see below - {-6,-3,2,3} puts -3 in two relations (-6=2*(-3), 3=-(-3)) and nothing else in any."
+  },
+  "ALG-H4-17": {
+    "difficulty": "medium",
+    "exclusive": true,
+    "distractor_quality": "plausible",
+    "stem_complete": true,
+    "note": "Standard form to slope, parallel line through a point, y-intercept. The 9 in 6x-2y=9 is decorative since the intercept of k never matters, which is a small piece of misdirection in the item's favour. 2 (the x-intercept) is the live distractor; 6 (the given y-coordinate) is weak."
+  },
+  "ALG-H4-18": {
+    "difficulty": "medium",
+    "exclusive": true,
+    "distractor_quality": "plausible",
+    "stem_complete": true,
+    "note": "Consecutive-even translation with the requested member (largest) different from the solved-for member (smallest). 8 and 30 are strong traps; -4 is contrived. Evenness is load-bearing (consecutive integers would give a different answer), so the stem is complete and not over-specified."
+  },
+  "ALG-H4-19": {
+    "difficulty": "medium",
+    "exclusive": true,
+    "distractor_quality": "weak",
+    "stem_complete": true,
+    "note": "Classic two-price/one-total item, correctly built. But 404 exceeds the 210 tickets sold and is eliminable by kind without doing any work, and 105 is visibly 210/2. That leaves a real guess between 100 and 110. Distractor set graded weak on 404 alone."
+  },
+  "ALG-H4-20": {
+    "difficulty": "easy",
+    "exclusive": true,
+    "distractor_quality": "plausible",
+    "stem_complete": true,
+    "note": "Clear the /5, add to eliminate b. Two lines. Note 4 doubles as b and as the given difference, which is a coincidence rather than a designed trap. Easy."
+  },
+  "ALG-H4-21": {
+    "difficulty": "medium",
+    "exclusive": true,
+    "distractor_quality": "strong",
+    "stem_complete": true,
+    "note": "Offset counts plus a total-not-part request. Distractors 20 and 24 are the two parts and 40 is the no-offset answer; all three are live. Options-only: key 44 is exactly 20+24, both of which are offered - soft exception on a 'total' question."
+  },
+  "ALG-H4-22": {
+    "difficulty": "hard",
+    "exclusive": false,
+    "distractor_quality": "weak",
+    "stem_complete": false,
+    "note": "EXCLUSIVITY FLAG - the weakest item in the batch, and the only defective one. The stem asks 'for how many whole months is the total cost at the first club greater' but never states the months are counted from 1. A student who includes m=0 (60 dollars against 0 dollars, first club strictly greater) counts 0,1,2,3 and answers 4, which is offered as an option. 'Months of membership' argues for starting at 1, but that is a reading, not a statement, and 4 is also the natural wrong answer for the intended reading (the crossing month), so the same option is reachable by two independent routes and the item cannot distinguish them. Distractors also leak by kind: 15 is a dollars-per-month difference and 60 is a fee, neither is a count of months, so a blind solver is choosing between 3 and 4. Fix by stating m is a positive integer, or by replacing 4. Difficulty is genuinely hard - comparing two models and then counting the whole values strictly on one side is the least routine task in the batch."
+  },
+  "ALG-H4-23": {
+    "difficulty": "medium",
+    "exclusive": true,
+    "distractor_quality": "plausible",
+    "stem_complete": true,
+    "note": "Near-twin of ALG-H4-11 without the inequality. Same smaller/larger labelling, same request for the variable not solved for. 10 is eliminable in one line (the larger of two numbers summing to 30 is at least 15) and 15 is the equal-split; the real choice is 16 vs 20, which is fine but narrower than four."
+  },
+  "ALG-H4-24": {
+    "difficulty": "medium",
+    "exclusive": true,
+    "distractor_quality": "strong",
+    "stem_complete": true,
+    "note": "Scaled input against a scaled output. The distinction between g(3c) and 3g(c) is the point, and 4 rewards exactly that confusion; 2.5 rewards distributing the 2 over only the leading term. Well built, but the algebra after substitution is one step, so medium not hard."
+  },
+  "options_only_exceptions": [
+    {
+      "id": "ALG-H4-19",
+      "strength": "partial (stem-assisted, not options-only)",
+      "key": "110",
+      "options": [
+        "100",
+        "105",
+        "110",
+        "404"
+      ],
+      "why": "404 cannot be a count of tickets once you know 210 were sold, and 105 is visibly 210/2. Two options die on magnitude/kind. The remaining 100 vs 110 is a coin flip, so the item is not decided - but it is a 50/50, not a 25%."
+    },
+    {
+      "id": "ALG-H4-22",
+      "strength": "partial (stem-assisted)",
+      "key": "3",
+      "options": [
+        "3",
+        "4",
+        "15",
+        "60"
+      ],
+      "why": "15 is a dollars-per-month difference and 60 is a fee; neither is a plausible count of months. Narrows to 3 vs 4 - which are exactly the two options the exclusivity defect leaves live, so this item is a 50/50 twice over."
+    },
+    {
+      "id": "ALG-H4-11",
+      "strength": "partial (stem-assisted)",
+      "key": "42",
+      "options": [
+        "12",
+        "18",
+        "30",
+        "42"
+      ],
+      "why": "The larger of two numbers summing to 60 is at least 30, so 12 and 18 are eliminable in one line without touching the inequality. 30 is the equal-split floor. Effectively a 50/50 at worst."
+    },
+    {
+      "id": "ALG-H4-23",
+      "strength": "partial (stem-assisted)",
+      "key": "20",
+      "options": [
+        "10",
+        "15",
+        "16",
+        "20"
+      ],
+      "why": "Same leak as 11 in equation form: the larger of two numbers summing to 30 is at least 15, killing 10, and 15 is the equal-split. Real choice is 16 vs 20."
+    },
+    {
+      "id": "ALG-H4-14",
+      "strength": "weak",
+      "key": "26",
+      "options": [
+        "26",
+        "27",
+        "28",
+        "34"
+      ],
+      "why": "Three consecutive integers against one outlier; 34 is free. Does not decide among 26/27/28."
+    }
+  ],
+  "template_groups": [
+    {
+      "group": "A1 - bare two-equation linear system, eliminate, report a stated quantity",
+      "ids": [
+        "ALG-H4-05",
+        "ALG-H4-08",
+        "ALG-H4-16",
+        "ALG-H4-20"
+      ],
+      "note": "Identical procedure end to end; only the requested output varies (x+y, 5a-4b, y, a). Solving any one is solving all four. All four are also the batch's easy grades, so this mould is simultaneously the most repeated and the least difficult."
+    },
+    {
+      "group": "A2 - word-dressed two-equation linear system, same procedure",
+      "ids": [
+        "ALG-H4-03",
+        "ALG-H4-10",
+        "ALG-H4-19",
+        "ALG-H4-21"
+      ],
+      "note": "Crates/pears, boat/current, adult/child tickets, dimes/quarters. Different stories, one algebraic object: two linear equations in two counts, eliminate, then either report the other variable or add the two back together. 10 hides it behind a rate conversion, 19 and 21 behind a count offset."
+    },
+    {
+      "group": "A - combined system family (A1 + A2)",
+      "ids": [
+        "ALG-H4-03",
+        "ALG-H4-05",
+        "ALG-H4-08",
+        "ALG-H4-10",
+        "ALG-H4-16",
+        "ALG-H4-19",
+        "ALG-H4-20",
+        "ALG-H4-21"
+      ],
+      "note": "8 of 24 items, 33.3% of the batch, are one mould. This is the batch's largest single finding and is the same shape as the sibling batch's 37.5%."
+    },
+    {
+      "group": "B - parameter forced by a degenerate-system condition",
+      "ids": [
+        "ALG-H4-01",
+        "ALG-H4-06"
+      ],
+      "note": "Exact mirrors: no-solution/same-slope and infinitely-many/same-multiple. Both reduce to one ratio of coefficients. A student who sees one has the second for free, including the distractor logic (inverted ratio, sign dropped)."
+    },
+    {
+      "group": "C - fixed load(s) plus a per-unit rate, floored to a whole count",
+      "ids": [
+        "ALG-H4-02",
+        "ALG-H4-14"
+      ],
+      "note": "(budget - fixed) / rate, floor. 14 adds a second fixed load and nothing else. Distractor recipes match line for line: omit a fixed term, round up instead of down."
+    },
+    {
+      "group": "D - sum of two numbers plus a multiple-and-offset comparison, report the larger",
+      "ids": [
+        "ALG-H4-11",
+        "ALG-H4-23"
+      ],
+      "note": "Near-twins. Both: sum given, 'three times the smaller' compared to the larger with an offset, answer is the larger. 11 makes the comparison an inequality and asks for the extreme; 23 makes it an equation. 18 (consecutive evens, sum against a multiple of the smallest, report a different member) is a third cousin."
+    },
+    {
+      "group": "E - line in the xy-plane, recover slope, solve for a coordinate",
+      "ids": [
+        "ALG-H4-15",
+        "ALG-H4-17"
+      ],
+      "note": "Two points vs standard form as the slope source, then substitute a known coordinate to find the unknown one. Moderate overlap - the retrieval step differs, the finish is identical."
+    },
+    {
+      "group": "F - abstract linear function under a functional equation",
+      "ids": [
+        "ALG-H4-04",
+        "ALG-H4-24"
+      ],
+      "note": "Both give a relation between a function evaluated at a transformed input and at the plain input, and ask you to unwind it. 04 is additive on the input, 24 multiplicative. Weakest of the listed groups but the setup instinct transfers."
+    },
+    {
+      "group": "G - linear inequality solved to a boundary, extreme value read off",
+      "ids": [
+        "ALG-H4-12",
+        "ALG-H4-13"
+      ],
+      "note": "Weak grouping. 12 is a single inequality; 13 requires the insight that two half-planes overlap only where the lower bound does not exceed the upper. The finishing step (isolate, read the endpoint) is shared but 13's setup is genuinely different."
+    },
+    {
+      "group": "singleton",
+      "ids": [
+        "ALG-H4-07",
+        "ALG-H4-09",
+        "ALG-H4-18",
+        "ALG-H4-22"
+      ],
+      "note": "07 (absolute value) is the only structurally unique item. 09 shares C's fixed-charge skeleton but the allowance and exact division set it apart. 18 leans on D. 22 is a two-model comparison with a counting finish."
+    }
+  ],
+  "_batch_notes": {
+    "key_rank_spread": "Options are listed in ascending numeric order in all 24 items, so slot equals rank. The key's rank is exactly uniform: smallest 6 times, second 6, third 6, largest 6 - a perfect 6/6/6/6. CLAUDE.md flags a perfect 25/25/25/25 histogram as a tell in its own right. It is not exploitable here (rank does not tell you which rank), but it means any letter-spread check on this batch is measuring engineered rank balance, not position, and will pass vacuously.",
+    "distractor_recipe_uniformity": "Nearly every item draws distractors from one three-slot brief: (i) the other variable, (ii) the intermediate before the final division, (iii) the sign-dropped or one-step-short version. Per item this is good construction and is why 9 of 24 sets grade strong. In aggregate it is a cross-item tell of the kind CLAUDE.md describes: a student who works six of these learns 'never pick the number that looks like a partial result', which is a rule about the brief rather than about any item. It does NOT produce a measurable options-only leak (see _options_only_verdict), but it is the thing to vary if this mould is used again.",
+    "arithmetic": "Not re-derived per the brief; I did check each key while reasoning about difficulty and found no discrepancy. Separately ran every item's own solve block: 24/24 agree with correct_answer, all keys appear in choices, no duplicate options. NOTE this last check is weak evidence - the solve blocks ship with the batch, so a solve that mirrors an authoring error would agree with it. It would catch an edited key, not a wrong premise. No loud arithmetic complaint.",
+    "difficulty_calibration": "Graded against the module-2 hard route. 7 of 24 are items a strong student finishes in under 30 seconds with no trap - they are not hard-route material at any difficulty label. The three hard grades (11, 13, 22) each require a step that is not the obvious one: an extreme on the unsolved variable, feasibility of two half-planes, and counting whole values strictly on one side of a crossing."
+  },
+  "_options_only_verdict": {
+    "answer": "No. On the strict test - four bare numbers, stem covered - not one of the 24 items is decidable, and this was measured rather than eyeballed.",
+    "measured_rules": {
+      "control": "25.0% (four options, no blanks)",
+      "largest": "6/24 = 25.0%",
+      "smallest": "6/24 = 25.0%",
+      "2nd smallest": "6/24 = 25.0%",
+      "3rd smallest": "6/24 = 25.0%",
+      "uniquely roundest number": "0/7 fired = 0.0%",
+      "the value the other three cluster around (closest to mean of the other three)": "8/24 = 33.3%, +8.3 pts on n=24 - not significant, and the single best of nine rules tried, which is what you expect from trying nine",
+      "furthest from the mean (the outlier)": "2/24 = 8.3%",
+      "the only negative (or only positive)": "1/9 fired = 11.1%",
+      "smallest member of a tight 3-cluster": "2/3 fired - fires on 3 items, which is not a measurement and is reported only so it is not mistaken for one",
+      "derivational hub (the option the others are -1x/2x/3x/4x/5x/10x or a sum of)": "fires uniquely on 7 items: 3 correct, 4 on a NON-key. 43% on n=7. Does not work."
+    },
+    "retracted": "An earlier draft of this grade named ALG-H4-01, -06 and -16 as decidable hub leaks (key = the option the others are generated from, via the 'pre-division intermediate' and 'sign-dropped twin' distractor recipe). That claim was formed by reading three option sets and was FALSE as a rule: run over all 24 items the same rule picks a non-key on ALG-H4-05, -18, -20 and -23. Three hand-picked confirmations were generalised without measuring the population. The recipe observation stands as an authoring note; the leak does not.",
+    "key_rank_spread": "Choices are listed in ascending numeric order in all 24 items (verified), so slot equals rank. Key rank is exactly uniform - smallest 6, second 6, third 6, largest 6. That perfect 6/6/6/6 is why all four rank rules score exactly the control. It also means any letter-spread check on this batch passes vacuously: it is measuring engineered rank balance, not position. If the assembler shuffles options at serve time this is moot; if it serves as-authored, the ascending order is itself a house convention worth knowing about.",
+    "conclusion": "This is consistent with CLAUDE.md's finding that bare numeric options are the cleanest stratum: four values mean nothing until the stem says what they measure. The real leaks in this batch are all stem-assisted magnitude eliminations (11, 19, 22, 23), where a half-read stem removes two options by kind. That is a distractor-quality problem, not an options-only one."
+  }
+}

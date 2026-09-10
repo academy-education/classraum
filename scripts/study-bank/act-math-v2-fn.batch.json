@@ -13,7 +13,12 @@
     ],
     "correct_answer": "-6",
     "explanation": "g(-1) = f(-1 + 4) = f(3) = 3^2 - 5(3) = 9 - 15 = -6. The option \"6\" comes from a solver who forgets the shift entirely and evaluates f(-1) = (-1)^2 - 5(-1) = 6. The option \"50\" comes from a solver who shifts the wrong way, evaluating f(-1 - 4) = f(-5) = 25 + 25 = 50. The option \"10\" comes from a solver who adds 4 to the output instead of the input, giving f(-1) + 4 = 6 + 4 = 10.",
-    "solve": "var x = -1 + 4; return x*x - 5*x;"
+    "solve": "var x = -1 + 4; return x*x - 5*x;",
+    "distractor_solve": {
+      "6": "var x = -1; return x*x - 5*x;",
+      "10": "var x = -1; return (x*x - 5*x) + 4;",
+      "50": "var x = -1 - 4; return x*x - 5*x;"
+    }
   },
   {
     "id": "AM2F-02",
@@ -29,7 +34,12 @@
     ],
     "correct_answer": "9",
     "explanation": "Work from the inside out: g(3) = 1, and f(1) = 9. The option \"4\" comes from a solver who applies the two functions in the wrong order, computing g(f(3)) = g(2) = 4. The option \"3\" comes from a solver who applies g twice, computing g(g(3)) = g(1) = 3. The option \"2\" comes from a solver who reads only the inner row and reports f(3) = 2.",
-    "solve": "var f = {1:9, 2:5, 3:2, 4:6}, g = {1:3, 2:4, 3:1, 4:2}; return f[g[3]];"
+    "solve": "var f = {1:9, 2:5, 3:2, 4:6}, g = {1:3, 2:4, 3:1, 4:2}; return f[g[3]];",
+    "distractor_solve": {
+      "2": "var f = {1:9, 2:5, 3:2, 4:6}; return f[3];",
+      "3": "var g = {1:3, 2:4, 3:1, 4:2}; return g[g[3]];",
+      "4": "var f = {1:9, 2:5, 3:2, 4:6}, g = {1:3, 2:4, 3:1, 4:2}; return g[f[3]];"
+    }
   },
   {
     "id": "AM2F-03",
@@ -45,7 +55,12 @@
     ],
     "correct_answer": "9",
     "explanation": "The vertex is at x = 4/2 = 2, which lies in the domain, so the minimum is a = f(2) = 4 - 8 + 1 = -3. The endpoints give f(0) = 1 and f(5) = 25 - 20 + 1 = 6, so b = 6. Then b - a = 6 - (-3) = 9. The option \"5\" comes from a solver who uses only the two endpoints, f(5) - f(0) = 6 - 1 = 5, and never checks the vertex. The option \"4\" comes from a solver who finds the minimum f(2) = -3 but takes the maximum to be f(0) = 1, never testing x = 5. The option \"6\" comes from a solver who finds the range correctly but reports b, the maximum value, rather than b - a.",
-    "solve": "var lo = 0, hi = 5; var f = function(x){ return x*x - 4*x + 1; }; var v = 4/2; var c = [f(lo), f(hi)]; if (v >= lo && v <= hi) c.push(f(v)); return Math.max.apply(null, c) - Math.min.apply(null, c);"
+    "solve": "var lo = 0, hi = 5; var f = function(x){ return x*x - 4*x + 1; }; var v = 4/2; var c = [f(lo), f(hi)]; if (v >= lo && v <= hi) c.push(f(v)); return Math.max.apply(null, c) - Math.min.apply(null, c);",
+    "distractor_solve": {
+      "4": "var f = function(x){ return x*x - 4*x + 1; }; return f(0) - f(4/2);",
+      "5": "var f = function(x){ return x*x - 4*x + 1; }; return f(5) - f(0);",
+      "6": "var f = function(x){ return x*x - 4*x + 1; }; return Math.max(f(0), f(5), f(4/2));"
+    }
   },
   {
     "id": "AM2F-04",
@@ -61,7 +76,12 @@
     ],
     "correct_answer": "75",
     "explanation": "Substituting (3, -5) gives a(0) + k = -5, so k = -5. Substituting (5, 15) gives a(5 - 3)^2 - 5 = 15, so 4a = 20 and a = 5. Then f(7) = 5(7 - 3)^2 - 5 = 80 - 5 = 75. The option \"15\" comes from a solver who multiplies by 7 - 3 instead of squaring it, giving 5(4) - 5 = 15. The option \"85\" comes from a solver who reads the vertex value as +5 rather than -5, giving 5(16) + 5 = 85. The option \"80\" comes from a solver who finds a = 5 but drops the constant k when evaluating, giving 5(7 - 3)^2 = 80.",
-    "solve": "var k = -5; var a = (15 - k)/((5 - 3)*(5 - 3)); return a*(7 - 3)*(7 - 3) + k;"
+    "solve": "var k = -5; var a = (15 - k)/((5 - 3)*(5 - 3)); return a*(7 - 3)*(7 - 3) + k;",
+    "distractor_solve": {
+      "15": "var k = -5; var a = (15 - k)/((5 - 3)*(5 - 3)); return a*(7 - 3) + k;",
+      "80": "var k = -5; var a = (15 - k)/((5 - 3)*(5 - 3)); return a*(7 - 3)*(7 - 3);",
+      "85": "var k = -5; var a = (15 - k)/((5 - 3)*(5 - 3)); return a*(7 - 3)*(7 - 3) + 5;"
+    }
   },
   {
     "id": "AM2F-05",
@@ -77,7 +97,12 @@
     ],
     "correct_answer": "10",
     "explanation": "h(x) = f(x - 6) = 2(x - 6) + 1 = 2x - 11. Solving 2x - 11 = 9 gives 2x = 20, so h^-1(9) = 10. The option \"7\" comes from a solver who composes in the wrong order, using g(f(x)) = 2x - 5 and solving 2x - 5 = 9. The option \"-1\" comes from a solver who solves 2x - 11 = 9 but subtracts 11 from 9 instead of adding, getting 2x = -2. The option \"4\" comes from a solver who undoes f only and never undoes g, solving 2x + 1 = 9.",
-    "solve": "return (9 - 1)/2 + 6;"
+    "solve": "return (9 - 1)/2 + 6;",
+    "distractor_solve": {
+      "4": "return (9 - 1)/2;",
+      "7": "return (9 + 6 - 1)/2;",
+      "-1": "return (9 - 11)/2;"
+    }
   },
   {
     "id": "AM2F-06",
@@ -93,7 +118,12 @@
     ],
     "correct_answer": "2",
     "explanation": "The numerator and the denominator have the same degree, so the horizontal asymptote is the ratio of the leading coefficients: c = 6/3 = 2. The option \"1.5\" comes from a solver who compares the constant terms, 6/4 = 1.5, instead of the leading coefficients. The option \"0.5\" comes from a solver who inverts the ratio of leading coefficients, giving 3/6 = 0.5. The option \"0\" comes from a solver who applies the rule for a numerator of smaller degree and answers y = 0.",
-    "solve": "return 6/3;"
+    "solve": "return 6/3;",
+    "distractor_solve": {
+      "0": "return 0;",
+      "1.5": "return 6/4;",
+      "0.5": "return 3/6;"
+    }
   },
   {
     "id": "AM2F-07",
@@ -109,7 +139,12 @@
     ],
     "correct_answer": "6",
     "explanation": "y = f(2x) is zero exactly when 2x = 12, so k = 6. The option \"24\" comes from a solver who reads the horizontal scaling backwards and multiplies 12 by 2. The option \"10\" comes from a solver who subtracts 2 from 12 instead of dividing by it. The option \"14\" comes from a solver who adds 2 to 12 instead of dividing by it.",
-    "solve": "return 12/2;"
+    "solve": "return 12/2;",
+    "distractor_solve": {
+      "10": "return 12 - 2;",
+      "14": "return 12 + 2;",
+      "24": "return 12*2;"
+    }
   },
   {
     "id": "AM2F-08",
@@ -125,7 +160,12 @@
     ],
     "correct_answer": "726",
     "explanation": "The terms are 6, 18, 54, 162, and 486, and 6 + 18 + 54 + 162 + 486 = 726. The option \"60\" comes from a solver who treats 3 as a common difference and sums 6 + 9 + 12 + 15 + 18. The option \"486\" comes from a solver who gives the fifth term, 6(3)^4 = 486, instead of the sum. The option \"2184\" comes from a solver who runs the exponent one step too far and sums six terms instead of 5.",
-    "solve": "var a = 6, r = 3, n = 5, s = 0, t = a; for (var i = 0; i < n; i++) { s += t; t *= r; } return s;"
+    "solve": "var a = 6, r = 3, n = 5, s = 0, t = a; for (var i = 0; i < n; i++) { s += t; t *= r; } return s;",
+    "distractor_solve": {
+      "60": "var a = 6, d = 3, s = 0; for (var i = 0; i < 5; i++) { s += a + d*i; } return s;",
+      "486": "return 6*Math.pow(3, 5 - 1);",
+      "2184": "var a = 6, r = 3, s = 0, t = a; for (var i = 0; i <= 5; i++) { s += t; t *= r; } return s;"
+    }
   },
   {
     "id": "AM2F-09",
@@ -141,7 +181,12 @@
     ],
     "correct_answer": "9396",
     "explanation": "Each year the machine keeps 100% - 15% = 85% of its value, so after 4 years it is worth 18,000(0.85)^4 = 9,396.1125, which is $9,396 to the nearest dollar. The option \"7200\" comes from a solver who takes 15% of the ORIGINAL value four times, giving 18,000 - 4(2,700) = 7,200. The option \"9\" comes from a solver who multiplies by 0.15 rather than by 0.85 each year. The option \"31482\" comes from a solver who grows the value by 15% a year instead of shrinking it.",
-    "solve": "return Math.round(18000*Math.pow(1 - 15/100, 4));"
+    "solve": "return Math.round(18000*Math.pow(1 - 15/100, 4));",
+    "distractor_solve": {
+      "9": "return Math.round(18000*Math.pow(15/100, 4));",
+      "7200": "return 18000 - 4*(18000*15/100);",
+      "31482": "return Math.round(18000*Math.pow(1 + 15/100, 4));"
+    }
   },
   {
     "id": "AM2F-10",
@@ -157,7 +202,12 @@
     ],
     "correct_answer": "9",
     "explanation": "B(t) > A(t) means 600(1.15)^t > 1,000(1.08)^t. At t = 8, B is 1,835 and A is 1,851; at t = 9, B is 2,111 and A is 1,999. The least integer is 9. The option \"8\" comes from a solver who rounds the solution t = 8.13 down, but at t = 8 account B is still behind. The option \"4\" comes from a solver who compares B against the starting value 1,000 alone, ignoring the growth of A. The option \"24\" comes from a solver who divides the ratio of the starting amounts by the difference of the two growth rates.",
-    "solve": "for (var t = 0; t < 1000; t++) { if (600*Math.pow(1.15, t) > 1000*Math.pow(1.08, t)) return t; }"
+    "solve": "for (var t = 0; t < 1000; t++) { if (600*Math.pow(1.15, t) > 1000*Math.pow(1.08, t)) return t; }",
+    "distractor_solve": {
+      "4": "for (var t = 0; t < 1000; t++) { if (600*Math.pow(1.15, t) > 1000) return t; }",
+      "8": "return Math.floor(Math.log(1000/600)/Math.log(1.15/1.08));",
+      "24": "return Math.ceil((1000/600)/(1.15 - 1.08));"
+    }
   },
   {
     "id": "AM2F-11",
@@ -173,7 +223,12 @@
     ],
     "correct_answer": "8",
     "explanation": "f(x) is the total distance from x to 3 and from x to -5. That total is smallest for any x between -5 and 3, where it equals the distance between them: 3 - (-5) = 8. The option \"-2\" comes from a solver who adds the two values that make the absolute-value expressions zero, 3 + (-5). The option \"-1\" comes from a solver who averages the two values that make the absolute-value expressions zero. The option \"0\" comes from a solver who assumes that because absolute values are never negative the minimum must be 0.",
-    "solve": "var m = null; for (var x = -3 - 5 - 5; x <= 3 + 5 + 5; x++) { var v = Math.abs(x - 3) + Math.abs(x + 5); if (m === null || v < m) m = v; } return m;"
+    "solve": "var m = null; for (var x = -3 - 5 - 5; x <= 3 + 5 + 5; x++) { var v = Math.abs(x - 3) + Math.abs(x + 5); if (m === null || v < m) m = v; } return m;",
+    "distractor_solve": {
+      "0": "return 0;",
+      "-2": "return 3 + (-5);",
+      "-1": "return (3 + (-5))/2;"
+    }
   },
   {
     "id": "AM2F-12",
@@ -189,7 +244,12 @@
     ],
     "correct_answer": "24",
     "explanation": "The common difference is (47 - 17)/(8 - 3) = 6, so the first term is 17 - 2(6) = 5. Then 5 + 6(n - 1) = 143 gives 6(n - 1) = 138 and n = 24. The option \"23\" comes from a solver who uses a_n = a_1 + dn instead of a_1 + d(n - 1). The option \"22\" comes from a solver who treats 17 as the first term rather than the 3rd term. The option \"21\" comes from a solver who counts the 21 steps of size 6 from the 3rd term to 143 but never adds the 3.",
-    "solve": "var d = (47 - 17)/(8 - 3); var a1 = 17 - (3 - 1)*d; return (143 - a1)/d + 1;"
+    "solve": "var d = (47 - 17)/(8 - 3); var a1 = 17 - (3 - 1)*d; return (143 - a1)/d + 1;",
+    "distractor_solve": {
+      "21": "var d = (47 - 17)/(8 - 3); return (143 - 17)/d;",
+      "22": "var d = (47 - 17)/(8 - 3); return (143 - 17)/d + 1;",
+      "23": "var d = (47 - 17)/(8 - 3); var a1 = 17 - (3 - 1)*d; return (143 - a1)/d;"
+    }
   },
   {
     "id": "AM2F-13",
@@ -205,7 +265,12 @@
     ],
     "correct_answer": "6",
     "explanation": "3a^2 - 5 = 103 gives 3a^2 = 108, so a^2 = 36 and the positive value is a = 6. The option \"36\" comes from a solver who stops at a^2 = 36 and never takes the square root. The option \"18\" comes from a solver who halves 36 instead of taking its square root. The option \"108\" comes from a solver who stops at 3a^2 = 108 and reports that.",
-    "solve": "return Math.sqrt((103 + 5)/3);"
+    "solve": "return Math.sqrt((103 + 5)/3);",
+    "distractor_solve": {
+      "18": "return ((103 + 5)/3)/2;",
+      "36": "return (103 + 5)/3;",
+      "108": "return 103 + 5;"
+    }
   },
   {
     "id": "AM2F-14",
@@ -221,7 +286,12 @@
     ],
     "correct_answer": "8",
     "explanation": "Because f(2) = f(10), the axis of symmetry is x = (2 + 10)/2 = 6. The reflection of x = 4 across x = 6 is x = 8, so f(8) = f(4) = 21. The option \"6\" comes from a solver who reports the axis of symmetry x = 6 itself instead of the reflected input. The option \"12\" comes from a solver who assumes the outputs repeat every 8 units and answers 4 + 8. The option \"10\" comes from a solver who assumes f(10) = 21 because 10 appears in the given pair of equal outputs.",
-    "solve": "var axis = (2 + 10)/2; return 2*axis - 4;"
+    "solve": "var axis = (2 + 10)/2; return 2*axis - 4;",
+    "distractor_solve": {
+      "6": "return (2 + 10)/2;",
+      "10": "return 10;",
+      "12": "return 4 + (10 - 2);"
+    }
   },
   {
     "id": "AM2F-15",
@@ -237,7 +307,12 @@
     ],
     "correct_answer": "16",
     "explanation": "The radical requires x + 6 >= 0, so x >= -6, and the denominator requires x is not 2. The integers -6 through 10 number 17, and removing x = 2 leaves 16. The option \"17\" comes from a solver who counts x = -6 through x = 10 but forgets to exclude x = 2. The option \"20\" comes from a solver who excludes x = 2 but never imposes x + 6 >= 0. The option \"9\" comes from a solver who counts only the positive integers in the domain, 1 and 3 through 10.",
-    "solve": "var n = 0; for (var x = -10; x <= 10; x++) { if (x + 6 >= 0 && x - 2 !== 0) n++; } return n;"
+    "solve": "var n = 0; for (var x = -10; x <= 10; x++) { if (x + 6 >= 0 && x - 2 !== 0) n++; } return n;",
+    "distractor_solve": {
+      "9": "var n = 0; for (var x = -10; x <= 10; x++) { if (x + 6 >= 0 && x - 2 !== 0 && x > 0) n++; } return n;",
+      "17": "var n = 0; for (var x = -10; x <= 10; x++) { if (x + 6 >= 0) n++; } return n;",
+      "20": "var n = 0; for (var x = -10; x <= 10; x++) { if (x - 2 !== 0) n++; } return n;"
+    }
   },
   {
     "id": "AM2F-16",
@@ -253,7 +328,12 @@
     ],
     "correct_answer": "-24",
     "explanation": "f(-3) = 4(-3) - (-3)^2 = -12 - 9 = -21 and f(3) = 12 - 9 = 3, so f(-3) - f(3) = -21 - 3 = -24. The option \"0\" comes from a solver who assumes f(-3) = f(3) because of the squared term. The option \"-6\" comes from a solver who squares -3 as -9, so f(-3) = -12 + 9 = -3, and then computes -3 - 3 = -6. The option \"24\" comes from a solver who subtracts in the wrong order, computing f(3) - f(-3).",
-    "solve": "var f = function(x){ return 4*x - x*x; }; return f(-3) - f(3);"
+    "solve": "var f = function(x){ return 4*x - x*x; }; return f(-3) - f(3);",
+    "distractor_solve": {
+      "0": "return 0;",
+      "24": "var f = function(x){ return 4*x - x*x; }; return f(3) - f(-3);",
+      "-6": "var f = function(x){ return 4*x - x*x; }; return (4*(-3) + 3*3) - f(3);"
+    }
   },
   {
     "id": "AM2F-17",
@@ -269,7 +349,12 @@
     ],
     "correct_answer": "752",
     "explanation": "The maximum is at x = -96/(2(-2)) = 24, and P(24) = -2(576) + 96(24) - 400 = -1,152 + 2,304 - 400 = 752. The option \"24\" comes from a solver who reports the number of items x = 24 rather than the profit. The option \"-400\" comes from a solver who uses x = 96/2 = 48 instead of x = 96/(2(-2)), landing on P(48) = -400. The option \"1152\" comes from a solver who computes -2(24)^2 + 96(24) but drops the constant -400.",
-    "solve": "var a = -2, b = 96, c = -400; var x = -b/(2*a); return a*x*x + b*x + c;"
+    "solve": "var a = -2, b = 96, c = -400; var x = -b/(2*a); return a*x*x + b*x + c;",
+    "distractor_solve": {
+      "24": "var a = -2, b = 96; return -b/(2*a);",
+      "1152": "var a = -2, b = 96; var x = -b/(2*a); return a*x*x + b*x;",
+      "-400": "var a = -2, b = 96, c = -400; var x = b/2; return a*x*x + b*x + c;"
+    }
   },
   {
     "id": "AM2F-18",
@@ -285,7 +370,12 @@
     ],
     "correct_answer": "15",
     "explanation": "Since -2 < -1, f(-2) = 2(-2) + 9 = 5. Since 5 > 4, f(5) = 20 - 5 = 15. The option \"25\" comes from a solver who finds f(-2) = 5 but then uses the x^2 piece at x = 5, past its boundary of 4. The option \"16\" comes from a solver who uses the x^2 piece at x = -2, outside its domain, then evaluates f(4). The option \"5\" comes from a solver who stops at the inner value f(-2) = 5.",
-    "solve": "var f = function(x){ if (x < -1) return 2*x + 9; if (x <= 4) return x*x; return 20 - x; }; return f(f(-2));"
+    "solve": "var f = function(x){ if (x < -1) return 2*x + 9; if (x <= 4) return x*x; return 20 - x; }; return f(f(-2));",
+    "distractor_solve": {
+      "5": "return 2*(-2) + 9;",
+      "16": "var inner = (-2)*(-2); return inner*inner;",
+      "25": "var x = 2*(-2) + 9; return x*x;"
+    }
   },
   {
     "id": "AM2F-19",
@@ -301,7 +391,12 @@
     ],
     "correct_answer": "4",
     "explanation": "Dividing both sides by 7 gives 3^x = 81, and 81 = 3^4, so x = 4. The option \"81\" comes from a solver who stops at 3^x = 81 and reports 81. The option \"3\" comes from a solver who divides 567 by 21 rather than by 7, getting 27 = 3^3. The option \"189\" comes from a solver who divides 567 by 3 rather than by 7 and reports 189.",
-    "solve": "var v = 567/7, x = 0; while (Math.pow(3, x) < v) x++; return x;"
+    "solve": "var v = 567/7, x = 0; while (Math.pow(3, x) < v) x++; return x;",
+    "distractor_solve": {
+      "3": "var v = 567/21, x = 0; while (Math.pow(3, x) < v) x++; return x;",
+      "81": "return 567/7;",
+      "189": "return 567/3;"
+    }
   },
   {
     "id": "AM2F-20",
@@ -317,7 +412,12 @@
     ],
     "correct_answer": "48",
     "explanation": "V = kT/P, so k = VP/T = 45(20)/300 = 3. Then V = 3(400)/25 = 48. The option \"60\" comes from a solver who scales by the temperature ratio 400/300 only and ignores the pressure. The option \"36\" comes from a solver who scales by the pressure ratio 20/25 only and ignores the temperature. The option \"27\" comes from a solver who turns both ratios upside down, using 300/400 and 20/25.",
-    "solve": "var k = 45*20/300; return k*400/25;"
+    "solve": "var k = 45*20/300; return k*400/25;",
+    "distractor_solve": {
+      "27": "return 45*(300/400)*(20/25);",
+      "36": "return 45*(20/25);",
+      "60": "return 45*(400/300);"
+    }
   },
   {
     "id": "AM2F-21",
@@ -333,7 +433,12 @@
     ],
     "correct_answer": "-15",
     "explanation": "Multiplying by the positive number 4 keeps the minimum a minimum, so the least value of g is 4(-2) - 7 = -8 - 7 = -15. The option \"-1\" comes from a solver who adds 7 instead of subtracting it. The option \"-36\" comes from a solver who subtracts 7 before multiplying, computing 4(-2 - 7). The option \"1\" comes from a solver who uses |-2| in place of the minimum value -2.",
-    "solve": "return 4*(-2) - 7;"
+    "solve": "return 4*(-2) - 7;",
+    "distractor_solve": {
+      "1": "return 4*Math.abs(-2) - 7;",
+      "-1": "return 4*(-2) + 7;",
+      "-36": "return 4*(-2 - 7);"
+    }
   },
   {
     "id": "AM2F-22",
@@ -349,7 +454,12 @@
     ],
     "correct_answer": "-12",
     "explanation": "As x decreases, 2^x approaches 0 but is never 0, so 3(2^x) approaches 0 from above and g(x) approaches -12 from above without reaching it. Hence c = -12. The option \"0\" comes from a solver who uses the range of an unshifted exponential and answers g(x) > 0. The option \"12\" comes from a solver who drops the sign of the vertical shift. The option \"-9\" comes from a solver who evaluates g(0) = 3 - 12 = -9 and treats that as the least value.",
-    "solve": "return 3*Math.pow(2, -12*3*3) - 12;"
+    "solve": "return 3*Math.pow(2, -12*3*3) - 12;",
+    "distractor_solve": {
+      "0": "return 0;",
+      "12": "return 12;",
+      "-9": "return 3*Math.pow(2, 0) - 12;"
+    }
   },
   {
     "id": "AM2F-23",
@@ -365,7 +475,12 @@
     ],
     "correct_answer": "3",
     "explanation": "Letting u = x^2 gives u^2 - 13u + 36 = 0, which factors as (u - 4)(u - 9) = 0. So x^2 = 4 or x^2 = 9, and the zeros are -3, -2, 2, and 3. The greatest is 3. The option \"9\" comes from a solver who stops at x^2 = 9 and reports 9. The option \"36\" comes from a solver who reports f(0) = 36. The option \"13\" comes from a solver who ignores the constant term, solving x^4 = 13x^2 and reporting 13.",
-    "solve": "var u1 = (13 + Math.sqrt(13*13 - 4*36))/2, u2 = (13 - Math.sqrt(13*13 - 4*36))/2; return Math.sqrt(Math.max(u1, u2));"
+    "solve": "var u1 = (13 + Math.sqrt(13*13 - 4*36))/2, u2 = (13 - Math.sqrt(13*13 - 4*36))/2; return Math.sqrt(Math.max(u1, u2));",
+    "distractor_solve": {
+      "9": "return (13 + Math.sqrt(13*13 - 4*36))/2;",
+      "13": "return 13;",
+      "36": "var x = 0; return x*x*x*x - 13*x*x + 36;"
+    }
   },
   {
     "id": "AM2F-24",
@@ -381,6 +496,11 @@
     ],
     "correct_answer": "116",
     "explanation": "a_2 = 3^2 - 5 = 4, a_3 = 4^2 - 5 = 11, and a_4 = 11^2 - 5 = 121 - 5 = 116. The option \"11\" comes from a solver who stops at a_3 = 11. The option \"121\" comes from a solver who squares 11 but forgets to subtract 5. The option \"16\" comes from a solver who applies the rule as (a_n - 5)^2, giving 4, then 1, then 16.",
-    "solve": "var a = 3; for (var n = 1; n < 4; n++) { a = a*a - 5; } return a;"
+    "solve": "var a = 3; for (var n = 1; n < 4; n++) { a = a*a - 5; } return a;",
+    "distractor_solve": {
+      "11": "var a = 3; for (var n = 1; n < 3; n++) { a = a*a - 5; } return a;",
+      "16": "var a = 3; for (var n = 1; n < 4; n++) { a = (a - 5)*(a - 5); } return a;",
+      "121": "var a = 3; for (var n = 1; n < 3; n++) { a = a*a - 5; } return a*a;"
+    }
   }
 ]
