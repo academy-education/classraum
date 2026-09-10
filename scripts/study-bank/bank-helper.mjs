@@ -275,6 +275,20 @@ async function main() {
       verify_meta: {
         method: 'claude-authored+claude-qc', single_defensible: true, key_votes: q.key_votes,
         grader_difficulty: q.difficulty, distractor_quality: q.distractor_quality,
+        /*
+         * The AUTHOR's own label, recorded alongside the grader's.
+         *
+         * Added 2026-09-11 because the question "what fraction of items
+         * authored as hard actually bank as hard?" was asked and could not
+         * be answered from 5,940 live rows: every one carries
+         * grader_difficulty and none carries what the author claimed. The
+         * yield is the number that decides whether authoring is the right
+         * way to relieve a hard band at all, and it was unrecoverable.
+         * Two batches measured by hand on the day gave roughly 1 hard per
+         * 24 authored as hard; one hand measurement is not a base rate.
+         * This makes the next one free.
+         */
+        author_difficulty: raw.difficulty ?? null,
         qc: 'blind Claude solvers + anchored Claude grader; no external model',
       },
       source: 'hand',
