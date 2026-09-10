@@ -40,6 +40,15 @@ const nextConfig: NextConfig = {
     formats: ['image/webp', 'image/avif'],
     minimumCacheTTL: 60,
   },
+  // pdfjs-dist (via pdf-parse) resolves its worker at RUNTIME by path. Bundled
+  // by Next it looks for .next/server/chunks/pdf.worker.mjs, which is never
+  // emitted, and every PDF upload fails with
+  //   Setting up fake worker failed: "Cannot find module ... pdf.worker.mjs"
+  // Left external, it is required from node_modules and finds its own files.
+  // mammoth and hwp.js are here for the same reason: all three are lazy-
+  // imported by src/lib/file-text-extractor.ts and none benefits from bundling.
+  serverExternalPackages: ['pdf-parse', 'mammoth', 'hwp.js'],
+
   trailingSlash: false,
   poweredByHeader: false,
   experimental: {

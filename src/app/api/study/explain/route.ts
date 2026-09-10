@@ -4,6 +4,7 @@ import { createOpenAI } from '@ai-sdk/openai'
 import { enforceRateLimit } from '@/lib/rate-limit'
 import { requireStudyUser } from '@/lib/study/auth'
 import { dbAdmin } from '@/lib/supabase-admin'
+import { loggers } from '@/lib/error-monitoring'
 
 /**
  * POST /api/study/explain — on-demand, follow-up explanations for a
@@ -161,13 +162,21 @@ export async function POST(req: NextRequest) {
           if (saveErr) console.error('[study/explain] save failed', { attemptId, mode, error: saveErr })
         }
       } catch (e) {
-        console.error('[study/explain] save failed', e)
+        loggers.study.error(
+          'Explanation save threw',
+          e instanceof Error ? e : new Error(String(e)),
+          { attemptId, mode }
+        )
       }
     }
 
     return NextResponse.json({ text: clean })
   } catch (e) {
-    console.error('[study/explain] failed', e)
+    loggers.study.error(
+      'Explain request failed',
+      e instanceof Error ? e : new Error(String(e)),
+      { mode }
+    )
     return NextResponse.json({ error: 'explain failed' }, { status: 500 })
   }
 }

@@ -3,6 +3,7 @@ import { dbAdmin } from '@/lib/supabase-admin'
 import { getUserFromRequest } from '@/lib/api-auth'
 import { checkRateLimit } from '@/lib/rate-limit'
 import { extractTextFromFile, MAX_FILE_BYTES, MAX_EXTRACTED_CHARS } from '@/lib/file-text-extractor'
+import { loggers } from '@/lib/error-monitoring'
 
 // POST /api/assignments/extract-text
 // Body: multipart/form-data with fields:
@@ -72,8 +73,26 @@ export async function POST(request: NextRequest) {
     } catch (parseError) {
       // Distinguish "library can't read this file" (user error: corrupt /
       // password-protected / wrong format) from "library crashed" (server bug).
-      // Either way, don't leak the raw third-party error message — log it.
-      console.error('[assignments extract-text] Parser failed:', parseError)
+      // Either way, don't leak the raw third-party error message.
+      //
+      // This is where two of our own bugs died quietly. Both the PDF and the
+      // .hwpx paths threw for months — pdf-parse stopped exporting a callable
+      // default, xmldom stopped accepting an errorHandler object — and every
+      // one of those became a `corruptFile` telling the teacher THEIR file was
+      // bad. console.error in a Next server is a Vercel log nobody opens, so
+      // there was nothing to notice. It goes to error_logs now, with the
+      // extension, so the same class of failure shows up as a pattern rather
+      // than as one confused teacher.
+      loggers.files.error(
+        'Text extraction failed',
+        parseError instanceof Error ? parseError : new Error(String(parseError)),
+        {
+          filename: file.name.slice(-40),
+          ext: file.name.toLowerCase().match(/\.[a-z0-9]+$/)?.[0] ?? '(none)',
+          mime: file.type,
+          bytes: file.size,
+        }
+      )
       return NextResponse.json(
         { error: 'corruptFile' },
         { status: 400 }
@@ -95,7 +114,10 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json({ text: out, kind, truncated: clipped })
   } catch (error) {
-    console.error('[assignments extract-text] Exception:', error)
+    loggers.files.error(
+      'extract-text route threw',
+      error instanceof Error ? error : new Error(String(error))
+    )
     return NextResponse.json(
       { error: 'Internal server error' },
       { status: 500 }

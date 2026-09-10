@@ -162,10 +162,30 @@ export class Logger {
       });
 
       if (error) {
+        // The log about the failed log cannot itself be swallowed, or the
+        // whole mechanism goes quiet exactly when it is needed. raiseAlert is
+        // a different channel from this table, so a broken error_logs insert
+        // still reaches someone.
         console.error('Failed to store error log in database:', error);
+        void raiseAlert({
+          severity: 'warning',
+          title: 'error_logs write failed',
+          message: `Could not record a ${log.level} from ${this.serviceName}. Errors are being dropped.`,
+          // One key for the whole condition: a broken table would otherwise
+          // raise an alert per swallowed error and bury the dashboard.
+          dedupeKey: 'error-logs-write-failed',
+          context: { service: this.serviceName, originalMessage: log.message, dbError: error.message },
+        }).catch(() => { /* last resort: nothing left to try */ });
       }
     } catch (error) {
       console.error('Exception storing error log:', error);
+      void raiseAlert({
+        severity: 'warning',
+        title: 'error_logs write threw',
+        message: `Recording a ${log.level} from ${this.serviceName} threw. Errors are being dropped.`,
+        dedupeKey: 'error-logs-write-failed',
+        context: { service: this.serviceName, originalMessage: log.message },
+      }).catch(() => { /* last resort */ });
     }
   }
 
@@ -246,6 +266,18 @@ export class Logger {
 /**
  * Predefined loggers for different services
  */
+/**
+ * One logger per domain. `service_name` is what the admin error-log dashboard
+ * groups by, so a new domain here is a new filter there for free.
+ *
+ * The bottom group was added on 2026-09-11 after four failures were found
+ * that had shipped for months without producing a single reportable event —
+ * every student edit, academy onboarding for any school that entered a phone
+ * number, every PDF upload and every .hwpx upload. All four threw, were
+ * caught, and went to console.error, which in a Next server is a Vercel log
+ * nobody opens. Before that day this module was imported by three routes out
+ * of 203.
+ */
 export const loggers = {
   settlement: new Logger('Settlement'),
   payout: new Logger('Payout'),
@@ -254,6 +286,12 @@ export const loggers = {
   payment: new Logger('Payment'),
   subscription: new Logger('Subscription'),
   auth: new Logger('Auth'),
+
+  academy: new Logger('Academy'),
+  student: new Logger('Student'),
+  assignment: new Logger('Assignment'),
+  files: new Logger('Files'),
+  study: new Logger('Study'),
 };
 
 /**

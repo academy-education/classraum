@@ -3,6 +3,7 @@ import { createClient } from '@supabase/supabase-js'
 import { enforceRateLimit, getClientIp } from '@/lib/rate-limit'
 import type { Database } from '@/lib/database.types'
 import { joinName, buildNameUpdate } from '@/lib/name'
+import { loggers } from '@/lib/error-monitoring'
 
 const supabase = createClient<Database>(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -312,12 +313,24 @@ export async function POST(
       // don't roll back. The manager can still sign in; only the academy
       // metadata + onboarding flag failed to update. Admin can clean up
       // manually if needed.
-      console.error('[Onboarding] Academy update failed (non-fatal):', academyError)
+      loggers.academy.error(
+        // This exact statement failed for every school that entered a phone
+        // number, from whenever the form gained the field until 2026-09-10 —
+        // academies had no email or phone column. "non-fatal" is why nobody
+        // noticed: the request returned 200 and the school saw a half-finished
+        // setup.
+        'Academy update during onboarding failed',
+        new Error(academyError.message),
+        { academyId: academy.id }
+      )
     }
 
     return NextResponse.json({ ok: true, email })
   } catch (e) {
-    console.error('[Onboarding] Unexpected error:', e)
+    loggers.academy.error(
+      'Onboarding threw',
+      e instanceof Error ? e : new Error(String(e))
+    )
     return NextResponse.json({ error: 'Internal server error' }, { status: 500 })
   }
 }
