@@ -134,12 +134,19 @@ async function extractFromHwpx(buffer: Buffer): Promise<string> {
     return ''
   }
 
-  const parser = new DOMParser({
-    // Cast: @xmldom/xmldom's typings expect a single ErrorHandlerFunction
-    // but the runtime accepts an object with named handlers. Behavior
-    // unchanged.
-    errorHandler: { warning: () => {}, error: () => {}, fatalError: () => {} } as unknown as () => void,
-  })
+  // `onError`, NOT `errorHandler`. The comment that used to sit here said the
+  // runtime accepted an object of named handlers and cast the types to match.
+  // That stopped being true in @xmldom/xmldom 0.9, which throws
+  //   TypeError: errorHandler object is no longer supported, switch to onError!
+  // the moment the parser is constructed — so every .hwpx upload has failed
+  // since this repo moved to 0.9.x, silently, because the caller turns the
+  // throw into an empty extraction. The cast is what hid it from the compiler.
+  //
+  // Errors are still swallowed on purpose: real .hwpx files from Hangul carry
+  // namespace quirks that xmldom reports as warnings, and a warning must not
+  // cost a student their upload. Only fatal parse errors stop us, and those
+  // surface as an empty section rather than a crash.
+  const parser = new DOMParser({ onError: () => {} })
 
   const parts: string[] = []
   for (const entry of sectionEntries) {
